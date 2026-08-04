@@ -2,7 +2,7 @@
   "id": "development",
   "name": "Development",
   "description": "Development tools, libraries, frameworks and resources for creating software on PlayStation Vita.",
-  "icon": "development.png",
+  "icon": "icons/development.png",
   "order": 11,
   "subcategories": [
     {
