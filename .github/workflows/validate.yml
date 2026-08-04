@@ -1,4 +1,4 @@
-name: Validate VitaHub JSON
+name: Validate and Generate VitaHub Catalog
 
 on:
   push:
@@ -24,4 +24,19 @@ jobs:
 
       - name: Validate VitaHub catalog
         run: python scripts/validate_catalog.py
-        
+
+      - name: Generate VitaHub catalogs
+        run: python scripts/generate_catalog.py
+
+      - name: Verify generated catalogs
+        run: |
+          test -f catalog.json
+          test -f authors.json
+          test -f categories.json
+
+          python -m json.tool catalog.json > /dev/null
+          python -m json.tool authors.json > /dev/null
+          python -m json.tool categories.json > /dev/null
+
+          echo "Generated catalogs:"
+          ls -lh catalog.json authors.json categories.json
