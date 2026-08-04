@@ -1,0 +1,37 @@
+{
+  "id": "accessibility",
+  "name": "Accessibility",
+  "description": "Applications and tools that improve accessibility and assistive interaction on PlayStation Vita.",
+  "icon": "accessibility.png",
+  "order": 14,
+  "subcategories": [
+    {
+      "id": "visual",
+      "name": "Visual"
+    },
+    {
+      "id": "audio",
+      "name": "Audio"
+    },
+    {
+      "id": "input",
+      "name": "Input"
+    },
+    {
+      "id": "text",
+      "name": "Text"
+    },
+    {
+      "id": "controls",
+      "name": "Controls"
+    },
+    {
+      "id": "assistive-tools",
+      "name": "Assistive Tools"
+    },
+    {
+      "id": "other",
+      "name": "Other"
+    }
+  ]
+}
