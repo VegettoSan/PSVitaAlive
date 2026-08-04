@@ -31,8 +31,6 @@ APP_REQUIRED = {
     "requirements",
     "size",
     "status",
-    "icon",
-    "screenshots",
     "links",
 }
 
@@ -142,13 +140,14 @@ def validate_id(value, field, path, errors):
         )
         return False
 
-    if not re.match(r"^[A-Za-z0-9_-]+$", value):
+    if not re.match(r"^[a-z0-9_-]+$", value):
         add_error(
             errors,
             path,
             (
                 f"'{field}' may only contain "
-                "letters, numbers, hyphens and underscores"
+                "lowercase letters, numbers, "
+                "hyphens and underscores"
             ),
         )
         return False
@@ -194,7 +193,6 @@ def validate_remote(url, path, errors, expect_image=False):
         "User-Agent": "VitaHub-Validator/1.0",
     }
 
-    # First try HEAD.
     request = urllib.request.Request(
         url,
         method="HEAD",
@@ -223,26 +221,23 @@ def validate_remote(url, path, errors, expect_image=False):
                 )
                 return
 
-            if expect_image:
-                if not content_type.startswith("image/"):
-                    add_error(
-                        errors,
-                        path,
-                        (
-                            "remote resource is not reported "
-                            "as an image "
-                            f"(Content-Type: "
-                            f"{content_type or 'unknown'})"
-                        ),
-                    )
+            if expect_image and not content_type.startswith("image/"):
+                add_error(
+                    errors,
+                    path,
+                    (
+                        "remote resource is not reported "
+                        "as an image "
+                        f"(Content-Type: "
+                        f"{content_type or 'unknown'})"
+                    ),
+                )
 
             return
 
     except Exception:
         pass
 
-    # Some servers do not support HEAD correctly.
-    # Retry using GET with a small byte range.
     request = urllib.request.Request(
         url,
         method="GET",
@@ -274,18 +269,17 @@ def validate_remote(url, path, errors, expect_image=False):
                 )
                 return
 
-            if expect_image:
-                if not content_type.startswith("image/"):
-                    add_error(
-                        errors,
-                        path,
-                        (
-                            "remote resource is not reported "
-                            "as an image "
-                            f"(Content-Type: "
-                            f"{content_type or 'unknown'})"
-                        ),
-                    )
+            if expect_image and not content_type.startswith("image/"):
+                add_error(
+                    errors,
+                    path,
+                    (
+                        "remote resource is not reported "
+                        "as an image "
+                        f"(Content-Type: "
+                        f"{content_type or 'unknown'})"
+                    ),
+                )
 
     except urllib.error.HTTPError as exc:
         add_error(
@@ -318,11 +312,10 @@ def validate_resource(
             field_path,
             "resource must be a non-empty string",
         )
-        return
+        return False
 
     parsed = urlparse(value)
 
-    # Remote resource.
     if parsed.scheme in {"http", "https"}:
         validate_remote(
             value,
@@ -330,18 +323,16 @@ def validate_resource(
             errors,
             expect_image=expect_image,
         )
-        return
+        return True
 
-    # Unsupported protocol.
     if parsed.scheme:
         add_error(
             errors,
             field_path,
             "resource URL must use http:// or https://",
         )
-        return
+        return False
 
-    # Local resource.
     if base_directory is None:
         base_directory = ROOT
 
@@ -358,7 +349,7 @@ def validate_resource(
             field_path,
             "local resource escapes the repository",
         )
-        return
+        return False
 
     if not local.is_file():
         add_error(
@@ -369,7 +360,7 @@ def validate_resource(
                 f"{value}"
             ),
         )
-        return
+        return False
 
     if expect_image:
         if local.suffix.lower() not in IMAGE_EXTENSIONS:
@@ -381,6 +372,9 @@ def validate_resource(
                     "image extension"
                 ),
             )
+            return False
+
+    return True
 
 
 def validate_links(
@@ -417,17 +411,11 @@ def validate_links(
             )
             continue
 
-        if require_name:
-            required_fields = (
-                "type",
-                "name",
-                "url",
-            )
-        else:
-            required_fields = (
-                "type",
-                "url",
-            )
+        required_fields = (
+            ("type", "url")
+            if not require_name
+            else ("type", "name", "url")
+        )
 
         for field in required_fields:
             if field not in link:
@@ -538,10 +526,6 @@ def validate_apps(
             errors,
         )
 
-        # -------------------------------------------------
-        # Application ID
-        # -------------------------------------------------
-
         app_id = app.get("id")
 
         if app_id is not None:
@@ -576,10 +560,6 @@ def validate_apps(
                 else:
                     seen_ids[app_id] = rel
 
-        # -------------------------------------------------
-        # Title ID
-        # -------------------------------------------------
-
         title_id = app.get("title_id")
 
         if (
@@ -606,10 +586,6 @@ def validate_apps(
         else:
             seen_title_ids[title_id] = rel
 
-        # -------------------------------------------------
-        # Required text fields
-        # -------------------------------------------------
-
         for field in (
             "name",
             "description",
@@ -629,10 +605,6 @@ def validate_apps(
                     "must be a non-empty string",
                 )
 
-        # -------------------------------------------------
-        # Author
-        # -------------------------------------------------
-
         author_id = app.get("author_id")
 
         if (
@@ -648,10 +620,6 @@ def validate_apps(
                 ),
             )
 
-        # -------------------------------------------------
-        # Category
-        # -------------------------------------------------
-
         category_id = app.get("category_id")
 
         if (
@@ -666,10 +634,6 @@ def validate_apps(
                     "does not exist in categories/"
                 ),
             )
-
-        # -------------------------------------------------
-        # Subcategories
-        # -------------------------------------------------
 
         subcategories = app.get(
             "subcategory_ids"
@@ -732,10 +696,6 @@ def validate_apps(
                             ),
                         )
 
-        # -------------------------------------------------
-        # Version date
-        # -------------------------------------------------
-
         try:
             date.fromisoformat(
                 app.get(
@@ -754,10 +714,6 @@ def validate_apps(
                 "must use YYYY-MM-DD format",
             )
 
-        # -------------------------------------------------
-        # File size
-        # -------------------------------------------------
-
         size = app.get("size")
 
         if (
@@ -774,10 +730,6 @@ def validate_apps(
                 ),
             )
 
-        # -------------------------------------------------
-        # Status
-        # -------------------------------------------------
-
         if app.get("status") not in VALID_STATUSES:
             add_error(
                 errors,
@@ -789,550 +741,83 @@ def validate_apps(
             )
 
         # -------------------------------------------------
-        # Icon
+        # ICON
+        #
+        # The application icon is now optional in the
+        # source JSON.
+        #
+        # If missing/empty, the generator will use the
+        # icon belonging to the application's category.
+        #
+        # If an icon IS provided, it must be valid.
         # -------------------------------------------------
 
-        if "icon" in app:
+        icon = app.get("icon")
+
+        if icon is not None and icon != "":
             validate_resource(
-                app["icon"],
+                icon,
                 f"{rel}.icon",
                 errors,
                 expect_image=True,
                 base_directory=path.parent,
             )
 
-        # -------------------------------------------------
-        # Screenshots
-        # -------------------------------------------------
-
-        screenshots = app.get(
-            "screenshots"
-        )
-
-        if not isinstance(
-            screenshots,
-            list,
-        ):
-            add_error(
-                errors,
-                f"{rel}.screenshots",
-                "must be an array",
-            )
-
-        elif not 1 <= len(screenshots) <= 5:
-            add_error(
-                errors,
-                f"{rel}.screenshots",
-                (
-                    "must contain between "
-                    "1 and 5 images"
-                ),
-            )
-
         else:
-            for index, screenshot in enumerate(
-                screenshots
-            ):
-                validate_resource(
-                    screenshot,
-                    (
-                        f"{rel}.screenshots"
-                        f"[{index}]"
-                    ),
-                    errors,
-                    expect_image=True,
-                    base_directory=path.parent,
-                )
+            # The category must provide a valid fallback.
+            category_entry = categories.get(category_id)
 
-        # -------------------------------------------------
-        # Links
-        # -------------------------------------------------
-
-        if "links" in app:
-            validate_links(
-                app["links"],
-                f"{rel}.links",
-                errors,
-                require_name=True,
-            )
-
-
-def validate_authors(
-    authors,
-    errors,
-):
-    seen_ids = {}
-
-    for stem, (path, author) in authors.items():
-        rel = str(path.relative_to(ROOT))
-
-        validate_required(
-            rel,
-            author,
-            AUTHOR_REQUIRED,
-            errors,
-        )
-
-        # -------------------------------------------------
-        # Author ID
-        # -------------------------------------------------
-
-        author_id = author.get("id")
-
-        if (
-            not isinstance(author_id, str)
-            or not author_id
-        ):
-            add_error(
-                errors,
-                f"{rel}.id",
-                "must be a non-empty string",
-            )
-
-        else:
-            validate_id(
-                author_id,
-                "id",
-                rel,
-                errors,
-            )
-
-            if author_id != stem:
-                add_error(
-                    errors,
-                    rel,
-                    (
-                        f"id '{author_id}' must match "
-                        f"filename '{stem}.json'"
-                    ),
-                )
-
-            if author_id in seen_ids:
-                add_error(
-                    errors,
-                    rel,
-                    (
-                        f"duplicate id '{author_id}' "
-                        f"(also in "
-                        f"{seen_ids[author_id]})"
-                    ),
-                )
-
-            else:
-                seen_ids[author_id] = rel
-
-        # -------------------------------------------------
-        # Author text fields
-        # -------------------------------------------------
-
-        for field in (
-            "name",
-            "bio",
-        ):
-            if not isinstance(
-                author.get(field),
-                str,
-            ):
-                add_error(
-                    errors,
-                    f"{rel}.{field}",
-                    "must be a string",
-                )
-
-        # -------------------------------------------------
-        # Avatar
-        # -------------------------------------------------
-
-        avatar = author.get("avatar")
-
-        if avatar:
-            validate_resource(
-                avatar,
-                f"{rel}.avatar",
-                errors,
-                expect_image=True,
-                base_directory=path.parent,
-            )
-
-        # -------------------------------------------------
-        # Author links
-        #
-        # IMPORTANT:
-        # Author links only require:
-        # type + url
-        #
-        # name is NOT required.
-        # -------------------------------------------------
-
-        validate_links(
-            author.get("links"),
-            f"{rel}.links",
-            errors,
-            require_name=False,
-        )
-
-
-def validate_categories(
-    categories,
-    errors,
-):
-    seen_ids = {}
-
-    for stem, (path, category) in categories.items():
-        rel = str(path.relative_to(ROOT))
-
-        validate_required(
-            rel,
-            category,
-            CATEGORY_REQUIRED,
-            errors,
-        )
-
-        # -------------------------------------------------
-        # Category ID
-        # -------------------------------------------------
-
-        category_id = category.get("id")
-
-        if (
-            not isinstance(category_id, str)
-            or not category_id
-        ):
-            add_error(
-                errors,
-                f"{rel}.id",
-                "must be a non-empty string",
-            )
-
-        else:
-            validate_id(
-                category_id,
-                "id",
-                rel,
-                errors,
-            )
-
-            if category_id != stem:
-                add_error(
-                    errors,
-                    rel,
-                    (
-                        f"id '{category_id}' must match "
-                        f"filename '{stem}.json'"
-                    ),
-                )
-
-            if category_id in seen_ids:
-                add_error(
-                    errors,
-                    rel,
-                    (
-                        f"duplicate id '{category_id}' "
-                        f"(also in "
-                        f"{seen_ids[category_id]})"
-                    ),
-                )
-
-            else:
-                seen_ids[category_id] = rel
-
-        # -------------------------------------------------
-        # Category text fields
-        # -------------------------------------------------
-
-        for field in (
-            "name",
-            "description",
-        ):
-            if not isinstance(
-                category.get(field),
-                str,
-            ):
-                add_error(
-                    errors,
-                    f"{rel}.{field}",
-                    "must be a string",
-                )
-
-        # -------------------------------------------------
-        # Order
-        # -------------------------------------------------
-
-        order = category.get("order")
-
-        if (
-            isinstance(order, bool)
-            or not isinstance(order, int)
-        ):
-            add_error(
-                errors,
-                f"{rel}.order",
-                "must be an integer",
-            )
-
-        # -------------------------------------------------
-        # Category icon
-        #
-        # Local paths are resolved relative to the
-        # category JSON file.
-        #
-        # Example:
-        #
-        # categories/games.json
-        #
-        # "icon": "games.png"
-        #
-        # resolves to:
-        #
-        # categories/games.png
-        # -------------------------------------------------
-
-        icon = category.get("icon")
-
-        if not isinstance(icon, str) or not icon.strip():
-            add_error(
-                errors,
-                f"{rel}.icon",
-                "must be a non-empty string",
-            )
-
-        else:
-            parsed = urlparse(icon)
-
-            if parsed.scheme in {
-                "http",
-                "https",
-            }:
-                validate_resource(
-                    icon,
-                    f"{rel}.icon",
-                    errors,
-                    expect_image=True,
-                )
-
-            elif parsed.scheme:
+            if category_entry is None:
                 add_error(
                     errors,
                     f"{rel}.icon",
                     (
-                        "icon must be a local path "
-                        "or http(s) URL"
+                        "application has no icon and "
+                        "its category does not exist"
                     ),
                 )
 
             else:
-                category_icon = (
-                    path.parent / icon
-                ).resolve()
+                category_path, category = category_entry
+                category_icon = category.get("icon")
 
-                try:
-                    category_icon.relative_to(
-                        ROOT.resolve()
-                    )
-
-                except ValueError:
+                if not isinstance(
+                    category_icon,
+                    str,
+                ) or not category_icon.strip():
                     add_error(
                         errors,
                         f"{rel}.icon",
                         (
-                            "local resource escapes "
-                            "the repository"
+                            "application has no icon and "
+                            "its category has no icon"
                         ),
                     )
 
                 else:
-                    if not category_icon.is_file():
-                        add_error(
-                            errors,
-                            f"{rel}.icon",
-                            (
-                                "local resource does "
-                                "not exist: "
-                                f"{icon}"
-                            ),
-                        )
-
-                    elif (
-                        category_icon.suffix.lower()
-                        not in IMAGE_EXTENSIONS
-                    ):
-                        add_error(
-                            errors,
-                            f"{rel}.icon",
-                            (
-                                "local image must use "
-                                "a supported image "
-                                "extension"
-                            ),
-                        )
-
-        # -------------------------------------------------
-        # Subcategories
-        # -------------------------------------------------
-
-        subcategories = category.get(
-            "subcategories"
-        )
-
-        if not isinstance(
-            subcategories,
-            list,
-        ):
-            add_error(
-                errors,
-                f"{rel}.subcategories",
-                "must be an array",
-            )
-            continue
-
-        sub_ids = set()
-
-        for index, subcategory in enumerate(
-            subcategories
-        ):
-            item_path = (
-                f"{rel}.subcategories"
-                f"[{index}]"
-            )
-
-            if not isinstance(
-                subcategory,
-                dict,
-            ):
-                add_error(
-                    errors,
-                    item_path,
-                    "must be an object",
-                )
-                continue
-
-            sub_id = subcategory.get("id")
-
-            if (
-                not isinstance(
-                    sub_id,
-                    str,
-                )
-                or not sub_id
-            ):
-                add_error(
-                    errors,
-                    f"{item_path}.id",
-                    (
-                        "must be a non-empty "
-                        "string"
-                    ),
-                )
-
-            else:
-                validate_id(
-                    sub_id,
-                    "id",
-                    item_path,
-                    errors,
-                )
-
-                if sub_id in sub_ids:
-                    add_error(
-                        errors,
-                        item_path,
+                    validate_resource(
+                        category_icon,
                         (
-                            f"duplicate "
-                            f"subcategory id "
-                            f"'{sub_id}'"
+                            f"{rel}.icon "
+                            f"(category fallback)"
                         ),
+                        errors,
+                        expect_image=True,
+                        base_directory=category_path.parent,
                     )
 
-                else:
-                    sub_ids.add(sub_id)
+        # -------------------------------------------------
+        # SCREENSHOTS
+        #
+        # Empty/missing screenshots are allowed because
+        # the final icon will be used as fallback.
+        #
+        # If screenshots are provided, they must contain
+        # 1 to 5 valid images.
+        # -------------------------------------------------
 
-            if (
-                not isinstance(
-                    subcategory.get("name"),
-                    str,
-                )
-                or not subcategory.get(
-                    "name"
-                ).strip()
-            ):
-                add_error(
-                    errors,
-                    f"{item_path}.name",
-                    (
-                        "must be a non-empty "
-                        "string"
-                    ),
-                )
+        screenshots = app.get("screenshots")
 
-
-def main():
-    errors = []
-
-    apps = load_json_files(
-        APP_DIR,
-        errors,
-    )
-
-    authors = load_json_files(
-        AUTHOR_DIR,
-        errors,
-    )
-
-    categories = load_json_files(
-        CATEGORY_DIR,
-        errors,
-    )
-
-    validate_authors(
-        authors,
-        errors,
-    )
-
-    validate_categories(
-        categories,
-        errors,
-    )
-
-    validate_apps(
-        apps,
-        authors,
-        categories,
-        errors,
-    )
-
-    if errors:
-        print()
-        print("VitaHub validation failed:")
-        print()
-
-        for item in errors:
-            print(f"- {item}")
-
-        print()
-        print(
-            f"{len(errors)} error(s) found."
-        )
-
-        return 1
-
-    print(
-        "VitaHub validation passed."
-    )
-
-    print(
-        f"Applications: {len(apps)}"
-    )
-
-    print(
-        f"Authors: {len(authors)}"
-    )
-
-    print(
-        f"Categories: {len(categories)}"
-    )
-
-    return 0
-
-
-if __name__ == "__main__":
-    sys.exit(main())
+        if screenshots is None or screenshots == []:
+            # Validated through the icon/category fallback
+  
