@@ -2,7 +2,7 @@
   "id": "education",
   "name": "Education",
   "description": "Educational applications and learning resources for PlayStation Vita.",
-  "icon": "education.png",
+  "icon": "icons/education.png",
   "order": 13,
   "subcategories": [
     {
