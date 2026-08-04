@@ -1,0 +1,105 @@
+{
+  "id": "emulators",
+  "name": "Emulators",
+  "description": "Emulators for other platforms and systems running on PlayStation Vita.",
+  "icon": "emulators.png",
+  "order": 3,
+  "subcategories": [
+    {
+      "id": "arcade",
+      "name": "Arcade"
+    },
+    {
+      "id": "atari",
+      "name": "Atari"
+    },
+    {
+      "id": "coleco-vision",
+      "name": "ColecoVision"
+    },
+    {
+      "id": "commodore",
+      "name": "Commodore"
+    },
+    {
+      "id": "game-boy",
+      "name": "Game Boy"
+    },
+    {
+      "id": "game-boy-color",
+      "name": "Game Boy Color"
+    },
+    {
+      "id": "game-boy-advance",
+      "name": "Game Boy Advance"
+    },
+    {
+      "id": "game-gear",
+      "name": "Game Gear"
+    },
+    {
+      "id": "genesis",
+      "name": "Genesis"
+    },
+    {
+      "id": "master-system",
+      "name": "Master System"
+    },
+    {
+      "id": "neo-geo",
+      "name": "Neo Geo"
+    },
+    {
+      "id": "neo-geo-pocket",
+      "name": "Neo Geo Pocket"
+    },
+    {
+      "id": "nes",
+      "name": "NES"
+    },
+    {
+      "id": "nintendo-64",
+      "name": "Nintendo 64"
+    },
+    {
+      "id": "nintendo-ds",
+      "name": "Nintendo DS"
+    },
+    {
+      "id": "pc-engine",
+      "name": "PC Engine"
+    },
+    {
+      "id": "playstation",
+      "name": "PlayStation"
+    },
+    {
+      "id": "sega-cd",
+      "name": "Sega CD"
+    },
+    {
+      "id": "sega-saturn",
+      "name": "Sega Saturn"
+    },
+    {
+      "id": "snes",
+      "name": "SNES"
+    },
+    {
+      "id": "virtual-boy",
+      "name": "Virtual Boy"
+    },
+    {
+      "id": "wonderswan",
+      "name": "WonderSwan"
+    },
+    {
+      "id": "multi-system",
+      "name": "Multi-System"
+    },
+    {
+      "id": "other",
+      "name": "Other"
+    }
+  ]
+}
