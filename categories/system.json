@@ -1,0 +1,73 @@
+{
+  "id": "system",
+  "name": "System",
+  "description": "Tools for managing, modifying and diagnosing the PlayStation Vita system.",
+  "icon": "system.png",
+  "order": 6,
+  "subcategories": [
+    {
+      "id": "firmware",
+      "name": "Firmware"
+    },
+    {
+      "id": "firmware-tools",
+      "name": "Firmware Tools"
+    },
+    {
+      "id": "downgrade",
+      "name": "Downgrade"
+    },
+    {
+      "id": "recovery",
+      "name": "Recovery"
+    },
+    {
+      "id": "boot",
+      "name": "Boot"
+    },
+    {
+      "id": "kernel",
+      "name": "Kernel"
+    },
+    {
+      "id": "system-manager",
+      "name": "System Manager"
+    },
+    {
+      "id": "account",
+      "name": "Account"
+    },
+    {
+      "id": "storage",
+      "name": "Storage"
+    },
+    {
+      "id": "mount",
+      "name": "Mount"
+    },
+    {
+      "id": "permissions",
+      "name": "Permissions"
+    },
+    {
+      "id": "security",
+      "name": "Security"
+    },
+    {
+      "id": "diagnostics",
+      "name": "Diagnostics"
+    },
+    {
+      "id": "system-information",
+      "name": "System Information"
+    },
+    {
+      "id": "compatibility",
+      "name": "Compatibility"
+    },
+    {
+      "id": "other",
+      "name": "Other"
+    }
+  ]
+}
