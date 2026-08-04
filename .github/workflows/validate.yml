@@ -10,7 +10,7 @@ on:
 
 jobs:
   validate-json:
-    name: Validate JSON files
+    name: Validate VitaHub catalog
     runs-on: ubuntu-latest
 
     steps:
@@ -22,46 +22,6 @@ jobs:
         with:
           python-version: "3.x"
 
-      - name: Validate JSON syntax
-        run: |
-          python - <<'PY'
-          import json
-          import sys
-          from pathlib import Path
-
-          directories = [
-              Path("apps"),
-              Path("authors"),
-              Path("categories")
-          ]
-
-          errors = []
-
-          for directory in directories:
-              if not directory.exists():
-                  continue
-
-              for file in sorted(directory.glob("*.json")):
-                  try:
-                      with file.open("r", encoding="utf-8") as f:
-                          json.load(f)
-                      print(f"OK: {file}")
-                  except json.JSONDecodeError as e:
-                      errors.append(
-                          f"{file}: línea {e.lineno}, columna {e.colno}: {e.msg}"
-                      )
-                  except Exception as e:
-                      errors.append(
-                          f"{file}: {type(e).__name__}: {e}"
-                      )
-
-          if errors:
-              print("\nJSON validation failed:\n")
-
-              for error in errors:
-                  print(f"- {error}")
-
-              sys.exit(1)
-
-          print("\nAll JSON files are valid.")
-          PY
+      - name: Validate VitaHub catalog
+        run: python scripts/validate_catalog.py
+        
