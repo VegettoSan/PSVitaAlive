@@ -2,7 +2,7 @@
   "id": "emulators",
   "name": "Emulators",
   "description": "Emulators for other platforms and systems running on PlayStation Vita.",
-  "icon": "emulators.png",
+  "icon": "icons/emulators.png",
   "order": 3,
   "subcategories": [
     {
