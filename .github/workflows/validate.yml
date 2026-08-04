@@ -47,15 +47,15 @@ jobs:
       - name: Commit generated catalogs
         if: github.event_name == 'push' && github.ref == 'refs/heads/main'
         run: |
-          if git diff --quiet -- catalog.json authors.json categories.json; then
+          git add catalog.json authors.json categories.json
+
+          if git diff --cached --quiet; then
             echo "No catalog changes detected."
             exit 0
           fi
 
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-
-          git add catalog.json authors.json categories.json
 
           git commit -m "Update generated VitaHub catalogs"
 
