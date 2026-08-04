@@ -1,0 +1,69 @@
+{
+  "id": "plugins",
+  "name": "Plugins",
+  "description": "Plugins that extend or modify the functionality of PlayStation Vita.",
+  "icon": "plugins.png",
+  "order": 4,
+  "subcategories": [
+    {
+      "id": "system",
+      "name": "System"
+    },
+    {
+      "id": "performance",
+      "name": "Performance"
+    },
+    {
+      "id": "overclock",
+      "name": "Overclock"
+    },
+    {
+      "id": "graphics",
+      "name": "Graphics"
+    },
+    {
+      "id": "audio",
+      "name": "Audio"
+    },
+    {
+      "id": "networking",
+      "name": "Networking"
+    },
+    {
+      "id": "storage",
+      "name": "Storage"
+    },
+    {
+      "id": "compatibility",
+      "name": "Compatibility"
+    },
+    {
+      "id": "input",
+      "name": "Input"
+    },
+    {
+      "id": "display",
+      "name": "Display"
+    },
+    {
+      "id": "ux0",
+      "name": "ux0"
+    },
+    {
+      "id": "ur0",
+      "name": "ur0"
+    },
+    {
+      "id": "psp",
+      "name": "PSP"
+    },
+    {
+      "id": "security",
+      "name": "Security"
+    },
+    {
+      "id": "other",
+      "name": "Other"
+    }
+  ]
+}
