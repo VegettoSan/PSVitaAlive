@@ -1,0 +1,69 @@
+{
+  "id": "ports",
+  "name": "Game Ports",
+  "description": "Games, engines and other projects ported to PlayStation Vita.",
+  "icon": "ports.png",
+  "order": 2,
+  "subcategories": [
+    {
+      "id": "action",
+      "name": "Action"
+    },
+    {
+      "id": "adventure",
+      "name": "Adventure"
+    },
+    {
+      "id": "arcade",
+      "name": "Arcade"
+    },
+    {
+      "id": "fps",
+      "name": "FPS"
+    },
+    {
+      "id": "platformer",
+      "name": "Platformer"
+    },
+    {
+      "id": "puzzle",
+      "name": "Puzzle"
+    },
+    {
+      "id": "racing",
+      "name": "Racing"
+    },
+    {
+      "id": "rpg",
+      "name": "RPG"
+    },
+    {
+      "id": "shooter",
+      "name": "Shooter"
+    },
+    {
+      "id": "simulation",
+      "name": "Simulation"
+    },
+    {
+      "id": "strategy",
+      "name": "Strategy"
+    },
+    {
+      "id": "engine-port",
+      "name": "Engine Port"
+    },
+    {
+      "id": "source-port",
+      "name": "Source Port"
+    },
+    {
+      "id": "game-engine",
+      "name": "Game Engine"
+    },
+    {
+      "id": "other",
+      "name": "Other"
+    }
+  ]
+}
