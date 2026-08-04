@@ -1,0 +1,57 @@
+{
+  "id": "customization",
+  "name": "Customization",
+  "description": "Applications and tools for customizing the appearance and user experience of PlayStation Vita.",
+  "icon": "customization.png",
+  "order": 9,
+  "subcategories": [
+    {
+      "id": "themes",
+      "name": "Themes"
+    },
+    {
+      "id": "wallpapers",
+      "name": "Wallpapers"
+    },
+    {
+      "id": "icons",
+      "name": "Icons"
+    },
+    {
+      "id": "fonts",
+      "name": "Fonts"
+    },
+    {
+      "id": "boot-animation",
+      "name": "Boot Animation"
+    },
+    {
+      "id": "sounds",
+      "name": "Sounds"
+    },
+    {
+      "id": "bubbles",
+      "name": "Bubbles"
+    },
+    {
+      "id": "livearea",
+      "name": "LiveArea"
+    },
+    {
+      "id": "interface",
+      "name": "Interface"
+    },
+    {
+      "id": "controller-layout",
+      "name": "Controller Layout"
+    },
+    {
+      "id": "screen",
+      "name": "Screen"
+    },
+    {
+      "id": "other",
+      "name": "Other"
+    }
+  ]
+}
