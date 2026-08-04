@@ -2,7 +2,7 @@
   "id": "utilities",
   "name": "Utilities",
   "description": "General-purpose tools and utilities for PlayStation Vita.",
-  "icon": "utilities.png",
+  "icon": "icons/utilities.png",
   "order": 5,
   "subcategories": [
     {
