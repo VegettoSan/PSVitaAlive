@@ -9,21 +9,64 @@ from datetime import date
 from pathlib import Path
 from urllib.parse import urlparse
 
+
 ROOT = Path(__file__).resolve().parents[1]
+
 APP_DIR = ROOT / "apps"
 AUTHOR_DIR = ROOT / "authors"
 CATEGORY_DIR = ROOT / "categories"
 
+
 APP_REQUIRED = {
-    "id", "title_id", "name", "description", "long_description",
-    "author_id", "category_id", "subcategory_ids", "version",
-    "version_date", "requirements", "size", "status", "icon",
-    "screenshots", "links"
+    "id",
+    "title_id",
+    "name",
+    "description",
+    "long_description",
+    "author_id",
+    "category_id",
+    "subcategory_ids",
+    "version",
+    "version_date",
+    "requirements",
+    "size",
+    "status",
+    "icon",
+    "screenshots",
+    "links",
 }
-AUTHOR_REQUIRED = {"id", "name", "avatar", "bio", "links"}
-CATEGORY_REQUIRED = {"id", "name", "description", "icon", "order", "subcategories"}
-VALID_STATUSES = {"Verified", "Legacy", "Archive"}
-ID_RE = re.compile(r"^[a-z0-9]+(?:-[a-z0-9]+)*$")
+
+AUTHOR_REQUIRED = {
+    "id",
+    "name",
+    "avatar",
+    "bio",
+    "links",
+}
+
+CATEGORY_REQUIRED = {
+    "id",
+    "name",
+    "description",
+    "icon",
+    "order",
+    "subcategories",
+}
+
+VALID_STATUSES = {
+    "Verified",
+    "Legacy",
+    "Archive",
+}
+
+IMAGE_EXTENSIONS = {
+    ".png",
+    ".jpg",
+    ".jpeg",
+    ".webp",
+    ".gif",
+    ".bmp",
+}
 
 
 def add_error(errors, path, message):
@@ -32,31 +75,48 @@ def add_error(errors, path, message):
 
 def load_json_files(directory, errors):
     data = {}
+
     if not directory.exists():
-        add_error(errors, str(directory.relative_to(ROOT)), "directory does not exist")
+        add_error(
+            errors,
+            str(directory.relative_to(ROOT)),
+            "directory does not exist",
+        )
         return data
 
     for path in sorted(directory.glob("*.json")):
         try:
             with path.open("r", encoding="utf-8") as handle:
                 value = json.load(handle)
+
         except json.JSONDecodeError as exc:
             add_error(
                 errors,
                 str(path.relative_to(ROOT)),
-                f"invalid JSON at line {exc.lineno}, column {exc.colno}: {exc.msg}",
+                (
+                    f"invalid JSON at line {exc.lineno}, "
+                    f"column {exc.colno}: {exc.msg}"
+                ),
             )
             continue
+
         except Exception as exc:
             add_error(
                 errors,
                 str(path.relative_to(ROOT)),
-                f"cannot read file: {type(exc).__name__}: {exc}",
+                (
+                    f"cannot read file: "
+                    f"{type(exc).__name__}: {exc}"
+                ),
             )
             continue
 
         if not isinstance(value, dict):
-            add_error(errors, str(path.relative_to(ROOT)), "root value must be a JSON object")
+            add_error(
+                errors,
+                str(path.relative_to(ROOT)),
+                "root value must be a JSON object",
+            )
             continue
 
         data[path.stem] = (path, value)
@@ -66,19 +126,30 @@ def load_json_files(directory, errors):
 
 def validate_required(path, obj, required, errors):
     for field in sorted(required - obj.keys()):
-        add_error(errors, path, f"missing required field '{field}'")
+        add_error(
+            errors,
+            path,
+            f"missing required field '{field}'",
+        )
 
 
 def validate_id(value, field, path, errors):
     if not isinstance(value, str) or not value:
-        add_error(errors, path, f"'{field}' must be a non-empty string")
-        return False
-
-    if not ID_RE.fullmatch(value):
         add_error(
             errors,
             path,
-            f"'{field}' must use lowercase letters, numbers and hyphens only",
+            f"'{field}' must be a non-empty string",
+        )
+        return False
+
+    if not re.match(r"^[A-Za-z0-9_-]+$", value):
+        add_error(
+            errors,
+            path,
+            (
+                f"'{field}' may only contain "
+                "letters, numbers, hyphens and underscores"
+            ),
         )
         return False
 
@@ -86,13 +157,30 @@ def validate_id(value, field, path, errors):
 
 
 def validate_url(value, path, errors):
-    if not isinstance(value, str) or not value:
-        add_error(errors, path, "URL must be a non-empty string")
+    if not isinstance(value, str) or not value.strip():
+        add_error(
+            errors,
+            path,
+            "URL must be a non-empty string",
+        )
         return False
 
     parsed = urlparse(value)
-    if parsed.scheme not in {"http", "https"} or not parsed.netloc:
-        add_error(errors, path, "URL must use http:// or https://")
+
+    if parsed.scheme not in {"http", "https"}:
+        add_error(
+            errors,
+            path,
+            "URL must use http:// or https://",
+        )
+        return False
+
+    if not parsed.netloc:
+        add_error(
+            errors,
+            path,
+            "URL must contain a valid host",
+        )
         return False
 
     return True
@@ -102,103 +190,219 @@ def validate_remote(url, path, errors, expect_image=False):
     if not validate_url(url, path, errors):
         return
 
-    headers = {"User-Agent": "VitaHub-Validator/1.0"}
+    headers = {
+        "User-Agent": "VitaHub-Validator/1.0",
+    }
 
-    request = urllib.request.Request(url, method="HEAD", headers=headers)
-
-    try:
-        with urllib.request.urlopen(request, timeout=15) as response:
-            status = getattr(response, "status", 200)
-            content_type = response.headers.get("Content-Type", "").lower()
-
-            if status >= 400:
-                add_error(errors, path, f"remote URL returned HTTP {status}")
-            elif expect_image and not content_type.startswith("image/"):
-                add_error(
-                    errors,
-                    path,
-                    f"remote resource is not reported as an image "
-                    f"(Content-Type: {content_type or 'unknown'})",
-                )
-            return
-    except Exception:
-        pass
-
-    # Some hosts do not implement HEAD correctly, so retry with a small GET.
+    # First try HEAD.
     request = urllib.request.Request(
         url,
-        method="GET",
-        headers={**headers, "Range": "bytes=0-1023"},
+        method="HEAD",
+        headers=headers,
     )
 
     try:
-        with urllib.request.urlopen(request, timeout=15) as response:
+        with urllib.request.urlopen(
+            request,
+            timeout=15,
+        ) as response:
+
             status = getattr(response, "status", 200)
-            content_type = response.headers.get("Content-Type", "").lower()
+
+            content_type = (
+                response.headers
+                .get("Content-Type", "")
+                .lower()
+            )
 
             if status >= 400:
-                add_error(errors, path, f"remote URL returned HTTP {status}")
-            elif expect_image and not content_type.startswith("image/"):
                 add_error(
                     errors,
                     path,
-                    f"remote resource is not reported as an image "
-                    f"(Content-Type: {content_type or 'unknown'})",
+                    f"remote URL returned HTTP {status}",
                 )
+                return
+
+            if expect_image:
+                if not content_type.startswith("image/"):
+                    add_error(
+                        errors,
+                        path,
+                        (
+                            "remote resource is not reported "
+                            "as an image "
+                            f"(Content-Type: "
+                            f"{content_type or 'unknown'})"
+                        ),
+                    )
+
+            return
+
+    except Exception:
+        pass
+
+    # Some servers do not support HEAD correctly.
+    # Retry using GET with a small byte range.
+    request = urllib.request.Request(
+        url,
+        method="GET",
+        headers={
+            **headers,
+            "Range": "bytes=0-1023",
+        },
+    )
+
+    try:
+        with urllib.request.urlopen(
+            request,
+            timeout=15,
+        ) as response:
+
+            status = getattr(response, "status", 200)
+
+            content_type = (
+                response.headers
+                .get("Content-Type", "")
+                .lower()
+            )
+
+            if status >= 400:
+                add_error(
+                    errors,
+                    path,
+                    f"remote URL returned HTTP {status}",
+                )
+                return
+
+            if expect_image:
+                if not content_type.startswith("image/"):
+                    add_error(
+                        errors,
+                        path,
+                        (
+                            "remote resource is not reported "
+                            "as an image "
+                            f"(Content-Type: "
+                            f"{content_type or 'unknown'})"
+                        ),
+                    )
+
     except urllib.error.HTTPError as exc:
-        add_error(errors, path, f"remote URL returned HTTP {exc.code}")
+        add_error(
+            errors,
+            path,
+            f"remote URL returned HTTP {exc.code}",
+        )
+
     except Exception as exc:
         add_error(
             errors,
             path,
-            f"remote URL could not be reached: {type(exc).__name__}: {exc}",
+            (
+                "remote URL could not be reached: "
+                f"{type(exc).__name__}: {exc}"
+            ),
         )
 
 
-def validate_resource(value, field_path, errors, expect_image=False):
-    if not isinstance(value, str) or not value:
-        add_error(errors, field_path, "resource must be a non-empty string")
+def validate_resource(
+    value,
+    field_path,
+    errors,
+    expect_image=False,
+    base_directory=None,
+):
+    if not isinstance(value, str) or not value.strip():
+        add_error(
+            errors,
+            field_path,
+            "resource must be a non-empty string",
+        )
         return
 
     parsed = urlparse(value)
 
+    # Remote resource.
     if parsed.scheme in {"http", "https"}:
-        validate_remote(value, field_path, errors, expect_image=expect_image)
+        validate_remote(
+            value,
+            field_path,
+            errors,
+            expect_image=expect_image,
+        )
         return
 
+    # Unsupported protocol.
     if parsed.scheme:
-        add_error(errors, field_path, "resource URL must use http:// or https://")
-        return
-
-    local = (ROOT / value).resolve()
-
-    try:
-        local.relative_to(ROOT.resolve())
-    except ValueError:
-        add_error(errors, field_path, "local resource escapes the repository")
-        return
-
-    if not local.is_file():
-        add_error(errors, field_path, f"local resource does not exist: {value}")
-        return
-
-    if expect_image and local.suffix.lower() not in {
-        ".png", ".jpg", ".jpeg", ".webp", ".gif", ".bmp"
-    }:
         add_error(
             errors,
             field_path,
-            "local image must use a supported image extension",
+            "resource URL must use http:// or https://",
         )
+        return
+
+    # Local resource.
+    if base_directory is None:
+        base_directory = ROOT
+
+    local = (
+        base_directory / value
+    ).resolve()
+
+    try:
+        local.relative_to(ROOT.resolve())
+
+    except ValueError:
+        add_error(
+            errors,
+            field_path,
+            "local resource escapes the repository",
+        )
+        return
+
+    if not local.is_file():
+        add_error(
+            errors,
+            field_path,
+            (
+                "local resource does not exist: "
+                f"{value}"
+            ),
+        )
+        return
+
+    if expect_image:
+        if local.suffix.lower() not in IMAGE_EXTENSIONS:
+            add_error(
+                errors,
+                field_path,
+                (
+                    "local image must use a supported "
+                    "image extension"
+                ),
+            )
 
 
-def validate_links(links, field_path, errors):
+def validate_links(
+    links,
+    field_path,
+    errors,
+    require_name=True,
+):
     if not isinstance(links, list):
-        add_error(errors, field_path, "must be an array")
+        add_error(
+            errors,
+            field_path,
+            "must be an array",
+        )
         return
 
     if not links:
-        add_error(errors, field_path, "must contain at least one link")
+        add_error(
+            errors,
+            field_path,
+            "must contain at least one link",
+        )
 
     recommended_count = 0
 
@@ -206,29 +410,73 @@ def validate_links(links, field_path, errors):
         item_path = f"{field_path}[{index}]"
 
         if not isinstance(link, dict):
-            add_error(errors, item_path, "must be an object")
+            add_error(
+                errors,
+                item_path,
+                "must be an object",
+            )
             continue
 
-        for field in ("type", "name", "url"):
+        if require_name:
+            required_fields = (
+                "type",
+                "name",
+                "url",
+            )
+        else:
+            required_fields = (
+                "type",
+                "url",
+            )
+
+        for field in required_fields:
             if field not in link:
-                add_error(errors, item_path, f"missing required field '{field}'")
+                add_error(
+                    errors,
+                    item_path,
+                    f"missing required field '{field}'",
+                )
 
-        if "type" in link and (
-            not isinstance(link["type"], str) or not link["type"].strip()
-        ):
-            add_error(errors, f"{item_path}.type", "must be a non-empty string")
+        if "type" in link:
+            if (
+                not isinstance(link["type"], str)
+                or not link["type"].strip()
+            ):
+                add_error(
+                    errors,
+                    f"{item_path}.type",
+                    "must be a non-empty string",
+                )
 
-        if "name" in link and (
-            not isinstance(link["name"], str) or not link["name"].strip()
-        ):
-            add_error(errors, f"{item_path}.name", "must be a non-empty string")
+        if require_name and "name" in link:
+            if (
+                not isinstance(link["name"], str)
+                or not link["name"].strip()
+            ):
+                add_error(
+                    errors,
+                    f"{item_path}.name",
+                    "must be a non-empty string",
+                )
 
         if "url" in link:
-            validate_url(link["url"], f"{item_path}.url", errors)
+            validate_url(
+                link["url"],
+                f"{item_path}.url",
+                errors,
+            )
 
         if "recommended" in link:
-            if not isinstance(link["recommended"], bool):
-                add_error(errors, f"{item_path}.recommended", "must be boolean")
+            if not isinstance(
+                link["recommended"],
+                bool,
+            ):
+                add_error(
+                    errors,
+                    f"{item_path}.recommended",
+                    "must be boolean",
+                )
+
             elif link["recommended"]:
                 recommended_count += 1
 
@@ -236,65 +484,131 @@ def validate_links(links, field_path, errors):
         add_error(
             errors,
             field_path,
-            "at most one link may have recommended=true",
+            (
+                "at most one link may have "
+                "recommended=true"
+            ),
         )
 
 
-def validate_apps(apps, authors, categories, errors):
+def validate_apps(
+    apps,
+    authors,
+    categories,
+    errors,
+):
     seen_ids = {}
     seen_title_ids = {}
 
     category_subcategories = {}
 
     for stem, (_, category) in categories.items():
-        subcategories = category.get("subcategories", [])
+        subcategories = category.get(
+            "subcategories",
+            [],
+        )
 
         if isinstance(subcategories, list):
-            category_id = category.get("id", stem)
-            category_subcategories[category_id] = {
+            category_id = category.get(
+                "id",
+                stem,
+            )
+
+            category_subcategories[
+                category_id
+            ] = {
                 item.get("id")
                 for item in subcategories
-                if isinstance(item, dict) and isinstance(item.get("id"), str)
+                if (
+                    isinstance(item, dict)
+                    and isinstance(
+                        item.get("id"),
+                        str,
+                    )
+                )
             }
 
     for stem, (path, app) in apps.items():
         rel = str(path.relative_to(ROOT))
 
-        validate_required(rel, app, APP_REQUIRED, errors)
+        validate_required(
+            rel,
+            app,
+            APP_REQUIRED,
+            errors,
+        )
+
+        # -------------------------------------------------
+        # Application ID
+        # -------------------------------------------------
 
         app_id = app.get("id")
 
-        if app_id is not None and validate_id(app_id, "id", rel, errors):
-            if app_id != stem:
-                add_error(
-                    errors,
-                    rel,
-                    f"id '{app_id}' must match filename '{stem}.json'",
-                )
+        if app_id is not None:
+            if validate_id(
+                app_id,
+                "id",
+                rel,
+                errors,
+            ):
 
-            if app_id in seen_ids:
-                add_error(
-                    errors,
-                    rel,
-                    f"duplicate id '{app_id}' "
-                    f"(also in {seen_ids[app_id]})",
-                )
-            else:
-                seen_ids[app_id] = rel
+                if app_id != stem:
+                    add_error(
+                        errors,
+                        rel,
+                        (
+                            f"id '{app_id}' must match "
+                            f"filename '{stem}.json'"
+                        ),
+                    )
+
+                if app_id in seen_ids:
+                    add_error(
+                        errors,
+                        rel,
+                        (
+                            f"duplicate id '{app_id}' "
+                            f"(also in "
+                            f"{seen_ids[app_id]})"
+                        ),
+                    )
+
+                else:
+                    seen_ids[app_id] = rel
+
+        # -------------------------------------------------
+        # Title ID
+        # -------------------------------------------------
 
         title_id = app.get("title_id")
 
-        if not isinstance(title_id, str) or not title_id.strip():
-            add_error(errors, f"{rel}.title_id", "must be a non-empty string")
+        if (
+            not isinstance(title_id, str)
+            or not title_id.strip()
+        ):
+            add_error(
+                errors,
+                f"{rel}.title_id",
+                "must be a non-empty string",
+            )
+
         elif title_id in seen_title_ids:
             add_error(
                 errors,
                 f"{rel}.title_id",
-                f"duplicate title_id '{title_id}' "
-                f"(also in {seen_title_ids[title_id]})",
+                (
+                    f"duplicate title_id '{title_id}' "
+                    f"(also in "
+                    f"{seen_title_ids[title_id]})"
+                ),
             )
+
         else:
             seen_title_ids[title_id] = rel
+
+        # -------------------------------------------------
+        # Required text fields
+        # -------------------------------------------------
 
         for field in (
             "name",
@@ -305,89 +619,178 @@ def validate_apps(apps, authors, categories, errors):
         ):
             value = app.get(field)
 
-            if not isinstance(value, str) or not value.strip():
+            if (
+                not isinstance(value, str)
+                or not value.strip()
+            ):
                 add_error(
                     errors,
                     f"{rel}.{field}",
                     "must be a non-empty string",
                 )
 
+        # -------------------------------------------------
+        # Author
+        # -------------------------------------------------
+
         author_id = app.get("author_id")
 
-        if not isinstance(author_id, str) or author_id not in authors:
+        if (
+            not isinstance(author_id, str)
+            or author_id not in authors
+        ):
             add_error(
                 errors,
                 f"{rel}.author_id",
-                f"author '{author_id}' does not exist in authors/",
+                (
+                    f"author '{author_id}' "
+                    "does not exist in authors/"
+                ),
             )
+
+        # -------------------------------------------------
+        # Category
+        # -------------------------------------------------
 
         category_id = app.get("category_id")
 
-        if not isinstance(category_id, str) or category_id not in categories:
+        if (
+            not isinstance(category_id, str)
+            or category_id not in categories
+        ):
             add_error(
                 errors,
                 f"{rel}.category_id",
-                f"category '{category_id}' does not exist in categories/",
+                (
+                    f"category '{category_id}' "
+                    "does not exist in categories/"
+                ),
             )
 
-        subcategories = app.get("subcategory_ids")
+        # -------------------------------------------------
+        # Subcategories
+        # -------------------------------------------------
 
-        if not isinstance(subcategories, list) or not subcategories:
+        subcategories = app.get(
+            "subcategory_ids"
+        )
+
+        if (
+            not isinstance(subcategories, list)
+            or not subcategories
+        ):
             add_error(
                 errors,
                 f"{rel}.subcategory_ids",
                 "must be a non-empty array",
             )
+
         else:
-            if len(set(subcategories)) != len(subcategories):
+            if (
+                len(set(subcategories))
+                != len(subcategories)
+            ):
                 add_error(
                     errors,
                     f"{rel}.subcategory_ids",
-                    "must not contain duplicate IDs",
+                    (
+                        "must not contain "
+                        "duplicate IDs"
+                    ),
                 )
 
             if category_id in category_subcategories:
-                allowed = category_subcategories[category_id]
+                allowed = category_subcategories[
+                    category_id
+                ]
 
                 for subcategory in subcategories:
-                    if not isinstance(subcategory, str):
+                    if not isinstance(
+                        subcategory,
+                        str,
+                    ):
                         add_error(
                             errors,
                             f"{rel}.subcategory_ids",
-                            f"subcategory '{subcategory}' must be a string",
+                            (
+                                f"subcategory "
+                                f"'{subcategory}' "
+                                "must be a string"
+                            ),
                         )
+
                     elif subcategory not in allowed:
                         add_error(
                             errors,
                             f"{rel}.subcategory_ids",
-                            f"subcategory '{subcategory}' does not belong "
-                            f"to category '{category_id}'",
+                            (
+                                f"subcategory "
+                                f"'{subcategory}' "
+                                f"does not belong "
+                                f"to category "
+                                f"'{category_id}'"
+                            ),
                         )
 
+        # -------------------------------------------------
+        # Version date
+        # -------------------------------------------------
+
         try:
-            date.fromisoformat(app.get("version_date", ""))
-        except (TypeError, ValueError):
+            date.fromisoformat(
+                app.get(
+                    "version_date",
+                    "",
+                )
+            )
+
+        except (
+            TypeError,
+            ValueError,
+        ):
             add_error(
                 errors,
                 f"{rel}.version_date",
                 "must use YYYY-MM-DD format",
             )
 
+        # -------------------------------------------------
+        # File size
+        # -------------------------------------------------
+
         size = app.get("size")
 
-        if isinstance(size, bool) or not isinstance(size, int) or size <= 0:
+        if (
+            isinstance(size, bool)
+            or not isinstance(size, int)
+            or size <= 0
+        ):
             add_error(
                 errors,
                 f"{rel}.size",
-                "must be a positive integer representing bytes",
+                (
+                    "must be a positive integer "
+                    "representing bytes"
+                ),
             )
+
+        # -------------------------------------------------
+        # Status
+        # -------------------------------------------------
 
         if app.get("status") not in VALID_STATUSES:
             add_error(
                 errors,
                 f"{rel}.status",
-                "must be one of: Verified, Legacy, Archive",
+                (
+                    "must be one of: "
+                    "Verified, Legacy, Archive"
+                ),
             )
+
+        # -------------------------------------------------
+        # Icon
+        # -------------------------------------------------
 
         if "icon" in app:
             validate_resource(
@@ -395,67 +798,150 @@ def validate_apps(apps, authors, categories, errors):
                 f"{rel}.icon",
                 errors,
                 expect_image=True,
+                base_directory=path.parent,
             )
 
-        screenshots = app.get("screenshots")
+        # -------------------------------------------------
+        # Screenshots
+        # -------------------------------------------------
 
-        if not isinstance(screenshots, list):
-            add_error(errors, f"{rel}.screenshots", "must be an array")
+        screenshots = app.get(
+            "screenshots"
+        )
+
+        if not isinstance(
+            screenshots,
+            list,
+        ):
+            add_error(
+                errors,
+                f"{rel}.screenshots",
+                "must be an array",
+            )
+
         elif not 1 <= len(screenshots) <= 5:
             add_error(
                 errors,
                 f"{rel}.screenshots",
-                "must contain between 1 and 5 images",
+                (
+                    "must contain between "
+                    "1 and 5 images"
+                ),
             )
+
         else:
-            for index, screenshot in enumerate(screenshots):
+            for index, screenshot in enumerate(
+                screenshots
+            ):
                 validate_resource(
                     screenshot,
-                    f"{rel}.screenshots[{index}]",
+                    (
+                        f"{rel}.screenshots"
+                        f"[{index}]"
+                    ),
                     errors,
                     expect_image=True,
+                    base_directory=path.parent,
                 )
 
+        # -------------------------------------------------
+        # Links
+        # -------------------------------------------------
+
         if "links" in app:
-            validate_links(app["links"], f"{rel}.links", errors)
+            validate_links(
+                app["links"],
+                f"{rel}.links",
+                errors,
+                require_name=True,
+            )
 
 
-def validate_authors(authors, errors):
+def validate_authors(
+    authors,
+    errors,
+):
     seen_ids = {}
 
     for stem, (path, author) in authors.items():
         rel = str(path.relative_to(ROOT))
 
-        validate_required(rel, author, AUTHOR_REQUIRED, errors)
+        validate_required(
+            rel,
+            author,
+            AUTHOR_REQUIRED,
+            errors,
+        )
+
+        # -------------------------------------------------
+        # Author ID
+        # -------------------------------------------------
 
         author_id = author.get("id")
 
-        if not isinstance(author_id, str) or not author_id:
-            add_error(errors, f"{rel}.id", "must be a non-empty string")
+        if (
+            not isinstance(author_id, str)
+            or not author_id
+        ):
+            add_error(
+                errors,
+                f"{rel}.id",
+                "must be a non-empty string",
+            )
+
         else:
-            if not validate_id(author_id, "id", rel, errors):
-                pass
+            validate_id(
+                author_id,
+                "id",
+                rel,
+                errors,
+            )
 
             if author_id != stem:
                 add_error(
                     errors,
                     rel,
-                    f"id '{author_id}' must match filename '{stem}.json'",
+                    (
+                        f"id '{author_id}' must match "
+                        f"filename '{stem}.json'"
+                    ),
                 )
 
             if author_id in seen_ids:
                 add_error(
                     errors,
                     rel,
-                    f"duplicate id '{author_id}' "
-                    f"(also in {seen_ids[author_id]})",
+                    (
+                        f"duplicate id '{author_id}' "
+                        f"(also in "
+                        f"{seen_ids[author_id]})"
+                    ),
                 )
+
             else:
                 seen_ids[author_id] = rel
 
-        for field in ("name", "bio"):
-            if not isinstance(author.get(field), str):
-                add_error(errors, f"{rel}.{field}", "must be a string")
+        # -------------------------------------------------
+        # Author text fields
+        # -------------------------------------------------
+
+        for field in (
+            "name",
+            "bio",
+        ):
+            if not isinstance(
+                author.get(field),
+                str,
+            ):
+                add_error(
+                    errors,
+                    f"{rel}.{field}",
+                    "must be a string",
+                )
+
+        # -------------------------------------------------
+        # Avatar
+        # -------------------------------------------------
 
         avatar = author.get("avatar")
 
@@ -465,134 +951,385 @@ def validate_authors(authors, errors):
                 f"{rel}.avatar",
                 errors,
                 expect_image=True,
+                base_directory=path.parent,
             )
 
-        validate_links(author.get("links"), f"{rel}.links", errors)
+        # -------------------------------------------------
+        # Author links
+        #
+        # IMPORTANT:
+        # Author links only require:
+        # type + url
+        #
+        # name is NOT required.
+        # -------------------------------------------------
+
+        validate_links(
+            author.get("links"),
+            f"{rel}.links",
+            errors,
+            require_name=False,
+        )
 
 
-def validate_categories(categories, errors):
+def validate_categories(
+    categories,
+    errors,
+):
     seen_ids = {}
 
     for stem, (path, category) in categories.items():
         rel = str(path.relative_to(ROOT))
 
-        validate_required(rel, category, CATEGORY_REQUIRED, errors)
+        validate_required(
+            rel,
+            category,
+            CATEGORY_REQUIRED,
+            errors,
+        )
+
+        # -------------------------------------------------
+        # Category ID
+        # -------------------------------------------------
 
         category_id = category.get("id")
 
-        if not isinstance(category_id, str) or not category_id:
-            add_error(errors, f"{rel}.id", "must be a non-empty string")
+        if (
+            not isinstance(category_id, str)
+            or not category_id
+        ):
+            add_error(
+                errors,
+                f"{rel}.id",
+                "must be a non-empty string",
+            )
+
         else:
-            if not validate_id(category_id, "id", rel, errors):
-                pass
+            validate_id(
+                category_id,
+                "id",
+                rel,
+                errors,
+            )
 
             if category_id != stem:
                 add_error(
                     errors,
                     rel,
-                    f"id '{category_id}' must match filename '{stem}.json'",
+                    (
+                        f"id '{category_id}' must match "
+                        f"filename '{stem}.json'"
+                    ),
                 )
 
             if category_id in seen_ids:
                 add_error(
                     errors,
                     rel,
-                    f"duplicate id '{category_id}' "
-                    f"(also in {seen_ids[category_id]})",
+                    (
+                        f"duplicate id '{category_id}' "
+                        f"(also in "
+                        f"{seen_ids[category_id]})"
+                    ),
                 )
+
             else:
                 seen_ids[category_id] = rel
 
-        for field in ("name", "description"):
-            if not isinstance(category.get(field), str):
-                add_error(errors, f"{rel}.{field}", "must be a string")
+        # -------------------------------------------------
+        # Category text fields
+        # -------------------------------------------------
+
+        for field in (
+            "name",
+            "description",
+        ):
+            if not isinstance(
+                category.get(field),
+                str,
+            ):
+                add_error(
+                    errors,
+                    f"{rel}.{field}",
+                    "must be a string",
+                )
+
+        # -------------------------------------------------
+        # Order
+        # -------------------------------------------------
 
         order = category.get("order")
 
-        if isinstance(order, bool) or not isinstance(order, int):
-            add_error(errors, f"{rel}.order", "must be an integer")
+        if (
+            isinstance(order, bool)
+            or not isinstance(order, int)
+        ):
+            add_error(
+                errors,
+                f"{rel}.order",
+                "must be an integer",
+            )
+
+        # -------------------------------------------------
+        # Category icon
+        #
+        # Local paths are resolved relative to the
+        # category JSON file.
+        #
+        # Example:
+        #
+        # categories/games.json
+        #
+        # "icon": "games.png"
+        #
+        # resolves to:
+        #
+        # categories/games.png
+        # -------------------------------------------------
 
         icon = category.get("icon")
 
-        if icon:
-            validate_resource(
-                icon,
-                f"{rel}.icon",
+        if not isinstance(icon, str) or not icon.strip():
+            add_error(
                 errors,
-                expect_image=True,
+                f"{rel}.icon",
+                "must be a non-empty string",
             )
 
-        subcategories = category.get("subcategories")
+        else:
+            parsed = urlparse(icon)
 
-        if not isinstance(subcategories, list):
-            add_error(errors, f"{rel}.subcategories", "must be an array")
+            if parsed.scheme in {
+                "http",
+                "https",
+            }:
+                validate_resource(
+                    icon,
+                    f"{rel}.icon",
+                    errors,
+                    expect_image=True,
+                )
+
+            elif parsed.scheme:
+                add_error(
+                    errors,
+                    f"{rel}.icon",
+                    (
+                        "icon must be a local path "
+                        "or http(s) URL"
+                    ),
+                )
+
+            else:
+                category_icon = (
+                    path.parent / icon
+                ).resolve()
+
+                try:
+                    category_icon.relative_to(
+                        ROOT.resolve()
+                    )
+
+                except ValueError:
+                    add_error(
+                        errors,
+                        f"{rel}.icon",
+                        (
+                            "local resource escapes "
+                            "the repository"
+                        ),
+                    )
+
+                else:
+                    if not category_icon.is_file():
+                        add_error(
+                            errors,
+                            f"{rel}.icon",
+                            (
+                                "local resource does "
+                                "not exist: "
+                                f"{icon}"
+                            ),
+                        )
+
+                    elif (
+                        category_icon.suffix.lower()
+                        not in IMAGE_EXTENSIONS
+                    ):
+                        add_error(
+                            errors,
+                            f"{rel}.icon",
+                            (
+                                "local image must use "
+                                "a supported image "
+                                "extension"
+                            ),
+                        )
+
+        # -------------------------------------------------
+        # Subcategories
+        # -------------------------------------------------
+
+        subcategories = category.get(
+            "subcategories"
+        )
+
+        if not isinstance(
+            subcategories,
+            list,
+        ):
+            add_error(
+                errors,
+                f"{rel}.subcategories",
+                "must be an array",
+            )
             continue
 
         sub_ids = set()
 
-        for index, subcategory in enumerate(subcategories):
-            item_path = f"{rel}.subcategories[{index}]"
+        for index, subcategory in enumerate(
+            subcategories
+        ):
+            item_path = (
+                f"{rel}.subcategories"
+                f"[{index}]"
+            )
 
-            if not isinstance(subcategory, dict):
-                add_error(errors, item_path, "must be an object")
+            if not isinstance(
+                subcategory,
+                dict,
+            ):
+                add_error(
+                    errors,
+                    item_path,
+                    "must be an object",
+                )
                 continue
 
             sub_id = subcategory.get("id")
 
-            if not isinstance(sub_id, str) or not sub_id:
+            if (
+                not isinstance(
+                    sub_id,
+                    str,
+                )
+                or not sub_id
+            ):
                 add_error(
                     errors,
                     f"{item_path}.id",
-                    "must be a non-empty string",
+                    (
+                        "must be a non-empty "
+                        "string"
+                    ),
                 )
+
             else:
-                if not validate_id(sub_id, "id", item_path, errors):
-                    pass
+                validate_id(
+                    sub_id,
+                    "id",
+                    item_path,
+                    errors,
+                )
 
                 if sub_id in sub_ids:
                     add_error(
                         errors,
                         item_path,
-                        f"duplicate subcategory id '{sub_id}'",
+                        (
+                            f"duplicate "
+                            f"subcategory id "
+                            f"'{sub_id}'"
+                        ),
                     )
+
                 else:
                     sub_ids.add(sub_id)
 
             if (
-                not isinstance(subcategory.get("name"), str)
-                or not subcategory.get("name")
+                not isinstance(
+                    subcategory.get("name"),
+                    str,
+                )
+                or not subcategory.get(
+                    "name"
+                ).strip()
             ):
                 add_error(
                     errors,
                     f"{item_path}.name",
-                    "must be a non-empty string",
+                    (
+                        "must be a non-empty "
+                        "string"
+                    ),
                 )
 
 
 def main():
     errors = []
 
-    apps = load_json_files(APP_DIR, errors)
-    authors = load_json_files(AUTHOR_DIR, errors)
-    categories = load_json_files(CATEGORY_DIR, errors)
+    apps = load_json_files(
+        APP_DIR,
+        errors,
+    )
 
-    validate_authors(authors, errors)
-    validate_categories(categories, errors)
-    validate_apps(apps, authors, categories, errors)
+    authors = load_json_files(
+        AUTHOR_DIR,
+        errors,
+    )
+
+    categories = load_json_files(
+        CATEGORY_DIR,
+        errors,
+    )
+
+    validate_authors(
+        authors,
+        errors,
+    )
+
+    validate_categories(
+        categories,
+        errors,
+    )
+
+    validate_apps(
+        apps,
+        authors,
+        categories,
+        errors,
+    )
 
     if errors:
-        print("\nVitaHub validation failed:\n")
+        print()
+        print("VitaHub validation failed:")
+        print()
 
         for item in errors:
             print(f"- {item}")
 
-        print(f"\n{len(errors)} error(s) found.")
+        print()
+        print(
+            f"{len(errors)} error(s) found."
+        )
+
         return 1
 
-    print("VitaHub validation passed.")
-    print(f"Applications: {len(apps)}")
-    print(f"Authors: {len(authors)}")
-    print(f"Categories: {len(categories)}")
+    print(
+        "VitaHub validation passed."
+    )
+
+    print(
+        f"Applications: {len(apps)}"
+    )
+
+    print(
+        f"Authors: {len(authors)}"
+    )
+
+    print(
+        f"Categories: {len(categories)}"
+    )
 
     return 0
 
