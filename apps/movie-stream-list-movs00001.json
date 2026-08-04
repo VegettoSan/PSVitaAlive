@@ -1,0 +1,48 @@
+{
+  "id": "movie-stream-list-movs00001",
+  "title_id": "MOVS00001",
+  "name": "Movie Stream List",
+  "description": "Aplicación para descubrir y descargar películas y series compartidas por la comunidad.",
+  "long_description": "Movie Stream List es una aplicación creada para acceder a películas y series subidas por la comunidad. En PS Vita permite descargar los archivos de contenido y guardarlos en ux0:data/. Para reproducirlos en la consola se requiere NetStream. El proyecto también dispone de versiones para Android y Windows.",
+  "author_id": "vegettosandev",
+  "category_id": "media",
+  "subcategory_ids": [
+    "streaming",
+    "video"
+  ],
+  "version": "1.55",
+  "version_date": "2024-09-30",
+  "requirements": "PS Vita con Homebrew. NetStream es necesario para reproducir el contenido descargado.",
+  "size": 32978987,
+  "status": "Verified",
+  "icon": "",
+  "screenshots": [],
+  "links": [
+    {
+      "type": "download",
+      "name": "VPK 1.55",
+      "url": "https://github.com/VegettoSan/MovieStreamList/releases/download/1.55/Movie.Stream.List.vpk",
+      "recommended": true
+    },
+    {
+      "type": "repository",
+      "name": "Repositorio",
+      "url": "https://github.com/VegettoSan/MovieStreamList"
+    },
+    {
+      "type": "release",
+      "name": "Release 1.55",
+      "url": "https://github.com/VegettoSan/MovieStreamList/releases/tag/1.55"
+    },
+    {
+      "type": "community",
+      "name": "Discord",
+      "url": "https://discord.gg/"
+    },
+    {
+      "type": "website",
+      "name": "Sitio web del desarrollador",
+      "url": "https://sites.google.com/view/vegettosandev/main"
+    }
+  ]
+}
