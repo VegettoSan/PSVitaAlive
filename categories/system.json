@@ -2,7 +2,7 @@
   "id": "system",
   "name": "System",
   "description": "Tools for managing, modifying and diagnosing the PlayStation Vita system.",
-  "icon": "system.png",
+  "icon": "icons/system.png",
   "order": 6,
   "subcategories": [
     {
