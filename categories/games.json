@@ -1,0 +1,97 @@
+{
+  "id": "games",
+  "name": "Games",
+  "description": "Homebrew games created for PlayStation Vita.",
+  "icon": "games.png",
+  "order": 1,
+  "subcategories": [
+    {
+      "id": "action",
+      "name": "Action"
+    },
+    {
+      "id": "adventure",
+      "name": "Adventure"
+    },
+    {
+      "id": "arcade",
+      "name": "Arcade"
+    },
+    {
+      "id": "board",
+      "name": "Board"
+    },
+    {
+      "id": "card",
+      "name": "Card"
+    },
+    {
+      "id": "casual",
+      "name": "Casual"
+    },
+    {
+      "id": "fighting",
+      "name": "Fighting"
+    },
+    {
+      "id": "horror",
+      "name": "Horror"
+    },
+    {
+      "id": "music",
+      "name": "Music"
+    },
+    {
+      "id": "platformer",
+      "name": "Platformer"
+    },
+    {
+      "id": "puzzle",
+      "name": "Puzzle"
+    },
+    {
+      "id": "racing",
+      "name": "Racing"
+    },
+    {
+      "id": "rhythm",
+      "name": "Rhythm"
+    },
+    {
+      "id": "rpg",
+      "name": "RPG"
+    },
+    {
+      "id": "shooter",
+      "name": "Shooter"
+    },
+    {
+      "id": "simulation",
+      "name": "Simulation"
+    },
+    {
+      "id": "sports",
+      "name": "Sports"
+    },
+    {
+      "id": "strategy",
+      "name": "Strategy"
+    },
+    {
+      "id": "tower-defense",
+      "name": "Tower Defense"
+    },
+    {
+      "id": "trivia",
+      "name": "Trivia"
+    },
+    {
+      "id": "visual-novel",
+      "name": "Visual Novel"
+    },
+    {
+      "id": "other",
+      "name": "Other"
+    }
+  ]
+}
