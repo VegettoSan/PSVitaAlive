@@ -2,7 +2,7 @@
   "id": "ports",
   "name": "Game Ports",
   "description": "Games, engines and other projects ported to PlayStation Vita.",
-  "icon": "ports.png",
+  "icon": "icons/ports.png",
   "order": 2,
   "subcategories": [
     {
