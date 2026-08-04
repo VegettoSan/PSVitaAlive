@@ -1,0 +1,89 @@
+{
+  "id": "utilities",
+  "name": "Utilities",
+  "description": "General-purpose tools and utilities for PlayStation Vita.",
+  "icon": "utilities.png",
+  "order": 5,
+  "subcategories": [
+    {
+      "id": "file-manager",
+      "name": "File Manager"
+    },
+    {
+      "id": "ftp",
+      "name": "FTP"
+    },
+    {
+      "id": "backup",
+      "name": "Backup"
+    },
+    {
+      "id": "save-manager",
+      "name": "Save Manager"
+    },
+    {
+      "id": "archive",
+      "name": "Archive"
+    },
+    {
+      "id": "calculator",
+      "name": "Calculator"
+    },
+    {
+      "id": "clock",
+      "name": "Clock"
+    },
+    {
+      "id": "battery",
+      "name": "Battery"
+    },
+    {
+      "id": "system-information",
+      "name": "System Information"
+    },
+    {
+      "id": "device-information",
+      "name": "Device Information"
+    },
+    {
+      "id": "process-manager",
+      "name": "Process Manager"
+    },
+    {
+      "id": "task-manager",
+      "name": "Task Manager"
+    },
+    {
+      "id": "installer",
+      "name": "Installer"
+    },
+    {
+      "id": "downloader",
+      "name": "Downloader"
+    },
+    {
+      "id": "updater",
+      "name": "Updater"
+    },
+    {
+      "id": "launcher",
+      "name": "Launcher"
+    },
+    {
+      "id": "terminal",
+      "name": "Terminal"
+    },
+    {
+      "id": "text-editor",
+      "name": "Text Editor"
+    },
+    {
+      "id": "notes",
+      "name": "Notes"
+    },
+    {
+      "id": "other",
+      "name": "Other"
+    }
+  ]
+}
