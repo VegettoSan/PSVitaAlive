@@ -807,6 +807,7 @@ def validate_apps(
                     )
 
         # -------------------------------------------------
+
         # SCREENSHOTS
         #
         # Empty/missing screenshots are allowed because
@@ -820,4 +821,411 @@ def validate_apps(
 
         if screenshots is None or screenshots == []:
             # Validated through the icon/category fallback
-  
+            # logic above.
+            pass
+
+        elif not isinstance(
+            screenshots,
+            list,
+        ):
+            add_error(
+                errors,
+                f"{rel}.screenshots",
+                "must be an array",
+            )
+
+        elif not 1 <= len(screenshots) <= 5:
+            add_error(
+                errors,
+                f"{rel}.screenshots",
+                (
+                    "must contain between "
+                    "1 and 5 images"
+                ),
+            )
+
+        else:
+            for index, screenshot in enumerate(
+                screenshots
+            ):
+                validate_resource(
+                    screenshot,
+                    (
+                        f"{rel}.screenshots"
+                        f"[{index}]"
+                    ),
+                    errors,
+                    expect_image=True,
+                    base_directory=path.parent,
+                )
+
+        validate_links(
+            app.get("links"),
+            f"{rel}.links",
+            errors,
+            require_name=True,
+        )
+
+
+def validate_authors(
+    authors,
+    errors,
+):
+    seen_ids = {}
+
+    for stem, (path, author) in authors.items():
+        rel = str(path.relative_to(ROOT))
+
+        validate_required(
+            rel,
+            author,
+            AUTHOR_REQUIRED,
+            errors,
+        )
+
+        author_id = author.get("id")
+
+        if (
+            not isinstance(author_id, str)
+            or not author_id
+        ):
+            add_error(
+                errors,
+                f"{rel}.id",
+                "must be a non-empty string",
+            )
+
+        else:
+            validate_id(
+                author_id,
+                "id",
+                rel,
+                errors,
+            )
+
+            if author_id != stem:
+                add_error(
+                    errors,
+                    rel,
+                    (
+                        f"id '{author_id}' must match "
+                        f"filename '{stem}.json'"
+                    ),
+                )
+
+            if author_id in seen_ids:
+                add_error(
+                    errors,
+                    rel,
+                    (
+                        f"duplicate id '{author_id}' "
+                        f"(also in "
+                        f"{seen_ids[author_id]})"
+                    ),
+                )
+
+            else:
+                seen_ids[author_id] = rel
+
+        for field in (
+            "name",
+            "bio",
+        ):
+            if not isinstance(
+                author.get(field),
+                str,
+            ):
+                add_error(
+                    errors,
+                    f"{rel}.{field}",
+                    "must be a string",
+                )
+
+        avatar = author.get("avatar")
+
+        if avatar:
+            validate_resource(
+                avatar,
+                f"{rel}.avatar",
+                errors,
+                expect_image=True,
+                base_directory=path.parent,
+            )
+
+        validate_links(
+            author.get("links"),
+            f"{rel}.links",
+            errors,
+            require_name=False,
+        )
+
+
+def validate_categories(
+    categories,
+    errors,
+):
+    seen_ids = {}
+
+    for stem, (path, category) in categories.items():
+        rel = str(path.relative_to(ROOT))
+
+        validate_required(
+            rel,
+            category,
+            CATEGORY_REQUIRED,
+            errors,
+        )
+
+        category_id = category.get("id")
+
+        if (
+            not isinstance(category_id, str)
+            or not category_id
+        ):
+            add_error(
+                errors,
+                f"{rel}.id",
+                "must be a non-empty string",
+            )
+
+        else:
+            validate_id(
+                category_id,
+                "id",
+                rel,
+                errors,
+            )
+
+            if category_id != stem:
+                add_error(
+                    errors,
+                    rel,
+                    (
+                        f"id '{category_id}' must match "
+                        f"filename '{stem}.json'"
+                    ),
+                )
+
+            if category_id in seen_ids:
+                add_error(
+                    errors,
+                    rel,
+                    (
+                        f"duplicate id '{category_id}' "
+                        f"(also in "
+                        f"{seen_ids[category_id]})"
+                    ),
+                )
+
+            else:
+                seen_ids[category_id] = rel
+
+        for field in (
+            "name",
+            "description",
+        ):
+            if not isinstance(
+                category.get(field),
+                str,
+            ):
+                add_error(
+                    errors,
+                    f"{rel}.{field}",
+                    "must be a string",
+                )
+
+        order = category.get("order")
+
+        if (
+            isinstance(order, bool)
+            or not isinstance(order, int)
+        ):
+            add_error(
+                errors,
+                f"{rel}.order",
+                "must be an integer",
+            )
+
+        icon = category.get("icon")
+
+        if not isinstance(
+            icon,
+            str,
+        ) or not icon.strip():
+            add_error(
+                errors,
+                f"{rel}.icon",
+                "must be a non-empty string",
+            )
+
+        else:
+            validate_resource(
+                icon,
+                f"{rel}.icon",
+                errors,
+                expect_image=True,
+                base_directory=path.parent,
+            )
+
+        subcategories = category.get(
+            "subcategories"
+        )
+
+        if not isinstance(
+            subcategories,
+            list,
+        ):
+            add_error(
+                errors,
+                f"{rel}.subcategories",
+                "must be an array",
+            )
+            continue
+
+        sub_ids = set()
+
+        for index, subcategory in enumerate(
+            subcategories
+        ):
+            item_path = (
+                f"{rel}.subcategories"
+                f"[{index}]"
+            )
+
+            if not isinstance(
+                subcategory,
+                dict,
+            ):
+                add_error(
+                    errors,
+                    item_path,
+                    "must be an object",
+                )
+                continue
+
+            sub_id = subcategory.get("id")
+
+            if (
+                not isinstance(
+                    sub_id,
+                    str,
+                )
+                or not sub_id
+            ):
+                add_error(
+                    errors,
+                    f"{item_path}.id",
+                    (
+                        "must be a non-empty "
+                        "string"
+                    ),
+                )
+
+            else:
+                validate_id(
+                    sub_id,
+                    "id",
+                    item_path,
+                    errors,
+                )
+
+                if sub_id in sub_ids:
+                    add_error(
+                        errors,
+                        item_path,
+                        (
+                            f"duplicate "
+                            f"subcategory id "
+                            f"'{sub_id}'"
+                        ),
+                    )
+
+                else:
+                    sub_ids.add(sub_id)
+
+            if (
+                not isinstance(
+                    subcategory.get("name"),
+                    str,
+                )
+                or not subcategory.get(
+                    "name"
+                ).strip()
+            ):
+                add_error(
+                    errors,
+                    f"{item_path}.name",
+                    (
+                        "must be a non-empty "
+                        "string"
+                    ),
+                )
+
+def main():
+    errors = []
+
+    apps = load_json_files(
+        APP_DIR,
+        errors,
+    )
+
+    authors = load_json_files(
+        AUTHOR_DIR,
+        errors,
+    )
+
+    categories = load_json_files(
+        CATEGORY_DIR,
+        errors,
+    )
+
+    validate_authors(
+        authors,
+        errors,
+    )
+
+    validate_categories(
+        categories,
+        errors,
+    )
+
+    validate_apps(
+        apps,
+        authors,
+        categories,
+        errors,
+    )
+
+    if errors:
+        print()
+        print("VitaHub validation failed:")
+        print()
+
+        for item in errors:
+            print(f"- {item}")
+
+        print()
+        print(
+            f"{len(errors)} error(s) found."
+        )
+
+        return 1
+
+    print()
+    print("VitaHub validation passed.")
+    print()
+    print(
+        f"Applications: {len(apps)}"
+    )
+    print(
+        f"Authors: {len(authors)}"
+    )
+    print(
+        f"Categories: {len(categories)}"
+    )
+
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())
