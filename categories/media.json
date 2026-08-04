@@ -2,7 +2,7 @@
   "id": "media",
   "name": "Media",
   "description": "Applications for playing, viewing, creating and managing multimedia content on PlayStation Vita.",
-  "icon": "media.png",
+  "icon": "icons/media.png",
   "order": 7,
   "subcategories": [
     {
