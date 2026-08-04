@@ -1,0 +1,22 @@
+[
+  {
+    "id": "vegettosandev",
+    "name": "VegettoSanDev",
+    "avatar": "",
+    "bio": "Desarrollador de videojuego y amante del anime.",
+    "links": [
+      {
+        "type": "github",
+        "url": "https://github.com/VegettoSan"
+      },
+      {
+        "type": "website",
+        "url": "https://sites.google.com/view/vegettosandev/main"
+      },
+      {
+        "type": "youtube",
+        "url": "https://www.youtube.com/@vegettosandev"
+      }
+    ]
+  }
+]

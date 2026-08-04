@@ -1,0 +1,1009 @@
+[
+  {
+    "id": "accessibility",
+    "name": "Accessibility",
+    "description": "Applications and tools that improve accessibility and assistive interaction on PlayStation Vita.",
+    "icon": "icons/accessibility.png",
+    "order": 14,
+    "subcategories": [
+      {
+        "id": "visual",
+        "name": "Visual"
+      },
+      {
+        "id": "audio",
+        "name": "Audio"
+      },
+      {
+        "id": "input",
+        "name": "Input"
+      },
+      {
+        "id": "text",
+        "name": "Text"
+      },
+      {
+        "id": "controls",
+        "name": "Controls"
+      },
+      {
+        "id": "assistive-tools",
+        "name": "Assistive Tools"
+      },
+      {
+        "id": "other",
+        "name": "Other"
+      }
+    ]
+  },
+  {
+    "id": "customization",
+    "name": "Customization",
+    "description": "Applications and tools for customizing the appearance and user experience of PlayStation Vita.",
+    "icon": "icons/customization.png",
+    "order": 9,
+    "subcategories": [
+      {
+        "id": "themes",
+        "name": "Themes"
+      },
+      {
+        "id": "wallpapers",
+        "name": "Wallpapers"
+      },
+      {
+        "id": "icons",
+        "name": "Icons"
+      },
+      {
+        "id": "fonts",
+        "name": "Fonts"
+      },
+      {
+        "id": "boot-animation",
+        "name": "Boot Animation"
+      },
+      {
+        "id": "sounds",
+        "name": "Sounds"
+      },
+      {
+        "id": "bubbles",
+        "name": "Bubbles"
+      },
+      {
+        "id": "livearea",
+        "name": "LiveArea"
+      },
+      {
+        "id": "interface",
+        "name": "Interface"
+      },
+      {
+        "id": "controller-layout",
+        "name": "Controller Layout"
+      },
+      {
+        "id": "screen",
+        "name": "Screen"
+      },
+      {
+        "id": "other",
+        "name": "Other"
+      }
+    ]
+  },
+  {
+    "id": "demos",
+    "name": "Demos & Tech",
+    "description": "Technical demonstrations, experiments, benchmarks and proof-of-concept projects for PlayStation Vita.",
+    "icon": "icons/demos.png",
+    "order": 12,
+    "subcategories": [
+      {
+        "id": "tech-demo",
+        "name": "Tech Demo"
+      },
+      {
+        "id": "graphics-demo",
+        "name": "Graphics Demo"
+      },
+      {
+        "id": "audio-demo",
+        "name": "Audio Demo"
+      },
+      {
+        "id": "physics-demo",
+        "name": "Physics Demo"
+      },
+      {
+        "id": "engine-demo",
+        "name": "Engine Demo"
+      },
+      {
+        "id": "gameplay-demo",
+        "name": "Gameplay Demo"
+      },
+      {
+        "id": "benchmark",
+        "name": "Benchmark"
+      },
+      {
+        "id": "proof-of-concept",
+        "name": "Proof of Concept"
+      },
+      {
+        "id": "experiment",
+        "name": "Experiment"
+      },
+      {
+        "id": "other",
+        "name": "Other"
+      }
+    ]
+  },
+  {
+    "id": "development",
+    "name": "Development",
+    "description": "Development tools, libraries, frameworks and resources for creating software on PlayStation Vita.",
+    "icon": "icons/development.png",
+    "order": 11,
+    "subcategories": [
+      {
+        "id": "sdk",
+        "name": "SDK"
+      },
+      {
+        "id": "libraries",
+        "name": "Libraries"
+      },
+      {
+        "id": "frameworks",
+        "name": "Frameworks"
+      },
+      {
+        "id": "game-engine",
+        "name": "Game Engine"
+      },
+      {
+        "id": "development-tools",
+        "name": "Development Tools"
+      },
+      {
+        "id": "debugging",
+        "name": "Debugging"
+      },
+      {
+        "id": "profiling",
+        "name": "Profiling"
+      },
+      {
+        "id": "compiler",
+        "name": "Compiler"
+      },
+      {
+        "id": "interpreter",
+        "name": "Interpreter"
+      },
+      {
+        "id": "scripting",
+        "name": "Scripting"
+      },
+      {
+        "id": "lua",
+        "name": "Lua"
+      },
+      {
+        "id": "python",
+        "name": "Python"
+      },
+      {
+        "id": "networking",
+        "name": "Networking"
+      },
+      {
+        "id": "graphics",
+        "name": "Graphics"
+      },
+      {
+        "id": "audio",
+        "name": "Audio"
+      },
+      {
+        "id": "examples",
+        "name": "Examples"
+      },
+      {
+        "id": "templates",
+        "name": "Templates"
+      },
+      {
+        "id": "other",
+        "name": "Other"
+      }
+    ]
+  },
+  {
+    "id": "education",
+    "name": "Education",
+    "description": "Educational applications and learning resources for PlayStation Vita.",
+    "icon": "icons/education.png",
+    "order": 13,
+    "subcategories": [
+      {
+        "id": "learning",
+        "name": "Learning"
+      },
+      {
+        "id": "mathematics",
+        "name": "Mathematics"
+      },
+      {
+        "id": "programming",
+        "name": "Programming"
+      },
+      {
+        "id": "language",
+        "name": "Language"
+      },
+      {
+        "id": "reference",
+        "name": "Reference"
+      },
+      {
+        "id": "encyclopedia",
+        "name": "Encyclopedia"
+      },
+      {
+        "id": "science",
+        "name": "Science"
+      },
+      {
+        "id": "tutorials",
+        "name": "Tutorials"
+      },
+      {
+        "id": "typing",
+        "name": "Typing"
+      },
+      {
+        "id": "other",
+        "name": "Other"
+      }
+    ]
+  },
+  {
+    "id": "emulators",
+    "name": "Emulators",
+    "description": "Emulators for other platforms and systems running on PlayStation Vita.",
+    "icon": "icons/emulators.png",
+    "order": 3,
+    "subcategories": [
+      {
+        "id": "arcade",
+        "name": "Arcade"
+      },
+      {
+        "id": "atari",
+        "name": "Atari"
+      },
+      {
+        "id": "coleco-vision",
+        "name": "ColecoVision"
+      },
+      {
+        "id": "commodore",
+        "name": "Commodore"
+      },
+      {
+        "id": "game-boy",
+        "name": "Game Boy"
+      },
+      {
+        "id": "game-boy-color",
+        "name": "Game Boy Color"
+      },
+      {
+        "id": "game-boy-advance",
+        "name": "Game Boy Advance"
+      },
+      {
+        "id": "game-gear",
+        "name": "Game Gear"
+      },
+      {
+        "id": "genesis",
+        "name": "Genesis"
+      },
+      {
+        "id": "master-system",
+        "name": "Master System"
+      },
+      {
+        "id": "neo-geo",
+        "name": "Neo Geo"
+      },
+      {
+        "id": "neo-geo-pocket",
+        "name": "Neo Geo Pocket"
+      },
+      {
+        "id": "nes",
+        "name": "NES"
+      },
+      {
+        "id": "nintendo-64",
+        "name": "Nintendo 64"
+      },
+      {
+        "id": "nintendo-ds",
+        "name": "Nintendo DS"
+      },
+      {
+        "id": "pc-engine",
+        "name": "PC Engine"
+      },
+      {
+        "id": "playstation",
+        "name": "PlayStation"
+      },
+      {
+        "id": "sega-cd",
+        "name": "Sega CD"
+      },
+      {
+        "id": "sega-saturn",
+        "name": "Sega Saturn"
+      },
+      {
+        "id": "snes",
+        "name": "SNES"
+      },
+      {
+        "id": "virtual-boy",
+        "name": "Virtual Boy"
+      },
+      {
+        "id": "wonderswan",
+        "name": "WonderSwan"
+      },
+      {
+        "id": "multi-system",
+        "name": "Multi-System"
+      },
+      {
+        "id": "other",
+        "name": "Other"
+      }
+    ]
+  },
+  {
+    "id": "games",
+    "name": "Games",
+    "description": "Homebrew games created for PlayStation Vita.",
+    "icon": "icons/games.png",
+    "order": 1,
+    "subcategories": [
+      {
+        "id": "action",
+        "name": "Action"
+      },
+      {
+        "id": "adventure",
+        "name": "Adventure"
+      },
+      {
+        "id": "arcade",
+        "name": "Arcade"
+      },
+      {
+        "id": "board",
+        "name": "Board"
+      },
+      {
+        "id": "card",
+        "name": "Card"
+      },
+      {
+        "id": "casual",
+        "name": "Casual"
+      },
+      {
+        "id": "fighting",
+        "name": "Fighting"
+      },
+      {
+        "id": "horror",
+        "name": "Horror"
+      },
+      {
+        "id": "music",
+        "name": "Music"
+      },
+      {
+        "id": "platformer",
+        "name": "Platformer"
+      },
+      {
+        "id": "puzzle",
+        "name": "Puzzle"
+      },
+      {
+        "id": "racing",
+        "name": "Racing"
+      },
+      {
+        "id": "rhythm",
+        "name": "Rhythm"
+      },
+      {
+        "id": "rpg",
+        "name": "RPG"
+      },
+      {
+        "id": "shooter",
+        "name": "Shooter"
+      },
+      {
+        "id": "simulation",
+        "name": "Simulation"
+      },
+      {
+        "id": "sports",
+        "name": "Sports"
+      },
+      {
+        "id": "strategy",
+        "name": "Strategy"
+      },
+      {
+        "id": "tower-defense",
+        "name": "Tower Defense"
+      },
+      {
+        "id": "trivia",
+        "name": "Trivia"
+      },
+      {
+        "id": "visual-novel",
+        "name": "Visual Novel"
+      },
+      {
+        "id": "other",
+        "name": "Other"
+      }
+    ]
+  },
+  {
+    "id": "media",
+    "name": "Media",
+    "description": "Applications for playing, viewing, creating and managing multimedia content on PlayStation Vita.",
+    "icon": "icons/media.png",
+    "order": 7,
+    "subcategories": [
+      {
+        "id": "audio",
+        "name": "Audio"
+      },
+      {
+        "id": "music-player",
+        "name": "Music Player"
+      },
+      {
+        "id": "video",
+        "name": "Video"
+      },
+      {
+        "id": "video-player",
+        "name": "Video Player"
+      },
+      {
+        "id": "image-viewer",
+        "name": "Image Viewer"
+      },
+      {
+        "id": "image-editor",
+        "name": "Image Editor"
+      },
+      {
+        "id": "photo",
+        "name": "Photo"
+      },
+      {
+        "id": "animation",
+        "name": "Animation"
+      },
+      {
+        "id": "streaming",
+        "name": "Streaming"
+      },
+      {
+        "id": "recorder",
+        "name": "Recorder"
+      },
+      {
+        "id": "converter",
+        "name": "Converter"
+      },
+      {
+        "id": "other",
+        "name": "Other"
+      }
+    ]
+  },
+  {
+    "id": "modding",
+    "name": "Modding",
+    "description": "Mods, patches, translations and other modifications for games and software on PlayStation Vita.",
+    "icon": "icons/modding.png",
+    "order": 10,
+    "subcategories": [
+      {
+        "id": "patches",
+        "name": "Patches"
+      },
+      {
+        "id": "game-patches",
+        "name": "Game Patches"
+      },
+      {
+        "id": "translation",
+        "name": "Translation"
+      },
+      {
+        "id": "localization",
+        "name": "Localization"
+      },
+      {
+        "id": "widescreen",
+        "name": "Widescreen"
+      },
+      {
+        "id": "graphics",
+        "name": "Graphics"
+      },
+      {
+        "id": "textures",
+        "name": "Textures"
+      },
+      {
+        "id": "audio",
+        "name": "Audio"
+      },
+      {
+        "id": "cheats",
+        "name": "Cheats"
+      },
+      {
+        "id": "rom-hacks",
+        "name": "ROM Hacks"
+      },
+      {
+        "id": "mods",
+        "name": "Mods"
+      },
+      {
+        "id": "compatibility-packs",
+        "name": "Compatibility Packs"
+      },
+      {
+        "id": "dlc",
+        "name": "DLC"
+      },
+      {
+        "id": "restoration",
+        "name": "Restoration"
+      },
+      {
+        "id": "other",
+        "name": "Other"
+      }
+    ]
+  },
+  {
+    "id": "networking",
+    "name": "Networking",
+    "description": "Applications focused on network communication and connectivity on PlayStation Vita.",
+    "icon": "icons/networking.png",
+    "order": 8,
+    "subcategories": [
+      {
+        "id": "web-browser",
+        "name": "Web Browser"
+      },
+      {
+        "id": "ftp",
+        "name": "FTP"
+      },
+      {
+        "id": "http",
+        "name": "HTTP"
+      },
+      {
+        "id": "download",
+        "name": "Download"
+      },
+      {
+        "id": "streaming",
+        "name": "Streaming"
+      },
+      {
+        "id": "remote-desktop",
+        "name": "Remote Desktop"
+      },
+      {
+        "id": "game-streaming",
+        "name": "Game Streaming"
+      },
+      {
+        "id": "file-sharing",
+        "name": "File Sharing"
+      },
+      {
+        "id": "server",
+        "name": "Server"
+      },
+      {
+        "id": "client",
+        "name": "Client"
+      },
+      {
+        "id": "network-tools",
+        "name": "Network Tools"
+      },
+      {
+        "id": "dns",
+        "name": "DNS"
+      },
+      {
+        "id": "proxy",
+        "name": "Proxy"
+      },
+      {
+        "id": "messaging",
+        "name": "Messaging"
+      },
+      {
+        "id": "other",
+        "name": "Other"
+      }
+    ]
+  },
+  {
+    "id": "plugins",
+    "name": "Plugins",
+    "description": "Plugins that extend or modify the functionality of PlayStation Vita.",
+    "icon": "icons/plugins.png",
+    "order": 4,
+    "subcategories": [
+      {
+        "id": "system",
+        "name": "System"
+      },
+      {
+        "id": "performance",
+        "name": "Performance"
+      },
+      {
+        "id": "overclock",
+        "name": "Overclock"
+      },
+      {
+        "id": "graphics",
+        "name": "Graphics"
+      },
+      {
+        "id": "audio",
+        "name": "Audio"
+      },
+      {
+        "id": "networking",
+        "name": "Networking"
+      },
+      {
+        "id": "storage",
+        "name": "Storage"
+      },
+      {
+        "id": "compatibility",
+        "name": "Compatibility"
+      },
+      {
+        "id": "input",
+        "name": "Input"
+      },
+      {
+        "id": "display",
+        "name": "Display"
+      },
+      {
+        "id": "ux0",
+        "name": "ux0"
+      },
+      {
+        "id": "ur0",
+        "name": "ur0"
+      },
+      {
+        "id": "psp",
+        "name": "PSP"
+      },
+      {
+        "id": "security",
+        "name": "Security"
+      },
+      {
+        "id": "other",
+        "name": "Other"
+      }
+    ]
+  },
+  {
+    "id": "ports",
+    "name": "Game Ports",
+    "description": "Games, engines and other projects ported to PlayStation Vita.",
+    "icon": "icons/ports.png",
+    "order": 2,
+    "subcategories": [
+      {
+        "id": "action",
+        "name": "Action"
+      },
+      {
+        "id": "adventure",
+        "name": "Adventure"
+      },
+      {
+        "id": "arcade",
+        "name": "Arcade"
+      },
+      {
+        "id": "fps",
+        "name": "FPS"
+      },
+      {
+        "id": "platformer",
+        "name": "Platformer"
+      },
+      {
+        "id": "puzzle",
+        "name": "Puzzle"
+      },
+      {
+        "id": "racing",
+        "name": "Racing"
+      },
+      {
+        "id": "rpg",
+        "name": "RPG"
+      },
+      {
+        "id": "shooter",
+        "name": "Shooter"
+      },
+      {
+        "id": "simulation",
+        "name": "Simulation"
+      },
+      {
+        "id": "strategy",
+        "name": "Strategy"
+      },
+      {
+        "id": "engine-port",
+        "name": "Engine Port"
+      },
+      {
+        "id": "source-port",
+        "name": "Source Port"
+      },
+      {
+        "id": "game-engine",
+        "name": "Game Engine"
+      },
+      {
+        "id": "other",
+        "name": "Other"
+      }
+    ]
+  },
+  {
+    "id": "preservation",
+    "name": "Preservation",
+    "description": "Projects and tools focused on preserving, restoring and documenting PlayStation Vita software and history.",
+    "icon": "icons/preservation.png",
+    "order": 15,
+    "subcategories": [
+      {
+        "id": "archival",
+        "name": "Archival"
+      },
+      {
+        "id": "restoration",
+        "name": "Restoration"
+      },
+      {
+        "id": "compatibility",
+        "name": "Compatibility"
+      },
+      {
+        "id": "documentation",
+        "name": "Documentation"
+      },
+      {
+        "id": "preservation-tools",
+        "name": "Preservation Tools"
+      },
+      {
+        "id": "legacy-projects",
+        "name": "Legacy Projects"
+      },
+      {
+        "id": "other",
+        "name": "Other"
+      }
+    ]
+  },
+  {
+    "id": "system",
+    "name": "System",
+    "description": "Tools for managing, modifying and diagnosing the PlayStation Vita system.",
+    "icon": "icons/system.png",
+    "order": 6,
+    "subcategories": [
+      {
+        "id": "firmware",
+        "name": "Firmware"
+      },
+      {
+        "id": "firmware-tools",
+        "name": "Firmware Tools"
+      },
+      {
+        "id": "downgrade",
+        "name": "Downgrade"
+      },
+      {
+        "id": "recovery",
+        "name": "Recovery"
+      },
+      {
+        "id": "boot",
+        "name": "Boot"
+      },
+      {
+        "id": "kernel",
+        "name": "Kernel"
+      },
+      {
+        "id": "system-manager",
+        "name": "System Manager"
+      },
+      {
+        "id": "account",
+        "name": "Account"
+      },
+      {
+        "id": "storage",
+        "name": "Storage"
+      },
+      {
+        "id": "mount",
+        "name": "Mount"
+      },
+      {
+        "id": "permissions",
+        "name": "Permissions"
+      },
+      {
+        "id": "security",
+        "name": "Security"
+      },
+      {
+        "id": "diagnostics",
+        "name": "Diagnostics"
+      },
+      {
+        "id": "system-information",
+        "name": "System Information"
+      },
+      {
+        "id": "compatibility",
+        "name": "Compatibility"
+      },
+      {
+        "id": "other",
+        "name": "Other"
+      }
+    ]
+  },
+  {
+    "id": "utilities",
+    "name": "Utilities",
+    "description": "General-purpose tools and utilities for PlayStation Vita.",
+    "icon": "icons/utilities.png",
+    "order": 5,
+    "subcategories": [
+      {
+        "id": "file-manager",
+        "name": "File Manager"
+      },
+      {
+        "id": "ftp",
+        "name": "FTP"
+      },
+      {
+        "id": "backup",
+        "name": "Backup"
+      },
+      {
+        "id": "save-manager",
+        "name": "Save Manager"
+      },
+      {
+        "id": "archive",
+        "name": "Archive"
+      },
+      {
+        "id": "calculator",
+        "name": "Calculator"
+      },
+      {
+        "id": "clock",
+        "name": "Clock"
+      },
+      {
+        "id": "battery",
+        "name": "Battery"
+      },
+      {
+        "id": "system-information",
+        "name": "System Information"
+      },
+      {
+        "id": "device-information",
+        "name": "Device Information"
+      },
+      {
+        "id": "process-manager",
+        "name": "Process Manager"
+      },
+      {
+        "id": "task-manager",
+        "name": "Task Manager"
+      },
+      {
+        "id": "installer",
+        "name": "Installer"
+      },
+      {
+        "id": "downloader",
+        "name": "Downloader"
+      },
+      {
+        "id": "updater",
+        "name": "Updater"
+      },
+      {
+        "id": "launcher",
+        "name": "Launcher"
+      },
+      {
+        "id": "terminal",
+        "name": "Terminal"
+      },
+      {
+        "id": "text-editor",
+        "name": "Text Editor"
+      },
+      {
+        "id": "notes",
+        "name": "Notes"
+      },
+      {
+        "id": "other",
+        "name": "Other"
+      }
+    ]
+  }
+]

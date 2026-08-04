@@ -1,0 +1,45 @@
+[
+  {
+    "id": "halo2d-halo01172",
+    "title_id": "HALO01172",
+    "name": "Halo 2D",
+    "description": "This is a project inspired by the Halo saga which I have been developing in a short time.",
+    "long_description": "This is a project inspired by the Halo saga which I have been developing in a short time. Halo 2D is a 2D action project for PlayStation Vita inspired by the Halo saga.",
+    "author_id": "vegettosandev",
+    "category_id": "games",
+    "subcategory_ids": [
+      "platformer",
+      "shooter",
+      "casual",
+      "arcade",
+      "action"
+    ],
+    "version": "01.76",
+    "version_date": "2024-07-27",
+    "requirements": "PS Vita with a compatible Homebrew environment and VitaShell for installation.",
+    "size": 55385784,
+    "status": "Verified",
+    "icon": "https://raw.githubusercontent.com/VegettoSan/Halo2D_PsVita/refs/heads/main/Halo%202D/Assets/Images/Icon.jpg",
+    "screenshots": [
+      "https://raw.githubusercontent.com/VegettoSan/Halo2D_PsVita/refs/heads/main/Halo%202D/capture%200.jpg"
+    ],
+    "links": [
+      {
+        "type": "download",
+        "name": "GitHub Release",
+        "url": "https://github.com/VegettoSan/Halo2D_PsVita/releases/latest/download/Halo2D.vpk",
+        "recommended": true
+      },
+      {
+        "type": "repository",
+        "name": "GitHub Repository",
+        "url": "https://github.com/VegettoSan/Halo2D_PsVita"
+      },
+      {
+        "type": "website",
+        "name": "Official Website",
+        "url": "https://sites.google.com/view/vegettosandev/halo-2d-ps-vita"
+      }
+    ]
+  }
+]
