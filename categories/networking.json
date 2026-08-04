@@ -1,0 +1,69 @@
+{
+  "id": "networking",
+  "name": "Networking",
+  "description": "Applications focused on network communication and connectivity on PlayStation Vita.",
+  "icon": "networking.png",
+  "order": 8,
+  "subcategories": [
+    {
+      "id": "web-browser",
+      "name": "Web Browser"
+    },
+    {
+      "id": "ftp",
+      "name": "FTP"
+    },
+    {
+      "id": "http",
+      "name": "HTTP"
+    },
+    {
+      "id": "download",
+      "name": "Download"
+    },
+    {
+      "id": "streaming",
+      "name": "Streaming"
+    },
+    {
+      "id": "remote-desktop",
+      "name": "Remote Desktop"
+    },
+    {
+      "id": "game-streaming",
+      "name": "Game Streaming"
+    },
+    {
+      "id": "file-sharing",
+      "name": "File Sharing"
+    },
+    {
+      "id": "server",
+      "name": "Server"
+    },
+    {
+      "id": "client",
+      "name": "Client"
+    },
+    {
+      "id": "network-tools",
+      "name": "Network Tools"
+    },
+    {
+      "id": "dns",
+      "name": "DNS"
+    },
+    {
+      "id": "proxy",
+      "name": "Proxy"
+    },
+    {
+      "id": "messaging",
+      "name": "Messaging"
+    },
+    {
+      "id": "other",
+      "name": "Other"
+    }
+  ]
+}
