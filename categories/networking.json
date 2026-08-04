@@ -2,7 +2,7 @@
   "id": "networking",
   "name": "Networking",
   "description": "Applications focused on network communication and connectivity on PlayStation Vita.",
-  "icon": "networking.png",
+  "icon": "icons/networking.png",
   "order": 8,
   "subcategories": [
     {
