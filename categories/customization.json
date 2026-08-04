@@ -2,7 +2,7 @@
   "id": "customization",
   "name": "Customization",
   "description": "Applications and tools for customizing the appearance and user experience of PlayStation Vita.",
-  "icon": "customization.png",
+  "icon": "icons/customization.png",
   "order": 9,
   "subcategories": [
     {
