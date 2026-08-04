@@ -1,0 +1,57 @@
+{
+  "id": "media",
+  "name": "Media",
+  "description": "Applications for playing, viewing, creating and managing multimedia content on PlayStation Vita.",
+  "icon": "media.png",
+  "order": 7,
+  "subcategories": [
+    {
+      "id": "audio",
+      "name": "Audio"
+    },
+    {
+      "id": "music-player",
+      "name": "Music Player"
+    },
+    {
+      "id": "video",
+      "name": "Video"
+    },
+    {
+      "id": "video-player",
+      "name": "Video Player"
+    },
+    {
+      "id": "image-viewer",
+      "name": "Image Viewer"
+    },
+    {
+      "id": "image-editor",
+      "name": "Image Editor"
+    },
+    {
+      "id": "photo",
+      "name": "Photo"
+    },
+    {
+      "id": "animation",
+      "name": "Animation"
+    },
+    {
+      "id": "streaming",
+      "name": "Streaming"
+    },
+    {
+      "id": "recorder",
+      "name": "Recorder"
+    },
+    {
+      "id": "converter",
+      "name": "Converter"
+    },
+    {
+      "id": "other",
+      "name": "Other"
+    }
+  ]
+}
