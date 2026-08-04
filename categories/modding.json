@@ -2,7 +2,7 @@
   "id": "modding",
   "name": "Modding",
   "description": "Mods, patches, translations and other modifications for games and software on PlayStation Vita.",
-  "icon": "modding.png",
+  "icon": "icons/modding.png",
   "order": 10,
   "subcategories": [
     {
