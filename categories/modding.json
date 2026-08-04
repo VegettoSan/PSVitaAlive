@@ -1,0 +1,69 @@
+{
+  "id": "modding",
+  "name": "Modding",
+  "description": "Mods, patches, translations and other modifications for games and software on PlayStation Vita.",
+  "icon": "modding.png",
+  "order": 10,
+  "subcategories": [
+    {
+      "id": "patches",
+      "name": "Patches"
+    },
+    {
+      "id": "game-patches",
+      "name": "Game Patches"
+    },
+    {
+      "id": "translation",
+      "name": "Translation"
+    },
+    {
+      "id": "localization",
+      "name": "Localization"
+    },
+    {
+      "id": "widescreen",
+      "name": "Widescreen"
+    },
+    {
+      "id": "graphics",
+      "name": "Graphics"
+    },
+    {
+      "id": "textures",
+      "name": "Textures"
+    },
+    {
+      "id": "audio",
+      "name": "Audio"
+    },
+    {
+      "id": "cheats",
+      "name": "Cheats"
+    },
+    {
+      "id": "rom-hacks",
+      "name": "ROM Hacks"
+    },
+    {
+      "id": "mods",
+      "name": "Mods"
+    },
+    {
+      "id": "compatibility-packs",
+      "name": "Compatibility Packs"
+    },
+    {
+      "id": "dlc",
+      "name": "DLC"
+    },
+    {
+      "id": "restoration",
+      "name": "Restoration"
+    },
+    {
+      "id": "other",
+      "name": "Other"
+    }
+  ]
+}
