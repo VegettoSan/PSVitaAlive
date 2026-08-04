@@ -2,7 +2,7 @@
   "id": "demos",
   "name": "Demos & Tech",
   "description": "Technical demonstrations, experiments, benchmarks and proof-of-concept projects for PlayStation Vita.",
-  "icon": "demos.png",
+  "icon": "icons/demos.png",
   "order": 12,
   "subcategories": [
     {
