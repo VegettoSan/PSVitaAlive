@@ -2,7 +2,7 @@
   "id": "plugins",
   "name": "Plugins",
   "description": "Plugins that extend or modify the functionality of PlayStation Vita.",
-  "icon": "plugins.png",
+  "icon": "icons/plugins.png",
   "order": 4,
   "subcategories": [
     {
