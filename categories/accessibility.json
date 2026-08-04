@@ -2,7 +2,7 @@
   "id": "accessibility",
   "name": "Accessibility",
   "description": "Applications and tools that improve accessibility and assistive interaction on PlayStation Vita.",
-  "icon": "accessibility.png",
+  "icon": "icons/accessibility.png",
   "order": 14,
   "subcategories": [
     {
