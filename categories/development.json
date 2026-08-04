@@ -1,0 +1,81 @@
+{
+  "id": "development",
+  "name": "Development",
+  "description": "Development tools, libraries, frameworks and resources for creating software on PlayStation Vita.",
+  "icon": "development.png",
+  "order": 11,
+  "subcategories": [
+    {
+      "id": "sdk",
+      "name": "SDK"
+    },
+    {
+      "id": "libraries",
+      "name": "Libraries"
+    },
+    {
+      "id": "frameworks",
+      "name": "Frameworks"
+    },
+    {
+      "id": "game-engine",
+      "name": "Game Engine"
+    },
+    {
+      "id": "development-tools",
+      "name": "Development Tools"
+    },
+    {
+      "id": "debugging",
+      "name": "Debugging"
+    },
+    {
+      "id": "profiling",
+      "name": "Profiling"
+    },
+    {
+      "id": "compiler",
+      "name": "Compiler"
+    },
+    {
+      "id": "interpreter",
+      "name": "Interpreter"
+    },
+    {
+      "id": "scripting",
+      "name": "Scripting"
+    },
+    {
+      "id": "lua",
+      "name": "Lua"
+    },
+    {
+      "id": "python",
+      "name": "Python"
+    },
+    {
+      "id": "networking",
+      "name": "Networking"
+    },
+    {
+      "id": "graphics",
+      "name": "Graphics"
+    },
+    {
+      "id": "audio",
+      "name": "Audio"
+    },
+    {
+      "id": "examples",
+      "name": "Examples"
+    },
+    {
+      "id": "templates",
+      "name": "Templates"
+    },
+    {
+      "id": "other",
+      "name": "Other"
+    }
+  ]
+}
