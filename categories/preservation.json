@@ -2,7 +2,7 @@
   "id": "preservation",
   "name": "Preservation",
   "description": "Projects and tools focused on preserving, restoring and documenting PlayStation Vita software and history.",
-  "icon": "preservation.png",
+  "icon": "icons/preservation.png",
   "order": 15,
   "subcategories": [
     {
