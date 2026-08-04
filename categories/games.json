@@ -2,7 +2,7 @@
   "id": "games",
   "name": "Games",
   "description": "Homebrew games created for PlayStation Vita.",
-  "icon": "games.png",
+  "icon": "icons/games.png",
   "order": 1,
   "subcategories": [
     {
