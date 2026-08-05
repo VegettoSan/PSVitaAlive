@@ -108,6 +108,8 @@ function renderAppCard(app) {
     const content = document.createElement("div");
     content.className = "app-card-content";
 
+    const author = getAuthorById(app.author_id);
+
 
     const top = document.createElement("div");
     top.className = "app-card-top";
@@ -121,6 +123,14 @@ function renderAppCard(app) {
 
     const title = document.createElement("h3");
     title.textContent = app.name || "Unknown application";
+
+    const authorLink = document.createElement("a");
+
+    authorLink.className = "app-card-author";
+    authorLink.href = `author.html?id=${encodeURIComponent(app.author_id)}`;
+    authorLink.textContent = author
+        ? `by ${author.name}`
+        : "Unknown author";
 
 
     const description = document.createElement("p");
@@ -142,7 +152,12 @@ function renderAppCard(app) {
     size.textContent = formatFileSize(app.size);
 
 
-    const category = document.createElement("span");
+    const category = document.createElement("a");
+
+    category.className = "app-card-category";
+    category.href =
+        `category.html?id=${encodeURIComponent(app.category_id)}`;
+
     category.textContent = getCategoryName(app.category_id);
 
 
@@ -153,6 +168,7 @@ function renderAppCard(app) {
 
     content.appendChild(top);
     content.appendChild(title);
+    content.appendChild(authorLink);
     content.appendChild(description);
     content.appendChild(meta);
 
