@@ -462,6 +462,7 @@ input {
     font-size: 0.72rem;
 }
 
+/* App card links */
 
 .app-card-meta span + span::before {
     content: "•";
@@ -470,6 +471,37 @@ input {
 
     color: var(--border);
 }
+
+.app-card-author {
+        display: inline-block;
+
+        margin-top: 3px;
+        margin-bottom: 8px;
+
+        color: var(--accent);
+        font-size: 0.85rem;
+        font-weight: 700;
+
+        text-decoration: none;
+
+        transition: opacity 0.2s ease;
+    }
+
+    .app-card-author:hover {
+        opacity: 0.8;
+    }
+
+    .app-card-category {
+        color: inherit;
+
+        font-weight: 700;
+
+        text-decoration: none;
+    }
+
+    .app-card-category:hover {
+        text-decoration: underline;
+    }
 
 
 /* Footer */
@@ -629,37 +661,6 @@ input {
 
     .app-card-meta {
         font-size: 0.66rem;
-    }
-
-    .app-card-author {
-        display: inline-block;
-
-        margin-top: 3px;
-        margin-bottom: 8px;
-
-        color: var(--accent);
-        font-size: 0.85rem;
-        font-weight: 700;
-
-        text-decoration: none;
-
-        transition: opacity 0.2s ease;
-    }
-
-    .app-card-author:hover {
-        opacity: 0.8;
-    }
-
-    .app-card-category {
-        color: inherit;
-
-        font-weight: 700;
-
-        text-decoration: none;
-    }
-
-    .app-card-category:hover {
-        text-decoration: underline;
     }
 
 }
