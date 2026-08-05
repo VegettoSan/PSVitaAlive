@@ -1,11 +1,13 @@
 {
-  "version": 1,
+  "version": 2,
   "apps": {
     "ids": [],
-    "title_ids": []
+    "title_ids": [],
+    "restorable": []
   },
   "authors": {
-    "ids": []
+    "ids": [],
+    "restorable": []
   },
   "categories": {
     "ids": []
