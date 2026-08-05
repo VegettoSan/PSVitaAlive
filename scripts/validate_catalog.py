@@ -605,14 +605,14 @@ def validate_apps(
         else:
             seen_title_ids[title_id] = rel
 
-        for field in (
-            "name",
-            "description",
-            "long_description",
-            "version",
-            "requirements",
-        ):
-            value = app.get(field)
+            for field in (
+                "name",
+                "description",
+                "long_description",
+                "version",
+                "requirements",
+            ):
+                value = app.get(field)
 
             if (
                 not isinstance(value, str)
@@ -624,7 +624,7 @@ def validate_apps(
                     "must be a non-empty string",
                 )
 
-                author_ids = app.get("author_ids")
+        author_ids = app.get("author_ids")
 
         if (
             not isinstance(author_ids, list)
@@ -637,12 +637,7 @@ def validate_apps(
             )
 
         else:
-            if len(set(author_ids)) != len(author_ids):
-                add_error(
-                    errors,
-                    f"{rel}.author_ids",
-                    "must not contain duplicate IDs",
-                )
+            invalid_author_id = False
 
             for author_id in author_ids:
                 if not isinstance(author_id, str):
@@ -651,6 +646,15 @@ def validate_apps(
                         f"{rel}.author_ids",
                         f"author ID '{author_id}' must be a string",
                     )
+                    invalid_author_id = True
+
+                elif not author_id.strip():
+                    add_error(
+                        errors,
+                        f"{rel}.author_ids",
+                        "author IDs must be non-empty strings",
+                    )
+                    invalid_author_id = True
 
                 elif author_id not in authors:
                     add_error(
@@ -660,6 +664,14 @@ def validate_apps(
                             f"author '{author_id}' "
                             "does not exist in authors/"
                         ),
+                    )
+
+            if not invalid_author_id:
+                if len(set(author_ids)) != len(author_ids):
+                    add_error(
+                        errors,
+                        f"{rel}.author_ids",
+                        "must not contain duplicate IDs",
                     )
 
         category_id = app.get("category_id")
