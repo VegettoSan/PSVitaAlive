@@ -472,7 +472,16 @@ input {
     color: var(--border);
 }
 
-.app-card-author {
+    .app-card-authors {
+        display: block;
+
+        margin-top: 3px;
+        margin-bottom: 8px;
+
+        line-height: 1.4;
+    }
+
+    .app-card-author {
         display: inline-block;
 
         margin-top: 3px;
@@ -489,6 +498,12 @@ input {
 
     .app-card-author:hover {
         opacity: 0.8;
+    }
+
+    .app-card-author-separator {
+    color: var(--accent);
+    font-size: 0.85rem;
+    font-weight: 700;
     }
 
     .app-card-category {

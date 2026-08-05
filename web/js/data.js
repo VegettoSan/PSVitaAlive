@@ -70,6 +70,16 @@ function getAuthorById(id) {
     ) || null;
 }
 
+function getAuthorsByIds(ids) {
+    if (!Array.isArray(ids)) {
+        return [];
+    }
+
+    return ids
+        .map(id => getAuthorById(id))
+        .filter(author => author);
+}
+
 
 /**
  * Busca una categoría utilizando su ID.

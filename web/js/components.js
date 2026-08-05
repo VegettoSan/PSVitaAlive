@@ -108,7 +108,7 @@ function renderAppCard(app) {
     const content = document.createElement("div");
     content.className = "app-card-content";
 
-    const author = getAuthorById(app.author_id);
+    const authors = getAuthorsByIds(app.author_ids);
 
 
     const top = document.createElement("div");
@@ -124,14 +124,39 @@ function renderAppCard(app) {
     const title = document.createElement("h3");
     title.textContent = app.name || "Unknown application";
 
-    const authorLink = document.createElement("a");
+    const authorsContainer = document.createElement("div");
 
-    authorLink.className = "app-card-author";
-    authorLink.href = `author.html?id=${encodeURIComponent(app.author_id)}`;
-    authorLink.textContent = author
-        ? `by ${author.name}`
-        : "Unknown author";
+authorsContainer.className = "app-card-authors";
 
+if (authors.length > 0) {
+    authors.forEach((author, index) => {
+        const authorLink = document.createElement("a");
+
+        authorLink.className = "app-card-author";
+        authorLink.href =
+            `author.html?id=${encodeURIComponent(author.id)}`;
+
+        authorLink.textContent = author.name;
+
+        authorsContainer.appendChild(authorLink);
+
+        if (index < authors.length - 1) {
+            const separator = document.createElement("span");
+
+            separator.className = "app-card-author-separator";
+            separator.textContent = ", ";
+
+            authorsContainer.appendChild(separator);
+        }
+    });
+} else {
+    const unknownAuthor = document.createElement("span");
+
+    unknownAuthor.className = "app-card-author";
+    unknownAuthor.textContent = "Unknown author";
+
+    authorsContainer.appendChild(unknownAuthor);
+}
 
     const description = document.createElement("p");
     description.className = "app-card-description";
@@ -168,7 +193,7 @@ function renderAppCard(app) {
 
     content.appendChild(top);
     content.appendChild(title);
-    content.appendChild(authorLink);
+    content.appendChild(authorsContainer);
     content.appendChild(description);
     content.appendChild(meta);
 
