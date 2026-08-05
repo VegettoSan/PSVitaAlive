@@ -5,7 +5,10 @@
     "name": "Halo CE Vita",
     "description": "A project inspired by the Halo saga and an attempt to recreate Halo CE for PS Vita.",
     "long_description": "Halo CE Vita is a homebrew project inspired by the Halo saga. The project is in an early stage of development and aims to recreate Halo CE for the PlayStation Vita. The developer plans to continue making updates to the project.",
-    "author_id": "vegettosandev",
+    "author_ids": [
+      "vegettosandev",
+      "rinnegatamante"
+    ],
     "category_id": "games",
     "subcategory_ids": [
       "shooter",
@@ -45,7 +48,9 @@
     "name": "Halo 2D",
     "description": "This is a project inspired by the Halo saga which I have been developing in a short time.",
     "long_description": "This is a project inspired by the Halo saga which I have been developing in a short time. Halo 2D is a 2D action project for PlayStation Vita inspired by the Halo saga.",
-    "author_id": "vegettosandev",
+    "author_ids": [
+      "vegettosandev"
+    ],
     "category_id": "games",
     "subcategory_ids": [
       "platformer",
@@ -88,7 +93,9 @@
     "name": "Movie Stream List",
     "description": "Aplicación para descubrir y descargar películas y series compartidas por la comunidad.",
     "long_description": "Movie Stream List es una aplicación creada para acceder a películas y series subidas por la comunidad. En PS Vita permite descargar los archivos de contenido y guardarlos en ux0:data/. Para reproducirlos en la consola se requiere NetStream. El proyecto también dispone de versiones para Android y Windows.",
-    "author_id": "vegettosandev",
+    "author_ids": [
+      "vegettosandev"
+    ],
     "category_id": "media",
     "subcategory_ids": [
       "streaming",
