@@ -5,7 +5,8 @@
   "description": "A project inspired by the Halo saga and an attempt to recreate Halo CE for PS Vita.",
   "long_description": "Halo CE Vita is a homebrew project inspired by the Halo saga. The project is in an early stage of development and aims to recreate Halo CE for the PlayStation Vita. The developer plans to continue making updates to the project.",
   "author_ids": [
-  "vegettosandev"
+  "vegettosandev",
+  "rinnegatamante"
   ],
   "category_id": "games",
   "subcategory_ids": [
