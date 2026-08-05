@@ -82,7 +82,26 @@ def load_json_files(directory, errors):
         )
         return data
 
-    for path in sorted(directory.glob("*.json")):
+    for path in sorted(directory.iterdir()):
+        if not path.is_file():
+            continue
+
+        # Ignore common repository metadata files.
+        if path.name.startswith("."):
+            continue
+
+        # Every editable catalog entry must be a JSON file.
+        if path.suffix.lower() != ".json":
+            add_error(
+                errors,
+                str(path.relative_to(ROOT)),
+                (
+                    "catalog entry files must use "
+                    "the .json extension"
+                ),
+            )
+            continue
+
         try:
             with path.open("r", encoding="utf-8") as handle:
                 value = json.load(handle)
