@@ -4,7 +4,9 @@
   "name": "Halo 2D",
   "description": "This is a project inspired by the Halo saga which I have been developing in a short time.",
   "long_description": "This is a project inspired by the Halo saga which I have been developing in a short time. Halo 2D is a 2D action project for PlayStation Vita inspired by the Halo saga.",
-  "author_id": "vegettosandev",
+  "author_ids": [
+  "vegettosandev"
+  ],
   "category_id": "games",
   "subcategory_ids": [
     "platformer",

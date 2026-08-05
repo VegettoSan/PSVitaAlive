@@ -239,23 +239,52 @@ def validate_restorable_apps(registry, errors):
             error(errors, f"{path}: must be an object")
             continue
 
-        for field in ("id", "title_id", "author_id"):
-            if not isinstance(item.get(field), str) or not item[field].strip():
-                error(
-                    errors,
-                    f"{path}: '{field}' must be a non-empty string",
-                )
+        app_id = item.get("id")
+        title_id = item.get("title_id")
+        author_ids = item.get("author_ids")
+
+        if not isinstance(app_id, str) or not app_id.strip():
+            error(
+                errors,
+                f"{path}: 'id' must be a non-empty string",
+            )
+
+        if not isinstance(title_id, str) or not title_id.strip():
+            error(
+                errors,
+                f"{path}: 'title_id' must be a non-empty string",
+            )
+
+        if (
+            not isinstance(author_ids, list)
+            or not author_ids
+        ):
+            error(
+                errors,
+                f"{path}: 'author_ids' must be a non-empty array",
+            )
+            continue
+
+        if len(set(author_ids)) != len(author_ids):
+            error(
+                errors,
+                f"{path}: 'author_ids' must not contain duplicate IDs",
+            )
 
         if not all(
-            isinstance(item.get(field), str) and item[field].strip()
-            for field in ("id", "title_id", "author_id")
+            isinstance(author_id, str) and author_id.strip()
+            for author_id in author_ids
         ):
+            error(
+                errors,
+                f"{path}: every 'author_ids' value must be a non-empty string",
+            )
             continue
 
         identity = (
-            item["id"],
-            item["title_id"],
-            item["author_id"],
+            app_id,
+            title_id,
+            tuple(sorted(author_ids)),
         )
 
         if identity in seen:
@@ -266,24 +295,23 @@ def validate_restorable_apps(registry, errors):
         else:
             seen.add(identity)
 
-        if item["id"] not in retired_app_ids:
+        if app_id not in retired_app_ids:
             error(
                 errors,
                 (
-                    f"{path}: app id '{item['id']}' must also "
+                    f"{path}: app id '{app_id}' must also "
                     "exist in apps.ids"
                 ),
             )
 
-        if item["title_id"] not in retired_title_ids:
+        if title_id not in retired_title_ids:
             error(
                 errors,
                 (
-                    f"{path}: title_id '{item['title_id']}' must also "
+                    f"{path}: title_id '{title_id}' must also "
                     "exist in apps.title_ids"
                 ),
             )
-
 
 def validate_restorable_authors(registry, errors):
     items = (
@@ -411,10 +439,13 @@ def restorable_app_identities(registry):
         (
             item.get("id"),
             item.get("title_id"),
-            item.get("author_id"),
+            tuple(sorted(item.get("author_ids", []))),
         )
         for item in registry.get("apps", {}).get("restorable", [])
-        if isinstance(item, dict)
+        if (
+            isinstance(item, dict)
+            and isinstance(item.get("author_ids"), list)
+        )
     }
 
 
@@ -444,7 +475,7 @@ def validate_registry_against_current(errors, registry, current):
             (
                 app.get("id"),
                 app.get("title_id"),
-                app.get("author_id"),
+                tuple(sorted(app.get("author_ids", []))),
             )
             in restorable_apps
             for app in matches

@@ -23,7 +23,7 @@ APP_REQUIRED = {
     "name",
     "description",
     "long_description",
-    "author_id",
+    "author_ids",
     "category_id",
     "subcategory_ids",
     "version",
@@ -624,20 +624,43 @@ def validate_apps(
                     "must be a non-empty string",
                 )
 
-        author_id = app.get("author_id")
+                author_ids = app.get("author_ids")
 
         if (
-            not isinstance(author_id, str)
-            or author_id not in authors
+            not isinstance(author_ids, list)
+            or not author_ids
         ):
             add_error(
                 errors,
-                f"{rel}.author_id",
-                (
-                    f"author '{author_id}' "
-                    "does not exist in authors/"
-                ),
+                f"{rel}.author_ids",
+                "must be a non-empty array",
             )
+
+        else:
+            if len(set(author_ids)) != len(author_ids):
+                add_error(
+                    errors,
+                    f"{rel}.author_ids",
+                    "must not contain duplicate IDs",
+                )
+
+            for author_id in author_ids:
+                if not isinstance(author_id, str):
+                    add_error(
+                        errors,
+                        f"{rel}.author_ids",
+                        f"author ID '{author_id}' must be a string",
+                    )
+
+                elif author_id not in authors:
+                    add_error(
+                        errors,
+                        f"{rel}.author_ids",
+                        (
+                            f"author '{author_id}' "
+                            "does not exist in authors/"
+                        ),
+                    )
 
         category_id = app.get("category_id")
 
