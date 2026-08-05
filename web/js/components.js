@@ -1,0 +1,165 @@
+/**
+ * Convierte bytes a una unidad legible.
+ */
+function formatFileSize(bytes) {
+    if (bytes === null || bytes === undefined || bytes === "") {
+        return "Unknown size";
+    }
+
+    const value = Number(bytes);
+
+    if (!Number.isFinite(value) || value < 0) {
+        return "Unknown size";
+    }
+
+    if (value < 1024) {
+        return `${value} B`;
+    }
+
+    if (value < 1024 * 1024) {
+        return `${(value / 1024).toFixed(1)} KB`;
+    }
+
+    if (value < 1024 * 1024 * 1024) {
+        return `${(value / (1024 * 1024)).toFixed(1)} MB`;
+    }
+
+    return `${(value / (1024 * 1024 * 1024)).toFixed(2)} GB`;
+}
+
+
+/**
+ * Obtiene el nombre de una categoría.
+ */
+function getCategoryName(categoryId) {
+    const category = getCategoryById(categoryId);
+
+    if (!category) {
+        return categoryId || "Unknown";
+    }
+
+    return category.name;
+}
+
+/**
+ * Resuelve una ruta de recurso del catálogo
+ * desde las páginas de VitaHub.
+ */
+function resolveAssetPath(path) {
+    if (!path) {
+        return null;
+    }
+
+    // URLs externas
+    if (
+        path.startsWith("http://") ||
+        path.startsWith("https://") ||
+        path.startsWith("data:") ||
+        path.startsWith("/")
+    ) {
+        return path;
+    }
+
+    // Evitar añadir ../ dos veces
+    if (path.startsWith("../")) {
+        return path;
+    }
+
+    return `../${path}`;
+}
+
+/**
+ * Crea una tarjeta de aplicación.
+ */
+function renderAppCard(app) {
+    const article = document.createElement("article");
+
+    article.className = "app-card";
+
+    const iconContainer = document.createElement("div");
+    iconContainer.className = "app-card-icon";
+
+    if (app.icon) {
+        const icon = document.createElement("img");
+
+        icon.src = resolveAssetPath(app.icon);
+        icon.alt = `${app.name} icon`;
+        icon.loading = "lazy";
+
+        icon.addEventListener("error", () => {
+            icon.remove();
+            iconContainer.innerHTML = `
+                <div class="placeholder-icon">
+                    APP
+                </div>
+            `;
+        });
+
+        iconContainer.appendChild(icon);
+    } else {
+        iconContainer.innerHTML = `
+            <div class="placeholder-icon">
+                APP
+            </div>
+        `;
+    }
+
+
+    const content = document.createElement("div");
+    content.className = "app-card-content";
+
+
+    const top = document.createElement("div");
+    top.className = "app-card-top";
+
+    const status = document.createElement("span");
+    status.className = "status-badge";
+    status.textContent = app.status || "Unknown";
+
+    top.appendChild(status);
+
+
+    const title = document.createElement("h3");
+    title.textContent = app.name || "Unknown application";
+
+
+    const description = document.createElement("p");
+    description.className = "app-card-description";
+    description.textContent =
+        app.description || "No description available.";
+
+
+    const meta = document.createElement("div");
+    meta.className = "app-card-meta";
+
+
+    const version = document.createElement("span");
+    version.textContent =
+        app.version ? `v${app.version}` : "Unknown version";
+
+
+    const size = document.createElement("span");
+    size.textContent = formatFileSize(app.size);
+
+
+    const category = document.createElement("span");
+    category.textContent = getCategoryName(app.category_id);
+
+
+    meta.appendChild(version);
+    meta.appendChild(size);
+    meta.appendChild(category);
+
+
+    content.appendChild(top);
+    content.appendChild(title);
+    content.appendChild(description);
+    content.appendChild(meta);
+
+
+    article.appendChild(iconContainer);
+    article.appendChild(content);
+
+
+    return article;
+}
