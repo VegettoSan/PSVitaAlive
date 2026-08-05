@@ -453,7 +453,6 @@ def require_retired(
             ),
         )
 
-
 def validate_registry_against_current(
     errors,
     registry,
@@ -463,30 +462,34 @@ def validate_registry_against_current(
         registry
     )
 
+    current_ids = current_sets(
+        current
+    )
+
     mapping = {
         "app_ids": (
             retired["app_ids"],
-            current["app_ids"],
+            current_ids["app_ids"],
             "apps.ids",
         ),
         "title_ids": (
             retired["title_ids"],
-            current["title_ids"],
+            current_ids["title_ids"],
             "apps.title_ids",
         ),
         "author_ids": (
             retired["author_ids"],
-            current["author_ids"],
+            current_ids["author_ids"],
             "authors.ids",
         ),
         "category_ids": (
             retired["category_ids"],
-            current["category_ids"],
+            current_ids["category_ids"],
             "categories.ids",
         ),
         "subcategory_ids": (
             retired["subcategory_ids"],
-            current["subcategory_ids"],
+            current_ids["subcategory_ids"],
             "subcategories.ids",
         ),
     }
@@ -507,7 +510,6 @@ def validate_registry_against_current(
                     f"{location} is still active"
                 ),
             )
-
 
 def validate_removed_identifiers(
     errors,
