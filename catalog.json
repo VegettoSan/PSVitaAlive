@@ -71,7 +71,7 @@
     ],
     "links": [
       {
-        "type": "download",
+        "type": "DOWNLOAD",
         "name": "GitHub Release",
         "url": "https://github.com/VegettoSan/Halo2D_PsVita/releases/latest/download/Halo2D.vpk",
         "recommended": true
