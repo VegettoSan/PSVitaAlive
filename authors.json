@@ -1,5 +1,75 @@
 [
   {
+    "id": "chatgpt-ai",
+    "name": "ChatGPT AI",
+    "avatar": "authors/icon/chatgpt-ai.png",
+    "bio": "Asistente de IA de OpenAI usado como apoyo creativo y técnico en algunos homebrews de PS Vita.",
+    "links": [
+      {
+        "type": "Official Website",
+        "name": "ChatGPT",
+        "url": "https://openai.com/chatgpt/",
+        "recommended": true
+      }
+    ]
+  },
+  {
+    "id": "claude-ai",
+    "name": "Claude AI",
+    "avatar": "authors/icon/claude-ai.png",
+    "bio": "Asistente de IA de Anthropic usado como apoyo de programación, revisión y escritura.",
+    "links": [
+      {
+        "type": "Official Website",
+        "name": "Claude",
+        "url": "https://www.anthropic.com/claude",
+        "recommended": true
+      }
+    ]
+  },
+  {
+    "id": "deepseek-ai",
+    "name": "DeepSeek AI",
+    "avatar": "authors/icon/deepseek-ai.png",
+    "bio": "Asistente de IA de DeepSeek orientado a razonamiento, código y asistencia de desarrollo.",
+    "links": [
+      {
+        "type": "Official Website",
+        "name": "DeepSeek",
+        "url": "https://www.deepseek.com/",
+        "recommended": true
+      }
+    ]
+  },
+  {
+    "id": "gemini-ai",
+    "name": "Gemini AI",
+    "avatar": "authors/icon/gemini-ai.png",
+    "bio": "Asistente de IA de Google orientado a ayuda creativa, análisis y productividad.",
+    "links": [
+      {
+        "type": "Official Website",
+        "name": "Gemini",
+        "url": "https://gemini.google.com/",
+        "recommended": true
+      }
+    ]
+  },
+  {
+    "id": "kimi-ai",
+    "name": "Kimi AI",
+    "avatar": "authors/icon/kimi-ai.png",
+    "bio": "Asistente de IA de Moonshot AI enfocado en lectura larga, análisis y tareas de programación.",
+    "links": [
+      {
+        "type": "Official Website",
+        "name": "Kimi",
+        "url": "https://kimi.moonshot.cn/",
+        "recommended": true
+      }
+    ]
+  },
+  {
     "id": "rinnegatamante",
     "name": "Rinnegatamante",
     "avatar": "https://github.com/Rinnegatamante.png?size=256",
