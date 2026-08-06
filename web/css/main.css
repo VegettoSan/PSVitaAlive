@@ -48,6 +48,46 @@ body {
     line-height: 1.5;
 }
 
+body {
+    position: relative;
+    overflow-x: hidden;
+}
+
+body::before {
+    content: "";
+
+    position: fixed;
+    inset: 0;
+
+    z-index: -2;
+
+    background-image:
+        url("../assets/background/PSVitaAlive_Store_logo_psvita.png");
+
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: min(900px, 80vw);
+
+    opacity: 0.5;
+
+    filter: blur(2px);
+
+    pointer-events: none;
+}
+
+body::after {
+    content: "";
+
+    position: fixed;
+    inset: 0;
+
+    z-index: -1;
+
+    background: rgba(0, 0, 0, 0.35);
+
+    pointer-events: none;
+}
+
 
 a {
     color: inherit;
@@ -96,10 +136,19 @@ input {
 
 
 .site-logo {
-    font-size: 1.4rem;
-    font-weight: 800;
+    display: flex;
+    align-items: center;
+}
 
-    letter-spacing: -0.04em;
+.site-logo img {
+    display: block;
+
+    width: auto;
+    height: 42px;
+
+    max-width: 220px;
+
+    object-fit: contain;
 }
 
 
