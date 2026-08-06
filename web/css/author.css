@@ -1,0 +1,393 @@
+/*
+ * PSVitaAlive Store
+ * Author profile page
+ */
+
+
+/* ========================================
+   Page
+======================================== */
+
+.author-page {
+    padding: 48px 0 80px;
+}
+
+
+.author-content {
+    max-width: var(--container-width);
+
+    margin: 0 auto;
+}
+
+
+/* ========================================
+   Loading / Error
+======================================== */
+
+.author-state {
+    max-width: var(--container-width);
+
+    margin: 0 auto;
+
+    padding: 80px 20px;
+
+    text-align: center;
+}
+
+
+.author-state-error h1 {
+    margin-bottom: 12px;
+}
+
+
+.author-state-error a {
+    display: inline-block;
+
+    margin-top: 20px;
+
+    color: var(--accent);
+
+    font-weight: 700;
+
+    text-decoration: none;
+}
+
+
+.author-state-error a:hover {
+    text-decoration: underline;
+}
+
+
+/* ========================================
+   Author Profile
+======================================== */
+
+.author-profile {
+    display: grid;
+
+    grid-template-columns: 180px minmax(0, 1fr);
+
+    gap: 32px;
+
+    padding: 32px;
+
+    background: var(--surface);
+
+    border: 1px solid var(--border);
+
+    border-radius: var(--radius);
+}
+
+
+.author-avatar {
+    width: 180px;
+
+    height: 180px;
+
+    overflow: hidden;
+
+    background: var(--surface-hover);
+
+    border: 1px solid var(--border);
+
+    border-radius: 50%;
+}
+
+
+.author-avatar img {
+    display: block;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+}
+
+
+.author-profile-info {
+    min-width: 0;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+
+    align-items: flex-start;
+}
+
+
+.author-profile-info h1 {
+    margin: 0 0 12px;
+
+    font-size: clamp(
+        2rem,
+        5vw,
+        3rem
+    );
+
+    line-height: 1.05;
+}
+
+
+.author-bio {
+    max-width: 760px;
+
+    margin: 0;
+
+    color: #ffffff;
+
+    font-size: 1.05rem;
+
+    font-weight: 600;
+
+    line-height: 1.7;
+}
+
+
+/* ========================================
+   Author links
+======================================== */
+
+.author-links {
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 10px;
+
+    margin-top: 20px;
+}
+
+
+.author-link {
+    display: inline-flex;
+
+    align-items: center;
+
+    min-height: 40px;
+
+    padding: 8px 15px;
+
+    background: var(--surface-hover);
+
+    border: 1px solid var(--border);
+
+    border-radius: 8px;
+
+    color: #ffffff;
+
+    font-weight: 700;
+
+    text-decoration: none;
+
+    transition:
+        border-color 0.2s ease,
+        color 0.2s ease,
+        background 0.2s ease;
+}
+
+
+.author-link:hover {
+    border-color: var(--accent);
+
+    color: var(--accent);
+}
+
+
+.author-link.recommended {
+    background: var(--accent);
+
+    border-color: var(--accent);
+
+    color: #000000;
+
+    font-weight: 800;
+
+    box-shadow:
+        0 0 0 1px rgba(
+            59,
+            255,
+            0,
+            0.25
+        ),
+        0 0 18px rgba(
+            59,
+            255,
+            0,
+            0.25
+        );
+}
+
+
+.author-link.recommended:hover {
+    background: #ffffff;
+
+    border-color: var(--accent);
+
+    color: #000000;
+
+    box-shadow:
+        0 0 0 1px rgba(
+            59,
+            255,
+            0,
+            0.4
+        ),
+        0 0 24px rgba(
+            59,
+            255,
+            0,
+            0.4
+        );
+}
+
+
+/* ========================================
+   Applications
+======================================== */
+
+.author-applications {
+    margin-top: 32px;
+
+    padding: 28px;
+
+    background: var(--surface);
+
+    border: 1px solid var(--border);
+
+    border-radius: var(--radius);
+}
+
+
+.section-heading {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 20px;
+
+    margin-bottom: 24px;
+}
+
+
+.section-heading h2 {
+    margin: 0;
+
+    font-size: 1.5rem;
+}
+
+
+.author-app-count {
+    color: var(--accent);
+
+    font-size: 0.9rem;
+
+    font-weight: 800;
+}
+
+
+/*
+ * Reuse the application's existing
+ * card component.
+ */
+
+.author-apps {
+    display: grid;
+
+    grid-template-columns:
+        repeat(
+            3,
+            minmax(0, 1fr)
+        );
+
+    gap: 20px;
+}
+
+
+.author-apps .app-card {
+    min-width: 0;
+}
+
+
+/* ========================================
+   Mobile
+======================================== */
+
+@media (max-width: 900px) {
+
+    .author-apps {
+        grid-template-columns:
+            repeat(
+                2,
+                minmax(0, 1fr)
+            );
+    }
+
+}
+
+
+@media (max-width: 700px) {
+
+    .author-page {
+        padding-top: 24px;
+    }
+
+
+    .author-profile {
+        grid-template-columns: 1fr;
+
+        padding: 24px;
+
+        gap: 24px;
+    }
+
+
+    .author-avatar {
+        width: 150px;
+
+        height: 150px;
+
+        margin: 0 auto;
+    }
+
+
+    .author-profile-info {
+        align-items: center;
+
+        text-align: center;
+    }
+
+
+    .author-links {
+        justify-content: center;
+    }
+
+
+    .author-applications {
+        padding: 20px;
+    }
+
+
+    .section-heading {
+        align-items: flex-start;
+
+        flex-direction: column;
+
+        gap: 8px;
+    }
+
+
+    .author-apps {
+        grid-template-columns:
+            repeat(
+                2,
+                minmax(0, 1fr)
+            );
+
+        gap: 12px;
+    }
+
+}

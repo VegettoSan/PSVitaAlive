@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Author — PSVitaAlive Store</title>
+
+    <meta
+        name="description"
+        content="PlayStation Vita homebrew developer profile"
+    >
+
+    <link
+        rel="stylesheet"
+        href="css/main.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="css/author.css"
+    >
+
+</head>
+
+<body>
+
+    <header class="site-header">
+
+        <div class="container site-header-inner">
+
+            <a
+                href="index.html"
+                class="site-logo"
+            >
+
+                <img
+                    src="assets/logo/PSVitaAlive_Store_logo_text.png"
+                    alt="PSVitaAlive Store"
+                >
+
+            </a>
+
+
+            <nav class="site-nav">
+
+                <a href="index.html">
+                    Home
+                </a>
+
+            </nav>
+
+        </div>
+
+    </header>
+
+
+    <main class="author-page">
+
+        <!-- Loading -->
+
+        <div
+            id="author-loading"
+            class="author-state"
+        >
+
+            Loading author...
+
+        </div>
+
+
+        <!-- Error -->
+
+        <div
+            id="author-error"
+            class="author-state author-state-error"
+            hidden
+        >
+
+            <h1>
+                Author not found
+            </h1>
+
+            <p>
+                The requested author could not be found.
+            </p>
+
+            <a href="index.html">
+                Return to home
+            </a>
+
+        </div>
+
+
+        <!-- Author -->
+
+        <div
+            id="author-content"
+            class="author-content"
+            hidden
+        >
+
+            <!-- Profile -->
+
+            <section class="author-profile">
+
+                <div class="author-avatar">
+
+                    <img
+                        id="author-avatar"
+                        src=""
+                        alt=""
+                    >
+
+                </div>
+
+
+                <div class="author-profile-info">
+
+                    <h1 id="author-name"></h1>
+
+                    <p
+                        id="author-bio"
+                        class="author-bio"
+                    ></p>
+
+
+                    <div
+                        id="author-links"
+                        class="author-links"
+                    ></div>
+
+                </div>
+
+            </section>
+
+
+            <!-- Applications -->
+
+            <section class="author-applications">
+
+                <div class="section-heading">
+
+                    <h2>
+                        Homebrew by this author
+                    </h2>
+
+                    <span
+                        id="author-app-count"
+                        class="author-app-count"
+                    ></span>
+
+                </div>
+
+
+                <div
+                    id="author-apps"
+                    class="author-apps"
+                ></div>
+
+            </section>
+
+        </div>
+
+    </main>
+
+
+    <footer class="site-footer">
+
+        <div class="container">
+
+            PSVitaAlive Store — Free and open PlayStation Vita homebrew catalog.
+
+        </div>
+
+    </footer>
+
+
+    <script src="js/data.js"></script>
+
+    <script src="js/components.js"></script>
+
+    <script src="js/author-page.js"></script>
+
+</body>
+
+</html>

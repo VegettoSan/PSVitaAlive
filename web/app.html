@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Application — PSVitaAlive Store</title>
+
+    <meta
+        name="description"
+        content="PlayStation Vita homebrew application"
+    >
+
+    <link
+        rel="stylesheet"
+        href="css/main.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="css/app.css"
+    >
+
+</head>
+
+<body>
+
+    <header class="site-header">
+
+        <div class="container site-header-inner">
+
+            <a
+                href="index.html"
+                class="site-logo"
+            >
+
+                <img
+                    src="assets/logo/PSVitaAlive_Store_logo_text.png"
+                    alt="PSVitaAlive Store"
+                >
+
+            </a>
+
+
+            <nav class="site-nav">
+
+                <a href="index.html">
+                    Home
+                </a>
+
+            </nav>
+
+        </div>
+
+    </header>
+
+
+    <main class="app-page">
+
+        <!-- Loading -->
+
+        <div
+            id="app-loading"
+            class="app-state"
+        >
+
+            Loading application...
+
+        </div>
+
+
+        <!-- Error -->
+
+        <div
+            id="app-error"
+            class="app-state app-state-error"
+            hidden
+        >
+
+            <h1>
+                Application not found
+            </h1>
+
+            <p>
+                The requested application could not be found.
+            </p>
+
+            <a href="index.html">
+                Return to home
+            </a>
+
+        </div>
+
+
+        <!-- Application -->
+
+        <article
+            id="app-content"
+            class="app-detail"
+            hidden
+        >
+
+            <!-- Hero -->
+
+            <section class="app-hero">
+
+                <div class="app-hero-icon">
+
+                    <img
+                        id="app-icon"
+                        src=""
+                        alt=""
+                    >
+
+                </div>
+
+
+                <div class="app-hero-info">
+
+                    <div
+                        id="app-status"
+                        class="status-badge"
+                    ></div>
+
+
+                    <h1 id="app-name"></h1>
+
+
+                    <div
+                        id="app-version"
+                        class="app-version"
+                    ></div>
+
+
+                    <div
+                        id="app-authors"
+                        class="app-authors"
+                    ></div>
+
+
+                    <div
+                        id="app-category"
+                        class="app-category"
+                    ></div>
+
+                </div>
+
+            </section>
+
+
+            <!-- Description -->
+
+            <section class="app-section">
+
+                <h2>
+                    Description
+                </h2>
+
+
+                <p
+                    id="app-description"
+                    class="app-description"
+                ></p>
+
+
+                <div
+                    id="app-long-description"
+                    class="app-long-description"
+                ></div>
+
+            </section>
+
+
+            <!-- Screenshots -->
+
+            <section
+                id="screenshots-section"
+                class="app-section"
+            >
+
+                <h2>
+                    Screenshots
+                </h2>
+
+
+                <div
+                    id="app-screenshots"
+                    class="app-screenshots"
+                ></div>
+
+            </section>
+
+
+            <!-- Information -->
+
+            <section class="app-section">
+
+                <h2>
+                    Information
+                </h2>
+
+
+                <dl class="app-information">
+
+                    <div>
+
+                        <dt>
+                            Version
+                        </dt>
+
+                        <dd id="info-version"></dd>
+
+                    </div>
+
+
+                    <div>
+
+                        <dt>
+                            Release date
+                        </dt>
+
+                        <dd id="info-date"></dd>
+
+                    </div>
+
+
+                    <div>
+
+                        <dt>
+                            Size
+                        </dt>
+
+                        <dd id="info-size"></dd>
+
+                    </div>
+
+
+                    <div>
+
+                        <dt>
+                            Requirements
+                        </dt>
+
+                        <dd id="info-requirements"></dd>
+
+                    </div>
+
+
+                    <div>
+
+                        <dt>
+                            Title ID
+                        </dt>
+
+                        <dd id="info-title-id"></dd>
+
+                    </div>
+
+                </dl>
+
+            </section>
+
+
+            <!-- Links -->
+
+            <section
+                id="links-section"
+                class="app-section"
+            >
+
+                <h2>
+                    Links
+                </h2>
+
+
+                <div
+                    id="app-links"
+                    class="app-links"
+                ></div>
+
+            </section>
+
+        </article>
+
+    </main>
+
+
+    <footer class="site-footer">
+
+        <div class="container">
+
+            PSVitaAlive Store — Free and open PlayStation Vita homebrew catalog.
+
+        </div>
+
+    </footer>
+
+
+    <!-- Shared data and components -->
+
+    <script src="js/data.js"></script>
+
+    <script src="js/components.js"></script>
+
+    <!-- Application page controller -->
+
+    <script src="js/app-page.js"></script>
+
+</body>
+
+</html>
