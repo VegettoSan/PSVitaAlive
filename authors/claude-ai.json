@@ -1,0 +1,14 @@
+{
+  "id": "claude-ai",
+  "name": "Claude AI",
+  "avatar": "icon/claude-ai.png",
+  "bio": "Asistente de IA de Anthropic usado como apoyo de programación, revisión y escritura.",
+  "links": [
+    {
+      "type": "Official Website",
+      "name": "Claude",
+      "url": "https://www.anthropic.com/claude",
+      "recommended": true
+    }
+  ]
+}

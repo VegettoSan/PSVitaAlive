@@ -1,0 +1,14 @@
+{
+  "id": "gemini-ai",
+  "name": "Gemini AI",
+  "avatar": "icon/gemini-ai.png",
+  "bio": "Asistente de IA de Google orientado a ayuda creativa, análisis y productividad.",
+  "links": [
+    {
+      "type": "Official Website",
+      "name": "Gemini",
+      "url": "https://gemini.google.com/",
+      "recommended": true
+    }
+  ]
+}

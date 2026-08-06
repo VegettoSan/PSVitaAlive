@@ -1,0 +1,14 @@
+{
+  "id": "chatgpt-ai",
+  "name": "ChatGPT AI",
+  "avatar": "icon/chatgpt-ai.png",
+  "bio": "Asistente de IA de OpenAI usado como apoyo creativo y técnico en algunos homebrews de PS Vita.",
+  "links": [
+    {
+      "type": "Official Website",
+      "name": "ChatGPT",
+      "url": "https://openai.com/chatgpt/",
+      "recommended": true
+    }
+  ]
+}

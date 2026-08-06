@@ -1,0 +1,14 @@
+{
+  "id": "deepseek-ai",
+  "name": "DeepSeek AI",
+  "avatar": "icon/deepseek-ai.png",
+  "bio": "Asistente de IA de DeepSeek orientado a razonamiento, código y asistencia de desarrollo.",
+  "links": [
+    {
+      "type": "Official Website",
+      "name": "DeepSeek",
+      "url": "https://www.deepseek.com/",
+      "recommended": true
+    }
+  ]
+}
