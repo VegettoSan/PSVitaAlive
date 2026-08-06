@@ -1,19 +1,38 @@
 :root {
-    --bg: #0d0f14;
-    --surface: #151821;
-    --surface-hover: #1b1f2a;
-    --border: #282d3a;
+    /* Base */
+    --bg: #000000;
+    --surface: #262626;
+    --surface-hover: #3E3E3E;
+    --border: #3E3E3E;
 
-    --text: #f4f5f7;
-    --text-secondary: #a8adba;
-    --text-muted: #747b8a;
+    /* Text */
+    --text: #FFE689;
+    --text-secondary: #AEF2FB;
+    --text-muted: #746519;
 
-    --accent: #7c5cff;
-    --accent-hover: #9177ff;
+    /* Primary */
+    --accent: #2258FF;
+    --accent-hover: #00D4FF;
 
-    --success: #45c486;
-    --warning: #e6b450;
+    /* Status */
+    --success: #00D4FF;
+    --warning: #FFB103;
 
+    /* Additional palette */
+    --primary-dark: #142666;
+
+    --cyan-dark: #0B819A;
+    --cyan-deep: #136772;
+
+    --gold-light: #FFE689;
+    --gold-bright: #FFE240;
+    --gold-dark: #7C5C0E;
+
+    --orange-light: #FFD0AE;
+    --orange: #BB702D;
+    --brown: #794215;
+
+    /* Layout */
     --radius: 12px;
     --container-width: 1200px;
 }
@@ -77,7 +96,7 @@ input {
     top: 0;
     z-index: 100;
 
-    background: rgba(13, 15, 20, 0.92);
+    background: rgba(0, 0, 0, 0.92);
 
     border-bottom: 1px solid var(--border);
 
@@ -267,7 +286,7 @@ input {
 .category-card:hover {
     background: var(--surface-hover);
 
-    border-color: #363c4c;
+    border-color: var(--accent);
 
     transform: translateY(-2px);
 }
@@ -284,7 +303,7 @@ input {
 
     border-radius: 10px;
 
-    background: #202431;
+    background: var(--surface-hover);
 
     font-size: 1.4rem;
 }
@@ -344,7 +363,7 @@ input {
 .app-card:hover {
     background: var(--surface-hover);
 
-    border-color: #363c4c;
+    border-color: var(--accent);
 
     transform: translateY(-2px);
 }
@@ -362,7 +381,7 @@ input {
 
     border-radius: 10px;
 
-    background: #202431;
+    background: var(--surface-hover);
 }
 
 .app-card-icon img {
@@ -410,7 +429,7 @@ input {
 
     border-radius: 5px;
 
-    background: rgba(69, 196, 134, 0.12);
+    background: rgba(0, 212, 255, 0.12);
 
     color: var(--success);
 
