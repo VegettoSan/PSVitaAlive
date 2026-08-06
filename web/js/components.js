@@ -198,8 +198,38 @@ if (authors.length > 0) {
     content.appendChild(meta);
 
 
-    article.appendChild(iconContainer);
+        article.appendChild(iconContainer);
     article.appendChild(content);
+
+
+    /*
+     * Open application detail page
+     * when clicking the card.
+     *
+     * The application is identified
+     * by its Title ID.
+     */
+    article.classList.add("app-card-clickable");
+
+    article.addEventListener("click", event => {
+
+        /*
+         * Do not intercept clicks on
+         * author/category links.
+         */
+        if (event.target.closest("a")) {
+            return;
+        }
+
+        if (!app.title_id) {
+            return;
+        }
+
+        window.location.href =
+            `app.html?title_id=${encodeURIComponent(
+                app.title_id
+            )}`;
+    });
 
 
     return article;
