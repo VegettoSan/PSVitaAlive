@@ -220,6 +220,7 @@ function renderGameTitleIds(
         section.hidden = true;
 
         return;
+
     }
 
 
@@ -229,11 +230,14 @@ function renderGameTitleIds(
         );
 
 
-    if (entries.length === 0) {
+    if (
+        entries.length === 0
+    ) {
 
         section.hidden = true;
 
         return;
+
     }
 
 
@@ -268,53 +272,42 @@ function renderGameTitleIds(
             regionElement.textContent =
                 region;
 
-                const regionElement =
-    document.createElement(
-        "span"
-    );
 
-regionElement.className =
-    "game-title-id-region";
+            const labelElement =
+                document.createElement(
+                    "span"
+                );
 
-regionElement.textContent =
-    region;
+            labelElement.className =
+                "game-title-id-label";
 
-
-const labelElement =
-    document.createElement(
-        "span"
-    );
-
-labelElement.className =
-    "game-title-id-label";
-
-labelElement.textContent =
-    "Title ID";
+            labelElement.textContent =
+                "Title ID";
 
 
-const valueElement =
-    document.createElement(
-        "span"
-    );
+            const valueElement =
+                document.createElement(
+                    "span"
+                );
 
-valueElement.className =
-    "game-title-id-value";
+            valueElement.className =
+                "game-title-id-value";
 
-valueElement.textContent =
-    titleId;
+            valueElement.textContent =
+                titleId;
 
 
-item.appendChild(
-    regionElement
-);
+            item.appendChild(
+                regionElement
+            );
 
-item.appendChild(
-    labelElement
-);
+            item.appendChild(
+                labelElement
+            );
 
-item.appendChild(
-    valueElement
-);
+            item.appendChild(
+                valueElement
+            );
 
 
             container.appendChild(
@@ -346,138 +339,22 @@ function getGameLinkLabel(
     return "Open link";
 }
 
-
-function renderGameLinks(
-    game
+function renderGameLinkList(
+    links,
+    container
 ) {
 
-    const section =
-        document.getElementById(
-            "game-links-section"
-        );
-
-    const container =
-        document.getElementById(
-            "game-links"
-        );
-
-
     container.innerHTML = "";
-
-
-    if (
-        !Array.isArray(
-            game.links
-        ) ||
-        game.links.length === 0
-    ) {
-
-        section.hidden = true;
-
-        return;
-    }
-
-
-    section.hidden = false;
-
-
-    const links = [
-        ...game.links
-    ];
-    const downloads = [];
-
-    const dlcs = [];
-
-    const otherLinks = [];
-
-    links.forEach(
-    link => {
-
-        const type =
-            String(
-                link.type || ""
-            ).toLowerCase();
-
-
-        const name =
-            String(
-                link.name || ""
-            ).toLowerCase();
-
-
-        if (
-            type.includes("dlc") ||
-            name.includes("dlc")
-        ) {
-
-            dlcs.push(
-                link
-            );
-
-            return;
-
-        }
-
-
-        if (
-            type.includes("download") ||
-            type.includes("pkg")
-        ) {
-
-            downloads.push(
-                link
-            );
-
-            return;
-
-        }
-
-
-        otherLinks.push(
-            link
-        );
-
-    }
-);
-
-    /*
-     * Recommended download first.
-     */
-
-    links.sort(
-        (a, b) => {
-
-            if (
-                a.recommended === true &&
-                b.recommended !== true
-            ) {
-                return -1;
-            }
-
-            if (
-                a.recommended !== true &&
-                b.recommended === true
-            ) {
-                return 1;
-            }
-
-            return 0;
-        }
-    );
 
 
     links.forEach(
         linkData => {
 
-            if (!linkData.url) {
-                return;
-            }
-
-
             const link =
                 document.createElement(
                     "a"
                 );
+
 
             link.className =
                 "game-link";
@@ -504,6 +381,10 @@ function renderGameLinks(
                 "noopener noreferrer";
 
 
+            /*
+             * Name
+             */
+
             const name =
                 document.createElement(
                     "span"
@@ -513,10 +394,14 @@ function renderGameLinks(
                 "game-link-name";
 
             name.textContent =
-                getGameLinkLabel(
-                    linkData
-                );
+                linkData.name ||
+                linkData.type ||
+                "Open link";
 
+
+            /*
+             * Metadata
+             */
 
             const meta =
                 document.createElement(
@@ -530,7 +415,9 @@ function renderGameLinks(
             const metaParts = [];
 
 
-            if (linkData.type) {
+            if (
+                linkData.type
+            ) {
 
                 metaParts.push(
                     linkData.type
@@ -539,7 +426,9 @@ function renderGameLinks(
             }
 
 
-            if (linkData.region) {
+            if (
+                linkData.region
+            ) {
 
                 metaParts.push(
                     linkData.region
@@ -548,7 +437,9 @@ function renderGameLinks(
             }
 
 
-            if (linkData.title_id) {
+            if (
+                linkData.title_id
+            ) {
 
                 metaParts.push(
                     linkData.title_id
@@ -562,6 +453,10 @@ function renderGameLinks(
                     " · "
                 );
 
+
+            /*
+             * Size
+             */
 
             const size =
                 document.createElement(
@@ -586,6 +481,33 @@ function renderGameLinks(
             }
 
 
+            /*
+             * Recommended label
+             */
+
+            if (
+                linkData.recommended === true
+            ) {
+
+                const recommended =
+                    document.createElement(
+                        "span"
+                    );
+
+                recommended.className =
+                    "game-link-recommended";
+
+                recommended.textContent =
+                    "Recommended";
+
+
+                link.appendChild(
+                    recommended
+                );
+
+            }
+
+
             link.appendChild(
                 name
             );
@@ -595,7 +517,9 @@ function renderGameLinks(
             );
 
 
-            if (size.textContent) {
+            if (
+                size.textContent
+            ) {
 
                 link.appendChild(
                     size
@@ -610,6 +534,204 @@ function renderGameLinks(
 
         }
     );
+
+}
+
+function renderGameLinks(
+    game
+) {
+
+    const downloadsSection =
+        document.getElementById(
+            "game-downloads-section"
+        );
+
+    const downloadsContainer =
+        document.getElementById(
+            "game-downloads"
+        );
+
+
+    const dlcSection =
+        document.getElementById(
+            "game-dlc-section"
+        );
+
+    const dlcContainer =
+        document.getElementById(
+            "game-dlc"
+        );
+
+
+    const otherLinksSection =
+        document.getElementById(
+            "game-other-links-section"
+        );
+
+    const otherLinksContainer =
+        document.getElementById(
+            "game-other-links"
+        );
+
+
+    downloadsContainer.innerHTML = "";
+
+    dlcContainer.innerHTML = "";
+
+    otherLinksContainer.innerHTML = "";
+
+
+    /*
+     * No links
+     */
+
+    if (
+        !Array.isArray(
+            game.links
+        ) ||
+        game.links.length === 0
+    ) {
+
+        downloadsSection.hidden = true;
+
+        dlcSection.hidden = true;
+
+        otherLinksSection.hidden = true;
+
+        return;
+
+    }
+
+
+    /*
+     * Separate links according
+     * to the official catalog type.
+     */
+
+    const downloads = [];
+
+    const dlcs = [];
+
+    const otherLinks = [];
+
+
+    game.links.forEach(
+        link => {
+
+            if (
+                !link ||
+                !link.url
+            ) {
+                return;
+            }
+
+
+            if (
+                link.type === "Download"
+            ) {
+
+                downloads.push(
+                    link
+                );
+
+                return;
+
+            }
+
+
+            if (
+                link.type === "DLC"
+            ) {
+
+                dlcs.push(
+                    link
+                );
+
+                return;
+
+            }
+
+
+            otherLinks.push(
+                link
+            );
+
+        }
+    );
+
+
+    /*
+     * Recommended downloads first.
+     */
+
+    downloads.sort(
+        (
+            a,
+            b
+        ) => {
+
+            if (
+                a.recommended === true &&
+                b.recommended !== true
+            ) {
+
+                return -1;
+
+            }
+
+
+            if (
+                a.recommended !== true &&
+                b.recommended === true
+            ) {
+
+                return 1;
+
+            }
+
+
+            return 0;
+
+        }
+    );
+
+
+    /*
+     * Render sections.
+     */
+
+    renderGameLinkList(
+        downloads,
+        downloadsContainer
+    );
+
+
+    renderGameLinkList(
+        dlcs,
+        dlcContainer
+    );
+
+
+    renderGameLinkList(
+        otherLinks,
+        otherLinksContainer
+    );
+
+
+    /*
+     * Hide empty sections.
+     */
+
+    downloadsSection.hidden =
+        downloads.length === 0;
+
+
+    dlcSection.hidden =
+        dlcs.length === 0;
+
+
+    otherLinksSection.hidden =
+        otherLinks.length === 0;
 
 }
 

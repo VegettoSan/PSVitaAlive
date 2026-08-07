@@ -499,7 +499,6 @@
         );
 }
 
-
 .game-link.recommended:hover {
     background: #ffffff;
 
@@ -633,4 +632,28 @@
     text-transform: uppercase;
 
     letter-spacing: 0.04em;
+}
+
+.game-link-recommended {
+    display: inline-flex;
+
+    align-self: flex-start;
+
+    margin-bottom: 4px;
+
+    padding: 4px 8px;
+
+    background: #000000;
+
+    border-radius: 5px;
+
+    color: var(--accent);
+
+    font-size: 0.7rem;
+
+    font-weight: 900;
+
+    text-transform: uppercase;
+
+    letter-spacing: 0.05em;
 }
