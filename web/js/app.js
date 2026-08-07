@@ -4,6 +4,113 @@ const GAMES_CATALOG = "games";
 let currentCatalog =
     HOME_CATALOG;
 
+    /* ========================================
+   Render Featured Homebrew
+======================================== */
+
+function renderFeaturedHomebrew() {
+
+    const featuredGrid =
+        document.getElementById(
+            "featured-homebrew-grid"
+        );
+
+
+    if (!featuredGrid) {
+        return;
+    }
+
+
+    featuredGrid.innerHTML = "";
+
+
+    const sortedApps =
+        [...VitaHubData.catalog].sort(
+            (a, b) => {
+
+                const dateA =
+                    new Date(
+                        a.version_date || 0
+                    ).getTime();
+
+
+                const dateB =
+                    new Date(
+                        b.version_date || 0
+                    ).getTime();
+
+
+                const validA =
+                    Number.isFinite(
+                        dateA
+                    ) && dateA > 0;
+
+
+                const validB =
+                    Number.isFinite(
+                        dateB
+                    ) && dateB > 0;
+
+
+                if (
+                    !validA &&
+                    validB
+                ) {
+                    return 1;
+                }
+
+
+                if (
+                    validA &&
+                    !validB
+                ) {
+                    return -1;
+                }
+
+
+                if (
+                    !validA &&
+                    !validB
+                ) {
+                    return 0;
+                }
+
+
+                return dateB - dateA;
+
+            }
+        );
+
+
+    const featuredApps =
+        sortedApps.slice(
+            0,
+            3
+        );
+
+
+    featuredApps.forEach(
+        app => {
+
+            const card =
+                renderAppCard(
+                    app
+                );
+
+
+            card.classList.add(
+                "featured-app-card"
+            );
+
+
+            featuredGrid.appendChild(
+                card
+            );
+
+        }
+    );
+
+}
 
 /* ========================================
    Render Homebrew
@@ -239,6 +346,7 @@ async function initHomePage() {
     try {
 
         await loadVitaHubData();
+        renderFeaturedHomebrew();
 
 
         const homebrewButton =
