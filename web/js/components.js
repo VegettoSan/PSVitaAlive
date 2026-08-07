@@ -231,6 +231,216 @@ if (authors.length > 0) {
             )}`;
     });
 
+    
+
+
+    return article;
+}
+
+/**
+ * Crea una tarjeta para un juego oficial de PS Vita.
+ */
+function renderOfficialGameCard(game) {
+
+    const article =
+        document.createElement("article");
+
+    article.className =
+        "app-card official-game-card app-card-clickable";
+
+
+    /* ========================================
+       Cover
+    ======================================== */
+
+    const coverContainer =
+        document.createElement("div");
+
+    coverContainer.className =
+        "app-card-icon official-game-cover";
+
+
+    if (game.cover) {
+
+        const cover =
+            document.createElement("img");
+
+        cover.src =
+            game.cover;
+
+        cover.alt =
+            `${game.name} cover`;
+
+        cover.loading =
+            "lazy";
+
+        coverContainer.appendChild(
+            cover
+        );
+
+    } else {
+
+        coverContainer.innerHTML = `
+            <div class="placeholder-icon">
+                GAME
+            </div>
+        `;
+
+    }
+
+
+    /* ========================================
+       Content
+    ======================================== */
+
+    const content =
+        document.createElement("div");
+
+    content.className =
+        "app-card-content";
+
+
+    /* Type */
+
+    const top =
+        document.createElement("div");
+
+    top.className =
+        "app-card-top";
+
+
+    const badge =
+        document.createElement("span");
+
+    badge.className =
+        "status-badge official-game-badge";
+
+    badge.textContent =
+        "PS Vita Game";
+
+
+    top.appendChild(
+        badge
+    );
+
+
+    /* Title */
+
+    const title =
+        document.createElement("h3");
+
+    title.textContent =
+        game.name ||
+        "Unknown game";
+
+
+    /* Description */
+
+    const description =
+        document.createElement("p");
+
+    description.className =
+        "app-card-description";
+
+    description.textContent =
+        game.description ||
+        "No description available.";
+
+
+    /* Meta */
+
+    const meta =
+        document.createElement("div");
+
+    meta.className =
+        "app-card-meta";
+
+
+    const version =
+        document.createElement("span");
+
+    version.textContent =
+        game.version
+            ? `v${game.version}`
+            : "Unknown version";
+
+
+    const size =
+        document.createElement("span");
+
+    size.textContent =
+        formatFileSize(game.size);
+
+
+    const category =
+        document.createElement("span");
+
+    category.textContent =
+        getCategoryName(
+            game.category_id
+        );
+
+
+    meta.appendChild(
+        version
+    );
+
+    meta.appendChild(
+        size
+    );
+
+    meta.appendChild(
+        category
+    );
+
+
+    /* Assemble */
+
+    content.appendChild(
+        top
+    );
+
+    content.appendChild(
+        title
+    );
+
+    content.appendChild(
+        description
+    );
+
+    content.appendChild(
+        meta
+    );
+
+
+    article.appendChild(
+        coverContainer
+    );
+
+    article.appendChild(
+        content
+    );
+
+
+    /*
+     * Detail page.
+     *
+     * The page itself will be created
+     * in the next phase.
+     */
+
+    article.addEventListener(
+        "click",
+        () => {
+
+            window.location.href =
+                `game.html?id=${encodeURIComponent(
+                    game.id
+                )}`;
+
+        }
+    );
+
 
     return article;
 }

@@ -2,8 +2,10 @@ const VitaHubData = {
     catalog: [],
     authors: [],
     categories: [],
+    officialGames: [],
 
-    loaded: false
+    loaded: false,
+    officialGamesLoaded: false
 };
 
 
@@ -48,6 +50,35 @@ async function loadVitaHubData() {
     VitaHubData.loaded = true;
 
     return VitaHubData;
+}
+
+/**
+ * Carga el catálogo de juegos oficiales de PS Vita.
+ */
+async function loadOfficialGames() {
+
+    if (VitaHubData.officialGamesLoaded) {
+        return VitaHubData.officialGames;
+    }
+
+    VitaHubData.officialGames = await loadJSON(
+        "../catalog_psvita_games.json"
+    );
+
+    VitaHubData.officialGamesLoaded = true;
+
+    return VitaHubData.officialGames;
+}
+
+
+/**
+ * Busca un juego oficial utilizando su ID.
+ */
+function getOfficialGameById(id) {
+
+    return VitaHubData.officialGames.find(
+        game => game.id === id
+    ) || null;
 }
 
 
