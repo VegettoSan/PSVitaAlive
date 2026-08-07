@@ -1,3 +1,5 @@
+const VITAHUB_RAW_BASE = "https://raw.githubusercontent.com/VegettoSan/VitaHub/main";
+
 const VitaHubData = {
     catalog: [],
     authors: [],
@@ -38,9 +40,9 @@ async function loadVitaHubData() {
         authors,
         categories
     ] = await Promise.all([
-        loadJSON("../catalog.json"),
-        loadJSON("../authors.json"),
-        loadJSON("../categories.json")
+        loadJSON(`${VITAHUB_RAW_BASE}/catalog.json`),
+        loadJSON(`${VITAHUB_RAW_BASE}/authors.json`),
+        loadJSON(`${VITAHUB_RAW_BASE}/categories.json`)
     ]);
 
     VitaHubData.catalog = catalog;
@@ -62,7 +64,7 @@ async function loadOfficialGames() {
     }
 
     VitaHubData.officialGames = await loadJSON(
-        "../catalog_psvita_games.json"
+        `${VITAHUB_RAW_BASE}/catalog_psvita_games.json`
     );
 
     VitaHubData.officialGamesLoaded = true;

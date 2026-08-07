@@ -83,7 +83,7 @@ function gameReleaseDate(date) {
 async function loadOfficialGamesCatalog() {
 
     return loadJSON(
-        "../catalog_psvita_games.json"
+        `${VITAHUB_RAW_BASE}/catalog_psvita_games.json`
     );
 
 }

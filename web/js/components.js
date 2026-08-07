@@ -62,10 +62,10 @@ function resolveAssetPath(path) {
 
     // Evitar añadir ../ dos veces
     if (path.startsWith("../")) {
-        return path;
+        return `${VITAHUB_RAW_BASE}/${path.substring(3)}`;
     }
 
-    return `../${path}`;
+    return `${VITAHUB_RAW_BASE}/${path}`;
 }
 
 /**
@@ -231,7 +231,7 @@ if (authors.length > 0) {
             )}`;
     });
 
-    
+
 
 
     return article;
