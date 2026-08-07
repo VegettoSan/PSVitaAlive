@@ -9,7 +9,65 @@
 ======================================== */
 
 .app-page {
-    padding: 48px 0 80px;
+    padding: 28px 0 90px;
+}
+
+
+.app-detail {
+    max-width: var(--container-width);
+
+    margin: 0 auto;
+}
+
+
+/* ========================================
+   Back
+======================================== */
+
+.app-back {
+    margin-bottom: 18px;
+}
+
+
+.app-back a {
+    display: inline-flex;
+
+    align-items: center;
+
+    min-height: 38px;
+
+    padding: 8px 13px;
+
+    background: var(--surface);
+
+    border: 1px solid var(--border);
+
+    border-radius: 7px;
+
+    color: #a0a0a0;
+
+    font-size: 0.8rem;
+
+    font-weight: 800;
+
+    text-decoration: none;
+
+    transition:
+        color 0.2s ease,
+        border-color 0.2s ease,
+        background 0.2s ease,
+        transform 0.2s ease;
+}
+
+
+.app-back a:hover {
+    color: var(--accent);
+
+    border-color: var(--accent);
+
+    background: var(--surface-hover);
+
+    transform: translateX(2px);
 }
 
 
@@ -22,7 +80,7 @@
 
     margin: 0 auto;
 
-    padding: 80px 20px;
+    padding: 90px 20px;
 
     text-align: center;
 }
@@ -30,6 +88,13 @@
 
 .app-state-error h1 {
     margin-bottom: 12px;
+
+    color: #ffffff;
+}
+
+
+.app-state-error p {
+    color: #a0a0a0;
 }
 
 
@@ -40,7 +105,7 @@
 
     color: var(--accent);
 
-    font-weight: 700;
+    font-weight: 800;
 
     text-decoration: none;
 }
@@ -52,45 +117,82 @@
 
 
 /* ========================================
-   Application Hero
+   Hero
 ======================================== */
 
-.app-detail {
-    max-width: var(--container-width);
-
-    margin: 0 auto;
-}
-
-
 .app-hero {
+    position: relative;
+
     display: grid;
 
-    grid-template-columns: 220px minmax(0, 1fr);
+    grid-template-columns:
+        230px minmax(0, 1fr);
 
-    gap: 32px;
+    gap: 34px;
 
-    padding: 32px;
+    padding: 34px;
 
-    background: var(--surface);
+    background:
+        linear-gradient(
+            135deg,
+            rgba(55, 55, 55, 0.96),
+            rgba(38, 38, 38, 0.96)
+        );
 
     border: 1px solid var(--border);
 
     border-radius: var(--radius);
+
+    overflow: hidden;
 }
 
 
-.app-hero-icon {
-    width: 220px;
+.app-hero::before {
+    content: "";
 
-    aspect-ratio: 1;
+    position: absolute;
+
+    top: 0;
+    left: 0;
+    right: 0;
+
+    height: 3px;
+
+    background: var(--accent);
+
+    box-shadow:
+        0 0 18px rgba(
+            59,
+            255,
+            0,
+            0.25
+        );
+}
+
+
+/* ========================================
+   Icon
+======================================== */
+
+.app-hero-icon {
+    width: 230px;
+    height: 230px;
 
     overflow: hidden;
 
-    background: var(--surface-hover);
+    background: #000000;
 
-    border: 1px solid var(--border);
+    border: 1px solid #6e6e6e;
 
-    border-radius: 16px;
+    border-radius: 18px;
+
+    box-shadow:
+        0 12px 35px rgba(
+            0,
+            0,
+            0,
+            0.35
+        );
 }
 
 
@@ -103,6 +205,10 @@
     object-fit: contain;
 }
 
+
+/* ========================================
+   Hero information
+======================================== */
 
 .app-hero-info {
     min-width: 0;
@@ -120,22 +226,32 @@
 .app-hero-info h1 {
     margin: 12px 0 8px;
 
+    color: #ffffff;
+
     font-size: clamp(
-        2rem,
+        2.5rem,
         5vw,
-        3rem
+        4.4rem
     );
 
-    line-height: 1.05;
+    font-weight: 900;
+
+    line-height: 0.98;
+
+    letter-spacing: -0.055em;
+
+    overflow-wrap: anywhere;
 }
 
 
 .app-version {
-    margin-bottom: 20px;
+    margin-bottom: 18px;
 
-    color: var(--text);
+    color: #ffffff;
 
-    font-weight: 600;
+    font-size: 0.9rem;
+
+    font-weight: 800;
 }
 
 
@@ -152,17 +268,31 @@
 
     padding: 5px 10px;
 
-    background: var(--surface-hover);
+    background: rgba(
+        59,
+        255,
+        0,
+        0.09
+    );
 
-    border: 1px solid var(--border);
+    border: 1px solid rgba(
+        59,
+        255,
+        0,
+        0.28
+    );
 
     border-radius: 999px;
 
-    color: var(--text);
+    color: var(--accent);
 
-    font-size: 0.8rem;
+    font-size: 0.72rem;
 
-    font-weight: 700;
+    font-weight: 900;
+
+    text-transform: uppercase;
+
+    letter-spacing: 0.06em;
 }
 
 
@@ -172,14 +302,22 @@
 
 .app-authors,
 .app-category {
-    line-height: 1.8;
+    line-height: 1.9;
+
+    color: #ffffff;
+
+    font-size: 0.9rem;
+
+    font-weight: 700;
 }
 
 
 .app-meta-label {
     margin-right: 6px;
 
-    color: var(--text-secondary);
+    color: #a0a0a0;
+
+    font-weight: 800;
 }
 
 
@@ -187,7 +325,7 @@
 .app-category-link {
     color: var(--accent);
 
-    font-weight: 700;
+    font-weight: 900;
 
     text-decoration: none;
 }
@@ -200,9 +338,9 @@
 
 
 .app-subcategories {
-    color: var(--text);
+    color: #ffffff;
 
-    font-weight: 600;
+    font-weight: 700;
 }
 
 
@@ -211,9 +349,9 @@
 ======================================== */
 
 .app-section {
-    margin-top: 28px;
+    margin-top: 24px;
 
-    padding: 28px;
+    padding: 30px;
 
     background: var(--surface);
 
@@ -224,9 +362,34 @@
 
 
 .app-section h2 {
-    margin: 0 0 20px;
+    position: relative;
+
+    margin: 0 0 22px;
+
+    padding-left: 14px;
+
+    color: #ffffff;
 
     font-size: 1.35rem;
+
+    font-weight: 900;
+}
+
+
+.app-section h2::before {
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+    top: 3px;
+    bottom: 3px;
+
+    width: 3px;
+
+    background: var(--accent);
+
+    border-radius: 2px;
 }
 
 
@@ -235,20 +398,22 @@
 ======================================== */
 
 .app-description {
-    margin: 0 0 20px;
+    margin: 0 0 22px;
 
-    color: var(--text);
+    color: #ffffff;
 
     font-size: 1.05rem;
 
-    line-height: 1.7;
+    font-weight: 600;
+
+    line-height: 1.75;
 }
 
 
 .app-long-description {
-    color: var(--text-secondary);
+    color: #d0d0d0;
 
-    line-height: 1.8;
+    line-height: 1.85;
 
     white-space: pre-line;
 }
@@ -264,10 +429,10 @@
     grid-template-columns:
         repeat(
             auto-fit,
-            minmax(220px, 1fr)
+            minmax(240px, 1fr)
         );
 
-    gap: 16px;
+    gap: 14px;
 }
 
 
@@ -278,7 +443,7 @@
 
     aspect-ratio: 16 / 9;
 
-    background: var(--surface-hover);
+    background: #000000;
 
     border: 1px solid var(--border);
 
@@ -295,12 +460,17 @@
     object-fit: cover;
 
     transition:
-        transform 0.2s ease;
+        transform 0.25s ease;
+}
+
+
+.app-screenshot:hover {
+    border-color: var(--accent);
 }
 
 
 .app-screenshot:hover img {
-    transform: scale(1.03);
+    transform: scale(1.035);
 }
 
 
@@ -317,18 +487,22 @@
             minmax(0, 1fr)
         );
 
-    gap: 16px;
+    gap: 12px;
 
     margin: 0;
 }
 
 
 .app-information div {
-    padding: 16px;
+    min-width: 0;
 
-    background: var(--surface-hover);
+    padding: 17px;
 
-    border-radius: 10px;
+    background: #6e6e6e;
+
+    border: 1px solid #7c7c7c;
+
+    border-radius: 9px;
 }
 
 
@@ -337,13 +511,13 @@
 
     color: var(--accent);
 
-    font-size: 0.85rem;
+    font-size: 0.72rem;
 
-    font-weight: 800;
+    font-weight: 900;
 
     text-transform: uppercase;
 
-    letter-spacing: 0.04em;
+    letter-spacing: 0.07em;
 }
 
 
@@ -352,11 +526,11 @@
 
     color: #ffffff;
 
-    font-size: 1rem;
+    font-size: 0.96rem;
 
-    font-weight: 700;
+    font-weight: 800;
 
-    line-height: 1.5;
+    line-height: 1.55;
 
     overflow-wrap: anywhere;
 }
@@ -371,7 +545,7 @@
 
     flex-wrap: wrap;
 
-    gap: 12px;
+    gap: 10px;
 }
 
 
@@ -384,65 +558,110 @@
 
     min-height: 44px;
 
-    padding: 10px 18px;
+    padding: 10px 17px;
 
-    background: var(--surface-hover);
+    background: #373737;
 
-    border: 1px solid var(--border);
+    border: 1px solid #6e6e6e;
 
     border-radius: 8px;
 
-    color: var(--text);
+    color: #ffffff;
 
-    font-weight: 700;
+    font-size: 0.82rem;
+
+    font-weight: 900;
 
     text-decoration: none;
 
     transition:
+        transform 0.2s ease,
         background 0.2s ease,
         border-color 0.2s ease,
-        color 0.2s ease;
+        color 0.2s ease,
+        box-shadow 0.2s ease;
 }
 
 
 .app-link-button:hover {
+    transform: translateY(-2px);
+
+    background: #6e6e6e;
+
     border-color: var(--accent);
 
     color: var(--accent);
 }
 
 
+/* ========================================
+   Recommended
+======================================== */
+
 .app-link-button.recommended {
+    position: relative;
+
+    min-height: 50px;
+
+    padding: 12px 23px;
+
     background: var(--accent);
 
     border: 2px solid var(--accent);
 
     color: #000000;
 
-    font-weight: 800;
+    font-size: 0.88rem;
 
-    padding: 12px 22px;
+    font-weight: 950;
 
     box-shadow:
-        0 0 0 1px rgba(59, 255, 0, 0.25),
-        0 0 18px rgba(59, 255, 0, 0.25);
+        0 0 0 1px rgba(
+            59,
+            255,
+            0,
+            0.18
+        ),
+        0 0 20px rgba(
+            59,
+            255,
+            0,
+            0.22
+        );
+}
 
-    transform: translateY(-1px);
+
+.app-link-button.recommended::before {
+    content: "★";
+
+    margin-right: 8px;
+
+    font-size: 0.9rem;
 }
 
 
 .app-link-button.recommended:hover {
     background: #ffffff;
 
-    border-color: var(--accent);
+    border-color: #ffffff;
 
     color: #000000;
 
     box-shadow:
-        0 0 0 1px rgba(59, 255, 0, 0.4),
-        0 0 24px rgba(59, 255, 0, 0.4);
+        0 0 0 2px rgba(
+            59,
+            255,
+            0,
+            0.28
+        ),
+        0 0 28px rgba(
+            59,
+            255,
+            0,
+            0.35
+        );
 
-    transform: translateY(-2px);
+    transform: translateY(-3px);
 }
 
 
@@ -450,27 +669,20 @@
    Mobile
 ======================================== */
 
-@media (max-width: 700px) {
-
-    .app-page {
-        padding-top: 24px;
-    }
-
+@media (max-width: 800px) {
 
     .app-hero {
         grid-template-columns: 1fr;
 
-        padding: 20px;
+        padding: 25px;
 
         gap: 24px;
     }
 
 
     .app-hero-icon {
-        width: min(
-            180px,
-            60vw
-        );
+        width: 190px;
+        height: 190px;
 
         margin: 0 auto;
     }
@@ -484,11 +696,25 @@
 
 
     .app-section {
-        padding: 20px;
+        padding: 23px;
+    }
+
+}
+
+
+@media (max-width: 600px) {
+
+    .app-page {
+        padding-top: 20px;
     }
 
 
     .app-information {
+        grid-template-columns: 1fr;
+    }
+
+
+    .app-screenshots {
         grid-template-columns: 1fr;
     }
 
@@ -500,6 +726,11 @@
 
     .app-link-button {
         width: 100%;
+    }
+
+
+    .app-hero-info h1 {
+        font-size: 2.5rem;
     }
 
 }
