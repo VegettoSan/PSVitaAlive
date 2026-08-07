@@ -676,27 +676,40 @@ transition:
 
 .game-back-link {
     display: inline-flex;
-
     align-items: center;
+    gap: 8px;
 
-    margin-bottom: 20px;
+    margin-bottom: 28px;
+    padding: 10px 16px;
+
+    background: var(--surface);
+
+    border: 1px solid var(--border);
+    border-radius: 8px;
 
     color: #ffffff;
 
+    font-size: 0.85rem;
     font-weight: 800;
 
     text-decoration: none;
 
     transition:
+        background 0.2s ease,
+        border-color 0.2s ease,
         color 0.2s ease,
         transform 0.2s ease;
 }
 
 
 .game-back-link:hover {
+    background: var(--surface-hover);
+
+    border-color: var(--accent);
+
     color: var(--accent);
 
-    transform: translateX(-3px);
+    transform: translateX(-3px);;
 }
 
 .game-title-id-label {
