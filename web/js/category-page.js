@@ -2,6 +2,40 @@
    Category Page
 ======================================== */
 
+function resolveCategoryIconPath(
+    path
+) {
+
+    if (!path) {
+        return null;
+    }
+
+
+    /*
+     * External URLs
+     */
+
+    if (
+        path.startsWith("http://") ||
+        path.startsWith("https://") ||
+        path.startsWith("data:") ||
+        path.startsWith("/")
+    ) {
+
+        return path;
+
+    }
+
+
+    /*
+     * Category icons are stored in:
+     *
+     * categories/icons/
+     */
+
+    return `../categories/${path}`;
+
+}
 
 function getCategoryPageParams() {
 
@@ -170,9 +204,9 @@ function renderAllCategories() {
                     );
 
                 icon.src =
-                    resolveAssetPath(
-                        category.icon
-                    );
+    resolveCategoryIconPath(
+        category.icon
+    );
 
                 icon.alt =
                     `${category.name} icon`;
@@ -320,9 +354,9 @@ function renderCategoryHeader(
             );
 
         image.src =
-            resolveAssetPath(
-                category.icon
-            );
+    resolveCategoryIconPath(
+        category.icon
+    );
 
         image.alt =
             `${category.name} icon`;
