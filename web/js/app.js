@@ -24,20 +24,86 @@ function renderHomebrewCatalog() {
     appsGrid.innerHTML = "";
 
 
-    VitaHubData.catalog.forEach(
-        app => {
+    const sortedApps =
+    [...VitaHubData.catalog].sort(
+        (a, b) => {
 
-            const card =
-                renderAppCard(
-                    app
-                );
+            const dateA =
+                new Date(
+                    a.version_date || 0
+                ).getTime();
 
-            appsGrid.appendChild(
-                card
-            );
+            const dateB =
+                new Date(
+                    b.version_date || 0
+                ).getTime();
+
+
+            const validA =
+                Number.isFinite(
+                    dateA
+                ) && dateA > 0;
+
+
+            const validB =
+                Number.isFinite(
+                    dateB
+                ) && dateB > 0;
+
+
+            /*
+             * Applications without a valid
+             * date go to the end.
+             */
+
+            if (
+                !validA &&
+                validB
+            ) {
+                return 1;
+            }
+
+
+            if (
+                validA &&
+                !validB
+            ) {
+                return -1;
+            }
+
+
+            if (
+                !validA &&
+                !validB
+            ) {
+                return 0;
+            }
+
+
+            /*
+             * Newest first.
+             */
+
+            return dateB - dateA;
 
         }
     );
+
+
+sortedApps.forEach(
+    app => {
+
+        const card =
+            renderAppCard(
+                app
+            );
+
+        appsGrid.appendChild(
+            card
+        );
+
+    }
+);
 
 }
 
