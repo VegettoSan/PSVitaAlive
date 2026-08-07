@@ -268,50 +268,53 @@ function renderGameTitleIds(
             regionElement.textContent =
                 region;
 
-                const labelElement =
-                    document.createElement(
-                        "span"
-                    );
+                const regionElement =
+    document.createElement(
+        "span"
+    );
 
-                labelElement.className =
-                    "game-title-id-label";
+regionElement.className =
+    "game-title-id-region";
 
-                labelElement.textContent =
-                    "Title ID";
-                    
-                item.appendChild(
-                    regionElement
-                );
-
-                item.appendChild(
-                    labelElement
-                );
-
-                item.appendChild(
-                    valueElement
-                );
-    
+regionElement.textContent =
+    region;
 
 
-            const valueElement =
-                document.createElement(
-                    "span"
-                );
+const labelElement =
+    document.createElement(
+        "span"
+    );
 
-            valueElement.className =
-                "game-title-id-value";
+labelElement.className =
+    "game-title-id-label";
 
-            valueElement.textContent =
-                titleId;
+labelElement.textContent =
+    "Title ID";
 
 
-            item.appendChild(
-                regionElement
-            );
+const valueElement =
+    document.createElement(
+        "span"
+    );
 
-            item.appendChild(
-                valueElement
-            );
+valueElement.className =
+    "game-title-id-value";
+
+valueElement.textContent =
+    titleId;
+
+
+item.appendChild(
+    regionElement
+);
+
+item.appendChild(
+    labelElement
+);
+
+item.appendChild(
+    valueElement
+);
 
 
             container.appendChild(
