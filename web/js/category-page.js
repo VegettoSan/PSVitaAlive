@@ -10,7 +10,6 @@ function resolveCategoryIconPath(
         return null;
     }
 
-
     /*
      * External URLs
      */
@@ -21,11 +20,8 @@ function resolveCategoryIconPath(
         path.startsWith("data:") ||
         path.startsWith("/")
     ) {
-
         return path;
-
     }
-
 
     /*
      * Category icons are stored in:
@@ -33,7 +29,7 @@ function resolveCategoryIconPath(
      * categories/icons/
      */
 
-    return `../categories/${path}`;
+    return `${VITAHUB_RAW_BASE}/categories/${path}`;
 
 }
 
@@ -44,15 +40,12 @@ function getCategoryPageParams() {
             window.location.search
         );
 
-
     return {
-
         category:
             params.get("id"),
 
         subcategory:
             params.get("subcategory")
-
     };
 
 }
@@ -61,7 +54,6 @@ function getCategoryPageParams() {
 /* ========================================
    Sort Homebrew
 ======================================== */
-
 
 function sortHomebrewByDate(
     apps
@@ -75,54 +67,41 @@ function sortHomebrewByDate(
                     a.version_date || 0
                 ).getTime();
 
-
             const dateB =
                 new Date(
                     b.version_date || 0
                 ).getTime();
-
 
             const validA =
                 Number.isFinite(
                     dateA
                 ) && dateA > 0;
 
-
             const validB =
                 Number.isFinite(
                     dateB
                 ) && dateB > 0;
 
-
             if (
                 !validA &&
                 validB
             ) {
-
                 return 1;
-
             }
-
 
             if (
                 validA &&
                 !validB
             ) {
-
                 return -1;
-
             }
-
 
             if (
                 !validA &&
                 !validB
             ) {
-
                 return 0;
-
             }
-
 
             return dateB - dateA;
 
@@ -136,7 +115,6 @@ function sortHomebrewByDate(
    Render all categories
 ======================================== */
 
-
 function renderAllCategories() {
 
     const section =
@@ -149,9 +127,7 @@ function renderAllCategories() {
             "categories-grid"
         );
 
-
     grid.innerHTML = "";
-
 
     const categories =
         [...VitaHubData.categories]
@@ -161,7 +137,6 @@ function renderAllCategories() {
                     Number(b.order || 999)
             );
 
-
     categories.forEach(
         category => {
 
@@ -170,16 +145,13 @@ function renderAllCategories() {
                     "a"
                 );
 
-
             card.className =
                 "category-browser-card";
-
 
             card.href =
                 `category.html?id=${encodeURIComponent(
                     category.id
                 )}`;
-
 
             /*
              * Icon
@@ -193,7 +165,6 @@ function renderAllCategories() {
             iconContainer.className =
                 "category-browser-icon";
 
-
             if (
                 category.icon
             ) {
@@ -204,9 +175,9 @@ function renderAllCategories() {
                     );
 
                 icon.src =
-    resolveCategoryIconPath(
-        category.icon
-    );
+                    resolveCategoryIconPath(
+                        category.icon
+                    );
 
                 icon.alt =
                     `${category.name} icon`;
@@ -214,23 +185,18 @@ function renderAllCategories() {
                 icon.loading =
                     "lazy";
 
-
                 icon.addEventListener(
                     "error",
                     () => {
-
                         icon.remove();
-
                     }
                 );
-
 
                 iconContainer.appendChild(
                     icon
                 );
 
             }
-
 
             /*
              * Content
@@ -241,7 +207,6 @@ function renderAllCategories() {
                     "div"
                 );
 
-
             const title =
                 document.createElement(
                     "h2"
@@ -249,7 +214,6 @@ function renderAllCategories() {
 
             title.textContent =
                 category.name;
-
 
             const description =
                 document.createElement(
@@ -260,7 +224,6 @@ function renderAllCategories() {
                 category.description ||
                 "No description available.";
 
-
             const count =
                 document.createElement(
                     "span"
@@ -269,7 +232,6 @@ function renderAllCategories() {
             count.className =
                 "category-browser-count";
 
-
             const appCount =
                 VitaHubData.catalog.filter(
                     app =>
@@ -277,10 +239,8 @@ function renderAllCategories() {
                         category.id
                 ).length;
 
-
             count.textContent =
                 `${appCount} Homebrew`;
-
 
             content.appendChild(
                 title
@@ -294,7 +254,6 @@ function renderAllCategories() {
                 count
             );
 
-
             card.appendChild(
                 iconContainer
             );
@@ -303,14 +262,12 @@ function renderAllCategories() {
                 content
             );
 
-
             grid.appendChild(
                 card
             );
 
         }
     );
-
 
     section.hidden = false;
 
@@ -321,7 +278,6 @@ function renderAllCategories() {
    Render category header
 ======================================== */
 
-
 function renderCategoryHeader(
     category
 ) {
@@ -331,9 +287,7 @@ function renderCategoryHeader(
             "category-header"
         );
 
-
     header.innerHTML = "";
-
 
     const icon =
         document.createElement(
@@ -342,7 +296,6 @@ function renderCategoryHeader(
 
     icon.className =
         "category-detail-icon";
-
 
     if (
         category.icon
@@ -354,9 +307,9 @@ function renderCategoryHeader(
             );
 
         image.src =
-    resolveCategoryIconPath(
-        category.icon
-    );
+            resolveCategoryIconPath(
+                category.icon
+            );
 
         image.alt =
             `${category.name} icon`;
@@ -364,19 +317,16 @@ function renderCategoryHeader(
         image.loading =
             "eager";
 
-
         icon.appendChild(
             image
         );
 
     }
 
-
     const content =
         document.createElement(
             "div"
         );
-
 
     const label =
         document.createElement(
@@ -389,7 +339,6 @@ function renderCategoryHeader(
     label.textContent =
         "Category";
 
-
     const title =
         document.createElement(
             "h1"
@@ -397,7 +346,6 @@ function renderCategoryHeader(
 
     title.textContent =
         category.name;
-
 
     const description =
         document.createElement(
@@ -407,7 +355,6 @@ function renderCategoryHeader(
     description.textContent =
         category.description ||
         "No description available.";
-
 
     content.appendChild(
         label
@@ -420,7 +367,6 @@ function renderCategoryHeader(
     content.appendChild(
         description
     );
-
 
     header.appendChild(
         icon
@@ -437,7 +383,6 @@ function renderCategoryHeader(
    Render subcategories
 ======================================== */
 
-
 function renderSubcategories(
     category,
     activeSubcategory
@@ -453,9 +398,7 @@ function renderSubcategories(
             "subcategories"
         );
 
-
     container.innerHTML = "";
-
 
     const subcategories =
         Array.isArray(
@@ -463,7 +406,6 @@ function renderSubcategories(
         )
             ? category.subcategories
             : [];
-
 
     if (
         subcategories.length === 0
@@ -475,9 +417,7 @@ function renderSubcategories(
 
     }
 
-
     section.hidden = false;
-
 
     /*
      * All button
@@ -488,10 +428,8 @@ function renderSubcategories(
             "a"
         );
 
-
     allLink.className =
         "subcategory-button";
-
 
     if (
         !activeSubcategory
@@ -503,21 +441,17 @@ function renderSubcategories(
 
     }
 
-
     allLink.href =
         `category.html?id=${encodeURIComponent(
             category.id
         )}`;
 
-
     allLink.textContent =
         "All";
-
 
     container.appendChild(
         allLink
     );
-
 
     /*
      * Subcategories
@@ -531,10 +465,8 @@ function renderSubcategories(
                     "a"
                 );
 
-
             link.className =
                 "subcategory-button";
-
 
             if (
                 activeSubcategory ===
@@ -547,7 +479,6 @@ function renderSubcategories(
 
             }
 
-
             link.href =
                 `category.html?id=${encodeURIComponent(
                     category.id
@@ -555,10 +486,8 @@ function renderSubcategories(
                     subcategory.id
                 )}`;
 
-
             link.textContent =
                 subcategory.name;
-
 
             container.appendChild(
                 link
@@ -574,7 +503,6 @@ function renderSubcategories(
    Render category applications
 ======================================== */
 
-
 function renderCategoryApps(
     categoryId,
     subcategoryId
@@ -585,18 +513,15 @@ function renderCategoryApps(
             "category-apps-grid"
         );
 
-
     const empty =
         document.getElementById(
             "category-empty"
         );
 
-
     const description =
         document.getElementById(
             "category-apps-description"
         );
-
 
     let apps =
         VitaHubData.catalog.filter(
@@ -604,7 +529,6 @@ function renderCategoryApps(
                 app.category_id ===
                 categoryId
         );
-
 
     if (
         subcategoryId
@@ -623,15 +547,12 @@ function renderCategoryApps(
 
     }
 
-
     apps =
         sortHomebrewByDate(
             apps
         );
 
-
     grid.innerHTML = "";
-
 
     if (
         apps.length === 0
@@ -646,13 +567,10 @@ function renderCategoryApps(
 
     }
 
-
     empty.hidden = true;
-
 
     description.textContent =
         `${apps.length} Homebrew`;
-
 
     apps.forEach(
         app => {
@@ -661,7 +579,6 @@ function renderCategoryApps(
                 renderAppCard(
                     app
                 );
-
 
             grid.appendChild(
                 card
@@ -677,7 +594,6 @@ function renderCategoryApps(
    Render category
 ======================================== */
 
-
 function renderCategoryPage(
     categoryId,
     subcategoryId
@@ -688,7 +604,6 @@ function renderCategoryPage(
             categoryId
         );
 
-
     if (!category) {
 
         throw new Error(
@@ -697,27 +612,22 @@ function renderCategoryPage(
 
     }
 
-
     document.title =
         `${category.name} - PSVitaAlive Store`;
-
 
     renderCategoryHeader(
         category
     );
-
 
     renderSubcategories(
         category,
         subcategoryId
     );
 
-
     renderCategoryApps(
         categoryId,
         subcategoryId
     );
-
 
     document
         .getElementById(
@@ -732,7 +642,6 @@ function renderCategoryPage(
    Initialize
 ======================================== */
 
-
 async function initCategoryPage() {
 
     const loading =
@@ -745,11 +654,9 @@ async function initCategoryPage() {
             "category-error"
         );
 
-
     try {
 
         await loadVitaHubData();
-
 
         const {
             category,
@@ -757,9 +664,7 @@ async function initCategoryPage() {
         } =
             getCategoryPageParams();
 
-
         loading.hidden = true;
-
 
         if (
             category
@@ -784,7 +689,6 @@ async function initCategoryPage() {
             "Failed to initialize category page:",
             errorObject
         );
-
 
         loading.hidden = true;
 
