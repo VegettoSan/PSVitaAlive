@@ -3,5 +3,12 @@
   "name": "GGuihurt",
   "avatar": "",
   "bio": "Desarrollador de homebrew para PS Vita.",
-  "links": []
+  "links": [
+    {
+      "type": "Other",
+      "name": "Buscar autor",
+      "url": "https://github.com/search?q=GGuihurt&type=users",
+      "recommended": true
+    }
+  ]
 }

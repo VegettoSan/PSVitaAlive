@@ -3,5 +3,12 @@
   "name": "5PORT5Y",
   "avatar": "",
   "bio": "Desarrollador de homebrew para PS Vita.",
-  "links": []
+  "links": [
+    {
+      "type": "Other",
+      "name": "Buscar autor",
+      "url": "https://github.com/search?q=5PORT5Y&type=users",
+      "recommended": true
+    }
+  ]
 }

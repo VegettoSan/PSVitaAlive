@@ -3,5 +3,12 @@
   "name": "Gurila Ware Games",
   "avatar": "",
   "bio": "Equipo de desarrollo detras de proyectos open source y homebrew para PS Vita/PSP.",
-  "links": []
+  "links": [
+    {
+      "type": "Other",
+      "name": "Buscar autor",
+      "url": "https://github.com/search?q=Gurila+Ware+Games&type=users",
+      "recommended": true
+    }
+  ]
 }

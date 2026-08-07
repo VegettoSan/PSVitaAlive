@@ -3,5 +3,12 @@
   "name": "Unknown",
   "avatar": "",
   "bio": "Autor no identificado en las fuentes del catalogo.",
-  "links": []
+  "links": [
+    {
+      "type": "Other",
+      "name": "Buscar autor",
+      "url": "https://github.com/search?q=Unknown&type=users",
+      "recommended": true
+    }
+  ]
 }

@@ -3,5 +3,12 @@
   "name": "roc6d",
   "avatar": "",
   "bio": "Desarrollador de homebrew para PS Vita.",
-  "links": []
+  "links": [
+    {
+      "type": "Other",
+      "name": "Buscar autor",
+      "url": "https://github.com/search?q=roc6d&type=users",
+      "recommended": true
+    }
+  ]
 }

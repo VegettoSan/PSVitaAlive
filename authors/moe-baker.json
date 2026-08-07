@@ -3,5 +3,12 @@
   "name": "Moe_Baker",
   "avatar": "",
   "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
-  "links": []
+  "links": [
+    {
+      "type": "Other",
+      "name": "Buscar autor",
+      "url": "https://github.com/search?q=Moe_Baker&type=users",
+      "recommended": true
+    }
+  ]
 }

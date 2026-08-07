@@ -3,5 +3,12 @@
   "name": "gambikules",
   "avatar": "",
   "bio": "Desarrollador de homebrew para PS Vita.",
-  "links": []
+  "links": [
+    {
+      "type": "Other",
+      "name": "Buscar autor",
+      "url": "https://github.com/search?q=gambikules&type=users",
+      "recommended": true
+    }
+  ]
 }

@@ -3,5 +3,12 @@
   "name": "Orion",
   "avatar": "",
   "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
-  "links": []
+  "links": [
+    {
+      "type": "Other",
+      "name": "Buscar autor",
+      "url": "https://github.com/search?q=Orion&type=users",
+      "recommended": true
+    }
+  ]
 }

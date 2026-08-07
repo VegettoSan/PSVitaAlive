@@ -3,5 +3,12 @@
   "name": "SpriteLisen",
   "avatar": "",
   "bio": "Desarrollador de homebrew para PS Vita.",
-  "links": []
+  "links": [
+    {
+      "type": "Other",
+      "name": "Buscar autor",
+      "url": "https://github.com/search?q=SpriteLisen&type=users",
+      "recommended": true
+    }
+  ]
 }

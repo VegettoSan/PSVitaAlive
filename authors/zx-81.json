@@ -3,5 +3,12 @@
   "name": "ZX-81",
   "avatar": "",
   "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
-  "links": []
+  "links": [
+    {
+      "type": "Other",
+      "name": "Buscar autor",
+      "url": "https://github.com/search?q=ZX-81&type=users",
+      "recommended": true
+    }
+  ]
 }

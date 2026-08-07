@@ -3,5 +3,12 @@
   "name": "Dragonixplay",
   "avatar": "",
   "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
-  "links": []
+  "links": [
+    {
+      "type": "Other",
+      "name": "Buscar autor",
+      "url": "https://github.com/search?q=Dragonixplay&type=users",
+      "recommended": true
+    }
+  ]
 }

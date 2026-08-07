@@ -3,5 +3,12 @@
   "name": "10TR!LL!ON Percent%",
   "avatar": "",
   "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
-  "links": []
+  "links": [
+    {
+      "type": "Other",
+      "name": "Buscar autor",
+      "url": "https://github.com/search?q=10TR%21LL%21ON+Percent%25&type=users",
+      "recommended": true
+    }
+  ]
 }

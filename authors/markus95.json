@@ -3,5 +3,12 @@
   "name": "Markus95",
   "avatar": "",
   "bio": "Desarrollador de homebrew y ports para PlayStation Vita, activo en la comunidad de custom firmware.",
-  "links": []
+  "links": [
+    {
+      "type": "Other",
+      "name": "Buscar autor",
+      "url": "https://github.com/search?q=Markus95&type=users",
+      "recommended": true
+    }
+  ]
 }
