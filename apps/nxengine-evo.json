@@ -1,0 +1,39 @@
+{
+  "id": "nxengine-evo",
+  "title_id": "NXEV00001",
+  "name": "NXENGINE-EVO",
+  "description": "Port of Cave Story for PSVITA.",
+  "long_description": "NXEngine-evo, a refactored engine for Cave Story. The original game files are required and are not included.",
+  "author_ids": [
+    "nxengine"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "engine-port"
+  ],
+  "version": "v.2.6.5",
+  "version_date": "2026-08-06",
+  "requirements": "- Game Data Files: Cave Story",
+  "size": 10484800,
+  "status": "Archive",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/4d46f97253653049864fac2ad3a43c9a6a25c4de65bf256fab9d26643793ac38.png",
+  "screenshots": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/nxengine/nxengine-evo/releases/download/v2.6.5/NXEngine-Evo-v2.6.5-Vita.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/nxengine/nxengine-evo"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/nxengine/nxengine-evo/releases"
+    }
+  ]
+}

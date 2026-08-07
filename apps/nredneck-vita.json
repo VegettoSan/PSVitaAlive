@@ -1,0 +1,44 @@
+{
+  "id": "nredneck-vita",
+  "title_id": "NREDNECK1",
+  "name": "NRedneck Vita",
+  "description": "Port of NRedneck for PSVITA.",
+  "long_description": "NRedneck (previously Rednukem) is a fork of EDuke32 that adds support for Redneck Rampage and Rednack Rampage: Rides Again.\nRedneck Rampage is a 1997 first-person shooter game developed by Xatrix Entertainment and published by Interplay. The game is a first person shooter with a variety of weapons and levels, but has a hillbilly theme, primarily taking place in a fictional Arkansas town. Many of the weapons and power-ups border on nonsensical, and in some ways it is a parody of both first shooter games and rural American life.",
+  "author_ids": [
+    "rinnegatamante"
+  ],
+  "category_id": "customization",
+  "subcategory_ids": [
+    "themes"
+  ],
+  "version": "v.1.1",
+  "version_date": "2020-01-23",
+  "requirements": "- Game Data Files: PC",
+  "size": 2163719,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/3b464b83630d3fd1b0933552f7a62711ad559efd999717ac2bbb7d3948bc78e9.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/d8d9026a637a0c380e4bbe7ba8f2f71794ba32fc612c2da23024b047f7e0f8d1.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/7f02eb8b6143cee235cfe900a4e1d97140e586ffff449004b8947cecdab271b3.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/f655995822d7da4e50f32e792b053bb026c765b732844e9dcc1fd855f791c82c.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/4110ca63b1c05e96df3e8cfada85eefd1d54872aebd3a5e8c9a380295886976b.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/436-NRedneck.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/Rinnegatamante/NRedneck-Vita"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "http://wololo.net/talk/viewtopic.php?f=116&t=49710"
+    }
+  ]
+}

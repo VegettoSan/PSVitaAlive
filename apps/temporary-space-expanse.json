@@ -1,0 +1,38 @@
+{
+  "id": "temporary-space-expanse",
+  "title_id": "GMSV00099",
+  "name": "Temporary Space: Expanse",
+  "description": "Asteroids clone for PSVITA.",
+  "long_description": "Temporary Space is at heart a simple shooty game based on Asteroids. Temporay Space: Expanse it's the sequel of the original Temporary Space.",
+  "author_ids": [
+    "xanderten50"
+  ],
+  "category_id": "games",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.0.52",
+  "version_date": "2021-11-10",
+  "requirements": "",
+  "size": 27248386,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/f920ce7f903a325d63fbca7e2ccc8d702bc596bceff7d96f628a460e4dbc3412.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/98c266add02f7fba6f3d664314df12d95e572937b06198bd0e18ccdcae814234.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/015c4e58e478e29d5cb1f4eca3876b75260dee62b8e08ab58415782dcb6ce6a2.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/05285fc563eb0e741ff1c86499c146e77d65c198822537c3e26ffd2ca0337839.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/603-tspace2.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://gamejolt.com/games/temporaryspace2/568103"
+    }
+  ]
+}

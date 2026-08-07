@@ -1,0 +1,39 @@
+{
+  "id": "dolmexica-infinite",
+  "title_id": "DOLM00001",
+  "name": "Dolmexica Infinite",
+  "description": "Multiplatform MUGEN interpreter.",
+  "long_description": "Dolmexica Infinite is an in-development Mugen interpreter for Dreamcast, Web, Vita and Windows.",
+  "author_ids": [
+    "captain-dreamcast"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.1.6",
+  "version_date": "2024-12-27",
+  "requirements": "",
+  "size": 2460647,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/6ee9628c62d279c41e42728d80e630356ec303e26f4d1d4c527b55eff3fde891.png",
+  "screenshots": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1091-dolmexica_infinite.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/CaptainDreamcast/DolmexicaInfinite/"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://captaindreamcast.itch.io/dolmexica-infinite"
+    }
+  ]
+}

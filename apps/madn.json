@@ -1,0 +1,44 @@
+{
+  "id": "madn",
+  "title_id": "MADN00000",
+  "name": "MaDn",
+  "description": "Puzzle game for PSVITA.",
+  "long_description": "Try to get all four pawns as fast as you can in the 'home' position and dont get angry when your pawn is hit just before your victory!",
+  "author_ids": [
+    "dane64"
+  ],
+  "category_id": "games",
+  "subcategory_ids": [
+    "puzzle"
+  ],
+  "version": "v.1.0",
+  "version_date": "2020-06-27",
+  "requirements": "",
+  "size": 49789,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/7bc66ac73572b325e5d604beb5d7bb8410b25779743477e48c38f22ce1fa6c70.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/d655fa214a50d628221a2fcbefc738107300b892bc0a643a926a27543266e4ba.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/3a5e67e26fb1e3edd45c7b0d8fa8881a1f08526b694fe3fd2e5154bfba750dd3.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/ba5c3df02a4711feecac1a31247f8b9fefbb106dcc98ec6ac25ca91afdc27225.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/007430154eaa9defb84771fe1f1481dcfaf94f03e1d2c9fdb4942c7701f4e259.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/Dane64/MaDn/releases/download/1.0/MaDn.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/Dane64/MaDn"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/Dane64/MaDn/releases"
+    }
+  ]
+}

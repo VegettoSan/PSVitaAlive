@@ -1,0 +1,34 @@
+{
+  "id": "vita-fighters",
+  "title_id": "VFRS12346",
+  "name": "Vita Fighters",
+  "description": "A 3D fighting game.",
+  "long_description": "A fighting game with block-like graphics made with Unity.",
+  "author_ids": [
+    "angrydevs"
+  ],
+  "category_id": "games",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.0.94",
+  "version_date": "2020-02-22",
+  "requirements": "",
+  "size": 54291648,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/4c0424bdc4616f4a8421ba8376441af4ea0ee83edc1e32ee99aa1de46d5e2b79.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/bfb0bbc5f09252591ccbb7e136e11afa2ae27b4e4fa3e178e3716ab402b2e7de.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/73d6bf2f21903b1ccbd6c0197fc62aa18fb1ec03e2df92e2ae10da84cba746e7.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/9e1b768474ec804ce381721ea75ca1f159f65200348690cf18312bf1f30fd02a.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/4a6b0b72e528c8568859ce52476dab87363a951d365d264f129479140ed1dd98.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/468-VitaFighters.vpk",
+      "recommended": true
+    }
+  ]
+}

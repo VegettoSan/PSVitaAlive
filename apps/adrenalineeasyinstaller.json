@@ -1,0 +1,44 @@
+{
+  "id": "adrenalineeasyinstaller",
+  "title_id": "ADRINSTAL",
+  "name": "AdrenalineEasyInstaller",
+  "description": "An easy to use installer for the 6.61 Adrenaline eCFW by TheFloW.",
+  "long_description": "An easy to use installer for the 6.61 Adrenaline eCFW by TheFloW.\nSupports Adrenaline from v.1.0 to v.5.1.",
+  "author_ids": [
+    "freakler"
+  ],
+  "category_id": "system",
+  "subcategory_ids": [
+    "compatibility"
+  ],
+  "version": "v1.15",
+  "version_date": "2017-06-22",
+  "requirements": "",
+  "size": 6646381,
+  "status": "Verified",
+  "icon": "https://robin994.github.io/NeoVitaDB-Catalog/icons/0036-adrenalineeasyinstaller.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/f19b8a99b2e208421b35f0b444c37dc3fc3afe5b63cd7760c8ceb066b6dfa8d8.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/b299508fb30cbf13b35fdc1d562d5469c2e814ab1f5a6f6e9f4f126ae9642769.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/968283c6c11e05b5a164904fe7ec917ddead42d79ec14c912c13da5ed6ca681e.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/5cb746dc09db46eb5846de8f2772f23b5f36061f0c53abee8dc63db78c152fd1.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/Freakler/vita-AdrenalineEasyInstaller/releases/download/v1.15/AdrenalineEasyInstaller_v115.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/Freakler/vita-AdrenalineEasyInstaller"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/Freakler/vita-AdrenalineEasyInstaller/releases/tag/v1.15"
+    }
+  ]
+}

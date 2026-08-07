@@ -1,0 +1,39 @@
+{
+  "id": "lua-game-of-life",
+  "title_id": "432100001",
+  "name": "Lua Game Of Life",
+  "description": "Game of Life clone.",
+  "long_description": "Game of Life is a simple implementation of Conwayâ€™s Game of Life for the PS Vita written in Lua using Lua Player Plus.",
+  "author_ids": [
+    "domis4"
+  ],
+  "category_id": "development",
+  "subcategory_ids": [
+    "lua"
+  ],
+  "version": "v.0.2",
+  "version_date": "2017-01-04",
+  "requirements": "",
+  "size": 1799538,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/cf7289e7a9f3a6ae3c94184632ab31dcbf91994ffa76745c8eaac28bdb2de465.png",
+  "screenshots": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/182-lua-gameoflife.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/domis4/lua-gameoflife"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "http://wololo.net/talk/viewtopic.php?p=416012"
+    }
+  ]
+}

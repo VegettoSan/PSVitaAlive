@@ -1,0 +1,31 @@
+{
+  "id": "erre",
+  "title_id": "ABCD13370",
+  "name": "ERRE",
+  "description": "Port of ERRE for PSVITA.",
+  "long_description": "Port of ERRE for PSVITA/PSTV.\nRun, It's for your own good.",
+  "author_ids": [
+    "paulo"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.1.0",
+  "version_date": "2019-03-31",
+  "requirements": "",
+  "size": 38583611,
+  "status": "Legacy",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/3bf5d36c390d7c0f3fb8a6a5a72b4a3b4ea900288d34ba1805a6df3028088a7f.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/2d4119396648544bee1f03215b90b8675d9ddd4bd7cd68928a4af8563448aa37.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/451-ERRE.vpk",
+      "recommended": true
+    }
+  ]
+}

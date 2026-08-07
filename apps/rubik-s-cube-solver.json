@@ -1,0 +1,29 @@
+{
+  "id": "rubik-s-cube-solver",
+  "title_id": "ABYD12945",
+  "name": "Rubik's Cube Solver",
+  "description": "App that solves Rubik's cubes.",
+  "long_description": "An app that automatically solves any Rubik's cube scheme thanks to Friedrich method.",
+  "author_ids": [
+    "anchitpatra"
+  ],
+  "category_id": "utilities",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.1.0",
+  "version_date": "2020-03-12",
+  "requirements": "",
+  "size": 36807482,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/9e5d6015724700337ff7ee5dd99dec915919b8c758a87461f98dced4c30f86c8.png",
+  "screenshots": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/539-Rubiks_20cube_20solver.vpk",
+      "recommended": true
+    }
+  ]
+}

@@ -1,0 +1,42 @@
+{
+  "id": "vitagraphs",
+  "title_id": "AF1A00001",
+  "name": "VitaGraphs",
+  "description": "Simple Graphing Calculator.",
+  "long_description": "Simple Graphing Calculator written on lpp-vita",
+  "author_ids": [
+    "creckeryop"
+  ],
+  "category_id": "utilities",
+  "subcategory_ids": [
+    "calculator"
+  ],
+  "version": "v.0010",
+  "version_date": "2018-02-06",
+  "requirements": "",
+  "size": 2143646,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/580a65c8aea5b23b2f1858ddcf775a7bee0ac7bcccdacd41b2198d68bfda46a2.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/cdcf21a0e4b65725b7be7bc392b2c2ee652c6071bb358822f6d62322b8286054.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/1366e5db83109aaad5e65b49346c4110eae4616c2891b0b6e56aa6882ffd3b6d.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/Creckeryop/VitaGraphs/releases/download/0010/VitaGraphs.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/Creckeryop/VitaGraphs"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "http://gbatemp.net/threads/release-vitagraphs-simple-graphing-calculator-for-ps-vita.496111/"
+    }
+  ]
+}

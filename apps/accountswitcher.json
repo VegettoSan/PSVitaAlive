@@ -1,0 +1,34 @@
+{
+  "id": "accountswitcher",
+  "title_id": "PEND00000",
+  "name": "AccountSwitcher",
+  "description": "Utility to swap PSN accounts on a single SD.",
+  "long_description": "App to swap PSN accounts on a single SD card. It's pretty useful if you have content from multiple accounts on your card, as you can switch seamlessly between those.",
+  "author_ids": [
+    "pendor"
+  ],
+  "category_id": "utilities",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.2.4",
+  "version_date": "2016-09-18",
+  "requirements": "",
+  "size": 441993,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/5a53bbcbd2b49d74a38ced9bfb9f9c60a033982e1cfb7ac64e4b51b17175df11.png",
+  "screenshots": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/28-AccountSwitcher.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "http://wololo.net/talk/viewtopic.php?p=408201"
+    }
+  ]
+}

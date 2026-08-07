@@ -1,0 +1,41 @@
+{
+  "id": "ps4linkcontrols-gui",
+  "title_id": "PS4LNKGUI",
+  "name": "ps4linkcontrols-gui",
+  "description": "GUI for ps4linkcontrols plugin.",
+  "long_description": "Configurator GUI for ps4linkcontrols plugin.",
+  "author_ids": [
+    "keltar"
+  ],
+  "category_id": "plugins",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.0.1",
+  "version_date": "2020-06-12",
+  "requirements": "",
+  "size": 338830,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/ca1547ed559c1d393301cc41a1203fbdfaac76949d7cadf5c4a6655b2d5e0fa4.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/3f02d6b6bb378c513fc37f7b7c7e736f0965e46c2990edf07c1059fd3360efb1.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/keltar/ps4linkcontrols-gui/releases/download/0.1/ps4linkcontrols-gui.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/keltar/ps4linkcontrols-gui"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/keltar/ps4linkcontrols-gui/releases"
+    }
+  ]
+}

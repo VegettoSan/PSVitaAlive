@@ -1,0 +1,43 @@
+{
+  "id": "dr-fink-s-robot-lab-vita",
+  "title_id": "DRFINKLAB",
+  "name": "Dr Fink's Robot Lab Vita",
+  "description": "This is a wrapper/port of Dr Fink's Robot Lab for the PS Vita.",
+  "long_description": "This is a wrapper/port of Dr Fink's Robot Lab for the PS Vita.\nThe port works by loading the official Android ARMv7 executable in memory, resolving its imports with native functions and patching it in order to properly run. By doing so, it's basically as if we emulate a minimalist Android environment in which we run natively the executable as is.",
+  "author_ids": [
+    "rinnegatamante"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.1.0",
+  "version_date": "2024-05-04",
+  "requirements": "- libshacccg.suprx\n- kubridge.skprx\n- Game Data Files: Android",
+  "size": 2309698,
+  "status": "Legacy",
+  "icon": "https://robin994.github.io/NeoVitaDB-Catalog/icons/1211-dr-fink-s-robot-lab-vita.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/b15a0c4fb4d3da6b882bf2da85b44fdc02770d98f2765fc599eb94f1ce401413.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/ef753bc086ae89c7b7b8ff9172c837ec0e3eec178ae4d7805ae179ceae88af7a.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/0a1fa660918b28e0eb623d3b1b3781ba12de5c54f6a7dcd959003d03f449e0cb.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/Rinnegatamante/fink_vita/releases/download/v.1.0/fink.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/Rinnegatamante/fink_vita"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/Rinnegatamante/fink_vita/releases/tag/v.1.0"
+    }
+  ]
+}

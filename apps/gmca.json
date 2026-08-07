@@ -1,0 +1,39 @@
+{
+  "id": "gmca",
+  "title_id": "GMCA00001",
+  "name": "GMCA",
+  "description": "GMCA is one native, controller-first client.",
+  "long_description": "GMCA is one native, controller-first client. Point it at any media center â€” Plex, Jellyfin, Emby or Stremio â€” and run it on any device you left in a drawer: Nintendo Switch, PS Vita or a Raspberry Pi wired to the TV. The interface never changes; only the accent colour and the tabs follow your server.",
+  "author_ids": [
+    "thcolin"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v1.1.0",
+  "version_date": "2026-07-17",
+  "requirements": "",
+  "size": 14558256,
+  "status": "Verified",
+  "icon": "https://robin994.github.io/NeoVitaDB-Catalog/icons/1411-gmca.png",
+  "screenshots": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/thcolin/gamepad-media-center-aggregator/releases/download/v1.1.0/GMCA.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/thcolin/gamepad-media-center-aggregator"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/thcolin/gamepad-media-center-aggregator/releases/tag/v1.1.0"
+    }
+  ]
+}

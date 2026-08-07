@@ -1,0 +1,34 @@
+{
+  "id": "server-room-simulator",
+  "title_id": "SVRS00000",
+  "name": "Server Room Simulator",
+  "description": "A game putting out fires while trying to keep the server online!.",
+  "long_description": "A game putting out fires while trying to keep the server online!\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
+  "author_ids": [
+    "li"
+  ],
+  "category_id": "games",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "latest",
+  "version_date": "2026-08-07",
+  "requirements": "",
+  "size": 39072173,
+  "status": "Archive",
+  "icon": "https://robin994.github.io/NeoVitaDB-Catalog/icons/1460-server-room-simulator.png",
+  "screenshots": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://git.silica.codes/Li/Server_Room_Simulator/releases/download/latest/server_room_simulator.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://git.silica.codes"
+    }
+  ]
+}

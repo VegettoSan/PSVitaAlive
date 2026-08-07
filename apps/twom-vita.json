@@ -1,0 +1,45 @@
+{
+  "id": "twom-vita",
+  "title_id": "TWOM00000",
+  "name": "TWoM Vita",
+  "description": "Port of This War of Mine for PSVITA.",
+  "long_description": "Port of This War of Mine and This War of Mine: Stores - Father's Promise for PSVITA based on the mobile (Android) version of the game.",
+  "author_ids": [
+    "theflow",
+    "rinnegatamante"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.1.0",
+  "version_date": "2022-03-30",
+  "requirements": "- libshacccg.suprx\n- kubridge.skprx\n- fd_fix.skprx OR repatch_ex.skprx\n- Game Data Files: Android",
+  "size": 1110257,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/df3725f0c2db5e2396c74d1c458fcb05d5830e1fdd88960261e825990aee269e.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/2e6210d3370e490e36f6982fb4ed7da4b01582b5609ed41078c56a924f1799a0.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/551d7dee5d5503be49b73840c4c0f30e1fd0e02b686603569ee2149cf9d0885b.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/cc94d60094dc411b521524b01d3b9f9370e69136e3c751bfc0488f1145bb1a9b.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/00bf0536e6a34ef7bf1231dafa103bd6260b96b22c3e606f13f992073112374c.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/TheOfficialFloW/twom_vita/releases/download/v1.0/TWOM.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/TheOfficialFloW/twom_vita"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/TheOfficialFloW/twom_vita/releases"
+    }
+  ]
+}

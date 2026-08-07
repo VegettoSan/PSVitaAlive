@@ -1,0 +1,44 @@
+{
+  "id": "starship-vita",
+  "title_id": "STARSHIP1",
+  "name": "Starship Vita",
+  "description": "Port of Starship for PSVita.",
+  "long_description": "Starship is a sourceport of StarFox 64 based off the decompilation efforts of the game. It features several enhancements and mods support. The Vita port is based on version 1.0.0 (Centauri Alpha) with bugfixes from the in-development branch.",
+  "author_ids": [
+    "rinnegatamante"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "engine-port"
+  ],
+  "version": "v.1.0",
+  "version_date": "2026-04-24",
+  "requirements": "- libshacccg.suprx\n- Game Data Files: N64",
+  "size": 6078362,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/5ad4b018e3faa9bf5281af55b1a37c8f52e9e975c966f012c3655dd61a458d5e.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/dcbb155585061ca722b22e3abd50728662ff0f009b1716e2113484213cb4ba00.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/ebc034d1e5278b68b89dbff6e92930461aefafc101f90259984d5ea2629c629c.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/ad955ab0cc5cbf7bd382a49ec704352ebec42dc28a235a9f8ad14b73d78639bc.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/f8d29c7ec8a864f2e3d8e7480ba2d383c41421a0112cc13c9a777c9a5b0ae71f.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/Rinnegatamante/Starship/releases/download/v.1.0/Starship.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/Rinnegatamante/Starship"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/Rinnegatamante/Starship/releases"
+    }
+  ]
+}

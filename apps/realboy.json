@@ -1,0 +1,39 @@
+{
+  "id": "realboy",
+  "title_id": "XERP00003",
+  "name": "Realboy",
+  "description": "GB/GBC Emulator.",
+  "long_description": "RealBoy is a Free, Fast and Accurate, Game Boy/Game Boy Color/Super Game Boy Emulator.",
+  "author_ids": [
+    "xerpi"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.1.2",
+  "version_date": "2016-08-01",
+  "requirements": "",
+  "size": 140607,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/c2fcf6bdbf17422e2c851334c7274c01e83f6d87bda5eca1e8c5c81c2aa1daae.png",
+  "screenshots": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/xerpi/realboy-vita/releases/download/1.2/realboy.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/xerpi/realboy-vita"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://wololo.net/downloads/index.php/download/8330"
+    }
+  ]
+}

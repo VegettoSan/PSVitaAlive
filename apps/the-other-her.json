@@ -1,0 +1,39 @@
+{
+  "id": "the-other-her",
+  "title_id": "TOTH00001",
+  "name": "The Other Her",
+  "description": "Horror visual novel for PSVita.",
+  "long_description": "The Other Her is a short, story-driven psychological horror visual novel, inspired by microfiction and designed for a single, intense sitting.\nUnravel a mystery where every choice matters and your sanity slowly fades with each breath.",
+  "author_ids": [
+    "soysilver"
+  ],
+  "category_id": "games",
+  "subcategory_ids": [
+    "horror"
+  ],
+  "version": "v.1.0",
+  "version_date": "2025-10-12",
+  "requirements": "",
+  "size": 28327338,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/5ec7a667358e0a7950dc19b6ba10c3aeb07d300d0ad1987bbd6556456028e29a.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/f0f21341cab407a2cc5829982ce0ee3c4ca39a21f2b6925b9abf18d0284d555f.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/9442fb48bb3d3a725350226ef0800e7a6b914d9c516188f226948c0ac250d22f.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/d94e687ac4df9469d94d4ce65525712904c0b95891ea506eb9ae9c63e41bfc41.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/5627d9f2bf1887f7a0f30ed38409a9e9981a32be3912da18a06df5a282d661b3.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1338-TheOtherHer.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://soysilver.itch.io/the-other-her"
+    }
+  ]
+}

@@ -1,0 +1,42 @@
+{
+  "id": "the-blues-brothers",
+  "title_id": "BLUES0001",
+  "name": "The Blues Brothers",
+  "description": "Port of The Blues Brothers for PSVITA.",
+  "long_description": "The Blues Brothers is a 1991 platformer based on the self-titled band. You control either Jake or Elwood to evade police on your way to a blues concert. Throughout the 6 fun levels the game offers, your only weapons are agility and throwable crates.",
+  "author_ids": [
+    "gl33ntwine"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.1.0",
+  "version_date": "2022-01-17",
+  "requirements": "- Game Data Files: Amiga OR DOS",
+  "size": 1205494,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/1801dabbf92e4adfa4b57ef790f41c9c1a08fa63293e8024d0dfdc37ae214a9d.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/6f54b88e1a0ce6f51c29d192e998760ccab78570379786eb2aa6354e0dec230b.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/cb5c61f2dd93014f516fa8e918f3a3d0afc3470748feae39eaafecbde5933119.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/v-atamanenko/blues-vita/releases/download/1.0/blues.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/v-atamanenko/blues-vita"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/v-atamanenko/blues-vita/releases"
+    }
+  ]
+}

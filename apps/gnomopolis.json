@@ -1,0 +1,38 @@
+{
+  "id": "gnomopolis",
+  "title_id": "GNPL00001",
+  "name": "Gnomopolis",
+  "description": "Fantasy-themed modernized Pacman.",
+  "long_description": "This game is intended to be kind of casual. Playing a level should be a challenge if you have 10-15 minutes to waste on your lunch-break. This game is meant to be a modernized version of the arcade classic Pacman with a slight touch of epic fantasy. The game principle is quite simple: collect all the treasures in the labyrinth level and unlock the exit before the time runs out.\nFor the first time you can fight back and hit enemies pressing X.",
+  "author_ids": [
+    "sergorov"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v0.8.203",
+  "version_date": "2024-05-27",
+  "requirements": "",
+  "size": 152381609,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/324067a6a54a44f36ca787c80a88299697d22d3afc17da6860e583d0106551d2.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/6f114ebd131f464dacd81fb29d00a0dbddadff79d5aa5ab4f30faacaefd1b921.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/2e253f07566c0aec04eb0464a22989ff78226ebb5f8e75d549e4b671c7d7a45c.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/bd6e0319a7bcf3df6f46d03b429e1f42899de3de98caf92c717a52caba8bba7c.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1124-gnomopolis.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://fuhen.homebrew-contest.com/submissions/36/"
+    }
+  ]
+}

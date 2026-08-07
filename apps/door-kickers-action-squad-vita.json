@@ -1,0 +1,43 @@
+{
+  "id": "door-kickers-action-squad-vita",
+  "title_id": "DKAS00000",
+  "name": "Door Kickers: Action Squad Vita",
+  "description": "Port of Door Kickers: Action Squad for PSVita.",
+  "long_description": "This is a wrapper/port of Door Kickers: Action Squad for the PS Vita.\nThe port works by loading the official Android ARMv7 executable in memory, resolving its imports with native functions and patching it in order to properly run. By doing so, it's basically as if we emulate a minimalist Android environment in which we run natively the executable as it is.\nThe port features support for physical controls. To have them working, wait for a few seconds in the main menu and press \"Confirm\" in the pop-up offering you to enable controller support.\nNote: The port is largely untested. Please file bug reports to elliencode@proton.me.",
+  "author_ids": [
+    "elliencode"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "action"
+  ],
+  "version": "v.1.01",
+  "version_date": "2026-01-25",
+  "requirements": "- libshacccg.suprx\n- kubridge.skprx\n- Game Data Files: Android",
+  "size": 1956223,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/b65c1973c970a971155280d9d6b27a377ee2107934f27bb7123d3ffb9a7839e5.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/beaae2e1dd2b3a1b7a8fb53df91fd238a374e15202626b14a020d357efa8cee3.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/8ebd7e3ce759df63b030084dc77bf1e8d9fc77b43f00920a6553ec970e467ec9.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/f4e269b23245fad657cf8f9016a3372bb3c5227b97e020acba062453ff7e79ca.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/elliencode/actionsquad-psv/releases/download/v1.01/com.khg.actionsquad-v1.01.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/elliencode/actionsquad-psv-internal/"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/elliencode/actionsquad-psv"
+    }
+  ]
+}

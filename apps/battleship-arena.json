@@ -1,0 +1,34 @@
+{
+  "id": "battleship-arena",
+  "title_id": "BTLSHPARN",
+  "name": "BattleShip Arena",
+  "description": "Battleship game for PSVITA.",
+  "long_description": "Classic battleship clone for PSVITA/PSTV.",
+  "author_ids": [
+    "desired"
+  ],
+  "category_id": "games",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.1.2",
+  "version_date": "2016-08-17",
+  "requirements": "",
+  "size": 365423,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/b1a8fad2f1a133b35759aeb38a0e8db12e9c4064b23c5d436782d63c4abc5a04.png",
+  "screenshots": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/135-BattleShipArena.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://wololo.net/talk/viewtopic.php?f=116&t=46614"
+    }
+  ]
+}

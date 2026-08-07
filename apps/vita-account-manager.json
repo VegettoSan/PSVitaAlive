@@ -1,0 +1,39 @@
+{
+  "id": "vita-account-manager",
+  "title_id": "ACTM00003",
+  "name": "Vita Account Manager",
+  "description": "Account Manager for PSVITA.",
+  "long_description": "Switch between multiple PSN/SEN accounts on a PS Vita or PSTV., handle execution history, dump console IDs, save and restore WLAN settings.",
+  "author_ids": [
+    "windsurfer1122"
+  ],
+  "category_id": "system",
+  "subcategory_ids": [
+    "account"
+  ],
+  "version": "v.0.91",
+  "version_date": "2019-09-01",
+  "requirements": "",
+  "size": 205639,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/a10e06d7f0b09586eba1f62e913acc2e40ee93969a51fa4dd24336111bf0a5b4.png",
+  "screenshots": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/windsurfer1122/Vita-Account-Manager/releases/download/vita-account-manager-0.91/vita-account-manager-0.91.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/windsurfer1122/Vita-Account-Manager"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/windsurfer1122/Vita-Account-Manager/releases"
+    }
+  ]
+}

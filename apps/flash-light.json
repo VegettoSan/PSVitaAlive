@@ -1,0 +1,29 @@
+{
+  "id": "flash-light",
+  "title_id": "ARKSFLASH",
+  "name": "Flash Light",
+  "description": "Flashlight app for PSVITA.",
+  "long_description": "A simple HENkaku flashlght app for Playstation Vita.\nThis application displays a white screen at max brightness. Your brightness settings will be saved and re-applied on application closeup.",
+  "author_ids": [
+    "arkanite"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.1.0",
+  "version_date": "2017-07-10",
+  "requirements": "",
+  "size": 123098,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/214a7b52a624d16bf3747a2bcb1b95c40630283fdd480e6aedfdb0dfd1a3fcb0.png",
+  "screenshots": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/284-flashlight.vpk",
+      "recommended": true
+    }
+  ]
+}

@@ -1,0 +1,44 @@
+{
+  "id": "aerofoil-vita",
+  "title_id": "AEROFOIL1",
+  "name": "Aerofoil Vita",
+  "description": "This is a wrapper/port of Aerofoil, a sourceport of Glider Pro, for PSVITA.",
+  "long_description": "This is a wrapper/port of Aerofoil, a sourceport of Glider Pro, for PSVITA.\nThe port works by loading the official Android ARMv7 executable in memory, resolving its imports with native functions and patching it in order to properly run. By doing so, it's basically as if we emulate a minimalist Android environment in which we run natively the executables as it is.",
+  "author_ids": [
+    "rinnegatamante"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "engine-port"
+  ],
+  "version": "v.1.0",
+  "version_date": "2023-02-21",
+  "requirements": "- libshacccg.suprx\n- kubridge.skprx\n- fd_fix.skprx OR repatch_ex.skprx",
+  "size": 2110560,
+  "status": "Legacy",
+  "icon": "https://robin994.github.io/NeoVitaDB-Catalog/icons/1040-aerofoil-vita.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/0fa8b0a400ec8872abc333f49974b3ced2f1de88e6b5b2921820f8743ab5ce9f.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/f350fef4ec0505b73997fc97aa59aef46ac92ddb076d9a5d4e69893e9b6b6d83.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/72a36e85f05cc00a779e279573000072aa9b2be2b0b93a450255f935228ab8ae.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/d15591d379aad225820d34e08d7176d3d156e3812e8f052e0668422f12ccee3b.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/Rinnegatamante/Aerofoil-Vita/releases/download/v.1.0/Aerofoil.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/Rinnegatamante/Aerofoil-Vita"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/Rinnegatamante/Aerofoil-Vita/releases/tag/v.1.0"
+    }
+  ]
+}

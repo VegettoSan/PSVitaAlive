@@ -1,0 +1,32 @@
+{
+  "id": "the-call",
+  "title_id": "PAUL00001",
+  "name": "The Call",
+  "description": "Port of The Call for PSVITA.",
+  "long_description": "Settled in a distopyan America deeply immersed in a noir atmosphere, The Call, developed for the Global Game Jam 2018, follows the daily routine of a cable operator, a now forgotten job. But what seems to be another ordinary day will eventually turn into something else, as our protagonist unfold something bigger…",
+  "author_ids": [
+    "paulo"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.1.0.1",
+  "version_date": "2019-04-02",
+  "requirements": "",
+  "size": 43013021,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/0e43dc960b20bae6e620f02546bb36927085af98843da77e9cb3a8b83d6ec77f.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/b7d9da6ff290c61993a9384b64c14e66b4f981bc215c19745adf8351fd69538c.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/699fcf7bfe0bc86e05e645f1995bdfef26942317d07f1508280c68556a1649db.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/446-The_20Call.vpk",
+      "recommended": true
+    }
+  ]
+}

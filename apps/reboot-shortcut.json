@@ -1,0 +1,29 @@
+{
+  "id": "reboot-shortcut",
+  "title_id": "RBTR00001",
+  "name": "Reboot Shortcut",
+  "description": "Reboots your PSVITA.",
+  "long_description": "A quick way to reboot your system when Henkaku is running.",
+  "author_ids": [
+    "luck"
+  ],
+  "category_id": "utilities",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.1.1",
+  "version_date": "2016-11-03",
+  "requirements": "",
+  "size": 24338,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/fe063a9f4005b2dd72674fda39e689cf111e52e2ce7821e0754c4830669f5abb.png",
+  "screenshots": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/71-Reboot.vpk",
+      "recommended": true
+    }
+  ]
+}

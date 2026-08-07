@@ -1,0 +1,39 @@
+{
+  "id": "beach-buggy-racing-vita",
+  "title_id": "BBRV00001",
+  "name": "Beach Buggy Racing Vita",
+  "description": "Unofficial wrapper/port of Beach Buggy Racing for PlayStation Vita.",
+  "long_description": "Unofficial wrapper/port of Beach Buggy Racing for PlayStation Vita.\nThe port loads the official Android ARMv7 executable directly into memory, links its dependencies to native Vita functions, and applies the compatibility layer required to run it. In practice, this provides a lightweight Android-like environment in which the original game code can run natively on the PS Vita.",
+  "author_ids": [
+    "chatgpt-ai"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v1.0",
+  "version_date": "2026-07-15",
+  "requirements": "- libshacccg.suprx\n- kubridge.skprx\n- Game Data Files: Android",
+  "size": 2322516,
+  "status": "Legacy",
+  "icon": "https://robin994.github.io/NeoVitaDB-Catalog/icons/1437-beach-buggy-racing-vita.png",
+  "screenshots": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/WolffsRoom/BeachBuggyRacing-Vita/releases/download/v1.0/BeachBuggyRacing.Vita-v1.0.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/WolffsRoom/BeachBuggyRacing-Vita"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/WolffsRoom/BeachBuggyRacing-Vita/releases/tag/v1.0"
+    }
+  ]
+}

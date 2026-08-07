@@ -1,0 +1,44 @@
+{
+  "id": "bopit",
+  "title_id": "BOPIT0001",
+  "name": "BopIt",
+  "description": "A simple game of Bop It!.",
+  "long_description": "This was just a quick project for something to do. It's not great and I wouldn't say it's a finished product but this is all I'm going to do with it so feel free to do what you want with it.",
+  "author_ids": [
+    "anthj"
+  ],
+  "category_id": "games",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.1",
+  "version_date": "2022-05-25",
+  "requirements": "",
+  "size": 5091557,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/a09e526508ecd6a2ded857cb6ec3bcf1fc94ee4d360e964fc5e027f20daa99cc.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/fa43cb0b09e21340c3ced389fbde6be55b21f2df484b4d6b94b71063c9695991.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/778fddc988351194475949da8e0b4e90f4e2df97488c0074da5ab2b852e3810d.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/4a34ab6e61544221095cec57a75c4f310da7e82a54eea445a951a485ee1d8eb5.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/5b2c4aa3e1381f90d24e6e9adb931944754b507dd7f16161a59edd34127bd9f4.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/AntHJ/BopIt-Vita/releases/download/v1/BopIt.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/AntHJ/BopIt-Vita"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/AntHJ/BopIt-Vita/releases"
+    }
+  ]
+}

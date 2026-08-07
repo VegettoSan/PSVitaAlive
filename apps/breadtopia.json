@@ -1,0 +1,39 @@
+{
+  "id": "breadtopia",
+  "title_id": "BTPA11451",
+  "name": "BreadToPIA",
+  "description": "Remake of Japanese viral game \"Suika Game\" for PS Vita.",
+  "long_description": "Remake of Japanese viral game \"Suika Game\" for PS Vita. Merge 2 (or sometimes 3) bread and evolve it to bigger bread. Complete the order and get scores as high as you can. \nOverclocking is need due to unoptimized code. \nThe global score are subject to change without any warning or notification before hand.",
+  "author_ids": [
+    "kaon"
+  ],
+  "category_id": "games",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.1.1.0",
+  "version_date": "2024-09-13",
+  "requirements": "",
+  "size": 13769661,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/fb2270fb42ef89816c4a2ca16e0af249a85432ca567f84eaa51bee08b7aac207.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/0d835910f57cfb2d93cfd6bb6757b09f8f470bad8c86618475c0216fd7d1cfc3.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/27b7780ef7d0e0d99dda81060f3a8c05af9bcfb004f0dc9fe7476739d935be93.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/e48f537a99f0bbc28ec4cdf49a9cb07307ad738b2642ee64b4f312ade504dd94.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/49c7c41b22e6e0bd262a2ecd31c3a68f5dd9d58fe08afad10517b703116082fd.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/kaonkaon/BreadToPIA/releases/download/v1.1.0/BreadToPIA.VPK",
+      "recommended": true
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/kaonkaon/BreadToPIA"
+    }
+  ]
+}

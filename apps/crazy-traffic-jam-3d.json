@@ -1,0 +1,39 @@
+{
+  "id": "crazy-traffic-jam-3d",
+  "title_id": "CTJ300001",
+  "name": "Crazy Traffic Jam 3D",
+  "description": "3D arcade driving game.",
+  "long_description": "Crazy Traffic Jam 3D is an endless arcade driving game with stylized 3D graphics. Drive your car through highway traffic, earn coins, collect lightning boosts to speed up and maximize your score.\nThe game features local hi-score. The faster you drive the more score you get.",
+  "author_ids": [
+    "vitahex-games"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.1.0",
+  "version_date": "2017-08-06",
+  "requirements": "",
+  "size": 1468779,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/7c036a38589673e1439a493a5da5d2162802bb9ad8bcfd5a499fdb9b5824a0b9.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c5b3ed06ea096669daf2fa1c55d39d8dc068a71e7c2ecfcb0d42c41ddb7f7f9d.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/b948d5b4c46b6d215cecfc824395fd859da528ee41da01e7015597105199bbe8.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/d0d3ccecab14138d3f196352022f136ca1503389fd9ff81dea9a3cae26e5c789.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/ff39755e5e8df1ea021ee9978c6ebabea4a689db06707a2111d24778babab226.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/292-CRAZYTAXI.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "http://wololo.net/talk/viewtopic.php?f=116&t=48358"
+    }
+  ]
+}

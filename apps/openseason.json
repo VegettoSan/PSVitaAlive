@@ -1,0 +1,36 @@
+{
+  "id": "openseason",
+  "title_id": "OSDB00001",
+  "name": "OpenSeason",
+  "description": "A deckbuilder game for PSVITA.",
+  "long_description": "OpenSeason(notTM) the deckbuilder, now without shotguns in the starter set.",
+  "author_ids": [
+    "inquisitionimplied"
+  ],
+  "category_id": "games",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.1.0",
+  "version_date": "2019-04-23",
+  "requirements": "",
+  "size": 31490419,
+  "status": "Legacy",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/443b1191b87ed841b28d70020da9a5862d3c5fa1e3bfdf0b326e83e7472bf11e.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/87cbd39aaf821aa54b55fd7b783720f8adb9f39919295abc62e32b23d272bc11.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/466-OpenSeason.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://twitter.com/Yoyogames28/status/1120550464121122816"
+    }
+  ]
+}

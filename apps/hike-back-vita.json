@@ -1,0 +1,34 @@
+{
+  "id": "hike-back-vita",
+  "title_id": "RENPYHIKE",
+  "name": "HIKE BACK Vita",
+  "description": "Port of HIKE BACK for PSVITA.",
+  "long_description": "HIKEBACK is a short visual novel about trust, self-sabotage, and never-ending cycles. You play as a driver passing through a mountain road late at night, when you spot a hitchhiker flagging you down up ahead. How you proceed from there determines not only the fate of you and the wide-eyed stranger you meet, but your combined fates across multiple planes of existence. In a cycle that seems to torment you for INFINITY, how long will it take for you to finally arrive at the THRESHOLD? Will you find the better ending you seek? Or will you succumb to what fate has in store for you?",
+  "author_ids": [
+    "silvercrow"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.1.1",
+  "version_date": "2022-04-07",
+  "requirements": "- Game Data Files: PC",
+  "size": 14441674,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/90f9ffb800946ab2ccb9a2ab3a02f44b609461119a6b34edc1bc23acdcab2bf4.png",
+  "screenshots": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/SilverCrow2323/HIKE-BACK-Vita/releases/download/v.1.1/HIKE.BACK-v1.1.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/SilverCrow2323/HIKE-BACK-Vita"
+    }
+  ]
+}

@@ -1,0 +1,39 @@
+{
+  "id": "eldritch-vita",
+  "title_id": "ELDRITCH1",
+  "name": "Eldritch Vita",
+  "description": "Port of Eldritch for PSVITA.",
+  "long_description": "Port of Eldritch for PSVita based on the Reanimated remaster of the game.\nEldritch is a first-person action game inspired by roguelikes, immersive sims, and H. P. Lovecraft.",
+  "author_ids": [
+    "rinnegatamante"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "action"
+  ],
+  "version": "v.1.2",
+  "version_date": "2025-10-29",
+  "requirements": "- libshacccg.suprx\n- Game Data Files: PC",
+  "size": 4527067,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/7677b89120ebb68d5cbebe66155148c5c5db3cce12fee2295fd4dd64a8702987.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/fa6bc59670df6e66e6fc89cc19b149cec4cb603758ab0c235cddd2a3ef1ab4a8.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/04cc11363ce464c27d228d7778cc1cede4024af013d3eade737e63b576664965.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/e5e7e02513794c0dfb4871b00cd8b4619be772b52e044353a64960943e6390c8.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/8482f1a111cb849b1d5b3da12b3bfd59b641dbe8d9c445d9723cf29cef12a33e.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1100-Eldritch.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/Rinnegatamante/eldritch-vita"
+    }
+  ]
+}

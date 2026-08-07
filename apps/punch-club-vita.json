@@ -1,0 +1,38 @@
+{
+  "id": "punch-club-vita",
+  "title_id": "PNCH11111",
+  "name": "Punch Club Vita",
+  "description": "Port of Punch Club for PSVita.",
+  "long_description": "Punch Club is a sporting management simulation developed by Lazy Bear Games and published by tinyBuild. In the game, the player manages an upcoming boxer in training and preparation for a series of boxing matches at a local club, while searching for clues of who killed their father.",
+  "author_ids": [
+    "patnosd"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "simulation"
+  ],
+  "version": "v.1.0",
+  "version_date": "2025-09-18",
+  "requirements": "- Game Data Files: Steam",
+  "size": 17054914,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/e2a8f91086eb42b61b2b2efc9c945676427bdd710a7a9d18c562c04efbbb1aa1.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/80470d8b98cfc8a516fb963cc687b2e43ac9fb60b2ae67b47617f15482dffe24.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/ab20d67a035a14ea36a47ccbc8a4d62f38048fe2dceb01025851ea5d1b923567.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/d9a94215d09d672af0c33573af14160b737f43b2438e9022959583f698a09259.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/PatnosDD/Punch-Club-Ps-Vita/releases/download/V1.0/PunchClub.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/PatnosDD/Punch-Club-Ps-Vita"
+    }
+  ]
+}

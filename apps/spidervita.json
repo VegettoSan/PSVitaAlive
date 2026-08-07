@@ -1,0 +1,34 @@
+{
+  "id": "spidervita",
+  "title_id": "SPIDERCAR",
+  "name": "SpiderVita",
+  "description": "Spider solitaire clone.",
+  "long_description": "A spider solitaire clone for PSVITA/PSTV.",
+  "author_ids": [
+    "leestorm"
+  ],
+  "category_id": "games",
+  "subcategory_ids": [
+    "card"
+  ],
+  "version": "v.1.2",
+  "version_date": "2016-08-22",
+  "requirements": "",
+  "size": 1706079,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/ec01c60e94aee77816e0df40542ef7e37bfa3022a03cacfc6915a992a40cf89a.png",
+  "screenshots": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/142-SpiderVita.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "http://www.psx-place.com/resources/spidervita.245/"
+    }
+  ]
+}

@@ -1,0 +1,42 @@
+{
+  "id": "wiiero",
+  "title_id": "VITALIERO",
+  "name": "Wiiero",
+  "description": "THIS GAME IS LOCAL MULTIPLAYER ONLY! It requires 2 controllers to play, so it won't work on a regular Vita.",
+  "long_description": "THIS GAME IS LOCAL MULTIPLAYER ONLY! It requires 2 controllers to play, so it won't work on a regular Vita.\nWiiero is a clone of Liero specially originally developed for Wii. Liero is a PvP game between two worms armed with heavy weapons of all kinds battling in underground caves. Wiiero is composed of 3 game modes: Deathmatch, Capture the flag and game of tag. In the wiiero world, players are able to fight with the original Liero weapons ( there are basically thirty of them) or add the twenty more or less harmful new ones.",
+  "author_ids": [
+    "grzybojad"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "1.2",
+  "version_date": "2019-01-12",
+  "requirements": "",
+  "size": 748458,
+  "status": "Legacy",
+  "icon": "https://robin994.github.io/NeoVitaDB-Catalog/icons/0417-wiiero.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/cb94c7eb50b86850838a2a59ae9bf1becd92be2320624f5fa4562709eb29d960.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/f8437665ccc817a96298e54bdc090bba21498942e81a606c315e4f9ed9e984f9.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/Grzybojad/wiiero-vita/releases/download/1.2/wiiero.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/Grzybojad/wiiero-vita"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/Grzybojad/wiiero-vita/releases/tag/1.2"
+    }
+  ]
+}

@@ -1,0 +1,39 @@
+{
+  "id": "happy-land",
+  "title_id": "MYLEGNOOB",
+  "name": "Happy Land",
+  "description": "A game where you must find potatoes.",
+  "long_description": "Happy Land is a game where you go on a big quest to retrieve the potatoes that Big Foot stole from you.",
+  "author_ids": [
+    "mylegguy"
+  ],
+  "category_id": "games",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.1.1",
+  "version_date": "2017-07-10",
+  "requirements": "",
+  "size": 956066,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/95c3c2e40dc3ea2159672dfaf2a95936817069b3543233a68bca53a5039d1ae9.png",
+  "screenshots": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/100-HappyLand.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/goodgamesipromise/HappyLand"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "http://gekihen.customprotocol.com/en/project/Happy-Land"
+    }
+  ]
+}

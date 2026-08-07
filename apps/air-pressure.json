@@ -1,0 +1,41 @@
+{
+  "id": "air-pressure",
+  "title_id": "AIRPRESSR",
+  "name": "Air Pressure",
+  "description": "Port of Air Pressure for PSVITA.",
+  "long_description": "Port of Air Pressure for PSVITA.\nAir Pressure is an unromantic visual novel.",
+  "author_ids": [
+    "majonessyltetoy"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.1.0.0",
+  "version_date": "2022-11-28",
+  "requirements": "",
+  "size": 26852528,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/3feef43e4c8f91e0a52d0b0b0b25e7d22027b747ac07b78198d1589dd7af2e4f.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/956311db4fbb821921a3a0e53cec7950d9df3252d809b7a48c242efe1f28fbae.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/majonessyltetoy/airpressure/releases/download/v1.0.0/airpressure.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/majonessyltetoy/airpressure"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/majonessyltetoy/airpressure/releases"
+    }
+  ]
+}

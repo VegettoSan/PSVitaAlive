@@ -1,0 +1,36 @@
+{
+  "id": "breath-of-thunder",
+  "title_id": "ABCD12345",
+  "name": "Breath of Thunder",
+  "description": "Classics inspired JRPG for PSVITA.",
+  "long_description": "Breath of Thunder is a turn based JRPG created specifically for people who long for a classic RPG experience free of modern complications. There is no obtuse, convoluted storyline, no buttonmashy battle system, and no boring, pointless filler content. Breath of Thunder will remind us all what made us fall in love with this genre in the first place; interesting characters we care about, engaging storylines, vibrant worlds full of fascinating lore, and beautiful music.",
+  "author_ids": [
+    "sungrand-studios"
+  ],
+  "category_id": "games",
+  "subcategory_ids": [
+    "rpg"
+  ],
+  "version": "Playable Teaser",
+  "version_date": "2024-03-15",
+  "requirements": "",
+  "size": 40923007,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/e9d9ee34b32c1c62304037dd38c175289cddcf54248628c4c35aa8c72f6a2828.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/fa05a7d03d42c4be8cd8f1e55b18b955dd7052ce67e99b1f149230da8477bd4b.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1197-BreathOfThunder.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://sungrandstudios.itch.io/breath-of-thunder-teaser-psvita"
+    }
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "id": "vitashell-theme-manager",
+  "title_id": "ARIEL0004",
+  "name": "VitaShell Theme Manager",
+  "description": "Theme manager for VitaShell.",
+  "long_description": "VitaShell Theme Manager is a simple and user-friendly GUI to apply themes for TheFloW's VitaShell (version 0.85 and above).",
+  "author_ids": [
+    "ruben-wolfe"
+  ],
+  "category_id": "utilities",
+  "subcategory_ids": [
+    "file-manager"
+  ],
+  "version": "v.1.0",
+  "version_date": "2016-09-02",
+  "requirements": "",
+  "size": 3097213,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/10def254489e6a8a40147eb59b357b9308adb0ad169a5af9c75b3c4b9f5ad8b4.png",
+  "screenshots": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/173-vitashellthememanager.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://wololo.net/talk/viewtopic.php?f=116&t=46936"
+    }
+  ]
+}

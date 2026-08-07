@@ -1,0 +1,38 @@
+{
+  "id": "gun-godz",
+  "title_id": "GUNGODZ00",
+  "name": "GUN GODZ",
+  "description": "Port of GUN GODZ for PSVITA.",
+  "long_description": "Original game by Vlambeer. GUN GODZ is a first person shooter about gun, gangster rap and the rich culture of Venus. Players try to escape the jail of a hotel, which is the only building on Venus and is owned by a record-label owner who happens to be the God of Guns.\nPatch and install instructions in Release Page (Github).",
+  "author_ids": [
+    "m1s3ry"
+  ],
+  "category_id": "modding",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.1.0",
+  "version_date": "2021-06-07",
+  "requirements": "- Game Data Files: PC Steam",
+  "size": 2937475,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/4a3016aaa8342ae74a4338e37537d1c66e6441fad281dc22f29406b09680bc4f.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/76ac1f35bc0bd40c308f90e8373089e9746bd541967a929cc774c2e67ad47c32.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/76e3aba04f7eb36964a8d5561bbce20c56e17d2c80617e6fa2220b1996180a3b.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/d34c244e112a3ff5933c316028e4a06beb831ae6b8453bf167766e8973540e93.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/m1s3ry/gungodz-vita/releases/download/v1.0/GUN_GODZ_v1.0.VPK",
+      "recommended": true
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/m1s3ry/gungodz-vita"
+    }
+  ]
+}

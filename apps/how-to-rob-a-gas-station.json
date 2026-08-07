@@ -1,0 +1,34 @@
+{
+  "id": "how-to-rob-a-gas-station",
+  "title_id": "POTO00002",
+  "name": "How to Rob A Gas Station",
+  "description": "Short multiplatform FPS game.",
+  "long_description": "In this game you, get this, rob a gas station. In fact, it's a step by step tutorial on robbing a gas station. Since this game is about 5 minutes, there are multiple endings. So if you care, you can do all the endings. There are a total of 22 endings.",
+  "author_ids": [
+    "poto-software"
+  ],
+  "category_id": "games",
+  "subcategory_ids": [
+    "shooter"
+  ],
+  "version": "v.2.3.2",
+  "version_date": "2025-02-06",
+  "requirements": "",
+  "size": 51734795,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/460864aee43d7a613a1bca8235f8f37476175c81f4fe495bb95423b3188df922.png",
+  "screenshots": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/839-gas.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://poto-software.itch.io/how-to-rob-a-gas-station"
+    }
+  ]
+}

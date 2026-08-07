@@ -1,0 +1,41 @@
+{
+  "id": "mkrandom",
+  "title_id": "MKRANDOM0",
+  "name": "Mkrandom",
+  "description": "Mario Kart races generator.",
+  "long_description": "A PSVita app that generates configurations for Mario Kart races randomly.",
+  "author_ids": [
+    "tau5"
+  ],
+  "category_id": "utilities",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.1.00",
+  "version_date": "2021-03-27",
+  "requirements": "",
+  "size": 1284846,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/c657bee4b3f0d3de6fe99e5bbcf6de856abe9292198f49842129d1313dca890c.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/15c51a181385aa39a722fae8ce9ff76832b52c1777823c9b5eb3c01e39ff8dd7.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/Tau5/mkrandom/releases/download/1.00/mkrandom.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/Tau5/mkrandom"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/Tau5/mkrandom/releases"
+    }
+  ]
+}

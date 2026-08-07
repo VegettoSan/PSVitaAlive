@@ -1,0 +1,34 @@
+{
+  "id": "the-curse-of-issyos",
+  "title_id": "ISSY00001",
+  "name": "The Curse of Issyos",
+  "description": "Port of The Curse of Issyos for PSVITA.",
+  "long_description": "The Curse of Issyos is a retro styled action platformer with nothing but the usual in an old 8 bit game: a good bunch of enemies and bosses, linear and open scroll levels, secrets to discover and a background story inspired by Greek mythology. It doesn't try to mimic a retro system in particular, but it's coherent with its own limitations in the use of colors, sprites and chip sounds.",
+  "author_ids": [
+    "ivanproff"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "action"
+  ],
+  "version": "v.1.0",
+  "version_date": "2022-02-14",
+  "requirements": "- Game Data Files: PC",
+  "size": 3811255,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/3d2f9a4a3b74d49afd94a69f14760013a7148284cd1ed6fb5b80d850b8d61197.png",
+  "screenshots": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/784-Issyos.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://www.reddit.com/r/vitahacks/comments/ssftqg/the_curse_of_issyos_port/"
+    }
+  ]
+}

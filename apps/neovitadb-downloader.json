@@ -1,0 +1,40 @@
+{
+  "id": "neovitadb-downloader",
+  "title_id": "NEOVITADB",
+  "name": "NeoVitaDB Downloader",
+  "description": "The store itself. Browse, install and keep PSVita and PSP homebrew up to date.",
+  "long_description": "The store itself. Browse, install and keep PSVita and PSP homebrew up to date.\nThis entry is what lets the app update itself, so its id must never change.",
+  "author_ids": [
+    "robin994",
+    "rinnegatamante"
+  ],
+  "category_id": "utilities",
+  "subcategory_ids": [
+    "installer"
+  ],
+  "version": "v.2.8.1",
+  "version_date": "2026-08-04",
+  "requirements": "",
+  "size": 3936712,
+  "status": "Verified",
+  "icon": "https://robin994.github.io/NeoVitaDB-Catalog/icons/0001-neovitadb-downloader.png",
+  "screenshots": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/robin994/NeoVitaDB-Downloader/releases/download/v.2.8.1/NeoVitaDB.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/robin994/NeoVitaDB-Downloader"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/robin994/NeoVitaDB-Downloader/releases/tag/v.2.8.1"
+    }
+  ]
+}

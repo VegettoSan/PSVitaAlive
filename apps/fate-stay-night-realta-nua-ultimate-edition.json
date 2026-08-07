@@ -1,0 +1,34 @@
+{
+  "id": "fate-stay-night-realta-nua-ultimate-edition",
+  "title_id": "FATE00001",
+  "name": "Fate/Stay Night [Realta Nua] - Ultimate Edition",
+  "description": "Port of Fate: Stay Night [Realta Nua] for PSVITA.",
+  "long_description": "Port of Fate: Stay Night [Realta Nua], a popular japanese visual novel, for PSVITA.",
+  "author_ids": [
+    "alyinghood"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.1.0.1",
+  "version_date": "2022-09-11",
+  "requirements": "- fd_fix.skprx OR repatch_ex.skprx.\n- Game Data Files: PC",
+  "size": 3121871,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/5279cd063307c465732037402a900490c5f784b42b03f06bf3e36d2cc353c2e0.png",
+  "screenshots": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/879-fsnrnue.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://alyinghood.github.io/fsnrnue-multiplatform"
+    }
+  ]
+}

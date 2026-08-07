@@ -1,0 +1,44 @@
+{
+  "id": "not-a-hero-vita",
+  "title_id": "NAHR00001",
+  "name": "Not A Hero Vita",
+  "description": "Port of Not a Hero for PSVITA.",
+  "long_description": "This is a wrapper/port of Not A Hero for the PS Vita.\nThe port works by loading the official Android ARMv7 executables in memory, resolving their imports with native functions and patching them in order to properly run. By doing so, it's basically as if we emulate a minimalist Android environment in which we run natively the executable as they are.",
+  "author_ids": [
+    "rinnegatamante"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.1.0.1",
+  "version_date": "2024-03-27",
+  "requirements": "- libshacccg.suprx\n- kubridge.skprx\n- Game Data Files: Android",
+  "size": 2558138,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/9379dbaa8335ca2f9a12bed667c9067f3ae577af88be012e85f450b0b250d8bf.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/77408e50b12eb7b8122dddfd61ddfe43857e664a830b41b0a5ceb1a0880bcd8d.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/10d43d966914cccfb7eea8972efef5d32fec5c0c86abc9926d0c4f1ebd3de05f.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/7a3aea9971b623fbd154b3bfb2a5d0eb834413471d2d384738717dd62c120ac2.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/babf767858d830b1ec7d8dc904bf7a93fed750776b8c9b17c178690d322282bf.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/Rinnegatamante/not_a_hero-vita/releases/download/v.1.0.1/notahero.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/Rinnegatamante/not_a_hero-vita"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/Rinnegatamante/not_a_hero-vita/releases"
+    }
+  ]
+}

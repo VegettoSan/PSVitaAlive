@@ -1,0 +1,43 @@
+{
+  "id": "postal-vita",
+  "title_id": "POSTAL001",
+  "name": "Postal Vita",
+  "description": "Postal port for PSVITA.",
+  "long_description": "Take control of The Postal Dude in his infamous first outing as he battles to survive in a world gone mad! POSTAL is a classic isometric shooter filled to the brim with fast-paced explosive action. Crazed gunmen out for your blood await you around every corner, and your only choice is to get them before they get you. Fight back with a destructive arsenal as make your way through a violence-stricken town.",
+  "author_ids": [
+    "rinnegatamante"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "fps"
+  ],
+  "version": "v.1.2",
+  "version_date": "2026-02-04",
+  "requirements": "- Game Data Files: PC",
+  "size": 2701813,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/32def508ce807fe21c20a805a447a60ecebfb256b8f6d00e6125acf0d8c4e2c7.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/05fe3d2bf74b98f76e7f559d112008007fdfc1d630d535f5826e0335dd9e12f6.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/42240a913fcf92c6841966d461019892dd6e3dd5761e58fe3d8fe52e216a1e78.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/9c64174d98b9e3ffb064482241b192fdcd297835b36c95253b549cfef74e8d39.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/415-Postal.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/Rinnegatamante/PostalVita"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "http://wololo.net/talk/viewtopic.php?f=116&t=49641"
+    }
+  ]
+}

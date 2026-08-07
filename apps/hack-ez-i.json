@@ -1,0 +1,34 @@
+{
+  "id": "hack-ez-i",
+  "title_id": "VTGS00100",
+  "name": ".hack//ez-i",
+  "description": ".hack//ez-i port for PSVita.",
+  "long_description": "Kite, a beginner in the game The World, is playing with his real-life friend known in-game as Orca when they are attacked by an unidentified monster chasing Aura, a secretive girl. Afterwards, Orca, who died from the monsters attack, enters a coma in the real world. Unable to understand the reason for Orcas coma, Kite joins two new characters to find Aura and bring his friend back.",
+  "author_ids": [
+    "twilight-games-studio"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.1.0.3",
+  "version_date": "2025-10-18",
+  "requirements": "- libshacccg.suprx",
+  "size": 915662,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/9a83c6163d64cda515fba716dd42ce16e4ed20ce02a8bf6e00604533c6f43523.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/38466fed3affa3e0ad8a3c75458b8fb6de990ee6c5e067c36418adbf64224e24.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c6b01c74536c473d65277f4e17e2fde3b44e47a1b87ca059e04449ce69e2ae95.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/a3ebc5d4cd884c6d651051a4663085cfde3532722450e427b1e8ca2fe42247e5.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/ac648fc5aa766bb445495b67086b562047e37b683dfd03de0bcb91ba21ce5c5e.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1339-hack-ez-i.vpk",
+      "recommended": true
+    }
+  ]
+}

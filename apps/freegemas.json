@@ -1,0 +1,42 @@
+{
+  "id": "freegemas",
+  "title_id": "FGEM00001",
+  "name": "Freegemas",
+  "description": "Port of Freegemas for PSVITA.",
+  "long_description": "A port of Freegemas for PSVITA/PSTV. Freegemas is an open source clone of the well known Bejeweled.",
+  "author_ids": [
+    "sharkwouter"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.22.02",
+  "version_date": "2022-02-15",
+  "requirements": "",
+  "size": 5516346,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/84cb4eb71998c3b235483491b3f688746925230c6cb8f68fb13655ea43f9e753.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/934eb37ba2c3cd67ca81477ad9ef6db15b13fe43dc70cabfcb250e75bfd90f82.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/1851400e9504c907600962d8ee9e4818db1840b3eb2fa04a766091b633d6de65.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/609-freegemas.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/JoseTomasTocino/freegemas"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/JoseTomasTocino/freegemas/releases"
+    }
+  ]
+}

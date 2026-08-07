@@ -1,0 +1,32 @@
+{
+  "id": "dome-romantik-vita",
+  "title_id": "DOME00405",
+  "name": "Dome Romantik Vita",
+  "description": "Port of Dome Romantik for PSVITA.",
+  "long_description": "Port of Dome Romantik for PSVITA.\nDig your way through to the core of the planet. Mine minerals, bring them back to your dome and install upgrades just in time to defend from hostile lifeforms.",
+  "author_ids": [
+    "patnosd"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.1.0",
+  "version_date": "2023-04-29",
+  "requirements": "",
+  "size": 39183689,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/f5efaac8993acb7f8fd77d5e1708f349c2471ceb1f3a0345c1175dafcdaeaad6.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/83bd7fd641ed12076cf9ccf1c10f615292bc5b382b999abfd881943f65634f7d.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c82b75483b372e702bf18f56c64c6912fa00b732eae7c81dcd4aedf4551f7dc9.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1076-Dome_Romantik.vpk",
+      "recommended": true
+    }
+  ]
+}

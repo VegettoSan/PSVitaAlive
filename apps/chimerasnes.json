@@ -1,0 +1,39 @@
+{
+  "id": "chimerasnes",
+  "title_id": "CHIMRSNES",
+  "name": "ChimeraSNES",
+  "description": "SNES emulator for PSVITA.",
+  "long_description": "Standalone Super Nintendo emulator using ChimeraSNES as the emulation core and Emu4Vita as the frontend.",
+  "author_ids": [
+    "jamsilva"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.1.01",
+  "version_date": "2023-10-01",
+  "requirements": "",
+  "size": 3464525,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/d5bba3d4c5dc342181cdddcbe8cbdf1e86adb7ff2c608abb288ea3be557945dd.png",
+  "screenshots": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/jamsilva/emu4vita/releases/download/deb8a92_20231001/ChimeraSNES_v1.01.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/jamsilva/emu4vita"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/jamsilva/emu4vita/releases"
+    }
+  ]
+}

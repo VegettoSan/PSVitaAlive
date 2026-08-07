@@ -1,0 +1,38 @@
+{
+  "id": "my-bakku-pakku",
+  "title_id": "BAKU88888",
+  "name": "My Bakku Pakku",
+  "description": "Platform/Puzzle-action game.",
+  "long_description": "My Bakku Pakku is a Platform/Puzzle-action game which has two type of control mechanics.\nOnko is the main character, while his backpack is empty he controls like Super Mario 3D and when its full he rolls like Katamari.",
+  "author_ids": [
+    "lazyox199"
+  ],
+  "category_id": "games",
+  "subcategory_ids": [
+    "platformer"
+  ],
+  "version": "v.2.5",
+  "version_date": "2019-05-10",
+  "requirements": "",
+  "size": 53564747,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/e8d9b5392a1d3850f7f076642a16143074fa841e3daac23321dd13f4d04ed602.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/0263d0833532465dbaccd8d0c61f9c121fa55d100e185cc4c33c296878d73e96.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/3f40616d8e97699d02b35f70139cc21db0279b10069e1ba46f982a7f493b1ed5.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/e57df8fae548860a93e508967c2d0befbd3ba0058e734d7ffe62e4bd0074ddf4.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/463-bakkupakku.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://t.co/ODuyQXjCAs"
+    }
+  ]
+}

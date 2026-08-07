@@ -1,0 +1,43 @@
+{
+  "id": "paper-train-reloaded-vita",
+  "title_id": "PPERTRAIN",
+  "name": "Paper Train Reloaded Vita",
+  "description": "Port of Paper Train Reloaded for PSVita.",
+  "long_description": "This is a wrapper/port of Paper Train Reloaded for the PS Vita.\nThe port works by loading the official Android ARMv7 executables in memory, resolving their imports with native functions and patching it in order to properly run. By doing so, it's basically as if we emulate a minimalist Android environment in which we run natively the executables as they are.",
+  "author_ids": [
+    "rinnegatamante"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.1.0",
+  "version_date": "2025-08-10",
+  "requirements": "- libshacccg.suprx\n- kubridge.skprx\n- Game Data Files: Android",
+  "size": 2874768,
+  "status": "Legacy",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/efbdc52ff8d3ed1e76b6726769f13fbaaab15752817f3e094e35db8c43c173e7.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/107ba1210e6342296a0afd72bb2cc6e61dd765dfb6712279d81e27a7f185ad95.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c822dc226f3bee7976e426a78d72b1bb207329d44c102f1eb9a2241f33629c26.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/ae376998c9e08ab2a01396f2bbc60c5387d6359d0669f6dbc09a9eee5965d55d.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/Rinnegatamante/paper-train-vita/releases/download/v.1.0/papertrain.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/Rinnegatamante/paper-train-vita"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/Rinnegatamante/paper-train-vita/releases"
+    }
+  ]
+}

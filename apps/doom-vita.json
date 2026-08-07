@@ -1,0 +1,34 @@
+{
+  "id": "doom-vita",
+  "title_id": "DOOM12345",
+  "name": "DooM Vita",
+  "description": "FPS game inspired to DooM.",
+  "long_description": "A first person shooter heavily inspired to DooM intellectual property made with Unity.",
+  "author_ids": [
+    "gambikules"
+  ],
+  "category_id": "games",
+  "subcategory_ids": [
+    "shooter"
+  ],
+  "version": "v.1.0.1",
+  "version_date": "2019-10-17",
+  "requirements": "",
+  "size": 127433776,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/784fea9b107c186732a42610dca9c7b0bbbe51e987d337bae782049169ae33b2.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/ae6964287f171305c3dafe1c8a98464a91c313d24cb82868ad0968555ab06834.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/95a2dce0f3303e92d783713862be27d1080ef2c46a61e55dd352bcbc8726a973.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/e227a9c2272930ba7b4d7d99f620962e306fe2788047993217e95b34e550f395.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/54d1593adfcfb951506815328ef36b02a6f4ab7b2a52ec7effa7512f21b9eef2.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/456-DooM_Vita.vpk",
+      "recommended": true
+    }
+  ]
+}

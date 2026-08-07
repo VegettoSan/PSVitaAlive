@@ -1,0 +1,34 @@
+{
+  "id": "battery-indicator",
+  "title_id": "ARIEL0005",
+  "name": "Battery Indicator",
+  "description": "Shows current battery percentage.",
+  "long_description": "This homebrew shows the real percentage of your PSVita's battery and it makes a nice waiting screen when charging.",
+  "author_ids": [
+    "ruben-wolfe"
+  ],
+  "category_id": "system",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.1.0",
+  "version_date": "2016-09-04",
+  "requirements": "",
+  "size": 906275,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/0e4c97c579c1eb64ecb2d439d314ea567ce9e651558d7bfc532840a76407598b.png",
+  "screenshots": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/78-BatteryIndicator.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://wololo.net/talk/viewtopic.php?f=116&t=46986"
+    }
+  ]
+}

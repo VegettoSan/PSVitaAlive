@@ -1,0 +1,39 @@
+{
+  "id": "scecompat-diagnostic",
+  "title_id": "UNK2",
+  "name": "SceCompat Diagnostic",
+  "description": "PspEmu Dolphin Test Program.",
+  "long_description": "PspEmu Dolphin Test Program",
+  "author_ids": [
+    "unknown"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v0.1",
+  "version_date": "2024-11-14",
+  "requirements": "",
+  "size": 483725,
+  "status": "Archive",
+  "icon": "https://robin994.github.io/NeoVitaDB-Catalog/icons/0002-scecompat-diagnostic.png",
+  "screenshots": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/LiEnby/SceCompat-Diagnostic/releases/download/v0.1/SceCompat-Diagnostic.zip",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/LiEnby/SceCompat-Diagnostic"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/LiEnby/SceCompat-Diagnostic/releases/tag/v0.1"
+    }
+  ]
+}

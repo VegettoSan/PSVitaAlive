@@ -1,0 +1,44 @@
+{
+  "id": "vitaquakeii",
+  "title_id": "QUAKE0002",
+  "name": "vitaQuakeII",
+  "description": "Quake II port for PSVITA.",
+  "long_description": "Quake II port for PSVITA with network support (both LAN and multiplayer), savestates, soundtrack, sounds and all standard features of Quake II.\nThe port is fully hardware accelerated and supports high res textures pack and official mission packs.",
+  "author_ids": [
+    "rinnegatamante"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "fps"
+  ],
+  "version": "v.2.4",
+  "version_date": "2020-11-29",
+  "requirements": "",
+  "size": 5706755,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/01cd6fe1d88fb4c9efbbca12b93d7a653804a636341603c90400a941b8fed4c7.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/7c46ff11366c552b29d0b09ca38c5b494b08d2f601d6d16f85a00043cbe6048c.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/3018a80bc02aea070e7bd24dd43dd1b83dd20a41ab806911298cf72e3b703521.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/8b739734c0d65a4e62e61fe6551c2a814bae4f60513222f1487473ea1cc5c2b2.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/694e42bac79496b7ffed14ec0b468bf4896cad58d234ff977427b94e5d9720ab.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/278-vitaQuakeII.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/Rinnegatamante/vitaQuakeII"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://www.psx-place.com/threads/vitaquakeii.31916/"
+    }
+  ]
+}

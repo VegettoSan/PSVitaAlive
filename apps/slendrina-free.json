@@ -1,0 +1,37 @@
+{
+  "id": "slendrina-free",
+  "title_id": "ENDR00000",
+  "name": "Slendrina Free",
+  "description": "Port of Slendrina for PSVITA.",
+  "long_description": "Slendrina is a new horror game. Try to find 6 objects without being caught by Slendrina if you see her turn around as soon possible. There are three maps (1.0): the House, the Yard and the Hotel. Its a bit like Slender Man but Slendrina is more evil. Be careful. Removed the \"Full Version\" flag. I will update the version over time.",
+  "author_ids": [
+    "maloneczsd"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.1.0",
+  "version_date": "2025-04-08",
+  "requirements": "",
+  "size": 35394644,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/0be05b1cd0d2dbd777e794ef476a690cf0aa66591883195daca73ef0e51bb8d1.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/f246c562756bdb43cf242f79865000f71f447b45a0f7c2c6629e175a76411234.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/e96b1b6cea37f3617cc33f6aa289fc6a6a5a0dee71e1fb9884a1451d07a5c7e7.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/MaloneCZSD/SlendrinaFree/releases/download/v1.0/SlendrinaFree.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/malone46/SlendrinaFree"
+    }
+  ]
+}

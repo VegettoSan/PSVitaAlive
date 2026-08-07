@@ -1,0 +1,34 @@
+{
+  "id": "advremap",
+  "title_id": "SHDW00001",
+  "name": "AdvRemap",
+  "description": "Button remapper for PSVITA.",
+  "long_description": "PSVita homebrew for remapping controls/assigning macros.",
+  "author_ids": [
+    "shadowprince"
+  ],
+  "category_id": "utilities",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "Alpha 1",
+  "version_date": "2017-01-28",
+  "requirements": "",
+  "size": 363307,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/18746b487153dc1ca3d728ce57b841b6e8faeca65a0900aa46864f73d07642c8.png",
+  "screenshots": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/117-advremap.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/ShadowPrince/advremap"
+    }
+  ]
+}

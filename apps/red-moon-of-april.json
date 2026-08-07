@@ -1,0 +1,39 @@
+{
+  "id": "red-moon-of-april",
+  "title_id": "RNPY20221",
+  "name": "Red Moon of April",
+  "description": "Sci-Fi visual novel for PSVITA.",
+  "long_description": "Red Moon of April is a Sci-Fi visual novel about Kohime, a Japanese girl who, after losing everything, set off on a one-month journey riding her Metal Knight.",
+  "author_ids": [
+    "sansigolo"
+  ],
+  "category_id": "games",
+  "subcategory_ids": [
+    "visual-novel"
+  ],
+  "version": "v.1.11",
+  "version_date": "2023-03-03",
+  "requirements": "",
+  "size": 43552816,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/dc5ef0601ec3969e4d5e204d2dfad57b73e5f4cb109fb42b02a57019cc75224a.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/9a9ffe1813f8b2d6b091c6dad0dfb14b4c434b115fc927a1ff9faa1438ec9a3c.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/8d4cab66e0510d204199fd593abffe302a76a59a42d3335ad4703283d2245c55.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/81b0e0a1a12e363c26d3cdb23dda7b528c27dc124faf4d6c43afa66868f21e18.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/f7b9018005621bea7a1c51ed04fe0ff47232aa620c5ff173f97ef619a0d4d42e.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/782-RedMoon.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://neuromage.itch.io/red-moon-of-april"
+    }
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "id": "vita-reckoning",
+  "title_id": "RECK69420",
+  "name": "Vita Reckoning",
+  "description": "Vampire Survivors clone for PSVITA.",
+  "long_description": "An amateurish little game, inspired by Vampire Survivors I've been working on for the past few weeks.\nExpect bugs and slowdowns.\nOverclocking is not necessary, but heavily recommended to avoid single digit frames in later waves.",
+  "author_ids": [
+    "edemfancypants"
+  ],
+  "category_id": "games",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.1.0",
+  "version_date": "2023-09-22",
+  "requirements": "",
+  "size": 36021422,
+  "status": "Legacy",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/8735e1d58e9329e3298c5302de11c9f86f5a4902cb07e1048969a7aa1ad4c933.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/7bc209c74ac90c8f0241fc5394a0fdb26cc7798edc1332b2e96743263206976b.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/8ac08ecb3b1b5230c1525297dacb8ede3d35877877f5c69ce1172e4d78535af2.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/1bf64213c3c6004938238520e16fedfebd621c3483b256c9bf7e915c96749378.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1133-VitaReckoning.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://fuhen.homebrew-contest.com/submissions/48/"
+    }
+  ]
+}

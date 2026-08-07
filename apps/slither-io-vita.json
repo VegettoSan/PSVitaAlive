@@ -1,0 +1,38 @@
+{
+  "id": "slither-io-vita",
+  "title_id": "ABCD96285",
+  "name": "Slither.io Vita",
+  "description": "Port of Slither Snake for PSVITA.",
+  "long_description": "Port of Slither Snake for PSVITA.\nSlither Snake is a clone of Slither.io made in Unity.",
+  "author_ids": [
+    "spanishfreddy"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.1.0",
+  "version_date": "2023-03-23",
+  "requirements": "",
+  "size": 40716230,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/5bad3f094fa6bf7114c9037cfd15bc7b8aabc702a626eb4d3bdbd0fb901e0c34.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/5ceb6db0c13cc343f514212f40bc1e78ff5340c967afe028261e954ef81de42f.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/9e634d7752a18c7c8648aff6afdceb3650535c735baf8e39bed70ad159f9986b.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/4e2d9c1c5f0037d9cf1c7af068190d2adacfd59d6cb2d111f8466f964cbd8158.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1063-Slither.io_Vita.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/SpanishFreddy/Slither.io-Vita"
+    }
+  ]
+}

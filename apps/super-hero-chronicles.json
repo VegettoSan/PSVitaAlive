@@ -1,0 +1,34 @@
+{
+  "id": "super-hero-chronicles",
+  "title_id": "SHC100001",
+  "name": "Super Hero Chronicles",
+  "description": "Shoot'em Up game for PSVITA.",
+  "long_description": "Horizontal scrolling shoot'em up game for PSVITA/PSTV.",
+  "author_ids": [
+    "island-games"
+  ],
+  "category_id": "games",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.1.0",
+  "version_date": "2016-08-20",
+  "requirements": "",
+  "size": 6289721,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/621fc0c5a05a96e90fc595a8b0f9f9e39d027690e221b53a2d1c7cb73cf6e313.png",
+  "screenshots": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/32-Super_Hero_Chronicles.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://wololo.net/talk/viewtopic.php?f=116&t=46677"
+    }
+  ]
+}

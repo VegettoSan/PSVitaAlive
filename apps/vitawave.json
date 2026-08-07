@@ -1,0 +1,43 @@
+{
+  "id": "vitawave",
+  "title_id": "VWAV00001",
+  "name": "VitaWave",
+  "description": "A full-featured music player for the PS Vita, built from the ground up as a native homebrew app.",
+  "long_description": "A full-featured music player for the PS Vita, built from the ground up as a native homebrew app. Clean interface, solid format support, and a theme system that lets you make it yours.",
+  "author_ids": [
+    "stalgix"
+  ],
+  "category_id": "media",
+  "subcategory_ids": [
+    "music-player"
+  ],
+  "version": "v1.0.0-stable",
+  "version_date": "2026-03-29",
+  "requirements": "",
+  "size": 45144796,
+  "status": "Legacy",
+  "icon": "https://robin994.github.io/NeoVitaDB-Catalog/icons/1376-vitawave.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/5532ad494f56d6d09a6a066ce45cfab30c24d1eac95e840469dce1d9ba6703d9.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/432e63753a4376d979835bf2d777eacd6541194c922e01a7a6fef46983984e08.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/a41a6930949352d2dfe737286034cc67f7d8c46330e146e340ed63ff5b3f614b.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/Jyotiraditya-Samal/Vitawave/releases/download/v1.0.0-stable/VitaWave.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/Jyotiraditya-Samal/Vitawave"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/Jyotiraditya-Samal/Vitawave/releases/tag/v1.0.0-stable"
+    }
+  ]
+}

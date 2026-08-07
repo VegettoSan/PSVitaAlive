@@ -1,0 +1,29 @@
+{
+  "id": "history-deleter",
+  "title_id": "KANA00001",
+  "name": "History Deleter",
+  "description": "Purge game logs and errors.",
+  "long_description": "Little application that purges game logs and coredumps.",
+  "author_ids": [
+    "kanadeengel"
+  ],
+  "category_id": "games",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.2.0",
+  "version_date": "2016-12-31",
+  "requirements": "",
+  "size": 131633,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/088cc808e555db29c63f47307da0a7d1f5e38cb5eb62d96d64e9b5eec9587982.png",
+  "screenshots": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/162-History_Deleter.vpk",
+      "recommended": true
+    }
+  ]
+}

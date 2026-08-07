@@ -1,0 +1,44 @@
+{
+  "id": "worminator-3",
+  "title_id": "MEIR00004",
+  "name": "Worminator 3",
+  "description": "Worminator 3 is a sidescrolling action platformer game where you play as The Worminator and fight your way through many levels of madness and mayhem.",
+  "long_description": "Worminator 3 is a sidescrolling action platformer game where you play as The Worminator and fight your way through many levels of madness and mayhem. It features huge levels, two episodes, nine unique weapons, Matrix-style \"bullet time',  hidden locations, multiple difficulties, several other optional characters and many cheats that influence gameplay.",
+  "author_ids": [
+    "ammeir"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "action"
+  ],
+  "version": "v1.0",
+  "version_date": "2021-05-08",
+  "requirements": "",
+  "size": 29017876,
+  "status": "Legacy",
+  "icon": "https://robin994.github.io/NeoVitaDB-Catalog/icons/0664-worminator-3.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/8f9072fc01ac948ab3efdc304b53748f6b650d4a2652ff347088251bac8f4149.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/53a786562ae06ecb3ec5cb4a299b80abb3189b681f88c75a3c076197a483a8b7.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/3c0db538ca4e39a56d76b034ca17e9a3727c247fa60fc1b4ea9d3c312cb457fc.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/8438baf6bc062e7f749d01a2176b465ccbba920db1318254a40b31a88c6f2397.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/ammeir/worminator/releases/download/v1.0/worminator_v10.zip",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/ammeir/worminator"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/ammeir/worminator/releases/tag/v1.0"
+    }
+  ]
+}

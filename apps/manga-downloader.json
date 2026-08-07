@@ -1,0 +1,39 @@
+{
+  "id": "manga-downloader",
+  "title_id": "LUAMANGAS",
+  "name": "Manga Downloader",
+  "description": "Manga downloader for PSVITA.",
+  "long_description": "Application that allows you to download your favourite mangas from different websites.",
+  "author_ids": [
+    "mylegguy"
+  ],
+  "category_id": "utilities",
+  "subcategory_ids": [
+    "installer"
+  ],
+  "version": "v.2.5",
+  "version_date": "2019-03-07",
+  "requirements": "",
+  "size": 4249128,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/cc3ce29baf1aa89b4a7afe651c67fb92ba03b7df52e01da9031a9866cf1fd7eb.png",
+  "screenshots": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/348-MangaDownloader.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/MyLegGuy/MangaDownloader-Vita"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/MyLegGuy/MangaDownloader-Vita/releases"
+    }
+  ]
+}

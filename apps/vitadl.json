@@ -1,0 +1,34 @@
+{
+  "id": "vitadl",
+  "title_id": "VITADL999",
+  "name": "VitaDL",
+  "description": "Download files from HTTP links.",
+  "long_description": "VitaDL is a small program which can download any file from a given HTTP link. Useful for if you're wanting to download something straight to your Vita that you can't normally view or download in the regular Web Browser app. (e.g. a VPK or a ZIP).",
+  "author_ids": [
+    "voxel"
+  ],
+  "category_id": "networking",
+  "subcategory_ids": [
+    "web-browser"
+  ],
+  "version": "v.0.1",
+  "version_date": "2016-12-06",
+  "requirements": "",
+  "size": 74437,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/128e2794f7efbd9a9186cd562928c882353469f30b116ae12221e01201171e51.png",
+  "screenshots": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/180-VitaDL.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/Voxel9/VitaDL"
+    }
+  ]
+}

@@ -1,0 +1,39 @@
+{
+  "id": "guess-it",
+  "title_id": "HWCG00002",
+  "name": "Guess It!",
+  "description": "Multiplayer quiz game for PSVITA.",
+  "long_description": "\"Guess it!\" is a multiplayer game designed for 2 - 100 players. The players (or teams) will take turns and each one must guess an image in their corresponding turn. Depending on the category, the image could be related to books, movies, paintings, and more!\nWe also created a customization tool, so anyone can create new categories and make his own personalized \"Guess it!\" version.\nWe have a nice surprise for all of in the game! Take a look at how you can exit the game on the main menu!",
+  "author_ids": [
+    "hwnj"
+  ],
+  "category_id": "games",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.1.0",
+  "version_date": "2021-06-06",
+  "requirements": "",
+  "size": 41997742,
+  "status": "Legacy",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/f13b1f9127844b5964cb103aa56191351e4ac9c5b823eb81b512201079b4301d.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/93a4e45aaafa775f39fe32e0d88e81c35c24087c932b599b7bf8ea85568f899b.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/110a5829e13c1fb3b1109245c7698e98c03046c7bc8d07b4c0ac0a2376efa0c4.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/8cd052787a4511008cb4350c7637c6a93234ea4975bdfdd8f842e3724f6d4809.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/60922f81accc75655a7958a35491658f53fbee9cef8efa439286cadacbdca7e5.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/688-GuessIt.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://kyuhen.customprotocol.com/en/submissions/guessit/"
+    }
+  ]
+}

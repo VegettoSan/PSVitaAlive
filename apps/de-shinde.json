@@ -1,0 +1,32 @@
+{
+  "id": "de-shinde",
+  "title_id": "FRBRDESHI",
+  "name": "De, shinde",
+  "description": "Small, linear, slightly creepy horro game.",
+  "long_description": "Port of the desktop version of De, shinde made for Wowie Jam 4.0 in Godot Engine.",
+  "author_ids": [
+    "firstbober"
+  ],
+  "category_id": "games",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.1.00",
+  "version_date": "2024-03-23",
+  "requirements": "",
+  "size": 16634623,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/442c2840f2a5f7fb84f6100c3498974697dc678835f1fa37204ff29f5f26402c.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/8e939a3ffc23dfea43a241bb603213d5034dcfe9c91081c97db093de82e90439.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/ef8c027971c6062247011edfa7f4c5158ecc04f86a4b0148d575aa7d49603004.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1198-deshinde.vpk",
+      "recommended": true
+    }
+  ]
+}

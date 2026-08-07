@@ -1,0 +1,44 @@
+{
+  "id": "smb2se-vita",
+  "title_id": "SMB2SAKED",
+  "name": "SMB2SE Vita",
+  "description": "Port of Super Monkey Ball 2: Sakura Edition for PSVITA.",
+  "long_description": "This is a wrapper/port of Super Monkey Ball 2: Sakura Edition for the PS Vita.\nThe port works by loading the official Android ARMv7 executables in memory, resolving its imports with native functions and patching it in order to properly run. By doing so, it's basically as if we emulate a minimalist Android environment in which we run natively the executable as is.",
+  "author_ids": [
+    "rinnegatamante"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.1.22",
+  "version_date": "2023-09-05",
+  "requirements": "- libshacccg.suprx\n- kubridge.skprx\n- Game Data Files: Android",
+  "size": 1907242,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/bbcd9da9f220d7fc36166c4e7a3663fb84343d32eec0deac7fd29f3b22688cf2.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/2f243fbe97026db802b59a752b7fb6fc600fe94d719be23a451ecbb52e5ab22c.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/0af5bf0ef4564b36b45cd351db7f78343451ad9a4127a21813826848a13ea6b5.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/fe32e1aeacb27e89e7651704682e19db347974d63036596e36d622cd9115f558.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/ef229f4cc084e73e2600eb487b06a512f4067bdfc92cde667ae512e2debfcdfd.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/Rinnegatamante/smb2se-vita/releases/download/v.122/smb2se.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/Rinnegatamante/smb2se-vita"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/Rinnegatamante/smb2se-vita/releases"
+    }
+  ]
+}

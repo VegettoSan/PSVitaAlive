@@ -1,0 +1,34 @@
+{
+  "id": "pkginstaller-launcher",
+  "title_id": "SKGPKG2CH",
+  "name": "PKGInstaller Launcher",
+  "description": "Package Installer partition changer.",
+  "long_description": "PKGInstaller Launcher is an app wich allow you to choose the partition from where Package Installer will install .pkg files.\nIt supports also DEX pkgs installation by pressing L trigger in main menu.",
+  "author_ids": [
+    "skgleba"
+  ],
+  "category_id": "utilities",
+  "subcategory_ids": [
+    "installer"
+  ],
+  "version": "v.1.0",
+  "version_date": "2018-02-21",
+  "requirements": "",
+  "size": 2571959,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/a43862be10556ce7da5ee49e49c55f840dd3d3f0e374a759356a73967dc8be89.png",
+  "screenshots": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/381-PKGInstallerLauncher.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://gbatemp.net/threads/release-pkginstaller-launcher-install-pkgs-from-desired-partition.487118/"
+    }
+  ]
+}

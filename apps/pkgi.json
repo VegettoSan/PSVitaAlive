@@ -1,0 +1,41 @@
+{
+  "id": "pkgi",
+  "title_id": "PKGI00000",
+  "name": "PKGi",
+  "description": "PKGi allows to install original pkg files on your Vita.",
+  "long_description": "PKGi allows to install original pkg files on your Vita.\nThis homebrew allows to download & unpack pkg file directly on Vita together with your NoNpDrm fake license.",
+  "author_ids": [
+    "mmozeiko"
+  ],
+  "category_id": "utilities",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v0.05",
+  "version_date": "2017-10-24",
+  "requirements": "",
+  "size": 159126,
+  "status": "Verified",
+  "icon": "https://robin994.github.io/NeoVitaDB-Catalog/icons/0341-pkgi.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/50b7fb19aff9d881ef507103d90c2a3d4416c3208cf72893a52b19f39b9ca7f4.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/mmozeiko/pkgi/releases/download/v0.05/pkgi-v0.05.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/mmozeiko/pkgi"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/mmozeiko/pkgi/releases/tag/v0.05"
+    }
+  ]
+}

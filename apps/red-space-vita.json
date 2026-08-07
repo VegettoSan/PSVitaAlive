@@ -1,0 +1,34 @@
+{
+  "id": "red-space-vita",
+  "title_id": "REDVITASS",
+  "name": "Red Space Vita",
+  "description": "Port of Red Space Remastered for PSVita.",
+  "long_description": "The first full-length Russian VN, released in September 2007. The game is set in an alternate future where the USSR never collapsed and the Cold War escalated into direct clashes in space. The player takes on the role of a spaceship captain who ends up in a little-studied sector of space and strives to return home.",
+  "author_ids": [
+    "fargusjunja"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.1.0",
+  "version_date": "2026-05-23",
+  "requirements": "",
+  "size": 114083447,
+  "status": "Legacy",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/958c082926913d9e92c7b1b57739024983c755376e3c255b42cd80402b10523b.png",
+  "screenshots": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/rerulon/redvitas/releases/download/%23redvitas/Red.Space-01.00.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/rerulon/redvitas"
+    }
+  ]
+}

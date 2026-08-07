@@ -1,0 +1,34 @@
+{
+  "id": "very-obscure-souls",
+  "title_id": "VOSM02345",
+  "name": "Very Obscure Souls",
+  "description": "Dungeon crawler game for PSVITA.",
+  "long_description": "This is a game where you fight in a dungeon a variety of enemies to survive, also many things that populate this world are deadly for you, so you have to be careful and hone your skills to the most.",
+  "author_ids": [
+    "asdronin"
+  ],
+  "category_id": "games",
+  "subcategory_ids": [
+    "rpg"
+  ],
+  "version": "Demo",
+  "version_date": "2021-11-21",
+  "requirements": "",
+  "size": 53605566,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/cb58da6d75ecc7700728fa6f7ccffba40cb5c7de0cc8312b54d2a030dd656bef.png",
+  "screenshots": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/759-VeryObscureSoulsD.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://www.patreon.com/asdronin"
+    }
+  ]
+}

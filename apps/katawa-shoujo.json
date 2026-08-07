@@ -1,0 +1,34 @@
+{
+  "id": "katawa-shoujo",
+  "title_id": "KSVN00001",
+  "name": "Katawa Shoujo",
+  "description": "Katawa Shoujo port for PSVITA.",
+  "long_description": "Katawa Shoujo port for PSVITA based on March33 engine.",
+  "author_ids": [
+    "sudovim"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "engine-port"
+  ],
+  "version": "v.0.11",
+  "version_date": "2016-10-04",
+  "requirements": "",
+  "size": 227303932,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/aab8cf790b8c07b5be97292681109562b78e46b79f90699fa0096b11e5a0adfb.png",
+  "screenshots": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/79-KatawaShoujo.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://wololo.net/talk/viewtopic.php?f=116&t=47277"
+    }
+  ]
+}

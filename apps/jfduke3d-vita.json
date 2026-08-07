@@ -1,0 +1,44 @@
+{
+  "id": "jfduke3d-vita",
+  "title_id": "JONOFDUKE",
+  "name": "jfduke3d-vita",
+  "description": "Port of JFDuke3D for PSVITA/PSTV.",
+  "long_description": "jfduke3d-vita is a port of JFDuke3D, a popular multi-platform source port of Duke Nukem 3D.\nIt supports both shareware and full game data files as well as full game data files of NAM.\nThis port implements both classic 8 bit renderer and the new 32 bit Polymost renderer with hardware acceleration through vitaGL.",
+  "author_ids": [
+    "rinnegatamante"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "platformer"
+  ],
+  "version": "v.1.0",
+  "version_date": "2021-07-20",
+  "requirements": "",
+  "size": 2790022,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/7e38718a8731d2a8d772a9a892c702b80f1b47b20eb9d6d732f2b475517ea328.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/b7b0f9c8bc16d968b593669b80341408beed0d906e0f53b72d6d00f257c70692.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/2e1b92c43c625aa54526303bbed1689f74e16fd524e67d3366f0565cbdc2b3ef.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/62f2ad9336b896b2c61133fc631b1d4ebe5405cab677de80c4313dfd3f858c02.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/9f2154b533d33bf6e4cc6ab3bcb2328afc484d76048a128c7858379dab0c3d1f.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/711-jfduke3d.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/Rinnegatamante/jfduke3d-vita"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://www.psx-place.com/threads/release-jfduke3d-vita-port-of-duke-nukem-3d-nam-with-hardware-acceleration-support.34643/"
+    }
+  ]
+}

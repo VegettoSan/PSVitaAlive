@@ -1,0 +1,42 @@
+{
+  "id": "crystal-archiver",
+  "title_id": "ELICRY002",
+  "name": "Crystal Archiver",
+  "description": "One click mass archiver for PSM licenses.",
+  "long_description": "CrystalArchiver is a one click mass archiver for PSM licenses that does not require launching each PSM game. This project was created for the PSM Yaroze project which aims to save not only PSM history, but Sony and indie developer history.\nEach license is backed up by calling the original DRM functions used by the original PSM Application and then creating a depersonalized key in FAKE.RIF format used by NoPSMDRM. A depersonalized key allows a backup to be decrypted and to be played without PSM activation, provided you have the original PSM files. Because it is not tied to any one user, it does not contain personalized information. This can allow you play your PSM titles on another Vita you may own, even if you did not activate or download them before PSM closure. You can even play it on a Windows PC. Please note that this tool is used for creating backups and we would like you not to use it for anything that may hurt developers. Many PSM titles were ported to other systems where you can continue to support them.\nAfter running CrystalArchiver, these license backups will be found at ux0:/data/psm.",
+  "author_ids": [
+    "eli-crystal"
+  ],
+  "category_id": "games",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.1.0",
+  "version_date": "2021-10-29",
+  "requirements": "",
+  "size": 804205,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/c4bed43e4d3e828efe41f2e41e435d503fe7c5ff0104604c4982247fa9ecf603.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/3bcc4ddbcd78116a0fb76d775756f16559439542f0b7f9cfdfa3ecee0693ba88.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/30458d34d61d7008e0500c88e4b0d82b25d2080b8527180aff6da63f25e771bb.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/EliCrystal2001/CrystalArchiver/releases/download/v1.0/CrystalArchiver.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/EliCrystal2001/CrystalArchiver"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/EliCrystal2001/CrystalArchiver/releases"
+    }
+  ]
+}

@@ -1,0 +1,44 @@
+{
+  "id": "lswtcs-vita",
+  "title_id": "LSWCS0000",
+  "name": "LSWTCS Vita",
+  "description": "Port of Lego Star Wars: The Complete Saga for PSVITA.",
+  "long_description": "This is a wrapper/port of Lego Star Wars: The Complete Saga Android for the PS Vita.\nThe port works by loading the official Android ARMv7 executable in memory, resolving its imports with native functions and patching it in order to properly run.\nBy doing so, it's basically as if we emulate a minimalist Android environment in which we run natively the executable as is.",
+  "author_ids": [
+    "gm666q"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.0.1",
+  "version_date": "2024-09-18",
+  "requirements": "- libshacccg.suprx\n- kubridge.skprx\n- Game Data Files: Android",
+  "size": 1523489,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/d786c9c92b3d0ca299deb0ec573c1d5cf4e752ade3fddc9385c56d3602e5c93b.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/fc33f2b310c972ccbc844b28591cda70992ff25a89e2459827192d112549d814.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/0aaa8b3c6931610a09bb039d507c066ff6fb01046d2512ac52385538aa1f8ab9.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/155928a3bb2206270de804be43ca861f87cdffdf104e816aa76918c19e6e5878.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/2fd8ab86449fc5b957c5474edc8106bf0b3b7ebc7952f2983e94d6c62feac4f5.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/gm666q/lswtcs-vita/releases/download/v0.1/lswtcs.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/gm666q/lswtcs-vita"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/gm666q/lswtcs-vita/releases"
+    }
+  ]
+}

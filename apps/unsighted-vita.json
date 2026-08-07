@@ -1,0 +1,34 @@
+{
+  "id": "unsighted-vita",
+  "title_id": "UNSI22233",
+  "name": "Unsighted Vita",
+  "description": "Port of Unsighted for PSVITA.",
+  "long_description": "Port of Unsighted for PSVITA.\nThe game is a Metroidvania adventure game in which players assume the role of Alma, an automaton who has amnesia in the aftermath of a war between humans and robots.",
+  "author_ids": [
+    "patnosd"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "adventure"
+  ],
+  "version": "v.0.3",
+  "version_date": "2025-03-09",
+  "requirements": "- Game Data Files: PC",
+  "size": 16124488,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/1ee1ca16096bbb1d85d0ae498a5d54428d8eddacbb4aaacb54cc345673baddc7.png",
+  "screenshots": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/PatnosDD/Unsighted-Ps-Vita/releases/download/V0.3/Unsighted.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/PatnosDD/Unsighted-Ps-Vita"
+    }
+  ]
+}

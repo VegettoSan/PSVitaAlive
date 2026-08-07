@@ -1,0 +1,43 @@
+{
+  "id": "minicraft-vita",
+  "title_id": "CRFT00001",
+  "name": "Minicraft Vita",
+  "description": "Minicraft port for PSVITA.",
+  "long_description": "This is a port of the Ludum Dare #22 entry by Notch called Minicraft.\n\nMinicraft is a 2D top-down sandbox game where your final goal is to \"kill the only other sentient being in the world, making sure youâ€™ll be alone forever\" as stated personally by Notch when he first released this game.",
+  "author_ids": [
+    "rinnegatamante"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.1.0",
+  "version_date": "2016-11-07",
+  "requirements": "",
+  "size": 737346,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/2338df730215a8ed8f4a983e06346bac605a383bb13e8f45f69a9dd7099a9d3d.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/craft1.jpg",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/craft2.jpg",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/craft3.jpg"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/24-Minicraft.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/Rinnegatamante/MinicraftVita"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "http://gekihen.customprotocol.com/en/project/Minicraft"
+    }
+  ]
+}

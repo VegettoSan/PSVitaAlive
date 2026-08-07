@@ -1,0 +1,29 @@
+{
+  "id": "notepad-ve",
+  "title_id": "ARKSNPAD0",
+  "name": "Notepad++ (VE)",
+  "description": "Notepad++ clone for PSVITA.",
+  "long_description": "Notepad++ (VE) is a portable notepad and source code editor for the Playstation Vita.\nThis project initially started as a simple text editor and has grown to support several features making it quite similar to the popular Notepad++ program available for PCs.",
+  "author_ids": [
+    "arkanite"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.0.31",
+  "version_date": "2017-03-21",
+  "requirements": "",
+  "size": 1443790,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/e5b72e1bcdd2bf3f26a963ef06d396d18a4c460ab0c0b25c2116579f932d4903.png",
+  "screenshots": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/210-Notepad.vpk",
+      "recommended": true
+    }
+  ]
+}

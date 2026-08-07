@@ -1,0 +1,45 @@
+{
+  "id": "uae4all",
+  "title_id": "UAE4ALL00",
+  "name": "UAE4ALL",
+  "description": "UAE4ALL is an Amiga 500/1200 emulator for the PSVita.",
+  "long_description": "UAE4ALL is an Amiga 500/1200 emulator for the PSVita. To play, you have to supply your own kickstart bios files, and put them in the \"ux0:/data/uae4all/kickstarts\" directory. Files must be named kick13.rom, kick20.rom, and kick31.rom.",
+  "author_ids": [
+    "rsn8887",
+    "cpasjuste"
+  ],
+  "category_id": "emulators",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "2.12",
+  "version_date": "2024-03-23",
+  "requirements": "",
+  "size": 4264123,
+  "status": "Verified",
+  "icon": "https://robin994.github.io/NeoVitaDB-Catalog/icons/0189-uae4all.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/d28f27fef9024c59631b9d9fefc53dc89eafd78a9a62079882a158834491748b.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/941c6a542452b6ae9510dfa4dd4ddb69be1216c84ac2931c38e9e6ad83e0decb.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/2152139627af174e794b1d5db9a6ee3fede7dd7908821724a0bd0d51c608cc7e.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/09914806f3976ad30b9f081fd7bae4c8dda3486e204c30ea78aed70fb686d70a.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/rsn8887/uae4all2/releases/download/2.12/uae4all_2.10.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/rsn8887/uae4all2"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/rsn8887/uae4all2/releases/tag/2.12"
+    }
+  ]
+}

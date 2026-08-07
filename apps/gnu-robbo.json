@@ -1,0 +1,39 @@
+{
+  "id": "gnu-robbo",
+  "title_id": "ROBB00001",
+  "name": "GNU Robbo",
+  "description": "Atari XL/XE Robbo port.",
+  "long_description": "GNU Robbo is a free open source reimplementation of game designed by Janusz Pelc and published by LK Avalon in 1989 for the Atari XL/XE computers. A success on the Polish domestic market, it was later ported to other computer platforms and also released in the United States as The Adventures of Robbo.",
+  "author_ids": [
+    "bomblik"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.GNU_Robbo_0.68_PSVITA",
+  "version_date": "2017-02-20",
+  "requirements": "",
+  "size": 3840296,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/3c141bbfc70f8d29f2901938aefe7beff5d7f6847920a44e9ad5100ccd2cc0a2.png",
+  "screenshots": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/bomblik/GNU_Robbo_PSVITA_PSP/releases/download/GNU_Robbo_0.68_PSVITA/gnurobbo_0.68.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/bomblik/GNU_Robbo_PSVITA_PSP"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "http://gekihen.customprotocol.com/en/project/GNU-Robbo"
+    }
+  ]
+}

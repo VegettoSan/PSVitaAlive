@@ -1,0 +1,39 @@
+{
+  "id": "vitashell",
+  "title_id": "VITASHELL",
+  "name": "VitaShell",
+  "description": "VitaShell is an alternative replacement of the PS Vita's LiveArea.",
+  "long_description": "VitaShell is an alternative replacement of the PS Vita's LiveArea. It offers you a file manager, package installer, built-in FTP and much more.\nIt also have advanced features like USB hard-drive mounting for PSTV users and standard USB protocool implementation for file transfering with a PC.",
+  "author_ids": [
+    "theflow"
+  ],
+  "category_id": "utilities",
+  "subcategory_ids": [
+    "file-manager"
+  ],
+  "version": "v2.02",
+  "version_date": "2020-01-18",
+  "requirements": "",
+  "size": 1889776,
+  "status": "Verified",
+  "icon": "https://robin994.github.io/NeoVitaDB-Catalog/icons/0021-vitashell.png",
+  "screenshots": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/TheOfficialFloW/VitaShell/releases/download/v2.02/VitaShell.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/TheOfficialFloW/VitaShell"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/TheOfficialFloW/VitaShell/releases/tag/v2.02"
+    }
+  ]
+}

@@ -1,0 +1,39 @@
+{
+  "id": "miniretroxmb",
+  "title_id": "MNRXMB001",
+  "name": "MiniRetroXMB",
+  "description": "MiniRetroXMB lets you pick colors, choose a wallpaper, preview everything, and save it as a theme for RetroArch.",
+  "long_description": "MiniRetroXMB lets you pick colors, choose a wallpaper, preview everything, and save it as a theme for RetroArch.",
+  "author_ids": [
+    "goobercx"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "RELEASE",
+  "version_date": "2026-04-14",
+  "requirements": "",
+  "size": 407701,
+  "status": "Legacy",
+  "icon": "https://robin994.github.io/NeoVitaDB-Catalog/icons/1385-miniretroxmb.png",
+  "screenshots": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/goobercx/MiniRetroXMB-v1.0/releases/download/RELEASE/MiniRetroXMB.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/goobercx/MiniRetroXMB-v1.0"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/goobercx/MiniRetroXMB-v1.0/releases/tag/RELEASE"
+    }
+  ]
+}

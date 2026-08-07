@@ -1,0 +1,41 @@
+{
+  "id": "retroarch",
+  "title_id": "RETROVITA",
+  "name": "RetroArch",
+  "description": "Collection of emulators for various platforms.",
+  "long_description": "RetroArch is the official reference frontend for the libretro API.\nRetroArch is most popularly known for being a program with which you can play many emulators and games, which have all been customized and tailor-ported to the libretro API.\n\nIt is designed to be fast, lightweight, and portable. It tries to be on the cutting edge in terms of technology supported as well as trying to be as backwards compatible as possible.\n\nThis download is updated every night, at midnight, PDT, to the latest nightly release.",
+  "author_ids": [
+    "libretro-team"
+  ],
+  "category_id": "emulators",
+  "subcategory_ids": [
+    "multi-system"
+  ],
+  "version": "Nightly",
+  "version_date": "2021-01-04",
+  "requirements": "",
+  "size": 487257047,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/d2e291dcd6bc6b02a9f808e6d41f84281258967300fee882c6fa6c81c369bd43.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/49ccc14cc63693473619e47d5980d1dd163192ac77003dff34fc21ca15841cb4.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/186-186.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/libretro/retroarch"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://buildbot.libretro.com/nightly/playstation/vita/"
+    }
+  ]
+}

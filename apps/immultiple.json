@@ -1,0 +1,34 @@
+{
+  "id": "immultiple",
+  "title_id": "IMMULT000",
+  "name": "ImMultiple",
+  "description": "A program for tracking front time for DID/Plural Systems\nCreated using the ImGui GUI framework.",
+  "long_description": "A program for tracking front time for DID/Plural Systems\nCreated using the ImGui GUI framework.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
+  "author_ids": [
+    "the-crystal-org"
+  ],
+  "category_id": "utilities",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "latest",
+  "version_date": "2026-08-07",
+  "requirements": "",
+  "size": 8224284,
+  "status": "Archive",
+  "icon": "https://robin994.github.io/NeoVitaDB-Catalog/icons/1458-immultiple.png",
+  "screenshots": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://git.silica.codes/TheCrystalOrg/ImMultiple/releases/download/latest/ImMultiple_VITA.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://git.silica.codes"
+    }
+  ]
+}

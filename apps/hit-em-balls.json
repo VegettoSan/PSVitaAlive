@@ -1,0 +1,39 @@
+{
+  "id": "hit-em-balls",
+  "title_id": "HITM42069",
+  "name": "Hit'em balls",
+  "description": "Minigolf game for PSVITA.",
+  "long_description": "Try to get the balls into the holes with minimum hits. Freeze time on some holes to change trajectory of your ball.",
+  "author_ids": [
+    "cojam"
+  ],
+  "category_id": "games",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.0.92",
+  "version_date": "2023-11-20",
+  "requirements": "",
+  "size": 80783866,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/71c339cb531c22b329cf8930c0b80b5b2b1bb034d3152130c4dcfa914332ee16.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/2587a2101dd3bc52bf25febd186ddb792173c8604cb4885d2256cedc0575f653.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/f3cffb4b3596a420045488197692acac132fdb765605027316d771f7f15ee35d.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/d996cd75058066acc277dd0ec28b5557601caa99de9a80780cd6706756a91b38.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/6bee333142c853cda8d1a634e8f008d2cb9ee1d0ef2634a6d5e2f6f142221eeb.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1163-hitem.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://cojam.itch.io/hitemballs"
+    }
+  ]
+}

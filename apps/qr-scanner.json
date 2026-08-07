@@ -1,0 +1,34 @@
+{
+  "id": "qr-scanner",
+  "title_id": "QRSCANNER",
+  "name": "QR Scanner",
+  "description": "Minimalistic QR scanner/downloader.",
+  "long_description": "A minimalistic QR scanner that allows to either download the targeted file or open it on the PSVita webbrowser.",
+  "author_ids": [
+    "rinnegatamante"
+  ],
+  "category_id": "networking",
+  "subcategory_ids": [
+    "web-browser"
+  ],
+  "version": "v.1.0",
+  "version_date": "2025-04-20",
+  "requirements": "",
+  "size": 1579367,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/01d5a1dc8d06bcf38c21459444e5ed23ed31e27f035184d1bca5467ec20794cd.png",
+  "screenshots": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1267-qr_scanner.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/Rinnegatamante/psv-qr-scanner"
+    }
+  ]
+}

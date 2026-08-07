@@ -1,0 +1,34 @@
+{
+  "id": "adrbubblebooterinstaller",
+  "title_id": "ADRBBLINS",
+  "name": "AdrBubbleBooterInstaller",
+  "description": "Installer for AdrBubbleBooter.",
+  "long_description": "This homebrew will allow you to easily setup AdrBubbleBooter into your Adrenaline installation. Installs the required files for bubbles made with 'Adrenaline Bubble Booter VPK edition' to work but doesn't create the bubbles itself!",
+  "author_ids": [
+    "leecherman"
+  ],
+  "category_id": "utilities",
+  "subcategory_ids": [
+    "installer"
+  ],
+  "version": "v.0.6",
+  "version_date": "2018-07-02",
+  "requirements": "",
+  "size": 441484,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/b09badce39d51de380d52e9106f4a1b2b185a4a0955c6c490827f57acdef9276.png",
+  "screenshots": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/307-AdrBubbleBooterInstaller_v1.3.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://sites.google.com/site/theleecherman/adrbubblebooter/vpkedition"
+    }
+  ]
+}

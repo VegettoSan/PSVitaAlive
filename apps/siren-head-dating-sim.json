@@ -1,0 +1,38 @@
+{
+  "id": "siren-head-dating-sim",
+  "title_id": "SHDS88320",
+  "name": "Siren Head Dating Sim",
+  "description": "Port of Siren Head Dating Sim for PSVITA.",
+  "long_description": "Port of Siren Head Dating Sim for PSVITA.\nHave you ever looked at Siren Head and think \"Man. I sure would love to date him.\"\nWELL NOW YOU CAN!\nCheck out Siren Head Dating Sim to have a magical day with Siren Head!\nJust make sure you don't get killed.",
+  "author_ids": [
+    "rayc"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "simulation"
+  ],
+  "version": "v.1.01",
+  "version_date": "2023-09-22",
+  "requirements": "",
+  "size": 31793401,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/b787a9ffd09c855e37624ed0460303ce5ad9e34d3bf54e0b2e51aac36b54cfda.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/925bf61b0f81562a8a67936e77911c9f99b1dad0daf79ebb2e070c0d7715b687.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/98016e55c33334770c4a9f4a5ed92eee19d3fdfb56277f1cecd966ec88bb34cb.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/94ee9ddbda5226296041d073d6cecdea7926032958a1f4b359cab1b013449c86.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1139-siren_head.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://fuhen.homebrew-contest.com/submissions/53/"
+    }
+  ]
+}

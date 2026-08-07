@@ -1,0 +1,38 @@
+{
+  "id": "protect-the-earth",
+  "title_id": "EART00001",
+  "name": "Protect the Earth",
+  "description": "Space shoot'em up for PSVITA.",
+  "long_description": "The aliens have attacked!! We don't have long, take control of a ship and come defend the planet. Intel suggests there technology allows them to pass right through our ships but it doesn't stop our lasers but be careful not to hit the planet with your lasers. Quickly now defend the planet for as long as you can!!!",
+  "author_ids": [
+    "glitcherog"
+  ],
+  "category_id": "games",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.1.0",
+  "version_date": "2022-02-02",
+  "requirements": "",
+  "size": 26070989,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/9b90cde20c98c502f0bc03e6059cf394ac4189348b7f0d044611fcae6fd59d02.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/e5eb8b6385b874b36a2101e089d1bc0df2418628daf9956c371beb97e92eeacf.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/0fc9567f9bbf4bbdf913f2b5ba72d343398bef9075e27a6ffc4763a1b7b75bd7.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/4bdf4b01f80f19c1b25650adbc318a18d7d36250ba8f536eb1906283a5831128.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/781-EarthProtect.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://glitcherog.itch.io/protect-the-earth"
+    }
+  ]
+}

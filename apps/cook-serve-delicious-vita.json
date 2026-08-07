@@ -1,0 +1,39 @@
+{
+  "id": "cook-serve-delicious-vita",
+  "title_id": "CSDLICIUS",
+  "name": "Cook, Serve, Delicious! Vita",
+  "description": "Port of Cook, Serve, Delicious! for PSVITA.",
+  "long_description": "Cook, Serve, Delicious is a hardcore restaurant sim, one of the few in its genre that gives the players total control over where they want to take their restaurant.\nThe game centers on an old, worn down restaurant in the SherriSoda Tower, which was once the heart of the building but closed down as business (and tenants) dropped to an all time low. But with the local economy rising back up and occupancy reaching its maximum, SherriSoda Tower has decided to bring back the old Cook, Serve, Delicious restaurant, and has given you complete control to bring it back to its old five star status of world class dining.\nInstructions on how to patch and install the game provided in the release page (Github).",
+  "author_ids": [
+    "mdashk"
+  ],
+  "category_id": "modding",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.1.0.0",
+  "version_date": "2021-10-11",
+  "requirements": "- Game Data Files: PC Steam",
+  "size": 3189944,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/c4bd98c0d4f2389981f01cc84ab5a7c233abcb706ab297b89cb9c9481edda52a.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/0a5b6f3c5cc44d2775e3224d7f7caf291659a80697b94cfb61c5796c03c5bd97.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/074eefbbcec3f194c28d4280fc1ba3617682bb45c21832be57c29408ba6d6641.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/1cd44f33b7e53b5c45a10ce692de7a5cfb6e49b8c3ed36577ad40d628a43e908.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/40881d6570e49eb529c0dd377d74ecac1bcfea47e91054e08d8ca7ab16cfc849.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/MDashK/cook-serve-delicious-vita/releases/download/v1.0.0/CSDLICIUS.VPK",
+      "recommended": true
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/MDashK/cook-serve-delicious-vita"
+    }
+  ]
+}

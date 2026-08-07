@@ -1,0 +1,44 @@
+{
+  "id": "soulcalibur-vita",
+  "title_id": "SOUL00001",
+  "name": "SoulCalibur Vita",
+  "description": "Port of SoulCalibur for PSVITA.",
+  "long_description": "This is a wrapper/port of SoulCalibur for the PS Vita. The port works by loading the official Android ARMv7 executable in memory, resolving its imports with native functions and patching it in order to properly run. By doing so, it's basically as if we emulate a minimalist Android environment in which we run natively the executable as is.",
+  "author_ids": [
+    "rinnegatamante"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.1.1",
+  "version_date": "2024-12-05",
+  "requirements": "- libshacccg.suprx\n- kubridge.skprx\n- Game Data Files: Android",
+  "size": 2746549,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/26a87fbc418f3d222a5ef17f954054bade9ff8453323bc6a9d23d6fa87c4cf9b.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/2e2623d145d3a1bc5c52b192bd5d7d950f6aca52420205b4eaffc3649ed7b723.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/ea0ff0570cb9caee45c500e12a353c99025d637e01e850fe55668f6775116e4b.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/4963353404b379cb7d1e644b1a5d88a011d821fd205c2012d791409b9f05b2de.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/f49e7080a4fb9b2983d26930a5623ce15b0dc2807d96154cdb7d138e91e32fee.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/Rinnegatamante/soulcalibur_vita/releases/download/v.1.1/soulcalibur.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/Rinnegatamante/soulcalibur_vita"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/Rinnegatamante/soulcalibur_vita/releases"
+    }
+  ]
+}

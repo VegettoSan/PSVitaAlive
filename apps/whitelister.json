@@ -1,0 +1,34 @@
+{
+  "id": "whitelister",
+  "title_id": "XXXX35570",
+  "name": "Whitelister",
+  "description": "Whitelister for PSTV.",
+  "long_description": "v1 whitelister app for Playstation TV.",
+  "author_ids": [
+    "kankertje"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.1.1",
+  "version_date": "2016-07-30",
+  "requirements": "",
+  "size": 104562,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/8834f97cf0f89d196322a08929360f46190b7f513e50534c089c3d88d0599786.png",
+  "screenshots": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/178-whitelister.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "http://wololo.net/talk/viewtopic.php?f=116&t=46154"
+    }
+  ]
+}

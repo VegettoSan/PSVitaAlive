@@ -1,0 +1,34 @@
+{
+  "id": "fruity",
+  "title_id": "FRUITY001",
+  "name": "FruitY",
+  "description": "Puzzle game for PSVITA.",
+  "long_description": "Fruit'Y - Playing with edibles is heavily inspired by the Kaiko classic Gem'X, which has been seen on computers such as the Commodore Amiga 500, Commodore 64 and Atari ST.\nAlthough tiger mum forbids little Sheran to play with edibles, there is simply no way to stop him from playing with fruits found inside the deep jungle. Being shiny, smelling wonderful and tasting even better Sheran can't be kept away. So let's do the best we could do: Support him!\nThe game consists of two boards of fruits. The left field belongs to Sheran who needs to reproduce the right field 1:1 being able to proceed to the next level. Sounds easy?!",
+  "author_ids": [
+    "retroguru-team"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "puzzle"
+  ],
+  "version": "v.1.0",
+  "version_date": "2019-05-24",
+  "requirements": "",
+  "size": 1075064,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/7fcb139276b3282c92ac4b2c1d1f70cb66bf405350bb80545ea5e1f83e041feb.png",
+  "screenshots": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/480-FRUITY001.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "http://www.retroguru.com/fruity/"
+    }
+  ]
+}

@@ -1,0 +1,39 @@
+{
+  "id": "henkaku-offline-installer",
+  "title_id": "MLCL00002",
+  "name": "Henkaku Offline Installer",
+  "description": "Mail application exploit that allows you to start HENkaku without an Internet connection.",
+  "long_description": "Mail application exploit that allows you to start HENkaku without an Internet connection.",
+  "author_ids": [
+    "xyzz"
+  ],
+  "category_id": "system",
+  "subcategory_ids": [
+    "firmware-tools"
+  ],
+  "version": "1.0",
+  "version_date": "2016-08-10",
+  "requirements": "",
+  "size": 409671,
+  "status": "Verified",
+  "icon": "https://robin994.github.io/NeoVitaDB-Catalog/icons/0160-henkaku-offline-installer.png",
+  "screenshots": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/henkaku/offline-installer/releases/download/1.0/offlineInstaller.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/henkaku/offline-installer"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/henkaku/offline-installer/releases/tag/1.0"
+    }
+  ]
+}

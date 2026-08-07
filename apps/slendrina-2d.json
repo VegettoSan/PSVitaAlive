@@ -1,0 +1,38 @@
+{
+  "id": "slendrina-2d",
+  "title_id": "SLEN20000",
+  "name": "Slendrina 2D",
+  "description": "Port of Slendrina 2D for PSVITA.",
+  "long_description": "Slendrina is back in a new scary adventure! This time in a type 2D side scroller game!\nSlendrina are evil and want to kill anyone who intrudes on her territory. Examine an abandoned house and solve different tasks to pass this game.",
+  "author_ids": [
+    "maloneczsd"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "adventure"
+  ],
+  "version": "v.1.1",
+  "version_date": "2024-10-08",
+  "requirements": "",
+  "size": 61468773,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/61267364f4d0060e403f0d86a737163fe39c9a8270943562bdfd58810a467327.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/51dde40c0c2bfe97d76a3810310aad0f339f45255feaf855a2ed77e66d2c541f.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/375aef8885e624026b9d8b01579f05a99ac48b8f93806210d430bd5b1916ea78.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/2e9392d2cc19e4b1df25d5e0599af05fcce066f813026d30810bbfbf851d693a.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/MaloneCZSD/Slendrina2DVita/releases/download/Slendrina/Slendrina2D.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/malone46/Slendrina2DVita"
+    }
+  ]
+}

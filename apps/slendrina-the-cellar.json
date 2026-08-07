@@ -1,0 +1,38 @@
+{
+  "id": "slendrina-the-cellar",
+  "title_id": "SLCE12345",
+  "name": "Slendrina the Cellar",
+  "description": "Port of Slendrina: The Cellar for PSVita.",
+  "long_description": "This is the story of Slendrina The Cellar. Now she has become more evil than before and hates it when someone intruding on her territory. She will do anything to stop you. Whatever you do .... do not look back!\nTry to find 8 missing old books in the dark cellar and then run to the exit.\nYou also need to find keys to open certain doors.\nLook everywhere, for they could be anywhere.",
+  "author_ids": [
+    "maloneczsd"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.1.2",
+  "version_date": "2025-07-21",
+  "requirements": "",
+  "size": 34303006,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/5ee20abf4fd0b0060bb9deaef8ad267cee0081f15100b4d193cc1c9dd8b05929.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/8515cc8ee42485fb61d88fa30a015787e6dee453506b8ab205bc30b1e408bb05.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/d6124a54a89dd0ae23a68360fde522f2a69b6c3f84e01b46ada7ee9dfaa327e9.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/6bbb90ea253d1dc9a28acf783b1027692e024466b8710f204dab99e5f4c14474.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1285-SlendrinaCellar.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://maloneczsd.itch.io/slendrina-the-cellar-vita"
+    }
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "id": "app-db-tool",
+  "title_id": "ADBT00001",
+  "name": "App DB Tool",
+  "description": "Utility to refresh app.db database.",
+  "long_description": "Appdb Tool can trigger a database update or completely reset your database WITHOUT losing your icons/folders layout!",
+  "author_ids": [
+    "luck",
+    "kylon"
+  ],
+  "category_id": "utilities",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.6.0",
+  "version_date": "2019-01-06",
+  "requirements": "",
+  "size": 353306,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/f3d6aabb478e4aee087227348a4b71cd90790574d0c77d862ae8f793c3ea74e8.png",
+  "screenshots": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/204-appdbtool.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://bitbucket.org/kylon/appdbtool"
+    }
+  ]
+}

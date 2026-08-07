@@ -1,0 +1,39 @@
+{
+  "id": "uqm-vita",
+  "title_id": "UQMC00001",
+  "name": "uqm-vita",
+  "description": "Port of Ur-Quan Masters for PSVITA.",
+  "long_description": "uqm-vita is a port of the Ur-Quan Masters project to the PS Vita system.\nThe Ur-Quan Masters is a volunteer project that brings the classic game Ã¢â‚¬ËœStar Control IIÃ¢â‚¬â„¢ to modern systems. The code from the Ur-Quan Masters project is derived from code written by Toys for Bob, Inc. for the 3DO version of Ã¢â‚¬ËœStar Control IIÃ¢â‚¬â„¢.",
+  "author_ids": [
+    "argarak"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.0.8.0.rev1",
+  "version_date": "2022-03-04",
+  "requirements": "",
+  "size": 1432712,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/41c07f47014b46bdae3b23b9d9ad64d1245184eff72e18497ea9157fac774d6c.png",
+  "screenshots": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/argarak/uqm-vita/releases/download/rev1/uqm.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/argarak/uqm-vita"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/argarak/uqm-vita/releases"
+    }
+  ]
+}

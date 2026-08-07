@@ -1,0 +1,34 @@
+{
+  "id": "tricky-towers-endless-race",
+  "title_id": "TPPG00001",
+  "name": "Tricky Towers Endless Race",
+  "description": "Port of Tricky Towers Endless Race.",
+  "long_description": "With your brilliant robe and magic powers, itâ€™s time to build some Tricky Towers! Stack your bricks in this land of fable, whose marvelous tower will be the most stable? Battle your friends and rise to fame, in this frantic physics game.",
+  "author_ids": [
+    "tushkan"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.0.5",
+  "version_date": "2019-06-03",
+  "requirements": "",
+  "size": 54375202,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/aa56da515ba0ac548aa1a2783a554e7c54bbb0cc8260161a8c59cf8365402e62.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/25c00217ca45ed96f208e17b3a81dac5810f326f6ddb8ee2f765b66239089125.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/a0623fca420a10ae0f8332e2f3d0c1a54b4cd37980ed3d407e75767673405213.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/71b6f27a2c1e8668e2715d5f20f0357fcab717553faa94d4838951da96433dcb.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/e4a1eae0fc9e3b95a79bdb29cff8da35e0c67e9f1d7f8f9116a4eb226929b738.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/484-TTER.vpk",
+      "recommended": true
+    }
+  ]
+}

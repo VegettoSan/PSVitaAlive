@@ -1,0 +1,39 @@
+{
+  "id": "modoru",
+  "title_id": "MODORU000",
+  "name": "modoru",
+  "description": "modoru means \"to go back\" in Japanese and is a downgrader for the PS Vita,.",
+  "long_description": "modoru means \"to go back\" in Japanese and is a downgrader for the PS Vita,",
+  "author_ids": [
+    "theflow"
+  ],
+  "category_id": "utilities",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v2.3",
+  "version_date": "2022-05-11",
+  "requirements": "",
+  "size": 125403,
+  "status": "Verified",
+  "icon": "https://robin994.github.io/NeoVitaDB-Catalog/icons/0425-modoru.png",
+  "screenshots": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/TheOfficialFloW/modoru/releases/download/v2.3/modoru.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/TheOfficialFloW/modoru"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/TheOfficialFloW/modoru/releases/tag/v2.3"
+    }
+  ]
+}

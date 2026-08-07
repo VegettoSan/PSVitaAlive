@@ -1,0 +1,42 @@
+{
+  "id": "better-qr-scanner",
+  "title_id": "BETTERQRS",
+  "name": "Better QR Scanner",
+  "description": "Multi-functional QR tool for PSVita.",
+  "long_description": "Multi-functional QR tool that scans and generates QR codes for the PSVita.",
+  "author_ids": [
+    "harommel-rabbid"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "24-07-2025",
+  "version_date": "2025-07-24",
+  "requirements": "",
+  "size": 1501459,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/e845c7cee9483b977c1066a26a35ede02fc027264e53158ab05a104e121b3352.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/e662cbc00e5274814c232541c9059bb632ee28b6e4a6887ad2af7503820c41c9.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/b98b4998d29ff21707a21433e33e49e7c46ac201458531c913791b6eeb45d75a.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/HarommelRabbid/BetterQRScanner/releases/download/24-07-25/Better.QR.Scanner.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/HarommelRabbid/BetterQRScanner"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/HarommelRabbid/BetterQRScanner/releases"
+    }
+  ]
+}

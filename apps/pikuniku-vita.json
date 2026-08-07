@@ -1,0 +1,44 @@
+{
+  "id": "pikuniku-vita",
+  "title_id": "PIKU12345",
+  "name": "Pikuniku Vita",
+  "description": "Pikuniku is an absurdly wonderful puzzle-exploration game that takes place in a strange but playful world where not everything is as happy as it seems.",
+  "long_description": "Pikuniku is an absurdly wonderful puzzle-exploration game that takes place in a strange but playful world where not everything is as happy as it seems.",
+  "author_ids": [
+    "gl00mm"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "puzzle"
+  ],
+  "version": "Pikuniku_PSVITA-v1.00",
+  "version_date": "2025-07-02",
+  "requirements": "- Game Data Files: PC",
+  "size": 14955745,
+  "status": "Legacy",
+  "icon": "https://robin994.github.io/NeoVitaDB-Catalog/icons/1278-pikuniku-vita.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/3c9a2164bbd594685a52178d2bb9bf478651eb2bb9aedd9e365d5232efd2c3d1.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/6e625ef1ccf36bff3a92a723423ebb27e498aa92b3bf6ff5a68ff04690e10365.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/1b7936e23d311882a717da0f54eed2443fc48273f1525b10d7523a5031231abc.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/66b0c5fb5d0dc6b955fb94161429d8c978e54dde0cc795545a91485be02180f4.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/gl00mm/Pikuniku_PSVITA/releases/download/Pikuniku_PSVITA-v1.00/pikuniku.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/gl00mm/Pikuniku_PSVITA"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/gl00mm/Pikuniku_PSVITA/releases/tag/Pikuniku_PSVITA-v1.00"
+    }
+  ]
+}

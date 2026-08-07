@@ -1,0 +1,44 @@
+{
+  "id": "yoyo-loader-vita",
+  "title_id": "YYOLOADER",
+  "name": "YoYo Loader Vita",
+  "description": "YoYo Loader is a loader for libyoyo.so, the official GameMaker Studio Runner application for Android, for the PS Vita.",
+  "long_description": "YoYo Loader is a loader for libyoyo.so, the official GameMaker Studio Runner application for Android, for the PS Vita.\nYoYo Loader works by loading such ARMv7 executable in memory, resolving its imports with native functions and patching it in order to properly run.\nThis enables to run potentially any game made with GameMaker Studio.",
+  "author_ids": [
+    "rinnegatamante"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "Nightly",
+  "version_date": "2022-04-08",
+  "requirements": "- libshacccg.suprx\n- kubridge.skprx\n- fd_fix.skprx OR repatch_ex.skprx\n- Game Data Files: Android OR PC/Console Bytecode",
+  "size": 8208053,
+  "status": "Verified",
+  "icon": "https://robin994.github.io/NeoVitaDB-Catalog/icons/0815-yoyo-loader-vita.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/a0426d6edeec817ac132d10f0e5c3e353d4089d16dc96b274e67d639a13ae3d5.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/00bb464250354037195259c145bb043d9ce3eea6308d85808bdf78cb8ba69677.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/b3e12bcc5907dbd10a85a73da689aa1a771a229251759a7ee08bcc01beccfa42.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/f0660f3a135769d826cced458c2bdb9382a6a751b95a87079f05bed466e181fc.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/Rinnegatamante/yoyoloader_vita/releases/download/Nightly/YoYoLoader.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/Rinnegatamante/yoyoloader_vita"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/Rinnegatamante/yoyoloader_vita/releases/tag/Nightly"
+    }
+  ]
+}

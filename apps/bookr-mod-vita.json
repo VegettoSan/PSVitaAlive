@@ -1,0 +1,39 @@
+{
+  "id": "bookr-mod-vita",
+  "title_id": "PATH00027",
+  "name": "Bookr MOD Vita",
+  "description": "This is a document reader for the PS VITA based on the original Bookr and bookr-mod for PSP.",
+  "long_description": "This is a document reader for the PS VITA based on the original Bookr and bookr-mod for PSP.",
+  "author_ids": [
+    "pathway27"
+  ],
+  "category_id": "media",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v0.3.1",
+  "version_date": "2018-10-14",
+  "requirements": "",
+  "size": 27924483,
+  "status": "Verified",
+  "icon": "https://robin994.github.io/NeoVitaDB-Catalog/icons/0203-bookr-mod-vita.png",
+  "screenshots": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/pathway27/bookr-mod-vita/releases/download/v0.3.1/bookr-mod-vita-v0.3.1.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/pathway27/bookr-mod-vita"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/pathway27/bookr-mod-vita/releases/tag/v0.3.1"
+    }
+  ]
+}

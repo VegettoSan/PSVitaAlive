@@ -1,0 +1,39 @@
+{
+  "id": "log-reset-for-yoyo-loader",
+  "title_id": "YYLLOGDEL",
+  "name": "Log Reset for YoYo Loader",
+  "description": "Logs purger and launcher for YoYo Loader.",
+  "long_description": "Small app that deletes the yyl.log file and then launches YoYo Loader Vita.",
+  "author_ids": [
+    "drok17"
+  ],
+  "category_id": "utilities",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.1.0",
+  "version_date": "2022-05-11",
+  "requirements": "",
+  "size": 3484788,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/86deafcafad926fa981d13dced1a8eeb9be2a7e9637e8696782f46be31d54e23.png",
+  "screenshots": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DRok17/Log-Reset-for-YYL/releases/download/v1.0/YYLLOGDEL.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/DRok17/Log-Reset-for-YYL"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/DRok17/Log-Reset-for-YYL/releases"
+    }
+  ]
+}

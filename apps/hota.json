@@ -1,0 +1,39 @@
+{
+  "id": "hota",
+  "title_id": "HOTA00001",
+  "name": "HOTA",
+  "description": "Heart of the Alien port.",
+  "long_description": "This is a Vita port of the reverse engine for Heart of the Alien, the sequel of Another World.\nIt's based on the reverse engine made originally by Gil Megidish.",
+  "author_ids": [
+    "usineur"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "engine-port"
+  ],
+  "version": "v.1.0",
+  "version_date": "2016-10-23",
+  "requirements": "",
+  "size": 402380,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/fe188b56869589b36f104ddfe6d05f5a9b76d3b40739641edaf21e697247b95b.png",
+  "screenshots": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/usineur/hota/releases/download/vita-1.0/HOTA.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/usineur/hota"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://gbatemp.net/threads/release-hota.445832/"
+    }
+  ]
+}

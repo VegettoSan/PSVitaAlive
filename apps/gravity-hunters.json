@@ -1,0 +1,41 @@
+{
+  "id": "gravity-hunters",
+  "title_id": "GRAVHUNT1",
+  "name": "Gravity Hunters",
+  "description": "Physics-driven artillery space shooter.",
+  "long_description": "Pilot a nimble spaceship, bend your shots around planetary gravity, and clear handcrafted missions.",
+  "author_ids": [
+    "nandxor96"
+  ],
+  "category_id": "games",
+  "subcategory_ids": [
+    "shooter"
+  ],
+  "version": "v.1.0",
+  "version_date": "2025-10-21",
+  "requirements": "",
+  "size": 4303132,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/7a6ef76d3992cbbdc06a4032706ffc3c7573dcd3a462ccaed43abdfc00ff33d8.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/28f83d47e996a1cc0653cf857a24c62e9931e4f49f5b3b30e5b02bf075362441.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1330-gravity_hunters.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/NandXor96/gravity_hunters_vita"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://nandxor96.itch.io/gravity-hunters"
+    }
+  ]
+}

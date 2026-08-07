@@ -1,0 +1,34 @@
+{
+  "id": "five-nights-at-freddy-s",
+  "title_id": "ABCD52341",
+  "name": "Five Nights at Freddy's",
+  "description": "A clone of Five Nights at Freddy's for PSVITA.",
+  "long_description": "Port of the 3DS clone of Five Nights at Freddy's to PSVITA/PSTV.",
+  "author_ids": [
+    "kolbie5874",
+    "weegeedeveloper"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.1.0",
+  "version_date": "2021-02-22",
+  "requirements": "",
+  "size": 73237056,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/3952df135b77e7395ddf23798c1abe04257a86856989d96da0059d93224db521.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/03d6126f3ef400f1ae994edd9348102d876bfd67bfdd97064a43c8920c093c6c.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/a7287c378d4d162fb662fbe597631b02a78f53bada920b40c3954fae92c18a91.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/d17e83302b0a88cc2e5995e77abbd2ede2e965cccad460afb653c67e92deebe1.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/620-FNaFVita.vpk",
+      "recommended": true
+    }
+  ]
+}

@@ -1,0 +1,39 @@
+{
+  "id": "vitarw",
+  "title_id": "VPRW00001",
+  "name": "VitaRW",
+  "description": "Sets Read-Only partitions to Read-Write.",
+  "long_description": "Enable RW access to \"read-only\" partitions. This is a PoC, and should be used by devs who like the risk.",
+  "author_ids": [
+    "tomtomdu80"
+  ],
+  "category_id": "utilities",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "#04d791c",
+  "version_date": "2016-09-13",
+  "requirements": "",
+  "size": 51309,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/18746b487153dc1ca3d728ce57b841b6e8faeca65a0900aa46864f73d07642c8.png",
+  "screenshots": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/151-VitaRW.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/tomtomdu80/VitaRW"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "http://wololo.net/2016/08/19/release-vitarw-gives-us-write-access-vitas-protected-partitions-wheres-downgrader/"
+    }
+  ]
+}

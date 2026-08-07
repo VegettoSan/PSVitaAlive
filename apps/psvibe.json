@@ -1,0 +1,39 @@
+{
+  "id": "psvibe",
+  "title_id": "PSVIBE001",
+  "name": "PSVibe",
+  "description": "Controller vibrator for PSTV.",
+  "long_description": "PSVibe is a simple controller vibrator, inspired by an old PS3 homebrew that can be used to test your controllers.",
+  "author_ids": [
+    "namelessghoul0"
+  ],
+  "category_id": "utilities",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.2-final",
+  "version_date": "2016-10-22",
+  "requirements": "",
+  "size": 159008,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/2451064b14e12d2b4eb2d912f42470ac1ffdd8f282e8a50051286381dbc64b7c.png",
+  "screenshots": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/NamelessGhoul0/PSVibe/releases/download/v2-final/PSVibe.v2-final.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/NamelessGhoul0/PSVibe"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "http://wololo.net/talk/viewtopic.php?f=116&t=47324&p=414479#p414479"
+    }
+  ]
+}

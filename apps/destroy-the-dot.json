@@ -1,0 +1,39 @@
+{
+  "id": "destroy-the-dot",
+  "title_id": "ABCD12354",
+  "name": "Destroy The Dot",
+  "description": "Port of Destroy The Dot for PSVita.",
+  "long_description": "Port of Destroy The Dot for PSVita.\nDestroy all BLACK DOT before they disappear but don't touch the RED DOT.",
+  "author_ids": [
+    "orbitalflagstudio"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.1.0.1",
+  "version_date": "2023-07-02",
+  "requirements": "",
+  "size": 27601264,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/65ae5ad60f745f20bac223856b927af44dfeb0a68a28b4324ae76146882f226c.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/aaa019655ef665f57beafb7948e86f3cf3b29a8eedb0fcbf4cc98badecbce55b.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/a12e6fe3ac8fdfd2c9ee534f16641ba8270bb255f46aff094642371e2bb4936f.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/6709ed31da058b615cb0ffd87ba083cc80269da33083006e624ff3ebeb69c598.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/a61c7ab120a989b7e13a83c973dbbe73ecb313477a31724f37941b92ce8a97d6.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/OrbitalFlagStudio/VitaGamesReleases/releases/download/Destroy.The.Dot.v1.0.1/Destroy.The.Dot.-.Vita.Edition.-.Release.1.0.1.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/OrbitalFlagStudio/VitaGamesReleases/releases/tag/Destroy.The.Dot.v1.0"
+    }
+  ]
+}

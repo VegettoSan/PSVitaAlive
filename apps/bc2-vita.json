@@ -1,0 +1,45 @@
+{
+  "id": "bc2-vita",
+  "title_id": "BC2000000",
+  "name": "BC2 Vita",
+  "description": "Port of Battlefield: Bad Company 2 Mobile for PSVITA.",
+  "long_description": "This is a wrapper/port of Battlefield: Bad Company 2 Android for the PS Vita.\nThe port works by loading the official Android ARMv6 executable in memory, resolving its imports with native functions and patching it in order to properly run.",
+  "author_ids": [
+    "theflow",
+    "rinnegatamante"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.1.0",
+  "version_date": "2021-08-01",
+  "requirements": "- libshacccg.suprx\n- kubridge.skprx\n- Game Data Files: Android",
+  "size": 534541,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/16fb69931aa9b7df1f2be0746e5cd278fda81640096fd886e1bc6f98b4825b62.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/afed3a69c037de508feafcff32ef6cbf65b9aa9481a13b06907b9bbee29bf8cb.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/7e4456fe47b5c43935342b3c92961067a6c6bcccaa61612e5dfc61d26d72acbe.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/4502287b13fb2243e11ab7aaf6327230460cf810a44ae6ae8e6ef2ec2276c945.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/751c059327690651a7684b57e0b7f1f14d7503e8dd2db1624e97b7377aa39a89.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/TheOfficialFloW/bc2_vita/releases/download/v1.0/BC2.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/TheOfficialFloW/bc2_vita"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/TheOfficialFloW/bc2_vita/releases"
+    }
+  ]
+}

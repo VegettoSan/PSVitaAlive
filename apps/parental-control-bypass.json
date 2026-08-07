@@ -1,0 +1,34 @@
+{
+  "id": "parental-control-bypass",
+  "title_id": "PARENTAL0",
+  "name": "Parental Control Bypass",
+  "description": "A program to delete the parental controls passcode incase you forgot it,.",
+  "long_description": "A program to delete the parental controls passcode incase you forgot it,\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
+  "author_ids": [
+    "li"
+  ],
+  "category_id": "utilities",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "latest",
+  "version_date": "2026-08-07",
+  "requirements": "",
+  "size": 29068,
+  "status": "Archive",
+  "icon": "https://robin994.github.io/NeoVitaDB-Catalog/icons/1457-parental-control-bypass.png",
+  "screenshots": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://git.silica.codes/Li/parentalcontrolbypass/releases/download/latest/Parental_Control_Bypass.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://git.silica.codes"
+    }
+  ]
+}

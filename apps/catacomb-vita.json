@@ -1,0 +1,41 @@
+{
+  "id": "catacomb-vita",
+  "title_id": "CTCB00000",
+  "name": "Catacomb Vita",
+  "description": "Port of Catacomb II for PSVita.",
+  "long_description": "Vita port of Catacomb II (also known as The Catacomb).\nThis port is based on the Catacomb SDL2 source code",
+  "author_ids": [
+    "l0wigh"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.1.0",
+  "version_date": "2023-06-02",
+  "requirements": "- Game Data Files: PC",
+  "size": 572647,
+  "status": "Legacy",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/31777816305972eaceee85b3ec07fb58e530ec2fbe2db730442136e529730e2f.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/08e9642465e5db7a801563a5806e01ce05cca135ad48e725a227ecc29a389337.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/l0wigh/CatacombVita/releases/download/v1.0/Catacomb-Vita.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/l0wigh/CatacombVita"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/l0wigh/CatacombVita/releases"
+    }
+  ]
+}

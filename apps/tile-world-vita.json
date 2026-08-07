@@ -1,0 +1,39 @@
+{
+  "id": "tile-world-vita",
+  "title_id": "TWKK00001",
+  "name": "Tile World Vita",
+  "description": "Port of Tile World for PSVITA.\nTile World (also known as TileWorld or Tileworld) is a game designed to emulate Chip's Challenge.",
+  "long_description": "Port of Tile World for PSVITA.\nTile World (also known as TileWorld or Tileworld) is a game designed to emulate Chip's Challenge. It was written by Brian Raiter. To avoid copyright infringement with Chip's Challenge, the game does not use the original graphics, sound or music. The original level set is not bundled with Tile World, so it's legal for use.",
+  "author_ids": [
+    "koolaidxk1d"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "1.0.0",
+  "version_date": "2023-09-20",
+  "requirements": "",
+  "size": 1598510,
+  "status": "Legacy",
+  "icon": "https://robin994.github.io/NeoVitaDB-Catalog/icons/1132-tile-world-vita.png",
+  "screenshots": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/koolaidxk1d/tworld-vita/releases/download/1.0.0/tworld-vita.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/koolaidxk1d/tworld-vita"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/koolaidxk1d/tworld-vita/releases/tag/1.0.0"
+    }
+  ]
+}

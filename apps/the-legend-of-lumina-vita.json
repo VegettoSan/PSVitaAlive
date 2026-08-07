@@ -1,0 +1,39 @@
+{
+  "id": "the-legend-of-lumina-vita",
+  "title_id": "TLOL00020",
+  "name": "The Legend of Lumina Vita",
+  "description": "Port of The Legend of Lumina for PSVITA.",
+  "long_description": "Port of The Legend of Lumina for PSVITA.\nExplore an ancient forest, push blocks to solve puzzles, and uncover a way to lift the curse on your homeland.\nOriginally developed in Godot for the KB Games ZeldaJam 2022, The Legend of Lumina is a block-pushing puzzle game with Metroidvania-style progression, set in a peaceful forest environment.",
+  "author_ids": [
+    "rocroverss"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "puzzle"
+  ],
+  "version": "v.1.0",
+  "version_date": "2025-05-22",
+  "requirements": "- Game Data Files: PC",
+  "size": 16561478,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/97a0e8547dbc87a5b7680dcc914059a924a783c50e82434cd80b5b2bbac71daa.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c4bfb1e13bd174f5dbb7b41663f077822a57e63ee29425a654d7a5a550aa44a7.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/7328d44bb138b3b250b4bedd4e3d17e98620977d294cdb7245d2ee4ca887a437.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/65a83ff024704407f89f3e85f81989bb3bf8f63e17d58b5abc0d33f9fc911236.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/a1edd7e48a4614866c665b4af98bfb4354b07c40200a1aca203774b67a50395c.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/Rocroverss/The-legend-of-lumina-patch-psvita/releases/download/first/TLOL.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/Rocroverss/The-legend-of-lumina-patch-psvita"
+    }
+  ]
+}

@@ -1,0 +1,42 @@
+{
+  "id": "howard",
+  "title_id": "HOWD42069",
+  "name": "Howard",
+  "description": "Retro shoot-em up for PSVITA/PSTV.",
+  "long_description": "Cross platform, retro shoot-em-up inspired by games like Thexder, Metroid and Cave Story. It's written in GameMaker Studio 1.4.",
+  "author_ids": [
+    "narwher"
+  ],
+  "category_id": "games",
+  "subcategory_ids": [
+    "platformer"
+  ],
+  "version": "Alpha",
+  "version_date": "2025-10-31",
+  "requirements": "",
+  "size": 16276764,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/ac69400f529f46cb20058846a68cd75f8bcf2f4a01a545cafca29788024bd5b7.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/b1e940891a1b368db7b1fbaa3a2ab65dc40e710acd17267d3d0e914a23fe6520.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/39b43b8fb2a6ccf365d9ca3c861e7e5a73fa254661e58fe86da2eed53b5b27b7.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/Narwher/Howard/releases/download/0.1a/Howard.VPK",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/Narwher/Howard"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/Narwher/Howard/releases"
+    }
+  ]
+}

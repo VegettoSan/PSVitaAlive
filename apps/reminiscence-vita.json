@@ -1,0 +1,39 @@
+{
+  "id": "reminiscence-vita",
+  "title_id": "SOMO00001",
+  "name": "REminiscence Vita",
+  "description": "Flashback port for PSVITA.",
+  "long_description": "Classic game reimplementation of Flashback for PSVITA.",
+  "author_ids": [
+    "enrique-somolinos-perez"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.0.4.2",
+  "version_date": "2016-10-24",
+  "requirements": "- Game Data Files: PC",
+  "size": 870311,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/4face0592c3c88ef3c63600f3025d9ade60418ba7d3861198ff1d2f92b5c50b7.png",
+  "screenshots": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/enriquesomolinos/REminiscence-Vita/releases/download/v0.4.2/REminiscence-0.4.2.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/enriquesomolinos/REminiscence-Vita"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "http://wololo.net/2016/09/14/release-reminiscence-vita-0-3-2-play-flashback-vita/"
+    }
+  ]
+}

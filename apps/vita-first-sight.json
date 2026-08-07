@@ -1,0 +1,39 @@
+{
+  "id": "vita-first-sight",
+  "title_id": "RLYX00004",
+  "name": "Vita First Sight",
+  "description": "Port of Love at First Sight.",
+  "long_description": "Port of Love at First Sight, a visual novel, for PSVITA.",
+  "author_ids": [
+    "rlyx"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.1.00",
+  "version_date": "2022-06-30",
+  "requirements": "",
+  "size": 14664602,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/e8caa3b33418c45a3da873abc61a37ee980e2eb3846bc7402d5e9510acc57f0e.png",
+  "screenshots": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/833-Vita_First_Sight.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://gitlab.com/rlyx/vita-first-sight"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://gitlab.com/rlyx/vita-first-sight/-/releases"
+    }
+  ]
+}

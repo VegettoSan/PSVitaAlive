@@ -1,0 +1,39 @@
+{
+  "id": "virtual-gc",
+  "title_id": "PSVGC0001",
+  "name": "Virtual GC",
+  "description": "Application that allows you to dump and run your physical gamecards.",
+  "long_description": "Application that allows you to dump and run your physical gamecards.",
+  "author_ids": [
+    "motoharu"
+  ],
+  "category_id": "utilities",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v2.0",
+  "version_date": "2019-02-06",
+  "requirements": "",
+  "size": 53085,
+  "status": "Verified",
+  "icon": "https://robin994.github.io/NeoVitaDB-Catalog/icons/0312-virtual-gc.png",
+  "screenshots": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/motoharu-gosuto/psvgamesd/releases/download/v2.0/psvgc.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/motoharu-gosuto/psvgamesd"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/motoharu-gosuto/psvgamesd/releases/tag/v2.0"
+    }
+  ]
+}

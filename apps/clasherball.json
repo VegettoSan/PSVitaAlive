@@ -1,0 +1,38 @@
+{
+  "id": "clasherball",
+  "title_id": "ABDD12344",
+  "name": "Clasherball",
+  "description": "Action puzzle game for PSVITA.",
+  "long_description": "Navigate unique puzzles in Arcade mode or see how long you can survive in Infinite mode!\nMatch for balls of the same color to CLASH! But watch out! Balls will fly back and damage you after they clash. Get out of the way to stay alive. \nUse tricks like curve shots and ricochets to solve brain bending puzzles!\nThis Demo contains one World with 15 Stages.\nInfinite lets you play and enjoy the game as much as you want!",
+  "author_ids": [
+    "sungrand-studios"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "puzzle"
+  ],
+  "version": "Demo",
+  "version_date": "2024-04-26",
+  "requirements": "",
+  "size": 81026913,
+  "status": "Legacy",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/8b2a65404d5f2df40e525c73565261f8bb189cfdaceb45dd06aba86fd9f62dad.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/cdb58fe7741fe24948997b6aef4b7531aa26a40f3b481b8ddb3330421c8504b0.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/bf03fcd99d2ec3943bc607da3d2a08637f6521c51425234eacefc95a6c5d6dc1.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/f3dd8e69408f5864d90320087204d26f7db7d3bb537083d98b3ac0e8986a7a27.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1214-clasherball.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://sungrandstudios.itch.io/clasherball"
+    }
+  ]
+}

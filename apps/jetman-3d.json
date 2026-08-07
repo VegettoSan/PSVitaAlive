@@ -1,0 +1,39 @@
+{
+  "id": "jetman-3d",
+  "title_id": "VGLJETMAN",
+  "name": "JetMan-3D",
+  "description": "Game based on the ZX Spectrum classic Jetpac.",
+  "long_description": "This game is a fan-made tribute to an early 80's classic with a similar title, originally released on the ZX Spectrum and Vic 20. If the game had been re-made in the early days of 3D, perhaps for the Playstation 1 - it may have looked something like this.",
+  "author_ids": [
+    "gremlin-software"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.Main",
+  "version_date": "2021-08-13",
+  "requirements": "",
+  "size": 1333060,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/d5515dc3a7808701fb7a98cf09d779981aa70b06848370712e5e6fc8545fa1f0.png",
+  "screenshots": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/softwaregremlin/Jetman3D/releases/download/Main/JetMan-3D.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/softwaregremlin/Jetman3D/"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "http://www.gremlinsoftware.co.nz/jetman3D.html"
+    }
+  ]
+}

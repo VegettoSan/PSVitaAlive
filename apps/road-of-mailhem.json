@@ -1,0 +1,34 @@
+{
+  "id": "road-of-mailhem",
+  "title_id": "VHZR12345",
+  "name": "Road of Mailhem",
+  "description": "PSX style parkour runner through a zombie wasteland.",
+  "long_description": "In a world overrun by Zombies there’s only one way to get essential supplies between strongholds: parkour runners brave the zombie infested roads to deliver packages between centres. \nIn this PS1 classic styled game you take on the mantle of Runner braving against vicious zombies, and get a taste of the game as it could be!",
+  "author_ids": [
+    "mrkane"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "Beta",
+  "version_date": "2025-01-24",
+  "requirements": "",
+  "size": 68177828,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/253a4b4d1338d4e1f7440b25daad7e904174732a84482380cce77653b8aba3f7.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/64081a597463acbd4410dd48c26928a271bddd243c1f863e64f388f7a211956b.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/d1425d1d08db90895aad8c697ef8c617555e431f148b6bee0c779df59600dca7.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/9152de919cf0ab55697b19113a0ec7ed4cc8c68a2e5525358069bda16de43803.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/845430f79fa9915d016f10836777c7605e30b7ffd139f0752228bb48b33ac0e4.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1249-RoadOfMailhem.vpk",
+      "recommended": true
+    }
+  ]
+}

@@ -1,0 +1,39 @@
+{
+  "id": "milietetris",
+  "title_id": "GBOT00001",
+  "name": "milieTetris",
+  "description": "Tetris clone for PSVITA.",
+  "long_description": "Classic Tetris clone for PSVITA/PSTV.",
+  "author_ids": [
+    "guidobot"
+  ],
+  "category_id": "games",
+  "subcategory_ids": [
+    "puzzle"
+  ],
+  "version": "v.1.0",
+  "version_date": "2016-08-04",
+  "requirements": "",
+  "size": 244004,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/ce7f2d4ad6fec476d22a91bdcc22c0439f63c3aa3fd5284948fe9d75201c327b.png",
+  "screenshots": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/163-milieTetris.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/GUIDOBOT/milieTetris"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "http://wololo.net/2016/08/04/release-milietetris-ps-vita-just-tetris-henkaku/"
+    }
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "id": "el-pollo",
+  "title_id": "ABCD12347",
+  "name": "El Pollo",
+  "description": "Helicopter clone for PSVITA.",
+  "long_description": "A clone of Helicopter made with Unity.",
+  "author_ids": [
+    "lapy"
+  ],
+  "category_id": "games",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.2.0",
+  "version_date": "2019-03-23",
+  "requirements": "",
+  "size": 36278242,
+  "status": "Legacy",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/f70b3399f30ffad00019a77543d2e1b35cab52eeee382b5a5c65cd29206ced0c.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/54d080e0a7ae289e967e0b14134dbf6175c17fa59b78f6e9c6d7624f74d05a7c.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c4e91a8eafce08de3ff3c9f48580be0353e878c29e89053b899bc0a844c77672.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/443-El_20Pollo.vpk",
+      "recommended": true
+    }
+  ]
+}

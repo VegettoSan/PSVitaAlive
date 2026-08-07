@@ -1,0 +1,34 @@
+{
+  "id": "sakura-succubus-iv-vita",
+  "title_id": "RNPYSS004",
+  "name": "Sakura Succubus IV Vita",
+  "description": "Port of Sakura Succubus 4 for PSVITA.",
+  "long_description": "Ogasawara Hiroki was once an ordinary man, but his life has now taken a distinctly unordinary turn. Quite unwittingly, he stumbled upon a well-kept secret which flipped his humdrum existence upside-down: namely, that several of Japan’s most famous female celebrities are succubi.\nThese succubi fall for Hiroki in droves, and soon he obtains quite the harem. His gaggle of adoring succubi include the two-faced idol, Ikue Ayu; the ditzy social media star, Cosmos; the sadistic businesswoman, Marina; the elegant actress, Hifumi; the cheerful tennis player, Hazel; and the aloof succubus princess, Yue.\nAfter narrowly escaping a lifetime of imprisonment in the succubus realm, Hiroki is ready to kick back and relax. Ayu invites him on a vacation to her private beach house in Okinawa, and Hiroki is happy to refuse. The other succubi come along for the ride, and a week of summertime fun begins.",
+  "author_ids": [
+    "silvercrow"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.1.1",
+  "version_date": "2022-04-07",
+  "requirements": "- Game Data Files: PC",
+  "size": 14567290,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/96b11cc479c96624afbdbc03e2f1a40748b9c05f8ab6dace1563435833b2a27b.png",
+  "screenshots": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/SilverCrow2323/Sakura-Succubus-4-Vita/releases/download/v.1.1/Sakura.Succubus.IV-01.10.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/SilverCrow2323/Sakura-Succubus-4-Vita"
+    }
+  ]
+}

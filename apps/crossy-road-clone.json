@@ -1,0 +1,33 @@
+{
+  "id": "crossy-road-clone",
+  "title_id": "VHCR93675",
+  "name": "Crossy Road Clone",
+  "description": "Clone of Crossy Road for PSVITA.",
+  "long_description": "This is the beta release of a clone of Crossy Road, with a base project made by David Yung-Sheng Lu, and expanded then adapted for Vita by MRKane where it runs at a silky 60fps. \nWhile there's only one character, and a lot of rough edges, the majority of the core Crossy Roads gameplay loop is present in game meaning you can enjoy the core experience of Crossy Road on the Vita.\nThe beta has been a lot of fun to make, but I'm far from finished and will be looking for good ideas to improve the game!",
+  "author_ids": [
+    "mrkane"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.0.70",
+  "version_date": "2024-08-18",
+  "requirements": "",
+  "size": 32541087,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/d51c6d707007c4742d815bb8eb288b9ccf1406324f312498d76933f12ae86595.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/e8b7437992c5c9f77eebb0d66ad5c59ab0db5a311c5281b0c6a7427ca7e55801.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/65c1ae89e1364af4e41fc31404a3842d8a1b4289a7ee5c546994b31af64a47e5.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/119aeac0fe62921a453bdadae17273b818f2562ee8f56f850219f6c20d43a48d.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1221-CrossyRoadsClone.vpk",
+      "recommended": true
+    }
+  ]
+}

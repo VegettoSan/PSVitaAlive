@@ -1,0 +1,34 @@
+{
+  "id": "sakura-succubus-vita",
+  "title_id": "RNPYSS001",
+  "name": "Sakura Succubus Vita",
+  "description": "Port of Sakura Succubus for PSVITA.",
+  "long_description": "Sakura Succubus is a visual novel about amassing a harem of sexy succubi. Featuring a cute idol, a domineering businesswoman, and a spacey social media star, thereâ€™s no shortage of women to woo!",
+  "author_ids": [
+    "silvercrow"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.1.10",
+  "version_date": "2022-04-07",
+  "requirements": "- Game Data Files: PC",
+  "size": 14558681,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/6b980802a4ecc394556bb722c38f63b5025df74bfb702fa9962bb94df0502202.png",
+  "screenshots": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/SilverCrow2323/Sakura-Succubus-Vita/releases/download/v.1.1/Sakura.Succubus-01.10.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/SilverCrow2323/Sakura-Succubus-Vita"
+    }
+  ]
+}

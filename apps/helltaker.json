@@ -1,0 +1,37 @@
+{
+  "id": "helltaker",
+  "title_id": "HLTK00001",
+  "name": "Helltaker",
+  "description": "Port of Helltaker for PSVITA.",
+  "long_description": "Helltaker is a short game about sharply dressed demon girls.\nYou woke up one day with a dream. Harem full of demon girls. You've opened the portal in hopes of fulfilling your wildest desires. Hellfire burns through your lungs, death awaits around every corner and everything looks like from a cutesy mobile game. You are in hell.",
+  "author_ids": [
+    "d3fau4"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.1.1.0",
+  "version_date": "2020-09-07",
+  "requirements": "",
+  "size": 113301632,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/7724cdd49d38107265650309744df07a4208741f4b1ed49fdb60da9c024c7f11.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/61569bf320ff8254c698baff7ff9cb7e93e8e507b4edae310b17c56972f1cb83.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/40a2c3dafd10031ce321553ac8724771a551c6f6347b20fc64b05545523321d3.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/D3fau4/Helltaker-switch/releases/download/1.1.0/Helltaker.PS.Vita.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/D3fau4/Helltaker-switch/releases"
+    }
+  ]
+}

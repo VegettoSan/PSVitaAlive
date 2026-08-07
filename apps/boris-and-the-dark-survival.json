@@ -1,0 +1,34 @@
+{
+  "id": "boris-and-the-dark-survival",
+  "title_id": "BATDS0000",
+  "name": "Boris and the Dark Survival",
+  "description": "Demake of Boris and the Dark Survival.",
+  "long_description": "Survival comes first...\nBoris needs to find all the tools to survive Joey Drew's study.\nBut be careful because you are not alone, and the Ink Demon is always on the prowl and it won't be good if he catches you!",
+  "author_ids": [
+    "siul-animation-studios"
+  ],
+  "category_id": "games",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.0.1.11",
+  "version_date": "2022-02-16",
+  "requirements": "",
+  "size": 43069923,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/614cd0a98d3e2c31fe338b5dab3708429df1570ab7d7e61f3275db73fe6bca69.png",
+  "screenshots": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/801-boris-and-the-dark-survival.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://gamejolt.com/games/BATDS-PSP/688387"
+    }
+  ]
+}

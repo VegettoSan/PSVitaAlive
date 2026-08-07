@@ -1,0 +1,39 @@
+{
+  "id": "worlds-hardest-game-vita",
+  "title_id": "WHGR00000",
+  "name": "Worlds Hardest Game Vita",
+  "description": "Clone of World's Hardest Game for PSVITA.",
+  "long_description": "Clone of World's Hardest Game, a popular flash game, for PSVITA/PSTV made in Unity.",
+  "author_ids": [
+    "comet-games"
+  ],
+  "category_id": "games",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.01.15",
+  "version_date": "2022-10-18",
+  "requirements": "",
+  "size": 43666423,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/b575a7041bffbcb61c9cf8ca73150d60ee529dd77f9eb2f622b3f5b00bf7ed3a.png",
+  "screenshots": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/Comet-Games/Worlds-Hardest-Game-Vita/releases/download/v01.15/WHGVita.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/Comet-Games/Worlds-Hardest-Game-Vita"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/Comet-Games/Worlds-Hardest-Game-Vita/releases"
+    }
+  ]
+}

@@ -1,0 +1,39 @@
+{
+  "id": "hendoku",
+  "title_id": "KUNI00002",
+  "name": "Hendoku",
+  "description": "Sudoku game for PSVITA.",
+  "long_description": "Sudoku game for PSVITA/PSTV.",
+  "author_ids": [
+    "kuni59"
+  ],
+  "category_id": "games",
+  "subcategory_ids": [
+    "puzzle"
+  ],
+  "version": "v.0.1",
+  "version_date": "2016-08-09",
+  "requirements": "",
+  "size": 2010692,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/596a5e4c2699e879c8e813100d22f296af4e1cfa5e90c51934229c13af185e0d.png",
+  "screenshots": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/130-sudokucpp.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "http://www.mediafire.com/file/wu7ptl6t57wo5tl/SudokuCPP.rar"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://gbatemp.net/threads/release-hendoku-sudoku-for-vita.437511/"
+    }
+  ]
+}

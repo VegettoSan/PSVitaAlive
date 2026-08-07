@@ -1,0 +1,44 @@
+{
+  "id": "into-the-breach",
+  "title_id": "THEBREACH",
+  "name": "Into the Breach",
+  "description": "Port of Into the Breach for PSVita.",
+  "long_description": "This is a wrapper/port of Into the Breach for the PS Vita.\nThe port works by loading the official Android ARMv7 executables in memory, resolving their imports with native functions and patching it in order to properly run. By doing so, it's basically as if we emulate a minimalist Android environment in which we run natively the executables as they are.",
+  "author_ids": [
+    "rinnegatamante"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.1.0-vita",
+  "version_date": "2025-07-23",
+  "requirements": "- libshacccg.suprx\n- libfmodstudio.suprx\n- kubridge.skprx\n- Game Data Files: Android",
+  "size": 2719702,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/d6c453c7f6de4f28107bcb02bf6e02e1793684ec5021ce0af566de350bbcc6de.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/9b270ced925cb278012020ea6cd511ffb9e2beb3f6a8f277311da248a013f7dd.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/9abde1806b36d873b204267715321afd78bfefd4529398011c47385f690e1e47.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/e8a9d915df8743b44dd8ba3b1ba471a45ee5ccea58ddee762b7045d5442c6743.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/19950878dc12cc5d8bb222f4619519cac306e1ee2552bba37d56358f1f5370cc.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/Rinnegatamante/Into-The-Breach-Vita/releases/download/v.1.0/breach.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/Rinnegatamante/Into-The-Breach-Vita"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/Rinnegatamante/Into-The-Breach-Vita/releases"
+    }
+  ]
+}

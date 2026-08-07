@@ -1,0 +1,39 @@
+{
+  "id": "fast-areas-neon",
+  "title_id": "NBDI56749",
+  "name": "fast-areas NEON",
+  "description": "Port of fast-areas NEON for PSVITA.",
+  "long_description": "Port of fast-areas NEON for PSVITA.\nGo as far as you can, don't touch any obstacles, or you will lose!",
+  "author_ids": [
+    "orbitalflagstudio"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.1.0.1",
+  "version_date": "2023-07-02",
+  "requirements": "",
+  "size": 36494661,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/6f9a927be825f3dee19ce7665802cf5e42af5e3366ade2fa32a0ede2b69c5330.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/1be879220ea746c1a47dcbcfee940029c46e0a1fa23d88a4bfea79180e46ff08.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/d3a14ce716c94e35ee0cfbf452e33b426cc4defc6455c684f7064d9771f57d1e.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/8cb83caa2d630ee3031eb8ca9155eb796853429fc5cdbc73ad9fcc631d298704.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/7dd5aba0da48f0a050677fb0100c0eaa379a421fb60aa4f27fb94ed03432d5a2.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/OrbitalFlagStudio/VitaGamesReleases/releases/download/fast-areas.NEON.v1.0.1/fast-areas.NEON.-.Vita.Edition.-.Release.1.0.1.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/OrbitalFlagStudio/VitaGamesReleases/releases/tag/fast-areas.NEON.v1.0"
+    }
+  ]
+}

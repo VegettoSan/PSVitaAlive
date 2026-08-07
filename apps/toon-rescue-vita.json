@@ -1,0 +1,44 @@
+{
+  "id": "toon-rescue-vita",
+  "title_id": "TOONCUBE1",
+  "name": "Toon Rescue Vita",
+  "description": "Port of Toon Rescue: Cube Blast Match for PSVita.",
+  "long_description": "This is a wrapper/port of Toon Rescue: Cube Blast Match for the PS Vita.\nThe port works by loading the official Android ARMv7 executable in memory, resolving its imports with native functions and patching it in order to properly run. By doing so, it's basically as if we emulate a minimalist Android environment in which we run natively the executable as it is.",
+  "author_ids": [
+    "rinnegatamante"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.0.8",
+  "version_date": "2025-08-18",
+  "requirements": "- libshacccg.suprx\n- kubridge.skprx\n- Game Data Files: Android",
+  "size": 2786886,
+  "status": "Legacy",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/8137add1fd4e95f9eef68368a08421ac956cb6c3546a671d7134fb8fc796c7d3.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/87a9b7af841a4a209242760db480fd2b633a877e5bf40d7627b9d8d1b93317cc.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/6f4f11471b6a177e4640624bd8b1f2840215b98564c47a4858b2a4427c6e3255.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/bccb298132458a71990b91501d19d343978b2bc3bdf2ecad0978ac893bd621f9.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/aef82db23327cef5da7efa13aaa0db0d15583535c3afac2116c8ae8ee1023c9b.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/Rinnegatamante/toon-rescue-vita/releases/download/v.0.8/toon-rescue.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/Rinnegatamante/toon-rescue-vita"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/Rinnegatamante/toon-rescue-vita/releases"
+    }
+  ]
+}

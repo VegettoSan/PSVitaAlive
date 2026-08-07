@@ -1,0 +1,39 @@
+{
+  "id": "psm-manager",
+  "title_id": "PSMFIXER2",
+  "name": "PSM Manager",
+  "description": "Bypass PSN for PSM titles.",
+  "long_description": "This program bypasses the PSN account requirement when using PSM games.",
+  "author_ids": [
+    "yoti"
+  ],
+  "category_id": "system",
+  "subcategory_ids": [
+    "account"
+  ],
+  "version": "v.2.1",
+  "version_date": "2019-08-20",
+  "requirements": "",
+  "size": 261619,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/b96a69559da726f539f0d9816b6d0f4a6f0e542749e6c99a20b57886695b7cbb.png",
+  "screenshots": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/Yoti/psv_npdrmfix/releases/download/v2.1/PSM_Manager.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/Yoti/psv_npdrmfix"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/Yoti/psv_npdrmfix/releases"
+    }
+  ]
+}

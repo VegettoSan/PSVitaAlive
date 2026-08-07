@@ -1,0 +1,41 @@
+{
+  "id": "opentitus",
+  "title_id": "OPENTITUS",
+  "name": "OpenTitus",
+  "description": "Titus port for PSVITA.",
+  "long_description": "A port of the game engine behind the DOS versions of Titus the Fox.",
+  "author_ids": [
+    "usineur"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "engine-port"
+  ],
+  "version": "v.1.0",
+  "version_date": "2017-10-25",
+  "requirements": "- Game Data Files: PC",
+  "size": 543246,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/e16af7492f6e653ef30ad4027dc5993ff2684468f765c95ed95be87e5aeb07e6.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/1540204e202cd12740841b0973799115da79636134348e3488062e150c256629.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/usineur/opentitus/releases/download/1.0/Titus.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/usineur/opentitus"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "http://wololo.net/talk/viewtopic.php?f=116&t=48673"
+    }
+  ]
+}

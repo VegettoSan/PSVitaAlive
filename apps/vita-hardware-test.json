@@ -1,0 +1,34 @@
+{
+  "id": "vita-hardware-test",
+  "title_id": "VHWT00001",
+  "name": "Vita Hardware Test",
+  "description": "Hardware tester for PSVITA.",
+  "long_description": "App that tests your console inputs and outputs (buttons, touchscreens, audio, video).",
+  "author_ids": [
+    "ifrit05"
+  ],
+  "category_id": "media",
+  "subcategory_ids": [
+    "video-player"
+  ],
+  "version": "v.1.0",
+  "version_date": "2016-08-13",
+  "requirements": "",
+  "size": 2237731,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/603b3bb3f040333bd85f317d4a0f646cae584938d256e940ec629f2daace3f2c.png",
+  "screenshots": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/177-VitaHangman.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://gbatemp.net/threads/release-vita-hardware-test.437856/"
+    }
+  ]
+}

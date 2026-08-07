@@ -1,0 +1,39 @@
+{
+  "id": "dvd-screensaver",
+  "title_id": "DVDS42069",
+  "name": "DVD Screensaver",
+  "description": "DVD logo screensaver app.",
+  "long_description": "An app that shows the bouncing DVD logo like in old DVD players.",
+  "author_ids": [
+    "electric"
+  ],
+  "category_id": "utilities",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.1.0",
+  "version_date": "2020-03-29",
+  "requirements": "",
+  "size": 308470,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/858b74a7fc9ea1af76e13561f57a8a4b7446881234cc2164de5d340d829d32c6.png",
+  "screenshots": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/Electric1447/Vita-DVD-Screensaver/releases/download/v1.0/dvd_screensaver.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/Electric1447/Vita-DVD-Screensaver"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/Electric1447/Vita-DVD-Screensaver/releases"
+    }
+  ]
+}

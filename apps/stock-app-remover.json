@@ -1,0 +1,36 @@
+{
+  "id": "stock-app-remover",
+  "title_id": "STKAPPREM",
+  "name": "Stock App Remover",
+  "description": "Quick and easy way to remove/hide stock apps.",
+  "long_description": "This app is not destructive and does not actually \"remove\" the stock apps. It just hides them from the LiveArea. You can of course restore them.",
+  "author_ids": [
+    "anthj"
+  ],
+  "category_id": "customization",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.1.0",
+  "version_date": "2021-12-12",
+  "requirements": "",
+  "size": 4621733,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/9e4e4249b4b33ed15858726d62fb79dbb6f06d32b90a9a064fe43080a2a02e34.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/21be1b88c0be049b793be8435f8d0c18ca398815a38861bf7fd17a49912d9a39.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/AntHJ/Stock-App-Remover/releases/download/v1.0/Stock.App.Remover.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/AntHJ/Stock-App-Remover/releases"
+    }
+  ]
+}

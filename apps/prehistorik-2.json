@@ -1,0 +1,42 @@
+{
+  "id": "prehistorik-2",
+  "title_id": "PREHIST01",
+  "name": "Prehistorik 2",
+  "description": "Port of Prehistorik 2 for PSVITA.",
+  "long_description": "Prehistorik 2 is a platformer where you control a neanderthal who must march through hostile pre-historic environments seeking food and keeping himself safe. Use your club to crush animal enemies, many of which then release bonus items to collect. Other bonus items are located around the levels, while yet more can be found by using your club creatively and adventurously.",
+  "author_ids": [
+    "gl33ntwine"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.1.0",
+  "version_date": "2022-01-17",
+  "requirements": "- Game Data Files: DOS",
+  "size": 1118947,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/3bf3eff7d883e34a9c76eff0fdd62b4a7d8215977713b363257d40e5a3122fa5.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c0d871016a11db9c82573215e6b703928d131a3c88b487783b85c4b46330600d.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/a8863a5a19ccb2a96f8c32c50ee31c21344b218c2e4925ed124edc1f5958a7df.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/v-atamanenko/blues-vita/releases/download/1.0/prehistorik-2.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/v-atamanenko/blues-vita"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/v-atamanenko/blues-vita/releases"
+    }
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "id": "cut-the-rope-vita",
+  "title_id": "ABCD12953",
+  "name": "Cut the Rope Vita",
+  "description": "Clone of Cut the Rope for PSVITA.",
+  "long_description": "A clone of Cut the Rope for PSVITA made in Unity.",
+  "author_ids": [
+    "spanishfreddy"
+  ],
+  "category_id": "games",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.1.0",
+  "version_date": "2023-02-20",
+  "requirements": "",
+  "size": 23805944,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/72d735425a599cd5960277edbf3066dd3de732528ee671af7bdb739403750e43.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/04353ca871ca75cadc5071e74134b4159d726005b9dfe579c63ef1d71ecb1cd7.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/8f3edeecbcdb281914df884fefe8c911b11d4723c21c1313222588026c8d6623.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/258d3c975f33bb2c14ffeaf617602fd978b2132b3f924b8422ece6cf0603a6c5.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1041-cut_the_rope.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/SpanishFreddy/Cut-The-Rope-Vita"
+    }
+  ]
+}

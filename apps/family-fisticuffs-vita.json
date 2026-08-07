@@ -1,0 +1,39 @@
+{
+  "id": "family-fisticuffs-vita",
+  "title_id": "GDOT29102",
+  "name": "Family Fisticuffs Vita",
+  "description": "Port of Family Fisticuffs for PSVITA.",
+  "long_description": "A game about breaking apart people trying to come back together made in Godot for the LoJam 2022.",
+  "author_ids": [
+    "alim395"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.1.00",
+  "version_date": "2022-10-30",
+  "requirements": "",
+  "size": 24806566,
+  "status": "Legacy",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/2479a3a12a929c86007e4fe191a2ad8225dd1a4b8fb080689b568874c625515b.png",
+  "screenshots": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/alim395/FamilyFisticuffsVita/releases/download/v1.00/FamilyFeud.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/alim395/FamilyFisticuffsVita"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/alim395/FamilyFisticuffsVita/releases"
+    }
+  ]
+}

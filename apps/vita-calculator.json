@@ -1,0 +1,34 @@
+{
+  "id": "vita-calculator",
+  "title_id": "VITACALCI",
+  "name": "Vita Calculator",
+  "description": "Calculator for PSVITA.",
+  "long_description": "A standard calculator for PSVITA/PSTV.",
+  "author_ids": [
+    "flappy-jesus"
+  ],
+  "category_id": "utilities",
+  "subcategory_ids": [
+    "calculator"
+  ],
+  "version": "v.1.0",
+  "version_date": "2016-10-09",
+  "requirements": "",
+  "size": 1482666,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/844eda4efba443b1aa0cdd8558beffdbc49c41e7908376f4cb6dc3b9289ec27a.png",
+  "screenshots": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/96-Vita-Calculator.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "http://gekihen.customprotocol.com/en/project/Vita-Calculator"
+    }
+  ]
+}

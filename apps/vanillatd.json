@@ -1,0 +1,43 @@
+{
+  "id": "vanillatd",
+  "title_id": "VCTD00001",
+  "name": "VanillaTD",
+  "description": "Port of C&C: Tiberian Dawn for PSVITA.",
+  "long_description": "Vanilla Conquer is a fully portable version of the first-generation C&C engine and can run both Tiberian Dawn and Red Alert on multiple platforms.\nThis is the Tiberian Dawn executable (formerly VanillaTD).\nThe focus of Vanilla Conquer is to keep the default out-of-box experience faithful to what the games were back when they were released and work as a drop-in replacement for the original executables while also providing bug fixes, compatibility and quality of life improvements.",
+  "author_ids": [
+    "northfear"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "engine-port"
+  ],
+  "version": "v.1.0-r914",
+  "version_date": "2023-12-23",
+  "requirements": "- fd_fix.skprx OR repatch_ex.skprx\n- Game Data Files: PC",
+  "size": 1883480,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/8efdf42416bd888df3c04c22db50aaec3289f14aeee67d1222a2d44901b98b2c.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/02ad7e60dc55b724908cb5123b7aaed570e9a0bf145bbc7802b379814481104d.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/5efc563fef6d8d54dfef7673e54fcf68ca64cdcff2590866367aa522ac0c41bf.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/e1d36f54cf3974ccdc85ddb66a8a0c67243760c33f75a521cff545ecfdbd60fd.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/Northfear/Vanilla-Conquer-vita/releases/download/v1.0-r914/vanillatd.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/Northfear/Vanilla-Conquer-vita"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://kyuhen.customprotocol.com/en/submissions/vanilla_conquer"
+    }
+  ]
+}

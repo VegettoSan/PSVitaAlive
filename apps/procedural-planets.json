@@ -1,0 +1,40 @@
+{
+  "id": "procedural-planets",
+  "title_id": "PRIMER001",
+  "name": "Procedural Planets",
+  "description": "Procedural planets generator.",
+  "long_description": "Procedural 2D planets landscapes pixelart generator for PSVITA/PSTV inspired by No Man's Sky art.",
+  "author_ids": [
+    "primer0",
+    "ruben-wolfe"
+  ],
+  "category_id": "games",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.1.0",
+  "version_date": "2016-07-31",
+  "requirements": "",
+  "size": 677970,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/30950c1dcffd83cfab70c14fc46e74ed7394bed86edff1e8ff0db89e7dd56a42.png",
+  "screenshots": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/91-Procedural_Planets.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://drive.google.com/file/d/0B4QqovA_rXzGT3I3ZUdpTnJtc2s/view"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "http://wololo.net/talk/viewtopic.php?p=406861"
+    }
+  ]
+}

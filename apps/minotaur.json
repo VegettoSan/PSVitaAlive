@@ -1,0 +1,38 @@
+{
+  "id": "minotaur",
+  "title_id": "D33S00002",
+  "name": "Minotaur",
+  "description": "Tense game of Cat and Mouse.",
+  "long_description": "Enter the labyrinth and test your courage and wit. Will you survive to the exit, or will you perish at the mighty axe of the MINOTAUR?",
+  "author_ids": [
+    "digital33"
+  ],
+  "category_id": "games",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.1.5",
+  "version_date": "2026-07-26",
+  "requirements": "",
+  "size": 13147507,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/9934fb584fecd3aa5d8f16321bc4d73e4769c8b8487d153ce602ca4c83ce5fcd.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/f3d40a66da82467e0d1c8acbac35f5aed1d86fb0375488844ec54b241fce5779.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/451abef6bfa54c015b3c93481836d545f86edb82f890419e9f88aabedf52dff3.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/d1362f298011a49a84869681292ab9defd7182a837442e20454f972d3e3f43b7.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/Digital33Studios/minotaur/releases/download/v1.5/Minotaur.VPK",
+      "recommended": true
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/Digital33Studios/minotaur"
+    }
+  ]
+}

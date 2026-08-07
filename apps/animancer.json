@@ -1,0 +1,29 @@
+{
+  "id": "animancer",
+  "title_id": "ANICER001",
+  "name": "ANIMANCER",
+  "description": "Port of Animancer for PSVITA.",
+  "long_description": "Port of Animancer for PSVITA.\nSomehow, you have lost your soul. It would be good idea to find it.",
+  "author_ids": [
+    "vsm-gammer"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.1.0",
+  "version_date": "2023-05-23",
+  "requirements": "",
+  "size": 40353191,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/f477f126572d0b996837711a8830920561ea92d01f5d806cc810fe9a39111a37.png",
+  "screenshots": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1081-ANIMANCER.vpk",
+      "recommended": true
+    }
+  ]
+}

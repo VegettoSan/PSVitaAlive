@@ -1,0 +1,39 @@
+{
+  "id": "faraway-space",
+  "title_id": "FARAWAY01",
+  "name": "Faraway Space",
+  "description": "Port of Faraway Space for PSVITA.",
+  "long_description": "A 3D arcade shooter made with Godot 3.4 ported to PSVita.\nIn current state expect framerate drops and occasional crashes.",
+  "author_ids": [
+    "parallel-productions"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "fps"
+  ],
+  "version": "v.0.1 BETA",
+  "version_date": "2023-02-10",
+  "requirements": "",
+  "size": 61553099,
+  "status": "Legacy",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/8b5d73a4000c2dbdc8fcf21237d6d49c62806780e451e8bc21f4b33dfb02de57.png",
+  "screenshots": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/ParallelProductions/FarawaySpace/releases/download/Vita-v0.1b/Faraway.Space.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/ParallelProductions/FarawaySpace"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/ParallelProductions/FarawaySpace/releases"
+    }
+  ]
+}

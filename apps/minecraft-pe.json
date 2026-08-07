@@ -1,0 +1,39 @@
+{
+  "id": "minecraft-pe",
+  "title_id": "MCPE00000",
+  "name": "Minecraft PE",
+  "description": "Port of Minecraft Pocket Edition 0.6.1 alpha to PlayStation Vita.",
+  "long_description": "Port of Minecraft Pocket Edition 0.6.1 alpha to PlayStation Vita.",
+  "author_ids": [
+    "minecraftpe-vita"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v1.0.7",
+  "version_date": "2026-05-25",
+  "requirements": "",
+  "size": 8670937,
+  "status": "Verified",
+  "icon": "https://robin994.github.io/NeoVitaDB-Catalog/icons/1445-minecraftpe.png",
+  "screenshots": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/minecraftpe-vita/minecraftpe-vita/releases/download/v1.0.7/minecraftpe.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/minecraftpe-vita/minecraftpe-vita"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/minecraftpe-vita/minecraftpe-vita/releases/tag/v1.0.7"
+    }
+  ]
+}

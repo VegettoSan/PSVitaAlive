@@ -1,0 +1,43 @@
+{
+  "id": "vitaexhumed",
+  "title_id": "PCEXHUMED",
+  "name": "vitaExhumed",
+  "description": "PowerSlave/Exhumed port for PSVITA.",
+  "long_description": "vitaExhumed is a port of PCExhumed, an EDuke32 fork that supports PowerSlave/Exhumed games. PowerSlave, known as Exhumed in Europe, is a first-person shooter developed by Lobotomy Software and published by Playmates Interactive in 1996.",
+  "author_ids": [
+    "rinnegatamante"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "fps"
+  ],
+  "version": "v.1.0",
+  "version_date": "2020-01-28",
+  "requirements": "- Game Data Files: PC",
+  "size": 1657588,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/9a485fe900ea8001806af4b353ddc4eb7de5a190cc56bf6be2e339eabd07b94f.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/25cc4d808fe1473bfd6f4abaebc11bf96515d3e6d30381ad530930139f5afdcf.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/745c0ce38de8bca8e8553872ff6882b045a70921cc26dfa430465771c2247f81.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/925cb7e1a5a25b67fb799a229d185ef068128eb0ac2636c325e41e1783c71376.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/533-vitaExhumed.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/Rinnegatamante/vitaExhumed"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://wololo.net/talk/viewtopic.php?f=116&t=50045"
+    }
+  ]
+}

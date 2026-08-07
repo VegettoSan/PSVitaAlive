@@ -1,0 +1,44 @@
+{
+  "id": "sonic-mania-vita",
+  "title_id": "MANIA0001",
+  "name": "Sonic Mania Vita",
+  "description": "Port of Sonic Mania for PSVITA based on a decompilation project of the game and its engine.",
+  "long_description": "Port of Sonic Mania for PSVITA based on a decompilation project of the game and its engine.",
+  "author_ids": [
+    "sonicmastr"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "engine-port"
+  ],
+  "version": "1.1",
+  "version_date": "2023-09-05",
+  "requirements": "- Game Data Files: PC Steam OR PS4 OR Switch",
+  "size": 2111629,
+  "status": "Verified",
+  "icon": "https://robin994.github.io/NeoVitaDB-Catalog/icons/0858-sonic-mania-vita.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/cefae8c7f1fb9332a4f25a991dbb425a257b18c20880447b530c75c8685ffc1b.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/d42ea2d8b514d51cc22278bb1fcd1aadc3907dad068e5857eaf2e9339bcec378.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/23b6939d109a160dd9f17a6d2d378884585be2fd2b199f7bcbb712949a712217.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/cda25fdc71bffaf54b532cb968d36c734df3dfceb488c13a7af7c51c3ad8da54.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/SonicMastr/Sonic-Mania-Vita/releases/download/1.1/SonicMania.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/SonicMastr/Sonic-Mania-Vita"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/SonicMastr/Sonic-Mania-Vita/releases/tag/1.1"
+    }
+  ]
+}

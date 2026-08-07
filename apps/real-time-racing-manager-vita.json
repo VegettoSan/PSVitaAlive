@@ -1,0 +1,44 @@
+{
+  "id": "real-time-racing-manager-vita",
+  "title_id": "MANAGERF1",
+  "name": "Real-Time Racing Manager Vita",
+  "description": "Port of Real-Time Racing Manager for PSVITA.",
+  "long_description": "This is a wrapper/port of Real-Time Racing Manager for the PS Vita.\nThe port works by loading the official Android ARMv7 executable in memory, resolving its imports with native functions and patching it in order to properly run. By doing so, it's basically as if we emulate a minimalist Android environment in which we run natively the executable as is.",
+  "author_ids": [
+    "rinnegatamante"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "racing"
+  ],
+  "version": "v.1.0",
+  "version_date": "2023-03-26",
+  "requirements": "- libshacccg.suprx\n- kubridge.skprx\n- Game Data Files: Android",
+  "size": 1956020,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/4d445422b85cba3ba6af3eeba591e91f8645a198d3a6155ee99964e394e51ce3.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/97b35bcae75ac8b5d2a16d578c9e446bd2747c42142756284c9eaf4bf27ade5c.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/77426e71d442d680b14a2a1ab73cc22aa02064fdaa12a2ab009ee32d1e4fb9a7.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/fa8cd65f8fb8623efa064647a690caac53843db94face81f329fd4c1169c37fb.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/6d9746266aa5f5897ac98ce7ca63cc39d7b9999579637318fc4de4d60623a169.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/Rinnegatamante/rrm-vita/releases/download/v.1.0/rrm.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/Rinnegatamante/rrm-vita"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/Rinnegatamante/rrm-vita/releases"
+    }
+  ]
+}

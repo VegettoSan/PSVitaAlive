@@ -1,0 +1,41 @@
+{
+  "id": "oceanpop",
+  "title_id": "OPOP00001",
+  "name": "OceanPop",
+  "description": "Match-3 game for PSVITA.",
+  "long_description": "Dive into the relaxing world of OceanPop and experience waves of match-3 gameplay with the three modes available!\nDon‘t get crushed by the tides before completing the 35 levels in regular mode, feel the rush of the currents in challenge mode or just go with the flow of the ocean breeze in relaxed mode!",
+  "author_ids": [
+    "sharkwouter"
+  ],
+  "category_id": "games",
+  "subcategory_ids": [
+    "puzzle"
+  ],
+  "version": "v.2.0",
+  "version_date": "2024-12-20",
+  "requirements": "",
+  "size": 28872251,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/9ba15b44bba093fdbc6f0ad18fa33e957bac9c7714fb076e00d75bcf5e6888ef.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/fc5936a5787d94d71ebbccf50df00c9afb663ae111fd5c6e2ab823bd64343b71.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/sharkwouter/oceanpop/releases/download/2.0/oceanpop-vita.zip",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/sharkwouter/oceanpop"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://sharkwouter.github.io/oceanpop/"
+    }
+  ]
+}

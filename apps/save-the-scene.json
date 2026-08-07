@@ -1,0 +1,36 @@
+{
+  "id": "save-the-scene",
+  "title_id": "LAPY00001",
+  "name": "Save The Scene",
+  "description": "Missile command style game.",
+  "long_description": "Save PS4 scene devs from bomb attacks and let them bring us the hack.",
+  "author_ids": [
+    "lapy"
+  ],
+  "category_id": "games",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.1.03",
+  "version_date": "2019-04-03",
+  "requirements": "",
+  "size": 51416047,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/8b22e1f24d173d7d24dc3dda39b086418824d73b167880c740560d01f0ea28fd.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/52de9176beeac78dd6bfa07b7afe10f2fb516ce4a3cd88ec8fd0ef0ea2744f74.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/445-Save_20the_20Scene.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/Lapy055/Save_the_Scene"
+    }
+  ]
+}

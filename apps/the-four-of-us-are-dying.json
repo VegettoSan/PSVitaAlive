@@ -1,0 +1,39 @@
+{
+  "id": "the-four-of-us-are-dying",
+  "title_id": "WSCG00005",
+  "name": "The Four of Us Are Dying",
+  "description": "Survival horror game for PSVITA.",
+  "long_description": "In progress survival horror game for PSVITA. This is a development build, mirrored with the author's permission.",
+  "author_ids": [
+    "noradninja"
+  ],
+  "category_id": "games",
+  "subcategory_ids": [
+    "horror"
+  ],
+  "version": "v.1.0",
+  "version_date": "2026-08-05",
+  "requirements": "",
+  "size": 114337376,
+  "status": "Archive",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/bda99a19593562e2db6239628f3709ececd7acc8abeb07ecf62b0623084923e1.png",
+  "screenshots": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/TFoUAD.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/noradninja/The-Four-of-Us-Are-Dying"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/noradninja/The-Four-of-Us-Are-Dying/tree/Current"
+    }
+  ]
+}

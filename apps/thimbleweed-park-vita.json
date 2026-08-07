@@ -1,0 +1,44 @@
+{
+  "id": "thimbleweed-park-vita",
+  "title_id": "THIMBPARK",
+  "name": "Thimbleweed Park Vita",
+  "description": "Port of Thimbleweed Park for PSVITA.",
+  "long_description": "This is a wrapper/port of Thimbleweed Park for the PS Vita.\nThe port works by loading the official Android ARMv7 executable in memory, resolving its imports with native functions and patching it in order to properly run. By doing so, it's basically as if we emulate a minimalist Android environment in which we run natively the executable as is.",
+  "author_ids": [
+    "rinnegatamante"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.1.2",
+  "version_date": "2025-10-21",
+  "requirements": "- libshacccg.suprx\n- kubridge.skprx\n- Game Data Files: Android",
+  "size": 2736197,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/606280b89a2c6253aae60a2039719fd21939a648ca6492f4da86ecd9e5705371.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/3fadbca764cd32fb7f47ef28be62cf8f921c47a0341b2eb8f2720ac66a4d7854.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/077ab4aafc2537d86c0e3dd4489e372d315aeec1b776a1e5e155cd3df889b8bb.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/56029ff4d22f47ea5e6f9975759c705815c05c95f6e1209072bc28b54d5f38ce.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/44bc8e17f41d7948ffb559372e08b2f269dd397e96b89001dbece73754f20347.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/Rinnegatamante/thimbleweed-vita/releases/download/v.1.2/thimbleweed.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/Rinnegatamante/thimbleweed-vita"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/Rinnegatamante/thimbleweed-vita/releases"
+    }
+  ]
+}

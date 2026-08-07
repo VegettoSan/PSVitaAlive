@@ -1,0 +1,39 @@
+{
+  "id": "quake-1-model-viewer",
+  "title_id": "MDLVIEWER",
+  "name": "Quake 1 Model Viewer",
+  "description": "Model viewer for Quake 1 models.",
+  "long_description": "PSVita Utility to view Models in the Quake 1 .mdl format.",
+  "author_ids": [
+    "gremlin-software"
+  ],
+  "category_id": "media",
+  "subcategory_ids": [
+    "image-viewer"
+  ],
+  "version": "v.1.0",
+  "version_date": "2026-06-17",
+  "requirements": "- libshacccg.suprx",
+  "size": 12075762,
+  "status": "Legacy",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/614a6b2b2a7224e835b1019abe2d57a5191ea139feaddb5f41941b047b9be301.png",
+  "screenshots": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/softwaregremlin2/Quake1ModelViewer/releases/download/Homebrew/mdlviewer.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/softwaregremlin2/Quake1ModelViewer"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/softwaregremlin2/Quake1ModelViewer/releases"
+    }
+  ]
+}

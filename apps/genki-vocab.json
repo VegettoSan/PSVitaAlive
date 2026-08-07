@@ -1,0 +1,38 @@
+{
+  "id": "genki-vocab",
+  "title_id": "GENK00001",
+  "name": "Genki Vocab",
+  "description": "Japanese learning utility for PSVITA.",
+  "long_description": "Learn the Japanese vocabulary from the Genki I textbook. Study and Test modes for each lesson. Keeps track of statistics in Career page. How well you know each word is designated by that word's level (can go up or down during Test mode). Your overall proficiency is designated by your Profile Level.",
+  "author_ids": [
+    "bk"
+  ],
+  "category_id": "games",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.1.0",
+  "version_date": "2023-09-22",
+  "requirements": "",
+  "size": 7550198,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/161b2c750df0fe5fecfbb43b0967747b3ea6981cb2063157b5e9cc8c56a65b27.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/060494ccb4fba4cbb3e07ba790ea97704a94c4b8f5f4e4b940dbe4fbccb45b1f.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/3eb1e8488ada20c53c3cd9c337f39f4c6fe272078c4361c6d6fa62c91a869258.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/9463ddc3b75fd47cec3b47c4738fb0d5c82d2a700225c732c948b2f12e9828dd.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1138-genki.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://fuhen.homebrew-contest.com/submissions/49/"
+    }
+  ]
+}

@@ -1,0 +1,39 @@
+{
+  "id": "itls-enso",
+  "title_id": "SKGTLSE12",
+  "name": "iTLS-Enso",
+  "description": "Application that allows to add TLS 1.2 support to PSVITA/PSTV running Henkaku enso CFW.",
+  "long_description": "Application that allows to add TLS 1.2 support to PSVITA/PSTV running Henkaku enso CFW.",
+  "author_ids": [
+    "skgleba"
+  ],
+  "category_id": "system",
+  "subcategory_ids": [
+    "firmware-tools"
+  ],
+  "version": "v3.2.1",
+  "version_date": "2023-01-17",
+  "requirements": "",
+  "size": 2873670,
+  "status": "Verified",
+  "icon": "https://robin994.github.io/NeoVitaDB-Catalog/icons/0404-itls-enso.png",
+  "screenshots": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/SKGleba/iTLS-Enso/releases/download/v3.2.1/iTLS-Enso.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/SKGleba/iTLS-Enso"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/SKGleba/iTLS-Enso/releases/tag/v3.2.1"
+    }
+  ]
+}

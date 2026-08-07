@@ -1,0 +1,44 @@
+{
+  "id": "baldur-s-gate-dark-alliance-vita",
+  "title_id": "BGDA00001",
+  "name": "Baldur's Gate: Dark Alliance Vita",
+  "description": "Port of Baldur's Gate: Dark Alliance for PSVita.",
+  "long_description": "This is a wrapper/port of Baldur's Gate: Dark Alliance for the PS Vita.\nThe port works by loading the official Android ARMv7 executable in memory, resolving its imports with native functions and patching it in order to properly run. By doing so, it's basically as if we emulate a minimalist Android environment in which we run natively the executable as it is.",
+  "author_ids": [
+    "nevak"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.1.06",
+  "version_date": "2026-02-28",
+  "requirements": "- libshacccg.suprx\n- kubridge.skprx\n- Game Data Files: Android",
+  "size": 5993441,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/cb39c510d3205edd64f6d47abd48f34d7915e6a2630fd81ed344c881eb403abb.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/5bc3511f061b8d502571b6466cf4eb49f23229a291db3d87f642c74063488402.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/91fe4215d7a400afcc60b3526e5739d801376a7cc9502d10c736e50f8dad4da8.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/43b25860d7ed80eb6b36a6ffaea0490acfccd315d78f6c8279c01e5835619edc.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/8bb4d641f42ac1a0b0c5521a63a4ac2d614e3a43bb98c3fbd618670680ffc15b.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/Nevak/bgda-vita/releases/download/v1.06/bgda.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/Nevak/bgda-vita"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/Nevak/bgda-vita/releases"
+    }
+  ]
+}

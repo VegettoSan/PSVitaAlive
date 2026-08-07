@@ -1,0 +1,34 @@
+{
+  "id": "sonic-vitality",
+  "title_id": "STHV01991",
+  "name": "Sonic Vitality",
+  "description": "Sonic fanmade game.",
+  "long_description": "Sonic Vitality is a currently indefinitely delayed fangame, worked on at an irregular pace since August 2019 and totalling an estimated 3,000+ hours of actual work. It was originally planned as a Generations-length Sonic adventure for both PC and PS Vita",
+  "author_ids": [
+    "soup-um"
+  ],
+  "category_id": "games",
+  "subcategory_ids": [
+    "adventure"
+  ],
+  "version": "Demo",
+  "version_date": "2021-05-11",
+  "requirements": "",
+  "size": 259769917,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/698cccfc81098d3611687736a4cc3142a57ceee895d7ebb44d139b413d2741c6.png",
+  "screenshots": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/668-STHV.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://drive.google.com/drive/mobile/folders/1vjaooZG7vKAfzxjRm98AVzNkygjUBiY9?usp=sharing"
+    }
+  ]
+}

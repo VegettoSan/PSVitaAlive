@@ -1,0 +1,39 @@
+{
+  "id": "katawa-crash",
+  "title_id": "VITAKSHOC",
+  "name": "Katawa Crash",
+  "description": "Recreation of Katawa Crash for PSVITA.",
+  "long_description": "Recreation of Katawa Crash, a fan-made flash game inspired from Katawa Shoujo, remade in Godot engine.",
+  "author_ids": [
+    "avonder"
+  ],
+  "category_id": "games",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.01.10",
+  "version_date": "2024-10-18",
+  "requirements": "",
+  "size": 33788956,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/3fbb4518a0c918ae84efc99db168c3d1fa7cce29fcbf3a1f6a53ccfd6db05933.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/4256f4d1544aeb0db1c02cf5b1b1f3ebca46fdd23304ba40bca6bebd6b807992.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/6a23f16e673e3120702cee94963fdb1038891703351ad3b742dc7a0c499cc1b4.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/dbc55794dd7b2e625c88459d56c6ebe3c69a184e23c6c699baddc65d78e03aa1.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/ed0398fc0d4182f3b2632209ba04099db6ae44c63de3a3ae693d0091b33f3168.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1087-katawa-crash.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://ks.renai.us/viewtopic.php?f=3&t=13530"
+    }
+  ]
+}

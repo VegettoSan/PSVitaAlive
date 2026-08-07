@@ -1,0 +1,39 @@
+{
+  "id": "bubblepunk",
+  "title_id": "BLPV00980",
+  "name": "BubblePunk",
+  "description": "Cyberpunk mixology visual novel game.",
+  "long_description": "Lumina City, 2647.\nIn this cybernetic metropolis, corporations reign supreme, their influence looming large over every facet of society. From the incessant hum of holographic advertisements to the dance of shadows beneath neon signs, the city pulses with a relentless energy that never sleeps.\nYet amidst the chaos and corruption, there exists a haven of tranquility, a sanctuary from the clamor of the streets. Your own handcrafted beverage haven, a cozy retreat from the dystopian realities outside. \nAs the proprietor of this refuge, you are more than just a bartender; you are a listener, a confidant, and a seeker of stories.\nWith an array of handpicked ingredients and a flair for mixology, you craft beverages that transcend mere refreshment, becoming liquid works of art that tantalize the senses and ignite the imagination.",
+  "author_ids": [
+    "cybertokyo"
+  ],
+  "category_id": "games",
+  "subcategory_ids": [
+    "visual-novel"
+  ],
+  "version": "v.0.2",
+  "version_date": "2025-04-08",
+  "requirements": "",
+  "size": 77201382,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/f830c2293fa40e61913c7fbf6e7ac2d7d9da323e54b8be7947924720ff3e9552.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/8bdac37100e5e9ae806b16461243440e327e84567c0afaced4a8f1a6e5ecf28f.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/7dc33964ccc07ce2044e3405e0de951e3d045c98e3e5f22d96da27267e047d0c.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/42ac88c203ae91df652b5099609cd08dd1988ba16f3348cf64b4eb9cf9c42c07.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/70792792e5189c31eb0c9437adfe8ce314a0886b4dab0bb51f7ca3547ae3c486.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1265-BubblePunk-Vita.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://cybertokyo.itch.io/bubblepunk"
+    }
+  ]
+}

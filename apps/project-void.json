@@ -1,0 +1,34 @@
+{
+  "id": "project-void",
+  "title_id": "VOID00001",
+  "name": "Project Void",
+  "description": "3D space shoot'em up.",
+  "long_description": "Disclaimer : this project is currently Way In Progress and there is no planned release date for now. \n\nThis project aims to be a space opera focused on dogfights. The way you build your spaceship using different modules such as engines, canons and so on, will impact the momentum and the whole physics that will make your ship move and react.\nAny module will have independant resistance and detroying a module will affect the physics of the ship until you repair it.",
+  "author_ids": [
+    "akabane87"
+  ],
+  "category_id": "games",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.0.1.0",
+  "version_date": "2017-09-04",
+  "requirements": "",
+  "size": 42266649,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/19007f87f34ec12be824bc56ff8e5753de30c09bcd32b8ab434aef05ee8a1e9d.png",
+  "screenshots": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/95-projectvoid.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "http://wololo.net/2017/09/11/ps-vita-homebrew-release-project-void-0-1-0/"
+    }
+  ]
+}

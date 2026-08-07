@@ -1,0 +1,44 @@
+{
+  "id": "ccleste-vita",
+  "title_id": "CCLESTVIT",
+  "name": "ccleste-vita",
+  "description": "Port of Celeste Classic for PSVITA.",
+  "long_description": "This is a port for PSVITA/PSTV of a C source port of the original celeste (Celeste classic) for the PICO-8, designed to be portable.\nCeleste is a platform game in which players control a girl named Madeline as she makes her way up a mountain while avoiding various deadly obstacles.",
+  "author_ids": [
+    "decomius"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "platformer"
+  ],
+  "version": "v1.0",
+  "version_date": "2021-03-06",
+  "requirements": "",
+  "size": 2408396,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/3d9072f5475203ee1026e0b1286d7bf9791de01e46c1350c7fcba853083a9f0d.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/8724a27d1d9c4b7713ab72a1c3d200434de3c524aea8c013f804c3e05ead1f93.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/343a315cc4a015c9659aca954ed0319a06de57a1bcd1c45f6d60645098b54e66.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/2bb61b064d434d6ab6757d6dd8b8b409c1355382d137e13c8996f9fd97f009b6.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/885df543234596a753c2606ae2f115c4d66b3c9dcd0ccd777bd438a9905546ab.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/Decomius/ccleste-vita/releases/download/v1.0/ccleste-vita.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/Decomius/ccleste-vita"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/Decomius/ccleste-vita/releases"
+    }
+  ]
+}

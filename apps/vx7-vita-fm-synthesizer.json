@@ -1,0 +1,34 @@
+{
+  "id": "vx7-vita-fm-synthesizer",
+  "title_id": "VFMF00001",
+  "name": "VX7 Vita FM Synthesizer",
+  "description": "Monophonic 3 synthesizer for PSVita.",
+  "long_description": "A simple monophonic 3 operator frequency modulation synthesizer with a simple piano roll/sequencer.",
+  "author_ids": [
+    "clickbatedubs"
+  ],
+  "category_id": "utilities",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.1.0",
+  "version_date": "2025-10-01",
+  "requirements": "",
+  "size": 1311247,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/15b3c0889ef244d08eee679bcb022002eead701707750540cc5c2dca0be496d4.png",
+  "screenshots": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1328-vita_fm.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://clickbatedubs.itch.io/vx7-vita-fm-synthesizer"
+    }
+  ]
+}

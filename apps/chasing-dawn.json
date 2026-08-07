@@ -1,0 +1,35 @@
+{
+  "id": "chasing-dawn",
+  "title_id": "VHCD31415",
+  "name": "Chasing Dawn",
+  "description": "A dark Gameboy styled adventure platformer.",
+  "long_description": "Chasing Dawn is a collaboration made with Hypatia. Intended to be akin to a Metroidvania except with a branching pathway and story structure, Chasing Dawn is a love-letter to the platformers of old.",
+  "author_ids": [
+    "mrkane",
+    "hypatia"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "Beta",
+  "version_date": "2025-01-24",
+  "requirements": "",
+  "size": 27962338,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/a90501c0a9dec362d5f705ddbb4fb9bc5061177b35729f263ab0a7e4e047fd62.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/366227c19d3a0ef04cebee0ad58dd26d91926b546f72055a56ccd3943da57753.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/f754190dc38ed5ad358b3e96c50c68947157ee04bbafd7cb85529aef57ddcd7f.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/83fcfb9992c3e50616643a05693370855e07cc3fc80e0a0707eaafb42541b693.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/0d38770b528bb9aa4208cba9ec2e68fabbae877ef9dcaea38461eae5dd1d6c36.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1250-ChasingDawn.vpk",
+      "recommended": true
+    }
+  ]
+}

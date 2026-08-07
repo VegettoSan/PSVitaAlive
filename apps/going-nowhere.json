@@ -1,0 +1,32 @@
+{
+  "id": "going-nowhere",
+  "title_id": "GHOS70000",
+  "name": "Going Nowhere",
+  "description": "Port of Going Nowhere for PSVITA.",
+  "long_description": "Going Nowhere is a 3D platforming adventure game made in 3 months by a team of 4. Players use a variety of parkour style maneuvers to navigate a dream-like urban environment and discover the mystery behind the town they find themselves in.",
+  "author_ids": [
+    "koleq"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "adventure"
+  ],
+  "version": "b27",
+  "version_date": "2021-12-12",
+  "requirements": "",
+  "size": 68289722,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/dd17f152c04673bcbdb289d862b5de2221d6c53259a2ac44305a366330c08ffb.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/b0dd128c2411b108535917ecf53dba2a4766aad24c49b50edd4dab49966cd199.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/62cf81bddf7af011e9c7cebe30e4018e0064480112beb072c101e182c2e8e64d.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/767-GoingNowhere.vpk",
+      "recommended": true
+    }
+  ]
+}

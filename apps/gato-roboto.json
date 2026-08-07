@@ -1,0 +1,37 @@
+{
+  "id": "gato-roboto",
+  "title_id": "GATOROBOT",
+  "name": "Gato Roboto",
+  "description": "Port of Gato Roboto for PSVITA.",
+  "long_description": "Patch and install instructions in Release Page (Github). Original game by DoinkSoft. Pounce inside of your cozy armored mech and set off on a dangerous trek through an alien underworld full of irritable creatures and treacherous obstacles in a valiant effort to save your stranded captain and his crashed spaceship.",
+  "author_ids": [
+    "m1s3ry"
+  ],
+  "category_id": "modding",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.1.0.0",
+  "version_date": "2022-01-20",
+  "requirements": "- Game Data Files: PC",
+  "size": 2859705,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/1a55b8557dd6bec7c083db1ef8a64b5270386cff95cbec05d992aadb691f0b7d.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/392f853f030606bf0644f45491474a6461d06f86b0fdc802ac3164c7347f0ceb.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c4da18fd37dd9a1553c4795d29cceebdc58c91548f1f61936c2f28d60b159693.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/m1s3ry/gato-roboto-vita/releases/download/v1.0.1/Gato_Roboto_v1.0.0.VPK",
+      "recommended": true
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/m1s3ry/gato-roboto-vita"
+    }
+  ]
+}

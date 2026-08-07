@@ -1,0 +1,44 @@
+{
+  "id": "eduke32-vita",
+  "title_id": "EDUKE0032",
+  "name": "EDuke32 Vita",
+  "description": "Port of EDuke32 for PSVITA.",
+  "long_description": "Port of EDuke32, a Duke Nukem 3D source port, for PSVITA. It supports also add-on packs, mods and all other EDuke32 regular features.",
+  "author_ids": [
+    "rinnegatamante"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "engine-port"
+  ],
+  "version": "v.1.6",
+  "version_date": "2019-09-05",
+  "requirements": "",
+  "size": 2007891,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/2bcca2c99b4b309124370b139a4158a697f39db8dc709d9d42ddd17d291facb4.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/e3a004e3277df2ffdf24f3a69022a70fecbc50433e558db09c59f83ccbba19f5.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/953b17698b8265e02dca662bebef31000620f09bd517377926af9a7fd3842202.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/1d55a8a815c1d3d21bf862003a154c075c88e254725d07c1bdc4185e76ba2ed9.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c73cc6b72a717fff741ba91b452e9137a96e3c3944821be2372988fed67ed39d.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/397-EDuke32.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/Rinnegatamante/EDuke32-Vita"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "http://wololo.net/talk/viewtopic.php?f=116&t=49442"
+    }
+  ]
+}

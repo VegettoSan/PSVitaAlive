@@ -1,0 +1,39 @@
+{
+  "id": "pgen",
+  "title_id": "PGEN00001",
+  "name": "pGEN",
+  "description": "Sega Genesis emulator, multiplatform port of Genesis Plus GX.",
+  "long_description": "Sega Genesis emulator, multiplatform port of Genesis Plus GX.",
+  "author_ids": [
+    "cpasjuste"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v7.1",
+  "version_date": "2025-12-30",
+  "requirements": "",
+  "size": 3425938,
+  "status": "Verified",
+  "icon": "https://robin994.github.io/NeoVitaDB-Catalog/icons/0820-pgen.png",
+  "screenshots": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/Cpasjuste/pemu/releases/download/v7.1/pgen.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/Cpasjuste/pemu"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/Cpasjuste/pemu/releases/tag/v7.1"
+    }
+  ]
+}

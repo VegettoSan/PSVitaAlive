@@ -1,0 +1,31 @@
+{
+  "id": "bitbot-runners",
+  "title_id": "BBRM12345",
+  "name": "BitBot Runners",
+  "description": "Runner game for PSVITA.",
+  "long_description": "Port of BitBot Runners, an indie running game in which your goal is to get points by passing levels and with that being able to buy new characters.",
+  "author_ids": [
+    "luckthegamers"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.1.0",
+  "version_date": "2019-11-23",
+  "requirements": "",
+  "size": 42867164,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/f333b9f8255ff67bcd5bd7f571bf614336c18f6ea242e5189fa077889116a26f.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/1ef18f6f06fdf5c05cb8a6ba26a086785748698ed5e1959eb08c499ba1e6467e.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/519-BitBot-Runners.vpk",
+      "recommended": true
+    }
+  ]
+}

@@ -1,0 +1,41 @@
+{
+  "id": "random-vita-game-launcher",
+  "title_id": "RANDOMPSV",
+  "name": "Random Vita Game Launcher",
+  "description": "A random game launcher for PS Vita.",
+  "long_description": "Spend too long choosing a game to play, or you don't get around to trying new games? Use this app to select and launch a Vita game at random for you to play.",
+  "author_ids": [
+    "jimbob4000"
+  ],
+  "category_id": "games",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.1.0",
+  "version_date": "2023-12-30",
+  "requirements": "",
+  "size": 4707494,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/48a4552d002414f9288fc3da1a477a4a04448e255634a25b266d4aa0c4f37ece.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/3407f4ff72ef98e1ffe6a7a08e99088f91e965729b425f41800ffd7969ff424a.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/jimbob4000/Random-Vita-Game-Launcher/releases/download/v1.0/Random_Vita_Game_Launcher_v1.0.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/jimbob4000/Random-Vita-Game-Launcher"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/jimbob4000/Random-Vita-Game-Launcher/releases"
+    }
+  ]
+}

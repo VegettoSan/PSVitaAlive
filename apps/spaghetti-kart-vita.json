@@ -1,0 +1,44 @@
+{
+  "id": "spaghetti-kart-vita",
+  "title_id": "SPAGHETTI",
+  "name": "Spaghetti Kart Vita",
+  "description": "Port of Spaghetti Kart for PSVita.",
+  "long_description": "Spaghetti Kart is a sourceport of Mario Kart 64 based off the decompilation efforts of the game. It features several enhancements and mods support. The Vita port is based on version 1.0.0 (Bolognese Alfa) with bugfixes from the in-development branch.",
+  "author_ids": [
+    "rinnegatamante"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "racing"
+  ],
+  "version": "v.1.1",
+  "version_date": "2026-05-07",
+  "requirements": "- libshacccg.suprx\n- Game Data Files: N64",
+  "size": 7722903,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/1b6f60507a0dfa9122b491b83c885817f511203af45f619ad2f5ad9ca48e7a0e.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/cdaf791df7b49b776fd454bb22bb11051df4c6ff91a959b60a6cfdd7cd3bf386.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/20b6e483c87309d3394c235cd4968b1ce65eba8057cd17c61bc5f79faf638474.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/869511cee9d90369a1924b226cc0f866e1b0599b3840a7b0895b67cc1b03c073.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/26820f8e65826f74387251197a052bfccc52b10646966a9c959ebeb0676da904.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/Rinnegatamante/SpaghettiKart/releases/download/v.1.1/spaghetti.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/Rinnegatamante/SpaghettiKart"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/Rinnegatamante/SpaghettiKart/releases"
+    }
+  ]
+}

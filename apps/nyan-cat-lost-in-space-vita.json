@@ -1,0 +1,44 @@
+{
+  "id": "nyan-cat-lost-in-space-vita",
+  "title_id": "NYANCAT01",
+  "name": "Nyan Cat: Lost in Space Vita",
+  "description": "Port of Nyan Cat: Lost in Space for PSVita.",
+  "long_description": "This is a wrapper/port of Nyan Cat: Lost in Space for the PS Vita.\nThe port works by loading the official Android ARMv7 executable in memory, resolving its imports with native functions and patching it in order to properly run. By doing so, it's basically as if we emulate a minimalist Android environment in which we run natively the executable as it is.",
+  "author_ids": [
+    "rinnegatamante"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.1.0",
+  "version_date": "2025-08-08",
+  "requirements": "- libshacccg.suprx\n- kubridge.skprx\n- Game Data Files: Android",
+  "size": 2728807,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/cba2cd9779cd60aa0e4d28b4a587942d212b214b24f2cfeab0d5b9774879b691.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/6ce17ff74ff6197fbf30133f04d3330e24996182b22ca4c2098ec10bbad3c1ad.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/4e98db472475c248f31a766df31a31cf73ca3a2c219a11a3d533786582ffdd64.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/b62a8759e4a12f5497e8b5d873d30d1678c0cf7d54f7fd7ab9823921aab51ac5.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/d9f85209219f84dc670e7cb3a530c1361e8ef173a8317093b189cd7b45e2f6b2.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/Rinnegatamante/nyan-vita/releases/download/v.1.0/nyan.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/Rinnegatamante/nyan-vita"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/Rinnegatamante/nyan-vita/releases"
+    }
+  ]
+}

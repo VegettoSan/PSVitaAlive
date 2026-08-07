@@ -1,0 +1,41 @@
+{
+  "id": "openjazz",
+  "title_id": "OPENJAZZ1",
+  "name": "OpenJazz",
+  "description": "Jazz Jackrabbit port for PSVITA.",
+  "long_description": "OpenJazz is a free, open-source version of the classic Jazz Jackrabbitâ„¢ games. OpenJazz can be compiled on a wide range of operating systems, including Windows 98/Me/XP and Linux. To play, you will need the files from one of the original games.",
+  "author_ids": [
+    "usineur"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.1.1",
+  "version_date": "2018-04-13",
+  "requirements": "- Game Data Files: PC",
+  "size": 752944,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/159f6765a36e2307c1f371987b42061e98418e27f862b9fa77130a90dd1c2029.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/30652f4732a3025eccb49d3a3734b4787332911d2a7a6a7c5631cc575a64d845.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/usineur/openjazz/releases/download/1.1/OpenJazz.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/usineur/openjazz"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/usineur/openjazz/releases/latest"
+    }
+  ]
+}

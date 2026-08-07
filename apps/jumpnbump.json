@@ -1,0 +1,43 @@
+{
+  "id": "jumpnbump",
+  "title_id": "JUMPNBUMP",
+  "name": "JumpNBump",
+  "description": "Port of JumpNBump for PSVITA.",
+  "long_description": "Jump'n'Bump is a simple but addictive multiplayer game. The goal is to stomp as many other rabbits as possible to win the game.",
+  "author_ids": [
+    "rsn8887"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.1.00",
+  "version_date": "2019-02-15",
+  "requirements": "",
+  "size": 1286536,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/863467ad18532f9ff49fbc3a4bc4a5e225a269973b9a31910dd84cd0155eaddf.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/0e325d8de71def5135da675cb7b2424a98a299f835deb7b8652bd501599de59a.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/21e43df81fdfffa46e06d93477ffcaa9de3f00b5759334c0cac68b9a0718a4e8.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/cfaff5c058642256eff39bc24cf2ed4f8645f69e5555b7ba49badf5d537cbaa4.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/rsn8887/jumpnbump/releases/download/1.02/jumpnbump_1.00.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/rsn8887/jumpnbump"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/rsn8887/jumpnbump/releases"
+    }
+  ]
+}

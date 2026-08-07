@@ -1,0 +1,39 @@
+{
+  "id": "chro-mono-2",
+  "title_id": "CHROMONO2",
+  "name": "chro.mono 2",
+  "description": "Port of chro.mono 2 for PSVITA.",
+  "long_description": "chro.mono 2 is a puzzle game for mobile devices. Solve puzzles with time limits in 120 exciting levels over 6 different level packs. Improve your scores by finishing levels faster than the target time.",
+  "author_ids": [
+    "thp"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "puzzle"
+  ],
+  "version": "v.1.0",
+  "version_date": "2019-05-06",
+  "requirements": "",
+  "size": 5595880,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/e4babde49c45f5df24033e7a28f8d025379cd2c1731736f1086d9c0d08b7923b.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/466bcc292e32a12c0d300a5bdb8d91b367ed6ab60ec3c1372d732c5c7447cd1f.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/41eec3b8925a53fd6d7139e48b4a5731bb769de73cd4e2a146d7f7b5c76f27b1.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/ef8476aaaf6543906144986361d67c4984bcea1c0d6b71cf50bbea0a1268fde4.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/47d07ebdb7cae669c824d495ac5a1e51d8ec9f648365e82862198e627d1080c5.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/477-chromono2.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://thp.itch.io/chromono-vita"
+    }
+  ]
+}

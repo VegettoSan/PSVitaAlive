@@ -1,0 +1,36 @@
+{
+  "id": "ufe",
+  "title_id": "FIGH12345",
+  "name": "UFE",
+  "description": "A 3D fighting game for PSVITA.",
+  "long_description": "A 3D fighting game for PSVITA/PSTV made in Unity.",
+  "author_ids": [
+    "retrogamer74"
+  ],
+  "category_id": "games",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "Demo",
+  "version_date": "2019-04-23",
+  "requirements": "",
+  "size": 57123701,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/6c8f9de1a8286703cbe8490ad460bc020e16b7f57d5407567d7ba85e5810ec1c.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/456d5d08a8565e2820849bff472353ee160b19c963de54774f32ad4c41db6629.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/470-UFE_Demo.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://twitter.com/RetroGamer_74/status/1120398841071714305"
+    }
+  ]
+}

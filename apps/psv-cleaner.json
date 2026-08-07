@@ -1,0 +1,39 @@
+{
+  "id": "psv-cleaner",
+  "title_id": "CLEAN0000",
+  "name": "Psv Cleaner",
+  "description": "PSV Cleaner is a powerful and user-friendly temporary files cleaner.",
+  "long_description": "PSV Cleaner is a powerful and user-friendly temporary files cleaner. This tool helps you free up valuable storage space by safely removing temporary files, cache data, and system dumps that accumulate over time.",
+  "author_ids": [
+    "theherogac"
+  ],
+  "category_id": "utilities",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "1.14",
+  "version_date": "2026-07-07",
+  "requirements": "",
+  "size": 113897,
+  "status": "Legacy",
+  "icon": "https://robin994.github.io/NeoVitaDB-Catalog/icons/1454-psvcleaner.png",
+  "screenshots": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/theheroGAC/PSV-Cleaner/releases/download/1.14/PSV_Cleaner.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/theheroGAC/PSV-Cleaner"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/theheroGAC/PSV-Cleaner/releases/tag/1.14"
+    }
+  ]
+}

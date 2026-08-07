@@ -1,0 +1,38 @@
+{
+  "id": "five-night-at-freddy-s-2-lite",
+  "title_id": "FNAF2VITA",
+  "name": "Five Night at Freddy's 2 Lite",
+  "description": "Recreation of FNAF2 for PSVITA.",
+  "long_description": "A receration made in Game Maker Studio of Five Night at Freddy's 2 for PSVITA.",
+  "author_ids": [
+    "alexdev2"
+  ],
+  "category_id": "games",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.0.3.5",
+  "version_date": "2022-03-02",
+  "requirements": "",
+  "size": 85766384,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/ba87c5464f7c183f3d8e1048ebb0635cc0cbd5bd715e3ecff98969211668fa89.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/5d4ca28713ef83024f46f2a9a552abc7287d64478215d991a06acf7d8cb96dd3.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/9eb120b263960893ccdbf59cfd95c9d7a598a89251dea9b0f5f06eaa94e8f4aa.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/2b687ec2827b2fe6ecdc1d3a8d0d8ea7f04dd3572545a327320e1df0c1a93a99.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/856-fnaf-2-vita.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://gamejolt.com/games/FNAF2PSP/680533"
+    }
+  ]
+}

@@ -1,0 +1,39 @@
+{
+  "id": "minecraft-story-mode",
+  "title_id": "MCSM00001",
+  "name": "Minecraft: Story Mode",
+  "description": "Minecraft: Story Mode Season 1 port.",
+  "long_description": "Port of Minecraft: Story Mode Season 1 for PSVITA, based on the Android release. The game data has to be supplied by the user and converted with the MCSM Vita Data Builder available on the release page.",
+  "author_ids": [
+    "lezergan"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.1.10",
+  "version_date": "2026-08-03",
+  "requirements": "Game Data Files: Android",
+  "size": 3438377,
+  "status": "Archive",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/a1b03a0f81c6f37a2767c466c3700786c07707965b267516fc0143362e7b3ecd.png",
+  "screenshots": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/LeZergan/mcsm-vita/releases/download/v1.10/MCSM-1.10.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/LeZergan/mcsm-vita"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/LeZergan/mcsm-vita/releases"
+    }
+  ]
+}

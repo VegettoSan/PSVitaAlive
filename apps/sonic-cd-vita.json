@@ -1,0 +1,43 @@
+{
+  "id": "sonic-cd-vita",
+  "title_id": "SOCD00001",
+  "name": "Sonic CD Vita",
+  "description": "Port of Sonic CD for PSVITA/PSTV.",
+  "long_description": "Port of Sonic CD for PSVITA/PSTV based on the decompilation of Sonic CD 2011.\nThis specific decompilation is based on the PC remake with improvements & tweaks from the mobile remakes.",
+  "author_ids": [
+    "sonicmastr"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.0.2 Alpha",
+  "version_date": "2021-01-05",
+  "requirements": "- Game Data Files: Android OR PC",
+  "size": 969613,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/bc0ee8c97c96d28d14dc528c87d5d4120b1140579bb9eaf2d46ae98150691964.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/149afeb5058e59092a6a634485a2fdada35a0b2a46c30d78b73a3545f73543da.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/69f3bfaec762e09a1f08ff0acfa8aea878bcf2d541cfd2e2481aef7133df3efa.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/1446323683e93fd7d5442d52e7b564da91ac3a9b9dd66319f796472cfae9072b.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/SonicMastr/Sonic-CD-Vita/releases/download/0.2/SonicCD.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/SonicMastr/Sonic-CD-Vita"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/SonicMastr/Sonic-CD-Vita/releases"
+    }
+  ]
+}

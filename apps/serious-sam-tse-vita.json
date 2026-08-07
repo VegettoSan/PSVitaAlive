@@ -1,0 +1,43 @@
+{
+  "id": "serious-sam-tse-vita",
+  "title_id": "SSAM10002",
+  "name": "Serious Sam TSE Vita",
+  "description": "Port of Serious Sam: The Second Encounter for PSVita.",
+  "long_description": "Port of Serious Sam: The Second Encounter for PSVita based off the sourcecode release from Croteam.",
+  "author_ids": [
+    "fgsfds"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "psvita2",
+  "version_date": "2025-12-17",
+  "requirements": "- libshacccg.suprx\n- Game Data Files: PC",
+  "size": 4225479,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/866a4fcad6baf45cba26a3378390523858dd8a49ee170e6541dacb71f907e114.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/60ab9e0a27ea3baa8de7026d40a00b052ad02fdb7d93be1579c051abdb0e3073.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/424f391fdc9f8b520c180b3fa0a602be44a28efbafc77fb07ddc60d975dbd373.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/b3daa676ea220d8c061720715bc874ba6f536fa183855e2103179b485bd23b8c.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/fgsfdsfgs/Serious-Engine/releases/download/psvita2/ssam_tse_v2.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/fgsfdsfgs/Serious-Engine/tree/psvita"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/fgsfdsfgs/Serious-Engine/releases"
+    }
+  ]
+}

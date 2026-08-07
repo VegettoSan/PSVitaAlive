@@ -1,0 +1,34 @@
+{
+  "id": "nanospeed-gamer",
+  "title_id": "LAPY30016",
+  "name": "NanoSpeed Gamer",
+  "description": "Endless running game for PSVITA.",
+  "long_description": "A 2D endless running game for PSVITA/PSTV inspired by a popular YouTuber.",
+  "author_ids": [
+    "lapy"
+  ],
+  "category_id": "games",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.1.0",
+  "version_date": "2020-06-02",
+  "requirements": "",
+  "size": 38962353,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/c5954661a2559baa03b3ac6767b57348cb6e2b4ab566e6e16a1aace7a3da0c1c.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/2b0d4d74e8adf83bb280bf537258a8e26a77ad236197cd646621205ca0524ae2.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/824d5e4295117305b6dcdcad946b56dd28b9500694fc82b8e360315e0d3afc5d.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/78415d1dd9afe2c0817884e47ad9a9e15e0973aa9e898ec4ec23c572c891db70.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/a448d6d0319ede630614360c4d93f050316b5808324835aac759cc116aaf9ba0.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/556-NanospeedGamer.vpk",
+      "recommended": true
+    }
+  ]
+}

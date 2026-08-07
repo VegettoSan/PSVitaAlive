@@ -1,0 +1,44 @@
+{
+  "id": "paper-train-rush-vita",
+  "title_id": "PAPTRARUS",
+  "name": "Paper Train: Rush Vita",
+  "description": "This is a wrapper/port of Paper Train: Rush for the PS Vita.",
+  "long_description": "This is a wrapper/port of Paper Train: Rush for the PS Vita.\nThe port works by loading the official Android ARMv7 executables in memory, resolving its imports with native functions and patching it in order to properly run. By doing so, it's basically as if we emulate a minimalist Android environment in which we run natively the executable as is.",
+  "author_ids": [
+    "rinnegatamante"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.1.0",
+  "version_date": "2025-12-03",
+  "requirements": "- libshacccg.suprx\n- kubridge.skprx\n- Game Data Files: Android",
+  "size": 2465386,
+  "status": "Legacy",
+  "icon": "https://robin994.github.io/NeoVitaDB-Catalog/icons/1350-paper-train-rush-vita.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/4be762f7d3a0b6907342fe41c44d0154ea430c0ba0630c062fe95a3c306837d7.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/a9bf170699d4b2660f81f51920e70d00629a88380dae561f83e22d0f7af7280b.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/e44b7e4c58256da118cc2354ef42dac28ae7daeb91714b38e5aa36e758ab1ea6.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/cf749e4d85425044f4b2b06c8a57fc0983d269707fe0f0d09b5580c7a05a4a73.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/Rinnegatamante/paper_rush-vita/releases/download/v.1.0/papertrainrush.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/Rinnegatamante/paper_rush-vita"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/Rinnegatamante/paper_rush-vita/releases/tag/v.1.0"
+    }
+  ]
+}

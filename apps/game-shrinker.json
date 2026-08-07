@@ -1,0 +1,29 @@
+{
+  "id": "game-shrinker",
+  "title_id": "DAKR00001",
+  "name": "Game Shrinker",
+  "description": "Rip your games to save SD space.",
+  "long_description": "Save valuable space on your memory card by shrinking unneeded manuals, language and video files to 0-Byte files.\nGame Shrinker automatically searches for manuals, language (text, audio, images) and video files in the game directories and offers you the possibility to shrink them to 0-Byte.\n\nShrinking files to 0-Byte is usually better supported than completely deleting them and reduces the chance of crashes and getting stuck when the file would usually be accessed by the game. Depending on the game and file, you still cannot shrink every file, though.\n\nGame Shrinker comes with a \"Try-A-Dummy\"-Feature, which let's you temporary replace a file with a dummy-file. After you tested the game you can then decide to make this change permanent or undo it. (This saves you from having to reinstall the game if you shrinked a file that is obligatory for the the game)",
+  "author_ids": [
+    "dakor"
+  ],
+  "category_id": "games",
+  "subcategory_ids": [
+    "card"
+  ],
+  "version": "v.1.1",
+  "version_date": "2016-11-26",
+  "requirements": "",
+  "size": 380747,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/f53708caff5294940ab1693d99e59ca90236b3c8feba058bc72f5c2f649e9ac0.png",
+  "screenshots": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/97-game_shrinker.vpk",
+      "recommended": true
+    }
+  ]
+}

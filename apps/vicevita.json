@@ -1,0 +1,44 @@
+{
+  "id": "vicevita",
+  "title_id": "MEIR00002",
+  "name": "VICEVita",
+  "description": "Commodore 64 emulator.",
+  "long_description": "VICEVita is a port of the Versatile Commodore Emulator (VICE) for the PlayStation Vita.\nIt features a completely new UI with touch keyboard, savestates and control mappings.",
+  "author_ids": [
+    "ammeir"
+  ],
+  "category_id": "emulators",
+  "subcategory_ids": [
+    "commodore"
+  ],
+  "version": "v.1.2",
+  "version_date": "2020-12-19",
+  "requirements": "",
+  "size": 2489495,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/e901372988cd5a0aa0b91f8faec1bce37fdded83674044aab7c77e93c28d6d48.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/0d3469c7cd6f54b0c57342dec1bfd1b383f6693268d23968c22d3876b896880e.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/0656bb7c0c2eff9aaa572d962211bdf7d55602490d69c7f7fc319e78426bfe3d.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/4a1cfc4cf13ffc5611ddc9545ea908153ba6465bf2b4db063da4d56d1c03857e.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/b74f71c18d003f90a73be3cf91ff504331cd38c9f83d41b329b4f65836c2e27a.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/ammeir/vicevita/releases/download/v1.2/vicevita.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/ammeir/vicevita"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/ammeir/vicevita/releases"
+    }
+  ]
+}

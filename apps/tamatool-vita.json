@@ -1,0 +1,42 @@
+{
+  "id": "tamatool-vita",
+  "title_id": "TAMA99999",
+  "name": "Tamatool Vita",
+  "description": "Vita port of Tamatool, a Tamagotchi emulator.",
+  "long_description": "Vita port of Tamatool, a Tamagotchi emulator.\n\nYour Tamagotchi ROM must be placed in ux0:/data/tamatool with the name rom.bin\nSee project's readme for more information.\nhttps://github.com/nn9dev/tamatool-vita",
+  "author_ids": [
+    "goodafternoon"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.0.1",
+  "version_date": "2024-07-10",
+  "requirements": "- Game Data Files: Tamagotchi",
+  "size": 3748503,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/aaee2c6e873f3eef8026e6b8ff6366f6c38d7f71043d7ae46d58cb2a5cdbe213.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/727607add71b2efb029dac8f309f3569283626708ef1267acb762b7ac2d236f7.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/32594b0beed6187d3323eeca2046de9ab30dc1a7a9ccc09867a8fe41d97a2da0.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/nn9dev/tamatool-vita/releases/download/vita-0.1/tamatool-vita-0.1.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/nn9dev/tamatool-vita"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/nn9dev/tamatool-vita/releases"
+    }
+  ]
+}

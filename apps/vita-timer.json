@@ -1,0 +1,29 @@
+{
+  "id": "vita-timer",
+  "title_id": "BLTG49694",
+  "name": "Vita Timer",
+  "description": "Stopwatch utility for PSVITA.",
+  "long_description": "A stopwatch utility made with Unity for PSVITA/PSTV.",
+  "author_ids": [
+    "anchitpatra"
+  ],
+  "category_id": "utilities",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.1.0",
+  "version_date": "2020-02-11",
+  "requirements": "",
+  "size": 30456797,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/921cdbab83a8a92a9b1202d6d1e52f1958af2b58694d1479619e4b8de7c71fc6.png",
+  "screenshots": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/535-Vita_20Timer.vpk",
+      "recommended": true
+    }
+  ]
+}

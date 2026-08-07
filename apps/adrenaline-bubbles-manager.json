@@ -1,0 +1,39 @@
+{
+  "id": "adrenaline-bubbles-manager",
+  "title_id": "ADRBUBMAN",
+  "name": "Adrenaline Bubbles Manager",
+  "description": "This useful application allows you to make personalized bubbles with 'icon' and 'title' of your PSP content (HBS/PSX/ISO/CSO) quick and easy.(It doesn't...",
+  "long_description": "This useful application allows you to make personalized bubbles with 'icon' and 'title' of your PSP content (HBS/PSX/ISO/CSO) quick and easy.(It doesn't work on Adrenaline 8).",
+  "author_ids": [
+    "onelua"
+  ],
+  "category_id": "system",
+  "subcategory_ids": [
+    "compatibility"
+  ],
+  "version": "6.20",
+  "version_date": "2023-07-23",
+  "requirements": "",
+  "size": 9728063,
+  "status": "Verified",
+  "icon": "https://robin994.github.io/NeoVitaDB-Catalog/icons/1453-adrenalinebubblemanager.png",
+  "screenshots": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/ONElua/AdrenalineBubbleManager/releases/download/6.20/AdrenalineBubbleManager.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/ONElua/AdrenalineBubbleManager"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/ONElua/AdrenalineBubbleManager/releases/tag/6.20"
+    }
+  ]
+}

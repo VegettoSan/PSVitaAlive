@@ -1,0 +1,33 @@
+{
+  "id": "pancomos",
+  "title_id": "PCOS21047",
+  "name": "PanComOS",
+  "description": "Port of PanComOS for PSVITA.",
+  "long_description": "Welcome to PanCom OS, the world's first spam filtering operating system. Your job is to inspect E-Mails and judge if they're allowed to be sent out. Earn money to customize your desktop with themes, cursors, and backgrounds! Invade people's privacy in the name of safety! Have fun and good luck! Huge thanks and credits for m1s3ry and Grossley for helping, Hyohnoo and Viktor Kraus for making this game.",
+  "author_ids": [
+    "hatoving"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.1.1",
+  "version_date": "2021-04-07",
+  "requirements": "",
+  "size": 14601663,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/5a2b05abb8b8e2ebef5f3f727d62cf775f3a68551f5794952ea0a11c2a7484b1.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/439297104529227ae397dc59bf7d0286bc1c763251aa959b7143e3e00b402cca.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/5e2ab6e2496370bb0cab5a0e06d97704d875a481364bb176e5cf06ed383dc483.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/0325cfc275b588730235bfc4564d770fc4e50ed7419abd28141c35307be72ea5.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/637-PanComOS.vpk",
+      "recommended": true
+    }
+  ]
+}

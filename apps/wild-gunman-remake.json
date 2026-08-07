@@ -1,0 +1,31 @@
+{
+  "id": "wild-gunman-remake",
+  "title_id": "LAPY00009",
+  "name": "Wild Gunman Remake",
+  "description": "Clone of Wild Gunman.",
+  "long_description": "Clone of Wild Gunman, classic game for NES, for PSVITA/PSTV.",
+  "author_ids": [
+    "lapy"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.1.02",
+  "version_date": "2019-06-22",
+  "requirements": "",
+  "size": 39995146,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/51cdc73a2a8b67e68d2d9c3424316225afcf44c917dca0084ce3657602b57bf0.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/684c5bdeb1a9e6ba43d8210a76763a5f58c4766100e78c7b975f339c7e8218ee.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/486-Wild_20Gunman.vpk",
+      "recommended": true
+    }
+  ]
+}

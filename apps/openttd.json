@@ -1,0 +1,44 @@
+{
+  "id": "openttd",
+  "title_id": "ANGU00001",
+  "name": "OpenTTD",
+  "description": "Transport Tycoon Deluxe port.",
+  "long_description": "OpenTTD is an open source simulation game based upon Transport Tycoon Deluxe. Please note the game takes ~60 seconds to load.",
+  "author_ids": [
+    "angguss"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "simulation"
+  ],
+  "version": "v.0.3",
+  "version_date": "2019-03-07",
+  "requirements": "",
+  "size": 3727798,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/f04c50b1cfbd32873e77a9426958b8d07188dd239afec559d08c2e1e01155b38.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/5c366c90013c8b02fca2e7c8c546c252936a2c3dfd37e3999abb37d2f0b3d48c.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/cf9ea6655e1f46f6b198e80de507fdbac263ffda327de750eb6ac43b259190aa.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/75b447c075d96c28abb81ddcaca4ef905913c142ec086238bf85dc967259fdb3.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/6ed488a358ffbc6a58f94bf61768fe8c10d69effe007f9747283e56e44f54958.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/angguss/OpenTTD/releases/download/0.3-vita/openttd.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/angguss/OpenTTD/"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/angguss/OpenTTD/releases"
+    }
+  ]
+}

@@ -1,0 +1,36 @@
+{
+  "id": "quick-remounter",
+  "title_id": "QRMNTTOOL",
+  "name": "Quick Remounter",
+  "description": "Quick and easily mount/remount your preferred storage.",
+  "long_description": "This app will allow you to quickly remount your prefered storage as UX0. ideal for quickly swapping from internal to external storage or remounting an SD after a fresh jailbreak.",
+  "author_ids": [
+    "anthj"
+  ],
+  "category_id": "utilities",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.1.0",
+  "version_date": "2023-01-19",
+  "requirements": "",
+  "size": 4799848,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/ed5ebd1267831443961b6ce54a6a021aa80a1cd90e2d93b689a8653a623537f7.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/4cd6126722db33d45cee6d8017d08aeaddd3c61f18bda9d9f010040148de3dd0.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/AntHJ/Quick-Remounter/releases/download/v1.0/QuickRemounter.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/AntHJ/Quick-Remounter/releases"
+    }
+  ]
+}

@@ -1,0 +1,44 @@
+{
+  "id": "avp-gold",
+  "title_id": "AVPGOLD20",
+  "name": "AvP Gold",
+  "description": "Port of AvP Classic 2000 for PSVITA.",
+  "long_description": "AvP Gold Vita is a port of AvP Classic 2000, an FPS made by Rebellion Developments set in Aliens vs Predator world. You can play as a Marine, as an Alien or as a Predator; the game features three different campaigns and a skirmish mode to play against bots in deatmatch games.",
+  "author_ids": [
+    "rinnegatamante"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "fps"
+  ],
+  "version": "v.0.8",
+  "version_date": "2020-07-22",
+  "requirements": "- Game Data Files: PC",
+  "size": 3507347,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/998d65174f430c934982dab55eec46592e5b3de045142f9e61ae035b3c033b91.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/7c9da5793ddd683af460c2576f58e786e9aa28f032f6d6c5e23d81a9207b337f.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/180b8370eee9e7e20158b24e6e6512eac15d2020b4c868b69feab7172ecdbfa5.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/7dce1468cb789dacfb0f5df641632aa08b8b8dfb56b6aa41194238016374a27c.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/9160f2f9bf9610477b5e3f47120b3f412a983045df22e000d90f53cafbec9fe5.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/569-avp.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/Rinnegatamante/AvP-Gold-Vita"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://www.psx-place.com/threads/avp-gold.30555/"
+    }
+  ]
+}

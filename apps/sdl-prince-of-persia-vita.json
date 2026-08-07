@@ -1,0 +1,39 @@
+{
+  "id": "sdl-prince-of-persia-vita",
+  "title_id": "SPOP00001",
+  "name": "SDL Prince of Persia Vita",
+  "description": "SDLPoP is an open-source project that aims to allow people to play the original Prince of Persia DOS games on modern systems without the use of tools like...",
+  "long_description": "SDLPoP is an open-source project that aims to allow people to play the original Prince of Persia DOS games on modern systems without the use of tools like DosBox. It was originally created by disassembling the code of the original game to get the source.",
+  "author_ids": [
+    "usineur"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "vita-1.7",
+  "version_date": "2019-10-13",
+  "requirements": "",
+  "size": 999627,
+  "status": "Verified",
+  "icon": "https://robin994.github.io/NeoVitaDB-Catalog/icons/0012-sdl-prince-of-persia-vita.png",
+  "screenshots": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/usineur/SDLPoP/releases/download/vita-1.7/SDLPoP-Vita.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/usineur/SDLPoP"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/usineur/SDLPoP/releases/tag/vita-1.7"
+    }
+  ]
+}

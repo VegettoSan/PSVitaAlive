@@ -1,0 +1,38 @@
+{
+  "id": "onslaught-arena",
+  "title_id": "ONAR00001",
+  "name": "Onslaught Arena",
+  "description": "Port of Onslaught Arena for PSVITA.",
+  "long_description": "Fight off hordes of classic medieval monsters in this fast paced arcade shooter!\nYou are Xam, a seasoned fighter. Defeat wave after wave of ruthless enemies such as goblins, cyclops, evil wizards, sandworms and more! Luckily you've got all manner of deadly weapons in your arsenal: swords, daggers, spears, battle axes and even balls of fire!\nHow long can you survive the arena?!",
+  "author_ids": [
+    "psjuan"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "fps"
+  ],
+  "version": "v.1.0",
+  "version_date": "2023-09-22",
+  "requirements": "",
+  "size": 2806372,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/c5ba2baa69be122baef98fe79162d81c08010578f6dd6a2d7a871d0e7862714d.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/8e77dc2e6790a0f026ea612d8abf39c336b910161cfac04c1b6aa25f9662933b.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/d4bfc2ab516fb1fa74a4b91e081123e4c8e6e9950b2834039660d324f1a3dffa.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/b41e6446f1296e5b536c24a323f6f2882f9e61a6f4ee56b79fd23b31a8c07558.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1136-OnslaughtArena.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://fuhen.homebrew-contest.com/submissions/50/"
+    }
+  ]
+}

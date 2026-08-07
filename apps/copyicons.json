@@ -1,0 +1,39 @@
+{
+  "id": "copyicons",
+  "title_id": "CPIC00001",
+  "name": "CopyIcons",
+  "description": "Copies Livearea app assets to appmeta folder.",
+  "long_description": "This application is used for bulk copying icon0.png/pic0.png from the ux0:app/GAME_ID/sce_sys to the ur0:appmeta/GAME_ID folder. To be used in conjuction with Vita Launcher.",
+  "author_ids": [
+    "cy33hc"
+  ],
+  "category_id": "customization",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.1.01",
+  "version_date": "2020-09-30",
+  "requirements": "",
+  "size": 68132,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/4d1454e393cae91484c9a2b8203c741062ebda999d0082fcb863ad5df649ed6f.png",
+  "screenshots": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/cy33hc/copyicons/releases/download/1.01/CopyIcons.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/cy33hc/copyicons"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/cy33hc/copyicons/release"
+    }
+  ]
+}

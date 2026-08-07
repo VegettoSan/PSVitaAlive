@@ -1,0 +1,33 @@
+{
+  "id": "lost-on-island",
+  "title_id": "DACC22232",
+  "name": "Lost on Island",
+  "description": "Surviving game for PSVITA.",
+  "long_description": "A game in where you have to survive on an island.",
+  "author_ids": [
+    "vitadev-games"
+  ],
+  "category_id": "games",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.1.0.0a",
+  "version_date": "2025-06-24",
+  "requirements": "",
+  "size": 87645624,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/10269a6992b91fb7f3beee68bda122c17013b016b82f5cd2d89bcda0ff8ddd47.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/2159b04064fe7a5ce48f375b70061512f59be42ee37edc47fd877711e6b201b7.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/a11446763e2032edf073bc7ff1910c81bb220ed0c9a661dedd22b35ea0daae02.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/b78d724dc89d1a3056c5a54bf13fd08a5bd45e16d6dc06bf2f3d057ccb2d3022.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/595-LostOnIsland.vpk",
+      "recommended": true
+    }
+  ]
+}

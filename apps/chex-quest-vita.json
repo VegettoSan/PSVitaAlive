@@ -1,0 +1,39 @@
+{
+  "id": "chex-quest-vita",
+  "title_id": "CHEX00001",
+  "name": "Chex Quest Vita",
+  "description": "Port of doomgeneric for PSVita.",
+  "long_description": "Port of doomgeneric for PSVita.\nThe purpose of doomgeneric is to make porting Doom easier. Of course Doom is already portable but with doomgeneric it is possible with just a few functions.",
+  "author_ids": [
+    "claude-ai"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "fps"
+  ],
+  "version": "v.1.0",
+  "version_date": "2026-02-24",
+  "requirements": "- Game Data Files: PC",
+  "size": 398000,
+  "status": "Legacy",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/18746b487153dc1ca3d728ce57b841b6e8faeca65a0900aa46864f73d07642c8.png",
+  "screenshots": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1370-ChexQuestVita.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/DraxTube/chexquest-vita"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/DraxTube/chexquest-vita/releases"
+    }
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "id": "moodiwalkisim",
+  "title_id": "YHUH12035",
+  "name": "MoodiWalkiSim",
+  "description": "Moody walking simulator for PSVITA.",
+  "long_description": "A playable moody walking simulator using glitchy photogrammetry. Follow the light to find the large building to explore. It's a proof of concept made in two days, there is no ending or collectables.",
+  "author_ids": [
+    "soham"
+  ],
+  "category_id": "demos",
+  "subcategory_ids": [
+    "tech-demo"
+  ],
+  "version": "v.1.62",
+  "version_date": "2023-09-24",
+  "requirements": "",
+  "size": 39601786,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/7feaa9bf049218709d7e7306c98a44b68bafca38eae77a31e5c2ff6cb61b1f89.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/3fc997d62c4a0bb8617b84267e9eb777355d238c2a544bb2083e01a3f6870073.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/5cb463d0cb0c25ab272ce6277aebd424e65e2a2085dde7d13a1413dedf6888aa.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/fdcb57e11223b75665c40a0477a3cab46488ba01e7a7746cd3fb38337adacd78.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1142-moodi.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://fuhen.homebrew-contest.com/submissions/57/"
+    }
+  ]
+}

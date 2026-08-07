@@ -1,0 +1,44 @@
+{
+  "id": "nanosaur-2-vita",
+  "title_id": "NANOSAUR2",
+  "name": "Nanosaur 2 Vita",
+  "description": "Port of Nanosaur 2 for PSVITA.",
+  "long_description": "Nanosaur 2 Vita is a port of Nanosaur 2.\nNanosaur 2 takes place shortly after the original Nanosaur, assuming that it has been completed successfully, when valuable dinosaur eggs are now in the hands of the Nanosaur race. However, an unnamed rebel group of Nanosaurs steal the eggs to create a fighting force against Earth. One Pteranodon egg is left behind, and it is the eponymous hatchling that becomes the player's avatar for the game. The objectives are to recover the lost eggs from the rebel group.",
+  "author_ids": [
+    "rinnegatamante"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.1.0",
+  "version_date": "2024-12-08",
+  "requirements": "- libshacccg.suprx",
+  "size": 1872464,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/ddd323da21cca68a873424d4784c77114fc0b01ea2cc66ce0c9b9cec752457c1.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/347ca0c6bb742136e1f8b4e4aa9cc9e86f5b1868ca1f17c8fb23d73644a88c2d.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/e3611709acd82a40ff38049be97acefc8708e47eee094bcdf7b3b0dd0ddca75a.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/d849c2f49c190257f846e3c259e0575470f5315918567b98eb1793ffeec65168.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/842f1e1f732f4bfdb7db5d6265d880c5397613f5c41df18d7bb73414875e54b7.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1241-Nanosaur2.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/Rinnegatamante/Nanosaur2"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://www.psx-place.com/threads/release-nanosaur-2-vita.45479/"
+    }
+  ]
+}

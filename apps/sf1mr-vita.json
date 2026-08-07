@@ -1,0 +1,44 @@
+{
+  "id": "sf1mr-vita",
+  "title_id": "SFMR10000",
+  "name": "SF1MR Vita",
+  "description": "A PS Vita Port of the Popular Mugen Remake of Street Fighter One (SF1MR) using Dolmexica Infinite as the engine.\nStreet Fighter One M.U.G.E.N Remake.",
+  "long_description": "A PS Vita Port of the Popular Mugen Remake of Street Fighter One (SF1MR) using Dolmexica Infinite as the engine.\nStreet Fighter One M.U.G.E.N Remake. Another Mugen Street Fighter game. This time, it is a remake of original very first Street Fighter game, simply called Street Fighter 1, that is also known in home ports as Fighting Street.",
+  "author_ids": [
+    "anashalideen"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "engine-port"
+  ],
+  "version": "release",
+  "version_date": "2025-01-07",
+  "requirements": "",
+  "size": 33517678,
+  "status": "Legacy",
+  "icon": "https://robin994.github.io/NeoVitaDB-Catalog/icons/1245-sf1mr-vita.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/af32844ecb1025e4de2f91975032ea92cabfa3ce95c7a12ce693ad06321e938f.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/9e380e1a4e089a2035aa683c3e0237da583a1e6e608d1f3938c1dfa9d87ad827.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/5e9becd8b04a8dacd525ae75f635e79935429ed585345bfd15f6689e380ad5aa.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/932ccacb8546021a9e35481a7c88a1d95056868c5019776cb08b749c02aafe79.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/anas-halid/SF1MR-VITA/releases/download/release/SF1MR.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/anas-halid/SF1MR-VITA"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/anas-halid/SF1MR-VITA/releases/tag/release"
+    }
+  ]
+}

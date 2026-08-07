@@ -1,0 +1,39 @@
+{
+  "id": "emu4vita-arch",
+  "title_id": "EMUARCH01",
+  "name": "Emu4Vita Arch",
+  "description": "Frontend for libretro.",
+  "long_description": "Frontend for libretro cores including several cores.",
+  "author_ids": [
+    "yizhigai"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.1.10",
+  "version_date": "2024-06-17",
+  "requirements": "",
+  "size": 19532728,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/ac0fd4d54187431fe93b9812980202cdd780f7d86e84608514c1689dbfe8b680.png",
+  "screenshots": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1094-Emu4VitaArch.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://gitee.com/yizhigai/Emu4Vita"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://gitee.com/yizhigai/Emu4Vita/releases"
+    }
+  ]
+}

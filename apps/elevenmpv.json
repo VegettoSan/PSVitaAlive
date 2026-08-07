@@ -1,0 +1,41 @@
+{
+  "id": "elevenmpv",
+  "title_id": "ELEVENMPV",
+  "name": "ElevenMPV",
+  "description": "A homebrew music player for Playstation VITA that aims to support many different audio formats compared to the offical PS VITA music application.",
+  "long_description": "A homebrew music player for Playstation VITA that aims to support many different audio formats compared to the offical PS VITA music application.",
+  "author_ids": [
+    "joel16"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v2.10",
+  "version_date": "2019-07-17",
+  "requirements": "",
+  "size": 2440427,
+  "status": "Verified",
+  "icon": "https://robin994.github.io/NeoVitaDB-Catalog/icons/0447-elevenmpv.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/27c05ba80244d6fc309924bc0362145747783f8e363e9a72971e0e1f6fff45ce.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/joel16/ElevenMPV/releases/download/v2.10/ElevenMPV.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/joel16/ElevenMPV"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/joel16/ElevenMPV/releases/tag/v2.10"
+    }
+  ]
+}

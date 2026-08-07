@@ -1,0 +1,38 @@
+{
+  "id": "the-world-ends-with-you-vita",
+  "title_id": "NEKU23850",
+  "name": "The World Ends With You Vita",
+  "description": "Port of The World Ends With You for PSVITA.",
+  "long_description": "Port of the Android version of The World Ends With You for the PS Vita.\nThe game is a Action-RPG developed by Square Enix and Jupiter, originally made for the Nintendo DS. The Android port was done by h.a.n.d.\nComplete the mission...or face erasure. ThatÃ¢â‚¬â„¢s all Neku knows after regaining consciousness in the middle of a busy intersection without his memories. Now he and his partner must fight to survive a life-or-death game in this twisted tale with more turns than the urban labyrinth of Tokyo theyÃ¢â‚¬â„¢re trapped in.",
+  "author_ids": [
+    "hatoving"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "rpg"
+  ],
+  "version": "v.1.1",
+  "version_date": "2023-08-16",
+  "requirements": "- Game Data Files: NDS/Android",
+  "size": 36773104,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/5f3686ff46eff7c016081fc9dc657e8af155170f008c09be49b35460bf493fad.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/b66e3591f66e68ab0089cd74fd70de9adcebbe787a86dbad96f843322d611c21.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/18aed8cb6db1232696c549fec0f5f963f80676e29222e905a261c686933de674.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/4713cd50a760dfc4b7b639cfe78fbf4e956120febdf51f040a510ad352c02938.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1112-TWEWY.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://fuhen.homebrew-contest.com/submissions/28/"
+    }
+  ]
+}

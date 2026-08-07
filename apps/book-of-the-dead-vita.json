@@ -1,0 +1,39 @@
+{
+  "id": "book-of-the-dead-vita",
+  "title_id": "NECROVITA",
+  "name": "Book of the Dead Vita",
+  "description": "The first Russian VN in history, released in May 2006.",
+  "long_description": "The first Russian VN in history, released in May 2006. The plot follows a married couple who move into a gloomy mansion they inherited, where events unfold in the spirit of Lovecraft's works.",
+  "author_ids": [
+    "fargusjunja"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "#deadsouls",
+  "version_date": "2026-05-23",
+  "requirements": "",
+  "size": 86355323,
+  "status": "Legacy",
+  "icon": "https://robin994.github.io/NeoVitaDB-Catalog/icons/1424-book-of-the-dead-vita.png",
+  "screenshots": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/rerulon/dushi4kDX/releases/download/%23deadsouls/Book.of.the.Dead-01.00.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/rerulon/dushi4kDX"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/rerulon/dushi4kDX/releases/tag/%23deadsouls"
+    }
+  ]
+}

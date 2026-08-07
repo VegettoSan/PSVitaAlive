@@ -1,0 +1,39 @@
+{
+  "id": "crash-dump-delete",
+  "title_id": "CRASHDUMP",
+  "name": "Crash Dump Delete",
+  "description": "Crashdumps deleter.",
+  "long_description": "Simple application that deletes all crashdump files generated when an application crashes.",
+  "author_ids": [
+    "princess-of-sleeping"
+  ],
+  "category_id": "utilities",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.1.1",
+  "version_date": "2018-05-08",
+  "requirements": "",
+  "size": 37256,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/18746b487153dc1ca3d728ce57b841b6e8faeca65a0900aa46864f73d07642c8.png",
+  "screenshots": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/384-Crash-Dump-Delete.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/Princess-of-Sleeping/Crash-Dump-Delete"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/Princess-of-Sleeping/Crash-Dump-Delete/releases"
+    }
+  ]
+}

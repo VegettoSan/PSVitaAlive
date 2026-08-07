@@ -1,0 +1,44 @@
+{
+  "id": "resolutiion-vita",
+  "title_id": "RESO00022",
+  "name": "Resolutiion Vita",
+  "description": "An old killer escorts a curious AI into a fractured future of chaotic combat, puzzling secrets, and unsettling calm.",
+  "long_description": "An old killer escorts a curious AI into a fractured future of chaotic combat, puzzling secrets, and unsettling calm.\nOriginally developed in Godot by Monolith of Minds, RESOLUTIION is a marvelous game, tells the story of Valor and AlibiiÃ¢â‚¬â„¢s journey through a 2D dreamworld of lovely pixels, dirty jokes and badassemotional tunes, inspired by classic Zelda and similar action-adventure-games.",
+  "author_ids": [
+    "rocroverss"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "adventure"
+  ],
+  "version": "v1.0.reihen",
+  "version_date": "2025-07-24",
+  "requirements": "- Game Data Files: PC",
+  "size": 15693447,
+  "status": "Legacy",
+  "icon": "https://robin994.github.io/NeoVitaDB-Catalog/icons/1291-resolutiion-vita.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/40b23f4a92b2a1676e49ba9b20282b81308e43c39c50ac38afa1d6c449bc35a9.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/60fcb9902b975df40ac7dc68d4a08ffe19120f9dc1494c3d8b5aa5c44d53ec49.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/db6f0f1c44ae18eb27e612055dc6517ac617b3e9eeb0752f971a6e03640b5730.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/03dfb618dcc2467ad58e08eb52bafa468e49b1f6e72fb8aeeaeb68441aa81410.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/Rocroverss/resolutiion-patch-psvita/releases/download/v1.0.reihen/Resolution.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/Rocroverss/resolutiion-patch-psvita"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/Rocroverss/resolutiion-patch-psvita/releases/tag/v1.0.reihen"
+    }
+  ]
+}

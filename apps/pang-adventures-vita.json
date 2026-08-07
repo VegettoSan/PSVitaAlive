@@ -1,0 +1,44 @@
+{
+  "id": "pang-adventures-vita",
+  "title_id": "PANG00001",
+  "name": "Pang Adventures Vita",
+  "description": "Port of Pang Adventures for PSVITA.",
+  "long_description": "This is a wrapper/port of Pang Adventures for the PS Vita.\nThe port works by loading the official Android ARMv7 executables in memory, resolving its imports with native functions and patching it in order to properly run. By doing so, it's basically as if we emulate a minimalist Android environment in which we run natively the executable as is.",
+  "author_ids": [
+    "rinnegatamante"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.1.1",
+  "version_date": "2025-10-19",
+  "requirements": "- libshacccg.suprx\n- kubridge.skprx\n- Game Data Files: Android",
+  "size": 1854842,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/7fb72b99d47121f8d8566483cc42c076b4837da2c4445e0d4ac4acb42edaf6a3.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/ee49e352707b6ea25bcaf5bc8fe8be525d626d6d408f3a4e3809d2e50cbc512d.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/b9a28a28c0e98f2348cde5ae16ab54dcfc1750f84e9402d4bebfc6c62d828975.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/88dfaf8c1ceb417910d62a0c6b356781f52796baf49f0897372f833ab3f97fff.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/62f7ca4d236d4d0b8c533d34f488d62da03b84031c12c50412eba61bbbb314a7.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/Rinnegatamante/pang-vita/releases/download/v.1.1/pang.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/Rinnegatamante/pang-vita"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/Rinnegatamante/pang-vita/releases"
+    }
+  ]
+}

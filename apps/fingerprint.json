@@ -1,0 +1,42 @@
+{
+  "id": "fingerprint",
+  "title_id": "FNPT00001",
+  "name": "Fingerprint",
+  "description": "App showing console info.",
+  "long_description": "An application that displays various Information of your console.",
+  "author_ids": [
+    "freakler"
+  ],
+  "category_id": "utilities",
+  "subcategory_ids": [
+    "terminal"
+  ],
+  "version": "v.0.02",
+  "version_date": "2020-04-01",
+  "requirements": "",
+  "size": 1094839,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/1bad1913fda92f0f5ca1a4a95569652366f2fb342355bc57c622afff6d88db01.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/fe7eb06f64851911bdd25d8923e8499da41bb3dc524ef89902ed1afedb8f845d.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/85cbcb8f8202abe085d53a50c4c8f3ade7668ec7adbc2933474721f8497798d1.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/Freakler/vita-Fingerprint/releases/download/0.02/fingerprint_v002.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/Freakler/vita-Fingerprint"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/Freakler/vita-Fingerprint/releases"
+    }
+  ]
+}

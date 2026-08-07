@@ -1,0 +1,37 @@
+{
+  "id": "reaction-station",
+  "title_id": "REACTIONS",
+  "name": "Reaction Station",
+  "description": "Generator and player for QTE games.",
+  "long_description": "Have you ever seen or played games such as Dragons lair, Space Ace, Cobra Command? The gameplay fully relies on quick time responses like an interactive video.\nWith Reaction station (and a lot of time a patience) you can create or recreate your own with this tool.",
+  "author_ids": [
+    "anthj"
+  ],
+  "category_id": "games",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.1.0",
+  "version_date": "2025-10-07",
+  "requirements": "",
+  "size": 4268638,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/8bf7dc37549cfeb7510094dc32ae107e56c65332988aba668cdbf97b39710dda.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/0cd7ce6a4684e01e531301260a9ce2d2eee815c6930f843cdb2fd071f8346b48.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/0671db571411ea88e93328c19bc87604064e3e902d342bebf9b0c0e6af12b06d.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1333-reaction_station.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://anthj.itch.io/reaction-station"
+    }
+  ]
+}

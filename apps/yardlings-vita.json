@@ -1,0 +1,39 @@
+{
+  "id": "yardlings-vita",
+  "title_id": "YARDLINGS",
+  "name": "Yardlings Vita",
+  "description": "Port of Yardlings for PSVita.",
+  "long_description": "Simple port of Yardlings by Sokpop for Playstation Vita.\nSome graphical features had to be removed or simplified due to hardware constraints.",
+  "author_ids": [
+    "bren"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.1.1",
+  "version_date": "2025-08-26",
+  "requirements": "- Game Data Files: PC",
+  "size": 3653391,
+  "status": "Legacy",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/48f2f1370962aa204f3eae66eae3e5c3f8b1a926c9eb978bdd18e2eb62144210.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/b016ddea0814dc24d080814a7136af667da68eba93655f228f3f1aaa4acba008.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/f82b6740c178e7500198bd8276ed0988f2caa6144262c0989f5acbcb494910ec.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/65b9213797884bbcd4f27abec4b8802ab71bff98b0a83c923b57fb2dcdeb8e25.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c0793c0460b720040037be7a32145f73edc422f084dbc218bf692454f545ffe0.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1317-YARDLINGS.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://brendonm17.itch.io/yardlings-vita"
+    }
+  ]
+}

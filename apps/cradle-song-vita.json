@@ -1,0 +1,34 @@
+{
+  "id": "cradle-song-vita",
+  "title_id": "CRDLSV098",
+  "name": "Cradle Song Vita",
+  "description": "Port of Cradle Song for PSVITA.",
+  "long_description": "Port of Cradle Song for PSVITA. The game itself is a short visual novel made back in 2011 by Dischan.",
+  "author_ids": [
+    "grimiku"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.0.98",
+  "version_date": "2024-06-01",
+  "requirements": "",
+  "size": 127068435,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/14bc0ac1b9ea8badf7a15c81a252ff958a81a86db0df5ef2d6bd237f1e6e91c9.png",
+  "screenshots": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/Grimiku/Cradle-Song-Vita/releases/download/Latest/Cradle.Song.Vita-00.98.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/Grimiku/Cradle-Song-Vita"
+    }
+  ]
+}

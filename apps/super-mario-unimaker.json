@@ -1,0 +1,44 @@
+{
+  "id": "super-mario-unimaker",
+  "title_id": "SMUM30622",
+  "name": "Super Mario UniMaker",
+  "description": "Port of Super Mario UniMaker for PSVITA.",
+  "long_description": "Super Mario UniMaker is a fan game of Super Mario Maker that lets you make your own Super Mario levels. You can Create/Play and Modify levels at your will ! Original game by NinStar.\nFor installing custom levels you need to take the '.unis' file and put it in the ux0:app/SMUM30622/games/courses/ folder.",
+  "author_ids": [
+    "megagameboy"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.1.2.3.4",
+  "version_date": "2023-02-05",
+  "requirements": "",
+  "size": 294642493,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/044355545c0bbed17441edd9a27605aeedbfbc57cb004a2bb0a0467970a1dbe8.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/0f995c855bed739b857b8655b475ea83a6b30171e3d67f7f726a53ec7d6f9723.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/187343c8d73daeccd0406b97b0b040fcf32fc457e2fafe914741a1279a1421c4.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/8df29cbf1651e9fdc573cca4a4e0efbef4bbd5a64bcee783287bdb94d6e39070.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/43e078b3ffb8a071f67cd1ed7af34e5a83a3d0c47cc4482f3d32f643e37d5ea0.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/MEGAgameBoy/Super-Mario-UniMaker-PS-Vita-Port/releases/download/1.2.3.4/unimaker.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/MEGAgameBoy/Super-Mario-UniMaker-PS-Vita-Port"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/MEGAgameBoy/Super-Mario-UniMaker-PS-Vita-Port/releases"
+    }
+  ]
+}

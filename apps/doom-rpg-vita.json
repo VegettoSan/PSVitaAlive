@@ -1,0 +1,44 @@
+{
+  "id": "doom-rpg-vita",
+  "title_id": "DOOMRPG00",
+  "name": "Doom RPG Vita",
+  "description": "Port of Doom RPG for PSVITA.",
+  "long_description": "This is a PS Vita port of the reverse engineered Doom RPG by [GEC]. All credits go to the GEC team, this project would not exist without their hard work.",
+  "author_ids": [
+    "jakubito"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "fps"
+  ],
+  "version": "v.1.1.0",
+  "version_date": "2024-03-08",
+  "requirements": "- Game Data Files: Mobile",
+  "size": 3954027,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/90b13c65904d9b6eb716f3a4e2fc048cee46d284c8bc229d38068d51dc02b060.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/8a71637533f2f84878258ea97523bd328084248944633b2915c0acc2bf6f0c70.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c0040711aaf0d500372f56f0e7e0fd5f11acea194d1e56614907ed96087d487b.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/4130a339566cb71ef089fbf1dc1f705fa5bd3e6561df5790010b003a08917be5.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/bdcdb0aae8542b55b079f6c60ca8d3711ba57054da6127968a596dcfa44efa5f.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/jakubito/DoomRPG-RE-vita/releases/download/v1.1.0/DoomRPG_vita_v1.1.0.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/jakubito/DoomRPG-RE-vita"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/jakubito/DoomRPG-RE-vita/releases"
+    }
+  ]
+}

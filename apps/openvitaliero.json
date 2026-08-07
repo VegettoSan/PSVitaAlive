@@ -1,0 +1,41 @@
+{
+  "id": "openvitaliero",
+  "title_id": "LIER01337",
+  "name": "OpenVitaLiero",
+  "description": "Earthworm simulation game based on a real physical model.",
+  "long_description": "Earthworm simulation game based on a real physical model. Features: 2 worms, 40 weapons, great playability. Four game modes: Kill'em All, Game of Tag, Capture the Flag and Simple CtF!",
+  "author_ids": [
+    "ak1m1223"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "simulation"
+  ],
+  "version": "0.3",
+  "version_date": "2026-05-16",
+  "requirements": "",
+  "size": 1524796,
+  "status": "Legacy",
+  "icon": "https://robin994.github.io/NeoVitaDB-Catalog/icons/1398-openvitaliero.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/0c48e0234888bf5c966dd9fd3c32f737d8a937b204050dc073be1b122dcb86ac.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/Ak1M1223/vitaliero/releases/download/0.3/openliero.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/Ak1M1223/vitaliero"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/Ak1M1223/vitaliero/releases/tag/0.3"
+    }
+  ]
+}

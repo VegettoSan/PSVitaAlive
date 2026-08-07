@@ -1,0 +1,34 @@
+{
+  "id": "mkmayhem",
+  "title_id": "BEBE12908",
+  "name": "MKMayhem",
+  "description": "Goat Simulator clone in Mario theme.",
+  "long_description": "A Goat Simulator clone set in Mario world with Waluigi as playable character.",
+  "author_ids": [
+    "fantahourglass"
+  ],
+  "category_id": "customization",
+  "subcategory_ids": [
+    "themes"
+  ],
+  "version": "v.0.2",
+  "version_date": "2019-03-25",
+  "requirements": "",
+  "size": 58460781,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/05a8a3ca9174b45c63d87d1d2c7d59ca179f028281500d8a4542fe6ebef81db4.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/3d0fad9bb19116ce44a1ba8fa860bce28823fe9a43b846c9efeb6a3c3e9a6d33.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/a9acd9c199c974ad7e9f4944597a4f9b463f4fd21cbe260a4ba005d6e6494d78.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/97e36dee98e6d34bd4c1a6e25dbab81664f436a33f6c86006e96156e9b40cb2a.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/774a882b98fe25fc1b48ebad7fe2ad37bd24cb0852b1e680b27cae247d6af15b.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/442-MKMayhem.vpk",
+      "recommended": true
+    }
+  ]
+}

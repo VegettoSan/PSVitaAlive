@@ -1,0 +1,39 @@
+{
+  "id": "wrecking-wave",
+  "title_id": "AGKB22101",
+  "name": "Wrecking Wave",
+  "description": "Action game with physics-based destruction.",
+  "long_description": "Wrecking Wave is an explosive action game with physics-based destruction focused on Challenge and Speedrun modes. Unleash a wave of chaos, smash cities, chase high scores, and stop a mad scientist from polluting your ocean with toxic waste.",
+  "author_ids": [
+    "brunu"
+  ],
+  "category_id": "games",
+  "subcategory_ids": [
+    "action"
+  ],
+  "version": "v.1.0",
+  "version_date": "2026-06-12",
+  "requirements": "",
+  "size": 28534836,
+  "status": "Legacy",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/3cc7ff091e200756c5325eade48fd599b5bf744cc78522b6a5c55fb9ebdc7178.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/083c1ac7ea91e29d942cd1a663b911524e665f88315ad0974aa6d45613efde84.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/3d727f0e6d76c27cf60c5bc6ab9c67c9ca6714b64fa0e5b544af52708e370ea1.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/35b2a25d115dff7a8917865955fe3713af1222ef198d2447d49c9dcf33eda238.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/3101d42506635a54d5ff31e23c625f8338e26fe57676432ab588f975451d2a18.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1412-Wrecking_Wave.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://brunu.itch.io/wrecking-wave"
+    }
+  ]
+}

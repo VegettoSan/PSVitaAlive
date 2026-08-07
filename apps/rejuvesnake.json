@@ -1,0 +1,34 @@
+{
+  "id": "rejuvesnake",
+  "title_id": "ARIEL0001",
+  "name": "RejuveSnake",
+  "description": "Snake clone for PSVITA.",
+  "long_description": "PSVITA's first Snake clone.",
+  "author_ids": [
+    "ruben-wolfe"
+  ],
+  "category_id": "games",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.1.0",
+  "version_date": "2016-07-30",
+  "requirements": "",
+  "size": 1350174,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/b549cbcfd0a1503f9b4e5d34b2d86135d247d571980a7814d6af8f45d4fd9121.png",
+  "screenshots": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/176-rejuvesnake.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "http://wololo.net/talk/viewtopic.php?f=116&t=46171"
+    }
+  ]
+}

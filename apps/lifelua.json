@@ -1,0 +1,44 @@
+{
+  "id": "lifelua",
+  "title_id": "LIFELUAJT",
+  "name": "LifeLua",
+  "description": "Lua interpreter for PSVITA.",
+  "long_description": "A Lua interpreter for PSVITA with a builtin sample app which showcases its functionalities.",
+  "author_ids": [
+    "harommel-rabbid"
+  ],
+  "category_id": "development",
+  "subcategory_ids": [
+    "lua"
+  ],
+  "version": "08-06-2025",
+  "version_date": "2025-06-09",
+  "requirements": "",
+  "size": 1414258,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/1150df6d6ace64703e54e6bb51e314b872b88f1021e2b2580e9980566c5121ba.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/f92fab336012ef1b62c030dd7c152c6a6e3d56a722881392091021aac9ebeb87.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/818e683c32cd17a2607410942e8256d3bc1bdb0b592b198776b6c6c7f7f5deda.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/40751f6f7f5f66e423c43dac2a42a3993d3a23c5f1255ec49925b187cab6e813.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/483197a215358aa65be2df8037c8f12adcae012dd02016b399464a24578327ef.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/HarommelRabbid/LifeLua/releases/download/08-06-25/LifeLua.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/HarommelRabbid/LifeLua"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/HarommelRabbid/LifeLua/releases"
+    }
+  ]
+}

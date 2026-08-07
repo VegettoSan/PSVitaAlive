@@ -1,0 +1,43 @@
+{
+  "id": "vitassh",
+  "title_id": "ROM000069",
+  "name": "VitaSSH",
+  "description": "SSH client for PSVita.",
+  "long_description": "VitaSSH is a proof-of-concept SSH client designed specifically for the PlayStation Vita, leveraging libssh2 for secure shell connections and VitaSDK for native Vita hardware integration. This experimental client provides basic SSH terminal functionality on the Vita's unique platform.",
+  "author_ids": [
+    "rompelhd"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "platformer"
+  ],
+  "version": "v.1.0.0",
+  "version_date": "2026-03-15",
+  "requirements": "",
+  "size": 1130397,
+  "status": "Legacy",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/06c06544dd47b87a3949141061fc829ff44d735ddf5f232c5d4b90c839709ea9.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/627f625839c2724ac389bf892b5b821b6f616fa47341129982b2bd0cda22ae8a.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/db6cd64a139d29359ce4e50ed87dd5bb3970c32e72570750cbc87cbc52c184fd.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/fd01ffa16dffdfca220ffc0e7158e96b6ae2d2ca1fc73b8e6bf0c2370f58c9c7.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/rompelhd/VitaSSH/releases/download/v.1.0.0/VitaSSH-1.0.0.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/rompelhd/VitaSSH"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/rompelhd/VitaSSH/releases"
+    }
+  ]
+}

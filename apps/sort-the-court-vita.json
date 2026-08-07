@@ -1,0 +1,34 @@
+{
+  "id": "sort-the-court-vita",
+  "title_id": "SORT12345",
+  "name": "Sort the Court Vita",
+  "description": "Port of Sort the Court for PSVita.",
+  "long_description": "A port of Graeme Borland's Sort the Court to PSVITA.",
+  "author_ids": [
+    "lordchickenblaster"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.1.1.0",
+  "version_date": "2025-09-08",
+  "requirements": "- Game Data Files: PC",
+  "size": 15042197,
+  "status": "Legacy",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/4939eb633f1a997a974111ff884ea936f777fcbe49a3a5e7bda9894bb49e255f.png",
+  "screenshots": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1321-STC.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://lordchickenblaster.itch.io/sort-the-court-vita"
+    }
+  ]
+}

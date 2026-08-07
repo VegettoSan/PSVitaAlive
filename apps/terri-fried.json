@@ -1,0 +1,39 @@
+{
+  "id": "terri-fried",
+  "title_id": "PLYMARS01",
+  "name": "Terri-Fried",
+  "description": "Multiplatform endless minigame.",
+  "long_description": "Everyone is dead except for... an egg. Humanity is depending on you to make sure this egg survives. Balance power and precision in Terri-Fried, a game made in 72-hours with raylib for Ludum Dare 46!",
+  "author_ids": [
+    "polymars"
+  ],
+  "category_id": "games",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.1.0",
+  "version_date": "2020-06-10",
+  "requirements": "",
+  "size": 952796,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/8e6b885bcd14f6b1367cc95af644d6a93e93fea0b3eb9f28e5c438763cb90798.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/f5318351722fb0e392f22fb9c89204bba6a14a5ea30b8cef76726a53fe08f08b.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/e93b16329a0f172116a2f72a323ebd6d089c601a45e4a3bc026be8805281d311.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/6bf2e41640853d9207b9739783bcb33fd18c7525976baf8e3ea8f80d162a0135.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/6274c3d9629855f2a4bbc05a5d03a48b89d7a5d038c790f183cdf8f078e315ba.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/559-Terri-Fried.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://polymars.itch.io/terri-fried"
+    }
+  ]
+}

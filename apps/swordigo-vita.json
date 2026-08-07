@@ -1,0 +1,44 @@
+{
+  "id": "swordigo-vita",
+  "title_id": "SWOR00001",
+  "name": "Swordigo Vita",
+  "description": "Port of Swordigo for PSVITA.",
+  "long_description": "This is a wrapper/port of Swordigo for the PS Vita. The port works by loading the official Android ARMv7 executable in memory, resolving its imports with native functions and patching it in order to properly run. By doing so, it's basically as if we emulate a minimalist Android environment in which we run natively the executable as is.",
+  "author_ids": [
+    "rinnegatamante"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.1.1",
+  "version_date": "2024-12-07",
+  "requirements": "- libshacccg.suprx\n- kubridge.skprx\n- Game Data Files: Android",
+  "size": 3549905,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/3b865e439c2c7d29a66a6e7e2dca0dacf91fffcbb402cefff979a3131018049a.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/f599b8acda2fc042f08f65b99275ac3837b777662b978c0eec07bf4e66eda9b0.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/acd400be1df30d5db9529f0f51b1e7f024f208ca4aea71711e8cd0a9c781a682.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/6604f73cda296befd88bb27af9ad1602b326af0f2308bcd4b0cfb9a9d4960c01.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/cac074a2574eac07494e50a135edb7634e893f85a9bcd5e5b0a111280e44f790.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/Rinnegatamante/swordigo-vita/releases/download/v.1.1/swordigo.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/Rinnegatamante/swordigo-vita"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/Rinnegatamante/swordigo-vita/releases"
+    }
+  ]
+}

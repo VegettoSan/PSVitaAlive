@@ -1,0 +1,34 @@
+{
+  "id": "age-of-war-vita",
+  "title_id": "AOWV00001",
+  "name": "Age of War Vita",
+  "description": "Port of Age of War for PSVITA.",
+  "long_description": "Port of Age of War for PSVITA.\nTake control of 16 different units and 15 different turrets to defend your base and destroy your enemy.\nIn this game, you start at the caveman age, then evolve! There are a total of 5 ages, each with its own unique units and turrets. Can you advance faster than your enemy?",
+  "author_ids": [
+    "mrdivdiz"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.1.1",
+  "version_date": "2023-02-13",
+  "requirements": "",
+  "size": 49070621,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/193adad742dcc2151cfcbe394cb9e9d4840976b01384cf0d40d867bbfef26173.png",
+  "screenshots": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/mrdivdiz/aowv/releases/download/v1.1/aowv2.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/mrdivdiz/aowv/releases"
+    }
+  ]
+}

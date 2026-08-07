@@ -1,0 +1,34 @@
+{
+  "id": "chicken-launcher",
+  "title_id": "CHICKENS2",
+  "name": "Chicken Launcher",
+  "description": "Kitten Cannon clone.",
+  "long_description": "Chicken Launcher is an addictive little game based off of Kitten Cannon where you shoot a chicken as far as you can. Try to hit springboards and TNT to give you a big boost, but watch out for spikes! Your high score is recorded and saved.",
+  "author_ids": [
+    "crait"
+  ],
+  "category_id": "games",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.1.0",
+  "version_date": "2016-08-27",
+  "requirements": "",
+  "size": 415129,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/4702c3a458c112af5ae05f406045705f03372edca97b9ccf9b1fcce740388738.png",
+  "screenshots": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/137-chickenlauncher.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://wololo.net/talk/viewtopic.php?f=116&t=46786"
+    }
+  ]
+}

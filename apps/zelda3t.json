@@ -1,0 +1,43 @@
+{
+  "id": "zelda3t",
+  "title_id": "ZELDATTT1",
+  "name": "Zelda3T",
+  "description": "Port of Zelda3T for PSVITA.",
+  "long_description": "Port of Zelda: Time to Triumph, sequel of Zelda: Oni Link Begins, for PSVITA.",
+  "author_ids": [
+    "usineur"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.1.3.1",
+  "version_date": "2018-09-11",
+  "requirements": "",
+  "size": 28980993,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/2d62f83d79164180a42976c1ed08815dd70ef7dee9446e733fe517295fc82966.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/52f746d6e063b2b8360e8224692e83f33bce1a7d3a7a17dd55af420894c8c106.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/32c2eb62b912058cc3fd8d93e0ff755b239e4446e72e6702e86cf02f1d0c377a.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/dbb56b468c38bc02101c011b6ac91a46154914736f73fe399b5876806cb8a7cf.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/334-Zelda3T.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/usineur/Zelda3T"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "http://wololo.net/talk/viewtopic.php?f=116&t=48604"
+    }
+  ]
+}

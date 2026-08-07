@@ -1,0 +1,43 @@
+{
+  "id": "professor-layton-curious-village-hd-vita",
+  "title_id": "LAYTON001",
+  "name": "Professor Layton: Curious Village HD Vita",
+  "description": "Port of Professor Layton: Curious Village HD for PSVITA.",
+  "long_description": "This is a wrapper/port of Professor Layton: Curious Village HD for the PS Vita. The port works by loading the official Android ARMv7 executable in memory, resolving its imports with native functions and patching it in order to properly run. By doing so, it's basically as if we emulate a minimalist Android environment in which we run natively the executable as is.",
+  "author_ids": [
+    "rinnegatamante"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.1.1",
+  "version_date": "2023-09-24",
+  "requirements": "- libshacccg.suprx\n- kubridge.skprx\n- Game Data Files: Android",
+  "size": 1580065,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/3950d1d321780574e87c341c6c4efd42388c98ed1d107a38113f819d120de8e1.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/25c5cad6e2bdbd313af8b87f295cb842e8d86fe6ace63c30b0e872946fa2fce9.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/9886f160734c5c627e4cdeef4b5434f7c44647b2b7287b3c7defd9be115da2d8.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/ed2fb3d99d316959d5421712b3e0cfd3411e9e676185bcf454715dbc1b36a0b4.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/Rinnegatamante/layton-vita/releases/download/v.1.1/layton.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/Rinnegatamante/layton-vita"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/Rinnegatamante/layton-vita/releases"
+    }
+  ]
+}

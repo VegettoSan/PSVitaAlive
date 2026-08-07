@@ -1,0 +1,45 @@
+{
+  "id": "ff5-vita",
+  "title_id": "FF5000000",
+  "name": "FF5-Vita",
+  "description": "Port of Final Fantasy V for PSVITA.",
+  "long_description": "This is a wrapper/port of Final Fantasy V Android for the PS Vita.\nThe port works by loading the official Android ARMv7 executable in memory, resolving its imports with native functions and patching it in order to properly run.",
+  "author_ids": [
+    "frangarcj",
+    "rinnegatamante",
+    "theflow"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.1.0",
+  "version_date": "2021-10-08",
+  "requirements": "- libshacccg.suprx\n- kubridge.skprx\n- fd_fix.skprx OR repatch_ex.skprx\n- Game Data Files: Android",
+  "size": 16548837,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/189b9bf884cf04a7da60ec628029bf444a8ddb577e20052f24b5e4e5b04948bc.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/b16ee50cc3f2b302561ec6ece541a703c3089c2eae8fcaf8948a12fcff4a5793.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/a4347444d2c4b21c827c190433a291ffaedca0e1ad4e41ed13753a44a49c8650.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/68b459235f7f52c7a15971abcab77caeeac06e79440436f789b14591868b38ba.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/frangarcj/ff5_vita/releases/download/v1.0/FF5.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/frangarcj/ff5_vita"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/frangarcj/ff5_vita/releases"
+    }
+  ]
+}

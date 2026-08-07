@@ -1,0 +1,44 @@
+{
+  "id": "anomaly-defenders-vita",
+  "title_id": "ANOMALY04",
+  "name": "Anomaly Defenders Vita",
+  "description": "Port of Anomaly Defenders for PSVITA.",
+  "long_description": "This is a wrapper/port of Anomaly Defenders for PSVITA.\nThe port works by loading the official Android ARMv6 executable in memory, resolving its imports with native functions and patching it in order to properly run. By doing so, it's basically as if we emulate a minimalist Android environment in which we run natively the executable as it is.",
+  "author_ids": [
+    "rinnegatamante"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.1.1",
+  "version_date": "2023-03-07",
+  "requirements": "- libshacccg.suprx\n- kubridge.skprx\n- fd_fix.skprx OR repatch_ex.skprx\n- Game Data Files: Android",
+  "size": 11636659,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/82ce805315dc85d255a4c436cb953893ade062fe0f1dfa2ab73bc0465c4f7732.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/427a497917fbfc28f6da96ad3f84dbf3edd01438a2ba547e102ec87f167efc4c.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/786437205956b4da3f2f37196d1b5b4287ca99e2144e8dd2f1b25e4e58ee4f47.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/09a55b4c778578b1cefc675bb85f725e4e8c323d8a55ef12de338a96957cf891.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/dea95bf376f0cb7973f8a8096d8318089fe41a0f4e59efe5027ee667f333c28a.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/Rinnegatamante/anomaly-defenders_vita/releases/download/v.1.1/anomaly_defenders.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/Rinnegatamante/anomaly-defenders_vita"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/Rinnegatamante/anomaly-defenders_vita/releases"
+    }
+  ]
+}

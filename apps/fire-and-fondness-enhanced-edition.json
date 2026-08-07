@@ -1,0 +1,43 @@
+{
+  "id": "fire-and-fondness-enhanced-edition",
+  "title_id": "WLFIRE101",
+  "name": "Fire and Fondness - Enhanced Edition",
+  "description": "Port of Fire and Fondness: Enhanced Edition for PSVITA.",
+  "long_description": "Port of Fire and Fondness: Enhanced Edition for PSVITA.\nWelcome to the world's number one fire-based relationship-testing simulator!\nAs is well-documented, 21st century couples would prove their devotion to each other by locking themselves in burning buildings. The Fire and Fondness Corporation is pleased to offer an authentic enactment of this ages-old ritual.",
+  "author_ids": [
+    "withlogic"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.1.0",
+  "version_date": "2023-09-10",
+  "requirements": "",
+  "size": 21263914,
+  "status": "Legacy",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/b7fc5f0e81e3173a0d7e4ae17e68374ced963ed8a27476d46cc55fcc0cab3e04.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/a1d051f75fa8d3a1820d03bdeccf9e46bfef62af117c3cacca2e979130ac3b42.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/dae3565bae61298de65563c0c9e57f97f6ecbcba54e66b809f76706cbf83e5d9.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/fdd3f7318a7b425122879544a03fdeadcfe7e7104f6120ef0cdfffd700264574.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1128-fire_and_fondness.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/withLogic/fire-and-fondness-ee"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://fuhen.homebrew-contest.com/submissions/38/"
+    }
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "id": "vita-stacks",
+  "title_id": "PTVT44218",
+  "name": "Vita Stacks",
+  "description": "Tower building game for PSVITA.",
+  "long_description": "Vita Stacks is a simple yet highly addictive game. You objective is to stack the blocks as high as possible. As simple as that.",
+  "author_ids": [
+    "vitahex-games"
+  ],
+  "category_id": "games",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.1.0",
+  "version_date": "2020-08-15",
+  "requirements": "",
+  "size": 30303195,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/65d6dbcf8bd65b9a496da3f53342e7c1f7f6d85f6838556cb5a951528d848ac9.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/8fb7a898eda3f71398e56c8f1661646d38ef8350bffe769f1dd80a267cde5914.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/f1f1d1c2f2a8ec32521c90c94b5612a17dddee073b5268f4bd413ea1827f44ff.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/712e77114beaaba2e33e6e710247a424e15b203390795f8e664ef8356baf69eb.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/575-VitaStacks.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://www.patreon.com/posts/vita-stacks-is-39883494"
+    }
+  ]
+}

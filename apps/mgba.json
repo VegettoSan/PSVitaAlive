@@ -1,0 +1,44 @@
+{
+  "id": "mgba",
+  "title_id": "MGBA00001",
+  "name": "mGBA",
+  "description": "GBA emulator for PSVITA.",
+  "long_description": "mGBA is a new generation of Game Boy Advance emulator. The project started in April 2013 with the goal of being fast enough to run on lower end hardware than other emulators support, without sacrificing accuracy or portability. Even in the initial version, games generally played without problems. mGBA has only gotten better since then, and now boasts being the most accurate GBA emulator around.\n\nOther goals include accurate enough emulation to provide a development environment for homebrew software, a good workflow for tool-assist runners, and a modern feature set for emulators that older emulators may not support.",
+  "author_ids": [
+    "endrift"
+  ],
+  "category_id": "emulators",
+  "subcategory_ids": [
+    "game-boy-advance"
+  ],
+  "version": "v.0.10.5",
+  "version_date": "2025-03-08",
+  "requirements": "",
+  "size": 852635,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/4bc0f902618d97ba2ec7d35fe4edb0c301d51fa052b574a3e21548f9d27a7723.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/b640b24f08ccc34af58874afe84f57e505d6b4da43102ff3c1b9c325b5a9ee18.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/d8b92d6ba71df9f2fcbd8999dc30d1dbc50b291bc928a539c5ec756ad1027e37.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/7f9fea83c716eb35ddaa0538a8d53fdfff6c4719dcef98ff968651ea56e3a62b.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/e6ee279562e85f03723605c298e29236eb72b06db78e8ce3622da681b4ed8239.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/mgba-emu/mgba/releases/download/0.10.5/mGBA-0.10.5-vita.7z",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/mgba-emu/mgba/"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://mgba.io/"
+    }
+  ]
+}

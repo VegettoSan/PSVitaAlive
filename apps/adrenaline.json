@@ -1,0 +1,41 @@
+{
+  "id": "adrenaline",
+  "title_id": "PSPEMUCFW",
+  "name": "Adrenaline",
+  "description": "Adrenaline is a native eCFW for the PSPEMU allows you to play PSP/PSX games with custom patches (like GPU shaders for a smoother video quality) directly...",
+  "long_description": "Adrenaline is a native eCFW for the PSPEMU allows you to play PSP/PSX games with custom patches (like GPU shaders for a smoother video quality) directly from your PSVITA/PSTV.",
+  "author_ids": [
+    "theflow"
+  ],
+  "category_id": "system",
+  "subcategory_ids": [
+    "compatibility"
+  ],
+  "version": "v7",
+  "version_date": "2020-09-22",
+  "requirements": "",
+  "size": 417931,
+  "status": "Verified",
+  "icon": "https://robin994.github.io/NeoVitaDB-Catalog/icons/0047-adrenaline.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/cca7ded074a714bdacbd21aabd1de9e561d5922a66ece9bd60fa56d273385ee7.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/TheOfficialFloW/Adrenaline/releases/download/v7/Adrenaline.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/TheOfficialFloW/Adrenaline"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/TheOfficialFloW/Adrenaline/releases/tag/v7"
+    }
+  ]
+}

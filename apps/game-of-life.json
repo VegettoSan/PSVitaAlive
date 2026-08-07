@@ -1,0 +1,39 @@
+{
+  "id": "game-of-life",
+  "title_id": "ARIEL0002",
+  "name": "Game of Life",
+  "description": "Game of Life clone.",
+  "long_description": "Conway's Game of Life for PSVITA.",
+  "author_ids": [
+    "ruben-wolfe"
+  ],
+  "category_id": "games",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.1.0",
+  "version_date": "2016-07-30",
+  "requirements": "",
+  "size": 952006,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/2a6c25e49e6300ec3f14f5524ebde8f4662f71615c566135c26a9ffa420e8680.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/08a2f439931bb8672835a782257309feb4bae6908301a6c25a11105821b3b2df.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/98bfc8ab476bb9357d013e1632d4bd888d0fc59b1ec0cdbe165beca82f78c3c9.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/cbee73c7f94ea591dd7da12022e089f5afb9c5dfb13b0b8932cdd45786064dd9.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/dac0d4d811b886f24bb041ca2f78f3b8cee8dae71cce5a263a6bd3e33380afe1.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/139-gameoflife.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://wololo.net/talk/viewtopic.php?f=116&t=46172"
+    }
+  ]
+}

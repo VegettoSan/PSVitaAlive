@@ -1,0 +1,39 @@
+{
+  "id": "abyss",
+  "title_id": "BALD00003",
+  "name": "ABYSS",
+  "description": "Third person shooter for PSVita.",
+  "long_description": "Taking inspiration from Rengoku for the PSP, Armored Core and Blame!, ABYSS is a third person shooter duel game featuring randomly generated guns and enemies. How deep can you descend into the ABYSS?",
+  "author_ids": [
+    "balder"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "fps"
+  ],
+  "version": "v.2.1",
+  "version_date": "2026-01-06",
+  "requirements": "",
+  "size": 170851730,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/f2597bf4aa9eb70f2dab7cb5a062a174f42db153e7d443aa21c4d806181ce396.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/1f50ac1c39685271825ed7120317ebfc8c16f703161a10f56e881fa2bbab793b.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/5d4278167d6601b4180325da8428d3112edbdc93714e439e4439b3b811d7a691.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/a367fa534c6178c9e53efdd84366bf7360bacb3e9282195266e584921dd208cf.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/d5c0e53a066e1d16914eeffd875c09334f70dffb65863701e74be854dec8a571.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1336-ABYSS.2.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://balderdragonslayer.itch.io/abyss"
+    }
+  ]
+}

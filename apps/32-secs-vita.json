@@ -1,0 +1,44 @@
+{
+  "id": "32-secs-vita",
+  "title_id": "32SECS032",
+  "name": "32 Secs Vita",
+  "description": "Port of 32 Secs for PSVita.",
+  "long_description": "This is a wrapper/port of 32 Secs for the PS Vita.\nThe port works by loading the official Android ARMv7 executable in memory, resolving its imports with native functions and patching it in order to properly run. By doing so, it's basically as if we emulate a minimalist Android environment in which we run natively the executable as it is.",
+  "author_ids": [
+    "rinnegatamante"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.0.8",
+  "version_date": "2025-08-11",
+  "requirements": "- libshacccg.suprx\n- kubridge.skprx\n- Game Data Files: Android",
+  "size": 2740028,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/735ba372f3f326dcff602819fe2f1efcd686d0af34549770997b54a764af367a.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/752bf8396d69ebe8c4a11ffb1a383c5eda6d48e70545ed3421680b26ac3d689d.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/95deeb83f60d8cbd03751ee37ad16252b9eb01bc3df3ac7659ba24a768ab31fd.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/abb96716624aa89d58b021b42800337224b426d467d9081d0c023175d4071e55.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/b949d875c554df38a621be34b3131ac3dec6cf71f8b943214366bd8d15d1cd94.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/Rinnegatamante/32secs_vita/releases/download/v.0.8/32secs.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/Rinnegatamante/32secs_vita"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/Rinnegatamante/32secs_vita/releases"
+    }
+  ]
+}

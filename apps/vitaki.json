@@ -1,0 +1,40 @@
+{
+  "id": "vitaki",
+  "title_id": "CHIAKI001",
+  "name": "Vitaki",
+  "description": "Port of Chiaki, an application allowing to stream PS5 to other devices.",
+  "long_description": "Port of Chiaki, an application allowing to stream PS5 to other devices.",
+  "author_ids": [
+    "ywnico",
+    "aagaming"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v0.06d",
+  "version_date": "2026-02-07",
+  "requirements": "",
+  "size": 1718774,
+  "status": "Verified",
+  "icon": "https://robin994.github.io/NeoVitaDB-Catalog/icons/1293-vitaki.png",
+  "screenshots": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/ywnico/vitaki-fork/releases/download/v0.06d/Vitaki.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/ywnico/vitaki-fork"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/ywnico/vitaki-fork/releases/tag/v0.06d"
+    }
+  ]
+}

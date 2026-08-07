@@ -1,0 +1,44 @@
+{
+  "id": "registry-profiler",
+  "title_id": "PSREGPROF",
+  "name": "Registry Profiler",
+  "description": "Registry editor for PSVITA.",
+  "long_description": "This app allows certain registry values like the ones for brightness & volume to change and saved into profiles. The first menu gives the options to manage the profiles stored in a created file. When the app is first launched it saves a default profile of the device's current values along with any others later created. The horizontal menu gives the registry categories each containing the settings, some are checkboxes and others are number entries.",
+  "author_ids": [
+    "codiak101"
+  ],
+  "category_id": "utilities",
+  "subcategory_ids": [
+    "installer"
+  ],
+  "version": "v.1.0",
+  "version_date": "2022-01-09",
+  "requirements": "",
+  "size": 1710335,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/e0a3da374a04f20eef9bd2c4686ea828e18ecfe7f7d40f060f68637f2cd3091a.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/9159de4b5a6c52771f6f7cbd008d58ebcedc81325a262e8b609b8b8413e4acb5.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/9a9d1579a0227b1f8899c0b31d80c38344c835103d2c8c33fa4eb8d0fdfa449b.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/0c011bf32deb58f25328305407f97fd2f112f5480b3d53207593f2971073084c.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/7af1c7f05af1b8755d4b365e50e04c71a8edbd93cff6f2a1db38825320c021bb.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/Codiak101/RegistryProfiler/releases/download/v1.0/RegistryProfiler.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/Codiak101/RegistryProfiler"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/Codiak101/RegistryProfiler/releases"
+    }
+  ]
+}

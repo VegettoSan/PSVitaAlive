@@ -1,0 +1,36 @@
+{
+  "id": "notepad-vita",
+  "title_id": "NOTE00001",
+  "name": "Notepad Vita",
+  "description": "Notepad app for PSVITA.",
+  "long_description": "Notepad Vita is a simple note-taking app for the PS Vita.\nNotepad Vita uses both the touch screen and the buttons to navigate the menus with a clean and modern look.\nOn the left side you can see a list with all your notes and on the right side the preview of the selected note.\nIt supports multi-line keyboard for easy note editing.\nYour notes are saved in ux0:/data/Notes/ in .txt format.",
+  "author_ids": [
+    "vitahex-games"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.1.0",
+  "version_date": "2017-09-15",
+  "requirements": "",
+  "size": 1443790,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/86f9eecaf4378984b0ff26bf9e550aa48948d17c5d43d91338d73f9e71b678c1.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/92c82a02928ebff0b718d473bbf6ef309f004eab349acd46e3f4097c2b327c6a.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/310-Notepad.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "http://wololo.net/talk/viewtopic.php?f=116&t=48500"
+    }
+  ]
+}

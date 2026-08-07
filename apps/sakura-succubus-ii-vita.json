@@ -1,0 +1,34 @@
+{
+  "id": "sakura-succubus-ii-vita",
+  "title_id": "RNPYSS002",
+  "name": "Sakura Succubus II Vita",
+  "description": "Port of Sakura Succubus 2 for PSVITA.",
+  "long_description": "Sakura Succubus 2 is a direct sequel to Sakura Succubus. Picking up where the last story left off, Hiroki is courted by two new succubi who want to join his harem: an elegant actress and a cheerful tennis player.",
+  "author_ids": [
+    "silvercrow"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.1.10",
+  "version_date": "2022-04-07",
+  "requirements": "- Game Data Files: PC",
+  "size": 14667034,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/9c8e66bd33c3625529ebc9581eb64671b4d77d8379ea722c603bc4bc10446363.png",
+  "screenshots": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/SilverCrow2323/Sakura-Succubus-2-Vita/releases/download/v.1.1/Sakura.Succubus.II-01.10.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/SilverCrow2323/Sakura-Succubus-2-Vita"
+    }
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "id": "torn",
+  "title_id": "TORN12345",
+  "name": "Torn",
+  "description": "Platformer puzzle game for PSVITA.",
+  "long_description": "TORN is a single-screen platformer with portals, layer shifting and dimension hopping.\nSimply get to the goal in each level.",
+  "author_ids": [
+    "joao-eiras-antunes"
+  ],
+  "category_id": "games",
+  "subcategory_ids": [
+    "platformer"
+  ],
+  "version": "v.1.0",
+  "version_date": "2021-03-10",
+  "requirements": "",
+  "size": 55897615,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/a0f766e47616c6e5be09bf8ab705226ffa745f06c96f94aa5d9dc6fd5bdf4539.png",
+  "screenshots": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/622-Torn.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://jantunes.itch.io/torn"
+    }
+  ]
+}

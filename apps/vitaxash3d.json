@@ -1,0 +1,41 @@
+{
+  "id": "vitaxash3d",
+  "title_id": "XASH00001",
+  "name": "vitaXash3D",
+  "description": "Xash3D is an open source re-creation of the GoldSrc engine, a modified Quake Engine running Half-Life, Counter Strike and Team Fortress.",
+  "long_description": "Xash3D is an open source re-creation of the GoldSrc engine, a modified Quake Engine running Half-Life, Counter Strike and Team Fortress.\nAt the moment vitaXash3D is capable of running Half Life, Counter Strike and their mods.",
+  "author_ids": [
+    "fgsfds"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "fps"
+  ],
+  "version": "mpfix",
+  "version_date": "2018-08-01",
+  "requirements": "- Game Data Files: PC",
+  "size": 1781972,
+  "status": "Verified",
+  "icon": "https://robin994.github.io/NeoVitaDB-Catalog/icons/0365-vitaxash3d.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/df0d1060f87c47ac5018324b4b84269a31ce88150375bc832fbefe948151c287.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/fgsfdsfgs/vitaXash3D/releases/download/mpfix/vitaXash3D-mpfix.zip",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/fgsfdsfgs/vitaXash3D"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/fgsfdsfgs/vitaXash3D/releases/tag/mpfix"
+    }
+  ]
+}

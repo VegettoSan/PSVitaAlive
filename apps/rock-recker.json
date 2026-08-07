@@ -1,0 +1,33 @@
+{
+  "id": "rock-recker",
+  "title_id": "SPCRCKRKR",
+  "name": "Rock Recker",
+  "description": "Clone of Asteroids for PSVITA.",
+  "long_description": "Rock Recker is a clone of the popular game Asteroids created in Game Maker Studio as a hobby project.",
+  "author_ids": [
+    "someonpc"
+  ],
+  "category_id": "games",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.1",
+  "version_date": "2021-10-23",
+  "requirements": "",
+  "size": 2361624,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/a60897ce86395d45f42bce23a9750fd73596211bedcf00459db99c9a6c331489.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/915b143b04cf6ab34a01cb09b8bb9ba8b7cc6689817fd06dbf34d2e321f39120.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/35c254ed9946b9af5f2f5ead7afa8de3dbf3ba857942dce9c2a1b24ef49adc1c.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/ba3d63a1e217e9b92810ef6ea3601a62dc2956d9d34aeb9d49bb28d192fde1b8.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/744-RockRecker.vpk",
+      "recommended": true
+    }
+  ]
+}

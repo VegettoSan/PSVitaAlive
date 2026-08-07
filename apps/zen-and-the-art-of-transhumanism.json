@@ -1,0 +1,39 @@
+{
+  "id": "zen-and-the-art-of-transhumanism",
+  "title_id": "ZENART000",
+  "name": "Zen and the Art of Transhumanism",
+  "description": "Port of Zen and the Art of Transhumanism.",
+  "long_description": "Zen and the Art of Transhumanism is a cyberpunk pottery game about improving the human race through technology.",
+  "author_ids": [
+    "m1s3ry"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.1.0.0",
+  "version_date": "2021-04-01",
+  "requirements": "",
+  "size": 12362269,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/883ac8a80f4183b62c534008cc18f153539d1add4148d5999459604a9ca4759d.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/bad66a5275a617b67bbdbad20b1e854187ed9f7fb732e085f596265a59c03f0c.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/cf6f5074231bda59ac074330a92a81946520b8eda31a1698bc391d7d5a55a284.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/40c751630c63b24862e5751570b617904e3f5fe65d749b6e7c4423566198e000.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/2cdf1373f5011113e65bfff3f9f232f0efed4cb1045097fb99170d65ce8e9073.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/631-Zen_Art_Transhumanism.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://deconstructeam.itch.io/zen-and-the-art-of-transhumanism"
+    }
+  ]
+}

@@ -1,0 +1,44 @@
+{
+  "id": "sonic-2",
+  "title_id": "RSDK00003",
+  "name": "Sonic 2",
+  "description": "Port of Sonic The Hedgehog 2 for PSVITA.",
+  "long_description": "A port of the second game of Sonic (Sonic The Hedgehog 2) based on a full decompilation of the original game.",
+  "author_ids": [
+    "xeeynamo"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.1.1.0",
+  "version_date": "2021-01-20",
+  "requirements": "- Game Data Files: Android",
+  "size": 826709,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/239238d1945a8da3b5c2bfc0bfe345fe57f6d15969e0c187e1758fe2064a53d5.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/db1374fde064f9be268d2438bd91bf4c687f99076ef63b05d7b2b4285d8b0bec.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/26180fa4e83b2acc25607ee4373e917200ed2151f32023baf31675e1db0e19e3.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/a6ab20fc1fb39cd7a8bcd5a837aa90ce479f4c032c8412dc349a787b71cf29b4.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/1ca2e518af56dec10c3816a486d8a0e29bdb003046199396bdf6679f005e1bf1.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/Xeeynamo/Sonic-1-2-2013-Decompilation/releases/download/v1.1.0/Sonic2-xeeynamo-v110.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/Xeeynamo/Sonic-1-2-2013-Decompilation"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/Xeeynamo/Sonic-1-2-2013-Decompilation/releases/"
+    }
+  ]
+}

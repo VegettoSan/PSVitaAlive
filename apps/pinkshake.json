@@ -1,0 +1,39 @@
+{
+  "id": "pinkshake",
+  "title_id": "FUCK42069",
+  "name": "Pinkshake",
+  "description": "3D Platformer for PSVITA.",
+  "long_description": "Pinkshake's Doggo has been stolen again by Evil Sceleton Demon. I mean, how dare he? Now Pinkshake should use all of her skill set to revive her Doggo and stop Evil Sceleton Demon's plans. In ole good classic 3D platformer style, jumping from one floating island to another, using powerful dash and her grapling hook to reach further places. And don't forget her main weapon - umbrella!\n\nNote: Saves doesn't work, try to complete the game in one sit.",
+  "author_ids": [
+    "cojam"
+  ],
+  "category_id": "games",
+  "subcategory_ids": [
+    "platformer"
+  ],
+  "version": "v.1",
+  "version_date": "2023-09-23",
+  "requirements": "",
+  "size": 98293326,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/06a05ac36ae34249650898841e176d6cd4fde8bfbe40cbc3b9829e75d9666692.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/dfcb493f24d427a99af577832121c9942d64c23d908a83441bd26bbaa8135274.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/5bfc143e8d05738f2c30d2c88004ffd64e08f38f9104b5d51df33770cadfd466.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/197008c610a43e13fa2bc5199fa492d012ecd09496f83951efedf9e785b322ca.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/d7f4a4a0ffdf46a19ea6d8c25657d1cbcaf39b76f7ca2af154165e9d6b0cfbcc.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1153-pinkshake.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://cojam.itch.io/pinkshake"
+    }
+  ]
+}

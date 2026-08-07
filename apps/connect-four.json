@@ -1,0 +1,42 @@
+{
+  "id": "connect-four",
+  "title_id": "CONNECT04",
+  "name": "Connect Four",
+  "description": "Connect 4 game for PSVITA.",
+  "long_description": "A simple Connect 4 game for PSVITA/PSTV with Minimax algorithm implemented.",
+  "author_ids": [
+    "dane64"
+  ],
+  "category_id": "games",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.1.0",
+  "version_date": "2020-05-03",
+  "requirements": "",
+  "size": 675033,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/5c7dd08fb76244bca65fcfb6a684c58bf6d960f7319d499aef0cf8df48b36d22.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/a50137af215ce240bd7c4379a79ffa27e0f86fa35c12e8e19d84684221b47963.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/12c770b4c9de362d1c729fe763e327c7caf75fe63f15bb1ff91edc1fb0e76ecc.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/Dane64/ConnectFour/releases/download/1.00/C4.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/Dane64/ConnectFour"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/Dane64/ConnectFour/releases"
+    }
+  ]
+}

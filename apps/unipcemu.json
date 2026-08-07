@@ -1,0 +1,42 @@
+{
+  "id": "unipcemu",
+  "title_id": "SFHB00001",
+  "name": "UniPCemu",
+  "description": "Multiplatform x86 emulator.",
+  "long_description": "UniPCemu is a cycle-accurate x86 emulator (previously called x86EMU before the rename, This isn't based on the other cpu-emulator called x86emu (lower case)). It's a 8086(IBM PC) up to Pentium II (Compaq Deskpro 386, Compaq Deskpro 386 with PS/2 mouse (adds PS/2 mouse to the Compaq Deskpro 386 chipset, optional BIOS ROM replacement (loading it instead, or alternatively a i430fx Pentium or i440fx Pentium Pro/Pentium II chipset with PS/2 mouse) and seperate CMOS settings like the other architectures) emulator(with various, configurable hardware), with up to 80386 timings (80486SX and Pentium using 80386 timings or 1 cycle for newer/unknown timings/instructions, both having no floating point unit)).",
+  "author_ids": [
+    "superfury1"
+  ],
+  "category_id": "emulators",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "2022.10.19",
+  "version_date": "2022-10-19",
+  "requirements": "",
+  "size": 1788120,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/7849cb78ae5e8a8da045e4563fc62ce13f79c92283a89b1e76635b1e8ed4249a.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/ea4101650f1f11df02faf41e94c196e266029d2a2bb8ef37c45ce0908ee44edd.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/171db04edc9716a18649c4442c99f44e94fb5e9ac3fe2252192c79cbe3974de9.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/798-UniPCemu.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://bitbucket.org/superfury/unipcemu/src/default/"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://superfury.itch.io/unipcemu"
+    }
+  ]
+}

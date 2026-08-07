@@ -1,0 +1,31 @@
+{
+  "id": "epicki-tw-j-stary",
+  "title_id": "EPTS80085",
+  "name": "Epicki Twój Stary",
+  "description": "Minigame about avoiding falling objects.",
+  "long_description": "You play as Your Epic Dad (This is the title of the game btw) and you must avoid things.",
+  "author_ids": [
+    "domino"
+  ],
+  "category_id": "games",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.1.0.0",
+  "version_date": "2023-10-23",
+  "requirements": "",
+  "size": 4479405,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/4361c23c183681b1bc0222ef2cdd56717ff5d1b2f473de7a3bc7345ab3b6eb5d.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/fbfaa52939a66b303c78288263ebb78e14157ebbfd63ba045ff39fdf6d6a45a6.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1160-ets.vpk",
+      "recommended": true
+    }
+  ]
+}

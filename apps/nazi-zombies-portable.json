@@ -1,0 +1,45 @@
+{
+  "id": "nazi-zombies-portable",
+  "title_id": "NZZMBSPTB",
+  "name": "Nazi Zombies Portable",
+  "description": "Call of Duty: Zombies \"de-make\" for PlayStation Portable & VITA, Nintendo Switch & 3DS, Windows, & Linux (ARM & x86).",
+  "long_description": "Call of Duty: Zombies \"de-make\" for PlayStation Portable & VITA, Nintendo Switch & 3DS, Windows, & Linux (ARM & x86). Powered by various Quake sourceports. Includes \"Nacht der Untoten\" and several community-made maps.",
+  "author_ids": [
+    "nzp-reboot-team",
+    "rinnegatamante"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "fps"
+  ],
+  "version": "nightly",
+  "version_date": "2026-08-05",
+  "requirements": "- libshacccg.suprx",
+  "size": 73060733,
+  "status": "Verified",
+  "icon": "https://robin994.github.io/NeoVitaDB-Catalog/icons/1028-nazi-zombies-portable.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/700a132501a00d7586707b33c0a4727c2b0664e3ec9c86996efebd810a6cdcc3.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/6e7ece334d0b8604df007a714e9d33abc092dc86af50d4545d6e9177d01f832b.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/140e581c7bbf245de22fd278ef49270d10d8539201b32e6c4b3db7f44f9c17f8.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/a79e4d2418e3aecf44aeab0aca053932e1fa639ce53fc6fe7c0def570fb1ba35.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/nzp-team/nzportable/releases/download/nightly/nzportable-3ds.zip",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/nzp-team/nzportable"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/nzp-team/nzportable/releases/tag/nightly"
+    }
+  ]
+}

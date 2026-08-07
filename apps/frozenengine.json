@@ -1,0 +1,32 @@
+{
+  "id": "frozenengine",
+  "title_id": "FROV00001",
+  "name": "FrozenEngine",
+  "description": "Sandbox platform game.",
+  "long_description": "A sandbox platform game where you create your own levels and then play them made with GameMaker.",
+  "author_ids": [
+    "frozennoober"
+  ],
+  "category_id": "games",
+  "subcategory_ids": [
+    "platformer"
+  ],
+  "version": "v.0.2",
+  "version_date": "2020-03-16",
+  "requirements": "",
+  "size": 2851799,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/790efe54d3e22078e0bfd72dd297916c0a0329bca11749ebe554b49af57bf7ca.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/5532d433594c48ac350c008ac3e1fc83e96a9f4d58ad8f969c9276550c6f3ab5.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/767f777e8e6e54d9cbb5a16ae0ebb55767c7af897fb49c9723e122bc9562c6c1.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/540-FrozenEngine_20Vita.vpk",
+      "recommended": true
+    }
+  ]
+}

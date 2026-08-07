@@ -1,0 +1,41 @@
+{
+  "id": "ddlc-love",
+  "title_id": "DDLCLOVE0",
+  "name": "DDLC-LOVE",
+  "description": "DDLC-LOVE is a Doki Doki Literature Club port programmed in Lua for the Nintendo Switch, 3DS, Sony PS Vita, PSP, and PS3!.",
+  "long_description": "DDLC-LOVE is a Doki Doki Literature Club port programmed in Lua for the Nintendo Switch, 3DS, Sony PS Vita, PSP, and PS3!",
+  "author_ids": [
+    "lukezgd"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v1.2.3",
+  "version_date": "2021-09-16",
+  "requirements": "",
+  "size": 82065242,
+  "status": "Verified",
+  "icon": "https://robin994.github.io/NeoVitaDB-Catalog/icons/0670-ddlc-love.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/1ef4746b0c552ff4d4e3eff1cf98b2231e7dd191d3d2dd0b8565de4a51adb5dd.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/LukeZGD/DDLC-LOVE/releases/download/v1.2.3/DDLC-LOVE.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/LukeZGD/DDLC-LOVE"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/LukeZGD/DDLC-LOVE/releases/tag/v1.2.3"
+    }
+  ]
+}

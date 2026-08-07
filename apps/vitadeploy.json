@@ -1,0 +1,39 @@
+{
+  "id": "vitadeploy",
+  "title_id": "SKGD3PL0Y",
+  "name": "VitaDeploy",
+  "description": "Toolbox that makes homebrewing the PSVITA easier.",
+  "long_description": "Installs and updates the software a modded PSVITA needs, including firmware components and common homebrew, from the device itself. A mshell build is in the same release.",
+  "author_ids": [
+    "skgleba"
+  ],
+  "category_id": "system",
+  "subcategory_ids": [
+    "firmware-tools"
+  ],
+  "version": "v.1.2.3",
+  "version_date": "2026-08-06",
+  "requirements": "",
+  "size": 2144931,
+  "status": "Archive",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/90ef286f1d18909e0d57b3147fb7ec8753e90b65f634cc9423485c5cde6b6e85.png",
+  "screenshots": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/SKGleba/VitaDeploy/releases/download/v1.2.3/VitaDeploy.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/SKGleba/VitaDeploy"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/SKGleba/VitaDeploy/releases"
+    }
+  ]
+}

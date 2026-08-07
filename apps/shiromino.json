@@ -1,0 +1,42 @@
+{
+  "id": "shiromino",
+  "title_id": "TEAR00001",
+  "name": "Shiromino",
+  "description": "Port of Shiromino for PSVITA.",
+  "long_description": "A diverse and challenging puzzle/action game with stylistic roots in the arcade.",
+  "author_ids": [
+    "tear"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "puzzle"
+  ],
+  "version": "pre-v2",
+  "version_date": "2018-12-02",
+  "requirements": "",
+  "size": 20951200,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/772c5242739daa8892a44feb733566a3769c018032ff07dc8bed095afb7c832b.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/dc026cf4c4e4cb434ece1f75f126d54f5ec9e6138fe74f68474bb84bbf3856b3.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/fd1166376b107871e56774cc676f3655a834a087208f1fe23d15044fc99f27f9.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/406-shiromino.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/Tearff/shiromino"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://tetrisconcept.net/threads/shiromino-on-psvita.3745/"
+    }
+  ]
+}

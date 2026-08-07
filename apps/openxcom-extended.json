@@ -1,0 +1,44 @@
+{
+  "id": "openxcom-extended",
+  "title_id": "OXCE00001",
+  "name": "OpenXcom Extended",
+  "description": "Port of OpenXcom Extended for PSVITA.",
+  "long_description": "Port of OpenXcom Extended for PSVITA.\nOpenXcom Extended is an improved version of OpenXcom.",
+  "author_ids": [
+    "northfear"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.7.10-vita.1",
+  "version_date": "2023-12-30",
+  "requirements": "- Game Data Files: PC",
+  "size": 6884745,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/9d5273f40cd8b8d51e489542b338134d1cd2d91a8257adb4a3623f7a99c3e05e.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c002589b5c49a9fe866e70063f4c0ac69bd2839e0d5fc07fe7d703fab0f806f5.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/8c122a9b6c48aa210bfdc8d68fc70e358d54c87f207d8aa4156fb60860770404.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/97483be185418870cdbd5a6ecbb5e3edeed1355c6673e6a459c4ed30e56d7f44.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/7d3bf022d1b7a04295687ab159640f7c0077cfb8c2d7c43438ffa37e05634f20.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/Northfear/OpenXcom-vita/releases/download/v.7.10.0-vita.1/oxce.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/Northfear/OpenXcom-vita/tree/oxce-plus-vita"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/Northfear/OpenXcom-vita/releases"
+    }
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "id": "galactic-federation",
+  "title_id": "RPG100001",
+  "name": "Galactic Federation",
+  "description": "Topdown action science fiction RPG.",
+  "long_description": "Galactic Federation is a top down Action Science Fiction RPG. This is an early sample of 1 dungeon, but the full game is planned to be much bigger. The game currently features 4 classes, but I recommend the Human/Marine since he is the most fleshed out character. The goal of the demo is just to explore the dungeon, and kill all of enemies. The demo also features a boss fight. Controls can be viewed and changed in the options screen on the main menu.",
+  "author_ids": [
+    "island-games"
+  ],
+  "category_id": "development",
+  "subcategory_ids": [
+    "examples"
+  ],
+  "version": "v.0.1",
+  "version_date": "2017-03-21",
+  "requirements": "",
+  "size": 7584796,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/b4bdce6b8304bb8edde6fb1179952f47f17e1be7b46e21bd3dd24db101247993.png",
+  "screenshots": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/206-Galactic_20Federation.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/thesuicidalrobot/Galactic-Federation/releases"
+    }
+  ]
+}

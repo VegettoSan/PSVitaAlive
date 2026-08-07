@@ -1,0 +1,38 @@
+{
+  "id": "dropsy-vita",
+  "title_id": "DROP54000",
+  "name": "Dropsy Vita",
+  "description": "Port of Dropsy for PSVITA.",
+  "long_description": "Dropsy is a non-traditional take on the classic point and click adventure formula starring the gameÃ¢â‚¬â„¢s perpetually carefree namesake clown as he explores a richly detailed world full of colorful characters and sinister secrets, doling out hugs along the way.",
+  "author_ids": [
+    "lordchickenblaster"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "adventure"
+  ],
+  "version": "v.1.02",
+  "version_date": "2025-07-26",
+  "requirements": "- Game Data Files: PC",
+  "size": 15101246,
+  "status": "Legacy",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/c586eeaf82a15268a4d71044ab6598a460380ab17ae946c58a49c01b8a5f9efa.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/7ebe8ecb3e3a640cb2177571886354ea33fdcc4cde3cf134468ce322edc64aa9.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/895a8a78eec290970f6389cdf5c11a1912cb7937fb3e72df306bbfa3018b830a.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/8f867e1d76a065946fa1f370d9ef1bff226c5f0355370f22836022eecfd821ab.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1287-DropsyVITA.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://itch.io/jam/reihen-ps-vita-homebrew-contest/rate/3740886"
+    }
+  ]
+}

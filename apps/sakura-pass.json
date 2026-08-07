@@ -1,0 +1,44 @@
+{
+  "id": "sakura-pass",
+  "title_id": "D33S00001",
+  "name": "Sakura Pass",
+  "description": "This is a brutal single-player racing game with simplified, friendly driving mechanics that reward a good racing line and savagely punish bad technique.",
+  "long_description": "This is a brutal single-player racing game with simplified, friendly driving mechanics that reward a good racing line and savagely punish bad technique.",
+  "author_ids": [
+    "digital33"
+  ],
+  "category_id": "games",
+  "subcategory_ids": [
+    "racing"
+  ],
+  "version": "v.075",
+  "version_date": "2025-11-25",
+  "requirements": "",
+  "size": 18770010,
+  "status": "Legacy",
+  "icon": "https://robin994.github.io/NeoVitaDB-Catalog/icons/1348-sakura-pass.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/af2dea86352dfb388c2af8cb87cee69fddf59e39a8f252285ca4b48129eb5daa.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/cd9df2bd86fb556e3cddd1a84d8505fad309c403ecd8a73f63f3e2acc21066c8.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/cdead2e75c67d2b4daf916cb7d090a49652d3fa25449b9c57a24fa0bbb96fa67.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/58009da80622286f63a30ab9e5474405a9801ea84e49ef0a8908d6b05f3b39cc.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/Digital33Studios/sakurapass/releases/download/v.075/SakuraPass.VPK",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/Digital33Studios/sakurapass"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/Digital33Studios/sakurapass/releases/tag/v.075"
+    }
+  ]
+}

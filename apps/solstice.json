@@ -1,0 +1,42 @@
+{
+  "id": "solstice",
+  "title_id": "WLSOLSTIC",
+  "name": "Solstice",
+  "description": "Port of Solstice for PSVITA.",
+  "long_description": "Solstice is a remake of the ZX Spectrum game Equinox. You control a droid with the mission to stabilize a nuclear mining complex under the attack of unknown entities. The droid has the ability to fly and shoot to destroy the enemies, to protect itself with a plasma shield and to pick items for accessing other areas. There are 8 areas to complete. Can you bring peace to the world and prevent nuclear winter?",
+  "author_ids": [
+    "withlogic"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.1.0.4",
+  "version_date": "2024-01-12",
+  "requirements": "",
+  "size": 62286885,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/c5c12e129060f8a0bcb3e82138a7c5f266149f3344d094605bed4829d250a969.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/1c720834fee36730bb606b2afa697e8db407924e8f941049b6a3a870514b767c.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/1fd6a57926b3e8035d16afbe630268841cfc0aef1c99b44a942c5e75fadf0e1c.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/withLogic/solstice-godot/releases/download/v1.0.4/Solstice.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/withLogic/solstice-godot"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/withLogic/solstice-godot/releases"
+    }
+  ]
+}

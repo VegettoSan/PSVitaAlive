@@ -1,0 +1,39 @@
+{
+  "id": "save-cloud-vita",
+  "title_id": "SAVECLOUD",
+  "name": "Save Cloud Vita",
+  "description": "App to backup saves on the cloud.",
+  "long_description": "An app allowing to backup saves on the cloud for PSVita.",
+  "author_ids": [
+    "iamcco"
+  ],
+  "category_id": "utilities",
+  "subcategory_ids": [
+    "backup"
+  ],
+  "version": "v.2026.04.06",
+  "version_date": "2024-04-06",
+  "requirements": "",
+  "size": 6027607,
+  "status": "Legacy",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/b4e60ee146b3784774457c8f1d2a7e0c88bf53b9baa90b2f9e740dabdf681b9b.png",
+  "screenshots": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/save-cloud/save-cloud-vita/releases/download/v2024.02.28/save-cloud-2026-04-06.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/save-cloud/save-cloud-vita/"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/save-cloud/save-cloud-vita/releases"
+    }
+  ]
+}

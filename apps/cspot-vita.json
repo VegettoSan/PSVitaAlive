@@ -1,0 +1,39 @@
+{
+  "id": "cspot-vita",
+  "title_id": "CSPOT0021",
+  "name": "Cspot_vita",
+  "description": "Spotify client for PSVITA.",
+  "long_description": "A Spotify player for PS Vita.\nOnly to be used with premium spotify accounts!\nRequires iTLS-Enso or newer firmware.",
+  "author_ids": [
+    "michal4132"
+  ],
+  "category_id": "system",
+  "subcategory_ids": [
+    "account"
+  ],
+  "version": "v.0.2.2",
+  "version_date": "2022-11-20",
+  "requirements": "- libshacccg.suprx\n- iTLS-Enso or latest firmware",
+  "size": 1706175,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/f16b21c81f91cb5d5a156864a5a34365d4877558c7257248036b887cc3efe51f.png",
+  "screenshots": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/michal4132/cspot_vita/releases/download/v0.2.2/cspot_vita.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/michal4132/cspot_vita"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/michal4132/cspot_vita/releases"
+    }
+  ]
+}

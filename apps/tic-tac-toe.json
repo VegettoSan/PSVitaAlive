@@ -1,0 +1,33 @@
+{
+  "id": "tic-tac-toe",
+  "title_id": "MORP25422",
+  "name": "Tic-Tac-Toe",
+  "description": "A Tic-Tac-Toe game for the PSVita.",
+  "long_description": "Tic-Tac-Toe is an iteration of the game of the same name for the PS Vita. You have to align 3 crosses or circles to win. The game features 2 modes, one when you have to play against a bot and the second one is a 2 players mode.",
+  "author_ids": [
+    "megagameboy"
+  ],
+  "category_id": "games",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.1.2.2",
+  "version_date": "2022-05-31",
+  "requirements": "",
+  "size": 39690657,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/f6d801dbfec41865a9ebd9c7b33465a2db9eefafbdfe88a9373c01a37a53c427.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/8e0677bf24ee27bc795e329ddd4a735dd3dc494b2edda09efe994d43cb49faa5.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/67d97df6b4668d611bcbb0f84f025a488d2ad9ede1b075fcd0f8054a635c733f.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/da3d45758a53332a0521b8f40c439cd6fd1abf8b29c251ec44e6b3365d426609.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/816-Tic-Tac-Toe.vpk",
+      "recommended": true
+    }
+  ]
+}

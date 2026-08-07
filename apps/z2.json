@@ -1,0 +1,43 @@
+{
+  "id": "z2",
+  "title_id": "Z20231227",
+  "name": "Z2",
+  "description": "A game inspired by Geometry Dash wave gamemode.",
+  "long_description": "A game inspired by Geometry Dash wave gamemode. All you need to do is get the yellow and avoid the red. Green will heal you. The highscore will be saved.",
+  "author_ids": [
+    "kaon"
+  ],
+  "category_id": "games",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.1.2.0",
+  "version_date": "2023-12-29",
+  "requirements": "",
+  "size": 62290108,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/5ee6b83dfc5672efafaca7f045d365fca52843d2e7d32077422fc7d1048a4128.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/fa63f5737731a43f5df01455c1b88381c49ede8da34679d87fc6ee1e0163c358.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/ceb7d4b17f29b6f33306bbe9cbbea7339377c275dc98c3e52b220f173162dc76.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/4aa5359fd519a432f12ee95eacc5ba503bf6ea2403d74ee196aa0fe68bf961a3.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/kaonkaon/ztwo/releases/download/v1.2.0/z2.VPK",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/kaonkaon/ztwo"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/kaonkaon/ztwo/releases"
+    }
+  ]
+}

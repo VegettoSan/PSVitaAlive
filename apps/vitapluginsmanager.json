@@ -1,0 +1,34 @@
+{
+  "id": "vitapluginsmanager",
+  "title_id": "NLTK00001",
+  "name": "VITAPluginsManager",
+  "description": "Plugins manager for PSVITA.",
+  "long_description": "Plugins manager for PSVITA for Vitamin game dumps.",
+  "author_ids": [
+    "neoltk"
+  ],
+  "category_id": "games",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.0.6",
+  "version_date": "2016-10-20",
+  "requirements": "",
+  "size": 69673,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/35be653a38137b2e5f60845fe06ba539cbf6fb4909fe0d55401aeeecaccfb43c.png",
+  "screenshots": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/NeoLTK/VITAPluginsManager/releases/download/0.6/VITAPluginsManager.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/NeoLTK/VITAPluginsManager"
+    }
+  ]
+}

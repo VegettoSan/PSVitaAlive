@@ -1,0 +1,29 @@
+{
+  "id": "x-racer-vita",
+  "title_id": "ABDD44345",
+  "name": "X-Racer Vita",
+  "description": "Port of X-Racer for PSVITA.",
+  "long_description": "Port of X-Racer, a futuristic 3D racing game made with Unity, for PSVITA.",
+  "author_ids": [
+    "roc6d"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "racing"
+  ],
+  "version": "v.1.0",
+  "version_date": "2019-08-26",
+  "requirements": "",
+  "size": 42764245,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/5faf427bd53a3fc9091fba33b71d5c8af9c58d0e0b1835d66087059500cb2f0d.png",
+  "screenshots": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/636-XRACER.vpk",
+      "recommended": true
+    }
+  ]
+}

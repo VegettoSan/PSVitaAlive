@@ -1,0 +1,39 @@
+{
+  "id": "reversme",
+  "title_id": "BREW00001",
+  "name": "ReversMe",
+  "description": "Othello clone for PSVITA.",
+  "long_description": "If you haven't played Reversi/Othello before, you have definitely missed something in your childhood.\nBut it's never too late, launch this homebrew immediately!\nYou will quickly understand the game, and soon you will develop your own tactics to defeat the AI or your friend.",
+  "author_ids": [
+    "theflow"
+  ],
+  "category_id": "games",
+  "subcategory_ids": [
+    "strategy"
+  ],
+  "version": "v.1.1",
+  "version_date": "2016-07-30",
+  "requirements": "",
+  "size": 1674628,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/1737c080c550071f54972f2ff18d710dc504c6a183f8e4c89e3f40bb70cf8c94.png",
+  "screenshots": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/181-ReversMe.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://drive.google.com/file/d/0B8d0Wy4mDFrGM0k0YW9Xd01qS2M/view"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "http://wololo.net/talk/viewtopic.php?f=114&t=44128"
+    }
+  ]
+}

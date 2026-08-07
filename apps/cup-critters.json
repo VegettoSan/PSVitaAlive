@@ -1,0 +1,33 @@
+{
+  "id": "cup-critters",
+  "title_id": "CUID18745",
+  "name": "Cup Critters",
+  "description": "Clone of Cup Critters.",
+  "long_description": "Clone of Cup Critters for PSVITA/PSTV.\nIn Cup Critters, you must manipulate gravity to keep those crazy balls in the cups. As you advance, your score gets higher and the tricks get more difficult. Great fun for casual players and core gamers alike!",
+  "author_ids": [
+    "fantahourglass"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.1.0",
+  "version_date": "2019-04-07",
+  "requirements": "",
+  "size": 36068997,
+  "status": "Legacy",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/43c1788b2d002546564f60b11fb436f2d3b7c0b4ace9bd1d3465ca8c40bc1732.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/1aba5fcafb0106ea2043806f5ad28c16959142da91330453b9ff195f10c63952.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/ad3e5d45d7f35e7465399256ce658285f409523a29e23bcd8eaf48c3766467a8.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/e3a30ade9323f31bd3ebe22e9069b30984a748afd264156c8ea1cf366107f85a.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/452-Cup_20Critters.vpk",
+      "recommended": true
+    }
+  ]
+}

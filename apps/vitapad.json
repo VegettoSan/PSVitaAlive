@@ -1,0 +1,39 @@
+{
+  "id": "vitapad",
+  "title_id": "VPAD00001",
+  "name": "VitaPad",
+  "description": "Use your PSVITA as a PC controller.",
+  "long_description": "VitaPad allows you to use your PSVITA as a wireless PC controller. It supports Windows (both 32 and 64 bit), Android and Linux.",
+  "author_ids": [
+    "rinnegatamante"
+  ],
+  "category_id": "utilities",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.1.3",
+  "version_date": "2020-07-20",
+  "requirements": "",
+  "size": 91438,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/b4b3201894336172760d3f1f5f2af13cc6e5ad04d1e008c03f4a21aa3e718da7.png",
+  "screenshots": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/50-VitaPad.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/Rinnegatamante/VitaPad"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://www.psx-place.com/threads/vitapad.30520/"
+    }
+  ]
+}

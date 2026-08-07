@@ -1,0 +1,40 @@
+{
+  "id": "switch-sd2vita",
+  "title_id": "SWITCHSDV",
+  "name": "Switch SD2Vita",
+  "description": "Little application that allows you to install and manage SD2VITA drivers for both ux0:/ and uma0:/ mounting points.",
+  "long_description": "Little application that allows you to install and manage SD2VITA drivers for both ux0:/ and uma0:/ mounting points.",
+  "author_ids": [
+    "appleio",
+    "wth"
+  ],
+  "category_id": "system",
+  "subcategory_ids": [
+    "storage"
+  ],
+  "version": "2.1",
+  "version_date": "2018-09-29",
+  "requirements": "",
+  "size": 250120,
+  "status": "Verified",
+  "icon": "https://robin994.github.io/NeoVitaDB-Catalog/icons/0294-switch-sd2vita.png",
+  "screenshots": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/Applelo/SwitchSD2Vita/releases/download/2.1/switch_sd2vita.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/Applelo/SwitchSD2Vita"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/Applelo/SwitchSD2Vita/releases/tag/2.1"
+    }
+  ]
+}

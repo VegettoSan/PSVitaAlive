@@ -1,0 +1,44 @@
+{
+  "id": "dariusburst-sp-vita",
+  "title_id": "DARIUS0SP",
+  "name": "DARIUSBURST SP Vita",
+  "description": "This is a wrapper/port of DARIUSBURST SP for the PS Vita.",
+  "long_description": "This is a wrapper/port of DARIUSBURST SP for the PS Vita.\nThe port works by loading the official Android ARMv7 executable in memory, resolving its imports with native functions and patching it in order to properly run. By doing so, it's basically as if we emulate a minimalist Android environment in which we run natively the executable as is.",
+  "author_ids": [
+    "rinnegatamante"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.1.0",
+  "version_date": "2026-06-14",
+  "requirements": "- libshacccg.suprx\n- kubridge.skprx\n- Game Data Files: Android",
+  "size": 2467926,
+  "status": "Legacy",
+  "icon": "https://robin994.github.io/NeoVitaDB-Catalog/icons/1415-dariusburst-sp-vita.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/df4dab81ad4ebe2a63231bac61900e9901a01f18b42b5ba6228f70832ceff866.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/bec267169a191830e09308d3413f1bb12957d90d14a2f54576731dc0798b7683.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/63d3abcdc9a5caf63765d3f9114689a69f81c79669b27d2775d672da6c40c271.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/8a2755dc742e5837b5b59993ea1bbd625d7842b0b978a4e16f5481a818cb5f50.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/Rinnegatamante/dariusburst-vita/releases/download/v.1.0/dariusburst.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/Rinnegatamante/dariusburst-vita"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/Rinnegatamante/dariusburst-vita/releases/tag/v.1.0"
+    }
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "id": "plumbersdontwearties-sdl-vita",
+  "title_id": "PDWT00001",
+  "name": "PlumbersDontWearTies-SDL-vita",
+  "description": "Port of Plumbers Don't Wear Ties for PSVITA.",
+  "long_description": "Plumbers Don't Wear Ties is an adult-oriented \"romantic comedy\" visual novel/dating sim developed by United Pixtures and published by Kirin Entertainment for the 3DO Interactive Multiplayer. \nAlthough the game did have a DOS version, it had very limited distribution and was published by United Pixtures itself. \nThe game stars Edward J. Foster and Jeanne Basone as John and Jane, respectively; two people who are being pressured by their respective parents to go out and find a spouse. \nThe player's task is to get John and Jane together.",
+  "author_ids": [
+    "serph"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "simulation"
+  ],
+  "version": "v.1.0",
+  "version_date": "2021-12-26",
+  "requirements": "- Game Data Files: PC",
+  "size": 1252752,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/87ea68560699c247534ee3f6bb78f788c3d0c8ebe2f6f0cc141aca1809453911.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c03b68008c7b4a28ee47ec6105861951dd57f1b629a5e768c477eb122c620a27.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/5d21b3fbb08f7595b5ee12a6f2bb38b7dd7455200992dbd634a10e4eabe4b3a0.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/a9bcdf0ec36b980b5cf2096ac53103f439da51e211dc203262b7cd072697797d.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/770-PlumbersDontWearTies.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/Serph/PlumbersDontWearTies-SDL-vita"
+    }
+  ]
+}

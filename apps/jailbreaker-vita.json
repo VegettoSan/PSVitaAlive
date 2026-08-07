@@ -1,0 +1,29 @@
+{
+  "id": "jailbreaker-vita",
+  "title_id": "JAIBRE001",
+  "name": "Jailbreaker Vita",
+  "description": "Port of the demo of Jailbreaker for PSVITA.",
+  "long_description": "Port of the demo of Jailbreaker for PSVITA.\nJailbreaker is a short game about an unorthodox, sci-fi world of pixels and parkour. Find your way out of your confinement and venture through eerie worlds while evading dangerous traps that halt your ascent. Reach the paramount. Reach.\nOriginal game by Awfy.",
+  "author_ids": [
+    "vsm-gammer"
+  ],
+  "category_id": "demos",
+  "subcategory_ids": [
+    "tech-demo"
+  ],
+  "version": "v.1.0",
+  "version_date": "2023-05-11",
+  "requirements": "",
+  "size": 26950205,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/045960cfe87155bb12f3f45903ccde83d6715cb5f4dfd9875ef09ce6e0731877.png",
+  "screenshots": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1075-Jailbreaker.vpk",
+      "recommended": true
+    }
+  ]
+}

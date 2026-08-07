@@ -1,0 +1,44 @@
+{
+  "id": "hyperfight-vita",
+  "title_id": "HYFT01234",
+  "name": "HYPERFIGHT Vita",
+  "description": "Port of HYPERFIGHT for PSVITA.",
+  "long_description": "Port of HYPERFIGHT for PSVITA.\nHYPERFIGHT is a 2D one-hit fighting game, made with Godot 3.2 and GodotSteam.",
+  "author_ids": [
+    "anashalideen"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.1.0",
+  "version_date": "2023-04-30",
+  "requirements": "",
+  "size": 27141519,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/696b66ae8056cef4de5c9f74ef3c42b116394f3ada3f41f135c78c67905363fa.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/9ce51405437a313a9e52de1c39f68ccd66ee1bdf94616587f6ee81ace32b7cb6.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/36d9755c71e56c369a87ba9b3348f601eb396f2ac42cf77aa65d7e9c9298361e.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/ed92bbe1112be65459c7bdbc7a1eb5e82306daca6cab082a09d20c991ce31268.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/9f2318a3007ea25fcacea37372743e0e8626d5ff59245e5fc7d4c5ecdbe46843.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/anas-halid/HYPERFIGHT-VITA/releases/download/Release/HYPERFIGHT.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/anas-halid/HYPERFIGHT-VITA"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/anas-halid/HYPERFIGHT-VITA/releases"
+    }
+  ]
+}

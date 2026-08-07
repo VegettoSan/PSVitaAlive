@@ -1,0 +1,41 @@
+{
+  "id": "trogdor-reburninated",
+  "title_id": "TROG73287",
+  "name": "Trogdor: Reburninated",
+  "description": "Recreation of the Flash game Trogdor.",
+  "long_description": "An enhanced recreation of the Homestar Runner Flash game Trogdor, expanded with new features.\n- New Options menu to customize your game\n- Level select\n- New cheats\n- Optional soundtrack from Stinkoman 20X6, another Homestar Runner game\n- Multiple screen scaling options\n- Bugs from the original game have been fixed",
+  "author_ids": [
+    "mode8fx"
+  ],
+  "category_id": "games",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.2.4",
+  "version_date": "2026-05-17",
+  "requirements": "",
+  "size": 10350041,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/e5c00ba529829c233586dee95b900814eebfccf53d24c097fb8f4ba77e46b404.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/7c847dc6db88c445a91e5381c56376118e998e5aa9188f17022a7b08e3b10543.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/Mode8fx/Trogdor-Reburninated/releases/download/v2.4/Trogdor-Reburninated-v2.4-vita.zip",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/Mips96/Trogdor-Reburninated"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/Mips96/Trogdor-Reburninated/releases"
+    }
+  ]
+}

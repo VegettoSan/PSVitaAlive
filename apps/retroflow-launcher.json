@@ -1,0 +1,45 @@
+{
+  "id": "retroflow-launcher",
+  "title_id": "RETROFLOW",
+  "name": "RetroFlow Launcher",
+  "description": "This is a modded version of HexFlow Launcher; a 3d coverflow like launcher for PS Vita.",
+  "long_description": "This is a modded version of HexFlow Launcher; a 3d coverflow like launcher for PS Vita.\nThis version includes categories for retro games which can be launched without bubbles for RetroArch and DaedalusX64. Playstation and PSP games can also be launched without having to create bubbles for every game!",
+  "author_ids": [
+    "jimbob4000",
+    "vitahex-games"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v8.2.0",
+  "version_date": "2026-06-27",
+  "requirements": "",
+  "size": 13704491,
+  "status": "Verified",
+  "icon": "https://robin994.github.io/NeoVitaDB-Catalog/icons/0745-retroflow-launcher.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/88d9a1fdba5f9235725b1d4ccecd3d38a12551c73ff71d6255f556d88bde6e71.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/de1416077452d50b69ceb1027819c1273697928c3a395a99b1cc790f76eba38f.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/f659d762d5577ce8376416271bb0f840d4220bcea23ae324c1c528e458e5d637.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/77d8705f5c8141fa853df3c2a45805427d46f26f6972488c41f4bf79456f1541.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/jimbob4000/RetroFlow-Launcher/releases/download/v8.2.0/RetroFlow_v8.2.0.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/jimbob4000/RetroFlow-Launcher"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/jimbob4000/RetroFlow-Launcher/releases/tag/v8.2.0"
+    }
+  ]
+}

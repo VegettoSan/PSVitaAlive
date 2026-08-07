@@ -1,0 +1,39 @@
+{
+  "id": "vita-milk",
+  "title_id": "RLYX00002",
+  "name": "Vita Milk",
+  "description": "Port of Milk inside a bag of milk inside a bag of milk for PSVITA.",
+  "long_description": "A short story about what sort of challenges everyday little things can be. Help the girl buy milk, be the first not to disappoint her.\nThe game is a small visual novel, showing either funny abstraction and wordplay or painful psychological episodes. The claim that history is based on real events will be too specific, so it is easier to pretend that it is just a set of abstractions and wordplay.",
+  "author_ids": [
+    "rlyx"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.1.03",
+  "version_date": "2022-03-04",
+  "requirements": "",
+  "size": 15734635,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/ad25d45bdb9b4ab862e497cd4af9dbcb4229e4baf58d6c28abca286dd71a25a1.png",
+  "screenshots": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/790-Vita_Milk.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://gitlab.com/rlyx/vita-milk"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://gitlab.com/rlyx/vita-milk/-/releases"
+    }
+  ]
+}

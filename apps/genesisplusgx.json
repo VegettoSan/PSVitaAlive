@@ -1,0 +1,44 @@
+{
+  "id": "genesisplusgx",
+  "title_id": "FRAN00003",
+  "name": "GenesisPlusGX",
+  "description": "Sega Genesis/Megadrive emulator.",
+  "long_description": "Genesis Plus GX is an open-source Sega 8/16 bit emulator focused on accuracy and portability.",
+  "author_ids": [
+    "frangarcj"
+  ],
+  "category_id": "emulators",
+  "subcategory_ids": [
+    "genesis"
+  ],
+  "version": "v.1.7.5-RC",
+  "version_date": "2016-07-29",
+  "requirements": "",
+  "size": 2011467,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/fed314676a182bf702355bf0a46e6366933a92c9dceb8bec0504f21a034fbeda.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/abcf0788862a35cdf1a41733249400ff5037f227878157c4819e16c8bc840cdb.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/696457c4cbc98bc7f7914c8d2ee2ce6c1d7ca678543cd0fdc52589793f9798ec.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/635271a9908206a26eee77809fd9449c9573d461057cfd7ec71ce1ee7779e946.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/02ae5a41052fd9fba10403e48498527e48517428b5498a535d377df464c8a6cc.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/frangarcj/Genesis-Plus-GX/releases/download/1.7.5-RC-Henkaku/GenesisPlusGXVITA.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/frangarcj/Genesis-Plus-GX"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/frangarcj/Genesis-Plus-GX/releases"
+    }
+  ]
+}

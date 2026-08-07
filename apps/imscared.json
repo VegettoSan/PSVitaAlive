@@ -1,0 +1,38 @@
+{
+  "id": "imscared",
+  "title_id": "IMSCARED0",
+  "name": "IMSCARED",
+  "description": "Port of IMSCARED for PSVITA.",
+  "long_description": "IMSCARED is a metahorror game that protagonizes the player, putting him in a surreal first-person experience. Find keys, open doors and search for the exit to this nightmare. But I need to let you know, it will try to deceive You as many times as it can. Read the github page on how to get the game working.",
+  "author_ids": [
+    "hatoving"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.1.1",
+  "version_date": "2022-05-07",
+  "requirements": "- YoYo Loader\n- Game Data Files: PC Steam",
+  "size": 5924042,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/f513f7e1e386b5c20e7d713f58324cf203a521db006c8f76b6865df593361ae7.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/50b1d7a1c06cd47cb59c5d977fca5712c1da6901a68e620b8c841774aa6f7f5f.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/95151df81c64efc85853073a2cf5c14fdaa65c444f82797ef215670f50684f58.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/7055a4855f0a060e3b3f72d51309e42c620ab3bc25576557741e178756a08458.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/hatoving/imscared-old-vita/releases/download/1.1/IMSCARED0.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/hatoving/imscared/"
+    }
+  ]
+}

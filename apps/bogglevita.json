@@ -1,0 +1,34 @@
+{
+  "id": "bogglevita",
+  "title_id": "BOGGLESTG",
+  "name": "BoggleVita",
+  "description": "Boggle game for PSVITA.",
+  "long_description": "Boggle game for PSVITA.\nGrab a pen and paper and enjoy.",
+  "author_ids": [
+    "soultiegames"
+  ],
+  "category_id": "games",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.ita",
+  "version_date": "2023-12-23",
+  "requirements": "",
+  "size": 3496823,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/c83b4e4686a58c1a06934a1d07eac69c7c16d61e67dae4d430ee8b8145cab641.png",
+  "screenshots": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/SoulTieGames/BoggleVita/releases/download/Vita/boggle_v2.0.VPK",
+      "recommended": true
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/SoulTieGames/BoggleVita"
+    }
+  ]
+}

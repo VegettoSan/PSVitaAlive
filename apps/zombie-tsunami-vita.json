@@ -1,0 +1,44 @@
+{
+  "id": "zombie-tsunami-vita",
+  "title_id": "ZTSU00001",
+  "name": "Zombie Tsunami Vita",
+  "description": "Unofficial wrapper/port of Zombie Tsunami for PlayStation Vita.",
+  "long_description": "Unofficial wrapper/port of Zombie Tsunami for PlayStation Vita.\nThe port operates by loading the official Android ARMv7 executable directly into memory, linking its dependencies to native functions, and applying the necessary patches for it to run correctly. In practice, this creates a lightweight Android-like environment where the original executable can run natively without modification.",
+  "author_ids": [
+    "chatgpt-ai"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v1.0",
+  "version_date": "2026-07-14",
+  "requirements": "- libshacccg.suprx\n- kubridge.skprx\n- Game Data Files: Android",
+  "size": 6318259,
+  "status": "Legacy",
+  "icon": "https://robin994.github.io/NeoVitaDB-Catalog/icons/1436-zombie-tsunami-vita.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/b50ec109bdf05116a1287b6f9928f871909550ecd33967d426d392bc2059cd14.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/08424e29814a91598cde2881ac36ae0265424aa3246d28ec68dd80320245d05d.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/2b1336c9f339752a9b9be514992754e5e674567c0b1d3580293d14cf8a5e3f0e.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/6ef2acaacd850d780f6e325feeb3203b868b98a78ce2cf3805bfd9ab3e16a56c.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/WolffsRoom/ZombieTsunami-Vita/releases/download/v1.0/ZombieTsunami-v1.0.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/WolffsRoom/ZombieTsunami-Vita"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/WolffsRoom/ZombieTsunami-Vita/releases/tag/v1.0"
+    }
+  ]
+}

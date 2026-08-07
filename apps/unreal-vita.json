@@ -1,0 +1,44 @@
+{
+  "id": "unreal-vita",
+  "title_id": "UNRL00001",
+  "name": "Unreal Vita",
+  "description": "Port of Unreal for PSVita based on the reconstructed sourcecode of the Unreal Engine 1 v200.",
+  "long_description": "Port of Unreal for PSVita based on the reconstructed sourcecode of the Unreal Engine 1 v200.\nUnreal is a first-person shooter video game developed by Epic MegaGames and Digital Extremes and published by GT Interactive for Microsoft Windows in May 1998.",
+  "author_ids": [
+    "fgsfds"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "fps"
+  ],
+  "version": "ci-dev-build",
+  "version_date": "2024-12-15",
+  "requirements": "- libshacccg.suprx\n- Game Data Files: PC",
+  "size": 2801932,
+  "status": "Verified",
+  "icon": "https://robin994.github.io/NeoVitaDB-Catalog/icons/1242-unreal-vita.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/85f2986d1e39c800d5130dcfb687f9556e3c7c1576f38e6608a2922f6b6200e1.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/91a73add2fa9e179f17389918ec456b96628cd20ab727724b9fd8f460baf01c0.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/ebeb6b0897c78a5eafc797016259ea5e7e90d02b0b63ecec6d34b9ecd776ddbd.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/5cece8c834ed0aced66355ebd677cc1901bae35b9cbab19d3ba50bd6e2d3498d.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/fgsfdsfgs/UE1/releases/download/ci-dev-build/unreal-arm-psvita-gcc.zip",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/fgsfdsfgs/UE1"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/fgsfdsfgs/UE1/releases/tag/ci-dev-build"
+    }
+  ]
+}

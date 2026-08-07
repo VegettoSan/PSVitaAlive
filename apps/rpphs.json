@@ -1,0 +1,45 @@
+{
+  "id": "rpphs",
+  "title_id": "VGEE00001",
+  "name": "RPPHS",
+  "description": "Top down shooter game.",
+  "long_description": "Blast your way through those shapes in this Geometry Wars-inspired twin stick shooter for the PlayStation Vita! Enter your initials for the offline leaderboards, customize your crosshair, and mess with our super-cool settings menu.. or don't, that's entirely up to you.",
+  "author_ids": [
+    "g33",
+    "motolegacy"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "fps"
+  ],
+  "version": "v.1.2",
+  "version_date": "2019-01-28",
+  "requirements": "",
+  "size": 9493224,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/1a2ec67616a1e41eac28c335a7fb98612874f9d6203aa3f395710d016e341048.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/2d5522845c06adeae1f0ba50ee3881fdd22c66dcebaafaa0ac256b41ffa634b3.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/e88c3a011de9646eaac99bd2f7011239f520239c9c95f71456adf8ac8fc40720.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/7e32b98774df53474eb188f7ec610be109be2d0267161af17a3721acbc113bd8.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/d982fb4f33931aca6ed6a48bb741622ea8ec2ae169073cb6af78e2791cec05d4.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/G333333/RPPHS/releases/download/v1.2/RPPHS.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/G333333/RPPHS"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "http://wololo.net/talk/viewtopic.php?f=116&p=423389#p423389"
+    }
+  ]
+}

@@ -1,0 +1,42 @@
+{
+  "id": "crosscraft-classic",
+  "title_id": "CCC000110",
+  "name": "CrossCraft Classic",
+  "description": "CrossCraft-Classic is a project that aims to recreate Minecraft Java Edition: Classic without looking at any of the source code of the original application...",
+  "long_description": "CrossCraft-Classic is a project that aims to recreate Minecraft Java Edition: Classic without looking at any of the source code of the original application and without using the original copyrighted assets. All knowledge is figured out with an understanding of in-game mechanics and is approximated to be as close as possible to the original.",
+  "author_ids": [
+    "iridescence",
+    "motolegacy"
+  ],
+  "category_id": "games",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v1.3",
+  "version_date": "2022-12-01",
+  "requirements": "",
+  "size": 14946577,
+  "status": "Verified",
+  "icon": "https://robin994.github.io/NeoVitaDB-Catalog/icons/0848-crosscraft-classic.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/808852b117f554d12ebdfb82a88f2f44948758e9f31a1648dfcebcd4f8f1be35.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/CrossCraft/CrossCraft-Classic/releases/download/v1.3/CrossCraft-Linux.zip",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/CrossCraft/CrossCraft-Classic"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/CrossCraft/CrossCraft-Classic/releases/tag/v1.3"
+    }
+  ]
+}

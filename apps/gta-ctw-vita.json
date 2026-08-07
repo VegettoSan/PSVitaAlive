@@ -1,0 +1,42 @@
+{
+  "id": "gta-ctw-vita",
+  "title_id": "GTACTW000",
+  "name": "GTA: CTW Vita",
+  "description": "A port of Grand Theft Auto: Chinatown Wars for PSVITA/PSTV based on the Android version of the game.",
+  "long_description": "A port of Grand Theft Auto: Chinatown Wars for PSVITA/PSTV based on the Android version of the game.",
+  "author_ids": [
+    "theflow",
+    "rinnegatamante"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v1.2",
+  "version_date": "2021-06-04",
+  "requirements": "- libshacccg.suprx\n- kubridge.skprx\n- fd_fix.skprx OR repatch_ex.skprx\n- Game Data Files: Android",
+  "size": 977940,
+  "status": "Verified",
+  "icon": "https://robin994.github.io/NeoVitaDB-Catalog/icons/0625-gta-ctw-vita.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c73ed974e57ff2df20dcbbaf9903199099a130ac123b9a244fc7dbc072c97433.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/TheOfficialFloW/gtactw_vita/releases/download/v1.2/GTACTW.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/TheOfficialFloW/gtactw_vita"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/TheOfficialFloW/gtactw_vita/releases/tag/v1.2"
+    }
+  ]
+}

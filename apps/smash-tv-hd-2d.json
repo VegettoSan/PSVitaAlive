@@ -1,0 +1,38 @@
+{
+  "id": "smash-tv-hd-2d",
+  "title_id": "SMTV00001",
+  "name": "Smash TV HD-2D",
+  "description": "Short action game for PSVITA.",
+  "long_description": "A short action game for PSVITA made in Godot.",
+  "author_ids": [
+    "captkuso"
+  ],
+  "category_id": "games",
+  "subcategory_ids": [
+    "action"
+  ],
+  "version": "v.1.0",
+  "version_date": "2024-03-11",
+  "requirements": "",
+  "size": 23896518,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/3646d01020c76ccd93465a82cd33bc5a6d5842a1ec58448c847335f5480a860c.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/2c27cd95816ff7b66a38aeaf4b48d88ecd32f4070a98585eaa6b69297d16c38a.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/08084297ec56d01a3c8319c1b9e3333e909fd506e70b9dad63f1d757167df8d2.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/065e91600ec4239eebb9fbd785f264124ad7a04d04cdbd85bc1a878a3ec5d9d2.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1190-smash_tv.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://captkuso.itch.io/smash-tv-hd-2d"
+    }
+  ]
+}

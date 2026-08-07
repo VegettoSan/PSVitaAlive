@@ -1,0 +1,34 @@
+{
+  "id": "bernard-chronicles",
+  "title_id": "VITATETRI",
+  "name": "Bernard Chronicles",
+  "description": "Tetris Attack clone for PSVITA.",
+  "long_description": "TetrisAttack/Pokemon Puzzle League like game with fully working AI.",
+  "author_ids": [
+    "flappy-jesus"
+  ],
+  "category_id": "games",
+  "subcategory_ids": [
+    "puzzle"
+  ],
+  "version": "v.0.01",
+  "version_date": "2016-10-02",
+  "requirements": "",
+  "size": 6026573,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/0b2223474997d59848fc19c0962c7e0ac7ce3589ed1a5f73bdd04f788643761d.png",
+  "screenshots": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/133-Bernard-Chronicles-Tetris-Attack.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "http://gekihen.customprotocol.com/en/project/Bernard-Chronicles-Tetris-Attack-"
+    }
+  ]
+}

@@ -1,0 +1,41 @@
+{
+  "id": "water-closet",
+  "title_id": "WLOGICWC1",
+  "name": "Water Closet",
+  "description": "Puzzle platform game for PSVITA.",
+  "long_description": "Water Closet (AKA WC) is a (somewhat ridiculous) 2D platform puzzle game. Guide Walter Chambers through a series of stages as he attempts to return home from a bizarre world that he has become trapped in.",
+  "author_ids": [
+    "withlogic"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "platformer"
+  ],
+  "version": "v.1.0",
+  "version_date": "2022-01-09",
+  "requirements": "",
+  "size": 10180722,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/ec20e805491ec680cb8fdb6c766724a7d4790ae686c031218ef0951474037348.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/0849e462468b07f61857f982f3149bb652869414b023f9913abeda827d9a3d88.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/withLogic/waterCloset/releases/download/v1.0/watercloset.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/withLogic/waterCloset"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/withLogic/waterCloset/releases"
+    }
+  ]
+}

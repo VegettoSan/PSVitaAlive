@@ -1,0 +1,39 @@
+{
+  "id": "jellycar",
+  "title_id": "JELY00001",
+  "name": "JellyCar",
+  "description": "2D game with soft body physics.",
+  "long_description": "JellyCar is a great 2d game with soft body physics created by Walaber. This is a reimplemented version for Playstation Vita.",
+  "author_ids": [
+    "drakon"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.1.1",
+  "version_date": "2020-03-22",
+  "requirements": "",
+  "size": 34519153,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/aac16ae00587d26f5f0633def3e3fb658754afd99418fb9224fc6b8b24ebdb0b.png",
+  "screenshots": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrakonPL/JellyCar/releases/download/1.1/JellyCarVita.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/DrakonPL/JellyCar"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/DrakonPL/JellyCar/releases"
+    }
+  ]
+}

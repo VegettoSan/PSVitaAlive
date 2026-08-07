@@ -1,0 +1,44 @@
+{
+  "id": "openxcom",
+  "title_id": "XCOM00001",
+  "name": "OpenXcom",
+  "description": "Port of OpenXcom for PSVITA.",
+  "long_description": "OpenXcom is an open-source clone of the popular \"UFO: Enemy Unknown\" (\"X-COM: UFO Defense\" in the USA release) and \"X-COM: Terror From the Deep\" videogames by Microprose, licensed under the GPL and written in C++ / SDL.",
+  "author_ids": [
+    "northfear"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "engine-port"
+  ],
+  "version": "v.1.0-vita.6",
+  "version_date": "2023-12-15",
+  "requirements": "- fd_fix.skprx OR repatch_ex.skprx\n- Game Data Files: PC",
+  "size": 3815383,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/a443705c218386088a4aa06ae29a11fca8aa4b30d938bf108467238b0c3e5fe9.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/1c9cc63410db7a1df9816e01a403caffb65d0d771d8edeefc246fbbcf70a97ba.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/0c643e051a52bf0689325cb215b8cd804d1fbd0f748ebffcafbb3e9227b13fc9.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/1bcf30cb673faf914817ba18069f7b2472c1e1751d07316cec6eb60406cfb492.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/a99ce442e682b7d8ec083ed49551bdffe443ea553fb80afa363c7eee7aac5d8e.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/Northfear/OpenXcom-vita/releases/download/v1.0-vita.6/openxcom.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/Northfear/OpenXcom-vita"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://kyuhen.customprotocol.com/en/submissions/xcom/"
+    }
+  ]
+}

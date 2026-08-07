@@ -1,0 +1,34 @@
+{
+  "id": "hermes",
+  "title_id": "HERMES001",
+  "name": "Hermes",
+  "description": "Platform game for PSVITA.",
+  "long_description": "Hermes is an extraordinary Jump'n'Run game with plenty of bad taste humour. If you feel offended by crude and dirty humour you may run away now. The game also features pixel violence and promotes the consumption of meat. If you are a hardcore vegetarian, you might very much dislike the game or just have a good laugh.",
+  "author_ids": [
+    "retroguru-team"
+  ],
+  "category_id": "games",
+  "subcategory_ids": [
+    "platformer"
+  ],
+  "version": "v.1.10",
+  "version_date": "2019-04-29",
+  "requirements": "",
+  "size": 1407707,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/111227e66101af623ac514518638c26b29b1666b3ba366cf7e26b33622b54b69.png",
+  "screenshots": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/481-HERMES001.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "http://www.retroguru.com/hermes/"
+    }
+  ]
+}

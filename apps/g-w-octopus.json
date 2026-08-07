@@ -1,0 +1,38 @@
+{
+  "id": "g-w-octopus",
+  "title_id": "OCTO00000",
+  "name": "G&W Octopus",
+  "description": "Clone of Game and Watch Octopus game.",
+  "long_description": "A clone of the Nintendo Game & Watch Octopus electronic console.",
+  "author_ids": [
+    "jacobsplayground"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.1.0",
+  "version_date": "2019-08-03",
+  "requirements": "",
+  "size": 32334215,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/87dd1493dfc6384548343ea5af1555138305a981dba6c2e4e5c9dd08daf5920d.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/3eebca4e0d8b7191b271a6337fdfdd0b497ca521d602ac10541345f1896116fc.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/f343f28e7609deadf22207b100d41d7ee47d1fc02be31396848f02185acc2972.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/294464b8cf7f9d550ed533128ffaa2f548c3d8810ef21f74a790b49a4775dbee.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/496-OC029.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://gbatemp.net/threads/relaese-g-w-octopus.545137/#post-8743198"
+    }
+  ]
+}

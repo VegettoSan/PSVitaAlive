@@ -1,0 +1,43 @@
+{
+  "id": "rocky-castle-vita",
+  "title_id": "RKYCASTLE",
+  "name": "Rocky Castle Vita",
+  "description": "This is a wrapper/port of Rocky Castle for the PS Vita.",
+  "long_description": "This is a wrapper/port of Rocky Castle for the PS Vita.\nThe port works by loading the official Android ARMv7 executables in memory, resolving their imports with native functions and patching it in order to properly run. By doing so, it's basically as if we emulate a minimalist Android environment in which we run natively the executables as they are.",
+  "author_ids": [
+    "rinnegatamante"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.1.1",
+  "version_date": "2025-08-15",
+  "requirements": "- libshacccg.suprx\n- kubridge.skprx\n- Game Data Files: Android",
+  "size": 2701590,
+  "status": "Legacy",
+  "icon": "https://robin994.github.io/NeoVitaDB-Catalog/icons/1307-rocky-castle-vita.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/02b4fce32fa5841d0dca9c3681a508d8e3f7eb20274e5d76fd4b2f0dc241a1b9.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/e3871cc41e63995161acf856f4a4727899849d1125be18d813c6ed26d24b34ea.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/bad1a3d4d458f711fdc6bdb56fdb8696ce372d250d9c719d2c217f7f5ed3f03e.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/Rinnegatamante/rocky-castle-vita/releases/download/v.1.1/rocky.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/Rinnegatamante/rocky-castle-vita"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/Rinnegatamante/rocky-castle-vita/releases/tag/v.1.1"
+    }
+  ]
+}

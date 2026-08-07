@@ -1,0 +1,38 @@
+{
+  "id": "pro-camera-vita",
+  "title_id": "PCM300001",
+  "name": "Pro Camera Vita",
+  "description": "Advanced camera app for PSVITA.",
+  "long_description": "Pro Camera Vita is a powerful camera app that unlocks all the hidden features from the default camera app plus it gives you lots of new options. With Pro Camera Vita you can manually adjust the brightness, the contrast, white balance, you can also add image effects and photo frames to your photos all in real time with smooth framerate.",
+  "author_ids": [
+    "vitahex-games"
+  ],
+  "category_id": "media",
+  "subcategory_ids": [
+    "image-viewer"
+  ],
+  "version": "v.1.1",
+  "version_date": "2017-08-16",
+  "requirements": "",
+  "size": 2871322,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/d34c3ab66d96a6da91ca1bb4171a969edc8904345673cbaf78e2fbe624c63a8b.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/23bf2443df1f77e2fa3fd2308ae690ab219e2e7759793df052b3eb694872e6cf.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/e3b7ec054d912697a6649437d518cc6f1615b784d1f43220c3cbc8c6f3584330.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/5a49a666c3a760f57a8614aaabff176ae32c99f48379266adca0e87d57f568c3.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/297-ProCameraVita.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "http://wololo.net/talk/viewtopic.php?f=116&t=48379"
+    }
+  ]
+}

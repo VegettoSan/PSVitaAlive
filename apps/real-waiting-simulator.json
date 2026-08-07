@@ -1,0 +1,39 @@
+{
+  "id": "real-waiting-simulator",
+  "title_id": "HWCG00003",
+  "name": "Real Waiting Simulator",
+  "description": "Simple graphics, realistic simulation!.",
+  "long_description": "This game is all about waiting. If you last 10 minutes waiting, you win! You should always pay attention to the screen and wait for a \"Quickly! Press X!\" message to appear, since that's how the game knows you're waiting for real. The most realistic simulator ever. You will feel that waiting 10 minutes lasts an eternity...",
+  "author_ids": [
+    "hwnj"
+  ],
+  "category_id": "games",
+  "subcategory_ids": [
+    "simulation"
+  ],
+  "version": "v.1.1",
+  "version_date": "2021-06-07",
+  "requirements": "",
+  "size": 2590046,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/6575439266801d97a7bbb4785121238371eba98ffc387a8b1e96d5b5636656f2.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/eae3a49ff49bf6faa841bed869f5a1ba19bb8463542888e26132ca7a72884655.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/5006f637f51de2fefa795b8ae7b745f9e30bd635fc7e12c1fd955165cdace5f8.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/5ee9a0bebe6a96db95f2b45b76f831b40382d647736210e3bfe6bcdd766969b4.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c869198b7366d6fe8da2225b32ba208056249e83fac06d68b68c9637fe0f969f.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/689-RealWaitingSim.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://www.psx-place.com/threads/real-waiting-simulator.34147/"
+    }
+  ]
+}

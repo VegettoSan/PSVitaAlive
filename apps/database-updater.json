@@ -1,0 +1,29 @@
+{
+  "id": "database-updater",
+  "title_id": "KANA99999",
+  "name": "Database Updater",
+  "description": "App.db Database Updater for PSVITA.",
+  "long_description": "Triggers a rebuild/update for app.db database.",
+  "author_ids": [
+    "kanadeengel"
+  ],
+  "category_id": "utilities",
+  "subcategory_ids": [
+    "installer"
+  ],
+  "version": "v2.0",
+  "version_date": "2016-12-31",
+  "requirements": "",
+  "size": 2302266,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/96799ede1d7e73e5c3c11e206d7506b6b521c8535fe20fe83095ede2fad0d4ee.png",
+  "screenshots": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/224-Database.Manager.vpk",
+      "recommended": true
+    }
+  ]
+}

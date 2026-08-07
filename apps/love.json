@@ -1,0 +1,38 @@
+{
+  "id": "love",
+  "title_id": "LOVEVITA0",
+  "name": "LOVE",
+  "description": "Port of LOVE for PSVITA.",
+  "long_description": "LOVE is a short and addictively challenging platformer with a minimalist design. It has a custom respawn system, 16 levels, 12 track original soundtrack, competitive scoring, and multiple ways to play.\nThis port uses the Android version to play.",
+  "author_ids": [
+    "hatoving"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.1.0",
+  "version_date": "2021-06-05",
+  "requirements": "- Game Data Files: Android",
+  "size": 2847533,
+  "status": "Legacy",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/541dbadb3236fdc62c07372c889c26ea98f28412397d5a150a2a302b740e142d.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/5e46157e03b8ed74a4068ffbc7de6a32cf0574dfeba1c076d1432077790208c8.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/4dd25d7679e79b5bdc71b650f9f19be8ae2359799a773a0e879d9d0752d59e9f.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/7bcde9a4f420cf83bb12702406596d95d111f8bcfe98850be88bcc6f1b1e8cf6.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/683-LOVE.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://kyuhen.customprotocol.com/en/submissions/love/"
+    }
+  ]
+}

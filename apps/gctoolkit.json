@@ -1,0 +1,39 @@
+{
+  "id": "gctoolkit",
+  "title_id": "GCTK10000",
+  "name": "GCToolKit",
+  "description": "Create backups of PSVITA game carts.",
+  "long_description": "Creates 1:1 backups of PSVITA game carts, including CMD56 authentication and the p20-p18 unique keys. A companion PC application can receive the backup over the network when no memory card is available.",
+  "author_ids": [
+    "oestriot"
+  ],
+  "category_id": "games",
+  "subcategory_ids": [
+    "card"
+  ],
+  "version": "v.1.9",
+  "version_date": "2026-08-05",
+  "requirements": "",
+  "size": 2136641,
+  "status": "Archive",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/89d0760967d238eb61d8530828605057c57d895e74f3be845690ac2fabf62674.png",
+  "screenshots": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/oestriot/GcToolKit/releases/download/v1.9/GcToolKit.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/oestriot/GcToolKit"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/oestriot/GcToolKit/releases"
+    }
+  ]
+}

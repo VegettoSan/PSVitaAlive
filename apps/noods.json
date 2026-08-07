@@ -1,0 +1,39 @@
+{
+  "id": "noods",
+  "title_id": "NOODSVITA",
+  "name": "NooDS",
+  "description": "NooDS aims to be a fast and portable Nintendo DS emulator.",
+  "long_description": "NooDS aims to be a fast and portable Nintendo DS emulator. It's not quite there speed-wise, but it offers most other features that you might expect from a DS emulator. It even supports GBA backwards compatibility!",
+  "author_ids": [
+    "hydr8gon"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "release",
+  "version_date": "2026-08-03",
+  "requirements": "",
+  "size": 1723115,
+  "status": "Verified",
+  "icon": "https://robin994.github.io/NeoVitaDB-Catalog/icons/1093-noods.png",
+  "screenshots": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/Hydr8gon/NooDS/releases/download/release/noods-ios.zip",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/Hydr8gon/NooDS"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/Hydr8gon/NooDS/releases/tag/release"
+    }
+  ]
+}

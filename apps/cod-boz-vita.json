@@ -1,0 +1,36 @@
+{
+  "id": "cod-boz-vita",
+  "title_id": "BOZ000001",
+  "name": "COD: BOZ Vita",
+  "description": "Port of Call of Duty: Black Ops Zombies for PSVita.",
+  "long_description": "Port of Call of Duty: Black Ops Zombies for PSVita.\nCall of Duty: Black Ops Zombies is a mobile game that proposes the popular Zombies mode from Call of Duty: Black Ops.",
+  "author_ids": [
+    "devnoname120"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.1.06",
+  "version_date": "2026-07-20",
+  "requirements": "- libshacccg.suprx\n- kubridge.skprx\n- Game Data Files: Android",
+  "size": 1863993,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/0fda23ce47ec5db83ae5983606818219a9657f34fcdff332b7097965c41c753c.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/9d8e0a062a7cc8f387ea784a4a41390e9e17e01cecce45463812353f127c84fb.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/boz_vita.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://x.com/devnoname120"
+    }
+  ]
+}

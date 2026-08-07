@@ -1,0 +1,39 @@
+{
+  "id": "fake-08",
+  "title_id": "FAKE00008",
+  "name": "FAKE-08",
+  "description": "Multiplatform Pico 8 player.",
+  "long_description": "A Pico 8 player for homebrew consoles. Not related to or supported by Lexaloffle Software.",
+  "author_ids": [
+    "jtothebell"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.0.0.2.20",
+  "version_date": "2023-03-11",
+  "requirements": "",
+  "size": 1531484,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/fb2a61fda27fcae200053ef8587ff7cc35bc27da850362a852f89863c82f675e.png",
+  "screenshots": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/jtothebell/fake-08/releases/download/v0.0.2.20/fake_08.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/jtothebell/fake-08"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/jtothebell/fake-08/releases"
+    }
+  ]
+}

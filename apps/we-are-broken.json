@@ -1,0 +1,37 @@
+{
+  "id": "we-are-broken",
+  "title_id": "WEREBROKE",
+  "name": "We Are Broken",
+  "description": "Port of We Are Broken for PSVITA.",
+  "long_description": "You are in a dark room. The vampire in front of you wants to know where is the human resistance hideout. You must resist. Be unbreakable or be broken.\nOriginal game by @raulqueisso",
+  "author_ids": [
+    "m1s3ry"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.1.0.1",
+  "version_date": "2021-04-06",
+  "requirements": "",
+  "size": 215970370,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/016726b1c0ec8225118b84fda161c7ac7e9d9c09b97b68f690d9cde5e7c8c602.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/eb7503dbcc6ecec87b87ef11efea23c096ae7c375babeb329a375e44c05bd73b.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/6fe716ca95f6f45cd85bc0f67dbd7ff043a0cffcdb60bf76106ce394e29a9bfa.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/634-WeAreBroken.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://raulqueisso.itch.io/we-are-broken"
+    }
+  ]
+}

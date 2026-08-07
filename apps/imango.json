@@ -1,0 +1,34 @@
+{
+  "id": "imango",
+  "title_id": "IMNG00001",
+  "name": "iMango",
+  "description": "Media player for PSVita.",
+  "long_description": "Coverflow style media player for PSVita.",
+  "author_ids": [
+    "capitanbarbacoa"
+  ],
+  "category_id": "media",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.1.0",
+  "version_date": "2026-07-13",
+  "requirements": "",
+  "size": 3763993,
+  "status": "Legacy",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/cbb658af9dff8ec0c7e86beea88d6ba5d7cb9e25a5d7e6558d5993be3fa3219b.png",
+  "screenshots": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1441-imango.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://capitanbarbacoa.itch.io/imango-psvita"
+    }
+  ]
+}

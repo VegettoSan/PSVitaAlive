@@ -1,0 +1,34 @@
+{
+  "id": "sqrxz-4",
+  "title_id": "SQRXZ0004",
+  "name": "Sqrxz 4",
+  "description": "Port of Sqrxz 4 for PSVITA/PSTV.",
+  "long_description": "The fourth part of the (now) quadrology Jump’n Think series Sqrxz brings you onto an cold icy island. Shiny marbles, evil penguins and ghosts, underwater creatures and many more to expect. Original Sqrxz made by Marcus Vesterlund and John Holmvall.",
+  "author_ids": [
+    "retroguru-team"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.1.02",
+  "version_date": "2019-04-15",
+  "requirements": "",
+  "size": 813069,
+  "status": "Legacy",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/66e47312b4ef947eca8e0c66d627b45da81ae004ad548d65724ed89e181d8022.png",
+  "screenshots": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/615-SQRXZ0004.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://www.sqrxz.de/sqrxz-4/"
+    }
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "id": "tactic-miner",
+  "title_id": "WONR00001",
+  "name": "Tactic Miner",
+  "description": "Topside shoot'em up for PSVITA.",
+  "long_description": "Tactic miner fell in an unknown cavern. Help him escape. 'Little' 2d action game for PSVita/PSTV.",
+  "author_ids": [
+    "wonre"
+  ],
+  "category_id": "games",
+  "subcategory_ids": [
+    "action"
+  ],
+  "version": "v.1.0",
+  "version_date": "2016-10-29",
+  "requirements": "",
+  "size": 2598037,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/32dd0fe63ee2b5b28ebb2f703d5453da98e244dbc1df186b45ad6325482c6333.png",
+  "screenshots": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/93-tactical_miner.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://wololo.net/talk/viewtopic.php?f=114&t=44680"
+    }
+  ]
+}

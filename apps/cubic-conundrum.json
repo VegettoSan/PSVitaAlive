@@ -1,0 +1,31 @@
+{
+  "id": "cubic-conundrum",
+  "title_id": "CUBCCONUN",
+  "name": "Cubic Conundrum",
+  "description": "3D Puzzle Game for PSVITA.",
+  "long_description": "Roll a cube around 25 stages, matching colored tiles to activate lifts and move barriers.",
+  "author_ids": [
+    "forthw"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "puzzle"
+  ],
+  "version": "v.1.0",
+  "version_date": "2018-12-06",
+  "requirements": "",
+  "size": 19951038,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/4f7f3d2f4570a781942ddb18e3c1566209c35f9e2214732dc3bc986a180b5469.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/ee2038a1f28a9786c0ecdc7ff36a0b13870873e62bfa58246be9ead91ced2fe4.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/407-CubicConundrum.vpk",
+      "recommended": true
+    }
+  ]
+}

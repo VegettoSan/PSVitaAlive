@@ -1,0 +1,38 @@
+{
+  "id": "cat-quest-vita",
+  "title_id": "CATS11111",
+  "name": "Cat Quest Vita",
+  "description": "Port of Cat Quest for PSVita.",
+  "long_description": "Cat Quest is an open world RPG set in the pawsome world of cats!\nLeap into a grand adventure in purrsuit of the evil Drakoth and your catnapped sister! Explore Felingard's huge overworld map, risk life and limb delving into dungeons for epic loot, and lend a paw to a furry cast of characters in a flurry of side quests.",
+  "author_ids": [
+    "patnosd"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "rpg"
+  ],
+  "version": "v.1.0",
+  "version_date": "2025-08-15",
+  "requirements": "",
+  "size": 17215212,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/8b362535a34713d3872c16e0fcaa72b2decfb746b3115541d2bb7f3b02cf5d87.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/3f54ad6d1d6bc9d6cd6dfd085271dda74e7eac487f92066d0ec44105dea9d6f4.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/500281d9051cee6de763c153c627c0ce2ba706275f96b35e4974a64c71ad2e7c.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/4d0545f815ac52200b1707d465833f50482853d0dfd69078ab76e404927f6616.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/PatnosDD/Cat-Quest-Ps-Vita/releases/download/V1.0/CatQuest.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/PatnosDD/Cat-Quest-Ps-Vita"
+    }
+  ]
+}

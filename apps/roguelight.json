@@ -1,0 +1,38 @@
+{
+  "id": "roguelight",
+  "title_id": "ROLI00000",
+  "name": "Roguelight",
+  "description": "Roguelight port for PS Vita.",
+  "long_description": "\"The deeper you travel the darker it gets, and you only have your arrows to light the way.\"\nOriginal game by Daniel Linssen.",
+  "author_ids": [
+    "m1s3ry"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.1.0",
+  "version_date": "2021-03-17",
+  "requirements": "",
+  "size": 27966935,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/583f82875fa82075326212597a006f444612ef899dc253e5d1791b8f932063f3.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/ca83b40c410e0bb9d834e68b8ded40ddea97a49d235289f271ddc49fe53aa68e.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/a293ce3f1d7c089258184cb646d57d544b01751edb3f071a245071ad90f11f57.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/301f2c300df6a9e2d1b32c1a74c974eb338e0af111d1b8292d56da5fc6da6d6f.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/627-Roguelight.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://managore.itch.io/roguelight"
+    }
+  ]
+}

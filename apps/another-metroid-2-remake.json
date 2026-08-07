@@ -1,0 +1,31 @@
+{
+  "id": "another-metroid-2-remake",
+  "title_id": "AMTR01693",
+  "name": "Another Metroid 2 Remake",
+  "description": "Port of AM2R for PSVITA.",
+  "long_description": "AM2R, short for Another Metroid 2 Remake, is an action-adventure video game developed by Milton Guasti under the pseudonym DoctorM64, and released in August 2016 for Microsoft Windows, coinciding with the 30th anniversary of the Metroid series.",
+  "author_ids": [
+    "greaterchimera"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "adventure"
+  ],
+  "version": "v.1.41",
+  "version_date": "2017-09-08",
+  "requirements": "",
+  "size": 73768102,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/58c380de731a1e024c3ca6b1778ca6bd29eacd428674bce5932d2507f23d24b8.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/60db97a2cbe037b7cf3378ecd52b5fcd3b118f0a86187432913eda10492cfed8.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/308-AMTR01693.vpk",
+      "recommended": true
+    }
+  ]
+}

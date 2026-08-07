@@ -1,0 +1,31 @@
+{
+  "id": "beat-master",
+  "title_id": "BTMR12345",
+  "name": "Beat Master",
+  "description": "Tetris clone for PSVITA.",
+  "long_description": "Beat Master is a Tetris where you should get the highest score possible while listening to really cool songs.",
+  "author_ids": [
+    "luckthegamers"
+  ],
+  "category_id": "games",
+  "subcategory_ids": [
+    "puzzle"
+  ],
+  "version": "v.1",
+  "version_date": "2019-09-08",
+  "requirements": "",
+  "size": 70547593,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/ad4764e28f434f1df7e46eb7c2fdffda3b1198fc9cfefe3c97aa77148073ea5d.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/716eda534b7a8d5615de8d027da65c4de2bbbecbd9862730092834d50ce66c78.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/505-Beat_20Master.vpk",
+      "recommended": true
+    }
+  ]
+}

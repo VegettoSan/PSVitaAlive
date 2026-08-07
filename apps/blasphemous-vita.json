@@ -1,0 +1,39 @@
+{
+  "id": "blasphemous-vita",
+  "title_id": "BLPM12345",
+  "name": "Blasphemous Vita",
+  "description": "Port of Blasphemous for PSVITA.",
+  "long_description": "Port of Blasphemous for PSVITA.\nBlasphemous is a punishing action-platformer that combines the fast-paced, skilled combat of a hack-n-slash game with a deep and evocative narrative core, delivered through exploration of a huge universe comprised of non-linear levels.",
+  "author_ids": [
+    "gl00mm"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "beta.1",
+  "version_date": "2024-06-11",
+  "requirements": "- Game Data Files: PC",
+  "size": 429964328,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/b6e9557a980f307d3db93a6685e11fe56957b1ddf74ab8cda06330f618799725.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/3d31bf76ce6ec87ce038ed297205287ad52e3facc828b39c07419307ee444738.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/11b81378510366a256dabecaa740812d2baf1af2eaa56170e017feb62511c815.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/da6e90977b99f020c404f1ae921cb8b5490d6cecbaaf16925d366498e7eb4f13.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/12a4745d9e728ca757b5d1b3fe1d1145880f3913f9180b9b4b59b45c0839ac5b.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/gl00mm/Blasphemous_PSVITA/releases/download/Blasphemous_PSVITA-beta.1/BlasphemousVitaSTEAM.zip",
+      "recommended": true
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/gl00mm/Blasphemous_PSVITA"
+    }
+  ]
+}

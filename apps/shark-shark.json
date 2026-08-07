@@ -1,0 +1,41 @@
+{
+  "id": "shark-shark",
+  "title_id": "VSDK00017",
+  "name": "Shark! Shark!",
+  "description": "Re-creation of Shark! Shark! for PSVITA.",
+  "long_description": "Shark! Shark! is an Intellivision game originally designed by Don Daglow, and with additional design and programming by Ji-Wen Tsao, one of the first female game programmers in the history of video games. The player is a fish who must eat smaller fishes in order to gain points and extra lives while avoiding enemies such as larger fishes, sharks, jellyfish, lobsters and crabs. After eating a certain number of fish, the player's fish grows in size and is thus able to eat a larger selection of fish. However, while the larger fish becomes a bit faster, he is less agile than the small fish and has a harder time avoiding enemies.\nThis is a re-creation of the game for Windows, Linux, MacOS, Nintendo 3DS, Switch and PSVita systems.",
+  "author_ids": [
+    "jacob-fliss"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.1.0",
+  "version_date": "2023-04-06",
+  "requirements": "",
+  "size": 4419243,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/d11d78ce203071b17e00e2de70d009bc4fea3b8ef31506944bd4699cfd3f9ba5.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/189004faf4a4028db0383705e0e8814101498db1ce26d87130401ccf444a479c.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1210-SharkShark.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/erfg12/SharkShark"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://erfg12.itch.io/shark-shark"
+    }
+  ]
+}

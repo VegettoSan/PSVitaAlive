@@ -1,0 +1,41 @@
+{
+  "id": "save-keeper",
+  "title_id": "SVK000001",
+  "name": "Save Keeper",
+  "description": "Save backup manager with Google Drive sync.",
+  "long_description": "Back up your PS Vita and PSP save games and sync them to your own Google Drive. Made for people with more than one Vita (or a PS TV) who want their saves to follow them.",
+  "author_ids": [
+    "claude-ai"
+  ],
+  "category_id": "utilities",
+  "subcategory_ids": [
+    "backup"
+  ],
+  "version": "v.1.1.0",
+  "version_date": "2026-07-19",
+  "requirements": "",
+  "size": 3034583,
+  "status": "Legacy",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/9a7d23c03b0187c25e6212c66667bd05f0e8d015f774496fb127c4835c74ba47.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/95165754f044f0af0b6154468b25e0c4e1b38bfba1a8657d87a5f80c2c300eb6.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/falkenhawk/vita-save-keeper/releases/download/v1.1.0/save-keeper.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/falkenhawk/vita-save-keeper"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/falkenhawk/vita-save-keeper/releases"
+    }
+  ]
+}

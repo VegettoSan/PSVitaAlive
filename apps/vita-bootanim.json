@@ -1,0 +1,39 @@
+{
+  "id": "vita-bootanim",
+  "title_id": "SKGVBANIM",
+  "name": "vita-bootanim",
+  "description": "Set a custom animation as console bootlogo.",
+  "long_description": "Simple app that installs a plugin allowing for custom animations usage as replacement for the splashscreen at console boot.",
+  "author_ids": [
+    "skgleba"
+  ],
+  "category_id": "plugins",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.1.1",
+  "version_date": "2021-07-11",
+  "requirements": "",
+  "size": 491527,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/322aa2cbd30f138595ec7edca4033aab9e1a45e2c6465a8118268d00a2cc8ca9.png",
+  "screenshots": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/706-vbanim.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/SKGleba/VitaTools/tree/main/vita-bootanim/source"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/SKGleba/VitaTools"
+    }
+  ]
+}

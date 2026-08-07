@@ -1,0 +1,39 @@
+{
+  "id": "sharkbr33d",
+  "title_id": "SHRKBR33D",
+  "name": "ShaRKBR33D",
+  "description": "Automated libshacccg.suprx installer.",
+  "long_description": "ShaRKBR33D is an all-in-one, automated, one-click extractor/installer of libshacccg.suprx. It's a repackage of a feature of VitaDB Downloader in form of a standalone application.",
+  "author_ids": [
+    "rinnegatamante"
+  ],
+  "category_id": "plugins",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.1.2",
+  "version_date": "2024-11-14",
+  "requirements": "",
+  "size": 1588522,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/18b80e6940f63cdd87cc3974b2c13eb8223581c603167250c85e9f8f3e7fc49b.png",
+  "screenshots": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/Rinnegatamante/ShaRKBR33D/releases/download/v.1.2/ShaRKBR33D.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/Rinnegatamante/ShaRKBR33D"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/Rinnegatamante/ShaRKBR33D/releases"
+    }
+  ]
+}

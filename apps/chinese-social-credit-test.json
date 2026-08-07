@@ -1,0 +1,36 @@
+{
+  "id": "chinese-social-credit-test",
+  "title_id": "XIMA61245",
+  "name": "Chinese Social Credit Test",
+  "description": "Parody game for PSVita.",
+  "long_description": "Parody game of the chinese social credit system for PSVita.",
+  "author_ids": [
+    "ximer"
+  ],
+  "category_id": "games",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.1.0",
+  "version_date": "2022-06-05",
+  "requirements": "",
+  "size": 38841883,
+  "status": "Archive",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/0b4ff4a7bd18d1fdae0b40af2ea7d4f494117ea20ee21e97fab4d8d37a322b3e.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/2e376a6d78b5978bc10142973fb3512872b201720289934f2f2843687dd5484c.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1445-Chinese_Social_Credit_Test_PSVITA.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://ximer.itch.io/chinese-social-credit-test"
+    }
+  ]
+}

@@ -1,0 +1,41 @@
+{
+  "id": "prboom-plus",
+  "title_id": "FGS000667",
+  "name": "PrBoom Plus",
+  "description": "PrBoom Plus port for PSVITA/PSTV.",
+  "long_description": "PrBoom Plus is a Doom source port developed from the original PrBoom project.\nIt has completely hardware accelerated renderer and supports several advanced features.",
+  "author_ids": [
+    "fgsfds"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "fps"
+  ],
+  "version": "v.1.2",
+  "version_date": "2020-11-06",
+  "requirements": "",
+  "size": 2311271,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/91f92e25ba417b27e586d95b55cecf3bb6a2c2c608bcff45aeaf9abbc439531f.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c466ff03ee2e7324b95154b30f413c558e4d3275b276a8332b1d21a62feca66d.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/fgsfdsfgs/prboom-plus/releases/download/v2.5.1.7um-vita-r1.2/prboom-plus-r1.2.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/fgsfdsfgs/prboom-plus"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/fgsfdsfgs/prboom-plus/releases"
+    }
+  ]
+}

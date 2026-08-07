@@ -1,0 +1,39 @@
+{
+  "id": "media-importer",
+  "title_id": "MIMP00001",
+  "name": "Media Importer",
+  "description": "Import multimedia contents to official apps.",
+  "long_description": "A simple homebrew for importing media into the PS Vita Video and Music players. It removes the need to import your media into CMA/QCMA on your computer.",
+  "author_ids": [
+    "cnsldv"
+  ],
+  "category_id": "utilities",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.0.91",
+  "version_date": "2017-05-16",
+  "requirements": "",
+  "size": 439117,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/5fe27f613833b2332d8fa2d2a8eefd66302c9c17d1e9e78f12f4e200b4bc42fb.png",
+  "screenshots": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/cnsldv/MediaImporter/releases/download/v0.91/MediaImporter.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/cnsldv/MediaImporter"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "http://wololo.net/talk/viewtopic.php?p=418293"
+    }
+  ]
+}

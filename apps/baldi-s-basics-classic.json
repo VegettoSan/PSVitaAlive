@@ -1,0 +1,33 @@
+{
+  "id": "baldi-s-basics-classic",
+  "title_id": "BALD14030",
+  "name": "Baldi's Basics Classic",
+  "description": "Port of Baldi's Basics Classics for PSVITA.",
+  "long_description": "Inspired by creepy/bad edutainment games from the 90s, (Sonic's Schoolhouse, I.M. Meen, 3D Dinosaur Adventure: Save the Dinosaurs), Baldi's Basics is a meta-horror game that's really weird, with no real educational value to be found. Collect all 7 of the notebooks and escape the school, all while avoiding Baldi. Baldi has many friends in the school that will slow down your progress and put you at risk of being caught, so learn how each character works and how you can avoid their attention. Find and use items to your advantage. Oh, and finally, try not to get the quiz answers wrong... Each wrong answer makes Baldi angrier...",
+  "author_ids": [
+    "hatoving"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "adventure"
+  ],
+  "version": "v.1.4.3",
+  "version_date": "2020-08-12",
+  "requirements": "",
+  "size": 51910042,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/2bb6dd9553d0c45be690c70db2e73d1891a88294b3ac7b2689b17782b876c575.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/b2e25540b7bcfd71a830f191c44be2901ef6bc96378c88b9744406239ea2b646.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/657aa53d18ebaf27c20f09169503705a38dbfb1198c8628dcf69d48cf9aba033.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/bc7b005cd45d89d90ec4327579b9d633b3a777ee6b75c9159a7f9ab0f7c44284.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/573-BaldisBasics.vpk",
+      "recommended": true
+    }
+  ]
+}

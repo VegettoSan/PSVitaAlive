@@ -1,0 +1,34 @@
+{
+  "id": "five-beats-at-freddy-s",
+  "title_id": "FBAF00001",
+  "name": "Five Beats at Freddy's",
+  "description": "Rythm game for PSVita.",
+  "long_description": "A simple rhythm game made for a PS Vita homebrew contest, inspired by Friday Night Funkin’.\nAs the name suggests, there are five playable songs, each offering its own difficulty level.",
+  "author_ids": [
+    "5port5y"
+  ],
+  "category_id": "games",
+  "subcategory_ids": [
+    "music"
+  ],
+  "version": "v.1.0",
+  "version_date": "2025-08-12",
+  "requirements": "",
+  "size": 49722199,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/ccb8498a5d31e6fbbdfa1eb2edcffeeaad0f935926a53566a1eb7ad8ea845a74.png",
+  "screenshots": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1306-five_beats.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://5p0rt5y.itch.io/five-beats-at-freddys"
+    }
+  ]
+}

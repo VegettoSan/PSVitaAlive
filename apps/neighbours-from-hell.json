@@ -1,0 +1,37 @@
+{
+  "id": "neighbours-from-hell",
+  "title_id": "HELL12345",
+  "name": "Neighbours from Hell",
+  "description": "Port of Neighbours From Hell for PSVita.",
+  "long_description": "Port of Neighbours From Hell for PSVita based on the free 1.1.5 version of Neighbours From Hell.\nNOTE: All Season 1 levels are unlocked. Season 2 levels are disabled as they are missing from the game files. Social buttons have been disabled because they caused crashes.",
+  "author_ids": [
+    "maloneczsd"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.1.0",
+  "version_date": "2025-12-27",
+  "requirements": "- Game Data Files: Android",
+  "size": 13193713,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/aac21744fcc03deeaefc1b8495fbab6447787c624eda1491de46ac1a01f2d1ac.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/ce07a194f6de8dfa0f73d8c52cf2875ef45aa353f2a4c58251085a1b8707c6ea.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/688b84e8e1f16f77b301b9a09490b44cacfd3a3ef6674996e6a051fb802745fb.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/MaloneCZSD/NFH-PS-VITA/releases/download/V1.0/NFHV1.0.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/malone46/NFH-PS-VITA/"
+    }
+  ]
+}

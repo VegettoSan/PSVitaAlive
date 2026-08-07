@@ -1,0 +1,39 @@
+{
+  "id": "vita-restart",
+  "title_id": "VRST00001",
+  "name": "Vita Restart",
+  "description": "Reboots your PSVITA.",
+  "long_description": "A quick way to reboot your system when Henkaku is running.",
+  "author_ids": [
+    "devnoname120"
+  ],
+  "category_id": "utilities",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.0.10",
+  "version_date": "2017-04-18",
+  "requirements": "",
+  "size": 24314,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/d05c8c84246800a8f636af29d12a714db9a04b546f62587c0ffca820df60f527.png",
+  "screenshots": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/devnoname120/vita-restart/releases/download/0.10/vita-restart.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/devnoname120/vita-restart"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "http://wololo.net/talk/viewtopic.php?p=413152"
+    }
+  ]
+}

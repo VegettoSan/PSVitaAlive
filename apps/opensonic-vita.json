@@ -1,0 +1,41 @@
+{
+  "id": "opensonic-vita",
+  "title_id": "OSNC00001",
+  "name": "OpenSonic Vita",
+  "description": "Port of OpenSonic for PSVita.",
+  "long_description": "OpenSonic Vita brings the classic open-source demo engine to the PS Vita.",
+  "author_ids": [
+    "kiddrwxssj"
+  ],
+  "category_id": "system",
+  "subcategory_ids": [
+    "firmware-tools"
+  ],
+  "version": "v.1.0.7",
+  "version_date": "2026-07-29",
+  "requirements": "",
+  "size": 10858520,
+  "status": "Legacy",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/3f65fe8488a558b8f8f7c5f0060c3ac8819359efa005b6cdd551e5665f013bcc.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c75864e6da64c7a5caa7be8f35cf3322410c7dde683feee3d03860a0885f8018.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/KiddRwxSsj/opensonic-vita/releases/download/1.0.7/opensonic-vita.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/KiddRwxSsj/opensonic-vita"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/KiddRwxSsj/opensonic-vita/releases"
+    }
+  ]
+}

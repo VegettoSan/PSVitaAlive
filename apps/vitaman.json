@@ -1,0 +1,36 @@
+{
+  "id": "vitaman",
+  "title_id": "VTMN00001",
+  "name": "Vitaman",
+  "description": "Pacman clone for PSVITA.",
+  "long_description": "Vitaman is just a simple (ugly) pacman clone but filled with vita scene memes. Nothing too fancy here, if you know pacman and the vita scene, you know this game.",
+  "author_ids": [
+    "l0wigh"
+  ],
+  "category_id": "games",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.1.0",
+  "version_date": "2021-06-07",
+  "requirements": "",
+  "size": 1243358,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/db9465c4bb1c0f6a5b855513e0c6c342a4d22aad02493a146ad9bf29198139cc.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/f47091a12fd1d257451249b23ff7738a667bfb2d525725df8c0c512fb0fb7cc2.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/696-vitaman.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://kyuhen.customprotocol.com/en/submissions/vitaman"
+    }
+  ]
+}

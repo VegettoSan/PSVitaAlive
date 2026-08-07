@@ -1,0 +1,40 @@
+{
+  "id": "autoplugin-2",
+  "title_id": "AUTOPLUG2",
+  "name": "Autoplugin 2",
+  "description": "AutoPlugin II is a PS Vita homebrew that lets users easily install, update, and manage plugins.",
+  "long_description": "AutoPlugin II is a PS Vita homebrew that lets users easily install, update, and manage plugins.",
+  "author_ids": [
+    "theherogac",
+    "onelua"
+  ],
+  "category_id": "plugins",
+  "subcategory_ids": [
+    "system"
+  ],
+  "version": "2.18",
+  "version_date": "2026-06-12",
+  "requirements": "",
+  "size": 12385826,
+  "status": "Verified",
+  "icon": "https://robin994.github.io/NeoVitaDB-Catalog/icons/1448-autoplugin2.png",
+  "screenshots": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/ONElua/AutoPlugin2/releases/download/2.18/AutoPlugin2.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/ONElua/AutoPlugin2"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/ONElua/AutoPlugin2/releases/tag/2.18"
+    }
+  ]
+}

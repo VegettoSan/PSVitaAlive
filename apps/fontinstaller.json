@@ -1,0 +1,39 @@
+{
+  "id": "fontinstaller",
+  "title_id": "CXZV00001",
+  "name": "fontInstaller",
+  "description": "fontRedirect plugin manager.",
+  "long_description": "An app for installing the fontRedirect plugin, and selecting fonts using a GUI.",
+  "author_ids": [
+    "cxziaho"
+  ],
+  "category_id": "plugins",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.1.0",
+  "version_date": "2017-09-29",
+  "requirements": "",
+  "size": 483197,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/c8fc842da5dba70896539d01c215c7691896d91bd898b6d2cf26eba179ba2cdc.png",
+  "screenshots": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/cxziaho/fontInstaller/releases/download/1.0/fontInstaller.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/cxziaho/fontInstaller"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/cxziaho/fontInstaller/releases"
+    }
+  ]
+}

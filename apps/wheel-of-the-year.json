@@ -1,0 +1,39 @@
+{
+  "id": "wheel-of-the-year",
+  "title_id": "WOTY00001",
+  "name": "Wheel Of The Year",
+  "description": "A simple app to Track the Wheel of the Year (made in GM:S).",
+  "long_description": "A simple app to Track the Wheel of the Year (made in GM:S)",
+  "author_ids": [
+    "li"
+  ],
+  "category_id": "utilities",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v1.1",
+  "version_date": "2020-07-24",
+  "requirements": "",
+  "size": 5071119,
+  "status": "Legacy",
+  "icon": "https://robin994.github.io/NeoVitaDB-Catalog/icons/1451-woty.png",
+  "screenshots": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/LiEnby/WheelOfTheYearGM/releases/download/v1.1/WOTY.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/LiEnby/WheelOfTheYearGM"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/LiEnby/WheelOfTheYearGM/releases/tag/v1.1"
+    }
+  ]
+}

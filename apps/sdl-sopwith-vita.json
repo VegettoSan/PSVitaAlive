@@ -1,0 +1,43 @@
+{
+  "id": "sdl-sopwith-vita",
+  "title_id": "WLOGICSPW",
+  "name": "SDL Sopwith Vita",
+  "description": "SDL Sopwith is a port of the game Sopwith, which was originally by BMB Compuscience Canada.",
+  "long_description": "SDL Sopwith is a port of the game Sopwith, which was originally by BMB Compuscience Canada. The original author David L. Clark has kindly released the source code under the GNU GPL.",
+  "author_ids": [
+    "withlogic"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "engine-port"
+  ],
+  "version": "1.0.0",
+  "version_date": "2026-06-05",
+  "requirements": "",
+  "size": 595151,
+  "status": "Legacy",
+  "icon": "https://robin994.github.io/NeoVitaDB-Catalog/icons/1404-sdl-sopwith-vita.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/e3453e9a9bd2cbdb095e96a00ac58d3ab8bd7a11dcef26c11e0e7ed82589587a.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/5e26a8e8cf4ae64d6717dd2dbdd69061f48bd0360d9ed12398607df41a089445.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/2992279f9e66914fa9e01da1cfeeb643cf07f80586377340c64640fec4c308ea.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/withLogic/sdl-sopwith-vita/releases/download/1.0.0/SDL-Sopwith.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/withLogic/sdl-sopwith-vita"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/withLogic/sdl-sopwith-vita/releases/tag/1.0.0"
+    }
+  ]
+}

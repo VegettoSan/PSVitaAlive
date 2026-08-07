@@ -1,0 +1,42 @@
+{
+  "id": "sdl2sand",
+  "title_id": "SDLSAND01",
+  "name": "SDL2Sand",
+  "description": "Port of SDL2Sand for PSVITA.",
+  "long_description": "SDL2Sand is another implementation of the now-classic Falling Sand Game, old-school and minimalistic. The game simulates different particles (such as sand, water, oil or fire) interacting with each other. Freedom is given to the player to experiment with different materials in a sandbox environment.",
+  "author_ids": [
+    "gl33ntwine"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.1.0",
+  "version_date": "2022-01-20",
+  "requirements": "",
+  "size": 654139,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/aecd36a6517578a949ef01fbb08c483a8f49568fcd7ad67cd51914d1deeea834.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/a08cc1340506860347fc64728d92a6244e3d0b01f71bc746ca6692a8ba69bcd6.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/123aca462c1e21a0b82e46c93b31973893bdb3be1a3dde79c94b4853859b43ce.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/v-atamanenko/sdl2sand/releases/download/1.0/sdlsand.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/v-atamanenko/sdl2sand"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/v-atamanenko/sdl2sand/releases"
+    }
+  ]
+}

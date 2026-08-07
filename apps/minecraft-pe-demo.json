@@ -1,0 +1,39 @@
+{
+  "id": "minecraft-pe-demo",
+  "title_id": "MCPEDEMO0",
+  "name": "Minecraft PE DEMO",
+  "description": "Port of the DEMO verison of Minecraft Pocket Edition 0.6.1 alpha to PlayStation Vita.",
+  "long_description": "Port of the DEMO verison of Minecraft Pocket Edition 0.6.1 alpha to PlayStation Vita.",
+  "author_ids": [
+    "minecraftpe-vita"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v1.0.7",
+  "version_date": "2026-05-25",
+  "requirements": "",
+  "size": 8663311,
+  "status": "Verified",
+  "icon": "https://robin994.github.io/NeoVitaDB-Catalog/icons/1446-minecraftpe-demo.png",
+  "screenshots": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/minecraftpe-vita/minecraftpe-vita/releases/download/v1.0.7/minecraftpe_demo.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/minecraftpe-vita/minecraftpe-vita"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/minecraftpe-vita/minecraftpe-vita/releases/tag/v1.0.7"
+    }
+  ]
+}

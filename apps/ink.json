@@ -1,0 +1,38 @@
+{
+  "id": "ink",
+  "title_id": "INKV00000",
+  "name": "INK",
+  "description": "INK port for PSVita.",
+  "long_description": "INK is a fast-paced platformer about using colorful paint to uncover your surroundings. Defeat all enemies in the room and reach the goal! However, the terrain is invisible, so you need to discover the terrain by physically bumping into it, by performing a double jump or by, well, dying.\nPatch and install instructions in Release Page (Github).",
+  "author_ids": [
+    "m1s3ry"
+  ],
+  "category_id": "modding",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.1.0.0",
+  "version_date": "2021-05-27",
+  "requirements": "- Game Data Files: PC Steam",
+  "size": 2947781,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/12a1935cf2a53feb310f13ce4e0a57fbe565f7a511ad5596eb59bfe04b27c743.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/2204e2a882d11fbcda5c4d637a3f8d06f370f5c9f525a0eff35a97d6d6d18b48.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/3c2542e7684c3f16434e6390649568cf5e0a10d01a6492216e0485da1288aa75.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/8a233fc11d1f9e3f659267b6ecabb75be3eeeb40655529ea4eb6dd8ec5cdd7ef.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/m1s3ry/ink-vita/releases/download/v1.0/INK-v1.0.0_KYUHEN.VPK",
+      "recommended": true
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/m1s3ry/ink-vita"
+    }
+  ]
+}

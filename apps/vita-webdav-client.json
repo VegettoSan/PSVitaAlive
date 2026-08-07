@@ -1,0 +1,41 @@
+{
+  "id": "vita-webdav-client",
+  "title_id": "WDVCLI001",
+  "name": "vita-webdav-client",
+  "description": "WebDAV client for PSVITA.",
+  "long_description": "Simple WebDAV Client App for Vita for connecting to local WebDAV server or Cloud Storage that supports WebDAV.",
+  "author_ids": [
+    "cy33hc"
+  ],
+  "category_id": "utilities",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.latest",
+  "version_date": "2023-01-02",
+  "requirements": "- libshacccg.suprx",
+  "size": 15798332,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/26ba7e84ae7c6ed20e7fe7f0e1b8d5ab44b5194d2204eabb95e47c36680e322d.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/237aca5b0e0f39824dcc9e988998b0270e5f8c51a97b6248d0d10260182fc275.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/cy33hc/vita-webdav-client/releases/download/latest/webdavclient.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/cy33hc/vita-webdav-client"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/cy33hc/vita-webdav-client/releases"
+    }
+  ]
+}

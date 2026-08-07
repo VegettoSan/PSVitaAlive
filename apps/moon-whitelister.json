@@ -1,0 +1,39 @@
+{
+  "id": "moon-whitelister",
+  "title_id": "GS0100001",
+  "name": "Moon Whitelister",
+  "description": "PSTV \"v1\" whitelisting app.",
+  "long_description": "Whitelister homebrew for PSTV using v1 patch. Written in Lua, runs on Lua Player Plus R4.",
+  "author_ids": [
+    "gnmmarechal"
+  ],
+  "category_id": "development",
+  "subcategory_ids": [
+    "lua"
+  ],
+  "version": "v.1.0c",
+  "version_date": "2016-08-06",
+  "requirements": "",
+  "size": 1628464,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/c8050f859fc6af4172e08fc80fd2e4e9c59ef806e7a6961fad9f877ff6097593.png",
+  "screenshots": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/4-MoonWhitelister.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/gnmmarechal/moon-whitelister"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://gbatemp.net/threads/release-moon-whitelister-play-whitelist-blocked-games-on-the-playstation-vita-tv.437346/"
+    }
+  ]
+}

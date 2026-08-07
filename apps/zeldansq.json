@@ -1,0 +1,44 @@
+{
+  "id": "zeldansq",
+  "title_id": "ZELDANSQ1",
+  "name": "ZeldaNSQ",
+  "description": "Zelda: Navi's Quest port for PSVITA.",
+  "long_description": "Zelda: Navi's Quest is a sequel game that follows the Vincent Jouillat's Zelda fanmade trilogy.",
+  "author_ids": [
+    "usineur"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.1.1.1",
+  "version_date": "2018-05-04",
+  "requirements": "",
+  "size": 18958142,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/2cbcf0793ff5ef267c0c7243ef2523b55d30e3ad2b4b3c43ce76356aa726b08c.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/fa5d511b11cbefec8d69fe3b08295ee0a26b7d379ed9f3a02625eaec62489072.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/5953e88e81b1718d1cd59df4e2456e46ffa28d99c59fb520a06eb94ccb9aec60.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/3dbadfccf496a1e90493fd491852942d6efb34018e055791827c1809496aed34.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/3253b24fbafa422ee4b9d98146ac6d90b713a3eb77ba1212c78bd9a531e88146.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/350-ZeldaNSQ.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/usineur/ZeldaNSQ"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "http://wololo.net/talk/viewtopic.php?f=116&t=48710"
+    }
+  ]
+}

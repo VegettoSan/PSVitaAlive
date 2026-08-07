@@ -1,0 +1,39 @@
+{
+  "id": "tiny-crate-vita",
+  "title_id": "TICR00002",
+  "name": "Tiny Crate Vita",
+  "description": "Port of Tiny Crate for PSVITA.",
+  "long_description": "Tiny Crate is a cute little precision platformer with puzzle elements!\nLift and toss crates to traverse over spike pits and reach higher ground!\nWeigh down buttons to create platforms and solve the puzzle!",
+  "author_ids": [
+    "thatoneham",
+    "harmony-honey"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "puzzle"
+  ],
+  "version": "v.Main",
+  "version_date": "2024-11-01",
+  "requirements": "",
+  "size": 23561988,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/0d3ffae5f13a2ca349bf52100a69921dcd7d29e65c0fe44e53715075f2ee6090.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/af2ffdce5d9276ebcb159df3e849a7864b5e5c6b78a969d41ef200767685eee4.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/7d08d84d4f502f5c2668d8dc9fc523cd2d78ed7d909c13114028281274caab5b.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c97d33ffadec32cf71758411f910fb9411f377fe7edb8bc96a01a00d494ff6d5.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/thatoneham/Tiny-Crate-Vita/releases/download/Main/Tiny.Crate.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/thatoneham/Tiny-Crate-Vita"
+    }
+  ]
+}

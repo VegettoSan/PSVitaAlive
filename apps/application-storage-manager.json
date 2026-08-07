@@ -1,0 +1,39 @@
+{
+  "id": "application-storage-manager",
+  "title_id": "APPSRGMGR",
+  "name": "Application Storage Manager",
+  "description": "Allows to use ur0:/ to install homebrews.",
+  "long_description": "A little app that allows you to move applications from your memory card (ux0:app/) to your internal sorage (ur0:app/) (and vice-versa).",
+  "author_ids": [
+    "lupo511"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.0.02",
+  "version_date": "2016-10-26",
+  "requirements": "",
+  "size": 731949,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/19c8a866b98ca65214ef7af83bd648f5c4c659f2d0f97e599f9ba4d0cfab32cc.png",
+  "screenshots": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/217-AppStorageManager.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://bitbucket.org/Lupo511/appstoragemanager/src"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://wololo.net/talk/viewtopic.php?f=116&t=47389"
+    }
+  ]
+}

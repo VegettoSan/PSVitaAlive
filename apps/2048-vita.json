@@ -1,0 +1,31 @@
+{
+  "id": "2048-vita",
+  "title_id": "DEFD20485",
+  "name": "2048-Vita",
+  "description": "2048 port for PSVITA.",
+  "long_description": "A simple port of 2048 for PSVITA/PSTV.",
+  "author_ids": [
+    "fantahourglass"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.1.0",
+  "version_date": "2019-02-10",
+  "requirements": "",
+  "size": 34205612,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/bc6fb2b368ec67b29ab1e4d02cc6519c6c1c53100dfec8fccf4933435190cbc1.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/4761e2f47666e5070a7b46ad1e8da26d3c7bdb713deccd078b67ff5d96c6a1ed.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/424-2048-Vita.vpk",
+      "recommended": true
+    }
+  ]
+}

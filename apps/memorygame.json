@@ -1,0 +1,43 @@
+{
+  "id": "memorygame",
+  "title_id": "JJH000001",
+  "name": "MemoryGame",
+  "description": "Brain training game for PSVITA.",
+  "long_description": "MemoryGame is a simple brain training game for the PS Vita inspired to the popular Simon Says game.",
+  "author_ids": [
+    "jjh"
+  ],
+  "category_id": "games",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.1.0",
+  "version_date": "2020-08-15",
+  "requirements": "",
+  "size": 685212,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/f161fb3365146f2ddf7243b7569ec7c083ba8e54d80986dfb25e857b4176a045.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/b397ce6b2f8e6b1d5d653bb0054b7f948f8b553d3baba02c7350642764305624.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/3b96d11c2ee97264cf4fa909718864563ad43637efa31805c4044f6cb8492ee1.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/588369e4270fb5d0d8f933c24e4a558cad09f89035bdd29813346d12fbfe7014.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/JJH47E/MemoryGame/releases/download/1.0/MemoryGame1.0.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/JJH47E/MemoryGame"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/JJH47E/MemoryGame/releases"
+    }
+  ]
+}

@@ -1,0 +1,39 @@
+{
+  "id": "ux0-to-sd-clonetool",
+  "title_id": "ANTSCT001",
+  "name": "UX0 to SD CloneTool",
+  "description": "Tool that semi-automates migration to an SD.",
+  "long_description": "This simple to use tool has been designed to semi-automate the SD migration process. It will assign your memory allocations, and clone your Sony memory to the SD. Works with SD2Vita, PSVSD and USB on PSTVs and Vitas.",
+  "author_ids": [
+    "anthj"
+  ],
+  "category_id": "system",
+  "subcategory_ids": [
+    "storage"
+  ],
+  "version": "v.2.3",
+  "version_date": "2024-05-02",
+  "requirements": "",
+  "size": 7431948,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/7851bbbaae48249806c811d896b91ce3f137f239613d6d6aa1a54a992e1f5cd4.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/87ca0fd009ab0942e624c24540c3fb14e473fc86a31b2a5f25b29205773696db.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/25c7504dcfcfc4b084ddbd206d7319ca2746d556f7fd0193bf3031d0ea4be0b1.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/70753a1b96ab2fb092324a299d95326c949b40e18dc8a0ae2f126286433cbc34.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/ff4ef6ead2a6c37ff6438db21514c9ad2413c44eb13dc51ec064560391584225.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/AntHJ/UX0toSD/releases/download/v2.3/UX0toSD_v2.3.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/AntHJ/UX0toSD/releases"
+    }
+  ]
+}

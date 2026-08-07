@@ -1,0 +1,34 @@
+{
+  "id": "astro-rush",
+  "title_id": "ASTR01234",
+  "name": "Astro Rush",
+  "description": "Fast-paced endless runner for PSVITA.",
+  "long_description": "Race through space and dodge the obstacles at breakneck speed.\nTake control of two meteorites in this fast-paced high score game while you rush through a trippy galaxy. Rotate the meteorites through the obstacles. If you fail once, you will have one meteorite left and switch from rotating to dodging controls.",
+  "author_ids": [
+    "arar7000"
+  ],
+  "category_id": "games",
+  "subcategory_ids": [
+    "racing"
+  ],
+  "version": "v.1.0",
+  "version_date": "2021-07-26",
+  "requirements": "",
+  "size": 34924073,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/b1bace4ad5d43ab79ee7520de4c60b94bb89340299808193828685835f83807f.png",
+  "screenshots": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/713-AstroRush.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://play.google.com/store/apps/details?id=com.aronsommer.astrorush"
+    }
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "id": "psv-midi-player",
+  "title_id": "MIDI00001",
+  "name": "PSV MIDI Player",
+  "description": "MIDI player for PSVita.",
+  "long_description": "A native FluidSynth-based MIDI Player for Vita.",
+  "author_ids": [
+    "snkilc"
+  ],
+  "category_id": "media",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.1.0",
+  "version_date": "2026-03-27",
+  "requirements": "",
+  "size": 225795,
+  "status": "Legacy",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/5b67891e27559920b8dc875328752dda9ae7086c9bd00134434cc7cae285737d.png",
+  "screenshots": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1382-psv-midi-player.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://gbatemp.net/threads/psv-midi-player-v1-0-native-fluidsynth-based-midi-player-for-vita.680692/"
+    }
+  ]
+}

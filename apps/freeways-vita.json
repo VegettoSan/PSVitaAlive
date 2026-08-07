@@ -1,0 +1,44 @@
+{
+  "id": "freeways-vita",
+  "title_id": "FREEWAYS1",
+  "name": "Freeways Vita",
+  "description": "Port of Freeways for PSVITA.",
+  "long_description": "This is a wrapper/port of Freeways for the PS Vita.\nThe port works by loading the official Android ARMv6 executables in memory, resolving their imports with native functions and patching them in order to properly run. By doing so, it's basically as if we emulate a minimalist Android environment in which we run natively the executable as they are.",
+  "author_ids": [
+    "rinnegatamante"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.1.0",
+  "version_date": "2024-02-12",
+  "requirements": "- libshacccg.suprx\n- kubridge.skprx\n- Game Data Files: Android",
+  "size": 837200,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/b92fb9029eb23acfdc6a8bbf6f8c36a18103f2619923c609a1b1beab7ce8fd66.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/22af1bdd44690a258fef63592158a5dd657e1f8659878a5e16c148cd4b914177.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/5e832d93f2c47667c909ecf195cf8a65a9d455565f5b4077cbd40d11b335a778.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/0f3ee29dbc211bf18ebcc9d6621fa76e37f4e1c33a2985df081843cafbbea021.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c5fa21393533e942e25438d15a6c844ffb842b99c40d58710db5f0aac220223a.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/Rinnegatamante/freeways-vita/releases/download/v.1.0/freeways.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/Rinnegatamante/freeways-vita"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/Rinnegatamante/freeways-vita/releases"
+    }
+  ]
+}

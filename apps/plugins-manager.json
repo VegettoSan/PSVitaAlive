@@ -1,0 +1,41 @@
+{
+  "id": "plugins-manager",
+  "title_id": "PLMN00001",
+  "name": "Plugins Manager",
+  "description": "Plugin manager for PSVITA.",
+  "long_description": "A minimalistic plugin manager for taiHEN.",
+  "author_ids": [
+    "kylon"
+  ],
+  "category_id": "plugins",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.2.5",
+  "version_date": "2019-02-10",
+  "requirements": "",
+  "size": 477308,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/2e49763d8e197f21947d50e79a15a092884e46fb3a0023e047c19722bed75e7f.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/4a25841ccec7b9eb864d33466eb6a8c216f2dabffb88e1ddd8b252b32221ba7a.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/300-plgmn.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://bitbucket.org/kylon/plugins-manager-vita/overview"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://forum.hackinformer.com/viewtopic.php?f=111&t=1203"
+    }
+  ]
+}

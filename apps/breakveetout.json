@@ -1,0 +1,40 @@
+{
+  "id": "breakveetout",
+  "title_id": "BREWW0001",
+  "name": "BreakVeetOut",
+  "description": "Clone of BreakOut for the PS Vita.",
+  "long_description": "BreakOut / Arkanoid clone for PSVITA/PSTV.",
+  "author_ids": [
+    "dal3boy",
+    "ruben-wolfe"
+  ],
+  "category_id": "games",
+  "subcategory_ids": [
+    "arcade"
+  ],
+  "version": "v.1.0",
+  "version_date": "2016-07-31",
+  "requirements": "",
+  "size": 1520655,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/70b7c6eb0f45f93164252107a5b54b0a05df99c7bdca18437f6e80fdd56045c4.png",
+  "screenshots": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/15-breakveetout.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/InvalidExcepti0n/BreakVeetOut"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://wololo.net/talk/viewtopic.php?f=116&t=46215"
+    }
+  ]
+}

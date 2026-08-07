@@ -1,0 +1,43 @@
+{
+  "id": "mog-vita",
+  "title_id": "WLOGICMOG",
+  "name": "Mog Vita",
+  "description": "Port of Maze of Galious for PSVita.\nThe Maze of Galious (MoG in short) was originally a Konami game for the MSX computer system.",
+  "long_description": "Port of Maze of Galious for PSVita.\nThe Maze of Galious (MoG in short) was originally a Konami game for the MSX computer system. Its real name is Knightmare II: The Maze of Galious and is the sequel of another Konami game called Knightmare.",
+  "author_ids": [
+    "withlogic"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v1.0",
+  "version_date": "2026-06-13",
+  "requirements": "",
+  "size": 2363770,
+  "status": "Legacy",
+  "icon": "https://robin994.github.io/NeoVitaDB-Catalog/icons/1414-mog-vita.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/3805ed75aeeab2a15b40a967cbd1690c5ef031f6741711bf7b71acb36b8cc575.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/16238c0c34013f36e9a8a306d786ba583edb02fae8ac982fec02b68e4a8b7a06.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/4a3cadf1bd293a93e0644e8c7b9e3b00b7b66542ce06c4210192b70a6fe679e3.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/withLogic/mog-vita/releases/download/v1.0/mog.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/withLogic/mog-vita"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/withLogic/mog-vita/releases/tag/v1.0"
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "id": "fmvita",
+  "title_id": "FILEMNGR1",
+  "name": "FMVita",
+  "description": "FMVita (File Manager Vita) is an enhanced VitaShell (by TheFloW) fork by WolffsRoom with animated backgrounds, full touchscreen dialogs, column view, undo...",
+  "long_description": "FMVita (File Manager Vita) is an enhanced VitaShell (by TheFloW) fork by WolffsRoom with animated backgrounds, full touchscreen dialogs, column view, undo system, QR code scanning/downloading, and independent settings at ux0:FMVita/.",
+  "author_ids": [
+    "wolff",
+    "theflow"
+  ],
+  "category_id": "system",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v0.6.1",
+  "version_date": "2026-08-01",
+  "requirements": "",
+  "size": 2625944,
+  "status": "Legacy",
+  "icon": "https://robin994.github.io/NeoVitaDB-Catalog/icons/1401-fmvita.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/73e553292c53a26594b952a5dcc89b72b81fd2da12ce329bb50edb730ad2adf6.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/43b44c2504fbe224bc80600e8f7c82307157012d1c1c3d5c540a8ea5d8e02030.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/d19ec03230ec71f5b2a941d210f545eeab88d7d08d897e7fd5943f110e53267c.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/7d0f570b39e0e52b8aa352dee6078f318a7f04451e84e2a54074dd04b7f23285.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/WolffsRoom/FMVita/releases/download/v0.6.1/FileManager_v0.6.1.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/WolffsRoom/FMVita"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/WolffsRoom/FMVita/releases/tag/v0.6.1"
+    }
+  ]
+}

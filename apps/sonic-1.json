@@ -1,0 +1,43 @@
+{
+  "id": "sonic-1",
+  "title_id": "RSDK00002",
+  "name": "Sonic 1",
+  "description": "Port of Sonic The Hedgehog for PSVITA.",
+  "long_description": "A port of the first game of Sonic (Sonic The Hedgehog) based on a full decompilation of the original game.",
+  "author_ids": [
+    "xeeynamo"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.1.1.0",
+  "version_date": "2021-01-20",
+  "requirements": "- Game Data Files: Android",
+  "size": 818584,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/f70fb449b312754129fb965c62921af4ac9ac4238e55751910cc3c9c78253c80.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/b5a3d53c33e56d11d916b81d1f390f8714627faa76e88eef9b40512e3b24f5b2.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/020234e9497b68920227b107a00685f983db25d6f732deb0a20d1958b037947c.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/9127234c027d6cb75e0070bdf45825b0f9b890f60ed19c01b01d55cfac066a0c.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/Xeeynamo/Sonic-1-2-2013-Decompilation/releases/download/v1.1.0/Sonic1-xeeynamo-v110.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/Xeeynamo/Sonic-1-2-2013-Decompilation"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/Xeeynamo/Sonic-1-2-2013-Decompilation/releases/"
+    }
+  ]
+}

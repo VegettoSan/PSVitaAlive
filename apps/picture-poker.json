@@ -1,0 +1,34 @@
+{
+  "id": "picture-poker",
+  "title_id": "RPOK00001",
+  "name": "Picture Poker",
+  "description": "A game inspired by Luigi's Picture Poker.",
+  "long_description": "A game inspired by Luigi's Picture Poker.",
+  "author_ids": [
+    "4brm01"
+  ],
+  "category_id": "games",
+  "subcategory_ids": [
+    "card"
+  ],
+  "version": "v.1.0",
+  "version_date": "2026-07-06",
+  "requirements": "",
+  "size": 15227039,
+  "status": "Legacy",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/c9d0a89c9f845e0ef9966f86b363561877eeeea89e66fd5e4b66fb83791f71bb.png",
+  "screenshots": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1429-PicturePoker.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/4brm01/Picture-Poker"
+    }
+  ]
+}

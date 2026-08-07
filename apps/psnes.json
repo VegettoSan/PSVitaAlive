@@ -1,0 +1,41 @@
+{
+  "id": "psnes",
+  "title_id": "PSNE00001",
+  "name": "pSNES",
+  "description": "SNES emulator, multiplatform port of snes9x emulator.",
+  "long_description": "SNES emulator, multiplatform port of snes9x emulator.",
+  "author_ids": [
+    "cpasjuste"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v7.1",
+  "version_date": "2025-12-30",
+  "requirements": "",
+  "size": 3887269,
+  "status": "Verified",
+  "icon": "https://robin994.github.io/NeoVitaDB-Catalog/icons/0546-psnes.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/60bd5d1cd16336e80491f7324963910d38759780be5815f626d8a652cc29f1fd.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/Cpasjuste/pemu/releases/download/v7.1/psnes.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/Cpasjuste/pemu"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/Cpasjuste/pemu/releases/tag/v7.1"
+    }
+  ]
+}

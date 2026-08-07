@@ -1,0 +1,43 @@
+{
+  "id": "serious-sam-tfe-vita",
+  "title_id": "SSAM10001",
+  "name": "Serious Sam TFE Vita",
+  "description": "Port of Serious Sam: The First Encounter for PSVita.",
+  "long_description": "Port of Serious Sam: The First Encounter for PSVita based on the opensourced code from Croteam.",
+  "author_ids": [
+    "fgsfds"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "psvita2",
+  "version_date": "2025-12-17",
+  "requirements": "- libshacccg.suprx\n- Game Data Files: PC",
+  "size": 3435049,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/c701782a79241df22498e9472b1a6c99171c32c81df9756adfa7ba92614c8e83.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/7c36c24a0d8bed53e5d93ab200d169e3b833f6f7ee12c60431b3d1f77be2f27d.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/5815fb289f5d2b0ef845dceab577b5f16ceffb276430d4786b729c1129180670.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/da3f9cd0604da4a3248fbb576c447f86a4a83b6eb0407427e4bf3f5bcf1f619e.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/fgsfdsfgs/Serious-Engine/releases/download/psvita2/ssam_tfe_v2.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/fgsfdsfgs/Serious-Engine/tree/psvita"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/fgsfdsfgs/Serious-Engine/releases"
+    }
+  ]
+}

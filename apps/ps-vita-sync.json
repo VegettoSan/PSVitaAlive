@@ -1,0 +1,39 @@
+{
+  "id": "ps-vita-sync",
+  "title_id": "SYNC00055",
+  "name": "PS Vita Sync",
+  "description": "Homebrew to sync savefiles with your Google Drive.",
+  "long_description": "Homebrew to sync savefiles with your Google Drive.",
+  "author_ids": [
+    "laochun"
+  ],
+  "category_id": "utilities",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.0.01",
+  "version_date": "2023-11-05",
+  "requirements": "",
+  "size": 1041927,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/3db28820b219cc9982dacfabe9521cbfbd967bec259b2b87f13bedda3848aff9.png",
+  "screenshots": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/add-le/ps-vita-sync/releases/download/v0.01/ps_vita_sync.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/add-le/ps-vita-sync"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/add-le/ps-vita-sync/releases"
+    }
+  ]
+}

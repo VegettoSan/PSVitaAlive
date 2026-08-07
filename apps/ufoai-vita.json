@@ -1,0 +1,44 @@
+{
+  "id": "ufoai-vita",
+  "title_id": "UFOAI0002",
+  "name": "ufoai-vita",
+  "description": "Port of UFO: Alien Invasion for PSVITA.",
+  "long_description": "ufoai-vita is a port of UFO: Alien Invasion for PSVITA.\nUFO: Alien Invasion is a squad-based tactical strategy game in the tradition of the old X-COM PC games, but with a twist. Our game combines military realism with hard science-fiction and the weirdness of an alien invasion. The carefully constructed turn-based system gives you pin-point control of your squad while maintaining a sense of pace and danger.",
+  "author_ids": [
+    "rinnegatamante"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "strategy"
+  ],
+  "version": "v.0.5",
+  "version_date": "2023-04-13",
+  "requirements": "- libshacccg.suprx",
+  "size": 4434594,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/09fcdc95f94c359db4af8eee6bf57b8284f1d77eecbc76bc2a23293b3d31c09e.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/f5881919628d666dda3811203dcb9fdd81257d661f7eb329d6b9ad7066eb5c7f.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/47e7dee6a033d980e62ad6cd0fc67edac927583e7d95082d0fae58e00d6361e5.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/13bd2a2574242f4c870d02a733342a36443c34ce761ae639e15a3d0c6d30b1f4.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c24fa07f7d82494bfdc96883e0e5a0ffda5af9d6c6cc0e909ecd0a5e3542f45e.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1069-ufoai.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/Rinnegatamante/ufoai"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://www.psx-place.com/threads/release-ufoai-vita-port-of-ufo-alien-invasion-for-psvita.40248/"
+    }
+  ]
+}

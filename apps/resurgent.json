@@ -1,0 +1,29 @@
+{
+  "id": "resurgent",
+  "title_id": "RESS00001",
+  "name": "Resurgent",
+  "description": "Port of Resurgent for PSVITA.",
+  "long_description": "Traverse a post-apocalyptic city, ravaged by an unknown virus, in search of safety Original game by Tristan Harris.",
+  "author_ids": [
+    "markus95"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.1.0",
+  "version_date": "2021-08-14",
+  "requirements": "",
+  "size": 11295740,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/d523297e4901ee51ffdb015569c8b000616bf435ee18d5b54f41c9fd28a2d3ee.png",
+  "screenshots": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/723-Resurgent_fr.vpk",
+      "recommended": true
+    }
+  ]
+}

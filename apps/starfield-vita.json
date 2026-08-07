@@ -1,0 +1,39 @@
+{
+  "id": "starfield-vita",
+  "title_id": "STFD00001",
+  "name": "Starfield Vita",
+  "description": "Simple endless game for the PS Vita. Runs on Lua Player Plus Vita.",
+  "long_description": "A small endless game where you must dodge the stars.\n\nThis is a port (or rather, a rewrite, written at the same time the PC version was being written) of a small game made for Programming classes at my university. I've decided to rewrite it in Lua. It's rather incomplete because the original game isn't finished either, and I'll add most features from the PC version once that one is finished.",
+  "author_ids": [
+    "gnmmarechal"
+  ],
+  "category_id": "development",
+  "subcategory_ids": [
+    "lua"
+  ],
+  "version": "v.0.2",
+  "version_date": "2017-03-19",
+  "requirements": "",
+  "size": 6051088,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/a8b1b6bcd17ff906f87a10d7b46de03458eba783031c079b2f38e173e24d0372.png",
+  "screenshots": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/gnmmarechal/starfield-vita/releases/download/v0.2/Starfield-Vita-v0.2.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/gnmmarechal/starfield-vita"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "http://gekihen.customprotocol.com/en/project/Starfield-Vita"
+    }
+  ]
+}

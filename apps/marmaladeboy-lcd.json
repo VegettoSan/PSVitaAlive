@@ -1,0 +1,38 @@
+{
+  "id": "marmaladeboy-lcd",
+  "title_id": "BUNKAI007",
+  "name": "MarmaladeBoy_LCD",
+  "description": "Clone of MarmeladeBoy LCD console for PSVITA.",
+  "long_description": "The main game is a port of the LCD game where you have to go from one point to another without dying to increase your score. The idea is based on the MarmaladeBoy LCD game made by Bandai Namco.",
+  "author_ids": [
+    "bunkai"
+  ],
+  "category_id": "games",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.1.0",
+  "version_date": "2023-08-07",
+  "requirements": "",
+  "size": 4519532,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/503dbf900f3b385a35984c958b43c13f5e5d2c43952982c1fea2047dd99d7d9c.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/950e44af3798c9ceecfcd2aa4dac7f43c3b2449958749a857c72c2ccbd37218d.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/db0ebd7be04d4fe17425c85c06e8bcafb3eed6e278389d3a41f100cb6cebd22b.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/69ab255d5ef6d9c0af5bf45b3041573b8d7628486922fc7ce64570b5dc94b401.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1109-marmalade_bunkai.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://fuhen.homebrew-contest.com/submissions/23/"
+    }
+  ]
+}

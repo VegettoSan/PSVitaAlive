@@ -1,0 +1,37 @@
+{
+  "id": "left-4-dead-2d",
+  "title_id": "L4D200001",
+  "name": "Left 4 Dead 2D",
+  "description": "2D demake of Left 4 Dead.",
+  "long_description": "A 2D demake of Left 4 Dead offering a topside view similar to Hotline Miami made with GameMaker Studio.",
+  "author_ids": [
+    "alexdev2"
+  ],
+  "category_id": "games",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.0.1.1",
+  "version_date": "2023-08-12",
+  "requirements": "",
+  "size": 40013315,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/534b366c43079b27ad27380a30dac483d96f6f43ac7a711d10e0a1bb7a7d99d4.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/3f6f5b4405bf769ec62c810c7badcb9935292b7978d74b3114ec8811ab3211c1.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/d54977af42fac3e25b5e329faea27b5d6869f068ed1921fc258eacb77821a76b.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1111-left-4-dead-2-2d-ps-vita-1.1-2.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://gamejolt.com/games/l4d2psp/794205"
+    }
+  ]
+}

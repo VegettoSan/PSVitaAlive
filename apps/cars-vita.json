@@ -1,0 +1,44 @@
+{
+  "id": "cars-vita",
+  "title_id": "CARS00001",
+  "name": "Cars Vita",
+  "description": "Port of Cars for PSVITA.",
+  "long_description": "Port of Cars, a game made by CST1229 in GameMaker Studio, for PSVITA.\nIt's a game based off a Formula 1 game for old flip phones.",
+  "author_ids": [
+    "siulpop"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.1.2",
+  "version_date": "2022-09-29",
+  "requirements": "",
+  "size": 6437586,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/ef1dd8d2a1983766417a6863cd8c24e0dd291103a5cdf458aaf196dd2afa16d5.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/bee406079de25665b61e58bf5614e7900dbbde9d2fd3d95aa018ab387394e9b7.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/e579bf9d998569ba9d64bcc6df6256d1658ef5b497d54599a2ba1d8ea10122fe.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/e5330df708f09f0f62859343cadaf13a8475de49df931eed7428d047ab5e2c8a.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/9a1610393f4a8381c800d72b1ab7059d4f1a9592e9a23c1693c76892c430a8f7.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/SiulPop/Cars-vita/releases/download/v1.2/cars.VPK",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/SiulPop/Cars-vita"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/SiulPop/Cars-vita/releases"
+    }
+  ]
+}

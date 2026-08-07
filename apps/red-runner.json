@@ -1,0 +1,29 @@
+{
+  "id": "red-runner",
+  "title_id": "RTFD12345",
+  "name": "Red Runner",
+  "description": "Port of Red Runner for PSVITA.",
+  "long_description": "Red Runner is an open source endless game similar to Super Meat Boy in its mechanics.",
+  "author_ids": [
+    "retrogamer74"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.1.0",
+  "version_date": "2019-03-06",
+  "requirements": "",
+  "size": 51410836,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/31a5547132077125426247389e1472596f7bb8325a546f6bc5c8139af58fa6f9.png",
+  "screenshots": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/433-redrunner.vpk",
+      "recommended": true
+    }
+  ]
+}

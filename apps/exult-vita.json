@@ -1,0 +1,39 @@
+{
+  "id": "exult-vita",
+  "title_id": "EXULT0042",
+  "name": "Exult Vita",
+  "description": "Port of Ultima 7 for PSVITA.",
+  "long_description": "Ultima 7, an RPG from the early 1990's, still has a huge following. But, being a DOS game with a very nonstandard memory manager, it is difficult to run it on the latest computers. Exult is a project to create an Ultima 7 game engine that runs on modern operating systems, capable of using the data and graphics files that come with the game.",
+  "author_ids": [
+    "einmueller"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "rpg"
+  ],
+  "version": "v.1.9.vita.2",
+  "version_date": "2022-06-22",
+  "requirements": "",
+  "size": 3980825,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/f6e23d355a33615497491dff94effd91b4e563c75c98c2c8eb7b066b14a70105.png",
+  "screenshots": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/einmueller/exult-vita/releases/download/v1.9.vita.2/exult.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/einmueller/exult-vita"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/einmueller/exult-vita/releases"
+    }
+  ]
+}

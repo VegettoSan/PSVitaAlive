@@ -1,0 +1,38 @@
+{
+  "id": "openmrac-vita",
+  "title_id": "OPENMRACE",
+  "name": "OpenMRac Vita",
+  "description": "Port of OpenMRac for PSVITA.",
+  "long_description": "Port of OpenMRac for PSVITA.\nOpenMRac is an opensource racing game with time trial and up to 4 players split-screen multiplayer.",
+  "author_ids": [
+    "rinnegatamante"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "racing"
+  ],
+  "version": "v.1.0.1",
+  "version_date": "2023-09-24",
+  "requirements": "- libshacccg.suprx",
+  "size": 7223492,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/6ce21ea945585bfa24a124c345ade09790fcd7be7750c433d578b1e2b249bab7.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/b93465fea3f96ea30307604aa7f7fe3cba79d6e06d195a5c0c933641aa9cb826.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/1c963f24bef823da7481bd01ed01aa457c2429ac383aa633990a84a5147a59cd.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/3dbda2499f206543b195d600664d5d450b769853d8addeae735ae4d384f31010.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1127-OpenMRac.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/Rinnegatamante/OpenMRac"
+    }
+  ]
+}

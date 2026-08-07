@@ -1,0 +1,43 @@
+{
+  "id": "abbaye-des-morts-vita",
+  "title_id": "ABBAYEDMO",
+  "name": "Abbaye Des Morts Vita",
+  "description": "Abbaye Des Morts port for PSVITA.",
+  "long_description": "Faith will be your only weapon in this platformer styled like a ZX Spectrum game. Black backgrounds, 1 color sprites and 1 bit sounds are a proper fit for a raw story. The lack of details turn on the player's imagination, creating a unique experience for each player.\nL'Abbaye des Morts has been inspired by the tragic history of the Cathars and platform games for ZX Spectrum computers like Manic Miner, Jet Set Willy or Dynamite Dan.",
+  "author_ids": [
+    "rinnegatamante"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "platformer"
+  ],
+  "version": "v.1.0",
+  "version_date": "2017-12-30",
+  "requirements": "",
+  "size": 1136523,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/e0a3833addae3319f1b85f350c0848e6f152e4435686130308f95c475f990577.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/9d971a82f83408d04fee36d4cefbd0dec23a681fb1197f25c0e52ac65ece5618.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/670acfd4065d791b0dcc319fedfa70dae17a926c1c40ad3e319d2d09b3772e9e.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/af7ee7f95595af164b9a23161a718d4e75d9b6ea32e0cb9917bcf070ffa80d39.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/359-AbbayeDesMorts.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/Rinnegatamante/AbbayeDesMorts-Vita"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "http://wololo.net/talk/viewtopic.php?f=116&t=48789"
+    }
+  ]
+}

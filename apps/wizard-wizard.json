@@ -1,0 +1,31 @@
+{
+  "id": "wizard-wizard",
+  "title_id": "WIZAWIZRD",
+  "name": "Wizard Wizard",
+  "description": "Platforming game for PSVITA.",
+  "long_description": "Wizard Wizard is an indie platforming game in which you have to save the princess.",
+  "author_ids": [
+    "crateboy"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.1.0",
+  "version_date": "2018-10-24",
+  "requirements": "",
+  "size": 11060853,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/3596c5f11c7c440e34ed6255dcd4b316ddd3cabfd1a57a574f8961d0f9dcac21.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/fa3a6488da9172deb5e76f0547a4d673fc7e05bb86252dadd8cb451ce11df638.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/408-WizardWizard.vpk",
+      "recommended": true
+    }
+  ]
+}

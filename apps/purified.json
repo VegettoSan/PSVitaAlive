@@ -1,0 +1,39 @@
+{
+  "id": "purified",
+  "title_id": "BALD00001",
+  "name": "Purified",
+  "description": "Waves based TPS for PSVITA.",
+  "long_description": "Purified is a third person wave based shooter with the goal to run a smooth 60 on Vita hardware!\nThe official soundtrack is composed by my friend Brian Czernikowski!",
+  "author_ids": [
+    "balder"
+  ],
+  "category_id": "games",
+  "subcategory_ids": [
+    "shooter"
+  ],
+  "version": "Breach",
+  "version_date": "2024-10-31",
+  "requirements": "",
+  "size": 88310794,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/a5221db422d31b43bf29da71639433b7da57869cce67049b95f566ee546f5f05.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/1aa72ab8b1edf20d2b9a920cc340e7520cf69bb70c6ec0a9fca65794e58c9a4d.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/8e9edb51a411e79c300ec96a0be83ff295efa81b0726465fd06bd2f06993a866.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/df85fb6e447de78b0bf29c2b499c5950b8e663269c05fb0e3f416999b7ab0006.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/d19d2225e400e0b43d84a5ce7d997ac6cb4bfd6cc63e4c7ddd94fd1f7ddbcf41.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1140-purified.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://fuhen.homebrew-contest.com/submissions/54/"
+    }
+  ]
+}

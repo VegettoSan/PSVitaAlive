@@ -1,0 +1,39 @@
+{
+  "id": "everybody-s-bubbles",
+  "title_id": "BUBB13579",
+  "name": "Everybody's Bubbles",
+  "description": "Port of UnityBubbleGame for PSVITA.",
+  "long_description": "Everybody's Bubbles is a port of an opensource chinese game inspired to Candy Crush available for Android and iOS. You have to make the highest possible score in 60 seconds by tapping bubbles with same colors in group of 3 or more.",
+  "author_ids": [
+    "rinnegatamante"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.1.0",
+  "version_date": "2022-03-14",
+  "requirements": "",
+  "size": 36411307,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/ad26409ce7a4309ff7cdc7cf0db53ce35bd2efaeef0f49147d02e12a2dff96fd.png",
+  "screenshots": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/794-EverybodyBubbles.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/Rinnegatamante/UnityBubbleGame/"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://www.psx-place.com/threads/releas-everbodys-bubbles-port-of-an-indie-chinese-bubble-game-made-with-unity.36764/"
+    }
+  ]
+}

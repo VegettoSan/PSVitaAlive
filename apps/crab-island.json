@@ -1,0 +1,38 @@
+{
+  "id": "crab-island",
+  "title_id": "ALEXRA001",
+  "name": "Crab Island",
+  "description": "Action RPG for PSVITA.",
+  "long_description": "Just a barely coherent set of action RPG game mechanics and ugly (but very efficiently compressed!) textures.",
+  "author_ids": [
+    "aramallo"
+  ],
+  "category_id": "games",
+  "subcategory_ids": [
+    "rpg"
+  ],
+  "version": "v.1.0",
+  "version_date": "2021-06-07",
+  "requirements": "",
+  "size": 6046423,
+  "status": "Legacy",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/e1f6eb3156b837763f4e72aa1086e724fd52d63e8538ccc854957eb23039ec49.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c9b8ebff7cb2aa45121b3256878789de715d447c56b54c2e1a9cd45bdc9c4edd.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/f02ce496d81ba265241a3cc2678a0f384f66e6dde8b6ca8e9f91e2d199557664.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/f7df3e5bd09ccda1e302adea352c784551e64be8331c77770883febcda53dee3.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/695-crabisland.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://kyuhen.customprotocol.com/en/submissions/crabisland/"
+    }
+  ]
+}

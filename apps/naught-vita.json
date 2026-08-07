@@ -1,0 +1,44 @@
+{
+  "id": "naught-vita",
+  "title_id": "NAUGHT101",
+  "name": "Naught Vita",
+  "description": "Port of Naught for PSVita.",
+  "long_description": "This is a wrapper/port of Naught for the PS Vita.\nThe port works by loading the official Android ARMv7 executable in memory, resolving its imports with native functions and patching it in order to properly run. By doing so, it's basically as if we emulate a minimalist Android environment in which we run natively the executable as it is.",
+  "author_ids": [
+    "usineur"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.1.1",
+  "version_date": "2026-01-10",
+  "requirements": "- libshacccg.suprx\n- kubridge.skprx\n- Game Data Files: Android",
+  "size": 2360778,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/926fd95b2e856291211a289c1c6f232f7ec1a0af926392b957348b7cde2b5c31.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/15f6e11fd640c3d701fc5d3094b19f3b4efd67c1034e8236fc11532d1bc76be1.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/290c4ca7883a2ae224df7935b7d14a423083ed538c706fff3537bef35ec99bf1.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/5c3042edcff99c2950e03db52ad8613191d71bc64fe387b019585a3f8de5549f.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/24fd5bf321f9cd6dce6beaf3cdb16800a2dc9a0ff687d6b3c7e52ee64ab40309.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/usineur/naught-vita/releases/download/v1.1/naught.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/usineur/naught-vita"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/usineur/naught-vita/releases"
+    }
+  ]
+}

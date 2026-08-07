@@ -1,0 +1,38 @@
+{
+  "id": "resurgent-2",
+  "title_id": "RESURGENT",
+  "name": "Resurgent",
+  "description": "Resurgent port for PSVITA.",
+  "long_description": "Traverse a post-apocalyptic city, ravaged by an unknown virus, in search of safety Original game by Tristan Harris.",
+  "author_ids": [
+    "m1s3ry"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.1.0.0",
+  "version_date": "2021-08-12",
+  "requirements": "",
+  "size": 11664999,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/2d7d25a96614c30f3eebc8120ffc3dd203f8744d74da1f64c1f25a259a8ef643.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/4347318049a096f3d0efd8507cbb7dc84ac8672539b61d53aa2fc306b5f6e862.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/2ec1a29351ba05bf655d5efbdf4b5b921ef0c8fb285ad97a131de83d9dbed545.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/ca2e96eb368bd311924c3f62a64c9e00c466ec5adbf712523db55eef717f77d2.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/718-Resurgent.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://tristan-harris.itch.io/resurgent"
+    }
+  ]
+}

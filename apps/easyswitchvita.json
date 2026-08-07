@@ -1,0 +1,41 @@
+{
+  "id": "easyswitchvita",
+  "title_id": "EZSV00001",
+  "name": "EasySwitchVita",
+  "description": "Easy config/installer for some plugins.",
+  "long_description": "EasySwitchVita aims to simplify the transition between playing the PS Vita as a handheld, and playing it on a big screen by allowing you to toggle the required plugins on and off and rebooting, as fast as one click, without the need to mess with the configuration files.",
+  "author_ids": [
+    "kirezar"
+  ],
+  "category_id": "utilities",
+  "subcategory_ids": [
+    "installer"
+  ],
+  "version": "v.1.0",
+  "version_date": "2018-08-23",
+  "requirements": "",
+  "size": 2264647,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/bf0df94647d0ced602712612596d0062d863836ff6226ea66e28c4063066aa1e.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/a36cc71cb0696a14c0a82734f747fe3d93a8ae9f5dd0cb778b21eb83c7a263ca.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/Kirezar/EasySwitchVita/releases/download/1.0/EasySwitchVita.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/Kirezar/EasySwitchVita"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/Kirezar/EasySwitchVita/releases"
+    }
+  ]
+}

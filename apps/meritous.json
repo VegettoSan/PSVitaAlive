@@ -1,0 +1,44 @@
+{
+  "id": "meritous",
+  "title_id": "MERITOUS1",
+  "name": "meritous",
+  "description": "Port of meritous for PSVITA.",
+  "long_description": "meritous is a cross between a top-view dungeon crawler and a bullet-hell shoot-em-up. In it, you control main character Merit, who travels through an enormous 3000-room labyrinth, the Orcus Dome, in order to find three artifacts called the PSI Keys, and restore them to their proper locations.",
+  "author_ids": [
+    "rinnegatamante"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.1.2",
+  "version_date": "2020-12-06",
+  "requirements": "- Game Data Files: PC",
+  "size": 1460374,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/bae1376dc460b65377a3ac9eddd1ac23e694cbcf294c57cc49084b8379e3903b.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/70afdb4657a0bcb22feae4748491939915f3002a31a58c31eb97413266317888.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/f16ecfdeeb922a5c1324c3a7a7f783e225235c7e6c8888b358fb01947158ff78.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/5db8a552526d48434c288325d87b660217c60675c7b135fcb0360e7dc50acb12.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/59e33a54ed01c5d5d2e1922d2c921958d11818c945ca957b68834b2974b62e8e.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/411-meritous.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/Rinnegatamante/meritous-vita/"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://www.psx-place.com/threads/meritous.31996/"
+    }
+  ]
+}

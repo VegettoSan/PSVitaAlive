@@ -1,0 +1,44 @@
+{
+  "id": "nkaruga",
+  "title_id": "NKARUGA01",
+  "name": "nKaruga",
+  "description": "Port of nKaruga for PSVITA.",
+  "long_description": "nKaruga is a demake of the popular bullet hell game Ikaruga, released in 2002 for Dreamcast and 2003 for Gamecube. Ikaruga is a vertical shoot 'em up that features an unique polarity-switching gameplay.\nSwitch the ship's polarity and \"get hit and absorb\" enemy bullets!\nAchieve High Score with the chain bonus!",
+  "author_ids": [
+    "rinnegatamante"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.1.0",
+  "version_date": "2022-02-25",
+  "requirements": "",
+  "size": 8285707,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/9b9c9995f5883248a88bbf34f1dc41e55b37b4bbdf54aa707cdd3b534c2a28bc.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/b24a75b9792aea1cf3fddff1dbf91419403a859c49b5d3af7591b28c7bce8b81.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/96d9f4aef9e6b5b1875d1e7de318f6b47c20a7d00bb1ffd0862af610f3cabf71.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/19a59e786924d9ab8f97e9c702eda4590cedb205e47917c4db49e9266248e174.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/5927340b69f57d63932b1520454dcefb920ed00bf648ad09d413af055ddee8b8.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/788-nKaruga.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/Rinnegatamante/nKaruga"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://www.psx-place.com/threads/release-nkaruga-ikaruga-demake-port-for-psvita.36625/"
+    }
+  ]
+}

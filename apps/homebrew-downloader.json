@@ -1,0 +1,39 @@
+{
+  "id": "homebrew-downloader",
+  "title_id": "RTST00010",
+  "name": "Homebrew Downloader",
+  "description": "Homebrew downloader for PSVITA.",
+  "long_description": "Download and install VPK files on your Vita without using a computer or a web browser.",
+  "author_ids": [
+    "d5c85b13876b8"
+  ],
+  "category_id": "networking",
+  "subcategory_ids": [
+    "web-browser"
+  ],
+  "version": "v.0.3",
+  "version_date": "2016-10-21",
+  "requirements": "",
+  "size": 485014,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/7e17af5191fcca2689d662e554b51f63cfec4f249961ad6b98a07b23346c5723.png",
+  "screenshots": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/179-hbb.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/D5C85B13876B8/hbb"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://www.reddit.com/r/vitahacks/comments/558pm5/release_homebrew_downloader/"
+    }
+  ]
+}

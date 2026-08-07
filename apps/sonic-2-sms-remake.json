@@ -1,0 +1,45 @@
+{
+  "id": "sonic-2-sms-remake",
+  "title_id": "S2SMSR001",
+  "name": "Sonic 2 SMS Remake",
+  "description": "Sonic 2 SMS Remake is a fan game that represents a redesigned version of the Master System game released by SEGA in 1993.",
+  "long_description": "Sonic 2 SMS Remake is a fan game that represents a redesigned version of the Master System game released by SEGA in 1993. This is an unofficial port, based on version 2.0.C of the game for PC.",
+  "author_ids": [
+    "mdashk",
+    "creative-araya"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v2.9.2-vita",
+  "version_date": "2022-10-07",
+  "requirements": "",
+  "size": 47985755,
+  "status": "Legacy",
+  "icon": "https://robin994.github.io/NeoVitaDB-Catalog/icons/0738-sonic-2-sms-remake.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/cccba2b4bb39c25797249b8054fddd972a7b2e548001033d1cc828170fd6b13d.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/f526a13a4125ff3cd70f32766970f5673c3f9edfd2c1d257035f4083aeb11ce3.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/81362e28d480eaff8d083bfae52550930da0ea7ce9d3b4a2a7f9c47ab25761f2.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/37967bb335733b372384e7fb628f519481dbabbb1aff553fd72f56cf86921ec9.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/MDashK/Sonic-2-SMS-Remake-Vita/releases/download/v2.9.2-vita/SOSR00002.VPK",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/MDashK/Sonic-2-SMS-Remake-Vita"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/MDashK/Sonic-2-SMS-Remake-Vita/releases/tag/v2.9.2-vita"
+    }
+  ]
+}

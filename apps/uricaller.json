@@ -1,0 +1,34 @@
+{
+  "id": "uricaller",
+  "title_id": "URI000001",
+  "name": "uriCaller",
+  "description": "Utility to call URIs.",
+  "long_description": "Fast and easy solution to call URIs on an HENkaku enabled PSVITA/PSTV.",
+  "author_ids": [
+    "freakler"
+  ],
+  "category_id": "utilities",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.0.1",
+  "version_date": "2016-08-23",
+  "requirements": "",
+  "size": 198429,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/0b7c46756dc882611f0575cf3e4100cf3b7876884c2c7dcf89defca241fd343f.png",
+  "screenshots": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/Freakler/vita-uriCaller/releases/download/0.1/uriCaller.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/Freakler/vita-uriCaller"
+    }
+  ]
+}

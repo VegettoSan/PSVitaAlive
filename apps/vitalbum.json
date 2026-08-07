@@ -1,0 +1,41 @@
+{
+  "id": "vitalbum",
+  "title_id": "VITALBUM0",
+  "name": "VITAlbum",
+  "description": "Image Viewer for PSVITA/PSTV.",
+  "long_description": "A simple homebrew file browser that is used for viewing various image formats on the PlayStation Vita.",
+  "author_ids": [
+    "joel16"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.1.40",
+  "version_date": "2020-12-31",
+  "requirements": "",
+  "size": 1524725,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/39e13379d4af6efccb00c7380b148d7356010208224046d4552c329bb3f8fbbc.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c1130ded31f24b0c7a7d45f3b5b825a452a1b025638d016963c9896edc7f136f.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/joel16/VITAlbum/releases/download/v1.40/VITAlbum.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/joel16/VITAlbum"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/joel16/VITAlbum/releases"
+    }
+  ]
+}

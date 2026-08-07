@@ -1,0 +1,38 @@
+{
+  "id": "kill-em-all",
+  "title_id": "BBFF12345",
+  "name": "Kill Em All",
+  "description": "A third-person shooter for PSVITA.",
+  "long_description": "Hi everyone this is the story of a man who is alone .... and ..... well you have to kill them all.\nTo do this you will have to get experience, gold, and so on. Basically win each mission. If you do this you will get money to purchase new weapons and to improve your weapons to get access to new missions. If you don't have enough money to make the improvements then you will have to play the farming levels. Those levels are intended to get money. You can play them as many wants you need, while the History levels can be played just once.",
+  "author_ids": [
+    "retrogamer74"
+  ],
+  "category_id": "games",
+  "subcategory_ids": [
+    "shooter"
+  ],
+  "version": "v.0.92",
+  "version_date": "2019-04-27",
+  "requirements": "",
+  "size": 507006412,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/18987a4a15a323c9650bfe8483a88bdfa966f9a3f59224d5ce0ab2772f6ac35c.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/e04f46076fc673df163a84552cdbe546ca418641918eedbb6ff0b9710a7c0608.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/24171e13b98abf31adc5f42c8e69637ccb4114898be9ea0176e6e4e6b139c71c.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/ef693e5527750e3aa862168aa4f20d6c64e39419fb0cf4ca3345669ff87aff19.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/469-469.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/RetroGamer74/Kill-em-All/releases"
+    }
+  ]
+}

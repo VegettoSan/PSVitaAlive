@@ -1,0 +1,38 @@
+{
+  "id": "sonic-sms-3-timelines",
+  "title_id": "SOSR00003",
+  "name": "Sonic SMS 3 Timelines",
+  "description": "Port of Sonic SMS 3 Timelines for PSVITA.",
+  "long_description": "A port of the fan-game Sonic SMS 3 Timelines v3.2 beta2 to the PSVita.\nExperience Turquoise Hill like never seen before, full of springs, air balloons and secret walls! And depending on your performance on the act, take it to the special stage in the rocket shoes or get transported into another dimension to try to get a Time Stone! Also: can you find where the Pairs mini-game is in the Tiny Animal garden?",
+  "author_ids": [
+    "mdashk"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.1.0",
+  "version_date": "2023-07-30",
+  "requirements": "- Game Data Files: PC",
+  "size": 12914551,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/6da20cf4b0a419e6981b28fe9a28de7464c9723936f6e718648e1810af830e13.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/525aef27f7a513fc2a2b35a107c6fb0c6cbce8074c2d48dcbcf76d1e90d472ce.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/1a37c62c0c567e1607171d9c19ab768756862c68305176a2b7f7f9a31e07e0ef.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/e280ada716c7b6a793f3cf4eb58232784e8173bc9c5e8f03365d253f80dbb711.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1102-SOSR00003.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://fuhen.homebrew-contest.com/submissions/16/"
+    }
+  ]
+}

@@ -1,0 +1,42 @@
+{
+  "id": "dj-escher",
+  "title_id": "DOS1ESCHE",
+  "name": "DJ Escher",
+  "description": "Music game for PSVita.",
+  "long_description": "M.C. Escher got tired of being an MC and decided to try being a DJ instead!\nHe throws hexagonal vinyl recordings of his favorite band of singing potatoes, so you have to catch as many as you can with your turntables.",
+  "author_ids": [
+    "dos"
+  ],
+  "category_id": "games",
+  "subcategory_ids": [
+    "music"
+  ],
+  "version": "v.1.0",
+  "version_date": "2021-08-09",
+  "requirements": "",
+  "size": 18680010,
+  "status": "Archive",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/9b193827a1cd2d456c502cbf9f4585ad3f5bebb13176ba922e19bab30a3b990d.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/3ddc6928df848634abd64a99c83fee4dd56f6c70e5fd8eed4896e004eea3c719.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/1f6c889c9e3ebb1d19f9b8a20c973578cb1e71393978add0efa54a31e52962d2.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1446-djescher-vita.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://gitlab.com/dosowisko.net/djescher/"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://dos.itch.io/djescher"
+    }
+  ]
+}

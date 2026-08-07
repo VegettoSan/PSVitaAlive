@@ -1,0 +1,36 @@
+{
+  "id": "super-pixel-run",
+  "title_id": "SPPX12345",
+  "name": "Super Pixel Run",
+  "description": "Platformer game for PSVITA.",
+  "long_description": "A platformer game similar to The Impossible Game for PSVITA/PSTV.",
+  "author_ids": [
+    "retrogamer74"
+  ],
+  "category_id": "games",
+  "subcategory_ids": [
+    "platformer"
+  ],
+  "version": "v.1.0",
+  "version_date": "2019-04-26",
+  "requirements": "",
+  "size": 29143204,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/29b31348d30e290f9120d972ad194c1505d713f4eabed93c072024ee9159f5cc.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/0fe4223b425e1cd9474f0ae40f98d3169975f2e18b1301d6430031257128611f.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/RetroGamer74/SuperPixelRun/releases/download/1.0/buildspr.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/RetroGamer74/SuperPixelRun/releases"
+    }
+  ]
+}

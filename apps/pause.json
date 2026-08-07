@@ -1,0 +1,38 @@
+{
+  "id": "pause",
+  "title_id": "PAUSEGAME",
+  "name": "Pause",
+  "description": "3D puzzle game for PSVITA.",
+  "long_description": "There are two modes, move mode and freeze mode. move mode allows you to pickup and place objects, such as stacking a pile of boxes to get to a high place. Freeze mode lets you freeze objects in place, such as freezing a crate over a gap, so you can get across without falling in.",
+  "author_ids": [
+    "wz"
+  ],
+  "category_id": "games",
+  "subcategory_ids": [
+    "puzzle"
+  ],
+  "version": "v.1.0",
+  "version_date": "2023-09-22",
+  "requirements": "",
+  "size": 48276346,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/5f065cfe75a235f610c687edea06bf3f6c6fef4ecc7718f1b5ef37a2b2df3ff3.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/68f57f87be2718873bc1641b3f54f5e9374120708b478555228befea1e2a1683.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/a61e21dfe6590ec143a4fc443af956ee0898f4fa442645d7ba8dd9cd59c54067.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/30f674fcf24c6c74ba9a9d231c9aba37d79e1643e33bb4f65bd967c2f80a3b6b.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1143-Pause.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://fuhen.homebrew-contest.com/submissions/58/"
+    }
+  ]
+}

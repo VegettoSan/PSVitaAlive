@@ -1,0 +1,35 @@
+{
+  "id": "mltactivator",
+  "title_id": "ACTIVAMLT",
+  "name": "MLTactivator",
+  "description": "Offline Vita activator.",
+  "long_description": "Utility that activates your system offline using files from another account and device. Do not use the system online or you'll get a ban.",
+  "author_ids": [
+    "miralatijera",
+    "draqen"
+  ],
+  "category_id": "system",
+  "subcategory_ids": [
+    "account"
+  ],
+  "version": "FIX2",
+  "version_date": "2017-08-14",
+  "requirements": "",
+  "size": 456420,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/fa424ba84a457cc11cd873d02cc404d0391f532ad0014835957dd498363aea98.png",
+  "screenshots": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/301-MLTactivatorFIX2.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "http://wololo.net/2017/08/14/mltactivator-activate-ps-vita-offline/"
+    }
+  ]
+}

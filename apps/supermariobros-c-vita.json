@@ -1,0 +1,39 @@
+{
+  "id": "supermariobros-c-vita",
+  "title_id": "SMBV00001",
+  "name": "SuperMarioBros C Vita",
+  "description": "Port of Super Mario Bros for PSVita.",
+  "long_description": "Port of super Mario Bros based off the decompilation of the original NES game.",
+  "author_ids": [
+    "gustavo3211"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.0.1",
+  "version_date": "2026-05-05",
+  "requirements": "- Game Data Files: NES",
+  "size": 1125976,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/72c194f6105329923bd0ff350bba675bee25696477980568e7cf394c60a56645.png",
+  "screenshots": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/Gustavo3211/SuperMarioBros-C-Vita/releases/download/0.1/smbc.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/Gustavo3211/SuperMarioBros-C-Vita"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/Gustavo3211/SuperMarioBros-C-Vita/releases"
+    }
+  ]
+}

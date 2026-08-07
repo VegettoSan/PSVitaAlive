@@ -1,0 +1,34 @@
+{
+  "id": "fakename-changer",
+  "title_id": "BUBF00001",
+  "name": "FakeName Changer",
+  "description": "Bubble names changer for PSVita.",
+  "long_description": "FakeName Changer is a PS Vita homebrew app that lets you rename LiveArea bubble titles without touching PARAM.SFO. It reads installed bubbles from app.db, lets you edit names, creates backups, and requires a reboot/apply refresh so the new titles appear safely on the home screen after restart.",
+  "author_ids": [
+    "eywa186"
+  ],
+  "category_id": "customization",
+  "subcategory_ids": [
+    "boot-animation"
+  ],
+  "version": "v.2.1",
+  "version_date": "2026-05-01",
+  "requirements": "",
+  "size": 4532316,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/21ebf288cf1731fe3fc20066a705484c164d5498a882a4a6494f8a7e7f11ea80.png",
+  "screenshots": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/Eywa186/FakeName-Changer-For-PSVita/releases/download/v2.1/FakeNameChanger_v2.1.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/Eywa186/FakeName-Changer-For-PSVita/releases"
+    }
+  ]
+}

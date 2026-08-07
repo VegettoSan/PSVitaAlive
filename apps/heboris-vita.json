@@ -1,0 +1,39 @@
+{
+  "id": "heboris-vita",
+  "title_id": "HBRS00000",
+  "name": "Heboris-Vita",
+  "description": "Port of Heboris for PSVITA.",
+  "long_description": "Vita port of Heboris, a Tetris clone.\nThis port is based on the Heboris SDL2 source code.",
+  "author_ids": [
+    "l0wigh"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "puzzle"
+  ],
+  "version": "v.1.0.0-Vita",
+  "version_date": "2022-01-20",
+  "requirements": "",
+  "size": 13369282,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/65d8a1fe7ffce1174d8f5d7d1b6c84fa4146cd8ef1370984099149a168d5c2d7.png",
+  "screenshots": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/l0wigh/Heboris-Vita/releases/download/v1.0.0-Vita/Heboris-Vita.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/l0wigh/Heboris-Vita"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/l0wigh/Heboris-Vita/releases"
+    }
+  ]
+}

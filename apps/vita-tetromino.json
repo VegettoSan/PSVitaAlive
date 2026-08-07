@@ -1,0 +1,41 @@
+{
+  "id": "vita-tetromino",
+  "title_id": "TETR00001",
+  "name": "vita-tetromino",
+  "description": "Tetris clone for PSVITA.",
+  "long_description": "Tetris like game for PSVITA/PSTV written in Lua.",
+  "author_ids": [
+    "svennd"
+  ],
+  "category_id": "games",
+  "subcategory_ids": [
+    "puzzle"
+  ],
+  "version": "v.0.8",
+  "version_date": "2018-04-02",
+  "requirements": "",
+  "size": 3396609,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/81f4d14a28faa54010728dfe636d7f368edc1cfab966a768eb56a80427ab488d.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/0ffa25388147e62fdced68ba73b7605031ef76f17d7f3d1f08db1528698640ec.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/svennd/vita-tetromino/releases/download/0.8/tetromino.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/svennd/vita-tetromino/"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "http://wololo.net/talk/viewtopic.php?f=116&t=48591"
+    }
+  ]
+}

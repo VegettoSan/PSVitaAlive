@@ -1,0 +1,32 @@
+{
+  "id": "tropical-zone",
+  "title_id": "VHTZ94733",
+  "name": "Tropical Zone",
+  "description": "Free roaming FPS game for PSVITA/PSTV.",
+  "long_description": "Tropical Zone is a first person shooter game set in a tropical island where you can go anywhere and play the way you like.\nTo explore the island you can drive various vehicles including cars, trucks and boats. Enemy outposts are all over the place so make sure you have enough ammo to take them out. There are many weapons to choose from. Most of them are hidden around the island.",
+  "author_ids": [
+    "vitahex-games"
+  ],
+  "category_id": "games",
+  "subcategory_ids": [
+    "shooter"
+  ],
+  "version": "v.0.1",
+  "version_date": "2020-12-21",
+  "requirements": "",
+  "size": 71288738,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/80b39fe09e3bf0f2e080e9c11fbe814fa7314e999922be9cf05c5bb93bec8586.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/f300b924bbba612505fd556dc4581a30cb34a7a979b76828ca3c740f36ecf90a.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/2b547577bd52a18e75979bab16c825283a4ffada192056e103a7d505fb3c9de9.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/602-Tropical_Zone.vpk",
+      "recommended": true
+    }
+  ]
+}

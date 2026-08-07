@@ -1,0 +1,44 @@
+{
+  "id": "world-of-goo-vita",
+  "title_id": "WRLDOFGOO",
+  "name": "World of Goo Vita",
+  "description": "Port of World of Goo for PSVITA.",
+  "long_description": "This is a wrapper/port of World of Goo for the PS Vita.\nThe port works by loading the official Android ARMv7 executable in memory, resolving its imports with native functions and patching it in order to properly run.",
+  "author_ids": [
+    "rinnegatamante"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.1.2.1",
+  "version_date": "2023-09-05",
+  "requirements": "- libshacccg.suprx\n- kubridge.skprx\n- Game Data Files: Android",
+  "size": 663632,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/e8bcbd0e844a591defb2dd72330db3036e3bf31641b0f7a3b50882caff481ce0.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/4fad7996753d858c710fe9fbac89f683ec03a13b226f0d0bf14c44a9ea7139c5.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c925067f72da5f066715cc525e0f70cbc7f77ca954100c05a3f28196712bc8b0.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/7c04e2bc98cc12a2679195c611c9e2998ed3a2a39b3d6cff5a20bf59c27cb4a2.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/f192d542ee2bcc41de446bb9e9acb685e7633487d2af07cfef9326121b4fc084.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/Rinnegatamante/goo_vita/releases/download/v.1.2.1/GOO.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/Rinnegatamante/goo_vita"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/Rinnegatamante/goo_vita/releases"
+    }
+  ]
+}

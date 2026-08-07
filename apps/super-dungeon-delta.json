@@ -1,0 +1,39 @@
+{
+  "id": "super-dungeon-delta",
+  "title_id": "DUNGEON01",
+  "name": "Super Dungeon Delta",
+  "description": "Super Dungeon Delta port for PSVITA.",
+  "long_description": "Super Dungeon Delve is retro style 2D dungeon crawl game. It was created as a learning project to learn and get started with with the Godot Engine. The game was inspired by rougelikes and the 80s Gauntlet arcade game, Gauntlet.\nThe scope was kept deliberately small, in order to achieve some sembalance of a finished/playable game",
+  "author_ids": [
+    "parallel-productions"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "rpg"
+  ],
+  "version": "v1.0.2-vita",
+  "version_date": "2023-02-07",
+  "requirements": "",
+  "size": 26937762,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/85fd4d9868380ea0f85fd97d889441e21c6f48e94be954bbd631f863ae2aa8a7.png",
+  "screenshots": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/ParallelProductions/super-dungeon-delve-vita/releases/download/v1.0.1-vita.2/Dungeon.UI.Update.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/ParallelProductions/super-dungeon-delve-vita"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/ParallelProductions/super-dungeon-delve-vita/releases"
+    }
+  ]
+}

@@ -1,0 +1,39 @@
+{
+  "id": "openhcl",
+  "title_id": "OHCL00001",
+  "name": "OpenHCL",
+  "description": "Port of Hydra Castle Labyrinth for PSVITA.",
+  "long_description": "A multiplatform port of Hydra Castle Labyrinth through SDL.",
+  "author_ids": [
+    "jeffrulz345"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "engine-port"
+  ],
+  "version": "v2021.11.08",
+  "version_date": "2021-11-08",
+  "requirements": "",
+  "size": 10454487,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/05838eaeca345502ab02278d87b1bb6b8e5126837030644dc33db0f50316e64f.png",
+  "screenshots": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/JeffRuLz/OpenHCL/releases/download/untagged-289a342ec6863598160c/OpenHCL_Vita.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/JeffRuLz/OpenHCL"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/JeffRuLz/OpenHCL/releases"
+    }
+  ]
+}

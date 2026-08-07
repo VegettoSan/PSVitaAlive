@@ -1,0 +1,38 @@
+{
+  "id": "agwoan",
+  "title_id": "AGWN00000",
+  "name": "AGWOAN",
+  "description": "Platformer game for PSVITA.",
+  "long_description": "A platformer game with integrated level editor.",
+  "author_ids": [
+    "borad-games"
+  ],
+  "category_id": "games",
+  "subcategory_ids": [
+    "platformer"
+  ],
+  "version": "Demo",
+  "version_date": "2019-04-16",
+  "requirements": "",
+  "size": 3247855,
+  "status": "Legacy",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/66871d97eb68254c4a0bef23a190af203a9eb2a471e81ff1575ec585dda5f705.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/f0a94b8847951fb800fb2d2ba277857350ec31d6f4e85ae53cbd0a5a1558f4e9.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/1c9fd98477ce6d5a5b1173f2b80dc2807d1076ef489adc3521900a0bd6886d5a.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/b504289a7cd7583513e62b518b4d5f7befbe380ebba2abc81d52b4e5bfbc6d0e.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/457-AGWOAN-PSV.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://drive.google.com/file/d/1r23ZFlm_0RnJdARX2FEJ9JbbsciDeAnM/view"
+    }
+  ]
+}

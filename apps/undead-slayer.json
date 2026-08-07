@@ -1,0 +1,29 @@
+{
+  "id": "undead-slayer",
+  "title_id": "MOQI00006",
+  "name": "Undead Slayer",
+  "description": "Port of Undead Slayer for PSVITA.",
+  "long_description": "Port of Undead Slayer, a 3D hack'n'slash originally for iOS and Android, for PSVITA.",
+  "author_ids": [
+    "hao-qi"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.1.0",
+  "version_date": "2022-03-18",
+  "requirements": "",
+  "size": 62235983,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/2b893b5ef742085ba5305d43f833a6595b6bf1e8cf652014e8f6721470629e3e.png",
+  "screenshots": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/805-UndeadSlayer.vpk",
+      "recommended": true
+    }
+  ]
+}

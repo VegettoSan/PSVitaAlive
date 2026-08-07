@@ -1,0 +1,43 @@
+{
+  "id": "baba-is-you-vita",
+  "title_id": "BABAISYOU",
+  "name": "Baba Is You Vita",
+  "description": "Baba Is You is an award-winning puzzle game where you can change the rules by which you play.",
+  "long_description": "Baba Is You is an award-winning puzzle game where you can change the rules by which you play. In every level, the rules themselves are present as blocks you can interact with; by manipulating them, you can change how the level works and cause surprising, unexpected interactions!",
+  "author_ids": [
+    "gl33ntwine"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "puzzle"
+  ],
+  "version": "v1.4",
+  "version_date": "2022-09-09",
+  "requirements": "- kubridge.skprx\n- fd_fix.skprx OR repatch_ex.skprx\n- Game Data Files: Android",
+  "size": 1576928,
+  "status": "Verified",
+  "icon": "https://robin994.github.io/NeoVitaDB-Catalog/icons/0828-baba-is-you-vita.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/99a81e1aa02890eec585bc0eee411d17ff8a10ab5113ad7609125f32d779ae58.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/935e7d3c1edca66f72475a33418cb22ca70c32c2c4888ae305a8a9e2616589b9.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/de5882c9a5d5a4967cc0eb07b4bd4ce8311da736b887c71661b2e0cf546313e3.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/v-atamanenko/baba-is-you-vita/releases/download/v1.4/BABAISYOU.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/v-atamanenko/baba-is-you-vita"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/v-atamanenko/baba-is-you-vita/releases/tag/v1.4"
+    }
+  ]
+}

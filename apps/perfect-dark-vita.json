@@ -1,0 +1,45 @@
+{
+  "id": "perfect-dark-vita",
+  "title_id": "PRFCTDARK",
+  "name": "Perfect Dark Vita",
+  "description": "Port of Perfect Dark for PSVITA.",
+  "long_description": "This is a port of the Prefect Dark sourceport by fgsfds based on the Perfect Dark decompilation efforts.\nPerfect Dark is a 2000 first-person shooter developed and published by Rare for the Nintendo 64. The first game of the Perfect Dark series, it follows Joanna Dark, an agent of the Carrington Institute research centre, as she attempts to stop an extraterrestrial conspiracy by rival corporation dataDyne. The game features a campaign mode where the player must complete a series of levels to progress through the story, as well as a range of multiplayer options, including a co-operative mode and traditional deathmatch settings with computer-controlled bots.",
+  "author_ids": [
+    "rinnegatamante",
+    "fgsfds"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "fps"
+  ],
+  "version": "v.1.3",
+  "version_date": "2026-05-05",
+  "requirements": "- libshacccg.suprx\n- Game Data Files: N64",
+  "size": 12938012,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/d887a8e5c96f7c61a2c6fd8ae069629db524d11fffe08dae147cad427622ae0b.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/85604375a945c5fd236cd7d78f07c8b520576c74011affe5850bb734d845fd8f.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/edcf49e0d8dfd3f695217192bcaa223bf2cbf138e17133d2274f1e64817751d3.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/2aea91d404ddec60b486c3dfe7788a357ec733efc78a9c68f235f30e85beb00d.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/1ab4fb2aac4cdd718f3730c04d4108252e7d73c125cc1316b5178b75e973ad8e.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1273-pd.armv7.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/Rinnegatamante/perfect_dark"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://www.psx-place.com/threads/release-perfect-dark-vita.47561/"
+    }
+  ]
+}

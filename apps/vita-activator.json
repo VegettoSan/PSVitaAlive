@@ -1,0 +1,39 @@
+{
+  "id": "vita-activator",
+  "title_id": "ACTI00000",
+  "name": "Vita Activator",
+  "description": "Activate your PSVITA.",
+  "long_description": "Use this homebrew to get activation data on an HENkaku enabled PlayStation Vita.",
+  "author_ids": [
+    "zombiewizzard"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.1.1",
+  "version_date": "2016-08-31",
+  "requirements": "",
+  "size": 66233,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/18746b487153dc1ca3d728ce57b841b6e8faeca65a0900aa46864f73d07642c8.png",
+  "screenshots": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/yhtez/vita-activator/releases/download/v1.1/vita-activator.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/jitZpc/vita-activator"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "http://wololo.net/2016/08/20/release-vita-activator-activate-3-60-ps-vita-without-ps3/"
+    }
+  ]
+}

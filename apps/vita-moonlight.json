@@ -1,0 +1,42 @@
+{
+  "id": "vita-moonlight",
+  "title_id": "XYZZ00002",
+  "name": "Vita Moonlight",
+  "description": "Vita Moonlight allows you to stream your full collection of Steam games from your powerful Windows desktop to your PSVITA.",
+  "long_description": "Vita Moonlight allows you to stream your full collection of Steam games from your powerful Windows desktop to your PSVITA.",
+  "author_ids": [
+    "aorsiniyt",
+    "xyzz",
+    "d3m3vilurr",
+    "shadowprince"
+  ],
+  "category_id": "networking",
+  "subcategory_ids": [
+    "game-streaming"
+  ],
+  "version": "0.13.2",
+  "version_date": "2025-11-16",
+  "requirements": "",
+  "size": 2788529,
+  "status": "Verified",
+  "icon": "https://robin994.github.io/NeoVitaDB-Catalog/icons/0076-vita-moonlight.png",
+  "screenshots": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/xyzz/vita-moonlight/releases/download/0.13.2/moonlight.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/xyzz/vita-moonlight"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/xyzz/vita-moonlight/releases/tag/0.13.2"
+    }
+  ]
+}

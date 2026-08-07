@@ -1,0 +1,41 @@
+{
+  "id": "vita-sokoban",
+  "title_id": "VTSOKOBAN",
+  "name": "Vita Sokoban",
+  "description": "Sokoban game for the PSVita.",
+  "long_description": "Sokoban game for the PS Vita",
+  "author_ids": [
+    "harommel-rabbid"
+  ],
+  "category_id": "games",
+  "subcategory_ids": [
+    "puzzle"
+  ],
+  "version": "02-11-25",
+  "version_date": "2025-11-02",
+  "requirements": "",
+  "size": 2519289,
+  "status": "Legacy",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/b9855466923c344fc9699ad82b57098a0201a09b4a18f084cd61ce2f47959e7e.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/be8944ca904e980e4727e5355ac111eb42e68c83adb2be1c1456fce8d325ac6b.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/HarommelRabbid/VitaSokoban/releases/download/02-11-25/Vita.Sokoban.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/HarommelRabbid/VitaSokoban"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/HarommelRabbid/VitaSokoban/releases"
+    }
+  ]
+}

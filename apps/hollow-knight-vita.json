@@ -1,0 +1,43 @@
+{
+  "id": "hollow-knight-vita",
+  "title_id": "HKVT12222",
+  "name": "Hollow Knight Vita",
+  "description": "Port of Hollow Knight for PSVITA.\nHollow Knight is a classically styled 2D action adventure across a vast interconnected world.",
+  "long_description": "Port of Hollow Knight for PSVITA.\nHollow Knight is a classically styled 2D action adventure across a vast interconnected world. Explore twisting caverns, ancient cities and deadly wastes; battle tainted creatures and befriend bizarre bugs; and solve ancient mysteries at the kingdom's heart.",
+  "author_ids": [
+    "patnosd"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "adventure"
+  ],
+  "version": "0.81",
+  "version_date": "2025-01-19",
+  "requirements": "- Game Data Files: PC",
+  "size": 22126274,
+  "status": "Verified",
+  "icon": "https://robin994.github.io/NeoVitaDB-Catalog/icons/1168-hollow-knight-vita.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/1b4d82ce4970e9c3ff0e76c409855e126b9acbffb98d3b56c490dbc28d114686.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/07a6ed0ff71a49c302fae7c37355ffb999e4df091a1b79a681703e0703e75d39.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/e21a024d762c40c20bda362286591c3e5d5c7ed9a70ab3b4bb587dcbd13e34f5.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/PatnosDD/Hollow-Knight-PsVita/releases/download/0.81/HollowKnight.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/PatnosDD/Hollow-Knight-PsVita"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/PatnosDD/Hollow-Knight-PsVita/releases/tag/0.81"
+    }
+  ]
+}

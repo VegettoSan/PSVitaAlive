@@ -1,0 +1,31 @@
+{
+  "id": "dungeon-survivor",
+  "title_id": "DGSO12345",
+  "name": "Dungeon Survivor",
+  "description": "Roguelike game for PSVITA.",
+  "long_description": "Port of Dungeon Survivor, a basic 2D roguelike game where you have to survive as long as you can.",
+  "author_ids": [
+    "luckthegamers"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "rpg"
+  ],
+  "version": "v.1.0",
+  "version_date": "2019-08-28",
+  "requirements": "",
+  "size": 46072244,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/342a21ebd46cd697ed38db7b521c3fe15bcb3d2d455d9e625064ab5b5990e718.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/bae03af66975ceb92b1abef2230349cd3b157c5800c131a28708de0f3fa9585b.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/501-Dungeon_Survivor.vpk",
+      "recommended": true
+    }
+  ]
+}

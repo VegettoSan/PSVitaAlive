@@ -1,0 +1,34 @@
+{
+  "id": "pacman-ce-dx-vita",
+  "title_id": "PCMN00001",
+  "name": "Pacman CE DX Vita",
+  "description": "Port of Pacman CE DX for PSVita.",
+  "long_description": "A homebrew .so-loader port of PAC-MAN Championship Edition DX (Android) to the PlayStation Vita.",
+  "author_ids": [
+    "mcallbosco"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.1.0",
+  "version_date": "2026-06-07",
+  "requirements": "- libshacccg.suprx\n- kubridge.skprx\n- Game Data Files: Android",
+  "size": 1953422,
+  "status": "Legacy",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/8f78c8ee0a5abb2ae51d0caed3c512ecb125384a5619443fece841007a5a2f23.png",
+  "screenshots": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1409-pacmancedx.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/mcallbosco/pacman-cedx-vita"
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "id": "hexflow-launcher-custom",
+  "title_id": "HXLC00001",
+  "name": "HEXFlow Launcher Custom",
+  "description": "Display and launch your games and homebrews in style.",
+  "long_description": "Display and launch your games and homebrews in style.\nHexFlow Launcher features a 3d user interface to display your games with their box art and supports many customization options like custom covers and backgrounds.\n\nLaunching a game/app from HexFlow Launcher will close the launcher automaticaly without asking.",
+  "author_ids": [
+    "blacksheepboy69",
+    "vitahex-games"
+  ],
+  "category_id": "games",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v2.9.1",
+  "version_date": "2026-01-25",
+  "requirements": "",
+  "size": 19836866,
+  "status": "Verified",
+  "icon": "https://robin994.github.io/NeoVitaDB-Catalog/icons/0587-hexflow-launcher-custom.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/edd4216527e5af85e9c106fe03cdd609398e9dabca3816c72e2a026d67168229.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/a9a7b093764c11e929b086600253266b535af11f0a3ef1e0d2d617d7ba03543a.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/ca34a0f6d47307690fc299f3ffc6b2b4e8aa9c87e9d7f3f82511979d0ab4a0a2.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/f34ea7aa98fb0ccee0e56f4dae72c711ed6ba436900a4e0d5bbfa17ef3317d3b.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/BlackSheepBoy69/HexFlow-Launcher-Unofficial-Custom/releases/download/v2.9.1/HexFlow.Custom.2.9.1.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/BlackSheepBoy69/HexFlow-Launcher-Unofficial-Custom"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/BlackSheepBoy69/HexFlow-Launcher-Unofficial-Custom/releases/tag/v2.9.1"
+    }
+  ]
+}

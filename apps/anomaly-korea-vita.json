@@ -1,0 +1,44 @@
+{
+  "id": "anomaly-korea-vita",
+  "title_id": "ANOMALY02",
+  "name": "Anomaly Korea Vita",
+  "description": "Port of Anomaly: Korea for PSVITA.",
+  "long_description": "This is a wrapper/port of Anomaly: Korea for PSVITA.\nThe port works by loading the official Android ARMv6 executable in memory, resolving its imports with native functions and patching it in order to properly run. By doing so, it's basically as if we emulate a minimalist Android environment in which we run natively the executable as it is.",
+  "author_ids": [
+    "rinnegatamante"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.1.2",
+  "version_date": "2023-03-05",
+  "requirements": "- libshacccg.suprx\n- kubridge.skprx\n- fd_fix.skprx OR repatch_ex.skprx\n- Game Data Files: Android",
+  "size": 7712528,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/13331c8b24bd43894ff91741e97eb129757c97aa7a0a7f8341ac200bc3f93e93.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/b8ab23312681dd86a67b3fa9d490a921887405f961c27bdd0c8ac5cfc77f75fe.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/8b4abe18c2a4fc6f041c3f0de699d3c48540ac41ef56f7ca5b763de8e745a073.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/d8a210ddc17e9be29b675990c264eee81e3a2511e7d7aba73f75902e6cb08e89.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/1e61da0b897ccce8533f8db4871ea1b6f3d9462416c42ee41e1c4e0e26f7c8c9.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/Rinnegatamante/anomaly-korea_vita/releases/download/v.1.2/anomaly_korea.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/Rinnegatamante/anomaly-korea_vita"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/Rinnegatamante/anomaly-korea_vita/releases"
+    }
+  ]
+}

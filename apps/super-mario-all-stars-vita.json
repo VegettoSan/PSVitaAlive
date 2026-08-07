@@ -1,0 +1,44 @@
+{
+  "id": "super-mario-all-stars-vita",
+  "title_id": "ALLSTARS1",
+  "name": "Super Mario All-Stars Vita",
+  "description": "Port of Super Mario All-Stars + World for PSVita.",
+  "long_description": "Super Mario All-Stars Vita is a port of smw, a reimplementation of Super Mario World with several enhancements with experimental support for Super Mario All-Stars (Super Mario Bros 1 and Super Mario Bros: Lost Levels).\nThis release acts as an improvement of my previous Super Mario World port, bringing fixes (eg. the tunnels bug is fixed), support for SMB1 and SMB:LL, integer scaling option (IntegerScaling in the ini file), and more.",
+  "author_ids": [
+    "rinnegatamante"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.1.0",
+  "version_date": "2025-07-15",
+  "requirements": "- Game Data Files: SNES",
+  "size": 1918789,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/07c11affa95cb8e55965b62e0fab5d14cba6b4ec6aae1e1c0288b12f416c756b.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/da44e5035a740a3a9b1a1518cefdf392991561df155bbd9ff8265d551f99581e.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/8de34b610b539bf25a23baaf246b8175c7948b40d54606441f3e6cd419d4ca8d.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/e372508694a8ebe53921ec4c9c294f096bae07b903e9ac9f5d697ac0d92732cd.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/6610abcdf2d8e7d29e956f6681a7ca4adf827279ae19664c047f01ef0f68322d.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1280-allstars.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/Rinnegatamante/smw"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://www.psx-place.com/threads/release-super-mario-all-stars-vita.47994/"
+    }
+  ]
+}

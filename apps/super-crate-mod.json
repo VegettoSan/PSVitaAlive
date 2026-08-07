@@ -1,0 +1,36 @@
+{
+  "id": "super-crate-mod",
+  "title_id": "SCRATEBOX",
+  "name": "Super Crate Mod",
+  "description": "Port of Super Crate Box.",
+  "long_description": "A port of Super Crate Box with some enhanced feature.",
+  "author_ids": [
+    "jeffrulz345"
+  ],
+  "category_id": "modding",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.1.1",
+  "version_date": "2019-11-20",
+  "requirements": "",
+  "size": 23405926,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/b116dd25c44d6a637976132ddcc7d9be08ede30047c3ab78c46097e4b62b1e86.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/51953d009837689a5f06dbc518b487d7b38d4150fd5804b468ba2fb573a7072a.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/516-SuperCrateMod-Vita.VPK",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://drive.google.com/open?id=1u67SpFEYYLzzzw0QVuY_VVsNFS4dgbrP"
+    }
+  ]
+}

@@ -1,0 +1,42 @@
+{
+  "id": "cardwars-vita",
+  "title_id": "CWRS00001",
+  "name": "CardWars-Vita",
+  "description": "Native port of Adventure Time: Card Wars for PSVita.",
+  "long_description": "Native port of Adventure Time: Card Wars for PSVita.",
+  "author_ids": [
+    "parindraaa"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "adventure"
+  ],
+  "version": "v5",
+  "version_date": "2026-07-18",
+  "requirements": "- Game Data Files: iOS",
+  "size": 16974253,
+  "status": "Legacy",
+  "icon": "https://robin994.github.io/NeoVitaDB-Catalog/icons/1428-cardwars-vita.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/30e017ab62dd41a3d7fc7806ce2e694fb9d018b2ad79e8dd89cd17fcba7f0587.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/a241a8f195a9c24f6b8643103bee33af2aae9ca64af0a0b58bf231de6f87fa52.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/parindraaa867/AT-CardWars-Vita/releases/download/v5/CardWars_Stub.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/parindraaa867/AT-CardWars-Vita"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/parindraaa867/AT-CardWars-Vita/releases/tag/v5"
+    }
+  ]
+}

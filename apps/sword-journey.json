@@ -1,0 +1,31 @@
+{
+  "id": "sword-journey",
+  "title_id": "SWOR57517",
+  "name": "Sword Journey",
+  "description": "3D hack'n'slash game.",
+  "long_description": "A 3D hack'n'slash game where you slay cows.",
+  "author_ids": [
+    "jacobsplayground"
+  ],
+  "category_id": "games",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.0.26",
+  "version_date": "2019-05-02",
+  "requirements": "",
+  "size": 30758975,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/c9c71c8c19f95afc0ecb2ff53b541295733732c781fd9f2ba99ceebc1b3f956b.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/626d853133f3a7133ecd93c73ea4ad320e1481413a3a8576492f0eaa16cb62c0.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/473-SJ0018.vpk",
+      "recommended": true
+    }
+  ]
+}

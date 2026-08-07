@@ -1,0 +1,39 @@
+{
+  "id": "zik-zak-vita",
+  "title_id": "ZIKZAK001",
+  "name": "Zik-Zak Vita",
+  "description": "Port of Zik-Zak for PSVITA.",
+  "long_description": "Port of Zik-Zak for PSVITA.\nZik-Zak is a thinking and reaction game. You follow a small green spaceship through an abstract world and try to reach the exit in each level. You can control the flying direction only indirectly by shooting the prisms. The ship ricochets according to the angle of incidence.",
+  "author_ids": [
+    "rinnegatamante"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.1.1",
+  "version_date": "2023-10-07",
+  "requirements": "- libshacccg.suprx",
+  "size": 1245430,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/7902b712aa3225a0bfc85f4881ab34cc5df5d1dd1fc0e75bc341ae4343002c19.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/7ef32bbbeea93ce4032505272d202540333a312fbee5a79ed31e7c53059236a0.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/754ace2c22ae71082dfde4f6fffb1b6798343dfa7f4e4536d3819402ec90b5be.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/8a5e6a0ebe205326dc7ae0aec5672b331d2e685b46735848cff170bc332c47f6.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/d1e16b67d187b9d926a2dea1c301b2e788a9d33cd16f716cd34f7037efbdf9ff.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1103-Zik-Zak.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/Rinnegatamante/zikzak-vita"
+    }
+  ]
+}

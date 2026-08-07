@@ -1,0 +1,37 @@
+{
+  "id": "loonies-8192",
+  "title_id": "LOON8VITA",
+  "name": "Loonies 8192",
+  "description": "Puzzle game for PSVITA.",
+  "long_description": "A multiplatform mini retro puzzle game.",
+  "author_ids": [
+    "thp"
+  ],
+  "category_id": "games",
+  "subcategory_ids": [
+    "puzzle"
+  ],
+  "version": "r66",
+  "version_date": "2021-07-09",
+  "requirements": "",
+  "size": 12651987,
+  "status": "Legacy",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/21c54ef64956cf1dd52c34c7c82cb8b60c1d4108b794a599ffe6ebde997593a8.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/f2235585d395007b786f82cd74cbeffd310a40616238b1add7145dfdaf7e0890.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/db24b17233c93404b0fa0ccc28fe95b562a38d6156ff398960f235a694138478.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/704-loonies8192.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://thp.itch.io/loonies-8192"
+    }
+  ]
+}

@@ -1,0 +1,42 @@
+{
+  "id": "nba-jam-vita",
+  "title_id": "NBAJ00000",
+  "name": "NBA Jam Vita",
+  "description": "Port of NBA Jam for PSVita.",
+  "long_description": "This is a wrapper/port of NBA Jam for the PS Vita.\nThe port works by loading the official Android ARMv7 executable in memory, resolving its imports with native functions and patching it in order to properly run. By doing so, it's basically as if we emulate a minimalist Android environment in which we run natively the executable as it is.",
+  "author_ids": [
+    "elliencode"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.1.00",
+  "version_date": "2026-02-02",
+  "requirements": "- libshacccg.suprx\n- kubridge.skprx\n- Game Data Files: Android",
+  "size": 2376120,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/1f04c641e86b72d0ff92927e5e83241137941c3ea782a11bf83d893320735108.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/12f0d0d707f9f84540b092171978a55f803e3abea6cb1e7278aea75879caf61e.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/9c9bff5a414c0e5dd24f4ac49449e7a791c5f118dda3f94876d4c0cfb09757bd.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/elliencode/nba-jam-psv/releases/download/v1.00/com.eamobile.nbajam_row_wf-v1.00.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/elliencode/nba-jam-psv"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/elliencode/nba-jam-psv/releases"
+    }
+  ]
+}

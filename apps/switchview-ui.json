@@ -1,0 +1,37 @@
+{
+  "id": "switchview-ui",
+  "title_id": "SVEW00001",
+  "name": "SwitchView UI",
+  "description": "Alternative app launcher.",
+  "long_description": "An alternative application launcher with an UI similar to the Nintendo Switch one.",
+  "author_ids": [
+    "vitahex-games"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.0.1.2",
+  "version_date": "2017-10-29",
+  "requirements": "",
+  "size": 2231742,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/5a34227c8d72f566d0fb55f2515ce0effc997c894c5c06c32b3665bb0b92e23c.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/0dcb687910c7cd2a9f04aab40a951c8c650e0ec32a16963a7fe5d5d9f5c3d89f.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/02a14a2a86ca0262a0a23ef9259206ceb89a61f7360219575b3e8f296fc09b94.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/338-SwitchView.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "http://wololo.net/talk/viewtopic.php?f=116&t=48629"
+    }
+  ]
+}

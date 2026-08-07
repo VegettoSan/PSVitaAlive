@@ -1,0 +1,44 @@
+{
+  "id": "zelda-picross-vita",
+  "title_id": "ZELDAPIC1",
+  "name": "Zelda Picross Vita",
+  "description": "Port of Zelda Picross for PSVITA/PSTV.",
+  "long_description": "This is a port of Zelda Picross for the PS Vita, based on the original game made by Vincent Jouillat from here: http://www.zeldaroth.fr/us/dlpicross.php",
+  "author_ids": [
+    "hatoving"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.1.1",
+  "version_date": "2022-08-31",
+  "requirements": "",
+  "size": 22282549,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/7d5c3daff8c235de31ab306cb72dc14c233b09b9fffcb8304f34df9d23369780.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/686a058f18e544eb55bed4b39685f1f318bbd31102d1e81da3da0cff123460d3.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/7a0af1a7fc6e6fd7a97545d5e6847ef030ff4614afaba3e227ffd62986d8fd65.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/5731156ea88373ebbfc4e6e6224bb3bae7c3c23be5479133e9d30e51a901346e.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/74f99012cbf4898a066acab1d465cb77347d60190efb4d7e22cf701fd6566398.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/hatoving/zeldapicross_vita/releases/download/1.1/ZeldaPicross.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/hatoving/zeldapicross_vita"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/hatoving/zeldapicross_vita/releases"
+    }
+  ]
+}

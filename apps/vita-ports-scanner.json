@@ -1,0 +1,39 @@
+{
+  "id": "vita-ports-scanner",
+  "title_id": "LP1HT0001",
+  "name": "Vita Ports Scanner",
+  "description": "TCP hosts/ports scanner.",
+  "long_description": "TCP hosts/ports scanner for local networks, which for each scan type 3 different scan levels.",
+  "author_ids": [
+    "lp1"
+  ],
+  "category_id": "utilities",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.0.10.0",
+  "version_date": "2025-01-10",
+  "requirements": "",
+  "size": 2995698,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/5e90e9b965562d06ce6fe7c8eed3f2f4017165df6a01d49406281e5030b30d6b.png",
+  "screenshots": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/lp1dev/vita_ports_scanner/releases/download/v0.10.0/ports_scanner.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/lp1dev/vita_ports_scanner"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/lp1dev/vita_ports_scanner/releases"
+    }
+  ]
+}

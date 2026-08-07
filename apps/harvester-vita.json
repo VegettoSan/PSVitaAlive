@@ -1,0 +1,39 @@
+{
+  "id": "harvester-vita",
+  "title_id": "GDOT00011",
+  "name": "Harvester Vita",
+  "description": "Port of Harvester for PSVITA.",
+  "long_description": "Harvester is a Free and Open-Source top-down space mining game made with the Godot game engine. Control your spaceship in forays into an asteroid belt, gather iron, and bring it back to base. Spend them on upgrading your ship's speed and maneuverability and cargo space.\nBut beware, as you are not alone out here. Pirate miners are out there and want to monopolize the business.",
+  "author_ids": [
+    "parallel-productions"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "engine-port"
+  ],
+  "version": "v.0.10",
+  "version_date": "2023-02-04",
+  "requirements": "",
+  "size": 21986257,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/c533b65ec53065e1f163a1cbd6e2e5e8ceacfd19161a7b4559bd691669491feb.png",
+  "screenshots": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/ParallelProductions/godot-2d-space-game-PSVita/releases/download/v0.1.0/Harvester.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/ParallelProductions/godot-2d-space-game-PSVita"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/ParallelProductions/godot-2d-space-game-PSVita/releases"
+    }
+  ]
+}

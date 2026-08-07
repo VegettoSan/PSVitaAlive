@@ -1,0 +1,44 @@
+{
+  "id": "aleph-one-vita",
+  "title_id": "ALPH00001",
+  "name": "Aleph One Vita",
+  "description": "Aleph One is the open source continuation of Bungie's Marathon 2 game engine.",
+  "long_description": "Aleph One is the open source continuation of Bungie's Marathon 2 game engine. Aleph One supports Marathon, Marathon 2 and Marathon Infinity natively. Many third party scenarios and net maps are also available.",
+  "author_ids": [
+    "drdecki"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "engine-port"
+  ],
+  "version": "AlephOneVita1.4",
+  "version_date": "2026-07-02",
+  "requirements": "- Game Data Files: PC",
+  "size": 6765491,
+  "status": "Legacy",
+  "icon": "https://robin994.github.io/NeoVitaDB-Catalog/icons/1421-aleph-one-vita.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/97ac714875c63cac822ad32920abc6dfc5ede17129aaf472abc6926e3abdbd5d.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/b2162b9144eae336fa65ddb1e92343171d1638d29a5fea7a2bf0ed4adba3328f.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/a6d8bd9da77fd9f3b594fe7b02d6c68e6ac51b084bcdbd61e74ba902d0cbbe34.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/d9aab4389fe7e54f7eb48952d0a3f7909bea67392c5cbfa341d5e1794a9acd54.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/Aleph-One-Marathon-Trilogy-PsVita-/releases/download/AlephOneVita1.4/alephone.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/DrDecki/Aleph-One-Marathon-Trilogy-PsVita-"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/DrDecki/Aleph-One-Marathon-Trilogy-PsVita-/releases/tag/AlephOneVita1.4"
+    }
+  ]
+}

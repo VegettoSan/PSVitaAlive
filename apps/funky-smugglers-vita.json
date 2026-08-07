@@ -1,0 +1,44 @@
+{
+  "id": "funky-smugglers-vita",
+  "title_id": "FNKSMGLRS",
+  "name": "Funky Smugglers Vita",
+  "description": "Port of Funky Smugglers for PSVITA.",
+  "long_description": "This is a wrapper/port of Funky Smugglers for PSVITA.\nThe port works by loading the official Android ARMv6 executable in memory, resolving its imports with native functions and patching it in order to properly run. By doing so, it's basically as if we emulate a minimalist Android environment in which we run natively the executable as it is.",
+  "author_ids": [
+    "rinnegatamante"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.1.1",
+  "version_date": "2023-03-01",
+  "requirements": "- libshacccg.suprx\n- kubridge.skprx\n- fd_fix.skprx OR repatch_ex.skprx\n- Game Data Files: Android",
+  "size": 1055367,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/96129572e1c05c17ac6f0f3b11d27373a88b7a4192354c33c334b9a2434b57af.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/45ff806fb3b18d247cbd6c054b88684f0314411aa617d1c499e36d562f0c016a.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/31ef4693c68cde98bfcb4035a6f818e2e4ba131ed644130b6c4c16747e8b4cb4.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/4de6f5af2bc1e657aa91456d3471810b7498a0bed4071c2f7cc25b25eff65de6.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/a63230aee07ac9ac265db1efc8b4fdd5e9ba8c7fe27093c7f0f6f4b2b7f30631.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/Rinnegatamante/funky_vita/releases/download/v.1.1/funky.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/Rinnegatamante/funky_vita"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/Rinnegatamante/funky_vita/releases"
+    }
+  ]
+}

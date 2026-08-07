@@ -1,0 +1,39 @@
+{
+  "id": "supertux-classic-vita",
+  "title_id": "SUPERTUX1",
+  "name": "SuperTux Classic Vita",
+  "description": "PSVITA port of SuperTux Classic (Milestone 1) with extensive bug fixes and performance optimizations.",
+  "long_description": "PSVITA port of SuperTux Classic (Milestone 1) with extensive bug fixes and performance optimizations.",
+  "author_ids": [
+    "theherogac"
+  ],
+  "category_id": "games",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "1.03",
+  "version_date": "2026-07-08",
+  "requirements": "",
+  "size": 10577666,
+  "status": "Legacy",
+  "icon": "https://robin994.github.io/NeoVitaDB-Catalog/icons/1449-supertux1.png",
+  "screenshots": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/theheroGAC/SuperTux-PSVITA/releases/download/1.03/SuperTux-PSVITA.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/theheroGAC/SuperTux-PSVITA"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/theheroGAC/SuperTux-PSVITA/releases/tag/1.03"
+    }
+  ]
+}

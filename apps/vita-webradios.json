@@ -1,0 +1,42 @@
+{
+  "id": "vita-webradios",
+  "title_id": "WEBRADIOS",
+  "name": "Vita Webradios",
+  "description": "Internet radio player for PSVita.",
+  "long_description": "A homebrew internet radio player for PS Vita with M3U playlist support and HTTP+MP3 internet radio support, featuring a realtime spectrum visualizer.",
+  "author_ids": [
+    "aztorius"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.1.2",
+  "version_date": "2025-09-12",
+  "requirements": "- libshacccg.suprx",
+  "size": 1347641,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/8504ecf1e96a6f689e3f5cbd033b264e2e208b86982defcdd18b4769fbcf230d.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/99d8afc024668e5f466eda61c85283e998fe0fa5e630fbb411574520f3760312.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/538f02aa80c8f1446129aeb2350f8a0758f76e6e33eae5658a671edb0eb6267f.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1316-webradio.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/Aztorius/vita-webradios"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/Aztorius/vita-webradios/releases"
+    }
+  ]
+}

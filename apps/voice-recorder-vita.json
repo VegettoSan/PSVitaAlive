@@ -1,0 +1,36 @@
+{
+  "id": "voice-recorder-vita",
+  "title_id": "VREC00001",
+  "name": "Voice Recorder Vita",
+  "description": "Voice recorder for PSVITA.",
+  "long_description": "Voice Recorder Vita is a simple sound recording app that was missing from the Vita.\nYou can record for up to 30 seconds and your recordings are saved in ux0:/data/Recordings/ in .wav format.",
+  "author_ids": [
+    "vitahex-games"
+  ],
+  "category_id": "media",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.1.0",
+  "version_date": "2017-08-31",
+  "requirements": "",
+  "size": 2278268,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/0cd7aa65112e19e4a21c2ac64511408b8aaa51461779fcb62c5cfbaeedc63685.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/aeae80e6526ea861d486399c005544de9b94b1dd0818b070ad1d50dd9f0b22b7.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/304-VoiceRecorder.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "http://wololo.net/talk/viewtopic.php?f=116&t=48444"
+    }
+  ]
+}

@@ -1,0 +1,36 @@
+{
+  "id": "2playerspong",
+  "title_id": "GDOT00002",
+  "name": "2PlayersPong",
+  "description": "Local multiplayer Pong game.",
+  "long_description": "Local multiplayer pong for 2 persons in the same console.",
+  "author_ids": [
+    "soykhaler"
+  ],
+  "category_id": "games",
+  "subcategory_ids": [
+    "arcade"
+  ],
+  "version": "v.0.2",
+  "version_date": "2023-02-28",
+  "requirements": "",
+  "size": 34083842,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/cb1dab7fab9f37e0c8d93a3e591875b6ef104e30c09b6447d539bdbfbf212cae.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/ce4fe7c38bb8883d041e25b87b0ee89ea3f86e0ab015a7b2d8b2b3002ad4b5e7.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1049-2PlayersPong.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://soykhaler.itch.io/2playerspong"
+    }
+  ]
+}

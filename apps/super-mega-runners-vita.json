@@ -1,0 +1,38 @@
+{
+  "id": "super-mega-runners-vita",
+  "title_id": "SMRV00000",
+  "name": "Super Mega Runners Vita",
+  "description": "Port of Super Mega Runners for PSVita.",
+  "long_description": "A port of Super Mega Runners for PS Vita. A runner game inspired by 8-bit retro games.",
+  "author_ids": [
+    "unknown"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.1.00",
+  "version_date": "2026-02-22",
+  "requirements": "- Game Data Files: Android",
+  "size": 14733060,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/4ba19e71a5db8922082ee7628f86b31be0fa8e6b9589db6c796f5abbd47213d5.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/d6cb98c6f55c37e633e33bd827466047cd06a79385f455de187a1c92b2912a70.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/821408a640adca3c1b2ab079889892d5935b0ff3520d892f5723d7973e7c6400.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/5cb3fca58165d4488fb470e0d8cec1189b1ea8a1c110d398b1797da157c8ad80.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/RegularCharacter07/SuperMegaRunnersVita/releases/download/1.0/smrun.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/RegularCharacter07/SuperMegaRunnersVita"
+    }
+  ]
+}

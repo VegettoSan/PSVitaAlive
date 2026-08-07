@@ -1,0 +1,39 @@
+{
+  "id": "bermuda-vita",
+  "title_id": "BERM00001",
+  "name": "Bermuda Vita",
+  "description": "Bermuda Syndrome port for PSVITA.",
+  "long_description": "This is a Vita port of the game Bermuda Syndrome, using the reverse engine made by Gregory Montoir. To play, you will need the files from the original game. Further instructions can be found at https://github.com/usineur/bermuda/releases/latest",
+  "author_ids": [
+    "usineur"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "engine-port"
+  ],
+  "version": "v.1.4",
+  "version_date": "2018-01-12",
+  "requirements": "- Game Data Files: PC",
+  "size": 1015517,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/84235dee32a942d678a6547e4e2dbac3cd63480d1a42d911bdc4cf4cb7d7a7cf.png",
+  "screenshots": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/usineur/bermuda/releases/download/1.4/bermuda-vita.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/usineur/bermuda/"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://gbatemp.net/threads/release-bermuda-syndrome.446812/"
+    }
+  ]
+}

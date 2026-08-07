@@ -1,0 +1,45 @@
+{
+  "id": "pfba",
+  "title_id": "VITAFBA01",
+  "name": "pFBA",
+  "description": "Arcade emulator for PSVITA.",
+  "long_description": "PFBA is an arcade emulator supporting the following platforms: Capcom CPS-1, Capcom CPS-2, Capcom CPS-3, Cave, Data East DEC-0, DEC-8 and DECO IC16 based games, Galaxian based hardware, Irem M62, M63, M72, M90, M92 and M107 hardware, Kaneko 16, Konami, Neo-Geo, NMK16, Pacman based hardware, PGM, Psikyo 68EC020 and SH-2 based hardware, Sega System 1, System 16 (and similar), System 18, X-Board and Y-Board, Super Kaneko Nova System, Toaplan 1, Toaplan 2, Taito F2, X, Z and others, Miscellaneous drivers for lots of other hardware\n\nFB Alpha also has WIP console drivers for Sega Megadrive/Genesis, ColecoVision, Sega SG-1000, Sega Master System/Game Gear and also PC-Engine/TurboGrafx 16/SuperGrafx.",
+  "author_ids": [
+    "cpasjuste",
+    "rsn8887"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.1.57",
+  "version_date": "2018-06-28",
+  "requirements": "",
+  "size": 10978473,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/f4c4443b234b3f4890be0a48b3f46d24c67512f40814a72c12e47f495ab467ba.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/edc974b709ab1f8aee5e3f85063919a9244dc88ccfd9ba380a9c2400a6579c29.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/5f6264cb832b450e8b88b0af4d299222b70550ae3f4af0778a7210d519b79ed2.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/2533fecd68af45fdb0a0f93e3ce149ed8d86df7bc64dd3b8fb8c1f50d5e4c507.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/14f448c4feb0ca25e06da91a74830cd1c17c824b5dd5bcbdf7408981da5e72c4.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/20-pfba.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/cpasjuste/pfba"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/cpasjuste/pfba/releases"
+    }
+  ]
+}

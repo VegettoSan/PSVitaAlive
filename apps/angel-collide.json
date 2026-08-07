@@ -1,0 +1,38 @@
+{
+  "id": "angel-collide",
+  "title_id": "GFPGM00AC",
+  "name": "Angel Collide",
+  "description": "Side-scrolling shmup for PSVITA.",
+  "long_description": "Angel Collide is a simple side-scrolling shmup built in Gamemaker Studio.\nGifted with the powers of the Halo, the Angel must follow the Golem and his minions across 5 levels and finally defeat him in his stronghold.\nShoot anything that moves and aim for a high score.",
+  "author_ids": [
+    "xanderten50"
+  ],
+  "category_id": "games",
+  "subcategory_ids": [
+    "shooter"
+  ],
+  "version": "v.1",
+  "version_date": "2021-05-26",
+  "requirements": "",
+  "size": 66228307,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/242d6a1d0cc56b2f1a69645cd3ddf135dc1f16d5e6519cb4fba6f8323045f4dd.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/414848085e8544b906a703387ac5738bccb1eaafc6df3426ede0c3e2cf5d767d.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/37b79fbbf6ae547666bfc3ba898fb4b14a566f338939dd52e265f672504bb52d.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/d0248b26a9dcae8b257f014b251e7b30e3e6dc9dbe25281a212fca0a8fe57b48.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/673-AngelCollide.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://kyuhen.customprotocol.com/en/submissions/angel_collide"
+    }
+  ]
+}

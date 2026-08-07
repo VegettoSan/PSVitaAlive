@@ -1,0 +1,39 @@
+{
+  "id": "lego-island",
+  "title_id": "LEGO00001",
+  "name": "LEGO Island",
+  "description": "Port of LEGO Island to PlayStation Vita.",
+  "long_description": "Port of LEGO Island to PlayStation Vita",
+  "author_ids": [
+    "isledecomp"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "continuous",
+  "version_date": "2026-08-06",
+  "requirements": "",
+  "size": 7110418,
+  "status": "Verified",
+  "icon": "https://robin994.github.io/NeoVitaDB-Catalog/icons/1452-isle.png",
+  "screenshots": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/isledecomp/isle-portable/releases/download/continuous/isle.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/isledecomp/isle-portable"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/isledecomp/isle-portable/releases/tag/continuous"
+    }
+  ]
+}

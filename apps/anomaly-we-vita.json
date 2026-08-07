@@ -1,0 +1,44 @@
+{
+  "id": "anomaly-we-vita",
+  "title_id": "ANOMALY01",
+  "name": "Anomaly WE Vita",
+  "description": "Port of Anomaly: Warzone Earth HD for PSVITA.",
+  "long_description": "This is a wrapper/port of Anomaly: Warzone Earth HD for PSVITA.\nThe port works by loading the official Android ARMv6 executable in memory, resolving its imports with native functions and patching it in order to properly run. By doing so, it's basically as if we emulate a minimalist Android environment in which we run natively the executable as it is.",
+  "author_ids": [
+    "rinnegatamante"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.1.2",
+  "version_date": "2023-03-08",
+  "requirements": "- libshacccg.suprx\n- kubridge.skprx\n- fd_fix.skprx OR repatch_ex.skprx\n- Game Data Files: Android",
+  "size": 3314006,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/011d42092243d5cef44575e4c792c212b36693734099de039a96e56e255188bf.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/7f5faf364a30a6292578e2623b91e377d4ed70bf0d73817b45242b0caee7b290.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/6f5ce7afc6d93bd3feab12dc4e9e526d549f7ce99e711cf22da4698b465bfb53.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/d45ee4f986565491a7a7dda1b293b7055c31f4e53e9c61a4b926ef1959b4cb57.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/e5edd299f75822ed6df7f1fb529afddac7b2318a03d8f5ff1cf0fb943f5e706a.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/Rinnegatamante/anomaly-we_vita/releases/download/v.1.2/anomaly.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/Rinnegatamante/anomaly-we_vita"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/Rinnegatamante/anomaly-we_vita/releases"
+    }
+  ]
+}

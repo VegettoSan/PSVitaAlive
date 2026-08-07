@@ -1,0 +1,41 @@
+{
+  "id": "vita-ftp-client",
+  "title_id": "FTPCLI001",
+  "name": "vita-ftp-client",
+  "description": "FTP client for PSVITA.",
+  "long_description": "A simple FTP client for PSVITA.",
+  "author_ids": [
+    "cy33hc"
+  ],
+  "category_id": "networking",
+  "subcategory_ids": [
+    "ftp"
+  ],
+  "version": "v.latest",
+  "version_date": "2022-12-15",
+  "requirements": "",
+  "size": 16543732,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/a32154976120b05a43a184a485f9ff4e1af33a2e1115151f9ce1f4593bd5ce59.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/77b79d60513108fd3ade6f5c75a50bc4feb04765076b8547acc25003078d3d37.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/cy33hc/vita-ftp-client/releases/download/latest/ftpclient.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/cy33hc/vita-ftp-client"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/cy33hc/vita-ftp-client/releases"
+    }
+  ]
+}

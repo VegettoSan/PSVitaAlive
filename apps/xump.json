@@ -1,0 +1,38 @@
+{
+  "id": "xump",
+  "title_id": "XUMP00001",
+  "name": "Xump",
+  "description": "Multiplatfform puzzler game.",
+  "long_description": "Xump - The Final Run is a simple multi-platform puzzler by Retroguru. Initially released by Psilocybin Development in 2005 the game has been improved in almost every aspect you can imagine. New graphics, new levels, new music, new options, new everything...\nHelp Holger to clean up deserted space fields. As this is a very dangerous task for a human being a headbot named Xump will be the one who has to suffer.\nYour main task is to clean all dissolving tiles on several single-screen levels by simply stepping on them, one by one. Few fields are secured with mines and need a double tap. Mines can be blown up when passing by or disarmed by Xump when staying on this specific field for a short moment. Certainly the mission sounds easier than it will be.",
+  "author_ids": [
+    "retroguru-team"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "platformer"
+  ],
+  "version": "v.1.0",
+  "version_date": "2021-06-05",
+  "requirements": "",
+  "size": 997182,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/ba5a0fe64e621e058b23c2605b60e9756eccde7cb3118a0b6dca44e21cfdbedc.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/8654570180fcdef00b64d5dcab3290a268d878ea8f5ea47bba912312e5b4c627.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/f779027956f26315cfed185834b9b0c47c7306756334958785d05d779fc1f33f.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/11274ee880a57c23a85cc41809cf71c84e5c6d5ed4386bcb797c13f9c3ab4adc.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/685-XUMP00001.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://kyuhen.customprotocol.com/en/submissions/xump/"
+    }
+  ]
+}

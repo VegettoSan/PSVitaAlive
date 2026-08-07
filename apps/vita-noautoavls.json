@@ -1,0 +1,39 @@
+{
+  "id": "vita-noautoavls",
+  "title_id": "SKG4V2SW1",
+  "name": "VITA-NoAutoAvls",
+  "description": "Disable Auto AVLS feature.",
+  "long_description": "A small utility to permanently enable/disable the Auto AVLS feature on Playstation Vita.",
+  "author_ids": [
+    "skgleba"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.1.0",
+  "version_date": "2019-10-30",
+  "requirements": "",
+  "size": 32445,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/b20fa9f823124c22732567e7b9125b1f010b491dd652baa0dd99430ae33ef1d1.png",
+  "screenshots": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/SKGleba/VITA-NoAutoAvls/releases/download/v1.0/naavls.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/SKGleba/VITA-NoAutoAvls"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/SKGleba/VITA-NoAutoAvls/releases"
+    }
+  ]
+}

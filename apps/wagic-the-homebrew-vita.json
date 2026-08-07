@@ -1,0 +1,39 @@
+{
+  "id": "wagic-the-homebrew-vita",
+  "title_id": "WAGC00001",
+  "name": "Wagic the Homebrew Vita",
+  "description": "Native port of Wagic the Homebrew for PlayStation Vita.",
+  "long_description": "Native port of Wagic the Homebrew for PlayStation Vita. Supports card art and touch controls.",
+  "author_ids": [
+    "bren"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v0.1.1",
+  "version_date": "2026-05-09",
+  "requirements": "- libshacccg.suprx",
+  "size": 31680433,
+  "status": "Legacy",
+  "icon": "https://robin994.github.io/NeoVitaDB-Catalog/icons/1394-wagic-the-homebrew-vita.png",
+  "screenshots": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/Brendonm17/wagic-vita/releases/download/v0.1.1/wagic.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/Brendonm17/wagic-vita"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/Brendonm17/wagic-vita/releases/tag/v0.1.1"
+    }
+  ]
+}

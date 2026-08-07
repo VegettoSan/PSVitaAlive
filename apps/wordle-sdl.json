@@ -1,0 +1,43 @@
+{
+  "id": "wordle-sdl",
+  "title_id": "WORDLESDL",
+  "name": "Wordle SDL",
+  "description": "Port of a clone of Wordle for PSVITA.",
+  "long_description": "Wordle SDL is a port of a clone of Wordle made with SDL.\nWordle is a web-based word game created and developed by Welsh software engineer Josh Wardle, and owned and published by The New York Times Company since 2022. Players have six attempts to guess a five-letter word, with feedback given for each guess in the form of colored tiles indicating when letters match or occupy the correct position.",
+  "author_ids": [
+    "rinnegatamante"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "engine-port"
+  ],
+  "version": "v.1.0",
+  "version_date": "2022-08-21",
+  "requirements": "",
+  "size": 551666,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/105ea1509be3f1793fe6ef0531005d0042cb2109222a3a97c1a3eb960f5f0dc5.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/939b5926cdb22f3373c96130aacf71f2abeaf4dd1acf27cbc60207147c31f176.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/cde08c6d58355d7de395fe52312c1ffb6e991d7ef0c934f90db4399c2c364fbb.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/323e20d9956a8fbea6e7de07f6fa523a44c69f557f08abf4ba9307a5fe0d6865.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/855-Wordle.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/Rinnegatamante/wordle_clone"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://www.psx-place.com/threads/release-wordle-sdl-port-of-a-clone-of-wordle-for-psvita.38166/"
+    }
+  ]
+}

@@ -1,0 +1,41 @@
+{
+  "id": "vitarebootshutdown",
+  "title_id": "RBSD00001",
+  "name": "VitaRebootShutdown",
+  "description": "Shutdown/Reboot utility.",
+  "long_description": "This is an app that reboots or powers off your PSVita depending on what trigger you hold. It allows to update or restore icons database too.",
+  "author_ids": [
+    "mccallum99"
+  ],
+  "category_id": "utilities",
+  "subcategory_ids": [
+    "installer"
+  ],
+  "version": "v.1.08",
+  "version_date": "2019-05-18",
+  "requirements": "",
+  "size": 259995,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/383fbb647a5015e4a55fe3d2f795ab12a7807c068176a781c46710353ca3a030.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/d23a675fc71243464b25bb88b1955fc70640739a83e6406f370ba5d74c2097e7.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/McCallum99/PSVitaRebootShutdown/releases/download/v1.08/VitaRebootShutdown.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/McCallum99/PSVitaRebootShutdown"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/McCallum99/PSVitaRebootShutdown/releases"
+    }
+  ]
+}

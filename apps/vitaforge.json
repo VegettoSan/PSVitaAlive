@@ -1,0 +1,39 @@
+{
+  "id": "vitaforge",
+  "title_id": "VITAFORGE",
+  "name": "VitaForge",
+  "description": "Homebrew store client.",
+  "long_description": "Client for browsing and installing PSVITA homebrew, written in Rust with SDL2. Reads its catalogue from VitaDBtoo-db.",
+  "author_ids": [
+    "josephinoo"
+  ],
+  "category_id": "utilities",
+  "subcategory_ids": [
+    "installer"
+  ],
+  "version": "v.0.1.0",
+  "version_date": "2026-08-04",
+  "requirements": "",
+  "size": 4270714,
+  "status": "Archive",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/c96090391fe69d3310a4443a8fee60cbfa46adc77dd0812da81a4e8ba659d86b.png",
+  "screenshots": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/josephinoo/vitaForge/releases/download/v0.1.0/vitaforge.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/josephinoo/vitaForge"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/josephinoo/vitaForge/releases"
+    }
+  ]
+}

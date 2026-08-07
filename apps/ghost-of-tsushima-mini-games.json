@@ -1,0 +1,34 @@
+{
+  "id": "ghost-of-tsushima-mini-games",
+  "title_id": "LAPY30018",
+  "name": "Ghost of Tsushima Mini Games",
+  "description": "Collection of minigames for PSVITA.",
+  "long_description": "A collection of three minigames focusing on quick reflexes with Ghost of Tsushima as theme.",
+  "author_ids": [
+    "lapy"
+  ],
+  "category_id": "customization",
+  "subcategory_ids": [
+    "themes"
+  ],
+  "version": "v.1.00",
+  "version_date": "2022-10-11",
+  "requirements": "",
+  "size": 62388542,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/bc619367e93feb31fe6d37778326b35fcd1626d04e61774f3e1fb835eae31f9b.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/037886e835ef06b5b84f8da878e3e40ec927d8174653b1a6f6bbc18d840ff1f8.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/a7b9a0b2df46ea04922aeffb39aa3ced2b5121722c30531d412e41fb52f7a33e.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c47ff007f1e9282ff86080c48bd10639cb90fbc085643a828cf2b4fce719ab8c.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/0d2c7aa6a1ada83bdf53dc8f133277056116253a8b1f07361e21e1a526cef672.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/991-got.vpk",
+      "recommended": true
+    }
+  ]
+}

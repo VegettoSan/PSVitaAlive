@@ -1,0 +1,41 @@
+{
+  "id": "abbey-of-crime",
+  "title_id": "ABBEY0001",
+  "name": "Abbey of Crime",
+  "description": "A free game inspired by Umberto Eco's novel and Jean-Jaques Annaud's film \"The Name of the Rose',  and based on the game \"La abadía del crimen\" by Paco...",
+  "long_description": "A free game inspired by Umberto Eco's novel and Jean-Jaques Annaud's film \"The Name of the Rose',  and based on the game \"La abadía del crimen\" by Paco Menéndez and Juan Delcán.",
+  "author_ids": [
+    "samuel85"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "Vita_v1.0",
+  "version_date": "2021-03-08",
+  "requirements": "",
+  "size": 2378727,
+  "status": "Legacy",
+  "icon": "https://robin994.github.io/NeoVitaDB-Catalog/icons/0635-abbey-of-crime.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/b67bd7f09b5830d3e7d3936531ad76962c92e71b89935b0d844372e97fccd2a7.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/Samuel85/Abbey/releases/download/Vita_v1.0/abbey_v1.0.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/Samuel85/Abbey"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/Samuel85/Abbey/releases/tag/Vita_v1.0"
+    }
+  ]
+}

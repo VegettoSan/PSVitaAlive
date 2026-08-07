@@ -1,0 +1,36 @@
+{
+  "id": "girls-are-weird",
+  "title_id": "CFFVNPGAW",
+  "name": "Girls Are Weird",
+  "description": "Port of Girls are Weird.",
+  "long_description": "Port of a visual novel called Girls are Weird for PSVITA/PSTV.",
+  "author_ids": [
+    "10tr-ll-on-percent"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.1.0",
+  "version_date": "2017-12-01",
+  "requirements": "",
+  "size": 950453,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/1037c4cf8b00ef77f384d134a362ef9958c850aa69f2a7f0216e195640162f49.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/a551a290c0b2dff5a101b5c218390410fc306242b93790a0f436e04099378338.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/492-GirlsAreWeird.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://siinclaiir.wordpress.com/2017/12/01/girls-are-weird-psvita-port/"
+    }
+  ]
+}

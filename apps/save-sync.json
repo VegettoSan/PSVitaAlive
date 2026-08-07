@@ -1,0 +1,43 @@
+{
+  "id": "save-sync",
+  "title_id": "SAVSYNC01",
+  "name": "Save Sync",
+  "description": "Save Sync backs up PS Vita save data to a zip and uploads it to your own server.",
+  "long_description": "Save Sync backs up PS Vita save data to a zip and uploads it to your own server. Download and restore on another device to keep saves in sync. Works with any number of Vitas and PSTVs sharing one server.\nThe server can be created with the prebuilt docker image.",
+  "author_ids": [
+    "claude-ai",
+    "iamcco"
+  ],
+  "category_id": "utilities",
+  "subcategory_ids": [
+    "installer"
+  ],
+  "version": "v0.1.4",
+  "version_date": "2026-06-27",
+  "requirements": "",
+  "size": 7664469,
+  "status": "Legacy",
+  "icon": "https://robin994.github.io/NeoVitaDB-Catalog/icons/1418-save-sync.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/5a2d0b34f3e30446bc21588eebe454af5e38a31468db34804c12f13bdc0903cd.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/2331d985b815c82cba96947a84ac940f387b081189ff91eeab03c904928f84fd.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/unveroleone/save-sync/releases/download/v0.1.4/vita-save-cloud.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/unveroleone/save-sync"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/unveroleone/save-sync/releases/tag/v0.1.4"
+    }
+  ]
+}

@@ -1,0 +1,44 @@
+{
+  "id": "katzenklein-redux-vita",
+  "title_id": "KKRBROCRO",
+  "name": "KatzenKlein Redux Vita",
+  "description": "Port of KatzenKlein Redux for PSVita.",
+  "long_description": "This is a wrapper/port of KatzenKlein Redux for the PS Vita.\nThe port works by loading the official Android ARMv7 executable in memory, resolving its imports with native functions and patching it in order to properly run. By doing so, it's basically as if we emulate a minimalist Android environment in which we run natively the executable as it is.",
+  "author_ids": [
+    "rocroverss"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.1.0",
+  "version_date": "2025-08-14",
+  "requirements": "- libshacccg.suprx\n- kubridge.skprx\n- Game Data Files: Android",
+  "size": 2484731,
+  "status": "Legacy",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/27914a21cd11a6f5d17710845f260cbe37a61b61520ae81a57052bbf85fdd2e0.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/929d3b91473fa112cf21b00007d3317ab0a5cc507caf73aec27977d953ac93c2.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/2b7f3bc7a9a1ad7b656fb43b4aeaab6bd73a74649676a2a757dbd2d0e0536dc4.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/7d85d3faa3ff8df1ac9df925a122571d0d70ca7d1938c6566c7d35acb51e7520.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/d7a332bd177bce7d8097b78fef4852f14c32ac0e3f6be9d8bc98543b34c624d0.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/Rocroverss/katzenklein-redux-psvita-port/releases/download/v1.0.reihen/kkr.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/Rocroverss/katzenklein-redux-psvita-port"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/Rocroverss/katzenklein-redux-psvita-port/releases"
+    }
+  ]
+}

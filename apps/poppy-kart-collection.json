@@ -1,0 +1,44 @@
+{
+  "id": "poppy-kart-collection",
+  "title_id": "POPPYKART",
+  "name": "Poppy Kart Collection",
+  "description": "Port of Poppy Kart and Poppy Kart 2 for PSVITA.",
+  "long_description": "This is a wrapper/port of Poppy Kart and Poppy Kart 2 for the PS Vita.\nThe port works by loading the official Android ARMv7 executables in memory, resolving their imports with native functions and patching them in order to properly run. By doing so, it's basically as if we emulate a minimalist Android environment in which we run natively the executables as they are.",
+  "author_ids": [
+    "rinnegatamante"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "racing"
+  ],
+  "version": "v.1.0",
+  "version_date": "2023-01-18",
+  "requirements": "- libshacccg.suprx\n- kubridge.skprx\n- Game Data Files: Android",
+  "size": 3017065,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/ac05b0949fc0b2c8f2e12bc6ce87acdce92c55711daee9138873eb7c8db5900e.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/f9447cf8f1ed8f204abb877d1e73de55a1f0ceeaedba9e88519743f90f1652e7.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/65dcbcaf89841a19c5826c01100b1649e73b3c3ebdc9be451660bfcfb805abb8.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c5c251987fcac53b8fcc257122e960baa0e61f7908f5002f2b0ed905ac4a5893.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/9fa4ba2663047f79894892c645ed5f5e9bc9559f2c00514ade14975c4591d98d.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/Rinnegatamante/Poppy-Kart-Collection/releases/download/v.1.0/PoppyKart.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/Rinnegatamante/Poppy-Kart-Collection"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/Rinnegatamante/Poppy-Kart-Collection/releases"
+    }
+  ]
+}

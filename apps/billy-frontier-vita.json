@@ -1,0 +1,44 @@
+{
+  "id": "billy-frontier-vita",
+  "title_id": "BLLYFRNTR",
+  "name": "Billy Frontier Vita",
+  "description": "Port of Billy Frontier for PSVITA.",
+  "long_description": "Billy Frontier Vita is a port of Billy Frontier based on the recent source release by jorio.\nBilly Frontier is an arcade style action game with a \"cowboys in space\" theme. You get to fight in duels, shootouts, stampedes, etc. It's the kind of game you'll want to pick up and play whenever you get that twitch to just shoot something and blow stuff up!",
+  "author_ids": [
+    "rinnegatamante"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.1.1",
+  "version_date": "2024-12-02",
+  "requirements": "- libshacccg.suprx",
+  "size": 1858496,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/71a4fde629688107628be6b336d0bb63ce2b7d46b753cb254e2c6413964fa606.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/ddc24671f3464164a049b65734e432daefdfae1ec8ae764642f6bc27d262a223.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c649bf8211ab85b40bc7b6a9a514d478df64b410a24755bf576366b5c3c93aa8.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/a418e55843ed9bf18cd0a2b58ea9bcf875bcb5420e42185d16e37922d1066656.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/d75ea9b3b43ca6030c94815f2afe3c6bef2284ee0520852d96cb3137c0b3b9c0.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1001-Billy.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/Rinnegatamante/BillyFrontier"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://www.psx-place.com/threads/release-billy-frontier-vita.38588/"
+    }
+  ]
+}

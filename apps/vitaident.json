@@ -1,0 +1,39 @@
+{
+  "id": "vitaident",
+  "title_id": "VID000016",
+  "name": "VITAident",
+  "description": "VITAident is a tool inspired by PSPident - which was originally developed by Jas0nuk and later updated by Yoti.",
+  "long_description": "VITAident is a tool inspired by PSPident - which was originally developed by Jas0nuk and later updated by Yoti. The tool was used to obtain more information about your PSP's motherboard, firmware etc. Similarly the VITA version - VITAident aims to display more information about your PS VITA. It is currently a work in progress.",
+  "author_ids": [
+    "joel16"
+  ],
+  "category_id": "system",
+  "subcategory_ids": [
+    "system-information"
+  ],
+  "version": "0.7.4",
+  "version_date": "2017-10-17",
+  "requirements": "",
+  "size": 63832,
+  "status": "Verified",
+  "icon": "https://robin994.github.io/NeoVitaDB-Catalog/icons/0025-vitaident.png",
+  "screenshots": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/joel16/VITAident/releases/download/0.7.4/VITAident.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/joel16/VITAident"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/joel16/VITAident/releases/tag/0.7.4"
+    }
+  ]
+}

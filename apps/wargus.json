@@ -1,0 +1,44 @@
+{
+  "id": "wargus",
+  "title_id": "WARG00001",
+  "name": "Wargus",
+  "description": "Port of Warcraft 1/2 for PSVITA.",
+  "long_description": "Wargus is a Warcraft 2 Mod that allows you to play Warcraft 2 with the Stratagus engine. The game looks and sounds almost exactly like Warcraft 2. The gameplay is very close to Warcraft 2Ã¢â‚¬â„¢s gameplay, with slight enhancements towards Starcraft and other more modern RTS games.",
+  "author_ids": [
+    "northfear"
+  ],
+  "category_id": "modding",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.3.3.2-vita.3",
+  "version_date": "2022-08-15",
+  "requirements": "- Game Data Files: PC",
+  "size": 3907642,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/f142e51c36b0a55a43c8dd6c97649e9f7d9c2a36188899fb108b460688ab5d98.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/bc74b3bf3647a85ba10d30f35c68029006f9c776a030092e25715231fb279af8.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/057736aaaba52f174698d41e09107a731f7dd82e43458b7e2bbfef506341862e.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/d39b1a7ded03d9582aed6f694b30c5fe64eefdf3944efc87cb5745194ac04620.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/5b6ef116cb571e4f28c5530fe37c1fae9645f8a1dda55e197839f6576b7f25f1.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/Northfear/stratagus-vita/releases/download/v3.3.2-vita.3/stratagus.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/Northfear/stratagus-vita"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/Northfear/stratagus-vita/releases"
+    }
+  ]
+}

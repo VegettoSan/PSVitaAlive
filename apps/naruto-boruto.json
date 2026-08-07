@@ -1,0 +1,33 @@
+{
+  "id": "naruto-boruto",
+  "title_id": "NABO12345",
+  "name": "Naruto Boruto",
+  "description": "Naruto themed fighting game.",
+  "long_description": "A 3D fighting game made with Unity with Naruto anime series characters.",
+  "author_ids": [
+    "gambikules"
+  ],
+  "category_id": "games",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.2",
+  "version_date": "2019-10-05",
+  "requirements": "",
+  "size": 48899900,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/8f301fa45c9363af251f683c8919812a6f12ed19c281c24c4f53bf7d5d1929a0.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/2b3477242133cb750b298a6b7cae1493beed14fa9c2db590ca2904ef0a3d235e.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/b345dabb4cd0e7c25afe0ad7955730340c8d38dd4ef92d1c189b9dd82782a3ed.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/a076c9b7b886a971fbe8f64afba08dfb540c510dc9ce15ad8e132d762dc1cae5.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/510-NarutoBoruto.vpk",
+      "recommended": true
+    }
+  ]
+}

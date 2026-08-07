@@ -1,0 +1,34 @@
+{
+  "id": "doggytwicevt",
+  "title_id": "DOGGYTEST",
+  "name": "DoggyTwiceVT",
+  "description": "Logic game for PSVITA.",
+  "long_description": "Logical game where point is to make all \"coins\" gold by turning them in right order.",
+  "author_ids": [
+    "leestorm"
+  ],
+  "category_id": "games",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.0.2",
+  "version_date": "2016-08-22",
+  "requirements": "",
+  "size": 836369,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/0f17c1404db19214d68812d39e5855925e964fd2fe2391d1ef4daaf917eb03a1.png",
+  "screenshots": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/140-doggytwicevt.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "http://www.psx-place.com/resources/doggytwicevt.247/"
+    }
+  ]
+}

@@ -1,0 +1,39 @@
+{
+  "id": "pup-extractor",
+  "title_id": "PSP2PUP00",
+  "name": "PUP-Extractor",
+  "description": "Extract PSVITA .PUP firmware updates.",
+  "long_description": "Application that allows you to extract firmware updates for PSVITA/PSTV in .PUP format.",
+  "author_ids": [
+    "princess-of-sleeping"
+  ],
+  "category_id": "system",
+  "subcategory_ids": [
+    "firmware-tools"
+  ],
+  "version": "v.1.3",
+  "version_date": "2018-02-09",
+  "requirements": "",
+  "size": 40368,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/18746b487153dc1ca3d728ce57b841b6e8faeca65a0900aa46864f73d07642c8.png",
+  "screenshots": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/Princess-of-Sleeping/PSV-PUP-Extractor/releases/download/1.3/PUP-Extractor.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/Princess-of-Sleeping/PSV-PUP-Extractor"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/Princess-of-Sleeping/PSV-PUP-Extractor/releases"
+    }
+  ]
+}

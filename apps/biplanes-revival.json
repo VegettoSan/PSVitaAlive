@@ -1,0 +1,44 @@
+{
+  "id": "biplanes-revival",
+  "title_id": "BPREVIVAL",
+  "name": "Biplanes Revival",
+  "description": "Port of Biplanes Revival for PSVita.",
+  "long_description": "An old cellphone arcade \"BlueTooth BiPlanes\" recreated for PC and PS Vita (originally developed by Morpheme Ltd. in 2004). This port is based on the tremendous work done by regular-dev. Multiplayer is compatible with the PC version.",
+  "author_ids": [
+    "thesame"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.1.2.1-fix1",
+  "version_date": "2025-08-29",
+  "requirements": "",
+  "size": 2279182,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/940f66dd4c944dcbb1678646d294654bcc379659b8d9ee0aac0c2320ed5e6984.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/47e10458d54eeaf86699755e00487d1021a27d349f01b0c74b176b9ff1777296.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/4d7252213c16be4f00c171e20f8a9ab320f3247e01f8beb4c0c56e00acc9949f.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/f732a57ca4a83344dd349a63cdfa0feec5125421f0f7392cf9fb2dbd8ec679fc.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/ab1694e557983eb650ef3a4e34fa5013eb06948352b40392eee0fd2e147ef55c.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DvaMishkiLapa/biplanes-revival-vita/releases/download/v1.2.1-fix1/BiplanesRevival.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/DvaMishkiLapa/biplanes-revival-vita"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/DvaMishkiLapa/biplanes-revival-vita/releases"
+    }
+  ]
+}

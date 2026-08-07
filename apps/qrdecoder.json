@@ -1,0 +1,39 @@
+{
+  "id": "qrdecoder",
+  "title_id": "GAUT16912",
+  "name": "qrdecoder",
+  "description": "QR Decoder for PSVITA.",
+  "long_description": "A small app that decodes QR code and then opens browser with the scanned payload.",
+  "author_ids": [
+    "linhtinh11"
+  ],
+  "category_id": "utilities",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.0.2.1",
+  "version_date": "2017-01-06",
+  "requirements": "",
+  "size": 62067,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/18746b487153dc1ca3d728ce57b841b6e8faeca65a0900aa46864f73d07642c8.png",
+  "screenshots": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/linhtinh11/vita_qrdecoder/releases/download/0.2.1/qrdecoder.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/linhtinh11/vita_qrdecoder"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://wololo.net/talk/viewtopic.php?f=116&t=47605"
+    }
+  ]
+}

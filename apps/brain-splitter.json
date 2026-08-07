@@ -1,0 +1,38 @@
+{
+  "id": "brain-splitter",
+  "title_id": "LAPY30017",
+  "name": "Brain Splitter",
+  "description": "Vertical scrolling shoot'em up.",
+  "long_description": "Brain Splitter is an original vertically scrolling shoot 'em up single player where you have to controle two spaceships at the same time using both joysticks.It includes a Photo Mode which allows you to take incredible screenshots that will be saved directly in your image gallery and a trophy system simulating the trophy system of official games.",
+  "author_ids": [
+    "lapy"
+  ],
+  "category_id": "media",
+  "subcategory_ids": [
+    "image-viewer"
+  ],
+  "version": "v.1.0",
+  "version_date": "2021-05-15",
+  "requirements": "",
+  "size": 68658061,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/abba50125a9859f9af4f14b11b32e32ce2892781b91c6dab61ed4c1fba29a574.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/74dd5ddb41223323001437dfc96edc67afdf9c1efbfb214819fd493f41271d55.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/fbcf5a5a9df14f75dfb7fa1da01eff466e3f69df685a7bd5590e741b5f9cddb7.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/b8a34222afc87afb45ec4c8763a852c73b37d03f3670655839f063843d1a8d83.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/665-BrainSplitter.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://kyuhen.customprotocol.com/en/submissions/brain_splitter/"
+    }
+  ]
+}

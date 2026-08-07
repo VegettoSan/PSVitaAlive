@@ -1,0 +1,34 @@
+{
+  "id": "bit-clicker",
+  "title_id": "BCLK00001",
+  "name": "Bit Clicker",
+  "description": "Clicker game for PSVITA/PSTV.",
+  "long_description": "A clicker game for PSVITA/PSTV made with GameMaker.",
+  "author_ids": [
+    "ccoolguy"
+  ],
+  "category_id": "games",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.1.0",
+  "version_date": "2020-05-28",
+  "requirements": "",
+  "size": 2651275,
+  "status": "Legacy",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/f07e3ed96da24ed4c47d16163ded6adefd4ff34e8046c0678b7aaa0ea97f0ce2.png",
+  "screenshots": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/645-BitCliker.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/Ccoolguy/BitClickerVita"
+    }
+  ]
+}

@@ -1,0 +1,39 @@
+{
+  "id": "snowball-fight",
+  "title_id": "SBFH12345",
+  "name": "Snowball Fight",
+  "description": "Classic arcade game for PSVita.",
+  "long_description": "In Snowball Fight, you turn into the bravest snowball thrower. This is a classic arcade game that was popular on old push-button phones.",
+  "author_ids": [
+    "xqspx"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.1.0",
+  "version_date": "2025-09-14",
+  "requirements": "",
+  "size": 33402092,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/c7b942a59785fb4d39d18b0b8677ffd36b063856a857704b1d833f15e25c7c7f.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/d54dc00426b27134fa38a335857cd3e006842b248f424952ab5895789267c349.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/57476afda09735f2d307b6d803abfbfe5a1ce5524862fcfab3b78f2e90c024df.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/37fe80679d4a7c70253631d53e6b919d7a9824e9279de08ca4162c36064d7258.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/75876328825041890558c4ce88fb61896ea452fdb8a302c5029e291aadc72aaf.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1324-snowball.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://xqspx.itch.io/snowball-fight"
+    }
+  ]
+}

@@ -1,0 +1,44 @@
+{
+  "id": "opensupaplex",
+  "title_id": "OSPX00001",
+  "name": "OpenSupaplex",
+  "description": "OpenSupaplex is an open-source reimplementation of Supaplex by sergiou87.",
+  "long_description": "OpenSupaplex is an open-source reimplementation of Supaplex by sergiou87. Supaplex is a video game created by Philip Jespersen and Michael Stopp, two Swiss students, and published by Digital Integration in 1991. It is an extended clone of Boulder Dash.",
+  "author_ids": [
+    "sergiou87"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v7.2.2",
+  "version_date": "2026-03-30",
+  "requirements": "",
+  "size": 4635077,
+  "status": "Verified",
+  "icon": "https://robin994.github.io/NeoVitaDB-Catalog/icons/0552-opensupaplex.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/182f3f72612fd93b5296cdfb16cb90dc71f7cc1537b0d5fb0161f22656a380cb.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/80be146ef52ef3379568abd078a8333cdd5ba946f8e2262ee58107acc9c4d9ad.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/0bf409d3456339d9817fb36b9ddd16347fdb661d6f67189deb1c113ed8dc569f.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/a9e838cba857280ff85ad6489b121af558876e4514fa7d33f15b8ece2d2bf74d.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/sergiou87/open-supaplex/releases/download/v7.2.2/OpenSupaplex.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/sergiou87/open-supaplex"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/sergiou87/open-supaplex/releases/tag/v7.2.2"
+    }
+  ]
+}

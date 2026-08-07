@@ -1,0 +1,43 @@
+{
+  "id": "pickleball-vita",
+  "title_id": "PIKLEBALL",
+  "name": "Pickleball Vita",
+  "description": "Port of Pickleball Pro for PSVITA.",
+  "long_description": "This is a wrapper/port of Pickleball Pro for the PS Vita.\nThe port works by loading the official Android ARMv7 executable in memory, resolving its imports with native functions and patching it in order to properly run. By doing so, it's basically as if we emulate a minimalist Android environment in which we run natively the executable as is.",
+  "author_ids": [
+    "rinnegatamante"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.1.0",
+  "version_date": "2024-08-15",
+  "requirements": "- libshacccg.suprx\n- kubridge.skprx\n- Game Data Files: Android",
+  "size": 2298938,
+  "status": "Legacy",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/551710c14649a56605ffcd3e63b713076ab5c484065e10687219b8d323dc35c0.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/7f9347cee913d1632678e834ce1017e418ab65e1f5ab73b79b3f71853ce3e977.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/defd86872d08fd9e56d7f8f7a525a9fb0a581de2ac180c8daee792666431477f.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/867cfa75839cabb234d0fb8d92916ba3a33b7c8a1688cee916d1a72842d9da33.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/Rinnegatamante/pickleball_vita/releases/download/v.1.0/pickleball.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/Rinnegatamante/pickleball_vita"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/Rinnegatamante/pickleball_vita/releases"
+    }
+  ]
+}

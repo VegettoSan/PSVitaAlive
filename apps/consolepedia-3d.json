@@ -1,0 +1,37 @@
+{
+  "id": "consolepedia-3d",
+  "title_id": "CPVT45668",
+  "name": "Consolepedia 3D",
+  "description": "Virtual encyclopedia of game systems.",
+  "long_description": "Consolepedia 3D is a virtual encyclopedia of game systems. From Atari to Nintendo and PlayStation all with with detailed 3D models of each system with information about the history, specifications and their best selling games.\nConsolepedia 3D features detailed 3d models where you can take a close look and also learn about it's history through the years. You can also see the top-5 best selling games for each system with the original box art.",
+  "author_ids": [
+    "vitahex-games"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.0.3",
+  "version_date": "2020-10-05",
+  "requirements": "",
+  "size": 121788887,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/b672baf6cc04250a4be43f79fa5451a9cd9c671d86923216a9ca5c49a7032763.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/e774deca0cadf1c57f369ce9c9828a96a3efed8c1ab5957c0da3093120e7a57a.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/423d1ee2e8e21b61c7be3c6f003e51908c9cbcdb6adb263a6138f4e9bab2243a.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/VitaHEX-Games/Consolepedia-3D/releases/download/v0.3/Consolepedia3D_0.3-PSVita.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/VitaHEX-Games/Consolepedia-3D/releases"
+    }
+  ]
+}

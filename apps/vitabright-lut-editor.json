@@ -1,0 +1,39 @@
+{
+  "id": "vitabright-lut-editor",
+  "title_id": "VBRIGHTTL",
+  "name": "Vitabright Lut Editor",
+  "description": "Companion app for vitabright plugin.",
+  "long_description": "A companion app for vitabright plugin that allows to easily tweak OLED gamma tables.",
+  "author_ids": [
+    "devnoname120"
+  ],
+  "category_id": "plugins",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.1.1",
+  "version_date": "2020-12-20",
+  "requirements": "",
+  "size": 471886,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/4a80e0db0b97165d2894141efbe79ae3761981788cb5abd62ced0218071100e2.png",
+  "screenshots": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/devnoname120/vitabright-lut-editor/releases/download/1.1/vitabright-lut-editor-1.1.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/devnoname120/vitabright-lut-editor"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/devnoname120/vitabright-lut-editor/releases"
+    }
+  ]
+}

@@ -1,0 +1,44 @@
+{
+  "id": "enigma",
+  "title_id": "ENIGMA000",
+  "name": "Enigma",
+  "description": "Enigma port for PSVITA.",
+  "long_description": "Vita port of Enigma, a skill/puzzle game inspired by Oxyd on the Atari ST and Rock'n'Roll on the Amiga.",
+  "author_ids": [
+    "rsn8887"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "puzzle"
+  ],
+  "version": "v.1.11",
+  "version_date": "2018-09-09",
+  "requirements": "",
+  "size": 5209786,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/a6bf2162107701e1a18af822d296845eccd58bac9b315bddb5186211f90c6c82.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/89a04cdf6759a2c258f60e0d55b09184d44d6ca3f4eee7d626c9f0d9f7beb786.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/223070d1b3fe4ed7d0e1240a0c412da5aa30c1f8f8d2fe4e12d370b1504540e3.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/298347c5576487d7968bd82fb3aab6d2dfe68f5657aa66a6fded97bed6f6f4c3.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/8f2dd775dc298553fd7da1d781a5a6ea97bd30a4afd50759cf8df0fd329e1152.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/rsn8887/Enigma/releases/download/1.16/enigma_1.11.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/rsn8887/Enigma"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/rsn8887/Enigma/releases"
+    }
+  ]
+}

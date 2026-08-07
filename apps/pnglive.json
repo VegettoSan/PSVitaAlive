@@ -1,0 +1,32 @@
+{
+  "id": "pnglive",
+  "title_id": "WOLFGIRL0",
+  "name": "PNGLive",
+  "description": "Turn your PSVita into a PNGtuber.",
+  "long_description": "Turn your PSVita into a PNGtuber.\nWant to stream with a PNGtuber but don't want to install more programs on your already crowded phone or laptop? Or you simply want to use a PSVita/PSTV that's been sitting around catching dust for something? PNGLive will let you do just that after setting it up on your system and adding it to OBS.\nAn instructions guide can be found in ux0:/app/WOLFGIRL0/instructions.txt.\nPlease contact the developer if you need help setting this up or need a PNGtuber.",
+  "author_ids": [
+    "wolfgirlbreeder"
+  ],
+  "category_id": "utilities",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.0.4 BETA",
+  "version_date": "2023-08-14",
+  "requirements": "",
+  "size": 5234780,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/55433e777be9421c1910fee016037d1acf6b688f29e1d466752d064c91293eb3.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/314c3fa272e02a2fafdce191ef2746ab6611fe4a81b8b5332e94129bd7b73be5.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/9390e705ace863448c4fb18dab4dc142d56a2582b8151ebbffe0f9fc799c0523.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1113-pnglive.vpk",
+      "recommended": true
+    }
+  ]
+}

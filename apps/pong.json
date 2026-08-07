@@ -1,0 +1,39 @@
+{
+  "id": "pong",
+  "title_id": "VITAPONG0",
+  "name": "Pong",
+  "description": "Pong clone for PSVITA.",
+  "long_description": "This is a classic pong clone I created as a throwback to the origin of video games. This is also my first homebrew game and I designed it to resemble the original Pong by Ralph Baer.",
+  "author_ids": [
+    "namelessghoul0"
+  ],
+  "category_id": "games",
+  "subcategory_ids": [
+    "arcade"
+  ],
+  "version": "v.1.10",
+  "version_date": "2017-09-06",
+  "requirements": "",
+  "size": 706314,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/d09907cd72efbd9d2b97b36d672ff9c3ece97e10fee8b03adfbf1f4668fd35c6.png",
+  "screenshots": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/NamelessGhoul0/VitaPong/releases/download/v1.10/Pong.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/NamelessGhoul0/VitaPong"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "http://gekihen.customprotocol.com/en/project/Pong"
+    }
+  ]
+}

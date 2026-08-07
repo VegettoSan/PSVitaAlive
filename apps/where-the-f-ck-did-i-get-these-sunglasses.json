@@ -1,0 +1,41 @@
+{
+  "id": "where-the-f-ck-did-i-get-these-sunglasses",
+  "title_id": "SUNG14553",
+  "name": "Where The F*ck Did I Get These Sunglasses",
+  "description": "Visual puzzle game for PSVITA.",
+  "long_description": "This is a visual puzzle game about trying to piece together the events of the previous night during a morning hangover\nOriginal Creators: Catarina Lopes, Isaque Sanches, Mariana Domingos, Tiago Quendera.\nMade with Unity.",
+  "author_ids": [
+    "catarina-lopes",
+    "isaque-sanches",
+    "mariana-domingos",
+    "tiago-quendera"
+  ],
+  "category_id": "games",
+  "subcategory_ids": [
+    "puzzle"
+  ],
+  "version": "v.1.0",
+  "version_date": "2021-06-05",
+  "requirements": "",
+  "size": 58377878,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/99bbc10a88a8c2fd8d7992da438d23a44cdfd690e6bdde94b667a67536206f72.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/1b773197c7e6c73027a4f21ad9c57a976e6e041dbb61c1a0476234107523d51c.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/7b5a439143d38738005c9f432c0c879c3727d5a1777e39846d097dbfb07c8601.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/8278ea16da6dbc8ff168f339f56a0a9fe1a71e9fd71cde350a9f0dd941fd9996.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/686-WTFDIGTS.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://kyuhen.customprotocol.com/en/submissions/sunglass/"
+    }
+  ]
+}

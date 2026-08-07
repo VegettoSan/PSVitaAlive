@@ -1,0 +1,39 @@
+{
+  "id": "higurashi-vita",
+  "title_id": "HIGURASHI",
+  "name": "Higurashi Vita",
+  "description": "Higurashi port for PSVITA.",
+  "long_description": "A completely unofficial port of Higurashi for the PS Vita.\nThe engine supports also VNDS games since v.2.5.",
+  "author_ids": [
+    "mylegguy"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "engine-port"
+  ],
+  "version": "v.3.0.2",
+  "version_date": "2021-01-15",
+  "requirements": "- Game Data Files: PC",
+  "size": 5145119,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/688e6b1256224d6c5535132fbbe0b2c2ee59f0235b9591281cd68177fca31fd6.png",
+  "screenshots": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/271-Higurashi-Vita.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/MyLegGuy/Higurashi-Vita"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "http://wololo.net/talk/viewtopic.php?f=116&t=48223"
+    }
+  ]
+}

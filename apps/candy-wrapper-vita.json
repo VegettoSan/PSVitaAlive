@@ -1,0 +1,39 @@
+{
+  "id": "candy-wrapper-vita",
+  "title_id": "WRAP00001",
+  "name": "Candy Wrapper Vita",
+  "description": "Port of Candy Wrapper for PSVITA.",
+  "long_description": "Candy Wrapper in an arcade action screen-wrapping game inspired by Bubble Bobble!\nCandy Wrapper was originally made within 24 hours for the 100 Lines of Code GameMaker Jam!",
+  "author_ids": [
+    "davidcralph"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.1.00",
+  "version_date": "2022-10-24",
+  "requirements": "",
+  "size": 22021106,
+  "status": "Legacy",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/3359530f0c5ab7f2cf410f514d98dc02df4614e84bf7d5a79577304407a4cf75.png",
+  "screenshots": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/davidcralph/CandyWrapper_vita/releases/download/01.00/CandyWrapper.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/davidcralph/CandyWrapper_vita"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/davidcralph/CandyWrapper_vita/releases"
+    }
+  ]
+}

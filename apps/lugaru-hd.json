@@ -1,0 +1,44 @@
+{
+  "id": "lugaru-hd",
+  "title_id": "LUGARU069",
+  "name": "Lugaru HD",
+  "description": "Port of Lugaru for PSVITA.",
+  "long_description": "Ninja rabbits on your Vita!\nThis is a beta release, meaning there are some bugs and crashes, but it's still entirely playable.\nThis is a port of the LugaruOSS to the PS Vita. It runs at 60 FPS at stock speeds, and some scenes even run at 60 with an underclock!",
+  "author_ids": [
+    "diggeloid"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "fps"
+  ],
+  "version": "beta 1",
+  "version_date": "2022-08-20",
+  "requirements": "",
+  "size": 16154761,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/4f6d1e4fef871b01e39b829e7ccac0d56d8ceefe25fbd96edc483414a76a55a3.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/e498dc0c0843c926c15a33af355d61ed03b38dd6464c5ca58aeeb6d722d5b684.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/6961c38041094d48986637751d3f37ad008c6345ab1caf6199f54c721c4ae5d9.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/bd76d1c4b9c97eefbe74961a6e6a00d7f3c0c8cd7b777ad012146d6288ff9f4c.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/911f80f11a01f131490c3ff5c3b9986f048cf58c10508cc9039047a863d62619.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/853-Lugaru-release-beta-1.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://gitlab.com/alexramallo/lugaruvita"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://aramallo.itch.io/lugaru-vita-port"
+    }
+  ]
+}

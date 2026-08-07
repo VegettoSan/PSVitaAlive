@@ -1,0 +1,45 @@
+{
+  "id": "sonic-3-a-i-r",
+  "title_id": "SAIR30000",
+  "name": "Sonic 3 A.I.R.",
+  "description": "Port of Sonic 3 A.I.R. for PSVITA.",
+  "long_description": "Sonic 3 A.I.R. (Angel Island Revisited) is a fan-made remaster of the classic Sega game Sonic 3 & Knuckles. This project modernizes the original game by adding widescreen support, improved graphics and audio, and new gameplay features. It is designed to offer a superior playing experience on modern systems while requiring original game data to run.",
+  "author_ids": [
+    "mdashk",
+    "gl33ntwine",
+    "rinnegatamante"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "beta-2",
+  "version_date": "2024-04-25",
+  "requirements": "- libshacccg.suprx\n- Game Data Files: PC/Genesis/MegaDrive",
+  "size": 4015203,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/5a69cedcb9274a128f800733c5d8e85d789d9b3358d879e2fec749656551938f.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/eda3ee6f62a3b35b8152d557b2420fdbcb9ec72fe2afe6b9e18794f1a260688e.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/7cd011031994080932c84b3610370b42b542b14cf78971ac630f476081b4f17d.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/8c81a50f26bf3e49c6c781c94f24c543f320b58f350d0cb39afa4adde137fc6d.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/v-atamanenko/sonic3air/releases/download/beta-2/sonic3air-beta2.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/v-atamanenko/sonic3air"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/v-atamanenko/sonic3air/releases"
+    }
+  ]
+}

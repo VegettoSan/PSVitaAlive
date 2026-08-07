@@ -1,0 +1,41 @@
+{
+  "id": "vita-chain",
+  "title_id": "CHAI00001",
+  "name": "vita-chain",
+  "description": "Chain reaction game for PSVITA.",
+  "long_description": "A chain reaction game for PSVITA/PSTV wrote in Lua.",
+  "author_ids": [
+    "svennd"
+  ],
+  "category_id": "games",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.0.2",
+  "version_date": "2017-10-22",
+  "requirements": "",
+  "size": 2300177,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/bc755f2ad2e4f57b84b12d4e64c85d57ca547d8b6cf0d4db57b81b7a73e920cf.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/746e1da37b5c60efbd46e8346c6dfdeecc755209ca36f5fdd9697434f82e84a9.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/svennd/vita-chain/releases/download/0.2/chain.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/svennd/vita-chain"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "http://wololo.net/talk/viewtopic.php?f=116&t=48660"
+    }
+  ]
+}

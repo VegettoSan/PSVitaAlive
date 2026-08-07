@@ -1,0 +1,29 @@
+{
+  "id": "shutdown-shortcut",
+  "title_id": "SHTD00001",
+  "name": "Shutdown Shortcut",
+  "description": "Shutdowns your PSVITA.",
+  "long_description": "A quick way to shutdown your system when Henkaku is running.",
+  "author_ids": [
+    "luck"
+  ],
+  "category_id": "utilities",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.1.0",
+  "version_date": "2016-11-03",
+  "requirements": "",
+  "size": 24345,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/9170451e0c5e0dc27e546c24c46a442e491a5a87648909065e6d99758e6d4d89.png",
+  "screenshots": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/69-Shutdown.vpk",
+      "recommended": true
+    }
+  ]
+}

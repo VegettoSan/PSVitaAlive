@@ -1,0 +1,45 @@
+{
+  "id": "spiced-miku-vu",
+  "title_id": "MIKU00039",
+  "name": "Spiced Miku Vu",
+  "description": "Hatsune Miku random image viewer.",
+  "long_description": "Application that shows random images of Hatsune Miku from Gelbooru. Allows saving images to album, features a slideshow mode, and supports offline use. Contains optional NSFW content.",
+  "author_ids": [
+    "ek720",
+    "sonicmastr"
+  ],
+  "category_id": "media",
+  "subcategory_ids": [
+    "image-viewer"
+  ],
+  "version": "v.1.6",
+  "version_date": "2026-01-19",
+  "requirements": "",
+  "size": 4475215,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/6d2fb2bfe3c16bc4748aab7efb26db54881f3874a1e2f7adef56e118937d00cd.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/78500277b3c3ccdd2096a479af38a71d1a94b704ad4436df1f74b8c197324c70.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/e043ef8e8bdfb8858f89b19f9bc6a5abca86039ed25fe663cee986c3aeb0d3a7.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c7b7a0b30302b4a570aeee83873eac47de0e270c9e7c410d676385e7328741a9.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/f967effde566784ed5a07f2b220b463abd0c3a1d21ec0a70c94c5875da88479f.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/FuzionCD/MikuVU/releases/download/v1.6/MikuVU_1.6.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/EK720/MikuVU"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/EK720/MikuVU/releases"
+    }
+  ]
+}

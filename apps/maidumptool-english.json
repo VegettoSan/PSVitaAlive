@@ -1,0 +1,29 @@
+{
+  "id": "maidumptool-english",
+  "title_id": "MAIM00001",
+  "name": "MaiDumpTool (English)",
+  "description": "Decrypts content and installs decrypted content to the system.",
+  "long_description": "Improved games dumper, alternative to Vitamin.",
+  "author_ids": [
+    "liomajor"
+  ],
+  "category_id": "utilities",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.233.2zEx",
+  "version_date": "2016-10-08",
+  "requirements": "",
+  "size": 4280113,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/49de7c2f65f3428d2d298860de40eec7677e7ad4b9d3fdb6af8a2621e5888197.png",
+  "screenshots": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/LioMajor/MaiDumpToolEN/releases/download/V233.2zEx_eng/MaiDumpTool_V233.2zEx_eng.vpk",
+      "recommended": true
+    }
+  ]
+}

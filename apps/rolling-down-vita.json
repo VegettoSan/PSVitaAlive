@@ -1,0 +1,43 @@
+{
+  "id": "rolling-down-vita",
+  "title_id": "EMOJI0001",
+  "name": "Rolling Down Vita",
+  "description": "Port of Rolling Down: Emoji Adventure for PSVita.",
+  "long_description": "This is a wrapper/port of Rolling Down: Emoji Adventure for the PS Vita.\nThe port works by loading the official Android ARMv7 executable in memory, resolving its imports with native functions and patching it in order to properly run. By doing so, it's basically as if we emulate a minimalist Android environment in which we run natively the executable as it is.",
+  "author_ids": [
+    "rinnegatamante"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "adventure"
+  ],
+  "version": "v.1.0",
+  "version_date": "2025-08-16",
+  "requirements": "- libshacccg.suprx\n- kubridge.skprx\n- Game Data Files: Android",
+  "size": 2769091,
+  "status": "Legacy",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/be64a79ab26ad4454fccc314fa56f124593886aa007c40ad1f3e73173a48e90b.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/1dbccd39cd20d0bd467fddd46408a29680812a34f8dfd9ea21ffc00b40fb19d2.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/3a2585899b81eb83d7f6d85d0a28dfa64c9c20011baebccd1649173195b47fab.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/a925575875539e9499831e674301bd875ec1f822765802cbc098e3d547d3abc0.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/Rinnegatamante/rolling-down-vita/releases/download/v.1.0/emoji.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/Rinnegatamante/rolling-down-vita"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/Rinnegatamante/rolling-down-vita/releases"
+    }
+  ]
+}

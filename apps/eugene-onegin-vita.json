@@ -1,0 +1,39 @@
+{
+  "id": "eugene-onegin-vita",
+  "title_id": "ONEGAVITA",
+  "name": "Eugene Onegin Vita",
+  "description": "A visual novel based on the immortal novel-in-verse by Alexander Pushkin, released in September 2009.",
+  "long_description": "A visual novel based on the immortal novel-in-verse by Alexander Pushkin, released in September 2009. The player acts as an unseen observer, whose decisions can influence the fates of Onegin, Tatyana, and Lensky, as well as guest characters from other works of Russian classics.",
+  "author_ids": [
+    "fargusjunja"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "#negavita",
+  "version_date": "2026-05-23",
+  "requirements": "",
+  "size": 195885335,
+  "status": "Archive",
+  "icon": "https://robin994.github.io/NeoVitaDB-Catalog/icons/1422-eugene-onegin-vita.png",
+  "screenshots": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/rerulon/negavita/releases/download/%23negavita/Eugene.Onegin-01.00.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/rerulon/negavita"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/rerulon/negavita/releases/tag/%23negavita"
+    }
+  ]
+}

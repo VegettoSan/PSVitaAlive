@@ -1,0 +1,39 @@
+{
+  "id": "vitaforecast",
+  "title_id": "VITACAST0",
+  "name": "VITAforecast",
+  "description": "Weather application for PSVITA.",
+  "long_description": "VITAforecast is a weather application that determines the current weather in your area (provided a zip code and country code).\nThis application makes use of a free weather service API offered from openweathermap.org, and parses the data to extract relevant details.",
+  "author_ids": [
+    "joel16"
+  ],
+  "category_id": "utilities",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.1.0",
+  "version_date": "2017-03-19",
+  "requirements": "",
+  "size": 895987,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/044311c52d201bf634b7bec038fa0fbd400b13051ab2794f58546cebf2106e00.png",
+  "screenshots": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/202-VITAforecast.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/joel16/VITAforecast"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "http://gekihen.customprotocol.com/en/project/VITAforecast"
+    }
+  ]
+}

@@ -1,0 +1,39 @@
+{
+  "id": "drally-vita",
+  "title_id": "DERA00002",
+  "name": "dRally Vita",
+  "description": "Port of Death Rally for PSVITA.",
+  "long_description": "Port of Death Rally, an arcade car simulation game released in 1996, for the PSVITA.",
+  "author_ids": [
+    "enrique-somolinos-perez"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.0.2.1",
+  "version_date": "2022-05-18",
+  "requirements": "",
+  "size": 1830404,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/4d8d7ae9a6f120003e7fb2fa2ef62f1cfc3c7966b07c617503768bbe6799de88.png",
+  "screenshots": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/enriquesomolinos/dRally-vita/releases/download/v0.2.1-vita/Death_rally.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/enriquesomolinos/dRally-vita/tree/psvita"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/enriquesomolinos/dRally-vita/releases"
+    }
+  ]
+}

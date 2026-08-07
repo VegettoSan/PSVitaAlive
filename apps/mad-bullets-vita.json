@@ -1,0 +1,44 @@
+{
+  "id": "mad-bullets-vita",
+  "title_id": "MADBULLET",
+  "name": "Mad Bullets Vita",
+  "description": "Port of Mad Bullets for PSVITA.",
+  "long_description": "This is a wrapper/port of Mad Bullets for the PS Vita.\nThe port works by loading the official Android ARMv7 executable in memory, resolving its imports with native functions and patching it in order to properly run. By doing so, it's basically as if we emulate a minimalist Android environment in which we run natively the executable as it is.",
+  "author_ids": [
+    "rinnegatamante"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.1.1",
+  "version_date": "2025-08-17",
+  "requirements": "- libshacccg.suprx\n- kubridge.skprx\n- Game Data Files: Android",
+  "size": 2840775,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/5c2b7378b0d6602cf58012560ba39ae61f2ce25de272a91642381c36ea590f1b.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/47cc37cf64deb38449691f0774c3815a6135cd5701bb8cc1ad949dea86f53d2d.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/d1f4f10c1d841ec417c8fe9721002136e122e6f98938597737f65896e0bfa600.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/44526100fcae22117d675e97098a0c20b490dd592106fe3cca2dff0c8f2b2c7f.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/d2b9542b8a4466ebe356fdcb7b5c3040343b7e9ddf3ef02303a41077262ed662.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/Rinnegatamante/mad-bullets-vita/releases/download/v.1.1/bullets.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/Rinnegatamante/mad-bullets-vita"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/Rinnegatamante/mad-bullets-vita/releases"
+    }
+  ]
+}

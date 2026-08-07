@@ -1,0 +1,34 @@
+{
+  "id": "not-trust",
+  "title_id": "GMSV00001",
+  "name": "Not Trust!",
+  "description": "Platform game for PSVITA.",
+  "long_description": "Do not trust? Why is that the title of the Video Game? Could it be that there is some kind of Glitch that should make me distrust this Video Game? I don't know, but I won't know what you mean by this title, if I don't try it.",
+  "author_ids": [
+    "vitacreatordeveloper"
+  ],
+  "category_id": "games",
+  "subcategory_ids": [
+    "platformer"
+  ],
+  "version": "v.1",
+  "version_date": "2023-01-18",
+  "requirements": "",
+  "size": 45216487,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/c5dff8d4f604cfd2a4a12e3d3979fc26659238023eefdbfabd849a3d55daa030.png",
+  "screenshots": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1031-not_trust.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://vitacreatordeveloper.itch.io/not-trust-psp"
+    }
+  ]
+}

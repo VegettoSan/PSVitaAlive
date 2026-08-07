@@ -1,0 +1,39 @@
+{
+  "id": "hbinjector",
+  "title_id": "HBINJECT0",
+  "name": "HBInjector",
+  "description": "Inject VitaShell to a system bubble.",
+  "long_description": "HBInjector allows you to put VitaShell inside system apps bubbles.",
+  "author_ids": [
+    "emiyl"
+  ],
+  "category_id": "system",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.1.2.6",
+  "version_date": "2018-04-07",
+  "requirements": "",
+  "size": 2010352,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/2bfc5f0b82a1fcefa645bacfd97e1df37a7ed68d4c4789ffc51d58442e4eef9f.png",
+  "screenshots": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/emiyl/HBInjector/releases/download/v1.2.6/HBInjector.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/emiyl/HBInjector"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/emiyl/HBInjector/releases"
+    }
+  ]
+}

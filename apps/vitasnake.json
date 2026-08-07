@@ -1,0 +1,44 @@
+{
+  "id": "vitasnake",
+  "title_id": "GRZB00002",
+  "name": "vitaSnake",
+  "description": "An original snake game.",
+  "long_description": "A snake game with smooth rotation made for the PS Vita.\nWith 5 game modes, each with 2 difficulty modes, there are 10 unique ways to play! Customise your experience further with custom themes available in the options menu.",
+  "author_ids": [
+    "grzybojad"
+  ],
+  "category_id": "games",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.1.5",
+  "version_date": "2019-04-28",
+  "requirements": "",
+  "size": 1856878,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/8ab6bd1468cc4b694161adb0f3772ed32d5dd0feeac13904b5190ae1f9846596.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/ded0f9bee8ec2467089d251b2f82b825342abbfb37f13d3d66de9a5e917cf4a5.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/a909b57f3515647066c36a3e5ec0278b502299f5c312816678d16610043cf20e.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/96ec8b8df1d1dc4209f7513f5b845f318ad37218bc6cf4cbcd1663560b7b942b.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/9f75236a7dd130c023e29ef6a88f9ba7e82ae2a8922ff0a5d34b566d839fe1b1.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/Grzybojad/vitaSnake/releases/download/v1.5/vitaSnake.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/Grzybojad/vitaSnake"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/Grzybojad/vitaSnake/releases"
+    }
+  ]
+}

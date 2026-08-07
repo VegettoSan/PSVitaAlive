@@ -1,0 +1,42 @@
+{
+  "id": "cookie-clicker",
+  "title_id": "A3A400001",
+  "name": "Cookie Clicker",
+  "description": "Cookie Clicker game for PSVITA.",
+  "long_description": "Cookie Clicker game for PSVITA made in Lua.",
+  "author_ids": [
+    "creckeryop"
+  ],
+  "category_id": "games",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.0.2",
+  "version_date": "2017-11-19",
+  "requirements": "",
+  "size": 3818431,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/c37f799196d84ca0ae36946a067204b274ba0cc4149eadd31c5390d3e8d0cdff.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/1b6f55491df3775a8f4c3988d4df9b990204bfc1a608d52eee9c0dcd5453fcbd.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/597f82a876edad76ae39ee88d2113e137cba1cec4f0113256232b2d1ab643a74.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/Creckeryop/CookieClicker-Vita/releases/download/0.2/Cookie.Clicker.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/Creckeryop/CookieClicker-Vita"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "http://gbatemp.net/threads/wip-cookie-clicker-vita.489060/"
+    }
+  ]
+}

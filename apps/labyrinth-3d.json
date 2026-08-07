@@ -1,0 +1,34 @@
+{
+  "id": "labyrinth-3d",
+  "title_id": "LBRN00001",
+  "name": "Labyrinth 3D",
+  "description": "A first person maze solving game in 3D.",
+  "long_description": "Labyrinth 3D is my first 3D homebrew which uses Lua Player Plus Vita and RayCast3D Engine.\nIt can be considered as a showcase for how powerful and simple to use RayCast3D engine is.\nLabyrinth 3D is, as the title says, a game where you have to find the exit from the labyrinth you're in. It supports different map sizes and you'll have some scrolls according to map size. These scrolls can be used to \"mark\" a wall of the labyrinth so you can see where you already went (after marking a wall, it will became golden).\nLabyrinths are generated through Primm's Algorithm so you'll have infinite random mazes to solve. Any generated maze will provide a seed so you can share these labyrinths with others and play them through the voice \"Start game with Seed\".",
+  "author_ids": [
+    "rinnegatamante"
+  ],
+  "category_id": "development",
+  "subcategory_ids": [
+    "lua"
+  ],
+  "version": "v.1.4",
+  "version_date": "2017-12-23",
+  "requirements": "",
+  "size": 9083464,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/labyrinthlabyrinthlabyrinthlabyrinthlabyrinthlabyrinthlabyrinth1.png",
+  "screenshots": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/198-Labyrinth_3D.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "http://wololo.net/talk/viewtopic.php?f=116&t=46845"
+    }
+  ]
+}

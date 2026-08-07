@@ -1,0 +1,41 @@
+{
+  "id": "pixel-chess",
+  "title_id": "PIXC02137",
+  "name": "Pixel Chess",
+  "description": "Pixel-art chess game for PSVita.",
+  "long_description": "A homebrew pixel-art chess game developed specifically for the PlayStation Vita. Please note that this is an amateur project created for fun and learning.",
+  "author_ids": [
+    "macperek"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.1.0",
+  "version_date": "2026-03-09",
+  "requirements": "",
+  "size": 290363,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/264e7f0ede85ecea902076722d8f9c63710a8bb876ab7088d1df7b2dee89ab5c.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/7442d3c37bcca5bc7144d2ed447b137b48f52488c8960c95beee2ed22ec0ad11.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/Macperek/PixelChess/releases/download/v1.0/PixelChess.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/Macperek/PixelChess"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/Macperek/PixelChess/releases"
+    }
+  ]
+}

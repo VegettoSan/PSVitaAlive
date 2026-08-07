@@ -1,0 +1,39 @@
+{
+  "id": "hode",
+  "title_id": "HODEVITA1",
+  "name": "hode",
+  "description": "hode is a reimplementation of the engine used by the game Heart of Darkness developed by Amazing Studio.",
+  "long_description": "hode is a reimplementation of the engine used by the game Heart of Darkness developed by Amazing Studio.",
+  "author_ids": [
+    "usineur"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "engine-port"
+  ],
+  "version": "0.2.9d",
+  "version_date": "2020-11-22",
+  "requirements": "- Game Data Files: PC",
+  "size": 690276,
+  "status": "Verified",
+  "icon": "https://robin994.github.io/NeoVitaDB-Catalog/icons/0512-hode.png",
+  "screenshots": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/usineur/hode/releases/download/0.2.9d/hode.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/usineur/hode"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/usineur/hode/releases/tag/0.2.9d"
+    }
+  ]
+}

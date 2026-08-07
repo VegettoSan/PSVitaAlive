@@ -1,0 +1,39 @@
+{
+  "id": "hideko-vita",
+  "title_id": "HIDEKO000",
+  "name": "Hideko Vita",
+  "description": "Port of Hideko for PSVita.",
+  "long_description": "Simple port of Hideko by Sokpop for Playstation Vita.\nSome graphical features had to be removed or simplified due to hardware constraints.",
+  "author_ids": [
+    "bren"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.1.0",
+  "version_date": "2025-08-16",
+  "requirements": "- Game Data Files: PC",
+  "size": 5262482,
+  "status": "Legacy",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/7c3f2bff2c263bed02c607a54aa88c7a60e8c4ffaad387a677119334d7689eba.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/6019bdbce5bf124009be53c3287448de6aec673ebf6814b7588f94405dafa3d9.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/92b201a7accb641d4f08ebfa418434401de14f11354ab63ca49a32df1c155741.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/cc949dac8d9bb7055facd96bf424c4b99e511ae397b730d1e212ac75602699f7.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/2392d6f88d8dac69208f1bba7f7ec93b4cc1458575de4ab7a25f2e911a98bfbd.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1313-HIDEKO000.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://brendonm17.itch.io/hideko-vita"
+    }
+  ]
+}

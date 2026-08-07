@@ -1,0 +1,44 @@
+{
+  "id": "a-super-small-shmup",
+  "title_id": "ISLD00000",
+  "name": "A Super Small SHMUP",
+  "description": "Small Galaga type game for PSVITA.",
+  "long_description": "This is a small Galaga type game for the PSVita. It features 10 waves and a boss fight. It is also the first game to utilize the Bartender trophy system.",
+  "author_ids": [
+    "island-games"
+  ],
+  "category_id": "games",
+  "subcategory_ids": [
+    "shooter"
+  ],
+  "version": "v.1.02",
+  "version_date": "2021-12-02",
+  "requirements": "",
+  "size": 2687137,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/ac4ad56f0dd2c109c16a4957eb3e4f764d75a502be66a0a6104db1915dacf3a1.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/7ec7b4cf1cbb36b048e7eab961131157067b4c9526736f722de194464b9a8407.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c6999dc2e3faa2b2e9de26bcfa8f60c428bf34be7e738083c6ebc7f23c6f8729.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/07ab5d73e5483d13f1925600e5d5dc3b2c907a037f0f411ef8f7f482f4873a8e.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/b9cd19aac0a1920ce20db74603339c2389b3d323b3e4af4fd88652bb4fed5f11.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/island-games/A-Super-Small-Shmup/releases/download/v1.02/ASUPERSMALLSHMUP.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/island-games/A-Super-Small-Shmup"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/island-games/A-Super-Small-Shmup/releases"
+    }
+  ]
+}

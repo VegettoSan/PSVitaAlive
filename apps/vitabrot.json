@@ -1,0 +1,39 @@
+{
+  "id": "vitabrot",
+  "title_id": "VITABROT1",
+  "name": "VitaBrot",
+  "description": "Mandelbrot/Julia set explorer.",
+  "long_description": "This is a Mandelbrot and Julia set explorer for the Playstation Vita.",
+  "author_ids": [
+    "imroy"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.0.1.2",
+  "version_date": "2020-12-20",
+  "requirements": "",
+  "size": 399525,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/4dc66e5b6ebf2f854dd78819a355de9d7ec5b9c70f5e0e886d1421ed4ce3ec27.png",
+  "screenshots": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/325-VitaBrot.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/Imroy/VitaBrot"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/Imroy/VitaBrot/releases"
+    }
+  ]
+}

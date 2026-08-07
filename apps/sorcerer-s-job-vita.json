@@ -1,0 +1,29 @@
+{
+  "id": "sorcerer-s-job-vita",
+  "title_id": "TNSJOB001",
+  "name": "Sorcerer's job Vita",
+  "description": "Port of This is not a sorcerer's job for PSVITA.",
+  "long_description": "Port of This is not a sorcerer's job for PSVITA.\nBylo is a young and rebel sorcerer apprentice who one day make a practical joke on one of the teachers in the magic tower where he studies.\nHe's caught and punished for cleaning every corner of Itsmoor of a strange moss that has suddenly appeared.\nDuring the course of his task (an unusual job for a sorcerer), he will discover where and how that moss has appeared, who is behind it and what his plans are, so he will decide to derail them. You will also meet various characters who will help you advance in your mission (in exchange for favors, of course).\nHelp him in his task and leave every corner of Itsmor untouched as you unravel a mysterious plot, using only your magic... and your cunning!\nBut remember: your magic power is depleted and you must replenish it.",
+  "author_ids": [
+    "vsm-gammer"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.1.0",
+  "version_date": "2023-05-05",
+  "requirements": "",
+  "size": 65284172,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/40be04857fcac456d6e3f379c40c0cbdbf6a62d56b5a459b8ddf7873106935de.png",
+  "screenshots": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1074-sorcerer.vpk",
+      "recommended": true
+    }
+  ]
+}

@@ -1,0 +1,44 @@
+{
+  "id": "pekka-kana-2-vita",
+  "title_id": "PEKKAKANA",
+  "name": "Pekka Kana 2 Vita",
+  "description": "Port of Pekka Kana 2 for PSVITA.",
+  "long_description": "This is a wrapper/port of Pekka Kana 2 Android for the PS Vita.\nThe port works by loading the official Android ARMv7 executable in memory, resolving its imports with native functions and patching it in order to properly run.\nBy doing so, it's basically as if we emulate a minimalist Android environment in which we run natively the executable as is.",
+  "author_ids": [
+    "rinnegatamante"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.1.0",
+  "version_date": "2022-07-28",
+  "requirements": "- libshacccg.suprx\n- kubridge.skprx\n- fd_fix.skprx OR repatch_ex.skprx\n- Game Data Files: Android",
+  "size": 1761732,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/b1653a96dab6ffe0b676c7335752145805a3ef64b50746b254c9efc8662a19bb.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/bf48e3a477464d62a164bbbbed2873a9e2b803fd8b27f64f86d95396485bc0b8.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/f559d536b3c3b11eaf38536023f049ea22e017eb6fab846421c4514a4403e692.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/b32464bcfafaadbf66c13eb27ac53a30852f61496b654861fe5d012af13d9b16.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/d59d0ac00401f1a0bae3e2a111c9362a20bcf6333a23af03e8d97cebc7d11616.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/Rinnegatamante/Pekka-Kana-2-Vita/releases/download/v.1.0/Pekka2.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/Rinnegatamante/Pekka-Kana-2-Vita"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/Rinnegatamante/Pekka-Kana-2-Vita/releases"
+    }
+  ]
+}

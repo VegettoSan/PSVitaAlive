@@ -1,0 +1,38 @@
+{
+  "id": "vita-object-loader",
+  "title_id": "OBJL00001",
+  "name": "Vita Object Loader",
+  "description": "3D Model Viewer for PSVITA.",
+  "long_description": "Vita Object Loader is a 3D model viewer wrote with lpp-vita fully opensource.\nIt can be used for benchmark purposes (take in mind models are soft rendered!) or just for fun.\nIt supports Wavefront (.obj) models but with some restrictions: only triangles primitives, materials are not supported.",
+  "author_ids": [
+    "rinnegatamante"
+  ],
+  "category_id": "media",
+  "subcategory_ids": [
+    "image-viewer"
+  ],
+  "version": "v.1.1",
+  "version_date": "2017-07-23",
+  "requirements": "",
+  "size": 2311152,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/d96a8a32e4326998e9b1bca67efdb8b0de5b552e489b7c02c7d9ce688a0f815f.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/4fbe4446142e1301e95e47d2740a7d46cc146058a79dc892846c963164e77c2b.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/94bc5e45f21b7cc5995173e095d60bdb8a20e3739ac1fdb53572c4996f934169.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c3ec1f47098063f56ff6a3f82dc01e199689c301806271e5993860b5ecc36d3b.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/223-Vita_Object_Loader.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "http://wololo.net/talk/viewtopic.php?f=116&t=47982"
+    }
+  ]
+}

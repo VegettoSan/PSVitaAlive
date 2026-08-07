@@ -1,0 +1,36 @@
+{
+  "id": "dzzee",
+  "title_id": "DZZEETHP0",
+  "name": "Dzzee",
+  "description": "Multiplatform Arcade game.",
+  "long_description": "A multiplaform arcade game. Control the white rectangle with the UP and DOWN buttons. Stay on the lanes, avoid the gaps. Survive longest and retain health points for high score.",
+  "author_ids": [
+    "thp"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.1.2.0",
+  "version_date": "2021-10-16",
+  "requirements": "",
+  "size": 94239,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/f4bd31955f00f82233b1fbd8b79d7af1cb0ed1e0395d8ff8e7c163c0943cfa88.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/cac7e2cd27b4f0eb298b1fce682b99812a2a4f7cf540e1ec9816380a18a02d06.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/741-dzzee.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "http://thp.io/2021/dzzee/"
+    }
+  ]
+}

@@ -1,0 +1,39 @@
+{
+  "id": "rtdink",
+  "title_id": "DINK54321",
+  "name": "RTDink",
+  "description": "Port of Dink Smallwood HD for PSVITA.",
+  "long_description": "Port of Dink Smallwood HD for PSVITA.\nThe game centers on Dink, a pig farmer-turned-hero who embarks on various quests throughout his world. The game features isometric, Diablo-like gameplay, including weapons, items, and magic. The game has a satirical off-color slant, including everything from a fiercely abusive uncle to a town that worships ducks. Dink is never freed from the grievances of being a pig farmer, a fact he is far too often reminded of by his nemesis, Milder Flatstomp.",
+  "author_ids": [
+    "nyabsi"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.1.3.1",
+  "version_date": "2023-04-26",
+  "requirements": "- libshacccg.suprx\n- Game Data Files: Android/Windows/Mac/iOS",
+  "size": 2830265,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/f5eafeee779fcff58a758318517664480fea1de1f8affc430d3b36b08e9aafc9.png",
+  "screenshots": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/Nyabsi/RTDink/releases/download/1.3.1/RTDink.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/LumenTuoma/RTDink"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "http://www.dinknetwork.com/forum.cgi?MID=207184&Posts=1"
+    }
+  ]
+}

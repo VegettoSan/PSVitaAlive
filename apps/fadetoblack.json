@@ -1,0 +1,44 @@
+{
+  "id": "fadetoblack",
+  "title_id": "F2BGLVITA",
+  "name": "FadeToBlack",
+  "description": "Fade to Black port for PSVITA.",
+  "long_description": "Fade to Black is an action-adventure game developed by Delphine Software International and published by Electronic Arts Studios. It is the sequel to the 1992 video game Flashback.",
+  "author_ids": [
+    "usineur"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "adventure"
+  ],
+  "version": "v.ita-1.0",
+  "version_date": "2018-03-07",
+  "requirements": "",
+  "size": 731870,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/d474c63b742db3cf7d8ee23211668df0ee623bcfc5e01ee40170548be019f943.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/441f6728836b3002d9d281bb147bcd489a534bbb173884471139f8c5775b1408.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/f8c948ecee1393ceb4d7c9b881c33d8195e0d5b99a960b6b01e17f922d210be0.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/cd5dcfcaec8747184ef2148a5b45ed4d81e9659957141603e3cbdda6788bdd28.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/8cfd50902412422967ca149f9c969eb6991cda9865b3c40bca4591f8cede2e45.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/usineur/f2bgl/releases/download/vita-1.0/FadeToBlack.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/usineur/f2bgl"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "http://wololo.net/talk/viewtopic.php?f=116&p=421770#p421770"
+    }
+  ]
+}

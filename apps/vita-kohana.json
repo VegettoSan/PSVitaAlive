@@ -1,0 +1,39 @@
+{
+  "id": "vita-kohana",
+  "title_id": "RLYX00003",
+  "name": "Vita Kohana",
+  "description": "Port of Kohana for PSVITA.",
+  "long_description": "Kohana is a short visual novel made in one month by Mushroomallow Studio for Spooktober VN Jam 2021 event. There are 2 different endings that you can find in this visual novel.",
+  "author_ids": [
+    "rlyx"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.1.02",
+  "version_date": "2022-03-20",
+  "requirements": "",
+  "size": 14785560,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/9305425d758ba301d3f5b05b42a9b02c5f8e2a5a974e5009e30b14653627a0d5.png",
+  "screenshots": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/793-Vita_Kohana_1.02.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://gitlab.com/rlyx/vita-kohana"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://gitlab.com/rlyx/vita-kohana/-/releases"
+    }
+  ]
+}

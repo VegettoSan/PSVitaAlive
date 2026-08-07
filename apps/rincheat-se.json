@@ -1,0 +1,43 @@
+{
+  "id": "rincheat-se",
+  "title_id": "RCHT00001",
+  "name": "rinCheat SE",
+  "description": "Savegames cheat application.",
+  "long_description": "rinCheat SE allows you to apply several cheats to your savedata with few passages.\nYou can select your savedata slot and your preferred cheats from the official database that will be automatically updated at homebrew start.\nrinCheat SE also works as a database updater for rinCheat since when it will download database updates, it will update both rinCheat and rinCheat SE updates.\nIt supports both rinCheat and vita-savemgr.",
+  "author_ids": [
+    "rinnegatamante"
+  ],
+  "category_id": "utilities",
+  "subcategory_ids": [
+    "installer"
+  ],
+  "version": "v.1.1",
+  "version_date": "2017-10-09",
+  "requirements": "",
+  "size": 2602326,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/098f0a93614ee4c8de5d72e0b4a42eef985e65fb59a1546df2c54e2fbc763b28.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/cheatse.jpg",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/cheatse2.jpg",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/cheatse3.jpg"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/46-rinCheatSE.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/Rinnegatamante/rinCheat/tree/master/SE_module"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "http://wololo.net/talk/viewtopic.php?f=116&t=48602"
+    }
+  ]
+}

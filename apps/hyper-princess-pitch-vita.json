@@ -1,0 +1,36 @@
+{
+  "id": "hyper-princess-pitch-vita",
+  "title_id": "HYPRPITCH",
+  "name": "Hyper Princess Pitch Vita",
+  "description": "Top-down shooter for PSVITA.",
+  "long_description": "Port of Daniel Remar's Hyper Princess Pitch. It's a Christmas themed top-down shooter. While the game is short, it has great replay value with multiple level paths and a wide range of difficulty settings.",
+  "author_ids": [
+    "jeffrulz345"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "fps"
+  ],
+  "version": "v.1.0",
+  "version_date": "2019-12-13",
+  "requirements": "",
+  "size": 26000212,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/372c898864e293fb048b2533c95afe65a5e9e74616d7dc9277c3a024ca65b2b0.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/e658dc220ca7194fd8a5a40719241af54add2887b843a397a6003827f808215f.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/522-HyperPrincessPitch-Vita.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://drive.google.com/open?id=1gvEHq100kXuMjFLvhMC5MylRO7wiRY6S"
+    }
+  ]
+}

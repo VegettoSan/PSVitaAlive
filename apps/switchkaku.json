@@ -1,0 +1,29 @@
+{
+  "id": "switchkaku",
+  "title_id": "SWKK00001",
+  "name": "SwitchKaKu",
+  "description": "Updated version of SwitchKaKu.",
+  "long_description": "This is an extended version of the Henkaku Offline Installer by xyz.\nUpdated version to work with latest HENkaku version.",
+  "author_ids": [
+    "kylon"
+  ],
+  "category_id": "utilities",
+  "subcategory_ids": [
+    "installer"
+  ],
+  "version": "MOD v.2.0",
+  "version_date": "2017-03-19",
+  "requirements": "",
+  "size": 635294,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/3bc7333e145def7b7aff10b1a7085bcd00ef15371db0d386eacb6d9b73f2a302.png",
+  "screenshots": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/207-SwitchKaKu.vpk",
+      "recommended": true
+    }
+  ]
+}

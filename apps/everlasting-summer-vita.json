@@ -1,0 +1,34 @@
+{
+  "id": "everlasting-summer-vita",
+  "title_id": "EVS000010",
+  "name": "Everlasting Summer Vita",
+  "description": "Port of Everlasting Summer for PSVITA.",
+  "long_description": "Port of Everlasting Summer for PSVITA.\nEverlasting Summer is a 2013 cult classic full-length Russian visual novel originally made by Soviet Games.",
+  "author_ids": [
+    "avonder"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.1.10",
+  "version_date": "2025-06-19",
+  "requirements": "",
+  "size": 580635133,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/5ac49a5861780334303c1769ce45529298e6b5639455da619cb952cf134f185c.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/396b762607afa735abf8bd94d7f8a78a1f395b452f6d57e41dcb19413b00bee1.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/0f2516c113ab94339856fb466c796d6d2c5ad44efd1e03310820e484a032e95a.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/138ccac4047dffff21c8e7350bc26a3da0ec6ec6973112fb80cefbc6d0118719.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/59fbbe0baed7e8757f4e725410e5a90d7c27b8bb273e6c756eb1b8f09e08f549.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1118-everlasting_summer.vpk",
+      "recommended": true
+    }
+  ]
+}

@@ -1,0 +1,43 @@
+{
+  "id": "flappy-nyan-vita",
+  "title_id": "NYANCAT02",
+  "name": "Flappy Nyan Vita",
+  "description": "Port of Flappy Nyan for PSVita.",
+  "long_description": "This is a wrapper/port of Flappy Nyan for the PS Vita.\nThe port works by loading the official Android ARMv7 executable in memory, resolving its imports with native functions and patching it in order to properly run. By doing so, it's basically as if we emulate a minimalist Android environment in which we run natively the executable as it is.",
+  "author_ids": [
+    "rinnegatamante"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.1.0",
+  "version_date": "2025-08-09",
+  "requirements": "- libshacccg.suprx\n- kubridge.skprx\n- Game Data Files: Android",
+  "size": 2574892,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/2455fc20c2b6f7f20d91ea5e3523978758ff840c491e6babf3917341493f49b1.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/70b323d3aaf92a6569b051e9459b89a6403df1878f99f4f0948ce23340988d6b.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/d33a5597a7cb663df71362378e5659c459c352f0fb6072e82fd833acb9c91cda.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/4422fd13f1a9df0ab50edef03395e2190c0d6d39ed7e8bc1609ac84dc7ddb01e.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/Rinnegatamante/flappy-nyan-vita/releases/download/v.1.0/flappy.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/Rinnegatamante/flappy-nyan-vita"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/Rinnegatamante/flappy-nyan-vita/releases"
+    }
+  ]
+}

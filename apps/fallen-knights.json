@@ -1,0 +1,39 @@
+{
+  "id": "fallen-knights",
+  "title_id": "SOUL45638",
+  "name": "FALLEN KNIGHTS",
+  "description": "Soulslike game for PSVITA.",
+  "long_description": "Fallen Knights is an action/adventure game set in a dark universe of demons and castles.\nThe game has similar elements to the Souls games. There is a large map to explore filled with deadly enemies.",
+  "author_ids": [
+    "unknown"
+  ],
+  "category_id": "games",
+  "subcategory_ids": [
+    "adventure"
+  ],
+  "version": "v.0.2",
+  "version_date": "2019-05-10",
+  "requirements": "",
+  "size": 90545320,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/b81f2d669e8fe07885bc4437a53fa72e5c1c48e95192be2b417127e07a4a4b6c.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/49201910c5b990eb710b054fb4300842f8fd2d0b055dd6ab0d7f45e0091e5614.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/76c3370d254249f46afe5fea0c873d8d19dd6d4ef93f58270f896f3bbc389cd3.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/a50795fa57ec94d9fea0113d18baace3e5469f19d68b1934afa1942f1ef761a4.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/da8f7a8b5ee01231bcb36e2cc165986edc5b5191826a966ac232dd3bfbedb259.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/448-Fallen-Knights.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "http://wololo.net/talk/viewtopic.php?p=424324#p424324"
+    }
+  ]
+}

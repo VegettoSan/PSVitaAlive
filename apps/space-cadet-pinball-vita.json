@@ -1,0 +1,42 @@
+{
+  "id": "space-cadet-pinball-vita",
+  "title_id": "SPACEPINB",
+  "name": "Space Cadet Pinball Vita",
+  "description": "Port of Space Cadet, popular pinball game bundled with Windows XP.",
+  "long_description": "Port of Space Cadet, popular pinball game bundled with Windows XP.",
+  "author_ids": [
+    "axiom"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "Release_1.1.1_VitaBuild_2",
+  "version_date": "2021-09-28",
+  "requirements": "",
+  "size": 2773484,
+  "status": "Verified",
+  "icon": "https://robin994.github.io/NeoVitaDB-Catalog/icons/0730-space-cadet-pinball-vita.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/eb20cb5c87c078e4149e5d0edc10b644880966cec2b315842b8427e641a7b3f0.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/696de20ee051f8e72d6d710a96cd1f9b945ef9637dbbb8b96dab818174a0909e.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/suicvne/SpaceCadetPinball_Vita/releases/download/Release_1.1.1_VitaBuild_2/SpaceCadetPinballVita_VB2.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/suicvne/SpaceCadetPinball_Vita"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/suicvne/SpaceCadetPinball_Vita/releases/tag/Release_1.1.1_VitaBuild_2"
+    }
+  ]
+}

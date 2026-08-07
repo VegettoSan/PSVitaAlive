@@ -1,0 +1,38 @@
+{
+  "id": "stemloader",
+  "title_id": "STEM00001",
+  "name": "StemLoader",
+  "description": "Load SELF files from MMC.",
+  "long_description": "Similar to b0xLoader for the PS3, it can be used for easily launching and testing/playing SELF (Vita executable) files, that either you or others have created, within a single app.",
+  "author_ids": [
+    "voxel"
+  ],
+  "category_id": "utilities",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.0.2",
+  "version_date": "2017-01-08",
+  "requirements": "",
+  "size": 1774769,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/a8f6935f63987b6f05701655290d7d2fe52ec81dfe60b41318e6599d0f92f8b8.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/3d49d53416cdb90ec9eee294ed34d9b13dff25a1544097302cf859c9a1ed788a.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/0f205005194bdda1e0f4ffebf27e414698d4b7a32ee750ea990beed9ab2b3a43.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/968b1e6805639ba8a40f563899c96588015f6f2f6a9c34d6eb2f2ab02d6a9540.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/279-StemLoader.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/Voxel9/Stem-Loader"
+    }
+  ]
+}

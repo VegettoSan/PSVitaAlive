@@ -1,0 +1,41 @@
+{
+  "id": "retrolivearea",
+  "title_id": "RTRLVAREA",
+  "name": "RetroLivearea",
+  "description": "PSX/PSP Livearea bubbles enhancer.",
+  "long_description": "Little tool that automatically improves PSX/PSP Livearea bubbles assets and also redirects them to ux0 to make customization a lot easier.",
+  "author_ids": [
+    "rinnegatamante"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.1.0",
+  "version_date": "2018-04-08",
+  "requirements": "",
+  "size": 685517,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/eb85838e5c1c9c5cb6275fe5a981d53c4cbd62c1de135e0050317a86d523309c.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/94a131c7f14be7ad162d615c41321c2d51e9ed8335c26348a8cc93de78859fb5.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/380-RetroLivearea.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/Rinnegatamante/RetroLivearea"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "http://wololo.net/talk/viewtopic.php?f=52&t=48981"
+    }
+  ]
+}

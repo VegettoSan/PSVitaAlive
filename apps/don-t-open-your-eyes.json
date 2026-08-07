@@ -1,0 +1,34 @@
+{
+  "id": "don-t-open-your-eyes",
+  "title_id": "RNPYDNOPE",
+  "name": "(Don't) Open Your Eyes",
+  "description": "Port of (Don't) Open Your Eyes for PSVITA.",
+  "long_description": "(Don't) Open Your Eyes\" is a short, horror-themed Visual Novel about a midnight encounter with a mysterious being. Through conversation, you'll learn more about them, such as their journey so far, or what they think about themselves. And every now and then, it'll make a simple request out of you: to open your eyes.\nIt's up to you whether to open your eyes or not. It's up to you to believe if they're really there, or if that whispering voice is only a part of your imagination. Just don't keep your visitor waiting for too long.",
+  "author_ids": [
+    "silvercrow"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.1.11",
+  "version_date": "2022-04-03",
+  "requirements": "- Game Data Files: PC",
+  "size": 26243091,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/3ad98306f4e533ba4d54da358a0c1ae8e50d1c554cd36c16e4ae752e28a770e8.png",
+  "screenshots": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/807-dontopen.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://via01.itch.io/dont-open-your-eyes"
+    }
+  ]
+}

@@ -1,0 +1,40 @@
+{
+  "id": "vita-doom",
+  "title_id": "DOOM00666",
+  "name": "Vita Doom",
+  "description": "Doom 1/Doom 2 port for PSVITA.",
+  "long_description": "Doom 1/Doom 2 port for PSVITA based on DoomPSP.",
+  "author_ids": [
+    "mrnetrix",
+    "aagallag"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "fps"
+  ],
+  "version": "v.1.1",
+  "version_date": "2017-07-24",
+  "requirements": "- Game Data Files: PC",
+  "size": 648251,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/7efea6eae7184a48b41067fe4e194b89baab583afe5f0273e0eddb417096afb2.png",
+  "screenshots": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/aagallag/Vita_Doom/releases/download/aagallag_v1.1/Vita_Doom.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/aagallag/Vita_Doom"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/aagallag/Vita_Doom/releases/"
+    }
+  ]
+}

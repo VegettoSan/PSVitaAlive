@@ -1,0 +1,34 @@
+{
+  "id": "atlantis",
+  "title_id": "GMSGH0ATL",
+  "name": "Atlantis",
+  "description": "Port of a clone of Atlantis for PSVITA.",
+  "long_description": "Ported version of Glitchedheart's version of Atari 2600 game. Includes high score saving.",
+  "author_ids": [
+    "xanderten50"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.0.8",
+  "version_date": "2021-11-10",
+  "requirements": "",
+  "size": 3594347,
+  "status": "Legacy",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/613a2c37289dd4c62707482a9f28873d08878e2cf73b19eace02d12301b1edbf.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c1614ecd6e2c39e90e5d8f8f5b7c2a61220ad4afe0df50327d50af0ff21b68b1.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c14c39b2cb817855c07c7e95d7bea5e4c05f73fc4694be3c82822b14a2ebd8b0.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/be05a5f2d39fcb0d0de5f14af10d0c2f45fbc7cd88fac022f933c094788abce9.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/5cb46aca798c7153e973f07ffd9f1874a2b532b780380cbb7e795940fbb28ce2.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/753-Atlantis.vpk",
+      "recommended": true
+    }
+  ]
+}

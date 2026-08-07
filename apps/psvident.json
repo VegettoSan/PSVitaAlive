@@ -1,0 +1,39 @@
+{
+  "id": "psvident",
+  "title_id": "PSVIDENT0",
+  "name": "PSVident",
+  "description": "Shows info about your PSVITA.",
+  "long_description": "Tool that bring all your Vita/PSTV info in to one place. App has a very nostalgic design for first PSP users, interface is looking very similar to well known PSPident application for PSP.",
+  "author_ids": [
+    "freakler"
+  ],
+  "category_id": "utilities",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.0.43",
+  "version_date": "2023-11-12",
+  "requirements": "",
+  "size": 159945,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/eb6499181065394d0d042adae7e15354c1c26b3e31c99f76ad9ad4078adb3497.png",
+  "screenshots": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/Freakler/vita-PSVident/releases/download/0.43/PSVident_v043.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/Freakler/vita-PSVident"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/Freakler/vita-PSVident/releases"
+    }
+  ]
+}

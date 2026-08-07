@@ -1,0 +1,39 @@
+{
+  "id": "onscripter-vita",
+  "title_id": "ONSVITA01",
+  "name": "ONScripter-Vita",
+  "description": "Port of ONScripter for PSVITA.",
+  "long_description": "Port of ONScripter for PSVITA. ONScripter (O-N-Scripter) is a program that interprets and executes scripts written for NScripter in its own way. It can run games on Windows, Android, iOS, etc. using the exact same game data.",
+  "author_ids": [
+    "yizhigai"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.1.0",
+  "version_date": "2022-07-07",
+  "requirements": "",
+  "size": 4567773,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/85a6e5a322e82766d13800c39820576a6f108b1e4b3077e58f72d6638035fcb5.png",
+  "screenshots": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/837-ONScripter-Vita.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://gitee.com/yizhigai/onscripter-vita"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://gitee.com/yizhigai/onscripter-vita/releases/"
+    }
+  ]
+}

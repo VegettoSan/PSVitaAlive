@@ -1,0 +1,42 @@
+{
+  "id": "easyvpk",
+  "title_id": "ESVPK0009",
+  "name": "EasyVPK",
+  "description": "A lightweighted homebrew downloader that uses VitaDB as source.",
+  "long_description": "A lightweighted homebrew downloader that uses VitaDB as source.",
+  "author_ids": [
+    "electric",
+    "then00p"
+  ],
+  "category_id": "utilities",
+  "subcategory_ids": [
+    "installer"
+  ],
+  "version": "v2.1.0",
+  "version_date": "2021-08-14",
+  "requirements": "",
+  "size": 2906433,
+  "status": "Verified",
+  "icon": "https://robin994.github.io/NeoVitaDB-Catalog/icons/0558-easyvpk.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/d71f98e78b3f9e2f0d171c8f7f5b05583e1d9617dc7bd1dc64eecec30fefb3e9.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/Electric1447/EasyVPK/releases/download/v2.1.0/easyvpk.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/Electric1447/EasyVPK"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/Electric1447/EasyVPK/releases/tag/v2.1.0"
+    }
+  ]
+}

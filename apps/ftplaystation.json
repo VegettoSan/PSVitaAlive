@@ -1,0 +1,34 @@
+{
+  "id": "ftplaystation",
+  "title_id": "FTP200001",
+  "name": "FTPlaystation",
+  "description": "FTP server for PSVITA.",
+  "long_description": "Standalone FTP server utility for PSVITA/PSTV.",
+  "author_ids": [
+    "red7s"
+  ],
+  "category_id": "networking",
+  "subcategory_ids": [
+    "ftp"
+  ],
+  "version": "v.0.1",
+  "version_date": "2016-10-24",
+  "requirements": "",
+  "size": 1966117,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/05c9310cd580e6b3c56ff086817aa8bc605c8bdf6ef18d5a9f3ed02172ac688c.png",
+  "screenshots": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/StonedModder/FTPlaystation/releases/download/0.1/FTPlaystation.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/ItsDeidara/FTPlaystation"
+    }
+  ]
+}

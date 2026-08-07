@@ -1,0 +1,37 @@
+{
+  "id": "vita-media-center",
+  "title_id": "ARKSMEDIA",
+  "name": "Vita Media Center",
+  "description": "Video Player for PSVITA.",
+  "long_description": "A Video Player for PSVITA for MP4 videos.",
+  "author_ids": [
+    "arkanite"
+  ],
+  "category_id": "media",
+  "subcategory_ids": [
+    "video-player"
+  ],
+  "version": "v.0.01a",
+  "version_date": "2018-02-27",
+  "requirements": "",
+  "size": 2389079,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/5027b006c841d34fa49d2d9d028f7055f092b24d03ee9f7d4e62876c597dcaa5.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/502b60d0a052082debb63f6f5d49ad8e27be3630a04761dbfffe5f7fa7088976.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/5d0443dca88bc835a3174120662e7d2a772b27761e3adf15fa8502caf895c5fc.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/364-mediacenter.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "http://wololo.net/talk/viewtopic.php?f=116&t=48887"
+    }
+  ]
+}

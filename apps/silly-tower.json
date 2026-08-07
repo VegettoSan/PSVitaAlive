@@ -1,0 +1,43 @@
+{
+  "id": "silly-tower",
+  "title_id": "STOWE0001",
+  "name": "Silly Tower",
+  "description": "Physics based tower builder game.",
+  "long_description": "SillyTower is a physics based game where you must build the highest possible tower!",
+  "author_ids": [
+    "cpasjuste"
+  ],
+  "category_id": "games",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.1.3",
+  "version_date": "2021-07-01",
+  "requirements": "",
+  "size": 37274249,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/7c705a87815452b8b8802a107e4cd62626bcaaa61b697d798da14f0434aca0fa.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/4dc0aefb51f7747b1076fa8d78414494d217effe34abb2e15b03aaa23ee10a4c.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/10632c798635439701cd976796aa8682b43da1e23e61a414f990860bf3339cfc.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/5b318652ee497cf50ff184f8fc2ffc55261d71058da0aab65fdf7719a59682dc.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/Cpasjuste/sillytower/releases/download/1.3/SillyTower-1.3.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/Cpasjuste/sillytower"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://kyuhen.customprotocol.com/en/submissions/sillytower/"
+    }
+  ]
+}

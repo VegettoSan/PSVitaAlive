@@ -1,0 +1,31 @@
+{
+  "id": "la-deuda",
+  "title_id": "GDOT03051",
+  "name": "La Deuda",
+  "description": "Interactive movie for PSVita.",
+  "long_description": "An interactive Movie about debts, choices and good endings!",
+  "author_ids": [
+    "soykhaler"
+  ],
+  "category_id": "games",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.1.0",
+  "version_date": "2025-01-26",
+  "requirements": "",
+  "size": 40490913,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/3922aa43c6241e917e6badca446bdfc0be4b3ae278a668bf660a0aa6b357ff09.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/9b1cdc787b719b9cbdf081cf54196e17606cbcb3bd64fa571352487fc22dca41.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1252-LaDeuda.vpk",
+      "recommended": true
+    }
+  ]
+}

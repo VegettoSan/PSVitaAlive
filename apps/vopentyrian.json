@@ -1,0 +1,39 @@
+{
+  "id": "vopentyrian",
+  "title_id": "VOPTIRYAN",
+  "name": "vOpenTyrian",
+  "description": "Port of OpenTyrian for the PS Vita.",
+  "long_description": "vOpenTyrian is a port of OpenTyrian to the PlayStation Vita handheld. Tyrian is an arcade-style vertical scrolling shooter.\nThe story is set in 20,031 where you play as Trent Hawkins, a skilled fighter-pilot employed to fight Microsol and save the galaxy.",
+  "author_ids": [
+    "cpasjuste"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "fps"
+  ],
+  "version": "16-09-19",
+  "version_date": "2016-09-20",
+  "requirements": "",
+  "size": 5806780,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/767c27e139670527b72f469b9020659244263ee9ba956aa802f9c4805ff1da35.png",
+  "screenshots": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/13-vOpenTyrian.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/Cpasjuste/vopentyrian"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "http://gekihen.customprotocol.com/en/project/vOpenTyrian"
+    }
+  ]
+}

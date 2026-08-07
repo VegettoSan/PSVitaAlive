@@ -1,0 +1,34 @@
+{
+  "id": "csd2vita",
+  "title_id": "CSD2VITA0",
+  "name": "CSD2Vita",
+  "description": "Port of Cook, Serve, Delicious! 2 for PSVITA.",
+  "long_description": "Cook, Serve, Delicious! 2 is the massive sequel to the surprise best selling original, one of the few games that gives players complete control on how they want to build their restaurant.",
+  "author_ids": [
+    "hatoving"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.1.0",
+  "version_date": "2022-05-23",
+  "requirements": "- YoYo Loader\n- Game Data Files: PC Steam",
+  "size": 5131431,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/4503316b47e7c3cf86c1185d500cd22461370d9f58da8c8bc8447ba1b3c9b77d.png",
+  "screenshots": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/hatoving/csd2-old-vita/releases/download/1.0/CSD2VITA0.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/hatoving/csd2"
+    }
+  ]
+}

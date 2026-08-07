@@ -1,0 +1,37 @@
+{
+  "id": "backrooms",
+  "title_id": "BKRM80522",
+  "name": "Backrooms",
+  "description": "Port of Backrooms for PSVITA.",
+  "long_description": "Based on a creepypasta, the Backrooms brings a nostalgic feeling of being lost in endless piles of empty rooms with fluorescent lights at full hum-buzz.\nYou have to find your way out, but of course, some \"friends'' don't want you to leave. If you don't \"wake up\" in time, your nightmares will drown you.\nThis game is created by Ilia Esmaili Poor (IEP_Esy)",
+  "author_ids": [
+    "megagameboy"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.1.5.2",
+  "version_date": "2022-09-09",
+  "requirements": "",
+  "size": 47068642,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/b2bc923efb42dca23de43d4773e5abc59a057c8a8f6ad9865cc9d324efd17911.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/fb56ee32cf562166a922d45c8bf9f4ff75bde729369812f537b71d5e0cfe08ea.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/aa1abaedee090f4c8aca5cd972d543023b41fae72922a2ac71b734dc14defd1b.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/821-Backrooms.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://iep-esy.itch.io/backrooms"
+    }
+  ]
+}

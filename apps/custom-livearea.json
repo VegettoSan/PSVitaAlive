@@ -1,0 +1,42 @@
+{
+  "id": "custom-livearea",
+  "title_id": "CSTMLIVEA",
+  "name": "Custom LiveArea",
+  "description": "Using custom themes is good fun but your limited to only being able to change the stock app bubbles, but now you can customise a whole lot more.",
+  "long_description": "Using custom themes is good fun but your limited to only being able to change the stock app bubbles, but now you can customise a whole lot more.\nCustomise icons, title names and images of your apps and games bubbles.",
+  "author_ids": [
+    "anthj"
+  ],
+  "category_id": "customization",
+  "subcategory_ids": [
+    "themes"
+  ],
+  "version": "v1.0",
+  "version_date": "2021-12-12",
+  "requirements": "",
+  "size": 5017198,
+  "status": "Legacy",
+  "icon": "https://robin994.github.io/NeoVitaDB-Catalog/icons/0762-custom-livearea.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/3b217579f3687e2b70b955bfcc40d75c81f9c2c72c7e62202ca90bfb95d1c768.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/b25a488b31a1982b09d882f66985bea7616b2a68e48dafc94ea13c2192b76160.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/AntHJ/Custom-LiveArea/releases/download/v1.0/Custom.LiveArea.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/AntHJ/Custom-LiveArea"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/AntHJ/Custom-LiveArea/releases/tag/v1.0"
+    }
+  ]
+}

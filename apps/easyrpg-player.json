@@ -1,0 +1,40 @@
+{
+  "id": "easyrpg-player",
+  "title_id": "EASYRPG01",
+  "name": "EasyRPG Player",
+  "description": "RPG Maker 2k/2k3 player.",
+  "long_description": "EasyRPG Player is a program that allows to play games created with RPG Maker 2000 and 2003.\n\nIt aims to be a free (as in freedom) cross-platform RPG Maker 2000/2003 interpreter. The main goal is to play all games created with them as the original game interpreter (RPG_RT) does.",
+  "author_ids": [
+    "easyrpg-team",
+    "rinnegatamante"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "rpg"
+  ],
+  "version": "v.0.8.1.1",
+  "version_date": "2025-06-02",
+  "requirements": "",
+  "size": 4210037,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/584da9ba55ab78caf10be0d8906cdfe6587d7017f1183865726991ec2d9da123.png",
+  "screenshots": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/5-EasyRPG_Player.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/EasyRPG/Player"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://blog.easyrpg.org/"
+    }
+  ]
+}

@@ -1,0 +1,39 @@
+{
+  "id": "prince-of-persia",
+  "title_id": "PRINCEPER",
+  "name": "Prince Of Persia",
+  "description": "Classic Prince of Persia port.",
+  "long_description": "An open-source port of Prince of Persia for PSVITA/PSTV.",
+  "author_ids": [
+    "cpasjuste"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "engine-port"
+  ],
+  "version": "v.1.12",
+  "version_date": "2016-09-26",
+  "requirements": "",
+  "size": 279342,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/f1464d52eb0d6b26677f497f2e4a387d20793e3eaeee6867810d8f114ba0c64a.png",
+  "screenshots": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/166-prince.zip",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/Cpasjuste/SDLPoP"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "http://gekihen.customprotocol.com/en/project/Prince-Of-Persia"
+    }
+  ]
+}

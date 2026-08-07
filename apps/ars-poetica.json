@@ -1,0 +1,38 @@
+{
+  "id": "ars-poetica",
+  "title_id": "ARSP03714",
+  "name": "Ars Poetica",
+  "description": "Escape-room puzzle game.",
+  "long_description": "Ars Poetica is a poetry-themed narrative-focused escape-room puzzle game.\nThink \"Zorg meets Dear Esther\" - story-focused, vanguardist in its puzzle design, but rooted in the genre of the text adventure, merging old-school and contemporary game design.\nA World War II soldier gets injured in battle. In his journey back home he's killed by a bombshell - and in this split second, between life and death, he must now find peace, and remember who he is.",
+  "author_ids": [
+    "joao-eiras-antunes"
+  ],
+  "category_id": "games",
+  "subcategory_ids": [
+    "puzzle"
+  ],
+  "version": "v.1.0",
+  "version_date": "2021-06-05",
+  "requirements": "",
+  "size": 64308506,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/ed33ebffcf4dcd924609d6cf5252ceeda659ab5b8033318c206ab38d87c6012a.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/32585ea39a26f58deabea95e4f9bcfab055a94ffbea71ea5c25f411d32356181.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c15b3504ba4c0b67ee5c17e2e830a194a2d9517719addea8b410a91d0d6f95b6.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/0b0e5e2b84604da8ac864f54f11ac37108cf434cffab97e2dd2ebcedb41fe071.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/681-ArsPoetica.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://kyuhen.customprotocol.com/en/submissions/arspoetica/"
+    }
+  ]
+}

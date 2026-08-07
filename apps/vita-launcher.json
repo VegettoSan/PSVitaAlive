@@ -1,0 +1,41 @@
+{
+  "id": "vita-launcher",
+  "title_id": "SMLA00001",
+  "name": "Vita Launcher",
+  "description": "An application that allows to launch other installed apps, roms from emulators and PSP games and homebrews thbrough Adrenaline.",
+  "long_description": "An application that allows to launch other installed apps, roms from emulators and PSP games and homebrews thbrough Adrenaline. This removes the bubbles limit of Livearea and allows to categorize applications.",
+  "author_ids": [
+    "cy33hc"
+  ],
+  "category_id": "customization",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "latest",
+  "version_date": "2022-04-18",
+  "requirements": "",
+  "size": 5286589,
+  "status": "Verified",
+  "icon": "https://robin994.github.io/NeoVitaDB-Catalog/icons/0583-vita-launcher.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/4bc1367196ce9cdd22f298b086100c6985cbc6390f385378f11a8a98c0bcc283.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/cy33hc/vita-launcher/releases/download/latest/launcher.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/cy33hc/vita-launcher"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/cy33hc/vita-launcher/releases/tag/latest"
+    }
+  ]
+}

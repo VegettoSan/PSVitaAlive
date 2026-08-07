@@ -1,0 +1,44 @@
+{
+  "id": "thextech",
+  "title_id": "THEXTECH0",
+  "name": "TheXTech",
+  "description": "Port of an old VB6 engine, purely written in C++.",
+  "long_description": "Port of an old VB6 engine, purely written in C++. It completely reproduces the old SMBX 1.3 engine (aside from it's Editor), includes many of its logical bugs (critical bugs that lead the game to crash or freeze got fixed).",
+  "author_ids": [
+    "thextech-team"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "engine-port"
+  ],
+  "version": "v1.3.7.3-1",
+  "version_date": "2026-06-22",
+  "requirements": "- libshacccg.suprx\n- Game Data Files: PC",
+  "size": 4225243,
+  "status": "Verified",
+  "icon": "https://robin994.github.io/NeoVitaDB-Catalog/icons/0727-thextech.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/6f161107d71ebdb77c8a33af2ad738cb73a416aa88b80cd3643ee365ec8cda91.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/7d78bc6c7a02d0050c89c366228fcc8bcb9a25cf0c96a4b519c08b160d74fc1e.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/92c01e3abae0113d4bc7a5ffc409d35dd784b3ed41c4f2e43334c77162d53da5.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/9f3532901c275acebd54b30ebd0a0137a340fc9fb45fb25b1694786f5a99ba8a.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/TheXTech/TheXTech/releases/download/v1.3.7.3-1/thextech-3ds-v1.3.7.3.zip",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/TheXTech/TheXTech"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/TheXTech/TheXTech/releases/tag/v1.3.7.3-1"
+    }
+  ]
+}

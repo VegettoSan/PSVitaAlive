@@ -1,0 +1,34 @@
+{
+  "id": "sqrxz-3",
+  "title_id": "SQRXZ0003",
+  "name": "Sqrxz 3",
+  "description": "Port of Sqrxz 3 to PSVITA/PSTV.",
+  "long_description": "Sqrxz 3 is a Jump’n’Run which will please the hardcore gamer amongst you. You need fast fingers and a fast brain. Original Sqrxz made by Marcus Vesterlund and John Holmvall.",
+  "author_ids": [
+    "retroguru-team"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.1.05r",
+  "version_date": "2019-07-23",
+  "requirements": "- Game Data Files: PC",
+  "size": 1463772,
+  "status": "Legacy",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/fef811e6ce1741fb8ecfead25b28b8d0b84e6e408be46816b3f88cf022c36c4d.png",
+  "screenshots": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/614-SQRXZ0003.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://www.sqrxz.de/sqrxz-3/"
+    }
+  ]
+}

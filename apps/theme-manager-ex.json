@@ -1,0 +1,39 @@
+{
+  "id": "theme-manager-ex",
+  "title_id": "THMX00001",
+  "name": "Theme Manager EX",
+  "description": "Advanced theme manager for PSVITA.",
+  "long_description": "Theme Manager Ex is an advanced theme manger for PS Vita that introduces a new type of custom themes: extended themes.",
+  "author_ids": [
+    "kylon"
+  ],
+  "category_id": "customization",
+  "subcategory_ids": [
+    "themes"
+  ],
+  "version": "v.2.1",
+  "version_date": "2019-01-06",
+  "requirements": "",
+  "size": 1169632,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/91bc30db898b5c483f618bcef1f53cca30d9a5f2f22c922254ad2fdd7f6798a9.png",
+  "screenshots": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/84-vtheme.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://bitbucket.org/kylon/theme-manager-ex-theme-engine"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "http://wololo.net/talk/viewtopic.php?f=116&t=47868"
+    }
+  ]
+}

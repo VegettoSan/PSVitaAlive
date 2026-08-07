@@ -1,0 +1,39 @@
+{
+  "id": "have-a-good-one",
+  "title_id": "BEAR12340",
+  "name": "Have a Good One!",
+  "description": "Narrative puzzle game for PSVITA.",
+  "long_description": "Have a Good One is a narrative puzzle game that follows a postman (post-bear) in a land of teddy bears, who tries to reunite two lost lovers with a letter.",
+  "author_ids": [
+    "eva-vital",
+    "isaque-sanches"
+  ],
+  "category_id": "games",
+  "subcategory_ids": [
+    "puzzle"
+  ],
+  "version": "v.1.0",
+  "version_date": "2021-06-05",
+  "requirements": "",
+  "size": 59085720,
+  "status": "Legacy",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/a3622f50b4c9c4ab45060a69a5bcbf0b06e67be4e2dbc398c0a9600d403e923d.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/f0fdeba9e0c5fd2afdbb90c4d7bf4f8e7ed3b6179387ca885e9dc2ac957e033d.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/ebbcf647d64dc320b93b20e5189a34d3bd7d8ffb6aeb50e25c74d1c1926ea0cf.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/230250f89487e4cc2fa05d399eaf5787cf191bdf6604b270fa798b8ca6a52bb3.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/682-HaveAGoodOne.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://kyuhen.customprotocol.com/en/submissions/goodone/"
+    }
+  ]
+}

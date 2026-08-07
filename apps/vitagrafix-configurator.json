@@ -1,0 +1,42 @@
+{
+  "id": "vitagrafix-configurator",
+  "title_id": "VGCF00001",
+  "name": "VitaGrafix Configurator",
+  "description": "A little app that allows you to properly edit settings of VitaGrafix plugin with an easy to use GUI.",
+  "long_description": "A little app that allows you to properly edit settings of VitaGrafix plugin with an easy to use GUI.",
+  "author_ids": [
+    "kirezar"
+  ],
+  "category_id": "plugins",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v3.0",
+  "version_date": "2020-01-12",
+  "requirements": "",
+  "size": 2455900,
+  "status": "Verified",
+  "icon": "https://robin994.github.io/NeoVitaDB-Catalog/icons/0400-vitagrafix-configurator.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c8c3b30acfa102408c5ad5eb56b1e85fa1513bc6d2729fc17f20ea8bc794a73a.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/edf6992403ae10fb29a5426d6682353113d4477d798e55542745532976e5ce40.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/Kirezar/VitaGrafixConfigurator/releases/download/v3.0/VitaGrafixConfigurator.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/Kirezar/VitaGrafixConfigurator"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/Kirezar/VitaGrafixConfigurator/releases/tag/v3.0"
+    }
+  ]
+}

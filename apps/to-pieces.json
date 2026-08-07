@@ -1,0 +1,38 @@
+{
+  "id": "to-pieces",
+  "title_id": "HELL66645",
+  "name": "To Pieces",
+  "description": "2D Arena Shooter for PSVITA.",
+  "long_description": "To Pieces is a 2D arena shooter with lots of weapons, some neat abilities & exclusive death metal soundtrack.",
+  "author_ids": [
+    "lkclip"
+  ],
+  "category_id": "games",
+  "subcategory_ids": [
+    "shooter"
+  ],
+  "version": "v.0.62",
+  "version_date": "2019-04-27",
+  "requirements": "",
+  "size": 70925822,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/c574a7f76db50c93e6237b2fdd0f3f1366eb69b7602dfeaf63976b538c684122.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/cba17a36b9786dfbfb97103a2ccdb4c3177269e62f1b4fdc6278fd36a327c89f.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/07f8cd5a573a74660e4f41469e77fe70e65e59615cf3e28eda9c3837716a391b.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/dd5e058be85810099cb49b663be84763609fa1cf6d77f4d41fe5f36ffbf7df34.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/465-ToPieces.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "http://wololo.net/talk/viewtopic.php?f=116&t=49745"
+    }
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "id": "sakura-succubus-iii-vita",
+  "title_id": "RNPYSSIII",
+  "name": "Sakura Succubus III Vita",
+  "description": "Port of Sakura Succubus 3 for PSVITA.",
+  "long_description": "Ogasawara Hiroki was a normal man, until a chance meeting with Japan’s top idol turns his life around. He soon learns that many members of Japan’s elite are actually succubi – and, what’s more, there’s something about his scent which makes them insatiably attracted to him.\nHiroki amasses a harem of five beautiful and accomplished women: Ayu, the famous idol; Cosmos, the airheaded social media star; Marina, the level-headed businesswoman; Hifumi, the elegant actress; and Hazel, the chipper tennis player.\nManaging his full-time job as a photographer alongside an army of clingy succubi girlfriends is a challenge, but it’s a welcome one. Hiroki’s fortunes are on the up, and his future seems rosy.",
+  "author_ids": [
+    "silvercrow"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.1.1",
+  "version_date": "2022-04-07",
+  "requirements": "- Game Data Files: PC",
+  "size": 14641731,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/ef7e50723a028f1c826a6277527a11779e66949320b3283190013f585e95eb54.png",
+  "screenshots": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/SilverCrow2323/Sakura-Succubus-3-Vita/releases/download/v.1.1/Sakura.Succubus.III-v.1.1.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/SilverCrow2323/Sakura-Succubus-3-Vita"
+    }
+  ]
+}

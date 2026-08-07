@@ -1,0 +1,44 @@
+{
+  "id": "super-mario-world-vita",
+  "title_id": "SPRMRWRLD",
+  "name": "Super Mario World Vita",
+  "description": "Port of Super Mario World for PSVITA.",
+  "long_description": "Super Mario World Vita is a port of smw, a reimplementation of Super Mario World with several enhancements.",
+  "author_ids": [
+    "rinnegatamante"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.1.1.1",
+  "version_date": "2025-07-13",
+  "requirements": "- Game Data Files: SNES",
+  "size": 1614179,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/d8030c4de40e24c0f3777ff10d07499637cf050927246488f7aec7446779aef4.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/da44e5035a740a3a9b1a1518cefdf392991561df155bbd9ff8265d551f99581e.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/8de34b610b539bf25a23baaf246b8175c7948b40d54606441f3e6cd419d4ca8d.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/e372508694a8ebe53921ec4c9c294f096bae07b903e9ac9f5d697ac0d92732cd.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/6610abcdf2d8e7d29e956f6681a7ca4adf827279ae19664c047f01ef0f68322d.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1215-smworld.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/Rinnegatamante/smw"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://www.psx-place.com/threads/release-super-mario-world-vita-port-of-a-reverse-engineering-project-for-super-mario-world.43964/"
+    }
+  ]
+}

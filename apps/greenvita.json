@@ -1,0 +1,41 @@
+{
+  "id": "greenvita",
+  "title_id": "GREENVITA",
+  "name": "GreenVita",
+  "description": "Play your favorite Xbox games on your PS Vita with GreenVita.",
+  "long_description": "Play your favorite Xbox games on your PS Vita with GreenVita.\nGreenVita connects to Xbox Cloud Gaming by establishing a WebRTC connection and replicating the web requests made by the official Xbox Cloud Gaming web client.",
+  "author_ids": [
+    "dayos"
+  ],
+  "category_id": "games",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v0.1.8",
+  "version_date": "2026-07-21",
+  "requirements": "",
+  "size": 14185797,
+  "status": "Verified",
+  "icon": "https://robin994.github.io/NeoVitaDB-Catalog/icons/1438-greenvita.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c2e854daaa9c3c05ce9d8aba696a288e65af530f7dfb3518a6282a48b2b61e2e.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/Day-OS/green-vita/releases/download/v0.1.8/green-vita.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/Day-OS/green-vita"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/Day-OS/green-vita/releases/tag/v0.1.8"
+    }
+  ]
+}

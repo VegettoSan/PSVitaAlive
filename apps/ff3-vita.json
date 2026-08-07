@@ -1,0 +1,45 @@
+{
+  "id": "ff3-vita",
+  "title_id": "FF3000000",
+  "name": "FF3-Vita",
+  "description": "Port of Final Fantasy 3 (3D Remake) for PSVITA.",
+  "long_description": "This is a wrapper/port of Final Fantasy 3 Android for the PS Vita.\nThe port works by loading the official Android ARMv7 executable in memory, resolving its imports with native functions and patching it in order to properly run.\nDonation Link: https://ko-fi.com/frangar",
+  "author_ids": [
+    "frangarcj",
+    "rinnegatamante",
+    "theflow"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.1.2.3",
+  "version_date": "2026-06-11",
+  "requirements": "- libshacccg.suprx\n- kubridge.skprx\n- fd_fix.skprx OR repatch_ex.skprx\n- Game Data Files: Android",
+  "size": 18180699,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/fbc6dc7662bf08caca0c6b7659050fb421511b6a09c1ad8e0837e7ac6e1449b8.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/b62cd76563c9c82787c836b4ce95ce23177a213f69f5e5819dfa468d8406d1df.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/915ec827c722547f27d77c4bba88d64a781bbffb4fb832886bf4f8eaf8b6b032.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/08078616a4378db2bd3eb1f764e9bd4a3a2624af035eda876dc038c805860616.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/frangarcj/ff3_vita/releases/download/v1.2.3/FF3.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/frangarcj/ff3_vita"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/frangarcj/ff3_vita/releases"
+    }
+  ]
+}

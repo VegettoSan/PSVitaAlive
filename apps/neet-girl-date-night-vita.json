@@ -1,0 +1,34 @@
+{
+  "id": "neet-girl-date-night-vita",
+  "title_id": "NGDN00000",
+  "name": "Neet Girl Date Night Vita",
+  "description": "Port of Neet Girl Date Night for PSVITA.",
+  "long_description": "Port of NEET Girl Date Night for PSVITA.\nNEET Girl Date Night is a small visual novel.",
+  "author_ids": [
+    "raidengugga"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.01.00",
+  "version_date": "2024-08-14",
+  "requirements": "",
+  "size": 14511015,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/34b18ae7e7c20707af7d20e4974b716894410de69f531abf6f2d0ed77ec9195c.png",
+  "screenshots": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/raidengugga/Neet-Girl-Date-Night-PSVITA/releases/download/Latest/NGDN-01.00.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/raidengugga/Neet-Girl-Date-Night-PSVITA"
+    }
+  ]
+}

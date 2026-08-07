@@ -1,0 +1,34 @@
+{
+  "id": "snake-2",
+  "title_id": "SNAKO0002",
+  "name": "Snake!",
+  "description": "Snake game for PSVITA/PSTV.",
+  "long_description": "A Snake game made with GameMaker for PSVITA/PSTV.",
+  "author_ids": [
+    "ccoolguy"
+  ],
+  "category_id": "games",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.2.0",
+  "version_date": "2020-05-30",
+  "requirements": "",
+  "size": 5956779,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/2f80204ef2ca9670da60933428ae11c01138f429e1a387b1afb260b0f06f41bb.png",
+  "screenshots": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/644-Snake.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/Ccoolguy/SnakeVita"
+    }
+  ]
+}

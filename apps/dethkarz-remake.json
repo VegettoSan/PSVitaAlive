@@ -1,0 +1,39 @@
+{
+  "id": "dethkarz-remake",
+  "title_id": "DETH43415",
+  "name": "DethKarz Remake",
+  "description": "Remake of DethKarz for PSVita.",
+  "long_description": "DethKarz remake. DethKarz is a futuristic racing game developed by Melburne house in 1998 featuring 4 settings with 3 track lengths, 4 different cars with 3 tiers each as well as laser and plasma canons and powerups.",
+  "author_ids": [
+    "lachsproducktions"
+  ],
+  "category_id": "games",
+  "subcategory_ids": [
+    "racing"
+  ],
+  "version": "v.0.2.3.1 alpha",
+  "version_date": "2026-03-16",
+  "requirements": "",
+  "size": 159485143,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/795934edbd5072e9895f8e78eac5222350142bf9e1672a59d146bbe61fc9c007.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/5afac39152cb976ae56d208478a3796351676df5fa6b781ef7de1cf66dad1338.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/baf98b92f025675bdc3860af1782616595c1797f271dc6dc9381adad86aac010.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/9bfa273d5e0ee7a54bc5014f10b019fdb859991b3d59ae22f7da46b3b6fb69b1.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/5d2fc6e279d91e8df45811ff292a1bde04ce0f8075bc5600adc9a3d662577d8f.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1372-v0.2.3.1.alpha.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://lachsproducktions.itch.io/the-unofficial-dethkarz-remake"
+    }
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "id": "heart-potato",
+  "title_id": "HTPT12345",
+  "name": "Heart Potato",
+  "description": "Original Game made in 48 hours for Chillenium Game Jam.",
+  "long_description": "Heart Potato is originally a Chillenium game jam submission under the theme \"We Share a Heart\" and won third place.\nAn ancient artifact was discovered in the desert by a group of magical scientists. These scientists have been experimenting with the artifact's mystical powers and found that the artifact feeds on blood -- and its power can bring any fossil back to life. The scientists succeeded in reviving a monstrous T. rex. However, the creature and its partner broke free.  The two dinosaurs must now try to survive the scientists' attempt to subdue them while sharing the power of the ancient artifact.\nAs the player, your objective is to keep the ancient heart artifact charged with blood and balanced so neither T. rex dies while the two dinosaurs fight the scientists and obtain their research blood vials to feed this powerful artifact.",
+  "author_ids": [
+    "discord-mods"
+  ],
+  "category_id": "customization",
+  "subcategory_ids": [
+    "themes"
+  ],
+  "version": "v.1.0",
+  "version_date": "2023-04-17",
+  "requirements": "",
+  "size": 41746686,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/79a5a9b9e59a8223f920db314642872019d428cc2a0873315c979de0c18369b5.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/6b068ef77154158d8b7dceb3c662764cefa2db0b983c93dbd2136f19aa0cf5b1.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/62a8b1644c7dc495d6dc348846b3c1c9f2d95b82c71dd4b82108bd5a1185dcfa.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/55ad56366e6a86b98437de50e66d06fcb6c0508829c04fea8918b0a59e5eb077.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1071-HeartPotato.vpk",
+      "recommended": true
+    }
+  ]
+}

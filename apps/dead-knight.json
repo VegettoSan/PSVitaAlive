@@ -1,0 +1,34 @@
+{
+  "id": "dead-knight",
+  "title_id": "DEADKNI01",
+  "name": "Dead Knight",
+  "description": "Port of Dead Knight: Pocket Edition for PSVITA.",
+  "long_description": "Dead Knight - Pocket Edition is a downgrade version of the upcoming roguevania Dead Knight. Made for GBJam 4.",
+  "author_ids": [
+    "rodentcat"
+  ],
+  "category_id": "system",
+  "subcategory_ids": [
+    "firmware-tools"
+  ],
+  "version": "v.1.0",
+  "version_date": "2022-01-24",
+  "requirements": "- Game Data Files: PC",
+  "size": 2870412,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/91bc9ded318ca831b4a7686bb6daad955b547dd2b4de56e0eedcb77eb32cc551.png",
+  "screenshots": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/rodentcat/deadknight-vita-port/releases/download/1.0/DeadKnight.VPK",
+      "recommended": true
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/rodentcat/deadknight-vita-port"
+    }
+  ]
+}

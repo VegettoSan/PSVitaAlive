@@ -1,0 +1,38 @@
+{
+  "id": "zombiebound",
+  "title_id": "ZBND00001",
+  "name": "Zombiebound",
+  "description": "Wave-based 3D FPS survival game.",
+  "long_description": "Zombiebound is a 3D FPS zombie survival game for the PS Vita.\nIt plays very similar to your favourite CoD Zombies games.",
+  "author_ids": [
+    "vitahex-games"
+  ],
+  "category_id": "games",
+  "subcategory_ids": [
+    "shooter"
+  ],
+  "version": "v.0.1.0",
+  "version_date": "2017-09-30",
+  "requirements": "",
+  "size": 6132872,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/079b895bbed3684c0824fa8abb4be74d2d4927f9311887961be83438dd1e7b28.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/23b5c8c6ec0942b3d5f415ad28be56a5ec562c6dd79c7f94fd55263471c15a2f.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/6587ffb80ed99427fd8f9f9abc7d92bfabfbb25871aa02d88db76f775e247f7b.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/354923b87ec0d64b68068ffff7eb582b841613029bbb325d5a63b6818ee72e27.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/328-Zombiebound.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "http://wololo.net/talk/viewtopic.php?f=116&t=48583"
+    }
+  ]
+}

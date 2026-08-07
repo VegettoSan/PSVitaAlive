@@ -1,0 +1,39 @@
+{
+  "id": "vita-screen-test",
+  "title_id": "VSTA00001",
+  "name": "Vita Screen Test",
+  "description": "Screen tester for PSVita.",
+  "long_description": "A screen test utility for the PlayStation Vita to help detect OLED burn-in and test display quality.",
+  "author_ids": [
+    "ibrahim-dogan"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.1.0.0",
+  "version_date": "2026-01-11",
+  "requirements": "",
+  "size": 72545,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/df76fad01302bb4f49b44264c2de09dd75cfc850765fc3743a6a63bc922b393b.png",
+  "screenshots": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/ibrahim-dogan/vita-screen-test/releases/download/v1.0.0/vita_screen_test.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/ibrahim-dogan/vita-screen-test"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/ibrahim-dogan/vita-screen-test/releases"
+    }
+  ]
+}

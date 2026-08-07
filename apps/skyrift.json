@@ -1,0 +1,41 @@
+{
+  "id": "skyrift",
+  "title_id": "SKRF00001",
+  "name": "Skyrift",
+  "description": "An original sky-gliding pixel-art adventure for PSVita.",
+  "long_description": "An original sky-gliding pixel-art adventure for PSVita.",
+  "author_ids": [
+    "claude-ai"
+  ],
+  "category_id": "games",
+  "subcategory_ids": [
+    "adventure"
+  ],
+  "version": "v1.2.0",
+  "version_date": "2026-07-20",
+  "requirements": "",
+  "size": 978971,
+  "status": "Legacy",
+  "icon": "https://robin994.github.io/NeoVitaDB-Catalog/icons/1427-skyrift.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/2d887fd4142583ed1cfe1193ebbcbe41104e04aeb3618e6787a190e4339ffe42.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/onurkuru/skyrift/releases/download/v1.2.0/skyrift.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/onurkuru/skyrift"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/onurkuru/skyrift/releases/tag/v1.2.0"
+    }
+  ]
+}

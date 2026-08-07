@@ -1,0 +1,39 @@
+{
+  "id": "stacker-for-vita",
+  "title_id": "BUNKAI015",
+  "name": "Stacker for Vita",
+  "description": "Stacker arcade game for PSVITA.",
+  "long_description": "A stacker arcade game made with Godot 3.5.",
+  "author_ids": [
+    "bunkai"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.1.00",
+  "version_date": "2024-02-27",
+  "requirements": "",
+  "size": 19596302,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/c31f14b27689cae2c6876cfbc07c981e1f026ed8fcaea53d68cf5bcacd6ce36f.png",
+  "screenshots": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/Bunkai9448/StackerVitaGodot/releases/download/StackerVita-v.01.00/Stacker.for.Vita.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/Bunkai9448/StackerVitaGodot"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/Bunkai9448/StackerVitaGodot/releases"
+    }
+  ]
+}

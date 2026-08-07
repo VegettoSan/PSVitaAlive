@@ -1,0 +1,38 @@
+{
+  "id": "circuit-dude",
+  "title_id": "CIRCDUDE1",
+  "name": "Circuit Dude",
+  "description": "Puzzle game for PSVITA/PSTV.",
+  "long_description": "Help Circuit Dude build his ultimate secret invention by plugging in chips, pushing blocks, stepping on switches, rotating walls and so much more in this game featuring over 15 hours of gameplay and 120 levels. What is he up to? What is Circuit Dude building? Finish the first 100 levels to find out!\n\nIf that's not enough, you can design your own master contraptions using the in-game level editor! (Cross-platform online level sharing coming soon!)",
+  "author_ids": [
+    "crait"
+  ],
+  "category_id": "games",
+  "subcategory_ids": [
+    "platformer"
+  ],
+  "version": "v.2.6.6",
+  "version_date": "2021-03-17",
+  "requirements": "",
+  "size": 15533399,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/80bd8723fe0662f1eed6fbe794d02137da533215bb7d43b6a06887a46844450d.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/4fd0ed4deb65547bd2266b2913ee1bb2d08cf2e7e469b88cec740b94acc9d8b1.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/e332c924680e60b28ee38297db177704ff8e140ff96a9edd413997d3d78dc00e.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/b6bcb629854cd919ec07bc0480d1ba80b2a5b7b98133c6ded3a3a9282f3a69f2.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/626-CircuitDude.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "http://www.crait.net/"
+    }
+  ]
+}

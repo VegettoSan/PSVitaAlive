@@ -1,0 +1,41 @@
+{
+  "id": "augustus",
+  "title_id": "AUGUSTUS1",
+  "name": "Augustus",
+  "description": "Augustus is a fork of the Julius project that intends to incorporate gameplay changes.",
+  "long_description": "Augustus is a fork of the Julius project that intends to incorporate gameplay changes. The aim of this project is to provide enhanced, customizable gameplay to Caesar 3 using project Julius UI enhancements.\nAugustus is able to load Caesar 3 and Julius saves, however saves made with Augustus will not work outside Augustus.",
+  "author_ids": [
+    "devnoname120",
+    "julius-team",
+    "keriew"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v4.0.0",
+  "version_date": "2023-12-28",
+  "requirements": "- Game Data Files: PC",
+  "size": 15627999,
+  "status": "Verified",
+  "icon": "https://robin994.github.io/NeoVitaDB-Catalog/icons/0746-augustus.png",
+  "screenshots": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/Keriew/augustus/releases/download/v4.0.0/augustus-4.0.0-vita.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/Keriew/augustus"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/Keriew/augustus/releases/tag/v4.0.0"
+    }
+  ]
+}

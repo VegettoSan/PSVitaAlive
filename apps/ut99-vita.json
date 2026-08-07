@@ -1,0 +1,44 @@
+{
+  "id": "ut99-vita",
+  "title_id": "UNREALT99",
+  "name": "UT99 Vita",
+  "description": "Port of Unreal Tournament for PSVita.",
+  "long_description": "This is a wrapper/port of Unreal Tournament for the PS Vita.\nThe port works by loading the Android ARMv7 executables from the unofficial Android port by Andiweli in memory, resolving their imports with native functions and patching it in order to properly run. By doing so, it's basically as if we emulate a minimalist Android environment in which we run natively the executables as they are.",
+  "author_ids": [
+    "rinnegatamante"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.0.8",
+  "version_date": "2026-07-22",
+  "requirements": "- libshacccg.suprx\n- kubridge.skprx\n- Game Data Files: PC",
+  "size": 2970931,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/bc2bc6a60f5f747b07e57b5fe3ac8f175dd47b6b8f83a8be9547e4f803773120.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/9369ed16298f2b82631a02e277660c172d49196c092162d75ce4323f93fb5c9f.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/215d8c1535f77295a758b20038890765d3c436ded3510aeba589d7ef1c594d0b.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c6a925a878aa401d9e11da8c01325423d03007400affc0cf8ba38d082bcd1834.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/d42c8ed357d9cf45231866b94705da25e6f263327c924c0a960558b5b15295f5.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/Rinnegatamante/UT99-Vita/releases/download/v.0.8/ut99.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/Rinnegatamante/UT99-Vita"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/Rinnegatamante/UT99-Vita/releases"
+    }
+  ]
+}

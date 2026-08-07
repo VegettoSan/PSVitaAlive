@@ -1,0 +1,43 @@
+{
+  "id": "starcatcher",
+  "title_id": "STARCATCH",
+  "name": "Starcatcher",
+  "description": "Port of Starcatcher for PSVITA.",
+  "long_description": "Created by Escada Games for One Button Jam 2022, Starcatcher is a star-collecting space platformer!\nComplete 25 levels of increasing difficulty. Remember, though, the game only uses one button!\nMore information about Starcatcher and Escada Games, https://escada-games.itch.io/starcatcher",
+  "author_ids": [
+    "withlogic"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.1.0",
+  "version_date": "2023-09-22",
+  "requirements": "",
+  "size": 20053215,
+  "status": "Legacy",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/d135d64ac21c32c88cada530c45161ba335df41367017fa5de68bcc82980513d.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/b2fb50b2fa40232a3a579574a10cf5940d668f5e8c14d1c3a6adbed5268c7b55.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/fc4f0cbabc9827008cd568af215c9775244d4854e63e59864c310bc41f42a37b.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/436220b55c013ad9a2deb5d656e31647aefcb650070bb39288987bcf615a7f43.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1144-Starcatcher.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/withLogic/starcatcher"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://fuhen.homebrew-contest.com/submissions/60/"
+    }
+  ]
+}

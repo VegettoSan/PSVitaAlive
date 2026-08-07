@@ -1,0 +1,44 @@
+{
+  "id": "maximilien-adventure",
+  "title_id": "GDOT00001",
+  "name": "Maximilien Adventure",
+  "description": "Port of Maximilien Adventure for PSVITA/PSTV, which is a super Mario like game created with Godot.",
+  "long_description": "Port of Maximilien Adventure for PSVITA/PSTV, which is a super Mario like game created with Godot.",
+  "author_ids": [
+    "sonicmastr"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "adventure"
+  ],
+  "version": "3.5-rc5-vita1",
+  "version_date": "2022-07-13",
+  "requirements": "",
+  "size": 38629820,
+  "status": "Verified",
+  "icon": "https://robin994.github.io/NeoVitaDB-Catalog/icons/0871-maximilien-adventure.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/dd28005d4bb743f89efa63b85a31bd42b922a5d80ab4173d48496d5e3e4f847b.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/cbf1c0a94b1a7bbd8e4efe63f6b8766732255196c1242e2e519b9f623718f947.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/dfce174ae866f95eb8d7074fb61c88e0c7b2c5dab92aa9bb17ff61a96c7899db.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/013e0efea803bb0d85a8ef678820249e2faa98b2aff08776df155289b6c81f8e.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/SonicMastr/godot-vita/releases/download/3.5-rc5-vita1/maximilien-adventure-godot-demo.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/SonicMastr/godot-vita"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/SonicMastr/godot-vita/releases/tag/3.5-rc5-vita1"
+    }
+  ]
+}

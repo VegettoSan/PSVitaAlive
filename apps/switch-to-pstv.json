@@ -1,0 +1,39 @@
+{
+  "id": "switch-to-pstv",
+  "title_id": "091900001",
+  "name": "Switch to PSTV",
+  "description": "Helper for MiniVitaTV plugin.",
+  "long_description": "PSVITA app to disable/enable MiniVitaTV plugin by TheFloW.\nOpen the app, it will rename MiniVitaTV and DS3 plugins to a different name and reboot the console to apply changes. (during this process black screen will be displayed until it reboots). If plugins were disabled before opening this app (by this app) it will enable them!",
+  "author_ids": [
+    "xcorra"
+  ],
+  "category_id": "plugins",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.1.0",
+  "version_date": "2019-05-02",
+  "requirements": "",
+  "size": 2119638,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/78e50e80610a5c037b18132d2f7fa60f9e86251cd3fd82687eb04cd743cb9215.png",
+  "screenshots": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/476-Switch_20to_20PSTV.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/xCorra/SwitchtoPSTV"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/xCorra/SwitchtoPSTV/releases"
+    }
+  ]
+}

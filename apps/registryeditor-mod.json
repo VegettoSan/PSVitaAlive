@@ -1,0 +1,39 @@
+{
+  "id": "registryeditor-mod",
+  "title_id": "REGEDIT01",
+  "name": "RegistryEditor MOD",
+  "description": "Modified version of Registry Editor.",
+  "long_description": "Simple app that allows you to read and edit all registry settings in an organized manner. UI heavily based on TheFloW's VitaShell.",
+  "author_ids": [
+    "devnoname120"
+  ],
+  "category_id": "system",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.1.3",
+  "version_date": "2019-09-01",
+  "requirements": "",
+  "size": 121209,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/63af1b0fe121e2e9de3fe8e9b8668aec095bb44b5c1697be40f10b59df133e6f.png",
+  "screenshots": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/devnoname120/RegistryEditorMOD/releases/download/1.3/RegistryEditor.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/devnoname120/RegistryEditorMOD"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/devnoname120/RegistryEditorMOD/releases"
+    }
+  ]
+}

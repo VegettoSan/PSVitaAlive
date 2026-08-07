@@ -1,0 +1,29 @@
+{
+  "id": "8bitbayonetta",
+  "title_id": "SEGA12345",
+  "name": "8BitBayonetta",
+  "description": "Port of 8 Bit Bayonetta for PSVITA.",
+  "long_description": "Port of 8-Bit Bayonetta for PSVITA.\n8-Bit Bayonetta, formerly known as Angel Land, is an inaccurately-named, 16-bit-style action/shooter game for web browsers, based on the Bayonetta game franchise.",
+  "author_ids": [
+    "dancooper"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "fps"
+  ],
+  "version": "v.1.0",
+  "version_date": "2022-03-31",
+  "requirements": "",
+  "size": 38929762,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/9a69d5db36e70e3b9397d24af8e78c60fe08611c5640fe7a27462434e10cd83c.png",
+  "screenshots": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/808-8BB.vpk",
+      "recommended": true
+    }
+  ]
+}

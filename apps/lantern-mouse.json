@@ -1,0 +1,36 @@
+{
+  "id": "lantern-mouse",
+  "title_id": "PCSB00999",
+  "name": "Lantern Mouse",
+  "description": "Third-person adventure game for PSVita.",
+  "long_description": "Step into the paws of a small mouse with a fading past in Lantern Mouse, a third-person adventure about rediscovering lost memories. This early demo showcases the foundation of the world - an open environment with trees and terrain to explore - along with the controllable mouse.",
+  "author_ids": [
+    "stalgix"
+  ],
+  "category_id": "demos",
+  "subcategory_ids": [
+    "tech-demo"
+  ],
+  "version": "v.1.0",
+  "version_date": "2025-10-07",
+  "requirements": "",
+  "size": 50358675,
+  "status": "Legacy",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/26ed4072bb1a29d899f5378869758e02dcc4f351eebe0ded712b4678c39e69d4.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/adb2c6a719671b312a426bea2b377a4ef35503a50bd042be54562b258b90f871.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1335-LMSubmit.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://jyotiraditya-samal.itch.io/lantern-mouse"
+    }
+  ]
+}

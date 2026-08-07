@@ -1,0 +1,39 @@
+{
+  "id": "umario-vita",
+  "title_id": "HMRL00002",
+  "name": "uMario Vita",
+  "description": "Port of uMario for PSVITA.",
+  "long_description": "Port of uMario for PSVITA. uMario is a recreation of Super Mario Bros with widescreen patch and some added options.",
+  "author_ids": [
+    "hammerill"
+  ],
+  "category_id": "modding",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.1.00",
+  "version_date": "2022-06-21",
+  "requirements": "",
+  "size": 25615159,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/cd388410263d7423cf29e401ee60bdf99a63c3b29e322cc70ade24abae8c4680.png",
+  "screenshots": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/hammerill/uMario_Vita/releases/download/1.00/uMario.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/Hammerill/uMario_Vita"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/Hammerill/uMario_Vita/releases"
+    }
+  ]
+}

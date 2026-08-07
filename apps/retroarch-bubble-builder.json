@@ -1,0 +1,39 @@
+{
+  "id": "retroarch-bubble-builder",
+  "title_id": "RETBUBMKR",
+  "name": "Retroarch Bubble Builder",
+  "description": "Tool to create custom bubbles for Retroarch games.",
+  "long_description": "With this tool you are able to load your own images and resize them to make your own bubble and launch page.. if your using the Crazymac build or older verions of Retroarch the shortcut feature wasn't included, this app can also make your Retroarch compatible with the bubble shortcuts..",
+  "author_ids": [
+    "anthj"
+  ],
+  "category_id": "emulators",
+  "subcategory_ids": [
+    "multi-system"
+  ],
+  "version": "v.1.0",
+  "version_date": "2021-11-19",
+  "requirements": "",
+  "size": 5885149,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/99945f82d4e2cab37383ce1fe2f0c746e539d2f9b5d7bec04e0760f2026f7b22.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/bace2b0c8a22173152bd75c118c8ca76892f3c675cd747cbde699d9814ac8d2f.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/a49621701eae707fa1cfb46e6ba5b8073b39bc53de902e1ae2aae1286a3fcb98.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/74698c804cf357701a7c5ebd73a3c4a9f5b0f81420268f9e64a35458124c1e20.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/d22b55934e867501df56926b52b884da6553970aae415ec0c81f03843c77f1f8.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/AntHJ/Retroarch-Bubble-Builder/releases/download/v1.0/Retroarch.Bubble.Builder.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/AntHJ/Retroarch-Bubble-Builder/releases"
+    }
+  ]
+}

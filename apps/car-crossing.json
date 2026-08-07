@@ -1,0 +1,39 @@
+{
+  "id": "car-crossing",
+  "title_id": "GMSV00013",
+  "name": "Car Crossing",
+  "description": "A Frogger clone where you control a car made with GameMaker for PSVITA/PSTV.",
+  "long_description": "A Frogger clone where you control a car made with GameMaker for PSVITA/PSTV.",
+  "author_ids": [
+    "team789er"
+  ],
+  "category_id": "games",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "1.0.0",
+  "version_date": "2020-06-07",
+  "requirements": "",
+  "size": 7655427,
+  "status": "Legacy",
+  "icon": "https://robin994.github.io/NeoVitaDB-Catalog/icons/0643-car-crossing.png",
+  "screenshots": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/Team789er/Car-Crossing-PSVita/releases/download/1.0.0/Classic.Car.Crossing.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/Team789er/Car-Crossing-PSVita"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/Team789er/Car-Crossing-PSVita/releases/tag/1.0.0"
+    }
+  ]
+}

@@ -1,0 +1,39 @@
+{
+  "id": "blockamok-remix",
+  "title_id": "BLOC52665",
+  "name": "Blockamok Remix",
+  "description": "Enhanced port of Blockamok for PSVita.",
+  "long_description": "Fly through a 3D world of never-ending blocks and survive for as long as you can! Includes customization options for gameplay and visuals, along with five music tracks.",
+  "author_ids": [
+    "mode8fx"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.1.2",
+  "version_date": "2025-11-09",
+  "requirements": "",
+  "size": 2655081,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/a1d4d4c2c62d80cd71059a1bbe3323b928e8c47ba4e24914b6e765c6a9cab799.png",
+  "screenshots": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/Mode8fx/blockamok/releases/download/v1.21/BlockamokRemix-v1.2-vita.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/Mode8fx/blockamok"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/Mode8fx/blockamok/releases"
+    }
+  ]
+}

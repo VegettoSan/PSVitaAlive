@@ -1,0 +1,36 @@
+{
+  "id": "4rows",
+  "title_id": "ROWS00001",
+  "name": "4Rows",
+  "description": "Connect4 game for PSVITA.",
+  "long_description": "4Rows is the port of the \"Four in a row\"/\"Connect4\" sample homebrew provided with the very first PSP Lua Interpreter.",
+  "author_ids": [
+    "rinnegatamante"
+  ],
+  "category_id": "development",
+  "subcategory_ids": [
+    "lua"
+  ],
+  "version": "v.1.1",
+  "version_date": "2016-08-01",
+  "requirements": "",
+  "size": 1122931,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/6e337bb59d56f9c18ca5863a865cdb2471e5b69da04263405ff0587e0fa2628d.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/rows.jpg"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/65-4Rows.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://wololo.net/talk/viewtopic.php?f=116&t=46253"
+    }
+  ]
+}

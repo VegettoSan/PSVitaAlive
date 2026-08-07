@@ -1,0 +1,44 @@
+{
+  "id": "flowit",
+  "title_id": "FLWT02021",
+  "name": "Flowit",
+  "description": "Flowit reimplementation for PSVITA.",
+  "long_description": "Easy to learn, hard to master. Play the addicting puzzle game Flowit now and to think outside the box. There are already 75 levels available and even more to come. The game features a clean and elegant design - you will be amazed by the simplicity and complexity at the same time. Fill all boxes with the color of their border by using the special boxes. Those, for example, fill surrounding boxes in only one direction with their color. Discover various types of special boxes in the provided level packs.",
+  "author_ids": [
+    "ywnico"
+  ],
+  "category_id": "games",
+  "subcategory_ids": [
+    "puzzle"
+  ],
+  "version": "v.1.0.5",
+  "version_date": "2024-08-04",
+  "requirements": "",
+  "size": 22938763,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/b7a5c32522a7be7a9e5d30d221f35497e4b689b6c8652df82d292887786e9871.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/7d2a6fdea4047bc93a414c28f0d35a61b5944dea2b3b85210989c4ee7a0fd31c.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/7a491bc6b2ea22a5f7d84025f4442c3f5259b25f254bf740d63c5beeafbca6e6.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/f67c50e30decada1abd63055645ad58d880e11f3c7874c04e731e66a63d9b267.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/6eabc17fce40c434a21a97d922629c3134a2c0995136b455a8c32d706dac1331.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/771-Flowit.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/ywnico/flowit-vita"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/ywnico/flowit-vita/releases"
+    }
+  ]
+}

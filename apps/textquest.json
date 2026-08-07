@@ -1,0 +1,34 @@
+{
+  "id": "textquest",
+  "title_id": "TQUE00001",
+  "name": "TextQuest",
+  "description": "Text adventure for PSVITA.",
+  "long_description": "A simple Vita choose your own adventure text game.\nJust a super simple nostalgic text adventure PS Vita homebrew.",
+  "author_ids": [
+    "joshaxey"
+  ],
+  "category_id": "games",
+  "subcategory_ids": [
+    "adventure"
+  ],
+  "version": "v.1.0",
+  "version_date": "2016-08-23",
+  "requirements": "",
+  "size": 291942,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/31f5d760031a6dfce38fe6be1bad0c5e48aea808878aac3a140f0f2e464d9d73.png",
+  "screenshots": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/170-TextQuest.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/joshaxey/textquest"
+    }
+  ]
+}

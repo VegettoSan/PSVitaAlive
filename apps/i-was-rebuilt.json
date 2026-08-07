@@ -1,0 +1,38 @@
+{
+  "id": "i-was-rebuilt",
+  "title_id": "IWRV00001",
+  "name": "I Was Rebuilt",
+  "description": "Hardcore platformer game for PSVITA.",
+  "long_description": "Play as R3B, an advance and agile robot created by Dr. Zhang in this hardcore platformer game.",
+  "author_ids": [
+    "gurila-ware-games"
+  ],
+  "category_id": "games",
+  "subcategory_ids": [
+    "platformer"
+  ],
+  "version": "v.2.0.0.1",
+  "version_date": "2021-04-23",
+  "requirements": "",
+  "size": 141645560,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/5f01c6253dcf5a6e1c20af8676b58d68cf81e3b0d37b8a486c98026a642e8d34.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/99f713523ab1f88ddddd97121034f4b0020cd85f52cfaff3aca8f55a41ef4412.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/e249f1842ef901271160d5011c25c533327f5a9b311bbd279d2eb99d32ff5c6a.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/633d2c450947ed947c52b4601da30eefc486cefb8b770bb94d87aad93a8a0e7e.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/662-rebuilt.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "http://gurilawaregames.com/i-was-rebuilt"
+    }
+  ]
+}

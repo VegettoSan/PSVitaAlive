@@ -1,0 +1,43 @@
+{
+  "id": "dungeonrush",
+  "title_id": "DUNGEON00",
+  "name": "DungeonRush",
+  "description": "Port of Dungeon Rush for PSVita.",
+  "long_description": "Port of Dungeon Rush for PSVita.\nDungeon Rush is a game inspired by Snake.",
+  "author_ids": [
+    "xfangfang"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.01.00",
+  "version_date": "2020-09-12",
+  "requirements": "",
+  "size": 3538174,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/351c820666aa3a31f8d4e0b58e07fceb8a1efebca6d6d10705c0636184674455.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/df91e4c7a6486d3af59a0a6d0e1d918c38d9d16aab66e95d5c2acc311496d374.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/b716007fcacfd0bf5d5dc0072b728a2e5b5c0fc200b09df464edc81f3973a2ef.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/023a9308b166b36a93e2edb42d8cb05d25756907eaec73783a2c3df6034eaa5e.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/xfangfang/DungeonRush-PSV/releases/download/01.00/dungeonrush_01.00.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/xfangfang/DungeonRush-PSV/releases"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/xfangfang/DungeonRush-PSV"
+    }
+  ]
+}

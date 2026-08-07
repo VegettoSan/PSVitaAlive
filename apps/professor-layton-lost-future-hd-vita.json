@@ -1,0 +1,44 @@
+{
+  "id": "professor-layton-lost-future-hd-vita",
+  "title_id": "LAYTON003",
+  "name": "Professor Layton: Lost Future HD Vita",
+  "description": "Port of Professor Layton: Lost Future HD for PSVita.",
+  "long_description": "This is a wrapper/port of Professor Layton: Lost Future HD for the PS Vita. The port works by loading the official Android ARMv7 executable in memory, resolving its imports with native functions and patching it in order to properly run. By doing so, it's basically as if we emulate a minimalist Android environment in which we run natively the executable as is.",
+  "author_ids": [
+    "rinnegatamante"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.1.0",
+  "version_date": "2023-09-26",
+  "requirements": "- libshacccg.suprx\n- kubridge.skprx\n- Game Data Files: Android",
+  "size": 1674862,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/923c5ca4f84a13bc5d7f1989e5f162b95221569a316b4db4d289493054cf0320.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c87ce6e5c07244df2e9353d8e2817cad3318baecced16e7e97bc8fd066ac22be.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/ee405e78910f2b4eedf6a5c8d20eb03df6b45b756863dc2ac15d62e7dd2a53b0.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/29edc0ddff3cb406d8fe26ea74d6b949e296a542645e566a0f2522bf5283e65d.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/077f9978e6f964469f248ec06f9b7cb9c02e6c97ce4ea81c27827ffcf5afaf40.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/Rinnegatamante/layton3-vita/releases/download/v.1.0/layton3.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/Rinnegatamante/layton3-vita"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/Rinnegatamante/layton3-vita/releases"
+    }
+  ]
+}

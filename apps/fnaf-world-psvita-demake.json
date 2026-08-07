@@ -1,0 +1,39 @@
+{
+  "id": "fnaf-world-psvita-demake",
+  "title_id": "GDOT00083",
+  "name": "FNaF World PSVita Demake",
+  "description": "Demake of FNaF World for PSVITA.",
+  "long_description": "FNaF World PSVita Demake is a demake of the original FNaF World consisting of over 80% of the features cut like: character unlocks, Glitch areas, character dialogs, multiple endings ect. This game should be stable but unless there are extremly game breaking glitches the bugs wont be fixed.",
+  "author_ids": [
+    "oldsport099"
+  ],
+  "category_id": "games",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.1.0",
+  "version_date": "2025-05-29",
+  "requirements": "",
+  "size": 55543575,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/bb9887bf203bda48b62602763f4986bc18a616d0b8f1217c0464f8093d7365a3.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/51f00186542a1cbe482938e6c1956db4ebdf616f5be727fd9970dbf84d29a775.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c1b96646e18f8c178e01ad850d3d65f189c80b7eb8d600c27ebe4da7470f583f.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/4b4bce6e6d5fdcf4de4a39b128aa977cff273cf6fb848debffe0cdab3f114fb0.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/71e5af3a077f76d71f175f6706b94386eb71170e7482b93bb8eebbcfad715241.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1274-fnaf-world.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://gamejolt.com/games/FWpsVita/996208"
+    }
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "id": "zombiebound-reloaded",
+  "title_id": "ZMBR94732",
+  "name": "Zombiebound Reloaded",
+  "description": "Nazi Zombies clone for PSVITA.",
+  "long_description": "Zombiebound is an original homebrew zombie-shooting game for the PSVita/PSTV. The game is a 3D first-person zombie shooter that recalls Nazi Zombies game mode from Call of Duty franchise.",
+  "author_ids": [
+    "vitahex-games"
+  ],
+  "category_id": "games",
+  "subcategory_ids": [
+    "shooter"
+  ],
+  "version": "v.0.21",
+  "version_date": "2019-02-15",
+  "requirements": "",
+  "size": 165900291,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/7177edf44393508f90fd8b3bdd376d873bf2112508eb1b88bbdfa7120d78c842.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/ca773cfaacde7cc840ffe662e66f7055db5be937cca485c4f5a33c705282114c.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/4d9ee3a4b07f1459bad2692c71da948e746e93f05aab17e324661b32357b7092.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/35ec3b420c5a12b4a868891ff7797155e02eef4766361864319abdae9025d9de.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/421-Zombiebound-Reloaded.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "http://wololo.net/talk/viewtopic.php?f=116&p=424058&sid=b677b3efd094a8debc96d9870da05636#p424058"
+    }
+  ]
+}

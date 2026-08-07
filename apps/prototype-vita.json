@@ -1,0 +1,39 @@
+{
+  "id": "prototype-vita",
+  "title_id": "PROTOTYPE",
+  "name": "Prototype Vita",
+  "description": "Port of Prototype for PSVITA.",
+  "long_description": "Port of Prototype for PSVITA.\nPrototype is an RType remake from Dark Castle Software.",
+  "author_ids": [
+    "rinnegatamante"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.1.0",
+  "version_date": "2023-07-11",
+  "requirements": "- libshacccg.suprx",
+  "size": 1962902,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/5e2e1fe7aeb097401f8f2036432b7a4d48adcbd6e045349380021ed620b421b2.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/907f220a460bedaff79c22e474cdcaa2647d9615d67c6a5fd984c0f1d8b099c8.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/26955d9fd3c28afb3a4bd52cf86eb5a3d26f295c4253a173440d2869c1cb5985.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/0ca1cb1e5880154dc49034266a96bd8a429a10d7f930b2621fb3f8943da66650.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/2e45ba35cb48b062749740cf583b5e35e3087e88b80341ea8cc1eefc547602a4.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1092-Prototype.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/Rinnegatamante/prototype-vita"
+    }
+  ]
+}

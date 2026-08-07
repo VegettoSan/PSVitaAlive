@@ -1,0 +1,34 @@
+{
+  "id": "omega-strike-vita",
+  "title_id": "OMEGAVITA",
+  "name": "Omega Strike Vita",
+  "description": "Port of Omega Strike for PSVITA.",
+  "long_description": "Omega Strike is a metroidvania game with a vast, open ended world and multiple playable characters. Explore the world, learn new abilities, upgrade your weapons and defeat Doctor Omega and his mutant armies!",
+  "author_ids": [
+    "elpapadelospollitos"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.1.0",
+  "version_date": "2022-05-26",
+  "requirements": "",
+  "size": 3167033,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/10d6ad3cb6129fedf1ea2264896595dce73b12c73e00f23f2abd2ad9a258fa40.png",
+  "screenshots": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/elpapadelospollitos/Omega-strike-vita/releases/download/v1.0/OmegaStrike.VPK",
+      "recommended": true
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/elpapadelospollitos/Omega-strike-vita"
+    }
+  ]
+}

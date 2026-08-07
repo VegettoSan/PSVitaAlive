@@ -1,0 +1,45 @@
+{
+  "id": "balatro-vita",
+  "title_id": "BALA00001",
+  "name": "Balatro Vita",
+  "description": "Port of Balatro for PSVITA.",
+  "long_description": "Port of Balatro for PSVITA. Balatro is a poker-inspired roguelike deck builder all about creating powerful synergies and winning big.",
+  "author_ids": [
+    "daexxx",
+    "jafeth",
+    "alyen91"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "rpg"
+  ],
+  "version": "v0.13.1",
+  "version_date": "2026-01-04",
+  "requirements": "- Game Data Files: PC",
+  "size": 45700517,
+  "status": "Verified",
+  "icon": "https://robin994.github.io/NeoVitaDB-Catalog/icons/1259-balatro-vita.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/dfe38e52878bf4444e80a8b25c48867a5b2b39fae57d06c1e74097ac27a0a819.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/68919b634a2c663f6f29638170e5208da41a92638171cf07372f35e3049cfe4b.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/07ee80fea02ae611bdd482792f82098d9e1967e4b4648a0b4ea0b9437c890d27.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/Daexxxx/Balatro-Vita/releases/download/v0.13.1/balatro.patch.zip",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/Daexxxx/Balatro-Vita"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/Daexxxx/Balatro-Vita/releases/tag/v0.13.1"
+    }
+  ]
+}

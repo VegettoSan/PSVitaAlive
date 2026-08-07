@@ -1,0 +1,44 @@
+{
+  "id": "chocolate-doom",
+  "title_id": "CHOC66666",
+  "name": "Chocolate Doom",
+  "description": "Chocolate Doom port for PSVITA.",
+  "long_description": "Chocolate Doom is a sourceport of Doom allowing you to play Doom, Doom 2, Final Doom, Heretic, Sigil, Hexen and Strife.",
+  "author_ids": [
+    "fgsfds"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "fps"
+  ],
+  "version": "v.3.1",
+  "version_date": "2020-10-23",
+  "requirements": "",
+  "size": 7221728,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/72293e44bcc8aaad6a6e2f03fc77df6b06e879f958870292534c1b1503c4e1f2.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/9ed872445e03815d933d2cf28d3a5d2fb006a7f3f3dacc89c1f0d977c336356b.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/d53e78a3645638d4d0b0695b476404571868c4cf49ee03260f38c0b332558077.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c8de8b15a5270bf14d288f22f402f4f6f6b0605fc2a5826d098c0037065c6f3e.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/6ca30c962882e97f3e91571faacf08c6442811f9a2c23485c779688e16b615cc.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/377-ChocolateDoom.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/fgsfdsfgs/chocolate-doom"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "http://wololo.net/talk/viewtopic.php?f=116&t=48973"
+    }
+  ]
+}

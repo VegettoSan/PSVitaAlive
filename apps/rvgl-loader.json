@@ -1,0 +1,44 @@
+{
+  "id": "rvgl-loader",
+  "title_id": "REVOLTGLV",
+  "name": "RVGL Loader",
+  "description": "Port of RVGL for PSVITA.",
+  "long_description": "This is a wrapper/port of RVGL Android for the PS Vita.\nThe port works by loading the official Android ARMv7 executable in memory, resolving its imports with native functions and patching it in order to properly run.\nBy doing so, it's basically as if we emulate a minimalist Android environment in which we run natively the executable as is.",
+  "author_ids": [
+    "rinnegatamante"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.1.2",
+  "version_date": "2022-07-30",
+  "requirements": "- libshacccg.suprx\n- kubridge.skprx\n- Game Data Files: Android",
+  "size": 3118197,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/80975f3c0ab33555cd7de9a9d983ae14d4d08ade47a1eff5e0a88ce79fb085c6.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/1659bc74376356b3c21a9a263f8d90c477c9fcc57738f695dc92e22974f0d6c2.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/f2c926108d4d214354d04f1b533ffe8ae49fd9514af326017d01677fe20500d3.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/a83b2459ed44932db23bc099e3529316144df04c94478a86485fe022973b9655.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/5b9e0e308d340992199584fefe052edabbe3455014952a22b6d2a5284f0e6313.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/Rinnegatamante/rvgl-vita/releases/download/v.1.2/RVGL.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/Rinnegatamante/rvgl-vita"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/Rinnegatamante/rvgl-vita/releases"
+    }
+  ]
+}

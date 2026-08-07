@@ -1,0 +1,34 @@
+{
+  "id": "flick",
+  "title_id": "WTJ002301",
+  "name": "Flick",
+  "description": "Labyrinth game for PSVITA.",
+  "long_description": "Evade the Ghost and 'Flick' the switches to Escape.",
+  "author_ids": [
+    "aionmagan"
+  ],
+  "category_id": "games",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.1.0",
+  "version_date": "2023-11-04",
+  "requirements": "",
+  "size": 30135539,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/6d1f6d67bdb42585dafecac3ad6ed007c01fc51aa18d49c4c53942eaf6d7557b.png",
+  "screenshots": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1165-flick.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://aionmagan.itch.io/flick"
+    }
+  ]
+}

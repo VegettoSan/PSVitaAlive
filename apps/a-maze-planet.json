@@ -1,0 +1,38 @@
+{
+  "id": "a-maze-planet",
+  "title_id": "AMP000001",
+  "name": "A Maze Planet",
+  "description": "Procedurally generated dungeon crawler for PSVITA.",
+  "long_description": "A Maze Planet is a procedurally generated dungeon crawler video game. You must explore a strange planet, leveling up until you find the exit to the surface.",
+  "author_ids": [
+    "vulcore-team"
+  ],
+  "category_id": "games",
+  "subcategory_ids": [
+    "rpg"
+  ],
+  "version": "v.1.0",
+  "version_date": "2023-09-22",
+  "requirements": "",
+  "size": 26115291,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/267aa248a0a65725481c4e771b72c9753ed024fc70d20f46d77bbd6f9e290858.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/e75f519d64967858a0068378c7f29a751fa54487c30d890697ccea66d0d598ab.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/73cf60c4cee69def9efabba41de92b2cebce1130559cc2e45cb6ce4fadcf236c.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/78a31d5259989c99d3fbc8ab37bcd451328cbee7a94f5d63ad2f83770f8d3a10.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1134-maze_planet.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://fuhen.homebrew-contest.com/submissions/46/"
+    }
+  ]
+}

@@ -1,0 +1,41 @@
+{
+  "id": "vita-virtualkeyboard",
+  "title_id": "LP1D00003",
+  "name": "Vita VirtualKeyboard",
+  "description": "Turn your PSVita into a USB keyboard.",
+  "long_description": "Vita VirtualKeyboard turns your jailbroken PS Vita into a full-fledged low-latency USB keyboard.",
+  "author_ids": [
+    "lp1"
+  ],
+  "category_id": "utilities",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.00.01",
+  "version_date": "2026-06-05",
+  "requirements": "- hidkeyboard.skprx",
+  "size": 3509116,
+  "status": "Legacy",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/1cb39f47c5a725be40b9359534187ea083a0b86b408f49c80046cd4446b63aa2.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c2eed8228b71b28945bc0a73f772bf5bb804d29f2bdf17e97f8dae043cc76d72.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/lp1dev/vita_virtualkeyboard/releases/download/V00.01/VirtualKeyboard0001.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/lp1dev/vita_virtualkeyboard"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/lp1dev/vita_virtualkeyboard/releases"
+    }
+  ]
+}

@@ -1,0 +1,44 @@
+{
+  "id": "neopopvita",
+  "title_id": "FRAN00004",
+  "name": "NeopopVITA",
+  "description": "Neogeo Pocket Color emulator.",
+  "long_description": "Neogeo Pocket Color emulator for PSVita.",
+  "author_ids": [
+    "frangarcj"
+  ],
+  "category_id": "emulators",
+  "subcategory_ids": [
+    "neo-geo-pocket"
+  ],
+  "version": "v.0.71.15",
+  "version_date": "2016-07-29",
+  "requirements": "",
+  "size": 1557875,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/5c92eca322982194dcf925c344f81c7407442a8fee38ec4e16925913d267acbc.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/e90cfb2feede05ae2a5a1c907e2d344e176ff22965556252f9700490ccea252b.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/8bb8853d0852a6dbcf4f2b1e239a14912023ac7eab5bd7ffa8b40c06530dbf8b.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/790ac5aadf73cd01243dd04c9f41ae0422c961a006a241799db0499392a397f8.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/fcbd622a27e57380049b7d0fad90fbedafde1fba4164f4da3c1287e42a55bc79.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/frangarcj/NeopopVITA/releases/download/0.71.15-Henkaku/NeopopVITA.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/frangarcj/NeopopVITA"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/frangarcj/NeopopVITA/releases"
+    }
+  ]
+}

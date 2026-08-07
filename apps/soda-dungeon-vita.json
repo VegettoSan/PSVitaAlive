@@ -1,0 +1,39 @@
+{
+  "id": "soda-dungeon-vita",
+  "title_id": "SODA00001",
+  "name": "Soda Dungeon Vita",
+  "description": "Port of Soda Dungeon for PSVita.",
+  "long_description": "An unofficial PS Vita loader for the Android release of Soda Dungeon. It runs the original ARMv7 libraries inside a small Android compatibility layer.",
+  "author_ids": [
+    "claude-ai"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.1.0.0",
+  "version_date": "2026-07-13",
+  "requirements": "- libshacccg.suprx\n- kubridge.skprx\n- Game Data Files: Android",
+  "size": 707296,
+  "status": "Legacy",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/be2ef7999659294969c37cf3f58a61dd736d2ff20d3afab88acf76b81efdb221.png",
+  "screenshots": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/reallootfury/soda-dungeon-vita/releases/download/vpk/soda-redistributable.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/reallootfury/soda-dungeon-vita"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/reallootfury/soda-dungeon-vita/releases"
+    }
+  ]
+}

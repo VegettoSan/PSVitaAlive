@@ -1,0 +1,40 @@
+{
+  "id": "blakestone-vita",
+  "title_id": "BSTONE012",
+  "name": "BlakeStone-Vita",
+  "description": "Port of Blake Stone: Aliens of Gold and Blake Stone: Planet Strike for PSVITA/PSTV.",
+  "long_description": "Port of Blake Stone: Aliens of Gold and Blake Stone: Planet Strike for PSVITA/PSTV.\nThis build has a corrected LZH save system and minor fixes, and allows on-screen keyboard input for save games and high scores.",
+  "author_ids": [
+    "andiweli",
+    "01y"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v0.5.1",
+  "version_date": "2026-08-02",
+  "requirements": "",
+  "size": 1661963,
+  "status": "Legacy",
+  "icon": "https://robin994.github.io/NeoVitaDB-Catalog/icons/0393-bstone-vita.png",
+  "screenshots": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/Andiweli/BlakeStone-Vita/releases/download/v0.5.1/BlakeStone.0.5.1.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/Andiweli/BlakeStone-Vita"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/Andiweli/BlakeStone-Vita/releases/tag/v0.5.1"
+    }
+  ]
+}

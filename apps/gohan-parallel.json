@@ -1,0 +1,29 @@
+{
+  "id": "gohan-parallel",
+  "title_id": "ZXGQ00004",
+  "name": "GoHAN Parallel",
+  "description": "Savedata modifier for PSVITA.",
+  "long_description": "Homebrew that allows the user to modify games data.",
+  "author_ids": [
+    "onerice07"
+  ],
+  "category_id": "utilities",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.2.1.0",
+  "version_date": "2016-10-26",
+  "requirements": "",
+  "size": 384298,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/577468060c6efe96b7313f35a36851238efdc63b32a194c06da6b2de098e1316.png",
+  "screenshots": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/251-GoHAN_Parallel.vpk",
+      "recommended": true
+    }
+  ]
+}

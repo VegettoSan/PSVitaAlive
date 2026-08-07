@@ -1,0 +1,44 @@
+{
+  "id": "mighty-mike-vita",
+  "title_id": "MIGTYMIKE",
+  "name": "Mighty Mike Vita",
+  "description": "Port of Mighty Mike for PSVITA.",
+  "long_description": "Port of Mighty Mike for PSVITA.\nMighty Mike is an overhead view 2D run and gun video game developed by Pangea Software.",
+  "author_ids": [
+    "rinnegatamante"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.1.0",
+  "version_date": "2025-02-01",
+  "requirements": "- libshacccg.suprx",
+  "size": 1564753,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/11280ac789d69fce60242fb46deacd52386cf5e085b4614e3e1899055e27da83.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/541baafc5717119016d192bd3bec271425e2fc82a61e03084091ac299cb2277d.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/99b7ff8f25927dfe5b345c846679c10d8f95dc6d0cfc7ed25f15e5cbdf7a0a07.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/9632007c92c85eb019b64efa8547b14d7b26caca7e0e67e20acf1339a7ed2a4c.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/97e1af29d3ff7fe3ec5520d8be4c6551471c8c7c3b987fc16894aac0021c8ae2.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1254-MightyMike.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/Rinnegatamante/MightyMike"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://www.psx-place.com/threads/release-mighty-mike-vita.45921/"
+    }
+  ]
+}

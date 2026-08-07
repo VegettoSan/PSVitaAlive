@@ -1,0 +1,44 @@
+{
+  "id": "jet-car-stunts-2-vita",
+  "title_id": "JETCAR002",
+  "name": "Jet Car Stunts 2 Vita",
+  "description": "Port of Jet Car Stunts 2 for PSVITA.",
+  "long_description": "This is a wrapper/port of Jet Car Stunts 2 for the PS Vita. The port works by loading the official Android ARMv7 executable in memory, resolving its imports with native functions and patching it in order to properly run. By doing so, it's basically as if we emulate a minimalist Android environment in which we run natively the executable as is.",
+  "author_ids": [
+    "rinnegatamante"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.1.0",
+  "version_date": "2024-01-12",
+  "requirements": "- libshacccg.suprx\n- kubridge.skprx\n- Game Data Files: Android",
+  "size": 1281852,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/62019490d2626f825092d6338b89a20a7d165d0deb9ee68eaf4118e00515bab8.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/31d2a883089af75348faa977603056346c0ff2c212d0c838192e1f001933df15.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/73f91044b709f35acdfadc742c7b78819355fd2dce14ce52ee78ee3e7b920cba.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/1fd994662676015b29e59abbe41f9022106f416e7c865074171b4c2bb45108ce.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/1859b1935c4980d3f6d77ca963c3ce6ed24d72629552aa23316097d30832f59f.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/Rinnegatamante/jetcarstunts_vita/releases/download/v.1.0/jetcarstunts.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/Rinnegatamante/jetcarstunts_vita"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/Rinnegatamante/jetcarstunts_vita/releases"
+    }
+  ]
+}

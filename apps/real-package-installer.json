@@ -1,0 +1,39 @@
+{
+  "id": "real-package-installer",
+  "title_id": "RPKG10031",
+  "name": "Real Package Installer",
+  "description": "A utility to install Package Files onto the PSVita.",
+  "long_description": "A utility to install Package Files onto the PSVita.",
+  "author_ids": [
+    "li"
+  ],
+  "category_id": "utilities",
+  "subcategory_ids": [
+    "installer"
+  ],
+  "version": "1.4",
+  "version_date": "2026-07-01",
+  "requirements": "",
+  "size": 2644676,
+  "status": "Legacy",
+  "icon": "https://robin994.github.io/NeoVitaDB-Catalog/icons/1447-real-package-installer.png",
+  "screenshots": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/LiEnby/real-package-installer/releases/download/1.4/real_package_installer.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/LiEnby/real-package-installer"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/LiEnby/real-package-installer/releases/tag/1.4"
+    }
+  ]
+}

@@ -1,0 +1,39 @@
+{
+  "id": "opensyobon",
+  "title_id": "SYOBONCAT",
+  "name": "OpenSyobon",
+  "description": "Syobon Action (aka Cat Mario) port.",
+  "long_description": "OpenSyobon Vita is a port of Syobon Action (aka NekoMario / CatMario), a frustrating platform game inspired to Super Mario Bros, for PSVITA based on the 3DS port of OpenSyobon by nop90.\nOpenSyobon Vita has a completely reworked audio engine which uses ogg tracks instead of raw ones. This allowed to use better versions of BGM files (for example the Cheetahmen theme is the full one and not just a 15 secs ripped part).",
+  "author_ids": [
+    "rinnegatamante"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "platformer"
+  ],
+  "version": "v.1.0",
+  "version_date": "2017-03-14",
+  "requirements": "",
+  "size": 4185116,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/0015d3bbfba196518679e7ffcefbed87b3e75ccceeb4b14069dd7fcfa09e2412.png",
+  "screenshots": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/201-OpenSyobon.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/Rinnegatamante/OpenSyobon-Vita"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "http://gekihen.customprotocol.com/en/project/OpenSyobon-Vita"
+    }
+  ]
+}

@@ -1,0 +1,44 @@
+{
+  "id": "2ship2harkinian-vita",
+  "title_id": "2SHIP2HAR",
+  "name": "2ship2harkinian Vita",
+  "description": "Port of 2ship2harkinian for PSVita.",
+  "long_description": "2ship2harkinian is a sourceport of The Legend of Zelda: Majora's Mask based off the decompilation efforts of the game. It features several enhancements and mods support. The Vita port is based on version 1.1.2 (Satoko Charlie).",
+  "author_ids": [
+    "rinnegatamante"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "engine-port"
+  ],
+  "version": "v.1.2",
+  "version_date": "2026-05-08",
+  "requirements": "- libshacccg.suprx\n- Game Data Files: N64",
+  "size": 9069083,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/1b2863429f4d3c3f88067fe62dfaa951a2a32c14948cf30ce10e1014d729d249.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/b1e234209a971ff024744ded593ff93ba67274e0fccfea123bb2419fa938a77a.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/1648d3cf2e4a6d39da10f63e361be6d22e50213dcf3de600b8a2f0e763d07f97.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/404fbbaa67ca4d69f05e324c1da99b35b5e0a48e8522ea1f777701b245814ed3.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c5e093fd46c198eb3050d9e4b3dc673a06259c4b4b5fa503b318a9c0c6b0980a.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/Rinnegatamante/2ship2harkinian/releases/download/v.1.2/2ship2harkinian.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/Rinnegatamante/2ship2harkinian"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/Rinnegatamante/2ship2harkinian/releases"
+    }
+  ]
+}

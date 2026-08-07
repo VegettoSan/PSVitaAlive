@@ -1,0 +1,44 @@
+{
+  "id": "vita-backup",
+  "title_id": "VITABUP00",
+  "name": "Vita Backup",
+  "description": "This utility aims to backup and restore VITA specific files (hardware ids, activation data, databases etc) on the go.",
+  "long_description": "This utility aims to backup and restore VITA specific files (hardware ids, activation data, databases etc) on the go.",
+  "author_ids": [
+    "joel16"
+  ],
+  "category_id": "utilities",
+  "subcategory_ids": [
+    "backup"
+  ],
+  "version": "2.00",
+  "version_date": "2018-12-31",
+  "requirements": "",
+  "size": 1264304,
+  "status": "Verified",
+  "icon": "https://robin994.github.io/NeoVitaDB-Catalog/icons/0361-vita-backup.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/4a256a6ea8e30496595115dbe7070df5c4caeb1328bae8f61c6e5ea0cf569373.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/648d5835382f48ec22d61c3eedf95ee64209352dc13c873626e5fa2ced9a0551.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/3a0636f29cc953eb136a8d89074d311decb9904bd8dcb845de4211e2eb05e935.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/6574bbab6b58193affc88c20984a8c51cbd26419e5cb3497463039a8b996358a.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/joel16/VitaBackup/releases/download/2.00/VitaBackup.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/joel16/VitaBackup"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/joel16/VitaBackup/releases/tag/2.00"
+    }
+  ]
+}

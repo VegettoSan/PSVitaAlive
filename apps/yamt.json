@@ -1,0 +1,39 @@
+{
+  "id": "yamt",
+  "title_id": "SKGYAMT01",
+  "name": "YAMT",
+  "description": "Installer for a faster driver for SD2Vita.",
+  "long_description": "Installer for a faster driver for SD2Vita. It mounts SD2Vita as ux0 and memcard (or if not found internal ux0 storage) as uma0.",
+  "author_ids": [
+    "skgleba"
+  ],
+  "category_id": "system",
+  "subcategory_ids": [
+    "storage"
+  ],
+  "version": "v4.0",
+  "version_date": "2020-08-09",
+  "requirements": "",
+  "size": 68071,
+  "status": "Verified",
+  "icon": "https://robin994.github.io/NeoVitaDB-Catalog/icons/0485-yamt.png",
+  "screenshots": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/SKGleba/yamt-vita/releases/download/v4.0/yamt.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/SKGleba/yamt-vita"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/SKGleba/yamt-vita/releases/tag/v4.0"
+    }
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "id": "starkiller-2d",
+  "title_id": "STARKILL0",
+  "name": "StarKiller 2D",
+  "description": "Basic 2D Puzzle Game for PSVITA.",
+  "long_description": "This is a basic & minimalistic 2D puzzle game. The game isn't meant to look pretty with a lot of fancy graphics but further stay in a somewhat \"text-based-adventure-way\".\nThis release has 54 Levels currently and there also is a level editor for even more fun.",
+  "author_ids": [
+    "freakler"
+  ],
+  "category_id": "games",
+  "subcategory_ids": [
+    "puzzle"
+  ],
+  "version": "v.1.00",
+  "version_date": "2017-01-05",
+  "requirements": "",
+  "size": 3486345,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/851e0b5f7ae7dde34b85d6a3bb150d24cc88018246c34ba0beede881c075844b.png",
+  "screenshots": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/101-StarKiller2D.vpk",
+      "recommended": true
+    }
+  ]
+}

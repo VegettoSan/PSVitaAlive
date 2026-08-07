@@ -1,0 +1,43 @@
+{
+  "id": "desert-golfing-vita",
+  "title_id": "GOLFING01",
+  "name": "Desert Golfing Vita",
+  "description": "This is a wrapper/port of Desert Golfing for the PS Vita.",
+  "long_description": "This is a wrapper/port of Desert Golfing for the PS Vita. The port works by loading the official Android ARMv7 executable in memory, resolving its imports with native functions and patching it in order to properly run. By doing so, it's basically as if we emulate a minimalist Android environment in which we run natively the executable as is.",
+  "author_ids": [
+    "rinnegatamante"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.1.0",
+  "version_date": "2024-01-31",
+  "requirements": "- libshacccg.suprx\n- libfmodstudio.suprx\n- kubridge.skprx\n- Game Data Files: Android",
+  "size": 556257,
+  "status": "Legacy",
+  "icon": "https://robin994.github.io/NeoVitaDB-Catalog/icons/1180-desert-golfing-vita.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/8b13a8d0e6759e4827cbd92e337045ab98e0dac65632ca61280038a756dfa129.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/2c26fe813ce17f8819af11751b99e4c4d46ba0b2219753e3b18f5aaaf5ddd971.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/705dce598b4bf445bf026a80bc9d7b4e47a9981f2a6c2a3891138998c164e8ff.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/Rinnegatamante/desertgolfing_vita/releases/download/v.1.0/desertgolfing.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/Rinnegatamante/desertgolfing_vita"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/Rinnegatamante/desertgolfing_vita/releases/tag/v.1.0"
+    }
+  ]
+}

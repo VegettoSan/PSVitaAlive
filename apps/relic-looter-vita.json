@@ -1,0 +1,43 @@
+{
+  "id": "relic-looter-vita",
+  "title_id": "RELICLOOT",
+  "name": "Relic Looter Vita",
+  "description": "This is a wrapper/port of Relic Looter for the PS Vita.",
+  "long_description": "This is a wrapper/port of Relic Looter for the PS Vita.\nThe port works by loading the official Android ARMv7 executable in memory, resolving its imports with native functions and patching it in order to properly run. By doing so, it's basically as if we emulate a minimalist Android environment in which we run natively the executable as it is.",
+  "author_ids": [
+    "rinnegatamante"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.1.0",
+  "version_date": "2025-08-17",
+  "requirements": "- libshacccg.suprx\n- kubridge.skprx\n- Game Data Files: Android",
+  "size": 2720788,
+  "status": "Legacy",
+  "icon": "https://robin994.github.io/NeoVitaDB-Catalog/icons/1314-relic-looter-vita.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/a9aa35f9f4adbb511f27b3987dd3f77f908f24a4905fed14ca6e783484f34357.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/10eff1e175cc39a27d4f44b5a39d432bf34d9f8f1ce6d8eba5b4d14157f3a558.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/d48ceaf496db67626f655851f76b62a697659ae3f2458bf9d68eec966eac8cb6.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/Rinnegatamante/relic-looter-vita/releases/download/v.1.0/relic.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/Rinnegatamante/relic-looter-vita"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/Rinnegatamante/relic-looter-vita/releases/tag/v.1.0"
+    }
+  ]
+}

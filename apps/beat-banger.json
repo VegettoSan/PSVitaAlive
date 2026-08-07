@@ -1,0 +1,38 @@
+{
+  "id": "beat-banger",
+  "title_id": "BEAT33322",
+  "name": "Beat Banger",
+  "description": "Adult rythm game for PSVita.",
+  "long_description": "A port of the adult rhythm game Beat Banger for the PSVita.",
+  "author_ids": [
+    "masteroga"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.0.99",
+  "version_date": "2025-10-07",
+  "requirements": "- Game Data Files: Steam",
+  "size": 17276241,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/3db2bd2e604a08a39e8f2fcc197c6e02658c9817e8019b6500fdfe4cc4199465.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/f8844179fd9272cfe94e969f6a2ed63d24cc7f125f21e9b0e38568fa96506bfe.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/3ab9d650d2aa1ca864f74c0079fcb27277ab8eaa0d6a4086ffc2d24ca545b50b.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/d996dfab7c3845fc0c572dd1a961b60a219b630cc513531a54f90da071cc71e2.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/masteroga101/Beat-Banger-PsVita-/releases/download/v0.99/Beat.Banger.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/masteroga101/Beat-Banger-PsVita-"
+    }
+  ]
+}

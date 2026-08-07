@@ -1,0 +1,39 @@
+{
+  "id": "fishpod",
+  "title_id": "FISHPOD01",
+  "name": "Fishpod",
+  "description": "A platformer game for PSVITA made with GameMaker.",
+  "long_description": "A platformer game for PSVITA made with GameMaker.",
+  "author_ids": [
+    "team789er"
+  ],
+  "category_id": "games",
+  "subcategory_ids": [
+    "platformer"
+  ],
+  "version": "1.0.0",
+  "version_date": "2020-08-30",
+  "requirements": "",
+  "size": 9388768,
+  "status": "Legacy",
+  "icon": "https://robin994.github.io/NeoVitaDB-Catalog/icons/0642-fishpod.png",
+  "screenshots": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/Team789er/Fishpod-the-Platformer/releases/download/1.0.0/fishpod.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/Team789er/Fishpod-the-Platformer"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/Team789er/Fishpod-the-Platformer/releases/tag/1.0.0"
+    }
+  ]
+}

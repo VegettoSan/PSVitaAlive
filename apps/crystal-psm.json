@@ -1,0 +1,41 @@
+{
+  "id": "crystal-psm",
+  "title_id": "ELICRY001",
+  "name": "Crystal PSM",
+  "description": "CrystalPSM installer is a one click installer that downloads and installs PSM runtime for the PS Vita.",
+  "long_description": "CrystalPSM installer is a one click installer that downloads and installs PSM runtime for the PS Vita.\nIt aims to be legal, fast, and sports a modern sleek UI.",
+  "author_ids": [
+    "eli-crystal"
+  ],
+  "category_id": "utilities",
+  "subcategory_ids": [
+    "installer"
+  ],
+  "version": "v2",
+  "version_date": "2025-03-21",
+  "requirements": "",
+  "size": 704087,
+  "status": "Verified",
+  "icon": "https://robin994.github.io/NeoVitaDB-Catalog/icons/0740-crystal-psm.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/2a697cbeb1e21d9b0f134e23e34ceb3e4c3416d18aea7cd1939a639e64d3b8a4.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/EliCrystal2001/CrystalPSM/releases/download/v2/CrystalPSM.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/EliCrystal2001/CrystalPSM"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/EliCrystal2001/CrystalPSM/releases/tag/v2"
+    }
+  ]
+}

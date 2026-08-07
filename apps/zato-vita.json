@@ -1,0 +1,36 @@
+{
+  "id": "zato-vita",
+  "title_id": "ZATO01986",
+  "name": "ZATO Vita",
+  "description": "Port of Z.A.T.O for PSVita.",
+  "long_description": "Port of Z.A.T.O. // I Love the World and Everything In It for PSVita.\nThis is a visual novel made in RenPy.",
+  "author_ids": [
+    "zfhuang"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.1.00",
+  "version_date": "2026-02-08",
+  "requirements": "- Game Data Files: Steam",
+  "size": 21298478,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/da7da22248abfeca2796221f7f28db2d4ae1521186382ad4a0fb562e4d76bf01.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/9320de0550e24f5cfba781872705d26f2e75973dc5a507c26a893193aadb8a90.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/ZFhuang/ZATO-vita/releases/download/v01_00/Z.A.T.O.I.Love.the.World.and.Everything.In.It-01.00.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/ZFhuang/ZATO-vita"
+    }
+  ]
+}

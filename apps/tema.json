@@ -1,0 +1,40 @@
+{
+  "id": "tema",
+  "title_id": "TEMA00001",
+  "name": "Tema",
+  "description": "Download Livearea/VitaShell themes from your PSVITA.",
+  "long_description": "Tema allows you to download themes directly through your PSVita web browser.\nSimilar to the way VPKMirror Direct Installer works.",
+  "author_ids": [
+    "mithrenes",
+    "xamthor"
+  ],
+  "category_id": "networking",
+  "subcategory_ids": [
+    "web-browser"
+  ],
+  "version": "v.2.1",
+  "version_date": "2023-02-06",
+  "requirements": "",
+  "size": 1934139,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/9b3cd5d5c5c42d77fd7c9eb55864aa3e5cb5af43b136d3a171e3fc8aa7d95d3d.png",
+  "screenshots": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/73-tema.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/xamthor/Tema"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://vstema.com/tema"
+    }
+  ]
+}

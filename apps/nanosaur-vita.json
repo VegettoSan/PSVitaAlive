@@ -1,0 +1,44 @@
+{
+  "id": "nanosaur-vita",
+  "title_id": "NANOSAUR1",
+  "name": "Nanosaur Vita",
+  "description": "Port of Nanosaur for PSVITA.",
+  "long_description": "Nanosaur is a science fiction third-person shooter video game developed by Pangea Software and published by Ideas From the Deep for Mac OS 9 and Microsoft Windows. The player takes on the form of a Nanosaur, a genetically engineered intelligent dinosaur from the future, sent back in time just prior to the Cretaceous-Paleogene extinction event.",
+  "author_ids": [
+    "rinnegatamante"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "fps"
+  ],
+  "version": "v.1.0",
+  "version_date": "2022-08-17",
+  "requirements": "- libshacccg.suprx",
+  "size": 1698368,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/c6e4648d2e899d321e08ad999b3fbd068c700acab036e40e6a7aa06ca4489cd6.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/7b9bf1eb89b50ad952ec83185534971fa257339abb4c5b7bd2973f32dd6924e6.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/41e6643b85125f7fc22e22907df355119253e47c559d80a5a9982f0c501f6c18.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/8ebf5eaeb939487ccbf12bbe1ec86cc9a242bd3b5a618a4a135ca37898676ce6.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/36d0495ec73feeec8c87fcbe09191df95da533ed16284ebf8baf9d6f93a22027.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/851-Nanosaur.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/Rinnegatamante/Nanosaur"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://www.psx-place.com/threads/release-nanosaur-vita-v-1-0-port-of-nanosaur-for-psvita.38129/"
+    }
+  ]
+}

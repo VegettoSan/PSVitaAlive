@@ -1,0 +1,44 @@
+{
+  "id": "vitaquake",
+  "title_id": "QUAK00001",
+  "name": "vitaQuake",
+  "description": "Quake I port.",
+  "long_description": "vitaQuake is a port of Quake for PSVITA. It's based on glQuake but has several features from different source ports such as ProQuake and similars.\nAt the moment vitaQuake has unique features like Dualshock rumbling when player get hit, an fps counter. It supports also double analogs for comfortable gameplay, online and locale multiplayer with featured servers, soundtracks support, sounds support and a lot more stuffs.",
+  "author_ids": [
+    "rinnegatamante"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "fps"
+  ],
+  "version": "v.4.2",
+  "version_date": "2025-01-22",
+  "requirements": "- libshacccg.suprx",
+  "size": 2281315,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/9d7c2ecf8d9fffaf98f4e6b191878c3a2eee39dc2d556838053bd006f61b3c66.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/439b029308191ea333ae11a513516cbc7802a0cbbb948917f90be57454147fd5.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/78c495ce0599f8466d2c4c095234adc4fb39ce6338ad03b0c120458e0616e7a7.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/89366fb550b8c345462441f9be533150ebcf7b642db96f5d714156c2d973eb8a.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c66f52ffaf0c24ac2a659231677dab01e1da771fa0b922f2212442da04579860.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/10-vitaQuake.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/Rinnegatamante/vitaQuake"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "http://wololo.net/talk/viewtopic.php?f=116&t=46185"
+    }
+  ]
+}

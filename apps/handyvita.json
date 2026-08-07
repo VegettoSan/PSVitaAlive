@@ -1,0 +1,44 @@
+{
+  "id": "handyvita",
+  "title_id": "FRAN00002",
+  "name": "HandyVITA",
+  "description": "Atari Linx emulator.",
+  "long_description": "The first Atari Linx emulator for the PSVita.\nBased on Libretro Handy core.",
+  "author_ids": [
+    "frangarcj"
+  ],
+  "category_id": "emulators",
+  "subcategory_ids": [
+    "atari"
+  ],
+  "version": "v.1.4",
+  "version_date": "2016-07-29",
+  "requirements": "",
+  "size": 233504,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/f5a28a91017c0ad6d3145d5de71eef8ac18260cb7b96d8fd7ca2e288be1d1fad.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/273b5c51fe87c4906272d7af314346833eb288d8bfa461ec74f04e3fa3fcc456.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/902b8fa1b662e3592cab949791f72144b82989c0559fb91baf412f6285e90f43.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/5a0b895051e3783690143d6cfa1f586b92e5f3f69863bc9aa20f755844de2a34.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/adf9c3ec512cc52429ea1e8d06e73cbd881f884bf16166d4920def383a3fa120.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/frangarcj/HandyVITA/releases/download/1.4-Henkaku/HandyVITA.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/frangarcj/HandyVITA"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/frangarcj/HandyVITA/releases"
+    }
+  ]
+}

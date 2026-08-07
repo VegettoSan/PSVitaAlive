@@ -1,0 +1,44 @@
+{
+  "id": "pingo",
+  "title_id": "GRZB00003",
+  "name": "Pingo",
+  "description": "Puzzle game for PSVITA.",
+  "long_description": "Pingo is a puzzle game in which your goal is to paint the whole level in as little steps as possible. Try to earn 3 stars in 60 hand crafted levels!",
+  "author_ids": [
+    "grzybojad"
+  ],
+  "category_id": "games",
+  "subcategory_ids": [
+    "puzzle"
+  ],
+  "version": "v.2.1",
+  "version_date": "2019-09-03",
+  "requirements": "",
+  "size": 8404175,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/67036f0ecf23fe129d1ee9cc3c05f18859116ec28a4ce0f4421cd5cadd701076.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/7e4573afd391a9a1682251e98e999ca71bf178c1ed95cab9ce69bc4f83d5ee35.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/f49c3ec0c1da725b49de4158a8e673afdbf39a8ad2876d1009598ae849b0d609.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/04ea0adb9bcc574f1cf3309a400fb5cfc2eb84d74103dfe79819e6775aabc0d6.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/ac6f49112157bf7679f81b42ba1304f58c528fb3a99336e413e38b68b8ad2c29.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/Grzybojad/Pingo/releases/download/2.1/Pingo.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/Grzybojad/Pingo"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/Grzybojad/Pingo/releases"
+    }
+  ]
+}

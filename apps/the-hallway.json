@@ -1,0 +1,37 @@
+{
+  "id": "the-hallway",
+  "title_id": "PTVT45668",
+  "name": "The Hallway",
+  "description": "P.T. clone for PSVITA.",
+  "long_description": "This game is a recreation of P.T. demo. It's a complete recreation of the original with handmade 3d models and environments created as close as possible to original.",
+  "author_ids": [
+    "vitahex-games"
+  ],
+  "category_id": "demos",
+  "subcategory_ids": [
+    "tech-demo"
+  ],
+  "version": "v.1.0.1",
+  "version_date": "2020-09-05",
+  "requirements": "",
+  "size": 114002075,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/c385a2a2003d4f4b1baad91900d0e7435007dc1cfb795eb99b671d2d358689c6.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/cc9cd2df072fac9bb6a5ba09b0e9382ed76a4ac41789c408812a79555c68c718.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/757bf4e40600c996e3b896180f4d409be822a800f99132124a50ddd86d77581c.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/428-TheHallway.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "http://wololo.net/talk/viewtopic.php?f=116&t=49690"
+    }
+  ]
+}

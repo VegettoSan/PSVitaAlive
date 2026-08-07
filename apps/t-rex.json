@@ -1,0 +1,36 @@
+{
+  "id": "t-rex",
+  "title_id": "GNS111111",
+  "name": "T-Rex",
+  "description": "Remake of T-Rex by Google.",
+  "long_description": "A remake of the T-Rex minigame made by Google.",
+  "author_ids": [
+    "toni-dumancic"
+  ],
+  "category_id": "games",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.1.0",
+  "version_date": "2021-06-05",
+  "requirements": "",
+  "size": 3082595,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/7f439c0cc82e7a12907fb1693fe1c62c6a8f939cca220f48b56620f548d2c5a6.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/1cd2e24a4bb455d053fcc962faf648fe26475c3187fc8f7d52dc777f97ef704d.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/687-trex.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://kyuhen.customprotocol.com/en/submissions/trex/"
+    }
+  ]
+}

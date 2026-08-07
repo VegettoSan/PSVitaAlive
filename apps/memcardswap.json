@@ -1,0 +1,29 @@
+{
+  "id": "memcardswap",
+  "title_id": "MEMCRDSWP",
+  "name": "memcardswap",
+  "description": "Helps during MC swap process.",
+  "long_description": "memcardswap just deletes ux0:/id.dat from the memory stick and replaces it with an empty one. This tricks the PS Vita into believing the memory card is new and therefore does not need to be formatted. Next time the card is inserted in a Vita, id.dat will be re-generated for the current account, without formatting anything.",
+  "author_ids": [
+    "namelessghoul0"
+  ],
+  "category_id": "system",
+  "subcategory_ids": [
+    "account"
+  ],
+  "version": "v.1.2",
+  "version_date": "2016-09-02",
+  "requirements": "",
+  "size": 62816,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/a929749d2cda578445b702099bff4d172c67f5c5194b621a001dddaf4c4f5d6d.png",
+  "screenshots": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/175-memcardswap.vpk",
+      "recommended": true
+    }
+  ]
+}

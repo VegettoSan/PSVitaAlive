@@ -1,0 +1,36 @@
+{
+  "id": "deathrun-to-vita",
+  "title_id": "DRSS00001",
+  "name": "DeathRun To Vita",
+  "description": "2D Platformer for PSVITA.",
+  "long_description": "A simple 2D Platformer for PSVITA/PSTV.",
+  "author_ids": [
+    "vektast"
+  ],
+  "category_id": "games",
+  "subcategory_ids": [
+    "platformer"
+  ],
+  "version": "Build 531",
+  "version_date": "2016-08-18",
+  "requirements": "",
+  "size": 2023040,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/8a11067d0bfa05f50645744c065dceb90592abf75f3f2cd04969d614a5c0e007.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/65b763a01249810c96c07a735c1aee649dccfbb0f02a2698feb308934e8883e7.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/253-DeathRun.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "http://wololo.net/talk/viewtopic.php?t=46567"
+    }
+  ]
+}

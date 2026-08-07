@@ -1,0 +1,34 @@
+{
+  "id": "x-racer",
+  "title_id": "PLSP00001",
+  "name": "X-Racer",
+  "description": "Port of X-Racer for PSVITA.",
+  "long_description": "X-Racer is an endless arcade race game originally created by Deer Cat.",
+  "author_ids": [
+    "parkinglotstudio"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.1.0",
+  "version_date": "2020-09-19",
+  "requirements": "",
+  "size": 40557290,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/683f806b48bd184c5efcca06ec283792332dbedd7dc57c4a7e4f53321c9d7946.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/761856b4399faa789ef259ca98c043970d0ab6ae75e1391a5f12470191166cde.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/cb60a9c4083542a5375f19f57b19d91906ba53e207a64c46425b1fb415c606aa.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/bff827ff48ceec6285f9eae20a023415829d2dcf44a5901a6d822bfd39ae2312.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/0f0c920fc5151c7fdd8f653a6f544069999c9f727410e17c8b4f3388f57ba76b.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/581-X-Racer.vpk",
+      "recommended": true
+    }
+  ]
+}

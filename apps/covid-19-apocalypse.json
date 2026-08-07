@@ -1,0 +1,44 @@
+{
+  "id": "covid-19-apocalypse",
+  "title_id": "COVID19AP",
+  "name": "Covid 19 Apocalypse",
+  "description": "8 bit style point-and-shoot game.",
+  "long_description": "The year is 2521, Covid 19 has evolved into a demonic form sort of like the pink ogre creature from Doom but not as good. You are the last hope for mankind.\nThis game is \"in the style of\" the Commodore 64, with similar sounds, colour palette and resolution.\nIt's a 8 bit style point-and-shoot game based on a Covid-19 Apocalypse Theme.",
+  "author_ids": [
+    "gremlin-software"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "fps"
+  ],
+  "version": "v.1.0",
+  "version_date": "2021-10-29",
+  "requirements": "",
+  "size": 1764631,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/7ba40e0c954a68e60fadc5797925dc93197d6c353a7531f1ead31bbee96d0fcf.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/6609c3a869ae6b9d6942af01bd89b7d794c8160de102b75d04a250662bcfc2ff.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/bdb94d9f2f9c4bd62704df06d61a7a0900cc0a6e9ffb60ab7280d1ba46bc168b.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c0d8e01f89dbe90217e64699482d123412fd360cac0d0c02cff95fa10519e02d.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/137eb2e50e791763ff0a5f3888e3c7c26dc23993c5834dd855fec59a2e64c145.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/softwaregremlin/Covid-19-Apocalypse/releases/download/v1%2C0/covid19Apocalypse.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/softwaregremlin/Covid-19-Apocalypse"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/softwaregremlin/Covid-19-Apocalypse/releases"
+    }
+  ]
+}

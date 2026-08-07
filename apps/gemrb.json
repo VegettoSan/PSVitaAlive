@@ -1,0 +1,41 @@
+{
+  "id": "gemrb",
+  "title_id": "GEMRB0001",
+  "name": "GemRB",
+  "description": "GemRB is a portable open-source implementation of BiowareÃ¢â‚¬â„¢s 8 Infinity Engine versions allowing to run the BaldurÃ¢â‚¬â„¢s Gate, Icewind Dale and...",
+  "long_description": "GemRB is a portable open-source implementation of BiowareÃ¢â‚¬â„¢s 8 Infinity Engine versions allowing to run the BaldurÃ¢â‚¬â„¢s Gate, Icewind Dale and Planescape: Torment games, their expansions and mods.",
+  "author_ids": [
+    "northfear"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "engine-port"
+  ],
+  "version": "v0.8.8-vita.7",
+  "version_date": "2021-09-01",
+  "requirements": "- Game Data Files: PC",
+  "size": 4949129,
+  "status": "Verified",
+  "icon": "https://robin994.github.io/NeoVitaDB-Catalog/icons/0572-gemrb.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/f747895d3bb3c0b29ceb71cec5a893c862b3398d1da66eece98404d1e537dad0.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/Northfear/gemrb-vita/releases/download/v0.8.8-vita.7/gemrb.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/Northfear/gemrb-vita"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/Northfear/gemrb-vita/releases/tag/v0.8.8-vita.7"
+    }
+  ]
+}

@@ -1,0 +1,39 @@
+{
+  "id": "idu-mode",
+  "title_id": "XYZZ00003",
+  "name": "idu-mode",
+  "description": "Enables or disables IDU (Demo) mode.",
+  "long_description": "App for your HENkaku-enabled PS Vita that lets you enable the Demo mode. \nThe Demo mode of the PSVita gives you access to more options, in particular the Package Installer. \nThe Package Installer can be used to install DRM Free official Vita apps (such as DRM free Demos, or apps like Netflix, etc...)\nPlease don't use this homebrew (and Demo mode) unless you know what you're doing because your PSVita could potentially automatically upgrade the FW if you're connected to WiFi.",
+  "author_ids": [
+    "xyzz"
+  ],
+  "category_id": "demos",
+  "subcategory_ids": [
+    "tech-demo"
+  ],
+  "version": "v.1.0",
+  "version_date": "2016-08-17",
+  "requirements": "",
+  "size": 51620,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/18746b487153dc1ca3d728ce57b841b6e8faeca65a0900aa46864f73d07642c8.png",
+  "screenshots": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/xyzz/vita-idu/releases/download/1.0/idu-mode.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/xyzz/vita-idu"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "http://wololo.net/2016/08/18/release-vita-idu-convert-vita-demo-mode-adds-cool-options/"
+    }
+  ]
+}

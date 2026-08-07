@@ -1,0 +1,31 @@
+{
+  "id": "vitabooks",
+  "title_id": "VITABOOKS",
+  "name": "VitaBooks",
+  "description": "Manual reader for PSVITA.",
+  "long_description": "VitaBooks is a manual/books reader in PNG format.",
+  "author_ids": [
+    "benmitnick"
+  ],
+  "category_id": "media",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.1.0",
+  "version_date": "2017-06-15",
+  "requirements": "",
+  "size": 2140210,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/cad52ed32f95e110bb8534f8b664e109d22185a7d2a0395be00e4c40b321c0b8.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/f29fa64782a1968fec90de5fac4ba4824f97b543ad0bb41d8e72927d167a9c34.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/274-VitaBooks.vpk",
+      "recommended": true
+    }
+  ]
+}

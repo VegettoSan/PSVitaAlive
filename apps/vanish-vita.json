@@ -1,0 +1,38 @@
+{
+  "id": "vanish-vita",
+  "title_id": "NISH12345",
+  "name": "Vanish Vita",
+  "description": "Port of Vanish for PSVITA.",
+  "long_description": "Step into VANISH, an indie horror game testing your sanity in a labyrinth of unknown. Navigate shadowy corridors, outsmart lurking terrors, and uncover the path to freedom. Will you survive, or succumb to unspeakable horrors? Prepare for the ultimate test in this free indie horror. Vanish may be the most horrifiying experience of first person horror game on the Playstation Vita.",
+  "author_ids": [
+    "maloneczsd"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "Beta",
+  "version_date": "2024-07-30",
+  "requirements": "",
+  "size": 73348351,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/bba0e0ab859f3161b5c3e6ecaaab30aed545443dcc895ac502c66de35780cc9f.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/275d0b60ac82e8c5fd1ee3c8d4a8ffa5d9d6bfc856e6811e5c3d346cac669193.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/8a20d577b4abea8c70228706c0a88031fe445d2e65b0b1818fe2545b44cc6610.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/2542041dc93db0a7b9e72b1486581a3ea10bc16c1f3536602b5ea58f55a65034.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/MaloneCZSD/VanishVita/releases/download/Beta/VanishB16.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/malone46/VanishVita"
+    }
+  ]
+}

@@ -1,0 +1,39 @@
+{
+  "id": "milkytracker-vita",
+  "title_id": "MILKTRACK",
+  "name": "MilkyTracker Vita",
+  "description": "FT2 compatible music tracker.",
+  "long_description": "Port of MilkyTracker for PSVita.\nMilkyTracker is an multi-platform music application for creating .MOD and .XM module files. It attempts to recreate the module replay and user experience of the popular DOS program Fasttracker II, with special playback modes available for improved Amiga ProTracker 2/3 compatibility.",
+  "author_ids": [
+    "morc"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "platformer"
+  ],
+  "version": "v.1.03",
+  "version_date": "2023-06-19",
+  "requirements": "",
+  "size": 1722901,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/9a5f110d854baf1660be24a1e920a4ad6487e3609581627a2e7b4b2712e49b17.png",
+  "screenshots": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/TheMorc/MilkyTrackerVita/releases/download/1.03/MilkyTracker.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/TheMorc/MilkyTrackerVita"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "https://github.com/TheMorc/MilkyTrackerVita/releases"
+    }
+  ]
+}

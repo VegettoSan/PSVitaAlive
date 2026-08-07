@@ -1,0 +1,34 @@
+{
+  "id": "super-hexagon-vita",
+  "title_id": "SHXV00001",
+  "name": "Super Hexagon Vita",
+  "description": "Port of Super Hexagon for PSVita.",
+  "long_description": "A homebrew .so-loader port of Super Hexagon (Android) to the PlayStation Vita.",
+  "author_ids": [
+    "mcallbosco"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.1.0",
+  "version_date": "2026-06-07",
+  "requirements": "- libshacccg.suprx\n- kubridge.skprx\n- Game Data Files: Android",
+  "size": 1910439,
+  "status": "Legacy",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/b869a9bd36f6ffdaf8c7620845cbb2ac111a78728f7b059c39129c3cb65ea363.png",
+  "screenshots": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1408-superhexagon_vita.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/mcallbosco/super-hexagon-vita"
+    }
+  ]
+}

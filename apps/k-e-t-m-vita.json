@@ -1,0 +1,43 @@
+{
+  "id": "k-e-t-m-vita",
+  "title_id": "KETM00001",
+  "name": "K.E.T.M. Vita",
+  "description": "K.E.T.M. port for PSVITA.",
+  "long_description": "This is the PSVITA port of K.E.T.M. (Kill Everything That Moves) , a fast paced 2D shooter.\nThe game is available with the original game style and 4 mods (1941, Star Wars, Iron man, Mario Kart). The Game mode is selectable at startup",
+  "author_ids": [
+    "rinnegatamante"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "fps"
+  ],
+  "version": "v.1.0",
+  "version_date": "2017-12-29",
+  "requirements": "",
+  "size": 996832,
+  "status": "Verified",
+  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/81279a9ef9582c07b2d42ffb0736e71191d04abb6d5e455ca9df465a4fcb4cb0.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/aa9e6646754311e44f8ed67c6e9373847d53818124a8225738b73f490c49b4dd.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/16fc8ceff57f543329f608c1f53095526912c04ac65b45d6b6c84f37f525c4e3.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/cb03d2dc49ebc4f86b9f4f5213132f9336a41fe8ec2d94d412809b807477ab09.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "Descarga principal",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/356-KETM.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/Rinnegatamante/K.E.T.M.-Vita"
+    },
+    {
+      "type": "Other",
+      "name": "Release",
+      "url": "http://wololo.net/talk/viewtopic.php?f=116&t=48784"
+    }
+  ]
+}
