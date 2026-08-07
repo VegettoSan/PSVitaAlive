@@ -13,7 +13,7 @@
   ],
   "version": "v1.2.3",
   "version_date": "2021-09-16",
-  "requirements": "",
+  "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
   "size": 82065242,
   "status": "Verified",
   "icon": "https://robin994.github.io/NeoVitaDB-Catalog/icons/0670-ddlc-love.png",

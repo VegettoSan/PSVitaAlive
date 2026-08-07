@@ -13,7 +13,7 @@
   ],
   "version": "v1.0.0-stable",
   "version_date": "2026-03-29",
-  "requirements": "",
+  "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
   "size": 45144796,
   "status": "Legacy",
   "icon": "https://robin994.github.io/NeoVitaDB-Catalog/icons/1376-vitawave.png",

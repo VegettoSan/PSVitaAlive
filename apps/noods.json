@@ -13,7 +13,7 @@
   ],
   "version": "release",
   "version_date": "2026-08-03",
-  "requirements": "",
+  "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
   "size": 1723115,
   "status": "Verified",
   "icon": "https://robin994.github.io/NeoVitaDB-Catalog/icons/1093-noods.png",

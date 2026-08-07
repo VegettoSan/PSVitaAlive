@@ -13,7 +13,7 @@
   ],
   "version": "v.BlockOut_II_PSVITA_2.5",
   "version_date": "2017-02-20",
-  "requirements": "",
+  "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
   "size": 6133397,
   "status": "Verified",
   "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/cfcd39dca798b5462938a9288699256991790f928f6f356510798963323ebc9c.png",

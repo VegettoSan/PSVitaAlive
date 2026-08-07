@@ -13,7 +13,7 @@
   ],
   "version": "3.0.0-SDL3",
   "version_date": "2025-01-28",
-  "requirements": "",
+  "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
   "size": 5581607,
   "status": "Verified",
   "icon": "https://robin994.github.io/NeoVitaDB-Catalog/icons/1279-opentyrian2000.png",

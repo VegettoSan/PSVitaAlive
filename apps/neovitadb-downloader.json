@@ -14,7 +14,7 @@
   ],
   "version": "v.2.8.1",
   "version_date": "2026-08-04",
-  "requirements": "",
+  "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
   "size": 3936712,
   "status": "Verified",
   "icon": "https://robin994.github.io/NeoVitaDB-Catalog/icons/0001-neovitadb-downloader.png",

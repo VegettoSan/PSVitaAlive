@@ -13,7 +13,7 @@
   ],
   "version": "2.00",
   "version_date": "2018-12-31",
-  "requirements": "",
+  "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
   "size": 1264304,
   "status": "Verified",
   "icon": "https://robin994.github.io/NeoVitaDB-Catalog/icons/0361-vita-backup.png",

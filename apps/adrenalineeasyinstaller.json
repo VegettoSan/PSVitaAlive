@@ -13,7 +13,7 @@
   ],
   "version": "v1.15",
   "version_date": "2017-06-22",
-  "requirements": "",
+  "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
   "size": 6646381,
   "status": "Verified",
   "icon": "https://robin994.github.io/NeoVitaDB-Catalog/icons/0036-adrenalineeasyinstaller.png",

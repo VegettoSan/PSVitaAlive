@@ -13,7 +13,7 @@
   ],
   "version": "v3.0",
   "version_date": "2020-01-12",
-  "requirements": "",
+  "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
   "size": 2455900,
   "status": "Verified",
   "icon": "https://robin994.github.io/NeoVitaDB-Catalog/icons/0400-vitagrafix-configurator.png",

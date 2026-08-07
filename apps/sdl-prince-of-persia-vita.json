@@ -13,7 +13,7 @@
   ],
   "version": "vita-1.7",
   "version_date": "2019-10-13",
-  "requirements": "",
+  "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
   "size": 999627,
   "status": "Verified",
   "icon": "https://robin994.github.io/NeoVitaDB-Catalog/icons/0012-sdl-prince-of-persia-vita.png",

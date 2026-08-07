@@ -13,7 +13,7 @@
   ],
   "version": "picoloop-0.77b",
   "version_date": "2017-04-21",
-  "requirements": "",
+  "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
   "size": 12429361,
   "status": "Verified",
   "icon": "https://robin994.github.io/NeoVitaDB-Catalog/icons/0191-picoloop.png",

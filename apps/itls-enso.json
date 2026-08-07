@@ -13,7 +13,7 @@
   ],
   "version": "v3.2.1",
   "version_date": "2023-01-17",
-  "requirements": "",
+  "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
   "size": 2873670,
   "status": "Verified",
   "icon": "https://robin994.github.io/NeoVitaDB-Catalog/icons/0404-itls-enso.png",

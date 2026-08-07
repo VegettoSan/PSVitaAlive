@@ -14,7 +14,7 @@
   ],
   "version": "v0.5.1",
   "version_date": "2026-08-02",
-  "requirements": "",
+  "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
   "size": 1661963,
   "status": "Legacy",
   "icon": "https://robin994.github.io/NeoVitaDB-Catalog/icons/0393-bstone-vita.png",

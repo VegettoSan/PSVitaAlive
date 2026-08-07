@@ -13,7 +13,7 @@
   ],
   "version": "v.1.0",
   "version_date": "2022-07-07",
-  "requirements": "",
+  "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
   "size": 4567773,
   "status": "Verified",
   "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/85a6e5a322e82766d13800c39820576a6f108b1e4b3077e58f72d6638035fcb5.png",

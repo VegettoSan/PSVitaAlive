@@ -13,7 +13,7 @@
   ],
   "version": "v2.10",
   "version_date": "2019-07-17",
-  "requirements": "",
+  "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
   "size": 2440427,
   "status": "Verified",
   "icon": "https://robin994.github.io/NeoVitaDB-Catalog/icons/0447-elevenmpv.png",
