@@ -164,37 +164,103 @@ function getAuthorApplications(
     }
 
 
-    return VitaHubData.catalog.filter(
-        app => {
+    const applications =
+        VitaHubData.catalog.filter(
+            app => {
 
-            /*
-             * Current VitaHub architecture
-             * supports multiple authors.
-             */
+                /*
+                 * Current VitaHub architecture
+                 * supports multiple authors.
+                 */
+
+                if (
+                    Array.isArray(
+                        app.author_ids
+                    )
+                ) {
+
+                    return app.author_ids.includes(
+                        authorId
+                    );
+
+                }
+
+
+                /*
+                 * Compatibility with older
+                 * single-author entries.
+                 */
+
+                return (
+                    app.author_id === authorId
+                );
+
+            }
+        );
+
+
+    /*
+     * Newest / recently updated first.
+     */
+
+    applications.sort(
+        (a, b) => {
+
+            const dateA =
+                new Date(
+                    a.version_date || 0
+                ).getTime();
+
+
+            const dateB =
+                new Date(
+                    b.version_date || 0
+                ).getTime();
+
+
+            const validA =
+                Number.isFinite(
+                    dateA
+                ) && dateA > 0;
+
+
+            const validB =
+                Number.isFinite(
+                    dateB
+                ) && dateB > 0;
+
 
             if (
-                Array.isArray(
-                    app.author_ids
-                )
+                !validA &&
+                validB
             ) {
-
-                return app.author_ids.includes(
-                    authorId
-                );
+                return 1;
             }
 
 
-            /*
-             * Compatibility with older
-             * single-author entries.
-             */
+            if (
+                validA &&
+                !validB
+            ) {
+                return -1;
+            }
 
-            return (
-                app.author_id === authorId
-            );
+
+            if (
+                !validA &&
+                !validB
+            ) {
+                return 0;
+            }
+
+
+            return dateB - dateA;
 
         }
     );
+
+
+    return applications;
 
 }
 

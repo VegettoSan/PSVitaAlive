@@ -9,7 +9,7 @@
 ======================================== */
 
 .author-page {
-    padding: 48px 0 80px;
+    padding: 28px 0 90px;
 }
 
 
@@ -29,7 +29,7 @@
 
     margin: 0 auto;
 
-    padding: 80px 20px;
+    padding: 90px 20px;
 
     text-align: center;
 }
@@ -47,7 +47,7 @@
 
     color: var(--accent);
 
-    font-weight: 700;
+    font-weight: 800;
 
     text-decoration: none;
 }
@@ -59,38 +59,141 @@
 
 
 /* ========================================
-   Author Profile
+   Back
 ======================================== */
 
-.author-profile {
-    display: grid;
+.author-back {
+    margin-bottom: 20px;
+}
 
-    grid-template-columns: 180px minmax(0, 1fr);
 
-    gap: 32px;
+.author-back a {
+    display: inline-flex;
 
-    padding: 32px;
+    align-items: center;
+
+    min-height: 38px;
+
+    padding: 8px 13px;
 
     background: var(--surface);
 
     border: 1px solid var(--border);
 
+    border-radius: 7px;
+
+    color: #a0a0a0;
+
+    font-size: 0.8rem;
+
+    font-weight: 800;
+
+    text-decoration: none;
+
+    transition:
+        color 0.2s ease,
+        border-color 0.2s ease,
+        background 0.2s ease;
+}
+
+
+.author-back a:hover {
+    color: var(--accent);
+
+    border-color: var(--accent);
+
+    background: var(--surface-hover);
+}
+
+
+/* ========================================
+   Author Profile
+======================================== */
+
+.author-profile {
+    position: relative;
+
+    display: grid;
+
+    grid-template-columns:
+        190px minmax(0, 1fr);
+
+    gap: 34px;
+
+    padding: 36px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(55, 55, 55, 0.95),
+            rgba(38, 38, 38, 0.95)
+        );
+
+    border: 1px solid var(--border);
+
     border-radius: var(--radius);
+
+    overflow: hidden;
+}
+
+
+/*
+ * Green accent line
+ */
+
+.author-profile::before {
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    left: 0;
+    right: 0;
+
+    height: 3px;
+
+    background: var(--accent);
+}
+
+
+/* ========================================
+   Avatar
+======================================== */
+
+.author-avatar-wrapper {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
 }
 
 
 .author-avatar {
     width: 180px;
-
     height: 180px;
 
     overflow: hidden;
 
     background: var(--surface-hover);
 
-    border: 1px solid var(--border);
+    border: 2px solid #6e6e6e;
 
     border-radius: 50%;
+
+    box-shadow:
+        0 0 0 6px rgba(
+            59,
+            255,
+            0,
+            0.035
+        ),
+        0 12px 35px rgba(
+            0,
+            0,
+            0,
+            0.3
+        );
 }
 
 
@@ -103,6 +206,10 @@
     object-fit: cover;
 }
 
+
+/* ========================================
+   Profile information
+======================================== */
 
 .author-profile-info {
     min-width: 0;
@@ -117,31 +224,54 @@
 }
 
 
+.author-label {
+    display: inline-block;
+
+    margin-bottom: 10px;
+
+    color: var(--accent);
+
+    font-size: 0.7rem;
+
+    font-weight: 900;
+
+    letter-spacing: 0.16em;
+
+    text-transform: uppercase;
+}
+
+
 .author-profile-info h1 {
-    margin: 0 0 12px;
+    margin: 0;
+
+    color: #ffffff;
 
     font-size: clamp(
-        2rem,
+        2.4rem,
         5vw,
-        3rem
+        4rem
     );
 
-    line-height: 1.05;
+    font-weight: 900;
+
+    line-height: 0.98;
+
+    letter-spacing: -0.05em;
+
+    overflow-wrap: anywhere;
 }
 
 
 .author-bio {
     max-width: 760px;
 
-    margin: 0;
+    margin: 18px 0 0;
 
-    color: #ffffff;
+    color: #a0a0a0;
 
-    font-size: 1.05rem;
+    font-size: 0.98rem;
 
-    font-weight: 600;
-
-    line-height: 1.7;
+    line-height: 1.75;
 }
 
 
@@ -156,7 +286,7 @@
 
     gap: 10px;
 
-    margin-top: 20px;
+    margin-top: 24px;
 }
 
 
@@ -165,33 +295,42 @@
 
     align-items: center;
 
+    justify-content: center;
+
     min-height: 40px;
 
     padding: 8px 15px;
 
-    background: var(--surface-hover);
+    background: #373737;
 
-    border: 1px solid var(--border);
+    border: 1px solid #6e6e6e;
 
-    border-radius: 8px;
+    border-radius: 7px;
 
     color: #ffffff;
 
-    font-weight: 700;
+    font-size: 0.8rem;
+
+    font-weight: 800;
 
     text-decoration: none;
 
     transition:
-        border-color 0.2s ease,
         color 0.2s ease,
-        background 0.2s ease;
+        border-color 0.2s ease,
+        background 0.2s ease,
+        transform 0.2s ease;
 }
 
 
 .author-link:hover {
-    border-color: var(--accent);
+    transform: translateY(-2px);
 
     color: var(--accent);
+
+    border-color: var(--accent);
+
+    background: #3e3e3e;
 }
 
 
@@ -202,20 +341,14 @@
 
     color: #000000;
 
-    font-weight: 800;
+    font-weight: 900;
 
     box-shadow:
-        0 0 0 1px rgba(
-            59,
-            255,
-            0,
-            0.25
-        ),
         0 0 18px rgba(
             59,
             255,
             0,
-            0.25
+            0.18
         );
 }
 
@@ -223,22 +356,18 @@
 .author-link.recommended:hover {
     background: #ffffff;
 
-    border-color: var(--accent);
+    border-color: #ffffff;
 
     color: #000000;
 
+    transform: translateY(-2px);
+
     box-shadow:
-        0 0 0 1px rgba(
-            59,
-            255,
-            0,
-            0.4
-        ),
         0 0 24px rgba(
             59,
             255,
             0,
-            0.4
+            0.25
         );
 }
 
@@ -248,9 +377,9 @@
 ======================================== */
 
 .author-applications {
-    margin-top: 32px;
+    margin-top: 28px;
 
-    padding: 28px;
+    padding: 30px;
 
     background: var(--surface);
 
@@ -263,7 +392,7 @@
 .section-heading {
     display: flex;
 
-    align-items: center;
+    align-items: flex-end;
 
     justify-content: space-between;
 
@@ -273,37 +402,65 @@
 }
 
 
+.section-label {
+    display: block;
+
+    margin-bottom: 7px;
+
+    color: var(--accent);
+
+    font-size: 0.7rem;
+
+    font-weight: 900;
+
+    letter-spacing: 0.14em;
+
+    text-transform: uppercase;
+}
+
+
 .section-heading h2 {
     margin: 0;
 
-    font-size: 1.5rem;
+    color: #ffffff;
+
+    font-size: 1.55rem;
+
+    font-weight: 900;
+
+    letter-spacing: -0.025em;
 }
 
 
 .author-app-count {
-    color: var(--accent);
+    flex-shrink: 0;
 
-    font-size: 0.9rem;
+    color: #a0a0a0;
+
+    font-size: 0.75rem;
 
     font-weight: 800;
+
+    text-transform: uppercase;
+
+    letter-spacing: 0.07em;
 }
 
 
-/*
- * Reuse the application's existing
- * card component.
- */
+/* ========================================
+   Applications grid
+======================================== */
 
 .author-apps {
     display: grid;
 
     grid-template-columns:
         repeat(
-            3,
+            5,
             minmax(0, 1fr)
         );
 
-    gap: 20px;
+    gap: 16px;
 }
 
 
@@ -313,15 +470,61 @@
 
 
 /* ========================================
-   Mobile
+   Empty
 ======================================== */
 
-@media (max-width: 900px) {
+.author-empty {
+    padding: 50px 20px;
+
+    color: #a0a0a0;
+
+    text-align: center;
+
+    border: 1px dashed var(--border);
+
+    border-radius: 8px;
+}
+
+
+/* ========================================
+   Responsive
+======================================== */
+
+@media (max-width: 1100px) {
 
     .author-apps {
         grid-template-columns:
             repeat(
-                2,
+                4,
+                minmax(0, 1fr)
+            );
+    }
+
+}
+
+
+@media (max-width: 900px) {
+
+    .author-profile {
+        grid-template-columns:
+            150px minmax(0, 1fr);
+
+        padding: 28px;
+
+        gap: 26px;
+    }
+
+
+    .author-avatar {
+        width: 150px;
+        height: 150px;
+    }
+
+
+    .author-apps {
+        grid-template-columns:
+            repeat(
+                3,
                 minmax(0, 1fr)
             );
     }
@@ -332,7 +535,7 @@
 @media (max-width: 700px) {
 
     .author-page {
-        padding-top: 24px;
+        padding-top: 20px;
     }
 
 
@@ -341,33 +544,38 @@
 
         padding: 24px;
 
-        gap: 24px;
+        gap: 22px;
+    }
+
+
+    .author-avatar-wrapper {
+        justify-content: flex-start;
     }
 
 
     .author-avatar {
-        width: 150px;
-
-        height: 150px;
-
-        margin: 0 auto;
+        width: 130px;
+        height: 130px;
     }
 
 
     .author-profile-info {
-        align-items: center;
+        align-items: flex-start;
+    }
 
-        text-align: center;
+
+    .author-profile-info h1 {
+        font-size: 2.5rem;
     }
 
 
     .author-links {
-        justify-content: center;
+        margin-top: 20px;
     }
 
 
     .author-applications {
-        padding: 20px;
+        padding: 22px;
     }
 
 
@@ -383,11 +591,61 @@
     .author-apps {
         grid-template-columns:
             repeat(
-                2,
+                3,
                 minmax(0, 1fr)
             );
 
-        gap: 12px;
+        gap: 10px;
+    }
+
+}
+
+
+@media (max-width: 480px) {
+
+    .author-profile {
+        padding: 20px;
+    }
+
+
+    .author-avatar-wrapper {
+        justify-content: center;
+    }
+
+
+    .author-profile-info {
+        align-items: center;
+
+        text-align: center;
+    }
+
+
+    .author-profile-info h1 {
+        font-size: 2.2rem;
+    }
+
+
+    .author-bio {
+        font-size: 0.9rem;
+    }
+
+
+    .author-links {
+        justify-content: center;
+    }
+
+
+    .author-applications {
+        padding: 18px;
+    }
+
+
+    .author-apps {
+        grid-template-columns:
+            repeat(
+                2,
+                minmax(0, 1fr)
+            );
     }
 
 }
