@@ -1,4 +1,4 @@
-const VITAHUB_RAW_BASE = "https://raw.githubusercontent.com/VegettoSan/VitaHub/main";
+const VITAHUB_RAW_BASE = "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main";
 
 const VitaHubData = {
     catalog: [],
