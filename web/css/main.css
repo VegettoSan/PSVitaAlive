@@ -1212,15 +1212,16 @@ input {
    Responsive
 ======================================== */
 
-@media (max-width: 900px) {
+@media (max-width: 480px) {
 
     .featured-homebrew-grid {
         grid-template-columns:
             repeat(3, minmax(0, 1fr));
+
+        gap: 10px;
     }
 
 }
-
 
 @media (max-width: 640px) {
 
