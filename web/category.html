@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Categories - PSVitaAlive Store</title>
+
+    <meta
+        name="description"
+        content="Browse PlayStation Vita Homebrew by category."
+    >
+
+    <link
+        rel="stylesheet"
+        href="css/main.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="css/category.css"
+    >
+
+</head>
+
+
+<body>
+
+<header class="site-header">
+
+    <div class="container header-inner">
+
+        <a
+            href="index.html"
+            class="site-logo"
+        >
+
+            <img
+                src="assets/logo/PSVitaAlive_Store_logo_text.png"
+                alt="PSVitaAlive Store"
+            >
+
+        </a>
+
+
+        <nav
+            class="main-nav"
+            aria-label="Main navigation"
+        >
+
+            <a href="index.html">
+                Home
+            </a>
+
+            <a href="category.html">
+                Categories
+            </a>
+
+            <a href="author.html">
+                Authors
+            </a>
+
+        </nav>
+
+
+        <div class="header-search">
+
+            <input
+                type="search"
+                placeholder="Search PSVitaAlive Store..."
+                aria-label="Search PSVitaAlive Store"
+            >
+
+        </div>
+
+    </div>
+
+</header>
+
+
+<main class="category-page">
+
+    <div class="container">
+
+
+        <!-- Back -->
+
+        <a
+            href="index.html"
+            class="category-back-link"
+        >
+            ← Back to Home
+        </a>
+
+
+        <!-- Loading -->
+
+        <div
+            id="category-loading"
+            class="category-state"
+        >
+            Loading categories...
+        </div>
+
+
+        <!-- Error -->
+
+        <div
+            id="category-error"
+            class="category-state category-state-error"
+            hidden
+        >
+            Failed to load categories.
+        </div>
+
+
+        <!-- All categories -->
+
+        <section
+            id="all-categories-section"
+            class="category-section"
+            hidden
+        >
+
+            <div class="category-page-header">
+
+                <span class="hero-label">
+                    PlayStation Vita Homebrew
+                </span>
+
+                <h1>
+                    Categories
+                </h1>
+
+                <p>
+                    Explore Homebrew organized by category.
+                </p>
+
+            </div>
+
+
+            <div
+                id="categories-grid"
+                class="category-browser-grid"
+            ></div>
+
+        </section>
+
+
+        <!-- Category detail -->
+
+        <section
+            id="category-detail-section"
+            class="category-section"
+            hidden
+        >
+
+            <div
+                id="category-header"
+                class="category-detail-header"
+            ></div>
+
+
+            <div
+                id="subcategory-section"
+                class="subcategory-section"
+                hidden
+            >
+
+                <h2>
+                    Subcategories
+                </h2>
+
+                <div
+                    id="subcategories"
+                    class="subcategories"
+                ></div>
+
+            </div>
+
+
+            <div class="category-apps-header">
+
+                <div>
+
+                    <h2>
+                        Homebrew
+                    </h2>
+
+                    <p id="category-apps-description">
+                        Applications in this category.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div
+                id="category-apps-grid"
+                class="apps-grid"
+            ></div>
+
+
+            <div
+                id="category-empty"
+                class="category-empty"
+                hidden
+            >
+                No Homebrew found in this category.
+            </div>
+
+        </section>
+
+    </div>
+
+</main>
+
+
+<footer class="site-footer">
+
+    <div class="container">
+
+        <p>
+            PSVitaAlive Store — Free and open
+            PlayStation Vita homebrew catalog.
+        </p>
+
+    </div>
+
+</footer>
+
+
+<script src="js/data.js"></script>
+
+<script src="js/components.js"></script>
+
+<script src="js/category-page.js"></script>
+
+</body>
+
+</html>
