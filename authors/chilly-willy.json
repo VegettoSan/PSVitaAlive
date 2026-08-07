@@ -1,0 +1,14 @@
+{
+  "id": "chilly-willy",
+  "name": "Chilly Willy",
+  "avatar": "https://github.com/BenMcLean.png",
+  "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
+  "links": [
+    {
+      "type": "GitHub",
+      "name": "GitHub",
+      "url": "https://github.com/BenMcLean",
+      "recommended": true
+    }
+  ]
+}

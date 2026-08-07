@@ -1,0 +1,14 @@
+{
+  "id": "aztorius",
+  "name": "Aztorius",
+  "avatar": "https://github.com/Aztorius.png",
+  "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
+  "links": [
+    {
+      "type": "GitHub",
+      "name": "GitHub",
+      "url": "https://github.com/Aztorius",
+      "recommended": true
+    }
+  ]
+}

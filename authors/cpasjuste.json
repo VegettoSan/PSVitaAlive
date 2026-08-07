@@ -1,0 +1,14 @@
+{
+  "id": "cpasjuste",
+  "name": "cpasjuste",
+  "avatar": "https://github.com/Cpasjuste.png",
+  "bio": "Desarrollador de homebrew y ports para PlayStation Vita, activo en la comunidad de custom firmware.",
+  "links": [
+    {
+      "type": "GitHub",
+      "name": "GitHub",
+      "url": "https://github.com/Cpasjuste",
+      "recommended": true
+    }
+  ]
+}

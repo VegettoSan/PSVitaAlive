@@ -1,0 +1,14 @@
+{
+  "id": "nop90",
+  "name": "nop90",
+  "avatar": "https://github.com/nop90.png",
+  "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
+  "links": [
+    {
+      "type": "GitHub",
+      "name": "GitHub",
+      "url": "https://github.com/nop90",
+      "recommended": true
+    }
+  ]
+}

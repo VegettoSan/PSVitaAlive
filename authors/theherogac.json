@@ -1,0 +1,14 @@
+{
+  "id": "theherogac",
+  "name": "theheroGAC",
+  "avatar": "https://github.com/theheroGAC.png",
+  "bio": "Desarrollador de homebrew para PS Vita.",
+  "links": [
+    {
+      "type": "GitHub",
+      "name": "GitHub",
+      "url": "https://github.com/theheroGAC",
+      "recommended": true
+    }
+  ]
+}

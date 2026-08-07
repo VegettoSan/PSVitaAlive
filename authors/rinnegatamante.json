@@ -1,12 +1,19 @@
 {
   "id": "rinnegatamante",
   "name": "Rinnegatamante",
-  "avatar": "https://github.com/Rinnegatamante.png?size=256",
-  "bio": "Desarrollador o colaborador de Homebrew para PlayStation Vita. Fuente de autoría: VitaDBtoo.",
+  "avatar": "https://github.com/Rinnegatamante.png",
+  "bio": "Desarrollador destacado de la escena homebrew de PS Vita, con numerosos ports, herramientas y proyectos publicados.",
   "links": [
     {
       "type": "GitHub",
-      "url": "https://github.com/Rinnegatamante"
+      "name": "GitHub",
+      "url": "https://github.com/Rinnegatamante",
+      "recommended": true
+    },
+    {
+      "type": "Web",
+      "name": "Sitio web",
+      "url": "https://rinnegatamante.it"
     }
   ]
 }

@@ -1,0 +1,14 @@
+{
+  "id": "comet-games",
+  "name": "Comet Games",
+  "avatar": "https://github.com/Comet-Games.png",
+  "bio": "Equipo de desarrollo detras de proyectos open source y homebrew para PS Vita/PSP.",
+  "links": [
+    {
+      "type": "GitHub",
+      "name": "GitHub",
+      "url": "https://github.com/Comet-Games",
+      "recommended": true
+    }
+  ]
+}

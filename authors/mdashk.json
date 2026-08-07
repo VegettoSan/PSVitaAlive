@@ -1,0 +1,14 @@
+{
+  "id": "mdashk",
+  "name": "MDashK",
+  "avatar": "https://github.com/MDashK.png",
+  "bio": "Desarrollador de homebrew y ports para PlayStation Vita, activo en la comunidad de custom firmware.",
+  "links": [
+    {
+      "type": "GitHub",
+      "name": "GitHub",
+      "url": "https://github.com/MDashK",
+      "recommended": true
+    }
+  ]
+}

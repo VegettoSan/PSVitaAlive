@@ -1,0 +1,14 @@
+{
+  "id": "devilutionx-team",
+  "name": "devilutionX Team",
+  "avatar": "https://github.com/diasurgical.png",
+  "bio": "Equipo de desarrollo detras de proyectos open source y homebrew para PS Vita/PSP.",
+  "links": [
+    {
+      "type": "GitHub",
+      "name": "GitHub",
+      "url": "https://github.com/diasurgical",
+      "recommended": true
+    }
+  ]
+}

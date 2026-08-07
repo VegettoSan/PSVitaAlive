@@ -1,0 +1,14 @@
+{
+  "id": "minecraftpe-vita",
+  "name": "minecraftpe-vita",
+  "avatar": "https://github.com/minecraftpe-vita.png",
+  "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
+  "links": [
+    {
+      "type": "GitHub",
+      "name": "GitHub",
+      "url": "https://github.com/minecraftpe-vita",
+      "recommended": true
+    }
+  ]
+}

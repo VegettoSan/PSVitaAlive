@@ -1,0 +1,14 @@
+{
+  "id": "masteroga",
+  "name": "masteroga",
+  "avatar": "https://github.com/masteroga101.png",
+  "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
+  "links": [
+    {
+      "type": "GitHub",
+      "name": "GitHub",
+      "url": "https://github.com/masteroga101",
+      "recommended": true
+    }
+  ]
+}

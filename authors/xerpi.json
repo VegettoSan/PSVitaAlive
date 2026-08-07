@@ -1,0 +1,14 @@
+{
+  "id": "xerpi",
+  "name": "xerpi",
+  "avatar": "https://github.com/xerpi.png",
+  "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
+  "links": [
+    {
+      "type": "GitHub",
+      "name": "GitHub",
+      "url": "https://github.com/xerpi",
+      "recommended": true
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "id": "pg-team",
+  "name": "PG Team",
+  "avatar": "https://github.com/v-atamanenko.png",
+  "bio": "Equipo de desarrollo detras de proyectos open source y homebrew para PS Vita/PSP.",
+  "links": [
+    {
+      "type": "GitHub",
+      "name": "GitHub",
+      "url": "https://github.com/v-atamanenko",
+      "recommended": true
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "id": "narwher",
+  "name": "Narwher",
+  "avatar": "https://github.com/Narwher.png",
+  "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
+  "links": [
+    {
+      "type": "GitHub",
+      "name": "GitHub",
+      "url": "https://github.com/Narwher",
+      "recommended": true
+    }
+  ]
+}

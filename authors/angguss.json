@@ -1,0 +1,14 @@
+{
+  "id": "angguss",
+  "name": "angguss",
+  "avatar": "https://github.com/angguss.png",
+  "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
+  "links": [
+    {
+      "type": "GitHub",
+      "name": "GitHub",
+      "url": "https://github.com/angguss",
+      "recommended": true
+    }
+  ]
+}

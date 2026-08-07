@@ -1,0 +1,14 @@
+{
+  "id": "voxel",
+  "name": "Voxel",
+  "avatar": "https://github.com/Voxel9.png",
+  "bio": "Desarrollador de homebrew para PS Vita.",
+  "links": [
+    {
+      "type": "GitHub",
+      "name": "GitHub",
+      "url": "https://github.com/Voxel9",
+      "recommended": true
+    }
+  ]
+}

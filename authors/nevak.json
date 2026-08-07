@@ -1,0 +1,14 @@
+{
+  "id": "nevak",
+  "name": "Nevak",
+  "avatar": "https://github.com/Nevak.png",
+  "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
+  "links": [
+    {
+      "type": "GitHub",
+      "name": "GitHub",
+      "url": "https://github.com/Nevak",
+      "recommended": true
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "id": "ywnico",
+  "name": "ywnico",
+  "avatar": "https://github.com/ywnico.png",
+  "bio": "Desarrollador de homebrew para PS Vita.",
+  "links": [
+    {
+      "type": "GitHub",
+      "name": "GitHub",
+      "url": "https://github.com/ywnico",
+      "recommended": true
+    }
+  ]
+}

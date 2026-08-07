@@ -1,0 +1,14 @@
+{
+  "id": "iamcco",
+  "name": "iamcco",
+  "avatar": "https://github.com/unveroleone.png",
+  "bio": "Desarrollador de homebrew para PS Vita.",
+  "links": [
+    {
+      "type": "GitHub",
+      "name": "GitHub",
+      "url": "https://github.com/unveroleone",
+      "recommended": true
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "id": "xcorra",
+  "name": "xCorra",
+  "avatar": "https://github.com/xCorra.png",
+  "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
+  "links": [
+    {
+      "type": "GitHub",
+      "name": "GitHub",
+      "url": "https://github.com/xCorra",
+      "recommended": true
+    }
+  ]
+}

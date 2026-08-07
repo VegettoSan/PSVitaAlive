@@ -1,0 +1,14 @@
+{
+  "id": "jafeth",
+  "name": "jafeth",
+  "avatar": "https://github.com/Daexxxx.png",
+  "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
+  "links": [
+    {
+      "type": "GitHub",
+      "name": "GitHub",
+      "url": "https://github.com/Daexxxx",
+      "recommended": true
+    }
+  ]
+}

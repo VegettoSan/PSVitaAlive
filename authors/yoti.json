@@ -1,0 +1,14 @@
+{
+  "id": "yoti",
+  "name": "Yoti",
+  "avatar": "https://github.com/Yoti.png",
+  "bio": "Desarrollador de homebrew para PS Vita.",
+  "links": [
+    {
+      "type": "GitHub",
+      "name": "GitHub",
+      "url": "https://github.com/Yoti",
+      "recommended": true
+    }
+  ]
+}

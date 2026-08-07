@@ -1,0 +1,14 @@
+{
+  "id": "anashalideen",
+  "name": "AnasHalideen",
+  "avatar": "https://github.com/anas-halid.png",
+  "bio": "Desarrollador de homebrew para PS Vita.",
+  "links": [
+    {
+      "type": "GitHub",
+      "name": "GitHub",
+      "url": "https://github.com/anas-halid",
+      "recommended": true
+    }
+  ]
+}

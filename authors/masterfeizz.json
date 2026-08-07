@@ -1,0 +1,14 @@
+{
+  "id": "masterfeizz",
+  "name": "MasterFeizz",
+  "avatar": "https://github.com/masterfeizz.png",
+  "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
+  "links": [
+    {
+      "type": "GitHub",
+      "name": "GitHub",
+      "url": "https://github.com/masterfeizz",
+      "recommended": true
+    }
+  ]
+}

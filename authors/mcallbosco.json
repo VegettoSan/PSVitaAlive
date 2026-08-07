@@ -1,0 +1,14 @@
+{
+  "id": "mcallbosco",
+  "name": "mcallbosco",
+  "avatar": "https://github.com/mcallbosco.png",
+  "bio": "Desarrollador de homebrew para PS Vita.",
+  "links": [
+    {
+      "type": "GitHub",
+      "name": "GitHub",
+      "url": "https://github.com/mcallbosco",
+      "recommended": true
+    }
+  ]
+}

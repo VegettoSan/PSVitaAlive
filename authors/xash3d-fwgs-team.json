@@ -1,0 +1,14 @@
+{
+  "id": "xash3d-fwgs-team",
+  "name": "Xash3D-FWGS Team",
+  "avatar": "https://github.com/FWGS.png",
+  "bio": "Equipo de desarrollo detras de proyectos open source y homebrew para PS Vita/PSP.",
+  "links": [
+    {
+      "type": "GitHub",
+      "name": "GitHub",
+      "url": "https://github.com/FWGS",
+      "recommended": true
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "id": "deltaclock",
+  "name": "Deltaclock",
+  "avatar": "https://github.com/deltaclock.png",
+  "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
+  "links": [
+    {
+      "type": "GitHub",
+      "name": "GitHub",
+      "url": "https://github.com/deltaclock",
+      "recommended": true
+    }
+  ]
+}

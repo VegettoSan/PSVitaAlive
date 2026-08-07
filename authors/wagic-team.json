@@ -1,0 +1,14 @@
+{
+  "id": "wagic-team",
+  "name": "Wagic Team",
+  "avatar": "https://github.com/WagicProject.png",
+  "bio": "Equipo de desarrollo detras de proyectos open source y homebrew para PS Vita/PSP.",
+  "links": [
+    {
+      "type": "GitHub",
+      "name": "GitHub",
+      "url": "https://github.com/WagicProject",
+      "recommended": true
+    }
+  ]
+}

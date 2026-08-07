@@ -1,0 +1,14 @@
+{
+  "id": "knight-ryu12",
+  "name": "knight-ryu12",
+  "avatar": "https://github.com/knight-ryu12.png",
+  "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
+  "links": [
+    {
+      "type": "GitHub",
+      "name": "GitHub",
+      "url": "https://github.com/knight-ryu12",
+      "recommended": true
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "id": "julius-team",
+  "name": "Julius Team",
+  "avatar": "https://github.com/bvschaik.png",
+  "bio": "Equipo de desarrollo detras de proyectos open source y homebrew para PS Vita/PSP.",
+  "links": [
+    {
+      "type": "GitHub",
+      "name": "GitHub",
+      "url": "https://github.com/bvschaik",
+      "recommended": true
+    }
+  ]
+}

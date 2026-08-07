@@ -1,0 +1,14 @@
+{
+  "id": "kalekki",
+  "name": "Kalekki",
+  "avatar": "https://github.com/Rocroverss.png",
+  "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
+  "links": [
+    {
+      "type": "GitHub",
+      "name": "GitHub",
+      "url": "https://github.com/Rocroverss",
+      "recommended": true
+    }
+  ]
+}

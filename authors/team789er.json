@@ -1,0 +1,14 @@
+{
+  "id": "team789er",
+  "name": "Team789er",
+  "avatar": "https://github.com/Team789er.png",
+  "bio": "Equipo de desarrollo detras de proyectos open source y homebrew para PS Vita/PSP.",
+  "links": [
+    {
+      "type": "GitHub",
+      "name": "GitHub",
+      "url": "https://github.com/Team789er",
+      "recommended": true
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "id": "plombo",
+  "name": "Plombo",
+  "avatar": "https://github.com/Plombo.png",
+  "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
+  "links": [
+    {
+      "type": "GitHub",
+      "name": "GitHub",
+      "url": "https://github.com/Plombo",
+      "recommended": true
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "id": "huceus",
+  "name": "huceus",
+  "avatar": "https://github.com/huceus.png",
+  "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
+  "links": [
+    {
+      "type": "GitHub",
+      "name": "GitHub",
+      "url": "https://github.com/huceus",
+      "recommended": true
+    }
+  ]
+}

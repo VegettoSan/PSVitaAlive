@@ -1,0 +1,14 @@
+{
+  "id": "fheroes2-team",
+  "name": "fheroes2 Team",
+  "avatar": "https://github.com/ihhub.png",
+  "bio": "Equipo de desarrollo detras de proyectos open source y homebrew para PS Vita/PSP.",
+  "links": [
+    {
+      "type": "GitHub",
+      "name": "GitHub",
+      "url": "https://github.com/ihhub",
+      "recommended": true
+    }
+  ]
+}

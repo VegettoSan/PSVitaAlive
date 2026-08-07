@@ -1,0 +1,14 @@
+{
+  "id": "electric",
+  "name": "Electric",
+  "avatar": "https://github.com/Electric1447.png",
+  "bio": "Desarrollador de homebrew para PS Vita.",
+  "links": [
+    {
+      "type": "GitHub",
+      "name": "GitHub",
+      "url": "https://github.com/Electric1447",
+      "recommended": true
+    }
+  ]
+}

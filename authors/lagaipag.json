@@ -1,0 +1,14 @@
+{
+  "id": "lagaipag",
+  "name": "LaGaipaG",
+  "avatar": "https://github.com/LaGaipaG.png",
+  "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
+  "links": [
+    {
+      "type": "GitHub",
+      "name": "GitHub",
+      "url": "https://github.com/LaGaipaG",
+      "recommended": true
+    }
+  ]
+}

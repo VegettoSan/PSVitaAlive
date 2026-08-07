@@ -1,0 +1,14 @@
+{
+  "id": "noword",
+  "name": "noword",
+  "avatar": "https://github.com/noword.png",
+  "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
+  "links": [
+    {
+      "type": "GitHub",
+      "name": "GitHub",
+      "url": "https://github.com/noword",
+      "recommended": true
+    }
+  ]
+}

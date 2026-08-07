@@ -1,0 +1,14 @@
+{
+  "id": "theorywrong",
+  "name": "theorywrong",
+  "avatar": "https://github.com/theorywrong.png",
+  "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
+  "links": [
+    {
+      "type": "GitHub",
+      "name": "GitHub",
+      "url": "https://github.com/theorywrong",
+      "recommended": true
+    }
+  ]
+}

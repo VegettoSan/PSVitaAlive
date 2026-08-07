@@ -1,0 +1,14 @@
+{
+  "id": "argarak",
+  "name": "argarak",
+  "avatar": "https://github.com/argarak.png",
+  "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
+  "links": [
+    {
+      "type": "GitHub",
+      "name": "GitHub",
+      "url": "https://github.com/argarak",
+      "recommended": true
+    }
+  ]
+}

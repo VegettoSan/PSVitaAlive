@@ -1,0 +1,14 @@
+{
+  "id": "usineur",
+  "name": "usineur",
+  "avatar": "https://github.com/usineur.png",
+  "bio": "Desarrollador de homebrew y ports para PlayStation Vita, activo en la comunidad de custom firmware.",
+  "links": [
+    {
+      "type": "GitHub",
+      "name": "GitHub",
+      "url": "https://github.com/usineur",
+      "recommended": true
+    }
+  ]
+}

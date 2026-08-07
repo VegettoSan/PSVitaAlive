@@ -1,0 +1,14 @@
+{
+  "id": "megagameboy",
+  "name": "MEGAgameBoy",
+  "avatar": "https://github.com/MEGAgameBoy.png",
+  "bio": "Desarrollador de homebrew y ports para PlayStation Vita, activo en la comunidad de custom firmware.",
+  "links": [
+    {
+      "type": "GitHub",
+      "name": "GitHub",
+      "url": "https://github.com/MEGAgameBoy",
+      "recommended": true
+    }
+  ]
+}

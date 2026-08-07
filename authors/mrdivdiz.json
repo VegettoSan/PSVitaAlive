@@ -1,0 +1,14 @@
+{
+  "id": "mrdivdiz",
+  "name": "mrdivdiz",
+  "avatar": "https://github.com/mrdivdiz.png",
+  "bio": "Desarrollador de homebrew para PS Vita.",
+  "links": [
+    {
+      "type": "GitHub",
+      "name": "GitHub",
+      "url": "https://github.com/mrdivdiz",
+      "recommended": true
+    }
+  ]
+}

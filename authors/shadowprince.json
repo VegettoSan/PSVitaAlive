@@ -1,0 +1,14 @@
+{
+  "id": "shadowprince",
+  "name": "ShadowPrince",
+  "avatar": "https://github.com/xyzz.png",
+  "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
+  "links": [
+    {
+      "type": "GitHub",
+      "name": "GitHub",
+      "url": "https://github.com/xyzz",
+      "recommended": true
+    }
+  ]
+}

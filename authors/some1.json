@@ -1,0 +1,14 @@
+{
+  "id": "some1",
+  "name": "some1",
+  "avatar": "https://github.com/some1psv.png",
+  "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
+  "links": [
+    {
+      "type": "GitHub",
+      "name": "GitHub",
+      "url": "https://github.com/some1psv",
+      "recommended": true
+    }
+  ]
+}

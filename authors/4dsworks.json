@@ -1,0 +1,14 @@
+{
+  "id": "4dsworks",
+  "name": "4DSWorks",
+  "avatar": "https://github.com/VMHoss.png",
+  "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
+  "links": [
+    {
+      "type": "GitHub",
+      "name": "GitHub",
+      "url": "https://github.com/VMHoss",
+      "recommended": true
+    }
+  ]
+}

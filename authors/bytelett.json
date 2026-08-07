@@ -1,0 +1,14 @@
+{
+  "id": "bytelett",
+  "name": "bytelett",
+  "avatar": "https://github.com/m-bartlett.png",
+  "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
+  "links": [
+    {
+      "type": "GitHub",
+      "name": "GitHub",
+      "url": "https://github.com/m-bartlett",
+      "recommended": true
+    }
+  ]
+}

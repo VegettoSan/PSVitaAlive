@@ -1,0 +1,14 @@
+{
+  "id": "enrique-somolinos-perez",
+  "name": "Enrique Somolinos Perez",
+  "avatar": "https://github.com/enriquesomolinos.png",
+  "bio": "Desarrollador de homebrew para PS Vita.",
+  "links": [
+    {
+      "type": "GitHub",
+      "name": "GitHub",
+      "url": "https://github.com/enriquesomolinos",
+      "recommended": true
+    }
+  ]
+}

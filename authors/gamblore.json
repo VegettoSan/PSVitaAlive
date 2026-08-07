@@ -1,0 +1,14 @@
+{
+  "id": "gamblore",
+  "name": "gamblore",
+  "avatar": "https://github.com/gamblore.png",
+  "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
+  "links": [
+    {
+      "type": "GitHub",
+      "name": "GitHub",
+      "url": "https://github.com/gamblore",
+      "recommended": true
+    }
+  ]
+}

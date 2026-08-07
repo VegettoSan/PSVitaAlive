@@ -1,0 +1,14 @@
+{
+  "id": "domis4",
+  "name": "domis4",
+  "avatar": "https://github.com/domis4.png",
+  "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
+  "links": [
+    {
+      "type": "GitHub",
+      "name": "GitHub",
+      "url": "https://github.com/domis4",
+      "recommended": true
+    }
+  ]
+}

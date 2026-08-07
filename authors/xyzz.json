@@ -1,0 +1,14 @@
+{
+  "id": "xyzz",
+  "name": "xyzz",
+  "avatar": "https://github.com/xyzz.png",
+  "bio": "Desarrollador de homebrew para PS Vita.",
+  "links": [
+    {
+      "type": "GitHub",
+      "name": "GitHub",
+      "url": "https://github.com/xyzz",
+      "recommended": true
+    }
+  ]
+}

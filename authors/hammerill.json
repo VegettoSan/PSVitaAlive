@@ -1,0 +1,14 @@
+{
+  "id": "hammerill",
+  "name": "Hammerill",
+  "avatar": "https://github.com/hammerill.png",
+  "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
+  "links": [
+    {
+      "type": "GitHub",
+      "name": "GitHub",
+      "url": "https://github.com/hammerill",
+      "recommended": true
+    }
+  ]
+}

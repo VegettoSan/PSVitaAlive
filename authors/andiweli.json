@@ -1,0 +1,14 @@
+{
+  "id": "andiweli",
+  "name": "Andiweli",
+  "avatar": "https://github.com/Andiweli.png",
+  "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
+  "links": [
+    {
+      "type": "GitHub",
+      "name": "GitHub",
+      "url": "https://github.com/Andiweli",
+      "recommended": true
+    }
+  ]
+}

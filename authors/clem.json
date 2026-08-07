@@ -1,0 +1,14 @@
+{
+  "id": "clem",
+  "name": "Clem",
+  "avatar": "https://github.com/eleriaqueen.png",
+  "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
+  "links": [
+    {
+      "type": "GitHub",
+      "name": "GitHub",
+      "url": "https://github.com/eleriaqueen",
+      "recommended": true
+    }
+  ]
+}
