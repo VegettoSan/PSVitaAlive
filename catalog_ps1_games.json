@@ -21692,6 +21692,15 @@
         "url": "http://zeus.dl.playstation.net/cdn/EP0102/NPEF00163_00/vviOytjhpHhMRUqjHolHeQKJQwkStjJkjFtLaFBpSLEFRzfCLkhjNQzCmftaRZHc.pkg",
         "size": 336098176,
         "recommended": false
+      },
+      {
+        "type": "Download",
+        "name": "EBOOT Spanish",
+        "region": "EU",
+        "title_id": "v.4.2",
+        "url": "https://www.mediafire.com/file/cootyr2l701zbdu/Psx_Resident_Evil_-_DC_%2528U%2529_%2528Espa%25C3%25B1ol_v.4.2%2529_%255BDoblaje%255D.zip/file",
+        "size": 384530000,
+        "recommended": false
       }
     ]
   },
@@ -21761,6 +21770,15 @@
         "url": "http://zeus.dl.playstation.net/cdn/EP0102/NPEF00198_00/cIMAVrEAFsfCTrgQFDQNdUnLsbbfTppFXZjSgLsNNNxAMcDEbIwZpHvMnTaeJiTV.pkg",
         "size": 798025632,
         "recommended": false
+      },
+      {
+        "type": "Download",
+        "name": "EBOOT Spanish Dual Shock",
+        "region": "EU",
+        "title_id": "v.2.0",
+        "url": "https://www.mediafire.com/file/hcbmyhnzre3wmu1/Psx_Resident_Evil_2_Dual_Shock_Doblaje_Espa%25C3%25B1ol_v2.0.7z/file",
+        "size": 863550000,
+        "recommended": false
       }
     ]
   },
@@ -21820,6 +21838,15 @@
         "title_id": "NPEF00199",
         "url": "http://zeus.dl.playstation.net/cdn/EP0102/NPEF00199_00/BUxwdxjDxITGUfWWhpbHSxbbbnjXHASCxhBpnapttwWacYHwjODMDavApmOEffvb.pkg",
         "size": 378829376,
+        "recommended": false
+      },
+      {
+        "type": "Download",
+        "name": "EBOOT Spanish",
+        "region": "EU",
+        "title_id": "v.1.0",
+        "url": "https://www.mediafire.com/file/cau0jq8xsbgxie6/Psx+RE3+N+Doblaje+Esp+v.1.0.zip/file",
+        "size": 430990000,
         "recommended": false
       }
     ]
