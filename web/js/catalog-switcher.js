@@ -1,4 +1,6 @@
-/* PSVitaAlive multi-catalog switcher */
+/* ========================================
+   PSVitaAlive Multi-Catalog Switcher
+======================================== */
 
 const PSVITA_ALIVE_GAME_CATALOGS = {
     psvita: {
@@ -23,7 +25,14 @@ const PSVITA_ALIVE_GAME_CATALOGS = {
 const PSVITA_ALIVE_GAME_CACHE = {};
 
 
-async function loadPSVitaAliveGameCatalog(catalog) {
+/* ========================================
+   Retry helper
+======================================== */
+
+async function loadGameCatalogWithRetry(
+    catalog,
+    attempts = 3
+) {
 
     const config =
         PSVITA_ALIVE_GAME_CATALOGS[catalog];
@@ -40,15 +49,95 @@ async function loadPSVitaAliveGameCatalog(catalog) {
         return PSVITA_ALIVE_GAME_CACHE[catalog];
     }
 
-    const games =
-        await loadJSON(
-            `${VITAHUB_RAW_BASE}/${config.file}`
+    let lastError = null;
+
+    for (
+        let attempt = 1;
+        attempt <= attempts;
+        attempt++
+    ) {
+
+        try {
+
+            if (
+                window.showPSVitaAliveLoader
+            ) {
+
+                window.showPSVitaAliveLoader(
+                    `Loading ${config.label}...`
+                );
+
+                if (
+                    window.updatePSVitaAliveLoaderStatus
+                ) {
+
+                    window.updatePSVitaAliveLoaderStatus(
+                        attempt === 1
+                            ? "Downloading catalog..."
+                            : `Retrying connection (${attempt}/${attempts})...`
+                    );
+
+                }
+
+            }
+
+            /*
+             * loadJSON is provided by data.js and enhanced
+             * by catalog-loader.js. It therefore keeps the
+             * real progress bar.
+             */
+            const games =
+                await loadJSON(
+                    `${VITAHUB_RAW_BASE}/${config.file}`
+                );
+
+            if (
+                !Array.isArray(games)
+            ) {
+
+                throw new Error(
+                    `${config.file} did not return an array`
+                );
+
+            }
+
+            PSVITA_ALIVE_GAME_CACHE[catalog] =
+                games;
+
+            return games;
+
+        } catch (error) {
+
+            lastError = error;
+
+            console.error(
+                `Failed loading ${config.label} (attempt ${attempt}/${attempts}):`,
+                error
+            );
+
+            if (
+                attempt < attempts
+            ) {
+
+                await new Promise(
+                    resolve =>
+                        setTimeout(
+                            resolve,
+                            500 * attempt
+                        )
+                );
+
+            }
+
+        }
+
+    }
+
+    throw lastError ||
+        new Error(
+            `Failed to load ${config.label} catalog.`
         );
 
-    PSVITA_ALIVE_GAME_CACHE[catalog] =
-        games;
-
-    return games;
 }
 
 
@@ -63,6 +152,10 @@ function getPSVitaAliveCatalogConfig(
 
 }
 
+
+/* ========================================
+   UI
+======================================== */
 
 function updatePSVitaAliveCatalogUI() {
 
@@ -168,6 +261,10 @@ function updatePSVitaAliveRandomButton() {
 }
 
 
+/* ========================================
+   Cards
+======================================== */
+
 function renderPSVitaAliveGameCard(
     game,
     catalog
@@ -183,6 +280,7 @@ function renderPSVitaAliveGameCard(
             catalog
         );
 
+
     const badge =
         card.querySelector(
             ".official-game-badge"
@@ -194,11 +292,6 @@ function renderPSVitaAliveGameCard(
             config.badge;
     }
 
-
-    /*
-     * Override components.js navigation
-     * with the selected catalog.
-     */
 
     card.addEventListener(
         "click",
@@ -224,6 +317,10 @@ function renderPSVitaAliveGameCard(
 
 }
 
+
+/* ========================================
+   Render game catalog
+======================================== */
 
 async function renderPSVitaAliveGameCatalog(
     catalog
@@ -259,7 +356,7 @@ async function renderPSVitaAliveGameCatalog(
 
 
         const games =
-            await loadPSVitaAliveGameCatalog(
+            await loadGameCatalogWithRetry(
                 catalog
             );
 
@@ -269,7 +366,7 @@ async function renderPSVitaAliveGameCatalog(
         ) {
 
             window.updatePSVitaAliveLoaderStatus(
-                "Preparing catalog..."
+                "Processing catalog..."
             );
 
         }
@@ -303,6 +400,18 @@ async function renderPSVitaAliveGameCatalog(
 
     } catch (error) {
 
+        console.error(
+            `Failed to load ${config.label} catalog:`,
+            error
+        );
+
+
+        /*
+         * Keep the loader visible until the final retry
+         * has really failed, then replace it with the
+         * real error.
+         */
+
         if (
             window.hidePSVitaAliveLoader
         ) {
@@ -312,21 +421,24 @@ async function renderPSVitaAliveGameCatalog(
         }
 
 
-        console.error(
-            `Failed to load ${config.label} catalog:`,
-            error
-        );
-
-
-        grid.innerHTML =
-            `<p class="catalog-error">
-                Failed to load ${config.label} catalog.
-            </p>`;
+        grid.innerHTML = `
+            <div class="catalog-error">
+                <h3>Unable to load ${config.label}</h3>
+                <p>
+                    The catalog could not be loaded right now.
+                    Please try again.
+                </p>
+            </div>
+        `;
 
     }
 
 }
 
+
+/* ========================================
+   Search
+======================================== */
 
 function renderPSVitaAliveGameSearchResults(
     results,
@@ -386,17 +498,9 @@ function renderPSVitaAliveGameSearchResults(
 }
 
 
-/*
- * Prevent app.js from keeping its
- * old Homebrew / PS Vita button
- * listeners.
- *
- * The old listeners are attached
- * during the same DOMContentLoaded
- * phase, so we replace each button
- * with a clean clone before attaching
- * the four-catalog handlers.
- */
+/* ========================================
+   Remove old app.js listeners
+======================================== */
 
 function replaceCatalogButtonListeners() {
 
@@ -433,12 +537,6 @@ function replaceCatalogButtonListeners() {
 }
 
 
-/*
- * Also replace the search input so
- * the old two-catalog app.js listener
- * cannot process searches for PSP/PS1.
- */
-
 function replaceCatalogSearchListener() {
 
     const input =
@@ -465,9 +563,9 @@ function replaceCatalogSearchListener() {
 }
 
 
-/*
- * Four-catalog switcher.
- */
+/* ========================================
+   Catalog switch
+======================================== */
 
 window.switchCatalog =
     async function(catalog) {
@@ -518,7 +616,6 @@ window.switchCatalog =
 
             renderHomebrewCatalog();
 
-
         } else {
 
             await renderPSVitaAliveGameCatalog(
@@ -529,11 +626,6 @@ window.switchCatalog =
 
     };
 
-
-/*
- * Search only inside the currently
- * selected catalog.
- */
 
 window.performSearch =
     async function(query) {
@@ -585,7 +677,7 @@ window.performSearch =
         try {
 
             const games =
-                await loadPSVitaAliveGameCatalog(
+                await loadGameCatalogWithRetry(
                     currentCatalog
                 );
 
@@ -609,7 +701,6 @@ window.performSearch =
                 currentCatalog
             );
 
-
         } catch (error) {
 
             console.error(
@@ -622,13 +713,11 @@ window.performSearch =
     };
 
 
-function initPSVitaAliveCatalogSwitcher() {
+/* ========================================
+   Initialize
+======================================== */
 
-    /*
-     * Remove the old app.js handlers
-     * before installing the four-catalog
-     * handlers.
-     */
+function initPSVitaAliveCatalogSwitcher() {
 
     replaceCatalogButtonListeners();
 
@@ -706,17 +795,12 @@ function initPSVitaAliveCatalogSwitcher() {
     updatePSVitaAliveCatalogUI();
     updatePSVitaAliveRandomButton();
 
-
-    /*
-     * app.js already initializes
-     * Homebrew on the initial page.
-     *
-     * We intentionally do not call
-     * switchCatalog() here again.
-     */
-
 }
 
+
+/* ========================================
+   Start
+======================================== */
 
 document.addEventListener(
     "DOMContentLoaded",

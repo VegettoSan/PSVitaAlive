@@ -2,10 +2,6 @@
  * PSVitaAlive Store
  *
  * Author profile page.
- *
- * Example:
- *
- * author.html?id=vegettosandev
  */
 
 
@@ -21,6 +17,128 @@ function getAuthorIdFromUrl() {
         );
 
     return params.get("id");
+}
+
+
+/* ========================================
+   Author data loading
+======================================== */
+
+async function loadAuthorsWithRetry(
+    attempts = 4
+) {
+
+    let lastError = null;
+
+    for (
+        let attempt = 1;
+        attempt <= attempts;
+        attempt++
+    ) {
+
+        try {
+
+            /*
+             * Always use the official generated authors.json.
+             * Cache-busting is only used after the first attempt.
+             */
+
+            const suffix =
+                attempt === 1
+                    ? ""
+                    : `?author_retry=${Date.now()}`;
+
+
+            const authors =
+                await loadJSON(
+                    `${VITAHUB_RAW_BASE}/authors.json${suffix}`
+                );
+
+
+            if (
+                !Array.isArray(authors)
+            ) {
+
+                throw new Error(
+                    "authors.json did not return an array"
+                );
+
+            }
+
+
+            VitaHubData.authors =
+                authors;
+
+
+            return authors;
+
+        } catch (error) {
+
+            lastError = error;
+
+            console.error(
+                `Failed to load authors.json (attempt ${attempt}/${attempts}):`,
+                error
+            );
+
+
+            if (
+                attempt < attempts
+            ) {
+
+                await new Promise(
+                    resolve =>
+                        setTimeout(
+                            resolve,
+                            500 * attempt
+                        )
+                );
+
+            }
+
+        }
+
+    }
+
+
+    throw lastError ||
+        new Error(
+            "Unable to load authors."
+        );
+
+}
+
+
+async function loadAuthorPageData() {
+
+    /*
+     * First load the normal VitaHub data.
+     * catalog/categories are also required by
+     * the author page cards.
+     */
+
+    await loadVitaHubData();
+
+
+    /*
+     * If authors were already loaded, use them.
+     * Otherwise explicitly retry authors.json.
+     */
+
+    if (
+        !Array.isArray(
+            VitaHubData.authors
+        ) ||
+        VitaHubData.authors.length === 0
+    ) {
+
+        await loadAuthorsWithRetry();
+
+    }
+
+
+    return VitaHubData;
+
 }
 
 
@@ -67,10 +185,6 @@ function renderAuthorLinks(author) {
         ...author.links
     ];
 
-
-    /*
-     * Recommended link first.
-     */
 
     links.sort(
         (a, b) => {
@@ -149,7 +263,7 @@ function renderAuthorLinks(author) {
 
 
 /* ========================================
-   Author applications
+   Applications
 ======================================== */
 
 function getAuthorApplications(
@@ -169,11 +283,6 @@ function getAuthorApplications(
         VitaHubData.catalog.filter(
             app => {
 
-                /*
-                 * Current VitaHub architecture
-                 * supports multiple authors.
-                 */
-
                 if (
                     Array.isArray(
                         app.author_ids
@@ -187,11 +296,6 @@ function getAuthorApplications(
                 }
 
 
-                /*
-                 * Compatibility with older
-                 * single-author entries.
-                 */
-
                 return (
                     app.author_id === authorId
                 );
@@ -199,10 +303,6 @@ function getAuthorApplications(
             }
         );
 
-
-    /*
-     * Newest / recently updated first.
-     */
 
     applications.sort(
         (a, b) => {
@@ -212,50 +312,15 @@ function getAuthorApplications(
                     a.version_date || 0
                 ).getTime();
 
-
             const dateB =
                 new Date(
                     b.version_date || 0
                 ).getTime();
 
-
-            const validA =
-                Number.isFinite(
-                    dateA
-                ) && dateA > 0;
-
-
-            const validB =
-                Number.isFinite(
-                    dateB
-                ) && dateB > 0;
-
-
-            if (
-                !validA &&
-                validB
-            ) {
-                return 1;
-            }
-
-
-            if (
-                validA &&
-                !validB
-            ) {
-                return -1;
-            }
-
-
-            if (
-                !validA &&
-                !validB
-            ) {
-                return 0;
-            }
-
-
-            return dateB - dateA;
+            return (
+                (Number.isFinite(dateB) ? dateB : 0) -
+                (Number.isFinite(dateA) ? dateA : 0)
+            );
 
         }
     );
@@ -267,7 +332,7 @@ function getAuthorApplications(
 
 
 /* ========================================
-   Render applications
+   Render
 ======================================== */
 
 function renderAuthorApplications(
@@ -308,7 +373,6 @@ function renderAuthorApplications(
         empty.textContent =
             "This author has no applications in the catalog yet.";
 
-
         container.appendChild(
             empty
         );
@@ -325,7 +389,6 @@ function renderAuthorApplications(
                 renderAppCard(
                     app
                 );
-
 
             card.classList.add(
                 "app-card-clickable"
@@ -365,10 +428,6 @@ function renderAuthorApplications(
 
 }
 
-
-/* ========================================
-   Render author
-======================================== */
 
 function renderAuthor(
     author,
@@ -455,153 +514,111 @@ function renderAuthor(
    Error
 ======================================== */
 
-function showAuthorError() {
+function showAuthorError(
+    message = null
+) {
 
     document.getElementById(
         "author-loading"
     ).hidden = true;
 
 
-    document.getElementById(
-        "author-error"
-    ).hidden = false;
+    const error =
+        document.getElementById(
+            "author-error"
+        );
+
+
+    if (message) {
+
+        const paragraph =
+            error.querySelector(
+                "p"
+            );
+
+        if (paragraph) {
+            paragraph.textContent =
+                message;
+        }
+
+    }
+
+
+    error.hidden = false;
 
 }
 
 
 /* ========================================
-   Robust author lookup
-======================================== */
-
-/*
- * If the browser has a stale/cached authors.json,
- * retry once using a cache-busted request.
- *
- * This does not modify the official generated
- * authors.json. It only refreshes the in-memory
- * authors list when the requested author cannot
- * be found.
- */
-
-async function findAuthorWithRetry(
-    authorId
-) {
-
-    let author =
-        getAuthorById(
-            authorId
-        );
-
-
-    if (author) {
-        return author;
-    }
-
-
-    /*
-     * Give GitHub Raw / Pages a moment in case
-     * the generated catalog has just changed.
-     */
-
-    await new Promise(
-        resolve =>
-            setTimeout(
-                resolve,
-                350
-            )
-    );
-
-
-    author =
-        getAuthorById(
-            authorId
-        );
-
-
-    if (author) {
-        return author;
-    }
-
-
-    /*
-     * Refresh only authors.json.
-     */
-
-    const refreshedAuthors =
-        await loadJSON(
-            `${VITAHUB_RAW_BASE}/authors.json?refresh=${Date.now()}`
-        );
-
-
-    if (
-        Array.isArray(
-            refreshedAuthors
-        )
-    ) {
-
-        VitaHubData.authors =
-            refreshedAuthors;
-
-    }
-
-
-    return getAuthorById(
-        authorId
-    );
-
-}
-
-
-/* ========================================
-   Initialization
+   Initialize
 ======================================== */
 
 async function initAuthorPage() {
 
+    const authorId =
+        getAuthorIdFromUrl();
+
+
+    /*
+     * No ID is a real error. Do not perform
+     * catalog requests in this case.
+     */
+
+    if (!authorId) {
+
+        showAuthorError();
+
+        return;
+
+    }
+
+
     try {
 
-        const authorId =
-            getAuthorIdFromUrl();
-
-
-        if (!authorId) {
-
-            showAuthorError();
-
-            return;
-
-        }
-
-
         /*
-         * Load the official generated
-         * VitaHub catalogs.
+         * Keep "Loading author..." visible
+         * for the entire request sequence.
          */
 
-        await loadVitaHubData();
+        const data =
+            await loadAuthorPageData();
 
 
-        /*
-         * Find author by ID.
-         *
-         * Includes a retry/cache refresh
-         * to avoid false "Author not found"
-         * states immediately after a catalog
-         * update.
-         */
-
-        const author =
-            await findAuthorWithRetry(
+        let author =
+            getAuthorById(
                 authorId
             );
+
+
+        /*
+         * One extra direct refresh if the author
+         * is still missing. This prevents a stale
+         * authors.json response from becoming a
+         * false "Author not found".
+         */
+
+        if (!author) {
+
+            await loadAuthorsWithRetry(
+                2
+            );
+
+
+            author =
+                getAuthorById(
+                    authorId
+                );
+
+        }
 
 
         if (!author) {
 
             console.error(
-                "Author not found:",
+                "Author not found after loading authors.json:",
                 authorId
             );
+
 
             showAuthorError();
 
@@ -635,16 +652,18 @@ async function initAuthorPage() {
             error
         );
 
+
+        /*
+         * Only show the error after all
+         * loading/retry attempts failed.
+         */
+
         showAuthorError();
 
     }
 
 }
 
-
-/* ========================================
-   Start
-======================================== */
 
 document.addEventListener(
     "DOMContentLoaded",
