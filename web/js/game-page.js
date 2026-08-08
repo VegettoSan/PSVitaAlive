@@ -1,11 +1,7 @@
 /**
  * PSVitaAlive Store
  *
- * Official PS Vita game detail page.
- *
- * Example:
- *
- * game.html?id=persona-4-golden
+ * Shared PS Vita / PSP / PS1 game detail page.
  */
 
 
@@ -54,7 +50,6 @@ function gameReleaseDate(date) {
     const parsed =
         new Date(date);
 
-
     if (
         Number.isNaN(
             parsed.getTime()
@@ -62,7 +57,6 @@ function gameReleaseDate(date) {
     ) {
         return date;
     }
-
 
     return parsed.toLocaleDateString(
         undefined,
@@ -72,7 +66,6 @@ function gameReleaseDate(date) {
             day: "numeric"
         }
     );
-
 }
 
 
@@ -80,12 +73,15 @@ function gameReleaseDate(date) {
    Load catalog
 ======================================== */
 
+/*
+ * multi-game-page.js overrides this function
+ * for PSP / PS1 / PS Vita.
+ */
 async function loadOfficialGamesCatalog() {
 
     return loadJSON(
         `${VITAHUB_RAW_BASE}/catalog_psvita_games.json`
     );
-
 }
 
 
@@ -93,9 +89,7 @@ async function loadOfficialGamesCatalog() {
    Categories
 ======================================== */
 
-function renderGameCategories(
-    game
-) {
+function renderGameCategories(game) {
 
     const section =
         document.getElementById(
@@ -107,12 +101,9 @@ function renderGameCategories(
             "game-categories"
         );
 
-
     container.innerHTML = "";
 
-
     const categories = [];
-
 
     if (game.category_id) {
 
@@ -122,7 +113,6 @@ function renderGameCategories(
         });
 
     }
-
 
     if (
         Array.isArray(
@@ -143,7 +133,6 @@ function renderGameCategories(
 
     }
 
-
     if (
         categories.length === 0
     ) {
@@ -151,12 +140,9 @@ function renderGameCategories(
         section.hidden = true;
 
         return;
-
     }
 
-
     section.hidden = false;
-
 
     categories.forEach(
         category => {
@@ -169,16 +155,13 @@ function renderGameCategories(
             link.className =
                 "game-tag game-tag-link";
 
-
             link.href =
                 `category.html?id=${encodeURIComponent(
                     category.id
                 )}`;
 
-
             link.textContent =
                 category.id;
-
 
             container.appendChild(
                 link
@@ -186,7 +169,6 @@ function renderGameCategories(
 
         }
     );
-
 }
 
 
@@ -194,9 +176,7 @@ function renderGameCategories(
    Title IDs
 ======================================== */
 
-function renderGameTitleIds(
-    game
-) {
+function renderGameTitleIds(game) {
 
     const section =
         document.getElementById(
@@ -208,9 +188,7 @@ function renderGameTitleIds(
             "game-title-ids"
         );
 
-
     container.innerHTML = "";
-
 
     if (
         !game.title_ids ||
@@ -220,15 +198,12 @@ function renderGameTitleIds(
         section.hidden = true;
 
         return;
-
     }
-
 
     const entries =
         Object.entries(
             game.title_ids
         );
-
 
     if (
         entries.length === 0
@@ -237,12 +212,9 @@ function renderGameTitleIds(
         section.hidden = true;
 
         return;
-
     }
 
-
     section.hidden = false;
-
 
     entries.forEach(
         ([region, titleId]) => {
@@ -251,7 +223,6 @@ function renderGameTitleIds(
                 return;
             }
 
-
             const item =
                 document.createElement(
                     "div"
@@ -259,7 +230,6 @@ function renderGameTitleIds(
 
             item.className =
                 "game-title-id";
-
 
             const regionElement =
                 document.createElement(
@@ -272,7 +242,6 @@ function renderGameTitleIds(
             regionElement.textContent =
                 region;
 
-
             const labelElement =
                 document.createElement(
                     "span"
@@ -284,7 +253,6 @@ function renderGameTitleIds(
             labelElement.textContent =
                 "Title ID";
 
-
             const valueElement =
                 document.createElement(
                     "span"
@@ -295,7 +263,6 @@ function renderGameTitleIds(
 
             valueElement.textContent =
                 titleId;
-
 
             item.appendChild(
                 regionElement
@@ -309,14 +276,12 @@ function renderGameTitleIds(
                 valueElement
             );
 
-
             container.appendChild(
                 item
             );
 
         }
     );
-
 }
 
 
@@ -324,28 +289,101 @@ function renderGameTitleIds(
    Links
 ======================================== */
 
-function getGameLinkLabel(
-    link
-) {
+function getGameLinkType(link) {
 
-    if (link.name) {
-        return link.name;
-    }
-
-    if (link.type) {
-        return link.type;
-    }
-
-    return "Open link";
+    return String(
+        link?.type ||
+        link?.kind ||
+        "Other"
+    ).trim();
 }
+
+
+function getGameLinkLabel(link) {
+
+    if (link?.name) {
+        return String(
+            link.name
+        );
+    }
+
+    if (link?.label) {
+        return String(
+            link.label
+        );
+    }
+
+    if (link?.title) {
+        return String(
+            link.title
+        );
+    }
+
+    return getGameLinkType(
+        link
+    );
+}
+
+
+/*
+ * Normalize the links array without
+ * changing the source catalog.
+ *
+ * This keeps the official schema:
+ *
+ * game.links[]
+ *
+ * but makes the page tolerant of
+ * harmless differences in type casing.
+ */
+function normalizeGameLinks(game) {
+
+    if (
+        !Array.isArray(
+            game?.links
+        )
+    ) {
+        return [];
+    }
+
+    return game.links
+        .filter(
+            link =>
+                link &&
+                typeof link === "object" &&
+                typeof link.url === "string" &&
+                link.url.trim() !== ""
+        )
+        .map(
+            link => ({
+                ...link,
+                type:
+                    getGameLinkType(
+                        link
+                    )
+            })
+        );
+}
+
+
+function getNormalizedLinkType(link) {
+
+    return getGameLinkType(
+        link
+    )
+        .toLowerCase()
+        .replace(/[_-]+/g, " ")
+        .trim();
+}
+
 
 function renderGameLinkList(
     links,
-    container
+    container,
+    mode = "default"
 ) {
 
     container.innerHTML = "";
-
 
     links.forEach(
         linkData => {
@@ -355,10 +393,18 @@ function renderGameLinkList(
                     "a"
                 );
 
-
             link.className =
                 "game-link";
 
+            if (
+                mode === "other"
+            ) {
+
+                link.classList.add(
+                    "game-link-other"
+                );
+
+            }
 
             if (
                 linkData.recommended === true
@@ -370,7 +416,6 @@ function renderGameLinkList(
 
             }
 
-
             link.href =
                 linkData.url;
 
@@ -380,10 +425,18 @@ function renderGameLinkList(
             link.rel =
                 "noopener noreferrer";
 
+            const type =
+                document.createElement(
+                    "span"
+                );
 
-            /*
-             * Name
-             */
+            type.className =
+                "game-link-type";
+
+            type.textContent =
+                getGameLinkType(
+                    linkData
+                );
 
             const name =
                 document.createElement(
@@ -394,14 +447,9 @@ function renderGameLinkList(
                 "game-link-name";
 
             name.textContent =
-                linkData.name ||
-                linkData.type ||
-                "Open link";
-
-
-            /*
-             * Metadata
-             */
+                getGameLinkLabel(
+                    linkData
+                );
 
             const meta =
                 document.createElement(
@@ -411,20 +459,7 @@ function renderGameLinkList(
             meta.className =
                 "game-link-meta";
 
-
             const metaParts = [];
-
-
-            if (
-                linkData.type
-            ) {
-
-                metaParts.push(
-                    linkData.type
-                );
-
-            }
-
 
             if (
                 linkData.region
@@ -436,7 +471,6 @@ function renderGameLinkList(
 
             }
 
-
             if (
                 linkData.title_id
             ) {
@@ -447,16 +481,20 @@ function renderGameLinkList(
 
             }
 
+            if (
+                linkData.description
+            ) {
+
+                metaParts.push(
+                    linkData.description
+                );
+
+            }
 
             meta.textContent =
                 metaParts.join(
                     " · "
                 );
-
-
-            /*
-             * Size
-             */
 
             const size =
                 document.createElement(
@@ -465,7 +503,6 @@ function renderGameLinkList(
 
             size.className =
                 "game-link-size";
-
 
             if (
                 typeof linkData.size ===
@@ -479,11 +516,6 @@ function renderGameLinkList(
                     );
 
             }
-
-
-            /*
-             * Recommended label
-             */
 
             if (
                 linkData.recommended === true
@@ -500,22 +532,29 @@ function renderGameLinkList(
                 recommended.textContent =
                     "Recommended";
 
-
                 link.appendChild(
                     recommended
                 );
 
             }
 
+            link.appendChild(
+                type
+            );
 
             link.appendChild(
                 name
             );
 
-            link.appendChild(
-                meta
-            );
+            if (
+                meta.textContent
+            ) {
 
+                link.appendChild(
+                    meta
+                );
+
+            }
 
             if (
                 size.textContent
@@ -527,19 +566,16 @@ function renderGameLinkList(
 
             }
 
-
             container.appendChild(
                 link
             );
 
         }
     );
-
 }
 
-function renderGameLinks(
-    game
-) {
+
+function renderGameLinks(game) {
 
     const downloadsSection =
         document.getElementById(
@@ -551,7 +587,6 @@ function renderGameLinks(
             "game-downloads"
         );
 
-
     const dlcSection =
         document.getElementById(
             "game-dlc-section"
@@ -561,7 +596,6 @@ function renderGameLinks(
         document.getElementById(
             "game-dlc"
         );
-
 
     const otherLinksSection =
         document.getElementById(
@@ -573,61 +607,40 @@ function renderGameLinks(
             "game-other-links"
         );
 
-
     downloadsContainer.innerHTML = "";
-
     dlcContainer.innerHTML = "";
-
     otherLinksContainer.innerHTML = "";
 
+    downloadsSection.hidden = true;
+    dlcSection.hidden = true;
+    otherLinksSection.hidden = true;
 
-    /*
-     * No links
-     */
+    const links =
+        normalizeGameLinks(
+            game
+        );
 
     if (
-        !Array.isArray(
-            game.links
-        ) ||
-        game.links.length === 0
+        links.length === 0
     ) {
-
-        downloadsSection.hidden = true;
-
-        dlcSection.hidden = true;
-
-        otherLinksSection.hidden = true;
-
         return;
-
     }
 
-
-    /*
-     * Separate links according
-     * to the official catalog type.
-     */
-
     const downloads = [];
-
     const dlcs = [];
-
     const otherLinks = [];
 
-
-    game.links.forEach(
+    links.forEach(
         link => {
 
-            if (
-                !link ||
-                !link.url
-            ) {
-                return;
-            }
-
+            const type =
+                getNormalizedLinkType(
+                    link
+                );
 
             if (
-                link.type === "Download"
+                type === "download" ||
+                type === "downloads"
             ) {
 
                 downloads.push(
@@ -635,12 +648,11 @@ function renderGameLinks(
                 );
 
                 return;
-
             }
 
-
             if (
-                link.type === "DLC"
+                type === "dlc" ||
+                type === "dlcs"
             ) {
 
                 dlcs.push(
@@ -648,10 +660,22 @@ function renderGameLinks(
                 );
 
                 return;
-
             }
 
-
+            /*
+             * Everything else goes here.
+             *
+             * Examples:
+             * Repository
+             * Official Website
+             * Documentation
+             * Issues
+             * Community
+             * Mirror
+             * Update
+             * Other
+             * and future types.
+             */
             otherLinks.push(
                 link
             );
@@ -659,80 +683,57 @@ function renderGameLinks(
         }
     );
 
-
     /*
-     * Recommended downloads first.
+     * Keep downloads ordered with
+     * the recommended one first.
      */
-
     downloads.sort(
-        (
-            a,
-            b
-        ) => {
+        (a, b) => {
 
             if (
                 a.recommended === true &&
                 b.recommended !== true
             ) {
-
                 return -1;
-
             }
-
 
             if (
                 a.recommended !== true &&
                 b.recommended === true
             ) {
-
                 return 1;
-
             }
 
-
             return 0;
-
         }
     );
 
-
-    /*
-     * Render sections.
-     */
-
     renderGameLinkList(
         downloads,
-        downloadsContainer
+        downloadsContainer,
+        "download"
     );
-
 
     renderGameLinkList(
         dlcs,
-        dlcContainer
+        dlcContainer,
+        "dlc"
     );
-
 
     renderGameLinkList(
         otherLinks,
-        otherLinksContainer
+        otherLinksContainer,
+        "other"
     );
-
-
-    /*
-     * Hide empty sections.
-     */
 
     downloadsSection.hidden =
         downloads.length === 0;
 
-
     dlcSection.hidden =
         dlcs.length === 0;
 
-
     otherLinksSection.hidden =
         otherLinks.length === 0;
-
 }
 
 
@@ -740,15 +741,10 @@ function renderGameLinks(
    Render game
 ======================================== */
 
-function renderGame(
-    game
-) {
+function renderGame(game) {
 
     document.title =
         `${game.name} — PSVitaAlive Store`;
-
-
-    /* Name */
 
     document.getElementById(
         "game-name"
@@ -758,14 +754,10 @@ function renderGame(
             "Unknown game"
         );
 
-
-    /* Cover */
-
     const cover =
         document.getElementById(
             "game-cover"
         );
-
 
     if (game.cover) {
 
@@ -774,11 +766,7 @@ function renderGame(
 
         cover.alt =
             `${game.name} cover`;
-
     }
-
-
-    /* Description */
 
     document.getElementById(
         "game-description"
@@ -787,9 +775,6 @@ function renderGame(
             game.description
         );
 
-
-    /* Long description */
-
     document.getElementById(
         "game-long-description"
     ).textContent =
@@ -797,29 +782,21 @@ function renderGame(
             game.long_description
         );
 
-
-    /* Meta */
-
     const meta =
         document.getElementById(
             "game-meta"
         );
 
-
     meta.innerHTML = "";
 
-
     const metaValues = [];
-
 
     if (game.version) {
 
         metaValues.push(
             `Version ${game.version}`
         );
-
     }
-
 
     if (game.version_date) {
 
@@ -828,9 +805,7 @@ function renderGame(
                 game.version_date
             )
         );
-
     }
-
 
     if (
         typeof game.size ===
@@ -843,31 +818,20 @@ function renderGame(
                 game.size
             )
         );
-
     }
-
 
     meta.textContent =
         metaValues.join(
             " · "
         );
 
-
-    /* Categories */
-
     renderGameCategories(
         game
     );
 
-
-    /* Title IDs */
-
     renderGameTitleIds(
         game
     );
-
-
-    /* Information */
 
     document.getElementById(
         "info-version"
@@ -876,14 +840,12 @@ function renderGame(
             game.version
         );
 
-
     document.getElementById(
         "info-date"
     ).textContent =
         gameReleaseDate(
             game.version_date
         );
-
 
     document.getElementById(
         "info-size"
@@ -898,25 +860,17 @@ function renderGame(
             )
             : "Not available";
 
-
-    /* Links */
-
     renderGameLinks(
         game
     );
-
-
-    /* Show */
 
     document.getElementById(
         "game-loading"
     ).hidden = true;
 
-
     document.getElementById(
         "game-content"
     ).hidden = false;
-
 }
 
 
@@ -930,11 +884,9 @@ function showGameError() {
         "game-loading"
     ).hidden = true;
 
-
     document.getElementById(
         "game-error"
     ).hidden = false;
-
 }
 
 
@@ -949,7 +901,6 @@ async function initGamePage() {
         const gameId =
             getGameIdFromUrl();
 
-
         if (!gameId) {
 
             showGameError();
@@ -957,10 +908,8 @@ async function initGamePage() {
             return;
         }
 
-
         const games =
             await loadOfficialGamesCatalog();
-
 
         const game =
             games.find(
@@ -968,11 +917,10 @@ async function initGamePage() {
                     item.id === gameId
             );
 
-
         if (!game) {
 
             console.error(
-                "Official PS Vita game not found:",
+                "Game not found:",
                 gameId
             );
 
@@ -981,28 +929,24 @@ async function initGamePage() {
             return;
         }
 
-
         renderGame(
             game
         );
 
-
         console.log(
-            "Official PS Vita game page loaded:",
+            "Game page loaded:",
             game.name
         );
 
     } catch (error) {
 
         console.error(
-            "Failed to load official PS Vita game:",
+            "Failed to load game:",
             error
         );
 
         showGameError();
-
     }
-
 }
 
 

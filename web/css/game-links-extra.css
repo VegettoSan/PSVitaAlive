@@ -1,0 +1,69 @@
+
+/* ========================================
+   Other Links
+======================================== */
+
+#game-other-links-section {
+    border-color: var(--border);
+}
+
+#game-other-links-section .game-links {
+    grid-template-columns:
+        repeat(
+            auto-fit,
+            minmax(220px, 1fr)
+        );
+}
+
+.game-link-type {
+    display: inline-flex;
+
+    align-self: flex-start;
+
+    width: fit-content;
+
+    padding: 4px 8px;
+
+    background: rgba(
+        59,
+        255,
+        0,
+        0.10
+    );
+
+    border: 1px solid rgba(
+        59,
+        255,
+        0,
+        0.35
+    );
+
+    border-radius: 5px;
+
+    color: var(--accent);
+
+    font-size: 0.70rem;
+
+    font-weight: 900;
+
+    text-transform: uppercase;
+
+    letter-spacing: 0.04em;
+}
+
+.game-link-other .game-link-name {
+    margin-top: 2px;
+}
+
+.game-link-other .game-link-meta {
+    color: #ffffff;
+    opacity: 0.72;
+}
+
+@media (max-width: 600px) {
+
+    #game-other-links-section .game-links {
+        grid-template-columns: 1fr;
+    }
+
+}
