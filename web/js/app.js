@@ -191,6 +191,40 @@ function normalizeSearchValue(value) {
         .trim();
 }
 
+/**
+ * Texto utilizado para buscar juegos
+ * dentro del catálogo seleccionado.
+ *
+ * Se mantiene aquí como función compartida
+ * para catalog-switcher.js, sin devolver
+ * el control de los catálogos a app.js.
+ */
+function getGameSearchText(game) {
+
+    const titleIds =
+        game.title_ids &&
+        typeof game.title_ids === "object"
+            ? Object.values(
+                game.title_ids
+            )
+            : [];
+
+    return [
+        game.id,
+        game.name,
+        game.title,
+        game.description,
+        game.long_description,
+        game.category_id,
+        ...(Array.isArray(game.subcategory_ids)
+            ? game.subcategory_ids
+            : []),
+        ...titleIds
+    ]
+        .filter(Boolean)
+        .join(" ");
+}
+
 
 /**
  * Texto utilizado para buscar Homebrew.
