@@ -5,98 +5,6 @@ let currentCatalog =
 
 
 /* ========================================
-   Render Featured Homebrew
-======================================== */
-
-function renderFeaturedHomebrew() {
-
-    const featuredGrid =
-        document.getElementById(
-            "featured-homebrew-grid"
-        );
-
-    if (!featuredGrid) {
-        return;
-    }
-
-    featuredGrid.innerHTML = "";
-
-    const sortedApps =
-        [...VitaHubData.catalog].sort(
-            (a, b) => {
-
-                const dateA =
-                    new Date(
-                        a.version_date || 0
-                    ).getTime();
-
-                const dateB =
-                    new Date(
-                        b.version_date || 0
-                    ).getTime();
-
-                const validA =
-                    Number.isFinite(
-                        dateA
-                    ) && dateA > 0;
-
-                const validB =
-                    Number.isFinite(
-                        dateB
-                    ) && dateB > 0;
-
-                if (
-                    !validA &&
-                    validB
-                ) {
-                    return 1;
-                }
-
-                if (
-                    validA &&
-                    !validB
-                ) {
-                    return -1;
-                }
-
-                if (
-                    !validA &&
-                    !validB
-                ) {
-                    return 0;
-                }
-
-                return dateB - dateA;
-            }
-        );
-
-    const featuredApps =
-        sortedApps.slice(
-            0,
-            3
-        );
-
-    featuredApps.forEach(
-        app => {
-
-            const card =
-                renderAppCard(
-                    app
-                );
-
-            card.classList.add(
-                "featured-app-card"
-            );
-
-            featuredGrid.appendChild(
-                card
-            );
-        }
-    );
-}
-
-
-/* ========================================
    Render Homebrew
 ======================================== */
 
@@ -191,13 +99,10 @@ function normalizeSearchValue(value) {
         .trim();
 }
 
+
 /**
  * Texto utilizado para buscar juegos
  * dentro del catálogo seleccionado.
- *
- * Se mantiene aquí como función compartida
- * para catalog-switcher.js, sin devolver
- * el control de los catálogos a app.js.
  */
 function getGameSearchText(game) {
 
@@ -348,8 +253,6 @@ async function initHomePage() {
 
         await loadVitaHubData();
 
-        renderFeaturedHomebrew();
-
         /*
          * The multi-catalog switcher owns:
          *
@@ -391,6 +294,70 @@ async function initHomePage() {
 document.addEventListener(
     "DOMContentLoaded",
     initHomePage
+);
+
+
+/* ========================================
+   Search → Catalog navigation
+======================================== */
+
+const PSVITA_ALIVE_SEARCH_NAVIGATED =
+    new WeakSet();
+
+document.addEventListener(
+    "input",
+    event => {
+
+        const input =
+            event.target;
+
+        if (
+            !input ||
+            input.id !== "global-search"
+        ) {
+            return;
+        }
+
+        const query =
+            String(
+                input.value || ""
+            ).trim();
+
+        if (!query) {
+            PSVITA_ALIVE_SEARCH_NAVIGATED.delete(
+                input
+            );
+
+            return;
+        }
+
+        if (
+            PSVITA_ALIVE_SEARCH_NAVIGATED.has(
+                input
+            )
+        ) {
+            return;
+        }
+
+        PSVITA_ALIVE_SEARCH_NAVIGATED.add(
+            input
+        );
+
+        const catalogSection =
+            document.getElementById(
+                "homebrew-catalog"
+            );
+
+        if (!catalogSection) {
+            return;
+        }
+
+        catalogSection.scrollIntoView({
+            behavior: "smooth",
+            block: "start"
+        });
+    },
+    true
 );
 
 
