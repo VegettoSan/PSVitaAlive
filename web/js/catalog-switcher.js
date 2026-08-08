@@ -83,13 +83,36 @@ async function renderPSVitaAliveGameCatalog(catalog) {
     const config = getPSVitaAliveCatalogConfig(catalog);
 
     try {
+        if (window.showPSVitaAliveLoader) {
+            window.showPSVitaAliveLoader(
+                `Loading ${config.label}...`
+            );
+        }
+
         const games = await loadPSVitaAliveGameCatalog(catalog);
+
+        if (window.updatePSVitaAliveLoaderStatus) {
+            window.updatePSVitaAliveLoaderStatus(
+                "Preparing catalog..."
+            );
+        }
+
         grid.innerHTML = "";
 
         games.forEach(game => {
             grid.appendChild(renderPSVitaAliveGameCard(game, catalog));
         });
+
+        if (window.hidePSVitaAliveLoader) {
+            window.hidePSVitaAliveLoader();
+        }
+
     } catch (error) {
+
+        if (window.hidePSVitaAliveLoader) {
+            window.hidePSVitaAliveLoader();
+        }
+
         console.error(`Failed to load ${config.label} catalog:`, error);
         grid.innerHTML = `<p class="catalog-error">Failed to load ${config.label} catalog.</p>`;
     }
