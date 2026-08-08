@@ -1,6 +1,5 @@
 /**
  * PSVitaAlive Store
- *
  * Author profile page.
  */
 
@@ -21,129 +20,52 @@ function getAuthorIdFromUrl() {
 
 
 /* ========================================
-   Author data loading
+   Avatar
 ======================================== */
 
-async function loadAuthorsWithRetry(
-    attempts = 4
+function resolveAuthorProfileAvatar(
+    author
 ) {
 
-    let lastError = null;
+    const avatar =
+        author.avatar;
 
-    for (
-        let attempt = 1;
-        attempt <= attempts;
-        attempt++
-    ) {
-
-        try {
-
-            /*
-             * Always use the official generated authors.json.
-             * Cache-busting is only used after the first attempt.
-             */
-
-            const suffix =
-                attempt === 1
-                    ? ""
-                    : `?author_retry=${Date.now()}`;
-
-
-            const authors =
-                await loadJSON(
-                    `${VITAHUB_RAW_BASE}/authors.json${suffix}`
-                );
-
-
-            if (
-                !Array.isArray(authors)
-            ) {
-
-                throw new Error(
-                    "authors.json did not return an array"
-                );
-
-            }
-
-
-            VitaHubData.authors =
-                authors;
-
-
-            return authors;
-
-        } catch (error) {
-
-            lastError = error;
-
-            console.error(
-                `Failed to load authors.json (attempt ${attempt}/${attempts}):`,
-                error
-            );
-
-
-            if (
-                attempt < attempts
-            ) {
-
-                await new Promise(
-                    resolve =>
-                        setTimeout(
-                            resolve,
-                            500 * attempt
-                        )
-                );
-
-            }
-
-        }
-
+    if (!avatar) {
+        return null;
     }
-
-
-    throw lastError ||
-        new Error(
-            "Unable to load authors."
-        );
-
-}
-
-
-async function loadAuthorPageData() {
-
-    /*
-     * First load the normal VitaHub data.
-     * catalog/categories are also required by
-     * the author page cards.
-     */
-
-    await loadVitaHubData();
-
-
-    /*
-     * If authors were already loaded, use them.
-     * Otherwise explicitly retry authors.json.
-     */
 
     if (
-        !Array.isArray(
-            VitaHubData.authors
-        ) ||
-        VitaHubData.authors.length === 0
+        /^https?:\/\/github\.com\/[^/]+\.png(?:\?.*)?$/i.test(
+            avatar
+        )
     ) {
 
-        await loadAuthorsWithRetry();
+        const username =
+            avatar
+                .replace(
+                    /^https?:\/\/github\.com\//i,
+                    ""
+                )
+                .replace(
+                    /\.png(?:\?.*)?$/i,
+                    ""
+                );
 
+        return (
+            `https://avatars.githubusercontent.com/${encodeURIComponent(
+                username
+            )}?size=512`
+        );
     }
 
-
-    return VitaHubData;
-
+    return resolveAssetPath(
+        avatar
+    );
 }
 
 
 /* ========================================
-   Author links
+   Links
 ======================================== */
 
 function getAuthorLinkLabel(link) {
@@ -160,14 +82,21 @@ function getAuthorLinkLabel(link) {
 }
 
 
-function renderAuthorLinks(author) {
+function renderAuthorLinks(
+    author
+) {
 
     const container =
         document.getElementById(
             "author-links"
         );
 
-    container.innerHTML = "";
+    if (!container) {
+        return;
+    }
+
+    container.innerHTML =
+        "";
 
 
     if (
@@ -176,36 +105,31 @@ function renderAuthorLinks(author) {
         ) ||
         author.links.length === 0
     ) {
-
         return;
     }
 
 
-    const links = [
-        ...author.links
-    ];
+    const links =
+        [...author.links].sort(
+            (a, b) => {
 
+                if (
+                    a.recommended === true &&
+                    b.recommended !== true
+                ) {
+                    return -1;
+                }
 
-    links.sort(
-        (a, b) => {
+                if (
+                    a.recommended !== true &&
+                    b.recommended === true
+                ) {
+                    return 1;
+                }
 
-            if (
-                a.recommended === true &&
-                b.recommended !== true
-            ) {
-                return -1;
+                return 0;
             }
-
-            if (
-                a.recommended !== true &&
-                b.recommended === true
-            ) {
-                return 1;
-            }
-
-            return 0;
-        }
-    );
+        );
 
 
     links.forEach(
@@ -215,7 +139,6 @@ function renderAuthorLinks(author) {
                 return;
             }
 
-
             const link =
                 document.createElement(
                     "a"
@@ -224,17 +147,13 @@ function renderAuthorLinks(author) {
             link.className =
                 "author-link";
 
-
             if (
                 linkData.recommended === true
             ) {
-
                 link.classList.add(
                     "recommended"
                 );
-
             }
-
 
             link.href =
                 linkData.url;
@@ -245,20 +164,16 @@ function renderAuthorLinks(author) {
             link.rel =
                 "noopener noreferrer";
 
-
             link.textContent =
                 getAuthorLinkLabel(
                     linkData
                 );
 
-
             container.appendChild(
                 link
             );
-
         }
     );
-
 }
 
 
@@ -288,18 +203,14 @@ function getAuthorApplications(
                         app.author_ids
                     )
                 ) {
-
                     return app.author_ids.includes(
                         authorId
                     );
-
                 }
-
 
                 return (
                     app.author_id === authorId
                 );
-
             }
         );
 
@@ -317,23 +228,45 @@ function getAuthorApplications(
                     b.version_date || 0
                 ).getTime();
 
-            return (
-                (Number.isFinite(dateB) ? dateB : 0) -
-                (Number.isFinite(dateA) ? dateA : 0)
-            );
+            const validA =
+                Number.isFinite(
+                    dateA
+                ) && dateA > 0;
 
+            const validB =
+                Number.isFinite(
+                    dateB
+                ) && dateB > 0;
+
+            if (
+                !validA &&
+                validB
+            ) {
+                return 1;
+            }
+
+            if (
+                validA &&
+                !validB
+            ) {
+                return -1;
+            }
+
+            if (
+                !validA &&
+                !validB
+            ) {
+                return 0;
+            }
+
+            return dateB - dateA;
         }
     );
 
 
     return applications;
-
 }
 
-
-/* ========================================
-   Render
-======================================== */
 
 function renderAuthorApplications(
     applications
@@ -344,18 +277,27 @@ function renderAuthorApplications(
             "author-apps"
         );
 
+    if (!container) {
+        return;
+    }
 
-    container.innerHTML = "";
+    container.innerHTML =
+        "";
 
 
-    document.getElementById(
-        "author-app-count"
-    ).textContent =
-        `${applications.length} ${
-            applications.length === 1
-                ? "application"
-                : "applications"
-        }`;
+    const countElement =
+        document.getElementById(
+            "author-app-count"
+        );
+
+    if (countElement) {
+        countElement.textContent =
+            `${applications.length} ${
+                applications.length === 1
+                    ? "application"
+                    : "applications"
+            }`;
+    }
 
 
     if (
@@ -378,7 +320,6 @@ function renderAuthorApplications(
         );
 
         return;
-
     }
 
 
@@ -390,44 +331,17 @@ function renderAuthorApplications(
                     app
                 );
 
-            card.classList.add(
-                "app-card-clickable"
-            );
-
-
-            card.addEventListener(
-                "click",
-                event => {
-
-                    if (
-                        event.target.closest(
-                            "a"
-                        )
-                    ) {
-                        return;
-                    }
-
-
-                    window.location.href =
-                        `app.html?title_id=${
-                            encodeURIComponent(
-                                app.title_id
-                            )
-                        }`;
-
-                }
-            );
-
-
             container.appendChild(
                 card
             );
-
         }
     );
-
 }
 
+
+/* ========================================
+   Render
+======================================== */
 
 function renderAuthor(
     author,
@@ -438,19 +352,15 @@ function renderAuthor(
         `${author.name} — PSVitaAlive Store`;
 
 
-    document.getElementById(
-        "author-name"
-    ).textContent =
-        author.name ||
-        "Unknown author";
+    const name =
+        document.getElementById(
+            "author-name"
+        );
 
-
-    document.getElementById(
-        "author-bio"
-    ).textContent =
-        author.bio ||
-        "No biography available.";
-
+    const bio =
+        document.getElementById(
+            "author-bio"
+        );
 
     const avatar =
         document.getElementById(
@@ -458,55 +368,100 @@ function renderAuthor(
         );
 
 
-    if (author.avatar) {
-
-        avatar.src =
-            resolveAssetPath(
-                author.avatar
-            );
-
+    if (name) {
+        name.textContent =
+            author.name ||
+            "Unknown author";
     }
 
 
-    avatar.alt =
-        `${author.name} avatar`;
+    if (bio) {
+        bio.textContent =
+            author.bio ||
+            "No biography available.";
+    }
 
 
-    avatar.addEventListener(
-        "error",
-        () => {
+    if (avatar) {
+
+        const avatarUrl =
+            resolveAuthorProfileAvatar(
+                author
+            );
+
+        if (avatarUrl) {
 
             avatar.src =
-                resolveAssetPath(
-                    "authors/icon/autoricon.png"
-                );
+                avatarUrl;
 
-        },
-        {
-            once: true
         }
-    );
+
+        avatar.alt =
+            `${author.name} avatar`;
+
+
+        let fallbackUsed =
+            false;
+
+
+        avatar.addEventListener(
+            "error",
+            () => {
+
+                if (
+                    !fallbackUsed &&
+                    author.avatar &&
+                    avatar.src !== author.avatar
+                ) {
+
+                    fallbackUsed =
+                        true;
+
+                    avatar.src =
+                        author.avatar;
+
+                    return;
+                }
+
+                avatar.src =
+                    resolveAssetPath(
+                        "authors/icon/autoricon.png"
+                    );
+
+            }
+        );
+    }
 
 
     renderAuthorLinks(
         author
     );
 
-
     renderAuthorApplications(
         applications
     );
 
 
-    document.getElementById(
-        "author-loading"
-    ).hidden = true;
+    const loading =
+        document.getElementById(
+            "author-loading"
+        );
+
+    const content =
+        document.getElementById(
+            "author-content"
+        );
 
 
-    document.getElementById(
-        "author-content"
-    ).hidden = false;
+    if (loading) {
+        loading.hidden =
+            true;
+    }
 
+    if (content) {
+        content.hidden =
+            false;
+    }
 }
 
 
@@ -514,38 +469,114 @@ function renderAuthor(
    Error
 ======================================== */
 
-function showAuthorError(
-    message = null
-) {
+function showAuthorError() {
 
-    document.getElementById(
-        "author-loading"
-    ).hidden = true;
-
+    const loading =
+        document.getElementById(
+            "author-loading"
+        );
 
     const error =
         document.getElementById(
             "author-error"
         );
 
+    if (loading) {
+        loading.hidden =
+            true;
+    }
 
-    if (message) {
+    if (error) {
+        error.hidden =
+            false;
+    }
+}
 
-        const paragraph =
-            error.querySelector(
-                "p"
+
+/* ========================================
+   Author lookup
+======================================== */
+
+async function findAuthorWithRetry(
+    authorId
+) {
+
+    for (
+        let attempt = 1;
+        attempt <= 3;
+        attempt++
+    ) {
+
+        const author =
+            getAuthorById(
+                authorId
             );
 
-        if (paragraph) {
-            paragraph.textContent =
-                message;
+        if (author) {
+            return author;
         }
 
+
+        if (
+            attempt < 3
+        ) {
+
+            await new Promise(
+                resolve =>
+                    setTimeout(
+                        resolve,
+                        400 * attempt
+                    )
+            );
+        }
     }
 
 
-    error.hidden = false;
+    /*
+     * Refresh only the official generated
+     * authors.json. No local copy is created.
+     */
 
+    try {
+
+        const refreshed =
+            await fetch(
+                `${VITAHUB_RAW_BASE}/authors.json?refresh=${Date.now()}`,
+                {
+                    cache: "no-store"
+                }
+            );
+
+        if (refreshed.ok) {
+
+            const authors =
+                await refreshed.json();
+
+            if (
+                Array.isArray(
+                    authors
+                )
+            ) {
+
+                VitaHubData.authors =
+                    authors;
+
+                return getAuthorById(
+                    authorId
+                );
+            }
+        }
+
+    } catch (error) {
+
+        console.warn(
+            "Unable to refresh authors.json:",
+            error
+        );
+    }
+
+
+    return null;
 }
 
 
@@ -555,75 +586,35 @@ function showAuthorError(
 
 async function initAuthorPage() {
 
-    const authorId =
-        getAuthorIdFromUrl();
-
-
-    /*
-     * No ID is a real error. Do not perform
-     * catalog requests in this case.
-     */
-
-    if (!authorId) {
-
-        showAuthorError();
-
-        return;
-
-    }
-
-
     try {
 
-        /*
-         * Keep "Loading author..." visible
-         * for the entire request sequence.
-         */
+        const authorId =
+            getAuthorIdFromUrl();
 
-        const data =
-            await loadAuthorPageData();
+        if (!authorId) {
+            showAuthorError();
+            return;
+        }
 
 
-        let author =
-            getAuthorById(
+        await loadVitaHubData();
+
+
+        const author =
+            await findAuthorWithRetry(
                 authorId
             );
-
-
-        /*
-         * One extra direct refresh if the author
-         * is still missing. This prevents a stale
-         * authors.json response from becoming a
-         * false "Author not found".
-         */
-
-        if (!author) {
-
-            await loadAuthorsWithRetry(
-                2
-            );
-
-
-            author =
-                getAuthorById(
-                    authorId
-                );
-
-        }
 
 
         if (!author) {
 
             console.error(
-                "Author not found after loading authors.json:",
+                "Author not found:",
                 authorId
             );
 
-
             showAuthorError();
-
             return;
-
         }
 
 
@@ -638,13 +629,6 @@ async function initAuthorPage() {
             applications
         );
 
-
-        console.log(
-            "Author page loaded:",
-            author.name
-        );
-
-
     } catch (error) {
 
         console.error(
@@ -652,16 +636,8 @@ async function initAuthorPage() {
             error
         );
 
-
-        /*
-         * Only show the error after all
-         * loading/retry attempts failed.
-         */
-
         showAuthorError();
-
     }
-
 }
 
 

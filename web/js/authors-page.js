@@ -2,11 +2,6 @@
    Authors Page
 ======================================== */
 
-
-/**
- * Obtiene todos los Homebrew
- * asociados a un autor.
- */
 function getAppsByAuthor(authorId) {
 
     return VitaHubData.catalog.filter(
@@ -17,36 +12,81 @@ function getAppsByAuthor(authorId) {
                     app.author_ids
                 )
             ) {
-
                 return app.author_ids.includes(
                     authorId
                 );
-
             }
-
 
             if (app.author_id) {
-
                 return app.author_id === authorId;
-
             }
 
-
             return false;
-
         }
     );
-
 }
 
 
-/**
- * Crea una tarjeta de autor.
+/*
+ * Resolve author avatar.
+ *
+ * GitHub profile images stored as:
+ * https://github.com/USERNAME.png
+ * are converted to the avatar CDN form.
+ *
+ * This avoids relying on the GitHub profile
+ * page redirect when the browser is loading
+ * many author cards at once.
  */
-function renderAuthorCard(author) {
+function resolveAuthorAvatar(
+    author
+) {
+
+    const avatar =
+        author.avatar;
+
+    if (!avatar) {
+        return null;
+    }
+
+    if (
+        /^https?:\/\/github\.com\/[^/]+\.png(?:\?.*)?$/i.test(
+            avatar
+        )
+    ) {
+
+        const username =
+            avatar
+                .replace(
+                    /^https?:\/\/github\.com\//i,
+                    ""
+                )
+                .replace(
+                    /\.png(?:\?.*)?$/i,
+                    ""
+                );
+
+        return (
+            `https://avatars.githubusercontent.com/${encodeURIComponent(
+                username
+            )}?size=256`
+        );
+    }
+
+    return resolveAssetPath(
+        avatar
+    );
+}
+
+
+function renderAuthorCard(
+    author
+) {
 
     const card =
-        document.createElement("a");
+        document.createElement(
+            "a"
+        );
 
     card.className =
         "author-card";
@@ -57,26 +97,30 @@ function renderAuthorCard(author) {
         )}`;
 
 
-    /* ========================================
-       Avatar
-    ======================================== */
-
     const avatarContainer =
-        document.createElement("div");
+        document.createElement(
+            "div"
+        );
 
     avatarContainer.className =
         "author-card-avatar";
 
 
-    if (author.avatar) {
+    const avatarUrl =
+        resolveAuthorAvatar(
+            author
+        );
+
+
+    if (avatarUrl) {
 
         const avatar =
-            document.createElement("img");
+            document.createElement(
+                "img"
+            );
 
         avatar.src =
-            resolveAssetPath(
-                author.avatar
-            );
+            avatarUrl;
 
         avatar.alt =
             `${author.name} avatar`;
@@ -84,10 +128,32 @@ function renderAuthorCard(author) {
         avatar.loading =
             "lazy";
 
+        avatar.decoding =
+            "async";
+
 
         avatar.addEventListener(
             "error",
             () => {
+
+                /*
+                 * One fallback to the original
+                 * URL before showing placeholder.
+                 */
+
+                const original =
+                    author.avatar;
+
+                if (
+                    original &&
+                    avatar.src !== original
+                ) {
+
+                    avatar.src =
+                        original;
+
+                    return;
+                }
 
                 avatar.remove();
 
@@ -116,19 +182,19 @@ function renderAuthorCard(author) {
     }
 
 
-    /* ========================================
-       Content
-    ======================================== */
-
     const content =
-        document.createElement("div");
+        document.createElement(
+            "div"
+        );
 
     content.className =
         "author-card-content";
 
 
     const name =
-        document.createElement("h2");
+        document.createElement(
+            "h2"
+        );
 
     name.textContent =
         author.name ||
@@ -142,21 +208,21 @@ function renderAuthorCard(author) {
 
 
     const count =
-        document.createElement("span");
+        document.createElement(
+            "span"
+        );
 
     count.className =
         "author-card-count";
 
     count.textContent =
-        `${apps.length} ${
-            apps.length === 1
-                ? "Homebrew"
-                : "Homebrew"
-        }`;
+        `${apps.length} Homebrew`;
 
 
     const bio =
-        document.createElement("p");
+        document.createElement(
+            "p"
+        );
 
     bio.className =
         "author-card-bio";
@@ -179,12 +245,10 @@ function renderAuthorCard(author) {
     );
 
 
-    /* ========================================
-       Arrow
-    ======================================== */
-
     const arrow =
-        document.createElement("span");
+        document.createElement(
+            "span"
+        );
 
     arrow.className =
         "author-card-arrow";
@@ -207,13 +271,9 @@ function renderAuthorCard(author) {
 
 
     return card;
-
 }
 
 
-/**
- * Renderiza todos los autores.
- */
 function renderAuthors(
     authors
 ) {
@@ -239,12 +299,9 @@ function renderAuthors(
     }
 
 
-    grid.innerHTML = "";
+    grid.innerHTML =
+        "";
 
-
-    /*
-     * Sort alphabetically.
-     */
 
     const sortedAuthors =
         [...authors].sort(
@@ -259,58 +316,55 @@ function renderAuthors(
         );
 
 
-    countElement.textContent =
-        `${sortedAuthors.length} ${
-            sortedAuthors.length === 1
-                ? "author"
-                : "authors"
-        }`;
+    if (countElement) {
+        countElement.textContent =
+            `${sortedAuthors.length} ${
+                sortedAuthors.length === 1
+                    ? "author"
+                    : "authors"
+            }`;
+    }
 
 
     if (
         sortedAuthors.length === 0
     ) {
 
-        empty.hidden =
-            false;
+        if (empty) {
+            empty.hidden =
+                false;
+        }
 
         return;
-
     }
 
 
-    empty.hidden =
-        true;
+    if (empty) {
+        empty.hidden =
+            true;
+    }
 
 
     sortedAuthors.forEach(
         author => {
 
-            const card =
+            grid.appendChild(
                 renderAuthorCard(
                     author
-                );
-
-            grid.appendChild(
-                card
+                )
             );
 
         }
     );
-
 }
 
 
-/**
- * Filtra autores.
- */
 function filterAuthors() {
 
     const searchInput =
         document.getElementById(
             "author-search"
         );
-
 
     if (!searchInput) {
         return;
@@ -329,21 +383,20 @@ function filterAuthors() {
 
                 const name =
                     (
-                        author.name || ""
+                        author.name ||
+                        ""
                     ).toLowerCase();
-
 
                 const bio =
                     (
-                        author.bio || ""
+                        author.bio ||
+                        ""
                     ).toLowerCase();
-
 
                 return (
                     name.includes(query) ||
                     bio.includes(query)
                 );
-
             }
         );
 
@@ -351,19 +404,14 @@ function filterAuthors() {
     renderAuthors(
         filtered
     );
-
 }
 
 
-/**
- * Initialize.
- */
 async function initAuthorsPage() {
 
     try {
 
         await loadVitaHubData();
-
 
         renderAuthors(
             VitaHubData.authors
@@ -375,16 +423,12 @@ async function initAuthorsPage() {
                 "author-search"
             );
 
-
         if (searchInput) {
-
             searchInput.addEventListener(
                 "input",
                 filterAuthors
             );
-
         }
-
 
     } catch (error) {
 
@@ -392,9 +436,7 @@ async function initAuthorsPage() {
             "Failed to initialize authors page:",
             error
         );
-
     }
-
 }
 
 
