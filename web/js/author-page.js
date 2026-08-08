@@ -118,6 +118,7 @@ function renderAuthorLinks(author) {
                 link.classList.add(
                     "recommended"
                 );
+
             }
 
 
@@ -313,6 +314,7 @@ function renderAuthorApplications(
         );
 
         return;
+
     }
 
 
@@ -325,11 +327,6 @@ function renderAuthorApplications(
                 );
 
 
-            /*
-             * Clicking the card opens
-             * the application page.
-             */
-
             card.classList.add(
                 "app-card-clickable"
             );
@@ -338,11 +335,6 @@ function renderAuthorApplications(
             card.addEventListener(
                 "click",
                 event => {
-
-                    /*
-                     * Do not intercept clicks
-                     * on author/category links.
-                     */
 
                     if (
                         event.target.closest(
@@ -387,8 +379,6 @@ function renderAuthor(
         `${author.name} — PSVitaAlive Store`;
 
 
-    /* Name */
-
     document.getElementById(
         "author-name"
     ).textContent =
@@ -396,16 +386,12 @@ function renderAuthor(
         "Unknown author";
 
 
-    /* Bio */
-
     document.getElementById(
         "author-bio"
     ).textContent =
         author.bio ||
         "No biography available.";
 
-
-    /* Avatar */
 
     const avatar =
         document.getElementById(
@@ -427,11 +413,6 @@ function renderAuthor(
         `${author.name} avatar`;
 
 
-    /*
-     * Fallback if the author's
-     * avatar cannot be loaded.
-     */
-
     avatar.addEventListener(
         "error",
         () => {
@@ -448,21 +429,15 @@ function renderAuthor(
     );
 
 
-    /* Links */
-
     renderAuthorLinks(
         author
     );
 
 
-    /* Applications */
-
     renderAuthorApplications(
         applications
     );
 
-
-    /* Show */
 
     document.getElementById(
         "author-loading"
@@ -495,6 +470,89 @@ function showAuthorError() {
 
 
 /* ========================================
+   Robust author lookup
+======================================== */
+
+/*
+ * If the browser has a stale/cached authors.json,
+ * retry once using a cache-busted request.
+ *
+ * This does not modify the official generated
+ * authors.json. It only refreshes the in-memory
+ * authors list when the requested author cannot
+ * be found.
+ */
+
+async function findAuthorWithRetry(
+    authorId
+) {
+
+    let author =
+        getAuthorById(
+            authorId
+        );
+
+
+    if (author) {
+        return author;
+    }
+
+
+    /*
+     * Give GitHub Raw / Pages a moment in case
+     * the generated catalog has just changed.
+     */
+
+    await new Promise(
+        resolve =>
+            setTimeout(
+                resolve,
+                350
+            )
+    );
+
+
+    author =
+        getAuthorById(
+            authorId
+        );
+
+
+    if (author) {
+        return author;
+    }
+
+
+    /*
+     * Refresh only authors.json.
+     */
+
+    const refreshedAuthors =
+        await loadJSON(
+            `${VITAHUB_RAW_BASE}/authors.json?refresh=${Date.now()}`
+        );
+
+
+    if (
+        Array.isArray(
+            refreshedAuthors
+        )
+    ) {
+
+        VitaHubData.authors =
+            refreshedAuthors;
+
+    }
+
+
+    return getAuthorById(
+        authorId
+    );
+
+}
+
+
+/* ========================================
    Initialization
 ======================================== */
 
@@ -511,6 +569,7 @@ async function initAuthorPage() {
             showAuthorError();
 
             return;
+
         }
 
 
@@ -524,10 +583,15 @@ async function initAuthorPage() {
 
         /*
          * Find author by ID.
+         *
+         * Includes a retry/cache refresh
+         * to avoid false "Author not found"
+         * states immediately after a catalog
+         * update.
          */
 
         const author =
-            getAuthorById(
+            await findAuthorWithRetry(
                 authorId
             );
 
@@ -542,13 +606,9 @@ async function initAuthorPage() {
             showAuthorError();
 
             return;
+
         }
 
-
-        /*
-         * Find every application
-         * associated with this author.
-         */
 
         const applications =
             getAuthorApplications(
@@ -566,6 +626,7 @@ async function initAuthorPage() {
             "Author page loaded:",
             author.name
         );
+
 
     } catch (error) {
 
