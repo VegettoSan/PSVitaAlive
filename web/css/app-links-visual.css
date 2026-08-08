@@ -1,0 +1,198 @@
+/*
+ * PSVitaAlive Store
+ *
+ * Homebrew application links.
+ * Visual style aligned with the game catalog links.
+ */
+
+
+/* ========================================
+   Links grid
+======================================== */
+
+.app-links {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(
+            auto-fit,
+            minmax(220px, 1fr)
+        );
+
+    gap: 12px;
+}
+
+
+/* ========================================
+   Link card
+======================================== */
+
+.app-link-card {
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: flex-start;
+
+    gap: 6px;
+
+    min-width: 0;
+
+    padding: 16px;
+
+    background: var(--surface-hover);
+
+    border: 1px solid var(--border);
+
+    border-radius: 10px;
+
+    color: #ffffff;
+
+    text-decoration: none;
+
+    transition:
+        border-color 0.2s ease,
+        transform 0.2s ease,
+        background 0.2s ease;
+}
+
+
+.app-link-card:hover {
+
+    border-color: var(--accent);
+
+    background: var(--surface);
+
+    transform: translateY(-2px);
+}
+
+
+/* ========================================
+   Type badge
+======================================== */
+
+.app-link-card-type {
+
+    display: inline-flex;
+
+    align-items: center;
+
+    width: fit-content;
+
+    padding: 4px 8px;
+
+    background: rgba(
+        59,
+        255,
+        0,
+        0.10
+    );
+
+    border: 1px solid rgba(
+        59,
+        255,
+        0,
+        0.30
+    );
+
+    border-radius: 5px;
+
+    color: var(--accent);
+
+    font-size: 0.68rem;
+
+    font-weight: 900;
+
+    text-transform: uppercase;
+
+    letter-spacing: 0.04em;
+}
+
+
+/* ========================================
+   Visible link name
+======================================== */
+
+.app-link-card-name {
+
+    display: block;
+
+    color: #ffffff;
+
+    font-size: 1rem;
+
+    font-weight: 900;
+
+    line-height: 1.35;
+
+    overflow-wrap: anywhere;
+}
+
+
+/* ========================================
+   Metadata
+======================================== */
+
+.app-link-card-meta {
+
+    display: block;
+
+    color: #ffffff;
+
+    opacity: 0.72;
+
+    font-size: 0.82rem;
+
+    font-weight: 700;
+
+    line-height: 1.45;
+
+    overflow-wrap: anywhere;
+}
+
+
+.app-link-card-size {
+
+    display: block;
+
+    color: var(--accent);
+
+    font-size: 0.82rem;
+
+    font-weight: 700;
+}
+
+
+/* ========================================
+   Recommended
+======================================== */
+
+.app-link-card.recommended {
+
+    border-color: var(--accent);
+
+    box-shadow:
+        0 0 0 1px rgba(
+            59,
+            255,
+            0,
+            0.08
+        );
+}
+
+
+/* ========================================
+   Mobile
+======================================== */
+
+@media (max-width: 600px) {
+
+    .app-links {
+
+        grid-template-columns: 1fr;
+
+    }
+
+}
