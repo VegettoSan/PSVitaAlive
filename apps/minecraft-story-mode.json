@@ -28,9 +28,17 @@
       "recommended": true
     },
     {
-      "type": "Download",
-      "name": "Game Data Files Google Drive",
+      "type": "Google Drive Option 1",
+      "name": "Game Data Files",
       "url": "https://drive.google.com/drive/folders/1HxnitrSo71z0K6w3lrbl8D_6jCY5rZWV",
+      "size": 5000000000,
+      "recommended": false
+    },
+    {
+      "type": "Google Drive Option 2",
+      "name": "Game Data Files",
+      "url": "https://drive.google.com/drive/folders/1Fc-rcMdDvSy_oXJE6OwG2k4fYEL0rBj6",
+      "size": 5000000000,
       "recommended": false
     },
     {

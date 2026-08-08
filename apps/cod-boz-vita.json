@@ -1,7 +1,7 @@
 {
   "id": "cod-boz-vita",
   "title_id": "BOZ000001",
-  "name": "COD: BOZ Vita",
+  "name": "Call of Duty: Black Ops Zombies Vita",
   "description": "Port of Call of Duty: Black Ops Zombies for PSVita.",
   "long_description": "Port of Call of Duty: Black Ops Zombies for PSVita.\nCall of Duty: Black Ops Zombies is a mobile game that proposes the popular Zombies mode from Call of Duty: Black Ops.",
   "author_ids": [
@@ -22,10 +22,38 @@
   ],
   "links": [
     {
-      "type": "Download",
-      "name": "Descarga principal",
+      "type": "Download Source Official",
+      "name": "Download Official",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/boz_vita.vpk",
+      "size": 1820,
+      "recommended": false
+    },
+    {
+      "type": "Download VitaDBtoo Mirror",
+      "name": "Download VitaDBtoo",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/boz_vita.vpk",
+      "size": 1820,
       "recommended": true
+    },
+    {
+      "type": "Mediafire",
+      "name": "Game Data Files",
+      "url": "https://www.mediafire.com/file/vwqk03ztmettw8p/boz.7z/file",
+      "size": 129070000,
+      "recommended": false
+    },
+    {
+      "type": "Gamebanana",
+      "name": "boz_tweaks_102.zip Mods",
+      "url": "https://gamebanana.com/dl/1760155",
+      "size": 8000,
+      "recommended": false
+    },
+    {
+      "type": "Gamebanana",
+      "name": "VO Packs + Classic Perks + PS Prompts Mods",
+      "url": "https://gamebanana.com/mods/686190",
+      "recommended": false
     },
     {
       "type": "Other",
