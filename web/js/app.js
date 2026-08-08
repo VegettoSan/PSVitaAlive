@@ -1,10 +1,10 @@
 const HOME_CATALOG = "homebrew";
-const GAMES_CATALOG = "games";
 
 let currentCatalog =
     HOME_CATALOG;
 
-    /* ========================================
+
+/* ========================================
    Render Featured Homebrew
 ======================================== */
 
@@ -15,14 +15,11 @@ function renderFeaturedHomebrew() {
             "featured-homebrew-grid"
         );
 
-
     if (!featuredGrid) {
         return;
     }
 
-
     featuredGrid.innerHTML = "";
-
 
     const sortedApps =
         [...VitaHubData.catalog].sort(
@@ -33,24 +30,20 @@ function renderFeaturedHomebrew() {
                         a.version_date || 0
                     ).getTime();
 
-
                 const dateB =
                     new Date(
                         b.version_date || 0
                     ).getTime();
-
 
                 const validA =
                     Number.isFinite(
                         dateA
                     ) && dateA > 0;
 
-
                 const validB =
                     Number.isFinite(
                         dateB
                     ) && dateB > 0;
-
 
                 if (
                     !validA &&
@@ -59,14 +52,12 @@ function renderFeaturedHomebrew() {
                     return 1;
                 }
 
-
                 if (
                     validA &&
                     !validB
                 ) {
                     return -1;
                 }
-
 
                 if (
                     !validA &&
@@ -75,19 +66,15 @@ function renderFeaturedHomebrew() {
                     return 0;
                 }
 
-
                 return dateB - dateA;
-
             }
         );
-
 
     const featuredApps =
         sortedApps.slice(
             0,
             3
         );
-
 
     featuredApps.forEach(
         app => {
@@ -97,20 +84,17 @@ function renderFeaturedHomebrew() {
                     app
                 );
 
-
             card.classList.add(
                 "featured-app-card"
             );
 
-
             featuredGrid.appendChild(
                 card
             );
-
         }
     );
-
 }
+
 
 /* ========================================
    Render Homebrew
@@ -127,154 +111,75 @@ function renderHomebrewCatalog() {
         return;
     }
 
-
     appsGrid.innerHTML = "";
 
-
     const sortedApps =
-    [...VitaHubData.catalog].sort(
-        (a, b) => {
+        [...VitaHubData.catalog].sort(
+            (a, b) => {
 
-            const dateA =
-                new Date(
-                    a.version_date || 0
-                ).getTime();
+                const dateA =
+                    new Date(
+                        a.version_date || 0
+                    ).getTime();
 
-            const dateB =
-                new Date(
-                    b.version_date || 0
-                ).getTime();
+                const dateB =
+                    new Date(
+                        b.version_date || 0
+                    ).getTime();
 
+                const validA =
+                    Number.isFinite(
+                        dateA
+                    ) && dateA > 0;
 
-            const validA =
-                Number.isFinite(
-                    dateA
-                ) && dateA > 0;
+                const validB =
+                    Number.isFinite(
+                        dateB
+                    ) && dateB > 0;
 
+                if (
+                    !validA &&
+                    validB
+                ) {
+                    return 1;
+                }
 
-            const validB =
-                Number.isFinite(
-                    dateB
-                ) && dateB > 0;
+                if (
+                    validA &&
+                    !validB
+                ) {
+                    return -1;
+                }
 
+                if (
+                    !validA &&
+                    !validB
+                ) {
+                    return 0;
+                }
 
-            /*
-             * Applications without a valid
-             * date go to the end.
-             */
-
-            if (
-                !validA &&
-                validB
-            ) {
-                return 1;
+                return dateB - dateA;
             }
-
-
-            if (
-                validA &&
-                !validB
-            ) {
-                return -1;
-            }
-
-
-            if (
-                !validA &&
-                !validB
-            ) {
-                return 0;
-            }
-
-
-            /*
-             * Newest first.
-             */
-
-            return dateB - dateA;
-
-        }
-    );
-
-
-sortedApps.forEach(
-    app => {
-
-        const card =
-            renderAppCard(
-                app
-            );
-
-        appsGrid.appendChild(
-            card
         );
 
-    }
-);
+    sortedApps.forEach(
+        app => {
 
-}
-
-
-/* ========================================
-   Render Official Games
-======================================== */
-
-async function renderOfficialGamesCatalog() {
-
-    const appsGrid =
-        document.getElementById(
-            "latest-apps-grid"
-        );
-
-    if (!appsGrid) {
-        return;
-    }
-
-
-    try {
-
-        const games =
-            await loadOfficialGames();
-
-
-        appsGrid.innerHTML = "";
-
-
-        games.forEach(
-            game => {
-
-                const card =
-                    renderOfficialGameCard(
-                        game
-                    );
-
-                appsGrid.appendChild(
-                    card
+            const card =
+                renderAppCard(
+                    app
                 );
 
-            }
-        );
-
-    } catch (error) {
-
-        console.error(
-            "Failed to load official PS Vita games:",
-            error
-        );
-
-
-        appsGrid.innerHTML = `
-            <p class="catalog-error">
-                Failed to load PS Vita games catalog.
-            </p>
-        `;
-
-    }
-
+            appsGrid.appendChild(
+                card
+            );
+        }
+    );
 }
 
+
 /* ========================================
-   Search
+   Search helpers
 ======================================== */
 
 function normalizeSearchValue(value) {
@@ -284,7 +189,6 @@ function normalizeSearchValue(value) {
         .normalize("NFD")
         .replace(/[\u0300-\u036f]/g, "")
         .trim();
-
 }
 
 
@@ -297,7 +201,6 @@ function getHomebrewSearchText(app) {
         getAuthorsByIds(
             app.author_ids
         );
-
 
     return [
         app.id,
@@ -315,39 +218,6 @@ function getHomebrewSearchText(app) {
     ]
         .filter(Boolean)
         .join(" ");
-
-}
-
-
-/**
- * Texto utilizado para buscar
- * juegos oficiales.
- */
-function getGameSearchText(game) {
-
-    const titleIds =
-        game.title_ids &&
-        typeof game.title_ids === "object"
-            ? Object.values(
-                game.title_ids
-            )
-            : [];
-
-
-    return [
-        game.id,
-        game.name,
-        game.description,
-        game.long_description,
-        game.category_id,
-        ...(Array.isArray(game.subcategory_ids)
-            ? game.subcategory_ids
-            : []),
-        ...titleIds
-    ]
-        .filter(Boolean)
-        .join(" ");
-
 }
 
 
@@ -365,14 +235,11 @@ function renderHomebrewSearchResults(
             "latest-apps-grid"
         );
 
-
     if (!appsGrid) {
         return;
     }
 
-
     appsGrid.innerHTML = "";
-
 
     const sortedResults =
         [...results].sort(
@@ -383,29 +250,25 @@ function renderHomebrewSearchResults(
                         a.version_date || 0
                     ).getTime();
 
-
                 const dateB =
                     new Date(
                         b.version_date || 0
                     ).getTime();
 
-
                 return dateB - dateA;
-
             }
         );
-
 
     sortedResults.forEach(
         app => {
 
             appsGrid.appendChild(
-                renderAppCard(app)
+                renderAppCard(
+                    app
+                )
             );
-
         }
     );
-
 
     if (
         sortedResults.length === 0
@@ -421,64 +284,7 @@ function renderHomebrewSearchResults(
                 </p>
             </div>
         `;
-
     }
-
-}
-
-
-/**
- * Muestra resultados de búsqueda
- * exclusivamente del catálogo
- * oficial de juegos.
- */
-function renderGameSearchResults(
-    results,
-    query
-) {
-
-    const appsGrid =
-        document.getElementById(
-            "latest-apps-grid"
-        );
-
-
-    if (!appsGrid) {
-        return;
-    }
-
-
-    appsGrid.innerHTML = "";
-
-
-    results.forEach(
-        game => {
-
-            appsGrid.appendChild(
-                renderOfficialGameCard(game)
-            );
-
-        }
-    );
-
-
-    if (
-        results.length === 0
-    ) {
-
-        appsGrid.innerHTML = `
-            <div class="catalog-empty">
-                <h3>No PS Vita games found</h3>
-
-                <p>
-                    No PS Vita game matched
-                    "${escapeSearchText(query)}".
-                </p>
-            </div>
-        `;
-
-    }
-
 }
 
 
@@ -495,219 +301,11 @@ function escapeSearchText(value) {
         .replace(/>/g, "&gt;")
         .replace(/"/g, "&quot;")
         .replace(/'/g, "&#039;");
-
-}
-
-
-/**
- * Ejecuta la búsqueda únicamente
- * sobre el catálogo seleccionado.
- */
-async function performSearch(query) {
-
-    const normalizedQuery =
-        normalizeSearchValue(
-            query
-        );
-
-
-    /*
-     * Si el campo queda vacío,
-     * restauramos el catálogo actual.
-     */
-
-    if (!normalizedQuery) {
-
-        await switchCatalog(
-            currentCatalog
-        );
-
-        return;
-
-    }
-
-
-    /*
-     * HOMEbrew
-     */
-
-    if (
-        currentCatalog ===
-        HOME_CATALOG
-    ) {
-
-        const results =
-            VitaHubData.catalog.filter(
-                app => {
-
-                    const text =
-                        normalizeSearchValue(
-                            getHomebrewSearchText(
-                                app
-                            )
-                        );
-
-
-                    return text.includes(
-                        normalizedQuery
-                    );
-
-                }
-            );
-
-
-        renderHomebrewSearchResults(
-            results,
-            query
-        );
-
-
-        return;
-
-    }
-
-
-    /*
-     * PS Vita Games
-     */
-
-    try {
-
-        const games =
-            await loadOfficialGames();
-
-
-        const results =
-            games.filter(
-                game => {
-
-                    const text =
-                        normalizeSearchValue(
-                            getGameSearchText(
-                                game
-                            )
-                        );
-
-
-                    return text.includes(
-                        normalizedQuery
-                    );
-
-                }
-            );
-
-
-        renderGameSearchResults(
-            results,
-            query
-        );
-
-
-    } catch (error) {
-
-        console.error(
-            "Failed to search PS Vita games:",
-            error
-        );
-
-    }
-
-}
-
-/* ========================================
-   Catalog selector
-======================================== */
-
-function updateCatalogButtons() {
-
-    const homeButton =
-        document.getElementById(
-            "catalog-homebrew"
-        );
-
-    const gamesButton =
-        document.getElementById(
-            "catalog-games"
-        );
-
-
-    if (!homeButton || !gamesButton) {
-        return;
-    }
-
-
-    homeButton.classList.toggle(
-        "active",
-        currentCatalog === HOME_CATALOG
-    );
-
-
-    gamesButton.classList.toggle(
-        "active",
-        currentCatalog === GAMES_CATALOG
-    );
-
-}
-
-
-async function switchCatalog(
-    catalog
-) {
-
-    currentCatalog =
-        catalog;
-
-
-    updateCatalogButtons();
-    updateRandomButton();
-
-
-    /*
-     * Limpiar búsqueda al cambiar
-     * de catálogo.
-     */
-
-    const searchInput =
-        document.getElementById(
-            "global-search"
-        );
-
-
-    if (searchInput) {
-
-        searchInput.value = "";
-
-        searchInput.placeholder =
-            currentCatalog === GAMES_CATALOG
-                ? "Search PS Vita Games..."
-                : "Search Homebrew...";
-
-    }
-
-
-    /*
-     * Renderizar únicamente
-     * el catálogo seleccionado.
-     */
-
-    if (
-        currentCatalog ===
-        GAMES_CATALOG
-    ) {
-
-        await renderOfficialGamesCatalog();
-
-    } else {
-
-        renderHomebrewCatalog();
-
-    }
-
 }
 
 
 /* ========================================
-   Initialize
+   Initialize Home Page
 ======================================== */
 
 async function initHomePage() {
@@ -715,108 +313,36 @@ async function initHomePage() {
     try {
 
         await loadVitaHubData();
+
         renderFeaturedHomebrew();
 
-        const searchInput =
-    document.getElementById(
-        "global-search"
-    );
+        /*
+         * The multi-catalog switcher owns:
+         *
+         * - Homebrew button
+         * - PS Vita Games button
+         * - PSP Games button
+         * - PS1 Games button
+         * - Global search
+         *
+         * app.js intentionally does NOT attach
+         * listeners to those controls anymore.
+         */
 
+        renderHomebrewCatalog();
 
-if (searchInput) {
-
-    let searchTimeout;
-
-
-    searchInput.addEventListener(
-        "input",
-        () => {
-
-            clearTimeout(
-                searchTimeout
-            );
-
-
-            searchTimeout =
-                setTimeout(
-                    () => {
-
-                        performSearch(
-                            searchInput.value
-                        );
-
-                    },
-                    180
-                );
-
-        }
-    );
-
-}
-
-const randomButton =
-    document.getElementById(
-        "random-homebrew"
-    );
-
-
-if (randomButton) {
-
-    randomButton.addEventListener(
-        "click",
-        openRandomHomebrew
-    );
-
-}
-
-
-        const homebrewButton =
+        const randomButton =
             document.getElementById(
-                "catalog-homebrew"
+                "random-homebrew"
             );
 
+        if (randomButton) {
 
-        const gamesButton =
-            document.getElementById(
-                "catalog-games"
-            );
-
-
-        if (
-            homebrewButton &&
-            gamesButton
-        ) {
-
-            homebrewButton.addEventListener(
+            randomButton.addEventListener(
                 "click",
-                () => {
-
-                    switchCatalog(
-                        HOME_CATALOG
-                    );
-
-                }
+                openRandomHomebrew
             );
-
-
-            gamesButton.addEventListener(
-                "click",
-                () => {
-
-                    switchCatalog(
-                        GAMES_CATALOG
-                    );
-
-                }
-            );
-
         }
-
-
-        await switchCatalog(
-            HOME_CATALOG
-        );
-
 
     } catch (error) {
 
@@ -824,9 +350,7 @@ if (randomButton) {
             "Failed to initialize PSVitaAlive Store:",
             error
         );
-
     }
-
 }
 
 
@@ -834,6 +358,7 @@ document.addEventListener(
     "DOMContentLoaded",
     initHomePage
 );
+
 
 /* ========================================
    Random Homebrew
@@ -850,11 +375,8 @@ function openRandomHomebrew() {
         currentCatalog !==
         HOME_CATALOG
     ) {
-
         return;
-
     }
-
 
     if (
         !Array.isArray(
@@ -862,11 +384,8 @@ function openRandomHomebrew() {
         ) ||
         VitaHubData.catalog.length === 0
     ) {
-
         return;
-
     }
-
 
     const randomIndex =
         Math.floor(
@@ -874,24 +393,21 @@ function openRandomHomebrew() {
             VitaHubData.catalog.length
         );
 
-
     const app =
         VitaHubData.catalog[
             randomIndex
         ];
 
-
     if (!app.title_id) {
         return;
     }
-
 
     window.location.href =
         `app.html?title_id=${encodeURIComponent(
             app.title_id
         )}`;
-
 }
+
 
 function updateRandomButton() {
 
@@ -900,24 +416,19 @@ function updateRandomButton() {
             "random-homebrew"
         );
 
-
     if (!randomButton) {
         return;
     }
 
-
     const disabled =
-        currentCatalog ===
-        GAMES_CATALOG;
-
+        currentCatalog !==
+        HOME_CATALOG;
 
     randomButton.disabled =
         disabled;
-
 
     randomButton.classList.toggle(
         "disabled",
         disabled
     );
-
 }
