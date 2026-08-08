@@ -1,344 +1,132 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
     <meta charset="UTF-8">
-
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Game — PSVitaAlive Store</title>
 
     <meta
         name="description"
-        content="PlayStation Vita game information"
+        content="PlayStation game information"
     >
 
-    <link
-        rel="stylesheet"
-        href="css/main.css"
-    >
-
-    <link
-        rel="stylesheet"
-        href="css/game.css"
-    >
-
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/game.css">
 </head>
 
 <body>
 
     <header class="site-header">
-
         <div class="container site-header-inner">
 
-            <a
-                href="index.html"
-                class="site-logo"
-            >
-
+            <a href="index.html" class="site-logo">
                 <img
                     src="assets/logo/PSVitaAlive_Store_logo_text.png"
                     alt="PSVitaAlive Store"
                 >
-
             </a>
 
-
             <nav class="site-nav">
-
-    <a href="index.html">
-        Home
-    </a>
-
-    <a href="index.html#official-games">
-        PS Vita Games
-    </a>
-
-</nav>
+                <a href="index.html">Home</a>
+                <a href="index.html#homebrew-catalog">Games</a>
+            </nav>
 
         </div>
-
     </header>
-
 
     <main class="game-page">
 
-        <!-- Loading -->
-
-        <div
-            id="game-loading"
-            class="game-state"
-        >
-
+        <div id="game-loading" class="game-state">
             Loading game...
-
         </div>
 
-
-        <!-- Error -->
-
-        <div
-            id="game-error"
-            class="game-state game-state-error"
-            hidden
-        >
-
-            <h1>
-                Game not found
-            </h1>
-
-            <p>
-                The requested game could not be found in the PS Vita games catalog.
-            </p>
-
-            <a href="index.html">
-                Return to home
-            </a>
-
+        <div id="game-error" class="game-state game-state-error" hidden>
+            <h1>Game not found</h1>
+            <p>The requested game could not be found in the selected games catalog.</p>
+            <a href="index.html">Return to home</a>
         </div>
 
+        <a href="index.html#homebrew-catalog" class="game-back-link">
+            ← Back to Games
+        </a>
 
-        <!-- Game -->
-
-        <a
-    href="index.html#official-games"
-    class="game-back-link"
->
-    ← Back to PS Vita Games
-</a>
-
-        <article
-            id="game-content"
-            class="game-detail"
-            hidden
-        >
-
-            <!-- Hero -->
+        <article id="game-content" class="game-detail" hidden>
 
             <section class="game-hero">
-
                 <div class="game-cover">
-
-                    <img
-                        id="game-cover"
-                        src=""
-                        alt=""
-                    >
-
+                    <img id="game-cover" src="" alt="">
                 </div>
-
 
                 <div class="game-hero-info">
-
-                    <span class="game-catalog-badge">
-                        PS Vita Game
-                    </span>
-
-
+                    <span class="game-catalog-badge">PS Vita Game</span>
                     <h1 id="game-name"></h1>
-
-
-                    <div
-                        id="game-description"
-                        class="game-description"
-                    ></div>
-
-
-                    <div
-                        id="game-meta"
-                        class="game-meta"
-                    ></div>
-
+                    <div id="game-description" class="game-description"></div>
+                    <div id="game-meta" class="game-meta"></div>
                 </div>
-
             </section>
-
-
-            <!-- Description -->
 
             <section class="game-section">
-
-                <h2>
-                    Description
-                </h2>
-
-
-                <p
-                    id="game-long-description"
-                    class="game-long-description"
-                ></p>
-
+                <h2>Description</h2>
+                <p id="game-long-description" class="game-long-description"></p>
             </section>
 
-
-            <!-- Categories -->
-
-            <section
-                id="game-categories-section"
-                class="game-section"
-            >
-
-                <h2>
-                    Categories
-                </h2>
-
-
-                <div
-                    id="game-categories"
-                    class="game-tags"
-                ></div>
-
+            <section id="game-categories-section" class="game-section">
+                <h2>Categories</h2>
+                <div id="game-categories" class="game-tags"></div>
             </section>
 
-
-            <!-- Title IDs -->
-
-            <section
-                id="title-ids-section"
-                class="game-section"
-            >
-
-                <h2>
-                    Title IDs
-                </h2>
-
-
-                <div
-                    id="game-title-ids"
-                    class="game-title-ids"
-                ></div>
-
+            <section id="title-ids-section" class="game-section">
+                <h2>Title IDs</h2>
+                <div id="game-title-ids" class="game-title-ids"></div>
             </section>
-
-
-            <!-- Information -->
 
             <section class="game-section">
-
-                <h2>
-                    Information
-                </h2>
-
-
+                <h2>Information</h2>
                 <dl class="game-information">
-
                     <div>
-
-                        <dt>
-                            Version
-                        </dt>
-
+                        <dt>Version</dt>
                         <dd id="info-version"></dd>
-
                     </div>
-
-
                     <div>
-
-                        <dt>
-                            Release date
-                        </dt>
-
+                        <dt>Release date</dt>
                         <dd id="info-date"></dd>
-
                     </div>
-
-
                     <div>
-
-                        <dt>
-                            Size
-                        </dt>
-
+                        <dt>Size</dt>
                         <dd id="info-size"></dd>
-
                     </div>
-
                 </dl>
-
             </section>
 
+            <section id="game-downloads-section" class="game-section">
+                <h2>Downloads</h2>
+                <div id="game-downloads" class="game-links"></div>
+            </section>
 
-            <!-- Links -->
+            <section id="game-dlc-section" class="game-section" hidden>
+                <h2>DLC</h2>
+                <div id="game-dlc" class="game-links"></div>
+            </section>
 
-            <section
-    id="game-downloads-section"
-    class="game-section"
->
-
-    <h2>
-        Downloads
-    </h2>
-
-    <div
-        id="game-downloads"
-        class="game-links"
-    ></div>
-
-</section>
-
-
-<section
-    id="game-dlc-section"
-    class="game-section"
-    hidden
->
-
-    <h2>
-        DLC
-    </h2>
-
-    <div
-        id="game-dlc"
-        class="game-links"
-    ></div>
-
-</section>
-
-
-<section
-    id="game-other-links-section"
-    class="game-section"
-    hidden
->
-
-    <h2>
-        Other Links
-    </h2>
-
-    <div
-        id="game-other-links"
-        class="game-links"
-    ></div>
-
-</section>
+            <section id="game-other-links-section" class="game-section" hidden>
+                <h2>Other Links</h2>
+                <div id="game-other-links" class="game-links"></div>
+            </section>
 
         </article>
-
     </main>
 
-
     <footer class="site-footer">
-
         <div class="container">
-
             PSVitaAlive Store — Free and open PlayStation Vita homebrew catalog.
-
         </div>
-
     </footer>
 
-
     <script src="js/data.js"></script>
-
     <script src="js/components.js"></script>
-
     <script src="js/game-page.js"></script>
+    <script src="js/multi-game-page.js"></script>
 
 </body>
-
 </html>

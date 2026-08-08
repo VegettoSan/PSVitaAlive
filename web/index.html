@@ -34,254 +34,179 @@
 
             <div class="header-search">
                 <input
-    id="global-search"
-    type="search"
-    placeholder="Search Homebrew..."
-    aria-label="Search Homebrew"
->
+                    id="global-search"
+                    type="search"
+                    placeholder="Search Homebrew..."
+                    aria-label="Search Homebrew"
+                >
             </div>
 
         </div>
     </header>
 
-
     <main>
 
         <section class="hero">
+            <div class="container hero-inner">
+                <span class="hero-label">PLAYSTATION VITA HOMEBREW</span>
 
-    <div class="container hero-inner">
+                <h1>Keep PlayStation Vita Alive.</h1>
 
-        <span class="hero-label">
-            PLAYSTATION VITA HOMEBREW
-        </span>
-
-
-        <h1>
-            Keep PlayStation Vita Alive.
-        </h1>
-
-
-        <p class="hero-description">
-            Discover, preserve and enjoy Homebrew
-            created for PlayStation Vita.
-            Explore new projects, revisit classics
-            and keep the Vita community alive.
-        </p>
-
-
-        <div class="hero-actions">
-
-            <a
-                href="#homebrew-catalog"
-                class="hero-button hero-button-primary"
-            >
-                Explore Homebrew
-            </a>
-
-
-            <button
-                id="random-homebrew"
-                type="button"
-                class="hero-button hero-button-secondary"
-            >
-                Random Homebrew
-            </button>
-
-        </div>
-
-    </div>
-
-</section>
-
-<section
-    id="featured-homebrew"
-    class="featured-section"
->
-
-    <div class="container">
-
-        <div class="section-heading">
-
-            <div>
-
-                <span class="section-label">
-                    LATEST
-                </span>
-
-                <h2>
-                    Latest Releases & Updates
-                </h2>
-
-                <p>
-                    Discover the latest Homebrew releases
-                    and updates for PlayStation Vita.
+                <p class="hero-description">
+                    Discover, preserve and enjoy Homebrew
+                    created for PlayStation Vita.
+                    Explore new projects, revisit classics
+                    and keep the Vita community alive.
                 </p>
 
+                <div class="hero-actions">
+                    <a
+                        href="#homebrew-catalog"
+                        class="hero-button hero-button-primary"
+                    >
+                        Explore Homebrew
+                    </a>
+
+                    <button
+                        id="random-homebrew"
+                        type="button"
+                        class="hero-button hero-button-secondary"
+                    >
+                        Random Homebrew
+                    </button>
+                </div>
             </div>
+        </section>
 
-        </div>
+        <section id="featured-homebrew" class="featured-section">
+            <div class="container">
+                <div class="section-heading">
+                    <div>
+                        <span class="section-label">LATEST</span>
+                        <h2>Latest Releases & Updates</h2>
+                        <p>
+                            Discover the latest Homebrew releases
+                            and updates for PlayStation Vita.
+                        </p>
+                    </div>
+                </div>
 
+                <div
+                    id="featured-homebrew-grid"
+                    class="featured-homebrew-grid"
+                ></div>
+            </div>
+        </section>
 
-        <div
-            id="featured-homebrew-grid"
-            class="featured-homebrew-grid"
-        ></div>
-
-    </div>
-
-</section>
-
-        <section
-    id="homebrew-catalog"
-    class="apps-section"
->
+        <section id="homebrew-catalog" class="apps-section">
             <div class="container">
 
                 <div class="section-header">
+                    <div>
+                        <h2 id="catalog-title">Latest Releases & Updates</h2>
+                        <p id="catalog-description">
+                            The latest Homebrew releases and updates.
+                        </p>
+                    </div>
+                </div>
 
-    <div>
+                <div class="catalog-switcher">
+                    <button
+                        id="catalog-homebrew"
+                        class="catalog-switch-button active"
+                        type="button"
+                    >
+                        Homebrew
+                    </button>
 
-        <h2 id="catalog-title">
-    Latest Releases & Updates
-</h2>
+                    <button
+                        id="catalog-games"
+                        class="catalog-switch-button"
+                        type="button"
+                    >
+                        PS Vita Games
+                    </button>
 
-<p id="catalog-description">
-    The latest Homebrew releases and updates.
-</p>
+                    <button
+                        id="catalog-psp"
+                        class="catalog-switch-button"
+                        type="button"
+                    >
+                        PSP Games
+                    </button>
 
-    </div>
+                    <button
+                        id="catalog-ps1"
+                        class="catalog-switch-button"
+                        type="button"
+                    >
+                        PS1 Games
+                    </button>
+                </div>
 
-</div>
-
-
-<div class="catalog-switcher">
-
-    <button
-        id="catalog-homebrew"
-        class="catalog-switch-button active"
-        type="button"
-    >
-        Homebrew
-    </button>
-
-
-    <button
-        id="catalog-games"
-        class="catalog-switch-button"
-        type="button"
-    >
-        PS Vita Games
-    </button>
-
-</div>
-
-
-                <div
-                    id="latest-apps-grid"
-                    class="apps-grid"
-                >
-
+                <div id="latest-apps-grid" class="apps-grid">
                     <article class="app-card">
-
                         <div class="app-card-icon">
-                            <div class="placeholder-icon">
-                                APP
-                            </div>
+                            <div class="placeholder-icon">APP</div>
                         </div>
-
                         <div class="app-card-content">
-
                             <div class="app-card-top">
-                                <span class="status-badge">
-                                    Verified
-                                </span>
+                                <span class="status-badge">Verified</span>
                             </div>
-
                             <h3>Example Homebrew</h3>
-
                             <p class="app-card-description">
                                 An example application used to preview
                                 the PSVitaAlive Store interface.
                             </p>
-
                             <div class="app-card-meta">
                                 <span>v1.0</span>
                                 <span>12 MB</span>
                                 <span>Games</span>
                             </div>
-
                         </div>
-
                     </article>
 
-
                     <article class="app-card">
-
                         <div class="app-card-icon">
-                            <div class="placeholder-icon">
-                                APP
-                            </div>
+                            <div class="placeholder-icon">APP</div>
                         </div>
-
                         <div class="app-card-content">
-
                             <div class="app-card-top">
-                                <span class="status-badge">
-                                    Legacy
-                                </span>
+                                <span class="status-badge">Legacy</span>
                             </div>
-
                             <h3>Example Application</h3>
-
                             <p class="app-card-description">
                                 Another example application showing
                                 the card layout.
                             </p>
-
                             <div class="app-card-meta">
                                 <span>v2.1</span>
                                 <span>8 MB</span>
                                 <span>Tools</span>
                             </div>
-
                         </div>
-
                     </article>
 
-
                     <article class="app-card">
-
                         <div class="app-card-icon">
-                            <div class="placeholder-icon">
-                                APP
-                            </div>
+                            <div class="placeholder-icon">APP</div>
                         </div>
-
                         <div class="app-card-content">
-
                             <div class="app-card-top">
-                                <span class="status-badge">
-                                    Verified
-                                </span>
+                                <span class="status-badge">Verified</span>
                             </div>
-
                             <h3>Sample Vita Homebrew</h3>
-
                             <p class="app-card-description">
                                 Preview content for the PSVitaAlive
                                 application card.
                             </p>
-
                             <div class="app-card-meta">
                                 <span>v1.4</span>
                                 <span>24 MB</span>
                                 <span>Media</span>
                             </div>
-
                         </div>
-
                     </article>
-
                 </div>
 
             </div>
@@ -289,20 +214,18 @@
 
     </main>
 
-
     <footer class="site-footer">
         <div class="container">
-
             <p>
                 PSVitaAlive Store — Free and open PlayStation Vita homebrew catalog.
             </p>
-
         </div>
     </footer>
 
-<script src="js/data.js"></script>
-<script src="js/components.js"></script>
-<script src="js/app.js"></script>
+    <script src="js/data.js"></script>
+    <script src="js/components.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/catalog-switcher.js"></script>
 
 </body>
 </html>
