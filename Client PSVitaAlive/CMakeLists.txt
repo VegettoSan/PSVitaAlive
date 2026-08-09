@@ -58,8 +58,7 @@ target_link_libraries(${PROJECT_NAME}
   ScePower_stub
   SceNet_stub
   SceNetCtl_stub
-  SceHttp_stub
-  SceSsl_stub
+
   ScePromoterUtil_stub
   SceGxm_stub
   ScePgf_stub
@@ -69,6 +68,7 @@ target_link_libraries(${PROJECT_NAME}
   lzma
   bz2
   z
+  curl
   ssl
   crypto
   pthread
