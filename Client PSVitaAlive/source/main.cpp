@@ -79,11 +79,16 @@ void updateProgressDialog(const psvitaalive::InstallStatus& status) {
         status.fileName.empty() ? "Preparing..." : status.fileName.c_str(),
         bytesToMiB(status.bytesPerSecond));
 
+    // VitaSDK exposes SceChar8 as signed char, while our formatting buffer is
+    // a normal char buffer. The bytes are ASCII/UTF-8 text and the API does
+    // not modify the message, so the conversion is representation-compatible.
+    const SceChar8* vitaDialogMessage = reinterpret_cast<const SceChar8*>(dialogMessage);
+
     if (!gProgressDialogOpen) {
         SceMsgDialogProgressBarParam progress = {};
         progress.barType = SCE_MSG_DIALOG_PROGRESSBAR_TYPE_PERCENTAGE;
         progress.sysMsgParam.sysMsgType = SCE_MSG_DIALOG_SYSMSG_TYPE_WAIT_SMALL;
-        progress.msg = dialogMessage;
+        progress.msg = vitaDialogMessage;
 
         SceMsgDialogParam param = {};
         param.mode = SCE_MSG_DIALOG_MODE_PROGRESS_BAR;
@@ -100,7 +105,7 @@ void updateProgressDialog(const psvitaalive::InstallStatus& status) {
         percent = static_cast<uint32_t>(value > 100 ? 100 : value);
     }
     sceMsgDialogProgressBarSetValue(SCE_MSG_DIALOG_PROGRESSBAR_TARGET_BAR_DEFAULT, percent);
-    sceMsgDialogProgressBarSetMsg(SCE_MSG_DIALOG_PROGRESSBAR_TARGET_BAR_DEFAULT, dialogMessage);
+    sceMsgDialogProgressBarSetMsg(SCE_MSG_DIALOG_PROGRESSBAR_TARGET_BAR_DEFAULT, vitaDialogMessage);
 }
 
 bool asciiToWide(const std::string& text, SceWChar16* out, size_t capacity) {
