@@ -4,6 +4,7 @@
 
 #include <vita2d.h>
 
+#include <functional>
 #include <string>
 #include <vector>
 
@@ -12,6 +13,9 @@ namespace ui {
 
 class FullCatalogScreen {
 public:
+    using InstallRequestFn = std::function<bool(const CatalogItem&)>;
+    using InstallStatusFn = std::function<std::string()>;
+
     FullCatalogScreen();
     ~FullCatalogScreen();
 
@@ -22,9 +26,18 @@ public:
     // Devuelve false cuando el usuario solicita salir.
     bool updateAndDraw();
 
+    // La UI solo emite una intención; la capa de instalación ejecuta la operación.
+    void setInstallCallbacks(
+        InstallRequestFn requestInstall,
+        InstallStatusFn statusText
+    );
+
 private:
     UiState state_;
     std::vector<CatalogItem> items_;
+
+    InstallRequestFn installRequest_;
+    InstallStatusFn installStatusText_;
 
     vita2d_pgf* font_ = nullptr;
     bool ready_ = false;
