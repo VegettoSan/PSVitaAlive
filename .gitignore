@@ -1,0 +1,14 @@
+build/
+*.vpk
+*.self
+*.velf
+*.suprx
+*.skprx
+*.elf
+*.o
+*.obj
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
+Makefile
+*.Zone.Identifier
