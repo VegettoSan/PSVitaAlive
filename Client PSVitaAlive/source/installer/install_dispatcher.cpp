@@ -1,5 +1,4 @@
 #include "installer/install_dispatcher.hpp"
-
 #include "archive/format_detector.hpp"
 #include "archive/zip_extractor.hpp"
 #include "installer/homebrew_installer.hpp"
@@ -7,19 +6,14 @@
 #include "storage/storage_manager.hpp"
 
 #include <psp2/kernel/clib.h>
-
 #include <algorithm>
 #include <cctype>
 
 namespace psvitaalive {
-
 namespace {
 std::string lowerExtension(const std::string& path) {
-    const std::string ext = FormatDetector::extensionOf(path);
-    std::string out = ext;
-    std::transform(out.begin(), out.end(), out.begin(), [](unsigned char c) {
-        return static_cast<char>(std::tolower(c));
-    });
+    std::string out = FormatDetector::extensionOf(path);
+    std::transform(out.begin(), out.end(), out.begin(), [](unsigned char c) { return static_cast<char>(std::tolower(c)); });
     return out;
 }
 }
@@ -51,22 +45,10 @@ InstallDispatchResult InstallDispatcher::installFile(
     const std::string& zipDestination
 ) {
     lastError_.clear();
-
-    if (path.empty()) {
-        setError("empty installation path");
-        return InstallDispatchResult::InvalidArgument;
-    }
-
+    if (path.empty()) { setError("empty installation path"); return InstallDispatchResult::InvalidArgument; }
     StorageManager st;
-    if (!st.exists(path)) {
-        setError("installation file not found");
-        return InstallDispatchResult::IoError;
-    }
-
-    if (shouldCancel && shouldCancel()) {
-        setError("cancelled");
-        return InstallDispatchResult::Cancelled;
-    }
+    if (!st.exists(path)) { setError("installation file not found"); return InstallDispatchResult::IoError; }
+    if (shouldCancel && shouldCancel()) { setError("cancelled"); return InstallDispatchResult::Cancelled; }
 
     if (onProgress) {
         InstallDispatchProgress p;
@@ -79,14 +61,6 @@ InstallDispatchResult InstallDispatcher::installFile(
     const DetectResult detected = detector.detectFile(path);
     const std::string ext = lowerExtension(path);
 
-    sceClibPrintf(
-        "[InstallDispatcher] file=%s format=%s kind=%s detail=%s\n",
-        path.c_str(),
-        toString(detected.format),
-        toString(detected.kind),
-        detected.detail.c_str()
-    );
-
     if (detected.format == FileFormat::Vpk || ext == "vpk") {
         HomebrewInstaller installer;
         const InstallResult result = installer.installVpk(
@@ -95,7 +69,7 @@ InstallDispatchResult InstallDispatcher::installFile(
                 if (!onProgress) return;
                 InstallDispatchProgress p;
                 p.current = ip.bytesWritten;
-                p.total = ip.entriesTotal;
+                p.total = ip.bytesTotal;
                 switch (ip.stage) {
                     case InstallProgress::Preparing: p.stage = InstallDispatchProgress::Detecting; break;
                     case InstallProgress::Extracting: p.stage = InstallDispatchProgress::Extracting; break;
@@ -110,12 +84,13 @@ InstallDispatchResult InstallDispatcher::installFile(
             shouldCancel,
             true
         );
-
         if (result == InstallResult::Ok) {
             if (onProgress) {
                 InstallDispatchProgress p;
                 p.stage = InstallDispatchProgress::Completed;
-                p.message = "VPK installed and bubble registered";
+                p.current = 1;
+                p.total = 1;
+                p.message = "VPK installed";
                 onProgress(p);
             }
             return InstallDispatchResult::Ok;
@@ -150,11 +125,12 @@ InstallDispatchResult InstallDispatcher::installFile(
             shouldCancel,
             true
         );
-
         if (result == VitaInstallResult::Ok) {
             if (onProgress) {
                 InstallDispatchProgress p;
                 p.stage = InstallDispatchProgress::Completed;
+                p.current = 1;
+                p.total = 1;
                 p.message = "PKG installed";
                 onProgress(p);
             }
@@ -169,60 +145,37 @@ InstallDispatchResult InstallDispatcher::installFile(
     }
 
     if (detected.format == FileFormat::Zip || ext == "zip") {
-        if (zipDestination.empty()) {
-            setError("ZIP destination is required");
-            return InstallDispatchResult::InvalidArgument;
-        }
-
+        if (zipDestination.empty()) { setError("ZIP destination is required"); return InstallDispatchResult::InvalidArgument; }
         ZipExtractor extractor;
         const ZipResult result = extractor.extract(
-            path,
-            zipDestination,
+            path, zipDestination,
             [&](const ZipProgress& zp) {
                 if (!onProgress) return;
                 InstallDispatchProgress p;
                 p.stage = InstallDispatchProgress::Extracting;
                 p.current = zp.bytesWritten;
-                p.total = zp.entriesTotal;
-                p.message = zp.currentEntry.empty()
-                    ? "Extracting ZIP"
-                    : std::string("Extracting: ") + zp.currentEntry;
+                p.total = zp.bytesTotal;
+                p.message = zp.currentEntry.empty() ? "Extracting ZIP" : std::string("Extracting: ") + zp.currentEntry;
                 onProgress(p);
             },
             shouldCancel
         );
-
-        if (result == ZipResult::Cancelled) {
-            setError("ZIP extraction cancelled");
-            return InstallDispatchResult::Cancelled;
-        }
-        if (result != ZipResult::Ok) {
-            setError(extractor.lastError());
-            return InstallDispatchResult::InstallFailed;
-        }
-
+        if (result == ZipResult::Cancelled) { setError("ZIP extraction cancelled"); return InstallDispatchResult::Cancelled; }
+        if (result != ZipResult::Ok) { setError(extractor.lastError()); return InstallDispatchResult::InstallFailed; }
         if (onProgress) {
             InstallDispatchProgress p;
             p.stage = InstallDispatchProgress::Completed;
+            p.current = 1;
+            p.total = 1;
             p.message = "ZIP extracted";
             onProgress(p);
         }
         return InstallDispatchResult::Ok;
     }
 
-    if (detected.format == FileFormat::Pbp) {
-        setError("PBP installer is not implemented yet");
-        return InstallDispatchResult::UnsupportedFormat;
-    }
-    if (detected.format == FileFormat::Iso) {
-        setError("ISO installer is not implemented yet");
-        return InstallDispatchResult::UnsupportedFormat;
-    }
-    if (detected.format == FileFormat::Cso) {
-        setError("CSO installer is not implemented yet");
-        return InstallDispatchResult::UnsupportedFormat;
-    }
-
+    if (detected.format == FileFormat::Pbp) { setError("PBP installer is not implemented yet"); return InstallDispatchResult::UnsupportedFormat; }
+    if (detected.format == FileFormat::Iso) { setError("ISO installer is not implemented yet"); return InstallDispatchResult::UnsupportedFormat; }
+    if (detected.format == FileFormat::Cso) { setError("CSO installer is not implemented yet"); return InstallDispatchResult::UnsupportedFormat; }
     setError(std::string("unsupported format: ") + toString(detected.format));
     return InstallDispatchResult::UnsupportedFormat;
 }
