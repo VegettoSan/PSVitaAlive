@@ -28,6 +28,13 @@ uint32_t readU32(const uint8_t* p) {
            (static_cast<uint32_t>(p[3]) << 24);
 }
 
+uint32_t readBE32(const uint8_t* p) {
+    return (static_cast<uint32_t>(p[0]) << 24) |
+           (static_cast<uint32_t>(p[1]) << 16) |
+           (static_cast<uint32_t>(p[2]) << 8) |
+           static_cast<uint32_t>(p[3]);
+}
+
 void writeBytes(uint8_t* dst, const void* src, size_t len) {
     std::memcpy(dst, src, len);
 }
@@ -211,9 +218,7 @@ bool FakePackageBuilder::build(const std::string& packageDir) {
         return false;
     }
 
-    // VitaShell's makeHeadBin expects a package header large enough for the
-    // offsets below. Keep this check explicit so a bad template fails safely.
-    if (head.size() < 0x100 || head.size() < 0xF8) {
+    if (head.size() < 0x100) {
         setError("head.bin template is too small");
         return false;
     }
@@ -230,8 +235,8 @@ bool FakePackageBuilder::build(const std::string& packageDir) {
     std::memset(&head[0x30], 0, 48);
     writeBytes(&head[0x30], effectiveContentId.c_str(), effectiveContentId.size());
 
-    const uint32_t headerLen = ntohl(readU32(&head[0xD0]));
-    if (static_cast<size_t>(headerLen) + 16 > head.size()) {
+    const uint32_t headerLen = readBE32(&head[0xD0]);
+    if (headerLen < 0xD0 || static_cast<size_t>(headerLen) + 16 > head.size()) {
         setError("invalid head.bin header length");
         return false;
     }
@@ -240,12 +245,13 @@ bool FakePackageBuilder::build(const std::string& packageDir) {
     fpkgHmac(head.data(), headerLen, hmac);
     std::memcpy(&head[headerLen], hmac, 16);
 
-    const uint32_t infoOffset = ntohl(readU32(&head[0x8]));
-    const uint32_t infoLen = ntohl(readU32(&head[0x10]));
-    const uint32_t infoHmacOffset = ntohl(readU32(&head[0xD4]));
+    const uint32_t infoOffset = readBE32(&head[0x8]);
+    const uint32_t infoLen = readBE32(&head[0x10]);
+    const uint32_t infoHmacOffset = readBE32(&head[0xD4]);
     if (static_cast<size_t>(infoOffset) + infoLen > head.size() ||
-        static_cast<size_t>(infoLen) < 64 ||
-        static_cast<size_t>(infoHmacOffset) + 16 > head.size()) {
+        infoLen < 64 ||
+        static_cast<size_t>(infoHmacOffset) + 16 > head.size() ||
+        static_cast<size_t>(infoOffset) + (infoLen - 64) > head.size()) {
         setError("invalid head.bin package-info offsets");
         return false;
     }
@@ -253,7 +259,7 @@ bool FakePackageBuilder::build(const std::string& packageDir) {
     fpkgHmac(&head[infoOffset], infoLen - 64, hmac);
     std::memcpy(&head[infoHmacOffset], hmac, 16);
 
-    const uint32_t wholeLen = ntohl(readU32(&head[0xE8]));
+    const uint32_t wholeLen = readBE32(&head[0xE8]);
     if (static_cast<size_t>(wholeLen) + 16 > head.size()) {
         setError("invalid head.bin final length");
         return false;
