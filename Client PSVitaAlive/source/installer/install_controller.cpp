@@ -11,6 +11,8 @@ namespace psvitaalive {
 InstallController::InstallController()
     : downloads_(http_) {
     std::memset(message_, 0, sizeof(message_));
+    std::memset(fileName_, 0, sizeof(fileName_));
+    std::memset(stage_, 0, sizeof(stage_));
 }
 
 InstallController::~InstallController() {
@@ -18,9 +20,7 @@ InstallController::~InstallController() {
 }
 
 bool InstallController::init() {
-    if (http_.isInitialized()) {
-        return true;
-    }
+    if (http_.isInitialized()) return true;
 
     const HttpResult result = http_.init();
     if (result != HttpResult::Ok) {
@@ -31,9 +31,14 @@ bool InstallController::init() {
     downloads_.setProgressCallback([this](const DownloadProgressEvent& event) {
         current_.store(event.downloaded);
         total_.store(event.total);
+        speed_.store(event.bytesPerSecond);
+        setFileName(event.fileName.c_str());
+        setStage("Downloading");
         state_.store(static_cast<int>(InstallStatus::State::Downloading));
+        setMessage("Downloading...");
     });
 
+    setStage("Idle");
     setState(InstallStatus::State::Idle, "Ready");
     return true;
 }
@@ -47,6 +52,7 @@ void InstallController::shutdown() {
 
     http_.shutdown();
     activeJobId_.clear();
+    activeZipDestination_.clear();
     workerDone_.store(true);
     setState(InstallStatus::State::Idle, "Stopped");
 }
@@ -59,22 +65,18 @@ bool InstallController::busy() const {
 
 bool InstallController::requestInstall(
     const std::string& url,
-    const std::string& fileName
+    const std::string& fileName,
+    const std::string& zipDestination
 ) {
-    if (url.empty() || fileName.empty() || busy()) {
-        return false;
-    }
+    if (url.empty() || fileName.empty() || busy()) return false;
 
-    // Reclaim a completed worker before starting another job.
     if (workerThread_ >= 0 && workerDone_.load()) {
         sceKernelWaitThreadEnd(workerThread_, nullptr, nullptr);
         sceKernelDeleteThread(workerThread_);
         workerThread_ = -1;
     }
 
-    if (!http_.isInitialized() && !init()) {
-        return false;
-    }
+    if (!http_.isInitialized() && !init()) return false;
 
     const std::string jobId = downloads_.enqueue(url, fileName);
     if (jobId.empty()) {
@@ -83,8 +85,12 @@ bool InstallController::requestInstall(
     }
 
     activeJobId_ = jobId;
+    activeZipDestination_ = zipDestination;
     current_.store(0);
     total_.store(0);
+    speed_.store(0);
+    setFileName(fileName.c_str());
+    setStage("Downloading");
     workerDone_.store(false);
     setState(InstallStatus::State::Downloading, "Starting download...");
 
@@ -105,12 +111,7 @@ bool InstallController::requestInstall(
     }
 
     InstallController* self = this;
-    const int result = sceKernelStartThread(
-        workerThread_,
-        sizeof(self),
-        &self
-    );
-
+    const int result = sceKernelStartThread(workerThread_, sizeof(self), &self);
     if (result < 0) {
         sceKernelDeleteThread(workerThread_);
         workerThread_ = -1;
@@ -127,16 +128,26 @@ InstallStatus InstallController::status() const {
     result.state = static_cast<InstallStatus::State>(state_.load());
     result.current = current_.load();
     result.total = total_.load();
+    result.bytesPerSecond = speed_.load();
+    result.fileName = fileName_;
+    result.stage = stage_;
     result.message = message_;
     return result;
 }
 
 void InstallController::setMessage(const char* text) {
-    if (!text) {
-        text = "";
-    }
-
+    if (!text) text = "";
     sceClibSnprintf(message_, sizeof(message_), "%s", text);
+}
+
+void InstallController::setFileName(const char* text) {
+    if (!text) text = "";
+    sceClibSnprintf(fileName_, sizeof(fileName_), "%s", text);
+}
+
+void InstallController::setStage(const char* text) {
+    if (!text) text = "";
+    sceClibSnprintf(stage_, sizeof(stage_), "%s", text);
 }
 
 void InstallController::setState(
@@ -149,17 +160,9 @@ void InstallController::setState(
 
 int InstallController::workerEntry(SceSize args, void* argp) {
     (void)args;
-
     InstallController* self = nullptr;
-    if (argp) {
-        std::memcpy(&self, argp, sizeof(self));
-    }
-
-    if (self) {
-        return self->workerMain();
-    }
-
-    return -1;
+    if (argp) std::memcpy(&self, argp, sizeof(self));
+    return self ? self->workerMain() : -1;
 }
 
 int InstallController::workerMain() {
@@ -172,6 +175,7 @@ int InstallController::workerMain() {
         const char* error = job && !job->lastError.empty()
             ? job->lastError.c_str()
             : "Download failed";
+        setStage("Error");
         setState(InstallStatus::State::Failed, error);
         workerDone_.store(true);
         return 0;
@@ -179,24 +183,34 @@ int InstallController::workerMain() {
 
     current_.store(job->downloadedSize);
     total_.store(job->expectedSize ? job->expectedSize : job->downloadedSize);
-    setState(InstallStatus::State::Installing, "Installing...");
+    speed_.store(0);
+    setStage("Installing");
+    setState(InstallStatus::State::Installing, "Preparing installation...");
 
     const InstallDispatchResult result = dispatcher_.installFile(
         job->finalPath,
-        [this](const InstallDispatchProgress& progress) {
+        [&](const InstallDispatchProgress& progress) {
             current_.store(progress.current);
             total_.store(progress.total);
-
-            if (!progress.message.empty()) {
-                setMessage(progress.message.c_str());
-            }
-        }
+            setStage(progress.message.empty() ? "Installing" : progress.message.c_str());
+            if (!progress.message.empty()) setMessage(progress.message.c_str());
+        },
+        nullptr,
+        activeZipDestination_
     );
 
     if (result != InstallDispatchResult::Ok) {
+        setStage("Error");
         setState(InstallStatus::State::Failed, dispatcher_.lastError().c_str());
     } else {
+        setStage("Completed");
         setState(InstallStatus::State::Completed, "Installation completed");
+        // The downloaded VPK/PKG/ZIP is an installation artifact, not a cache.
+        // Remove it only after the selected operation has succeeded.
+        downloads_.cleanupCompletedJob(activeJobId_);
+        // Leave a short success state so the UI can tell the user what finished.
+        sceKernelDelayThread(2500 * 1000);
+        setState(InstallStatus::State::Idle, "Ready");
     }
 
     sceClibPrintf(
