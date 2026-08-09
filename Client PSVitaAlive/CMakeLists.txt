@@ -55,7 +55,8 @@ target_link_libraries(${PROJECT_NAME}
   SceIme_stub
   SceIofilemgr_stub
   SceLibKernel_stub
-  SceKernelThreadMgr_stub
+  # quitar si no existe:
+# SceKernelThreadMgr_stub
   ScePower_stub
   SceNet_stub
   SceNetCtl_stub

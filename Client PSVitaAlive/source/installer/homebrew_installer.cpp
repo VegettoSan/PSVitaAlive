@@ -46,16 +46,22 @@ bool HomebrewInstaller::loadPromoterModule() {
     pafLoadedByUs_ = false;
     promoterLoadedByUs_ = false;
 
-    // Match the module-loading sequence used by VitaShell/VHBB-style
-    // installers. The PAF module is a dependency of Promoter Utility.
+    // 1) PAF (dependencia del Promoter Utility)
     if (sceSysmoduleIsLoadedInternal(SCE_SYSMODULE_INTERNAL_PAF) < 0) {
-        uint32_t pafArgs[] = { 0x180000, 0xFFFFFFFF, 0xFFFFFFFF, 1, 0xFFFFFFFF, 0xFFFFFFFF };
+        // Args típicos usados por homebrew al cargar PAF
+        uint32_t pafArgs[] = {
+            0x400000, // size / heap related
+            0xEA60,
+            0x40000,
+            0,
+            0
+        };
 
-        // VitaSDK's current SceSysmodule API expects a SceSysmoduleOpt here.
-        // Older code passed a raw result buffer, which no longer matches the
-        // current prototype and causes the build error seen with modern VitaSDK.
-        SceSysmoduleOpt pafOpt = { 0 };
-        pafOpt.result = &pafOpt.flags;
+        // Opt alineado al prototipo actual de VitaSDK
+        int pafResult = 0;
+        SceSysmoduleOpt pafOpt;
+        std::memset(&pafOpt, 0, sizeof(pafOpt));
+        pafOpt.result = &pafResult;
 
         const int r = sceSysmoduleLoadModuleInternalWithArg(
             SCE_SYSMODULE_INTERNAL_PAF,
@@ -72,6 +78,7 @@ bool HomebrewInstaller::loadPromoterModule() {
         pafLoadedByUs_ = true;
     }
 
+    // 2) Promoter Utility
     if (sceSysmoduleIsLoadedInternal(SCE_SYSMODULE_INTERNAL_PROMOTER_UTIL) < 0) {
         const int r = sceSysmoduleLoadModuleInternal(SCE_SYSMODULE_INTERNAL_PROMOTER_UTIL);
         if (r < 0) {
@@ -83,6 +90,7 @@ bool HomebrewInstaller::loadPromoterModule() {
         }
         promoterLoadedByUs_ = true;
     }
+
     return true;
 }
 
