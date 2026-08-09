@@ -46,21 +46,20 @@ using InstallDispatchCancelFn =
 /**
  * InstallDispatcher
  *
- * Decide qué instalador utilizar según el formato detectado.
+ * Decide qué operación utilizar según el formato detectado:
+ * - VPK -> HomebrewInstaller / Promoter Utility
+ * - PKG -> VitaInstaller / Promoter Utility
+ * - ZIP -> ZipExtractor a la ruta elegida por el usuario
  *
- * Fase 10:
- * - VPK  -> HomebrewInstaller
- * - PKG  -> VitaInstaller
- *
- * No maneja descargas.
- * No llama directamente a la UI.
+ * No maneja descargas ni DRM/licencias.
  */
 class InstallDispatcher {
 public:
     InstallDispatchResult installFile(
         const std::string& path,
         InstallDispatchProgressFn onProgress = nullptr,
-        InstallDispatchCancelFn shouldCancel = nullptr
+        InstallDispatchCancelFn shouldCancel = nullptr,
+        const std::string& zipDestination = std::string()
     );
 
     const std::string& lastError() const {
