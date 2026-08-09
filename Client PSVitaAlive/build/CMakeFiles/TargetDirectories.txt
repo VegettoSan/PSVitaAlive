@@ -1,6 +1,0 @@
-/home/vegettosandev/PSVitaAlive/build/CMakeFiles/PSVitaAlive.dir
-/home/vegettosandev/PSVitaAlive/build/CMakeFiles/PSVitaAlive-velf.dir
-/home/vegettosandev/PSVitaAlive/build/CMakeFiles/eboot.bin-self.dir
-/home/vegettosandev/PSVitaAlive/build/CMakeFiles/PSVitaAlive.vpk-vpk.dir
-/home/vegettosandev/PSVitaAlive/build/CMakeFiles/edit_cache.dir
-/home/vegettosandev/PSVitaAlive/build/CMakeFiles/rebuild_cache.dir

@@ -20,7 +20,7 @@ set(VITA_MKSFOEX_FLAGS "${VITA_MKSFOEX_FLAGS} -d PARENTAL_LEVEL=1")
 # before calling scePromoterUtilityPromotePkgWithRif(). Pin the source revision so
 # the build remains reproducible.
 set(VITASHELL_HEAD_URL
-  "https://raw.githubusercontent.com/TheOfficialFloW/VitaShell/81af70971ba18b8ce86215b04180f1e3d21cdfc9/resources/head.bin"
+    "https://raw.githubusercontent.com/TheOfficialFloW/VitaShell/81af70971ba18b8ce86215b04180f1e3d21cdfc9/resources/head.bin"
 )
 set(VITASHELL_HEAD_SHA1 "0399fcbd4b24ee48599e3ffb0463f5aa008f6701")
 set(VITASHELL_HEAD_DIR "${CMAKE_CURRENT_BINARY_DIR}/resources")
