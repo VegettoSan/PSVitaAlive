@@ -3427,7 +3427,7 @@
   {
     "id": "biohazard4-vita",
     "title_id": "BIO4AF000",
-    "name": "BIOHAZARD4 Vita",
+    "name": "RESIDENT EVIL 4 MOBILE EDITION",
     "description": "Port of Resident Evil 4 Mobile for PSVita.",
     "long_description": "Port of Resident Evil 4 Mobile for PSVita.\nResident Evil 4 Mobile is an heavily downgraded demake of Resident Evil 4 for Android devices.",
     "author_ids": [
@@ -3456,7 +3456,15 @@
         "type": "Download",
         "name": "Descarga principal",
         "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1402-BIOHAZARD4.vpk",
+        "size": 3233206,
         "recommended": true
+      },
+      {
+        "type": "Mediafire",
+        "name": "VPK + Game Data Files .zip",
+        "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1402-BIOHAZARD4.vpk",
+        "size": 82440000,
+        "recommended": false
       },
       {
         "type": "Repository",
