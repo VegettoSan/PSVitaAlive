@@ -65,6 +65,13 @@ bool InstallController::requestInstall(
         return false;
     }
 
+    // Reclaim a completed worker before starting another job.
+    if (workerThread_ >= 0 && workerDone_.load()) {
+        sceKernelWaitThreadEnd(workerThread_, nullptr, nullptr);
+        sceKernelDeleteThread(workerThread_);
+        workerThread_ = -1;
+    }
+
     if (!http_.isInitialized() && !init()) {
         return false;
     }
@@ -86,6 +93,7 @@ bool InstallController::requestInstall(
         &InstallController::workerEntry,
         0x10000100,
         64 * 1024,
+        0,
         0,
         nullptr
     );
