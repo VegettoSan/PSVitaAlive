@@ -26,6 +26,7 @@ set(SOURCES
   source/installer/homebrew_installer.cpp
   source/installer/vita_installer.cpp
   source/installer/install_dispatcher.cpp
+  source/installer/install_controller.cpp
   source/ui/ui_types.cpp
   source/ui/full_catalog_screen.cpp
 )
