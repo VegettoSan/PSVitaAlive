@@ -26,6 +26,8 @@ struct VitaInstallProgress {
         Done,
         Error
     } stage = Preparing;
+    uint64_t current = 0;
+    uint64_t total = 0;
     std::string message;
 };
 
@@ -33,17 +35,9 @@ using VitaInstallProgressFn = std::function<void(const VitaInstallProgress&)>;
 using VitaInstallCancelFn = std::function<bool()>;
 
 /**
- * VitaInstaller — Phase 7
- *
- * Installs Vita .pkg content using Promoter Utility.
- *
- * Notes:
- * - Does NOT implement DRM bypass or license generation.
- * - Delegates validation to system/homebrew environment.
- * - PKG path is the package file (or prepared directory, depending on API usage).
- *
- * For many homebrew/system flows, promote works on an extracted/package path.
- * This installer first copies/stages the PKG into a temp work dir when needed.
+ * VitaInstaller — installs supported/unprotected Vita .pkg content through
+ * the system Promoter Utility. It intentionally does not implement DRM
+ * bypass, license generation, or commercial-content acquisition.
  */
 class VitaInstaller {
 public:
