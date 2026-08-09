@@ -32,13 +32,47 @@ struct TransferContext {
     std::string path;
 };
 
+// VitaSDK's libc does not expose the POSIX/GNU strcasestr() helper on all
+// toolchain configurations. Keep the header search self-contained so the
+// downloader remains portable across VitaSDK versions.
+static const char* findHeaderIgnoreCase(const char* buffer, const char* header) {
+    if (!buffer || !header) return nullptr;
+
+    const size_t headerLength = std::strlen(header);
+    if (headerLength == 0) return buffer;
+
+    for (const char* p = buffer; *p != '\0'; ++p) {
+        size_t i = 0;
+
+        while (i < headerLength && p[i] != '\0') {
+            char a = p[i];
+            char b = header[i];
+
+            if (a >= 'A' && a <= 'Z') {
+                a = static_cast<char>(a - 'A' + 'a');
+            }
+
+            if (b >= 'A' && b <= 'Z') {
+                b = static_cast<char>(b - 'A' + 'a');
+            }
+
+            if (a != b) break;
+            ++i;
+        }
+
+        if (i == headerLength) return p;
+    }
+
+    return nullptr;
+}
+
 static size_t headerCallback(char* buffer, size_t size, size_t nitems, void* userdata) {
     TransferContext* ctx = static_cast<TransferContext*>(userdata);
     const size_t bytes = size * nitems;
 
     if (!ctx || bytes == 0) return bytes;
 
-    const char* contentLength = strcasestr(buffer, "Content-Length:");
+    const char* contentLength = findHeaderIgnoreCase(buffer, "Content-Length:");
     if (contentLength) {
         unsigned long long value = 0;
         if (std::sscanf(contentLength, "Content-Length: %llu", &value) == 1) {
