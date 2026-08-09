@@ -46,13 +46,19 @@ bool HomebrewInstaller::loadPromoterModule() {
     pafLoadedByUs_ = false;
     promoterLoadedByUs_ = false;
 
+    // Match the module-loading sequence used by VitaShell's package installer.
+    // The PAF module is a dependency of Promoter Utility on real Vita firmware.
     if (sceSysmoduleIsLoadedInternal(SCE_SYSMODULE_INTERNAL_PAF) < 0) {
-        SceSysmoduleOpt opt;
-        std::memset(&opt, 0, sizeof(opt));
-        opt.result = &opt.flags;
-        uint32_t pafArgs[] = { 0x400000, 0xEA60, 0x40000, 0, 0 };
+        uint32_t pafArgs[] = { 0x180000, 0xFFFFFFFF, 0xFFFFFFFF, 1, 0xFFFFFFFF, 0xFFFFFFFF };
+        uint32_t resultBuf[4] = { 0 };
+        resultBuf[0] = sizeof(resultBuf);
+
         const int r = sceSysmoduleLoadModuleInternalWithArg(
-            SCE_SYSMODULE_INTERNAL_PAF, sizeof(pafArgs), pafArgs, &opt);
+            SCE_SYSMODULE_INTERNAL_PAF,
+            sizeof(pafArgs),
+            pafArgs,
+            resultBuf
+        );
         if (r < 0) {
             char buf[80];
             sceClibSnprintf(buf, sizeof(buf), "load PAF failed: 0x%08X", r);
@@ -114,36 +120,36 @@ bool HomebrewInstaller::removeTree(const std::string& path) {
 }
 
 InstallResult HomebrewInstaller::promoteExtractedDir(const std::string& dir) {
-    int r = scePromoterUtilityInit();
-    if (r < 0) {
+    const int initResult = scePromoterUtilityInit();
+    if (initResult < 0) {
         char buf[64];
-        sceClibSnprintf(buf, sizeof(buf), "scePromoterUtilityInit: 0x%08X", r);
+        sceClibSnprintf(buf, sizeof(buf), "scePromoterUtilityInit: 0x%08X", initResult);
         setError(buf);
-        lastPromoteResult_ = r;
+        lastPromoteResult_ = initResult;
         return InstallResult::PromoteFailed;
     }
 
-    r = scePromoterUtilityPromotePkg(dir.c_str(), 0);
-    lastPromoteResult_ = r;
-    if (r >= 0) {
-        int state = 0;
-        do {
-            r = scePromoterUtilityGetState(&state);
-            if (r < 0) break;
-            sceKernelDelayThread(100 * 1000);
-        } while (state != 0);
-        int result = 0;
-        r = scePromoterUtilityGetResult(&result);
-        lastPromoteResult_ = (r >= 0) ? result : r;
-    }
-    scePromoterUtilityExit();
+    // This is the same API used by VitaShell for installing VPK/homebrew.
+    // With sync=1 the call completes the promotion before returning, creates
+    // the application under ux0:app/<TITLE_ID>, and registers its LiveArea
+    // bubble. It also handles the homebrew/fake-package RIF flow.
+    const int promoteResult = scePromoterUtilityPromotePkgWithRif(dir.c_str(), 1);
+    lastPromoteResult_ = promoteResult;
 
-    if (lastPromoteResult_ < 0) {
+    const int exitResult = scePromoterUtilityExit();
+    if (promoteResult < 0) {
         char buf[80];
-        sceClibSnprintf(buf, sizeof(buf), "promote failed: 0x%08X", lastPromoteResult_);
+        sceClibSnprintf(buf, sizeof(buf), "scePromoterUtilityPromotePkgWithRif: 0x%08X", promoteResult);
         setError(buf);
         return InstallResult::PromoteFailed;
     }
+    if (exitResult < 0) {
+        char buf[80];
+        sceClibSnprintf(buf, sizeof(buf), "scePromoterUtilityExit: 0x%08X", exitResult);
+        setError(buf);
+        return InstallResult::PromoteFailed;
+    }
+
     return InstallResult::Ok;
 }
 
@@ -241,7 +247,11 @@ InstallResult HomebrewInstaller::installVpk(
         onProgress(p);
     }
 
-    if (!loadPromoterModule()) return InstallResult::ModuleFailed;
+    if (!loadPromoterModule()) {
+        removeTree(tmpDir);
+        return InstallResult::ModuleFailed;
+    }
+
     const InstallResult result = promoteExtractedDir(tmpDir);
     unloadPromoterModules();
 
