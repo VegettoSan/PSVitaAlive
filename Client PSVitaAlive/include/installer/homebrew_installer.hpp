@@ -32,26 +32,13 @@ struct InstallProgress {
     uint64_t entriesDone = 0;
     uint64_t entriesTotal = 0;
     uint64_t bytesWritten = 0;
+    uint64_t bytesTotal = 0;
     std::string message;
 };
 
 using InstallProgressFn = std::function<void(const InstallProgress&)>;
 using InstallCancelFn = std::function<bool()>;
 
-/**
- * HomebrewInstaller — VPK installer.
- *
- * Installs legitimate PS Vita homebrew VPK packages:
- * 1) Verify the input is a .vpk ZIP container.
- * 2) Extract it to a private temporary directory.
- * 3) Validate the minimum VPK layout (eboot.bin + sce_sys/param.sfo).
- * 4) Load the Promoter Utility dependencies required by the Vita runtime.
- * 5) Promote the extracted package directory.
- * 6) Recursively remove temporary files after a successful install.
- *
- * This class does NOT implement DRM bypass, license generation, or
- * installation of encrypted commercial content.
- */
 class HomebrewInstaller {
 public:
     InstallResult installVpk(
@@ -67,7 +54,6 @@ public:
 private:
     std::string lastError_;
     int lastPromoteResult_ = 0;
-
     bool pafLoadedByUs_ = false;
     bool promoterLoadedByUs_ = false;
 
