@@ -2,6 +2,7 @@
 
 #include <curl/curl.h>
 #include <psp2/kernel/clib.h>
+#include <psp2/kernel/processmgr.h>
 #include <psp2/io/fcntl.h>
 
 #include <cstdio>
@@ -23,6 +24,9 @@ struct TransferContext {
     uint64_t resumeOffset = 0;
     uint64_t downloaded = 0;
     uint64_t total = 0;
+    uint64_t lastProgressTick = 0;
+    uint64_t lastProgressBytes = 0;
+    uint64_t bytesPerSecond = 0;
     bool firstWrite = true;
     bool cancelled = false;
     bool ioError = false;
@@ -48,13 +52,8 @@ static const char* findHeaderIgnoreCase(const char* buffer, const char* header) 
             char a = p[i];
             char b = header[i];
 
-            if (a >= 'A' && a <= 'Z') {
-                a = static_cast<char>(a - 'A' + 'a');
-            }
-
-            if (b >= 'A' && b <= 'Z') {
-                b = static_cast<char>(b - 'A' + 'a');
-            }
+            if (a >= 'A' && a <= 'Z') a = static_cast<char>(a - 'A' + 'a');
+            if (b >= 'A' && b <= 'Z') b = static_cast<char>(b - 'A' + 'a');
 
             if (a != b) break;
             ++i;
@@ -64,6 +63,30 @@ static const char* findHeaderIgnoreCase(const char* buffer, const char* header) 
     }
 
     return nullptr;
+}
+
+static void updateSpeed(TransferContext* ctx) {
+    if (!ctx) return;
+
+    const uint64_t now = sceKernelGetProcessTimeWide();
+    if (ctx->lastProgressTick == 0) {
+        ctx->lastProgressTick = now;
+        ctx->lastProgressBytes = ctx->downloaded;
+        ctx->bytesPerSecond = 0;
+        return;
+    }
+
+    const uint64_t elapsedUs = now - ctx->lastProgressTick;
+    if (elapsedUs >= 250000) {
+        const uint64_t delta = ctx->downloaded >= ctx->lastProgressBytes
+            ? ctx->downloaded - ctx->lastProgressBytes
+            : 0;
+        ctx->bytesPerSecond = elapsedUs > 0
+            ? (delta * 1000000ULL) / elapsedUs
+            : 0;
+        ctx->lastProgressTick = now;
+        ctx->lastProgressBytes = ctx->downloaded;
+    }
 }
 
 static size_t headerCallback(char* buffer, size_t size, size_t nitems, void* userdata) {
@@ -136,12 +159,14 @@ static size_t writeCallback(void* ptr, size_t size, size_t nmemb, void* userdata
     }
 
     ctx->downloaded += static_cast<uint64_t>(bytes);
+    updateSpeed(ctx);
 
     if (ctx->onProgress) {
         HttpProgress progress;
         progress.downloaded = ctx->downloaded;
         progress.absoluteDownloaded = ctx->resumeOffset + ctx->downloaded;
         progress.total = ctx->total;
+        progress.bytesPerSecond = ctx->bytesPerSecond;
         if (progress.total > 0 && ctx->resumeOffset > 0 && !ctx->restartedFromZero) {
             progress.total += ctx->resumeOffset;
         }
@@ -343,11 +368,12 @@ HttpResult HttpClient::downloadToFile(
     }
 
     sceClibPrintf(
-        "[HttpClient] done status=%ld downloaded=%llu absolute=%llu range=%d\n",
+        "[HttpClient] done status=%ld downloaded=%llu absolute=%llu range=%d speed=%llu B/s\n",
         responseCode,
         (unsigned long long)ctx.downloaded,
         (unsigned long long)(ctx.resumeOffset + ctx.downloaded),
-        lastRangeAccepted_ ? 1 : 0
+        lastRangeAccepted_ ? 1 : 0,
+        (unsigned long long)ctx.bytesPerSecond
     );
 
     return HttpResult::Ok;
