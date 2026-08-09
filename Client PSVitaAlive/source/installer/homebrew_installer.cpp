@@ -1,4 +1,5 @@
 #include "installer/homebrew_installer.hpp"
+#include "installer/fake_package_builder.hpp"
 #include "archive/format_detector.hpp"
 #include "archive/zip_extractor.hpp"
 #include "storage/storage_manager.hpp"
@@ -46,22 +47,20 @@ bool HomebrewInstaller::loadPromoterModule() {
     pafLoadedByUs_ = false;
     promoterLoadedByUs_ = false;
 
-    // 1) PAF (dependencia del Promoter Utility)
+    // VitaShell uses a custom PAF argument block before loading PromoterUtil.
+    // The current VitaSDK exposes the 4th argument as SceSysmoduleOpt*.
     if (sceSysmoduleIsLoadedInternal(SCE_SYSMODULE_INTERNAL_PAF) < 0) {
-        // Args típicos usados por homebrew al cargar PAF
         uint32_t pafArgs[] = {
-            0x400000, // size / heap related
-            0xEA60,
-            0x40000,
-            0,
-            0
+            0x180000u,
+            static_cast<uint32_t>(-1),
+            static_cast<uint32_t>(-1),
+            1u,
+            static_cast<uint32_t>(-1),
+            static_cast<uint32_t>(-1)
         };
 
-        // Opt alineado al prototipo actual de VitaSDK
-        int pafResult = 0;
-        SceSysmoduleOpt pafOpt;
-        std::memset(&pafOpt, 0, sizeof(pafOpt));
-        pafOpt.result = &pafResult;
+        SceSysmoduleOpt pafOpt{};
+        pafOpt.result = &pafOpt.flags;
 
         const int r = sceSysmoduleLoadModuleInternalWithArg(
             SCE_SYSMODULE_INTERNAL_PAF,
@@ -78,7 +77,6 @@ bool HomebrewInstaller::loadPromoterModule() {
         pafLoadedByUs_ = true;
     }
 
-    // 2) Promoter Utility
     if (sceSysmoduleIsLoadedInternal(SCE_SYSMODULE_INTERNAL_PROMOTER_UTIL) < 0) {
         const int r = sceSysmoduleLoadModuleInternal(SCE_SYSMODULE_INTERNAL_PROMOTER_UTIL);
         if (r < 0) {
@@ -142,9 +140,9 @@ InstallResult HomebrewInstaller::promoteExtractedDir(const std::string& dir) {
         return InstallResult::PromoteFailed;
     }
 
-    // Promoter Utility installs the extracted package under ux0:app/<TITLE_ID>
-    // and registers its LiveArea bubble. With sync=1 the operation completes
-    // before returning.
+    // This is the same PromoterUtil operation used by VitaShell for an
+    // extracted application package. The system resolves TITLE_ID from
+    // sce_sys/param.sfo and creates the LiveArea registration.
     const int promoteResult = scePromoterUtilityPromotePkgWithRif(dir.c_str(), 1);
     lastPromoteResult_ = promoteResult;
 
@@ -246,6 +244,28 @@ InstallResult HomebrewInstaller::installVpk(
         setError("invalid VPK layout: expected eboot.bin and sce_sys/param.sfo");
         return InstallResult::ExtractFailed;
     }
+    if (shouldCancel && shouldCancel()) {
+        removeTree(tmpDir);
+        setError("cancelled before package preparation");
+        return InstallResult::Cancelled;
+    }
+
+    // VitaShell creates sce_sys/package/head.bin before calling PromoterUtil.
+    // PromoterUtil expects this package metadata for the fake-package flow.
+    if (onProgress) {
+        InstallProgress p;
+        p.stage = InstallProgress::Promoting;
+        p.message = "preparing package metadata";
+        onProgress(p);
+    }
+
+    FakePackageBuilder packageBuilder;
+    if (!packageBuilder.build(tmpDir)) {
+        removeTree(tmpDir);
+        setError(std::string("package preparation failed: ") + packageBuilder.lastError());
+        return InstallResult::PromoteFailed;
+    }
+
     if (shouldCancel && shouldCancel()) {
         removeTree(tmpDir);
         setError("cancelled before promote");
