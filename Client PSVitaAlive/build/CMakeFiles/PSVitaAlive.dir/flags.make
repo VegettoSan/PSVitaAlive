@@ -6,5 +6,5 @@ CXX_DEFINES =
 
 CXX_INCLUDES = -I/home/vegettosandev/PSVitaAlive/include
 
-CXX_FLAGS =  -Wl,-q
+CXX_FLAGS =  -Wl,-q -fno-rtti
 

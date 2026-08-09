@@ -212,10 +212,24 @@ CMakeFiles/PSVitaAlive.dir/source/installer/install_controller.cpp.s: cmake_forc
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/PSVitaAlive.dir/source/installer/install_controller.cpp.s"
 	/usr/local/vitasdk/bin/arm-vita-eabi-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/vegettosandev/PSVitaAlive/source/installer/install_controller.cpp -o CMakeFiles/PSVitaAlive.dir/source/installer/install_controller.cpp.s
 
+CMakeFiles/PSVitaAlive.dir/source/catalog/catalog_parser.cpp.obj: CMakeFiles/PSVitaAlive.dir/flags.make
+CMakeFiles/PSVitaAlive.dir/source/catalog/catalog_parser.cpp.obj: /home/vegettosandev/PSVitaAlive/source/catalog/catalog_parser.cpp
+CMakeFiles/PSVitaAlive.dir/source/catalog/catalog_parser.cpp.obj: CMakeFiles/PSVitaAlive.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/vegettosandev/PSVitaAlive/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/PSVitaAlive.dir/source/catalog/catalog_parser.cpp.obj"
+	/usr/local/vitasdk/bin/arm-vita-eabi-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/PSVitaAlive.dir/source/catalog/catalog_parser.cpp.obj -MF CMakeFiles/PSVitaAlive.dir/source/catalog/catalog_parser.cpp.obj.d -o CMakeFiles/PSVitaAlive.dir/source/catalog/catalog_parser.cpp.obj -c /home/vegettosandev/PSVitaAlive/source/catalog/catalog_parser.cpp
+
+CMakeFiles/PSVitaAlive.dir/source/catalog/catalog_parser.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/PSVitaAlive.dir/source/catalog/catalog_parser.cpp.i"
+	/usr/local/vitasdk/bin/arm-vita-eabi-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/vegettosandev/PSVitaAlive/source/catalog/catalog_parser.cpp > CMakeFiles/PSVitaAlive.dir/source/catalog/catalog_parser.cpp.i
+
+CMakeFiles/PSVitaAlive.dir/source/catalog/catalog_parser.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/PSVitaAlive.dir/source/catalog/catalog_parser.cpp.s"
+	/usr/local/vitasdk/bin/arm-vita-eabi-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/vegettosandev/PSVitaAlive/source/catalog/catalog_parser.cpp -o CMakeFiles/PSVitaAlive.dir/source/catalog/catalog_parser.cpp.s
+
 CMakeFiles/PSVitaAlive.dir/source/ui/ui_types.cpp.obj: CMakeFiles/PSVitaAlive.dir/flags.make
 CMakeFiles/PSVitaAlive.dir/source/ui/ui_types.cpp.obj: /home/vegettosandev/PSVitaAlive/source/ui/ui_types.cpp
 CMakeFiles/PSVitaAlive.dir/source/ui/ui_types.cpp.obj: CMakeFiles/PSVitaAlive.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/vegettosandev/PSVitaAlive/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/PSVitaAlive.dir/source/ui/ui_types.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/vegettosandev/PSVitaAlive/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object CMakeFiles/PSVitaAlive.dir/source/ui/ui_types.cpp.obj"
 	/usr/local/vitasdk/bin/arm-vita-eabi-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/PSVitaAlive.dir/source/ui/ui_types.cpp.obj -MF CMakeFiles/PSVitaAlive.dir/source/ui/ui_types.cpp.obj.d -o CMakeFiles/PSVitaAlive.dir/source/ui/ui_types.cpp.obj -c /home/vegettosandev/PSVitaAlive/source/ui/ui_types.cpp
 
 CMakeFiles/PSVitaAlive.dir/source/ui/ui_types.cpp.i: cmake_force
@@ -229,7 +243,7 @@ CMakeFiles/PSVitaAlive.dir/source/ui/ui_types.cpp.s: cmake_force
 CMakeFiles/PSVitaAlive.dir/source/ui/full_catalog_screen.cpp.obj: CMakeFiles/PSVitaAlive.dir/flags.make
 CMakeFiles/PSVitaAlive.dir/source/ui/full_catalog_screen.cpp.obj: /home/vegettosandev/PSVitaAlive/source/ui/full_catalog_screen.cpp
 CMakeFiles/PSVitaAlive.dir/source/ui/full_catalog_screen.cpp.obj: CMakeFiles/PSVitaAlive.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/vegettosandev/PSVitaAlive/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object CMakeFiles/PSVitaAlive.dir/source/ui/full_catalog_screen.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/vegettosandev/PSVitaAlive/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Building CXX object CMakeFiles/PSVitaAlive.dir/source/ui/full_catalog_screen.cpp.obj"
 	/usr/local/vitasdk/bin/arm-vita-eabi-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/PSVitaAlive.dir/source/ui/full_catalog_screen.cpp.obj -MF CMakeFiles/PSVitaAlive.dir/source/ui/full_catalog_screen.cpp.obj.d -o CMakeFiles/PSVitaAlive.dir/source/ui/full_catalog_screen.cpp.obj -c /home/vegettosandev/PSVitaAlive/source/ui/full_catalog_screen.cpp
 
 CMakeFiles/PSVitaAlive.dir/source/ui/full_catalog_screen.cpp.i: cmake_force
@@ -252,6 +266,7 @@ PSVitaAlive_OBJECTS = \
 "CMakeFiles/PSVitaAlive.dir/source/installer/vita_installer.cpp.obj" \
 "CMakeFiles/PSVitaAlive.dir/source/installer/install_dispatcher.cpp.obj" \
 "CMakeFiles/PSVitaAlive.dir/source/installer/install_controller.cpp.obj" \
+"CMakeFiles/PSVitaAlive.dir/source/catalog/catalog_parser.cpp.obj" \
 "CMakeFiles/PSVitaAlive.dir/source/ui/ui_types.cpp.obj" \
 "CMakeFiles/PSVitaAlive.dir/source/ui/full_catalog_screen.cpp.obj"
 
@@ -268,11 +283,12 @@ PSVitaAlive: CMakeFiles/PSVitaAlive.dir/source/installer/homebrew_installer.cpp.
 PSVitaAlive: CMakeFiles/PSVitaAlive.dir/source/installer/vita_installer.cpp.obj
 PSVitaAlive: CMakeFiles/PSVitaAlive.dir/source/installer/install_dispatcher.cpp.obj
 PSVitaAlive: CMakeFiles/PSVitaAlive.dir/source/installer/install_controller.cpp.obj
+PSVitaAlive: CMakeFiles/PSVitaAlive.dir/source/catalog/catalog_parser.cpp.obj
 PSVitaAlive: CMakeFiles/PSVitaAlive.dir/source/ui/ui_types.cpp.obj
 PSVitaAlive: CMakeFiles/PSVitaAlive.dir/source/ui/full_catalog_screen.cpp.obj
 PSVitaAlive: CMakeFiles/PSVitaAlive.dir/build.make
 PSVitaAlive: CMakeFiles/PSVitaAlive.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/vegettosandev/PSVitaAlive/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Linking CXX executable PSVitaAlive"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/vegettosandev/PSVitaAlive/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_14) "Linking CXX executable PSVitaAlive"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/PSVitaAlive.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

@@ -1,37 +1,7 @@
-CMakeFiles/PSVitaAlive.dir/source/main.cpp.obj: \
- /home/vegettosandev/PSVitaAlive/source/main.cpp \
- /usr/local/vitasdk/arm-vita-eabi/include/psp2/kernel/processmgr.h \
- /usr/local/vitasdk/arm-vita-eabi/include/vitasdk/build_utils.h \
- /usr/local/vitasdk/arm-vita-eabi/include/psp2common/kernel/processmgr.h \
- /usr/local/vitasdk/arm-vita-eabi/include/psp2common/types.h \
- /usr/local/vitasdk/lib/gcc/arm-vita-eabi/15.2.0/include/stddef.h \
- /usr/local/vitasdk/lib/gcc/arm-vita-eabi/15.2.0/include/stdint.h \
- /usr/local/vitasdk/arm-vita-eabi/include/stdint.h \
- /usr/local/vitasdk/arm-vita-eabi/include/machine/_default_types.h \
- /usr/local/vitasdk/arm-vita-eabi/include/sys/features.h \
- /usr/local/vitasdk/arm-vita-eabi/include/_newlib_version.h \
- /usr/local/vitasdk/arm-vita-eabi/include/bits/posix_opt.h \
- /usr/local/vitasdk/lib/gcc/arm-vita-eabi/15.2.0/include/limits.h \
- /usr/local/vitasdk/arm-vita-eabi/include/sys/_intsup.h \
- /usr/local/vitasdk/arm-vita-eabi/include/sys/_stdint.h \
- /usr/local/vitasdk/arm-vita-eabi/include/psp2/kernel/threadmgr.h \
- /usr/local/vitasdk/arm-vita-eabi/include/psp2/kernel/threadmgr/callback.h \
- /usr/local/vitasdk/arm-vita-eabi/include/psp2/types.h \
- /usr/local/vitasdk/arm-vita-eabi/include/psp2common/kernel/threadmgr.h \
- /usr/local/vitasdk/arm-vita-eabi/include/psp2/kernel/threadmgr/cond.h \
- /usr/local/vitasdk/arm-vita-eabi/include/psp2/kernel/threadmgr/eventflag.h \
- /usr/local/vitasdk/arm-vita-eabi/include/psp2/kernel/threadmgr/lw_cond.h \
- /usr/local/vitasdk/arm-vita-eabi/include/psp2/kernel/threadmgr/lw_mutex.h \
- /usr/local/vitasdk/arm-vita-eabi/include/psp2/kernel/threadmgr/msgpipe.h \
- /usr/local/vitasdk/arm-vita-eabi/include/psp2/kernel/threadmgr/mutex.h \
- /usr/local/vitasdk/arm-vita-eabi/include/psp2/kernel/threadmgr/rwlock.h \
- /usr/local/vitasdk/arm-vita-eabi/include/psp2/kernel/threadmgr/semaphore.h \
- /usr/local/vitasdk/arm-vita-eabi/include/psp2/kernel/threadmgr/signal.h \
- /usr/local/vitasdk/arm-vita-eabi/include/psp2/kernel/threadmgr/thread.h \
- /usr/local/vitasdk/arm-vita-eabi/include/psp2/kernel/cpu.h \
- /usr/local/vitasdk/arm-vita-eabi/include/psp2/kernel/threadmgr/vfp.h \
- /usr/local/vitasdk/arm-vita-eabi/include/psp2/kernel/clib.h \
- /usr/local/vitasdk/lib/gcc/arm-vita-eabi/15.2.0/include/stdarg.h \
+CMakeFiles/PSVitaAlive.dir/source/catalog/catalog_parser.cpp.obj: \
+ /home/vegettosandev/PSVitaAlive/source/catalog/catalog_parser.cpp \
+ /home/vegettosandev/PSVitaAlive/include/catalog/catalog_parser.hpp \
+ /home/vegettosandev/PSVitaAlive/include/ui/ui_types.hpp \
  /usr/local/vitasdk/arm-vita-eabi/include/c++/15.2.0/string \
  /usr/local/vitasdk/arm-vita-eabi/include/c++/15.2.0/bits/requires_hosted.h \
  /usr/local/vitasdk/arm-vita-eabi/include/c++/15.2.0/arm-vita-eabi/bits/c++config.h \
@@ -46,13 +16,20 @@ CMakeFiles/PSVitaAlive.dir/source/main.cpp.obj: \
  /usr/local/vitasdk/arm-vita-eabi/include/wchar.h \
  /usr/local/vitasdk/arm-vita-eabi/include/_ansi.h \
  /usr/local/vitasdk/arm-vita-eabi/include/newlib.h \
+ /usr/local/vitasdk/arm-vita-eabi/include/_newlib_version.h \
  /usr/local/vitasdk/arm-vita-eabi/include/sys/config.h \
  /usr/local/vitasdk/arm-vita-eabi/include/machine/ieeefp.h \
+ /usr/local/vitasdk/arm-vita-eabi/include/sys/features.h \
+ /usr/local/vitasdk/arm-vita-eabi/include/bits/posix_opt.h \
+ /usr/local/vitasdk/lib/gcc/arm-vita-eabi/15.2.0/include/limits.h \
  /usr/local/vitasdk/arm-vita-eabi/include/sys/reent.h \
+ /usr/local/vitasdk/lib/gcc/arm-vita-eabi/15.2.0/include/stddef.h \
  /usr/local/vitasdk/arm-vita-eabi/include/sys/_types.h \
  /usr/local/vitasdk/arm-vita-eabi/include/machine/_types.h \
+ /usr/local/vitasdk/arm-vita-eabi/include/machine/_default_types.h \
  /usr/local/vitasdk/arm-vita-eabi/include/sys/lock.h \
  /usr/local/vitasdk/arm-vita-eabi/include/sys/cdefs.h \
+ /usr/local/vitasdk/lib/gcc/arm-vita-eabi/15.2.0/include/stdarg.h \
  /usr/local/vitasdk/arm-vita-eabi/include/sys/_locale.h \
  /usr/local/vitasdk/arm-vita-eabi/include/c++/15.2.0/type_traits \
  /usr/local/vitasdk/arm-vita-eabi/include/c++/15.2.0/bits/version.h \
@@ -113,6 +90,7 @@ CMakeFiles/PSVitaAlive.dir/source/main.cpp.obj: \
  /usr/local/vitasdk/arm-vita-eabi/include/c++/15.2.0/cstdio \
  /usr/local/vitasdk/arm-vita-eabi/include/stdio.h \
  /usr/local/vitasdk/arm-vita-eabi/include/sys/types.h \
+ /usr/local/vitasdk/arm-vita-eabi/include/sys/_stdint.h \
  /usr/local/vitasdk/arm-vita-eabi/include/sys/select.h \
  /usr/local/vitasdk/arm-vita-eabi/include/sys/_sigset.h \
  /usr/local/vitasdk/arm-vita-eabi/include/sys/_timeval.h \
@@ -134,39 +112,18 @@ CMakeFiles/PSVitaAlive.dir/source/main.cpp.obj: \
  /usr/local/vitasdk/arm-vita-eabi/include/c++/15.2.0/bits/uses_allocator.h \
  /usr/local/vitasdk/arm-vita-eabi/include/c++/15.2.0/bits/uses_allocator_args.h \
  /usr/local/vitasdk/arm-vita-eabi/include/c++/15.2.0/tuple \
- /home/vegettosandev/PSVitaAlive/include/storage/storage_manager.hpp \
- /usr/local/vitasdk/arm-vita-eabi/include/c++/15.2.0/cstdint \
  /usr/local/vitasdk/arm-vita-eabi/include/c++/15.2.0/vector \
  /usr/local/vitasdk/arm-vita-eabi/include/c++/15.2.0/bits/stl_uninitialized.h \
  /usr/local/vitasdk/arm-vita-eabi/include/c++/15.2.0/bits/stl_vector.h \
  /usr/local/vitasdk/arm-vita-eabi/include/c++/15.2.0/bits/stl_bvector.h \
  /usr/local/vitasdk/arm-vita-eabi/include/c++/15.2.0/bits/vector.tcc \
- /home/vegettosandev/PSVitaAlive/include/installer/install_controller.hpp \
- /home/vegettosandev/PSVitaAlive/include/network/download_manager.hpp \
- /home/vegettosandev/PSVitaAlive/include/network/http_client.hpp \
- /usr/local/vitasdk/arm-vita-eabi/include/c++/15.2.0/functional \
- /usr/local/vitasdk/arm-vita-eabi/include/c++/15.2.0/bits/std_function.h \
- /usr/local/vitasdk/arm-vita-eabi/include/c++/15.2.0/typeinfo \
- /usr/local/vitasdk/arm-vita-eabi/include/c++/15.2.0/unordered_map \
- /usr/local/vitasdk/arm-vita-eabi/include/c++/15.2.0/bits/unordered_map.h \
- /usr/local/vitasdk/arm-vita-eabi/include/c++/15.2.0/bits/hashtable.h \
- /usr/local/vitasdk/arm-vita-eabi/include/c++/15.2.0/bits/hashtable_policy.h \
- /usr/local/vitasdk/arm-vita-eabi/include/c++/15.2.0/ext/aligned_buffer.h \
- /usr/local/vitasdk/arm-vita-eabi/include/c++/15.2.0/bits/enable_special_members.h \
- /usr/local/vitasdk/arm-vita-eabi/include/c++/15.2.0/bits/node_handle.h \
- /usr/local/vitasdk/arm-vita-eabi/include/c++/15.2.0/bits/erase_if.h \
- /usr/local/vitasdk/arm-vita-eabi/include/c++/15.2.0/array \
- /usr/local/vitasdk/arm-vita-eabi/include/c++/15.2.0/compare \
- /home/vegettosandev/PSVitaAlive/include/installer/install_dispatcher.hpp \
- /usr/local/vitasdk/arm-vita-eabi/include/c++/15.2.0/atomic \
- /usr/local/vitasdk/arm-vita-eabi/include/c++/15.2.0/bits/atomic_base.h \
- /usr/local/vitasdk/arm-vita-eabi/include/c++/15.2.0/bits/atomic_lockfree_defines.h \
- /home/vegettosandev/PSVitaAlive/include/ui/full_catalog_screen.hpp \
- /home/vegettosandev/PSVitaAlive/include/ui/ui_types.hpp \
- /usr/local/vitasdk/arm-vita-eabi/include/vita2d.h \
- /usr/local/vitasdk/arm-vita-eabi/include/psp2/gxm.h \
- /usr/local/vitasdk/arm-vita-eabi/include/psp2/kernel/sysmem.h \
- /usr/local/vitasdk/arm-vita-eabi/include/psp2common/kernel/sysmem.h \
- /usr/local/vitasdk/arm-vita-eabi/include/psp2/pgf.h \
- /usr/local/vitasdk/arm-vita-eabi/include/psp2/pvf.h \
- /home/vegettosandev/PSVitaAlive/include/catalog/catalog_parser.hpp
+ /usr/local/vitasdk/arm-vita-eabi/include/c++/15.2.0/cstdint \
+ /usr/local/vitasdk/lib/gcc/arm-vita-eabi/15.2.0/include/stdint.h \
+ /usr/local/vitasdk/arm-vita-eabi/include/stdint.h \
+ /usr/local/vitasdk/arm-vita-eabi/include/sys/_intsup.h \
+ /usr/local/vitasdk/arm-vita-eabi/include/psp2/json.h \
+ /usr/local/vitasdk/arm-vita-eabi/include/psp2/types.h \
+ /usr/local/vitasdk/arm-vita-eabi/include/psp2common/types.h \
+ /usr/local/vitasdk/arm-vita-eabi/include/vitasdk/build_utils.h \
+ /usr/local/vitasdk/arm-vita-eabi/include/psp2/sysmodule.h \
+ /usr/local/vitasdk/arm-vita-eabi/include/psp2/kernel/clib.h

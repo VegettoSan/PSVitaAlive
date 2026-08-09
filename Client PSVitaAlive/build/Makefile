@@ -216,6 +216,30 @@ source/archive/zip_extractor.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/PSVitaAlive.dir/build.make CMakeFiles/PSVitaAlive.dir/source/archive/zip_extractor.cpp.s
 .PHONY : source/archive/zip_extractor.cpp.s
 
+source/catalog/catalog_parser.obj: source/catalog/catalog_parser.cpp.obj
+.PHONY : source/catalog/catalog_parser.obj
+
+# target to build an object file
+source/catalog/catalog_parser.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/PSVitaAlive.dir/build.make CMakeFiles/PSVitaAlive.dir/source/catalog/catalog_parser.cpp.obj
+.PHONY : source/catalog/catalog_parser.cpp.obj
+
+source/catalog/catalog_parser.i: source/catalog/catalog_parser.cpp.i
+.PHONY : source/catalog/catalog_parser.i
+
+# target to preprocess a source file
+source/catalog/catalog_parser.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/PSVitaAlive.dir/build.make CMakeFiles/PSVitaAlive.dir/source/catalog/catalog_parser.cpp.i
+.PHONY : source/catalog/catalog_parser.cpp.i
+
+source/catalog/catalog_parser.s: source/catalog/catalog_parser.cpp.s
+.PHONY : source/catalog/catalog_parser.s
+
+# target to generate assembly for a file
+source/catalog/catalog_parser.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/PSVitaAlive.dir/build.make CMakeFiles/PSVitaAlive.dir/source/catalog/catalog_parser.cpp.s
+.PHONY : source/catalog/catalog_parser.cpp.s
+
 source/installer/homebrew_installer.obj: source/installer/homebrew_installer.cpp.obj
 .PHONY : source/installer/homebrew_installer.obj
 
@@ -474,6 +498,9 @@ help:
 	@echo "... source/archive/zip_extractor.obj"
 	@echo "... source/archive/zip_extractor.i"
 	@echo "... source/archive/zip_extractor.s"
+	@echo "... source/catalog/catalog_parser.obj"
+	@echo "... source/catalog/catalog_parser.i"
+	@echo "... source/catalog/catalog_parser.s"
 	@echo "... source/installer/homebrew_installer.obj"
 	@echo "... source/installer/homebrew_installer.i"
 	@echo "... source/installer/homebrew_installer.s"
