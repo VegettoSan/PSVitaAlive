@@ -52,7 +52,14 @@ bool DownloadManager::ensureJobDirs(DownloadJob& job) {
     if (!st.createDirectories(dir)) return false;
     job.temporaryPath = dir + "/payload.part";
     job.metadataPath = dir + "/metadata.json";
-    job.finalPath = dir + "/payload.bin";
+
+    // Usar el nombre original para conservar .vpk / .pkg / .zip
+    std::string name = job.fileName.empty() ? "payload.bin" : job.fileName;
+    // Sanitizar solo separadores de ruta
+    for (char& c : name) {
+        if (c == '/' || c == '\\') c = '_';
+    }
+    job.finalPath = dir + "/" + name;
     return true;
 }
 
