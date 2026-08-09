@@ -3,6 +3,8 @@
 #include "network/download_manager.hpp"
 #include "installer/install_dispatcher.hpp"
 
+#include <psp2/kernel/threadmgr.h>
+
 #include <atomic>
 #include <cstdint>
 #include <string>
