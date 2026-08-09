@@ -14,6 +14,11 @@
 #include "installer/install_controller.hpp"
 #include "ui/full_catalog_screen.hpp"
 
+#include "catalog/catalog_parser.hpp"
+#include "network/http_client.hpp"
+
+#include <vector>
+
 namespace {
 
 std::string installStatusText(
@@ -60,9 +65,66 @@ int main() {
     psvitaalive::StorageManager storage;
     storage.initProjectDirs();
 
+    constexpr const char* CATALOG_URL =
+    "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/catalog.json";
+
+const std::string catalogPath =
+    std::string(
+        psvitaalive::StorageManager::CACHE_DIR
+    ) + "/catalog.json";
+
+storage.createDirectories(
+    psvitaalive::StorageManager::CACHE_DIR
+);
+
+std::vector<psvitaalive::ui::CatalogItem> catalogItems;
+
+psvitaalive::HttpClient catalogHttp;
+
+if (catalogHttp.init() == psvitaalive::HttpResult::Ok) {
+
+    const psvitaalive::HttpResult result =
+        catalogHttp.downloadToFile(
+            CATALOG_URL,
+            catalogPath
+        );
+
+    if (result == psvitaalive::HttpResult::Ok) {
+
+        if (!psvitaalive::CatalogParser::parseFile(
+                catalogPath,
+                catalogItems
+            )) {
+
+            sceClibPrintf(
+                "[PSVitaAlive] Catalog parsing failed\n"
+            );
+        }
+
+    } else {
+
+        sceClibPrintf(
+            "[PSVitaAlive] Catalog download failed: %s\n",
+            catalogHttp.lastError().c_str()
+        );
+    }
+
+    catalogHttp.shutdown();
+
+} else {
+
+    sceClibPrintf(
+        "[PSVitaAlive] Catalog HTTP initialization failed\n"
+    );
+}
+
     psvitaalive::InstallController installer;
 
     psvitaalive::ui::FullCatalogScreen screen;
+
+    screen.setCatalogItems(
+    std::move(catalogItems)
+);
 
     screen.setInstallCallbacks(
         [&installer](const psvitaalive::ui::CatalogItem& item) {

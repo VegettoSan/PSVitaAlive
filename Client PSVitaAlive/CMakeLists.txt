@@ -27,6 +27,7 @@ set(SOURCES
   source/installer/vita_installer.cpp
   source/installer/install_dispatcher.cpp
   source/installer/install_controller.cpp
+  source/catalog/catalog_parser.cpp
   source/ui/ui_types.cpp
   source/ui/full_catalog_screen.cpp
 )
@@ -37,6 +38,10 @@ target_include_directories(${PROJECT_NAME} PRIVATE
   ${CMAKE_SOURCE_DIR}/include
 )
 
+target_compile_options(${PROJECT_NAME} PRIVATE
+  -fno-rtti
+)
+
 target_link_libraries(${PROJECT_NAME}
   vita2d
 
@@ -44,6 +49,7 @@ target_link_libraries(${PROJECT_NAME}
   SceCtrl_stub
   SceTouch_stub
   SceSysmodule_stub
+  SceLibJson_stub
   SceAppMgr_stub
   SceCommonDialog_stub
   SceIofilemgr_stub

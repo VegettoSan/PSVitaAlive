@@ -31,6 +31,16 @@ constexpr int TRANSITION_MS = 200;
 FullCatalogScreen::FullCatalogScreen() = default;
 FullCatalogScreen::~FullCatalogScreen() { shutdown(); }
 
+void FullCatalogScreen::setCatalogItems(
+    std::vector<CatalogItem> items
+) {
+    items_ = std::move(items);
+
+    state_.focusIndex = 0;
+    state_.catalogScrollRow = 0;
+    state_.detailScroll = 0;
+}
+
 void FullCatalogScreen::setInstallCallbacks(
     InstallRequestFn requestInstall,
     InstallStatusFn statusText
@@ -49,7 +59,6 @@ bool FullCatalogScreen::init() {
     }
 
     sceCtrlSetSamplingMode(SCE_CTRL_MODE_ANALOG);
-    loadMockData();
 
     state_.mode = UiMode::FULL_CATALOG;
     state_.activePanel = UiPanel::Catalog;

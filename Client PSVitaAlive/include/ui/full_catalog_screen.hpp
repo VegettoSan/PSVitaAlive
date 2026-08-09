@@ -31,6 +31,10 @@ public:
         InstallRequestFn requestInstall,
         InstallStatusFn statusText
     );
+    
+    void setCatalogItems(
+        std::vector<CatalogItem> items
+    );
 
 private:
     UiState state_;
