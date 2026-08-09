@@ -10,12 +10,11 @@
 #include <algorithm>
 #include <cstdio>
 #include <cstring>
+#include <utility>
 
 namespace psvitaalive {
 
-namespace {
-uint32_t g_jobCounter = 1;
-}
+namespace { uint32_t g_jobCounter = 1; }
 
 const char* toString(DownloadState s) {
     switch (s) {
@@ -33,14 +32,8 @@ const char* toString(DownloadState s) {
 }
 
 DownloadManager::DownloadManager(HttpClient& http) : http_(http) {}
-
-void DownloadManager::setProgressCallback(DownloadProgressFn fn) {
-    onProgress_ = std::move(fn);
-}
-
-std::string DownloadManager::jobsRoot() {
-    return std::string(StorageManager::JOBS_DIR);
-}
+void DownloadManager::setProgressCallback(DownloadProgressFn fn) { onProgress_ = std::move(fn); }
+std::string DownloadManager::jobsRoot() { return std::string(StorageManager::JOBS_DIR); }
 
 std::string DownloadManager::makeJobId() {
     char buf[64];
@@ -49,9 +42,7 @@ std::string DownloadManager::makeJobId() {
 }
 
 DownloadJob* DownloadManager::findJob(const std::string& id) {
-    for (auto& j : jobs_) {
-        if (j.id == id) return &j;
-    }
+    for (auto& j : jobs_) if (j.id == id) return &j;
     return nullptr;
 }
 
@@ -69,23 +60,15 @@ bool DownloadManager::saveMetadata(const DownloadJob& job) const {
     char body[1400];
     sceClibSnprintf(
         body, sizeof(body),
-        "{\n"
-        "  \"id\": \"%s\",\n"
-        "  \"url\": \"%s\",\n"
-        "  \"file_name\": \"%s\",\n"
-        "  \"expected_size\": %llu,\n"
-        "  \"downloaded_size\": %llu,\n"
-        "  \"bytes_per_second\": %llu,\n"
-        "  \"state\": \"%s\",\n"
-        "  \"last_http_status\": %d\n"
-        "}\n",
+        "{\n  \"id\": \"%s\",\n  \"url\": \"%s\",\n  \"file_name\": \"%s\",\n"
+        "  \"expected_size\": %llu,\n  \"downloaded_size\": %llu,\n  \"bytes_per_second\": %llu,\n"
+        "  \"state\": \"%s\",\n  \"last_http_status\": %d\n}\n",
         job.id.c_str(), job.url.c_str(), job.fileName.c_str(),
         (unsigned long long)job.expectedSize,
         (unsigned long long)job.downloadedSize,
         (unsigned long long)job.bytesPerSecond,
         toString(job.state), job.lastHttpStatus
     );
-
     StorageManager st;
     return st.writeTextFile(job.metadataPath, body);
 }
@@ -120,13 +103,12 @@ bool DownloadManager::loadMetadata(DownloadJob& job) const {
     job.expectedSize = findNum("expected_size");
     job.downloadedSize = findNum("downloaded_size");
     job.bytesPerSecond = findNum("bytes_per_second");
-    const std::string stName = findStr("state");
-    if (stName == "Completed") job.state = DownloadState::Completed;
-    else if (stName == "Failed") job.state = DownloadState::Failed;
-    else if (stName == "Cancelled") job.state = DownloadState::Cancelled;
-    else if (stName == "Ready") job.state = DownloadState::Ready;
+    const std::string state = findStr("state");
+    if (state == "Completed") job.state = DownloadState::Completed;
+    else if (state == "Failed") job.state = DownloadState::Failed;
+    else if (state == "Cancelled") job.state = DownloadState::Cancelled;
+    else if (state == "Ready") job.state = DownloadState::Ready;
     else job.state = DownloadState::Queued;
-
     return !job.url.empty();
 }
 
@@ -136,15 +118,9 @@ std::string DownloadManager::enqueue(const std::string& url, const std::string& 
     job.url = url;
     job.fileName = finalFileName.empty() ? "download" : finalFileName;
     job.state = DownloadState::Queued;
-
-    if (!ensureJobDirs(job)) {
-        sceClibPrintf("[DownloadManager] ensureJobDirs failed\n");
-        return {};
-    }
-
+    if (!ensureJobDirs(job)) return {};
     saveMetadata(job);
     jobs_.push_back(job);
-    sceClibPrintf("[DownloadManager] enqueued %s file=%s\n", job.id.c_str(), job.fileName.c_str());
     return job.id;
 }
 
@@ -179,7 +155,6 @@ bool DownloadManager::runJob(DownloadJob& job) {
         job.downloadedSize = p.absoluteDownloaded;
         job.bytesPerSecond = p.bytesPerSecond;
         if (p.total > 0) job.expectedSize = p.total;
-
         if (onProgress_) {
             DownloadProgressEvent ev;
             ev.jobId = job.id;
@@ -190,23 +165,14 @@ bool DownloadManager::runJob(DownloadJob& job) {
             ev.state = DownloadState::Downloading;
             onProgress_(ev);
         }
-
         if (job.downloadedSize >= lastSaved + 256 * 1024 || job.downloadedSize < lastSaved) {
             saveMetadata(job);
             lastSaved = job.downloadedSize;
         }
     };
-
     auto cancelFn = [&]() -> bool { return job.cancelRequested; };
 
-    const HttpResult hr = http_.downloadToFile(
-        job.url,
-        job.temporaryPath,
-        offset,
-        progress,
-        cancelFn
-    );
-
+    const HttpResult hr = http_.downloadToFile(job.url, job.temporaryPath, offset, progress, cancelFn);
     job.lastHttpStatus = http_.lastStatusCode();
     activeJobId_.clear();
 
@@ -216,7 +182,6 @@ bool DownloadManager::runJob(DownloadJob& job) {
         saveMetadata(job);
         return false;
     }
-
     if (hr != HttpResult::Ok) {
         job.state = DownloadState::Failed;
         job.lastError = http_.lastError();
@@ -247,17 +212,12 @@ bool DownloadManager::runJob(DownloadJob& job) {
         ev.state = DownloadState::Completed;
         onProgress_(ev);
     }
-
-    sceClibPrintf("[DownloadManager] completed %s (%llu bytes)\n",
-                  job.id.c_str(), (unsigned long long)job.downloadedSize);
     return true;
 }
 
 bool DownloadManager::processQueue() {
     for (auto& job : jobs_) {
-        if (job.state == DownloadState::Queued) {
-            return runJob(job);
-        }
+        if (job.state == DownloadState::Queued) return runJob(job);
     }
     return false;
 }
@@ -265,55 +225,38 @@ bool DownloadManager::processQueue() {
 bool DownloadManager::cleanupCompletedJob(const std::string& jobId) {
     DownloadJob* job = findJob(jobId);
     if (!job) return false;
-
     StorageManager st;
     bool ok = true;
     if (st.exists(job->temporaryPath)) ok = st.removeFile(job->temporaryPath) && ok;
     if (st.exists(job->finalPath)) ok = st.removeFile(job->finalPath) && ok;
     if (st.exists(job->metadataPath)) ok = st.removeFile(job->metadataPath) && ok;
-
     const std::string jobDir = jobsRoot() + "/" + job->id;
-    if (st.exists(jobDir) && st.isDirectory(jobDir)) {
-        ok = st.removeDirectory(jobDir) && ok;
-    }
-
+    if (st.exists(jobDir) && st.isDirectory(jobDir)) ok = st.removeDirectory(jobDir) && ok;
     if (ok) {
-        jobs_.erase(
-            std::remove_if(jobs_.begin(), jobs_.end(), [&](const DownloadJob& item) {
-                return item.id == jobId;
-            }),
-            jobs_.end()
-        );
+        jobs_.erase(std::remove_if(jobs_.begin(), jobs_.end(), [&](const DownloadJob& item) {
+            return item.id == jobId;
+        }), jobs_.end());
     }
-
-    sceClibPrintf("[DownloadManager] cleanup job=%s ok=%d\n", jobId.c_str(), ok ? 1 : 0);
     return ok;
 }
 
 int DownloadManager::recoverJobs() {
     StorageManager st;
     st.createDirectories(jobsRoot());
-
     const std::string root = jobsRoot();
     SceUID uid = sceIoDopen(root.c_str());
     if (uid < 0) return 0;
-
     int recovered = 0;
     SceIoDirent ent;
     while (sceIoDread(uid, &ent) > 0) {
-        if (ent.d_name[0] == '.') continue;
-        if ((ent.d_stat.st_mode & SCE_S_IFDIR) == 0) continue;
-
+        if (ent.d_name[0] == '.' || (ent.d_stat.st_mode & SCE_S_IFDIR) == 0) continue;
         DownloadJob job;
         job.id = ent.d_name;
-        if (!ensureJobDirs(job)) continue;
-        if (!loadMetadata(job)) continue;
+        if (!ensureJobDirs(job) || !loadMetadata(job)) continue;
         if (job.state == DownloadState::Completed) continue;
-        if (job.state == DownloadState::Downloading || job.state == DownloadState::Preparing) {
-            job.state = DownloadState::Queued;
-        }
+        if (job.state == DownloadState::Downloading || job.state == DownloadState::Preparing) job.state = DownloadState::Queued;
         jobs_.push_back(job);
-        recovered++;
+        ++recovered;
     }
     sceIoDclose(uid);
     return recovered;
