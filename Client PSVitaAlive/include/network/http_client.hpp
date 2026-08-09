@@ -21,6 +21,7 @@ struct HttpProgress {
     uint64_t downloaded = 0; // bytes written in this session (not including resume offset)
     uint64_t total = 0;      // full content length if known (may include offset context)
     uint64_t absoluteDownloaded = 0; // offset + session downloaded
+    uint64_t bytesPerSecond = 0;      // instantaneous/rolling estimate from the Vita transfer loop
 };
 
 using HttpProgressFn = std::function<void(const HttpProgress&)>;
