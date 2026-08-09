@@ -117,9 +117,10 @@ std::string firstArrayString(
         return {};
     }
 
-    // SceLibJson exposes indexed access through Value::operator[];
-    // Array itself does not provide getValue().
-    return value[0].getString().c_str();
+    // SceLibJson exposes indexed access through Value::operator[].
+    // Use an explicit SceSize index because literal 0 is ambiguous
+    // with the string-key overloads of operator[].
+    return value[static_cast<SceSize>(0)].getString().c_str();
 }
 
 std::string makeDownloadFileName(
