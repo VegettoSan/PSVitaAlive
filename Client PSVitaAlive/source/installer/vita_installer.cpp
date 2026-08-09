@@ -61,7 +61,6 @@ VitaInstallResult VitaInstaller::promotePath(const std::string& path) {
         return VitaInstallResult::PromoteFailed;
     }
 
-    // Promote package. For PKG files, promoter accepts package path on supported setups.
     r = scePromoterUtilityPromotePkg(path.c_str(), 0);
     lastPromoteResult_ = r;
 
@@ -114,18 +113,14 @@ VitaInstallResult VitaInstaller::installPkg(
     if (onProgress) {
         VitaInstallProgress p;
         p.stage = VitaInstallProgress::Preparing;
-        p.message = "detecting";
+        p.message = "validating PKG";
         onProgress(p);
     }
 
     FormatDetector detector;
     DetectResult det = detector.detectFile(pkgPath);
     const std::string ext = FormatDetector::extensionOf(pkgPath);
-
-    const bool looksPkg =
-        (det.format == FileFormat::Pkg) ||
-        (ext == "pkg");
-
+    const bool looksPkg = (det.format == FileFormat::Pkg) || (ext == "pkg");
     if (!looksPkg) {
         setError(std::string("not a pkg: format=") + toString(det.format) + " ext=" + ext);
         return VitaInstallResult::NotPkg;
@@ -140,23 +135,27 @@ VitaInstallResult VitaInstaller::installPkg(
         return VitaInstallResult::ModuleFailed;
     }
 
-    // Stage copy into tmp (avoids installing from arbitrary locations / partial downloads)
     if (!st.createDirectories(TMP_ROOT)) {
         setError("cannot create tmp");
         return VitaInstallResult::IoError;
     }
 
     char staged[256];
-    sceClibSnprintf(staged, sizeof(staged), "%s/pkg_%u.pkg",
-                    TMP_ROOT, (unsigned)sceKernelGetProcessTimeLow());
-    std::string stagedPath = staged;
+    sceClibSnprintf(
+        staged, sizeof(staged), "%s/pkg_%u.pkg",
+        TMP_ROOT, (unsigned)sceKernelGetProcessTimeLow()
+    );
+    const std::string stagedPath = staged;
 
-    // Copy file in chunks
     SceUID in = sceIoOpen(pkgPath.c_str(), SCE_O_RDONLY, 0);
     if (in < 0) {
         setError("open source pkg failed");
         return VitaInstallResult::IoError;
     }
+
+    const int64_t sourceSizeSigned = st.fileSize(pkgPath);
+    const uint64_t sourceSize = sourceSizeSigned > 0 ? static_cast<uint64_t>(sourceSizeSigned) : 0;
+
     SceUID out = sceIoOpen(stagedPath.c_str(), SCE_O_WRONLY | SCE_O_CREAT | SCE_O_TRUNC, 0777);
     if (out < 0) {
         sceIoClose(in);
@@ -165,6 +164,7 @@ VitaInstallResult VitaInstaller::installPkg(
     }
 
     std::vector<char> buf(64 * 1024);
+    uint64_t copied = 0;
     while (true) {
         if (shouldCancel && shouldCancel()) {
             sceIoClose(in);
@@ -173,33 +173,50 @@ VitaInstallResult VitaInstaller::installPkg(
             setError("cancelled during stage");
             return VitaInstallResult::Cancelled;
         }
+
         int n = sceIoRead(in, buf.data(), buf.size());
         if (n < 0) {
             sceIoClose(in);
             sceIoClose(out);
+            st.removeFile(stagedPath);
             setError("read pkg failed");
             return VitaInstallResult::IoError;
         }
         if (n == 0) break;
+
         int off = 0;
         while (off < n) {
             int w = sceIoWrite(out, buf.data() + off, n - off);
             if (w <= 0) {
                 sceIoClose(in);
                 sceIoClose(out);
+                st.removeFile(stagedPath);
                 setError("write staged pkg failed");
                 return VitaInstallResult::IoError;
             }
             off += w;
         }
+
+        copied += static_cast<uint64_t>(n);
+        if (onProgress) {
+            VitaInstallProgress p;
+            p.stage = VitaInstallProgress::Preparing;
+            p.current = copied;
+            p.total = sourceSize;
+            p.message = "staging PKG";
+            onProgress(p);
+        }
     }
+
     sceIoClose(in);
     sceIoClose(out);
 
     if (onProgress) {
         VitaInstallProgress p;
         p.stage = VitaInstallProgress::Promoting;
-        p.message = "promoter";
+        p.current = 0;
+        p.total = 0;
+        p.message = "Installing PKG with Promoter Utility";
         onProgress(p);
     }
 
@@ -207,12 +224,15 @@ VitaInstallResult VitaInstaller::installPkg(
 
     if (pr == VitaInstallResult::Ok && deleteTempOnSuccess) {
         st.removeFile(stagedPath);
+    } else if (pr != VitaInstallResult::Ok) {
+        // A failed promotion must not leave a large staged package behind.
+        st.removeFile(stagedPath);
     }
 
     if (pr == VitaInstallResult::Ok && onProgress) {
         VitaInstallProgress p;
         p.stage = VitaInstallProgress::Done;
-        p.message = "installed";
+        p.message = "PKG installed";
         onProgress(p);
     }
 
