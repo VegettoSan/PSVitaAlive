@@ -46,18 +46,22 @@ bool HomebrewInstaller::loadPromoterModule() {
     pafLoadedByUs_ = false;
     promoterLoadedByUs_ = false;
 
-    // Match the module-loading sequence used by VitaShell's package installer.
-    // The PAF module is a dependency of Promoter Utility on real Vita firmware.
+    // Match the module-loading sequence used by VitaShell/VHBB-style
+    // installers. The PAF module is a dependency of Promoter Utility.
     if (sceSysmoduleIsLoadedInternal(SCE_SYSMODULE_INTERNAL_PAF) < 0) {
         uint32_t pafArgs[] = { 0x180000, 0xFFFFFFFF, 0xFFFFFFFF, 1, 0xFFFFFFFF, 0xFFFFFFFF };
-        uint32_t resultBuf[4] = { 0 };
-        resultBuf[0] = sizeof(resultBuf);
+
+        // VitaSDK's current SceSysmodule API expects a SceSysmoduleOpt here.
+        // Older code passed a raw result buffer, which no longer matches the
+        // current prototype and causes the build error seen with modern VitaSDK.
+        SceSysmoduleOpt pafOpt = { 0 };
+        pafOpt.result = &pafOpt.flags;
 
         const int r = sceSysmoduleLoadModuleInternalWithArg(
             SCE_SYSMODULE_INTERNAL_PAF,
             sizeof(pafArgs),
             pafArgs,
-            resultBuf
+            &pafOpt
         );
         if (r < 0) {
             char buf[80];
@@ -111,7 +115,8 @@ bool HomebrewInstaller::removeTree(const std::string& path) {
         if (childIsDir) {
             if (!removeTree(child)) { ok = false; break; }
         } else if (!st.removeFile(child)) {
-            ok = false; break;
+            ok = false;
+            break;
         }
     }
     sceIoDclose(uid);
@@ -129,10 +134,9 @@ InstallResult HomebrewInstaller::promoteExtractedDir(const std::string& dir) {
         return InstallResult::PromoteFailed;
     }
 
-    // This is the same API used by VitaShell for installing VPK/homebrew.
-    // With sync=1 the call completes the promotion before returning, creates
-    // the application under ux0:app/<TITLE_ID>, and registers its LiveArea
-    // bubble. It also handles the homebrew/fake-package RIF flow.
+    // Promoter Utility installs the extracted package under ux0:app/<TITLE_ID>
+    // and registers its LiveArea bubble. With sync=1 the operation completes
+    // before returning.
     const int promoteResult = scePromoterUtilityPromotePkgWithRif(dir.c_str(), 1);
     lastPromoteResult_ = promoteResult;
 
