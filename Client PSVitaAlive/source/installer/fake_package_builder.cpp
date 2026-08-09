@@ -1,4 +1,5 @@
 #include "installer/fake_package_builder.hpp"
+#include "installer/head_template.hpp"
 
 #include <psp2/io/fcntl.h>
 #include <psp2/io/stat.h>
@@ -13,8 +14,6 @@
 
 namespace psvitaalive {
 namespace {
-
-constexpr const char* kTemplatePath = "app0:resources/head.bin";
 
 uint16_t readU16(const uint8_t* p) {
     return static_cast<uint16_t>(p[0]) |
@@ -212,11 +211,9 @@ bool FakePackageBuilder::build(const std::string& packageDir) {
     std::string contentId;
     readSfoString(sfo, "CONTENT_ID", contentId);
 
-    std::vector<uint8_t> head;
-    if (!readFile(kTemplatePath, head, error)) {
-        setError("cannot load VitaShell head.bin template: " + error);
-        return false;
-    }
+    // Use the local NeoVitaDB/VitaDB Downloader package-header template.
+    // This removes the previous runtime dependency on app0:resources/head.bin.
+    std::vector<uint8_t> head(head_template::data, head_template::data + head_template::size);
 
     if (head.size() < 0x100) {
         setError("head.bin template is too small");
