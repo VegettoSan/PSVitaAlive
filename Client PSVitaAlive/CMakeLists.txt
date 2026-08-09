@@ -13,34 +13,13 @@ include("$ENV{VITASDK}/share/vita.cmake" REQUIRED)
 
 set(VITA_APP_NAME "PSVitaAlive")
 set(VITA_TITLEID  "PSVA00001")
-set(VITA_VERSION  "01.00")
+set(VITA_VERSION "01.00")
 set(VITA_MKSFOEX_FLAGS "${VITA_MKSFOEX_FLAGS} -d PARENTAL_LEVEL=1")
 
-# VitaShell's package installer uses this template to build sce_sys/package/head.bin
-# before calling scePromoterUtilityPromotePkgWithRif(). Pin the source revision so
-# the build remains reproducible.
-set(VITASHELL_HEAD_URL
-    "https://raw.githubusercontent.com/TheOfficialFloW/VitaShell/81af70971ba18b8ce86215b04180f1e3d21cdfc9/resources/head.bin"
-)
-set(VITASHELL_HEAD_SHA1 "0399fcbd4b24ee48599e3ffb0463f5aa008f6701")
-set(VITASHELL_HEAD_DIR "${CMAKE_CURRENT_BINARY_DIR}/resources")
-set(VITASHELL_HEAD_FILE "${VITASHELL_HEAD_DIR}/head.bin")
-
-file(MAKE_DIRECTORY "${VITASHELL_HEAD_DIR}")
-file(DOWNLOAD
-  "${VITASHELL_HEAD_URL}"
-  "${VITASHELL_HEAD_FILE}"
-  EXPECTED_HASH "SHA1=${VITASHELL_HEAD_SHA1}"
-  STATUS VITASHELL_HEAD_DOWNLOAD_STATUS
-  SHOW_PROGRESS
-)
-list(GET VITASHELL_HEAD_DOWNLOAD_STATUS 0 VITASHELL_HEAD_DOWNLOAD_CODE)
-if(NOT VITASHELL_HEAD_DOWNLOAD_CODE EQUAL 0)
-  message(FATAL_ERROR
-    "Unable to obtain the pinned VitaShell head.bin template. "
-    "Check network access and try configuring again. Status: ${VITASHELL_HEAD_DOWNLOAD_STATUS}"
-  )
-endif()
+# The VPK installer uses a package-header template embedded in the executable.
+# No network download is performed during CMake configuration. The template is
+# derived from NeoVitaDB/VitaDB Downloader's local head.h implementation and is
+# consumed by FakePackageBuilder at installation time.
 
 set(SOURCES
   source/main.cpp
@@ -63,6 +42,7 @@ add_executable(${PROJECT_NAME} ${SOURCES})
 
 target_include_directories(${PROJECT_NAME} PRIVATE
   ${CMAKE_SOURCE_DIR}/include
+  ${CMAKE_SOURCE_DIR}/source
 )
 
 target_compile_options(${PROJECT_NAME} PRIVATE
@@ -108,7 +88,6 @@ vita_create_vpk(${PROJECT_NAME}.vpk ${VITA_TITLEID}
   eboot.bin
   VERSION ${VITA_VERSION}
   NAME ${VITA_APP_NAME}
-  resources/head.bin
 )
 
 message(STATUS "PSVitaAlive configured. TitleID=${VITA_TITLEID}")
