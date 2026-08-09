@@ -29,9 +29,11 @@ struct DownloadJob {
     std::string finalPath;
     std::string temporaryPath; // *.part
     std::string metadataPath;
+    std::string fileName;
 
     uint64_t expectedSize = 0;
     uint64_t downloadedSize = 0;
+    uint64_t bytesPerSecond = 0;
 
     DownloadState state = DownloadState::Queued;
     bool resumable = true;
@@ -43,21 +45,23 @@ struct DownloadJob {
 
 struct DownloadProgressEvent {
     std::string jobId;
+    std::string fileName;
     uint64_t downloaded = 0;
     uint64_t total = 0;
+    uint64_t bytesPerSecond = 0;
     DownloadState state = DownloadState::Downloading;
 };
 
 using DownloadProgressFn = std::function<void(const DownloadProgressEvent&)>;
 
 /**
- * DownloadManager — Phase 3
+ * DownloadManager
  *
- * - One active download at a time (simple queue)
- * - Jobs stored under ux0:data/psvitaalive/downloads/jobs/<id>/
- * - payload.part + metadata.json
- * - Resume via HTTP Range when server supports it
- * - Cancel flag checked between chunks (via HttpClient progress)
+ * - One active download at a time.
+ * - Jobs stored under ux0:data/psvitaalive/downloads/jobs/<id>/.
+ * - Resumable *.part downloads with metadata.
+ * - The final payload is temporary installation input and can be reclaimed
+ *   by cleanupCompletedJob() after a successful install/extraction.
  */
 class DownloadManager {
 public:
@@ -65,17 +69,13 @@ public:
 
     void setProgressCallback(DownloadProgressFn fn);
 
-    /** Create job directories and metadata. Returns job id. */
     std::string enqueue(const std::string& url, const std::string& finalFileName);
-
-    /** Process queue head until empty or failure that stops the loop. */
     bool processQueue();
-
-    /** Request cancel of current/active job. */
     void cancel(const std::string& jobId);
-
-    /** Load jobs from disk (jobs with .part / metadata). */
     int recoverJobs();
+
+    /** Remove final payload, metadata and the empty job directory. */
+    bool cleanupCompletedJob(const std::string& jobId);
 
     const std::vector<DownloadJob>& jobs() const { return jobs_; }
     DownloadJob* findJob(const std::string& id);
