@@ -4,8 +4,9 @@
 #include <psp2/kernel/clib.h>
 #include <psp2/io/fcntl.h>
 
-#include <cinttypes>
+#include <cstdio>
 #include <cstring>
+#include <utility>
 
 namespace psvitaalive {
 
