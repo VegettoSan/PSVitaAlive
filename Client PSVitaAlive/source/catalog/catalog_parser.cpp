@@ -117,7 +117,9 @@ std::string firstArrayString(
         return {};
     }
 
-    return array.getValue(0).getString().c_str();
+    // SceLibJson exposes indexed access through Value::operator[];
+    // Array itself does not provide getValue().
+    return value[0].getString().c_str();
 }
 
 std::string makeDownloadFileName(
@@ -175,7 +177,8 @@ void parseLinks(
     std::string fallbackDownloadName;
 
     for (SceSize i = 0; i < links.size(); ++i) {
-        const sce::Json::Value& link = links.getValue(i);
+        // SceLibJson provides indexed access on Value, not on Array.
+        const sce::Json::Value& link = linksValue[i];
 
         const std::string type =
             getString(link, "type");
@@ -304,8 +307,9 @@ bool CatalogParser::parseFile(
         root.getArray();
 
     for (SceSize i = 0; i < applications.size(); ++i) {
+        // SceLibJson provides indexed access on Value, not on Array.
         const sce::Json::Value& app =
-            applications.getValue(i);
+            root[i];
 
         ui::CatalogItem item;
 
