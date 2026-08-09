@@ -7,31 +7,41 @@
 #include <functional>
 #include <string>
 #include <vector>
+#include <cstdint>
 
 namespace psvitaalive {
 namespace ui {
 
+struct InstallUiStatus {
+    bool visible = false;
+    bool active = false;
+    bool completed = false;
+    bool failed = false;
+    uint64_t current = 0;
+    uint64_t total = 0;
+    uint64_t bytesPerSecond = 0;
+    std::string fileName;
+    std::string stage;
+    std::string message;
+};
+
 class FullCatalogScreen {
 public:
     using InstallRequestFn = std::function<bool(const CatalogItem&)>;
-    using InstallStatusFn = std::function<std::string()>;
+    using InstallStatusFn = std::function<InstallUiStatus()>;
 
     FullCatalogScreen();
     ~FullCatalogScreen();
 
     bool init();
     void shutdown();
-
-    // Procesa una iteración de la UI.
-    // Devuelve false cuando el usuario solicita salir.
     bool updateAndDraw();
 
-    // La UI solo emite una intención; la capa de instalación ejecuta la operación.
     void setInstallCallbacks(
         InstallRequestFn requestInstall,
-        InstallStatusFn statusText
+        InstallStatusFn status
     );
-    
+
     void setCatalogItems(
         std::vector<CatalogItem> items
     );
@@ -41,7 +51,7 @@ private:
     std::vector<CatalogItem> items_;
 
     InstallRequestFn installRequest_;
-    InstallStatusFn installStatusText_;
+    InstallStatusFn installStatus_;
 
     vita2d_pgf* font_ = nullptr;
     bool ready_ = false;
@@ -55,6 +65,7 @@ private:
     void drawOpeningDetail();
     void drawSplitDetail();
     void drawClosingDetail();
+    void drawInstallOverlay();
 
     void drawHeader(int width);
     void drawTabs(int width);
@@ -112,7 +123,6 @@ private:
     bool isTransitioning() const;
 
     void changeCatalog(int direction);
-
     void moveCatalogFocus(int direction);
     void moveDetailScroll(int direction);
 
