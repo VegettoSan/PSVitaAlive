@@ -50,6 +50,11 @@ struct CatalogItem {
 
     std::string changelog;
 
+    // Phase 10: the renderer keeps only normalized download information.
+    // Real catalog data will populate these fields later.
+    std::string downloadUrl;
+    std::string downloadFileName;
+
     std::vector<std::string> screenshots;
     std::vector<std::string> links;
 };
