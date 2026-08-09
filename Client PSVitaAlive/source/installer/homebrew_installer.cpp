@@ -47,26 +47,27 @@ bool HomebrewInstaller::loadPromoterModule() {
     pafLoadedByUs_ = false;
     promoterLoadedByUs_ = false;
 
-    // VitaShell uses a custom PAF argument block before loading PromoterUtil.
-    // The current VitaSDK exposes the 4th argument as SceSysmoduleOpt*.
+    // NeoVitaDB/VitaDB Downloader uses this PAF argument block before loading
+    // PromoterUtil. This matches the VitaSDK calling convention used by the
+    // current project and avoids the old uint32_t* signature mismatch.
     if (sceSysmoduleIsLoadedInternal(SCE_SYSMODULE_INTERNAL_PAF) < 0) {
-        uint32_t pafArgs[] = {
-            0x180000u,
-            static_cast<uint32_t>(-1),
-            static_cast<uint32_t>(-1),
-            1u,
-            static_cast<uint32_t>(-1),
-            static_cast<uint32_t>(-1)
-        };
+        uint32_t ptr[0x100] = {0};
+        ptr[0] = 0;
+        ptr[1] = static_cast<uint32_t>(reinterpret_cast<uintptr_t>(&ptr[0]));
 
-        SceSysmoduleOpt pafOpt{};
-        pafOpt.result = &pafOpt.flags;
+        uint32_t scepafArgp[] = {
+            0x400000u,
+            0xEA60u,
+            0x40000u,
+            0u,
+            0u
+        };
 
         const int r = sceSysmoduleLoadModuleInternalWithArg(
             SCE_SYSMODULE_INTERNAL_PAF,
-            sizeof(pafArgs),
-            pafArgs,
-            &pafOpt
+            sizeof(scepafArgp),
+            scepafArgp,
+            reinterpret_cast<SceSysmoduleOpt*>(ptr)
         );
         if (r < 0) {
             char buf[80];
@@ -98,8 +99,16 @@ void HomebrewInstaller::unloadPromoterModules() {
         if (r < 0) sceClibPrintf("[HomebrewInstaller] unload promoter failed: 0x%08X\n", r);
         promoterLoadedByUs_ = false;
     }
+
     if (pafLoadedByUs_) {
-        const int r = sceSysmoduleUnloadModuleInternal(SCE_SYSMODULE_INTERNAL_PAF);
+        SceSysmoduleOpt opt{};
+        std::memset(&opt.flags, 0, sizeof(opt.flags));
+        const int r = sceSysmoduleUnloadModuleInternalWithArg(
+            SCE_SYSMODULE_INTERNAL_PAF,
+            0,
+            nullptr,
+            &opt
+        );
         if (r < 0) sceClibPrintf("[HomebrewInstaller] unload PAF failed: 0x%08X\n", r);
         pafLoadedByUs_ = false;
     }
@@ -131,6 +140,9 @@ bool HomebrewInstaller::removeTree(const std::string& path) {
 }
 
 InstallResult HomebrewInstaller::promoteExtractedDir(const std::string& dir) {
+    // NeoVitaDB/VitaDB Downloader initializes PromoterUtil only after loading
+    // PAF and the PromoterUtil internal module, then promotes the extracted
+    // package directory with PromotePkg. This is the flow used here as well.
     const int initResult = scePromoterUtilityInit();
     if (initResult < 0) {
         char buf[64];
@@ -140,16 +152,13 @@ InstallResult HomebrewInstaller::promoteExtractedDir(const std::string& dir) {
         return InstallResult::PromoteFailed;
     }
 
-    // This is the same PromoterUtil operation used by VitaShell for an
-    // extracted application package. The system resolves TITLE_ID from
-    // sce_sys/param.sfo and creates the LiveArea registration.
-    const int promoteResult = scePromoterUtilityPromotePkgWithRif(dir.c_str(), 1);
+    const int promoteResult = scePromoterUtilityPromotePkg(dir.c_str(), 0);
     lastPromoteResult_ = promoteResult;
 
     const int exitResult = scePromoterUtilityExit();
     if (promoteResult < 0) {
         char buf[80];
-        sceClibSnprintf(buf, sizeof(buf), "scePromoterUtilityPromotePkgWithRif: 0x%08X", promoteResult);
+        sceClibSnprintf(buf, sizeof(buf), "scePromoterUtilityPromotePkg: 0x%08X", promoteResult);
         setError(buf);
         return InstallResult::PromoteFailed;
     }
@@ -250,8 +259,6 @@ InstallResult HomebrewInstaller::installVpk(
         return InstallResult::Cancelled;
     }
 
-    // VitaShell creates sce_sys/package/head.bin before calling PromoterUtil.
-    // PromoterUtil expects this package metadata for the fake-package flow.
     if (onProgress) {
         InstallProgress p;
         p.stage = InstallProgress::Promoting;
