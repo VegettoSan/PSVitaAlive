@@ -130,6 +130,19 @@ CMakeFiles/PSVitaAlive.dir/source/ui/full_catalog_screen.cpp.obj: \
  /usr/local/vitasdk/arm-vita-eabi/include/psp2common/kernel/sysmem.h \
  /usr/local/vitasdk/arm-vita-eabi/include/psp2/pgf.h \
  /usr/local/vitasdk/arm-vita-eabi/include/psp2/pvf.h \
+ /usr/local/vitasdk/arm-vita-eabi/include/c++/15.2.0/functional \
+ /usr/local/vitasdk/arm-vita-eabi/include/c++/15.2.0/bits/std_function.h \
+ /usr/local/vitasdk/arm-vita-eabi/include/c++/15.2.0/typeinfo \
+ /usr/local/vitasdk/arm-vita-eabi/include/c++/15.2.0/unordered_map \
+ /usr/local/vitasdk/arm-vita-eabi/include/c++/15.2.0/bits/unordered_map.h \
+ /usr/local/vitasdk/arm-vita-eabi/include/c++/15.2.0/bits/hashtable.h \
+ /usr/local/vitasdk/arm-vita-eabi/include/c++/15.2.0/bits/hashtable_policy.h \
+ /usr/local/vitasdk/arm-vita-eabi/include/c++/15.2.0/ext/aligned_buffer.h \
+ /usr/local/vitasdk/arm-vita-eabi/include/c++/15.2.0/bits/enable_special_members.h \
+ /usr/local/vitasdk/arm-vita-eabi/include/c++/15.2.0/bits/node_handle.h \
+ /usr/local/vitasdk/arm-vita-eabi/include/c++/15.2.0/bits/erase_if.h \
+ /usr/local/vitasdk/arm-vita-eabi/include/c++/15.2.0/array \
+ /usr/local/vitasdk/arm-vita-eabi/include/c++/15.2.0/compare \
  /usr/local/vitasdk/arm-vita-eabi/include/psp2/ctrl.h \
  /usr/local/vitasdk/arm-vita-eabi/include/psp2common/ctrl.h \
  /usr/local/vitasdk/arm-vita-eabi/include/psp2/kernel/clib.h \
@@ -161,4 +174,6 @@ CMakeFiles/PSVitaAlive.dir/source/ui/full_catalog_screen.cpp.obj: \
  /usr/local/vitasdk/arm-vita-eabi/include/c++/15.2.0/cstring \
  /usr/local/vitasdk/arm-vita-eabi/include/string.h \
  /usr/local/vitasdk/arm-vita-eabi/include/strings.h \
- /usr/local/vitasdk/arm-vita-eabi/include/sys/string.h
+ /usr/local/vitasdk/arm-vita-eabi/include/sys/string.h \
+ /usr/local/vitasdk/arm-vita-eabi/include/c++/15.2.0/utility \
+ /usr/local/vitasdk/arm-vita-eabi/include/c++/15.2.0/bits/stl_relops.h

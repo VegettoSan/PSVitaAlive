@@ -5,6 +5,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/PSVitaAlive.dir/source/archive/zip_extractor.cpp.obj.d"
   "CMakeFiles/PSVitaAlive.dir/source/installer/homebrew_installer.cpp.obj"
   "CMakeFiles/PSVitaAlive.dir/source/installer/homebrew_installer.cpp.obj.d"
+  "CMakeFiles/PSVitaAlive.dir/source/installer/install_controller.cpp.obj"
+  "CMakeFiles/PSVitaAlive.dir/source/installer/install_controller.cpp.obj.d"
   "CMakeFiles/PSVitaAlive.dir/source/installer/install_dispatcher.cpp.obj"
   "CMakeFiles/PSVitaAlive.dir/source/installer/install_dispatcher.cpp.obj.d"
   "CMakeFiles/PSVitaAlive.dir/source/installer/vita_installer.cpp.obj"

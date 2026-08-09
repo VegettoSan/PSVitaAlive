@@ -11,6 +11,7 @@ set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "/home/vegettosandev/PSVitaAlive/source/archive/format_detector.cpp" "CMakeFiles/PSVitaAlive.dir/source/archive/format_detector.cpp.obj" "gcc" "CMakeFiles/PSVitaAlive.dir/source/archive/format_detector.cpp.obj.d"
   "/home/vegettosandev/PSVitaAlive/source/archive/zip_extractor.cpp" "CMakeFiles/PSVitaAlive.dir/source/archive/zip_extractor.cpp.obj" "gcc" "CMakeFiles/PSVitaAlive.dir/source/archive/zip_extractor.cpp.obj.d"
   "/home/vegettosandev/PSVitaAlive/source/installer/homebrew_installer.cpp" "CMakeFiles/PSVitaAlive.dir/source/installer/homebrew_installer.cpp.obj" "gcc" "CMakeFiles/PSVitaAlive.dir/source/installer/homebrew_installer.cpp.obj.d"
+  "/home/vegettosandev/PSVitaAlive/source/installer/install_controller.cpp" "CMakeFiles/PSVitaAlive.dir/source/installer/install_controller.cpp.obj" "gcc" "CMakeFiles/PSVitaAlive.dir/source/installer/install_controller.cpp.obj.d"
   "/home/vegettosandev/PSVitaAlive/source/installer/install_dispatcher.cpp" "CMakeFiles/PSVitaAlive.dir/source/installer/install_dispatcher.cpp.obj" "gcc" "CMakeFiles/PSVitaAlive.dir/source/installer/install_dispatcher.cpp.obj.d"
   "/home/vegettosandev/PSVitaAlive/source/installer/vita_installer.cpp" "CMakeFiles/PSVitaAlive.dir/source/installer/vita_installer.cpp.obj" "gcc" "CMakeFiles/PSVitaAlive.dir/source/installer/vita_installer.cpp.obj.d"
   "/home/vegettosandev/PSVitaAlive/source/main.cpp" "CMakeFiles/PSVitaAlive.dir/source/main.cpp.obj" "gcc" "CMakeFiles/PSVitaAlive.dir/source/main.cpp.obj.d"

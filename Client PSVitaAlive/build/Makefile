@@ -240,6 +240,30 @@ source/installer/homebrew_installer.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/PSVitaAlive.dir/build.make CMakeFiles/PSVitaAlive.dir/source/installer/homebrew_installer.cpp.s
 .PHONY : source/installer/homebrew_installer.cpp.s
 
+source/installer/install_controller.obj: source/installer/install_controller.cpp.obj
+.PHONY : source/installer/install_controller.obj
+
+# target to build an object file
+source/installer/install_controller.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/PSVitaAlive.dir/build.make CMakeFiles/PSVitaAlive.dir/source/installer/install_controller.cpp.obj
+.PHONY : source/installer/install_controller.cpp.obj
+
+source/installer/install_controller.i: source/installer/install_controller.cpp.i
+.PHONY : source/installer/install_controller.i
+
+# target to preprocess a source file
+source/installer/install_controller.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/PSVitaAlive.dir/build.make CMakeFiles/PSVitaAlive.dir/source/installer/install_controller.cpp.i
+.PHONY : source/installer/install_controller.cpp.i
+
+source/installer/install_controller.s: source/installer/install_controller.cpp.s
+.PHONY : source/installer/install_controller.s
+
+# target to generate assembly for a file
+source/installer/install_controller.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/PSVitaAlive.dir/build.make CMakeFiles/PSVitaAlive.dir/source/installer/install_controller.cpp.s
+.PHONY : source/installer/install_controller.cpp.s
+
 source/installer/install_dispatcher.obj: source/installer/install_dispatcher.cpp.obj
 .PHONY : source/installer/install_dispatcher.obj
 
@@ -453,6 +477,9 @@ help:
 	@echo "... source/installer/homebrew_installer.obj"
 	@echo "... source/installer/homebrew_installer.i"
 	@echo "... source/installer/homebrew_installer.s"
+	@echo "... source/installer/install_controller.obj"
+	@echo "... source/installer/install_controller.i"
+	@echo "... source/installer/install_controller.s"
 	@echo "... source/installer/install_dispatcher.obj"
 	@echo "... source/installer/install_dispatcher.i"
 	@echo "... source/installer/install_dispatcher.s"
