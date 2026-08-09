@@ -3,7 +3,6 @@
 
 #include <psp2/kernel/clib.h>
 #include <psp2/io/fcntl.h>
-
 #include <zip.h>
 
 #include <cstring>
@@ -11,10 +10,7 @@
 #include <vector>
 
 namespace psvitaalive {
-
-namespace {
-constexpr size_t EXTRACT_CHUNK = 64 * 1024;
-}
+namespace { constexpr size_t EXTRACT_CHUNK = 64 * 1024; }
 
 const char* toString(ZipResult r) {
     switch (r) {
@@ -36,77 +32,41 @@ void ZipExtractor::setError(const std::string& msg) {
 
 bool ZipExtractor::isSafeEntryName(const std::string& entryName) {
     if (entryName.empty()) return false;
-
-    // Absolute paths
     if (entryName[0] == '/' || entryName[0] == '\\') return false;
-
-    // Drive / device style
     if (entryName.find(':') != std::string::npos) return false;
-
-    // Backslashes normalized check — reject raw escapes
     std::string n = entryName;
-    for (char& c : n) {
-        if (c == '\\') c = '/';
-    }
-
-    // Disallow any ".." segment
+    for (char& c : n) if (c == '\\') c = '/';
     size_t start = 0;
     while (start <= n.size()) {
-        size_t pos = n.find('/', start);
-        std::string seg = (pos == std::string::npos)
-            ? n.substr(start)
-            : n.substr(start, pos - start);
+        const size_t pos = n.find('/', start);
+        const std::string seg = pos == std::string::npos ? n.substr(start) : n.substr(start, pos - start);
         if (seg == "..") return false;
         if (pos == std::string::npos) break;
         start = pos + 1;
     }
-
     return true;
 }
 
-bool ZipExtractor::resolveSafePath(
-    const std::string& destinationDir,
-    const std::string& entryName,
-    std::string& outPath
-) {
+bool ZipExtractor::resolveSafePath(const std::string& destinationDir, const std::string& entryName, std::string& outPath) {
     if (!isSafeEntryName(entryName)) return false;
-
     std::string dest = destinationDir;
-    while (!dest.empty() && (dest.back() == '/' || dest.back() == '\\')) {
-        dest.pop_back();
-    }
-
+    while (!dest.empty() && (dest.back() == '/' || dest.back() == '\\')) dest.pop_back();
     std::string name = entryName;
-    for (char& c : name) {
-        if (c == '\\') c = '/';
-    }
-    while (!name.empty() && name.front() == '/') {
-        name.erase(name.begin());
-    }
-
+    for (char& c : name) if (c == '\\') c = '/';
+    while (!name.empty() && name.front() == '/') name.erase(name.begin());
     outPath = dest + "/" + name;
-
-    // Verify prefix: outPath must start with dest + "/"
     if (outPath.size() < dest.size() + 1) return false;
     if (outPath.compare(0, dest.size(), dest) != 0) return false;
     if (outPath[dest.size()] != '/') return false;
-
-    // Second pass: reject residual ".." after join
     if (outPath.find("/../") != std::string::npos) return false;
     if (outPath.size() >= 3 && outPath.compare(outPath.size() - 3, 3, "/..") == 0) return false;
-
     return true;
 }
 
-ZipResult ZipExtractor::extract(
-    const std::string& zipPath,
-    const std::string& destinationDir,
-    ZipProgressFn onProgress,
-    ZipCancelFn shouldCancel
-) {
+ZipResult ZipExtractor::extract(const std::string& zipPath, const std::string& destinationDir,
+                                ZipProgressFn onProgress, ZipCancelFn shouldCancel) {
     lastError_.clear();
     StorageManager st;
-
     if (!st.createDirectories(destinationDir)) {
         setError("cannot create destination");
         return ZipResult::IoError;
@@ -130,8 +90,18 @@ ZipResult ZipExtractor::extract(
 
     ZipProgress prog;
     prog.entriesTotal = static_cast<uint64_t>(numEntries);
-    prog.entriesDone = 0;
-    prog.bytesWritten = 0;
+
+    // Use the uncompressed size of all regular entries as the extraction
+    // progress denominator. This keeps the UI percentage meaningful.
+    for (zip_int64_t i = 0; i < numEntries; ++i) {
+        zip_stat_t zs;
+        zip_stat_init(&zs);
+        if (zip_stat_index(za, i, 0, &zs) == 0 && zs.name) {
+            const size_t len = std::strlen(zs.name);
+            const bool isDir = len > 0 && zs.name[len - 1] == '/';
+            if (!isDir && zs.size > 0) prog.bytesTotal += static_cast<uint64_t>(zs.size);
+        }
+    }
 
     std::vector<char> buffer(EXTRACT_CHUNK);
     ZipResult outcome = ZipResult::Ok;
@@ -153,9 +123,8 @@ ZipResult ZipExtractor::extract(
 
         const char* name = zs.name ? zs.name : "";
         prog.currentEntry = name;
-
-        // Directory entries end with /
-        const bool isDir = (name[0] != '\0' && name[std::strlen(name) - 1] == '/');
+        const size_t nameLength = std::strlen(name);
+        const bool isDir = nameLength > 0 && name[nameLength - 1] == '/';
 
         std::string outPath;
         if (!resolveSafePath(destinationDir, name, outPath)) {
@@ -170,16 +139,13 @@ ZipResult ZipExtractor::extract(
                 outcome = ZipResult::IoError;
                 break;
             }
-            prog.entriesDone++;
+            ++prog.entriesDone;
             if (onProgress) onProgress(prog);
             continue;
         }
 
-        // Ensure parent directory
-        auto slash = outPath.find_last_of('/');
-        if (slash != std::string::npos) {
-            st.createDirectories(outPath.substr(0, slash));
-        }
+        const auto slash = outPath.find_last_of('/');
+        if (slash != std::string::npos) st.createDirectories(outPath.substr(0, slash));
 
         zip_file_t* zf = zip_fopen_index(za, i, 0);
         if (!zf) {
@@ -204,8 +170,7 @@ ZipResult ZipExtractor::extract(
                 fileOk = false;
                 break;
             }
-
-            zip_int64_t n = zip_fread(zf, buffer.data(), buffer.size());
+            const zip_int64_t n = zip_fread(zf, buffer.data(), buffer.size());
             if (n < 0) {
                 setError("zip_fread failed");
                 outcome = ZipResult::IoError;
@@ -216,7 +181,7 @@ ZipResult ZipExtractor::extract(
 
             int written = 0;
             while (written < static_cast<int>(n)) {
-                int w = sceIoWrite(fd, buffer.data() + written, static_cast<int>(n) - written);
+                const int w = sceIoWrite(fd, buffer.data() + written, static_cast<int>(n) - written);
                 if (w <= 0) {
                     setError("sceIoWrite failed during extract");
                     outcome = ZipResult::IoError;
@@ -231,20 +196,18 @@ ZipResult ZipExtractor::extract(
 
         sceIoClose(fd);
         zip_fclose(zf);
-
         if (!fileOk) break;
 
-        prog.entriesDone++;
+        ++prog.entriesDone;
         if (onProgress) onProgress(prog);
     }
 
     zip_close(za);
-
     if (outcome == ZipResult::Ok) {
         sceClibPrintf("[ZipExtractor] extracted %llu entries, %llu bytes -> %s\n",
-                      (unsigned long long)prog.entriesDone,
-                      (unsigned long long)prog.bytesWritten,
-                      destinationDir.c_str());
+            (unsigned long long)prog.entriesDone,
+            (unsigned long long)prog.bytesWritten,
+            destinationDir.c_str());
     }
     return outcome;
 }
