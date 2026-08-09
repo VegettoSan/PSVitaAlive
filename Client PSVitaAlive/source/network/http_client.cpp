@@ -6,6 +6,7 @@
 
 #include <cstdio>
 #include <cstring>
+#include <strings.h>
 #include <utility>
 
 namespace psvitaalive {
