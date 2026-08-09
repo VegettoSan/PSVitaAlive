@@ -39,15 +39,18 @@ using InstallProgressFn = std::function<void(const InstallProgress&)>;
 using InstallCancelFn = std::function<bool()>;
 
 /**
- * HomebrewInstaller — Phase 6
+ * HomebrewInstaller — VPK installer.
  *
- * Installs .vpk homebrew packages:
- * 1) Detect format (must be VPK/ZIP)
- * 2) Extract to temp under ux0:data/psvitaalive/tmp/
- * 3) scePromoterUtilityPromotePkg
- * 4) Cleanup temp on success (optional keep on failure)
+ * Installs legitimate PS Vita homebrew VPK packages:
+ * 1) Verify the input is a .vpk ZIP container.
+ * 2) Extract it to a private temporary directory.
+ * 3) Validate the minimum VPK layout (eboot.bin + sce_sys/param.sfo).
+ * 4) Load the Promoter Utility dependencies required by the Vita runtime.
+ * 5) Promote the extracted package directory.
+ * 6) Recursively remove temporary files after a successful install.
  *
- * Does NOT implement DRM bypass. Only legitimate homebrew VPK flow.
+ * This class does NOT implement DRM bypass, license generation, or
+ * installation of encrypted commercial content.
  */
 class HomebrewInstaller {
 public:
@@ -65,8 +68,13 @@ private:
     std::string lastError_;
     int lastPromoteResult_ = 0;
 
+    bool pafLoadedByUs_ = false;
+    bool promoterLoadedByUs_ = false;
+
     void setError(const std::string& msg);
     bool loadPromoterModule();
+    void unloadPromoterModules();
+    bool removeTree(const std::string& path);
     InstallResult promoteExtractedDir(const std::string& dir);
 };
 
