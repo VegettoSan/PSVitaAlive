@@ -8,20 +8,16 @@
 
 namespace psvitaalive {
 
-InstallController::InstallController()
-    : downloads_(http_) {
+InstallController::InstallController() : downloads_(http_) {
     std::memset(message_, 0, sizeof(message_));
     std::memset(fileName_, 0, sizeof(fileName_));
     std::memset(stage_, 0, sizeof(stage_));
 }
 
-InstallController::~InstallController() {
-    shutdown();
-}
+InstallController::~InstallController() { shutdown(); }
 
 bool InstallController::init() {
     if (http_.isInitialized()) return true;
-
     const HttpResult result = http_.init();
     if (result != HttpResult::Ok) {
         setState(InstallStatus::State::Failed, http_.lastError().c_str());
@@ -49,7 +45,6 @@ void InstallController::shutdown() {
         sceKernelDeleteThread(workerThread_);
         workerThread_ = -1;
     }
-
     http_.shutdown();
     activeJobId_.clear();
     activeZipDestination_.clear();
@@ -59,15 +54,10 @@ void InstallController::shutdown() {
 
 bool InstallController::busy() const {
     const auto s = static_cast<InstallStatus::State>(state_.load());
-    return s == InstallStatus::State::Downloading ||
-           s == InstallStatus::State::Installing;
+    return s == InstallStatus::State::Downloading || s == InstallStatus::State::Installing;
 }
 
-bool InstallController::requestInstall(
-    const std::string& url,
-    const std::string& fileName,
-    const std::string& zipDestination
-) {
+bool InstallController::requestInstall(const std::string& url, const std::string& fileName, const std::string& zipDestination) {
     if (url.empty() || fileName.empty() || busy()) return false;
 
     if (workerThread_ >= 0 && workerDone_.load()) {
@@ -75,7 +65,6 @@ bool InstallController::requestInstall(
         sceKernelDeleteThread(workerThread_);
         workerThread_ = -1;
     }
-
     if (!http_.isInitialized() && !init()) return false;
 
     const std::string jobId = downloads_.enqueue(url, fileName);
@@ -94,16 +83,8 @@ bool InstallController::requestInstall(
     workerDone_.store(false);
     setState(InstallStatus::State::Downloading, "Starting download...");
 
-    workerThread_ = sceKernelCreateThread(
-        "PSVitaAliveInstall",
-        &InstallController::workerEntry,
-        0x10000100,
-        64 * 1024,
-        0,
-        0,
-        nullptr
-    );
-
+    workerThread_ = sceKernelCreateThread("PSVitaAliveInstall", &InstallController::workerEntry,
+        0x10000100, 64 * 1024, 0, 0, nullptr);
     if (workerThread_ < 0) {
         setState(InstallStatus::State::Failed, "Could not create worker thread");
         workerDone_.store(true);
@@ -119,7 +100,6 @@ bool InstallController::requestInstall(
         setState(InstallStatus::State::Failed, "Could not start worker thread");
         return false;
     }
-
     return true;
 }
 
@@ -139,21 +119,15 @@ void InstallController::setMessage(const char* text) {
     if (!text) text = "";
     sceClibSnprintf(message_, sizeof(message_), "%s", text);
 }
-
 void InstallController::setFileName(const char* text) {
     if (!text) text = "";
     sceClibSnprintf(fileName_, sizeof(fileName_), "%s", text);
 }
-
 void InstallController::setStage(const char* text) {
     if (!text) text = "";
     sceClibSnprintf(stage_, sizeof(stage_), "%s", text);
 }
-
-void InstallController::setState(
-    InstallStatus::State state,
-    const char* message
-) {
+void InstallController::setState(InstallStatus::State state, const char* message) {
     setMessage(message);
     state_.store(static_cast<int>(state));
 }
@@ -166,17 +140,15 @@ int InstallController::workerEntry(SceSize args, void* argp) {
 }
 
 int InstallController::workerMain() {
-    sceClibPrintf("[InstallController] worker started job=%s\n", activeJobId_.c_str());
-
     const bool downloaded = downloads_.processQueue();
     DownloadJob* job = downloads_.findJob(activeJobId_);
 
     if (!downloaded || !job || job->state != DownloadState::Completed) {
-        const char* error = job && !job->lastError.empty()
-            ? job->lastError.c_str()
-            : "Download failed";
+        const char* error = job && !job->lastError.empty() ? job->lastError.c_str() : "Download failed";
         setStage("Error");
         setState(InstallStatus::State::Failed, error);
+        sceKernelDelayThread(2500 * 1000);
+        setState(InstallStatus::State::Idle, "Ready");
         workerDone_.store(true);
         return 0;
     }
@@ -202,21 +174,17 @@ int InstallController::workerMain() {
     if (result != InstallDispatchResult::Ok) {
         setStage("Error");
         setState(InstallStatus::State::Failed, dispatcher_.lastError().c_str());
+        // Keep the completed payload on failure so the user can retry without
+        // downloading it again. Successful operations clean it below.
+        sceKernelDelayThread(2500 * 1000);
+        setState(InstallStatus::State::Idle, "Ready");
     } else {
         setStage("Completed");
         setState(InstallStatus::State::Completed, "Installation completed");
-        // The downloaded VPK/PKG/ZIP is an installation artifact, not a cache.
-        // Remove it only after the selected operation has succeeded.
         downloads_.cleanupCompletedJob(activeJobId_);
-        // Leave a short success state so the UI can tell the user what finished.
         sceKernelDelayThread(2500 * 1000);
         setState(InstallStatus::State::Idle, "Ready");
     }
-
-    sceClibPrintf(
-        "[InstallController] worker finished result=%s\n",
-        toString(result)
-    );
 
     workerDone_.store(true);
     return 0;
