@@ -1,17 +1,17 @@
 name: apply-ui-crash-fix
-on:
-  push:
-    branches: [main]
+on: push
 permissions:
   contents: write
 jobs:
   patch:
-    if: github.event.head_commit.message != 'fix: custom startup prompt and safe texture release'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - name: Patch sources
+        env:
+          COMMIT_MESSAGE: ${{ github.event.head_commit.message }}
         run: |
+          if [ "$COMMIT_MESSAGE" = "fix: custom startup prompt and safe texture release" ]; then exit 0; fi
           python3 - <<'PY'
           from pathlib import Path
           p=Path('Client PSVitaAlive/source/main.cpp')
@@ -67,16 +67,11 @@ jobs:
           s=s.replace('if(t->second){if(t->second)vita2d_free_texture(t->second);textures_.erase(t);}', 'if(t->second){vita2d_wait_rendering_done();vita2d_free_texture(t->second);textures_.erase(t);}')
           p.write_text(s)
           PY
-      - name: Commit
+      - name: Commit patched sources
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add 'Client PSVitaAlive/source/main.cpp' 'Client PSVitaAlive/source/ui/full_catalog_screen.cpp'
+          git diff --cached --quiet && exit 0
           git commit -m 'fix: custom startup prompt and safe texture release'
           git push
-      - name: Remove temporary workflow
-        if: always()
-        run: |
-          git rm .github/workflows/apply-ui-crash-fix.yml || true
-          git commit -m 'chore: remove temporary patch workflow' || true
-          git push || true
