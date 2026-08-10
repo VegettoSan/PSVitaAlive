@@ -7,10 +7,12 @@
 #include <psp2/io/fcntl.h>
 #include <psp2/io/stat.h>
 #include <png.h>
+#include <jpeglib.h>
 
 #include <algorithm>
 #include <cstdio>
 #include <cstring>
+#include <setjmp.h>
 #include <vector>
 
 namespace psvitaalive::ui {
@@ -24,33 +26,32 @@ std::string hex32(uint32_t v){char b[16];sceClibSnprintf(b,sizeof(b),"%08X",v);r
 std::string extensionOf(const std::string&u){std::string c=u;size_t q=c.find('?');if(q!=std::string::npos)c.erase(q);size_t f=c.find('#');if(f!=std::string::npos)c.erase(f);size_t d=c.find_last_of('.');if(d==std::string::npos)return".img";std::string e=c.substr(d);for(char&x:e)if(x>='A'&&x<='Z')x=(char)(x-'A'+'a');if(e==".jpeg")return".jpg";if(e==".png"||e==".jpg")return e;return".img";}
 std::string normalizeUrl(const std::string&u){if(u.rfind("https://",0)==0||u.rfind("http://",0)==0)return u;std::string p=u;while(p.rfind("../",0)==0)p.erase(0,3);return std::string("https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/")+p;}
 
+bool readMagic(const std::string&path,unsigned char*magic,size_t n){FILE*f=std::fopen(path.c_str(),"rb");if(!f)return false;const size_t got=std::fread(magic,1,n,f);std::fclose(f);return got==n;}
+
 bool normalizePngForVita(const std::string&path){
-    png_image image{};
-    image.version=PNG_IMAGE_VERSION;
-    if(!png_image_begin_read_from_file(&image,path.c_str())){
-        diagnostics::log(std::string("[ImageCache] PNG decode failed path=")+path+" error="+image.message);
-        return false;
-    }
-    image.format=PNG_FORMAT_RGBA;
-    const size_t bytes=PNG_IMAGE_SIZE(image);
-    if(bytes==0){png_image_free(&image);diagnostics::log(std::string("[ImageCache] PNG has invalid size path=")+path);return false;}
-    std::vector<unsigned char> pixels(bytes);
-    if(!png_image_finish_read(&image,nullptr,pixels.data(),0,nullptr)){
-        diagnostics::log(std::string("[ImageCache] PNG pixel decode failed path=")+path+" error="+image.message);
-        png_image_free(&image);return false;
-    }
-    const std::string temp=path+".normalized";
-    png_image output{};output.version=PNG_IMAGE_VERSION;output.width=image.width;output.height=image.height;output.format=PNG_FORMAT_RGBA;
-    if(!png_image_write_to_file(&output,temp.c_str(),0,pixels.data(),0,nullptr)){
-        diagnostics::log(std::string("[ImageCache] PNG normalize write failed path=")+path+" error="+output.message);
-        png_image_free(&image);png_image_free(&output);sceIoRemove(temp.c_str());return false;
-    }
-    png_image_free(&image);png_image_free(&output);
-    if(sceIoRemove(path.c_str())<0){sceIoRemove(temp.c_str());return false;}
-    if(sceIoRename(temp.c_str(),path.c_str())<0){sceIoRemove(temp.c_str());return false;}
-    diagnostics::log(std::string("[ImageCache] PNG normalized path=")+path);
-    return true;
+    png_image image{};image.version=PNG_IMAGE_VERSION;
+    if(!png_image_begin_read_from_file(&image,path.c_str())){diagnostics::log(std::string("[ImageCache] PNG decode failed path=")+path+" error="+image.message);return false;}
+    image.format=PNG_FORMAT_RGBA;const size_t bytes=PNG_IMAGE_SIZE(image);if(bytes==0){png_image_free(&image);return false;}
+    std::vector<unsigned char> pixels(bytes);if(!png_image_finish_read(&image,nullptr,pixels.data(),0,nullptr)){diagnostics::log(std::string("[ImageCache] PNG pixel decode failed path=")+path+" error="+image.message);png_image_free(&image);return false;}
+    const std::string temp=path+".normalized";png_image output{};output.version=PNG_IMAGE_VERSION;output.width=image.width;output.height=image.height;output.format=PNG_FORMAT_RGBA;
+    if(!png_image_write_to_file(&output,temp.c_str(),0,pixels.data(),0,nullptr)){diagnostics::log(std::string("[ImageCache] PNG normalize write failed path=")+path+" error="+output.message);png_image_free(&image);png_image_free(&output);sceIoRemove(temp.c_str());return false;}
+    png_image_free(&image);png_image_free(&output);sceIoRemove(path.c_str());if(sceIoRename(temp.c_str(),path.c_str())<0){sceIoRemove(temp.c_str());return false;}diagnostics::log(std::string("[ImageCache] PNG normalized path=")+path);return true;
 }
+
+struct JpegError{jpeg_error_mgr pub;jmp_buf jump;};
+void jpegErrorExit(j_common_ptr c){JpegError*e=reinterpret_cast<JpegError*>(c->err);longjmp(e->jump,1);}
+
+bool normalizeJpegForVita(const std::string&path){
+    FILE*in=std::fopen(path.c_str(),"rb");if(!in)return false;
+    jpeg_decompress_struct cinfo{};JpegError jerr{};cinfo.err=jpeg_std_error(&jerr.pub);jerr.pub.error_exit=jpegErrorExit;
+    if(setjmp(jerr.jump)){jpeg_destroy_decompress(&cinfo);std::fclose(in);diagnostics::log(std::string("[ImageCache] JPEG decode failed path=")+path);return false;}
+    jpeg_create_decompress(&cinfo);jpeg_stdio_src(&cinfo,in);jpeg_read_header(&cinfo,TRUE);cinfo.out_color_space=JCS_RGB;jpeg_start_decompress(&cinfo);
+    const size_t rowBytes=(size_t)cinfo.output_width*3;std::vector<unsigned char>pixels(rowBytes*(size_t)cinfo.output_height);while(cinfo.output_scanline<cinfo.output_height){JSAMPROW row=pixels.data()+(size_t)cinfo.output_scanline*rowBytes;jpeg_read_scanlines(&cinfo,&row,1);}const unsigned w=cinfo.output_width,h=cinfo.output_height;jpeg_finish_decompress(&cinfo);jpeg_destroy_decompress(&cinfo);std::fclose(in);
+    const std::string temp=path+".normalized";png_image out{};out.version=PNG_IMAGE_VERSION;out.width=w;out.height=h;out.format=PNG_FORMAT_RGB;if(!png_image_write_to_file(&out,temp.c_str(),0,pixels.data(),0,nullptr)){diagnostics::log(std::string("[ImageCache] JPEG->PNG write failed path=")+path+" error="+out.message);sceIoRemove(temp.c_str());return false;}
+    sceIoRemove(path.c_str());if(sceIoRename(temp.c_str(),path.c_str())<0){sceIoRemove(temp.c_str());return false;}diagnostics::log(std::string("[ImageCache] JPEG normalized to PNG path=")+path);return true;
+}
+
+bool normalizeImageForVita(const std::string&path){unsigned char magic[12]={};if(!readMagic(path,magic,sizeof(magic)))return false;const bool png=magic[0]==0x89&&magic[1]==0x50&&magic[2]==0x4E&&magic[3]==0x47&&magic[4]==0x0D&&magic[5]==0x0A&&magic[6]==0x1A&&magic[7]==0x0A;const bool jpg=magic[0]==0xFF&&magic[1]==0xD8&&magic[2]==0xFF;if(png)return normalizePngForVita(path);if(jpg)return normalizeJpegForVita(path);diagnostics::log(std::string("[ImageCache] unsupported image signature path=")+path);return false;}
 }
 
 ImageCache::ImageCache()=default;ImageCache::~ImageCache(){shutdown();}
@@ -59,39 +60,11 @@ bool ImageCache::init(){if(workerThread_>=0)return true;if(!ensureDirectory(IMAG
 void ImageCache::shutdown(){stopping_=true;if(workerThread_>=0){sceKernelWaitThreadEnd(workerThread_,nullptr,nullptr);sceKernelDeleteThread(workerThread_);workerThread_=-1;}if(mutex_>=0){sceKernelDeleteMutex(mutex_);mutex_=-1;}queue_.clear();pending_.clear();diagnostics::log("[ImageCache] shutdown");}
 bool ImageCache::contains(const std::vector<std::string>&v,const std::string&s)const{return std::find(v.begin(),v.end(),s)!=v.end();}
 std::string ImageCache::makePath(const std::string&url,const std::string&ns)const{return std::string(IMAGE_ROOT)+"/"+(ns.empty()?"misc":ns)+"_"+hex32(fnv1a(url))+extensionOf(url);}
-std::string ImageCache::request(const std::string&url,const std::string&ns){
-    if(url.empty()||mutex_<0)return{};
-    const std::string full=normalizeUrl(url),path=makePath(full,ns);
-    sceKernelLockMutex(mutex_,1,nullptr);
-    const bool known=contains(ready_,path)||contains(failed_,path)||contains(pending_,path);
-    sceKernelUnlockMutex(mutex_,1);
-    if(known)return path;
-    SceIoStat st={};
-    if(sceIoGetstat(path.c_str(),&st)>=0&&st.st_size>0){
-        sceKernelLockMutex(mutex_,1,nullptr);if(!contains(ready_,path))ready_.push_back(path);sceKernelUnlockMutex(mutex_,1);return path;
-    }
-    sceKernelLockMutex(mutex_,1,nullptr);
-    bool queued=std::any_of(queue_.begin(),queue_.end(),[&](const Job&j){return j.path==path;});
-    if(!queued&&!contains(pending_,path)){pending_.push_back(path);queue_.push_back({full,path,0});}
-    sceKernelUnlockMutex(mutex_,1);return path;
-}
+std::string ImageCache::request(const std::string&url,const std::string&ns){if(url.empty()||mutex_<0)return{};const std::string full=normalizeUrl(url),path=makePath(full,ns);sceKernelLockMutex(mutex_,1,nullptr);const bool known=contains(ready_,path)||contains(failed_,path)||contains(pending_,path);sceKernelUnlockMutex(mutex_,1);if(known)return path;SceIoStat st={};if(sceIoGetstat(path.c_str(),&st)>=0&&st.st_size>0){sceKernelLockMutex(mutex_,1,nullptr);if(!contains(ready_,path))ready_.push_back(path);sceKernelUnlockMutex(mutex_,1);return path;}sceKernelLockMutex(mutex_,1,nullptr);bool queued=std::any_of(queue_.begin(),queue_.end(),[&](const Job&j){return j.path==path;});if(!queued&&!contains(pending_,path)){pending_.push_back(path);queue_.push_back({full,path,0});}sceKernelUnlockMutex(mutex_,1);return path;}
 bool ImageCache::isReady(const std::string&p)const{if(p.empty()||mutex_<0)return false;sceKernelLockMutex(mutex_,1,nullptr);bool r=contains(ready_,p);sceKernelUnlockMutex(mutex_,1);return r;}
 bool ImageCache::isFailed(const std::string&p)const{if(mutex_<0||p.empty())return false;sceKernelLockMutex(mutex_,1,nullptr);bool r=contains(failed_,p);sceKernelUnlockMutex(mutex_,1);return r;}
 void ImageCache::markReady(const std::string&p){sceKernelLockMutex(mutex_,1,nullptr);if(!contains(ready_,p))ready_.push_back(p);pending_.erase(std::remove(pending_.begin(),pending_.end(),p),pending_.end());failed_.erase(std::remove(failed_.begin(),failed_.end(),p),failed_.end());sceKernelUnlockMutex(mutex_,1);}
 void ImageCache::markFailed(const std::string&p){sceKernelLockMutex(mutex_,1,nullptr);pending_.erase(std::remove(pending_.begin(),pending_.end(),p),pending_.end());if(!contains(failed_,p))failed_.push_back(p);sceKernelUnlockMutex(mutex_,1);}
 int ImageCache::workerEntry(SceSize a,void*arg){(void)a;ImageCache*self=nullptr;if(arg)std::memcpy(&self,arg,sizeof(self));return self?self->workerMain():-1;}
-int ImageCache::workerMain(){
-    HttpClient http;if(http.init()!=HttpResult::Ok){diagnostics::log("[ImageCache] HTTP initialization failed");return-1;}
-    while(!stopping_){
-        Job job;bool have=false;sceKernelLockMutex(mutex_,1,nullptr);if(!queue_.empty()){job=queue_.front();queue_.erase(queue_.begin());have=true;}sceKernelUnlockMutex(mutex_,1);
-        if(!have){sceKernelDelayThread(50*1000);continue;}
-        HttpResult r=http.downloadToFile(job.url,job.path);
-        bool valid=false;
-        if(r==HttpResult::Ok){SceIoStat st={};valid=sceIoGetstat(job.path.c_str(),&st)>=0&&st.st_size>0;}
-        if(valid&&extensionOf(job.path)==".png")valid=normalizePngForVita(job.path);
-        if(valid){markReady(job.path);char m[900];sceClibSnprintf(m,sizeof(m),"[ImageCache] ready url=%s path=%s attempt=%d",job.url.c_str(),job.path.c_str(),job.attempt+1);diagnostics::log(m);}
-        else{sceIoRemove(job.path.c_str());char m[1000];sceClibSnprintf(m,sizeof(m),"[ImageCache] failed url=%s path=%s attempt=%d http=%d error=%s",job.url.c_str(),job.path.c_str(),job.attempt+1,http.lastStatusCode(),http.lastError().c_str());diagnostics::log(m);if(job.attempt+1<MAX_RETRIES&&!stopping_){sceKernelDelayThread((job.attempt+1)*250*1000);job.attempt++;sceKernelLockMutex(mutex_,1,nullptr);queue_.push_back(job);sceKernelUnlockMutex(mutex_,1);}else markFailed(job.path);}
-    }
-    http.shutdown();return 0;
-}
+int ImageCache::workerMain(){HttpClient http;if(http.init()!=HttpResult::Ok){diagnostics::log("[ImageCache] HTTP initialization failed");return-1;}while(!stopping_){Job job;bool have=false;sceKernelLockMutex(mutex_,1,nullptr);if(!queue_.empty()){job=queue_.front();queue_.erase(queue_.begin());have=true;}sceKernelUnlockMutex(mutex_,1,nullptr);if(!have){sceKernelDelayThread(50*1000);continue;}HttpResult r=http.downloadToFile(job.url,job.path);bool valid=false;if(r==HttpResult::Ok){SceIoStat st={};valid=sceIoGetstat(job.path.c_str(),&st)>=0&&st.st_size>0;}if(valid)valid=normalizeImageForVita(job.path);if(valid){markReady(job.path);char m[900];sceClibSnprintf(m,sizeof(m),"[ImageCache] ready url=%s path=%s attempt=%d",job.url.c_str(),job.path.c_str(),job.attempt+1);diagnostics::log(m);}else{sceIoRemove(job.path.c_str());char m[1000];sceClibSnprintf(m,sizeof(m),"[ImageCache] failed url=%s path=%s attempt=%d http=%d error=%s",job.url.c_str(),job.path.c_str(),job.attempt+1,http.lastStatusCode(),http.lastError().c_str());diagnostics::log(m);if(job.attempt+1<MAX_RETRIES&&!stopping_){sceKernelDelayThread((job.attempt+1)*250*1000);job.attempt++;sceKernelLockMutex(mutex_,1,nullptr);queue_.push_back(job);sceKernelUnlockMutex(mutex_,1);}else markFailed(job.path);}}http.shutdown();return 0;}
 } // namespace psvitaalive::ui
