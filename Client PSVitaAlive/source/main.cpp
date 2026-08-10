@@ -7,6 +7,7 @@
 #include <algorithm>
 #include <cstring>
 #include <string>
+#include <unordered_set>
 #include <vector>
 #include "diagnostic_logger.hpp"
 #include "storage/storage_manager.hpp"
@@ -23,7 +24,11 @@ bool promptText(const std::string&initial,const std::string&title,std::string&ou
 bool promptZipDestination(std::string&dst){static bool loaded=false;if(!loaded){int r=sceSysmoduleLoadModule(SCE_SYSMODULE_IME);if(r<0)return false;loaded=true;}SceWChar16 input[256]={},title[128]={};asciiToWide(dst.empty()?"ux0:data/":dst,input,256);asciiToWide("ZIP extraction path",title,128);SceImeDialogParam p={};p.type=SCE_IME_TYPE_BASIC_LATIN;p.option=SCE_IME_OPTION_NO_AUTO_CAPITALIZATION;p.dialogMode=SCE_IME_DIALOG_DIALOG_MODE_WITH_CANCEL;p.textBoxMode=SCE_IME_DIALOG_TEXTBOX_MODE_DEFAULT;p.title=title;p.maxTextLength=255;p.initialText=input;p.inputTextBuffer=input;p.supportedLanguages=SCE_IME_LANGUAGE_ENGLISH|SCE_IME_LANGUAGE_SPANISH;p.enterLabel=SCE_IME_ENTER_LABEL_GO;p.commonParam.magic=SCE_COMMON_DIALOG_MAGIC_NUMBER;if(sceImeDialogInit(&p)<0)return false;while(sceImeDialogGetStatus()==SCE_COMMON_DIALOG_STATUS_RUNNING)sceKernelDelayThread(10*1000);SceImeDialogResult r={};sceImeDialogGetResult(&r);bool ok=r.button==SCE_IME_DIALOG_BUTTON_ENTER;if(ok){dst=wideToAscii(input);for(char&c:dst)if(c=='\\')c='/';while(dst.size()>1&&dst.back()=='/')dst.pop_back();}sceImeDialogTerm();return ok&&!dst.empty();}
 std::string fileNameFromUrl(const std::string&url,const std::string&id){std::string clean=url;const size_t q=clean.find('?');if(q!=std::string::npos)clean.erase(q);const size_t f=clean.find('#');if(f!=std::string::npos)clean.erase(f);const size_t slash=clean.find_last_of('/');std::string name=slash==std::string::npos?clean:clean.substr(slash+1);return name.empty()?id+".bin":name;}
 bool isZipName(const std::string&name){return name.size()>=4&&name.substr(name.size()-4)==".zip";}
-void preloadCatalogImages(psvitaalive::ui::ImageCache&images,const std::vector<psvitaalive::ui::CatalogItem>&items){std::vector<std::string>appImages;std::vector<std::string>screenshots;appImages.reserve(items.size()*2);screenshots.reserve(items.size()*5);for(const auto&item:items){if(!item.icon.empty())appImages.push_back(item.icon);if(!item.cover.empty())appImages.push_back(item.cover);const size_t count=std::min<size_t>(5,item.screenshots.size());for(size_t i=0;i<count;++i)if(!item.screenshots[i].empty())screenshots.push_back(item.screenshots[i]);}images.preload(appImages,"app");images.preload(screenshots,"shot");}
+struct StartupImageJob{std::string url;std::string path;std::string namespaceName;std::string fileName;};
+void addStartupImage(std::vector<StartupImageJob>&jobs,std::unordered_set<std::string>&seen,psvitaalive::ui::ImageCache&images,const std::string&url,const std::string&namespaceName){if(url.empty())return;const std::string key=namespaceName+"\n"+url;if(!seen.insert(key).second)return;const std::string path=images.request(url,namespaceName);if(path.empty())return;jobs.push_back({url,path,namespaceName,fileNameFromUrl(url,namespaceName+"_image")});}
+void collectCatalogImages(std::vector<StartupImageJob>&jobs,std::unordered_set<std::string>&seen,psvitaalive::ui::ImageCache&images,const std::vector<psvitaalive::ui::CatalogItem>&items){for(const auto&item:items){addStartupImage(jobs,seen,images,item.icon,"app");addStartupImage(jobs,seen,images,item.cover,"app");const size_t count=std::min<size_t>(5,item.screenshots.size());for(size_t i=0;i<count;++i)addStartupImage(jobs,seen,images,item.screenshots[i],"shot");}}
+void imageWarmupProgress(const std::vector<StartupImageJob>&jobs,psvitaalive::ui::ImageCache&images,uint64_t&completed,std::string&currentFile,bool&failedCurrent){completed=0;currentFile.clear();failedCurrent=false;for(const auto&job:jobs){const bool ready=images.isReady(job.path),failed=images.isFailed(job.path);if(ready||failed){++completed;continue;}if(currentFile.empty()){currentFile=job.fileName;failedCurrent=false;}}}
+std::string progressMessage(uint64_t current,uint64_t total,const std::string&prefix,const std::string&file){char b[320];const uint64_t pct=total?std::min<uint64_t>(100,(current*100)/total):0;sceClibSnprintf(b,sizeof(b),"%s | %llu%% | %llu / %llu%s%s",prefix.c_str(),(unsigned long long)pct,(unsigned long long)current,(unsigned long long)total,file.empty()?"":" | ",file.c_str());return b;}
 }
 
 int main(){
@@ -54,19 +59,64 @@ int main(){
     if(!screen.init()){psvitaalive::diagnostics::log("[System] UI initialization failed");installer.shutdown();catalogs.shutdown();images.shutdown();psvitaalive::diagnostics::shutdown();sceKernelExitProcess(1);return 1;}
 
     const int catalogCount=(int)psvitaalive::ui::CatalogType::Count;
-    int preloadIndex=0;bool preloading=true;bool homebrewReady=false;
+    int preloadIndex=0;bool startupCatalogs=true;bool startupImages=false;bool homebrewReady=false;
+    std::vector<std::vector<psvitaalive::ui::CatalogItem>> startupCatalogItems((size_t)catalogCount);
+    std::vector<StartupImageJob> startupImagesJobs;std::unordered_set<std::string> startupImageSeen;
+    uint64_t lastImageProgressPoll=0,lastImageCompleted=0;std::string lastImageFile;
+
     screen.setActiveCatalog(psvitaalive::ui::CatalogType::Homebrew);
     screen.setCatalogLoading(true,psvitaalive::ui::catalogName(psvitaalive::ui::CatalogType::Homebrew),0,0,"Checking catalog cache...");
-    if(!catalogs.request(psvitaalive::ui::CatalogType::Homebrew)){preloading=false;screen.setCatalogError("Unable to start catalog check");}
+    if(!catalogs.request(psvitaalive::ui::CatalogType::Homebrew)){startupCatalogs=false;screen.setCatalogError("Unable to start catalog check");}
 
     while(screen.updateAndDraw()){
+        const uint64_t now=sceKernelGetSystemTimeWide();
         psvitaalive::CatalogManager::Status cs=catalogs.status();
-        if(cs.state==psvitaalive::CatalogManager::State::Loading){screen.setCatalogLoading(true,cs.label,cs.current,cs.total,cs.message);}else if(cs.state==psvitaalive::CatalogManager::State::Failed){if(preloading){psvitaalive::diagnostics::log(std::string("[Startup] catalog failed: ")+cs.label+" error="+cs.error);++preloadIndex;if(preloadIndex<catalogCount){const auto next=(psvitaalive::ui::CatalogType)preloadIndex;screen.setCatalogLoading(true,psvitaalive::ui::catalogName(next),0,0,"Catalog unavailable; checking next catalog...");catalogs.request(next);}else{preloading=false;if(homebrewReady)screen.setCatalogLoading(false,"Homebrew",1,1,"Ready");else screen.setCatalogError("Homebrew catalog unavailable");}}else screen.setCatalogError(cs.error.empty()?"Unable to load catalog":cs.error);}
+        if(startupCatalogs&&cs.state==psvitaalive::CatalogManager::State::Loading){screen.setCatalogLoading(true,cs.label,cs.current,cs.total,progressMessage(cs.current,cs.total,cs.message,""));}
+        else if(startupCatalogs&&cs.state==psvitaalive::CatalogManager::State::Failed){
+            psvitaalive::diagnostics::log(std::string("[Startup] catalog failed: ")+cs.label+" error="+cs.error);
+            ++preloadIndex;
+            if(preloadIndex<catalogCount){const auto next=(psvitaalive::ui::CatalogType)preloadIndex;screen.setCatalogLoading(true,psvitaalive::ui::catalogName(next),0,0,"Checking next catalog cache...");catalogs.request(next);}
+            else{
+                startupCatalogs=false;startupImages=true;
+                for(const auto&items:startupCatalogItems)collectCatalogImages(startupImagesJobs,startupImageSeen,images,items);
+                lastImageCompleted=0;lastImageFile.clear();
+                screen.setCatalogLoading(true,"Preparing images",0,(uint64_t)startupImagesJobs.size(),"Preparing startup image cache...");
+                psvitaalive::diagnostics::log("[Startup] all catalogs processed; starting image warmup");
+            }
+        }
+
         std::vector<psvitaalive::ui::CatalogItem> ready;psvitaalive::ui::CatalogType readyCatalog;
         if(catalogs.takeReady(ready,readyCatalog)){
             psvitaalive::diagnostics::log(std::string("[System] catalog ready: ")+psvitaalive::ui::catalogName(readyCatalog));
-            preloadCatalogImages(images,ready);
-            if(preloading){if(readyCatalog==psvitaalive::ui::CatalogType::Homebrew){screen.setCatalogItems(std::move(ready));screen.setActiveCatalog(psvitaalive::ui::CatalogType::Homebrew);homebrewReady=true;}++preloadIndex;if(preloadIndex<catalogCount){const auto next=(psvitaalive::ui::CatalogType)preloadIndex;screen.setCatalogLoading(true,psvitaalive::ui::catalogName(next),0,0,"Checking next catalog...");catalogs.request(next);}else{preloading=false;screen.setActiveCatalog(psvitaalive::ui::CatalogType::Homebrew);if(homebrewReady)screen.setCatalogLoading(false,"Homebrew",1,1,"All catalogs checked; image cache warming");}}else{screen.setCatalogItems(std::move(ready));screen.setActiveCatalog(readyCatalog);screen.setCatalogLoading(false,psvitaalive::ui::catalogName(readyCatalog),1,1,"Ready; image cache warming");}}
+            startupCatalogItems[(int)readyCatalog]=ready;
+            if(startupCatalogs){
+                if(readyCatalog==psvitaalive::ui::CatalogType::Homebrew){screen.setCatalogItems(ready);screen.setActiveCatalog(psvitaalive::ui::CatalogType::Homebrew);homebrewReady=true;}
+                ++preloadIndex;
+                if(preloadIndex<catalogCount){const auto next=(psvitaalive::ui::CatalogType)preloadIndex;screen.setCatalogLoading(true,psvitaalive::ui::catalogName(next),0,0,"Checking next catalog cache...");catalogs.request(next);}
+                else{
+                    startupCatalogs=false;startupImages=true;for(const auto&items:startupCatalogItems)collectCatalogImages(startupImagesJobs,startupImageSeen,images,items);
+                    lastImageCompleted=0;lastImageFile.clear();screen.setCatalogLoading(true,"Preparing images",0,(uint64_t)startupImagesJobs.size(),"Preparing startup image cache...");
+                    psvitaalive::diagnostics::log("[Startup] all catalogs ready; starting image warmup");
+                }
+            }else{
+                screen.setCatalogItems(std::move(ready));screen.setActiveCatalog(readyCatalog);screen.setCatalogLoading(false,psvitaalive::ui::catalogName(readyCatalog),1,1,"Ready");
+            }
+        }
+
+        if(startupImages&&now>=lastImageProgressPoll){
+            lastImageProgressPoll=now+500000;
+            uint64_t completed=0;std::string currentFile;bool failedCurrent=false;imageWarmupProgress(startupImagesJobs,images,completed,currentFile,failedCurrent);
+            lastImageCompleted=completed;lastImageFile=currentFile;
+            if(startupImagesJobs.empty()||completed>=(uint64_t)startupImagesJobs.size()){
+                startupImages=false;screen.setCatalogLoading(false,"",completed,(uint64_t)startupImagesJobs.size(),"Image cache ready");
+                psvitaalive::diagnostics::log("[Startup] image warmup complete");
+                if(homebrewReady){screen.setCatalogItems(startupCatalogItems[(int)psvitaalive::ui::CatalogType::Homebrew]);screen.setActiveCatalog(psvitaalive::ui::CatalogType::Homebrew);}
+            }else{
+                std::string msg=progressMessage(completed,(uint64_t)startupImagesJobs.size(),failedCurrent?"Retrying image":"Downloading image",currentFile);
+                screen.setCatalogLoading(true,"Preparing images",completed,(uint64_t)startupImagesJobs.size(),msg);
+            }
+        }
+
         const psvitaalive::InstallStatus cur=installer.status();using InstallState=psvitaalive::InstallStatus::State;const bool active=cur.state==InstallState::Downloading||cur.state==InstallState::Installing||cur.state==InstallState::Completed||cur.state==InstallState::Failed;screen.setInstallProgress(active,cur.current,cur.total,cur.bytesPerSecond,cur.stage,cur.fileName,cur.message);
     }
 
