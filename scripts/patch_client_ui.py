@@ -57,7 +57,7 @@ new_release = 'void FullCatalogScreen::releaseTextures(){if(!textures_.empty())v
 if old_release not in s:
     raise SystemExit('releaseTextures pattern not found')
 s = s.replace(old_release, new_release, 1)
-old_evict = 'if(t->second){if(t->second)vita2d_free_texture(t->second);textures_.erase(t);}'
+old_evict = 'if(t->second)vita2d_free_texture(t->second);textures_.erase(t);'
 new_evict = 'if(t->second){vita2d_wait_rendering_done();vita2d_free_texture(t->second);textures_.erase(t);}'
 if old_evict not in s:
     raise SystemExit('eviction pattern not found')
