@@ -111,9 +111,10 @@ private:
     void moveDetailScroll(int direction);
     void moveLinkFocus(int dx, int dy);
     void activateFocusedLink();
-    void applySearch(const std::string&query);
-    bool matchesSearch(const CatalogItem&item, const std::string&query) const;
+    void applySearch(const std::string& query);
+    bool matchesSearch(const CatalogItem& item, const std::string& query) const;
     void sortItemsByDate(std::vector<CatalogItem>& items) const;
+    int detailContentHeight(const CatalogItem& item, int width) const;
     void wrapText(const std::string& text, int maxChars, std::vector<std::string>& lines) const;
     void drawTextLines(const std::vector<std::string>& lines, int x, int y, int lineHeight, unsigned color, float scale,
                        int startLine, int maxLines, int clipTop, int clipBottom);
