@@ -22,23 +22,6 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Apply temporary client UI patch
-        env:
-          COMMIT_MESSAGE: ${{ github.event.head_commit.message }}
-        run: |
-          if [ "$COMMIT_MESSAGE" = "fix: custom startup prompt and safe texture release" ]; then exit 0; fi
-          if [ ! -f scripts/patch_client_ui.py ]; then exit 0; fi
-          python scripts/patch_client_ui.py
-          git add 'Client PSVitaAlive/source/main.cpp' 'Client PSVitaAlive/source/ui/full_catalog_screen.cpp'
-          if git diff --cached --quiet; then
-            echo "No client UI changes detected."
-            exit 0
-          fi
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git commit -m "fix: custom startup prompt and safe texture release"
-          git push
-
       - name: Setup Python
         uses: actions/setup-python@v5
         with:
