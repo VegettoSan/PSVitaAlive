@@ -35,7 +35,7 @@ void log(const std::string& message) {
     SceUID fd = sceIoOpen(LOG_FILE, SCE_O_WRONLY | SCE_O_CREAT | SCE_O_APPEND, 0666);
     if (fd >= 0) {
         char line[1600];
-        const uint64_t ms = sceKernelGetProcessTimeWide() / 1000ULL;
+        const uint64_t ms = sceKernelGetSystemTimeWide() / 1000ULL;
         sceClibSnprintf(line, sizeof(line), "[%llu ms] %s\n", (unsigned long long)ms, message.c_str());
         sceIoWrite(fd, line, std::strlen(line));
         sceIoClose(fd);
