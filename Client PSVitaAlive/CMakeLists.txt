@@ -16,10 +16,9 @@ set(VITA_TITLEID  "PSVA00001")
 set(VITA_VERSION "01.00")
 set(VITA_MKSFOEX_FLAGS "${VITA_MKSFOEX_FLAGS} -d PARENTAL_LEVEL=1")
 
-# Package installation uses the local NeoVitaDB/VitaDB Downloader-derived
-# package-header implementation. No build-time network dependency exists.
 set(SOURCES
   source/main.cpp
+  source/diagnostic_logger.cpp
   source/storage/storage_manager.cpp
   source/network/http_client.cpp
   source/network/download_manager.cpp
