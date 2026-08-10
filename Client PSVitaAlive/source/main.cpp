@@ -5,6 +5,8 @@
 #include <psp2/sysmodule.h>
 #include <psp2/ime_dialog.h>
 #include <psp2/message_dialog.h>
+#include <psp2/ctrl.h>
+#include <vita2d.h>
 #include <algorithm>
 #include <cstring>
 #include <string>
@@ -24,26 +26,42 @@ std::string wideToAscii(const SceWChar16*t){if(!t)return{};std::string r;for(siz
 bool promptText(const std::string&initial,const std::string&title,std::string&out){static bool loaded=false;if(!loaded){int r=sceSysmoduleLoadModule(SCE_SYSMODULE_IME);if(r<0)return false;loaded=true;}SceWChar16 input[256]={},wtitle[128]={};asciiToWide(initial,input,256);asciiToWide(title,wtitle,128);SceImeDialogParam p={};p.type=SCE_IME_TYPE_BASIC_LATIN;p.option=SCE_IME_OPTION_NO_AUTO_CAPITALIZATION;p.dialogMode=SCE_IME_DIALOG_DIALOG_MODE_WITH_CANCEL;p.textBoxMode=SCE_IME_DIALOG_TEXTBOX_MODE_WITH_CLEAR;p.title=wtitle;p.maxTextLength=255;p.initialText=input;p.inputTextBuffer=input;p.supportedLanguages=SCE_IME_LANGUAGE_ENGLISH|SCE_IME_LANGUAGE_SPANISH;p.enterLabel=SCE_IME_ENTER_LABEL_SEARCH;p.commonParam.magic=SCE_COMMON_DIALOG_MAGIC_NUMBER;if(sceImeDialogInit(&p)<0)return false;while(sceImeDialogGetStatus()==SCE_COMMON_DIALOG_STATUS_RUNNING)sceKernelDelayThread(10*1000);SceImeDialogResult r={};sceImeDialogGetResult(&r);bool ok=r.button==SCE_IME_DIALOG_BUTTON_ENTER;if(ok)out=wideToAscii(input);sceImeDialogTerm();return ok;}
 bool promptZipDestination(std::string&dst){static bool loaded=false;if(!loaded){int r=sceSysmoduleLoadModule(SCE_SYSMODULE_IME);if(r<0)return false;loaded=true;}SceWChar16 input[256]={},title[128]={};asciiToWide(dst.empty()?"ux0:data/":dst,input,256);asciiToWide("ZIP extraction path",title,128);SceImeDialogParam p={};p.type=SCE_IME_TYPE_BASIC_LATIN;p.option=SCE_IME_OPTION_NO_AUTO_CAPITALIZATION;p.dialogMode=SCE_IME_DIALOG_DIALOG_MODE_WITH_CANCEL;p.textBoxMode=SCE_IME_DIALOG_TEXTBOX_MODE_DEFAULT;p.title=title;p.maxTextLength=255;p.initialText=input;p.inputTextBuffer=input;p.supportedLanguages=SCE_IME_LANGUAGE_ENGLISH|SCE_IME_LANGUAGE_SPANISH;p.enterLabel=SCE_IME_ENTER_LABEL_GO;p.commonParam.magic=SCE_COMMON_DIALOG_MAGIC_NUMBER;if(sceImeDialogInit(&p)<0)return false;while(sceImeDialogGetStatus()==SCE_COMMON_DIALOG_STATUS_RUNNING)sceKernelDelayThread(10*1000);SceImeDialogResult r={};sceImeDialogGetResult(&r);bool ok=r.button==SCE_IME_DIALOG_BUTTON_ENTER;if(ok){dst=wideToAscii(input);for(char&c:dst)if(c=='\\')c='/';while(dst.size()>1&&dst.back()=='/')dst.pop_back();}sceImeDialogTerm();return ok&&!dst.empty();}
 bool promptDownloadAllImages(size_t totalImages){
-    SceCommonDialogConfigParam commonConfig={};
-    sceCommonDialogSetConfigParam(&commonConfig);
-    SceMsgDialogButtonsParam buttons={};
-    SceMsgDialogUserMessageParam user={};
-    SceMsgDialogParam param={};
-    sceMsgDialogParamInit(&param);
-    char message[512]={};
-    sceClibSnprintf(message,sizeof(message),"Download all catalog images now?\\n\\nThis can take a very long time and uses network data.\\n\\nImages: %u\\n\\nChoose No to download images only as you browse.",(unsigned)totalImages);
-    user.buttonType=SCE_MSG_DIALOG_BUTTON_TYPE_YESNO;
-    user.msg=(const SceChar8*)message;
-    user.buttonParam=&buttons;
-    param.mode=SCE_MSG_DIALOG_MODE_USER_MSG;
-    param.userMsgParam=&user;
-    const int initResult=sceMsgDialogInit(&param);
-    if(initResult<0){psvitaalive::diagnostics::log("[Startup] image download prompt failed; defaulting to on-demand mode");return false;}
-    while(sceMsgDialogGetStatus()==SCE_COMMON_DIALOG_STATUS_RUNNING)sceKernelDelayThread(10*1000);
-    SceMsgDialogResult result={};
-    sceMsgDialogGetResult(&result);
-    const bool yes=result.buttonId==SCE_MSG_DIALOG_BUTTON_ID_YES;
-    sceMsgDialogTerm();
+    vita2d_wait_rendering_done();
+    vita2d_pgf* font=vita2d_load_default_pgf();
+    if(!font){psvitaalive::diagnostics::log("[Startup] custom image prompt font load failed; defaulting to on-demand mode");return false;}
+    bool yes=false,done=false;int selected=0;uint32_t prev=0;
+    while(!done){
+        SceCtrlData pad={};sceCtrlPeekBufferPositive(0,&pad,1);
+        const uint32_t pressed=pad.buttons&~prev;prev=pad.buttons;
+        if(pressed&SCE_CTRL_LEFT)selected=0;
+        if(pressed&SCE_CTRL_RIGHT)selected=1;
+        if(pressed&SCE_CTRL_CROSS){yes=selected==0;done=true;}
+        if(pressed&SCE_CTRL_CIRCLE){yes=false;done=true;}
+        vita2d_start_drawing();
+        vita2d_clear_screen();
+        const unsigned PANEL=RGBA8(0x20,0x20,0x20,255),SURFACE=RGBA8(0x37,0x37,0x37,255),BORDER=RGBA8(0x6E,0x6E,0x6E,255),TEXT=RGBA8(0xAA,0xAA,0xAA,255),ACCENT=RGBA8(0x3B,0xFF,0,255),WHITE=RGBA8(255,255,255,255),BLACK=RGBA8(0,0,0,255);
+        vita2d_draw_rectangle(96,82,768,380,PANEL);
+        vita2d_draw_rectangle(96,82,768,4,ACCENT);
+        vita2d_draw_rectangle(96,458,768,4,ACCENT);
+        vita2d_pgf_draw_text(font,128,126,ACCENT,1.05f,"IMAGE DOWNLOAD");
+        vita2d_pgf_draw_text(font,128,166,WHITE,.82f,"Download all catalog images now?");
+        vita2d_pgf_draw_text(font,128,202,TEXT,.66f,"This can take a very long time and use network data.");
+        char count[96]={};sceClibSnprintf(count,sizeof(count),"Images to process: %u",(unsigned)totalImages);
+        vita2d_pgf_draw_text(font,128,234,TEXT,.66f,count);
+        vita2d_pgf_draw_text(font,128,268,TEXT,.62f,"Choose NO to download images only while browsing.");
+        const int by=350,bw=250,bh=54;
+        vita2d_draw_rectangle(170,by,bw,bh,selected==0?ACCENT:SURFACE);
+        vita2d_draw_rectangle(540,by,bw,bh,selected==1?ACCENT:SURFACE);
+        vita2d_draw_rectangle(170,by,bw,2,selected==0?WHITE:BORDER);
+        vita2d_draw_rectangle(540,by,bw,2,selected==1?WHITE:BORDER);
+        vita2d_pgf_draw_text(font,270,384,selected==0?BLACK:WHITE,.76f,"YES");
+        vita2d_pgf_draw_text(font,640,384,selected==1?BLACK:WHITE,.76f,"NO");
+        vita2d_pgf_draw_text(font,128,430,TEXT,.58f,"Left/Right: Select    Cross: Confirm    Circle: No");
+        vita2d_end_drawing();vita2d_swap_buffers();
+        sceKernelDelayThread(16*1000);
+    }
+    vita2d_wait_rendering_done();
+    vita2d_free_pgf(font);
     psvitaalive::diagnostics::log(std::string("[Startup] image warmup choice=")+(yes?"ALL":"ON_DEMAND"));
     return yes;
 }
