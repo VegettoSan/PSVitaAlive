@@ -20,6 +20,8 @@ public:
     using InstallRequestFn = std::function<bool(const CatalogItem&)>;
     using InstallStatusFn = std::function<std::string()>;
     using CatalogChangeFn = std::function<bool(CatalogType)>;
+    using SearchRequestFn = std::function<std::string(const std::string&)>;
+    using LinkActionFn = std::function<bool(const CatalogItem&, const CatalogLink&)>;
 
     FullCatalogScreen();
     ~FullCatalogScreen();
@@ -29,6 +31,8 @@ public:
 
     void setInstallCallbacks(InstallRequestFn requestInstall, InstallStatusFn statusText);
     void setCatalogChangeCallback(CatalogChangeFn callback);
+    void setSearchCallback(SearchRequestFn callback);
+    void setLinkActionCallback(LinkActionFn callback);
     void setImageCache(ImageCache* cache);
     void setCatalogItems(std::vector<CatalogItem> items);
     void setActiveCatalog(CatalogType catalog);
@@ -40,13 +44,18 @@ public:
 
 private:
     UiState state_;
+    std::vector<CatalogItem> allItems_;
     std::vector<CatalogItem> items_;
     InstallRequestFn installRequest_;
     InstallStatusFn installStatusText_;
     CatalogChangeFn catalogChange_;
+    SearchRequestFn searchRequest_;
+    LinkActionFn linkAction_;
     ImageCache* imageCache_ = nullptr;
     vita2d_pgf* font_ = nullptr;
     bool ready_ = false;
+
+    std::string searchQuery_;
 
     bool catalogLoading_ = false;
     std::string catalogLoadingLabel_;
@@ -78,6 +87,7 @@ private:
     void drawDetailPanel(int x, int y, int width, int height);
     void drawCatalogCard(const CatalogItem& item, int index, int x, int y, int width, int height, bool focused);
     void drawDetailContent(const CatalogItem& item, int x, int y, int width, int height);
+    void drawDetailLinks(const CatalogItem& item, int x, int y, int width, int& heightOut);
     void drawLoadingOverlay();
     void drawImage(const std::string& url, const std::string& namespaceName, int x, int y, int width, int height);
     void releaseTextures();
@@ -99,6 +109,11 @@ private:
     void changeCatalog(int direction);
     void moveCatalogFocus(int direction);
     void moveDetailScroll(int direction);
+    void moveLinkFocus(int dx, int dy);
+    void activateFocusedLink();
+    void applySearch(const std::string&query);
+    bool matchesSearch(const CatalogItem&item, const std::string&query) const;
+    void sortItemsByDate(std::vector<CatalogItem>& items) const;
     void wrapText(const std::string& text, int maxChars, std::vector<std::string>& lines) const;
     void drawTextLines(const std::vector<std::string>& lines, int x, int y, int lineHeight, unsigned color, float scale,
                        int startLine, int maxLines, int clipTop, int clipBottom);
