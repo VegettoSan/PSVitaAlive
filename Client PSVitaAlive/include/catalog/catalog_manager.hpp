@@ -12,12 +12,7 @@ namespace psvitaalive {
 
 class CatalogManager {
 public:
-    enum class State {
-        Idle,
-        Loading,
-        Ready,
-        Failed
-    };
+    enum class State { Idle, Loading, Ready, Failed };
 
     struct Status {
         State state = State::Idle;
@@ -34,10 +29,8 @@ public:
 
     bool init();
     void shutdown();
-
     bool request(ui::CatalogType catalog);
     Status status() const;
-
     bool takeReady(std::vector<ui::CatalogItem>& outItems, ui::CatalogType& catalog);
 
 private:
@@ -52,6 +45,12 @@ private:
     std::vector<ui::CatalogItem> readyItems_;
     bool readyPending_ = false;
     ui::CatalogType readyCatalog_ = ui::CatalogType::Homebrew;
+
+    // Once startup has validated a catalog, keep its parsed representation in
+    // memory. Switching tabs after startup must not perform another network
+    // request; it should only hand this already-validated catalog to the UI.
+    std::vector<ui::CatalogItem> cachedItems_[static_cast<int>(ui::CatalogType::Count)];
+    bool cachedValid_[static_cast<int>(ui::CatalogType::Count)] = {};
 
     static int workerEntry(SceSize args, void* argp);
     int workerMain();
