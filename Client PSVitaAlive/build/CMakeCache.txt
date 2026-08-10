@@ -246,6 +246,9 @@ VITASDK:PATH=/usr/local/vitasdk
 //vita-elf-create
 VITA_ELF_CREATE:PATH=/usr/local/vitasdk/bin/vita-elf-create
 
+//vita-elf-create flags
+VITA_ELF_CREATE_FLAGS:STRING=
+
 //vita-elf-export
 VITA_ELF_EXPORT:PATH=/usr/local/vitasdk/bin/vita-elf-export
 
@@ -255,11 +258,20 @@ VITA_LIBS_GEN:PATH=/usr/local/vitasdk/bin/vita-libs-gen
 //vita-make-fself
 VITA_MAKE_FSELF:PATH=/usr/local/vitasdk/bin/vita-make-fself
 
+//vita-make-fself flags
+VITA_MAKE_FSELF_FLAGS:STRING=
+
 //vita-mksfoex
 VITA_MKSFOEX:PATH=/usr/local/vitasdk/bin/vita-mksfoex
 
+//vita-mksfoex flags
+VITA_MKSFOEX_FLAGS:STRING= -d PARENTAL_LEVEL=1
+
 //vita-pack-vpk
 VITA_PACK_VPK:PATH=/usr/local/vitasdk/bin/vita-pack-vpk
+
+//vita-pack-vpk flags
+VITA_PACK_VPK_FLAGS:STRING=
 
 
 ########################
