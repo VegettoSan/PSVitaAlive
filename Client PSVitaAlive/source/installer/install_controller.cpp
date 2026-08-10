@@ -1,4 +1,5 @@
 #include "installer/install_controller.hpp"
+#include "diagnostic_logger.hpp"
 
 #include <psp2/kernel/clib.h>
 #include <psp2/kernel/processmgr.h>
@@ -21,6 +22,7 @@ bool InstallController::init() {
     const HttpResult result = http_.init();
     if (result != HttpResult::Ok) {
         setState(InstallStatus::State::Failed, http_.lastError().c_str());
+        diagnostics::log(std::string("[Installer] HTTP init failed: ") + http_.lastError());
         return false;
     }
 
@@ -36,6 +38,7 @@ bool InstallController::init() {
 
     setStage("Idle");
     setState(InstallStatus::State::Idle, "Ready");
+    diagnostics::log("[Installer] initialized");
     return true;
 }
 
@@ -50,6 +53,7 @@ void InstallController::shutdown() {
     activeZipDestination_.clear();
     workerDone_.store(true);
     setState(InstallStatus::State::Idle, "Stopped");
+    diagnostics::log("[Installer] shutdown");
 }
 
 bool InstallController::busy() const {
@@ -70,6 +74,7 @@ bool InstallController::requestInstall(const std::string& url, const std::string
     const std::string jobId = downloads_.enqueue(url, fileName);
     if (jobId.empty()) {
         setState(InstallStatus::State::Failed, "Could not create download job");
+        diagnostics::log("[Installer] could not create download job");
         return false;
     }
 
@@ -82,12 +87,16 @@ bool InstallController::requestInstall(const std::string& url, const std::string
     setStage("Downloading");
     workerDone_.store(false);
     setState(InstallStatus::State::Downloading, "Starting download...");
+    diagnostics::log(std::string("[Installer] request job=") + jobId + " file=" + fileName);
 
     workerThread_ = sceKernelCreateThread("PSVitaAliveInstall", &InstallController::workerEntry,
         0x10000100, 64 * 1024, 0, 0, nullptr);
     if (workerThread_ < 0) {
         setState(InstallStatus::State::Failed, "Could not create worker thread");
         workerDone_.store(true);
+        downloads_.cleanupCompletedJob(activeJobId_);
+        activeJobId_.clear();
+        diagnostics::log("[Installer] worker thread creation failed; job cleaned");
         return false;
     }
 
@@ -98,6 +107,9 @@ bool InstallController::requestInstall(const std::string& url, const std::string
         workerThread_ = -1;
         workerDone_.store(true);
         setState(InstallStatus::State::Failed, "Could not start worker thread");
+        downloads_.cleanupCompletedJob(activeJobId_);
+        activeJobId_.clear();
+        diagnostics::log("[Installer] worker start failed; job cleaned");
         return false;
     }
     return true;
@@ -144,9 +156,12 @@ int InstallController::workerMain() {
     DownloadJob* job = downloads_.findJob(activeJobId_);
 
     if (!downloaded || !job || job->state != DownloadState::Completed) {
-        const char* error = job && !job->lastError.empty() ? job->lastError.c_str() : "Download failed";
+        const std::string error = job && !job->lastError.empty() ? job->lastError : "Download failed";
         setStage("Error");
-        setState(InstallStatus::State::Failed, error);
+        setState(InstallStatus::State::Failed, error.c_str());
+        diagnostics::log(std::string("[Installer] download failed: ") + error);
+        if (!activeJobId_.empty()) downloads_.cleanupCompletedJob(activeJobId_);
+        activeJobId_.clear();
         sceKernelDelayThread(2500 * 1000);
         setState(InstallStatus::State::Idle, "Ready");
         workerDone_.store(true);
@@ -158,6 +173,7 @@ int InstallController::workerMain() {
     speed_.store(0);
     setStage("Installing");
     setState(InstallStatus::State::Installing, "Preparing installation...");
+    diagnostics::log(std::string("[Installer] installing job=") + activeJobId_ + " file=" + job->finalPath);
 
     const InstallDispatchResult result = dispatcher_.installFile(
         job->finalPath,
@@ -172,16 +188,22 @@ int InstallController::workerMain() {
     );
 
     if (result != InstallDispatchResult::Ok) {
+        const std::string error = dispatcher_.lastError().empty() ? "Installation failed" : dispatcher_.lastError();
         setStage("Error");
-        setState(InstallStatus::State::Failed, dispatcher_.lastError().c_str());
-        // Keep the completed payload on failure so the user can retry without
-        // downloading it again. Successful operations clean it below.
+        setState(InstallStatus::State::Failed, error.c_str());
+        diagnostics::log(std::string("[Installer] installation failed: ") + error);
+        // Failed installs must not leave the downloaded payload, partial file,
+        // metadata, or job directory behind.
+        downloads_.cleanupCompletedJob(activeJobId_);
+        activeJobId_.clear();
         sceKernelDelayThread(2500 * 1000);
         setState(InstallStatus::State::Idle, "Ready");
     } else {
         setStage("Completed");
         setState(InstallStatus::State::Completed, "Installation completed");
+        diagnostics::log("[Installer] installation completed");
         downloads_.cleanupCompletedJob(activeJobId_);
+        activeJobId_.clear();
         sceKernelDelayThread(2500 * 1000);
         setState(InstallStatus::State::Idle, "Ready");
     }
