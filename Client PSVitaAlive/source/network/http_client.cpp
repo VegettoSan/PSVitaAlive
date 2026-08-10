@@ -46,6 +46,8 @@ struct TransferContext {
     bool cancelled = false;
     bool ioError = false;
     bool restartedFromZero = false;
+    std::string etag;
+    std::string lastModified;
     HttpProgressFn onProgress;
     HttpCancelFn shouldCancel;
     std::string path;
@@ -53,10 +55,8 @@ struct TransferContext {
 
 static const char* findHeaderIgnoreCase(const char* buffer, const char* header) {
     if (!buffer || !header) return nullptr;
-
     const size_t headerLength = std::strlen(header);
     if (headerLength == 0) return buffer;
-
     for (const char* p = buffer; *p != '\0'; ++p) {
         size_t i = 0;
         while (i < headerLength && p[i] != '\0') {
@@ -72,6 +72,16 @@ static const char* findHeaderIgnoreCase(const char* buffer, const char* header) 
     return nullptr;
 }
 
+static std::string headerValue(const char* line, const char* header) {
+    const char* p = findHeaderIgnoreCase(line, header);
+    if (!p) return {};
+    p += std::strlen(header);
+    while (*p == ' ' || *p == '\t') ++p;
+    std::string value(p);
+    while (!value.empty() && (value.back() == '\r' || value.back() == '\n' || value.back() == ' ' || value.back() == '\t')) value.pop_back();
+    return value;
+}
+
 static void updateSpeed(TransferContext* ctx) {
     if (!ctx) return;
     const uint64_t now = sceKernelGetProcessTimeWide();
@@ -83,8 +93,7 @@ static void updateSpeed(TransferContext* ctx) {
     }
     const uint64_t elapsedUs = now - ctx->lastProgressTick;
     if (elapsedUs >= 250000) {
-        const uint64_t delta = ctx->downloaded >= ctx->lastProgressBytes
-            ? ctx->downloaded - ctx->lastProgressBytes : 0;
+        const uint64_t delta = ctx->downloaded >= ctx->lastProgressBytes ? ctx->downloaded - ctx->lastProgressBytes : 0;
         ctx->bytesPerSecond = elapsedUs > 0 ? (delta * 1000000ULL) / elapsedUs : 0;
         ctx->lastProgressTick = now;
         ctx->lastProgressBytes = ctx->downloaded;
@@ -99,10 +108,12 @@ static size_t headerCallback(char* buffer, size_t size, size_t nitems, void* use
     const char* contentLength = findHeaderIgnoreCase(buffer, "Content-Length:");
     if (contentLength) {
         unsigned long long value = 0;
-        if (std::sscanf(contentLength, "Content-Length: %llu", &value) == 1) {
-            ctx->total = static_cast<uint64_t>(value);
-        }
+        if (std::sscanf(contentLength, "Content-Length: %llu", &value) == 1) ctx->total = static_cast<uint64_t>(value);
     }
+    const std::string etag = headerValue(buffer, "ETag:");
+    if (!etag.empty()) ctx->etag = etag;
+    const std::string modified = headerValue(buffer, "Last-Modified:");
+    if (!modified.empty()) ctx->lastModified = modified;
     return bytes;
 }
 
@@ -121,13 +132,8 @@ static size_t writeCallback(void* ptr, size_t size, size_t nmemb, void* userdata
         long responseCode = 0;
         curl_easy_getinfo(ctx->curl, CURLINFO_RESPONSE_CODE, &responseCode);
         char first[180];
-        sceClibSnprintf(first, sizeof(first),
-            "first-write status=%ld resume=%llu total=%llu",
-            responseCode,
-            (unsigned long long)ctx->resumeOffset,
-            (unsigned long long)ctx->total);
+        sceClibSnprintf(first, sizeof(first), "first-write status=%ld resume=%llu total=%llu", responseCode, (unsigned long long)ctx->resumeOffset, (unsigned long long)ctx->total);
         httpDiagnostic(first);
-
         if (ctx->resumeOffset > 0 && responseCode == 200) {
             sceIoClose(ctx->fd);
             ctx->fd = sceIoOpen(ctx->path.c_str(), SCE_O_WRONLY | SCE_O_CREAT | SCE_O_TRUNC, 0777);
@@ -144,10 +150,7 @@ static size_t writeCallback(void* ptr, size_t size, size_t nmemb, void* userdata
 
     size_t written = 0;
     while (written < bytes) {
-        const int result = sceIoWrite(
-            ctx->fd,
-            static_cast<const char*>(ptr) + written,
-            static_cast<unsigned int>(bytes - written));
+        const int result = sceIoWrite(ctx->fd, static_cast<const char*>(ptr) + written, static_cast<unsigned int>(bytes - written));
         if (result <= 0) {
             ctx->ioError = true;
             return 0;
@@ -157,16 +160,13 @@ static size_t writeCallback(void* ptr, size_t size, size_t nmemb, void* userdata
 
     ctx->downloaded += static_cast<uint64_t>(bytes);
     updateSpeed(ctx);
-
     if (ctx->onProgress) {
         HttpProgress progress;
         progress.downloaded = ctx->downloaded;
         progress.absoluteDownloaded = ctx->resumeOffset + ctx->downloaded;
         progress.total = ctx->total;
         progress.bytesPerSecond = ctx->bytesPerSecond;
-        if (progress.total > 0 && ctx->resumeOffset > 0 && !ctx->restartedFromZero) {
-            progress.total += ctx->resumeOffset;
-        }
+        if (progress.total > 0 && ctx->resumeOffset > 0 && !ctx->restartedFromZero) progress.total += ctx->resumeOffset;
         ctx->onProgress(progress);
     }
     return bytes;
@@ -199,17 +199,14 @@ void HttpClient::setError(const std::string& msg) {
 
 HttpResult HttpClient::init() {
     if (initialized_) return HttpResult::Ok;
-
     lastError_.clear();
     lastStatus_ = 0;
     lastRangeAccepted_ = false;
-
     const CURLcode result = curl_global_init(CURL_GLOBAL_DEFAULT);
     if (result != CURLE_OK) {
         setError(curl_easy_strerror(result));
         return HttpResult::NetworkError;
     }
-
     initialized_ = true;
     sceClibPrintf("[HttpClient] libcurl initialized\n");
     httpDiagnostic("libcurl initialized");
@@ -224,6 +221,67 @@ void HttpClient::shutdown() {
     httpDiagnostic("libcurl shutdown");
 }
 
+HttpResult HttpClient::fetchRemoteValidators(const std::string& url, std::string& etag, std::string& lastModified) {
+    etag.clear();
+    lastModified.clear();
+    lastStatus_ = 0;
+    lastError_.clear();
+    if (!initialized_) {
+        setError("not initialized");
+        return HttpResult::NotInitialized;
+    }
+    if (url.empty()) {
+        setError("empty url");
+        return HttpResult::InvalidArgument;
+    }
+    CURL* curl = curl_easy_init();
+    if (!curl) {
+        setError("curl_easy_init failed");
+        return HttpResult::NetworkError;
+    }
+    TransferContext ctx;
+    ctx.curl = curl;
+    curl_easy_setopt(curl, CURLOPT_URL, url.c_str());
+    curl_easy_setopt(curl, CURLOPT_NOBODY, 1L);
+    curl_easy_setopt(curl, CURLOPT_USERAGENT, "PSVitaAlive/1.0 (PS Vita)");
+    curl_easy_setopt(curl, CURLOPT_SSL_VERIFYHOST, 0L);
+    curl_easy_setopt(curl, CURLOPT_SSL_VERIFYPEER, 0L);
+    curl_easy_setopt(curl, CURLOPT_SSLVERSION, CURL_SSLVERSION_TLSv1_2);
+    curl_easy_setopt(curl, CURLOPT_CONNECTTIMEOUT, CONNECT_TIMEOUT_SECONDS);
+    curl_easy_setopt(curl, CURLOPT_LOW_SPEED_LIMIT, LOW_SPEED_LIMIT);
+    curl_easy_setopt(curl, CURLOPT_LOW_SPEED_TIME, LOW_SPEED_TIME_SECONDS);
+    curl_easy_setopt(curl, CURLOPT_FOLLOWLOCATION, 1L);
+    curl_easy_setopt(curl, CURLOPT_HEADERFUNCTION, headerCallback);
+    curl_easy_setopt(curl, CURLOPT_HEADERDATA, &ctx);
+    struct curl_slist* headers = nullptr;
+    headers = curl_slist_append(headers, "Accept: */*");
+    curl_easy_setopt(curl, CURLOPT_HTTPHEADER, headers);
+    const CURLcode result = curl_easy_perform(curl);
+    long responseCode = 0;
+    curl_easy_getinfo(curl, CURLINFO_RESPONSE_CODE, &responseCode);
+    lastStatus_ = static_cast<int>(responseCode);
+    curl_slist_free_all(headers);
+    curl_easy_cleanup(curl);
+    etag = ctx.etag;
+    lastModified = ctx.lastModified;
+    if (result != CURLE_OK) {
+        char message[180];
+        sceClibSnprintf(message, sizeof(message), "curl validator error %d: %s", static_cast<int>(result), curl_easy_strerror(result));
+        setError(message);
+        return (result == CURLE_SSL_CONNECT_ERROR || result == CURLE_PEER_FAILED_VERIFICATION) ? HttpResult::SslError : HttpResult::NetworkError;
+    }
+    if (responseCode < 200 || responseCode >= 400) {
+        char message[96];
+        sceClibSnprintf(message, sizeof(message), "validator HTTP status %ld", responseCode);
+        setError(message);
+        return HttpResult::HttpError;
+    }
+    char message[320];
+    sceClibSnprintf(message, sizeof(message), "VALIDATORS status=%ld etag=%s modified=%s", responseCode, etag.empty() ? "-" : etag.c_str(), lastModified.empty() ? "-" : lastModified.c_str());
+    httpDiagnostic(message);
+    return HttpResult::Ok;
+}
+
 HttpResult HttpClient::downloadToFile(
     const std::string& url,
     const std::string& destinationPath,
@@ -234,7 +292,6 @@ HttpResult HttpClient::downloadToFile(
     lastStatus_ = 0;
     lastRangeAccepted_ = false;
     lastError_.clear();
-
     if (!initialized_) {
         setError("not initialized");
         return HttpResult::NotInitialized;
@@ -251,8 +308,7 @@ HttpResult HttpClient::downloadToFile(
     }
 
     char begin[900];
-    sceClibSnprintf(begin, sizeof(begin), "BEGIN url=%s destination=%s resume=%llu",
-        url.c_str(), destinationPath.c_str(), (unsigned long long)resumeOffset);
+    sceClibSnprintf(begin, sizeof(begin), "BEGIN url=%s destination=%s resume=%llu", url.c_str(), destinationPath.c_str(), (unsigned long long)resumeOffset);
     httpDiagnostic(begin);
 
     CURL* curl = curl_easy_init();
@@ -280,12 +336,9 @@ HttpResult HttpClient::downloadToFile(
     curl_easy_setopt(curl, CURLOPT_URL, url.c_str());
     curl_easy_setopt(curl, CURLOPT_HTTPGET, 1L);
     curl_easy_setopt(curl, CURLOPT_USERAGENT, "PSVitaAlive/1.0 (PS Vita)");
-
-    // Kept unchanged from the current project implementation for Vita TLS compatibility.
     curl_easy_setopt(curl, CURLOPT_SSL_VERIFYHOST, 0L);
     curl_easy_setopt(curl, CURLOPT_SSL_VERIFYPEER, 0L);
     curl_easy_setopt(curl, CURLOPT_SSLVERSION, CURL_SSLVERSION_TLSv1_2);
-
     curl_easy_setopt(curl, CURLOPT_CONNECTTIMEOUT, CONNECT_TIMEOUT_SECONDS);
     curl_easy_setopt(curl, CURLOPT_LOW_SPEED_LIMIT, LOW_SPEED_LIMIT);
     curl_easy_setopt(curl, CURLOPT_LOW_SPEED_TIME, LOW_SPEED_TIME_SECONDS);
@@ -293,12 +346,7 @@ HttpResult HttpClient::downloadToFile(
     curl_easy_setopt(curl, CURLOPT_NOPROGRESS, 1L);
     curl_easy_setopt(curl, CURLOPT_BUFFERSIZE, static_cast<long>(DOWNLOAD_BUFFER_SIZE));
 
-    if (resumeOffset > 0) {
-        curl_easy_setopt(curl, CURLOPT_RESUME_FROM, static_cast<long>(resumeOffset));
-        char resumeMsg[160];
-        sceClibSnprintf(resumeMsg, sizeof(resumeMsg), "resume requested offset=%llu", (unsigned long long)resumeOffset);
-        httpDiagnostic(resumeMsg);
-    }
+    if (resumeOffset > 0) curl_easy_setopt(curl, CURLOPT_RESUME_FROM, static_cast<long>(resumeOffset));
 
     curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, writeCallback);
     curl_easy_setopt(curl, CURLOPT_WRITEDATA, &ctx);
@@ -311,11 +359,9 @@ HttpResult HttpClient::downloadToFile(
     curl_easy_setopt(curl, CURLOPT_HTTPHEADER, headers);
 
     const CURLcode result = curl_easy_perform(curl);
-
     long responseCode = 0;
     curl_easy_getinfo(curl, CURLINFO_RESPONSE_CODE, &responseCode);
     lastStatus_ = static_cast<int>(responseCode);
-
     if (resumeOffset > 0 && responseCode == 206) lastRangeAccepted_ = true;
 
     curl_slist_free_all(headers);
@@ -324,15 +370,7 @@ HttpResult HttpClient::downloadToFile(
     curl_easy_cleanup(curl);
 
     char resultMsg[320];
-    sceClibSnprintf(resultMsg, sizeof(resultMsg),
-        "RESULT curl=%d status=%ld bytes=%llu absolute=%llu total=%llu speed=%llu range=%d restarted=%d",
-        static_cast<int>(result), responseCode,
-        (unsigned long long)ctx.downloaded,
-        (unsigned long long)(ctx.resumeOffset + ctx.downloaded),
-        (unsigned long long)ctx.total,
-        (unsigned long long)ctx.bytesPerSecond,
-        lastRangeAccepted_ ? 1 : 0,
-        ctx.restartedFromZero ? 1 : 0);
+    sceClibSnprintf(resultMsg, sizeof(resultMsg), "RESULT curl=%d status=%ld bytes=%llu absolute=%llu total=%llu speed=%llu range=%d restarted=%d", static_cast<int>(result), responseCode, (unsigned long long)ctx.downloaded, (unsigned long long)(ctx.resumeOffset + ctx.downloaded), (unsigned long long)ctx.total, (unsigned long long)ctx.bytesPerSecond, lastRangeAccepted_ ? 1 : 0, ctx.restartedFromZero ? 1 : 0);
     httpDiagnostic(resultMsg);
 
     if (ctx.cancelled) {
@@ -347,8 +385,7 @@ HttpResult HttpClient::downloadToFile(
         char message[160];
         sceClibSnprintf(message, sizeof(message), "curl error %d: %s", static_cast<int>(result), curl_easy_strerror(result));
         setError(message);
-        return (result == CURLE_SSL_CONNECT_ERROR || result == CURLE_PEER_FAILED_VERIFICATION)
-            ? HttpResult::SslError : HttpResult::NetworkError;
+        return (result == CURLE_SSL_CONNECT_ERROR || result == CURLE_PEER_FAILED_VERIFICATION) ? HttpResult::SslError : HttpResult::NetworkError;
     }
     if (responseCode != 200 && responseCode != 206) {
         char message[96];
@@ -357,14 +394,7 @@ HttpResult HttpClient::downloadToFile(
         return HttpResult::HttpError;
     }
 
-    sceClibPrintf(
-        "[HttpClient] done status=%ld downloaded=%llu absolute=%llu range=%d speed=%llu B/s\n",
-        responseCode,
-        (unsigned long long)ctx.downloaded,
-        (unsigned long long)(ctx.resumeOffset + ctx.downloaded),
-        lastRangeAccepted_ ? 1 : 0,
-        (unsigned long long)ctx.bytesPerSecond);
-
+    sceClibPrintf("[HttpClient] done status=%ld downloaded=%llu absolute=%llu range=%d speed=%llu B/s\n", responseCode, (unsigned long long)ctx.downloaded, (unsigned long long)(ctx.resumeOffset + ctx.downloaded), lastRangeAccepted_ ? 1 : 0, (unsigned long long)ctx.bytesPerSecond);
     return HttpResult::Ok;
 }
 
