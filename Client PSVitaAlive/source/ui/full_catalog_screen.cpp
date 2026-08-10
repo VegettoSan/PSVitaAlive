@@ -21,32 +21,56 @@ constexpr unsigned TEXT_DIM = RGBA8(0x6E, 0x6E, 0x6E, 0xFF);
 constexpr unsigned ACCENT = RGBA8(0x3B, 0xFF, 0x00, 0xFF);
 constexpr unsigned WHITE = RGBA8(0xFF, 0xFF, 0xFF, 0xFF);
 constexpr unsigned PANEL = RGBA8(0x20, 0x20, 0x20, 0xFF);
-constexpr int FULL_CARD_H = 120;
+constexpr int FULL_CARD_H = 132;
 constexpr int SPLIT_CARD_H = 82;
 constexpr int DETAIL_HEADER_H = 92;
 constexpr int DETAIL_LINE_H = 18;
 constexpr int TRANSITION_MS = 200;
+
+const char* imageExtension(const std::string& path) {
+    const std::size_t dot = path.find_last_of('.');
+    if (dot == std::string::npos) return "";
+    return path.c_str() + dot;
+}
 }
 
 FullCatalogScreen::FullCatalogScreen() = default;
 FullCatalogScreen::~FullCatalogScreen() { shutdown(); }
 
-void FullCatalogScreen::setCatalogItems(
-    std::vector<CatalogItem> items
-) {
-    items_ = std::move(items);
+void FullCatalogScreen::setInstallCallbacks(InstallRequestFn requestInstall, InstallStatusFn statusText) {
+    installRequest_ = std::move(requestInstall);
+    installStatusText_ = std::move(statusText);
+}
 
+void FullCatalogScreen::setCatalogChangeCallback(CatalogChangeFn callback) {
+    catalogChange_ = std::move(callback);
+}
+
+void FullCatalogScreen::setImageCache(ImageCache* cache) {
+    imageCache_ = cache;
+}
+
+void FullCatalogScreen::setCatalogItems(std::vector<CatalogItem> items) {
+    items_ = std::move(items);
     state_.focusIndex = 0;
     state_.catalogScrollRow = 0;
     state_.detailScroll = 0;
+    catalogLoading_ = false;
+    catalogError_.clear();
 }
 
-void FullCatalogScreen::setInstallCallbacks(
-    InstallRequestFn requestInstall,
-    InstallStatusFn statusText
-) {
-    installRequest_ = std::move(requestInstall);
-    installStatusText_ = std::move(statusText);
+void FullCatalogScreen::setCatalogLoading(bool loading, const std::string& label, uint64_t current, uint64_t total, const std::string& message) {
+    catalogLoading_ = loading;
+    catalogLoadingLabel_ = label;
+    catalogLoadingCurrent_ = current;
+    catalogLoadingTotal_ = total;
+    catalogLoadingMessage_ = message;
+    if (loading) catalogError_.clear();
+}
+
+void FullCatalogScreen::setCatalogError(const std::string& error) {
+    catalogLoading_ = false;
+    catalogError_ = error;
 }
 
 bool FullCatalogScreen::init() {
@@ -59,7 +83,6 @@ bool FullCatalogScreen::init() {
     }
 
     sceCtrlSetSamplingMode(SCE_CTRL_MODE_ANALOG);
-
     state_.mode = UiMode::FULL_CATALOG;
     state_.activePanel = UiPanel::Catalog;
     state_.focusIndex = 0;
@@ -67,12 +90,19 @@ bool FullCatalogScreen::init() {
     state_.detailScroll = 0;
     state_.requestExit = false;
     ready_ = true;
-
-    sceClibPrintf("[UI] Phase 10 initialized\n");
+    sceClibPrintf("[UI] FULL_CATALOG initialized\n");
     return true;
 }
 
+void FullCatalogScreen::releaseTextures() {
+    for (auto& entry : textures_) {
+        if (entry.second) vita2d_free_texture(entry.second);
+    }
+    textures_.clear();
+}
+
 void FullCatalogScreen::shutdown() {
+    releaseTextures();
     if (font_) {
         vita2d_free_pgf(font_);
         font_ = nullptr;
@@ -81,119 +111,6 @@ void FullCatalogScreen::shutdown() {
         vita2d_fini();
         ready_ = false;
     }
-}
-
-void FullCatalogScreen::loadMockData() {
-    items_.clear();
-
-    auto add = [this](
-        const char* id,
-        const char* titleId,
-        const char* name,
-        const char* author,
-        const char* description,
-        const char* longDescription,
-        const char* status,
-        const char* version,
-        const char* versionDate,
-        const char* requirements,
-        const char* size,
-        const char* category,
-        const char* subcategory,
-        const char* changelog,
-        const char* downloadUrl = nullptr,
-        const char* downloadFileName = nullptr
-    ) {
-        CatalogItem item;
-        item.id = id;
-        item.titleId = titleId;
-        item.name = name;
-        item.author = author;
-        item.description = description;
-        item.longDescription = longDescription;
-        item.status = status;
-        item.version = version;
-        item.versionDate = versionDate;
-        item.requirements = requirements;
-        item.size = size;
-        item.category = category;
-        item.subcategory = subcategory;
-        item.changelog = changelog;
-        if (downloadUrl) item.downloadUrl = downloadUrl;
-        if (downloadFileName) item.downloadFileName = downloadFileName;
-        items_.push_back(item);
-    };
-
-    // Mock entries deliberately keep URLs empty until real catalog parsing is added.
-    add("mock_0", "VITASHELL", "VitaShell", "TheFloW",
-        "File manager and shell environment for PlayStation Vita.",
-        "VitaShell is a file manager and shell application for the PlayStation Vita. It provides file management, FTP, USB and other useful system functions.",
-        "Verified", "2.02", "2024-01-01", "HENkaku / compatible Vita environment", "5 MB", "Utilities", "File Manager",
-        "- Improved stability\n- Updated system compatibility\n- Various fixes");
-    add("mock_1", "ADRENALINE", "Adrenaline", "TheFloW",
-        "PSP emulator and enhancement environment for PS Vita.",
-        "Adrenaline is a homebrew application that exploits the built-in PSP emulator of the PlayStation Vita and provides additional PSP functionality.",
-        "Verified", "7.1", "2024-02-01", "PS Vita with compatible custom firmware", "10 MB", "Emulator", "PSP",
-        "- Compatibility improvements\n- Stability fixes");
-    add("mock_2", "RETROARCH", "RetroArch", "Libretro",
-        "Frontend for multiple emulator cores.",
-        "RetroArch is a frontend for emulators, game engines and games. It provides a unified interface for many different systems and platforms.",
-        "Verified", "1.19.0", "2024-03-01", "Additional cores may require extra files", "25 MB", "Emulator", "Multi-system",
-        "- Updated cores\n- Performance improvements\n- User interface fixes");
-    add("mock_3", "PKGJ00000", "PKGj", "blastrock",
-        "Homebrew application for browsing and downloading content.",
-        "PKGj provides a graphical interface for browsing available content sources and managing downloads.",
-        "Legacy", "0.57", "2023-01-01", "Compatible Vita environment", "4 MB", "Utilities", "Downloader",
-        "- Legacy release preserved by VitaHub");
-    add("mock_4", "VITADB000", "VitaDB", "devnoname120",
-        "Homebrew discovery and application database.",
-        "VitaDB provides information about PlayStation Vita homebrew applications and related projects.",
-        "Legacy", "1.0", "2022-01-01", "None", "3 MB", "Store", "Database",
-        "- Legacy catalog entry");
-    add("mock_5", "SAVEMGR001", "SaveManager", "Community",
-        "Save management utility for PS Vita.",
-        "Utility for inspecting and managing application save data.",
-        "Archive", "1.0", "2020-01-01", "Compatible Vita environment", "2 MB", "Utilities", "Save Manager",
-        "- Archived project");
-    add("mock_6", "BATTERY001", "BatteryMgr", "Community",
-        "Battery information utility.",
-        "Displays information related to the current Vita battery and power state.",
-        "Verified", "1.2", "2024-04-01", "None", "1 MB", "Utilities", "System",
-        "- Improved system information");
-    add("mock_7", "FTP000001", "FTP Client", "Community",
-        "FTP utility for transferring files.",
-        "A simple FTP-oriented utility for transferring files between a PC and the PlayStation Vita.",
-        "Verified", "1.1", "2024-05-01", "Network connection", "1 MB", "Utilities", "Network",
-        "- Improved connection handling");
-    add("mock_8", "THEME001", "Theme Manager", "Community",
-        "Utility for managing custom themes.",
-        "Manage and organize custom PlayStation Vita themes.",
-        "Verified", "2.0", "2024-06-01", "Custom theme files", "2 MB", "Customization", "Themes",
-        "- Added theme browsing\n- Various fixes");
-    add("mock_9", "CHEAT0001", "Cheat Device", "Community",
-        "Cheat and debugging utility.",
-        "Utility for compatible homebrew and development workflows.",
-        "Archive", "1.0", "2019-01-01", "Compatible environment", "2 MB", "Utilities", "Development",
-        "- Archived project");
-    add("mock_10", "MUSIC0001", "Music Player", "Community",
-        "Simple music player.",
-        "A lightweight music playback application for the Vita.",
-        "Verified", "1.5", "2024-07-01", "Compatible audio files", "3 MB", "Multimedia", "Audio",
-        "- Improved playback\n- Stability fixes");
-    add("mock_11", "BROWSER001", "File Browser", "Community",
-        "Lightweight file browsing application.",
-        "Browse files and directories on supported Vita storage devices.",
-        "Verified", "1.0", "2024-08-01", "None", "2 MB", "Utilities", "File Manager",
-        "- Initial release");
-
-    for (auto& item : items_) {
-        if (item.status == "Verified") item.links.push_back("Download");
-        item.links.push_back("Repository");
-    }
-
-    state_.focusIndex = 0;
-    state_.catalogScrollRow = 0;
-    state_.detailScroll = 0;
 }
 
 int FullCatalogScreen::totalRows() const {
@@ -231,7 +148,6 @@ void FullCatalogScreen::clampCatalogScroll() {
     }
 
     const int visible = state_.mode == UiMode::FULL_CATALOG ? visibleRowsFull() : visibleRowsSplit();
-
     if (state_.mode == UiMode::FULL_CATALOG) {
         const int focusRow = state_.focusIndex / GRID_COLS;
         if (focusRow < state_.catalogScrollRow) state_.catalogScrollRow = focusRow;
@@ -239,7 +155,6 @@ void FullCatalogScreen::clampCatalogScroll() {
         state_.catalogScrollRow = std::max(0, std::min(state_.catalogScrollRow, std::max(0, totalRows() - visible)));
     } else {
         const int maxScroll = std::max(0, static_cast<int>(items_.size()) - visible);
-        state_.catalogScrollRow = std::max(0, std::min(state_.catalogScrollRow, maxScroll));
         if (state_.focusIndex < state_.catalogScrollRow) state_.catalogScrollRow = state_.focusIndex;
         if (state_.focusIndex >= state_.catalogScrollRow + visible) state_.catalogScrollRow = state_.focusIndex - visible + 1;
         state_.catalogScrollRow = std::max(0, std::min(state_.catalogScrollRow, maxScroll));
@@ -247,12 +162,11 @@ void FullCatalogScreen::clampCatalogScroll() {
 }
 
 void FullCatalogScreen::clampDetailScroll() {
-    state_.detailScroll = std::max(0, std::min(state_.detailScroll, 1200));
+    state_.detailScroll = std::max(0, std::min(state_.detailScroll, 1600));
 }
 
 void FullCatalogScreen::moveCatalogFocus(int direction) {
     if (items_.empty()) return;
-
     if (state_.mode == UiMode::FULL_CATALOG) {
         if (direction < 0 && state_.focusIndex >= GRID_COLS) state_.focusIndex -= GRID_COLS;
         if (direction > 0 && state_.focusIndex + GRID_COLS < static_cast<int>(items_.size())) state_.focusIndex += GRID_COLS;
@@ -260,7 +174,6 @@ void FullCatalogScreen::moveCatalogFocus(int direction) {
         if (direction < 0 && state_.focusIndex > 0) --state_.focusIndex;
         if (direction > 0 && state_.focusIndex + 1 < static_cast<int>(items_.size())) ++state_.focusIndex;
     }
-
     clampCatalogFocus();
     clampCatalogScroll();
     state_.detailScroll = 0;
@@ -273,11 +186,25 @@ void FullCatalogScreen::moveDetailScroll(int direction) {
 }
 
 void FullCatalogScreen::changeCatalog(int direction) {
-    int catalog = static_cast<int>(state_.catalog) + direction;
+    int value = static_cast<int>(state_.catalog) + direction;
     const int count = static_cast<int>(CatalogType::Count);
-    if (catalog < 0) catalog = count - 1;
-    if (catalog >= count) catalog = 0;
-    state_.catalog = static_cast<CatalogType>(catalog);
+    if (value < 0) value = count - 1;
+    if (value >= count) value = 0;
+    const CatalogType next = static_cast<CatalogType>(value);
+
+    if (catalogChange_) {
+        if (catalogChange_(next)) {
+            catalogLoading_ = next != CatalogType::Homebrew;
+            catalogLoadingLabel_ = catalogName(next);
+            catalogLoadingCurrent_ = 0;
+            catalogLoadingTotal_ = 0;
+            catalogLoadingMessage_ = "Connecting to catalog...";
+            catalogError_.clear();
+        }
+        return;
+    }
+
+    state_.catalog = next;
     state_.focusIndex = 0;
     state_.catalogScrollRow = 0;
     state_.detailScroll = 0;
@@ -288,19 +215,17 @@ bool FullCatalogScreen::isTransitioning() const {
 }
 
 void FullCatalogScreen::startOpeningDetail() {
-    if (state_.mode != UiMode::FULL_CATALOG) return;
+    if (state_.mode != UiMode::FULL_CATALOG || catalogLoading_ || selectedIndex() < 0) return;
     state_.activePanel = UiPanel::Catalog;
     state_.detailScroll = 0;
     state_.transitionStart = sceKernelGetProcessTimeWide();
     state_.mode = UiMode::OPENING_DETAIL;
-    sceClibPrintf("[UI] Opening detail\n");
 }
 
 void FullCatalogScreen::startClosingDetail() {
     if (state_.mode != UiMode::SPLIT_DETAIL) return;
     state_.transitionStart = sceKernelGetProcessTimeWide();
     state_.mode = UiMode::CLOSING_DETAIL;
-    sceClibPrintf("[UI] Closing detail\n");
 }
 
 float FullCatalogScreen::transitionProgress() const {
@@ -311,20 +236,14 @@ float FullCatalogScreen::transitionProgress() const {
 
 void FullCatalogScreen::updateTransition() {
     if (!isTransitioning() || transitionProgress() < 1.0f) return;
-
     if (state_.mode == UiMode::OPENING_DETAIL) {
         state_.mode = UiMode::SPLIT_DETAIL;
-        state_.activePanel = UiPanel::Catalog;
-        clampCatalogFocus();
-        clampCatalogScroll();
-        sceClibPrintf("[UI] SPLIT_DETAIL\n");
     } else {
         state_.mode = UiMode::FULL_CATALOG;
-        state_.activePanel = UiPanel::Catalog;
-        clampCatalogFocus();
-        clampCatalogScroll();
-        sceClibPrintf("[UI] FULL_CATALOG\n");
     }
+    state_.activePanel = UiPanel::Catalog;
+    clampCatalogFocus();
+    clampCatalogScroll();
 }
 
 void FullCatalogScreen::handleInput() {
@@ -333,7 +252,6 @@ void FullCatalogScreen::handleInput() {
     SceCtrlData pad;
     std::memset(&pad, 0, sizeof(pad));
     sceCtrlPeekBufferPositive(0, &pad, 1);
-
     static uint32_t previousButtons = 0;
     const uint32_t pressed = pad.buttons & ~previousButtons;
     previousButtons = pad.buttons;
@@ -342,6 +260,7 @@ void FullCatalogScreen::handleInput() {
         state_.requestExit = true;
         return;
     }
+
     if (pressed & SCE_CTRL_LTRIGGER) {
         changeCatalog(-1);
         return;
@@ -351,13 +270,15 @@ void FullCatalogScreen::handleInput() {
         return;
     }
 
+    if (catalogLoading_) return;
+
     if (state_.mode == UiMode::FULL_CATALOG) {
-        if (pressed & SCE_CTRL_LEFT && state_.focusIndex % GRID_COLS > 0) {
-            --state_.focusIndex;
+        if (pressed & SCE_CTRL_LEFT) {
+            if (state_.focusIndex % GRID_COLS > 0) --state_.focusIndex;
             clampCatalogScroll();
         }
-        if (pressed & SCE_CTRL_RIGHT && state_.focusIndex % GRID_COLS < GRID_COLS - 1 && state_.focusIndex + 1 < static_cast<int>(items_.size())) {
-            ++state_.focusIndex;
+        if (pressed & SCE_CTRL_RIGHT) {
+            if (state_.focusIndex % GRID_COLS < GRID_COLS - 1 && state_.focusIndex + 1 < static_cast<int>(items_.size())) ++state_.focusIndex;
             clampCatalogScroll();
         }
         if (pressed & SCE_CTRL_UP) moveCatalogFocus(-1);
@@ -367,35 +288,24 @@ void FullCatalogScreen::handleInput() {
     }
 
     if (state_.mode != UiMode::SPLIT_DETAIL) return;
-
     if (pressed & SCE_CTRL_CIRCLE) {
         startClosingDetail();
         return;
     }
-
     if (pressed & SCE_CTRL_LEFT) state_.activePanel = UiPanel::Catalog;
     if (pressed & SCE_CTRL_RIGHT) state_.activePanel = UiPanel::Detail;
 
     if (state_.activePanel == UiPanel::Catalog) {
         if (pressed & SCE_CTRL_UP) moveCatalogFocus(-1);
         if (pressed & SCE_CTRL_DOWN) moveCatalogFocus(1);
-        if (pressed & SCE_CTRL_CROSS && selectedIndex() >= 0) {
-            state_.detailScroll = 0;
-            sceClibPrintf("[UI] Selected: %s\n", items_[selectedIndex()].name.c_str());
-        }
+        if (pressed & SCE_CTRL_CROSS) state_.detailScroll = 0;
     } else {
         if (pressed & SCE_CTRL_UP) moveDetailScroll(-1);
         if (pressed & SCE_CTRL_DOWN) moveDetailScroll(1);
-
-        // Triangle is the Phase 10 install action in the detail panel.
-        if (pressed & SCE_CTRL_TRIANGLE && selectedIndex() >= 0) {
+        if (pressed & SCE_CTRL_TRIANGLE && selectedIndex() >= 0 && installRequest_) {
             const CatalogItem& item = items_[selectedIndex()];
-            if (installRequest_) {
-                const bool accepted = installRequest_(item);
-                sceClibPrintf("[UI] Install request: %s accepted=%d\n", item.name.c_str(), accepted ? 1 : 0);
-            } else {
-                sceClibPrintf("[UI] Install callback unavailable\n");
-            }
+            const bool accepted = installRequest_(item);
+            sceClibPrintf("[UI] Install request: %s accepted=%d\n", item.name.c_str(), accepted ? 1 : 0);
         }
     }
 }
@@ -409,8 +319,8 @@ unsigned FullCatalogScreen::colorForStatus(const std::string& status) const {
 
 void FullCatalogScreen::drawHeader(int width) {
     vita2d_draw_rectangle(0, 0, width, HEADER_H, SURFACE2);
-    vita2d_pgf_draw_text(font_, 16, 32, ACCENT, 1.2f, "PSVitaAlive");
-    vita2d_pgf_draw_text(font_, width - 130, 32, TEXT_DIM, 0.9f, "START: exit");
+    vita2d_pgf_draw_text(font_, 16, 32, ACCENT, 1.15f, "PSVitaAlive Store");
+    vita2d_pgf_draw_text(font_, width - 132, 32, TEXT_DIM, 0.78f, "START: Exit");
 }
 
 void FullCatalogScreen::drawTabs(int width) {
@@ -420,8 +330,40 @@ void FullCatalogScreen::drawTabs(int width) {
         const int x = static_cast<int>(i * tabWidth);
         const bool active = static_cast<int>(state_.catalog) == i;
         if (active) vita2d_draw_rectangle(x, HEADER_H + TABS_H - 3, static_cast<int>(tabWidth), 3, ACCENT);
-        vita2d_pgf_draw_text(font_, x + 12, HEADER_H + 24, active ? ACCENT : TEXT, 0.9f, catalogName(static_cast<CatalogType>(i)));
+        vita2d_pgf_draw_text(font_, x + 12, HEADER_H + 24, active ? ACCENT : TEXT, 0.82f, catalogName(static_cast<CatalogType>(i)));
     }
+}
+
+void FullCatalogScreen::drawImage(const std::string& url, const std::string& namespaceName, int x, int y, int width, int height) {
+    vita2d_draw_rectangle(x, y, width, height, SURFACE2);
+    if (!imageCache_ || url.empty()) return;
+
+    const std::string path = imageCache_->request(url, namespaceName);
+    if (!imageCache_->isReady(path)) return;
+
+    auto it = textures_.find(path);
+    if (it == textures_.end()) {
+        vita2d_texture* texture = nullptr;
+        const char* ext = imageExtension(path);
+        if (std::strcmp(ext, ".jpg") == 0 || std::strcmp(ext, ".jpeg") == 0) {
+            texture = vita2d_load_JPEG_file(path.c_str());
+        } else {
+            texture = vita2d_load_PNG_file(path.c_str());
+        }
+        if (!texture) return;
+        textures_[path] = texture;
+        it = textures_.find(path);
+    }
+
+    vita2d_texture* texture = it->second;
+    const float tw = static_cast<float>(vita2d_texture_get_width(texture));
+    const float th = static_cast<float>(vita2d_texture_get_height(texture));
+    if (tw <= 0.0f || th <= 0.0f) return;
+
+    const float scale = std::min(static_cast<float>(width) / tw, static_cast<float>(height) / th);
+    const float dw = tw * scale;
+    const float dh = th * scale;
+    vita2d_draw_texture_scale(texture, x + (width - dw) * 0.5f, y + (height - dh) * 0.5f, scale, scale);
 }
 
 void FullCatalogScreen::drawCatalogCard(const CatalogItem& item, int index, int x, int y, int width, int height, bool focused) {
@@ -435,13 +377,22 @@ void FullCatalogScreen::drawCatalogCard(const CatalogItem& item, int index, int 
         vita2d_draw_rectangle(x, y, width, 1, BORDER);
     }
 
-    const int iconSize = height < 100 ? 48 : 64;
-    vita2d_draw_rectangle(x + 8, y + 8, iconSize, iconSize, SURFACE2);
-    const int textX = x + iconSize + 18;
-    vita2d_pgf_draw_text(font_, textX, y + 27, WHITE, 0.95f, item.name.c_str());
-    vita2d_pgf_draw_text(font_, textX, y + 48, TEXT, 0.78f, item.author.c_str());
-    vita2d_pgf_draw_text(font_, textX, y + 68, colorForStatus(item.status), 0.75f, item.status.c_str());
-    if (height >= 100) vita2d_pgf_draw_text(font_, x + 10, y + height - 18, TEXT_DIM, 0.72f, item.version.c_str());
+    const int iconSize = height >= 100 ? 82 : 54;
+    const int iconX = x + 10;
+    const int iconY = y + 10;
+    const std::string image = !item.icon.empty() ? item.icon : item.cover;
+    drawImage(image, "app", iconX, iconY, iconSize, iconSize);
+
+    const int textX = iconX + iconSize + 14;
+    const int textWidth = width - iconSize - 30;
+    (void)textWidth;
+    vita2d_pgf_draw_text(font_, textX, y + 27, WHITE, 0.86f, item.name.c_str());
+    vita2d_pgf_draw_text(font_, textX, y + 47, TEXT, 0.70f, item.author.empty() ? "Unknown author" : item.author.c_str());
+    vita2d_pgf_draw_text(font_, textX, y + 67, colorForStatus(item.status), 0.68f, item.status.c_str());
+
+    const std::string version = item.version.empty() ? "" : "v" + item.version;
+    const std::string meta = version + (item.size.empty() ? "" : "  " + item.size);
+    if (!meta.empty()) vita2d_pgf_draw_text(font_, x + 10, y + height - 13, TEXT_DIM, 0.64f, meta.c_str());
     (void)index;
 }
 
@@ -516,10 +467,21 @@ void FullCatalogScreen::drawTextLines(const std::vector<std::string>& lines, int
 void FullCatalogScreen::drawDetailContent(const CatalogItem& item, int x, int y, int width, int height) {
     const int contentX = x + 18;
     const int contentWidth = width - 36;
-    const int maxChars = std::max(20, contentWidth / 8);
-    std::vector<std::string> allLines;
+    const int maxChars = std::max(18, contentWidth / 7);
 
+    // Screenshot strip follows the web detail page hierarchy: screenshots after
+    // description and before technical information. Only the first three are
+    // rendered at once to keep memory and GPU cost predictable on Vita.
+    const int screenshotY = y + DETAIL_HEADER_H + 12 - state_.detailScroll;
+    const int shotW = std::max(80, (contentWidth - 16) / 3);
+    const int shotH = 74;
+    for (int i = 0; i < 3 && i < static_cast<int>(item.screenshots.size()); ++i) {
+        drawImage(item.screenshots[i], "shot", contentX + i * (shotW + 8), screenshotY, shotW, shotH);
+    }
+
+    std::vector<std::string> allLines;
     auto addWrapped = [&](const char* title, const std::string& value) {
+        if (value.empty()) return;
         allLines.push_back(title);
         std::vector<std::string> lines;
         wrapText(value, maxChars, lines);
@@ -534,30 +496,39 @@ void FullCatalogScreen::drawDetailContent(const CatalogItem& item, int x, int y,
     allLines.push_back("Information");
     allLines.push_back("Title ID: " + item.titleId);
     allLines.push_back("Version: " + item.version);
-    allLines.push_back("Version Date: " + item.versionDate);
+    allLines.push_back("Release date: " + item.versionDate);
     allLines.push_back("Category: " + item.category);
     allLines.push_back("Subcategory: " + item.subcategory);
     allLines.push_back("Size: " + item.size);
     allLines.push_back("Status: " + item.status);
     allLines.push_back("");
 
-    allLines.push_back("Downloads / Links");
-    for (const auto& link : item.links) allLines.push_back("- " + link);
-    if (!item.downloadUrl.empty()) allLines.push_back("- Install source available");
-    allLines.push_back("");
+    if (!item.linkDetails.empty()) {
+        allLines.push_back("Downloads & Links");
+        for (const auto& link : item.linkDetails) {
+            std::string line = link.type;
+            if (!link.name.empty()) {
+                if (!line.empty()) line += ": ";
+                line += link.name;
+            }
+            if (link.recommended) line += "  [Recommended]";
+            allLines.push_back("- " + line);
+        }
+        allLines.push_back("");
+    }
 
     addWrapped("Changelog", item.changelog);
 
-    const int visibleLines = std::max(1, (height - 110) / DETAIL_LINE_H);
+    const int bodyTop = y + DETAIL_HEADER_H + (item.screenshots.empty() ? 18 : 96);
+    const int visibleLines = std::max(1, (height - (bodyTop - y) - 12) / DETAIL_LINE_H);
     const int maxScroll = std::max(0, static_cast<int>(allLines.size()) - visibleLines);
     const int scroll = std::max(0, std::min(state_.detailScroll, maxScroll));
-
-    drawTextLines(allLines, contentX, y + 110, DETAIL_LINE_H, TEXT, 0.78f, scroll, visibleLines);
+    drawTextLines(allLines, contentX, bodyTop, DETAIL_LINE_H, TEXT, 0.70f, scroll, visibleLines);
 
     if (maxScroll > 0) {
         const int trackX = x + width - 8;
-        const int trackY = y + 100;
-        const int trackH = height - 120;
+        const int trackY = y + DETAIL_HEADER_H + 8;
+        const int trackH = height - DETAIL_HEADER_H - 18;
         vita2d_draw_rectangle(trackX, trackY, 3, trackH, BORDER);
         const int thumbH = std::max(20, trackH * visibleLines / static_cast<int>(allLines.size()));
         const int thumbY = trackY + (trackH - thumbH) * scroll / maxScroll;
@@ -573,17 +544,55 @@ void FullCatalogScreen::drawDetailPanel(int x, int y, int width, int height) {
 
     if (state_.activePanel == UiPanel::Detail) vita2d_draw_rectangle(x + width - 3, y, 3, height, ACCENT);
     vita2d_draw_rectangle(x, y, width, DETAIL_HEADER_H, SURFACE);
-    vita2d_draw_rectangle(x + 16, y + 14, 64, 64, SURFACE2);
-    vita2d_pgf_draw_text(font_, x + 94, y + 31, WHITE, 1.0f, item.name.c_str());
-    vita2d_pgf_draw_text(font_, x + 94, y + 52, TEXT, 0.78f, item.author.c_str());
-    vita2d_pgf_draw_text(font_, x + 94, y + 72, colorForStatus(item.status), 0.78f, item.status.c_str());
+    drawImage(!item.icon.empty() ? item.icon : item.cover, "app", x + 12, y + 12, 68, 68);
+    vita2d_pgf_draw_text(font_, x + 92, y + 29, WHITE, 0.92f, item.name.c_str());
+    vita2d_pgf_draw_text(font_, x + 92, y + 50, TEXT, 0.68f, item.author.empty() ? "Unknown author" : item.author.c_str());
+    vita2d_pgf_draw_text(font_, x + 92, y + 70, colorForStatus(item.status), 0.68f, item.status.c_str());
 
     if (state_.activePanel == UiPanel::Detail) {
         const std::string status = installStatusText_ ? installStatusText_() : std::string();
-        if (!status.empty()) vita2d_pgf_draw_text(font_, x + 94, y + 87, ACCENT, 0.65f, status.c_str());
+        if (!status.empty()) vita2d_pgf_draw_text(font_, x + 92, y + 86, ACCENT, 0.56f, status.c_str());
+        else if (!item.downloadUrl.empty()) vita2d_pgf_draw_text(font_, width + x - 140, y + 24, ACCENT, 0.62f, "△ Install");
     }
 
     drawDetailContent(item, x, y, width, height);
+}
+
+void FullCatalogScreen::drawLoadingOverlay() {
+    const int w = 560;
+    const int h = 220;
+    const int x = (SCREEN_W - w) / 2;
+    const int y = (SCREEN_H - h) / 2;
+
+    vita2d_draw_rectangle(0, 0, SCREEN_W, SCREEN_H, RGBA8(0x00, 0x00, 0x00, 0xB8));
+    vita2d_draw_rectangle(x, y, w, h, SURFACE2);
+    vita2d_draw_rectangle(x, y, w, 2, ACCENT);
+
+    vita2d_pgf_draw_text(font_, x + 28, y + 34, ACCENT, 0.70f, "PSVitaAlive");
+    vita2d_pgf_draw_text(font_, x + 28, y + 70, WHITE, 1.05f, ("Loading " + catalogLoadingLabel_ + "...").c_str());
+    vita2d_pgf_draw_text(font_, x + 28, y + 98, TEXT, 0.70f, catalogLoadingMessage_.c_str());
+
+    const int barX = x + 28;
+    const int barY = y + 130;
+    const int barW = w - 56;
+    const int barH = 12;
+    vita2d_draw_rectangle(barX, barY, barW, barH, BORDER);
+
+    uint32_t percent = 0;
+    if (catalogLoadingTotal_ > 0) {
+        const uint64_t value = (catalogLoadingCurrent_ * 100ULL) / catalogLoadingTotal_;
+        percent = static_cast<uint32_t>(std::min<uint64_t>(100, value));
+    }
+    if (catalogLoadingTotal_ == 0) {
+        const uint64_t phase = (sceKernelGetProcessTimeWide() / 30000ULL) % 100ULL;
+        percent = static_cast<uint32_t>(phase < 10 ? 10 : phase);
+    }
+    vita2d_draw_rectangle(barX, barY, (barW * percent) / 100, barH, ACCENT);
+
+    char percentText[32];
+    sceClibSnprintf(percentText, sizeof(percentText), "%u%%", percent);
+    vita2d_pgf_draw_text(font_, x + 28, y + 174, TEXT, 0.76f, percentText);
+    vita2d_pgf_draw_text(font_, x + w - 190, y + 174, TEXT_DIM, 0.62f, "Downloading / processing");
 }
 
 void FullCatalogScreen::drawFullCatalog() {
@@ -591,14 +600,16 @@ void FullCatalogScreen::drawFullCatalog() {
     vita2d_clear_screen();
     drawHeader(SCREEN_W);
     drawTabs(SCREEN_W);
-
     const int gridTop = HEADER_H + TABS_H;
     const int gridHeight = SCREEN_H - HEADER_H - TABS_H - FOOTER_H;
     drawCatalogPanel(0, gridTop, SCREEN_W, gridHeight, false);
 
     vita2d_draw_rectangle(0, SCREEN_H - FOOTER_H, SCREEN_W, FOOTER_H, SURFACE2);
-    vita2d_pgf_draw_text(font_, 12, SCREEN_H - 14, TEXT, 0.78f,
-        "D-Pad: move   X: detail   L/R: catalog   START: exit");
+    vita2d_pgf_draw_text(font_, 12, SCREEN_H - 14, TEXT, 0.66f, "D-Pad: Navigate   X: Detail   L/R: Catalog   START: Exit");
+    if (catalogLoading_) drawLoadingOverlay();
+    if (!catalogError_.empty()) {
+        vita2d_pgf_draw_text(font_, 18, HEADER_H + TABS_H + 26, ACCENT, 0.70f, catalogError_.c_str());
+    }
     vita2d_end_drawing();
     vita2d_swap_buffers();
 }
@@ -607,19 +618,18 @@ void FullCatalogScreen::drawSplitDetail() {
     vita2d_start_drawing();
     vita2d_clear_screen();
     drawHeader(SCREEN_W);
+    drawTabs(SCREEN_W);
 
     const int contentTop = HEADER_H + TABS_H;
     const int contentHeight = SCREEN_H - HEADER_H - TABS_H - FOOTER_H;
     const int leftWidth = SCREEN_W / 2;
-    const int rightWidth = SCREEN_W - leftWidth;
-
     drawCatalogPanel(0, contentTop, leftWidth, contentHeight, true);
-    drawDetailPanel(leftWidth, contentTop, rightWidth, contentHeight);
+    drawDetailPanel(leftWidth, contentTop, SCREEN_W - leftWidth, contentHeight);
     vita2d_draw_rectangle(leftWidth - 1, contentTop, 2, contentHeight, BORDER);
 
     vita2d_draw_rectangle(0, SCREEN_H - FOOTER_H, SCREEN_W, FOOTER_H, SURFACE2);
-    vita2d_pgf_draw_text(font_, 12, SCREEN_H - 14, TEXT, 0.70f,
-        "D-Pad: navigate/scroll   LEFT/RIGHT: panel   O: back   △: install   L/R: catalog");
+    vita2d_pgf_draw_text(font_, 12, SCREEN_H - 14, TEXT, 0.60f, "D-Pad: Navigate/Scroll   LEFT/RIGHT: Panel   O: Back   △: Install   L/R: Catalog");
+    if (catalogLoading_) drawLoadingOverlay();
     vita2d_end_drawing();
     vita2d_swap_buffers();
 }
@@ -632,12 +642,13 @@ void FullCatalogScreen::drawOpeningDetail() {
     vita2d_start_drawing();
     vita2d_clear_screen();
     drawHeader(SCREEN_W);
+    drawTabs(SCREEN_W);
     const int contentTop = HEADER_H + TABS_H;
     const int contentHeight = SCREEN_H - HEADER_H - TABS_H - FOOTER_H;
     drawCatalogPanel(0, contentTop, leftWidth, contentHeight, true);
     if (rightWidth > 0) drawDetailPanel(leftWidth, contentTop, rightWidth, contentHeight);
     vita2d_draw_rectangle(0, SCREEN_H - FOOTER_H, SCREEN_W, FOOTER_H, SURFACE2);
-    vita2d_pgf_draw_text(font_, 12, SCREEN_H - 14, TEXT_DIM, 0.74f, "Opening detail...");
+    vita2d_pgf_draw_text(font_, 12, SCREEN_H - 14, TEXT_DIM, 0.66f, "Opening detail...");
     vita2d_end_drawing();
     vita2d_swap_buffers();
 }
@@ -650,12 +661,13 @@ void FullCatalogScreen::drawClosingDetail() {
     vita2d_start_drawing();
     vita2d_clear_screen();
     drawHeader(SCREEN_W);
+    drawTabs(SCREEN_W);
     const int contentTop = HEADER_H + TABS_H;
     const int contentHeight = SCREEN_H - HEADER_H - TABS_H - FOOTER_H;
     drawCatalogPanel(0, contentTop, leftWidth, contentHeight, true);
     if (rightWidth > 0) drawDetailPanel(leftWidth, contentTop, rightWidth, contentHeight);
     vita2d_draw_rectangle(0, SCREEN_H - FOOTER_H, SCREEN_W, FOOTER_H, SURFACE2);
-    vita2d_pgf_draw_text(font_, 12, SCREEN_H - 14, TEXT_DIM, 0.74f, "Closing detail...");
+    vita2d_pgf_draw_text(font_, 12, SCREEN_H - 14, TEXT_DIM, 0.66f, "Closing detail...");
     vita2d_end_drawing();
     vita2d_swap_buffers();
 }
