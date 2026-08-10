@@ -3,6 +3,7 @@
 #include <psp2/kernel/threadmgr.h>
 
 #include <string>
+#include <unordered_map>
 #include <vector>
 
 namespace psvitaalive {
@@ -43,6 +44,7 @@ private:
     std::vector<std::string> pending_;
     std::vector<std::string> ready_;
     std::vector<std::string> failed_;
+    std::unordered_map<std::string, uint64_t> retryAfter_;
 
     static int workerEntry(SceSize args, void* argp);
     int workerMain();
