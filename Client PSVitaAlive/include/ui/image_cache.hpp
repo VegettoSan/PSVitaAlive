@@ -18,11 +18,15 @@ public:
 
     std::string request(const std::string& url, const std::string& namespaceName);
 
+    // Queue a remote image for background download without requiring it to be
+    // visible on screen. Used at startup to warm the complete catalog cache.
+    void preload(const std::vector<std::string>& urls, const std::string& namespaceName);
+
     bool isReady(const std::string& localPath) const;
     bool isFailed(const std::string& localPath) const;
 
-    // Discard queued requests that have not started yet. The current worker job
-    // is allowed to finish, so no worker/file race is introduced.
+    // Discard queued requests that have not started yet. Kept as an explicit
+    // API for callers that intentionally want to cancel work.
     void cancelQueuedRequests();
 
 private:
