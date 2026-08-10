@@ -16,11 +16,8 @@ set(VITA_TITLEID  "PSVA00001")
 set(VITA_VERSION "01.00")
 set(VITA_MKSFOEX_FLAGS "${VITA_MKSFOEX_FLAGS} -d PARENTAL_LEVEL=1")
 
-# The VPK installer uses a package-header template embedded in the executable.
-# No network download is performed during CMake configuration. The template is
-# derived from NeoVitaDB/VitaDB Downloader's local head.h implementation and is
-# consumed by FakePackageBuilder at installation time.
-
+# Package installation uses the local NeoVitaDB/VitaDB Downloader-derived
+# package-header implementation. No build-time network dependency exists.
 set(SOURCES
   source/main.cpp
   source/storage/storage_manager.cpp
@@ -34,7 +31,9 @@ set(SOURCES
   source/installer/install_dispatcher.cpp
   source/installer/install_controller.cpp
   source/catalog/catalog_parser.cpp
+  source/catalog/catalog_manager.cpp
   source/ui/ui_types.cpp
+  source/ui/image_cache.cpp
   source/ui/full_catalog_screen.cpp
 )
 
@@ -51,7 +50,6 @@ target_compile_options(${PROJECT_NAME} PRIVATE
 
 target_link_libraries(${PROJECT_NAME}
   vita2d
-
   SceDisplay_stub
   SceCtrl_stub
   SceTouch_stub
@@ -65,11 +63,9 @@ target_link_libraries(${PROJECT_NAME}
   ScePower_stub
   SceNet_stub
   SceNetCtl_stub
-
   ScePromoterUtil_stub
   SceGxm_stub
   ScePgf_stub
-
   zip
   zstd
   lzma
