@@ -4,6 +4,7 @@
 #include "ui/image_cache.hpp"
 
 #include <vita2d.h>
+#include <psp2/io/stat.h>
 
 #include <cstdint>
 #include <functional>
@@ -22,7 +23,6 @@ public:
 
     FullCatalogScreen();
     ~FullCatalogScreen();
-
     bool init();
     void shutdown();
     bool updateAndDraw();
@@ -32,7 +32,6 @@ public:
     void setImageCache(ImageCache* cache);
     void setCatalogItems(std::vector<CatalogItem> items);
     void setActiveCatalog(CatalogType catalog);
-
     void setCatalogLoading(bool loading, const std::string& label, uint64_t current, uint64_t total, const std::string& message);
     void setCatalogError(const std::string& error);
     void setInstallProgress(bool active, uint64_t current, uint64_t total, uint64_t bytesPerSecond,
@@ -46,7 +45,6 @@ private:
     InstallStatusFn installStatusText_;
     CatalogChangeFn catalogChange_;
     ImageCache* imageCache_ = nullptr;
-
     vita2d_pgf* font_ = nullptr;
     bool ready_ = false;
 
@@ -102,7 +100,8 @@ private:
     void moveCatalogFocus(int direction);
     void moveDetailScroll(int direction);
     void wrapText(const std::string& text, int maxChars, std::vector<std::string>& lines) const;
-    void drawTextLines(const std::vector<std::string>& lines, int x, int y, int lineHeight, unsigned color, float scale, int startLine, int maxLines, int clipTop, int clipBottom);
+    void drawTextLines(const std::vector<std::string>& lines, int x, int y, int lineHeight, unsigned color, float scale,
+                       int startLine, int maxLines, int clipTop, int clipBottom);
     unsigned colorForStatus(const std::string& status) const;
 };
 
