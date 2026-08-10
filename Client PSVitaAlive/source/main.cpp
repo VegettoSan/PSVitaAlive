@@ -3,13 +3,12 @@
 #include <psp2/kernel/clib.h>
 #include <psp2/kernel/threadmgr.h>
 #include <psp2/sysmodule.h>
-#include <psp2/io/fcntl.h>
-#include <psp2/io/stat.h>
 #include <psp2/ime_dialog.h>
 #include <algorithm>
 #include <cstring>
 #include <string>
 #include <vector>
+#include "diagnostic_logger.hpp"
 #include "storage/storage_manager.hpp"
 #include "installer/install_controller.hpp"
 #include "ui/full_catalog_screen.hpp"
@@ -17,10 +16,6 @@
 #include "catalog/catalog_manager.hpp"
 
 namespace {
-constexpr const char* DIAG_DIR="ux0:data/psvitaalive/logs";
-constexpr const char* DIAG_LOG="ux0:data/psvitaalive/logs/session.log";
-void ensureDiagnosticLog(){sceIoMkdir("ux0:data/psvitaalive",0777);sceIoMkdir(DIAG_DIR,0777);}
-void diagnosticLog(const std::string& msg){ensureDiagnosticLog();SceUID fd=sceIoOpen(DIAG_LOG,SCE_O_WRONLY|SCE_O_CREAT|SCE_O_APPEND,0666);if(fd<0)return;char line[1400];uint64_t ms=sceKernelGetProcessTimeWide()/1000ULL;sceClibSnprintf(line,sizeof(line),"[%llu ms] %s\n",(unsigned long long)ms,msg.c_str());sceIoWrite(fd,line,std::strlen(line));sceIoClose(fd);}
 std::string installStatusText(const psvitaalive::InstallStatus&s){using S=psvitaalive::InstallStatus::State;if(s.state==S::Idle)return{};char b[384];uint64_t p=s.total?std::min<uint64_t>(100,(s.current*100)/s.total):0;sceClibSnprintf(b,sizeof(b),"%s | %s | %llu%% | %s",s.stage.c_str(),s.fileName.empty()?"file":s.fileName.c_str(),(unsigned long long)p,s.message.c_str());return b;}
 bool asciiToWide(const std::string&text,SceWChar16*out,size_t cap){if(!out||!cap)return false;size_t i=0;for(;i+1<cap&&i<text.size();++i){unsigned char c=(unsigned char)text[i];out[i]=(SceWChar16)(c<128?c:'?');}out[i]=0;return true;}
 std::string wideToAscii(const SceWChar16*t){if(!t)return{};std::string r;for(size_t i=0;t[i]&&i<2048;++i)r.push_back(t[i]<=0x7F?(char)t[i]:'?');return r;}
@@ -28,27 +23,91 @@ bool promptZipDestination(std::string&dst){static bool loaded=false;if(!loaded){
 }
 
 int main(){
- diagnosticLog("============================================================");diagnosticLog("PSVitaAlive session BEGIN");diagnosticLog("TitleID=PSVA00001");
- psvitaalive::StorageManager storage;storage.initProjectDirs();
- psvitaalive::InstallController installer;psvitaalive::CatalogManager catalogs;psvitaalive::ui::ImageCache images;
- catalogs.init();images.init();
- psvitaalive::ui::FullCatalogScreen screen;screen.setImageCache(&images);
- screen.setCatalogChangeCallback([&](psvitaalive::ui::CatalogType next){screen.setActiveCatalog(next);return catalogs.request(next);});
- screen.setInstallCallbacks([&installer](const psvitaalive::ui::CatalogItem&item){diagnosticLog("INSTALL REQUEST name="+item.name+" title_id="+item.titleId+" url="+item.downloadUrl);if(item.downloadUrl.empty()||item.downloadFileName.empty())return false;std::string zipDestination;if(item.downloadFileName.size()>=4&&item.downloadFileName.substr(item.downloadFileName.size()-4)==".zip"){zipDestination="ux0:data/";if(!promptZipDestination(zipDestination))return false;}return installer.requestInstall(item.downloadUrl,item.downloadFileName,zipDestination);},[&installer](){return installStatusText(installer.status());});
- if(!screen.init()){installer.shutdown();catalogs.shutdown();images.shutdown();sceKernelExitProcess(1);return 1;}
- screen.setActiveCatalog(psvitaalive::ui::CatalogType::Homebrew);catalogs.request(psvitaalive::ui::CatalogType::Homebrew);
- while(screen.updateAndDraw()){
-   psvitaalive::CatalogManager::Status cs=catalogs.status();
-   if(cs.state==psvitaalive::CatalogManager::State::Loading)screen.setCatalogLoading(true,cs.label,cs.current,cs.total,cs.message);
-   else if(cs.state==psvitaalive::CatalogManager::State::Failed)screen.setCatalogError(cs.error.empty()?"Unable to load catalog":cs.error);
-   std::vector<psvitaalive::ui::CatalogItem> ready;psvitaalive::ui::CatalogType readyCatalog;
-   if(catalogs.takeReady(ready,readyCatalog)){screen.setCatalogItems(std::move(ready));screen.setActiveCatalog(readyCatalog);screen.setCatalogLoading(false,psvitaalive::ui::catalogName(readyCatalog),1,1,"Ready");}
+    psvitaalive::diagnostics::init();
+    psvitaalive::diagnostics::log("============================================================");
+    psvitaalive::diagnostics::log("PSVitaAlive session BEGIN");
+    psvitaalive::diagnostics::log("TitleID=PSVA00001");
 
-   const psvitaalive::InstallStatus cur=installer.status();
-   using InstallState=psvitaalive::InstallStatus::State;
-   const bool installActive=cur.state==InstallState::Downloading||cur.state==InstallState::Installing||cur.state==InstallState::Completed||cur.state==InstallState::Failed;
-   screen.setInstallProgress(installActive,cur.current,cur.total,cur.bytesPerSecond,cur.stage,cur.fileName,cur.message);
- }
- screen.setInstallProgress(false,0,0,0,"","","");
- screen.shutdown();installer.shutdown();catalogs.shutdown();images.shutdown();diagnosticLog("PSVitaAlive session END");sceKernelExitProcess(0);return 0;
+    psvitaalive::StorageManager storage;storage.initProjectDirs();
+    psvitaalive::InstallController installer;psvitaalive::CatalogManager catalogs;psvitaalive::ui::ImageCache images;
+    if(!catalogs.init())psvitaalive::diagnostics::log("[System] CatalogManager init failed");
+    if(!images.init())psvitaalive::diagnostics::log("[System] ImageCache init failed");
+
+    psvitaalive::ui::FullCatalogScreen screen;screen.setImageCache(&images);
+    screen.setCatalogChangeCallback([&](psvitaalive::ui::CatalogType next){psvitaalive::diagnostics::log(std::string("[UI] catalog requested: ")+psvitaalive::ui::catalogName(next));return catalogs.request(next);});
+    screen.setInstallCallbacks([&installer](const psvitaalive::ui::CatalogItem&item){psvitaalive::diagnostics::log("[UI] INSTALL REQUEST name="+item.name+" title_id="+item.titleId+" url="+item.downloadUrl);if(item.downloadUrl.empty()||item.downloadFileName.empty())return false;std::string zipDestination;if(item.downloadFileName.size()>=4&&item.downloadFileName.substr(item.downloadFileName.size()-4)==".zip"){zipDestination="ux0:data/";if(!promptZipDestination(zipDestination)){psvitaalive::diagnostics::log("[UI] ZIP destination cancelled");return false;}}return installer.requestInstall(item.downloadUrl,item.downloadFileName,zipDestination);},[&installer](){return installStatusText(installer.status());});
+
+    if(!screen.init()){psvitaalive::diagnostics::log("[System] UI initialization failed");installer.shutdown();catalogs.shutdown();images.shutdown();psvitaalive::diagnostics::shutdown();sceKernelExitProcess(1);return 1;}
+
+    // Startup cache verification: check every official catalog once, sequentially.
+    // Cached catalogs are parsed locally when validators match; only missing or
+    // changed catalogs are downloaded. The user sees one coherent overlay for
+    // the whole startup verification sequence.
+    const int catalogCount=(int)psvitaalive::ui::CatalogType::Count;
+    int preloadIndex=0;
+    bool preloading=true;
+    bool homebrewReady=false;
+    screen.setActiveCatalog(psvitaalive::ui::CatalogType::Homebrew);
+    screen.setCatalogLoading(true,psvitaalive::ui::catalogName(psvitaalive::ui::CatalogType::Homebrew),0,0,"Checking catalog cache...");
+    if(!catalogs.request(psvitaalive::ui::CatalogType::Homebrew)){preloading=false;screen.setCatalogError("Unable to start catalog check");}
+
+    while(screen.updateAndDraw()){
+        psvitaalive::CatalogManager::Status cs=catalogs.status();
+        if(cs.state==psvitaalive::CatalogManager::State::Loading){
+            screen.setCatalogLoading(true,cs.label,cs.current,cs.total,cs.message);
+        } else if(cs.state==psvitaalive::CatalogManager::State::Failed){
+            if(preloading){
+                psvitaalive::diagnostics::log(std::string("[Startup] catalog failed: ")+cs.label+" error="+cs.error);
+                ++preloadIndex;
+                if(preloadIndex<catalogCount){
+                    const auto next=(psvitaalive::ui::CatalogType)preloadIndex;
+                    screen.setCatalogLoading(true,psvitaalive::ui::catalogName(next),0,0,"Catalog unavailable; checking next catalog...");
+                    catalogs.request(next);
+                } else {
+                    preloading=false;
+                    if(homebrewReady)screen.setCatalogLoading(false,"Homebrew",1,1,"Ready");
+                    else screen.setCatalogError("Homebrew catalog unavailable");
+                }
+            } else {
+                screen.setCatalogError(cs.error.empty()?"Unable to load catalog":cs.error);
+            }
+        }
+
+        std::vector<psvitaalive::ui::CatalogItem> ready;psvitaalive::ui::CatalogType readyCatalog;
+        if(catalogs.takeReady(ready,readyCatalog)){
+            psvitaalive::diagnostics::log(std::string("[System] catalog ready: ")+psvitaalive::ui::catalogName(readyCatalog));
+            if(preloading){
+                if(readyCatalog==psvitaalive::ui::CatalogType::Homebrew){
+                    screen.setCatalogItems(std::move(ready));
+                    screen.setActiveCatalog(psvitaalive::ui::CatalogType::Homebrew);
+                    homebrewReady=true;
+                }
+                ++preloadIndex;
+                if(preloadIndex<catalogCount){
+                    const auto next=(psvitaalive::ui::CatalogType)preloadIndex;
+                    screen.setCatalogLoading(true,psvitaalive::ui::catalogName(next),0,0,"Checking next catalog...");
+                    catalogs.request(next);
+                } else {
+                    preloading=false;
+                    screen.setActiveCatalog(psvitaalive::ui::CatalogType::Homebrew);
+                    if(homebrewReady)screen.setCatalogLoading(false,"Homebrew",1,1,"All catalogs checked");
+                }
+            } else {
+                screen.setCatalogItems(std::move(ready));
+                screen.setActiveCatalog(readyCatalog);
+                screen.setCatalogLoading(false,psvitaalive::ui::catalogName(readyCatalog),1,1,"Ready");
+            }
+        }
+
+        const psvitaalive::InstallStatus cur=installer.status();
+        using InstallState=psvitaalive::InstallStatus::State;
+        const bool installActive=cur.state==InstallState::Downloading||cur.state==InstallState::Installing||cur.state==InstallState::Completed||cur.state==InstallState::Failed;
+        screen.setInstallProgress(installActive,cur.current,cur.total,cur.bytesPerSecond,cur.stage,cur.fileName,cur.message);
+    }
+
+    screen.setInstallProgress(false,0,0,0,"","","");
+    screen.shutdown();installer.shutdown();catalogs.shutdown();images.shutdown();
+    psvitaalive::diagnostics::log("PSVitaAlive session END");
+    psvitaalive::diagnostics::shutdown();
+    sceKernelExitProcess(0);return 0;
 }
