@@ -81,6 +81,10 @@ struct UiState {
     int catalogScrollRow = 0;
     int detailScroll = 0;
 
+    // Detail link/action navigation. -1 means no action is focused.
+    int linkFocus = -1;
+    bool linkNavigation = false;
+
     uint64_t transitionStart = 0;
 
     bool requestExit = false;
