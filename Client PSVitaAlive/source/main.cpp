@@ -7,6 +7,7 @@
 #include <psp2/message_dialog.h>
 #include <psp2/ime_dialog.h>
 #include <psp2/io/fcntl.h>
+#include <psp2/io/stat.h>
 
 #include <algorithm>
 #include <cstring>
