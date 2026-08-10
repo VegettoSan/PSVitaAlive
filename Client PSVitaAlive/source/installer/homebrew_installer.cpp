@@ -18,8 +18,111 @@
 namespace psvitaalive {
 namespace {
 constexpr const char* TMP_ROOT = "ux0:data/psvitaalive/tmp";
+constexpr const char* LOG_ROOT = "ux0:data/psvitaalive/logs";
+constexpr const char* INSTALL_LOG = "ux0:data/psvitaalive/logs/install.log";
+
 bool isDotEntry(const char* name) {
     return name && (std::strcmp(name, ".") == 0 || std::strcmp(name, "..") == 0);
+}
+
+void ensureLogDirectory() {
+    sceIoMkdir("ux0:data/psvitaalive", 0777);
+    sceIoMkdir(LOG_ROOT, 0777);
+}
+
+void logLine(const std::string& message) {
+    ensureLogDirectory();
+    SceUID fd = sceIoOpen(INSTALL_LOG, SCE_O_WRONLY | SCE_O_CREAT | SCE_O_APPEND, 0666);
+    if (fd < 0) {
+        sceClibPrintf("[InstallLog] open failed: 0x%08X\n", fd);
+        return;
+    }
+
+    char line[1024];
+    const uint64_t ms = sceKernelGetProcessTimeWide() / 1000ULL;
+    sceClibSnprintf(line, sizeof(line), "[%llu ms] %s\n", (unsigned long long)ms, message.c_str());
+    sceIoWrite(fd, line, std::strlen(line));
+    sceIoClose(fd);
+}
+
+void logResult(const char* name, int result) {
+    char buf[160];
+    sceClibSnprintf(buf, sizeof(buf), "%s => 0x%08X (%d)", name, result, result);
+    logLine(buf);
+}
+
+bool readSfoTitleId(const std::string& path, std::string& titleId) {
+    SceUID fd = sceIoOpen(path.c_str(), SCE_O_RDONLY, 0);
+    if (fd < 0) return false;
+
+    SceIoStat st;
+    std::memset(&st, 0, sizeof(st));
+    if (sceIoGetstat(path.c_str(), &st) < 0 || st.st_size < 0x14 || st.st_size > 1024 * 1024) {
+        sceIoClose(fd);
+        return false;
+    }
+
+    std::string data(static_cast<size_t>(st.st_size), '\0');
+    size_t done = 0;
+    while (done < data.size()) {
+        const int r = sceIoRead(fd, &data[done], data.size() - done);
+        if (r <= 0) {
+            sceIoClose(fd);
+            return false;
+        }
+        done += static_cast<size_t>(r);
+    }
+    sceIoClose(fd);
+
+    const unsigned char* p = reinterpret_cast<const unsigned char*>(data.data());
+    if (std::memcmp(p, "\0PSF", 4) != 0) return false;
+
+    auto u16 = [](const unsigned char* q) -> uint16_t {
+        return static_cast<uint16_t>(q[0]) | static_cast<uint16_t>(q[1] << 8);
+    };
+    auto u32 = [](const unsigned char* q) -> uint32_t {
+        return static_cast<uint32_t>(q[0]) |
+               (static_cast<uint32_t>(q[1]) << 8) |
+               (static_cast<uint32_t>(q[2]) << 16) |
+               (static_cast<uint32_t>(q[3]) << 24);
+    };
+
+    const uint32_t keyTableOffset = u32(p + 8);
+    const uint32_t dataTableOffset = u32(p + 12);
+    const uint32_t entryCount = u32(p + 16);
+    if (keyTableOffset >= data.size() || dataTableOffset >= data.size() || entryCount > (data.size() - 0x14) / 16) return false;
+
+    for (uint32_t i = 0; i < entryCount; ++i) {
+        const size_t entry = 0x14 + static_cast<size_t>(i) * 16;
+        const uint16_t keyOffset = u16(p + entry);
+        const uint32_t dataLen = u32(p + entry + 4);
+        const uint32_t dataOffset = u32(p + entry + 12);
+        const size_t keyPos = static_cast<size_t>(keyTableOffset) + keyOffset;
+        const size_t valuePos = static_cast<size_t>(dataTableOffset) + dataOffset;
+        if (keyPos >= data.size() || valuePos >= data.size() || dataLen > data.size() - valuePos) return false;
+
+        const char* key = reinterpret_cast<const char*>(p + keyPos);
+        if (std::strcmp(key, "TITLE_ID") != 0) continue;
+
+        size_t len = dataLen;
+        while (len > 0 && p[valuePos + len - 1] == 0) --len;
+        titleId.assign(reinterpret_cast<const char*>(p + valuePos), len);
+        return !titleId.empty();
+    }
+    return false;
+}
+
+void logPathState(const char* label, const std::string& path) {
+    SceIoStat st;
+    std::memset(&st, 0, sizeof(st));
+    const int r = sceIoGetstat(path.c_str(), &st);
+    char buf[320];
+    if (r < 0) {
+        sceClibSnprintf(buf, sizeof(buf), "%s: MISSING path=%s result=0x%08X", label, path.c_str(), r);
+    } else {
+        sceClibSnprintf(buf, sizeof(buf), "%s: EXISTS path=%s size=%lld mode=0x%08X", label, path.c_str(), (long long)st.st_size, (unsigned)st.st_mode);
+    }
+    logLine(buf);
 }
 }
 
@@ -41,34 +144,27 @@ const char* toString(InstallResult r) {
 void HomebrewInstaller::setError(const std::string& msg) {
     lastError_ = msg;
     sceClibPrintf("[HomebrewInstaller] %s\n", msg.c_str());
+    logLine(std::string("ERROR: ") + msg);
 }
 
 bool HomebrewInstaller::loadPromoterModule() {
     pafLoadedByUs_ = false;
     promoterLoadedByUs_ = false;
+    logLine("loadPromoterModule: begin");
 
-    // NeoVitaDB/VitaDB Downloader uses this PAF argument block before loading
-    // PromoterUtil. This matches the VitaSDK calling convention used by the
-    // current project and avoids the old uint32_t* signature mismatch.
     if (sceSysmoduleIsLoadedInternal(SCE_SYSMODULE_INTERNAL_PAF) < 0) {
         uint32_t ptr[0x100] = {0};
         ptr[0] = 0;
         ptr[1] = static_cast<uint32_t>(reinterpret_cast<uintptr_t>(&ptr[0]));
 
-        uint32_t scepafArgp[] = {
-            0x400000u,
-            0xEA60u,
-            0x40000u,
-            0u,
-            0u
-        };
-
+        uint32_t scepafArgp[] = { 0x400000u, 0xEA60u, 0x40000u, 0u, 0u };
         const int r = sceSysmoduleLoadModuleInternalWithArg(
             SCE_SYSMODULE_INTERNAL_PAF,
             sizeof(scepafArgp),
             scepafArgp,
             reinterpret_cast<SceSysmoduleOpt*>(ptr)
         );
+        logResult("sceSysmoduleLoadModuleInternalWithArg(PAF)", r);
         if (r < 0) {
             char buf[80];
             sceClibSnprintf(buf, sizeof(buf), "load PAF failed: 0x%08X", r);
@@ -76,10 +172,13 @@ bool HomebrewInstaller::loadPromoterModule() {
             return false;
         }
         pafLoadedByUs_ = true;
+    } else {
+        logLine("PAF already loaded");
     }
 
     if (sceSysmoduleIsLoadedInternal(SCE_SYSMODULE_INTERNAL_PROMOTER_UTIL) < 0) {
         const int r = sceSysmoduleLoadModuleInternal(SCE_SYSMODULE_INTERNAL_PROMOTER_UTIL);
+        logResult("sceSysmoduleLoadModuleInternal(PROMOTER_UTIL)", r);
         if (r < 0) {
             char buf[80];
             sceClibSnprintf(buf, sizeof(buf), "load promoter failed: 0x%08X", r);
@@ -88,14 +187,18 @@ bool HomebrewInstaller::loadPromoterModule() {
             return false;
         }
         promoterLoadedByUs_ = true;
+    } else {
+        logLine("PROMOTER_UTIL already loaded");
     }
 
+    logLine("loadPromoterModule: success");
     return true;
 }
 
 void HomebrewInstaller::unloadPromoterModules() {
     if (promoterLoadedByUs_) {
         const int r = sceSysmoduleUnloadModuleInternal(SCE_SYSMODULE_INTERNAL_PROMOTER_UTIL);
+        logResult("sceSysmoduleUnloadModuleInternal(PROMOTER_UTIL)", r);
         if (r < 0) sceClibPrintf("[HomebrewInstaller] unload promoter failed: 0x%08X\n", r);
         promoterLoadedByUs_ = false;
     }
@@ -109,6 +212,7 @@ void HomebrewInstaller::unloadPromoterModules() {
             nullptr,
             &opt
         );
+        logResult("sceSysmoduleUnloadModuleInternalWithArg(PAF)", r);
         if (r < 0) sceClibPrintf("[HomebrewInstaller] unload PAF failed: 0x%08X\n", r);
         pafLoadedByUs_ = false;
     }
@@ -140,10 +244,10 @@ bool HomebrewInstaller::removeTree(const std::string& path) {
 }
 
 InstallResult HomebrewInstaller::promoteExtractedDir(const std::string& dir) {
-    // NeoVitaDB/VitaDB Downloader initializes PromoterUtil only after loading
-    // PAF and the PromoterUtil internal module, then promotes the extracted
-    // package directory with PromotePkg. This is the flow used here as well.
+    logLine(std::string("promoteExtractedDir: ") + dir);
+
     const int initResult = scePromoterUtilityInit();
+    logResult("scePromoterUtilityInit", initResult);
     if (initResult < 0) {
         char buf[64];
         sceClibSnprintf(buf, sizeof(buf), "scePromoterUtilityInit: 0x%08X", initResult);
@@ -153,9 +257,11 @@ InstallResult HomebrewInstaller::promoteExtractedDir(const std::string& dir) {
     }
 
     const int promoteResult = scePromoterUtilityPromotePkg(dir.c_str(), 0);
+    logResult("scePromoterUtilityPromotePkg", promoteResult);
     lastPromoteResult_ = promoteResult;
 
     const int exitResult = scePromoterUtilityExit();
+    logResult("scePromoterUtilityExit", exitResult);
     if (promoteResult < 0) {
         char buf[80];
         sceClibSnprintf(buf, sizeof(buf), "scePromoterUtilityPromotePkg: 0x%08X", promoteResult);
@@ -169,6 +275,7 @@ InstallResult HomebrewInstaller::promoteExtractedDir(const std::string& dir) {
         return InstallResult::PromoteFailed;
     }
 
+    logLine("promoteExtractedDir: promoter reported success");
     return InstallResult::Ok;
 }
 
@@ -183,9 +290,13 @@ InstallResult HomebrewInstaller::installVpk(
     pafLoadedByUs_ = false;
     promoterLoadedByUs_ = false;
 
+    logLine("============================================================");
+    logLine(std::string("installVpk BEGIN path=") + vpkPath);
+
     if (vpkPath.empty()) { setError("empty vpk path"); return InstallResult::InvalidArgument; }
     StorageManager st;
     if (!st.exists(vpkPath)) { setError("vpk not found"); return InstallResult::IoError; }
+    logPathState("VPK source", vpkPath);
 
     if (onProgress) {
         InstallProgress p;
@@ -197,6 +308,7 @@ InstallResult HomebrewInstaller::installVpk(
     FormatDetector detector;
     const DetectResult det = detector.detectFile(vpkPath);
     const std::string ext = FormatDetector::extensionOf(vpkPath);
+    logLine(std::string("FormatDetector: format=") + toString(det.format) + " extension=" + ext);
     if (ext != "vpk" || det.format != FileFormat::Vpk) {
         setError(std::string("invalid VPK: format=") + toString(det.format) + " ext=" + ext);
         return InstallResult::NotVpk;
@@ -209,6 +321,7 @@ InstallResult HomebrewInstaller::installVpk(
         (unsigned long long)sceKernelGetProcessTimeWide());
     const std::string tmpDir = tmpName;
     if (!st.createDirectories(tmpDir)) { setError("cannot create VPK temp directory"); return InstallResult::IoError; }
+    logLine(std::string("Temporary directory: ") + tmpDir);
 
     if (onProgress) {
         InstallProgress p;
@@ -235,6 +348,7 @@ InstallResult HomebrewInstaller::installVpk(
         shouldCancel
     );
 
+    logLine(std::string("ZipExtractor result=") + std::to_string(static_cast<int>(zr)) + " error=" + zip.lastError());
     if (zr == ZipResult::Cancelled) {
         removeTree(tmpDir);
         setError("extract cancelled");
@@ -248,6 +362,16 @@ InstallResult HomebrewInstaller::installVpk(
 
     const std::string ebootPath = tmpDir + "/eboot.bin";
     const std::string paramPath = tmpDir + "/sce_sys/param.sfo";
+    logPathState("Extracted eboot.bin", ebootPath);
+    logPathState("Extracted param.sfo", paramPath);
+
+    std::string titleId;
+    if (readSfoTitleId(paramPath, titleId)) {
+        logLine(std::string("param.sfo TITLE_ID=") + titleId);
+    } else {
+        logLine("param.sfo TITLE_ID could not be read");
+    }
+
     if (!st.exists(ebootPath) || !st.exists(paramPath)) {
         removeTree(tmpDir);
         setError("invalid VPK layout: expected eboot.bin and sce_sys/param.sfo");
@@ -268,10 +392,13 @@ InstallResult HomebrewInstaller::installVpk(
 
     FakePackageBuilder packageBuilder;
     if (!packageBuilder.build(tmpDir)) {
+        logLine(std::string("FakePackageBuilder FAILED: ") + packageBuilder.lastError());
         removeTree(tmpDir);
         setError(std::string("package preparation failed: ") + packageBuilder.lastError());
         return InstallResult::PromoteFailed;
     }
+    logLine("FakePackageBuilder: success");
+    logPathState("Generated sce_sys/package/head.bin", tmpDir + "/sce_sys/package/head.bin");
 
     if (shouldCancel && shouldCancel()) {
         removeTree(tmpDir);
@@ -294,6 +421,14 @@ InstallResult HomebrewInstaller::installVpk(
     const InstallResult result = promoteExtractedDir(tmpDir);
     unloadPromoterModules();
 
+    if (result == InstallResult::Ok && !titleId.empty()) {
+        const std::string appDir = std::string("ux0:app/") + titleId;
+        logPathState("Post-promote app directory", appDir);
+        logPathState("Post-promote param.sfo", appDir + "/sce_sys/param.sfo");
+        logPathState("Post-promote icon0.png", appDir + "/sce_sys/icon0.png");
+        logLine(std::string("Expected LiveArea/app path: ") + appDir);
+    }
+
     if (onProgress) {
         InstallProgress p;
         p.stage = result == InstallResult::Ok ? InstallProgress::Cleaning : InstallProgress::Error;
@@ -304,8 +439,14 @@ InstallResult HomebrewInstaller::installVpk(
     if (result == InstallResult::Ok && deleteTempOnSuccess) {
         if (!removeTree(tmpDir)) {
             sceClibPrintf("[HomebrewInstaller] warning: cleanup failed for %s\n", tmpDir.c_str());
+            logLine(std::string("WARNING: cleanup failed for ") + tmpDir);
+        } else {
+            logLine("Temporary directory cleanup: success");
         }
     }
+
+    logLine(std::string("installVpk END result=") + toString(result) +
+            " promote=0x" + std::to_string(static_cast<unsigned int>(lastPromoteResult_)));
 
     if (result == InstallResult::Ok && onProgress) {
         InstallProgress p;
