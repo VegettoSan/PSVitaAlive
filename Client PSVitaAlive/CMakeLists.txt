@@ -50,6 +50,10 @@ target_compile_options(${PROJECT_NAME} PRIVATE
 
 target_link_libraries(${PROJECT_NAME}
   vita2d
+  vita2d
+  png
+  jpeg
+  zip
   SceDisplay_stub
   SceCtrl_stub
   SceTouch_stub
@@ -66,7 +70,6 @@ target_link_libraries(${PROJECT_NAME}
   ScePromoterUtil_stub
   SceGxm_stub
   ScePgf_stub
-  zip
   zstd
   lzma
   bz2
