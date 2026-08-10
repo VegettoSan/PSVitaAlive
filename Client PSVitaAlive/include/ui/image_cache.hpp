@@ -16,8 +16,6 @@ public:
     bool init();
     void shutdown();
 
-    // Queues a remote image for background download. The UI thread never
-    // performs network I/O here. Returns the deterministic local cache path.
     std::string request(const std::string& url, const std::string& namespaceName);
 
     bool isReady(const std::string& localPath) const;
@@ -27,6 +25,7 @@ private:
     struct Job {
         std::string url;
         std::string path;
+        int attempt = 0;
     };
 
     SceUID mutex_ = -1;
