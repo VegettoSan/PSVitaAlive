@@ -3,7 +3,9 @@
 #include <psp2/kernel/clib.h>
 #include <psp2/kernel/threadmgr.h>
 #include <psp2/io/fcntl.h>
+#include <psp2/io/stat.h>
 
+#include <cstdint>
 #include <cstring>
 
 namespace psvitaalive::diagnostics {
@@ -30,7 +32,6 @@ void init() {
 void log(const std::string& message) {
     if (!g_initialized) ensureDirectories();
     if (g_mutex >= 0) sceKernelLockMutex(g_mutex, 1, nullptr);
-
     SceUID fd = sceIoOpen(LOG_FILE, SCE_O_WRONLY | SCE_O_CREAT | SCE_O_APPEND, 0666);
     if (fd >= 0) {
         char line[1600];
@@ -39,17 +40,13 @@ void log(const std::string& message) {
         sceIoWrite(fd, line, std::strlen(line));
         sceIoClose(fd);
     }
-
     if (g_mutex >= 0) sceKernelUnlockMutex(g_mutex, 1);
 }
 
 void shutdown() {
     if (!g_initialized) return;
     log("[System] shared diagnostic logger shutdown");
-    if (g_mutex >= 0) {
-        sceKernelDeleteMutex(g_mutex);
-        g_mutex = -1;
-    }
+    if (g_mutex >= 0) { sceKernelDeleteMutex(g_mutex); g_mutex = -1; }
     g_initialized = false;
 }
 
