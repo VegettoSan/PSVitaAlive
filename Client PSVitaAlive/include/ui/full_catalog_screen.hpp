@@ -72,6 +72,10 @@ private:
     std::string installProgressFile_;
     std::string installProgressMessage_;
 
+    // Preserves the normal detail position while the temporary link-navigation
+    // viewport is active.
+    int detailScrollBeforeLinkMode_ = 0;
+
     std::unordered_map<std::string, vita2d_texture*> textures_;
     std::vector<std::string> textureOrder_;
 
@@ -100,6 +104,9 @@ private:
     void clampCatalogFocus();
     void clampCatalogScroll();
     void clampDetailScroll();
+    int detailLinkScrollLimit(const CatalogItem& item, int width, int height) const;
+    void enterLinkNavigation();
+    void exitLinkNavigation();
     int totalRows() const;
     int visibleRowsFull() const;
     int visibleRowsSplit() const;
