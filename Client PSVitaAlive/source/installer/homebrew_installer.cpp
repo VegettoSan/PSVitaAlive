@@ -256,15 +256,44 @@ InstallResult HomebrewInstaller::promoteExtractedDir(const std::string& dir) {
         return InstallResult::PromoteFailed;
     }
 
-    const int promoteResult = scePromoterUtilityPromotePkg(dir.c_str(), 0);
-    logResult("scePromoterUtilityPromotePkg", promoteResult);
+    // The previous implementation used sync=0 and immediately called Exit and
+    // unloaded the promoter modules. That starts an asynchronous operation and
+    // can leave the installer reporting success while ux0:app/<TITLE_ID> does
+    // not exist yet (or ever completes). VitaDB/NeoVitaDB explicitly waits for
+    // promoter completion. Use the synchronous mode here so the call only
+    // returns after the package has been promoted and the LiveArea entry has
+    // been created.
+    const int promoteResult = scePromoterUtilityPromotePkg(dir.c_str(), 1);
+    logResult("scePromoterUtilityPromotePkg(sync=1)", promoteResult);
     lastPromoteResult_ = promoteResult;
+
+    int operationResult = 0;
+    const int getResultCall = scePromoterUtilityGetResult(&operationResult);
+    logResult("scePromoterUtilityGetResult", getResultCall);
+    if (getResultCall < 0) {
+        lastPromoteResult_ = getResultCall;
+    } else if (operationResult != 0) {
+        lastPromoteResult_ = operationResult;
+    }
 
     const int exitResult = scePromoterUtilityExit();
     logResult("scePromoterUtilityExit", exitResult);
+
     if (promoteResult < 0) {
         char buf[80];
         sceClibSnprintf(buf, sizeof(buf), "scePromoterUtilityPromotePkg: 0x%08X", promoteResult);
+        setError(buf);
+        return InstallResult::PromoteFailed;
+    }
+    if (getResultCall < 0) {
+        char buf[80];
+        sceClibSnprintf(buf, sizeof(buf), "scePromoterUtilityGetResult: 0x%08X", getResultCall);
+        setError(buf);
+        return InstallResult::PromoteFailed;
+    }
+    if (operationResult != 0) {
+        char buf[80];
+        sceClibSnprintf(buf, sizeof(buf), "promoter operation failed: 0x%08X", operationResult);
         setError(buf);
         return InstallResult::PromoteFailed;
     }
@@ -275,7 +304,7 @@ InstallResult HomebrewInstaller::promoteExtractedDir(const std::string& dir) {
         return InstallResult::PromoteFailed;
     }
 
-    logLine("promoteExtractedDir: promoter reported success");
+    logLine("promoteExtractedDir: promoter completed successfully");
     return InstallResult::Ok;
 }
 
@@ -418,15 +447,28 @@ InstallResult HomebrewInstaller::installVpk(
         return InstallResult::ModuleFailed;
     }
 
-    const InstallResult result = promoteExtractedDir(tmpDir);
+    InstallResult result = promoteExtractedDir(tmpDir);
     unloadPromoterModules();
 
     if (result == InstallResult::Ok && !titleId.empty()) {
         const std::string appDir = std::string("ux0:app/") + titleId;
+        const std::string paramSfo = appDir + "/sce_sys/param.sfo";
+        const std::string icon0 = appDir + "/sce_sys/icon0.png";
+
         logPathState("Post-promote app directory", appDir);
-        logPathState("Post-promote param.sfo", appDir + "/sce_sys/param.sfo");
-        logPathState("Post-promote icon0.png", appDir + "/sce_sys/icon0.png");
+        logPathState("Post-promote param.sfo", paramSfo);
+        logPathState("Post-promote icon0.png", icon0);
         logLine(std::string("Expected LiveArea/app path: ") + appDir);
+
+        // Promoter returning 0 only means the API call was accepted. Treat the
+        // installation as successful only when the resulting app tree exists.
+        if (!st.exists(appDir) || !st.exists(paramSfo) || !st.exists(icon0)) {
+            setError("promoter reported success but the installed app tree is missing");
+            logLine("ERROR: promoter success verification failed");
+            result = InstallResult::PromoteFailed;
+        } else {
+            logLine("Post-promote verification: app tree exists");
+        }
     }
 
     if (onProgress) {
