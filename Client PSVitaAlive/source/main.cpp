@@ -15,9 +15,7 @@
 #include "installer/install_controller.hpp"
 #include "ui/full_catalog_screen.hpp"
 #include "ui/image_cache.hpp"
-#include "catalog/catalog_parser.hpp"
 #include "catalog/catalog_manager.hpp"
-#include "network/http_client.hpp"
 
 namespace {
 constexpr const char* DIAG_DIR="ux0:data/psvitaalive/logs";
@@ -38,13 +36,20 @@ bool promptZipDestination(std::string&dst){static bool loaded=false;if(!loaded){
 int main(){
  diagnosticLog("============================================================");diagnosticLog("PSVitaAlive session BEGIN");diagnosticLog("TitleID=PSVA00001");
  psvitaalive::StorageManager storage;storage.initProjectDirs();
- constexpr const char* HOME_URL="https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/catalog.json";const std::string homePath=std::string(psvitaalive::StorageManager::CACHE_DIR)+"/catalog.json";storage.createDirectories(psvitaalive::StorageManager::CACHE_DIR);
- std::vector<psvitaalive::ui::CatalogItem> homeItems;psvitaalive::HttpClient homeHttp;if(homeHttp.init()==psvitaalive::HttpResult::Ok){psvitaalive::HttpResult r=homeHttp.downloadToFile(HOME_URL,homePath);if(r==psvitaalive::HttpResult::Ok)psvitaalive::CatalogParser::parseFile(homePath,homeItems);homeHttp.shutdown();}
- psvitaalive::InstallController installer;psvitaalive::CatalogManager catalogs;psvitaalive::ui::ImageCache images;catalogs.init();images.init();
- psvitaalive::ui::FullCatalogScreen screen;screen.setCatalogItems(homeItems);screen.setActiveCatalog(psvitaalive::ui::CatalogType::Homebrew);screen.setImageCache(&images);
- screen.setCatalogChangeCallback([&](psvitaalive::ui::CatalogType next){if(next==psvitaalive::ui::CatalogType::Homebrew){screen.setCatalogItems(homeItems);screen.setActiveCatalog(next);return true;}screen.setActiveCatalog(next);return catalogs.request(next);});
+ psvitaalive::InstallController installer;psvitaalive::CatalogManager catalogs;psvitaalive::ui::ImageCache images;
+ catalogs.init();images.init();
+ psvitaalive::ui::FullCatalogScreen screen;screen.setImageCache(&images);
+ screen.setCatalogChangeCallback([&](psvitaalive::ui::CatalogType next){
+   screen.setActiveCatalog(next);
+   return catalogs.request(next);
+ });
  screen.setInstallCallbacks([&installer](const psvitaalive::ui::CatalogItem&item){diagnosticLog("INSTALL REQUEST name="+item.name+" title_id="+item.titleId+" url="+item.downloadUrl);if(item.downloadUrl.empty()||item.downloadFileName.empty())return false;std::string zipDestination;if(item.downloadFileName.size()>=4&&item.downloadFileName.substr(item.downloadFileName.size()-4)==".zip"){zipDestination="ux0:data/";if(!promptZipDestination(zipDestination))return false;}return installer.requestInstall(item.downloadUrl,item.downloadFileName,zipDestination);},[&installer](){return installStatusText(installer.status());});
  if(!screen.init()){installer.shutdown();catalogs.shutdown();images.shutdown();sceKernelExitProcess(1);return 1;}
+ // Homebrew is now handled by the same persistent cache/validator path as the
+ // three game catalogs. The first request can populate an empty cache; later
+ // requests reuse the local JSON and only refresh it when remote validators change.
+ screen.setActiveCatalog(psvitaalive::ui::CatalogType::Homebrew);
+ catalogs.request(psvitaalive::ui::CatalogType::Homebrew);
  psvitaalive::InstallStatus previous;previous.state=psvitaalive::InstallStatus::State::Idle;
  while(screen.updateAndDraw()){
    psvitaalive::CatalogManager::Status cs=catalogs.status();
