@@ -1,8 +1,8 @@
 #pragma once
 
+#include <cstdint>
 #include <string>
 #include <vector>
-#include <cstdint>
 
 namespace psvitaalive {
 namespace ui {
@@ -29,6 +29,13 @@ enum class UiPanel {
     Detail
 };
 
+struct CatalogLink {
+    std::string type;
+    std::string name;
+    std::string url;
+    bool recommended = false;
+};
+
 struct CatalogItem {
     std::string id;
     std::string titleId;
@@ -50,12 +57,17 @@ struct CatalogItem {
 
     std::string changelog;
 
-    // Phase 10: the renderer keeps only normalized download information.
-    // Real catalog data will populate these fields later.
+    // Visual assets. These may be remote URLs and are loaded asynchronously.
+    std::string icon;
+    std::string cover;
+    std::vector<std::string> screenshots;
+
+    // Normalized primary download used by InstallController.
     std::string downloadUrl;
     std::string downloadFileName;
 
-    std::vector<std::string> screenshots;
+    // Full link information for the detail page.
+    std::vector<CatalogLink> linkDetails;
     std::vector<std::string> links;
 };
 
@@ -66,14 +78,9 @@ struct UiState {
     UiPanel activePanel = UiPanel::Catalog;
 
     int focusIndex = 0;
-
-    // Scroll del catálogo.
     int catalogScrollRow = 0;
-
-    // Scroll vertical independiente del detalle.
     int detailScroll = 0;
 
-    // Estado de la animación de apertura/cierre.
     uint64_t transitionStart = 0;
 
     bool requestExit = false;
@@ -81,13 +88,10 @@ struct UiState {
 
 constexpr int SCREEN_W = 960;
 constexpr int SCREEN_H = 544;
-
 constexpr int GRID_COLS = 3;
-
 constexpr int HEADER_H = 52;
 constexpr int TABS_H = 36;
 constexpr int FOOTER_H = 40;
-
 constexpr int GRID_PAD = 12;
 constexpr int CARD_GAP = 10;
 
