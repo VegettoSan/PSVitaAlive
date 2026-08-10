@@ -38,7 +38,6 @@ public:
     bool request(ui::CatalogType catalog);
     Status status() const;
 
-    // Called from the UI/main thread. Moves the completed catalog into outItems.
     bool takeReady(std::vector<ui::CatalogItem>& outItems, ui::CatalogType& catalog);
 
 private:
@@ -60,6 +59,7 @@ private:
     const char* fileName(ui::CatalogType catalog) const;
     const char* label(ui::CatalogType catalog) const;
     std::string cachePath(ui::CatalogType catalog) const;
+    std::string metadataPath(ui::CatalogType catalog) const;
     void setStatus(State state, ui::CatalogType catalog, const char* message, const char* error = nullptr);
 };
 
