@@ -32,6 +32,7 @@ private:
     SceUID workerThread_ = -1;
     volatile bool stopping_ = false;
     std::vector<Job> queue_;
+    std::vector<std::string> pending_;
     std::vector<std::string> ready_;
     std::vector<std::string> failed_;
 
