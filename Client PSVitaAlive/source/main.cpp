@@ -3,9 +3,9 @@
 #include <psp2/kernel/clib.h>
 #include <psp2/kernel/threadmgr.h>
 #include <psp2/sysmodule.h>
+#include <psp2/io/fcntl.h>
 #include <psp2/message_dialog.h>
 #include <psp2/ime_dialog.h>
-#include <psp2/io/fcntl.h>
 #include <algorithm>
 #include <cstring>
 #include <string>
