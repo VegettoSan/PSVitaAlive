@@ -21,6 +21,10 @@ public:
     bool isReady(const std::string& localPath) const;
     bool isFailed(const std::string& localPath) const;
 
+    // Discard queued requests that have not started yet. The current worker job
+    // is allowed to finish, so no worker/file race is introduced.
+    void cancelQueuedRequests();
+
 private:
     struct Job {
         std::string url;
