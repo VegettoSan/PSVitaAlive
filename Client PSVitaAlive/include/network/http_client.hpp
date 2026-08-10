@@ -18,14 +18,14 @@ enum class HttpResult {
 };
 
 struct HttpProgress {
-    uint64_t downloaded = 0; // bytes written in this session (not including resume offset)
-    uint64_t total = 0;      // full content length if known (may include offset context)
-    uint64_t absoluteDownloaded = 0; // offset + session downloaded
-    uint64_t bytesPerSecond = 0;      // instantaneous/rolling estimate from the Vita transfer loop
+    uint64_t downloaded = 0;
+    uint64_t total = 0;
+    uint64_t absoluteDownloaded = 0;
+    uint64_t bytesPerSecond = 0;
 };
 
 using HttpProgressFn = std::function<void(const HttpProgress&)>;
-using HttpCancelFn = std::function<bool()>; // return true to cancel
+using HttpCancelFn = std::function<bool()>;
 
 class HttpClient {
 public:
@@ -39,16 +39,21 @@ public:
     void shutdown();
     bool isInitialized() const { return initialized_; }
 
-    /**
-     * Download URL to file.
-     * @param resumeOffset if > 0, sends Range: bytes=offset- and appends to file
-     */
     HttpResult downloadToFile(
         const std::string& url,
         const std::string& destinationPath,
         uint64_t resumeOffset = 0,
         HttpProgressFn onProgress = nullptr,
         HttpCancelFn shouldCancel = nullptr
+    );
+
+    // Performs a lightweight HEAD request and returns the validators exposed by
+    // the remote server. These are used by CatalogManager to avoid downloading
+    // an unchanged catalog body.
+    HttpResult fetchRemoteValidators(
+        const std::string& url,
+        std::string& etag,
+        std::string& lastModified
     );
 
     int lastStatusCode() const { return lastStatus_; }
