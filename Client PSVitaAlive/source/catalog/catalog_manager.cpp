@@ -5,9 +5,11 @@
 #include "storage/storage_manager.hpp"
 
 #include <psp2/kernel/clib.h>
+#include <psp2/io/fcntl.h>
 #include <psp2/io/stat.h>
 
 #include <cstring>
+#include <string>
 #include <utility>
 
 namespace psvitaalive {
@@ -17,6 +19,68 @@ constexpr const char* RAW_BASE = "https://raw.githubusercontent.com/VegettoSan/P
 constexpr const char* CACHE_DIR = "ux0:data/psvitaalive/cache/catalog";
 constexpr int WORKER_PRIORITY = 0x10000100;
 constexpr int WORKER_STACK = 64 * 1024;
+
+bool fileExists(const std::string& path) {
+    SceIoStat stat = {};
+    return sceIoGetstat(path.c_str(), &stat) >= 0 && stat.st_size > 0;
+}
+
+bool readTextFile(const std::string& path, std::string& out) {
+    out.clear();
+    SceIoStat stat = {};
+    if (sceIoGetstat(path.c_str(), &stat) < 0 || stat.st_size <= 0 || stat.st_size > 4096) return false;
+    SceUID fd = sceIoOpen(path.c_str(), SCE_O_RDONLY, 0);
+    if (fd < 0) return false;
+    out.resize(static_cast<size_t>(stat.st_size));
+    const int read = sceIoRead(fd, &out[0], static_cast<unsigned int>(out.size()));
+    sceIoClose(fd);
+    if (read <= 0) {
+        out.clear();
+        return false;
+    }
+    out.resize(static_cast<size_t>(read));
+    return true;
+}
+
+bool writeTextFile(const std::string& path, const std::string& text) {
+    SceUID fd = sceIoOpen(path.c_str(), SCE_O_WRONLY | SCE_O_CREAT | SCE_O_TRUNC, 0666);
+    if (fd < 0) return false;
+    size_t written = 0;
+    while (written < text.size()) {
+        const int result = sceIoWrite(fd, text.data() + written, static_cast<unsigned int>(text.size() - written));
+        if (result <= 0) {
+            sceIoClose(fd);
+            return false;
+        }
+        written += static_cast<size_t>(result);
+    }
+    sceIoClose(fd);
+    return true;
+}
+
+void parseValidators(const std::string& text, std::string& etag, std::string& modified) {
+    etag.clear();
+    modified.clear();
+    const size_t e = text.find("etag=");
+    if (e != std::string::npos) {
+        const size_t end = text.find('\n', e);
+        etag = text.substr(e + 5, end == std::string::npos ? std::string::npos : end - (e + 5));
+    }
+    const size_t m = text.find("last_modified=");
+    if (m != std::string::npos) {
+        const size_t end = text.find('\n', m);
+        modified = text.substr(m + 14, end == std::string::npos ? std::string::npos : end - (m + 14));
+    }
+}
+
+bool validatorsMatch(const std::string& oldEtag, const std::string& oldModified, const std::string& newEtag, const std::string& newModified) {
+    const bool remoteHas = !newEtag.empty() || !newModified.empty();
+    const bool storedHas = !oldEtag.empty() || !oldModified.empty();
+    if (!remoteHas || !storedHas) return false;
+    if (!newEtag.empty() && oldEtag != newEtag) return false;
+    if (!newModified.empty() && oldModified != newModified) return false;
+    return true;
+}
 }
 
 CatalogManager::CatalogManager() = default;
@@ -24,32 +88,20 @@ CatalogManager::~CatalogManager() { shutdown(); }
 
 bool CatalogManager::init() {
     if (workerThread_ >= 0) return true;
-
     StorageManager storage;
     if (!storage.createDirectories(CACHE_DIR)) {
         sceClibPrintf("[CatalogManager] cannot create cache directory\n");
         return false;
     }
-
     mutex_ = sceKernelCreateMutex("PSVitaAliveCatalog", 0, 0, nullptr);
     if (mutex_ < 0) return false;
-
     stopping_ = false;
-    workerThread_ = sceKernelCreateThread(
-        "PSVitaAliveCatalogWorker",
-        &CatalogManager::workerEntry,
-        WORKER_PRIORITY,
-        WORKER_STACK,
-        0,
-        0,
-        nullptr
-    );
+    workerThread_ = sceKernelCreateThread("PSVitaAliveCatalogWorker", &CatalogManager::workerEntry, WORKER_PRIORITY, WORKER_STACK, 0, 0, nullptr);
     if (workerThread_ < 0) {
         sceKernelDeleteMutex(mutex_);
         mutex_ = -1;
         return false;
     }
-
     CatalogManager* self = this;
     const int result = sceKernelStartThread(workerThread_, sizeof(self), &self);
     if (result < 0) {
@@ -59,7 +111,6 @@ bool CatalogManager::init() {
         mutex_ = -1;
         return false;
     }
-
     return true;
 }
 
@@ -85,13 +136,9 @@ const char* CatalogManager::fileName(ui::CatalogType catalog) const {
     }
 }
 
-const char* CatalogManager::label(ui::CatalogType catalog) const {
-    return ui::catalogName(catalog);
-}
-
-std::string CatalogManager::cachePath(ui::CatalogType catalog) const {
-    return std::string(CACHE_DIR) + "/" + fileName(catalog);
-}
+const char* CatalogManager::label(ui::CatalogType catalog) const { return ui::catalogName(catalog); }
+std::string CatalogManager::cachePath(ui::CatalogType catalog) const { return std::string(CACHE_DIR) + "/" + fileName(catalog); }
+std::string CatalogManager::metadataPath(ui::CatalogType catalog) const { return cachePath(catalog) + ".meta"; }
 
 void CatalogManager::setStatus(State state, ui::CatalogType catalog, const char* message, const char* error) {
     sceKernelLockMutex(mutex_, 1, nullptr);
@@ -104,8 +151,7 @@ void CatalogManager::setStatus(State state, ui::CatalogType catalog, const char*
 }
 
 bool CatalogManager::request(ui::CatalogType catalog) {
-    if (catalog == ui::CatalogType::Homebrew || mutex_ < 0) return false;
-
+    if (mutex_ < 0) return false;
     sceKernelLockMutex(mutex_, 1, nullptr);
     if (status_.state == State::Loading) {
         sceKernelUnlockMutex(mutex_, 1);
@@ -119,7 +165,7 @@ bool CatalogManager::request(ui::CatalogType catalog) {
     status_.current = 0;
     status_.total = 0;
     status_.label = label(catalog);
-    status_.message = "Connecting to catalog...";
+    status_.message = "Checking catalog cache...";
     status_.error.clear();
     sceKernelUnlockMutex(mutex_, 1);
     return true;
@@ -150,15 +196,43 @@ bool CatalogManager::takeReady(std::vector<ui::CatalogItem>& outItems, ui::Catal
 
 bool CatalogManager::loadCatalog(ui::CatalogType catalog, std::vector<ui::CatalogItem>& outItems) {
     const std::string path = cachePath(catalog);
+    const std::string meta = metadataPath(catalog);
+    const std::string temp = path + ".new";
     const std::string url = std::string(RAW_BASE) + fileName(catalog);
+    const bool haveCache = fileExists(path);
 
     HttpClient http;
     if (http.init() != HttpResult::Ok) return false;
 
+    if (haveCache) {
+        std::vector<ui::CatalogItem> cached;
+        if (CatalogParser::parseFile(path, cached) && !cached.empty()) {
+            std::string storedText, storedEtag, storedModified;
+            parseValidators(readTextFile(meta, storedText) ? storedText : std::string(), storedEtag, storedModified);
+
+            std::string remoteEtag, remoteModified;
+            setStatus(State::Loading, catalog, "Checking remote catalog...");
+            const HttpResult validatorResult = http.fetchRemoteValidators(url, remoteEtag, remoteModified);
+            if (validatorResult == HttpResult::Ok && validatorsMatch(storedEtag, storedModified, remoteEtag, remoteModified)) {
+                outItems = std::move(cached);
+                setStatus(State::Ready, catalog, "Using cached catalog");
+                http.shutdown();
+                return true;
+            }
+
+            if (validatorResult != HttpResult::Ok && !storedEtag.empty()) {
+                outItems = std::move(cached);
+                setStatus(State::Ready, catalog, "Using cached catalog (offline)");
+                http.shutdown();
+                return true;
+            }
+        }
+    }
+
     setStatus(State::Loading, catalog, "Downloading catalog...");
     const HttpResult result = http.downloadToFile(
         url,
-        path,
+        temp,
         0,
         [this, catalog](const HttpProgress& progress) {
             sceKernelLockMutex(mutex_, 1, nullptr);
@@ -170,20 +244,27 @@ bool CatalogManager::loadCatalog(ui::CatalogType catalog, std::vector<ui::Catalo
         }
     );
 
-    if (result == HttpResult::Ok && CatalogParser::parseFile(path, outItems)) {
-        http.shutdown();
-        return true;
+    if (result == HttpResult::Ok) {
+        std::vector<ui::CatalogItem> fresh;
+        if (CatalogParser::parseFile(temp, fresh) && !fresh.empty()) {
+            sceIoRemove(path.c_str());
+            if (sceIoRename(temp.c_str(), path.c_str()) >= 0) {
+                std::string etag, modified;
+                http.fetchRemoteValidators(url, etag, modified);
+                std::string metadata = "etag=" + etag + "\nlast_modified=" + modified + "\n";
+                writeTextFile(meta, metadata);
+                outItems = std::move(fresh);
+                http.shutdown();
+                return true;
+            }
+        }
     }
 
-    // Network failure must not destroy a valid cached catalog. This follows the
-    // same loading/error separation used by the web catalog loader.
-    SceIoStat stat = {};
-    if (sceIoGetstat(path.c_str(), &stat) >= 0 && stat.st_size > 0) {
-        outItems.clear();
-        if (CatalogParser::parseFile(path, outItems)) {
-            http.shutdown();
-            return true;
-        }
+    sceIoRemove(temp.c_str());
+    // A valid cache always wins over a failed refresh attempt.
+    if (haveCache && CatalogParser::parseFile(path, outItems) && !outItems.empty()) {
+        http.shutdown();
+        return true;
     }
 
     http.shutdown();
@@ -201,7 +282,6 @@ int CatalogManager::workerMain() {
     while (!stopping_) {
         ui::CatalogType catalog = ui::CatalogType::Homebrew;
         bool haveRequest = false;
-
         sceKernelLockMutex(mutex_, 1, nullptr);
         if (requestPending_) {
             catalog = requestedCatalog_;
@@ -209,7 +289,6 @@ int CatalogManager::workerMain() {
             haveRequest = true;
         }
         sceKernelUnlockMutex(mutex_, 1);
-
         if (!haveRequest) {
             sceKernelDelayThread(50 * 1000);
             continue;
