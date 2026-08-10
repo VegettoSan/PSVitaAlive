@@ -66,6 +66,7 @@ private:
     std::string installProgressMessage_;
 
     std::unordered_map<std::string, vita2d_texture*> textures_;
+    std::vector<std::string> textureOrder_;
 
     void handleInput();
     void draw();
@@ -82,6 +83,8 @@ private:
     void drawLoadingOverlay();
     void drawImage(const std::string& url, const std::string& namespaceName, int x, int y, int width, int height);
     void releaseTextures();
+    void touchTexture(const std::string& path);
+    void evictTextureIfNeeded(const std::string& namespaceName);
 
     void startOpeningDetail();
     void startClosingDetail();
@@ -99,7 +102,7 @@ private:
     void moveCatalogFocus(int direction);
     void moveDetailScroll(int direction);
     void wrapText(const std::string& text, int maxChars, std::vector<std::string>& lines) const;
-    void drawTextLines(const std::vector<std::string>& lines, int x, int y, int lineHeight, unsigned color, float scale, int startLine, int maxLines);
+    void drawTextLines(const std::vector<std::string>& lines, int x, int y, int lineHeight, unsigned color, float scale, int startLine, int maxLines, int clipTop, int clipBottom);
     unsigned colorForStatus(const std::string& status) const;
 };
 
