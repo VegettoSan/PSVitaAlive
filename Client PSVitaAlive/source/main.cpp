@@ -1,4 +1,4 @@
-/* PSVitaAlive - asynchronous download/install pipeline. */
+/* PSVitaAlive - native client entry point. */
 
 #include <psp2/kernel/processmgr.h>
 #include <psp2/kernel/clib.h>
@@ -7,320 +7,108 @@
 #include <psp2/message_dialog.h>
 #include <psp2/ime_dialog.h>
 #include <psp2/io/fcntl.h>
-#include <psp2/io/stat.h>
 
 #include <algorithm>
 #include <cstring>
 #include <string>
 #include <vector>
-#include <utility>
 
 #include "storage/storage_manager.hpp"
 #include "installer/install_controller.hpp"
 #include "ui/full_catalog_screen.hpp"
+#include "ui/image_cache.hpp"
 #include "catalog/catalog_parser.hpp"
+#include "catalog/catalog_manager.hpp"
 #include "network/http_client.hpp"
 
 namespace {
+constexpr const char* DIAG_DIR="ux0:data/psvitaalive/logs";
+constexpr const char* DIAG_LOG="ux0:data/psvitaalive/logs/session.log";
+bool gProgressDialogOpen=false;
 
-bool gProgressDialogOpen = false;
+void ensureDiagnosticLog(){sceIoMkdir("ux0:data/psvitaalive",0777);sceIoMkdir(DIAG_DIR,0777);}
+void diagnosticLog(const std::string& msg){ensureDiagnosticLog();SceUID fd=sceIoOpen(DIAG_LOG,SCE_O_WRONLY|SCE_O_CREAT|SCE_O_APPEND,0666);if(fd<0)return;char line[1400];uint64_t ms=sceKernelGetProcessTimeWide()/1000ULL;sceClibSnprintf(line,sizeof(line),"[%llu ms] %s\n",(unsigned long long)ms,msg.c_str());sceIoWrite(fd,line,std::strlen(line));sceIoClose(fd);}
 
-constexpr const char* DIAG_DIR = "ux0:data/psvitaalive/logs";
-constexpr const char* DIAG_LOG = "ux0:data/psvitaalive/logs/session.log";
+double mib(uint64_t v){return (double)v/(1024.0*1024.0);}
+const char* stateName(psvitaalive::InstallStatus::State s){using S=psvitaalive::InstallStatus::State;switch(s){case S::Downloading:return "Downloading";case S::Installing:return "Installing";case S::Completed:return "Completed";case S::Failed:return "Failed";default:return "Idle";}}
+std::string installStatusText(const psvitaalive::InstallStatus& s){if(s.state==psvitaalive::InstallStatus::State::Idle)return {};char b[320];uint64_t p=s.total?std::min<uint64_t>(100,(s.current*100)/s.total):0;sceClibSnprintf(b,sizeof(b),"%s | %s | %llu%% | %.2f MiB/s",stateName(s.state),s.fileName.empty()?"file":s.fileName.c_str(),(unsigned long long)p,mib(s.bytesPerSecond));return b;}
+void closeProgressDialog(){if(!gProgressDialogOpen)return;if(sceMsgDialogGetStatus()!=SCE_COMMON_DIALOG_STATUS_NONE){sceMsgDialogClose();sceMsgDialogTerm();}gProgressDialogOpen=false;}
+void updateProgressDialog(const psvitaalive::InstallStatus& s){using S=psvitaalive::InstallStatus::State;bool show=s.state==S::Downloading||s.state==S::Installing||s.state==S::Completed||s.state==S::Failed;if(!show){closeProgressDialog();return;}static char msg[512];sceClibSnprintf(msg,sizeof(msg),"%s\n%s\nSpeed: %.2f MiB/s",stateName(s.state),s.fileName.empty()?"Preparing...":s.fileName.c_str(),mib(s.bytesPerSecond));const SceChar8* vm=(const SceChar8*)msg;if(!gProgressDialogOpen){SceMsgDialogProgressBarParam bar={};bar.barType=SCE_MSG_DIALOG_PROGRESSBAR_TYPE_PERCENTAGE;bar.sysMsgParam.sysMsgType=SCE_MSG_DIALOG_SYSMSG_TYPE_WAIT_SMALL;bar.msg=vm;SceMsgDialogParam p={};p.mode=SCE_MSG_DIALOG_MODE_PROGRESS_BAR;p.progBarParam=&bar;p.flag=SCE_MSG_DIALOG_ENV_FLAG_DEFAULT;p.commonParam.magic=SCE_COMMON_DIALOG_MAGIC_NUMBER;if(sceMsgDialogInit(&p)<0)return;gProgressDialogOpen=true;}uint32_t pct=s.total?(uint32_t)std::min<uint64_t>(100,(s.current*100)/s.total):0;sceMsgDialogProgressBarSetValue(SCE_MSG_DIALOG_PROGRESSBAR_TARGET_BAR_DEFAULT,pct);sceMsgDialogProgressBarSetMsg(SCE_MSG_DIALOG_PROGRESSBAR_TARGET_BAR_DEFAULT,vm);}
 
-void ensureDiagnosticLog() {
-    sceIoMkdir("ux0:data/psvitaalive", 0777);
-    sceIoMkdir(DIAG_DIR, 0777);
+bool asciiToWide(const std::string& text,SceWChar16* out,size_t cap){if(!out||!cap)return false;size_t i=0;for(;i+1<cap&&i<text.size();++i){unsigned char c=(unsigned char)text[i];out[i]=(SceWChar16)(c<128?c:'?');}out[i]=0;return true;}
+std::string wideToAscii(const SceWChar16* t){if(!t)return {};std::string r;for(size_t i=0;t[i]&&i<2048;++i)r.push_back(t[i]<=0x7F?(char)t[i]:'?');return r;}
+bool promptZipDestination(std::string& dst){static bool loaded=false;if(!loaded){int r=sceSysmoduleLoadModule(SCE_SYSMODULE_IME);if(r<0)return false;loaded=true;}SceWChar16 input[256]={},title[128]={};asciiToWide(dst.empty()?"ux0:data/":dst,input,256);asciiToWide("ZIP extraction path",title,128);SceImeDialogParam p={};p.type=SCE_IME_TYPE_BASIC_LATIN;p.option=SCE_IME_OPTION_NO_AUTO_CAPITALIZATION;p.dialogMode=SCE_IME_DIALOG_DIALOG_MODE_WITH_CANCEL;p.textBoxMode=SCE_IME_DIALOG_TEXTBOX_MODE_DEFAULT;p.title=title;p.maxTextLength=255;p.initialText=input;p.inputTextBuffer=input;p.supportedLanguages=SCE_IME_LANGUAGE_ENGLISH|SCE_IME_LANGUAGE_SPANISH;p.enterLabel=SCE_IME_ENTER_LABEL_GO;p.commonParam.magic=SCE_COMMON_DIALOG_MAGIC_NUMBER;if(sceImeDialogInit(&p)<0)return false;while(sceImeDialogGetStatus()==SCE_COMMON_DIALOG_STATUS_RUNNING)sceKernelDelayThread(10*1000);SceImeDialogResult r={};sceImeDialogGetResult(&r);bool ok=r.button==SCE_IME_DIALOG_BUTTON_ENTER;if(ok){dst=wideToAscii(input);for(char&c:dst)if(c=='\\')c='/';while(dst.size()>1&&dst.back()=='/')dst.pop_back();}sceImeDialogTerm();return ok&&!dst.empty();}
 }
 
-void diagnosticLog(const std::string& message) {
-    ensureDiagnosticLog();
-    SceUID fd = sceIoOpen(DIAG_LOG, SCE_O_WRONLY | SCE_O_CREAT | SCE_O_APPEND, 0666);
-    if (fd < 0) {
-        sceClibPrintf("[Diagnostic] log open failed: 0x%08X\n", fd);
-        return;
-    }
-    char line[1200];
-    const uint64_t ms = sceKernelGetProcessTimeWide() / 1000ULL;
-    sceClibSnprintf(line, sizeof(line), "[%llu ms] %s\n", (unsigned long long)ms, message.c_str());
-    sceIoWrite(fd, line, std::strlen(line));
-    sceIoClose(fd);
-}
+int main(){
+    diagnosticLog("============================================================");diagnosticLog("PSVitaAlive session BEGIN");diagnosticLog("TitleID=PSVA00001");
+    psvitaalive::StorageManager storage;storage.initProjectDirs();diagnosticLog("project directories initialized");
 
-const char* stateName(psvitaalive::InstallStatus::State state) {
-    using State = psvitaalive::InstallStatus::State;
-    switch (state) {
-        case State::Downloading: return "Downloading";
-        case State::Installing: return "Installing";
-        case State::Completed: return "Completed";
-        case State::Failed: return "Failed";
-        case State::Idle: default: return "Idle";
-    }
-}
-
-double bytesToMiB(uint64_t value) {
-    return static_cast<double>(value) / (1024.0 * 1024.0);
-}
-
-std::string installStatusText(const psvitaalive::InstallStatus& status) {
-    using State = psvitaalive::InstallStatus::State;
-    if (status.state == State::Idle) return {};
-    char buffer[320];
-    const uint64_t percent = status.total > 0
-        ? std::min<uint64_t>(100, (status.current * 100) / status.total)
-        : 0;
-    sceClibSnprintf(buffer, sizeof(buffer), "%s | %s | %llu%% | %.2f MiB/s",
-        stateName(status.state),
-        status.fileName.empty() ? "file" : status.fileName.c_str(),
-        (unsigned long long)percent,
-        bytesToMiB(status.bytesPerSecond));
-    return buffer;
-}
-
-void closeProgressDialog() {
-    if (!gProgressDialogOpen) return;
-    if (sceMsgDialogGetStatus() != SCE_COMMON_DIALOG_STATUS_NONE) {
-        sceMsgDialogClose();
-        sceMsgDialogTerm();
-    }
-    gProgressDialogOpen = false;
-}
-
-void updateProgressDialog(const psvitaalive::InstallStatus& status) {
-    using State = psvitaalive::InstallStatus::State;
-    const bool shouldShow = status.state == State::Downloading ||
-                            status.state == State::Installing ||
-                            status.state == State::Completed ||
-                            status.state == State::Failed;
-    if (!shouldShow) {
-        closeProgressDialog();
-        return;
-    }
-
-    static char dialogMessage[512];
-    sceClibSnprintf(dialogMessage, sizeof(dialogMessage), "%s\n%s\nSpeed: %.2f MiB/s",
-        stateName(status.state),
-        status.fileName.empty() ? "Preparing..." : status.fileName.c_str(),
-        bytesToMiB(status.bytesPerSecond));
-
-    const SceChar8* vitaDialogMessage = reinterpret_cast<const SceChar8*>(dialogMessage);
-
-    if (!gProgressDialogOpen) {
-        SceMsgDialogProgressBarParam progress = {};
-        progress.barType = SCE_MSG_DIALOG_PROGRESSBAR_TYPE_PERCENTAGE;
-        progress.sysMsgParam.sysMsgType = SCE_MSG_DIALOG_SYSMSG_TYPE_WAIT_SMALL;
-        progress.msg = vitaDialogMessage;
-
-        SceMsgDialogParam param = {};
-        param.mode = SCE_MSG_DIALOG_MODE_PROGRESS_BAR;
-        param.progBarParam = &progress;
-        param.flag = SCE_MSG_DIALOG_ENV_FLAG_DEFAULT;
-        param.commonParam.magic = SCE_COMMON_DIALOG_MAGIC_NUMBER;
-        if (sceMsgDialogInit(&param) < 0) return;
-        gProgressDialogOpen = true;
-    }
-
-    uint32_t percent = 0;
-    if (status.total > 0) {
-        const uint64_t value = (status.current * 100) / status.total;
-        percent = static_cast<uint32_t>(value > 100 ? 100 : value);
-    }
-    sceMsgDialogProgressBarSetValue(SCE_MSG_DIALOG_PROGRESSBAR_TARGET_BAR_DEFAULT, percent);
-    sceMsgDialogProgressBarSetMsg(SCE_MSG_DIALOG_PROGRESSBAR_TARGET_BAR_DEFAULT, vitaDialogMessage);
-}
-
-bool asciiToWide(const std::string& text, SceWChar16* out, size_t capacity) {
-    if (!out || capacity == 0) return false;
-    size_t i = 0;
-    for (; i + 1 < capacity && i < text.size(); ++i) {
-        const unsigned char c = static_cast<unsigned char>(text[i]);
-        out[i] = static_cast<SceWChar16>(c < 128 ? c : '?');
-    }
-    out[i] = 0;
-    return true;
-}
-
-std::string wideToAscii(const SceWChar16* text) {
-    if (!text) return {};
-    std::string result;
-    for (size_t i = 0; text[i] != 0 && i < 2048; ++i) {
-        result.push_back(text[i] <= 0x7F ? static_cast<char>(text[i]) : '?');
-    }
-    return result;
-}
-
-bool promptZipDestination(std::string& destination) {
-    static bool imeLoaded = false;
-    if (!imeLoaded) {
-        const int result = sceSysmoduleLoadModule(SCE_SYSMODULE_IME);
-        if (result < 0) {
-            diagnosticLog("IME load failed result=0x" + std::to_string((unsigned int)result));
-            sceClibPrintf("[PSVitaAlive] failed to load IME: 0x%08X\n", result);
-            return false;
-        }
-        imeLoaded = true;
-    }
-
-    SceWChar16 input[256] = {};
-    SceWChar16 title[128] = {};
-    asciiToWide(destination.empty() ? "ux0:data/" : destination, input, 256);
-    asciiToWide("ZIP extraction path", title, 128);
-
-    SceImeDialogParam param = {};
-    param.type = SCE_IME_TYPE_BASIC_LATIN;
-    param.option = SCE_IME_OPTION_NO_AUTO_CAPITALIZATION;
-    param.dialogMode = SCE_IME_DIALOG_DIALOG_MODE_WITH_CANCEL;
-    param.textBoxMode = SCE_IME_DIALOG_TEXTBOX_MODE_DEFAULT;
-    param.title = title;
-    param.maxTextLength = 255;
-    param.initialText = input;
-    param.inputTextBuffer = input;
-    param.supportedLanguages = SCE_IME_LANGUAGE_ENGLISH | SCE_IME_LANGUAGE_SPANISH;
-    param.enterLabel = SCE_IME_ENTER_LABEL_GO;
-    param.commonParam.magic = SCE_COMMON_DIALOG_MAGIC_NUMBER;
-
-    if (sceImeDialogInit(&param) < 0) return false;
-    while (sceImeDialogGetStatus() == SCE_COMMON_DIALOG_STATUS_RUNNING) {
-        sceKernelDelayThread(10 * 1000);
-    }
-
-    SceImeDialogResult result = {};
-    sceImeDialogGetResult(&result);
-    const bool accepted = result.button == SCE_IME_DIALOG_BUTTON_ENTER;
-    if (accepted) {
-        destination = wideToAscii(input);
-        for (char& c : destination) if (c == '\\') c = '/';
-        while (destination.size() > 1 && destination.back() == '/') destination.pop_back();
-    }
-    sceImeDialogTerm();
-    return accepted && !destination.empty();
-}
-
-} // namespace
-
-int main() {
-    diagnosticLog("============================================================");
-    diagnosticLog("PSVitaAlive session BEGIN");
-    diagnosticLog("TitleID=PSVA00001");
-
-    psvitaalive::StorageManager storage;
-    storage.initProjectDirs();
-    diagnosticLog("project directories initialized");
-
-    constexpr const char* CATALOG_URL = "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/catalog.json";
-    const std::string catalogPath = std::string(psvitaalive::StorageManager::CACHE_DIR) + "/catalog.json";
-    storage.createDirectories(psvitaalive::StorageManager::CACHE_DIR);
-    diagnosticLog(std::string("catalog URL=") + CATALOG_URL);
-    diagnosticLog(std::string("catalog cache=") + catalogPath);
-
-    std::vector<psvitaalive::ui::CatalogItem> catalogItems;
-    psvitaalive::HttpClient catalogHttp;
-    if (catalogHttp.init() == psvitaalive::HttpResult::Ok) {
-        diagnosticLog("catalog HTTP initialized");
-        const psvitaalive::HttpResult result = catalogHttp.downloadToFile(CATALOG_URL, catalogPath);
-        diagnosticLog(std::string("catalog download result=") + psvitaalive::toString(result) +
-                      " status=" + std::to_string(catalogHttp.lastStatusCode()) +
-                      " error=" + catalogHttp.lastError());
-        if (result == psvitaalive::HttpResult::Ok) {
-            if (!psvitaalive::CatalogParser::parseFile(catalogPath, catalogItems)) {
-                diagnosticLog("catalog parse FAILED");
-                sceClibPrintf("[PSVitaAlive] Catalog parsing failed\n");
-            } else {
-                diagnosticLog("catalog parse OK items=" + std::to_string(catalogItems.size()));
-            }
-        } else {
-            sceClibPrintf("[PSVitaAlive] Catalog download failed: %s\n", catalogHttp.lastError().c_str());
-        }
-        catalogHttp.shutdown();
-    } else {
-        diagnosticLog("catalog HTTP initialization FAILED");
-        sceClibPrintf("[PSVitaAlive] Catalog HTTP initialization failed\n");
-    }
+    // Homebrew remains the first catalog and keeps the existing startup path.
+    constexpr const char* HOME_URL="https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/catalog.json";
+    const std::string homePath=std::string(psvitaalive::StorageManager::CACHE_DIR)+"/catalog.json";storage.createDirectories(psvitaalive::StorageManager::CACHE_DIR);
+    std::vector<psvitaalive::ui::CatalogItem> homeItems;psvitaalive::HttpClient homeHttp;
+    if(homeHttp.init()==psvitaalive::HttpResult::Ok){psvitaalive::HttpResult r=homeHttp.downloadToFile(HOME_URL,homePath);diagnosticLog(std::string("homebrew catalog=")+psvitaalive::toString(r));if(r==psvitaalive::HttpResult::Ok)psvitaalive::CatalogParser::parseFile(homePath,homeItems);homeHttp.shutdown();}
 
     psvitaalive::InstallController installer;
+    psvitaalive::CatalogManager catalogs;
+    psvitaalive::ui::ImageCache images;
+    catalogs.init();images.init();
+
     psvitaalive::ui::FullCatalogScreen screen;
-    screen.setCatalogItems(std::move(catalogItems));
+    screen.setCatalogItems(std::move(homeItems));
+    screen.setActiveCatalog(psvitaalive::ui::CatalogType::Homebrew);
+    screen.setImageCache(&images);
+
+    screen.setCatalogChangeCallback([&](psvitaalive::ui::CatalogType next){
+        if(next==psvitaalive::ui::CatalogType::Homebrew){
+            // Homebrew is already resident in memory; switching back is instant.
+            screen.setActiveCatalog(next);
+            return true;
+        }
+        screen.setActiveCatalog(next);
+        const bool accepted=catalogs.request(next);
+        diagnosticLog(std::string("catalog switch request=")+psvitaalive::ui::catalogName(next)+" accepted="+(accepted?"1":"0"));
+        return accepted;
+    });
 
     screen.setInstallCallbacks(
-        [&installer](const psvitaalive::ui::CatalogItem& item) {
-            diagnosticLog("INSTALL REQUEST name=" + item.name + " title_id=" + item.titleId +
-                          " url=" + item.downloadUrl + " file=" + item.downloadFileName);
-            if (item.downloadUrl.empty() || item.downloadFileName.empty()) {
-                diagnosticLog("INSTALL REJECTED: missing normalized Download link");
-                sceClibPrintf("[PSVitaAlive] No normalized Download link for %s\n", item.name.c_str());
-                return false;
-            }
-
+        [&installer](const psvitaalive::ui::CatalogItem& item){
+            diagnosticLog("INSTALL REQUEST name="+item.name+" title_id="+item.titleId+" url="+item.downloadUrl);
+            if(item.downloadUrl.empty()||item.downloadFileName.empty())return false;
             std::string zipDestination;
-            const std::string& name = item.downloadFileName;
-            if (name.size() >= 4 &&
-                (name.substr(name.size() - 4) == ".zip" || name.substr(name.size() - 4) == ".ZIP")) {
-                zipDestination = "ux0:data/";
-                if (!promptZipDestination(zipDestination)) {
-                    diagnosticLog("INSTALL CANCELLED: ZIP destination dialog");
-                    return false;
-                }
-                diagnosticLog("ZIP destination=" + zipDestination);
+            if(item.downloadFileName.size()>=4&&item.downloadFileName.substr(item.downloadFileName.size()-4)==".zip"){
+                zipDestination="ux0:data/";if(!promptZipDestination(zipDestination))return false;
             }
-
-            const bool accepted = installer.requestInstall(item.downloadUrl, item.downloadFileName, zipDestination);
-            diagnosticLog(std::string("INSTALL QUEUE result=") + (accepted ? "accepted" : "rejected"));
-            return accepted;
+            return installer.requestInstall(item.downloadUrl,item.downloadFileName,zipDestination);
         },
-        [&installer]() { return installStatusText(installer.status()); }
+        [&installer](){return installStatusText(installer.status());}
     );
 
-    if (!screen.init()) {
-        diagnosticLog("UI initialization FAILED");
-        sceClibPrintf("[PSVitaAlive] UI initialization failed\n");
-        storage.writeTextFile(std::string(psvitaalive::StorageManager::TEST_DIR) + "/summary_phase10.txt", "ui_init=0\n");
-        installer.shutdown();
-        sceKernelExitProcess(1);
-        return 1;
-    }
+    if(!screen.init()){diagnosticLog("UI initialization FAILED");installer.shutdown();catalogs.shutdown();images.shutdown();sceKernelExitProcess(1);return 1;}
 
-    diagnosticLog("UI initialization OK");
-    storage.writeTextFile(
-        std::string(psvitaalive::StorageManager::TEST_DIR) + "/summary_phase10.txt",
-        "ui_init=1 mode=FULL_CATALOG split_detail=1 async_install=1 progress_dialog=1 zip_destination=1\n"
-    );
+    psvitaalive::InstallStatus previous;previous.state=psvitaalive::InstallStatus::State::Idle;
+    psvitaalive::ui::CatalogManager::Status dummy;
+    (void)dummy;
 
-    psvitaalive::InstallStatus previousStatus;
-    previousStatus.state = psvitaalive::InstallStatus::State::Idle;
-    previousStatus.current = 0;
-    previousStatus.total = 0;
-
-    while (screen.updateAndDraw()) {
-        const psvitaalive::InstallStatus currentStatus = installer.status();
-        if (currentStatus.state != previousStatus.state ||
-            currentStatus.current != previousStatus.current ||
-            currentStatus.total != previousStatus.total ||
-            currentStatus.stage != previousStatus.stage ||
-            currentStatus.message != previousStatus.message) {
-            char line[700];
-            const uint64_t percent = currentStatus.total > 0
-                ? std::min<uint64_t>(100, (currentStatus.current * 100) / currentStatus.total)
-                : 0;
-            sceClibSnprintf(line, sizeof(line),
-                "STATUS state=%s stage=%s file=%s current=%llu total=%llu percent=%llu speed=%llu message=%s",
-                stateName(currentStatus.state),
-                currentStatus.stage.c_str(),
-                currentStatus.fileName.c_str(),
-                (unsigned long long)currentStatus.current,
-                (unsigned long long)currentStatus.total,
-                (unsigned long long)percent,
-                (unsigned long long)currentStatus.bytesPerSecond,
-                currentStatus.message.c_str());
-            diagnosticLog(line);
-            previousStatus = currentStatus;
+    while(screen.updateAndDraw()){
+        // Complete a catalog swap only on the main/UI thread. Network and JSON
+        // work stays in CatalogManager's worker thread.
+        psvitaalive::CatalogManager::Status cs=catalogs.status();
+        if(cs.state==psvitaalive::CatalogManager::State::Loading){
+            screen.setCatalogLoading(true,cs.label,cs.current,cs.total,cs.message);
+        }else if(cs.state==psvitaalive::CatalogManager::State::Failed){
+            screen.setCatalogError(cs.error.empty()?"Unable to load catalog":cs.error);
         }
-        updateProgressDialog(currentStatus);
+        std::vector<psvitaalive::ui::CatalogItem> ready;psvitaalive::ui::CatalogType readyCatalog;
+        if(catalogs.takeReady(ready,readyCatalog)){
+            screen.setCatalogItems(std::move(ready));screen.setActiveCatalog(readyCatalog);screen.setCatalogLoading(false,psvitaalive::ui::catalogName(readyCatalog),1,1,"Ready");diagnosticLog(std::string("catalog ready=")+psvitaalive::ui::catalogName(readyCatalog));
+        }
+
+        const psvitaalive::InstallStatus cur=installer.status();
+        if(cur.state!=previous.state||cur.current!=previous.current||cur.total!=previous.total||cur.stage!=previous.stage||cur.message!=previous.message){char line[700];uint64_t pct=cur.total?std::min<uint64_t>(100,(cur.current*100)/cur.total):0;sceClibSnprintf(line,sizeof(line),"STATUS state=%s stage=%s file=%s current=%llu total=%llu percent=%llu message=%s",stateName(cur.state),cur.stage.c_str(),cur.fileName.c_str(),(unsigned long long)cur.current,(unsigned long long)cur.total,(unsigned long long)pct,cur.message.c_str());diagnosticLog(line);previous=cur;}
+        updateProgressDialog(cur);
     }
 
-    diagnosticLog("PSVitaAlive session END");
-    closeProgressDialog();
-    screen.shutdown();
-    installer.shutdown();
-    sceKernelExitProcess(0);
-    return 0;
+    diagnosticLog("PSVitaAlive session END");closeProgressDialog();screen.shutdown();installer.shutdown();catalogs.shutdown();images.shutdown();sceKernelExitProcess(0);return 0;
 }
