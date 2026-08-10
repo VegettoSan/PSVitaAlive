@@ -5,6 +5,7 @@
 
 #include <vita2d.h>
 
+#include <cstdint>
 #include <functional>
 #include <string>
 #include <unordered_map>
@@ -34,6 +35,9 @@ public:
 
     void setCatalogLoading(bool loading, const std::string& label, uint64_t current, uint64_t total, const std::string& message);
     void setCatalogError(const std::string& error);
+    void setInstallProgress(bool active, uint64_t current, uint64_t total, uint64_t bytesPerSecond,
+                            const std::string& stage, const std::string& fileName,
+                            const std::string& message);
 
 private:
     UiState state_;
@@ -52,6 +56,14 @@ private:
     uint64_t catalogLoadingCurrent_ = 0;
     uint64_t catalogLoadingTotal_ = 0;
     std::string catalogError_;
+
+    bool installProgressActive_ = false;
+    uint64_t installProgressCurrent_ = 0;
+    uint64_t installProgressTotal_ = 0;
+    uint64_t installProgressSpeed_ = 0;
+    std::string installProgressStage_;
+    std::string installProgressFile_;
+    std::string installProgressMessage_;
 
     std::unordered_map<std::string, vita2d_texture*> textures_;
 
