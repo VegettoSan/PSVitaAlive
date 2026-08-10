@@ -1,0 +1,66 @@
+from pathlib import Path
+
+MAIN = Path('Client PSVitaAlive/source/main.cpp')
+SCREEN = Path('Client PSVitaAlive/source/ui/full_catalog_screen.cpp')
+
+s = MAIN.read_text()
+if '#include <vita2d.h>' not in s:
+    s = s.replace('#include <psp2/message_dialog.h>\n', '#include <psp2/message_dialog.h>\n#include <psp2/ctrl.h>\n#include <vita2d.h>\n', 1)
+start = s.index('bool promptDownloadAllImages(size_t totalImages){')
+end = s.index('\nstd::string fileNameFromUrl', start)
+new_prompt = r'''bool promptDownloadAllImages(size_t totalImages){
+    vita2d_wait_rendering_done();
+    vita2d_pgf* font=vita2d_load_default_pgf();
+    if(!font){psvitaalive::diagnostics::log("[Startup] custom image prompt font load failed; defaulting to on-demand mode");return false;}
+    bool yes=false,done=false;int selected=0;uint32_t prev=0;
+    while(!done){
+        SceCtrlData pad={};sceCtrlPeekBufferPositive(0,&pad,1);
+        const uint32_t pressed=pad.buttons&~prev;prev=pad.buttons;
+        if(pressed&SCE_CTRL_LEFT)selected=0;
+        if(pressed&SCE_CTRL_RIGHT)selected=1;
+        if(pressed&SCE_CTRL_CROSS){yes=selected==0;done=true;}
+        if(pressed&SCE_CTRL_CIRCLE){yes=false;done=true;}
+        vita2d_start_drawing();
+        vita2d_clear_screen();
+        const unsigned PANEL=RGBA8(0x20,0x20,0x20,255),SURFACE=RGBA8(0x37,0x37,0x37,255),BORDER=RGBA8(0x6E,0x6E,0x6E,255),TEXT=RGBA8(0xAA,0xAA,0xAA,255),ACCENT=RGBA8(0x3B,0xFF,0,255),WHITE=RGBA8(255,255,255,255),BLACK=RGBA8(0,0,0,255);
+        vita2d_draw_rectangle(96,82,768,380,PANEL);
+        vita2d_draw_rectangle(96,82,768,4,ACCENT);
+        vita2d_draw_rectangle(96,458,768,4,ACCENT);
+        vita2d_pgf_draw_text(font,128,126,ACCENT,1.05f,"IMAGE DOWNLOAD");
+        vita2d_pgf_draw_text(font,128,166,WHITE,.82f,"Download all catalog images now?");
+        vita2d_pgf_draw_text(font,128,202,TEXT,.66f,"This can take a very long time and use network data.");
+        char count[96]={};sceClibSnprintf(count,sizeof(count),"Images to process: %u",(unsigned)totalImages);
+        vita2d_pgf_draw_text(font,128,234,TEXT,.66f,count);
+        vita2d_pgf_draw_text(font,128,268,TEXT,.62f,"Choose NO to download images only while browsing.");
+        const int by=350,bw=250,bh=54;
+        vita2d_draw_rectangle(170,by,bw,bh,selected==0?ACCENT:SURFACE);
+        vita2d_draw_rectangle(540,by,bw,bh,selected==1?ACCENT:SURFACE);
+        vita2d_draw_rectangle(170,by,bw,2,selected==0?WHITE:BORDER);
+        vita2d_draw_rectangle(540,by,bw,2,selected==1?WHITE:BORDER);
+        vita2d_pgf_draw_text(font,270,384,selected==0?BLACK:WHITE,.76f,"YES");
+        vita2d_pgf_draw_text(font,640,384,selected==1?BLACK:WHITE,.76f,"NO");
+        vita2d_pgf_draw_text(font,128,430,TEXT,.58f,"Left/Right: Select    Cross: Confirm    Circle: No");
+        vita2d_end_drawing();vita2d_swap_buffers();
+        sceKernelDelayThread(16*1000);
+    }
+    vita2d_wait_rendering_done();
+    vita2d_free_pgf(font);
+    psvitaalive::diagnostics::log(std::string("[Startup] image warmup choice=")+(yes?"ALL":"ON_DEMAND"));
+    return yes;
+}'''
+s = s[:start] + new_prompt + s[end:]
+MAIN.write_text(s)
+
+s = SCREEN.read_text()
+old_release = 'void FullCatalogScreen::releaseTextures(){for(auto&e:textures_)if(e.second)vita2d_free_texture(e.second);textures_.clear();textureOrder_.clear();}'
+new_release = 'void FullCatalogScreen::releaseTextures(){if(!textures_.empty())vita2d_wait_rendering_done();for(auto&e:textures_)if(e.second)vita2d_free_texture(e.second);textures_.clear();textureOrder_.clear();}'
+if old_release not in s:
+    raise SystemExit('releaseTextures pattern not found')
+s = s.replace(old_release, new_release, 1)
+old_evict = 'if(t->second){if(t->second)vita2d_free_texture(t->second);textures_.erase(t);}'
+new_evict = 'if(t->second){vita2d_wait_rendering_done();vita2d_free_texture(t->second);textures_.erase(t);}'
+if old_evict not in s:
+    raise SystemExit('eviction pattern not found')
+s = s.replace(old_evict, new_evict, 1)
+SCREEN.write_text(s)
+Path(__file__).unlink()
