@@ -30,6 +30,7 @@ public:
     void setCatalogChangeCallback(CatalogChangeFn callback);
     void setImageCache(ImageCache* cache);
     void setCatalogItems(std::vector<CatalogItem> items);
+    void setActiveCatalog(CatalogType catalog);
 
     void setCatalogLoading(bool loading, const std::string& label, uint64_t current, uint64_t total, const std::string& message);
     void setCatalogError(const std::string& error);
