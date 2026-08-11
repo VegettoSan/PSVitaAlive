@@ -19,6 +19,7 @@ class FullCatalogScreen {
 public:
     using InstallRequestFn = std::function<bool(const CatalogItem&)>;
     using InstallStatusFn = std::function<std::string()>;
+    using InstallCancelFn = std::function<void()>;
     using CatalogChangeFn = std::function<bool(CatalogType)>;
     using SearchRequestFn = std::function<std::string(const std::string&)>;
     using LinkActionFn = std::function<bool(const CatalogItem&, const CatalogLink&)>;
@@ -30,6 +31,7 @@ public:
     bool updateAndDraw();
 
     void setInstallCallbacks(InstallRequestFn requestInstall, InstallStatusFn statusText);
+    void setInstallCancelCallback(InstallCancelFn callback);
     void setCatalogChangeCallback(CatalogChangeFn callback);
     void setSearchCallback(SearchRequestFn callback);
     void setLinkActionCallback(LinkActionFn callback);
@@ -48,6 +50,7 @@ private:
     std::vector<CatalogItem> items_;
     InstallRequestFn installRequest_;
     InstallStatusFn installStatusText_;
+    InstallCancelFn installCancel_;
     CatalogChangeFn catalogChange_;
     SearchRequestFn searchRequest_;
     LinkActionFn linkAction_;
