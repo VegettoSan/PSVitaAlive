@@ -17,12 +17,14 @@ jobs:
           fetch-depth: 0
 
       - name: Patch main.cpp
-        run: python3 .github/patch_main_ui.py
+        run: bash .github/patch_main_ui.sh
 
-      - name: Commit patch and diagnostics
+      - name: Commit patch and remove one-off files
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add "Client PSVitaAlive/source/main.cpp" .github/patch_debug.txt
+          git add "Client PSVitaAlive/source/main.cpp"
           git commit -m "fix: unify image download dialogs"
+          git rm .github/patch_main_ui.py .github/patch_main_ui.sh .github/patch_debug.txt .github/workflows/oneoff_main_ui_patch.yml || true
+          git commit -m "chore: remove one-off patch files" || true
           git push
