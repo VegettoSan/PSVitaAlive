@@ -25,9 +25,24 @@ public:
 
     bool isReady(const std::string& localPath) const;
     bool isFailed(const std::string& localPath) const;
+    bool isCached(const std::string& url, const std::string& namespaceName) const;
 
-    // Discard queued requests that have not started yet. Kept as an explicit
-    // API for callers that intentionally want to cancel work.
+    struct ProgressSnapshot {
+        bool active = false;
+        uint64_t downloaded = 0;
+        uint64_t total = 0;
+        uint64_t speed = 0;
+        uint64_t completedBytes = 0;
+        uint64_t knownTotalBytes = 0;
+        std::string fileName;
+    };
+
+    ProgressSnapshot progress() const;
+    void resetProgress();
+
+    // Cancel queued and active image work. The active partial file is removed
+    // by the worker after libcurl acknowledges the cancellation.
+    void cancelAll();
     void cancelQueuedRequests();
 
 private:
@@ -40,11 +55,20 @@ private:
     SceUID mutex_ = -1;
     SceUID workerThread_ = -1;
     volatile bool stopping_ = false;
+    volatile bool cancelRequested_ = false;
     std::vector<Job> queue_;
     std::vector<std::string> pending_;
     std::vector<std::string> ready_;
     std::vector<std::string> failed_;
     std::unordered_map<std::string, uint64_t> retryAfter_;
+
+    std::string currentFile_;
+    std::string currentPath_;
+    uint64_t currentDownloaded_ = 0;
+    uint64_t currentTotal_ = 0;
+    uint64_t currentSpeed_ = 0;
+    uint64_t completedBytes_ = 0;
+    uint64_t completedTotalBytes_ = 0;
 
     static int workerEntry(SceSize args, void* argp);
     int workerMain();
