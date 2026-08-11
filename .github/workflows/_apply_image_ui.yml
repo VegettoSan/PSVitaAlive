@@ -6,7 +6,6 @@ permissions:
   contents: write
 jobs:
   patch:
-    if: contains(github.event.head_commit.message, 'Apply requested image UI optimizations')
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -24,9 +23,11 @@ jobs:
           s=p.read_text()
           s=s.replace('MAX_APP_TEXTURES=9,MAX_SCREENSHOT_TEXTURES=3','MAX_APP_TEXTURES=9,MAX_SCREENSHOT_TEXTURES=5')
           s=s.replace('DIRECTION_REPEAT_INTERVAL_US=500000','DIRECTION_REPEAT_INTERVAL_US=333333')
-
-          a=s.index('void FullCatalogScreen::prepareVisibleTextures(')
-          b=s.index('void FullCatalogScreen::drawImage(',a)
+          m=re.search(r'void\s+FullCatalogScreen::prepareVisibleTextures\s*\([^)]*\)\s*\{',s)
+          d=re.search(r'void\s+FullCatalogScreen::drawImage\s*\([^)]*\)\s*\{',s)
+          r=re.search(r'void\s+FullCatalogScreen::releaseTextures\s*\([^)]*\)\s*\{',s)
+          if not (m and d and r and m.start()<d.start()<r.start()):
+              raise SystemExit('Could not locate texture preparation functions in full_catalog_screen.cpp')
           prepare='''void FullCatalogScreen::prepareVisibleTextures(){
               if(!imageCache_||catalogLoading_||installProgressActive_)return;
               if(state_.mode==UiMode::FULL_CATALOG){
@@ -43,10 +44,9 @@ jobs:
               }
           }
           '''
-          s=s[:a]+prepare+s[b:]
-
-          a=s.index('void FullCatalogScreen::drawImage(')
-          b=s.index('void FullCatalogScreen::releaseTextures(',a)
+          s=s[:m.start()]+prepare+s[d.start():]
+          d=re.search(r'void\s+FullCatalogScreen::drawImage\s*\([^)]*\)\s*\{',s)
+          r=re.search(r'void\s+FullCatalogScreen::releaseTextures\s*\([^)]*\)\s*\{',s)
           draw='''void FullCatalogScreen::drawImage(const std::string&url,const std::string&namespaceName,int x,int y,int width,int height){
               if(url.empty()||!imageCache_)return;
               if(namespaceName=="shot"){
@@ -72,7 +72,7 @@ jobs:
               vita2d_draw_texture_scale(it->second,(float)x,(float)y,(float)width/(float)std::max(1,vita2d_texture_get_width(it->second)),(float)height/(float)std::max(1,vita2d_texture_get_height(it->second)));
           }
           '''
-          s=s[:a]+draw+s[b:]
+          s=s[:d.start()]+draw+s[r.start():]
           p.write_text(s)
           PY
       - name: Commit patched client
@@ -80,5 +80,6 @@ jobs:
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add 'Client PSVitaAlive/source/ui/full_catalog_screen.cpp'
-          git commit -m 'Implement requested image UI optimizations' || exit 0
+          if git diff --cached --quiet; then echo 'No changes'; exit 0; fi
+          git commit -m 'Implement requested image UI optimizations'
           git push
