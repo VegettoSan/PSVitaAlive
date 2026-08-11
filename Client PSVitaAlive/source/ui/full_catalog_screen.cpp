@@ -11,7 +11,7 @@
 namespace psvitaalive::ui { namespace {
 constexpr unsigned BG=RGBA8(0,0,0,255),SURFACE=RGBA8(0x37,0x37,0x37,255),SURFACE2=RGBA8(0x2A,0x2A,0x2A,255),BORDER=RGBA8(0x6E,0x6E,0x6E,255),TEXT=RGBA8(0xAA,0xAA,0xAA,255),DIM=RGBA8(0x6E,0x6E,0x6E,255),ACCENT=RGBA8(0x3B,0xFF,0,255),WHITE=RGBA8(255,255,255,255),PANEL=RGBA8(0x20,0x20,0x20,255);
 constexpr int FULL_CARD_H=120,SPLIT_CARD_H=82,DETAIL_HEADER_H=92,LINE_H=18,TRANSITION_MS=200,LINK_ROW_H=38,LINK_GAP=6,SCREENSHOT_ROW_H=250;
-constexpr size_t MAX_APP_TEXTURES=9,MAX_SCREENSHOT_TEXTURES=3;constexpr uint64_t DIRECTION_REPEAT_DELAY_US=250000,DIRECTION_REPEAT_INTERVAL_US=500000;
+constexpr size_t MAX_APP_TEXTURES=9,MAX_SCREENSHOT_TEXTURES=5;constexpr uint64_t DIRECTION_REPEAT_DELAY_US=250000,DIRECTION_REPEAT_INTERVAL_US=333333;
 const char* extOf(const std::string&p){const size_t d=p.find_last_of('.');return d==std::string::npos?"":p.c_str()+d;}std::string formatBytes(uint64_t b){char o[64];double v=(double)b;if(b>=1024ULL*1024ULL*1024ULL)sceClibSnprintf(o,sizeof(o),"%.2f GB",v/(1024.0*1024.0*1024.0));else if(b>=1024ULL*1024ULL)sceClibSnprintf(o,sizeof(o),"%.2f MB",v/(1024.0*1024.0));else if(b>=1024ULL)sceClibSnprintf(o,sizeof(o),"%.2f KB",v/1024.0);else sceClibSnprintf(o,sizeof(o),"%llu B",(unsigned long long)b);return o;}std::string lowerAscii(std::string s){for(char&c:s)c=(char)std::tolower((unsigned char)c);return s;}std::string ellipsize(const std::string&s,size_t n){if(s.size()<=n)return s;if(n<=3)return s.substr(0,n);return s.substr(0,n-3)+"...";}bool actionableLink(const CatalogLink&l){std::string t=lowerAscii(l.type);if(t=="download"||t=="downloads"||t=="mirror"||t=="dlc")return true;std::string u=lowerAscii(l.url);return u.find(".vpk")!=std::string::npos||u.find(".pkg")!=std::string::npos||u.find(".zip")!=std::string::npos||u.find(".pbp")!=std::string::npos||u.find(".iso")!=std::string::npos||u.find(".cso")!=std::string::npos;}}
 std::string formatEta(uint64_t seconds){if(seconds==0)return "--";uint64_t h=seconds/3600,m=(seconds%3600)/60,sec=seconds%60;char o[64];if(h)sceClibSnprintf(o,sizeof(o),"%llu:%02llu:%02llu",(unsigned long long)h,(unsigned long long)m,(unsigned long long)sec);else sceClibSnprintf(o,sizeof(o),"%02llu:%02llu",(unsigned long long)m,(unsigned long long)sec);return o;}
 FullCatalogScreen::FullCatalogScreen()=default;FullCatalogScreen::~FullCatalogScreen(){shutdown();}
@@ -43,45 +43,37 @@ void FullCatalogScreen::prepareImageTexture(const std::string&url,const std::str
 }
 void FullCatalogScreen::prepareVisibleTextures(){
     if(!imageCache_||catalogLoading_||installProgressActive_)return;
-    // Upload at most one new texture per frame. This avoids several Vita2D
-    // GPU buffer mappings being created in the same frame while navigating.
-    bool loadedThisFrame=false;
-    auto prepareItem=[&](const CatalogItem&it,bool detail){
-        if(loadedThisFrame)return;
-        const std::string& primary=!it.icon.empty()?it.icon:it.cover;
-        if(!primary.empty()){
-            const size_t before=textures_.size();
-            prepareImageTexture(primary,"app");
-            loadedThisFrame=textures_.size()>before;
-            if(loadedThisFrame)return;
-        }
-        if(detail){
-            const size_t sc=std::min<size_t>(5,it.screenshots.size());
-            for(size_t i=0;i<sc&&!loadedThisFrame;++i){
-                const size_t before=textures_.size();
-                prepareImageTexture(it.screenshots[i],"shot");
-                loadedThisFrame=textures_.size()>before;
-            }
-        }
-    };
     if(state_.mode==UiMode::FULL_CATALOG||state_.mode==UiMode::OPENING_DETAIL){
-        const int rows=visibleRowsFull();
-        for(int r=0;r<rows&&!loadedThisFrame;++r)
-            for(int c=0;c<3&&!loadedThisFrame;++c){
-                int i=(state_.catalogScrollRow+r)*3+c;
-                if(i>=0&&i<(int)items_.size())prepareItem(items_[i],false);
-            }
-    }else{
-        const int rows=visibleRowsSplit();
-        for(int r=0;r<rows&&!loadedThisFrame;++r){
-            int i=state_.catalogScrollRow+r;
-            if(i>=0&&i<(int)items_.size())prepareItem(items_[i],false);
-        }
-        const int i=selectedIndex();
-        if(i>=0&&!loadedThisFrame)prepareItem(items_[i],true);
+        const int first=std::max(0,state_.catalogScrollRow*3);
+        const int last=std::min((int)items_.size(),first+9);
+        for(int i=first;i<last;++i)if(!items_[i].icon.empty())prepareImageTexture(items_[i].icon,"app");
+        return;
+    }
+    if(state_.mode==UiMode::SPLIT_DETAIL||state_.mode==UiMode::CLOSING_DETAIL){
+        const int first=std::max(0,state_.catalogScrollRow);
+        const int last=std::min((int)items_.size(),first+visibleRowsSplit()+1);
+        for(int i=first;i<last;++i)if(!items_[i].icon.empty())prepareImageTexture(items_[i].icon,"app");
     }
 }
-void FullCatalogScreen::drawImage(const std::string&url,const std::string&ns,int x,int y,int w,int h){vita2d_draw_rectangle(x,y,w,h,SURFACE2);if(!imageCache_||url.empty())return;std::string path=imageCache_->request(url,ns);if(imageCache_->isFailed(path)||!imageCache_->isReady(path))return;auto it=textures_.find(path);if(it==textures_.end())return;touchTexture(path);vita2d_texture*t=it->second;float tw=(float)vita2d_texture_get_width(t),th=(float)vita2d_texture_get_height(t);if(tw<=0||th<=0)return;float sc=std::min((float)w/tw,(float)h/th),dw=tw*sc,dh=th*sc;vita2d_draw_texture_scale(t,x+(w-dw)/2.0f,y+(h-dh)/2.0f,sc,sc);}
+void FullCatalogScreen::drawImage(const std::string&url,const std::string&ns,int x,int y,int w,int h){
+    vita2d_draw_rectangle(x,y,w,h,SURFACE2);
+    if(!imageCache_||url.empty())return;
+    if(ns=="shot"){
+        const int clipTop=HEADER_H+TABS_H+DETAIL_HEADER_H;
+        const int clipBottom=SCREEN_H-FOOTER_H;
+        if(y+h<=clipTop||y>=clipBottom)return;
+    }
+    std::string path=imageCache_->request(url,ns);
+    if(imageCache_->isFailed(path)||!imageCache_->isReady(path))return;
+    auto it=textures_.find(path);
+    if(it==textures_.end())return;
+    touchTexture(path);
+    vita2d_texture*t=it->second;
+    float tw=(float)vita2d_texture_get_width(t),th=(float)vita2d_texture_get_height(t);
+    if(tw<=0||th<=0)return;
+    float sc=std::min((float)w/tw,(float)h/th),dw=tw*sc,dh=th*sc;
+    vita2d_draw_texture_scale(t,x+(w-dw)/2.0f,y+(h-dh)/2.0f,sc,sc);
+}
 void FullCatalogScreen::drawCatalogCard(const CatalogItem&it,int idx,int x,int y,int w,int h,bool focus){vita2d_draw_rectangle(x,y,w,h,SURFACE);if(focus){vita2d_draw_rectangle(x,y,w,3,ACCENT);vita2d_draw_rectangle(x,y+h-3,w,3,ACCENT);vita2d_draw_rectangle(x,y,3,h,ACCENT);vita2d_draw_rectangle(x+w-3,y,3,h,ACCENT);}else vita2d_draw_rectangle(x,y,w,1,BORDER);int is=h>=100?76:54;drawImage(!it.icon.empty()?it.icon:it.cover,"app",x+10,y+9,is,is);int tx=x+is+20;vita2d_pgf_draw_text(font_,tx,y+25,WHITE,.76f,ellipsize(it.name,h>=100?24:22).c_str());vita2d_pgf_draw_text(font_,tx,y+45,TEXT,.64f,ellipsize(it.author.empty()?"Unknown author":it.author,20).c_str());vita2d_pgf_draw_text(font_,tx,y+64,colorForStatus(it.status),.62f,ellipsize(it.status,16).c_str());std::string meta=(it.version.empty()?"":"v"+it.version)+(it.versionDate.empty()?"":"  "+it.versionDate);if(meta.empty())meta=it.size;if(!meta.empty())vita2d_pgf_draw_text(font_,x+10,y+h-10,DIM,.58f,ellipsize(meta,30).c_str());(void)idx;}
 void FullCatalogScreen::drawCatalogPanel(int x,int y,int w,int h,bool split){vita2d_draw_rectangle(x,y,w,h,PANEL);if(!split){int vis=visibleRowsFull(),rows=totalRows(),cw=(w-GRID_PAD*2-CARD_GAP*2)/3;for(int r=0;r<vis;++r)for(int c=0;c<3;++c){int i=(state_.catalogScrollRow+r)*3+c;if(i<(int)items_.size())drawCatalogCard(items_[i],i,x+GRID_PAD+c*(cw+CARD_GAP),y+GRID_PAD+r*(FULL_CARD_H+CARD_GAP),cw,FULL_CARD_H,i==state_.focusIndex);}if(rows>vis){int tx=x+w-7,ty=y+10,th=h-20;vita2d_draw_rectangle(tx,ty,3,th,BORDER);int thumb=std::max(20,th*vis/rows),mr=std::max(1,rows-vis),yy=ty+(th-thumb)*state_.catalogScrollRow/mr;vita2d_draw_rectangle(tx,yy,3,thumb,ACCENT);}}else for(int r=0;r<visibleRowsSplit();++r){int i=state_.catalogScrollRow+r;if(i<(int)items_.size())drawCatalogCard(items_[i],i,x+GRID_PAD,y+GRID_PAD+r*(SPLIT_CARD_H+CARD_GAP),w-GRID_PAD*2,SPLIT_CARD_H,i==state_.focusIndex);}if(state_.mode==UiMode::SPLIT_DETAIL&&state_.activePanel==UiPanel::Catalog)vita2d_draw_rectangle(x,y,3,h,ACCENT);}
 void FullCatalogScreen::wrapText(const std::string&t,int max,std::vector<std::string>&out)const{out.clear();std::string cur;for(char c:t){if(c=='\n'){out.push_back(cur);cur.clear();continue;}if((int)cur.size()>=max&&c==' '){out.push_back(cur);cur.clear();continue;}cur.push_back(c);if((int)cur.size()>=max){out.push_back(cur);cur.clear();}}if(!cur.empty())out.push_back(cur);}void FullCatalogScreen::drawTextLines(const std::vector<std::string>&l,int x,int y,int lh,unsigned col,float sc,int start,int max,int top,int bottom){int first=std::max(0,start),last=std::min((int)l.size(),first+max),dy=y+first*lh;for(int i=first;i<last;++i){if(dy>=top&&dy<=bottom)vita2d_pgf_draw_text(font_,x,dy,col,sc,l[i].c_str());dy+=lh;}}
