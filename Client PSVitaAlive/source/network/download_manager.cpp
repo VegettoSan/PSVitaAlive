@@ -131,15 +131,7 @@ std::string DownloadManager::enqueue(const std::string& url, const std::string& 
     return job.id;
 }
 
-void DownloadManager::cancel(const std::string& jobId) {
-    if (auto* j = findJob(jobId)) {
-        j->cancelRequested = true;
-        if (j->state == DownloadState::Queued) {
-            j->state = DownloadState::Cancelled;
-            saveMetadata(*j);
-        }
-    }
-}
+void DownloadManager::cancel(const std::string& jobId){if(auto*j=findJob(jobId)){j->cancelRequested=true;StorageManager st;if(j->state==DownloadState::Queued){st.removeFile(j->temporaryPath);j->state=DownloadState::Cancelled;j->lastError="cancelled";saveMetadata(*j);}}}
 
 bool DownloadManager::runJob(DownloadJob& job) {
     job.state = DownloadState::Preparing;
@@ -183,12 +175,7 @@ bool DownloadManager::runJob(DownloadJob& job) {
     job.lastHttpStatus = http_.lastStatusCode();
     activeJobId_.clear();
 
-    if (hr == HttpResult::Cancelled || job.cancelRequested) {
-        job.state = DownloadState::Cancelled;
-        job.lastError = "cancelled";
-        saveMetadata(job);
-        return false;
-    }
+    if(hr==HttpResult::Cancelled||job.cancelRequested){st.removeFile(job.temporaryPath);job.downloadedSize=0;job.state=DownloadState::Cancelled;job.lastError="cancelled";saveMetadata(job);return false;}
     if (hr != HttpResult::Ok) {
         job.state = DownloadState::Failed;
         job.lastError = http_.lastError();

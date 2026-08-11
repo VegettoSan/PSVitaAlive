@@ -56,6 +56,8 @@ void InstallController::shutdown() {
     diagnostics::log("[Installer] shutdown");
 }
 
+void InstallController::cancel(){const auto currentState=static_cast<InstallStatus::State>(state_.load());if(currentState!=InstallStatus::State::Downloading||activeJobId_.empty())return;downloads_.cancel(activeJobId_);setStage("Cancelling");setState(InstallStatus::State::Downloading,"Cancelling download...");diagnostics::log(std::string("[Installer] cancel requested job=")+activeJobId_);}
+
 bool InstallController::busy() const {
     const auto s = static_cast<InstallStatus::State>(state_.load());
     return s == InstallStatus::State::Downloading || s == InstallStatus::State::Installing;
@@ -155,18 +157,7 @@ int InstallController::workerMain() {
     const bool downloaded = downloads_.processQueue();
     DownloadJob* job = downloads_.findJob(activeJobId_);
 
-    if (!downloaded || !job || job->state != DownloadState::Completed) {
-        const std::string error = job && !job->lastError.empty() ? job->lastError : "Download failed";
-        setStage("Error");
-        setState(InstallStatus::State::Failed, error.c_str());
-        diagnostics::log(std::string("[Installer] download failed: ") + error);
-        if (!activeJobId_.empty()) downloads_.cleanupCompletedJob(activeJobId_);
-        activeJobId_.clear();
-        sceKernelDelayThread(2500 * 1000);
-        setState(InstallStatus::State::Idle, "Ready");
-        workerDone_.store(true);
-        return 0;
-    }
+    if(!downloaded||!job||job->state!=DownloadState::Completed){const bool cancelled=job&&job->state==DownloadState::Cancelled;const std::string error=cancelled?"Download cancelled":(job&&!job->lastError.empty()?job->lastError:"Download failed");setStage(cancelled?"Cancelled":"Error");setState(InstallStatus::State::Failed,error.c_str());diagnostics::log(std::string("[Installer] ")+(cancelled?"download cancelled":"download failed")+": "+error);if(!activeJobId_.empty())downloads_.cleanupCompletedJob(activeJobId_);activeJobId_.clear();sceKernelDelayThread(cancelled?700*1000:2500*1000);setState(InstallStatus::State::Idle,"Ready");workerDone_.store(true);return 0;}
 
     current_.store(job->downloadedSize);
     total_.store(job->expectedSize ? job->expectedSize : job->downloadedSize);
