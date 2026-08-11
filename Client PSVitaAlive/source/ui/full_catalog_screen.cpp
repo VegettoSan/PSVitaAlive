@@ -6,11 +6,12 @@
 #include <algorithm>
 #include <cctype>
 #include <cstring>
+#include <set>
 #include <utility>
 namespace psvitaalive::ui { namespace {
 constexpr unsigned BG=RGBA8(0,0,0,255),SURFACE=RGBA8(0x37,0x37,0x37,255),SURFACE2=RGBA8(0x2A,0x2A,0x2A,255),BORDER=RGBA8(0x6E,0x6E,0x6E,255),TEXT=RGBA8(0xAA,0xAA,0xAA,255),DIM=RGBA8(0x6E,0x6E,0x6E,255),ACCENT=RGBA8(0x3B,0xFF,0,255),WHITE=RGBA8(255,255,255,255),PANEL=RGBA8(0x20,0x20,0x20,255);
 constexpr int FULL_CARD_H=120,SPLIT_CARD_H=82,DETAIL_HEADER_H=92,LINE_H=18,TRANSITION_MS=200,LINK_ROW_H=38,LINK_GAP=6,SCREENSHOT_ROW_H=250;
-constexpr size_t MAX_APP_TEXTURES=9,MAX_SCREENSHOT_TEXTURES=5;constexpr uint64_t DIRECTION_REPEAT_DELAY_US=250000,DIRECTION_REPEAT_INTERVAL_US=500000;
+constexpr size_t MAX_APP_TEXTURES=6,MAX_SCREENSHOT_TEXTURES=3;constexpr uint64_t DIRECTION_REPEAT_DELAY_US=250000,DIRECTION_REPEAT_INTERVAL_US=500000;
 const char* extOf(const std::string&p){const size_t d=p.find_last_of('.');return d==std::string::npos?"":p.c_str()+d;}std::string formatBytes(uint64_t b){char o[64];double v=(double)b;if(b>=1024ULL*1024ULL*1024ULL)sceClibSnprintf(o,sizeof(o),"%.2f GB",v/(1024.0*1024.0*1024.0));else if(b>=1024ULL*1024ULL)sceClibSnprintf(o,sizeof(o),"%.2f MB",v/(1024.0*1024.0));else if(b>=1024ULL)sceClibSnprintf(o,sizeof(o),"%.2f KB",v/1024.0);else sceClibSnprintf(o,sizeof(o),"%llu B",(unsigned long long)b);return o;}std::string lowerAscii(std::string s){for(char&c:s)c=(char)std::tolower((unsigned char)c);return s;}std::string ellipsize(const std::string&s,size_t n){if(s.size()<=n)return s;if(n<=3)return s.substr(0,n);return s.substr(0,n-3)+"...";}bool actionableLink(const CatalogLink&l){std::string t=lowerAscii(l.type);if(t=="download"||t=="downloads"||t=="mirror"||t=="dlc")return true;std::string u=lowerAscii(l.url);return u.find(".vpk")!=std::string::npos||u.find(".pkg")!=std::string::npos||u.find(".zip")!=std::string::npos||u.find(".pbp")!=std::string::npos||u.find(".iso")!=std::string::npos||u.find(".cso")!=std::string::npos;}}
 std::string formatEta(uint64_t seconds){if(seconds==0)return "--";uint64_t h=seconds/3600,m=(seconds%3600)/60,sec=seconds%60;char o[64];if(h)sceClibSnprintf(o,sizeof(o),"%llu:%02llu:%02llu",(unsigned long long)h,(unsigned long long)m,(unsigned long long)sec);else sceClibSnprintf(o,sizeof(o),"%02llu:%02llu",(unsigned long long)m,(unsigned long long)sec);return o;}
 FullCatalogScreen::FullCatalogScreen()=default;FullCatalogScreen::~FullCatalogScreen(){shutdown();}
@@ -25,9 +26,11 @@ void FullCatalogScreen::handleInput(){if(isTransitioning())return;SceCtrlData p{
 unsigned FullCatalogScreen::colorForStatus(const std::string&s)const{if(s=="Verified")return ACCENT;if(s=="Legacy")return TEXT;if(s=="Archive")return DIM;return TEXT;}void FullCatalogScreen::drawHeader(int w){vita2d_draw_rectangle(0,0,w,HEADER_H,SURFACE2);vita2d_pgf_draw_text(font_,16,32,ACCENT,1.12f,"PSVitaAlive Store");vita2d_pgf_draw_text(font_,w-132,32,DIM,.76f,"START: Exit");if(!searchQuery_.empty()){std::string q=ellipsize(searchQuery_,22);int pw=std::max(156,std::min(w-300,(int)(q.size()*7+86))),bx=(w-pw)/2,by=11,bh=28;vita2d_draw_rectangle(bx,by,pw,bh,SURFACE);vita2d_draw_rectangle(bx,by,pw,2,ACCENT);vita2d_draw_rectangle(bx,by+bh-2,pw,2,ACCENT);vita2d_pgf_draw_text(font_,bx+12,by+19,ACCENT,.58f,"FILTER");vita2d_pgf_draw_text(font_,bx+62,by+19,WHITE,.58f,q.c_str());}}
 void FullCatalogScreen::drawTabs(int w){vita2d_draw_rectangle(0,HEADER_H,w,TABS_H,SURFACE);float tw=(float)w/(int)CatalogType::Count;for(int i=0;i<(int)CatalogType::Count;++i){int x=(int)(i*tw);bool a=(int)state_.catalog==i;if(a)vita2d_draw_rectangle(x,HEADER_H+TABS_H-3,(int)tw,3,ACCENT);vita2d_pgf_draw_text(font_,x+12,HEADER_H+24,a?ACCENT:TEXT,.80f,catalogName((CatalogType)i));}}
 void FullCatalogScreen::prepareImageTexture(const std::string&url,const std::string&ns){
+    static std::set<std::string> failedTextureLoads;
     if(!imageCache_||url.empty())return;
     std::string path=imageCache_->request(url,ns);
     if(imageCache_->isFailed(path)||!imageCache_->isReady(path))return;
+    if(failedTextureLoads.find(path)!=failedTextureLoads.end())return;
     auto it=textures_.find(path);
     if(it!=textures_.end()){touchTexture(path);return;}
     evictTextureIfNeeded(ns);
@@ -35,7 +38,7 @@ void FullCatalogScreen::prepareImageTexture(const std::string&url,const std::str
     const char*e=extOf(path);
     if(std::strcmp(e,".jpg")==0||std::strcmp(e,".jpeg")==0)t=vita2d_load_JPEG_file(path.c_str());
     else t=vita2d_load_PNG_file(path.c_str());
-    if(!t){SceIoStat st={};long long sz=-1;if(sceIoGetstat(path.c_str(),&st)>=0)sz=(long long)st.st_size;char m[700];sceClibSnprintf(m,sizeof(m),"[UI] texture load failed ns=%s path=%s size=%lld",ns.c_str(),path.c_str(),sz);diagnostics::log(m);return;}
+    if(!t){failedTextureLoads.insert(path);SceIoStat st={};long long sz=-1;if(sceIoGetstat(path.c_str(),&st)>=0)sz=(long long)st.st_size;char m[700];sceClibSnprintf(m,sizeof(m),"[UI] texture load failed ns=%s path=%s size=%lld",ns.c_str(),path.c_str(),sz);diagnostics::log(m);return;}
     textures_[path]=t;textureOrder_.push_back(path);
 }
 void FullCatalogScreen::prepareVisibleTextures(){
