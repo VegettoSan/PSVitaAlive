@@ -96,6 +96,8 @@ private:
     void drawDetailContent(const CatalogItem& item, int x, int y, int width, int height);
     void drawDetailLinks(const CatalogItem& item, int x, int y, int width, int& heightOut);
     void drawLoadingOverlay();
+    void prepareImageTexture(const std::string& url, const std::string& namespaceName);
+    void prepareVisibleTextures();
     void drawImage(const std::string& url, const std::string& namespaceName, int x, int y, int width, int height);
     void releaseTextures();
     void touchTexture(const std::string& path);
