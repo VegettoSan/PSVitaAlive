@@ -37,44 +37,67 @@ bool promptDownloadAllImages(size_t totalImages){
         if(pressed&SCE_CTRL_RIGHT)selected=1;
         if(pressed&SCE_CTRL_CROSS){yes=selected==0;done=true;}
         if(pressed&SCE_CTRL_CIRCLE){yes=false;done=true;}
-        vita2d_start_drawing();
-        vita2d_clear_screen();
-        const unsigned PANEL=RGBA8(0x20,0x20,0x20,255),SURFACE=RGBA8(0x37,0x37,0x37,255),BORDER=RGBA8(0x6E,0x6E,0x6E,255),TEXT=RGBA8(0xAA,0xAA,0xAA,255),ACCENT=RGBA8(0x3B,0xFF,0,255),WHITE=RGBA8(255,255,255,255),BLACK=RGBA8(0,0,0,255);
-        vita2d_draw_rectangle(96,82,768,380,PANEL);
-        vita2d_draw_rectangle(96,82,768,4,ACCENT);
-        vita2d_draw_rectangle(96,458,768,4,ACCENT);
-        vita2d_pgf_draw_text(font,128,126,ACCENT,1.05f,"IMAGE DOWNLOAD");
-        vita2d_pgf_draw_text(font,128,166,WHITE,.82f,"Download all catalog images now?");
-        vita2d_pgf_draw_text(font,128,202,TEXT,.66f,"This can take a very long time and use network data.");
-        char count[96]={};sceClibSnprintf(count,sizeof(count),"Images to process: %u",(unsigned)totalImages);
-        vita2d_pgf_draw_text(font,128,234,TEXT,.66f,count);
-        vita2d_pgf_draw_text(font,128,268,TEXT,.62f,"Choose NO to download images only while browsing.");
-        const int by=350,bw=250,bh=54;
-        vita2d_draw_rectangle(170,by,bw,bh,selected==0?ACCENT:SURFACE);
-        vita2d_draw_rectangle(540,by,bw,bh,selected==1?ACCENT:SURFACE);
-        vita2d_draw_rectangle(170,by,bw,2,selected==0?WHITE:BORDER);
-        vita2d_draw_rectangle(540,by,bw,2,selected==1?WHITE:BORDER);
-        vita2d_pgf_draw_text(font,270,384,selected==0?BLACK:WHITE,.76f,"YES");
-        vita2d_pgf_draw_text(font,640,384,selected==1?BLACK:WHITE,.76f,"NO");
-        vita2d_pgf_draw_text(font,128,430,TEXT,.58f,"Left/Right: Select    Cross: Confirm    Circle: No");
-        vita2d_end_drawing();vita2d_swap_buffers();
-        sceKernelDelayThread(16*1000);
+        vita2d_start_drawing();vita2d_clear_screen();
+        const unsigned SURFACE=RGBA8(0x37,0x37,0x37,255),TEXT=RGBA8(0xAA,0xAA,0xAA,255),ACCENT=RGBA8(0x3B,0xFF,0,255),WHITE=RGBA8(255,255,255,255),BLACK=RGBA8(0,0,0,255),PANEL=RGBA8(0x20,0x20,0x20,255);
+        const int w=620,h=250,x=(960-w)/2,y=(544-h)/2;
+        vita2d_draw_rectangle(x,y,w,h,PANEL);vita2d_draw_rectangle(x,y,w,2,ACCENT);
+        vita2d_pgf_draw_text(font,x+28,y+32,ACCENT,.68f,"PSVitaAlive");
+        vita2d_pgf_draw_text(font,x+28,y+68,WHITE,1.02f,"Download catalog images?");
+        vita2d_pgf_draw_text(font,x+28,y+96,TEXT,.62f,"This can take a very long time and use network data.");
+        char count[96]={};sceClibSnprintf(count,sizeof(count),"Pending images: %u",(unsigned)totalImages);
+        vita2d_pgf_draw_text(font,x+28,y+120,ACCENT,.68f,count);
+        vita2d_pgf_draw_text(font,x+28,y+146,TEXT,.56f,"Already cached images are excluded.");
+        const int by=y+166,bw=220,bh=42;
+        vita2d_draw_rectangle(x+58,by,bw,bh,selected==0?ACCENT:SURFACE);vita2d_draw_rectangle(x+342,by,bw,bh,selected==1?ACCENT:SURFACE);
+        vita2d_pgf_draw_text(font,x+146,by+27,selected==0?BLACK:WHITE,.70f,"YES");vita2d_pgf_draw_text(font,x+430,by+27,selected==1?BLACK:WHITE,.70f,"NO");
+        vita2d_pgf_draw_text(font,x+28,y+234,TEXT,.52f,"Left/Right: Select    Cross: Confirm    Circle: No");
+        vita2d_end_drawing();vita2d_swap_buffers();sceKernelDelayThread(16*1000);
     }
-    vita2d_wait_rendering_done();
-    vita2d_free_pgf(font);
-    psvitaalive::diagnostics::log(std::string("[Startup] image warmup choice=")+(yes?"ALL":"ON_DEMAND"));
-    return yes;
+    vita2d_wait_rendering_done();vita2d_free_pgf(font);
+    psvitaalive::diagnostics::log(std::string("[Startup] image warmup choice=")+(yes?"ALL":"ON_DEMAND"));return yes;
 }
+std::string formatBytes(uint64_t b){char o[64];double v=(double)b;if(b>=1024ULL*1024ULL*1024ULL)sceClibSnprintf(o,sizeof(o),"%.2f GB",v/(1024.0*1024.0*1024.0));else if(b>=1024ULL*1024ULL)sceClibSnprintf(o,sizeof(o),"%.2f MB",v/(1024.0*1024.0));else if(b>=1024ULL)sceClibSnprintf(o,sizeof(o),"%.2f KB",v/1024.0);else sceClibSnprintf(o,sizeof(o),"%llu B",(unsigned long long)b);return o;}
+std::string twoLineFileName(const std::string&name){if(name.size()<=42)return name;if(name.size()<=84)return name.substr(0,42)+"\n"+name.substr(42);return name.substr(0,42)+"\n..."+name.substr(name.size()-38);}
 std::string fileNameFromUrl(const std::string&url,const std::string&id){std::string clean=url;const size_t q=clean.find('?');if(q!=std::string::npos)clean.erase(q);const size_t f=clean.find('#');if(f!=std::string::npos)clean.erase(f);const size_t slash=clean.find_last_of('/');std::string name=slash==std::string::npos?clean:clean.substr(slash+1);return name.empty()?id+".bin":name;}
 bool isZipName(const std::string&name){return name.size()>=4&&name.substr(name.size()-4)==".zip";}
 struct StartupImageJob{std::string url;std::string path;std::string namespaceName;std::string fileName;};
-void addStartupImage(std::vector<StartupImageJob>&jobs,std::unordered_set<std::string>&seen,psvitaalive::ui::ImageCache&images,const std::string&url,const std::string&namespaceName,bool queueNow){if(url.empty())return;const std::string key=namespaceName+"\n"+url;if(!seen.insert(key).second)return;std::string path;if(queueNow)path=images.request(url,namespaceName);jobs.push_back({url,path,namespaceName,fileNameFromUrl(url,namespaceName+"_image")});}
+void addStartupImage(std::vector<StartupImageJob>&jobs,std::unordered_set<std::string>&seen,psvitaalive::ui::ImageCache&images,const std::string&url,const std::string&namespaceName,bool queueNow){if(url.empty()||images.isCached(url,namespaceName))return;const std::string key=namespaceName+"\n"+url;if(!seen.insert(key).second)return;std::string path;if(queueNow)path=images.request(url,namespaceName);jobs.push_back({url,path,namespaceName,fileNameFromUrl(url,namespaceName+"_image")});}
 void collectCatalogImages(std::vector<StartupImageJob>&jobs,std::unordered_set<std::string>&seen,psvitaalive::ui::ImageCache&images,const std::vector<psvitaalive::ui::CatalogItem>&items,bool queueNow){for(const auto&item:items){addStartupImage(jobs,seen,images,item.icon,"app",queueNow);addStartupImage(jobs,seen,images,item.cover,"app",queueNow);const size_t count=std::min<size_t>(5,item.screenshots.size());for(size_t i=0;i<count;++i)addStartupImage(jobs,seen,images,item.screenshots[i],"shot",queueNow);}}
 void queueStartupImages(std::vector<StartupImageJob>&jobs,psvitaalive::ui::ImageCache&images){for(auto&job:jobs){if(job.path.empty())job.path=images.request(job.url,job.namespaceName);}}
-void imageWarmupProgress(const std::vector<StartupImageJob>&jobs,psvitaalive::ui::ImageCache&images,uint64_t&completed,std::string&currentFile,bool&failedCurrent){completed=0;currentFile.clear();failedCurrent=false;for(const auto&job:jobs){const bool ready=images.isReady(job.path),failed=images.isFailed(job.path);if(ready||failed){++completed;continue;}if(currentFile.empty()){currentFile=job.fileName;failedCurrent=false;}}}
+void imageWarmupProgress(const std::vector<StartupImageJob>&jobs,psvitaalive::ui::ImageCache&images,uint64_t&completed,std::string&currentFile,bool&failedCurrent){completed=0;currentFile.clear();failedCurrent=false;for(const auto&job:jobs){const bool ready=images.isReady(job.path),failed=images.isFailed(job.path);if(ready||failed){++completed;continue;}if(currentFile.empty())currentFile=job.fileName;}}
+bool runImageWarmup(std::vector<StartupImageJob>&jobs,psvitaalive::ui::ImageCache&images){
+    if(jobs.empty())return true;
+    images.cancelAll();
+    while(images.progress().active)sceKernelDelayThread(10*1000);
+    images.resetProgress();
+    queueStartupImages(jobs,images);
+    vita2d_pgf* font=vita2d_load_default_pgf();
+    if(!font){images.cancelAll();return false;}
+    const uint64_t started=sceKernelGetSystemTimeWide();uint64_t lastPoll=0;bool cancelled=false;
+    while(true){
+        const uint64_t now=sceKernelGetSystemTimeWide();
+        uint64_t completed=0;std::string currentFile;bool failedCurrent=false;imageWarmupProgress(jobs,images,completed,currentFile,failedCurrent);
+        const auto p=images.progress();
+        if(completed>=(uint64_t)jobs.size()&&!p.active)break;
+        SceCtrlData pad={};sceCtrlPeekBufferPositive(0,&pad,1);if(pad.buttons&SCE_CTRL_CIRCLE){images.cancelAll();cancelled=true;}
+        if(now<lastPoll){sceKernelDelayThread(16*1000);continue;}lastPoll=now+100000;
+        const unsigned SURFACE=RGBA8(0x37,0x37,0x37,255),BORDER=RGBA8(0x6E,0x6E,0x6E,255),TEXT=RGBA8(0xAA,0xAA,0xAA,255),DIM=RGBA8(0x6E,0x6E,0x6E,255),ACCENT=RGBA8(0x3B,0xFF,0,255),WHITE=RGBA8(255,255,255,255),BLACK=RGBA8(0,0,0,255),PANEL=RGBA8(0x20,0x20,0x20,255);
+        const int w=620,h=320,x=(960-w)/2,y=(544-h)/2;
+        vita2d_start_drawing();vita2d_clear_screen();vita2d_draw_rectangle(x,y,w,h,PANEL);vita2d_draw_rectangle(x,y,w,2,ACCENT);
+        vita2d_pgf_draw_text(font,x+28,y+32,ACCENT,.68f,"PSVitaAlive");vita2d_pgf_draw_text(font,x+28,y+68,WHITE,1.02f,"Downloading Images");
+        std::string fn=twoLineFileName(p.fileName.empty()?currentFile:p.fileName);const size_t nl=fn.find('\n');if(nl==std::string::npos)vita2d_pgf_draw_text(font,x+28,y+98,TEXT,.62f,fn.c_str());else{vita2d_pgf_draw_text(font,x+28,y+98,TEXT,.62f,fn.substr(0,nl).c_str());vita2d_pgf_draw_text(font,x+28,y+120,TEXT,.62f,fn.substr(nl+1).c_str());}
+        const uint64_t current=p.downloaded,total=p.total;const uint32_t pct=total?std::min<uint64_t>(100,(current*100)/total):0;int bx=x+28,by=y+140,bw=w-56,bh=12;vita2d_draw_rectangle(bx,by,bw,bh,BORDER);vita2d_draw_rectangle(bx,by,bw*(int)pct/100,bh,ACCENT);
+        char stats[220]={};sceClibSnprintf(stats,sizeof(stats),"%u%%  %s / %s  •  %s/s",pct,formatBytes(current).c_str(),total?formatBytes(total).c_str():"?",formatBytes(p.speed).c_str());vita2d_pgf_draw_text(font,x+28,y+168,TEXT,.58f,stats);
+        char count[180]={};sceClibSnprintf(count,sizeof(count),"Files: %llu / %u",(unsigned long long)completed,(unsigned)jobs.size());vita2d_pgf_draw_text(font,x+28,y+194,ACCENT,.62f,count);
+        char known[220]={};sceClibSnprintf(known,sizeof(known),"Known size: %s",formatBytes(p.knownTotalBytes).c_str());vita2d_pgf_draw_text(font,x+28,y+218,TEXT,.56f,known);
+        uint64_t eta=0;if(completed>0&&jobs.size()>completed&&now>started){uint64_t elapsed=now-started;eta=(elapsed/1000000ULL)*(jobs.size()-completed)/completed;if(eta==0)eta=1;}char et[96]={};if(eta<60)sceClibSnprintf(et,sizeof(et),"ETA ~%llus",(unsigned long long)eta);else sceClibSnprintf(et,sizeof(et),"ETA ~%llum",(unsigned long long)(eta/60));vita2d_pgf_draw_text(font,x+28,y+242,DIM,.54f,et);
+        vita2d_draw_rectangle(x+w-170,y+h-50,130,34,cancelled?ACCENT:SURFACE);vita2d_pgf_draw_text(font,x+w-148,y+h-27,cancelled?BLACK:WHITE,.60f,"CIRCLE: CANCEL");
+        vita2d_end_drawing();vita2d_swap_buffers();sceKernelDelayThread(16*1000);
+        if(cancelled&&!images.progress().active)break;
+    }
+    vita2d_wait_rendering_done();vita2d_free_pgf(font);return !cancelled;
+}
 std::string progressMessage(uint64_t current,uint64_t total,const std::string&prefix,const std::string&file){char b[320];const uint64_t pct=total?std::min<uint64_t>(100,(current*100)/total):0;sceClibSnprintf(b,sizeof(b),"%s | %llu%% | %llu / %llu%s%s",prefix.c_str(),(unsigned long long)pct,(unsigned long long)current,(unsigned long long)total,file.empty()?"":" | ",file.c_str());return b;}
-std::string formatEta(uint64_t seconds){if(seconds<60){char b[64];sceClibSnprintf(b,sizeof(b),"~%llus",(unsigned long long)seconds);return b;}const uint64_t minutes=seconds/60;const uint64_t secs=seconds%60;if(minutes<60){char b[64];sceClibSnprintf(b,sizeof(b),"~%llum %llus",(unsigned long long)minutes,(unsigned long long)secs);return b;}const uint64_t hours=minutes/60;const uint64_t mins=minutes%60;char b[64];sceClibSnprintf(b,sizeof(b),"~%lluh %llum",(unsigned long long)hours,(unsigned long long)mins);return b;}
-std::string imageProgressMessage(uint64_t current,uint64_t total,const std::string&prefix,const std::string&file,uint64_t startedAt,uint64_t now){const uint64_t pct=total?std::min<uint64_t>(100,(current*100)/total):0;uint64_t eta=0;if(current>0&&total>current&&now>startedAt){const uint64_t elapsed=now-startedAt;const uint64_t remaining=(total-current);eta=(elapsed/1000000ULL)*remaining/current;if(eta==0)eta=1;}char b[384];const std::string etaText=eta?formatEta(eta):"calculating...";sceClibSnprintf(b,sizeof(b),"%s | %llu%% | %llu / %llu | ETA %s%s%s",prefix.c_str(),(unsigned long long)pct,(unsigned long long)current,(unsigned long long)total,etaText.c_str(),file.empty()?"":" | ",file.c_str());return b;}
 }
 
 int main(){
@@ -105,10 +128,9 @@ int main(){
     if(!screen.init()){psvitaalive::diagnostics::log("[System] UI initialization failed");installer.shutdown();catalogs.shutdown();images.shutdown();psvitaalive::diagnostics::shutdown();sceKernelExitProcess(1);return 1;}
 
     const int catalogCount=(int)psvitaalive::ui::CatalogType::Count;
-    int preloadIndex=0;bool startupCatalogs=true;bool startupImages=false;bool homebrewReady=false;bool startupImageChoicePending=false;
+    int preloadIndex=0;bool startupCatalogs=true;bool homebrewReady=false;bool startupImageChoicePending=false;
     std::vector<std::vector<psvitaalive::ui::CatalogItem>> startupCatalogItems((size_t)catalogCount);
     std::vector<StartupImageJob> startupImagesJobs;std::unordered_set<std::string> startupImageSeen;
-    uint64_t lastImageProgressPoll=0,lastImageCompleted=0,startupImageStartTime=0;std::string lastImageFile;
 
     screen.setActiveCatalog(psvitaalive::ui::CatalogType::Homebrew);
     screen.setCatalogLoading(true,psvitaalive::ui::catalogName(psvitaalive::ui::CatalogType::Homebrew),0,0,"Checking catalog cache...");
@@ -123,62 +145,32 @@ int main(){
             ++preloadIndex;
             if(preloadIndex<catalogCount){const auto next=(psvitaalive::ui::CatalogType)preloadIndex;screen.setCatalogLoading(true,psvitaalive::ui::catalogName(next),0,0,"Checking next catalog cache...");catalogs.request(next);}
             else{
-                startupCatalogs=false;startupImageChoicePending=true;
-                startupImagesJobs.clear();startupImageSeen.clear();
-                for(const auto&items:startupCatalogItems)collectCatalogImages(startupImagesJobs,startupImageSeen,images,items,false);
-                screen.setCatalogLoading(false,"",0,(uint64_t)startupImagesJobs.size(),"Catalogs ready");
-                psvitaalive::diagnostics::log("[Startup] all catalogs processed; waiting for image warmup choice");
+                startupCatalogs=false;startupImageChoicePending=true;startupImagesJobs.clear();startupImageSeen.clear();for(const auto&items:startupCatalogItems)collectCatalogImages(startupImagesJobs,startupImageSeen,images,items,false);screen.setCatalogLoading(false,"",0,(uint64_t)startupImagesJobs.size(),"Catalogs ready");psvitaalive::diagnostics::log("[Startup] all catalogs processed; waiting for image warmup choice");
             }
         }
 
         std::vector<psvitaalive::ui::CatalogItem> ready;psvitaalive::ui::CatalogType readyCatalog;
         if(catalogs.takeReady(ready,readyCatalog)){
-            psvitaalive::diagnostics::log(std::string("[System] catalog ready: ")+psvitaalive::ui::catalogName(readyCatalog));
-            startupCatalogItems[(int)readyCatalog]=ready;
+            psvitaalive::diagnostics::log(std::string("[System] catalog ready: ")+psvitaalive::ui::catalogName(readyCatalog));startupCatalogItems[(int)readyCatalog]=ready;
             if(startupCatalogs){
                 if(readyCatalog==psvitaalive::ui::CatalogType::Homebrew){screen.setCatalogItems(ready);screen.setActiveCatalog(psvitaalive::ui::CatalogType::Homebrew);homebrewReady=true;}
                 ++preloadIndex;
                 if(preloadIndex<catalogCount){const auto next=(psvitaalive::ui::CatalogType)preloadIndex;screen.setCatalogLoading(true,psvitaalive::ui::catalogName(next),0,0,"Checking next catalog cache...");catalogs.request(next);}
-                else{
-                    startupCatalogs=false;startupImageChoicePending=true;
-                    startupImagesJobs.clear();startupImageSeen.clear();
-                    for(const auto&items:startupCatalogItems)collectCatalogImages(startupImagesJobs,startupImageSeen,images,items,false);
-                    screen.setCatalogLoading(false,"",0,(uint64_t)startupImagesJobs.size(),"Catalogs ready");
-                    psvitaalive::diagnostics::log("[Startup] all catalogs ready; waiting for image warmup choice");
-                }
-            }else{
-                screen.setCatalogItems(std::move(ready));screen.setActiveCatalog(readyCatalog);screen.setCatalogLoading(false,psvitaalive::ui::catalogName(readyCatalog),1,1,"Ready");
-            }
+                else{startupCatalogs=false;startupImageChoicePending=true;startupImagesJobs.clear();startupImageSeen.clear();for(const auto&items:startupCatalogItems)collectCatalogImages(startupImagesJobs,startupImageSeen,images,items,false);screen.setCatalogLoading(false,"",0,(uint64_t)startupImagesJobs.size(),"Catalogs ready");psvitaalive::diagnostics::log("[Startup] all catalogs ready; waiting for image warmup choice");}
+            }else{screen.setCatalogItems(std::move(ready));screen.setActiveCatalog(readyCatalog);screen.setCatalogLoading(false,psvitaalive::ui::catalogName(readyCatalog),1,1,"Ready");}
         }
 
         if(startupImageChoicePending){
             startupImageChoicePending=false;
-            const bool downloadAll=promptDownloadAllImages(startupImagesJobs.size());
-            if(downloadAll){
-                startupImages=true;
-                queueStartupImages(startupImagesJobs,images);
-                lastImageCompleted=0;lastImageFile.clear();startupImageStartTime=sceKernelGetSystemTimeWide();lastImageProgressPoll=0;
-                screen.setCatalogLoading(true,"Preparing images",0,(uint64_t)startupImagesJobs.size(),"Starting image download...");
-                psvitaalive::diagnostics::log("[Startup] user selected full image warmup");
-            }else{
-                startupImages=false;startupImagesJobs.clear();startupImageSeen.clear();
-                screen.setCatalogLoading(false,"",0,0,"Images will download while browsing");
-                psvitaalive::diagnostics::log("[Startup] user selected on-demand image loading");
+            if(startupImagesJobs.empty()){
+                screen.setCatalogLoading(false,"",0,0,"All catalog images are already cached");psvitaalive::diagnostics::log("[Startup] no pending catalog images");
                 if(homebrewReady){screen.setCatalogItems(startupCatalogItems[(int)psvitaalive::ui::CatalogType::Homebrew]);screen.setActiveCatalog(psvitaalive::ui::CatalogType::Homebrew);}
-            }
-        }
-
-        if(startupImages&&now>=lastImageProgressPoll){
-            lastImageProgressPoll=now+500000;
-            uint64_t completed=0;std::string currentFile;bool failedCurrent=false;imageWarmupProgress(startupImagesJobs,images,completed,currentFile,failedCurrent);
-            lastImageCompleted=completed;lastImageFile=currentFile;
-            if(startupImagesJobs.empty()||completed>=(uint64_t)startupImagesJobs.size()){
-                startupImages=false;screen.setCatalogLoading(false,"",completed,(uint64_t)startupImagesJobs.size(),"Image cache ready");
-                psvitaalive::diagnostics::log("[Startup] image warmup complete");
+            }else if(promptDownloadAllImages(startupImagesJobs.size())){
+                const bool completed=runImageWarmup(startupImagesJobs,images);screen.setCatalogLoading(false,"",completed?startupImagesJobs.size():0,(uint64_t)startupImagesJobs.size(),completed?"Image cache ready":"Image download cancelled");psvitaalive::diagnostics::log(std::string("[Startup] full image warmup finished result=")+(completed?"COMPLETE":"CANCELLED"));
                 if(homebrewReady){screen.setCatalogItems(startupCatalogItems[(int)psvitaalive::ui::CatalogType::Homebrew]);screen.setActiveCatalog(psvitaalive::ui::CatalogType::Homebrew);}
             }else{
-                std::string msg=imageProgressMessage(completed,(uint64_t)startupImagesJobs.size(),failedCurrent?"Retrying image":"Downloading image",currentFile,startupImageStartTime,now);
-                screen.setCatalogLoading(true,"Preparing images",completed,(uint64_t)startupImagesJobs.size(),msg);
+                screen.setCatalogLoading(false,"",0,0,"Images will download while browsing");startupImagesJobs.clear();startupImageSeen.clear();psvitaalive::diagnostics::log("[Startup] user selected on-demand image loading");
+                if(homebrewReady){screen.setCatalogItems(startupCatalogItems[(int)psvitaalive::ui::CatalogType::Homebrew]);screen.setActiveCatalog(psvitaalive::ui::CatalogType::Homebrew);}
             }
         }
 
