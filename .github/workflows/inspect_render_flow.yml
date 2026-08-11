@@ -1,0 +1,28 @@
+name: Inspect render flow
+on:
+  push:
+    branches: [main]
+permissions:
+  contents: write
+jobs:
+  inspect:
+    if: contains(github.event.head_commit.message, 'Inspect render flow')
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Inspect
+        run: |
+          echo '--- main vita2d calls ---'
+          grep -n -C 3 'vita2d_start_drawing\|vita2d_end_drawing\|updateAndDraw' 'Client PSVitaAlive/source/main.cpp' || true
+          echo '--- full catalog update ---'
+          grep -n -C 2 'bool FullCatalogScreen::updateAndDraw' 'Client PSVitaAlive/source/ui/full_catalog_screen.cpp' || true
+          echo '--- image methods ---'
+          grep -n -C 2 'prepareImageTexture\|prepareVisibleTextures\|drawImage' 'Client PSVitaAlive/source/ui/full_catalog_screen.cpp' || true
+      - name: Remove workflow
+        run: |
+          rm -f .github/workflows/inspect_render_flow.yml
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add .github/workflows/inspect_render_flow.yml
+          git commit -m 'Remove temporary render inspection workflow'
+          git push
