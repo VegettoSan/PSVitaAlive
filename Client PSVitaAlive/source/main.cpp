@@ -91,7 +91,7 @@ bool runImageWarmup(std::vector<StartupImageJob>&jobs,psvitaalive::ui::ImageCach
         char count[180]={};sceClibSnprintf(count,sizeof(count),"Files: %llu / %u",(unsigned long long)completed,(unsigned)jobs.size());vita2d_pgf_draw_text(font,x+28,y+194,ACCENT,.62f,count);
         char known[220]={};sceClibSnprintf(known,sizeof(known),"Known size: %s",formatBytes(p.knownTotalBytes).c_str());vita2d_pgf_draw_text(font,x+28,y+218,TEXT,.56f,known);
         uint64_t eta=0;if(completed>0&&jobs.size()>completed&&now>started){uint64_t elapsed=now-started;eta=(elapsed/1000000ULL)*(jobs.size()-completed)/completed;if(eta==0)eta=1;}char et[96]={};if(eta<60)sceClibSnprintf(et,sizeof(et),"ETA ~%llus",(unsigned long long)eta);else sceClibSnprintf(et,sizeof(et),"ETA ~%llum",(unsigned long long)(eta/60));vita2d_pgf_draw_text(font,x+28,y+242,DIM,.54f,et);
-        vita2d_draw_rectangle(x+w-170,y+h-50,130,34,cancelled?ACCENT:SURFACE);vita2d_pgf_draw_text(font,x+w-148,y+h-27,cancelled?BLACK:WHITE,.60f,"CIRCLE: CANCEL");
+        vita2d_draw_rectangle(x+w-190,y+h-52,162,38,cancelled?ACCENT:SURFACE);vita2d_draw_rectangle(x+w-190,y+h-52,162,1,ACCENT);vita2d_pgf_draw_text(font,x+w-176,y+h-27,cancelled?BLACK:WHITE,.54f,"CIRCLE  CANCEL DOWNLOAD");
         vita2d_end_drawing();vita2d_swap_buffers();sceKernelDelayThread(16*1000);
         if(cancelled&&!images.progress().active)break;
     }
