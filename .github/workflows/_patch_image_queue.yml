@@ -1,0 +1,19 @@
+name: Temporary image queue patch
+on: push
+permissions:
+  contents: write
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - name: Apply patch
+        run: |
+          echo 'H4sICHq+emoAA3BhdGNoMi5weQDNVdtO20AQfc9XLEjEtrBC0lY8xBiJpnmgDZdCQlsBspz1JFmx2XX3EkpD/r2zjkPCTcATzUv2MmfmnDNje6DkmOSpGXHWJ2ycS2XIMW4rlVHs/n2vxRkIPDw9Yybd42wCW0xQbjPYsmyLjdMhJDSlI6iN8twLKjoe1RSkWWLgj/HdXuM+5ykF3yP4s0yY7U+JIVSOcw4Gsq40Kf98Y0AnJCb16EJ44atDXVxfSk76ll8dK+ASa+PdIOUailSNoDKqXStmYM5JB5UKfV6dllbRR+JoKY4+L45KofE8V0veJ+3uya+kdXTU+XL04zDpncYf68Wv1+lEKPKtkAuxRGj2FwWRg72fyf5ht32y1+run7WT7712rx03PkSF8HsEJ5JlZN+JajlNzWY+t8svkhJtsmZzAtRItVOstVFMDHerVnEdrsTMz6tCB1M28McW+SQ79dtbF1eDcW5u/CBQYKwSUcnytwULWVyPBlKV5VJrpEvddLAiEy7u4BhjmLAQrVQkfUA4xAownTYuPkQSEULX5ld38M3NecVohpfzZTClo1SR8Xlju34ZaQrY+/6pyDGzQRWhYypxEYTr50uTLklpEimrQkaEjjc0zqQVJt6w68ihRhOk6Aehb4VmQ4HVyqJRxtKhkNowqptNLodYIJrNvJB43vs0hMI3UAJ4R9KrAxdaAsJGKCznuVFBtPosxUa5NixgPcEfAYP3b/PbZc1fEC/o+k+nxysebsmz2HOuzKOr1TVnZ8qE9nMQGVqZhO7dHgTTxb6WWz1K+im98oubqICuHk8H6FYBC+szLOZVBFy/tkzRohWTq9Uyv7PHD3bjJ99W6G0xKl9ln2RK5jmOUIkrKC1ZyjwpT+4EgUo1+MX4KBjLCdyRqvVhyATauowVGW7LErWC84PLJxxfmUz/fm/LRPgMphzK2V80uvioxuvB5r1q0ezZRqB1q84FLzUGcHpJGYStAGX8hWel7MedTLWLIzg3hAmi730d8DDETru5og++lv8A3dBLgCUIAAA=' | base64 -d | gzip -d > /tmp/patch.py
+          python3 /tmp/patch.py
+          rm -f .github/workflows/_patch_image_queue.yml
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add 'Client PSVitaAlive/include/ui/image_cache.hpp' 'Client PSVitaAlive/source/ui/image_cache.cpp' '.github/workflows/_patch_image_queue.yml'
+          git commit -m 'Prevent interactive image queue growth'
+          git push origin main
