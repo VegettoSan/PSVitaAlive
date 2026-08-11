@@ -42,18 +42,43 @@ void FullCatalogScreen::prepareImageTexture(const std::string&url,const std::str
     textures_[path]=t;textureOrder_.push_back(path);
 }
 void FullCatalogScreen::prepareVisibleTextures(){
-    if(!imageCache_)return;
+    if(!imageCache_||catalogLoading_||installProgressActive_)return;
+    // Upload at most one new texture per frame. This avoids several Vita2D
+    // GPU buffer mappings being created in the same frame while navigating.
+    bool loadedThisFrame=false;
     auto prepareItem=[&](const CatalogItem&it,bool detail){
-        prepareImageTexture(!it.icon.empty()?it.icon:it.cover,"app");
-        if(detail){const size_t sc=std::min<size_t>(5,it.screenshots.size());for(size_t i=0;i<sc;++i)prepareImageTexture(it.screenshots[i],"shot");}
+        if(loadedThisFrame)return;
+        const std::string& primary=!it.icon.empty()?it.icon:it.cover;
+        if(!primary.empty()){
+            const size_t before=textures_.size();
+            prepareImageTexture(primary,"app");
+            loadedThisFrame=textures_.size()>before;
+            if(loadedThisFrame)return;
+        }
+        if(detail){
+            const size_t sc=std::min<size_t>(5,it.screenshots.size());
+            for(size_t i=0;i<sc&&!loadedThisFrame;++i){
+                const size_t before=textures_.size();
+                prepareImageTexture(it.screenshots[i],"shot");
+                loadedThisFrame=textures_.size()>before;
+            }
+        }
     };
     if(state_.mode==UiMode::FULL_CATALOG||state_.mode==UiMode::OPENING_DETAIL){
         const int rows=visibleRowsFull();
-        for(int r=0;r<rows;++r)for(int c=0;c<3;++c){int i=(state_.catalogScrollRow+r)*3+c;if(i>=0&&i<(int)items_.size())prepareItem(items_[i],false);}
+        for(int r=0;r<rows&&!loadedThisFrame;++r)
+            for(int c=0;c<3&&!loadedThisFrame;++c){
+                int i=(state_.catalogScrollRow+r)*3+c;
+                if(i>=0&&i<(int)items_.size())prepareItem(items_[i],false);
+            }
     }else{
         const int rows=visibleRowsSplit();
-        for(int r=0;r<rows;++r){int i=state_.catalogScrollRow+r;if(i>=0&&i<(int)items_.size())prepareItem(items_[i],false);}
-        const int i=selectedIndex();if(i>=0)prepareItem(items_[i],true);
+        for(int r=0;r<rows&&!loadedThisFrame;++r){
+            int i=state_.catalogScrollRow+r;
+            if(i>=0&&i<(int)items_.size())prepareItem(items_[i],false);
+        }
+        const int i=selectedIndex();
+        if(i>=0&&!loadedThisFrame)prepareItem(items_[i],true);
     }
 }
 void FullCatalogScreen::drawImage(const std::string&url,const std::string&ns,int x,int y,int w,int h){vita2d_draw_rectangle(x,y,w,h,SURFACE2);if(!imageCache_||url.empty())return;std::string path=imageCache_->request(url,ns);if(imageCache_->isFailed(path)||!imageCache_->isReady(path))return;auto it=textures_.find(path);if(it==textures_.end())return;touchTexture(path);vita2d_texture*t=it->second;float tw=(float)vita2d_texture_get_width(t),th=(float)vita2d_texture_get_height(t);if(tw<=0||th<=0)return;float sc=std::min((float)w/tw,(float)h/th),dw=tw*sc,dh=th*sc;vita2d_draw_texture_scale(t,x+(w-dw)/2.0f,y+(h-dh)/2.0f,sc,sc);}
