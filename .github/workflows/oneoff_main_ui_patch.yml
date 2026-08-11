@@ -1,0 +1,28 @@
+name: One-off VitaHub UI patch
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+
+jobs:
+  patch:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Patch main.cpp
+        run: python3 .github/patch_main_ui.py
+
+      - name: Commit patch and diagnostics
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add "Client PSVitaAlive/source/main.cpp" .github/patch_debug.txt
+          git commit -m "fix: unify image download dialogs"
+          git push
