@@ -100,6 +100,7 @@ private:
     void prepareVisibleTextures();
     void drawImage(const std::string& url, const std::string& namespaceName, int x, int y, int width, int height);
     void releaseTextures();
+    void releaseScreenshotTextures();
     void touchTexture(const std::string& path);
     void evictTextureIfNeeded(const std::string& namespaceName);
 
