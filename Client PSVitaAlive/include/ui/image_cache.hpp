@@ -69,6 +69,7 @@ private:
     uint64_t currentSpeed_ = 0;
     uint64_t completedBytes_ = 0;
     uint64_t completedTotalBytes_ = 0;
+    bool bulkPreload_ = false;
 
     static int workerEntry(SceSize args, void* argp);
     int workerMain();
