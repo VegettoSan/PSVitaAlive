@@ -2,103 +2,54 @@ name: Apply detail memory fix
 
 on:
   push:
-    branches: [main]
+    branches:
+      - main
 
 permissions:
   contents: write
 
 jobs:
   apply:
-    if: github.actor != 'github-actions[bot]'
+    if: ${{ github.actor != 'github-actions[bot]' }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
           ref: main
-
       - name: Apply fixes
-        shell: bash
         run: |
-          set -euo pipefail
+          set -e
           python3 - <<'PY'
           from pathlib import Path
-
-          cpp = Path('Client PSVitaAlive/source/ui/full_catalog_screen.cpp')
-          s = cpp.read_text()
-
-          s = s.replace('void FullCatalogScreen::moveDetailScroll(int d){state_.detailScroll+=d<0?-48:48;clampDetailScroll();}',
-                        'void FullCatalogScreen::moveDetailScroll(int d){state_.detailScroll+=d<0?-72:72;clampDetailScroll();}')
-
-          old = '''void FullCatalogScreen::prepareVisibleTextures(){
-    if(!imageCache_||catalogLoading_||installProgressActive_)return;
-    bool loadedThisFrame=false;'''
-          new = '''void FullCatalogScreen::prepareVisibleTextures(){
-    if(!imageCache_||catalogLoading_||installProgressActive_)return;
-    // Screenshots are detail-only resources. Once the detail viewport no longer
-    // needs them, release their GPU textures instead of keeping them cached for
-    // the next detail visit. The downloaded files remain in ImageCache/storage.
-    if(state_.mode==UiMode::FULL_CATALOG){
-        std::vector<std::string> staleShots;
-        for(const auto&e:textures_)if(e.first.find("/shot_")!=std::string::npos)staleShots.push_back(e.first);
-        if(!staleShots.empty()){
-            vita2d_wait_rendering_done();
-            for(const auto&p:staleShots){auto it=textures_.find(p);if(it!=textures_.end()){if(it->second)vita2d_free_texture(it->second);textures_.erase(it);}textureOrder_.erase(std::remove(textureOrder_.begin(),textureOrder_.end(),p),textureOrder_.end());}
-        }
-    }
-    bool loadedThisFrame=false;'''
-          if old not in s:
-              raise SystemExit('prepareVisibleTextures anchor not found')
-          s = s.replace(old, new, 1)
-
-          old = '''            const int shotTop=top+links+(int)pre.size()*LINE_H-scroll,shotH=SCREENSHOT_ROW_H-18,sc=std::min(5,(int)it.screenshots.size());
-            for(int k=0;k<sc&&!loadedThisFrame;++k){const int sy=shotTop+k*SCREENSHOT_ROW_H;if(sy+shotH>top&&sy<bottom)prepareOne(it.screenshots[k],"shot");}'''
-          new = '''            const int shotTop=top+links+(int)pre.size()*LINE_H-scroll,shotH=SCREENSHOT_ROW_H-18,sc=std::min(5,(int)it.screenshots.size());
-            std::set<std::string> visibleShotPaths;
-            for(int k=0;k<sc;++k){
-                const int sy=shotTop+k*SCREENSHOT_ROW_H;
-                if(sy+shotH>top&&sy<bottom){
-                    const std::string p=imageCache_->request(it.screenshots[k],"shot");
-                    if(!p.empty())visibleShotPaths.insert(p);
-                }
-            }
-            std::vector<std::string> staleShots;
-            for(const auto&e:textures_){
-                if(e.first.find("/shot_")!=std::string::npos&&visibleShotPaths.find(e.first)==visibleShotPaths.end())staleShots.push_back(e.first);
-            }
-            if(!staleShots.empty()){
-                vita2d_wait_rendering_done();
-                for(const auto&p:staleShots){auto itTex=textures_.find(p);if(itTex!=textures_.end()){if(itTex->second)vita2d_free_texture(itTex->second);textures_.erase(itTex);}textureOrder_.erase(std::remove(textureOrder_.begin(),textureOrder_.end(),p),textureOrder_.end());}
-            }
-            for(int k=0;k<sc&&!loadedThisFrame;++k){const int sy=shotTop+k*SCREENSHOT_ROW_H;if(sy+shotH>top&&sy<bottom)prepareOne(it.screenshots[k],"shot");}'''
-          if old not in s:
-              raise SystemExit('screenshot anchor not found')
-          s = s.replace(old, new, 1)
-          cpp.write_text(s)
-
-          ic = Path('Client PSVitaAlive/source/ui/image_cache.cpp')
-          s = ic.read_text()
-          old = 'normalizeImageForVita(path,ns=="app"?512u:2048u)'
-          new = 'normalizeImageForVita(path,ns=="app"?256u:2048u)'
-          if old not in s:
-              raise SystemExit('256px anchor not found')
-          s = s.replace(old, new, 1)
-          ic.write_text(s)
+          p=Path('Client PSVitaAlive/source/ui/full_catalog_screen.cpp')
+          s=p.read_text()
+          old='void FullCatalogScreen::moveDetailScroll(int d){state_.detailScroll+=d<0?-48:48;clampDetailScroll();}'
+          new='void FullCatalogScreen::moveDetailScroll(int d){state_.detailScroll+=d<0?-72:72;clampDetailScroll();}'
+          assert old in s
+          s=s.replace(old,new,1)
+          old='''void FullCatalogScreen::prepareVisibleTextures(){\n    if(!imageCache_||catalogLoading_||installProgressActive_)return;\n    bool loadedThisFrame=false;'''
+          new='''void FullCatalogScreen::prepareVisibleTextures(){\n    if(!imageCache_||catalogLoading_||installProgressActive_)return;\n    if(state_.mode==UiMode::FULL_CATALOG){\n        std::vector<std::string> staleShots;\n        for(const auto&e:textures_)if(e.first.find("/shot_")!=std::string::npos)staleShots.push_back(e.first);\n        if(!staleShots.empty()){\n            vita2d_wait_rendering_done();\n            for(const auto&p:staleShots){auto it=textures_.find(p);if(it!=textures_.end()){if(it->second)vita2d_free_texture(it->second);textures_.erase(it);}textureOrder_.erase(std::remove(textureOrder_.begin(),textureOrder_.end(),p),textureOrder_.end());}\n        }\n    }\n    bool loadedThisFrame=false;'''
+          assert old in s
+          s=s.replace(old,new,1)
+          old='''            const int shotTop=top+links+(int)pre.size()*LINE_H-scroll,shotH=SCREENSHOT_ROW_H-18,sc=std::min(5,(int)it.screenshots.size());\n            for(int k=0;k<sc&&!loadedThisFrame;++k){const int sy=shotTop+k*SCREENSHOT_ROW_H;if(sy+shotH>top&&sy<bottom)prepareOne(it.screenshots[k],"shot");}'''
+          new='''            const int shotTop=top+links+(int)pre.size()*LINE_H-scroll,shotH=SCREENSHOT_ROW_H-18,sc=std::min(5,(int)it.screenshots.size());\n            std::set<std::string> visibleShotPaths;\n            for(int k=0;k<sc;++k){const int sy=shotTop+k*SCREENSHOT_ROW_H;if(sy+shotH>top&&sy<bottom){const std::string p=imageCache_->request(it.screenshots[k],"shot");if(!p.empty())visibleShotPaths.insert(p);}}\n            std::vector<std::string> staleShots;\n            for(const auto&e:textures_)if(e.first.find("/shot_")!=std::string::npos&&visibleShotPaths.find(e.first)==visibleShotPaths.end())staleShots.push_back(e.first);\n            if(!staleShots.empty()){vita2d_wait_rendering_done();for(const auto&p:staleShots){auto itTex=textures_.find(p);if(itTex!=textures_.end()){if(itTex->second)vita2d_free_texture(itTex->second);textures_.erase(itTex);}textureOrder_.erase(std::remove(textureOrder_.begin(),textureOrder_.end(),p),textureOrder_.end());}}\n            for(int k=0;k<sc&&!loadedThisFrame;++k){const int sy=shotTop+k*SCREENSHOT_ROW_H;if(sy+shotH>top&&sy<bottom)prepareOne(it.screenshots[k],"shot");}'''
+          assert old in s
+          s=s.replace(old,new,1)
+          p.write_text(s)
+          p=Path('Client PSVitaAlive/source/ui/image_cache.cpp')
+          s=p.read_text();old='normalizeImageForVita(path,ns=="app"?512u:2048u)';new='normalizeImageForVita(path,ns=="app"?256u:2048u)';assert old in s;s=s.replace(old,new,1);p.write_text(s)
           PY
-
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add 'Client PSVitaAlive/source/ui/full_catalog_screen.cpp' 'Client PSVitaAlive/source/ui/image_cache.cpp'
           git commit -m 'Improve detail screenshot memory and image sizing'
           git push origin main
-
       - name: Remove temporary workflow
-        shell: bash
         run: |
-          set -euo pipefail
           git fetch origin main
           git reset --hard origin/main
           rm -f .github/workflows/__apply_detail_memory_fix.yml
           git add -u .github/workflows/__apply_detail_memory_fix.yml
-          git commit -m 'Remove temporary detail memory fix workflow' || true
-          git push origin main || true
+          git commit -m 'Remove temporary detail memory fix workflow'
+          git push origin main
