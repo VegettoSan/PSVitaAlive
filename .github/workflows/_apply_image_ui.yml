@@ -1,0 +1,84 @@
+name: Apply requested image UI optimizations
+on:
+  push:
+    branches: [main]
+permissions:
+  contents: write
+jobs:
+  patch:
+    if: contains(github.event.head_commit.message, 'Apply requested image UI optimizations')
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+      - name: Patch client
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import re
+          p=Path('Client PSVitaAlive/source/ui/full_catalog_screen.cpp')
+          s=p.read_text()
+          s=s.replace('MAX_APP_TEXTURES=9,MAX_SCREENSHOT_TEXTURES=3','MAX_APP_TEXTURES=9,MAX_SCREENSHOT_TEXTURES=5')
+          s=s.replace('DIRECTION_REPEAT_INTERVAL_US=500000','DIRECTION_REPEAT_INTERVAL_US=333333')
+
+          a=s.index('void FullCatalogScreen::prepareVisibleTextures(')
+          b=s.index('void FullCatalogScreen::drawImage(',a)
+          prepare='''void FullCatalogScreen::prepareVisibleTextures(){
+              if(!imageCache_||catalogLoading_||installProgressActive_)return;
+              if(state_.mode==UiMode::FULL_CATALOG){
+                  const int first=std::max(0,state_.catalogScrollRow*3);
+                  const int last=std::min((int)items_.size(),first+9);
+                  for(int i=first;i<last;++i)if(!items_[i].icon.empty())prepareImageTexture(items_[i].icon,"app");
+                  return;
+              }
+              if(state_.mode==UiMode::SPLIT_DETAIL||state_.mode==UiMode::OPENING_DETAIL||state_.mode==UiMode::CLOSING_DETAIL){
+                  const int first=std::max(0,state_.catalogScrollRow);
+                  const int visible=visibleRowsSplit()+1;
+                  const int last=std::min((int)items_.size(),first+visible);
+                  for(int i=first;i<last;++i)if(!items_[i].icon.empty())prepareImageTexture(items_[i].icon,"app");
+              }
+          }
+          '''
+          s=s[:a]+prepare+s[b:]
+
+          a=s.index('void FullCatalogScreen::drawImage(')
+          b=s.index('void FullCatalogScreen::releaseTextures(',a)
+          draw='''void FullCatalogScreen::drawImage(const std::string&url,const std::string&namespaceName,int x,int y,int width,int height){
+              if(url.empty()||!imageCache_)return;
+              if(namespaceName=="shot"){
+                  const int clipTop=HEADER_H+TABS_H+DETAIL_HEADER_H;
+                  const int clipBottom=SCREEN_H-FOOTER_H;
+                  if(y+height<=clipTop||y>=clipBottom)return;
+              }
+              const std::string path=imageCache_->request(url,namespaceName);
+              if(path.empty()||!imageCache_->isReady(path))return;
+              if(textures_.find(path)==textures_.end()){
+                  evictTextureIfNeeded(namespaceName);
+                  vita2d_texture*t=nullptr;
+                  const char*ext=extOf(path);
+                  if(std::strcmp(ext,".png")==0)t=vita2d_load_PNG_file(path.c_str());
+                  else if(std::strcmp(ext,".jpg")==0||std::strcmp(ext,".jpeg")==0)t=vita2d_load_JPEG_file(path.c_str());
+                  if(!t)return;
+                  textures_[path]=t;
+                  textureOrder_.push_back(path);
+              }
+              auto it=textures_.find(path);
+              if(it==textures_.end()||!it->second)return;
+              touchTexture(path);
+              vita2d_draw_texture_scale(it->second,(float)x,(float)y,(float)width/(float)std::max(1,vita2d_texture_get_width(it->second)),(float)height/(float)std::max(1,vita2d_texture_get_height(it->second)));
+          }
+          '''
+          s=s[:a]+draw+s[b:]
+          p.write_text(s)
+          PY
+      - name: Commit patched client
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add 'Client PSVitaAlive/source/ui/full_catalog_screen.cpp'
+          git commit -m 'Implement requested image UI optimizations' || exit 0
+          git push
