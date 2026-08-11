@@ -1,0 +1,114 @@
+name: Fix Vita2D image rendering crash
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+
+jobs:
+  fix:
+    if: contains(github.event.head_commit.message, 'Add temporary fix for Vita2D image rendering crash')
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Apply rendering safety and translucent download overlay fix
+        shell: python
+        run: |
+          from pathlib import Path
+          import re
+
+          h = Path('Client PSVitaAlive/include/ui/full_catalog_screen.hpp')
+          s = h.read_text(encoding='utf-8')
+          needle = '    void drawLoadingOverlay();\n    void drawImage(const std::string& url, const std::string& namespaceName, int x, int y, int width, int height);'
+          repl = '    void drawLoadingOverlay();\n    void prepareImageTexture(const std::string& url, const std::string& namespaceName);\n    void prepareVisibleTextures();\n    void drawImage(const std::string& url, const std::string& namespaceName, int x, int y, int width, int height);'
+          if needle not in s:
+              raise SystemExit('Header insertion point not found')
+          h.write_text(s.replace(needle, repl, 1), encoding='utf-8')
+
+          p = Path('Client PSVitaAlive/source/ui/full_catalog_screen.cpp')
+          s = p.read_text(encoding='utf-8')
+
+          start = s.index('void FullCatalogScreen::drawImage(')
+          end = s.index('void FullCatalogScreen::drawCatalogCard(', start)
+          new = '''void FullCatalogScreen::prepareImageTexture(const std::string&url,const std::string&ns){
+              if(!imageCache_||url.empty())return;
+              std::string path=imageCache_->request(url,ns);
+              if(imageCache_->isFailed(path)||!imageCache_->isReady(path))return;
+              auto it=textures_.find(path);
+              if(it!=textures_.end()){touchTexture(path);return;}
+              evictTextureIfNeeded(ns);
+              vita2d_texture*t=nullptr;
+              const char*e=extOf(path);
+              if(std::strcmp(e,".jpg")==0||std::strcmp(e,".jpeg")==0)t=vita2d_load_JPEG_file(path.c_str());
+              else t=vita2d_load_PNG_file(path.c_str());
+              if(!t){SceIoStat st={};long long sz=-1;if(sceIoGetstat(path.c_str(),&st)>=0)sz=(long long)st.st_size;char m[700];sceClibSnprintf(m,sizeof(m),"[UI] texture load failed ns=%s path=%s size=%lld",ns.c_str(),path.c_str(),sz);diagnostics::log(m);return;}
+              textures_[path]=t;textureOrder_.push_back(path);
+          }
+          void FullCatalogScreen::prepareVisibleTextures(){
+              if(!imageCache_)return;
+              auto prepareItem=[&](const CatalogItem&it,bool detail){
+                  prepareImageTexture(!it.icon.empty()?it.icon:it.cover,"app");
+                  if(detail){const size_t sc=std::min<size_t>(5,it.screenshots.size());for(size_t i=0;i<sc;++i)prepareImageTexture(it.screenshots[i],"shot");}
+              };
+              if(state_.mode==UiMode::FULL_CATALOG||state_.mode==UiMode::OPENING_DETAIL){
+                  const int rows=visibleRowsFull();
+                  for(int r=0;r<rows;++r)for(int c=0;c<3;++c){int i=(state_.catalogScrollRow+r)*3+c;if(i>=0&&i<(int)items_.size())prepareItem(items_[i],false);}
+              }else{
+                  const int rows=visibleRowsSplit();
+                  for(int r=0;r<rows;++r){int i=state_.catalogScrollRow+r;if(i>=0&&i<(int)items_.size())prepareItem(items_[i],false);}
+                  const int i=selectedIndex();if(i>=0)prepareItem(items_[i],true);
+              }
+          }
+          void FullCatalogScreen::drawImage(const std::string&url,const std::string&ns,int x,int y,int w,int h){vita2d_draw_rectangle(x,y,w,h,SURFACE2);if(!imageCache_||url.empty())return;std::string path=imageCache_->request(url,ns);if(imageCache_->isFailed(path)||!imageCache_->isReady(path))return;auto it=textures_.find(path);if(it==textures_.end())return;touchTexture(path);vita2d_texture*t=it->second;float tw=(float)vita2d_texture_get_width(t),th=(float)vita2d_texture_get_height(t);if(tw<=0||th<=0)return;float sc=std::min((float)w/tw,(float)h/th),dw=tw*sc,dh=th*sc;vita2d_draw_texture_scale(t,x+(w-dw)/2.0f,y+(h-dh)/2.0f,sc,sc);}
+          '''
+          s = s[:start] + new + s[end:]
+
+          old = 'bool FullCatalogScreen::updateAndDraw(){if(!ready_)return false;handleInput();updateTransition();draw();return !state_.requestExit;}'
+          new_update = 'bool FullCatalogScreen::updateAndDraw(){if(!ready_)return false;handleInput();updateTransition();prepareVisibleTextures();draw();return !state_.requestExit;}'
+          if old not in s:
+              raise SystemExit('updateAndDraw insertion point not found')
+          s = s.replace(old, new_update, 1)
+
+          # The app download modal is already drawn over the catalog. Keep the catalog visible
+          # through a translucent veil instead of making the backdrop effectively opaque.
+          s = s.replace('vita2d_draw_rectangle(0,0,SCREEN_W,SCREEN_H,RGBA8(0,0,0,110));vita2d_draw_rectangle(x,y,w,h,PANEL);', 'vita2d_draw_rectangle(0,0,SCREEN_W,SCREEN_H,RGBA8(0,0,0,96));vita2d_draw_rectangle(x,y,w,h,PANEL);', 1)
+          p.write_text(s, encoding='utf-8')
+
+          # Image warmup/decision/cancel screens live in main.cpp. Do not clear the back buffer;
+          # the previous catalog frame remains underneath and the modal veil becomes translucent.
+          m = Path('Client PSVitaAlive/source/main.cpp')
+          s = m.read_text(encoding='utf-8')
+          replacements = [
+              ('vita2d_start_drawing();vita2d_clear_screen();const unsigned SURFACE=', 'vita2d_start_drawing();vita2d_draw_rectangle(0,0,960,544,RGBA8(0,0,0,96));const unsigned SURFACE=', 1),
+              ('vita2d_start_drawing();vita2d_clear_screen();vita2d_draw_rectangle(0,0,960,544,RGBA8(0x18,0x18,0x18,255));vita2d_draw_rectangle(0,0,960,544,RGBA8(0,0,0,70));', 'vita2d_start_drawing();vita2d_draw_rectangle(0,0,960,544,RGBA8(0,0,0,96));', 1),
+              ('vita2d_start_drawing();vita2d_clear_screen();vita2d_draw_rectangle(0,0,960,544,RGBA8(0x18,0x18,0x18,255));vita2d_draw_rectangle(0,0,960,544,RGBA8(0,0,0,70));vita2d_draw_rectangle(170,142,620,260,RGBA8(0x20,0x20,0x20,255));', 'vita2d_start_drawing();vita2d_draw_rectangle(0,0,960,544,RGBA8(0,0,0,96));vita2d_draw_rectangle(170,142,620,260,RGBA8(0x20,0x20,0x20,255));', 1),
+              ('vita2d_start_drawing();vita2d_clear_screen();vita2d_draw_rectangle(0,0,960,544,RGBA8(0,0,0,185));vita2d_draw_rectangle(x,y,w,h,PANEL);', 'vita2d_start_drawing();vita2d_draw_rectangle(0,0,960,544,RGBA8(0,0,0,96));vita2d_draw_rectangle(x,y,w,h,PANEL);', 1),
+          ]
+          for old, new, count in replacements:
+              if old not in s:
+                  raise SystemExit('main.cpp expected modal pattern not found: '+old[:80])
+              s = s.replace(old, new, count)
+          m.write_text(s, encoding='utf-8')
+
+          # Sanity checks: the old in-draw texture loading path and opaque modal clears must be gone.
+          cpp = p.read_text(encoding='utf-8')
+          if 'vita2d_load_PNG_file(path.c_str())' not in cpp:
+              raise SystemExit('PNG loading disappeared')
+          if 'prepareVisibleTextures();draw();' not in cpp:
+              raise SystemExit('prepareVisibleTextures is not called before draw')
+          if 'vita2d_clear_screen();vita2d_draw_rectangle(0,0,960,544,RGBA8(0,0,0,185))' in s:
+              raise SystemExit('Opaque image download modal remains')
+
+      - name: Commit fix and remove temporary workflow
+        run: |
+          rm -f .github/workflows/fix_image_render_crash.yml
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add "Client PSVitaAlive/include/ui/full_catalog_screen.hpp" "Client PSVitaAlive/source/ui/full_catalog_screen.cpp" "Client PSVitaAlive/source/main.cpp" .github/workflows/fix_image_render_crash.yml
+          git commit -m "Fix Vita2D image rendering race and modal transparency"
+          git push
