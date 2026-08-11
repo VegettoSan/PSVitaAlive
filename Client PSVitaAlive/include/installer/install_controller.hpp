@@ -46,6 +46,7 @@ public:
         const std::string& fileName,
         const std::string& zipDestination = std::string()
     );
+    void cancel();
     InstallStatus status() const;
 
     bool busy() const;
