@@ -30,16 +30,33 @@ jobs:
               raise SystemExit('Could not locate texture functions in full_catalog_screen.cpp')
           prepare='''void FullCatalogScreen::prepareVisibleTextures(){
               if(!imageCache_||catalogLoading_||installProgressActive_)return;
-              if(state_.mode==UiMode::FULL_CATALOG||state_.mode==UiMode::OPENING_DETAIL){
+              bool loadedThisFrame=false;
+              auto prepareOne=[&](const std::string&url,const char*ns){
+                  if(loadedThisFrame||url.empty())return;
+                  const size_t before=textures_.size();
+                  prepareImageTexture(url,ns);
+                  loadedThisFrame=textures_.size()>before;
+              };
+              if(state_.mode==UiMode::FULL_CATALOG){
                   const int first=std::max(0,state_.catalogScrollRow*3);
                   const int last=std::min((int)items_.size(),first+9);
-                  for(int i=first;i<last;++i)if(!items_[i].icon.empty())prepareImageTexture(items_[i].icon,"app");
+                  for(int i=first;i<last&&!loadedThisFrame;++i)prepareOne(!items_[i].icon.empty()?items_[i].icon:items_[i].cover,"app");
                   return;
               }
-              if(state_.mode==UiMode::SPLIT_DETAIL||state_.mode==UiMode::CLOSING_DETAIL){
+              if(state_.mode==UiMode::OPENING_DETAIL||state_.mode==UiMode::SPLIT_DETAIL||state_.mode==UiMode::CLOSING_DETAIL){
                   const int first=std::max(0,state_.catalogScrollRow);
                   const int last=std::min((int)items_.size(),first+visibleRowsSplit()+1);
-                  for(int i=first;i<last;++i)if(!items_[i].icon.empty())prepareImageTexture(items_[i].icon,"app");
+                  for(int i=first;i<last&&!loadedThisFrame;++i)prepareOne(!items_[i].icon.empty()?items_[i].icon:items_[i].cover,"app");
+                  const int i=selectedIndex();
+                  if(i>=0&&!loadedThisFrame){
+                      const CatalogItem&it=items_[i];
+                      const int panelX=SCREEN_W/2,panelY=HEADER_H+TABS_H,panelW=SCREEN_W-panelX,panelH=SCREEN_H-HEADER_H-TABS_H-FOOTER_H;
+                      const int cx=panelX+18,cw=panelW-36,top=panelY+DETAIL_HEADER_H+10,bottom=panelY+panelH-10,scroll=std::max(0,state_.detailScroll);
+                      int mc=std::max(18,cw/7);std::vector<std::string>pre;auto add=[&](const std::string&v){if(v.empty())return;pre.push_back("");std::vector<std::string>q;wrapText(v,mc,q);pre.insert(pre.end(),q.begin(),q.end());pre.push_back("");};add(it.description);add(it.longDescription);
+                      const int links=it.linkDetails.empty()?0:10+(int)it.linkDetails.size()*(LINK_ROW_H+LINK_GAP);
+                      const int shotTop=top+links+(int)pre.size()*LINE_H-scroll,shotH=SCREENSHOT_ROW_H-18,sc=std::min(5,(int)it.screenshots.size());
+                      for(int k=0;k<sc&&!loadedThisFrame;++k){const int sy=shotTop+k*SCREENSHOT_ROW_H;if(sy+shotH>top&&sy<bottom)prepareOne(it.screenshots[k],"shot");}
+                  }
               }
           }
           '''
