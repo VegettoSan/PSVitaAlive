@@ -22,6 +22,10 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: Temporary texture repair
+        if: github.event_name == 'push' && contains(github.event.head_commit.message, 'Add temporary texture repair trigger')
+        run: python scripts/_patch_texture_pipeline.py
+
       - name: Setup Python
         uses: actions/setup-python@v5
         with:
