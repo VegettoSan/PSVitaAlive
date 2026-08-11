@@ -2,12 +2,17 @@ from pathlib import Path
 import re
 
 path = Path('Client PSVitaAlive/source/main.cpp')
+debug = Path('.github/patch_debug.txt')
 text = path.read_text(encoding='utf-8')
 
-if 'bool promptDownloadAllImages(size_t totalImages)' not in text:
-    raise SystemExit('promptDownloadAllImages not found')
+lines = []
+lines.append(f'length={len(text)}')
+lines.append(f'prompt_count={text.count("bool promptDownloadAllImages(size_t totalImages)")}')
+lines.append(f'format_count={text.count("std::string formatBytes")}')
+lines.append(f'cancel_count={text.count("CIRCLE: CANCEL")}')
 
-new_prompt = '''bool promptDownloadAllImages(size_t totalImages){
+try:
+    new_prompt = '''bool promptDownloadAllImages(size_t totalImages){
     vita2d_wait_rendering_done();
     vita2d_pgf* font=vita2d_load_default_pgf();
     if(!font){psvitaalive::diagnostics::log("[Startup] custom image prompt font load failed; defaulting to on-demand mode");return false;}
@@ -45,17 +50,18 @@ new_prompt = '''bool promptDownloadAllImages(size_t totalImages){
     psvitaalive::diagnostics::log(std::string("[Startup] image warmup choice=")+(yes?"ALL":"ON_DEMAND"));return yes;
 }
 '''
+    pattern = re.compile(r'bool promptDownloadAllImages\(size_t totalImages\)\{.*?\n\}std::string formatBytes', re.S)
+    text, n = pattern.subn(new_prompt + 'std::string formatBytes', text, count=1)
+    lines.append(f'prompt_replaced={n}')
 
-pattern = re.compile(r'bool promptDownloadAllImages\(size_t totalImages\)\{.*?\n\}std::string formatBytes', re.S)
-text, n = pattern.subn(new_prompt + 'std::string formatBytes', text, count=1)
-if n != 1:
-    raise SystemExit('prompt replacement failed')
+    old = 'vita2d_draw_rectangle(x+w-170,y+h-50,130,34,cancelled?ACCENT:SURFACE);vita2d_pgf_draw_text(font,x+w-148,y+h-27,cancelled?BLACK:WHITE,.60f,"CIRCLE: CANCEL");'
+    new = 'vita2d_draw_rectangle(x+w-190,y+h-52,162,38,cancelled?ACCENT:SURFACE);vita2d_draw_rectangle(x+w-190,y+h-52,162,1,ACCENT);vita2d_pgf_draw_text(font,x+w-176,y+h-27,cancelled?BLACK:WHITE,.54f,"CIRCLE  CANCEL DOWNLOAD");'
+    lines.append(f'cancel_exact={old in text}')
+    text = text.replace(old, new, 1)
+    path.write_text(text, encoding='utf-8')
+    lines.append('write=ok')
+except Exception as e:
+    lines.append('error=' + repr(e))
 
-old = 'vita2d_draw_rectangle(x+w-170,y+h-50,130,34,cancelled?ACCENT:SURFACE);vita2d_pgf_draw_text(font,x+w-148,y+h-27,cancelled?BLACK:WHITE,.60f,"CIRCLE: CANCEL");'
-new = 'vita2d_draw_rectangle(x+w-190,y+h-52,162,38,cancelled?ACCENT:SURFACE);vita2d_draw_rectangle(x+w-190,y+h-52,162,1,ACCENT);vita2d_pgf_draw_text(font,x+w-176,y+h-27,cancelled?BLACK:WHITE,.54f,"CIRCLE  CANCEL DOWNLOAD");'
-if old not in text:
-    raise SystemExit('cancel button replacement failed')
-text = text.replace(old, new, 1)
-
-path.write_text(text, encoding='utf-8')
-print('PATCH_OK')
+debug.write_text('\n'.join(lines) + '\n', encoding='utf-8')
+print('\n'.join(lines))
