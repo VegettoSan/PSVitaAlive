@@ -63,6 +63,7 @@ if old not in text:
 path.write_text(text.replace(old, new, 1), encoding='utf-8')
 subprocess.run(['git', 'config', 'user.name', 'github-actions[bot]'], check=True)
 subprocess.run(['git', 'config', 'user.email', '41898282+github-actions[bot]@users.noreply.github.com'], check=True)
+subprocess.run(['git', 'checkout', 'HEAD^', '--', '.github/workflows/validate.yml'], check=True)
 subprocess.run(['git', 'add', 'Client PSVitaAlive/source/ui/full_catalog_screen.cpp', 'scripts/_patch_texture_pipeline.py', '.github/workflows/validate.yml'], check=True)
 subprocess.run(['git', 'rm', 'scripts/_patch_texture_pipeline.py'], check=True)
 subprocess.run(['git', 'commit', '-m', 'Throttle texture uploads and pause during catalog loading'], check=True)
