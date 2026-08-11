@@ -17,8 +17,9 @@ jobs:
           fetch-depth: 0
 
       - name: Patch main.cpp
-        shell: python
+        shell: bash
         run: |
+          python3 <<'PY'
           from pathlib import Path
           import re
 
@@ -80,6 +81,7 @@ jobs:
 
           path.write_text(text2, encoding='utf-8')
           print('main.cpp patched')
+          PY
 
       - name: Commit patch and remove one-off workflow
         run: |
