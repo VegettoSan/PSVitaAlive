@@ -17,16 +17,17 @@ jobs:
           fetch-depth: 0
 
       - name: Patch main.cpp
-        shell: bash
         run: |
-          python3 <<'PY'
+          set -eux
+          python3 - <<'PY'
           from pathlib import Path
           import re
 
           path = Path('Client PSVitaAlive/source/main.cpp')
           text = path.read_text(encoding='utf-8')
+          assert 'bool promptDownloadAllImages(size_t totalImages)' in text
 
-          new_prompt = r'''bool promptDownloadAllImages(size_t totalImages){
+          new_prompt = '''bool promptDownloadAllImages(size_t totalImages){
               vita2d_wait_rendering_done();
               vita2d_pgf* font=vita2d_load_default_pgf();
               if(!font){psvitaalive::diagnostics::log("[Startup] custom image prompt font load failed; defaulting to on-demand mode");return false;}
@@ -42,12 +43,10 @@ jobs:
                   const unsigned SURFACE=RGBA8(0x37,0x37,0x37,255),BORDER=RGBA8(0x6E,0x6E,0x6E,255),TEXT=RGBA8(0xAA,0xAA,0xAA,255),DIM=RGBA8(0x6E,0x6E,0x6E,255),ACCENT=RGBA8(0x3B,0xFF,0,255),WHITE=RGBA8(255,255,255,255),BLACK=RGBA8(0,0,0,255),PANEL=RGBA8(0x20,0x20,0x20,255);
                   const int w=620,h=320,x=(960-w)/2,y=(544-h)/2;
                   vita2d_draw_rectangle(0,0,960,544,RGBA8(0,0,0,185));
-                  vita2d_draw_rectangle(x,y,w,h,PANEL);
-                  vita2d_draw_rectangle(x,y,w,2,ACCENT);
-                  vita2d_draw_rectangle(x,y+2,2,h-2,ACCENT);
+                  vita2d_draw_rectangle(x,y,w,h,PANEL);vita2d_draw_rectangle(x,y,w,2,ACCENT);vita2d_draw_rectangle(x,y+2,2,h-2,ACCENT);
                   vita2d_pgf_draw_text(font,x+28,y+32,ACCENT,.68f,"PSVitaAlive");
                   vita2d_pgf_draw_text(font,x+28,y+68,WHITE,1.02f,"Download catalog images?");
-                  vita2d_pgf_draw_text(font,x+28,y+94,TEXT,.58f,"Images are downloaded once and then kept in the local cache.");
+                  vita2d_pgf_draw_text(font,x+28,y+94,TEXT,.58f,"Images are downloaded once and kept in the local cache.");
                   vita2d_pgf_draw_text(font,x+28,y+114,DIM,.54f,"This can take a very long time and use network data.");
                   char count[96]={};sceClibSnprintf(count,sizeof(count),"Pending images: %u",(unsigned)totalImages);
                   vita2d_pgf_draw_text(font,x+28,y+144,ACCENT,.68f,count);
@@ -68,27 +67,24 @@ jobs:
           '''
 
           pattern = re.compile(r'bool promptDownloadAllImages\(size_t totalImages\)\{.*?\n\}std::string formatBytes', re.S)
-          replacement = new_prompt + 'std::string formatBytes'
-          text2, n = pattern.subn(replacement, text, count=1)
-          if n != 1:
-              raise SystemExit('promptDownloadAllImages() pattern not found')
+          text, n = pattern.subn(new_prompt + 'std::string formatBytes', text, count=1)
+          assert n == 1, 'prompt function replacement failed'
 
           old = 'vita2d_draw_rectangle(x+w-170,y+h-50,130,34,cancelled?ACCENT:SURFACE);vita2d_pgf_draw_text(font,x+w-148,y+h-27,cancelled?BLACK:WHITE,.60f,"CIRCLE: CANCEL");'
           new = 'vita2d_draw_rectangle(x+w-190,y+h-52,162,38,cancelled?ACCENT:SURFACE);vita2d_draw_rectangle(x+w-190,y+h-52,162,1,ACCENT);vita2d_pgf_draw_text(font,x+w-176,y+h-27,cancelled?BLACK:WHITE,.54f,"CIRCLE  CANCEL DOWNLOAD");'
-          if old not in text2:
-              raise SystemExit('download cancel button pattern not found')
-          text2 = text2.replace(old, new, 1)
+          assert old in text, 'cancel button pattern not found'
+          text = text.replace(old, new, 1)
 
-          path.write_text(text2, encoding='utf-8')
-          print('main.cpp patched')
+          path.write_text(text, encoding='utf-8')
+          print('PATCH_OK')
           PY
 
-      - name: Commit patch and remove one-off workflow
+      - name: Commit patch and remove workflow
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add "Client PSVitaAlive/source/main.cpp"
-          git commit -m "fix: unify image download dialogs" || true
-          git rm .github/workflows/oneoff_main_ui_patch.yml || true
-          git commit -m "chore: remove one-off patch workflow" || true
+          git commit -m "fix: unify image download dialogs"
+          git rm .github/workflows/oneoff_main_ui_patch.yml
+          git commit -m "chore: remove one-off patch workflow"
           git push
