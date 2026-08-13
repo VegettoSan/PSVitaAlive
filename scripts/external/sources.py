@@ -3,12 +3,36 @@ from __future__ import annotations
 
 import json
 import re
+import urllib.parse
 import urllib.request
 from dataclasses import dataclass
-from pathlib import Path
 
 
-USER_AGENT = "PSVitaAlive-ExternalCatalog/1.3"
+USER_AGENT = "PSVitaAlive-ExternalCatalog/1.4"
+
+# Resource roots are source-specific. External catalogs often store a bare
+# filename because their own web application knows the directory. VitaHub
+# must persist an absolute URL that can be consumed independently.
+SOURCE_MEDIA_ROOTS = {
+    "vitadbtoo": {
+        "base": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/",
+        "icon": "icons/",
+        "screenshot": "screenshots/",
+    },
+    "vitadb": {
+        "base": "https://www.rinnegatamante.eu/vitadb/",
+        "icon": "icons/",
+        "screenshot": "screenshots/",
+    },
+    "neovitadb": {
+        "base": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/",
+        "icon": "icons_vita/",
+        # NeoVitaDB's catalog deliberately does not publish VitaDB screenshot
+        # files in its repository. Do not invent a screenshot URL for a bare
+        # filename; the caller will use the icon fallback instead.
+        "screenshot": None,
+    },
+}
 
 
 @dataclass
@@ -68,12 +92,7 @@ def _as_list(value):
 
 
 def _split_csvish(value):
-    """Split legacy catalog fields without corrupting normal URLs.
-
-    VitaDB legacy data commonly stores screenshots/authors as semicolon or
-    comma separated strings. URLs themselves are kept intact; only explicit
-    separators between values are split.
-    """
+    """Split legacy catalog fields without corrupting normal URLs."""
     if isinstance(value, list):
         result = []
         for item in value:
@@ -89,14 +108,53 @@ def _split_csvish(value):
 
 
 def _first_url(value):
-    """Return the first usable URL from a scalar/list catalog field."""
-    values = _split_csvish(value)
-    for item in values:
+    """Return the first usable absolute URL from a scalar/list field."""
+    for item in _split_csvish(value):
         if item.startswith(("http://", "https://")):
             return item
-    if isinstance(value, str) and value.strip():
-        return value.strip()
     return None
+
+
+def resolve_media_url(source_id: str, value: str | None, kind: str) -> str | None:
+    """Resolve a source-relative media reference to an absolute URL.
+
+    Absolute HTTP(S) URLs are preserved. Bare filenames are expanded only
+    when the source's real public resource root is known. This intentionally
+    refuses to invent NeoVitaDB screenshot URLs because its catalog repository
+    does not publish the old VitaDB screenshot files.
+    """
+    if not isinstance(value, str) or not value.strip():
+        return None
+    value = value.strip()
+    if value.startswith(("http://", "https://")):
+        return value
+
+    config = SOURCE_MEDIA_ROOTS.get(source_id, {})
+    base = config.get("base")
+    folder = config.get(kind)
+    if not base or folder is None:
+        return None
+
+    # Accept either "foo.png" or "icons/foo.png" while preventing a
+    # duplicated folder such as icons/icons/foo.png.
+    clean = value.lstrip("./")
+    clean = clean.replace("\\", "/")
+    prefix = folder.rstrip("/") + "/"
+    if clean.startswith(prefix):
+        relative = clean
+    else:
+        relative = prefix + clean
+    quoted = "/".join(urllib.parse.quote(part, safe="@:+,;=-._~") for part in relative.split("/"))
+    return urllib.parse.urljoin(base, quoted)
+
+
+def resolve_media_list(source_id: str, values, kind: str) -> list[str]:
+    result = []
+    for value in _split_csvish(values):
+        url = resolve_media_url(source_id, value, kind)
+        if url and url not in result:
+            result.append(url)
+    return result
 
 
 def _int_or_none(value):
@@ -110,26 +168,16 @@ def normalize_vitadb(raw: dict) -> Candidate:
     """Normalize the official VitaDB list_hbs_json.php format."""
     type_value = str(raw.get("type") if raw.get("type") is not None else "").strip().lower()
     type_map = {
-        "0": "game",
-        "1": "port",
-        "2": "utility",
-        "3": "emulator",
-        "4": "plugin",
-        "game": "game",
-        "port": "port",
-        "utility": "utility",
-        "emulator": "emulator",
-        "plugin": "plugin",
+        "0": "game", "1": "port", "2": "utility", "3": "emulator", "4": "plugin",
+        "game": "game", "port": "port", "utility": "utility", "emulator": "emulator", "plugin": "plugin",
     }
     category_raw = type_map.get(type_value, type_value or None)
-    screenshots = _split_csvish(raw.get("screenshots"))
-    authors = _split_csvish(raw.get("author") or raw.get("authors"))
     return Candidate(
         source_id="vitadb",
         source_item_id=str(raw.get("id")) if raw.get("id") is not None else None,
         title_id=raw.get("titleid") or raw.get("title_id"),
         name=str(raw.get("name") or "").strip(),
-        author_names=authors,
+        author_names=_split_csvish(raw.get("author") or raw.get("authors")),
         repository_url=_first_url(raw.get("source")),
         release_page=_first_url(raw.get("release_page")),
         version=raw.get("version"),
@@ -138,8 +186,8 @@ def normalize_vitadb(raw: dict) -> Candidate:
         long_description=raw.get("long_description"),
         requirements=raw.get("requirements"),
         changelog=raw.get("changelog"),
-        icon=_first_url(raw.get("icon")),
-        screenshots=screenshots,
+        icon=resolve_media_url("vitadb", raw.get("icon"), "icon"),
+        screenshots=resolve_media_list("vitadb", raw.get("screenshots"), "screenshot"),
         download_url=_first_url(raw.get("url") or raw.get("download_url") or raw.get("download")),
         size=_int_or_none(raw.get("size")),
         category_raw=category_raw,
@@ -148,14 +196,12 @@ def normalize_vitadb(raw: dict) -> Candidate:
 
 
 def normalize_vitadbtoo(raw: dict) -> Candidate:
-    screenshots = _split_csvish(raw.get("screenshots"))
-    authors = _as_list(raw.get("author") or raw.get("authors"))
     return Candidate(
         source_id="vitadbtoo",
         source_item_id=str(raw.get("id")) if raw.get("id") is not None else None,
         title_id=raw.get("titleid") or raw.get("title_id"),
         name=str(raw.get("name") or "").strip(),
-        author_names=authors,
+        author_names=_split_csvish(raw.get("author") or raw.get("authors")),
         repository_url=_first_url(raw.get("source")),
         release_page=_first_url(raw.get("release_page")),
         version=raw.get("version"),
@@ -164,12 +210,38 @@ def normalize_vitadbtoo(raw: dict) -> Candidate:
         long_description=raw.get("long_description"),
         requirements=raw.get("requirements"),
         changelog=raw.get("changelog"),
-        icon=_first_url(raw.get("icon")),
-        screenshots=screenshots,
+        icon=resolve_media_url("vitadbtoo", raw.get("icon"), "icon"),
+        screenshots=resolve_media_list("vitadbtoo", raw.get("screenshots"), "screenshot"),
         download_url=_first_url(raw.get("url") or raw.get("download_url") or raw.get("download")),
         size=_int_or_none(raw.get("size")),
         category_raw=raw.get("type") or raw.get("category"),
         platform="vita",
+    )
+
+
+def normalize_neovitadb(raw: dict) -> Candidate:
+    """Normalize NeoVitaDB while resolving only resources it actually publishes."""
+    screenshots = resolve_media_list("neovitadb", raw.get("screenshots") or raw.get("screenshot_urls") or [], "screenshot")
+    return Candidate(
+        source_id="neovitadb",
+        source_item_id=str(raw.get("id")) if raw.get("id") is not None else None,
+        title_id=raw.get("titleid") or raw.get("title_id"),
+        name=str(raw.get("name") or "").strip(),
+        author_names=_as_list(raw.get("author")),
+        repository_url=_first_url(raw.get("repo") or raw.get("source")),
+        release_page=_first_url(raw.get("release_page")),
+        version=raw.get("version"),
+        version_date=raw.get("date") or raw.get("version_date"),
+        description=raw.get("description"),
+        long_description=raw.get("long_description"),
+        requirements=raw.get("requirements"),
+        changelog=raw.get("changelog"),
+        icon=resolve_media_url("neovitadb", raw.get("icon") or raw.get("icon_url"), "icon"),
+        screenshots=screenshots,
+        download_url=_first_url(raw.get("url") or raw.get("download_url")),
+        size=_int_or_none(raw.get("size") or raw.get("size_bytes")),
+        category_raw=raw.get("category") or raw.get("type"),
+        platform=raw.get("platform") or "vita",
     )
 
 
