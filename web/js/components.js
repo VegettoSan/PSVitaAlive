@@ -1,6 +1,7 @@
 /**
- * Convierte bytes a una unidad legible.
+ * Shared VitaHub UI components.
  */
+
 function formatFileSize(bytes) {
     if (bytes === null || bytes === undefined || bytes === "") {
         return "Unknown size";
@@ -12,14 +13,8 @@ function formatFileSize(bytes) {
         return "Unknown size";
     }
 
-    if (value < 1024) {
-        return `${value} B`;
-    }
-
-    if (value < 1024 * 1024) {
-        return `${(value / 1024).toFixed(1)} KB`;
-    }
-
+    if (value < 1024) return `${value} B`;
+    if (value < 1024 * 1024) return `${(value / 1024).toFixed(1)} KB`;
     if (value < 1024 * 1024 * 1024) {
         return `${(value / (1024 * 1024)).toFixed(1)} MB`;
     }
@@ -27,30 +22,14 @@ function formatFileSize(bytes) {
     return `${(value / (1024 * 1024 * 1024)).toFixed(2)} GB`;
 }
 
-
-/**
- * Obtiene el nombre de una categoría.
- */
 function getCategoryName(categoryId) {
     const category = getCategoryById(categoryId);
-
-    if (!category) {
-        return categoryId || "Unknown";
-    }
-
-    return category.name;
+    return category ? category.name : (categoryId || "Unknown");
 }
 
-/**
- * Resuelve una ruta de recurso del catálogo
- * desde las páginas de VitaHub.
- */
 function resolveAssetPath(path) {
-    if (!path) {
-        return null;
-    }
+    if (!path) return null;
 
-    // URLs externas
     if (
         path.startsWith("http://") ||
         path.startsWith("https://") ||
@@ -60,7 +39,6 @@ function resolveAssetPath(path) {
         return path;
     }
 
-    // Evitar añadir ../ dos veces
     if (path.startsWith("../")) {
         return `${VITAHUB_RAW_BASE}/${path.substring(3)}`;
     }
@@ -68,48 +46,60 @@ function resolveAssetPath(path) {
     return `${VITAHUB_RAW_BASE}/${path}`;
 }
 
-/**
- * Crea una tarjeta de aplicación.
- */
+function getCategoryIconFallback(categoryId) {
+    if (!categoryId) {
+        return "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png";
+    }
+
+    return (
+        "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/" +
+        `categories/icons/${encodeURIComponent(categoryId)}.png`
+    );
+}
+
 function renderAppCard(app) {
     const article = document.createElement("article");
-
     article.className = "app-card";
 
     const iconContainer = document.createElement("div");
     iconContainer.className = "app-card-icon";
 
-    if (app.icon) {
-        const icon = document.createElement("img");
+    const icon = document.createElement("img");
+    const fallbackUrl =
+        getCategoryIconFallback(app.category_id);
 
-        icon.src = resolveAssetPath(app.icon);
-        icon.alt = `${app.name} icon`;
-        icon.loading = "lazy";
+    icon.src =
+        resolveAssetPath(app.icon) ||
+        fallbackUrl;
 
-        icon.addEventListener("error", () => {
-            icon.remove();
-            iconContainer.innerHTML = `
-                <div class="placeholder-icon">
-                    APP
-                </div>
-            `;
-        });
+    icon.alt = `${app.name || "Application"} icon`;
+    icon.loading = "lazy";
 
-        iconContainer.appendChild(icon);
-    } else {
+    let fallbackUsed = false;
+
+    icon.addEventListener("error", () => {
+        if (!fallbackUsed && icon.src !== fallbackUrl) {
+            fallbackUsed = true;
+            icon.src = fallbackUrl;
+            return;
+        }
+
+        icon.remove();
+
         iconContainer.innerHTML = `
             <div class="placeholder-icon">
                 APP
             </div>
         `;
-    }
+    });
 
+    iconContainer.appendChild(icon);
 
     const content = document.createElement("div");
     content.className = "app-card-content";
 
-    const authors = getAuthorsByIds(app.author_ids);
-
+    const authors =
+        getAuthorsByIds(app.author_ids);
 
     const top = document.createElement("div");
     top.className = "app-card-top";
@@ -120,76 +110,109 @@ function renderAppCard(app) {
 
     top.appendChild(status);
 
-
     const title = document.createElement("h3");
-    title.textContent = app.name || "Unknown application";
+    title.textContent =
+        app.name || "Unknown application";
 
-    const authorsContainer = document.createElement("div");
+    const authorsContainer =
+        document.createElement("div");
 
-authorsContainer.className = "app-card-authors";
+    authorsContainer.className =
+        "app-card-authors";
 
-if (authors.length > 0) {
-    authors.forEach((author, index) => {
-        const authorLink = document.createElement("a");
+    if (authors.length > 0) {
+        authors.forEach((author, index) => {
+            const authorLink =
+                document.createElement("a");
 
-        authorLink.className = "app-card-author";
-        authorLink.href =
-            `author.html?id=${encodeURIComponent(author.id)}`;
+            authorLink.className =
+                "app-card-author";
 
-        authorLink.textContent = author.name;
+            authorLink.href =
+                `author.html?id=${encodeURIComponent(author.id)}`;
 
-        authorsContainer.appendChild(authorLink);
+            authorLink.textContent =
+                author.name;
 
-        if (index < authors.length - 1) {
-            const separator = document.createElement("span");
+            authorsContainer.appendChild(
+                authorLink
+            );
 
-            separator.className = "app-card-author-separator";
-            separator.textContent = ", ";
+            if (index < authors.length - 1) {
+                const separator =
+                    document.createElement("span");
 
-            authorsContainer.appendChild(separator);
-        }
-    });
-} else {
-    const unknownAuthor = document.createElement("span");
+                separator.className =
+                    "app-card-author-separator";
 
-    unknownAuthor.className = "app-card-author";
-    unknownAuthor.textContent = "Unknown author";
+                separator.textContent =
+                    ", ";
 
-    authorsContainer.appendChild(unknownAuthor);
-}
+                authorsContainer.appendChild(
+                    separator
+                );
+            }
+        });
+    } else {
+        const unknownAuthor =
+            document.createElement("span");
 
-    const description = document.createElement("p");
-    description.className = "app-card-description";
+        unknownAuthor.className =
+            "app-card-author";
+
+        unknownAuthor.textContent =
+            "Unknown author";
+
+        authorsContainer.appendChild(
+            unknownAuthor
+        );
+    }
+
+    const description =
+        document.createElement("p");
+
+    description.className =
+        "app-card-description";
+
     description.textContent =
-        app.description || "No description available.";
+        app.description ||
+        "No description available.";
 
+    const meta =
+        document.createElement("div");
 
-    const meta = document.createElement("div");
-    meta.className = "app-card-meta";
+    meta.className =
+        "app-card-meta";
 
+    const version =
+        document.createElement("span");
 
-    const version = document.createElement("span");
     version.textContent =
-        app.version ? `v${app.version}` : "Unknown version";
+        app.version
+            ? `v${app.version}`
+            : "Unknown version";
 
+    const size =
+        document.createElement("span");
 
-    const size = document.createElement("span");
-    size.textContent = formatFileSize(app.size);
+    size.textContent =
+        formatFileSize(app.size);
 
+    const category =
+        document.createElement("a");
 
-    const category = document.createElement("a");
+    category.className =
+        "app-card-category";
 
-    category.className = "app-card-category";
     category.href =
         `category.html?id=${encodeURIComponent(app.category_id)}`;
 
-    category.textContent = getCategoryName(app.category_id);
-
+    category.textContent =
+        getCategoryName(app.category_id);
 
     meta.appendChild(version);
     meta.appendChild(size);
     meta.appendChild(category);
-
 
     content.appendChild(top);
     content.appendChild(title);
@@ -197,61 +220,26 @@ if (authors.length > 0) {
     content.appendChild(description);
     content.appendChild(meta);
 
-
-        article.appendChild(iconContainer);
+    article.appendChild(iconContainer);
     article.appendChild(content);
 
-
-    /*
-     * Open application detail page
-     * when clicking the card.
-     *
-     * The application is identified
-     * by its Title ID.
-     */
     article.classList.add("app-card-clickable");
 
     article.addEventListener("click", event => {
-
-        /*
-         * Do not intercept clicks on
-         * author/category links.
-         */
-        if (event.target.closest("a")) {
-            return;
-        }
-
-        if (!app.title_id) {
-            return;
-        }
+        if (event.target.closest("a")) return;
+        if (!app.title_id) return;
 
         window.location.href =
-            `app.html?title_id=${encodeURIComponent(
-                app.title_id
-            )}`;
+            `app.html?title_id=${encodeURIComponent(app.title_id)}`;
     });
-
-
-
 
     return article;
 }
 
-/**
- * Crea una tarjeta para un juego oficial de PS Vita.
- */
 function renderOfficialGameCard(game) {
-
-    const article =
-        document.createElement("article");
-
+    const article = document.createElement("article");
     article.className =
         "app-card official-game-card app-card-clickable";
-
-
-    /* ========================================
-       Cover
-    ======================================== */
 
     const coverContainer =
         document.createElement("div");
@@ -259,39 +247,31 @@ function renderOfficialGameCard(game) {
     coverContainer.className =
         "app-card-icon official-game-cover";
 
-
     if (game.cover) {
-
         const cover =
             document.createElement("img");
 
-        cover.src =
-            game.cover;
+        cover.src = game.cover;
+        cover.alt = `${game.name} cover`;
+        cover.loading = "lazy";
 
-        cover.alt =
-            `${game.name} cover`;
+        cover.addEventListener("error", () => {
+            cover.remove();
+            coverContainer.innerHTML = `
+                <div class="placeholder-icon">
+                    GAME
+                </div>
+            `;
+        });
 
-        cover.loading =
-            "lazy";
-
-        coverContainer.appendChild(
-            cover
-        );
-
+        coverContainer.appendChild(cover);
     } else {
-
         coverContainer.innerHTML = `
             <div class="placeholder-icon">
                 GAME
             </div>
         `;
-
     }
-
-
-    /* ========================================
-       Content
-    ======================================== */
 
     const content =
         document.createElement("div");
@@ -299,15 +279,11 @@ function renderOfficialGameCard(game) {
     content.className =
         "app-card-content";
 
-
-    /* Type */
-
     const top =
         document.createElement("div");
 
     top.className =
         "app-card-top";
-
 
     const badge =
         document.createElement("span");
@@ -318,23 +294,13 @@ function renderOfficialGameCard(game) {
     badge.textContent =
         "PS Vita Game";
 
-
-    top.appendChild(
-        badge
-    );
-
-
-    /* Title */
+    top.appendChild(badge);
 
     const title =
         document.createElement("h3");
 
     title.textContent =
-        game.name ||
-        "Unknown game";
-
-
-    /* Description */
+        game.name || "Unknown game";
 
     const description =
         document.createElement("p");
@@ -346,15 +312,11 @@ function renderOfficialGameCard(game) {
         game.description ||
         "No description available.";
 
-
-    /* Meta */
-
     const meta =
         document.createElement("div");
 
     meta.className =
         "app-card-meta";
-
 
     const version =
         document.createElement("span");
@@ -364,83 +326,34 @@ function renderOfficialGameCard(game) {
             ? `v${game.version}`
             : "Unknown version";
 
-
     const size =
         document.createElement("span");
 
     size.textContent =
         formatFileSize(game.size);
 
-
     const category =
         document.createElement("span");
 
     category.textContent =
-        getCategoryName(
-            game.category_id
-        );
+        getCategoryName(game.category_id);
 
+    meta.appendChild(version);
+    meta.appendChild(size);
+    meta.appendChild(category);
 
-    meta.appendChild(
-        version
-    );
+    content.appendChild(top);
+    content.appendChild(title);
+    content.appendChild(description);
+    content.appendChild(meta);
 
-    meta.appendChild(
-        size
-    );
+    article.appendChild(coverContainer);
+    article.appendChild(content);
 
-    meta.appendChild(
-        category
-    );
-
-
-    /* Assemble */
-
-    content.appendChild(
-        top
-    );
-
-    content.appendChild(
-        title
-    );
-
-    content.appendChild(
-        description
-    );
-
-    content.appendChild(
-        meta
-    );
-
-
-    article.appendChild(
-        coverContainer
-    );
-
-    article.appendChild(
-        content
-    );
-
-
-    /*
-     * Detail page.
-     *
-     * The page itself will be created
-     * in the next phase.
-     */
-
-    article.addEventListener(
-        "click",
-        () => {
-
-            window.location.href =
-                `game.html?id=${encodeURIComponent(
-                    game.id
-                )}`;
-
-        }
-    );
-
+    article.addEventListener("click", () => {
+        window.location.href =
+            `game.html?id=${encodeURIComponent(game.id)}`;
+    });
 
     return article;
 }

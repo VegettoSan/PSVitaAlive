@@ -3,292 +3,110 @@
  * Author profile page.
  */
 
-
-/* ========================================
-   URL
-======================================== */
-
 function getAuthorIdFromUrl() {
-
-    const params =
-        new URLSearchParams(
-            window.location.search
-        );
-
+    const params = new URLSearchParams(window.location.search);
     return params.get("id");
 }
 
+const AUTHOR_FALLBACK_AVATAR =
+    "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png";
 
-/* ========================================
-   Avatar
-======================================== */
+function resolveAuthorProfileAvatar(author) {
+    const avatar = author.avatar || author.icon || AUTHOR_FALLBACK_AVATAR;
 
-function resolveAuthorProfileAvatar(
-    author
-) {
+    if (/^https?:\/\/github\.com\/[^/]+\.png(?:\?.*)?$/i.test(avatar)) {
+        const username = avatar
+            .replace(/^https?:\/\/github\.com\//i, "")
+            .replace(/\.png(?:\?.*)?$/i, "");
 
-    const avatar =
-        author.avatar;
-
-    if (!avatar) {
-        return null;
+        return `https://avatars.githubusercontent.com/${encodeURIComponent(username)}?size=512`;
     }
 
-    if (
-        /^https?:\/\/github\.com\/[^/]+\.png(?:\?.*)?$/i.test(
-            avatar
-        )
-    ) {
-
-        const username =
-            avatar
-                .replace(
-                    /^https?:\/\/github\.com\//i,
-                    ""
-                )
-                .replace(
-                    /\.png(?:\?.*)?$/i,
-                    ""
-                );
-
-        return (
-            `https://avatars.githubusercontent.com/${encodeURIComponent(
-                username
-            )}?size=512`
-        );
+    if (/^https?:\/\//i.test(avatar)) {
+        return avatar;
     }
 
-    return resolveAssetPath(
-        avatar
-    );
+    return resolveAssetPath(avatar);
 }
 
-
-/* ========================================
-   Links
-======================================== */
-
 function getAuthorLinkLabel(link) {
-
-    if (link.name) {
-        return link.name;
-    }
-
-    if (link.type) {
-        return link.type;
-    }
-
+    if (link.name) return link.name;
+    if (link.type) return link.type;
     return "Open link";
 }
 
+function renderAuthorLinks(author) {
+    const container = document.getElementById("author-links");
+    if (!container) return;
 
-function renderAuthorLinks(
-    author
-) {
+    container.innerHTML = "";
 
-    const container =
-        document.getElementById(
-            "author-links"
-        );
-
-    if (!container) {
+    if (!Array.isArray(author.links) || author.links.length === 0) {
         return;
     }
 
-    container.innerHTML =
-        "";
+    const links = [...author.links].sort((a, b) => {
+        if (a.recommended === true && b.recommended !== true) return -1;
+        if (a.recommended !== true && b.recommended === true) return 1;
+        return 0;
+    });
 
+    links.forEach(linkData => {
+        if (!linkData.url) return;
 
-    if (
-        !Array.isArray(
-            author.links
-        ) ||
-        author.links.length === 0
-    ) {
-        return;
-    }
+        const link = document.createElement("a");
+        link.className = "author-link";
 
-
-    const links =
-        [...author.links].sort(
-            (a, b) => {
-
-                if (
-                    a.recommended === true &&
-                    b.recommended !== true
-                ) {
-                    return -1;
-                }
-
-                if (
-                    a.recommended !== true &&
-                    b.recommended === true
-                ) {
-                    return 1;
-                }
-
-                return 0;
-            }
-        );
-
-
-    links.forEach(
-        linkData => {
-
-            if (!linkData.url) {
-                return;
-            }
-
-            const link =
-                document.createElement(
-                    "a"
-                );
-
-            link.className =
-                "author-link";
-
-            if (
-                linkData.recommended === true
-            ) {
-                link.classList.add(
-                    "recommended"
-                );
-            }
-
-            link.href =
-                linkData.url;
-
-            link.target =
-                "_blank";
-
-            link.rel =
-                "noopener noreferrer";
-
-            link.textContent =
-                getAuthorLinkLabel(
-                    linkData
-                );
-
-            container.appendChild(
-                link
-            );
+        if (linkData.recommended === true) {
+            link.classList.add("recommended");
         }
-    );
+
+        link.href = linkData.url;
+        link.target = "_blank";
+        link.rel = "noopener noreferrer";
+        link.textContent = getAuthorLinkLabel(linkData);
+
+        container.appendChild(link);
+    });
 }
 
-
-/* ========================================
-   Applications
-======================================== */
-
-function getAuthorApplications(
-    authorId
-) {
-
-    if (
-        !Array.isArray(
-            VitaHubData.catalog
-        )
-    ) {
+function getAuthorApplications(authorId) {
+    if (!Array.isArray(VitaHubData.catalog)) {
         return [];
     }
 
-
-    const applications =
-        VitaHubData.catalog.filter(
-            app => {
-
-                if (
-                    Array.isArray(
-                        app.author_ids
-                    )
-                ) {
-                    return app.author_ids.includes(
-                        authorId
-                    );
-                }
-
-                return (
-                    app.author_id === authorId
-                );
-            }
-        );
-
-
-    applications.sort(
-        (a, b) => {
-
-            const dateA =
-                new Date(
-                    a.version_date || 0
-                ).getTime();
-
-            const dateB =
-                new Date(
-                    b.version_date || 0
-                ).getTime();
-
-            const validA =
-                Number.isFinite(
-                    dateA
-                ) && dateA > 0;
-
-            const validB =
-                Number.isFinite(
-                    dateB
-                ) && dateB > 0;
-
-            if (
-                !validA &&
-                validB
-            ) {
-                return 1;
-            }
-
-            if (
-                validA &&
-                !validB
-            ) {
-                return -1;
-            }
-
-            if (
-                !validA &&
-                !validB
-            ) {
-                return 0;
-            }
-
-            return dateB - dateA;
+    const applications = VitaHubData.catalog.filter(app => {
+        if (Array.isArray(app.author_ids)) {
+            return app.author_ids.includes(authorId);
         }
-    );
 
+        return app.author_id === authorId;
+    });
+
+    applications.sort((a, b) => {
+        const dateA = new Date(a.version_date || 0).getTime();
+        const dateB = new Date(b.version_date || 0).getTime();
+
+        const validA = Number.isFinite(dateA) && dateA > 0;
+        const validB = Number.isFinite(dateB) && dateB > 0;
+
+        if (!validA && validB) return 1;
+        if (validA && !validB) return -1;
+        if (!validA && !validB) return 0;
+
+        return dateB - dateA;
+    });
 
     return applications;
 }
 
+function renderAuthorApplications(applications) {
+    const container = document.getElementById("author-apps");
+    if (!container) return;
 
-function renderAuthorApplications(
-    applications
-) {
+    container.innerHTML = "";
 
-    const container =
-        document.getElementById(
-            "author-apps"
-        );
-
-    if (!container) {
-        return;
-    }
-
-    container.innerHTML =
-        "";
-
-
-    const countElement =
-        document.getElementById(
-            "author-app-count"
-        );
+    const countElement = document.getElementById("author-app-count");
 
     if (countElement) {
         countElement.textContent =
@@ -299,295 +117,141 @@ function renderAuthorApplications(
             }`;
     }
 
-
-    if (
-        applications.length === 0
-    ) {
-
-        const empty =
-            document.createElement(
-                "p"
-            );
-
-        empty.className =
-            "author-empty";
-
+    if (applications.length === 0) {
+        const empty = document.createElement("p");
+        empty.className = "author-empty";
         empty.textContent =
             "This author has no applications in the catalog yet.";
 
-        container.appendChild(
-            empty
-        );
-
+        container.appendChild(empty);
         return;
     }
 
-
-    applications.forEach(
-        app => {
-
-            const card =
-                renderAppCard(
-                    app
-                );
-
-            container.appendChild(
-                card
-            );
-        }
-    );
+    applications.forEach(app => {
+        container.appendChild(renderAppCard(app));
+    });
 }
 
-
-/* ========================================
-   Render
-======================================== */
-
-function renderAuthor(
-    author,
-    applications
-) {
-
+function renderAuthor(author, applications) {
     document.title =
         `${author.name} — PSVitaAlive Store`;
 
-
     const name =
-        document.getElementById(
-            "author-name"
-        );
+        document.getElementById("author-name");
 
     const bio =
-        document.getElementById(
-            "author-bio"
-        );
+        document.getElementById("author-bio");
 
     const avatar =
-        document.getElementById(
-            "author-avatar"
-        );
-
+        document.getElementById("author-avatar");
 
     if (name) {
         name.textContent =
-            author.name ||
-            "Unknown author";
+            author.name || "Unknown author";
     }
-
 
     if (bio) {
         bio.textContent =
-            author.bio ||
-            "No biography available.";
+            author.bio || "No biography available.";
     }
-
 
     if (avatar) {
+        let fallbackUsed = false;
 
-        const avatarUrl =
-            resolveAuthorProfileAvatar(
-                author
-            );
-
-        if (avatarUrl) {
-
+        const setAvatar = value => {
             avatar.src =
-                avatarUrl;
+                value
+                    ? resolveAuthorProfileAvatar({ avatar: value })
+                    : AUTHOR_FALLBACK_AVATAR;
+        };
 
-        }
+        setAvatar(
+            author.avatar ||
+            author.icon ||
+            AUTHOR_FALLBACK_AVATAR
+        );
 
         avatar.alt =
-            `${author.name} avatar`;
+            `${author.name || "Unknown author"} avatar`;
 
-
-        let fallbackUsed =
-            false;
-
-
-        avatar.addEventListener(
-            "error",
-            () => {
-
-                if (
-                    !fallbackUsed &&
-                    author.avatar &&
-                    avatar.src !== author.avatar
-                ) {
-
-                    fallbackUsed =
-                        true;
-
-                    avatar.src =
-                        author.avatar;
-
-                    return;
-                }
-
-                avatar.src =
-                    resolveAssetPath(
-                        "authors/icon/autoricon.png"
-                    );
-
+        avatar.addEventListener("error", () => {
+            if (!fallbackUsed) {
+                fallbackUsed = true;
+                avatar.src = AUTHOR_FALLBACK_AVATAR;
+                return;
             }
-        );
+
+            avatar.removeAttribute("src");
+        });
     }
 
-
-    renderAuthorLinks(
-        author
-    );
-
-    renderAuthorApplications(
-        applications
-    );
-
+    renderAuthorLinks(author);
+    renderAuthorApplications(applications);
 
     const loading =
-        document.getElementById(
-            "author-loading"
-        );
+        document.getElementById("author-loading");
 
     const content =
-        document.getElementById(
-            "author-content"
-        );
+        document.getElementById("author-content");
 
-
-    if (loading) {
-        loading.hidden =
-            true;
-    }
-
-    if (content) {
-        content.hidden =
-            false;
-    }
+    if (loading) loading.hidden = true;
+    if (content) content.hidden = false;
 }
-
-
-/* ========================================
-   Error
-======================================== */
 
 function showAuthorError() {
-
     const loading =
-        document.getElementById(
-            "author-loading"
-        );
+        document.getElementById("author-loading");
 
     const error =
-        document.getElementById(
-            "author-error"
-        );
+        document.getElementById("author-error");
 
-    if (loading) {
-        loading.hidden =
-            true;
-    }
-
-    if (error) {
-        error.hidden =
-            false;
-    }
+    if (loading) loading.hidden = true;
+    if (error) error.hidden = false;
 }
 
-
-/* ========================================
-   Author lookup
-======================================== */
-
-async function findAuthorWithRetry(
-    authorId
-) {
-
-    for (
-        let attempt = 1;
-        attempt <= 3;
-        attempt++
-    ) {
-
-        const author =
-            getAuthorById(
-                authorId
-            );
+async function findAuthorWithRetry(authorId) {
+    for (let attempt = 1; attempt <= 3; attempt++) {
+        const author = getAuthorById(authorId);
 
         if (author) {
             return author;
         }
 
-
-        if (
-            attempt < 3
-        ) {
-
-            await new Promise(
-                resolve =>
-                    setTimeout(
-                        resolve,
-                        400 * attempt
-                    )
+        if (attempt < 3) {
+            await new Promise(resolve =>
+                setTimeout(resolve, 400 * attempt)
             );
         }
     }
 
-
-    /*
-     * Refresh only the official generated
-     * authors.json. No local copy is created.
-     */
-
     try {
-
         const refreshed =
             await fetch(
                 `${VITAHUB_RAW_BASE}/authors.json?refresh=${Date.now()}`,
-                {
-                    cache: "no-store"
-                }
+                { cache: "no-store" }
             );
 
         if (refreshed.ok) {
-
             const authors =
                 await refreshed.json();
 
-            if (
-                Array.isArray(
-                    authors
-                )
-            ) {
-
-                VitaHubData.authors =
-                    authors;
-
-                return getAuthorById(
-                    authorId
-                );
+            if (Array.isArray(authors)) {
+                VitaHubData.authors = authors;
+                return getAuthorById(authorId);
             }
         }
-
     } catch (error) {
-
         console.warn(
             "Unable to refresh authors.json:",
             error
         );
     }
 
-
     return null;
 }
 
-
-/* ========================================
-   Initialize
-======================================== */
-
 async function initAuthorPage() {
-
     try {
-
         const authorId =
             getAuthorIdFromUrl();
 
@@ -596,18 +260,12 @@ async function initAuthorPage() {
             return;
         }
 
-
         await loadVitaHubData();
 
-
         const author =
-            await findAuthorWithRetry(
-                authorId
-            );
-
+            await findAuthorWithRetry(authorId);
 
         if (!author) {
-
             console.error(
                 "Author not found:",
                 authorId
@@ -617,20 +275,11 @@ async function initAuthorPage() {
             return;
         }
 
-
-        const applications =
-            getAuthorApplications(
-                authorId
-            );
-
-
         renderAuthor(
             author,
-            applications
+            getAuthorApplications(authorId)
         );
-
     } catch (error) {
-
         console.error(
             "Failed to load author page:",
             error
@@ -639,7 +288,6 @@ async function initAuthorPage() {
         showAuthorError();
     }
 }
-
 
 document.addEventListener(
     "DOMContentLoaded",
