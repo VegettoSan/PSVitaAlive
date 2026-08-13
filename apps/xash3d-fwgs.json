@@ -13,13 +13,14 @@
     "fps"
   ],
   "version": "v.continuous",
-  "version_date": "2023-10-07",
+  "version_date": "2026-08-12",
   "requirements": "- libshacccg.suprx\n- kubridge.skprx\n- Game Data Files: PC",
-  "size": 33443462,
+  "size": 33452664,
   "status": "Verified",
   "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/ea21c1e094cc19f20ed4e11d671e28f1cee347b2f07d1c64e03c5923d0928aa6.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/df0d1060f87c47ac5018324b4b84269a31ce88150375bc832fbefe948151c287.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/df0d1060f87c47ac5018324b4b84269a31ce88150375bc832fbefe948151c287.png",
+    "screenshots/df0d1060f87c47ac5018324b4b84269a31ce88150375bc832fbefe948151c287.png"
   ],
   "links": [
     {

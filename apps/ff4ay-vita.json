@@ -6,7 +6,8 @@
   "long_description": "This is a wrapper/port of Final Fantasy IV: The After Years Android for the PS Vita.\nThe port works by loading the official Android ARMv7 executable in memory, resolving its imports with native functions and patching it in order to properly run. By doing so, it's basically as if we emulate a minimalist Android environment in which we run natively the executable as is.",
   "author_ids": [
     "rinnegatamante",
-    "frangarcj"
+    "frangarcj",
+    "bythos"
   ],
   "category_id": "ports",
   "subcategory_ids": [
@@ -22,7 +23,8 @@
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/9a516f0a6313497a03aa39ddef40c485e127145acf30a3094671189560160918.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/05f4fe72ad22cac348ff9c47ec695dc276ed7d3948e642e9917efa487cca58d5.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/b903d7c2a2d95794d9cfe1eb249f081384e27628ec1357a81b23edac0f6aca9b.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/453028041b37a99b243f3ce0c64fe4bcdbc21772675233ef19bdfafe345753e7.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/453028041b37a99b243f3ce0c64fe4bcdbc21772675233ef19bdfafe345753e7.png",
+    "screenshots/9a516f0a6313497a03aa39ddef40c485e127145acf30a3094671189560160918.png;screenshots/05f4fe72ad22cac348ff9c47ec695dc276ed7d3948e642e9917efa487cca58d5.png;screenshots/b903d7c2a2d95794d9cfe1eb249f081384e27628ec1357a81b23edac0f6aca9b.png;screenshots/453028041b37a99b243f3ce0c64fe4bcdbc21772675233ef19bdfafe345753e7.png"
   ],
   "links": [
     {
@@ -40,6 +42,11 @@
       "type": "Other",
       "name": "Release",
       "url": "https://github.com/Rinnegatamante/ff4a_vita/releases"
+    },
+    {
+      "type": "Official Website",
+      "name": "NeoVitaDB Release Page",
+      "url": "https://github.com/Rinnegatamante/ff4a_vita/releases/tag/v.1.0.1"
     }
   ]
 }

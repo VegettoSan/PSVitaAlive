@@ -12,7 +12,7 @@
     "themes"
   ],
   "version": "v.1.0",
-  "version_date": "2021-03-16",
+  "version_date": "2026-08-12",
   "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
   "size": 25901373,
   "status": "Verified",
@@ -20,7 +20,8 @@
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/e96382eea7017c4ea422ef58a622dc0b58a55baabaaf5f7e5360e96d5f9194eb.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/cf95f617e8c2eec36e282ef79029b80aaa5305ec1278be380b1ef25ccdec9a9a.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/4b840cdcad77b331c0a5aa52124a48b01ecbc89e4e610d4844affe1ee8751c33.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/4b840cdcad77b331c0a5aa52124a48b01ecbc89e4e610d4844affe1ee8751c33.png",
+    "screenshots/e96382eea7017c4ea422ef58a622dc0b58a55baabaaf5f7e5360e96d5f9194eb.png;screenshots/cf95f617e8c2eec36e282ef79029b80aaa5305ec1278be380b1ef25ccdec9a9a.png;screenshots/4b840cdcad77b331c0a5aa52124a48b01ecbc89e4e610d4844affe1ee8751c33.png"
   ],
   "links": [
     {
@@ -33,6 +34,11 @@
       "type": "Other",
       "name": "Release",
       "url": "https://deconstructeam.itch.io/behind-every-great-one"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com"
     }
   ]
 }

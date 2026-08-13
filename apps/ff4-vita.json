@@ -7,7 +7,8 @@
   "author_ids": [
     "rinnegatamante",
     "frangarcj",
-    "theflow"
+    "theflow",
+    "bythos"
   ],
   "category_id": "ports",
   "subcategory_ids": [
@@ -23,7 +24,8 @@
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/994784dccb24bd8e4c8c06192fcc7d143d7b024d9dbdea2068683a2eb03e9226.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/b06799c8e6a19fad33ca9c2ba0415862d5777aeb385095c3c709ef4da50af07a.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/a4d2167ed5efd73b3993e191a5ab9aa74e038e5b5a8be84ec2aab645f121bd42.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/a49914f656d542bfe9a9c0ed950efd2fa73d44149f9a356d7f326d699d5d4a06.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/a49914f656d542bfe9a9c0ed950efd2fa73d44149f9a356d7f326d699d5d4a06.png",
+    "screenshots/994784dccb24bd8e4c8c06192fcc7d143d7b024d9dbdea2068683a2eb03e9226.png;screenshots/b06799c8e6a19fad33ca9c2ba0415862d5777aeb385095c3c709ef4da50af07a.png;screenshots/a4d2167ed5efd73b3993e191a5ab9aa74e038e5b5a8be84ec2aab645f121bd42.png;screenshots/a49914f656d542bfe9a9c0ed950efd2fa73d44149f9a356d7f326d699d5d4a06.png"
   ],
   "links": [
     {
@@ -41,6 +43,11 @@
       "type": "Other",
       "name": "Release",
       "url": "https://github.com/Rinnegatamante/ff4_vita/releases"
+    },
+    {
+      "type": "Official Website",
+      "name": "NeoVitaDB Release Page",
+      "url": "https://github.com/Rinnegatamante/ff4_vita/releases/tag/v.1.3.1"
     }
   ]
 }

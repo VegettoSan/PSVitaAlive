@@ -20,7 +20,8 @@
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/e109c1921f6882c0e862ba459e3bf7a6068f01b64eb8e475027fe682291cbd24.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/02596dc62f2884585a268d0817ba27ac4e9281c2f14dd1816eace536afd7e95d.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/1a5da092bbd6549c25ebbb3e607657cd1de67da027fae55e2a2c0f84b9cbb3bb.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/1a5da092bbd6549c25ebbb3e607657cd1de67da027fae55e2a2c0f84b9cbb3bb.png",
+    "screenshots/e109c1921f6882c0e862ba459e3bf7a6068f01b64eb8e475027fe682291cbd24.png;screenshots/02596dc62f2884585a268d0817ba27ac4e9281c2f14dd1816eace536afd7e95d.png;screenshots/1a5da092bbd6549c25ebbb3e607657cd1de67da027fae55e2a2c0f84b9cbb3bb.png"
   ],
   "links": [
     {
@@ -38,6 +39,11 @@
       "type": "Other",
       "name": "Release",
       "url": "https://github.com/joel16/VITA-Homebrew-Sorter/releases"
+    },
+    {
+      "type": "Official Website",
+      "name": "NeoVitaDB Release Page",
+      "url": "https://github.com/joel16/VITA-Homebrew-Sorter/releases/tag/v1.27"
     }
   ]
 }

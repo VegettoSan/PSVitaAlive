@@ -21,7 +21,8 @@
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/aa4210a740a4c2a329c6a8179bcfe0a79cf4412bb018c93d6e84968158327abb.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/661a24eaef9948da1a4f40cd323dff0ef26397a3ec767bb304e4773b49f2a765.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/fcb374a836bb927bed89348d143d1b40cf5b9cf1f12b8fb21bfb030576fe8326.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/7b5550d347bef8ba639f4bcba21e2659489097a37fae9b909f37b30fa746fe1b.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/7b5550d347bef8ba639f4bcba21e2659489097a37fae9b909f37b30fa746fe1b.png",
+    "screenshots/aa4210a740a4c2a329c6a8179bcfe0a79cf4412bb018c93d6e84968158327abb.png;screenshots/661a24eaef9948da1a4f40cd323dff0ef26397a3ec767bb304e4773b49f2a765.png;screenshots/fcb374a836bb927bed89348d143d1b40cf5b9cf1f12b8fb21bfb030576fe8326.png;screenshots/7b5550d347bef8ba639f4bcba21e2659489097a37fae9b909f37b30fa746fe1b.png"
   ],
   "links": [
     {
@@ -34,6 +35,11 @@
       "type": "Other",
       "name": "Release",
       "url": "https://github.com/MDashK/Galactic-Missile-Defense-Vita"
+    },
+    {
+      "type": "Official Website",
+      "name": "NeoVitaDB Release Page",
+      "url": "https://github.com/MDashK/Galactic-Missile-Defense-Vita/releases/tag/v1.0.0"
     }
   ]
 }

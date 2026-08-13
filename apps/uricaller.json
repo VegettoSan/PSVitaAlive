@@ -29,6 +29,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/Freakler/vita-uriCaller"
+    },
+    {
+      "type": "Official Website",
+      "name": "NeoVitaDB Release Page",
+      "url": "https://github.com/Freakler/vita-uriCaller/releases/tag/0.1"
     }
   ]
 }

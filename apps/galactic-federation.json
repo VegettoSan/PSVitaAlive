@@ -12,7 +12,7 @@
     "examples"
   ],
   "version": "v.0.1",
-  "version_date": "2017-03-21",
+  "version_date": "2026-08-12",
   "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
   "size": 7584796,
   "status": "Verified",
@@ -29,6 +29,11 @@
       "type": "Other",
       "name": "Release",
       "url": "https://github.com/thesuicidalrobot/Galactic-Federation/releases"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com"
     }
   ]
 }

@@ -12,14 +12,15 @@
     "fighting"
   ],
   "version": "v.0.4",
-  "version_date": "2019-04-26",
+  "version_date": "2026-08-12",
   "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
   "size": 2923137,
   "status": "Verified",
   "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/2fe525fe01d269bb78ba2b455ca34deb5aa65adc86358247b12136c6d2ead932.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/7bfabc62111839a712c26065b8b180dcf972016283ac00d90a06f032e92d3c1b.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/3276663dc5ddea2e19454229d2c8463c42ed79185b4c6973cd5e43e6165b6faa.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/3276663dc5ddea2e19454229d2c8463c42ed79185b4c6973cd5e43e6165b6faa.png",
+    "screenshots/7bfabc62111839a712c26065b8b180dcf972016283ac00d90a06f032e92d3c1b.png;screenshots/3276663dc5ddea2e19454229d2c8463c42ed79185b4c6973cd5e43e6165b6faa.png"
   ],
   "links": [
     {
@@ -27,6 +28,11 @@
       "name": "Descarga principal",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/472-RT.vpk",
       "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com"
     }
   ]
 }

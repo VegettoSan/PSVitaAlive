@@ -21,7 +21,8 @@
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c87ce6e5c07244df2e9353d8e2817cad3318baecced16e7e97bc8fd066ac22be.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/ee405e78910f2b4eedf6a5c8d20eb03df6b45b756863dc2ac15d62e7dd2a53b0.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/29edc0ddff3cb406d8fe26ea74d6b949e296a542645e566a0f2522bf5283e65d.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/077f9978e6f964469f248ec06f9b7cb9c02e6c97ce4ea81c27827ffcf5afaf40.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/077f9978e6f964469f248ec06f9b7cb9c02e6c97ce4ea81c27827ffcf5afaf40.png",
+    "screenshots/c87ce6e5c07244df2e9353d8e2817cad3318baecced16e7e97bc8fd066ac22be.png;screenshots/ee405e78910f2b4eedf6a5c8d20eb03df6b45b756863dc2ac15d62e7dd2a53b0.png;screenshots/29edc0ddff3cb406d8fe26ea74d6b949e296a542645e566a0f2522bf5283e65d.png;screenshots/077f9978e6f964469f248ec06f9b7cb9c02e6c97ce4ea81c27827ffcf5afaf40.png"
   ],
   "links": [
     {
@@ -39,6 +40,11 @@
       "type": "Other",
       "name": "Release",
       "url": "https://github.com/Rinnegatamante/layton3-vita/releases"
+    },
+    {
+      "type": "Official Website",
+      "name": "NeoVitaDB Release Page",
+      "url": "https://github.com/Rinnegatamante/layton3-vita/releases/tag/v.1.0"
     }
   ]
 }

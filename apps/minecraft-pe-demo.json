@@ -11,10 +11,10 @@
   "subcategory_ids": [
     "other"
   ],
-  "version": "v1.0.7",
-  "version_date": "2026-05-25",
+  "version": "v.1.0.7",
+  "version_date": "2026-08-05",
   "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
-  "size": 8663311,
+  "size": 8670937,
   "status": "Verified",
   "icon": "https://robin994.github.io/NeoVitaDB-Catalog/icons/1446-minecraftpe-demo.png",
   "screenshots": [],
@@ -34,6 +34,16 @@
       "type": "Other",
       "name": "Release",
       "url": "https://github.com/minecraftpe-vita/minecraftpe-vita/releases/tag/v1.0.7"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDBtoo VPK",
+      "url": "https://github.com/minecraftpe-vita/minecraftpe-vita/releases/download/v1.0.7/minecraftpe.vpk"
+    },
+    {
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
+      "url": "https://github.com/minecraftpe-vita/minecraftpe-vita/releases"
     }
   ]
 }

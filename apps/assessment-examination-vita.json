@@ -12,14 +12,15 @@
     "other"
   ],
   "version": "v.1.0",
-  "version_date": "2025-08-14",
+  "version_date": "2026-08-12",
   "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
   "size": 107502048,
   "status": "Verified",
   "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/a2edc41b6ea4f470372e9b223e29ca87047a6c9c298e29b21b75a1710b61e82c.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/ea5c7bb80772e227b7b18edaca84fd4ae0de1e03f96d484167062805960f927f.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/47e04758ff18fe1b186be5c4d26a21df341ec554eb9fa172fdec2e63b9ebc18c.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/47e04758ff18fe1b186be5c4d26a21df341ec554eb9fa172fdec2e63b9ebc18c.png",
+    "screenshots/ea5c7bb80772e227b7b18edaca84fd4ae0de1e03f96d484167062805960f927f.png;screenshots/47e04758ff18fe1b186be5c4d26a21df341ec554eb9fa172fdec2e63b9ebc18c.png"
   ],
   "links": [
     {
@@ -32,6 +33,11 @@
       "type": "Other",
       "name": "Release",
       "url": "https://patnosd.itch.io/assessment-examination"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com"
     }
   ]
 }

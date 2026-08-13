@@ -12,13 +12,14 @@
     "other"
   ],
   "version": "v.1.0",
-  "version_date": "2025-01-26",
+  "version_date": "2026-08-12",
   "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
   "size": 40490913,
   "status": "Verified",
   "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/3922aa43c6241e917e6badca446bdfc0be4b3ae278a668bf660a0aa6b357ff09.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/9b1cdc787b719b9cbdf081cf54196e17606cbcb3bd64fa571352487fc22dca41.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/9b1cdc787b719b9cbdf081cf54196e17606cbcb3bd64fa571352487fc22dca41.png",
+    "screenshots/9b1cdc787b719b9cbdf081cf54196e17606cbcb3bd64fa571352487fc22dca41.png"
   ],
   "links": [
     {
@@ -26,6 +27,11 @@
       "name": "Descarga principal",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1252-LaDeuda.vpk",
       "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com"
     }
   ]
 }

@@ -12,7 +12,7 @@
     "other"
   ],
   "version": "v.1.0",
-  "version_date": "2021-03-20",
+  "version_date": "2026-08-12",
   "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
   "size": 6263290,
   "status": "Verified",
@@ -20,7 +20,8 @@
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/748f4b67033b272ae5fc71308e2b6960b096e36390cae3e391da4fc7650c43bc.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/ac695e56eb34d356a71da0f53f58c063c30283c7657e9ffc4a562ee37e79a144.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/14566691de629ec244deea878860187d2e62ebebede02e26f7ef433fb3461d19.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/14566691de629ec244deea878860187d2e62ebebede02e26f7ef433fb3461d19.png",
+    "screenshots/748f4b67033b272ae5fc71308e2b6960b096e36390cae3e391da4fc7650c43bc.png;screenshots/ac695e56eb34d356a71da0f53f58c063c30283c7657e9ffc4a562ee37e79a144.png;screenshots/14566691de629ec244deea878860187d2e62ebebede02e26f7ef433fb3461d19.png"
   ],
   "links": [
     {
@@ -33,6 +34,11 @@
       "type": "Other",
       "name": "Release",
       "url": "https://hwilson.itch.io/king-of-machines"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com"
     }
   ]
 }

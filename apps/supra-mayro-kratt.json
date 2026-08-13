@@ -12,7 +12,7 @@
     "racing"
   ],
   "version": "v.1.1",
-  "version_date": "2022-04-03",
+  "version_date": "2026-08-12",
   "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
   "size": 36298935,
   "status": "Verified",
@@ -20,7 +20,8 @@
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/586eed71a07822678de08950e4c260efdbeb90453edceedaf35cc5c9e3743347.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/3ddf47bfd80011e8ab339596bd5d5fc1cfa63f20a62afb2fee1433e8bd37bd03.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/1968953bc3c79a9ef48ff71be928b5063f805eaa3e18506b27098715e8f3d41f.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/1968953bc3c79a9ef48ff71be928b5063f805eaa3e18506b27098715e8f3d41f.png",
+    "screenshots/586eed71a07822678de08950e4c260efdbeb90453edceedaf35cc5c9e3743347.png;screenshots/3ddf47bfd80011e8ab339596bd5d5fc1cfa63f20a62afb2fee1433e8bd37bd03.png;screenshots/1968953bc3c79a9ef48ff71be928b5063f805eaa3e18506b27098715e8f3d41f.png"
   ],
   "links": [
     {
@@ -28,6 +29,11 @@
       "name": "Descarga principal",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/803-supra.vpk",
       "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com"
     }
   ]
 }

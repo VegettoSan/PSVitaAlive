@@ -12,7 +12,7 @@
     "platformer"
   ],
   "version": "v.1.0",
-  "version_date": "2021-07-20",
+  "version_date": "2026-08-12",
   "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
   "size": 2790022,
   "status": "Verified",
@@ -21,7 +21,8 @@
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/b7b0f9c8bc16d968b593669b80341408beed0d906e0f53b72d6d00f257c70692.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/2e1b92c43c625aa54526303bbed1689f74e16fd524e67d3366f0565cbdc2b3ef.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/62f2ad9336b896b2c61133fc631b1d4ebe5405cab677de80c4313dfd3f858c02.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/9f2154b533d33bf6e4cc6ab3bcb2328afc484d76048a128c7858379dab0c3d1f.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/9f2154b533d33bf6e4cc6ab3bcb2328afc484d76048a128c7858379dab0c3d1f.png",
+    "screenshots/b7b0f9c8bc16d968b593669b80341408beed0d906e0f53b72d6d00f257c70692.png;screenshots/2e1b92c43c625aa54526303bbed1689f74e16fd524e67d3366f0565cbdc2b3ef.png;screenshots/62f2ad9336b896b2c61133fc631b1d4ebe5405cab677de80c4313dfd3f858c02.png;screenshots/9f2154b533d33bf6e4cc6ab3bcb2328afc484d76048a128c7858379dab0c3d1f.png"
   ],
   "links": [
     {

@@ -21,7 +21,8 @@
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/8d45ad7da57d9444289363be0c8456ff010fd9e17d19beeece6872edb4917478.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/861bfad11c9446005f512f16b20bbf7a86597368631c32b5faf98ae2f29eddc5.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/a7feddbb3a1ed719579b05420be7b6aa407633eea3558f40b3fbe5b2e96e5f7f.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/247f3f43c4e6bee91783c174edfa951f7a1951d23be4f6aeed99a0b57cf0fc3c.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/247f3f43c4e6bee91783c174edfa951f7a1951d23be4f6aeed99a0b57cf0fc3c.png",
+    "screenshots/8d45ad7da57d9444289363be0c8456ff010fd9e17d19beeece6872edb4917478.png;screenshots/861bfad11c9446005f512f16b20bbf7a86597368631c32b5faf98ae2f29eddc5.png;screenshots/a7feddbb3a1ed719579b05420be7b6aa407633eea3558f40b3fbe5b2e96e5f7f.png;screenshots/247f3f43c4e6bee91783c174edfa951f7a1951d23be4f6aeed99a0b57cf0fc3c.png"
   ],
   "links": [
     {
@@ -34,6 +35,11 @@
       "type": "Other",
       "name": "Release",
       "url": "https://github.com/MDashK/Flop-Rocket-Vita"
+    },
+    {
+      "type": "Official Website",
+      "name": "NeoVitaDB Release Page",
+      "url": "https://github.com/MDashK/Flop-Rocket-Vita/releases/tag/v1.0.0"
     }
   ]
 }

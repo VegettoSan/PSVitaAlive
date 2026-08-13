@@ -12,7 +12,7 @@
     "horror"
   ],
   "version": "v.1.0",
-  "version_date": "2025-10-12",
+  "version_date": "2026-08-12",
   "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
   "size": 28327338,
   "status": "Verified",
@@ -21,7 +21,8 @@
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/f0f21341cab407a2cc5829982ce0ee3c4ca39a21f2b6925b9abf18d0284d555f.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/9442fb48bb3d3a725350226ef0800e7a6b914d9c516188f226948c0ac250d22f.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/d94e687ac4df9469d94d4ce65525712904c0b95891ea506eb9ae9c63e41bfc41.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/5627d9f2bf1887f7a0f30ed38409a9e9981a32be3912da18a06df5a282d661b3.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/5627d9f2bf1887f7a0f30ed38409a9e9981a32be3912da18a06df5a282d661b3.png",
+    "screenshots/f0f21341cab407a2cc5829982ce0ee3c4ca39a21f2b6925b9abf18d0284d555f.png;screenshots/9442fb48bb3d3a725350226ef0800e7a6b914d9c516188f226948c0ac250d22f.png;screenshots/d94e687ac4df9469d94d4ce65525712904c0b95891ea506eb9ae9c63e41bfc41.png;screenshots/5627d9f2bf1887f7a0f30ed38409a9e9981a32be3912da18a06df5a282d661b3.png"
   ],
   "links": [
     {
@@ -34,6 +35,11 @@
       "type": "Other",
       "name": "Release",
       "url": "https://soysilver.itch.io/the-other-her"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com"
     }
   ]
 }

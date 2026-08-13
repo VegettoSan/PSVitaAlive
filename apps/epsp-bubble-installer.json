@@ -12,7 +12,7 @@
     "installer"
   ],
   "version": "v.3.1",
-  "version_date": "2017-03-20",
+  "version_date": "2026-08-12",
   "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
   "size": 5491546,
   "status": "Verified",
@@ -29,6 +29,11 @@
       "type": "Other",
       "name": "Release",
       "url": "http://gekihen.customprotocol.com/en/project/ePSP-Bubble-Installer"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com"
     }
   ]
 }

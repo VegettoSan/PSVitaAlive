@@ -11,16 +11,17 @@
   "subcategory_ids": [
     "engine-port"
   ],
-  "version": "v2.1",
-  "version_date": "2026-08-06",
+  "version": "v2.1.1",
+  "version_date": "2026-08-07",
   "requirements": "- libshacccg.suprx\n- Game Data Files: PC",
-  "size": 168357674,
+  "size": 168369624,
   "status": "Verified",
   "icon": "https://robin994.github.io/NeoVitaDB-Catalog/icons/1390-openmw-vita.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/7ee6fd95e0000c823930ff8cd0b566818833d78a8d360682e9d0d45bf39109f2.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/da9449df2bb712c5e1b6081925b259811ce36bd78d6f5dabbb5f40ef5a4cef86.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/814f32e8bec19e5f0b16e168353d1bd843328ede5d12d3d0ec3b6975f30266db.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/814f32e8bec19e5f0b16e168353d1bd843328ede5d12d3d0ec3b6975f30266db.png",
+    "screenshots/7ee6fd95e0000c823930ff8cd0b566818833d78a8d360682e9d0d45bf39109f2.png;screenshots/da9449df2bb712c5e1b6081925b259811ce36bd78d6f5dabbb5f40ef5a4cef86.png;screenshots/814f32e8bec19e5f0b16e168353d1bd843328ede5d12d3d0ec3b6975f30266db.png"
   ],
   "links": [
     {
@@ -38,6 +39,26 @@
       "type": "Other",
       "name": "Release",
       "url": "https://github.com/TheLostPantheon/openmw/releases/tag/v2.1"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDBtoo VPK",
+      "url": "https://github.com/TheLostPantheon/openmw/releases/download/v2.1.1/openmw.vpk"
+    },
+    {
+      "type": "Download",
+      "name": "NeoVitaDB VPK",
+      "url": "https://github.com/TheLostPantheon/openmw/releases/download/v2.1.1/openmw-2.2-partial.vpk"
+    },
+    {
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
+      "url": "https://github.com/TheLostPantheon/openmw/releases"
+    },
+    {
+      "type": "Official Website",
+      "name": "NeoVitaDB Release Page",
+      "url": "https://github.com/TheLostPantheon/openmw/releases/tag/v2.1.1"
     }
   ]
 }

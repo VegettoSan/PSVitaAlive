@@ -12,7 +12,7 @@
     "puzzle"
   ],
   "version": "v.1.0",
-  "version_date": "2019-05-06",
+  "version_date": "2026-08-12",
   "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
   "size": 5595880,
   "status": "Verified",
@@ -21,7 +21,8 @@
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/466bcc292e32a12c0d300a5bdb8d91b367ed6ab60ec3c1372d732c5c7447cd1f.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/41eec3b8925a53fd6d7139e48b4a5731bb769de73cd4e2a146d7f7b5c76f27b1.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/ef8476aaaf6543906144986361d67c4984bcea1c0d6b71cf50bbea0a1268fde4.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/47d07ebdb7cae669c824d495ac5a1e51d8ec9f648365e82862198e627d1080c5.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/47d07ebdb7cae669c824d495ac5a1e51d8ec9f648365e82862198e627d1080c5.png",
+    "screenshots/466bcc292e32a12c0d300a5bdb8d91b367ed6ab60ec3c1372d732c5c7447cd1f.png;screenshots/41eec3b8925a53fd6d7139e48b4a5731bb769de73cd4e2a146d7f7b5c76f27b1.png;screenshots/ef8476aaaf6543906144986361d67c4984bcea1c0d6b71cf50bbea0a1268fde4.png;screenshots/47d07ebdb7cae669c824d495ac5a1e51d8ec9f648365e82862198e627d1080c5.png"
   ],
   "links": [
     {
@@ -34,6 +35,11 @@
       "type": "Other",
       "name": "Release",
       "url": "https://thp.itch.io/chromono-vita"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com"
     }
   ]
 }

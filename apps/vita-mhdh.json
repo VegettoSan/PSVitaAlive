@@ -21,7 +21,8 @@
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/e144fd0e655df4bf49426c2f4cd6223c4c712fbe65968cd3519345524e7e4bf4.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/8124d8b752b1435c6d5cff4741ad49db743c53713a2d6d30123d540e2da5414c.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/5b82ffe657d1456eaeef369560f0ba1a8ce8891382883bffb9e68df4daa5fbd7.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/cacd070fb4a45f2fcb15a4a0ea7cd62f1646b245a1f544831da2d5b070476ce1.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/cacd070fb4a45f2fcb15a4a0ea7cd62f1646b245a1f544831da2d5b070476ce1.png",
+    "screenshots/e144fd0e655df4bf49426c2f4cd6223c4c712fbe65968cd3519345524e7e4bf4.png;screenshots/8124d8b752b1435c6d5cff4741ad49db743c53713a2d6d30123d540e2da5414c.png;screenshots/5b82ffe657d1456eaeef369560f0ba1a8ce8891382883bffb9e68df4daa5fbd7.png;screenshots/cacd070fb4a45f2fcb15a4a0ea7cd62f1646b245a1f544831da2d5b070476ce1.png"
   ],
   "links": [
     {
@@ -39,6 +40,11 @@
       "type": "Other",
       "name": "Release",
       "url": "https://github.com/MuukalainenPuhuu/Vita-MH-DH/releases/tag/1.1"
+    },
+    {
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
+      "url": "https://github.com/MuukalainenPuhuu/Vita-MH-DH/releases"
     }
   ]
 }

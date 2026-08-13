@@ -12,7 +12,7 @@
     "other"
   ],
   "version": "v.1",
-  "version_date": "2021-10-23",
+  "version_date": "2026-08-12",
   "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
   "size": 2361624,
   "status": "Verified",
@@ -20,7 +20,8 @@
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/915b143b04cf6ab34a01cb09b8bb9ba8b7cc6689817fd06dbf34d2e321f39120.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/35c254ed9946b9af5f2f5ead7afa8de3dbf3ba857942dce9c2a1b24ef49adc1c.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/ba3d63a1e217e9b92810ef6ea3601a62dc2956d9d34aeb9d49bb28d192fde1b8.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/ba3d63a1e217e9b92810ef6ea3601a62dc2956d9d34aeb9d49bb28d192fde1b8.png",
+    "screenshots/915b143b04cf6ab34a01cb09b8bb9ba8b7cc6689817fd06dbf34d2e321f39120.png;screenshots/35c254ed9946b9af5f2f5ead7afa8de3dbf3ba857942dce9c2a1b24ef49adc1c.png;screenshots/ba3d63a1e217e9b92810ef6ea3601a62dc2956d9d34aeb9d49bb28d192fde1b8.png"
   ],
   "links": [
     {
@@ -28,6 +29,11 @@
       "name": "Descarga principal",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/744-RockRecker.vpk",
       "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com"
     }
   ]
 }

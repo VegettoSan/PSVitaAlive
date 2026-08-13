@@ -19,7 +19,8 @@
   "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/aaee2c6e873f3eef8026e6b8ff6366f6c38d7f71043d7ae46d58cb2a5cdbe213.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/727607add71b2efb029dac8f309f3569283626708ef1267acb762b7ac2d236f7.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/32594b0beed6187d3323eeca2046de9ab30dc1a7a9ccc09867a8fe41d97a2da0.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/32594b0beed6187d3323eeca2046de9ab30dc1a7a9ccc09867a8fe41d97a2da0.png",
+    "screenshots/727607add71b2efb029dac8f309f3569283626708ef1267acb762b7ac2d236f7.png;screenshots/32594b0beed6187d3323eeca2046de9ab30dc1a7a9ccc09867a8fe41d97a2da0.png"
   ],
   "links": [
     {
@@ -37,6 +38,11 @@
       "type": "Other",
       "name": "Release",
       "url": "https://github.com/nn9dev/tamatool-vita/releases"
+    },
+    {
+      "type": "Official Website",
+      "name": "NeoVitaDB Release Page",
+      "url": "https://github.com/nn9dev/tamatool-vita/releases/tag/vita-0.1"
     }
   ]
 }

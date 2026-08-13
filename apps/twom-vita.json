@@ -6,7 +6,8 @@
   "long_description": "Port of This War of Mine and This War of Mine: Stores - Father's Promise for PSVITA based on the mobile (Android) version of the game.",
   "author_ids": [
     "theflow",
-    "rinnegatamante"
+    "rinnegatamante",
+    "aap"
   ],
   "category_id": "ports",
   "subcategory_ids": [
@@ -22,7 +23,8 @@
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/2e6210d3370e490e36f6982fb4ed7da4b01582b5609ed41078c56a924f1799a0.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/551d7dee5d5503be49b73840c4c0f30e1fd0e02b686603569ee2149cf9d0885b.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/cc94d60094dc411b521524b01d3b9f9370e69136e3c751bfc0488f1145bb1a9b.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/00bf0536e6a34ef7bf1231dafa103bd6260b96b22c3e606f13f992073112374c.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/00bf0536e6a34ef7bf1231dafa103bd6260b96b22c3e606f13f992073112374c.png",
+    "screenshots/2e6210d3370e490e36f6982fb4ed7da4b01582b5609ed41078c56a924f1799a0.png;screenshots/551d7dee5d5503be49b73840c4c0f30e1fd0e02b686603569ee2149cf9d0885b.png;screenshots/cc94d60094dc411b521524b01d3b9f9370e69136e3c751bfc0488f1145bb1a9b.png;screenshots/00bf0536e6a34ef7bf1231dafa103bd6260b96b22c3e606f13f992073112374c.png"
   ],
   "links": [
     {
@@ -40,6 +42,11 @@
       "type": "Other",
       "name": "Release",
       "url": "https://github.com/TheOfficialFloW/twom_vita/releases"
+    },
+    {
+      "type": "Official Website",
+      "name": "NeoVitaDB Release Page",
+      "url": "https://github.com/TheOfficialFloW/twom_vita/releases/tag/v1.0"
     }
   ]
 }

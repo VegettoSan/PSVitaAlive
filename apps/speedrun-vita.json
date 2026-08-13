@@ -12,7 +12,7 @@
     "platformer"
   ],
   "version": "v.1.1",
-  "version_date": "2019-04-23",
+  "version_date": "2026-08-12",
   "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
   "size": 104058997,
   "status": "Verified",
@@ -21,7 +21,8 @@
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/d894c9fb7b0293b8e8999a760af00636f07c7b5ffb5a05b4f98bc248f3beaca0.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/35988eef6541623db004d2eef07dd64bce1a779ede80f0b26cdaedd8784f040f.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/4256188c3dd4f7fd82438096c9f0479ab6e345c6c9a8424fe4d973a5ae9e87d2.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/9a9c1cb05f8d8b87d4f2dbfa9068e04603381cd3211025346ee5db3298e04041.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/9a9c1cb05f8d8b87d4f2dbfa9068e04603381cd3211025346ee5db3298e04041.png",
+    "screenshots/d894c9fb7b0293b8e8999a760af00636f07c7b5ffb5a05b4f98bc248f3beaca0.png;screenshots/35988eef6541623db004d2eef07dd64bce1a779ede80f0b26cdaedd8784f040f.png;screenshots/4256188c3dd4f7fd82438096c9f0479ab6e345c6c9a8424fe4d973a5ae9e87d2.png;screenshots/9a9c1cb05f8d8b87d4f2dbfa9068e04603381cd3211025346ee5db3298e04041.png"
   ],
   "links": [
     {
@@ -29,6 +30,11 @@
       "name": "Descarga principal",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/464-Speedrun_Vita.vpk",
       "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com"
     }
   ]
 }

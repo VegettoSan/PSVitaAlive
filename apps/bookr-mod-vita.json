@@ -11,10 +11,10 @@
   "subcategory_ids": [
     "other"
   ],
-  "version": "v0.3.1",
-  "version_date": "2018-10-14",
+  "version": "v.0.4.0a",
+  "version_date": "2021-05-30",
   "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
-  "size": 27924483,
+  "size": 29049449,
   "status": "Verified",
   "icon": "https://robin994.github.io/NeoVitaDB-Catalog/icons/0203-bookr-mod-vita.png",
   "screenshots": [],
@@ -34,6 +34,16 @@
       "type": "Other",
       "name": "Release",
       "url": "https://github.com/pathway27/bookr-mod-vita/releases/tag/v0.3.1"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDBtoo VPK",
+      "url": "https://github.com/pathway27/bookr-mod-vita/releases/download/v0.4.0a/bookr-mod-vita-v0.4.0a.vpk"
+    },
+    {
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
+      "url": "https://gbatemp.net/threads/release-bookr-mod-vita-0-2-0.496911/"
     }
   ]
 }

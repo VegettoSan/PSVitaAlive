@@ -12,7 +12,7 @@
     "other"
   ],
   "version": "v.1.05r",
-  "version_date": "2019-07-23",
+  "version_date": "2026-08-12",
   "requirements": "- Game Data Files: PC",
   "size": 1463772,
   "status": "Legacy",
@@ -29,6 +29,11 @@
       "type": "Other",
       "name": "Release",
       "url": "https://www.sqrxz.de/sqrxz-3/"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com"
     }
   ]
 }

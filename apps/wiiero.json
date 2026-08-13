@@ -19,7 +19,8 @@
   "icon": "https://robin994.github.io/NeoVitaDB-Catalog/icons/0417-wiiero.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/cb94c7eb50b86850838a2a59ae9bf1becd92be2320624f5fa4562709eb29d960.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/f8437665ccc817a96298e54bdc090bba21498942e81a606c315e4f9ed9e984f9.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/f8437665ccc817a96298e54bdc090bba21498942e81a606c315e4f9ed9e984f9.png",
+    "screenshots/cb94c7eb50b86850838a2a59ae9bf1becd92be2320624f5fa4562709eb29d960.png;screenshots/f8437665ccc817a96298e54bdc090bba21498942e81a606c315e4f9ed9e984f9.png"
   ],
   "links": [
     {
@@ -37,6 +38,11 @@
       "type": "Other",
       "name": "Release",
       "url": "https://github.com/Grzybojad/wiiero-vita/releases/tag/1.2"
+    },
+    {
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
+      "url": "https://github.com/Grzybojad/wiiero-vita/releases"
     }
   ]
 }

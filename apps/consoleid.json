@@ -18,7 +18,8 @@
   "status": "Verified",
   "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/ae3d5aa9e219d81a96a931b4b93847c1773096bcfdaf692d91877e239b5d34a5.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/07aec9266204ddb0ce96d4429deed18136ebe87ca4b4cfdf4c01789dbd0ebbbf.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/07aec9266204ddb0ce96d4429deed18136ebe87ca4b4cfdf4c01789dbd0ebbbf.png",
+    "screenshots/07aec9266204ddb0ce96d4429deed18136ebe87ca4b4cfdf4c01789dbd0ebbbf.png"
   ],
   "links": [
     {
@@ -36,6 +37,11 @@
       "type": "Other",
       "name": "Release",
       "url": "https://github.com/Freakler/vita-ConsoleID/releases"
+    },
+    {
+      "type": "Official Website",
+      "name": "NeoVitaDB Release Page",
+      "url": "https://github.com/Freakler/vita-ConsoleID/releases/tag/1.00"
     }
   ]
 }

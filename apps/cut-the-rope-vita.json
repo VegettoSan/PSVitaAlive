@@ -12,7 +12,7 @@
     "other"
   ],
   "version": "v.1.0",
-  "version_date": "2023-02-20",
+  "version_date": "2026-08-12",
   "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
   "size": 23805944,
   "status": "Verified",
@@ -20,7 +20,8 @@
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/04353ca871ca75cadc5071e74134b4159d726005b9dfe579c63ef1d71ecb1cd7.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/8f3edeecbcdb281914df884fefe8c911b11d4723c21c1313222588026c8d6623.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/258d3c975f33bb2c14ffeaf617602fd978b2132b3f924b8422ece6cf0603a6c5.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/258d3c975f33bb2c14ffeaf617602fd978b2132b3f924b8422ece6cf0603a6c5.png",
+    "screenshots/04353ca871ca75cadc5071e74134b4159d726005b9dfe579c63ef1d71ecb1cd7.png;screenshots/8f3edeecbcdb281914df884fefe8c911b11d4723c21c1313222588026c8d6623.png;screenshots/258d3c975f33bb2c14ffeaf617602fd978b2132b3f924b8422ece6cf0603a6c5.png"
   ],
   "links": [
     {
@@ -33,6 +34,11 @@
       "type": "Other",
       "name": "Release",
       "url": "https://github.com/SpanishFreddy/Cut-The-Rope-Vita"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com"
     }
   ]
 }

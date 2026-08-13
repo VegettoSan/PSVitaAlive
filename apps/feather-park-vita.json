@@ -12,7 +12,7 @@
     "other"
   ],
   "version": "v.0.9",
-  "version_date": "2023-05-09",
+  "version_date": "2026-08-12",
   "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
   "size": 34181808,
   "status": "Verified",
@@ -21,7 +21,8 @@
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/5f161c49b4b1abb4e21b04a72e6eb169a3af8c0200bb9194d63611f212d608dd.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/13bcf776a4dd7de13eafde91fb4dbcdfee469836888e971b34bd0811077097f0.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/9c83bd148c86010656770209cdf8bc48c9583304ed24247794c7ca30846338ce.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/1173e6a17e2caf731a1894fe842672490c49d97d20513047a1b3d4c83afc8ad8.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/1173e6a17e2caf731a1894fe842672490c49d97d20513047a1b3d4c83afc8ad8.png",
+    "screenshots/5f161c49b4b1abb4e21b04a72e6eb169a3af8c0200bb9194d63611f212d608dd.png;screenshots/13bcf776a4dd7de13eafde91fb4dbcdfee469836888e971b34bd0811077097f0.png;screenshots/9c83bd148c86010656770209cdf8bc48c9583304ed24247794c7ca30846338ce.png;screenshots/1173e6a17e2caf731a1894fe842672490c49d97d20513047a1b3d4c83afc8ad8.png"
   ],
   "links": [
     {
@@ -29,6 +30,11 @@
       "name": "Descarga principal",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1077-FeatherPark.vpk",
       "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com"
     }
   ]
 }

@@ -21,7 +21,8 @@
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/950ec695523a46485ac4474ed48abe204cfebe3e2f424d84eaf40cf701f369b4.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/f9e563fbb9af8cc5aef48c6ccdc9b177a8d7319c314b5781f5cd68f6b8a7e6f7.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/4682239421d59e259931cf91a5ed55195f67ad20775b15a93a50b1954de8e8e9.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/de0eb9bd711fb3aa270e105d2b2eccd89e85590d4ba13922e3bcdf735c2cd430.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/de0eb9bd711fb3aa270e105d2b2eccd89e85590d4ba13922e3bcdf735c2cd430.png",
+    "screenshots/950ec695523a46485ac4474ed48abe204cfebe3e2f424d84eaf40cf701f369b4.png;screenshots/f9e563fbb9af8cc5aef48c6ccdc9b177a8d7319c314b5781f5cd68f6b8a7e6f7.png;screenshots/4682239421d59e259931cf91a5ed55195f67ad20775b15a93a50b1954de8e8e9.png;screenshots/de0eb9bd711fb3aa270e105d2b2eccd89e85590d4ba13922e3bcdf735c2cd430.png"
   ],
   "links": [
     {
@@ -34,6 +35,11 @@
       "type": "Other",
       "name": "Release",
       "url": "https://github.com/Rocroverss/Toziuha-Night-Dracula-s-Revenge-patch-psvita"
+    },
+    {
+      "type": "Official Website",
+      "name": "NeoVitaDB Release Page",
+      "url": "https://github.com/Rocroverss/Toziuha-Night-Dracula-s-Revenge-patch-psvita/releases/tag/v1.0"
     }
   ]
 }

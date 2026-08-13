@@ -21,7 +21,8 @@
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/182f3f72612fd93b5296cdfb16cb90dc71f7cc1537b0d5fb0161f22656a380cb.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/80be146ef52ef3379568abd078a8333cdd5ba946f8e2262ee58107acc9c4d9ad.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/0bf409d3456339d9817fb36b9ddd16347fdb661d6f67189deb1c113ed8dc569f.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/a9e838cba857280ff85ad6489b121af558876e4514fa7d33f15b8ece2d2bf74d.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/a9e838cba857280ff85ad6489b121af558876e4514fa7d33f15b8ece2d2bf74d.png",
+    "screenshots/182f3f72612fd93b5296cdfb16cb90dc71f7cc1537b0d5fb0161f22656a380cb.png;screenshots/80be146ef52ef3379568abd078a8333cdd5ba946f8e2262ee58107acc9c4d9ad.png;screenshots/0bf409d3456339d9817fb36b9ddd16347fdb661d6f67189deb1c113ed8dc569f.png;screenshots/a9e838cba857280ff85ad6489b121af558876e4514fa7d33f15b8ece2d2bf74d.png"
   ],
   "links": [
     {
@@ -39,6 +40,11 @@
       "type": "Other",
       "name": "Release",
       "url": "https://github.com/sergiou87/open-supaplex/releases/tag/v7.2.2"
+    },
+    {
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
+      "url": "https://github.com/sergiou87/open-supaplex/releases"
     }
   ]
 }

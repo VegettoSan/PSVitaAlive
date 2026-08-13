@@ -12,14 +12,15 @@
     "other"
   ],
   "version": "v.1.0",
-  "version_date": "2019-04-07",
+  "version_date": "2026-08-12",
   "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
   "size": 34575104,
   "status": "Legacy",
   "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/a36ea63bac6fc73625ae4f591ea19f31bab296e84353e6ee6cd993791a604d00.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/92c6b4496c18f02305eac0174ef0efcec55180a03f5ceca3dd5f53474004bf3f.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/ea33d67afc7e501dc74ecf708bcc469c0690598617cea7b486561845895a2260.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/ea33d67afc7e501dc74ecf708bcc469c0690598617cea7b486561845895a2260.png",
+    "screenshots/92c6b4496c18f02305eac0174ef0efcec55180a03f5ceca3dd5f53474004bf3f.png;screenshots/ea33d67afc7e501dc74ecf708bcc469c0690598617cea7b486561845895a2260.png"
   ],
   "links": [
     {
@@ -27,6 +28,11 @@
       "name": "Descarga principal",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/453-Echo_20Moth.vpk",
       "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com"
     }
   ]
 }

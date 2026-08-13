@@ -11,8 +11,8 @@
   "subcategory_ids": [
     "other"
   ],
-  "version": "Nightly",
-  "version_date": "2022-04-08",
+  "version": "v.Nightly",
+  "version_date": "2022-04-10",
   "requirements": "- libshacccg.suprx\n- kubridge.skprx\n- fd_fix.skprx OR repatch_ex.skprx\n- Game Data Files: Android OR PC/Console Bytecode",
   "size": 8208053,
   "status": "Verified",
@@ -21,7 +21,8 @@
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/a0426d6edeec817ac132d10f0e5c3e353d4089d16dc96b274e67d639a13ae3d5.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/00bb464250354037195259c145bb043d9ce3eea6308d85808bdf78cb8ba69677.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/b3e12bcc5907dbd10a85a73da689aa1a771a229251759a7ee08bcc01beccfa42.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/f0660f3a135769d826cced458c2bdb9382a6a751b95a87079f05bed466e181fc.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/f0660f3a135769d826cced458c2bdb9382a6a751b95a87079f05bed466e181fc.png",
+    "screenshots/a0426d6edeec817ac132d10f0e5c3e353d4089d16dc96b274e67d639a13ae3d5.png;screenshots/00bb464250354037195259c145bb043d9ce3eea6308d85808bdf78cb8ba69677.png;screenshots/b3e12bcc5907dbd10a85a73da689aa1a771a229251759a7ee08bcc01beccfa42.png;screenshots/f0660f3a135769d826cced458c2bdb9382a6a751b95a87079f05bed466e181fc.png"
   ],
   "links": [
     {
@@ -39,6 +40,11 @@
       "type": "Other",
       "name": "Release",
       "url": "https://github.com/Rinnegatamante/yoyoloader_vita/releases/tag/Nightly"
+    },
+    {
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
+      "url": "https://github.com/Rinnegatamante/yoyoloader_vita/releases"
     }
   ]
 }

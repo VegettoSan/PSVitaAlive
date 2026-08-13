@@ -12,7 +12,7 @@
     "other"
   ],
   "version": "vita-20260711",
-  "version_date": "2026-07-11",
+  "version_date": "2026-08-12",
   "requirements": "- libshacccg.suprx",
   "size": 1376471,
   "status": "Legacy",
@@ -20,7 +20,8 @@
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/8726c9a3c5df0074586f5e2fc5607499423e05556fc06819397989c247afab5a.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/58302bbbbacb973b079731b8e2be74a3a2a51f0ae634c27f000a7b75e0235f92.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/1b0f0979ddb8284e29d8753cae4cc8a569401b8d940716310c51e5827fc1f959.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/1b0f0979ddb8284e29d8753cae4cc8a569401b8d940716310c51e5827fc1f959.png",
+    "screenshots/8726c9a3c5df0074586f5e2fc5607499423e05556fc06819397989c247afab5a.png;screenshots/58302bbbbacb973b079731b8e2be74a3a2a51f0ae634c27f000a7b75e0235f92.png;screenshots/1b0f0979ddb8284e29d8753cae4cc8a569401b8d940716310c51e5827fc1f959.png"
   ],
   "links": [
     {

@@ -17,7 +17,10 @@
   "size": 117066878,
   "status": "Verified",
   "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/f5755823ee3ae39b7c697ce676121c54e1a8a03d32340c73119c7dad47068e93.png",
-  "screenshots": [],
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/49ccc14cc63693473619e47d5980d1dd163192ac77003dff34fc21ca15841cb4.png",
+    "screenshots/49ccc14cc63693473619e47d5980d1dd163192ac77003dff34fc21ca15841cb4.png"
+  ],
   "links": [
     {
       "type": "Download",
@@ -29,6 +32,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/libretro/RetroArch"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/libretro/retroarch"
     }
   ]
 }

@@ -21,7 +21,8 @@
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/bee406079de25665b61e58bf5614e7900dbbde9d2fd3d95aa018ab387394e9b7.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/e579bf9d998569ba9d64bcc6df6256d1658ef5b497d54599a2ba1d8ea10122fe.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/e5330df708f09f0f62859343cadaf13a8475de49df931eed7428d047ab5e2c8a.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/9a1610393f4a8381c800d72b1ab7059d4f1a9592e9a23c1693c76892c430a8f7.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/9a1610393f4a8381c800d72b1ab7059d4f1a9592e9a23c1693c76892c430a8f7.png",
+    "screenshots/bee406079de25665b61e58bf5614e7900dbbde9d2fd3d95aa018ab387394e9b7.png;screenshots/e579bf9d998569ba9d64bcc6df6256d1658ef5b497d54599a2ba1d8ea10122fe.png;screenshots/e5330df708f09f0f62859343cadaf13a8475de49df931eed7428d047ab5e2c8a.png;screenshots/9a1610393f4a8381c800d72b1ab7059d4f1a9592e9a23c1693c76892c430a8f7.png"
   ],
   "links": [
     {
@@ -39,6 +40,11 @@
       "type": "Other",
       "name": "Release",
       "url": "https://github.com/SiulPop/Cars-vita/releases"
+    },
+    {
+      "type": "Official Website",
+      "name": "NeoVitaDB Release Page",
+      "url": "https://github.com/SiulPop/Cars-vita/releases/tag/v1.2"
     }
   ]
 }

@@ -12,10 +12,10 @@
   "subcategory_ids": [
     "other"
   ],
-  "version": "ST3",
-  "version_date": "2022-09-02",
+  "version": "ST4",
+  "version_date": "2022-12-02",
   "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
-  "size": 36864192,
+  "size": 17518102,
   "status": "Verified",
   "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/68beb1a0497c25713bd01814c977c6836bd1c79a6c972b1093593bd31fc1f1dc.png",
   "screenshots": [],
@@ -35,6 +35,16 @@
       "type": "Other",
       "name": "Release",
       "url": "https://github.com/CrossCraft/CrossCraft-SurvivalTest/releases"
+    },
+    {
+      "type": "Download",
+      "name": "NeoVitaDB VPK",
+      "url": "https://github.com/CrossCraft/CrossCraft-SurvivalTest/releases/download/ST4/CrossCraft-Vita.zip"
+    },
+    {
+      "type": "Official Website",
+      "name": "NeoVitaDB Release Page",
+      "url": "https://github.com/CrossCraft/CrossCraft-SurvivalTest/releases/tag/ST4"
     }
   ]
 }

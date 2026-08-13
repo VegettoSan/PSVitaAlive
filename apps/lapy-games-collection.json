@@ -12,13 +12,14 @@
     "other"
   ],
   "version": "v.1.0",
-  "version_date": "2021-01-26",
+  "version_date": "2026-08-12",
   "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
   "size": 155765604,
   "status": "Verified",
   "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/fa3265fe0dd3f7658389efca2b9c1aa12174e8b010d46eb8e4ebb43a52f441b1.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/5477cbcb035ecc5fcf4485d1a185e16f18b94b34036de57f605f542987022d61.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/5477cbcb035ecc5fcf4485d1a185e16f18b94b34036de57f605f542987022d61.png",
+    "screenshots/5477cbcb035ecc5fcf4485d1a185e16f18b94b34036de57f605f542987022d61.png"
   ],
   "links": [
     {
@@ -26,6 +27,11 @@
       "name": "Descarga principal",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/613-LapyGC.vpk",
       "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com"
     }
   ]
 }

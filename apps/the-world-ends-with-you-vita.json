@@ -20,7 +20,8 @@
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/b66e3591f66e68ab0089cd74fd70de9adcebbe787a86dbad96f843322d611c21.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/18aed8cb6db1232696c549fec0f5f963f80676e29222e905a261c686933de674.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/4713cd50a760dfc4b7b639cfe78fbf4e956120febdf51f040a510ad352c02938.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/4713cd50a760dfc4b7b639cfe78fbf4e956120febdf51f040a510ad352c02938.png",
+    "screenshots/b66e3591f66e68ab0089cd74fd70de9adcebbe787a86dbad96f843322d611c21.png;screenshots/18aed8cb6db1232696c549fec0f5f963f80676e29222e905a261c686933de674.png;screenshots/4713cd50a760dfc4b7b639cfe78fbf4e956120febdf51f040a510ad352c02938.png"
   ],
   "links": [
     {
@@ -33,6 +34,21 @@
       "type": "Other",
       "name": "Release",
       "url": "https://fuhen.homebrew-contest.com/submissions/28/"
+    },
+    {
+      "type": "Download",
+      "name": "NeoVitaDB VPK",
+      "url": "https://github.com/hatoving/twewy-old-vita/releases/download/v1.1/TWEWY.vpk"
+    },
+    {
+      "type": "Official Website",
+      "name": "NeoVitaDB Release Page",
+      "url": "https://github.com/hatoving/twewy-old-vita/releases/tag/v1.1"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/hatoving/twewy-old-vita"
     }
   ]
 }

@@ -34,6 +34,11 @@
       "type": "Other",
       "name": "Release",
       "url": "https://github.com/Electric1447/Vita-DVD-Screensaver/releases"
+    },
+    {
+      "type": "Official Website",
+      "name": "NeoVitaDB Release Page",
+      "url": "https://github.com/Electric1447/Vita-DVD-Screensaver/releases/tag/v1.0"
     }
   ]
 }

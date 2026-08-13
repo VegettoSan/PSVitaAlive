@@ -1,0 +1,39 @@
+{
+  "id": "retroarch-retrovita",
+  "title_id": "RETROVITA",
+  "name": "RetroArch",
+  "description": "",
+  "long_description": "RetroArch is the official reference frontend for the libretro API.\nRetroArch is most popularly known for being a program with which you can play many emulators and games, which have all been customized and tailor-ported to the libretro API.\n\nIt is designed to be fast, lightweight, and portable. It tries to be on the cutting edge in terms of technology supported as well as trying to be as backwards compatible as possible.\n\nThis download is updated every night, at midnight, PDT, to the latest nightly release.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
+  "author_ids": [
+    "libretro-team"
+  ],
+  "category_id": "games",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "Nightly",
+  "version_date": "2026-08-12",
+  "requirements": "",
+  "size": 487257047,
+  "status": "Legacy",
+  "icon": "1534-retroarch.png",
+  "screenshots": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "NeoVitaDB VPK",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/186-186.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com"
+    }
+  ],
+  "source_name": "NeoVitaDB",
+  "source_id": "1534",
+  "source_url": "https://github.com",
+  "release_page": "",
+  "updated_at": "2026-08-13T05:25:55.185503+00:00"
+}

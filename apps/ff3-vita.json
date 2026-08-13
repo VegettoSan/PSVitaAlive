@@ -22,7 +22,8 @@
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/b62cd76563c9c82787c836b4ce95ce23177a213f69f5e5819dfa468d8406d1df.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/915ec827c722547f27d77c4bba88d64a781bbffb4fb832886bf4f8eaf8b6b032.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/08078616a4378db2bd3eb1f764e9bd4a3a2624af035eda876dc038c805860616.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/08078616a4378db2bd3eb1f764e9bd4a3a2624af035eda876dc038c805860616.png",
+    "screenshots/b62cd76563c9c82787c836b4ce95ce23177a213f69f5e5819dfa468d8406d1df.png;screenshots/915ec827c722547f27d77c4bba88d64a781bbffb4fb832886bf4f8eaf8b6b032.png;screenshots/08078616a4378db2bd3eb1f764e9bd4a3a2624af035eda876dc038c805860616.png"
   ],
   "links": [
     {
@@ -40,6 +41,11 @@
       "type": "Other",
       "name": "Release",
       "url": "https://github.com/frangarcj/ff3_vita/releases"
+    },
+    {
+      "type": "Official Website",
+      "name": "NeoVitaDB Release Page",
+      "url": "https://github.com/frangarcj/ff3_vita/releases/tag/v1.2.3"
     }
   ]
 }

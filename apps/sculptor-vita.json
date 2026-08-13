@@ -29,6 +29,11 @@
       "type": "Other",
       "name": "Release",
       "url": "https://github.com/RaycGaming/SculptorVita"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/Raycx86/SculptorVita"
     }
   ]
 }

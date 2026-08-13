@@ -12,14 +12,15 @@
     "other"
   ],
   "version": "v.1.0",
-  "version_date": "2019-04-02",
+  "version_date": "2026-08-12",
   "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
   "size": 50247729,
   "status": "Verified",
   "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/19f365971671708cafab766632ce6787fabbd20ab5a82f7296e7dd8e4e8397fc.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/bac794103e9a8700b5569af8e03e7cb270a0162da3663d5160cd0fa541d6310b.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/535ecc5b944597b854606a3216cef010fab3d5fd6c16005d323259ace9526de8.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/535ecc5b944597b854606a3216cef010fab3d5fd6c16005d323259ace9526de8.png",
+    "screenshots/bac794103e9a8700b5569af8e03e7cb270a0162da3663d5160cd0fa541d6310b.png;screenshots/535ecc5b944597b854606a3216cef010fab3d5fd6c16005d323259ace9526de8.png"
   ],
   "links": [
     {
@@ -27,6 +28,11 @@
       "name": "Descarga principal",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/449-Get_20the_20F_20off_20my_20lawn.vpk",
       "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com"
     }
   ]
 }

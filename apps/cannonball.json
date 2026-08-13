@@ -11,8 +11,8 @@
   "subcategory_ids": [
     "engine-port"
   ],
-  "version": "v.1.05",
-  "version_date": "2018-03-22",
+  "version": "1.08switchgit-vita/switch-rsn8887",
+  "version_date": "2021-05-22",
   "requirements": "- Game Data Files",
   "size": 1123006,
   "status": "Verified",
@@ -21,7 +21,8 @@
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/3de1a25f7d07f3e8457f89ce61a52c3237a81a3e00256f824d9b9dee33371262.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/1e0944b946f6780ce3dbf388ca4dac2ddc25deeee29f3456de63fc348ca1fdf0.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/fd3f03540d1035e82a5a78bd807e923fbf326f7133cbd3252bbd804c90149df4.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/47b56037efc2328ed0df0db7948b7b814e372435723150b404bc723a39098ff7.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/47b56037efc2328ed0df0db7948b7b814e372435723150b404bc723a39098ff7.png",
+    "screenshots/3de1a25f7d07f3e8457f89ce61a52c3237a81a3e00256f824d9b9dee33371262.png;screenshots/1e0944b946f6780ce3dbf388ca4dac2ddc25deeee29f3456de63fc348ca1fdf0.png;screenshots/fd3f03540d1035e82a5a78bd807e923fbf326f7133cbd3252bbd804c90149df4.png;screenshots/47b56037efc2328ed0df0db7948b7b814e372435723150b404bc723a39098ff7.png"
   ],
   "links": [
     {
@@ -39,6 +40,11 @@
       "type": "Other",
       "name": "Release",
       "url": "https://github.com/rsn8887/cannonball/releases"
+    },
+    {
+      "type": "Official Website",
+      "name": "NeoVitaDB Release Page",
+      "url": "https://github.com/rsn8887/cannonball/releases/tag/1.08switchgit-vita/switch-rsn8887"
     }
   ]
 }

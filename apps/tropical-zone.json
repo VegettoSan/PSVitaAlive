@@ -12,14 +12,15 @@
     "shooter"
   ],
   "version": "v.0.1",
-  "version_date": "2020-12-21",
+  "version_date": "2026-08-12",
   "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
   "size": 71288738,
   "status": "Verified",
   "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/80b39fe09e3bf0f2e080e9c11fbe814fa7314e999922be9cf05c5bb93bec8586.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/f300b924bbba612505fd556dc4581a30cb34a7a979b76828ca3c740f36ecf90a.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/2b547577bd52a18e75979bab16c825283a4ffada192056e103a7d505fb3c9de9.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/2b547577bd52a18e75979bab16c825283a4ffada192056e103a7d505fb3c9de9.png",
+    "screenshots/f300b924bbba612505fd556dc4581a30cb34a7a979b76828ca3c740f36ecf90a.png;screenshots/2b547577bd52a18e75979bab16c825283a4ffada192056e103a7d505fb3c9de9.png"
   ],
   "links": [
     {
@@ -27,6 +28,11 @@
       "name": "Descarga principal",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/602-Tropical_Zone.vpk",
       "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com"
     }
   ]
 }

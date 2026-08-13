@@ -18,7 +18,8 @@
   "status": "Verified",
   "icon": "https://robin994.github.io/NeoVitaDB-Catalog/icons/1131-vita-ezremote-client.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/6a54e69ed6b2e6008e4ea77fa47c3a4a583b59fe4616741bbc8e06795179ed0a.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/6a54e69ed6b2e6008e4ea77fa47c3a4a583b59fe4616741bbc8e06795179ed0a.png",
+    "screenshots/6a54e69ed6b2e6008e4ea77fa47c3a4a583b59fe4616741bbc8e06795179ed0a.png"
   ],
   "links": [
     {
@@ -36,6 +37,16 @@
       "type": "Other",
       "name": "Release",
       "url": "https://github.com/cy33hc/vita-ezremote-client/releases/tag/1.12"
+    },
+    {
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
+      "url": "https://github.com/cy33hc/vita-ezremote-client/releases"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/cy33hc/vita-ezremote-client/"
     }
   ]
 }

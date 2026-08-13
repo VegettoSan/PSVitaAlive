@@ -6,23 +6,25 @@
   "long_description": "Application that shows random images of Hatsune Miku from Gelbooru. Allows saving images to album, features a slideshow mode, and supports offline use. Contains optional NSFW content.",
   "author_ids": [
     "ek720",
-    "sonicmastr"
+    "sonicmastr",
+    "avellea"
   ],
   "category_id": "media",
   "subcategory_ids": [
     "image-viewer"
   ],
-  "version": "v.1.6",
-  "version_date": "2026-01-19",
+  "version": "v.1.8",
+  "version_date": "2024-11-03",
   "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
-  "size": 4475215,
+  "size": 4024378,
   "status": "Verified",
   "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/6d2fb2bfe3c16bc4748aab7efb26db54881f3874a1e2f7adef56e118937d00cd.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/78500277b3c3ccdd2096a479af38a71d1a94b704ad4436df1f74b8c197324c70.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/e043ef8e8bdfb8858f89b19f9bc6a5abca86039ed25fe663cee986c3aeb0d3a7.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c7b7a0b30302b4a570aeee83873eac47de0e270c9e7c410d676385e7328741a9.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/f967effde566784ed5a07f2b220b463abd0c3a1d21ec0a70c94c5875da88479f.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/f967effde566784ed5a07f2b220b463abd0c3a1d21ec0a70c94c5875da88479f.png",
+    "screenshots/78500277b3c3ccdd2096a479af38a71d1a94b704ad4436df1f74b8c197324c70.png;screenshots/e043ef8e8bdfb8858f89b19f9bc6a5abca86039ed25fe663cee986c3aeb0d3a7.png;screenshots/c7b7a0b30302b4a570aeee83873eac47de0e270c9e7c410d676385e7328741a9.png;screenshots/f967effde566784ed5a07f2b220b463abd0c3a1d21ec0a70c94c5875da88479f.png"
   ],
   "links": [
     {
@@ -40,6 +42,21 @@
       "type": "Other",
       "name": "Release",
       "url": "https://github.com/EK720/MikuVU/releases"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDBtoo VPK",
+      "url": "https://github.com/Avellea/mikuvu/releases/download/1.8/MikuVU_1.8.vpk"
+    },
+    {
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
+      "url": "https://github.com/Avellea/mikuvu/releases"
+    },
+    {
+      "type": "Official Website",
+      "name": "NeoVitaDB Release Page",
+      "url": "https://github.com/Avellea/mikuvu/releases/tag/1.8"
     }
   ]
 }

@@ -21,7 +21,8 @@
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/bace2b0c8a22173152bd75c118c8ca76892f3c675cd747cbde699d9814ac8d2f.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/a49621701eae707fa1cfb46e6ba5b8073b39bc53de902e1ae2aae1286a3fcb98.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/74698c804cf357701a7c5ebd73a3c4a9f5b0f81420268f9e64a35458124c1e20.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/d22b55934e867501df56926b52b884da6553970aae415ec0c81f03843c77f1f8.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/d22b55934e867501df56926b52b884da6553970aae415ec0c81f03843c77f1f8.png",
+    "screenshots/bace2b0c8a22173152bd75c118c8ca76892f3c675cd747cbde699d9814ac8d2f.png;screenshots/a49621701eae707fa1cfb46e6ba5b8073b39bc53de902e1ae2aae1286a3fcb98.png;screenshots/74698c804cf357701a7c5ebd73a3c4a9f5b0f81420268f9e64a35458124c1e20.png;screenshots/d22b55934e867501df56926b52b884da6553970aae415ec0c81f03843c77f1f8.png"
   ],
   "links": [
     {
@@ -34,6 +35,16 @@
       "type": "Other",
       "name": "Release",
       "url": "https://github.com/AntHJ/Retroarch-Bubble-Builder/releases"
+    },
+    {
+      "type": "Official Website",
+      "name": "NeoVitaDB Release Page",
+      "url": "https://github.com/AntHJ/Retroarch-Bubble-Builder/releases/tag/v1.0"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/AntHJ/Retroarch-Bubble-Builder"
     }
   ]
 }

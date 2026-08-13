@@ -12,10 +12,10 @@
   "subcategory_ids": [
     "installer"
   ],
-  "version": "v.2.8.1",
-  "version_date": "2026-08-04",
+  "version": "v2.9.0",
+  "version_date": "2026-08-08",
   "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
-  "size": 3936712,
+  "size": 3938138,
   "status": "Verified",
   "icon": "https://robin994.github.io/NeoVitaDB-Catalog/icons/0001-neovitadb-downloader.png",
   "screenshots": [],
@@ -35,6 +35,16 @@
       "type": "Other",
       "name": "Release",
       "url": "https://github.com/robin994/NeoVitaDB-Downloader/releases/tag/v.2.8.1"
+    },
+    {
+      "type": "Download",
+      "name": "NeoVitaDB VPK",
+      "url": "https://github.com/robin994/NeoVitaDB-Downloader/releases/download/v2.9.0/NeoVitaDB.vpk"
+    },
+    {
+      "type": "Official Website",
+      "name": "NeoVitaDB Release Page",
+      "url": "https://github.com/robin994/NeoVitaDB-Downloader/releases/tag/v2.9.0"
     }
   ]
 }

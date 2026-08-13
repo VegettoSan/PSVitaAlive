@@ -12,7 +12,7 @@
     "fps"
   ],
   "version": "beta 1",
-  "version_date": "2022-08-20",
+  "version_date": "2026-08-12",
   "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
   "size": 16154761,
   "status": "Verified",
@@ -21,7 +21,8 @@
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/e498dc0c0843c926c15a33af355d61ed03b38dd6464c5ca58aeeb6d722d5b684.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/6961c38041094d48986637751d3f37ad008c6345ab1caf6199f54c721c4ae5d9.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/bd76d1c4b9c97eefbe74961a6e6a00d7f3c0c8cd7b777ad012146d6288ff9f4c.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/911f80f11a01f131490c3ff5c3b9986f048cf58c10508cc9039047a863d62619.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/911f80f11a01f131490c3ff5c3b9986f048cf58c10508cc9039047a863d62619.png",
+    "screenshots/e498dc0c0843c926c15a33af355d61ed03b38dd6464c5ca58aeeb6d722d5b684.png;screenshots/6961c38041094d48986637751d3f37ad008c6345ab1caf6199f54c721c4ae5d9.png;screenshots/bd76d1c4b9c97eefbe74961a6e6a00d7f3c0c8cd7b777ad012146d6288ff9f4c.png;screenshots/911f80f11a01f131490c3ff5c3b9986f048cf58c10508cc9039047a863d62619.png"
   ],
   "links": [
     {

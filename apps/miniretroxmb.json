@@ -11,7 +11,7 @@
   "subcategory_ids": [
     "other"
   ],
-  "version": "RELEASE",
+  "version": "v.1.0",
   "version_date": "2026-04-14",
   "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
   "size": 407701,
@@ -34,6 +34,11 @@
       "type": "Other",
       "name": "Release",
       "url": "https://github.com/goobercx/MiniRetroXMB-v1.0/releases/tag/RELEASE"
+    },
+    {
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
+      "url": "https://github.com/goobercx/MiniRetroXMB-v1.0/releases"
     }
   ]
 }

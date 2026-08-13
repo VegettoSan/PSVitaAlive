@@ -12,13 +12,14 @@
     "platformer"
   ],
   "version": "Build 531",
-  "version_date": "2016-08-18",
+  "version_date": "2026-08-12",
   "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
   "size": 2023040,
   "status": "Verified",
   "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/8a11067d0bfa05f50645744c065dceb90592abf75f3f2cd04969d614a5c0e007.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/65b763a01249810c96c07a735c1aee649dccfbb0f02a2698feb308934e8883e7.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/65b763a01249810c96c07a735c1aee649dccfbb0f02a2698feb308934e8883e7.png",
+    "screenshots/65b763a01249810c96c07a735c1aee649dccfbb0f02a2698feb308934e8883e7.png"
   ],
   "links": [
     {
@@ -31,6 +32,11 @@
       "type": "Other",
       "name": "Release",
       "url": "http://wololo.net/talk/viewtopic.php?t=46567"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com"
     }
   ]
 }

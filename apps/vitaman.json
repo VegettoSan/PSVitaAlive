@@ -12,13 +12,14 @@
     "other"
   ],
   "version": "v.1.0",
-  "version_date": "2021-06-07",
+  "version_date": "2026-08-12",
   "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
   "size": 1243358,
   "status": "Verified",
   "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/db9465c4bb1c0f6a5b855513e0c6c342a4d22aad02493a146ad9bf29198139cc.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/f47091a12fd1d257451249b23ff7738a667bfb2d525725df8c0c512fb0fb7cc2.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/f47091a12fd1d257451249b23ff7738a667bfb2d525725df8c0c512fb0fb7cc2.png",
+    "screenshots/f47091a12fd1d257451249b23ff7738a667bfb2d525725df8c0c512fb0fb7cc2.png"
   ],
   "links": [
     {
@@ -31,6 +32,11 @@
       "type": "Other",
       "name": "Release",
       "url": "https://kyuhen.customprotocol.com/en/submissions/vitaman"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com"
     }
   ]
 }

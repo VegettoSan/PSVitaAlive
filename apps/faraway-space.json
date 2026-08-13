@@ -11,7 +11,7 @@
   "subcategory_ids": [
     "fps"
   ],
-  "version": "v.0.1 BETA",
+  "version": "Vita-v0.1b",
   "version_date": "2023-02-10",
   "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
   "size": 61553099,
@@ -34,6 +34,11 @@
       "type": "Other",
       "name": "Release",
       "url": "https://github.com/ParallelProductions/FarawaySpace/releases"
+    },
+    {
+      "type": "Official Website",
+      "name": "NeoVitaDB Release Page",
+      "url": "https://github.com/ParallelProductions/FarawaySpace/releases/tag/Vita-v0.1b"
     }
   ]
 }

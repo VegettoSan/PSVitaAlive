@@ -12,7 +12,7 @@
     "other"
   ],
   "version": "v.1.5.1",
-  "version_date": "2021-11-10",
+  "version_date": "2026-08-12",
   "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
   "size": 4733886,
   "status": "Verified",
@@ -20,7 +20,8 @@
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/510f4831b3c3b60b7fd2303f57f769fe58dc055f65492601a39071afdbd41081.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/fce007cfd955159a43ed1b90f6e9b2aeb50231b2cdc551ad399c2168d8060b23.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/9fa7b324a01b150da0954189f8bd769e5fb9a6546a28b1edce291595116fd5e8.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/9fa7b324a01b150da0954189f8bd769e5fb9a6546a28b1edce291595116fd5e8.png",
+    "screenshots/510f4831b3c3b60b7fd2303f57f769fe58dc055f65492601a39071afdbd41081.png;screenshots/fce007cfd955159a43ed1b90f6e9b2aeb50231b2cdc551ad399c2168d8060b23.png;screenshots/9fa7b324a01b150da0954189f8bd769e5fb9a6546a28b1edce291595116fd5e8.png"
   ],
   "links": [
     {
@@ -28,6 +29,11 @@
       "name": "Descarga principal",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/551-TemporarySpace.vpk",
       "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com"
     }
   ]
 }

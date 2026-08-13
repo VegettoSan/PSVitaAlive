@@ -22,7 +22,8 @@
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/765e7e3465db3c6d54cf748df88501ff13b9cbd1482c22a638caa84f1afd0e7b.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/485c34b58e349f5ddc06012794566b2e36c06ecbe0933fe3d38499a9c7fb492e.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/a33857b95ae86f2411abebaa011e6d230c727a0400017d47a650f3ffd487b0db.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/9e67c1fecb2c2ff8e9fa67867dc07742bb2481fb6c46baa74a742fdda9a0aab0.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/9e67c1fecb2c2ff8e9fa67867dc07742bb2481fb6c46baa74a742fdda9a0aab0.png",
+    "screenshots/765e7e3465db3c6d54cf748df88501ff13b9cbd1482c22a638caa84f1afd0e7b.png;screenshots/485c34b58e349f5ddc06012794566b2e36c06ecbe0933fe3d38499a9c7fb492e.png;screenshots/a33857b95ae86f2411abebaa011e6d230c727a0400017d47a650f3ffd487b0db.png;screenshots/9e67c1fecb2c2ff8e9fa67867dc07742bb2481fb6c46baa74a742fdda9a0aab0.png"
   ],
   "links": [
     {
@@ -40,6 +41,11 @@
       "type": "Other",
       "name": "Release",
       "url": "https://github.com/Rocroverss/JumpKingGodot/releases"
+    },
+    {
+      "type": "Official Website",
+      "name": "NeoVitaDB Release Page",
+      "url": "https://github.com/Rocroverss/JumpKingGodot/releases/tag/v1.01"
     }
   ]
 }

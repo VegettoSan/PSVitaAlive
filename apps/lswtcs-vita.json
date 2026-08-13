@@ -12,7 +12,7 @@
     "other"
   ],
   "version": "v.0.1",
-  "version_date": "2024-09-18",
+  "version_date": "2026-08-12",
   "requirements": "- libshacccg.suprx\n- kubridge.skprx\n- Game Data Files: Android",
   "size": 1523489,
   "status": "Verified",
@@ -21,7 +21,8 @@
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/fc33f2b310c972ccbc844b28591cda70992ff25a89e2459827192d112549d814.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/0aaa8b3c6931610a09bb039d507c066ff6fb01046d2512ac52385538aa1f8ab9.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/155928a3bb2206270de804be43ca861f87cdffdf104e816aa76918c19e6e5878.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/2fd8ab86449fc5b957c5474edc8106bf0b3b7ebc7952f2983e94d6c62feac4f5.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/2fd8ab86449fc5b957c5474edc8106bf0b3b7ebc7952f2983e94d6c62feac4f5.png",
+    "screenshots/fc33f2b310c972ccbc844b28591cda70992ff25a89e2459827192d112549d814.png;screenshots/0aaa8b3c6931610a09bb039d507c066ff6fb01046d2512ac52385538aa1f8ab9.png;screenshots/155928a3bb2206270de804be43ca861f87cdffdf104e816aa76918c19e6e5878.png;screenshots/2fd8ab86449fc5b957c5474edc8106bf0b3b7ebc7952f2983e94d6c62feac4f5.png"
   ],
   "links": [
     {

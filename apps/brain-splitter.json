@@ -12,7 +12,7 @@
     "image-viewer"
   ],
   "version": "v.1.0",
-  "version_date": "2021-05-15",
+  "version_date": "2026-08-12",
   "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
   "size": 68658061,
   "status": "Verified",
@@ -20,7 +20,8 @@
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/74dd5ddb41223323001437dfc96edc67afdf9c1efbfb214819fd493f41271d55.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/fbcf5a5a9df14f75dfb7fa1da01eff466e3f69df685a7bd5590e741b5f9cddb7.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/b8a34222afc87afb45ec4c8763a852c73b37d03f3670655839f063843d1a8d83.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/b8a34222afc87afb45ec4c8763a852c73b37d03f3670655839f063843d1a8d83.png",
+    "screenshots/74dd5ddb41223323001437dfc96edc67afdf9c1efbfb214819fd493f41271d55.png;screenshots/fbcf5a5a9df14f75dfb7fa1da01eff466e3f69df685a7bd5590e741b5f9cddb7.png;screenshots/b8a34222afc87afb45ec4c8763a852c73b37d03f3670655839f063843d1a8d83.png"
   ],
   "links": [
     {
@@ -33,6 +34,11 @@
       "type": "Other",
       "name": "Release",
       "url": "https://kyuhen.customprotocol.com/en/submissions/brain_splitter/"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com"
     }
   ]
 }

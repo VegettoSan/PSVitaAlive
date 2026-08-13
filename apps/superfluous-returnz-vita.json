@@ -21,7 +21,8 @@
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/5cfb648ddbcbdeea50510a3ac1f5f90a44eccbe2d15412c3941b5d0b6bea7cb2.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/ed9e6df000520c4f57b8c903e47e28255c29a10795e100e1c54435c149a316f8.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/e8ff4712eccebe12e586a8a65a72b95175f2a18cac6990ccf73e049459927009.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/e487dcd75c8526c35a666b5839c111599c446496617b473e6940c2de350961e4.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/e487dcd75c8526c35a666b5839c111599c446496617b473e6940c2de350961e4.png",
+    "screenshots/5cfb648ddbcbdeea50510a3ac1f5f90a44eccbe2d15412c3941b5d0b6bea7cb2.png;screenshots/ed9e6df000520c4f57b8c903e47e28255c29a10795e100e1c54435c149a316f8.png;screenshots/e8ff4712eccebe12e586a8a65a72b95175f2a18cac6990ccf73e049459927009.png;screenshots/e487dcd75c8526c35a666b5839c111599c446496617b473e6940c2de350961e4.png"
   ],
   "links": [
     {
@@ -39,6 +40,11 @@
       "type": "Other",
       "name": "Release",
       "url": "https://github.com/Rinnegatamante/superfluous-vita/releases/tag/v.0.5"
+    },
+    {
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
+      "url": "https://github.com/Rinnegatamante/superfluous-vita/releases"
     }
   ]
 }

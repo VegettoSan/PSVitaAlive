@@ -11,15 +11,16 @@
   "subcategory_ids": [
     "other"
   ],
-  "version": "Release_1.1.1_VitaBuild_2",
-  "version_date": "2021-09-28",
+  "version": "v.1.1.1-VB2",
+  "version_date": "2021-09-29",
   "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
   "size": 2773484,
   "status": "Verified",
   "icon": "https://robin994.github.io/NeoVitaDB-Catalog/icons/0730-space-cadet-pinball-vita.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/eb20cb5c87c078e4149e5d0edc10b644880966cec2b315842b8427e641a7b3f0.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/696de20ee051f8e72d6d710a96cd1f9b945ef9637dbbb8b96dab818174a0909e.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/696de20ee051f8e72d6d710a96cd1f9b945ef9637dbbb8b96dab818174a0909e.png",
+    "screenshots/eb20cb5c87c078e4149e5d0edc10b644880966cec2b315842b8427e641a7b3f0.png;screenshots/696de20ee051f8e72d6d710a96cd1f9b945ef9637dbbb8b96dab818174a0909e.png"
   ],
   "links": [
     {
@@ -37,6 +38,11 @@
       "type": "Other",
       "name": "Release",
       "url": "https://github.com/suicvne/SpaceCadetPinball_Vita/releases/tag/Release_1.1.1_VitaBuild_2"
+    },
+    {
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
+      "url": "https://github.com/suicvne/SpaceCadetPinball_Vita/releases"
     }
   ]
 }

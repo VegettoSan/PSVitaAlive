@@ -12,14 +12,15 @@
     "action"
   ],
   "version": "v.1.0",
-  "version_date": "2024-03-14",
+  "version_date": "2026-08-12",
   "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
   "size": 10467426,
   "status": "Verified",
   "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/8602139987fee709738437169eb098d11868134180ecde5f4d10b4d3ca3448fc.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/d841591d95d98765b1561bde9781e8370a8e657cf24dedb0f2d691261784992e.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/ccb397f3aebf2a00149f4fe0704a77e6ff9cf47cf1264db7e20f43c88b63ba94.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/ccb397f3aebf2a00149f4fe0704a77e6ff9cf47cf1264db7e20f43c88b63ba94.png",
+    "screenshots/d841591d95d98765b1561bde9781e8370a8e657cf24dedb0f2d691261784992e.png;screenshots/ccb397f3aebf2a00149f4fe0704a77e6ff9cf47cf1264db7e20f43c88b63ba94.png"
   ],
   "links": [
     {
@@ -27,6 +28,11 @@
       "name": "Descarga principal",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1195-sonic_run.vpk",
       "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com"
     }
   ]
 }

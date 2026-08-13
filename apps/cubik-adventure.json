@@ -12,14 +12,15 @@
     "platformer"
   ],
   "version": "Demo v.2",
-  "version_date": "2019-05-01",
+  "version_date": "2026-08-12",
   "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
   "size": 26542250,
   "status": "Legacy",
   "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/effc12c5ed6068927cf1129966de78d852049bdf56e2e079591c0c794cec037b.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/0c708b9fc94e6c57d14d960cbc1fb75a9b7de2a66d27891b3a1c972d81b05796.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/7ac30a595e9210079f5d1b14cdbacfea0ee175639a3cd7ad3af23f3f524d8ed8.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/7ac30a595e9210079f5d1b14cdbacfea0ee175639a3cd7ad3af23f3f524d8ed8.png",
+    "screenshots/0c708b9fc94e6c57d14d960cbc1fb75a9b7de2a66d27891b3a1c972d81b05796.png;screenshots/7ac30a595e9210079f5d1b14cdbacfea0ee175639a3cd7ad3af23f3f524d8ed8.png"
   ],
   "links": [
     {
@@ -27,6 +28,11 @@
       "name": "Descarga principal",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/471-Cubik_20Adventure.vpk",
       "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com"
     }
   ]
 }

@@ -21,7 +21,8 @@
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/5ed46ab5eb11cdb6e74dbed56e3a70c026a881003df3848c779475dbf5eadadc.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/2e99473b7e5358127cadddc891d3ca30c62bb579b1d2562d5984bc7612e00772.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/9a8342e82afae336cbcd710f1a71e5c4c24d1d716d16500ec343a5e79646025f.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/ab02e73294aa7734272dbf94fd2c4e48609ccf71fa1309d172b1451a8c2f4153.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/ab02e73294aa7734272dbf94fd2c4e48609ccf71fa1309d172b1451a8c2f4153.png",
+    "screenshots/5ed46ab5eb11cdb6e74dbed56e3a70c026a881003df3848c779475dbf5eadadc.png;screenshots/2e99473b7e5358127cadddc891d3ca30c62bb579b1d2562d5984bc7612e00772.png;screenshots/9a8342e82afae336cbcd710f1a71e5c4c24d1d716d16500ec343a5e79646025f.png;screenshots/ab02e73294aa7734272dbf94fd2c4e48609ccf71fa1309d172b1451a8c2f4153.png"
   ],
   "links": [
     {
@@ -39,6 +40,11 @@
       "type": "Other",
       "name": "Release",
       "url": "https://github.com/Northfear/dunelegacy-vita/releases"
+    },
+    {
+      "type": "Official Website",
+      "name": "NeoVitaDB Release Page",
+      "url": "https://github.com/Northfear/dunelegacy-vita/releases/tag/0.97.02-vita.1"
     }
   ]
 }

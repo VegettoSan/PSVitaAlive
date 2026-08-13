@@ -6,21 +6,23 @@
   "long_description": "Numpty Physics is a drawing puzzle game in the spirit (and style) of Crayon Physics using the same excellent Box2D engine.",
   "author_ids": [
     "rinnegatamante",
-    "meetpatty"
+    "meetpatty",
+    "bythos"
   ],
   "category_id": "ports",
   "subcategory_ids": [
     "puzzle"
   ],
   "version": "v.0.5",
-  "version_date": "2019-03-13",
+  "version_date": "2026-08-12",
   "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
   "size": 1206605,
   "status": "Verified",
   "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/8aef0ae0015a64a1b288881170302dc14e3411f7f219d2364c14a5294b0aa251.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/272a8b67fb393d6725b52d1948ec95ff49ab43c0f6e577765d85bdf61bc18c27.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/874081e6c76c7d6ea38272b9447c80977dc909cd56b1780d3d86c232c7d3960f.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/874081e6c76c7d6ea38272b9447c80977dc909cd56b1780d3d86c232c7d3960f.png",
+    "screenshots/272a8b67fb393d6725b52d1948ec95ff49ab43c0f6e577765d85bdf61bc18c27.png;screenshots/874081e6c76c7d6ea38272b9447c80977dc909cd56b1780d3d86c232c7d3960f.png"
   ],
   "links": [
     {

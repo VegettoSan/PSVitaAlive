@@ -18,7 +18,8 @@
   "status": "Verified",
   "icon": "https://robin994.github.io/NeoVitaDB-Catalog/icons/0447-elevenmpv.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/27c05ba80244d6fc309924bc0362145747783f8e363e9a72971e0e1f6fff45ce.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/27c05ba80244d6fc309924bc0362145747783f8e363e9a72971e0e1f6fff45ce.png",
+    "screenshots/27c05ba80244d6fc309924bc0362145747783f8e363e9a72971e0e1f6fff45ce.png"
   ],
   "links": [
     {
@@ -36,6 +37,11 @@
       "type": "Other",
       "name": "Release",
       "url": "https://github.com/joel16/ElevenMPV/releases/tag/v2.10"
+    },
+    {
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
+      "url": "https://gbatemp.net/threads/elevenmpv-eleven-music-player-vita.534916/"
     }
   ]
 }

@@ -12,13 +12,14 @@
     "other"
   ],
   "version": "v.00.01",
-  "version_date": "2026-06-05",
+  "version_date": "2026-08-12",
   "requirements": "- hidkeyboard.skprx",
   "size": 3509116,
   "status": "Legacy",
   "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/1cb39f47c5a725be40b9359534187ea083a0b86b408f49c80046cd4446b63aa2.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c2eed8228b71b28945bc0a73f772bf5bb804d29f2bdf17e97f8dae043cc76d72.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c2eed8228b71b28945bc0a73f772bf5bb804d29f2bdf17e97f8dae043cc76d72.png",
+    "screenshots/c2eed8228b71b28945bc0a73f772bf5bb804d29f2bdf17e97f8dae043cc76d72.png"
   ],
   "links": [
     {

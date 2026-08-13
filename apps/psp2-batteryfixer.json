@@ -18,7 +18,8 @@
   "status": "Verified",
   "icon": "https://robin994.github.io/NeoVitaDB-Catalog/icons/0479-psp2-batteryfixer.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/8f0d625a378b55f86460d1478b790a0ad8b04a56c6c09a336c063954ed4df33e.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/8f0d625a378b55f86460d1478b790a0ad8b04a56c6c09a336c063954ed4df33e.png",
+    "screenshots/8f0d625a378b55f86460d1478b790a0ad8b04a56c6c09a336c063954ed4df33e.png"
   ],
   "links": [
     {
@@ -36,6 +37,11 @@
       "type": "Other",
       "name": "Release",
       "url": "https://github.com/SKGleba/PSP2-batteryFixer/releases/tag/v3.0.1"
+    },
+    {
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
+      "url": "https://github.com/SKGleba/PSP2-batteryFixer/releases"
     }
   ]
 }

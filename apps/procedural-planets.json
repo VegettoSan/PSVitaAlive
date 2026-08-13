@@ -6,14 +6,15 @@
   "long_description": "Procedural 2D planets landscapes pixelart generator for PSVITA/PSTV inspired by No Man's Sky art.",
   "author_ids": [
     "primer0",
-    "ruben-wolfe"
+    "ruben-wolfe",
+    "primer0-ruben_wolfe"
   ],
   "category_id": "games",
   "subcategory_ids": [
     "other"
   ],
   "version": "v.1.0",
-  "version_date": "2016-07-31",
+  "version_date": "2026-08-12",
   "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
   "size": 677970,
   "status": "Verified",

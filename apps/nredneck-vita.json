@@ -12,7 +12,7 @@
     "themes"
   ],
   "version": "v.1.1",
-  "version_date": "2020-01-23",
+  "version_date": "2026-08-12",
   "requirements": "- Game Data Files: PC",
   "size": 2163719,
   "status": "Verified",
@@ -21,7 +21,8 @@
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/d8d9026a637a0c380e4bbe7ba8f2f71794ba32fc612c2da23024b047f7e0f8d1.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/7f02eb8b6143cee235cfe900a4e1d97140e586ffff449004b8947cecdab271b3.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/f655995822d7da4e50f32e792b053bb026c765b732844e9dcc1fd855f791c82c.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/4110ca63b1c05e96df3e8cfada85eefd1d54872aebd3a5e8c9a380295886976b.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/4110ca63b1c05e96df3e8cfada85eefd1d54872aebd3a5e8c9a380295886976b.png",
+    "screenshots/d8d9026a637a0c380e4bbe7ba8f2f71794ba32fc612c2da23024b047f7e0f8d1.png;screenshots/7f02eb8b6143cee235cfe900a4e1d97140e586ffff449004b8947cecdab271b3.png;screenshots/f655995822d7da4e50f32e792b053bb026c765b732844e9dcc1fd855f791c82c.png;screenshots/4110ca63b1c05e96df3e8cfada85eefd1d54872aebd3a5e8c9a380295886976b.png"
   ],
   "links": [
     {

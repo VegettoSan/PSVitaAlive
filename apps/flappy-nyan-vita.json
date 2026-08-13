@@ -20,7 +20,8 @@
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/70b323d3aaf92a6569b051e9459b89a6403df1878f99f4f0948ce23340988d6b.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/d33a5597a7cb663df71362378e5659c459c352f0fb6072e82fd833acb9c91cda.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/4422fd13f1a9df0ab50edef03395e2190c0d6d39ed7e8bc1609ac84dc7ddb01e.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/4422fd13f1a9df0ab50edef03395e2190c0d6d39ed7e8bc1609ac84dc7ddb01e.png",
+    "screenshots/70b323d3aaf92a6569b051e9459b89a6403df1878f99f4f0948ce23340988d6b.png;screenshots/d33a5597a7cb663df71362378e5659c459c352f0fb6072e82fd833acb9c91cda.png;screenshots/4422fd13f1a9df0ab50edef03395e2190c0d6d39ed7e8bc1609ac84dc7ddb01e.png"
   ],
   "links": [
     {
@@ -38,6 +39,11 @@
       "type": "Other",
       "name": "Release",
       "url": "https://github.com/Rinnegatamante/flappy-nyan-vita/releases"
+    },
+    {
+      "type": "Official Website",
+      "name": "NeoVitaDB Release Page",
+      "url": "https://github.com/Rinnegatamante/flappy-nyan-vita/releases/tag/v.1.0"
     }
   ]
 }

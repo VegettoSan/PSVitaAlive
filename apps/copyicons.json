@@ -34,6 +34,11 @@
       "type": "Other",
       "name": "Release",
       "url": "https://github.com/cy33hc/copyicons/release"
+    },
+    {
+      "type": "Official Website",
+      "name": "NeoVitaDB Release Page",
+      "url": "https://github.com/cy33hc/copyicons/releases/tag/1.01"
     }
   ]
 }

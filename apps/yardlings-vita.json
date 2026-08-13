@@ -12,7 +12,7 @@
     "other"
   ],
   "version": "v.1.1",
-  "version_date": "2025-08-26",
+  "version_date": "2026-08-12",
   "requirements": "- Game Data Files: PC",
   "size": 3653391,
   "status": "Legacy",
@@ -21,7 +21,8 @@
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/b016ddea0814dc24d080814a7136af667da68eba93655f228f3f1aaa4acba008.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/f82b6740c178e7500198bd8276ed0988f2caa6144262c0989f5acbcb494910ec.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/65b9213797884bbcd4f27abec4b8802ab71bff98b0a83c923b57fb2dcdeb8e25.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c0793c0460b720040037be7a32145f73edc422f084dbc218bf692454f545ffe0.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c0793c0460b720040037be7a32145f73edc422f084dbc218bf692454f545ffe0.png",
+    "screenshots/b016ddea0814dc24d080814a7136af667da68eba93655f228f3f1aaa4acba008.png;screenshots/f82b6740c178e7500198bd8276ed0988f2caa6144262c0989f5acbcb494910ec.png;screenshots/65b9213797884bbcd4f27abec4b8802ab71bff98b0a83c923b57fb2dcdeb8e25.png;screenshots/c0793c0460b720040037be7a32145f73edc422f084dbc218bf692454f545ffe0.png"
   ],
   "links": [
     {
@@ -34,6 +35,11 @@
       "type": "Other",
       "name": "Release",
       "url": "https://brendonm17.itch.io/yardlings-vita"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com"
     }
   ]
 }

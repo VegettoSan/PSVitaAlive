@@ -6,14 +6,15 @@
   "long_description": "Utility that activates your system offline using files from another account and device. Do not use the system online or you'll get a ban.",
   "author_ids": [
     "miralatijera",
-    "draqen"
+    "draqen",
+    "miralatijera-draqen"
   ],
   "category_id": "system",
   "subcategory_ids": [
     "account"
   ],
   "version": "FIX2",
-  "version_date": "2017-08-14",
+  "version_date": "2026-08-12",
   "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
   "size": 456420,
   "status": "Verified",
@@ -30,6 +31,11 @@
       "type": "Other",
       "name": "Release",
       "url": "http://wololo.net/2017/08/14/mltactivator-activate-ps-vita-offline/"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com"
     }
   ]
 }

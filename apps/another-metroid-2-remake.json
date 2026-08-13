@@ -12,13 +12,14 @@
     "adventure"
   ],
   "version": "v.1.41",
-  "version_date": "2017-09-08",
+  "version_date": "2026-08-12",
   "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
   "size": 73768102,
   "status": "Verified",
   "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/58c380de731a1e024c3ca6b1778ca6bd29eacd428674bce5932d2507f23d24b8.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/60db97a2cbe037b7cf3378ecd52b5fcd3b118f0a86187432913eda10492cfed8.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/60db97a2cbe037b7cf3378ecd52b5fcd3b118f0a86187432913eda10492cfed8.png",
+    "screenshots/60db97a2cbe037b7cf3378ecd52b5fcd3b118f0a86187432913eda10492cfed8.png"
   ],
   "links": [
     {
@@ -26,6 +27,11 @@
       "name": "Descarga principal",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/308-AMTR01693.vpk",
       "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com"
     }
   ]
 }

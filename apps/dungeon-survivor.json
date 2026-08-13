@@ -12,13 +12,14 @@
     "rpg"
   ],
   "version": "v.1.0",
-  "version_date": "2019-08-28",
+  "version_date": "2026-08-12",
   "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
   "size": 46072244,
   "status": "Verified",
   "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/342a21ebd46cd697ed38db7b521c3fe15bcb3d2d455d9e625064ab5b5990e718.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/bae03af66975ceb92b1abef2230349cd3b157c5800c131a28708de0f3fa9585b.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/bae03af66975ceb92b1abef2230349cd3b157c5800c131a28708de0f3fa9585b.png",
+    "screenshots/bae03af66975ceb92b1abef2230349cd3b157c5800c131a28708de0f3fa9585b.png"
   ],
   "links": [
     {
@@ -26,6 +27,11 @@
       "name": "Descarga principal",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/501-Dungeon_Survivor.vpk",
       "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com"
     }
   ]
 }

@@ -12,7 +12,7 @@
     "tech-demo"
   ],
   "version": "v.0.1",
-  "version_date": "2024-03-05",
+  "version_date": "2026-08-12",
   "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
   "size": 33848976,
   "status": "Verified",
@@ -21,7 +21,8 @@
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/b465709f7b5df313035ad031b1a1bc1fb784dd8fb76be7c1ab4fdcc5bb341f69.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/d37a2af4a927fdcf1f46e01891583f4aecfac0b0b139772bf3ea20937eaac5b6.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/24d82b2f0a567c7ce1e15305cc7b04ec5aca90e70725fab685c58e4d64aad0f5.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/069e359f95665ac865b9bc049b09e1aae387af00cc96e505fed511ebae460e47.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/069e359f95665ac865b9bc049b09e1aae387af00cc96e505fed511ebae460e47.png",
+    "screenshots/b465709f7b5df313035ad031b1a1bc1fb784dd8fb76be7c1ab4fdcc5bb341f69.png;screenshots/d37a2af4a927fdcf1f46e01891583f4aecfac0b0b139772bf3ea20937eaac5b6.png;screenshots/24d82b2f0a567c7ce1e15305cc7b04ec5aca90e70725fab685c58e4d64aad0f5.png;screenshots/069e359f95665ac865b9bc049b09e1aae387af00cc96e505fed511ebae460e47.png"
   ],
   "links": [
     {
@@ -34,6 +35,11 @@
       "type": "Other",
       "name": "Release",
       "url": "https://www.anfloppyarts.com/psee"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com"
     }
   ]
 }

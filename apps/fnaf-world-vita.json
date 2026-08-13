@@ -5,14 +5,15 @@
   "description": "Fan-made clone of FNaF World for PSVita.",
   "long_description": "A complete remake of FNaF World, rebuilt from the ground up in the Godot 3 Engine.",
   "author_ids": [
-    "5port5y"
+    "5port5y",
+    "oldsport099"
   ],
   "category_id": "games",
   "subcategory_ids": [
     "other"
   ],
-  "version": "v.0.1.1",
-  "version_date": "2026-07-24",
+  "version": "v.1.0",
+  "version_date": "2026-08-12",
   "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
   "size": 55543575,
   "status": "Verified",
@@ -21,7 +22,8 @@
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/7d735d31c36a24b46b492a14e194d778ed5584a28142699cefe5dec6d7b5dcd7.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/a6cc388b7d367988efeafc668283921ef72d27e85b563dd8d08854538077774e.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/841ec0e92beda685553cd1dd082351e831dc7ba26ed7d9146e66fc4ccab31028.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/6dfee9d1bf8ae7d72ac771937ef7b11e67d2e176fc1100a00d911c92d90a2a99.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/6dfee9d1bf8ae7d72ac771937ef7b11e67d2e176fc1100a00d911c92d90a2a99.png",
+    "screenshots/51f00186542a1cbe482938e6c1956db4ebdf616f5be727fd9970dbf84d29a775.png;screenshots/c1b96646e18f8c178e01ad850d3d65f189c80b7eb8d600c27ebe4da7470f583f.png;screenshots/4b4bce6e6d5fdcf4de4a39b128aa977cff273cf6fb848debffe0cdab3f114fb0.png;screenshots/71e5af3a077f76d71f175f6706b94386eb71170e7482b93bb8eebbcfad715241.png"
   ],
   "links": [
     {
@@ -34,6 +36,21 @@
       "type": "Other",
       "name": "Release",
       "url": "https://gamejolt.com/games/FNAFW0RL/1080565"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDBtoo VPK",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1274-fnaf-world.vpk"
+    },
+    {
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
+      "url": "https://gamejolt.com/games/FWpsVita/996208"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com"
     }
   ]
 }

@@ -34,6 +34,11 @@
       "type": "Other",
       "name": "Release",
       "url": "https://github.com/ParallelProductions/Lango_GodotRPG-Vita/releases/tag/v0.1.0-vita"
+    },
+    {
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
+      "url": "https://github.com/ParallelProductions/Lango_GodotRPG-Vita/releases"
     }
   ]
 }

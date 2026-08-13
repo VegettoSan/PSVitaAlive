@@ -21,7 +21,8 @@
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/cefae8c7f1fb9332a4f25a991dbb425a257b18c20880447b530c75c8685ffc1b.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/d42ea2d8b514d51cc22278bb1fcd1aadc3907dad068e5857eaf2e9339bcec378.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/23b6939d109a160dd9f17a6d2d378884585be2fd2b199f7bcbb712949a712217.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/cda25fdc71bffaf54b532cb968d36c734df3dfceb488c13a7af7c51c3ad8da54.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/cda25fdc71bffaf54b532cb968d36c734df3dfceb488c13a7af7c51c3ad8da54.png",
+    "screenshots/cefae8c7f1fb9332a4f25a991dbb425a257b18c20880447b530c75c8685ffc1b.png;screenshots/d42ea2d8b514d51cc22278bb1fcd1aadc3907dad068e5857eaf2e9339bcec378.png;screenshots/23b6939d109a160dd9f17a6d2d378884585be2fd2b199f7bcbb712949a712217.png;screenshots/cda25fdc71bffaf54b532cb968d36c734df3dfceb488c13a7af7c51c3ad8da54.png"
   ],
   "links": [
     {
@@ -39,6 +40,11 @@
       "type": "Other",
       "name": "Release",
       "url": "https://github.com/SonicMastr/Sonic-Mania-Vita/releases/tag/1.1"
+    },
+    {
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
+      "url": "https://github.com/SonicMastr/Sonic-Mania-Vita/releases"
     }
   ]
 }

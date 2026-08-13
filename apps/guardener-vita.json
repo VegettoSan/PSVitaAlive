@@ -12,7 +12,7 @@
     "other"
   ],
   "version": "v.1.2",
-  "version_date": "2025-11-07",
+  "version_date": "2026-08-12",
   "requirements": "- Game Data Files: PC",
   "size": 3188441,
   "status": "Legacy",
@@ -20,7 +20,8 @@
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/d7723a8402461e7557a6e1ef2227f8c13bd15fa804952a5a66770cfc19bd041e.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/55d58c113cfe24a7600a8884f221503cfcc4f06bea54419268cad8f1d73688ec.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/0dbc91b538819cd281922993e4495cbe12985ddbe3bf37511e40de194b4aa791.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/0dbc91b538819cd281922993e4495cbe12985ddbe3bf37511e40de194b4aa791.png",
+    "screenshots/d7723a8402461e7557a6e1ef2227f8c13bd15fa804952a5a66770cfc19bd041e.png;screenshots/55d58c113cfe24a7600a8884f221503cfcc4f06bea54419268cad8f1d73688ec.png;screenshots/0dbc91b538819cd281922993e4495cbe12985ddbe3bf37511e40de194b4aa791.png"
   ],
   "links": [
     {
@@ -33,6 +34,11 @@
       "type": "Other",
       "name": "Release",
       "url": "https://brendonm17.itch.io/guardener-vita"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com"
     }
   ]
 }

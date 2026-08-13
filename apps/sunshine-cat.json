@@ -5,14 +5,15 @@
   "description": "Port of Sunshine-Cat-Platformer for PSVITA.",
   "long_description": "Port of Sunshine-Cat-Platformer for PSVITA.\nSunshine-Cat-Platformer is a demo platformer inspired to the secret levels of Super Mario Sunshine made for an university task.",
   "author_ids": [
-    "spanishfreddy"
+    "spanishfreddy",
+    "lapy"
   ],
   "category_id": "demos",
   "subcategory_ids": [
     "tech-demo"
   ],
   "version": "v.2",
-  "version_date": "2023-01-05",
+  "version_date": "2026-08-12",
   "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
   "size": 55927557,
   "status": "Verified",
@@ -29,6 +30,11 @@
       "type": "Other",
       "name": "Release",
       "url": "https://github.com/SpanishFreddy/Sunshine-Cat-PSVita-Port"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com"
     }
   ]
 }

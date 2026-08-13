@@ -12,7 +12,7 @@
     "shooter"
   ],
   "version": "v.0.21",
-  "version_date": "2019-02-15",
+  "version_date": "2026-08-12",
   "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
   "size": 165900291,
   "status": "Verified",
@@ -20,7 +20,8 @@
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/ca773cfaacde7cc840ffe662e66f7055db5be937cca485c4f5a33c705282114c.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/4d9ee3a4b07f1459bad2692c71da948e746e93f05aab17e324661b32357b7092.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/35ec3b420c5a12b4a868891ff7797155e02eef4766361864319abdae9025d9de.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/35ec3b420c5a12b4a868891ff7797155e02eef4766361864319abdae9025d9de.png",
+    "screenshots/ca773cfaacde7cc840ffe662e66f7055db5be937cca485c4f5a33c705282114c.png;screenshots/4d9ee3a4b07f1459bad2692c71da948e746e93f05aab17e324661b32357b7092.png;screenshots/35ec3b420c5a12b4a868891ff7797155e02eef4766361864319abdae9025d9de.png"
   ],
   "links": [
     {
@@ -33,6 +34,11 @@
       "type": "Other",
       "name": "Release",
       "url": "http://wololo.net/talk/viewtopic.php?f=116&p=424058&sid=b677b3efd094a8debc96d9870da05636#p424058"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com"
     }
   ]
 }

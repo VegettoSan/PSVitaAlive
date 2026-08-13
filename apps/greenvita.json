@@ -11,14 +11,15 @@
   "subcategory_ids": [
     "other"
   ],
-  "version": "v0.1.8",
-  "version_date": "2026-07-21",
+  "version": "v.0.1.8",
+  "version_date": "2026-07-22",
   "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
   "size": 14185797,
   "status": "Verified",
   "icon": "https://robin994.github.io/NeoVitaDB-Catalog/icons/1438-greenvita.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c2e854daaa9c3c05ce9d8aba696a288e65af530f7dfb3518a6282a48b2b61e2e.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c2e854daaa9c3c05ce9d8aba696a288e65af530f7dfb3518a6282a48b2b61e2e.png",
+    "screenshots/c2e854daaa9c3c05ce9d8aba696a288e65af530f7dfb3518a6282a48b2b61e2e.png"
   ],
   "links": [
     {
@@ -36,6 +37,11 @@
       "type": "Other",
       "name": "Release",
       "url": "https://github.com/Day-OS/green-vita/releases/tag/v0.1.8"
+    },
+    {
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
+      "url": "https://github.com/Day-OS/green-vita/releases"
     }
   ]
 }

@@ -7,14 +7,15 @@
   "author_ids": [
     "lapy",
     "acekone",
-    "dragonixplay"
+    "dragonixplay",
+    "lapy-acekone-dragonixplay"
   ],
   "category_id": "games",
   "subcategory_ids": [
     "other"
   ],
   "version": "v.1.05",
-  "version_date": "2020-12-31",
+  "version_date": "2026-08-12",
   "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
   "size": 52121578,
   "status": "Verified",
@@ -31,6 +32,11 @@
       "type": "Other",
       "name": "Release",
       "url": "https://superconsolewars.com/"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com"
     }
   ]
 }

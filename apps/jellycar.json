@@ -34,6 +34,11 @@
       "type": "Other",
       "name": "Release",
       "url": "https://github.com/DrakonPL/JellyCar/releases"
+    },
+    {
+      "type": "Official Website",
+      "name": "NeoVitaDB Release Page",
+      "url": "https://github.com/DrakonPL/JellyCar/releases/tag/1.1"
     }
   ]
 }

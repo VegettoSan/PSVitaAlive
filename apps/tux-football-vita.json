@@ -21,7 +21,8 @@
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/7fd51de1c6a4ae1f87bb0be163fecab12979a036da34bb98b51ae4b498187326.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/2870b622fa00640ffa004973150bd744da842a6ee7d80100584ab13ac4ebab4e.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/8d9f8ce485ef5fc04d2c4921f50ca8c923ef171f4e0a70c3210f43cf5bc65184.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/19c7c6709fb90c2c135c1c206a5842e83e4ccc58a220337de5a8ea766b0acd7d.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/19c7c6709fb90c2c135c1c206a5842e83e4ccc58a220337de5a8ea766b0acd7d.png",
+    "screenshots/7fd51de1c6a4ae1f87bb0be163fecab12979a036da34bb98b51ae4b498187326.png;screenshots/2870b622fa00640ffa004973150bd744da842a6ee7d80100584ab13ac4ebab4e.png;screenshots/8d9f8ce485ef5fc04d2c4921f50ca8c923ef171f4e0a70c3210f43cf5bc65184.png;screenshots/19c7c6709fb90c2c135c1c206a5842e83e4ccc58a220337de5a8ea766b0acd7d.png"
   ],
   "links": [
     {
@@ -39,6 +40,11 @@
       "type": "Other",
       "name": "Release",
       "url": "https://github.com/island-games/Tux-Football-Vita/releases"
+    },
+    {
+      "type": "Official Website",
+      "name": "NeoVitaDB Release Page",
+      "url": "https://github.com/island-games/Tux-Football-Vita/releases/tag/1.0"
     }
   ]
 }

@@ -12,7 +12,7 @@
     "puzzle"
   ],
   "version": "v.1.0",
-  "version_date": "2023-09-22",
+  "version_date": "2026-08-12",
   "requirements": "- libshacccg.suprx",
   "size": 1054448,
   "status": "Verified",
@@ -20,7 +20,8 @@
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/78720fe3a0c1b57118b90355a77a3f3d8332d82bfc7f1e38b5fe0e37e5122c83.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/76c9a0ca27def3f2e3764c7fb4e676f6fae441538e7807a950b9131f58061218.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/6519bfdbe6f767720d6015fe94b2a9158239346ef5fcf51086c8abde71138105.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/6519bfdbe6f767720d6015fe94b2a9158239346ef5fcf51086c8abde71138105.png",
+    "screenshots/78720fe3a0c1b57118b90355a77a3f3d8332d82bfc7f1e38b5fe0e37e5122c83.png;screenshots/76c9a0ca27def3f2e3764c7fb4e676f6fae441538e7807a950b9131f58061218.png;screenshots/6519bfdbe6f767720d6015fe94b2a9158239346ef5fcf51086c8abde71138105.png"
   ],
   "links": [
     {

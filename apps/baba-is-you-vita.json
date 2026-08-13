@@ -20,7 +20,8 @@
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/99a81e1aa02890eec585bc0eee411d17ff8a10ab5113ad7609125f32d779ae58.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/935e7d3c1edca66f72475a33418cb22ca70c32c2c4888ae305a8a9e2616589b9.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/de5882c9a5d5a4967cc0eb07b4bd4ce8311da736b887c71661b2e0cf546313e3.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/de5882c9a5d5a4967cc0eb07b4bd4ce8311da736b887c71661b2e0cf546313e3.png",
+    "screenshots/99a81e1aa02890eec585bc0eee411d17ff8a10ab5113ad7609125f32d779ae58.png;screenshots/935e7d3c1edca66f72475a33418cb22ca70c32c2c4888ae305a8a9e2616589b9.png;screenshots/de5882c9a5d5a4967cc0eb07b4bd4ce8311da736b887c71661b2e0cf546313e3.png"
   ],
   "links": [
     {
@@ -38,6 +39,16 @@
       "type": "Other",
       "name": "Release",
       "url": "https://github.com/v-atamanenko/baba-is-you-vita/releases/tag/v1.4"
+    },
+    {
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
+      "url": "https://github.com/v-atamanenko/baba-is-you-vita//releases"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/v-atamanenko/baba-is-you-vita/"
     }
   ]
 }

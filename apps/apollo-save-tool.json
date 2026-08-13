@@ -21,7 +21,8 @@
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/bba9dc75e28fb42098c083923890cdd71c49a5c08bb83e7166627d6528645b12.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/ad94d7b2bd66080d7609692597785fe1260efa2b25f52e6d73b3659eaddb804d.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/f2bae1c30eae3394e7bdcf67f437f257063a8e6fe0fdc6846973bb5d8809eb2e.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/a74b4556b793ce5476df9d2ec0426481c5f4706b4381eb7988963328ce4fc108.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/a74b4556b793ce5476df9d2ec0426481c5f4706b4381eb7988963328ce4fc108.png",
+    "screenshots/bba9dc75e28fb42098c083923890cdd71c49a5c08bb83e7166627d6528645b12.png;screenshots/ad94d7b2bd66080d7609692597785fe1260efa2b25f52e6d73b3659eaddb804d.png;screenshots/f2bae1c30eae3394e7bdcf67f437f257063a8e6fe0fdc6846973bb5d8809eb2e.png;screenshots/a74b4556b793ce5476df9d2ec0426481c5f4706b4381eb7988963328ce4fc108.png"
   ],
   "links": [
     {
@@ -39,6 +40,11 @@
       "type": "Other",
       "name": "Release",
       "url": "https://github.com/bucanero/apollo-vita/releases/tag/v2.3.2"
+    },
+    {
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
+      "url": "https://github.com/bucanero/apollo-vita/releases"
     }
   ]
 }

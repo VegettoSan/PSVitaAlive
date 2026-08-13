@@ -11,7 +11,7 @@
   "subcategory_ids": [
     "platformer"
   ],
-  "version": "Alpha",
+  "version": "0.1a",
   "version_date": "2025-10-31",
   "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
   "size": 16276764,
@@ -19,7 +19,8 @@
   "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/ac69400f529f46cb20058846a68cd75f8bcf2f4a01a545cafca29788024bd5b7.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/b1e940891a1b368db7b1fbaa3a2ab65dc40e710acd17267d3d0e914a23fe6520.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/39b43b8fb2a6ccf365d9ca3c861e7e5a73fa254661e58fe86da2eed53b5b27b7.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/39b43b8fb2a6ccf365d9ca3c861e7e5a73fa254661e58fe86da2eed53b5b27b7.png",
+    "screenshots/b1e940891a1b368db7b1fbaa3a2ab65dc40e710acd17267d3d0e914a23fe6520.png;screenshots/39b43b8fb2a6ccf365d9ca3c861e7e5a73fa254661e58fe86da2eed53b5b27b7.png"
   ],
   "links": [
     {
@@ -37,6 +38,11 @@
       "type": "Other",
       "name": "Release",
       "url": "https://github.com/Narwher/Howard/releases"
+    },
+    {
+      "type": "Official Website",
+      "name": "NeoVitaDB Release Page",
+      "url": "https://github.com/Narwher/Howard/releases/tag/0.1a"
     }
   ]
 }

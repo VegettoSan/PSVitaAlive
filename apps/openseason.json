@@ -12,13 +12,14 @@
     "other"
   ],
   "version": "v.1.0",
-  "version_date": "2019-04-23",
+  "version_date": "2026-08-12",
   "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
   "size": 31490419,
   "status": "Legacy",
   "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/443b1191b87ed841b28d70020da9a5862d3c5fa1e3bfdf0b326e83e7472bf11e.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/87cbd39aaf821aa54b55fd7b783720f8adb9f39919295abc62e32b23d272bc11.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/87cbd39aaf821aa54b55fd7b783720f8adb9f39919295abc62e32b23d272bc11.png",
+    "screenshots/87cbd39aaf821aa54b55fd7b783720f8adb9f39919295abc62e32b23d272bc11.png"
   ],
   "links": [
     {
@@ -31,6 +32,11 @@
       "type": "Other",
       "name": "Release",
       "url": "https://twitter.com/Yoyogames28/status/1120550464121122816"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com"
     }
   ]
 }

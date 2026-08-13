@@ -18,7 +18,8 @@
   "status": "Verified",
   "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/1628e17d61f49fded332cf75f95dd24588c40dbfbd3c18590c7989e4bb37c4fb.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/a00950eb4dcd9f392ad02a8cab6b1310d4a8f1b9c0743ab352e0c1d7d1520e09.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/a00950eb4dcd9f392ad02a8cab6b1310d4a8f1b9c0743ab352e0c1d7d1520e09.png",
+    "screenshots/a00950eb4dcd9f392ad02a8cab6b1310d4a8f1b9c0743ab352e0c1d7d1520e09.png"
   ],
   "links": [
     {
@@ -36,6 +37,11 @@
       "type": "Other",
       "name": "Release",
       "url": "http://wololo.net/talk/viewtopic.php?f=52&t=48443"
+    },
+    {
+      "type": "Official Website",
+      "name": "NeoVitaDB Release Page",
+      "url": "https://github.com/pyroesp/vitaFFT/releases/tag/v0.1.6"
     }
   ]
 }

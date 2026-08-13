@@ -21,7 +21,8 @@
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/9fdf7dc05943e262a96cf6493baba700efc699c3cbd800d64063dd3127287edb.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/14b14cb083a703ceebf765bc61528010035b6d83633c2664466b118c8fd05166.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/1a67183431eb36aa023abe3522af6828274a5e16e58002bc1bc5ab9ae918676d.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/9b2a5fee03282b65b861703ea17303c66f9f987b5f9224963332de90214f4871.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/9b2a5fee03282b65b861703ea17303c66f9f987b5f9224963332de90214f4871.png",
+    "screenshots/9fdf7dc05943e262a96cf6493baba700efc699c3cbd800d64063dd3127287edb.png;screenshots/14b14cb083a703ceebf765bc61528010035b6d83633c2664466b118c8fd05166.png;screenshots/1a67183431eb36aa023abe3522af6828274a5e16e58002bc1bc5ab9ae918676d.png;screenshots/9b2a5fee03282b65b861703ea17303c66f9f987b5f9224963332de90214f4871.png"
   ],
   "links": [
     {
@@ -39,6 +40,11 @@
       "type": "Other",
       "name": "Release",
       "url": "https://gbatemp.net/threads/release-msweep-simple-minesweeper-game-for-psvita.533165/"
+    },
+    {
+      "type": "Official Website",
+      "name": "NeoVitaDB Release Page",
+      "url": "https://github.com/Creckeryop/MSweep/releases/tag/v1.2.1"
     }
   ]
 }

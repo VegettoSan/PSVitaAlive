@@ -12,14 +12,15 @@
     "other"
   ],
   "version": "v.1.0",
-  "version_date": "2019-04-01",
+  "version_date": "2026-08-12",
   "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
   "size": 49348665,
   "status": "Legacy",
   "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/2506710de32334bc47b3eebd2d07d5e69ee4d218dbe85adb644f2ac0e73ea264.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/2d304833a417475205d7e601ded774666bf9a704b5d3e37e087af82a29028523.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/b87fbd8fcd8468f990363aa0cc5692f1449cc04dc20fb505cae8d85c7c53f3b4.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/b87fbd8fcd8468f990363aa0cc5692f1449cc04dc20fb505cae8d85c7c53f3b4.png",
+    "screenshots/2d304833a417475205d7e601ded774666bf9a704b5d3e37e087af82a29028523.png;screenshots/b87fbd8fcd8468f990363aa0cc5692f1449cc04dc20fb505cae8d85c7c53f3b4.png"
   ],
   "links": [
     {
@@ -27,6 +28,11 @@
       "name": "Descarga principal",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/450-Let_20Me_20Sleep.vpk",
       "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com"
     }
   ]
 }

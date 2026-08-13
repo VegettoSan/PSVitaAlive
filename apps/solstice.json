@@ -19,7 +19,8 @@
   "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/c5c12e129060f8a0bcb3e82138a7c5f266149f3344d094605bed4829d250a969.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/1c720834fee36730bb606b2afa697e8db407924e8f941049b6a3a870514b767c.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/1fd6a57926b3e8035d16afbe630268841cfc0aef1c99b44a942c5e75fadf0e1c.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/1fd6a57926b3e8035d16afbe630268841cfc0aef1c99b44a942c5e75fadf0e1c.png",
+    "screenshots/1c720834fee36730bb606b2afa697e8db407924e8f941049b6a3a870514b767c.png;screenshots/1fd6a57926b3e8035d16afbe630268841cfc0aef1c99b44a942c5e75fadf0e1c.png"
   ],
   "links": [
     {
@@ -37,6 +38,11 @@
       "type": "Other",
       "name": "Release",
       "url": "https://github.com/withLogic/solstice-godot/releases"
+    },
+    {
+      "type": "Official Website",
+      "name": "NeoVitaDB Release Page",
+      "url": "https://github.com/withLogic/solstice-godot/releases/tag/v1.0.4"
     }
   ]
 }

@@ -34,6 +34,11 @@
       "type": "Other",
       "name": "Release",
       "url": "https://github.com/davidcralph/CandyWrapper_vita/releases"
+    },
+    {
+      "type": "Official Website",
+      "name": "NeoVitaDB Release Page",
+      "url": "https://github.com/davidcralph/CandyWrapper_vita/releases/tag/01.00"
     }
   ]
 }

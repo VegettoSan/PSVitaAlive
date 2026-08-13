@@ -18,7 +18,8 @@
   "status": "Verified",
   "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/cb1dab7fab9f37e0c8d93a3e591875b6ef104e30c09b6447d539bdbfbf212cae.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/ce4fe7c38bb8883d041e25b87b0ee89ea3f86e0ab015a7b2d8b2b3002ad4b5e7.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/ce4fe7c38bb8883d041e25b87b0ee89ea3f86e0ab015a7b2d8b2b3002ad4b5e7.png",
+    "screenshots/dfef123230ac528ece0ce9d6a107f64ac09dce6c2b0f85b7ab8ed79d50deb178.png"
   ],
   "links": [
     {
@@ -31,6 +32,11 @@
       "type": "Other",
       "name": "Release",
       "url": "https://soykhaler.itch.io/2playerspong"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com"
     }
   ]
 }

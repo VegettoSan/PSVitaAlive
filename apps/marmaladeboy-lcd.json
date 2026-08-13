@@ -12,7 +12,7 @@
     "other"
   ],
   "version": "v.1.0",
-  "version_date": "2023-08-07",
+  "version_date": "2026-08-12",
   "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
   "size": 4519532,
   "status": "Verified",
@@ -20,7 +20,8 @@
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/950e44af3798c9ceecfcd2aa4dac7f43c3b2449958749a857c72c2ccbd37218d.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/db0ebd7be04d4fe17425c85c06e8bcafb3eed6e278389d3a41f100cb6cebd22b.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/69ab255d5ef6d9c0af5bf45b3041573b8d7628486922fc7ce64570b5dc94b401.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/69ab255d5ef6d9c0af5bf45b3041573b8d7628486922fc7ce64570b5dc94b401.png",
+    "screenshots/950e44af3798c9ceecfcd2aa4dac7f43c3b2449958749a857c72c2ccbd37218d.png;screenshots/db0ebd7be04d4fe17425c85c06e8bcafb3eed6e278389d3a41f100cb6cebd22b.png;screenshots/69ab255d5ef6d9c0af5bf45b3041573b8d7628486922fc7ce64570b5dc94b401.png"
   ],
   "links": [
     {
@@ -33,6 +34,11 @@
       "type": "Other",
       "name": "Release",
       "url": "https://fuhen.homebrew-contest.com/submissions/23/"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com"
     }
   ]
 }

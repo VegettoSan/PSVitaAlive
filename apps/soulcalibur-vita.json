@@ -21,7 +21,8 @@
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/2e2623d145d3a1bc5c52b192bd5d7d950f6aca52420205b4eaffc3649ed7b723.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/ea0ff0570cb9caee45c500e12a353c99025d637e01e850fe55668f6775116e4b.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/4963353404b379cb7d1e644b1a5d88a011d821fd205c2012d791409b9f05b2de.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/f49e7080a4fb9b2983d26930a5623ce15b0dc2807d96154cdb7d138e91e32fee.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/f49e7080a4fb9b2983d26930a5623ce15b0dc2807d96154cdb7d138e91e32fee.png",
+    "screenshots/2e2623d145d3a1bc5c52b192bd5d7d950f6aca52420205b4eaffc3649ed7b723.png;screenshots/ea0ff0570cb9caee45c500e12a353c99025d637e01e850fe55668f6775116e4b.png;screenshots/4963353404b379cb7d1e644b1a5d88a011d821fd205c2012d791409b9f05b2de.png;screenshots/f49e7080a4fb9b2983d26930a5623ce15b0dc2807d96154cdb7d138e91e32fee.png"
   ],
   "links": [
     {
@@ -39,6 +40,11 @@
       "type": "Other",
       "name": "Release",
       "url": "https://github.com/Rinnegatamante/soulcalibur_vita/releases"
+    },
+    {
+      "type": "Official Website",
+      "name": "NeoVitaDB Release Page",
+      "url": "https://github.com/Rinnegatamante/soulcalibur_vita/releases/tag/v.1.1"
     }
   ]
 }

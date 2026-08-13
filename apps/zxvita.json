@@ -12,7 +12,7 @@
     "other"
   ],
   "version": "v.1.2.0",
-  "version_date": "2021-01-26",
+  "version_date": "2026-08-12",
   "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
   "size": 1316328,
   "status": "Verified",
@@ -21,7 +21,8 @@
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/ff8683e2107c3a1dfd9a1b9e1c701f1fb97b3dc700eac838ad6d48a804065788.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/a98c9eb37f0d8dfa327fa766ed9c940ec372b9d8a97a9f9784bf6474f0e36685.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/897630633538264463f06419ab82c81685b6c5b30164572ffeda3e6f1f1bf964.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/8845c158b96841986064c7a5b9314232bf68c261ddf74a9f4779a2ba8b4867d1.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/8845c158b96841986064c7a5b9314232bf68c261ddf74a9f4779a2ba8b4867d1.png",
+    "screenshots/ff8683e2107c3a1dfd9a1b9e1c701f1fb97b3dc700eac838ad6d48a804065788.png;screenshots/a98c9eb37f0d8dfa327fa766ed9c940ec372b9d8a97a9f9784bf6474f0e36685.png;screenshots/897630633538264463f06419ab82c81685b6c5b30164572ffeda3e6f1f1bf964.png;screenshots/8845c158b96841986064c7a5b9314232bf68c261ddf74a9f4779a2ba8b4867d1.png"
   ],
   "links": [
     {
@@ -29,6 +30,11 @@
       "name": "Descarga principal",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/478-zxvita.vpk",
       "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com"
     }
   ]
 }

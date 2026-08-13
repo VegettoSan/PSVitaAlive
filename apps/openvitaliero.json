@@ -18,7 +18,8 @@
   "status": "Legacy",
   "icon": "https://robin994.github.io/NeoVitaDB-Catalog/icons/1398-openvitaliero.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/0c48e0234888bf5c966dd9fd3c32f737d8a937b204050dc073be1b122dcb86ac.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/0c48e0234888bf5c966dd9fd3c32f737d8a937b204050dc073be1b122dcb86ac.png",
+    "screenshots/0c48e0234888bf5c966dd9fd3c32f737d8a937b204050dc073be1b122dcb86ac.png"
   ],
   "links": [
     {
@@ -36,6 +37,11 @@
       "type": "Other",
       "name": "Release",
       "url": "https://github.com/Ak1M1223/vitaliero/releases/tag/0.3"
+    },
+    {
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
+      "url": "https://github.com/Ak1M1223/vitaliero/releases"
     }
   ]
 }

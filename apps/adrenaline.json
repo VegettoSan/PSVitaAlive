@@ -11,14 +11,15 @@
   "subcategory_ids": [
     "compatibility"
   ],
-  "version": "v7",
-  "version_date": "2020-09-22",
+  "version": "v.7",
+  "version_date": "2020-09-23",
   "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
   "size": 417931,
   "status": "Verified",
   "icon": "https://robin994.github.io/NeoVitaDB-Catalog/icons/0047-adrenaline.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/cca7ded074a714bdacbd21aabd1de9e561d5922a66ece9bd60fa56d273385ee7.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/cca7ded074a714bdacbd21aabd1de9e561d5922a66ece9bd60fa56d273385ee7.png",
+    "screenshots/cca7ded074a714bdacbd21aabd1de9e561d5922a66ece9bd60fa56d273385ee7.png"
   ],
   "links": [
     {
@@ -36,6 +37,11 @@
       "type": "Other",
       "name": "Release",
       "url": "https://github.com/TheOfficialFloW/Adrenaline/releases/tag/v7"
+    },
+    {
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
+      "url": "https://github.com/TheOfficialFloW/Adrenaline/releases"
     }
   ]
 }

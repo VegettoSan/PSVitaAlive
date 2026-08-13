@@ -34,6 +34,16 @@
       "type": "Other",
       "name": "Release",
       "url": "https://gbatemp.net/threads/release-moon-whitelister-play-whitelist-blocked-games-on-the-playstation-vita-tv.437346/"
+    },
+    {
+      "type": "Download",
+      "name": "NeoVitaDB VPK",
+      "url": "https://github.com/gnmmarechal/moon-whitelister/releases/download/v1.0c/MoonWhitelisterv1.0c.vpk"
+    },
+    {
+      "type": "Official Website",
+      "name": "NeoVitaDB Release Page",
+      "url": "https://github.com/gnmmarechal/moon-whitelister/releases/tag/v1.0c"
     }
   ]
 }

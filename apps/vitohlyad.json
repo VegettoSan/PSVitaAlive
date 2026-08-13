@@ -21,7 +21,8 @@
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c293fddca27a7535b573385c44b22b70bd207b11b8ac5f968ce193b66d294d75.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c5245565d9c2b8f8cc580c26b4ad0c644056644285806c91ddcc90d11acd698d.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/0e626da7d7f98d28b8cf04ad646a34acca676c89ae4c24c952c65347432bb827.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/0e626da7d7f98d28b8cf04ad646a34acca676c89ae4c24c952c65347432bb827.png",
+    "screenshots/c293fddca27a7535b573385c44b22b70bd207b11b8ac5f968ce193b66d294d75.png;screenshots/c5245565d9c2b8f8cc580c26b4ad0c644056644285806c91ddcc90d11acd698d.png;screenshots/0e626da7d7f98d28b8cf04ad646a34acca676c89ae4c24c952c65347432bb827.png"
   ],
   "links": [
     {
@@ -39,6 +40,11 @@
       "type": "Other",
       "name": "Release",
       "url": "https://github.com/v-atamanenko/vitohlyad/releases"
+    },
+    {
+      "type": "Official Website",
+      "name": "NeoVitaDB Release Page",
+      "url": "https://github.com/v-atamanenko/vitohlyad/releases/tag/v0.9"
     }
   ]
 }

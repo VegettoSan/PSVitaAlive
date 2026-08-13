@@ -19,7 +19,8 @@
   "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/cebb681351b58a33c475136d4f3796133442588454b4e4aa0bae3c21923559b6.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/db0fd3b64a28e3a00572b66b28134c52e126f6869299a4a2ee8b371587d489e3.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/46597dc6a741c65b74ee836f0f019a0bfd0a18ab305a14503def8f508bea70b6.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/46597dc6a741c65b74ee836f0f019a0bfd0a18ab305a14503def8f508bea70b6.png",
+    "screenshots/db0fd3b64a28e3a00572b66b28134c52e126f6869299a4a2ee8b371587d489e3.png;screenshots/46597dc6a741c65b74ee836f0f019a0bfd0a18ab305a14503def8f508bea70b6.png"
   ],
   "links": [
     {
@@ -37,6 +38,11 @@
       "type": "Other",
       "name": "Release",
       "url": "http://wololo.net/talk/viewtopic.php?f=113&t=45534"
+    },
+    {
+      "type": "Official Website",
+      "name": "NeoVitaDB Release Page",
+      "url": "https://github.com/notnotme/NotEngine_PSV/releases/tag/11.17.2016"
     }
   ]
 }

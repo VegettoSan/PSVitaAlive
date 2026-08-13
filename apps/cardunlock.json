@@ -34,6 +34,11 @@
       "type": "Other",
       "name": "Release",
       "url": "https://wololo.net/talk/viewtopic.php?f=116&t=48104"
+    },
+    {
+      "type": "Official Website",
+      "name": "NeoVitaDB Release Page",
+      "url": "https://github.com/cnsldv/CardUnlock/releases/tag/v1.0"
     }
   ]
 }

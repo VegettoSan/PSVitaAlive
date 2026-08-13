@@ -36,6 +36,11 @@
       "type": "Other",
       "name": "Release",
       "url": "https://github.com/Lordchickenblaster/Crazy-Cattle-Vita"
+    },
+    {
+      "type": "Official Website",
+      "name": "NeoVitaDB Release Page",
+      "url": "https://github.com/Lordchickenblaster/Crazy-Cattle-Vita/releases/tag/1.4"
     }
   ]
 }

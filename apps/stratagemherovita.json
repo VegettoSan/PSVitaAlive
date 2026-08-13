@@ -12,14 +12,15 @@
     "music"
   ],
   "version": "v.1.0",
-  "version_date": "2024-04-24",
+  "version_date": "2026-08-12",
   "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
   "size": 48613218,
   "status": "Verified",
   "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/e65baf4d7dbef7d9eeb2d38f0565ec4b2d7d77d7a93cc7a5fc44e577b0cd01fe.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/ff8f06b3f35697ae7f69381d3c5dcdf12dc6b6af9b42d42d69d7ccb1a87471c4.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/963828594842798e1f6155dd83c48647f1b534922b844b0499670a4d0a2639f3.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/963828594842798e1f6155dd83c48647f1b534922b844b0499670a4d0a2639f3.png",
+    "screenshots/ff8f06b3f35697ae7f69381d3c5dcdf12dc6b6af9b42d42d69d7ccb1a87471c4.png;screenshots/963828594842798e1f6155dd83c48647f1b534922b844b0499670a4d0a2639f3.png"
   ],
   "links": [
     {
@@ -27,6 +28,11 @@
       "name": "Descarga principal",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1205-StratagemHeroVita.vpk",
       "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com"
     }
   ]
 }

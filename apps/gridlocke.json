@@ -12,7 +12,7 @@
     "rpg"
   ],
   "version": "v.1.0",
-  "version_date": "2023-05-21",
+  "version_date": "2026-08-12",
   "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
   "size": 44312979,
   "status": "Verified",
@@ -24,6 +24,11 @@
       "name": "Descarga principal",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1080-GRIDLOCKE.vpk",
       "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com"
     }
   ]
 }

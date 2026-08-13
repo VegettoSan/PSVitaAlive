@@ -34,6 +34,11 @@
       "type": "Other",
       "name": "Release",
       "url": "https://github.com/add-le/ps-vita-sync/releases"
+    },
+    {
+      "type": "Official Website",
+      "name": "NeoVitaDB Release Page",
+      "url": "https://github.com/add-le/ps-vita-sync/releases/tag/v0.01"
     }
   ]
 }

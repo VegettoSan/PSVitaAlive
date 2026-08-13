@@ -20,7 +20,8 @@
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/e549360bde1994278baad37403f594b88bbe27e9f0d977bac0562b997de676e8.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/6626a533b523d8e3f44ac43af07c3296b9606467d5e1e6116cbb7b6a5fc5161f.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/5ff2125a4c970e4c797479d1746231556eeca5eaae90558e816c6d8f7a360dc2.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/5ff2125a4c970e4c797479d1746231556eeca5eaae90558e816c6d8f7a360dc2.png",
+    "screenshots/e549360bde1994278baad37403f594b88bbe27e9f0d977bac0562b997de676e8.png;screenshots/6626a533b523d8e3f44ac43af07c3296b9606467d5e1e6116cbb7b6a5fc5161f.png;screenshots/5ff2125a4c970e4c797479d1746231556eeca5eaae90558e816c6d8f7a360dc2.png"
   ],
   "links": [
     {
@@ -33,6 +34,11 @@
       "type": "Other",
       "name": "Release",
       "url": "https://github.com/PatnosDD/Pureya-PS-VITA"
+    },
+    {
+      "type": "Official Website",
+      "name": "NeoVitaDB Release Page",
+      "url": "https://github.com/PatnosDD/Pureya-PS-VITA/releases/tag/v1.0"
     }
   ]
 }

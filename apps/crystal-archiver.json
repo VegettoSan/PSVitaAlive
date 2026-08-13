@@ -11,15 +11,16 @@
   "subcategory_ids": [
     "other"
   ],
-  "version": "v.1.0",
-  "version_date": "2021-10-29",
+  "version": "v1.1",
+  "version_date": "2024-08-10",
   "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
-  "size": 804205,
+  "size": 814253,
   "status": "Verified",
   "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/c4bed43e4d3e828efe41f2e41e435d503fe7c5ff0104604c4982247fa9ecf603.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/3bcc4ddbcd78116a0fb76d775756f16559439542f0b7f9cfdfa3ecee0693ba88.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/30458d34d61d7008e0500c88e4b0d82b25d2080b8527180aff6da63f25e771bb.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/30458d34d61d7008e0500c88e4b0d82b25d2080b8527180aff6da63f25e771bb.png",
+    "screenshots/3bcc4ddbcd78116a0fb76d775756f16559439542f0b7f9cfdfa3ecee0693ba88.png;screenshots/30458d34d61d7008e0500c88e4b0d82b25d2080b8527180aff6da63f25e771bb.png"
   ],
   "links": [
     {
@@ -37,6 +38,16 @@
       "type": "Other",
       "name": "Release",
       "url": "https://github.com/EliCrystal2001/CrystalArchiver/releases"
+    },
+    {
+      "type": "Download",
+      "name": "NeoVitaDB VPK",
+      "url": "https://github.com/EliCrystal2001/CrystalArchiver/releases/download/v1.1/CrystalArchiver.vpk"
+    },
+    {
+      "type": "Official Website",
+      "name": "NeoVitaDB Release Page",
+      "url": "https://github.com/EliCrystal2001/CrystalArchiver/releases/tag/v1.1"
     }
   ]
 }

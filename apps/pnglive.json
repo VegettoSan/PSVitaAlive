@@ -12,14 +12,15 @@
     "other"
   ],
   "version": "v.0.4 BETA",
-  "version_date": "2023-08-14",
+  "version_date": "2026-08-12",
   "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
   "size": 5234780,
   "status": "Verified",
   "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/55433e777be9421c1910fee016037d1acf6b688f29e1d466752d064c91293eb3.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/314c3fa272e02a2fafdce191ef2746ab6611fe4a81b8b5332e94129bd7b73be5.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/9390e705ace863448c4fb18dab4dc142d56a2582b8151ebbffe0f9fc799c0523.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/9390e705ace863448c4fb18dab4dc142d56a2582b8151ebbffe0f9fc799c0523.png",
+    "screenshots/314c3fa272e02a2fafdce191ef2746ab6611fe4a81b8b5332e94129bd7b73be5.png;screenshots/9390e705ace863448c4fb18dab4dc142d56a2582b8151ebbffe0f9fc799c0523.png"
   ],
   "links": [
     {
@@ -27,6 +28,11 @@
       "name": "Descarga principal",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1113-pnglive.vpk",
       "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com"
     }
   ]
 }

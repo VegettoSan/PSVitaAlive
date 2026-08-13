@@ -12,7 +12,7 @@
   "subcategory_ids": [
     "other"
   ],
-  "version": "v.0.33h",
+  "version": "0.33hgit-rsn8887",
   "version_date": "2021-04-06",
   "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
   "size": 1416438,
@@ -21,7 +21,8 @@
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/2e4d7060b1216b4d92d6eb9e78e108d09de7d64a6f94bce47e7cbfb30c790e15.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/5b0ac1b74dc8bed852fb7bf865d0275ee6d1617110acdb248bb0c018d1b81569.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/fbcb38e146eca817a68ef96edd1de4dc3b8f1eb92fa54643f01c67b2ff6d41bb.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/fbcb38e146eca817a68ef96edd1de4dc3b8f1eb92fa54643f01c67b2ff6d41bb.png",
+    "screenshots/2e4d7060b1216b4d92d6eb9e78e108d09de7d64a6f94bce47e7cbfb30c790e15.png;screenshots/5b0ac1b74dc8bed852fb7bf865d0275ee6d1617110acdb248bb0c018d1b81569.png;screenshots/fbcb38e146eca817a68ef96edd1de4dc3b8f1eb92fa54643f01c67b2ff6d41bb.png"
   ],
   "links": [
     {
@@ -39,6 +40,11 @@
       "type": "Other",
       "name": "Release",
       "url": "https://github.com/rsn8887/basiliskii-vita/releases"
+    },
+    {
+      "type": "Official Website",
+      "name": "NeoVitaDB Release Page",
+      "url": "https://github.com/rsn8887/basiliskii-vita/releases/tag/0.33hgit-rsn8887"
     }
   ]
 }

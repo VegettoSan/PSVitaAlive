@@ -18,7 +18,8 @@
   "status": "Legacy",
   "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/3f65fe8488a558b8f8f7c5f0060c3ac8819359efa005b6cdd551e5665f013bcc.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c75864e6da64c7a5caa7be8f35cf3322410c7dde683feee3d03860a0885f8018.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c75864e6da64c7a5caa7be8f35cf3322410c7dde683feee3d03860a0885f8018.png",
+    "screenshots/c75864e6da64c7a5caa7be8f35cf3322410c7dde683feee3d03860a0885f8018.png"
   ],
   "links": [
     {
@@ -36,6 +37,11 @@
       "type": "Other",
       "name": "Release",
       "url": "https://github.com/KiddRwxSsj/opensonic-vita/releases"
+    },
+    {
+      "type": "Official Website",
+      "name": "NeoVitaDB Release Page",
+      "url": "https://github.com/KiddRwxSsj/opensonic-vita/releases/tag/1.0.7"
     }
   ]
 }

@@ -34,6 +34,11 @@
       "type": "Other",
       "name": "Release",
       "url": "https://github.com/lp1dev/vita_ports_scanner/releases"
+    },
+    {
+      "type": "Official Website",
+      "name": "NeoVitaDB Release Page",
+      "url": "https://github.com/lp1dev/vita_ports_scanner/releases/tag/v0.10.0"
     }
   ]
 }

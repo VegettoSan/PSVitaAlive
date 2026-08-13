@@ -12,7 +12,7 @@
     "fps"
   ],
   "version": "v.1.2",
-  "version_date": "2026-02-04",
+  "version_date": "2026-08-12",
   "requirements": "- Game Data Files: PC",
   "size": 2701813,
   "status": "Verified",
@@ -20,7 +20,8 @@
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/05fe3d2bf74b98f76e7f559d112008007fdfc1d630d535f5826e0335dd9e12f6.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/42240a913fcf92c6841966d461019892dd6e3dd5761e58fe3d8fe52e216a1e78.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/9c64174d98b9e3ffb064482241b192fdcd297835b36c95253b549cfef74e8d39.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/9c64174d98b9e3ffb064482241b192fdcd297835b36c95253b549cfef74e8d39.png",
+    "screenshots/05fe3d2bf74b98f76e7f559d112008007fdfc1d630d535f5826e0335dd9e12f6.png;screenshots/42240a913fcf92c6841966d461019892dd6e3dd5761e58fe3d8fe52e216a1e78.png;screenshots/9c64174d98b9e3ffb064482241b192fdcd297835b36c95253b549cfef74e8d39.png"
   ],
   "links": [
     {

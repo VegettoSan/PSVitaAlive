@@ -6,14 +6,15 @@
   "long_description": "Experience the singleplayer action-boss-rush game with pixel-perfect retro aesthetics and inspiration from classic titles like 'Punch-Out!!', and recent indie hits like 'Cuphead'.",
   "author_ids": [
     "lordchickenblaster",
-    "soupmasters"
+    "soupmasters",
+    "lordchickenblaster-soupmasters"
   ],
   "category_id": "ports",
   "subcategory_ids": [
     "action"
   ],
   "version": "v.1.3.0",
-  "version_date": "2025-04-10",
+  "version_date": "2026-08-12",
   "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
   "size": 46264686,
   "status": "Verified",
@@ -21,7 +22,8 @@
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/847e6f93aa86b744fdbec421c2a30ef01e0ce41826c6a9d59001daab25444668.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/2b409b88a58561e30f83f743947d2616e3b64ba2b23f7f4653c31293611523ad.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/38e1de7ace60022b46cc48d220e8ee60884f44e53c13bfb7fce6ecdcfa5c585b.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/38e1de7ace60022b46cc48d220e8ee60884f44e53c13bfb7fce6ecdcfa5c585b.png",
+    "screenshots/847e6f93aa86b744fdbec421c2a30ef01e0ce41826c6a9d59001daab25444668.png;screenshots/2b409b88a58561e30f83f743947d2616e3b64ba2b23f7f4653c31293611523ad.png;screenshots/38e1de7ace60022b46cc48d220e8ee60884f44e53c13bfb7fce6ecdcfa5c585b.png"
   ],
   "links": [
     {
@@ -34,6 +36,11 @@
       "type": "Other",
       "name": "Release",
       "url": "https://gamejolt.com/games/BBBV/982964"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com"
     }
   ]
 }

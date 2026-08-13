@@ -12,7 +12,7 @@
     "other"
   ],
   "version": "v.1.11",
-  "version_date": "2022-04-03",
+  "version_date": "2022-04-04",
   "requirements": "- Game Data Files: PC",
   "size": 26243091,
   "status": "Verified",
@@ -29,6 +29,21 @@
       "type": "Other",
       "name": "Release",
       "url": "https://via01.itch.io/dont-open-your-eyes"
+    },
+    {
+      "type": "Download",
+      "name": "NeoVitaDB VPK",
+      "url": "https://github.com/SilverCrow2323/Don-t-OpenYourVita/releases/download/v.1.11/dontopen-v.1.11.vpk"
+    },
+    {
+      "type": "Official Website",
+      "name": "NeoVitaDB Release Page",
+      "url": "https://github.com/SilverCrow2323/Don-t-OpenYourVita/releases/tag/v.1.11"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/SilverCrow2323/Don-t-OpenYourVita"
     }
   ]
 }

@@ -12,7 +12,7 @@
     "action"
   ],
   "version": "v.1.0",
-  "version_date": "2016-10-29",
+  "version_date": "2026-08-12",
   "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
   "size": 2598037,
   "status": "Verified",
@@ -29,6 +29,11 @@
       "type": "Other",
       "name": "Release",
       "url": "https://wololo.net/talk/viewtopic.php?f=114&t=44680"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com"
     }
   ]
 }

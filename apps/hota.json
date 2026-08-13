@@ -11,8 +11,8 @@
   "subcategory_ids": [
     "engine-port"
   ],
-  "version": "v.1.0",
-  "version_date": "2016-10-23",
+  "version": "vita-1.0",
+  "version_date": "2017-11-17",
   "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
   "size": 402380,
   "status": "Verified",
@@ -34,6 +34,11 @@
       "type": "Other",
       "name": "Release",
       "url": "https://gbatemp.net/threads/release-hota.445832/"
+    },
+    {
+      "type": "Official Website",
+      "name": "NeoVitaDB Release Page",
+      "url": "https://github.com/usineur/hota/releases/tag/vita-1.0"
     }
   ]
 }

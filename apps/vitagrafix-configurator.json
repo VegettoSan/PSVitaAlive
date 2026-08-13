@@ -19,7 +19,8 @@
   "icon": "https://robin994.github.io/NeoVitaDB-Catalog/icons/0400-vitagrafix-configurator.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c8c3b30acfa102408c5ad5eb56b1e85fa1513bc6d2729fc17f20ea8bc794a73a.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/edf6992403ae10fb29a5426d6682353113d4477d798e55542745532976e5ce40.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/edf6992403ae10fb29a5426d6682353113d4477d798e55542745532976e5ce40.png",
+    "screenshots/c8c3b30acfa102408c5ad5eb56b1e85fa1513bc6d2729fc17f20ea8bc794a73a.png;screenshots/edf6992403ae10fb29a5426d6682353113d4477d798e55542745532976e5ce40.png"
   ],
   "links": [
     {
@@ -37,6 +38,11 @@
       "type": "Other",
       "name": "Release",
       "url": "https://github.com/Kirezar/VitaGrafixConfigurator/releases/tag/v3.0"
+    },
+    {
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
+      "url": "https://github.com/Kirezar/VitaGrafixConfigurator/releases"
     }
   ]
 }

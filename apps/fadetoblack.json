@@ -12,7 +12,7 @@
     "adventure"
   ],
   "version": "v.ita-1.0",
-  "version_date": "2018-03-07",
+  "version_date": "2026-08-12",
   "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
   "size": 731870,
   "status": "Verified",
@@ -21,7 +21,8 @@
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/441f6728836b3002d9d281bb147bcd489a534bbb173884471139f8c5775b1408.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/f8c948ecee1393ceb4d7c9b881c33d8195e0d5b99a960b6b01e17f922d210be0.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/cd5dcfcaec8747184ef2148a5b45ed4d81e9659957141603e3cbdda6788bdd28.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/8cfd50902412422967ca149f9c969eb6991cda9865b3c40bca4591f8cede2e45.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/8cfd50902412422967ca149f9c969eb6991cda9865b3c40bca4591f8cede2e45.png",
+    "screenshots/441f6728836b3002d9d281bb147bcd489a534bbb173884471139f8c5775b1408.png;screenshots/f8c948ecee1393ceb4d7c9b881c33d8195e0d5b99a960b6b01e17f922d210be0.png;screenshots/cd5dcfcaec8747184ef2148a5b45ed4d81e9659957141603e3cbdda6788bdd28.png;screenshots/8cfd50902412422967ca149f9c969eb6991cda9865b3c40bca4591f8cede2e45.png"
   ],
   "links": [
     {

@@ -12,7 +12,7 @@
     "visual-novel"
   ],
   "version": "v.0.2",
-  "version_date": "2025-04-08",
+  "version_date": "2026-08-12",
   "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
   "size": 77201382,
   "status": "Verified",
@@ -21,7 +21,8 @@
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/8bdac37100e5e9ae806b16461243440e327e84567c0afaced4a8f1a6e5ecf28f.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/7dc33964ccc07ce2044e3405e0de951e3d045c98e3e5f22d96da27267e047d0c.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/42ac88c203ae91df652b5099609cd08dd1988ba16f3348cf64b4eb9cf9c42c07.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/70792792e5189c31eb0c9437adfe8ce314a0886b4dab0bb51f7ca3547ae3c486.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/70792792e5189c31eb0c9437adfe8ce314a0886b4dab0bb51f7ca3547ae3c486.png",
+    "screenshots/8bdac37100e5e9ae806b16461243440e327e84567c0afaced4a8f1a6e5ecf28f.png;screenshots/7dc33964ccc07ce2044e3405e0de951e3d045c98e3e5f22d96da27267e047d0c.png;screenshots/42ac88c203ae91df652b5099609cd08dd1988ba16f3348cf64b4eb9cf9c42c07.png;screenshots/70792792e5189c31eb0c9437adfe8ce314a0886b4dab0bb51f7ca3547ae3c486.png"
   ],
   "links": [
     {
@@ -34,6 +35,11 @@
       "type": "Other",
       "name": "Release",
       "url": "https://cybertokyo.itch.io/bubblepunk"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com"
     }
   ]
 }

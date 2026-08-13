@@ -5,14 +5,15 @@
   "description": "A simple first person platformer.",
   "long_description": "Simple FPS Platformer is a first person platformer where you can play a selection of levels and make the best time or create and share your levels.",
   "author_ids": [
-    "megagameboy"
+    "megagameboy",
+    "jakibaki"
   ],
   "category_id": "games",
   "subcategory_ids": [
     "shooter"
   ],
   "version": "v.1.6",
-  "version_date": "2023-09-06",
+  "version_date": "2026-08-12",
   "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
   "size": 64122004,
   "status": "Verified",
@@ -21,7 +22,8 @@
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/6d7b82aeb7c4631adf210070a776752910dffc4053265441faf96339c5d2f218.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/1e14b4b11f38defe86b71824e43df629310ad1c9c85ac449c68be4ea93998a59.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/60ea1ec4c61c5aae3d8e9c27893ccfe8d5150b3956d2aa058cfe9666e6503b6f.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/f1bbce207e4042796e3b3b7d93452af209c7f0fe68dc2a027736ec06e4fe12e9.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/f1bbce207e4042796e3b3b7d93452af209c7f0fe68dc2a027736ec06e4fe12e9.png",
+    "screenshots/6d7b82aeb7c4631adf210070a776752910dffc4053265441faf96339c5d2f218.png;screenshots/1e14b4b11f38defe86b71824e43df629310ad1c9c85ac449c68be4ea93998a59.png;screenshots/60ea1ec4c61c5aae3d8e9c27893ccfe8d5150b3956d2aa058cfe9666e6503b6f.png;screenshots/f1bbce207e4042796e3b3b7d93452af209c7f0fe68dc2a027736ec06e4fe12e9.png"
   ],
   "links": [
     {
@@ -29,6 +31,11 @@
       "name": "Descarga principal",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/783-SimpleFPSplatformer.vpk",
       "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com"
     }
   ]
 }

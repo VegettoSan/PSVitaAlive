@@ -21,7 +21,8 @@
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/758cb6912729f50ae63ec267241670dd1efafd64382b179a44875e7d58fa2571.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c3f05b2d1e2fad958136104e23da1653f20a82ed8c4d2f39069642d93d441112.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/80ee90c531949a087c7dbfc84ac0d974a186ec08bfd9a43a17871b52823a9396.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/1ecd2583eb86819a19910a2257ff5d1bac6a3aafd94205a8c2f3ab2a4aea0935.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/1ecd2583eb86819a19910a2257ff5d1bac6a3aafd94205a8c2f3ab2a4aea0935.png",
+    "screenshots/758cb6912729f50ae63ec267241670dd1efafd64382b179a44875e7d58fa2571.png;screenshots/c3f05b2d1e2fad958136104e23da1653f20a82ed8c4d2f39069642d93d441112.png;screenshots/80ee90c531949a087c7dbfc84ac0d974a186ec08bfd9a43a17871b52823a9396.png;screenshots/1ecd2583eb86819a19910a2257ff5d1bac6a3aafd94205a8c2f3ab2a4aea0935.png"
   ],
   "links": [
     {
@@ -39,6 +40,11 @@
       "type": "Other",
       "name": "Release",
       "url": "https://github.com/AntHJ/Is-It-Fake/releases"
+    },
+    {
+      "type": "Official Website",
+      "name": "NeoVitaDB Release Page",
+      "url": "https://github.com/AntHJ/Is-It-Fake/releases/tag/v2b"
     }
   ]
 }

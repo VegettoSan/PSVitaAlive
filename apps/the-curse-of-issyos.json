@@ -12,7 +12,7 @@
     "action"
   ],
   "version": "v.1.0",
-  "version_date": "2022-02-14",
+  "version_date": "2026-08-12",
   "requirements": "- Game Data Files: PC",
   "size": 3811255,
   "status": "Verified",
@@ -29,6 +29,11 @@
       "type": "Other",
       "name": "Release",
       "url": "https://www.reddit.com/r/vitahacks/comments/ssftqg/the_curse_of_issyos_port/"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com"
     }
   ]
 }

@@ -7,7 +7,8 @@
   "author_ids": [
     "cpasjuste",
     "rsn8887",
-    "plombo"
+    "plombo",
+    "meetpatty"
   ],
   "category_id": "ports",
   "subcategory_ids": [
@@ -23,7 +24,8 @@
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/b486e2bcf7658a7e5e45f302f97a82a7d8c5132fc4ca96c0100c741dcd2d5506.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/94cdc3d2728600bfdc9a3c4b0dc66f32af707e24b4700cae0200b02006f5caca.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/cc6e71cadf6da80575d9f9e68b56d2c91fb6afbc0899bf653b3dd95bcef7005f.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/504b83c1352cd97df07e4803f84e19c8df74c2b765f506c8688766b17b5997cd.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/504b83c1352cd97df07e4803f84e19c8df74c2b765f506c8688766b17b5997cd.png",
+    "screenshots/b486e2bcf7658a7e5e45f302f97a82a7d8c5132fc4ca96c0100c741dcd2d5506.png;screenshots/94cdc3d2728600bfdc9a3c4b0dc66f32af707e24b4700cae0200b02006f5caca.png;screenshots/cc6e71cadf6da80575d9f9e68b56d2c91fb6afbc0899bf653b3dd95bcef7005f.png;screenshots/504b83c1352cd97df07e4803f84e19c8df74c2b765f506c8688766b17b5997cd.png"
   ],
   "links": [
     {
@@ -41,6 +43,11 @@
       "type": "Other",
       "name": "Release",
       "url": "https://gbatemp.net/threads/release-openbor-vita-port-by-cpasjuste.527852/"
+    },
+    {
+      "type": "Official Website",
+      "name": "NeoVitaDB Release Page",
+      "url": "https://github.com/rsn8887/openbor/releases/tag/v4704-rsn8887git-1.2"
     }
   ]
 }

@@ -6,21 +6,23 @@
   "long_description": "An abstract game about cosmology, language and the idea of self.",
   "author_ids": [
     "isaque-sanches",
-    "eva-vital"
+    "eva-vital",
+    "isaque-sanches-eva-vital"
   ],
   "category_id": "games",
   "subcategory_ids": [
     "other"
   ],
   "version": "v.1.0",
-  "version_date": "2021-06-05",
+  "version_date": "2026-08-12",
   "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
   "size": 26339192,
   "status": "Verified",
   "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/8a9fb21e6c2d53e819fb4f26fa415915f03d79b1eb724b5d7c7d74c1e732a5ae.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/75fb472fbc155c51c32741e2efb8205de3313ffb21ff81285b37ad59470696f5.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/badbb8183259b6c2458a9ae2dfc638219c45742f88bcb53b34b41a23f5d399de.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/badbb8183259b6c2458a9ae2dfc638219c45742f88bcb53b34b41a23f5d399de.png",
+    "screenshots/75fb472fbc155c51c32741e2efb8205de3313ffb21ff81285b37ad59470696f5.png;screenshots/badbb8183259b6c2458a9ae2dfc638219c45742f88bcb53b34b41a23f5d399de.png"
   ],
   "links": [
     {
@@ -33,6 +35,11 @@
       "type": "Other",
       "name": "Release",
       "url": "https://kyuhen.customprotocol.com/en/submissions/mirror"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com"
     }
   ]
 }

@@ -12,16 +12,17 @@
   "subcategory_ids": [
     "terminal"
   ],
-  "version": "1.0",
-  "version_date": "2026-07-26",
+  "version": "Beta Build 40",
+  "version_date": "2026-04-26",
   "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
-  "size": 11184364,
+  "size": 4188074,
   "status": "Verified",
   "icon": "https://robin994.github.io/NeoVitaDB-Catalog/icons/1320-scratch-everywhere.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/8d131a1e8d3bdf89f9d40000c60235adbf204efa3cfec15aedf0a9e645f6c27a.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/e88571d36aeb78a9596345fb98dcaff69af25a869e4b2f12a1e44c0f28d68f44.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/a975253adb6dd49725048130475fc1d5917657eca11a046c5c383085c9eb9652.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/a975253adb6dd49725048130475fc1d5917657eca11a046c5c383085c9eb9652.png",
+    "screenshots/8d131a1e8d3bdf89f9d40000c60235adbf204efa3cfec15aedf0a9e645f6c27a.png;screenshots/e88571d36aeb78a9596345fb98dcaff69af25a869e4b2f12a1e44c0f28d68f44.png;screenshots/a975253adb6dd49725048130475fc1d5917657eca11a046c5c383085c9eb9652.png"
   ],
   "links": [
     {
@@ -39,6 +40,16 @@
       "type": "Other",
       "name": "Release",
       "url": "https://github.com/ScratchEverywhere/ScratchEverywhere/releases/tag/1.0"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDBtoo VPK",
+      "url": "https://github.com/ScratchEverywhere/ScratchEverywhere/releases/download/0.40/scratch-vita.vpk"
+    },
+    {
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
+      "url": "https://github.com/ScratchEverywhere/ScratchEverywhere/releases"
     }
   ]
 }

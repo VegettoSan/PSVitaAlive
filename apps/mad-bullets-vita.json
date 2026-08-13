@@ -21,7 +21,8 @@
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/47cc37cf64deb38449691f0774c3815a6135cd5701bb8cc1ad949dea86f53d2d.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/d1f4f10c1d841ec417c8fe9721002136e122e6f98938597737f65896e0bfa600.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/44526100fcae22117d675e97098a0c20b490dd592106fe3cca2dff0c8f2b2c7f.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/d2b9542b8a4466ebe356fdcb7b5c3040343b7e9ddf3ef02303a41077262ed662.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/d2b9542b8a4466ebe356fdcb7b5c3040343b7e9ddf3ef02303a41077262ed662.png",
+    "screenshots/47cc37cf64deb38449691f0774c3815a6135cd5701bb8cc1ad949dea86f53d2d.png;screenshots/d1f4f10c1d841ec417c8fe9721002136e122e6f98938597737f65896e0bfa600.png;screenshots/44526100fcae22117d675e97098a0c20b490dd592106fe3cca2dff0c8f2b2c7f.png;screenshots/d2b9542b8a4466ebe356fdcb7b5c3040343b7e9ddf3ef02303a41077262ed662.png"
   ],
   "links": [
     {
@@ -39,6 +40,11 @@
       "type": "Other",
       "name": "Release",
       "url": "https://github.com/Rinnegatamante/mad-bullets-vita/releases"
+    },
+    {
+      "type": "Official Website",
+      "name": "NeoVitaDB Release Page",
+      "url": "https://github.com/Rinnegatamante/mad-bullets-vita/releases/tag/v.1.1"
     }
   ]
 }

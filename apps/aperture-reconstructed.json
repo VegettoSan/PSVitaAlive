@@ -12,7 +12,7 @@
     "other"
   ],
   "version": "v.0.4.00",
-  "version_date": "2026-04-29",
+  "version_date": "2026-08-12",
   "requirements": "- Game Data Files: PC",
   "size": 75242313,
   "status": "Verified",
@@ -21,7 +21,8 @@
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/0a0f2f4066ae61b1781c04fd102a7d8f6cf37be2b72db1b60b7383b3249e523e.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/274482829898c0e96837029951cd7f1b2ecea3a89f0b676f4f841a7c0bb646bc.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/063856924675ed908eec5c353930f09ae5c5e8673a341676f64e143189582d1c.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/01d1a764b5f77ed0aaec703536ddd331213aaaa37247786ef5a30f262207e32b.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/01d1a764b5f77ed0aaec703536ddd331213aaaa37247786ef5a30f262207e32b.png",
+    "screenshots/0a0f2f4066ae61b1781c04fd102a7d8f6cf37be2b72db1b60b7383b3249e523e.png;screenshots/274482829898c0e96837029951cd7f1b2ecea3a89f0b676f4f841a7c0bb646bc.png;screenshots/063856924675ed908eec5c353930f09ae5c5e8673a341676f64e143189582d1c.png;screenshots/01d1a764b5f77ed0aaec703536ddd331213aaaa37247786ef5a30f262207e32b.png"
   ],
   "links": [
     {
@@ -34,6 +35,11 @@
       "type": "Other",
       "name": "Release",
       "url": "https://mrkane.itch.io/aperturereconstructed"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com"
     }
   ]
 }

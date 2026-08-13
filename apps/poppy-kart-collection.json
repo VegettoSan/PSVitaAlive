@@ -21,7 +21,8 @@
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/f9447cf8f1ed8f204abb877d1e73de55a1f0ceeaedba9e88519743f90f1652e7.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/65dcbcaf89841a19c5826c01100b1649e73b3c3ebdc9be451660bfcfb805abb8.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c5c251987fcac53b8fcc257122e960baa0e61f7908f5002f2b0ed905ac4a5893.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/9fa4ba2663047f79894892c645ed5f5e9bc9559f2c00514ade14975c4591d98d.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/9fa4ba2663047f79894892c645ed5f5e9bc9559f2c00514ade14975c4591d98d.png",
+    "screenshots/f9447cf8f1ed8f204abb877d1e73de55a1f0ceeaedba9e88519743f90f1652e7.png;screenshots/65dcbcaf89841a19c5826c01100b1649e73b3c3ebdc9be451660bfcfb805abb8.png;screenshots/c5c251987fcac53b8fcc257122e960baa0e61f7908f5002f2b0ed905ac4a5893.png;screenshots/9fa4ba2663047f79894892c645ed5f5e9bc9559f2c00514ade14975c4591d98d.png"
   ],
   "links": [
     {
@@ -39,6 +40,11 @@
       "type": "Other",
       "name": "Release",
       "url": "https://github.com/Rinnegatamante/Poppy-Kart-Collection/releases"
+    },
+    {
+      "type": "Official Website",
+      "name": "NeoVitaDB Release Page",
+      "url": "https://github.com/Rinnegatamante/Poppy-Kart-Collection/releases/tag/v.1.0"
     }
   ]
 }

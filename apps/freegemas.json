@@ -19,7 +19,8 @@
   "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/84cb4eb71998c3b235483491b3f688746925230c6cb8f68fb13655ea43f9e753.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/934eb37ba2c3cd67ca81477ad9ef6db15b13fe43dc70cabfcb250e75bfd90f82.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/1851400e9504c907600962d8ee9e4818db1840b3eb2fa04a766091b633d6de65.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/1851400e9504c907600962d8ee9e4818db1840b3eb2fa04a766091b633d6de65.png",
+    "screenshots/934eb37ba2c3cd67ca81477ad9ef6db15b13fe43dc70cabfcb250e75bfd90f82.png;screenshots/1851400e9504c907600962d8ee9e4818db1840b3eb2fa04a766091b633d6de65.png"
   ],
   "links": [
     {
@@ -37,6 +38,16 @@
       "type": "Other",
       "name": "Release",
       "url": "https://github.com/JoseTomasTocino/freegemas/releases"
+    },
+    {
+      "type": "Download",
+      "name": "NeoVitaDB VPK",
+      "url": "https://github.com/JoseTomasTocino/freegemas/releases/download/22.02/freegemas-vita.zip"
+    },
+    {
+      "type": "Official Website",
+      "name": "NeoVitaDB Release Page",
+      "url": "https://github.com/JoseTomasTocino/freegemas/releases/tag/22.02"
     }
   ]
 }

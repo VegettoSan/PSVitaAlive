@@ -20,7 +20,8 @@
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/3f54ad6d1d6bc9d6cd6dfd085271dda74e7eac487f92066d0ec44105dea9d6f4.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/500281d9051cee6de763c153c627c0ce2ba706275f96b35e4974a64c71ad2e7c.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/4d0545f815ac52200b1707d465833f50482853d0dfd69078ab76e404927f6616.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/4d0545f815ac52200b1707d465833f50482853d0dfd69078ab76e404927f6616.png",
+    "screenshots/3f54ad6d1d6bc9d6cd6dfd085271dda74e7eac487f92066d0ec44105dea9d6f4.png;screenshots/500281d9051cee6de763c153c627c0ce2ba706275f96b35e4974a64c71ad2e7c.png;screenshots/4d0545f815ac52200b1707d465833f50482853d0dfd69078ab76e404927f6616.png"
   ],
   "links": [
     {
@@ -33,6 +34,11 @@
       "type": "Other",
       "name": "Release",
       "url": "https://github.com/PatnosDD/Cat-Quest-Ps-Vita"
+    },
+    {
+      "type": "Official Website",
+      "name": "NeoVitaDB Release Page",
+      "url": "https://github.com/PatnosDD/Cat-Quest-Ps-Vita/releases/tag/V1.0"
     }
   ]
 }

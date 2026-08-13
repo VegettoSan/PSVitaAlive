@@ -34,6 +34,11 @@
       "type": "Other",
       "name": "Release",
       "url": "https://github.com/alim395/FamilyFisticuffsVita/releases"
+    },
+    {
+      "type": "Official Website",
+      "name": "NeoVitaDB Release Page",
+      "url": "https://github.com/alim395/FamilyFisticuffsVita/releases/tag/v1.00"
     }
   ]
 }

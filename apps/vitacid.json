@@ -34,6 +34,11 @@
       "type": "Other",
       "name": "Release",
       "url": "http://wololo.net/2016/08/18/release-vitacid-get-ps-vita-console-id/"
+    },
+    {
+      "type": "Official Website",
+      "name": "NeoVitaDB Release Page",
+      "url": "https://github.com/MajorTomSec/VitaCID/releases/tag/1.0"
     }
   ]
 }

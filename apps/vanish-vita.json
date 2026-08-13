@@ -20,7 +20,8 @@
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/275d0b60ac82e8c5fd1ee3c8d4a8ffa5d9d6bfc856e6811e5c3d346cac669193.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/8a20d577b4abea8c70228706c0a88031fe445d2e65b0b1818fe2545b44cc6610.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/2542041dc93db0a7b9e72b1486581a3ea10bc16c1f3536602b5ea58f55a65034.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/2542041dc93db0a7b9e72b1486581a3ea10bc16c1f3536602b5ea58f55a65034.png",
+    "screenshots/275d0b60ac82e8c5fd1ee3c8d4a8ffa5d9d6bfc856e6811e5c3d346cac669193.png;screenshots/8a20d577b4abea8c70228706c0a88031fe445d2e65b0b1818fe2545b44cc6610.png;screenshots/2542041dc93db0a7b9e72b1486581a3ea10bc16c1f3536602b5ea58f55a65034.png"
   ],
   "links": [
     {
@@ -33,6 +34,16 @@
       "type": "Other",
       "name": "Release",
       "url": "https://github.com/malone46/VanishVita"
+    },
+    {
+      "type": "Official Website",
+      "name": "NeoVitaDB Release Page",
+      "url": "https://github.com/MaloneCZSD/VanishVita/releases/tag/Beta"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/MaloneCZSD/VanishVita"
     }
   ]
 }

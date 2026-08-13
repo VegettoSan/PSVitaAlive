@@ -21,7 +21,8 @@
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/cf60095af084d05d8c8f51b2788d45e45813907a1c87782b140b61a4c11aa199.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/1a4ccd6ef71e290687fa6fcb9db51d58d1de365083e49575b55ea77c9f298390.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/590f2bf1ffb339e47a75fdb761e9e139ae17374cac8da8f96e2e0d5a41241671.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/b6f89755d710a69eda98ba351cf134ac3ff3eca85d566b7010d262c44be2b2d4.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/b6f89755d710a69eda98ba351cf134ac3ff3eca85d566b7010d262c44be2b2d4.png",
+    "screenshots/cf60095af084d05d8c8f51b2788d45e45813907a1c87782b140b61a4c11aa199.png;screenshots/1a4ccd6ef71e290687fa6fcb9db51d58d1de365083e49575b55ea77c9f298390.png;screenshots/590f2bf1ffb339e47a75fdb761e9e139ae17374cac8da8f96e2e0d5a41241671.png;screenshots/b6f89755d710a69eda98ba351cf134ac3ff3eca85d566b7010d262c44be2b2d4.png"
   ],
   "links": [
     {
@@ -39,6 +40,11 @@
       "type": "Other",
       "name": "Release",
       "url": "https://github.com/Rocroverss/Defender-II-PS-Vita-Port/releases/tag/v1.01"
+    },
+    {
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
+      "url": "https://github.com/Rocroverss/Defender-II-PS-Vita-Port/releases"
     }
   ]
 }

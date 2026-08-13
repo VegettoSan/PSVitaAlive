@@ -11,8 +11,8 @@
   "subcategory_ids": [
     "nintendo-ds"
   ],
-  "version": "0.9.4",
-  "version_date": "2026-07-21",
+  "version": "v.0.9.4",
+  "version_date": "2026-07-22",
   "requirements": "- libshacccg.suprx\n- kubridge.skprx",
   "size": 3990656,
   "status": "Verified",
@@ -21,7 +21,8 @@
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/e53d8a0aba485a3da42b0064642caec93f4ad4c95f81703599a7dd36a172b3af.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/e86253b02f9bccab023f9745bc759059c61ccfb69c8c23c9babbef88342c5d66.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/98f28abf274172f2ead17611e26e84c5ebc826e211bf6007f4cc473825928b56.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/f5040be902b07cbcd7d237f6a622f2572782021aa12d96cfdce3c0da559d1fc1.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/f5040be902b07cbcd7d237f6a622f2572782021aa12d96cfdce3c0da559d1fc1.png",
+    "screenshots/e53d8a0aba485a3da42b0064642caec93f4ad4c95f81703599a7dd36a172b3af.png;screenshots/e86253b02f9bccab023f9745bc759059c61ccfb69c8c23c9babbef88342c5d66.png;screenshots/98f28abf274172f2ead17611e26e84c5ebc826e211bf6007f4cc473825928b56.png;screenshots/f5040be902b07cbcd7d237f6a622f2572782021aa12d96cfdce3c0da559d1fc1.png"
   ],
   "links": [
     {
@@ -39,6 +40,11 @@
       "type": "Other",
       "name": "Release",
       "url": "https://github.com/Grarak/DSVita/releases/tag/0.9.4"
+    },
+    {
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
+      "url": "https://github.com/Grarak/DSVita/releases"
     }
   ]
 }

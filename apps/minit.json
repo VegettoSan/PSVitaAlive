@@ -19,7 +19,8 @@
   "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/80b198ce00212b44d0866a8a265d80e6ecb4f652cefa9d8cbdba19630af123f0.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/4d847e68c15c915b6bb2da224f39baa88e65bf422619f5c68e8fe92c31b99aa2.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/4e305a2a02676b4c0926c462ef8163798bc79d53131dc72d57351d1fe3e6fcbc.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/4e305a2a02676b4c0926c462ef8163798bc79d53131dc72d57351d1fe3e6fcbc.png",
+    "screenshots/4d847e68c15c915b6bb2da224f39baa88e65bf422619f5c68e8fe92c31b99aa2.png;screenshots/4e305a2a02676b4c0926c462ef8163798bc79d53131dc72d57351d1fe3e6fcbc.png"
   ],
   "links": [
     {
@@ -32,6 +33,11 @@
       "type": "Other",
       "name": "Release",
       "url": "https://github.com/m1s3ry/minit-vita"
+    },
+    {
+      "type": "Official Website",
+      "name": "NeoVitaDB Release Page",
+      "url": "https://github.com/m1s3ry/minit-vita/releases/tag/v1.1"
     }
   ]
 }

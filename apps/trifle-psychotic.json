@@ -1,0 +1,49 @@
+{
+  "id": "trifle-psychotic",
+  "title_id": "TRFL00001",
+  "name": "Trifle Psychotic",
+  "description": "Port of Trifle Psychotic for PSVITA.",
+  "long_description": "Port of Trifle Psychotic for PSVITA.",
+  "author_ids": [
+    "kiddrwxssj"
+  ],
+  "category_id": "games",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.1.0.0",
+  "version_date": "2026-08-09",
+  "requirements": "",
+  "size": 22709547,
+  "status": "Legacy",
+  "icon": "06c2e06af2aa49a9ff89a20bf5512d8ca3702b273af32a6156a62bfafa008ddb.png",
+  "screenshots": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "VitaDBtoo VPK",
+      "url": "https://github.com/KiddRwxSsj/trifle-psychotic-vita/releases/download/1.0.0/TriflePsychotic.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
+      "url": "https://github.com/KiddRwxSsj/trifle-psychotic-vita/releases"
+    },
+    {
+      "type": "Official Website",
+      "name": "NeoVitaDB Release Page",
+      "url": "https://github.com/KiddRwxSsj/trifle-psychotic-vita/releases/tag/1.0.0"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/KiddRwxSsj/trifle-psychotic-vita"
+    }
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "1470",
+  "source_url": "https://github.com/KiddRwxSsj/trifle-psychotic-vita",
+  "release_page": "https://github.com/KiddRwxSsj/trifle-psychotic-vita/releases",
+  "updated_at": "2026-08-13T05:25:55.176525+00:00"
+}

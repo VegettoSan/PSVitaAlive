@@ -34,6 +34,11 @@
       "type": "Other",
       "name": "Release",
       "url": "https://github.com/stoicpingu/leos-fortune-vita/releases/tag/v1.0"
+    },
+    {
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
+      "url": "https://github.com/stoicpingu/leos-fortune-vita/releases"
     }
   ]
 }

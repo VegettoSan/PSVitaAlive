@@ -34,6 +34,11 @@
       "type": "Other",
       "name": "Release",
       "url": "http://gekihen.customprotocol.com/en/project/GNU-Robbo"
+    },
+    {
+      "type": "Official Website",
+      "name": "NeoVitaDB Release Page",
+      "url": "https://github.com/bomblik/GNU_Robbo_PSVITA_PSP/releases/tag/GNU_Robbo_0.68_PSVITA"
     }
   ]
 }

@@ -20,7 +20,9 @@
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/25717dd7223a9bf135a04f95ff60f8524fb7adcd306e22dc284830d09faba8cb.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/92f16ad1f54ba914546151030098153509eac23a9e12b3bbdbf7467e19f1cc4f.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/6782b72bf90a27b58765effc75074b6e1ac28c0514510273c6105ebcbd4a9199.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/6782b72bf90a27b58765effc75074b6e1ac28c0514510273c6105ebcbd4a9199.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/02ad7e60dc55b724908cb5123b7aaed570e9a0bf145bbc7802b379814481104d.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/5efc563fef6d8d54dfef7673e54fcf68ca64cdcff2590866367aa522ac0c41bf.png"
   ],
   "links": [
     {
@@ -38,6 +40,16 @@
       "type": "Other",
       "name": "Release",
       "url": "https://kyuhen.customprotocol.com/en/submissions/vanilla_conquer"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDBtoo VPK",
+      "url": "https://github.com/Northfear/Vanilla-Conquer-vita/releases/download/v1.0-r914/vanillatd.vpk"
+    },
+    {
+      "type": "Official Website",
+      "name": "NeoVitaDB Release Page",
+      "url": "https://github.com/Northfear/Vanilla-Conquer-vita/releases/tag/v1.0-r914"
     }
   ]
 }

@@ -12,14 +12,15 @@
     "other"
   ],
   "version": "v.0.1.1",
-  "version_date": "2023-08-12",
+  "version_date": "2026-08-12",
   "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
   "size": 40013315,
   "status": "Verified",
   "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/534b366c43079b27ad27380a30dac483d96f6f43ac7a711d10e0a1bb7a7d99d4.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/3f6f5b4405bf769ec62c810c7badcb9935292b7978d74b3114ec8811ab3211c1.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/d54977af42fac3e25b5e329faea27b5d6869f068ed1921fc258eacb77821a76b.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/d54977af42fac3e25b5e329faea27b5d6869f068ed1921fc258eacb77821a76b.png",
+    "screenshots/3f6f5b4405bf769ec62c810c7badcb9935292b7978d74b3114ec8811ab3211c1.png;screenshots/d54977af42fac3e25b5e329faea27b5d6869f068ed1921fc258eacb77821a76b.png"
   ],
   "links": [
     {
@@ -32,6 +33,11 @@
       "type": "Other",
       "name": "Release",
       "url": "https://gamejolt.com/games/l4d2psp/794205"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com"
     }
   ]
 }

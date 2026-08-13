@@ -12,7 +12,7 @@
     "other"
   ],
   "version": "v.1.0",
-  "version_date": "2022-05-01",
+  "version_date": "2026-08-12",
   "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
   "size": 26100600,
   "status": "Verified",
@@ -21,7 +21,8 @@
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/93f0321e856087f1efb00a716ba676a2519743f472611059ead5be547aa83cb7.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/0a75703d45e63438a14c2f7fd85e239fb924249cfac29c6ca51af19845d8fb78.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/dc9dc7e1d0a999a65ba4d5d1dcd1341bd3ec975058e4e77f0a22747a542a6a01.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/22105d1f66eaa6aece6d5ce82db442c2b6f19283eacae0effd659efc04495237.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/22105d1f66eaa6aece6d5ce82db442c2b6f19283eacae0effd659efc04495237.png",
+    "screenshots/93f0321e856087f1efb00a716ba676a2519743f472611059ead5be547aa83cb7.png;screenshots/0a75703d45e63438a14c2f7fd85e239fb924249cfac29c6ca51af19845d8fb78.png;screenshots/dc9dc7e1d0a999a65ba4d5d1dcd1341bd3ec975058e4e77f0a22747a542a6a01.png;screenshots/22105d1f66eaa6aece6d5ce82db442c2b6f19283eacae0effd659efc04495237.png"
   ],
   "links": [
     {
@@ -34,6 +35,11 @@
       "type": "Other",
       "name": "Release",
       "url": "https://bokonon-yossarian.itch.io/blue-bayou"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com"
     }
   ]
 }

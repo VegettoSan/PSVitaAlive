@@ -12,13 +12,14 @@
     "other"
   ],
   "version": "v.1.06",
-  "version_date": "2026-07-20",
+  "version_date": "2026-08-12",
   "requirements": "- libshacccg.suprx\n- kubridge.skprx\n- Game Data Files: Android",
   "size": 1863993,
   "status": "Verified",
   "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/0fda23ce47ec5db83ae5983606818219a9657f34fcdff332b7097965c41c753c.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/9d8e0a062a7cc8f387ea784a4a41390e9e17e01cecce45463812353f127c84fb.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/9d8e0a062a7cc8f387ea784a4a41390e9e17e01cecce45463812353f127c84fb.png",
+    "screenshots/9d8e0a062a7cc8f387ea784a4a41390e9e17e01cecce45463812353f127c84fb.png"
   ],
   "links": [
     {
@@ -59,6 +60,11 @@
       "type": "Other",
       "name": "Release",
       "url": "https://x.com/devnoname120"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com"
     }
   ]
 }

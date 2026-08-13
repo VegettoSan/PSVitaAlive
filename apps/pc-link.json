@@ -12,7 +12,7 @@
     "game-streaming"
   ],
   "version": "v.0.8b",
-  "version_date": "2017-12-24",
+  "version_date": "2026-08-12",
   "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
   "size": 2599085,
   "status": "Verified",
@@ -20,7 +20,8 @@
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/a5e5a3e537884b29e0cdaa2e50bf6f2e7c6dd99800a667640b42a10b076be90a.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/51fe6650c384e99019c402711aa54c5cb52d930ba3755e261ff0226ea70fb665.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/a5488ee7cc6fb6f50906c3002c140fafc3a1001bdc2d119e5f2310af9f7c90e6.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/a5488ee7cc6fb6f50906c3002c140fafc3a1001bdc2d119e5f2310af9f7c90e6.png",
+    "screenshots/a5e5a3e537884b29e0cdaa2e50bf6f2e7c6dd99800a667640b42a10b076be90a.png;screenshots/51fe6650c384e99019c402711aa54c5cb52d930ba3755e261ff0226ea70fb665.png;screenshots/a5488ee7cc6fb6f50906c3002c140fafc3a1001bdc2d119e5f2310af9f7c90e6.png"
   ],
   "links": [
     {
@@ -28,6 +29,11 @@
       "name": "Descarga principal",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/358-pclink.vpk",
       "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com"
     }
   ]
 }

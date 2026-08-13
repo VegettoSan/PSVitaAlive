@@ -21,7 +21,8 @@
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/0db26f785375a7e4f2baa3b9a9ad8ecbde2de8f0737c67098a8ed9082c1678bf.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/02af94269f09d5179b115c5fd9b9370b80d71a477790e406cdf88d467a525b7a.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/9bb1b8225a07b6061c687566330c99c9460708ede89563dc8d362164a73728ae.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/a2c5818b2c19047464edfe0de072d4c7f2512fa7263259127bd38bc7ddef5955.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/a2c5818b2c19047464edfe0de072d4c7f2512fa7263259127bd38bc7ddef5955.png",
+    "screenshots/0db26f785375a7e4f2baa3b9a9ad8ecbde2de8f0737c67098a8ed9082c1678bf.png;screenshots/02af94269f09d5179b115c5fd9b9370b80d71a477790e406cdf88d467a525b7a.png;screenshots/9bb1b8225a07b6061c687566330c99c9460708ede89563dc8d362164a73728ae.png;screenshots/a2c5818b2c19047464edfe0de072d4c7f2512fa7263259127bd38bc7ddef5955.png"
   ],
   "links": [
     {
@@ -39,6 +40,16 @@
       "type": "Other",
       "name": "Release",
       "url": "https://github.com/ammeir/hurrican/releases/tag/v0.9"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDBtoo VPK",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/617-hurrican.vpk"
+    },
+    {
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
+      "url": "https://github.com/ammeir/hurrican/releases"
     }
   ]
 }

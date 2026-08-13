@@ -29,6 +29,16 @@
       "type": "Other",
       "name": "Release",
       "url": "https://github.com/mrdivdiz/aowv/releases"
+    },
+    {
+      "type": "Official Website",
+      "name": "NeoVitaDB Release Page",
+      "url": "https://github.com/mrdivdiz/aowv/releases/tag/v1.1"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/mrdivdiz/aowv"
     }
   ]
 }

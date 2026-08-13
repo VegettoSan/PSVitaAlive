@@ -11,10 +11,10 @@
   "subcategory_ids": [
     "account"
   ],
-  "version": "v.0.2.2",
-  "version_date": "2022-11-20",
+  "version": "v0.2.9",
+  "version_date": "2023-01-04",
   "requirements": "- libshacccg.suprx\n- iTLS-Enso or latest firmware",
-  "size": 1706175,
+  "size": 2663165,
   "status": "Verified",
   "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/f16b21c81f91cb5d5a156864a5a34365d4877558c7257248036b887cc3efe51f.png",
   "screenshots": [],
@@ -34,6 +34,16 @@
       "type": "Other",
       "name": "Release",
       "url": "https://github.com/michal4132/cspot_vita/releases"
+    },
+    {
+      "type": "Download",
+      "name": "NeoVitaDB VPK",
+      "url": "https://github.com/michal4132/cspot_vita/releases/download/v0.2.9/cspot_vita.vpk"
+    },
+    {
+      "type": "Official Website",
+      "name": "NeoVitaDB Release Page",
+      "url": "https://github.com/michal4132/cspot_vita/releases/tag/v0.2.9"
     }
   ]
 }

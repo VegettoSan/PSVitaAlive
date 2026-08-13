@@ -12,7 +12,7 @@
     "other"
   ],
   "version": "v.1.01",
-  "version_date": "2022-08-29",
+  "version_date": "2026-08-12",
   "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
   "size": 14384313,
   "status": "Verified",
@@ -20,7 +20,8 @@
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/2d1538d197f113a90ab4a600bc2f8c9d8d0ea853d510c0beefb450a0667e6a21.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/26f5f3cf78cbbfd5c6b4e14309105bdcaf102a886920c18d7698446a597904bf.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/33deb7ffefd26185a58a4d8cb0761f478baadca97411951b1d263a3b1695b636.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/33deb7ffefd26185a58a4d8cb0761f478baadca97411951b1d263a3b1695b636.png",
+    "screenshots/2d1538d197f113a90ab4a600bc2f8c9d8d0ea853d510c0beefb450a0667e6a21.png;screenshots/26f5f3cf78cbbfd5c6b4e14309105bdcaf102a886920c18d7698446a597904bf.png;screenshots/33deb7ffefd26185a58a4d8cb0761f478baadca97411951b1d263a3b1695b636.png"
   ],
   "links": [
     {
@@ -33,6 +34,11 @@
       "type": "Other",
       "name": "Release",
       "url": "https://github.com/Fimo4ka/Linne-PSVita-port"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com"
     }
   ]
 }

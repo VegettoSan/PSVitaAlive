@@ -34,6 +34,11 @@
       "type": "Other",
       "name": "Release",
       "url": "https://github.com/henkaku/offline-installer/releases/tag/1.0"
+    },
+    {
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
+      "url": "http://wololo.net/2016/08/11/henkaku-offline-installer-released/"
     }
   ]
 }

@@ -20,7 +20,9 @@
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/b5a3d53c33e56d11d916b81d1f390f8714627faa76e88eef9b40512e3b24f5b2.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/020234e9497b68920227b107a00685f983db25d6f732deb0a20d1958b037947c.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/9127234c027d6cb75e0070bdf45825b0f9b890f60ed19c01b01d55cfac066a0c.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/9127234c027d6cb75e0070bdf45825b0f9b890f60ed19c01b01d55cfac066a0c.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/db1374fde064f9be268d2438bd91bf4c687f99076ef63b05d7b2b4285d8b0bec.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/26180fa4e83b2acc25607ee4373e917200ed2151f32023baf31675e1db0e19e3.png"
   ],
   "links": [
     {
@@ -38,6 +40,16 @@
       "type": "Other",
       "name": "Release",
       "url": "https://github.com/Xeeynamo/Sonic-1-2-2013-Decompilation/releases/"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDBtoo VPK",
+      "url": "https://github.com/Xeeynamo/Sonic-1-2-2013-Decompilation/releases/download/v1.1.0/Sonic2-xeeynamo-v110.vpk"
+    },
+    {
+      "type": "Official Website",
+      "name": "NeoVitaDB Release Page",
+      "url": "https://github.com/Xeeynamo/Sonic-1-2-2013-Decompilation/releases/tag/v1.1.0"
     }
   ]
 }

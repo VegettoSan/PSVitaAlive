@@ -12,7 +12,7 @@
     "other"
   ],
   "version": "v.1.0",
-  "version_date": "2022-02-02",
+  "version_date": "2026-08-12",
   "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
   "size": 26070989,
   "status": "Verified",
@@ -20,7 +20,8 @@
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/e5eb8b6385b874b36a2101e089d1bc0df2418628daf9956c371beb97e92eeacf.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/0fc9567f9bbf4bbdf913f2b5ba72d343398bef9075e27a6ffc4763a1b7b75bd7.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/4bdf4b01f80f19c1b25650adbc318a18d7d36250ba8f536eb1906283a5831128.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/4bdf4b01f80f19c1b25650adbc318a18d7d36250ba8f536eb1906283a5831128.png",
+    "screenshots/e5eb8b6385b874b36a2101e089d1bc0df2418628daf9956c371beb97e92eeacf.png;screenshots/0fc9567f9bbf4bbdf913f2b5ba72d343398bef9075e27a6ffc4763a1b7b75bd7.png;screenshots/4bdf4b01f80f19c1b25650adbc318a18d7d36250ba8f536eb1906283a5831128.png"
   ],
   "links": [
     {
@@ -33,6 +34,11 @@
       "type": "Other",
       "name": "Release",
       "url": "https://glitcherog.itch.io/protect-the-earth"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com"
     }
   ]
 }

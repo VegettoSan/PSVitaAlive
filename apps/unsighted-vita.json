@@ -29,6 +29,11 @@
       "type": "Other",
       "name": "Release",
       "url": "https://github.com/PatnosDD/Unsighted-Ps-Vita"
+    },
+    {
+      "type": "Official Website",
+      "name": "NeoVitaDB Release Page",
+      "url": "https://github.com/PatnosDD/Unsighted-Ps-Vita/releases/tag/V0.3"
     }
   ]
 }

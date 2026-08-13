@@ -11,14 +11,15 @@
   "subcategory_ids": [
     "other"
   ],
-  "version": "v.latest",
-  "version_date": "2023-01-02",
+  "version": "latest",
+  "version_date": "2023-01-03",
   "requirements": "- libshacccg.suprx",
   "size": 15798332,
   "status": "Verified",
   "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/26ba7e84ae7c6ed20e7fe7f0e1b8d5ab44b5194d2204eabb95e47c36680e322d.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/237aca5b0e0f39824dcc9e988998b0270e5f8c51a97b6248d0d10260182fc275.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/237aca5b0e0f39824dcc9e988998b0270e5f8c51a97b6248d0d10260182fc275.png",
+    "screenshots/237aca5b0e0f39824dcc9e988998b0270e5f8c51a97b6248d0d10260182fc275.png"
   ],
   "links": [
     {
@@ -36,6 +37,11 @@
       "type": "Other",
       "name": "Release",
       "url": "https://github.com/cy33hc/vita-webdav-client/releases"
+    },
+    {
+      "type": "Official Website",
+      "name": "NeoVitaDB Release Page",
+      "url": "https://github.com/cy33hc/vita-webdav-client/releases/tag/latest"
     }
   ]
 }

@@ -12,7 +12,7 @@
     "themes"
   ],
   "version": "v.0.2",
-  "version_date": "2019-03-25",
+  "version_date": "2026-08-12",
   "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
   "size": 58460781,
   "status": "Verified",
@@ -21,7 +21,8 @@
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/3d0fad9bb19116ce44a1ba8fa860bce28823fe9a43b846c9efeb6a3c3e9a6d33.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/a9acd9c199c974ad7e9f4944597a4f9b463f4fd21cbe260a4ba005d6e6494d78.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/97e36dee98e6d34bd4c1a6e25dbab81664f436a33f6c86006e96156e9b40cb2a.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/774a882b98fe25fc1b48ebad7fe2ad37bd24cb0852b1e680b27cae247d6af15b.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/774a882b98fe25fc1b48ebad7fe2ad37bd24cb0852b1e680b27cae247d6af15b.png",
+    "screenshots/3d0fad9bb19116ce44a1ba8fa860bce28823fe9a43b846c9efeb6a3c3e9a6d33.png;screenshots/a9acd9c199c974ad7e9f4944597a4f9b463f4fd21cbe260a4ba005d6e6494d78.png;screenshots/97e36dee98e6d34bd4c1a6e25dbab81664f436a33f6c86006e96156e9b40cb2a.png;screenshots/774a882b98fe25fc1b48ebad7fe2ad37bd24cb0852b1e680b27cae247d6af15b.png"
   ],
   "links": [
     {
@@ -29,6 +30,11 @@
       "name": "Descarga principal",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/442-MKMayhem.vpk",
       "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com"
     }
   ]
 }

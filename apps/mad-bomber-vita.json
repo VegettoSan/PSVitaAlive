@@ -18,7 +18,8 @@
   "status": "Verified",
   "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/9cd72f4c6a673fb382c5d441058538d9f4c05d28788353bb180529f69360004c.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/866241fa6c203431d4430d6babaf93b88bcf722c20a019140292fc63d07f211e.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/866241fa6c203431d4430d6babaf93b88bcf722c20a019140292fc63d07f211e.png",
+    "screenshots/866241fa6c203431d4430d6babaf93b88bcf722c20a019140292fc63d07f211e.png"
   ],
   "links": [
     {
@@ -36,6 +37,11 @@
       "type": "Other",
       "name": "Release",
       "url": "https://github.com/SonicMastr/Mad-Bomber-Vita/releases"
+    },
+    {
+      "type": "Official Website",
+      "name": "NeoVitaDB Release Page",
+      "url": "https://github.com/SonicMastr/Mad-Bomber-Vita/releases/tag/1.0"
     }
   ]
 }

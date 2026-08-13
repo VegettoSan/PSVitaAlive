@@ -12,13 +12,14 @@
     "other"
   ],
   "version": "v.1.0",
-  "version_date": "2020-04-13",
+  "version_date": "2026-08-12",
   "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
   "size": 48778063,
   "status": "Verified",
   "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/c551cc11520becb9e71c2d2b0144c997035ffbd11d69bb0051ea70258b1e619a.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/eb3ebc2e60e7f91f8058a105063edd68750caf4c823fc35d51aaa90d4ee55b6b.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/eb3ebc2e60e7f91f8058a105063edd68750caf4c823fc35d51aaa90d4ee55b6b.png",
+    "screenshots/eb3ebc2e60e7f91f8058a105063edd68750caf4c823fc35d51aaa90d4ee55b6b.png"
   ],
   "links": [
     {
@@ -26,6 +27,11 @@
       "name": "Descarga principal",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/548-RiverRaid.vpk",
       "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com"
     }
   ]
 }

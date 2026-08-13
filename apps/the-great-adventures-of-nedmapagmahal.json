@@ -12,7 +12,7 @@
     "platformer"
   ],
   "version": "v.1.1",
-  "version_date": "2020-09-15",
+  "version_date": "2026-08-12",
   "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
   "size": 111872206,
   "status": "Verified",
@@ -20,7 +20,8 @@
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/078ccb0f81c1c0a577550436a0c852dbf7987c054e398296af60ab94e57d2fc6.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/f4076caa2a49818ae0d7c63a903334800f39d1b60f7b1e9cf760b3a414e6dae9.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/a2e3012063c76f69674e26468dfdc28dd5e12e98542860a1c3fdeb8cfe73d9fc.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/a2e3012063c76f69674e26468dfdc28dd5e12e98542860a1c3fdeb8cfe73d9fc.png",
+    "screenshots/078ccb0f81c1c0a577550436a0c852dbf7987c054e398296af60ab94e57d2fc6.png;screenshots/f4076caa2a49818ae0d7c63a903334800f39d1b60f7b1e9cf760b3a414e6dae9.png;screenshots/a2e3012063c76f69674e26468dfdc28dd5e12e98542860a1c3fdeb8cfe73d9fc.png"
   ],
   "links": [
     {
@@ -28,6 +29,11 @@
       "name": "Descarga principal",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/562-NedoKun.vpk",
       "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com"
     }
   ]
 }

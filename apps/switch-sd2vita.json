@@ -35,6 +35,16 @@
       "type": "Other",
       "name": "Release",
       "url": "https://github.com/Applelo/SwitchSD2Vita/releases/tag/2.1"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDBtoo VPK",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/294-switch_sd2vita.vpk"
+    },
+    {
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
+      "url": "http://wololo.net/talk/viewtopic.php?p=419388"
     }
   ]
 }

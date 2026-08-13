@@ -21,7 +21,8 @@
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/af2ffdce5d9276ebcb159df3e849a7864b5e5c6b78a969d41ef200767685eee4.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/7d08d84d4f502f5c2668d8dc9fc523cd2d78ed7d909c13114028281274caab5b.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c97d33ffadec32cf71758411f910fb9411f377fe7edb8bc96a01a00d494ff6d5.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c97d33ffadec32cf71758411f910fb9411f377fe7edb8bc96a01a00d494ff6d5.png",
+    "screenshots/af2ffdce5d9276ebcb159df3e849a7864b5e5c6b78a969d41ef200767685eee4.png;screenshots/7d08d84d4f502f5c2668d8dc9fc523cd2d78ed7d909c13114028281274caab5b.png;screenshots/c97d33ffadec32cf71758411f910fb9411f377fe7edb8bc96a01a00d494ff6d5.png"
   ],
   "links": [
     {
@@ -34,6 +35,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/thatoneham/Tiny-Crate-Vita"
+    },
+    {
+      "type": "Official Website",
+      "name": "NeoVitaDB Release Page",
+      "url": "https://github.com/thatoneham/Tiny-Crate-Vita/releases/tag/Main"
     }
   ]
 }

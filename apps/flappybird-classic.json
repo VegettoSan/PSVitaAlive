@@ -11,17 +11,18 @@
   "subcategory_ids": [
     "other"
   ],
-  "version": "v.1.2",
-  "version_date": "2019-10-06",
+  "version": "v1.21",
+  "version_date": "2020-04-08",
   "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
-  "size": 398722,
+  "size": 398871,
   "status": "Verified",
   "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/fe92f7fadb6923b3fb129c3051737a666b9a1ff179579c778a509cdf2832b47e.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c6963320e985fc14018a54ff8bf615746e5536f4fd8a42bf7aa7ea814653da6e.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/f1974070d838062a0203abc42d3bc88579627a6f13341ffa550fa58a32879fe8.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/44d95e8b35e1dfe5b977933833f3ae2b8fcd24d20f7effd2e0cdd3201538095a.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/78bc4bc28ba73c7ac86df0200101e351b277a778af99cd5a94c89021a66c6cdb.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/78bc4bc28ba73c7ac86df0200101e351b277a778af99cd5a94c89021a66c6cdb.png",
+    "screenshots/c6963320e985fc14018a54ff8bf615746e5536f4fd8a42bf7aa7ea814653da6e.png;screenshots/f1974070d838062a0203abc42d3bc88579627a6f13341ffa550fa58a32879fe8.png;screenshots/44d95e8b35e1dfe5b977933833f3ae2b8fcd24d20f7effd2e0cdd3201538095a.png;screenshots/78bc4bc28ba73c7ac86df0200101e351b277a778af99cd5a94c89021a66c6cdb.png"
   ],
   "links": [
     {
@@ -39,6 +40,16 @@
       "type": "Other",
       "name": "Release",
       "url": "https://github.com/Creckeryop/Flappy-Bird-Classic-vita/releases"
+    },
+    {
+      "type": "Download",
+      "name": "NeoVitaDB VPK",
+      "url": "https://github.com/Creckeryop/Flappy-Bird-Classic-vita/releases/download/v1.21/FBClassic.vpk"
+    },
+    {
+      "type": "Official Website",
+      "name": "NeoVitaDB Release Page",
+      "url": "https://github.com/Creckeryop/Flappy-Bird-Classic-vita/releases/tag/v1.21"
     }
   ]
 }

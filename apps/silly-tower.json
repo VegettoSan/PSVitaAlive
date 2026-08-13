@@ -20,7 +20,8 @@
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/4dc0aefb51f7747b1076fa8d78414494d217effe34abb2e15b03aaa23ee10a4c.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/10632c798635439701cd976796aa8682b43da1e23e61a414f990860bf3339cfc.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/5b318652ee497cf50ff184f8fc2ffc55261d71058da0aab65fdf7719a59682dc.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/5b318652ee497cf50ff184f8fc2ffc55261d71058da0aab65fdf7719a59682dc.png",
+    "screenshots/4dc0aefb51f7747b1076fa8d78414494d217effe34abb2e15b03aaa23ee10a4c.png;screenshots/10632c798635439701cd976796aa8682b43da1e23e61a414f990860bf3339cfc.png;screenshots/5b318652ee497cf50ff184f8fc2ffc55261d71058da0aab65fdf7719a59682dc.png"
   ],
   "links": [
     {
@@ -38,6 +39,11 @@
       "type": "Other",
       "name": "Release",
       "url": "https://kyuhen.customprotocol.com/en/submissions/sillytower/"
+    },
+    {
+      "type": "Official Website",
+      "name": "NeoVitaDB Release Page",
+      "url": "https://github.com/Cpasjuste/sillytower/releases/tag/1.3"
     }
   ]
 }

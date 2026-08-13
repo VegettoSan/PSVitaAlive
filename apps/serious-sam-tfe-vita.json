@@ -20,7 +20,9 @@
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/7c36c24a0d8bed53e5d93ab200d169e3b833f6f7ee12c60431b3d1f77be2f27d.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/5815fb289f5d2b0ef845dceab577b5f16ceffb276430d4786b729c1129180670.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/da3f9cd0604da4a3248fbb576c447f86a4a83b6eb0407427e4bf3f5bcf1f619e.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/da3f9cd0604da4a3248fbb576c447f86a4a83b6eb0407427e4bf3f5bcf1f619e.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/60ab9e0a27ea3baa8de7026d40a00b052ad02fdb7d93be1579c051abdb0e3073.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/424f391fdc9f8b520c180b3fa0a602be44a28efbafc77fb07ddc60d975dbd373.png"
   ],
   "links": [
     {
@@ -38,6 +40,16 @@
       "type": "Other",
       "name": "Release",
       "url": "https://github.com/fgsfdsfgs/Serious-Engine/releases"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDBtoo VPK",
+      "url": "https://github.com/fgsfdsfgs/Serious-Engine/releases/download/psvita2/ssam_tse_v2.vpk"
+    },
+    {
+      "type": "Official Website",
+      "name": "NeoVitaDB Release Page",
+      "url": "https://github.com/fgsfdsfgs/Serious-Engine/releases/tag/psvita2"
     }
   ]
 }

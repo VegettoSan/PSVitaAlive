@@ -12,14 +12,15 @@
     "video-player"
   ],
   "version": "v.1.03",
-  "version_date": "2022-12-10",
+  "version_date": "2026-08-12",
   "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
   "size": 2934998,
   "status": "Verified",
   "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/16110cafc2f2a7e39b3ff2de553c6c7a963a10983e7e507f0b3359e85fea1b02.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/9707c8734c645d427a9c539a5c55d6ef4269f2648f0117abde8ce9d7d3a57cf6.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/1f39c81142aea9edf3fb334397591b19f76a9153326f257f1f44300bb19bb813.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/1f39c81142aea9edf3fb334397591b19f76a9153326f257f1f44300bb19bb813.png",
+    "screenshots/9707c8734c645d427a9c539a5c55d6ef4269f2648f0117abde8ce9d7d3a57cf6.png;screenshots/1f39c81142aea9edf3fb334397591b19f76a9153326f257f1f44300bb19bb813.png"
   ],
   "links": [
     {

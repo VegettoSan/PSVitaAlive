@@ -12,13 +12,14 @@
     "shooter"
   ],
   "version": "v.1.0",
-  "version_date": "2025-10-21",
+  "version_date": "2026-08-12",
   "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
   "size": 4303132,
   "status": "Verified",
   "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/7a6ef76d3992cbbdc06a4032706ffc3c7573dcd3a462ccaed43abdfc00ff33d8.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/28f83d47e996a1cc0653cf857a24c62e9931e4f49f5b3b30e5b02bf075362441.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/28f83d47e996a1cc0653cf857a24c62e9931e4f49f5b3b30e5b02bf075362441.png",
+    "screenshots/28f83d47e996a1cc0653cf857a24c62e9931e4f49f5b3b30e5b02bf075362441.png"
   ],
   "links": [
     {

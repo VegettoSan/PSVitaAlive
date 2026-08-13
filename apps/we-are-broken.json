@@ -12,14 +12,15 @@
     "other"
   ],
   "version": "v.1.0.1",
-  "version_date": "2021-04-06",
+  "version_date": "2026-08-12",
   "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
   "size": 215970370,
   "status": "Verified",
   "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/016726b1c0ec8225118b84fda161c7ac7e9d9c09b97b68f690d9cde5e7c8c602.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/eb7503dbcc6ecec87b87ef11efea23c096ae7c375babeb329a375e44c05bd73b.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/6fe716ca95f6f45cd85bc0f67dbd7ff043a0cffcdb60bf76106ce394e29a9bfa.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/6fe716ca95f6f45cd85bc0f67dbd7ff043a0cffcdb60bf76106ce394e29a9bfa.png",
+    "screenshots/eb7503dbcc6ecec87b87ef11efea23c096ae7c375babeb329a375e44c05bd73b.png;screenshots/6fe716ca95f6f45cd85bc0f67dbd7ff043a0cffcdb60bf76106ce394e29a9bfa.png"
   ],
   "links": [
     {
@@ -32,6 +33,11 @@
       "type": "Other",
       "name": "Release",
       "url": "https://raulqueisso.itch.io/we-are-broken"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com"
     }
   ]
 }

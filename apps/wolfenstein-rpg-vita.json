@@ -12,7 +12,7 @@
     "fps"
   ],
   "version": "v.1.0",
-  "version_date": "2025-04-21",
+  "version_date": "2026-08-12",
   "requirements": "- libshacccg.suprx\n- Game Data Files: Mobile",
   "size": 2221418,
   "status": "Verified",
@@ -21,7 +21,8 @@
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c7929b6c7fb71f013c49326c1d878f9aaf87a33bbdec2f60ad5e9a7ba56c253d.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/a0195261d175e5beff84e5a939e5dd385d1b6ee9c9d8b31a5bcfb8a794b6f2cd.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/910c5994b1fef29e840140769e07a321be946fdb7e54ece3919a5c45225a36fa.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/6c04e0f819307c6acf85b1929dcbb1301e3f9e350d58fdcd7ce4a4dddb3702b0.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/6c04e0f819307c6acf85b1929dcbb1301e3f9e350d58fdcd7ce4a4dddb3702b0.png",
+    "screenshots/c7929b6c7fb71f013c49326c1d878f9aaf87a33bbdec2f60ad5e9a7ba56c253d.png;screenshots/a0195261d175e5beff84e5a939e5dd385d1b6ee9c9d8b31a5bcfb8a794b6f2cd.png;screenshots/910c5994b1fef29e840140769e07a321be946fdb7e54ece3919a5c45225a36fa.png;screenshots/6c04e0f819307c6acf85b1929dcbb1301e3f9e350d58fdcd7ce4a4dddb3702b0.png"
   ],
   "links": [
     {

@@ -21,7 +21,8 @@
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/caa7649e5c84d084ac5ae21d4da2ccb24611506c58abc2504a4dedce36adb060.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/bd1b1b9e47853026b1c4b9632994a53bc8a388ff1481a4be4174c6ab4fca8892.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/34c8c61c63a836bfd2c58bc1db4163c1f843076fea2bb170f6260a6d7a6b2868.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/ae74c479019f71c902efa3e562429f5fb1000004a0d6c06572846434334dd00e.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/ae74c479019f71c902efa3e562429f5fb1000004a0d6c06572846434334dd00e.png",
+    "screenshots/caa7649e5c84d084ac5ae21d4da2ccb24611506c58abc2504a4dedce36adb060.png;screenshots/bd1b1b9e47853026b1c4b9632994a53bc8a388ff1481a4be4174c6ab4fca8892.png;screenshots/34c8c61c63a836bfd2c58bc1db4163c1f843076fea2bb170f6260a6d7a6b2868.png;screenshots/ae74c479019f71c902efa3e562429f5fb1000004a0d6c06572846434334dd00e.png"
   ],
   "links": [
     {
@@ -39,6 +40,11 @@
       "type": "Other",
       "name": "Release",
       "url": "https://github.com/MEGAgameBoy/Italian-Plumber-Adventures-PS-Vita/releases"
+    },
+    {
+      "type": "Official Website",
+      "name": "NeoVitaDB Release Page",
+      "url": "https://github.com/MEGAgameBoy/Italian-Plumber-Adventures-PS-Vita/releases/tag/1.1"
     }
   ]
 }

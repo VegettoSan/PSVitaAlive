@@ -13,16 +13,17 @@
     "fps"
   ],
   "version": "nightly",
-  "version_date": "2026-08-05",
+  "version_date": "2026-08-10",
   "requirements": "- libshacccg.suprx",
-  "size": 73060733,
+  "size": 111558333,
   "status": "Verified",
   "icon": "https://robin994.github.io/NeoVitaDB-Catalog/icons/1028-nazi-zombies-portable.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/700a132501a00d7586707b33c0a4727c2b0664e3ec9c86996efebd810a6cdcc3.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/6e7ece334d0b8604df007a714e9d33abc092dc86af50d4545d6e9177d01f832b.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/140e581c7bbf245de22fd278ef49270d10d8539201b32e6c4b3db7f44f9c17f8.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/a79e4d2418e3aecf44aeab0aca053932e1fa639ce53fc6fe7c0def570fb1ba35.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/a79e4d2418e3aecf44aeab0aca053932e1fa639ce53fc6fe7c0def570fb1ba35.png",
+    "screenshots/700a132501a00d7586707b33c0a4727c2b0664e3ec9c86996efebd810a6cdcc3.png;screenshots/6e7ece334d0b8604df007a714e9d33abc092dc86af50d4545d6e9177d01f832b.png;screenshots/140e581c7bbf245de22fd278ef49270d10d8539201b32e6c4b3db7f44f9c17f8.png;screenshots/a79e4d2418e3aecf44aeab0aca053932e1fa639ce53fc6fe7c0def570fb1ba35.png"
   ],
   "links": [
     {
@@ -40,6 +41,21 @@
       "type": "Other",
       "name": "Release",
       "url": "https://github.com/nzp-team/nzportable/releases/tag/nightly"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDBtoo VPK",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1028-nzp.vpk"
+    },
+    {
+      "type": "Download",
+      "name": "NeoVitaDB VPK",
+      "url": "https://github.com/nzp-team/nzportable/releases/download/nightly/nzportable-vita.zip"
+    },
+    {
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
+      "url": "https://github.com/nzp-team/nzportable/releases"
     }
   ]
 }

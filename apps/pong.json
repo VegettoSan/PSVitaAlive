@@ -5,7 +5,9 @@
   "description": "Pong clone for PSVITA.",
   "long_description": "This is a classic pong clone I created as a throwback to the origin of video games. This is also my first homebrew game and I designed it to resemble the original Pong by Ralph Baer.",
   "author_ids": [
-    "namelessghoul0"
+    "namelessghoul0",
+    "no-storage7413",
+    "nyorem"
   ],
   "category_id": "games",
   "subcategory_ids": [
@@ -17,7 +19,9 @@
   "size": 706314,
   "status": "Verified",
   "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/d09907cd72efbd9d2b97b36d672ff9c3ece97e10fee8b03adfbf1f4668fd35c6.png",
-  "screenshots": [],
+  "screenshots": [
+    "screenshots/e584600fb03783c97e8ee8f9d76d184a9389f7803292f24eb195ccd10c22f118.png;screenshots/20e98595988bcdaf020bcbf721c4d3efea5795d8a67de20ea85676103cbcea62.png;screenshots/52ebb0669998eb48b19266f7b0af24df5413bcb1a0030803c29b2c5159320227.png"
+  ],
   "links": [
     {
       "type": "Download",

@@ -21,7 +21,8 @@
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/427a497917fbfc28f6da96ad3f84dbf3edd01438a2ba547e102ec87f167efc4c.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/786437205956b4da3f2f37196d1b5b4287ca99e2144e8dd2f1b25e4e58ee4f47.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/09a55b4c778578b1cefc675bb85f725e4e8c323d8a55ef12de338a96957cf891.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/dea95bf376f0cb7973f8a8096d8318089fe41a0f4e59efe5027ee667f333c28a.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/dea95bf376f0cb7973f8a8096d8318089fe41a0f4e59efe5027ee667f333c28a.png",
+    "screenshots/427a497917fbfc28f6da96ad3f84dbf3edd01438a2ba547e102ec87f167efc4c.png;screenshots/786437205956b4da3f2f37196d1b5b4287ca99e2144e8dd2f1b25e4e58ee4f47.png;screenshots/09a55b4c778578b1cefc675bb85f725e4e8c323d8a55ef12de338a96957cf891.png;screenshots/dea95bf376f0cb7973f8a8096d8318089fe41a0f4e59efe5027ee667f333c28a.png"
   ],
   "links": [
     {
@@ -39,6 +40,11 @@
       "type": "Other",
       "name": "Release",
       "url": "https://github.com/Rinnegatamante/anomaly-defenders_vita/releases"
+    },
+    {
+      "type": "Official Website",
+      "name": "NeoVitaDB Release Page",
+      "url": "https://github.com/Rinnegatamante/anomaly-defenders_vita/releases/tag/v.1.1"
     }
   ]
 }

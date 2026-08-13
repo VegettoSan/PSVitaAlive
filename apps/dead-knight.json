@@ -29,6 +29,11 @@
       "type": "Other",
       "name": "Release",
       "url": "https://github.com/rodentcat/deadknight-vita-port"
+    },
+    {
+      "type": "Official Website",
+      "name": "NeoVitaDB Release Page",
+      "url": "https://github.com/rodentcat/deadknight-vita-port/releases/tag/1.0"
     }
   ]
 }

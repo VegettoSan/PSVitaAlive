@@ -21,7 +21,8 @@
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/9b270ced925cb278012020ea6cd511ffb9e2beb3f6a8f277311da248a013f7dd.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/9abde1806b36d873b204267715321afd78bfefd4529398011c47385f690e1e47.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/e8a9d915df8743b44dd8ba3b1ba471a45ee5ccea58ddee762b7045d5442c6743.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/19950878dc12cc5d8bb222f4619519cac306e1ee2552bba37d56358f1f5370cc.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/19950878dc12cc5d8bb222f4619519cac306e1ee2552bba37d56358f1f5370cc.png",
+    "screenshots/9b270ced925cb278012020ea6cd511ffb9e2beb3f6a8f277311da248a013f7dd.png;screenshots/9abde1806b36d873b204267715321afd78bfefd4529398011c47385f690e1e47.png;screenshots/e8a9d915df8743b44dd8ba3b1ba471a45ee5ccea58ddee762b7045d5442c6743.png;screenshots/19950878dc12cc5d8bb222f4619519cac306e1ee2552bba37d56358f1f5370cc.png"
   ],
   "links": [
     {
@@ -39,6 +40,11 @@
       "type": "Other",
       "name": "Release",
       "url": "https://github.com/Rinnegatamante/Into-The-Breach-Vita/releases"
+    },
+    {
+      "type": "Official Website",
+      "name": "NeoVitaDB Release Page",
+      "url": "https://github.com/Rinnegatamante/Into-The-Breach-Vita/releases/tag/v.1.0"
     }
   ]
 }

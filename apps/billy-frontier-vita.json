@@ -12,7 +12,7 @@
     "other"
   ],
   "version": "v.1.1",
-  "version_date": "2024-12-02",
+  "version_date": "2026-08-12",
   "requirements": "- libshacccg.suprx",
   "size": 1858496,
   "status": "Verified",
@@ -21,7 +21,8 @@
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/ddc24671f3464164a049b65734e432daefdfae1ec8ae764642f6bc27d262a223.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c649bf8211ab85b40bc7b6a9a514d478df64b410a24755bf576366b5c3c93aa8.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/a418e55843ed9bf18cd0a2b58ea9bcf875bcb5420e42185d16e37922d1066656.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/d75ea9b3b43ca6030c94815f2afe3c6bef2284ee0520852d96cb3137c0b3b9c0.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/d75ea9b3b43ca6030c94815f2afe3c6bef2284ee0520852d96cb3137c0b3b9c0.png",
+    "screenshots/ddc24671f3464164a049b65734e432daefdfae1ec8ae764642f6bc27d262a223.png;screenshots/c649bf8211ab85b40bc7b6a9a514d478df64b410a24755bf576366b5c3c93aa8.png;screenshots/a418e55843ed9bf18cd0a2b58ea9bcf875bcb5420e42185d16e37922d1066656.png;screenshots/d75ea9b3b43ca6030c94815f2afe3c6bef2284ee0520852d96cb3137c0b3b9c0.png"
   ],
   "links": [
     {

@@ -18,7 +18,8 @@
   "status": "Verified",
   "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/264e7f0ede85ecea902076722d8f9c63710a8bb876ab7088d1df7b2dee89ab5c.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/7442d3c37bcca5bc7144d2ed447b137b48f52488c8960c95beee2ed22ec0ad11.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/7442d3c37bcca5bc7144d2ed447b137b48f52488c8960c95beee2ed22ec0ad11.png",
+    "screenshots/7442d3c37bcca5bc7144d2ed447b137b48f52488c8960c95beee2ed22ec0ad11.png"
   ],
   "links": [
     {
@@ -36,6 +37,11 @@
       "type": "Other",
       "name": "Release",
       "url": "https://github.com/Macperek/PixelChess/releases"
+    },
+    {
+      "type": "Official Website",
+      "name": "NeoVitaDB Release Page",
+      "url": "https://github.com/Macperek/PixelChess/releases/tag/v1.0"
     }
   ]
 }

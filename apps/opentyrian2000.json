@@ -34,6 +34,11 @@
       "type": "Other",
       "name": "Release",
       "url": "https://github.com/andyvand/opentyrian2000/releases/tag/3.0.0-SDL3"
+    },
+    {
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
+      "url": "https://github.com/andyvand/opentyrian2000/releases"
     }
   ]
 }

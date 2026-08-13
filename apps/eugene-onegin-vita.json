@@ -11,8 +11,8 @@
   "subcategory_ids": [
     "other"
   ],
-  "version": "#negavita",
-  "version_date": "2026-05-23",
+  "version": "v.1.0",
+  "version_date": "2026-06-25",
   "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
   "size": 195885335,
   "status": "Archive",

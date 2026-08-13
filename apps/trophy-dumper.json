@@ -1,0 +1,39 @@
+{
+  "id": "trophy-dumper",
+  "title_id": "TROPTOOLS",
+  "name": "Trophy Dumper",
+  "description": "",
+  "long_description": "Decrypt and Encrypt Trophy Data Files.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
+  "author_ids": [
+    "li"
+  ],
+  "category_id": "games",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "latest",
+  "version_date": "2026-08-12",
+  "requirements": "",
+  "size": 84055,
+  "status": "Legacy",
+  "icon": "1987-trophy-dumper.png",
+  "screenshots": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "NeoVitaDB VPK",
+      "url": "https://git.silica.codes/Li/trophydumper/releases/download/latest/TrophyDumper.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://git.silica.codes"
+    }
+  ],
+  "source_name": "NeoVitaDB",
+  "source_id": "1987",
+  "source_url": "https://git.silica.codes",
+  "release_page": "",
+  "updated_at": "2026-08-13T05:25:55.189671+00:00"
+}

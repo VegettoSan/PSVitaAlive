@@ -20,7 +20,9 @@
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/ad645c88560c0dd8ced76b675285b79de54c3dc7f0e70d2e674870c6170b517f.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/e7ce3ea294b4c50f38012494780d6b172d9cb34d0d3f9fe339e476ed61a17c24.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/627397c97a39dcbf9fda3668940003f1cbfcc85ba68eeedd17f19cda57d12e29.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/627397c97a39dcbf9fda3668940003f1cbfcc85ba68eeedd17f19cda57d12e29.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/afefbf3a924fc9785ee7a2f3f92d646624bad759e624a1ac9e37dc02964c4917.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/9564ced204b202e8e62d6006e043a2f723fd40057aa733de319bd1f775ffd630.png"
   ],
   "links": [
     {
@@ -38,6 +40,16 @@
       "type": "Other",
       "name": "Release",
       "url": "https://github.com/SonicMastr/Sonic-1-2-Vita/releases"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDBtoo VPK",
+      "url": "https://github.com/SonicMastr/Sonic-1-2-Vita/releases/download/1.1.0/Sonic2.vpk"
+    },
+    {
+      "type": "Official Website",
+      "name": "NeoVitaDB Release Page",
+      "url": "https://github.com/SonicMastr/Sonic-1-2-Vita/releases/tag/1.1.0"
     }
   ]
 }

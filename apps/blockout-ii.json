@@ -34,6 +34,11 @@
       "type": "Other",
       "name": "Release",
       "url": "http://gekihen.customprotocol.com/en/project/BlockOut-II"
+    },
+    {
+      "type": "Official Website",
+      "name": "NeoVitaDB Release Page",
+      "url": "https://github.com/bomblik/BlockOut_II_PSVITA/releases/tag/BlockOut_II_PSVITA_2.5"
     }
   ]
 }

@@ -12,7 +12,7 @@
     "racing"
   ],
   "version": "v.1.0",
-  "version_date": "2021-07-26",
+  "version_date": "2026-08-12",
   "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
   "size": 34924073,
   "status": "Verified",
@@ -29,6 +29,11 @@
       "type": "Other",
       "name": "Release",
       "url": "https://play.google.com/store/apps/details?id=com.aronsommer.astrorush"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com"
     }
   ]
 }

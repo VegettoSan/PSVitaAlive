@@ -12,7 +12,7 @@
     "themes"
   ],
   "version": "v.1.0",
-  "version_date": "2023-05-20",
+  "version_date": "2026-08-12",
   "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
   "size": 21463355,
   "status": "Legacy",
@@ -21,7 +21,8 @@
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/ecc547aee5d46fede67dbf3b39a270a535c02dea56bafdbbf8a0965e707b2759.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/4525dd554e18db4a52bc4a48034fa8c4ee1f33da6e955aa043224da542835aa7.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/f675101e2ebddd109c1259df953c7de6e90c1110ce42afd3d053485eb20ec7c4.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/25174abb4868c86dce60ae601c982d67e042d6af15b92d003f26f038bcd7ad93.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/25174abb4868c86dce60ae601c982d67e042d6af15b92d003f26f038bcd7ad93.png",
+    "screenshots/ecc547aee5d46fede67dbf3b39a270a535c02dea56bafdbbf8a0965e707b2759.png;screenshots/4525dd554e18db4a52bc4a48034fa8c4ee1f33da6e955aa043224da542835aa7.png;screenshots/f675101e2ebddd109c1259df953c7de6e90c1110ce42afd3d053485eb20ec7c4.png;screenshots/25174abb4868c86dce60ae601c982d67e042d6af15b92d003f26f038bcd7ad93.png"
   ],
   "links": [
     {
@@ -29,6 +30,11 @@
       "name": "Descarga principal",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1126-DIVER_DOWN.vpk",
       "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com"
     }
   ]
 }

@@ -12,7 +12,7 @@
     "fps"
   ],
   "version": "v.0.1",
-  "version_date": "2023-03-07",
+  "version_date": "2026-08-12",
   "requirements": "- libshacccg.suprx",
   "size": 9530161,
   "status": "Verified",
@@ -21,7 +21,8 @@
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c07426945ae8946d5de665cee11179871eee3d2c6a87e876a513241bf8e7d73a.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/3bbc957b078ea2257757ebed438abcb8ab40504bab216117dd91468c5b805ef8.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/e45f4a3d7d6658fe515958b98bc9f11e2a8b14a57c9780eb34b8f86c3f1ffe71.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c37c3ac968777616198fb3072075b7a3d0989f7f379a30298fb6ab430f149147.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c37c3ac968777616198fb3072075b7a3d0989f7f379a30298fb6ab430f149147.png",
+    "screenshots/c07426945ae8946d5de665cee11179871eee3d2c6a87e876a513241bf8e7d73a.png;screenshots/3bbc957b078ea2257757ebed438abcb8ab40504bab216117dd91468c5b805ef8.png;screenshots/e45f4a3d7d6658fe515958b98bc9f11e2a8b14a57c9780eb34b8f86c3f1ffe71.png;screenshots/c37c3ac968777616198fb3072075b7a3d0989f7f379a30298fb6ab430f149147.png"
   ],
   "links": [
     {

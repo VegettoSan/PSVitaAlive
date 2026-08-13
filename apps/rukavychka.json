@@ -6,21 +6,23 @@
   "long_description": "The game was inspired by Ukrainian legend of Rukavychka (glove) - in which an old man lost a glove, which came to be a home for many forest animals big and small: from a little mouse to a huge bear. In the story, the old man takes the glove back, but we imagine a story where the animals can live safely in the magical home. They are lost and we have to lead them to it by a fox from the Ukrainian story, and Wawel Dragon from Polish legends, to unify our nations by social cooperation, and unfold/bring safe future for everyone (including forest beings that also need peace to exist).",
   "author_ids": [
     "holy-pangolin",
-    "dos"
+    "dos",
+    "holy-pangolin-dos"
   ],
   "category_id": "games",
   "subcategory_ids": [
     "puzzle"
   ],
   "version": "v.1.0",
-  "version_date": "2022-11-13",
+  "version_date": "2026-08-12",
   "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
   "size": 26869727,
   "status": "Archive",
   "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/37c07ec4e167786630ccfd3169c064a0ddb6efdedf8b9beb5a8d8c7adeb9a344.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/cb5150f96ef61bd8bbf5139a3d8a03aa39513929e3c21e26f57af5791e2c9064.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c6089fee4805026bd05f4e86e0cb6a897fb2d3a7b0b1a5b7abf135729d8dd3fa.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c6089fee4805026bd05f4e86e0cb6a897fb2d3a7b0b1a5b7abf135729d8dd3fa.png",
+    "screenshots/cb5150f96ef61bd8bbf5139a3d8a03aa39513929e3c21e26f57af5791e2c9064.png;screenshots/c6089fee4805026bd05f4e86e0cb6a897fb2d3a7b0b1a5b7abf135729d8dd3fa.png"
   ],
   "links": [
     {

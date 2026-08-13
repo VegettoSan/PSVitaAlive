@@ -20,7 +20,8 @@
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/51dde40c0c2bfe97d76a3810310aad0f339f45255feaf855a2ed77e66d2c541f.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/375aef8885e624026b9d8b01579f05a99ac48b8f93806210d430bd5b1916ea78.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/2e9392d2cc19e4b1df25d5e0599af05fcce066f813026d30810bbfbf851d693a.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/2e9392d2cc19e4b1df25d5e0599af05fcce066f813026d30810bbfbf851d693a.png",
+    "screenshots/51dde40c0c2bfe97d76a3810310aad0f339f45255feaf855a2ed77e66d2c541f.png;screenshots/375aef8885e624026b9d8b01579f05a99ac48b8f93806210d430bd5b1916ea78.png;screenshots/2e9392d2cc19e4b1df25d5e0599af05fcce066f813026d30810bbfbf851d693a.png"
   ],
   "links": [
     {
@@ -33,6 +34,11 @@
       "type": "Other",
       "name": "Release",
       "url": "https://github.com/malone46/Slendrina2DVita"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/MaloneCZSD/Slendrina2DVita"
     }
   ]
 }

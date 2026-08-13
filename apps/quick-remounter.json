@@ -18,7 +18,8 @@
   "status": "Verified",
   "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/ed5ebd1267831443961b6ce54a6a021aa80a1cd90e2d93b689a8653a623537f7.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/4cd6126722db33d45cee6d8017d08aeaddd3c61f18bda9d9f010040148de3dd0.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/4cd6126722db33d45cee6d8017d08aeaddd3c61f18bda9d9f010040148de3dd0.png",
+    "screenshots/4cd6126722db33d45cee6d8017d08aeaddd3c61f18bda9d9f010040148de3dd0.png"
   ],
   "links": [
     {
@@ -31,6 +32,16 @@
       "type": "Other",
       "name": "Release",
       "url": "https://github.com/AntHJ/Quick-Remounter/releases"
+    },
+    {
+      "type": "Official Website",
+      "name": "NeoVitaDB Release Page",
+      "url": "https://github.com/AntHJ/Quick-Remounter/releases/tag/v1.0"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/AntHJ/Quick-Remounter"
     }
   ]
 }

@@ -6,21 +6,23 @@
   "long_description": "A Tetris clone based on vita-tetromino with added features and based on Touhou for the theme.",
   "author_ids": [
     "aurora",
-    "svennd"
+    "svennd",
+    "aurora-svennd"
   ],
   "category_id": "customization",
   "subcategory_ids": [
     "themes"
   ],
   "version": "v.0.7A-TH1",
-  "version_date": "2018-03-29",
+  "version_date": "2026-08-12",
   "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
   "size": 31349146,
   "status": "Verified",
   "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/ea17433eced8cc3bc0438d8afc901103d2492cad1cf26fe48580c06b1f36b7db.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/7e99c1814e047f0145d27847b8aab1e1e4b6c7f67e6100c9562880665055c8a5.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/3c4ac35ff107682fb51da0eb9a31fe9dd555de8f3b0b49918b40e3899d076c2e.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/3c4ac35ff107682fb51da0eb9a31fe9dd555de8f3b0b49918b40e3899d076c2e.png",
+    "screenshots/7e99c1814e047f0145d27847b8aab1e1e4b6c7f67e6100c9562880665055c8a5.png;screenshots/3c4ac35ff107682fb51da0eb9a31fe9dd555de8f3b0b49918b40e3899d076c2e.png"
   ],
   "links": [
     {
@@ -33,6 +35,11 @@
       "type": "Other",
       "name": "Release",
       "url": "http://wololo.net/talk/viewtopic.php?f=116&p=422009#p422009"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com"
     }
   ]
 }

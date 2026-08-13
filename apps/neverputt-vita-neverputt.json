@@ -1,0 +1,39 @@
+{
+  "id": "neverputt-vita-neverputt",
+  "title_id": "NEVERPUTT",
+  "name": "Neverputt Vita",
+  "description": "",
+  "long_description": "A 3D Mini Golf game with lots of levels.\nTest your skills playing mini golf. This game provides variety of golf courses for players of any level.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
+  "author_ids": [
+    "rinnegatamante"
+  ],
+  "category_id": "games",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.1.0",
+  "version_date": "2026-08-12",
+  "requirements": "- libshacccg.suprx",
+  "size": 1493107,
+  "status": "Legacy",
+  "icon": "1800-neverputt-vita.png",
+  "screenshots": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "NeoVitaDB VPK",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/874-neverputt.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com"
+    }
+  ],
+  "source_name": "NeoVitaDB",
+  "source_id": "1800",
+  "source_url": "https://github.com",
+  "release_page": "",
+  "updated_at": "2026-08-13T05:25:55.186530+00:00"
+}

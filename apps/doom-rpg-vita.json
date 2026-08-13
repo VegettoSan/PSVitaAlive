@@ -21,7 +21,8 @@
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/8a71637533f2f84878258ea97523bd328084248944633b2915c0acc2bf6f0c70.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c0040711aaf0d500372f56f0e7e0fd5f11acea194d1e56614907ed96087d487b.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/4130a339566cb71ef089fbf1dc1f705fa5bd3e6561df5790010b003a08917be5.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/bdcdb0aae8542b55b079f6c60ca8d3711ba57054da6127968a596dcfa44efa5f.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/bdcdb0aae8542b55b079f6c60ca8d3711ba57054da6127968a596dcfa44efa5f.png",
+    "screenshots/8a71637533f2f84878258ea97523bd328084248944633b2915c0acc2bf6f0c70.png;screenshots/c0040711aaf0d500372f56f0e7e0fd5f11acea194d1e56614907ed96087d487b.png;screenshots/4130a339566cb71ef089fbf1dc1f705fa5bd3e6561df5790010b003a08917be5.png;screenshots/bdcdb0aae8542b55b079f6c60ca8d3711ba57054da6127968a596dcfa44efa5f.png"
   ],
   "links": [
     {
@@ -39,6 +40,11 @@
       "type": "Other",
       "name": "Release",
       "url": "https://github.com/jakubito/DoomRPG-RE-vita/releases"
+    },
+    {
+      "type": "Official Website",
+      "name": "NeoVitaDB Release Page",
+      "url": "https://github.com/jakubito/DoomRPG-RE-vita/releases/tag/v1.1.0"
     }
   ]
 }

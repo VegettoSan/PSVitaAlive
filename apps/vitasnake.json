@@ -21,7 +21,8 @@
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/ded0f9bee8ec2467089d251b2f82b825342abbfb37f13d3d66de9a5e917cf4a5.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/a909b57f3515647066c36a3e5ec0278b502299f5c312816678d16610043cf20e.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/96ec8b8df1d1dc4209f7513f5b845f318ad37218bc6cf4cbcd1663560b7b942b.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/9f75236a7dd130c023e29ef6a88f9ba7e82ae2a8922ff0a5d34b566d839fe1b1.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/9f75236a7dd130c023e29ef6a88f9ba7e82ae2a8922ff0a5d34b566d839fe1b1.png",
+    "screenshots/ded0f9bee8ec2467089d251b2f82b825342abbfb37f13d3d66de9a5e917cf4a5.png;screenshots/a909b57f3515647066c36a3e5ec0278b502299f5c312816678d16610043cf20e.png;screenshots/96ec8b8df1d1dc4209f7513f5b845f318ad37218bc6cf4cbcd1663560b7b942b.png;screenshots/9f75236a7dd130c023e29ef6a88f9ba7e82ae2a8922ff0a5d34b566d839fe1b1.png"
   ],
   "links": [
     {
@@ -39,6 +40,11 @@
       "type": "Other",
       "name": "Release",
       "url": "https://github.com/Grzybojad/vitaSnake/releases"
+    },
+    {
+      "type": "Official Website",
+      "name": "NeoVitaDB Release Page",
+      "url": "https://github.com/Grzybojad/vitaSnake/releases/tag/v1.5"
     }
   ]
 }

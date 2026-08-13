@@ -12,13 +12,14 @@
     "other"
   ],
   "version": "v.0.6.3",
-  "version_date": "2026-06-06",
+  "version_date": "2026-08-12",
   "requirements": "- psvita_usb_audio_midi.skprx, included in the archive",
   "size": 2086872,
   "status": "Legacy",
   "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/b46a94eafeebf323ab0df8423a37ea686c284f2d77effd854a158201208e5346.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/fcb5f371cbf6bbe777435f71340c427157cac856fc8d4b61c33e4e4a61ba28b4.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/fcb5f371cbf6bbe777435f71340c427157cac856fc8d4b61c33e4e4a61ba28b4.png",
+    "screenshots/fcb5f371cbf6bbe777435f71340c427157cac856fc8d4b61c33e4e4a61ba28b4.png"
   ],
   "links": [
     {
@@ -31,6 +32,11 @@
       "type": "Other",
       "name": "Release",
       "url": "https://intermynd-instruments.itch.io/ds-8"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com"
     }
   ]
 }

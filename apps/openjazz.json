@@ -18,7 +18,8 @@
   "status": "Verified",
   "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/159f6765a36e2307c1f371987b42061e98418e27f862b9fa77130a90dd1c2029.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/30652f4732a3025eccb49d3a3734b4787332911d2a7a6a7c5631cc575a64d845.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/30652f4732a3025eccb49d3a3734b4787332911d2a7a6a7c5631cc575a64d845.png",
+    "screenshots/30652f4732a3025eccb49d3a3734b4787332911d2a7a6a7c5631cc575a64d845.png"
   ],
   "links": [
     {
@@ -36,6 +37,11 @@
       "type": "Other",
       "name": "Release",
       "url": "https://github.com/usineur/openjazz/releases/latest"
+    },
+    {
+      "type": "Official Website",
+      "name": "NeoVitaDB Release Page",
+      "url": "https://github.com/usineur/openjazz/releases/tag/1.1"
     }
   ]
 }

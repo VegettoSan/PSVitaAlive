@@ -12,7 +12,7 @@
     "other"
   ],
   "version": "v.1.0",
-  "version_date": "2025-09-14",
+  "version_date": "2026-08-12",
   "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
   "size": 33402092,
   "status": "Verified",
@@ -21,7 +21,8 @@
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/d54dc00426b27134fa38a335857cd3e006842b248f424952ab5895789267c349.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/57476afda09735f2d307b6d803abfbfe5a1ce5524862fcfab3b78f2e90c024df.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/37fe80679d4a7c70253631d53e6b919d7a9824e9279de08ca4162c36064d7258.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/75876328825041890558c4ce88fb61896ea452fdb8a302c5029e291aadc72aaf.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/75876328825041890558c4ce88fb61896ea452fdb8a302c5029e291aadc72aaf.png",
+    "screenshots/d54dc00426b27134fa38a335857cd3e006842b248f424952ab5895789267c349.png;screenshots/57476afda09735f2d307b6d803abfbfe5a1ce5524862fcfab3b78f2e90c024df.png;screenshots/37fe80679d4a7c70253631d53e6b919d7a9824e9279de08ca4162c36064d7258.png;screenshots/75876328825041890558c4ce88fb61896ea452fdb8a302c5029e291aadc72aaf.png"
   ],
   "links": [
     {
@@ -34,6 +35,11 @@
       "type": "Other",
       "name": "Release",
       "url": "https://xqspx.itch.io/snowball-fight"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com"
     }
   ]
 }

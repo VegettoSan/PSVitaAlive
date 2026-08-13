@@ -11,8 +11,8 @@
   "subcategory_ids": [
     "puzzle"
   ],
-  "version": "v.1.11",
-  "version_date": "2018-09-09",
+  "version": "1.16",
+  "version_date": "2021-05-23",
   "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
   "size": 5209786,
   "status": "Verified",
@@ -21,7 +21,8 @@
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/89a04cdf6759a2c258f60e0d55b09184d44d6ca3f4eee7d626c9f0d9f7beb786.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/223070d1b3fe4ed7d0e1240a0c412da5aa30c1f8f8d2fe4e12d370b1504540e3.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/298347c5576487d7968bd82fb3aab6d2dfe68f5657aa66a6fded97bed6f6f4c3.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/8f2dd775dc298553fd7da1d781a5a6ea97bd30a4afd50759cf8df0fd329e1152.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/8f2dd775dc298553fd7da1d781a5a6ea97bd30a4afd50759cf8df0fd329e1152.png",
+    "screenshots/89a04cdf6759a2c258f60e0d55b09184d44d6ca3f4eee7d626c9f0d9f7beb786.png;screenshots/223070d1b3fe4ed7d0e1240a0c412da5aa30c1f8f8d2fe4e12d370b1504540e3.png;screenshots/298347c5576487d7968bd82fb3aab6d2dfe68f5657aa66a6fded97bed6f6f4c3.png;screenshots/8f2dd775dc298553fd7da1d781a5a6ea97bd30a4afd50759cf8df0fd329e1152.png"
   ],
   "links": [
     {
@@ -39,6 +40,11 @@
       "type": "Other",
       "name": "Release",
       "url": "https://github.com/rsn8887/Enigma/releases"
+    },
+    {
+      "type": "Official Website",
+      "name": "NeoVitaDB Release Page",
+      "url": "https://github.com/rsn8887/Enigma/releases/tag/1.16"
     }
   ]
 }

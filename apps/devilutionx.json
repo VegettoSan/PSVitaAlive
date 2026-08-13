@@ -5,7 +5,8 @@
   "description": "A port of Diablo for PSVita based on the devilutionX project, a reverse engineereed implementation of the original Diablo release for PC.",
   "long_description": "A port of Diablo for PSVita based on the devilutionX project, a reverse engineereed implementation of the original Diablo release for PC.",
   "author_ids": [
-    "devilutionx-team"
+    "devilutionx-team",
+    "gokuhs"
   ],
   "category_id": "ports",
   "subcategory_ids": [
@@ -21,7 +22,8 @@
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/d94248f0d29ef3d3b36a93a59e00bc30d604af2aa621d739b9ee624f599fb8ff.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/2939f6ddaa9dc90cda40e65ce93c058df76821e242ad997a3112158e8f472ed4.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/4fb67b644b2ab92725e12c24b2c0f80e519eaec0ba8d3a9a38409e3647fdc756.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/38c5e2b296371676c0285a618f8ccd8279990c8dd1445a78033a038df1cf2992.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/38c5e2b296371676c0285a618f8ccd8279990c8dd1445a78033a038df1cf2992.png",
+    "screenshots/e244d870a0097dcfee1abfb2dffa25c119751de5f458c411c2101dbb64b181f0.png;screenshots/7e7fa1dc159eb51d2faec880e3e191c17b635fb7be3b670705ae53799ed0d812.png;screenshots/c4c2f86b407511733f2db07a61f74742efea77b00e1dd6baae16963a2597860d.png;screenshots/17a437a0b35991bae04d0d39f14afa871f0d41e3622180e3f36b36bd8149dc03.png"
   ],
   "links": [
     {
@@ -39,6 +41,11 @@
       "type": "Other",
       "name": "Release",
       "url": "https://github.com/diasurgical/DevilutionX/releases/tag/1.5.5"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/diasurgical/devilutionX"
     }
   ]
 }

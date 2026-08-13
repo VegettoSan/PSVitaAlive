@@ -34,6 +34,21 @@
       "type": "Other",
       "name": "Release",
       "url": "https://github.com/yoyz/picoloop/releases/tag/picoloop-0.77b"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDBtoo VPK",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/191-picoloop.vpk"
+    },
+    {
+      "type": "Download",
+      "name": "NeoVitaDB VPK",
+      "url": "https://github.com/yoyz/picoloop/releases/download/picoloop-0.77a/picoloop-20170417-0.77a-psvita.zip"
+    },
+    {
+      "type": "Official Website",
+      "name": "NeoVitaDB Release Page",
+      "url": "https://github.com/yoyz/picoloop/releases/tag/picoloop-0.77a"
     }
   ]
 }

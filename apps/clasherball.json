@@ -12,7 +12,7 @@
     "puzzle"
   ],
   "version": "Demo",
-  "version_date": "2024-04-26",
+  "version_date": "2026-08-12",
   "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
   "size": 81026913,
   "status": "Legacy",
@@ -20,7 +20,8 @@
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/cdb58fe7741fe24948997b6aef4b7531aa26a40f3b481b8ddb3330421c8504b0.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/bf03fcd99d2ec3943bc607da3d2a08637f6521c51425234eacefc95a6c5d6dc1.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/f3dd8e69408f5864d90320087204d26f7db7d3bb537083d98b3ac0e8986a7a27.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/f3dd8e69408f5864d90320087204d26f7db7d3bb537083d98b3ac0e8986a7a27.png",
+    "screenshots/cdb58fe7741fe24948997b6aef4b7531aa26a40f3b481b8ddb3330421c8504b0.png;screenshots/bf03fcd99d2ec3943bc607da3d2a08637f6521c51425234eacefc95a6c5d6dc1.png;screenshots/f3dd8e69408f5864d90320087204d26f7db7d3bb537083d98b3ac0e8986a7a27.png"
   ],
   "links": [
     {
@@ -33,6 +34,11 @@
       "type": "Other",
       "name": "Release",
       "url": "https://sungrandstudios.itch.io/clasherball"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com"
     }
   ]
 }

@@ -34,6 +34,11 @@
       "type": "Other",
       "name": "Release",
       "url": "https://github.com/motoharu-gosuto/psvgamesd/releases/tag/v2.0"
+    },
+    {
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
+      "url": "https://github.com/motoharu-gosuto/psvgamesd/releases"
     }
   ]
 }

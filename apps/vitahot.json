@@ -6,14 +6,15 @@
   "long_description": "The full and really polished build for VitaHOT, the fan clone of SuperHot squeezed down into the palm of your hand! Featuring 21 varied levels inspired by some of the best action movies over the last 50 years, with game-breaking mods to unlock, and seven different gamemodes to shake up the action!",
   "author_ids": [
     "mrkane",
-    "digradi"
+    "digradi",
+    "mrkane-digradi"
   ],
   "category_id": "games",
   "subcategory_ids": [
     "action"
   ],
   "version": "v.1.07",
-  "version_date": "2024-03-26",
+  "version_date": "2026-08-12",
   "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
   "size": 223750866,
   "status": "Verified",
@@ -21,7 +22,8 @@
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/300aacfe60a7b85891db1e0adba73f9c069e0208635335676c786ff5934e4006.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/96c47db6bcb9bb93309bf49b6642f38441be1e91abcac57ed6a25a55535b5849.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/93e892cfca87a94f44b4e1f041bb2430e685249ef7ae3a5c8da627930da1cc9b.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/93e892cfca87a94f44b4e1f041bb2430e685249ef7ae3a5c8da627930da1cc9b.png",
+    "screenshots/300aacfe60a7b85891db1e0adba73f9c069e0208635335676c786ff5934e4006.png;screenshots/96c47db6bcb9bb93309bf49b6642f38441be1e91abcac57ed6a25a55535b5849.png;screenshots/93e892cfca87a94f44b4e1f041bb2430e685249ef7ae3a5c8da627930da1cc9b.png"
   ],
   "links": [
     {
@@ -34,6 +36,11 @@
       "type": "Other",
       "name": "Release",
       "url": "https://fuhen.homebrew-contest.com/submissions/33/"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com"
     }
   ]
 }

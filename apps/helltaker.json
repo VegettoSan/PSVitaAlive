@@ -12,14 +12,15 @@
     "other"
   ],
   "version": "v.1.1.0",
-  "version_date": "2020-09-07",
+  "version_date": "2026-08-12",
   "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
   "size": 113301632,
   "status": "Verified",
   "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/7724cdd49d38107265650309744df07a4208741f4b1ed49fdb60da9c024c7f11.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/61569bf320ff8254c698baff7ff9cb7e93e8e507b4edae310b17c56972f1cb83.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/40a2c3dafd10031ce321553ac8724771a551c6f6347b20fc64b05545523321d3.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/40a2c3dafd10031ce321553ac8724771a551c6f6347b20fc64b05545523321d3.png",
+    "screenshots/61569bf320ff8254c698baff7ff9cb7e93e8e507b4edae310b17c56972f1cb83.png;screenshots/40a2c3dafd10031ce321553ac8724771a551c6f6347b20fc64b05545523321d3.png"
   ],
   "links": [
     {
@@ -32,6 +33,11 @@
       "type": "Other",
       "name": "Release",
       "url": "https://github.com/D3fau4/Helltaker-switch/releases"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com"
     }
   ]
 }

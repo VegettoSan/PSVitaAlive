@@ -21,7 +21,8 @@
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/fd28422b57df954bedcdaee13e687eddf3e4d9db247cb68f6f5f0947dc519aad.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c05f0cedd07a2290f3749ecc95d036a3bc92fbe67a7db9d9ea7814b5621a36a3.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/04a91b299a9b1863b85beb0386968d1840b3a1a091b730b2f36611a1ee1b447f.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/d4142d5f07e121b7b51f46727ebbfeae068e4b18858f7728235bf6ae49a769cb.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/d4142d5f07e121b7b51f46727ebbfeae068e4b18858f7728235bf6ae49a769cb.png",
+    "screenshots/fd28422b57df954bedcdaee13e687eddf3e4d9db247cb68f6f5f0947dc519aad.png;screenshots/c05f0cedd07a2290f3749ecc95d036a3bc92fbe67a7db9d9ea7814b5621a36a3.png;screenshots/04a91b299a9b1863b85beb0386968d1840b3a1a091b730b2f36611a1ee1b447f.png;screenshots/d4142d5f07e121b7b51f46727ebbfeae068e4b18858f7728235bf6ae49a769cb.png"
   ],
   "links": [
     {
@@ -39,6 +40,11 @@
       "type": "Other",
       "name": "Release",
       "url": "https://github.com/Rinnegatamante/Isotope-244-Collection/releases"
+    },
+    {
+      "type": "Official Website",
+      "name": "NeoVitaDB Release Page",
+      "url": "https://github.com/Rinnegatamante/Isotope-244-Collection/releases/tag/v.1.0"
     }
   ]
 }

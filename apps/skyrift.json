@@ -18,7 +18,8 @@
   "status": "Legacy",
   "icon": "https://robin994.github.io/NeoVitaDB-Catalog/icons/1427-skyrift.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/2d887fd4142583ed1cfe1193ebbcbe41104e04aeb3618e6787a190e4339ffe42.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/2d887fd4142583ed1cfe1193ebbcbe41104e04aeb3618e6787a190e4339ffe42.png",
+    "screenshots/2d887fd4142583ed1cfe1193ebbcbe41104e04aeb3618e6787a190e4339ffe42.png"
   ],
   "links": [
     {
@@ -36,6 +37,16 @@
       "type": "Other",
       "name": "Release",
       "url": "https://github.com/onurkuru/skyrift/releases/tag/v1.2.0"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDBtoo VPK",
+      "url": "https://github.com/onurkuru/skyrift/releases/download/v1.1.0/skyrift.vpk"
+    },
+    {
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
+      "url": "https://github.com/onurkuru/skyrift/releases"
     }
   ]
 }

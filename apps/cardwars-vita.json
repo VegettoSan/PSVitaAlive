@@ -19,7 +19,8 @@
   "icon": "https://robin994.github.io/NeoVitaDB-Catalog/icons/1428-cardwars-vita.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/30e017ab62dd41a3d7fc7806ce2e694fb9d018b2ad79e8dd89cd17fcba7f0587.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/a241a8f195a9c24f6b8643103bee33af2aae9ca64af0a0b58bf231de6f87fa52.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/a241a8f195a9c24f6b8643103bee33af2aae9ca64af0a0b58bf231de6f87fa52.png",
+    "screenshots/30e017ab62dd41a3d7fc7806ce2e694fb9d018b2ad79e8dd89cd17fcba7f0587.png;screenshots/a241a8f195a9c24f6b8643103bee33af2aae9ca64af0a0b58bf231de6f87fa52.png"
   ],
   "links": [
     {

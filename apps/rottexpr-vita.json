@@ -21,7 +21,8 @@
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/36e3bf95c359a4e52adc26178b28b09ac102f31410b0cf2082eec902f3894181.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c0e54ff6173dcf0d30978f5862d6d5bb79ac3116531c7312fcbcfc1f4bfc3324.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/a3af3b0205a4f5c8fd7118935406c021903ac8587634c719eca4ee7e0d16e6a7.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/0536b9db6182da364d4694205ebc1d6e7f6b3a9e60b55ef25a0c59b288feab85.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/0536b9db6182da364d4694205ebc1d6e7f6b3a9e60b55ef25a0c59b288feab85.png",
+    "screenshots/36e3bf95c359a4e52adc26178b28b09ac102f31410b0cf2082eec902f3894181.png;screenshots/c0e54ff6173dcf0d30978f5862d6d5bb79ac3116531c7312fcbcfc1f4bfc3324.png;screenshots/a3af3b0205a4f5c8fd7118935406c021903ac8587634c719eca4ee7e0d16e6a7.png;screenshots/0536b9db6182da364d4694205ebc1d6e7f6b3a9e60b55ef25a0c59b288feab85.png"
   ],
   "links": [
     {
@@ -39,6 +40,11 @@
       "type": "Other",
       "name": "Release",
       "url": "https://github.com/Northfear/rottexpr-vita/releases"
+    },
+    {
+      "type": "Official Website",
+      "name": "NeoVitaDB Release Page",
+      "url": "https://github.com/Northfear/rottexpr-vita/releases/tag/v1.0-vita.1"
     }
   ]
 }

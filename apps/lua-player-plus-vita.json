@@ -21,7 +21,8 @@
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/a4044b3646ae10def7f2818026bfadf7f7cd13a0cf99555b0cb535f3d1b79544.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/f19909df57c52fbaff5780d3ac0ceb2635deddeda1cf33ac6699c6de06e3c385.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/f7bda236c24c2e241a200eb40d9e6cf6c7c13cdecb6b73968675797e6bc7f7c9.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/6bda58cfda4ea37ad88be2ac8cb0d2701160134855b50907caa2be4220e44afe.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/6bda58cfda4ea37ad88be2ac8cb0d2701160134855b50907caa2be4220e44afe.png",
+    "screenshots/a4044b3646ae10def7f2818026bfadf7f7cd13a0cf99555b0cb535f3d1b79544.png;screenshots/f19909df57c52fbaff5780d3ac0ceb2635deddeda1cf33ac6699c6de06e3c385.png;screenshots/f7bda236c24c2e241a200eb40d9e6cf6c7c13cdecb6b73968675797e6bc7f7c9.png;screenshots/6bda58cfda4ea37ad88be2ac8cb0d2701160134855b50907caa2be4220e44afe.png"
   ],
   "links": [
     {
@@ -39,6 +40,11 @@
       "type": "Other",
       "name": "Release",
       "url": "https://wololo.net/talk/viewtopic.php?f=116&t=46242"
+    },
+    {
+      "type": "Official Website",
+      "name": "NeoVitaDB Release Page",
+      "url": "https://github.com/Rinnegatamante/lpp-vita/releases/tag/r6"
     }
   ]
 }

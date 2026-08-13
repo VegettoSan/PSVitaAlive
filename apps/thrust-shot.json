@@ -12,7 +12,7 @@
     "shooter"
   ],
   "version": "v.0.2",
-  "version_date": "2021-05-29",
+  "version_date": "2026-08-12",
   "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
   "size": 69380267,
   "status": "Verified",
@@ -20,7 +20,8 @@
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/e286cecb4b0d9b68a5111319d57201d098319d11a1fa4746477afe4ff5db0ee4.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/70e6244eb3a4e4bc1b8a80d7f6f2de7168570ef8dc451838a4bbc473486e1c2c.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/269ad5e02e8d1bf47a74ebabb6b477fdcccac49f1a7d769c54fa6dfe7d23d95b.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/269ad5e02e8d1bf47a74ebabb6b477fdcccac49f1a7d769c54fa6dfe7d23d95b.png",
+    "screenshots/e286cecb4b0d9b68a5111319d57201d098319d11a1fa4746477afe4ff5db0ee4.png;screenshots/70e6244eb3a4e4bc1b8a80d7f6f2de7168570ef8dc451838a4bbc473486e1c2c.png;screenshots/269ad5e02e8d1bf47a74ebabb6b477fdcccac49f1a7d769c54fa6dfe7d23d95b.png"
   ],
   "links": [
     {
@@ -33,6 +34,11 @@
       "type": "Other",
       "name": "Release",
       "url": "https://kyuhen.customprotocol.com/en/submissions/thrust_shot/"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com"
     }
   ]
 }

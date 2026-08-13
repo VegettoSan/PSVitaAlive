@@ -12,7 +12,7 @@
     "fps"
   ],
   "version": "v.0.9",
-  "version_date": "2026-05-17",
+  "version_date": "2026-08-12",
   "requirements": "- libshacccg.suprx\n- Game Data Files: PC Steam",
   "size": 4214703,
   "status": "Verified",
@@ -21,7 +21,8 @@
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/e4f93f9f7c9ddd8f04c03baac7cdc5f4810bb14640b454aefcd06ec8cb428891.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/7f68d41a440ba88504d275e3925ae46a0e814c92c1ed8d41219fa9c03e175970.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/376c24ee338976f8811c348f295afb5a033c3ad08ceee9be9fe1b5da0c76d033.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/2212a12cea50a1ae8cae935cd0181801a38b7c83543db0e3482067bcd7f7bb6a.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/2212a12cea50a1ae8cae935cd0181801a38b7c83543db0e3482067bcd7f7bb6a.png",
+    "screenshots/e4f93f9f7c9ddd8f04c03baac7cdc5f4810bb14640b454aefcd06ec8cb428891.png;screenshots/7f68d41a440ba88504d275e3925ae46a0e814c92c1ed8d41219fa9c03e175970.png;screenshots/376c24ee338976f8811c348f295afb5a033c3ad08ceee9be9fe1b5da0c76d033.png;screenshots/2212a12cea50a1ae8cae935cd0181801a38b7c83543db0e3482067bcd7f7bb6a.png"
   ],
   "links": [
     {

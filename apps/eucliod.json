@@ -6,21 +6,23 @@
   "long_description": "EUCLIOD is a stylistic bullet hell game with several levels (with support for custom levels too), different kind of enemies and bosses and different playable ships. It also has a difficulty bar so unexperienced player with bullet hell games can start practicing.",
   "author_ids": [
     "hexzyle",
-    "rinnegatamante"
+    "rinnegatamante",
+    "hexzyle-rinnegatamante"
   ],
   "category_id": "games",
   "subcategory_ids": [
     "shooter"
   ],
   "version": "r8",
-  "version_date": "2017-05-25",
+  "version_date": "2026-08-12",
   "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
   "size": 2450570,
   "status": "Verified",
   "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/8705819e69f7883c24dc84f0d692db40540c61c1c1e4cec434d78d4f774e539e.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/93bded92b1ca5648619f8d38f039f0fe0a9c3c7456f97782bc0c59452f4a36e7.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/914b602e657a370f7675935a9ec97f91f9a51227ca65a43c7204d33c836deeb4.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/914b602e657a370f7675935a9ec97f91f9a51227ca65a43c7204d33c836deeb4.png",
+    "screenshots/93bded92b1ca5648619f8d38f039f0fe0a9c3c7456f97782bc0c59452f4a36e7.png;screenshots/914b602e657a370f7675935a9ec97f91f9a51227ca65a43c7204d33c836deeb4.png"
   ],
   "links": [
     {
@@ -33,6 +35,11 @@
       "type": "Other",
       "name": "Release",
       "url": "http://wololo.net/talk/viewtopic.php?f=116&t=48167"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com"
     }
   ]
 }

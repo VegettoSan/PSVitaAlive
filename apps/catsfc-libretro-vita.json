@@ -35,6 +35,11 @@
       "type": "Other",
       "name": "Release",
       "url": "http://wololo.net/talk/viewtopic.php?t=46394"
+    },
+    {
+      "type": "Official Website",
+      "name": "NeoVitaDB Release Page",
+      "url": "https://github.com/skogaby/CATSFC-libretro/releases/tag/1.3.0"
     }
   ]
 }

@@ -12,7 +12,7 @@
     "other"
   ],
   "version": "v.1.0",
-  "version_date": "2021-03-17",
+  "version_date": "2026-08-12",
   "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
   "size": 27966935,
   "status": "Verified",
@@ -20,7 +20,8 @@
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/ca83b40c410e0bb9d834e68b8ded40ddea97a49d235289f271ddc49fe53aa68e.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/a293ce3f1d7c089258184cb646d57d544b01751edb3f071a245071ad90f11f57.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/301f2c300df6a9e2d1b32c1a74c974eb338e0af111d1b8292d56da5fc6da6d6f.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/301f2c300df6a9e2d1b32c1a74c974eb338e0af111d1b8292d56da5fc6da6d6f.png",
+    "screenshots/ca83b40c410e0bb9d834e68b8ded40ddea97a49d235289f271ddc49fe53aa68e.png;screenshots/a293ce3f1d7c089258184cb646d57d544b01751edb3f071a245071ad90f11f57.png;screenshots/301f2c300df6a9e2d1b32c1a74c974eb338e0af111d1b8292d56da5fc6da6d6f.png"
   ],
   "links": [
     {
@@ -33,6 +34,11 @@
       "type": "Other",
       "name": "Release",
       "url": "https://managore.itch.io/roguelight"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com"
     }
   ]
 }

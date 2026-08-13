@@ -12,7 +12,7 @@
     "other"
   ],
   "version": "v.1.0",
-  "version_date": "2026-03-27",
+  "version_date": "2026-08-12",
   "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
   "size": 225795,
   "status": "Legacy",
@@ -29,6 +29,11 @@
       "type": "Other",
       "name": "Release",
       "url": "https://gbatemp.net/threads/psv-midi-player-v1-0-native-fluidsynth-based-midi-player-for-vita.680692/"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com"
     }
   ]
 }

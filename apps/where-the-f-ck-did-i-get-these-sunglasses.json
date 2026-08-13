@@ -8,14 +8,15 @@
     "catarina-lopes",
     "isaque-sanches",
     "mariana-domingos",
-    "tiago-quendera"
+    "tiago-quendera",
+    "catarina-lopes-isaque-sanches-mariana-domingos-tiago-quendera"
   ],
   "category_id": "games",
   "subcategory_ids": [
     "puzzle"
   ],
   "version": "v.1.0",
-  "version_date": "2021-06-05",
+  "version_date": "2026-08-12",
   "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
   "size": 58377878,
   "status": "Verified",
@@ -23,7 +24,8 @@
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/1b773197c7e6c73027a4f21ad9c57a976e6e041dbb61c1a0476234107523d51c.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/7b5a439143d38738005c9f432c0c879c3727d5a1777e39846d097dbfb07c8601.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/8278ea16da6dbc8ff168f339f56a0a9fe1a71e9fd71cde350a9f0dd941fd9996.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/8278ea16da6dbc8ff168f339f56a0a9fe1a71e9fd71cde350a9f0dd941fd9996.png",
+    "screenshots/1b773197c7e6c73027a4f21ad9c57a976e6e041dbb61c1a0476234107523d51c.png;screenshots/7b5a439143d38738005c9f432c0c879c3727d5a1777e39846d097dbfb07c8601.png;screenshots/8278ea16da6dbc8ff168f339f56a0a9fe1a71e9fd71cde350a9f0dd941fd9996.png"
   ],
   "links": [
     {
@@ -36,6 +38,11 @@
       "type": "Other",
       "name": "Release",
       "url": "https://kyuhen.customprotocol.com/en/submissions/sunglass/"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com"
     }
   ]
 }

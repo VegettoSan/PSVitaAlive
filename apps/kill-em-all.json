@@ -12,7 +12,7 @@
     "shooter"
   ],
   "version": "v.0.92",
-  "version_date": "2019-04-27",
+  "version_date": "2026-08-12",
   "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
   "size": 507006412,
   "status": "Verified",
@@ -20,7 +20,8 @@
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/e04f46076fc673df163a84552cdbe546ca418641918eedbb6ff0b9710a7c0608.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/24171e13b98abf31adc5f42c8e69637ccb4114898be9ea0176e6e4e6b139c71c.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/ef693e5527750e3aa862168aa4f20d6c64e39419fb0cf4ca3345669ff87aff19.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/ef693e5527750e3aa862168aa4f20d6c64e39419fb0cf4ca3345669ff87aff19.png",
+    "screenshots/e04f46076fc673df163a84552cdbe546ca418641918eedbb6ff0b9710a7c0608.png;screenshots/24171e13b98abf31adc5f42c8e69637ccb4114898be9ea0176e6e4e6b139c71c.png;screenshots/ef693e5527750e3aa862168aa4f20d6c64e39419fb0cf4ca3345669ff87aff19.png"
   ],
   "links": [
     {
@@ -33,6 +34,11 @@
       "type": "Other",
       "name": "Release",
       "url": "https://github.com/RetroGamer74/Kill-em-All/releases"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com"
     }
   ]
 }

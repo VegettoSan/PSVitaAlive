@@ -5,14 +5,15 @@
   "description": "Dungeon crawler for PSVITA.",
   "long_description": "No More Dungeons! is a fast paced dungeon crawler game with randomly generated dungeons and lots of dangerous monsters.\nThe game features progressive difficulty that changes dynamically every time you move to the next room but keeps a great balance by rewarding the player with powerful power-ups and score boost items.\nHow far can you go? The game keeps track of your hi-score so you can share it later with the world.",
   "author_ids": [
-    "unknown"
+    "unknown",
+    "vitahex-games"
   ],
   "category_id": "games",
   "subcategory_ids": [
     "rpg"
   ],
   "version": "v.1.0",
-  "version_date": "2019-04-18",
+  "version_date": "2026-08-12",
   "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
   "size": 44210913,
   "status": "Verified",
@@ -21,7 +22,8 @@
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/352f4f7537eaea6d0756fca5bf48efc2a0c93d7032573db3c9f1dd541797eb0d.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/d8af2239a2fd7ac14bd80a6d92a8fb323694860437164981800b9875ba992145.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/bbf8b8be1b471249ee9e3a57c063c8b9f61c60f11ef82289e1d4bf0fc5eb1da9.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/01d84a19ac020026aa30e19eed71656365eb82be4d639b74727338da65c902b1.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/01d84a19ac020026aa30e19eed71656365eb82be4d639b74727338da65c902b1.png",
+    "screenshots/352f4f7537eaea6d0756fca5bf48efc2a0c93d7032573db3c9f1dd541797eb0d.png;screenshots/d8af2239a2fd7ac14bd80a6d92a8fb323694860437164981800b9875ba992145.png;screenshots/bbf8b8be1b471249ee9e3a57c063c8b9f61c60f11ef82289e1d4bf0fc5eb1da9.png;screenshots/01d84a19ac020026aa30e19eed71656365eb82be4d639b74727338da65c902b1.png"
   ],
   "links": [
     {
@@ -34,6 +36,11 @@
       "type": "Other",
       "name": "Release",
       "url": "http://wololo.net/talk/viewtopic.php?p=424367#p424367"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com"
     }
   ]
 }

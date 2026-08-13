@@ -5,7 +5,8 @@
   "description": "Modified version of Registry Editor.",
   "long_description": "Simple app that allows you to read and edit all registry settings in an organized manner. UI heavily based on TheFloW's VitaShell.",
   "author_ids": [
-    "devnoname120"
+    "devnoname120",
+    "some1"
   ],
   "category_id": "system",
   "subcategory_ids": [
@@ -34,6 +35,11 @@
       "type": "Other",
       "name": "Release",
       "url": "https://github.com/devnoname120/RegistryEditorMOD/releases"
+    },
+    {
+      "type": "Official Website",
+      "name": "NeoVitaDB Release Page",
+      "url": "https://github.com/devnoname120/RegistryEditorMOD/releases/tag/1.3"
     }
   ]
 }

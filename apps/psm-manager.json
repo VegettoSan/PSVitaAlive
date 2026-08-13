@@ -11,8 +11,8 @@
   "subcategory_ids": [
     "account"
   ],
-  "version": "v.2.1",
-  "version_date": "2019-08-20",
+  "version": "v2.1",
+  "version_date": "2019-12-03",
   "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
   "size": 261619,
   "status": "Verified",
@@ -34,6 +34,11 @@
       "type": "Other",
       "name": "Release",
       "url": "https://github.com/Yoti/psv_npdrmfix/releases"
+    },
+    {
+      "type": "Official Website",
+      "name": "NeoVitaDB Release Page",
+      "url": "https://github.com/Yoti/psv_npdrmfix/releases/tag/v2.1"
     }
   ]
 }

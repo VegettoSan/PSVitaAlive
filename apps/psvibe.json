@@ -34,6 +34,11 @@
       "type": "Other",
       "name": "Release",
       "url": "http://wololo.net/talk/viewtopic.php?f=116&t=47324&p=414479#p414479"
+    },
+    {
+      "type": "Official Website",
+      "name": "NeoVitaDB Release Page",
+      "url": "https://github.com/NamelessGhoul0/PSVibe/releases/tag/v2-final"
     }
   ]
 }

@@ -12,7 +12,7 @@
     "music"
   ],
   "version": "v.1.0",
-  "version_date": "2025-08-12",
+  "version_date": "2026-08-12",
   "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
   "size": 49722199,
   "status": "Verified",
@@ -29,6 +29,11 @@
       "type": "Other",
       "name": "Release",
       "url": "https://5p0rt5y.itch.io/five-beats-at-freddys"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com"
     }
   ]
 }

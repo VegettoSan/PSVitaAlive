@@ -11,8 +11,8 @@
   "subcategory_ids": [
     "game-boy-advance"
   ],
-  "version": "v.0.10.5",
-  "version_date": "2025-03-08",
+  "version": "0.10.5",
+  "version_date": "2025-03-09",
   "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
   "size": 852635,
   "status": "Verified",
@@ -21,7 +21,8 @@
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/b640b24f08ccc34af58874afe84f57e505d6b4da43102ff3c1b9c325b5a9ee18.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/d8b92d6ba71df9f2fcbd8999dc30d1dbc50b291bc928a539c5ec756ad1027e37.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/7f9fea83c716eb35ddaa0538a8d53fdfff6c4719dcef98ff968651ea56e3a62b.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/e6ee279562e85f03723605c298e29236eb72b06db78e8ce3622da681b4ed8239.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/e6ee279562e85f03723605c298e29236eb72b06db78e8ce3622da681b4ed8239.png",
+    "screenshots/b640b24f08ccc34af58874afe84f57e505d6b4da43102ff3c1b9c325b5a9ee18.png;screenshots/d8b92d6ba71df9f2fcbd8999dc30d1dbc50b291bc928a539c5ec756ad1027e37.png;screenshots/7f9fea83c716eb35ddaa0538a8d53fdfff6c4719dcef98ff968651ea56e3a62b.png;screenshots/e6ee279562e85f03723605c298e29236eb72b06db78e8ce3622da681b4ed8239.png"
   ],
   "links": [
     {
@@ -39,6 +40,11 @@
       "type": "Other",
       "name": "Release",
       "url": "https://mgba.io/"
+    },
+    {
+      "type": "Official Website",
+      "name": "NeoVitaDB Release Page",
+      "url": "https://github.com/mgba-emu/mgba/releases/tag/0.10.5"
     }
   ]
 }

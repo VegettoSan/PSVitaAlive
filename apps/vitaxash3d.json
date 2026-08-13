@@ -11,14 +11,15 @@
   "subcategory_ids": [
     "fps"
   ],
-  "version": "mpfix",
+  "version": "v.4 fix",
   "version_date": "2018-08-01",
   "requirements": "- Game Data Files: PC",
-  "size": 1781972,
+  "size": 1794506,
   "status": "Verified",
   "icon": "https://robin994.github.io/NeoVitaDB-Catalog/icons/0365-vitaxash3d.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/df0d1060f87c47ac5018324b4b84269a31ce88150375bc832fbefe948151c287.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/df0d1060f87c47ac5018324b4b84269a31ce88150375bc832fbefe948151c287.png",
+    "screenshots/df0d1060f87c47ac5018324b4b84269a31ce88150375bc832fbefe948151c287.png"
   ],
   "links": [
     {
@@ -36,6 +37,16 @@
       "type": "Other",
       "name": "Release",
       "url": "https://github.com/fgsfdsfgs/vitaXash3D/releases/tag/mpfix"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDBtoo VPK",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/365-vitaXash3D.vpk"
+    },
+    {
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
+      "url": "https://github.com/fgsfdsfgs/vitaXash3D/releases/latest"
     }
   ]
 }

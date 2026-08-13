@@ -11,8 +11,8 @@
   "subcategory_ids": [
     "other"
   ],
-  "version": "v0.4.1",
-  "version_date": "2026-06-05",
+  "version": "v.0.4.1",
+  "version_date": "2026-06-06",
   "requirements": "- libshacccg.suprx\n- Game Data Files: Gamecube",
   "size": 6742478,
   "status": "Verified",
@@ -21,7 +21,8 @@
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/207795da99c68aac75e6dc3ca331f7b32e2aa0c5a42e35447258c4ed9eaee457.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/26653ea00279b37c1285bf734fcc4b17debee625e8343c866d6b221643024e96.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/45a4008e5b4953a38a79f444e67e4ea73c0d13772a07eabd908be54b695a8b97.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/3304e5f6166a144789219f42b4d008adefa1a6a556d7f777228087c1c5a1e86b.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/3304e5f6166a144789219f42b4d008adefa1a6a556d7f777228087c1c5a1e86b.png",
+    "screenshots/207795da99c68aac75e6dc3ca331f7b32e2aa0c5a42e35447258c4ed9eaee457.png;screenshots/26653ea00279b37c1285bf734fcc4b17debee625e8343c866d6b221643024e96.png;screenshots/45a4008e5b4953a38a79f444e67e4ea73c0d13772a07eabd908be54b695a8b97.png;screenshots/3304e5f6166a144789219f42b4d008adefa1a6a556d7f777228087c1c5a1e86b.png"
   ],
   "links": [
     {
@@ -39,6 +40,11 @@
       "type": "Other",
       "name": "Release",
       "url": "https://github.com/Brendonm17/ACGC-Vita-Port/releases/tag/v0.4.1"
+    },
+    {
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
+      "url": "https://github.com/Brendonm17/ACGC-Vita-Port/releases"
     }
   ]
 }

@@ -18,7 +18,8 @@
   "status": "Legacy",
   "icon": "https://robin994.github.io/NeoVitaDB-Catalog/icons/0796-mvplayer.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/4da0f23fc62808aeaa2a040c393d520c5a2b6a9c5d18909609a854043c274439.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/4da0f23fc62808aeaa2a040c393d520c5a2b6a9c5d18909609a854043c274439.png",
+    "screenshots/4da0f23fc62808aeaa2a040c393d520c5a2b6a9c5d18909609a854043c274439.png"
   ],
   "links": [
     {
@@ -36,6 +37,11 @@
       "type": "Other",
       "name": "Release",
       "url": "https://github.com/AntHJ/MVPlayer/releases/tag/v1.4"
+    },
+    {
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
+      "url": "https://github.com/AntHJ/MVPlayer/releases/"
     }
   ]
 }

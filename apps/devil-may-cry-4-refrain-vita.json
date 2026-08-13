@@ -7,14 +7,15 @@
   "author_ids": [
     "yizhigai",
     "spritelisen",
-    "kaaass"
+    "kaaass",
+    "yizhigai-spritelisen-kaaass"
   ],
   "category_id": "ports",
   "subcategory_ids": [
     "other"
   ],
   "version": "BETA",
-  "version_date": "2026-03-31",
+  "version_date": "2026-08-12",
   "requirements": "- libshacccg.suprx\n- kubridge.skprx\n- Game Data Files: Android",
   "size": 1258697,
   "status": "Verified",
@@ -23,7 +24,8 @@
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/7ea8dc859502657562f93e7633da47dd5af89d603179bb1cddc88d2a96c5158b.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/da37405927a648d59b6facbfed9d1ce7fd903ee12d26052649b4356f881bd19e.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/f021b67c4c79bfa0a8f6918d6e590aa5b1a2e1fdcf7e917a623b6ec89e073cdd.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/d763be62846730f7ca6ac06a0f2705fcaa4bd5706a1fafe0a3aab5c3a353af75.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/d763be62846730f7ca6ac06a0f2705fcaa4bd5706a1fafe0a3aab5c3a353af75.png",
+    "screenshots/7ea8dc859502657562f93e7633da47dd5af89d603179bb1cddc88d2a96c5158b.png;screenshots/da37405927a648d59b6facbfed9d1ce7fd903ee12d26052649b4356f881bd19e.png;screenshots/f021b67c4c79bfa0a8f6918d6e590aa5b1a2e1fdcf7e917a623b6ec89e073cdd.png;screenshots/d763be62846730f7ca6ac06a0f2705fcaa4bd5706a1fafe0a3aab5c3a353af75.png"
   ],
   "links": [
     {

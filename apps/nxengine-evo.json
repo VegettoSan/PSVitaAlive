@@ -34,6 +34,11 @@
       "type": "Other",
       "name": "Release",
       "url": "https://github.com/nxengine/nxengine-evo/releases"
+    },
+    {
+      "type": "Official Website",
+      "name": "NeoVitaDB Release Page",
+      "url": "https://github.com/nxengine/nxengine-evo/releases/tag/v2.6.5"
     }
   ]
 }

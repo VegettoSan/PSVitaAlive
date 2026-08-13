@@ -20,7 +20,8 @@
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/f3d40a66da82467e0d1c8acbac35f5aed1d86fb0375488844ec54b241fce5779.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/451abef6bfa54c015b3c93481836d545f86edb82f890419e9f88aabedf52dff3.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/d1362f298011a49a84869681292ab9defd7182a837442e20454f972d3e3f43b7.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/d1362f298011a49a84869681292ab9defd7182a837442e20454f972d3e3f43b7.png",
+    "screenshots/f3d40a66da82467e0d1c8acbac35f5aed1d86fb0375488844ec54b241fce5779.png;screenshots/451abef6bfa54c015b3c93481836d545f86edb82f890419e9f88aabedf52dff3.png;screenshots/d1362f298011a49a84869681292ab9defd7182a837442e20454f972d3e3f43b7.png"
   ],
   "links": [
     {
@@ -33,6 +34,11 @@
       "type": "Other",
       "name": "Release",
       "url": "https://github.com/Digital33Studios/minotaur"
+    },
+    {
+      "type": "Official Website",
+      "name": "NeoVitaDB Release Page",
+      "url": "https://github.com/Digital33Studios/minotaur/releases/tag/v1.5"
     }
   ]
 }

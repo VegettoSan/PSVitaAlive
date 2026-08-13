@@ -5,20 +5,23 @@
   "description": "Port of Girls are Weird.",
   "long_description": "Port of a visual novel called Girls are Weird for PSVITA/PSTV.",
   "author_ids": [
-    "10tr-ll-on-percent"
+    "10tr-ll-on-percent",
+    "betterwinds"
   ],
   "category_id": "ports",
   "subcategory_ids": [
     "other"
   ],
   "version": "v.1.0",
-  "version_date": "2017-12-01",
+  "version_date": "2026-08-12",
   "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
   "size": 950453,
   "status": "Verified",
   "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/1037c4cf8b00ef77f384d134a362ef9958c850aa69f2a7f0216e195640162f49.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/a551a290c0b2dff5a101b5c218390410fc306242b93790a0f436e04099378338.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/a551a290c0b2dff5a101b5c218390410fc306242b93790a0f436e04099378338.png",
+    "screenshots/171a07e8d20b77ccfb38710f1fd6c9fdd047a5d31ec23f40da67693c4ccc26cb.png;screenshots/227ac04c4e3fb73184ca0004869f33b8ba842ce608333c8c514afb8286ab4bb0.png;screenshots/6404be365ec5ceae5bcade9d2389158c3f11b6e630c420b1ff3b89d55b6d181b.png",
+    "screenshots/a551a290c0b2dff5a101b5c218390410fc306242b93790a0f436e04099378338.png"
   ],
   "links": [
     {
@@ -31,6 +34,21 @@
       "type": "Other",
       "name": "Release",
       "url": "https://siinclaiir.wordpress.com/2017/12/01/girls-are-weird-psvita-port/"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDBtoo VPK",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/834-GirlsAreWeird.vpk"
+    },
+    {
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
+      "url": "https://betterwinds.itch.io/girls-are-weird-plus"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com"
     }
   ]
 }

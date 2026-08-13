@@ -5,20 +5,22 @@
   "description": "Top-down shooter for PSVITA.",
   "long_description": "Wasteland Kings is the precursor to Nuclear Throne. This game is a top-down shooter in which you fight enemies in a nuclear wasteland in order to become its ruler.",
   "author_ids": [
-    "vlambeer"
+    "vlambeer",
+    "vlambeer-jeffrulz345"
   ],
   "category_id": "ports",
   "subcategory_ids": [
     "fps"
   ],
   "version": "v.1.0",
-  "version_date": "2018-12-06",
+  "version_date": "2026-08-12",
   "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
   "size": 8858946,
   "status": "Verified",
   "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/bdf406fad848ba41b1ac9dabbdbe8ddffb68ae460b9e2ed43a8d1d596f7de811.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/788bc9baea3c53cc1c0050dc5c32782b5faec8736e5a0b54e0dca19cfc086ef3.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/788bc9baea3c53cc1c0050dc5c32782b5faec8736e5a0b54e0dca19cfc086ef3.png",
+    "screenshots/788bc9baea3c53cc1c0050dc5c32782b5faec8736e5a0b54e0dca19cfc086ef3.png"
   ],
   "links": [
     {
@@ -26,6 +28,11 @@
       "name": "Descarga principal",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/409-WastelandKings.vpk",
       "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com"
     }
   ]
 }

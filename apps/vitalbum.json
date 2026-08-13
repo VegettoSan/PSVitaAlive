@@ -18,7 +18,8 @@
   "status": "Verified",
   "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/39e13379d4af6efccb00c7380b148d7356010208224046d4552c329bb3f8fbbc.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c1130ded31f24b0c7a7d45f3b5b825a452a1b025638d016963c9896edc7f136f.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c1130ded31f24b0c7a7d45f3b5b825a452a1b025638d016963c9896edc7f136f.png",
+    "screenshots/c1130ded31f24b0c7a7d45f3b5b825a452a1b025638d016963c9896edc7f136f.png"
   ],
   "links": [
     {
@@ -36,6 +37,11 @@
       "type": "Other",
       "name": "Release",
       "url": "https://github.com/joel16/VITAlbum/releases"
+    },
+    {
+      "type": "Official Website",
+      "name": "NeoVitaDB Release Page",
+      "url": "https://github.com/joel16/VITAlbum/releases/tag/v1.40"
     }
   ]
 }

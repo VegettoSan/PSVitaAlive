@@ -1,0 +1,39 @@
+{
+  "id": "nosleep",
+  "title_id": "NOSLEEP00",
+  "name": "NoSleep",
+  "description": "",
+  "long_description": "Simply utility to disable automatic standby\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
+  "author_ids": [
+    "li"
+  ],
+  "category_id": "games",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "latest",
+  "version_date": "2026-08-12",
+  "requirements": "",
+  "size": 18583,
+  "status": "Legacy",
+  "icon": "1988-nosleep.png",
+  "screenshots": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "NeoVitaDB VPK",
+      "url": "https://git.silica.codes/Li/nosleep/releases/download/latest/NoSleep.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://git.silica.codes"
+    }
+  ],
+  "source_name": "NeoVitaDB",
+  "source_id": "1988",
+  "source_url": "https://git.silica.codes",
+  "release_page": "",
+  "updated_at": "2026-08-13T05:25:55.190094+00:00"
+}

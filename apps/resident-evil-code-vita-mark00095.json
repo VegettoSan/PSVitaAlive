@@ -1,0 +1,39 @@
+{
+  "id": "resident-evil-code-vita-mark00095",
+  "title_id": "MARK00095",
+  "name": "Resident Evil CODE:Vita",
+  "description": "Shoot'em up for PSVITA",
+  "long_description": "Shoot'em up set in the Resident Evil world based on Super Hero Chronicles sourcecode.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
+  "author_ids": [
+    "markus95"
+  ],
+  "category_id": "games",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.0.5",
+  "version_date": "2026-08-12",
+  "requirements": "",
+  "size": 65464001,
+  "status": "Legacy",
+  "icon": "1492-resident-evil-code-vita.png",
+  "screenshots": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "VitaDBtoo VPK",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/83-Resident_Evil_CODE_Vita.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com"
+    }
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "83",
+  "source_url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/83-Resident_Evil_CODE_Vita.vpk",
+  "release_page": "",
+  "updated_at": "2026-08-13T05:25:55.182466+00:00"
+}

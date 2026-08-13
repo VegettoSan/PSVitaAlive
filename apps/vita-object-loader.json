@@ -12,7 +12,7 @@
     "image-viewer"
   ],
   "version": "v.1.1",
-  "version_date": "2017-07-23",
+  "version_date": "2026-08-12",
   "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
   "size": 2311152,
   "status": "Verified",
@@ -20,7 +20,8 @@
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/4fbe4446142e1301e95e47d2740a7d46cc146058a79dc892846c963164e77c2b.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/94bc5e45f21b7cc5995173e095d60bdb8a20e3739ac1fdb53572c4996f934169.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c3ec1f47098063f56ff6a3f82dc01e199689c301806271e5993860b5ecc36d3b.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c3ec1f47098063f56ff6a3f82dc01e199689c301806271e5993860b5ecc36d3b.png",
+    "screenshots/4fbe4446142e1301e95e47d2740a7d46cc146058a79dc892846c963164e77c2b.png;screenshots/94bc5e45f21b7cc5995173e095d60bdb8a20e3739ac1fdb53572c4996f934169.png;screenshots/c3ec1f47098063f56ff6a3f82dc01e199689c301806271e5993860b5ecc36d3b.png"
   ],
   "links": [
     {
@@ -33,6 +34,11 @@
       "type": "Other",
       "name": "Release",
       "url": "http://wololo.net/talk/viewtopic.php?f=116&t=47982"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com"
     }
   ]
 }

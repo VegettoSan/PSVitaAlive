@@ -20,7 +20,8 @@
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/5348e4df1d24299814f7cdc85269af039bc71cd247f1b0344adc731d234fbd63.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/f28c3234a41017a56609b3a35a4d74f4b7b5f13ea49635d085183da053cb2919.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/98577ef7d4a6c38bfb5d0b3ffb1c0f9bff0f628bd0c2da7b9534747e83813698.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/98577ef7d4a6c38bfb5d0b3ffb1c0f9bff0f628bd0c2da7b9534747e83813698.png",
+    "screenshots/5348e4df1d24299814f7cdc85269af039bc71cd247f1b0344adc731d234fbd63.png;screenshots/f28c3234a41017a56609b3a35a4d74f4b7b5f13ea49635d085183da053cb2919.png;screenshots/98577ef7d4a6c38bfb5d0b3ffb1c0f9bff0f628bd0c2da7b9534747e83813698.png"
   ],
   "links": [
     {
@@ -33,6 +34,11 @@
       "type": "Other",
       "name": "Release",
       "url": "https://github.com/hatoving/starwarfare-vita"
+    },
+    {
+      "type": "Official Website",
+      "name": "NeoVitaDB Release Page",
+      "url": "https://github.com/hatoving/starwarfare-vita/releases/tag/0.9-hotfix.0"
     }
   ]
 }

@@ -5,16 +5,17 @@
   "description": "Decrypts content and installs decrypted content to the system.",
   "long_description": "Improved games dumper, alternative to Vitamin.",
   "author_ids": [
-    "liomajor"
+    "liomajor",
+    "beniyukimai"
   ],
   "category_id": "utilities",
   "subcategory_ids": [
     "other"
   ],
   "version": "v.233.2zEx",
-  "version_date": "2016-10-08",
+  "version_date": "2026-08-12",
   "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
-  "size": 4280113,
+  "size": 4280311,
   "status": "Verified",
   "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/49de7c2f65f3428d2d298860de40eec7677e7ad4b9d3fdb6af8a2621e5888197.png",
   "screenshots": [],
@@ -24,6 +25,21 @@
       "name": "Descarga principal",
       "url": "https://github.com/LioMajor/MaiDumpToolEN/releases/download/V233.2zEx_eng/MaiDumpTool_V233.2zEx_eng.vpk",
       "recommended": true
+    },
+    {
+      "type": "Download",
+      "name": "VitaDBtoo VPK",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/54-MaiDumpTool.vpk"
+    },
+    {
+      "type": "Official Website",
+      "name": "NeoVitaDB Release Page",
+      "url": "https://github.com/LioMajor/MaiDumpToolEN/releases/tag/V233.2zEx_eng"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/LioMajor/MaiDumpToolEN"
     }
   ]
 }

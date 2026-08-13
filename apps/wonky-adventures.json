@@ -12,7 +12,7 @@
     "platformer"
   ],
   "version": "v.1.0",
-  "version_date": "2021-06-07",
+  "version_date": "2026-08-12",
   "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
   "size": 8332347,
   "status": "Verified",
@@ -20,7 +20,8 @@
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/4685f028fc24dd29d3e008fa64adaf2e1caa6ab2cb60d298b31977c74bce6fe3.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/787cbc841f3e1d77a001d351c9e28d4667b6690c6344ddf370167f1d1325df51.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/023be16d92961d29dedba99382b84c821f8bd9eef40ae4380191abe1df57cc4f.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/023be16d92961d29dedba99382b84c821f8bd9eef40ae4380191abe1df57cc4f.png",
+    "screenshots/4685f028fc24dd29d3e008fa64adaf2e1caa6ab2cb60d298b31977c74bce6fe3.png;screenshots/787cbc841f3e1d77a001d351c9e28d4667b6690c6344ddf370167f1d1325df51.png;screenshots/023be16d92961d29dedba99382b84c821f8bd9eef40ae4380191abe1df57cc4f.png"
   ],
   "links": [
     {
@@ -33,6 +34,11 @@
       "type": "Other",
       "name": "Release",
       "url": "https://kyuhen.customprotocol.com/en/submissions/wonkyadventure"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com"
     }
   ]
 }

@@ -20,7 +20,8 @@
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/df91e4c7a6486d3af59a0a6d0e1d918c38d9d16aab66e95d5c2acc311496d374.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/b716007fcacfd0bf5d5dc0072b728a2e5b5c0fc200b09df464edc81f3973a2ef.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/023a9308b166b36a93e2edb42d8cb05d25756907eaec73783a2c3df6034eaa5e.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/023a9308b166b36a93e2edb42d8cb05d25756907eaec73783a2c3df6034eaa5e.png",
+    "screenshots/df91e4c7a6486d3af59a0a6d0e1d918c38d9d16aab66e95d5c2acc311496d374.png;screenshots/b716007fcacfd0bf5d5dc0072b728a2e5b5c0fc200b09df464edc81f3973a2ef.png;screenshots/023a9308b166b36a93e2edb42d8cb05d25756907eaec73783a2c3df6034eaa5e.png"
   ],
   "links": [
     {
@@ -38,6 +39,11 @@
       "type": "Other",
       "name": "Release",
       "url": "https://github.com/xfangfang/DungeonRush-PSV"
+    },
+    {
+      "type": "Official Website",
+      "name": "NeoVitaDB Release Page",
+      "url": "https://github.com/xfangfang/DungeonRush-PSV/releases/tag/01.00"
     }
   ]
 }

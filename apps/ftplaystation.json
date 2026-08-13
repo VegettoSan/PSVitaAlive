@@ -29,6 +29,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/ItsDeidara/FTPlaystation"
+    },
+    {
+      "type": "Official Website",
+      "name": "NeoVitaDB Release Page",
+      "url": "https://github.com/StonedModder/FTPlaystation/releases/tag/0.1"
     }
   ]
 }

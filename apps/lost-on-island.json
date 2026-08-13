@@ -12,7 +12,7 @@
     "other"
   ],
   "version": "v.1.0.0a",
-  "version_date": "2025-06-24",
+  "version_date": "2026-08-12",
   "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
   "size": 87645624,
   "status": "Verified",
@@ -20,7 +20,8 @@
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/2159b04064fe7a5ce48f375b70061512f59be42ee37edc47fd877711e6b201b7.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/a11446763e2032edf073bc7ff1910c81bb220ed0c9a661dedd22b35ea0daae02.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/b78d724dc89d1a3056c5a54bf13fd08a5bd45e16d6dc06bf2f3d057ccb2d3022.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/b78d724dc89d1a3056c5a54bf13fd08a5bd45e16d6dc06bf2f3d057ccb2d3022.png",
+    "screenshots/2159b04064fe7a5ce48f375b70061512f59be42ee37edc47fd877711e6b201b7.png;screenshots/a11446763e2032edf073bc7ff1910c81bb220ed0c9a661dedd22b35ea0daae02.png;screenshots/b78d724dc89d1a3056c5a54bf13fd08a5bd45e16d6dc06bf2f3d057ccb2d3022.png"
   ],
   "links": [
     {
@@ -28,6 +29,11 @@
       "name": "Descarga principal",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/595-LostOnIsland.vpk",
       "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com"
     }
   ]
 }

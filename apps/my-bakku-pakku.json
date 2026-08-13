@@ -12,7 +12,7 @@
     "platformer"
   ],
   "version": "v.2.5",
-  "version_date": "2019-05-10",
+  "version_date": "2026-08-12",
   "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
   "size": 53564747,
   "status": "Verified",
@@ -20,7 +20,8 @@
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/0263d0833532465dbaccd8d0c61f9c121fa55d100e185cc4c33c296878d73e96.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/3f40616d8e97699d02b35f70139cc21db0279b10069e1ba46f982a7f493b1ed5.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/e57df8fae548860a93e508967c2d0befbd3ba0058e734d7ffe62e4bd0074ddf4.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/e57df8fae548860a93e508967c2d0befbd3ba0058e734d7ffe62e4bd0074ddf4.png",
+    "screenshots/0263d0833532465dbaccd8d0c61f9c121fa55d100e185cc4c33c296878d73e96.png;screenshots/3f40616d8e97699d02b35f70139cc21db0279b10069e1ba46f982a7f493b1ed5.png;screenshots/e57df8fae548860a93e508967c2d0befbd3ba0058e734d7ffe62e4bd0074ddf4.png"
   ],
   "links": [
     {
@@ -33,6 +34,11 @@
       "type": "Other",
       "name": "Release",
       "url": "https://t.co/ODuyQXjCAs"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com"
     }
   ]
 }

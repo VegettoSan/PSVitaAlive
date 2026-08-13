@@ -21,7 +21,8 @@
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/6becf807c2691548160a99cff598920d7612f329b79a44a614944d013927a173.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/988174c900f2db4e60e7500d7f91697f7ed93b02c74daceeea6f15f6b6c9d580.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/10c1122110a7c3eced7bc7424f144574869816a7feab05e49c587c694792bfe3.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/4357daa96f668a9007f038ab525530963af8feba008848336c547594642ddbd1.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/4357daa96f668a9007f038ab525530963af8feba008848336c547594642ddbd1.png",
+    "screenshots/6becf807c2691548160a99cff598920d7612f329b79a44a614944d013927a173.png;screenshots/988174c900f2db4e60e7500d7f91697f7ed93b02c74daceeea6f15f6b6c9d580.png;screenshots/10c1122110a7c3eced7bc7424f144574869816a7feab05e49c587c694792bfe3.png;screenshots/4357daa96f668a9007f038ab525530963af8feba008848336c547594642ddbd1.png"
   ],
   "links": [
     {
@@ -39,6 +40,11 @@
       "type": "Other",
       "name": "Release",
       "url": "https://github.com/Rinnegatamante/seven-vita/releases"
+    },
+    {
+      "type": "Official Website",
+      "name": "NeoVitaDB Release Page",
+      "url": "https://github.com/Rinnegatamante/seven-vita/releases/tag/v.1.1"
     }
   ]
 }

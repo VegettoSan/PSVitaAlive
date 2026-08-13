@@ -5,7 +5,7 @@
   "description": "Aplicación para descubrir y descargar películas y series compartidas por la comunidad.",
   "long_description": "Movie Stream List es una aplicación creada para acceder a películas y series subidas por la comunidad. En PS Vita permite descargar los archivos de contenido y guardarlos en ux0:data/. Para reproducirlos en la consola se requiere NetStream. El proyecto también dispone de versiones para Android y Windows.",
   "author_ids": [
-  "vegettosandev"
+    "vegettosandev"
   ],
   "category_id": "media",
   "subcategory_ids": [

@@ -29,6 +29,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/d3m3vilurr/vita-savemgr"
+    },
+    {
+      "type": "Official Website",
+      "name": "NeoVitaDB Release Page",
+      "url": "https://github.com/d3m3vilurr/vita-savemgr/releases/tag/nightly"
     }
   ]
 }

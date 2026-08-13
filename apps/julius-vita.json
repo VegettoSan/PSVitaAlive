@@ -21,7 +21,8 @@
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/6ce53f9e50a1de661f174a40e597821e6e8e77bf20daff416049fa3e5aa98187.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/b8b7c7257d8a6a76c7c10cee4a7630f4c964941171a4e8cc91429ee5cab3bcbe.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/5a863769040afc100075f154312c82f5ab0d15d239b43ba5e0c9fb45e2927b16.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/5a863769040afc100075f154312c82f5ab0d15d239b43ba5e0c9fb45e2927b16.png",
+    "screenshots/6ce53f9e50a1de661f174a40e597821e6e8e77bf20daff416049fa3e5aa98187.png;screenshots/b8b7c7257d8a6a76c7c10cee4a7630f4c964941171a4e8cc91429ee5cab3bcbe.png;screenshots/5a863769040afc100075f154312c82f5ab0d15d239b43ba5e0c9fb45e2927b16.png"
   ],
   "links": [
     {
@@ -39,6 +40,11 @@
       "type": "Other",
       "name": "Release",
       "url": "https://github.com/bvschaik/julius/releases/tag/v1.8.0"
+    },
+    {
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
+      "url": "https://github.com/bvschaik/julius/releases"
     }
   ]
 }

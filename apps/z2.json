@@ -20,7 +20,8 @@
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/fa63f5737731a43f5df01455c1b88381c49ede8da34679d87fc6ee1e0163c358.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/ceb7d4b17f29b6f33306bbe9cbbea7339377c275dc98c3e52b220f173162dc76.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/4aa5359fd519a432f12ee95eacc5ba503bf6ea2403d74ee196aa0fe68bf961a3.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/4aa5359fd519a432f12ee95eacc5ba503bf6ea2403d74ee196aa0fe68bf961a3.png",
+    "screenshots/fa63f5737731a43f5df01455c1b88381c49ede8da34679d87fc6ee1e0163c358.png;screenshots/ceb7d4b17f29b6f33306bbe9cbbea7339377c275dc98c3e52b220f173162dc76.png;screenshots/4aa5359fd519a432f12ee95eacc5ba503bf6ea2403d74ee196aa0fe68bf961a3.png"
   ],
   "links": [
     {
@@ -38,6 +39,11 @@
       "type": "Other",
       "name": "Release",
       "url": "https://github.com/kaonkaon/ztwo/releases"
+    },
+    {
+      "type": "Official Website",
+      "name": "NeoVitaDB Release Page",
+      "url": "https://github.com/kaonkaon/ztwo/releases/tag/v1.2.0"
     }
   ]
 }

@@ -12,14 +12,15 @@
     "other"
   ],
   "version": "v.1.0.4",
-  "version_date": "2024-06-15",
+  "version_date": "2026-08-12",
   "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
   "size": 2366335,
   "status": "Verified",
   "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/9cc27173014a755012e30d64854fa0083c2b9f341f445b844aa3e4ee47df145c.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/e2882f7c3fa78035f704c73f19c7f4d9f449da28540c3a26c3eb19792d3cd409.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/305b28ab81747656847aba6fdb557c129a1a49239f0c447aa40ed3afd78c2b76.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/305b28ab81747656847aba6fdb557c129a1a49239f0c447aa40ed3afd78c2b76.png",
+    "screenshots/e2882f7c3fa78035f704c73f19c7f4d9f449da28540c3a26c3eb19792d3cd409.png;screenshots/305b28ab81747656847aba6fdb557c129a1a49239f0c447aa40ed3afd78c2b76.png"
   ],
   "links": [
     {
@@ -32,6 +33,11 @@
       "type": "Other",
       "name": "Release",
       "url": "https://gbatemp.net/threads/cave-story-ps-vita-port-based-on-cse2.653601/"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com"
     }
   ]
 }

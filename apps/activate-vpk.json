@@ -1,0 +1,39 @@
+{
+  "id": "activate-vpk",
+  "title_id": "ACTIVATE0",
+  "name": "activate.vpk",
+  "description": "",
+  "long_description": "A utility to backup testkit/devkit activation tokens, and reset activation period\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
+  "author_ids": [
+    "li"
+  ],
+  "category_id": "games",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "latest",
+  "version_date": "2026-08-12",
+  "requirements": "Real testing kit (PTEL) or devlopment kit (PDEL) hardware, running 3.60 henkaku",
+  "size": 68260,
+  "status": "Legacy",
+  "icon": "1985-activate-vpk.png",
+  "screenshots": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "NeoVitaDB VPK",
+      "url": "https://git.silica.codes/Li/activate.vpk/releases/download/latest/activate.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://git.silica.codes"
+    }
+  ],
+  "source_name": "NeoVitaDB",
+  "source_id": "1985",
+  "source_url": "https://git.silica.codes",
+  "release_page": "",
+  "updated_at": "2026-08-13T05:25:55.188799+00:00"
+}

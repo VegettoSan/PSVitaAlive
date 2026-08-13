@@ -11,17 +11,18 @@
   "subcategory_ids": [
     "other"
   ],
-  "version": "v.1.00",
-  "version_date": "2026-01-09",
+  "version": "v1.01",
+  "version_date": "2026-02-13",
   "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
-  "size": 5922992,
+  "size": 5923761,
   "status": "Verified",
   "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/0e8d51b1965b50633855439db5a1594f8a9dc804783710c67f08c9a4daf46ea6.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/8468c1b6304dcc58011a03b63083682961d80c283b5721c8bc5c2af2f6bba93d.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/0e2af928d7dbc0257a33adac0c9eacb076bcaf1e61b2222b96f34278f38e9d4b.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/63a08ced5c4b67d9a1303ffafbeca6176b29eb0a52e7efd70167c3626666df2b.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/0f35e308e8da79347ccdaba8477e7016a42c3d556f1fc86782d66414fff31243.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/0f35e308e8da79347ccdaba8477e7016a42c3d556f1fc86782d66414fff31243.png",
+    "screenshots/8468c1b6304dcc58011a03b63083682961d80c283b5721c8bc5c2af2f6bba93d.png;screenshots/0e2af928d7dbc0257a33adac0c9eacb076bcaf1e61b2222b96f34278f38e9d4b.png;screenshots/63a08ced5c4b67d9a1303ffafbeca6176b29eb0a52e7efd70167c3626666df2b.png;screenshots/0f35e308e8da79347ccdaba8477e7016a42c3d556f1fc86782d66414fff31243.png"
   ],
   "links": [
     {
@@ -39,6 +40,16 @@
       "type": "Other",
       "name": "Release",
       "url": "https://github.com/NekoMimiOfficial/NekoDrome/releases"
+    },
+    {
+      "type": "Download",
+      "name": "NeoVitaDB VPK",
+      "url": "https://github.com/NekoMimiOfficial/NekoDrome/releases/download/v1.01/nekodrome.vpk"
+    },
+    {
+      "type": "Official Website",
+      "name": "NeoVitaDB Release Page",
+      "url": "https://github.com/NekoMimiOfficial/NekoDrome/releases/tag/v1.01"
     }
   ]
 }

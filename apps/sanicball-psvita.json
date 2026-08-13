@@ -12,7 +12,7 @@
     "racing"
   ],
   "version": "v.3",
-  "version_date": "2023-01-13",
+  "version_date": "2026-08-12",
   "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
   "size": 130049007,
   "status": "Verified",
@@ -20,7 +20,8 @@
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/97a9cab85de03b111ddda6cc95fddfa3e7c2ea01f920629db654cfe6c53c86f8.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/ec9cd080b67e72f8d8a743f98acc65a0c1fb9b829369845ea5a7b3539b1c3946.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/ef5a2ddef15410e294175fc4a79be0e8cb3289fa26c4c3374fbf582bcad5108c.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/ef5a2ddef15410e294175fc4a79be0e8cb3289fa26c4c3374fbf582bcad5108c.png",
+    "screenshots/97a9cab85de03b111ddda6cc95fddfa3e7c2ea01f920629db654cfe6c53c86f8.png;screenshots/ec9cd080b67e72f8d8a743f98acc65a0c1fb9b829369845ea5a7b3539b1c3946.png;screenshots/ef5a2ddef15410e294175fc4a79be0e8cb3289fa26c4c3374fbf582bcad5108c.png"
   ],
   "links": [
     {
@@ -33,6 +34,11 @@
       "type": "Other",
       "name": "Release",
       "url": "https://github.com/SpanishFreddy/SanicBall-PSVita-Port"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com"
     }
   ]
 }

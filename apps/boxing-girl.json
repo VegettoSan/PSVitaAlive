@@ -12,7 +12,7 @@
     "platformer"
   ],
   "version": "v.1.0",
-  "version_date": "2021-06-07",
+  "version_date": "2026-08-12",
   "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
   "size": 36748619,
   "status": "Verified",
@@ -21,7 +21,8 @@
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/49cff08b8dc6d6427cffed6dbd62465835029022e4202685314aefeef618dc68.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/1bb975e6cad4593c3f452d593deda0a50d551ceec7508fa6a9e0c2c90e772afd.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/cc4cdf507a386954775c3ea61bd677dfcfb79935685341aaed6db27e71ce1eb6.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/0096f98249eec7a83dd3282ff82a10e8b07c1f08edf35577f5d3f6e97a1366c8.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/0096f98249eec7a83dd3282ff82a10e8b07c1f08edf35577f5d3f6e97a1366c8.png",
+    "screenshots/49cff08b8dc6d6427cffed6dbd62465835029022e4202685314aefeef618dc68.png;screenshots/1bb975e6cad4593c3f452d593deda0a50d551ceec7508fa6a9e0c2c90e772afd.png;screenshots/cc4cdf507a386954775c3ea61bd677dfcfb79935685341aaed6db27e71ce1eb6.png;screenshots/0096f98249eec7a83dd3282ff82a10e8b07c1f08edf35577f5d3f6e97a1366c8.png"
   ],
   "links": [
     {
@@ -34,6 +35,11 @@
       "type": "Other",
       "name": "Release",
       "url": "https://kyuhen.customprotocol.com/en/submissions/boxingirl/"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com"
     }
   ]
 }

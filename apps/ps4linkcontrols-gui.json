@@ -18,7 +18,8 @@
   "status": "Verified",
   "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/ca1547ed559c1d393301cc41a1203fbdfaac76949d7cadf5c4a6655b2d5e0fa4.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/3f02d6b6bb378c513fc37f7b7c7e736f0965e46c2990edf07c1059fd3360efb1.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/3f02d6b6bb378c513fc37f7b7c7e736f0965e46c2990edf07c1059fd3360efb1.png",
+    "screenshots/3f02d6b6bb378c513fc37f7b7c7e736f0965e46c2990edf07c1059fd3360efb1.png"
   ],
   "links": [
     {
@@ -36,6 +37,11 @@
       "type": "Other",
       "name": "Release",
       "url": "https://github.com/keltar/ps4linkcontrols-gui/releases"
+    },
+    {
+      "type": "Official Website",
+      "name": "NeoVitaDB Release Page",
+      "url": "https://github.com/keltar/ps4linkcontrols-gui/releases/tag/0.1"
     }
   ]
 }

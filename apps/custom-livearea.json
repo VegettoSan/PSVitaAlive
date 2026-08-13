@@ -19,7 +19,8 @@
   "icon": "https://robin994.github.io/NeoVitaDB-Catalog/icons/0762-custom-livearea.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/3b217579f3687e2b70b955bfcc40d75c81f9c2c72c7e62202ca90bfb95d1c768.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/b25a488b31a1982b09d882f66985bea7616b2a68e48dafc94ea13c2192b76160.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/b25a488b31a1982b09d882f66985bea7616b2a68e48dafc94ea13c2192b76160.png",
+    "screenshots/3b217579f3687e2b70b955bfcc40d75c81f9c2c72c7e62202ca90bfb95d1c768.png;screenshots/b25a488b31a1982b09d882f66985bea7616b2a68e48dafc94ea13c2192b76160.png"
   ],
   "links": [
     {
@@ -37,6 +38,11 @@
       "type": "Other",
       "name": "Release",
       "url": "https://github.com/AntHJ/Custom-LiveArea/releases/tag/v1.0"
+    },
+    {
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
+      "url": "https://github.com/AntHJ/Custom-LiveArea/releases"
     }
   ]
 }

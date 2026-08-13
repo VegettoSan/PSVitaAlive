@@ -21,7 +21,8 @@
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/cd5f4c2e2c198fe9e571f51afdcd4ec7811d5245a933a376cbfc53f5ab7e1890.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/bdff9a3b03e3bdd1b11e8b14bcc33d9f12d29e35e0b7c2fe8fbcfc322c1f0393.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/15c0858a98bde44497e5a9dd6ad95229a2640e38220f713b76c1df8bf686423e.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/53d0fda535e48c49a5f955deb2292fc6f4332c2eded1aa79f4eb108b19bccc12.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/53d0fda535e48c49a5f955deb2292fc6f4332c2eded1aa79f4eb108b19bccc12.png",
+    "screenshots/cd5f4c2e2c198fe9e571f51afdcd4ec7811d5245a933a376cbfc53f5ab7e1890.png;screenshots/bdff9a3b03e3bdd1b11e8b14bcc33d9f12d29e35e0b7c2fe8fbcfc322c1f0393.png;screenshots/15c0858a98bde44497e5a9dd6ad95229a2640e38220f713b76c1df8bf686423e.png;screenshots/53d0fda535e48c49a5f955deb2292fc6f4332c2eded1aa79f4eb108b19bccc12.png"
   ],
   "links": [
     {
@@ -39,6 +40,11 @@
       "type": "Other",
       "name": "Release",
       "url": "http://wololo.net/2017/06/05/vitacord-psvita-client-discord-released/"
+    },
+    {
+      "type": "Official Website",
+      "name": "NeoVitaDB Release Page",
+      "url": "https://github.com/devingDev/VitaCord/releases/tag/1.5fix1"
     }
   ]
 }

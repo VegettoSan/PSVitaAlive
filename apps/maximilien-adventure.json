@@ -5,7 +5,8 @@
   "description": "Port of Maximilien Adventure for PSVITA/PSTV, which is a super Mario like game created with Godot.",
   "long_description": "Port of Maximilien Adventure for PSVITA/PSTV, which is a super Mario like game created with Godot.",
   "author_ids": [
-    "sonicmastr"
+    "sonicmastr",
+    "soykhaler"
   ],
   "category_id": "ports",
   "subcategory_ids": [
@@ -21,7 +22,8 @@
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/dd28005d4bb743f89efa63b85a31bd42b922a5d80ab4173d48496d5e3e4f847b.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/cbf1c0a94b1a7bbd8e4efe63f6b8766732255196c1242e2e519b9f623718f947.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/dfce174ae866f95eb8d7074fb61c88e0c7b2c5dab92aa9bb17ff61a96c7899db.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/013e0efea803bb0d85a8ef678820249e2faa98b2aff08776df155289b6c81f8e.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/013e0efea803bb0d85a8ef678820249e2faa98b2aff08776df155289b6c81f8e.png",
+    "screenshots/c99306cc2d72e01dadf45de697e94b422dd33ddfdf2a5ef5cff1e5a0c1ec8503.png"
   ],
   "links": [
     {

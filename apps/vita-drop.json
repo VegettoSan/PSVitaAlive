@@ -5,20 +5,22 @@
   "description": "VitaDrop transforms your PS Vita into a wireless file server.",
   "long_description": "VitaDrop transforms your PS Vita into a wireless file server. Browse, upload, download, and manage your entire Vita filesystem from any device with a web browser. No USB cables, no FTP clients, no hassle.",
   "author_ids": [
-    "ibrahim-dogan"
+    "ibrahim-dogan",
+    "claude-ai"
   ],
   "category_id": "networking",
   "subcategory_ids": [
     "ftp"
   ],
-  "version": "v1.0.0",
-  "version_date": "2026-04-11",
+  "version": "v.1.0.0",
+  "version_date": "2026-04-12",
   "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
   "size": 324433,
   "status": "Legacy",
   "icon": "https://robin994.github.io/NeoVitaDB-Catalog/icons/1383-vita-drop.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/26732f6e5704ad7d21694d4a1f596b1c4647c02dc3c4227a83832fa082ff4444.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/26732f6e5704ad7d21694d4a1f596b1c4647c02dc3c4227a83832fa082ff4444.png",
+    "screenshots/26732f6e5704ad7d21694d4a1f596b1c4647c02dc3c4227a83832fa082ff4444.png"
   ],
   "links": [
     {
@@ -36,6 +38,11 @@
       "type": "Other",
       "name": "Release",
       "url": "https://github.com/ibrahim-dogan/vita-drop/releases/tag/v1.0.0"
+    },
+    {
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
+      "url": "https://github.com/ibrahim-dogan/vita-drop/releases"
     }
   ]
 }

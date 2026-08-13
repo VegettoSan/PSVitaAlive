@@ -21,7 +21,8 @@
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/0117a99a1979ae9b0c1f44edf87aa92ce0a9d401c38d4216fd7ee8c101dd0f1f.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/cb93ed9ac362500e4fb04c3ccb28a67480eef3c369e89921d8a703c6e3c92277.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/90755a2e555a697ab711597092deb4436beb17482ca3eecdb3d6a3f4b1da7949.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/be046a34054d86532497da0709f1d4a209182f13e828e5349a286d34e6d7b2f3.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/be046a34054d86532497da0709f1d4a209182f13e828e5349a286d34e6d7b2f3.png",
+    "screenshots/0117a99a1979ae9b0c1f44edf87aa92ce0a9d401c38d4216fd7ee8c101dd0f1f.png;screenshots/cb93ed9ac362500e4fb04c3ccb28a67480eef3c369e89921d8a703c6e3c92277.png;screenshots/90755a2e555a697ab711597092deb4436beb17482ca3eecdb3d6a3f4b1da7949.png;screenshots/be046a34054d86532497da0709f1d4a209182f13e828e5349a286d34e6d7b2f3.png"
   ],
   "links": [
     {
@@ -39,6 +40,11 @@
       "type": "Other",
       "name": "Release",
       "url": "https://github.com/Northfear/homm3hd-vita/releases/tag/v1.2.3"
+    },
+    {
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
+      "url": "https://github.com/Northfear/homm3hd-vita/releases"
     }
   ]
 }

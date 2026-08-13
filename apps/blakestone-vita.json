@@ -35,6 +35,11 @@
       "type": "Other",
       "name": "Release",
       "url": "https://github.com/Andiweli/BlakeStone-Vita/releases/tag/v0.5.1"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/01y/bstone-vita"
     }
   ]
 }

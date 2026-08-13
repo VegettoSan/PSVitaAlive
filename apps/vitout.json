@@ -19,7 +19,8 @@
   "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/c799e0f2d405114bbdc5de82ba0c04f1ae467f1177b788ee74403918ed25442b.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/4da3c31efb121a8b0c210ff631803ee774c41f43807a3736ed5b99db1b7e0d84.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/aac4856d3fb2f319eaf5fb8627978b425bf6ba0e41a71dc2376c46b76d582578.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/aac4856d3fb2f319eaf5fb8627978b425bf6ba0e41a71dc2376c46b76d582578.png",
+    "screenshots/4da3c31efb121a8b0c210ff631803ee774c41f43807a3736ed5b99db1b7e0d84.png;screenshots/aac4856d3fb2f319eaf5fb8627978b425bf6ba0e41a71dc2376c46b76d582578.png"
   ],
   "links": [
     {
@@ -37,6 +38,11 @@
       "type": "Other",
       "name": "Release",
       "url": "https://github.com/Dane64/VitOut/releases"
+    },
+    {
+      "type": "Official Website",
+      "name": "NeoVitaDB Release Page",
+      "url": "https://github.com/Dane64/VitOut/releases/tag/2.0"
     }
   ]
 }

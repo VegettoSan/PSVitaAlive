@@ -21,7 +21,8 @@
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/9159de4b5a6c52771f6f7cbd008d58ebcedc81325a262e8b609b8b8413e4acb5.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/9a9d1579a0227b1f8899c0b31d80c38344c835103d2c8c33fa4eb8d0fdfa449b.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/0c011bf32deb58f25328305407f97fd2f112f5480b3d53207593f2971073084c.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/7af1c7f05af1b8755d4b365e50e04c71a8edbd93cff6f2a1db38825320c021bb.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/7af1c7f05af1b8755d4b365e50e04c71a8edbd93cff6f2a1db38825320c021bb.png",
+    "screenshots/9159de4b5a6c52771f6f7cbd008d58ebcedc81325a262e8b609b8b8413e4acb5.png;screenshots/9a9d1579a0227b1f8899c0b31d80c38344c835103d2c8c33fa4eb8d0fdfa449b.png;screenshots/0c011bf32deb58f25328305407f97fd2f112f5480b3d53207593f2971073084c.png;screenshots/7af1c7f05af1b8755d4b365e50e04c71a8edbd93cff6f2a1db38825320c021bb.png"
   ],
   "links": [
     {
@@ -39,6 +40,11 @@
       "type": "Other",
       "name": "Release",
       "url": "https://github.com/Codiak101/RegistryProfiler/releases"
+    },
+    {
+      "type": "Official Website",
+      "name": "NeoVitaDB Release Page",
+      "url": "https://github.com/Codiak101/RegistryProfiler/releases/tag/v1.0"
     }
   ]
 }

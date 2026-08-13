@@ -21,7 +21,8 @@
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/ee49e352707b6ea25bcaf5bc8fe8be525d626d6d408f3a4e3809d2e50cbc512d.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/b9a28a28c0e98f2348cde5ae16ab54dcfc1750f84e9402d4bebfc6c62d828975.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/88dfaf8c1ceb417910d62a0c6b356781f52796baf49f0897372f833ab3f97fff.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/62f7ca4d236d4d0b8c533d34f488d62da03b84031c12c50412eba61bbbb314a7.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/62f7ca4d236d4d0b8c533d34f488d62da03b84031c12c50412eba61bbbb314a7.png",
+    "screenshots/ee49e352707b6ea25bcaf5bc8fe8be525d626d6d408f3a4e3809d2e50cbc512d.png;screenshots/b9a28a28c0e98f2348cde5ae16ab54dcfc1750f84e9402d4bebfc6c62d828975.png;screenshots/88dfaf8c1ceb417910d62a0c6b356781f52796baf49f0897372f833ab3f97fff.png;screenshots/62f7ca4d236d4d0b8c533d34f488d62da03b84031c12c50412eba61bbbb314a7.png"
   ],
   "links": [
     {
@@ -39,6 +40,11 @@
       "type": "Other",
       "name": "Release",
       "url": "https://github.com/Rinnegatamante/pang-vita/releases"
+    },
+    {
+      "type": "Official Website",
+      "name": "NeoVitaDB Release Page",
+      "url": "https://github.com/Rinnegatamante/pang-vita/releases/tag/v.1.1"
     }
   ]
 }

@@ -18,7 +18,11 @@
   "status": "Verified",
   "icon": "https://robin994.github.io/NeoVitaDB-Catalog/icons/0800-pfbn.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/87c702b065aa8a948c929acd69e389bb7f74617668d885c0bc87f31e0381379d.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/87c702b065aa8a948c929acd69e389bb7f74617668d885c0bc87f31e0381379d.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/5d2fe571e0cc3e5f12886577a43a64931a7bcb1ea8b41c4f34c6b33d8b167aac.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/60bd5d1cd16336e80491f7324963910d38759780be5815f626d8a652cc29f1fd.png",
+    "screenshots/60bd5d1cd16336e80491f7324963910d38759780be5815f626d8a652cc29f1fd.png",
+    "screenshots/5d2fe571e0cc3e5f12886577a43a64931a7bcb1ea8b41c4f34c6b33d8b167aac.png"
   ],
   "links": [
     {
@@ -36,6 +40,36 @@
       "type": "Other",
       "name": "Release",
       "url": "https://github.com/Cpasjuste/pemu/releases/tag/v7.1"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDBtoo VPK",
+      "url": "https://github.com/Cpasjuste/pemu/releases/download/v7.1/psnes.vpk"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDBtoo VPK",
+      "url": "https://github.com/Cpasjuste/pemu/releases/download/v7.1/pgen.vpk"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDBtoo VPK",
+      "url": "https://github.com/Cpasjuste/pemu/releases/download/v7.1/pnes.vpk"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDBtoo VPK",
+      "url": "https://github.com/Cpasjuste/pemu/releases/download/v7.1/pgba.vpk"
+    },
+    {
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
+      "url": "https://gbatemp.net/threads/psnes-a-snes9x-port-for-the-ps-vita.509360/"
+    },
+    {
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
+      "url": "https://github.com/Cpasjuste/pemu/releases"
     }
   ]
 }

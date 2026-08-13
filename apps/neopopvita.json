@@ -21,7 +21,8 @@
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/e90cfb2feede05ae2a5a1c907e2d344e176ff22965556252f9700490ccea252b.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/8bb8853d0852a6dbcf4f2b1e239a14912023ac7eab5bd7ffa8b40c06530dbf8b.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/790ac5aadf73cd01243dd04c9f41ae0422c961a006a241799db0499392a397f8.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/fcbd622a27e57380049b7d0fad90fbedafde1fba4164f4da3c1287e42a55bc79.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/fcbd622a27e57380049b7d0fad90fbedafde1fba4164f4da3c1287e42a55bc79.png",
+    "screenshots/e90cfb2feede05ae2a5a1c907e2d344e176ff22965556252f9700490ccea252b.png;screenshots/8bb8853d0852a6dbcf4f2b1e239a14912023ac7eab5bd7ffa8b40c06530dbf8b.png;screenshots/790ac5aadf73cd01243dd04c9f41ae0422c961a006a241799db0499392a397f8.png;screenshots/fcbd622a27e57380049b7d0fad90fbedafde1fba4164f4da3c1287e42a55bc79.png"
   ],
   "links": [
     {
@@ -39,6 +40,11 @@
       "type": "Other",
       "name": "Release",
       "url": "https://github.com/frangarcj/NeopopVITA/releases"
+    },
+    {
+      "type": "Official Website",
+      "name": "NeoVitaDB Release Page",
+      "url": "https://github.com/frangarcj/NeopopVITA/releases/tag/0.71.15-Henkaku"
     }
   ]
 }

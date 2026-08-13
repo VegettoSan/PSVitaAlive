@@ -12,13 +12,14 @@
     "platformer"
   ],
   "version": "v.1.0",
-  "version_date": "2019-08-25",
+  "version_date": "2026-08-12",
   "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
   "size": 34515681,
   "status": "Verified",
   "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/7a38d7f81945f6ef6e3064728a22edfda1b036e56d0019fa78ab52cf80d2c9e6.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/4422e7fafb5da787ebee17be5ac23edf40fbdc65c0530819de5a4917eff56347.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/4422e7fafb5da787ebee17be5ac23edf40fbdc65c0530819de5a4917eff56347.png",
+    "screenshots/4422e7fafb5da787ebee17be5ac23edf40fbdc65c0530819de5a4917eff56347.png"
   ],
   "links": [
     {
@@ -26,6 +27,11 @@
       "name": "Descarga principal",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/499-Jump_20Jump.vpk",
       "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com"
     }
   ]
 }

@@ -18,7 +18,8 @@
   "status": "Verified",
   "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/a32154976120b05a43a184a485f9ff4e1af33a2e1115151f9ce1f4593bd5ce59.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/77b79d60513108fd3ade6f5c75a50bc4feb04765076b8547acc25003078d3d37.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/77b79d60513108fd3ade6f5c75a50bc4feb04765076b8547acc25003078d3d37.png",
+    "screenshots/77b79d60513108fd3ade6f5c75a50bc4feb04765076b8547acc25003078d3d37.png"
   ],
   "links": [
     {
@@ -36,6 +37,11 @@
       "type": "Other",
       "name": "Release",
       "url": "https://github.com/cy33hc/vita-ftp-client/releases"
+    },
+    {
+      "type": "Official Website",
+      "name": "NeoVitaDB Release Page",
+      "url": "https://github.com/cy33hc/vita-ftp-client/releases/tag/latest"
     }
   ]
 }

@@ -35,6 +35,11 @@
       "type": "Other",
       "name": "Release",
       "url": "https://github.com/aagallag/Vita_Doom/releases/"
+    },
+    {
+      "type": "Official Website",
+      "name": "NeoVitaDB Release Page",
+      "url": "https://github.com/aagallag/Vita_Doom/releases/tag/aagallag_v1.1"
     }
   ]
 }

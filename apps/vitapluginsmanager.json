@@ -29,6 +29,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/NeoLTK/VITAPluginsManager"
+    },
+    {
+      "type": "Official Website",
+      "name": "NeoVitaDB Release Page",
+      "url": "https://github.com/NeoLTK/VITAPluginsManager/releases/tag/0.6"
     }
   ]
 }

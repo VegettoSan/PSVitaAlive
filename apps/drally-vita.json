@@ -34,6 +34,11 @@
       "type": "Other",
       "name": "Release",
       "url": "https://github.com/enriquesomolinos/dRally-vita/releases"
+    },
+    {
+      "type": "Official Website",
+      "name": "NeoVitaDB Release Page",
+      "url": "https://github.com/enriquesomolinos/dRally-vita/releases/tag/v0.2.1-vita"
     }
   ]
 }

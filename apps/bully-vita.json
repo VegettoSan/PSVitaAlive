@@ -6,7 +6,8 @@
   "long_description": "This is a wrapper/port of Bully: Anniversary Edition for the PS Vita.\nThe port works by loading the official Android ARMv7 executable in memory, resolving its imports with native functions and patching it in order to properly run.",
   "author_ids": [
     "theflow",
-    "rinnegatamante"
+    "rinnegatamante",
+    "aap"
   ],
   "category_id": "ports",
   "subcategory_ids": [
@@ -22,7 +23,8 @@
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c9687144d41d1629f35ac3cfb26c677cdfc18ce2d915569df5a971eeab974f69.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/b89782b4546c9812b3818019cdd5b3cabcf6bb0ecc95327cb7b5237e6ef1f71f.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/b3778e3f004ea11bad1a0a19c3b96db75be32ce9d26accb985ae8a7c25fea605.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/12ee95fcf06f612f634c3522e374e4c6b9b9641bb08fad3f0f7a16d44be8d888.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/12ee95fcf06f612f634c3522e374e4c6b9b9641bb08fad3f0f7a16d44be8d888.png",
+    "screenshots/c9687144d41d1629f35ac3cfb26c677cdfc18ce2d915569df5a971eeab974f69.png;screenshots/b89782b4546c9812b3818019cdd5b3cabcf6bb0ecc95327cb7b5237e6ef1f71f.png;screenshots/b3778e3f004ea11bad1a0a19c3b96db75be32ce9d26accb985ae8a7c25fea605.png;screenshots/12ee95fcf06f612f634c3522e374e4c6b9b9641bb08fad3f0f7a16d44be8d888.png"
   ],
   "links": [
     {
@@ -40,6 +42,11 @@
       "type": "Other",
       "name": "Release",
       "url": "https://github.com/TheOfficialFloW/bully_vita/releases"
+    },
+    {
+      "type": "Official Website",
+      "name": "NeoVitaDB Release Page",
+      "url": "https://github.com/TheOfficialFloW/bully_vita/releases/tag/v1.0"
     }
   ]
 }

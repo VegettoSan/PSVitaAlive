@@ -12,7 +12,7 @@
     "account"
   ],
   "version": "v.0.2",
-  "version_date": "2016-08-31",
+  "version_date": "2026-08-12",
   "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
   "size": 933546,
   "status": "Verified",
@@ -29,6 +29,11 @@
       "type": "Other",
       "name": "Release",
       "url": "http://www.psx-place.com/threads/vita-toolbox-v-0-2-new-functions-added-by-orion.10457/"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com"
     }
   ]
 }

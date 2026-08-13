@@ -11,15 +11,16 @@
   "subcategory_ids": [
     "simulation"
   ],
-  "version": "v.1.0",
-  "version_date": "2025-08-30",
+  "version": "v1.0",
+  "version_date": "2025-08-31",
   "requirements": "- libshacccg.suprx",
   "size": 742391,
   "status": "Verified",
   "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/2747c4c1cb7dbde2973593165b84701e725ce5f9aa672abf6e2ccbd7d45b963f.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/f68c16613f602dca38dda5b5e6984c316ef88362f429af914057dc25e8f05163.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/29336d6980d327e6a94254dfee99f1f41f03efc0802efd19a3d7ab9645a19dcf.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/29336d6980d327e6a94254dfee99f1f41f03efc0802efd19a3d7ab9645a19dcf.png",
+    "screenshots/f68c16613f602dca38dda5b5e6984c316ef88362f429af914057dc25e8f05163.png;screenshots/29336d6980d327e6a94254dfee99f1f41f03efc0802efd19a3d7ab9645a19dcf.png"
   ],
   "links": [
     {
@@ -37,6 +38,11 @@
       "type": "Other",
       "name": "Release",
       "url": "https://sjoerdev.itch.io/vitasph"
+    },
+    {
+      "type": "Official Website",
+      "name": "NeoVitaDB Release Page",
+      "url": "https://github.com/sjoerdev/fluid-simulation-vitagl/releases/tag/v1.0"
     }
   ]
 }

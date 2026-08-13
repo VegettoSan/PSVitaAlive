@@ -18,7 +18,8 @@
   "status": "Verified",
   "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/d76e4a860cc703f6af5b67dca5325c98756c96edf16c6d3ee5a16c5e7d8076ed.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/fb369ce96d23b4b0eb72630be625c0c26b851cace6e64342f04be37447c00c1f.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/fb369ce96d23b4b0eb72630be625c0c26b851cace6e64342f04be37447c00c1f.png",
+    "screenshots/fb369ce96d23b4b0eb72630be625c0c26b851cace6e64342f04be37447c00c1f.png"
   ],
   "links": [
     {
@@ -36,6 +37,11 @@
       "type": "Other",
       "name": "Release",
       "url": "https://github.com/ywnico/bugdom-vita/releases"
+    },
+    {
+      "type": "Official Website",
+      "name": "NeoVitaDB Release Page",
+      "url": "https://github.com/ywnico/bugdom-vita/releases/tag/1.3.4-vita.1"
     }
   ]
 }

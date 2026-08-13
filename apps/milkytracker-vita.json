@@ -34,6 +34,11 @@
       "type": "Other",
       "name": "Release",
       "url": "https://github.com/TheMorc/MilkyTrackerVita/releases"
+    },
+    {
+      "type": "Official Website",
+      "name": "NeoVitaDB Release Page",
+      "url": "https://github.com/TheMorc/MilkyTrackerVita/releases/tag/1.03"
     }
   ]
 }

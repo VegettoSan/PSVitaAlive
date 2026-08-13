@@ -12,7 +12,7 @@
     "action"
   ],
   "version": "v.1.0",
-  "version_date": "2024-03-11",
+  "version_date": "2026-08-12",
   "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
   "size": 23896518,
   "status": "Verified",
@@ -20,7 +20,8 @@
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/2c27cd95816ff7b66a38aeaf4b48d88ecd32f4070a98585eaa6b69297d16c38a.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/08084297ec56d01a3c8319c1b9e3333e909fd506e70b9dad63f1d757167df8d2.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/065e91600ec4239eebb9fbd785f264124ad7a04d04cdbd85bc1a878a3ec5d9d2.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/065e91600ec4239eebb9fbd785f264124ad7a04d04cdbd85bc1a878a3ec5d9d2.png",
+    "screenshots/2c27cd95816ff7b66a38aeaf4b48d88ecd32f4070a98585eaa6b69297d16c38a.png;screenshots/08084297ec56d01a3c8319c1b9e3333e909fd506e70b9dad63f1d757167df8d2.png;screenshots/065e91600ec4239eebb9fbd785f264124ad7a04d04cdbd85bc1a878a3ec5d9d2.png"
   ],
   "links": [
     {
@@ -33,6 +34,11 @@
       "type": "Other",
       "name": "Release",
       "url": "https://captkuso.itch.io/smash-tv-hd-2d"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com"
     }
   ]
 }

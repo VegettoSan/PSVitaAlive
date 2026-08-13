@@ -1,0 +1,39 @@
+{
+  "id": "parkour-labs",
+  "title_id": "GDOT32494",
+  "name": "Parkour Labs",
+  "description": "",
+  "long_description": "A port of the Steam game Parkour Labs, a hard parkour videogame similar to CSGO: Surf.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
+  "author_ids": [
+    "soykhaler"
+  ],
+  "category_id": "games",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.1.2",
+  "version_date": "2026-08-12",
+  "requirements": "",
+  "size": 43264784,
+  "status": "Legacy",
+  "icon": "1837-parkour-labs.png",
+  "screenshots": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "NeoVitaDB VPK",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1099-Parkour_Labs.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com"
+    }
+  ],
+  "source_name": "NeoVitaDB",
+  "source_id": "1837",
+  "source_url": "https://github.com",
+  "release_page": "",
+  "updated_at": "2026-08-13T05:25:55.187166+00:00"
+}

@@ -34,6 +34,16 @@
       "type": "Other",
       "name": "Release",
       "url": "https://github.com/joel16/VITAident/releases/tag/0.7.4"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDBtoo VPK",
+      "url": "https://github.com/joel16/VITAident/releases/download/0.7.4/VITAident_GUI.vpk"
+    },
+    {
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
+      "url": "http://wololo.net/talk/viewtopic.php?f=116&t=46381"
     }
   ]
 }

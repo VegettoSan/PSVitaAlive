@@ -7,7 +7,8 @@
   "author_ids": [
     "mdashk",
     "gl33ntwine",
-    "rinnegatamante"
+    "rinnegatamante",
+    "danil-linad"
   ],
   "category_id": "ports",
   "subcategory_ids": [
@@ -22,7 +23,8 @@
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/eda3ee6f62a3b35b8152d557b2420fdbcb9ec72fe2afe6b9e18794f1a260688e.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/7cd011031994080932c84b3610370b42b542b14cf78971ac630f476081b4f17d.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/8c81a50f26bf3e49c6c781c94f24c543f320b58f350d0cb39afa4adde137fc6d.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/8c81a50f26bf3e49c6c781c94f24c543f320b58f350d0cb39afa4adde137fc6d.png",
+    "screenshots/eda3ee6f62a3b35b8152d557b2420fdbcb9ec72fe2afe6b9e18794f1a260688e.png;screenshots/7cd011031994080932c84b3610370b42b542b14cf78971ac630f476081b4f17d.png;screenshots/8c81a50f26bf3e49c6c781c94f24c543f320b58f350d0cb39afa4adde137fc6d.png"
   ],
   "links": [
     {
@@ -40,6 +42,11 @@
       "type": "Other",
       "name": "Release",
       "url": "https://github.com/v-atamanenko/sonic3air/releases"
+    },
+    {
+      "type": "Official Website",
+      "name": "NeoVitaDB Release Page",
+      "url": "https://github.com/v-atamanenko/sonic3air/releases/tag/beta-2"
     }
   ]
 }

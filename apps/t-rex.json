@@ -12,13 +12,14 @@
     "other"
   ],
   "version": "v.1.0",
-  "version_date": "2021-06-05",
+  "version_date": "2026-08-12",
   "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
   "size": 3082595,
   "status": "Verified",
   "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/7f439c0cc82e7a12907fb1693fe1c62c6a8f939cca220f48b56620f548d2c5a6.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/1cd2e24a4bb455d053fcc962faf648fe26475c3187fc8f7d52dc777f97ef704d.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/1cd2e24a4bb455d053fcc962faf648fe26475c3187fc8f7d52dc777f97ef704d.png",
+    "screenshots/1cd2e24a4bb455d053fcc962faf648fe26475c3187fc8f7d52dc777f97ef704d.png"
   ],
   "links": [
     {
@@ -31,6 +32,11 @@
       "type": "Other",
       "name": "Release",
       "url": "https://kyuhen.customprotocol.com/en/submissions/trex/"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com"
     }
   ]
 }

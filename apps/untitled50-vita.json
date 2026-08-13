@@ -21,7 +21,8 @@
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/d9a42e981b22ecef38220fd23ee8e8a6ba6d28d23ba02ca5eb55054d302f1641.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/1226bd327f3b0202cc0509cc96b3afcb50b6d71f48170ea4c29f35c841938402.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/e1d9560ca24710b6144aa4c72dda4106f491169440e6514acbf292b826cf9531.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/ffced4236e21a7b8a7a5f6bb6840b47cb689dae90b3d03332aa051486339b04a.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/ffced4236e21a7b8a7a5f6bb6840b47cb689dae90b3d03332aa051486339b04a.png",
+    "screenshots/d9a42e981b22ecef38220fd23ee8e8a6ba6d28d23ba02ca5eb55054d302f1641.png;screenshots/1226bd327f3b0202cc0509cc96b3afcb50b6d71f48170ea4c29f35c841938402.png;screenshots/e1d9560ca24710b6144aa4c72dda4106f491169440e6514acbf292b826cf9531.png;screenshots/ffced4236e21a7b8a7a5f6bb6840b47cb689dae90b3d03332aa051486339b04a.png"
   ],
   "links": [
     {
@@ -39,6 +40,11 @@
       "type": "Other",
       "name": "Release",
       "url": "https://github.com/Rocroverss/Untitled50-PSVita-android-port/releases"
+    },
+    {
+      "type": "Official Website",
+      "name": "NeoVitaDB Release Page",
+      "url": "https://github.com/Rocroverss/Untitled50-PSVita-android-port/releases/tag/v1.0"
     }
   ]
 }

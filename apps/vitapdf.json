@@ -20,7 +20,8 @@
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/9d8cca05b0420d502fc72a19ee64d55276ece44653d3ab8075827b45d67a67d7.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/1744c1679a698afde4b0d1618075e7a937a92044b0580b8c43bc2602303a9716.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/9605951a4aab56171695aee48efc42e667e6111d8927a5997b254c549b36dc91.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/9605951a4aab56171695aee48efc42e667e6111d8927a5997b254c549b36dc91.png",
+    "screenshots/9d8cca05b0420d502fc72a19ee64d55276ece44653d3ab8075827b45d67a67d7.png;screenshots/1744c1679a698afde4b0d1618075e7a937a92044b0580b8c43bc2602303a9716.png;screenshots/9605951a4aab56171695aee48efc42e667e6111d8927a5997b254c549b36dc91.png"
   ],
   "links": [
     {
@@ -38,6 +39,11 @@
       "type": "Other",
       "name": "Release",
       "url": "https://joel16dev.itch.io/vitapdf"
+    },
+    {
+      "type": "Official Website",
+      "name": "NeoVitaDB Release Page",
+      "url": "https://github.com/joel16/vitaPDF/releases/tag/v1.03"
     }
   ]
 }

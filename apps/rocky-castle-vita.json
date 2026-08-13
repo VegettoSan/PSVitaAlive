@@ -20,7 +20,8 @@
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/02b4fce32fa5841d0dca9c3681a508d8e3f7eb20274e5d76fd4b2f0dc241a1b9.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/e3871cc41e63995161acf856f4a4727899849d1125be18d813c6ed26d24b34ea.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/bad1a3d4d458f711fdc6bdb56fdb8696ce372d250d9c719d2c217f7f5ed3f03e.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/bad1a3d4d458f711fdc6bdb56fdb8696ce372d250d9c719d2c217f7f5ed3f03e.png",
+    "screenshots/02b4fce32fa5841d0dca9c3681a508d8e3f7eb20274e5d76fd4b2f0dc241a1b9.png;screenshots/e3871cc41e63995161acf856f4a4727899849d1125be18d813c6ed26d24b34ea.png;screenshots/bad1a3d4d458f711fdc6bdb56fdb8696ce372d250d9c719d2c217f7f5ed3f03e.png"
   ],
   "links": [
     {
@@ -38,6 +39,11 @@
       "type": "Other",
       "name": "Release",
       "url": "https://github.com/Rinnegatamante/rocky-castle-vita/releases/tag/v.1.1"
+    },
+    {
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
+      "url": "https://github.com/Rinnegatamante/rocky-castle-vita/releases"
     }
   ]
 }

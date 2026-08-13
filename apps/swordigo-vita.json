@@ -21,7 +21,8 @@
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/f599b8acda2fc042f08f65b99275ac3837b777662b978c0eec07bf4e66eda9b0.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/acd400be1df30d5db9529f0f51b1e7f024f208ca4aea71711e8cd0a9c781a682.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/6604f73cda296befd88bb27af9ad1602b326af0f2308bcd4b0cfb9a9d4960c01.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/cac074a2574eac07494e50a135edb7634e893f85a9bcd5e5b0a111280e44f790.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/cac074a2574eac07494e50a135edb7634e893f85a9bcd5e5b0a111280e44f790.png",
+    "screenshots/f599b8acda2fc042f08f65b99275ac3837b777662b978c0eec07bf4e66eda9b0.png;screenshots/acd400be1df30d5db9529f0f51b1e7f024f208ca4aea71711e8cd0a9c781a682.png;screenshots/6604f73cda296befd88bb27af9ad1602b326af0f2308bcd4b0cfb9a9d4960c01.png;screenshots/cac074a2574eac07494e50a135edb7634e893f85a9bcd5e5b0a111280e44f790.png"
   ],
   "links": [
     {
@@ -39,6 +40,11 @@
       "type": "Other",
       "name": "Release",
       "url": "https://github.com/Rinnegatamante/swordigo-vita/releases"
+    },
+    {
+      "type": "Official Website",
+      "name": "NeoVitaDB Release Page",
+      "url": "https://github.com/Rinnegatamante/swordigo-vita/releases/tag/v.1.1"
     }
   ]
 }

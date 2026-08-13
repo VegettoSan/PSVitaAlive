@@ -34,6 +34,16 @@
       "type": "Other",
       "name": "Release",
       "url": "https://github.com/usineur/SDLPoP/releases/tag/vita-1.7"
+    },
+    {
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
+      "url": "https://github.com/usineur/SDLPoP-Vita/releases"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/usineur/SDLPoP-Vita"
     }
   ]
 }

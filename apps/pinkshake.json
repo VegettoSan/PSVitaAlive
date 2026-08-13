@@ -12,7 +12,7 @@
     "platformer"
   ],
   "version": "v.1",
-  "version_date": "2023-09-23",
+  "version_date": "2026-08-12",
   "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
   "size": 98293326,
   "status": "Verified",
@@ -21,7 +21,8 @@
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/dfcb493f24d427a99af577832121c9942d64c23d908a83441bd26bbaa8135274.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/5bfc143e8d05738f2c30d2c88004ffd64e08f38f9104b5d51df33770cadfd466.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/197008c610a43e13fa2bc5199fa492d012ecd09496f83951efedf9e785b322ca.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/d7f4a4a0ffdf46a19ea6d8c25657d1cbcaf39b76f7ca2af154165e9d6b0cfbcc.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/d7f4a4a0ffdf46a19ea6d8c25657d1cbcaf39b76f7ca2af154165e9d6b0cfbcc.png",
+    "screenshots/dfcb493f24d427a99af577832121c9942d64c23d908a83441bd26bbaa8135274.png;screenshots/5bfc143e8d05738f2c30d2c88004ffd64e08f38f9104b5d51df33770cadfd466.png;screenshots/197008c610a43e13fa2bc5199fa492d012ecd09496f83951efedf9e785b322ca.png;screenshots/d7f4a4a0ffdf46a19ea6d8c25657d1cbcaf39b76f7ca2af154165e9d6b0cfbcc.png"
   ],
   "links": [
     {
@@ -34,6 +35,11 @@
       "type": "Other",
       "name": "Release",
       "url": "https://cojam.itch.io/pinkshake"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com"
     }
   ]
 }

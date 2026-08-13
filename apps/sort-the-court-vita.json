@@ -12,7 +12,7 @@
     "other"
   ],
   "version": "v.1.1.0",
-  "version_date": "2025-09-08",
+  "version_date": "2026-08-12",
   "requirements": "- Game Data Files: PC",
   "size": 15042197,
   "status": "Legacy",
@@ -29,6 +29,11 @@
       "type": "Other",
       "name": "Release",
       "url": "https://lordchickenblaster.itch.io/sort-the-court-vita"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com"
     }
   ]
 }

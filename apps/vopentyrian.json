@@ -12,7 +12,7 @@
     "fps"
   ],
   "version": "16-09-19",
-  "version_date": "2016-09-20",
+  "version_date": "2021-06-24",
   "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
   "size": 5806780,
   "status": "Verified",
@@ -34,6 +34,16 @@
       "type": "Other",
       "name": "Release",
       "url": "http://gekihen.customprotocol.com/en/project/vOpenTyrian"
+    },
+    {
+      "type": "Download",
+      "name": "NeoVitaDB VPK",
+      "url": "https://github.com/Cpasjuste/vopentyrian/releases/download/16-09-19/vOpenTiryan-16-09-19.vpk"
+    },
+    {
+      "type": "Official Website",
+      "name": "NeoVitaDB Release Page",
+      "url": "https://github.com/Cpasjuste/vopentyrian/releases/tag/16-09-19"
     }
   ]
 }

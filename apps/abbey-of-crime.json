@@ -18,7 +18,8 @@
   "status": "Legacy",
   "icon": "https://robin994.github.io/NeoVitaDB-Catalog/icons/0635-abbey-of-crime.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/b67bd7f09b5830d3e7d3936531ad76962c92e71b89935b0d844372e97fccd2a7.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/b67bd7f09b5830d3e7d3936531ad76962c92e71b89935b0d844372e97fccd2a7.png",
+    "screenshots/b67bd7f09b5830d3e7d3936531ad76962c92e71b89935b0d844372e97fccd2a7.png"
   ],
   "links": [
     {
@@ -36,6 +37,11 @@
       "type": "Other",
       "name": "Release",
       "url": "https://github.com/Samuel85/Abbey/releases/tag/Vita_v1.0"
+    },
+    {
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
+      "url": "https://github.com/Samuel85/Abbey/releases"
     }
   ]
 }

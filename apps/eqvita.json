@@ -11,7 +11,7 @@
   "subcategory_ids": [
     "other"
   ],
-  "version": "v.1.14",
+  "version": "v1.14.0",
   "version_date": "2026-07-07",
   "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
   "size": 1742554,
@@ -21,7 +21,8 @@
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c02d45c27e90dd14a86ef52f7413cf987c3e2bd8f62e1c37e1cf84bfc562a395.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/491dfca4163c968f5749142b4a060b9aa5b4c529a20f028b444b63417d157876.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/19645edb6ddbc1765b64661cf93f55452f9d253d7698669e2e31d57eefc94476.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/79c9c1ec3c4a222e3983fdeb871a92d6f48b7e28ed4d4ee81fbf486b941f9476.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/79c9c1ec3c4a222e3983fdeb871a92d6f48b7e28ed4d4ee81fbf486b941f9476.png",
+    "screenshots/c02d45c27e90dd14a86ef52f7413cf987c3e2bd8f62e1c37e1cf84bfc562a395.png;screenshots/491dfca4163c968f5749142b4a060b9aa5b4c529a20f028b444b63417d157876.png;screenshots/19645edb6ddbc1765b64661cf93f55452f9d253d7698669e2e31d57eefc94476.png;screenshots/79c9c1ec3c4a222e3983fdeb871a92d6f48b7e28ed4d4ee81fbf486b941f9476.png"
   ],
   "links": [
     {
@@ -39,6 +40,11 @@
       "type": "Other",
       "name": "Release",
       "url": "https://github.com/shev0k/EQVita/releases"
+    },
+    {
+      "type": "Official Website",
+      "name": "NeoVitaDB Release Page",
+      "url": "https://github.com/shev0k/EQVita/releases/tag/v1.14.0"
     }
   ]
 }

@@ -12,14 +12,15 @@
   "subcategory_ids": [
     "installer"
   ],
-  "version": "v2.1.0",
-  "version_date": "2021-08-14",
+  "version": "v.2.1.0",
+  "version_date": "2021-08-15",
   "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
   "size": 2906433,
   "status": "Verified",
   "icon": "https://robin994.github.io/NeoVitaDB-Catalog/icons/0558-easyvpk.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/d71f98e78b3f9e2f0d171c8f7f5b05583e1d9617dc7bd1dc64eecec30fefb3e9.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/d71f98e78b3f9e2f0d171c8f7f5b05583e1d9617dc7bd1dc64eecec30fefb3e9.png",
+    "screenshots/d71f98e78b3f9e2f0d171c8f7f5b05583e1d9617dc7bd1dc64eecec30fefb3e9.png"
   ],
   "links": [
     {
@@ -37,6 +38,11 @@
       "type": "Other",
       "name": "Release",
       "url": "https://github.com/Electric1447/EasyVPK/releases/tag/v2.1.0"
+    },
+    {
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
+      "url": "https://github.com/Electric1447/EasyVPK/releases"
     }
   ]
 }

@@ -21,7 +21,8 @@
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/e19fc078c2065f4841fe6208e097cc2f8b0cbd163b53a356eb775342f2b3c5aa.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/f8c7cda9d6af41b58119d6b1dd54693a2d1512e18e0dbd79bd9aedee57e91a68.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/2fb2263306cb514c52dbf29f32c64bb5c9039501ab064fe0354cf2c5021a05fa.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/6924824f436c8b92ff4ae93ac762f44b1628c1188db5d7fb26749b4480d20347.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/6924824f436c8b92ff4ae93ac762f44b1628c1188db5d7fb26749b4480d20347.png",
+    "screenshots/e19fc078c2065f4841fe6208e097cc2f8b0cbd163b53a356eb775342f2b3c5aa.png;screenshots/f8c7cda9d6af41b58119d6b1dd54693a2d1512e18e0dbd79bd9aedee57e91a68.png;screenshots/2fb2263306cb514c52dbf29f32c64bb5c9039501ab064fe0354cf2c5021a05fa.png;screenshots/6924824f436c8b92ff4ae93ac762f44b1628c1188db5d7fb26749b4480d20347.png"
   ],
   "links": [
     {
@@ -39,6 +40,11 @@
       "type": "Other",
       "name": "Release",
       "url": "https://gbatemp.net/threads/release-picrest-picross-for-ps-vita.513063/#post-8182254"
+    },
+    {
+      "type": "Official Website",
+      "name": "NeoVitaDB Release Page",
+      "url": "https://github.com/Creckeryop/PiCrest/releases/tag/1.15"
     }
   ]
 }

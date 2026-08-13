@@ -20,7 +20,8 @@
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/b15a0c4fb4d3da6b882bf2da85b44fdc02770d98f2765fc599eb94f1ce401413.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/ef753bc086ae89c7b7b8ff9172c837ec0e3eec178ae4d7805ae179ceae88af7a.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/0a1fa660918b28e0eb623d3b1b3781ba12de5c54f6a7dcd959003d03f449e0cb.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/0a1fa660918b28e0eb623d3b1b3781ba12de5c54f6a7dcd959003d03f449e0cb.png",
+    "screenshots/b15a0c4fb4d3da6b882bf2da85b44fdc02770d98f2765fc599eb94f1ce401413.png;screenshots/ef753bc086ae89c7b7b8ff9172c837ec0e3eec178ae4d7805ae179ceae88af7a.png;screenshots/0a1fa660918b28e0eb623d3b1b3781ba12de5c54f6a7dcd959003d03f449e0cb.png"
   ],
   "links": [
     {
@@ -38,6 +39,11 @@
       "type": "Other",
       "name": "Release",
       "url": "https://github.com/Rinnegatamante/fink_vita/releases/tag/v.1.0"
+    },
+    {
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
+      "url": "https://github.com/Rinnegatamante/fink_vita/releases"
     }
   ]
 }

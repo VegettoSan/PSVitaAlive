@@ -20,7 +20,8 @@
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/e494911e065c94cb3fa499267db49d8be76f328defb93ac6deeacb405291c074.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/9e77d67aedba5dd1ba058f48886bd535150414f27c9f044b3d0b344de5981ff7.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/2ec9cc8359f8cfab9f7066e742457ff0146efc4f50696788c898585656dc9c65.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/2ec9cc8359f8cfab9f7066e742457ff0146efc4f50696788c898585656dc9c65.png",
+    "screenshots/e494911e065c94cb3fa499267db49d8be76f328defb93ac6deeacb405291c074.png;screenshots/9e77d67aedba5dd1ba058f48886bd535150414f27c9f044b3d0b344de5981ff7.png;screenshots/2ec9cc8359f8cfab9f7066e742457ff0146efc4f50696788c898585656dc9c65.png"
   ],
   "links": [
     {
@@ -38,6 +39,16 @@
       "type": "Other",
       "name": "Release",
       "url": "https://github.com/SonicMastr/Vita-Media-Player/releases/tag/v1.01-PSTV"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDBtoo VPK",
+      "url": "https://github.com/SonicMastr/Vita-Media-Player/releases/download/v1.01/VitaMediaPlayer.vpk"
+    },
+    {
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
+      "url": "https://github.com/SonicMastr/Vita-Media-Player/releases"
     }
   ]
 }

@@ -12,7 +12,7 @@
     "platformer"
   ],
   "version": "v.2.1",
-  "version_date": "2022-04-01",
+  "version_date": "2026-08-12",
   "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
   "size": 56032306,
   "status": "Verified",
@@ -21,7 +21,8 @@
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/0f9dc28b2c69be2789185345278dd129c848c5910767639bd554fb1b2be224b2.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/ad04293f7054355c2e42c074a7393cdaa1222571c2ac87c547e529c6f0123094.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/ee14ab7d25dcae069a170622a938e2ec066f29821a6dc28a6b9ca9c07361f0cc.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/37f765d50b6b7211f1dc8d35ca3f6c017004a91c2ddd51351876b5402ce014af.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/37f765d50b6b7211f1dc8d35ca3f6c017004a91c2ddd51351876b5402ce014af.png",
+    "screenshots/0f9dc28b2c69be2789185345278dd129c848c5910767639bd554fb1b2be224b2.png;screenshots/ad04293f7054355c2e42c074a7393cdaa1222571c2ac87c547e529c6f0123094.png;screenshots/ee14ab7d25dcae069a170622a938e2ec066f29821a6dc28a6b9ca9c07361f0cc.png;screenshots/37f765d50b6b7211f1dc8d35ca3f6c017004a91c2ddd51351876b5402ce014af.png"
   ],
   "links": [
     {
@@ -34,6 +35,11 @@
       "type": "Other",
       "name": "Release",
       "url": "https://kyuhen.customprotocol.com/en/submissions/rolly_polly/"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com"
     }
   ]
 }

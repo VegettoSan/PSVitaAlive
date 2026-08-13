@@ -20,7 +20,8 @@
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/7f9347cee913d1632678e834ce1017e418ab65e1f5ab73b79b3f71853ce3e977.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/defd86872d08fd9e56d7f8f7a525a9fb0a581de2ac180c8daee792666431477f.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/867cfa75839cabb234d0fb8d92916ba3a33b7c8a1688cee916d1a72842d9da33.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/867cfa75839cabb234d0fb8d92916ba3a33b7c8a1688cee916d1a72842d9da33.png",
+    "screenshots/7f9347cee913d1632678e834ce1017e418ab65e1f5ab73b79b3f71853ce3e977.png;screenshots/defd86872d08fd9e56d7f8f7a525a9fb0a581de2ac180c8daee792666431477f.png;screenshots/867cfa75839cabb234d0fb8d92916ba3a33b7c8a1688cee916d1a72842d9da33.png"
   ],
   "links": [
     {
@@ -38,6 +39,11 @@
       "type": "Other",
       "name": "Release",
       "url": "https://github.com/Rinnegatamante/pickleball_vita/releases"
+    },
+    {
+      "type": "Official Website",
+      "name": "NeoVitaDB Release Page",
+      "url": "https://github.com/Rinnegatamante/pickleball_vita/releases/tag/v.1.0"
     }
   ]
 }

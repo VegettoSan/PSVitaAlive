@@ -6,7 +6,8 @@
   "long_description": "This is a wrapper/port of Death Road to Canada for the PS Vita.\nThe port works by loading the official Android ARMv7 executable in memory, resolving its imports with native functions and patching it in order to properly run.\nBy doing so, it's basically as if we emulate a minimalist Android environment in which we run natively the executables as it is.\nThis release is bundled with a mod made by CatoTheYounger to reduce workload of game maps in order to make the game playable on Vita hardware (Thus why the release is named Lite).",
   "author_ids": [
     "rinnegatamante",
-    "catotheyounger"
+    "catotheyounger",
+    "bythos"
   ],
   "category_id": "modding",
   "subcategory_ids": [
@@ -22,7 +23,8 @@
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/a61b10313ce660cff761a7b4734109d3be8e38f774308634b0c52b6b7d4ccad4.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/6361f255d1400f7e8827b1298a5cc3ce421ac0b65faf4165edc42381d7778536.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/5ac5f20bc3c3cbb2cc91bdbdb726e6ff49ad0a985ac74cf4248d0089bd8fca13.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/ac8b07ca3bc5262bef07f4cca0defe126dd1c25f650f8c4e4a29ad7630be26b7.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/ac8b07ca3bc5262bef07f4cca0defe126dd1c25f650f8c4e4a29ad7630be26b7.png",
+    "screenshots/a61b10313ce660cff761a7b4734109d3be8e38f774308634b0c52b6b7d4ccad4.png;screenshots/6361f255d1400f7e8827b1298a5cc3ce421ac0b65faf4165edc42381d7778536.png;screenshots/5ac5f20bc3c3cbb2cc91bdbdb726e6ff49ad0a985ac74cf4248d0089bd8fca13.png;screenshots/ac8b07ca3bc5262bef07f4cca0defe126dd1c25f650f8c4e4a29ad7630be26b7.png"
   ],
   "links": [
     {
@@ -40,6 +42,11 @@
       "type": "Other",
       "name": "Release",
       "url": "https://github.com/Rinnegatamante/Death-Road-to-Canada-Lite/releases"
+    },
+    {
+      "type": "Official Website",
+      "name": "NeoVitaDB Release Page",
+      "url": "https://github.com/Rinnegatamante/Death-Road-to-Canada-Lite/releases/tag/v.1.0"
     }
   ]
 }

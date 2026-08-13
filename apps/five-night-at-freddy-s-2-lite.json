@@ -12,7 +12,7 @@
     "other"
   ],
   "version": "v.0.3.5",
-  "version_date": "2022-03-02",
+  "version_date": "2026-08-12",
   "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
   "size": 85766384,
   "status": "Verified",
@@ -20,7 +20,8 @@
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/5d4ca28713ef83024f46f2a9a552abc7287d64478215d991a06acf7d8cb96dd3.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/9eb120b263960893ccdbf59cfd95c9d7a598a89251dea9b0f5f06eaa94e8f4aa.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/2b687ec2827b2fe6ecdc1d3a8d0d8ea7f04dd3572545a327320e1df0c1a93a99.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/2b687ec2827b2fe6ecdc1d3a8d0d8ea7f04dd3572545a327320e1df0c1a93a99.png",
+    "screenshots/5d4ca28713ef83024f46f2a9a552abc7287d64478215d991a06acf7d8cb96dd3.png;screenshots/9eb120b263960893ccdbf59cfd95c9d7a598a89251dea9b0f5f06eaa94e8f4aa.png;screenshots/2b687ec2827b2fe6ecdc1d3a8d0d8ea7f04dd3572545a327320e1df0c1a93a99.png"
   ],
   "links": [
     {
@@ -33,6 +34,11 @@
       "type": "Other",
       "name": "Release",
       "url": "https://gamejolt.com/games/FNAF2PSP/680533"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com"
     }
   ]
 }

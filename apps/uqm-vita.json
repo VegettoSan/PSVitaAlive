@@ -11,8 +11,8 @@
   "subcategory_ids": [
     "other"
   ],
-  "version": "v.0.8.0.rev1",
-  "version_date": "2022-03-04",
+  "version": "rev1",
+  "version_date": "2022-03-03",
   "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
   "size": 1432712,
   "status": "Verified",
@@ -34,6 +34,11 @@
       "type": "Other",
       "name": "Release",
       "url": "https://github.com/argarak/uqm-vita/releases"
+    },
+    {
+      "type": "Official Website",
+      "name": "NeoVitaDB Release Page",
+      "url": "https://github.com/argarak/uqm-vita/releases/tag/rev1"
     }
   ]
 }

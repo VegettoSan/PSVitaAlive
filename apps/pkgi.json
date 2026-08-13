@@ -18,7 +18,8 @@
   "status": "Verified",
   "icon": "https://robin994.github.io/NeoVitaDB-Catalog/icons/0341-pkgi.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/50b7fb19aff9d881ef507103d90c2a3d4416c3208cf72893a52b19f39b9ca7f4.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/50b7fb19aff9d881ef507103d90c2a3d4416c3208cf72893a52b19f39b9ca7f4.png",
+    "screenshots/50b7fb19aff9d881ef507103d90c2a3d4416c3208cf72893a52b19f39b9ca7f4.png"
   ],
   "links": [
     {
@@ -36,6 +37,11 @@
       "type": "Other",
       "name": "Release",
       "url": "https://github.com/mmozeiko/pkgi/releases/tag/v0.05"
+    },
+    {
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
+      "url": "https://github.com/mmozeiko/pkgi/releases"
     }
   ]
 }

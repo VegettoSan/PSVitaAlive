@@ -18,7 +18,8 @@
   "status": "Verified",
   "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/e5c00ba529829c233586dee95b900814eebfccf53d24c097fb8f4ba77e46b404.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/7c847dc6db88c445a91e5381c56376118e998e5aa9188f17022a7b08e3b10543.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/7c847dc6db88c445a91e5381c56376118e998e5aa9188f17022a7b08e3b10543.png",
+    "screenshots/7c847dc6db88c445a91e5381c56376118e998e5aa9188f17022a7b08e3b10543.png"
   ],
   "links": [
     {
@@ -36,6 +37,11 @@
       "type": "Other",
       "name": "Release",
       "url": "https://github.com/Mips96/Trogdor-Reburninated/releases"
+    },
+    {
+      "type": "Official Website",
+      "name": "NeoVitaDB Release Page",
+      "url": "https://github.com/Mode8fx/Trogdor-Reburninated/releases/tag/v2.4"
     }
   ]
 }

@@ -35,6 +35,16 @@
       "type": "Other",
       "name": "Release",
       "url": "https://github.com/ywnico/vitaki-fork/releases/tag/v0.06d"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDBtoo VPK",
+      "url": "https://github.com/ywnico/vitaki-fork/releases/download/v0.06c/Vitaki.vpk"
+    },
+    {
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
+      "url": "https://github.com/ywnico/vitaki-fork/releases"
     }
   ]
 }

@@ -20,7 +20,8 @@
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/734b3bed7bedb1bd7dd552890048a63f6b7756b8d2b686ba8dbc76beea49c4e2.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/cd8dcea0d34b13c52540ba30bfe8b06804265ebaf26ac88a4c3bab9d9c96880d.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/b278050552d52611db1991bc114708f8417710485b7af6dfd40ff1e581eb7cb0.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/b278050552d52611db1991bc114708f8417710485b7af6dfd40ff1e581eb7cb0.png",
+    "screenshots/734b3bed7bedb1bd7dd552890048a63f6b7756b8d2b686ba8dbc76beea49c4e2.png;screenshots/cd8dcea0d34b13c52540ba30bfe8b06804265ebaf26ac88a4c3bab9d9c96880d.png;screenshots/b278050552d52611db1991bc114708f8417710485b7af6dfd40ff1e581eb7cb0.png"
   ],
   "links": [
     {
@@ -38,6 +39,11 @@
       "type": "Other",
       "name": "Release",
       "url": "https://github.com/island-games/slime-vball/releases"
+    },
+    {
+      "type": "Official Website",
+      "name": "NeoVitaDB Release Page",
+      "url": "https://github.com/island-games/slime-vball/releases/tag/v1.0.0"
     }
   ]
 }

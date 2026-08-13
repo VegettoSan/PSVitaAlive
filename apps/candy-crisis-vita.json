@@ -12,7 +12,7 @@
     "puzzle"
   ],
   "version": "v.1.0",
-  "version_date": "2023-02-24",
+  "version_date": "2026-08-12",
   "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
   "size": 717046,
   "status": "Verified",
@@ -21,7 +21,8 @@
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c2fe3114de8eb24c08825d7aa3ff4fc89b14d09ad711c30cfa9a362469e9f9cd.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/aa7e6f00a665e2c66e8bd7217dee968b8a55e1c88520061d0418441366399bcf.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/a56e97e20ca1aa1f6f77f3c31b6ea7ee3d22a326b890dee0245ba0d5e3500a8d.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c765a619b3c78ea857286d57e14c3123258da13989dd743221e71b687549daa5.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c765a619b3c78ea857286d57e14c3123258da13989dd743221e71b687549daa5.png",
+    "screenshots/c2fe3114de8eb24c08825d7aa3ff4fc89b14d09ad711c30cfa9a362469e9f9cd.png;screenshots/aa7e6f00a665e2c66e8bd7217dee968b8a55e1c88520061d0418441366399bcf.png;screenshots/a56e97e20ca1aa1f6f77f3c31b6ea7ee3d22a326b890dee0245ba0d5e3500a8d.png;screenshots/c765a619b3c78ea857286d57e14c3123258da13989dd743221e71b687549daa5.png"
   ],
   "links": [
     {

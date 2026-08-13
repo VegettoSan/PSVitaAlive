@@ -20,7 +20,8 @@
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/826da958d6d57be938795743f2d7080ef517119f2e1db65c6583a3be0a13b7ea.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/43d86f8601fe692bd8405cf1d12bea1911072513de4a35044572a287d4ae9efe.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/aa9277437ee1c5124a51bd28172f354bac228816d4e8fc0c4fb89fcbb55f8dc5.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/aa9277437ee1c5124a51bd28172f354bac228816d4e8fc0c4fb89fcbb55f8dc5.png",
+    "screenshots/826da958d6d57be938795743f2d7080ef517119f2e1db65c6583a3be0a13b7ea.png;screenshots/43d86f8601fe692bd8405cf1d12bea1911072513de4a35044572a287d4ae9efe.png;screenshots/aa9277437ee1c5124a51bd28172f354bac228816d4e8fc0c4fb89fcbb55f8dc5.png"
   ],
   "links": [
     {
@@ -33,6 +34,11 @@
       "type": "Other",
       "name": "Release",
       "url": "https://anthj.itch.io/vita-sketch"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/AntHJ/VitA-Sketch"
     }
   ]
 }

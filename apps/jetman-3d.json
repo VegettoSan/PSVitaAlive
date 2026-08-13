@@ -34,6 +34,11 @@
       "type": "Other",
       "name": "Release",
       "url": "http://www.gremlinsoftware.co.nz/jetman3D.html"
+    },
+    {
+      "type": "Official Website",
+      "name": "NeoVitaDB Release Page",
+      "url": "https://github.com/softwaregremlin/Jetman3D/releases/tag/Main"
     }
   ]
 }

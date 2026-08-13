@@ -12,13 +12,14 @@
     "other"
   ],
   "version": "v.1.2.0",
-  "version_date": "2021-10-16",
+  "version_date": "2026-08-12",
   "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
   "size": 94239,
   "status": "Verified",
   "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/f4bd31955f00f82233b1fbd8b79d7af1cb0ed1e0395d8ff8e7c163c0943cfa88.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/cac7e2cd27b4f0eb298b1fce682b99812a2a4f7cf540e1ec9816380a18a02d06.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/cac7e2cd27b4f0eb298b1fce682b99812a2a4f7cf540e1ec9816380a18a02d06.png",
+    "screenshots/cac7e2cd27b4f0eb298b1fce682b99812a2a4f7cf540e1ec9816380a18a02d06.png"
   ],
   "links": [
     {
@@ -31,6 +32,11 @@
       "type": "Other",
       "name": "Release",
       "url": "http://thp.io/2021/dzzee/"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com"
     }
   ]
 }

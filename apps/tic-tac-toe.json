@@ -12,7 +12,7 @@
     "other"
   ],
   "version": "v.1.2.2",
-  "version_date": "2022-05-31",
+  "version_date": "2026-08-12",
   "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
   "size": 39690657,
   "status": "Verified",
@@ -20,7 +20,8 @@
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/8e0677bf24ee27bc795e329ddd4a735dd3dc494b2edda09efe994d43cb49faa5.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/67d97df6b4668d611bcbb0f84f025a488d2ad9ede1b075fcd0f8054a635c733f.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/da3d45758a53332a0521b8f40c439cd6fd1abf8b29c251ec44e6b3365d426609.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/da3d45758a53332a0521b8f40c439cd6fd1abf8b29c251ec44e6b3365d426609.png",
+    "screenshots/8e0677bf24ee27bc795e329ddd4a735dd3dc494b2edda09efe994d43cb49faa5.png;screenshots/67d97df6b4668d611bcbb0f84f025a488d2ad9ede1b075fcd0f8054a635c733f.png;screenshots/da3d45758a53332a0521b8f40c439cd6fd1abf8b29c251ec44e6b3365d426609.png"
   ],
   "links": [
     {
@@ -28,6 +29,11 @@
       "name": "Descarga principal",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/816-Tic-Tac-Toe.vpk",
       "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com"
     }
   ]
 }

@@ -18,7 +18,8 @@
   "status": "Legacy",
   "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/b9855466923c344fc9699ad82b57098a0201a09b4a18f084cd61ce2f47959e7e.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/be8944ca904e980e4727e5355ac111eb42e68c83adb2be1c1456fce8d325ac6b.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/be8944ca904e980e4727e5355ac111eb42e68c83adb2be1c1456fce8d325ac6b.png",
+    "screenshots/be8944ca904e980e4727e5355ac111eb42e68c83adb2be1c1456fce8d325ac6b.png"
   ],
   "links": [
     {
@@ -36,6 +37,11 @@
       "type": "Other",
       "name": "Release",
       "url": "https://github.com/HarommelRabbid/VitaSokoban/releases"
+    },
+    {
+      "type": "Official Website",
+      "name": "NeoVitaDB Release Page",
+      "url": "https://github.com/HarommelRabbid/VitaSokoban/releases/tag/02-11-25"
     }
   ]
 }

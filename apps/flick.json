@@ -5,19 +5,22 @@
   "description": "Labyrinth game for PSVITA.",
   "long_description": "Evade the Ghost and 'Flick' the switches to Escape.",
   "author_ids": [
-    "aionmagan"
+    "aionmagan",
+    "aionmagan-elpichonart-gguihurt"
   ],
   "category_id": "games",
   "subcategory_ids": [
     "other"
   ],
   "version": "v.1.0",
-  "version_date": "2023-11-04",
+  "version_date": "2026-08-12",
   "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
-  "size": 30135539,
+  "size": 18003900,
   "status": "Verified",
   "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/6d1f6d67bdb42585dafecac3ad6ed007c01fc51aa18d49c4c53942eaf6d7557b.png",
-  "screenshots": [],
+  "screenshots": [
+    "screenshots/85130ab5ac4edec671e2176fb985c22e45b0ab675de19d0c198007c07bbcb3dd.png;screenshots/0b9672c7bcfc78c0eb29bd0f736a45f7c532287cad698183b546b736736ca0d8.png;screenshots/43cc62c7c9cef4fb2b5a04536d91a3ef83f1f1b56366ef9ad94d570bb7302af8.png"
+  ],
   "links": [
     {
       "type": "Download",
@@ -29,6 +32,21 @@
       "type": "Other",
       "name": "Release",
       "url": "https://aionmagan.itch.io/flick"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDBtoo VPK",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1096-TopClassic.vpk"
+    },
+    {
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
+      "url": "https://aionmagan.itch.io/top-classic-plaigarized"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com"
     }
   ]
 }

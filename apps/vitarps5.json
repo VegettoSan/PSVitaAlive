@@ -7,23 +7,25 @@
   "author_ids": [
     "claude-ai",
     "ywnico",
-    "aagaming"
+    "aagaming",
+    "claude-ai-ywnico-aagaming"
   ],
   "category_id": "utilities",
   "subcategory_ids": [
     "other"
   ],
-  "version": "v3.0.2",
-  "version_date": "2026-06-25",
+  "version": "v3.0.3",
+  "version_date": "2026-08-10",
   "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
-  "size": 3708108,
+  "size": 3712050,
   "status": "Verified",
   "icon": "https://robin994.github.io/NeoVitaDB-Catalog/icons/1356-vitarps5.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/32f3598e76f93a3e47a91fc5f2c2c3e1862fff2fb394f49db21a8e9263182e50.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c01c528224979a84bcfe74c31c0ea2540a41c17bb410e0b7b16970a46f392f8e.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/a491285887c31ff360fa303a56a75305e2e148ff33bda2f5e80459b72559992d.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/87f3d0db56be332b48828aaffcb856f95c3ff51e215f27901ff76c36a24bea71.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/87f3d0db56be332b48828aaffcb856f95c3ff51e215f27901ff76c36a24bea71.png",
+    "screenshots/32f3598e76f93a3e47a91fc5f2c2c3e1862fff2fb394f49db21a8e9263182e50.png;screenshots/c01c528224979a84bcfe74c31c0ea2540a41c17bb410e0b7b16970a46f392f8e.png;screenshots/a491285887c31ff360fa303a56a75305e2e148ff33bda2f5e80459b72559992d.png;screenshots/87f3d0db56be332b48828aaffcb856f95c3ff51e215f27901ff76c36a24bea71.png"
   ],
   "links": [
     {
@@ -41,6 +43,16 @@
       "type": "Other",
       "name": "Release",
       "url": "https://github.com/mauricio-gg/vitaki-vitarps5/releases/tag/v3.0.2"
+    },
+    {
+      "type": "Download",
+      "name": "NeoVitaDB VPK",
+      "url": "https://github.com/mauricio-gg/vitaki-vitarps5/releases/download/v3.0.3/VitakiFork-v3.0.3.vpk"
+    },
+    {
+      "type": "Official Website",
+      "name": "NeoVitaDB Release Page",
+      "url": "https://github.com/mauricio-gg/vitaki-vitarps5/releases/tag/v3.0.3"
     }
   ]
 }

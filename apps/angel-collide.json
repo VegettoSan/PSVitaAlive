@@ -12,7 +12,7 @@
     "shooter"
   ],
   "version": "v.1",
-  "version_date": "2021-05-26",
+  "version_date": "2026-08-12",
   "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
   "size": 66228307,
   "status": "Verified",
@@ -20,7 +20,8 @@
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/414848085e8544b906a703387ac5738bccb1eaafc6df3426ede0c3e2cf5d767d.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/37b79fbbf6ae547666bfc3ba898fb4b14a566f338939dd52e265f672504bb52d.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/d0248b26a9dcae8b257f014b251e7b30e3e6dc9dbe25281a212fca0a8fe57b48.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/d0248b26a9dcae8b257f014b251e7b30e3e6dc9dbe25281a212fca0a8fe57b48.png",
+    "screenshots/414848085e8544b906a703387ac5738bccb1eaafc6df3426ede0c3e2cf5d767d.png;screenshots/37b79fbbf6ae547666bfc3ba898fb4b14a566f338939dd52e265f672504bb52d.png;screenshots/d0248b26a9dcae8b257f014b251e7b30e3e6dc9dbe25281a212fca0a8fe57b48.png"
   ],
   "links": [
     {
@@ -33,6 +34,11 @@
       "type": "Other",
       "name": "Release",
       "url": "https://kyuhen.customprotocol.com/en/submissions/angel_collide"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com"
     }
   ]
 }

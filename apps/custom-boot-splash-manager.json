@@ -18,7 +18,8 @@
   "status": "Verified",
   "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/18746b487153dc1ca3d728ce57b841b6e8faeca65a0900aa46864f73d07642c8.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/1d7ae12e1f513abcbba0b6f3eeef04c03f9ae25a0acaa90a5673644fbae8f599.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/1d7ae12e1f513abcbba0b6f3eeef04c03f9ae25a0acaa90a5673644fbae8f599.png",
+    "screenshots/1d7ae12e1f513abcbba0b6f3eeef04c03f9ae25a0acaa90a5673644fbae8f599.png"
   ],
   "links": [
     {
@@ -36,6 +37,11 @@
       "type": "Other",
       "name": "Release",
       "url": "https://github.com/SKGleba/CBS-Manager/releases"
+    },
+    {
+      "type": "Official Website",
+      "name": "NeoVitaDB Release Page",
+      "url": "https://github.com/SKGleba/CBS-Manager/releases/tag/v3.1"
     }
   ]
 }

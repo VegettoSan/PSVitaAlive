@@ -12,14 +12,15 @@
     "platformer"
   ],
   "version": "v.1.4",
-  "version_date": "2023-08-22",
+  "version_date": "2026-08-12",
   "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
   "size": 28510095,
   "status": "Verified",
   "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/41f3f7be0e348678a7bb9a0ec6a444a2c82bbdcfe36f92c6b1461d37a8c7eadb.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/7a71f0730314d8f87d8f587a53b8c84d2a5f622561d437dd41735e5df4924ab3.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/9ebc09e20cdac3cd214f5e4502b428547733096d8f09511397a37f35984982de.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/9ebc09e20cdac3cd214f5e4502b428547733096d8f09511397a37f35984982de.png",
+    "screenshots/7a71f0730314d8f87d8f587a53b8c84d2a5f622561d437dd41735e5df4924ab3.png;screenshots/9ebc09e20cdac3cd214f5e4502b428547733096d8f09511397a37f35984982de.png"
   ],
   "links": [
     {
@@ -27,6 +28,11 @@
       "name": "Descarga principal",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1117-jjjs.vpk",
       "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com"
     }
   ]
 }

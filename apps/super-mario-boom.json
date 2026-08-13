@@ -21,7 +21,8 @@
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/d62557166c58f5b2bca6933ad8269c86abde988a762753a3facc7937d0489fbb.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/12553bf2f001495311762b2f7764792093615ceb6b5e4fbf63618d04b961c2fe.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/56e513f7f79b143d53142c47e1fb037a6c3a4872010e8c4a5e2a87e08d795c5d.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/cb93b99584f3fe240abb3d4be88ee57d5c88e1f90848a750b8dc0c09b814e123.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/cb93b99584f3fe240abb3d4be88ee57d5c88e1f90848a750b8dc0c09b814e123.png",
+    "screenshots/d62557166c58f5b2bca6933ad8269c86abde988a762753a3facc7937d0489fbb.png;screenshots/12553bf2f001495311762b2f7764792093615ceb6b5e4fbf63618d04b961c2fe.png;screenshots/56e513f7f79b143d53142c47e1fb037a6c3a4872010e8c4a5e2a87e08d795c5d.png;screenshots/cb93b99584f3fe240abb3d4be88ee57d5c88e1f90848a750b8dc0c09b814e123.png"
   ],
   "links": [
     {
@@ -39,6 +40,11 @@
       "type": "Other",
       "name": "Release",
       "url": "https://github.com/MEGAgameBoy/Super-Mario-Boom-PS-Vita-Port/releases"
+    },
+    {
+      "type": "Official Website",
+      "name": "NeoVitaDB Release Page",
+      "url": "https://github.com/MEGAgameBoy/Super-Mario-Boom-PS-Vita-Port/releases/tag/1.0"
     }
   ]
 }

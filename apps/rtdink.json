@@ -5,7 +5,8 @@
   "description": "Port of Dink Smallwood HD for PSVITA.",
   "long_description": "Port of Dink Smallwood HD for PSVITA.\nThe game centers on Dink, a pig farmer-turned-hero who embarks on various quests throughout his world. The game features isometric, Diablo-like gameplay, including weapons, items, and magic. The game has a satirical off-color slant, including everything from a fiercely abusive uncle to a town that worships ducks. Dink is never freed from the grievances of being a pig farmer, a fact he is far too often reminded of by his nemesis, Milder Flatstomp.",
   "author_ids": [
-    "nyabsi"
+    "nyabsi",
+    "nabsiya"
   ],
   "category_id": "ports",
   "subcategory_ids": [
@@ -34,6 +35,11 @@
       "type": "Other",
       "name": "Release",
       "url": "http://www.dinknetwork.com/forum.cgi?MID=207184&Posts=1"
+    },
+    {
+      "type": "Official Website",
+      "name": "NeoVitaDB Release Page",
+      "url": "https://github.com/Nyabsi/RTDink/releases/tag/1.3.1"
     }
   ]
 }

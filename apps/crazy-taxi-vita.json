@@ -6,7 +6,9 @@
   "long_description": "This is a wrapper/port of Craxy Taxi Classic Android for the PS Vita.\nThe port works by loading the official Android ARMv7 executable in memory, resolving its imports with native functions and patching it in order to properly run.",
   "author_ids": [
     "theflow",
-    "rinnegatamante"
+    "rinnegatamante",
+    "aap",
+    "vitahex-games"
   ],
   "category_id": "ports",
   "subcategory_ids": [
@@ -22,7 +24,8 @@
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/1250844e9b98308b37b42a2d9810a48fc329faab35fe53c9e90e9cb835fe0353.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/0babd76189d664309bf856c40d34e69ff706febb37e8a3f6d493e10223bc8c26.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/68b8a05192ada20d07c7c3ccfd370bfc246801b569a0268cca0bb014b1ce222d.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/a15f5d127fe018f2cdb1bec8acf91158e05d47e9c252c10dbf9019989e34796b.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/a15f5d127fe018f2cdb1bec8acf91158e05d47e9c252c10dbf9019989e34796b.png",
+    "screenshots/1250844e9b98308b37b42a2d9810a48fc329faab35fe53c9e90e9cb835fe0353.png;screenshots/0babd76189d664309bf856c40d34e69ff706febb37e8a3f6d493e10223bc8c26.png;screenshots/68b8a05192ada20d07c7c3ccfd370bfc246801b569a0268cca0bb014b1ce222d.png;screenshots/a15f5d127fe018f2cdb1bec8acf91158e05d47e9c252c10dbf9019989e34796b.png"
   ],
   "links": [
     {
@@ -40,6 +43,11 @@
       "type": "Other",
       "name": "Release",
       "url": "https://github.com/TheOfficialFloW/crazytaxi_vita/releases/tag/v1.2"
+    },
+    {
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
+      "url": "https://github.com/TheOfficialFloW/crazytaxi_vita/releases"
     }
   ]
 }

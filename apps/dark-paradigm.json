@@ -12,7 +12,7 @@
     "fps"
   ],
   "version": "v.0.08a",
-  "version_date": "2021-06-07",
+  "version_date": "2026-08-12",
   "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
   "size": 125810977,
   "status": "Verified",
@@ -20,7 +20,8 @@
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/b774809e38e19614fa6b66b757a2aefc10119ac08c7192ab9678a91de297f96e.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/04afc4b29a8702b5dd5fe320b65c9bb0f0f9a88447b2bf60aca91c2fc164e598.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/1c5483de7f417451e626d5d78062b1eb13f8f3e6611e5cb8aadbf5d34fa98b6b.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/1c5483de7f417451e626d5d78062b1eb13f8f3e6611e5cb8aadbf5d34fa98b6b.png",
+    "screenshots/b774809e38e19614fa6b66b757a2aefc10119ac08c7192ab9678a91de297f96e.png;screenshots/04afc4b29a8702b5dd5fe320b65c9bb0f0f9a88447b2bf60aca91c2fc164e598.png;screenshots/1c5483de7f417451e626d5d78062b1eb13f8f3e6611e5cb8aadbf5d34fa98b6b.png"
   ],
   "links": [
     {
@@ -33,6 +34,11 @@
       "type": "Other",
       "name": "Release",
       "url": "https://kyuhen.customprotocol.com/en/submissions/darkparadigm/"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com"
     }
   ]
 }

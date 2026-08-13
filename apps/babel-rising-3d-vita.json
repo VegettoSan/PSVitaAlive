@@ -21,7 +21,8 @@
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/8d8e7380182024d8ff67024a59ab5558cce80b205ab327982e37e9bbf2394873.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/6b13181acfb2837e5315f70a03a0e9405977d96a49585e15c8b4984023885f77.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/b0e6aec60f41ee5cbda84291ba9a539de7383fad36c000ff3cd0f3b9d8dddfa2.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/3ad0fb89b5887458d97b454eaa2e3e92f37ae010eb388493a7e2b68740bd57e7.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/3ad0fb89b5887458d97b454eaa2e3e92f37ae010eb388493a7e2b68740bd57e7.png",
+    "screenshots/8d8e7380182024d8ff67024a59ab5558cce80b205ab327982e37e9bbf2394873.png;screenshots/6b13181acfb2837e5315f70a03a0e9405977d96a49585e15c8b4984023885f77.png;screenshots/b0e6aec60f41ee5cbda84291ba9a539de7383fad36c000ff3cd0f3b9d8dddfa2.png;screenshots/3ad0fb89b5887458d97b454eaa2e3e92f37ae010eb388493a7e2b68740bd57e7.png"
   ],
   "links": [
     {
@@ -39,6 +40,11 @@
       "type": "Other",
       "name": "Release",
       "url": "https://github.com/Rinnegatamante/babel-vita/releases/tag/v.1.0"
+    },
+    {
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
+      "url": "https://github.com/Rinnegatamante/babel-vita/releases"
     }
   ]
 }

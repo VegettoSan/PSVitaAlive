@@ -34,6 +34,11 @@
       "type": "Other",
       "name": "Release",
       "url": "https://github.com/technicaljicama/OpenRCT2-CE/releases"
+    },
+    {
+      "type": "Official Website",
+      "name": "NeoVitaDB Release Page",
+      "url": "https://github.com/technicaljicama/OpenRCT2-CE/releases/tag/vita-1"
     }
   ]
 }

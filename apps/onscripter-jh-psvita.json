@@ -19,7 +19,8 @@
   "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/98f789e5c84ab6c2b475c2220b5163ded98222a6e4cef110a4702d7d9a519726.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/fbbc3de0bc219bc8b211aa13b2293b0bfd7ca57fa8d41a2a58e383cb1b642aa5.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/f2c01ecd60af8613ecaf056a70174789cf500b4e424a713ffaa830f46e2f6c22.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/f2c01ecd60af8613ecaf056a70174789cf500b4e424a713ffaa830f46e2f6c22.png",
+    "screenshots/fbbc3de0bc219bc8b211aa13b2293b0bfd7ca57fa8d41a2a58e383cb1b642aa5.png;screenshots/f2c01ecd60af8613ecaf056a70174789cf500b4e424a713ffaa830f46e2f6c22.png"
   ],
   "links": [
     {
@@ -37,6 +38,11 @@
       "type": "Other",
       "name": "Release",
       "url": "https://github.com/YuriSizuku/psv-OnscripterJH/releases"
+    },
+    {
+      "type": "Official Website",
+      "name": "NeoVitaDB Release Page",
+      "url": "https://github.com/YuriSizuku/psv-OnscripterJH/releases/tag/v0.5.1.3"
     }
   ]
 }

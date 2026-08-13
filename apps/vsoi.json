@@ -34,6 +34,11 @@
       "type": "Other",
       "name": "Release",
       "url": "https://gbatemp.net/threads/release-vitashell-one-click-installer-for-near.498903/"
+    },
+    {
+      "type": "Official Website",
+      "name": "NeoVitaDB Release Page",
+      "url": "https://github.com/gnmmarechal/VSOI/releases/tag/v0.1"
     }
   ]
 }

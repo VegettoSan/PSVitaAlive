@@ -21,7 +21,8 @@
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/cdaf791df7b49b776fd454bb22bb11051df4c6ff91a959b60a6cfdd7cd3bf386.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/20b6e483c87309d3394c235cd4968b1ce65eba8057cd17c61bc5f79faf638474.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/869511cee9d90369a1924b226cc0f866e1b0599b3840a7b0895b67cc1b03c073.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/26820f8e65826f74387251197a052bfccc52b10646966a9c959ebeb0676da904.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/26820f8e65826f74387251197a052bfccc52b10646966a9c959ebeb0676da904.png",
+    "screenshots/cdaf791df7b49b776fd454bb22bb11051df4c6ff91a959b60a6cfdd7cd3bf386.png;screenshots/20b6e483c87309d3394c235cd4968b1ce65eba8057cd17c61bc5f79faf638474.png;screenshots/869511cee9d90369a1924b226cc0f866e1b0599b3840a7b0895b67cc1b03c073.png;screenshots/26820f8e65826f74387251197a052bfccc52b10646966a9c959ebeb0676da904.png"
   ],
   "links": [
     {
@@ -39,6 +40,11 @@
       "type": "Other",
       "name": "Release",
       "url": "https://github.com/Rinnegatamante/SpaghettiKart/releases"
+    },
+    {
+      "type": "Official Website",
+      "name": "NeoVitaDB Release Page",
+      "url": "https://github.com/Rinnegatamante/SpaghettiKart/releases/tag/v.1.1"
     }
   ]
 }

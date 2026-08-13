@@ -11,8 +11,8 @@
   "subcategory_ids": [
     "simulation"
   ],
-  "version": "v.0.3",
-  "version_date": "2019-03-07",
+  "version": "0.3-vita",
+  "version_date": "2019-03-08",
   "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
   "size": 3727798,
   "status": "Verified",
@@ -21,7 +21,8 @@
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/5c366c90013c8b02fca2e7c8c546c252936a2c3dfd37e3999abb37d2f0b3d48c.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/cf9ea6655e1f46f6b198e80de507fdbac263ffda327de750eb6ac43b259190aa.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/75b447c075d96c28abb81ddcaca4ef905913c142ec086238bf85dc967259fdb3.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/6ed488a358ffbc6a58f94bf61768fe8c10d69effe007f9747283e56e44f54958.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/6ed488a358ffbc6a58f94bf61768fe8c10d69effe007f9747283e56e44f54958.png",
+    "screenshots/5c366c90013c8b02fca2e7c8c546c252936a2c3dfd37e3999abb37d2f0b3d48c.png;screenshots/cf9ea6655e1f46f6b198e80de507fdbac263ffda327de750eb6ac43b259190aa.png;screenshots/75b447c075d96c28abb81ddcaca4ef905913c142ec086238bf85dc967259fdb3.png;screenshots/6ed488a358ffbc6a58f94bf61768fe8c10d69effe007f9747283e56e44f54958.png"
   ],
   "links": [
     {
@@ -39,6 +40,11 @@
       "type": "Other",
       "name": "Release",
       "url": "https://github.com/angguss/OpenTTD/releases"
+    },
+    {
+      "type": "Official Website",
+      "name": "NeoVitaDB Release Page",
+      "url": "https://github.com/angguss/OpenTTD/releases/tag/0.3-vita"
     }
   ]
 }

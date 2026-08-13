@@ -1,0 +1,39 @@
+{
+  "id": "cex-2-rex-2-0",
+  "title_id": "CEX2REX20",
+  "name": "CEX 2 REX 2.0",
+  "description": "",
+  "long_description": "Spoof & Install Testing Kit Firmware onto a retial PSVita,\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
+  "author_ids": [
+    "li"
+  ],
+  "category_id": "games",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "latest",
+  "version_date": "2026-08-12",
+  "requirements": "Henkaku Enso, reF00D and a Testing Kit firmware PUP",
+  "size": 194270,
+  "status": "Legacy",
+  "icon": "1986-CEX2REX.png",
+  "screenshots": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "NeoVitaDB VPK",
+      "url": "https://git.silica.codes/Li/cex-2-rex/releases/download/latest/CEX2REX.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://git.silica.codes"
+    }
+  ],
+  "source_name": "NeoVitaDB",
+  "source_id": "1986",
+  "source_url": "https://git.silica.codes",
+  "release_page": "",
+  "updated_at": "2026-08-13T05:25:55.189225+00:00"
+}

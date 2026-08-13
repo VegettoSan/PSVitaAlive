@@ -50,6 +50,16 @@
       "type": "Other",
       "name": "Release",
       "url": "https://github.com/LeZergan/mcsm-vita/releases"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDBtoo VPK",
+      "url": "https://github.com/LeZergan/mcsm-vita/releases/download/v1.10/MCSM-1.10.vpk"
+    },
+    {
+      "type": "Official Website",
+      "name": "NeoVitaDB Release Page",
+      "url": "https://github.com/LeZergan/mcsm-vita/releases/tag/v1.10"
     }
   ]
 }

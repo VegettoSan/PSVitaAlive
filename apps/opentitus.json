@@ -11,14 +11,16 @@
   "subcategory_ids": [
     "engine-port"
   ],
-  "version": "v.1.0",
-  "version_date": "2017-10-25",
+  "version": "1.0",
+  "version_date": "2017-10-31",
   "requirements": "- Game Data Files: PC",
   "size": 543246,
   "status": "Verified",
   "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/e16af7492f6e653ef30ad4027dc5993ff2684468f765c95ed95be87e5aeb07e6.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/1540204e202cd12740841b0973799115da79636134348e3488062e150c256629.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/1540204e202cd12740841b0973799115da79636134348e3488062e150c256629.png",
+    "screenshots/7bdf4419b414a50c6605881d11f7cbe2b25c710322ed805353d3179315a0ef4f.png;screenshots/b0c906a6350d0567b7142fed235935d98a3037ccd7ff3bbca98e087f18b07a60.png",
+    "screenshots/1540204e202cd12740841b0973799115da79636134348e3488062e150c256629.png"
   ],
   "links": [
     {
@@ -36,6 +38,16 @@
       "type": "Other",
       "name": "Release",
       "url": "http://wololo.net/talk/viewtopic.php?f=116&t=48673"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDBtoo VPK",
+      "url": "https://github.com/usineur/opentitus/releases/download/1.0/Moktar.vpk"
+    },
+    {
+      "type": "Official Website",
+      "name": "NeoVitaDB Release Page",
+      "url": "https://github.com/usineur/opentitus/releases/tag/1.0"
     }
   ]
 }

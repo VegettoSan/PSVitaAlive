@@ -19,7 +19,8 @@
   "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/8bf7dc37549cfeb7510094dc32ae107e56c65332988aba668cdbf97b39710dda.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/0cd7ce6a4684e01e531301260a9ce2d2eee815c6930f843cdb2fd071f8346b48.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/0671db571411ea88e93328c19bc87604064e3e902d342bebf9b0c0e6af12b06d.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/0671db571411ea88e93328c19bc87604064e3e902d342bebf9b0c0e6af12b06d.png",
+    "screenshots/0cd7ce6a4684e01e531301260a9ce2d2eee815c6930f843cdb2fd071f8346b48.png;screenshots/0671db571411ea88e93328c19bc87604064e3e902d342bebf9b0c0e6af12b06d.png"
   ],
   "links": [
     {
@@ -32,6 +33,21 @@
       "type": "Other",
       "name": "Release",
       "url": "https://anthj.itch.io/reaction-station"
+    },
+    {
+      "type": "Download",
+      "name": "NeoVitaDB VPK",
+      "url": "https://github.com/AntHJ/Reaction-Station/releases/download/v1.0/Reaction.Station.vpk"
+    },
+    {
+      "type": "Official Website",
+      "name": "NeoVitaDB Release Page",
+      "url": "https://github.com/AntHJ/Reaction-Station/releases/tag/v1.0"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/AntHJ/Reaction-Station"
     }
   ]
 }

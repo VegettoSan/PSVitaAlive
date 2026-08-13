@@ -18,7 +18,8 @@
   "status": "Verified",
   "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/383fbb647a5015e4a55fe3d2f795ab12a7807c068176a781c46710353ca3a030.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/d23a675fc71243464b25bb88b1955fc70640739a83e6406f370ba5d74c2097e7.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/d23a675fc71243464b25bb88b1955fc70640739a83e6406f370ba5d74c2097e7.png",
+    "screenshots/d23a675fc71243464b25bb88b1955fc70640739a83e6406f370ba5d74c2097e7.png"
   ],
   "links": [
     {
@@ -36,6 +37,11 @@
       "type": "Other",
       "name": "Release",
       "url": "https://github.com/McCallum99/PSVitaRebootShutdown/releases"
+    },
+    {
+      "type": "Official Website",
+      "name": "NeoVitaDB Release Page",
+      "url": "https://github.com/McCallum99/PSVitaRebootShutdown/releases/tag/v1.08"
     }
   ]
 }

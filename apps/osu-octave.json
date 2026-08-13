@@ -21,7 +21,8 @@
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/59ca7644b412fb4a6e30c9b800e8105ae51484ca0e055018e59255e19ffe301e.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/fbc7d3bba1018542164ddc608c82c2aca7a6dd3185caf8220d69b4926ef1230c.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/b420166756e7c8a52d22bef868da698cb1fdc10854225aa13170bc9aa66cf239.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/babd84228b357ca2689d33a4b397a9deea49439f409cd78c3a78ea94652484ef.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/babd84228b357ca2689d33a4b397a9deea49439f409cd78c3a78ea94652484ef.png",
+    "screenshots/59ca7644b412fb4a6e30c9b800e8105ae51484ca0e055018e59255e19ffe301e.png;screenshots/fbc7d3bba1018542164ddc608c82c2aca7a6dd3185caf8220d69b4926ef1230c.png;screenshots/b420166756e7c8a52d22bef868da698cb1fdc10854225aa13170bc9aa66cf239.png;screenshots/babd84228b357ca2689d33a4b397a9deea49439f409cd78c3a78ea94652484ef.png"
   ],
   "links": [
     {
@@ -39,6 +40,11 @@
       "type": "Other",
       "name": "Release",
       "url": "https://github.com/v-atamanenko/osu-octave/releases"
+    },
+    {
+      "type": "Official Website",
+      "name": "NeoVitaDB Release Page",
+      "url": "https://github.com/v-atamanenko/osu-octave/releases/tag/1.20"
     }
   ]
 }

@@ -21,7 +21,8 @@
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/008dec2cf943f5b061b5ff5a91cc5c12f1f15a38b909f528a47deb261dabc32b.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/f58858798758dc53acaf56496c70c31c5b352e1a3ede59c5df5be5b6d1f488e8.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/a8d8fc2aed88bb3bd73ab7f69cf5d0b223dcbf3e76110f56aa641b1a791b9de9.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/66668c5f7df4d3b73b15d69f49d1f0278cf046611e105f49826f3bc244f16a32.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/66668c5f7df4d3b73b15d69f49d1f0278cf046611e105f49826f3bc244f16a32.png",
+    "screenshots/008dec2cf943f5b061b5ff5a91cc5c12f1f15a38b909f528a47deb261dabc32b.png;screenshots/f58858798758dc53acaf56496c70c31c5b352e1a3ede59c5df5be5b6d1f488e8.png;screenshots/a8d8fc2aed88bb3bd73ab7f69cf5d0b223dcbf3e76110f56aa641b1a791b9de9.png;screenshots/66668c5f7df4d3b73b15d69f49d1f0278cf046611e105f49826f3bc244f16a32.png"
   ],
   "links": [
     {
@@ -39,6 +40,11 @@
       "type": "Other",
       "name": "Release",
       "url": "https://github.com/Rinnegatamante/hrm-vita/releases"
+    },
+    {
+      "type": "Official Website",
+      "name": "NeoVitaDB Release Page",
+      "url": "https://github.com/Rinnegatamante/hrm-vita/releases/tag/v.1.3.1"
     }
   ]
 }

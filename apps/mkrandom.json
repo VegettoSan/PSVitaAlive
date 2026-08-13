@@ -18,7 +18,8 @@
   "status": "Verified",
   "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/c657bee4b3f0d3de6fe99e5bbcf6de856abe9292198f49842129d1313dca890c.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/15c51a181385aa39a722fae8ce9ff76832b52c1777823c9b5eb3c01e39ff8dd7.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/15c51a181385aa39a722fae8ce9ff76832b52c1777823c9b5eb3c01e39ff8dd7.png",
+    "screenshots/15c51a181385aa39a722fae8ce9ff76832b52c1777823c9b5eb3c01e39ff8dd7.png"
   ],
   "links": [
     {
@@ -36,6 +37,11 @@
       "type": "Other",
       "name": "Release",
       "url": "https://github.com/Tau5/mkrandom/releases"
+    },
+    {
+      "type": "Official Website",
+      "name": "NeoVitaDB Release Page",
+      "url": "https://github.com/Tau5/mkrandom/releases/tag/1.00"
     }
   ]
 }

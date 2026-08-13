@@ -18,7 +18,8 @@
   "status": "Verified",
   "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/bf0df94647d0ced602712612596d0062d863836ff6226ea66e28c4063066aa1e.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/a36cc71cb0696a14c0a82734f747fe3d93a8ae9f5dd0cb778b21eb83c7a263ca.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/a36cc71cb0696a14c0a82734f747fe3d93a8ae9f5dd0cb778b21eb83c7a263ca.png",
+    "screenshots/a36cc71cb0696a14c0a82734f747fe3d93a8ae9f5dd0cb778b21eb83c7a263ca.png"
   ],
   "links": [
     {
@@ -36,6 +37,11 @@
       "type": "Other",
       "name": "Release",
       "url": "https://github.com/Kirezar/EasySwitchVita/releases"
+    },
+    {
+      "type": "Official Website",
+      "name": "NeoVitaDB Release Page",
+      "url": "https://github.com/Kirezar/EasySwitchVita/releases/tag/1.0"
     }
   ]
 }

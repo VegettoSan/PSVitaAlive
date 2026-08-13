@@ -12,7 +12,7 @@
     "other"
   ],
   "version": "v.1.0.1",
-  "version_date": "2022-09-11",
+  "version_date": "2026-08-12",
   "requirements": "- fd_fix.skprx OR repatch_ex.skprx.\n- Game Data Files: PC",
   "size": 3121871,
   "status": "Verified",
@@ -29,6 +29,11 @@
       "type": "Other",
       "name": "Release",
       "url": "https://alyinghood.github.io/fsnrnue-multiplatform"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com"
     }
   ]
 }

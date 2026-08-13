@@ -11,8 +11,8 @@
   "subcategory_ids": [
     "rpg"
   ],
-  "version": "Inscryption_PSVITA-alpha.1",
-  "version_date": "2025-09-18",
+  "version": "alpha.1",
+  "version_date": "2025-09-19",
   "requirements": "- Game Data Files: PC",
   "size": 15108770,
   "status": "Legacy",
@@ -21,7 +21,8 @@
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/355998793cb4aae640fb8430859c0bdf9497390355e1d24b52e5cbd582e3c70d.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/be76623d38a98fb4ff38654955e1a074d376cb496d71bcc97ec5405fddb927c5.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/064e0f45575f47e863867e9f27b3135bc81ccdde53c36b16ba3c39fd6dcf9fae.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/75c75516a077bb1c55202a54cef4060577aa934256e01d99651a1d1e0ce694a3.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/75c75516a077bb1c55202a54cef4060577aa934256e01d99651a1d1e0ce694a3.png",
+    "screenshots/355998793cb4aae640fb8430859c0bdf9497390355e1d24b52e5cbd582e3c70d.png;screenshots/be76623d38a98fb4ff38654955e1a074d376cb496d71bcc97ec5405fddb927c5.png;screenshots/064e0f45575f47e863867e9f27b3135bc81ccdde53c36b16ba3c39fd6dcf9fae.png;screenshots/75c75516a077bb1c55202a54cef4060577aa934256e01d99651a1d1e0ce694a3.png"
   ],
   "links": [
     {

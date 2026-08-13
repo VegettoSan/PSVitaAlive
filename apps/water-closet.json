@@ -18,7 +18,8 @@
   "status": "Verified",
   "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/ec20e805491ec680cb8fdb6c766724a7d4790ae686c031218ef0951474037348.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/0849e462468b07f61857f982f3149bb652869414b023f9913abeda827d9a3d88.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/0849e462468b07f61857f982f3149bb652869414b023f9913abeda827d9a3d88.png",
+    "screenshots/0849e462468b07f61857f982f3149bb652869414b023f9913abeda827d9a3d88.png"
   ],
   "links": [
     {
@@ -36,6 +37,11 @@
       "type": "Other",
       "name": "Release",
       "url": "https://github.com/withLogic/waterCloset/releases"
+    },
+    {
+      "type": "Official Website",
+      "name": "NeoVitaDB Release Page",
+      "url": "https://github.com/withLogic/waterCloset/releases/tag/v1.0"
     }
   ]
 }

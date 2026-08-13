@@ -12,7 +12,7 @@
     "other"
   ],
   "version": "v.1.0a",
-  "version_date": "2023-08-09",
+  "version_date": "2026-08-12",
   "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
   "size": 91911109,
   "status": "Verified",
@@ -20,7 +20,8 @@
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/bce7d7cea44746ca8dd5ea28d44732e88d78c0db4dc12bea4d727e784c73373f.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/b8824b7635ac459d0a42c0c3ca5fcd97f5f894cc02b5eb31adc73b1dca52fc5a.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/74593117c9bdbcb71d577fbed19a12459d76d25d0cd910e2e2c5281a9ceff9e3.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/74593117c9bdbcb71d577fbed19a12459d76d25d0cd910e2e2c5281a9ceff9e3.png",
+    "screenshots/bce7d7cea44746ca8dd5ea28d44732e88d78c0db4dc12bea4d727e784c73373f.png;screenshots/b8824b7635ac459d0a42c0c3ca5fcd97f5f894cc02b5eb31adc73b1dca52fc5a.png;screenshots/74593117c9bdbcb71d577fbed19a12459d76d25d0cd910e2e2c5281a9ceff9e3.png"
   ],
   "links": [
     {
@@ -28,6 +29,11 @@
       "name": "Descarga principal",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/729-rocket_league.vpk",
       "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com"
     }
   ]
 }

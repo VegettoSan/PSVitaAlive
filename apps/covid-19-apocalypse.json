@@ -21,7 +21,8 @@
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/6609c3a869ae6b9d6942af01bd89b7d794c8160de102b75d04a250662bcfc2ff.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/bdb94d9f2f9c4bd62704df06d61a7a0900cc0a6e9ffb60ab7280d1ba46bc168b.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c0d8e01f89dbe90217e64699482d123412fd360cac0d0c02cff95fa10519e02d.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/137eb2e50e791763ff0a5f3888e3c7c26dc23993c5834dd855fec59a2e64c145.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/137eb2e50e791763ff0a5f3888e3c7c26dc23993c5834dd855fec59a2e64c145.png",
+    "screenshots/6609c3a869ae6b9d6942af01bd89b7d794c8160de102b75d04a250662bcfc2ff.png;screenshots/bdb94d9f2f9c4bd62704df06d61a7a0900cc0a6e9ffb60ab7280d1ba46bc168b.png;screenshots/c0d8e01f89dbe90217e64699482d123412fd360cac0d0c02cff95fa10519e02d.png;screenshots/137eb2e50e791763ff0a5f3888e3c7c26dc23993c5834dd855fec59a2e64c145.png"
   ],
   "links": [
     {
@@ -39,6 +40,11 @@
       "type": "Other",
       "name": "Release",
       "url": "https://github.com/softwaregremlin/Covid-19-Apocalypse/releases"
+    },
+    {
+      "type": "Official Website",
+      "name": "NeoVitaDB Release Page",
+      "url": "https://github.com/softwaregremlin/Covid-19-Apocalypse/releases/tag/v1%2C0"
     }
   ]
 }

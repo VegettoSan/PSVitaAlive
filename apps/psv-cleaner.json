@@ -11,10 +11,10 @@
   "subcategory_ids": [
     "other"
   ],
-  "version": "1.14",
-  "version_date": "2026-07-07",
+  "version": "1.15",
+  "version_date": "2026-08-10",
   "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
-  "size": 113897,
+  "size": 118003,
   "status": "Legacy",
   "icon": "https://robin994.github.io/NeoVitaDB-Catalog/icons/1454-psvcleaner.png",
   "screenshots": [],
@@ -34,6 +34,16 @@
       "type": "Other",
       "name": "Release",
       "url": "https://github.com/theheroGAC/PSV-Cleaner/releases/tag/1.14"
+    },
+    {
+      "type": "Download",
+      "name": "NeoVitaDB VPK",
+      "url": "https://github.com/theheroGAC/PSV-Cleaner/releases/download/1.15/PSV_Cleaner.vpk"
+    },
+    {
+      "type": "Official Website",
+      "name": "NeoVitaDB Release Page",
+      "url": "https://github.com/theheroGAC/PSV-Cleaner/releases/tag/1.15"
     }
   ]
 }

@@ -12,7 +12,7 @@
     "other"
   ],
   "version": "v.1.0.1",
-  "version_date": "2023-10-08",
+  "version_date": "2026-08-12",
   "requirements": "- Game Data Files: PC",
   "size": 532864284,
   "status": "Verified",
@@ -20,7 +20,8 @@
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/79d998009fa20d4bc265f1223b64a3fd6f506083e64d09302b7e283408368d62.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/7944f45996a3f52fdbdb6c87bc768dce4e89c92b0529de81a4fdb37dad2b7cae.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c2dfaaf23470f4b5aec355f81dcd73c942731fce6708dc6e062bda856fe1a526.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c2dfaaf23470f4b5aec355f81dcd73c942731fce6708dc6e062bda856fe1a526.png",
+    "screenshots/79d998009fa20d4bc265f1223b64a3fd6f506083e64d09302b7e283408368d62.png;screenshots/7944f45996a3f52fdbdb6c87bc768dce4e89c92b0529de81a4fdb37dad2b7cae.png;screenshots/c2dfaaf23470f4b5aec355f81dcd73c942731fce6708dc6e062bda856fe1a526.png"
   ],
   "links": [
     {
@@ -33,6 +34,11 @@
       "type": "Other",
       "name": "Release",
       "url": "https://fuhen.homebrew-contest.com/submissions/67/"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com"
     }
   ]
 }

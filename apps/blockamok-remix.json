@@ -11,13 +11,15 @@
   "subcategory_ids": [
     "other"
   ],
-  "version": "v.1.2",
-  "version_date": "2025-11-09",
+  "version": "v1.21",
+  "version_date": "2025-11-29",
   "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
   "size": 2655081,
   "status": "Verified",
   "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/a1d4d4c2c62d80cd71059a1bbe3323b928e8c47ba4e24914b6e765c6a9cab799.png",
-  "screenshots": [],
+  "screenshots": [
+    "screenshots/39c768558473b29be19e5f10a615bde099e8498681317be71a25869d40c4ed0c.png"
+  ],
   "links": [
     {
       "type": "Download",
@@ -34,6 +36,11 @@
       "type": "Other",
       "name": "Release",
       "url": "https://github.com/Mode8fx/blockamok/releases"
+    },
+    {
+      "type": "Official Website",
+      "name": "NeoVitaDB Release Page",
+      "url": "https://github.com/Mode8fx/blockamok/releases/tag/v1.21"
     }
   ]
 }

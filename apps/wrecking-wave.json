@@ -12,7 +12,7 @@
     "action"
   ],
   "version": "v.1.0",
-  "version_date": "2026-06-12",
+  "version_date": "2026-08-12",
   "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
   "size": 28534836,
   "status": "Legacy",
@@ -21,7 +21,8 @@
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/083c1ac7ea91e29d942cd1a663b911524e665f88315ad0974aa6d45613efde84.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/3d727f0e6d76c27cf60c5bc6ab9c67c9ca6714b64fa0e5b544af52708e370ea1.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/35b2a25d115dff7a8917865955fe3713af1222ef198d2447d49c9dcf33eda238.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/3101d42506635a54d5ff31e23c625f8338e26fe57676432ab588f975451d2a18.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/3101d42506635a54d5ff31e23c625f8338e26fe57676432ab588f975451d2a18.png",
+    "screenshots/083c1ac7ea91e29d942cd1a663b911524e665f88315ad0974aa6d45613efde84.png;screenshots/3d727f0e6d76c27cf60c5bc6ab9c67c9ca6714b64fa0e5b544af52708e370ea1.png;screenshots/35b2a25d115dff7a8917865955fe3713af1222ef198d2447d49c9dcf33eda238.png;screenshots/3101d42506635a54d5ff31e23c625f8338e26fe57676432ab588f975451d2a18.png"
   ],
   "links": [
     {
@@ -34,6 +35,11 @@
       "type": "Other",
       "name": "Release",
       "url": "https://brunu.itch.io/wrecking-wave"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com"
     }
   ]
 }

@@ -12,7 +12,7 @@
     "other"
   ],
   "version": "v.1.10",
-  "version_date": "2025-06-19",
+  "version_date": "2026-08-12",
   "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
   "size": 580635133,
   "status": "Verified",
@@ -21,7 +21,8 @@
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/396b762607afa735abf8bd94d7f8a78a1f395b452f6d57e41dcb19413b00bee1.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/0f2516c113ab94339856fb466c796d6d2c5ad44efd1e03310820e484a032e95a.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/138ccac4047dffff21c8e7350bc26a3da0ec6ec6973112fb80cefbc6d0118719.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/59fbbe0baed7e8757f4e725410e5a90d7c27b8bb273e6c756eb1b8f09e08f549.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/59fbbe0baed7e8757f4e725410e5a90d7c27b8bb273e6c756eb1b8f09e08f549.png",
+    "screenshots/396b762607afa735abf8bd94d7f8a78a1f395b452f6d57e41dcb19413b00bee1.png;screenshots/0f2516c113ab94339856fb466c796d6d2c5ad44efd1e03310820e484a032e95a.png;screenshots/138ccac4047dffff21c8e7350bc26a3da0ec6ec6973112fb80cefbc6d0118719.png;screenshots/59fbbe0baed7e8757f4e725410e5a90d7c27b8bb273e6c756eb1b8f09e08f549.png"
   ],
   "links": [
     {
@@ -29,6 +30,11 @@
       "name": "Descarga principal",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1118-everlasting_summer.vpk",
       "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com"
     }
   ]
 }

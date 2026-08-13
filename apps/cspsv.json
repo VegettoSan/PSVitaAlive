@@ -19,7 +19,8 @@
   "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/ba0d153685370cfedad58863e0baa3e06fbd5c2affb9946c278cf8d27cc19b26.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/85ddb9b99a5b3f607202fe9af53f5b24a55df2bbc9de8ca08c4162e79441f362.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/19f7f0f766e594c325e990e5aad1eb91d40a5f58610286c6d56a7410363d3a4f.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/19f7f0f766e594c325e990e5aad1eb91d40a5f58610286c6d56a7410363d3a4f.png",
+    "screenshots/85ddb9b99a5b3f607202fe9af53f5b24a55df2bbc9de8ca08c4162e79441f362.png;screenshots/19f7f0f766e594c325e990e5aad1eb91d40a5f58610286c6d56a7410363d3a4f.png"
   ],
   "links": [
     {
@@ -37,6 +38,11 @@
       "type": "Other",
       "name": "Release",
       "url": "https://github.com/CelloPoly314/CSPSV/releases"
+    },
+    {
+      "type": "Official Website",
+      "name": "NeoVitaDB Release Page",
+      "url": "https://github.com/CelloPoly314/CSPSV/releases/tag/v1.0"
     }
   ]
 }

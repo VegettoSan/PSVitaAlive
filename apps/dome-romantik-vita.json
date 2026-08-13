@@ -12,14 +12,15 @@
     "other"
   ],
   "version": "v.1.0",
-  "version_date": "2023-04-29",
+  "version_date": "2026-08-12",
   "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
   "size": 39183689,
   "status": "Verified",
   "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/f5efaac8993acb7f8fd77d5e1708f349c2471ceb1f3a0345c1175dafcdaeaad6.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/83bd7fd641ed12076cf9ccf1c10f615292bc5b382b999abfd881943f65634f7d.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c82b75483b372e702bf18f56c64c6912fa00b732eae7c81dcd4aedf4551f7dc9.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c82b75483b372e702bf18f56c64c6912fa00b732eae7c81dcd4aedf4551f7dc9.png",
+    "screenshots/83bd7fd641ed12076cf9ccf1c10f615292bc5b382b999abfd881943f65634f7d.png;screenshots/c82b75483b372e702bf18f56c64c6912fa00b732eae7c81dcd4aedf4551f7dc9.png"
   ],
   "links": [
     {
@@ -27,6 +28,11 @@
       "name": "Descarga principal",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1076-Dome_Romantik.vpk",
       "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com"
     }
   ]
 }

@@ -5,7 +5,8 @@
   "description": "Port of Super Mega Runners for PSVita.",
   "long_description": "A port of Super Mega Runners for PS Vita. A runner game inspired by 8-bit retro games.",
   "author_ids": [
-    "unknown"
+    "unknown",
+    "regular-character"
   ],
   "category_id": "ports",
   "subcategory_ids": [
@@ -20,7 +21,8 @@
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/d6cb98c6f55c37e633e33bd827466047cd06a79385f455de187a1c92b2912a70.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/821408a640adca3c1b2ab079889892d5935b0ff3520d892f5723d7973e7c6400.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/5cb3fca58165d4488fb470e0d8cec1189b1ea8a1c110d398b1797da157c8ad80.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/5cb3fca58165d4488fb470e0d8cec1189b1ea8a1c110d398b1797da157c8ad80.png",
+    "screenshots/d6cb98c6f55c37e633e33bd827466047cd06a79385f455de187a1c92b2912a70.png;screenshots/821408a640adca3c1b2ab079889892d5935b0ff3520d892f5723d7973e7c6400.png;screenshots/5cb3fca58165d4488fb470e0d8cec1189b1ea8a1c110d398b1797da157c8ad80.png"
   ],
   "links": [
     {
@@ -33,6 +35,11 @@
       "type": "Other",
       "name": "Release",
       "url": "https://github.com/RegularCharacter07/SuperMegaRunnersVita"
+    },
+    {
+      "type": "Official Website",
+      "name": "NeoVitaDB Release Page",
+      "url": "https://github.com/RegularCharacter07/SuperMegaRunnersVita/releases/tag/1.0"
     }
   ]
 }

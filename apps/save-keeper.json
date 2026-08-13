@@ -11,14 +11,15 @@
   "subcategory_ids": [
     "backup"
   ],
-  "version": "v.1.1.0",
-  "version_date": "2026-07-19",
+  "version": "v1.3.0",
+  "version_date": "2026-08-03",
   "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
-  "size": 3034583,
+  "size": 3148166,
   "status": "Legacy",
   "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/9a7d23c03b0187c25e6212c66667bd05f0e8d015f774496fb127c4835c74ba47.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/95165754f044f0af0b6154468b25e0c4e1b38bfba1a8657d87a5f80c2c300eb6.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/95165754f044f0af0b6154468b25e0c4e1b38bfba1a8657d87a5f80c2c300eb6.png",
+    "screenshots/95165754f044f0af0b6154468b25e0c4e1b38bfba1a8657d87a5f80c2c300eb6.png"
   ],
   "links": [
     {
@@ -36,6 +37,16 @@
       "type": "Other",
       "name": "Release",
       "url": "https://github.com/falkenhawk/vita-save-keeper/releases"
+    },
+    {
+      "type": "Download",
+      "name": "NeoVitaDB VPK",
+      "url": "https://github.com/falkenhawk/vita-save-keeper/releases/download/v1.3.0/save-keeper.vpk"
+    },
+    {
+      "type": "Official Website",
+      "name": "NeoVitaDB Release Page",
+      "url": "https://github.com/falkenhawk/vita-save-keeper/releases/tag/v1.3.0"
     }
   ]
 }

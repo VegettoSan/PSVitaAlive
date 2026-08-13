@@ -12,7 +12,7 @@
     "other"
   ],
   "version": "v.1.3",
-  "version_date": "2025-07-13",
+  "version_date": "2026-08-12",
   "requirements": "- Game Data Files: SNES",
   "size": 2060552,
   "status": "Verified",
@@ -21,7 +21,8 @@
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c4be391b5d1f3e84dbfbbb59f6f387496b8fd2fa1ee2f33394f47880ee031353.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/f4524ee2fac91e9ce5f6b748d5bc7b9ed791cd176817c8a515e9a4873049b292.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/4b32f02ac6e09dc0c6887a270442ca9ded93fc1ecc5b6874b44259b9ea6dc046.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/09f6a63a8d578935c24332dcf5967b2de68d3a7add29d6fa530632d7f4ec5615.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/09f6a63a8d578935c24332dcf5967b2de68d3a7add29d6fa530632d7f4ec5615.png",
+    "screenshots/c4be391b5d1f3e84dbfbbb59f6f387496b8fd2fa1ee2f33394f47880ee031353.png;screenshots/f4524ee2fac91e9ce5f6b748d5bc7b9ed791cd176817c8a515e9a4873049b292.png;screenshots/4b32f02ac6e09dc0c6887a270442ca9ded93fc1ecc5b6874b44259b9ea6dc046.png;screenshots/09f6a63a8d578935c24332dcf5967b2de68d3a7add29d6fa530632d7f4ec5615.png"
   ],
   "links": [
     {

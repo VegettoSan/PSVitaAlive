@@ -12,7 +12,7 @@
     "other"
   ],
   "version": "v.1.0.0",
-  "version_date": "2021-04-01",
+  "version_date": "2026-08-12",
   "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
   "size": 12362269,
   "status": "Verified",
@@ -21,7 +21,8 @@
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/bad66a5275a617b67bbdbad20b1e854187ed9f7fb732e085f596265a59c03f0c.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/cf6f5074231bda59ac074330a92a81946520b8eda31a1698bc391d7d5a55a284.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/40c751630c63b24862e5751570b617904e3f5fe65d749b6e7c4423566198e000.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/2cdf1373f5011113e65bfff3f9f232f0efed4cb1045097fb99170d65ce8e9073.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/2cdf1373f5011113e65bfff3f9f232f0efed4cb1045097fb99170d65ce8e9073.png",
+    "screenshots/bad66a5275a617b67bbdbad20b1e854187ed9f7fb732e085f596265a59c03f0c.png;screenshots/cf6f5074231bda59ac074330a92a81946520b8eda31a1698bc391d7d5a55a284.png;screenshots/40c751630c63b24862e5751570b617904e3f5fe65d749b6e7c4423566198e000.png;screenshots/2cdf1373f5011113e65bfff3f9f232f0efed4cb1045097fb99170d65ce8e9073.png"
   ],
   "links": [
     {
@@ -34,6 +35,11 @@
       "type": "Other",
       "name": "Release",
       "url": "https://deconstructeam.itch.io/zen-and-the-art-of-transhumanism"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com"
     }
   ]
 }

@@ -21,7 +21,8 @@
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/8f9072fc01ac948ab3efdc304b53748f6b650d4a2652ff347088251bac8f4149.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/53a786562ae06ecb3ec5cb4a299b80abb3189b681f88c75a3c076197a483a8b7.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/3c0db538ca4e39a56d76b034ca17e9a3727c247fa60fc1b4ea9d3c312cb457fc.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/8438baf6bc062e7f749d01a2176b465ccbba920db1318254a40b31a88c6f2397.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/8438baf6bc062e7f749d01a2176b465ccbba920db1318254a40b31a88c6f2397.png",
+    "screenshots/8f9072fc01ac948ab3efdc304b53748f6b650d4a2652ff347088251bac8f4149.png;screenshots/53a786562ae06ecb3ec5cb4a299b80abb3189b681f88c75a3c076197a483a8b7.png;screenshots/3c0db538ca4e39a56d76b034ca17e9a3727c247fa60fc1b4ea9d3c312cb457fc.png;screenshots/8438baf6bc062e7f749d01a2176b465ccbba920db1318254a40b31a88c6f2397.png"
   ],
   "links": [
     {
@@ -39,6 +40,11 @@
       "type": "Other",
       "name": "Release",
       "url": "https://github.com/ammeir/worminator/releases/tag/v1.0"
+    },
+    {
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
+      "url": "https://kyuhen.customprotocol.com/en/submissions/worminator3/"
     }
   ]
 }
