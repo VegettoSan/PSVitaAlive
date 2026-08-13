@@ -3,6 +3,7 @@ from __future__ import annotations
 
 import json
 import sys
+from collections import Counter
 from datetime import datetime
 from pathlib import Path
 
@@ -10,7 +11,7 @@ from .identity import canonical_author_id, same_identity
 from .merge import merge_group
 from .neovitadb import fetch_candidates as fetch_neovita
 from .overrides import apply_override, load_overrides
-from .sources import Candidate, fetch_json, normalize_vitadbtoo
+from .sources import Candidate, fetch_json, normalize_vitadb, normalize_vitadbtoo
 from .normalizer import canonical_repo
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -39,26 +40,41 @@ def external_candidates():
     with CONFIG.open(encoding="utf-8") as f:
         config = json.load(f)
     result = []
+    source_counts = Counter()
     for source in config.get("sources", []):
         if not source.get("enabled"):
             continue
+        source_id = source.get("id")
+        before = len(result)
         try:
-            if source["id"] == "vitadbtoo":
+            if source_id == "vitadb":
+                data = fetch_json(source["url"])
+                if isinstance(data, list):
+                    for item in data:
+                        candidate = normalize_vitadb(item)
+                        if candidate.name and candidate.platform == "vita" and candidate.title_id:
+                            result.append(candidate)
+            elif source_id == "vitadbtoo":
                 data = fetch_json(source["url"])
                 if isinstance(data, list):
                     for item in data:
                         candidate = normalize_vitadbtoo(item)
                         if candidate.name and candidate.platform == "vita" and candidate.title_id:
                             result.append(candidate)
-            elif source["id"] == "neovitadb":
+            elif source_id == "neovitadb":
                 for item in fetch_neovita():
                     if item.get("platform", "vita") == "vita":
                         from .neovitadb import normalize
                         candidate = normalize(item)
                         if candidate.name and candidate.title_id:
                             result.append(candidate)
+            source_counts[source_id] = len(result) - before
         except Exception as exc:
-            print(f"warning: external source {source.get('id')} unavailable: {exc}", file=sys.stderr)
+            source_counts[source_id] = 0
+            print(f"warning: external source {source_id} unavailable: {type(exc).__name__}: {exc}", file=sys.stderr)
+    print("External source counts:")
+    for source_id, count in source_counts.items():
+        print(f"  {source_id}: {count}")
     return result
 
 
@@ -88,7 +104,6 @@ def normalize_categories(candidate: Candidate, categories):
     raw = str(candidate.category_raw or "").strip().lower()
     mapping = mappings.get(raw)
     if not mapping:
-        # Safe fallback for old catalogs that use VitaDB-style generic game tags.
         mapping = mappings.get("game") if candidate.platform == "vita" else None
     valid = {item.get("id"): item for item in categories}
     category_id = mapping.get("category_id") if mapping else None
@@ -127,14 +142,23 @@ def build(root: Path):
             size=app.get("size"), category_raw=app.get("category_id"), platform="vita")
         locals_as_candidates.append(local_candidate)
         local_by_id[app.get("id")] = app
-    all_candidates = locals_as_candidates + external_candidates()
+    external = external_candidates()
+    all_candidates = locals_as_candidates + external
     groups = group_candidates(all_candidates)
     overrides = load_overrides(root)
     final_apps, final_authors = [], dict(authors)
     conflicts = []
+    new_external = 0
+    merged_external = 0
+    override_count = 0
+    updated_local = 0
     for group in groups:
         merged = merge_group(group)
         local = next((x for x in group if x.source_id == "local"), None)
+        if local and any(x.source_id != "local" for x in group):
+            merged_external += 1
+        if not local:
+            new_external += 1
         app_id = local.source_item_id if local else None
         if not app_id:
             slug = canonical_author_id(merged.name)
@@ -152,6 +176,7 @@ def build(root: Path):
             conflicts.append({"type": "unmapped_category", "app": app_id, "value": merged.category_raw})
             continue
         app = dict(local_by_id.get(app_id, {})) if app_id in local_by_id else {}
+        old_version = app.get("version")
         app.update({
             "id": app_id, "title_id": merged.title_id or "", "name": merged.name,
             "description": merged.description or "", "long_description": merged.long_description or "",
@@ -161,6 +186,8 @@ def build(root: Path):
             "status": app.get("status", "Legacy"), "icon": merged.icon or app.get("icon", ""),
             "screenshots": merged.screenshots or app.get("screenshots", []),
         })
+        if local and old_version and app.get("version") != old_version:
+            updated_local += 1
         existing_links = list(app.get("links", []))
         if merged.download_url and not any(item.get("url") == merged.download_url for item in existing_links if isinstance(item, dict)):
             existing_links.append({"type": "Download", "name": "External VPK", "url": merged.download_url})
@@ -174,5 +201,15 @@ def build(root: Path):
         app["links"] = existing_links
         if app_id in overrides:
             app = apply_override(app, overrides[app_id])
+            override_count += 1
         final_apps.append(app)
+    print("External aggregation summary:")
+    print(f"  Local applications: {len(local_apps)}")
+    print(f"  External candidates: {len(external)}")
+    print(f"  Deduplicated application groups: {len(groups)}")
+    print(f"  New external applications: {new_external}")
+    print(f"  Existing applications enriched/merged: {merged_external}")
+    print(f"  Existing applications with newer external version: {updated_local}")
+    print(f"  Overrides applied: {override_count}")
+    print(f"  Conflicts: {len(conflicts)}")
     return final_apps, list(final_authors.values()), categories, conflicts
