@@ -8,7 +8,7 @@ from urllib.parse import urlparse
 def normalize_text(value: str | None) -> str:
     if not isinstance(value, str):
         return ""
-    return re.sub(r"\\s+", " ", value.strip()).lower()
+    return re.sub(r"\s+", " ", value.strip()).lower()
 
 
 def canonical_repo(url: str | None) -> str:
@@ -27,9 +27,16 @@ def canonical_repo(url: str | None) -> str:
 
 
 def normalize_version(value: str | None) -> tuple:
+    """Return a comparable numeric version tuple.
+
+    Handles common Vita homebrew forms such as 1.10, v1.10,
+    Version 1.10 and 1.10-beta. Numeric components are compared
+    naturally, so 1.10 is newer than 1.9. Prerelease markers are
+    handled by merge.version_key rather than being discarded here.
+    """
     raw = normalize_text(value)
-    raw = re.sub(r"^(version|ver|v)[:\\s-]*", "", raw)
-    match = re.findall(r"\\d+", raw)
+    raw = re.sub(r"^(version|ver|v)[:\s-]*", "", raw)
+    match = re.findall(r"\d+", raw)
     if not match:
         return (0,)
     return tuple(int(item) for item in match)
