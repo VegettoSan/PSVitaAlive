@@ -46,16 +46,33 @@ jobs:
       - name: Validate historical IDs
         run: python scripts/validate_registry.py
 
-      - name: Validate VitaHub source catalog
+      - name: Prepare one-time clean external rebuild
+        id: rebuild
+        shell: bash
+        run: |
+          if [ -f sources/rebuild_once.json ]; then
+            echo "VITAHUB_REBUILD_FROM_EXTERNAL=true" >> "$GITHUB_ENV"
+            echo "Clean external rebuild requested. Existing apps/*.json will not be used as merge input."
+            rm -f sources/rebuild_once.json
+          else
+            echo "VITAHUB_REBUILD_FROM_EXTERNAL=false" >> "$GITHUB_ENV"
+            echo "Normal incremental catalog generation."
+          fi
+
+      - name: Validate VitaHub source catalog before incremental generation
+        if: env.VITAHUB_REBUILD_FROM_EXTERNAL != 'true'
         run: python scripts/validate_catalog_ci.py
 
       - name: Run external aggregation smoke test
         run: python scripts/external_smoke_test.py
 
-      - name: Generate merged VitaHub catalogs
+      - name: Generate merged VitaHub catalogs and canonical source files
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: python scripts/generate_catalog.py
+
+      - name: Validate rebuilt VitaHub source catalog
+        run: python scripts/validate_catalog_ci.py
 
       - name: Verify generated catalogs
         run: |
@@ -89,7 +106,7 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
-          git commit -m "Update VitaHub canonical catalog sources"
+          git commit -m "Rebuild VitaHub canonical catalog sources"
 
           for attempt in 1 2 3 4 5; do
             if git push; then
@@ -103,6 +120,6 @@ jobs:
             git rebase origin/main || {
               git rebase --abort
               git reset --soft origin/main
-              git diff --cached --quiet || git commit -m "Update VitaHub canonical catalog sources"
+              git diff --cached --quiet || git commit -m "Rebuild VitaHub canonical catalog sources"
             }
           done
