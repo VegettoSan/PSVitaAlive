@@ -3,6 +3,9 @@
 import json
 import re
 import sys
+import urllib.error
+import urllib.request
+from concurrent.futures import ThreadPoolExecutor, as_completed
 from datetime import datetime
 from pathlib import Path
 from urllib.parse import urlparse
@@ -21,11 +24,6 @@ def parse_catalog_date(value):
 
 
 def sort_latest_first(apps):
-    """Order applications newest-to-oldest by version date.
-
-    `updated_at` is used only when `version_date` is absent or invalid.
-    Original order is kept as the final stable tie-breaker.
-    """
     indexed = list(enumerate(apps))
 
     def key(item):
@@ -52,12 +50,6 @@ def repository_relative_resource(value, source_directory):
 
 
 def split_media_values(value):
-    """Normalize legacy screenshot fields that may contain packed URLs.
-
-    Some external catalogs encode several screenshots in one string separated
-    by semicolons or newlines. Keep URLs intact and turn those packed values
-    into the normal VitaHub list representation.
-    """
     if isinstance(value, list):
         result = []
         for item in value:
@@ -83,6 +75,57 @@ def local_resource_exists(value):
     except (OSError, ValueError):
         return False
     return path.is_file()
+
+
+def remote_image_is_valid(url):
+    """Reject definite 404/HTTP failures, but tolerate transient network errors."""
+    headers = {"User-Agent": "VitaHub-Catalog-Generator/1.0"}
+    request = urllib.request.Request(url, method="HEAD", headers=headers)
+    try:
+        with urllib.request.urlopen(request, timeout=4) as response:
+            status = getattr(response, "status", 200)
+            if status >= 400:
+                return False
+            content_type = response.headers.get("Content-Type", "").lower()
+            return not content_type or content_type.startswith("image/")
+    except urllib.error.HTTPError as exc:
+        if exc.code == 404:
+            return False
+        return True
+    except Exception:
+        pass
+
+    request = urllib.request.Request(
+        url,
+        method="GET",
+        headers={**headers, "Range": "bytes=0-1023"},
+    )
+    try:
+        with urllib.request.urlopen(request, timeout=4) as response:
+            status = getattr(response, "status", 200)
+            if status >= 400:
+                return False
+            content_type = response.headers.get("Content-Type", "").lower()
+            return not content_type or content_type.startswith("image/")
+    except urllib.error.HTTPError as exc:
+        return exc.code != 404
+    except Exception:
+        return True
+
+
+def filter_remote_screenshots(urls):
+    if not urls:
+        return []
+    results = {}
+    with ThreadPoolExecutor(max_workers=min(16, len(urls))) as executor:
+        futures = {executor.submit(remote_image_is_valid, url): url for url in urls}
+        for future in as_completed(futures):
+            url = futures[future]
+            try:
+                results[url] = future.result()
+            except Exception:
+                results[url] = True
+    return [url for url in urls if results.get(url, True)]
 
 
 def validate_final(apps, authors, categories):
@@ -153,9 +196,6 @@ def process_media(apps):
     for app in apps:
         source_dir = local_paths.get(app.get("id"), ROOT)
 
-        # Icon is the canonical media fallback. If an external source has no
-        # usable icon, use the official VitaHub category icon, then the global
-        # fallback icon if available.
         icon = app.get("icon")
         if not isinstance(icon, str) or not icon.strip():
             icon = category_icons.get(app.get("category_id"), fallback_icon)
@@ -169,23 +209,20 @@ def process_media(apps):
 
         raw_screenshots = split_media_values(app.get("screenshots") or [])
         normalized = []
+        remote_candidates = []
         for screenshot in raw_screenshots:
             if is_remote_resource(screenshot):
-                normalized.append(screenshot)
+                remote_candidates.append(screenshot)
                 continue
-
             local_value = repository_relative_resource(screenshot, source_dir)
             if local_resource_exists(local_value):
                 normalized.append(local_value)
 
-        # Never emit a broken local screenshot. If no usable screenshot exists,
-        # use the application's icon as the first screenshot when available.
-        # This preserves the UI expectation that every app has visual media
-        # without inventing or downloading assets during catalog generation.
+        normalized.extend(filter_remote_screenshots(remote_candidates))
+
         if not normalized and app.get("icon"):
             normalized = [app["icon"]]
 
-        # Deduplicate while preserving source order and keep the schema limit.
         deduplicated = []
         seen = set()
         for item in normalized:
@@ -194,10 +231,40 @@ def process_media(apps):
                 deduplicated.append(item)
         app["screenshots"] = deduplicated[:5]
 
-    # The author avatar fallback is required by the current catalog schema.
     default_author_avatar = ROOT / "authors" / "icon" / "autoricon.png"
     if not default_author_avatar.is_file():
         raise ValueError("authors/icon/autoricon.png is required")
+
+
+def fill_generated_metadata(apps, authors):
+    """Fill schema-required metadata only from real catalog data or safe defaults."""
+    author_links = {}
+    for app in apps:
+        links = app.get("links")
+        if not isinstance(links, list):
+            continue
+        for author_id in app.get("author_ids") or []:
+            bucket = author_links.setdefault(author_id, [])
+            for link in links:
+                if not isinstance(link, dict):
+                    continue
+                url = link.get("url")
+                if not isinstance(url, str) or not url.strip():
+                    continue
+                if any(existing.get("url") == url for existing in bucket if isinstance(existing, dict)):
+                    continue
+                bucket.append(dict(link))
+
+    for app in apps:
+        requirements = app.get("requirements")
+        if not isinstance(requirements, str) or not requirements.strip():
+            app["requirements"] = "Not specified"
+
+    for author in authors:
+        links = author.get("links")
+        if isinstance(links, list) and links:
+            continue
+        author["links"] = author_links.get(author.get("id"), [])[:5]
 
 
 def generate():
@@ -213,6 +280,7 @@ def generate():
         print(f"External aggregation reported {len(conflicts)} conflicts", file=sys.stderr)
 
     process_media(apps)
+    fill_generated_metadata(apps, authors)
     apps = sort_latest_first(apps)
 
     for author in authors:
