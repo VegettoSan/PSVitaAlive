@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import json
+import os
 import re
 import sys
 from collections import Counter
@@ -114,8 +115,6 @@ def category_map():
 def normalize_categories(candidate: Candidate, categories, local_app: dict | None = None):
     valid = {item.get("id"): item for item in categories}
 
-    # A canonical local app already uses the official VitaHub taxonomy. Never
-    # reinterpret an existing category through an external source mapping.
     if local_app:
         category_id = local_app.get("category_id")
         category = valid.get(category_id)
@@ -207,15 +206,23 @@ def write_json_if_changed(path: Path, value: dict) -> bool:
     return True
 
 
-def persist_source_files(root: Path, final_apps: list[dict], final_authors: dict[str, dict]):
-    """Make apps/ and authors/ the canonical persistence layer.
+def persist_source_files(root: Path, final_apps: list[dict], final_authors: dict[str, dict], clean_rebuild: bool = False):
+    """Persist the canonical editable source layer.
 
-    Existing records are updated with the resolved merge result. New external
-    records are materialized as Legacy entries. Existing files are never
-    deleted, so a temporary source outage cannot erase preserved applications.
+    In normal mode existing records are updated and new external records are
+    materialized. In clean rebuild mode the apps/ directory is rebuilt from the
+    current external sources plus overrides, so stale generated records cannot
+    survive into the next catalog.
     """
     changed_apps = 0
     changed_authors = 0
+    final_ids = {app.get("id") for app in final_apps if app.get("id")}
+
+    if clean_rebuild:
+        for path in sorted((root / "apps").glob("*.json")):
+            if path.stem not in final_ids:
+                path.unlink()
+                changed_apps += 1
 
     for app in sorted(final_apps, key=lambda item: str(item.get("id", ""))):
         app_id = app.get("id")
@@ -227,16 +234,24 @@ def persist_source_files(root: Path, final_apps: list[dict], final_authors: dict
 
     for author_id, author in sorted(final_authors.items()):
         path = root / "authors" / f"{author_id}.json"
-        if write_json_if_changed(path, author) if not path.exists() else False:
+        if not path.exists() and write_json_if_changed(path, author):
             changed_authors += 1
 
     print("Canonical source persistence:")
-    print(f"  App JSON files changed/created: {changed_apps}")
+    print(f"  Clean rebuild: {'yes' if clean_rebuild else 'no'}")
+    print(f"  App JSON files changed/created/deleted: {changed_apps}")
     print(f"  Author JSON files created: {changed_authors}")
 
 
 def build(root: Path):
+    clean_rebuild = os.environ.get("VITAHUB_REBUILD_FROM_EXTERNAL", "").lower() in {"1", "true", "yes"}
     local_apps, authors, categories = load_local()
+    if clean_rebuild:
+        # The one-time rebuild intentionally ignores existing app JSON as input.
+        # This lets the external catalogs + overrides reconstruct clean canonical
+        # records while preserving the existing authors/categories repositories.
+        local_apps = []
+
     locals_as_candidates = []
     local_by_id = {}
     local_ids = {app.get("id") for _, app in local_apps if app.get("id")}
@@ -391,10 +406,11 @@ def build(root: Path):
             override_count += 1
         final_apps.append(app)
 
-    persist_source_files(root, final_apps, final_authors)
+    persist_source_files(root, final_apps, final_authors, clean_rebuild=clean_rebuild)
 
     print("External aggregation summary:")
-    print(f"  Local applications: {len(local_apps)}")
+    print(f"  Clean rebuild from external sources: {'yes' if clean_rebuild else 'no'}")
+    print(f"  Local applications used as input: {len(local_apps)}")
     print(f"  External candidates: {len(external)}")
     print(f"  Deduplicated application groups: {len(groups)}")
     print(f"  New external applications: {new_external}")
