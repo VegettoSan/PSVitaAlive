@@ -7,7 +7,7 @@ import tempfile
 from external.identity import canonical_author_id, same_identity
 from external.merge import select_newest
 from external.overrides import load_overrides, apply_override
-from external.sources import Candidate
+from external.sources import Candidate, normalize_vitadb
 
 
 def candidate(source, version, title="TEST00001"):
@@ -39,6 +39,29 @@ b = candidate("b", "1.10")
 assert select_newest([a, b]).version == "1.10"
 assert same_identity(a, b)
 assert canonical_author_id("Example Developer") == "example-developer"
+
+vitadb = normalize_vitadb({
+    "id": 123,
+    "name": "Example Vita App",
+    "icon": "https://example/icon.png",
+    "version": "1.10",
+    "author": "ExampleDev",
+    "type": "1",
+    "date": "2026-08-12",
+    "titleid": "TEST00001",
+    "screenshots": "https://example/1.png,https://example/2.png",
+    "long_description": "Long description",
+    "downloads": "10",
+    "source": "https://github.com/example/project",
+    "release_page": "https://github.com/example/project/releases",
+    "url": "https://example/app.vpk",
+    "size": "12345",
+})
+assert vitadb.source_id == "vitadb"
+assert vitadb.title_id == "TEST00001"
+assert vitadb.category_raw == "port"
+assert len(vitadb.screenshots) == 2
+assert vitadb.download_url == "https://example/app.vpk"
 
 with tempfile.TemporaryDirectory() as temp:
     root = Path(temp)
