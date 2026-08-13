@@ -4940,30 +4940,30 @@
     "links": [
       {
         "type": "Download",
-        "name": "VitaDBtoo VPK",
+        "name": "NeoVitaDB VPK",
         "url": "https://github.com/MDashK/sonic-1-sms-remake-vita/releases/download/v1.9.2-vita/SOSR00001.VPK",
         "recommended": true
       },
       {
         "type": "Official Website",
-        "name": "VitaDBtoo Release Page",
+        "name": "NeoVitaDB Release Page",
+        "url": "https://github.com/MDashK/sonic-1-sms-remake-vita/releases/tag/v1.9.2-vita"
+      },
+      {
+        "type": "Repository",
+        "name": "Repositorio",
         "url": "https://github.com/MDashK/sonic-1-sms-remake-vita"
       },
       {
         "type": "Download",
-        "name": "VitaDBtoo VPK",
+        "name": "NeoVitaDB VPK",
         "url": "https://github.com/MDashK/Sonic-2-SMS-Remake-Vita/releases/download/v2.9.2-vita/SOSR00002.VPK",
-        "recommended": true
-      },
-      {
-        "type": "Official Website",
-        "name": "VitaDBtoo Release Page",
-        "url": "https://github.com/MDashK/Sonic-2-SMS-Remake-Vita"
+        "recommended": false
       },
       {
         "type": "Official Website",
         "name": "NeoVitaDB Release Page",
-        "url": "https://github.com/MDashK/sonic-1-sms-remake-vita/releases/tag/v1.9.2-vita"
+        "url": "https://github.com/MDashK/Sonic-2-SMS-Remake-Vita/releases/tag/v2.9.2-vita"
       }
     ]
   },
@@ -8432,7 +8432,7 @@
         "type": "Download",
         "name": "VitaDBtoo VPK",
         "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1377-dmc4.vpk",
-        "recommended": true
+        "recommended": false
       },
       {
         "type": "Repository",
