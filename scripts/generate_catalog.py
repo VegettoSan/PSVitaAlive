@@ -1,9 +1,11 @@
 #!/usr/bin/env python3
 
 import json
+import re
 import sys
 from datetime import datetime
 from pathlib import Path
+from urllib.parse import urlparse
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -47,6 +49,40 @@ def repository_relative_resource(value, source_directory):
     except ValueError as exc:
         raise ValueError(f"resource escapes repository: {value}") from exc
     return relative.as_posix()
+
+
+def split_media_values(value):
+    """Normalize legacy screenshot fields that may contain packed URLs.
+
+    Some external catalogs encode several screenshots in one string separated
+    by semicolons or newlines. Keep URLs intact and turn those packed values
+    into the normal VitaHub list representation.
+    """
+    if isinstance(value, list):
+        result = []
+        for item in value:
+            result.extend(split_media_values(item))
+        return result
+    if not isinstance(value, str) or not value.strip():
+        return []
+    return [item.strip() for item in re.split(r"[;\r\n]+", value) if item.strip()]
+
+
+def is_remote_resource(value):
+    if not isinstance(value, str):
+        return False
+    return urlparse(value).scheme in {"http", "https"}
+
+
+def local_resource_exists(value):
+    if not isinstance(value, str) or not value.strip() or is_remote_resource(value):
+        return False
+    try:
+        path = (ROOT / value).resolve()
+        path.relative_to(ROOT.resolve())
+    except (OSError, ValueError):
+        return False
+    return path.is_file()
 
 
 def validate_final(apps, authors, categories):
@@ -100,29 +136,66 @@ def process_media(apps):
             category = json.load(handle)
         icon = category.get("icon")
         if isinstance(icon, str) and icon.strip():
-            category_icons[category.get("id")] = repository_relative_resource(icon, path.parent)
+            normalized = repository_relative_resource(icon, path.parent)
+            if is_remote_resource(normalized) or local_resource_exists(normalized):
+                category_icons[category.get("id")] = normalized
 
-    default_author_avatar = ROOT / "authors" / "icon" / "autoricon.png"
+    fallback_icon = ""
+    for candidate in (
+        ROOT / "icon" / "app.png",
+        ROOT / "assets" / "icon.png",
+        ROOT / "authors" / "icon" / "autoricon.png",
+    ):
+        if candidate.is_file():
+            fallback_icon = candidate.relative_to(ROOT).as_posix()
+            break
 
     for app in apps:
         source_dir = local_paths.get(app.get("id"), ROOT)
+
+        # Icon is the canonical media fallback. If an external source has no
+        # usable icon, use the official VitaHub category icon, then the global
+        # fallback icon if available.
         icon = app.get("icon")
         if not isinstance(icon, str) or not icon.strip():
-            icon = category_icons.get(app.get("category_id"), "")
+            icon = category_icons.get(app.get("category_id"), fallback_icon)
+        else:
+            icon = repository_relative_resource(icon, source_dir)
+            if not is_remote_resource(icon) and not local_resource_exists(icon):
+                icon = category_icons.get(app.get("category_id"), fallback_icon)
+
         if icon:
-            app["icon"] = repository_relative_resource(icon, source_dir)
+            app["icon"] = icon
 
-        screenshots = app.get("screenshots") or []
-        if not screenshots and app.get("icon"):
-            screenshots = [app["icon"]]
+        raw_screenshots = split_media_values(app.get("screenshots") or [])
         normalized = []
-        for screenshot in screenshots:
-            if isinstance(screenshot, str) and screenshot.startswith(("http://", "https://")):
+        for screenshot in raw_screenshots:
+            if is_remote_resource(screenshot):
                 normalized.append(screenshot)
-            else:
-                normalized.append(repository_relative_resource(screenshot, source_dir))
-        app["screenshots"] = normalized[:5]
+                continue
 
+            local_value = repository_relative_resource(screenshot, source_dir)
+            if local_resource_exists(local_value):
+                normalized.append(local_value)
+
+        # Never emit a broken local screenshot. If no usable screenshot exists,
+        # use the application's icon as the first screenshot when available.
+        # This preserves the UI expectation that every app has visual media
+        # without inventing or downloading assets during catalog generation.
+        if not normalized and app.get("icon"):
+            normalized = [app["icon"]]
+
+        # Deduplicate while preserving source order and keep the schema limit.
+        deduplicated = []
+        seen = set()
+        for item in normalized:
+            if item not in seen:
+                seen.add(item)
+                deduplicated.append(item)
+        app["screenshots"] = deduplicated[:5]
+
+    # The author avatar fallback is required by the current catalog schema.
+    default_author_avatar = ROOT / "authors" / "icon" / "autoricon.png"
     if not default_author_avatar.is_file():
         raise ValueError("authors/icon/autoricon.png is required")
 
