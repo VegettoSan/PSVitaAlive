@@ -7,7 +7,7 @@
   "author_ids": [
     "silvercrow"
   ],
-  "category_id": "ports",
+  "category_id": "games",
   "subcategory_ids": [
     "other"
   ],
@@ -15,25 +15,27 @@
   "version_date": "2022-04-04",
   "requirements": "- Game Data Files: PC",
   "size": 26243091,
-  "status": "Verified",
-  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/3ad98306f4e533ba4d54da358a0c1ae8e50d1c554cd36c16e4ae752e28a770e8.png",
-  "screenshots": [],
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1779-don-t-open-your-eyes.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1779-don-t-open-your-eyes.png"
+  ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/807-dontopen.vpk",
       "recommended": true
-    },
-    {
-      "type": "Other",
-      "name": "Release",
-      "url": "https://via01.itch.io/dont-open-your-eyes"
     },
     {
       "type": "Download",
       "name": "NeoVitaDB VPK",
       "url": "https://github.com/SilverCrow2323/Don-t-OpenYourVita/releases/download/v.1.11/dontopen-v.1.11.vpk"
+    },
+    {
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
+      "url": "https://via01.itch.io/dont-open-your-eyes"
     },
     {
       "type": "Official Website",
@@ -45,5 +47,10 @@
       "name": "Repositorio",
       "url": "https://github.com/SilverCrow2323/Don-t-OpenYourVita"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "807",
+  "source_url": "https://via01.itch.io/dont-open-your-eyes",
+  "release_page": "https://via01.itch.io/dont-open-your-eyes",
+  "updated_at": "2026-08-13T13:46:07.896269+00:00"
 }

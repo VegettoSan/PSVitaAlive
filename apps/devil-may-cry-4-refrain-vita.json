@@ -3,14 +3,11 @@
   "title_id": "ACRODEA00",
   "name": "Devil May Cry 4 Refrain Vita",
   "description": "Port of Devil May Cry 4 Refrain for PSVita.",
-  "long_description": "Port of Devil May Cry 4 Refrain for PSVita.\nDevil May Cry 4 Refrain is a mobile spinoff in the universe of Devil May Cry franchise.",
+  "long_description": "Port of Devil May Cry 4 Refrain for PSVita.\nDevil May Cry 4 Refrain is a mobile spinoff in the universe of Devil May Cry franchise.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
   "author_ids": [
-    "yizhigai",
-    "spritelisen",
-    "kaaass",
     "yizhigai-spritelisen-kaaass"
   ],
-  "category_id": "ports",
+  "category_id": "games",
   "subcategory_ids": [
     "other"
   ],
@@ -18,19 +15,18 @@
   "version_date": "2026-08-12",
   "requirements": "- libshacccg.suprx\n- kubridge.skprx\n- Game Data Files: Android",
   "size": 1258697,
-  "status": "Verified",
-  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/4a81697cfa177cd1cee570e75be7cbcfd48c1a9841da422c6ce80be8e0bf6e02.png",
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1956-devil-may-cry-4-refrain-vita.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/7ea8dc859502657562f93e7633da47dd5af89d603179bb1cddc88d2a96c5158b.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/da37405927a648d59b6facbfed9d1ce7fd903ee12d26052649b4356f881bd19e.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/f021b67c4c79bfa0a8f6918d6e590aa5b1a2e1fdcf7e917a623b6ec89e073cdd.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/d763be62846730f7ca6ac06a0f2705fcaa4bd5706a1fafe0a3aab5c3a353af75.png",
-    "screenshots/7ea8dc859502657562f93e7633da47dd5af89d603179bb1cddc88d2a96c5158b.png;screenshots/da37405927a648d59b6facbfed9d1ce7fd903ee12d26052649b4356f881bd19e.png;screenshots/f021b67c4c79bfa0a8f6918d6e590aa5b1a2e1fdcf7e917a623b6ec89e073cdd.png;screenshots/d763be62846730f7ca6ac06a0f2705fcaa4bd5706a1fafe0a3aab5c3a353af75.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/d763be62846730f7ca6ac06a0f2705fcaa4bd5706a1fafe0a3aab5c3a353af75.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1377-dmc4.vpk",
       "recommended": true
     },
@@ -39,5 +35,10 @@
       "name": "Repositorio",
       "url": "https://gitee.com/Moqi01/acrodea_runtime"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "1377",
+  "source_url": "https://gitee.com/Moqi01/acrodea_runtime",
+  "release_page": "",
+  "updated_at": "2026-08-13T13:46:07.726568+00:00"
 }

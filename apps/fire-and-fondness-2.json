@@ -3,42 +3,46 @@
   "title_id": "WLFIRE201",
   "name": "Fire and Fondness 2",
   "description": "Port of Fire and Fondness 2 for PSVITA.",
-  "long_description": "Port of Fire and Fondness 2 for PSVITA.\nDaytime television just got hot: in the hit gameshow, Fire & Fondness, young lovers put their relationships to the test in the ultimate courtship ritual: attempting to navigate a succession of convoluted, flamethrower-filled deathtraps.\nOur lawyers are advising us to clarify that the fire is fake. As are the teleporters. But the relationships are real! (Probably.)\nFire & Fondness 2 features thirty-five levels, tricks and mechanics around every corner, and a set of super-difficult challenges for expert players.\nOh, and it also has a dog.",
+  "long_description": "Port of Fire and Fondness 2 for PSVITA.\nDaytime television just got hot: in the hit gameshow, Fire & Fondness, young lovers put their relationships to the test in the ultimate courtship ritual: attempting to navigate a succession of convoluted, flamethrower-filled deathtraps.\nOur lawyers are advising us to clarify that the fire is fake. As are the teleporters. But the relationships are real! (Probably.)\nFire & Fondness 2 features thirty-five levels, tricks and mechanics around every corner, and a set of super-difficult challenges for expert players.\nOh, and it also has a dog.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
   "author_ids": [
     "withlogic"
   ],
-  "category_id": "ports",
+  "category_id": "games",
   "subcategory_ids": [
     "other"
   ],
   "version": "v.1.0",
   "version_date": "2026-08-12",
-  "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
+  "requirements": "Not specified",
   "size": 44590165,
   "status": "Legacy",
-  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/8acf54b4a33b3f53787bf0b3e752351a28b59c086b3432d0ec3a4392d7d5f2fb.png",
+  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1860-fire-and-fondness-2.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/a1bac04d54ae2e0c627d16c2926c27aaa57f43aa85dd07db30b4ae2dac4d6ef9.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/a69026f723837a1826a216e0c39a33b543a4e5ef9999f1147f3314d62d759d25.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/a31a6dfb775518068af4b4e7653cec259def4056bc89c66b2ddda83590c1b058.png",
-    "screenshots/a1bac04d54ae2e0c627d16c2926c27aaa57f43aa85dd07db30b4ae2dac4d6ef9.png;screenshots/a69026f723837a1826a216e0c39a33b543a4e5ef9999f1147f3314d62d759d25.png;screenshots/a31a6dfb775518068af4b4e7653cec259def4056bc89c66b2ddda83590c1b058.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/a31a6dfb775518068af4b4e7653cec259def4056bc89c66b2ddda83590c1b058.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1129-fire_and_fondness_2.vpk",
       "recommended": true
+    },
+    {
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
+      "url": "https://fuhen.homebrew-contest.com/submissions/39/"
     },
     {
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/withLogic/fire-and-fondness-2"
-    },
-    {
-      "type": "Other",
-      "name": "Release",
-      "url": "https://fuhen.homebrew-contest.com/submissions/39/"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "1129",
+  "source_url": "https://github.com/withLogic/fire-and-fondness-2",
+  "release_page": "https://fuhen.homebrew-contest.com/submissions/39/",
+  "updated_at": "2026-08-13T13:46:07.831500+00:00"
 }

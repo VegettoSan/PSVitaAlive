@@ -7,43 +7,47 @@
   "author_ids": [
     "sharkwouter"
   ],
-  "category_id": "ports",
+  "category_id": "games",
   "subcategory_ids": [
-    "puzzle"
+    "other"
   ],
   "version": "v.0.0.3",
   "version_date": "2020-12-12",
-  "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
+  "requirements": "Not specified",
   "size": 9182952,
   "status": "Legacy",
-  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/024c067c0f2f36ca5d7315c668f9caa97d51581b5891f00bcbbc1a14055b5635.png",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/024c067c0f2f36ca5d7315c668f9caa97d51581b5891f00bcbbc1a14055b5635.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/378a653a5af93b0737d1428014a283168cfe0a265018969bbdd8f38dbc41bbeb.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/fd3df3c0cdd85c5cb7a463c64c192911fe677aa27e285488eaf42e6c164c5811.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/1512a6f2eac9b3dc9bbf1eaf28620ae9d353decc46b119f427048fe31a286ad2.png",
-    "screenshots/378a653a5af93b0737d1428014a283168cfe0a265018969bbdd8f38dbc41bbeb.png;screenshots/fd3df3c0cdd85c5cb7a463c64c192911fe677aa27e285488eaf42e6c164c5811.png;screenshots/1512a6f2eac9b3dc9bbf1eaf28620ae9d353decc46b119f427048fe31a286ad2.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/1512a6f2eac9b3dc9bbf1eaf28620ae9d353decc46b119f427048fe31a286ad2.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/sharkwouter/panel-pop/releases/download/0.0.3-vita/panel-pop.vpk",
       "recommended": true
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/sharkwouter/panel-pop"
-    },
-    {
-      "type": "Other",
-      "name": "Release",
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
       "url": "https://github.com/sharkwouter/panel-pop/releases"
     },
     {
       "type": "Official Website",
       "name": "NeoVitaDB Release Page",
       "url": "https://github.com/sharkwouter/panel-pop/releases/tag/0.0.3-vita"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/sharkwouter/panel-pop"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "599",
+  "source_url": "https://github.com/sharkwouter/panel-pop",
+  "release_page": "https://github.com/sharkwouter/panel-pop/releases",
+  "updated_at": "2026-08-13T13:46:07.940205+00:00"
 }

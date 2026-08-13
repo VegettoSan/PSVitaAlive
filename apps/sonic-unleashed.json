@@ -3,31 +3,30 @@
   "title_id": "SOUN02006",
   "name": "Sonic Unleashed",
   "description": "Wii/PS2 Sonic Unleashed demake for PSVITA.",
-  "long_description": "Sonic Unleashed Demake for PSVITA. The game is based on the Wii/PS2 version of the game and includes a single level, Apotos Windmill Isle Act 1.",
+  "long_description": "Sonic Unleashed Demake for PSVITA. The game is based on the Wii/PS2 version of the game and includes a single level, Apotos Windmill Isle Act 1.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
   "author_ids": [
     "unrealdude06"
   ],
-  "category_id": "ports",
+  "category_id": "games",
   "subcategory_ids": [
     "other"
   ],
   "version": "v.1.6",
   "version_date": "2026-08-12",
-  "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
+  "requirements": "Not specified",
   "size": 74123397,
-  "status": "Verified",
-  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/d2bb277b9cc9ea9b95b4b84ad0956046d048d2ed05ca338996beaa481e8fb950.png",
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1900-sonic-unleashed.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/ae2dfeb4e8d75511b6f6015ca59cd639b9e60de0f67a550c3cdeef9bb51da3e5.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/020c51f291c16e99b4b0c50aa1ad87fc4ff846ad5f8bb6b24483a4cb8600d255.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/68a284ab6859fe18ce5a3e9789128536f35af94b9fdd30dad33f4a0c69f06864.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/805604ab3b8d8f9b442b433789fbbf77f0cd106d5171ca37d10812ceec4ed181.png",
-    "screenshots/ae2dfeb4e8d75511b6f6015ca59cd639b9e60de0f67a550c3cdeef9bb51da3e5.png;screenshots/020c51f291c16e99b4b0c50aa1ad87fc4ff846ad5f8bb6b24483a4cb8600d255.png;screenshots/68a284ab6859fe18ce5a3e9789128536f35af94b9fdd30dad33f4a0c69f06864.png;screenshots/805604ab3b8d8f9b442b433789fbbf77f0cd106d5171ca37d10812ceec4ed181.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/805604ab3b8d8f9b442b433789fbbf77f0cd106d5171ca37d10812ceec4ed181.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1212-sonic_unleashed.vpk",
       "recommended": true
     },
@@ -36,5 +35,10 @@
       "name": "Repositorio",
       "url": "https://github.com"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "1212",
+  "source_url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1212-sonic_unleashed.vpk",
+  "release_page": "",
+  "updated_at": "2026-08-13T13:46:07.756307+00:00"
 }

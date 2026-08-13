@@ -3,7 +3,7 @@
   "title_id": "VTGO00001",
   "name": "Vitamon GO",
   "description": "Pokemon Go clone for PSVITA.",
-  "long_description": "Vitamon GO is the first homebrew AR game developed entirely in lpp-vita.\r\nIt's a Pokemon Go kinda game for the PS Vita. Currently in this alpha version there are 3 types of monsters that may appear at random order for every try you play.",
+  "long_description": "Vitamon GO is the first homebrew AR game developed entirely in lpp-vita.\r\nIt's a Pokemon Go kinda game for the PS Vita. Currently in this alpha version there are 3 types of monsters that may appear at random order for every try you play.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
   "author_ids": [
     "vitahex-games"
   ],
@@ -13,26 +13,25 @@
   ],
   "version": "v.0.1.0",
   "version_date": "2026-08-12",
-  "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
+  "requirements": "Not specified",
   "size": 2601376,
-  "status": "Verified",
-  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/d16a9ff4fb55058b6954446ddb162cec61239e2746160bf5c77969f077949104.png",
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1586-vitamon-go.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/107c3ee8dc7d5cf924c0fdd0a680263a4448657ca7fc648994706493331cbf43.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c0d5e7e3576160f5ead75c3796efeedcd1b6f63ee3043dfad0b10f9380eee1d0.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/991447e0443b97a3ea432fe612f41ca29260c47ad097db4854924243c7447fb7.png",
-    "screenshots/107c3ee8dc7d5cf924c0fdd0a680263a4448657ca7fc648994706493331cbf43.png;screenshots/c0d5e7e3576160f5ead75c3796efeedcd1b6f63ee3043dfad0b10f9380eee1d0.png;screenshots/991447e0443b97a3ea432fe612f41ca29260c47ad097db4854924243c7447fb7.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/991447e0443b97a3ea432fe612f41ca29260c47ad097db4854924243c7447fb7.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/353-VitamonGO.vpk",
       "recommended": true
     },
     {
-      "type": "Other",
-      "name": "Release",
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
       "url": "http://wololo.net/talk/viewtopic.php?f=116&t=48745"
     },
     {
@@ -40,5 +39,10 @@
       "name": "Repositorio",
       "url": "https://github.com"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "353",
+  "source_url": "http://wololo.net/talk/viewtopic.php?f=116&t=48745",
+  "release_page": "http://wololo.net/talk/viewtopic.php?f=116&t=48745",
+  "updated_at": "2026-08-13T13:46:07.997954+00:00"
 }

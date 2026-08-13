@@ -7,38 +7,45 @@
   "author_ids": [
     "nxengine"
   ],
-  "category_id": "ports",
+  "category_id": "games",
   "subcategory_ids": [
-    "engine-port"
+    "other"
   ],
   "version": "v.2.6.5",
   "version_date": "2026-08-06",
   "requirements": "- Game Data Files: Cave Story",
   "size": 10484800,
-  "status": "Archive",
-  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/4d46f97253653049864fac2ad3a43c9a6a25c4de65bf256fab9d26643793ac38.png",
-  "screenshots": [],
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/4d46f97253653049864fac2ad3a43c9a6a25c4de65bf256fab9d26643793ac38.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/4d46f97253653049864fac2ad3a43c9a6a25c4de65bf256fab9d26643793ac38.png"
+  ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/nxengine/nxengine-evo/releases/download/v2.6.5/NXEngine-Evo-v2.6.5-Vita.vpk",
       "recommended": true
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/nxengine/nxengine-evo"
-    },
-    {
-      "type": "Other",
-      "name": "Release",
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
       "url": "https://github.com/nxengine/nxengine-evo/releases"
     },
     {
       "type": "Official Website",
       "name": "NeoVitaDB Release Page",
       "url": "https://github.com/nxengine/nxengine-evo/releases/tag/v2.6.5"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/nxengine/nxengine-evo"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "1458",
+  "source_url": "https://github.com/nxengine/nxengine-evo",
+  "release_page": "https://github.com/nxengine/nxengine-evo/releases",
+  "updated_at": "2026-08-13T13:46:07.697128+00:00"
 }

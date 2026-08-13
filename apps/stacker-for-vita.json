@@ -7,38 +7,45 @@
   "author_ids": [
     "bunkai"
   ],
-  "category_id": "ports",
+  "category_id": "games",
   "subcategory_ids": [
     "other"
   ],
   "version": "v.1.00",
   "version_date": "2024-02-27",
-  "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
+  "requirements": "Not specified",
   "size": 19596302,
-  "status": "Verified",
-  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/c31f14b27689cae2c6876cfbc07c981e1f026ed8fcaea53d68cf5bcacd6ce36f.png",
-  "screenshots": [],
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/c31f14b27689cae2c6876cfbc07c981e1f026ed8fcaea53d68cf5bcacd6ce36f.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/c31f14b27689cae2c6876cfbc07c981e1f026ed8fcaea53d68cf5bcacd6ce36f.png"
+  ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/Bunkai9448/StackerVitaGodot/releases/download/StackerVita-v.01.00/Stacker.for.Vita.vpk",
       "recommended": true
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/Bunkai9448/StackerVitaGodot"
-    },
-    {
-      "type": "Other",
-      "name": "Release",
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
       "url": "https://github.com/Bunkai9448/StackerVitaGodot/releases"
     },
     {
       "type": "Official Website",
       "name": "NeoVitaDB Release Page",
       "url": "https://github.com/Bunkai9448/StackerVitaGodot/releases/tag/StackerVita-v.01.00"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/Bunkai9448/StackerVitaGodot"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "1189",
+  "source_url": "https://github.com/Bunkai9448/StackerVitaGodot",
+  "release_page": "https://github.com/Bunkai9448/StackerVitaGodot/releases",
+  "updated_at": "2026-08-13T13:46:07.805513+00:00"
 }

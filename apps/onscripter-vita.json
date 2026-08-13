@@ -3,37 +3,44 @@
   "title_id": "ONSVITA01",
   "name": "ONScripter-Vita",
   "description": "Port of ONScripter for PSVITA.",
-  "long_description": "Port of ONScripter for PSVITA. ONScripter (O-N-Scripter) is a program that interprets and executes scripts written for NScripter in its own way. It can run games on Windows, Android, iOS, etc. using the exact same game data.",
+  "long_description": "Port of ONScripter for PSVITA. ONScripter (O-N-Scripter) is a program that interprets and executes scripts written for NScripter in its own way. It can run games on Windows, Android, iOS, etc. using the exact same game data.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
   "author_ids": [
     "yizhigai"
   ],
-  "category_id": "ports",
+  "category_id": "games",
   "subcategory_ids": [
     "other"
   ],
   "version": "v.1.0",
   "version_date": "2026-08-12",
-  "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
+  "requirements": "Not specified",
   "size": 4567773,
-  "status": "Verified",
-  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/85a6e5a322e82766d13800c39820576a6f108b1e4b3077e58f72d6638035fcb5.png",
-  "screenshots": [],
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1787-onscripter-vita.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1787-onscripter-vita.png"
+  ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/837-ONScripter-Vita.vpk",
       "recommended": true
+    },
+    {
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
+      "url": "https://gitee.com/yizhigai/onscripter-vita/releases/"
     },
     {
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://gitee.com/yizhigai/onscripter-vita"
-    },
-    {
-      "type": "Other",
-      "name": "Release",
-      "url": "https://gitee.com/yizhigai/onscripter-vita/releases/"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "837",
+  "source_url": "https://gitee.com/yizhigai/onscripter-vita",
+  "release_page": "https://gitee.com/yizhigai/onscripter-vita/releases/",
+  "updated_at": "2026-08-13T13:46:07.888454+00:00"
 }

@@ -7,44 +7,48 @@
   "author_ids": [
     "drok17"
   ],
-  "category_id": "customization",
+  "category_id": "games",
   "subcategory_ids": [
     "other"
   ],
   "version": "v.1.4",
   "version_date": "2021-10-11",
-  "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
+  "requirements": "Not specified",
   "size": 4161531,
-  "status": "Verified",
-  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/97cb59d94257013b456840a13461eda8a33a8b2c10135dd2da0aef9f04542746.png",
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/97cb59d94257013b456840a13461eda8a33a8b2c10135dd2da0aef9f04542746.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/43e42d7c226675c0aa141988250a0caa42d83304201271f6f7cfb2f2b3792e52.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/8eb602943f9044494d6e5cc3683b2ea818a9d89a9c64a52e8c7f483aac773bb8.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/ebdc7627a90c086ecda4b9a723dd37279b8df8bb69f59270cbe03ccb5b705303.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/64adec499201dd70bd95c0b86b839164caaae029b9d37ddbf712338fa44f64ac.png",
-    "screenshots/43e42d7c226675c0aa141988250a0caa42d83304201271f6f7cfb2f2b3792e52.png;screenshots/8eb602943f9044494d6e5cc3683b2ea818a9d89a9c64a52e8c7f483aac773bb8.png;screenshots/ebdc7627a90c086ecda4b9a723dd37279b8df8bb69f59270cbe03ccb5b705303.png;screenshots/64adec499201dd70bd95c0b86b839164caaae029b9d37ddbf712338fa44f64ac.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/64adec499201dd70bd95c0b86b839164caaae029b9d37ddbf712338fa44f64ac.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/DRok17/QuickLaunch-Installer/releases/download/v1.4/QLINSTLPP.vpk",
       "recommended": true
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/DRok17/QuickLaunch-Installer"
-    },
-    {
-      "type": "Other",
-      "name": "Release",
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
       "url": "https://github.com/DRok17/QuickLaunch-Installer/releases"
     },
     {
       "type": "Official Website",
       "name": "NeoVitaDB Release Page",
       "url": "https://github.com/DRok17/QuickLaunch-Installer/releases/tag/v1.4"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/DRok17/QuickLaunch-Installer"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "663",
+  "source_url": "https://github.com/DRok17/QuickLaunch-Installer",
+  "release_page": "https://github.com/DRok17/QuickLaunch-Installer/releases",
+  "updated_at": "2026-08-13T13:46:07.910151+00:00"
 }

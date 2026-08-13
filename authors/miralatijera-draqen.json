@@ -3,5 +3,22 @@
   "name": "MiraLaTijera & Draqen",
   "avatar": "",
   "bio": "",
-  "links": []
+  "links": [
+    {
+      "type": "Download",
+      "name": "VitaDBtoo VPK",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/301-MLTactivatorFIX2.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
+      "url": "http://wololo.net/2017/08/14/mltactivator-activate-ps-vita-offline/"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com"
+    }
+  ]
 }

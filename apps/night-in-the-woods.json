@@ -2,43 +2,42 @@
   "id": "night-in-the-woods",
   "title_id": "NITW22222",
   "name": "Night in the Woods",
-  "description": "NIGHT IN THE WOODS is an adventure game focused on exploration, story, and character, featuring dozens of characters to meet and lots to do across a lush...",
+  "description": "Port of Night in the Woods for PSVITA.",
   "long_description": "NIGHT IN THE WOODS is an adventure game focused on exploration, story, and character, featuring dozens of characters to meet and lots to do across a lush, vibrant world. After a successful Kickstarter it's being made by Infinite Fall, a teamup of Alec Holowka (Aquaria), Scott Benson (Late Night Work Club), and Bethany Hockenberry.",
   "author_ids": [
     "patnosd"
   ],
-  "category_id": "ports",
+  "category_id": "games",
   "subcategory_ids": [
-    "adventure"
+    "other"
   ],
   "version": "v.0.5",
   "version_date": "2024-01-26",
   "requirements": "- Game Data Files: PC",
   "size": 14910713,
   "status": "Legacy",
-  "icon": "https://robin994.github.io/NeoVitaDB-Catalog/icons/1179-night-in-the-woods.png",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/ea5ec76a6f36fa98af6537da8cbc9e825e5451dc1b0d26f69a0f31a80dc7cfb1.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/a3b5b8962f8c8c6523ac55e502a2cc3d206f7b1a1e8cfc4773817bcdb5749fd9.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/991d1a3f95f2c839dc714331c18bbe583b5470c0ce127bd751a3c725ed43c842.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/e74a0785975a55a524f3f5c4ecfbdcdf7ecacf015c41d54b69c971dccd0a9f91.png",
-    "screenshots/a3b5b8962f8c8c6523ac55e502a2cc3d206f7b1a1e8cfc4773817bcdb5749fd9.png;screenshots/991d1a3f95f2c839dc714331c18bbe583b5470c0ce127bd751a3c725ed43c842.png;screenshots/e74a0785975a55a524f3f5c4ecfbdcdf7ecacf015c41d54b69c971dccd0a9f91.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/e74a0785975a55a524f3f5c4ecfbdcdf7ecacf015c41d54b69c971dccd0a9f91.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/PatnosDD/Night-In-The-Woods-PS-VITA/releases/download/Release/NightInTheWoods.vpk",
       "recommended": true
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
       "url": "https://github.com/PatnosDD/Night-In-The-Woods-PS-VITA"
-    },
-    {
-      "type": "Other",
-      "name": "Release",
-      "url": "https://github.com/PatnosDD/Night-In-The-Woods-PS-VITA/releases/tag/Release"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "1179",
+  "source_url": "https://github.com/PatnosDD/Night-In-The-Woods-PS-VITA",
+  "release_page": "https://github.com/PatnosDD/Night-In-The-Woods-PS-VITA",
+  "updated_at": "2026-08-13T13:46:07.811179+00:00"
 }

@@ -2,38 +2,34 @@
   "id": "blakestone-vita",
   "title_id": "BSTONE012",
   "name": "BlakeStone-Vita",
-  "description": "Port of Blake Stone: Aliens of Gold and Blake Stone: Planet Strike for PSVITA/PSTV.",
+  "description": "Blake Stone port for PSVITA",
   "long_description": "Port of Blake Stone: Aliens of Gold and Blake Stone: Planet Strike for PSVITA/PSTV.\nThis build has a corrected LZH save system and minor fixes, and allows on-screen keyboard input for save games and high scores.",
   "author_ids": [
-    "andiweli",
     "01y"
   ],
-  "category_id": "ports",
+  "category_id": "games",
   "subcategory_ids": [
     "other"
   ],
   "version": "v0.5.1",
   "version_date": "2026-08-02",
-  "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
+  "requirements": "Not specified",
   "size": 1661963,
   "status": "Legacy",
-  "icon": "https://robin994.github.io/NeoVitaDB-Catalog/icons/0393-bstone-vita.png",
-  "screenshots": [],
+  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/0393-bstone-vita.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/0393-bstone-vita.png"
+  ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "NeoVitaDB VPK",
       "url": "https://github.com/Andiweli/BlakeStone-Vita/releases/download/v0.5.1/BlakeStone.0.5.1.vpk",
       "recommended": true
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/Andiweli/BlakeStone-Vita"
-    },
-    {
-      "type": "Other",
-      "name": "Release",
+      "type": "Official Website",
+      "name": "NeoVitaDB Release Page",
       "url": "https://github.com/Andiweli/BlakeStone-Vita/releases/tag/v0.5.1"
     },
     {
@@ -41,5 +37,10 @@
       "name": "Repositorio",
       "url": "https://github.com/01y/bstone-vita"
     }
-  ]
+  ],
+  "source_name": "NeoVitaDB",
+  "source_id": "393",
+  "source_url": "https://github.com/Andiweli/BlakeStone-Vita",
+  "release_page": "https://github.com/Andiweli/BlakeStone-Vita/releases/tag/v0.5.1",
+  "updated_at": "2026-08-13T13:46:07.965848+00:00"
 }

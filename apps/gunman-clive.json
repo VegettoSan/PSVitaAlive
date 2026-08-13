@@ -2,49 +2,53 @@
   "id": "gunman-clive",
   "title_id": "CLIVE1001",
   "name": "Gunman Clive",
-  "description": "This is a wrapper/port of Gunman Clive for the PS Vita.",
+  "description": "Port of Gunman Clive for PSVita.",
   "long_description": "This is a wrapper/port of Gunman Clive for the PS Vita.\nThe port works by loading the official Android ARMv7 executable in memory, resolving its imports with native functions and patching it in order to properly run. By doing so, it's basically as if we emulate a minimalist Android environment in which we run natively the executable as it is.",
   "author_ids": [
     "usineur"
   ],
-  "category_id": "ports",
+  "category_id": "games",
   "subcategory_ids": [
     "other"
   ],
-  "version": "v1.0",
+  "version": "v.1.0",
   "version_date": "2026-01-11",
   "requirements": "- libshacccg.suprx\n- kubridge.skprx\n- Game Data Files: Android",
   "size": 1839822,
   "status": "Legacy",
-  "icon": "https://robin994.github.io/NeoVitaDB-Catalog/icons/1360-gunman-clive.png",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/108df3a745278ac47c362facf0147f22cb94a86a41686832932d61b846033280.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/7372d46e3245432fade7c96ddd6fa0a10e0b66b7f2e713dd1b823853126f33b1.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/090828d7be031358498e62074d3a8c3e6069126de0165dd108db0141595fe7a6.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/49bdb3a698266c55f5f04785c164a104e4384876c8fbc845b58eaaf6e9e80c29.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/4c2bdfdc15381895973aa31ae9663797cf0ca3f45b4530175cefd56ac2bf1192.png",
-    "screenshots/7372d46e3245432fade7c96ddd6fa0a10e0b66b7f2e713dd1b823853126f33b1.png;screenshots/090828d7be031358498e62074d3a8c3e6069126de0165dd108db0141595fe7a6.png;screenshots/49bdb3a698266c55f5f04785c164a104e4384876c8fbc845b58eaaf6e9e80c29.png;screenshots/4c2bdfdc15381895973aa31ae9663797cf0ca3f45b4530175cefd56ac2bf1192.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/4c2bdfdc15381895973aa31ae9663797cf0ca3f45b4530175cefd56ac2bf1192.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/usineur/clive-vita/releases/download/v1.0/clive.vpk",
       "recommended": true
-    },
-    {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/usineur/clive-vita"
-    },
-    {
-      "type": "Other",
-      "name": "Release",
-      "url": "https://github.com/usineur/clive-vita/releases/tag/v1.0"
     },
     {
       "type": "Official Website",
       "name": "VitaDBtoo Release Page",
       "url": "https://github.com/usineur/clive-vita/releases"
+    },
+    {
+      "type": "Official Website",
+      "name": "NeoVitaDB Release Page",
+      "url": "https://github.com/usineur/clive-vita/releases/tag/v1.0"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/usineur/clive-vita"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "1360",
+  "source_url": "https://github.com/usineur/clive-vita",
+  "release_page": "https://github.com/usineur/clive-vita/releases",
+  "updated_at": "2026-08-13T13:46:07.736561+00:00"
 }

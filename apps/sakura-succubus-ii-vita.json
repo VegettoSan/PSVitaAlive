@@ -7,7 +7,7 @@
   "author_ids": [
     "silvercrow"
   ],
-  "category_id": "ports",
+  "category_id": "games",
   "subcategory_ids": [
     "other"
   ],
@@ -15,20 +15,27 @@
   "version_date": "2022-04-07",
   "requirements": "- Game Data Files: PC",
   "size": 14667034,
-  "status": "Verified",
-  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/9c8e66bd33c3625529ebc9581eb64671b4d77d8379ea722c603bc4bc10446363.png",
-  "screenshots": [],
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/9c8e66bd33c3625529ebc9581eb64671b4d77d8379ea722c603bc4bc10446363.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/9c8e66bd33c3625529ebc9581eb64671b4d77d8379ea722c603bc4bc10446363.png"
+  ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/SilverCrow2323/Sakura-Succubus-2-Vita/releases/download/v.1.1/Sakura.Succubus.II-01.10.vpk",
       "recommended": true
     },
     {
-      "type": "Other",
-      "name": "Release",
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
       "url": "https://github.com/SilverCrow2323/Sakura-Succubus-2-Vita"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "811",
+  "source_url": "https://github.com/SilverCrow2323/Sakura-Succubus-2-Vita",
+  "release_page": "https://github.com/SilverCrow2323/Sakura-Succubus-2-Vita",
+  "updated_at": "2026-08-13T13:46:07.894413+00:00"
 }

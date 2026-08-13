@@ -1,5 +1,0 @@
-{
-  "reason": "Rebuild canonical apps from external catalogs after external media normalization fixes",
-  "mode": "external_plus_overrides",
-  "one_time": true
-}

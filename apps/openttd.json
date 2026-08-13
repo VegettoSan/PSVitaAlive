@@ -7,44 +7,48 @@
   "author_ids": [
     "angguss"
   ],
-  "category_id": "ports",
+  "category_id": "games",
   "subcategory_ids": [
-    "simulation"
+    "other"
   ],
   "version": "0.3-vita",
   "version_date": "2019-03-08",
-  "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
+  "requirements": "Not specified",
   "size": 3727798,
-  "status": "Verified",
-  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/f04c50b1cfbd32873e77a9426958b8d07188dd239afec559d08c2e1e01155b38.png",
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/0299-openttd.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/5c366c90013c8b02fca2e7c8c546c252936a2c3dfd37e3999abb37d2f0b3d48c.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/cf9ea6655e1f46f6b198e80de507fdbac263ffda327de750eb6ac43b259190aa.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/75b447c075d96c28abb81ddcaca4ef905913c142ec086238bf85dc967259fdb3.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/6ed488a358ffbc6a58f94bf61768fe8c10d69effe007f9747283e56e44f54958.png",
-    "screenshots/5c366c90013c8b02fca2e7c8c546c252936a2c3dfd37e3999abb37d2f0b3d48c.png;screenshots/cf9ea6655e1f46f6b198e80de507fdbac263ffda327de750eb6ac43b259190aa.png;screenshots/75b447c075d96c28abb81ddcaca4ef905913c142ec086238bf85dc967259fdb3.png;screenshots/6ed488a358ffbc6a58f94bf61768fe8c10d69effe007f9747283e56e44f54958.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/6ed488a358ffbc6a58f94bf61768fe8c10d69effe007f9747283e56e44f54958.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/angguss/OpenTTD/releases/download/0.3-vita/openttd.vpk",
       "recommended": true
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/angguss/OpenTTD/"
-    },
-    {
-      "type": "Other",
-      "name": "Release",
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
       "url": "https://github.com/angguss/OpenTTD/releases"
     },
     {
       "type": "Official Website",
       "name": "NeoVitaDB Release Page",
       "url": "https://github.com/angguss/OpenTTD/releases/tag/0.3-vita"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/angguss/OpenTTD/"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "299",
+  "source_url": "https://github.com/angguss/OpenTTD/",
+  "release_page": "https://github.com/angguss/OpenTTD/releases",
+  "updated_at": "2026-08-13T13:46:07.982065+00:00"
 }

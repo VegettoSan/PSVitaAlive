@@ -3,25 +3,27 @@
   "title_id": "QRSCANNER",
   "name": "QR Scanner",
   "description": "Minimalistic QR scanner/downloader.",
-  "long_description": "A minimalistic QR scanner that allows to either download the targeted file or open it on the PSVita webbrowser.",
+  "long_description": "A minimalistic QR scanner that allows to either download the targeted file or open it on the PSVita webbrowser.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
   "author_ids": [
     "rinnegatamante"
   ],
-  "category_id": "networking",
+  "category_id": "games",
   "subcategory_ids": [
-    "web-browser"
+    "other"
   ],
   "version": "v.1.0",
   "version_date": "2026-08-12",
-  "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
+  "requirements": "Not specified",
   "size": 1579367,
-  "status": "Verified",
-  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/01d5a1dc8d06bcf38c21459444e5ed23ed31e27f035184d1bca5467ec20794cd.png",
-  "screenshots": [],
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1922-qr-scanner.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1922-qr-scanner.png"
+  ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1267-qr_scanner.vpk",
       "recommended": true
     },
@@ -30,5 +32,10 @@
       "name": "Repositorio",
       "url": "https://github.com/Rinnegatamante/psv-qr-scanner"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "1267",
+  "source_url": "https://github.com/Rinnegatamante/psv-qr-scanner",
+  "release_page": "",
+  "updated_at": "2026-08-13T13:46:07.774280+00:00"
 }

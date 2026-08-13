@@ -168,6 +168,40 @@
     ]
   },
   {
+    "id": "aionmagan-elpichonart-gguihurt",
+    "name": "aionmagan & elpichonart & GGuihurt",
+    "avatar": "icon/autoricon.png",
+    "bio": "",
+    "links": [
+      {
+        "type": "Download",
+        "name": "VitaDBtoo VPK",
+        "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1165-flick.vpk",
+        "recommended": true
+      },
+      {
+        "type": "Download",
+        "name": "VitaDBtoo VPK",
+        "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1096-TopClassic.vpk"
+      },
+      {
+        "type": "Official Website",
+        "name": "VitaDBtoo Release Page",
+        "url": "https://aionmagan.itch.io/flick"
+      },
+      {
+        "type": "Official Website",
+        "name": "VitaDBtoo Release Page",
+        "url": "https://aionmagan.itch.io/top-classic-plaigarized"
+      },
+      {
+        "type": "Repository",
+        "name": "Repositorio",
+        "url": "https://github.com"
+      }
+    ]
+  },
+  {
     "id": "aionmagan",
     "name": "aionmagan",
     "avatar": "icon/autoricon.png",
@@ -616,6 +650,54 @@
     ]
   },
   {
+    "id": "aurora-jackiepooh-rinnegatamante",
+    "name": "Aurora & Jackiepooh & Rinnegatamante",
+    "avatar": "icon/autoricon.png",
+    "bio": "",
+    "links": [
+      {
+        "type": "Download",
+        "name": "VitaDBtoo VPK",
+        "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/379-VitaHangman.vpk",
+        "recommended": true
+      },
+      {
+        "type": "Official Website",
+        "name": "VitaDBtoo Release Page",
+        "url": "http://wololo.net/talk/viewtopic.php?f=116&t=48977"
+      },
+      {
+        "type": "Repository",
+        "name": "Repositorio",
+        "url": "https://github.com"
+      }
+    ]
+  },
+  {
+    "id": "aurora-svennd",
+    "name": "Aurora & svennd",
+    "avatar": "icon/autoricon.png",
+    "bio": "",
+    "links": [
+      {
+        "type": "Download",
+        "name": "VitaDBtoo VPK",
+        "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/376-Tetromino_20-_20Touhou_20Edition.vpk",
+        "recommended": true
+      },
+      {
+        "type": "Official Website",
+        "name": "VitaDBtoo Release Page",
+        "url": "http://wololo.net/talk/viewtopic.php?f=116&p=422009#p422009"
+      },
+      {
+        "type": "Repository",
+        "name": "Repositorio",
+        "url": "https://github.com"
+      }
+    ]
+  },
+  {
     "id": "aurora",
     "name": "Aurora",
     "avatar": "icon/autoricon.png",
@@ -1050,6 +1132,30 @@
     ]
   },
   {
+    "id": "catarina-lopes-isaque-sanches-mariana-domingos-tiago-quendera",
+    "name": "Catarina Lopes & Isaque Sanches & Mariana Domingos & Tiago Quendera",
+    "avatar": "icon/autoricon.png",
+    "bio": "",
+    "links": [
+      {
+        "type": "Download",
+        "name": "VitaDBtoo VPK",
+        "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/686-WTFDIGTS.vpk",
+        "recommended": true
+      },
+      {
+        "type": "Official Website",
+        "name": "VitaDBtoo Release Page",
+        "url": "https://kyuhen.customprotocol.com/en/submissions/sunglass/"
+      },
+      {
+        "type": "Repository",
+        "name": "Repositorio",
+        "url": "https://github.com"
+      }
+    ]
+  },
+  {
     "id": "catarina-lopes",
     "name": "Catarina Lopes",
     "avatar": "icon/autoricon.png",
@@ -1157,6 +1263,20 @@
         "type": "Other",
         "name": "Buscar autor",
         "url": "https://github.com/search?q=Chocodino&type=users",
+        "recommended": true
+      }
+    ]
+  },
+  {
+    "id": "claude-ai-ywnico-aagaming",
+    "name": "Claude AI & ywnico & AAGaming",
+    "avatar": "https://github.com/mauricio-gg.png",
+    "bio": "",
+    "links": [
+      {
+        "type": "GitHub",
+        "name": "GitHub",
+        "url": "https://github.com/mauricio-gg",
         "recommended": true
       }
     ]
@@ -1312,6 +1432,25 @@
         "name": "Buscar autor",
         "url": "https://github.com/search?q=crait&type=users",
         "recommended": true
+      }
+    ]
+  },
+  {
+    "id": "crateboy-jeffrulz345",
+    "name": "Crateboy & JeffRuLz345",
+    "avatar": "icon/autoricon.png",
+    "bio": "",
+    "links": [
+      {
+        "type": "Download",
+        "name": "VitaDBtoo VPK",
+        "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/408-WizardWizard.vpk",
+        "recommended": true
+      },
+      {
+        "type": "Repository",
+        "name": "Repositorio",
+        "url": "https://github.com"
       }
     ]
   },
@@ -1960,6 +2099,25 @@
     ]
   },
   {
+    "id": "draxtube",
+    "name": "DraxTube",
+    "avatar": "icon/autoricon.png",
+    "bio": "",
+    "links": [
+      {
+        "type": "Download",
+        "name": "VitaDBtoo VPK",
+        "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/BatmanDoom.vpk",
+        "recommended": true
+      },
+      {
+        "type": "Repository",
+        "name": "Repositorio",
+        "url": "https://github.com"
+      }
+    ]
+  },
+  {
     "id": "drdecki",
     "name": "DrDecki",
     "avatar": "https://github.com/DrDecki.png",
@@ -2226,6 +2384,30 @@
     ]
   },
   {
+    "id": "eva-vital-isaque-sanches",
+    "name": "Eva Vital & Isaque Sanches",
+    "avatar": "icon/autoricon.png",
+    "bio": "",
+    "links": [
+      {
+        "type": "Download",
+        "name": "VitaDBtoo VPK",
+        "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/682-HaveAGoodOne.vpk",
+        "recommended": true
+      },
+      {
+        "type": "Official Website",
+        "name": "VitaDBtoo Release Page",
+        "url": "https://kyuhen.customprotocol.com/en/submissions/goodone/"
+      },
+      {
+        "type": "Repository",
+        "name": "Repositorio",
+        "url": "https://github.com"
+      }
+    ]
+  },
+  {
     "id": "eva-vital",
     "name": "Eva Vital",
     "avatar": "icon/autoricon.png",
@@ -2376,6 +2558,25 @@
         "name": "Buscar autor",
         "url": "https://github.com/search?q=Flappy+Jesus&type=users",
         "recommended": true
+      }
+    ]
+  },
+  {
+    "id": "forthw-jeffrulz345",
+    "name": "forthw & JeffRuLz345",
+    "avatar": "icon/autoricon.png",
+    "bio": "",
+    "links": [
+      {
+        "type": "Download",
+        "name": "VitaDBtoo VPK",
+        "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/407-CubicConundrum.vpk",
+        "recommended": true
+      },
+      {
+        "type": "Repository",
+        "name": "Repositorio",
+        "url": "https://github.com"
       }
     ]
   },
@@ -2898,6 +3099,30 @@
     ]
   },
   {
+    "id": "hexzyle-rinnegatamante",
+    "name": "HexZyle & Rinnegatamante",
+    "avatar": "icon/autoricon.png",
+    "bio": "",
+    "links": [
+      {
+        "type": "Download",
+        "name": "VitaDBtoo VPK",
+        "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/263-EUCLIOD.vpk",
+        "recommended": true
+      },
+      {
+        "type": "Official Website",
+        "name": "VitaDBtoo Release Page",
+        "url": "http://wololo.net/talk/viewtopic.php?f=116&t=48167"
+      },
+      {
+        "type": "Repository",
+        "name": "Repositorio",
+        "url": "https://github.com"
+      }
+    ]
+  },
+  {
     "id": "hexzyle",
     "name": "HexZyle",
     "avatar": "icon/autoricon.png",
@@ -2926,6 +3151,30 @@
     ]
   },
   {
+    "id": "holy-pangolin-dos",
+    "name": "Holy Pangolin & dos",
+    "avatar": "icon/autoricon.png",
+    "bio": "",
+    "links": [
+      {
+        "type": "Download",
+        "name": "VitaDBtoo VPK",
+        "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1447-rukavychka-vita.vpk",
+        "recommended": true
+      },
+      {
+        "type": "Official Website",
+        "name": "VitaDBtoo Release Page",
+        "url": "https://holypangolin.itch.io/rukavychka"
+      },
+      {
+        "type": "Repository",
+        "name": "Repositorio",
+        "url": "https://gitlab.com/HolyPangolin/rukavychka"
+      }
+    ]
+  },
+  {
     "id": "holy-pangolin",
     "name": "Holy Pangolin",
     "avatar": "icon/autoricon.png",
@@ -2949,6 +3198,20 @@
         "type": "GitHub",
         "name": "GitHub",
         "url": "https://github.com/huceus",
+        "recommended": true
+      }
+    ]
+  },
+  {
+    "id": "huckleberrypie-parkinglotstudio",
+    "name": "huckleberrypie & ParkingLotStudio",
+    "avatar": "https://github.com/huckleberrypie.png",
+    "bio": "",
+    "links": [
+      {
+        "type": "GitHub",
+        "name": "GitHub",
+        "url": "https://github.com/huckleberrypie",
         "recommended": true
       }
     ]
@@ -3136,6 +3399,30 @@
     ]
   },
   {
+    "id": "isaque-sanches-eva-vital",
+    "name": "Isaque Sanches & Eva Vital",
+    "avatar": "icon/autoricon.png",
+    "bio": "",
+    "links": [
+      {
+        "type": "Download",
+        "name": "VitaDBtoo VPK",
+        "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/684-MIRROR.vpk",
+        "recommended": true
+      },
+      {
+        "type": "Official Website",
+        "name": "VitaDBtoo Release Page",
+        "url": "https://kyuhen.customprotocol.com/en/submissions/mirror"
+      },
+      {
+        "type": "Repository",
+        "name": "Repositorio",
+        "url": "https://github.com"
+      }
+    ]
+  },
+  {
     "id": "isaque-sanches",
     "name": "Isaque Sanches",
     "avatar": "icon/autoricon.png",
@@ -3188,6 +3475,30 @@
         "name": "Buscar autor",
         "url": "https://github.com/search?q=ivanproff&type=users",
         "recommended": true
+      }
+    ]
+  },
+  {
+    "id": "jackiepooh-rinnegatamante",
+    "name": "Jackiepooh & Rinnegatamante",
+    "avatar": "icon/autoricon.png",
+    "bio": "",
+    "links": [
+      {
+        "type": "Download",
+        "name": "VitaDBtoo VPK",
+        "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/379-VitaHangman.vpk",
+        "recommended": true
+      },
+      {
+        "type": "Official Website",
+        "name": "VitaDBtoo Release Page",
+        "url": "http://wololo.net/talk/viewtopic.php?f=116&t=48977"
+      },
+      {
+        "type": "Repository",
+        "name": "Repositorio",
+        "url": "https://github.com"
       }
     ]
   },
@@ -3780,6 +4091,25 @@
     ]
   },
   {
+    "id": "kolbie5874-weegeedeveloper",
+    "name": "Kolbie5874 & WeegeeDEVELOPER",
+    "avatar": "icon/autoricon.png",
+    "bio": "",
+    "links": [
+      {
+        "type": "Download",
+        "name": "VitaDBtoo VPK",
+        "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/620-FNaFVita.vpk",
+        "recommended": true
+      },
+      {
+        "type": "Repository",
+        "name": "Repositorio",
+        "url": "https://github.com"
+      }
+    ]
+  },
+  {
     "id": "kolbie5874",
     "name": "Kolbie5874",
     "avatar": "icon/autoricon.png",
@@ -3930,6 +4260,30 @@
         "name": "GitHub",
         "url": "https://github.com/add-le",
         "recommended": true
+      }
+    ]
+  },
+  {
+    "id": "lapy-acekone-dragonixplay",
+    "name": "Lapy & Acekone & Dragonixplay",
+    "avatar": "icon/autoricon.png",
+    "bio": "",
+    "links": [
+      {
+        "type": "Download",
+        "name": "VitaDBtoo VPK",
+        "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/555-SuperConsoleWars.vpk",
+        "recommended": true
+      },
+      {
+        "type": "Official Website",
+        "name": "VitaDBtoo Release Page",
+        "url": "https://superconsolewars.com/"
+      },
+      {
+        "type": "Repository",
+        "name": "Repositorio",
+        "url": "https://github.com"
       }
     ]
   },
@@ -4214,6 +4568,30 @@
     ]
   },
   {
+    "id": "lordchickenblaster-soupmasters",
+    "name": "LordChickenBlaster & SoupMasters",
+    "avatar": "icon/autoricon.png",
+    "bio": "",
+    "links": [
+      {
+        "type": "Download",
+        "name": "VitaDBtoo VPK",
+        "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1264-bbbv.vpk",
+        "recommended": true
+      },
+      {
+        "type": "Official Website",
+        "name": "VitaDBtoo Release Page",
+        "url": "https://gamejolt.com/games/BBBV/982964"
+      },
+      {
+        "type": "Repository",
+        "name": "Repositorio",
+        "url": "https://github.com"
+      }
+    ]
+  },
+  {
     "id": "lordchickenblaster",
     "name": "LordChickenBlaster",
     "avatar": "https://github.com/Lordchickenblaster.png",
@@ -4238,6 +4616,25 @@
         "name": "GitHub",
         "url": "https://github.com/lp1dev",
         "recommended": true
+      }
+    ]
+  },
+  {
+    "id": "luck-kylon",
+    "name": "luck & kylon",
+    "avatar": "icon/autoricon.png",
+    "bio": "",
+    "links": [
+      {
+        "type": "Download",
+        "name": "VitaDBtoo VPK",
+        "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/204-appdbtool.vpk",
+        "recommended": true
+      },
+      {
+        "type": "Repository",
+        "name": "Repositorio",
+        "url": "https://bitbucket.org/kylon/appdbtool"
       }
     ]
   },
@@ -4536,6 +4933,41 @@
     ]
   },
   {
+    "id": "mdashk-creative-araya",
+    "name": "MDashK & Creative Araya",
+    "avatar": "icon/autoricon.png",
+    "bio": "",
+    "links": [
+      {
+        "type": "Download",
+        "name": "VitaDBtoo VPK",
+        "url": "https://github.com/MDashK/sonic-1-sms-remake-vita/releases/download/v1.9.2-vita/SOSR00001.VPK",
+        "recommended": true
+      },
+      {
+        "type": "Official Website",
+        "name": "VitaDBtoo Release Page",
+        "url": "https://github.com/MDashK/sonic-1-sms-remake-vita"
+      },
+      {
+        "type": "Download",
+        "name": "VitaDBtoo VPK",
+        "url": "https://github.com/MDashK/Sonic-2-SMS-Remake-Vita/releases/download/v2.9.2-vita/SOSR00002.VPK",
+        "recommended": true
+      },
+      {
+        "type": "Official Website",
+        "name": "VitaDBtoo Release Page",
+        "url": "https://github.com/MDashK/Sonic-2-SMS-Remake-Vita"
+      },
+      {
+        "type": "Official Website",
+        "name": "NeoVitaDB Release Page",
+        "url": "https://github.com/MDashK/sonic-1-sms-remake-vita/releases/tag/v1.9.2-vita"
+      }
+    ]
+  },
+  {
     "id": "mdashk",
     "name": "MDashK",
     "avatar": "https://github.com/MDashK.png",
@@ -4700,6 +5132,30 @@
         "name": "GitHub",
         "url": "https://github.com/minecraftpe-vita",
         "recommended": true
+      }
+    ]
+  },
+  {
+    "id": "miralatijera-draqen",
+    "name": "MiraLaTijera & Draqen",
+    "avatar": "icon/autoricon.png",
+    "bio": "",
+    "links": [
+      {
+        "type": "Download",
+        "name": "VitaDBtoo VPK",
+        "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/301-MLTactivatorFIX2.vpk",
+        "recommended": true
+      },
+      {
+        "type": "Official Website",
+        "name": "VitaDBtoo Release Page",
+        "url": "http://wololo.net/2017/08/14/mltactivator-activate-ps-vita-offline/"
+      },
+      {
+        "type": "Repository",
+        "name": "Repositorio",
+        "url": "https://github.com"
       }
     ]
   },
@@ -4910,6 +5366,49 @@
         "name": "GitHub",
         "url": "https://github.com/MrJPGames",
         "recommended": true
+      }
+    ]
+  },
+  {
+    "id": "mrkane-digradi",
+    "name": "MRKane & digradi",
+    "avatar": "icon/autoricon.png",
+    "bio": "",
+    "links": [
+      {
+        "type": "Download",
+        "name": "VitaDBtoo VPK",
+        "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1122-VitaHot.vpk",
+        "recommended": true
+      },
+      {
+        "type": "Official Website",
+        "name": "VitaDBtoo Release Page",
+        "url": "https://fuhen.homebrew-contest.com/submissions/33/"
+      },
+      {
+        "type": "Repository",
+        "name": "Repositorio",
+        "url": "https://github.com"
+      }
+    ]
+  },
+  {
+    "id": "mrkane-hypatia",
+    "name": "MRKane & Hypatia",
+    "avatar": "icon/autoricon.png",
+    "bio": "",
+    "links": [
+      {
+        "type": "Download",
+        "name": "VitaDBtoo VPK",
+        "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1250-ChasingDawn.vpk",
+        "recommended": true
+      },
+      {
+        "type": "Repository",
+        "name": "Repositorio",
+        "url": "https://github.com"
       }
     ]
   },
@@ -5712,6 +6211,30 @@
     ]
   },
   {
+    "id": "primer0-ruben_wolfe",
+    "name": "Primer0 & Ruben_Wolfe",
+    "avatar": "icon/autoricon.png",
+    "bio": "",
+    "links": [
+      {
+        "type": "Download",
+        "name": "VitaDBtoo VPK",
+        "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/91-Procedural_Planets.vpk",
+        "recommended": true
+      },
+      {
+        "type": "Official Website",
+        "name": "VitaDBtoo Release Page",
+        "url": "http://wololo.net/talk/viewtopic.php?p=406861"
+      },
+      {
+        "type": "Repository",
+        "name": "Repositorio",
+        "url": "https://drive.google.com/file/d/0B4QqovA_rXzGT3I3ZUdpTnJtc2s/view"
+      }
+    ]
+  },
+  {
     "id": "primer0",
     "name": "Primer0",
     "avatar": "icon/autoricon.png",
@@ -5931,6 +6454,20 @@
         "type": "GitHub",
         "name": "GitHub",
         "url": "https://github.com/StonedModder",
+        "recommended": true
+      }
+    ]
+  },
+  {
+    "id": "regular-character",
+    "name": "Regular Character",
+    "avatar": "https://github.com/regularcharacter07.png",
+    "bio": "",
+    "links": [
+      {
+        "type": "GitHub",
+        "name": "GitHub",
+        "url": "https://github.com/regularcharacter07",
         "recommended": true
       }
     ]
@@ -7422,6 +7959,25 @@
     ]
   },
   {
+    "id": "vlambeer-jeffrulz345",
+    "name": "Vlambeer & JeffRuLz345",
+    "avatar": "icon/autoricon.png",
+    "bio": "",
+    "links": [
+      {
+        "type": "Download",
+        "name": "VitaDBtoo VPK",
+        "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/409-WastelandKings.vpk",
+        "recommended": true
+      },
+      {
+        "type": "Repository",
+        "name": "Repositorio",
+        "url": "https://github.com"
+      }
+    ]
+  },
+  {
     "id": "vlambeer",
     "name": "Vlambeer",
     "avatar": "icon/autoricon.png",
@@ -7702,6 +8258,20 @@
     ]
   },
   {
+    "id": "xblade720",
+    "name": "xblade720",
+    "avatar": "https://github.com/omegastator.png",
+    "bio": "",
+    "links": [
+      {
+        "type": "GitHub",
+        "name": "GitHub",
+        "url": "https://github.com/omegastator",
+        "recommended": true
+      }
+    ]
+  },
+  {
     "id": "xcorra",
     "name": "xCorra",
     "avatar": "icon/autoricon.png",
@@ -7838,6 +8408,36 @@
         "name": "Buscar autor",
         "url": "https://github.com/search?q=Yabause+Team&type=users",
         "recommended": true
+      }
+    ]
+  },
+  {
+    "id": "yizhigai-spritelisen-kaaass",
+    "name": "yizhigai & SpriteLisen & KAAAsS",
+    "avatar": "icon/autoricon.png",
+    "bio": "",
+    "links": [
+      {
+        "type": "Download",
+        "name": "VitaDBtoo VPK",
+        "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1402-BIOHAZARD4.vpk",
+        "recommended": true
+      },
+      {
+        "type": "Repository",
+        "name": "Repositorio",
+        "url": "https://gitee.com/Moqi01/bio4"
+      },
+      {
+        "type": "Download",
+        "name": "VitaDBtoo VPK",
+        "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1377-dmc4.vpk",
+        "recommended": true
+      },
+      {
+        "type": "Repository",
+        "name": "Repositorio",
+        "url": "https://gitee.com/Moqi01/acrodea_runtime"
       }
     ]
   },
@@ -8005,223 +8605,6 @@
         "type": "Other",
         "name": "Buscar autor",
         "url": "https://github.com/search?q=ZX-81&type=users",
-        "recommended": true
-      }
-    ]
-  },
-  {
-    "id": "luck-kylon",
-    "name": "luck & kylon",
-    "avatar": "icon/autoricon.png",
-    "bio": "",
-    "links": []
-  },
-  {
-    "id": "lordchickenblaster-soupmasters",
-    "name": "LordChickenBlaster & SoupMasters",
-    "avatar": "icon/autoricon.png",
-    "bio": "",
-    "links": []
-  },
-  {
-    "id": "yizhigai-spritelisen-kaaass",
-    "name": "yizhigai & SpriteLisen & KAAAsS",
-    "avatar": "icon/autoricon.png",
-    "bio": "",
-    "links": []
-  },
-  {
-    "id": "mrkane-hypatia",
-    "name": "MRKane & Hypatia",
-    "avatar": "icon/autoricon.png",
-    "bio": "",
-    "links": []
-  },
-  {
-    "id": "forthw-jeffrulz345",
-    "name": "forthw & JeffRuLz345",
-    "avatar": "icon/autoricon.png",
-    "bio": "",
-    "links": []
-  },
-  {
-    "id": "hexzyle-rinnegatamante",
-    "name": "HexZyle & Rinnegatamante",
-    "avatar": "icon/autoricon.png",
-    "bio": "",
-    "links": []
-  },
-  {
-    "id": "kolbie5874-weegeedeveloper",
-    "name": "Kolbie5874 & WeegeeDEVELOPER",
-    "avatar": "icon/autoricon.png",
-    "bio": "",
-    "links": []
-  },
-  {
-    "id": "aionmagan-elpichonart-gguihurt",
-    "name": "aionmagan & elpichonart & GGuihurt",
-    "avatar": "icon/autoricon.png",
-    "bio": "",
-    "links": []
-  },
-  {
-    "id": "eva-vital-isaque-sanches",
-    "name": "Eva Vital & Isaque Sanches",
-    "avatar": "icon/autoricon.png",
-    "bio": "",
-    "links": []
-  },
-  {
-    "id": "huckleberrypie-parkinglotstudio",
-    "name": "huckleberrypie & ParkingLotStudio",
-    "avatar": "https://github.com/huckleberrypie.png",
-    "bio": "",
-    "links": [
-      {
-        "type": "GitHub",
-        "name": "GitHub",
-        "url": "https://github.com/huckleberrypie",
-        "recommended": true
-      }
-    ]
-  },
-  {
-    "id": "isaque-sanches-eva-vital",
-    "name": "Isaque Sanches & Eva Vital",
-    "avatar": "icon/autoricon.png",
-    "bio": "",
-    "links": []
-  },
-  {
-    "id": "miralatijera-draqen",
-    "name": "MiraLaTijera & Draqen",
-    "avatar": "icon/autoricon.png",
-    "bio": "",
-    "links": []
-  },
-  {
-    "id": "primer0-ruben_wolfe",
-    "name": "Primer0 & Ruben_Wolfe",
-    "avatar": "icon/autoricon.png",
-    "bio": "",
-    "links": []
-  },
-  {
-    "id": "holy-pangolin-dos",
-    "name": "Holy Pangolin & dos",
-    "avatar": "icon/autoricon.png",
-    "bio": "",
-    "links": []
-  },
-  {
-    "id": "lapy-acekone-dragonixplay",
-    "name": "Lapy & Acekone & Dragonixplay",
-    "avatar": "icon/autoricon.png",
-    "bio": "",
-    "links": []
-  },
-  {
-    "id": "regular-character",
-    "name": "Regular Character",
-    "avatar": "https://github.com/regularcharacter07.png",
-    "bio": "",
-    "links": [
-      {
-        "type": "GitHub",
-        "name": "GitHub",
-        "url": "https://github.com/regularcharacter07",
-        "recommended": true
-      }
-    ]
-  },
-  {
-    "id": "aurora-svennd",
-    "name": "Aurora & svennd",
-    "avatar": "icon/autoricon.png",
-    "bio": "",
-    "links": []
-  },
-  {
-    "id": "aurora-jackiepooh-rinnegatamante",
-    "name": "Aurora & Jackiepooh & Rinnegatamante",
-    "avatar": "icon/autoricon.png",
-    "bio": "",
-    "links": []
-  },
-  {
-    "id": "jackiepooh-rinnegatamante",
-    "name": "Jackiepooh & Rinnegatamante",
-    "avatar": "icon/autoricon.png",
-    "bio": "",
-    "links": []
-  },
-  {
-    "id": "mrkane-digradi",
-    "name": "MRKane & digradi",
-    "avatar": "icon/autoricon.png",
-    "bio": "",
-    "links": []
-  },
-  {
-    "id": "claude-ai-ywnico-aagaming",
-    "name": "Claude AI & ywnico & AAGaming",
-    "avatar": "https://github.com/mauricio-gg.png",
-    "bio": "",
-    "links": [
-      {
-        "type": "GitHub",
-        "name": "GitHub",
-        "url": "https://github.com/mauricio-gg",
-        "recommended": true
-      }
-    ]
-  },
-  {
-    "id": "vlambeer-jeffrulz345",
-    "name": "Vlambeer & JeffRuLz345",
-    "avatar": "icon/autoricon.png",
-    "bio": "",
-    "links": []
-  },
-  {
-    "id": "catarina-lopes-isaque-sanches-mariana-domingos-tiago-quendera",
-    "name": "Catarina Lopes & Isaque Sanches & Mariana Domingos & Tiago Quendera",
-    "avatar": "icon/autoricon.png",
-    "bio": "",
-    "links": []
-  },
-  {
-    "id": "crateboy-jeffrulz345",
-    "name": "Crateboy & JeffRuLz345",
-    "avatar": "icon/autoricon.png",
-    "bio": "",
-    "links": []
-  },
-  {
-    "id": "draxtube",
-    "name": "DraxTube",
-    "avatar": "icon/autoricon.png",
-    "bio": "",
-    "links": []
-  },
-  {
-    "id": "mdashk-creative-araya",
-    "name": "MDashK & Creative Araya",
-    "avatar": "icon/autoricon.png",
-    "bio": "",
-    "links": []
-  },
-  {
-    "id": "xblade720",
-    "name": "xblade720",
-    "avatar": "https://github.com/omegastator.png",
-    "bio": "",
-    "links": [
-      {
-        "type": "GitHub",
-        "name": "GitHub",
-        "url": "https://github.com/omegastator",
         "recommended": true
       }
     ]

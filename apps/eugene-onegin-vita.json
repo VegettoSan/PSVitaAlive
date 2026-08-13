@@ -2,38 +2,40 @@
   "id": "eugene-onegin-vita",
   "title_id": "ONEGAVITA",
   "name": "Eugene Onegin Vita",
-  "description": "A visual novel based on the immortal novel-in-verse by Alexander Pushkin, released in September 2009.",
+  "description": "Port of Eugene Onegin: A Novel-in-Electronic Game Remastered for PSVita.",
   "long_description": "A visual novel based on the immortal novel-in-verse by Alexander Pushkin, released in September 2009. The player acts as an unseen observer, whose decisions can influence the fates of Onegin, Tatyana, and Lensky, as well as guest characters from other works of Russian classics.",
   "author_ids": [
     "fargusjunja"
   ],
-  "category_id": "ports",
+  "category_id": "games",
   "subcategory_ids": [
     "other"
   ],
   "version": "v.1.0",
   "version_date": "2026-06-25",
-  "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
+  "requirements": "Not specified",
   "size": 195885335,
-  "status": "Archive",
-  "icon": "https://robin994.github.io/NeoVitaDB-Catalog/icons/1422-eugene-onegin-vita.png",
-  "screenshots": [],
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/0e9ca3f056a49a816b035cea5ce825facf3589cb7bcd7ab315a062e86f34188c.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/0e9ca3f056a49a816b035cea5ce825facf3589cb7bcd7ab315a062e86f34188c.png"
+  ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/rerulon/negavita/releases/download/%23negavita/Eugene.Onegin-01.00.vpk",
       "recommended": true
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
       "url": "https://github.com/rerulon/negavita"
-    },
-    {
-      "type": "Other",
-      "name": "Release",
-      "url": "https://github.com/rerulon/negavita/releases/tag/%23negavita"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "1422",
+  "source_url": "https://github.com/rerulon/negavita",
+  "release_page": "https://github.com/rerulon/negavita",
+  "updated_at": "2026-08-13T13:46:07.707330+00:00"
 }

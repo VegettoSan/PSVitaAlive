@@ -5,36 +5,42 @@
   "description": "Recreation of Minecraft Java Edition: Classic Survival Test.",
   "long_description": "CrossCraft-SurvivalTest is a project that aims to implement Minecraft Java Edition: Classic Survival Test. It is not a clone. CrossCraft does not use any of the source code of the original game, nor do the developers have any knowledge of the source code. CrossCraft does not use the original copyrighted assets. All knowledge is figured out with documentation and observation of in-game mechanics.",
   "author_ids": [
-    "iridescence",
-    "motolegacy"
+    "iridescence"
   ],
   "category_id": "games",
   "subcategory_ids": [
     "other"
   ],
-  "version": "ST3",
-  "version_date": "2022-09-02",
-  "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
-  "size": 36059515,
-  "status": "Verified",
-  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/527b6fe639361334dc5909af0e4e47c5b129b58323bc5555d6fa65843364c738.png",
-  "screenshots": [],
+  "version": "ST4",
+  "version_date": "2022-12-02",
+  "requirements": "Not specified",
+  "size": 17518102,
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/0850-crosscraft-survivaltest.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/0850-crosscraft-survivaltest.png"
+  ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
-      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/850-CrossCraft-SurvivalTest.vpk",
+      "name": "NeoVitaDB VPK",
+      "url": "https://github.com/CrossCraft/CrossCraft-SurvivalTest/releases/download/ST4/CrossCraft-Vita.zip",
       "recommended": true
+    },
+    {
+      "type": "Official Website",
+      "name": "NeoVitaDB Release Page",
+      "url": "https://github.com/CrossCraft/CrossCraft-SurvivalTest/releases/tag/ST4"
     },
     {
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/CrossCraft/CrossCraft-SurvivalTest"
-    },
-    {
-      "type": "Other",
-      "name": "Release",
-      "url": "https://github.com/CrossCraft/CrossCraft-SurvivalTest/releases"
     }
-  ]
+  ],
+  "source_name": "NeoVitaDB",
+  "source_id": "850",
+  "source_url": "https://github.com/CrossCraft/CrossCraft-SurvivalTest",
+  "release_page": "https://github.com/CrossCraft/CrossCraft-SurvivalTest/releases/tag/ST4",
+  "updated_at": "2026-08-13T13:46:07.881414+00:00"
 }

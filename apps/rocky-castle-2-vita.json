@@ -2,12 +2,12 @@
   "id": "rocky-castle-2-vita",
   "title_id": "TOMCASTLE",
   "name": "Rocky Castle 2 Vita",
-  "description": "This is a wrapper/port of Rocky Castle 2 for the PS Vita.",
+  "description": "Port of Rocky Castle 2 for PSVita.",
   "long_description": "This is a wrapper/port of Rocky Castle 2 for the PS Vita.\nThe port works by loading the official Android ARMv7 executables in memory, resolving their imports with native functions and patching it in order to properly run. By doing so, it's basically as if we emulate a minimalist Android environment in which we run natively the executables as they are.",
   "author_ids": [
     "rinnegatamante"
   ],
-  "category_id": "ports",
+  "category_id": "games",
   "subcategory_ids": [
     "other"
   ],
@@ -16,35 +16,39 @@
   "requirements": "- libshacccg.suprx\n- kubridge.skprx\n- Game Data Files: Android",
   "size": 2794258,
   "status": "Legacy",
-  "icon": "https://robin994.github.io/NeoVitaDB-Catalog/icons/1310-rocky-castle-2-vita.png",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/ab2476aea9365c7c070e2b7f5aabb8f886db7d720e487bb31c446250679238de.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/1e99c8b1f15a85caef02694300e59f1c0469bd6296a59822454ea54222376c25.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/8ec988d06c13c7db4955eb09d593d69d57da14679950e0a3f65ac823b93cf1c9.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/e3a29cda73015157c556efbf36660694faf99a9fefcd4ff9c13d7a7a67a571c4.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/406625ddea050ffbaac1c1f062a6409b6c6709abf611c6e5ea3a29bb9574c3dc.png",
-    "screenshots/1e99c8b1f15a85caef02694300e59f1c0469bd6296a59822454ea54222376c25.png;screenshots/8ec988d06c13c7db4955eb09d593d69d57da14679950e0a3f65ac823b93cf1c9.png;screenshots/e3a29cda73015157c556efbf36660694faf99a9fefcd4ff9c13d7a7a67a571c4.png;screenshots/406625ddea050ffbaac1c1f062a6409b6c6709abf611c6e5ea3a29bb9574c3dc.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/406625ddea050ffbaac1c1f062a6409b6c6709abf611c6e5ea3a29bb9574c3dc.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/Rinnegatamante/rocky-castle-2-vita/releases/download/v.1.0/rocky2.vpk",
       "recommended": true
-    },
-    {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/Rinnegatamante/rocky-castle-2-vita"
-    },
-    {
-      "type": "Other",
-      "name": "Release",
-      "url": "https://github.com/Rinnegatamante/rocky-castle-2-vita/releases/tag/v.1.0"
     },
     {
       "type": "Official Website",
       "name": "VitaDBtoo Release Page",
       "url": "https://github.com/Rinnegatamante/rocky-castle-2-vita/releases"
+    },
+    {
+      "type": "Official Website",
+      "name": "NeoVitaDB Release Page",
+      "url": "https://github.com/Rinnegatamante/rocky-castle-2-vita/releases/tag/v.1.0"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/Rinnegatamante/rocky-castle-2-vita"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "1310",
+  "source_url": "https://github.com/Rinnegatamante/rocky-castle-2-vita",
+  "release_page": "https://github.com/Rinnegatamante/rocky-castle-2-vita/releases",
+  "updated_at": "2026-08-13T13:46:07.759923+00:00"
 }

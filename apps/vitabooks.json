@@ -3,28 +3,27 @@
   "title_id": "VITABOOKS",
   "name": "VitaBooks",
   "description": "Manual reader for PSVITA.",
-  "long_description": "VitaBooks is a manual/books reader in PNG format.",
+  "long_description": "VitaBooks is a manual/books reader in PNG format.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
   "author_ids": [
     "benmitnick"
   ],
-  "category_id": "media",
+  "category_id": "games",
   "subcategory_ids": [
     "other"
   ],
   "version": "v.1.0",
   "version_date": "2026-08-12",
-  "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
+  "requirements": "Not specified",
   "size": 2140210,
-  "status": "Verified",
-  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/cad52ed32f95e110bb8534f8b664e109d22185a7d2a0395be00e4c40b321c0b8.png",
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1559-vitabooks.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/f29fa64782a1968fec90de5fac4ba4824f97b543ad0bb41d8e72927d167a9c34.png",
-    "screenshots/f29fa64782a1968fec90de5fac4ba4824f97b543ad0bb41d8e72927d167a9c34.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/f29fa64782a1968fec90de5fac4ba4824f97b543ad0bb41d8e72927d167a9c34.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/274-VitaBooks.vpk",
       "recommended": true
     },
@@ -33,5 +32,10 @@
       "name": "Repositorio",
       "url": "https://github.com"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "274",
+  "source_url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/274-VitaBooks.vpk",
+  "release_page": "",
+  "updated_at": "2026-08-13T13:46:08.007520+00:00"
 }

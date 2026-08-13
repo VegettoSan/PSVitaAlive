@@ -7,7 +7,7 @@
   "author_ids": [
     "gustavo3211"
   ],
-  "category_id": "ports",
+  "category_id": "games",
   "subcategory_ids": [
     "other"
   ],
@@ -15,30 +15,37 @@
   "version_date": "2026-05-05",
   "requirements": "- Game Data Files: NES",
   "size": 1125976,
-  "status": "Verified",
-  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/72c194f6105329923bd0ff350bba675bee25696477980568e7cf394c60a56645.png",
-  "screenshots": [],
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/72c194f6105329923bd0ff350bba675bee25696477980568e7cf394c60a56645.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/72c194f6105329923bd0ff350bba675bee25696477980568e7cf394c60a56645.png"
+  ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/Gustavo3211/SuperMarioBros-C-Vita/releases/download/0.1/smbc.vpk",
       "recommended": true
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/Gustavo3211/SuperMarioBros-C-Vita"
-    },
-    {
-      "type": "Other",
-      "name": "Release",
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
       "url": "https://github.com/Gustavo3211/SuperMarioBros-C-Vita/releases"
     },
     {
       "type": "Official Website",
       "name": "NeoVitaDB Release Page",
       "url": "https://github.com/Gustavo3211/SuperMarioBros-C-Vita/releases/tag/0.1"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/Gustavo3211/SuperMarioBros-C-Vita"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "1395",
+  "source_url": "https://github.com/Gustavo3211/SuperMarioBros-C-Vita",
+  "release_page": "https://github.com/Gustavo3211/SuperMarioBros-C-Vita/releases",
+  "updated_at": "2026-08-13T13:46:07.721480+00:00"
 }

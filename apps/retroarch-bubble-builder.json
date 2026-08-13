@@ -7,33 +7,32 @@
   "author_ids": [
     "anthj"
   ],
-  "category_id": "emulators",
+  "category_id": "games",
   "subcategory_ids": [
-    "multi-system"
+    "other"
   ],
   "version": "v.1.0",
   "version_date": "2021-11-19",
-  "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
+  "requirements": "Not specified",
   "size": 5885149,
-  "status": "Verified",
-  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/99945f82d4e2cab37383ce1fe2f0c746e539d2f9b5d7bec04e0760f2026f7b22.png",
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/99945f82d4e2cab37383ce1fe2f0c746e539d2f9b5d7bec04e0760f2026f7b22.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/bace2b0c8a22173152bd75c118c8ca76892f3c675cd747cbde699d9814ac8d2f.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/a49621701eae707fa1cfb46e6ba5b8073b39bc53de902e1ae2aae1286a3fcb98.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/74698c804cf357701a7c5ebd73a3c4a9f5b0f81420268f9e64a35458124c1e20.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/d22b55934e867501df56926b52b884da6553970aae415ec0c81f03843c77f1f8.png",
-    "screenshots/bace2b0c8a22173152bd75c118c8ca76892f3c675cd747cbde699d9814ac8d2f.png;screenshots/a49621701eae707fa1cfb46e6ba5b8073b39bc53de902e1ae2aae1286a3fcb98.png;screenshots/74698c804cf357701a7c5ebd73a3c4a9f5b0f81420268f9e64a35458124c1e20.png;screenshots/d22b55934e867501df56926b52b884da6553970aae415ec0c81f03843c77f1f8.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/d22b55934e867501df56926b52b884da6553970aae415ec0c81f03843c77f1f8.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/AntHJ/Retroarch-Bubble-Builder/releases/download/v1.0/Retroarch.Bubble.Builder.vpk",
       "recommended": true
     },
     {
-      "type": "Other",
-      "name": "Release",
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
       "url": "https://github.com/AntHJ/Retroarch-Bubble-Builder/releases"
     },
     {
@@ -46,5 +45,10 @@
       "name": "Repositorio",
       "url": "https://github.com/AntHJ/Retroarch-Bubble-Builder"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "756",
+  "source_url": "https://github.com/AntHJ/Retroarch-Bubble-Builder/releases",
+  "release_page": "https://github.com/AntHJ/Retroarch-Bubble-Builder/releases",
+  "updated_at": "2026-08-13T13:46:07.905866+00:00"
 }

@@ -7,7 +7,7 @@
   "author_ids": [
     "hatoving"
   ],
-  "category_id": "ports",
+  "category_id": "games",
   "subcategory_ids": [
     "other"
   ],
@@ -15,30 +15,19 @@
   "version_date": "2022-05-08",
   "requirements": "- YoYo Loader\n- Game Data Files: PC Steam",
   "size": 5924041,
-  "status": "Verified",
-  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/f513f7e1e386b5c20e7d713f58324cf203a521db006c8f76b6865df593361ae7.png",
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/0819-imscared.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/50b1d7a1c06cd47cb59c5d977fca5712c1da6901a68e620b8c841774aa6f7f5f.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/95151df81c64efc85853073a2cf5c14fdaa65c444f82797ef215670f50684f58.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/7055a4855f0a060e3b3f72d51309e42c620ab3bc25576557741e178756a08458.png",
-    "screenshots/50b1d7a1c06cd47cb59c5d977fca5712c1da6901a68e620b8c841774aa6f7f5f.png;screenshots/95151df81c64efc85853073a2cf5c14fdaa65c444f82797ef215670f50684f58.png;screenshots/7055a4855f0a060e3b3f72d51309e42c620ab3bc25576557741e178756a08458.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/7055a4855f0a060e3b3f72d51309e42c620ab3bc25576557741e178756a08458.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
-      "url": "https://github.com/hatoving/imscared-old-vita/releases/download/1.1/IMSCARED0.vpk",
-      "recommended": true
-    },
-    {
-      "type": "Other",
-      "name": "Release",
-      "url": "https://github.com/hatoving/imscared/"
-    },
-    {
-      "type": "Download",
       "name": "NeoVitaDB VPK",
-      "url": "https://github.com/hatoving/imscared-old-vita/releases/download/1.2/IMSCARED0.vpk"
+      "url": "https://github.com/hatoving/imscared-old-vita/releases/download/1.2/IMSCARED0.vpk",
+      "recommended": true
     },
     {
       "type": "Official Website",
@@ -50,5 +39,10 @@
       "name": "Repositorio",
       "url": "https://github.com/hatoving/imscared-old-vita"
     }
-  ]
+  ],
+  "source_name": "NeoVitaDB",
+  "source_id": "819",
+  "source_url": "https://github.com/hatoving/imscared-old-vita",
+  "release_page": "https://github.com/hatoving/imscared-old-vita/releases/tag/1.2",
+  "updated_at": "2026-08-13T13:46:07.892278+00:00"
 }

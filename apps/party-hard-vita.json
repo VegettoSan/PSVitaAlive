@@ -7,36 +7,40 @@
   "author_ids": [
     "daniemun"
   ],
-  "category_id": "ports",
+  "category_id": "games",
   "subcategory_ids": [
-    "action"
+    "other"
   ],
-  "version": "v0.01",
+  "version": "v.0.01",
   "version_date": "2025-12-30",
   "requirements": "- Game Data Files: PC",
   "size": 131626799,
   "status": "Legacy",
-  "icon": "https://robin994.github.io/NeoVitaDB-Catalog/icons/1443-party-hard-vita.png",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/4a5702328872a9a50803fdd931000602d8729249c2fc132cb98d20caaaf46740.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/f31bcca32bc3be7230b9762e4717987cadbeede1499bcad8b53d5a6d312f5136.png",
-    "screenshots/f31bcca32bc3be7230b9762e4717987cadbeede1499bcad8b53d5a6d312f5136.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/f31bcca32bc3be7230b9762e4717987cadbeede1499bcad8b53d5a6d312f5136.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/daniemun/PartyHard-PSVITA-Port/releases/download/v0.01/PartyHardVita.vpk",
       "recommended": true
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
       "url": "https://github.com/daniemun/PartyHard-PSVITA-Port"
     },
     {
-      "type": "Other",
-      "name": "Release",
+      "type": "Official Website",
+      "name": "NeoVitaDB Release Page",
       "url": "https://github.com/daniemun/PartyHard-PSVITA-Port/releases/tag/v0.01"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "1443",
+  "source_url": "https://github.com/daniemun/PartyHard-PSVITA-Port",
+  "release_page": "https://github.com/daniemun/PartyHard-PSVITA-Port",
+  "updated_at": "2026-08-13T13:46:07.738903+00:00"
 }

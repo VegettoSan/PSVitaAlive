@@ -3,7 +3,7 @@
   "title_id": "GNS111111",
   "name": "T-Rex",
   "description": "Remake of T-Rex by Google.",
-  "long_description": "A remake of the T-Rex minigame made by Google.",
+  "long_description": "A remake of the T-Rex minigame made by Google.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
   "author_ids": [
     "toni-dumancic"
   ],
@@ -13,24 +13,23 @@
   ],
   "version": "v.1.0",
   "version_date": "2026-08-12",
-  "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
+  "requirements": "Not specified",
   "size": 3082595,
-  "status": "Verified",
-  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/7f439c0cc82e7a12907fb1693fe1c62c6a8f939cca220f48b56620f548d2c5a6.png",
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1733-t-rex.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/1cd2e24a4bb455d053fcc962faf648fe26475c3187fc8f7d52dc777f97ef704d.png",
-    "screenshots/1cd2e24a4bb455d053fcc962faf648fe26475c3187fc8f7d52dc777f97ef704d.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/1cd2e24a4bb455d053fcc962faf648fe26475c3187fc8f7d52dc777f97ef704d.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/687-trex.vpk",
       "recommended": true
     },
     {
-      "type": "Other",
-      "name": "Release",
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
       "url": "https://kyuhen.customprotocol.com/en/submissions/trex/"
     },
     {
@@ -38,5 +37,10 @@
       "name": "Repositorio",
       "url": "https://github.com"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "687",
+  "source_url": "https://kyuhen.customprotocol.com/en/submissions/trex/",
+  "release_page": "https://kyuhen.customprotocol.com/en/submissions/trex/",
+  "updated_at": "2026-08-13T13:46:07.925179+00:00"
 }

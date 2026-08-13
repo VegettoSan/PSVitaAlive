@@ -7,44 +7,48 @@
   "author_ids": [
     "rinnegatamante"
   ],
-  "category_id": "ports",
+  "category_id": "games",
   "subcategory_ids": [
-    "engine-port"
+    "other"
   ],
   "version": "v.1.2",
   "version_date": "2026-06-02",
   "requirements": "- libshacccg.suprx\n- Game Data Files: N64",
   "size": 6740160,
-  "status": "Verified",
-  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/77700dfef37a0fdf2a6948d12b1d185780b4c58e7aa06b0835a5272d323a1a9b.png",
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/77700dfef37a0fdf2a6948d12b1d185780b4c58e7aa06b0835a5272d323a1a9b.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/6c9fa9fc2cfd84d72d798489d63a75d69fa06421e01f55b39c08dfccbeb37449.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/0e0d76be5b1aa4e4d5d9f1ec5f35bc91ee175431e9de2057c7b45473bc6da478.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/89eed216e206770ff4b00124a59e8a60fb699109e8ca1bd48a7015561b872848.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/38276c24d52a9fc0776594f4af6071d3348ab62d8a6336b0ebfa4668ee95af88.png",
-    "screenshots/6c9fa9fc2cfd84d72d798489d63a75d69fa06421e01f55b39c08dfccbeb37449.png;screenshots/0e0d76be5b1aa4e4d5d9f1ec5f35bc91ee175431e9de2057c7b45473bc6da478.png;screenshots/89eed216e206770ff4b00124a59e8a60fb699109e8ca1bd48a7015561b872848.png;screenshots/38276c24d52a9fc0776594f4af6071d3348ab62d8a6336b0ebfa4668ee95af88.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/38276c24d52a9fc0776594f4af6071d3348ab62d8a6336b0ebfa4668ee95af88.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/Rinnegatamante/Ghostship/releases/download/v.1.2/Ghostship.vpk",
       "recommended": true
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/Rinnegatamante/Ghostship"
-    },
-    {
-      "type": "Other",
-      "name": "Release",
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
       "url": "https://github.com/Rinnegatamante/Ghostship/releases"
     },
     {
       "type": "Official Website",
       "name": "NeoVitaDB Release Page",
       "url": "https://github.com/Rinnegatamante/Ghostship/releases/tag/v.1.2"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/Rinnegatamante/Ghostship"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "1387",
+  "source_url": "https://github.com/Rinnegatamante/Ghostship",
+  "release_page": "https://github.com/Rinnegatamante/Ghostship/releases",
+  "updated_at": "2026-08-13T13:46:07.715597+00:00"
 }

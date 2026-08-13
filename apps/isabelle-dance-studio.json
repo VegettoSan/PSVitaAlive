@@ -5,37 +5,34 @@
   "description": "Port of Isabelle Dance Studio for PSVITA.",
   "long_description": "Help Isabelle improve her ballet skills by playing Isabelle Dance Studio. Tap the stars so that Isabelle will reach and leap to keep them in the air. Touch stars to earn points. Let stars hit gems to fill up the starburst meter and unlock its special power. Tap megastars for more points and powers, but don’t touch the black pearl! If you do, you’ll have to start over. Remember, practice makes perfect!\nThis is an updated and modernised port of the game for the PS Vita (and later Android releases), built using Unity 2018.2.19f1.",
   "author_ids": [
-    "huckleberrypie",
-    "parkinglotstudio",
     "huckleberrypie-parkinglotstudio"
   ],
-  "category_id": "ports",
+  "category_id": "games",
   "subcategory_ids": [
     "other"
   ],
   "version": "v.1.02-PSP2",
   "version_date": "2023-03-19",
-  "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
+  "requirements": "Not specified",
   "size": 17515315,
-  "status": "Verified",
-  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/358ba6cb336ed4a4667a3b7e2a6472985f23190896d1c191956641a649e48454.png",
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/358ba6cb336ed4a4667a3b7e2a6472985f23190896d1c191956641a649e48454.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/63b65f9338fe4e6221353a9523b119ddd5cfa1b1508bb432f207539bfde13572.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c18cb77c1de8093e4b7c19cae84476f852383ef6084c870924c8aa1a40ea5135.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/a840e0e0fff5daf20d284d882441b6d1858db3d44e972c4730982262885751f8.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/5f296f66d9f7b18a1978301b636d8650b15f829640a364d4c9ff0f5b82802246.png",
-    "screenshots/63b65f9338fe4e6221353a9523b119ddd5cfa1b1508bb432f207539bfde13572.png;screenshots/c18cb77c1de8093e4b7c19cae84476f852383ef6084c870924c8aa1a40ea5135.png;screenshots/a840e0e0fff5daf20d284d882441b6d1858db3d44e972c4730982262885751f8.png;screenshots/5f296f66d9f7b18a1978301b636d8650b15f829640a364d4c9ff0f5b82802246.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/5f296f66d9f7b18a1978301b636d8650b15f829640a364d4c9ff0f5b82802246.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/huckleberrypie/IsabelleDanceStudio/releases/download/v1.02/IsabelleDanceStudioPSP2v102-VitaDB.vpk",
       "recommended": true
     },
     {
-      "type": "Other",
-      "name": "Release",
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
       "url": "https://github.com/huckleberrypie/IsabelleDanceStudio/releases"
     },
     {
@@ -43,5 +40,10 @@
       "name": "Repositorio",
       "url": "https://github.com/huckleberrypie/IsabelleDanceStudio"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "1058",
+  "source_url": "https://github.com/huckleberrypie/IsabelleDanceStudio/releases",
+  "release_page": "https://github.com/huckleberrypie/IsabelleDanceStudio/releases",
+  "updated_at": "2026-08-13T13:46:07.854153+00:00"
 }

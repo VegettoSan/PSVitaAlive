@@ -7,38 +7,45 @@
   "author_ids": [
     "yoti"
   ],
-  "category_id": "system",
+  "category_id": "games",
   "subcategory_ids": [
-    "account"
+    "other"
   ],
   "version": "v1.1",
   "version_date": "2024-02-11",
-  "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
+  "requirements": "Not specified",
   "size": 275754,
-  "status": "Verified",
-  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/9bb8521a2287f4b74876ce47427ce0f168e3f68ae3eb39f78c9d9c287e63d5c1.png",
-  "screenshots": [],
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/0619-psv-idps-dumper.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/0619-psv-idps-dumper.png"
+  ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/Yoti/psv_idpsdump/releases/download/v1.1/PSV_IDPS_Dumper_v1.1.vpk",
       "recommended": true
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/Yoti/psv_idpsdump"
-    },
-    {
-      "type": "Other",
-      "name": "Release",
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
       "url": "https://github.com/Yoti/psv_idpsdump/releases"
     },
     {
       "type": "Official Website",
       "name": "NeoVitaDB Release Page",
       "url": "https://github.com/Yoti/psv_idpsdump/releases/tag/v1.1"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/Yoti/psv_idpsdump"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "619",
+  "source_url": "https://github.com/Yoti/psv_idpsdump",
+  "release_page": "https://github.com/Yoti/psv_idpsdump/releases",
+  "updated_at": "2026-08-13T13:46:07.933325+00:00"
 }

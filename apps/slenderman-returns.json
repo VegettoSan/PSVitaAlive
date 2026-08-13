@@ -7,37 +7,41 @@
   "author_ids": [
     "burandby"
   ],
-  "category_id": "ports",
+  "category_id": "games",
   "subcategory_ids": [
-    "engine-port"
+    "other"
   ],
   "version": "v.7",
   "version_date": "2021-12-16",
-  "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
+  "requirements": "Not specified",
   "size": 84121943,
-  "status": "Verified",
-  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/3a6228650f4d3e68d1853e6f3a8745e9fb8a233e3f8b312bf5f4c567f221095d.png",
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/3a6228650f4d3e68d1853e6f3a8745e9fb8a233e3f8b312bf5f4c567f221095d.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/0e459d58b5903dd9bce8e0388916d84602e62aab3cc0d3cee4dfd24f6dcf0365.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/9664d1c6cd7a2c1bb841f03632b75bbde94c1f7d5ea2d058935aa441aa66bacd.png",
-    "screenshots/0e459d58b5903dd9bce8e0388916d84602e62aab3cc0d3cee4dfd24f6dcf0365.png;screenshots/9664d1c6cd7a2c1bb841f03632b75bbde94c1f7d5ea2d058935aa441aa66bacd.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/9664d1c6cd7a2c1bb841f03632b75bbde94c1f7d5ea2d058935aa441aa66bacd.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/BurAndBY/slendermanreturns_vita/releases/download/v7-final/slenderfinal.vpk",
       "recommended": true
+    },
+    {
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
+      "url": "https://github.com/BurAndBY/slendermanreturns_vita/releases"
     },
     {
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/BurAndBY/slendermanreturns_vita"
-    },
-    {
-      "type": "Other",
-      "name": "Release",
-      "url": "https://github.com/BurAndBY/slendermanreturns_vita/releases"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "760",
+  "source_url": "https://github.com/BurAndBY/slendermanreturns_vita",
+  "release_page": "https://github.com/BurAndBY/slendermanreturns_vita/releases",
+  "updated_at": "2026-08-13T13:46:07.904265+00:00"
 }

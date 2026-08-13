@@ -2,7 +2,7 @@
   "id": "trophaxse",
   "title_id": "TROPHAXSE",
   "name": "TropHAXSE",
-  "description": "Universal Trophy Unlocker, this tool allows to unlock trophies for any game.",
+  "description": "",
   "long_description": "Universal Trophy Unlocker, this tool allows to unlock trophies for any game\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
   "author_ids": [
     "li"
@@ -13,15 +13,17 @@
   ],
   "version": "latest",
   "version_date": "2026-08-12",
-  "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
+  "requirements": "Not specified",
   "size": 235804,
-  "status": "Archive",
-  "icon": "https://robin994.github.io/NeoVitaDB-Catalog/icons/1455-trophaxse.png",
-  "screenshots": [],
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1455-trophaxse.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1455-trophaxse.png"
+  ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "NeoVitaDB VPK",
       "url": "https://git.silica.codes/Li/trophaxse/releases/download/latest/TrophaxSE.vpk",
       "recommended": true
     },
@@ -30,5 +32,10 @@
       "name": "Repositorio",
       "url": "https://git.silica.codes"
     }
-  ]
+  ],
+  "source_name": "NeoVitaDB",
+  "source_id": "1455",
+  "source_url": "https://git.silica.codes",
+  "release_page": "",
+  "updated_at": "2026-08-13T13:46:08.040995+00:00"
 }

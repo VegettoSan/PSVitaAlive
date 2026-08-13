@@ -2,7 +2,7 @@
   "id": "greenvita",
   "title_id": "GREENVITA",
   "name": "GreenVita",
-  "description": "Play your favorite Xbox games on your PS Vita with GreenVita.",
+  "description": "Xbox Cloud Gaming on PlayStation Vita.",
   "long_description": "Play your favorite Xbox games on your PS Vita with GreenVita.\nGreenVita connects to Xbox Cloud Gaming by establishing a WebRTC connection and replicating the web requests made by the official Xbox Cloud Gaming web client.",
   "author_ids": [
     "dayos"
@@ -13,35 +13,39 @@
   ],
   "version": "v.0.1.8",
   "version_date": "2026-07-22",
-  "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
+  "requirements": "Not specified",
   "size": 14185797,
-  "status": "Verified",
-  "icon": "https://robin994.github.io/NeoVitaDB-Catalog/icons/1438-greenvita.png",
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/d3b48076cb1d4e7d381291fe0b103e8396d6ee720da5dfbbab670952dccb4e83.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c2e854daaa9c3c05ce9d8aba696a288e65af530f7dfb3518a6282a48b2b61e2e.png",
-    "screenshots/c2e854daaa9c3c05ce9d8aba696a288e65af530f7dfb3518a6282a48b2b61e2e.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c2e854daaa9c3c05ce9d8aba696a288e65af530f7dfb3518a6282a48b2b61e2e.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/Day-OS/green-vita/releases/download/v0.1.8/green-vita.vpk",
       "recommended": true
-    },
-    {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/Day-OS/green-vita"
-    },
-    {
-      "type": "Other",
-      "name": "Release",
-      "url": "https://github.com/Day-OS/green-vita/releases/tag/v0.1.8"
     },
     {
       "type": "Official Website",
       "name": "VitaDBtoo Release Page",
       "url": "https://github.com/Day-OS/green-vita/releases"
+    },
+    {
+      "type": "Official Website",
+      "name": "NeoVitaDB Release Page",
+      "url": "https://github.com/Day-OS/green-vita/releases/tag/v0.1.8"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/Day-OS/green-vita"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "1438",
+  "source_url": "https://github.com/Day-OS/green-vita",
+  "release_page": "https://github.com/Day-OS/green-vita/releases",
+  "updated_at": "2026-08-13T13:46:07.701157+00:00"
 }

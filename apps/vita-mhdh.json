@@ -2,49 +2,53 @@
   "id": "vita-mhdh",
   "title_id": "MHDH00001",
   "name": "Vita MHDH",
-  "description": "This is a wrapper port of the Android version of Monster Hunter Dynamic Hunting a spin-off of the Main MH game series for Android & iOS.",
+  "description": "Port of Monster Hunter Dynamic Hunting for PSVita.",
   "long_description": "This is a wrapper port of the Android version of Monster Hunter Dynamic Hunting a spin-off of the Main MH game series for Android & iOS. It has been released worldwide on June 1, 2011.",
   "author_ids": [
     "chatgpt-ai"
   ],
-  "category_id": "ports",
+  "category_id": "games",
   "subcategory_ids": [
     "other"
   ],
-  "version": "1.1",
+  "version": "v.1.1",
   "version_date": "2026-06-24",
   "requirements": "- libshacccg.suprx\n- kubridge.skprx\n- Game Data Files: Android",
   "size": 1732001,
   "status": "Legacy",
-  "icon": "https://robin994.github.io/NeoVitaDB-Catalog/icons/1420-vita-mhdh.png",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/ff0d20db0640056efffa5641fdfd0c17afbe9d508ce0dab622a0dc9a5a555ccc.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/e144fd0e655df4bf49426c2f4cd6223c4c712fbe65968cd3519345524e7e4bf4.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/8124d8b752b1435c6d5cff4741ad49db743c53713a2d6d30123d540e2da5414c.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/5b82ffe657d1456eaeef369560f0ba1a8ce8891382883bffb9e68df4daa5fbd7.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/cacd070fb4a45f2fcb15a4a0ea7cd62f1646b245a1f544831da2d5b070476ce1.png",
-    "screenshots/e144fd0e655df4bf49426c2f4cd6223c4c712fbe65968cd3519345524e7e4bf4.png;screenshots/8124d8b752b1435c6d5cff4741ad49db743c53713a2d6d30123d540e2da5414c.png;screenshots/5b82ffe657d1456eaeef369560f0ba1a8ce8891382883bffb9e68df4daa5fbd7.png;screenshots/cacd070fb4a45f2fcb15a4a0ea7cd62f1646b245a1f544831da2d5b070476ce1.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/cacd070fb4a45f2fcb15a4a0ea7cd62f1646b245a1f544831da2d5b070476ce1.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/MuukalainenPuhuu/Vita-MH-DH/releases/download/1.1/MHDH.vpk",
       "recommended": true
-    },
-    {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/MuukalainenPuhuu/Vita-MH-DH"
-    },
-    {
-      "type": "Other",
-      "name": "Release",
-      "url": "https://github.com/MuukalainenPuhuu/Vita-MH-DH/releases/tag/1.1"
     },
     {
       "type": "Official Website",
       "name": "VitaDBtoo Release Page",
       "url": "https://github.com/MuukalainenPuhuu/Vita-MH-DH/releases"
+    },
+    {
+      "type": "Official Website",
+      "name": "NeoVitaDB Release Page",
+      "url": "https://github.com/MuukalainenPuhuu/Vita-MH-DH/releases/tag/1.1"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/MuukalainenPuhuu/Vita-MH-DH"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "1420",
+  "source_url": "https://github.com/MuukalainenPuhuu/Vita-MH-DH",
+  "release_page": "https://github.com/MuukalainenPuhuu/Vita-MH-DH/releases",
+  "updated_at": "2026-08-13T13:46:07.708065+00:00"
 }

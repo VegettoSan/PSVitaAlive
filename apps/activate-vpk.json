@@ -16,8 +16,10 @@
   "requirements": "Real testing kit (PTEL) or devlopment kit (PDEL) hardware, running 3.60 henkaku",
   "size": 68260,
   "status": "Legacy",
-  "icon": "1985-activate-vpk.png",
-  "screenshots": [],
+  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1985-activate-vpk.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1985-activate-vpk.png"
+  ],
   "links": [
     {
       "type": "Download",
@@ -35,5 +37,5 @@
   "source_id": "1985",
   "source_url": "https://git.silica.codes",
   "release_page": "",
-  "updated_at": "2026-08-13T05:25:55.188799+00:00"
+  "updated_at": "2026-08-13T13:46:08.044585+00:00"
 }

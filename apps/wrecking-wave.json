@@ -3,37 +3,36 @@
   "title_id": "AGKB22101",
   "name": "Wrecking Wave",
   "description": "Action game with physics-based destruction.",
-  "long_description": "Wrecking Wave is an explosive action game with physics-based destruction focused on Challenge and Speedrun modes. Unleash a wave of chaos, smash cities, chase high scores, and stop a mad scientist from polluting your ocean with toxic waste.",
+  "long_description": "Wrecking Wave is an explosive action game with physics-based destruction focused on Challenge and Speedrun modes. Unleash a wave of chaos, smash cities, chase high scores, and stop a mad scientist from polluting your ocean with toxic waste.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
   "author_ids": [
     "brunu"
   ],
   "category_id": "games",
   "subcategory_ids": [
-    "action"
+    "other"
   ],
   "version": "v.1.0",
   "version_date": "2026-08-12",
-  "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
+  "requirements": "Not specified",
   "size": 28534836,
   "status": "Legacy",
-  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/3cc7ff091e200756c5325eade48fd599b5bf744cc78522b6a5c55fb9ebdc7178.png",
+  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1966-wrecking-wave.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/083c1ac7ea91e29d942cd1a663b911524e665f88315ad0974aa6d45613efde84.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/3d727f0e6d76c27cf60c5bc6ab9c67c9ca6714b64fa0e5b544af52708e370ea1.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/35b2a25d115dff7a8917865955fe3713af1222ef198d2447d49c9dcf33eda238.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/3101d42506635a54d5ff31e23c625f8338e26fe57676432ab588f975451d2a18.png",
-    "screenshots/083c1ac7ea91e29d942cd1a663b911524e665f88315ad0974aa6d45613efde84.png;screenshots/3d727f0e6d76c27cf60c5bc6ab9c67c9ca6714b64fa0e5b544af52708e370ea1.png;screenshots/35b2a25d115dff7a8917865955fe3713af1222ef198d2447d49c9dcf33eda238.png;screenshots/3101d42506635a54d5ff31e23c625f8338e26fe57676432ab588f975451d2a18.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/3101d42506635a54d5ff31e23c625f8338e26fe57676432ab588f975451d2a18.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1412-Wrecking_Wave.vpk",
       "recommended": true
     },
     {
-      "type": "Other",
-      "name": "Release",
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
       "url": "https://brunu.itch.io/wrecking-wave"
     },
     {
@@ -41,5 +40,10 @@
       "name": "Repositorio",
       "url": "https://github.com"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "1412",
+  "source_url": "https://brunu.itch.io/wrecking-wave",
+  "release_page": "https://brunu.itch.io/wrecking-wave",
+  "updated_at": "2026-08-13T13:46:07.712529+00:00"
 }

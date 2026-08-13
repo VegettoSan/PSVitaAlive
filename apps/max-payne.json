@@ -2,13 +2,12 @@
   "id": "max-payne",
   "title_id": "MAXP00000",
   "name": "Max Payne",
-  "description": "Port of Max Payne for PSVITA/PSTV based on the Android mobile version.",
+  "description": "Port of Max Payne for PSVITA.",
   "long_description": "Port of Max Payne for PSVITA/PSTV based on the Android mobile version.",
   "author_ids": [
-    "fgsfds",
-    "theflow"
+    "fgsfds"
   ],
-  "category_id": "ports",
+  "category_id": "games",
   "subcategory_ids": [
     "other"
   ],
@@ -16,35 +15,39 @@
   "version_date": "2021-02-17",
   "requirements": "- libshacccg.suprx\n- kubridge.skprx\n- Game Data Files: Android",
   "size": 993040,
-  "status": "Verified",
-  "icon": "https://robin994.github.io/NeoVitaDB-Catalog/icons/0612-max-payne.png",
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/96376bcd9b6289389f20a3380bb5483e9ec44fcdfa8b6d9b1cfb89a73a031294.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/f1bad53b5f3b9aa9e2098b1dcf687f1ac0b8ce544a06c4bcbff7c38fcb488371.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/951520721641d9459887404b7c161f3e29cbb1abc659c610b61adc94fdc8564f.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/f8b9a05847d77af2a3c3cdaa13b331857765f86f3ff0988c9a8e60f67739b112.png",
-    "screenshots/f1bad53b5f3b9aa9e2098b1dcf687f1ac0b8ce544a06c4bcbff7c38fcb488371.png;screenshots/951520721641d9459887404b7c161f3e29cbb1abc659c610b61adc94fdc8564f.png;screenshots/f8b9a05847d77af2a3c3cdaa13b331857765f86f3ff0988c9a8e60f67739b112.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/f8b9a05847d77af2a3c3cdaa13b331857765f86f3ff0988c9a8e60f67739b112.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/fgsfdsfgs/max_vita/releases/download/r4/MaxPayne_r4.vpk",
       "recommended": true
-    },
-    {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/fgsfdsfgs/max_vita"
-    },
-    {
-      "type": "Other",
-      "name": "Release",
-      "url": "https://github.com/fgsfdsfgs/max_vita/releases/tag/r4"
     },
     {
       "type": "Official Website",
       "name": "VitaDBtoo Release Page",
       "url": "https://github.com/fgsfdsfgs/max_vita/releases"
+    },
+    {
+      "type": "Official Website",
+      "name": "NeoVitaDB Release Page",
+      "url": "https://github.com/fgsfdsfgs/max_vita/releases/tag/r4"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/fgsfdsfgs/max_vita"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "612",
+  "source_url": "https://github.com/fgsfdsfgs/max_vita",
+  "release_page": "https://github.com/fgsfdsfgs/max_vita/releases",
+  "updated_at": "2026-08-13T13:46:07.934026+00:00"
 }

@@ -3,37 +3,36 @@
   "title_id": "SPORTPACK",
   "name": "Pocket Wonder Sport",
   "description": "Port of Pocket Wonder Sport for PSVITA/PSTV.",
-  "long_description": "Collection of 10 ultra tiny minigames made by hwilson. Inspired by weird rom collections on pirate multicarts, but hopefully with a tiny bit more quality.",
+  "long_description": "Collection of 10 ultra tiny minigames made by hwilson. Inspired by weird rom collections on pirate multicarts, but hopefully with a tiny bit more quality.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
   "author_ids": [
     "m1s3ry"
   ],
-  "category_id": "ports",
+  "category_id": "games",
   "subcategory_ids": [
     "other"
   ],
   "version": "v.1.0",
   "version_date": "2026-08-12",
-  "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
+  "requirements": "Not specified",
   "size": 5135873,
-  "status": "Verified",
-  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/f4d3736f1c0f314dee9972067f81f1659c5d7c6a42b51dc2e3ed2b724929d99d.png",
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1717-pocket-wonder-sport.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/cababf1d42e54e7089f4e01bf5469ccc45ec3fa7d32e82b3782cf63d80231ed8.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/08c9de237bc31b217ad9496e6b0f52062a5900750194bcaaa8c2cbeb978d711f.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/34a3c19f8f7915e408de60ee2e3ed34b0b0cc56fca69b7bc431534b351afd733.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/1ca346d2c61d45f5c33b5525024423f4bf5adff9c211dc51070a99166b970e7d.png",
-    "screenshots/cababf1d42e54e7089f4e01bf5469ccc45ec3fa7d32e82b3782cf63d80231ed8.png;screenshots/08c9de237bc31b217ad9496e6b0f52062a5900750194bcaaa8c2cbeb978d711f.png;screenshots/34a3c19f8f7915e408de60ee2e3ed34b0b0cc56fca69b7bc431534b351afd733.png;screenshots/1ca346d2c61d45f5c33b5525024423f4bf5adff9c211dc51070a99166b970e7d.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/1ca346d2c61d45f5c33b5525024423f4bf5adff9c211dc51070a99166b970e7d.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/648-Pocket_Wonder_Sport.vpk",
       "recommended": true
     },
     {
-      "type": "Other",
-      "name": "Release",
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
       "url": "https://hwilson.itch.io/pocket-wonder-sport"
     },
     {
@@ -41,5 +40,10 @@
       "name": "Repositorio",
       "url": "https://github.com"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "648",
+  "source_url": "https://hwilson.itch.io/pocket-wonder-sport",
+  "release_page": "https://hwilson.itch.io/pocket-wonder-sport",
+  "updated_at": "2026-08-13T13:46:07.928140+00:00"
 }

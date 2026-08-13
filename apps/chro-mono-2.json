@@ -3,37 +3,36 @@
   "title_id": "CHROMONO2",
   "name": "chro.mono 2",
   "description": "Port of chro.mono 2 for PSVITA.",
-  "long_description": "chro.mono 2 is a puzzle game for mobile devices. Solve puzzles with time limits in 120 exciting levels over 6 different level packs. Improve your scores by finishing levels faster than the target time.",
+  "long_description": "chro.mono 2 is a puzzle game for mobile devices. Solve puzzles with time limits in 120 exciting levels over 6 different level packs. Improve your scores by finishing levels faster than the target time.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
   "author_ids": [
     "thp"
   ],
-  "category_id": "ports",
+  "category_id": "games",
   "subcategory_ids": [
-    "puzzle"
+    "other"
   ],
   "version": "v.1.0",
   "version_date": "2026-08-12",
-  "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
+  "requirements": "Not specified",
   "size": 5595880,
-  "status": "Verified",
-  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/e4babde49c45f5df24033e7a28f8d025379cd2c1731736f1086d9c0d08b7923b.png",
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1648-chro-mono-2.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/466bcc292e32a12c0d300a5bdb8d91b367ed6ab60ec3c1372d732c5c7447cd1f.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/41eec3b8925a53fd6d7139e48b4a5731bb769de73cd4e2a146d7f7b5c76f27b1.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/ef8476aaaf6543906144986361d67c4984bcea1c0d6b71cf50bbea0a1268fde4.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/47d07ebdb7cae669c824d495ac5a1e51d8ec9f648365e82862198e627d1080c5.png",
-    "screenshots/466bcc292e32a12c0d300a5bdb8d91b367ed6ab60ec3c1372d732c5c7447cd1f.png;screenshots/41eec3b8925a53fd6d7139e48b4a5731bb769de73cd4e2a146d7f7b5c76f27b1.png;screenshots/ef8476aaaf6543906144986361d67c4984bcea1c0d6b71cf50bbea0a1268fde4.png;screenshots/47d07ebdb7cae669c824d495ac5a1e51d8ec9f648365e82862198e627d1080c5.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/47d07ebdb7cae669c824d495ac5a1e51d8ec9f648365e82862198e627d1080c5.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/477-chromono2.vpk",
       "recommended": true
     },
     {
-      "type": "Other",
-      "name": "Release",
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
       "url": "https://thp.itch.io/chromono-vita"
     },
     {
@@ -41,5 +40,10 @@
       "name": "Repositorio",
       "url": "https://github.com"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "477",
+  "source_url": "https://thp.itch.io/chromono-vita",
+  "release_page": "https://thp.itch.io/chromono-vita",
+  "updated_at": "2026-08-13T13:46:07.971670+00:00"
 }

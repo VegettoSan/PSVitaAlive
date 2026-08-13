@@ -2,43 +2,50 @@
   "id": "hota",
   "title_id": "HOTA00001",
   "name": "HOTA",
-  "description": "Heart of the Alien port.",
+  "description": "Heart of the Alien port",
   "long_description": "This is a Vita port of the reverse engine for Heart of the Alien, the sequel of Another World.\nIt's based on the reverse engine made originally by Gil Megidish.",
   "author_ids": [
     "usineur"
   ],
-  "category_id": "ports",
+  "category_id": "games",
   "subcategory_ids": [
-    "engine-port"
+    "other"
   ],
   "version": "vita-1.0",
   "version_date": "2017-11-17",
-  "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
+  "requirements": "Not specified",
   "size": 402380,
-  "status": "Verified",
-  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/fe188b56869589b36f104ddfe6d05f5a9b76d3b40739641edaf21e697247b95b.png",
-  "screenshots": [],
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1508-hota.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1508-hota.png"
+  ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/usineur/hota/releases/download/vita-1.0/HOTA.vpk",
       "recommended": true
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/usineur/hota"
-    },
-    {
-      "type": "Other",
-      "name": "Release",
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
       "url": "https://gbatemp.net/threads/release-hota.445832/"
     },
     {
       "type": "Official Website",
       "name": "NeoVitaDB Release Page",
       "url": "https://github.com/usineur/hota/releases/tag/vita-1.0"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/usineur/hota"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "126",
+  "source_url": "https://github.com/usineur/hota",
+  "release_page": "https://gbatemp.net/threads/release-hota.445832/",
+  "updated_at": "2026-08-13T13:46:08.017609+00:00"
 }

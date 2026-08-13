@@ -2,48 +2,45 @@
   "id": "minecraft-pe-demo",
   "title_id": "MCPEDEMO0",
   "name": "Minecraft PE DEMO",
-  "description": "Port of the DEMO verison of Minecraft Pocket Edition 0.6.1 alpha to PlayStation Vita.",
+  "description": "",
   "long_description": "Port of the DEMO verison of Minecraft Pocket Edition 0.6.1 alpha to PlayStation Vita.",
   "author_ids": [
     "minecraftpe-vita"
   ],
-  "category_id": "ports",
+  "category_id": "games",
   "subcategory_ids": [
     "other"
   ],
-  "version": "v.1.0.7",
-  "version_date": "2026-08-05",
-  "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
-  "size": 8670937,
-  "status": "Verified",
-  "icon": "https://robin994.github.io/NeoVitaDB-Catalog/icons/1446-minecraftpe-demo.png",
-  "screenshots": [],
+  "version": "v1.0.7",
+  "version_date": "2026-05-25",
+  "requirements": "Not specified",
+  "size": 8663311,
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1446-minecraftpe-demo.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1446-minecraftpe-demo.png"
+  ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "NeoVitaDB VPK",
       "url": "https://github.com/minecraftpe-vita/minecraftpe-vita/releases/download/v1.0.7/minecraftpe_demo.vpk",
       "recommended": true
+    },
+    {
+      "type": "Official Website",
+      "name": "NeoVitaDB Release Page",
+      "url": "https://github.com/minecraftpe-vita/minecraftpe-vita/releases/tag/v1.0.7"
     },
     {
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/minecraftpe-vita/minecraftpe-vita"
-    },
-    {
-      "type": "Other",
-      "name": "Release",
-      "url": "https://github.com/minecraftpe-vita/minecraftpe-vita/releases/tag/v1.0.7"
-    },
-    {
-      "type": "Download",
-      "name": "VitaDBtoo VPK",
-      "url": "https://github.com/minecraftpe-vita/minecraftpe-vita/releases/download/v1.0.7/minecraftpe.vpk"
-    },
-    {
-      "type": "Official Website",
-      "name": "VitaDBtoo Release Page",
-      "url": "https://github.com/minecraftpe-vita/minecraftpe-vita/releases"
     }
-  ]
+  ],
+  "source_name": "NeoVitaDB",
+  "source_id": "1446",
+  "source_url": "https://github.com/minecraftpe-vita/minecraftpe-vita",
+  "release_page": "https://github.com/minecraftpe-vita/minecraftpe-vita/releases/tag/v1.0.7",
+  "updated_at": "2026-08-13T13:46:08.038122+00:00"
 }

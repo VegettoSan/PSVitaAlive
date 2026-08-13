@@ -2,37 +2,36 @@
   "id": "roguelight",
   "title_id": "ROLI00000",
   "name": "Roguelight",
-  "description": "Roguelight port for PS Vita.",
-  "long_description": "\"The deeper you travel the darker it gets, and you only have your arrows to light the way.\"\nOriginal game by Daniel Linssen.",
+  "description": "Roguelight port for PS Vita",
+  "long_description": "\"The deeper you travel the darker it gets, and you only have your arrows to light the way.\"\nOriginal game by Daniel Linssen.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
   "author_ids": [
     "m1s3ry"
   ],
-  "category_id": "ports",
+  "category_id": "games",
   "subcategory_ids": [
     "other"
   ],
   "version": "v.1.0",
   "version_date": "2026-08-12",
-  "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
+  "requirements": "Not specified",
   "size": 27966935,
-  "status": "Verified",
-  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/583f82875fa82075326212597a006f444612ef899dc253e5d1791b8f932063f3.png",
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1709-roguelight.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/ca83b40c410e0bb9d834e68b8ded40ddea97a49d235289f271ddc49fe53aa68e.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/a293ce3f1d7c089258184cb646d57d544b01751edb3f071a245071ad90f11f57.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/301f2c300df6a9e2d1b32c1a74c974eb338e0af111d1b8292d56da5fc6da6d6f.png",
-    "screenshots/ca83b40c410e0bb9d834e68b8ded40ddea97a49d235289f271ddc49fe53aa68e.png;screenshots/a293ce3f1d7c089258184cb646d57d544b01751edb3f071a245071ad90f11f57.png;screenshots/301f2c300df6a9e2d1b32c1a74c974eb338e0af111d1b8292d56da5fc6da6d6f.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/301f2c300df6a9e2d1b32c1a74c974eb338e0af111d1b8292d56da5fc6da6d6f.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/627-Roguelight.vpk",
       "recommended": true
     },
     {
-      "type": "Other",
-      "name": "Release",
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
       "url": "https://managore.itch.io/roguelight"
     },
     {
@@ -40,5 +39,10 @@
       "name": "Repositorio",
       "url": "https://github.com"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "627",
+  "source_url": "https://managore.itch.io/roguelight",
+  "release_page": "https://managore.itch.io/roguelight",
+  "updated_at": "2026-08-13T13:46:07.931299+00:00"
 }

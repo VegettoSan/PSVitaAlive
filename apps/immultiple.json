@@ -2,26 +2,28 @@
   "id": "immultiple",
   "title_id": "IMMULT000",
   "name": "ImMultiple",
-  "description": "A program for tracking front time for DID/Plural Systems\nCreated using the ImGui GUI framework.",
+  "description": "",
   "long_description": "A program for tracking front time for DID/Plural Systems\nCreated using the ImGui GUI framework.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
   "author_ids": [
     "the-crystal-org"
   ],
-  "category_id": "utilities",
+  "category_id": "games",
   "subcategory_ids": [
     "other"
   ],
   "version": "latest",
   "version_date": "2026-08-12",
-  "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
+  "requirements": "Not specified",
   "size": 8224284,
-  "status": "Archive",
-  "icon": "https://robin994.github.io/NeoVitaDB-Catalog/icons/1458-immultiple.png",
-  "screenshots": [],
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1458-immultiple.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1458-immultiple.png"
+  ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "NeoVitaDB VPK",
       "url": "https://git.silica.codes/TheCrystalOrg/ImMultiple/releases/download/latest/ImMultiple_VITA.vpk",
       "recommended": true
     },
@@ -30,5 +32,10 @@
       "name": "Repositorio",
       "url": "https://git.silica.codes"
     }
-  ]
+  ],
+  "source_name": "NeoVitaDB",
+  "source_id": "1458",
+  "source_url": "https://git.silica.codes",
+  "release_page": "",
+  "updated_at": "2026-08-13T13:46:08.042141+00:00"
 }

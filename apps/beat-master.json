@@ -3,28 +3,27 @@
   "title_id": "BTMR12345",
   "name": "Beat Master",
   "description": "Tetris clone for PSVITA.",
-  "long_description": "Beat Master is a Tetris where you should get the highest score possible while listening to really cool songs.",
+  "long_description": "Beat Master is a Tetris where you should get the highest score possible while listening to really cool songs.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
   "author_ids": [
     "luckthegamers"
   ],
   "category_id": "games",
   "subcategory_ids": [
-    "puzzle"
+    "other"
   ],
   "version": "v.1",
   "version_date": "2026-08-12",
-  "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
+  "requirements": "Not specified",
   "size": 70547593,
-  "status": "Verified",
-  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/ad4764e28f434f1df7e46eb7c2fdffda3b1198fc9cfefe3c97aa77148073ea5d.png",
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1664-beat-master.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/716eda534b7a8d5615de8d027da65c4de2bbbecbd9862730092834d50ce66c78.png",
-    "screenshots/716eda534b7a8d5615de8d027da65c4de2bbbecbd9862730092834d50ce66c78.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/716eda534b7a8d5615de8d027da65c4de2bbbecbd9862730092834d50ce66c78.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/505-Beat_20Master.vpk",
       "recommended": true
     },
@@ -33,5 +32,10 @@
       "name": "Repositorio",
       "url": "https://github.com"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "505",
+  "source_url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/505-Beat_20Master.vpk",
+  "release_page": "",
+  "updated_at": "2026-08-13T13:46:07.962552+00:00"
 }

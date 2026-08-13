@@ -3,30 +3,29 @@
   "title_id": "NEDO12345",
   "name": "The Great Adventures of NedMapagmahal",
   "description": "Platformer game for PSVITA/PSTV.",
-  "long_description": "Rejected by her colleague he ran away crying going to nowhere accidentally warping to some mysterious place and, in order to get back to his world, he needs to get the Castle Bu-Wind.",
+  "long_description": "Rejected by her colleague he ran away crying going to nowhere accidentally warping to some mysterious place and, in order to get back to his world, he needs to get the Castle Bu-Wind.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
   "author_ids": [
     "nedmapagmahal"
   ],
   "category_id": "games",
   "subcategory_ids": [
-    "platformer"
+    "other"
   ],
   "version": "v.1.1",
   "version_date": "2026-08-12",
-  "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
+  "requirements": "Not specified",
   "size": 111872206,
-  "status": "Verified",
-  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/f1cf5a6477f71f74523f49400afc1d2d9171e1c16d3063df8966dcd9fd0ac4ba.png",
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1685-the-great-adventures-of-nedmapagmahal.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/078ccb0f81c1c0a577550436a0c852dbf7987c054e398296af60ab94e57d2fc6.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/f4076caa2a49818ae0d7c63a903334800f39d1b60f7b1e9cf760b3a414e6dae9.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/a2e3012063c76f69674e26468dfdc28dd5e12e98542860a1c3fdeb8cfe73d9fc.png",
-    "screenshots/078ccb0f81c1c0a577550436a0c852dbf7987c054e398296af60ab94e57d2fc6.png;screenshots/f4076caa2a49818ae0d7c63a903334800f39d1b60f7b1e9cf760b3a414e6dae9.png;screenshots/a2e3012063c76f69674e26468dfdc28dd5e12e98542860a1c3fdeb8cfe73d9fc.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/a2e3012063c76f69674e26468dfdc28dd5e12e98542860a1c3fdeb8cfe73d9fc.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/562-NedoKun.vpk",
       "recommended": true
     },
@@ -35,5 +34,10 @@
       "name": "Repositorio",
       "url": "https://github.com"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "562",
+  "source_url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/562-NedoKun.vpk",
+  "release_page": "",
+  "updated_at": "2026-08-13T13:46:07.946357+00:00"
 }

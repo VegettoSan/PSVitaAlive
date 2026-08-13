@@ -3,31 +3,30 @@
   "title_id": "VHPT64830",
   "name": "Black Sails: Curse of the Deep",
   "description": "Swashbuckling arcade pirate combat game.",
-  "long_description": "This is a quick beta demonstration of part of the combat system that would be intended for the full game: where you will be an upstart pirate who has to break the curse of being a Ghost Pirate!\nBlack Sails is intended to be a combination of Assassins Creed: Pirates for mobile, with the humour and storytelling of Monkey Island, and the vibe of the likes of Alestorm or Pirates of the Caribbean!",
+  "long_description": "This is a quick beta demonstration of part of the combat system that would be intended for the full game: where you will be an upstart pirate who has to break the curse of being a Ghost Pirate!\nBlack Sails is intended to be a combination of Assassins Creed: Pirates for mobile, with the humour and storytelling of Monkey Island, and the vibe of the likes of Alestorm or Pirates of the Caribbean!\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
   "author_ids": [
     "mrkane"
   ],
-  "category_id": "ports",
+  "category_id": "games",
   "subcategory_ids": [
     "other"
   ],
   "version": "Beta",
   "version_date": "2026-08-12",
-  "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
+  "requirements": "Not specified",
   "size": 44567212,
-  "status": "Verified",
-  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/d3fee95dc060c70c3510c52e7a332271d5054b9a2a1f5f45b50f055948a94c90.png",
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1913-black-sails-curse-of-the-deep.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/4a056b5b651931fe5bfe71dd10e74f28a20576b5db26736bb5e7847a97e6cacd.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/dc596137c46046af76f54f40f3bdc8bf570ea828b8eb40b50b1a91fb67599de3.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/485d4c621edf2ed6d734e186b12973205d131e61a5342b71233e65fdd02e3c43.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/2c19138bdc70e1da28a497e6f6decd9039251b44370aa6f37845e458df0be8b4.png",
-    "screenshots/4a056b5b651931fe5bfe71dd10e74f28a20576b5db26736bb5e7847a97e6cacd.png;screenshots/dc596137c46046af76f54f40f3bdc8bf570ea828b8eb40b50b1a91fb67599de3.png;screenshots/485d4c621edf2ed6d734e186b12973205d131e61a5342b71233e65fdd02e3c43.png;screenshots/2c19138bdc70e1da28a497e6f6decd9039251b44370aa6f37845e458df0be8b4.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/2c19138bdc70e1da28a497e6f6decd9039251b44370aa6f37845e458df0be8b4.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1248-BlackSailsCurseOfTheDeep.vpk",
       "recommended": true
     },
@@ -36,5 +35,10 @@
       "name": "Repositorio",
       "url": "https://github.com"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "1248",
+  "source_url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1248-BlackSailsCurseOfTheDeep.vpk",
+  "release_page": "",
+  "updated_at": "2026-08-13T13:46:07.780697+00:00"
 }

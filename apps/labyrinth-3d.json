@@ -3,31 +3,33 @@
   "title_id": "LBRN00001",
   "name": "Labyrinth 3D",
   "description": "A first person maze solving game in 3D.",
-  "long_description": "Labyrinth 3D is my first 3D homebrew which uses Lua Player Plus Vita and RayCast3D Engine.\nIt can be considered as a showcase for how powerful and simple to use RayCast3D engine is.\nLabyrinth 3D is, as the title says, a game where you have to find the exit from the labyrinth you're in. It supports different map sizes and you'll have some scrolls according to map size. These scrolls can be used to \"mark\" a wall of the labyrinth so you can see where you already went (after marking a wall, it will became golden).\nLabyrinths are generated through Primm's Algorithm so you'll have infinite random mazes to solve. Any generated maze will provide a seed so you can share these labyrinths with others and play them through the voice \"Start game with Seed\".",
+  "long_description": "Labyrinth 3D is my first 3D homebrew which uses Lua Player Plus Vita and RayCast3D Engine.\nIt can be considered as a showcase for how powerful and simple to use RayCast3D engine is.\nLabyrinth 3D is, as the title says, a game where you have to find the exit from the labyrinth you're in. It supports different map sizes and you'll have some scrolls according to map size. These scrolls can be used to \"mark\" a wall of the labyrinth so you can see where you already went (after marking a wall, it will became golden).\nLabyrinths are generated through Primm's Algorithm so you'll have infinite random mazes to solve. Any generated maze will provide a seed so you can share these labyrinths with others and play them through the voice \"Start game with Seed\".\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
   "author_ids": [
     "rinnegatamante"
   ],
-  "category_id": "development",
+  "category_id": "games",
   "subcategory_ids": [
-    "lua"
+    "other"
   ],
   "version": "v.1.4",
   "version_date": "2026-08-12",
-  "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
+  "requirements": "Not specified",
   "size": 9083464,
-  "status": "Verified",
-  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/labyrinthlabyrinthlabyrinthlabyrinthlabyrinthlabyrinthlabyrinth1.png",
-  "screenshots": [],
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1537-labyrinth-3d.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1537-labyrinth-3d.png"
+  ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/198-Labyrinth_3D.vpk",
       "recommended": true
     },
     {
-      "type": "Other",
-      "name": "Release",
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
       "url": "http://wololo.net/talk/viewtopic.php?f=116&t=46845"
     },
     {
@@ -35,5 +37,10 @@
       "name": "Repositorio",
       "url": "https://github.com"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "198",
+  "source_url": "http://wololo.net/talk/viewtopic.php?f=116&t=46845",
+  "release_page": "http://wololo.net/talk/viewtopic.php?f=116&t=46845",
+  "updated_at": "2026-08-13T13:46:07.997390+00:00"
 }

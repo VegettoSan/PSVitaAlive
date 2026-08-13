@@ -3,43 +3,47 @@
   "title_id": "SHDWWRR32",
   "name": "jfsw-vita",
   "description": "Port of Shadow Warrior Classic for PSVITA/PSTV.",
-  "long_description": "jfsw-vita is a port of jfsw (JonoF's Shadow Warrior), a popular multiplatform source port of Shadow Warrior.\nIt supports both shareware and full game data files and since Shadow Warrior Classic became freeware starting from 2013 with the release of Shadow Warrior Classic Redux, this release will feature the full game for free.",
+  "long_description": "jfsw-vita is a port of jfsw (JonoF's Shadow Warrior), a popular multiplatform source port of Shadow Warrior.\nIt supports both shareware and full game data files and since Shadow Warrior Classic became freeware starting from 2013 with the release of Shadow Warrior Classic Redux, this release will feature the full game for free.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
   "author_ids": [
     "rinnegatamante"
   ],
-  "category_id": "ports",
+  "category_id": "games",
   "subcategory_ids": [
-    "engine-port"
+    "other"
   ],
   "version": "v.1.2",
   "version_date": "2026-08-12",
-  "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
+  "requirements": "Not specified",
   "size": 3382817,
-  "status": "Verified",
-  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/49730089fb31b397b088b286fb6b29990d72bd629a6acc0129bb3406b496b99e.png",
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1744-jfsw-vita.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/6e25d8af49c98068e114372c756d24e81fbadee15a9d322ba118770b4af1ebcb.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/e3c8e9a2e23301df31d4b941e8821f7a33a50960f3fe716d3079d7f04b975164.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/d0f8f986b8b3e5008bc51923720331c751c1ed74f7236115749c1f8c994af56e.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/917294b7e6b07640514a0e61681cac6a05feb73a2c7aea9507722b63f82ed1c0.png",
-    "screenshots/6e25d8af49c98068e114372c756d24e81fbadee15a9d322ba118770b4af1ebcb.png;screenshots/e3c8e9a2e23301df31d4b941e8821f7a33a50960f3fe716d3079d7f04b975164.png;screenshots/d0f8f986b8b3e5008bc51923720331c751c1ed74f7236115749c1f8c994af56e.png;screenshots/917294b7e6b07640514a0e61681cac6a05feb73a2c7aea9507722b63f82ed1c0.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/917294b7e6b07640514a0e61681cac6a05feb73a2c7aea9507722b63f82ed1c0.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/705-jfsw.vpk",
       "recommended": true
+    },
+    {
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
+      "url": "https://www.psx-place.com/threads/release-jfsw-vita-port-of-shadow-warrior-classic-for-psvita-pstv.34568/"
     },
     {
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/Rinnegatamante/jfsw-vita"
-    },
-    {
-      "type": "Other",
-      "name": "Release",
-      "url": "https://www.psx-place.com/threads/release-jfsw-vita-port-of-shadow-warrior-classic-for-psvita-pstv.34568/"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "705",
+  "source_url": "https://github.com/Rinnegatamante/jfsw-vita",
+  "release_page": "https://www.psx-place.com/threads/release-jfsw-vita-port-of-shadow-warrior-classic-for-psvita-pstv.34568/",
+  "updated_at": "2026-08-13T13:46:07.914341+00:00"
 }

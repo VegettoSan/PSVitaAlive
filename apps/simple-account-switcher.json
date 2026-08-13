@@ -2,26 +2,28 @@
   "id": "simple-account-switcher",
   "title_id": "ACCSWIT01",
   "name": "Simple Account Switcher",
-  "description": "Simple program to clear linked PSN account so you can login to a new one.",
+  "description": "",
   "long_description": "Simple program to clear linked PSN account so you can login to a new one.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
   "author_ids": [
     "li"
   ],
-  "category_id": "system",
+  "category_id": "games",
   "subcategory_ids": [
-    "account"
+    "other"
   ],
   "version": "latest",
   "version_date": "2026-08-12",
-  "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
+  "requirements": "Not specified",
   "size": 24944,
-  "status": "Archive",
-  "icon": "https://robin994.github.io/NeoVitaDB-Catalog/icons/1456-simple-account-switcher.png",
-  "screenshots": [],
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1456-simple-account-switcher.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1456-simple-account-switcher.png"
+  ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "NeoVitaDB VPK",
       "url": "https://git.silica.codes/Li/simpleaccountswitcher/releases/download/latest/SimpleAccountSwitcher.vpk",
       "recommended": true
     },
@@ -30,5 +32,10 @@
       "name": "Repositorio",
       "url": "https://git.silica.codes"
     }
-  ]
+  ],
+  "source_name": "NeoVitaDB",
+  "source_id": "1456",
+  "source_url": "https://git.silica.codes",
+  "release_page": "",
+  "updated_at": "2026-08-13T13:46:08.041308+00:00"
 }

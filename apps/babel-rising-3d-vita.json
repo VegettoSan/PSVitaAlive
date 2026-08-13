@@ -2,12 +2,12 @@
   "id": "babel-rising-3d-vita",
   "title_id": "BABEL003D",
   "name": "Babel Rising 3D Vita",
-  "description": "This is a wrapper/port of Babel Rising 3D for the PS Vita.",
+  "description": "Port of Babel Rising 3D for PSVita.",
   "long_description": "This is a wrapper/port of Babel Rising 3D for the PS Vita.\nThe port works by loading the official Android ARMv7 executable in memory, resolving its imports with native functions and patching it in order to properly run. By doing so, it's basically as if we emulate a minimalist Android environment in which we run natively the executable as it is.",
   "author_ids": [
     "rinnegatamante"
   ],
-  "category_id": "ports",
+  "category_id": "games",
   "subcategory_ids": [
     "other"
   ],
@@ -16,35 +16,39 @@
   "requirements": "- libshacccg.suprx\n- kubridge.skprx\n- Game Data Files: Android",
   "size": 1744758,
   "status": "Legacy",
-  "icon": "https://robin994.github.io/NeoVitaDB-Catalog/icons/1298-babel-rising-3d-vita.png",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/0bb98bb63ba62ad1bed756b37d32c5b52c8d123dc9a57b1cc941e86422af6845.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/8d8e7380182024d8ff67024a59ab5558cce80b205ab327982e37e9bbf2394873.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/6b13181acfb2837e5315f70a03a0e9405977d96a49585e15c8b4984023885f77.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/b0e6aec60f41ee5cbda84291ba9a539de7383fad36c000ff3cd0f3b9d8dddfa2.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/3ad0fb89b5887458d97b454eaa2e3e92f37ae010eb388493a7e2b68740bd57e7.png",
-    "screenshots/8d8e7380182024d8ff67024a59ab5558cce80b205ab327982e37e9bbf2394873.png;screenshots/6b13181acfb2837e5315f70a03a0e9405977d96a49585e15c8b4984023885f77.png;screenshots/b0e6aec60f41ee5cbda84291ba9a539de7383fad36c000ff3cd0f3b9d8dddfa2.png;screenshots/3ad0fb89b5887458d97b454eaa2e3e92f37ae010eb388493a7e2b68740bd57e7.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/3ad0fb89b5887458d97b454eaa2e3e92f37ae010eb388493a7e2b68740bd57e7.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/Rinnegatamante/babel-vita/releases/download/v.1.0/babel.vpk",
       "recommended": true
-    },
-    {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/Rinnegatamante/babel-vita"
-    },
-    {
-      "type": "Other",
-      "name": "Release",
-      "url": "https://github.com/Rinnegatamante/babel-vita/releases/tag/v.1.0"
     },
     {
       "type": "Official Website",
       "name": "VitaDBtoo Release Page",
       "url": "https://github.com/Rinnegatamante/babel-vita/releases"
+    },
+    {
+      "type": "Official Website",
+      "name": "NeoVitaDB Release Page",
+      "url": "https://github.com/Rinnegatamante/babel-vita/releases/tag/v.1.0"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/Rinnegatamante/babel-vita"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "1298",
+  "source_url": "https://github.com/Rinnegatamante/babel-vita",
+  "release_page": "https://github.com/Rinnegatamante/babel-vita/releases",
+  "updated_at": "2026-08-13T13:46:07.764151+00:00"
 }

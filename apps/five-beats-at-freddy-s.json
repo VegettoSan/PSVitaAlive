@@ -3,31 +3,33 @@
   "title_id": "FBAF00001",
   "name": "Five Beats at Freddy's",
   "description": "Rythm game for PSVita.",
-  "long_description": "A simple rhythm game made for a PS Vita homebrew contest, inspired by Friday Night Funkin’.\nAs the name suggests, there are five playable songs, each offering its own difficulty level.",
+  "long_description": "A simple rhythm game made for a PS Vita homebrew contest, inspired by Friday Night Funkin’.\nAs the name suggests, there are five playable songs, each offering its own difficulty level.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
   "author_ids": [
     "5port5y"
   ],
   "category_id": "games",
   "subcategory_ids": [
-    "music"
+    "other"
   ],
   "version": "v.1.0",
   "version_date": "2026-08-12",
-  "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
+  "requirements": "Not specified",
   "size": 49722199,
-  "status": "Verified",
-  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/ccb8498a5d31e6fbbdfa1eb2edcffeeaad0f935926a53566a1eb7ad8ea845a74.png",
-  "screenshots": [],
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1932-five-beats-at-freddy-s.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1932-five-beats-at-freddy-s.png"
+  ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1306-five_beats.vpk",
       "recommended": true
     },
     {
-      "type": "Other",
-      "name": "Release",
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
       "url": "https://5p0rt5y.itch.io/five-beats-at-freddys"
     },
     {
@@ -35,5 +37,10 @@
       "name": "Repositorio",
       "url": "https://github.com"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "1306",
+  "source_url": "https://5p0rt5y.itch.io/five-beats-at-freddys",
+  "release_page": "https://5p0rt5y.itch.io/five-beats-at-freddys",
+  "updated_at": "2026-08-13T13:46:07.761017+00:00"
 }

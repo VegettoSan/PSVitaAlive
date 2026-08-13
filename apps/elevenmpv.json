@@ -2,46 +2,50 @@
   "id": "elevenmpv",
   "title_id": "ELEVENMPV",
   "name": "ElevenMPV",
-  "description": "A homebrew music player for Playstation VITA that aims to support many different audio formats compared to the offical PS VITA music application.",
+  "description": "Music Player for PSVITA.",
   "long_description": "A homebrew music player for Playstation VITA that aims to support many different audio formats compared to the offical PS VITA music application.",
   "author_ids": [
     "joel16"
   ],
-  "category_id": "ports",
+  "category_id": "games",
   "subcategory_ids": [
     "other"
   ],
-  "version": "v2.10",
+  "version": "v.2.10",
   "version_date": "2019-07-17",
-  "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
+  "requirements": "Not specified",
   "size": 2440427,
-  "status": "Verified",
-  "icon": "https://robin994.github.io/NeoVitaDB-Catalog/icons/0447-elevenmpv.png",
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/c1a248da9dc437b51a8e5da47217070ff011c0849156ed6ce8e0bb7af0b6fadd.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/27c05ba80244d6fc309924bc0362145747783f8e363e9a72971e0e1f6fff45ce.png",
-    "screenshots/27c05ba80244d6fc309924bc0362145747783f8e363e9a72971e0e1f6fff45ce.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/27c05ba80244d6fc309924bc0362145747783f8e363e9a72971e0e1f6fff45ce.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/joel16/ElevenMPV/releases/download/v2.10/ElevenMPV.vpk",
       "recommended": true
-    },
-    {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/joel16/ElevenMPV"
-    },
-    {
-      "type": "Other",
-      "name": "Release",
-      "url": "https://github.com/joel16/ElevenMPV/releases/tag/v2.10"
     },
     {
       "type": "Official Website",
       "name": "VitaDBtoo Release Page",
       "url": "https://gbatemp.net/threads/elevenmpv-eleven-music-player-vita.534916/"
+    },
+    {
+      "type": "Official Website",
+      "name": "NeoVitaDB Release Page",
+      "url": "https://github.com/joel16/ElevenMPV/releases/tag/v2.10"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/joel16/ElevenMPV"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "447",
+  "source_url": "https://github.com/joel16/ElevenMPV",
+  "release_page": "https://gbatemp.net/threads/elevenmpv-eleven-music-player-vita.534916/",
+  "updated_at": "2026-08-13T13:46:07.967630+00:00"
 }

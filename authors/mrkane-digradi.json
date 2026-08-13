@@ -3,5 +3,22 @@
   "name": "MRKane & digradi",
   "avatar": "",
   "bio": "",
-  "links": []
+  "links": [
+    {
+      "type": "Download",
+      "name": "VitaDBtoo VPK",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1122-VitaHot.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
+      "url": "https://fuhen.homebrew-contest.com/submissions/33/"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com"
+    }
+  ]
 }

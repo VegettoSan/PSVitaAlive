@@ -13,37 +13,41 @@
   ],
   "version": "v.1.0",
   "version_date": "2020-08-15",
-  "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
+  "requirements": "Not specified",
   "size": 685212,
-  "status": "Verified",
-  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/f161fb3365146f2ddf7243b7569ec7c083ba8e54d80986dfb25e857b4176a045.png",
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/f161fb3365146f2ddf7243b7569ec7c083ba8e54d80986dfb25e857b4176a045.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/b397ce6b2f8e6b1d5d653bb0054b7f948f8b553d3baba02c7350642764305624.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/3b96d11c2ee97264cf4fa909718864563ad43637efa31805c4044f6cb8492ee1.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/588369e4270fb5d0d8f933c24e4a558cad09f89035bdd29813346d12fbfe7014.png",
-    "screenshots/b397ce6b2f8e6b1d5d653bb0054b7f948f8b553d3baba02c7350642764305624.png;screenshots/3b96d11c2ee97264cf4fa909718864563ad43637efa31805c4044f6cb8492ee1.png;screenshots/588369e4270fb5d0d8f933c24e4a558cad09f89035bdd29813346d12fbfe7014.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/588369e4270fb5d0d8f933c24e4a558cad09f89035bdd29813346d12fbfe7014.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/JJH47E/MemoryGame/releases/download/1.0/MemoryGame1.0.vpk",
       "recommended": true
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/JJH47E/MemoryGame"
-    },
-    {
-      "type": "Other",
-      "name": "Release",
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
       "url": "https://github.com/JJH47E/MemoryGame/releases"
     },
     {
       "type": "Official Website",
       "name": "NeoVitaDB Release Page",
       "url": "https://github.com/JJH47E/MemoryGame/releases/tag/1.0"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/JJH47E/MemoryGame"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "574",
+  "source_url": "https://github.com/JJH47E/MemoryGame",
+  "release_page": "https://github.com/JJH47E/MemoryGame/releases",
+  "updated_at": "2026-08-13T13:46:07.948306+00:00"
 }

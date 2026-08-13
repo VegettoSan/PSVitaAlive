@@ -7,33 +7,37 @@
   "author_ids": [
     "hatoving"
   ],
-  "category_id": "ports",
+  "category_id": "games",
   "subcategory_ids": [
-    "simulation"
+    "other"
   ],
   "version": "v.1.07",
   "version_date": "2021-04-08",
   "requirements": "- Game Data Files: Android OR PC",
   "size": 2938656,
-  "status": "Verified",
-  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/249453e9a75d488873c368faced7a5ad2e9cb421fac175c91b8a48c81cc1507f.png",
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/249453e9a75d488873c368faced7a5ad2e9cb421fac175c91b8a48c81cc1507f.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/a867c2a1ac482f216b126fc4a474fe3203ca7db4ea1605e6fdd77af58fd02ee1.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/438eaa8b1e7bac34b6b773ee8b4751a86abed63fa620584d07b1b6a7c4fb6a76.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/3d5f4465cd779f0d800043e09b3a086581ea3479f1ebebea429065f1c67d2337.png",
-    "screenshots/a867c2a1ac482f216b126fc4a474fe3203ca7db4ea1605e6fdd77af58fd02ee1.png;screenshots/438eaa8b1e7bac34b6b773ee8b4751a86abed63fa620584d07b1b6a7c4fb6a76.png;screenshots/3d5f4465cd779f0d800043e09b3a086581ea3479f1ebebea429065f1c67d2337.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/3d5f4465cd779f0d800043e09b3a086581ea3479f1ebebea429065f1c67d2337.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/640-PleaseDontTouchAnything.vpk",
       "recommended": true
     },
     {
-      "type": "Other",
-      "name": "Release",
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
       "url": "https://github.com/hatoving/GMSVitaPortInstructions"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "640",
+  "source_url": "https://github.com/hatoving/GMSVitaPortInstructions",
+  "release_page": "https://github.com/hatoving/GMSVitaPortInstructions",
+  "updated_at": "2026-08-13T13:46:07.929458+00:00"
 }

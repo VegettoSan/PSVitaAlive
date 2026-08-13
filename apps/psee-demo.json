@@ -3,37 +3,36 @@
   "title_id": "PSEE00001",
   "name": "Psee Demo",
   "description": "Solve physics puzzles and help a mystical creature escape in world of Psee.",
-  "long_description": "In the mystical world of Psee, gravity rules everything.\nPsets creatures can control objects in their world and move using levitation.\nYou have to control a pset that works in a mine extracting water.\nSomewhere evil come to the world of Psee and the main character now needs to save his life.",
+  "long_description": "In the mystical world of Psee, gravity rules everything.\nPsets creatures can control objects in their world and move using levitation.\nYou have to control a pset that works in a mine extracting water.\nSomewhere evil come to the world of Psee and the main character now needs to save his life.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
   "author_ids": [
     "adecon-production"
   ],
-  "category_id": "demos",
+  "category_id": "games",
   "subcategory_ids": [
-    "tech-demo"
+    "other"
   ],
   "version": "v.0.1",
   "version_date": "2026-08-12",
-  "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
+  "requirements": "Not specified",
   "size": 33848976,
-  "status": "Verified",
-  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/53d01801fe9555a50ee29ae714743c2b7066c42b6437d9c75ba157c0c8e09b1a.png",
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1890-psee-demo.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/b465709f7b5df313035ad031b1a1bc1fb784dd8fb76be7c1ab4fdcc5bb341f69.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/d37a2af4a927fdcf1f46e01891583f4aecfac0b0b139772bf3ea20937eaac5b6.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/24d82b2f0a567c7ce1e15305cc7b04ec5aca90e70725fab685c58e4d64aad0f5.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/069e359f95665ac865b9bc049b09e1aae387af00cc96e505fed511ebae460e47.png",
-    "screenshots/b465709f7b5df313035ad031b1a1bc1fb784dd8fb76be7c1ab4fdcc5bb341f69.png;screenshots/d37a2af4a927fdcf1f46e01891583f4aecfac0b0b139772bf3ea20937eaac5b6.png;screenshots/24d82b2f0a567c7ce1e15305cc7b04ec5aca90e70725fab685c58e4d64aad0f5.png;screenshots/069e359f95665ac865b9bc049b09e1aae387af00cc96e505fed511ebae460e47.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/069e359f95665ac865b9bc049b09e1aae387af00cc96e505fed511ebae460e47.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1187-psee.vpk",
       "recommended": true
     },
     {
-      "type": "Other",
-      "name": "Release",
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
       "url": "https://www.anfloppyarts.com/psee"
     },
     {
@@ -41,5 +40,10 @@
       "name": "Repositorio",
       "url": "https://github.com"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "1187",
+  "source_url": "https://www.anfloppyarts.com/psee",
+  "release_page": "https://www.anfloppyarts.com/psee",
+  "updated_at": "2026-08-13T13:46:07.805354+00:00"
 }

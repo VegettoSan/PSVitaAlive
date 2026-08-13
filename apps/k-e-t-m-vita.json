@@ -3,42 +3,46 @@
   "title_id": "KETM00001",
   "name": "K.E.T.M. Vita",
   "description": "K.E.T.M. port for PSVITA.",
-  "long_description": "This is the PSVITA port of K.E.T.M. (Kill Everything That Moves) , a fast paced 2D shooter.\nThe game is available with the original game style and 4 mods (1941, Star Wars, Iron man, Mario Kart). The Game mode is selectable at startup",
+  "long_description": "This is the PSVITA port of K.E.T.M. (Kill Everything That Moves) , a fast paced 2D shooter.\nThe game is available with the original game style and 4 mods (1941, Star Wars, Iron man, Mario Kart). The Game mode is selectable at startup\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
   "author_ids": [
     "rinnegatamante"
   ],
-  "category_id": "ports",
+  "category_id": "games",
   "subcategory_ids": [
-    "fps"
+    "other"
   ],
   "version": "v.1.0",
   "version_date": "2026-08-12",
-  "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
+  "requirements": "Not specified",
   "size": 996832,
-  "status": "Verified",
-  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/81279a9ef9582c07b2d42ffb0736e71191d04abb6d5e455ca9df465a4fcb4cb0.png",
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1587-k-e-t-m-vita.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/aa9e6646754311e44f8ed67c6e9373847d53818124a8225738b73f490c49b4dd.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/16fc8ceff57f543329f608c1f53095526912c04ac65b45d6b6c84f37f525c4e3.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/cb03d2dc49ebc4f86b9f4f5213132f9336a41fe8ec2d94d412809b807477ab09.png",
-    "screenshots/aa9e6646754311e44f8ed67c6e9373847d53818124a8225738b73f490c49b4dd.png;screenshots/16fc8ceff57f543329f608c1f53095526912c04ac65b45d6b6c84f37f525c4e3.png;screenshots/cb03d2dc49ebc4f86b9f4f5213132f9336a41fe8ec2d94d412809b807477ab09.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/cb03d2dc49ebc4f86b9f4f5213132f9336a41fe8ec2d94d412809b807477ab09.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/356-KETM.vpk",
       "recommended": true
+    },
+    {
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
+      "url": "http://wololo.net/talk/viewtopic.php?f=116&t=48784"
     },
     {
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/Rinnegatamante/K.E.T.M.-Vita"
-    },
-    {
-      "type": "Other",
-      "name": "Release",
-      "url": "http://wololo.net/talk/viewtopic.php?f=116&t=48784"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "356",
+  "source_url": "https://github.com/Rinnegatamante/K.E.T.M.-Vita",
+  "release_page": "http://wololo.net/talk/viewtopic.php?f=116&t=48784",
+  "updated_at": "2026-08-13T13:46:07.996799+00:00"
 }

@@ -3,38 +3,36 @@
   "title_id": "SOUL45638",
   "name": "FALLEN KNIGHTS",
   "description": "Soulslike game for PSVITA.",
-  "long_description": "Fallen Knights is an action/adventure game set in a dark universe of demons and castles.\nThe game has similar elements to the Souls games. There is a large map to explore filled with deadly enemies.",
+  "long_description": "Fallen Knights is an action/adventure game set in a dark universe of demons and castles.\nThe game has similar elements to the Souls games. There is a large map to explore filled with deadly enemies.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
   "author_ids": [
-    "unknown",
     "vitahex-games"
   ],
   "category_id": "games",
   "subcategory_ids": [
-    "adventure"
+    "other"
   ],
   "version": "v.0.2",
   "version_date": "2026-08-12",
-  "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
+  "requirements": "Not specified",
   "size": 90545320,
-  "status": "Verified",
-  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/b81f2d669e8fe07885bc4437a53fa72e5c1c48e95192be2b417127e07a4a4b6c.png",
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1625-fallen-knights.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/49201910c5b990eb710b054fb4300842f8fd2d0b055dd6ab0d7f45e0091e5614.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/76c3370d254249f46afe5fea0c873d8d19dd6d4ef93f58270f896f3bbc389cd3.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/a50795fa57ec94d9fea0113d18baace3e5469f19d68b1934afa1942f1ef761a4.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/da8f7a8b5ee01231bcb36e2cc165986edc5b5191826a966ac232dd3bfbedb259.png",
-    "screenshots/49201910c5b990eb710b054fb4300842f8fd2d0b055dd6ab0d7f45e0091e5614.png;screenshots/76c3370d254249f46afe5fea0c873d8d19dd6d4ef93f58270f896f3bbc389cd3.png;screenshots/a50795fa57ec94d9fea0113d18baace3e5469f19d68b1934afa1942f1ef761a4.png;screenshots/da8f7a8b5ee01231bcb36e2cc165986edc5b5191826a966ac232dd3bfbedb259.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/da8f7a8b5ee01231bcb36e2cc165986edc5b5191826a966ac232dd3bfbedb259.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/448-Fallen-Knights.vpk",
       "recommended": true
     },
     {
-      "type": "Other",
-      "name": "Release",
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
       "url": "http://wololo.net/talk/viewtopic.php?p=424324#p424324"
     },
     {
@@ -42,5 +40,10 @@
       "name": "Repositorio",
       "url": "https://github.com"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "448",
+  "source_url": "http://wololo.net/talk/viewtopic.php?p=424324#p424324",
+  "release_page": "http://wololo.net/talk/viewtopic.php?p=424324#p424324",
+  "updated_at": "2026-08-13T13:46:07.971246+00:00"
 }

@@ -7,7 +7,7 @@
   "author_ids": [
     "rocroverss"
   ],
-  "category_id": "ports",
+  "category_id": "games",
   "subcategory_ids": [
     "other"
   ],
@@ -16,35 +16,39 @@
   "requirements": "- libshacccg.suprx\n- kubridge.skprx\n- Game Data Files: Android",
   "size": 2484731,
   "status": "Legacy",
-  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/27914a21cd11a6f5d17710845f260cbe37a61b61520ae81a57052bbf85fdd2e0.png",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/27914a21cd11a6f5d17710845f260cbe37a61b61520ae81a57052bbf85fdd2e0.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/929d3b91473fa112cf21b00007d3317ab0a5cc507caf73aec27977d953ac93c2.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/2b7f3bc7a9a1ad7b656fb43b4aeaab6bd73a74649676a2a757dbd2d0e0536dc4.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/7d85d3faa3ff8df1ac9df925a122571d0d70ca7d1938c6566c7d35acb51e7520.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/d7a332bd177bce7d8097b78fef4852f14c32ac0e3f6be9d8bc98543b34c624d0.png",
-    "screenshots/929d3b91473fa112cf21b00007d3317ab0a5cc507caf73aec27977d953ac93c2.png;screenshots/2b7f3bc7a9a1ad7b656fb43b4aeaab6bd73a74649676a2a757dbd2d0e0536dc4.png;screenshots/7d85d3faa3ff8df1ac9df925a122571d0d70ca7d1938c6566c7d35acb51e7520.png;screenshots/d7a332bd177bce7d8097b78fef4852f14c32ac0e3f6be9d8bc98543b34c624d0.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/d7a332bd177bce7d8097b78fef4852f14c32ac0e3f6be9d8bc98543b34c624d0.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/Rocroverss/katzenklein-redux-psvita-port/releases/download/v1.0.reihen/kkr.vpk",
       "recommended": true
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/Rocroverss/katzenklein-redux-psvita-port"
-    },
-    {
-      "type": "Other",
-      "name": "Release",
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
       "url": "https://github.com/Rocroverss/katzenklein-redux-psvita-port/releases"
     },
     {
       "type": "Official Website",
       "name": "NeoVitaDB Release Page",
       "url": "https://github.com/Rocroverss/katzenklein-redux-psvita-port/releases/tag/v1.0.reihen"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/Rocroverss/katzenklein-redux-psvita-port"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "1308",
+  "source_url": "https://github.com/Rocroverss/katzenklein-redux-psvita-port",
+  "release_page": "https://github.com/Rocroverss/katzenklein-redux-psvita-port/releases",
+  "updated_at": "2026-08-13T13:46:07.760432+00:00"
 }

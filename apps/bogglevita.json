@@ -1,6 +1,6 @@
 {
   "id": "bogglevita",
-  "title_id": "BOGGLESTG",
+  "title_id": "VITBOGGLE",
   "name": "BoggleVita",
   "description": "Boggle game for PSVITA.",
   "long_description": "Boggle game for PSVITA.\nGrab a pen and paper and enjoy.",
@@ -13,27 +13,29 @@
   ],
   "version": "v.ita",
   "version_date": "2023-12-23",
-  "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
+  "requirements": "Not specified",
   "size": 3496823,
-  "status": "Verified",
-  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/c83b4e4686a58c1a06934a1d07eac69c7c16d61e67dae4d430ee8b8145cab641.png",
-  "screenshots": [],
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/c83b4e4686a58c1a06934a1d07eac69c7c16d61e67dae4d430ee8b8145cab641.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/c83b4e4686a58c1a06934a1d07eac69c7c16d61e67dae4d430ee8b8145cab641.png"
+  ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/SoulTieGames/BoggleVita/releases/download/Vita/boggle_v2.0.VPK",
       "recommended": true
     },
     {
-      "type": "Other",
-      "name": "Release",
-      "url": "https://github.com/SoulTieGames/BoggleVita"
-    },
-    {
       "type": "Official Website",
-      "name": "NeoVitaDB Release Page",
-      "url": "https://github.com/SoulTieGames/BoggleVita/releases/tag/Vita"
+      "name": "VitaDBtoo Release Page",
+      "url": "https://github.com/SoulTieGames/BoggleVita"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "1169",
+  "source_url": "https://github.com/SoulTieGames/BoggleVita",
+  "release_page": "https://github.com/SoulTieGames/BoggleVita",
+  "updated_at": "2026-08-13T13:46:07.814942+00:00"
 }

@@ -16,8 +16,10 @@
   "requirements": "Henkaku Enso, reF00D and a Testing Kit firmware PUP",
   "size": 194270,
   "status": "Legacy",
-  "icon": "1986-CEX2REX.png",
-  "screenshots": [],
+  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1986-CEX2REX.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1986-CEX2REX.png"
+  ],
   "links": [
     {
       "type": "Download",
@@ -35,5 +37,5 @@
   "source_id": "1986",
   "source_url": "https://git.silica.codes",
   "release_page": "",
-  "updated_at": "2026-08-13T05:25:55.189225+00:00"
+  "updated_at": "2026-08-13T13:46:08.044920+00:00"
 }

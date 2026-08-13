@@ -2,12 +2,12 @@
   "id": "smash-rush-vita",
   "title_id": "SMASHRUSH",
   "name": "Smash Rush Vita",
-  "description": "This is a wrapper/port of Smash Rush for the PS Vita.",
+  "description": "Port of Smash Rush for PSVITA.",
   "long_description": "This is a wrapper/port of Smash Rush for the PS Vita.\nThe port works by loading the official Android ARMv7 executables in memory, resolving its imports with native functions and patching it in order to properly run. By doing so, it's basically as if we emulate a minimalist Android environment in which we run natively the executable as is.",
   "author_ids": [
     "rinnegatamante"
   ],
-  "category_id": "ports",
+  "category_id": "games",
   "subcategory_ids": [
     "other"
   ],
@@ -16,35 +16,39 @@
   "requirements": "- libshacccg.suprx\n- kubridge.skprx\n- Game Data Files: Android",
   "size": 2495334,
   "status": "Legacy",
-  "icon": "https://robin994.github.io/NeoVitaDB-Catalog/icons/1346-smash-rush-vita.png",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/448e677a88a805e43fd4006a246dca90f1471b2ee1f2c2470a9805e68ab64a7e.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/a3ceda1eb96c04ed09a3c4ed253a1160ed14684ff8443a5b462a17a1bbf5a2cc.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/bc74f14b291cddba82d2e14d7c53221da06d902d0e3a49526f9413c68b92bcec.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/b2f62a76cb207a31fae80014b6b9e4e4d4ec5b838b0499aa9aee8432bb0c6f4f.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/24fa4f16a2f326a64cd456e42f170f39438519b8b527c5a02808ff5a19de409f.png",
-    "screenshots/a3ceda1eb96c04ed09a3c4ed253a1160ed14684ff8443a5b462a17a1bbf5a2cc.png;screenshots/bc74f14b291cddba82d2e14d7c53221da06d902d0e3a49526f9413c68b92bcec.png;screenshots/b2f62a76cb207a31fae80014b6b9e4e4d4ec5b838b0499aa9aee8432bb0c6f4f.png;screenshots/24fa4f16a2f326a64cd456e42f170f39438519b8b527c5a02808ff5a19de409f.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/24fa4f16a2f326a64cd456e42f170f39438519b8b527c5a02808ff5a19de409f.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/Rinnegatamante/smashrush-vita/releases/download/v.1.0/smashrush.vpk",
       "recommended": true
-    },
-    {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/Rinnegatamante/smashrush-vita"
-    },
-    {
-      "type": "Other",
-      "name": "Release",
-      "url": "https://github.com/Rinnegatamante/smashrush-vita/releases/tag/v.1.0"
     },
     {
       "type": "Official Website",
       "name": "VitaDBtoo Release Page",
       "url": "https://github.com/Rinnegatamante/smashrush-vita/releases"
+    },
+    {
+      "type": "Official Website",
+      "name": "NeoVitaDB Release Page",
+      "url": "https://github.com/Rinnegatamante/smashrush-vita/releases/tag/v.1.0"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/Rinnegatamante/smashrush-vita"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "1346",
+  "source_url": "https://github.com/Rinnegatamante/smashrush-vita",
+  "release_page": "https://github.com/Rinnegatamante/smashrush-vita/releases",
+  "updated_at": "2026-08-13T13:46:07.741316+00:00"
 }

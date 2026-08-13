@@ -3,31 +3,33 @@
   "title_id": "RPG100001",
   "name": "Galactic Federation",
   "description": "Topdown action science fiction RPG.",
-  "long_description": "Galactic Federation is a top down Action Science Fiction RPG. This is an early sample of 1 dungeon, but the full game is planned to be much bigger. The game currently features 4 classes, but I recommend the Human/Marine since he is the most fleshed out character. The goal of the demo is just to explore the dungeon, and kill all of enemies. The demo also features a boss fight. Controls can be viewed and changed in the options screen on the main menu.",
+  "long_description": "Galactic Federation is a top down Action Science Fiction RPG. This is an early sample of 1 dungeon, but the full game is planned to be much bigger. The game currently features 4 classes, but I recommend the Human/Marine since he is the most fleshed out character. The goal of the demo is just to explore the dungeon, and kill all of enemies. The demo also features a boss fight. Controls can be viewed and changed in the options screen on the main menu.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
   "author_ids": [
     "island-games"
   ],
-  "category_id": "development",
+  "category_id": "games",
   "subcategory_ids": [
-    "examples"
+    "other"
   ],
   "version": "v.0.1",
   "version_date": "2026-08-12",
-  "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
+  "requirements": "Not specified",
   "size": 7584796,
-  "status": "Verified",
-  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/b4bdce6b8304bb8edde6fb1179952f47f17e1be7b46e21bd3dd24db101247993.png",
-  "screenshots": [],
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1541-galactic-federation.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1541-galactic-federation.png"
+  ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/206-Galactic_20Federation.vpk",
       "recommended": true
     },
     {
-      "type": "Other",
-      "name": "Release",
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
       "url": "https://github.com/thesuicidalrobot/Galactic-Federation/releases"
     },
     {
@@ -35,5 +37,10 @@
       "name": "Repositorio",
       "url": "https://github.com"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "206",
+  "source_url": "https://github.com/thesuicidalrobot/Galactic-Federation/releases",
+  "release_page": "https://github.com/thesuicidalrobot/Galactic-Federation/releases",
+  "updated_at": "2026-08-13T13:46:08.009457+00:00"
 }

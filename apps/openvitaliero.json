@@ -2,46 +2,50 @@
   "id": "openvitaliero",
   "title_id": "LIER01337",
   "name": "OpenVitaLiero",
-  "description": "Earthworm simulation game based on a real physical model.",
+  "description": "Port of OpenLiero for PSVita.",
   "long_description": "Earthworm simulation game based on a real physical model. Features: 2 worms, 40 weapons, great playability. Four game modes: Kill'em All, Game of Tag, Capture the Flag and Simple CtF!",
   "author_ids": [
     "ak1m1223"
   ],
-  "category_id": "ports",
+  "category_id": "games",
   "subcategory_ids": [
-    "simulation"
+    "other"
   ],
-  "version": "0.3",
+  "version": "v.0.3",
   "version_date": "2026-05-16",
-  "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
+  "requirements": "Not specified",
   "size": 1524796,
   "status": "Legacy",
-  "icon": "https://robin994.github.io/NeoVitaDB-Catalog/icons/1398-openvitaliero.png",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/87df6eed0808073b86b03daec0f56f26fd061d8aedb7e43e368c048a1279fd6e.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/0c48e0234888bf5c966dd9fd3c32f737d8a937b204050dc073be1b122dcb86ac.png",
-    "screenshots/0c48e0234888bf5c966dd9fd3c32f737d8a937b204050dc073be1b122dcb86ac.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/0c48e0234888bf5c966dd9fd3c32f737d8a937b204050dc073be1b122dcb86ac.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/Ak1M1223/vitaliero/releases/download/0.3/openliero.vpk",
       "recommended": true
-    },
-    {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/Ak1M1223/vitaliero"
-    },
-    {
-      "type": "Other",
-      "name": "Release",
-      "url": "https://github.com/Ak1M1223/vitaliero/releases/tag/0.3"
     },
     {
       "type": "Official Website",
       "name": "VitaDBtoo Release Page",
       "url": "https://github.com/Ak1M1223/vitaliero/releases"
+    },
+    {
+      "type": "Official Website",
+      "name": "NeoVitaDB Release Page",
+      "url": "https://github.com/Ak1M1223/vitaliero/releases/tag/0.3"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/Ak1M1223/vitaliero"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "1398",
+  "source_url": "https://github.com/Ak1M1223/vitaliero",
+  "release_page": "https://github.com/Ak1M1223/vitaliero/releases",
+  "updated_at": "2026-08-13T13:46:07.717894+00:00"
 }

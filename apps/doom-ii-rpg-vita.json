@@ -3,43 +3,47 @@
   "title_id": "DOOMIIRPG",
   "name": "Doom II RPG Vita",
   "description": "Port of Doom II RPG for PSVita.",
-  "long_description": "This is a PS Vita port of the reverse engineered Doom II RPG by [GEC]. All credits go to the GEC team, this project would not exist without their hard work.",
+  "long_description": "This is a PS Vita port of the reverse engineered Doom II RPG by [GEC]. All credits go to the GEC team, this project would not exist without their hard work.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
   "author_ids": [
     "rinnegatamante"
   ],
-  "category_id": "ports",
+  "category_id": "games",
   "subcategory_ids": [
-    "fps"
+    "other"
   ],
   "version": "v.1.0",
   "version_date": "2026-08-12",
   "requirements": "- libshacccg.suprx\n- Game Data Files: Mobile",
   "size": 2040195,
-  "status": "Verified",
-  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/f2794f9979c584532992fe85eb6b7154ca337a520ea50d4693d7e08115c6c92d.png",
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1912-doom-ii-rpg-vita.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/2026f4d1e675b5d3ef508955914028c2312965f6a3f434301ee684613b2af35a.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/3675632048f8bf0a997030694ca18480c7b62de58eee0b9936c555410b1ea6a7.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/82af0a3b195162466415bc2b3cd4890ba1229325304b0ac3ab129b4837f0b692.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/5b146e1b8ff6b03d1b5cbc425fe1993dc4afcc16a25e56da55eea7035d53d0eb.png",
-    "screenshots/2026f4d1e675b5d3ef508955914028c2312965f6a3f434301ee684613b2af35a.png;screenshots/3675632048f8bf0a997030694ca18480c7b62de58eee0b9936c555410b1ea6a7.png;screenshots/82af0a3b195162466415bc2b3cd4890ba1229325304b0ac3ab129b4837f0b692.png;screenshots/5b146e1b8ff6b03d1b5cbc425fe1993dc4afcc16a25e56da55eea7035d53d0eb.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/5b146e1b8ff6b03d1b5cbc425fe1993dc4afcc16a25e56da55eea7035d53d0eb.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1247-DOOMIIRPG.vpk",
       "recommended": true
+    },
+    {
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
+      "url": "https://www.psx-place.com/threads/release-doom-ii-rpg-vita.45825/"
     },
     {
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/Rinnegatamante/DoomIIRPG-RE"
-    },
-    {
-      "type": "Other",
-      "name": "Release",
-      "url": "https://www.psx-place.com/threads/release-doom-ii-rpg-vita.45825/"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "1247",
+  "source_url": "https://github.com/Rinnegatamante/DoomIIRPG-RE",
+  "release_page": "https://www.psx-place.com/threads/release-doom-ii-rpg-vita.45825/",
+  "updated_at": "2026-08-13T13:46:07.782882+00:00"
 }

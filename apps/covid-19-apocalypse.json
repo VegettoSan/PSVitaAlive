@@ -7,44 +7,48 @@
   "author_ids": [
     "gremlin-software"
   ],
-  "category_id": "ports",
+  "category_id": "games",
   "subcategory_ids": [
-    "fps"
+    "other"
   ],
   "version": "v.1.0",
   "version_date": "2021-10-29",
-  "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
+  "requirements": "Not specified",
   "size": 1764631,
-  "status": "Verified",
-  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/7ba40e0c954a68e60fadc5797925dc93197d6c353a7531f1ead31bbee96d0fcf.png",
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/7ba40e0c954a68e60fadc5797925dc93197d6c353a7531f1ead31bbee96d0fcf.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/6609c3a869ae6b9d6942af01bd89b7d794c8160de102b75d04a250662bcfc2ff.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/bdb94d9f2f9c4bd62704df06d61a7a0900cc0a6e9ffb60ab7280d1ba46bc168b.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c0d8e01f89dbe90217e64699482d123412fd360cac0d0c02cff95fa10519e02d.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/137eb2e50e791763ff0a5f3888e3c7c26dc23993c5834dd855fec59a2e64c145.png",
-    "screenshots/6609c3a869ae6b9d6942af01bd89b7d794c8160de102b75d04a250662bcfc2ff.png;screenshots/bdb94d9f2f9c4bd62704df06d61a7a0900cc0a6e9ffb60ab7280d1ba46bc168b.png;screenshots/c0d8e01f89dbe90217e64699482d123412fd360cac0d0c02cff95fa10519e02d.png;screenshots/137eb2e50e791763ff0a5f3888e3c7c26dc23993c5834dd855fec59a2e64c145.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/137eb2e50e791763ff0a5f3888e3c7c26dc23993c5834dd855fec59a2e64c145.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/softwaregremlin/Covid-19-Apocalypse/releases/download/v1%2C0/covid19Apocalypse.vpk",
       "recommended": true
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/softwaregremlin/Covid-19-Apocalypse"
-    },
-    {
-      "type": "Other",
-      "name": "Release",
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
       "url": "https://github.com/softwaregremlin/Covid-19-Apocalypse/releases"
     },
     {
       "type": "Official Website",
       "name": "NeoVitaDB Release Page",
       "url": "https://github.com/softwaregremlin/Covid-19-Apocalypse/releases/tag/v1%2C0"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/softwaregremlin/Covid-19-Apocalypse"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "758",
+  "source_url": "https://github.com/softwaregremlin/Covid-19-Apocalypse",
+  "release_page": "https://github.com/softwaregremlin/Covid-19-Apocalypse/releases",
+  "updated_at": "2026-08-13T13:46:07.908583+00:00"
 }

@@ -3,43 +3,47 @@
   "title_id": "QKSPMSPKD",
   "name": "Quakespasm-Spiked",
   "description": "Port of Quakespasm Spiked for PSVITA.",
-  "long_description": "Advanced and modern Quake source port with limits removed and high mods compatibility.",
+  "long_description": "Advanced and modern Quake source port with limits removed and high mods compatibility.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
   "author_ids": [
     "rinnegatamante"
   ],
-  "category_id": "ports",
+  "category_id": "games",
   "subcategory_ids": [
-    "fps"
+    "other"
   ],
   "version": "v.1.6",
   "version_date": "2026-08-12",
   "requirements": "- libshacccg.suprx",
   "size": 2143782,
-  "status": "Verified",
-  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/9d7c2ecf8d9fffaf98f4e6b191878c3a2eee39dc2d556838053bd006f61b3c66.png",
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1748-quakespasm-spiked.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/d11e97a3aad54a024808b5296fb436ed591fdb28b3db4fcdf6f0704a5b9b4da2.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/ad43e903ba063d50d2cdfecb3c68be6ec502522b821e2e421dce9ce262b130e2.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/64c48456f72f36c17de9a568157cc8e8a5fa393a947f791429a05f327ef81d6b.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c80bf2a6cceebe514efc2b52ee7d554b729a5e314bbaa456ee734b4fdb528af4.png",
-    "screenshots/d11e97a3aad54a024808b5296fb436ed591fdb28b3db4fcdf6f0704a5b9b4da2.png;screenshots/ad43e903ba063d50d2cdfecb3c68be6ec502522b821e2e421dce9ce262b130e2.png;screenshots/64c48456f72f36c17de9a568157cc8e8a5fa393a947f791429a05f327ef81d6b.png;screenshots/c80bf2a6cceebe514efc2b52ee7d554b729a5e314bbaa456ee734b4fdb528af4.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c80bf2a6cceebe514efc2b52ee7d554b729a5e314bbaa456ee734b4fdb528af4.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/716-quakespasm.vpk",
       "recommended": true
+    },
+    {
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
+      "url": "https://www.psx-place.com/threads/release-quakespasm-spiked-modern-quake-sourceport-with-high-mods-compatibility.34786/"
     },
     {
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/Rinnegatamante/Quakespasm"
-    },
-    {
-      "type": "Other",
-      "name": "Release",
-      "url": "https://www.psx-place.com/threads/release-quakespasm-spiked-modern-quake-sourceport-with-high-mods-compatibility.34786/"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "716",
+  "source_url": "https://github.com/Rinnegatamante/Quakespasm",
+  "release_page": "https://www.psx-place.com/threads/release-quakespasm-spiked-modern-quake-sourceport-with-high-mods-compatibility.34786/",
+  "updated_at": "2026-08-13T13:46:07.869540+00:00"
 }

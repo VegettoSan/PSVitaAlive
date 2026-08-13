@@ -5,45 +5,48 @@
   "description": "Bad Apple with monoRLE graphical engine.",
   "long_description": "Bad Apple recreated with monoRLE graphical engine.\nBad Apple is a Japanese dance pop song originally featured in one of the arcade games from the Touhou series.",
   "author_ids": [
-    "knight-ryu12",
-    "princess-of-sleeping"
+    "knight-ryu12"
   ],
-  "category_id": "ports",
+  "category_id": "games",
   "subcategory_ids": [
     "other"
   ],
   "version": "v.1.0",
   "version_date": "2018-12-31",
-  "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
+  "requirements": "Not specified",
   "size": 15437907,
-  "status": "Verified",
-  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/da79a8eed5fa4585e4faadc3d30e98395e09731ef6f4d4d13904bd6deb566a71.png",
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/da79a8eed5fa4585e4faadc3d30e98395e09731ef6f4d4d13904bd6deb566a71.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/cd316151a4cd358b2852cab35dd3f9451337718f50fb5bbdaa166547ea9e4b6b.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/6dae72367833942c495e12eddec4b328bd052c526133af940f31881d5ae25677.png",
-    "screenshots/cd316151a4cd358b2852cab35dd3f9451337718f50fb5bbdaa166547ea9e4b6b.png;screenshots/6dae72367833942c495e12eddec4b328bd052c526133af940f31881d5ae25677.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/6dae72367833942c495e12eddec4b328bd052c526133af940f31881d5ae25677.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/knight-ryu12/badapplevita/releases/download/v1.0/badapple_VITA.vpk",
       "recommended": true
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/knight-ryu12/badapplevita"
-    },
-    {
-      "type": "Other",
-      "name": "Release",
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
       "url": "https://github.com/knight-ryu12/badapplevita/releases"
     },
     {
       "type": "Official Website",
       "name": "NeoVitaDB Release Page",
       "url": "https://github.com/knight-ryu12/badapplevita/releases/tag/v1.0"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/knight-ryu12/badapplevita"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "439",
+  "source_url": "https://github.com/knight-ryu12/badapplevita",
+  "release_page": "https://github.com/knight-ryu12/badapplevita/releases",
+  "updated_at": "2026-08-13T13:46:07.987215+00:00"
 }

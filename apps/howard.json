@@ -9,40 +9,39 @@
   ],
   "category_id": "games",
   "subcategory_ids": [
-    "platformer"
+    "other"
   ],
   "version": "0.1a",
   "version_date": "2025-10-31",
-  "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
+  "requirements": "Not specified",
   "size": 16276764,
-  "status": "Verified",
-  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/ac69400f529f46cb20058846a68cd75f8bcf2f4a01a545cafca29788024bd5b7.png",
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/0647-howard.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/b1e940891a1b368db7b1fbaa3a2ab65dc40e710acd17267d3d0e914a23fe6520.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/39b43b8fb2a6ccf365d9ca3c861e7e5a73fa254661e58fe86da2eed53b5b27b7.png",
-    "screenshots/b1e940891a1b368db7b1fbaa3a2ab65dc40e710acd17267d3d0e914a23fe6520.png;screenshots/39b43b8fb2a6ccf365d9ca3c861e7e5a73fa254661e58fe86da2eed53b5b27b7.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/39b43b8fb2a6ccf365d9ca3c861e7e5a73fa254661e58fe86da2eed53b5b27b7.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "NeoVitaDB VPK",
       "url": "https://github.com/Narwher/Howard/releases/download/0.1a/Howard.VPK",
       "recommended": true
-    },
-    {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/Narwher/Howard"
-    },
-    {
-      "type": "Other",
-      "name": "Release",
-      "url": "https://github.com/Narwher/Howard/releases"
     },
     {
       "type": "Official Website",
       "name": "NeoVitaDB Release Page",
       "url": "https://github.com/Narwher/Howard/releases/tag/0.1a"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/Narwher/Howard"
     }
-  ]
+  ],
+  "source_name": "NeoVitaDB",
+  "source_id": "647",
+  "source_url": "https://github.com/Narwher/Howard",
+  "release_page": "https://github.com/Narwher/Howard/releases/tag/0.1a",
+  "updated_at": "2026-08-13T13:46:07.742797+00:00"
 }

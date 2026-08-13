@@ -2,43 +2,50 @@
   "id": "vsoi",
   "title_id": "VSOI00001",
   "name": "VSOI",
-  "description": "Replace Near bubble with VitaShell.",
+  "description": "Replace Near bubble with VitaShell",
   "long_description": "Application to replace Near bubble with VitaShell. Intended for 3.65 Enso users. Replacing Near with VitaShell will ensure you don't lose it even if you format your console.",
   "author_ids": [
     "gnmmarechal"
   ],
-  "category_id": "system",
+  "category_id": "games",
   "subcategory_ids": [
-    "firmware-tools"
+    "other"
   ],
   "version": "v.0.1",
   "version_date": "2018-03-15",
-  "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
+  "requirements": "Not specified",
   "size": 1897634,
-  "status": "Verified",
-  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/18746b487153dc1ca3d728ce57b841b6e8faeca65a0900aa46864f73d07642c8.png",
-  "screenshots": [],
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/18746b487153dc1ca3d728ce57b841b6e8faeca65a0900aa46864f73d07642c8.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/18746b487153dc1ca3d728ce57b841b6e8faeca65a0900aa46864f73d07642c8.png"
+  ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/gnmmarechal/VSOI/releases/download/v0.1/VSOI.vpk",
       "recommended": true
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/gnmmarechal/VSOI"
-    },
-    {
-      "type": "Other",
-      "name": "Release",
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
       "url": "https://gbatemp.net/threads/release-vitashell-one-click-installer-for-near.498903/"
     },
     {
       "type": "Official Website",
       "name": "NeoVitaDB Release Page",
       "url": "https://github.com/gnmmarechal/VSOI/releases/tag/v0.1"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/gnmmarechal/VSOI"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "370",
+  "source_url": "https://github.com/gnmmarechal/VSOI",
+  "release_page": "https://gbatemp.net/threads/release-vitashell-one-click-installer-for-near.498903/",
+  "updated_at": "2026-08-13T13:46:07.993920+00:00"
 }

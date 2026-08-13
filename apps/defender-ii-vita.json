@@ -2,49 +2,53 @@
   "id": "defender-ii-vita",
   "title_id": "DDEF00001",
   "name": "Defender II Vita",
-  "description": "Defender II is a pretty classic tower defense / castle defense game where you protect your castle from endless waves of enemies using a bow and powerful magic.",
+  "description": "Port of Defender II for PSVita.",
   "long_description": "Defender II is a pretty classic tower defense / castle defense game where you protect your castle from endless waves of enemies using a bow and powerful magic.\nYou play as the last defender, shooting arrows manually while upgrading your strength, speed, and abilities. As the game goes on, enemies become stronger and more challenging, so youÃƒÂ¢Ã¢â€šÂ¬Ã¢â€žÂ¢ll need to improve your skills and unlock new defenses like magic towers and special powers.",
   "author_ids": [
     "rocroverss"
   ],
-  "category_id": "ports",
+  "category_id": "games",
   "subcategory_ids": [
     "other"
   ],
-  "version": "v1.01",
+  "version": "v.1.01",
   "version_date": "2026-04-03",
   "requirements": "- libshacccg.suprx\n- Game Data Files: Android",
   "size": 2377115,
   "status": "Legacy",
-  "icon": "https://robin994.github.io/NeoVitaDB-Catalog/icons/1380-defender-ii-vita.png",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/2be89412bf85d77e03a3c71abc84ee3ee2df1d32f6fe502c5ffa503843bc794c.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/cf60095af084d05d8c8f51b2788d45e45813907a1c87782b140b61a4c11aa199.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/1a4ccd6ef71e290687fa6fcb9db51d58d1de365083e49575b55ea77c9f298390.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/590f2bf1ffb339e47a75fdb761e9e139ae17374cac8da8f96e2e0d5a41241671.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/b6f89755d710a69eda98ba351cf134ac3ff3eca85d566b7010d262c44be2b2d4.png",
-    "screenshots/cf60095af084d05d8c8f51b2788d45e45813907a1c87782b140b61a4c11aa199.png;screenshots/1a4ccd6ef71e290687fa6fcb9db51d58d1de365083e49575b55ea77c9f298390.png;screenshots/590f2bf1ffb339e47a75fdb761e9e139ae17374cac8da8f96e2e0d5a41241671.png;screenshots/b6f89755d710a69eda98ba351cf134ac3ff3eca85d566b7010d262c44be2b2d4.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/b6f89755d710a69eda98ba351cf134ac3ff3eca85d566b7010d262c44be2b2d4.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/Rocroverss/Defender-II-PS-Vita-Port/releases/download/v1.01/defender2_vita_1.01.vpk",
       "recommended": true
-    },
-    {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/Rocroverss/Defender-II-PS-Vita-Port"
-    },
-    {
-      "type": "Other",
-      "name": "Release",
-      "url": "https://github.com/Rocroverss/Defender-II-PS-Vita-Port/releases/tag/v1.01"
     },
     {
       "type": "Official Website",
       "name": "VitaDBtoo Release Page",
       "url": "https://github.com/Rocroverss/Defender-II-PS-Vita-Port/releases"
+    },
+    {
+      "type": "Official Website",
+      "name": "NeoVitaDB Release Page",
+      "url": "https://github.com/Rocroverss/Defender-II-PS-Vita-Port/releases/tag/v1.01"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/Rocroverss/Defender-II-PS-Vita-Port"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "1380",
+  "source_url": "https://github.com/Rocroverss/Defender-II-PS-Vita-Port",
+  "release_page": "https://github.com/Rocroverss/Defender-II-PS-Vita-Port/releases",
+  "updated_at": "2026-08-13T13:46:07.725927+00:00"
 }

@@ -7,16 +7,16 @@
   "author_ids": [
     "northfear"
   ],
-  "category_id": "ports",
+  "category_id": "games",
   "subcategory_ids": [
-    "engine-port"
+    "other"
   ],
   "version": "v.1.0-r914",
   "version_date": "2023-12-23",
   "requirements": "- fd_fix.skprx OR repatch_ex.skprx\n- Game Data Files: PC",
   "size": 1883480,
-  "status": "Verified",
-  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/8efdf42416bd888df3c04c22db50aaec3289f14aeee67d1222a2d44901b98b2c.png",
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/8efdf42416bd888df3c04c22db50aaec3289f14aeee67d1222a2d44901b98b2c.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/02ad7e60dc55b724908cb5123b7aaed570e9a0bf145bbc7802b379814481104d.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/5efc563fef6d8d54dfef7673e54fcf68ca64cdcff2590866367aa522ac0c41bf.png",
@@ -25,19 +25,29 @@
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/Northfear/Vanilla-Conquer-vita/releases/download/v1.0-r914/vanillatd.vpk",
       "recommended": true
+    },
+    {
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
+      "url": "https://kyuhen.customprotocol.com/en/submissions/vanilla_conquer"
+    },
+    {
+      "type": "Official Website",
+      "name": "NeoVitaDB Release Page",
+      "url": "https://github.com/Northfear/Vanilla-Conquer-vita/releases/tag/v1.0-r914"
     },
     {
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/Northfear/Vanilla-Conquer-vita"
-    },
-    {
-      "type": "Other",
-      "name": "Release",
-      "url": "https://kyuhen.customprotocol.com/en/submissions/vanilla_conquer"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "650",
+  "source_url": "https://github.com/Northfear/Vanilla-Conquer-vita",
+  "release_page": "https://kyuhen.customprotocol.com/en/submissions/vanilla_conquer",
+  "updated_at": "2026-08-13T13:46:07.815793+00:00"
 }

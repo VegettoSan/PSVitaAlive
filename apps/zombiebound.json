@@ -3,36 +3,35 @@
   "title_id": "ZBND00001",
   "name": "Zombiebound",
   "description": "Wave-based 3D FPS survival game.",
-  "long_description": "Zombiebound is a 3D FPS zombie survival game for the PS Vita.\nIt plays very similar to your favourite CoD Zombies games.",
+  "long_description": "Zombiebound is a 3D FPS zombie survival game for the PS Vita.\nIt plays very similar to your favourite CoD Zombies games.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
   "author_ids": [
     "vitahex-games"
   ],
   "category_id": "games",
   "subcategory_ids": [
-    "shooter"
+    "other"
   ],
   "version": "v.0.1.0",
   "version_date": "2026-08-12",
-  "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
+  "requirements": "Not specified",
   "size": 6132872,
-  "status": "Verified",
-  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/079b895bbed3684c0824fa8abb4be74d2d4927f9311887961be83438dd1e7b28.png",
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1574-zombiebound.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/23b5c8c6ec0942b3d5f415ad28be56a5ec562c6dd79c7f94fd55263471c15a2f.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/6587ffb80ed99427fd8f9f9abc7d92bfabfbb25871aa02d88db76f775e247f7b.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/354923b87ec0d64b68068ffff7eb582b841613029bbb325d5a63b6818ee72e27.png",
-    "screenshots/23b5c8c6ec0942b3d5f415ad28be56a5ec562c6dd79c7f94fd55263471c15a2f.png;screenshots/6587ffb80ed99427fd8f9f9abc7d92bfabfbb25871aa02d88db76f775e247f7b.png;screenshots/354923b87ec0d64b68068ffff7eb582b841613029bbb325d5a63b6818ee72e27.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/354923b87ec0d64b68068ffff7eb582b841613029bbb325d5a63b6818ee72e27.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/328-Zombiebound.vpk",
       "recommended": true
     },
     {
-      "type": "Other",
-      "name": "Release",
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
       "url": "http://wololo.net/talk/viewtopic.php?f=116&t=48583"
     },
     {
@@ -40,5 +39,10 @@
       "name": "Repositorio",
       "url": "https://github.com"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "328",
+  "source_url": "http://wololo.net/talk/viewtopic.php?f=116&t=48583",
+  "release_page": "http://wololo.net/talk/viewtopic.php?f=116&t=48583",
+  "updated_at": "2026-08-13T13:46:08.002049+00:00"
 }

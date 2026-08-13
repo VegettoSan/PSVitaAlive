@@ -2,39 +2,45 @@
   "id": "autoplugin-2",
   "title_id": "AUTOPLUG2",
   "name": "Autoplugin 2",
-  "description": "AutoPlugin II is a PS Vita homebrew that lets users easily install, update, and manage plugins.",
+  "description": "",
   "long_description": "AutoPlugin II is a PS Vita homebrew that lets users easily install, update, and manage plugins.",
   "author_ids": [
-    "theherogac",
     "onelua"
   ],
-  "category_id": "plugins",
+  "category_id": "games",
   "subcategory_ids": [
-    "system"
+    "other"
   ],
   "version": "2.18",
   "version_date": "2026-06-12",
-  "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
+  "requirements": "Not specified",
   "size": 12385826,
-  "status": "Verified",
-  "icon": "https://robin994.github.io/NeoVitaDB-Catalog/icons/1448-autoplugin2.png",
-  "screenshots": [],
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1448-autoplugin2.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1448-autoplugin2.png"
+  ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "NeoVitaDB VPK",
       "url": "https://github.com/ONElua/AutoPlugin2/releases/download/2.18/AutoPlugin2.vpk",
       "recommended": true
+    },
+    {
+      "type": "Official Website",
+      "name": "NeoVitaDB Release Page",
+      "url": "https://github.com/ONElua/AutoPlugin2/releases/tag/2.18"
     },
     {
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/ONElua/AutoPlugin2"
-    },
-    {
-      "type": "Other",
-      "name": "Release",
-      "url": "https://github.com/ONElua/AutoPlugin2/releases/tag/2.18"
     }
-  ]
+  ],
+  "source_name": "NeoVitaDB",
+  "source_id": "1448",
+  "source_url": "https://github.com/ONElua/AutoPlugin2",
+  "release_page": "https://github.com/ONElua/AutoPlugin2/releases/tag/2.18",
+  "updated_at": "2026-08-13T13:46:08.038916+00:00"
 }

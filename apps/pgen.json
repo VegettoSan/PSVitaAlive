@@ -2,38 +2,50 @@
   "id": "pgen",
   "title_id": "PGEN00001",
   "name": "pGEN",
-  "description": "Sega Genesis emulator, multiplatform port of Genesis Plus GX.",
+  "description": "Sega Genesis emulator for PSVITA.",
   "long_description": "Sega Genesis emulator, multiplatform port of Genesis Plus GX.",
   "author_ids": [
     "cpasjuste"
   ],
-  "category_id": "ports",
+  "category_id": "games",
   "subcategory_ids": [
     "other"
   ],
-  "version": "v7.1",
+  "version": "v.7.1",
   "version_date": "2025-12-30",
-  "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
+  "requirements": "Not specified",
   "size": 3425938,
-  "status": "Verified",
-  "icon": "https://robin994.github.io/NeoVitaDB-Catalog/icons/0820-pgen.png",
-  "screenshots": [],
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/f8be86e68f284b24006045358d840d3b2720d283ffe3a963a17d29b7ef0fbc2f.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/f8be86e68f284b24006045358d840d3b2720d283ffe3a963a17d29b7ef0fbc2f.png"
+  ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/Cpasjuste/pemu/releases/download/v7.1/pgen.vpk",
       "recommended": true
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/Cpasjuste/pemu"
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
+      "url": "https://github.com/Cpasjuste/pemu/releases"
     },
     {
-      "type": "Other",
-      "name": "Release",
+      "type": "Official Website",
+      "name": "NeoVitaDB Release Page",
       "url": "https://github.com/Cpasjuste/pemu/releases/tag/v7.1"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/Cpasjuste/pemu/tree/master/pgen"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "820",
+  "source_url": "https://github.com/Cpasjuste/pemu/tree/master/pgen",
+  "release_page": "https://github.com/Cpasjuste/pemu/releases",
+  "updated_at": "2026-08-13T13:46:07.738545+00:00"
 }

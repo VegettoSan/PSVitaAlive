@@ -2,38 +2,45 @@
   "id": "wheel-of-the-year",
   "title_id": "WOTY00001",
   "name": "Wheel Of The Year",
-  "description": "A simple app to Track the Wheel of the Year (made in GM:S).",
+  "description": "",
   "long_description": "A simple app to Track the Wheel of the Year (made in GM:S)",
   "author_ids": [
     "li"
   ],
-  "category_id": "utilities",
+  "category_id": "games",
   "subcategory_ids": [
     "other"
   ],
   "version": "v1.1",
   "version_date": "2020-07-24",
-  "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
+  "requirements": "Not specified",
   "size": 5071119,
   "status": "Legacy",
-  "icon": "https://robin994.github.io/NeoVitaDB-Catalog/icons/1451-woty.png",
-  "screenshots": [],
+  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1451-woty.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1451-woty.png"
+  ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "NeoVitaDB VPK",
       "url": "https://github.com/LiEnby/WheelOfTheYearGM/releases/download/v1.1/WOTY.vpk",
       "recommended": true
+    },
+    {
+      "type": "Official Website",
+      "name": "NeoVitaDB Release Page",
+      "url": "https://github.com/LiEnby/WheelOfTheYearGM/releases/tag/v1.1"
     },
     {
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/LiEnby/WheelOfTheYearGM"
-    },
-    {
-      "type": "Other",
-      "name": "Release",
-      "url": "https://github.com/LiEnby/WheelOfTheYearGM/releases/tag/v1.1"
     }
-  ]
+  ],
+  "source_name": "NeoVitaDB",
+  "source_id": "1451",
+  "source_url": "https://github.com/LiEnby/WheelOfTheYearGM",
+  "release_page": "https://github.com/LiEnby/WheelOfTheYearGM/releases/tag/v1.1",
+  "updated_at": "2026-08-13T13:46:08.039757+00:00"
 }

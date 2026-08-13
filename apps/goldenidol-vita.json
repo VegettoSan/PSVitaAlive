@@ -2,49 +2,53 @@
   "id": "goldenidol-vita",
   "title_id": "IDOL00001",
   "name": "GoldenIdol-Vita",
-  "description": "A port of The Case of the Golden Idol for the PlayStation Vita, adapted from the original Godot Engine PC release.",
+  "description": "Port of The Case of the Golden Idol for PSVita.",
   "long_description": "A port of The Case of the Golden Idol for the PlayStation Vita, adapted from the original Godot Engine PC release.",
   "author_ids": [
     "wolff"
   ],
-  "category_id": "ports",
+  "category_id": "games",
   "subcategory_ids": [
     "other"
   ],
-  "version": "v0.8.7",
+  "version": "v.0.8.7",
   "version_date": "2026-06-25",
   "requirements": "- Game Data Files: PC",
   "size": 20430723,
   "status": "Legacy",
-  "icon": "https://robin994.github.io/NeoVitaDB-Catalog/icons/1403-goldenidol-vita.png",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/b272102d9911a23aecf3c11a501822289b7aa2fd3e14f579762fc02a72269cb9.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/2c69be89ae66b58a7b83c9db655123946b867103b4715221086ec01d0fb6e3b8.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/36666a544ce3d20d3d2731ab41562a2395b2590f8cc5aa2df4449d1b4545d41e.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/2b226dfac614a9048a5a0e73b67421d259871b694562caafd0885d38c8675104.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c961730c04ef64d3cbb7459dd152aae6d0d6d007628ad3b3fc1e805a8be921bf.png",
-    "screenshots/2c69be89ae66b58a7b83c9db655123946b867103b4715221086ec01d0fb6e3b8.png;screenshots/36666a544ce3d20d3d2731ab41562a2395b2590f8cc5aa2df4449d1b4545d41e.png;screenshots/2b226dfac614a9048a5a0e73b67421d259871b694562caafd0885d38c8675104.png;screenshots/c961730c04ef64d3cbb7459dd152aae6d0d6d007628ad3b3fc1e805a8be921bf.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c961730c04ef64d3cbb7459dd152aae6d0d6d007628ad3b3fc1e805a8be921bf.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/WolffsRoom/GoldenIdol-PSVita/releases/download/v0.8.7/GoldenIdol-Vita-v0.8.7.vpk",
       "recommended": true
-    },
-    {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/WolffsRoom/GoldenIdol-PSVita"
-    },
-    {
-      "type": "Other",
-      "name": "Release",
-      "url": "https://github.com/WolffsRoom/GoldenIdol-PSVita/releases/tag/v0.8.7"
     },
     {
       "type": "Official Website",
       "name": "VitaDBtoo Release Page",
       "url": "https://github.com/WolffsRoom/GoldenIdol-PSVita/releases"
+    },
+    {
+      "type": "Official Website",
+      "name": "NeoVitaDB Release Page",
+      "url": "https://github.com/WolffsRoom/GoldenIdol-PSVita/releases/tag/v0.8.7"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/WolffsRoom/GoldenIdol-PSVita"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "1403",
+  "source_url": "https://github.com/WolffsRoom/GoldenIdol-PSVita",
+  "release_page": "https://github.com/WolffsRoom/GoldenIdol-PSVita/releases",
+  "updated_at": "2026-08-13T13:46:07.707901+00:00"
 }

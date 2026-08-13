@@ -9,35 +9,39 @@
   ],
   "category_id": "games",
   "subcategory_ids": [
-    "puzzle"
+    "other"
   ],
   "version": "R1",
   "version_date": "2024-08-19",
-  "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
+  "requirements": "Not specified",
   "size": 18663017,
   "status": "Legacy",
-  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/6336fccc68c899396a20f0187bc0977df30b02010cef127597614127c69db0c8.png",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/6336fccc68c899396a20f0187bc0977df30b02010cef127597614127c69db0c8.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/3f81f2f61a670a9fcce77e0a1b6f39be3d531bae27195e45627f686281fcca4e.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/5d22d478eff4518d92a2d840b76af8833d9957fc7e3887c12f88a2a06c3202f9.png",
-    "screenshots/3f81f2f61a670a9fcce77e0a1b6f39be3d531bae27195e45627f686281fcca4e.png;screenshots/5d22d478eff4518d92a2d840b76af8833d9957fc7e3887c12f88a2a06c3202f9.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/5d22d478eff4518d92a2d840b76af8833d9957fc7e3887c12f88a2a06c3202f9.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/NathanKewley/godot_save_the_bees/releases/download/release-1/SaveTheBees.vpk",
       "recommended": true
+    },
+    {
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
+      "url": "https://github.com/NathanKewley/godot_save_the_bees/releases"
     },
     {
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/NathanKewley/godot_save_the_bees/tree/port/psp-vita"
-    },
-    {
-      "type": "Other",
-      "name": "Release",
-      "url": "https://github.com/NathanKewley/godot_save_the_bees/releases"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "1230",
+  "source_url": "https://github.com/NathanKewley/godot_save_the_bees/tree/port/psp-vita",
+  "release_page": "https://github.com/NathanKewley/godot_save_the_bees/releases",
+  "updated_at": "2026-08-13T13:46:07.793204+00:00"
 }

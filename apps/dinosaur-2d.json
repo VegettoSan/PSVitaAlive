@@ -13,11 +13,13 @@
   ],
   "version": "v.1.0",
   "version_date": "2026-08-09",
-  "requirements": "",
+  "requirements": "Not specified",
   "size": 2797744,
   "status": "Legacy",
-  "icon": "0139b3eccd766557f4ec33f068150158c409000051135ed29adb53ef4af197ad.png",
-  "screenshots": [],
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/0139b3eccd766557f4ec33f068150158c409000051135ed29adb53ef4af197ad.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/0139b3eccd766557f4ec33f068150158c409000051135ed29adb53ef4af197ad.png"
+  ],
   "links": [
     {
       "type": "Download",
@@ -40,5 +42,5 @@
   "source_id": "1469",
   "source_url": "https://github.com/withLogic/chrome-dinosaur-2d",
   "release_page": "https://github.com/withLogic/chrome-dinosaur-2d/releases",
-  "updated_at": "2026-08-13T05:25:55.177275+00:00"
+  "updated_at": "2026-08-13T13:46:07.695601+00:00"
 }

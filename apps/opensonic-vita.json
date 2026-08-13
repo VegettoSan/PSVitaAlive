@@ -7,41 +7,45 @@
   "author_ids": [
     "kiddrwxssj"
   ],
-  "category_id": "system",
+  "category_id": "games",
   "subcategory_ids": [
-    "firmware-tools"
+    "other"
   ],
   "version": "v.1.0.7",
   "version_date": "2026-07-29",
-  "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
+  "requirements": "Not specified",
   "size": 10858520,
   "status": "Legacy",
-  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/3f65fe8488a558b8f8f7c5f0060c3ac8819359efa005b6cdd551e5665f013bcc.png",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/3f65fe8488a558b8f8f7c5f0060c3ac8819359efa005b6cdd551e5665f013bcc.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c75864e6da64c7a5caa7be8f35cf3322410c7dde683feee3d03860a0885f8018.png",
-    "screenshots/c75864e6da64c7a5caa7be8f35cf3322410c7dde683feee3d03860a0885f8018.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c75864e6da64c7a5caa7be8f35cf3322410c7dde683feee3d03860a0885f8018.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/KiddRwxSsj/opensonic-vita/releases/download/1.0.7/opensonic-vita.vpk",
       "recommended": true
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/KiddRwxSsj/opensonic-vita"
-    },
-    {
-      "type": "Other",
-      "name": "Release",
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
       "url": "https://github.com/KiddRwxSsj/opensonic-vita/releases"
     },
     {
       "type": "Official Website",
       "name": "NeoVitaDB Release Page",
       "url": "https://github.com/KiddRwxSsj/opensonic-vita/releases/tag/1.0.7"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/KiddRwxSsj/opensonic-vita"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "1448",
+  "source_url": "https://github.com/KiddRwxSsj/opensonic-vita",
+  "release_page": "https://github.com/KiddRwxSsj/opensonic-vita/releases",
+  "updated_at": "2026-08-13T13:46:07.699242+00:00"
 }

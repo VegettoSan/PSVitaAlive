@@ -13,11 +13,13 @@
   ],
   "version": "latest",
   "version_date": "2026-08-12",
-  "requirements": "",
+  "requirements": "Not specified",
   "size": 84055,
   "status": "Legacy",
-  "icon": "1987-trophy-dumper.png",
-  "screenshots": [],
+  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1987-trophy-dumper.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1987-trophy-dumper.png"
+  ],
   "links": [
     {
       "type": "Download",
@@ -35,5 +37,5 @@
   "source_id": "1987",
   "source_url": "https://git.silica.codes",
   "release_page": "",
-  "updated_at": "2026-08-13T05:25:55.189671+00:00"
+  "updated_at": "2026-08-13T13:46:08.045236+00:00"
 }

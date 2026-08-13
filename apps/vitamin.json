@@ -3,7 +3,7 @@
   "title_id": "VITAMIN00",
   "name": "Vitamin",
   "description": "Content decrypting tool.",
-  "long_description": "First game dumper/decrypter for PSVITA/PSTV.",
+  "long_description": "First game dumper/decrypter for PSVITA/PSTV.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
   "author_ids": [
     "theflow"
   ],
@@ -13,15 +13,17 @@
   ],
   "version": "v.2.0",
   "version_date": "2026-08-12",
-  "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
+  "requirements": "Not specified",
   "size": 1196819,
-  "status": "Verified",
-  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/ee0d34045cfc2d646d29f5bbe3a1daaa9e1f75e79916f94a6778dfe09fd9b5e3.png",
-  "screenshots": [],
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1483-vitamin.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1483-vitamin.png"
+  ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/56-Vitamin.vpk",
       "recommended": true
     },
@@ -30,5 +32,10 @@
       "name": "Repositorio",
       "url": "https://github.com"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "56",
+  "source_url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/56-Vitamin.vpk",
+  "release_page": "",
+  "updated_at": "2026-08-13T13:46:08.022529+00:00"
 }

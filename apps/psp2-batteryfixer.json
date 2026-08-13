@@ -2,46 +2,50 @@
   "id": "psp2-batteryfixer",
   "title_id": "SKGB4TF1X",
   "name": "PSP2-batteryFixer",
-  "description": "A small application packed with a kernel plugin for enso that fixes most of PSVita's battery-related problems.",
+  "description": "Battery issues fixer for PSVITA.",
   "long_description": "A small application packed with a kernel plugin for enso that fixes most of PSVita's battery-related problems.\nBasically the result is the same as hardware-disconnecting the battery or using a syscon keycombo.\nAs a bonus it deletes all the temp flags from the battery chip.\nNOTE: There are some compatibility issues with some PSVita 2000 revisions: https://github.com/SKGleba/PSP2-batteryFixer/issues/13",
   "author_ids": [
     "skgleba"
   ],
-  "category_id": "plugins",
+  "category_id": "games",
   "subcategory_ids": [
-    "compatibility"
+    "other"
   ],
-  "version": "v3.0.1",
+  "version": "v.3.0.1",
   "version_date": "2023-01-08",
-  "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
+  "requirements": "Not specified",
   "size": 43566,
-  "status": "Verified",
-  "icon": "https://robin994.github.io/NeoVitaDB-Catalog/icons/0479-psp2-batteryfixer.png",
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/f74326575de03fca664bb29fea56b1872eac87023c37bb160858b3b38f0edc49.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/8f0d625a378b55f86460d1478b790a0ad8b04a56c6c09a336c063954ed4df33e.png",
-    "screenshots/8f0d625a378b55f86460d1478b790a0ad8b04a56c6c09a336c063954ed4df33e.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/8f0d625a378b55f86460d1478b790a0ad8b04a56c6c09a336c063954ed4df33e.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/SKGleba/PSP2-batteryFixer/releases/download/v3.0.1/batteryFixer.vpk",
       "recommended": true
-    },
-    {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/SKGleba/PSP2-batteryFixer"
-    },
-    {
-      "type": "Other",
-      "name": "Release",
-      "url": "https://github.com/SKGleba/PSP2-batteryFixer/releases/tag/v3.0.1"
     },
     {
       "type": "Official Website",
       "name": "VitaDBtoo Release Page",
       "url": "https://github.com/SKGleba/PSP2-batteryFixer/releases"
+    },
+    {
+      "type": "Official Website",
+      "name": "NeoVitaDB Release Page",
+      "url": "https://github.com/SKGleba/PSP2-batteryFixer/releases/tag/v3.0.1"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/SKGleba/PSP2-batteryFixer"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "479",
+  "source_url": "https://github.com/SKGleba/PSP2-batteryFixer",
+  "release_page": "https://github.com/SKGleba/PSP2-batteryFixer/releases",
+  "updated_at": "2026-08-13T13:46:07.870737+00:00"
 }

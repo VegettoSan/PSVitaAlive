@@ -3,31 +3,30 @@
   "title_id": "CANDYCRIS",
   "name": "Candy Crisis Vita",
   "description": "Port of Candy Crisis for PSVITA.",
-  "long_description": "Port of Candy Crisis for PSVITA.\nCandy Crisis is an exciting combination of pure action and puzzle gaming! The game features twelve unique stages, complete with its own character and individual technique. Also, you can pair off against a friend, and even specify a handicap so that both players are evenly matched. And if you don't want to play against an opponent, Solitaire Crisis mode allows you to practice without having to compete against an opponent. A tutorial is included with the game as well, so even puzzle novices can become Candy Crisis champions in no time.",
+  "long_description": "Port of Candy Crisis for PSVITA.\nCandy Crisis is an exciting combination of pure action and puzzle gaming! The game features twelve unique stages, complete with its own character and individual technique. Also, you can pair off against a friend, and even specify a handicap so that both players are evenly matched. And if you don't want to play against an opponent, Solitaire Crisis mode allows you to practice without having to compete against an opponent. A tutorial is included with the game as well, so even puzzle novices can become Candy Crisis champions in no time.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
   "author_ids": [
     "rinnegatamante"
   ],
-  "category_id": "ports",
+  "category_id": "games",
   "subcategory_ids": [
-    "puzzle"
+    "other"
   ],
   "version": "v.1.0",
   "version_date": "2026-08-12",
-  "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
+  "requirements": "Not specified",
   "size": 717046,
-  "status": "Verified",
-  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/9b2341e591c95e047dda580c3b5e9589429d5fe24a7cd5358b6fda61eb3e85dc.png",
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1814-candy-crisis-vita.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c2fe3114de8eb24c08825d7aa3ff4fc89b14d09ad711c30cfa9a362469e9f9cd.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/aa7e6f00a665e2c66e8bd7217dee968b8a55e1c88520061d0418441366399bcf.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/a56e97e20ca1aa1f6f77f3c31b6ea7ee3d22a326b890dee0245ba0d5e3500a8d.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c765a619b3c78ea857286d57e14c3123258da13989dd743221e71b687549daa5.png",
-    "screenshots/c2fe3114de8eb24c08825d7aa3ff4fc89b14d09ad711c30cfa9a362469e9f9cd.png;screenshots/aa7e6f00a665e2c66e8bd7217dee968b8a55e1c88520061d0418441366399bcf.png;screenshots/a56e97e20ca1aa1f6f77f3c31b6ea7ee3d22a326b890dee0245ba0d5e3500a8d.png;screenshots/c765a619b3c78ea857286d57e14c3123258da13989dd743221e71b687549daa5.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c765a619b3c78ea857286d57e14c3123258da13989dd743221e71b687549daa5.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1043-candy.vpk",
       "recommended": true
     },
@@ -36,5 +35,10 @@
       "name": "Repositorio",
       "url": "https://github.com/Rinnegatamante/CandyCrisis"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "1043",
+  "source_url": "https://github.com/Rinnegatamante/CandyCrisis",
+  "release_page": "",
+  "updated_at": "2026-08-13T13:46:07.861752+00:00"
 }

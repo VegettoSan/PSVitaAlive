@@ -3,32 +3,30 @@
   "title_id": "SOTT06722",
   "name": "Sonic Time Twisted",
   "description": "Port of Sonic Time Twisted for PSVITA.",
-  "long_description": "Sonic Time Twisted is a Sonic the Hedgehog fan game inspired by Sonc CD and Sonic 3 & Knuckles. Original game by Overbound Game Studio.",
+  "long_description": "Sonic Time Twisted is a Sonic the Hedgehog fan game inspired by Sonc CD and Sonic 3 & Knuckles. Original game by Overbound Game Studio.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
   "author_ids": [
-    "megagameboy",
-    "mdashk"
+    "megagameboy"
   ],
-  "category_id": "ports",
+  "category_id": "games",
   "subcategory_ids": [
     "other"
   ],
   "version": "v.1.1.2.1",
   "version_date": "2026-08-12",
-  "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
+  "requirements": "Not specified",
   "size": 102118727,
-  "status": "Verified",
-  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/b4bd48d2dc67e0589e8bdd6e16e54fa2c2ec05401386ff8a3f1d963e860cfdb7.png",
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1786-sonic-time-twisted.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c0e9f5417c182c5d3907122a0ab85cbd35d8e6fe1b5b862c59adf27216f78570.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/3bac8cadfdd6a6db6fae609d0434e3e4e1f88a19d2306c950048ea72e4e55549.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/f022ecaf931055ca28ad91b6cc8fec2292244fe264895005a01451547f1252e3.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/6486535b0081258cea08ac64bae1c3edb6cacba9dfd26997fbd3f49afaf4cd40.png",
-    "screenshots/c0e9f5417c182c5d3907122a0ab85cbd35d8e6fe1b5b862c59adf27216f78570.png;screenshots/3bac8cadfdd6a6db6fae609d0434e3e4e1f88a19d2306c950048ea72e4e55549.png;screenshots/f022ecaf931055ca28ad91b6cc8fec2292244fe264895005a01451547f1252e3.png;screenshots/6486535b0081258cea08ac64bae1c3edb6cacba9dfd26997fbd3f49afaf4cd40.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/6486535b0081258cea08ac64bae1c3edb6cacba9dfd26997fbd3f49afaf4cd40.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/836-SonicTimeTwisted.vpk",
       "recommended": true
     },
@@ -37,5 +35,10 @@
       "name": "Repositorio",
       "url": "https://github.com/MEGAgameBoy/Sonic-Time-Twisted-PS-Vita-Port"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "836",
+  "source_url": "https://github.com/MEGAgameBoy/Sonic-Time-Twisted-PS-Vita-Port",
+  "release_page": "",
+  "updated_at": "2026-08-13T13:46:07.888366+00:00"
 }

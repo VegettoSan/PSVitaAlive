@@ -2,48 +2,55 @@
   "id": "hode",
   "title_id": "HODEVITA1",
   "name": "hode",
-  "description": "hode is a reimplementation of the engine used by the game Heart of Darkness developed by Amazing Studio.",
+  "description": "Port of Heart of Darkness for PSVITA.",
   "long_description": "hode is a reimplementation of the engine used by the game Heart of Darkness developed by Amazing Studio.",
   "author_ids": [
     "usineur"
   ],
-  "category_id": "ports",
+  "category_id": "games",
   "subcategory_ids": [
-    "engine-port"
+    "other"
   ],
   "version": "0.2.9d",
   "version_date": "2020-11-22",
   "requirements": "- Game Data Files: PC",
   "size": 690276,
-  "status": "Verified",
-  "icon": "https://robin994.github.io/NeoVitaDB-Catalog/icons/0512-hode.png",
-  "screenshots": [],
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/0512-hode.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/0512-hode.png"
+  ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
-      "url": "https://github.com/usineur/hode/releases/download/0.2.9d/hode.vpk",
+      "name": "VitaDBtoo VPK",
+      "url": "https://github.com/usineur/hode/releases/download/0.2.9/hode.vpk",
       "recommended": true
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/usineur/hode"
-    },
-    {
-      "type": "Other",
-      "name": "Release",
-      "url": "https://github.com/usineur/hode/releases/tag/0.2.9d"
-    },
-    {
       "type": "Download",
-      "name": "VitaDBtoo VPK",
-      "url": "https://github.com/usineur/hode/releases/download/0.2.9/hode.vpk"
+      "name": "NeoVitaDB VPK",
+      "url": "https://github.com/usineur/hode/releases/download/0.2.9d/hode.vpk"
     },
     {
       "type": "Official Website",
       "name": "VitaDBtoo Release Page",
       "url": "https://github.com/usineur/hode/releases"
+    },
+    {
+      "type": "Official Website",
+      "name": "NeoVitaDB Release Page",
+      "url": "https://github.com/usineur/hode/releases/tag/0.2.9d"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/usineur/hode"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "512",
+  "source_url": "https://github.com/usineur/hode",
+  "release_page": "https://github.com/usineur/hode/releases",
+  "updated_at": "2026-08-13T13:46:07.954715+00:00"
 }

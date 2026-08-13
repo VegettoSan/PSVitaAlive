@@ -5,42 +5,47 @@
   "description": "Port of the Unity remake of Welcome to Crazy Cattle 3D.",
   "long_description": "Port of the Unity remake made by Dimolade. Welcome to Crazy Cattle 3D, an exhilarating battle royale game where you control explosive sheep in a chaotic survival challenge across three distinct global environments. Master physics-based movement, outwit your opponents, and be the last sheep standing!",
   "author_ids": [
-    "lordchickenblaster",
-    "dimolade",
     "anna3d"
   ],
-  "category_id": "ports",
+  "category_id": "games",
   "subcategory_ids": [
     "other"
   ],
   "version": "v.1.4",
   "version_date": "2025-05-10",
-  "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
+  "requirements": "Not specified",
   "size": 44323467,
-  "status": "Verified",
-  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/2defa82ded4846e47231af54aff59a3a53c153898d4002a09634b48b4cfe1648.png",
-  "screenshots": [],
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/2defa82ded4846e47231af54aff59a3a53c153898d4002a09634b48b4cfe1648.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/2defa82ded4846e47231af54aff59a3a53c153898d4002a09634b48b4cfe1648.png"
+  ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/Lordchickenblaster/Crazy-Cattle-Vita/releases/download/1.4/CC3DV1.4.vpk",
       "recommended": true
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/Lordchickenblaster/Crazy-Cattle-Vita/releases"
-    },
-    {
-      "type": "Other",
-      "name": "Release",
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
       "url": "https://github.com/Lordchickenblaster/Crazy-Cattle-Vita"
     },
     {
       "type": "Official Website",
       "name": "NeoVitaDB Release Page",
       "url": "https://github.com/Lordchickenblaster/Crazy-Cattle-Vita/releases/tag/1.4"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/Lordchickenblaster/Crazy-Cattle-Vita/releases"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "1270",
+  "source_url": "https://github.com/Lordchickenblaster/Crazy-Cattle-Vita/releases",
+  "release_page": "https://github.com/Lordchickenblaster/Crazy-Cattle-Vita",
+  "updated_at": "2026-08-13T13:46:07.772786+00:00"
 }

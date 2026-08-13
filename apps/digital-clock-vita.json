@@ -2,38 +2,45 @@
   "id": "digital-clock-vita",
   "title_id": "DIGICLOCK",
   "name": "Digital Clock Vita",
-  "description": "Minimal PlayStation Vita digital clock with MP3 music playback, alarm scheduling and touch dismiss.",
+  "description": "",
   "long_description": "Minimal PlayStation Vita digital clock with MP3 music playback, alarm scheduling and touch dismiss.",
   "author_ids": [
     "theherogac"
   ],
-  "category_id": "ports",
+  "category_id": "games",
   "subcategory_ids": [
     "other"
   ],
   "version": "1.00",
   "version_date": "2026-08-02",
-  "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
+  "requirements": "Not specified",
   "size": 203632,
   "status": "Legacy",
-  "icon": "https://robin994.github.io/NeoVitaDB-Catalog/icons/1450-digitalclockvita.png",
-  "screenshots": [],
+  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1450-digitalclockvita.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1450-digitalclockvita.png"
+  ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "NeoVitaDB VPK",
       "url": "https://github.com/theheroGAC/Digital-Clock-Vita/releases/download/1.00/DigitalClockVita.vpk",
       "recommended": true
+    },
+    {
+      "type": "Official Website",
+      "name": "NeoVitaDB Release Page",
+      "url": "https://github.com/theheroGAC/Digital-Clock-Vita/releases/tag/1.00"
     },
     {
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/theheroGAC/Digital-Clock-Vita"
-    },
-    {
-      "type": "Other",
-      "name": "Release",
-      "url": "https://github.com/theheroGAC/Digital-Clock-Vita/releases/tag/1.00"
     }
-  ]
+  ],
+  "source_name": "NeoVitaDB",
+  "source_id": "1450",
+  "source_url": "https://github.com/theheroGAC/Digital-Clock-Vita",
+  "release_page": "https://github.com/theheroGAC/Digital-Clock-Vita/releases/tag/1.00",
+  "updated_at": "2026-08-13T13:46:08.039421+00:00"
 }

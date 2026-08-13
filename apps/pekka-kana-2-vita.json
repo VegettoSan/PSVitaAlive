@@ -7,7 +7,7 @@
   "author_ids": [
     "rinnegatamante"
   ],
-  "category_id": "ports",
+  "category_id": "games",
   "subcategory_ids": [
     "other"
   ],
@@ -15,36 +15,40 @@
   "version_date": "2022-07-28",
   "requirements": "- libshacccg.suprx\n- kubridge.skprx\n- fd_fix.skprx OR repatch_ex.skprx\n- Game Data Files: Android",
   "size": 1761732,
-  "status": "Verified",
-  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/b1653a96dab6ffe0b676c7335752145805a3ef64b50746b254c9efc8662a19bb.png",
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/b1653a96dab6ffe0b676c7335752145805a3ef64b50746b254c9efc8662a19bb.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/bf48e3a477464d62a164bbbbed2873a9e2b803fd8b27f64f86d95396485bc0b8.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/f559d536b3c3b11eaf38536023f049ea22e017eb6fab846421c4514a4403e692.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/b32464bcfafaadbf66c13eb27ac53a30852f61496b654861fe5d012af13d9b16.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/d59d0ac00401f1a0bae3e2a111c9362a20bcf6333a23af03e8d97cebc7d11616.png",
-    "screenshots/bf48e3a477464d62a164bbbbed2873a9e2b803fd8b27f64f86d95396485bc0b8.png;screenshots/f559d536b3c3b11eaf38536023f049ea22e017eb6fab846421c4514a4403e692.png;screenshots/b32464bcfafaadbf66c13eb27ac53a30852f61496b654861fe5d012af13d9b16.png;screenshots/d59d0ac00401f1a0bae3e2a111c9362a20bcf6333a23af03e8d97cebc7d11616.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/d59d0ac00401f1a0bae3e2a111c9362a20bcf6333a23af03e8d97cebc7d11616.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/Rinnegatamante/Pekka-Kana-2-Vita/releases/download/v.1.0/Pekka2.vpk",
       "recommended": true
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/Rinnegatamante/Pekka-Kana-2-Vita"
-    },
-    {
-      "type": "Other",
-      "name": "Release",
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
       "url": "https://github.com/Rinnegatamante/Pekka-Kana-2-Vita/releases"
     },
     {
       "type": "Official Website",
       "name": "NeoVitaDB Release Page",
       "url": "https://github.com/Rinnegatamante/Pekka-Kana-2-Vita/releases/tag/v.1.0"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/Rinnegatamante/Pekka-Kana-2-Vita"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "847",
+  "source_url": "https://github.com/Rinnegatamante/Pekka-Kana-2-Vita",
+  "release_page": "https://github.com/Rinnegatamante/Pekka-Kana-2-Vita/releases",
+  "updated_at": "2026-08-13T13:46:07.886765+00:00"
 }

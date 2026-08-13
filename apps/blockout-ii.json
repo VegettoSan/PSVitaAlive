@@ -7,38 +7,45 @@
   "author_ids": [
     "bomblik"
   ],
-  "category_id": "ports",
+  "category_id": "games",
   "subcategory_ids": [
-    "puzzle"
+    "other"
   ],
   "version": "v.BlockOut_II_PSVITA_2.5",
   "version_date": "2017-02-20",
-  "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
+  "requirements": "Not specified",
   "size": 6133397,
-  "status": "Verified",
-  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/cfcd39dca798b5462938a9288699256991790f928f6f356510798963323ebc9c.png",
-  "screenshots": [],
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/cfcd39dca798b5462938a9288699256991790f928f6f356510798963323ebc9c.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/cfcd39dca798b5462938a9288699256991790f928f6f356510798963323ebc9c.png"
+  ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/bomblik/BlockOut_II_PSVITA/releases/download/BlockOut_II_PSVITA_2.5/BlockOut_II.vpk",
       "recommended": true
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/bomblik/BlockOut_II_PSVITA"
-    },
-    {
-      "type": "Other",
-      "name": "Release",
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
       "url": "http://gekihen.customprotocol.com/en/project/BlockOut-II"
     },
     {
       "type": "Official Website",
       "name": "NeoVitaDB Release Page",
       "url": "https://github.com/bomblik/BlockOut_II_PSVITA/releases/tag/BlockOut_II_PSVITA_2.5"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/bomblik/BlockOut_II_PSVITA"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "18",
+  "source_url": "https://github.com/bomblik/BlockOut_II_PSVITA",
+  "release_page": "http://gekihen.customprotocol.com/en/project/BlockOut-II",
+  "updated_at": "2026-08-13T13:46:08.011202+00:00"
 }

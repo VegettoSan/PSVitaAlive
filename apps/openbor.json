@@ -5,49 +5,50 @@
   "description": "Fighting game engine.",
   "long_description": "OpenBOR is the ultimate 2D gaming engine with over 10+ years of active development behind it. With OpenBOR you can build anything from simple button mashers to elaborate projects rivaling the most lavish professional offerings. Download one of the dozens of ready to play game modules available here, or grab the development kit and start up one of your own!",
   "author_ids": [
-    "cpasjuste",
-    "rsn8887",
-    "plombo",
     "meetpatty"
   ],
-  "category_id": "ports",
+  "category_id": "games",
   "subcategory_ids": [
     "other"
   ],
   "version": "v.4704-rsn8887git-1.2",
   "version_date": "2020-10-02",
-  "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
+  "requirements": "Not specified",
   "size": 1026839,
-  "status": "Verified",
-  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/53278376c8056b6609f80851e8e4af90e4b07a0a0cae1181faa317544a66fb15.png",
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/53278376c8056b6609f80851e8e4af90e4b07a0a0cae1181faa317544a66fb15.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/b486e2bcf7658a7e5e45f302f97a82a7d8c5132fc4ca96c0100c741dcd2d5506.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/94cdc3d2728600bfdc9a3c4b0dc66f32af707e24b4700cae0200b02006f5caca.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/cc6e71cadf6da80575d9f9e68b56d2c91fb6afbc0899bf653b3dd95bcef7005f.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/504b83c1352cd97df07e4803f84e19c8df74c2b765f506c8688766b17b5997cd.png",
-    "screenshots/b486e2bcf7658a7e5e45f302f97a82a7d8c5132fc4ca96c0100c741dcd2d5506.png;screenshots/94cdc3d2728600bfdc9a3c4b0dc66f32af707e24b4700cae0200b02006f5caca.png;screenshots/cc6e71cadf6da80575d9f9e68b56d2c91fb6afbc0899bf653b3dd95bcef7005f.png;screenshots/504b83c1352cd97df07e4803f84e19c8df74c2b765f506c8688766b17b5997cd.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/504b83c1352cd97df07e4803f84e19c8df74c2b765f506c8688766b17b5997cd.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/rsn8887/openbor/releases/download/v4704-rsn8887git-1.2/OpenBOR.vpk",
       "recommended": true
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/rsn8887/openbor"
-    },
-    {
-      "type": "Other",
-      "name": "Release",
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
       "url": "https://gbatemp.net/threads/release-openbor-vita-port-by-cpasjuste.527852/"
     },
     {
       "type": "Official Website",
       "name": "NeoVitaDB Release Page",
       "url": "https://github.com/rsn8887/openbor/releases/tag/v4704-rsn8887git-1.2"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/rsn8887/openbor"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "410",
+  "source_url": "https://github.com/rsn8887/openbor",
+  "release_page": "https://gbatemp.net/threads/release-openbor-vita-port-by-cpasjuste.527852/",
+  "updated_at": "2026-08-13T13:46:07.945206+00:00"
 }

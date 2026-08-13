@@ -1,36 +1,47 @@
 {
   "id": "notepad-vita",
-  "title_id": "NOTE00001",
+  "title_id": "ARKSNPAD0",
   "name": "Notepad Vita",
   "description": "Notepad app for PSVITA.",
-  "long_description": "Notepad Vita is a simple note-taking app for the PS Vita.\nNotepad Vita uses both the touch screen and the buttons to navigate the menus with a clean and modern look.\nOn the left side you can see a list with all your notes and on the right side the preview of the selected note.\nIt supports multi-line keyboard for easy note editing.\nYour notes are saved in ux0:/data/Notes/ in .txt format.",
+  "long_description": "Notepad Vita is a simple note-taking app for the PS Vita.\nNotepad Vita uses both the touch screen and the buttons to navigate the menus with a clean and modern look.\nOn the left side you can see a list with all your notes and on the right side the preview of the selected note.\nIt supports multi-line keyboard for easy note editing.\nYour notes are saved in ux0:/data/Notes/ in .txt format.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
   "author_ids": [
-    "vitahex-games"
+    "vitahex-games",
+    "arkanite"
   ],
-  "category_id": "ports",
+  "category_id": "games",
   "subcategory_ids": [
     "other"
   ],
   "version": "v.1.0",
-  "version_date": "2017-09-15",
-  "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
+  "version_date": "2026-08-12",
+  "requirements": "Not specified",
   "size": 1443790,
-  "status": "Verified",
-  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/86f9eecaf4378984b0ff26bf9e550aa48948d17c5d43d91338d73f9e71b678c1.png",
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1572-notepad-vita.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/92c82a02928ebff0b718d473bbf6ef309f004eab349acd46e3f4097c2b327c6a.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/310-Notepad.vpk",
       "recommended": true
     },
     {
-      "type": "Other",
-      "name": "Release",
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
       "url": "http://wololo.net/talk/viewtopic.php?f=116&t=48500"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "310",
+  "source_url": "http://wololo.net/talk/viewtopic.php?f=116&t=48500",
+  "release_page": "http://wololo.net/talk/viewtopic.php?f=116&t=48500",
+  "updated_at": "2026-08-13T13:46:08.002967+00:00"
 }

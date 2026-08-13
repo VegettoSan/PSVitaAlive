@@ -2,12 +2,12 @@
   "id": "coffee-talk-vita",
   "title_id": "CFTK12345",
   "name": "Coffee Talk Vita",
-  "description": "Coffee Talk is a game about listening to peopleÃ¢â‚¬â„¢s problems and helping them by serving up a warm drink out of the ingredients you have in stock.",
+  "description": "Port of Coffee Talk for PSVITA.",
   "long_description": "Coffee Talk is a game about listening to peopleÃ¢â‚¬â„¢s problems and helping them by serving up a warm drink out of the ingredients you have in stock. It is a game that depicts lives as humanly as possible, while having a cast that is more than just humans.",
   "author_ids": [
     "patnosd"
   ],
-  "category_id": "ports",
+  "category_id": "games",
   "subcategory_ids": [
     "other"
   ],
@@ -16,29 +16,28 @@
   "requirements": "- Game Data Files: PC",
   "size": 15037090,
   "status": "Legacy",
-  "icon": "https://robin994.github.io/NeoVitaDB-Catalog/icons/1201-coffee-talk-vita.png",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/74b634760cf29c428489ff3ef0bbbb80bce50ee9ee7542d8649c2a155d261ab0.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/9a0539fc31e81f5c6b3b62205148ebeb563d2b3eaf0a5f9ad316029d40392f1a.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/98e644fff1e9fd844cfa1a0d11cd67706721ff8a5dcf099fd5b70d80843d120d.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/7c59e3c31a736e28e8305c8031b4ed8b8a1b0e3985d1554cf2e7634519dc0d8b.png",
-    "screenshots/9a0539fc31e81f5c6b3b62205148ebeb563d2b3eaf0a5f9ad316029d40392f1a.png;screenshots/98e644fff1e9fd844cfa1a0d11cd67706721ff8a5dcf099fd5b70d80843d120d.png;screenshots/7c59e3c31a736e28e8305c8031b4ed8b8a1b0e3985d1554cf2e7634519dc0d8b.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/7c59e3c31a736e28e8305c8031b4ed8b8a1b0e3985d1554cf2e7634519dc0d8b.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/PatnosDD/Coffee-Talk-PS-VITA/releases/download/Release/coffeetalk.vpk",
       "recommended": true
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
       "url": "https://github.com/PatnosDD/Coffee-Talk-PS-VITA"
-    },
-    {
-      "type": "Other",
-      "name": "Release",
-      "url": "https://github.com/PatnosDD/Coffee-Talk-PS-VITA/releases/tag/Release"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "1201",
+  "source_url": "https://github.com/PatnosDD/Coffee-Talk-PS-VITA",
+  "release_page": "https://github.com/PatnosDD/Coffee-Talk-PS-VITA",
+  "updated_at": "2026-08-13T13:46:07.802957+00:00"
 }

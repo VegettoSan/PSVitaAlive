@@ -7,38 +7,45 @@
   "author_ids": [
     "davidcralph"
   ],
-  "category_id": "ports",
+  "category_id": "games",
   "subcategory_ids": [
     "other"
   ],
   "version": "v.1.00",
   "version_date": "2022-10-24",
-  "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
+  "requirements": "Not specified",
   "size": 22021106,
   "status": "Legacy",
-  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/3359530f0c5ab7f2cf410f514d98dc02df4614e84bf7d5a79577304407a4cf75.png",
-  "screenshots": [],
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/3359530f0c5ab7f2cf410f514d98dc02df4614e84bf7d5a79577304407a4cf75.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/3359530f0c5ab7f2cf410f514d98dc02df4614e84bf7d5a79577304407a4cf75.png"
+  ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/davidcralph/CandyWrapper_vita/releases/download/01.00/CandyWrapper.vpk",
       "recommended": true
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/davidcralph/CandyWrapper_vita"
-    },
-    {
-      "type": "Other",
-      "name": "Release",
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
       "url": "https://github.com/davidcralph/CandyWrapper_vita/releases"
     },
     {
       "type": "Official Website",
       "name": "NeoVitaDB Release Page",
       "url": "https://github.com/davidcralph/CandyWrapper_vita/releases/tag/01.00"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/davidcralph/CandyWrapper_vita"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "1061",
+  "source_url": "https://github.com/davidcralph/CandyWrapper_vita",
+  "release_page": "https://github.com/davidcralph/CandyWrapper_vita/releases",
+  "updated_at": "2026-08-13T13:46:07.875192+00:00"
 }

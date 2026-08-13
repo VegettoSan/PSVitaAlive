@@ -3,30 +3,29 @@
   "title_id": "OPENMRACE",
   "name": "OpenMRac Vita",
   "description": "Port of OpenMRac for PSVITA.",
-  "long_description": "Port of OpenMRac for PSVITA.\nOpenMRac is an opensource racing game with time trial and up to 4 players split-screen multiplayer.",
+  "long_description": "Port of OpenMRac for PSVITA.\nOpenMRac is an opensource racing game with time trial and up to 4 players split-screen multiplayer.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
   "author_ids": [
     "rinnegatamante"
   ],
-  "category_id": "ports",
+  "category_id": "games",
   "subcategory_ids": [
-    "racing"
+    "other"
   ],
   "version": "v.1.0.1",
   "version_date": "2026-08-12",
   "requirements": "- libshacccg.suprx",
   "size": 7223492,
-  "status": "Verified",
-  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/6ce21ea945585bfa24a124c345ade09790fcd7be7750c433d578b1e2b249bab7.png",
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1858-openmrac-vita.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/b93465fea3f96ea30307604aa7f7fe3cba79d6e06d195a5c0c933641aa9cb826.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/1c963f24bef823da7481bd01ed01aa457c2429ac383aa633990a84a5147a59cd.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/3dbda2499f206543b195d600664d5d450b769853d8addeae735ae4d384f31010.png",
-    "screenshots/b93465fea3f96ea30307604aa7f7fe3cba79d6e06d195a5c0c933641aa9cb826.png;screenshots/1c963f24bef823da7481bd01ed01aa457c2429ac383aa633990a84a5147a59cd.png;screenshots/3dbda2499f206543b195d600664d5d450b769853d8addeae735ae4d384f31010.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/3dbda2499f206543b195d600664d5d450b769853d8addeae735ae4d384f31010.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1127-OpenMRac.vpk",
       "recommended": true
     },
@@ -35,5 +34,10 @@
       "name": "Repositorio",
       "url": "https://github.com/Rinnegatamante/OpenMRac"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "1127",
+  "source_url": "https://github.com/Rinnegatamante/OpenMRac",
+  "release_page": "",
+  "updated_at": "2026-08-13T13:46:07.821410+00:00"
 }

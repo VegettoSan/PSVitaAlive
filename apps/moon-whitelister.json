@@ -7,33 +7,25 @@
   "author_ids": [
     "gnmmarechal"
   ],
-  "category_id": "development",
+  "category_id": "games",
   "subcategory_ids": [
-    "lua"
+    "other"
   ],
   "version": "v.1.0c",
   "version_date": "2016-08-06",
-  "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
+  "requirements": "Not specified",
   "size": 1628464,
-  "status": "Verified",
-  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/c8050f859fc6af4172e08fc80fd2e4e9c59ef806e7a6961fad9f877ff6097593.png",
-  "screenshots": [],
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/c8050f859fc6af4172e08fc80fd2e4e9c59ef806e7a6961fad9f877ff6097593.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/c8050f859fc6af4172e08fc80fd2e4e9c59ef806e7a6961fad9f877ff6097593.png"
+  ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/4-MoonWhitelister.vpk",
       "recommended": true
-    },
-    {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/gnmmarechal/moon-whitelister"
-    },
-    {
-      "type": "Other",
-      "name": "Release",
-      "url": "https://gbatemp.net/threads/release-moon-whitelister-play-whitelist-blocked-games-on-the-playstation-vita-tv.437346/"
     },
     {
       "type": "Download",
@@ -42,8 +34,23 @@
     },
     {
       "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
+      "url": "https://gbatemp.net/threads/release-moon-whitelister-play-whitelist-blocked-games-on-the-playstation-vita-tv.437346/"
+    },
+    {
+      "type": "Official Website",
       "name": "NeoVitaDB Release Page",
       "url": "https://github.com/gnmmarechal/moon-whitelister/releases/tag/v1.0c"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/gnmmarechal/moon-whitelister"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "4",
+  "source_url": "https://github.com/gnmmarechal/moon-whitelister",
+  "release_page": "https://gbatemp.net/threads/release-moon-whitelister-play-whitelist-blocked-games-on-the-playstation-vita-tv.437346/",
+  "updated_at": "2026-08-13T13:46:08.029705+00:00"
 }

@@ -2,46 +2,50 @@
   "id": "vita-moonlight",
   "title_id": "XYZZ00002",
   "name": "Vita Moonlight",
-  "description": "Vita Moonlight allows you to stream your full collection of Steam games from your powerful Windows desktop to your PSVITA.",
+  "description": "NVIDIA Moonlight Streamer port.",
   "long_description": "Vita Moonlight allows you to stream your full collection of Steam games from your powerful Windows desktop to your PSVITA.",
   "author_ids": [
-    "aorsiniyt",
-    "xyzz",
-    "d3m3vilurr",
-    "shadowprince"
+    "aorsiniyt"
   ],
-  "category_id": "networking",
+  "category_id": "games",
   "subcategory_ids": [
-    "game-streaming"
+    "other"
   ],
-  "version": "0.13.2",
+  "version": "v.0.13.2",
   "version_date": "2025-11-16",
-  "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
+  "requirements": "Not specified",
   "size": 2788529,
-  "status": "Verified",
-  "icon": "https://robin994.github.io/NeoVitaDB-Catalog/icons/0076-vita-moonlight.png",
-  "screenshots": [],
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/b85bb6cb216c87c28693179ac17ddfd1c2c9570d9ef295d48ae6c0dde79a5a16.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/b85bb6cb216c87c28693179ac17ddfd1c2c9570d9ef295d48ae6c0dde79a5a16.png"
+  ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/xyzz/vita-moonlight/releases/download/0.13.2/moonlight.vpk",
       "recommended": true
-    },
-    {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/xyzz/vita-moonlight"
-    },
-    {
-      "type": "Other",
-      "name": "Release",
-      "url": "https://github.com/xyzz/vita-moonlight/releases/tag/0.13.2"
     },
     {
       "type": "Official Website",
       "name": "VitaDBtoo Release Page",
       "url": "https://github.com/xyzz/vita-moonlight/releases"
+    },
+    {
+      "type": "Official Website",
+      "name": "NeoVitaDB Release Page",
+      "url": "https://github.com/xyzz/vita-moonlight/releases/tag/0.13.2"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/xyzz/vita-moonlight"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "76",
+  "source_url": "https://github.com/xyzz/vita-moonlight",
+  "release_page": "https://github.com/xyzz/vita-moonlight/releases",
+  "updated_at": "2026-08-13T13:46:07.740854+00:00"
 }

@@ -7,44 +7,48 @@
   "author_ids": [
     "kingtorro"
   ],
-  "category_id": "ports",
+  "category_id": "games",
   "subcategory_ids": [
-    "rpg"
+    "other"
   ],
   "version": "v.1.003",
   "version_date": "2026-02-17",
   "requirements": "- libshacccg.suprx\n- Game Data Files: PC",
   "size": 3586848,
-  "status": "Verified",
-  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/4bd9abf526466c92dde0afc0471de7cdfff7ee6ddafe2ea0c1341e8a39685d13.png",
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/4bd9abf526466c92dde0afc0471de7cdfff7ee6ddafe2ea0c1341e8a39685d13.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/82ff23ae93d6fabd5764df568e943494801ba6a46cd6049e0c603909684e2a20.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/6c1dc500a61d91789bd0da9305cd084265f3647e375581e0d32e16a2aa6bd4b6.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/28878ad0c2a661c0a6b9a0bf192be0bdf437a3ec86935c25687ac4fe62fb2cd6.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/5387fdd5d8ab1fc830a0bc5af4642b63cba0f6b38e7c41905404c6c57ef0133b.png",
-    "screenshots/82ff23ae93d6fabd5764df568e943494801ba6a46cd6049e0c603909684e2a20.png;screenshots/6c1dc500a61d91789bd0da9305cd084265f3647e375581e0d32e16a2aa6bd4b6.png;screenshots/28878ad0c2a661c0a6b9a0bf192be0bdf437a3ec86935c25687ac4fe62fb2cd6.png;screenshots/5387fdd5d8ab1fc830a0bc5af4642b63cba0f6b38e7c41905404c6c57ef0133b.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/5387fdd5d8ab1fc830a0bc5af4642b63cba0f6b38e7c41905404c6c57ef0133b.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/TheLostPantheon/ArxLibertatis/releases/download/v1.003/arx.vpk",
       "recommended": true
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/TheLostPantheon/ArxLibertatis"
-    },
-    {
-      "type": "Other",
-      "name": "Release",
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
       "url": "https://github.com/TheLostPantheon/ArxLibertatis/releases"
     },
     {
       "type": "Official Website",
       "name": "NeoVitaDB Release Page",
       "url": "https://github.com/TheLostPantheon/ArxLibertatis/releases/tag/v1.003"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/TheLostPantheon/ArxLibertatis"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "1367",
+  "source_url": "https://github.com/TheLostPantheon/ArxLibertatis",
+  "release_page": "https://github.com/TheLostPantheon/ArxLibertatis/releases",
+  "updated_at": "2026-08-13T13:46:07.732468+00:00"
 }

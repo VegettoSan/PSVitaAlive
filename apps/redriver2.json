@@ -3,11 +3,11 @@
   "title_id": "REDRIVER2",
   "name": "REDRIVER2",
   "description": "Port of REDRIVER2 for PSVITA.",
-  "long_description": "Before GTA3 there was Driver 2. Driver 2 is a open-world driving game originally developed for the PS1. This is a port of Reverse Engineered Driver 2 (REDRIVER2) for Vita. Reverse engineering efforts of the game were originally done by SoapyMan of OpenDriver2.",
+  "long_description": "Before GTA3 there was Driver 2. Driver 2 is a open-world driving game originally developed for the PS1. This is a port of Reverse Engineered Driver 2 (REDRIVER2) for Vita. Reverse engineering efforts of the game were originally done by SoapyMan of OpenDriver2.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
   "author_ids": [
     "osirizx"
   ],
-  "category_id": "ports",
+  "category_id": "games",
   "subcategory_ids": [
     "other"
   ],
@@ -15,30 +15,34 @@
   "version_date": "2026-08-12",
   "requirements": "- Game Data Files: PSX",
   "size": 5413624,
-  "status": "Verified",
-  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/aa139479044cec5f2d0aa18353ec9289413114c774456c281c3295a9ab8edfbf.png",
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1874-redriver2.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/1607495b13b2f6ea6bb09065042b6df1acb8862c21059fb49664bf04756d6a4b.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/44a33e724589e7f56af4e749f7614f9b3360496626519b690136fc3013330a33.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/8ce0899f65b4a57c2662337afd301028a43c49691c0de09c81b9b39d89a8d390.png",
-    "screenshots/1607495b13b2f6ea6bb09065042b6df1acb8862c21059fb49664bf04756d6a4b.png;screenshots/44a33e724589e7f56af4e749f7614f9b3360496626519b690136fc3013330a33.png;screenshots/8ce0899f65b4a57c2662337afd301028a43c49691c0de09c81b9b39d89a8d390.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/8ce0899f65b4a57c2662337afd301028a43c49691c0de09c81b9b39d89a8d390.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1145-REDRIVER2.vpk",
       "recommended": true
+    },
+    {
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
+      "url": "https://fuhen.homebrew-contest.com/submissions/61/"
     },
     {
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/OsirizX/REDRIVER2/tree/vita"
-    },
-    {
-      "type": "Other",
-      "name": "Release",
-      "url": "https://fuhen.homebrew-contest.com/submissions/61/"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "1145",
+  "source_url": "https://github.com/OsirizX/REDRIVER2/tree/vita",
+  "release_page": "https://fuhen.homebrew-contest.com/submissions/61/",
+  "updated_at": "2026-08-13T13:46:07.830285+00:00"
 }

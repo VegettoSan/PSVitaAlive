@@ -7,43 +7,47 @@
   "author_ids": [
     "rompelhd"
   ],
-  "category_id": "ports",
+  "category_id": "games",
   "subcategory_ids": [
-    "platformer"
+    "other"
   ],
   "version": "v.1.0.0",
   "version_date": "2026-03-15",
-  "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
+  "requirements": "Not specified",
   "size": 1130397,
   "status": "Legacy",
-  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/06c06544dd47b87a3949141061fc829ff44d735ddf5f232c5d4b90c839709ea9.png",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/06c06544dd47b87a3949141061fc829ff44d735ddf5f232c5d4b90c839709ea9.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/627f625839c2724ac389bf892b5b821b6f616fa47341129982b2bd0cda22ae8a.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/db6cd64a139d29359ce4e50ed87dd5bb3970c32e72570750cbc87cbc52c184fd.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/fd01ffa16dffdfca220ffc0e7158e96b6ae2d2ca1fc73b8e6bf0c2370f58c9c7.png",
-    "screenshots/627f625839c2724ac389bf892b5b821b6f616fa47341129982b2bd0cda22ae8a.png;screenshots/db6cd64a139d29359ce4e50ed87dd5bb3970c32e72570750cbc87cbc52c184fd.png;screenshots/fd01ffa16dffdfca220ffc0e7158e96b6ae2d2ca1fc73b8e6bf0c2370f58c9c7.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/fd01ffa16dffdfca220ffc0e7158e96b6ae2d2ca1fc73b8e6bf0c2370f58c9c7.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/rompelhd/VitaSSH/releases/download/v.1.0.0/VitaSSH-1.0.0.vpk",
       "recommended": true
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/rompelhd/VitaSSH"
-    },
-    {
-      "type": "Other",
-      "name": "Release",
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
       "url": "https://github.com/rompelhd/VitaSSH/releases"
     },
     {
       "type": "Official Website",
       "name": "NeoVitaDB Release Page",
       "url": "https://github.com/rompelhd/VitaSSH/releases/tag/v.1.0.0"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/rompelhd/VitaSSH"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "1373",
+  "source_url": "https://github.com/rompelhd/VitaSSH",
+  "release_page": "https://github.com/rompelhd/VitaSSH/releases",
+  "updated_at": "2026-08-13T13:46:07.729046+00:00"
 }

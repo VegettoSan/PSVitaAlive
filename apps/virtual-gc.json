@@ -2,43 +2,50 @@
   "id": "virtual-gc",
   "title_id": "PSVGC0001",
   "name": "Virtual GC",
-  "description": "Application that allows you to dump and run your physical gamecards.",
+  "description": "Gamecard dumper/emulator for PSVITA.",
   "long_description": "Application that allows you to dump and run your physical gamecards.",
   "author_ids": [
     "motoharu"
   ],
-  "category_id": "utilities",
+  "category_id": "games",
   "subcategory_ids": [
     "other"
   ],
-  "version": "v2.0",
+  "version": "v.2.0",
   "version_date": "2019-02-06",
-  "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
+  "requirements": "Not specified",
   "size": 53085,
-  "status": "Verified",
-  "icon": "https://robin994.github.io/NeoVitaDB-Catalog/icons/0312-virtual-gc.png",
-  "screenshots": [],
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/61bca637e258e0275f576f8b5c468fea488f8d03b7420e340f854a69da9fbe0a.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/61bca637e258e0275f576f8b5c468fea488f8d03b7420e340f854a69da9fbe0a.png"
+  ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/motoharu-gosuto/psvgamesd/releases/download/v2.0/psvgc.vpk",
       "recommended": true
-    },
-    {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/motoharu-gosuto/psvgamesd"
-    },
-    {
-      "type": "Other",
-      "name": "Release",
-      "url": "https://github.com/motoharu-gosuto/psvgamesd/releases/tag/v2.0"
     },
     {
       "type": "Official Website",
       "name": "VitaDBtoo Release Page",
       "url": "https://github.com/motoharu-gosuto/psvgamesd/releases"
+    },
+    {
+      "type": "Official Website",
+      "name": "NeoVitaDB Release Page",
+      "url": "https://github.com/motoharu-gosuto/psvgamesd/releases/tag/v2.0"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/motoharu-gosuto/psvgamesd"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "312",
+  "source_url": "https://github.com/motoharu-gosuto/psvgamesd",
+  "release_page": "https://github.com/motoharu-gosuto/psvgamesd/releases",
+  "updated_at": "2026-08-13T13:46:07.983984+00:00"
 }

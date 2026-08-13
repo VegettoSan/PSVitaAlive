@@ -3,5 +3,22 @@
   "name": "HexZyle & Rinnegatamante",
   "avatar": "",
   "bio": "",
-  "links": []
+  "links": [
+    {
+      "type": "Download",
+      "name": "VitaDBtoo VPK",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/263-EUCLIOD.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
+      "url": "http://wololo.net/talk/viewtopic.php?f=116&t=48167"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com"
+    }
+  ]
 }

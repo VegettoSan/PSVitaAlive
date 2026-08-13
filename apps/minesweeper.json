@@ -3,25 +3,27 @@
   "title_id": "MINESWEEP",
   "name": "Minesweeper",
   "description": "Minesweeper clone for PSVITA.",
-  "long_description": "PSVITA/PSTV clone of the classic Minesweeper game for Windows PCs.",
+  "long_description": "PSVITA/PSTV clone of the classic Minesweeper game for Windows PCs.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
   "author_ids": [
     "leestorm"
   ],
   "category_id": "games",
   "subcategory_ids": [
-    "puzzle"
+    "other"
   ],
   "version": "v.1.1",
   "version_date": "2026-08-12",
-  "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
+  "requirements": "Not specified",
   "size": 471103,
-  "status": "Verified",
-  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/85fd059ea308ef37968f1a9bcc85da10d32a405e409acae82cbbbdcbb3af72bd.png",
-  "screenshots": [],
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1517-minesweeper.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1517-minesweeper.png"
+  ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/141-Minesweeper.vpk",
       "recommended": true
     },
@@ -30,5 +32,10 @@
       "name": "Repositorio",
       "url": "https://github.com"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "141",
+  "source_url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/141-Minesweeper.vpk",
+  "release_page": "",
+  "updated_at": "2026-08-13T13:46:08.026517+00:00"
 }

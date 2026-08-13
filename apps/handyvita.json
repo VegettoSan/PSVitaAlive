@@ -7,44 +7,48 @@
   "author_ids": [
     "frangarcj"
   ],
-  "category_id": "emulators",
+  "category_id": "games",
   "subcategory_ids": [
-    "atari"
+    "other"
   ],
   "version": "v.1.4",
   "version_date": "2016-07-29",
-  "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
+  "requirements": "Not specified",
   "size": 233504,
-  "status": "Verified",
-  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/f5a28a91017c0ad6d3145d5de71eef8ac18260cb7b96d8fd7ca2e288be1d1fad.png",
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/f5a28a91017c0ad6d3145d5de71eef8ac18260cb7b96d8fd7ca2e288be1d1fad.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/273b5c51fe87c4906272d7af314346833eb288d8bfa461ec74f04e3fa3fcc456.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/902b8fa1b662e3592cab949791f72144b82989c0559fb91baf412f6285e90f43.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/5a0b895051e3783690143d6cfa1f586b92e5f3f69863bc9aa20f755844de2a34.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/adf9c3ec512cc52429ea1e8d06e73cbd881f884bf16166d4920def383a3fa120.png",
-    "screenshots/273b5c51fe87c4906272d7af314346833eb288d8bfa461ec74f04e3fa3fcc456.png;screenshots/902b8fa1b662e3592cab949791f72144b82989c0559fb91baf412f6285e90f43.png;screenshots/5a0b895051e3783690143d6cfa1f586b92e5f3f69863bc9aa20f755844de2a34.png;screenshots/adf9c3ec512cc52429ea1e8d06e73cbd881f884bf16166d4920def383a3fa120.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/adf9c3ec512cc52429ea1e8d06e73cbd881f884bf16166d4920def383a3fa120.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/frangarcj/HandyVITA/releases/download/1.4-Henkaku/HandyVITA.vpk",
       "recommended": true
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/frangarcj/HandyVITA"
-    },
-    {
-      "type": "Other",
-      "name": "Release",
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
       "url": "https://github.com/frangarcj/HandyVITA/releases"
     },
     {
       "type": "Official Website",
       "name": "NeoVitaDB Release Page",
       "url": "https://github.com/frangarcj/HandyVITA/releases/tag/1.4-Henkaku"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/frangarcj/HandyVITA"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "174",
+  "source_url": "https://github.com/frangarcj/HandyVITA",
+  "release_page": "https://github.com/frangarcj/HandyVITA/releases",
+  "updated_at": "2026-08-13T13:46:08.034092+00:00"
 }

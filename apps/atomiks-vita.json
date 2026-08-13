@@ -7,43 +7,47 @@
   "author_ids": [
     "withlogic"
   ],
-  "category_id": "ports",
+  "category_id": "games",
   "subcategory_ids": [
-    "puzzle"
+    "other"
   ],
   "version": "v.1.0.0",
   "version_date": "2026-03-14",
-  "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
+  "requirements": "Not specified",
   "size": 1815845,
   "status": "Legacy",
-  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/6f8404a55b1d3e392d8f50f2bc48ae8536aff78aa4bbcc4a0017e74bbb5b48b6.png",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/6f8404a55b1d3e392d8f50f2bc48ae8536aff78aa4bbcc4a0017e74bbb5b48b6.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/d37feb23166531d717d8411eef43a7835e19dfbe8215bd3cdc6782243f7085e7.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/cf7712e85e398e569215f14f853cedb17c31c104abfb2aef5ba44f19a26c787a.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/dad3803769f56b6625ff90f6f0f37552e9a37fe21b1dc4ea9a46fce2c2f4e7a1.png",
-    "screenshots/d37feb23166531d717d8411eef43a7835e19dfbe8215bd3cdc6782243f7085e7.png;screenshots/cf7712e85e398e569215f14f853cedb17c31c104abfb2aef5ba44f19a26c787a.png;screenshots/dad3803769f56b6625ff90f6f0f37552e9a37fe21b1dc4ea9a46fce2c2f4e7a1.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/dad3803769f56b6625ff90f6f0f37552e9a37fe21b1dc4ea9a46fce2c2f4e7a1.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/withLogic/atomiks-psvita/releases/download/1.0.0/atomiks.vpk",
       "recommended": true
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/withLogic/atomiks-psvita"
-    },
-    {
-      "type": "Other",
-      "name": "Release",
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
       "url": "https://github.com/withLogic/atomiks-psvita/releases"
     },
     {
       "type": "Official Website",
       "name": "NeoVitaDB Release Page",
       "url": "https://github.com/withLogic/atomiks-psvita/releases/tag/1.0.0"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/withLogic/atomiks-psvita"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "1371",
+  "source_url": "https://github.com/withLogic/atomiks-psvita",
+  "release_page": "https://github.com/withLogic/atomiks-psvita/releases",
+  "updated_at": "2026-08-13T13:46:07.729597+00:00"
 }

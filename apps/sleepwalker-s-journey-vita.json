@@ -7,7 +7,7 @@
   "author_ids": [
     "rinnegatamante"
   ],
-  "category_id": "ports",
+  "category_id": "games",
   "subcategory_ids": [
     "other"
   ],
@@ -15,36 +15,40 @@
   "version_date": "2023-03-04",
   "requirements": "- libshacccg.suprx\n- kubridge.skprx\n- fd_fix.skprx OR repatch_ex.skprx\n- Game Data Files: Android",
   "size": 1072564,
-  "status": "Verified",
-  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/82228f11d20fc251f45e2219d57d7a01b0c85d9d7c221a4edde6dd226e9a65d9.png",
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/82228f11d20fc251f45e2219d57d7a01b0c85d9d7c221a4edde6dd226e9a65d9.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/8147aa2a41a1eebc55329239b25050fadef9fb584ebb48f361fd730cf350bc9d.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/ddd77354a013ad127771c8d76ae2f626b007a7dd657a59ae60e8739dfb24987b.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/a06550592b6e586b6ac3586c3aecfd8134b1501a98ebfb7ed835e92a89709f2d.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c88a44d38abdca6996272e4d2cb423279862406e2de3ad34024909c93b81c1c3.png",
-    "screenshots/8147aa2a41a1eebc55329239b25050fadef9fb584ebb48f361fd730cf350bc9d.png;screenshots/ddd77354a013ad127771c8d76ae2f626b007a7dd657a59ae60e8739dfb24987b.png;screenshots/a06550592b6e586b6ac3586c3aecfd8134b1501a98ebfb7ed835e92a89709f2d.png;screenshots/c88a44d38abdca6996272e4d2cb423279862406e2de3ad34024909c93b81c1c3.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c88a44d38abdca6996272e4d2cb423279862406e2de3ad34024909c93b81c1c3.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/Rinnegatamante/sleepwalkers-vita/releases/download/v.1.2/sleepwalkers.vpk",
       "recommended": true
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/Rinnegatamante/sleepwalkers-vita/"
-    },
-    {
-      "type": "Other",
-      "name": "Release",
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
       "url": "https://github.com/Rinnegatamante/sleepwalkers-vita/releases"
     },
     {
       "type": "Official Website",
       "name": "NeoVitaDB Release Page",
       "url": "https://github.com/Rinnegatamante/sleepwalkers-vita/releases/tag/v.1.2"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/Rinnegatamante/sleepwalkers-vita/"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "1048",
+  "source_url": "https://github.com/Rinnegatamante/sleepwalkers-vita/",
+  "release_page": "https://github.com/Rinnegatamante/sleepwalkers-vita/releases",
+  "updated_at": "2026-08-13T13:46:07.858460+00:00"
 }

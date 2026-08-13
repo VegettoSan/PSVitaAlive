@@ -7,43 +7,47 @@
   "author_ids": [
     "then00p"
   ],
-  "category_id": "plugins",
+  "category_id": "games",
   "subcategory_ids": [
     "other"
   ],
   "version": "v.1.1.1",
   "version_date": "2020-06-09",
-  "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
+  "requirements": "Not specified",
   "size": 2672942,
-  "status": "Verified",
-  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/72ce8f03b862fc58a901126d09a994c213f4fe0f08edd7662634136fbc06c789.png",
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/72ce8f03b862fc58a901126d09a994c213f4fe0f08edd7662634136fbc06c789.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/e77a5155a9f1ed62130c19e6b6a12957f15983bbca761666ccf57410aeec7830.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/01d72aed28eca348b0a6a1393194f92f4b8f635f980ef34634738315c541ecbd.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/905cfd02fbef74e9a06ff66d4397cfbd2152a72f9ddd8531c42c046de62aa4b0.png",
-    "screenshots/e77a5155a9f1ed62130c19e6b6a12957f15983bbca761666ccf57410aeec7830.png;screenshots/01d72aed28eca348b0a6a1393194f92f4b8f635f980ef34634738315c541ecbd.png;screenshots/905cfd02fbef74e9a06ff66d4397cfbd2152a72f9ddd8531c42c046de62aa4b0.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/905cfd02fbef74e9a06ff66d4397cfbd2152a72f9ddd8531c42c046de62aa4b0.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/THEN00P/EasyPlugin/releases/download/1.1.1/easyplugin.vpk",
       "recommended": true
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/THEN00P/EasyPlugin"
-    },
-    {
-      "type": "Other",
-      "name": "Release",
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
       "url": "https://gbatemp.net/threads/release-easy-plugin-vitadb-plugin-installer.532956/"
     },
     {
       "type": "Official Website",
       "name": "NeoVitaDB Release Page",
       "url": "https://github.com/THEN00P/EasyPlugin/releases/tag/1.1.1"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/THEN00P/EasyPlugin"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "440",
+  "source_url": "https://github.com/THEN00P/EasyPlugin",
+  "release_page": "https://gbatemp.net/threads/release-easy-plugin-vitadb-plugin-installer.532956/",
+  "updated_at": "2026-08-13T13:46:07.952656+00:00"
 }

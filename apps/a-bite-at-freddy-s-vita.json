@@ -2,44 +2,48 @@
   "id": "a-bite-at-freddy-s-vita",
   "title_id": "ABAF00011",
   "name": "A Bite at Freddy's Vita",
-  "description": "A Bite at Freddy's is a bite-sized Five Nights at Freddy's experience.",
+  "description": "Port of A Bite at Freddy's for PSVita.",
   "long_description": "A Bite at Freddy's is a bite-sized Five Nights at Freddy's experience. Fnaf style. reddy Fazbear's Grill needs your help to test and repair the Freddy Fast-Food Delivery machine! Work alongside the restaurant manager to ensure food orders can be delivered from kitchen to customer without issue.\nComplete orders, repairs, and challenges!",
   "author_ids": [
     "rocroverss"
   ],
-  "category_id": "ports",
+  "category_id": "games",
   "subcategory_ids": [
     "other"
   ],
-  "version": "V1.01",
+  "version": "v.1.01",
   "version_date": "2026-06-15",
   "requirements": "- Game Data Files: PC",
   "size": 15656987,
   "status": "Legacy",
-  "icon": "https://robin994.github.io/NeoVitaDB-Catalog/icons/1413-a-bite-at-freddy-s-vita.png",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/5dce95c17dc62653f81adba1e3b2eaac81b8e86eeaf82fc30e05831800534b0e.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c270e5aa18107b2f9d21961df25b9bae38cc4d429149e278c7b6c9a6909967b5.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/4328116359bc7a1e03fb737fc66bdae2112203149e69cab849a1b04a8501c2fe.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/afa951741aa2cf70e6019dceb9b8149c25d50adbae216273d62bcfb346582ac6.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/9071c58272fd20628e49dd9f9c2eaec9a7298ec837d82ef8745873b5eb185d2a.png",
-    "screenshots/c270e5aa18107b2f9d21961df25b9bae38cc4d429149e278c7b6c9a6909967b5.png;screenshots/4328116359bc7a1e03fb737fc66bdae2112203149e69cab849a1b04a8501c2fe.png;screenshots/afa951741aa2cf70e6019dceb9b8149c25d50adbae216273d62bcfb346582ac6.png;screenshots/9071c58272fd20628e49dd9f9c2eaec9a7298ec837d82ef8745873b5eb185d2a.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/9071c58272fd20628e49dd9f9c2eaec9a7298ec837d82ef8745873b5eb185d2a.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/Rocroverss/A-Bite-at-Freddy-s-psvita/releases/download/V1.01/AbAF-v1.01.vpk",
       "recommended": true
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
       "url": "https://github.com/Rocroverss/A-Bite-at-Freddy-s-psvita"
     },
     {
-      "type": "Other",
-      "name": "Release",
+      "type": "Official Website",
+      "name": "NeoVitaDB Release Page",
       "url": "https://github.com/Rocroverss/A-Bite-at-Freddy-s-psvita/releases/tag/V1.01"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "1413",
+  "source_url": "https://github.com/Rocroverss/A-Bite-at-Freddy-s-psvita",
+  "release_page": "https://github.com/Rocroverss/A-Bite-at-Freddy-s-psvita",
+  "updated_at": "2026-08-13T13:46:07.711879+00:00"
 }

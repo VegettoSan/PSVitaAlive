@@ -3,50 +3,52 @@
   "title_id": "ZGLOOMCOL",
   "name": "ZGloom-Vita",
   "description": "Port of ZGloom for PSVITA.",
-  "long_description": "ZGloom is a re-implementation of Amiga FPS Gloom, including support for Zombie Massacre.\nGloom was a 1995 Doom-clone from Black Magic Software for Commodore Amiga. It had very messy and meaty graphics and needed a very powerful Amiga computer back then. It had several official successors like Gloom Deluxe/Ultimate Gloom (a graphical enhanced Gloom), Gloom 3 and Zombie Massacre. \nGloom was made freely available by its developers. Also other games with the engine like Gloom 3 or Zombie Massacre can be downloaded for free on Aminet. Otherwise you can take the original game files from your game installation.",
+  "long_description": "ZGloom is a re-implementation of Amiga FPS Gloom, including support for Gloom 3 and Zombie Massacre. It offers reflections, blob shadows, dust particles in the air, and many optimizations.\nGloom was a 1995 Doom-clone from Black Magic Software for Commodore Amiga. It had very messy and meaty graphics and needed a very powerful Amiga computer back then. It had several official successors like Gloom Deluxe/Ultimate Gloom (a graphical enhanced Gloom), Gloom 3 and Zombie Massacre.\nGloom was made freely available by its developers. Also other games with the engine like Gloom 3 or Zombie Massacre can be downloaded for free on Aminet. Otherwise you can take the original game files from your game installation.",
   "author_ids": [
-    "andiweli",
-    "jetstreamsham",
     "01y"
   ],
-  "category_id": "ports",
+  "category_id": "games",
   "subcategory_ids": [
-    "fps"
+    "other"
   ],
   "version": "v08.2026",
   "version_date": "2026-07-22",
-  "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
+  "requirements": "Not specified",
   "size": 5079436,
   "status": "Legacy",
-  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/3fe4c259148c39d71116e90cfa3d3755323d5dd2e692bc53f03e63bca91cd835.png",
+  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/0731-zgloom-vita.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/6b44d650210e3700a20830c0e88021f532fe4ae4a24d51f80e1f9fa68a6e4839.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/5bd9a2bafdddad47d7fb241642df693a9509e574e301f9deda71e5bec591871e.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/02464aaa6d7b5b07ac69272531db126a07b8c00353eb2dad520e60c36ca0dd4c.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/6a43cb8a360808723b9cb9b5f860dda4d994f2ed1fe9c299a70826a51e081412.png",
-    "screenshots/6b44d650210e3700a20830c0e88021f532fe4ae4a24d51f80e1f9fa68a6e4839.png;screenshots/5bd9a2bafdddad47d7fb241642df693a9509e574e301f9deda71e5bec591871e.png;screenshots/02464aaa6d7b5b07ac69272531db126a07b8c00353eb2dad520e60c36ca0dd4c.png;screenshots/6a43cb8a360808723b9cb9b5f860dda4d994f2ed1fe9c299a70826a51e081412.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/6a43cb8a360808723b9cb9b5f860dda4d994f2ed1fe9c299a70826a51e081412.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/Andiweli/ZGloom-Vita-Vita2D/releases/download/v08.2026/ZGloomCollection.08.2026.vpk",
       "recommended": true
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/Andiweli/ZGloom-Vita-Vita2D"
-    },
-    {
-      "type": "Other",
-      "name": "Release",
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
       "url": "https://github.com/Andiweli/ZGloom-Vita-Vita2D/releases"
     },
     {
       "type": "Official Website",
       "name": "NeoVitaDB Release Page",
       "url": "https://github.com/Andiweli/ZGloom-Vita-Vita2D/releases/tag/v08.2026"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/Andiweli/ZGloom-Vita-Vita2D"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "731",
+  "source_url": "https://github.com/Andiweli/ZGloom-Vita-Vita2D",
+  "release_page": "https://github.com/Andiweli/ZGloom-Vita-Vita2D/releases",
+  "updated_at": "2026-08-13T13:46:07.717789+00:00"
 }

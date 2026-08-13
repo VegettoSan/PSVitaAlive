@@ -2,38 +2,50 @@
   "id": "minecraft-pe",
   "title_id": "MCPE00000",
   "name": "Minecraft PE",
-  "description": "Port of Minecraft Pocket Edition 0.6.1 alpha to PlayStation Vita.",
-  "long_description": "Port of Minecraft Pocket Edition 0.6.1 alpha to PlayStation Vita.",
+  "description": "Port of Minecraft Pocket Edition Alpha 0.6.1 for PSVITA.",
+  "long_description": "Port of MCPE Alpha 0.6.1 to PSVita. The original game files are required and are not included.",
   "author_ids": [
     "minecraftpe-vita"
   ],
-  "category_id": "ports",
+  "category_id": "games",
   "subcategory_ids": [
     "other"
   ],
-  "version": "v1.0.7",
-  "version_date": "2026-05-25",
-  "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
+  "version": "v.1.0.7",
+  "version_date": "2026-08-05",
+  "requirements": "- Game Data Files: Minecraft Pocket Edition Alpha 0.6.1",
   "size": 8670937,
-  "status": "Verified",
-  "icon": "https://robin994.github.io/NeoVitaDB-Catalog/icons/1445-minecraftpe.png",
-  "screenshots": [],
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/baa45e6664c15c57c484ad9d6cd34898c27b8c2771b17c136e3b4956e79ee3c5.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/baa45e6664c15c57c484ad9d6cd34898c27b8c2771b17c136e3b4956e79ee3c5.png"
+  ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/minecraftpe-vita/minecraftpe-vita/releases/download/v1.0.7/minecraftpe.vpk",
       "recommended": true
+    },
+    {
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
+      "url": "https://github.com/minecraftpe-vita/minecraftpe-vita/releases"
+    },
+    {
+      "type": "Official Website",
+      "name": "NeoVitaDB Release Page",
+      "url": "https://github.com/minecraftpe-vita/minecraftpe-vita/releases/tag/v1.0.7"
     },
     {
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/minecraftpe-vita/minecraftpe-vita"
-    },
-    {
-      "type": "Other",
-      "name": "Release",
-      "url": "https://github.com/minecraftpe-vita/minecraftpe-vita/releases/tag/v1.0.7"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "1453",
+  "source_url": "https://github.com/minecraftpe-vita/minecraftpe-vita",
+  "release_page": "https://github.com/minecraftpe-vita/minecraftpe-vita/releases",
+  "updated_at": "2026-08-13T13:46:07.698288+00:00"
 }

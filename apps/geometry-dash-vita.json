@@ -2,47 +2,51 @@
   "id": "geometry-dash-vita",
   "title_id": "GEOMETRYD",
   "name": "Geometry Dash Vita",
-  "description": "Port of the Android release of Geometry Dash for the PS Vita.",
+  "description": "Port of Geometry Dash for PSVITA.",
   "long_description": "Port of the Android release of Geometry Dash for the PS Vita. Jump and fly your way through danger in this rhythm-based action platformer!\nPrepare for a near impossible challenge in the world of Geometry Dash. Push your skills to the limit as you jump, fly and flip your way through dangerous passages and spiky obstacles.",
   "author_ids": [
     "hatoving"
   ],
-  "category_id": "ports",
+  "category_id": "games",
   "subcategory_ids": [
-    "action"
+    "other"
   ],
-  "version": "v1.02",
+  "version": "v.1.02",
   "version_date": "2024-01-25",
   "requirements": "- libshacccg.suprx\n- libfmodstudio.suprx\n- kubridge.skprx\n- Game Data Files: Android",
   "size": 1125000,
-  "status": "Verified",
-  "icon": "https://robin994.github.io/NeoVitaDB-Catalog/icons/1177-geometry-dash-vita.png",
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/e7c861029b4702135b010ab07db1cb2d201e872b6891dde294405b796fe3dd51.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/8f4546d2c9d633aade378e534004a2c1d3bcc4f6172736d39a939b659c2f3bd6.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/7a61a28923d99599adde7f1f654bae2002402a3cd3a23ff89dad457dbdd040e9.png",
-    "screenshots/8f4546d2c9d633aade378e534004a2c1d3bcc4f6172736d39a939b659c2f3bd6.png;screenshots/7a61a28923d99599adde7f1f654bae2002402a3cd3a23ff89dad457dbdd040e9.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/7a61a28923d99599adde7f1f654bae2002402a3cd3a23ff89dad457dbdd040e9.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/hatoving/gdash-vita/releases/download/v1.02/gdash.vpk",
       "recommended": true
-    },
-    {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/hatoving/gdash-vita"
-    },
-    {
-      "type": "Other",
-      "name": "Release",
-      "url": "https://github.com/hatoving/gdash-vita/releases/tag/v1.02"
     },
     {
       "type": "Official Website",
       "name": "VitaDBtoo Release Page",
       "url": "https://github.com/hatoving/gdash-vita/releases"
+    },
+    {
+      "type": "Official Website",
+      "name": "NeoVitaDB Release Page",
+      "url": "https://github.com/hatoving/gdash-vita/releases/tag/v1.02"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/hatoving/gdash-vita"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "1177",
+  "source_url": "https://github.com/hatoving/gdash-vita",
+  "release_page": "https://github.com/hatoving/gdash-vita/releases",
+  "updated_at": "2026-08-13T13:46:07.811273+00:00"
 }

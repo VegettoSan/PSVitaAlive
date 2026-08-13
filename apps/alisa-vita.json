@@ -5,11 +5,9 @@
   "description": "Port of Alisa: Developer's Cut for PSVita.",
   "long_description": "This is a port of Alisa: Developer's Cut for PSVita.\nAlisa is a indie survival horror game heavily inspired by the classics of this genre like the original Resident Evil.",
   "author_ids": [
-    "rinnegatamante",
-    "patnosd",
     "bythos"
   ],
-  "category_id": "ports",
+  "category_id": "games",
   "subcategory_ids": [
     "other"
   ],
@@ -17,25 +15,24 @@
   "version_date": "2026-01-10",
   "requirements": "- Game Data Files: Steam",
   "size": 55052776,
-  "status": "Verified",
-  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/ba726dc0f029b4c038cfb75dc54f84eab73aba0d1cdf552e313d2fb875a4adaa.png",
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/ba726dc0f029b4c038cfb75dc54f84eab73aba0d1cdf552e313d2fb875a4adaa.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/75128aa7e62071fb383ea067167a338cbce6fe6b03fc88e317f4be5ee8c6e568.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/ed4b6dbdee9c47b7704a2c4567921a1bde4e30867360d5231b52acb136b0af47.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/33d01cf4927d1233f1e7a086a004fe7defeaf11bae8d73c0c396f50215a7f65d.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/22a0a8fef0ebb3aca18ea29c6327a9f99e9d2029e461754547f4e5a86dde6c62.png",
-    "screenshots/75128aa7e62071fb383ea067167a338cbce6fe6b03fc88e317f4be5ee8c6e568.png;screenshots/ed4b6dbdee9c47b7704a2c4567921a1bde4e30867360d5231b52acb136b0af47.png;screenshots/33d01cf4927d1233f1e7a086a004fe7defeaf11bae8d73c0c396f50215a7f65d.png;screenshots/22a0a8fef0ebb3aca18ea29c6327a9f99e9d2029e461754547f4e5a86dde6c62.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/22a0a8fef0ebb3aca18ea29c6327a9f99e9d2029e461754547f4e5a86dde6c62.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/Rinnegatamante/Alisa-Vita/releases/download/v.1.2/alisa.vpk",
       "recommended": true
     },
     {
-      "type": "Other",
-      "name": "Release",
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
       "url": "https://github.com/Rinnegatamante/Alisa-Vita"
     },
     {
@@ -43,5 +40,10 @@
       "name": "NeoVitaDB Release Page",
       "url": "https://github.com/Rinnegatamante/Alisa-Vita/releases/tag/v.1.2"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "1355",
+  "source_url": "https://github.com/Rinnegatamante/Alisa-Vita",
+  "release_page": "https://github.com/Rinnegatamante/Alisa-Vita",
+  "updated_at": "2026-08-13T13:46:07.737831+00:00"
 }

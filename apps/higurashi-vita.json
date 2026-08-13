@@ -3,37 +3,44 @@
   "title_id": "HIGURASHI",
   "name": "Higurashi Vita",
   "description": "Higurashi port for PSVITA.",
-  "long_description": "A completely unofficial port of Higurashi for the PS Vita.\nThe engine supports also VNDS games since v.2.5.",
+  "long_description": "A completely unofficial port of Higurashi for the PS Vita.\nThe engine supports also VNDS games since v.2.5.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
   "author_ids": [
     "mylegguy"
   ],
-  "category_id": "ports",
+  "category_id": "games",
   "subcategory_ids": [
-    "engine-port"
+    "other"
   ],
   "version": "v.3.0.2",
   "version_date": "2026-08-12",
   "requirements": "- Game Data Files: PC",
   "size": 5145119,
-  "status": "Verified",
-  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/688e6b1256224d6c5535132fbbe0b2c2ee59f0235b9591281cd68177fca31fd6.png",
-  "screenshots": [],
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1558-higurashi-vita.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1558-higurashi-vita.png"
+  ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/271-Higurashi-Vita.vpk",
       "recommended": true
+    },
+    {
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
+      "url": "http://wololo.net/talk/viewtopic.php?f=116&t=48223"
     },
     {
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/MyLegGuy/Higurashi-Vita"
-    },
-    {
-      "type": "Other",
-      "name": "Release",
-      "url": "http://wololo.net/talk/viewtopic.php?f=116&t=48223"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "271",
+  "source_url": "https://github.com/MyLegGuy/Higurashi-Vita",
+  "release_page": "http://wololo.net/talk/viewtopic.php?f=116&t=48223",
+  "updated_at": "2026-08-13T13:46:07.937117+00:00"
 }

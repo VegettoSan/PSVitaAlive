@@ -3,41 +3,45 @@
   "title_id": "DOS1ESCHE",
   "name": "DJ Escher",
   "description": "Music game for PSVita.",
-  "long_description": "M.C. Escher got tired of being an MC and decided to try being a DJ instead!\nHe throws hexagonal vinyl recordings of his favorite band of singing potatoes, so you have to catch as many as you can with your turntables.",
+  "long_description": "M.C. Escher got tired of being an MC and decided to try being a DJ instead!\nHe throws hexagonal vinyl recordings of his favorite band of singing potatoes, so you have to catch as many as you can with your turntables.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
   "author_ids": [
     "dos"
   ],
   "category_id": "games",
   "subcategory_ids": [
-    "music"
+    "other"
   ],
   "version": "v.1.0",
   "version_date": "2026-08-12",
-  "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
+  "requirements": "Not specified",
   "size": 18680010,
-  "status": "Archive",
-  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/9b193827a1cd2d456c502cbf9f4585ad3f5bebb13176ba922e19bab30a3b990d.png",
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1974-dj-escher.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/3ddc6928df848634abd64a99c83fee4dd56f6c70e5fd8eed4896e004eea3c719.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/1f6c889c9e3ebb1d19f9b8a20c973578cb1e71393978add0efa54a31e52962d2.png",
-    "screenshots/3ddc6928df848634abd64a99c83fee4dd56f6c70e5fd8eed4896e004eea3c719.png;screenshots/1f6c889c9e3ebb1d19f9b8a20c973578cb1e71393978add0efa54a31e52962d2.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/1f6c889c9e3ebb1d19f9b8a20c973578cb1e71393978add0efa54a31e52962d2.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1446-djescher-vita.vpk",
       "recommended": true
+    },
+    {
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
+      "url": "https://dos.itch.io/djescher"
     },
     {
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://gitlab.com/dosowisko.net/djescher/"
-    },
-    {
-      "type": "Other",
-      "name": "Release",
-      "url": "https://dos.itch.io/djescher"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "1446",
+  "source_url": "https://gitlab.com/dosowisko.net/djescher/",
+  "release_page": "https://dos.itch.io/djescher",
+  "updated_at": "2026-08-13T13:46:07.916928+00:00"
 }

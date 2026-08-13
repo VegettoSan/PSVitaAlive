@@ -3,11 +3,11 @@
   "title_id": "GNHM00451",
   "name": "Gone Home",
   "description": "Port of Gone Home for PSVITA.",
-  "long_description": "Port of Gone Home for PSVITA.\nYou arrive home after a year abroad. You expect your family to greet you, but the house is empty. Something's not right. Where is everyone? And what's happened here? Unravel the mystery for yourself in Gone Home, a story exploration game from The Fullbright Company.\nGone Home is an interactive exploration simulator. Interrogate every detail of a seemingly normal house to discover the story of the people who live there. Open any drawer and door. Pick up objects and examine them to discover clues. Uncover the events of one family's lives by investigating what they've left behind.\nGo Home Again.",
+  "long_description": "Port of Gone Home for PSVITA.\nYou arrive home after a year abroad. You expect your family to greet you, but the house is empty. Something's not right. Where is everyone? And what's happened here? Unravel the mystery for yourself in Gone Home, a story exploration game from The Fullbright Company.\nGone Home is an interactive exploration simulator. Interrogate every detail of a seemingly normal house to discover the story of the people who live there. Open any drawer and door. Pick up objects and examine them to discover clues. Uncover the events of one family's lives by investigating what they've left behind.\nGo Home Again.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
   "author_ids": [
     "soup-um"
   ],
-  "category_id": "ports",
+  "category_id": "games",
   "subcategory_ids": [
     "other"
   ],
@@ -15,24 +15,23 @@
   "version_date": "2026-08-12",
   "requirements": "- Game Data Files: PC",
   "size": 532864284,
-  "status": "Verified",
-  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/160247e03b07d46afb5baa81a1c8c7e841e7a50678abc14b452f86ebed2092b2.png",
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1876-gone-home.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/79d998009fa20d4bc265f1223b64a3fd6f506083e64d09302b7e283408368d62.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/7944f45996a3f52fdbdb6c87bc768dce4e89c92b0529de81a4fdb37dad2b7cae.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c2dfaaf23470f4b5aec355f81dcd73c942731fce6708dc6e062bda856fe1a526.png",
-    "screenshots/79d998009fa20d4bc265f1223b64a3fd6f506083e64d09302b7e283408368d62.png;screenshots/7944f45996a3f52fdbdb6c87bc768dce4e89c92b0529de81a4fdb37dad2b7cae.png;screenshots/c2dfaaf23470f4b5aec355f81dcd73c942731fce6708dc6e062bda856fe1a526.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c2dfaaf23470f4b5aec355f81dcd73c942731fce6708dc6e062bda856fe1a526.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1147-Gone_Home_for_PlayStation_Vita_V1.0.1.vpk",
       "recommended": true
     },
     {
-      "type": "Other",
-      "name": "Release",
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
       "url": "https://fuhen.homebrew-contest.com/submissions/67/"
     },
     {
@@ -40,5 +39,10 @@
       "name": "Repositorio",
       "url": "https://github.com"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "1147",
+  "source_url": "https://fuhen.homebrew-contest.com/submissions/67/",
+  "release_page": "https://fuhen.homebrew-contest.com/submissions/67/",
+  "updated_at": "2026-08-13T13:46:07.817915+00:00"
 }

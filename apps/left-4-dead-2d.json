@@ -3,7 +3,7 @@
   "title_id": "L4D200001",
   "name": "Left 4 Dead 2D",
   "description": "2D demake of Left 4 Dead.",
-  "long_description": "A 2D demake of Left 4 Dead offering a topside view similar to Hotline Miami made with GameMaker Studio.",
+  "long_description": "A 2D demake of Left 4 Dead offering a topside view similar to Hotline Miami made with GameMaker Studio.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
   "author_ids": [
     "alexdev2"
   ],
@@ -13,25 +13,24 @@
   ],
   "version": "v.0.1.1",
   "version_date": "2026-08-12",
-  "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
+  "requirements": "Not specified",
   "size": 40013315,
-  "status": "Verified",
-  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/534b366c43079b27ad27380a30dac483d96f6f43ac7a711d10e0a1bb7a7d99d4.png",
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1846-left-4-dead-2d.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/3f6f5b4405bf769ec62c810c7badcb9935292b7978d74b3114ec8811ab3211c1.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/d54977af42fac3e25b5e329faea27b5d6869f068ed1921fc258eacb77821a76b.png",
-    "screenshots/3f6f5b4405bf769ec62c810c7badcb9935292b7978d74b3114ec8811ab3211c1.png;screenshots/d54977af42fac3e25b5e329faea27b5d6869f068ed1921fc258eacb77821a76b.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/d54977af42fac3e25b5e329faea27b5d6869f068ed1921fc258eacb77821a76b.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1111-left-4-dead-2-2d-ps-vita-1.1-2.vpk",
       "recommended": true
     },
     {
-      "type": "Other",
-      "name": "Release",
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
       "url": "https://gamejolt.com/games/l4d2psp/794205"
     },
     {
@@ -39,5 +38,10 @@
       "name": "Repositorio",
       "url": "https://github.com"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "1111",
+  "source_url": "https://gamejolt.com/games/l4d2psp/794205",
+  "release_page": "https://gamejolt.com/games/l4d2psp/794205",
+  "updated_at": "2026-08-13T13:46:07.837488+00:00"
 }

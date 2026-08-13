@@ -7,33 +7,32 @@
   "author_ids": [
     "orbitalflagstudio"
   ],
-  "category_id": "ports",
+  "category_id": "games",
   "subcategory_ids": [
     "other"
   ],
   "version": "v.1.0.1",
   "version_date": "2023-07-02",
-  "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
+  "requirements": "Not specified",
   "size": 36494661,
-  "status": "Verified",
-  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/6f9a927be825f3dee19ce7665802cf5e42af5e3366ade2fa32a0ede2b69c5330.png",
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/6f9a927be825f3dee19ce7665802cf5e42af5e3366ade2fa32a0ede2b69c5330.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/1be879220ea746c1a47dcbcfee940029c46e0a1fa23d88a4bfea79180e46ff08.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/d3a14ce716c94e35ee0cfbf452e33b426cc4defc6455c684f7064d9771f57d1e.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/8cb83caa2d630ee3031eb8ca9155eb796853429fc5cdbc73ad9fcc631d298704.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/7dd5aba0da48f0a050677fb0100c0eaa379a421fb60aa4f27fb94ed03432d5a2.png",
-    "screenshots/1be879220ea746c1a47dcbcfee940029c46e0a1fa23d88a4bfea79180e46ff08.png;screenshots/d3a14ce716c94e35ee0cfbf452e33b426cc4defc6455c684f7064d9771f57d1e.png;screenshots/8cb83caa2d630ee3031eb8ca9155eb796853429fc5cdbc73ad9fcc631d298704.png;screenshots/7dd5aba0da48f0a050677fb0100c0eaa379a421fb60aa4f27fb94ed03432d5a2.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/7dd5aba0da48f0a050677fb0100c0eaa379a421fb60aa4f27fb94ed03432d5a2.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/OrbitalFlagStudio/VitaGamesReleases/releases/download/fast-areas.NEON.v1.0.1/fast-areas.NEON.-.Vita.Edition.-.Release.1.0.1.vpk",
       "recommended": true
     },
     {
-      "type": "Other",
-      "name": "Release",
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
       "url": "https://github.com/OrbitalFlagStudio/VitaGamesReleases/releases/tag/fast-areas.NEON.v1.0"
     },
     {
@@ -46,5 +45,10 @@
       "name": "Repositorio",
       "url": "https://github.com/OrbitalFlagStudio/VitaGamesReleases"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "1083",
+  "source_url": "https://github.com/OrbitalFlagStudio/VitaGamesReleases/releases/tag/fast-areas.NEON.v1.0",
+  "release_page": "https://github.com/OrbitalFlagStudio/VitaGamesReleases/releases/tag/fast-areas.NEON.v1.0",
+  "updated_at": "2026-08-13T13:46:07.843441+00:00"
 }

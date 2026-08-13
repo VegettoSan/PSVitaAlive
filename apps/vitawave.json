@@ -2,43 +2,47 @@
   "id": "vitawave",
   "title_id": "VWAV00001",
   "name": "VitaWave",
-  "description": "A full-featured music player for the PS Vita, built from the ground up as a native homebrew app.",
+  "description": "Music player for PSVita.",
   "long_description": "A full-featured music player for the PS Vita, built from the ground up as a native homebrew app. Clean interface, solid format support, and a theme system that lets you make it yours.",
   "author_ids": [
     "stalgix"
   ],
-  "category_id": "media",
+  "category_id": "games",
   "subcategory_ids": [
-    "music-player"
+    "other"
   ],
   "version": "v1.0.0-stable",
   "version_date": "2026-03-29",
-  "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
+  "requirements": "Not specified",
   "size": 45144796,
   "status": "Legacy",
-  "icon": "https://robin994.github.io/NeoVitaDB-Catalog/icons/1376-vitawave.png",
+  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1376-vitawave.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/5532ad494f56d6d09a6a066ce45cfab30c24d1eac95e840469dce1d9ba6703d9.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/432e63753a4376d979835bf2d777eacd6541194c922e01a7a6fef46983984e08.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/a41a6930949352d2dfe737286034cc67f7d8c46330e146e340ed63ff5b3f614b.png",
-    "screenshots/5532ad494f56d6d09a6a066ce45cfab30c24d1eac95e840469dce1d9ba6703d9.png;screenshots/432e63753a4376d979835bf2d777eacd6541194c922e01a7a6fef46983984e08.png;screenshots/a41a6930949352d2dfe737286034cc67f7d8c46330e146e340ed63ff5b3f614b.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/a41a6930949352d2dfe737286034cc67f7d8c46330e146e340ed63ff5b3f614b.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "NeoVitaDB VPK",
       "url": "https://github.com/Jyotiraditya-Samal/Vitawave/releases/download/v1.0.0-stable/VitaWave.vpk",
       "recommended": true
+    },
+    {
+      "type": "Official Website",
+      "name": "NeoVitaDB Release Page",
+      "url": "https://github.com/Jyotiraditya-Samal/Vitawave/releases/tag/v1.0.0-stable"
     },
     {
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/Jyotiraditya-Samal/Vitawave"
-    },
-    {
-      "type": "Other",
-      "name": "Release",
-      "url": "https://github.com/Jyotiraditya-Samal/Vitawave/releases/tag/v1.0.0-stable"
     }
-  ]
+  ],
+  "source_name": "NeoVitaDB",
+  "source_id": "1376",
+  "source_url": "https://github.com/Jyotiraditya-Samal/Vitawave",
+  "release_page": "https://github.com/Jyotiraditya-Samal/Vitawave/releases/tag/v1.0.0-stable",
+  "updated_at": "2026-08-13T13:46:07.727106+00:00"
 }

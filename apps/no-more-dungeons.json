@@ -3,38 +3,36 @@
   "title_id": "NMDG54882",
   "name": "No More Dungeons!",
   "description": "Dungeon crawler for PSVITA.",
-  "long_description": "No More Dungeons! is a fast paced dungeon crawler game with randomly generated dungeons and lots of dangerous monsters.\nThe game features progressive difficulty that changes dynamically every time you move to the next room but keeps a great balance by rewarding the player with powerful power-ups and score boost items.\nHow far can you go? The game keeps track of your hi-score so you can share it later with the world.",
+  "long_description": "No More Dungeons! is a fast paced dungeon crawler game with randomly generated dungeons and lots of dangerous monsters.\nThe game features progressive difficulty that changes dynamically every time you move to the next room but keeps a great balance by rewarding the player with powerful power-ups and score boost items.\nHow far can you go? The game keeps track of your hi-score so you can share it later with the world.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
   "author_ids": [
-    "unknown",
     "vitahex-games"
   ],
   "category_id": "games",
   "subcategory_ids": [
-    "rpg"
+    "other"
   ],
   "version": "v.1.0",
   "version_date": "2026-08-12",
-  "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
+  "requirements": "Not specified",
   "size": 44210913,
-  "status": "Verified",
-  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/71fa68d575511f89e64a0c6f1e3b117bc18d54caf760251d7007305c2e6b5d07.png",
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1636-no-more-dungeons.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/352f4f7537eaea6d0756fca5bf48efc2a0c93d7032573db3c9f1dd541797eb0d.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/d8af2239a2fd7ac14bd80a6d92a8fb323694860437164981800b9875ba992145.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/bbf8b8be1b471249ee9e3a57c063c8b9f61c60f11ef82289e1d4bf0fc5eb1da9.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/01d84a19ac020026aa30e19eed71656365eb82be4d639b74727338da65c902b1.png",
-    "screenshots/352f4f7537eaea6d0756fca5bf48efc2a0c93d7032573db3c9f1dd541797eb0d.png;screenshots/d8af2239a2fd7ac14bd80a6d92a8fb323694860437164981800b9875ba992145.png;screenshots/bbf8b8be1b471249ee9e3a57c063c8b9f61c60f11ef82289e1d4bf0fc5eb1da9.png;screenshots/01d84a19ac020026aa30e19eed71656365eb82be4d639b74727338da65c902b1.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/01d84a19ac020026aa30e19eed71656365eb82be4d639b74727338da65c902b1.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/460-No-More-Dungeons.vpk",
       "recommended": true
     },
     {
-      "type": "Other",
-      "name": "Release",
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
       "url": "http://wololo.net/talk/viewtopic.php?p=424367#p424367"
     },
     {
@@ -42,5 +40,10 @@
       "name": "Repositorio",
       "url": "https://github.com"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "460",
+  "source_url": "http://wololo.net/talk/viewtopic.php?p=424367#p424367",
+  "release_page": "http://wololo.net/talk/viewtopic.php?p=424367#p424367",
+  "updated_at": "2026-08-13T13:46:07.976684+00:00"
 }

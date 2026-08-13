@@ -2,36 +2,35 @@
   "id": "applocker",
   "title_id": "APPLOCKER",
   "name": "AppLocker",
-  "description": "Lock and Unlock your apps quickly and easily.",
+  "description": "Lock and Unlock your apps quickly and easily",
   "long_description": "You can now Lock and Unlock access to your Vitas apps. Pressing X on your selected app will create a lock that is bypassable by a combo, Pressing Square will FULLY lock the app so it cannot be bypassed, and Pressing O will remove the app lock.\nTo bypass the lock : Hold the left analogue left, the right analogue right and press both L + R triggers all at the same time..",
   "author_ids": [
     "anthj"
   ],
-  "category_id": "utilities",
+  "category_id": "games",
   "subcategory_ids": [
     "other"
   ],
   "version": "v.1.2",
   "version_date": "2021-08-14",
-  "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
+  "requirements": "Not specified",
   "size": 3591941,
-  "status": "Verified",
-  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/fe3a52a5bc3a23e6860b56b7f293d6e8dc42bcc3e58b50ca4277215cbd3ea960.png",
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/fe3a52a5bc3a23e6860b56b7f293d6e8dc42bcc3e58b50ca4277215cbd3ea960.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/f796c65c1430a71efb780655d14c21f74bcdc99a78738ec4f5e705344277ae37.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/de596c454b9bcef149e70da9186e1c0867adc361ed3823cd2170734487b39fb0.png",
-    "screenshots/f796c65c1430a71efb780655d14c21f74bcdc99a78738ec4f5e705344277ae37.png;screenshots/de596c454b9bcef149e70da9186e1c0867adc361ed3823cd2170734487b39fb0.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/de596c454b9bcef149e70da9186e1c0867adc361ed3823cd2170734487b39fb0.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/AntHJ/AppLocker/releases/download/v1.2/AppLocker-v1.2.vpk",
       "recommended": true
     },
     {
-      "type": "Other",
-      "name": "Release",
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
       "url": "https://github.com/AntHJ/AppLocker/releases"
     },
     {
@@ -44,5 +43,10 @@
       "name": "Repositorio",
       "url": "https://github.com/AntHJ/AppLocker"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "720",
+  "source_url": "https://github.com/AntHJ/AppLocker/releases",
+  "release_page": "https://github.com/AntHJ/AppLocker/releases",
+  "updated_at": "2026-08-13T13:46:07.915170+00:00"
 }

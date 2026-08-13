@@ -3,7 +3,7 @@
   "title_id": "ANIM41356",
   "name": "Animal Vitas",
   "description": "Clone of Animal Crossing for PSVITA.",
-  "long_description": "Open world game where you build a town and make it look fancy\nMake friends or enemies with the villagers\nGather resources and trade with others or craft them into new items\nExplore the caves and maybe not die\nMake your house extra fancy and invite people over",
+  "long_description": "Open world game where you build a town and make it look fancy\nMake friends or enemies with the villagers\nGather resources and trade with others or craft them into new items\nExplore the caves and maybe not die\nMake your house extra fancy and invite people over\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
   "author_ids": [
     "spartanfox"
   ],
@@ -13,26 +13,25 @@
   ],
   "version": "v.2.0",
   "version_date": "2026-08-12",
-  "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
+  "requirements": "Not specified",
   "size": 56187739,
-  "status": "Verified",
-  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/2739ae0ebc5686d34f047691b00949f68af6c68e6929e41e173810e24803e843.png",
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1861-animal-vitas.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/977f93b5fdbf6898c028116d1ad723b53992a2519974059d6ef2e71fa397b300.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/f5fb9b5d2d33b71ee6ada3ca1403a493c1649d25284cb736830feb511a42276a.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/2b3cbf27e841f72ae52ed095285b7d8fbe97b54dde79b77156e0e9cc26d26675.png",
-    "screenshots/977f93b5fdbf6898c028116d1ad723b53992a2519974059d6ef2e71fa397b300.png;screenshots/f5fb9b5d2d33b71ee6ada3ca1403a493c1649d25284cb736830feb511a42276a.png;screenshots/2b3cbf27e841f72ae52ed095285b7d8fbe97b54dde79b77156e0e9cc26d26675.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/2b3cbf27e841f72ae52ed095285b7d8fbe97b54dde79b77156e0e9cc26d26675.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1130-AnimalVitas.vpk",
       "recommended": true
     },
     {
-      "type": "Other",
-      "name": "Release",
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
       "url": "https://fuhen.homebrew-contest.com/submissions/40/"
     },
     {
@@ -40,5 +39,10 @@
       "name": "Repositorio",
       "url": "https://github.com"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "1130",
+  "source_url": "https://fuhen.homebrew-contest.com/submissions/40/",
+  "release_page": "https://fuhen.homebrew-contest.com/submissions/40/",
+  "updated_at": "2026-08-13T13:46:07.825802+00:00"
 }

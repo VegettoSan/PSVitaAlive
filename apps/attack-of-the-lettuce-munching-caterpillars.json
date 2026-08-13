@@ -3,31 +3,30 @@
   "title_id": "AOTLMC001",
   "name": "Attack of the Lettuce Munching Caterpillars",
   "description": "Shoot'em up for PSVITA/PSTV.",
-  "long_description": "Attack of the Lettuce Munching Caterpillars - Shoot 'em up / Beat 'em up style game where you must squash all the insects within a given time limit. All the characters are modelled in plasticine \"clay-mation\",  whilst the music and sound effects are in retro 8-bit style.  Several waves of enemies must be defeated, then a Boss Man is faced at the end of each level.",
+  "long_description": "Attack of the Lettuce Munching Caterpillars - Shoot 'em up / Beat 'em up style game where you must squash all the insects within a given time limit. All the characters are modelled in plasticine \"clay-mation  whilst the music and sound effects are in retro 8-bit style.  Several waves of enemies must be defeated, then a Boss Man is faced at the end of each level.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
   "author_ids": [
     "gremlin-software"
   ],
   "category_id": "games",
   "subcategory_ids": [
-    "music"
+    "other"
   ],
   "version": "v.1.0",
   "version_date": "2026-08-12",
-  "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
+  "requirements": "Not specified",
   "size": 13781129,
-  "status": "Verified",
-  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/e88063419a47f7541b55ed36d97998a0802481964b5fe853f4170d465e4dc192.png",
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1686-attack-of-the-lettuce-munching-caterpillars.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/e0a7ee5431c7d2cad8c4223c70d967c5e826d7182b88b70572526913aa08f9a4.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/24ccbd0d4ba4f9338e1f74e670efb68f1c7bb5b33c893c36fe88bf3c429346cf.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/ceefe68b40f2c9509f5f61787d05c5fcef86666c41ca682a62d999802cf87385.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/fc77795ad20664d96e492f4991953a3496f2088255c155a9a1a046cbed851300.png",
-    "screenshots/e0a7ee5431c7d2cad8c4223c70d967c5e826d7182b88b70572526913aa08f9a4.png;screenshots/24ccbd0d4ba4f9338e1f74e670efb68f1c7bb5b33c893c36fe88bf3c429346cf.png;screenshots/ceefe68b40f2c9509f5f61787d05c5fcef86666c41ca682a62d999802cf87385.png;screenshots/fc77795ad20664d96e492f4991953a3496f2088255c155a9a1a046cbed851300.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/fc77795ad20664d96e492f4991953a3496f2088255c155a9a1a046cbed851300.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/564-Caterpillars.vpk",
       "recommended": true
     },
@@ -36,5 +35,10 @@
       "name": "Repositorio",
       "url": "https://github.com/softwaregremlin/Attack-of-the-Lettuce-Munching-Caterpillars"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "564",
+  "source_url": "https://github.com/softwaregremlin/Attack-of-the-Lettuce-Munching-Caterpillars",
+  "release_page": "",
+  "updated_at": "2026-08-13T13:46:07.951172+00:00"
 }

@@ -7,37 +7,26 @@
   "author_ids": [
     "sharkwouter"
   ],
-  "category_id": "ports",
+  "category_id": "games",
   "subcategory_ids": [
     "other"
   ],
   "version": "v.22.02",
   "version_date": "2022-02-15",
-  "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
+  "requirements": "Not specified",
   "size": 5516346,
-  "status": "Verified",
-  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/84cb4eb71998c3b235483491b3f688746925230c6cb8f68fb13655ea43f9e753.png",
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/84cb4eb71998c3b235483491b3f688746925230c6cb8f68fb13655ea43f9e753.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/934eb37ba2c3cd67ca81477ad9ef6db15b13fe43dc70cabfcb250e75bfd90f82.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/1851400e9504c907600962d8ee9e4818db1840b3eb2fa04a766091b633d6de65.png",
-    "screenshots/934eb37ba2c3cd67ca81477ad9ef6db15b13fe43dc70cabfcb250e75bfd90f82.png;screenshots/1851400e9504c907600962d8ee9e4818db1840b3eb2fa04a766091b633d6de65.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/1851400e9504c907600962d8ee9e4818db1840b3eb2fa04a766091b633d6de65.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/609-freegemas.vpk",
       "recommended": true
-    },
-    {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/JoseTomasTocino/freegemas"
-    },
-    {
-      "type": "Other",
-      "name": "Release",
-      "url": "https://github.com/JoseTomasTocino/freegemas/releases"
     },
     {
       "type": "Download",
@@ -46,8 +35,23 @@
     },
     {
       "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
+      "url": "https://github.com/JoseTomasTocino/freegemas/releases"
+    },
+    {
+      "type": "Official Website",
       "name": "NeoVitaDB Release Page",
       "url": "https://github.com/JoseTomasTocino/freegemas/releases/tag/22.02"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/JoseTomasTocino/freegemas"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "609",
+  "source_url": "https://github.com/JoseTomasTocino/freegemas",
+  "release_page": "https://github.com/JoseTomasTocino/freegemas/releases",
+  "updated_at": "2026-08-13T13:46:07.901170+00:00"
 }

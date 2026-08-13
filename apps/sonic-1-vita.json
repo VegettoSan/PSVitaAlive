@@ -7,7 +7,7 @@
   "author_ids": [
     "sonicmastr"
   ],
-  "category_id": "ports",
+  "category_id": "games",
   "subcategory_ids": [
     "other"
   ],
@@ -15,41 +15,39 @@
   "version_date": "2021-01-23",
   "requirements": "- Game Data Files: Android",
   "size": 936835,
-  "status": "Verified",
-  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/d35300e6d8e9a10edccde214c04890626fe646c158410a82e8ff99131b6d956c.png",
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/d35300e6d8e9a10edccde214c04890626fe646c158410a82e8ff99131b6d956c.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/ad645c88560c0dd8ced76b675285b79de54c3dc7f0e70d2e674870c6170b517f.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/e7ce3ea294b4c50f38012494780d6b172d9cb34d0d3f9fe339e476ed61a17c24.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/627397c97a39dcbf9fda3668940003f1cbfcc85ba68eeedd17f19cda57d12e29.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/afefbf3a924fc9785ee7a2f3f92d646624bad759e624a1ac9e37dc02964c4917.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/9564ced204b202e8e62d6006e043a2f723fd40057aa733de319bd1f775ffd630.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/627397c97a39dcbf9fda3668940003f1cbfcc85ba68eeedd17f19cda57d12e29.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/SonicMastr/Sonic-1-2-Vita/releases/download/1.1.0/Sonic1.vpk",
       "recommended": true
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/SonicMastr/Sonic-1-2-Vita"
-    },
-    {
-      "type": "Other",
-      "name": "Release",
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
       "url": "https://github.com/SonicMastr/Sonic-1-2-Vita/releases"
-    },
-    {
-      "type": "Download",
-      "name": "VitaDBtoo VPK",
-      "url": "https://github.com/SonicMastr/Sonic-1-2-Vita/releases/download/1.1.0/Sonic2.vpk"
     },
     {
       "type": "Official Website",
       "name": "NeoVitaDB Release Page",
       "url": "https://github.com/SonicMastr/Sonic-1-2-Vita/releases/tag/1.1.0"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/SonicMastr/Sonic-1-2-Vita"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "865",
+  "source_url": "https://github.com/SonicMastr/Sonic-1-2-Vita",
+  "release_page": "https://github.com/SonicMastr/Sonic-1-2-Vita/releases",
+  "updated_at": "2026-08-13T13:46:07.935059+00:00"
 }

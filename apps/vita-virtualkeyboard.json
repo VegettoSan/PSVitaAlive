@@ -3,11 +3,11 @@
   "title_id": "LP1D00003",
   "name": "Vita VirtualKeyboard",
   "description": "Turn your PSVita into a USB keyboard.",
-  "long_description": "Vita VirtualKeyboard turns your jailbroken PS Vita into a full-fledged low-latency USB keyboard.",
+  "long_description": "Vita VirtualKeyboard turns your jailbroken PS Vita into a full-fledged low-latency USB keyboard.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
   "author_ids": [
     "lp1"
   ],
-  "category_id": "utilities",
+  "category_id": "games",
   "subcategory_ids": [
     "other"
   ],
@@ -16,27 +16,31 @@
   "requirements": "- hidkeyboard.skprx",
   "size": 3509116,
   "status": "Legacy",
-  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/1cb39f47c5a725be40b9359534187ea083a0b86b408f49c80046cd4446b63aa2.png",
+  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1961-vita-virtualkeyboard.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c2eed8228b71b28945bc0a73f772bf5bb804d29f2bdf17e97f8dae043cc76d72.png",
-    "screenshots/c2eed8228b71b28945bc0a73f772bf5bb804d29f2bdf17e97f8dae043cc76d72.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c2eed8228b71b28945bc0a73f772bf5bb804d29f2bdf17e97f8dae043cc76d72.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/lp1dev/vita_virtualkeyboard/releases/download/V00.01/VirtualKeyboard0001.vpk",
       "recommended": true
+    },
+    {
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
+      "url": "https://github.com/lp1dev/vita_virtualkeyboard/releases"
     },
     {
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/lp1dev/vita_virtualkeyboard"
-    },
-    {
-      "type": "Other",
-      "name": "Release",
-      "url": "https://github.com/lp1dev/vita_virtualkeyboard/releases"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "1405",
+  "source_url": "https://github.com/lp1dev/vita_virtualkeyboard",
+  "release_page": "https://github.com/lp1dev/vita_virtualkeyboard/releases",
+  "updated_at": "2026-08-13T13:46:07.715046+00:00"
 }

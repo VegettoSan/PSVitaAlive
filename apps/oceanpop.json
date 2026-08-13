@@ -9,39 +9,43 @@
   ],
   "category_id": "games",
   "subcategory_ids": [
-    "puzzle"
+    "other"
   ],
   "version": "v.2.0",
   "version_date": "2024-12-20",
-  "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
+  "requirements": "Not specified",
   "size": 28872251,
-  "status": "Verified",
-  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/9ba15b44bba093fdbc6f0ad18fa33e957bac9c7714fb076e00d75bcf5e6888ef.png",
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/9ba15b44bba093fdbc6f0ad18fa33e957bac9c7714fb076e00d75bcf5e6888ef.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/fc5936a5787d94d71ebbccf50df00c9afb663ae111fd5c6e2ab823bd64343b71.png",
-    "screenshots/fc5936a5787d94d71ebbccf50df00c9afb663ae111fd5c6e2ab823bd64343b71.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/fc5936a5787d94d71ebbccf50df00c9afb663ae111fd5c6e2ab823bd64343b71.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/sharkwouter/oceanpop/releases/download/2.0/oceanpop-vita.zip",
       "recommended": true
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/sharkwouter/oceanpop"
-    },
-    {
-      "type": "Other",
-      "name": "Release",
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
       "url": "https://sharkwouter.github.io/oceanpop/"
     },
     {
       "type": "Official Website",
       "name": "NeoVitaDB Release Page",
       "url": "https://github.com/sharkwouter/oceanpop/releases/tag/2.0"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/sharkwouter/oceanpop"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "792",
+  "source_url": "https://github.com/sharkwouter/oceanpop",
+  "release_page": "https://sharkwouter.github.io/oceanpop/",
+  "updated_at": "2026-08-13T13:46:07.783804+00:00"
 }

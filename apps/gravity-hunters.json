@@ -3,40 +3,44 @@
   "title_id": "GRAVHUNT1",
   "name": "Gravity Hunters",
   "description": "Physics-driven artillery space shooter.",
-  "long_description": "Pilot a nimble spaceship, bend your shots around planetary gravity, and clear handcrafted missions.",
+  "long_description": "Pilot a nimble spaceship, bend your shots around planetary gravity, and clear handcrafted missions.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
   "author_ids": [
     "nandxor96"
   ],
   "category_id": "games",
   "subcategory_ids": [
-    "shooter"
+    "other"
   ],
   "version": "v.1.0",
   "version_date": "2026-08-12",
-  "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
+  "requirements": "Not specified",
   "size": 4303132,
-  "status": "Verified",
-  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/7a6ef76d3992cbbdc06a4032706ffc3c7573dcd3a462ccaed43abdfc00ff33d8.png",
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1943-gravity-hunters.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/28f83d47e996a1cc0653cf857a24c62e9931e4f49f5b3b30e5b02bf075362441.png",
-    "screenshots/28f83d47e996a1cc0653cf857a24c62e9931e4f49f5b3b30e5b02bf075362441.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/28f83d47e996a1cc0653cf857a24c62e9931e4f49f5b3b30e5b02bf075362441.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1330-gravity_hunters.vpk",
       "recommended": true
+    },
+    {
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
+      "url": "https://nandxor96.itch.io/gravity-hunters"
     },
     {
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/NandXor96/gravity_hunters_vita"
-    },
-    {
-      "type": "Other",
-      "name": "Release",
-      "url": "https://nandxor96.itch.io/gravity-hunters"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "1330",
+  "source_url": "https://github.com/NandXor96/gravity_hunters_vita",
+  "release_page": "https://nandxor96.itch.io/gravity-hunters",
+  "updated_at": "2026-08-13T13:46:07.745089+00:00"
 }

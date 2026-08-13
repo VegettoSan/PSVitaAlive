@@ -2,45 +2,50 @@
   "id": "augustus",
   "title_id": "AUGUSTUS1",
   "name": "Augustus",
-  "description": "Augustus is a fork of the Julius project that intends to incorporate gameplay changes.",
+  "description": "Port of Augustus for PSVITA.",
   "long_description": "Augustus is a fork of the Julius project that intends to incorporate gameplay changes. The aim of this project is to provide enhanced, customizable gameplay to Caesar 3 using project Julius UI enhancements.\nAugustus is able to load Caesar 3 and Julius saves, however saves made with Augustus will not work outside Augustus.",
   "author_ids": [
-    "devnoname120",
-    "julius-team",
     "keriew"
   ],
-  "category_id": "ports",
+  "category_id": "games",
   "subcategory_ids": [
     "other"
   ],
-  "version": "v4.0.0",
+  "version": "v.4.0.0",
   "version_date": "2023-12-28",
   "requirements": "- Game Data Files: PC",
   "size": 15627999,
-  "status": "Verified",
-  "icon": "https://robin994.github.io/NeoVitaDB-Catalog/icons/0746-augustus.png",
-  "screenshots": [],
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/6bc065a4a24f51e73cddb37cd3f3ef3b134c96af8cf1191c4c937265a5d006d4.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/6bc065a4a24f51e73cddb37cd3f3ef3b134c96af8cf1191c4c937265a5d006d4.png"
+  ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/Keriew/augustus/releases/download/v4.0.0/augustus-4.0.0-vita.vpk",
       "recommended": true
-    },
-    {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/Keriew/augustus"
-    },
-    {
-      "type": "Other",
-      "name": "Release",
-      "url": "https://github.com/Keriew/augustus/releases/tag/v4.0.0"
     },
     {
       "type": "Official Website",
       "name": "VitaDBtoo Release Page",
       "url": "https://github.com/Keriew/augustus/releases"
+    },
+    {
+      "type": "Official Website",
+      "name": "NeoVitaDB Release Page",
+      "url": "https://github.com/Keriew/augustus/releases/tag/v4.0.0"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/Keriew/augustus"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "746",
+  "source_url": "https://github.com/Keriew/augustus",
+  "release_page": "https://github.com/Keriew/augustus/releases",
+  "updated_at": "2026-08-13T13:46:07.814447+00:00"
 }

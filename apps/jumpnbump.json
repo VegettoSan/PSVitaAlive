@@ -7,43 +7,42 @@
   "author_ids": [
     "rsn8887"
   ],
-  "category_id": "ports",
+  "category_id": "games",
   "subcategory_ids": [
     "other"
   ],
   "version": "1.02",
   "version_date": "2021-05-23",
-  "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
+  "requirements": "Not specified",
   "size": 1286536,
-  "status": "Verified",
-  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/863467ad18532f9ff49fbc3a4bc4a5e225a269973b9a31910dd84cd0155eaddf.png",
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/0426-jumpnbump.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/0e325d8de71def5135da675cb7b2424a98a299f835deb7b8652bd501599de59a.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/21e43df81fdfffa46e06d93477ffcaa9de3f00b5759334c0cac68b9a0718a4e8.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/cfaff5c058642256eff39bc24cf2ed4f8645f69e5555b7ba49badf5d537cbaa4.png",
-    "screenshots/0e325d8de71def5135da675cb7b2424a98a299f835deb7b8652bd501599de59a.png;screenshots/21e43df81fdfffa46e06d93477ffcaa9de3f00b5759334c0cac68b9a0718a4e8.png;screenshots/cfaff5c058642256eff39bc24cf2ed4f8645f69e5555b7ba49badf5d537cbaa4.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/cfaff5c058642256eff39bc24cf2ed4f8645f69e5555b7ba49badf5d537cbaa4.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "NeoVitaDB VPK",
       "url": "https://github.com/rsn8887/jumpnbump/releases/download/1.02/jumpnbump_1.00.vpk",
       "recommended": true
-    },
-    {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/rsn8887/jumpnbump"
-    },
-    {
-      "type": "Other",
-      "name": "Release",
-      "url": "https://github.com/rsn8887/jumpnbump/releases"
     },
     {
       "type": "Official Website",
       "name": "NeoVitaDB Release Page",
       "url": "https://github.com/rsn8887/jumpnbump/releases/tag/1.02"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/rsn8887/jumpnbump"
     }
-  ]
+  ],
+  "source_name": "NeoVitaDB",
+  "source_id": "426",
+  "source_url": "https://github.com/rsn8887/jumpnbump",
+  "release_page": "https://github.com/rsn8887/jumpnbump/releases/tag/1.02",
+  "updated_at": "2026-08-13T13:46:07.983574+00:00"
 }

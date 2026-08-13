@@ -7,33 +7,40 @@
   "author_ids": [
     "enrique-somolinos-perez"
   ],
-  "category_id": "ports",
+  "category_id": "games",
   "subcategory_ids": [
-    "adventure"
+    "other"
   ],
   "version": "v.1.0",
   "version_date": "2016-09-27",
   "requirements": "- Game Data Files: PC",
   "size": 778772,
-  "status": "Verified",
-  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/cf83893eff0c6f59b638fc6087b0d806d64eeae4faf0a771ab54e6b61cf394e5.png",
-  "screenshots": [],
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/cf83893eff0c6f59b638fc6087b0d806d64eeae4faf0a771ab54e6b61cf394e5.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/cf83893eff0c6f59b638fc6087b0d806d64eeae4faf0a771ab54e6b61cf394e5.png"
+  ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/132-Another_world.vpk",
       "recommended": true
+    },
+    {
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
+      "url": "http://gekihen.customprotocol.com/en/project/Another-World-Vita"
     },
     {
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/enriquesomolinos/Another-World-Vita"
-    },
-    {
-      "type": "Other",
-      "name": "Release",
-      "url": "http://gekihen.customprotocol.com/en/project/Another-World-Vita"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "132",
+  "source_url": "https://github.com/enriquesomolinos/Another-World-Vita",
+  "release_page": "http://gekihen.customprotocol.com/en/project/Another-World-Vita",
+  "updated_at": "2026-08-13T13:46:08.020752+00:00"
 }

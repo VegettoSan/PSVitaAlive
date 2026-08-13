@@ -3,31 +3,33 @@
   "title_id": "ARIEL0004",
   "name": "VitaShell Theme Manager",
   "description": "Theme manager for VitaShell.",
-  "long_description": "VitaShell Theme Manager is a simple and user-friendly GUI to apply themes for TheFloW's VitaShell (version 0.85 and above).",
+  "long_description": "VitaShell Theme Manager is a simple and user-friendly GUI to apply themes for TheFloW's VitaShell (version 0.85 and above).\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
   "author_ids": [
     "ruben-wolfe"
   ],
-  "category_id": "utilities",
+  "category_id": "games",
   "subcategory_ids": [
-    "file-manager"
+    "other"
   ],
   "version": "v.1.0",
   "version_date": "2026-08-12",
-  "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
+  "requirements": "Not specified",
   "size": 3097213,
-  "status": "Verified",
-  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/10def254489e6a8a40147eb59b357b9308adb0ad169a5af9c75b3c4b9f5ad8b4.png",
-  "screenshots": [],
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1525-vitashell-theme-manager.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1525-vitashell-theme-manager.png"
+  ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/173-vitashellthememanager.vpk",
       "recommended": true
     },
     {
-      "type": "Other",
-      "name": "Release",
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
       "url": "https://wololo.net/talk/viewtopic.php?f=116&t=46936"
     },
     {
@@ -35,5 +37,10 @@
       "name": "Repositorio",
       "url": "https://github.com"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "173",
+  "source_url": "https://wololo.net/talk/viewtopic.php?f=116&t=46936",
+  "release_page": "https://wololo.net/talk/viewtopic.php?f=116&t=46936",
+  "updated_at": "2026-08-13T13:46:08.023501+00:00"
 }

@@ -2,12 +2,12 @@
   "id": "vitavoyager",
   "title_id": "VOYAGERQ3",
   "name": "vitaVoyager",
-  "description": "Port of Star Trek Voyager: Elite Force.",
-  "long_description": "vitaVoyager is a port of lilium-voyager, an ioquake3 fork made to be compatible with multiplayer mode of Star Trek Voyager: Elite Force.",
+  "description": "Port of Star Trek Voyager: Elite Force",
+  "long_description": "vitaVoyager is a port of lilium-voyager, an ioquake3 fork made to be compatible with multiplayer mode of Star Trek Voyager: Elite Force.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
   "author_ids": [
     "rinnegatamante"
   ],
-  "category_id": "ports",
+  "category_id": "games",
   "subcategory_ids": [
     "other"
   ],
@@ -15,31 +15,35 @@
   "version_date": "2026-08-12",
   "requirements": "- libshacccg.suprx",
   "size": 2877967,
-  "status": "Verified",
-  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/cae1db2314a4c57e6a835cafc1330edcc34254f3f82321a39ae5d9b134355263.png",
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1657-vitavoyager.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c7362d3024f72af24e02ed682d2dd19f216d309199f6f53a07700574c0041e6b.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/05eb91c5436ac21362989eff4d36c6ca8d6d3ffe6c9810ba9d4a6683490e53d0.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/ced6ffece58bd7443b153f9b18d9cf8b0051e8146c4ad2deb2beceec19f7fc2e.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/b52808d1600cc4fdb405dc9ca16dbd42ca73b381381301234b390916ab8ac79d.png",
-    "screenshots/c7362d3024f72af24e02ed682d2dd19f216d309199f6f53a07700574c0041e6b.png;screenshots/05eb91c5436ac21362989eff4d36c6ca8d6d3ffe6c9810ba9d4a6683490e53d0.png;screenshots/ced6ffece58bd7443b153f9b18d9cf8b0051e8146c4ad2deb2beceec19f7fc2e.png;screenshots/b52808d1600cc4fdb405dc9ca16dbd42ca73b381381301234b390916ab8ac79d.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/b52808d1600cc4fdb405dc9ca16dbd42ca73b381381301234b390916ab8ac79d.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/491-vitaVoyager.vpk",
       "recommended": true
+    },
+    {
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
+      "url": "https://www.psx-place.com/threads/release-vitavoyager-port-of-start-trek-voyager-elite-force-holomatch.34490/"
     },
     {
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/Rinnegatamante/vitaVoyager/tree/master"
-    },
-    {
-      "type": "Other",
-      "name": "Release",
-      "url": "https://www.psx-place.com/threads/release-vitavoyager-port-of-start-trek-voyager-elite-force-holomatch.34490/"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "491",
+  "source_url": "https://github.com/Rinnegatamante/vitaVoyager/tree/master",
+  "release_page": "https://www.psx-place.com/threads/release-vitavoyager-port-of-start-trek-voyager-elite-force-holomatch.34490/",
+  "updated_at": "2026-08-13T13:46:07.786222+00:00"
 }

@@ -1,0 +1,46 @@
+{
+  "id": "opentyrian2000-optiryan2",
+  "title_id": "OPTIRYAN2",
+  "name": "OpenTyrian2000",
+  "description": "",
+  "long_description": "OpenTyrian2000 is an open-source port of the DOS game Tyrian. It is a fork of OpenTyrian, with the end goal being to replicate the experience of Tyrian 2000 as closely as possible.\nTyrian is an arcade-style vertical scrolling shooter.  The story is set in 20031 where you play as Trent Hawkins, a skilled fighter-pilot employed to fight MicroSol and save the galaxy.\nTyrian features a story mode, one- and two-player arcade modes, and networked multiplayer.",
+  "author_ids": [
+    "andyvand"
+  ],
+  "category_id": "games",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "3.0.0-SDL3",
+  "version_date": "2025-01-28",
+  "requirements": "Not specified",
+  "size": 5581607,
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1279-opentyrian2000.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1279-opentyrian2000.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "NeoVitaDB VPK",
+      "url": "https://github.com/andyvand/opentyrian2000/releases/download/3.0.0-SDL3/OpenTyrian2000-PSVita.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Official Website",
+      "name": "NeoVitaDB Release Page",
+      "url": "https://github.com/andyvand/opentyrian2000/releases/tag/3.0.0-SDL3"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/andyvand/opentyrian2000"
+    }
+  ],
+  "source_name": "NeoVitaDB",
+  "source_id": "1279",
+  "source_url": "https://github.com/andyvand/opentyrian2000",
+  "release_page": "https://github.com/andyvand/opentyrian2000/releases/tag/3.0.0-SDL3",
+  "updated_at": "2026-08-13T13:46:08.038053+00:00"
+}

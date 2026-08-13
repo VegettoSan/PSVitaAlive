@@ -2,44 +2,43 @@
   "id": "sf1mr-vita",
   "title_id": "SFMR10000",
   "name": "SF1MR Vita",
-  "description": "A PS Vita Port of the Popular Mugen Remake of Street Fighter One (SF1MR) using Dolmexica Infinite as the engine.\nStreet Fighter One M.U.G.E.N Remake.",
+  "description": "Port of SF1MR for PSVITA.",
   "long_description": "A PS Vita Port of the Popular Mugen Remake of Street Fighter One (SF1MR) using Dolmexica Infinite as the engine.\nStreet Fighter One M.U.G.E.N Remake. Another Mugen Street Fighter game. This time, it is a remake of original very first Street Fighter game, simply called Street Fighter 1, that is also known in home ports as Fighting Street.",
   "author_ids": [
     "anashalideen"
   ],
-  "category_id": "ports",
+  "category_id": "games",
   "subcategory_ids": [
-    "engine-port"
+    "other"
   ],
   "version": "v.1.1",
   "version_date": "2025-01-07",
-  "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
+  "requirements": "Not specified",
   "size": 33517678,
   "status": "Legacy",
-  "icon": "https://robin994.github.io/NeoVitaDB-Catalog/icons/1245-sf1mr-vita.png",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/9ea1d1144e135e435e1183ec80dd69761eb60b5caa78dbb088868fc4ab9b5506.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/af32844ecb1025e4de2f91975032ea92cabfa3ce95c7a12ce693ad06321e938f.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/9e380e1a4e089a2035aa683c3e0237da583a1e6e608d1f3938c1dfa9d87ad827.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/5e9becd8b04a8dacd525ae75f635e79935429ed585345bfd15f6689e380ad5aa.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/932ccacb8546021a9e35481a7c88a1d95056868c5019776cb08b749c02aafe79.png",
-    "screenshots/af32844ecb1025e4de2f91975032ea92cabfa3ce95c7a12ce693ad06321e938f.png;screenshots/9e380e1a4e089a2035aa683c3e0237da583a1e6e608d1f3938c1dfa9d87ad827.png;screenshots/5e9becd8b04a8dacd525ae75f635e79935429ed585345bfd15f6689e380ad5aa.png;screenshots/932ccacb8546021a9e35481a7c88a1d95056868c5019776cb08b749c02aafe79.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/932ccacb8546021a9e35481a7c88a1d95056868c5019776cb08b749c02aafe79.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/anas-halid/SF1MR-VITA/releases/download/release/SF1MR.vpk",
       "recommended": true
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
       "url": "https://github.com/anas-halid/SF1MR-VITA"
-    },
-    {
-      "type": "Other",
-      "name": "Release",
-      "url": "https://github.com/anas-halid/SF1MR-VITA/releases/tag/release"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "1245",
+  "source_url": "https://github.com/anas-halid/SF1MR-VITA",
+  "release_page": "https://github.com/anas-halid/SF1MR-VITA",
+  "updated_at": "2026-08-13T13:46:07.783092+00:00"
 }

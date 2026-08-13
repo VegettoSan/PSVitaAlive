@@ -7,7 +7,7 @@
   "author_ids": [
     "rinnegatamante"
   ],
-  "category_id": "ports",
+  "category_id": "games",
   "subcategory_ids": [
     "other"
   ],
@@ -15,36 +15,40 @@
   "version_date": "2025-08-03",
   "requirements": "- libshacccg.suprx\n- kubridge.skprx\n- Game Data Files: Android",
   "size": 1665385,
-  "status": "Verified",
-  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/fe07bde455774058e4e2298905cdffcf8d79f0474f46a83df0bb9f3c945a6d4d.png",
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/fe07bde455774058e4e2298905cdffcf8d79f0474f46a83df0bb9f3c945a6d4d.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/6173c1c23b65e514635a00fa4ac1ca47c9cc00f8f6271c25cff7733e0f90eea6.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/3d2b302639f887479251fc52ecc59400e74acd557a1f15a2edfc57089d5c66ab.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/445eaba460015e7e538c32c317c06e6924dca74df35262be9ad0fbc8c28f5d07.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/14e6367896988df9c90e1fa920d2c3fabbd6cc893fc82ae24de2ebd9e2a1a5c0.png",
-    "screenshots/6173c1c23b65e514635a00fa4ac1ca47c9cc00f8f6271c25cff7733e0f90eea6.png;screenshots/3d2b302639f887479251fc52ecc59400e74acd557a1f15a2edfc57089d5c66ab.png;screenshots/445eaba460015e7e538c32c317c06e6924dca74df35262be9ad0fbc8c28f5d07.png;screenshots/14e6367896988df9c90e1fa920d2c3fabbd6cc893fc82ae24de2ebd9e2a1a5c0.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/14e6367896988df9c90e1fa920d2c3fabbd6cc893fc82ae24de2ebd9e2a1a5c0.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/Rinnegatamante/valiant-vita/releases/download/v.1.1.1/valiant.vpk",
       "recommended": true
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/Rinnegatamante/valiant-vita"
-    },
-    {
-      "type": "Other",
-      "name": "Release",
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
       "url": "https://github.com/Rinnegatamante/valiant-vita/releases"
     },
     {
       "type": "Official Website",
       "name": "NeoVitaDB Release Page",
       "url": "https://github.com/Rinnegatamante/valiant-vita/releases/tag/v.1.1.1"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/Rinnegatamante/valiant-vita"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "1297",
+  "source_url": "https://github.com/Rinnegatamante/valiant-vita",
+  "release_page": "https://github.com/Rinnegatamante/valiant-vita/releases",
+  "updated_at": "2026-08-13T13:46:07.763638+00:00"
 }

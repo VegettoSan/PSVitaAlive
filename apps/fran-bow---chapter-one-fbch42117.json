@@ -1,0 +1,46 @@
+{
+  "id": "fran-bow---chapter-one-fbch42117",
+  "title_id": "FBCH42117",
+  "name": "Fran Bow - Chapter One",
+  "description": "",
+  "long_description": "After witnessing the gruesome and mysterious loss of her parents, found dismembered at their home, Fran rushes into the woods, together with her only friend, Mr. Midnight, a black cat that Fran had previously received as a present from her parents.\nIn the forest, Fran goes into shock over the loss of her parents and when she recovers, she's at Oswald Asylum, an oppressive mental institution for children, and Mr. Midnight is nowhere to be found.\nAfter having a dream about her beloved cat, Fran decides to escape from the mental institution to find him and go back home to Aunt Grace, her only living relative. Credits to m1s3ry, Grossleymoo and Killmonday Games.",
+  "author_ids": [
+    "hatoving"
+  ],
+  "category_id": "games",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "5_FranBowCH4",
+  "version_date": "2021-07-17",
+  "requirements": "- Game Data Files: Android OR PC",
+  "size": 2854178,
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/0639-fran-bow-chapter-one.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/0639-fran-bow-chapter-one.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "NeoVitaDB VPK",
+      "url": "https://github.com/hatoving/gms-vita-old-instructions/releases/download/5_FranBowCH4/FBCH4.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Official Website",
+      "name": "NeoVitaDB Release Page",
+      "url": "https://github.com/hatoving/gms-vita-old-instructions/releases/tag/5_FranBowCH4"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/hatoving/gms-vita-old-instructions"
+    }
+  ],
+  "source_name": "NeoVitaDB",
+  "source_id": "639",
+  "source_url": "https://github.com/hatoving/gms-vita-old-instructions",
+  "release_page": "https://github.com/hatoving/gms-vita-old-instructions/releases/tag/5_FranBowCH4",
+  "updated_at": "2026-08-13T13:46:08.036758+00:00"
+}

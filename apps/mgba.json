@@ -7,44 +7,48 @@
   "author_ids": [
     "endrift"
   ],
-  "category_id": "emulators",
+  "category_id": "games",
   "subcategory_ids": [
-    "game-boy-advance"
+    "other"
   ],
   "version": "0.10.5",
   "version_date": "2025-03-09",
-  "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
+  "requirements": "Not specified",
   "size": 852635,
-  "status": "Verified",
-  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/4bc0f902618d97ba2ec7d35fe4edb0c301d51fa052b574a3e21548f9d27a7723.png",
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1522-mgba.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/b640b24f08ccc34af58874afe84f57e505d6b4da43102ff3c1b9c325b5a9ee18.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/d8b92d6ba71df9f2fcbd8999dc30d1dbc50b291bc928a539c5ec756ad1027e37.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/7f9fea83c716eb35ddaa0538a8d53fdfff6c4719dcef98ff968651ea56e3a62b.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/e6ee279562e85f03723605c298e29236eb72b06db78e8ce3622da681b4ed8239.png",
-    "screenshots/b640b24f08ccc34af58874afe84f57e505d6b4da43102ff3c1b9c325b5a9ee18.png;screenshots/d8b92d6ba71df9f2fcbd8999dc30d1dbc50b291bc928a539c5ec756ad1027e37.png;screenshots/7f9fea83c716eb35ddaa0538a8d53fdfff6c4719dcef98ff968651ea56e3a62b.png;screenshots/e6ee279562e85f03723605c298e29236eb72b06db78e8ce3622da681b4ed8239.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/e6ee279562e85f03723605c298e29236eb72b06db78e8ce3622da681b4ed8239.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/mgba-emu/mgba/releases/download/0.10.5/mGBA-0.10.5-vita.7z",
       "recommended": true
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/mgba-emu/mgba/"
-    },
-    {
-      "type": "Other",
-      "name": "Release",
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
       "url": "https://mgba.io/"
     },
     {
       "type": "Official Website",
       "name": "NeoVitaDB Release Page",
       "url": "https://github.com/mgba-emu/mgba/releases/tag/0.10.5"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/mgba-emu/mgba/"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "164",
+  "source_url": "https://github.com/mgba-emu/mgba/",
+  "release_page": "https://mgba.io/",
+  "updated_at": "2026-08-13T13:46:07.776494+00:00"
 }

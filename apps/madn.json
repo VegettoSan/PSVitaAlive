@@ -9,42 +9,46 @@
   ],
   "category_id": "games",
   "subcategory_ids": [
-    "puzzle"
+    "other"
   ],
   "version": "v.1.0",
   "version_date": "2020-06-27",
-  "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
+  "requirements": "Not specified",
   "size": 49789,
-  "status": "Verified",
-  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/7bc66ac73572b325e5d604beb5d7bb8410b25779743477e48c38f22ce1fa6c70.png",
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/7bc66ac73572b325e5d604beb5d7bb8410b25779743477e48c38f22ce1fa6c70.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/d655fa214a50d628221a2fcbefc738107300b892bc0a643a926a27543266e4ba.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/3a5e67e26fb1e3edd45c7b0d8fa8881a1f08526b694fe3fd2e5154bfba750dd3.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/ba5c3df02a4711feecac1a31247f8b9fefbb106dcc98ec6ac25ca91afdc27225.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/007430154eaa9defb84771fe1f1481dcfaf94f03e1d2c9fdb4942c7701f4e259.png",
-    "screenshots/d655fa214a50d628221a2fcbefc738107300b892bc0a643a926a27543266e4ba.png;screenshots/3a5e67e26fb1e3edd45c7b0d8fa8881a1f08526b694fe3fd2e5154bfba750dd3.png;screenshots/ba5c3df02a4711feecac1a31247f8b9fefbb106dcc98ec6ac25ca91afdc27225.png;screenshots/007430154eaa9defb84771fe1f1481dcfaf94f03e1d2c9fdb4942c7701f4e259.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/007430154eaa9defb84771fe1f1481dcfaf94f03e1d2c9fdb4942c7701f4e259.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/Dane64/MaDn/releases/download/1.0/MaDn.vpk",
       "recommended": true
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/Dane64/MaDn"
-    },
-    {
-      "type": "Other",
-      "name": "Release",
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
       "url": "https://github.com/Dane64/MaDn/releases"
     },
     {
       "type": "Official Website",
       "name": "NeoVitaDB Release Page",
       "url": "https://github.com/Dane64/MaDn/releases/tag/1.0"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/Dane64/MaDn"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "565",
+  "source_url": "https://github.com/Dane64/MaDn",
+  "release_page": "https://github.com/Dane64/MaDn/releases",
+  "updated_at": "2026-08-13T13:46:07.951362+00:00"
 }

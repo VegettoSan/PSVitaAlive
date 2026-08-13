@@ -7,38 +7,45 @@
   "author_ids": [
     "namelessghoul0"
   ],
-  "category_id": "utilities",
+  "category_id": "games",
   "subcategory_ids": [
     "other"
   ],
   "version": "v.2-final",
   "version_date": "2016-10-22",
-  "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
+  "requirements": "Not specified",
   "size": 159008,
-  "status": "Verified",
-  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/2451064b14e12d2b4eb2d912f42470ac1ffdd8f282e8a50051286381dbc64b7c.png",
-  "screenshots": [],
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/2451064b14e12d2b4eb2d912f42470ac1ffdd8f282e8a50051286381dbc64b7c.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/2451064b14e12d2b4eb2d912f42470ac1ffdd8f282e8a50051286381dbc64b7c.png"
+  ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/NamelessGhoul0/PSVibe/releases/download/v2-final/PSVibe.v2-final.vpk",
       "recommended": true
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/NamelessGhoul0/PSVibe"
-    },
-    {
-      "type": "Other",
-      "name": "Release",
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
       "url": "http://wololo.net/talk/viewtopic.php?f=116&t=47324&p=414479#p414479"
     },
     {
       "type": "Official Website",
       "name": "NeoVitaDB Release Page",
       "url": "https://github.com/NamelessGhoul0/PSVibe/releases/tag/v2-final"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/NamelessGhoul0/PSVibe"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "48",
+  "source_url": "https://github.com/NamelessGhoul0/PSVibe",
+  "release_page": "http://wololo.net/talk/viewtopic.php?f=116&t=47324&p=414479#p414479",
+  "updated_at": "2026-08-13T13:46:08.018044+00:00"
 }

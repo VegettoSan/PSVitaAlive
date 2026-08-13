@@ -3,37 +3,36 @@
   "title_id": "TREASUREC",
   "name": "Treasure Chasers",
   "description": "Pirate-themed precodural game.",
-  "long_description": "Treasure Chasers is a pirate-themed game, where you navigate through procedurally-generated islands, picking up cargo and delivering to other ports to sell. Besides the whirlpools, there are also pirates that are out to get you! Either avoid them or shoot them with your cannons to survive as long as you can.\nThis game was created for the PS Vita KyuHEN homebrew contest. The game design and programming is by crait, the great music was created by Steven Wahl, and the beautiful pixel art was made by @apoonto",
+  "long_description": "Treasure Chasers is a pirate-themed game, where you navigate through procedurally-generated islands, picking up cargo and delivering to other ports to sell. Besides the whirlpools, there are also pirates that are out to get you! Either avoid them or shoot them with your cannons to survive as long as you can.\nThis game was created for the PS Vita KyuHEN homebrew contest. The game design and programming is by crait, the great music was created by Steven Wahl, and the beautiful pixel art was made by @apoonto\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
   "author_ids": [
     "crait"
   ],
   "category_id": "games",
   "subcategory_ids": [
-    "music"
+    "other"
   ],
   "version": "v.1.0",
   "version_date": "2026-08-12",
-  "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
+  "requirements": "Not specified",
   "size": 3480781,
-  "status": "Verified",
-  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/e5a8bd76f76172473b104fdcf802426c529ba5176670d016e15ce718038daf14.png",
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1725-treasure-chasers.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/3a825f2d5a4780fd2af36378b22d340c0f53003171eb62c08d93a14c35bdf1cf.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/4045cab59bbad3da3af94ac023bcf5b732d4f91e19542ddf0e145c277d2d1cc1.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/ce4bf690c856ad72ab79d0fa6c8d45ab38d1229ff0fbb516ebb6ae3c424e0e0b.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c7a6b25baa6afb66f79996df12d2630dcc8b39d0b0349e292c9e67545ddf8a22.png",
-    "screenshots/3a825f2d5a4780fd2af36378b22d340c0f53003171eb62c08d93a14c35bdf1cf.png;screenshots/4045cab59bbad3da3af94ac023bcf5b732d4f91e19542ddf0e145c277d2d1cc1.png;screenshots/ce4bf690c856ad72ab79d0fa6c8d45ab38d1229ff0fbb516ebb6ae3c424e0e0b.png;screenshots/c7a6b25baa6afb66f79996df12d2630dcc8b39d0b0349e292c9e67545ddf8a22.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c7a6b25baa6afb66f79996df12d2630dcc8b39d0b0349e292c9e67545ddf8a22.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/678-TreasureChasers.vpk",
       "recommended": true
     },
     {
-      "type": "Other",
-      "name": "Release",
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
       "url": "http://www.crait.net/"
     },
     {
@@ -41,5 +40,10 @@
       "name": "Repositorio",
       "url": "https://github.com"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "678",
+  "source_url": "http://www.crait.net/",
+  "release_page": "http://www.crait.net/",
+  "updated_at": "2026-08-13T13:46:07.922518+00:00"
 }

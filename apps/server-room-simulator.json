@@ -2,7 +2,7 @@
   "id": "server-room-simulator",
   "title_id": "SVRS00000",
   "name": "Server Room Simulator",
-  "description": "A game putting out fires while trying to keep the server online!.",
+  "description": "",
   "long_description": "A game putting out fires while trying to keep the server online!\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
   "author_ids": [
     "li"
@@ -13,15 +13,17 @@
   ],
   "version": "latest",
   "version_date": "2026-08-12",
-  "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
+  "requirements": "Not specified",
   "size": 39072326,
-  "status": "Archive",
-  "icon": "https://robin994.github.io/NeoVitaDB-Catalog/icons/1460-server-room-simulator.png",
-  "screenshots": [],
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1460-server-room-simulator.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1460-server-room-simulator.png"
+  ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "NeoVitaDB VPK",
       "url": "https://git.silica.codes/Li/Server_Room_Simulator/releases/download/latest/server_room_simulator.vpk",
       "recommended": true
     },
@@ -30,5 +32,10 @@
       "name": "Repositorio",
       "url": "https://git.silica.codes"
     }
-  ]
+  ],
+  "source_name": "NeoVitaDB",
+  "source_id": "1460",
+  "source_url": "https://git.silica.codes",
+  "release_page": "",
+  "updated_at": "2026-08-13T13:46:08.043012+00:00"
 }

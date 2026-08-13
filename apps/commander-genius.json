@@ -7,44 +7,48 @@
   "author_ids": [
     "northfear"
   ],
-  "category_id": "ports",
+  "category_id": "games",
   "subcategory_ids": [
     "other"
   ],
   "version": "v.3.0.9-vita.2",
   "version_date": "2021-12-17",
-  "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
+  "requirements": "Not specified",
   "size": 3865398,
-  "status": "Verified",
-  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/c502e83960469c4d2e40d36d7c20981a435b26ef686b9596a9acb7f72d95faf5.png",
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/c502e83960469c4d2e40d36d7c20981a435b26ef686b9596a9acb7f72d95faf5.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/65c05119a092d1a79f691a3ad07f77d5efe2d811f240bba91f165cd7150e09ce.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/d232c427d22c67e8ebc81e2c8e362586d0bda8b88dd8c1916cfcb3245a132d39.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/0ce0e757b72120409598c78d35488ece6dca1615b6d65000d77ca75a75e30415.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/3964346b2e156a3b8ec08681b19fa33f1b1c214bcb64070a8539955cce868390.png",
-    "screenshots/65c05119a092d1a79f691a3ad07f77d5efe2d811f240bba91f165cd7150e09ce.png;screenshots/d232c427d22c67e8ebc81e2c8e362586d0bda8b88dd8c1916cfcb3245a132d39.png;screenshots/0ce0e757b72120409598c78d35488ece6dca1615b6d65000d77ca75a75e30415.png;screenshots/3964346b2e156a3b8ec08681b19fa33f1b1c214bcb64070a8539955cce868390.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/3964346b2e156a3b8ec08681b19fa33f1b1c214bcb64070a8539955cce868390.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/Northfear/Commander-Genius/releases/download/v3.0.9-vita.2/CommanderGenius.vpk",
       "recommended": true
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/Northfear/Commander-Genius"
-    },
-    {
-      "type": "Other",
-      "name": "Release",
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
       "url": "https://github.com/Northfear/Commander-Genius/releases"
     },
     {
       "type": "Official Website",
       "name": "NeoVitaDB Release Page",
       "url": "https://github.com/Northfear/Commander-Genius/releases/tag/v3.0.9-vita.2"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/Northfear/Commander-Genius"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "610",
+  "source_url": "https://github.com/Northfear/Commander-Genius",
+  "release_page": "https://github.com/Northfear/Commander-Genius/releases",
+  "updated_at": "2026-08-13T13:46:07.904118+00:00"
 }

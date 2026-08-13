@@ -3,25 +3,27 @@
   "title_id": "SEGA12345",
   "name": "8BitBayonetta",
   "description": "Port of 8 Bit Bayonetta for PSVITA.",
-  "long_description": "Port of 8-Bit Bayonetta for PSVITA.\n8-Bit Bayonetta, formerly known as Angel Land, is an inaccurately-named, 16-bit-style action/shooter game for web browsers, based on the Bayonetta game franchise.",
+  "long_description": "Port of 8-Bit Bayonetta for PSVITA.\n8-Bit Bayonetta, formerly known as Angel Land, is an inaccurately-named, 16-bit-style action/shooter game for web browsers, based on the Bayonetta game franchise.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
   "author_ids": [
     "dancooper"
   ],
-  "category_id": "ports",
+  "category_id": "games",
   "subcategory_ids": [
-    "fps"
+    "other"
   ],
   "version": "v.1.0",
   "version_date": "2026-08-12",
-  "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
+  "requirements": "Not specified",
   "size": 38929762,
-  "status": "Verified",
-  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/9a69d5db36e70e3b9397d24af8e78c60fe08611c5640fe7a27462434e10cd83c.png",
-  "screenshots": [],
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1780-8bitbayonetta.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1780-8bitbayonetta.png"
+  ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/808-8BB.vpk",
       "recommended": true
     },
@@ -30,5 +32,10 @@
       "name": "Repositorio",
       "url": "https://github.com"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "808",
+  "source_url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/808-8BB.vpk",
+  "release_page": "",
+  "updated_at": "2026-08-13T13:46:07.897395+00:00"
 }

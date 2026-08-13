@@ -3,35 +3,34 @@
   "title_id": "BKRM80522",
   "name": "Backrooms",
   "description": "Port of Backrooms for PSVITA.",
-  "long_description": "Based on a creepypasta, the Backrooms brings a nostalgic feeling of being lost in endless piles of empty rooms with fluorescent lights at full hum-buzz.\nYou have to find your way out, but of course, some \"friends'' don't want you to leave. If you don't \"wake up\" in time, your nightmares will drown you.\nThis game is created by Ilia Esmaili Poor (IEP_Esy)",
+  "long_description": "Based on a creepypasta, the Backrooms brings a nostalgic feeling of being lost in endless piles of empty rooms with fluorescent lights at full hum-buzz.\nYou have to find your way out, but of course, some \"friends'' don't want you to leave. If you don't \"wake up\" in time, your nightmares will drown you.\nThis game is created by Ilia Esmaili Poor (IEP_Esy)\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
   "author_ids": [
     "megagameboy"
   ],
-  "category_id": "ports",
+  "category_id": "games",
   "subcategory_ids": [
     "other"
   ],
   "version": "v.1.5.2",
   "version_date": "2026-08-12",
-  "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
+  "requirements": "Not specified",
   "size": 47068642,
-  "status": "Verified",
-  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/b2bc923efb42dca23de43d4773e5abc59a057c8a8f6ad9865cc9d324efd17911.png",
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1783-backrooms.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/fb56ee32cf562166a922d45c8bf9f4ff75bde729369812f537b71d5e0cfe08ea.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/aa1abaedee090f4c8aca5cd972d543023b41fae72922a2ac71b734dc14defd1b.png",
-    "screenshots/fb56ee32cf562166a922d45c8bf9f4ff75bde729369812f537b71d5e0cfe08ea.png;screenshots/aa1abaedee090f4c8aca5cd972d543023b41fae72922a2ac71b734dc14defd1b.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/aa1abaedee090f4c8aca5cd972d543023b41fae72922a2ac71b734dc14defd1b.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/821-Backrooms.vpk",
       "recommended": true
     },
     {
-      "type": "Other",
-      "name": "Release",
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
       "url": "https://iep-esy.itch.io/backrooms"
     },
     {
@@ -39,5 +38,10 @@
       "name": "Repositorio",
       "url": "https://github.com"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "821",
+  "source_url": "https://iep-esy.itch.io/backrooms",
+  "release_page": "https://iep-esy.itch.io/backrooms",
+  "updated_at": "2026-08-13T13:46:07.880000+00:00"
 }

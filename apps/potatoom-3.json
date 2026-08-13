@@ -3,31 +3,30 @@
   "title_id": "DHEWM3ES2",
   "name": "Potatoom 3",
   "description": "Port of Doom 3 for PSVITA.",
-  "long_description": "Potatoom 3 is a PoC level port of Doom 3, popular FPS made by idSoftware with idTech 4 engine.\nThis port is based over a modified version of dhewm3 that adds basic multithreading support to idTech 4 optimized furtherly to squeeze as much performances as possible.",
+  "long_description": "Potatoom 3 is a PoC level port of Doom 3, popular FPS made by idSoftware with idTech 4 engine.\nThis port is based over a modified version of dhewm3 that adds basic multithreading support to idTech 4 optimized furtherly to squeeze as much performances as possible.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
   "author_ids": [
     "rinnegatamante"
   ],
-  "category_id": "ports",
+  "category_id": "games",
   "subcategory_ids": [
-    "fps"
+    "other"
   ],
   "version": "v.0.1",
   "version_date": "2026-08-12",
   "requirements": "- libshacccg.suprx",
   "size": 9530161,
-  "status": "Verified",
-  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/b771494e66927137564cc2edd305b9d9a3fe510294173019db5217f8bcc20643.png",
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1816-potatoom-3.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c07426945ae8946d5de665cee11179871eee3d2c6a87e876a513241bf8e7d73a.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/3bbc957b078ea2257757ebed438abcb8ab40504bab216117dd91468c5b805ef8.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/e45f4a3d7d6658fe515958b98bc9f11e2a8b14a57c9780eb34b8f86c3f1ffe71.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c37c3ac968777616198fb3072075b7a3d0989f7f379a30298fb6ab430f149147.png",
-    "screenshots/c07426945ae8946d5de665cee11179871eee3d2c6a87e876a513241bf8e7d73a.png;screenshots/3bbc957b078ea2257757ebed438abcb8ab40504bab216117dd91468c5b805ef8.png;screenshots/e45f4a3d7d6658fe515958b98bc9f11e2a8b14a57c9780eb34b8f86c3f1ffe71.png;screenshots/c37c3ac968777616198fb3072075b7a3d0989f7f379a30298fb6ab430f149147.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c37c3ac968777616198fb3072075b7a3d0989f7f379a30298fb6ab430f149147.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1052-dhewm3.vpk",
       "recommended": true
     },
@@ -36,5 +35,10 @@
       "name": "Repositorio",
       "url": "https://github.com/Rinnegatamante/d3es-vita"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "1052",
+  "source_url": "https://github.com/Rinnegatamante/d3es-vita",
+  "release_page": "",
+  "updated_at": "2026-08-13T13:46:07.857044+00:00"
 }

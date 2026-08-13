@@ -3,11 +3,11 @@
   "title_id": "LOVEVITA0",
   "name": "LOVE",
   "description": "Port of LOVE for PSVITA.",
-  "long_description": "LOVE is a short and addictively challenging platformer with a minimalist design. It has a custom respawn system, 16 levels, 12 track original soundtrack, competitive scoring, and multiple ways to play.\nThis port uses the Android version to play.",
+  "long_description": "LOVE is a short and addictively challenging platformer with a minimalist design. It has a custom respawn system, 16 levels, 12 track original soundtrack, competitive scoring, and multiple ways to play.\nThis port uses the Android version to play.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
   "author_ids": [
     "hatoving"
   ],
-  "category_id": "ports",
+  "category_id": "games",
   "subcategory_ids": [
     "other"
   ],
@@ -16,23 +16,22 @@
   "requirements": "- Game Data Files: Android",
   "size": 2847533,
   "status": "Legacy",
-  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/541dbadb3236fdc62c07372c889c26ea98f28412397d5a150a2a302b740e142d.png",
+  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1729-love.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/5e46157e03b8ed74a4068ffbc7de6a32cf0574dfeba1c076d1432077790208c8.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/4dd25d7679e79b5bdc71b650f9f19be8ae2359799a773a0e879d9d0752d59e9f.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/7bcde9a4f420cf83bb12702406596d95d111f8bcfe98850be88bcc6f1b1e8cf6.png",
-    "screenshots/5e46157e03b8ed74a4068ffbc7de6a32cf0574dfeba1c076d1432077790208c8.png;screenshots/4dd25d7679e79b5bdc71b650f9f19be8ae2359799a773a0e879d9d0752d59e9f.png;screenshots/7bcde9a4f420cf83bb12702406596d95d111f8bcfe98850be88bcc6f1b1e8cf6.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/7bcde9a4f420cf83bb12702406596d95d111f8bcfe98850be88bcc6f1b1e8cf6.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/683-LOVE.vpk",
       "recommended": true
     },
     {
-      "type": "Other",
-      "name": "Release",
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
       "url": "https://kyuhen.customprotocol.com/en/submissions/love/"
     },
     {
@@ -40,5 +39,10 @@
       "name": "Repositorio",
       "url": "https://github.com"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "683",
+  "source_url": "https://kyuhen.customprotocol.com/en/submissions/love/",
+  "release_page": "https://kyuhen.customprotocol.com/en/submissions/love/",
+  "updated_at": "2026-08-13T13:46:07.923722+00:00"
 }

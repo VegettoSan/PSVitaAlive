@@ -3,37 +3,44 @@
   "title_id": "CHEX00001",
   "name": "Chex Quest Vita",
   "description": "Port of doomgeneric for PSVita.",
-  "long_description": "Port of doomgeneric for PSVita.\nThe purpose of doomgeneric is to make porting Doom easier. Of course Doom is already portable but with doomgeneric it is possible with just a few functions.",
+  "long_description": "Port of doomgeneric for PSVita.\nThe purpose of doomgeneric is to make porting Doom easier. Of course Doom is already portable but with doomgeneric it is possible with just a few functions.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
   "author_ids": [
     "claude-ai"
   ],
-  "category_id": "ports",
+  "category_id": "games",
   "subcategory_ids": [
-    "fps"
+    "other"
   ],
   "version": "v.1.0",
   "version_date": "2026-08-12",
   "requirements": "- Game Data Files: PC",
   "size": 398000,
   "status": "Legacy",
-  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/18746b487153dc1ca3d728ce57b841b6e8faeca65a0900aa46864f73d07642c8.png",
-  "screenshots": [],
+  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1954-chex-quest-vita.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1954-chex-quest-vita.png"
+  ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1370-ChexQuestVita.vpk",
       "recommended": true
+    },
+    {
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
+      "url": "https://github.com/DraxTube/chexquest-vita/releases"
     },
     {
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/DraxTube/chexquest-vita"
-    },
-    {
-      "type": "Other",
-      "name": "Release",
-      "url": "https://github.com/DraxTube/chexquest-vita/releases"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "1370",
+  "source_url": "https://github.com/DraxTube/chexquest-vita",
+  "release_page": "https://github.com/DraxTube/chexquest-vita/releases",
+  "updated_at": "2026-08-13T13:46:07.731683+00:00"
 }

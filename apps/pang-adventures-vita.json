@@ -7,7 +7,7 @@
   "author_ids": [
     "rinnegatamante"
   ],
-  "category_id": "ports",
+  "category_id": "games",
   "subcategory_ids": [
     "other"
   ],
@@ -15,36 +15,40 @@
   "version_date": "2025-10-19",
   "requirements": "- libshacccg.suprx\n- kubridge.skprx\n- Game Data Files: Android",
   "size": 1854842,
-  "status": "Verified",
-  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/7fb72b99d47121f8d8566483cc42c076b4837da2c4445e0d4ac4acb42edaf6a3.png",
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/7fb72b99d47121f8d8566483cc42c076b4837da2c4445e0d4ac4acb42edaf6a3.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/ee49e352707b6ea25bcaf5bc8fe8be525d626d6d408f3a4e3809d2e50cbc512d.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/b9a28a28c0e98f2348cde5ae16ab54dcfc1750f84e9402d4bebfc6c62d828975.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/88dfaf8c1ceb417910d62a0c6b356781f52796baf49f0897372f833ab3f97fff.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/62f7ca4d236d4d0b8c533d34f488d62da03b84031c12c50412eba61bbbb314a7.png",
-    "screenshots/ee49e352707b6ea25bcaf5bc8fe8be525d626d6d408f3a4e3809d2e50cbc512d.png;screenshots/b9a28a28c0e98f2348cde5ae16ab54dcfc1750f84e9402d4bebfc6c62d828975.png;screenshots/88dfaf8c1ceb417910d62a0c6b356781f52796baf49f0897372f833ab3f97fff.png;screenshots/62f7ca4d236d4d0b8c533d34f488d62da03b84031c12c50412eba61bbbb314a7.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/62f7ca4d236d4d0b8c533d34f488d62da03b84031c12c50412eba61bbbb314a7.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/Rinnegatamante/pang-vita/releases/download/v.1.1/pang.vpk",
       "recommended": true
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/Rinnegatamante/pang-vita"
-    },
-    {
-      "type": "Other",
-      "name": "Release",
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
       "url": "https://github.com/Rinnegatamante/pang-vita/releases"
     },
     {
       "type": "Official Website",
       "name": "NeoVitaDB Release Page",
       "url": "https://github.com/Rinnegatamante/pang-vita/releases/tag/v.1.1"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/Rinnegatamante/pang-vita"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "1236",
+  "source_url": "https://github.com/Rinnegatamante/pang-vita",
+  "release_page": "https://github.com/Rinnegatamante/pang-vita/releases",
+  "updated_at": "2026-08-13T13:46:07.746246+00:00"
 }

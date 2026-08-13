@@ -3,11 +3,11 @@
   "title_id": "TIEE00000",
   "name": "TIE Vita",
   "description": "Port of TIE for PSVita.",
-  "long_description": "TIE is a game about depression and the daily grind we are all forced too endure. Experience a week of more of the same, every day, through the eyes of our main character as the world and its inhabitants slowly start too become increasingly unfamiliar. Irregularities in the world and from deep within plague your day to day and a strange force seems to tear the very fabric of reality itself, as it becomes apparent that not all is as it seems in this short, atmospheric game about depression and existential dread.",
+  "long_description": "TIE is a game about depression and the daily grind we are all forced too endure. Experience a week of more of the same, every day, through the eyes of our main character as the world and its inhabitants slowly start too become increasingly unfamiliar. Irregularities in the world and from deep within plague your day to day and a strange force seems to tear the very fabric of reality itself, as it becomes apparent that not all is as it seems in this short, atmospheric game about depression and existential dread.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
   "author_ids": [
     "lordchickenblaster"
   ],
-  "category_id": "ports",
+  "category_id": "games",
   "subcategory_ids": [
     "other"
   ],
@@ -16,23 +16,22 @@
   "requirements": "- Game Data Files: PC",
   "size": 14984183,
   "status": "Legacy",
-  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/4c43e4c14cd0694ced16e15a9c724959ee6115a031dc3c8489a04a95e2be33a1.png",
+  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1939-tie-vita.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/145593725a44d7b1c6234b45ed4f6185225af5b17713d29be763eeae8c601151.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/016e4a3eb3e90e295932421b1732dc9025414bbb44dab11a1209bf1888dd0f99.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/15714aba92321fd0c083bea356a864b9300df76d5266a2abb36cf748d2dd29b6.png",
-    "screenshots/145593725a44d7b1c6234b45ed4f6185225af5b17713d29be763eeae8c601151.png;screenshots/016e4a3eb3e90e295932421b1732dc9025414bbb44dab11a1209bf1888dd0f99.png;screenshots/15714aba92321fd0c083bea356a864b9300df76d5266a2abb36cf748d2dd29b6.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/15714aba92321fd0c083bea356a864b9300df76d5266a2abb36cf748d2dd29b6.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1325-TIE.vpk",
       "recommended": true
     },
     {
-      "type": "Other",
-      "name": "Release",
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
       "url": "https://lordchickenblaster.itch.io/agameaboutdepression"
     },
     {
@@ -40,5 +39,10 @@
       "name": "Repositorio",
       "url": "https://github.com"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "1325",
+  "source_url": "https://lordchickenblaster.itch.io/agameaboutdepression",
+  "release_page": "https://lordchickenblaster.itch.io/agameaboutdepression",
+  "updated_at": "2026-08-13T13:46:07.753337+00:00"
 }

@@ -3,34 +3,33 @@
   "title_id": "DZZEETHP0",
   "name": "Dzzee",
   "description": "Multiplatform Arcade game.",
-  "long_description": "A multiplaform arcade game. Control the white rectangle with the UP and DOWN buttons. Stay on the lanes, avoid the gaps. Survive longest and retain health points for high score.",
+  "long_description": "A multiplaform arcade game. Control the white rectangle with the UP and DOWN buttons. Stay on the lanes, avoid the gaps. Survive longest and retain health points for high score.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
   "author_ids": [
     "thp"
   ],
-  "category_id": "ports",
+  "category_id": "games",
   "subcategory_ids": [
     "other"
   ],
   "version": "v.1.2.0",
   "version_date": "2026-08-12",
-  "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
+  "requirements": "Not specified",
   "size": 94239,
-  "status": "Verified",
-  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/f4bd31955f00f82233b1fbd8b79d7af1cb0ed1e0395d8ff8e7c163c0943cfa88.png",
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1754-dzzee.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/cac7e2cd27b4f0eb298b1fce682b99812a2a4f7cf540e1ec9816380a18a02d06.png",
-    "screenshots/cac7e2cd27b4f0eb298b1fce682b99812a2a4f7cf540e1ec9816380a18a02d06.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/cac7e2cd27b4f0eb298b1fce682b99812a2a4f7cf540e1ec9816380a18a02d06.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/741-dzzee.vpk",
       "recommended": true
     },
     {
-      "type": "Other",
-      "name": "Release",
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
       "url": "http://thp.io/2021/dzzee/"
     },
     {
@@ -38,5 +37,10 @@
       "name": "Repositorio",
       "url": "https://github.com"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "741",
+  "source_url": "http://thp.io/2021/dzzee/",
+  "release_page": "http://thp.io/2021/dzzee/",
+  "updated_at": "2026-08-13T13:46:07.909677+00:00"
 }

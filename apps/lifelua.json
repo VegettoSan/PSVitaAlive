@@ -7,39 +7,43 @@
   "author_ids": [
     "harommel-rabbid"
   ],
-  "category_id": "development",
+  "category_id": "games",
   "subcategory_ids": [
-    "lua"
+    "other"
   ],
   "version": "08-06-2025",
   "version_date": "2025-06-09",
-  "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
+  "requirements": "Not specified",
   "size": 1414258,
-  "status": "Verified",
-  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/1150df6d6ace64703e54e6bb51e314b872b88f1021e2b2580e9980566c5121ba.png",
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/1150df6d6ace64703e54e6bb51e314b872b88f1021e2b2580e9980566c5121ba.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/f92fab336012ef1b62c030dd7c152c6a6e3d56a722881392091021aac9ebeb87.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/818e683c32cd17a2607410942e8256d3bc1bdb0b592b198776b6c6c7f7f5deda.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/40751f6f7f5f66e423c43dac2a42a3993d3a23c5f1255ec49925b187cab6e813.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/483197a215358aa65be2df8037c8f12adcae012dd02016b399464a24578327ef.png",
-    "screenshots/f92fab336012ef1b62c030dd7c152c6a6e3d56a722881392091021aac9ebeb87.png;screenshots/818e683c32cd17a2607410942e8256d3bc1bdb0b592b198776b6c6c7f7f5deda.png;screenshots/40751f6f7f5f66e423c43dac2a42a3993d3a23c5f1255ec49925b187cab6e813.png;screenshots/483197a215358aa65be2df8037c8f12adcae012dd02016b399464a24578327ef.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/483197a215358aa65be2df8037c8f12adcae012dd02016b399464a24578327ef.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/HarommelRabbid/LifeLua/releases/download/08-06-25/LifeLua.vpk",
       "recommended": true
+    },
+    {
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
+      "url": "https://github.com/HarommelRabbid/LifeLua/releases"
     },
     {
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/HarommelRabbid/LifeLua"
-    },
-    {
-      "type": "Other",
-      "name": "Release",
-      "url": "https://github.com/HarommelRabbid/LifeLua/releases"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "1275",
+  "source_url": "https://github.com/HarommelRabbid/LifeLua",
+  "release_page": "https://github.com/HarommelRabbid/LifeLua/releases",
+  "updated_at": "2026-08-13T13:46:07.770324+00:00"
 }

@@ -3,7 +3,7 @@
   "title_id": "FNAF2VITA",
   "name": "Five Night at Freddy's 2 Lite",
   "description": "Recreation of FNAF2 for PSVITA.",
-  "long_description": "A receration made in Game Maker Studio of Five Night at Freddy's 2 for PSVITA.",
+  "long_description": "A receration made in Game Maker Studio of Five Night at Freddy's 2 for PSVITA.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
   "author_ids": [
     "alexdev2"
   ],
@@ -13,26 +13,25 @@
   ],
   "version": "v.0.3.5",
   "version_date": "2026-08-12",
-  "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
+  "requirements": "Not specified",
   "size": 85766384,
-  "status": "Verified",
-  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/ba87c5464f7c183f3d8e1048ebb0635cc0cbd5bd715e3ecff98969211668fa89.png",
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1795-five-night-at-freddy-s-2-lite.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/5d4ca28713ef83024f46f2a9a552abc7287d64478215d991a06acf7d8cb96dd3.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/9eb120b263960893ccdbf59cfd95c9d7a598a89251dea9b0f5f06eaa94e8f4aa.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/2b687ec2827b2fe6ecdc1d3a8d0d8ea7f04dd3572545a327320e1df0c1a93a99.png",
-    "screenshots/5d4ca28713ef83024f46f2a9a552abc7287d64478215d991a06acf7d8cb96dd3.png;screenshots/9eb120b263960893ccdbf59cfd95c9d7a598a89251dea9b0f5f06eaa94e8f4aa.png;screenshots/2b687ec2827b2fe6ecdc1d3a8d0d8ea7f04dd3572545a327320e1df0c1a93a99.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/2b687ec2827b2fe6ecdc1d3a8d0d8ea7f04dd3572545a327320e1df0c1a93a99.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/856-fnaf-2-vita.vpk",
       "recommended": true
     },
     {
-      "type": "Other",
-      "name": "Release",
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
       "url": "https://gamejolt.com/games/FNAF2PSP/680533"
     },
     {
@@ -40,5 +39,10 @@
       "name": "Repositorio",
       "url": "https://github.com"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "856",
+  "source_url": "https://gamejolt.com/games/FNAF2PSP/680533",
+  "release_page": "https://gamejolt.com/games/FNAF2PSP/680533",
+  "updated_at": "2026-08-13T13:46:07.899426+00:00"
 }

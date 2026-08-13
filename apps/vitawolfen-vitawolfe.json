@@ -13,11 +13,13 @@
   ],
   "version": "v.1.7",
   "version_date": "2026-08-12",
-  "requirements": "",
+  "requirements": "Not specified",
   "size": 1115769,
   "status": "Legacy",
-  "icon": "1474-vitawolfen.png",
-  "screenshots": [],
+  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1474-vitawolfen.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1474-vitawolfen.png"
+  ],
   "links": [
     {
       "type": "Download",
@@ -35,5 +37,5 @@
   "source_id": "1474",
   "source_url": "https://github.com",
   "release_page": "",
-  "updated_at": "2026-08-13T05:25:55.185051+00:00"
+  "updated_at": "2026-08-13T13:46:08.043454+00:00"
 }

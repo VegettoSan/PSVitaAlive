@@ -3,31 +3,33 @@
   "title_id": "XXXX35570",
   "name": "Whitelister",
   "description": "Whitelister for PSTV.",
-  "long_description": "v1 whitelister app for Playstation TV.",
+  "long_description": "v1 whitelister app for Playstation TV.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
   "author_ids": [
     "kankertje"
   ],
-  "category_id": "ports",
+  "category_id": "games",
   "subcategory_ids": [
     "other"
   ],
   "version": "v.1.1",
   "version_date": "2026-08-12",
-  "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
+  "requirements": "Not specified",
   "size": 104562,
-  "status": "Verified",
-  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/8834f97cf0f89d196322a08929360f46190b7f513e50534c089c3d88d0599786.png",
-  "screenshots": [],
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1529-whitelister.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1529-whitelister.png"
+  ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/178-whitelister.vpk",
       "recommended": true
     },
     {
-      "type": "Other",
-      "name": "Release",
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
       "url": "http://wololo.net/talk/viewtopic.php?f=116&t=46154"
     },
     {
@@ -35,5 +37,10 @@
       "name": "Repositorio",
       "url": "https://github.com"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "178",
+  "source_url": "http://wololo.net/talk/viewtopic.php?f=116&t=46154",
+  "release_page": "http://wololo.net/talk/viewtopic.php?f=116&t=46154",
+  "updated_at": "2026-08-13T13:46:08.033473+00:00"
 }

@@ -7,38 +7,45 @@
   "author_ids": [
     "devnoname120"
   ],
-  "category_id": "utilities",
+  "category_id": "games",
   "subcategory_ids": [
     "other"
   ],
   "version": "v.0.10",
   "version_date": "2017-04-18",
-  "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
+  "requirements": "Not specified",
   "size": 24314,
-  "status": "Verified",
-  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/d05c8c84246800a8f636af29d12a714db9a04b546f62587c0ffca820df60f527.png",
-  "screenshots": [],
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/d05c8c84246800a8f636af29d12a714db9a04b546f62587c0ffca820df60f527.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/d05c8c84246800a8f636af29d12a714db9a04b546f62587c0ffca820df60f527.png"
+  ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/devnoname120/vita-restart/releases/download/0.10/vita-restart.vpk",
       "recommended": true
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/devnoname120/vita-restart"
-    },
-    {
-      "type": "Other",
-      "name": "Release",
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
       "url": "http://wololo.net/talk/viewtopic.php?p=413152"
     },
     {
       "type": "Official Website",
       "name": "NeoVitaDB Release Page",
       "url": "https://github.com/devnoname120/vita-restart/releases/tag/0.10"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/devnoname120/vita-restart"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "80",
+  "source_url": "https://github.com/devnoname120/vita-restart",
+  "release_page": "http://wololo.net/talk/viewtopic.php?p=413152",
+  "updated_at": "2026-08-13T13:46:08.008734+00:00"
 }

@@ -2,43 +2,50 @@
   "id": "idu-mode",
   "title_id": "XYZZ00003",
   "name": "idu-mode",
-  "description": "Enables or disables IDU (Demo) mode.",
+  "description": "Enables or disables IDU (Demo) mode",
   "long_description": "App for your HENkaku-enabled PS Vita that lets you enable the Demo mode. \nThe Demo mode of the PSVita gives you access to more options, in particular the Package Installer. \nThe Package Installer can be used to install DRM Free official Vita apps (such as DRM free Demos, or apps like Netflix, etc...)\nPlease don't use this homebrew (and Demo mode) unless you know what you're doing because your PSVita could potentially automatically upgrade the FW if you're connected to WiFi.",
   "author_ids": [
     "xyzz"
   ],
-  "category_id": "demos",
+  "category_id": "games",
   "subcategory_ids": [
-    "tech-demo"
+    "other"
   ],
   "version": "v.1.0",
   "version_date": "2016-08-17",
-  "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
+  "requirements": "Not specified",
   "size": 51620,
-  "status": "Verified",
-  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/18746b487153dc1ca3d728ce57b841b6e8faeca65a0900aa46864f73d07642c8.png",
-  "screenshots": [],
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/18746b487153dc1ca3d728ce57b841b6e8faeca65a0900aa46864f73d07642c8.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/18746b487153dc1ca3d728ce57b841b6e8faeca65a0900aa46864f73d07642c8.png"
+  ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/xyzz/vita-idu/releases/download/1.0/idu-mode.vpk",
       "recommended": true
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/xyzz/vita-idu"
-    },
-    {
-      "type": "Other",
-      "name": "Release",
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
       "url": "http://wololo.net/2016/08/18/release-vita-idu-convert-vita-demo-mode-adds-cool-options/"
     },
     {
       "type": "Official Website",
       "name": "NeoVitaDB Release Page",
       "url": "https://github.com/xyzz/vita-idu/releases/tag/1.0"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/xyzz/vita-idu"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "145",
+  "source_url": "https://github.com/xyzz/vita-idu",
+  "release_page": "http://wololo.net/2016/08/18/release-vita-idu-convert-vita-demo-mode-adds-cool-options/",
+  "updated_at": "2026-08-13T13:46:08.028190+00:00"
 }

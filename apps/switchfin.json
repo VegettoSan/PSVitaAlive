@@ -2,7 +2,7 @@
   "id": "switchfin",
   "title_id": "SWITCHFIN",
   "name": "Switchfin",
-  "description": "Switchfin is a third-party client for Jellyfin that provides a native user interface to browse and play movies and series.",
+  "description": "Jellyfin client for PSVITA.",
   "long_description": "Switchfin is a third-party client for Jellyfin that provides a native user interface to browse and play movies and series.",
   "author_ids": [
     "dragonflylee"
@@ -13,33 +13,37 @@
   ],
   "version": "0.9.3",
   "version_date": "2026-07-27",
-  "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
+  "requirements": "Not specified",
   "size": 12915205,
-  "status": "Verified",
-  "icon": "https://robin994.github.io/NeoVitaDB-Catalog/icons/1258-switchfin.png",
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1258-switchfin.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/7365a9bd68f4aa4630e74f49c2a0786de4ce06227ebd2aadaf129737afd7ac0a.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/d65c088435e27e5f55cd1e6491399e35d5850bdbbbe88632771d6668cfde5285.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/eab5ad10ebf695340c9fd3998b52c3e50a08c1379ad8033cb4556f2b93858c42.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/afbf8b5cbe0247ac754b1b97969c2b73e16b35be577b5978c69d054d8cc06cfa.png",
-    "screenshots/7365a9bd68f4aa4630e74f49c2a0786de4ce06227ebd2aadaf129737afd7ac0a.png;screenshots/d65c088435e27e5f55cd1e6491399e35d5850bdbbbe88632771d6668cfde5285.png;screenshots/eab5ad10ebf695340c9fd3998b52c3e50a08c1379ad8033cb4556f2b93858c42.png;screenshots/afbf8b5cbe0247ac754b1b97969c2b73e16b35be577b5978c69d054d8cc06cfa.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/afbf8b5cbe0247ac754b1b97969c2b73e16b35be577b5978c69d054d8cc06cfa.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "NeoVitaDB VPK",
       "url": "https://github.com/dragonflylee/switchfin/releases/download/0.9.3/Switchfin.vpk",
       "recommended": true
+    },
+    {
+      "type": "Official Website",
+      "name": "NeoVitaDB Release Page",
+      "url": "https://github.com/dragonflylee/switchfin/releases/tag/0.9.3"
     },
     {
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/dragonflylee/switchfin"
-    },
-    {
-      "type": "Other",
-      "name": "Release",
-      "url": "https://github.com/dragonflylee/switchfin/releases/tag/0.9.3"
     }
-  ]
+  ],
+  "source_name": "NeoVitaDB",
+  "source_id": "1258",
+  "source_url": "https://github.com/dragonflylee/switchfin",
+  "release_page": "https://github.com/dragonflylee/switchfin/releases/tag/0.9.3",
+  "updated_at": "2026-08-13T13:46:07.734096+00:00"
 }

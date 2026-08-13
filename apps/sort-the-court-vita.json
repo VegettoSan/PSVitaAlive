@@ -3,11 +3,11 @@
   "title_id": "SORT12345",
   "name": "Sort the Court Vita",
   "description": "Port of Sort the Court for PSVita.",
-  "long_description": "A port of Graeme Borland's Sort the Court to PSVITA.",
+  "long_description": "A port of Graeme Borland's Sort the Court to PSVITA.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
   "author_ids": [
     "lordchickenblaster"
   ],
-  "category_id": "ports",
+  "category_id": "games",
   "subcategory_ids": [
     "other"
   ],
@@ -16,18 +16,20 @@
   "requirements": "- Game Data Files: PC",
   "size": 15042197,
   "status": "Legacy",
-  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/4939eb633f1a997a974111ff884ea936f777fcbe49a3a5e7bda9894bb49e255f.png",
-  "screenshots": [],
+  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1937-sort-the-court-vita.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1937-sort-the-court-vita.png"
+  ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1321-STC.vpk",
       "recommended": true
     },
     {
-      "type": "Other",
-      "name": "Release",
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
       "url": "https://lordchickenblaster.itch.io/sort-the-court-vita"
     },
     {
@@ -35,5 +37,10 @@
       "name": "Repositorio",
       "url": "https://github.com"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "1321",
+  "source_url": "https://lordchickenblaster.itch.io/sort-the-court-vita",
+  "release_page": "https://lordchickenblaster.itch.io/sort-the-court-vita",
+  "updated_at": "2026-08-13T13:46:07.754956+00:00"
 }

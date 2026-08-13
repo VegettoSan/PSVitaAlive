@@ -3,38 +3,35 @@
   "title_id": "VTHT52118",
   "name": "VitaHot",
   "description": "Clone of SUPERHOT for PSVITA.",
-  "long_description": "The full and really polished build for VitaHOT, the fan clone of SuperHot squeezed down into the palm of your hand! Featuring 21 varied levels inspired by some of the best action movies over the last 50 years, with game-breaking mods to unlock, and seven different gamemodes to shake up the action!",
+  "long_description": "The full and really polished build for VitaHOT, the fan clone of SuperHot squeezed down into the palm of your hand! Featuring 21 varied levels inspired by some of the best action movies over the last 50 years, with game-breaking mods to unlock, and seven different gamemodes to shake up the action!\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
   "author_ids": [
-    "mrkane",
-    "digradi",
     "mrkane-digradi"
   ],
   "category_id": "games",
   "subcategory_ids": [
-    "action"
+    "other"
   ],
   "version": "v.1.07",
   "version_date": "2026-08-12",
-  "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
+  "requirements": "Not specified",
   "size": 223750866,
-  "status": "Verified",
-  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/5c1d1727c93dfd34fe5c8c8db4730a865652cec7c20939dfd5d9ffe0b508b39d.png",
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1854-vitahot.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/300aacfe60a7b85891db1e0adba73f9c069e0208635335676c786ff5934e4006.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/96c47db6bcb9bb93309bf49b6642f38441be1e91abcac57ed6a25a55535b5849.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/93e892cfca87a94f44b4e1f041bb2430e685249ef7ae3a5c8da627930da1cc9b.png",
-    "screenshots/300aacfe60a7b85891db1e0adba73f9c069e0208635335676c786ff5934e4006.png;screenshots/96c47db6bcb9bb93309bf49b6642f38441be1e91abcac57ed6a25a55535b5849.png;screenshots/93e892cfca87a94f44b4e1f041bb2430e685249ef7ae3a5c8da627930da1cc9b.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/93e892cfca87a94f44b4e1f041bb2430e685249ef7ae3a5c8da627930da1cc9b.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1122-VitaHot.vpk",
       "recommended": true
     },
     {
-      "type": "Other",
-      "name": "Release",
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
       "url": "https://fuhen.homebrew-contest.com/submissions/33/"
     },
     {
@@ -42,5 +39,10 @@
       "name": "Repositorio",
       "url": "https://github.com"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "1122",
+  "source_url": "https://fuhen.homebrew-contest.com/submissions/33/",
+  "release_page": "https://fuhen.homebrew-contest.com/submissions/33/",
+  "updated_at": "2026-08-13T13:46:07.804892+00:00"
 }

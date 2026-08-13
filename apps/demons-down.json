@@ -3,37 +3,36 @@
   "title_id": "WIDE87198",
   "name": "Demons Down",
   "description": "First person shooter inspired by Doom.",
-  "long_description": "A first person action shooter inspired by classic old FPSes such as Doom and similars.",
+  "long_description": "A first person action shooter inspired by classic old FPSes such as Doom and similars.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
   "author_ids": [
     "widegcg"
   ],
   "category_id": "games",
   "subcategory_ids": [
-    "shooter"
+    "other"
   ],
   "version": "v.1.0",
   "version_date": "2026-08-12",
-  "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
+  "requirements": "Not specified",
   "size": 47759818,
-  "status": "Verified",
-  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/0e79b6717f54549e32eebfed29baa99c29a80b5529b31e1c197af0757c6a6713.png",
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1726-demons-down.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/225e767b2458d3538190900f569afa4e493a7217590c058208ceb6892f295d89.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/ed0ea46e7d7994e9f6bd4f110577486b5666e35e78e0b14ba40826ab84182ba4.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/5c0325e96fcd885cc9a8354029af1ab75b9fb82f5c2ace8e01717fda0827e45d.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/47b8ee81156dc39a0a6403d9d2e60f0bd53a2e0f8ccf421730445ab0260a537b.png",
-    "screenshots/225e767b2458d3538190900f569afa4e493a7217590c058208ceb6892f295d89.png;screenshots/ed0ea46e7d7994e9f6bd4f110577486b5666e35e78e0b14ba40826ab84182ba4.png;screenshots/5c0325e96fcd885cc9a8354029af1ab75b9fb82f5c2ace8e01717fda0827e45d.png;screenshots/47b8ee81156dc39a0a6403d9d2e60f0bd53a2e0f8ccf421730445ab0260a537b.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/47b8ee81156dc39a0a6403d9d2e60f0bd53a2e0f8ccf421730445ab0260a537b.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/679-DemonsDown.vpk",
       "recommended": true
     },
     {
-      "type": "Other",
-      "name": "Release",
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
       "url": "https://kyuhen.customprotocol.com/en/submissions/demonsdown/"
     },
     {
@@ -41,5 +40,10 @@
       "name": "Repositorio",
       "url": "https://github.com"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "679",
+  "source_url": "https://kyuhen.customprotocol.com/en/submissions/demonsdown/",
+  "release_page": "https://kyuhen.customprotocol.com/en/submissions/demonsdown/",
+  "updated_at": "2026-08-13T13:46:07.923086+00:00"
 }

@@ -7,34 +7,38 @@
   "author_ids": [
     "xqspx"
   ],
-  "category_id": "ports",
+  "category_id": "games",
   "subcategory_ids": [
     "other"
   ],
   "version": "v.1.0",
   "version_date": "2025-09-02",
-  "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
+  "requirements": "Not specified",
   "size": 43131039,
-  "status": "Verified",
-  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/8211cab219a2161693173bcad95dee9f362fb0e61e0b3d0592fd60f02c3414d3.png",
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/8211cab219a2161693173bcad95dee9f362fb0e61e0b3d0592fd60f02c3414d3.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/aaf361bd095a28b529521f2e78285b5e7a78cd6e085ab571760c022f641ee2b5.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/3cd9fce24bcb937582555c7cd1295845683c610b3fb23e6eadfd04f8f0dfa93c.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/acd4979e98ddfffd83e8e62813e88934729686dc56b2bc747e6603cdc9fab7d7.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/788fbab50bb6e65ac37283c1ec3594c3192fe8262242ba219d86bf03c515a7a1.png",
-    "screenshots/aaf361bd095a28b529521f2e78285b5e7a78cd6e085ab571760c022f641ee2b5.png;screenshots/3cd9fce24bcb937582555c7cd1295845683c610b3fb23e6eadfd04f8f0dfa93c.png;screenshots/acd4979e98ddfffd83e8e62813e88934729686dc56b2bc747e6603cdc9fab7d7.png;screenshots/788fbab50bb6e65ac37283c1ec3594c3192fe8262242ba219d86bf03c515a7a1.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/788fbab50bb6e65ac37283c1ec3594c3192fe8262242ba219d86bf03c515a7a1.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/xqwpx/benny/releases/download/Release/Benny.vpk",
       "recommended": true
     },
     {
-      "type": "Other",
-      "name": "Release",
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
       "url": "https://github.com/xqwpx/benny"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "1319",
+  "source_url": "https://github.com/xqwpx/benny",
+  "release_page": "https://github.com/xqwpx/benny",
+  "updated_at": "2026-08-13T13:46:07.755041+00:00"
 }

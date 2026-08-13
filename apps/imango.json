@@ -3,31 +3,33 @@
   "title_id": "IMNG00001",
   "name": "iMango",
   "description": "Media player for PSVita.",
-  "long_description": "Coverflow style media player for PSVita.",
+  "long_description": "Coverflow style media player for PSVita.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
   "author_ids": [
     "capitanbarbacoa"
   ],
-  "category_id": "media",
+  "category_id": "games",
   "subcategory_ids": [
     "other"
   ],
   "version": "v.1.0",
   "version_date": "2026-08-12",
-  "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
+  "requirements": "Not specified",
   "size": 3763993,
   "status": "Legacy",
-  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/cbb658af9dff8ec0c7e86beea88d6ba5d7cb9e25a5d7e6558d5993be3fa3219b.png",
-  "screenshots": [],
+  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1971-imango.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1971-imango.png"
+  ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1441-imango.vpk",
       "recommended": true
     },
     {
-      "type": "Other",
-      "name": "Release",
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
       "url": "https://capitanbarbacoa.itch.io/imango-psvita"
     },
     {
@@ -35,5 +37,10 @@
       "name": "Repositorio",
       "url": "https://github.com"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "1441",
+  "source_url": "https://capitanbarbacoa.itch.io/imango-psvita",
+  "release_page": "https://capitanbarbacoa.itch.io/imango-psvita",
+  "updated_at": "2026-08-13T13:46:07.703437+00:00"
 }

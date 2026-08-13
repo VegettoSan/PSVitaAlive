@@ -3,34 +3,33 @@
   "title_id": "JFKD22551",
   "name": "Hexagon Jumper",
   "description": "Platformer for PSVITA.",
-  "long_description": "A platformer for PSVITA inspired by Geometry Dash.",
+  "long_description": "A platformer for PSVITA inspired by Geometry Dash.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
   "author_ids": [
     "cubic-games-official"
   ],
   "category_id": "games",
   "subcategory_ids": [
-    "platformer"
+    "other"
   ],
   "version": "v.1.4.1",
   "version_date": "2026-08-12",
-  "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
+  "requirements": "Not specified",
   "size": 80076273,
-  "status": "Verified",
-  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/cd625f6b684d2e881eda2784b827d39478afdf24b1a9e9c371f3f18b608ab1d4.png",
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1761-hexagon-jumper.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/820e27a581b29dac7ad4345816c899745c7c12e605e2333827e142543c95ce26.png",
-    "screenshots/820e27a581b29dac7ad4345816c899745c7c12e605e2333827e142543c95ce26.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/820e27a581b29dac7ad4345816c899745c7c12e605e2333827e142543c95ce26.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/766-hexagon.jumper_1.4.1.vpk",
       "recommended": true
     },
     {
-      "type": "Other",
-      "name": "Release",
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
       "url": "https://cubic-games-official.itch.io/hexagon-jumper"
     },
     {
@@ -38,5 +37,10 @@
       "name": "Repositorio",
       "url": "https://github.com"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "766",
+  "source_url": "https://cubic-games-official.itch.io/hexagon-jumper",
+  "release_page": "https://cubic-games-official.itch.io/hexagon-jumper",
+  "updated_at": "2026-08-13T13:46:07.910750+00:00"
 }

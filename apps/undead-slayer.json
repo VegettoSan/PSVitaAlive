@@ -3,25 +3,27 @@
   "title_id": "MOQI00006",
   "name": "Undead Slayer",
   "description": "Port of Undead Slayer for PSVITA.",
-  "long_description": "Port of Undead Slayer, a 3D hack'n'slash originally for iOS and Android, for PSVITA.",
+  "long_description": "Port of Undead Slayer, a 3D hack'n'slash originally for iOS and Android, for PSVITA.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
   "author_ids": [
     "hao-qi"
   ],
-  "category_id": "ports",
+  "category_id": "games",
   "subcategory_ids": [
     "other"
   ],
   "version": "v.1.0",
   "version_date": "2026-08-12",
-  "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
+  "requirements": "Not specified",
   "size": 62235983,
-  "status": "Verified",
-  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/2b893b5ef742085ba5305d43f833a6595b6bf1e8cf652014e8f6721470629e3e.png",
-  "screenshots": [],
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1778-undead-slayer.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1778-undead-slayer.png"
+  ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/805-UndeadSlayer.vpk",
       "recommended": true
     },
@@ -30,5 +32,10 @@
       "name": "Repositorio",
       "url": "https://github.com"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "805",
+  "source_url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/805-UndeadSlayer.vpk",
+  "release_page": "",
+  "updated_at": "2026-08-13T13:46:07.898484+00:00"
 }

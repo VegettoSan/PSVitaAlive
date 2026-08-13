@@ -7,16 +7,16 @@
   "author_ids": [
     "rsn8887"
   ],
-  "category_id": "ports",
+  "category_id": "games",
   "subcategory_ids": [
-    "puzzle"
+    "other"
   ],
-  "version": "v.1.12",
-  "version_date": "2019-01-22",
+  "version": "1.15",
+  "version_date": "2021-05-22",
   "requirements": "- Game Data Files: PC",
   "size": 2814410,
-  "status": "Verified",
-  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/6bb34537ea3459154123ada5b9fe228c6088cbc766f586f1228159394e97b088.png",
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/0386-rocksndiamonds.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c434d831c57918e52eb063095767024720fc2535be5184e1f9abafefbfa86738.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/71ccb8851b3841c5e6afbf32224be940512c3f6065daa0552f89e7c2a4a263cb.png",
@@ -26,19 +26,24 @@
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "NeoVitaDB VPK",
       "url": "https://github.com/rsn8887/rocksndiamonds/releases/download/1.15/rocksndiamonds_vita_1.12.vpk",
       "recommended": true
+    },
+    {
+      "type": "Official Website",
+      "name": "NeoVitaDB Release Page",
+      "url": "https://github.com/rsn8887/rocksndiamonds/releases/tag/1.15"
     },
     {
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/rsn8887/rocksndiamonds"
-    },
-    {
-      "type": "Other",
-      "name": "Release",
-      "url": "https://github.com/rsn8887/rocksndiamonds/releases/latest"
     }
-  ]
+  ],
+  "source_name": "NeoVitaDB",
+  "source_id": "386",
+  "source_url": "https://github.com/rsn8887/rocksndiamonds",
+  "release_page": "https://github.com/rsn8887/rocksndiamonds/releases/tag/1.15",
+  "updated_at": "2026-08-13T13:46:07.985362+00:00"
 }

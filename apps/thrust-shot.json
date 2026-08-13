@@ -3,36 +3,35 @@
   "title_id": "TSVT22824",
   "name": "Thrust Shot",
   "description": "Multiplayer TPS with bots support.",
-  "long_description": "Thrust Shot is an online multiplayer third-person shooter for up to 6 players featuring jetpacks.\nJump into quick deathmatch battles against players from around the world.\nThrust Shot focuses on fast-paced gameplay, use your thrusters to jump over buildings and take down your enemies with a variety of weapons.\nLevel up your online character and unlock new weapons to help you on your battles.\nThe game also features single player mode against enemy bots.",
+  "long_description": "Thrust Shot is an online multiplayer third-person shooter for up to 6 players featuring jetpacks.\nJump into quick deathmatch battles against players from around the world.\nThrust Shot focuses on fast-paced gameplay, use your thrusters to jump over buildings and take down your enemies with a variety of weapons.\nLevel up your online character and unlock new weapons to help you on your battles.\nThe game also features single player mode against enemy bots.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
   "author_ids": [
     "vitahex-games"
   ],
   "category_id": "games",
   "subcategory_ids": [
-    "shooter"
+    "other"
   ],
   "version": "v.0.2",
   "version_date": "2026-08-12",
-  "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
+  "requirements": "Not specified",
   "size": 69380267,
-  "status": "Verified",
-  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/08c8cf3d0b03c2d8d3c4e110fdd108011ad80ecd9d824265de051325d4868eb2.png",
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1722-thrust-shot.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/e286cecb4b0d9b68a5111319d57201d098319d11a1fa4746477afe4ff5db0ee4.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/70e6244eb3a4e4bc1b8a80d7f6f2de7168570ef8dc451838a4bbc473486e1c2c.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/269ad5e02e8d1bf47a74ebabb6b477fdcccac49f1a7d769c54fa6dfe7d23d95b.png",
-    "screenshots/e286cecb4b0d9b68a5111319d57201d098319d11a1fa4746477afe4ff5db0ee4.png;screenshots/70e6244eb3a4e4bc1b8a80d7f6f2de7168570ef8dc451838a4bbc473486e1c2c.png;screenshots/269ad5e02e8d1bf47a74ebabb6b477fdcccac49f1a7d769c54fa6dfe7d23d95b.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/269ad5e02e8d1bf47a74ebabb6b477fdcccac49f1a7d769c54fa6dfe7d23d95b.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/672-thrustshot.vpk",
       "recommended": true
     },
     {
-      "type": "Other",
-      "name": "Release",
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
       "url": "https://kyuhen.customprotocol.com/en/submissions/thrust_shot/"
     },
     {
@@ -40,5 +39,10 @@
       "name": "Repositorio",
       "url": "https://github.com"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "672",
+  "source_url": "https://kyuhen.customprotocol.com/en/submissions/thrust_shot/",
+  "release_page": "https://kyuhen.customprotocol.com/en/submissions/thrust_shot/",
+  "updated_at": "2026-08-13T13:46:07.926427+00:00"
 }

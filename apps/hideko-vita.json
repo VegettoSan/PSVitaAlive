@@ -3,11 +3,11 @@
   "title_id": "HIDEKO000",
   "name": "Hideko Vita",
   "description": "Port of Hideko for PSVita.",
-  "long_description": "Simple port of Hideko by Sokpop for Playstation Vita.\nSome graphical features had to be removed or simplified due to hardware constraints.",
+  "long_description": "Simple port of Hideko by Sokpop for Playstation Vita.\nSome graphical features had to be removed or simplified due to hardware constraints.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
   "author_ids": [
     "bren"
   ],
-  "category_id": "ports",
+  "category_id": "games",
   "subcategory_ids": [
     "other"
   ],
@@ -16,24 +16,23 @@
   "requirements": "- Game Data Files: PC",
   "size": 5262482,
   "status": "Legacy",
-  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/7c3f2bff2c263bed02c607a54aa88c7a60e8c4ffaad387a677119334d7689eba.png",
+  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1934-hideko-vita.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/6019bdbce5bf124009be53c3287448de6aec673ebf6814b7588f94405dafa3d9.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/92b201a7accb641d4f08ebfa418434401de14f11354ab63ca49a32df1c155741.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/cc949dac8d9bb7055facd96bf424c4b99e511ae397b730d1e212ac75602699f7.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/2392d6f88d8dac69208f1bba7f7ec93b4cc1458575de4ab7a25f2e911a98bfbd.png",
-    "screenshots/6019bdbce5bf124009be53c3287448de6aec673ebf6814b7588f94405dafa3d9.png;screenshots/92b201a7accb641d4f08ebfa418434401de14f11354ab63ca49a32df1c155741.png;screenshots/cc949dac8d9bb7055facd96bf424c4b99e511ae397b730d1e212ac75602699f7.png;screenshots/2392d6f88d8dac69208f1bba7f7ec93b4cc1458575de4ab7a25f2e911a98bfbd.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/2392d6f88d8dac69208f1bba7f7ec93b4cc1458575de4ab7a25f2e911a98bfbd.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1313-HIDEKO000.vpk",
       "recommended": true
     },
     {
-      "type": "Other",
-      "name": "Release",
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
       "url": "https://brendonm17.itch.io/hideko-vita"
     },
     {
@@ -41,5 +40,10 @@
       "name": "Repositorio",
       "url": "https://github.com"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "1313",
+  "source_url": "https://brendonm17.itch.io/hideko-vita",
+  "release_page": "https://brendonm17.itch.io/hideko-vita",
+  "updated_at": "2026-08-13T13:46:07.758279+00:00"
 }

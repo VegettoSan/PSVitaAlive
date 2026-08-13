@@ -2,38 +2,45 @@
   "id": "vitarw",
   "title_id": "VPRW00001",
   "name": "VitaRW",
-  "description": "Sets Read-Only partitions to Read-Write.",
-  "long_description": "Enable RW access to \"read-only\" partitions. This is a PoC, and should be used by devs who like the risk.",
+  "description": "Sets Read-Only partitions to Read-Write",
+  "long_description": "Enable RW access to \"read-only\" partitions. This is a PoC, and should be used by devs who like the risk.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
   "author_ids": [
     "tomtomdu80"
   ],
-  "category_id": "utilities",
+  "category_id": "games",
   "subcategory_ids": [
     "other"
   ],
   "version": "#04d791c",
   "version_date": "2026-08-12",
-  "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
+  "requirements": "Not specified",
   "size": 51309,
-  "status": "Verified",
-  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/18746b487153dc1ca3d728ce57b841b6e8faeca65a0900aa46864f73d07642c8.png",
-  "screenshots": [],
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1519-vitarw.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1519-vitarw.png"
+  ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/151-VitaRW.vpk",
       "recommended": true
+    },
+    {
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
+      "url": "http://wololo.net/2016/08/19/release-vitarw-gives-us-write-access-vitas-protected-partitions-wheres-downgrader/"
     },
     {
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/tomtomdu80/VitaRW"
-    },
-    {
-      "type": "Other",
-      "name": "Release",
-      "url": "http://wololo.net/2016/08/19/release-vitarw-gives-us-write-access-vitas-protected-partitions-wheres-downgrader/"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "151",
+  "source_url": "https://github.com/tomtomdu80/VitaRW",
+  "release_page": "http://wololo.net/2016/08/19/release-vitarw-gives-us-write-access-vitas-protected-partitions-wheres-downgrader/",
+  "updated_at": "2026-08-13T13:46:08.021999+00:00"
 }

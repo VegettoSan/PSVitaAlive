@@ -3,36 +3,35 @@
   "title_id": "CIRCDUDE1",
   "name": "Circuit Dude",
   "description": "Puzzle game for PSVITA/PSTV.",
-  "long_description": "Help Circuit Dude build his ultimate secret invention by plugging in chips, pushing blocks, stepping on switches, rotating walls and so much more in this game featuring over 15 hours of gameplay and 120 levels. What is he up to? What is Circuit Dude building? Finish the first 100 levels to find out!\n\nIf that's not enough, you can design your own master contraptions using the in-game level editor! (Cross-platform online level sharing coming soon!)",
+  "long_description": "Help Circuit Dude build his ultimate secret invention by plugging in chips, pushing blocks, stepping on switches, rotating walls and so much more in this game featuring over 15 hours of gameplay and 120 levels. What is he up to? What is Circuit Dude building? Finish the first 100 levels to find out!\n\nIf that's not enough, you can design your own master contraptions using the in-game level editor! (Cross-platform online level sharing coming soon!)\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
   "author_ids": [
     "crait"
   ],
   "category_id": "games",
   "subcategory_ids": [
-    "platformer"
+    "other"
   ],
   "version": "v.2.6.6",
   "version_date": "2026-08-12",
-  "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
+  "requirements": "Not specified",
   "size": 15533399,
-  "status": "Verified",
-  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/80bd8723fe0662f1eed6fbe794d02137da533215bb7d43b6a06887a46844450d.png",
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1708-circuit-dude.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/4fd0ed4deb65547bd2266b2913ee1bb2d08cf2e7e469b88cec740b94acc9d8b1.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/e332c924680e60b28ee38297db177704ff8e140ff96a9edd413997d3d78dc00e.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/b6bcb629854cd919ec07bc0480d1ba80b2a5b7b98133c6ded3a3a9282f3a69f2.png",
-    "screenshots/4fd0ed4deb65547bd2266b2913ee1bb2d08cf2e7e469b88cec740b94acc9d8b1.png;screenshots/e332c924680e60b28ee38297db177704ff8e140ff96a9edd413997d3d78dc00e.png;screenshots/b6bcb629854cd919ec07bc0480d1ba80b2a5b7b98133c6ded3a3a9282f3a69f2.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/b6bcb629854cd919ec07bc0480d1ba80b2a5b7b98133c6ded3a3a9282f3a69f2.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/626-CircuitDude.vpk",
       "recommended": true
     },
     {
-      "type": "Other",
-      "name": "Release",
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
       "url": "http://www.crait.net/"
     },
     {
@@ -40,5 +39,10 @@
       "name": "Repositorio",
       "url": "https://github.com"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "626",
+  "source_url": "http://www.crait.net/",
+  "release_page": "http://www.crait.net/",
+  "updated_at": "2026-08-13T13:46:07.931219+00:00"
 }

@@ -3,5 +3,33 @@
   "name": "MDashK & Creative Araya",
   "avatar": "",
   "bio": "",
-  "links": []
+  "links": [
+    {
+      "type": "Download",
+      "name": "NeoVitaDB VPK",
+      "url": "https://github.com/MDashK/sonic-1-sms-remake-vita/releases/download/v1.9.2-vita/SOSR00001.VPK",
+      "recommended": true
+    },
+    {
+      "type": "Official Website",
+      "name": "NeoVitaDB Release Page",
+      "url": "https://github.com/MDashK/sonic-1-sms-remake-vita/releases/tag/v1.9.2-vita"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/MDashK/sonic-1-sms-remake-vita"
+    },
+    {
+      "type": "Download",
+      "name": "NeoVitaDB VPK",
+      "url": "https://github.com/MDashK/Sonic-2-SMS-Remake-Vita/releases/download/v2.9.2-vita/SOSR00002.VPK",
+      "recommended": false
+    },
+    {
+      "type": "Official Website",
+      "name": "NeoVitaDB Release Page",
+      "url": "https://github.com/MDashK/Sonic-2-SMS-Remake-Vita/releases/tag/v2.9.2-vita"
+    }
+  ]
 }

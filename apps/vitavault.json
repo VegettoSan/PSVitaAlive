@@ -2,46 +2,50 @@
   "id": "vitavault",
   "title_id": "HUCE00101",
   "name": "VitaVault",
-  "description": "A PSVita save manager using a remote server connection to transfer saves between consoles.",
+  "description": "Remote save manager for PSVita.",
   "long_description": "A PSVita save manager using a remote server connection to transfer saves between consoles.",
   "author_ids": [
     "huceus"
   ],
-  "category_id": "utilities",
+  "category_id": "games",
   "subcategory_ids": [
-    "terminal"
+    "other"
   ],
   "version": "1.01",
   "version_date": "2026-06-05",
-  "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
+  "requirements": "Not specified",
   "size": 2882669,
   "status": "Legacy",
-  "icon": "https://robin994.github.io/NeoVitaDB-Catalog/icons/1406-vitavault.png",
+  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1406-vitavault.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/418246f70b033756d8a1a91f0d4c149ab885a9676680c6ecab8173a4f7f18f3d.png",
-    "screenshots/418246f70b033756d8a1a91f0d4c149ab885a9676680c6ecab8173a4f7f18f3d.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/418246f70b033756d8a1a91f0d4c149ab885a9676680c6ecab8173a4f7f18f3d.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/huceus/vitavault-vpk/releases/download/1.01/vitavault.vpk",
       "recommended": true
-    },
-    {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/huceus/vitavault-vpk"
-    },
-    {
-      "type": "Other",
-      "name": "Release",
-      "url": "https://github.com/huceus/vitavault-vpk/releases/tag/1.01"
     },
     {
       "type": "Official Website",
       "name": "VitaDBtoo Release Page",
       "url": "https://github.com/huceus/vitavault-vpk/releases"
+    },
+    {
+      "type": "Official Website",
+      "name": "NeoVitaDB Release Page",
+      "url": "https://github.com/huceus/vitavault-vpk/releases/tag/1.01"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/huceus/vitavault-vpk"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "1406",
+  "source_url": "https://github.com/huceus/vitavault-vpk",
+  "release_page": "https://github.com/huceus/vitavault-vpk/releases",
+  "updated_at": "2026-08-13T13:46:07.715130+00:00"
 }

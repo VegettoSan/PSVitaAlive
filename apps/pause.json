@@ -3,36 +3,35 @@
   "title_id": "PAUSEGAME",
   "name": "Pause",
   "description": "3D puzzle game for PSVITA.",
-  "long_description": "There are two modes, move mode and freeze mode. move mode allows you to pickup and place objects, such as stacking a pile of boxes to get to a high place. Freeze mode lets you freeze objects in place, such as freezing a crate over a gap, so you can get across without falling in.",
+  "long_description": "There are two modes, move mode and freeze mode. move mode allows you to pickup and place objects, such as stacking a pile of boxes to get to a high place. Freeze mode lets you freeze objects in place, such as freezing a crate over a gap, so you can get across without falling in.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
   "author_ids": [
     "wz"
   ],
   "category_id": "games",
   "subcategory_ids": [
-    "puzzle"
+    "other"
   ],
   "version": "v.1.0",
   "version_date": "2026-08-12",
-  "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
+  "requirements": "Not specified",
   "size": 48276346,
-  "status": "Verified",
-  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/5f065cfe75a235f610c687edea06bf3f6c6fef4ecc7718f1b5ef37a2b2df3ff3.png",
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1872-pause.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/68f57f87be2718873bc1641b3f54f5e9374120708b478555228befea1e2a1683.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/a61e21dfe6590ec143a4fc443af956ee0898f4fa442645d7ba8dd9cd59c54067.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/30f674fcf24c6c74ba9a9d231c9aba37d79e1643e33bb4f65bd967c2f80a3b6b.png",
-    "screenshots/68f57f87be2718873bc1641b3f54f5e9374120708b478555228befea1e2a1683.png;screenshots/a61e21dfe6590ec143a4fc443af956ee0898f4fa442645d7ba8dd9cd59c54067.png;screenshots/30f674fcf24c6c74ba9a9d231c9aba37d79e1643e33bb4f65bd967c2f80a3b6b.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/30f674fcf24c6c74ba9a9d231c9aba37d79e1643e33bb4f65bd967c2f80a3b6b.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1143-Pause.vpk",
       "recommended": true
     },
     {
-      "type": "Other",
-      "name": "Release",
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
       "url": "https://fuhen.homebrew-contest.com/submissions/58/"
     },
     {
@@ -40,5 +39,10 @@
       "name": "Repositorio",
       "url": "https://github.com"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "1143",
+  "source_url": "https://fuhen.homebrew-contest.com/submissions/58/",
+  "release_page": "https://fuhen.homebrew-contest.com/submissions/58/",
+  "updated_at": "2026-08-13T13:46:07.829279+00:00"
 }

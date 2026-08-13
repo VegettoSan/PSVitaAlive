@@ -3,37 +3,44 @@
   "title_id": "RLYX00003",
   "name": "Vita Kohana",
   "description": "Port of Kohana for PSVITA.",
-  "long_description": "Kohana is a short visual novel made in one month by Mushroomallow Studio for Spooktober VN Jam 2021 event. There are 2 different endings that you can find in this visual novel.",
+  "long_description": "Kohana is a short visual novel made in one month by Mushroomallow Studio for Spooktober VN Jam 2021 event. There are 2 different endings that you can find in this visual novel.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
   "author_ids": [
     "rlyx"
   ],
-  "category_id": "ports",
+  "category_id": "games",
   "subcategory_ids": [
     "other"
   ],
   "version": "v.1.02",
   "version_date": "2026-08-12",
-  "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
+  "requirements": "Not specified",
   "size": 14785560,
-  "status": "Verified",
-  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/9305425d758ba301d3f5b05b42a9b02c5f8e2a5a974e5009e30b14653627a0d5.png",
-  "screenshots": [],
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1773-vita-kohana.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1773-vita-kohana.png"
+  ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/793-Vita_Kohana_1.02.vpk",
       "recommended": true
+    },
+    {
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
+      "url": "https://gitlab.com/rlyx/vita-kohana/-/releases"
     },
     {
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://gitlab.com/rlyx/vita-kohana"
-    },
-    {
-      "type": "Other",
-      "name": "Release",
-      "url": "https://gitlab.com/rlyx/vita-kohana/-/releases"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "793",
+  "source_url": "https://gitlab.com/rlyx/vita-kohana",
+  "release_page": "https://gitlab.com/rlyx/vita-kohana/-/releases",
+  "updated_at": "2026-08-13T13:46:07.898102+00:00"
 }

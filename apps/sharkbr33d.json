@@ -7,38 +7,45 @@
   "author_ids": [
     "rinnegatamante"
   ],
-  "category_id": "plugins",
+  "category_id": "games",
   "subcategory_ids": [
     "other"
   ],
   "version": "v.1.2",
   "version_date": "2024-11-14",
-  "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
+  "requirements": "Not specified",
   "size": 1588522,
-  "status": "Verified",
-  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/18b80e6940f63cdd87cc3974b2c13eb8223581c603167250c85e9f8f3e7fc49b.png",
-  "screenshots": [],
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/18b80e6940f63cdd87cc3974b2c13eb8223581c603167250c85e9f8f3e7fc49b.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/18b80e6940f63cdd87cc3974b2c13eb8223581c603167250c85e9f8f3e7fc49b.png"
+  ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/Rinnegatamante/ShaRKBR33D/releases/download/v.1.2/ShaRKBR33D.vpk",
       "recommended": true
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/Rinnegatamante/ShaRKBR33D"
-    },
-    {
-      "type": "Other",
-      "name": "Release",
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
       "url": "https://github.com/Rinnegatamante/ShaRKBR33D/releases"
     },
     {
       "type": "Official Website",
       "name": "NeoVitaDB Release Page",
       "url": "https://github.com/Rinnegatamante/ShaRKBR33D/releases/tag/v.1.2"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/Rinnegatamante/ShaRKBR33D"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "997",
+  "source_url": "https://github.com/Rinnegatamante/ShaRKBR33D",
+  "release_page": "https://github.com/Rinnegatamante/ShaRKBR33D/releases",
+  "updated_at": "2026-08-13T13:46:07.788567+00:00"
 }

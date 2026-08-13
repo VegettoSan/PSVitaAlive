@@ -2,48 +2,45 @@
   "id": "bookr-mod-vita",
   "title_id": "PATH00027",
   "name": "Bookr MOD Vita",
-  "description": "This is a document reader for the PS VITA based on the original Bookr and bookr-mod for PSP.",
+  "description": "Document Reader for PSVITA.",
   "long_description": "This is a document reader for the PS VITA based on the original Bookr and bookr-mod for PSP.",
   "author_ids": [
     "pathway27"
   ],
-  "category_id": "media",
+  "category_id": "games",
   "subcategory_ids": [
     "other"
   ],
   "version": "v.0.4.0a",
   "version_date": "2021-05-30",
-  "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
+  "requirements": "Not specified",
   "size": 29049449,
-  "status": "Verified",
-  "icon": "https://robin994.github.io/NeoVitaDB-Catalog/icons/0203-bookr-mod-vita.png",
-  "screenshots": [],
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/e92afcf9b0bdd1358c290c3b94685dc37d10c16f0aa0ba5ce8af7a565384eb82.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/e92afcf9b0bdd1358c290c3b94685dc37d10c16f0aa0ba5ce8af7a565384eb82.png"
+  ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
-      "url": "https://github.com/pathway27/bookr-mod-vita/releases/download/v0.3.1/bookr-mod-vita-v0.3.1.vpk",
-      "recommended": true
-    },
-    {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/pathway27/bookr-mod-vita"
-    },
-    {
-      "type": "Other",
-      "name": "Release",
-      "url": "https://github.com/pathway27/bookr-mod-vita/releases/tag/v0.3.1"
-    },
-    {
-      "type": "Download",
       "name": "VitaDBtoo VPK",
-      "url": "https://github.com/pathway27/bookr-mod-vita/releases/download/v0.4.0a/bookr-mod-vita-v0.4.0a.vpk"
+      "url": "https://github.com/pathway27/bookr-mod-vita/releases/download/v0.4.0a/bookr-mod-vita-v0.4.0a.vpk",
+      "recommended": true
     },
     {
       "type": "Official Website",
       "name": "VitaDBtoo Release Page",
       "url": "https://gbatemp.net/threads/release-bookr-mod-vita-0-2-0.496911/"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/pathway27/bookr-mod-vita"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "203",
+  "source_url": "https://github.com/pathway27/bookr-mod-vita",
+  "release_page": "https://gbatemp.net/threads/release-bookr-mod-vita-0-2-0.496911/",
+  "updated_at": "2026-08-13T13:46:07.925886+00:00"
 }

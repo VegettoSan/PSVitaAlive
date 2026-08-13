@@ -1,0 +1,44 @@
+{
+  "id": "slender---the-eight-pages",
+  "title_id": "STEP62012",
+  "name": "Slender - The Eight Pages",
+  "description": "Port of Selnder: The Eight Pages for PSVITA.",
+  "long_description": "An unofficial port of version 0.9.7 of the popular 2012 indie horror game. Slender: The Eight Pages, originally created by Mark J. Hadley/Parsec Productions.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
+  "author_ids": [
+    "soup-um"
+  ],
+  "category_id": "games",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.1.0",
+  "version_date": "2026-08-12",
+  "requirements": "Not specified",
+  "size": 59456074,
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1802-slender-the-eight-pages.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/4b94693f3b383cbb7281016de4c10a75e8e66899e638dd62d72d57f3c831e41a.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/34949c8d4a3174eac7242585c04337d9e7da0b61d50e4d9fd211888a20834930.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/36a51db17b842024f21a39dac2a520a0303b916cae94f8db869c698b4d941886.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/b2d465e9ca569529353826fe7da9e76e917cfe63fce59ba9efb81be57ab31d33.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "VitaDBtoo VPK",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/880-slender8.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com"
+    }
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "880",
+  "source_url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/880-slender8.vpk",
+  "release_page": "",
+  "updated_at": "2026-08-13T13:46:07.879203+00:00"
+}

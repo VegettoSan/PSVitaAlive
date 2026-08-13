@@ -3,37 +3,44 @@
   "title_id": "SKGVBANIM",
   "name": "vita-bootanim",
   "description": "Set a custom animation as console bootlogo.",
-  "long_description": "Simple app that installs a plugin allowing for custom animations usage as replacement for the splashscreen at console boot.",
+  "long_description": "Simple app that installs a plugin allowing for custom animations usage as replacement for the splashscreen at console boot.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
   "author_ids": [
     "skgleba"
   ],
-  "category_id": "plugins",
+  "category_id": "games",
   "subcategory_ids": [
     "other"
   ],
   "version": "v.1.1",
   "version_date": "2026-08-12",
-  "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
+  "requirements": "Not specified",
   "size": 491527,
-  "status": "Verified",
-  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/322aa2cbd30f138595ec7edca4033aab9e1a45e2c6465a8118268d00a2cc8ca9.png",
-  "screenshots": [],
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1745-vita-bootanim.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1745-vita-bootanim.png"
+  ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/706-vbanim.vpk",
       "recommended": true
+    },
+    {
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
+      "url": "https://github.com/SKGleba/VitaTools"
     },
     {
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/SKGleba/VitaTools/tree/main/vita-bootanim/source"
-    },
-    {
-      "type": "Other",
-      "name": "Release",
-      "url": "https://github.com/SKGleba/VitaTools"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "706",
+  "source_url": "https://github.com/SKGleba/VitaTools/tree/main/vita-bootanim/source",
+  "release_page": "https://github.com/SKGleba/VitaTools",
+  "updated_at": "2026-08-13T13:46:07.919051+00:00"
 }

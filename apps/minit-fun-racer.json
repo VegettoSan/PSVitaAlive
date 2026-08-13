@@ -7,7 +7,7 @@
   "author_ids": [
     "m1s3ry"
   ],
-  "category_id": "ports",
+  "category_id": "games",
   "subcategory_ids": [
     "other"
   ],
@@ -15,25 +15,29 @@
   "version_date": "2021-04-14",
   "requirements": "- Game Data Files: PC",
   "size": 2934430,
-  "status": "Verified",
-  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/8f0ffe8213d23afbdccef24aab122471d284aaf7426f688ab2de95b7e1e5d5d1.png",
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/8f0ffe8213d23afbdccef24aab122471d284aaf7426f688ab2de95b7e1e5d5d1.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/a34223bbdcbf90b241346c526aa9d5553de6bd849a09e1ea11ffa8905f5759f1.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/cf169771553dbc5588b8839c3b9e0c7474f33834ee9ca0fb172cbe6e2aced7fa.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/5abbb2dc6eebff99c7b343c0cb2b82c21b9a462f653d78c7e9a592f858d4b50c.png",
-    "screenshots/a34223bbdcbf90b241346c526aa9d5553de6bd849a09e1ea11ffa8905f5759f1.png;screenshots/cf169771553dbc5588b8839c3b9e0c7474f33834ee9ca0fb172cbe6e2aced7fa.png;screenshots/5abbb2dc6eebff99c7b343c0cb2b82c21b9a462f653d78c7e9a592f858d4b50c.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/5abbb2dc6eebff99c7b343c0cb2b82c21b9a462f653d78c7e9a592f858d4b50c.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/m1s3ry/minit-fun-racer-vita/releases/download/1.0/Minit_Fun_Racer-v1.0.VPK",
       "recommended": true
     },
     {
-      "type": "Other",
-      "name": "Release",
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
       "url": "https://github.com/m1s3ry/minit-fun-racer-vita"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "654",
+  "source_url": "https://github.com/m1s3ry/minit-fun-racer-vita",
+  "release_page": "https://github.com/m1s3ry/minit-fun-racer-vita",
+  "updated_at": "2026-08-13T13:46:07.928057+00:00"
 }

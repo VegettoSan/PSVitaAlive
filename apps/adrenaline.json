@@ -2,46 +2,50 @@
   "id": "adrenaline",
   "title_id": "PSPEMUCFW",
   "name": "Adrenaline",
-  "description": "Adrenaline is a native eCFW for the PSPEMU allows you to play PSP/PSX games with custom patches (like GPU shaders for a smoother video quality) directly...",
+  "description": "Native ePSP CFW with enhanced features.",
   "long_description": "Adrenaline is a native eCFW for the PSPEMU allows you to play PSP/PSX games with custom patches (like GPU shaders for a smoother video quality) directly from your PSVITA/PSTV.",
   "author_ids": [
     "theflow"
   ],
-  "category_id": "system",
+  "category_id": "games",
   "subcategory_ids": [
-    "compatibility"
+    "other"
   ],
   "version": "v.7",
   "version_date": "2020-09-23",
-  "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
+  "requirements": "Not specified",
   "size": 417931,
-  "status": "Verified",
-  "icon": "https://robin994.github.io/NeoVitaDB-Catalog/icons/0047-adrenaline.png",
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/3749871fea3a04e0f82c968d9748c7ef327f3325eda0d7a9c8ce940ea35e77e6.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/cca7ded074a714bdacbd21aabd1de9e561d5922a66ece9bd60fa56d273385ee7.png",
-    "screenshots/cca7ded074a714bdacbd21aabd1de9e561d5922a66ece9bd60fa56d273385ee7.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/cca7ded074a714bdacbd21aabd1de9e561d5922a66ece9bd60fa56d273385ee7.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/TheOfficialFloW/Adrenaline/releases/download/v7/Adrenaline.vpk",
       "recommended": true
-    },
-    {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/TheOfficialFloW/Adrenaline"
-    },
-    {
-      "type": "Other",
-      "name": "Release",
-      "url": "https://github.com/TheOfficialFloW/Adrenaline/releases/tag/v7"
     },
     {
       "type": "Official Website",
       "name": "VitaDBtoo Release Page",
       "url": "https://github.com/TheOfficialFloW/Adrenaline/releases"
+    },
+    {
+      "type": "Official Website",
+      "name": "NeoVitaDB Release Page",
+      "url": "https://github.com/TheOfficialFloW/Adrenaline/releases/tag/v7"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/TheOfficialFloW/Adrenaline"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "47",
+  "source_url": "https://github.com/TheOfficialFloW/Adrenaline",
+  "release_page": "https://github.com/TheOfficialFloW/Adrenaline/releases",
+  "updated_at": "2026-08-13T13:46:07.945843+00:00"
 }

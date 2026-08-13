@@ -3,5 +3,32 @@
   "name": "aionmagan & elpichonart & GGuihurt",
   "avatar": "",
   "bio": "",
-  "links": []
+  "links": [
+    {
+      "type": "Download",
+      "name": "VitaDBtoo VPK",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1165-flick.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Download",
+      "name": "VitaDBtoo VPK",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1096-TopClassic.vpk"
+    },
+    {
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
+      "url": "https://aionmagan.itch.io/flick"
+    },
+    {
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
+      "url": "https://aionmagan.itch.io/top-classic-plaigarized"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com"
+    }
+  ]
 }

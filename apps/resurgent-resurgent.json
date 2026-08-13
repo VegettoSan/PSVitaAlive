@@ -1,0 +1,48 @@
+{
+  "id": "resurgent-resurgent",
+  "title_id": "RESURGENT",
+  "name": "Resurgent",
+  "description": "Resurgent port for PSVITA.",
+  "long_description": "Traverse a post-apocalyptic city, ravaged by an unknown virus, in search of safety Original game by Tristan Harris.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
+  "author_ids": [
+    "m1s3ry"
+  ],
+  "category_id": "games",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.1.0.0",
+  "version_date": "2026-08-12",
+  "requirements": "Not specified",
+  "size": 11664999,
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1749-resurgent.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/4347318049a096f3d0efd8507cbb7dc84ac8672539b61d53aa2fc306b5f6e862.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/2ec1a29351ba05bf655d5efbdf4b5b921ef0c8fb285ad97a131de83d9dbed545.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/ca2e96eb368bd311924c3f62a64c9e00c466ec5adbf712523db55eef717f77d2.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "VitaDBtoo VPK",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/718-Resurgent.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
+      "url": "https://tristan-harris.itch.io/resurgent"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com"
+    }
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "718",
+  "source_url": "https://tristan-harris.itch.io/resurgent",
+  "release_page": "https://tristan-harris.itch.io/resurgent",
+  "updated_at": "2026-08-13T13:46:07.916843+00:00"
+}

@@ -7,7 +7,7 @@
   "author_ids": [
     "hatoving"
   ],
-  "category_id": "ports",
+  "category_id": "games",
   "subcategory_ids": [
     "other"
   ],
@@ -15,19 +15,21 @@
   "version_date": "2022-05-23",
   "requirements": "- YoYo Loader\n- Game Data Files: PC Steam",
   "size": 5131431,
-  "status": "Verified",
-  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/4503316b47e7c3cf86c1185d500cd22461370d9f58da8c8bc8447ba1b3c9b77d.png",
-  "screenshots": [],
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/4503316b47e7c3cf86c1185d500cd22461370d9f58da8c8bc8447ba1b3c9b77d.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/4503316b47e7c3cf86c1185d500cd22461370d9f58da8c8bc8447ba1b3c9b77d.png"
+  ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/hatoving/csd2-old-vita/releases/download/1.0/CSD2VITA0.vpk",
       "recommended": true
     },
     {
-      "type": "Other",
-      "name": "Release",
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
       "url": "https://github.com/hatoving/csd2"
     },
     {
@@ -40,5 +42,10 @@
       "name": "Repositorio",
       "url": "https://github.com/hatoving/csd2-old-vita"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "824",
+  "source_url": "https://github.com/hatoving/csd2",
+  "release_page": "https://github.com/hatoving/csd2",
+  "updated_at": "2026-08-13T13:46:07.891494+00:00"
 }

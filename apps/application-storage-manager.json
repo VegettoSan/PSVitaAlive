@@ -3,37 +3,44 @@
   "title_id": "APPSRGMGR",
   "name": "Application Storage Manager",
   "description": "Allows to use ur0:/ to install homebrews.",
-  "long_description": "A little app that allows you to move applications from your memory card (ux0:app/) to your internal sorage (ur0:app/) (and vice-versa).",
+  "long_description": "A little app that allows you to move applications from your memory card (ux0:app/) to your internal sorage (ur0:app/) (and vice-versa).\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
   "author_ids": [
     "lupo511"
   ],
-  "category_id": "ports",
+  "category_id": "games",
   "subcategory_ids": [
     "other"
   ],
   "version": "v.0.02",
   "version_date": "2026-08-12",
-  "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
+  "requirements": "Not specified",
   "size": 731949,
-  "status": "Verified",
-  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/19c8a866b98ca65214ef7af83bd648f5c4c659f2d0f97e599f9ba4d0cfab32cc.png",
-  "screenshots": [],
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1545-application-storage-manager.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1545-application-storage-manager.png"
+  ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/217-AppStorageManager.vpk",
       "recommended": true
+    },
+    {
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
+      "url": "https://wololo.net/talk/viewtopic.php?f=116&t=47389"
     },
     {
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://bitbucket.org/Lupo511/appstoragemanager/src"
-    },
-    {
-      "type": "Other",
-      "name": "Release",
-      "url": "https://wololo.net/talk/viewtopic.php?f=116&t=47389"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "217",
+  "source_url": "https://bitbucket.org/Lupo511/appstoragemanager/src",
+  "release_page": "https://wololo.net/talk/viewtopic.php?f=116&t=47389",
+  "updated_at": "2026-08-13T13:46:08.016356+00:00"
 }

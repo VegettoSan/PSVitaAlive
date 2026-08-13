@@ -7,44 +7,48 @@
   "author_ids": [
     "jakubito"
   ],
-  "category_id": "ports",
+  "category_id": "games",
   "subcategory_ids": [
-    "fps"
+    "other"
   ],
   "version": "v.1.1.0",
   "version_date": "2024-03-08",
   "requirements": "- Game Data Files: Mobile",
   "size": 3954027,
-  "status": "Verified",
-  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/90b13c65904d9b6eb716f3a4e2fc048cee46d284c8bc229d38068d51dc02b060.png",
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/90b13c65904d9b6eb716f3a4e2fc048cee46d284c8bc229d38068d51dc02b060.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/8a71637533f2f84878258ea97523bd328084248944633b2915c0acc2bf6f0c70.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c0040711aaf0d500372f56f0e7e0fd5f11acea194d1e56614907ed96087d487b.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/4130a339566cb71ef089fbf1dc1f705fa5bd3e6561df5790010b003a08917be5.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/bdcdb0aae8542b55b079f6c60ca8d3711ba57054da6127968a596dcfa44efa5f.png",
-    "screenshots/8a71637533f2f84878258ea97523bd328084248944633b2915c0acc2bf6f0c70.png;screenshots/c0040711aaf0d500372f56f0e7e0fd5f11acea194d1e56614907ed96087d487b.png;screenshots/4130a339566cb71ef089fbf1dc1f705fa5bd3e6561df5790010b003a08917be5.png;screenshots/bdcdb0aae8542b55b079f6c60ca8d3711ba57054da6127968a596dcfa44efa5f.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/bdcdb0aae8542b55b079f6c60ca8d3711ba57054da6127968a596dcfa44efa5f.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/jakubito/DoomRPG-RE-vita/releases/download/v1.1.0/DoomRPG_vita_v1.1.0.vpk",
       "recommended": true
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/jakubito/DoomRPG-RE-vita"
-    },
-    {
-      "type": "Other",
-      "name": "Release",
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
       "url": "https://github.com/jakubito/DoomRPG-RE-vita/releases"
     },
     {
       "type": "Official Website",
       "name": "NeoVitaDB Release Page",
       "url": "https://github.com/jakubito/DoomRPG-RE-vita/releases/tag/v1.1.0"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/jakubito/DoomRPG-RE-vita"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "1185",
+  "source_url": "https://github.com/jakubito/DoomRPG-RE-vita",
+  "release_page": "https://github.com/jakubito/DoomRPG-RE-vita/releases",
+  "updated_at": "2026-08-13T13:46:07.805252+00:00"
 }

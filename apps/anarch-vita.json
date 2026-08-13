@@ -3,31 +3,30 @@
   "title_id": "ANARCHPSV",
   "name": "Anarch Vita",
   "description": "Port of Anarch for PSVITA.",
-  "long_description": "Port of Anarch for PSVITA.\nAnarch is an extremely small, completely public domain, no-dependency, no-file, portable suckless anarcho-pacifist from-scratch 90s-style Doom clone that runs everywhere, made for the benefit of all living beings.",
+  "long_description": "Port of Anarch for PSVITA.\nAnarch is an extremely small, completely public domain, no-dependency, no-file, portable suckless anarcho-pacifist from-scratch 90s-style Doom clone that runs everywhere, made for the benefit of all living beings.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
   "author_ids": [
     "sugardrenaline"
   ],
-  "category_id": "ports",
+  "category_id": "games",
   "subcategory_ids": [
-    "fps"
+    "other"
   ],
   "version": "v.1.1",
   "version_date": "2026-08-12",
-  "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
+  "requirements": "Not specified",
   "size": 872405,
-  "status": "Verified",
-  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/877d8dd02e41c3eb4987fb333e41026f7b16ba90f3c928d5d54044eed4467bbf.png",
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1856-anarch-vita.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/2b4d525315d2aef0009cfd3b8e73dd9c6d367392805755d399416a077826d240.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/4d682660788e8a7595c376828f4da167c189a5eb3f017fb4355655557dca09b5.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/b94f30f98ecdf5948ee40a63e02e5c396230f44c81b08f5091ba91e24edceddc.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/d19885256e55aa7d9e8829dcf0dcae2328308e3bbb3564569d4d70115eca0982.png",
-    "screenshots/2b4d525315d2aef0009cfd3b8e73dd9c6d367392805755d399416a077826d240.png;screenshots/4d682660788e8a7595c376828f4da167c189a5eb3f017fb4355655557dca09b5.png;screenshots/b94f30f98ecdf5948ee40a63e02e5c396230f44c81b08f5091ba91e24edceddc.png;screenshots/d19885256e55aa7d9e8829dcf0dcae2328308e3bbb3564569d4d70115eca0982.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/d19885256e55aa7d9e8829dcf0dcae2328308e3bbb3564569d4d70115eca0982.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1125-anarch.vpk",
       "recommended": true
     },
@@ -36,5 +35,10 @@
       "name": "Repositorio",
       "url": "https://gitlab.com/sugardrenaline/anarch/"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "1125",
+  "source_url": "https://gitlab.com/sugardrenaline/anarch/",
+  "release_page": "",
+  "updated_at": "2026-08-13T13:46:07.832025+00:00"
 }

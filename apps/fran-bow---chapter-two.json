@@ -1,0 +1,43 @@
+{
+  "id": "fran-bow---chapter-two",
+  "title_id": "FBCH20409",
+  "name": "Fran Bow - Chapter Two",
+  "description": "Port of Fran Bow - Chapter 2 for PSVITA.",
+  "long_description": "Fran Bow - Chapter 2 is the continuation of Fran Bow - Chapter 1.\nCredits to m1s3ry, Grossleymoo and Killmonday",
+  "author_ids": [
+    "hatoving"
+  ],
+  "category_id": "games",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.2.02",
+  "version_date": "2021-04-09",
+  "requirements": "- Game Data Files: Android OR PC",
+  "size": 2921361,
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/95009282dd3c87a9c5afab514c768f0b08e6ee1227e911d7f46ab4019bb2f876.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/bf2c758c38943bc0ac7dd314bcad52862f48134a046664b272f121909b289b34.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/6751e4edc35272bd8b6abf751a4524dd95cf8557d3b1ddf89b59093d13dcfb81.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/5976824e7986f80af5db67e98acf44ce2624943c641187503ea84378c8e92179.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "VitaDBtoo VPK",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/641-FranBowChapter2.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
+      "url": "https://github.com/hatoving/GMSVitaPortInstructions"
+    }
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "641",
+  "source_url": "https://github.com/hatoving/GMSVitaPortInstructions",
+  "release_page": "https://github.com/hatoving/GMSVitaPortInstructions",
+  "updated_at": "2026-08-13T13:46:07.928778+00:00"
+}

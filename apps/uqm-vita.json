@@ -7,38 +7,40 @@
   "author_ids": [
     "argarak"
   ],
-  "category_id": "ports",
+  "category_id": "games",
   "subcategory_ids": [
     "other"
   ],
   "version": "rev1",
   "version_date": "2022-03-03",
-  "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
+  "requirements": "Not specified",
   "size": 1432712,
-  "status": "Verified",
-  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/41c07f47014b46bdae3b23b9d9ad64d1245184eff72e18497ea9157fac774d6c.png",
-  "screenshots": [],
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/0789-uqm-vita.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/0789-uqm-vita.png"
+  ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "NeoVitaDB VPK",
       "url": "https://github.com/argarak/uqm-vita/releases/download/rev1/uqm.vpk",
       "recommended": true
-    },
-    {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/argarak/uqm-vita"
-    },
-    {
-      "type": "Other",
-      "name": "Release",
-      "url": "https://github.com/argarak/uqm-vita/releases"
     },
     {
       "type": "Official Website",
       "name": "NeoVitaDB Release Page",
       "url": "https://github.com/argarak/uqm-vita/releases/tag/rev1"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/argarak/uqm-vita"
     }
-  ]
+  ],
+  "source_name": "NeoVitaDB",
+  "source_id": "789",
+  "source_url": "https://github.com/argarak/uqm-vita",
+  "release_page": "https://github.com/argarak/uqm-vita/releases/tag/rev1",
+  "updated_at": "2026-08-13T13:46:07.899230+00:00"
 }

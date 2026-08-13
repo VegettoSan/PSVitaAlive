@@ -3,37 +3,36 @@
   "title_id": "BKOYSS000",
   "name": "Blue Bayou",
   "description": "Gameboy styled boss-rush made with GMS2.",
-  "long_description": "Blue Bayou was originally made in one week for GBJAM-8 and ranked #1 in the \"Fun\" category. Part boss rush and part crawdad simulator, players assume the role of a cornered mudbug as they face down a slew of ruthless debt collectors in the Louisiana bayou.",
+  "long_description": "Blue Bayou was originally made in one week for GBJAM-8 and ranked #1 in the \"Fun\" category. Part boss rush and part crawdad simulator, players assume the role of a cornered mudbug as they face down a slew of ruthless debt collectors in the Louisiana bayou.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
   "author_ids": [
     "bokoyoss"
   ],
-  "category_id": "ports",
+  "category_id": "games",
   "subcategory_ids": [
     "other"
   ],
   "version": "v.1.0",
   "version_date": "2026-08-12",
-  "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
+  "requirements": "Not specified",
   "size": 26100600,
-  "status": "Verified",
-  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/76b43983ba3420015ea6a34f49bc2ebcbb1d30a0205a657c8b2f5ded9ab36a88.png",
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1782-blue-bayou.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/93f0321e856087f1efb00a716ba676a2519743f472611059ead5be547aa83cb7.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/0a75703d45e63438a14c2f7fd85e239fb924249cfac29c6ca51af19845d8fb78.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/dc9dc7e1d0a999a65ba4d5d1dcd1341bd3ec975058e4e77f0a22747a542a6a01.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/22105d1f66eaa6aece6d5ce82db442c2b6f19283eacae0effd659efc04495237.png",
-    "screenshots/93f0321e856087f1efb00a716ba676a2519743f472611059ead5be547aa83cb7.png;screenshots/0a75703d45e63438a14c2f7fd85e239fb924249cfac29c6ca51af19845d8fb78.png;screenshots/dc9dc7e1d0a999a65ba4d5d1dcd1341bd3ec975058e4e77f0a22747a542a6a01.png;screenshots/22105d1f66eaa6aece6d5ce82db442c2b6f19283eacae0effd659efc04495237.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/22105d1f66eaa6aece6d5ce82db442c2b6f19283eacae0effd659efc04495237.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/818-BlueBayouVita.vpk",
       "recommended": true
     },
     {
-      "type": "Other",
-      "name": "Release",
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
       "url": "https://bokonon-yossarian.itch.io/blue-bayou"
     },
     {
@@ -41,5 +40,10 @@
       "name": "Repositorio",
       "url": "https://github.com"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "818",
+  "source_url": "https://bokonon-yossarian.itch.io/blue-bayou",
+  "release_page": "https://bokonon-yossarian.itch.io/blue-bayou",
+  "updated_at": "2026-08-13T13:46:07.892359+00:00"
 }

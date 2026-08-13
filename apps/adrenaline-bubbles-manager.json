@@ -2,38 +2,45 @@
   "id": "adrenaline-bubbles-manager",
   "title_id": "ADRBUBMAN",
   "name": "Adrenaline Bubbles Manager",
-  "description": "This useful application allows you to make personalized bubbles with 'icon' and 'title' of your PSP content (HBS/PSX/ISO/CSO) quick and easy.(It doesn't...",
+  "description": "",
   "long_description": "This useful application allows you to make personalized bubbles with 'icon' and 'title' of your PSP content (HBS/PSX/ISO/CSO) quick and easy.(It doesn't work on Adrenaline 8).",
   "author_ids": [
     "onelua"
   ],
-  "category_id": "system",
+  "category_id": "games",
   "subcategory_ids": [
-    "compatibility"
+    "other"
   ],
   "version": "6.20",
   "version_date": "2023-07-23",
-  "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
+  "requirements": "Not specified",
   "size": 9728063,
-  "status": "Verified",
-  "icon": "https://robin994.github.io/NeoVitaDB-Catalog/icons/1453-adrenalinebubblemanager.png",
-  "screenshots": [],
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1453-adrenalinebubblemanager.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1453-adrenalinebubblemanager.png"
+  ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "NeoVitaDB VPK",
       "url": "https://github.com/ONElua/AdrenalineBubbleManager/releases/download/6.20/AdrenalineBubbleManager.vpk",
       "recommended": true
+    },
+    {
+      "type": "Official Website",
+      "name": "NeoVitaDB Release Page",
+      "url": "https://github.com/ONElua/AdrenalineBubbleManager/releases/tag/6.20"
     },
     {
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/ONElua/AdrenalineBubbleManager"
-    },
-    {
-      "type": "Other",
-      "name": "Release",
-      "url": "https://github.com/ONElua/AdrenalineBubbleManager/releases/tag/6.20"
     }
-  ]
+  ],
+  "source_name": "NeoVitaDB",
+  "source_id": "1453",
+  "source_url": "https://github.com/ONElua/AdrenalineBubbleManager",
+  "release_page": "https://github.com/ONElua/AdrenalineBubbleManager/releases/tag/6.20",
+  "updated_at": "2026-08-13T13:46:08.040164+00:00"
 }

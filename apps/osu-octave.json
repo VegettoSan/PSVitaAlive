@@ -7,44 +7,48 @@
   "author_ids": [
     "gl33ntwine"
   ],
-  "category_id": "ports",
+  "category_id": "games",
   "subcategory_ids": [
     "other"
   ],
   "version": "v.1.20",
   "version_date": "2022-04-29",
-  "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
+  "requirements": "Not specified",
   "size": 2493928,
-  "status": "Verified",
-  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/8b3571aec0b5976ba87920f440ff8668607189b99ed48868e2b095c10eac00f4.png",
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/8b3571aec0b5976ba87920f440ff8668607189b99ed48868e2b095c10eac00f4.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/59ca7644b412fb4a6e30c9b800e8105ae51484ca0e055018e59255e19ffe301e.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/fbc7d3bba1018542164ddc608c82c2aca7a6dd3185caf8220d69b4926ef1230c.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/b420166756e7c8a52d22bef868da698cb1fdc10854225aa13170bc9aa66cf239.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/babd84228b357ca2689d33a4b397a9deea49439f409cd78c3a78ea94652484ef.png",
-    "screenshots/59ca7644b412fb4a6e30c9b800e8105ae51484ca0e055018e59255e19ffe301e.png;screenshots/fbc7d3bba1018542164ddc608c82c2aca7a6dd3185caf8220d69b4926ef1230c.png;screenshots/b420166756e7c8a52d22bef868da698cb1fdc10854225aa13170bc9aa66cf239.png;screenshots/babd84228b357ca2689d33a4b397a9deea49439f409cd78c3a78ea94652484ef.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/babd84228b357ca2689d33a4b397a9deea49439f409cd78c3a78ea94652484ef.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/v-atamanenko/osu-octave/releases/download/1.20/osu-octave.vpk",
       "recommended": true
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/v-atamanenko/osu-octave"
-    },
-    {
-      "type": "Other",
-      "name": "Release",
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
       "url": "https://github.com/v-atamanenko/osu-octave/releases"
     },
     {
       "type": "Official Website",
       "name": "NeoVitaDB Release Page",
       "url": "https://github.com/v-atamanenko/osu-octave/releases/tag/1.20"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/v-atamanenko/osu-octave"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "814",
+  "source_url": "https://github.com/v-atamanenko/osu-octave",
+  "release_page": "https://github.com/v-atamanenko/osu-octave/releases",
+  "updated_at": "2026-08-13T13:46:07.892445+00:00"
 }

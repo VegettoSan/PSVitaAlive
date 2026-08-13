@@ -7,38 +7,45 @@
   "author_ids": [
     "morc"
   ],
-  "category_id": "ports",
+  "category_id": "games",
   "subcategory_ids": [
-    "platformer"
+    "other"
   ],
   "version": "v.1.03",
   "version_date": "2023-06-19",
-  "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
+  "requirements": "Not specified",
   "size": 1722901,
-  "status": "Verified",
-  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/9a5f110d854baf1660be24a1e920a4ad6487e3609581627a2e7b4b2712e49b17.png",
-  "screenshots": [],
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/9a5f110d854baf1660be24a1e920a4ad6487e3609581627a2e7b4b2712e49b17.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/9a5f110d854baf1660be24a1e920a4ad6487e3609581627a2e7b4b2712e49b17.png"
+  ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/TheMorc/MilkyTrackerVita/releases/download/1.03/MilkyTracker.vpk",
       "recommended": true
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/TheMorc/MilkyTrackerVita"
-    },
-    {
-      "type": "Other",
-      "name": "Release",
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
       "url": "https://github.com/TheMorc/MilkyTrackerVita/releases"
     },
     {
       "type": "Official Website",
       "name": "NeoVitaDB Release Page",
       "url": "https://github.com/TheMorc/MilkyTrackerVita/releases/tag/1.03"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/TheMorc/MilkyTrackerVita"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "1085",
+  "source_url": "https://github.com/TheMorc/MilkyTrackerVita",
+  "release_page": "https://github.com/TheMorc/MilkyTrackerVita/releases",
+  "updated_at": "2026-08-13T13:46:07.844547+00:00"
 }

@@ -1,13 +1,13 @@
 {
   "id": "cod-boz-vita",
   "title_id": "BOZ000001",
-  "name": "Call of Duty: Black Ops Zombies Vita",
+  "name": "COD: BOZ Vita",
   "description": "Port of Call of Duty: Black Ops Zombies for PSVita.",
-  "long_description": "Port of Call of Duty: Black Ops Zombies for PSVita.\nCall of Duty: Black Ops Zombies is a mobile game that proposes the popular Zombies mode from Call of Duty: Black Ops.",
+  "long_description": "Port of Call of Duty: Black Ops Zombies for PSVita.\nCall of Duty: Black Ops Zombies is a mobile game that proposes the popular Zombies mode from Call of Duty: Black Ops.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
   "author_ids": [
     "devnoname120"
   ],
-  "category_id": "ports",
+  "category_id": "games",
   "subcategory_ids": [
     "other"
   ],
@@ -15,50 +15,21 @@
   "version_date": "2026-08-12",
   "requirements": "- libshacccg.suprx\n- kubridge.skprx\n- Game Data Files: Android",
   "size": 1863993,
-  "status": "Verified",
-  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/0fda23ce47ec5db83ae5983606818219a9657f34fcdff332b7097965c41c753c.png",
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1965-cod-boz-vita.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/9d8e0a062a7cc8f387ea784a4a41390e9e17e01cecce45463812353f127c84fb.png",
-    "screenshots/9d8e0a062a7cc8f387ea784a4a41390e9e17e01cecce45463812353f127c84fb.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/9d8e0a062a7cc8f387ea784a4a41390e9e17e01cecce45463812353f127c84fb.png"
   ],
   "links": [
     {
-      "type": "Download Source Official",
-      "name": "Download Official",
+      "type": "Download",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/boz_vita.vpk",
-      "size": 1820,
-      "recommended": false
-    },
-    {
-      "type": "Download VitaDBtoo Mirror",
-      "name": "Download VitaDBtoo",
-      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/boz_vita.vpk",
-      "size": 1820,
       "recommended": true
     },
     {
-      "type": "Mediafire",
-      "name": "Game Data Files",
-      "url": "https://www.mediafire.com/file/vwqk03ztmettw8p/boz.7z/file",
-      "size": 129070000,
-      "recommended": false
-    },
-    {
-      "type": "Gamebanana",
-      "name": "boz_tweaks_102.zip Mods",
-      "url": "https://gamebanana.com/dl/1760155",
-      "size": 8000,
-      "recommended": false
-    },
-    {
-      "type": "Gamebanana",
-      "name": "VO Packs + Classic Perks + PS Prompts Mods",
-      "url": "https://gamebanana.com/mods/686190",
-      "recommended": false
-    },
-    {
-      "type": "Other",
-      "name": "Release",
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
       "url": "https://x.com/devnoname120"
     },
     {
@@ -66,5 +37,10 @@
       "name": "Repositorio",
       "url": "https://github.com"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "1410",
+  "source_url": "https://x.com/devnoname120",
+  "release_page": "https://x.com/devnoname120",
+  "updated_at": "2026-08-13T13:46:07.701244+00:00"
 }

@@ -1,10 +1,22 @@
 {
   "id": "fryingmaster",
-  "title_id": "FRYM12345",
+  "title_id": "ABCD12345",
   "name": "FryingMaster",
-  "description": "",
-  "long_description": "The game is inspired by a mini game from \"Super Mario Party\" it has two modes, endless where you have to cook patties before the time limit and 4 sides where you have to cook all four sides of a steak and make a high score.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
+  "description": "Frying game for PSVITA.",
+  "long_description": "The game is inspired by a mini game from \"Super Mario Party\" it has two modes, endless where you have to cook patties before the time limit and 4 sides where you have to cook all four sides of a steak and make a high score.",
   "author_ids": [
+    "widegcg",
+    "mrkane",
+    "polydood",
+    "sungrand-studios",
+    "aj170",
+    "sjoerdwouters",
+    "patchesdoggo",
+    "ronikgames",
+    "ladropzone",
+    "anchitpatra",
+    "moe-baker",
+    "retrogamer74",
     "lazyox199"
   ],
   "category_id": "games",
@@ -12,18 +24,29 @@
     "other"
   ],
   "version": "v.2.1",
-  "version_date": "2026-08-12",
-  "requirements": "",
+  "version_date": "2019-02-13",
+  "requirements": "Not specified",
   "size": 38554505,
   "status": "Legacy",
-  "icon": "1609-fryingmaster.png",
-  "screenshots": [],
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/732fb895a9548b7c50db8e3f10c1bde45a7e130593b0ff3430c2b7cb19eab65c.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/fa05a7d03d42c4be8cd8f1e55b18b955dd7052ce67e99b1f149230da8477bd4b.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/22f0350a9c81a4ae1eacdbd04ca1cc99051a3adce5ef405487da45e235380929.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/84f081c01c8506d3084af4f90e684a50ce7dd8f227913df7262882dfa4ef7562.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/85af236b32f0eb86c7b056e009d8299dfd3d2383d53f93b37f24efe970b34984.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/d53b135872984c950a4721248b240370991c4130537ff51d965527e5712b82f9.png"
+  ],
   "links": [
     {
       "type": "Download",
-      "name": "NeoVitaDB VPK",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/414-FryingMaster.vpk",
       "recommended": true
+    },
+    {
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
+      "url": "https://www.reddit.com/r/vitahacks/comments/acai91/ported_a_game_im_working_on_for_android_to_psvita/"
     },
     {
       "type": "Repository",
@@ -31,9 +54,9 @@
       "url": "https://github.com"
     }
   ],
-  "source_name": "NeoVitaDB",
-  "source_id": "1609",
-  "source_url": "https://github.com",
-  "release_page": "",
-  "updated_at": "2026-08-13T05:25:55.185928+00:00"
+  "source_name": "VitaDBtoo",
+  "source_id": "414",
+  "source_url": "https://www.reddit.com/r/vitahacks/comments/acai91/ported_a_game_im_working_on_for_android_to_psvita/",
+  "release_page": "https://www.reddit.com/r/vitahacks/comments/acai91/ported_a_game_im_working_on_for_android_to_psvita/",
+  "updated_at": "2026-08-13T13:46:07.752247+00:00"
 }

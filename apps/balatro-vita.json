@@ -5,42 +5,44 @@
   "description": "Port of Balatro for PSVITA.",
   "long_description": "Port of Balatro for PSVITA. Balatro is a poker-inspired roguelike deck builder all about creating powerful synergies and winning big.",
   "author_ids": [
-    "daexxx",
-    "jafeth",
     "alyen91"
   ],
-  "category_id": "ports",
+  "category_id": "games",
   "subcategory_ids": [
-    "rpg"
+    "other"
   ],
-  "version": "v0.13.1",
-  "version_date": "2026-01-04",
+  "version": "v.0.13",
+  "version_date": "2025-05-10",
   "requirements": "- Game Data Files: PC",
-  "size": 45700517,
-  "status": "Verified",
-  "icon": "https://robin994.github.io/NeoVitaDB-Catalog/icons/1259-balatro-vita.png",
+  "size": 5856035,
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/546d6118591bf845dce75b09d82f7a21269e2db9742c2c2aa07d67f800189318.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/dfe38e52878bf4444e80a8b25c48867a5b2b39fae57d06c1e74097ac27a0a819.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/68919b634a2c663f6f29638170e5208da41a92638171cf07372f35e3049cfe4b.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/07ee80fea02ae611bdd482792f82098d9e1967e4b4648a0b4ea0b9437c890d27.png",
-    "screenshots/dfe38e52878bf4444e80a8b25c48867a5b2b39fae57d06c1e74097ac27a0a819.png;screenshots/68919b634a2c663f6f29638170e5208da41a92638171cf07372f35e3049cfe4b.png;screenshots/07ee80fea02ae611bdd482792f82098d9e1967e4b4648a0b4ea0b9437c890d27.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/07ee80fea02ae611bdd482792f82098d9e1967e4b4648a0b4ea0b9437c890d27.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
-      "url": "https://github.com/Daexxxx/Balatro-Vita/releases/download/v0.13.1/balatro.patch.zip",
+      "name": "VitaDBtoo VPK",
+      "url": "https://github.com/Daexxxx/Balatro-Vita/releases/download/v0.13/Balatro.vpk",
       "recommended": true
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
       "url": "https://github.com/Daexxxx/Balatro-Vita"
     },
     {
-      "type": "Other",
-      "name": "Release",
-      "url": "https://github.com/Daexxxx/Balatro-Vita/releases/tag/v0.13.1"
+      "type": "Official Website",
+      "name": "NeoVitaDB Release Page",
+      "url": "https://github.com/Daexxxx/Balatro-Vita/releases/tag/v0.13"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "1259",
+  "source_url": "https://github.com/Daexxxx/Balatro-Vita",
+  "release_page": "https://github.com/Daexxxx/Balatro-Vita",
+  "updated_at": "2026-08-13T13:46:07.772148+00:00"
 }

@@ -3,31 +3,30 @@
   "title_id": "LAPY30018",
   "name": "Ghost of Tsushima Mini Games",
   "description": "Collection of minigames for PSVITA.",
-  "long_description": "A collection of three minigames focusing on quick reflexes with Ghost of Tsushima as theme.",
+  "long_description": "A collection of three minigames focusing on quick reflexes with Ghost of Tsushima as theme.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
   "author_ids": [
     "lapy"
   ],
-  "category_id": "customization",
+  "category_id": "games",
   "subcategory_ids": [
-    "themes"
+    "other"
   ],
   "version": "v.1.00",
   "version_date": "2026-08-12",
-  "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
+  "requirements": "Not specified",
   "size": 62388542,
-  "status": "Verified",
-  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/bc619367e93feb31fe6d37778326b35fcd1626d04e61774f3e1fb835eae31f9b.png",
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1804-ghost-of-tsushima-mini-games.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/037886e835ef06b5b84f8da878e3e40ec927d8174653b1a6f6bbc18d840ff1f8.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/a7b9a0b2df46ea04922aeffb39aa3ced2b5121722c30531d412e41fb52f7a33e.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c47ff007f1e9282ff86080c48bd10639cb90fbc085643a828cf2b4fce719ab8c.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/0d2c7aa6a1ada83bdf53dc8f133277056116253a8b1f07361e21e1a526cef672.png",
-    "screenshots/037886e835ef06b5b84f8da878e3e40ec927d8174653b1a6f6bbc18d840ff1f8.png;screenshots/a7b9a0b2df46ea04922aeffb39aa3ced2b5121722c30531d412e41fb52f7a33e.png;screenshots/c47ff007f1e9282ff86080c48bd10639cb90fbc085643a828cf2b4fce719ab8c.png;screenshots/0d2c7aa6a1ada83bdf53dc8f133277056116253a8b1f07361e21e1a526cef672.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/0d2c7aa6a1ada83bdf53dc8f133277056116253a8b1f07361e21e1a526cef672.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/991-got.vpk",
       "recommended": true
     },
@@ -36,5 +35,10 @@
       "name": "Repositorio",
       "url": "https://github.com"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "991",
+  "source_url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/991-got.vpk",
+  "release_page": "",
+  "updated_at": "2026-08-13T13:46:07.876752+00:00"
 }

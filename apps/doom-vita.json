@@ -3,31 +3,30 @@
   "title_id": "DOOM12345",
   "name": "DooM Vita",
   "description": "FPS game inspired to DooM.",
-  "long_description": "A first person shooter heavily inspired to DooM intellectual property made with Unity.",
+  "long_description": "A first person shooter heavily inspired to DooM intellectual property made with Unity.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
   "author_ids": [
     "gambikules"
   ],
   "category_id": "games",
   "subcategory_ids": [
-    "shooter"
+    "other"
   ],
   "version": "v.1.0.1",
   "version_date": "2026-08-12",
-  "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
+  "requirements": "Not specified",
   "size": 127433776,
-  "status": "Verified",
-  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/784fea9b107c186732a42610dca9c7b0bbbe51e987d337bae782049169ae33b2.png",
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1632-doom-vita.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/ae6964287f171305c3dafe1c8a98464a91c313d24cb82868ad0968555ab06834.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/95a2dce0f3303e92d783713862be27d1080ef2c46a61e55dd352bcbc8726a973.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/e227a9c2272930ba7b4d7d99f620962e306fe2788047993217e95b34e550f395.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/54d1593adfcfb951506815328ef36b02a6f4ab7b2a52ec7effa7512f21b9eef2.png",
-    "screenshots/ae6964287f171305c3dafe1c8a98464a91c313d24cb82868ad0968555ab06834.png;screenshots/95a2dce0f3303e92d783713862be27d1080ef2c46a61e55dd352bcbc8726a973.png;screenshots/e227a9c2272930ba7b4d7d99f620962e306fe2788047993217e95b34e550f395.png;screenshots/54d1593adfcfb951506815328ef36b02a6f4ab7b2a52ec7effa7512f21b9eef2.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/54d1593adfcfb951506815328ef36b02a6f4ab7b2a52ec7effa7512f21b9eef2.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/456-DooM_Vita.vpk",
       "recommended": true
     },
@@ -36,5 +35,10 @@
       "name": "Repositorio",
       "url": "https://github.com"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "456",
+  "source_url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/456-DooM_Vita.vpk",
+  "release_page": "",
+  "updated_at": "2026-08-13T13:46:07.961262+00:00"
 }

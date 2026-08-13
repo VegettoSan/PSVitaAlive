@@ -3,31 +3,33 @@
   "title_id": "POTO00002",
   "name": "How to Rob A Gas Station",
   "description": "Short multiplatform FPS game.",
-  "long_description": "In this game you, get this, rob a gas station. In fact, it's a step by step tutorial on robbing a gas station. Since this game is about 5 minutes, there are multiple endings. So if you care, you can do all the endings. There are a total of 22 endings.",
+  "long_description": "In this game you, get this, rob a gas station. In fact, it's a step by step tutorial on robbing a gas station. Since this game is about 5 minutes, there are multiple endings. So if you care, you can do all the endings. There are a total of 22 endings.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
   "author_ids": [
     "poto-software"
   ],
   "category_id": "games",
   "subcategory_ids": [
-    "shooter"
+    "other"
   ],
   "version": "v.2.3.2",
   "version_date": "2026-08-12",
-  "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
+  "requirements": "Not specified",
   "size": 51734795,
-  "status": "Verified",
-  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/460864aee43d7a613a1bca8235f8f37476175c81f4fe495bb95423b3188df922.png",
-  "screenshots": [],
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1789-how-to-rob-a-gas-station.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1789-how-to-rob-a-gas-station.png"
+  ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/839-gas.vpk",
       "recommended": true
     },
     {
-      "type": "Other",
-      "name": "Release",
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
       "url": "https://poto-software.itch.io/how-to-rob-a-gas-station"
     },
     {
@@ -35,5 +37,10 @@
       "name": "Repositorio",
       "url": "https://github.com"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "839",
+  "source_url": "https://poto-software.itch.io/how-to-rob-a-gas-station",
+  "release_page": "https://poto-software.itch.io/how-to-rob-a-gas-station",
+  "updated_at": "2026-08-13T13:46:07.778314+00:00"
 }

@@ -13,27 +13,26 @@
   ],
   "version": "v.1.1.0",
   "version_date": "2024-09-13",
-  "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
+  "requirements": "Not specified",
   "size": 13769661,
-  "status": "Verified",
-  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/fb2270fb42ef89816c4a2ca16e0af249a85432ca567f84eaa51bee08b7aac207.png",
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/fb2270fb42ef89816c4a2ca16e0af249a85432ca567f84eaa51bee08b7aac207.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/0d835910f57cfb2d93cfd6bb6757b09f8f470bad8c86618475c0216fd7d1cfc3.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/27b7780ef7d0e0d99dda81060f3a8c05af9bcfb004f0dc9fe7476739d935be93.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/e48f537a99f0bbc28ec4cdf49a9cb07307ad738b2642ee64b4f312ade504dd94.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/49c7c41b22e6e0bd262a2ecd31c3a68f5dd9d58fe08afad10517b703116082fd.png",
-    "screenshots/0d835910f57cfb2d93cfd6bb6757b09f8f470bad8c86618475c0216fd7d1cfc3.png;screenshots/27b7780ef7d0e0d99dda81060f3a8c05af9bcfb004f0dc9fe7476739d935be93.png;screenshots/e48f537a99f0bbc28ec4cdf49a9cb07307ad738b2642ee64b4f312ade504dd94.png;screenshots/49c7c41b22e6e0bd262a2ecd31c3a68f5dd9d58fe08afad10517b703116082fd.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/49c7c41b22e6e0bd262a2ecd31c3a68f5dd9d58fe08afad10517b703116082fd.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/kaonkaon/BreadToPIA/releases/download/v1.1.0/BreadToPIA.VPK",
       "recommended": true
     },
     {
-      "type": "Other",
-      "name": "Release",
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
       "url": "https://github.com/kaonkaon/BreadToPIA"
     },
     {
@@ -41,5 +40,10 @@
       "name": "NeoVitaDB Release Page",
       "url": "https://github.com/kaonkaon/BreadToPIA/releases/tag/v1.1.0"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "1225",
+  "source_url": "https://github.com/kaonkaon/BreadToPIA",
+  "release_page": "https://github.com/kaonkaon/BreadToPIA",
+  "updated_at": "2026-08-13T13:46:07.792252+00:00"
 }

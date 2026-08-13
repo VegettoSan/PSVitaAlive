@@ -2,48 +2,52 @@
   "id": "wiliwili",
   "title_id": "WILIWILI0",
   "name": "wiliwili",
-  "description": "wiliwili is a third-party cross-platform Bilibili client specially designed for gamepad control, It supports hardware decoding for PSVita.",
+  "description": "Bilibili client for PSVITA.",
   "long_description": "wiliwili is a third-party cross-platform Bilibili client specially designed for gamepad control, It supports hardware decoding for PSVita.\nBilibili is like the Chinese version of YouTube, with main users in China, Japan, South Korea, and Southeast Asia. (offical website: https://www.bilibili.com/).",
   "author_ids": [
     "xfangfang"
   ],
-  "category_id": "media",
+  "category_id": "games",
   "subcategory_ids": [
-    "video-player"
+    "other"
   ],
-  "version": "v1.6.0",
+  "version": "v.1.6.0",
   "version_date": "2026-04-25",
-  "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
+  "requirements": "Not specified",
   "size": 20134928,
-  "status": "Verified",
-  "icon": "https://robin994.github.io/NeoVitaDB-Catalog/icons/1164-wiliwili.png",
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/9c08b4b1454da2f5753706fa6e9bcecc9e9baf24c2704333e2d7deffb98bca24.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/97e463ecc474b81f5ef50f269c846ac19be2d8e7c28256e21bba60c04c45e56b.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/49801fb2f75405f84bb417ddb2a8688751ae22120fe93b39a8888e1dcf973bd6.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/b3cbaf3fe343614091629fcdbb03ae75b4a89522bd03903ae1f9c0363cd3f0c0.png",
-    "screenshots/97e463ecc474b81f5ef50f269c846ac19be2d8e7c28256e21bba60c04c45e56b.png;screenshots/49801fb2f75405f84bb417ddb2a8688751ae22120fe93b39a8888e1dcf973bd6.png;screenshots/b3cbaf3fe343614091629fcdbb03ae75b4a89522bd03903ae1f9c0363cd3f0c0.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/b3cbaf3fe343614091629fcdbb03ae75b4a89522bd03903ae1f9c0363cd3f0c0.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/xfangfang/wiliwili/releases/download/v1.6.0/wiliwili-PSV.vpk",
       "recommended": true
-    },
-    {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/xfangfang/wiliwili"
-    },
-    {
-      "type": "Other",
-      "name": "Release",
-      "url": "https://github.com/xfangfang/wiliwili/releases/tag/v1.6.0"
     },
     {
       "type": "Official Website",
       "name": "VitaDBtoo Release Page",
       "url": "https://github.com/xfangfang/wiliwili/releases"
+    },
+    {
+      "type": "Official Website",
+      "name": "NeoVitaDB Release Page",
+      "url": "https://github.com/xfangfang/wiliwili/releases/tag/v1.6.0"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/xfangfang/wiliwili"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "1164",
+  "source_url": "https://github.com/xfangfang/wiliwili",
+  "release_page": "https://github.com/xfangfang/wiliwili/releases",
+  "updated_at": "2026-08-13T13:46:07.723748+00:00"
 }

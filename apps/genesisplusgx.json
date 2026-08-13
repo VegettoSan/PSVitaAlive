@@ -7,44 +7,48 @@
   "author_ids": [
     "frangarcj"
   ],
-  "category_id": "emulators",
+  "category_id": "games",
   "subcategory_ids": [
-    "genesis"
+    "other"
   ],
   "version": "v.1.7.5-RC",
   "version_date": "2016-07-29",
-  "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
+  "requirements": "Not specified",
   "size": 2011467,
-  "status": "Verified",
-  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/fed314676a182bf702355bf0a46e6366933a92c9dceb8bec0504f21a034fbeda.png",
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/fed314676a182bf702355bf0a46e6366933a92c9dceb8bec0504f21a034fbeda.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/abcf0788862a35cdf1a41733249400ff5037f227878157c4819e16c8bc840cdb.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/696457c4cbc98bc7f7914c8d2ee2ce6c1d7ca678543cd0fdc52589793f9798ec.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/635271a9908206a26eee77809fd9449c9573d461057cfd7ec71ce1ee7779e946.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/02ae5a41052fd9fba10403e48498527e48517428b5498a535d377df464c8a6cc.png",
-    "screenshots/abcf0788862a35cdf1a41733249400ff5037f227878157c4819e16c8bc840cdb.png;screenshots/696457c4cbc98bc7f7914c8d2ee2ce6c1d7ca678543cd0fdc52589793f9798ec.png;screenshots/635271a9908206a26eee77809fd9449c9573d461057cfd7ec71ce1ee7779e946.png;screenshots/02ae5a41052fd9fba10403e48498527e48517428b5498a535d377df464c8a6cc.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/02ae5a41052fd9fba10403e48498527e48517428b5498a535d377df464c8a6cc.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/frangarcj/Genesis-Plus-GX/releases/download/1.7.5-RC-Henkaku/GenesisPlusGXVITA.vpk",
       "recommended": true
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/frangarcj/Genesis-Plus-GX"
-    },
-    {
-      "type": "Other",
-      "name": "Release",
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
       "url": "https://github.com/frangarcj/Genesis-Plus-GX/releases"
     },
     {
       "type": "Official Website",
       "name": "NeoVitaDB Release Page",
       "url": "https://github.com/frangarcj/Genesis-Plus-GX/releases/tag/1.7.5-RC-Henkaku"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/frangarcj/Genesis-Plus-GX"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "158",
+  "source_url": "https://github.com/frangarcj/Genesis-Plus-GX",
+  "release_page": "https://github.com/frangarcj/Genesis-Plus-GX/releases",
+  "updated_at": "2026-08-13T13:46:08.034185+00:00"
 }

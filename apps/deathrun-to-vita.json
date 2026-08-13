@@ -3,34 +3,33 @@
   "title_id": "DRSS00001",
   "name": "DeathRun To Vita",
   "description": "2D Platformer for PSVITA.",
-  "long_description": "A simple 2D Platformer for PSVITA/PSTV.",
+  "long_description": "A simple 2D Platformer for PSVITA/PSTV.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
   "author_ids": [
     "vektast"
   ],
   "category_id": "games",
   "subcategory_ids": [
-    "platformer"
+    "other"
   ],
   "version": "Build 531",
   "version_date": "2026-08-12",
-  "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
+  "requirements": "Not specified",
   "size": 2023040,
-  "status": "Verified",
-  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/8a11067d0bfa05f50645744c065dceb90592abf75f3f2cd04969d614a5c0e007.png",
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1553-deathrun-to-vita.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/65b763a01249810c96c07a735c1aee649dccfbb0f02a2698feb308934e8883e7.png",
-    "screenshots/65b763a01249810c96c07a735c1aee649dccfbb0f02a2698feb308934e8883e7.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/65b763a01249810c96c07a735c1aee649dccfbb0f02a2698feb308934e8883e7.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/253-DeathRun.vpk",
       "recommended": true
     },
     {
-      "type": "Other",
-      "name": "Release",
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
       "url": "http://wololo.net/talk/viewtopic.php?t=46567"
     },
     {
@@ -38,5 +37,10 @@
       "name": "Repositorio",
       "url": "https://github.com"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "253",
+  "source_url": "http://wololo.net/talk/viewtopic.php?t=46567",
+  "release_page": "http://wololo.net/talk/viewtopic.php?t=46567",
+  "updated_at": "2026-08-13T13:46:08.027909+00:00"
 }

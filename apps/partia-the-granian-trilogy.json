@@ -7,7 +7,7 @@
   "author_ids": [
     "rinnegatamante"
   ],
-  "category_id": "ports",
+  "category_id": "games",
   "subcategory_ids": [
     "other"
   ],
@@ -15,36 +15,40 @@
   "version_date": "2022-07-22",
   "requirements": "- libshacccg.suprx\n- kubridge.skprx\n- Game Data Files: Android",
   "size": 5690682,
-  "status": "Verified",
-  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/452096a159b5d6250870c16cc1995f19d32bfc28b152d3052491f9752239d304.png",
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/452096a159b5d6250870c16cc1995f19d32bfc28b152d3052491f9752239d304.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/3cbe8978bd6749595de05ec624a169f88da09cc738e4b4bdb4a78ae5860dd036.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/7136e11d768a188685ded2d34164aa6fd813c36b8a1537a56045b38f17169a25.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c36c075010a8ec029cd6f1fc703c20b6589790c096f0a6e9966929491766f729.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/a2f7ad197a5119acc45b2796332559ffce9ea63f66e012bbbce1a45823c4eaee.png",
-    "screenshots/3cbe8978bd6749595de05ec624a169f88da09cc738e4b4bdb4a78ae5860dd036.png;screenshots/7136e11d768a188685ded2d34164aa6fd813c36b8a1537a56045b38f17169a25.png;screenshots/c36c075010a8ec029cd6f1fc703c20b6589790c096f0a6e9966929491766f729.png;screenshots/a2f7ad197a5119acc45b2796332559ffce9ea63f66e012bbbce1a45823c4eaee.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/a2f7ad197a5119acc45b2796332559ffce9ea63f66e012bbbce1a45823c4eaee.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/Rinnegatamante/partia-vita/releases/download/v.1.0/Partia.vpk",
       "recommended": true
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/Rinnegatamante/partia-vita"
-    },
-    {
-      "type": "Other",
-      "name": "Release",
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
       "url": "https://github.com/Rinnegatamante/partia-vita/releases"
     },
     {
       "type": "Official Website",
       "name": "NeoVitaDB Release Page",
       "url": "https://github.com/Rinnegatamante/partia-vita/releases/tag/v.1.0"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/Rinnegatamante/partia-vita"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "843",
+  "source_url": "https://github.com/Rinnegatamante/partia-vita",
+  "release_page": "https://github.com/Rinnegatamante/partia-vita/releases",
+  "updated_at": "2026-08-13T13:46:07.887240+00:00"
 }

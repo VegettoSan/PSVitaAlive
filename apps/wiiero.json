@@ -2,47 +2,51 @@
   "id": "wiiero",
   "title_id": "VITALIERO",
   "name": "Wiiero",
-  "description": "THIS GAME IS LOCAL MULTIPLAYER ONLY! It requires 2 controllers to play, so it won't work on a regular Vita.",
+  "description": "Wiiero port for PSTV.",
   "long_description": "THIS GAME IS LOCAL MULTIPLAYER ONLY! It requires 2 controllers to play, so it won't work on a regular Vita.\nWiiero is a clone of Liero specially originally developed for Wii. Liero is a PvP game between two worms armed with heavy weapons of all kinds battling in underground caves. Wiiero is composed of 3 game modes: Deathmatch, Capture the flag and game of tag. In the wiiero world, players are able to fight with the original Liero weapons ( there are basically thirty of them) or add the twenty more or less harmful new ones.",
   "author_ids": [
     "grzybojad"
   ],
-  "category_id": "ports",
+  "category_id": "games",
   "subcategory_ids": [
     "other"
   ],
-  "version": "1.2",
+  "version": "v.1.2",
   "version_date": "2019-01-12",
-  "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
+  "requirements": "Not specified",
   "size": 748458,
   "status": "Legacy",
-  "icon": "https://robin994.github.io/NeoVitaDB-Catalog/icons/0417-wiiero.png",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/7faf42a885158181802fe89c84af8d84db650ac961bf6168a78ef2dcdadbe097.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/cb94c7eb50b86850838a2a59ae9bf1becd92be2320624f5fa4562709eb29d960.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/f8437665ccc817a96298e54bdc090bba21498942e81a606c315e4f9ed9e984f9.png",
-    "screenshots/cb94c7eb50b86850838a2a59ae9bf1becd92be2320624f5fa4562709eb29d960.png;screenshots/f8437665ccc817a96298e54bdc090bba21498942e81a606c315e4f9ed9e984f9.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/f8437665ccc817a96298e54bdc090bba21498942e81a606c315e4f9ed9e984f9.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/Grzybojad/wiiero-vita/releases/download/1.2/wiiero.vpk",
       "recommended": true
-    },
-    {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/Grzybojad/wiiero-vita"
-    },
-    {
-      "type": "Other",
-      "name": "Release",
-      "url": "https://github.com/Grzybojad/wiiero-vita/releases/tag/1.2"
     },
     {
       "type": "Official Website",
       "name": "VitaDBtoo Release Page",
       "url": "https://github.com/Grzybojad/wiiero-vita/releases"
+    },
+    {
+      "type": "Official Website",
+      "name": "NeoVitaDB Release Page",
+      "url": "https://github.com/Grzybojad/wiiero-vita/releases/tag/1.2"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/Grzybojad/wiiero-vita"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "417",
+  "source_url": "https://github.com/Grzybojad/wiiero-vita",
+  "release_page": "https://github.com/Grzybojad/wiiero-vita/releases",
+  "updated_at": "2026-08-13T13:46:07.985618+00:00"
 }

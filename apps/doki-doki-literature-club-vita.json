@@ -7,7 +7,7 @@
   "author_ids": [
     "sonicmastr"
   ],
-  "category_id": "ports",
+  "category_id": "games",
   "subcategory_ids": [
     "other"
   ],
@@ -15,29 +15,33 @@
   "version_date": "2021-09-15",
   "requirements": "- Game Data Files: PC Steam",
   "size": 17191800,
-  "status": "Verified",
-  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/66c021e7e1db846d1180588e8679ef369ed3bc3049e29519d77c02575d3d723e.png",
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/0860-doki-doki-literature-club-vita.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/94722686a9c5b07332d1103afa87542d4cef94c4a2f704165ab21bca72df66af.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/ef322976fb8677b167150ef64b98c7f3f71a1a5b632dc13a46cb193f4883f3f0.png",
-    "screenshots/94722686a9c5b07332d1103afa87542d4cef94c4a2f704165ab21bca72df66af.png;screenshots/ef322976fb8677b167150ef64b98c7f3f71a1a5b632dc13a46cb193f4883f3f0.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/ef322976fb8677b167150ef64b98c7f3f71a1a5b632dc13a46cb193f4883f3f0.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "NeoVitaDB VPK",
       "url": "https://github.com/SonicMastr/Doki-Doki-Literature-Club-Vita/releases/download/v1.01/Doki.Doki.Literature.Club-01.01.vpk",
       "recommended": true
-    },
-    {
-      "type": "Other",
-      "name": "Release",
-      "url": "https://github.com/SonicMastr/Doki-Doki-Literature-Club-Vita"
     },
     {
       "type": "Official Website",
       "name": "NeoVitaDB Release Page",
       "url": "https://github.com/SonicMastr/Doki-Doki-Literature-Club-Vita/releases/tag/v1.01"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/SonicMastr/Doki-Doki-Literature-Club-Vita"
     }
-  ]
+  ],
+  "source_name": "NeoVitaDB",
+  "source_id": "860",
+  "source_url": "https://github.com/SonicMastr/Doki-Doki-Literature-Club-Vita",
+  "release_page": "https://github.com/SonicMastr/Doki-Doki-Literature-Club-Vita/releases/tag/v1.01",
+  "updated_at": "2026-08-13T13:46:07.912176+00:00"
 }

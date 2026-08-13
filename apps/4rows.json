@@ -3,33 +3,33 @@
   "title_id": "ROWS00001",
   "name": "4Rows",
   "description": "Connect4 game for PSVITA.",
-  "long_description": "4Rows is the port of the \"Four in a row\"/\"Connect4\" sample homebrew provided with the very first PSP Lua Interpreter.",
+  "long_description": "4Rows is the port of the \"Four in a row\"/\"Connect4\" sample homebrew provided with the very first PSP Lua Interpreter.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
   "author_ids": [
     "rinnegatamante"
   ],
-  "category_id": "development",
+  "category_id": "games",
   "subcategory_ids": [
-    "lua"
+    "other"
   ],
   "version": "v.1.1",
   "version_date": "2026-08-12",
-  "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
+  "requirements": "Not specified",
   "size": 1122931,
-  "status": "Verified",
-  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/6e337bb59d56f9c18ca5863a865cdb2471e5b69da04263405ff0587e0fa2628d.png",
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1485-4rows.png",
   "screenshots": [
-    "screenshots/rows.jpg"
+    "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1485-4rows.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/65-4Rows.vpk",
       "recommended": true
     },
     {
-      "type": "Other",
-      "name": "Release",
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
       "url": "https://wololo.net/talk/viewtopic.php?f=116&t=46253"
     },
     {
@@ -37,5 +37,10 @@
       "name": "Repositorio",
       "url": "https://github.com"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "65",
+  "source_url": "https://wololo.net/talk/viewtopic.php?f=116&t=46253",
+  "release_page": "https://wololo.net/talk/viewtopic.php?f=116&t=46253",
+  "updated_at": "2026-08-13T13:46:08.030418+00:00"
 }

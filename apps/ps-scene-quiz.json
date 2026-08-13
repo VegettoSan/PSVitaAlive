@@ -3,29 +3,28 @@
   "title_id": "LAPY00010",
   "name": "PS Scene Quiz",
   "description": "Quiz game for PSVITA/PSTV.",
-  "long_description": "A simple quiz game where you have to guess people nicknames from the PlayStation scene.",
+  "long_description": "A simple quiz game where you have to guess people nicknames from the PlayStation scene.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
   "author_ids": [
     "lapy"
   ],
-  "category_id": "ports",
+  "category_id": "games",
   "subcategory_ids": [
     "other"
   ],
   "version": "v.1.0",
   "version_date": "2026-08-12",
-  "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
+  "requirements": "Not specified",
   "size": 87409296,
-  "status": "Verified",
-  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/1ebcd992f006024f98509e26decd763440a8940d10800983562f8611cd8040bd.png",
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1655-ps-scene-quiz.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c7879c0670fff802fe961ff623521da46376e73a2368816e8318086616169fff.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/07fa33a1960d9fb9cc9af03a530e54a1881c5411deaff4b3f47a9fb6da7f159b.png",
-    "screenshots/c7879c0670fff802fe961ff623521da46376e73a2368816e8318086616169fff.png;screenshots/07fa33a1960d9fb9cc9af03a530e54a1881c5411deaff4b3f47a9fb6da7f159b.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/07fa33a1960d9fb9cc9af03a530e54a1881c5411deaff4b3f47a9fb6da7f159b.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/489-quiz.vpk",
       "recommended": true
     },
@@ -34,5 +33,10 @@
       "name": "Repositorio",
       "url": "https://github.com"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "489",
+  "source_url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/489-quiz.vpk",
+  "release_page": "",
+  "updated_at": "2026-08-13T13:46:07.967977+00:00"
 }

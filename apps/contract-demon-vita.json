@@ -2,44 +2,48 @@
   "id": "contract-demon-vita",
   "title_id": "RNPYDEMON",
   "name": "Contract Demon Vita",
-  "description": "Port of Contract Demon for PSVITA/PSTV.\nCONTRACT DEMON is a visual novel created for NaNoRenO 2019.",
+  "description": "Port of Contract Demon for PSVITA/PSTV.",
   "long_description": "Port of Contract Demon for PSVITA/PSTV.\nCONTRACT DEMON is a visual novel created for NaNoRenO 2019. an angel summons a demon, and they end up... in love?! it takes 20-30 minutes to read through the story. there are no choices or alternate endings.",
   "author_ids": [
     "sonicmastr"
   ],
-  "category_id": "ports",
+  "category_id": "games",
   "subcategory_ids": [
     "other"
   ],
-  "version": "v1.0",
+  "version": "v.1.00",
   "version_date": "2021-09-17",
   "requirements": "- Game Data Files: PC",
   "size": 14300706,
   "status": "Legacy",
-  "icon": "https://robin994.github.io/NeoVitaDB-Catalog/icons/0863-contract-demon-vita.png",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/fccdba5478216671eb8073deac523d9a3e4649ab67eca2258bccfc1c61c0b7e2.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/852c379fa14fed95b866f8e8a8844803ac0f8b0f327fc47f783512810ccd57ac.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/6f1a56b70bc3d26ffa0a0491cf6fd5dba7437d711abcc19ecd5e41b288e50d80.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/22170ba070580c3c0bec466e55ab5eb77257a3bd6cd974ebfa8f75c107e84abf.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/8257dfbcb2099923f8651c64cf32fcdf29812e896c7f87b941f24a24b52196a6.png",
-    "screenshots/852c379fa14fed95b866f8e8a8844803ac0f8b0f327fc47f783512810ccd57ac.png;screenshots/6f1a56b70bc3d26ffa0a0491cf6fd5dba7437d711abcc19ecd5e41b288e50d80.png;screenshots/22170ba070580c3c0bec466e55ab5eb77257a3bd6cd974ebfa8f75c107e84abf.png;screenshots/8257dfbcb2099923f8651c64cf32fcdf29812e896c7f87b941f24a24b52196a6.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/8257dfbcb2099923f8651c64cf32fcdf29812e896c7f87b941f24a24b52196a6.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/SonicMastr/Contract-Demon-Vita/releases/download/v1.0/Contract.Demon-01.00.vpk",
       "recommended": true
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
       "url": "https://github.com/SonicMastr/Contract-Demon-Vita"
     },
     {
-      "type": "Other",
-      "name": "Release",
+      "type": "Official Website",
+      "name": "NeoVitaDB Release Page",
       "url": "https://github.com/SonicMastr/Contract-Demon-Vita/releases/tag/v1.0"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "863",
+  "source_url": "https://github.com/SonicMastr/Contract-Demon-Vita",
+  "release_page": "https://github.com/SonicMastr/Contract-Demon-Vita",
+  "updated_at": "2026-08-13T13:46:07.912715+00:00"
 }

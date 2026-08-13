@@ -3,11 +3,11 @@
   "title_id": "FLPR12345",
   "name": "Flipper Volcano Vita",
   "description": "Port of Flipper Volcano for PSVita.",
-  "long_description": "Simple port of Flipper Volcano by Sokpop for Playstation Vita.",
+  "long_description": "Simple port of Flipper Volcano by Sokpop for Playstation Vita.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
   "author_ids": [
     "bren"
   ],
-  "category_id": "ports",
+  "category_id": "games",
   "subcategory_ids": [
     "other"
   ],
@@ -16,24 +16,23 @@
   "requirements": "- Game Data Files: PC",
   "size": 16459353,
   "status": "Legacy",
-  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/18ae0c62fc40fdc83468bf3769effa2a3f1d8fc4f97b0089ce702d19a61dcd54.png",
+  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1941-flipper-volcano-vita.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/6461390ef35c7ff4394fd153a8c679cc2da482fe27a66985b7cbe11435546014.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c7e8725c1ee14d4ca80f0a6cf6dbc0cf0ccd96914ec66bc5355d39256ec1fed6.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/522f7cc646769ebac080ffe71bafc610e518f54f0689422c5cf25fb16c941099.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/3e48ada8d30e7573a24d7013dbe7d9b1980e6fdb8aa32169318d30fd9bcf4dfc.png",
-    "screenshots/6461390ef35c7ff4394fd153a8c679cc2da482fe27a66985b7cbe11435546014.png;screenshots/c7e8725c1ee14d4ca80f0a6cf6dbc0cf0ccd96914ec66bc5355d39256ec1fed6.png;screenshots/522f7cc646769ebac080ffe71bafc610e518f54f0689422c5cf25fb16c941099.png;screenshots/3e48ada8d30e7573a24d7013dbe7d9b1980e6fdb8aa32169318d30fd9bcf4dfc.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/3e48ada8d30e7573a24d7013dbe7d9b1980e6fdb8aa32169318d30fd9bcf4dfc.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1327-FlipperVolcano_v1_1.vpk",
       "recommended": true
     },
     {
-      "type": "Other",
-      "name": "Release",
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
       "url": "https://brendonm17.itch.io/flipper-volcano-vita"
     },
     {
@@ -41,5 +40,10 @@
       "name": "Repositorio",
       "url": "https://github.com"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "1327",
+  "source_url": "https://brendonm17.itch.io/flipper-volcano-vita",
+  "release_page": "https://brendonm17.itch.io/flipper-volcano-vita",
+  "updated_at": "2026-08-13T13:46:07.742073+00:00"
 }

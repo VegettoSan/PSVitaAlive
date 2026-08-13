@@ -5,41 +5,47 @@
   "description": "SNES emulator.",
   "long_description": "CATSFC-libretro-vita is a SNES emulator for the PSVita and PSTV. It is based on CATSFC-libretro, which is based on Snes9x 1.43.",
   "author_ids": [
-    "malachi",
-    "skogaby"
+    "malachi"
   ],
-  "category_id": "emulators",
+  "category_id": "games",
   "subcategory_ids": [
-    "snes"
+    "other"
   ],
   "version": "v.1.3.0",
   "version_date": "2017-01-15",
-  "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
+  "requirements": "Not specified",
   "size": 1319283,
-  "status": "Verified",
-  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/17f7e96b84404d915c12ee68a527aad293c5ad86187a02c869ca7392e81208fd.png",
-  "screenshots": [],
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/17f7e96b84404d915c12ee68a527aad293c5ad86187a02c869ca7392e81208fd.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/17f7e96b84404d915c12ee68a527aad293c5ad86187a02c869ca7392e81208fd.png"
+  ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/skogaby/CATSFC-libretro/releases/download/1.3.0/CATSFC-libretro-vita-1.3.0.vpk",
       "recommended": true
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/skogaby/CATSFC-libretro"
-    },
-    {
-      "type": "Other",
-      "name": "Release",
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
       "url": "http://wololo.net/talk/viewtopic.php?t=46394"
     },
     {
       "type": "Official Website",
       "name": "NeoVitaDB Release Page",
       "url": "https://github.com/skogaby/CATSFC-libretro/releases/tag/1.3.0"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/skogaby/CATSFC-libretro"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "75",
+  "source_url": "https://github.com/skogaby/CATSFC-libretro",
+  "release_page": "http://wololo.net/talk/viewtopic.php?t=46394",
+  "updated_at": "2026-08-13T13:46:08.013069+00:00"
 }

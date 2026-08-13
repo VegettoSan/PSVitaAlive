@@ -3,41 +3,45 @@
   "title_id": "AVPLAYER1",
   "name": "Vita Sample Avplayer",
   "description": "Simple video player for PSVITA.",
-  "long_description": "A simple video player for PSVITA based off SceAvPlayer module.",
+  "long_description": "A simple video player for PSVITA based off SceAvPlayer module.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
   "author_ids": [
     "yizhigai"
   ],
-  "category_id": "media",
+  "category_id": "games",
   "subcategory_ids": [
-    "video-player"
+    "other"
   ],
   "version": "v.1.03",
   "version_date": "2026-08-12",
-  "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
+  "requirements": "Not specified",
   "size": 2934998,
-  "status": "Verified",
-  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/16110cafc2f2a7e39b3ff2de553c6c7a963a10983e7e507f0b3359e85fea1b02.png",
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1818-vita-sample-avplayer.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/9707c8734c645d427a9c539a5c55d6ef4269f2648f0117abde8ce9d7d3a57cf6.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/1f39c81142aea9edf3fb334397591b19f76a9153326f257f1f44300bb19bb813.png",
-    "screenshots/9707c8734c645d427a9c539a5c55d6ef4269f2648f0117abde8ce9d7d3a57cf6.png;screenshots/1f39c81142aea9edf3fb334397591b19f76a9153326f257f1f44300bb19bb813.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/1f39c81142aea9edf3fb334397591b19f76a9153326f257f1f44300bb19bb813.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1057-sample_avplayer.vpk",
       "recommended": true
+    },
+    {
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
+      "url": "https://gitee.com/yizhigai/vita-sample-avplayer/releases"
     },
     {
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://gitee.com/yizhigai/vita-sample-avplayer"
-    },
-    {
-      "type": "Other",
-      "name": "Release",
-      "url": "https://gitee.com/yizhigai/vita-sample-avplayer/releases"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "1057",
+  "source_url": "https://gitee.com/yizhigai/vita-sample-avplayer",
+  "release_page": "https://gitee.com/yizhigai/vita-sample-avplayer/releases",
+  "updated_at": "2026-08-13T13:46:07.872037+00:00"
 }

@@ -3,25 +3,27 @@
   "title_id": "ZXGQ00004",
   "name": "GoHAN Parallel",
   "description": "Savedata modifier for PSVITA.",
-  "long_description": "Homebrew that allows the user to modify games data.",
+  "long_description": "Homebrew that allows the user to modify games data.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
   "author_ids": [
     "onerice07"
   ],
-  "category_id": "utilities",
+  "category_id": "games",
   "subcategory_ids": [
     "other"
   ],
   "version": "v.2.1.0",
   "version_date": "2026-08-12",
-  "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
+  "requirements": "Not specified",
   "size": 384298,
-  "status": "Verified",
-  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/577468060c6efe96b7313f35a36851238efdc63b32a194c06da6b2de098e1316.png",
-  "screenshots": [],
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1552-gohan-parallel.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1552-gohan-parallel.png"
+  ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/251-GoHAN_Parallel.vpk",
       "recommended": true
     },
@@ -30,5 +32,10 @@
       "name": "Repositorio",
       "url": "https://github.com"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "251",
+  "source_url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/251-GoHAN_Parallel.vpk",
+  "release_page": "",
+  "updated_at": "2026-08-13T13:46:08.016806+00:00"
 }

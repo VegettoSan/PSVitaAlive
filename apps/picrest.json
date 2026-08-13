@@ -2,49 +2,53 @@
   "id": "picrest",
   "title_id": "PICRESTGM",
   "name": "PiCrest",
-  "description": "Picross game for PSVITA.",
+  "description": "Picross game for PSVITA",
   "long_description": "A Picross game for PSVITA with a level editor to create new levels and multilanguage support.",
   "author_ids": [
     "creckeryop"
   ],
   "category_id": "games",
   "subcategory_ids": [
-    "puzzle"
+    "other"
   ],
   "version": "v.1.15",
   "version_date": "2022-03-08",
-  "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
+  "requirements": "Not specified",
   "size": 2529584,
-  "status": "Verified",
-  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/5b344f0eb564a265f2e40a7b2c877c28ce1eb1c19ff5c6ac000389ab9c3d5516.png",
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/5b344f0eb564a265f2e40a7b2c877c28ce1eb1c19ff5c6ac000389ab9c3d5516.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/e19fc078c2065f4841fe6208e097cc2f8b0cbd163b53a356eb775342f2b3c5aa.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/f8c7cda9d6af41b58119d6b1dd54693a2d1512e18e0dbd79bd9aedee57e91a68.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/2fb2263306cb514c52dbf29f32c64bb5c9039501ab064fe0354cf2c5021a05fa.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/6924824f436c8b92ff4ae93ac762f44b1628c1188db5d7fb26749b4480d20347.png",
-    "screenshots/e19fc078c2065f4841fe6208e097cc2f8b0cbd163b53a356eb775342f2b3c5aa.png;screenshots/f8c7cda9d6af41b58119d6b1dd54693a2d1512e18e0dbd79bd9aedee57e91a68.png;screenshots/2fb2263306cb514c52dbf29f32c64bb5c9039501ab064fe0354cf2c5021a05fa.png;screenshots/6924824f436c8b92ff4ae93ac762f44b1628c1188db5d7fb26749b4480d20347.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/6924824f436c8b92ff4ae93ac762f44b1628c1188db5d7fb26749b4480d20347.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/Creckeryop/PiCrest/releases/download/1.15/PiCrest.vpk",
       "recommended": true
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/Creckeryop/PiCrest"
-    },
-    {
-      "type": "Other",
-      "name": "Release",
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
       "url": "https://gbatemp.net/threads/release-picrest-picross-for-ps-vita.513063/#post-8182254"
     },
     {
       "type": "Official Website",
       "name": "NeoVitaDB Release Page",
       "url": "https://github.com/Creckeryop/PiCrest/releases/tag/1.15"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/Creckeryop/PiCrest"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "392",
+  "source_url": "https://github.com/Creckeryop/PiCrest",
+  "release_page": "https://gbatemp.net/threads/release-picrest-picross-for-ps-vita.513063/#post-8182254",
+  "updated_at": "2026-08-13T13:46:07.899140+00:00"
 }

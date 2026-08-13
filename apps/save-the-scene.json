@@ -3,7 +3,7 @@
   "title_id": "LAPY00001",
   "name": "Save The Scene",
   "description": "Missile command style game.",
-  "long_description": "Save PS4 scene devs from bomb attacks and let them bring us the hack.",
+  "long_description": "Save PS4 scene devs from bomb attacks and let them bring us the hack.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
   "author_ids": [
     "lapy"
   ],
@@ -13,18 +13,17 @@
   ],
   "version": "v.1.03",
   "version_date": "2026-08-12",
-  "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
+  "requirements": "Not specified",
   "size": 51416047,
-  "status": "Verified",
-  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/8b22e1f24d173d7d24dc3dda39b086418824d73b167880c740560d01f0ea28fd.png",
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1623-save-the-scene.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/52de9176beeac78dd6bfa07b7afe10f2fb516ce4a3cd88ec8fd0ef0ea2744f74.png",
-    "screenshots/52de9176beeac78dd6bfa07b7afe10f2fb516ce4a3cd88ec8fd0ef0ea2744f74.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/52de9176beeac78dd6bfa07b7afe10f2fb516ce4a3cd88ec8fd0ef0ea2744f74.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/445-Save_20the_20Scene.vpk",
       "recommended": true
     },
@@ -33,5 +32,10 @@
       "name": "Repositorio",
       "url": "https://github.com/Lapy055/Save_the_Scene"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "445",
+  "source_url": "https://github.com/Lapy055/Save_the_Scene",
+  "release_page": "",
+  "updated_at": "2026-08-13T13:46:07.979020+00:00"
 }

@@ -2,51 +2,53 @@
   "id": "gta-sa-vita",
   "title_id": "GTASA0000",
   "name": "GTA: SA Vita",
-  "description": "A port of Grand Theft Auto: San Andreas for PSVITA/PSTV based on the Mobile (Android) version of the game.",
+  "description": "Port of Grand Theft Auto: San Andreas for PSVITA.",
   "long_description": "A port of Grand Theft Auto: San Andreas for PSVITA/PSTV based on the Mobile (Android) version of the game.",
   "author_ids": [
-    "theflow",
-    "rinnegatamante",
     "aap"
   ],
-  "category_id": "ports",
+  "category_id": "games",
   "subcategory_ids": [
     "other"
   ],
-  "version": "v2.1",
+  "version": "v.2.1",
   "version_date": "2021-08-28",
   "requirements": "- libshacccg.suprx\n- kubridge.skprx\n- Game Data Files: Android",
   "size": 1455563,
-  "status": "Verified",
-  "icon": "https://robin994.github.io/NeoVitaDB-Catalog/icons/0618-gta-sa-vita.png",
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/58cfaa639b114893d1a1ab4f5bf19920559242b4543b92cee8808b06af3cb721.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/79a416b81efbfd5ddfde015a46e6b817e4f841706626691a5bf201cdd6a11d3c.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/330c7808df3fd0d8c7abc18bed6c479c64b13adf3b96ce06f9510b8feedc16a0.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/f127bb3a2ea9d01627e62e3941ba42271e71bf8d138b8a5914405ddf45820722.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/02c8aa3521e4e738cd2b6c2a1ae38c0a6ac5559ca908d74220a25822ccb9dbf2.png",
-    "screenshots/79a416b81efbfd5ddfde015a46e6b817e4f841706626691a5bf201cdd6a11d3c.png;screenshots/330c7808df3fd0d8c7abc18bed6c479c64b13adf3b96ce06f9510b8feedc16a0.png;screenshots/f127bb3a2ea9d01627e62e3941ba42271e71bf8d138b8a5914405ddf45820722.png;screenshots/02c8aa3521e4e738cd2b6c2a1ae38c0a6ac5559ca908d74220a25822ccb9dbf2.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/02c8aa3521e4e738cd2b6c2a1ae38c0a6ac5559ca908d74220a25822ccb9dbf2.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/TheOfficialFloW/gtasa_vita/releases/download/v2.1/GTASA.vpk",
       "recommended": true
-    },
-    {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/TheOfficialFloW/gtasa_vita"
-    },
-    {
-      "type": "Other",
-      "name": "Release",
-      "url": "https://github.com/TheOfficialFloW/gtasa_vita/releases/tag/v2.1"
     },
     {
       "type": "Official Website",
       "name": "VitaDBtoo Release Page",
       "url": "https://github.com/TheOfficialFloW/gtasa_vita/releases"
+    },
+    {
+      "type": "Official Website",
+      "name": "NeoVitaDB Release Page",
+      "url": "https://github.com/TheOfficialFloW/gtasa_vita/releases/tag/v2.1"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/TheOfficialFloW/gtasa_vita"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "618",
+  "source_url": "https://github.com/TheOfficialFloW/gtasa_vita",
+  "release_page": "https://github.com/TheOfficialFloW/gtasa_vita/releases",
+  "updated_at": "2026-08-13T13:46:07.913362+00:00"
 }

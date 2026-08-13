@@ -7,32 +7,31 @@
   "author_ids": [
     "patnosd"
   ],
-  "category_id": "ports",
+  "category_id": "games",
   "subcategory_ids": [
-    "rpg"
+    "other"
   ],
   "version": "v.1.0",
   "version_date": "2025-08-15",
-  "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
+  "requirements": "Not specified",
   "size": 17215212,
-  "status": "Verified",
-  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/8b362535a34713d3872c16e0fcaa72b2decfb746b3115541d2bb7f3b02cf5d87.png",
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/8b362535a34713d3872c16e0fcaa72b2decfb746b3115541d2bb7f3b02cf5d87.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/3f54ad6d1d6bc9d6cd6dfd085271dda74e7eac487f92066d0ec44105dea9d6f4.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/500281d9051cee6de763c153c627c0ce2ba706275f96b35e4974a64c71ad2e7c.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/4d0545f815ac52200b1707d465833f50482853d0dfd69078ab76e404927f6616.png",
-    "screenshots/3f54ad6d1d6bc9d6cd6dfd085271dda74e7eac487f92066d0ec44105dea9d6f4.png;screenshots/500281d9051cee6de763c153c627c0ce2ba706275f96b35e4974a64c71ad2e7c.png;screenshots/4d0545f815ac52200b1707d465833f50482853d0dfd69078ab76e404927f6616.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/4d0545f815ac52200b1707d465833f50482853d0dfd69078ab76e404927f6616.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/PatnosDD/Cat-Quest-Ps-Vita/releases/download/V1.0/CatQuest.vpk",
       "recommended": true
     },
     {
-      "type": "Other",
-      "name": "Release",
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
       "url": "https://github.com/PatnosDD/Cat-Quest-Ps-Vita"
     },
     {
@@ -40,5 +39,10 @@
       "name": "NeoVitaDB Release Page",
       "url": "https://github.com/PatnosDD/Cat-Quest-Ps-Vita/releases/tag/V1.0"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "1311",
+  "source_url": "https://github.com/PatnosDD/Cat-Quest-Ps-Vita",
+  "release_page": "https://github.com/PatnosDD/Cat-Quest-Ps-Vita",
+  "updated_at": "2026-08-13T13:46:07.758767+00:00"
 }

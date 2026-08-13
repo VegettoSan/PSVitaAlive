@@ -7,7 +7,7 @@
   "author_ids": [
     "claude-ai"
   ],
-  "category_id": "ports",
+  "category_id": "games",
   "subcategory_ids": [
     "other"
   ],
@@ -16,35 +16,34 @@
   "requirements": "- libshacccg.suprx\n- kubridge.skprx\n- Game Data Files: Android",
   "size": 956984,
   "status": "Legacy",
-  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/65789c5aebcdb85aa611c134f74f7d8365b0787e45ddf1351d2609be140f7287.png",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/65789c5aebcdb85aa611c134f74f7d8365b0787e45ddf1351d2609be140f7287.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/506ac2339c6a5a8d2a62a5a77d2066cef7e6098e8bccc8ed8245c7efe0acf53f.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/0ae935987f14356b56dedc4be145b3c2bf013814a9d6c707780ce0282cb25e75.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/50f1b5001c09b7a796f9330f8a6b99deccaba11d600a069ff90c7bcd9544d71e.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/05ba8e3d2faeb20d54c6341f128947959645733313ad978460ac64c8c7d52a16.png",
-    "screenshots/506ac2339c6a5a8d2a62a5a77d2066cef7e6098e8bccc8ed8245c7efe0acf53f.png;screenshots/0ae935987f14356b56dedc4be145b3c2bf013814a9d6c707780ce0282cb25e75.png;screenshots/50f1b5001c09b7a796f9330f8a6b99deccaba11d600a069ff90c7bcd9544d71e.png;screenshots/05ba8e3d2faeb20d54c6341f128947959645733313ad978460ac64c8c7d52a16.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/05ba8e3d2faeb20d54c6341f128947959645733313ad978460ac64c8c7d52a16.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
-      "url": "https://github.com/reallootfury/bloons-td-5-vita/releases/download/v1.0.0/btd5-vita-v1.00.vpk",
+      "name": "VitaDBtoo VPK",
+      "url": "https://github.com/reallootfury/bloons-td-5-vita/releases/download/v1.01/btd5-vita-v1.01.vpk",
       "recommended": true
+    },
+    {
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
+      "url": "https://github.com/reallootfury/bloons-td-5-vita/releases"
     },
     {
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/reallootfury/bloons-td-5-vita"
-    },
-    {
-      "type": "Other",
-      "name": "Release",
-      "url": "https://github.com/reallootfury/bloons-td-5-vita/releases"
-    },
-    {
-      "type": "Download",
-      "name": "VitaDBtoo VPK",
-      "url": "https://github.com/reallootfury/bloons-td-5-vita/releases/download/v1.01/btd5-vita-v1.01.vpk"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "1440",
+  "source_url": "https://github.com/reallootfury/bloons-td-5-vita",
+  "release_page": "https://github.com/reallootfury/bloons-td-5-vita/releases",
+  "updated_at": "2026-08-13T13:46:07.702213+00:00"
 }

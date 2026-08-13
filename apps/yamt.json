@@ -2,43 +2,50 @@
   "id": "yamt",
   "title_id": "SKGYAMT01",
   "name": "YAMT",
-  "description": "Installer for a faster driver for SD2Vita.",
+  "description": "SD2Vita driver installer",
   "long_description": "Installer for a faster driver for SD2Vita. It mounts SD2Vita as ux0 and memcard (or if not found internal ux0 storage) as uma0.",
   "author_ids": [
     "skgleba"
   ],
-  "category_id": "system",
+  "category_id": "games",
   "subcategory_ids": [
-    "storage"
+    "other"
   ],
-  "version": "v4.0",
+  "version": "v.4.0",
   "version_date": "2020-08-09",
-  "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
+  "requirements": "Not specified",
   "size": 68071,
-  "status": "Verified",
-  "icon": "https://robin994.github.io/NeoVitaDB-Catalog/icons/0485-yamt.png",
-  "screenshots": [],
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/18746b487153dc1ca3d728ce57b841b6e8faeca65a0900aa46864f73d07642c8.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/18746b487153dc1ca3d728ce57b841b6e8faeca65a0900aa46864f73d07642c8.png"
+  ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/SKGleba/yamt-vita/releases/download/v4.0/yamt.vpk",
       "recommended": true
-    },
-    {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/SKGleba/yamt-vita"
-    },
-    {
-      "type": "Other",
-      "name": "Release",
-      "url": "https://github.com/SKGleba/yamt-vita/releases/tag/v4.0"
     },
     {
       "type": "Official Website",
       "name": "VitaDBtoo Release Page",
       "url": "https://github.com/SKGleba/yamt-vita/releases"
+    },
+    {
+      "type": "Official Website",
+      "name": "NeoVitaDB Release Page",
+      "url": "https://github.com/SKGleba/yamt-vita/releases/tag/v4.0"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/SKGleba/yamt-vita"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "485",
+  "source_url": "https://github.com/SKGleba/yamt-vita",
+  "release_page": "https://github.com/SKGleba/yamt-vita/releases",
+  "updated_at": "2026-08-13T13:46:07.949440+00:00"
 }

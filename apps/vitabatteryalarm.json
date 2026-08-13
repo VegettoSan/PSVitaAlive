@@ -3,37 +3,44 @@
   "title_id": "BALM00001",
   "name": "VitaBatteryAlarm",
   "description": "Wakes PSVita on a set battery percentage.",
-  "long_description": "An app that wakes the PSVita from sleep mode and plays a WAV file when the PS Vita has reached a certain battery percentage specified by the user.",
+  "long_description": "An app that wakes the PSVita from sleep mode and plays a WAV file when the PS Vita has reached a certain battery percentage specified by the user.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
   "author_ids": [
     "callmebk"
   ],
-  "category_id": "system",
+  "category_id": "games",
   "subcategory_ids": [
     "other"
   ],
   "version": "v.1.0",
   "version_date": "2026-08-12",
-  "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
+  "requirements": "Not specified",
   "size": 451697,
-  "status": "Verified",
-  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/606dcd2363167604543ce5c004f2f9184e1483b284441d64ee5c1e5ac5bf093d.png",
-  "screenshots": [],
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1741-vitabatteryalarm.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1741-vitabatteryalarm.png"
+  ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/701-BatteryAlarm.vpk",
       "recommended": true
+    },
+    {
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
+      "url": "https://github.com/CallmeBK/VitaBatteryAlarm/releases"
     },
     {
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/CallmeBK/VitaBatteryAlarm"
-    },
-    {
-      "type": "Other",
-      "name": "Release",
-      "url": "https://github.com/CallmeBK/VitaBatteryAlarm/releases"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "701",
+  "source_url": "https://github.com/CallmeBK/VitaBatteryAlarm",
+  "release_page": "https://github.com/CallmeBK/VitaBatteryAlarm/releases",
+  "updated_at": "2026-08-13T13:46:07.919367+00:00"
 }

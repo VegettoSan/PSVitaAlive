@@ -2,51 +2,55 @@
   "id": "skyrift",
   "title_id": "SKRF00001",
   "name": "Skyrift",
-  "description": "An original sky-gliding pixel-art adventure for PSVita.",
+  "description": "Sky-gliding adventure game for PSVita.",
   "long_description": "An original sky-gliding pixel-art adventure for PSVita.",
   "author_ids": [
     "claude-ai"
   ],
   "category_id": "games",
   "subcategory_ids": [
-    "adventure"
+    "other"
   ],
-  "version": "v1.2.0",
+  "version": "v.1.2.0",
   "version_date": "2026-07-20",
-  "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
-  "size": 978971,
+  "requirements": "Not specified",
+  "size": 978581,
   "status": "Legacy",
-  "icon": "https://robin994.github.io/NeoVitaDB-Catalog/icons/1427-skyrift.png",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/37db4bb20940e7b1e1384ccdb3b20e8139e639bc357e2f92154a7cd15f8b3188.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/2d887fd4142583ed1cfe1193ebbcbe41104e04aeb3618e6787a190e4339ffe42.png",
-    "screenshots/2d887fd4142583ed1cfe1193ebbcbe41104e04aeb3618e6787a190e4339ffe42.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/2d887fd4142583ed1cfe1193ebbcbe41104e04aeb3618e6787a190e4339ffe42.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
-      "url": "https://github.com/onurkuru/skyrift/releases/download/v1.2.0/skyrift.vpk",
+      "name": "VitaDBtoo VPK",
+      "url": "https://github.com/onurkuru/skyrift/releases/download/v1.1.0/skyrift.vpk",
       "recommended": true
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/onurkuru/skyrift"
-    },
-    {
-      "type": "Other",
-      "name": "Release",
-      "url": "https://github.com/onurkuru/skyrift/releases/tag/v1.2.0"
-    },
-    {
       "type": "Download",
-      "name": "VitaDBtoo VPK",
-      "url": "https://github.com/onurkuru/skyrift/releases/download/v1.1.0/skyrift.vpk"
+      "name": "NeoVitaDB VPK",
+      "url": "https://github.com/onurkuru/skyrift/releases/download/v1.2.0/skyrift.vpk"
     },
     {
       "type": "Official Website",
       "name": "VitaDBtoo Release Page",
       "url": "https://github.com/onurkuru/skyrift/releases"
+    },
+    {
+      "type": "Official Website",
+      "name": "NeoVitaDB Release Page",
+      "url": "https://github.com/onurkuru/skyrift/releases/tag/v1.2.0"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/onurkuru/skyrift"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "1427",
+  "source_url": "https://github.com/onurkuru/skyrift",
+  "release_page": "https://github.com/onurkuru/skyrift/releases",
+  "updated_at": "2026-08-13T13:46:07.701417+00:00"
 }

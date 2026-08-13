@@ -3,42 +3,46 @@
   "title_id": "ZELDAOLB1",
   "name": "ZeldaOLB",
   "description": "Port of Zelda: Oni Link Begins for PSVITA.",
-  "long_description": "Port of Zelda: Oni Link Begins, fanmade Zelda game sequel of Zelda: Return of the Hylian, for PSVITA.\nIt has also been translated to several languages, it now currently supports english, spanish, francais and italian.",
+  "long_description": "Port of Zelda: Oni Link Begins, fanmade Zelda game sequel of Zelda: Return of the Hylian, for PSVITA.\nIt has also been translated to several languages, it now currently supports english, spanish, francais and italian.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
   "author_ids": [
     "rinnegatamante"
   ],
-  "category_id": "ports",
+  "category_id": "games",
   "subcategory_ids": [
     "other"
   ],
   "version": "v.1.5",
   "version_date": "2026-08-12",
-  "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
+  "requirements": "Not specified",
   "size": 5217061,
-  "status": "Verified",
-  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/f3b67172261c31c06344ede582486b8852d9b63b6f16b27ede3ed35e93867fbe.png",
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1557-zeldaolb.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/03ce435ec6a577622c179531b34c0cf56b39db147f9c1895cf741b335e038750.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/ad7c9a8cc3abf42fecf72fbb911a9639500d533940dcedb1cd59a4cc7326beac.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/7c0675035f48e90677675ab69d0dc23027137529f62925a415894b3995e39423.png",
-    "screenshots/03ce435ec6a577622c179531b34c0cf56b39db147f9c1895cf741b335e038750.png;screenshots/ad7c9a8cc3abf42fecf72fbb911a9639500d533940dcedb1cd59a4cc7326beac.png;screenshots/7c0675035f48e90677675ab69d0dc23027137529f62925a415894b3995e39423.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/7c0675035f48e90677675ab69d0dc23027137529f62925a415894b3995e39423.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/265-ZeldaOLB.vpk",
       "recommended": true
+    },
+    {
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
+      "url": "http://wololo.net/talk/viewtopic.php?f=116&t=48186"
     },
     {
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/Rinnegatamante/ZeldaOLB"
-    },
-    {
-      "type": "Other",
-      "name": "Release",
-      "url": "http://wololo.net/talk/viewtopic.php?f=116&t=48186"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "265",
+  "source_url": "https://github.com/Rinnegatamante/ZeldaOLB",
+  "release_page": "http://wololo.net/talk/viewtopic.php?f=116&t=48186",
+  "updated_at": "2026-08-13T13:46:07.991997+00:00"
 }

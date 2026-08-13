@@ -2,49 +2,45 @@
   "id": "neovitadb-downloader",
   "title_id": "NEOVITADB",
   "name": "NeoVitaDB Downloader",
-  "description": "The store itself. Browse, install and keep PSVita and PSP homebrew up to date.",
+  "description": "",
   "long_description": "The store itself. Browse, install and keep PSVita and PSP homebrew up to date.\nThis entry is what lets the app update itself, so its id must never change.",
   "author_ids": [
-    "robin994",
-    "rinnegatamante"
+    "robin994"
   ],
-  "category_id": "utilities",
+  "category_id": "games",
   "subcategory_ids": [
-    "installer"
+    "other"
   ],
   "version": "v2.9.0",
   "version_date": "2026-08-08",
-  "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
+  "requirements": "Not specified",
   "size": 3938138,
-  "status": "Verified",
-  "icon": "https://robin994.github.io/NeoVitaDB-Catalog/icons/0001-neovitadb-downloader.png",
-  "screenshots": [],
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/0001-neovitadb-downloader.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/0001-neovitadb-downloader.png"
+  ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
-      "url": "https://github.com/robin994/NeoVitaDB-Downloader/releases/download/v.2.8.1/NeoVitaDB.vpk",
-      "recommended": true
-    },
-    {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/robin994/NeoVitaDB-Downloader"
-    },
-    {
-      "type": "Other",
-      "name": "Release",
-      "url": "https://github.com/robin994/NeoVitaDB-Downloader/releases/tag/v.2.8.1"
-    },
-    {
-      "type": "Download",
       "name": "NeoVitaDB VPK",
-      "url": "https://github.com/robin994/NeoVitaDB-Downloader/releases/download/v2.9.0/NeoVitaDB.vpk"
+      "url": "https://github.com/robin994/NeoVitaDB-Downloader/releases/download/v2.9.0/NeoVitaDB.vpk",
+      "recommended": true
     },
     {
       "type": "Official Website",
       "name": "NeoVitaDB Release Page",
       "url": "https://github.com/robin994/NeoVitaDB-Downloader/releases/tag/v2.9.0"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/robin994/NeoVitaDB-Downloader"
     }
-  ]
+  ],
+  "source_name": "NeoVitaDB",
+  "source_id": "1",
+  "source_url": "https://github.com/robin994/NeoVitaDB-Downloader",
+  "release_page": "https://github.com/robin994/NeoVitaDB-Downloader/releases/tag/v2.9.0",
+  "updated_at": "2026-08-13T13:46:08.035961+00:00"
 }

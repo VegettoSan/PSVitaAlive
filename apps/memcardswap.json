@@ -3,25 +3,27 @@
   "title_id": "MEMCRDSWP",
   "name": "memcardswap",
   "description": "Helps during MC swap process.",
-  "long_description": "memcardswap just deletes ux0:/id.dat from the memory stick and replaces it with an empty one. This tricks the PS Vita into believing the memory card is new and therefore does not need to be formatted. Next time the card is inserted in a Vita, id.dat will be re-generated for the current account, without formatting anything.",
+  "long_description": "memcardswap just deletes ux0:/id.dat from the memory stick and replaces it with an empty one. This tricks the PS Vita into believing the memory card is new and therefore does not need to be formatted. Next time the card is inserted in a Vita, id.dat will be re-generated for the current account, without formatting anything.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
   "author_ids": [
     "namelessghoul0"
   ],
-  "category_id": "system",
+  "category_id": "games",
   "subcategory_ids": [
-    "account"
+    "other"
   ],
   "version": "v.1.2",
   "version_date": "2026-08-12",
-  "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
+  "requirements": "Not specified",
   "size": 62816,
-  "status": "Verified",
-  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/a929749d2cda578445b702099bff4d172c67f5c5194b621a001dddaf4c4f5d6d.png",
-  "screenshots": [],
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1526-memcardswap.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1526-memcardswap.png"
+  ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/175-memcardswap.vpk",
       "recommended": true
     },
@@ -30,5 +32,10 @@
       "name": "Repositorio",
       "url": "https://github.com"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "175",
+  "source_url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/175-memcardswap.vpk",
+  "release_page": "",
+  "updated_at": "2026-08-13T13:46:08.023910+00:00"
 }

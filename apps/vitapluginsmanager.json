@@ -13,27 +13,34 @@
   ],
   "version": "v.0.6",
   "version_date": "2016-10-20",
-  "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
+  "requirements": "Not specified",
   "size": 69673,
-  "status": "Verified",
-  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/35be653a38137b2e5f60845fe06ba539cbf6fb4909fe0d55401aeeecaccfb43c.png",
-  "screenshots": [],
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/35be653a38137b2e5f60845fe06ba539cbf6fb4909fe0d55401aeeecaccfb43c.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/35be653a38137b2e5f60845fe06ba539cbf6fb4909fe0d55401aeeecaccfb43c.png"
+  ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/NeoLTK/VITAPluginsManager/releases/download/0.6/VITAPluginsManager.vpk",
       "recommended": true
-    },
-    {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/NeoLTK/VITAPluginsManager"
     },
     {
       "type": "Official Website",
       "name": "NeoVitaDB Release Page",
       "url": "https://github.com/NeoLTK/VITAPluginsManager/releases/tag/0.6"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/NeoLTK/VITAPluginsManager"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "152",
+  "source_url": "https://github.com/NeoLTK/VITAPluginsManager",
+  "release_page": "",
+  "updated_at": "2026-08-13T13:46:08.018662+00:00"
 }

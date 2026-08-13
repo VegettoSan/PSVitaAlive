@@ -5,10 +5,9 @@
   "description": "Minecraft: Story Mode Season 1 port.",
   "long_description": "Port of Minecraft: Story Mode Season 1 for PSVITA, based on the Android release. The game data has to be supplied by the user and converted with the MCSM Vita Data Builder available on the release page.",
   "author_ids": [
-    "lezergan",
-    "claude-ai"
+    "lezergan"
   ],
-  "category_id": "ports",
+  "category_id": "games",
   "subcategory_ids": [
     "other"
   ],
@@ -16,50 +15,42 @@
   "version_date": "2026-08-03",
   "requirements": "Game Data Files: Android",
   "size": 3438377,
-  "status": "Archive",
-  "icon": "https://raw.githubusercontent.com/LeZergan/mcsm-vita/refs/heads/main/extras/livearea/icon0.png",
-  "screenshots": [],
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/a1b03a0f81c6f37a2767c466c3700786c07707965b267516fc0143362e7b3ecd.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/a1b03a0f81c6f37a2767c466c3700786c07707965b267516fc0143362e7b3ecd.png"
+  ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
-      "url": "https://github.com/LeZergan/mcsm-vita/releases/download/v1.10/MCSM-1.10-logging.vpk",
-      "size": 3360000,
+      "name": "VitaDBtoo VPK",
+      "url": "https://github.com/LeZergan/mcsm-vita/releases/download/v1.10/MCSM-1.10.vpk",
       "recommended": true
     },
     {
-      "type": "Google Drive Option 1",
-      "name": "Game Data Files",
-      "url": "https://drive.google.com/drive/folders/1HxnitrSo71z0K6w3lrbl8D_6jCY5rZWV",
-      "size": 5000000000,
-      "recommended": false
-    },
-    {
-      "type": "Google Drive Option 2",
-      "name": "Game Data Files",
-      "url": "https://drive.google.com/drive/folders/1Fc-rcMdDvSy_oXJE6OwG2k4fYEL0rBj6",
-      "size": 5000000000,
-      "recommended": false
-    },
-    {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/LeZergan/mcsm-vita"
-    },
-    {
-      "type": "Other",
-      "name": "Release",
-      "url": "https://github.com/LeZergan/mcsm-vita/releases"
-    },
-    {
       "type": "Download",
-      "name": "VitaDBtoo VPK",
-      "url": "https://github.com/LeZergan/mcsm-vita/releases/download/v1.10/MCSM-1.10.vpk"
+      "name": "NeoVitaDB VPK",
+      "url": "https://github.com/LeZergan/mcsm-vita/releases/download/v1.10/MCSM-1.10-logging.vpk"
+    },
+    {
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
+      "url": "https://github.com/LeZergan/mcsm-vita/releases"
     },
     {
       "type": "Official Website",
       "name": "NeoVitaDB Release Page",
       "url": "https://github.com/LeZergan/mcsm-vita/releases/tag/v1.10"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/LeZergan/mcsm-vita"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "1450",
+  "source_url": "https://github.com/LeZergan/mcsm-vita",
+  "release_page": "https://github.com/LeZergan/mcsm-vita/releases",
+  "updated_at": "2026-08-13T13:46:07.698825+00:00"
 }

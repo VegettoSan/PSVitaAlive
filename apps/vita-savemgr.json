@@ -7,33 +7,40 @@
   "author_ids": [
     "d3m3vilurr"
   ],
-  "category_id": "utilities",
+  "category_id": "games",
   "subcategory_ids": [
-    "save-manager"
+    "other"
   ],
   "version": "v.nightly",
   "version_date": "2018-04-14",
-  "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
+  "requirements": "Not specified",
   "size": 515954,
-  "status": "Verified",
-  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/6623e30364290bbb3b166046ce26b6a2f769bbedf63b15c02d51575fc5d87b3c.png",
-  "screenshots": [],
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/6623e30364290bbb3b166046ce26b6a2f769bbedf63b15c02d51575fc5d87b3c.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/6623e30364290bbb3b166046ce26b6a2f769bbedf63b15c02d51575fc5d87b3c.png"
+  ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/d3m3vilurr/vita-savemgr/releases/download/nightly/savemgr.vpk",
       "recommended": true
-    },
-    {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/d3m3vilurr/vita-savemgr"
     },
     {
       "type": "Official Website",
       "name": "NeoVitaDB Release Page",
       "url": "https://github.com/d3m3vilurr/vita-savemgr/releases/tag/nightly"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/d3m3vilurr/vita-savemgr"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "9",
+  "source_url": "https://github.com/d3m3vilurr/vita-savemgr",
+  "release_page": "",
+  "updated_at": "2026-08-13T13:46:07.992179+00:00"
 }

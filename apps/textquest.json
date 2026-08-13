@@ -3,25 +3,27 @@
   "title_id": "TQUE00001",
   "name": "TextQuest",
   "description": "Text adventure for PSVITA.",
-  "long_description": "A simple Vita choose your own adventure text game.\nJust a super simple nostalgic text adventure PS Vita homebrew.",
+  "long_description": "A simple Vita choose your own adventure text game.\nJust a super simple nostalgic text adventure PS Vita homebrew.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
   "author_ids": [
     "joshaxey"
   ],
   "category_id": "games",
   "subcategory_ids": [
-    "adventure"
+    "other"
   ],
   "version": "v.1.0",
   "version_date": "2026-08-12",
-  "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
+  "requirements": "Not specified",
   "size": 291942,
-  "status": "Verified",
-  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/31f5d760031a6dfce38fe6be1bad0c5e48aea808878aac3a140f0f2e464d9d73.png",
-  "screenshots": [],
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1524-textquest.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1524-textquest.png"
+  ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/170-TextQuest.vpk",
       "recommended": true
     },
@@ -30,5 +32,10 @@
       "name": "Repositorio",
       "url": "https://github.com/joshaxey/textquest"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "170",
+  "source_url": "https://github.com/joshaxey/textquest",
+  "release_page": "",
+  "updated_at": "2026-08-13T13:46:08.025820+00:00"
 }

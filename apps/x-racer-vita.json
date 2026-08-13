@@ -3,25 +3,27 @@
   "title_id": "ABDD44345",
   "name": "X-Racer Vita",
   "description": "Port of X-Racer for PSVITA.",
-  "long_description": "Port of X-Racer, a futuristic 3D racing game made with Unity, for PSVITA.",
+  "long_description": "Port of X-Racer, a futuristic 3D racing game made with Unity, for PSVITA.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
   "author_ids": [
     "roc6d"
   ],
-  "category_id": "ports",
+  "category_id": "games",
   "subcategory_ids": [
-    "racing"
+    "other"
   ],
   "version": "v.1.0",
   "version_date": "2026-08-12",
-  "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
+  "requirements": "Not specified",
   "size": 42764245,
-  "status": "Verified",
-  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/5faf427bd53a3fc9091fba33b71d5c8af9c58d0e0b1835d66087059500cb2f0d.png",
-  "screenshots": [],
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1713-x-racer-vita.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1713-x-racer-vita.png"
+  ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/636-XRACER.vpk",
       "recommended": true
     },
@@ -30,5 +32,10 @@
       "name": "Repositorio",
       "url": "https://github.com"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "636",
+  "source_url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/636-XRACER.vpk",
+  "release_page": "",
+  "updated_at": "2026-08-13T13:46:07.964512+00:00"
 }

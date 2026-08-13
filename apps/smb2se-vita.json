@@ -7,7 +7,7 @@
   "author_ids": [
     "rinnegatamante"
   ],
-  "category_id": "ports",
+  "category_id": "games",
   "subcategory_ids": [
     "other"
   ],
@@ -15,36 +15,35 @@
   "version_date": "2023-09-05",
   "requirements": "- libshacccg.suprx\n- kubridge.skprx\n- Game Data Files: Android",
   "size": 1907242,
-  "status": "Verified",
-  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/bbcd9da9f220d7fc36166c4e7a3663fb84343d32eec0deac7fd29f3b22688cf2.png",
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1070-smb2se-vita.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/2f243fbe97026db802b59a752b7fb6fc600fe94d719be23a451ecbb52e5ab22c.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/0af5bf0ef4564b36b45cd351db7f78343451ad9a4127a21813826848a13ea6b5.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/fe32e1aeacb27e89e7651704682e19db347974d63036596e36d622cd9115f558.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/ef229f4cc084e73e2600eb487b06a512f4067bdfc92cde667ae512e2debfcdfd.png",
-    "screenshots/2f243fbe97026db802b59a752b7fb6fc600fe94d719be23a451ecbb52e5ab22c.png;screenshots/0af5bf0ef4564b36b45cd351db7f78343451ad9a4127a21813826848a13ea6b5.png;screenshots/fe32e1aeacb27e89e7651704682e19db347974d63036596e36d622cd9115f558.png;screenshots/ef229f4cc084e73e2600eb487b06a512f4067bdfc92cde667ae512e2debfcdfd.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/ef229f4cc084e73e2600eb487b06a512f4067bdfc92cde667ae512e2debfcdfd.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "NeoVitaDB VPK",
       "url": "https://github.com/Rinnegatamante/smb2se-vita/releases/download/v.122/smb2se.vpk",
       "recommended": true
-    },
-    {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/Rinnegatamante/smb2se-vita"
-    },
-    {
-      "type": "Other",
-      "name": "Release",
-      "url": "https://github.com/Rinnegatamante/smb2se-vita/releases"
     },
     {
       "type": "Official Website",
       "name": "NeoVitaDB Release Page",
       "url": "https://github.com/Rinnegatamante/smb2se-vita/releases/tag/v.122"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/Rinnegatamante/smb2se-vita"
     }
-  ]
+  ],
+  "source_name": "NeoVitaDB",
+  "source_id": "1070",
+  "source_url": "https://github.com/Rinnegatamante/smb2se-vita",
+  "release_page": "https://github.com/Rinnegatamante/smb2se-vita/releases/tag/v.122",
+  "updated_at": "2026-08-13T13:46:07.836353+00:00"
 }

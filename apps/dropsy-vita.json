@@ -3,36 +3,35 @@
   "title_id": "DROP54000",
   "name": "Dropsy Vita",
   "description": "Port of Dropsy for PSVITA.",
-  "long_description": "Dropsy is a non-traditional take on the classic point and click adventure formula starring the gameÃ¢â‚¬â„¢s perpetually carefree namesake clown as he explores a richly detailed world full of colorful characters and sinister secrets, doling out hugs along the way.",
+  "long_description": "Dropsy is a non-traditional take on the classic point and click adventure formula starring the gameÃ¢â‚¬â„¢s perpetually carefree namesake clown as he explores a richly detailed world full of colorful characters and sinister secrets, doling out hugs along the way.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
   "author_ids": [
     "lordchickenblaster"
   ],
-  "category_id": "ports",
+  "category_id": "games",
   "subcategory_ids": [
-    "adventure"
+    "other"
   ],
   "version": "v.1.02",
   "version_date": "2026-08-12",
   "requirements": "- Game Data Files: PC",
   "size": 15101246,
   "status": "Legacy",
-  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/c586eeaf82a15268a4d71044ab6598a460380ab17ae946c58a49c01b8a5f9efa.png",
+  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1929-dropsy-vita.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/7ebe8ecb3e3a640cb2177571886354ea33fdcc4cde3cf134468ce322edc64aa9.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/895a8a78eec290970f6389cdf5c11a1912cb7937fb3e72df306bbfa3018b830a.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/8f867e1d76a065946fa1f370d9ef1bff226c5f0355370f22836022eecfd821ab.png",
-    "screenshots/7ebe8ecb3e3a640cb2177571886354ea33fdcc4cde3cf134468ce322edc64aa9.png;screenshots/895a8a78eec290970f6389cdf5c11a1912cb7937fb3e72df306bbfa3018b830a.png;screenshots/8f867e1d76a065946fa1f370d9ef1bff226c5f0355370f22836022eecfd821ab.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/8f867e1d76a065946fa1f370d9ef1bff226c5f0355370f22836022eecfd821ab.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1287-DropsyVITA.vpk",
       "recommended": true
     },
     {
-      "type": "Other",
-      "name": "Release",
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
       "url": "https://itch.io/jam/reihen-ps-vita-homebrew-contest/rate/3740886"
     },
     {
@@ -40,5 +39,10 @@
       "name": "Repositorio",
       "url": "https://github.com"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "1287",
+  "source_url": "https://itch.io/jam/reihen-ps-vita-homebrew-contest/rate/3740886",
+  "release_page": "https://itch.io/jam/reihen-ps-vita-homebrew-contest/rate/3740886",
+  "updated_at": "2026-08-13T13:46:07.765365+00:00"
 }

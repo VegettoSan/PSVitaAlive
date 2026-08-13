@@ -2,49 +2,43 @@
   "id": "rvgl",
   "title_id": "RVGL00001",
   "name": "RVGL",
-  "description": "This is a native port of RVGL.\nRVGL is a cross-platform rewrite / port of Re-Volt that runs natively on a wide variety of platforms.",
+  "description": "Port of RVGL for PSVITA.",
   "long_description": "This is a native port of RVGL.\nRVGL is a cross-platform rewrite / port of Re-Volt that runs natively on a wide variety of platforms. It's powered entirely by modern, open source components.",
   "author_ids": [
     "rinnegatamante"
   ],
-  "category_id": "ports",
+  "category_id": "games",
   "subcategory_ids": [
-    "platformer"
+    "other"
   ],
   "version": "v.1.1",
   "version_date": "2024-11-02",
   "requirements": "- libshacccg.suprx\n- Game Data Files: PC",
   "size": 4335841,
   "status": "Legacy",
-  "icon": "https://robin994.github.io/NeoVitaDB-Catalog/icons/1217-rvgl.png",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/80975f3c0ab33555cd7de9a9d983ae14d4d08ade47a1eff5e0a88ce79fb085c6.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/1659bc74376356b3c21a9a263f8d90c477c9fcc57738f695dc92e22974f0d6c2.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/f2c926108d4d214354d04f1b533ffe8ae49fd9514af326017d01677fe20500d3.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/a83b2459ed44932db23bc099e3529316144df04c94478a86485fe022973b9655.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/5b9e0e308d340992199584fefe052edabbe3455014952a22b6d2a5284f0e6313.png",
-    "screenshots/1659bc74376356b3c21a9a263f8d90c477c9fcc57738f695dc92e22974f0d6c2.png;screenshots/f2c926108d4d214354d04f1b533ffe8ae49fd9514af326017d01677fe20500d3.png;screenshots/a83b2459ed44932db23bc099e3529316144df04c94478a86485fe022973b9655.png;screenshots/5b9e0e308d340992199584fefe052edabbe3455014952a22b6d2a5284f0e6313.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/5b9e0e308d340992199584fefe052edabbe3455014952a22b6d2a5284f0e6313.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
-      "url": "https://github.com/Rinnegatamante/rvgl-vita-native/releases/download/v.1.0/RVGL.vpk",
+      "name": "VitaDBtoo VPK",
+      "url": "https://github.com/Rinnegatamante/rvgl-vita-native/releases/download/v%2C1%2C1/RVGL_new.vpk",
       "recommended": true
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
       "url": "https://github.com/Rinnegatamante/rvgl-vita-native"
-    },
-    {
-      "type": "Other",
-      "name": "Release",
-      "url": "https://github.com/Rinnegatamante/rvgl-vita-native/releases/tag/v.1.0"
-    },
-    {
-      "type": "Download",
-      "name": "VitaDBtoo VPK",
-      "url": "https://github.com/Rinnegatamante/rvgl-vita-native/releases/download/v%2C1%2C1/RVGL_new.vpk"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "1217",
+  "source_url": "https://github.com/Rinnegatamante/rvgl-vita-native",
+  "release_page": "https://github.com/Rinnegatamante/rvgl-vita-native",
+  "updated_at": "2026-08-13T13:46:07.789054+00:00"
 }

@@ -3,7 +3,7 @@
   "title_id": "HWCG00002",
   "name": "Guess It!",
   "description": "Multiplayer quiz game for PSVITA.",
-  "long_description": "\"Guess it!\" is a multiplayer game designed for 2 - 100 players. The players (or teams) will take turns and each one must guess an image in their corresponding turn. Depending on the category, the image could be related to books, movies, paintings, and more!\nWe also created a customization tool, so anyone can create new categories and make his own personalized \"Guess it!\" version.\nWe have a nice surprise for all of in the game! Take a look at how you can exit the game on the main menu!",
+  "long_description": "\"Guess it!\" is a multiplayer game designed for 2 - 100 players. The players (or teams) will take turns and each one must guess an image in their corresponding turn. Depending on the category, the image could be related to books, movies, paintings, and more!\nWe also created a customization tool, so anyone can create new categories and make his own personalized \"Guess it!\" version.\nWe have a nice surprise for all of in the game! Take a look at how you can exit the game on the main menu!\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
   "author_ids": [
     "hwnj"
   ],
@@ -13,27 +13,26 @@
   ],
   "version": "v.1.0",
   "version_date": "2026-08-12",
-  "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
+  "requirements": "Not specified",
   "size": 41997742,
   "status": "Legacy",
-  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/f13b1f9127844b5964cb103aa56191351e4ac9c5b823eb81b512201079b4301d.png",
+  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1734-guess-it.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/93a4e45aaafa775f39fe32e0d88e81c35c24087c932b599b7bf8ea85568f899b.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/110a5829e13c1fb3b1109245c7698e98c03046c7bc8d07b4c0ac0a2376efa0c4.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/8cd052787a4511008cb4350c7637c6a93234ea4975bdfdd8f842e3724f6d4809.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/60922f81accc75655a7958a35491658f53fbee9cef8efa439286cadacbdca7e5.png",
-    "screenshots/93a4e45aaafa775f39fe32e0d88e81c35c24087c932b599b7bf8ea85568f899b.png;screenshots/110a5829e13c1fb3b1109245c7698e98c03046c7bc8d07b4c0ac0a2376efa0c4.png;screenshots/8cd052787a4511008cb4350c7637c6a93234ea4975bdfdd8f842e3724f6d4809.png;screenshots/60922f81accc75655a7958a35491658f53fbee9cef8efa439286cadacbdca7e5.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/60922f81accc75655a7958a35491658f53fbee9cef8efa439286cadacbdca7e5.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/688-GuessIt.vpk",
       "recommended": true
     },
     {
-      "type": "Other",
-      "name": "Release",
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
       "url": "https://kyuhen.customprotocol.com/en/submissions/guessit/"
     },
     {
@@ -41,5 +40,10 @@
       "name": "Repositorio",
       "url": "https://github.com"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "688",
+  "source_url": "https://kyuhen.customprotocol.com/en/submissions/guessit/",
+  "release_page": "https://kyuhen.customprotocol.com/en/submissions/guessit/",
+  "updated_at": "2026-08-13T13:46:07.921828+00:00"
 }

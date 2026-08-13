@@ -3,7 +3,7 @@
   "title_id": "SNCV00001",
   "name": "SONIC VITA",
   "description": "Fanmade Sonic game for PSVITA.",
-  "long_description": "Sonic fan game for Vita users.\nUses the Sonic MAX engine.\nThe title page is in the style of Sonic CD, and the data select screen is in the style of Sonic 3.\nCharacters include Sonic, Knuckles, and Tails.",
+  "long_description": "Sonic fan game for Vita users.\nUses the Sonic MAX engine.\nThe title page is in the style of Sonic CD, and the data select screen is in the style of Sonic 3.\nCharacters include Sonic, Knuckles, and Tails.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
   "author_ids": [
     "bayashi"
   ],
@@ -13,21 +13,20 @@
   ],
   "version": "v.1.0",
   "version_date": "2026-08-12",
-  "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
+  "requirements": "Not specified",
   "size": 22092658,
-  "status": "Verified",
-  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/04639d7b089992a7c8d8b46562b1b018b548ce038c796e43b483f142b30cf91b.png",
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1906-sonic-vita.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/f2f333398b51dd3f50a15f1d38ff56d4efa4baf3860e028a7d4c3801f4ac21cd.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/923d4a141fcbcd7003e7c1a18a01a5cec35fc9cf1f2a59dc33aa231b509afcc1.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/67bc7be16efc8a324e1c3c26f573b1bd29b1df7c515ad363011ad053e46a4f85.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/39589ee43210c9f2a8afc234126c45ca502b365eda9b2d48990180029cb6d629.png",
-    "screenshots/f2f333398b51dd3f50a15f1d38ff56d4efa4baf3860e028a7d4c3801f4ac21cd.png;screenshots/923d4a141fcbcd7003e7c1a18a01a5cec35fc9cf1f2a59dc33aa231b509afcc1.png;screenshots/67bc7be16efc8a324e1c3c26f573b1bd29b1df7c515ad363011ad053e46a4f85.png;screenshots/39589ee43210c9f2a8afc234126c45ca502b365eda9b2d48990180029cb6d629.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/39589ee43210c9f2a8afc234126c45ca502b365eda9b2d48990180029cb6d629.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1229-111.vpk",
       "recommended": true
     },
@@ -36,5 +35,10 @@
       "name": "Repositorio",
       "url": "https://github.com"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "1229",
+  "source_url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1229-111.vpk",
+  "release_page": "",
+  "updated_at": "2026-08-13T13:46:07.792785+00:00"
 }

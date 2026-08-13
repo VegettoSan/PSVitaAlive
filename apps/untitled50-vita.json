@@ -7,44 +7,48 @@
   "author_ids": [
     "rocroverss"
   ],
-  "category_id": "ports",
+  "category_id": "games",
   "subcategory_ids": [
-    "engine-port"
+    "other"
   ],
   "version": "v.1.0",
   "version_date": "2025-10-25",
   "requirements": "- libshacccg.suprx\n- kubridge.skprx\n- Game Data Files: Android",
   "size": 2016256,
   "status": "Legacy",
-  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/154d8e6856b66533f1bba0fcd62ee22467bfa5cd72103626f2566aa2a509dccb.png",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/154d8e6856b66533f1bba0fcd62ee22467bfa5cd72103626f2566aa2a509dccb.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/d9a42e981b22ecef38220fd23ee8e8a6ba6d28d23ba02ca5eb55054d302f1641.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/1226bd327f3b0202cc0509cc96b3afcb50b6d71f48170ea4c29f35c841938402.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/e1d9560ca24710b6144aa4c72dda4106f491169440e6514acbf292b826cf9531.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/ffced4236e21a7b8a7a5f6bb6840b47cb689dae90b3d03332aa051486339b04a.png",
-    "screenshots/d9a42e981b22ecef38220fd23ee8e8a6ba6d28d23ba02ca5eb55054d302f1641.png;screenshots/1226bd327f3b0202cc0509cc96b3afcb50b6d71f48170ea4c29f35c841938402.png;screenshots/e1d9560ca24710b6144aa4c72dda4106f491169440e6514acbf292b826cf9531.png;screenshots/ffced4236e21a7b8a7a5f6bb6840b47cb689dae90b3d03332aa051486339b04a.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/ffced4236e21a7b8a7a5f6bb6840b47cb689dae90b3d03332aa051486339b04a.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/Rocroverss/Untitled50-PSVita-android-port/releases/download/v1.0/UNTITLED50.vpk",
       "recommended": true
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/Rocroverss/Untitled50-PSVita-android-port"
-    },
-    {
-      "type": "Other",
-      "name": "Release",
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
       "url": "https://github.com/Rocroverss/Untitled50-PSVita-android-port/releases"
     },
     {
       "type": "Official Website",
       "name": "NeoVitaDB Release Page",
       "url": "https://github.com/Rocroverss/Untitled50-PSVita-android-port/releases/tag/v1.0"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/Rocroverss/Untitled50-PSVita-android-port"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "1341",
+  "source_url": "https://github.com/Rocroverss/Untitled50-PSVita-android-port",
+  "release_page": "https://github.com/Rocroverss/Untitled50-PSVita-android-port/releases",
+  "updated_at": "2026-08-13T13:46:07.744177+00:00"
 }

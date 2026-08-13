@@ -7,43 +7,47 @@
   "author_ids": [
     "joel16"
   ],
-  "category_id": "ports",
+  "category_id": "games",
   "subcategory_ids": [
     "other"
   ],
   "version": "v.1.03",
   "version_date": "2025-09-29",
-  "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
+  "requirements": "Not specified",
   "size": 31999916,
-  "status": "Verified",
-  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/6aa7dea1bc75e62a3529742ea2355805efd8c2bc5a4b9b226ab58d9046a0efab.png",
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/6aa7dea1bc75e62a3529742ea2355805efd8c2bc5a4b9b226ab58d9046a0efab.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/9d8cca05b0420d502fc72a19ee64d55276ece44653d3ab8075827b45d67a67d7.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/1744c1679a698afde4b0d1618075e7a937a92044b0580b8c43bc2602303a9716.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/9605951a4aab56171695aee48efc42e667e6111d8927a5997b254c549b36dc91.png",
-    "screenshots/9d8cca05b0420d502fc72a19ee64d55276ece44653d3ab8075827b45d67a67d7.png;screenshots/1744c1679a698afde4b0d1618075e7a937a92044b0580b8c43bc2602303a9716.png;screenshots/9605951a4aab56171695aee48efc42e667e6111d8927a5997b254c549b36dc91.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/9605951a4aab56171695aee48efc42e667e6111d8927a5997b254c549b36dc91.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/joel16/vitaPDF/releases/download/v1.03/vitaPDF.vpk",
       "recommended": true
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/joel16/vitaPDF"
-    },
-    {
-      "type": "Other",
-      "name": "Release",
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
       "url": "https://joel16dev.itch.io/vitapdf"
     },
     {
       "type": "Official Website",
       "name": "NeoVitaDB Release Page",
       "url": "https://github.com/joel16/vitaPDF/releases/tag/v1.03"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/joel16/vitaPDF"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "1290",
+  "source_url": "https://github.com/joel16/vitaPDF",
+  "release_page": "https://joel16dev.itch.io/vitapdf",
+  "updated_at": "2026-08-13T13:46:07.752985+00:00"
 }

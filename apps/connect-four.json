@@ -13,36 +13,40 @@
   ],
   "version": "v.1.0",
   "version_date": "2020-05-03",
-  "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
+  "requirements": "Not specified",
   "size": 675033,
-  "status": "Verified",
-  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/5c7dd08fb76244bca65fcfb6a684c58bf6d960f7319d499aef0cf8df48b36d22.png",
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/5c7dd08fb76244bca65fcfb6a684c58bf6d960f7319d499aef0cf8df48b36d22.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/a50137af215ce240bd7c4379a79ffa27e0f86fa35c12e8e19d84684221b47963.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/12c770b4c9de362d1c729fe763e327c7caf75fe63f15bb1ff91edc1fb0e76ecc.png",
-    "screenshots/a50137af215ce240bd7c4379a79ffa27e0f86fa35c12e8e19d84684221b47963.png;screenshots/12c770b4c9de362d1c729fe763e327c7caf75fe63f15bb1ff91edc1fb0e76ecc.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/12c770b4c9de362d1c729fe763e327c7caf75fe63f15bb1ff91edc1fb0e76ecc.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/Dane64/ConnectFour/releases/download/1.00/C4.vpk",
       "recommended": true
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/Dane64/ConnectFour"
-    },
-    {
-      "type": "Other",
-      "name": "Release",
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
       "url": "https://github.com/Dane64/ConnectFour/releases"
     },
     {
       "type": "Official Website",
       "name": "NeoVitaDB Release Page",
       "url": "https://github.com/Dane64/ConnectFour/releases/tag/1.00"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/Dane64/ConnectFour"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "550",
+  "source_url": "https://github.com/Dane64/ConnectFour",
+  "release_page": "https://github.com/Dane64/ConnectFour/releases",
+  "updated_at": "2026-08-13T13:46:07.954910+00:00"
 }

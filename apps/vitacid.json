@@ -7,38 +7,45 @@
   "author_ids": [
     "tomtomdu80"
   ],
-  "category_id": "utilities",
+  "category_id": "games",
   "subcategory_ids": [
-    "terminal"
+    "other"
   ],
   "version": "v.1.0",
   "version_date": "2016-08-18",
-  "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
+  "requirements": "Not specified",
   "size": 51165,
-  "status": "Verified",
-  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/18746b487153dc1ca3d728ce57b841b6e8faeca65a0900aa46864f73d07642c8.png",
-  "screenshots": [],
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/18746b487153dc1ca3d728ce57b841b6e8faeca65a0900aa46864f73d07642c8.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/18746b487153dc1ca3d728ce57b841b6e8faeca65a0900aa46864f73d07642c8.png"
+  ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/MajorTomSec/VitaCID/releases/download/1.0/VitaCID.vpk",
       "recommended": true
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/tomtomdu80/VitaCID"
-    },
-    {
-      "type": "Other",
-      "name": "Release",
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
       "url": "http://wololo.net/2016/08/18/release-vitacid-get-ps-vita-console-id/"
     },
     {
       "type": "Official Website",
       "name": "NeoVitaDB Release Page",
       "url": "https://github.com/MajorTomSec/VitaCID/releases/tag/1.0"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/tomtomdu80/VitaCID"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "148",
+  "source_url": "https://github.com/tomtomdu80/VitaCID",
+  "release_page": "http://wololo.net/2016/08/18/release-vitacid-get-ps-vita-console-id/",
+  "updated_at": "2026-08-13T13:46:08.027351+00:00"
 }

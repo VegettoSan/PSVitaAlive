@@ -3,36 +3,35 @@
   "title_id": "AMP000001",
   "name": "A Maze Planet",
   "description": "Procedurally generated dungeon crawler for PSVITA.",
-  "long_description": "A Maze Planet is a procedurally generated dungeon crawler video game. You must explore a strange planet, leveling up until you find the exit to the surface.",
+  "long_description": "A Maze Planet is a procedurally generated dungeon crawler video game. You must explore a strange planet, leveling up until you find the exit to the surface.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
   "author_ids": [
     "vulcore-team"
   ],
   "category_id": "games",
   "subcategory_ids": [
-    "rpg"
+    "other"
   ],
   "version": "v.1.0",
   "version_date": "2026-08-12",
-  "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
+  "requirements": "Not specified",
   "size": 26115291,
-  "status": "Verified",
-  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/267aa248a0a65725481c4e771b72c9753ed024fc70d20f46d77bbd6f9e290858.png",
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1863-a-maze-planet.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/e75f519d64967858a0068378c7f29a751fa54487c30d890697ccea66d0d598ab.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/73cf60c4cee69def9efabba41de92b2cebce1130559cc2e45cb6ce4fadcf236c.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/78a31d5259989c99d3fbc8ab37bcd451328cbee7a94f5d63ad2f83770f8d3a10.png",
-    "screenshots/e75f519d64967858a0068378c7f29a751fa54487c30d890697ccea66d0d598ab.png;screenshots/73cf60c4cee69def9efabba41de92b2cebce1130559cc2e45cb6ce4fadcf236c.png;screenshots/78a31d5259989c99d3fbc8ab37bcd451328cbee7a94f5d63ad2f83770f8d3a10.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/78a31d5259989c99d3fbc8ab37bcd451328cbee7a94f5d63ad2f83770f8d3a10.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1134-maze_planet.vpk",
       "recommended": true
     },
     {
-      "type": "Other",
-      "name": "Release",
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
       "url": "https://fuhen.homebrew-contest.com/submissions/46/"
     },
     {
@@ -40,5 +39,10 @@
       "name": "Repositorio",
       "url": "https://github.com"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "1134",
+  "source_url": "https://fuhen.homebrew-contest.com/submissions/46/",
+  "release_page": "https://fuhen.homebrew-contest.com/submissions/46/",
+  "updated_at": "2026-08-13T13:46:07.826560+00:00"
 }

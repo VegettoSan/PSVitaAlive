@@ -7,7 +7,7 @@
   "author_ids": [
     "rinnegatamante"
   ],
-  "category_id": "ports",
+  "category_id": "games",
   "subcategory_ids": [
     "other"
   ],
@@ -15,36 +15,40 @@
   "version_date": "2024-12-07",
   "requirements": "- libshacccg.suprx\n- kubridge.skprx\n- Game Data Files: Android",
   "size": 3549905,
-  "status": "Verified",
-  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/3b865e439c2c7d29a66a6e7e2dca0dacf91fffcbb402cefff979a3131018049a.png",
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/3b865e439c2c7d29a66a6e7e2dca0dacf91fffcbb402cefff979a3131018049a.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/f599b8acda2fc042f08f65b99275ac3837b777662b978c0eec07bf4e66eda9b0.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/acd400be1df30d5db9529f0f51b1e7f024f208ca4aea71711e8cd0a9c781a682.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/6604f73cda296befd88bb27af9ad1602b326af0f2308bcd4b0cfb9a9d4960c01.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/cac074a2574eac07494e50a135edb7634e893f85a9bcd5e5b0a111280e44f790.png",
-    "screenshots/f599b8acda2fc042f08f65b99275ac3837b777662b978c0eec07bf4e66eda9b0.png;screenshots/acd400be1df30d5db9529f0f51b1e7f024f208ca4aea71711e8cd0a9c781a682.png;screenshots/6604f73cda296befd88bb27af9ad1602b326af0f2308bcd4b0cfb9a9d4960c01.png;screenshots/cac074a2574eac07494e50a135edb7634e893f85a9bcd5e5b0a111280e44f790.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/cac074a2574eac07494e50a135edb7634e893f85a9bcd5e5b0a111280e44f790.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/Rinnegatamante/swordigo-vita/releases/download/v.1.1/swordigo.vpk",
       "recommended": true
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/Rinnegatamante/swordigo-vita"
-    },
-    {
-      "type": "Other",
-      "name": "Release",
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
       "url": "https://github.com/Rinnegatamante/swordigo-vita/releases"
     },
     {
       "type": "Official Website",
       "name": "NeoVitaDB Release Page",
       "url": "https://github.com/Rinnegatamante/swordigo-vita/releases/tag/v.1.1"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/Rinnegatamante/swordigo-vita"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "1181",
+  "source_url": "https://github.com/Rinnegatamante/swordigo-vita",
+  "release_page": "https://github.com/Rinnegatamante/swordigo-vita/releases",
+  "updated_at": "2026-08-13T13:46:07.785760+00:00"
 }

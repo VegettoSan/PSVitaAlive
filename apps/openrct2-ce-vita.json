@@ -7,38 +7,45 @@
   "author_ids": [
     "technicaljicama"
   ],
-  "category_id": "ports",
+  "category_id": "games",
   "subcategory_ids": [
-    "simulation"
+    "other"
   ],
   "version": "v.1",
   "version_date": "2025-04-23",
-  "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
+  "requirements": "Not specified",
   "size": 4749899,
-  "status": "Verified",
-  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/18746b487153dc1ca3d728ce57b841b6e8faeca65a0900aa46864f73d07642c8.png",
-  "screenshots": [],
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/18746b487153dc1ca3d728ce57b841b6e8faeca65a0900aa46864f73d07642c8.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/18746b487153dc1ca3d728ce57b841b6e8faeca65a0900aa46864f73d07642c8.png"
+  ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/technicaljicama/OpenRCT2-CE/releases/download/vita-1/openrct2.vpk",
       "recommended": true
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/technicaljicama/OpenRCT2-CE"
-    },
-    {
-      "type": "Other",
-      "name": "Release",
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
       "url": "https://github.com/technicaljicama/OpenRCT2-CE/releases"
     },
     {
       "type": "Official Website",
       "name": "NeoVitaDB Release Page",
       "url": "https://github.com/technicaljicama/OpenRCT2-CE/releases/tag/vita-1"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/technicaljicama/OpenRCT2-CE"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "1269",
+  "source_url": "https://github.com/technicaljicama/OpenRCT2-CE",
+  "release_page": "https://github.com/technicaljicama/OpenRCT2-CE/releases",
+  "updated_at": "2026-08-13T13:46:07.772883+00:00"
 }

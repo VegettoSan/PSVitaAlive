@@ -3,31 +3,33 @@
   "title_id": "FRUITY001",
   "name": "FruitY",
   "description": "Puzzle game for PSVITA.",
-  "long_description": "Fruit'Y - Playing with edibles is heavily inspired by the Kaiko classic Gem'X, which has been seen on computers such as the Commodore Amiga 500, Commodore 64 and Atari ST.\nAlthough tiger mum forbids little Sheran to play with edibles, there is simply no way to stop him from playing with fruits found inside the deep jungle. Being shiny, smelling wonderful and tasting even better Sheran can't be kept away. So let's do the best we could do: Support him!\nThe game consists of two boards of fruits. The left field belongs to Sheran who needs to reproduce the right field 1:1 being able to proceed to the next level. Sounds easy?!",
+  "long_description": "Fruit'Y - Playing with edibles is heavily inspired by the Kaiko classic Gem'X, which has been seen on computers such as the Commodore Amiga 500, Commodore 64 and Atari ST.\nAlthough tiger mum forbids little Sheran to play with edibles, there is simply no way to stop him from playing with fruits found inside the deep jungle. Being shiny, smelling wonderful and tasting even better Sheran can't be kept away. So let's do the best we could do: Support him!\nThe game consists of two boards of fruits. The left field belongs to Sheran who needs to reproduce the right field 1:1 being able to proceed to the next level. Sounds easy?!\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
   "author_ids": [
     "retroguru-team"
   ],
-  "category_id": "ports",
+  "category_id": "games",
   "subcategory_ids": [
-    "puzzle"
+    "other"
   ],
   "version": "v.1.0",
   "version_date": "2026-08-12",
-  "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
+  "requirements": "Not specified",
   "size": 1075064,
-  "status": "Verified",
-  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/7fcb139276b3282c92ac4b2c1d1f70cb66bf405350bb80545ea5e1f83e041feb.png",
-  "screenshots": [],
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1650-fruity.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1650-fruity.png"
+  ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/480-FRUITY001.vpk",
       "recommended": true
     },
     {
-      "type": "Other",
-      "name": "Release",
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
       "url": "http://www.retroguru.com/fruity/"
     },
     {
@@ -35,5 +37,10 @@
       "name": "Repositorio",
       "url": "https://github.com"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "480",
+  "source_url": "http://www.retroguru.com/fruity/",
+  "release_page": "http://www.retroguru.com/fruity/",
+  "updated_at": "2026-08-13T13:46:07.970321+00:00"
 }

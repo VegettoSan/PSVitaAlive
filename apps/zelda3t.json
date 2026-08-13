@@ -3,42 +3,46 @@
   "title_id": "ZELDATTT1",
   "name": "Zelda3T",
   "description": "Port of Zelda3T for PSVITA.",
-  "long_description": "Port of Zelda: Time to Triumph, sequel of Zelda: Oni Link Begins, for PSVITA.",
+  "long_description": "Port of Zelda: Time to Triumph, sequel of Zelda: Oni Link Begins, for PSVITA.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
   "author_ids": [
     "usineur"
   ],
-  "category_id": "ports",
+  "category_id": "games",
   "subcategory_ids": [
     "other"
   ],
   "version": "v.1.3.1",
   "version_date": "2026-08-12",
-  "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
+  "requirements": "Not specified",
   "size": 28980993,
-  "status": "Verified",
-  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/2d62f83d79164180a42976c1ed08815dd70ef7dee9446e733fe517295fc82966.png",
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1577-zelda3t.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/52f746d6e063b2b8360e8224692e83f33bce1a7d3a7a17dd55af420894c8c106.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/32c2eb62b912058cc3fd8d93e0ff755b239e4446e72e6702e86cf02f1d0c377a.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/dbb56b468c38bc02101c011b6ac91a46154914736f73fe399b5876806cb8a7cf.png",
-    "screenshots/52f746d6e063b2b8360e8224692e83f33bce1a7d3a7a17dd55af420894c8c106.png;screenshots/32c2eb62b912058cc3fd8d93e0ff755b239e4446e72e6702e86cf02f1d0c377a.png;screenshots/dbb56b468c38bc02101c011b6ac91a46154914736f73fe399b5876806cb8a7cf.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/dbb56b468c38bc02101c011b6ac91a46154914736f73fe399b5876806cb8a7cf.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/334-Zelda3T.vpk",
       "recommended": true
+    },
+    {
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
+      "url": "http://wololo.net/talk/viewtopic.php?f=116&t=48604"
     },
     {
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/usineur/Zelda3T"
-    },
-    {
-      "type": "Other",
-      "name": "Release",
-      "url": "http://wololo.net/talk/viewtopic.php?f=116&t=48604"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "334",
+  "source_url": "https://github.com/usineur/Zelda3T",
+  "release_page": "http://wololo.net/talk/viewtopic.php?f=116&t=48604",
+  "updated_at": "2026-08-13T13:46:07.989412+00:00"
 }

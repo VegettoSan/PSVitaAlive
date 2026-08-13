@@ -2,45 +2,48 @@
   "id": "fheroes2",
   "title_id": "FHOMM0002",
   "name": "fheroes2",
-  "description": "Heroes of Might and Magic II: The Succession Wars is a turn-based strategy video game developed by Jon Van Caneghem through New World Computing and...",
+  "description": "HoMM II port for PSVITA.",
   "long_description": "Heroes of Might and Magic II: The Succession Wars is a turn-based strategy video game developed by Jon Van Caneghem through New World Computing and published in 1996 by the 3DO Company. The game is the second installment of the Heroes of Might and Magic series and is typically credited as the breakout game for the series. Heroes II was voted the sixth-best PC game of all time by PC Gamer in May 1997.\nAn expansion pack, The Price of Loyalty, was released in 1997. Later, 3DO bundled Heroes II and its expansion pack in one box, released as Heroes of Might and Magic II Gold in 1998.",
   "author_ids": [
-    "northfear",
     "fheroes2-team"
   ],
-  "category_id": "ports",
+  "category_id": "games",
   "subcategory_ids": [
-    "strategy"
+    "other"
   ],
   "version": "1.1.17",
   "version_date": "2026-06-30",
   "requirements": "- Game Data Files: PC",
   "size": 14601805,
-  "status": "Verified",
-  "icon": "https://robin994.github.io/NeoVitaDB-Catalog/icons/0354-fheroes2.png",
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/0354-fheroes2.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/dfd827eb465a9950e018754abf794bc1decabee6f7d7cb6848884a386d72f510.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/7941ace420beacf6b182d8e944aad8e2b79ecc02b88d93de1d52f94d61d96dc3.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/735ab339bfe29a9007061b7b7afbf248dec1c565ce2723a56abee5a01c16bf40.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/a36b55e36258a3e00fde42f5af08ff751e683046a995219b0539b9e47440b4e0.png",
-    "screenshots/dfd827eb465a9950e018754abf794bc1decabee6f7d7cb6848884a386d72f510.png;screenshots/7941ace420beacf6b182d8e944aad8e2b79ecc02b88d93de1d52f94d61d96dc3.png;screenshots/735ab339bfe29a9007061b7b7afbf248dec1c565ce2723a56abee5a01c16bf40.png;screenshots/a36b55e36258a3e00fde42f5af08ff751e683046a995219b0539b9e47440b4e0.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/a36b55e36258a3e00fde42f5af08ff751e683046a995219b0539b9e47440b4e0.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "NeoVitaDB VPK",
       "url": "https://github.com/ihhub/fheroes2/releases/download/1.1.17/fheroes2_psv.zip",
       "recommended": true
+    },
+    {
+      "type": "Official Website",
+      "name": "NeoVitaDB Release Page",
+      "url": "https://github.com/ihhub/fheroes2/releases/tag/1.1.17"
     },
     {
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/ihhub/fheroes2"
-    },
-    {
-      "type": "Other",
-      "name": "Release",
-      "url": "https://github.com/ihhub/fheroes2/releases/tag/1.1.17"
     }
-  ]
+  ],
+  "source_name": "NeoVitaDB",
+  "source_id": "354",
+  "source_url": "https://github.com/ihhub/fheroes2",
+  "release_page": "https://github.com/ihhub/fheroes2/releases/tag/1.1.17",
+  "updated_at": "2026-08-13T13:46:07.725090+00:00"
 }

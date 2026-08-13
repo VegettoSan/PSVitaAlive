@@ -2,12 +2,12 @@
   "id": "ink",
   "title_id": "INKV00000",
   "name": "INK",
-  "description": "INK port for PSVita.",
+  "description": "INK port for PSVita",
   "long_description": "INK is a fast-paced platformer about using colorful paint to uncover your surroundings. Defeat all enemies in the room and reach the goal! However, the terrain is invisible, so you need to discover the terrain by physically bumping into it, by performing a double jump or by, well, dying.\nPatch and install instructions in Release Page (Github).",
   "author_ids": [
     "m1s3ry"
   ],
-  "category_id": "modding",
+  "category_id": "games",
   "subcategory_ids": [
     "other"
   ],
@@ -15,25 +15,29 @@
   "version_date": "2021-05-27",
   "requirements": "- Game Data Files: PC Steam",
   "size": 2947781,
-  "status": "Verified",
-  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/12a1935cf2a53feb310f13ce4e0a57fbe565f7a511ad5596eb59bfe04b27c743.png",
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/12a1935cf2a53feb310f13ce4e0a57fbe565f7a511ad5596eb59bfe04b27c743.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/2204e2a882d11fbcda5c4d637a3f8d06f370f5c9f525a0eff35a97d6d6d18b48.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/3c2542e7684c3f16434e6390649568cf5e0a10d01a6492216e0485da1288aa75.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/8a233fc11d1f9e3f659267b6ecabb75be3eeeb40655529ea4eb6dd8ec5cdd7ef.png",
-    "screenshots/2204e2a882d11fbcda5c4d637a3f8d06f370f5c9f525a0eff35a97d6d6d18b48.png;screenshots/3c2542e7684c3f16434e6390649568cf5e0a10d01a6492216e0485da1288aa75.png;screenshots/8a233fc11d1f9e3f659267b6ecabb75be3eeeb40655529ea4eb6dd8ec5cdd7ef.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/8a233fc11d1f9e3f659267b6ecabb75be3eeeb40655529ea4eb6dd8ec5cdd7ef.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/m1s3ry/ink-vita/releases/download/v1.0/INK-v1.0.0_KYUHEN.VPK",
       "recommended": true
     },
     {
-      "type": "Other",
-      "name": "Release",
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
       "url": "https://github.com/m1s3ry/ink-vita"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "674",
+  "source_url": "https://github.com/m1s3ry/ink-vita",
+  "release_page": "https://github.com/m1s3ry/ink-vita",
+  "updated_at": "2026-08-13T13:46:07.926513+00:00"
 }

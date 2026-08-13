@@ -7,33 +7,25 @@
   "author_ids": [
     "cpasjuste"
   ],
-  "category_id": "ports",
+  "category_id": "games",
   "subcategory_ids": [
-    "fps"
+    "other"
   ],
   "version": "16-09-19",
   "version_date": "2021-06-24",
-  "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
+  "requirements": "Not specified",
   "size": 5806780,
-  "status": "Verified",
-  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/767c27e139670527b72f469b9020659244263ee9ba956aa802f9c4805ff1da35.png",
-  "screenshots": [],
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/0013-vopentyrian.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/0013-vopentyrian.png"
+  ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/13-vOpenTyrian.vpk",
       "recommended": true
-    },
-    {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/Cpasjuste/vopentyrian"
-    },
-    {
-      "type": "Other",
-      "name": "Release",
-      "url": "http://gekihen.customprotocol.com/en/project/vOpenTyrian"
     },
     {
       "type": "Download",
@@ -42,8 +34,23 @@
     },
     {
       "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
+      "url": "http://gekihen.customprotocol.com/en/project/vOpenTyrian"
+    },
+    {
+      "type": "Official Website",
       "name": "NeoVitaDB Release Page",
       "url": "https://github.com/Cpasjuste/vopentyrian/releases/tag/16-09-19"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/Cpasjuste/vopentyrian"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "13",
+  "source_url": "https://github.com/Cpasjuste/vopentyrian",
+  "release_page": "http://gekihen.customprotocol.com/en/project/vOpenTyrian",
+  "updated_at": "2026-08-13T13:46:08.021348+00:00"
 }

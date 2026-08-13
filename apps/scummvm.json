@@ -3,45 +3,48 @@
   "title_id": "VSCU00001",
   "name": "ScummVM",
   "description": "Maniac Mansion Virtual Machine emulator.",
-  "long_description": "This download is the latest stable release. ScummVM is a program which allows you to run certain classic graphical point-and-click adventure games, provided you already have their data files.\nScummVM supports many adventure games, including LucasArts SCUMM games (such as Monkey Island 1-3, Day of the Tentacle, Sam & Max, ...), many of Sierra's AGI and SCI games (such as King's Quest 1-6, Space Quest 1-5, ...), Discworld 1 and 2, Simon the Sorcerer 1 and 2, Beneath A Steel Sky, Lure of the Temptress, Broken Sword 1 and 2, Flight of the Amazon Queen, Gobliiins 1-3, The Legend of Kyrandia 1-3, many of Humongous Entertainment's children's SCUMM games (including Freddi Fish and Putt Putt games) and many more.",
+  "long_description": "This download is the latest stable release. ScummVM is a program which allows you to run certain classic graphical point-and-click adventure games, provided you already have their data files.\nScummVM supports many adventure games, including LucasArts SCUMM games (such as Monkey Island 1-3, Day of the Tentacle, Sam & Max, ...), many of Sierra's AGI and SCI games (such as King's Quest 1-6, Space Quest 1-5, ...), Discworld 1 and 2, Simon the Sorcerer 1 and 2, Beneath A Steel Sky, Lure of the Temptress, Broken Sword 1 and 2, Flight of the Amazon Queen, Gobliiins 1-3, The Legend of Kyrandia 1-3, many of Humongous Entertainment's children's SCUMM games (including Freddi Fish and Putt Putt games) and many more.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
   "author_ids": [
-    "cpasjuste",
-    "rsn8887",
     "scummvm-team"
   ],
-  "category_id": "emulators",
+  "category_id": "games",
   "subcategory_ids": [
     "other"
   ],
   "version": "2026.3.0",
   "version_date": "2026-08-12",
-  "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
+  "requirements": "Not specified",
   "size": 129889683,
-  "status": "Verified",
-  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/c2bded6b1de1be56ea126ca3b6eee6fcd33a0c1725dbb53ada50c5b4b335c620.png",
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1693-scummvm.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/70c639f7c94a7807c7571d62c9c23821521420f88b8bbf403f3f9cda0be0c81c.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/b80ad1de84d2a81d81ec775c1210e4ff5d829c3434229328c9a23fdd09de098b.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/e476f2d370d985df88964c9dd28bef3ef30cd01b7d570edb0558bcbb0a2ebe0a.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/1e3cbcb106e3d7805dbcedf828ba9fb1f932d5ea03a87b9b464a47808bf4871f.png",
-    "screenshots/c56fec33982eaac100a19beb726f006ffa06fd50fd5365f9ef69ef8ce3c0b2dd.png;screenshots/aca64d751e2b8e7082ccb34ba5f19f4c5b0fe732807a709532023ec6621c2392.png;screenshots/18e219936b47071dcdcabd6c8de6492cb0f323e9ef10286c06b3cf8ddcf2d34c.png;screenshots/f40ab5e649c96bb55823cc8dc7bb683f5c2c6397e648bcca50f1b5da525b5f97.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c56fec33982eaac100a19beb726f006ffa06fd50fd5365f9ef69ef8ce3c0b2dd.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/aca64d751e2b8e7082ccb34ba5f19f4c5b0fe732807a709532023ec6621c2392.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/18e219936b47071dcdcabd6c8de6492cb0f323e9ef10286c06b3cf8ddcf2d34c.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/f40ab5e649c96bb55823cc8dc7bb683f5c2c6397e648bcca50f1b5da525b5f97.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/70c639f7c94a7807c7571d62c9c23821521420f88b8bbf403f3f9cda0be0c81c.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/585-scummvm_release.vpk",
       "recommended": true
+    },
+    {
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
+      "url": "https://wiki.scummvm.org/index.php?title=PlayStation_Vita"
     },
     {
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/scummvm/scummvm"
-    },
-    {
-      "type": "Other",
-      "name": "Release",
-      "url": "https://wiki.scummvm.org/index.php?title=PlayStation_Vita"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "585",
+  "source_url": "https://github.com/scummvm/scummvm",
+  "release_page": "https://wiki.scummvm.org/index.php?title=PlayStation_Vita",
+  "updated_at": "2026-08-13T13:46:07.709231+00:00"
 }

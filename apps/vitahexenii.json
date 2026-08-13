@@ -3,42 +3,46 @@
   "title_id": "HXEN00001",
   "name": "vitaHexenII",
   "description": "Hexen II port for PSVITA.",
-  "long_description": "vitaHexenII is a port for PSVITA of Hexen II, a popular dark-fantasy fps created by Raven Software using a modified version of Quake Engine.\nIt's based on vitaQuake core and it shares a lot of features with it.",
+  "long_description": "vitaHexenII is a port for PSVITA of Hexen II, a popular dark-fantasy fps created by Raven Software using a modified version of Quake Engine.\nIt's based on vitaQuake core and it shares a lot of features with it.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
   "author_ids": [
     "rinnegatamante"
   ],
-  "category_id": "ports",
+  "category_id": "games",
   "subcategory_ids": [
-    "fps"
+    "other"
   ],
   "version": "v.2.3",
   "version_date": "2026-08-12",
   "requirements": "- Game Data Files: PC",
   "size": 3189188,
-  "status": "Verified",
-  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/15c7108894276150362813e67af8c56b4ff579a487f32229219a4dcd365712e5.png",
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1536-vitahexenii.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/35ce1aa6df430a249a72b4c9ab2523c97173bab96b499ea5137658d99ba9b771.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/8b16399c241ddf247ac2babed8f1efa03a9617b4b4b2830e6b0f0ab26d28ae11.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/49193effba5d26f289b5d8369ffb57df0be46eb9bb5731ae35797aeca228c15b.png",
-    "screenshots/35ce1aa6df430a249a72b4c9ab2523c97173bab96b499ea5137658d99ba9b771.png;screenshots/8b16399c241ddf247ac2babed8f1efa03a9617b4b4b2830e6b0f0ab26d28ae11.png;screenshots/49193effba5d26f289b5d8369ffb57df0be46eb9bb5731ae35797aeca228c15b.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/49193effba5d26f289b5d8369ffb57df0be46eb9bb5731ae35797aeca228c15b.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/196-vitaHexenII.vpk",
       "recommended": true
+    },
+    {
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
+      "url": "http://wololo.net/talk/viewtopic.php?f=116&t=46740"
     },
     {
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/Rinnegatamante/vitaHexenII"
-    },
-    {
-      "type": "Other",
-      "name": "Release",
-      "url": "http://wololo.net/talk/viewtopic.php?f=116&t=46740"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "196",
+  "source_url": "https://github.com/Rinnegatamante/vitaHexenII",
+  "release_page": "http://wololo.net/talk/viewtopic.php?f=116&t=46740",
+  "updated_at": "2026-08-13T13:46:07.956496+00:00"
 }

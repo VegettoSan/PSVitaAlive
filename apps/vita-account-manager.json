@@ -7,38 +7,45 @@
   "author_ids": [
     "windsurfer1122"
   ],
-  "category_id": "system",
+  "category_id": "games",
   "subcategory_ids": [
-    "account"
+    "other"
   ],
   "version": "v.0.91",
   "version_date": "2019-09-01",
-  "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
+  "requirements": "Not specified",
   "size": 205639,
-  "status": "Verified",
-  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/a10e06d7f0b09586eba1f62e913acc2e40ee93969a51fa4dd24336111bf0a5b4.png",
-  "screenshots": [],
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/a10e06d7f0b09586eba1f62e913acc2e40ee93969a51fa4dd24336111bf0a5b4.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/a10e06d7f0b09586eba1f62e913acc2e40ee93969a51fa4dd24336111bf0a5b4.png"
+  ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/windsurfer1122/Vita-Account-Manager/releases/download/vita-account-manager-0.91/vita-account-manager-0.91.vpk",
       "recommended": true
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/windsurfer1122/Vita-Account-Manager"
-    },
-    {
-      "type": "Other",
-      "name": "Release",
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
       "url": "https://github.com/windsurfer1122/Vita-Account-Manager/releases"
     },
     {
       "type": "Official Website",
       "name": "NeoVitaDB Release Page",
       "url": "https://github.com/windsurfer1122/Vita-Account-Manager/releases/tag/vita-account-manager-0.91"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/windsurfer1122/Vita-Account-Manager"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "504",
+  "source_url": "https://github.com/windsurfer1122/Vita-Account-Manager",
+  "release_page": "https://github.com/windsurfer1122/Vita-Account-Manager/releases",
+  "updated_at": "2026-08-13T13:46:07.963509+00:00"
 }

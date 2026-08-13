@@ -7,44 +7,48 @@
   "author_ids": [
     "megagameboy"
   ],
-  "category_id": "ports",
+  "category_id": "games",
   "subcategory_ids": [
     "other"
   ],
   "version": "v.1.0",
   "version_date": "2023-02-26",
-  "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
+  "requirements": "Not specified",
   "size": 117256859,
-  "status": "Verified",
-  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/9de66bdee16fcace1dc733051276017190612705852ebcf4e975bfee9fafbca3.png",
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/9de66bdee16fcace1dc733051276017190612705852ebcf4e975bfee9fafbca3.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/a1226dbd22ddda24d63804b78bed4b41150a290d6763d45f892bbd5f4286e8b0.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/75b56211ef4b1fa796e37eff170dbd1c3f658ac9819080f08eba6bc1a817e662.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/aca7647cf7fdeb11d7ce91bcb6b55ea0738a9967775f0002aa45631cf3ea0e9d.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/5a02555336ea12cc57938f29e243397da7a6c2ecd4fbfa97511d1e0be5150e0d.png",
-    "screenshots/a1226dbd22ddda24d63804b78bed4b41150a290d6763d45f892bbd5f4286e8b0.png;screenshots/75b56211ef4b1fa796e37eff170dbd1c3f658ac9819080f08eba6bc1a817e662.png;screenshots/aca7647cf7fdeb11d7ce91bcb6b55ea0738a9967775f0002aa45631cf3ea0e9d.png;screenshots/5a02555336ea12cc57938f29e243397da7a6c2ecd4fbfa97511d1e0be5150e0d.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/5a02555336ea12cc57938f29e243397da7a6c2ecd4fbfa97511d1e0be5150e0d.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/MEGAgameBoy/I-Wanna-Reach-The-Unity-PS-Vita-Port/releases/download/1.0/iwrtu.vpk",
       "recommended": true
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/MEGAgameBoy/I-Wanna-Reach-The-Unity-PS-Vita-Port"
-    },
-    {
-      "type": "Other",
-      "name": "Release",
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
       "url": "https://github.com/MEGAgameBoy/I-Wanna-Reach-The-Unity-PS-Vita-Port/releases"
     },
     {
       "type": "Official Website",
       "name": "NeoVitaDB Release Page",
       "url": "https://github.com/MEGAgameBoy/I-Wanna-Reach-The-Unity-PS-Vita-Port/releases/tag/1.0"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/MEGAgameBoy/I-Wanna-Reach-The-Unity-PS-Vita-Port"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "1045",
+  "source_url": "https://github.com/MEGAgameBoy/I-Wanna-Reach-The-Unity-PS-Vita-Port",
+  "release_page": "https://github.com/MEGAgameBoy/I-Wanna-Reach-The-Unity-PS-Vita-Port/releases",
+  "updated_at": "2026-08-13T13:46:07.860812+00:00"
 }

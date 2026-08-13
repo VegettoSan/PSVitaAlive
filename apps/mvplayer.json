@@ -2,46 +2,50 @@
   "id": "mvplayer",
   "title_id": "MVPLAYER0",
   "name": "MVPlayer",
-  "description": "Using the PC tools provided on the GitHub page to convert and prepare your downloaded movies, you can now have a professional looking video library and...",
+  "description": "Stylish video player for PSVITA.",
   "long_description": "Using the PC tools provided on the GitHub page to convert and prepare your downloaded movies, you can now have a professional looking video library and player with several features such as bookmarking and image stretch/zoom.",
   "author_ids": [
     "anthj"
   ],
-  "category_id": "media",
+  "category_id": "games",
   "subcategory_ids": [
-    "video-player"
+    "other"
   ],
   "version": "v1.4",
   "version_date": "2022-04-17",
-  "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
+  "requirements": "Not specified",
   "size": 4528105,
   "status": "Legacy",
-  "icon": "https://robin994.github.io/NeoVitaDB-Catalog/icons/0796-mvplayer.png",
+  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/0796-mvplayer.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/4da0f23fc62808aeaa2a040c393d520c5a2b6a9c5d18909609a854043c274439.png",
-    "screenshots/4da0f23fc62808aeaa2a040c393d520c5a2b6a9c5d18909609a854043c274439.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/4da0f23fc62808aeaa2a040c393d520c5a2b6a9c5d18909609a854043c274439.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/AntHJ/MVPlayer/releases/download/v1.4/MVPLAYER0.vpk",
       "recommended": true
-    },
-    {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/AntHJ/MVPlayer"
-    },
-    {
-      "type": "Other",
-      "name": "Release",
-      "url": "https://github.com/AntHJ/MVPlayer/releases/tag/v1.4"
     },
     {
       "type": "Official Website",
       "name": "VitaDBtoo Release Page",
       "url": "https://github.com/AntHJ/MVPlayer/releases/"
+    },
+    {
+      "type": "Official Website",
+      "name": "NeoVitaDB Release Page",
+      "url": "https://github.com/AntHJ/MVPlayer/releases/tag/v1.4"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/AntHJ/MVPlayer"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "796",
+  "source_url": "https://github.com/AntHJ/MVPlayer/releases/",
+  "release_page": "https://github.com/AntHJ/MVPlayer/releases/",
+  "updated_at": "2026-08-13T13:46:07.898221+00:00"
 }

@@ -7,38 +7,42 @@
   "author_ids": [
     "elliencode"
   ],
-  "category_id": "ports",
+  "category_id": "games",
   "subcategory_ids": [
-    "action"
+    "other"
   ],
   "version": "v.1.01",
   "version_date": "2026-01-25",
   "requirements": "- libshacccg.suprx\n- kubridge.skprx\n- Game Data Files: Android",
   "size": 1956223,
-  "status": "Verified",
-  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/b65c1973c970a971155280d9d6b27a377ee2107934f27bb7123d3ffb9a7839e5.png",
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/b65c1973c970a971155280d9d6b27a377ee2107934f27bb7123d3ffb9a7839e5.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/beaae2e1dd2b3a1b7a8fb53df91fd238a374e15202626b14a020d357efa8cee3.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/8ebd7e3ce759df63b030084dc77bf1e8d9fc77b43f00920a6553ec970e467ec9.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/f4e269b23245fad657cf8f9016a3372bb3c5227b97e020acba062453ff7e79ca.png",
-    "screenshots/beaae2e1dd2b3a1b7a8fb53df91fd238a374e15202626b14a020d357efa8cee3.png;screenshots/8ebd7e3ce759df63b030084dc77bf1e8d9fc77b43f00920a6553ec970e467ec9.png;screenshots/f4e269b23245fad657cf8f9016a3372bb3c5227b97e020acba062453ff7e79ca.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/f4e269b23245fad657cf8f9016a3372bb3c5227b97e020acba062453ff7e79ca.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/elliencode/actionsquad-psv/releases/download/v1.01/com.khg.actionsquad-v1.01.vpk",
       "recommended": true
+    },
+    {
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
+      "url": "https://github.com/elliencode/actionsquad-psv"
     },
     {
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/elliencode/actionsquad-psv-internal/"
-    },
-    {
-      "type": "Other",
-      "name": "Release",
-      "url": "https://github.com/elliencode/actionsquad-psv"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "1364",
+  "source_url": "https://github.com/elliencode/actionsquad-psv-internal/",
+  "release_page": "https://github.com/elliencode/actionsquad-psv",
+  "updated_at": "2026-08-13T13:46:07.734270+00:00"
 }

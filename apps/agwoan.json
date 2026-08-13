@@ -2,31 +2,30 @@
   "id": "agwoan",
   "title_id": "AGWN00000",
   "name": "AGWOAN",
-  "description": "Platformer game for PSVITA.",
-  "long_description": "A platformer game with integrated level editor.",
+  "description": "Platformer game for PSVITA",
+  "long_description": "A platformer game with integrated level editor.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
   "author_ids": [
     "borad-games"
   ],
   "category_id": "games",
   "subcategory_ids": [
-    "platformer"
+    "other"
   ],
   "version": "Demo",
   "version_date": "2026-08-12",
-  "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
+  "requirements": "Not specified",
   "size": 3247855,
   "status": "Legacy",
-  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/66871d97eb68254c4a0bef23a190af203a9eb2a471e81ff1575ec585dda5f705.png",
+  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1633-agwoan.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/f0a94b8847951fb800fb2d2ba277857350ec31d6f4e85ae53cbd0a5a1558f4e9.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/1c9fd98477ce6d5a5b1173f2b80dc2807d1076ef489adc3521900a0bd6886d5a.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/b504289a7cd7583513e62b518b4d5f7befbe380ebba2abc81d52b4e5bfbc6d0e.png",
-    "screenshots/f0a94b8847951fb800fb2d2ba277857350ec31d6f4e85ae53cbd0a5a1558f4e9.png;screenshots/1c9fd98477ce6d5a5b1173f2b80dc2807d1076ef489adc3521900a0bd6886d5a.png;screenshots/b504289a7cd7583513e62b518b4d5f7befbe380ebba2abc81d52b4e5bfbc6d0e.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/b504289a7cd7583513e62b518b4d5f7befbe380ebba2abc81d52b4e5bfbc6d0e.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/457-AGWOAN-PSV.vpk",
       "recommended": true
     },
@@ -35,5 +34,10 @@
       "name": "Repositorio",
       "url": "https://drive.google.com/file/d/1r23ZFlm_0RnJdARX2FEJ9JbbsciDeAnM/view"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "457",
+  "source_url": "https://drive.google.com/file/d/1r23ZFlm_0RnJdARX2FEJ9JbbsciDeAnM/view",
+  "release_page": "",
+  "updated_at": "2026-08-13T13:46:07.977150+00:00"
 }

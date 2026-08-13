@@ -2,38 +2,45 @@
   "id": "tile-world-vita",
   "title_id": "TWKK00001",
   "name": "Tile World Vita",
-  "description": "Port of Tile World for PSVITA.\nTile World (also known as TileWorld or Tileworld) is a game designed to emulate Chip's Challenge.",
+  "description": "Port of Tile World for PSVITA.",
   "long_description": "Port of Tile World for PSVITA.\nTile World (also known as TileWorld or Tileworld) is a game designed to emulate Chip's Challenge. It was written by Brian Raiter. To avoid copyright infringement with Chip's Challenge, the game does not use the original graphics, sound or music. The original level set is not bundled with Tile World, so it's legal for use.",
   "author_ids": [
     "koolaidxk1d"
   ],
-  "category_id": "ports",
+  "category_id": "games",
   "subcategory_ids": [
     "other"
   ],
   "version": "1.0.0",
   "version_date": "2023-09-20",
-  "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
+  "requirements": "Not specified",
   "size": 1598510,
   "status": "Legacy",
-  "icon": "https://robin994.github.io/NeoVitaDB-Catalog/icons/1132-tile-world-vita.png",
-  "screenshots": [],
+  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1132-tile-world-vita.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1132-tile-world-vita.png"
+  ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "NeoVitaDB VPK",
       "url": "https://github.com/koolaidxk1d/tworld-vita/releases/download/1.0.0/tworld-vita.vpk",
       "recommended": true
+    },
+    {
+      "type": "Official Website",
+      "name": "NeoVitaDB Release Page",
+      "url": "https://github.com/koolaidxk1d/tworld-vita/releases/tag/1.0.0"
     },
     {
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/koolaidxk1d/tworld-vita"
-    },
-    {
-      "type": "Other",
-      "name": "Release",
-      "url": "https://github.com/koolaidxk1d/tworld-vita/releases/tag/1.0.0"
     }
-  ]
+  ],
+  "source_name": "NeoVitaDB",
+  "source_id": "1132",
+  "source_url": "https://github.com/koolaidxk1d/tworld-vita",
+  "release_page": "https://github.com/koolaidxk1d/tworld-vita/releases/tag/1.0.0",
+  "updated_at": "2026-08-13T13:46:07.830385+00:00"
 }

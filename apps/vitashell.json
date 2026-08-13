@@ -2,43 +2,50 @@
   "id": "vitashell",
   "title_id": "VITASHELL",
   "name": "VitaShell",
-  "description": "VitaShell is an alternative replacement of the PS Vita's LiveArea.",
+  "description": "Multifunction shell for PSVITA.",
   "long_description": "VitaShell is an alternative replacement of the PS Vita's LiveArea. It offers you a file manager, package installer, built-in FTP and much more.\nIt also have advanced features like USB hard-drive mounting for PSTV users and standard USB protocool implementation for file transfering with a PC.",
   "author_ids": [
     "theflow"
   ],
-  "category_id": "utilities",
+  "category_id": "games",
   "subcategory_ids": [
-    "file-manager"
+    "other"
   ],
   "version": "v.2.02",
   "version_date": "2020-01-19",
-  "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
+  "requirements": "Not specified",
   "size": 1889776,
-  "status": "Verified",
-  "icon": "https://robin994.github.io/NeoVitaDB-Catalog/icons/0021-vitashell.png",
-  "screenshots": [],
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/cbbb234e307a727b32c119d619187df61b1a60dbd63f2e7b66520ef9bc212e2d.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/cbbb234e307a727b32c119d619187df61b1a60dbd63f2e7b66520ef9bc212e2d.png"
+  ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/TheOfficialFloW/VitaShell/releases/download/v2.02/VitaShell.vpk",
       "recommended": true
-    },
-    {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/TheOfficialFloW/VitaShell"
-    },
-    {
-      "type": "Other",
-      "name": "Release",
-      "url": "https://github.com/TheOfficialFloW/VitaShell/releases/tag/v2.02"
     },
     {
       "type": "Official Website",
       "name": "VitaDBtoo Release Page",
       "url": "https://github.com/TheOfficialFloW/VitaShell/releases"
+    },
+    {
+      "type": "Official Website",
+      "name": "NeoVitaDB Release Page",
+      "url": "https://github.com/TheOfficialFloW/VitaShell/releases/tag/v2.02"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/TheOfficialFloW/VitaShell"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "21",
+  "source_url": "https://github.com/TheOfficialFloW/VitaShell",
+  "release_page": "https://github.com/TheOfficialFloW/VitaShell/releases",
+  "updated_at": "2026-08-13T13:46:07.958884+00:00"
 }

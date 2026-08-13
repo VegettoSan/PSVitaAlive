@@ -2,43 +2,50 @@
   "id": "leo-s-fortune-vita",
   "title_id": "LEOFORT01",
   "name": "Leo's Fortune Vita",
-  "description": "This is a wrapper/port of Leo's Fortune for the PS Vita.",
+  "description": "Port of Leo's Fortune for PSVita.",
   "long_description": "This is a wrapper/port of Leo's Fortune for the PS Vita.\nThe port works by loading the official Android ARMv7 executable in memory, resolving its imports with native functions and patching it in order to properly run. By doing so, it's basically as if we emulate a minimalist Android environment in which we run natively the executable as it is.",
   "author_ids": [
     "claude-ai"
   ],
-  "category_id": "ports",
+  "category_id": "games",
   "subcategory_ids": [
     "other"
   ],
-  "version": "v1.0",
+  "version": "v.1.0",
   "version_date": "2026-05-06",
   "requirements": "- libshacccg.suprx\n- kubridge.skprx\n- Game Data Files: Android",
   "size": 2236369,
   "status": "Legacy",
-  "icon": "https://robin994.github.io/NeoVitaDB-Catalog/icons/1396-leo-s-fortune-vita.png",
-  "screenshots": [],
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/03c8278a6838ed6588475a2b95696a443db2aea2c3e381714f7a7c591461a3dd.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/03c8278a6838ed6588475a2b95696a443db2aea2c3e381714f7a7c591461a3dd.png"
+  ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/stoicpingu/leos-fortune-vita/releases/download/v1.0/leosfortune.vpk",
       "recommended": true
-    },
-    {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/stoicpingu/leos-fortune-vita"
-    },
-    {
-      "type": "Other",
-      "name": "Release",
-      "url": "https://github.com/stoicpingu/leos-fortune-vita/releases/tag/v1.0"
     },
     {
       "type": "Official Website",
       "name": "VitaDBtoo Release Page",
       "url": "https://github.com/stoicpingu/leos-fortune-vita/releases"
+    },
+    {
+      "type": "Official Website",
+      "name": "NeoVitaDB Release Page",
+      "url": "https://github.com/stoicpingu/leos-fortune-vita/releases/tag/v1.0"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/stoicpingu/leos-fortune-vita"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "1396",
+  "source_url": "https://github.com/stoicpingu/leos-fortune-vita",
+  "release_page": "https://github.com/stoicpingu/leos-fortune-vita/releases",
+  "updated_at": "2026-08-13T13:46:07.721130+00:00"
 }

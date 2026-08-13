@@ -7,7 +7,7 @@
   "author_ids": [
     "rinnegatamante"
   ],
-  "category_id": "ports",
+  "category_id": "games",
   "subcategory_ids": [
     "other"
   ],
@@ -15,36 +15,40 @@
   "version_date": "2022-09-17",
   "requirements": "- libshacccg.suprx.\n- Game Data Files: PC Steam or N64.",
   "size": 1955832,
-  "status": "Verified",
-  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/f67ac4bb0c999845ef651fafca2a5f37528aef7d9c34975b2395585d05692b02.png",
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/f67ac4bb0c999845ef651fafca2a5f37528aef7d9c34975b2395585d05692b02.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/9a65d0b245c5d91b800074020bb86aa8cd34279fca95d68e4a74b7ba3a857911.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c841d6d4845b73b2dcb0538488ba43c361efdc2edef4e347d70f7c2b75d6f389.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c0e60cee39fce71017c5552221e817d6108f1caff00af1d8d2800839ade39c74.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/bcb86869de31db57abf50c3b7a9ab77d1b30d50cc143d2918714c8893b2e7a46.png",
-    "screenshots/9a65d0b245c5d91b800074020bb86aa8cd34279fca95d68e4a74b7ba3a857911.png;screenshots/c841d6d4845b73b2dcb0538488ba43c361efdc2edef4e347d70f7c2b75d6f389.png;screenshots/c0e60cee39fce71017c5552221e817d6108f1caff00af1d8d2800839ade39c74.png;screenshots/bcb86869de31db57abf50c3b7a9ab77d1b30d50cc143d2918714c8893b2e7a46.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/bcb86869de31db57abf50c3b7a9ab77d1b30d50cc143d2918714c8893b2e7a46.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/Rinnegatamante/Doom64EX/releases/download/v.1.0.1/Doom64EX.vpk",
       "recommended": true
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/Rinnegatamante/Doom64EX"
-    },
-    {
-      "type": "Other",
-      "name": "Release",
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
       "url": "https://www.psx-place.com/threads/release-doom64ex-reverse-engineered-and-enhanced-source-port-of-doom-64.38361/"
     },
     {
       "type": "Official Website",
       "name": "NeoVitaDB Release Page",
       "url": "https://github.com/Rinnegatamante/Doom64EX/releases/tag/v.1.0.1"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/Rinnegatamante/Doom64EX"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "881",
+  "source_url": "https://github.com/Rinnegatamante/Doom64EX",
+  "release_page": "https://www.psx-place.com/threads/release-doom64ex-reverse-engineered-and-enhanced-source-port-of-doom-64.38361/",
+  "updated_at": "2026-08-13T13:46:07.878693+00:00"
 }

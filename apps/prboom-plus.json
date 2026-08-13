@@ -3,40 +3,44 @@
   "title_id": "FGS000667",
   "name": "PrBoom Plus",
   "description": "PrBoom Plus port for PSVITA/PSTV.",
-  "long_description": "PrBoom Plus is a Doom source port developed from the original PrBoom project.\nIt has completely hardware accelerated renderer and supports several advanced features.",
+  "long_description": "PrBoom Plus is a Doom source port developed from the original PrBoom project.\nIt has completely hardware accelerated renderer and supports several advanced features.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
   "author_ids": [
     "fgsfds"
   ],
-  "category_id": "ports",
+  "category_id": "games",
   "subcategory_ids": [
-    "fps"
+    "other"
   ],
   "version": "v.1.2",
   "version_date": "2026-08-12",
-  "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
+  "requirements": "Not specified",
   "size": 2311271,
-  "status": "Verified",
-  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/91f92e25ba417b27e586d95b55cecf3bb6a2c2c608bcff45aeaf9abbc439531f.png",
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1694-prboom-plus.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c466ff03ee2e7324b95154b30f413c558e4d3275b276a8332b1d21a62feca66d.png",
-    "screenshots/c466ff03ee2e7324b95154b30f413c558e4d3275b276a8332b1d21a62feca66d.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c466ff03ee2e7324b95154b30f413c558e4d3275b276a8332b1d21a62feca66d.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/fgsfdsfgs/prboom-plus/releases/download/v2.5.1.7um-vita-r1.2/prboom-plus-r1.2.vpk",
       "recommended": true
+    },
+    {
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
+      "url": "https://github.com/fgsfdsfgs/prboom-plus/releases"
     },
     {
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/fgsfdsfgs/prboom-plus"
-    },
-    {
-      "type": "Other",
-      "name": "Release",
-      "url": "https://github.com/fgsfdsfgs/prboom-plus/releases"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "591",
+  "source_url": "https://github.com/fgsfdsfgs/prboom-plus",
+  "release_page": "https://github.com/fgsfdsfgs/prboom-plus/releases",
+  "updated_at": "2026-08-13T13:46:07.943024+00:00"
 }

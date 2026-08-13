@@ -1,10 +1,11 @@
 {
   "id": "fnaf-world-psvita-demake",
-  "title_id": "GDOT00083",
+  "title_id": "FNAFW0RLD",
   "name": "FNaF World PSVita Demake",
-  "description": "Demake of FNaF World for PSVITA.",
-  "long_description": "FNaF World PSVita Demake is a demake of the original FNaF World consisting of over 80% of the features cut like: character unlocks, Glitch areas, character dialogs, multiple endings ect. This game should be stable but unless there are extremly game breaking glitches the bugs wont be fixed.",
+  "description": "Fan-made clone of FNaF World for PSVita.",
+  "long_description": "FNaF World PSVita Demake is a demake of the original FNaF World consisting of over 80% of the features cut like: character unlocks, Glitch areas, character dialogs, multiple endings ect. This game should be stable but unless there are extremly game breaking glitches the bugs wont be fixed.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
   "author_ids": [
+    "5port5y",
     "oldsport099"
   ],
   "category_id": "games",
@@ -12,28 +13,39 @@
     "other"
   ],
   "version": "v.1.0",
-  "version_date": "2025-05-29",
-  "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
+  "version_date": "2026-08-12",
+  "requirements": "Not specified",
   "size": 55543575,
-  "status": "Verified",
-  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/bb9887bf203bda48b62602763f4986bc18a616d0b8f1217c0464f8093d7365a3.png",
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1925-fnaf-world-psvita-demake.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/51f00186542a1cbe482938e6c1956db4ebdf616f5be727fd9970dbf84d29a775.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c1b96646e18f8c178e01ad850d3d65f189c80b7eb8d600c27ebe4da7470f583f.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/4b4bce6e6d5fdcf4de4a39b128aa977cff273cf6fb848debffe0cdab3f114fb0.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/71e5af3a077f76d71f175f6706b94386eb71170e7482b93bb8eebbcfad715241.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/71e5af3a077f76d71f175f6706b94386eb71170e7482b93bb8eebbcfad715241.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/7d735d31c36a24b46b492a14e194d778ed5584a28142699cefe5dec6d7b5dcd7.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1274-fnaf-world.vpk",
       "recommended": true
     },
     {
-      "type": "Other",
-      "name": "Release",
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
       "url": "https://gamejolt.com/games/FWpsVita/996208"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "1274",
+  "source_url": "https://gamejolt.com/games/FWpsVita/996208",
+  "release_page": "https://gamejolt.com/games/FWpsVita/996208",
+  "updated_at": "2026-08-13T13:46:07.699879+00:00"
 }

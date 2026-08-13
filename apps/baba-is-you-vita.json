@@ -2,43 +2,32 @@
   "id": "baba-is-you-vita",
   "title_id": "BABAISYOU",
   "name": "Baba Is You Vita",
-  "description": "Baba Is You is an award-winning puzzle game where you can change the rules by which you play.",
+  "description": "Baba Is You port for PSVITA.",
   "long_description": "Baba Is You is an award-winning puzzle game where you can change the rules by which you play. In every level, the rules themselves are present as blocks you can interact with; by manipulating them, you can change how the level works and cause surprising, unexpected interactions!",
   "author_ids": [
     "gl33ntwine"
   ],
-  "category_id": "ports",
+  "category_id": "games",
   "subcategory_ids": [
-    "puzzle"
+    "other"
   ],
-  "version": "v1.4",
+  "version": "v.1.4",
   "version_date": "2022-09-09",
   "requirements": "- kubridge.skprx\n- fd_fix.skprx OR repatch_ex.skprx\n- Game Data Files: Android",
   "size": 1576928,
-  "status": "Verified",
-  "icon": "https://robin994.github.io/NeoVitaDB-Catalog/icons/0828-baba-is-you-vita.png",
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/081bbddb49010095b45568c128dc3e2144efc2ca9672315ac57101d2563e1e1d.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/99a81e1aa02890eec585bc0eee411d17ff8a10ab5113ad7609125f32d779ae58.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/935e7d3c1edca66f72475a33418cb22ca70c32c2c4888ae305a8a9e2616589b9.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/de5882c9a5d5a4967cc0eb07b4bd4ce8311da736b887c71661b2e0cf546313e3.png",
-    "screenshots/99a81e1aa02890eec585bc0eee411d17ff8a10ab5113ad7609125f32d779ae58.png;screenshots/935e7d3c1edca66f72475a33418cb22ca70c32c2c4888ae305a8a9e2616589b9.png;screenshots/de5882c9a5d5a4967cc0eb07b4bd4ce8311da736b887c71661b2e0cf546313e3.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/de5882c9a5d5a4967cc0eb07b4bd4ce8311da736b887c71661b2e0cf546313e3.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/v-atamanenko/baba-is-you-vita/releases/download/v1.4/BABAISYOU.vpk",
       "recommended": true
-    },
-    {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/v-atamanenko/baba-is-you-vita"
-    },
-    {
-      "type": "Other",
-      "name": "Release",
-      "url": "https://github.com/v-atamanenko/baba-is-you-vita/releases/tag/v1.4"
     },
     {
       "type": "Official Website",
@@ -46,9 +35,19 @@
       "url": "https://github.com/v-atamanenko/baba-is-you-vita//releases"
     },
     {
+      "type": "Official Website",
+      "name": "NeoVitaDB Release Page",
+      "url": "https://github.com/v-atamanenko/baba-is-you-vita/releases/tag/v1.4"
+    },
+    {
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/v-atamanenko/baba-is-you-vita/"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "828",
+  "source_url": "https://github.com/v-atamanenko/baba-is-you-vita/",
+  "release_page": "https://github.com/v-atamanenko/baba-is-you-vita//releases",
+  "updated_at": "2026-08-13T13:46:07.880090+00:00"
 }

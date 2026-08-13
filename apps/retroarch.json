@@ -3,39 +3,44 @@
   "title_id": "RETROVITA",
   "name": "RetroArch",
   "description": "Collection of emulators for various platforms.",
-  "long_description": "RetroArch is the official reference frontend for the libretro API.\nRetroArch is most popularly known for being a program with which you can play many emulators and games, which have all been customized and tailor-ported to the libretro API.\n\nIt is designed to be fast, lightweight, and portable. It tries to be on the cutting edge in terms of technology supported as well as trying to be as backwards compatible as possible.\n\nThis download is updated every night, at midnight, PDT, to the latest nightly release.",
+  "long_description": "RetroArch is the official reference frontend for the libretro API.\nRetroArch is most popularly known for being a program with which you can play many emulators and games, which have all been customized and tailor-ported to the libretro API.\n\nIt is designed to be fast, lightweight, and portable. It tries to be on the cutting edge in terms of technology supported as well as trying to be as backwards compatible as possible.\n\nThis download is updated every night, at midnight, PDT, to the latest nightly release.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
   "author_ids": [
     "libretro-team"
   ],
-  "category_id": "emulators",
+  "category_id": "games",
   "subcategory_ids": [
-    "multi-system"
+    "other"
   ],
   "version": "Nightly",
-  "version_date": "2021-01-04",
-  "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
+  "version_date": "2026-08-12",
+  "requirements": "Not specified",
   "size": 487257047,
-  "status": "Verified",
-  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/d2e291dcd6bc6b02a9f808e6d41f84281258967300fee882c6fa6c81c369bd43.png",
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1534-retroarch.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/49ccc14cc63693473619e47d5980d1dd163192ac77003dff34fc21ca15841cb4.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/186-186.vpk",
       "recommended": true
+    },
+    {
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
+      "url": "https://buildbot.libretro.com/nightly/playstation/vita/"
     },
     {
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/libretro/retroarch"
-    },
-    {
-      "type": "Other",
-      "name": "Release",
-      "url": "https://buildbot.libretro.com/nightly/playstation/vita/"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "186",
+  "source_url": "https://github.com/libretro/retroarch",
+  "release_page": "https://buildbot.libretro.com/nightly/playstation/vita/",
+  "updated_at": "2026-08-13T13:46:07.938622+00:00"
 }

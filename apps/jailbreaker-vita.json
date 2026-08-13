@@ -3,25 +3,27 @@
   "title_id": "JAIBRE001",
   "name": "Jailbreaker Vita",
   "description": "Port of the demo of Jailbreaker for PSVITA.",
-  "long_description": "Port of the demo of Jailbreaker for PSVITA.\nJailbreaker is a short game about an unorthodox, sci-fi world of pixels and parkour. Find your way out of your confinement and venture through eerie worlds while evading dangerous traps that halt your ascent. Reach the paramount. Reach.\nOriginal game by Awfy.",
+  "long_description": "Port of the demo of Jailbreaker for PSVITA.\nJailbreaker is a short game about an unorthodox, sci-fi world of pixels and parkour. Find your way out of your confinement and venture through eerie worlds while evading dangerous traps that halt your ascent. Reach the paramount. Reach.\nOriginal game by Awfy.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
   "author_ids": [
     "vsm-gammer"
   ],
-  "category_id": "demos",
+  "category_id": "games",
   "subcategory_ids": [
-    "tech-demo"
+    "other"
   ],
   "version": "v.1.0",
   "version_date": "2026-08-12",
-  "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
+  "requirements": "Not specified",
   "size": 26950205,
-  "status": "Verified",
-  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/045960cfe87155bb12f3f45903ccde83d6715cb5f4dfd9875ef09ce6e0731877.png",
-  "screenshots": [],
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1824-jailbreaker-vita.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1824-jailbreaker-vita.png"
+  ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1075-Jailbreaker.vpk",
       "recommended": true
     },
@@ -30,5 +32,10 @@
       "name": "Repositorio",
       "url": "https://github.com"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "1075",
+  "source_url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1075-Jailbreaker.vpk",
+  "release_page": "",
+  "updated_at": "2026-08-13T13:46:07.848122+00:00"
 }

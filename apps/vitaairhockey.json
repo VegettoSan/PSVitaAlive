@@ -3,25 +3,27 @@
   "title_id": "VAIH00001",
   "name": "vitaAirHockey",
   "description": "Air Hockey game for PSVITA.",
-  "long_description": "Air Hockey/Pong game for PSVITA/PSTV.",
+  "long_description": "Air Hockey/Pong game for PSVITA/PSTV.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
   "author_ids": [
     "lagaipag"
   ],
   "category_id": "games",
   "subcategory_ids": [
-    "arcade"
+    "other"
   ],
   "version": "v.0.2",
   "version_date": "2026-08-12",
-  "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
+  "requirements": "Not specified",
   "size": 177514,
-  "status": "Verified",
-  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/869d62fbd6c374d3b18f7fc17b4c915552b270f20cb38ded02e300e0199f4553.png",
-  "screenshots": [],
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1473-vitaairhockey.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1473-vitaairhockey.png"
+  ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/30-vitaAirHockey.vpk",
       "recommended": true
     },
@@ -30,5 +32,10 @@
       "name": "Repositorio",
       "url": "https://github.com/LaGaipaG/vitaAirHockey"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "30",
+  "source_url": "https://github.com/LaGaipaG/vitaAirHockey",
+  "release_page": "",
+  "updated_at": "2026-08-13T13:46:08.020163+00:00"
 }

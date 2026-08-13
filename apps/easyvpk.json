@@ -2,47 +2,50 @@
   "id": "easyvpk",
   "title_id": "ESVPK0009",
   "name": "EasyVPK",
-  "description": "A lightweighted homebrew downloader that uses VitaDB as source.",
+  "description": "Homebrew downloader linked to VitaDB.",
   "long_description": "A lightweighted homebrew downloader that uses VitaDB as source.",
   "author_ids": [
-    "electric",
-    "then00p"
+    "electric"
   ],
-  "category_id": "utilities",
+  "category_id": "games",
   "subcategory_ids": [
-    "installer"
+    "other"
   ],
   "version": "v.2.1.0",
   "version_date": "2021-08-15",
-  "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
+  "requirements": "Not specified",
   "size": 2906433,
-  "status": "Verified",
-  "icon": "https://robin994.github.io/NeoVitaDB-Catalog/icons/0558-easyvpk.png",
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/32f796262168fc75701939a242155bbddc17cb957728bee0b2410323d899c946.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/d71f98e78b3f9e2f0d171c8f7f5b05583e1d9617dc7bd1dc64eecec30fefb3e9.png",
-    "screenshots/d71f98e78b3f9e2f0d171c8f7f5b05583e1d9617dc7bd1dc64eecec30fefb3e9.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/d71f98e78b3f9e2f0d171c8f7f5b05583e1d9617dc7bd1dc64eecec30fefb3e9.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/Electric1447/EasyVPK/releases/download/v2.1.0/easyvpk.vpk",
       "recommended": true
-    },
-    {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/Electric1447/EasyVPK"
-    },
-    {
-      "type": "Other",
-      "name": "Release",
-      "url": "https://github.com/Electric1447/EasyVPK/releases/tag/v2.1.0"
     },
     {
       "type": "Official Website",
       "name": "VitaDBtoo Release Page",
       "url": "https://github.com/Electric1447/EasyVPK/releases"
+    },
+    {
+      "type": "Official Website",
+      "name": "NeoVitaDB Release Page",
+      "url": "https://github.com/Electric1447/EasyVPK/releases/tag/v2.1.0"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/Electric1447/EasyVPK"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "558",
+  "source_url": "https://github.com/Electric1447/EasyVPK",
+  "release_page": "https://github.com/Electric1447/EasyVPK/releases",
+  "updated_at": "2026-08-13T13:46:07.915046+00:00"
 }

@@ -2,48 +2,32 @@
   "id": "openmw-vita",
   "title_id": "OMWV00001",
   "name": "OpenMW Vita",
-  "description": "OpenMW for Vita is a native port of the open-source Morrowind engine, built on vitaGL.",
+  "description": "Port of Morrowind for PSVita.",
   "long_description": "OpenMW for Vita is a native port of the open-source Morrowind engine, built on vitaGL. Runs the base game plus the Tribunal and Bloodmoon expansions through a custom GLSL pipeline. Dynamic fog scales draw distance on the fly to hold the target framerate, and both controller and front touchscreen are fully supported. Requires game data from a legally acquired copy of The Elder Scrolls III: Morrowind.",
   "author_ids": [
     "kingtorro"
   ],
-  "category_id": "ports",
+  "category_id": "games",
   "subcategory_ids": [
-    "engine-port"
+    "other"
   ],
   "version": "v2.1.1",
   "version_date": "2026-08-07",
   "requirements": "- libshacccg.suprx\n- Game Data Files: PC",
   "size": 168369624,
-  "status": "Verified",
-  "icon": "https://robin994.github.io/NeoVitaDB-Catalog/icons/1390-openmw-vita.png",
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1390-openmw-vita.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/7ee6fd95e0000c823930ff8cd0b566818833d78a8d360682e9d0d45bf39109f2.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/da9449df2bb712c5e1b6081925b259811ce36bd78d6f5dabbb5f40ef5a4cef86.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/814f32e8bec19e5f0b16e168353d1bd843328ede5d12d3d0ec3b6975f30266db.png",
-    "screenshots/7ee6fd95e0000c823930ff8cd0b566818833d78a8d360682e9d0d45bf39109f2.png;screenshots/da9449df2bb712c5e1b6081925b259811ce36bd78d6f5dabbb5f40ef5a4cef86.png;screenshots/814f32e8bec19e5f0b16e168353d1bd843328ede5d12d3d0ec3b6975f30266db.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/814f32e8bec19e5f0b16e168353d1bd843328ede5d12d3d0ec3b6975f30266db.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
-      "url": "https://github.com/TheLostPantheon/openmw/releases/download/v2.1/openmw.vpk",
-      "recommended": true
-    },
-    {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/TheLostPantheon/openmw"
-    },
-    {
-      "type": "Other",
-      "name": "Release",
-      "url": "https://github.com/TheLostPantheon/openmw/releases/tag/v2.1"
-    },
-    {
-      "type": "Download",
       "name": "VitaDBtoo VPK",
-      "url": "https://github.com/TheLostPantheon/openmw/releases/download/v2.1.1/openmw.vpk"
+      "url": "https://github.com/TheLostPantheon/openmw/releases/download/v2.1.1/openmw.vpk",
+      "recommended": true
     },
     {
       "type": "Download",
@@ -59,6 +43,16 @@
       "type": "Official Website",
       "name": "NeoVitaDB Release Page",
       "url": "https://github.com/TheLostPantheon/openmw/releases/tag/v2.1.1"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/TheLostPantheon/openmw"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "1390",
+  "source_url": "https://github.com/TheLostPantheon/openmw",
+  "release_page": "https://github.com/TheLostPantheon/openmw/releases",
+  "updated_at": "2026-08-13T13:46:07.700218+00:00"
 }

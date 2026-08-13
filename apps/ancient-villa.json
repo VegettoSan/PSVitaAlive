@@ -3,30 +3,29 @@
   "title_id": "VILA69420",
   "name": "Ancient Villa",
   "description": "3D puzzle/exploration game for PSVITA.",
-  "long_description": "A famous archaeologist and her penguin companion went to a medieval castle-villa to inspect it in all details. Three months have already passed yet we have not received any news from her. Will she return with new discoveries?",
+  "long_description": "A famous archaeologist and her penguin companion went to a medieval castle-villa to inspect it in all details. Three months have already passed yet we have not received any news from her. Will she return with new discoveries?\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
   "author_ids": [
     "cojam"
   ],
   "category_id": "games",
   "subcategory_ids": [
-    "puzzle"
+    "other"
   ],
   "version": "v.1.0",
   "version_date": "2026-08-12",
-  "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
+  "requirements": "Not specified",
   "size": 44141255,
-  "status": "Verified",
-  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/fc43c31d18211f414b36f2a8b64f212b1dc3ed22932d915edbce46eb20315fc2.png",
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1901-ancient-villa.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/2039858f34641d98de831e34ee8e3df902699838f97a5a002cad2d313b74b849.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/b5fd7f9f59148487f0ec83cb8a4174a4b77fe4f86b987ae3aae663874db16b25.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/9adaf8099eca21d3f6896a9dac82d9ca64ee18f3a84ee8c35db6ae0940acf461.png",
-    "screenshots/2039858f34641d98de831e34ee8e3df902699838f97a5a002cad2d313b74b849.png;screenshots/b5fd7f9f59148487f0ec83cb8a4174a4b77fe4f86b987ae3aae663874db16b25.png;screenshots/9adaf8099eca21d3f6896a9dac82d9ca64ee18f3a84ee8c35db6ae0940acf461.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/9adaf8099eca21d3f6896a9dac82d9ca64ee18f3a84ee8c35db6ae0940acf461.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1213-ancient_villa.vpk",
       "recommended": true
     },
@@ -35,5 +34,10 @@
       "name": "Repositorio",
       "url": "https://github.com"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "1213",
+  "source_url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1213-ancient_villa.vpk",
+  "release_page": "",
+  "updated_at": "2026-08-13T13:46:07.799436+00:00"
 }

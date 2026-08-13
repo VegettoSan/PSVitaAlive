@@ -7,33 +7,40 @@
   "author_ids": [
     "skgleba"
   ],
-  "category_id": "system",
+  "category_id": "games",
   "subcategory_ids": [
-    "firmware-tools"
+    "other"
   ],
   "version": "v.1.2.3",
   "version_date": "2026-08-06",
-  "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
+  "requirements": "Not specified",
   "size": 2144931,
-  "status": "Archive",
-  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/90ef286f1d18909e0d57b3147fb7ec8753e90b65f634cc9423485c5cde6b6e85.png",
-  "screenshots": [],
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/90ef286f1d18909e0d57b3147fb7ec8753e90b65f634cc9423485c5cde6b6e85.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/90ef286f1d18909e0d57b3147fb7ec8753e90b65f634cc9423485c5cde6b6e85.png"
+  ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/SKGleba/VitaDeploy/releases/download/v1.2.3/VitaDeploy.vpk",
       "recommended": true
+    },
+    {
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
+      "url": "https://github.com/SKGleba/VitaDeploy/releases"
     },
     {
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/SKGleba/VitaDeploy"
-    },
-    {
-      "type": "Other",
-      "name": "Release",
-      "url": "https://github.com/SKGleba/VitaDeploy/releases"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "1465",
+  "source_url": "https://github.com/SKGleba/VitaDeploy",
+  "release_page": "https://github.com/SKGleba/VitaDeploy/releases",
+  "updated_at": "2026-08-13T13:46:07.696939+00:00"
 }

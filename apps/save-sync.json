@@ -2,43 +2,31 @@
   "id": "save-sync",
   "title_id": "SAVSYNC01",
   "name": "Save Sync",
-  "description": "Save Sync backs up PS Vita save data to a zip and uploads it to your own server.",
+  "description": "Self-hosted manual cloud save sync for PSVita.",
   "long_description": "Save Sync backs up PS Vita save data to a zip and uploads it to your own server. Download and restore on another device to keep saves in sync. Works with any number of Vitas and PSTVs sharing one server.\nThe server can be created with the prebuilt docker image.",
   "author_ids": [
-    "claude-ai",
     "iamcco"
   ],
-  "category_id": "utilities",
+  "category_id": "games",
   "subcategory_ids": [
-    "installer"
+    "other"
   ],
-  "version": "v0.1.4",
+  "version": "v.0.1.4",
   "version_date": "2026-06-27",
-  "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
+  "requirements": "Not specified",
   "size": 7664469,
   "status": "Legacy",
-  "icon": "https://robin994.github.io/NeoVitaDB-Catalog/icons/1418-save-sync.png",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/83c69b7a7af19414b9ef23122b3eef46cb87e27b72c95e3689f3708595ba7fd4.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/5a2d0b34f3e30446bc21588eebe454af5e38a31468db34804c12f13bdc0903cd.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/2331d985b815c82cba96947a84ac940f387b081189ff91eeab03c904928f84fd.png",
-    "screenshots/5a2d0b34f3e30446bc21588eebe454af5e38a31468db34804c12f13bdc0903cd.png;screenshots/2331d985b815c82cba96947a84ac940f387b081189ff91eeab03c904928f84fd.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/2331d985b815c82cba96947a84ac940f387b081189ff91eeab03c904928f84fd.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/unveroleone/save-sync/releases/download/v0.1.4/vita-save-cloud.vpk",
       "recommended": true
-    },
-    {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/unveroleone/save-sync"
-    },
-    {
-      "type": "Other",
-      "name": "Release",
-      "url": "https://github.com/unveroleone/save-sync/releases/tag/v0.1.4"
     },
     {
       "type": "Official Website",
@@ -46,9 +34,19 @@
       "url": "https://github.com/unveroleone/vita-save-sync/releases"
     },
     {
+      "type": "Official Website",
+      "name": "NeoVitaDB Release Page",
+      "url": "https://github.com/unveroleone/save-sync/releases/tag/v0.1.4"
+    },
+    {
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/unveroleone/vita-save-sync"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "1418",
+  "source_url": "https://github.com/unveroleone/vita-save-sync",
+  "release_page": "https://github.com/unveroleone/vita-save-sync/releases",
+  "updated_at": "2026-08-13T13:46:07.706519+00:00"
 }

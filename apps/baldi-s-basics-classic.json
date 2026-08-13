@@ -3,30 +3,29 @@
   "title_id": "BALD14030",
   "name": "Baldi's Basics Classic",
   "description": "Port of Baldi's Basics Classics for PSVITA.",
-  "long_description": "Inspired by creepy/bad edutainment games from the 90s, (Sonic's Schoolhouse, I.M. Meen, 3D Dinosaur Adventure: Save the Dinosaurs), Baldi's Basics is a meta-horror game that's really weird, with no real educational value to be found. Collect all 7 of the notebooks and escape the school, all while avoiding Baldi. Baldi has many friends in the school that will slow down your progress and put you at risk of being caught, so learn how each character works and how you can avoid their attention. Find and use items to your advantage. Oh, and finally, try not to get the quiz answers wrong... Each wrong answer makes Baldi angrier...",
+  "long_description": "Inspired by creepy/bad edutainment games from the 90s, (Sonic's Schoolhouse, I.M. Meen, 3D Dinosaur Adventure: Save the Dinosaurs), Baldi's Basics is a meta-horror game that's really weird, with no real educational value to be found. Collect all 7 of the notebooks and escape the school, all while avoiding Baldi. Baldi has many friends in the school that will slow down your progress and put you at risk of being caught, so learn how each character works and how you can avoid their attention. Find and use items to your advantage. Oh, and finally, try not to get the quiz answers wrong... Each wrong answer makes Baldi angrier...\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
   "author_ids": [
     "hatoving"
   ],
-  "category_id": "ports",
+  "category_id": "games",
   "subcategory_ids": [
-    "adventure"
+    "other"
   ],
   "version": "v.1.4.3",
   "version_date": "2026-08-12",
-  "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
+  "requirements": "Not specified",
   "size": 51910042,
-  "status": "Verified",
-  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/2bb6dd9553d0c45be690c70db2e73d1891a88294b3ac7b2689b17782b876c575.png",
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1688-baldi-s-basics-classic.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/b2e25540b7bcfd71a830f191c44be2901ef6bc96378c88b9744406239ea2b646.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/657aa53d18ebaf27c20f09169503705a38dbfb1198c8628dcf69d48cf9aba033.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/bc7b005cd45d89d90ec4327579b9d633b3a777ee6b75c9159a7f9ab0f7c44284.png",
-    "screenshots/b2e25540b7bcfd71a830f191c44be2901ef6bc96378c88b9744406239ea2b646.png;screenshots/657aa53d18ebaf27c20f09169503705a38dbfb1198c8628dcf69d48cf9aba033.png;screenshots/bc7b005cd45d89d90ec4327579b9d633b3a777ee6b75c9159a7f9ab0f7c44284.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/bc7b005cd45d89d90ec4327579b9d633b3a777ee6b75c9159a7f9ab0f7c44284.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/573-BaldisBasics.vpk",
       "recommended": true
     },
@@ -35,5 +34,10 @@
       "name": "Repositorio",
       "url": "https://github.com"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "573",
+  "source_url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/573-BaldisBasics.vpk",
+  "release_page": "",
+  "updated_at": "2026-08-13T13:46:07.948944+00:00"
 }

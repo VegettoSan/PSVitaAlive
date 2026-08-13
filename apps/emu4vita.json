@@ -2,49 +2,33 @@
   "id": "emu4vita",
   "title_id": "EMU4VPLUS",
   "name": "Emu4Vita++",
-  "description": "A frontend for libretro cores for PSVITA.",
+  "description": "Libretro frontend for PSVITA.",
   "long_description": "A frontend for libretro cores for PSVITA.",
   "author_ids": [
     "noword"
   ],
-  "category_id": "ports",
+  "category_id": "games",
   "subcategory_ids": [
     "other"
   ],
   "version": "v0.78",
   "version_date": "2026-08-08",
-  "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
+  "requirements": "Not specified",
   "size": 197044944,
-  "status": "Verified",
-  "icon": "https://robin994.github.io/NeoVitaDB-Catalog/icons/1260-emu4vita.png",
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1260-emu4vita.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/8790c75058b59ea3132a4a2859f3f632d603d0560d86fa0bfe70febd627e4074.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/e391459bbb223b475ec86248af0ffac4e8e16d290872e36021afea82e474969d.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/76a1caf60c53400c8aeb28dcb4d4adb9105fe573c020bb1f71a9c476e9dcadb6.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/5e0b319ebb55c9a86340aaa74efe25fe7d89d6d101527298a2c2a21ea710c071.png",
-    "screenshots/8790c75058b59ea3132a4a2859f3f632d603d0560d86fa0bfe70febd627e4074.png;screenshots/e391459bbb223b475ec86248af0ffac4e8e16d290872e36021afea82e474969d.png;screenshots/76a1caf60c53400c8aeb28dcb4d4adb9105fe573c020bb1f71a9c476e9dcadb6.png;screenshots/5e0b319ebb55c9a86340aaa74efe25fe7d89d6d101527298a2c2a21ea710c071.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/5e0b319ebb55c9a86340aaa74efe25fe7d89d6d101527298a2c2a21ea710c071.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
-      "url": "https://github.com/noword/Emu4VitaPlus/releases/download/v0.77/Emu4VitaPlus_v0.77.vpk",
-      "recommended": true
-    },
-    {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/noword/Emu4VitaPlus"
-    },
-    {
-      "type": "Other",
-      "name": "Release",
-      "url": "https://github.com/noword/Emu4VitaPlus/releases/tag/v0.77"
-    },
-    {
-      "type": "Download",
       "name": "VitaDBtoo VPK",
-      "url": "https://github.com/noword/Emu4VitaPlus/releases/download/v0.78/Emu4VitaPlus_v0.78.vpk"
+      "url": "https://github.com/noword/Emu4VitaPlus/releases/download/v0.78/Emu4VitaPlus_v0.78.vpk",
+      "recommended": true
     },
     {
       "type": "Official Website",
@@ -55,6 +39,16 @@
       "type": "Official Website",
       "name": "NeoVitaDB Release Page",
       "url": "https://github.com/noword/Emu4VitaPlus/releases/tag/v0.78"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/noword/Emu4VitaPlus"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "1260",
+  "source_url": "https://github.com/noword/Emu4VitaPlus",
+  "release_page": "https://github.com/noword/Emu4VitaPlus/releases",
+  "updated_at": "2026-08-13T13:46:07.706610+00:00"
 }

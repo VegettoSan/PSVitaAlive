@@ -7,7 +7,7 @@
   "author_ids": [
     "usineur"
   ],
-  "category_id": "ports",
+  "category_id": "games",
   "subcategory_ids": [
     "other"
   ],
@@ -15,33 +15,37 @@
   "version_date": "2025-12-05",
   "requirements": "- libshacccg.suprx\n- kubridge.skprx\n- Game Data Files: Android",
   "size": 1758045,
-  "status": "Verified",
-  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/c776ae25392dafb9db0ba78d98bdd355c593b7b3d75820b86b1ce55a098348ac.png",
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/c776ae25392dafb9db0ba78d98bdd355c593b7b3d75820b86b1ce55a098348ac.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/44619f3839d5a4fcd023643b7240de6f74ec9b3c3dc1ee688014ae8595617ec6.png",
-    "screenshots/44619f3839d5a4fcd023643b7240de6f74ec9b3c3dc1ee688014ae8595617ec6.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/44619f3839d5a4fcd023643b7240de6f74ec9b3c3dc1ee688014ae8595617ec6.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/usineur/pop2-vita/releases/download/v1.3/pop2.vpk",
       "recommended": true
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/usineur/pop2-vita"
-    },
-    {
-      "type": "Other",
-      "name": "Release",
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
       "url": "https://github.com/usineur/pop2-vita/releases"
     },
     {
       "type": "Official Website",
       "name": "NeoVitaDB Release Page",
       "url": "https://github.com/usineur/pop2-vita/releases/tag/v1.3"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/usineur/pop2-vita"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "1347",
+  "source_url": "https://github.com/usineur/pop2-vita",
+  "release_page": "https://github.com/usineur/pop2-vita/releases",
+  "updated_at": "2026-08-13T13:46:07.739524+00:00"
 }

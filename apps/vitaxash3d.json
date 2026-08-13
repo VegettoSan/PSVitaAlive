@@ -2,51 +2,45 @@
   "id": "vitaxash3d",
   "title_id": "XASH00001",
   "name": "vitaXash3D",
-  "description": "Xash3D is an open source re-creation of the GoldSrc engine, a modified Quake Engine running Half-Life, Counter Strike and Team Fortress.",
+  "description": "Xash3D port for PSVITA.",
   "long_description": "Xash3D is an open source re-creation of the GoldSrc engine, a modified Quake Engine running Half-Life, Counter Strike and Team Fortress.\nAt the moment vitaXash3D is capable of running Half Life, Counter Strike and their mods.",
   "author_ids": [
     "fgsfds"
   ],
-  "category_id": "ports",
+  "category_id": "games",
   "subcategory_ids": [
-    "fps"
+    "other"
   ],
   "version": "v.4 fix",
   "version_date": "2018-08-01",
   "requirements": "- Game Data Files: PC",
   "size": 1794506,
-  "status": "Verified",
-  "icon": "https://robin994.github.io/NeoVitaDB-Catalog/icons/0365-vitaxash3d.png",
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/fcf258922f702bebaeca657dbeac153377c1716326fdeb9fce2ce7c369d0bcf0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/df0d1060f87c47ac5018324b4b84269a31ce88150375bc832fbefe948151c287.png",
-    "screenshots/df0d1060f87c47ac5018324b4b84269a31ce88150375bc832fbefe948151c287.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/df0d1060f87c47ac5018324b4b84269a31ce88150375bc832fbefe948151c287.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
-      "url": "https://github.com/fgsfdsfgs/vitaXash3D/releases/download/mpfix/vitaXash3D-mpfix.zip",
-      "recommended": true
-    },
-    {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/fgsfdsfgs/vitaXash3D"
-    },
-    {
-      "type": "Other",
-      "name": "Release",
-      "url": "https://github.com/fgsfdsfgs/vitaXash3D/releases/tag/mpfix"
-    },
-    {
-      "type": "Download",
       "name": "VitaDBtoo VPK",
-      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/365-vitaXash3D.vpk"
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/365-vitaXash3D.vpk",
+      "recommended": true
     },
     {
       "type": "Official Website",
       "name": "VitaDBtoo Release Page",
       "url": "https://github.com/fgsfdsfgs/vitaXash3D/releases/latest"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/fgsfdsfgs/vitaXash3D"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "365",
+  "source_url": "https://github.com/fgsfdsfgs/vitaXash3D",
+  "release_page": "https://github.com/fgsfdsfgs/vitaXash3D/releases/latest",
+  "updated_at": "2026-08-13T13:46:07.989922+00:00"
 }

@@ -3,43 +3,47 @@
   "title_id": "RTCW00001",
   "name": "vitaRTCW",
   "description": "Port of RTCW for PSVITA/PSTV.",
-  "long_description": "A port of Return to Castle Wolfenstein for PSVITA/PSTV based on iortcw.\nWorld War II rages and nations fall. SS head Himmler has Hitler's full backing to twist science and the occult into an army capable of annihilating the Allies once and for all. Battling alone, you're on an intense mission to pierce the black heart of the Third Reich and stop Himmler -- or die trying. Fighting in advanced team-based multiplayer mode, you'll wage your own WWII in an all-out Axis vs. Allies contest for frontline domination.\nPowered by the Quake III Arena engine, the Wolfenstein universe explodes with the kind of epic environments, A.I., firepower and cinematic effects that only a game created by true masters can deliver. The dark reich's closing in. The time to act is now. Evil prevails when good men do nothing.",
+  "long_description": "A port of Return to Castle Wolfenstein for PSVITA/PSTV based on iortcw.\nWorld War II rages and nations fall. SS head Himmler has Hitler's full backing to twist science and the occult into an army capable of annihilating the Allies once and for all. Battling alone, you're on an intense mission to pierce the black heart of the Third Reich and stop Himmler -- or die trying. Fighting in advanced team-based multiplayer mode, you'll wage your own WWII in an all-out Axis vs. Allies contest for frontline domination.\nPowered by the Quake III Arena engine, the Wolfenstein universe explodes with the kind of epic environments, A.I., firepower and cinematic effects that only a game created by true masters can deliver. The dark reich's closing in. The time to act is now. Evil prevails when good men do nothing.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
   "author_ids": [
     "rinnegatamante"
   ],
-  "category_id": "ports",
+  "category_id": "games",
   "subcategory_ids": [
-    "fps"
+    "other"
   ],
   "version": "v.0.9",
   "version_date": "2026-08-12",
   "requirements": "- libshacccg.suprx\n- Game Data Files: PC Steam",
   "size": 4214703,
-  "status": "Verified",
-  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/575c5f248bc6045548d13683e1846f893901a07b68bf80494d201523c20c079a.png",
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1635-vitartcw.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/e4f93f9f7c9ddd8f04c03baac7cdc5f4810bb14640b454aefcd06ec8cb428891.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/7f68d41a440ba88504d275e3925ae46a0e814c92c1ed8d41219fa9c03e175970.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/376c24ee338976f8811c348f295afb5a033c3ad08ceee9be9fe1b5da0c76d033.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/2212a12cea50a1ae8cae935cd0181801a38b7c83543db0e3482067bcd7f7bb6a.png",
-    "screenshots/e4f93f9f7c9ddd8f04c03baac7cdc5f4810bb14640b454aefcd06ec8cb428891.png;screenshots/7f68d41a440ba88504d275e3925ae46a0e814c92c1ed8d41219fa9c03e175970.png;screenshots/376c24ee338976f8811c348f295afb5a033c3ad08ceee9be9fe1b5da0c76d033.png;screenshots/2212a12cea50a1ae8cae935cd0181801a38b7c83543db0e3482067bcd7f7bb6a.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/2212a12cea50a1ae8cae935cd0181801a38b7c83543db0e3482067bcd7f7bb6a.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/459-vitaRTCW.vpk",
       "recommended": true
+    },
+    {
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
+      "url": "https://www.psx-place.com/threads/release-vitartcw-return-to-castle-wolfenstein-port-for-psvita-pstv.34575/"
     },
     {
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/Rinnegatamante/vitaRTCW/"
-    },
-    {
-      "type": "Other",
-      "name": "Release",
-      "url": "https://www.psx-place.com/threads/release-vitartcw-return-to-castle-wolfenstein-port-for-psvita-pstv.34575/"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "459",
+  "source_url": "https://github.com/Rinnegatamante/vitaRTCW/",
+  "release_page": "https://www.psx-place.com/threads/release-vitartcw-return-to-castle-wolfenstein-port-for-psvita-pstv.34575/",
+  "updated_at": "2026-08-13T13:46:07.716306+00:00"
 }

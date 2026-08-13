@@ -2,7 +2,7 @@
   "id": "picoloop",
   "title_id": "PICOLOOP1",
   "name": "Picoloop",
-  "description": "Picoloop is a synth and a stepsequencer (a clone of the famous nanoloop).",
+  "description": "Synth and stepsequencer for PSVITA.",
   "long_description": "Picoloop is a synth and a stepsequencer (a clone of the famous nanoloop). The step sequencer play 4 tracks simultaneously, by default each track are 16 steps long, you can set the track to be up to 128 steps. Each track has a synthengine which can be a Virtual Analog, a Drum Synth, a FM synth. Each of the step can be edited on the 4 tracks. So for example, you can set a C4 note on step 0, nothing on step 1 and 2, then a D+5 on step 3 until the step 15.\n\nA pattern of 16 steps is played repeatedly while these notes can be edited in various respects like volume, pitch, filter, lfo etc. All parameters are set step-wise, so you can make huge variation of sound on the same pattern. Each channel's patterns can be saved to file slots and are then available for new combinations. Finally, saved patterns can be arranged in a song structure.",
   "author_ids": [
     "yoyz"
@@ -11,34 +11,21 @@
   "subcategory_ids": [
     "other"
   ],
-  "version": "picoloop-0.77b",
-  "version_date": "2017-04-21",
-  "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
-  "size": 12429361,
-  "status": "Verified",
-  "icon": "https://robin994.github.io/NeoVitaDB-Catalog/icons/0191-picoloop.png",
-  "screenshots": [],
+  "version": "v.0.77a",
+  "version_date": "2017-04-17",
+  "requirements": "Not specified",
+  "size": 6826055,
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/859f7b23d9e05b3226de4a9d92c0caced0b1d4e7276eefaf47d98dd52b940a0e.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/859f7b23d9e05b3226de4a9d92c0caced0b1d4e7276eefaf47d98dd52b940a0e.png"
+  ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
-      "url": "https://github.com/yoyz/picoloop/releases/download/picoloop-0.77b/picoloop-20170421-0.77b-pc.zip",
-      "recommended": true
-    },
-    {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/yoyz/picoloop"
-    },
-    {
-      "type": "Other",
-      "name": "Release",
-      "url": "https://github.com/yoyz/picoloop/releases/tag/picoloop-0.77b"
-    },
-    {
-      "type": "Download",
       "name": "VitaDBtoo VPK",
-      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/191-picoloop.vpk"
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/191-picoloop.vpk",
+      "recommended": true
     },
     {
       "type": "Download",
@@ -49,6 +36,16 @@
       "type": "Official Website",
       "name": "NeoVitaDB Release Page",
       "url": "https://github.com/yoyz/picoloop/releases/tag/picoloop-0.77a"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/yoyz/picoloop"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "191",
+  "source_url": "https://github.com/yoyz/picoloop",
+  "release_page": "",
+  "updated_at": "2026-08-13T13:46:08.008825+00:00"
 }

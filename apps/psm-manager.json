@@ -7,38 +7,45 @@
   "author_ids": [
     "yoti"
   ],
-  "category_id": "system",
+  "category_id": "games",
   "subcategory_ids": [
-    "account"
+    "other"
   ],
   "version": "v2.1",
   "version_date": "2019-12-03",
-  "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
+  "requirements": "Not specified",
   "size": 261619,
-  "status": "Verified",
-  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/b96a69559da726f539f0d9816b6d0f4a6f0e542749e6c99a20b57886695b7cbb.png",
-  "screenshots": [],
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/0500-psm-manager.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/0500-psm-manager.png"
+  ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/Yoti/psv_npdrmfix/releases/download/v2.1/PSM_Manager.vpk",
       "recommended": true
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/Yoti/psv_npdrmfix"
-    },
-    {
-      "type": "Other",
-      "name": "Release",
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
       "url": "https://github.com/Yoti/psv_npdrmfix/releases"
     },
     {
       "type": "Official Website",
       "name": "NeoVitaDB Release Page",
       "url": "https://github.com/Yoti/psv_npdrmfix/releases/tag/v2.1"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/Yoti/psv_npdrmfix"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "500",
+  "source_url": "https://github.com/Yoti/psv_npdrmfix",
+  "release_page": "https://github.com/Yoti/psv_npdrmfix/releases",
+  "updated_at": "2026-08-13T13:46:07.966422+00:00"
 }

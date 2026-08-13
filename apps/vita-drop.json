@@ -2,47 +2,51 @@
   "id": "vita-drop",
   "title_id": "VDRP00001",
   "name": "Vita Drop",
-  "description": "VitaDrop transforms your PS Vita into a wireless file server.",
+  "description": "Wireless file server for PSVita.",
   "long_description": "VitaDrop transforms your PS Vita into a wireless file server. Browse, upload, download, and manage your entire Vita filesystem from any device with a web browser. No USB cables, no FTP clients, no hassle.",
   "author_ids": [
-    "ibrahim-dogan",
-    "claude-ai"
+    "claude-ai",
+    "ibrahim-dogan"
   ],
-  "category_id": "networking",
+  "category_id": "games",
   "subcategory_ids": [
-    "ftp"
+    "other"
   ],
   "version": "v.1.0.0",
   "version_date": "2026-04-12",
-  "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
+  "requirements": "Not specified",
   "size": 324433,
   "status": "Legacy",
-  "icon": "https://robin994.github.io/NeoVitaDB-Catalog/icons/1383-vita-drop.png",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/45f0c7927e26880bd8495d349e9e9dde9850acd9902e3d6b81b944c43827b974.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/26732f6e5704ad7d21694d4a1f596b1c4647c02dc3c4227a83832fa082ff4444.png",
-    "screenshots/26732f6e5704ad7d21694d4a1f596b1c4647c02dc3c4227a83832fa082ff4444.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/26732f6e5704ad7d21694d4a1f596b1c4647c02dc3c4227a83832fa082ff4444.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/ibrahim-dogan/vita-drop/releases/download/v1.0.0/vita_drop.vpk",
       "recommended": true
-    },
-    {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/ibrahim-dogan/vita-drop"
-    },
-    {
-      "type": "Other",
-      "name": "Release",
-      "url": "https://github.com/ibrahim-dogan/vita-drop/releases/tag/v1.0.0"
     },
     {
       "type": "Official Website",
       "name": "VitaDBtoo Release Page",
       "url": "https://github.com/ibrahim-dogan/vita-drop/releases"
+    },
+    {
+      "type": "Official Website",
+      "name": "NeoVitaDB Release Page",
+      "url": "https://github.com/ibrahim-dogan/vita-drop/releases/tag/v1.0.0"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/ibrahim-dogan/vita-drop"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "1383",
+  "source_url": "https://github.com/ibrahim-dogan/vita-drop",
+  "release_page": "https://github.com/ibrahim-dogan/vita-drop/releases",
+  "updated_at": "2026-08-13T13:46:07.725448+00:00"
 }

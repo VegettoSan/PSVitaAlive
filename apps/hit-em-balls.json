@@ -3,7 +3,7 @@
   "title_id": "HITM42069",
   "name": "Hit'em balls",
   "description": "Minigolf game for PSVITA.",
-  "long_description": "Try to get the balls into the holes with minimum hits. Freeze time on some holes to change trajectory of your ball.",
+  "long_description": "Try to get the balls into the holes with minimum hits. Freeze time on some holes to change trajectory of your ball.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
   "author_ids": [
     "cojam"
   ],
@@ -13,27 +13,26 @@
   ],
   "version": "v.0.92",
   "version_date": "2026-08-12",
-  "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
+  "requirements": "Not specified",
   "size": 80783866,
-  "status": "Verified",
-  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/71c339cb531c22b329cf8930c0b80b5b2b1bb034d3152130c4dcfa914332ee16.png",
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1888-hit-em-balls.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/2587a2101dd3bc52bf25febd186ddb792173c8604cb4885d2256cedc0575f653.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/f3cffb4b3596a420045488197692acac132fdb765605027316d771f7f15ee35d.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/d996cd75058066acc277dd0ec28b5557601caa99de9a80780cd6706756a91b38.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/6bee333142c853cda8d1a634e8f008d2cb9ee1d0ef2634a6d5e2f6f142221eeb.png",
-    "screenshots/2587a2101dd3bc52bf25febd186ddb792173c8604cb4885d2256cedc0575f653.png;screenshots/f3cffb4b3596a420045488197692acac132fdb765605027316d771f7f15ee35d.png;screenshots/d996cd75058066acc277dd0ec28b5557601caa99de9a80780cd6706756a91b38.png;screenshots/6bee333142c853cda8d1a634e8f008d2cb9ee1d0ef2634a6d5e2f6f142221eeb.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/6bee333142c853cda8d1a634e8f008d2cb9ee1d0ef2634a6d5e2f6f142221eeb.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1163-hitem.vpk",
       "recommended": true
     },
     {
-      "type": "Other",
-      "name": "Release",
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
       "url": "https://cojam.itch.io/hitemballs"
     },
     {
@@ -41,5 +40,10 @@
       "name": "Repositorio",
       "url": "https://github.com"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "1163",
+  "source_url": "https://cojam.itch.io/hitemballs",
+  "release_page": "https://cojam.itch.io/hitemballs",
+  "updated_at": "2026-08-13T13:46:07.816716+00:00"
 }

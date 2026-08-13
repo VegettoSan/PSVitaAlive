@@ -7,44 +7,48 @@
   "author_ids": [
     "hatoving"
   ],
-  "category_id": "ports",
+  "category_id": "games",
   "subcategory_ids": [
     "other"
   ],
   "version": "v.1.1",
   "version_date": "2022-08-31",
-  "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
+  "requirements": "Not specified",
   "size": 22282549,
-  "status": "Verified",
-  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/7d5c3daff8c235de31ab306cb72dc14c233b09b9fffcb8304f34df9d23369780.png",
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/7d5c3daff8c235de31ab306cb72dc14c233b09b9fffcb8304f34df9d23369780.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/686a058f18e544eb55bed4b39685f1f318bbd31102d1e81da3da0cff123460d3.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/7a0af1a7fc6e6fd7a97545d5e6847ef030ff4614afaba3e227ffd62986d8fd65.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/5731156ea88373ebbfc4e6e6224bb3bae7c3c23be5479133e9d30e51a901346e.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/74f99012cbf4898a066acab1d465cb77347d60190efb4d7e22cf701fd6566398.png",
-    "screenshots/686a058f18e544eb55bed4b39685f1f318bbd31102d1e81da3da0cff123460d3.png;screenshots/7a0af1a7fc6e6fd7a97545d5e6847ef030ff4614afaba3e227ffd62986d8fd65.png;screenshots/5731156ea88373ebbfc4e6e6224bb3bae7c3c23be5479133e9d30e51a901346e.png;screenshots/74f99012cbf4898a066acab1d465cb77347d60190efb4d7e22cf701fd6566398.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/74f99012cbf4898a066acab1d465cb77347d60190efb4d7e22cf701fd6566398.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/hatoving/zeldapicross_vita/releases/download/1.1/ZeldaPicross.vpk",
       "recommended": true
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/hatoving/zeldapicross_vita"
-    },
-    {
-      "type": "Other",
-      "name": "Release",
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
       "url": "https://github.com/hatoving/zeldapicross_vita/releases"
     },
     {
       "type": "Official Website",
       "name": "NeoVitaDB Release Page",
       "url": "https://github.com/hatoving/zeldapicross_vita/releases/tag/1.1"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/hatoving/zeldapicross_vita"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "861",
+  "source_url": "https://github.com/hatoving/zeldapicross_vita",
+  "release_page": "https://github.com/hatoving/zeldapicross_vita/releases",
+  "updated_at": "2026-08-13T13:46:07.881982+00:00"
 }

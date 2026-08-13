@@ -3,42 +3,46 @@
   "title_id": "VGLTETRIS",
   "name": "ViTetris",
   "description": "3D Tetris game for PSVITA.",
-  "long_description": "This is a custom version of tetris with 3D graphics written completely from scratch in C.\nThis was mostly a passion project to learn OpenGL and explore the idea of how feasible it would be to store the tetrominos as a 16-bit integer representation of the 4x4 grid containing its block shapes.",
+  "long_description": "This is a custom version of tetris with 3D graphics written completely from scratch in C.\nThis was mostly a passion project to learn OpenGL and explore the idea of how feasible it would be to store the tetrominos as a 16-bit integer representation of the 4x4 grid containing its block shapes.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
   "author_ids": [
     "bytelett"
   ],
   "category_id": "games",
   "subcategory_ids": [
-    "puzzle"
+    "other"
   ],
   "version": "v.1.0",
   "version_date": "2026-08-12",
   "requirements": "- libshacccg.suprx",
   "size": 1054448,
-  "status": "Verified",
-  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/3427019b04af388aebcac2e399df7a5c7a5bc7d1bc5e3e85fcd9a3dc0e301de1.png",
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1864-vitetris.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/78720fe3a0c1b57118b90355a77a3f3d8332d82bfc7f1e38b5fe0e37e5122c83.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/76c9a0ca27def3f2e3764c7fb4e676f6fae441538e7807a950b9131f58061218.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/6519bfdbe6f767720d6015fe94b2a9158239346ef5fcf51086c8abde71138105.png",
-    "screenshots/78720fe3a0c1b57118b90355a77a3f3d8332d82bfc7f1e38b5fe0e37e5122c83.png;screenshots/76c9a0ca27def3f2e3764c7fb4e676f6fae441538e7807a950b9131f58061218.png;screenshots/6519bfdbe6f767720d6015fe94b2a9158239346ef5fcf51086c8abde71138105.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/6519bfdbe6f767720d6015fe94b2a9158239346ef5fcf51086c8abde71138105.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1135-ViTetris.vpk",
       "recommended": true
+    },
+    {
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
+      "url": "https://fuhen.homebrew-contest.com/submissions/52/"
     },
     {
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/m-bartlett/vita-tetris"
-    },
-    {
-      "type": "Other",
-      "name": "Release",
-      "url": "https://fuhen.homebrew-contest.com/submissions/52/"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "1135",
+  "source_url": "https://github.com/m-bartlett/vita-tetris",
+  "release_page": "https://fuhen.homebrew-contest.com/submissions/52/",
+  "updated_at": "2026-08-13T13:46:07.826896+00:00"
 }

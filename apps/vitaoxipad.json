@@ -5,46 +5,48 @@
   "description": "App to use your PSVita as a PC controller.",
   "long_description": "VitaOxiPad is a client-server application with the ability to connect your PS Vita to your PC via WiFi as if it were a DualShock 4 with support for all keys and triggers, accelerometer, gyroscope and touchpad. Windows and Linux are supported. ViGEmBus installation is required for Windows.",
   "author_ids": [
-    "thesame",
-    "santarl",
     "saidsay-so"
   ],
-  "category_id": "utilities",
+  "category_id": "games",
   "subcategory_ids": [
     "other"
   ],
   "version": "v.1.3.0",
   "version_date": "2024-12-15",
-  "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
+  "requirements": "Not specified",
   "size": 241517,
-  "status": "Verified",
-  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/d0a25e0775320ecb1a5fdcfed8c6f395ec40d7c4171f2a2f705c0d99aceee6d9.png",
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/d0a25e0775320ecb1a5fdcfed8c6f395ec40d7c4171f2a2f705c0d99aceee6d9.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/220d87987a50c4c39709ced1ee53e7b2618be4a414949ff401f61b1616377010.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/fc7320641b4ae949f63e0742af208c7fb6c3a31f7bc2c413b3bd38233cf6b29b.png",
-    "screenshots/220d87987a50c4c39709ced1ee53e7b2618be4a414949ff401f61b1616377010.png;screenshots/fc7320641b4ae949f63e0742af208c7fb6c3a31f7bc2c413b3bd38233cf6b29b.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/fc7320641b4ae949f63e0742af208c7fb6c3a31f7bc2c413b3bd38233cf6b29b.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/DvaMishkiLapa/VitaOxiPad/releases/download/v1.3.0/VitaOxiPad.vpk",
       "recommended": true
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/DvaMishkiLapa/VitaOxiPad"
-    },
-    {
-      "type": "Other",
-      "name": "Release",
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
       "url": "https://github.com/DvaMishkiLapa/VitaOxiPad/releases"
     },
     {
       "type": "Official Website",
       "name": "NeoVitaDB Release Page",
       "url": "https://github.com/DvaMishkiLapa/VitaOxiPad/releases/tag/v1.3.0"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/DvaMishkiLapa/VitaOxiPad"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "1239",
+  "source_url": "https://github.com/DvaMishkiLapa/VitaOxiPad",
+  "release_page": "https://github.com/DvaMishkiLapa/VitaOxiPad/releases",
+  "updated_at": "2026-08-13T13:46:07.784823+00:00"
 }

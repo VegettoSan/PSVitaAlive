@@ -7,7 +7,7 @@
   "author_ids": [
     "cy33hc"
   ],
-  "category_id": "utilities",
+  "category_id": "games",
   "subcategory_ids": [
     "other"
   ],
@@ -15,33 +15,37 @@
   "version_date": "2023-01-13",
   "requirements": "- libshacccg.suprx",
   "size": 14638132,
-  "status": "Verified",
-  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/79250cc45455551a1eb9f5a4b64ef0ca8bf02e5869095a9cfebbac89b92d7b91.png",
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/79250cc45455551a1eb9f5a4b64ef0ca8bf02e5869095a9cfebbac89b92d7b91.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/99e261c60fcf8faa18bf9a7677d38e703606b0b0a4a1a820226f1dda3fc034a5.png",
-    "screenshots/99e261c60fcf8faa18bf9a7677d38e703606b0b0a4a1a820226f1dda3fc034a5.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/99e261c60fcf8faa18bf9a7677d38e703606b0b0a4a1a820226f1dda3fc034a5.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/cy33hc/vita-smb-client/releases/download/latest/smbclient.vpk",
       "recommended": true
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/cy33hc/vita-smb-client"
-    },
-    {
-      "type": "Other",
-      "name": "Release",
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
       "url": "https://github.com/cy33hc/vita-smb-client/releases"
     },
     {
       "type": "Official Website",
       "name": "NeoVitaDB Release Page",
       "url": "https://github.com/cy33hc/vita-smb-client/releases/tag/latest"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/cy33hc/vita-smb-client"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "1024",
+  "source_url": "https://github.com/cy33hc/vita-smb-client",
+  "release_page": "https://github.com/cy33hc/vita-smb-client/releases",
+  "updated_at": "2026-08-13T13:46:07.869620+00:00"
 }

@@ -2,43 +2,50 @@
   "id": "itls-enso",
   "title_id": "SKGTLSE12",
   "name": "iTLS-Enso",
-  "description": "Application that allows to add TLS 1.2 support to PSVITA/PSTV running Henkaku enso CFW.",
+  "description": "Adds TLS 1.2 to enso enabled devices.",
   "long_description": "Application that allows to add TLS 1.2 support to PSVITA/PSTV running Henkaku enso CFW.",
   "author_ids": [
     "skgleba"
   ],
-  "category_id": "system",
+  "category_id": "games",
   "subcategory_ids": [
-    "firmware-tools"
+    "other"
   ],
-  "version": "v3.2.1",
+  "version": "v.3.2.1",
   "version_date": "2023-01-17",
-  "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
+  "requirements": "Not specified",
   "size": 2873670,
-  "status": "Verified",
-  "icon": "https://robin994.github.io/NeoVitaDB-Catalog/icons/0404-itls-enso.png",
-  "screenshots": [],
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/18746b487153dc1ca3d728ce57b841b6e8faeca65a0900aa46864f73d07642c8.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/18746b487153dc1ca3d728ce57b841b6e8faeca65a0900aa46864f73d07642c8.png"
+  ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/SKGleba/iTLS-Enso/releases/download/v3.2.1/iTLS-Enso.vpk",
       "recommended": true
-    },
-    {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/SKGleba/iTLS-Enso"
-    },
-    {
-      "type": "Other",
-      "name": "Release",
-      "url": "https://github.com/SKGleba/iTLS-Enso/releases/tag/v3.2.1"
     },
     {
       "type": "Official Website",
       "name": "VitaDBtoo Release Page",
       "url": "https://github.com/SKGleba/iTLS-Enso/releases"
+    },
+    {
+      "type": "Official Website",
+      "name": "NeoVitaDB Release Page",
+      "url": "https://github.com/SKGleba/iTLS-Enso/releases/tag/v3.2.1"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/SKGleba/iTLS-Enso"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "404",
+  "source_url": "https://github.com/SKGleba/iTLS-Enso",
+  "release_page": "https://github.com/SKGleba/iTLS-Enso/releases",
+  "updated_at": "2026-08-13T13:46:07.869075+00:00"
 }

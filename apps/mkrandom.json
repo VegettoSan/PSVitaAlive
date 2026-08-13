@@ -7,41 +7,45 @@
   "author_ids": [
     "tau5"
   ],
-  "category_id": "utilities",
+  "category_id": "games",
   "subcategory_ids": [
     "other"
   ],
   "version": "v.1.00",
   "version_date": "2021-03-27",
-  "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
+  "requirements": "Not specified",
   "size": 1284846,
-  "status": "Verified",
-  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/c657bee4b3f0d3de6fe99e5bbcf6de856abe9292198f49842129d1313dca890c.png",
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/c657bee4b3f0d3de6fe99e5bbcf6de856abe9292198f49842129d1313dca890c.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/15c51a181385aa39a722fae8ce9ff76832b52c1777823c9b5eb3c01e39ff8dd7.png",
-    "screenshots/15c51a181385aa39a722fae8ce9ff76832b52c1777823c9b5eb3c01e39ff8dd7.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/15c51a181385aa39a722fae8ce9ff76832b52c1777823c9b5eb3c01e39ff8dd7.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/Tau5/mkrandom/releases/download/1.00/mkrandom.vpk",
       "recommended": true
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/Tau5/mkrandom"
-    },
-    {
-      "type": "Other",
-      "name": "Release",
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
       "url": "https://github.com/Tau5/mkrandom/releases"
     },
     {
       "type": "Official Website",
       "name": "NeoVitaDB Release Page",
       "url": "https://github.com/Tau5/mkrandom/releases/tag/1.00"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/Tau5/mkrandom"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "630",
+  "source_url": "https://github.com/Tau5/mkrandom",
+  "release_page": "https://github.com/Tau5/mkrandom/releases",
+  "updated_at": "2026-08-13T13:46:07.931048+00:00"
 }

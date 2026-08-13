@@ -3,43 +3,47 @@
   "title_id": "CBSH01599",
   "name": "Cybershot",
   "description": "Shoot'em up for PSVITA.",
-  "long_description": "A Playstation Vita Homebrew game inspired by Atari games like Spider Fighter.",
+  "long_description": "A Playstation Vita Homebrew game inspired by Atari games like Spider Fighter.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
   "author_ids": [
     "semvdh"
   ],
-  "category_id": "ports",
+  "category_id": "games",
   "subcategory_ids": [
     "other"
   ],
   "version": "v.0.1",
   "version_date": "2026-08-12",
-  "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
+  "requirements": "Not specified",
   "size": 83563,
   "status": "Legacy",
-  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/e496754ea82e6fa7e39dfd744bc37d12a3cb076bb5428746c235a5ba8b2b92c8.png",
+  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1843-cybershot.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/2419e395d0e94325219385d2aedffb8e8b5a27c5d5ce574e2165790fae52efb1.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/a4c127e04703b33999ede7fea3c57ecd9492dc4d29cd96bd531fd6dd5e6f9679.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/bd1c9430374059c51419980b7e09ea1f2ae438e870b6fce711f70be76ddee82f.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/41202179db3359fdae00717cc89b97e2aa2d328ebb2efdf135bce3d58658975b.png",
-    "screenshots/2419e395d0e94325219385d2aedffb8e8b5a27c5d5ce574e2165790fae52efb1.png;screenshots/a4c127e04703b33999ede7fea3c57ecd9492dc4d29cd96bd531fd6dd5e6f9679.png;screenshots/bd1c9430374059c51419980b7e09ea1f2ae438e870b6fce711f70be76ddee82f.png;screenshots/41202179db3359fdae00717cc89b97e2aa2d328ebb2efdf135bce3d58658975b.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/41202179db3359fdae00717cc89b97e2aa2d328ebb2efdf135bce3d58658975b.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/SemvdH/cybershot-PSVita/releases/download/v0.1/cybershot.vpk",
       "recommended": true
+    },
+    {
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
+      "url": "https://github.com/SemvdH/cybershot-PSVita/releases"
     },
     {
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/SemvdH/cybershot-PSVita"
-    },
-    {
-      "type": "Other",
-      "name": "Release",
-      "url": "https://github.com/SemvdH/cybershot-PSVita/releases"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "1108",
+  "source_url": "https://github.com/SemvdH/cybershot-PSVita",
+  "release_page": "https://github.com/SemvdH/cybershot-PSVita/releases",
+  "updated_at": "2026-08-13T13:46:07.913882+00:00"
 }

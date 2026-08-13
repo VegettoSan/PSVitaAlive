@@ -3,5 +3,22 @@
   "name": "Primer0 & Ruben_Wolfe",
   "avatar": "",
   "bio": "",
-  "links": []
+  "links": [
+    {
+      "type": "Download",
+      "name": "VitaDBtoo VPK",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/91-Procedural_Planets.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
+      "url": "http://wololo.net/talk/viewtopic.php?p=406861"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://drive.google.com/file/d/0B4QqovA_rXzGT3I3ZUdpTnJtc2s/view"
+    }
+  ]
 }

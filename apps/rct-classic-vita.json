@@ -7,44 +7,48 @@
   "author_ids": [
     "rinnegatamante"
   ],
-  "category_id": "ports",
+  "category_id": "games",
   "subcategory_ids": [
-    "simulation"
+    "other"
   ],
   "version": "v.1.0",
   "version_date": "2024-02-06",
   "requirements": "- libshacccg.suprx\n- libfmodstudio.suprx\n- kubridge.skprx\n- Game Data Files: Android",
   "size": 3765763,
-  "status": "Verified",
-  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/ffdb62f4e2e11a3aef9ecfae0fe7ea9ff8bd85cc11327edda66b264f85474094.png",
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/ffdb62f4e2e11a3aef9ecfae0fe7ea9ff8bd85cc11327edda66b264f85474094.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/777596a33ac47236d9c193550248da38be46ce348b50bca623d07e4a471764be.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c3fb98e47a592897a0609fb0e25997893d927fc83c36ad987c47b0a14184a377.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/07a9f7c139212699290ecef949146f6fea23065b7cabc41ba72c124ba6b9191c.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/140f49ca87e3dc5f62d940297ef43ede650883add3d97b395ef1577814ea0fee.png",
-    "screenshots/777596a33ac47236d9c193550248da38be46ce348b50bca623d07e4a471764be.png;screenshots/c3fb98e47a592897a0609fb0e25997893d927fc83c36ad987c47b0a14184a377.png;screenshots/07a9f7c139212699290ecef949146f6fea23065b7cabc41ba72c124ba6b9191c.png;screenshots/140f49ca87e3dc5f62d940297ef43ede650883add3d97b395ef1577814ea0fee.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/140f49ca87e3dc5f62d940297ef43ede650883add3d97b395ef1577814ea0fee.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/Rinnegatamante/rct-vita/releases/download/v.1.0/rct.vpk",
       "recommended": true
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/Rinnegatamante/rct-vita"
-    },
-    {
-      "type": "Other",
-      "name": "Release",
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
       "url": "https://github.com/Rinnegatamante/rct-vita/releases"
     },
     {
       "type": "Official Website",
       "name": "NeoVitaDB Release Page",
       "url": "https://github.com/Rinnegatamante/rct-vita/releases/tag/v.1.0"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/Rinnegatamante/rct-vita"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "1182",
+  "source_url": "https://github.com/Rinnegatamante/rct-vita",
+  "release_page": "https://github.com/Rinnegatamante/rct-vita/releases",
+  "updated_at": "2026-08-13T13:46:07.808843+00:00"
 }

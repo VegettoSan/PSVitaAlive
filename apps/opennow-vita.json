@@ -7,46 +7,40 @@
   "author_ids": [
     "josephinoo"
   ],
-  "category_id": "ports",
+  "category_id": "games",
   "subcategory_ids": [
     "other"
   ],
   "version": "v0.3.1",
   "version_date": "2026-08-02",
-  "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
+  "requirements": "Not specified",
   "size": 6662873,
   "status": "Legacy",
-  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/cb92c04466cb08e4794e18377cc13a54ec51c2730e9f4340c28226c172753cbb.png",
+  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1977-opennow-vita.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/88bc1777e5a861604f863529e3acb9354623b13ea4226d1370bee3cdcb0ea18d.png",
-    "screenshots/88bc1777e5a861604f863529e3acb9354623b13ea4226d1370bee3cdcb0ea18d.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/88bc1777e5a861604f863529e3acb9354623b13ea4226d1370bee3cdcb0ea18d.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
-      "url": "https://github.com/OpenCloudGaming/OpenNOW-vita/releases/download/v0.3.0/opennow-vita.vpk",
-      "recommended": true
-    },
-    {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/OpenCloudGaming/OpenNOW-vita"
-    },
-    {
-      "type": "Other",
-      "name": "Release",
-      "url": "https://github.com/OpenCloudGaming/OpenNOW-vita/releases"
-    },
-    {
-      "type": "Download",
       "name": "NeoVitaDB VPK",
-      "url": "https://github.com/OpenCloudGaming/OpenNOW-vita/releases/download/v0.3.1/opennow-vita.vpk"
+      "url": "https://github.com/OpenCloudGaming/OpenNOW-vita/releases/download/v0.3.1/opennow-vita.vpk",
+      "recommended": true
     },
     {
       "type": "Official Website",
       "name": "NeoVitaDB Release Page",
       "url": "https://github.com/OpenCloudGaming/OpenNOW-vita/releases/tag/v0.3.1"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/OpenCloudGaming/OpenNOW-vita"
     }
-  ]
+  ],
+  "source_name": "NeoVitaDB",
+  "source_id": "1977",
+  "source_url": "https://github.com/OpenCloudGaming/OpenNOW-vita",
+  "release_page": "https://github.com/OpenCloudGaming/OpenNOW-vita/releases/tag/v0.3.1",
+  "updated_at": "2026-08-13T13:46:07.698917+00:00"
 }

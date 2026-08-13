@@ -3,7 +3,7 @@
   "title_id": "WHGR00000",
   "name": "Worlds Hardest Game Vita",
   "description": "Clone of World's Hardest Game for PSVITA.",
-  "long_description": "Clone of World's Hardest Game, a popular flash game, for PSVITA/PSTV made in Unity.",
+  "long_description": "Clone of World's Hardest Game, a popular flash game, for PSVITA/PSTV made in Unity.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
   "author_ids": [
     "comet-games"
   ],
@@ -13,27 +13,34 @@
   ],
   "version": "v.01.15",
   "version_date": "2026-08-12",
-  "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
+  "requirements": "Not specified",
   "size": 43666423,
-  "status": "Verified",
-  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/b575a7041bffbcb61c9cf8ca73150d60ee529dd77f9eb2f622b3f5b00bf7ed3a.png",
-  "screenshots": [],
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1807-worlds-hardest-game-vita.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1807-worlds-hardest-game-vita.png"
+  ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/Comet-Games/Worlds-Hardest-Game-Vita/releases/download/v01.15/WHGVita.vpk",
       "recommended": true
+    },
+    {
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
+      "url": "https://github.com/Comet-Games/Worlds-Hardest-Game-Vita/releases"
     },
     {
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/Comet-Games/Worlds-Hardest-Game-Vita"
-    },
-    {
-      "type": "Other",
-      "name": "Release",
-      "url": "https://github.com/Comet-Games/Worlds-Hardest-Game-Vita/releases"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "994",
+  "source_url": "https://github.com/Comet-Games/Worlds-Hardest-Game-Vita",
+  "release_page": "https://github.com/Comet-Games/Worlds-Hardest-Game-Vita/releases",
+  "updated_at": "2026-08-13T13:46:07.876399+00:00"
 }

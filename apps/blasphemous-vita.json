@@ -7,7 +7,7 @@
   "author_ids": [
     "gl00mm"
   ],
-  "category_id": "ports",
+  "category_id": "games",
   "subcategory_ids": [
     "other"
   ],
@@ -15,25 +15,24 @@
   "version_date": "2024-06-11",
   "requirements": "- Game Data Files: PC",
   "size": 429964328,
-  "status": "Verified",
-  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/b6e9557a980f307d3db93a6685e11fe56957b1ddf74ab8cda06330f618799725.png",
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/b6e9557a980f307d3db93a6685e11fe56957b1ddf74ab8cda06330f618799725.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/3d31bf76ce6ec87ce038ed297205287ad52e3facc828b39c07419307ee444738.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/11b81378510366a256dabecaa740812d2baf1af2eaa56170e017feb62511c815.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/da6e90977b99f020c404f1ae921cb8b5490d6cecbaaf16925d366498e7eb4f13.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/12a4745d9e728ca757b5d1b3fe1d1145880f3913f9180b9b4b59b45c0839ac5b.png",
-    "screenshots/3d31bf76ce6ec87ce038ed297205287ad52e3facc828b39c07419307ee444738.png;screenshots/11b81378510366a256dabecaa740812d2baf1af2eaa56170e017feb62511c815.png;screenshots/da6e90977b99f020c404f1ae921cb8b5490d6cecbaaf16925d366498e7eb4f13.png;screenshots/12a4745d9e728ca757b5d1b3fe1d1145880f3913f9180b9b4b59b45c0839ac5b.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/12a4745d9e728ca757b5d1b3fe1d1145880f3913f9180b9b4b59b45c0839ac5b.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/gl00mm/Blasphemous_PSVITA/releases/download/Blasphemous_PSVITA-beta.1/BlasphemousVitaSTEAM.zip",
       "recommended": true
     },
     {
-      "type": "Other",
-      "name": "Release",
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
       "url": "https://github.com/gl00mm/Blasphemous_PSVITA"
     },
     {
@@ -41,5 +40,10 @@
       "name": "NeoVitaDB Release Page",
       "url": "https://github.com/gl00mm/Blasphemous_PSVITA/releases/tag/Blasphemous_PSVITA-beta.1"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "1209",
+  "source_url": "https://github.com/gl00mm/Blasphemous_PSVITA",
+  "release_page": "https://github.com/gl00mm/Blasphemous_PSVITA",
+  "updated_at": "2026-08-13T13:46:07.797238+00:00"
 }

@@ -7,41 +7,45 @@
   "author_ids": [
     "keltar"
   ],
-  "category_id": "plugins",
+  "category_id": "games",
   "subcategory_ids": [
     "other"
   ],
   "version": "v.0.1",
   "version_date": "2020-06-12",
-  "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
+  "requirements": "Not specified",
   "size": 338830,
-  "status": "Verified",
-  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/ca1547ed559c1d393301cc41a1203fbdfaac76949d7cadf5c4a6655b2d5e0fa4.png",
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/ca1547ed559c1d393301cc41a1203fbdfaac76949d7cadf5c4a6655b2d5e0fa4.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/3f02d6b6bb378c513fc37f7b7c7e736f0965e46c2990edf07c1059fd3360efb1.png",
-    "screenshots/3f02d6b6bb378c513fc37f7b7c7e736f0965e46c2990edf07c1059fd3360efb1.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/3f02d6b6bb378c513fc37f7b7c7e736f0965e46c2990edf07c1059fd3360efb1.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/keltar/ps4linkcontrols-gui/releases/download/0.1/ps4linkcontrols-gui.vpk",
       "recommended": true
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/keltar/ps4linkcontrols-gui"
-    },
-    {
-      "type": "Other",
-      "name": "Release",
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
       "url": "https://github.com/keltar/ps4linkcontrols-gui/releases"
     },
     {
       "type": "Official Website",
       "name": "NeoVitaDB Release Page",
       "url": "https://github.com/keltar/ps4linkcontrols-gui/releases/tag/0.1"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/keltar/ps4linkcontrols-gui"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "560",
+  "source_url": "https://github.com/keltar/ps4linkcontrols-gui",
+  "release_page": "https://github.com/keltar/ps4linkcontrols-gui/releases",
+  "updated_at": "2026-08-13T13:46:07.951677+00:00"
 }

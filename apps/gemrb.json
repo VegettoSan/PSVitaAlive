@@ -2,46 +2,50 @@
   "id": "gemrb",
   "title_id": "GEMRB0001",
   "name": "GemRB",
-  "description": "GemRB is a portable open-source implementation of BiowareÃ¢â‚¬â„¢s 8 Infinity Engine versions allowing to run the BaldurÃ¢â‚¬â„¢s Gate, Icewind Dale and...",
+  "description": "Port of GemRB for PSVITA/PSTV.",
   "long_description": "GemRB is a portable open-source implementation of BiowareÃ¢â‚¬â„¢s 8 Infinity Engine versions allowing to run the BaldurÃ¢â‚¬â„¢s Gate, Icewind Dale and Planescape: Torment games, their expansions and mods.",
   "author_ids": [
     "northfear"
   ],
-  "category_id": "ports",
+  "category_id": "games",
   "subcategory_ids": [
-    "engine-port"
+    "other"
   ],
   "version": "v.0.8.8-vita.7",
   "version_date": "2021-10-31",
   "requirements": "- Game Data Files: PC",
   "size": 4949129,
-  "status": "Verified",
-  "icon": "https://robin994.github.io/NeoVitaDB-Catalog/icons/0572-gemrb.png",
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/b3264249dee3a7d84cd6def058f82022de8f2ef7ad6562bd14ef11f7e701bae3.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/f747895d3bb3c0b29ceb71cec5a893c862b3398d1da66eece98404d1e537dad0.png",
-    "screenshots/f747895d3bb3c0b29ceb71cec5a893c862b3398d1da66eece98404d1e537dad0.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/f747895d3bb3c0b29ceb71cec5a893c862b3398d1da66eece98404d1e537dad0.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/Northfear/gemrb-vita/releases/download/v0.8.8-vita.7/gemrb.vpk",
       "recommended": true
-    },
-    {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/Northfear/gemrb-vita"
-    },
-    {
-      "type": "Other",
-      "name": "Release",
-      "url": "https://github.com/Northfear/gemrb-vita/releases/tag/v0.8.8-vita.7"
     },
     {
       "type": "Official Website",
       "name": "VitaDBtoo Release Page",
       "url": "https://github.com/Northfear/gemrb-vita/releases"
+    },
+    {
+      "type": "Official Website",
+      "name": "NeoVitaDB Release Page",
+      "url": "https://github.com/Northfear/gemrb-vita/releases/tag/v0.8.8-vita.7"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/Northfear/gemrb-vita"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "572",
+  "source_url": "https://github.com/Northfear/gemrb-vita",
+  "release_page": "https://github.com/Northfear/gemrb-vita/releases",
+  "updated_at": "2026-08-13T13:46:07.908086+00:00"
 }

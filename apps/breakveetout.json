@@ -5,36 +5,42 @@
   "description": "Clone of BreakOut for the PS Vita.",
   "long_description": "BreakOut / Arkanoid clone for PSVITA/PSTV.",
   "author_ids": [
-    "dal3boy",
     "ruben-wolfe"
   ],
   "category_id": "games",
   "subcategory_ids": [
-    "arcade"
+    "other"
   ],
   "version": "v.1.0",
   "version_date": "2016-07-31",
-  "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
+  "requirements": "Not specified",
   "size": 1520655,
-  "status": "Verified",
-  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/70b7c6eb0f45f93164252107a5b54b0a05df99c7bdca18437f6e80fdd56045c4.png",
-  "screenshots": [],
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/70b7c6eb0f45f93164252107a5b54b0a05df99c7bdca18437f6e80fdd56045c4.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/70b7c6eb0f45f93164252107a5b54b0a05df99c7bdca18437f6e80fdd56045c4.png"
+  ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/15-breakveetout.vpk",
       "recommended": true
+    },
+    {
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
+      "url": "https://wololo.net/talk/viewtopic.php?f=116&t=46215"
     },
     {
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/InvalidExcepti0n/BreakVeetOut"
-    },
-    {
-      "type": "Other",
-      "name": "Release",
-      "url": "https://wololo.net/talk/viewtopic.php?f=116&t=46215"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "15",
+  "source_url": "https://github.com/InvalidExcepti0n/BreakVeetOut",
+  "release_page": "https://wololo.net/talk/viewtopic.php?f=116&t=46215",
+  "updated_at": "2026-08-13T13:46:08.031344+00:00"
 }

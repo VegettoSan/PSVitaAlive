@@ -7,7 +7,7 @@
   "author_ids": [
     "m1s3ry"
   ],
-  "category_id": "modding",
+  "category_id": "games",
   "subcategory_ids": [
     "other"
   ],
@@ -15,29 +15,33 @@
   "version_date": "2022-01-20",
   "requirements": "- Game Data Files: PC",
   "size": 2859705,
-  "status": "Verified",
-  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/1a55b8557dd6bec7c083db1ef8a64b5270386cff95cbec05d992aadb691f0b7d.png",
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/0779-gato-roboto.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/392f853f030606bf0644f45491474a6461d06f86b0fdc802ac3164c7347f0ceb.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c4da18fd37dd9a1553c4795d29cceebdc58c91548f1f61936c2f28d60b159693.png",
-    "screenshots/392f853f030606bf0644f45491474a6461d06f86b0fdc802ac3164c7347f0ceb.png;screenshots/c4da18fd37dd9a1553c4795d29cceebdc58c91548f1f61936c2f28d60b159693.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c4da18fd37dd9a1553c4795d29cceebdc58c91548f1f61936c2f28d60b159693.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "NeoVitaDB VPK",
       "url": "https://github.com/m1s3ry/gato-roboto-vita/releases/download/v1.0.1/Gato_Roboto_v1.0.0.VPK",
       "recommended": true
-    },
-    {
-      "type": "Other",
-      "name": "Release",
-      "url": "https://github.com/m1s3ry/gato-roboto-vita"
     },
     {
       "type": "Official Website",
       "name": "NeoVitaDB Release Page",
       "url": "https://github.com/m1s3ry/gato-roboto-vita/releases/tag/v1.0.1"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/m1s3ry/gato-roboto-vita"
     }
-  ]
+  ],
+  "source_name": "NeoVitaDB",
+  "source_id": "779",
+  "source_url": "https://github.com/m1s3ry/gato-roboto-vita",
+  "release_page": "https://github.com/m1s3ry/gato-roboto-vita/releases/tag/v1.0.1",
+  "updated_at": "2026-08-13T13:46:07.901775+00:00"
 }

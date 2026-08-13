@@ -7,38 +7,45 @@
   "author_ids": [
     "cnsldv"
   ],
-  "category_id": "utilities",
+  "category_id": "games",
   "subcategory_ids": [
     "other"
   ],
   "version": "v.1.0",
   "version_date": "2017-05-04",
-  "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
+  "requirements": "Not specified",
   "size": 120861,
-  "status": "Verified",
-  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/370a78d711fce77199d787f2614287600ea890c3909b7c280727e5afd7c1f421.png",
-  "screenshots": [],
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/370a78d711fce77199d787f2614287600ea890c3909b7c280727e5afd7c1f421.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/370a78d711fce77199d787f2614287600ea890c3909b7c280727e5afd7c1f421.png"
+  ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/cnsldv/CardUnlock/releases/download/v1.0/CardUnlock.vpk",
       "recommended": true
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/cnsldv/CardUnlock"
-    },
-    {
-      "type": "Other",
-      "name": "Release",
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
       "url": "https://wololo.net/talk/viewtopic.php?f=116&t=48104"
     },
     {
       "type": "Official Website",
       "name": "NeoVitaDB Release Page",
       "url": "https://github.com/cnsldv/CardUnlock/releases/tag/v1.0"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/cnsldv/CardUnlock"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "249",
+  "source_url": "https://github.com/cnsldv/CardUnlock",
+  "release_page": "https://wololo.net/talk/viewtopic.php?f=116&t=48104",
+  "updated_at": "2026-08-13T13:46:08.008127+00:00"
 }

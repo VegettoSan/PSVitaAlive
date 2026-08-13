@@ -3,7 +3,7 @@
   "title_id": "GMSV00009",
   "name": "Temporary Space",
   "description": "Asteroids clone for PSVITA.",
-  "long_description": "An Asteroid clone with fancy graphics made with GameMaker.",
+  "long_description": "An Asteroid clone with fancy graphics made with GameMaker.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
   "author_ids": [
     "xanderten50"
   ],
@@ -13,20 +13,19 @@
   ],
   "version": "v.1.5.1",
   "version_date": "2026-08-12",
-  "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
+  "requirements": "Not specified",
   "size": 4733886,
-  "status": "Verified",
-  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/836e1514522ea6af13e822c49b2935ba23f1e38ee9f80147a8500a8ecd95ae2a.png",
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1680-temporary-space.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/510f4831b3c3b60b7fd2303f57f769fe58dc055f65492601a39071afdbd41081.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/fce007cfd955159a43ed1b90f6e9b2aeb50231b2cdc551ad399c2168d8060b23.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/9fa7b324a01b150da0954189f8bd769e5fb9a6546a28b1edce291595116fd5e8.png",
-    "screenshots/510f4831b3c3b60b7fd2303f57f769fe58dc055f65492601a39071afdbd41081.png;screenshots/fce007cfd955159a43ed1b90f6e9b2aeb50231b2cdc551ad399c2168d8060b23.png;screenshots/9fa7b324a01b150da0954189f8bd769e5fb9a6546a28b1edce291595116fd5e8.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/9fa7b324a01b150da0954189f8bd769e5fb9a6546a28b1edce291595116fd5e8.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/551-TemporarySpace.vpk",
       "recommended": true
     },
@@ -35,5 +34,10 @@
       "name": "Repositorio",
       "url": "https://github.com"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "551",
+  "source_url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/551-TemporarySpace.vpk",
+  "release_page": "",
+  "updated_at": "2026-08-13T13:46:07.906308+00:00"
 }

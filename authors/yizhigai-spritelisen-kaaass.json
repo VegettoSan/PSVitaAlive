@@ -3,5 +3,28 @@
   "name": "yizhigai & SpriteLisen & KAAAsS",
   "avatar": "",
   "bio": "",
-  "links": []
+  "links": [
+    {
+      "type": "Download",
+      "name": "VitaDBtoo VPK",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1402-BIOHAZARD4.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://gitee.com/Moqi01/bio4"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDBtoo VPK",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1377-dmc4.vpk",
+      "recommended": false
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://gitee.com/Moqi01/acrodea_runtime"
+    }
+  ]
 }

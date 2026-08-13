@@ -7,33 +7,40 @@
   "author_ids": [
     "iamcco"
   ],
-  "category_id": "utilities",
+  "category_id": "games",
   "subcategory_ids": [
-    "backup"
+    "other"
   ],
   "version": "v.2026.04.06",
   "version_date": "2024-04-06",
-  "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
+  "requirements": "Not specified",
   "size": 6027607,
   "status": "Legacy",
-  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/b4e60ee146b3784774457c8f1d2a7e0c88bf53b9baa90b2f9e740dabdf681b9b.png",
-  "screenshots": [],
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/b4e60ee146b3784774457c8f1d2a7e0c88bf53b9baa90b2f9e740dabdf681b9b.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/b4e60ee146b3784774457c8f1d2a7e0c88bf53b9baa90b2f9e740dabdf681b9b.png"
+  ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/save-cloud/save-cloud-vita/releases/download/v2024.02.28/save-cloud-2026-04-06.vpk",
       "recommended": true
+    },
+    {
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
+      "url": "https://github.com/save-cloud/save-cloud-vita/releases"
     },
     {
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/save-cloud/save-cloud-vita/"
-    },
-    {
-      "type": "Other",
-      "name": "Release",
-      "url": "https://github.com/save-cloud/save-cloud-vita/releases"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "1419",
+  "source_url": "https://github.com/save-cloud/save-cloud-vita/",
+  "release_page": "https://github.com/save-cloud/save-cloud-vita/releases",
+  "updated_at": "2026-08-13T13:46:07.802466+00:00"
 }

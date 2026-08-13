@@ -7,7 +7,7 @@
   "author_ids": [
     "fgsfds"
   ],
-  "category_id": "ports",
+  "category_id": "games",
   "subcategory_ids": [
     "other"
   ],
@@ -15,8 +15,8 @@
   "version_date": "2025-12-17",
   "requirements": "- libshacccg.suprx\n- Game Data Files: PC",
   "size": 4225479,
-  "status": "Verified",
-  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/866a4fcad6baf45cba26a3378390523858dd8a49ee170e6541dacb71f907e114.png",
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/866a4fcad6baf45cba26a3378390523858dd8a49ee170e6541dacb71f907e114.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/60ab9e0a27ea3baa8de7026d40a00b052ad02fdb7d93be1579c051abdb0e3073.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/424f391fdc9f8b520c180b3fa0a602be44a28efbafc77fb07ddc60d975dbd373.png",
@@ -25,19 +25,29 @@
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/fgsfdsfgs/Serious-Engine/releases/download/psvita2/ssam_tse_v2.vpk",
       "recommended": true
+    },
+    {
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
+      "url": "https://github.com/fgsfdsfgs/Serious-Engine/releases"
+    },
+    {
+      "type": "Official Website",
+      "name": "NeoVitaDB Release Page",
+      "url": "https://github.com/fgsfdsfgs/Serious-Engine/releases/tag/psvita2"
     },
     {
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/fgsfdsfgs/Serious-Engine/tree/psvita"
-    },
-    {
-      "type": "Other",
-      "name": "Release",
-      "url": "https://github.com/fgsfdsfgs/Serious-Engine/releases"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "1345",
+  "source_url": "https://github.com/fgsfdsfgs/Serious-Engine/tree/psvita",
+  "release_page": "https://github.com/fgsfdsfgs/Serious-Engine/releases",
+  "updated_at": "2026-08-13T13:46:07.739438+00:00"
 }

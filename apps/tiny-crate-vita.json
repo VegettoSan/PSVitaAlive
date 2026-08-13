@@ -5,41 +5,44 @@
   "description": "Port of Tiny Crate for PSVITA.",
   "long_description": "Tiny Crate is a cute little precision platformer with puzzle elements!\nLift and toss crates to traverse over spike pits and reach higher ground!\nWeigh down buttons to create platforms and solve the puzzle!",
   "author_ids": [
-    "thatoneham",
-    "harmony-honey"
+    "thatoneham"
   ],
-  "category_id": "ports",
+  "category_id": "games",
   "subcategory_ids": [
-    "puzzle"
+    "other"
   ],
   "version": "v.Main",
   "version_date": "2024-11-01",
-  "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
+  "requirements": "Not specified",
   "size": 23561988,
-  "status": "Verified",
-  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/0d3ffae5f13a2ca349bf52100a69921dcd7d29e65c0fe44e53715075f2ee6090.png",
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/0d3ffae5f13a2ca349bf52100a69921dcd7d29e65c0fe44e53715075f2ee6090.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/af2ffdce5d9276ebcb159df3e849a7864b5e5c6b78a969d41ef200767685eee4.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/7d08d84d4f502f5c2668d8dc9fc523cd2d78ed7d909c13114028281274caab5b.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c97d33ffadec32cf71758411f910fb9411f377fe7edb8bc96a01a00d494ff6d5.png",
-    "screenshots/af2ffdce5d9276ebcb159df3e849a7864b5e5c6b78a969d41ef200767685eee4.png;screenshots/7d08d84d4f502f5c2668d8dc9fc523cd2d78ed7d909c13114028281274caab5b.png;screenshots/c97d33ffadec32cf71758411f910fb9411f377fe7edb8bc96a01a00d494ff6d5.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c97d33ffadec32cf71758411f910fb9411f377fe7edb8bc96a01a00d494ff6d5.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/thatoneham/Tiny-Crate-Vita/releases/download/Main/Tiny.Crate.vpk",
       "recommended": true
-    },
-    {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/thatoneham/Tiny-Crate-Vita"
     },
     {
       "type": "Official Website",
       "name": "NeoVitaDB Release Page",
       "url": "https://github.com/thatoneham/Tiny-Crate-Vita/releases/tag/Main"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/thatoneham/Tiny-Crate-Vita"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "1235",
+  "source_url": "https://github.com/thatoneham/Tiny-Crate-Vita",
+  "release_page": "",
+  "updated_at": "2026-08-13T13:46:07.789956+00:00"
 }

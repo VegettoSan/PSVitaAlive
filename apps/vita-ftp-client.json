@@ -7,41 +7,45 @@
   "author_ids": [
     "cy33hc"
   ],
-  "category_id": "networking",
+  "category_id": "games",
   "subcategory_ids": [
-    "ftp"
+    "other"
   ],
   "version": "v.latest",
   "version_date": "2022-12-15",
-  "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
+  "requirements": "Not specified",
   "size": 16543732,
-  "status": "Verified",
-  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/a32154976120b05a43a184a485f9ff4e1af33a2e1115151f9ce1f4593bd5ce59.png",
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/a32154976120b05a43a184a485f9ff4e1af33a2e1115151f9ce1f4593bd5ce59.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/77b79d60513108fd3ade6f5c75a50bc4feb04765076b8547acc25003078d3d37.png",
-    "screenshots/77b79d60513108fd3ade6f5c75a50bc4feb04765076b8547acc25003078d3d37.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/77b79d60513108fd3ade6f5c75a50bc4feb04765076b8547acc25003078d3d37.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/cy33hc/vita-ftp-client/releases/download/latest/ftpclient.vpk",
       "recommended": true
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/cy33hc/vita-ftp-client"
-    },
-    {
-      "type": "Other",
-      "name": "Release",
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
       "url": "https://github.com/cy33hc/vita-ftp-client/releases"
     },
     {
       "type": "Official Website",
       "name": "NeoVitaDB Release Page",
       "url": "https://github.com/cy33hc/vita-ftp-client/releases/tag/latest"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/cy33hc/vita-ftp-client"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "817",
+  "source_url": "https://github.com/cy33hc/vita-ftp-client",
+  "release_page": "https://github.com/cy33hc/vita-ftp-client/releases",
+  "updated_at": "2026-08-13T13:46:07.871847+00:00"
 }

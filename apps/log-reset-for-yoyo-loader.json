@@ -7,38 +7,45 @@
   "author_ids": [
     "drok17"
   ],
-  "category_id": "utilities",
+  "category_id": "games",
   "subcategory_ids": [
     "other"
   ],
   "version": "v.1.0",
   "version_date": "2022-05-11",
-  "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
+  "requirements": "Not specified",
   "size": 3484788,
-  "status": "Verified",
-  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/86deafcafad926fa981d13dced1a8eeb9be2a7e9637e8696782f46be31d54e23.png",
-  "screenshots": [],
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/86deafcafad926fa981d13dced1a8eeb9be2a7e9637e8696782f46be31d54e23.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/86deafcafad926fa981d13dced1a8eeb9be2a7e9637e8696782f46be31d54e23.png"
+  ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/DRok17/Log-Reset-for-YYL/releases/download/v1.0/YYLLOGDEL.vpk",
       "recommended": true
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/DRok17/Log-Reset-for-YYL"
-    },
-    {
-      "type": "Other",
-      "name": "Release",
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
       "url": "https://github.com/DRok17/Log-Reset-for-YYL/releases"
     },
     {
       "type": "Official Website",
       "name": "NeoVitaDB Release Page",
       "url": "https://github.com/DRok17/Log-Reset-for-YYL/releases/tag/v1.0"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/DRok17/Log-Reset-for-YYL"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "822",
+  "source_url": "https://github.com/DRok17/Log-Reset-for-YYL",
+  "release_page": "https://github.com/DRok17/Log-Reset-for-YYL/releases",
+  "updated_at": "2026-08-13T13:46:07.892192+00:00"
 }

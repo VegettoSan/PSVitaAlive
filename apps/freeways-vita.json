@@ -7,7 +7,7 @@
   "author_ids": [
     "rinnegatamante"
   ],
-  "category_id": "ports",
+  "category_id": "games",
   "subcategory_ids": [
     "other"
   ],
@@ -15,36 +15,40 @@
   "version_date": "2024-02-12",
   "requirements": "- libshacccg.suprx\n- kubridge.skprx\n- Game Data Files: Android",
   "size": 837200,
-  "status": "Verified",
-  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/b92fb9029eb23acfdc6a8bbf6f8c36a18103f2619923c609a1b1beab7ce8fd66.png",
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/b92fb9029eb23acfdc6a8bbf6f8c36a18103f2619923c609a1b1beab7ce8fd66.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/22af1bdd44690a258fef63592158a5dd657e1f8659878a5e16c148cd4b914177.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/5e832d93f2c47667c909ecf195cf8a65a9d455565f5b4077cbd40d11b335a778.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/0f3ee29dbc211bf18ebcc9d6621fa76e37f4e1c33a2985df081843cafbbea021.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c5fa21393533e942e25438d15a6c844ffb842b99c40d58710db5f0aac220223a.png",
-    "screenshots/22af1bdd44690a258fef63592158a5dd657e1f8659878a5e16c148cd4b914177.png;screenshots/5e832d93f2c47667c909ecf195cf8a65a9d455565f5b4077cbd40d11b335a778.png;screenshots/0f3ee29dbc211bf18ebcc9d6621fa76e37f4e1c33a2985df081843cafbbea021.png;screenshots/c5fa21393533e942e25438d15a6c844ffb842b99c40d58710db5f0aac220223a.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c5fa21393533e942e25438d15a6c844ffb842b99c40d58710db5f0aac220223a.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/Rinnegatamante/freeways-vita/releases/download/v.1.0/freeways.vpk",
       "recommended": true
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/Rinnegatamante/freeways-vita"
-    },
-    {
-      "type": "Other",
-      "name": "Release",
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
       "url": "https://github.com/Rinnegatamante/freeways-vita/releases"
     },
     {
       "type": "Official Website",
       "name": "NeoVitaDB Release Page",
       "url": "https://github.com/Rinnegatamante/freeways-vita/releases/tag/v.1.0"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/Rinnegatamante/freeways-vita"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "1184",
+  "source_url": "https://github.com/Rinnegatamante/freeways-vita",
+  "release_page": "https://github.com/Rinnegatamante/freeways-vita/releases",
+  "updated_at": "2026-08-13T13:46:07.807846+00:00"
 }

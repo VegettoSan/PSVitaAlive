@@ -7,27 +7,29 @@
   "author_ids": [
     "eywa186"
   ],
-  "category_id": "customization",
+  "category_id": "games",
   "subcategory_ids": [
-    "boot-animation"
+    "other"
   ],
   "version": "v2.1",
   "version_date": "2026-05-03",
-  "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
+  "requirements": "Not specified",
   "size": 4532316,
-  "status": "Verified",
-  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/21ebf288cf1731fe3fc20066a705484c164d5498a882a4a6494f8a7e7f11ea80.png",
-  "screenshots": [],
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1392-fakename-changer.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1392-fakename-changer.png"
+  ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/Eywa186/FakeName-Changer-For-PSVita/releases/download/v2.1/FakeNameChanger_v2.1.vpk",
       "recommended": true
     },
     {
-      "type": "Other",
-      "name": "Release",
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
       "url": "https://github.com/Eywa186/FakeName-Changer-For-PSVita/releases"
     },
     {
@@ -40,5 +42,10 @@
       "name": "Repositorio",
       "url": "https://github.com/Eywa186/FakeName-Changer-For-PSVita"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "1392",
+  "source_url": "https://github.com/Eywa186/FakeName-Changer-For-PSVita/releases",
+  "release_page": "https://github.com/Eywa186/FakeName-Changer-For-PSVita/releases",
+  "updated_at": "2026-08-13T13:46:07.722364+00:00"
 }

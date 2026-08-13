@@ -3,37 +3,36 @@
   "title_id": "DETH43415",
   "name": "DethKarz Remake",
   "description": "Remake of DethKarz for PSVita.",
-  "long_description": "DethKarz remake. DethKarz is a futuristic racing game developed by Melburne house in 1998 featuring 4 settings with 3 track lengths, 4 different cars with 3 tiers each as well as laser and plasma canons and powerups.",
+  "long_description": "DethKarz remake. DethKarz is a futuristic racing game developed by Melburne house in 1998 featuring 4 settings with 3 track lengths, 4 different cars with 3 tiers each as well as laser and plasma canons and powerups.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
   "author_ids": [
     "lachsproducktions"
   ],
   "category_id": "games",
   "subcategory_ids": [
-    "racing"
+    "other"
   ],
   "version": "v.0.2.3.1 alpha",
   "version_date": "2026-08-12",
-  "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
+  "requirements": "Not specified",
   "size": 159485143,
-  "status": "Verified",
-  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/795934edbd5072e9895f8e78eac5222350142bf9e1672a59d146bbe61fc9c007.png",
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1955-dethkarz-remake.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/5afac39152cb976ae56d208478a3796351676df5fa6b781ef7de1cf66dad1338.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/baf98b92f025675bdc3860af1782616595c1797f271dc6dc9381adad86aac010.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/9bfa273d5e0ee7a54bc5014f10b019fdb859991b3d59ae22f7da46b3b6fb69b1.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/5d2fc6e279d91e8df45811ff292a1bde04ce0f8075bc5600adc9a3d662577d8f.png",
-    "screenshots/5afac39152cb976ae56d208478a3796351676df5fa6b781ef7de1cf66dad1338.png;screenshots/baf98b92f025675bdc3860af1782616595c1797f271dc6dc9381adad86aac010.png;screenshots/9bfa273d5e0ee7a54bc5014f10b019fdb859991b3d59ae22f7da46b3b6fb69b1.png;screenshots/5d2fc6e279d91e8df45811ff292a1bde04ce0f8075bc5600adc9a3d662577d8f.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/5d2fc6e279d91e8df45811ff292a1bde04ce0f8075bc5600adc9a3d662577d8f.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1372-v0.2.3.1.alpha.vpk",
       "recommended": true
     },
     {
-      "type": "Other",
-      "name": "Release",
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
       "url": "https://lachsproducktions.itch.io/the-unofficial-dethkarz-remake"
     },
     {
@@ -41,5 +40,10 @@
       "name": "Repositorio",
       "url": "https://github.com"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "1372",
+  "source_url": "https://lachsproducktions.itch.io/the-unofficial-dethkarz-remake",
+  "release_page": "https://lachsproducktions.itch.io/the-unofficial-dethkarz-remake",
+  "updated_at": "2026-08-13T13:46:07.728567+00:00"
 }

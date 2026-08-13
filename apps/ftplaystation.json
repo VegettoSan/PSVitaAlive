@@ -7,33 +7,40 @@
   "author_ids": [
     "red7s"
   ],
-  "category_id": "networking",
+  "category_id": "games",
   "subcategory_ids": [
-    "ftp"
+    "other"
   ],
   "version": "v.0.1",
   "version_date": "2016-10-24",
-  "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
+  "requirements": "Not specified",
   "size": 1966117,
-  "status": "Verified",
-  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/05c9310cd580e6b3c56ff086817aa8bc605c8bdf6ef18d5a9f3ed02172ac688c.png",
-  "screenshots": [],
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/05c9310cd580e6b3c56ff086817aa8bc605c8bdf6ef18d5a9f3ed02172ac688c.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/05c9310cd580e6b3c56ff086817aa8bc605c8bdf6ef18d5a9f3ed02172ac688c.png"
+  ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/StonedModder/FTPlaystation/releases/download/0.1/FTPlaystation.vpk",
       "recommended": true
-    },
-    {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/ItsDeidara/FTPlaystation"
     },
     {
       "type": "Official Website",
       "name": "NeoVitaDB Release Page",
       "url": "https://github.com/StonedModder/FTPlaystation/releases/tag/0.1"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/ItsDeidara/FTPlaystation"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "252",
+  "source_url": "https://github.com/ItsDeidara/FTPlaystation",
+  "release_page": "",
+  "updated_at": "2026-08-13T13:46:08.017518+00:00"
 }

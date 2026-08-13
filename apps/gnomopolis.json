@@ -3,36 +3,35 @@
   "title_id": "GNPL00001",
   "name": "Gnomopolis",
   "description": "Fantasy-themed modernized Pacman.",
-  "long_description": "This game is intended to be kind of casual. Playing a level should be a challenge if you have 10-15 minutes to waste on your lunch-break. This game is meant to be a modernized version of the arcade classic Pacman with a slight touch of epic fantasy. The game principle is quite simple: collect all the treasures in the labyrinth level and unlock the exit before the time runs out.\nFor the first time you can fight back and hit enemies pressing X.",
+  "long_description": "This game is intended to be kind of casual. Playing a level should be a challenge if you have 10-15 minutes to waste on your lunch-break. This game is meant to be a modernized version of the arcade classic Pacman with a slight touch of epic fantasy. The game principle is quite simple: collect all the treasures in the labyrinth level and unlock the exit before the time runs out.\nFor the first time you can fight back and hit enemies pressing X.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
   "author_ids": [
     "sergorov"
   ],
-  "category_id": "ports",
+  "category_id": "games",
   "subcategory_ids": [
     "other"
   ],
   "version": "v0.8.203",
   "version_date": "2026-08-12",
-  "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
+  "requirements": "Not specified",
   "size": 152381609,
-  "status": "Verified",
-  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/324067a6a54a44f36ca787c80a88299697d22d3afc17da6860e583d0106551d2.png",
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1855-gnomopolis.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/6f114ebd131f464dacd81fb29d00a0dbddadff79d5aa5ab4f30faacaefd1b921.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/2e253f07566c0aec04eb0464a22989ff78226ebb5f8e75d549e4b671c7d7a45c.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/bd6e0319a7bcf3df6f46d03b429e1f42899de3de98caf92c717a52caba8bba7c.png",
-    "screenshots/6f114ebd131f464dacd81fb29d00a0dbddadff79d5aa5ab4f30faacaefd1b921.png;screenshots/2e253f07566c0aec04eb0464a22989ff78226ebb5f8e75d549e4b671c7d7a45c.png;screenshots/bd6e0319a7bcf3df6f46d03b429e1f42899de3de98caf92c717a52caba8bba7c.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/bd6e0319a7bcf3df6f46d03b429e1f42899de3de98caf92c717a52caba8bba7c.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1124-gnomopolis.vpk",
       "recommended": true
     },
     {
-      "type": "Other",
-      "name": "Release",
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
       "url": "https://fuhen.homebrew-contest.com/submissions/36/"
     },
     {
@@ -40,5 +39,10 @@
       "name": "Repositorio",
       "url": "https://github.com"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "1124",
+  "source_url": "https://fuhen.homebrew-contest.com/submissions/36/",
+  "release_page": "https://fuhen.homebrew-contest.com/submissions/36/",
+  "updated_at": "2026-08-13T13:46:07.798859+00:00"
 }

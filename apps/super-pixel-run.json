@@ -9,28 +9,27 @@
   ],
   "category_id": "games",
   "subcategory_ids": [
-    "platformer"
+    "other"
   ],
   "version": "v.1.0",
   "version_date": "2019-04-26",
-  "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
+  "requirements": "Not specified",
   "size": 29143204,
-  "status": "Verified",
-  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/29b31348d30e290f9120d972ad194c1505d713f4eabed93c072024ee9159f5cc.png",
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/29b31348d30e290f9120d972ad194c1505d713f4eabed93c072024ee9159f5cc.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/0fe4223b425e1cd9474f0ae40f98d3169975f2e18b1301d6430031257128611f.png",
-    "screenshots/0fe4223b425e1cd9474f0ae40f98d3169975f2e18b1301d6430031257128611f.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/0fe4223b425e1cd9474f0ae40f98d3169975f2e18b1301d6430031257128611f.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/RetroGamer74/SuperPixelRun/releases/download/1.0/buildspr.vpk",
       "recommended": true
     },
     {
-      "type": "Other",
-      "name": "Release",
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
       "url": "https://github.com/RetroGamer74/SuperPixelRun/releases"
     },
     {
@@ -43,5 +42,10 @@
       "name": "Repositorio",
       "url": "https://github.com/RetroGamer74/SuperPixelRun"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "475",
+  "source_url": "https://github.com/RetroGamer74/SuperPixelRun/releases",
+  "release_page": "https://github.com/RetroGamer74/SuperPixelRun/releases",
+  "updated_at": "2026-08-13T13:46:07.975159+00:00"
 }

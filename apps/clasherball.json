@@ -3,36 +3,35 @@
   "title_id": "ABDD12344",
   "name": "Clasherball",
   "description": "Action puzzle game for PSVITA.",
-  "long_description": "Navigate unique puzzles in Arcade mode or see how long you can survive in Infinite mode!\nMatch for balls of the same color to CLASH! But watch out! Balls will fly back and damage you after they clash. Get out of the way to stay alive. \nUse tricks like curve shots and ricochets to solve brain bending puzzles!\nThis Demo contains one World with 15 Stages.\nInfinite lets you play and enjoy the game as much as you want!",
+  "long_description": "Navigate unique puzzles in Arcade mode or see how long you can survive in Infinite mode!\nMatch for balls of the same color to CLASH! But watch out! Balls will fly back and damage you after they clash. Get out of the way to stay alive. \nUse tricks like curve shots and ricochets to solve brain bending puzzles!\nThis Demo contains one World with 15 Stages.\nInfinite lets you play and enjoy the game as much as you want!\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
   "author_ids": [
     "sungrand-studios"
   ],
-  "category_id": "ports",
+  "category_id": "games",
   "subcategory_ids": [
-    "puzzle"
+    "other"
   ],
   "version": "Demo",
   "version_date": "2026-08-12",
-  "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
+  "requirements": "Not specified",
   "size": 81026913,
   "status": "Legacy",
-  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/8b2a65404d5f2df40e525c73565261f8bb189cfdaceb45dd06aba86fd9f62dad.png",
+  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1902-clasherball.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/cdb58fe7741fe24948997b6aef4b7531aa26a40f3b481b8ddb3330421c8504b0.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/bf03fcd99d2ec3943bc607da3d2a08637f6521c51425234eacefc95a6c5d6dc1.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/f3dd8e69408f5864d90320087204d26f7db7d3bb537083d98b3ac0e8986a7a27.png",
-    "screenshots/cdb58fe7741fe24948997b6aef4b7531aa26a40f3b481b8ddb3330421c8504b0.png;screenshots/bf03fcd99d2ec3943bc607da3d2a08637f6521c51425234eacefc95a6c5d6dc1.png;screenshots/f3dd8e69408f5864d90320087204d26f7db7d3bb537083d98b3ac0e8986a7a27.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/f3dd8e69408f5864d90320087204d26f7db7d3bb537083d98b3ac0e8986a7a27.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1214-clasherball.vpk",
       "recommended": true
     },
     {
-      "type": "Other",
-      "name": "Release",
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
       "url": "https://sungrandstudios.itch.io/clasherball"
     },
     {
@@ -40,5 +39,10 @@
       "name": "Repositorio",
       "url": "https://github.com"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "1214",
+  "source_url": "https://sungrandstudios.itch.io/clasherball",
+  "release_page": "https://sungrandstudios.itch.io/clasherball",
+  "updated_at": "2026-08-13T13:46:07.801239+00:00"
 }

@@ -2,47 +2,51 @@
   "id": "custom-livearea",
   "title_id": "CSTMLIVEA",
   "name": "Custom LiveArea",
-  "description": "Using custom themes is good fun but your limited to only being able to change the stock app bubbles, but now you can customise a whole lot more.",
+  "description": "App to customize your bubbles.",
   "long_description": "Using custom themes is good fun but your limited to only being able to change the stock app bubbles, but now you can customise a whole lot more.\nCustomise icons, title names and images of your apps and games bubbles.",
   "author_ids": [
     "anthj"
   ],
-  "category_id": "customization",
+  "category_id": "games",
   "subcategory_ids": [
-    "themes"
+    "other"
   ],
-  "version": "v1.0",
+  "version": "v.1.0",
   "version_date": "2021-12-12",
-  "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
+  "requirements": "Not specified",
   "size": 5017198,
   "status": "Legacy",
-  "icon": "https://robin994.github.io/NeoVitaDB-Catalog/icons/0762-custom-livearea.png",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/801ac33b636198067ac9d02e28d3c7b6c6d8e92b16751ec05b06b0aa928255c3.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/3b217579f3687e2b70b955bfcc40d75c81f9c2c72c7e62202ca90bfb95d1c768.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/b25a488b31a1982b09d882f66985bea7616b2a68e48dafc94ea13c2192b76160.png",
-    "screenshots/3b217579f3687e2b70b955bfcc40d75c81f9c2c72c7e62202ca90bfb95d1c768.png;screenshots/b25a488b31a1982b09d882f66985bea7616b2a68e48dafc94ea13c2192b76160.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/b25a488b31a1982b09d882f66985bea7616b2a68e48dafc94ea13c2192b76160.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/AntHJ/Custom-LiveArea/releases/download/v1.0/Custom.LiveArea.vpk",
       "recommended": true
-    },
-    {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/AntHJ/Custom-LiveArea"
-    },
-    {
-      "type": "Other",
-      "name": "Release",
-      "url": "https://github.com/AntHJ/Custom-LiveArea/releases/tag/v1.0"
     },
     {
       "type": "Official Website",
       "name": "VitaDBtoo Release Page",
       "url": "https://github.com/AntHJ/Custom-LiveArea/releases"
+    },
+    {
+      "type": "Official Website",
+      "name": "NeoVitaDB Release Page",
+      "url": "https://github.com/AntHJ/Custom-LiveArea/releases/tag/v1.0"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/AntHJ/Custom-LiveArea"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "762",
+  "source_url": "https://github.com/AntHJ/Custom-LiveArea/releases",
+  "release_page": "https://github.com/AntHJ/Custom-LiveArea/releases",
+  "updated_at": "2026-08-13T13:46:07.904389+00:00"
 }

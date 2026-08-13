@@ -2,49 +2,48 @@
   "id": "enigma",
   "title_id": "ENIGMA000",
   "name": "Enigma",
-  "description": "Enigma port for PSVITA.",
+  "description": "Enigma port for PSVITA",
   "long_description": "Vita port of Enigma, a skill/puzzle game inspired by Oxyd on the Atari ST and Rock'n'Roll on the Amiga.",
   "author_ids": [
     "rsn8887"
   ],
-  "category_id": "ports",
+  "category_id": "games",
   "subcategory_ids": [
-    "puzzle"
+    "other"
   ],
   "version": "1.16",
   "version_date": "2021-05-23",
-  "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
+  "requirements": "Not specified",
   "size": 5209786,
-  "status": "Verified",
-  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/a6bf2162107701e1a18af822d296845eccd58bac9b315bddb5186211f90c6c82.png",
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/0369-enigma.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/89a04cdf6759a2c258f60e0d55b09184d44d6ca3f4eee7d626c9f0d9f7beb786.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/223070d1b3fe4ed7d0e1240a0c412da5aa30c1f8f8d2fe4e12d370b1504540e3.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/298347c5576487d7968bd82fb3aab6d2dfe68f5657aa66a6fded97bed6f6f4c3.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/8f2dd775dc298553fd7da1d781a5a6ea97bd30a4afd50759cf8df0fd329e1152.png",
-    "screenshots/89a04cdf6759a2c258f60e0d55b09184d44d6ca3f4eee7d626c9f0d9f7beb786.png;screenshots/223070d1b3fe4ed7d0e1240a0c412da5aa30c1f8f8d2fe4e12d370b1504540e3.png;screenshots/298347c5576487d7968bd82fb3aab6d2dfe68f5657aa66a6fded97bed6f6f4c3.png;screenshots/8f2dd775dc298553fd7da1d781a5a6ea97bd30a4afd50759cf8df0fd329e1152.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/8f2dd775dc298553fd7da1d781a5a6ea97bd30a4afd50759cf8df0fd329e1152.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "NeoVitaDB VPK",
       "url": "https://github.com/rsn8887/Enigma/releases/download/1.16/enigma_1.11.vpk",
       "recommended": true
-    },
-    {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/rsn8887/Enigma"
-    },
-    {
-      "type": "Other",
-      "name": "Release",
-      "url": "https://github.com/rsn8887/Enigma/releases"
     },
     {
       "type": "Official Website",
       "name": "NeoVitaDB Release Page",
       "url": "https://github.com/rsn8887/Enigma/releases/tag/1.16"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/rsn8887/Enigma"
     }
-  ]
+  ],
+  "source_name": "NeoVitaDB",
+  "source_id": "369",
+  "source_url": "https://github.com/rsn8887/Enigma",
+  "release_page": "https://github.com/rsn8887/Enigma/releases/tag/1.16",
+  "updated_at": "2026-08-13T13:46:07.989498+00:00"
 }

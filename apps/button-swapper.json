@@ -2,43 +2,50 @@
   "id": "button-swapper",
   "title_id": "XYZZ00001",
   "name": "button-swapper",
-  "description": "Swaps X/O for Accept/Cancel.",
+  "description": "Swaps X/O for Accept/Cancel",
   "long_description": "This homebrew allows you to swap X/O button assignment.\nOn Japanese Vitas O is confirm and X is cancel, while the rest of the world is X confirm, O cancel.\nPlease note that using this homebrew is different from swapping X/O in Accessibility settings => Button Assignment. This homebrew \"properly\" swaps the buttons, without using Accessibility settings.",
   "author_ids": [
     "xyzz"
   ],
-  "category_id": "utilities",
+  "category_id": "games",
   "subcategory_ids": [
     "other"
   ],
   "version": "v.1.0",
   "version_date": "2016-08-11",
-  "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
+  "requirements": "Not specified",
   "size": 52118,
-  "status": "Verified",
-  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/18746b487153dc1ca3d728ce57b841b6e8faeca65a0900aa46864f73d07642c8.png",
-  "screenshots": [],
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/18746b487153dc1ca3d728ce57b841b6e8faeca65a0900aa46864f73d07642c8.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/18746b487153dc1ca3d728ce57b841b6e8faeca65a0900aa46864f73d07642c8.png"
+  ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/xyzz/vita-button-swapper/releases/download/1.0/button-swapper.vpk",
       "recommended": true
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/xyzz/vita-button-swapper"
-    },
-    {
-      "type": "Other",
-      "name": "Release",
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
       "url": "https://www.reddit.com/r/vitahacks/comments/4x853u/release_button_swapper_swap_xo_confirm_button/"
     },
     {
       "type": "Official Website",
       "name": "NeoVitaDB Release Page",
       "url": "https://github.com/xyzz/vita-button-swapper/releases/tag/1.0"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/xyzz/vita-button-swapper"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "147",
+  "source_url": "https://github.com/xyzz/vita-button-swapper",
+  "release_page": "https://www.reddit.com/r/vitahacks/comments/4x853u/release_button_swapper_swap_xo_confirm_button/",
+  "updated_at": "2026-08-13T13:46:08.028273+00:00"
 }

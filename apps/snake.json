@@ -13,33 +13,37 @@
   ],
   "version": "v.0.9",
   "version_date": "2020-09-05",
-  "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
+  "requirements": "Not specified",
   "size": 645999,
-  "status": "Verified",
-  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/27e53b470b66ab033c7f8f8cb125c0a018edc095187ebfbc3d31bc66ed20406f.png",
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/27e53b470b66ab033c7f8f8cb125c0a018edc095187ebfbc3d31bc66ed20406f.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c5f0867464400e02d768941712f05094c6bea282fc9519bc9ced91d89292c5ca.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/aa83a3dba2ad89b1cbc314bd800fd93c1e93ab4362f255ddd058a1027c26c372.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/84598c8624f6f1993e286d231fcb4176c088e1b41273a8cf78569e3e6e1ebef8.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/7b856a9b43ef12cccedcc976d63d14856dbe00311e12a493b20852f11ef3a096.png",
-    "screenshots/c5f0867464400e02d768941712f05094c6bea282fc9519bc9ced91d89292c5ca.png;screenshots/aa83a3dba2ad89b1cbc314bd800fd93c1e93ab4362f255ddd058a1027c26c372.png;screenshots/84598c8624f6f1993e286d231fcb4176c088e1b41273a8cf78569e3e6e1ebef8.png;screenshots/7b856a9b43ef12cccedcc976d63d14856dbe00311e12a493b20852f11ef3a096.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/7b856a9b43ef12cccedcc976d63d14856dbe00311e12a493b20852f11ef3a096.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/JJH47E/snake/releases/download/0.9/Snake.vpk",
       "recommended": true
+    },
+    {
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
+      "url": "https://github.com/JJH47E/snake/releases"
     },
     {
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/JJH47E/snake"
-    },
-    {
-      "type": "Other",
-      "name": "Release",
-      "url": "https://github.com/JJH47E/snake/releases"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "577",
+  "source_url": "https://github.com/JJH47E/snake",
+  "release_page": "https://github.com/JJH47E/snake/releases",
+  "updated_at": "2026-08-13T13:46:07.947469+00:00"
 }

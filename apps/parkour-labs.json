@@ -13,11 +13,13 @@
   ],
   "version": "v.1.2",
   "version_date": "2026-08-12",
-  "requirements": "",
+  "requirements": "Not specified",
   "size": 43264784,
   "status": "Legacy",
-  "icon": "1837-parkour-labs.png",
-  "screenshots": [],
+  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1837-parkour-labs.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1837-parkour-labs.png"
+  ],
   "links": [
     {
       "type": "Download",
@@ -35,5 +37,5 @@
   "source_id": "1837",
   "source_url": "https://github.com",
   "release_page": "",
-  "updated_at": "2026-08-13T05:25:55.187166+00:00"
+  "updated_at": "2026-08-13T13:46:08.044266+00:00"
 }

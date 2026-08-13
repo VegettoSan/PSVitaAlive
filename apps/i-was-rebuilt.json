@@ -3,36 +3,35 @@
   "title_id": "IWRV00001",
   "name": "I Was Rebuilt",
   "description": "Hardcore platformer game for PSVITA.",
-  "long_description": "Play as R3B, an advance and agile robot created by Dr. Zhang in this hardcore platformer game.",
+  "long_description": "Play as R3B, an advance and agile robot created by Dr. Zhang in this hardcore platformer game.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
   "author_ids": [
     "gurila-ware-games"
   ],
   "category_id": "games",
   "subcategory_ids": [
-    "platformer"
+    "other"
   ],
   "version": "v.2.0.0.1",
   "version_date": "2026-08-12",
-  "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
+  "requirements": "Not specified",
   "size": 141645560,
-  "status": "Verified",
-  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/5f01c6253dcf5a6e1c20af8676b58d68cf81e3b0d37b8a486c98026a642e8d34.png",
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1719-i-was-rebuilt.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/99f713523ab1f88ddddd97121034f4b0020cd85f52cfaff3aca8f55a41ef4412.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/e249f1842ef901271160d5011c25c533327f5a9b311bbd279d2eb99d32ff5c6a.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/633d2c450947ed947c52b4601da30eefc486cefb8b770bb94d87aad93a8a0e7e.png",
-    "screenshots/99f713523ab1f88ddddd97121034f4b0020cd85f52cfaff3aca8f55a41ef4412.png;screenshots/e249f1842ef901271160d5011c25c533327f5a9b311bbd279d2eb99d32ff5c6a.png;screenshots/633d2c450947ed947c52b4601da30eefc486cefb8b770bb94d87aad93a8a0e7e.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/633d2c450947ed947c52b4601da30eefc486cefb8b770bb94d87aad93a8a0e7e.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/662-rebuilt.vpk",
       "recommended": true
     },
     {
-      "type": "Other",
-      "name": "Release",
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
       "url": "http://gurilawaregames.com/i-was-rebuilt"
     },
     {
@@ -40,5 +39,10 @@
       "name": "Repositorio",
       "url": "https://github.com"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "662",
+  "source_url": "http://gurilawaregames.com/i-was-rebuilt",
+  "release_page": "http://gurilawaregames.com/i-was-rebuilt",
+  "updated_at": "2026-08-13T13:46:07.927899+00:00"
 }

@@ -7,37 +7,41 @@
   "author_ids": [
     "harommel-rabbid"
   ],
-  "category_id": "ports",
+  "category_id": "games",
   "subcategory_ids": [
     "other"
   ],
   "version": "24-07-2025",
   "version_date": "2025-07-24",
-  "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
+  "requirements": "Not specified",
   "size": 1501459,
-  "status": "Verified",
-  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/e845c7cee9483b977c1066a26a35ede02fc027264e53158ab05a104e121b3352.png",
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/e845c7cee9483b977c1066a26a35ede02fc027264e53158ab05a104e121b3352.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/e662cbc00e5274814c232541c9059bb632ee28b6e4a6887ad2af7503820c41c9.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/b98b4998d29ff21707a21433e33e49e7c46ac201458531c913791b6eeb45d75a.png",
-    "screenshots/e662cbc00e5274814c232541c9059bb632ee28b6e4a6887ad2af7503820c41c9.png;screenshots/b98b4998d29ff21707a21433e33e49e7c46ac201458531c913791b6eeb45d75a.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/b98b4998d29ff21707a21433e33e49e7c46ac201458531c913791b6eeb45d75a.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/HarommelRabbid/BetterQRScanner/releases/download/24-07-25/Better.QR.Scanner.vpk",
       "recommended": true
+    },
+    {
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
+      "url": "https://github.com/HarommelRabbid/BetterQRScanner/releases"
     },
     {
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/HarommelRabbid/BetterQRScanner"
-    },
-    {
-      "type": "Other",
-      "name": "Release",
-      "url": "https://github.com/HarommelRabbid/BetterQRScanner/releases"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "1286",
+  "source_url": "https://github.com/HarommelRabbid/BetterQRScanner",
+  "release_page": "https://github.com/HarommelRabbid/BetterQRScanner/releases",
+  "updated_at": "2026-08-13T13:46:07.765673+00:00"
 }

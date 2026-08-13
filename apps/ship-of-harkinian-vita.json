@@ -7,39 +7,28 @@
   "author_ids": [
     "rinnegatamante"
   ],
-  "category_id": "ports",
+  "category_id": "games",
   "subcategory_ids": [
-    "engine-port"
+    "other"
   ],
   "version": "v.1.2",
   "version_date": "2026-04-12",
   "requirements": "- libshacccg.suprx\n- Game Data Files: N64",
   "size": 12732891,
-  "status": "Verified",
-  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/f72b8ed94ea004ea602efdfacac9167d86924027542aa6fd4e9a2f6376106864.png",
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1276-ship-of-harkinian-vita.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/526687eaf955ad3a2271012393cabaca116e92a9e570ea99152c43b9bbeff384.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/e6dead696ccf36d1fc0dbf87aae684d7b3c3fd399cc625c60e842cb015fd4f53.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/a8fe9dc4430db5bb40e8af665738c3612ca2c746cbb909f7a39a47141060eb2c.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/af0942a09411f880a3000b2a22e29d0e05d6b5344e9faeb8958c6c2e70e3f34f.png",
-    "screenshots/526687eaf955ad3a2271012393cabaca116e92a9e570ea99152c43b9bbeff384.png;screenshots/e6dead696ccf36d1fc0dbf87aae684d7b3c3fd399cc625c60e842cb015fd4f53.png;screenshots/a8fe9dc4430db5bb40e8af665738c3612ca2c746cbb909f7a39a47141060eb2c.png;screenshots/af0942a09411f880a3000b2a22e29d0e05d6b5344e9faeb8958c6c2e70e3f34f.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/af0942a09411f880a3000b2a22e29d0e05d6b5344e9faeb8958c6c2e70e3f34f.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1276-soh.vpk",
       "recommended": true
-    },
-    {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/Rinnegatamante/Shipwright"
-    },
-    {
-      "type": "Other",
-      "name": "Release",
-      "url": "https://www.psx-place.com/threads/release-ship-of-harkinian-vita.47750/"
     },
     {
       "type": "Download",
@@ -48,8 +37,23 @@
     },
     {
       "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
+      "url": "https://www.psx-place.com/threads/release-ship-of-harkinian-vita.47750/"
+    },
+    {
+      "type": "Official Website",
       "name": "NeoVitaDB Release Page",
       "url": "https://github.com/Rinnegatamante/Shipwright/releases/tag/v.1.2"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/Rinnegatamante/Shipwright"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "1276",
+  "source_url": "https://github.com/Rinnegatamante/Shipwright",
+  "release_page": "https://www.psx-place.com/threads/release-ship-of-harkinian-vita.47750/",
+  "updated_at": "2026-08-13T13:46:07.727571+00:00"
 }

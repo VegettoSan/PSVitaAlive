@@ -7,41 +7,45 @@
   "author_ids": [
     "mccallum99"
   ],
-  "category_id": "utilities",
+  "category_id": "games",
   "subcategory_ids": [
-    "installer"
+    "other"
   ],
   "version": "v.1.08",
   "version_date": "2019-05-18",
-  "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
+  "requirements": "Not specified",
   "size": 259995,
-  "status": "Verified",
-  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/383fbb647a5015e4a55fe3d2f795ab12a7807c068176a781c46710353ca3a030.png",
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/383fbb647a5015e4a55fe3d2f795ab12a7807c068176a781c46710353ca3a030.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/d23a675fc71243464b25bb88b1955fc70640739a83e6406f370ba5d74c2097e7.png",
-    "screenshots/d23a675fc71243464b25bb88b1955fc70640739a83e6406f370ba5d74c2097e7.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/d23a675fc71243464b25bb88b1955fc70640739a83e6406f370ba5d74c2097e7.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/McCallum99/PSVitaRebootShutdown/releases/download/v1.08/VitaRebootShutdown.vpk",
       "recommended": true
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/McCallum99/PSVitaRebootShutdown"
-    },
-    {
-      "type": "Other",
-      "name": "Release",
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
       "url": "https://github.com/McCallum99/PSVitaRebootShutdown/releases"
     },
     {
       "type": "Official Website",
       "name": "NeoVitaDB Release Page",
       "url": "https://github.com/McCallum99/PSVitaRebootShutdown/releases/tag/v1.08"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/McCallum99/PSVitaRebootShutdown"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "431",
+  "source_url": "https://github.com/McCallum99/PSVitaRebootShutdown",
+  "release_page": "https://github.com/McCallum99/PSVitaRebootShutdown/releases",
+  "updated_at": "2026-08-13T13:46:07.970704+00:00"
 }

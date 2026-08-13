@@ -3,31 +3,30 @@
   "title_id": "YUME66666",
   "name": "Innyume",
   "description": "Port of Innyume for PSVITA.",
-  "long_description": "Port of Innyume, a japanese horror game where you are chased by smiley faces.",
+  "long_description": "Port of Innyume, a japanese horror game where you are chased by smiley faces.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
   "author_ids": [
     "4dsworks"
   ],
-  "category_id": "ports",
+  "category_id": "games",
   "subcategory_ids": [
     "other"
   ],
   "version": "v.1.8",
   "version_date": "2026-08-12",
-  "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
+  "requirements": "Not specified",
   "size": 45866181,
-  "status": "Verified",
-  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/b15260cadc8bcd7063f0d3aca9af729d75dd3e5608eca71f02f6baf5e366dd66.png",
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1764-innyume.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/b162b27391b19e87f0bee5dc5ff4b2e447d11241c957cd1e706114da1dbccfd9.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/cf5cbd6e2dbc100d968fd85085ad017dabf3d9010d8deb1f7eefbd7a379d060a.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/86c7a93776db786992ba529db4a62eb80b7de61f4cad1072dc659267ef56d541.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/61c32333333d42a2607067c25256f5e2976ce320a48b6ecd06e0222390993d38.png",
-    "screenshots/b162b27391b19e87f0bee5dc5ff4b2e447d11241c957cd1e706114da1dbccfd9.png;screenshots/cf5cbd6e2dbc100d968fd85085ad017dabf3d9010d8deb1f7eefbd7a379d060a.png;screenshots/86c7a93776db786992ba529db4a62eb80b7de61f4cad1072dc659267ef56d541.png;screenshots/61c32333333d42a2607067c25256f5e2976ce320a48b6ecd06e0222390993d38.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/61c32333333d42a2607067c25256f5e2976ce320a48b6ecd06e0222390993d38.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/VMHoss/Innyume-Vita/releases/download/1.8/Innyume_1_8.vpk",
       "recommended": true
     },
@@ -36,5 +35,10 @@
       "name": "Repositorio",
       "url": "https://github.com/VMHoss/Innyume-Vita"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "772",
+  "source_url": "https://github.com/VMHoss/Innyume-Vita",
+  "release_page": "",
+  "updated_at": "2026-08-13T13:46:07.903199+00:00"
 }

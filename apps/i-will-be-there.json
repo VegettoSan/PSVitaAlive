@@ -3,37 +3,36 @@
   "title_id": "IWBTDEMO1",
   "name": "I WILL BE THERE",
   "description": "Procedurally-generated, point and click survival-adventure game.",
-  "long_description": "I WILL BE THERE is a procedurally-generated, point & click survival-adventure game.\nPlayStation Vita users can exclusively enjoy this demo provided they enabled homebrew features.",
+  "long_description": "I WILL BE THERE is a procedurally-generated, point & click survival-adventure game.\nPlayStation Vita users can exclusively enjoy this demo provided they enabled homebrew features.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
   "author_ids": [
     "tayfuntuna"
   ],
-  "category_id": "ports",
+  "category_id": "games",
   "subcategory_ids": [
     "other"
   ],
   "version": "Demo",
   "version_date": "2026-08-12",
-  "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
+  "requirements": "Not specified",
   "size": 39536958,
-  "status": "Verified",
-  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/b64a2a41f3fc048e838455b310a04c4997af92779bcf5d1d915cb52367e8c0c9.png",
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1791-i-will-be-there.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/d7a8c3aea85629d9fdeee62d8b1a1ff83e5b37671c64e661d8477d3b2bbd16d3.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/2698309d181144cf65974d26a5bb3e70886d8835f20b2a1e0589e5ca83798fb8.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/a855cc31a84ba983081b12ae597b75ff13797f5d6ba692eca7c0ff65e626a25c.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/fa89ea3bed9137b304cb6abe6c100684e2f0e4cf4154708057f1606cf5917a58.png",
-    "screenshots/d7a8c3aea85629d9fdeee62d8b1a1ff83e5b37671c64e661d8477d3b2bbd16d3.png;screenshots/2698309d181144cf65974d26a5bb3e70886d8835f20b2a1e0589e5ca83798fb8.png;screenshots/a855cc31a84ba983081b12ae597b75ff13797f5d6ba692eca7c0ff65e626a25c.png;screenshots/fa89ea3bed9137b304cb6abe6c100684e2f0e4cf4154708057f1606cf5917a58.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/fa89ea3bed9137b304cb6abe6c100684e2f0e4cf4154708057f1606cf5917a58.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/849-there_demo.vpk",
       "recommended": true
     },
     {
-      "type": "Other",
-      "name": "Release",
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
       "url": "https://tayfuntuna.itch.io/iwillbethere-vita"
     },
     {
@@ -41,5 +40,10 @@
       "name": "Repositorio",
       "url": "https://github.com"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "849",
+  "source_url": "https://tayfuntuna.itch.io/iwillbethere-vita",
+  "release_page": "https://tayfuntuna.itch.io/iwillbethere-vita",
+  "updated_at": "2026-08-13T13:46:07.884716+00:00"
 }

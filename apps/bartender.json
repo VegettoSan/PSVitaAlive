@@ -7,33 +7,32 @@
   "author_ids": [
     "island-games"
   ],
-  "category_id": "utilities",
+  "category_id": "games",
   "subcategory_ids": [
     "other"
   ],
   "version": "v.1.0",
   "version_date": "2021-11-10",
-  "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
+  "requirements": "Not specified",
   "size": 2041208,
-  "status": "Verified",
-  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/9c1be0926bf8c48ac7d220cd6129a5d0b1e49fb9a7625615340a0a0d038a47d6.png",
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/9c1be0926bf8c48ac7d220cd6129a5d0b1e49fb9a7625615340a0a0d038a47d6.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/f4b5ec2649212c1b5aadba2b052920dc5beaf8ce430db045651bb71671ad87f7.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/8d9c5aee9b5a5cdaab7997aea6dbe1512ca713b3eff1adbf04ed3b3f8e8ac144.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/ff94266d49bc8001f354ce8705068dd75b90933898cbfa85ba7b516ec2f7c0d0.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/6f5e7d544ba34bab6ad4b2d42d9d8a0a0f4af30db26670b308a5c3f58825a344.png",
-    "screenshots/f4b5ec2649212c1b5aadba2b052920dc5beaf8ce430db045651bb71671ad87f7.png;screenshots/8d9c5aee9b5a5cdaab7997aea6dbe1512ca713b3eff1adbf04ed3b3f8e8ac144.png;screenshots/ff94266d49bc8001f354ce8705068dd75b90933898cbfa85ba7b516ec2f7c0d0.png;screenshots/6f5e7d544ba34bab6ad4b2d42d9d8a0a0f4af30db26670b308a5c3f58825a344.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/6f5e7d544ba34bab6ad4b2d42d9d8a0a0f4af30db26670b308a5c3f58825a344.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/island-games/Bartender/releases/download/v1.0/Bartender.vpk",
       "recommended": true
     },
     {
-      "type": "Other",
-      "name": "Release",
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
       "url": "https://github.com/island-games/Bartender/releases"
     },
     {
@@ -46,5 +45,10 @@
       "name": "Repositorio",
       "url": "https://github.com/island-games/Bartender"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "751",
+  "source_url": "https://github.com/island-games/Bartender/releases",
+  "release_page": "https://github.com/island-games/Bartender/releases",
+  "updated_at": "2026-08-13T13:46:07.906709+00:00"
 }

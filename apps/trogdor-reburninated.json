@@ -13,35 +13,39 @@
   ],
   "version": "v.2.4",
   "version_date": "2026-05-17",
-  "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
+  "requirements": "Not specified",
   "size": 10350041,
-  "status": "Verified",
-  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/e5c00ba529829c233586dee95b900814eebfccf53d24c097fb8f4ba77e46b404.png",
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/e5c00ba529829c233586dee95b900814eebfccf53d24c097fb8f4ba77e46b404.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/7c847dc6db88c445a91e5381c56376118e998e5aa9188f17022a7b08e3b10543.png",
-    "screenshots/7c847dc6db88c445a91e5381c56376118e998e5aa9188f17022a7b08e3b10543.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/7c847dc6db88c445a91e5381c56376118e998e5aa9188f17022a7b08e3b10543.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/Mode8fx/Trogdor-Reburninated/releases/download/v2.4/Trogdor-Reburninated-v2.4-vita.zip",
       "recommended": true
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/Mips96/Trogdor-Reburninated"
-    },
-    {
-      "type": "Other",
-      "name": "Release",
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
       "url": "https://github.com/Mips96/Trogdor-Reburninated/releases"
     },
     {
       "type": "Official Website",
       "name": "NeoVitaDB Release Page",
       "url": "https://github.com/Mode8fx/Trogdor-Reburninated/releases/tag/v2.4"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/Mips96/Trogdor-Reburninated"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "1015",
+  "source_url": "https://github.com/Mips96/Trogdor-Reburninated",
+  "release_page": "https://github.com/Mips96/Trogdor-Reburninated/releases",
+  "updated_at": "2026-08-13T13:46:07.716710+00:00"
 }

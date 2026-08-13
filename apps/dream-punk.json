@@ -3,36 +3,35 @@
   "title_id": "BKYS00001",
   "name": "Dream Punk",
   "description": "Platform game for PSVITA.",
-  "long_description": "In Dream Punk, you are falling, and you can't wake up. Bounce, hookshot, glide and grind through a candy colored world, collecting videotapes for your neighbor. If you can find and ring all the bells, and you wake The Dreamer- what will become of you?\nUnlock abilities and level them up. Are you falling? Or flying?",
+  "long_description": "In Dream Punk, you are falling, and you can't wake up. Bounce, hookshot, glide and grind through a candy colored world, collecting videotapes for your neighbor. If you can find and ring all the bells, and you wake The Dreamer- what will become of you?\nUnlock abilities and level them up. Are you falling? Or flying?\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
   "author_ids": [
     "bokoyoss"
   ],
   "category_id": "games",
   "subcategory_ids": [
-    "platformer"
+    "other"
   ],
   "version": "v.1.1",
   "version_date": "2026-08-12",
-  "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
+  "requirements": "Not specified",
   "size": 80438565,
-  "status": "Verified",
-  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/b1132b0a1e0586d15430212c18164a9a8b80d6a3a9ac5c316aeb6466ca24b37c.png",
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1879-dream-punk.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/0649fde51cce503f9795aa91b9698ff6b81202a18bdf6ab6a6d47f4b2e057990.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/f4b6436fe513fbb2edd4486b1b5a0ae2e270393a3b93a6a270c6a18180fda0e1.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/d7bb36e9e82c3dd78c153c9031617a47719e659433f2b61895d43aad4501f93b.png",
-    "screenshots/0649fde51cce503f9795aa91b9698ff6b81202a18bdf6ab6a6d47f4b2e057990.png;screenshots/f4b6436fe513fbb2edd4486b1b5a0ae2e270393a3b93a6a270c6a18180fda0e1.png;screenshots/d7bb36e9e82c3dd78c153c9031617a47719e659433f2b61895d43aad4501f93b.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/d7bb36e9e82c3dd78c153c9031617a47719e659433f2b61895d43aad4501f93b.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1151-dream_punk.vpk",
       "recommended": true
     },
     {
-      "type": "Other",
-      "name": "Release",
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
       "url": "https://fuhen.homebrew-contest.com/submissions/73/"
     },
     {
@@ -40,5 +39,10 @@
       "name": "Repositorio",
       "url": "https://github.com"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "1151",
+  "source_url": "https://fuhen.homebrew-contest.com/submissions/73/",
+  "release_page": "https://fuhen.homebrew-contest.com/submissions/73/",
+  "updated_at": "2026-08-13T13:46:07.820462+00:00"
 }

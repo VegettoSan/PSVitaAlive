@@ -2,47 +2,51 @@
   "id": "hill-climb-racing-vita",
   "title_id": "HCR000000",
   "name": "Hill Climb Racing Vita",
-  "description": "Hill Climb Racing is a game made by Fingersoft, a Finnish game engine where you can control a vehicle and try to survive as far as possible to get more...",
+  "description": "Port of Hill Clamb Racing for PSVita.",
   "long_description": "Hill Climb Racing is a game made by Fingersoft, a Finnish game engine where you can control a vehicle and try to survive as far as possible to get more coins for more upgrades, vehicles and stages! Each stage has a different layout, and different obstacles to overcome. Each vehicle has their own strengths and weaknesses, making certain vehicles excel in certain stages, and their vehicles have overalls.",
   "author_ids": [
     "memoryhunter"
   ],
-  "category_id": "ports",
+  "category_id": "games",
   "subcategory_ids": [
-    "racing"
+    "other"
   ],
   "version": "beta2",
   "version_date": "2025-11-04",
   "requirements": "- libshacccg.suprx\n- kubridge.skprx\n- Game Data Files: Android",
   "size": 1999461,
   "status": "Legacy",
-  "icon": "https://robin994.github.io/NeoVitaDB-Catalog/icons/1340-hill-climb-racing-vita.png",
+  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1340-hill-climb-racing-vita.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/e14ebb345949c4ae87cc5ed1cea5de91585bf4a40486053f601cb263b585f644.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/1522ca97eb40b8d28401af361657486e86afaa3db1bbc315a587bed3b8d398b0.png",
-    "screenshots/e14ebb345949c4ae87cc5ed1cea5de91585bf4a40486053f601cb263b585f644.png;screenshots/1522ca97eb40b8d28401af361657486e86afaa3db1bbc315a587bed3b8d398b0.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/1522ca97eb40b8d28401af361657486e86afaa3db1bbc315a587bed3b8d398b0.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/memory-hunter/hill-climb-racing-vita/releases/download/beta2/hcr.vpk",
       "recommended": true
-    },
-    {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/memory-hunter/hill-climb-racing-vita"
-    },
-    {
-      "type": "Other",
-      "name": "Release",
-      "url": "https://github.com/memory-hunter/hill-climb-racing-vita/releases/tag/beta2"
     },
     {
       "type": "Official Website",
       "name": "VitaDBtoo Release Page",
       "url": "https://github.com/memory-hunter/hill-climb-racing-vita/releases"
+    },
+    {
+      "type": "Official Website",
+      "name": "NeoVitaDB Release Page",
+      "url": "https://github.com/memory-hunter/hill-climb-racing-vita/releases/tag/beta2"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/memory-hunter/hill-climb-racing-vita"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "1340",
+  "source_url": "https://github.com/memory-hunter/hill-climb-racing-vita",
+  "release_page": "https://github.com/memory-hunter/hill-climb-racing-vita/releases",
+  "updated_at": "2026-08-13T13:46:07.743197+00:00"
 }

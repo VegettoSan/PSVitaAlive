@@ -1,0 +1,52 @@
+{
+  "id": "maidumptool",
+  "title_id": "MAIM00001",
+  "name": "MaiDumpTool",
+  "description": "Decrypts content and installs decrypted content to the system.",
+  "long_description": "Improved games dumper, alternative to Vitamin.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
+  "author_ids": [
+    "liomajor",
+    "beniyukimai"
+  ],
+  "category_id": "games",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.233.2zEx",
+  "version_date": "2026-08-12",
+  "requirements": "Not specified",
+  "size": 4280311,
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1482-maidumptool.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1482-maidumptool.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "VitaDBtoo VPK",
+      "url": "https://github.com/LioMajor/MaiDumpToolEN/releases/download/V233.2zEx_eng/MaiDumpTool_V233.2zEx_eng.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Download",
+      "name": "VitaDBtoo VPK",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/54-MaiDumpTool.vpk"
+    },
+    {
+      "type": "Official Website",
+      "name": "NeoVitaDB Release Page",
+      "url": "https://github.com/LioMajor/MaiDumpToolEN/releases/tag/V233.2zEx_eng"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/LioMajor/MaiDumpToolEN"
+    }
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "53",
+  "source_url": "https://github.com/LioMajor/MaiDumpToolEN/releases/download/V233.2zEx_eng/MaiDumpTool_V233.2zEx_eng.vpk",
+  "release_page": "",
+  "updated_at": "2026-08-13T13:46:08.019823+00:00"
+}

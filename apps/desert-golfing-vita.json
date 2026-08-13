@@ -2,12 +2,12 @@
   "id": "desert-golfing-vita",
   "title_id": "GOLFING01",
   "name": "Desert Golfing Vita",
-  "description": "This is a wrapper/port of Desert Golfing for the PS Vita.",
+  "description": "Port of Desert Golfing for PSVITA.",
   "long_description": "This is a wrapper/port of Desert Golfing for the PS Vita. The port works by loading the official Android ARMv7 executable in memory, resolving its imports with native functions and patching it in order to properly run. By doing so, it's basically as if we emulate a minimalist Android environment in which we run natively the executable as is.",
   "author_ids": [
     "rinnegatamante"
   ],
-  "category_id": "ports",
+  "category_id": "games",
   "subcategory_ids": [
     "other"
   ],
@@ -16,34 +16,38 @@
   "requirements": "- libshacccg.suprx\n- libfmodstudio.suprx\n- kubridge.skprx\n- Game Data Files: Android",
   "size": 556257,
   "status": "Legacy",
-  "icon": "https://robin994.github.io/NeoVitaDB-Catalog/icons/1180-desert-golfing-vita.png",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/1ac2501fdf66048f7a08f7453d58d71984bbf0124199940c02c3078b6b0e3bf8.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/8b13a8d0e6759e4827cbd92e337045ab98e0dac65632ca61280038a756dfa129.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/2c26fe813ce17f8819af11751b99e4c4d46ba0b2219753e3b18f5aaaf5ddd971.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/705dce598b4bf445bf026a80bc9d7b4e47a9981f2a6c2a3891138998c164e8ff.png",
-    "screenshots/8b13a8d0e6759e4827cbd92e337045ab98e0dac65632ca61280038a756dfa129.png;screenshots/2c26fe813ce17f8819af11751b99e4c4d46ba0b2219753e3b18f5aaaf5ddd971.png;screenshots/705dce598b4bf445bf026a80bc9d7b4e47a9981f2a6c2a3891138998c164e8ff.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/705dce598b4bf445bf026a80bc9d7b4e47a9981f2a6c2a3891138998c164e8ff.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/Rinnegatamante/desertgolfing_vita/releases/download/v.1.0/desertgolfing.vpk",
       "recommended": true
-    },
-    {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/Rinnegatamante/desertgolfing_vita"
-    },
-    {
-      "type": "Other",
-      "name": "Release",
-      "url": "https://github.com/Rinnegatamante/desertgolfing_vita/releases/tag/v.1.0"
     },
     {
       "type": "Official Website",
       "name": "VitaDBtoo Release Page",
       "url": "https://github.com/Rinnegatamante/desertgolfing_vita/releases"
+    },
+    {
+      "type": "Official Website",
+      "name": "NeoVitaDB Release Page",
+      "url": "https://github.com/Rinnegatamante/desertgolfing_vita/releases/tag/v.1.0"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/Rinnegatamante/desertgolfing_vita"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "1180",
+  "source_url": "https://github.com/Rinnegatamante/desertgolfing_vita",
+  "release_page": "https://github.com/Rinnegatamante/desertgolfing_vita/releases",
+  "updated_at": "2026-08-13T13:46:07.810228+00:00"
 }

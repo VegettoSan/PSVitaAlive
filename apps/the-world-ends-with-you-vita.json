@@ -7,38 +7,37 @@
   "author_ids": [
     "hatoving"
   ],
-  "category_id": "ports",
+  "category_id": "games",
   "subcategory_ids": [
-    "rpg"
+    "other"
   ],
   "version": "v.1.1",
   "version_date": "2023-08-16",
   "requirements": "- Game Data Files: NDS/Android",
   "size": 36773104,
-  "status": "Verified",
-  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/5f3686ff46eff7c016081fc9dc657e8af155170f008c09be49b35460bf493fad.png",
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/5f3686ff46eff7c016081fc9dc657e8af155170f008c09be49b35460bf493fad.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/b66e3591f66e68ab0089cd74fd70de9adcebbe787a86dbad96f843322d611c21.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/18aed8cb6db1232696c549fec0f5f963f80676e29222e905a261c686933de674.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/4713cd50a760dfc4b7b639cfe78fbf4e956120febdf51f040a510ad352c02938.png",
-    "screenshots/b66e3591f66e68ab0089cd74fd70de9adcebbe787a86dbad96f843322d611c21.png;screenshots/18aed8cb6db1232696c549fec0f5f963f80676e29222e905a261c686933de674.png;screenshots/4713cd50a760dfc4b7b639cfe78fbf4e956120febdf51f040a510ad352c02938.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/4713cd50a760dfc4b7b639cfe78fbf4e956120febdf51f040a510ad352c02938.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1112-TWEWY.vpk",
       "recommended": true
-    },
-    {
-      "type": "Other",
-      "name": "Release",
-      "url": "https://fuhen.homebrew-contest.com/submissions/28/"
     },
     {
       "type": "Download",
       "name": "NeoVitaDB VPK",
       "url": "https://github.com/hatoving/twewy-old-vita/releases/download/v1.1/TWEWY.vpk"
+    },
+    {
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
+      "url": "https://fuhen.homebrew-contest.com/submissions/28/"
     },
     {
       "type": "Official Website",
@@ -50,5 +49,10 @@
       "name": "Repositorio",
       "url": "https://github.com/hatoving/twewy-old-vita"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "1112",
+  "source_url": "https://fuhen.homebrew-contest.com/submissions/28/",
+  "release_page": "https://fuhen.homebrew-contest.com/submissions/28/",
+  "updated_at": "2026-08-13T13:46:07.836549+00:00"
 }

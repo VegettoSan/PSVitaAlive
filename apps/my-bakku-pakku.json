@@ -3,36 +3,35 @@
   "title_id": "BAKU88888",
   "name": "My Bakku Pakku",
   "description": "Platform/Puzzle-action game.",
-  "long_description": "My Bakku Pakku is a Platform/Puzzle-action game which has two type of control mechanics.\nOnko is the main character, while his backpack is empty he controls like Super Mario 3D and when its full he rolls like Katamari.",
+  "long_description": "My Bakku Pakku is a Platform/Puzzle-action game which has two type of control mechanics.\nOnko is the main character, while his backpack is empty he controls like Super Mario 3D and when its full he rolls like Katamari.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
   "author_ids": [
     "lazyox199"
   ],
   "category_id": "games",
   "subcategory_ids": [
-    "platformer"
+    "other"
   ],
   "version": "v.2.5",
   "version_date": "2026-08-12",
-  "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
+  "requirements": "Not specified",
   "size": 53564747,
-  "status": "Verified",
-  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/e8d9b5392a1d3850f7f076642a16143074fa841e3daac23321dd13f4d04ed602.png",
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1637-my-bakku-pakku.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/0263d0833532465dbaccd8d0c61f9c121fa55d100e185cc4c33c296878d73e96.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/3f40616d8e97699d02b35f70139cc21db0279b10069e1ba46f982a7f493b1ed5.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/e57df8fae548860a93e508967c2d0befbd3ba0058e734d7ffe62e4bd0074ddf4.png",
-    "screenshots/0263d0833532465dbaccd8d0c61f9c121fa55d100e185cc4c33c296878d73e96.png;screenshots/3f40616d8e97699d02b35f70139cc21db0279b10069e1ba46f982a7f493b1ed5.png;screenshots/e57df8fae548860a93e508967c2d0befbd3ba0058e734d7ffe62e4bd0074ddf4.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/e57df8fae548860a93e508967c2d0befbd3ba0058e734d7ffe62e4bd0074ddf4.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/463-bakkupakku.vpk",
       "recommended": true
     },
     {
-      "type": "Other",
-      "name": "Release",
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
       "url": "https://t.co/ODuyQXjCAs"
     },
     {
@@ -40,5 +39,10 @@
       "name": "Repositorio",
       "url": "https://github.com"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "463",
+  "source_url": "https://t.co/ODuyQXjCAs",
+  "release_page": "https://t.co/ODuyQXjCAs",
+  "updated_at": "2026-08-13T13:46:07.971579+00:00"
 }

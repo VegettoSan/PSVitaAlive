@@ -3,36 +3,35 @@
   "title_id": "RNPYLYNNE",
   "name": "Lynne",
   "description": "Port of Lynne for PSVITA/PSTV.",
-  "long_description": "Port of Lynne for PSVITA/PSTV, a visual novel made in RenPy.\nLynne is a short story about the scariest thing in the world: being a teenager.",
+  "long_description": "Port of Lynne for PSVITA/PSTV, a visual novel made in RenPy.\nLynne is a short story about the scariest thing in the world: being a teenager.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
   "author_ids": [
     "just-fer"
   ],
-  "category_id": "ports",
+  "category_id": "games",
   "subcategory_ids": [
     "other"
   ],
   "version": "v.1.01",
   "version_date": "2026-08-12",
-  "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
+  "requirements": "Not specified",
   "size": 14384313,
-  "status": "Verified",
-  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/72f6fe5e18eb08bd932d9af81ee1d2efb7d44a873e15ac1b6b178b235b4a5256.png",
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1797-lynne.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/2d1538d197f113a90ab4a600bc2f8c9d8d0ea853d510c0beefb450a0667e6a21.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/26f5f3cf78cbbfd5c6b4e14309105bdcaf102a886920c18d7698446a597904bf.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/33deb7ffefd26185a58a4d8cb0761f478baadca97411951b1d263a3b1695b636.png",
-    "screenshots/2d1538d197f113a90ab4a600bc2f8c9d8d0ea853d510c0beefb450a0667e6a21.png;screenshots/26f5f3cf78cbbfd5c6b4e14309105bdcaf102a886920c18d7698446a597904bf.png;screenshots/33deb7ffefd26185a58a4d8cb0761f478baadca97411951b1d263a3b1695b636.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/33deb7ffefd26185a58a4d8cb0761f478baadca97411951b1d263a3b1695b636.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/862-Linne.vpk",
       "recommended": true
     },
     {
-      "type": "Other",
-      "name": "Release",
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
       "url": "https://github.com/Fimo4ka/Linne-PSVita-port"
     },
     {
@@ -40,5 +39,10 @@
       "name": "Repositorio",
       "url": "https://github.com"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "862",
+  "source_url": "https://github.com/Fimo4ka/Linne-PSVita-port",
+  "release_page": "https://github.com/Fimo4ka/Linne-PSVita-port",
+  "updated_at": "2026-08-13T13:46:07.882298+00:00"
 }

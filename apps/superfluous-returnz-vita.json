@@ -2,12 +2,12 @@
   "id": "superfluous-returnz-vita",
   "title_id": "SUPERFLUO",
   "name": "Superfluous Returnz Vita",
-  "description": "This is a wrapper/port of Superfluous Returnz for the PS Vita.",
+  "description": "Port of Superfluous Returnz for PSVITA.",
   "long_description": "This is a wrapper/port of Superfluous Returnz for the PS Vita.\nThe port works by loading the official Android ARMv7 executables in memory, resolving its imports with native functions and patching it in order to properly run. By doing so, it's basically as if we emulate a minimalist Android environment in which we run natively the executable as is.",
   "author_ids": [
     "rinnegatamante"
   ],
-  "category_id": "ports",
+  "category_id": "games",
   "subcategory_ids": [
     "other"
   ],
@@ -16,35 +16,39 @@
   "requirements": "- libshacccg.suprx\n- kubridge.skprx\n- Game Data Files: Android",
   "size": 2216617,
   "status": "Legacy",
-  "icon": "https://robin994.github.io/NeoVitaDB-Catalog/icons/1090-superfluous-returnz-vita.png",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/628e52706c324531f5382295481d773baa3215f255d4dd82953f434eed9743bb.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/5cfb648ddbcbdeea50510a3ac1f5f90a44eccbe2d15412c3941b5d0b6bea7cb2.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/ed9e6df000520c4f57b8c903e47e28255c29a10795e100e1c54435c149a316f8.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/e8ff4712eccebe12e586a8a65a72b95175f2a18cac6990ccf73e049459927009.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/e487dcd75c8526c35a666b5839c111599c446496617b473e6940c2de350961e4.png",
-    "screenshots/5cfb648ddbcbdeea50510a3ac1f5f90a44eccbe2d15412c3941b5d0b6bea7cb2.png;screenshots/ed9e6df000520c4f57b8c903e47e28255c29a10795e100e1c54435c149a316f8.png;screenshots/e8ff4712eccebe12e586a8a65a72b95175f2a18cac6990ccf73e049459927009.png;screenshots/e487dcd75c8526c35a666b5839c111599c446496617b473e6940c2de350961e4.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/e487dcd75c8526c35a666b5839c111599c446496617b473e6940c2de350961e4.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/Rinnegatamante/superfluous-vita/releases/download/v.0.5/superfluous.vpk",
       "recommended": true
-    },
-    {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/Rinnegatamante/superfluous-vita"
-    },
-    {
-      "type": "Other",
-      "name": "Release",
-      "url": "https://github.com/Rinnegatamante/superfluous-vita/releases/tag/v.0.5"
     },
     {
       "type": "Official Website",
       "name": "VitaDBtoo Release Page",
       "url": "https://github.com/Rinnegatamante/superfluous-vita/releases"
+    },
+    {
+      "type": "Official Website",
+      "name": "NeoVitaDB Release Page",
+      "url": "https://github.com/Rinnegatamante/superfluous-vita/releases/tag/v.0.5"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/Rinnegatamante/superfluous-vita"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "1090",
+  "source_url": "https://github.com/Rinnegatamante/superfluous-vita",
+  "release_page": "https://github.com/Rinnegatamante/superfluous-vita/releases",
+  "updated_at": "2026-08-13T13:46:07.840552+00:00"
 }

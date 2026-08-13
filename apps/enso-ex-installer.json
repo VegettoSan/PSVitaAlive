@@ -2,46 +2,51 @@
   "id": "enso-ex-installer",
   "title_id": "MLCL00003",
   "name": "enso ex Installer",
-  "description": "Untethered jailbreak and CFW loader for PlayStation Vita/TV units on firmware 3.65.",
+  "description": "Untethered jailbreak and CFW loader for PlayStation Vita/TV units on firmware 3.65",
   "long_description": "Untethered jailbreak and CFW loader for PlayStation Vita/TV units on firmware 3.65\nFeatures:\n - Custom kernel loader\n - Support for unsigned base kernel modules\n - Code execution on the bootloader level\n - SD2VITA and EMMC -based recovery\n - Various tweaks such as custom bootlogo or DevKit VitaTV mode support",
   "author_ids": [
     "skgleba",
     "team-molecule"
   ],
-  "category_id": "system",
+  "category_id": "games",
   "subcategory_ids": [
-    "firmware-tools"
+    "other"
   ],
   "version": "v.5.0",
   "version_date": "2023-07-08",
-  "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
+  "requirements": "Not specified",
   "size": 84371,
-  "status": "Verified",
-  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/f305054f5ac115cf97e4cf62f66d43125138d50b435e36850a1be963406e9e19.png",
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/f305054f5ac115cf97e4cf62f66d43125138d50b435e36850a1be963406e9e19.png",
   "screenshots": [
-    "screenshots/59af4b7072633b2f150be877980ff28c03d303ff208437d88960200f371b0eef.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/59af4b7072633b2f150be877980ff28c03d303ff208437d88960200f371b0eef.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/SKGleba/enso_ex/releases/download/v5.0/enso_ex.vpk",
       "recommended": true
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/SKGleba/enso_ex"
-    },
-    {
-      "type": "Other",
-      "name": "Release",
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
       "url": "https://github.com/SKGleba/enso_ex/releases"
     },
     {
       "type": "Official Website",
       "name": "NeoVitaDB Release Page",
       "url": "https://github.com/SKGleba/enso_ex/releases/tag/v5.0"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/SKGleba/enso_ex"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "435",
+  "source_url": "https://github.com/SKGleba/enso_ex",
+  "release_page": "https://github.com/SKGleba/enso_ex/releases",
+  "updated_at": "2026-08-13T13:46:07.842969+00:00"
 }

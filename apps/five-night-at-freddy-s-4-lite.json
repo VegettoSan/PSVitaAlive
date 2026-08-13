@@ -3,7 +3,7 @@
   "title_id": "FNAF40001",
   "name": "Five Night at Freddy's 4 Lite",
   "description": "Recreation of FNAF4 for PSVITA.",
-  "long_description": "A receration made in Game Maker Studio of Five Night at Freddy's 4 for PSVITA.",
+  "long_description": "A receration made in Game Maker Studio of Five Night at Freddy's 4 for PSVITA.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
   "author_ids": [
     "alexdev2"
   ],
@@ -13,27 +13,26 @@
   ],
   "version": "v.0.1.0",
   "version_date": "2026-08-12",
-  "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
+  "requirements": "Not specified",
   "size": 71660453,
-  "status": "Verified",
-  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/db776dffc0b81ebf4eafbd9a11e933e1eccc7ef032190c98ffb71b6c35ab663f.png",
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1796-five-night-at-freddy-s-4-lite.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/db4ea37921d93b070ff5f4cb6b69b180a066daf88e02620cad42de04e45204b6.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/f6c7dc02bdb97fd4991f1d9a9816ed1d54c3ddf548c8123a772da2e9247e44f0.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/163eb18bc0ede5ca9b85a2d81b956ebf81ebc99026685a6f7f55c8da59d2efff.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/8bd8ac6dc8c24f7e0e00e5b455807a6cf887bca2a701f8ec772e1b5c9aa08380.png",
-    "screenshots/db4ea37921d93b070ff5f4cb6b69b180a066daf88e02620cad42de04e45204b6.png;screenshots/f6c7dc02bdb97fd4991f1d9a9816ed1d54c3ddf548c8123a772da2e9247e44f0.png;screenshots/163eb18bc0ede5ca9b85a2d81b956ebf81ebc99026685a6f7f55c8da59d2efff.png;screenshots/8bd8ac6dc8c24f7e0e00e5b455807a6cf887bca2a701f8ec772e1b5c9aa08380.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/8bd8ac6dc8c24f7e0e00e5b455807a6cf887bca2a701f8ec772e1b5c9aa08380.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/859-fnaf4.vpk",
       "recommended": true
     },
     {
-      "type": "Other",
-      "name": "Release",
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
       "url": "https://gamejolt.com/games/FNAF4PSP/715812"
     },
     {
@@ -41,5 +40,10 @@
       "name": "Repositorio",
       "url": "https://github.com"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "859",
+  "source_url": "https://gamejolt.com/games/FNAF4PSP/715812",
+  "release_page": "https://gamejolt.com/games/FNAF4PSP/715812",
+  "updated_at": "2026-08-13T13:46:07.882405+00:00"
 }

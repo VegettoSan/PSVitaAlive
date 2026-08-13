@@ -2,50 +2,33 @@
   "id": "nazi-zombies-portable",
   "title_id": "NZZMBSPTB",
   "name": "Nazi Zombies Portable",
-  "description": "Call of Duty: Zombies \"de-make\" for PlayStation Portable & VITA, Nintendo Switch & 3DS, Windows, & Linux (ARM & x86).",
+  "description": "Port of Nazi Zombies Portable for PSVITA.",
   "long_description": "Call of Duty: Zombies \"de-make\" for PlayStation Portable & VITA, Nintendo Switch & 3DS, Windows, & Linux (ARM & x86). Powered by various Quake sourceports. Includes \"Nacht der Untoten\" and several community-made maps.",
   "author_ids": [
-    "nzp-reboot-team",
-    "rinnegatamante"
+    "nzp-reboot-team"
   ],
-  "category_id": "ports",
+  "category_id": "games",
   "subcategory_ids": [
-    "fps"
+    "other"
   ],
   "version": "nightly",
   "version_date": "2026-08-10",
   "requirements": "- libshacccg.suprx",
   "size": 111558333,
-  "status": "Verified",
-  "icon": "https://robin994.github.io/NeoVitaDB-Catalog/icons/1028-nazi-zombies-portable.png",
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1028-nazi-zombies-portable.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/700a132501a00d7586707b33c0a4727c2b0664e3ec9c86996efebd810a6cdcc3.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/6e7ece334d0b8604df007a714e9d33abc092dc86af50d4545d6e9177d01f832b.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/140e581c7bbf245de22fd278ef49270d10d8539201b32e6c4b3db7f44f9c17f8.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/a79e4d2418e3aecf44aeab0aca053932e1fa639ce53fc6fe7c0def570fb1ba35.png",
-    "screenshots/700a132501a00d7586707b33c0a4727c2b0664e3ec9c86996efebd810a6cdcc3.png;screenshots/6e7ece334d0b8604df007a714e9d33abc092dc86af50d4545d6e9177d01f832b.png;screenshots/140e581c7bbf245de22fd278ef49270d10d8539201b32e6c4b3db7f44f9c17f8.png;screenshots/a79e4d2418e3aecf44aeab0aca053932e1fa639ce53fc6fe7c0def570fb1ba35.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/a79e4d2418e3aecf44aeab0aca053932e1fa639ce53fc6fe7c0def570fb1ba35.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
-      "url": "https://github.com/nzp-team/nzportable/releases/download/nightly/nzportable-3ds.zip",
-      "recommended": true
-    },
-    {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/nzp-team/nzportable"
-    },
-    {
-      "type": "Other",
-      "name": "Release",
-      "url": "https://github.com/nzp-team/nzportable/releases/tag/nightly"
-    },
-    {
-      "type": "Download",
       "name": "VitaDBtoo VPK",
-      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1028-nzp.vpk"
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1028-nzp.vpk",
+      "recommended": true
     },
     {
       "type": "Download",
@@ -56,6 +39,21 @@
       "type": "Official Website",
       "name": "VitaDBtoo Release Page",
       "url": "https://github.com/nzp-team/nzportable/releases"
+    },
+    {
+      "type": "Official Website",
+      "name": "NeoVitaDB Release Page",
+      "url": "https://github.com/nzp-team/nzportable/releases/tag/nightly"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/nzp-team/nzportable"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "1028",
+  "source_url": "https://github.com/nzp-team/nzportable",
+  "release_page": "https://github.com/nzp-team/nzportable/releases",
+  "updated_at": "2026-08-13T13:46:07.809730+00:00"
 }

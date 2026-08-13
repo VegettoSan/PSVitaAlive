@@ -3,36 +3,35 @@
   "title_id": "DSIM12345",
   "name": "Drone Sim Vita",
   "description": "Drone simulator game for PSVITA.",
-  "long_description": "Drone Sim Vita is a drone simulation game made with the Unity game engine.\nExpect bugs and slowdowns.\nOverclock for best experience!",
+  "long_description": "Drone Sim Vita is a drone simulation game made with the Unity game engine.\nExpect bugs and slowdowns.\nOverclock for best experience!\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
   "author_ids": [
     "haasman0"
   ],
-  "category_id": "system",
+  "category_id": "games",
   "subcategory_ids": [
     "other"
   ],
   "version": "v.1.0",
   "version_date": "2026-08-12",
-  "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
+  "requirements": "Not specified",
   "size": 49721402,
-  "status": "Verified",
-  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/9ded78a78b76ce535697b54b59050b8a3a95cca56c2a44b6c7c4f2c101a77611.png",
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1849-drone-sim-vita.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/bb9d7e7c7cb374d98baafd7a9230a5ca84efab8489993a6f8a98a6913fa538c5.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c5952ae12a3560e033d93134beddedd4aaad4718db056740e5d2622782e71cf7.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/ff52bc7929aee80ac0e56a907bea16e54984d8b4a1bdf1d2723d643a8edeed19.png",
-    "screenshots/bb9d7e7c7cb374d98baafd7a9230a5ca84efab8489993a6f8a98a6913fa538c5.png;screenshots/c5952ae12a3560e033d93134beddedd4aaad4718db056740e5d2622782e71cf7.png;screenshots/ff52bc7929aee80ac0e56a907bea16e54984d8b4a1bdf1d2723d643a8edeed19.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/ff52bc7929aee80ac0e56a907bea16e54984d8b4a1bdf1d2723d643a8edeed19.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1115-Drone-Sim-Vita.vpk",
       "recommended": true
     },
     {
-      "type": "Other",
-      "name": "Release",
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
       "url": "https://fuhen.homebrew-contest.com/submissions/29/"
     },
     {
@@ -40,5 +39,10 @@
       "name": "Repositorio",
       "url": "https://github.com"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "1115",
+  "source_url": "https://fuhen.homebrew-contest.com/submissions/29/",
+  "release_page": "https://fuhen.homebrew-contest.com/submissions/29/",
+  "updated_at": "2026-08-13T13:46:07.837380+00:00"
 }

@@ -3,31 +3,30 @@
   "title_id": "DIVDOW001",
   "name": "Diver Down Vita",
   "description": "Port of Diver Down for PSVITA.",
-  "long_description": "Port of Diver Down for PSVITA.\nDiver Down is a stealth-platformer made for the Godot Wild Jam #2, where the theme was \"Hidden within\". Avoid the lights on 20 different stages using your mysterious Diver Down ability, that allows you to dive onto solids!",
+  "long_description": "Port of Diver Down for PSVITA.\nDiver Down is a stealth-platformer made for the Godot Wild Jam #2, where the theme was \"Hidden within\". Avoid the lights on 20 different stages using your mysterious Diver Down ability, that allows you to dive onto solids!\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
   "author_ids": [
     "vsm-gammer"
   ],
-  "category_id": "customization",
+  "category_id": "games",
   "subcategory_ids": [
-    "themes"
+    "other"
   ],
   "version": "v.1.0",
   "version_date": "2026-08-12",
-  "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
+  "requirements": "Not specified",
   "size": 21463355,
   "status": "Legacy",
-  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/b762e2d9828b5e0a1ff444a34d10c2916b7aa34193d2d9c4fe3adde51285363a.png",
+  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1857-diver-down-vita.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/ecc547aee5d46fede67dbf3b39a270a535c02dea56bafdbbf8a0965e707b2759.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/4525dd554e18db4a52bc4a48034fa8c4ee1f33da6e955aa043224da542835aa7.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/f675101e2ebddd109c1259df953c7de6e90c1110ce42afd3d053485eb20ec7c4.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/25174abb4868c86dce60ae601c982d67e042d6af15b92d003f26f038bcd7ad93.png",
-    "screenshots/ecc547aee5d46fede67dbf3b39a270a535c02dea56bafdbbf8a0965e707b2759.png;screenshots/4525dd554e18db4a52bc4a48034fa8c4ee1f33da6e955aa043224da542835aa7.png;screenshots/f675101e2ebddd109c1259df953c7de6e90c1110ce42afd3d053485eb20ec7c4.png;screenshots/25174abb4868c86dce60ae601c982d67e042d6af15b92d003f26f038bcd7ad93.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/25174abb4868c86dce60ae601c982d67e042d6af15b92d003f26f038bcd7ad93.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1126-DIVER_DOWN.vpk",
       "recommended": true
     },
@@ -36,5 +35,10 @@
       "name": "Repositorio",
       "url": "https://github.com"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "1126",
+  "source_url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1126-DIVER_DOWN.vpk",
+  "release_page": "",
+  "updated_at": "2026-08-13T13:46:07.847559+00:00"
 }

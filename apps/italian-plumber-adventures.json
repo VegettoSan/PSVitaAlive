@@ -7,44 +7,48 @@
   "author_ids": [
     "megagameboy"
   ],
-  "category_id": "ports",
+  "category_id": "games",
   "subcategory_ids": [
-    "adventure"
+    "other"
   ],
   "version": "v.1.1",
   "version_date": "2023-02-17",
-  "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
+  "requirements": "Not specified",
   "size": 10458605,
-  "status": "Verified",
-  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/d13c151b950d3545fc67624c37c6d7a07de85093b7404b93accc4fa176fdc962.png",
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/d13c151b950d3545fc67624c37c6d7a07de85093b7404b93accc4fa176fdc962.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/caa7649e5c84d084ac5ae21d4da2ccb24611506c58abc2504a4dedce36adb060.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/bd1b1b9e47853026b1c4b9632994a53bc8a388ff1481a4be4174c6ab4fca8892.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/34c8c61c63a836bfd2c58bc1db4163c1f843076fea2bb170f6260a6d7a6b2868.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/ae74c479019f71c902efa3e562429f5fb1000004a0d6c06572846434334dd00e.png",
-    "screenshots/caa7649e5c84d084ac5ae21d4da2ccb24611506c58abc2504a4dedce36adb060.png;screenshots/bd1b1b9e47853026b1c4b9632994a53bc8a388ff1481a4be4174c6ab4fca8892.png;screenshots/34c8c61c63a836bfd2c58bc1db4163c1f843076fea2bb170f6260a6d7a6b2868.png;screenshots/ae74c479019f71c902efa3e562429f5fb1000004a0d6c06572846434334dd00e.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/ae74c479019f71c902efa3e562429f5fb1000004a0d6c06572846434334dd00e.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/MEGAgameBoy/Italian-Plumber-Adventures-PS-Vita/releases/download/1.1/ipa.vpk",
       "recommended": true
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/MEGAgameBoy/Italian-Plumber-Adventures-PS-Vita"
-    },
-    {
-      "type": "Other",
-      "name": "Release",
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
       "url": "https://github.com/MEGAgameBoy/Italian-Plumber-Adventures-PS-Vita/releases"
     },
     {
       "type": "Official Website",
       "name": "NeoVitaDB Release Page",
       "url": "https://github.com/MEGAgameBoy/Italian-Plumber-Adventures-PS-Vita/releases/tag/1.1"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/MEGAgameBoy/Italian-Plumber-Adventures-PS-Vita"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "1035",
+  "source_url": "https://github.com/MEGAgameBoy/Italian-Plumber-Adventures-PS-Vita",
+  "release_page": "https://github.com/MEGAgameBoy/Italian-Plumber-Adventures-PS-Vita/releases",
+  "updated_at": "2026-08-13T13:46:07.863741+00:00"
 }

@@ -3,35 +3,34 @@
   "title_id": "ASES30300",
   "name": "Assessment Examination Vita",
   "description": "Port of Assessment Examination for PSVita.",
-  "long_description": "Port of Assessment Examination for Playstation Vita.",
+  "long_description": "Port of Assessment Examination for Playstation Vita.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
   "author_ids": [
     "patnosd"
   ],
-  "category_id": "ports",
+  "category_id": "games",
   "subcategory_ids": [
     "other"
   ],
   "version": "v.1.0",
   "version_date": "2026-08-12",
-  "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
+  "requirements": "Not specified",
   "size": 107502048,
-  "status": "Verified",
-  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/a2edc41b6ea4f470372e9b223e29ca87047a6c9c298e29b21b75a1710b61e82c.png",
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1933-assessment-examination-vita.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/ea5c7bb80772e227b7b18edaca84fd4ae0de1e03f96d484167062805960f927f.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/47e04758ff18fe1b186be5c4d26a21df341ec554eb9fa172fdec2e63b9ebc18c.png",
-    "screenshots/ea5c7bb80772e227b7b18edaca84fd4ae0de1e03f96d484167062805960f927f.png;screenshots/47e04758ff18fe1b186be5c4d26a21df341ec554eb9fa172fdec2e63b9ebc18c.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/47e04758ff18fe1b186be5c4d26a21df341ec554eb9fa172fdec2e63b9ebc18c.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1309-AssessmentExamination.vpk",
       "recommended": true
     },
     {
-      "type": "Other",
-      "name": "Release",
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
       "url": "https://patnosd.itch.io/assessment-examination"
     },
     {
@@ -39,5 +38,10 @@
       "name": "Repositorio",
       "url": "https://github.com"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "1309",
+  "source_url": "https://patnosd.itch.io/assessment-examination",
+  "release_page": "https://patnosd.itch.io/assessment-examination",
+  "updated_at": "2026-08-13T13:46:07.760913+00:00"
 }

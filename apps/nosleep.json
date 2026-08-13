@@ -13,11 +13,13 @@
   ],
   "version": "latest",
   "version_date": "2026-08-12",
-  "requirements": "",
+  "requirements": "Not specified",
   "size": 18583,
   "status": "Legacy",
-  "icon": "1988-nosleep.png",
-  "screenshots": [],
+  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1988-nosleep.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1988-nosleep.png"
+  ],
   "links": [
     {
       "type": "Download",
@@ -35,5 +37,5 @@
   "source_id": "1988",
   "source_url": "https://git.silica.codes",
   "release_page": "",
-  "updated_at": "2026-08-13T05:25:55.190094+00:00"
+  "updated_at": "2026-08-13T13:46:08.045552+00:00"
 }

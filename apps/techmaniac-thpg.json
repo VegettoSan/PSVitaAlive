@@ -3,42 +3,46 @@
   "title_id": "TECMAN001",
   "name": "Techmaniac THPG",
   "description": "Port of Techmaniac for PSVITA.",
-  "long_description": "Port of Techmaniac with enhanced graphics for PSVITA.\nRoy Webb, couch potato extraordinaire, was sitting amidst his pile of useless old tat one day, when suddenly a strange wind swept through the room and catapulted his beloved possessions into a strange land known only to him as \"the outdoors\"!\nFaced with the loss of the only source of joy in his life, Roy must venture forth and retrieve his hoard before someone else finds it and flogs it on eBay!",
+  "long_description": "Port of Techmaniac with enhanced graphics for PSVITA.\nRoy Webb, couch potato extraordinaire, was sitting amidst his pile of useless old tat one day, when suddenly a strange wind swept through the room and catapulted his beloved possessions into a strange land known only to him as \"the outdoors\"!\nFaced with the loss of the only source of joy in his life, Roy must venture forth and retrieve his hoard before someone else finds it and flogs it on eBay!\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
   "author_ids": [
     "vsm-gammer"
   ],
-  "category_id": "ports",
+  "category_id": "games",
   "subcategory_ids": [
     "other"
   ],
   "version": "v.1.0",
   "version_date": "2026-08-12",
-  "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
+  "requirements": "Not specified",
   "size": 32788929,
   "status": "Legacy",
-  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/17e246ec273acf5154bcc6c2ba8b6bca358c73bb6e4a477cbf520f6ad033070a.png",
+  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1853-techmaniac-thpg.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/ef4b21887640cdb998cff8766057cef545e74b5a8e58e596a2c830c46b85ab26.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/9daee290b094945c7b0b653dc27d60ada3b68018e7506eb092f13996a87587d0.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/301de0cbf488e877f8b17a212ee08bcd887e826dc0604892abe88bf735a25d7c.png",
-    "screenshots/ef4b21887640cdb998cff8766057cef545e74b5a8e58e596a2c830c46b85ab26.png;screenshots/9daee290b094945c7b0b653dc27d60ada3b68018e7506eb092f13996a87587d0.png;screenshots/301de0cbf488e877f8b17a212ee08bcd887e826dc0604892abe88bf735a25d7c.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/301de0cbf488e877f8b17a212ee08bcd887e826dc0604892abe88bf735a25d7c.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1119-Techmaniac-THPG.vpk",
       "recommended": true
+    },
+    {
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
+      "url": "https://fuhen.homebrew-contest.com/submissions/26/"
     },
     {
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://fuhen.homebrew-contest.com/dl/source%20code%20TECHMANIAC%20VS-MOD.zip"
-    },
-    {
-      "type": "Other",
-      "name": "Release",
-      "url": "https://fuhen.homebrew-contest.com/submissions/26/"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "1119",
+  "source_url": "https://fuhen.homebrew-contest.com/dl/source%20code%20TECHMANIAC%20VS-MOD.zip",
+  "release_page": "https://fuhen.homebrew-contest.com/submissions/26/",
+  "updated_at": "2026-08-13T13:46:07.838068+00:00"
 }

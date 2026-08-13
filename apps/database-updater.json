@@ -1,29 +1,42 @@
 {
   "id": "database-updater",
-  "title_id": "KANA99999",
+  "title_id": "DBMA00001",
   "name": "Database Updater",
-  "description": "App.db Database Updater for PSVITA.",
-  "long_description": "Triggers a rebuild/update for app.db database.",
+  "description": "app.db management tool.",
+  "long_description": "Triggers a rebuild/update for app.db database.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
   "author_ids": [
+    "deltaclock",
     "kanadeengel"
   ],
-  "category_id": "utilities",
+  "category_id": "games",
   "subcategory_ids": [
-    "installer"
+    "other"
   ],
   "version": "v2.0",
-  "version_date": "2016-12-31",
-  "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
+  "version_date": "2026-08-12",
+  "requirements": "Not specified",
   "size": 2302266,
-  "status": "Verified",
-  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/96799ede1d7e73e5c3c11e206d7506b6b521c8535fe20fe83095ede2fad0d4ee.png",
-  "screenshots": [],
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1547-database-updater.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1547-database-updater.png"
+  ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/224-Database.Manager.vpk",
       "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/deltaclock/Database-Manager"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "224",
+  "source_url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/224-Database.Manager.vpk",
+  "release_page": "",
+  "updated_at": "2026-08-13T13:46:07.999683+00:00"
 }

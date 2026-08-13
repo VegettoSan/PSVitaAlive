@@ -3,25 +3,27 @@
   "title_id": "ANICER001",
   "name": "ANIMANCER",
   "description": "Port of Animancer for PSVITA.",
-  "long_description": "Port of Animancer for PSVITA.\nSomehow, you have lost your soul. It would be good idea to find it.",
+  "long_description": "Port of Animancer for PSVITA.\nSomehow, you have lost your soul. It would be good idea to find it.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
   "author_ids": [
     "vsm-gammer"
   ],
-  "category_id": "ports",
+  "category_id": "games",
   "subcategory_ids": [
     "other"
   ],
   "version": "v.1.0",
   "version_date": "2026-08-12",
-  "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
+  "requirements": "Not specified",
   "size": 40353191,
-  "status": "Verified",
-  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/f477f126572d0b996837711a8830920561ea92d01f5d806cc810fe9a39111a37.png",
-  "screenshots": [],
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1828-animancer.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1828-animancer.png"
+  ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1081-ANIMANCER.vpk",
       "recommended": true
     },
@@ -30,5 +32,10 @@
       "name": "Repositorio",
       "url": "https://github.com"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "1081",
+  "source_url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1081-ANIMANCER.vpk",
+  "release_page": "",
+  "updated_at": "2026-08-13T13:46:07.846454+00:00"
 }

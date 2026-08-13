@@ -2,12 +2,12 @@
   "id": "zelda3-vita",
   "title_id": "ZELDASNES",
   "name": "Zelda3 Vita",
-  "description": "Port of The Legend of Zelda: A Link to the Past.",
-  "long_description": "Zelda3 Vita is a port of zelda3, a reimplementation of The Legend of Zelda: A Link to The Past with several enhancements.",
+  "description": "Port of The Legend of Zelda: A Link to the Past",
+  "long_description": "Zelda3 Vita is a port of zelda3, a reimplementation of The Legend of Zelda: A Link to The Past with several enhancements.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
   "author_ids": [
     "rinnegatamante"
   ],
-  "category_id": "ports",
+  "category_id": "games",
   "subcategory_ids": [
     "other"
   ],
@@ -15,31 +15,35 @@
   "version_date": "2026-08-12",
   "requirements": "- Game Data Files: SNES",
   "size": 2060552,
-  "status": "Verified",
-  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/13396d56e8d636cc463c0d7208287ee102ae1cd15c042032afde30d33ceafb14.png",
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1806-zelda3-vita.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c4be391b5d1f3e84dbfbbb59f6f387496b8fd2fa1ee2f33394f47880ee031353.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/f4524ee2fac91e9ce5f6b748d5bc7b9ed791cd176817c8a515e9a4873049b292.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/4b32f02ac6e09dc0c6887a270442ca9ded93fc1ecc5b6874b44259b9ea6dc046.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/09f6a63a8d578935c24332dcf5967b2de68d3a7add29d6fa530632d7f4ec5615.png",
-    "screenshots/c4be391b5d1f3e84dbfbbb59f6f387496b8fd2fa1ee2f33394f47880ee031353.png;screenshots/f4524ee2fac91e9ce5f6b748d5bc7b9ed791cd176817c8a515e9a4873049b292.png;screenshots/4b32f02ac6e09dc0c6887a270442ca9ded93fc1ecc5b6874b44259b9ea6dc046.png;screenshots/09f6a63a8d578935c24332dcf5967b2de68d3a7add29d6fa530632d7f4ec5615.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/09f6a63a8d578935c24332dcf5967b2de68d3a7add29d6fa530632d7f4ec5615.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/993-zelda3_attp.vpk",
       "recommended": true
+    },
+    {
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
+      "url": "https://www.psx-place.com/threads/release-zelda3-vita-port-of-the-legend-of-zelda-a-link-to-the-past.38470/"
     },
     {
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/Rinnegatamante/zelda3"
-    },
-    {
-      "type": "Other",
-      "name": "Release",
-      "url": "https://www.psx-place.com/threads/release-zelda3-vita-port-of-the-legend-of-zelda-a-link-to-the-past.38470/"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "993",
+  "source_url": "https://github.com/Rinnegatamante/zelda3",
+  "release_page": "https://www.psx-place.com/threads/release-zelda3-vita-port-of-the-legend-of-zelda-a-link-to-the-past.38470/",
+  "updated_at": "2026-08-13T13:46:07.768098+00:00"
 }

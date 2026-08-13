@@ -2,49 +2,52 @@
   "id": "julius-vita",
   "title_id": "JULIUS001",
   "name": "Julius Vita",
-  "description": "Caesar III is a video game that was released on September 30, 1998, developed by Impressions Games and published by Sierra On-Line.",
+  "description": "Port of Caesar 3 for PSVITA.",
   "long_description": "Caesar III is a video game that was released on September 30, 1998, developed by Impressions Games and published by Sierra On-Line. It is the third installment of the Caesar series of games and is part of Sierra's City Building Series. Players take on the role of a Roman governor, tasked with building up a grand Roman city, in which they must ensure their citizens have their needs met, that their city is safe and profitable, while meeting various goals set for them and dealing with various disasters, angry gods and hostile enemies.",
   "author_ids": [
-    "devnoname120",
     "julius-team"
   ],
-  "category_id": "ports",
+  "category_id": "games",
   "subcategory_ids": [
     "other"
   ],
-  "version": "v1.8.0",
+  "version": "v.1.8.0",
   "version_date": "2025-07-31",
   "requirements": "- Game Data Files: PC",
   "size": 2838611,
-  "status": "Verified",
-  "icon": "https://robin994.github.io/NeoVitaDB-Catalog/icons/0427-julius-vita.png",
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/a4620082d6aadd0b20d787578bb7c6bfc26218b0b4a784f05b8db796237de870.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/6ce53f9e50a1de661f174a40e597821e6e8e77bf20daff416049fa3e5aa98187.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/b8b7c7257d8a6a76c7c10cee4a7630f4c964941171a4e8cc91429ee5cab3bcbe.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/5a863769040afc100075f154312c82f5ab0d15d239b43ba5e0c9fb45e2927b16.png",
-    "screenshots/6ce53f9e50a1de661f174a40e597821e6e8e77bf20daff416049fa3e5aa98187.png;screenshots/b8b7c7257d8a6a76c7c10cee4a7630f4c964941171a4e8cc91429ee5cab3bcbe.png;screenshots/5a863769040afc100075f154312c82f5ab0d15d239b43ba5e0c9fb45e2927b16.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/5a863769040afc100075f154312c82f5ab0d15d239b43ba5e0c9fb45e2927b16.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/bvschaik/julius/releases/download/v1.8.0/julius-1.8.0-vita.vpk",
       "recommended": true
-    },
-    {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/bvschaik/julius"
-    },
-    {
-      "type": "Other",
-      "name": "Release",
-      "url": "https://github.com/bvschaik/julius/releases/tag/v1.8.0"
     },
     {
       "type": "Official Website",
       "name": "VitaDBtoo Release Page",
       "url": "https://github.com/bvschaik/julius/releases"
+    },
+    {
+      "type": "Official Website",
+      "name": "NeoVitaDB Release Page",
+      "url": "https://github.com/bvschaik/julius/releases/tag/v1.8.0"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/bvschaik/julius"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "427",
+  "source_url": "https://github.com/bvschaik/julius",
+  "release_page": "https://github.com/bvschaik/julius/releases",
+  "updated_at": "2026-08-13T13:46:07.764979+00:00"
 }

@@ -3,43 +3,47 @@
   "title_id": "LUGARU069",
   "name": "Lugaru HD",
   "description": "Port of Lugaru for PSVITA.",
-  "long_description": "Ninja rabbits on your Vita!\nThis is a beta release, meaning there are some bugs and crashes, but it's still entirely playable.\nThis is a port of the LugaruOSS to the PS Vita. It runs at 60 FPS at stock speeds, and some scenes even run at 60 with an underclock!",
+  "long_description": "Ninja rabbits on your Vita!\nThis is a beta release, meaning there are some bugs and crashes, but it's still entirely playable.\nThis is a port of the LugaruOSS to the PS Vita. It runs at 60 FPS at stock speeds, and some scenes even run at 60 with an underclock!\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
   "author_ids": [
     "diggeloid"
   ],
-  "category_id": "ports",
+  "category_id": "games",
   "subcategory_ids": [
-    "fps"
+    "other"
   ],
   "version": "beta 1",
   "version_date": "2026-08-12",
-  "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
+  "requirements": "Not specified",
   "size": 16154761,
-  "status": "Verified",
-  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/4f6d1e4fef871b01e39b829e7ccac0d56d8ceefe25fbd96edc483414a76a55a3.png",
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1793-lugaru-hd.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/e498dc0c0843c926c15a33af355d61ed03b38dd6464c5ca58aeeb6d722d5b684.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/6961c38041094d48986637751d3f37ad008c6345ab1caf6199f54c721c4ae5d9.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/bd76d1c4b9c97eefbe74961a6e6a00d7f3c0c8cd7b777ad012146d6288ff9f4c.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/911f80f11a01f131490c3ff5c3b9986f048cf58c10508cc9039047a863d62619.png",
-    "screenshots/e498dc0c0843c926c15a33af355d61ed03b38dd6464c5ca58aeeb6d722d5b684.png;screenshots/6961c38041094d48986637751d3f37ad008c6345ab1caf6199f54c721c4ae5d9.png;screenshots/bd76d1c4b9c97eefbe74961a6e6a00d7f3c0c8cd7b777ad012146d6288ff9f4c.png;screenshots/911f80f11a01f131490c3ff5c3b9986f048cf58c10508cc9039047a863d62619.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/911f80f11a01f131490c3ff5c3b9986f048cf58c10508cc9039047a863d62619.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/853-Lugaru-release-beta-1.vpk",
       "recommended": true
+    },
+    {
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
+      "url": "https://aramallo.itch.io/lugaru-vita-port"
     },
     {
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://gitlab.com/alexramallo/lugaruvita"
-    },
-    {
-      "type": "Other",
-      "name": "Release",
-      "url": "https://aramallo.itch.io/lugaru-vita-port"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "853",
+  "source_url": "https://gitlab.com/alexramallo/lugaruvita",
+  "release_page": "https://aramallo.itch.io/lugaru-vita-port",
+  "updated_at": "2026-08-13T13:46:07.882974+00:00"
 }

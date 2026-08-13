@@ -3,35 +3,34 @@
   "title_id": "SVEW00001",
   "name": "SwitchView UI",
   "description": "Alternative app launcher.",
-  "long_description": "An alternative application launcher with an UI similar to the Nintendo Switch one.",
+  "long_description": "An alternative application launcher with an UI similar to the Nintendo Switch one.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
   "author_ids": [
     "vitahex-games"
   ],
-  "category_id": "ports",
+  "category_id": "games",
   "subcategory_ids": [
     "other"
   ],
   "version": "v.0.1.2",
   "version_date": "2026-08-12",
-  "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
+  "requirements": "Not specified",
   "size": 2231742,
-  "status": "Verified",
-  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/5a34227c8d72f566d0fb55f2515ce0effc997c894c5c06c32b3665bb0b92e23c.png",
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1579-switchview-ui.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/0dcb687910c7cd2a9f04aab40a951c8c650e0ec32a16963a7fe5d5d9f5c3d89f.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/02a14a2a86ca0262a0a23ef9259206ceb89a61f7360219575b3e8f296fc09b94.png",
-    "screenshots/0dcb687910c7cd2a9f04aab40a951c8c650e0ec32a16963a7fe5d5d9f5c3d89f.png;screenshots/02a14a2a86ca0262a0a23ef9259206ceb89a61f7360219575b3e8f296fc09b94.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/02a14a2a86ca0262a0a23ef9259206ceb89a61f7360219575b3e8f296fc09b94.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/338-SwitchView.vpk",
       "recommended": true
     },
     {
-      "type": "Other",
-      "name": "Release",
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
       "url": "http://wololo.net/talk/viewtopic.php?f=116&t=48629"
     },
     {
@@ -39,5 +38,10 @@
       "name": "Repositorio",
       "url": "https://github.com"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "338",
+  "source_url": "http://wololo.net/talk/viewtopic.php?f=116&t=48629",
+  "release_page": "http://wololo.net/talk/viewtopic.php?f=116&t=48629",
+  "updated_at": "2026-08-13T13:46:07.998905+00:00"
 }

@@ -7,33 +7,32 @@
   "author_ids": [
     "anthj"
   ],
-  "category_id": "development",
+  "category_id": "games",
   "subcategory_ids": [
-    "lua"
+    "other"
   ],
   "version": "v.1.0",
   "version_date": "2021-11-06",
-  "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
+  "requirements": "Not specified",
   "size": 28319506,
-  "status": "Verified",
-  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/f07fea2284a8239f01af495520e7da75453858adb7f04f89f105ec0c7ae9e2a5.png",
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/f07fea2284a8239f01af495520e7da75453858adb7f04f89f105ec0c7ae9e2a5.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/e0eea6141a508f6251dc870062716bf75806c5e05afe0a1843234ffb64524bcd.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/48cae90894c85d45c867a312e69d17907d07f004f2d981a3b1757e959936dbc5.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c387948293026d985da8bf8a511c855013e319d08106c1adb9c1050bfa29e6af.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/f8297eb63873e8d00ba8bdd825032cb92662a97b455326d92efc5d4d585a0ad3.png",
-    "screenshots/e0eea6141a508f6251dc870062716bf75806c5e05afe0a1843234ffb64524bcd.png;screenshots/48cae90894c85d45c867a312e69d17907d07f004f2d981a3b1757e959936dbc5.png;screenshots/c387948293026d985da8bf8a511c855013e319d08106c1adb9c1050bfa29e6af.png;screenshots/f8297eb63873e8d00ba8bdd825032cb92662a97b455326d92efc5d4d585a0ad3.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/f8297eb63873e8d00ba8bdd825032cb92662a97b455326d92efc5d4d585a0ad3.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/AntHJ/Squid-Game/releases/download/v1.0/Squid.Game.vpk",
       "recommended": true
     },
     {
-      "type": "Other",
-      "name": "Release",
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
       "url": "https://github.com/AntHJ/Squid-Game"
     },
     {
@@ -41,5 +40,10 @@
       "name": "NeoVitaDB Release Page",
       "url": "https://github.com/AntHJ/Squid-Game/releases/tag/v1.0"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "750",
+  "source_url": "https://github.com/AntHJ/Squid-Game",
+  "release_page": "https://github.com/AntHJ/Squid-Game",
+  "updated_at": "2026-08-13T13:46:07.907242+00:00"
 }

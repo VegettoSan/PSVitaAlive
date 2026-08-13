@@ -3,37 +3,44 @@
   "title_id": "432100001",
   "name": "Lua Game Of Life",
   "description": "Game of Life clone.",
-  "long_description": "Game of Life is a simple implementation of Conwayâ€™s Game of Life for the PS Vita written in Lua using Lua Player Plus.",
+  "long_description": "Game of Life is a simple implementation of Conwayâ€™s Game of Life for the PS Vita written in Lua using Lua Player Plus.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
   "author_ids": [
     "domis4"
   ],
-  "category_id": "development",
+  "category_id": "games",
   "subcategory_ids": [
-    "lua"
+    "other"
   ],
   "version": "v.0.2",
   "version_date": "2026-08-12",
-  "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
+  "requirements": "Not specified",
   "size": 1799538,
-  "status": "Verified",
-  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/cf7289e7a9f3a6ae3c94184632ab31dcbf91994ffa76745c8eaac28bdb2de465.png",
-  "screenshots": [],
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1533-lua-game-of-life.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1533-lua-game-of-life.png"
+  ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/182-lua-gameoflife.vpk",
       "recommended": true
+    },
+    {
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
+      "url": "http://wololo.net/talk/viewtopic.php?p=416012"
     },
     {
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/domis4/lua-gameoflife"
-    },
-    {
-      "type": "Other",
-      "name": "Release",
-      "url": "http://wololo.net/talk/viewtopic.php?p=416012"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "182",
+  "source_url": "https://github.com/domis4/lua-gameoflife",
+  "release_page": "http://wololo.net/talk/viewtopic.php?p=416012",
+  "updated_at": "2026-08-13T13:46:08.014057+00:00"
 }

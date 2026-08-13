@@ -3,25 +3,27 @@
   "title_id": "DAKR00001",
   "name": "Game Shrinker",
   "description": "Rip your games to save SD space.",
-  "long_description": "Save valuable space on your memory card by shrinking unneeded manuals, language and video files to 0-Byte files.\nGame Shrinker automatically searches for manuals, language (text, audio, images) and video files in the game directories and offers you the possibility to shrink them to 0-Byte.\n\nShrinking files to 0-Byte is usually better supported than completely deleting them and reduces the chance of crashes and getting stuck when the file would usually be accessed by the game. Depending on the game and file, you still cannot shrink every file, though.\n\nGame Shrinker comes with a \"Try-A-Dummy\"-Feature, which let's you temporary replace a file with a dummy-file. After you tested the game you can then decide to make this change permanent or undo it. (This saves you from having to reinstall the game if you shrinked a file that is obligatory for the the game)",
+  "long_description": "Save valuable space on your memory card by shrinking unneeded manuals, language and video files to 0-Byte files.\nGame Shrinker automatically searches for manuals, language (text, audio, images) and video files in the game directories and offers you the possibility to shrink them to 0-Byte.\n\nShrinking files to 0-Byte is usually better supported than completely deleting them and reduces the chance of crashes and getting stuck when the file would usually be accessed by the game. Depending on the game and file, you still cannot shrink every file, though.\n\nGame Shrinker comes with a \"Try-A-Dummy\"-Feature, which let's you temporary replace a file with a dummy-file. After you tested the game you can then decide to make this change permanent or undo it. (This saves you from having to reinstall the game if you shrinked a file that is obligatory for the the game)\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
   "author_ids": [
     "dakor"
   ],
   "category_id": "games",
   "subcategory_ids": [
-    "card"
+    "other"
   ],
   "version": "v.1.1",
   "version_date": "2026-08-12",
-  "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
+  "requirements": "Not specified",
   "size": 380747,
-  "status": "Verified",
-  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/f53708caff5294940ab1693d99e59ca90236b3c8feba058bc72f5c2f649e9ac0.png",
-  "screenshots": [],
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1498-game-shrinker.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1498-game-shrinker.png"
+  ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/97-game_shrinker.vpk",
       "recommended": true
     },
@@ -30,5 +32,10 @@
       "name": "Repositorio",
       "url": "https://github.com"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "97",
+  "source_url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/97-game_shrinker.vpk",
+  "release_page": "",
+  "updated_at": "2026-08-13T13:46:08.015129+00:00"
 }

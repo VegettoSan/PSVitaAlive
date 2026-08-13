@@ -7,7 +7,7 @@
   "author_ids": [
     "gl33ntwine"
   ],
-  "category_id": "ports",
+  "category_id": "games",
   "subcategory_ids": [
     "other"
   ],
@@ -15,8 +15,8 @@
   "version_date": "2022-01-17",
   "requirements": "- Game Data Files: Amiga OR DOS",
   "size": 1205494,
-  "status": "Verified",
-  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/1801dabbf92e4adfa4b57ef790f41c9c1a08fa63293e8024d0dfdc37ae214a9d.png",
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/1801dabbf92e4adfa4b57ef790f41c9c1a08fa63293e8024d0dfdc37ae214a9d.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/6f54b88e1a0ce6f51c29d192e998760ccab78570379786eb2aa6354e0dec230b.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/cb5c61f2dd93014f516fa8e918f3a3d0afc3470748feae39eaafecbde5933119.png"
@@ -24,19 +24,29 @@
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/v-atamanenko/blues-vita/releases/download/1.0/blues.vpk",
       "recommended": true
+    },
+    {
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
+      "url": "https://github.com/v-atamanenko/blues-vita/releases"
+    },
+    {
+      "type": "Official Website",
+      "name": "NeoVitaDB Release Page",
+      "url": "https://github.com/v-atamanenko/blues-vita/releases/tag/1.0"
     },
     {
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/v-atamanenko/blues-vita"
-    },
-    {
-      "type": "Other",
-      "name": "Release",
-      "url": "https://github.com/v-atamanenko/blues-vita/releases"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "775",
+  "source_url": "https://github.com/v-atamanenko/blues-vita",
+  "release_page": "https://github.com/v-atamanenko/blues-vita/releases",
+  "updated_at": "2026-08-13T13:46:07.902199+00:00"
 }

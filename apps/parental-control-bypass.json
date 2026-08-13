@@ -2,26 +2,28 @@
   "id": "parental-control-bypass",
   "title_id": "PARENTAL0",
   "name": "Parental Control Bypass",
-  "description": "A program to delete the parental controls passcode incase you forgot it,.",
+  "description": "",
   "long_description": "A program to delete the parental controls passcode incase you forgot it,\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
   "author_ids": [
     "li"
   ],
-  "category_id": "utilities",
+  "category_id": "games",
   "subcategory_ids": [
     "other"
   ],
   "version": "latest",
   "version_date": "2026-08-12",
-  "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
+  "requirements": "Not specified",
   "size": 29068,
-  "status": "Archive",
-  "icon": "https://robin994.github.io/NeoVitaDB-Catalog/icons/1457-parental-control-bypass.png",
-  "screenshots": [],
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1457-parental-control-bypass.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1457-parental-control-bypass.png"
+  ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "NeoVitaDB VPK",
       "url": "https://git.silica.codes/Li/parentalcontrolbypass/releases/download/latest/Parental_Control_Bypass.vpk",
       "recommended": true
     },
@@ -30,5 +32,10 @@
       "name": "Repositorio",
       "url": "https://git.silica.codes"
     }
-  ]
+  ],
+  "source_name": "NeoVitaDB",
+  "source_id": "1457",
+  "source_url": "https://git.silica.codes",
+  "release_page": "",
+  "updated_at": "2026-08-13T13:46:08.041622+00:00"
 }

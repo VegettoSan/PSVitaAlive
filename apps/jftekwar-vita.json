@@ -3,43 +3,47 @@
   "title_id": "JFTEKWAR1",
   "name": "jftekwar-vita",
   "description": "Port of William Shatner's Tekwar for PSVITA.",
-  "long_description": "jftekwar-vita is a port of jftekwar (JonoF's Tekwar), an unpolished multiplatform source port of Tekwar.\nThe software is served as-is, expect some bugs since the original source port never got polished to match jfsw/jfduke3d quality.",
+  "long_description": "jftekwar-vita is a port of jftekwar (JonoF's Tekwar), an unpolished multiplatform source port of Tekwar.\nThe software is served as-is, expect some bugs since the original source port never got polished to match jfsw/jfduke3d quality.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
   "author_ids": [
     "rinnegatamante"
   ],
-  "category_id": "ports",
+  "category_id": "games",
   "subcategory_ids": [
-    "engine-port"
+    "other"
   ],
   "version": "v.0.8",
   "version_date": "2026-08-12",
   "requirements": "- libshacccg.suprx\n- Game Data Files: PC",
   "size": 1611484,
-  "status": "Verified",
-  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/3f7c1144ee72023ca3fbb77ca96cc0e2db406d310aeb072934a2643a02ddbaa6.png",
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1836-jftekwar-vita.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/210b5b81e1453c57a6b57c1f251a50fcf6145cef177d5b8bd2c40c0fff94b7d6.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/27d8d0bf5a88d055656c801f375c59c2c3cde2f2376dd9a5a51cb46cb9be905f.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/5b0cc820f32ba756eae547bca0fb9152867a61cb6226596e696db9a18809b4f2.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/5f57da0bc5e41aac93630008adde031625d6af812ad0e99a30574031e0f19f1e.png",
-    "screenshots/210b5b81e1453c57a6b57c1f251a50fcf6145cef177d5b8bd2c40c0fff94b7d6.png;screenshots/27d8d0bf5a88d055656c801f375c59c2c3cde2f2376dd9a5a51cb46cb9be905f.png;screenshots/5b0cc820f32ba756eae547bca0fb9152867a61cb6226596e696db9a18809b4f2.png;screenshots/5f57da0bc5e41aac93630008adde031625d6af812ad0e99a30574031e0f19f1e.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/5f57da0bc5e41aac93630008adde031625d6af812ad0e99a30574031e0f19f1e.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1098-jftekwar.vpk",
       "recommended": true
+    },
+    {
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
+      "url": "https://www.psx-place.com/threads/release-jftekwar-vita-port-of-william-shatners-tekwar-for-psvita.41142/"
     },
     {
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/Rinnegatamante/jftekwar"
-    },
-    {
-      "type": "Other",
-      "name": "Release",
-      "url": "https://www.psx-place.com/threads/release-jftekwar-vita-port-of-william-shatners-tekwar-for-psvita.41142/"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "1098",
+  "source_url": "https://github.com/Rinnegatamante/jftekwar",
+  "release_page": "https://www.psx-place.com/threads/release-jftekwar-vita-port-of-william-shatners-tekwar-for-psvita.41142/",
+  "updated_at": "2026-08-13T13:46:07.839611+00:00"
 }

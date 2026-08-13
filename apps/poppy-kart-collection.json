@@ -7,44 +7,48 @@
   "author_ids": [
     "rinnegatamante"
   ],
-  "category_id": "ports",
+  "category_id": "games",
   "subcategory_ids": [
-    "racing"
+    "other"
   ],
   "version": "v.1.0",
   "version_date": "2023-01-18",
   "requirements": "- libshacccg.suprx\n- kubridge.skprx\n- Game Data Files: Android",
   "size": 3017065,
-  "status": "Verified",
-  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/ac05b0949fc0b2c8f2e12bc6ce87acdce92c55711daee9138873eb7c8db5900e.png",
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/ac05b0949fc0b2c8f2e12bc6ce87acdce92c55711daee9138873eb7c8db5900e.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/f9447cf8f1ed8f204abb877d1e73de55a1f0ceeaedba9e88519743f90f1652e7.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/65dcbcaf89841a19c5826c01100b1649e73b3c3ebdc9be451660bfcfb805abb8.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c5c251987fcac53b8fcc257122e960baa0e61f7908f5002f2b0ed905ac4a5893.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/9fa4ba2663047f79894892c645ed5f5e9bc9559f2c00514ade14975c4591d98d.png",
-    "screenshots/f9447cf8f1ed8f204abb877d1e73de55a1f0ceeaedba9e88519743f90f1652e7.png;screenshots/65dcbcaf89841a19c5826c01100b1649e73b3c3ebdc9be451660bfcfb805abb8.png;screenshots/c5c251987fcac53b8fcc257122e960baa0e61f7908f5002f2b0ed905ac4a5893.png;screenshots/9fa4ba2663047f79894892c645ed5f5e9bc9559f2c00514ade14975c4591d98d.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/9fa4ba2663047f79894892c645ed5f5e9bc9559f2c00514ade14975c4591d98d.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/Rinnegatamante/Poppy-Kart-Collection/releases/download/v.1.0/PoppyKart.vpk",
       "recommended": true
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/Rinnegatamante/Poppy-Kart-Collection"
-    },
-    {
-      "type": "Other",
-      "name": "Release",
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
       "url": "https://github.com/Rinnegatamante/Poppy-Kart-Collection/releases"
     },
     {
       "type": "Official Website",
       "name": "NeoVitaDB Release Page",
       "url": "https://github.com/Rinnegatamante/Poppy-Kart-Collection/releases/tag/v.1.0"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/Rinnegatamante/Poppy-Kart-Collection"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "1030",
+  "source_url": "https://github.com/Rinnegatamante/Poppy-Kart-Collection",
+  "release_page": "https://github.com/Rinnegatamante/Poppy-Kart-Collection/releases",
+  "updated_at": "2026-08-13T13:46:07.867399+00:00"
 }

@@ -5,41 +5,47 @@
   "description": "Doom 1/Doom 2 port for PSVITA.",
   "long_description": "Doom 1/Doom 2 port for PSVITA based on DoomPSP.",
   "author_ids": [
-    "mrnetrix",
     "aagallag"
   ],
-  "category_id": "ports",
+  "category_id": "games",
   "subcategory_ids": [
-    "fps"
+    "other"
   ],
   "version": "v.1.1",
   "version_date": "2017-07-24",
   "requirements": "- Game Data Files: PC",
   "size": 648251,
-  "status": "Verified",
-  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/7efea6eae7184a48b41067fe4e194b89baab583afe5f0273e0eddb417096afb2.png",
-  "screenshots": [],
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/7efea6eae7184a48b41067fe4e194b89baab583afe5f0273e0eddb417096afb2.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/7efea6eae7184a48b41067fe4e194b89baab583afe5f0273e0eddb417096afb2.png"
+  ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/aagallag/Vita_Doom/releases/download/aagallag_v1.1/Vita_Doom.vpk",
       "recommended": true
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/aagallag/Vita_Doom"
-    },
-    {
-      "type": "Other",
-      "name": "Release",
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
       "url": "https://github.com/aagallag/Vita_Doom/releases/"
     },
     {
       "type": "Official Website",
       "name": "NeoVitaDB Release Page",
       "url": "https://github.com/aagallag/Vita_Doom/releases/tag/aagallag_v1.1"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/aagallag/Vita_Doom"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "172",
+  "source_url": "https://github.com/aagallag/Vita_Doom",
+  "release_page": "https://github.com/aagallag/Vita_Doom/releases/",
+  "updated_at": "2026-08-13T13:46:08.006120+00:00"
 }

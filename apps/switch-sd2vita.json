@@ -2,49 +2,55 @@
   "id": "switch-sd2vita",
   "title_id": "SWITCHSDV",
   "name": "Switch SD2Vita",
-  "description": "Little application that allows you to install and manage SD2VITA drivers for both ux0:/ and uma0:/ mounting points.",
+  "description": "SD2Vita drivers manager.",
   "long_description": "Little application that allows you to install and manage SD2VITA drivers for both ux0:/ and uma0:/ mounting points.",
   "author_ids": [
-    "appleio",
-    "wth"
+    "appleio"
   ],
-  "category_id": "system",
+  "category_id": "games",
   "subcategory_ids": [
-    "storage"
+    "other"
   ],
-  "version": "2.1",
+  "version": "v.2.1",
   "version_date": "2018-09-29",
-  "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
+  "requirements": "Not specified",
   "size": 250120,
-  "status": "Verified",
-  "icon": "https://robin994.github.io/NeoVitaDB-Catalog/icons/0294-switch-sd2vita.png",
-  "screenshots": [],
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/9e2fa1f38568c41f2c015ef509da37b35cfa809d4234500300823c220524a6cf.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/9e2fa1f38568c41f2c015ef509da37b35cfa809d4234500300823c220524a6cf.png"
+  ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
-      "url": "https://github.com/Applelo/SwitchSD2Vita/releases/download/2.1/switch_sd2vita.vpk",
+      "name": "VitaDBtoo VPK",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/294-switch_sd2vita.vpk",
       "recommended": true
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/Applelo/SwitchSD2Vita"
-    },
-    {
-      "type": "Other",
-      "name": "Release",
-      "url": "https://github.com/Applelo/SwitchSD2Vita/releases/tag/2.1"
-    },
-    {
       "type": "Download",
-      "name": "VitaDBtoo VPK",
-      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/294-switch_sd2vita.vpk"
+      "name": "NeoVitaDB VPK",
+      "url": "https://github.com/Applelo/SwitchSD2Vita/releases/download/2.1/switch_sd2vita.vpk"
     },
     {
       "type": "Official Website",
       "name": "VitaDBtoo Release Page",
       "url": "http://wololo.net/talk/viewtopic.php?p=419388"
+    },
+    {
+      "type": "Official Website",
+      "name": "NeoVitaDB Release Page",
+      "url": "https://github.com/Applelo/SwitchSD2Vita/releases/tag/2.1"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/Applelo/SwitchSD2Vita"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "294",
+  "source_url": "https://github.com/Applelo/SwitchSD2Vita",
+  "release_page": "http://wololo.net/talk/viewtopic.php?p=419388",
+  "updated_at": "2026-08-13T13:46:07.989324+00:00"
 }

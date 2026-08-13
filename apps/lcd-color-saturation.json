@@ -7,47 +7,41 @@
   "author_ids": [
     "electric"
   ],
-  "category_id": "utilities",
+  "category_id": "games",
   "subcategory_ids": [
     "other"
   ],
   "version": "v1.2.0",
   "version_date": "2020-09-13",
-  "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
+  "requirements": "Not specified",
   "size": 203913,
-  "status": "Verified",
-  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/ab1b1fec0b9c2e0012391c33e68960f96c0475655278072e40382bb2c99a1b0e.png",
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/0561-lcd-color-saturation.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/0fb73c3fffaed5c1e0ba7d91387fc789d910c2a680b7d2b734b88413774be847.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c5d9a04e8aa95d987fd1edd98a589ada85157f5a77b4a214c4bb22782279f1d5.png",
-    "screenshots/0fb73c3fffaed5c1e0ba7d91387fc789d910c2a680b7d2b734b88413774be847.png;screenshots/c5d9a04e8aa95d987fd1edd98a589ada85157f5a77b4a214c4bb22782279f1d5.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c5d9a04e8aa95d987fd1edd98a589ada85157f5a77b4a214c4bb22782279f1d5.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
-      "url": "https://github.com/Electric1447/lcd-color-saturation/releases/download/v1.1.0/lcdsat.vpk",
-      "recommended": true
-    },
-    {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/Electric1447/lcd-color-saturation"
-    },
-    {
-      "type": "Other",
-      "name": "Release",
-      "url": "https://github.com/Electric1447/lcd-color-saturation/releases"
-    },
-    {
-      "type": "Download",
       "name": "NeoVitaDB VPK",
-      "url": "https://github.com/Electric1447/lcd-color-saturation/releases/download/v1.2.0/lcdsat.vpk"
+      "url": "https://github.com/Electric1447/lcd-color-saturation/releases/download/v1.2.0/lcdsat.vpk",
+      "recommended": true
     },
     {
       "type": "Official Website",
       "name": "NeoVitaDB Release Page",
       "url": "https://github.com/Electric1447/lcd-color-saturation/releases/tag/v1.2.0"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/Electric1447/lcd-color-saturation"
     }
-  ]
+  ],
+  "source_name": "NeoVitaDB",
+  "source_id": "561",
+  "source_url": "https://github.com/Electric1447/lcd-color-saturation",
+  "release_page": "https://github.com/Electric1447/lcd-color-saturation/releases/tag/v1.2.0",
+  "updated_at": "2026-08-13T13:46:07.951584+00:00"
 }

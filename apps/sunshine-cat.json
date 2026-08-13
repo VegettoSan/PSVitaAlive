@@ -3,32 +3,34 @@
   "title_id": "ABCD12346",
   "name": "Sunshine Cat",
   "description": "Port of Sunshine-Cat-Platformer for PSVITA.",
-  "long_description": "Port of Sunshine-Cat-Platformer for PSVITA.\nSunshine-Cat-Platformer is a demo platformer inspired to the secret levels of Super Mario Sunshine made for an university task.",
+  "long_description": "Port of Sunshine-Cat-Platformer for PSVITA.\nSunshine-Cat-Platformer is a demo platformer inspired to the secret levels of Super Mario Sunshine made for an university task.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
   "author_ids": [
     "spanishfreddy",
     "lapy"
   ],
-  "category_id": "demos",
+  "category_id": "games",
   "subcategory_ids": [
-    "tech-demo"
+    "other"
   ],
   "version": "v.2",
   "version_date": "2026-08-12",
-  "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
+  "requirements": "Not specified",
   "size": 55927557,
-  "status": "Verified",
-  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/e6a91baaa31c7fd00d41affa08bf633fe0fcbcee82bc21e17d1f3a1422910f15.png",
-  "screenshots": [],
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1810-sunshine-cat.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1810-sunshine-cat.png"
+  ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1026-sunshine.vpk",
       "recommended": true
     },
     {
-      "type": "Other",
-      "name": "Release",
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
       "url": "https://github.com/SpanishFreddy/Sunshine-Cat-PSVita-Port"
     },
     {
@@ -36,5 +38,10 @@
       "name": "Repositorio",
       "url": "https://github.com"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "1026",
+  "source_url": "https://github.com/SpanishFreddy/Sunshine-Cat-PSVita-Port",
+  "release_page": "https://github.com/SpanishFreddy/Sunshine-Cat-PSVita-Port",
+  "updated_at": "2026-08-13T13:46:07.871551+00:00"
 }

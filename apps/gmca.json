@@ -2,38 +2,45 @@
   "id": "gmca",
   "title_id": "GMCA00001",
   "name": "GMCA",
-  "description": "GMCA is one native, controller-first client.",
+  "description": "Media center client for PSVita.",
   "long_description": "GMCA is one native, controller-first client. Point it at any media center â€” Plex, Jellyfin, Emby or Stremio â€” and run it on any device you left in a drawer: Nintendo Switch, PS Vita or a Raspberry Pi wired to the TV. The interface never changes; only the accent colour and the tabs follow your server.",
   "author_ids": [
     "thcolin"
   ],
-  "category_id": "ports",
+  "category_id": "games",
   "subcategory_ids": [
     "other"
   ],
   "version": "v1.1.0",
   "version_date": "2026-07-17",
-  "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
+  "requirements": "Not specified",
   "size": 14558256,
-  "status": "Verified",
-  "icon": "https://robin994.github.io/NeoVitaDB-Catalog/icons/1411-gmca.png",
-  "screenshots": [],
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1411-gmca.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1411-gmca.png"
+  ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "NeoVitaDB VPK",
       "url": "https://github.com/thcolin/gamepad-media-center-aggregator/releases/download/v1.1.0/GMCA.vpk",
       "recommended": true
+    },
+    {
+      "type": "Official Website",
+      "name": "NeoVitaDB Release Page",
+      "url": "https://github.com/thcolin/gamepad-media-center-aggregator/releases/tag/v1.1.0"
     },
     {
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/thcolin/gamepad-media-center-aggregator"
-    },
-    {
-      "type": "Other",
-      "name": "Release",
-      "url": "https://github.com/thcolin/gamepad-media-center-aggregator/releases/tag/v1.1.0"
     }
-  ]
+  ],
+  "source_name": "NeoVitaDB",
+  "source_id": "1411",
+  "source_url": "https://github.com/thcolin/gamepad-media-center-aggregator",
+  "release_page": "https://github.com/thcolin/gamepad-media-center-aggregator/releases/tag/v1.1.0",
+  "updated_at": "2026-08-13T13:46:07.703121+00:00"
 }

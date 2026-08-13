@@ -7,38 +7,45 @@
   "author_ids": [
     "usineur"
   ],
-  "category_id": "ports",
+  "category_id": "games",
   "subcategory_ids": [
-    "engine-port"
+    "other"
   ],
   "version": "v.1.4",
   "version_date": "2018-01-12",
   "requirements": "- Game Data Files: PC",
   "size": 1015517,
-  "status": "Verified",
-  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/84235dee32a942d678a6547e4e2dbac3cd63480d1a42d911bdc4cf4cb7d7a7cf.png",
-  "screenshots": [],
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/84235dee32a942d678a6547e4e2dbac3cd63480d1a42d911bdc4cf4cb7d7a7cf.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/84235dee32a942d678a6547e4e2dbac3cd63480d1a42d911bdc4cf4cb7d7a7cf.png"
+  ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/usineur/bermuda/releases/download/1.4/bermuda-vita.vpk",
       "recommended": true
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/usineur/bermuda/"
-    },
-    {
-      "type": "Other",
-      "name": "Release",
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
       "url": "https://gbatemp.net/threads/release-bermuda-syndrome.446812/"
     },
     {
       "type": "Official Website",
       "name": "NeoVitaDB Release Page",
       "url": "https://github.com/usineur/bermuda/releases/tag/1.4"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/usineur/bermuda/"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "115",
+  "source_url": "https://github.com/usineur/bermuda/",
+  "release_page": "https://gbatemp.net/threads/release-bermuda-syndrome.446812/",
+  "updated_at": "2026-08-13T13:46:07.995857+00:00"
 }

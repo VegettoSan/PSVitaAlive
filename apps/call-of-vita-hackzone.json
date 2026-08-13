@@ -3,31 +3,30 @@
   "title_id": "CADD54321",
   "name": "Call of Vita: Hackzone",
   "description": "Online multiplayer FPS for PSVITA.",
-  "long_description": "An online multiplayer FPS made in Unity inspired to Call of Duty: Warzone.",
+  "long_description": "An online multiplayer FPS made in Unity inspired to Call of Duty: Warzone.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
   "author_ids": [
     "vitadev-games"
   ],
   "category_id": "games",
   "subcategory_ids": [
-    "shooter"
+    "other"
   ],
   "version": "v.0.1.30a",
   "version_date": "2026-08-12",
-  "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
+  "requirements": "Not specified",
   "size": 149904935,
-  "status": "Verified",
-  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/f5f9d3b9358bd3e625b3c79f3d38a4e51e99a12dedad350d3567dc68fd6580a9.png",
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1805-call-of-vita-hackzone.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/5578c7df64d70cab8a7f700c93ddc5776467b39f14c4b9d541bbf7c17f904727.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/373eea3940ed66c418e119651466b2af5fbd269f12e92c0f3b85305ac2cc07ea.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/cd70cda05d5f3f89ed3e94fd26561bbe9a57e6840fcae3005849dd3b559a07a6.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/119b7f11adc9b164bd8d72c81112aad764ccedc90319d70551fc3f97b5945c74.png",
-    "screenshots/5578c7df64d70cab8a7f700c93ddc5776467b39f14c4b9d541bbf7c17f904727.png;screenshots/373eea3940ed66c418e119651466b2af5fbd269f12e92c0f3b85305ac2cc07ea.png;screenshots/cd70cda05d5f3f89ed3e94fd26561bbe9a57e6840fcae3005849dd3b559a07a6.png;screenshots/119b7f11adc9b164bd8d72c81112aad764ccedc90319d70551fc3f97b5945c74.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/119b7f11adc9b164bd8d72c81112aad764ccedc90319d70551fc3f97b5945c74.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/992-call_of_vita.vpk",
       "recommended": true
     },
@@ -36,5 +35,10 @@
       "name": "Repositorio",
       "url": "https://github.com"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "992",
+  "source_url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/992-call_of_vita.vpk",
+  "release_page": "",
+  "updated_at": "2026-08-13T13:46:07.851708+00:00"
 }

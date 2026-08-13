@@ -3,36 +3,35 @@
   "title_id": "PLSG10001",
   "name": "Dark Paradigm",
   "description": "Survival horror game for PSVITA.",
-  "long_description": "Dark Paradigm is a project created to fill the hole that the PS Vita has regarding shooters, it's a mix of horror and FPS, the environments are mainly dark and you will lack ammunition if you don't aim to the head.\nThis is a work in progress looking to get feedback from the community. Currently only Arcade mode is available, no bullet/ammo/explosives/weapon pickups are available yet, but they will be soon!\nDon't forget to try out the photo mode!",
+  "long_description": "Dark Paradigm is a project created to fill the hole that the PS Vita has regarding shooters, it's a mix of horror and FPS, the environments are mainly dark and you will lack ammunition if you don't aim to the head.\nThis is a work in progress looking to get feedback from the community. Currently only Arcade mode is available, no bullet/ammo/explosives/weapon pickups are available yet, but they will be soon!\nDon't forget to try out the photo mode!\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
   "author_ids": [
     "parkinglotstudio"
   ],
-  "category_id": "ports",
+  "category_id": "games",
   "subcategory_ids": [
-    "fps"
+    "other"
   ],
   "version": "v.0.08a",
   "version_date": "2026-08-12",
-  "requirements": "Requires a jailbroken PS Vita/PSTV and installation of the VPK via VitaShell (or compatible package installer).",
+  "requirements": "Not specified",
   "size": 125810977,
-  "status": "Verified",
-  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/06325c16d3e6dcee7e8b5d4c9047ce8503850a4731561c9a6637ad7045a3f3b8.png",
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1695-dark-paradigm.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/b774809e38e19614fa6b66b757a2aefc10119ac08c7192ab9678a91de297f96e.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/04afc4b29a8702b5dd5fe320b65c9bb0f0f9a88447b2bf60aca91c2fc164e598.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/1c5483de7f417451e626d5d78062b1eb13f8f3e6611e5cb8aadbf5d34fa98b6b.png",
-    "screenshots/b774809e38e19614fa6b66b757a2aefc10119ac08c7192ab9678a91de297f96e.png;screenshots/04afc4b29a8702b5dd5fe320b65c9bb0f0f9a88447b2bf60aca91c2fc164e598.png;screenshots/1c5483de7f417451e626d5d78062b1eb13f8f3e6611e5cb8aadbf5d34fa98b6b.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/1c5483de7f417451e626d5d78062b1eb13f8f3e6611e5cb8aadbf5d34fa98b6b.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/594-DarkParadigm.vpk",
       "recommended": true
     },
     {
-      "type": "Other",
-      "name": "Release",
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
       "url": "https://kyuhen.customprotocol.com/en/submissions/darkparadigm/"
     },
     {
@@ -40,5 +39,10 @@
       "name": "Repositorio",
       "url": "https://github.com"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "594",
+  "source_url": "https://kyuhen.customprotocol.com/en/submissions/darkparadigm/",
+  "release_page": "https://kyuhen.customprotocol.com/en/submissions/darkparadigm/",
+  "updated_at": "2026-08-13T13:46:07.919818+00:00"
 }

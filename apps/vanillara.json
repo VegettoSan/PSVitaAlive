@@ -7,49 +7,47 @@
   "author_ids": [
     "northfear"
   ],
-  "category_id": "ports",
+  "category_id": "games",
   "subcategory_ids": [
-    "engine-port"
+    "other"
   ],
   "version": "v.1.0-r914",
   "version_date": "2023-12-23",
   "requirements": "- fd_fix.skprx OR repatch_ex.skprx\n- Game Data Files: PC",
   "size": 2175330,
-  "status": "Verified",
-  "icon": "https://drdecki.github.io/VitaDBtoo-db/icons/864abed6a32c98fec9dcce2f8f404fb659e21af147f570a4563dc65f7e67d9e4.png",
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/864abed6a32c98fec9dcce2f8f404fb659e21af147f570a4563dc65f7e67d9e4.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/25717dd7223a9bf135a04f95ff60f8524fb7adcd306e22dc284830d09faba8cb.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/92f16ad1f54ba914546151030098153509eac23a9e12b3bbdbf7467e19f1cc4f.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/6782b72bf90a27b58765effc75074b6e1ac28c0514510273c6105ebcbd4a9199.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/02ad7e60dc55b724908cb5123b7aaed570e9a0bf145bbc7802b379814481104d.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/5efc563fef6d8d54dfef7673e54fcf68ca64cdcff2590866367aa522ac0c41bf.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/6782b72bf90a27b58765effc75074b6e1ac28c0514510273c6105ebcbd4a9199.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "Descarga principal",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/Northfear/Vanilla-Conquer-vita/releases/download/v1.0-r914/vanillara.vpk",
       "recommended": true
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/Northfear/Vanilla-Conquer-vita"
-    },
-    {
-      "type": "Other",
-      "name": "Release",
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
       "url": "https://kyuhen.customprotocol.com/en/submissions/vanilla_conquer"
-    },
-    {
-      "type": "Download",
-      "name": "VitaDBtoo VPK",
-      "url": "https://github.com/Northfear/Vanilla-Conquer-vita/releases/download/v1.0-r914/vanillatd.vpk"
     },
     {
       "type": "Official Website",
       "name": "NeoVitaDB Release Page",
       "url": "https://github.com/Northfear/Vanilla-Conquer-vita/releases/tag/v1.0-r914"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/Northfear/Vanilla-Conquer-vita"
     }
-  ]
+  ],
+  "source_name": "VitaDBtoo",
+  "source_id": "649",
+  "source_url": "https://github.com/Northfear/Vanilla-Conquer-vita",
+  "release_page": "https://kyuhen.customprotocol.com/en/submissions/vanilla_conquer",
+  "updated_at": "2026-08-13T13:46:07.815363+00:00"
 }
