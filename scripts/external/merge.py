@@ -50,6 +50,13 @@ def merge_group(candidates: list[Candidate]) -> Candidate:
             if url and url not in screenshots:
                 screenshots.append(url)
 
+    # External catalogs are allowed to omit screenshots. Once all source
+    # candidates have been inspected, use the resolved icon as the final
+    # screenshot fallback. Overrides are applied later and can replace this.
+    icon = first_value("icon")
+    if not screenshots and icon and any(item.source_id != "local" for item in candidates):
+        screenshots = [icon]
+
     return Candidate(
         source_id="merged",
         source_item_id=local.source_item_id if local else newest.source_item_id,
@@ -64,7 +71,7 @@ def merge_group(candidates: list[Candidate]) -> Candidate:
         long_description=first_value("long_description"),
         requirements=first_value("requirements"),
         changelog=first_value("changelog"),
-        icon=first_value("icon"),
+        icon=icon,
         screenshots=screenshots[:5],
         download_url=newest.download_url or first_value("download_url"),
         size=newest.size or first_value("size"),
