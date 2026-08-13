@@ -71,6 +71,137 @@ jobs:
       - name: Normalize persisted canonical source files
         run: python scripts/normalize_persisted_sources.py
 
+      - name: Split compound external authors into individual profiles
+        shell: bash
+        run: |
+          python - <<'PY'
+          import json
+          import re
+          from pathlib import Path
+          from scripts.external.identity import canonical_author_id
+
+          root = Path('.')
+          authors_dir = root / 'authors'
+          apps_dir = root / 'apps'
+          fallback = 'https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png'
+
+          def load(path):
+              return json.loads(path.read_text(encoding='utf-8'))
+
+          def save(path, value):
+              path.write_text(json.dumps(value, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
+
+          def split_names(value):
+              if not isinstance(value, str):
+                  return []
+              text = re.sub(r'\s+', ' ', value.replace('\u00a0', ' ')).strip()
+              if not text:
+                  return []
+              # VitaDB-family feeds commonly use &, comma, + or "and" as
+              # separators when several developers are stored in one field.
+              text = re.sub(r'\s*&\s*', ',', text)
+              text = re.sub(r'\s+\band\b\s+', ',', text, flags=re.I)
+              text = re.sub(r'\s*\+\s*', ',', text)
+              parts = [p.strip(' \t,;|') for p in text.split(',')]
+              result, seen = [], set()
+              for part in parts:
+                  if not part:
+                      continue
+                  aid = canonical_author_id(part)
+                  if aid and aid not in seen:
+                      seen.add(aid)
+                      result.append((aid, part))
+              return result
+
+          authors = {}
+          for path in sorted(authors_dir.glob('*.json')):
+              try:
+                  author = load(path)
+              except Exception:
+                  continue
+              if author.get('id'):
+                  authors[author['id']] = author
+
+          changed_apps = 0
+          created_authors = 0
+          split_groups = 0
+
+          for path in sorted(apps_dir.glob('*.json')):
+              try:
+                  app = load(path)
+              except Exception:
+                  continue
+
+              raw_ids = app.get('author_ids')
+              if not isinstance(raw_ids, list):
+                  raw_ids = [app.get('author_id')] if app.get('author_id') else []
+
+              new_ids = []
+              was_split = False
+              for raw_id in raw_ids:
+                  if not isinstance(raw_id, str) or not raw_id.strip():
+                      continue
+                  raw_id = raw_id.strip()
+                  profile = authors.get(raw_id)
+                  display_name = profile.get('name', raw_id) if profile else raw_id
+                  names = split_names(display_name)
+
+                  if len(names) <= 1:
+                      aid = names[0][0] if names else raw_id
+                      if aid not in new_ids:
+                          new_ids.append(aid)
+                      continue
+
+                  was_split = True
+                  split_groups += 1
+                  for aid, name in names:
+                      if aid not in authors:
+                          authors[aid] = {
+                              'id': aid,
+                              'name': name,
+                              'avatar': '',
+                              'bio': '',
+                              'links': [],
+                              'icon': fallback,
+                          }
+                          created_authors += 1
+                      if aid not in new_ids:
+                          new_ids.append(aid)
+
+              if new_ids and (app.get('author_ids') != new_ids or 'author_id' in app):
+                  app['author_ids'] = new_ids
+                  app.pop('author_id', None)
+                  save(path, app)
+                  changed_apps += 1
+
+          for aid, author in sorted(authors.items()):
+              path = authors_dir / f'{aid}.json'
+              if not path.exists():
+                  save(path, author)
+
+          # Rebuild generated registries from the now-canonical individual app
+          # and author files. catalog.json remains generated, never hand-edited.
+          apps = []
+          for path in sorted(apps_dir.glob('*.json')):
+              try:
+                  apps.append(load(path))
+              except Exception:
+                  continue
+          apps.sort(key=lambda a: (str(a.get('version_date') or ''), str(a.get('updated_at') or '')), reverse=True)
+
+          referenced = {aid for app in apps for aid in app.get('author_ids', []) if isinstance(aid, str)}
+          published = [authors[aid] for aid in sorted(referenced) if aid in authors]
+          published.sort(key=lambda a: str(a.get('name', a.get('id', ''))).lower())
+
+          save(root / 'catalog.json', apps)
+          save(root / 'authors.json', published)
+
+          print(f'Compound author groups split: {split_groups}')
+          print(f'Application JSON files changed: {changed_apps}')
+          print(f'Individual author profiles created: {created_authors}')
+          print(f'Authors published after split: {len(published)}')
+          PY
+
       - name: Remove orphan authors from generated registry
         shell: bash
         run: |
