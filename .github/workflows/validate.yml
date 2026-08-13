@@ -2,20 +2,9 @@ name: Validate and Generate VitaHub Catalog
 
 on:
   push:
-    branches:
-      - main
-    paths:
-      - "apps/**"
-      - "authors/**"
-      - "categories/**"
-      - "catalog_overrides/**"
-      - "external_authors/**"
-      - "sources/**"
-      - "scripts/**"
-      - ".github/workflows/validate.yml"
+    branches: [main]
   pull_request:
-    branches:
-      - main
+    branches: [main]
   schedule:
     - cron: "17 */3 * * *"
   workflow_dispatch:
@@ -23,13 +12,8 @@ on:
 permissions:
   contents: write
 
-concurrency:
-  group: catalog-generation
-  cancel-in-progress: false
-
 jobs:
-  validate-json:
-    name: Validate and Generate VitaHub Catalog
+  validate:
     runs-on: ubuntu-latest
 
     steps:
@@ -38,30 +22,36 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Setup Python
+      - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: "3.x"
+          python-version: "3.11"
 
-      - name: Validate historical IDs
-        run: python scripts/validate_registry.py
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          if [ -f requirements.txt ]; then
+            pip install -r requirements.txt
+          fi
 
-      - name: Prepare one-time clean external rebuild
-        id: rebuild
+      - name: Decide catalog mode
+        id: mode
         shell: bash
         run: |
           if [ -f sources/rebuild_once.json ]; then
+            echo "rebuild=true" >> "$GITHUB_OUTPUT"
             echo "VITAHUB_REBUILD_FROM_EXTERNAL=true" >> "$GITHUB_ENV"
-            echo "Clean external rebuild requested. Existing apps/*.json will not be used as merge input."
+            echo "External rebuild requested."
             rm -f sources/rebuild_once.json
-          else
+          elif python scripts/validate_catalog_ci.py; then
+            echo "rebuild=false" >> "$GITHUB_OUTPUT"
             echo "VITAHUB_REBUILD_FROM_EXTERNAL=false" >> "$GITHUB_ENV"
-            echo "Normal incremental catalog generation."
+            echo "Existing source catalog is valid; using incremental mode."
+          else
+            echo "rebuild=true" >> "$GITHUB_OUTPUT"
+            echo "VITAHUB_REBUILD_FROM_EXTERNAL=true" >> "$GITHUB_ENV"
+            echo "Existing source catalog is invalid; falling back to external rebuild."
           fi
-
-      - name: Validate VitaHub source catalog before incremental generation
-        if: env.VITAHUB_REBUILD_FROM_EXTERNAL != 'true'
-        run: python scripts/validate_catalog_ci.py
 
       - name: Run external aggregation smoke test
         run: python scripts/external_smoke_test.py
@@ -69,69 +59,60 @@ jobs:
       - name: Generate merged VitaHub catalogs and canonical source files
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          VITAHUB_REBUILD_FROM_EXTERNAL: ${{ steps.mode.outputs.rebuild }}
         run: python scripts/generate_catalog.py
 
-      - name: Persist final normalized canonical source files
+      - name: Normalize persisted canonical source files
         run: python scripts/normalize_persisted_sources.py
 
-      - name: Validate rebuilt VitaHub source catalog
+      - name: Validate VitaHub source catalog
         run: python scripts/validate_catalog_ci.py
 
       - name: Verify generated catalogs
         run: |
-          test -f catalog.json
-          test -f authors.json
-          test -f categories.json
+          test -s catalog.json
+          test -s authors.json
+          test -s categories.json
           python -m json.tool catalog.json > /dev/null
           python -m json.tool authors.json > /dev/null
           python -m json.tool categories.json > /dev/null
-
-          echo "Generated catalogs:"
-          ls -lh catalog.json authors.json categories.json
-
-          echo "Canonical source counts:"
-          find apps -maxdepth 1 -name '*.json' | wc -l
-          find authors -maxdepth 1 -name '*.json' | wc -l
 
       - name: Commit canonical source files and generated catalogs
         if: github.event_name != 'pull_request'
         shell: bash
         run: |
-          git add apps/*.json authors/*.json catalog.json authors.json categories.json
-          if [ -f reports/external_conflicts.json ]; then
-            git add reports/external_conflicts.json
-          fi
-          if [ ! -f sources/rebuild_once.json ] && git ls-files --error-unmatch sources/rebuild_once.json >/dev/null 2>&1; then
-            git add -u sources/rebuild_once.json
-          fi
+          set -euo pipefail
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          git add -A --             apps             authors             categories             catalog.json             authors.json             categories.json             reports             sources
 
           if git diff --cached --quiet; then
             echo "No canonical source or generated catalog changes detected."
             exit 0
           fi
 
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git commit -m "Rebuild VitaHub canonical catalog sources"
 
           for attempt in 1 2 3 4 5; do
-            if git push origin HEAD:main; then
-              echo "Catalog publication succeeded on attempt $attempt."
-              exit 0
+            git fetch origin main
+
+            if git rebase --autostash origin/main; then
+              if git push origin HEAD:main; then
+                echo "Catalog publication succeeded on attempt $attempt."
+                exit 0
+              fi
+            else
+              git rebase --abort || true
             fi
 
-            if [ "$attempt" = 5 ]; then
+            if [ "$attempt" -eq 5 ]; then
               echo "::error::git push rejected after 5 attempts"
               git status --short
               exit 1
             fi
 
-            echo "Remote main advanced; rebasing generated commit onto the latest main. Attempt $attempt."
-            git fetch origin main
-
-            # Generation scripts can leave harmless working-tree changes after the
-            # commit (for example metadata produced during normalization). Rebase
-            # with autostash so a concurrent scheduled/manual run cannot break the
-            # publish step with 'cannot rebase: You have unstaged changes'.
-            git rebase --autostash origin/main
+            echo "Remote main advanced; retrying publish (attempt $attempt)."
+            sleep 5
           done
