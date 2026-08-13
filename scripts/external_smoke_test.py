@@ -7,7 +7,7 @@ import tempfile
 from external.identity import canonical_author_id, same_identity
 from external.merge import select_newest
 from external.overrides import load_overrides, apply_override
-from external.sources import Candidate, normalize_vitadb
+from external.sources import Candidate, extract_catalog_items, normalize_vitadb
 
 
 def candidate(source, version, title="TEST00001"):
@@ -39,6 +39,10 @@ b = candidate("b", "1.10")
 assert select_newest([a, b]).version == "1.10"
 assert same_identity(a, b)
 assert canonical_author_id("Example Developer") == "example-developer"
+
+wrapped = extract_catalog_items({"data": [{"name": "Wrapped"}]}, "vitadb")
+assert len(wrapped) == 1
+assert wrapped[0]["name"] == "Wrapped"
 
 vitadb = normalize_vitadb({
     "id": 123,
