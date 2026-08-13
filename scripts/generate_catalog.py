@@ -74,7 +74,6 @@ def process_media(apps):
             category_icons[category.get("id")] = repository_relative_resource(icon, path.parent)
 
     default_author_avatar = ROOT / "authors" / "icon" / "autoricon.png"
-    default_author_avatar_rel = repository_relative_resource("icon/autoricon.png", ROOT / "authors")
 
     for app in apps:
         source_dir = local_paths.get(app.get("id"), ROOT)
@@ -82,7 +81,7 @@ def process_media(apps):
         if not isinstance(icon, str) or not icon.strip():
             icon = category_icons.get(app.get("category_id"), "")
         if icon:
-            app["icon"] = repository_relative_resource(icon, source_dir if not icon.startswith(("http://", "https://")) else ROOT)
+            app["icon"] = repository_relative_resource(icon, source_dir)
 
         screenshots = app.get("screenshots") or []
         if not screenshots and app.get("icon"):
@@ -100,7 +99,7 @@ def process_media(apps):
 
 
 def generate():
-    from scripts.external.aggregate import build
+    from external.aggregate import build
 
     apps, authors, categories, conflicts = build(ROOT)
     if conflicts:
@@ -111,7 +110,6 @@ def generate():
             handle.write("\n")
         print(f"External aggregation reported {len(conflicts)} conflicts", file=sys.stderr)
 
-    # Keep the previous generator's icon/screenshot fallback behavior intact.
     process_media(apps)
 
     for author in authors:
