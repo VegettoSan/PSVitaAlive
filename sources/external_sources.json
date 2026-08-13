@@ -1,0 +1,21 @@
+{
+  "version": 1,
+  "sources": [
+    {
+      "id": "vitadbtoo",
+      "name": "VitaDBtoo",
+      "enabled": true,
+      "kind": "github_json",
+      "url": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/apps.json",
+      "priority": 100
+    },
+    {
+      "id": "neovitadb",
+      "name": "NeoVitaDB",
+      "enabled": true,
+      "kind": "github_catalog",
+      "url": "https://robin994.github.io/NeoVitaDB-Catalog/",
+      "priority": 90
+    }
+  ]
+}
