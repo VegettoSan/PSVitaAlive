@@ -10,7 +10,7 @@ ROOT = Path(__file__).resolve().parents[1]
 def repository_relative_resource(value, source_directory):
     if not isinstance(value, str) or not value.strip():
         return value
-    if value.startswith("http://") or value.startswith("https://"):
+    if value.startswith(("http://", "https://")):
         return value
     local = (source_directory / value).resolve()
     try:
@@ -18,10 +18,6 @@ def repository_relative_resource(value, source_directory):
     except ValueError as exc:
         raise ValueError(f"resource escapes repository: {value}") from exc
     return relative.as_posix()
-
-
-def normalize_final_resource(value, source_directory):
-    return repository_relative_resource(value, source_directory)
 
 
 def validate_final(apps, authors, categories):
@@ -37,20 +33,19 @@ def validate_final(apps, authors, categories):
         if not title_id or title_id in title_ids:
             raise ValueError(f"duplicate/empty title_id: {title_id}")
         title_ids.add(title_id)
-        authors_for_app = app.get("author_ids")
-        if not isinstance(authors_for_app, list) or not authors_for_app:
+        author_list = app.get("author_ids")
+        if not isinstance(author_list, list) or not author_list:
             raise ValueError(f"{app['id']}: author_ids must be non-empty")
-        missing = [item for item in authors_for_app if item not in author_ids]
+        missing = [item for item in author_list if item not in author_ids]
         if missing:
             raise ValueError(f"{app['id']}: unknown author_ids: {missing}")
-        category_id = app.get("category_id")
-        category = category_map.get(category_id)
+        category = category_map.get(app.get("category_id"))
         if not category:
-            raise ValueError(f"{app['id']}: unknown category_id {category_id}")
+            raise ValueError(f"{app['id']}: unknown category_id {app.get('category_id')}")
         allowed = {item.get("id") for item in category.get("subcategories", [])}
         for sub_id in app.get("subcategory_ids", []):
             if sub_id not in allowed:
-                raise ValueError(f"{app['id']}: subcategory {sub_id} is not valid for {category_id}")
+                raise ValueError(f"{app['id']}: invalid subcategory {sub_id}")
         screenshots = app.get("screenshots") or []
         if screenshots and not 1 <= len(screenshots) <= 5:
             raise ValueError(f"{app['id']}: screenshots must contain 1-5 items")
@@ -58,6 +53,50 @@ def validate_final(apps, authors, categories):
         recommended = sum(1 for link in links if isinstance(link, dict) and link.get("recommended") is True)
         if recommended > 1:
             raise ValueError(f"{app['id']}: more than one recommended link")
+
+
+def process_media(apps):
+    local_paths = {}
+    for path in sorted((ROOT / "apps").glob("*.json")):
+        try:
+            with path.open(encoding="utf-8") as handle:
+                data = json.load(handle)
+            local_paths[data.get("id")] = path.parent
+        except Exception:
+            continue
+
+    category_icons = {}
+    for path in sorted((ROOT / "categories").glob("*.json")):
+        with path.open(encoding="utf-8") as handle:
+            category = json.load(handle)
+        icon = category.get("icon")
+        if isinstance(icon, str) and icon.strip():
+            category_icons[category.get("id")] = repository_relative_resource(icon, path.parent)
+
+    default_author_avatar = ROOT / "authors" / "icon" / "autoricon.png"
+    default_author_avatar_rel = repository_relative_resource("icon/autoricon.png", ROOT / "authors")
+
+    for app in apps:
+        source_dir = local_paths.get(app.get("id"), ROOT)
+        icon = app.get("icon")
+        if not isinstance(icon, str) or not icon.strip():
+            icon = category_icons.get(app.get("category_id"), "")
+        if icon:
+            app["icon"] = repository_relative_resource(icon, source_dir if not icon.startswith(("http://", "https://")) else ROOT)
+
+        screenshots = app.get("screenshots") or []
+        if not screenshots and app.get("icon"):
+            screenshots = [app["icon"]]
+        normalized = []
+        for screenshot in screenshots:
+            if isinstance(screenshot, str) and screenshot.startswith(("http://", "https://")):
+                normalized.append(screenshot)
+            else:
+                normalized.append(repository_relative_resource(screenshot, source_dir))
+        app["screenshots"] = normalized[:5]
+
+    if not default_author_avatar.is_file():
+        raise ValueError("authors/icon/autoricon.png is required")
 
 
 def generate():
@@ -72,29 +111,26 @@ def generate():
             handle.write("\n")
         print(f"External aggregation reported {len(conflicts)} conflicts", file=sys.stderr)
 
-    # Resolve local resource references where possible. External URLs remain untouched.
-    for app in apps:
-        for field in ("icon",):
-            if isinstance(app.get(field), str) and not app[field].startswith(("http://", "https://")):
-                app[field] = normalize_final_resource(app[field], ROOT / "apps")
-        shots = []
-        for shot in app.get("screenshots", []):
-            if isinstance(shot, str) and not shot.startswith(("http://", "https://")):
-                shots.append(normalize_final_resource(shot, ROOT / "apps"))
-            else:
-                shots.append(shot)
-        app["screenshots"] = shots[:5]
+    # Keep the previous generator's icon/screenshot fallback behavior intact.
+    process_media(apps)
+
+    for author in authors:
+        avatar = author.get("avatar")
+        if not isinstance(avatar, str) or not avatar.strip():
+            author["avatar"] = "icon/autoricon.png"
 
     validate_final(apps, authors, categories)
-    with (ROOT / "catalog.json").open("w", encoding="utf-8") as f:
-        json.dump(apps, f, ensure_ascii=False, indent=2)
-        f.write("\n")
-    with (ROOT / "authors.json").open("w", encoding="utf-8") as f:
-        json.dump(authors, f, ensure_ascii=False, indent=2)
-        f.write("\n")
-    with (ROOT / "categories.json").open("w", encoding="utf-8") as f:
-        json.dump(categories, f, ensure_ascii=False, indent=2)
-        f.write("\n")
+
+    with (ROOT / "catalog.json").open("w", encoding="utf-8") as handle:
+        json.dump(apps, handle, ensure_ascii=False, indent=2)
+        handle.write("\n")
+    with (ROOT / "authors.json").open("w", encoding="utf-8") as handle:
+        json.dump(authors, handle, ensure_ascii=False, indent=2)
+        handle.write("\n")
+    with (ROOT / "categories.json").open("w", encoding="utf-8") as handle:
+        json.dump(categories, handle, ensure_ascii=False, indent=2)
+        handle.write("\n")
+
     print(f"Applications: {len(apps)}")
     print(f"Authors: {len(authors)}")
     print(f"Categories: {len(categories)}")
