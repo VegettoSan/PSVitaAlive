@@ -95,6 +95,7 @@ jobs:
 
       - name: Commit canonical source files and generated catalogs
         if: github.event_name != 'pull_request'
+        shell: bash
         run: |
           git add apps/*.json authors/*.json catalog.json authors.json categories.json
           if [ -f reports/external_conflicts.json ]; then
@@ -111,21 +112,26 @@ jobs:
 
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-
           git commit -m "Rebuild VitaHub canonical catalog sources"
 
           for attempt in 1 2 3 4 5; do
-            if git push; then
-              break
+            if git push origin HEAD:main; then
+              echo "Catalog publication succeeded on attempt $attempt."
+              exit 0
             fi
+
             if [ "$attempt" = 5 ]; then
               echo "::error::git push rejected after 5 attempts"
+              git status --short
               exit 1
             fi
+
+            echo "Remote main advanced; rebasing generated commit onto the latest main. Attempt $attempt."
             git fetch origin main
-            git rebase origin/main || {
-              git rebase --abort
-              git reset --soft origin/main
-              git diff --cached --quiet || git commit -m "Rebuild VitaHub canonical catalog sources"
-            }
+
+            # Generation scripts can leave harmless working-tree changes after the
+            # commit (for example metadata produced during normalization). Rebase
+            # with autostash so a concurrent scheduled/manual run cannot break the
+            # publish step with 'cannot rebase: You have unstaged changes'.
+            git rebase --autostash origin/main
           done
