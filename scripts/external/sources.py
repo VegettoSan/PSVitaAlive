@@ -7,7 +7,7 @@ from dataclasses import dataclass
 from pathlib import Path
 
 
-USER_AGENT = "PSVitaAlive-ExternalCatalog/1.1"
+USER_AGENT = "PSVitaAlive-ExternalCatalog/1.2"
 
 
 @dataclass
@@ -34,9 +34,34 @@ class Candidate:
 
 
 def fetch_json(url: str):
-    request = urllib.request.Request(url, headers={"User-Agent": USER_AGENT, "Accept": "application/json"})
+    request = urllib.request.Request(
+        url,
+        headers={"User-Agent": USER_AGENT, "Accept": "application/json, text/plain, */*"},
+    )
     with urllib.request.urlopen(request, timeout=45) as response:
         return json.load(response)
+
+
+def extract_catalog_items(data, source_id: str) -> list[dict]:
+    """Accept list feeds and common API wrapper/object shapes.
+
+    VitaDB's legacy endpoint is not required to have the same JSON root shape
+    as VitaDBtoo or NeoVitaDB. This helper keeps source-specific response
+    handling at the ingestion boundary instead of dropping a valid feed to
+    zero candidates silently.
+    """
+    if isinstance(data, list):
+        return [item for item in data if isinstance(item, dict)]
+    if isinstance(data, dict):
+        for key in ("apps", "homebrew", "homebrews", "items", "results", "data", "entries"):
+            value = data.get(key)
+            if isinstance(value, list):
+                return [item for item in value if isinstance(item, dict)]
+        values = list(data.values())
+        if values and all(isinstance(item, dict) for item in values):
+            if any(item.get("titleid") or item.get("title_id") or item.get("name") for item in values):
+                return values
+    raise ValueError(f"{source_id}: unsupported JSON feed shape ({type(data).__name__})")
 
 
 def _as_list(value):
@@ -52,7 +77,11 @@ def _split_csvish(value):
         return [str(item).strip() for item in value if str(item).strip()]
     if not isinstance(value, str) or not value.strip():
         return []
-    return [item.strip() for item in value.replace("\r", "\n").replace(";", "\n").replace(",", "\n").split("\n") if item.strip()]
+    return [
+        item.strip()
+        for item in value.replace("\r", "\n").replace(";", "\n").replace(",", "\n").split("\n")
+        if item.strip()
+    ]
 
 
 def _int_or_none(value):
@@ -65,11 +94,9 @@ def _int_or_none(value):
 def normalize_vitadb(raw: dict) -> Candidate:
     """Normalize the official VitaDB list_hbs_json.php format.
 
-    VitaDB Downloader consumes this endpoint directly and reads the fields
-    name, icon, version, author, type, id, date, titleid, screenshots,
-    long_description, downloads, source, release_page, size, data_size,
-    hash and hash2. The VitaDB numeric type is translated to VitaHub's
-    category vocabulary here instead of leaking the external taxonomy.
+    The legacy VitaDB client consumes fields including name, icon, version,
+    author, type, id, date, titleid, screenshots, descriptions, downloads,
+    source, release_page, size, hashes and auxiliary-data metadata.
     """
     type_value = str(raw.get("type") if raw.get("type") is not None else "").strip().lower()
     type_map = {
@@ -87,9 +114,7 @@ def normalize_vitadb(raw: dict) -> Candidate:
     category_raw = type_map.get(type_value, type_value or None)
     screenshots = _split_csvish(raw.get("screenshots"))
     authors = _split_csvish(raw.get("author") or raw.get("authors"))
-    download_url = raw.get("url") or raw.get("download_url")
-    if not download_url and raw.get("download"):
-        download_url = raw.get("download")
+    download_url = raw.get("url") or raw.get("download_url") or raw.get("download")
     return Candidate(
         source_id="vitadb",
         source_item_id=str(raw.get("id")) if raw.get("id") is not None else None,
@@ -140,9 +165,7 @@ def normalize_vitadbtoo(raw: dict) -> Candidate:
 
 
 def normalize_psvitaalive(raw: dict) -> Candidate:
-    authors = []
-    for author_id in raw.get("author_ids", []):
-        authors.append(str(author_id))
+    authors = [str(author_id) for author_id in raw.get("author_ids", [])]
     links = raw.get("links", []) if isinstance(raw.get("links"), list) else []
     downloads = [item for item in links if item.get("type") == "Download"]
     repo = next((item.get("url") for item in links if item.get("type") == "Repository"), None)
