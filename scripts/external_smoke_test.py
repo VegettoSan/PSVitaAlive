@@ -4,10 +4,10 @@
 from pathlib import Path
 import tempfile
 
-from scripts.external.identity import canonical_author_id, same_identity
-from scripts.external.merge import select_newest
-from scripts.external.overrides import load_overrides, apply_override
-from scripts.external.sources import Candidate
+from external.identity import canonical_author_id, same_identity
+from external.merge import select_newest
+from external.overrides import load_overrides, apply_override
+from external.sources import Candidate
 
 
 def candidate(source, version, title="TEST00001"):
