@@ -9,7 +9,11 @@ class OverrideError(ValueError):
     pass
 
 
-PROTECTED = {"id", "title_id", "author_ids", "category_id", "subcategory_ids", "status"}
+# `id` identifies the application targeted by this override file. It is a
+# selector/metadata field and is therefore allowed in the override document.
+# The protected set contains fields whose application values must never be
+# changed by an override.
+PROTECTED = {"title_id", "author_ids", "category_id", "subcategory_ids", "status"}
 CONTROLLED = {"version", "version_date", "size"}
 SCALAR_FIELDS = {"name", "description", "long_description", "requirements", "icon", "changelog"}
 ARRAY_FIELDS = {"screenshots", "links"}
