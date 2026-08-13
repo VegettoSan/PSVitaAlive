@@ -2,9 +2,38 @@
 
 import json
 import sys
+from datetime import datetime
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
+
+
+def parse_catalog_date(value):
+    if not isinstance(value, str) or not value.strip():
+        return datetime.min
+    raw = value.strip().replace("Z", "+00:00")
+    try:
+        return datetime.fromisoformat(raw).replace(tzinfo=None)
+    except ValueError:
+        return datetime.min
+
+
+def sort_latest_first(apps):
+    """Order applications newest-to-oldest by version date.
+
+    `updated_at` is used only when `version_date` is absent or invalid.
+    Original order is kept as the final stable tie-breaker.
+    """
+    indexed = list(enumerate(apps))
+
+    def key(item):
+        index, app = item
+        version_date = parse_catalog_date(app.get("version_date"))
+        updated_at = parse_catalog_date(app.get("updated_at"))
+        return (version_date, updated_at, -index)
+
+    indexed.sort(key=key, reverse=True)
+    return [app for _, app in indexed]
 
 
 def repository_relative_resource(value, source_directory):
@@ -111,6 +140,7 @@ def generate():
         print(f"External aggregation reported {len(conflicts)} conflicts", file=sys.stderr)
 
     process_media(apps)
+    apps = sort_latest_first(apps)
 
     for author in authors:
         avatar = author.get("avatar")
