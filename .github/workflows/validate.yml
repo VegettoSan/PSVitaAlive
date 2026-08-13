@@ -4,12 +4,28 @@ on:
   push:
     branches:
       - main
+    paths:
+      - "apps/**"
+      - "authors/**"
+      - "categories/**"
+      - "catalog_overrides/**"
+      - "external_authors/**"
+      - "sources/**"
+      - "scripts/**"
+      - ".github/workflows/validate.yml"
   pull_request:
     branches:
       - main
+  schedule:
+    - cron: "17 */3 * * *"
+  workflow_dispatch:
 
 permissions:
   contents: write
+
+concurrency:
+  group: catalog-generation
+  cancel-in-progress: false
 
 jobs:
   validate-json:
@@ -30,10 +46,15 @@ jobs:
       - name: Validate historical IDs
         run: python scripts/validate_registry.py
 
-      - name: Validate VitaHub catalog
+      - name: Validate VitaHub source catalog
         run: python scripts/validate_catalog.py
 
-      - name: Generate VitaHub catalogs
+      - name: Run external aggregation smoke test
+        run: python scripts/external_smoke_test.py
+
+      - name: Generate merged VitaHub catalogs
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: python scripts/generate_catalog.py
 
       - name: Verify generated catalogs
@@ -41,7 +62,6 @@ jobs:
           test -f catalog.json
           test -f authors.json
           test -f categories.json
-
           python -m json.tool catalog.json > /dev/null
           python -m json.tool authors.json > /dev/null
           python -m json.tool categories.json > /dev/null
@@ -50,12 +70,12 @@ jobs:
           ls -lh catalog.json authors.json categories.json
 
       - name: Commit generated catalogs
-        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        if: github.event_name != 'pull_request'
         run: |
-          git add catalog.json authors.json categories.json
+          git add catalog.json authors.json categories.json reports/external_conflicts.json || true
 
           if git diff --cached --quiet; then
-            echo "No catalog changes detected."
+            echo "No generated catalog changes detected."
             exit 0
           fi
 
@@ -64,4 +84,18 @@ jobs:
 
           git commit -m "Update generated VitaHub catalogs"
 
-          git push
+          for attempt in 1 2 3 4 5; do
+            if git push; then
+              break
+            fi
+            if [ "$attempt" = 5 ]; then
+              echo "::error::git push rejected after 5 attempts"
+              exit 1
+            fi
+            git fetch origin main
+            git rebase origin/main || {
+              git rebase --abort
+              git reset --soft origin/main
+              git diff --cached --quiet || git commit -m "Update generated VitaHub catalogs"
+            }
+          done

@@ -1,0 +1,10 @@
+{
+  "version": 1,
+  "mappings": {
+    "port": {"category_id": "ports", "subcategory_ids": ["other"]},
+    "plugin": {"category_id": "plugins", "subcategory_ids": ["other"]},
+    "emulator": {"category_id": "emulators", "subcategory_ids": ["other"]},
+    "utility": {"category_id": "utilities", "subcategory_ids": ["other"]},
+    "game": {"category_id": "games", "subcategory_ids": ["other"]}
+  }
+}
