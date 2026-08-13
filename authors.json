@@ -17,28 +17,13 @@
   {
     "id": "10tr-ll-on-percent",
     "name": "10TR!LL!ON Percent%",
-    "avatar": "icon/autoricon.png",
+    "avatar": "",
     "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
     "links": [
       {
         "type": "Other",
         "name": "Buscar autor",
         "url": "https://github.com/search?q=10TR%21LL%21ON+Percent%25&type=users",
-        "recommended": true
-      }
-    ],
-    "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
-  },
-  {
-    "id": "156692474",
-    "name": "156692474",
-    "avatar": "icon/autoricon.png",
-    "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
-    "links": [
-      {
-        "type": "Other",
-        "name": "Buscar autor",
-        "url": "https://github.com/search?q=156692474&type=users",
         "recommended": true
       }
     ],
@@ -77,7 +62,7 @@
   {
     "id": "5port5y",
     "name": "5PORT5Y",
-    "avatar": "icon/autoricon.png",
+    "avatar": "",
     "bio": "Desarrollador de homebrew para PS Vita.",
     "links": [
       {
@@ -105,21 +90,6 @@
     "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
   },
   {
-    "id": "aagaming",
-    "name": "AAGaming",
-    "avatar": "https://github.com/AAGaming00.png",
-    "bio": "Desarrollador de homebrew para PS Vita.",
-    "links": [
-      {
-        "type": "GitHub",
-        "name": "GitHub",
-        "url": "https://github.com/AAGaming00",
-        "recommended": true
-      }
-    ],
-    "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
-  },
-  {
     "id": "aap",
     "name": "aap",
     "avatar": "https://github.com/TheOfficialFloW.png",
@@ -135,24 +105,9 @@
     "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
   },
   {
-    "id": "acekone",
-    "name": "Acekone",
-    "avatar": "icon/autoricon.png",
-    "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
-    "links": [
-      {
-        "type": "Other",
-        "name": "Buscar autor",
-        "url": "https://github.com/search?q=Acekone&type=users",
-        "recommended": true
-      }
-    ],
-    "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
-  },
-  {
     "id": "adecon-production",
     "name": "aDeCon Production",
-    "avatar": "icon/autoricon.png",
+    "avatar": "",
     "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
     "links": [
       {
@@ -165,15 +120,15 @@
     "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
   },
   {
-    "id": "aggresivepixels",
-    "name": "aggresivepixels",
-    "avatar": "https://github.com/aggressivepixels.png",
-    "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
+    "id": "aionmagan",
+    "name": "aionmagan",
+    "avatar": "",
+    "bio": "Desarrollador de homebrew para PS Vita.",
     "links": [
       {
-        "type": "GitHub",
-        "name": "GitHub",
-        "url": "https://github.com/aggressivepixels",
+        "type": "Other",
+        "name": "Buscar autor",
+        "url": "https://github.com/search?q=aionmagan&type=users",
         "recommended": true
       }
     ],
@@ -182,7 +137,7 @@
   {
     "id": "aionmagan-elpichonart-gguihurt",
     "name": "aionmagan & elpichonart & GGuihurt",
-    "avatar": "icon/autoricon.png",
+    "avatar": "",
     "bio": "",
     "links": [
       {
@@ -215,39 +170,9 @@
     "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
   },
   {
-    "id": "aionmagan",
-    "name": "aionmagan",
-    "avatar": "icon/autoricon.png",
-    "bio": "Desarrollador de homebrew para PS Vita.",
-    "links": [
-      {
-        "type": "Other",
-        "name": "Buscar autor",
-        "url": "https://github.com/search?q=aionmagan&type=users",
-        "recommended": true
-      }
-    ],
-    "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
-  },
-  {
-    "id": "aj-milne",
-    "name": "Aj Milne",
-    "avatar": "icon/autoricon.png",
-    "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
-    "links": [
-      {
-        "type": "Other",
-        "name": "Buscar autor",
-        "url": "https://github.com/search?q=Aj+Milne&type=users",
-        "recommended": true
-      }
-    ],
-    "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
-  },
-  {
     "id": "aj170",
     "name": "AJ170",
-    "avatar": "icon/autoricon.png",
+    "avatar": "",
     "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
     "links": [
       {
@@ -277,7 +202,7 @@
   {
     "id": "akabane87",
     "name": "Akabane87",
-    "avatar": "icon/autoricon.png",
+    "avatar": "",
     "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
     "links": [
       {
@@ -290,39 +215,9 @@
     "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
   },
   {
-    "id": "alamgbc",
-    "name": "AlamGBC",
-    "avatar": "icon/autoricon.png",
-    "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
-    "links": [
-      {
-        "type": "Other",
-        "name": "Buscar autor",
-        "url": "https://github.com/search?q=AlamGBC&type=users",
-        "recommended": true
-      }
-    ],
-    "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
-  },
-  {
-    "id": "alex",
-    "name": "Alex",
-    "avatar": "icon/autoricon.png",
-    "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
-    "links": [
-      {
-        "type": "Other",
-        "name": "Buscar autor",
-        "url": "https://github.com/search?q=Alex&type=users",
-        "recommended": true
-      }
-    ],
-    "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
-  },
-  {
     "id": "alexdev2",
     "name": "AlexDev2",
-    "avatar": "icon/autoricon.png",
+    "avatar": "",
     "bio": "Desarrollador de homebrew para PS Vita.",
     "links": [
       {
@@ -352,7 +247,7 @@
   {
     "id": "almidasa-studios",
     "name": "Almidasa Studios",
-    "avatar": "icon/autoricon.png",
+    "avatar": "",
     "bio": "Equipo de desarrollo detras de proyectos open source y homebrew para PS Vita/PSP.",
     "links": [
       {
@@ -382,7 +277,7 @@
   {
     "id": "alyinghood",
     "name": "Alyinghood",
-    "avatar": "icon/autoricon.png",
+    "avatar": "",
     "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
     "links": [
       {
@@ -410,21 +305,6 @@
     "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
   },
   {
-    "id": "amrcidiot",
-    "name": "Amrcidiot",
-    "avatar": "icon/autoricon.png",
-    "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
-    "links": [
-      {
-        "type": "Other",
-        "name": "Buscar autor",
-        "url": "https://github.com/search?q=Amrcidiot&type=users",
-        "recommended": true
-      }
-    ],
-    "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
-  },
-  {
     "id": "anashalideen",
     "name": "AnasHalideen",
     "avatar": "https://github.com/anas-halid.png",
@@ -442,58 +322,13 @@
   {
     "id": "anchitpatra",
     "name": "Anchitpatra",
-    "avatar": "icon/autoricon.png",
+    "avatar": "",
     "bio": "Desarrollador de homebrew y ports para PlayStation Vita, activo en la comunidad de custom firmware.",
     "links": [
       {
         "type": "Other",
         "name": "Buscar autor",
         "url": "https://github.com/search?q=Anchitpatra&type=users",
-        "recommended": true
-      }
-    ],
-    "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
-  },
-  {
-    "id": "andiweli",
-    "name": "Andiweli",
-    "avatar": "https://github.com/Andiweli.png",
-    "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
-    "links": [
-      {
-        "type": "GitHub",
-        "name": "GitHub",
-        "url": "https://github.com/Andiweli",
-        "recommended": true
-      }
-    ],
-    "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
-  },
-  {
-    "id": "andrew-church",
-    "name": "Andrew Church",
-    "avatar": "icon/autoricon.png",
-    "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
-    "links": [
-      {
-        "type": "Other",
-        "name": "Buscar autor",
-        "url": "https://github.com/search?q=Andrew+Church&type=users",
-        "recommended": true
-      }
-    ],
-    "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
-  },
-  {
-    "id": "andrewyy",
-    "name": "AndrewYY",
-    "avatar": "icon/autoricon.png",
-    "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
-    "links": [
-      {
-        "type": "Other",
-        "name": "Buscar autor",
-        "url": "https://github.com/search?q=AndrewYY&type=users",
         "recommended": true
       }
     ],
@@ -532,7 +367,7 @@
   {
     "id": "angrydevs",
     "name": "AngryDevs",
-    "avatar": "icon/autoricon.png",
+    "avatar": "",
     "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
     "links": [
       {
@@ -575,21 +410,6 @@
     "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
   },
   {
-    "id": "anweifeng",
-    "name": "Anweifeng",
-    "avatar": "icon/autoricon.png",
-    "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
-    "links": [
-      {
-        "type": "Other",
-        "name": "Buscar autor",
-        "url": "https://github.com/search?q=Anweifeng&type=users",
-        "recommended": true
-      }
-    ],
-    "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
-  },
-  {
     "id": "aorsiniyt",
     "name": "AorsiniYT",
     "avatar": "https://github.com/xyzz.png",
@@ -622,7 +442,7 @@
   {
     "id": "aramallo",
     "name": "Aramallo",
-    "avatar": "icon/autoricon.png",
+    "avatar": "",
     "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
     "links": [
       {
@@ -637,7 +457,7 @@
   {
     "id": "arar7000",
     "name": "arar7000",
-    "avatar": "icon/autoricon.png",
+    "avatar": "",
     "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
     "links": [
       {
@@ -667,7 +487,7 @@
   {
     "id": "arkanite",
     "name": "Arkanite",
-    "avatar": "icon/autoricon.png",
+    "avatar": "",
     "bio": "Desarrollador de homebrew y ports para PlayStation Vita, activo en la comunidad de custom firmware.",
     "links": [
       {
@@ -682,7 +502,7 @@
   {
     "id": "asdronin",
     "name": "asdronin",
-    "avatar": "icon/autoricon.png",
+    "avatar": "",
     "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
     "links": [
       {
@@ -697,7 +517,7 @@
   {
     "id": "aurora-jackiepooh-rinnegatamante",
     "name": "Aurora & Jackiepooh & Rinnegatamante",
-    "avatar": "icon/autoricon.png",
+    "avatar": "",
     "bio": "",
     "links": [
       {
@@ -722,7 +542,7 @@
   {
     "id": "aurora-svennd",
     "name": "Aurora & svennd",
-    "avatar": "icon/autoricon.png",
+    "avatar": "",
     "bio": "",
     "links": [
       {
@@ -745,21 +565,6 @@
     "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
   },
   {
-    "id": "aurora",
-    "name": "Aurora",
-    "avatar": "icon/autoricon.png",
-    "bio": "Desarrollador de homebrew para PS Vita.",
-    "links": [
-      {
-        "type": "Other",
-        "name": "Buscar autor",
-        "url": "https://github.com/search?q=Aurora&type=users",
-        "recommended": true
-      }
-    ],
-    "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
-  },
-  {
     "id": "avellea",
     "name": "Avellea",
     "avatar": "https://github.com/Avellea.png",
@@ -777,7 +582,7 @@
   {
     "id": "avonder",
     "name": "avonder",
-    "avatar": "icon/autoricon.png",
+    "avatar": "",
     "bio": "Desarrollador de homebrew para PS Vita.",
     "links": [
       {
@@ -822,7 +627,7 @@
   {
     "id": "balder",
     "name": "Balder",
-    "avatar": "icon/autoricon.png",
+    "avatar": "",
     "bio": "Desarrollador de homebrew para PS Vita.",
     "links": [
       {
@@ -835,24 +640,9 @@
     "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
   },
   {
-    "id": "bastiaan",
-    "name": "Bastiaan",
-    "avatar": "icon/autoricon.png",
-    "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
-    "links": [
-      {
-        "type": "Other",
-        "name": "Buscar autor",
-        "url": "https://github.com/search?q=Bastiaan&type=users",
-        "recommended": true
-      }
-    ],
-    "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
-  },
-  {
     "id": "bayashi",
     "name": "bayashi",
-    "avatar": "icon/autoricon.png",
+    "avatar": "",
     "bio": "Desarrollador de homebrew para PS Vita.",
     "links": [
       {
@@ -865,24 +655,9 @@
     "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
   },
   {
-    "id": "beedge19",
-    "name": "beedge19",
-    "avatar": "icon/autoricon.png",
-    "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
-    "links": [
-      {
-        "type": "Other",
-        "name": "Buscar autor",
-        "url": "https://github.com/search?q=beedge19&type=users",
-        "recommended": true
-      }
-    ],
-    "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
-  },
-  {
     "id": "beniyukimai",
     "name": "BeniYukiMai",
-    "avatar": "icon/autoricon.png",
+    "avatar": "",
     "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
     "links": [
       {
@@ -897,7 +672,7 @@
   {
     "id": "benmitnick",
     "name": "BenMitnick",
-    "avatar": "icon/autoricon.png",
+    "avatar": "",
     "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
     "links": [
       {
@@ -912,7 +687,7 @@
   {
     "id": "betterwinds",
     "name": "BetterWinds",
-    "avatar": "icon/autoricon.png",
+    "avatar": "",
     "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
     "links": [
       {
@@ -927,7 +702,7 @@
   {
     "id": "bk",
     "name": "BK",
-    "avatar": "icon/autoricon.png",
+    "avatar": "",
     "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
     "links": [
       {
@@ -957,7 +732,7 @@
   {
     "id": "bokoyoss",
     "name": "bokoyoss",
-    "avatar": "icon/autoricon.png",
+    "avatar": "",
     "bio": "Desarrollador de homebrew para PS Vita.",
     "links": [
       {
@@ -987,7 +762,7 @@
   {
     "id": "borad-games",
     "name": "Borad Games",
-    "avatar": "icon/autoricon.png",
+    "avatar": "",
     "bio": "Equipo de desarrollo detras de proyectos open source y homebrew para PS Vita/PSP.",
     "links": [
       {
@@ -1015,24 +790,9 @@
     "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
   },
   {
-    "id": "brunni",
-    "name": "Brunni",
-    "avatar": "icon/autoricon.png",
-    "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
-    "links": [
-      {
-        "type": "Other",
-        "name": "Buscar autor",
-        "url": "https://github.com/search?q=Brunni&type=users",
-        "recommended": true
-      }
-    ],
-    "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
-  },
-  {
     "id": "brunu",
     "name": "brunu",
-    "avatar": "icon/autoricon.png",
+    "avatar": "",
     "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
     "links": [
       {
@@ -1137,7 +897,7 @@
   {
     "id": "c0rtax",
     "name": "c0rtax",
-    "avatar": "icon/autoricon.png",
+    "avatar": "",
     "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
     "links": [
       {
@@ -1167,7 +927,7 @@
   {
     "id": "capitanbarbacoa",
     "name": "CapitanBarbaCoa",
-    "avatar": "icon/autoricon.png",
+    "avatar": "",
     "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
     "links": [
       {
@@ -1197,7 +957,7 @@
   {
     "id": "captkuso",
     "name": "captkuso",
-    "avatar": "icon/autoricon.png",
+    "avatar": "",
     "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
     "links": [
       {
@@ -1212,7 +972,7 @@
   {
     "id": "catarina-lopes-isaque-sanches-mariana-domingos-tiago-quendera",
     "name": "Catarina Lopes & Isaque Sanches & Mariana Domingos & Tiago Quendera",
-    "avatar": "icon/autoricon.png",
+    "avatar": "",
     "bio": "",
     "links": [
       {
@@ -1235,39 +995,9 @@
     "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
   },
   {
-    "id": "catarina-lopes",
-    "name": "Catarina Lopes",
-    "avatar": "icon/autoricon.png",
-    "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
-    "links": [
-      {
-        "type": "Other",
-        "name": "Buscar autor",
-        "url": "https://github.com/search?q=Catarina+Lopes&type=users",
-        "recommended": true
-      }
-    ],
-    "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
-  },
-  {
-    "id": "catotheyounger",
-    "name": "CatoTheYounger",
-    "avatar": "https://github.com/CatoTheYounger97.png",
-    "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
-    "links": [
-      {
-        "type": "GitHub",
-        "name": "GitHub",
-        "url": "https://github.com/CatoTheYounger97",
-        "recommended": true
-      }
-    ],
-    "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
-  },
-  {
     "id": "ccoolguy",
     "name": "Ccoolguy",
-    "avatar": "icon/autoricon.png",
+    "avatar": "",
     "bio": "Desarrollador de homebrew para PS Vita.",
     "links": [
       {
@@ -1282,7 +1012,7 @@
   {
     "id": "celesteblue",
     "name": "CelesteBlue",
-    "avatar": "icon/autoricon.png",
+    "avatar": "",
     "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
     "links": [
       {
@@ -1325,30 +1055,15 @@
     "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
   },
   {
-    "id": "chilly-willy",
-    "name": "Chilly Willy",
-    "avatar": "https://github.com/BenMcLean.png",
-    "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
+    "id": "claude-ai",
+    "name": "Claude AI",
+    "avatar": "icon/claude-ai.png",
+    "bio": "Asistente de IA de Anthropic usado como apoyo de programación, revisión y escritura.",
     "links": [
       {
-        "type": "GitHub",
-        "name": "GitHub",
-        "url": "https://github.com/BenMcLean",
-        "recommended": true
-      }
-    ],
-    "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
-  },
-  {
-    "id": "chocodino",
-    "name": "Chocodino",
-    "avatar": "icon/autoricon.png",
-    "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
-    "links": [
-      {
-        "type": "Other",
-        "name": "Buscar autor",
-        "url": "https://github.com/search?q=Chocodino&type=users",
+        "type": "Official Website",
+        "name": "Claude",
+        "url": "https://www.anthropic.com/claude",
         "recommended": true
       }
     ],
@@ -1364,21 +1079,6 @@
         "type": "GitHub",
         "name": "GitHub",
         "url": "https://github.com/mauricio-gg",
-        "recommended": true
-      }
-    ],
-    "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
-  },
-  {
-    "id": "claude-ai",
-    "name": "Claude AI",
-    "avatar": "icon/claude-ai.png",
-    "bio": "Asistente de IA de Anthropic usado como apoyo de programación, revisión y escritura.",
-    "links": [
-      {
-        "type": "Official Website",
-        "name": "Claude",
-        "url": "https://www.anthropic.com/claude",
         "recommended": true
       }
     ],
@@ -1402,7 +1102,7 @@
   {
     "id": "clickbatedubs",
     "name": "clickbatedubs",
-    "avatar": "icon/autoricon.png",
+    "avatar": "",
     "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
     "links": [
       {
@@ -1447,7 +1147,7 @@
   {
     "id": "cojam",
     "name": "cojam",
-    "avatar": "icon/autoricon.png",
+    "avatar": "",
     "bio": "Desarrollador de homebrew para PS Vita.",
     "links": [
       {
@@ -1475,36 +1175,6 @@
     "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
   },
   {
-    "id": "cooleyes",
-    "name": "Cooleyes",
-    "avatar": "icon/autoricon.png",
-    "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
-    "links": [
-      {
-        "type": "Other",
-        "name": "Buscar autor",
-        "url": "https://github.com/search?q=Cooleyes&type=users",
-        "recommended": true
-      }
-    ],
-    "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
-  },
-  {
-    "id": "cools",
-    "name": "cools",
-    "avatar": "icon/autoricon.png",
-    "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
-    "links": [
-      {
-        "type": "Other",
-        "name": "Buscar autor",
-        "url": "https://github.com/search?q=cools&type=users",
-        "recommended": true
-      }
-    ],
-    "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
-  },
-  {
     "id": "cpasjuste",
     "name": "cpasjuste",
     "avatar": "https://github.com/Cpasjuste.png",
@@ -1522,7 +1192,7 @@
   {
     "id": "crait",
     "name": "crait",
-    "avatar": "icon/autoricon.png",
+    "avatar": "",
     "bio": "Desarrollador de homebrew para PS Vita.",
     "links": [
       {
@@ -1537,7 +1207,7 @@
   {
     "id": "crateboy-jeffrulz345",
     "name": "Crateboy & JeffRuLz345",
-    "avatar": "icon/autoricon.png",
+    "avatar": "",
     "bio": "",
     "links": [
       {
@@ -1550,36 +1220,6 @@
         "type": "Repository",
         "name": "Repositorio",
         "url": "https://github.com"
-      }
-    ],
-    "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
-  },
-  {
-    "id": "crateboy",
-    "name": "Crateboy",
-    "avatar": "icon/autoricon.png",
-    "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
-    "links": [
-      {
-        "type": "Other",
-        "name": "Buscar autor",
-        "url": "https://github.com/search?q=Crateboy&type=users",
-        "recommended": true
-      }
-    ],
-    "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
-  },
-  {
-    "id": "creative-araya",
-    "name": "Creative Araya",
-    "avatar": "https://github.com/MDashK.png",
-    "bio": "Desarrollador de homebrew para PS Vita.",
-    "links": [
-      {
-        "type": "GitHub",
-        "name": "GitHub",
-        "url": "https://github.com/MDashK",
-        "recommended": true
       }
     ],
     "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
@@ -1600,39 +1240,9 @@
     "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
   },
   {
-    "id": "cristopher-bowron",
-    "name": "Cristopher Bowron",
-    "avatar": "icon/autoricon.png",
-    "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
-    "links": [
-      {
-        "type": "Other",
-        "name": "Buscar autor",
-        "url": "https://github.com/search?q=Cristopher+Bowron&type=users",
-        "recommended": true
-      }
-    ],
-    "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
-  },
-  {
-    "id": "crow-bar",
-    "name": "Crow_bar",
-    "avatar": "https://github.com/Crow-bar.png",
-    "bio": "Desarrollador de homebrew y ports para PlayStation Vita, activo en la comunidad de custom firmware.",
-    "links": [
-      {
-        "type": "GitHub",
-        "name": "GitHub",
-        "url": "https://github.com/Crow-bar",
-        "recommended": true
-      }
-    ],
-    "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
-  },
-  {
     "id": "cubic-games-official",
     "name": "cubic games official",
-    "avatar": "icon/autoricon.png",
+    "avatar": "",
     "bio": "Equipo de desarrollo detras de proyectos open source y homebrew para PS Vita/PSP.",
     "links": [
       {
@@ -1677,7 +1287,7 @@
   {
     "id": "cybertokyo",
     "name": "CyberTokyo",
-    "avatar": "icon/autoricon.png",
+    "avatar": "",
     "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
     "links": [
       {
@@ -1692,7 +1302,7 @@
   {
     "id": "d3fau4",
     "name": "D3fau4",
-    "avatar": "icon/autoricon.png",
+    "avatar": "",
     "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
     "links": [
       {
@@ -1735,39 +1345,9 @@
     "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
   },
   {
-    "id": "daedalusx64-team",
-    "name": "DaedalusX64 Team",
-    "avatar": "https://github.com/DaedalusX64.png",
-    "bio": "Equipo de desarrollo detras de proyectos open source y homebrew para PS Vita/PSP.",
-    "links": [
-      {
-        "type": "GitHub",
-        "name": "GitHub",
-        "url": "https://github.com/DaedalusX64",
-        "recommended": true
-      }
-    ],
-    "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
-  },
-  {
-    "id": "daexxx",
-    "name": "Daexxx",
-    "avatar": "https://github.com/Daexxxx.png",
-    "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
-    "links": [
-      {
-        "type": "GitHub",
-        "name": "GitHub",
-        "url": "https://github.com/Daexxxx",
-        "recommended": true
-      }
-    ],
-    "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
-  },
-  {
     "id": "dakor",
     "name": "Dakor",
-    "avatar": "icon/autoricon.png",
+    "avatar": "",
     "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
     "links": [
       {
@@ -1797,7 +1377,7 @@
   {
     "id": "dancooper",
     "name": "DanCooper",
-    "avatar": "icon/autoricon.png",
+    "avatar": "",
     "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
     "links": [
       {
@@ -1819,21 +1399,6 @@
         "type": "GitHub",
         "name": "GitHub",
         "url": "https://github.com/Dane64",
-        "recommended": true
-      }
-    ],
-    "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
-  },
-  {
-    "id": "danielbr",
-    "name": "DanielBR",
-    "avatar": "icon/autoricon.png",
-    "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
-    "links": [
-      {
-        "type": "Other",
-        "name": "Buscar autor",
-        "url": "https://github.com/search?q=DanielBR&type=users",
         "recommended": true
       }
     ],
@@ -1864,21 +1429,6 @@
         "type": "GitHub",
         "name": "GitHub",
         "url": "https://github.com/v-atamanenko",
-        "recommended": true
-      }
-    ],
-    "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
-  },
-  {
-    "id": "dark-duke",
-    "name": "Dark_Duke",
-    "avatar": "https://github.com/darkduke606.png",
-    "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
-    "links": [
-      {
-        "type": "GitHub",
-        "name": "GitHub",
-        "url": "https://github.com/darkduke606",
         "recommended": true
       }
     ],
@@ -1930,21 +1480,6 @@
     "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
   },
   {
-    "id": "deepseek-ai",
-    "name": "DeepSeek AI",
-    "avatar": "icon/deepseek-ai.png",
-    "bio": "Asistente de IA de DeepSeek orientado a razonamiento, código y asistencia de desarrollo.",
-    "links": [
-      {
-        "type": "Official Website",
-        "name": "DeepSeek",
-        "url": "https://www.deepseek.com/",
-        "recommended": true
-      }
-    ],
-    "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
-  },
-  {
     "id": "deltaclock",
     "name": "Deltaclock",
     "avatar": "https://github.com/deltaclock.png",
@@ -1960,24 +1495,9 @@
     "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
   },
   {
-    "id": "denitro",
-    "name": "DeNitro",
-    "avatar": "icon/autoricon.png",
-    "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
-    "links": [
-      {
-        "type": "Other",
-        "name": "Buscar autor",
-        "url": "https://github.com/search?q=DeNitro&type=users",
-        "recommended": true
-      }
-    ],
-    "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
-  },
-  {
     "id": "desired",
     "name": "DesiRED",
-    "avatar": "icon/autoricon.png",
+    "avatar": "",
     "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
     "links": [
       {
@@ -1999,21 +1519,6 @@
         "type": "GitHub",
         "name": "GitHub",
         "url": "https://github.com/diasurgical",
-        "recommended": true
-      }
-    ],
-    "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
-  },
-  {
-    "id": "devin923",
-    "name": "Devin923",
-    "avatar": "icon/autoricon.png",
-    "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
-    "links": [
-      {
-        "type": "Other",
-        "name": "Buscar autor",
-        "url": "https://github.com/search?q=Devin923&type=users",
         "recommended": true
       }
     ],
@@ -2052,7 +1557,7 @@
   {
     "id": "diggeloid",
     "name": "diggeloid",
-    "avatar": "icon/autoricon.png",
+    "avatar": "",
     "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
     "links": [
       {
@@ -2080,39 +1585,9 @@
     "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
   },
   {
-    "id": "digradi",
-    "name": "digradi",
-    "avatar": "icon/autoricon.png",
-    "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
-    "links": [
-      {
-        "type": "Other",
-        "name": "Buscar autor",
-        "url": "https://github.com/search?q=digradi&type=users",
-        "recommended": true
-      }
-    ],
-    "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
-  },
-  {
-    "id": "dimolade",
-    "name": "Dimolade",
-    "avatar": "https://github.com/Lordchickenblaster.png",
-    "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
-    "links": [
-      {
-        "type": "GitHub",
-        "name": "GitHub",
-        "url": "https://github.com/Lordchickenblaster",
-        "recommended": true
-      }
-    ],
-    "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
-  },
-  {
     "id": "discord-mods",
     "name": "Discord Mods",
-    "avatar": "icon/autoricon.png",
+    "avatar": "",
     "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
     "links": [
       {
@@ -2142,7 +1617,7 @@
   {
     "id": "domino",
     "name": "Domino",
-    "avatar": "icon/autoricon.png",
+    "avatar": "",
     "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
     "links": [
       {
@@ -2172,7 +1647,7 @@
   {
     "id": "dos",
     "name": "dos",
-    "avatar": "icon/autoricon.png",
+    "avatar": "",
     "bio": "Desarrollador de homebrew para PS Vita.",
     "links": [
       {
@@ -2200,21 +1675,6 @@
     "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
   },
   {
-    "id": "dragonixplay",
-    "name": "Dragonixplay",
-    "avatar": "icon/autoricon.png",
-    "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
-    "links": [
-      {
-        "type": "Other",
-        "name": "Buscar autor",
-        "url": "https://github.com/search?q=Dragonixplay&type=users",
-        "recommended": true
-      }
-    ],
-    "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
-  },
-  {
     "id": "drakon",
     "name": "Drakon",
     "avatar": "https://github.com/DrakonPL.png",
@@ -2232,7 +1692,7 @@
   {
     "id": "draqen",
     "name": "Draqen",
-    "avatar": "icon/autoricon.png",
+    "avatar": "",
     "bio": "Desarrollador de homebrew para PS Vita.",
     "links": [
       {
@@ -2247,7 +1707,7 @@
   {
     "id": "draxtube",
     "name": "DraxTube",
-    "avatar": "icon/autoricon.png",
+    "avatar": "",
     "bio": "",
     "links": [
       {
@@ -2295,21 +1755,6 @@
     "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
   },
   {
-    "id": "duke",
-    "name": "Duke",
-    "avatar": "icon/autoricon.png",
-    "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
-    "links": [
-      {
-        "type": "Other",
-        "name": "Buscar autor",
-        "url": "https://github.com/search?q=Duke&type=users",
-        "recommended": true
-      }
-    ],
-    "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
-  },
-  {
     "id": "easyrpg-team",
     "name": "EasyRPG Team",
     "avatar": "https://github.com/EasyRPG.png",
@@ -2327,7 +1772,7 @@
   {
     "id": "edemfancypants",
     "name": "Edemfancypants",
-    "avatar": "icon/autoricon.png",
+    "avatar": "",
     "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
     "links": [
       {
@@ -2349,21 +1794,6 @@
         "type": "GitHub",
         "name": "GitHub",
         "url": "https://github.com/einmueller",
-        "recommended": true
-      }
-    ],
-    "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
-  },
-  {
-    "id": "ek720",
-    "name": "EK720",
-    "avatar": "https://github.com/Avellea.png",
-    "bio": "Desarrollador de homebrew para PS Vita.",
-    "links": [
-      {
-        "type": "GitHub",
-        "name": "GitHub",
-        "url": "https://github.com/Avellea",
         "recommended": true
       }
     ],
@@ -2445,36 +1875,6 @@
     "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
   },
   {
-    "id": "elpichonart",
-    "name": "elpichonart",
-    "avatar": "icon/autoricon.png",
-    "bio": "Desarrollador de homebrew para PS Vita.",
-    "links": [
-      {
-        "type": "Other",
-        "name": "Buscar autor",
-        "url": "https://github.com/search?q=elpichonart&type=users",
-        "recommended": true
-      }
-    ],
-    "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
-  },
-  {
-    "id": "emiyabestboy",
-    "name": "EmiyaBestBoy",
-    "avatar": "https://github.com/EmiyaBestBoy.png",
-    "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
-    "links": [
-      {
-        "type": "GitHub",
-        "name": "GitHub",
-        "url": "https://github.com/EmiyaBestBoy",
-        "recommended": true
-      }
-    ],
-    "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
-  },
-  {
     "id": "emiyl",
     "name": "emiyl",
     "avatar": "https://github.com/emiyl.png",
@@ -2520,39 +1920,9 @@
     "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
   },
   {
-    "id": "erikpshat",
-    "name": "ErikPshat",
-    "avatar": "icon/autoricon.png",
-    "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
-    "links": [
-      {
-        "type": "Other",
-        "name": "Buscar autor",
-        "url": "https://github.com/search?q=ErikPshat&type=users",
-        "recommended": true
-      }
-    ],
-    "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
-  },
-  {
-    "id": "ethan-bordeaux",
-    "name": "Ethan Bordeaux",
-    "avatar": "icon/autoricon.png",
-    "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
-    "links": [
-      {
-        "type": "Other",
-        "name": "Buscar autor",
-        "url": "https://github.com/search?q=Ethan+Bordeaux&type=users",
-        "recommended": true
-      }
-    ],
-    "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
-  },
-  {
     "id": "eva-vital-isaque-sanches",
     "name": "Eva Vital & Isaque Sanches",
-    "avatar": "icon/autoricon.png",
+    "avatar": "",
     "bio": "",
     "links": [
       {
@@ -2570,36 +1940,6 @@
         "type": "Repository",
         "name": "Repositorio",
         "url": "https://github.com"
-      }
-    ],
-    "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
-  },
-  {
-    "id": "eva-vital",
-    "name": "Eva Vital",
-    "avatar": "icon/autoricon.png",
-    "bio": "Desarrollador de homebrew para PS Vita.",
-    "links": [
-      {
-        "type": "Other",
-        "name": "Buscar autor",
-        "url": "https://github.com/search?q=Eva+Vital&type=users",
-        "recommended": true
-      }
-    ],
-    "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
-  },
-  {
-    "id": "exophase",
-    "name": "Exophase",
-    "avatar": "icon/autoricon.png",
-    "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
-    "links": [
-      {
-        "type": "Other",
-        "name": "Buscar autor",
-        "url": "https://github.com/search?q=Exophase&type=users",
-        "recommended": true
       }
     ],
     "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
@@ -2637,7 +1977,7 @@
   {
     "id": "fantahourglass",
     "name": "FantaHourglass",
-    "avatar": "icon/autoricon.png",
+    "avatar": "",
     "bio": "Desarrollador de homebrew para PS Vita.",
     "links": [
       {
@@ -2659,21 +1999,6 @@
         "type": "GitHub",
         "name": "GitHub",
         "url": "https://github.com/rerulon",
-        "recommended": true
-      }
-    ],
-    "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
-  },
-  {
-    "id": "festi",
-    "name": "festi",
-    "avatar": "icon/autoricon.png",
-    "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
-    "links": [
-      {
-        "type": "Other",
-        "name": "Buscar autor",
-        "url": "https://github.com/search?q=festi&type=users",
         "recommended": true
       }
     ],
@@ -2712,7 +2037,7 @@
   {
     "id": "firstbober",
     "name": "firstbober",
-    "avatar": "icon/autoricon.png",
+    "avatar": "",
     "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
     "links": [
       {
@@ -2727,7 +2052,7 @@
   {
     "id": "flappy-jesus",
     "name": "Flappy Jesus",
-    "avatar": "icon/autoricon.png",
+    "avatar": "",
     "bio": "Desarrollador de homebrew para PS Vita.",
     "links": [
       {
@@ -2742,7 +2067,7 @@
   {
     "id": "forthw-jeffrulz345",
     "name": "forthw & JeffRuLz345",
-    "avatar": "icon/autoricon.png",
+    "avatar": "",
     "bio": "",
     "links": [
       {
@@ -2755,36 +2080,6 @@
         "type": "Repository",
         "name": "Repositorio",
         "url": "https://github.com"
-      }
-    ],
-    "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
-  },
-  {
-    "id": "forthw",
-    "name": "forthw",
-    "avatar": "icon/autoricon.png",
-    "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
-    "links": [
-      {
-        "type": "Other",
-        "name": "Buscar autor",
-        "url": "https://github.com/search?q=forthw&type=users",
-        "recommended": true
-      }
-    ],
-    "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
-  },
-  {
-    "id": "fouadtjuhmaster",
-    "name": "FouadtjuhMaster",
-    "avatar": "icon/autoricon.png",
-    "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
-    "links": [
-      {
-        "type": "Other",
-        "name": "Buscar autor",
-        "url": "https://github.com/search?q=FouadtjuhMaster&type=users",
-        "recommended": true
       }
     ],
     "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
@@ -2822,7 +2117,7 @@
   {
     "id": "frozennoober",
     "name": "FrozenNoober",
-    "avatar": "icon/autoricon.png",
+    "avatar": "",
     "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
     "links": [
       {
@@ -2852,88 +2147,13 @@
   {
     "id": "gambikules",
     "name": "gambikules",
-    "avatar": "icon/autoricon.png",
+    "avatar": "",
     "bio": "Desarrollador de homebrew para PS Vita.",
     "links": [
       {
         "type": "Other",
         "name": "Buscar autor",
         "url": "https://github.com/search?q=gambikules&type=users",
-        "recommended": true
-      }
-    ],
-    "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
-  },
-  {
-    "id": "gamblore",
-    "name": "gamblore",
-    "avatar": "https://github.com/gamblore.png",
-    "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
-    "links": [
-      {
-        "type": "GitHub",
-        "name": "GitHub",
-        "url": "https://github.com/gamblore",
-        "recommended": true
-      }
-    ],
-    "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
-  },
-  {
-    "id": "gears",
-    "name": "Gears",
-    "avatar": "icon/autoricon.png",
-    "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
-    "links": [
-      {
-        "type": "Other",
-        "name": "Buscar autor",
-        "url": "https://github.com/search?q=Gears&type=users",
-        "recommended": true
-      }
-    ],
-    "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
-  },
-  {
-    "id": "geeckodev",
-    "name": "GeeckoDev",
-    "avatar": "https://github.com/libcg.png",
-    "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
-    "links": [
-      {
-        "type": "GitHub",
-        "name": "GitHub",
-        "url": "https://github.com/libcg",
-        "recommended": true
-      }
-    ],
-    "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
-  },
-  {
-    "id": "gemini-ai",
-    "name": "Gemini AI",
-    "avatar": "icon/gemini-ai.png",
-    "bio": "Asistente de IA de Google orientado a ayuda creativa, análisis y productividad.",
-    "links": [
-      {
-        "type": "Official Website",
-        "name": "Gemini",
-        "url": "https://gemini.google.com/",
-        "recommended": true
-      }
-    ],
-    "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
-  },
-  {
-    "id": "gguihurt",
-    "name": "GGuihurt",
-    "avatar": "icon/autoricon.png",
-    "bio": "Desarrollador de homebrew para PS Vita.",
-    "links": [
-      {
-        "type": "Other",
-        "name": "Buscar autor",
-        "url": "https://github.com/search?q=GGuihurt&type=users",
         "recommended": true
       }
     ],
@@ -2972,7 +2192,7 @@
   {
     "id": "glitcherog",
     "name": "GlitcherOG",
-    "avatar": "icon/autoricon.png",
+    "avatar": "",
     "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
     "links": [
       {
@@ -3077,7 +2297,7 @@
   {
     "id": "greaterchimera",
     "name": "Greaterchimera",
-    "avatar": "icon/autoricon.png",
+    "avatar": "",
     "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
     "links": [
       {
@@ -3135,21 +2355,6 @@
     "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
   },
   {
-    "id": "gtzampanakis",
-    "name": "gtzampanakis",
-    "avatar": "https://github.com/gtzampanakis.png",
-    "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
-    "links": [
-      {
-        "type": "GitHub",
-        "name": "GitHub",
-        "url": "https://github.com/gtzampanakis",
-        "recommended": true
-      }
-    ],
-    "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
-  },
-  {
     "id": "guidobot",
     "name": "GUIDOBOT",
     "avatar": "https://github.com/GUIDOBOT.png",
@@ -3167,7 +2372,7 @@
   {
     "id": "gurila-ware-games",
     "name": "Gurila Ware Games",
-    "avatar": "icon/autoricon.png",
+    "avatar": "",
     "bio": "Equipo de desarrollo detras de proyectos open source y homebrew para PS Vita/PSP.",
     "links": [
       {
@@ -3197,7 +2402,7 @@
   {
     "id": "haasman0",
     "name": "Haasman0",
-    "avatar": "icon/autoricon.png",
+    "avatar": "",
     "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
     "links": [
       {
@@ -3212,7 +2417,7 @@
   {
     "id": "hackinformer-staff",
     "name": "HackInformer Staff",
-    "avatar": "icon/autoricon.png",
+    "avatar": "",
     "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
     "links": [
       {
@@ -3242,28 +2447,13 @@
   {
     "id": "hao-qi",
     "name": "Hao**qi",
-    "avatar": "icon/autoricon.png",
+    "avatar": "",
     "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
     "links": [
       {
         "type": "Other",
         "name": "Buscar autor",
         "url": "https://github.com/search?q=Hao**qi&type=users",
-        "recommended": true
-      }
-    ],
-    "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
-  },
-  {
-    "id": "harmony-honey",
-    "name": "Harmony Honey",
-    "avatar": "https://github.com/HarmonyHoney.png",
-    "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
-    "links": [
-      {
-        "type": "GitHub",
-        "name": "GitHub",
-        "url": "https://github.com/HarmonyHoney",
         "recommended": true
       }
     ],
@@ -3300,24 +2490,9 @@
     "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
   },
   {
-    "id": "hendersonsoftworks",
-    "name": "HendersonSoftworks",
-    "avatar": "icon/autoricon.png",
-    "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
-    "links": [
-      {
-        "type": "Other",
-        "name": "Buscar autor",
-        "url": "https://github.com/search?q=HendersonSoftworks&type=users",
-        "recommended": true
-      }
-    ],
-    "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
-  },
-  {
     "id": "hexzyle-rinnegatamante",
     "name": "HexZyle & Rinnegatamante",
-    "avatar": "icon/autoricon.png",
+    "avatar": "",
     "bio": "",
     "links": [
       {
@@ -3340,24 +2515,9 @@
     "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
   },
   {
-    "id": "hexzyle",
-    "name": "HexZyle",
-    "avatar": "icon/autoricon.png",
-    "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
-    "links": [
-      {
-        "type": "Other",
-        "name": "Buscar autor",
-        "url": "https://github.com/search?q=HexZyle&type=users",
-        "recommended": true
-      }
-    ],
-    "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
-  },
-  {
     "id": "hisarmman",
     "name": "HisArmMan",
-    "avatar": "icon/autoricon.png",
+    "avatar": "",
     "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
     "links": [
       {
@@ -3372,7 +2532,7 @@
   {
     "id": "holy-pangolin-dos",
     "name": "Holy Pangolin & dos",
-    "avatar": "icon/autoricon.png",
+    "avatar": "",
     "bio": "",
     "links": [
       {
@@ -3390,21 +2550,6 @@
         "type": "Repository",
         "name": "Repositorio",
         "url": "https://gitlab.com/HolyPangolin/rukavychka"
-      }
-    ],
-    "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
-  },
-  {
-    "id": "holy-pangolin",
-    "name": "Holy Pangolin",
-    "avatar": "icon/autoricon.png",
-    "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
-    "links": [
-      {
-        "type": "Other",
-        "name": "Buscar autor",
-        "url": "https://github.com/search?q=Holy+Pangolin&type=users",
-        "recommended": true
       }
     ],
     "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
@@ -3440,24 +2585,9 @@
     "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
   },
   {
-    "id": "huckleberrypie",
-    "name": "huckleberrypie",
-    "avatar": "icon/autoricon.png",
-    "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
-    "links": [
-      {
-        "type": "Other",
-        "name": "Buscar autor",
-        "url": "https://github.com/search?q=huckleberrypie&type=users",
-        "recommended": true
-      }
-    ],
-    "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
-  },
-  {
     "id": "hwnj",
     "name": "HWNJ",
-    "avatar": "icon/autoricon.png",
+    "avatar": "",
     "bio": "Desarrollador de homebrew para PS Vita.",
     "links": [
       {
@@ -3479,21 +2609,6 @@
         "type": "GitHub",
         "name": "GitHub",
         "url": "https://github.com/Hydr8gon",
-        "recommended": true
-      }
-    ],
-    "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
-  },
-  {
-    "id": "hypatia",
-    "name": "Hypatia",
-    "avatar": "icon/autoricon.png",
-    "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
-    "links": [
-      {
-        "type": "Other",
-        "name": "Buscar autor",
-        "url": "https://github.com/search?q=Hypatia&type=users",
         "recommended": true
       }
     ],
@@ -3530,24 +2645,9 @@
     "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
   },
   {
-    "id": "idstudio",
-    "name": "idstudio",
-    "avatar": "icon/autoricon.png",
-    "bio": "Equipo de desarrollo detras de proyectos open source y homebrew para PS Vita/PSP.",
-    "links": [
-      {
-        "type": "Other",
-        "name": "Buscar autor",
-        "url": "https://github.com/search?q=idstudio&type=users",
-        "recommended": true
-      }
-    ],
-    "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
-  },
-  {
     "id": "ifrit05",
     "name": "ifrit05",
-    "avatar": "icon/autoricon.png",
+    "avatar": "",
     "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
     "links": [
       {
@@ -3577,7 +2677,7 @@
   {
     "id": "inquisitionimplied",
     "name": "InquisitionImplied",
-    "avatar": "icon/autoricon.png",
+    "avatar": "",
     "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
     "links": [
       {
@@ -3592,7 +2692,7 @@
   {
     "id": "intermynd-instruments",
     "name": "Intermynd Instruments",
-    "avatar": "icon/autoricon.png",
+    "avatar": "",
     "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
     "links": [
       {
@@ -3622,7 +2722,7 @@
   {
     "id": "iruzz",
     "name": "IRUZZ",
-    "avatar": "icon/autoricon.png",
+    "avatar": "",
     "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
     "links": [
       {
@@ -3637,7 +2737,7 @@
   {
     "id": "isaque-sanches-eva-vital",
     "name": "Isaque Sanches & Eva Vital",
-    "avatar": "icon/autoricon.png",
+    "avatar": "",
     "bio": "",
     "links": [
       {
@@ -3655,21 +2755,6 @@
         "type": "Repository",
         "name": "Repositorio",
         "url": "https://github.com"
-      }
-    ],
-    "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
-  },
-  {
-    "id": "isaque-sanches",
-    "name": "Isaque Sanches",
-    "avatar": "icon/autoricon.png",
-    "bio": "Desarrollador de homebrew para PS Vita.",
-    "links": [
-      {
-        "type": "Other",
-        "name": "Buscar autor",
-        "url": "https://github.com/search?q=Isaque+Sanches&type=users",
-        "recommended": true
       }
     ],
     "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
@@ -3707,7 +2792,7 @@
   {
     "id": "ivanproff",
     "name": "ivanproff",
-    "avatar": "icon/autoricon.png",
+    "avatar": "",
     "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
     "links": [
       {
@@ -3722,7 +2807,7 @@
   {
     "id": "jackiepooh-rinnegatamante",
     "name": "Jackiepooh & Rinnegatamante",
-    "avatar": "icon/autoricon.png",
+    "avatar": "",
     "bio": "",
     "links": [
       {
@@ -3745,21 +2830,6 @@
     "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
   },
   {
-    "id": "jackiepooh",
-    "name": "Jackiepooh",
-    "avatar": "icon/autoricon.png",
-    "bio": "Desarrollador de homebrew para PS Vita.",
-    "links": [
-      {
-        "type": "Other",
-        "name": "Buscar autor",
-        "url": "https://github.com/search?q=Jackiepooh&type=users",
-        "recommended": true
-      }
-    ],
-    "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
-  },
-  {
     "id": "jacob-fliss",
     "name": "Jacob Fliss",
     "avatar": "https://github.com/erfg12.png",
@@ -3777,7 +2847,7 @@
   {
     "id": "jacobsplayground",
     "name": "JacobsPlayground",
-    "avatar": "icon/autoricon.png",
+    "avatar": "",
     "bio": "Desarrollador de homebrew para PS Vita.",
     "links": [
       {
@@ -3790,24 +2860,9 @@
     "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
   },
   {
-    "id": "jafeth",
-    "name": "jafeth",
-    "avatar": "https://github.com/Daexxxx.png",
-    "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
-    "links": [
-      {
-        "type": "GitHub",
-        "name": "GitHub",
-        "url": "https://github.com/Daexxxx",
-        "recommended": true
-      }
-    ],
-    "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
-  },
-  {
     "id": "jakibaki",
     "name": "jakibaki",
-    "avatar": "icon/autoricon.png",
+    "avatar": "",
     "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
     "links": [
       {
@@ -3835,21 +2890,6 @@
     "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
   },
   {
-    "id": "james-peerless",
-    "name": "James Peerless",
-    "avatar": "icon/autoricon.png",
-    "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
-    "links": [
-      {
-        "type": "Other",
-        "name": "Buscar autor",
-        "url": "https://github.com/search?q=James+Peerless&type=users",
-        "recommended": true
-      }
-    ],
-    "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
-  },
-  {
     "id": "jamsilva",
     "name": "jamsilva",
     "avatar": "https://github.com/jamsilva.png",
@@ -3865,36 +2905,6 @@
     "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
   },
   {
-    "id": "janosharsanyi",
-    "name": "janosharsanyi",
-    "avatar": "https://github.com/IridescentRose.png",
-    "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
-    "links": [
-      {
-        "type": "GitHub",
-        "name": "GitHub",
-        "url": "https://github.com/IridescentRose",
-        "recommended": true
-      }
-    ],
-    "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
-  },
-  {
-    "id": "jbastos",
-    "name": "jbastos",
-    "avatar": "icon/autoricon.png",
-    "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
-    "links": [
-      {
-        "type": "Other",
-        "name": "Buscar autor",
-        "url": "https://github.com/search?q=jbastos&type=users",
-        "recommended": true
-      }
-    ],
-    "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
-  },
-  {
     "id": "jeffrulz345",
     "name": "JeffRulz345",
     "avatar": "https://github.com/JeffRuLz.png",
@@ -3904,21 +2914,6 @@
         "type": "GitHub",
         "name": "GitHub",
         "url": "https://github.com/JeffRuLz",
-        "recommended": true
-      }
-    ],
-    "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
-  },
-  {
-    "id": "jetstreamsham",
-    "name": "JetStreamSham",
-    "avatar": "https://github.com/Andiweli.png",
-    "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
-    "links": [
-      {
-        "type": "GitHub",
-        "name": "GitHub",
-        "url": "https://github.com/Andiweli",
         "recommended": true
       }
     ],
@@ -3957,7 +2952,7 @@
   {
     "id": "joao-eiras-antunes",
     "name": "Joao Eiras Antunes",
-    "avatar": "icon/autoricon.png",
+    "avatar": "",
     "bio": "Desarrollador de homebrew para PS Vita.",
     "links": [
       {
@@ -3985,36 +2980,6 @@
     "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
   },
   {
-    "id": "jomar-johansen",
-    "name": "Jomar Johansen",
-    "avatar": "icon/autoricon.png",
-    "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
-    "links": [
-      {
-        "type": "Other",
-        "name": "Buscar autor",
-        "url": "https://github.com/search?q=Jomar+Johansen&type=users",
-        "recommended": true
-      }
-    ],
-    "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
-  },
-  {
-    "id": "jormii",
-    "name": "Jormii",
-    "avatar": "https://github.com/Jormii.png",
-    "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
-    "links": [
-      {
-        "type": "GitHub",
-        "name": "GitHub",
-        "url": "https://github.com/Jormii",
-        "recommended": true
-      }
-    ],
-    "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
-  },
-  {
     "id": "josephinoo",
     "name": "josephinoo",
     "avatar": "https://github.com/josephinoo.png",
@@ -4032,28 +2997,13 @@
   {
     "id": "joshaxey",
     "name": "joshaxey",
-    "avatar": "icon/autoricon.png",
+    "avatar": "",
     "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
     "links": [
       {
         "type": "GitHub",
         "name": "GitHub",
         "url": "https://github.com/joshaxey",
-        "recommended": true
-      }
-    ],
-    "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
-  },
-  {
-    "id": "jpfouch48",
-    "name": "jpfouch48",
-    "avatar": "icon/autoricon.png",
-    "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
-    "links": [
-      {
-        "type": "Other",
-        "name": "Buscar autor",
-        "url": "https://github.com/search?q=jpfouch48&type=users",
         "recommended": true
       }
     ],
@@ -4092,28 +3042,13 @@
   {
     "id": "just-fer",
     "name": "Just Fer",
-    "avatar": "icon/autoricon.png",
+    "avatar": "",
     "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
     "links": [
       {
         "type": "Other",
         "name": "Buscar autor",
         "url": "https://github.com/search?q=Just+Fer&type=users",
-        "recommended": true
-      }
-    ],
-    "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
-  },
-  {
-    "id": "justburn",
-    "name": "JustBurn",
-    "avatar": "icon/autoricon.png",
-    "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
-    "links": [
-      {
-        "type": "Other",
-        "name": "Buscar autor",
-        "url": "https://github.com/search?q=JustBurn&type=users",
         "recommended": true
       }
     ],
@@ -4152,7 +3087,7 @@
   {
     "id": "kanadeengel",
     "name": "KanadeEngel",
-    "avatar": "icon/autoricon.png",
+    "avatar": "",
     "bio": "Desarrollador de homebrew para PS Vita.",
     "links": [
       {
@@ -4167,7 +3102,7 @@
   {
     "id": "kankertje",
     "name": "Kankertje",
-    "avatar": "icon/autoricon.png",
+    "avatar": "",
     "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
     "links": [
       {
@@ -4210,36 +3145,6 @@
     "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
   },
   {
-    "id": "kene",
-    "name": "kene",
-    "avatar": "https://github.com/EmiyaBestBoy.png",
-    "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
-    "links": [
-      {
-        "type": "GitHub",
-        "name": "GitHub",
-        "url": "https://github.com/EmiyaBestBoy",
-        "recommended": true
-      }
-    ],
-    "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
-  },
-  {
-    "id": "kerey",
-    "name": "Kerey",
-    "avatar": "icon/autoricon.png",
-    "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
-    "links": [
-      {
-        "type": "Other",
-        "name": "Buscar autor",
-        "url": "https://github.com/search?q=Kerey&type=users",
-        "recommended": true
-      }
-    ],
-    "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
-  },
-  {
     "id": "keriew",
     "name": "Keriew",
     "avatar": "https://github.com/Keriew.png",
@@ -4255,36 +3160,6 @@
     "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
   },
   {
-    "id": "kevinbchen",
-    "name": "kevinbchen",
-    "avatar": "https://github.com/kevinbchen.png",
-    "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
-    "links": [
-      {
-        "type": "GitHub",
-        "name": "GitHub",
-        "url": "https://github.com/kevinbchen",
-        "recommended": true
-      }
-    ],
-    "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
-  },
-  {
-    "id": "kgsws",
-    "name": "kgsws",
-    "avatar": "icon/autoricon.png",
-    "bio": "Desarrollador de homebrew para PS Vita.",
-    "links": [
-      {
-        "type": "Other",
-        "name": "Buscar autor",
-        "url": "https://github.com/search?q=kgsws&type=users",
-        "recommended": true
-      }
-    ],
-    "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
-  },
-  {
     "id": "kiddrwxssj",
     "name": "KiddRwxSsj",
     "avatar": "https://github.com/KiddRwxSsj.png",
@@ -4294,21 +3169,6 @@
         "type": "GitHub",
         "name": "GitHub",
         "url": "https://github.com/KiddRwxSsj",
-        "recommended": true
-      }
-    ],
-    "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
-  },
-  {
-    "id": "kimi-ai",
-    "name": "Kimi AI",
-    "avatar": "icon/kimi-ai.png",
-    "bio": "Asistente de IA de Moonshot AI enfocado en lectura larga, análisis y tareas de programación.",
-    "links": [
-      {
-        "type": "Official Website",
-        "name": "Kimi",
-        "url": "https://kimi.moonshot.cn/",
         "recommended": true
       }
     ],
@@ -4377,7 +3237,7 @@
   {
     "id": "kolbie5874-weegeedeveloper",
     "name": "Kolbie5874 & WeegeeDEVELOPER",
-    "avatar": "icon/autoricon.png",
+    "avatar": "",
     "bio": "",
     "links": [
       {
@@ -4395,24 +3255,9 @@
     "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
   },
   {
-    "id": "kolbie5874",
-    "name": "Kolbie5874",
-    "avatar": "icon/autoricon.png",
-    "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
-    "links": [
-      {
-        "type": "Other",
-        "name": "Buscar autor",
-        "url": "https://github.com/search?q=Kolbie5874&type=users",
-        "recommended": true
-      }
-    ],
-    "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
-  },
-  {
     "id": "koleq",
     "name": "koleq",
-    "avatar": "icon/autoricon.png",
+    "avatar": "",
     "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
     "links": [
       {
@@ -4440,24 +3285,9 @@
     "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
   },
   {
-    "id": "korigamik",
-    "name": "KorigamiK",
-    "avatar": "https://github.com/KorigamiK.png",
-    "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
-    "links": [
-      {
-        "type": "GitHub",
-        "name": "GitHub",
-        "url": "https://github.com/KorigamiK",
-        "recommended": true
-      }
-    ],
-    "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
-  },
-  {
     "id": "kuni59",
     "name": "Kuni59",
-    "avatar": "icon/autoricon.png",
+    "avatar": "",
     "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
     "links": [
       {
@@ -4472,7 +3302,7 @@
   {
     "id": "kylon",
     "name": "kylon",
-    "avatar": "icon/autoricon.png",
+    "avatar": "",
     "bio": "Desarrollador de homebrew para PS Vita.",
     "links": [
       {
@@ -4502,7 +3332,7 @@
   {
     "id": "lachsproducktions",
     "name": "LachsProducktions",
-    "avatar": "icon/autoricon.png",
+    "avatar": "",
     "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
     "links": [
       {
@@ -4517,7 +3347,7 @@
   {
     "id": "ladropzone",
     "name": "LaDropZone",
-    "avatar": "icon/autoricon.png",
+    "avatar": "",
     "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
     "links": [
       {
@@ -4560,9 +3390,24 @@
     "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
   },
   {
+    "id": "lapy",
+    "name": "Lapy",
+    "avatar": "https://github.com/Lapy055.png",
+    "bio": "Desarrollador de homebrew y ports para PlayStation Vita, activo en la comunidad de custom firmware.",
+    "links": [
+      {
+        "type": "GitHub",
+        "name": "GitHub",
+        "url": "https://github.com/Lapy055",
+        "recommended": true
+      }
+    ],
+    "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
+  },
+  {
     "id": "lapy-acekone-dragonixplay",
     "name": "Lapy & Acekone & Dragonixplay",
-    "avatar": "icon/autoricon.png",
+    "avatar": "",
     "bio": "",
     "links": [
       {
@@ -4585,21 +3430,6 @@
     "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
   },
   {
-    "id": "lapy",
-    "name": "Lapy",
-    "avatar": "https://github.com/Lapy055.png",
-    "bio": "Desarrollador de homebrew y ports para PlayStation Vita, activo en la comunidad de custom firmware.",
-    "links": [
-      {
-        "type": "GitHub",
-        "name": "GitHub",
-        "url": "https://github.com/Lapy055",
-        "recommended": true
-      }
-    ],
-    "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
-  },
-  {
     "id": "largepelotas",
     "name": "largepelotas",
     "avatar": "https://github.com/largepelotas.png",
@@ -4617,7 +3447,7 @@
   {
     "id": "lazyox199",
     "name": "LazyOx199",
-    "avatar": "icon/autoricon.png",
+    "avatar": "",
     "bio": "Desarrollador de homebrew para PS Vita.",
     "links": [
       {
@@ -4630,24 +3460,9 @@
     "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
   },
   {
-    "id": "lbicelyne",
-    "name": "Lbicelyne",
-    "avatar": "icon/autoricon.png",
-    "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
-    "links": [
-      {
-        "type": "Other",
-        "name": "Buscar autor",
-        "url": "https://github.com/search?q=Lbicelyne&type=users",
-        "recommended": true
-      }
-    ],
-    "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
-  },
-  {
     "id": "leecherman",
     "name": "Leecherman",
-    "avatar": "icon/autoricon.png",
+    "avatar": "",
     "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
     "links": [
       {
@@ -4662,7 +3477,7 @@
   {
     "id": "leestorm",
     "name": "LeeStorm",
-    "avatar": "icon/autoricon.png",
+    "avatar": "",
     "bio": "Desarrollador de homebrew para PS Vita.",
     "links": [
       {
@@ -4750,24 +3565,9 @@
     "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
   },
   {
-    "id": "linjr",
-    "name": "linjr",
-    "avatar": "icon/autoricon.png",
-    "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
-    "links": [
-      {
-        "type": "Other",
-        "name": "Buscar autor",
-        "url": "https://github.com/search?q=linjr&type=users",
-        "recommended": true
-      }
-    ],
-    "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
-  },
-  {
     "id": "liomajor",
     "name": "LioMajor",
-    "avatar": "icon/autoricon.png",
+    "avatar": "",
     "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
     "links": [
       {
@@ -4780,75 +3580,15 @@
     "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
   },
   {
-    "id": "liquid8d",
-    "name": "liquid8d",
-    "avatar": "icon/autoricon.png",
-    "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
-    "links": [
-      {
-        "type": "Other",
-        "name": "Buscar autor",
-        "url": "https://github.com/search?q=liquid8d&type=users",
-        "recommended": true
-      }
-    ],
-    "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
-  },
-  {
-    "id": "liquidproquo",
-    "name": "LiquidProQuo",
-    "avatar": "icon/autoricon.png",
-    "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
-    "links": [
-      {
-        "type": "Other",
-        "name": "Buscar autor",
-        "url": "https://github.com/search?q=LiquidProQuo&type=users",
-        "recommended": true
-      }
-    ],
-    "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
-  },
-  {
-    "id": "liquifire",
-    "name": "LiquiFire",
-    "avatar": "icon/autoricon.png",
-    "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
-    "links": [
-      {
-        "type": "Other",
-        "name": "Buscar autor",
-        "url": "https://github.com/search?q=LiquiFire&type=users",
-        "recommended": true
-      }
-    ],
-    "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
-  },
-  {
     "id": "lkclip",
     "name": "lkclip",
-    "avatar": "icon/autoricon.png",
+    "avatar": "",
     "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
     "links": [
       {
         "type": "Other",
         "name": "Buscar autor",
         "url": "https://github.com/search?q=lkclip&type=users",
-        "recommended": true
-      }
-    ],
-    "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
-  },
-  {
-    "id": "lmelior",
-    "name": "LMelior",
-    "avatar": "icon/autoricon.png",
-    "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
-    "links": [
-      {
-        "type": "Other",
-        "name": "Buscar autor",
-        "url": "https://github.com/search?q=LMelior&type=users",
         "recommended": true
       }
     ],
@@ -4872,7 +3612,7 @@
   {
     "id": "loodanon",
     "name": "Loodanon",
-    "avatar": "icon/autoricon.png",
+    "avatar": "",
     "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
     "links": [
       {
@@ -4885,9 +3625,24 @@
     "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
   },
   {
+    "id": "lordchickenblaster",
+    "name": "LordChickenBlaster",
+    "avatar": "https://github.com/Lordchickenblaster.png",
+    "bio": "Desarrollador de homebrew y ports para PlayStation Vita, activo en la comunidad de custom firmware.",
+    "links": [
+      {
+        "type": "GitHub",
+        "name": "GitHub",
+        "url": "https://github.com/Lordchickenblaster",
+        "recommended": true
+      }
+    ],
+    "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
+  },
+  {
     "id": "lordchickenblaster-soupmasters",
     "name": "LordChickenBlaster & SoupMasters",
-    "avatar": "icon/autoricon.png",
+    "avatar": "",
     "bio": "",
     "links": [
       {
@@ -4910,21 +3665,6 @@
     "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
   },
   {
-    "id": "lordchickenblaster",
-    "name": "LordChickenBlaster",
-    "avatar": "https://github.com/Lordchickenblaster.png",
-    "bio": "Desarrollador de homebrew y ports para PlayStation Vita, activo en la comunidad de custom firmware.",
-    "links": [
-      {
-        "type": "GitHub",
-        "name": "GitHub",
-        "url": "https://github.com/Lordchickenblaster",
-        "recommended": true
-      }
-    ],
-    "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
-  },
-  {
     "id": "lp1",
     "name": "lp1",
     "avatar": "https://github.com/lp1dev.png",
@@ -4940,9 +3680,24 @@
     "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
   },
   {
+    "id": "luck",
+    "name": "luck",
+    "avatar": "",
+    "bio": "Desarrollador de homebrew para PS Vita.",
+    "links": [
+      {
+        "type": "Other",
+        "name": "Buscar autor",
+        "url": "https://github.com/search?q=luck&type=users",
+        "recommended": true
+      }
+    ],
+    "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
+  },
+  {
     "id": "luck-kylon",
     "name": "luck & kylon",
-    "avatar": "icon/autoricon.png",
+    "avatar": "",
     "bio": "",
     "links": [
       {
@@ -4960,30 +3715,30 @@
     "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
   },
   {
-    "id": "luck",
-    "name": "luck",
-    "avatar": "icon/autoricon.png",
-    "bio": "Desarrollador de homebrew para PS Vita.",
-    "links": [
-      {
-        "type": "Other",
-        "name": "Buscar autor",
-        "url": "https://github.com/search?q=luck&type=users",
-        "recommended": true
-      }
-    ],
-    "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
-  },
-  {
     "id": "luckthegamers",
     "name": "LuckTheGamers",
-    "avatar": "icon/autoricon.png",
+    "avatar": "",
     "bio": "Desarrollador de homebrew y ports para PlayStation Vita, activo en la comunidad de custom firmware.",
     "links": [
       {
         "type": "Other",
         "name": "Buscar autor",
         "url": "https://github.com/search?q=LuckTheGamers&type=users",
+        "recommended": true
+      }
+    ],
+    "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
+  },
+  {
+    "id": "luckyi13i",
+    "name": "LuckyI13I",
+    "avatar": "https://github.com/luckyi13i.png",
+    "bio": "",
+    "links": [
+      {
+        "type": "GitHub",
+        "name": "GitHub",
+        "url": "https://github.com/luckyi13i",
         "recommended": true
       }
     ],
@@ -5007,28 +3762,13 @@
   {
     "id": "lupo511",
     "name": "Lupo511",
-    "avatar": "icon/autoricon.png",
+    "avatar": "",
     "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
     "links": [
       {
         "type": "Other",
         "name": "Buscar autor",
         "url": "https://github.com/search?q=Lupo511&type=users",
-        "recommended": true
-      }
-    ],
-    "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
-  },
-  {
-    "id": "lupus",
-    "name": "Lupus",
-    "avatar": "icon/autoricon.png",
-    "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
-    "links": [
-      {
-        "type": "Other",
-        "name": "Buscar autor",
-        "url": "https://github.com/search?q=Lupus&type=users",
         "recommended": true
       }
     ],
@@ -5044,21 +3784,6 @@
         "type": "GitHub",
         "name": "GitHub",
         "url": "https://github.com/Ibrahim778",
-        "recommended": true
-      }
-    ],
-    "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
-  },
-  {
-    "id": "m-x",
-    "name": "M@x",
-    "avatar": "icon/autoricon.png",
-    "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
-    "links": [
-      {
-        "type": "Other",
-        "name": "Buscar autor",
-        "url": "https://github.com/search?q=M@x&type=users",
         "recommended": true
       }
     ],
@@ -5089,21 +3814,6 @@
         "type": "GitHub",
         "name": "GitHub",
         "url": "https://github.com/Macperek",
-        "recommended": true
-      }
-    ],
-    "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
-  },
-  {
-    "id": "mafu",
-    "name": "mafu",
-    "avatar": "https://github.com/mafu9.png",
-    "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
-    "links": [
-      {
-        "type": "GitHub",
-        "name": "GitHub",
-        "url": "https://github.com/mafu9",
         "recommended": true
       }
     ],
@@ -5155,24 +3865,9 @@
     "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
   },
   {
-    "id": "mariana-domingos",
-    "name": "Mariana Domingos",
-    "avatar": "icon/autoricon.png",
-    "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
-    "links": [
-      {
-        "type": "Other",
-        "name": "Buscar autor",
-        "url": "https://github.com/search?q=Mariana+Domingos&type=users",
-        "recommended": true
-      }
-    ],
-    "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
-  },
-  {
     "id": "markus95",
     "name": "Markus95",
-    "avatar": "icon/autoricon.png",
+    "avatar": "",
     "bio": "Desarrollador de homebrew y ports para PlayStation Vita, activo en la comunidad de custom firmware.",
     "links": [
       {
@@ -5215,36 +3910,6 @@
     "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
   },
   {
-    "id": "matias-najle",
-    "name": "Matias Najle",
-    "avatar": "icon/autoricon.png",
-    "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
-    "links": [
-      {
-        "type": "Other",
-        "name": "Buscar autor",
-        "url": "https://github.com/search?q=Matias+Najle&type=users",
-        "recommended": true
-      }
-    ],
-    "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
-  },
-  {
-    "id": "matiaz",
-    "name": "MaTiAz",
-    "avatar": "icon/autoricon.png",
-    "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
-    "links": [
-      {
-        "type": "Other",
-        "name": "Buscar autor",
-        "url": "https://github.com/search?q=MaTiAz&type=users",
-        "recommended": true
-      }
-    ],
-    "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
-  },
-  {
     "id": "mcallbosco",
     "name": "mcallbosco",
     "avatar": "https://github.com/mcallbosco.png",
@@ -5275,9 +3940,24 @@
     "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
   },
   {
+    "id": "mdashk",
+    "name": "MDashK",
+    "avatar": "https://github.com/MDashK.png",
+    "bio": "Desarrollador de homebrew y ports para PlayStation Vita, activo en la comunidad de custom firmware.",
+    "links": [
+      {
+        "type": "GitHub",
+        "name": "GitHub",
+        "url": "https://github.com/MDashK",
+        "recommended": true
+      }
+    ],
+    "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
+  },
+  {
     "id": "mdashk-creative-araya",
     "name": "MDashK & Creative Araya",
-    "avatar": "icon/autoricon.png",
+    "avatar": "",
     "bio": "",
     "links": [
       {
@@ -5306,51 +3986,6 @@
         "type": "Official Website",
         "name": "NeoVitaDB Release Page",
         "url": "https://github.com/MDashK/Sonic-2-SMS-Remake-Vita/releases/tag/v2.9.2-vita"
-      }
-    ],
-    "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
-  },
-  {
-    "id": "mdashk",
-    "name": "MDashK",
-    "avatar": "https://github.com/MDashK.png",
-    "bio": "Desarrollador de homebrew y ports para PlayStation Vita, activo en la comunidad de custom firmware.",
-    "links": [
-      {
-        "type": "GitHub",
-        "name": "GitHub",
-        "url": "https://github.com/MDashK",
-        "recommended": true
-      }
-    ],
-    "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
-  },
-  {
-    "id": "mdave",
-    "name": "MDave",
-    "avatar": "icon/autoricon.png",
-    "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
-    "links": [
-      {
-        "type": "Other",
-        "name": "Buscar autor",
-        "url": "https://github.com/search?q=MDave&type=users",
-        "recommended": true
-      }
-    ],
-    "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
-  },
-  {
-    "id": "mediumgauge",
-    "name": "Mediumgauge",
-    "avatar": "icon/autoricon.png",
-    "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
-    "links": [
-      {
-        "type": "Other",
-        "name": "Buscar autor",
-        "url": "https://github.com/search?q=Mediumgauge&type=users",
-        "recommended": true
       }
     ],
     "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
@@ -5401,36 +4036,6 @@
     "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
   },
   {
-    "id": "mexicouger",
-    "name": "Mexicouger",
-    "avatar": "icon/autoricon.png",
-    "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
-    "links": [
-      {
-        "type": "Other",
-        "name": "Buscar autor",
-        "url": "https://github.com/search?q=Mexicouger&type=users",
-        "recommended": true
-      }
-    ],
-    "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
-  },
-  {
-    "id": "mia",
-    "name": "Mia",
-    "avatar": "icon/autoricon.png",
-    "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
-    "links": [
-      {
-        "type": "Other",
-        "name": "Buscar autor",
-        "url": "https://github.com/search?q=Mia&type=users",
-        "recommended": true
-      }
-    ],
-    "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
-  },
-  {
     "id": "michal4132",
     "name": "michal4132",
     "avatar": "https://github.com/michal4132.png",
@@ -5440,36 +4045,6 @@
         "type": "GitHub",
         "name": "GitHub",
         "url": "https://github.com/michal4132",
-        "recommended": true
-      }
-    ],
-    "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
-  },
-  {
-    "id": "mikr96ryuota",
-    "name": "mikr96ryuota",
-    "avatar": "icon/autoricon.png",
-    "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
-    "links": [
-      {
-        "type": "Other",
-        "name": "Buscar autor",
-        "url": "https://github.com/search?q=mikr96ryuota&type=users",
-        "recommended": true
-      }
-    ],
-    "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
-  },
-  {
-    "id": "miles",
-    "name": "Miles",
-    "avatar": "icon/autoricon.png",
-    "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
-    "links": [
-      {
-        "type": "Other",
-        "name": "Buscar autor",
-        "url": "https://github.com/search?q=Miles&type=users",
         "recommended": true
       }
     ],
@@ -5493,7 +4068,7 @@
   {
     "id": "miralatijera-draqen",
     "name": "MiraLaTijera & Draqen",
-    "avatar": "icon/autoricon.png",
+    "avatar": "",
     "bio": "",
     "links": [
       {
@@ -5516,36 +4091,6 @@
     "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
   },
   {
-    "id": "miralatijera",
-    "name": "MiraLaTijera",
-    "avatar": "icon/autoricon.png",
-    "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
-    "links": [
-      {
-        "type": "Other",
-        "name": "Buscar autor",
-        "url": "https://github.com/search?q=MiraLaTijera&type=users",
-        "recommended": true
-      }
-    ],
-    "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
-  },
-  {
-    "id": "misterx",
-    "name": "MisterX",
-    "avatar": "icon/autoricon.png",
-    "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
-    "links": [
-      {
-        "type": "Other",
-        "name": "Buscar autor",
-        "url": "https://github.com/search?q=MisterX&type=users",
-        "recommended": true
-      }
-    ],
-    "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
-  },
-  {
     "id": "mithrenes",
     "name": "Mithrenes",
     "avatar": "https://github.com/xamthor.png",
@@ -5555,21 +4100,6 @@
         "type": "GitHub",
         "name": "GitHub",
         "url": "https://github.com/xamthor",
-        "recommended": true
-      }
-    ],
-    "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
-  },
-  {
-    "id": "mk2k",
-    "name": "Mk2k",
-    "avatar": "icon/autoricon.png",
-    "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
-    "links": [
-      {
-        "type": "Other",
-        "name": "Buscar autor",
-        "url": "https://github.com/search?q=Mk2k&type=users",
         "recommended": true
       }
     ],
@@ -5608,7 +4138,7 @@
   {
     "id": "modello",
     "name": "Modello",
-    "avatar": "icon/autoricon.png",
+    "avatar": "",
     "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
     "links": [
       {
@@ -5623,7 +4153,7 @@
   {
     "id": "moe-baker",
     "name": "Moe_Baker",
-    "avatar": "icon/autoricon.png",
+    "avatar": "",
     "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
     "links": [
       {
@@ -5666,51 +4196,6 @@
     "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
   },
   {
-    "id": "motolegacy",
-    "name": "MotoLegacy",
-    "avatar": "https://github.com/CrossCraft.png",
-    "bio": "Desarrollador de homebrew y ports para PlayStation Vita, activo en la comunidad de custom firmware.",
-    "links": [
-      {
-        "type": "GitHub",
-        "name": "GitHub",
-        "url": "https://github.com/CrossCraft",
-        "recommended": true
-      }
-    ],
-    "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
-  },
-  {
-    "id": "mowglisanu",
-    "name": "mowglisanu",
-    "avatar": "icon/autoricon.png",
-    "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
-    "links": [
-      {
-        "type": "Other",
-        "name": "Buscar autor",
-        "url": "https://github.com/search?q=mowglisanu&type=users",
-        "recommended": true
-      }
-    ],
-    "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
-  },
-  {
-    "id": "mrbrown",
-    "name": "mrbrown",
-    "avatar": "icon/autoricon.png",
-    "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
-    "links": [
-      {
-        "type": "Other",
-        "name": "Buscar autor",
-        "url": "https://github.com/search?q=mrbrown&type=users",
-        "recommended": true
-      }
-    ],
-    "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
-  },
-  {
     "id": "mrdivdiz",
     "name": "mrdivdiz",
     "avatar": "https://github.com/mrdivdiz.png",
@@ -5726,15 +4211,15 @@
     "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
   },
   {
-    "id": "mrjpgame",
-    "name": "MrJPGame",
-    "avatar": "https://github.com/MrJPGames.png",
-    "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
+    "id": "mrkane",
+    "name": "MRKane",
+    "avatar": "",
+    "bio": "Desarrollador de homebrew y ports para PlayStation Vita, activo en la comunidad de custom firmware.",
     "links": [
       {
-        "type": "GitHub",
-        "name": "GitHub",
-        "url": "https://github.com/MrJPGames",
+        "type": "Other",
+        "name": "Buscar autor",
+        "url": "https://github.com/search?q=MRKane&type=users",
         "recommended": true
       }
     ],
@@ -5743,7 +4228,7 @@
   {
     "id": "mrkane-digradi",
     "name": "MRKane & digradi",
-    "avatar": "icon/autoricon.png",
+    "avatar": "",
     "bio": "",
     "links": [
       {
@@ -5768,7 +4253,7 @@
   {
     "id": "mrkane-hypatia",
     "name": "MRKane & Hypatia",
-    "avatar": "icon/autoricon.png",
+    "avatar": "",
     "bio": "",
     "links": [
       {
@@ -5781,51 +4266,6 @@
         "type": "Repository",
         "name": "Repositorio",
         "url": "https://github.com"
-      }
-    ],
-    "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
-  },
-  {
-    "id": "mrkane",
-    "name": "MRKane",
-    "avatar": "icon/autoricon.png",
-    "bio": "Desarrollador de homebrew y ports para PlayStation Vita, activo en la comunidad de custom firmware.",
-    "links": [
-      {
-        "type": "Other",
-        "name": "Buscar autor",
-        "url": "https://github.com/search?q=MRKane&type=users",
-        "recommended": true
-      }
-    ],
-    "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
-  },
-  {
-    "id": "mrnetrix",
-    "name": "MrNetrix",
-    "avatar": "https://github.com/aagallag.png",
-    "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
-    "links": [
-      {
-        "type": "GitHub",
-        "name": "GitHub",
-        "url": "https://github.com/aagallag",
-        "recommended": true
-      }
-    ],
-    "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
-  },
-  {
-    "id": "mwpenny",
-    "name": "mwpenny",
-    "avatar": "icon/autoricon.png",
-    "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
-    "links": [
-      {
-        "type": "Other",
-        "name": "Buscar autor",
-        "url": "https://github.com/search?q=mwpenny&type=users",
-        "recommended": true
       }
     ],
     "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
@@ -5848,7 +4288,7 @@
   {
     "id": "mysters789",
     "name": "Mysters789",
-    "avatar": "icon/autoricon.png",
+    "avatar": "",
     "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
     "links": [
       {
@@ -5921,36 +4361,6 @@
     "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
   },
   {
-    "id": "natexs",
-    "name": "NateXS",
-    "avatar": "https://github.com/ScratchEverywhere.png",
-    "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
-    "links": [
-      {
-        "type": "GitHub",
-        "name": "GitHub",
-        "url": "https://github.com/ScratchEverywhere",
-        "recommended": true
-      }
-    ],
-    "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
-  },
-  {
-    "id": "nathan-wray",
-    "name": "Nathan Wray",
-    "avatar": "icon/autoricon.png",
-    "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
-    "links": [
-      {
-        "type": "Other",
-        "name": "Buscar autor",
-        "url": "https://github.com/search?q=Nathan+Wray&type=users",
-        "recommended": true
-      }
-    ],
-    "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
-  },
-  {
     "id": "nathankewley",
     "name": "NathanKewley",
     "avatar": "https://github.com/NathanKewley.png",
@@ -5968,7 +4378,7 @@
   {
     "id": "nedmapagmahal",
     "name": "nedmapagmahal",
-    "avatar": "icon/autoricon.png",
+    "avatar": "",
     "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
     "links": [
       {
@@ -6026,45 +4436,15 @@
     "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
   },
   {
-    "id": "nguyen-chi-tam",
-    "name": "Nguyen Chi Tam",
-    "avatar": "https://github.com/gtzampanakis.png",
-    "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
-    "links": [
-      {
-        "type": "GitHub",
-        "name": "GitHub",
-        "url": "https://github.com/gtzampanakis",
-        "recommended": true
-      }
-    ],
-    "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
-  },
-  {
     "id": "no-storage7413",
     "name": "No-Storage7413",
-    "avatar": "icon/autoricon.png",
+    "avatar": "",
     "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
     "links": [
       {
         "type": "Other",
         "name": "Buscar autor",
         "url": "https://github.com/search?q=No-Storage7413&type=users",
-        "recommended": true
-      }
-    ],
-    "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
-  },
-  {
-    "id": "noah-vawter",
-    "name": "Noah Vawter",
-    "avatar": "icon/autoricon.png",
-    "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
-    "links": [
-      {
-        "type": "Other",
-        "name": "Buscar autor",
-        "url": "https://github.com/search?q=Noah+Vawter&type=users",
         "recommended": true
       }
     ],
@@ -6116,21 +4496,6 @@
     "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
   },
   {
-    "id": "notaz",
-    "name": "Notaz",
-    "avatar": "icon/autoricon.png",
-    "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
-    "links": [
-      {
-        "type": "Other",
-        "name": "Buscar autor",
-        "url": "https://github.com/search?q=Notaz&type=users",
-        "recommended": true
-      }
-    ],
-    "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
-  },
-  {
     "id": "notnotme",
     "name": "notnotme",
     "avatar": "https://github.com/notnotme.png",
@@ -6148,7 +4513,7 @@
   {
     "id": "novi",
     "name": "Novi",
-    "avatar": "icon/autoricon.png",
+    "avatar": "",
     "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
     "links": [
       {
@@ -6176,21 +4541,6 @@
     "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
   },
   {
-    "id": "nulldc-team",
-    "name": "nullDC Team",
-    "avatar": "icon/autoricon.png",
-    "bio": "Equipo de desarrollo detras de proyectos open source y homebrew para PS Vita/PSP.",
-    "links": [
-      {
-        "type": "Other",
-        "name": "Buscar autor",
-        "url": "https://github.com/search?q=nullDC+Team&type=users",
-        "recommended": true
-      }
-    ],
-    "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
-  },
-  {
     "id": "nxengine",
     "name": "nxengine",
     "avatar": "https://github.com/nxengine.png",
@@ -6208,7 +4558,7 @@
   {
     "id": "nyabsi",
     "name": "Nyabsi",
-    "avatar": "icon/autoricon.png",
+    "avatar": "",
     "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
     "links": [
       {
@@ -6268,7 +4618,7 @@
   {
     "id": "oldsport099",
     "name": "oldsport099",
-    "avatar": "icon/autoricon.png",
+    "avatar": "",
     "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
     "links": [
       {
@@ -6298,43 +4648,13 @@
   {
     "id": "onerice07",
     "name": "OneRice07",
-    "avatar": "icon/autoricon.png",
+    "avatar": "",
     "bio": "Desarrollador de homebrew para PS Vita.",
     "links": [
       {
         "type": "Other",
         "name": "Buscar autor",
         "url": "https://github.com/search?q=OneRice07&type=users",
-        "recommended": true
-      }
-    ],
-    "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
-  },
-  {
-    "id": "oopsware",
-    "name": "OopsWare",
-    "avatar": "icon/autoricon.png",
-    "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
-    "links": [
-      {
-        "type": "Other",
-        "name": "Buscar autor",
-        "url": "https://github.com/search?q=OopsWare&type=users",
-        "recommended": true
-      }
-    ],
-    "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
-  },
-  {
-    "id": "optixx",
-    "name": "optixx",
-    "avatar": "https://github.com/PSP-Archive.png",
-    "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
-    "links": [
-      {
-        "type": "GitHub",
-        "name": "GitHub",
-        "url": "https://github.com/PSP-Archive",
         "recommended": true
       }
     ],
@@ -6358,7 +4678,7 @@
   {
     "id": "orion",
     "name": "Orion",
-    "avatar": "icon/autoricon.png",
+    "avatar": "",
     "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
     "links": [
       {
@@ -6418,7 +4738,7 @@
   {
     "id": "parkinglotstudio",
     "name": "ParkingLotStudio",
-    "avatar": "icon/autoricon.png",
+    "avatar": "",
     "bio": "Equipo de desarrollo detras de proyectos open source y homebrew para PS Vita/PSP.",
     "links": [
       {
@@ -6433,7 +4753,7 @@
   {
     "id": "patchesdoggo",
     "name": "PatchesDoggo",
-    "avatar": "icon/autoricon.png",
+    "avatar": "",
     "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
     "links": [
       {
@@ -6478,7 +4798,7 @@
   {
     "id": "paulo",
     "name": "Paulo",
-    "avatar": "icon/autoricon.png",
+    "avatar": "",
     "bio": "Desarrollador de homebrew y ports para PlayStation Vita, activo en la comunidad de custom firmware.",
     "links": [
       {
@@ -6508,7 +4828,7 @@
   {
     "id": "pendor",
     "name": "pendor",
-    "avatar": "icon/autoricon.png",
+    "avatar": "",
     "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
     "links": [
       {
@@ -6521,69 +4841,9 @@
     "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
   },
   {
-    "id": "percival",
-    "name": "Percival",
-    "avatar": "icon/autoricon.png",
-    "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
-    "links": [
-      {
-        "type": "Other",
-        "name": "Buscar autor",
-        "url": "https://github.com/search?q=Percival&type=users",
-        "recommended": true
-      }
-    ],
-    "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
-  },
-  {
-    "id": "pg-team",
-    "name": "PG Team",
-    "avatar": "https://github.com/v-atamanenko.png",
-    "bio": "Equipo de desarrollo detras de proyectos open source y homebrew para PS Vita/PSP.",
-    "links": [
-      {
-        "type": "GitHub",
-        "name": "GitHub",
-        "url": "https://github.com/v-atamanenko",
-        "recommended": true
-      }
-    ],
-    "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
-  },
-  {
-    "id": "phoe-nix",
-    "name": "phoe-nix",
-    "avatar": "icon/autoricon.png",
-    "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
-    "links": [
-      {
-        "type": "Other",
-        "name": "Buscar autor",
-        "url": "https://github.com/search?q=phoe-nix&type=users",
-        "recommended": true
-      }
-    ],
-    "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
-  },
-  {
-    "id": "plombo",
-    "name": "Plombo",
-    "avatar": "https://github.com/Plombo.png",
-    "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
-    "links": [
-      {
-        "type": "GitHub",
-        "name": "GitHub",
-        "url": "https://github.com/Plombo",
-        "recommended": true
-      }
-    ],
-    "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
-  },
-  {
     "id": "polydood",
     "name": "PolyDood",
-    "avatar": "icon/autoricon.png",
+    "avatar": "",
     "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
     "links": [
       {
@@ -6598,7 +4858,7 @@
   {
     "id": "polymars",
     "name": "PolyMars",
-    "avatar": "icon/autoricon.png",
+    "avatar": "",
     "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
     "links": [
       {
@@ -6611,24 +4871,9 @@
     "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
   },
   {
-    "id": "pookette",
-    "name": "Pookette",
-    "avatar": "https://github.com/Avellea.png",
-    "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
-    "links": [
-      {
-        "type": "GitHub",
-        "name": "GitHub",
-        "url": "https://github.com/Avellea",
-        "recommended": true
-      }
-    ],
-    "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
-  },
-  {
     "id": "poto-software",
     "name": "POtO Software",
-    "avatar": "icon/autoricon.png",
+    "avatar": "",
     "bio": "Equipo de desarrollo detras de proyectos open source y homebrew para PS Vita/PSP.",
     "links": [
       {
@@ -6643,7 +4888,7 @@
   {
     "id": "primer0-ruben_wolfe",
     "name": "Primer0 & Ruben_Wolfe",
-    "avatar": "icon/autoricon.png",
+    "avatar": "",
     "bio": "",
     "links": [
       {
@@ -6666,21 +4911,6 @@
     "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
   },
   {
-    "id": "primer0",
-    "name": "Primer0",
-    "avatar": "icon/autoricon.png",
-    "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
-    "links": [
-      {
-        "type": "Other",
-        "name": "Buscar autor",
-        "url": "https://github.com/search?q=Primer0&type=users",
-        "recommended": true
-      }
-    ],
-    "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
-  },
-  {
     "id": "princess-of-sleeping",
     "name": "Princess-Of-Sleeping",
     "avatar": "https://github.com/Princess-of-Sleeping.png",
@@ -6698,73 +4928,13 @@
   {
     "id": "psjuan",
     "name": "PsJuan",
-    "avatar": "icon/autoricon.png",
+    "avatar": "",
     "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
     "links": [
       {
         "type": "Other",
         "name": "Buscar autor",
         "url": "https://github.com/search?q=PsJuan&type=users",
-        "recommended": true
-      }
-    ],
-    "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
-  },
-  {
-    "id": "psjuan97",
-    "name": "psjuan97",
-    "avatar": "https://github.com/psjuan97.png",
-    "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
-    "links": [
-      {
-        "type": "GitHub",
-        "name": "GitHub",
-        "url": "https://github.com/psjuan97",
-        "recommended": true
-      }
-    ],
-    "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
-  },
-  {
-    "id": "psp-rk",
-    "name": "psp_rk",
-    "avatar": "icon/autoricon.png",
-    "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
-    "links": [
-      {
-        "type": "Other",
-        "name": "Buscar autor",
-        "url": "https://github.com/search?q=psp_rk&type=users",
-        "recommended": true
-      }
-    ],
-    "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
-  },
-  {
-    "id": "pspdemon",
-    "name": "PSPDemon",
-    "avatar": "icon/autoricon.png",
-    "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
-    "links": [
-      {
-        "type": "Other",
-        "name": "Buscar autor",
-        "url": "https://github.com/search?q=PSPDemon&type=users",
-        "recommended": true
-      }
-    ],
-    "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
-  },
-  {
-    "id": "pspkrazy",
-    "name": "PSPKrazy",
-    "avatar": "icon/autoricon.png",
-    "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
-    "links": [
-      {
-        "type": "Other",
-        "name": "Buscar autor",
-        "url": "https://github.com/search?q=PSPKrazy&type=users",
         "recommended": true
       }
     ],
@@ -6801,36 +4971,6 @@
     "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
   },
   {
-    "id": "qteam",
-    "name": "QTeam",
-    "avatar": "icon/autoricon.png",
-    "bio": "Equipo de desarrollo detras de proyectos open source y homebrew para PS Vita/PSP.",
-    "links": [
-      {
-        "type": "Other",
-        "name": "Buscar autor",
-        "url": "https://github.com/search?q=QTeam&type=users",
-        "recommended": true
-      }
-    ],
-    "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
-  },
-  {
-    "id": "raf",
-    "name": "Raf",
-    "avatar": "icon/autoricon.png",
-    "bio": "Desarrollador de homebrew para PS Vita.",
-    "links": [
-      {
-        "type": "Other",
-        "name": "Buscar autor",
-        "url": "https://github.com/search?q=Raf&type=users",
-        "recommended": true
-      }
-    ],
-    "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
-  },
-  {
     "id": "raidengugga",
     "name": "raidengugga",
     "avatar": "https://github.com/raidengugga.png",
@@ -6840,21 +4980,6 @@
         "type": "GitHub",
         "name": "GitHub",
         "url": "https://github.com/raidengugga",
-        "recommended": true
-      }
-    ],
-    "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
-  },
-  {
-    "id": "randall-spychalla",
-    "name": "Randall Spychalla",
-    "avatar": "icon/autoricon.png",
-    "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
-    "links": [
-      {
-        "type": "Other",
-        "name": "Buscar autor",
-        "url": "https://github.com/search?q=Randall+Spychalla&type=users",
         "recommended": true
       }
     ],
@@ -6878,7 +5003,7 @@
   {
     "id": "red-squirrel",
     "name": "Red Squirrel",
-    "avatar": "icon/autoricon.png",
+    "avatar": "",
     "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
     "links": [
       {
@@ -6921,21 +5046,6 @@
     "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
   },
   {
-    "id": "reprep",
-    "name": "Reprep",
-    "avatar": "icon/autoricon.png",
-    "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
-    "links": [
-      {
-        "type": "Other",
-        "name": "Buscar autor",
-        "url": "https://github.com/search?q=Reprep&type=users",
-        "recommended": true
-      }
-    ],
-    "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
-  },
-  {
     "id": "retrogamer74",
     "name": "RetroGamer74",
     "avatar": "https://github.com/RetroGamer74.png",
@@ -6953,28 +5063,13 @@
   {
     "id": "retroguru-team",
     "name": "Retroguru Team",
-    "avatar": "icon/autoricon.png",
+    "avatar": "",
     "bio": "Equipo de desarrollo detras de proyectos open source y homebrew para PS Vita/PSP.",
     "links": [
       {
         "type": "Other",
         "name": "Buscar autor",
         "url": "https://github.com/search?q=Retroguru+Team&type=users",
-        "recommended": true
-      }
-    ],
-    "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
-  },
-  {
-    "id": "ribcaged-entertainment",
-    "name": "Ribcaged Entertainment",
-    "avatar": "icon/autoricon.png",
-    "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
-    "links": [
-      {
-        "type": "Other",
-        "name": "Buscar autor",
-        "url": "https://github.com/search?q=Ribcaged+Entertainment&type=users",
         "recommended": true
       }
     ],
@@ -7003,7 +5098,7 @@
   {
     "id": "riviera71",
     "name": "Riviera71",
-    "avatar": "icon/autoricon.png",
+    "avatar": "",
     "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
     "links": [
       {
@@ -7018,7 +5113,7 @@
   {
     "id": "rlyx",
     "name": "rlyx",
-    "avatar": "icon/autoricon.png",
+    "avatar": "",
     "bio": "Desarrollador de homebrew para PS Vita.",
     "links": [
       {
@@ -7046,24 +5141,9 @@
     "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
   },
   {
-    "id": "robson-alcantara",
-    "name": "Robson Alcantara",
-    "avatar": "icon/autoricon.png",
-    "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
-    "links": [
-      {
-        "type": "Other",
-        "name": "Buscar autor",
-        "url": "https://github.com/search?q=Robson+Alcantara&type=users",
-        "recommended": true
-      }
-    ],
-    "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
-  },
-  {
     "id": "roc6d",
     "name": "roc6d",
-    "avatar": "icon/autoricon.png",
+    "avatar": "",
     "bio": "Desarrollador de homebrew para PS Vita.",
     "links": [
       {
@@ -7123,7 +5203,7 @@
   {
     "id": "ronikgames",
     "name": "ronikgames",
-    "avatar": "icon/autoricon.png",
+    "avatar": "",
     "bio": "Equipo de desarrollo detras de proyectos open source y homebrew para PS Vita/PSP.",
     "links": [
       {
@@ -7153,7 +5233,7 @@
   {
     "id": "ruben-wolfe",
     "name": "Ruben_Wolfe",
-    "avatar": "icon/autoricon.png",
+    "avatar": "",
     "bio": "Desarrollador de homebrew y ports para PlayStation Vita, activo en la comunidad de custom firmware.",
     "links": [
       {
@@ -7166,24 +5246,9 @@
     "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
   },
   {
-    "id": "ruka",
-    "name": "ruka",
-    "avatar": "icon/autoricon.png",
-    "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
-    "links": [
-      {
-        "type": "Other",
-        "name": "Buscar autor",
-        "url": "https://github.com/search?q=ruka&type=users",
-        "recommended": true
-      }
-    ],
-    "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
-  },
-  {
     "id": "sadsarches",
     "name": "SadsArches",
-    "avatar": "icon/autoricon.png",
+    "avatar": "",
     "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
     "links": [
       {
@@ -7211,36 +5276,6 @@
     "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
   },
   {
-    "id": "sakahi",
-    "name": "Sakahi",
-    "avatar": "icon/autoricon.png",
-    "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
-    "links": [
-      {
-        "type": "Other",
-        "name": "Buscar autor",
-        "url": "https://github.com/search?q=Sakahi&type=users",
-        "recommended": true
-      }
-    ],
-    "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
-  },
-  {
-    "id": "sakya",
-    "name": "Sakya",
-    "avatar": "icon/autoricon.png",
-    "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
-    "links": [
-      {
-        "type": "Other",
-        "name": "Buscar autor",
-        "url": "https://github.com/search?q=Sakya&type=users",
-        "recommended": true
-      }
-    ],
-    "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
-  },
-  {
     "id": "samuel85",
     "name": "Samuel85",
     "avatar": "https://github.com/Samuel85.png",
@@ -7256,75 +5291,15 @@
     "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
   },
   {
-    "id": "samuraix",
-    "name": "SamuraiX",
-    "avatar": "icon/autoricon.png",
-    "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
-    "links": [
-      {
-        "type": "Other",
-        "name": "Buscar autor",
-        "url": "https://github.com/search?q=SamuraiX&type=users",
-        "recommended": true
-      }
-    ],
-    "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
-  },
-  {
-    "id": "sandberg",
-    "name": "Sandberg",
-    "avatar": "icon/autoricon.png",
-    "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
-    "links": [
-      {
-        "type": "Other",
-        "name": "Buscar autor",
-        "url": "https://github.com/search?q=Sandberg&type=users",
-        "recommended": true
-      }
-    ],
-    "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
-  },
-  {
-    "id": "sandroron",
-    "name": "Sandroron",
-    "avatar": "icon/autoricon.png",
-    "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
-    "links": [
-      {
-        "type": "Other",
-        "name": "Buscar autor",
-        "url": "https://github.com/search?q=Sandroron&type=users",
-        "recommended": true
-      }
-    ],
-    "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
-  },
-  {
     "id": "sansigolo",
     "name": "Sansigolo",
-    "avatar": "icon/autoricon.png",
+    "avatar": "",
     "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
     "links": [
       {
         "type": "Other",
         "name": "Buscar autor",
         "url": "https://github.com/search?q=Sansigolo&type=users",
-        "recommended": true
-      }
-    ],
-    "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
-  },
-  {
-    "id": "santarl",
-    "name": "santarl",
-    "avatar": "https://github.com/DvaMishkiLapa.png",
-    "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
-    "links": [
-      {
-        "type": "GitHub",
-        "name": "GitHub",
-        "url": "https://github.com/DvaMishkiLapa",
         "recommended": true
       }
     ],
@@ -7340,21 +5315,6 @@
         "type": "GitHub",
         "name": "GitHub",
         "url": "https://github.com/scummvm",
-        "recommended": true
-      }
-    ],
-    "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
-  },
-  {
-    "id": "seerouxdark",
-    "name": "seerouxdark",
-    "avatar": "icon/autoricon.png",
-    "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
-    "links": [
-      {
-        "type": "Other",
-        "name": "Buscar autor",
-        "url": "https://github.com/search?q=seerouxdark&type=users",
         "recommended": true
       }
     ],
@@ -7393,7 +5353,7 @@
   {
     "id": "sergorov",
     "name": "Sergorov",
-    "avatar": "icon/autoricon.png",
+    "avatar": "",
     "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
     "links": [
       {
@@ -7415,21 +5375,6 @@
         "type": "GitHub",
         "name": "GitHub",
         "url": "https://github.com/Serph",
-        "recommended": true
-      }
-    ],
-    "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
-  },
-  {
-    "id": "sg57",
-    "name": "SG57",
-    "avatar": "icon/autoricon.png",
-    "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
-    "links": [
-      {
-        "type": "Other",
-        "name": "Buscar autor",
-        "url": "https://github.com/search?q=SG57&type=users",
         "recommended": true
       }
     ],
@@ -7513,7 +5458,7 @@
   {
     "id": "siul-animation-studios",
     "name": "Siul Animation Studios",
-    "avatar": "icon/autoricon.png",
+    "avatar": "",
     "bio": "Equipo de desarrollo detras de proyectos open source y homebrew para PS Vita/PSP.",
     "links": [
       {
@@ -7541,21 +5486,6 @@
     "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
   },
   {
-    "id": "six-shoota",
-    "name": "Six_Shoota",
-    "avatar": "icon/autoricon.png",
-    "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
-    "links": [
-      {
-        "type": "Other",
-        "name": "Buscar autor",
-        "url": "https://github.com/search?q=Six_Shoota&type=users",
-        "recommended": true
-      }
-    ],
-    "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
-  },
-  {
     "id": "sjoerdwouters",
     "name": "sjoerdwouters",
     "avatar": "https://github.com/sjoerdev.png",
@@ -7565,21 +5495,6 @@
         "type": "GitHub",
         "name": "GitHub",
         "url": "https://github.com/sjoerdev",
-        "recommended": true
-      }
-    ],
-    "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
-  },
-  {
-    "id": "sjrnoodles",
-    "name": "SJRNoodles",
-    "avatar": "https://github.com/SJRNoodles.png",
-    "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
-    "links": [
-      {
-        "type": "GitHub",
-        "name": "GitHub",
-        "url": "https://github.com/SJRNoodles",
         "recommended": true
       }
     ],
@@ -7601,54 +5516,9 @@
     "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
   },
   {
-    "id": "skogaby",
-    "name": "skogaby",
-    "avatar": "https://github.com/skogaby.png",
-    "bio": "Desarrollador de homebrew para PS Vita.",
-    "links": [
-      {
-        "type": "GitHub",
-        "name": "GitHub",
-        "url": "https://github.com/skogaby",
-        "recommended": true
-      }
-    ],
-    "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
-  },
-  {
-    "id": "slasherzor",
-    "name": "slasherzor",
-    "avatar": "icon/autoricon.png",
-    "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
-    "links": [
-      {
-        "type": "Other",
-        "name": "Buscar autor",
-        "url": "https://github.com/search?q=slasherzor&type=users",
-        "recommended": true
-      }
-    ],
-    "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
-  },
-  {
-    "id": "slepper",
-    "name": "Slepper",
-    "avatar": "icon/autoricon.png",
-    "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
-    "links": [
-      {
-        "type": "Other",
-        "name": "Buscar autor",
-        "url": "https://github.com/search?q=Slepper&type=users",
-        "recommended": true
-      }
-    ],
-    "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
-  },
-  {
     "id": "snkilc",
     "name": "snkilc",
-    "avatar": "icon/autoricon.png",
+    "avatar": "",
     "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
     "links": [
       {
@@ -7661,24 +5531,9 @@
     "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
   },
   {
-    "id": "sofiyacat",
-    "name": "SofiyaCat",
-    "avatar": "icon/autoricon.png",
-    "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
-    "links": [
-      {
-        "type": "Other",
-        "name": "Buscar autor",
-        "url": "https://github.com/search?q=SofiyaCat&type=users",
-        "recommended": true
-      }
-    ],
-    "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
-  },
-  {
     "id": "soham",
     "name": "soham",
-    "avatar": "icon/autoricon.png",
+    "avatar": "",
     "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
     "links": [
       {
@@ -7708,7 +5563,7 @@
   {
     "id": "someonpc",
     "name": "SomeonPC",
-    "avatar": "icon/autoricon.png",
+    "avatar": "",
     "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
     "links": [
       {
@@ -7753,7 +5608,7 @@
   {
     "id": "soup-um",
     "name": "Soup'um",
-    "avatar": "icon/autoricon.png",
+    "avatar": "",
     "bio": "Desarrollador de homebrew para PS Vita.",
     "links": [
       {
@@ -7766,24 +5621,9 @@
     "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
   },
   {
-    "id": "soupmasters",
-    "name": "SoupMasters",
-    "avatar": "icon/autoricon.png",
-    "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
-    "links": [
-      {
-        "type": "Other",
-        "name": "Buscar autor",
-        "url": "https://github.com/search?q=SoupMasters&type=users",
-        "recommended": true
-      }
-    ],
-    "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
-  },
-  {
     "id": "soykhaler",
     "name": "SoyKhaler",
-    "avatar": "icon/autoricon.png",
+    "avatar": "",
     "bio": "Desarrollador de homebrew y ports para PlayStation Vita, activo en la comunidad de custom firmware.",
     "links": [
       {
@@ -7798,7 +5638,7 @@
   {
     "id": "soysilver",
     "name": "SoySilver",
-    "avatar": "icon/autoricon.png",
+    "avatar": "",
     "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
     "links": [
       {
@@ -7813,7 +5653,7 @@
   {
     "id": "spanishfreddy",
     "name": "SpanishFreddy",
-    "avatar": "icon/autoricon.png",
+    "avatar": "",
     "bio": "Desarrollador de homebrew para PS Vita.",
     "links": [
       {
@@ -7828,28 +5668,13 @@
   {
     "id": "spartanfox",
     "name": "Spartanfox",
-    "avatar": "icon/autoricon.png",
+    "avatar": "",
     "bio": "Desarrollador de homebrew para PS Vita.",
     "links": [
       {
         "type": "Other",
         "name": "Buscar autor",
         "url": "https://github.com/search?q=Spartanfox&type=users",
-        "recommended": true
-      }
-    ],
-    "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
-  },
-  {
-    "id": "spritelisen",
-    "name": "SpriteLisen",
-    "avatar": "icon/autoricon.png",
-    "bio": "Desarrollador de homebrew para PS Vita.",
-    "links": [
-      {
-        "type": "Other",
-        "name": "Buscar autor",
-        "url": "https://github.com/search?q=SpriteLisen&type=users",
         "recommended": true
       }
     ],
@@ -7888,7 +5713,7 @@
   {
     "id": "sudovim",
     "name": "sudovim",
-    "avatar": "icon/autoricon.png",
+    "avatar": "",
     "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
     "links": [
       {
@@ -7903,7 +5728,7 @@
   {
     "id": "sugardrenaline",
     "name": "Sugardrenaline",
-    "avatar": "icon/autoricon.png",
+    "avatar": "",
     "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
     "links": [
       {
@@ -7918,7 +5743,7 @@
   {
     "id": "sungrand-studios",
     "name": "Sungrand Studios",
-    "avatar": "icon/autoricon.png",
+    "avatar": "",
     "bio": "Equipo de desarrollo detras de proyectos open source y homebrew para PS Vita/PSP.",
     "links": [
       {
@@ -7931,24 +5756,9 @@
     "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
   },
   {
-    "id": "sunray",
-    "name": "Sunray",
-    "avatar": "icon/autoricon.png",
-    "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
-    "links": [
-      {
-        "type": "Other",
-        "name": "Buscar autor",
-        "url": "https://github.com/search?q=Sunray&type=users",
-        "recommended": true
-      }
-    ],
-    "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
-  },
-  {
     "id": "superfury1",
     "name": "Superfury1",
-    "avatar": "icon/autoricon.png",
+    "avatar": "",
     "bio": "Desarrollador de homebrew para PS Vita.",
     "links": [
       {
@@ -7976,21 +5786,6 @@
     "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
   },
   {
-    "id": "takka",
-    "name": "Takka",
-    "avatar": "icon/autoricon.png",
-    "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
-    "links": [
-      {
-        "type": "Other",
-        "name": "Buscar autor",
-        "url": "https://github.com/search?q=Takka&type=users",
-        "recommended": true
-      }
-    ],
-    "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
-  },
-  {
     "id": "tau5",
     "name": "Tau5",
     "avatar": "https://github.com/Tau5.png",
@@ -8008,7 +5803,7 @@
   {
     "id": "tayfuntuna",
     "name": "tayfuntuna",
-    "avatar": "icon/autoricon.png",
+    "avatar": "",
     "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
     "links": [
       {
@@ -8036,21 +5831,6 @@
     "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
   },
   {
-    "id": "team-unsilenced",
-    "name": "Team Unsilenced",
-    "avatar": "icon/autoricon.png",
-    "bio": "Equipo de desarrollo detras de proyectos open source y homebrew para PS Vita/PSP.",
-    "links": [
-      {
-        "type": "Other",
-        "name": "Buscar autor",
-        "url": "https://github.com/search?q=Team+Unsilenced&type=users",
-        "recommended": true
-      }
-    ],
-    "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
-  },
-  {
     "id": "team789er",
     "name": "Team789er",
     "avatar": "https://github.com/Team789er.png",
@@ -8066,24 +5846,9 @@
     "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
   },
   {
-    "id": "teamoverload",
-    "name": "TeamOverload",
-    "avatar": "icon/autoricon.png",
-    "bio": "Equipo de desarrollo detras de proyectos open source y homebrew para PS Vita/PSP.",
-    "links": [
-      {
-        "type": "Other",
-        "name": "Buscar autor",
-        "url": "https://github.com/search?q=TeamOverload&type=users",
-        "recommended": true
-      }
-    ],
-    "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
-  },
-  {
     "id": "tear",
     "name": "Tear",
-    "avatar": "icon/autoricon.png",
+    "avatar": "",
     "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
     "links": [
       {
@@ -8143,7 +5908,7 @@
   {
     "id": "the-crystal-org",
     "name": "The Crystal Org",
-    "avatar": "icon/autoricon.png",
+    "avatar": "",
     "bio": "Equipo de desarrollo detras de proyectos open source y homebrew para PS Vita/PSP.",
     "links": [
       {
@@ -8158,7 +5923,7 @@
   {
     "id": "thecrystalorg",
     "name": "TheCrystalOrg",
-    "avatar": "icon/autoricon.png",
+    "avatar": "",
     "bio": "",
     "links": [
       {
@@ -8243,7 +6008,7 @@
   {
     "id": "theorywrong",
     "name": "theorywrong",
-    "avatar": "icon/autoricon.png",
+    "avatar": "",
     "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
     "links": [
       {
@@ -8288,28 +6053,13 @@
   {
     "id": "thp",
     "name": "thp",
-    "avatar": "icon/autoricon.png",
+    "avatar": "",
     "bio": "Desarrollador de homebrew para PS Vita.",
     "links": [
       {
         "type": "Other",
         "name": "Buscar autor",
         "url": "https://github.com/search?q=thp&type=users",
-        "recommended": true
-      }
-    ],
-    "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
-  },
-  {
-    "id": "tiago-quendera",
-    "name": "Tiago Quendera",
-    "avatar": "icon/autoricon.png",
-    "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
-    "links": [
-      {
-        "type": "Other",
-        "name": "Buscar autor",
-        "url": "https://github.com/search?q=Tiago+Quendera&type=users",
         "recommended": true
       }
     ],
@@ -8333,7 +6083,7 @@
   {
     "id": "toni-dumancic",
     "name": "Toni Dumancic",
-    "avatar": "icon/autoricon.png",
+    "avatar": "",
     "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
     "links": [
       {
@@ -8346,39 +6096,9 @@
     "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
   },
   {
-    "id": "tt-team",
-    "name": "TT Team",
-    "avatar": "icon/autoricon.png",
-    "bio": "Equipo de desarrollo detras de proyectos open source y homebrew para PS Vita/PSP.",
-    "links": [
-      {
-        "type": "Other",
-        "name": "Buscar autor",
-        "url": "https://github.com/search?q=TT+Team&type=users",
-        "recommended": true
-      }
-    ],
-    "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
-  },
-  {
-    "id": "ttyman",
-    "name": "TTYman",
-    "avatar": "icon/autoricon.png",
-    "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
-    "links": [
-      {
-        "type": "Other",
-        "name": "Buscar autor",
-        "url": "https://github.com/search?q=TTYman&type=users",
-        "recommended": true
-      }
-    ],
-    "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
-  },
-  {
     "id": "tushkan",
     "name": "TushkaN",
-    "avatar": "icon/autoricon.png",
+    "avatar": "",
     "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
     "links": [
       {
@@ -8393,7 +6113,7 @@
   {
     "id": "twilight-games-studio",
     "name": "Twilight Games Studio",
-    "avatar": "icon/autoricon.png",
+    "avatar": "",
     "bio": "Equipo de desarrollo detras de proyectos open source y homebrew para PS Vita/PSP.",
     "links": [
       {
@@ -8406,39 +6126,9 @@
     "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
   },
   {
-    "id": "txori",
-    "name": "Txori",
-    "avatar": "icon/autoricon.png",
-    "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
-    "links": [
-      {
-        "type": "Other",
-        "name": "Buscar autor",
-        "url": "https://github.com/search?q=Txori&type=users",
-        "recommended": true
-      }
-    ],
-    "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
-  },
-  {
-    "id": "unknown",
-    "name": "Unknown",
-    "avatar": "icon/autoricon.png",
-    "bio": "Autor no identificado en las fuentes del catalogo.",
-    "links": [
-      {
-        "type": "Other",
-        "name": "Buscar autor",
-        "url": "https://github.com/search?q=Unknown&type=users",
-        "recommended": true
-      }
-    ],
-    "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
-  },
-  {
     "id": "unrealdude06",
     "name": "UnrealDude06",
-    "avatar": "icon/autoricon.png",
+    "avatar": "",
     "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
     "links": [
       {
@@ -8489,7 +6179,7 @@
   {
     "id": "vektast",
     "name": "Vektast",
-    "avatar": "icon/autoricon.png",
+    "avatar": "",
     "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
     "links": [
       {
@@ -8504,7 +6194,7 @@
   {
     "id": "vitacreatordeveloper",
     "name": "VitaCreatorDeveloper",
-    "avatar": "icon/autoricon.png",
+    "avatar": "",
     "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
     "links": [
       {
@@ -8519,7 +6209,7 @@
   {
     "id": "vitadev-games",
     "name": "VitaDev Games",
-    "avatar": "icon/autoricon.png",
+    "avatar": "",
     "bio": "Equipo de desarrollo detras de proyectos open source y homebrew para PS Vita/PSP.",
     "links": [
       {
@@ -8549,7 +6239,7 @@
   {
     "id": "vlambeer-jeffrulz345",
     "name": "Vlambeer & JeffRuLz345",
-    "avatar": "icon/autoricon.png",
+    "avatar": "",
     "bio": "",
     "links": [
       {
@@ -8562,21 +6252,6 @@
         "type": "Repository",
         "name": "Repositorio",
         "url": "https://github.com"
-      }
-    ],
-    "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
-  },
-  {
-    "id": "vlambeer",
-    "name": "Vlambeer",
-    "avatar": "icon/autoricon.png",
-    "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
-    "links": [
-      {
-        "type": "Other",
-        "name": "Buscar autor",
-        "url": "https://github.com/search?q=Vlambeer&type=users",
-        "recommended": true
       }
     ],
     "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
@@ -8599,7 +6274,7 @@
   {
     "id": "vsm-gammer",
     "name": "VSM GAMMER",
-    "avatar": "icon/autoricon.png",
+    "avatar": "",
     "bio": "Desarrollador de homebrew y ports para PlayStation Vita, activo en la comunidad de custom firmware.",
     "links": [
       {
@@ -8614,43 +6289,13 @@
   {
     "id": "vulcore-team",
     "name": "Vulcore Team",
-    "avatar": "icon/autoricon.png",
+    "avatar": "",
     "bio": "Equipo de desarrollo detras de proyectos open source y homebrew para PS Vita/PSP.",
     "links": [
       {
         "type": "Other",
         "name": "Buscar autor",
         "url": "https://github.com/search?q=Vulcore+Team&type=users",
-        "recommended": true
-      }
-    ],
-    "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
-  },
-  {
-    "id": "wagic-team",
-    "name": "Wagic Team",
-    "avatar": "https://github.com/WagicProject.png",
-    "bio": "Equipo de desarrollo detras de proyectos open source y homebrew para PS Vita/PSP.",
-    "links": [
-      {
-        "type": "GitHub",
-        "name": "GitHub",
-        "url": "https://github.com/WagicProject",
-        "recommended": true
-      }
-    ],
-    "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
-  },
-  {
-    "id": "wally",
-    "name": "Wally",
-    "avatar": "https://github.com/TheMrIron2.png",
-    "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
-    "links": [
-      {
-        "type": "GitHub",
-        "name": "GitHub",
-        "url": "https://github.com/TheMrIron2",
         "recommended": true
       }
     ],
@@ -8672,24 +6317,9 @@
     "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
   },
   {
-    "id": "weetabix",
-    "name": "weetabix",
-    "avatar": "https://github.com/weetabix-su.png",
-    "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
-    "links": [
-      {
-        "type": "GitHub",
-        "name": "GitHub",
-        "url": "https://github.com/weetabix-su",
-        "recommended": true
-      }
-    ],
-    "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
-  },
-  {
     "id": "widegcg",
     "name": "WIDEGCG",
-    "avatar": "icon/autoricon.png",
+    "avatar": "",
     "bio": "Desarrollador de homebrew y ports para PlayStation Vita, activo en la comunidad de custom firmware.",
     "links": [
       {
@@ -8749,7 +6379,7 @@
   {
     "id": "wolfgirlbreeder",
     "name": "WolfgirlBreeder",
-    "avatar": "icon/autoricon.png",
+    "avatar": "",
     "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
     "links": [
       {
@@ -8764,7 +6394,7 @@
   {
     "id": "wonre",
     "name": "wonre",
-    "avatar": "icon/autoricon.png",
+    "avatar": "",
     "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
     "links": [
       {
@@ -8779,7 +6409,7 @@
   {
     "id": "ws-studios",
     "name": "WS Studios",
-    "avatar": "icon/autoricon.png",
+    "avatar": "",
     "bio": "Equipo de desarrollo detras de proyectos open source y homebrew para PS Vita/PSP.",
     "links": [
       {
@@ -8792,24 +6422,9 @@
     "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
   },
   {
-    "id": "wth",
-    "name": "wth",
-    "avatar": "https://github.com/Applelo.png",
-    "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
-    "links": [
-      {
-        "type": "GitHub",
-        "name": "GitHub",
-        "url": "https://github.com/Applelo",
-        "recommended": true
-      }
-    ],
-    "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
-  },
-  {
     "id": "wz",
     "name": "WZ",
-    "avatar": "icon/autoricon.png",
+    "avatar": "",
     "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
     "links": [
       {
@@ -8822,24 +6437,9 @@
     "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
   },
   {
-    "id": "xamthor",
-    "name": "xamthor",
-    "avatar": "https://github.com/xamthor.png",
-    "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
-    "links": [
-      {
-        "type": "GitHub",
-        "name": "GitHub",
-        "url": "https://github.com/xamthor",
-        "recommended": true
-      }
-    ],
-    "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
-  },
-  {
     "id": "xanderten50",
     "name": "xanderten50",
-    "avatar": "icon/autoricon.png",
+    "avatar": "",
     "bio": "Desarrollador de homebrew y ports para PlayStation Vita, activo en la comunidad de custom firmware.",
     "links": [
       {
@@ -8884,7 +6484,7 @@
   {
     "id": "xcorra",
     "name": "xCorra",
-    "avatar": "icon/autoricon.png",
+    "avatar": "",
     "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
     "links": [
       {
@@ -8942,45 +6542,15 @@
     "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
   },
   {
-    "id": "xigenoy",
-    "name": "XiGenoy",
-    "avatar": "icon/autoricon.png",
-    "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
-    "links": [
-      {
-        "type": "Other",
-        "name": "Buscar autor",
-        "url": "https://github.com/search?q=XiGenoy&type=users",
-        "recommended": true
-      }
-    ],
-    "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
-  },
-  {
     "id": "ximer",
     "name": "Ximer",
-    "avatar": "icon/autoricon.png",
+    "avatar": "",
     "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
     "links": [
       {
         "type": "Other",
         "name": "Buscar autor",
         "url": "https://github.com/search?q=Ximer&type=users",
-        "recommended": true
-      }
-    ],
-    "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
-  },
-  {
-    "id": "xiro",
-    "name": "xiro",
-    "avatar": "https://github.com/TheMrIron2.png",
-    "bio": "Desarrollador de homebrew para PS Vita.",
-    "links": [
-      {
-        "type": "GitHub",
-        "name": "GitHub",
-        "url": "https://github.com/TheMrIron2",
         "recommended": true
       }
     ],
@@ -9017,15 +6587,15 @@
     "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
   },
   {
-    "id": "yabause-team",
-    "name": "Yabause Team",
-    "avatar": "icon/autoricon.png",
-    "bio": "Equipo de desarrollo detras de proyectos open source y homebrew para PS Vita/PSP.",
+    "id": "yizhigai",
+    "name": "yizhigai",
+    "avatar": "",
+    "bio": "Desarrollador de homebrew y ports para PlayStation Vita, activo en la comunidad de custom firmware.",
     "links": [
       {
         "type": "Other",
         "name": "Buscar autor",
-        "url": "https://github.com/search?q=Yabause+Team&type=users",
+        "url": "https://github.com/search?q=yizhigai&type=users",
         "recommended": true
       }
     ],
@@ -9034,7 +6604,7 @@
   {
     "id": "yizhigai-spritelisen-kaaass",
     "name": "yizhigai & SpriteLisen & KAAAsS",
-    "avatar": "icon/autoricon.png",
+    "avatar": "",
     "bio": "",
     "links": [
       {
@@ -9058,21 +6628,6 @@
         "type": "Repository",
         "name": "Repositorio",
         "url": "https://gitee.com/Moqi01/acrodea_runtime"
-      }
-    ],
-    "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
-  },
-  {
-    "id": "yizhigai",
-    "name": "yizhigai",
-    "avatar": "icon/autoricon.png",
-    "bio": "Desarrollador de homebrew y ports para PlayStation Vita, activo en la comunidad de custom firmware.",
-    "links": [
-      {
-        "type": "Other",
-        "name": "Buscar autor",
-        "url": "https://github.com/search?q=yizhigai&type=users",
-        "recommended": true
       }
     ],
     "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
@@ -9110,7 +6665,7 @@
   {
     "id": "yukkurisinai",
     "name": "yukkurisinai",
-    "avatar": "icon/autoricon.png",
+    "avatar": "",
     "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
     "links": [
       {
@@ -9153,36 +6708,6 @@
     "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
   },
   {
-    "id": "z2442",
-    "name": "z2442",
-    "avatar": "https://github.com/TheMrIron2.png",
-    "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
-    "links": [
-      {
-        "type": "GitHub",
-        "name": "GitHub",
-        "url": "https://github.com/TheMrIron2",
-        "recommended": true
-      }
-    ],
-    "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
-  },
-  {
-    "id": "zack",
-    "name": "Zack",
-    "avatar": "https://github.com/BenMcLean.png",
-    "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
-    "links": [
-      {
-        "type": "GitHub",
-        "name": "GitHub",
-        "url": "https://github.com/BenMcLean",
-        "recommended": true
-      }
-    ],
-    "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
-  },
-  {
     "id": "zfhuang",
     "name": "ZFhuang",
     "avatar": "https://github.com/ZFhuang.png",
@@ -9198,21 +6723,6 @@
     "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
   },
   {
-    "id": "zion",
-    "name": "Zion",
-    "avatar": "icon/autoricon.png",
-    "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
-    "links": [
-      {
-        "type": "Other",
-        "name": "Buscar autor",
-        "url": "https://github.com/search?q=Zion&type=users",
-        "recommended": true
-      }
-    ],
-    "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
-  },
-  {
     "id": "zombiewizzard",
     "name": "ZombieWizzard",
     "avatar": "https://github.com/yhtez.png",
@@ -9222,21 +6732,6 @@
         "type": "GitHub",
         "name": "GitHub",
         "url": "https://github.com/yhtez",
-        "recommended": true
-      }
-    ],
-    "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
-  },
-  {
-    "id": "zx-81",
-    "name": "ZX-81",
-    "avatar": "icon/autoricon.png",
-    "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
-    "links": [
-      {
-        "type": "Other",
-        "name": "Buscar autor",
-        "url": "https://github.com/search?q=ZX-81&type=users",
         "recommended": true
       }
     ],
