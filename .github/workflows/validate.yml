@@ -71,6 +71,9 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: python scripts/generate_catalog.py
 
+      - name: Persist final normalized canonical source files
+        run: python scripts/normalize_persisted_sources.py
+
       - name: Validate rebuilt VitaHub source catalog
         run: python scripts/validate_catalog_ci.py
 
@@ -96,6 +99,9 @@ jobs:
           git add apps/*.json authors/*.json catalog.json authors.json categories.json
           if [ -f reports/external_conflicts.json ]; then
             git add reports/external_conflicts.json
+          fi
+          if [ ! -f sources/rebuild_once.json ] && git ls-files --error-unmatch sources/rebuild_once.json >/dev/null 2>&1; then
+            git add -u sources/rebuild_once.json
           fi
 
           if git diff --cached --quiet; then
