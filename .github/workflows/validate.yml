@@ -12,8 +12,8 @@ on:
 permissions:
   contents: write
 
-# Only one catalog publisher may run at a time. A queued run starts after the
-# previous publisher finishes, preventing add/add conflicts in apps/authors.
+# Serialize catalog generation/publication. This prevents concurrent runs from
+# creating the same new app/author file and then colliding during rebase.
 concurrency:
   group: vitahub-catalog-publisher
   cancel-in-progress: false
@@ -72,7 +72,48 @@ jobs:
         run: python scripts/normalize_persisted_sources.py
 
       - name: Remove orphan authors from generated registry
-        run: python scripts/prune_orphan_authors.py
+        shell: bash
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          root = Path('.')
+          referenced = set()
+          for path in sorted((root / 'apps').glob('*.json')):
+              try:
+                  app = json.loads(path.read_text(encoding='utf-8'))
+              except Exception:
+                  continue
+              ids = app.get('author_ids', [])
+              if isinstance(ids, list):
+                  referenced.update(x for x in ids if isinstance(x, str) and x.strip())
+
+          authors = []
+          for path in sorted((root / 'authors').glob('*.json')):
+              try:
+                  author = json.loads(path.read_text(encoding='utf-8'))
+              except Exception:
+                  continue
+              if author.get('id') in referenced:
+                  authors.append(author)
+
+          found = {a.get('id') for a in authors}
+          missing = sorted(referenced - found)
+          if missing:
+              raise SystemExit('Referenced authors missing from authors/: ' + ', '.join(missing))
+
+          authors.sort(key=lambda a: str(a.get('name', a.get('id', ''))).lower())
+          (root / 'authors.json').write_text(
+              json.dumps(authors, ensure_ascii=False, indent=2) + '\n',
+              encoding='utf-8',
+          )
+
+          total_profiles = len(list((root / 'authors').glob('*.json')))
+          print(f'Referenced authors: {len(referenced)}')
+          print(f'Authors published: {len(authors)}')
+          print(f'Orphan profiles excluded from authors.json: {max(0, total_profiles - len(authors))}')
+          PY
 
       - name: Validate VitaHub source catalog
         run: python scripts/validate_catalog_ci.py
