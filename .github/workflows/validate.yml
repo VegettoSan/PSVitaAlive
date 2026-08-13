@@ -47,7 +47,7 @@ jobs:
         run: python scripts/validate_registry.py
 
       - name: Validate VitaHub source catalog
-        run: python scripts/validate_catalog.py
+        run: python scripts/validate_catalog_ci.py
 
       - name: Run external aggregation smoke test
         run: python scripts/external_smoke_test.py
