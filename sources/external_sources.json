@@ -6,10 +6,11 @@
       "name": "VitaDB",
       "enabled": true,
       "kind": "official_json_api",
-      "url": "https://www.rinnegatamante.eu/vitadb/list_hbs_json.php",
+      "url": "https://rinnegatamante.eu/vitadb/list_hbs_json.php",
+      "method": "POST",
       "priority": 110,
       "platform": "vita",
-      "notes": "Official VitaDB homebrew JSON feed used by VitaDB Downloader."
+      "notes": "Official VitaDB homebrew JSON feed. Requires POST with an empty body (no parameters). HTTPS is preferred; HTTP is used as fallback. An empty list means the upstream currently returns no records."
     },
     {
       "id": "vitadbtoo",

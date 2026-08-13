@@ -58,3 +58,43 @@ def choose_existing_id(candidates: list[tuple[str, Candidate]]) -> str | None:
         if source_id == "local" and candidate.source_item_id:
             return str(candidate.source_item_id)
     return None
+
+
+def split_author_names(value) -> list[str]:
+    """Split compound author fields into individual display names.
+
+    Handles separators commonly used by VitaDB-family feeds:
+    &, +, comma, semicolon, newline, and the word "and".
+    Conservative: keeps single legitimate names intact.
+    """
+    if isinstance(value, list):
+        result: list[str] = []
+        seen: set[str] = set()
+        for item in value:
+            for part in split_author_names(item):
+                key = normalize_text(part)
+                if key and key not in seen:
+                    seen.add(key)
+                    result.append(part)
+        return result
+
+    if not isinstance(value, str) or not value.strip():
+        return []
+
+    text_value = re.sub(r"\s+", " ", value.replace("\u00a0", " ")).strip()
+    text_value = re.sub(r"\s*&\s*", ",", text_value)
+    text_value = re.sub(r"\s+\band\b\s+", ",", text_value, flags=re.I)
+    text_value = re.sub(r"\s*\+\s*", ",", text_value)
+    text_value = re.sub(r"[;\n\r]+", ",", text_value)
+
+    result = []
+    seen = set()
+    for part in text_value.split(","):
+        name = part.strip(" \t,;|")
+        if not name:
+            continue
+        key = normalize_text(name)
+        if key and key not in seen:
+            seen.add(key)
+            result.append(name)
+    return result
