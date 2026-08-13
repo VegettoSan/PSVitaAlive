@@ -2,17 +2,18 @@
   "id": "immultiple",
   "title_id": "IMMULT000",
   "name": "ImMultiple",
-  "description": "",
+  "description": "Front time tracker for plural systems.",
   "long_description": "A program for tracking front time for DID/Plural Systems\nCreated using the ImGui GUI framework.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
   "author_ids": [
-    "the-crystal-org"
+    "the-crystal-org",
+    "thecrystalorg"
   ],
   "category_id": "games",
   "subcategory_ids": [
     "other"
   ],
-  "version": "latest",
-  "version_date": "2026-08-12",
+  "version": "v.0.1",
+  "version_date": "2026-08-13",
   "requirements": "Not specified",
   "size": 8224284,
   "status": "Legacy",
@@ -31,6 +32,21 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://git.silica.codes"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDBtoo VPK",
+      "url": "https://git.silica.codes/TheCrystalOrg/ImMultiple/releases/download/v0.1/ImMultiple_VITA.vpk"
+    },
+    {
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
+      "url": "https://git.silica.codes/TheCrystalOrg/ImMultiple/releases"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://git.silica.codes/TheCrystalOrg/ImMultiple"
     }
   ],
   "source_name": "NeoVitaDB",

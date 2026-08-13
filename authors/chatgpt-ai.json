@@ -10,5 +10,6 @@
       "url": "https://openai.com/chatgpt/",
       "recommended": true
     }
-  ]
+  ],
+  "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
 }

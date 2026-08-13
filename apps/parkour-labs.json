@@ -2,7 +2,7 @@
   "id": "parkour-labs",
   "title_id": "GDOT32494",
   "name": "Parkour Labs",
-  "description": "",
+  "description": "Port of Parkour Labs for PSVITA.",
   "long_description": "A port of the Steam game Parkour Labs, a hard parkour videogame similar to CSGO: Surf.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
   "author_ids": [
     "soykhaler"
@@ -18,7 +18,8 @@
   "status": "Legacy",
   "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1837-parkour-labs.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1837-parkour-labs.png"
+    "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1837-parkour-labs.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c99306cc2d72e01dadf45de697e94b422dd33ddfdf2a5ef5cff1e5a0c1ec8503.png"
   ],
   "links": [
     {
@@ -31,6 +32,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com"
+    },
+    {
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
+      "url": "https://soykhaler.itch.io/parkour-labs-vita-port"
     }
   ],
   "source_name": "NeoVitaDB",

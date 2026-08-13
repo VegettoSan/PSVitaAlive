@@ -2,17 +2,18 @@
   "id": "server-room-simulator",
   "title_id": "SVRS00000",
   "name": "Server Room Simulator",
-  "description": "",
+  "description": "Put out fires in a server room.",
   "long_description": "A game putting out fires while trying to keep the server online!\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
   "author_ids": [
-    "li"
+    "li",
+    "lienby"
   ],
   "category_id": "games",
   "subcategory_ids": [
     "other"
   ],
-  "version": "latest",
-  "version_date": "2026-08-12",
+  "version": "v.1.0",
+  "version_date": "2026-08-13",
   "requirements": "Not specified",
   "size": 39072326,
   "status": "Legacy",
@@ -31,6 +32,21 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://git.silica.codes"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDBtoo VPK",
+      "url": "https://git.silica.codes/Li/Server_Room_Simulator/releases/download/v1.0/server_room_simulator.vpk"
+    },
+    {
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
+      "url": "https://git.silica.codes/Li/Server_Room_Simulator/releases"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://git.silica.codes/Li/Server_Room_Simulator"
     }
   ],
   "source_name": "NeoVitaDB",

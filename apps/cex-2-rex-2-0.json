@@ -2,17 +2,18 @@
   "id": "cex-2-rex-2-0",
   "title_id": "CEX2REX20",
   "name": "CEX 2 REX 2.0",
-  "description": "",
+  "description": "Install testkit firmware on a retail console.",
   "long_description": "Spoof & Install Testing Kit Firmware onto a retial PSVita,\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
   "author_ids": [
-    "li"
+    "li",
+    "lienby"
   ],
   "category_id": "games",
   "subcategory_ids": [
     "other"
   ],
-  "version": "latest",
-  "version_date": "2026-08-12",
+  "version": "v.2.0.1",
+  "version_date": "2026-08-13",
   "requirements": "Henkaku Enso, reF00D and a Testing Kit firmware PUP",
   "size": 194270,
   "status": "Legacy",
@@ -31,6 +32,21 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://git.silica.codes"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDBtoo VPK",
+      "url": "https://git.silica.codes/Li/cex-2-rex/releases/download/2.0.1/CEX2REX.vpk"
+    },
+    {
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
+      "url": "https://git.silica.codes/Li/cex-2-rex/releases"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://git.silica.codes/Li/cex-2-rex"
     }
   ],
   "source_name": "NeoVitaDB",

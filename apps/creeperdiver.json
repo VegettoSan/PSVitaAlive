@@ -2,17 +2,18 @@
   "id": "creeperdiver",
   "title_id": "CREEPER00",
   "name": "CreeperDiver",
-  "description": "",
+  "description": "Navigate a creeper through a cave.",
   "long_description": "A game about navigating a creeper through a cave\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
   "author_ids": [
-    "ws-studios"
+    "ws-studios",
+    "lienby"
   ],
   "category_id": "games",
   "subcategory_ids": [
     "other"
   ],
-  "version": "latest",
-  "version_date": "2026-08-12",
+  "version": "v.1.2",
+  "version_date": "2026-08-13",
   "requirements": "Not specified",
   "size": 10802255,
   "status": "Legacy",
@@ -31,6 +32,21 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://git.silica.codes"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDBtoo VPK",
+      "url": "https://git.silica.codes/Li/creeperdiver/releases/download/v1.2/creeperdiver-vita.vpk"
+    },
+    {
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
+      "url": "https://git.silica.codes/Li/creeperdiver/releases"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://git.silica.codes/Li/creeperdiver"
     }
   ],
   "source_name": "NeoVitaDB",

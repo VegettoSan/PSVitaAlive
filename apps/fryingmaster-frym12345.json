@@ -2,7 +2,7 @@
   "id": "fryingmaster-frym12345",
   "title_id": "FRYM12345",
   "name": "FryingMaster",
-  "description": "",
+  "description": "Frying game for PSVITA.",
   "long_description": "The game is inspired by a mini game from \"Super Mario Party\" it has two modes, endless where you have to cook patties before the time limit and 4 sides where you have to cook all four sides of a steak and make a high score.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
   "author_ids": [
     "lazyox199"
@@ -18,7 +18,8 @@
   "status": "Legacy",
   "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1609-fryingmaster.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1609-fryingmaster.png"
+    "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1609-fryingmaster.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/fa05a7d03d42c4be8cd8f1e55b18b955dd7052ce67e99b1f149230da8477bd4b.png"
   ],
   "links": [
     {
@@ -31,6 +32,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com"
+    },
+    {
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
+      "url": "https://www.reddit.com/r/vitahacks/comments/acai91/ported_a_game_im_working_on_for_android_to_psvita/"
     }
   ],
   "source_name": "NeoVitaDB",

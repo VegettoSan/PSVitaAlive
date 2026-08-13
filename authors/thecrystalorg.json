@@ -1,0 +1,35 @@
+{
+  "id": "thecrystalorg",
+  "name": "TheCrystalOrg",
+  "avatar": "",
+  "bio": "",
+  "links": [
+    {
+      "type": "Download",
+      "name": "NeoVitaDB VPK",
+      "url": "https://git.silica.codes/TheCrystalOrg/ImMultiple/releases/download/latest/ImMultiple_VITA.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://git.silica.codes"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDBtoo VPK",
+      "url": "https://git.silica.codes/TheCrystalOrg/ImMultiple/releases/download/v0.1/ImMultiple_VITA.vpk"
+    },
+    {
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
+      "url": "https://git.silica.codes/TheCrystalOrg/ImMultiple/releases"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://git.silica.codes/TheCrystalOrg/ImMultiple"
+    }
+  ],
+  "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
+}
