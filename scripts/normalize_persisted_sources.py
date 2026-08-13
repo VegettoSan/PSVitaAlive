@@ -5,6 +5,10 @@ The catalog generator enriches records in memory after external aggregation has
 already persisted apps/authors. This pass mirrors the final normalization onto
 the actual apps/*.json and authors/*.json files so the source layer and the
 generated catalogs cannot diverge.
+
+All media persisted by this pass is an absolute URL. Repository-local media is
+converted to the public raw GitHub URL so GitHub Pages and the Vita client do
+not depend on a relative filesystem path.
 """
 from __future__ import annotations
 
@@ -16,10 +20,25 @@ from pathlib import Path
 from urllib.parse import quote, urljoin, urlparse
 
 ROOT = Path(__file__).resolve().parents[1]
+RAW_ROOT = "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/"
+AUTHOR_FALLBACK = RAW_ROOT + "authors/icon/autoricon.png"
 
 MEDIA_ROOTS = {
-    "vitadbtoo": ("https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/", "screenshots/"),
-    "vitadb": ("https://www.rinnegatamante.eu/vitadb/", "screenshots/"),
+    "vitadbtoo": {
+        "base": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/",
+        "icon": "icons/",
+        "screenshot": "screenshots/",
+    },
+    "vitadb": {
+        "base": "https://www.rinnegatamante.eu/vitadb/",
+        "icon": "icons/",
+        "screenshot": "screenshots/",
+    },
+    "neovitadb": {
+        "base": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/",
+        "icon": "icons_vita/",
+        "screenshot": None,
+    },
 }
 
 
@@ -48,6 +67,7 @@ def remote_ok(url):
         if exc.code == 404:
             return False
     except Exception:
+        # Do not destroy a known-good URL because of a temporary network error.
         return True
 
     request = urllib.request.Request(url, headers=headers)
@@ -66,15 +86,60 @@ def source_from_app(app):
         return "vitadbtoo"
     if source == "vitadb" or source.startswith("vitadb "):
         return "vitadb"
+    if "neovitadb" in source:
+        return "neovitadb"
     for link in app.get("links") or []:
         url = link.get("url") if isinstance(link, dict) else None
         if not isinstance(url, str):
             continue
-        if "DrDecki/VitaDBtoo-db" in url or "drdecki.github.io/VitaDBtoo-db" in url:
+        lower = url.lower()
+        if "drdecki/vitadBtoo-db".lower() in lower or "drdecki.github.io/vitadBtoo-db".lower() in lower:
             return "vitadbtoo"
-        if "rinnegatamante.eu/vitadb" in url:
+        if "rinnegatamante.eu/vitadb" in lower:
             return "vitadb"
+        if "neovitadb-catalog" in lower:
+            return "neovitadb"
     return ""
+
+
+def resolve_source_media(value, source_hint, kind):
+    """Resolve a source-relative media value and return only a usable URL."""
+    if not isinstance(value, str) or not value.strip():
+        return None
+    clean = value.strip().lstrip("./").replace("\\", "/")
+
+    if is_remote(clean):
+        return clean if remote_ok(clean) else None
+
+    config = MEDIA_ROOTS.get(source_hint, {})
+    base = config.get("base")
+    folder = config.get(kind)
+    if not base or folder is None:
+        return None
+
+    prefix = folder.rstrip("/") + "/"
+    relative = clean if clean.startswith(prefix) else prefix + clean
+    encoded = "/".join(quote(part, safe="@:+,;=-._~") for part in relative.split("/"))
+    url = urljoin(base, encoded)
+    return url if remote_ok(url) else None
+
+
+def resolve_local_raw(value):
+    """Convert an existing repository-relative resource to its raw GitHub URL."""
+    clean = value.strip().lstrip("./").replace("\\", "/")
+    if is_remote(clean):
+        return clean if remote_ok(clean) else None
+
+    candidate = ROOT / clean
+    try:
+        candidate.resolve().relative_to(ROOT.resolve())
+    except ValueError:
+        return None
+
+    if candidate.is_file():
+        relative = candidate.relative_to(ROOT).as_posix()
+        return RAW_ROOT + "/".join(quote(part, safe="@:+,;=-._~") for part in relative.split("/"))
+    return None
 
 
 def resolve_relative_screenshot(value, source_hint):
@@ -82,32 +147,54 @@ def resolve_relative_screenshot(value, source_hint):
     if is_remote(clean):
         return clean if remote_ok(clean) else None
 
-    # Local repository resource, accepting both repo-root and apps-relative paths.
-    for candidate in (ROOT / clean, ROOT / "screenshots" / Path(clean).name):
-        try:
-            candidate.resolve().relative_to(ROOT.resolve())
-        except ValueError:
+    # If the resource belongs to VitaHub itself, publish it through raw GitHub.
+    local_raw = resolve_local_raw(clean)
+    if local_raw and remote_ok(local_raw):
+        return local_raw
+
+    # Bare filenames from external catalogs are resolved against the real source
+    # roots. Never persist the source's internal relative representation.
+    source_url = resolve_source_media(clean, source_hint, "screenshot")
+    if source_url:
+        return source_url
+
+    # If source attribution is unavailable, safely try the known public roots.
+    for candidate_source in MEDIA_ROOTS:
+        if candidate_source == source_hint:
             continue
-        if candidate.is_file():
-            return candidate.relative_to(ROOT).as_posix()
-
-    roots = []
-    if source_hint in MEDIA_ROOTS:
-        roots.append(MEDIA_ROOTS[source_hint])
-    for key, root in MEDIA_ROOTS.items():
-        if key != source_hint:
-            roots.append(root)
-
-    for base, folder in roots:
-        relative = clean
-        prefix = folder.rstrip("/") + "/"
-        if not relative.startswith(prefix):
-            relative = prefix + relative
-        encoded = "/".join(quote(part, safe="@:+,;=-._~") for part in relative.split("/"))
-        url = urljoin(base, encoded)
-        if remote_ok(url):
-            return url
+        source_url = resolve_source_media(clean, candidate_source, "screenshot")
+        if source_url:
+            return source_url
     return None
+
+
+def category_icon_url(category_id):
+    """Return a validated VitaHub category icon URL for an application fallback."""
+    if not isinstance(category_id, str) or not category_id.strip():
+        return None
+    category = category_id.strip().lower()
+    if not re.fullmatch(r"[a-z0-9_-]+", category):
+        return None
+    url = RAW_ROOT + f"categories/icons/{quote(category, safe='_-')}.png"
+    return url if remote_ok(url) else None
+
+
+def normalize_app_icon(app, source_hint):
+    """Normalize an app icon, falling back to the VitaHub category icon."""
+    value = app.get("icon")
+    if isinstance(value, str) and value.strip():
+        if is_remote(value):
+            if remote_ok(value):
+                return value.strip()
+        else:
+            local_raw = resolve_local_raw(value)
+            if local_raw and remote_ok(local_raw):
+                return local_raw
+            source_url = resolve_source_media(value, source_hint, "icon")
+            if source_url:
+                return source_url
+
+    return category_icon_url(app.get("category_id"))
 
 
 def normalize_apps():
@@ -117,15 +204,18 @@ def normalize_apps():
             app = json.loads(path.read_text(encoding="utf-8"))
         except Exception:
             continue
+
         source_hint = source_from_app(app)
+
         requirements = app.get("requirements")
         if not isinstance(requirements, str) or not requirements.strip():
             app["requirements"] = "Not specified"
 
-        icon = app.get("icon")
-        if isinstance(icon, str) and icon.strip() and is_remote(icon) and not remote_ok(icon):
+        icon = normalize_app_icon(app, source_hint)
+        if icon:
+            app["icon"] = icon
+        else:
             app["icon"] = ""
-            icon = ""
 
         screenshots = []
         for item in split_values(app.get("screenshots") or []):
@@ -135,20 +225,36 @@ def normalize_apps():
             if len(screenshots) == 5:
                 break
 
-        if not screenshots:
-            icon = app.get("icon")
-            if isinstance(icon, str) and icon.strip():
-                screenshots = [icon]
-            else:
-                fallback = ROOT / "icon" / "app.png"
-                if fallback.is_file():
-                    app["icon"] = fallback.relative_to(ROOT).as_posix()
-                    screenshots = [app["icon"]]
+        # A working app icon is the canonical last-resort screenshot fallback.
+        if not screenshots and app.get("icon"):
+            screenshots = [app["icon"]]
 
         app["screenshots"] = screenshots[:5]
         path.write_text(json.dumps(app, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
         apps.append(app)
     return apps
+
+
+def normalize_author_icon(author):
+    """Normalize author icon and use the repository fallback when unavailable."""
+    value = author.get("icon")
+    if isinstance(value, str) and value.strip():
+        if is_remote(value):
+            if remote_ok(value):
+                return value.strip()
+        else:
+            local_raw = resolve_local_raw(value)
+            if local_raw and remote_ok(local_raw):
+                return local_raw
+            clean = value.strip().lstrip("./").replace("\\", "/")
+            if not clean.startswith("authors/"):
+                candidate = RAW_ROOT + "authors/icon/" + "/".join(
+                    quote(part, safe="@:+,;=-._~") for part in clean.split("/")
+                )
+                if remote_ok(candidate):
+                    return candidate
+
+    return AUTHOR_FALLBACK if remote_ok(AUTHOR_FALLBACK) else ""
 
 
 def normalize_author_links(links):
@@ -205,10 +311,12 @@ def normalize_authors(apps):
             author = json.loads(path.read_text(encoding="utf-8"))
         except Exception:
             continue
+
         links = author.get("links")
         if not isinstance(links, list) or not links:
             links = by_author.get(author.get("id"), [])[:5]
         author["links"] = normalize_author_links(links)
+        author["icon"] = normalize_author_icon(author)
         path.write_text(json.dumps(author, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 
 
