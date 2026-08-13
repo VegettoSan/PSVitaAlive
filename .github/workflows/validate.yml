@@ -69,20 +69,27 @@ jobs:
           echo "Generated catalogs:"
           ls -lh catalog.json authors.json categories.json
 
-      - name: Commit generated catalogs
+          echo "Canonical source counts:"
+          find apps -maxdepth 1 -name '*.json' | wc -l
+          find authors -maxdepth 1 -name '*.json' | wc -l
+
+      - name: Commit canonical source files and generated catalogs
         if: github.event_name != 'pull_request'
         run: |
-          git add catalog.json authors.json categories.json reports/external_conflicts.json || true
+          git add apps/*.json authors/*.json catalog.json authors.json categories.json
+          if [ -f reports/external_conflicts.json ]; then
+            git add reports/external_conflicts.json
+          fi
 
           if git diff --cached --quiet; then
-            echo "No generated catalog changes detected."
+            echo "No canonical source or generated catalog changes detected."
             exit 0
           fi
 
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
-          git commit -m "Update generated VitaHub catalogs"
+          git commit -m "Update VitaHub canonical catalog sources"
 
           for attempt in 1 2 3 4 5; do
             if git push; then
@@ -96,6 +103,6 @@ jobs:
             git rebase origin/main || {
               git rebase --abort
               git reset --soft origin/main
-              git diff --cached --quiet || git commit -m "Update generated VitaHub catalogs"
+              git diff --cached --quiet || git commit -m "Update VitaHub canonical catalog sources"
             }
           done
