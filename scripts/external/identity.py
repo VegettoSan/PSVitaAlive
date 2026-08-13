@@ -13,10 +13,17 @@ def canonical_author_id(name: str) -> str:
     return value or "unknown-author"
 
 
+def canonical_title_id(value: str | None) -> str:
+    """Return the canonical Vita title ID used for cross-catalog identity."""
+    raw = str(value or "").strip().upper()
+    return re.sub(r"[^A-Z0-9]", "", raw)
+
+
 def identity_keys(candidate: Candidate) -> list[tuple[str, str]]:
     keys = []
-    if candidate.title_id:
-        keys.append(("title_id", str(candidate.title_id).strip().upper()))
+    title_id = canonical_title_id(candidate.title_id)
+    if title_id:
+        keys.append(("title_id", title_id))
     repo = canonical_repo(candidate.repository_url)
     if repo:
         keys.append(("repo", repo))
@@ -30,11 +37,20 @@ def identity_keys(candidate: Candidate) -> list[tuple[str, str]]:
 
 
 def same_identity(left: Candidate, right: Candidate) -> bool:
+    """Title ID is authoritative across all external catalogs."""
+    left_title = canonical_title_id(left.title_id)
+    right_title = canonical_title_id(right.title_id)
+    if left_title and right_title:
+        return left_title == right_title
+
+    left_repo = canonical_repo(left.repository_url)
+    right_repo = canonical_repo(right.repository_url)
+    if left_repo and right_repo:
+        return left_repo == right_repo
+
     left_keys = set(identity_keys(left))
     right_keys = set(identity_keys(right))
-    strong_left = {item for item in left_keys if item[0] in {"title_id", "repo"}}
-    strong_right = {item for item in right_keys if item[0] in {"title_id", "repo"}}
-    return bool(strong_left & strong_right) or bool(left_keys & right_keys and not strong_left and not strong_right)
+    return bool(left_keys & right_keys and not left_repo and not right_repo)
 
 
 def choose_existing_id(candidates: list[tuple[str, Candidate]]) -> str | None:
