@@ -151,6 +151,39 @@ def normalize_apps():
     return apps
 
 
+def normalize_author_links(links):
+    """Deduplicate author links and allow at most one recommended link."""
+    if not isinstance(links, list):
+        return []
+
+    normalized = []
+    seen_urls = set()
+    recommended_seen = False
+
+    for link in links:
+        if not isinstance(link, dict):
+            continue
+        url = link.get("url")
+        if not isinstance(url, str) or not url.strip():
+            continue
+        url = url.strip()
+        if url in seen_urls:
+            continue
+
+        item = dict(link)
+        item["url"] = url
+        recommended = bool(item.get("recommended", False))
+        if recommended:
+            if recommended_seen:
+                item["recommended"] = False
+            else:
+                recommended_seen = True
+        normalized.append(item)
+        seen_urls.add(url)
+
+    return normalized
+
+
 def normalize_authors(apps):
     by_author = {}
     for app in apps:
@@ -174,7 +207,8 @@ def normalize_authors(apps):
             continue
         links = author.get("links")
         if not isinstance(links, list) or not links:
-            author["links"] = by_author.get(author.get("id"), [])[:5]
+            links = by_author.get(author.get("id"), [])[:5]
+        author["links"] = normalize_author_links(links)
         path.write_text(json.dumps(author, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 
 
