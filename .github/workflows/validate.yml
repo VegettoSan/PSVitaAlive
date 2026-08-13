@@ -202,7 +202,7 @@ jobs:
           print(f'Authors published after split: {len(published)}')
           PY
 
-      - name: Remove orphan authors from generated registry
+      - name: Ensure missing author profiles and remove orphans from registry
         shell: bash
         run: |
           python - <<'PY'
@@ -210,6 +210,9 @@ jobs:
           from pathlib import Path
 
           root = Path('.')
+          authors_dir = root / 'authors'
+          fallback = 'https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png'
+
           referenced = set()
           for path in sorted((root / 'apps').glob('*.json')):
               try:
@@ -220,28 +223,49 @@ jobs:
               if isinstance(ids, list):
                   referenced.update(x for x in ids if isinstance(x, str) and x.strip())
 
-          authors = []
-          for path in sorted((root / 'authors').glob('*.json')):
+          authors_by_id = {}
+          for path in sorted(authors_dir.glob('*.json')):
               try:
                   author = json.loads(path.read_text(encoding='utf-8'))
               except Exception:
                   continue
-              if author.get('id') in referenced:
-                  authors.append(author)
+              aid = author.get('id')
+              if aid:
+                  authors_by_id[aid] = author
 
-          found = {a.get('id') for a in authors}
-          missing = sorted(referenced - found)
-          if missing:
-              raise SystemExit('Referenced authors missing from authors/: ' + ', '.join(missing))
+          missing = sorted(referenced - set(authors_by_id))
+          created = 0
+          for aid in missing:
+              # Derive a readable display name from the slug when possible.
+              display = aid.replace('-', ' ').replace('_', ' ').strip() or aid
+              profile = {
+                  'id': aid,
+                  'name': display,
+                  'avatar': fallback,
+                  'bio': '',
+                  'links': [],
+                  'icon': fallback,
+              }
+              path = authors_dir / f'{aid}.json'
+              path.write_text(
+                  json.dumps(profile, ensure_ascii=False, indent=2) + '\n',
+                  encoding='utf-8',
+              )
+              authors_by_id[aid] = profile
+              created += 1
 
+          authors = [authors_by_id[aid] for aid in sorted(referenced) if aid in authors_by_id]
           authors.sort(key=lambda a: str(a.get('name', a.get('id', ''))).lower())
           (root / 'authors.json').write_text(
               json.dumps(authors, ensure_ascii=False, indent=2) + '\n',
               encoding='utf-8',
           )
 
-          total_profiles = len(list((root / 'authors').glob('*.json')))
+          total_profiles = len(list(authors_dir.glob('*.json')))
           print(f'Referenced authors: {len(referenced)}')
+          print(f'Missing author profiles ensured (auto-created): {created}')
+          if created:
+              print('Auto-created missing author profiles: ' + ', '.join(missing))
           print(f'Authors published: {len(authors)}')
           print(f'Orphan profiles excluded from authors.json: {max(0, total_profiles - len(authors))}')
           PY
