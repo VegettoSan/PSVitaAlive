@@ -2,12 +2,23 @@
   "version": 1,
   "sources": [
     {
+      "id": "vitadb",
+      "name": "VitaDB",
+      "enabled": true,
+      "kind": "official_json_api",
+      "url": "https://www.rinnegatamante.eu/vitadb/list_hbs_json.php",
+      "priority": 110,
+      "platform": "vita",
+      "notes": "Official VitaDB homebrew JSON feed used by VitaDB Downloader."
+    },
+    {
       "id": "vitadbtoo",
       "name": "VitaDBtoo",
       "enabled": true,
       "kind": "github_json",
       "url": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/apps.json",
-      "priority": 100
+      "priority": 100,
+      "platform": "vita"
     },
     {
       "id": "neovitadb",
@@ -15,7 +26,8 @@
       "enabled": true,
       "kind": "github_catalog",
       "url": "https://robin994.github.io/NeoVitaDB-Catalog/",
-      "priority": 90
+      "priority": 90,
+      "platform": "vita"
     }
   ]
 }
