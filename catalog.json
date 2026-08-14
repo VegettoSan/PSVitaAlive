@@ -24506,6 +24506,11 @@
         "type": "Download",
         "name": "VitaDBtoo VPK",
         "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/1280-allstars.vpk"
+      },
+      {
+        "type": "Repository",
+        "name": "Repositorio",
+        "url": "https://github.com"
       }
     ],
     "source_name": "VitaDBtoo",
@@ -27081,6 +27086,11 @@
         "type": "Repository",
         "name": "Repositorio",
         "url": "https://github.com/josephinoo/vitaForge"
+      },
+      {
+        "type": "Repository",
+        "name": "Repositorio",
+        "url": "https://github.com"
       }
     ],
     "source_name": "VitaDBtoo",
@@ -27132,6 +27142,11 @@
         "type": "Download",
         "name": "VitaDBtoo VPK",
         "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/TFoUAD.vpk"
+      },
+      {
+        "type": "Repository",
+        "name": "Repositorio",
+        "url": "https://github.com"
       }
     ],
     "source_name": "VitaDBtoo",
