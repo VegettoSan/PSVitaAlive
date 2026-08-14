@@ -1,6 +1,6 @@
-# `categories/` — Categorías oficiales de VitaHub
+# `categories/` — Categorías oficiales de PS Vita Alive Store
 
-Las categorías de VitaHub son controladas por el proyecto. Las aplicaciones importadas desde fuentes externas deben adaptarse a estas categorías mediante `sources/category_map.json` y el agregador.
+Las categorías de PS Vita Alive Store son controladas por el proyecto. Las aplicaciones importadas desde fuentes externas deben adaptarse a estas categorías mediante `sources/category_map.json` y el agregador.
 
 ## Estructura
 
@@ -25,7 +25,7 @@ Cada categoría tiene su propio JSON y puede definir subcategorías:
 - `category_id` debe corresponder a una categoría existente.
 - `subcategory_ids` solo puede usar subcategorías declaradas por esa categoría.
 - Una fuente externa no puede crear arbitrariamente una categoría nueva durante la importación.
-- `category_map.json` traduce valores externos al vocabulario oficial de VitaHub.
+- `category_map.json` traduce valores externos al vocabulario oficial de PS Vita Alive Store.
 
 ## Iconos
 
