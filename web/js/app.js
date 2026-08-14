@@ -83,6 +83,10 @@ function renderHomebrewCatalog() {
             );
         }
     );
+
+    if (window.hidePSVitaAliveLoader) {
+        window.hidePSVitaAliveLoader();
+    }
 }
 
 
@@ -251,7 +255,25 @@ async function initHomePage() {
 
     try {
 
+        if (window.showPSVitaAliveLoader) {
+            window.showPSVitaAliveLoader(
+                "Loading Homebrew..."
+            );
+        }
+
+        if (window.updatePSVitaAliveLoaderStatus) {
+            window.updatePSVitaAliveLoaderStatus(
+                "Connecting to catalog..."
+            );
+        }
+
         await loadVitaHubData();
+
+        if (window.updatePSVitaAliveLoaderStatus) {
+            window.updatePSVitaAliveLoaderStatus(
+                "Preparing catalog..."
+            );
+        }
 
         /*
          * The multi-catalog switcher owns:
@@ -287,6 +309,16 @@ async function initHomePage() {
             "Failed to initialize PSVitaAlive Store:",
             error
         );
+
+        if (window.updatePSVitaAliveLoaderStatus) {
+            window.updatePSVitaAliveLoaderStatus(
+                "Unable to load catalog."
+            );
+        }
+
+        if (window.hidePSVitaAliveLoader) {
+            window.hidePSVitaAliveLoader();
+        }
     }
 }
 
