@@ -10,6 +10,14 @@ from dataclasses import dataclass
 
 USER_AGENT = "PSVitaAlive-ExternalCatalog/1.5"
 
+# VitaDB's origin rejects non-browser User-Agents with HTTP 200 + empty [].
+# Keep the project UA for GitHub-hosted sources; use a browser UA only for VitaDB.
+VITADB_USER_AGENT = (
+    "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
+    "AppleWebKit/537.36 (KHTML, like Gecko) "
+    "Chrome/127.0.0.0 Safari/537.36"
+)
+
 # Resource roots are source-specific. External catalogs often store a bare
 # filename because their own web application knows the directory. VitaHub
 # must persist an absolute URL that can be consumed independently.
@@ -71,10 +79,10 @@ def fetch_json(url: str):
 # Prefer HTTPS, fall back to HTTP. Do not treat an empty list as a silent success
 # without logging — the upstream may be offline while still returning HTTP 200.
 VITADB_ENDPOINTS = [
-    "https://rinnegatamante.eu/vitadb/list_hbs_json.php",
     "https://www.rinnegatamante.eu/vitadb/list_hbs_json.php",
-    "http://rinnegatamante.eu/vitadb/list_hbs_json.php",
+    "https://rinnegatamante.eu/vitadb/list_hbs_json.php",
     "http://www.rinnegatamante.eu/vitadb/list_hbs_json.php",
+    "http://rinnegatamante.eu/vitadb/list_hbs_json.php",
 ]
 
 
@@ -104,8 +112,9 @@ def fetch_vitadb(preferred_url: str | None = None):
                 data=b"",
                 method="POST",
                 headers={
-                    "User-Agent": USER_AGENT,
+                    "User-Agent": VITADB_USER_AGENT,
                     "Accept": "application/json, text/plain, */*",
+                    "Accept-Language": "en-US,en;q=0.9",
                     "Content-Type": "application/x-www-form-urlencoded",
                     "Content-Length": "0",
                 },
@@ -125,7 +134,9 @@ def fetch_vitadb(preferred_url: str | None = None):
                 items = extract_catalog_items(data, "vitadb")
             print(f"  records: {len(items)}")
             if len(items) == 0:
-                print("  warning: VitaDB returned an empty list (source may be offline or emptied)")
+                print("  warning: empty list from this endpoint; trying next if any")
+                last_error = RuntimeError("empty list")
+                continue
             return items
         except Exception as exc:
             last_error = exc
@@ -135,6 +146,11 @@ def fetch_vitadb(preferred_url: str | None = None):
             print(f"  error: {type(exc).__name__}: {exc}")
             continue
 
+    # All endpoints failed or returned empty. Prefer an empty list over hard-failing
+    # the whole aggregate when upstream is temporarily filtered/offline.
+    if last_error is not None and "empty list" in str(last_error):
+        print("VitaDB: all endpoints returned empty lists")
+        return []
     raise RuntimeError(f"VitaDB feed unavailable: {last_error}")
 
 
