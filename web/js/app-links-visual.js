@@ -10,6 +10,7 @@
  * - Keeps the existing links[] schema.
  * - Displays links as cards, matching the visual style
  *   used by PS Vita / PSP / PS1 game links.
+ * - Clearly labels the recommended link.
  */
 
 function getHomebrewLinkLabel(link) {
@@ -127,9 +128,10 @@ function renderLinks(app) {
             link.className =
                 "app-link-card";
 
-            if (
-                linkData.recommended === true
-            ) {
+            const isRecommended =
+                linkData.recommended === true;
+
+            if (isRecommended) {
 
                 link.classList.add(
                     "recommended"
@@ -193,6 +195,24 @@ function renderLinks(app) {
                 );
             }
 
+            if (isRecommended) {
+
+                const recommended =
+                    document.createElement(
+                        "span"
+                    );
+
+                recommended.className =
+                    "app-link-card-recommended";
+
+                recommended.textContent =
+                    "Recommended";
+
+                link.appendChild(
+                    recommended
+                );
+            }
+
             if (metaParts.length > 0) {
 
                 const meta =
@@ -216,6 +236,7 @@ function renderLinks(app) {
                  * Move meta after the title
                  * so the visual order is:
                  *
+                 * RECOMMENDED (optional)
                  * TYPE
                  * NAME
                  * metadata
