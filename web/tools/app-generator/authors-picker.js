@@ -50,17 +50,31 @@
     function renderResults(query = "") {
         const results = $("author-results");
         if (!results) return;
+
         const needle = query.trim().toLocaleLowerCase();
         const selected = new Set(selectedIds());
+
+        if (!needle) {
+            results.innerHTML = `<div class="author-empty">Start typing an author name or ID to search.</div>`;
+            return;
+        }
+
         const matches = getOptions().filter(option => {
             if (selected.has(option.value)) return false;
-            return !needle || option.textContent.toLocaleLowerCase().includes(needle) || option.value.toLocaleLowerCase().includes(needle);
+            return option.textContent.toLocaleLowerCase().includes(needle) || option.value.toLocaleLowerCase().includes(needle);
         }).slice(0, 12);
 
-        results.innerHTML = matches.map(option => `<button type="button" class="author-result" data-author-id="${escapeHtml(option.value)}"><strong>${escapeHtml(option.textContent.split(" — ")[0])}</strong><small>${escapeHtml(option.value)}</small></button>`).join("");
-        if (!matches.length) {
-            results.innerHTML = `<div class="author-empty">No matching author found.</div>`;
+        if (matches.length) {
+            results.innerHTML = matches.map(option => `<button type="button" class="author-result" data-author-id="${escapeHtml(option.value)}"><strong>${escapeHtml(option.textContent.split(" — ")[0])}</strong><small>${escapeHtml(option.value)}</small></button>`).join("");
+        } else {
+            results.innerHTML = `
+                <div class="author-empty">No matching author found.</div>
+                <div class="author-create-actions">
+                    <button id="create-author" type="button" class="small-button">+ Create new author</button>
+                </div>`;
+            $("create-author").addEventListener("click", showCreateDialog);
         }
+
         results.querySelectorAll("[data-author-id]").forEach(button => {
             button.addEventListener("click", () => {
                 const ids = selectedIds();
@@ -81,6 +95,35 @@
         return String(value).normalize("NFKD").replace(/[\u0300-\u036f]/g, "").toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "").slice(0, 80);
     }
 
+    function normalizeAuthorName(value) {
+        return String(value || "")
+            .normalize("NFKD")
+            .replace(/[\u0300-\u036f]/g, "")
+            .toLocaleLowerCase()
+            .replace(/\s+/g, " ")
+            .trim();
+    }
+
+    function getExistingAuthorByName(name) {
+        const normalized = normalizeAuthorName(name);
+        if (!normalized) return null;
+
+        const existing = stateAuthors().find(author => normalizeAuthorName(author.name) === normalized);
+        if (existing) return existing;
+
+        for (const author of createdAuthors.values()) {
+            if (normalizeAuthorName(author.name) === normalized) return author;
+        }
+        return null;
+    }
+
+    function stateAuthors() {
+        return Array.from(select.options).map(option => ({
+            id: option.value,
+            name: String(option.textContent || "").split(" — ")[0].trim()
+        }));
+    }
+
     function getAuthorLinks() {
         return [...document.querySelectorAll(".author-link-item")].map(row => {
             const type = row.querySelector(".author-link-type").value;
@@ -94,8 +137,14 @@
     function showCreateDialog() {
         const dialog = $("new-author-dialog");
         if (!dialog) return;
-        $("new-author-name").value = $("author-search").value.trim();
-        $("new-author-id").value = slugify($("new-author-name").value);
+        const searchName = $("author-search").value.trim();
+        const existing = getExistingAuthorByName(searchName);
+        if (existing) {
+            $("new-author-error").textContent = `This author already exists: ${existing.name} (${existing.id}). Search and select that profile instead.`;
+            return;
+        }
+        $("new-author-name").value = searchName;
+        $("new-author-id").value = slugify(searchName);
         $("new-author-avatar").value = AUTHOR_FALLBACK;
         $("new-author-icon").value = AUTHOR_FALLBACK;
         $("new-author-bio").value = "";
@@ -127,10 +176,20 @@
             error.textContent = "Author ID may only contain lowercase letters, numbers, hyphens and underscores.";
             return null;
         }
-        if (getOptions().some(option => option.value === id) && !createdAuthors.has(id)) {
-            error.textContent = "That author ID already exists. Search for it instead.";
+
+        const existingById = getOptions().find(option => option.value === id);
+        if (existingById && !createdAuthors.has(id)) {
+            const existingName = String(existingById.textContent || "").split(" — ")[0].trim();
+            error.textContent = `That author ID already exists (${existingName}). Search for it instead.`;
             return null;
         }
+
+        const existingByName = getExistingAuthorByName(name);
+        if (existingByName && !createdAuthors.has(existingByName.id)) {
+            error.textContent = `That author already exists as '${existingByName.name}' (ID: ${existingByName.id}). Search for that profile instead.`;
+            return null;
+        }
+
         for (const [label, url] of [["Avatar", avatar], ["Icon", icon]]) {
             if (url && !isHttpUrl(url)) {
                 error.textContent = `${label} must use an http:// or https:// URL.`;
@@ -201,6 +260,7 @@
         option.textContent = `${author.name} — ${author.id}`;
         syncHiddenSelect([...selectedIds(), author.id]);
         renderSelected();
+        $("author-search").value = "";
         renderResults("");
         closeCreateDialog();
         updateCreateNote();
@@ -274,9 +334,6 @@
                 <input id="author-search" class="author-search" type="search" autocomplete="off" placeholder="Search authors by name or ID..." aria-label="Search authors">
             </div>
             <div id="author-results" class="author-results" role="listbox"></div>
-            <div class="author-picker-actions">
-                <button id="create-author" type="button" class="small-button">+ Create new author</button>
-            </div>
             <p id="author-create-note" class="author-create-note"></p>
             <div id="new-author-dialog" class="new-author-dialog" hidden>
                 <div class="new-author-dialog-card" role="dialog" aria-modal="true" aria-labelledby="new-author-title">
@@ -299,7 +356,6 @@
             </div>`;
 
         $("author-search").addEventListener("input", event => renderResults(event.target.value));
-        $("create-author").addEventListener("click", showCreateDialog);
         $("cancel-author").addEventListener("click", closeCreateDialog);
         $("save-author").addEventListener("click", createLocalAuthor);
         $("download-author").addEventListener("click", downloadCreatedAuthorJson);
