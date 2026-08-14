@@ -11,10 +11,10 @@
   "subcategory_ids": [
     "other"
   ],
-  "version": "v.0.1.0",
-  "version_date": "2026-08-12",
+  "version": "v.0.1.1",
+  "version_date": "2026-08-11",
   "requirements": "Not specified",
-  "size": 4270714,
+  "size": 5178911,
   "status": "Legacy",
   "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1979-vitaforge.png",
   "screenshots": [
@@ -25,7 +25,7 @@
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/josephinoo/vitaForge/releases/download/v0.1.0/vitaforge.vpk",
-      "recommended": true
+      "recommended": false
     },
     {
       "type": "Official Website",
@@ -41,6 +41,12 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1457",
+      "recommended": true
     }
   ],
   "source_name": "VitaDBtoo",

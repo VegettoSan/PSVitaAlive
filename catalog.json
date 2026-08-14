@@ -28305,57 +28305,6 @@
     "updated_at": "2026-08-13T15:34:48.325567+00:00"
   },
   {
-    "id": "vitaforge",
-    "title_id": "VITAFORGE",
-    "name": "VitaForge",
-    "description": "Homebrew store client.",
-    "long_description": "Client for browsing and installing PSVITA homebrew, written in Rust with SDL2. Reads its catalogue from VitaDBtoo-db.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
-    "author_ids": [
-      "josephinoo"
-    ],
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "v.0.1.0",
-    "version_date": "2026-08-12",
-    "requirements": "Not specified",
-    "size": 4270714,
-    "status": "Legacy",
-    "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1979-vitaforge.png",
-    "screenshots": [
-      "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1979-vitaforge.png"
-    ],
-    "links": [
-      {
-        "type": "Download",
-        "name": "VitaDBtoo VPK",
-        "url": "https://github.com/josephinoo/vitaForge/releases/download/v0.1.0/vitaforge.vpk",
-        "recommended": true
-      },
-      {
-        "type": "Official Website",
-        "name": "VitaDBtoo Release Page",
-        "url": "https://github.com/josephinoo/vitaForge/releases"
-      },
-      {
-        "type": "Repository",
-        "name": "Repositorio",
-        "url": "https://github.com/josephinoo/vitaForge"
-      },
-      {
-        "type": "Repository",
-        "name": "Repositorio",
-        "url": "https://github.com"
-      }
-    ],
-    "source_name": "VitaDBtoo",
-    "source_id": "1451",
-    "source_url": "https://github.com/josephinoo/vitaForge",
-    "release_page": "https://github.com/josephinoo/vitaForge/releases",
-    "updated_at": "2026-08-13T15:34:48.323857+00:00"
-  },
-  {
     "id": "the-four-of-us-are-dying",
     "title_id": "WSCG00005",
     "name": "The Four of Us Are Dying",
@@ -28458,6 +28407,63 @@
     "source_url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/BatmanDoom.vpk",
     "release_page": "",
     "updated_at": "2026-08-13T15:34:48.321352+00:00"
+  },
+  {
+    "id": "vitaforge",
+    "title_id": "VITAFORGE",
+    "name": "VitaForge",
+    "description": "Homebrew store client.",
+    "long_description": "Client for browsing and installing PSVITA homebrew, written in Rust with SDL2. Reads its catalogue from VitaDBtoo-db.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
+    "author_ids": [
+      "josephinoo"
+    ],
+    "category_id": "games",
+    "subcategory_ids": [
+      "other"
+    ],
+    "version": "v.0.1.1",
+    "version_date": "2026-08-11",
+    "requirements": "Not specified",
+    "size": 5178911,
+    "status": "Legacy",
+    "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1979-vitaforge.png",
+    "screenshots": [
+      "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1979-vitaforge.png"
+    ],
+    "links": [
+      {
+        "type": "Download",
+        "name": "VitaDBtoo VPK",
+        "url": "https://github.com/josephinoo/vitaForge/releases/download/v0.1.0/vitaforge.vpk",
+        "recommended": false
+      },
+      {
+        "type": "Official Website",
+        "name": "VitaDBtoo Release Page",
+        "url": "https://github.com/josephinoo/vitaForge/releases"
+      },
+      {
+        "type": "Repository",
+        "name": "Repositorio",
+        "url": "https://github.com/josephinoo/vitaForge"
+      },
+      {
+        "type": "Repository",
+        "name": "Repositorio",
+        "url": "https://github.com"
+      },
+      {
+        "type": "Download",
+        "name": "VitaDB VPK",
+        "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1457",
+        "recommended": true
+      }
+    ],
+    "source_name": "VitaDBtoo",
+    "source_id": "1451",
+    "source_url": "https://github.com/josephinoo/vitaForge",
+    "release_page": "https://github.com/josephinoo/vitaForge/releases",
+    "updated_at": "2026-08-13T15:34:48.323857+00:00"
   },
   {
     "id": "psv-cleaner",
