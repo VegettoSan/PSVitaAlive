@@ -88,6 +88,29 @@
         return String(value).normalize("NFKD").replace(/[\u0300-\u036f]/g, "").toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "").slice(0, 80);
     }
 
+    function downloadAuthorJson() {
+        const name = $("new-author-name").value.trim();
+        const id = $("new-author-id").value.trim() || slugify(name);
+        if (!name || !/^[a-z0-9_-]+$/.test(id)) return;
+        const author = {
+            id,
+            name,
+            avatar: "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png",
+            bio: "",
+            links: [],
+            icon: "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
+        };
+        const blob = new Blob([JSON.stringify(author, null, 2) + "\n"], { type: "application/json;charset=utf-8" });
+        const url = URL.createObjectURL(blob);
+        const anchor = document.createElement("a");
+        anchor.href = url;
+        anchor.download = `${id}.json`;
+        document.body.appendChild(anchor);
+        anchor.click();
+        anchor.remove();
+        URL.revokeObjectURL(url);
+    }
+
     function createLocalAuthor() {
         const name = $("new-author-name").value.trim();
         const id = $("new-author-id").value.trim() || slugify(name);
@@ -116,7 +139,7 @@
         closeCreateDialog();
 
         const note = $("author-create-note");
-        if (note) note.textContent = `Created ${id} for this JSON. Remember: this browser tool cannot commit authors/${id}.json to GitHub automatically; the profile must be added to the repository before the app can pass repository validation.`;
+        if (note) note.textContent = `Created ${id} for this JSON. Download its ${id}.json profile and place it in authors/ before submitting the application.`;
         if (typeof window.updatePreview === "function") window.updatePreview();
     }
 
@@ -139,12 +162,12 @@
             <p id="author-create-note" class="author-create-note"></p>
             <div id="new-author-dialog" class="new-author-dialog" hidden>
                 <div class="new-author-dialog-card" role="dialog" aria-modal="true" aria-labelledby="new-author-title">
-                    <h3 id="new-author-title">Create author profile reference</h3>
-                    <p>This adds the new author to the generated app JSON. It does not commit a file to GitHub.</p>
+                    <h3 id="new-author-title">Create author profile</h3>
+                    <p>The profile can be downloaded as a separate JSON and placed in <code>authors/</code>. GitHub Pages cannot commit files directly to the repository.</p>
                     <label>Author name<input id="new-author-name" type="text"></label>
                     <label>Author ID<input id="new-author-id" type="text" placeholder="generated-from-name"></label>
                     <p id="new-author-error" class="author-create-error"></p>
-                    <div class="dialog-actions"><button id="cancel-author" type="button" class="small-button">Cancel</button><button id="save-author" type="button" class="small-button primary-small-button">Add author</button></div>
+                    <div class="dialog-actions"><button id="cancel-author" type="button" class="small-button">Cancel</button><button id="save-author" type="button" class="small-button primary-small-button">Add author</button><button id="download-author" type="button" class="small-button">Download author JSON</button></div>
                 </div>
             </div>`;
 
@@ -152,6 +175,7 @@
         $("create-author").addEventListener("click", showCreateDialog);
         $("cancel-author").addEventListener("click", closeCreateDialog);
         $("save-author").addEventListener("click", createLocalAuthor);
+        $("download-author").addEventListener("click", downloadAuthorJson);
         $("new-author-id").addEventListener("input", () => { $("new-author-error").textContent = ""; });
 
         // app-generator.js fills the select asynchronously after fetching authors.json.
