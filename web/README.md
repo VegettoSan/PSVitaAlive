@@ -1,4 +1,4 @@
-# `web/` — Sitio web de VitaHub
+# `web/` — Sitio web de PS Vita Alive Store
 
 El sitio web es una interfaz estática para GitHub Pages. No mantiene una base de datos propia ni edita los catálogos.
 
