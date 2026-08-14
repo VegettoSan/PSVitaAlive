@@ -5,7 +5,8 @@
   "description": "Utility to refresh app.db database.",
   "long_description": "Appdb Tool can trigger a database update or completely reset your database WITHOUT losing your icons/folders layout!\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
   "author_ids": [
-    "luck-kylon"
+    "luck",
+    "kylon"
   ],
   "category_id": "games",
   "subcategory_ids": [
@@ -31,6 +32,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://bitbucket.org/kylon/appdbtool"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDBtoo VPK",
+      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/204-appdbtool.vpk"
     }
   ],
   "source_name": "VitaDBtoo",

@@ -46,6 +46,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/gnmmarechal/moon-whitelister"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDBtoo VPK",
+      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/4-MoonWhitelister.vpk"
     }
   ],
   "source_name": "VitaDBtoo",

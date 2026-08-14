@@ -5,7 +5,8 @@
   "description": "Top down shooter game",
   "long_description": "Blast your way through those shapes in this Geometry Wars-inspired twin stick shooter for the PlayStation Vita! Enter your initials for the offline leaderboards, customize your crosshair, and mess with our super-cool settings menu.. or don't, that's entirely up to you.",
   "author_ids": [
-    "g33"
+    "g33",
+    "motolegacy"
   ],
   "category_id": "games",
   "subcategory_ids": [

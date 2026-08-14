@@ -5,7 +5,9 @@
   "description": "Shoot'em up for PSVITA.",
   "long_description": "A side scrolling shoot'em up for PSVITA/PSTV made with Unity.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
   "author_ids": [
-    "lapy-acekone-dragonixplay"
+    "lapy",
+    "acekone",
+    "dragonixplay"
   ],
   "category_id": "games",
   "subcategory_ids": [
@@ -36,6 +38,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDBtoo VPK",
+      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/555-SuperConsoleWars.vpk"
     }
   ],
   "source_name": "VitaDBtoo",

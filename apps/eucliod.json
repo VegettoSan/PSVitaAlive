@@ -5,7 +5,8 @@
   "description": "Bullet Hell game for PSVITA.",
   "long_description": "EUCLIOD is a stylistic bullet hell game with several levels (with support for custom levels too), different kind of enemies and bosses and different playable ships. It also has a difficulty bar so unexperienced player with bullet hell games can start practicing.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
   "author_ids": [
-    "hexzyle-rinnegatamante"
+    "hexzyle",
+    "rinnegatamante"
   ],
   "category_id": "games",
   "subcategory_ids": [
@@ -37,6 +38,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDBtoo VPK",
+      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/263-EUCLIOD.vpk"
     }
   ],
   "source_name": "VitaDBtoo",

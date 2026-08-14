@@ -5,7 +5,8 @@
   "description": "3D Coverflow launcher for PSVITA.",
   "long_description": "This is a modded version of HexFlow Launcher; a 3d coverflow like launcher for PS Vita.\nThis version includes categories for retro games which can be launched without bubbles for RetroArch and DaedalusX64. Playstation and PSP games can also be launched without having to create bubbles for every game!",
   "author_ids": [
-    "jimbob4000"
+    "jimbob4000",
+    "vitahex-games"
   ],
   "category_id": "games",
   "subcategory_ids": [

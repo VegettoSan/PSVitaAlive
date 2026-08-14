@@ -5,7 +5,9 @@
   "description": "Port of Balatro for PSVITA.",
   "long_description": "Port of Balatro for PSVITA. Balatro is a poker-inspired roguelike deck builder all about creating powerful synergies and winning big.",
   "author_ids": [
-    "alyen91"
+    "alyen91",
+    "daexxx",
+    "jafeth"
   ],
   "category_id": "games",
   "subcategory_ids": [

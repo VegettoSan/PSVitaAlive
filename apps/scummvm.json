@@ -5,7 +5,9 @@
   "description": "Maniac Mansion Virtual Machine emulator.",
   "long_description": "This download is the latest stable release. ScummVM is a program which allows you to run certain classic graphical point-and-click adventure games, provided you already have their data files.\nScummVM supports many adventure games, including LucasArts SCUMM games (such as Monkey Island 1-3, Day of the Tentacle, Sam & Max, ...), many of Sierra's AGI and SCI games (such as King's Quest 1-6, Space Quest 1-5, ...), Discworld 1 and 2, Simon the Sorcerer 1 and 2, Beneath A Steel Sky, Lure of the Temptress, Broken Sword 1 and 2, Flight of the Amazon Queen, Gobliiins 1-3, The Legend of Kyrandia 1-3, many of Humongous Entertainment's children's SCUMM games (including Freddi Fish and Putt Putt games) and many more.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
   "author_ids": [
-    "scummvm-team"
+    "scummvm-team",
+    "cpasjuste",
+    "rsn8887"
   ],
   "category_id": "games",
   "subcategory_ids": [
@@ -40,6 +42,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/scummvm/scummvm"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDBtoo VPK",
+      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/585-scummvm_release.vpk"
     }
   ],
   "source_name": "VitaDBtoo",

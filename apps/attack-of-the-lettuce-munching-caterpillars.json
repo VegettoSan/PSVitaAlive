@@ -34,6 +34,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/softwaregremlin/Attack-of-the-Lettuce-Munching-Caterpillars"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDBtoo VPK",
+      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/564-Caterpillars.vpk"
     }
   ],
   "source_name": "VitaDBtoo",

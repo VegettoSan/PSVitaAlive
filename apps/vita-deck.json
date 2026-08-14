@@ -37,6 +37,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/AntHJ/VitaDeck"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDBtoo VPK",
+      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/1332-VITADECK0.vpk"
     }
   ],
   "source_name": "VitaDBtoo",

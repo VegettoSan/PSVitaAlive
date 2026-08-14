@@ -12,9 +12,9 @@
     "other"
   ],
   "version": "v.1.0",
-  "version_date": "2026-08-12",
+  "version_date": "2026-08-14",
   "requirements": "Not specified",
-  "size": 4519532,
+  "size": 4054232,
   "status": "Legacy",
   "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1844-marmaladeboy-lcd.png",
   "screenshots": [
@@ -38,6 +38,26 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDBtoo VPK",
+      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/MarmaladeBoy_LCD.vpk"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDBtoo VPK",
+      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/1109-marmalade_bunkai.vpk"
+    },
+    {
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
+      "url": "https://bunkai.itch.io/"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/Bunkai9448/vita_gamemaker"
     }
   ],
   "source_name": "VitaDBtoo",

@@ -5,7 +5,8 @@
   "description": "Port of Tiny Crate for PSVITA.",
   "long_description": "Tiny Crate is a cute little precision platformer with puzzle elements!\nLift and toss crates to traverse over spike pits and reach higher ground!\nWeigh down buttons to create platforms and solve the puzzle!",
   "author_ids": [
-    "thatoneham"
+    "thatoneham",
+    "harmony-honey"
   ],
   "category_id": "games",
   "subcategory_ids": [

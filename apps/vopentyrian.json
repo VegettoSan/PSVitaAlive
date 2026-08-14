@@ -46,6 +46,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/Cpasjuste/vopentyrian"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDBtoo VPK",
+      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/13-vOpenTyrian.vpk"
     }
   ],
   "source_name": "VitaDBtoo",

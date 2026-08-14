@@ -5,7 +5,8 @@
   "description": "Ukrainian OS localization installer.",
   "long_description": "This application allows you to install a complete Ukrainian localization for the PlayStation Vita system, including all standard apps.\nTo use it, you need a homebrew-enabled PSVita running 3.60 or 3.65 firmware version. Compatibility with PSTV or other firmware versions has not been tested.\nWarning: After installing or uninstalling the localization using this application, a database update will be enforced. This means that your bubble layout will be reset.",
   "author_ids": [
-    "danil-linad"
+    "danil-linad",
+    "gl33ntwine"
   ],
   "category_id": "games",
   "subcategory_ids": [

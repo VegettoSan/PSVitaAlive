@@ -5,7 +5,9 @@
   "description": "Port of Devil May Cry 4 Refrain for PSVita.",
   "long_description": "Port of Devil May Cry 4 Refrain for PSVita.\nDevil May Cry 4 Refrain is a mobile spinoff in the universe of Devil May Cry franchise.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
   "author_ids": [
-    "yizhigai-spritelisen-kaaass"
+    "yizhigai",
+    "spritelisen",
+    "kaaass"
   ],
   "category_id": "games",
   "subcategory_ids": [
@@ -34,6 +36,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://gitee.com/Moqi01/acrodea_runtime"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDBtoo VPK",
+      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/1377-dmc4.vpk"
     }
   ],
   "source_name": "VitaDBtoo",

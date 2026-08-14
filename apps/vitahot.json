@@ -5,7 +5,8 @@
   "description": "Clone of SUPERHOT for PSVITA.",
   "long_description": "The full and really polished build for VitaHOT, the fan clone of SuperHot squeezed down into the palm of your hand! Featuring 21 varied levels inspired by some of the best action movies over the last 50 years, with game-breaking mods to unlock, and seven different gamemodes to shake up the action!\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
   "author_ids": [
-    "mrkane-digradi"
+    "mrkane",
+    "digradi"
   ],
   "category_id": "games",
   "subcategory_ids": [
@@ -38,6 +39,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDBtoo VPK",
+      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/1122-VitaHot.vpk"
     }
   ],
   "source_name": "VitaDBtoo",

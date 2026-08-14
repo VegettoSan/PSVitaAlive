@@ -5,7 +5,9 @@
   "description": "Port of Grand Theft Auto: San Andreas for PSVITA.",
   "long_description": "A port of Grand Theft Auto: San Andreas for PSVITA/PSTV based on the Mobile (Android) version of the game.",
   "author_ids": [
-    "aap"
+    "aap",
+    "theflow",
+    "rinnegatamante"
   ],
   "category_id": "games",
   "subcategory_ids": [

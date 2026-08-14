@@ -39,6 +39,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/Rinnegatamante/jfduke3d-vita"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDBtoo VPK",
+      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/711-jfduke3d.vpk"
     }
   ],
   "source_name": "VitaDBtoo",

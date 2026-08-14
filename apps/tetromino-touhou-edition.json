@@ -5,7 +5,8 @@
   "description": "Tetris clone with Touhou theme",
   "long_description": "A Tetris clone based on vita-tetromino with added features and based on Touhou for the theme.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
   "author_ids": [
-    "aurora-svennd"
+    "aurora",
+    "svennd"
   ],
   "category_id": "games",
   "subcategory_ids": [
@@ -37,6 +38,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDBtoo VPK",
+      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/376-Tetromino_20-_20Touhou_20Edition.vpk"
     }
   ],
   "source_name": "VitaDBtoo",

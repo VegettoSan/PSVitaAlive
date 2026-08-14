@@ -34,6 +34,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/Rinnegatamante/beat2x-vita"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDBtoo VPK",
+      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/1101-Beat2x.vpk"
     }
   ],
   "source_name": "VitaDBtoo",

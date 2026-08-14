@@ -39,6 +39,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/Rinnegatamante/EDuke32-Vita"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDBtoo VPK",
+      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/397-EDuke32.vpk"
     }
   ],
   "source_name": "VitaDBtoo",

@@ -5,7 +5,8 @@
   "description": "A clone of Five Nights at Freddy's for PSVITA.",
   "long_description": "Port of the 3DS clone of Five Nights at Freddy's to PSVITA/PSTV.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
   "author_ids": [
-    "kolbie5874-weegeedeveloper"
+    "kolbie5874",
+    "weegeedeveloper"
   ],
   "category_id": "games",
   "subcategory_ids": [
@@ -33,6 +34,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDBtoo VPK",
+      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/620-FNaFVita.vpk"
     }
   ],
   "source_name": "VitaDBtoo",

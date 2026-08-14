@@ -5,7 +5,8 @@
   "description": "Port of Caesar 3 for PSVITA.",
   "long_description": "Caesar III is a video game that was released on September 30, 1998, developed by Impressions Games and published by Sierra On-Line. It is the third installment of the Caesar series of games and is part of Sierra's City Building Series. Players take on the role of a Roman governor, tasked with building up a grand Roman city, in which they must ensure their citizens have their needs met, that their city is safe and profitable, while meeting various goals set for them and dealing with various disasters, angry gods and hostile enemies.",
   "author_ids": [
-    "julius-team"
+    "julius-team",
+    "devnoname120"
   ],
   "category_id": "games",
   "subcategory_ids": [

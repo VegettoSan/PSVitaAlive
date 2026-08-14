@@ -5,7 +5,8 @@
   "description": "68k Macintosh emulator for PSVITA.",
   "long_description": "Port of Basilisk II to the PSVita. Based off Chilly Willy's port to the PSP.\nBasilisk II is an Open Source 68k Macintosh emulator. That is, it allows you to run 68k MacOS software on your computer, even if you are using a different operating system. However, you still need a copy of MacOS and a Macintosh ROM image to use Basilisk II.",
   "author_ids": [
-    "meetpatty"
+    "meetpatty",
+    "rsn8887"
   ],
   "category_id": "games",
   "subcategory_ids": [

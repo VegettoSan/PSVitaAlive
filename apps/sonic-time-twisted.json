@@ -5,7 +5,8 @@
   "description": "Port of Sonic Time Twisted for PSVITA.",
   "long_description": "Sonic Time Twisted is a Sonic the Hedgehog fan game inspired by Sonc CD and Sonic 3 & Knuckles. Original game by Overbound Game Studio.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
   "author_ids": [
-    "megagameboy"
+    "megagameboy",
+    "mdashk"
   ],
   "category_id": "games",
   "subcategory_ids": [
@@ -34,6 +35,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/MEGAgameBoy/Sonic-Time-Twisted-PS-Vita-Port"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDBtoo VPK",
+      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/836-SonicTimeTwisted.vpk"
     }
   ],
   "source_name": "VitaDBtoo",

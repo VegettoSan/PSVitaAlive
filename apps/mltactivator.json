@@ -5,7 +5,8 @@
   "description": "Offline Vita activator.",
   "long_description": "Utility that activates your system offline using files from another account and device. Do not use the system online or you'll get a ban.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
   "author_ids": [
-    "miralatijera-draqen"
+    "miralatijera",
+    "draqen"
   ],
   "category_id": "games",
   "subcategory_ids": [
@@ -36,6 +37,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDBtoo VPK",
+      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/301-MLTactivatorFIX2.vpk"
     }
   ],
   "source_name": "VitaDBtoo",

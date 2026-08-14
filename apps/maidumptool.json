@@ -42,6 +42,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/LioMajor/MaiDumpToolEN"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDBtoo VPK",
+      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/54-MaiDumpTool.vpk"
     }
   ],
   "source_name": "VitaDBtoo",

@@ -5,7 +5,8 @@
   "description": "Port of Max Payne for PSVITA.",
   "long_description": "Port of Max Payne for PSVITA/PSTV based on the Android mobile version.",
   "author_ids": [
-    "fgsfds"
+    "fgsfds",
+    "theflow"
   ],
   "category_id": "games",
   "subcategory_ids": [

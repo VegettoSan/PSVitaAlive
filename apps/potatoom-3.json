@@ -34,6 +34,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/Rinnegatamante/d3es-vita"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDBtoo VPK",
+      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/1052-dhewm3.vpk"
     }
   ],
   "source_name": "VitaDBtoo",

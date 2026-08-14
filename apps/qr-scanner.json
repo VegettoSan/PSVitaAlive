@@ -31,6 +31,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/Rinnegatamante/psv-qr-scanner"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDBtoo VPK",
+      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/1267-qr_scanner.vpk"
     }
   ],
   "source_name": "VitaDBtoo",

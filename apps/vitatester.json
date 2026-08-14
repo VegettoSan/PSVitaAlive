@@ -6,7 +6,8 @@
   "long_description": "A simple homebrew for testing the input data on the PSVita.",
   "author_ids": [
     "avellea",
-    "namelessghoul0"
+    "namelessghoul0",
+    "pookette"
   ],
   "category_id": "games",
   "subcategory_ids": [
@@ -33,6 +34,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/Avellea/VitaTester"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDBtoo VPK",
+      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/121-VitaTester-mod.vpk"
     }
   ],
   "source_name": "VitaDBtoo",

@@ -5,7 +5,9 @@
   "description": "Port of This War of Mine for PSVITA.",
   "long_description": "Port of This War of Mine and This War of Mine: Stores - Father's Promise for PSVITA based on the mobile (Android) version of the game.",
   "author_ids": [
-    "aap"
+    "aap",
+    "theflow",
+    "rinnegatamante"
   ],
   "category_id": "games",
   "subcategory_ids": [

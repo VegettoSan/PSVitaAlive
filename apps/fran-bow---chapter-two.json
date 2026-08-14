@@ -33,6 +33,11 @@
       "type": "Official Website",
       "name": "VitaDBtoo Release Page",
       "url": "https://github.com/hatoving/GMSVitaPortInstructions"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDBtoo VPK",
+      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/641-FranBowChapter2.vpk"
     }
   ],
   "source_name": "VitaDBtoo",

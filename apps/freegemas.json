@@ -47,6 +47,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/JoseTomasTocino/freegemas"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDBtoo VPK",
+      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/609-freegemas.vpk"
     }
   ],
   "source_name": "VitaDBtoo",

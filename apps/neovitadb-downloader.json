@@ -5,7 +5,8 @@
   "description": "",
   "long_description": "The store itself. Browse, install and keep PSVita and PSP homebrew up to date.\nThis entry is what lets the app update itself, so its id must never change.",
   "author_ids": [
-    "robin994"
+    "robin994",
+    "rinnegatamante"
   ],
   "category_id": "games",
   "subcategory_ids": [

@@ -36,6 +36,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://gitlab.com/rlyx/vita-kohana"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDBtoo VPK",
+      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/793-Vita_Kohana_1.02.vpk"
     }
   ],
   "source_name": "VitaDBtoo",

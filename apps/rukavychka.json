@@ -5,7 +5,8 @@
   "description": "Puzzle game for PSVita.",
   "long_description": "The game was inspired by Ukrainian legend of Rukavychka (glove) - in which an old man lost a glove, which came to be a home for many forest animals big and small: from a little mouse to a huge bear. In the story, the old man takes the glove back, but we imagine a story where the animals can live safely in the magical home. They are lost and we have to lead them to it by a fox from the Ukrainian story, and Wawel Dragon from Polish legends, to unify our nations by social cooperation, and unfold/bring safe future for everyone (including forest beings that also need peace to exist).\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
   "author_ids": [
-    "holy-pangolin-dos"
+    "holy-pangolin",
+    "dos"
   ],
   "category_id": "games",
   "subcategory_ids": [
@@ -37,6 +38,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://gitlab.com/HolyPangolin/rukavychka"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDBtoo VPK",
+      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/1447-rukavychka-vita.vpk"
     }
   ],
   "source_name": "VitaDBtoo",

@@ -36,6 +36,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://drive.google.com/file/d/0B8d0Wy4mDFrGM0k0YW9Xd01qS2M/view"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDBtoo VPK",
+      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/181-ReversMe.vpk"
     }
   ],
   "source_name": "VitaDBtoo",

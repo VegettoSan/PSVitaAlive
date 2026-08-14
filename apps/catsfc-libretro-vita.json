@@ -5,7 +5,8 @@
   "description": "SNES emulator.",
   "long_description": "CATSFC-libretro-vita is a SNES emulator for the PSVita and PSTV. It is based on CATSFC-libretro, which is based on Snes9x 1.43.",
   "author_ids": [
-    "malachi"
+    "malachi",
+    "skogaby"
   ],
   "category_id": "games",
   "subcategory_ids": [

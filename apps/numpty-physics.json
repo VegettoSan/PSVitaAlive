@@ -5,7 +5,9 @@
   "description": "Numpty Physics port for PSVITA.",
   "long_description": "Numpty Physics is a drawing puzzle game in the spirit (and style) of Crayon Physics using the same excellent Box2D engine.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
   "author_ids": [
-    "bythos"
+    "bythos",
+    "rinnegatamante",
+    "meetpatty"
   ],
   "category_id": "games",
   "subcategory_ids": [
@@ -37,6 +39,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/Rinnegatamante/NumptyPhysics-Vita"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDBtoo VPK",
+      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/243-NumptyPhysics.vpk"
     }
   ],
   "source_name": "VitaDBtoo",

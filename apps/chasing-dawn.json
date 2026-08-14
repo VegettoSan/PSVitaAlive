@@ -5,7 +5,8 @@
   "description": "A dark Gameboy styled adventure platformer.",
   "long_description": "Chasing Dawn is a collaboration made with Hypatia. Intended to be akin to a Metroidvania except with a branching pathway and story structure, Chasing Dawn is a love-letter to the platformers of old.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
   "author_ids": [
-    "mrkane-hypatia"
+    "mrkane",
+    "hypatia"
   ],
   "category_id": "games",
   "subcategory_ids": [
@@ -34,6 +35,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDBtoo VPK",
+      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/1250-ChasingDawn.vpk"
     }
   ],
   "source_name": "VitaDBtoo",

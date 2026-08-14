@@ -36,6 +36,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://bitbucket.org/kylon/plugins-manager-vita/overview"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDBtoo VPK",
+      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/300-plgmn.vpk"
     }
   ],
   "source_name": "VitaDBtoo",

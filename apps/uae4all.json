@@ -5,7 +5,9 @@
   "description": "Amiga 500/1200 emulator.",
   "long_description": "UAE4ALL is an Amiga 500/1200 emulator for the PSVita. To play, you have to supply your own kickstart bios files, and put them in the \"ux0:/data/uae4all/kickstarts\" directory. Files must be named kick13.rom, kick20.rom, and kick31.rom.",
   "author_ids": [
-    "meetpatty"
+    "meetpatty",
+    "rsn8887",
+    "cpasjuste"
   ],
   "category_id": "games",
   "subcategory_ids": [

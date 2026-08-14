@@ -6,7 +6,9 @@
   "long_description": "This is a wrapper/port of Craxy Taxi Classic Android for the PS Vita.\nThe port works by loading the official Android ARMv7 executable in memory, resolving its imports with native functions and patching it in order to properly run.",
   "author_ids": [
     "aap",
-    "vitahex-games"
+    "vitahex-games",
+    "theflow",
+    "rinnegatamante"
   ],
   "category_id": "games",
   "subcategory_ids": [

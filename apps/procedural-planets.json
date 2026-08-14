@@ -5,7 +5,8 @@
   "description": "Procedural planets generator.",
   "long_description": "Procedural 2D planets landscapes pixelart generator for PSVITA/PSTV inspired by No Man's Sky art.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
   "author_ids": [
-    "primer0-ruben_wolfe"
+    "primer0",
+    "ruben-wolfe"
   ],
   "category_id": "games",
   "subcategory_ids": [
@@ -36,6 +37,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://drive.google.com/file/d/0B4QqovA_rXzGT3I3ZUdpTnJtc2s/view"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDBtoo VPK",
+      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/91-Procedural_Planets.vpk"
     }
   ],
   "source_name": "VitaDBtoo",

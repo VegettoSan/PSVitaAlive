@@ -5,7 +5,8 @@
   "description": "Port of Nazi Zombies Portable for PSVITA.",
   "long_description": "Call of Duty: Zombies \"de-make\" for PlayStation Portable & VITA, Nintendo Switch & 3DS, Windows, & Linux (ARM & x86). Powered by various Quake sourceports. Includes \"Nacht der Untoten\" and several community-made maps.",
   "author_ids": [
-    "nzp-reboot-team"
+    "nzp-reboot-team",
+    "rinnegatamante"
   ],
   "category_id": "games",
   "subcategory_ids": [
@@ -49,6 +50,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/nzp-team/nzportable"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDBtoo VPK",
+      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/1028-nzp.vpk"
     }
   ],
   "source_name": "VitaDBtoo",

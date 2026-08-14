@@ -5,7 +5,8 @@
   "description": "Narrative puzzle game for PSVITA.",
   "long_description": "Have a Good One is a narrative puzzle game that follows a postman (post-bear) in a land of teddy bears, who tries to reunite two lost lovers with a letter.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
   "author_ids": [
-    "eva-vital-isaque-sanches"
+    "eva-vital",
+    "isaque-sanches"
   ],
   "category_id": "games",
   "subcategory_ids": [
@@ -38,6 +39,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDBtoo VPK",
+      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/682-HaveAGoodOne.vpk"
     }
   ],
   "source_name": "VitaDBtoo",

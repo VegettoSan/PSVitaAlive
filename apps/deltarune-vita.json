@@ -11,10 +11,10 @@
   "subcategory_ids": [
     "other"
   ],
-  "version": "v.0.68",
+  "version": "v.0.69",
   "version_date": "2026-07-27",
   "requirements": "- libshacccg.suprx\n- Game Data Files: Steam",
-  "size": 5815705,
+  "size": 2359680,
   "status": "Legacy",
   "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/fc2c4f161294c75bcb5dd74cfca553c70a6b01704a3e201c4192e1b62d4ae36d.png",
   "screenshots": [
@@ -39,6 +39,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/WolffsRoom/DeltaruneVita"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDBtoo VPK",
+      "url": "https://github.com/WolffsRoom/DeltaruneVita/releases/download/v0.69/Deltarune-v0.69.vpk"
     }
   ],
   "source_name": "VitaDBtoo",

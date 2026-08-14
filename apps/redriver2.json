@@ -38,6 +38,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/OsirizX/REDRIVER2/tree/vita"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDBtoo VPK",
+      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/1145-REDRIVER2.vpk"
     }
   ],
   "source_name": "VitaDBtoo",

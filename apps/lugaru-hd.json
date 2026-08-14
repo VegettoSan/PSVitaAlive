@@ -39,6 +39,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://gitlab.com/alexramallo/lugaruvita"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDBtoo VPK",
+      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/853-Lugaru-release-beta-1.vpk"
     }
   ],
   "source_name": "VitaDBtoo",

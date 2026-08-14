@@ -5,7 +5,9 @@
   "description": "Port of Battlefield: Bad Company 2 Mobile for PSVITA.",
   "long_description": "This is a wrapper/port of Battlefield: Bad Company 2 Android for the PS Vita.\nThe port works by loading the official Android ARMv6 executable in memory, resolving its imports with native functions and patching it in order to properly run.",
   "author_ids": [
-    "aap"
+    "aap",
+    "theflow",
+    "rinnegatamante"
   ],
   "category_id": "games",
   "subcategory_ids": [

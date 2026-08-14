@@ -5,7 +5,8 @@
   "description": "Top-down shooter for PSVITA.",
   "long_description": "Wasteland Kings is the precursor to Nuclear Throne. This game is a top-down shooter in which you fight enemies in a nuclear wasteland in order to become its ruler.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
   "author_ids": [
-    "vlambeer-jeffrulz345"
+    "vlambeer",
+    "jeffrulz345"
   ],
   "category_id": "games",
   "subcategory_ids": [
@@ -31,6 +32,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDBtoo VPK",
+      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/409-WastelandKings.vpk"
     }
   ],
   "source_name": "VitaDBtoo",

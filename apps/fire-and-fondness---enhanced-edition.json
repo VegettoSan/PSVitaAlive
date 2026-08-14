@@ -38,6 +38,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/withLogic/fire-and-fondness-ee"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDBtoo VPK",
+      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/1128-fire_and_fondness.vpk"
     }
   ],
   "source_name": "VitaDBtoo",

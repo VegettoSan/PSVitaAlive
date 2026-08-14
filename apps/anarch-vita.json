@@ -34,6 +34,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://gitlab.com/sugardrenaline/anarch/"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDBtoo VPK",
+      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/1125-anarch.vpk"
     }
   ],
   "source_name": "VitaDBtoo",

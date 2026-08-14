@@ -35,6 +35,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/Northfear/systemshock-vita"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDBtoo VPK",
+      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/17-systemshock.vpk"
     }
   ],
   "source_name": "VitaDBtoo",

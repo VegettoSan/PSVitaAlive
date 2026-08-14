@@ -5,7 +5,8 @@
   "description": "Recreation of Minecraft Java Edition: Classic Survival Test.",
   "long_description": "CrossCraft-SurvivalTest is a project that aims to implement Minecraft Java Edition: Classic Survival Test. It is not a clone. CrossCraft does not use any of the source code of the original game, nor do the developers have any knowledge of the source code. CrossCraft does not use the original copyrighted assets. All knowledge is figured out with documentation and observation of in-game mechanics.",
   "author_ids": [
-    "iridescence"
+    "iridescence",
+    "motolegacy"
   ],
   "category_id": "games",
   "subcategory_ids": [

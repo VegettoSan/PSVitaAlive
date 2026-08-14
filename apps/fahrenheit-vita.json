@@ -5,7 +5,9 @@
   "description": "Port of Fahrenheit: Indigo Prophecy for the PSVITA.",
   "long_description": "This is a wrapper/port of Fahrenheit: Indigo Prophecy Android for the PS Vita.\nThe port works by loading the official Android ARMv7 executable in memory, resolving its imports with native functions and patching it in order to properly run.\nBy doing so, it's basically as if we emulate a minimalist Android environment in which we run natively the executable as is.",
   "author_ids": [
-    "bythos"
+    "bythos",
+    "rinnegatamante",
+    "theflow"
   ],
   "category_id": "games",
   "subcategory_ids": [

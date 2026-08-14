@@ -5,7 +5,10 @@
   "description": "Visual puzzle game for PSVITA.",
   "long_description": "This is a visual puzzle game about trying to piece together the events of the previous night during a morning hangover\nOriginal Creators: Catarina Lopes, Isaque Sanches, Mariana Domingos, Tiago Quendera.\nMade with Unity.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
   "author_ids": [
-    "catarina-lopes-isaque-sanches-mariana-domingos-tiago-quendera"
+    "catarina-lopes",
+    "isaque-sanches",
+    "mariana-domingos",
+    "tiago-quendera"
   ],
   "category_id": "games",
   "subcategory_ids": [
@@ -38,6 +41,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDBtoo VPK",
+      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/686-WTFDIGTS.vpk"
     }
   ],
   "source_name": "VitaDBtoo",

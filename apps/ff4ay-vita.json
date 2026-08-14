@@ -5,7 +5,9 @@
   "description": "Port of Final Fantasy IV: The After Years for PSVITA.",
   "long_description": "This is a wrapper/port of Final Fantasy IV: The After Years Android for the PS Vita.\nThe port works by loading the official Android ARMv7 executable in memory, resolving its imports with native functions and patching it in order to properly run. By doing so, it's basically as if we emulate a minimalist Android environment in which we run natively the executable as is.",
   "author_ids": [
-    "bythos"
+    "bythos",
+    "rinnegatamante",
+    "frangarcj"
   ],
   "category_id": "games",
   "subcategory_ids": [

@@ -5,7 +5,9 @@
   "description": "Port of Resident Evil 4 Mobile for PSVita.",
   "long_description": "Port of Resident Evil 4 Mobile for PSVita.\nResident Evil 4 Mobile is an heavily downgraded demake of Resident Evil 4 for Android devices.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
   "author_ids": [
-    "yizhigai-spritelisen-kaaass"
+    "yizhigai",
+    "spritelisen",
+    "kaaass"
   ],
   "category_id": "games",
   "subcategory_ids": [
@@ -34,6 +36,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://gitee.com/Moqi01/bio4"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDBtoo VPK",
+      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/1402-BIOHAZARD4.vpk"
     }
   ],
   "source_name": "VitaDBtoo",

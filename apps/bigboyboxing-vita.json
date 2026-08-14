@@ -5,7 +5,8 @@
   "description": "Port of Big Boy Boxing for PSVITA.",
   "long_description": "Experience the singleplayer action-boss-rush game with pixel-perfect retro aesthetics and inspiration from classic titles like 'Punch-Out!!', and recent indie hits like 'Cuphead'.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
   "author_ids": [
-    "lordchickenblaster-soupmasters"
+    "lordchickenblaster",
+    "soupmasters"
   ],
   "category_id": "games",
   "subcategory_ids": [
@@ -38,6 +39,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDBtoo VPK",
+      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/1264-bbbv.vpk"
     }
   ],
   "source_name": "VitaDBtoo",

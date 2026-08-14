@@ -47,6 +47,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/AntHJ/Reaction-Station"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDBtoo VPK",
+      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/1333-reaction_station.vpk"
     }
   ],
   "source_name": "VitaDBtoo",

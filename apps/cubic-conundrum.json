@@ -5,7 +5,8 @@
   "description": "3D Puzzle Game for PSVITA.",
   "long_description": "Roll a cube around 25 stages, matching colored tiles to activate lifts and move barriers.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
   "author_ids": [
-    "forthw-jeffrulz345"
+    "forthw",
+    "jeffrulz345"
   ],
   "category_id": "games",
   "subcategory_ids": [
@@ -31,6 +32,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDBtoo VPK",
+      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/407-CubicConundrum.vpk"
     }
   ],
   "source_name": "VitaDBtoo",

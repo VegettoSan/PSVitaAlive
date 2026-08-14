@@ -31,6 +31,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/mcallbosco/super-hexagon-vita"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDBtoo VPK",
+      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/1408-superhexagon_vita.vpk"
     }
   ],
   "source_name": "VitaDBtoo",

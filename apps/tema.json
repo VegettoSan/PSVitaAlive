@@ -5,7 +5,8 @@
   "description": "Download Livearea/VitaShell themes from your PSVITA.",
   "long_description": "Tema allows you to download themes directly through your PSVita web browser.\nSimilar to the way VPKMirror Direct Installer works.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
   "author_ids": [
-    "mithrenes"
+    "mithrenes",
+    "xamthor"
   ],
   "category_id": "games",
   "subcategory_ids": [
@@ -36,6 +37,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/xamthor/Tema"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDBtoo VPK",
+      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/73-tema.vpk"
     }
   ],
   "source_name": "VitaDBtoo",

@@ -36,6 +36,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://gitee.com/yizhigai/jinyong-legend-vita"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDBtoo VPK",
+      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/838-jinyong-legend.vpk"
     }
   ],
   "source_name": "VitaDBtoo",

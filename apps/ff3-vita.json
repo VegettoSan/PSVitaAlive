@@ -5,7 +5,9 @@
   "description": "Port of Final Fantasy 3 (3D Remake) for PSVITA.",
   "long_description": "This is a wrapper/port of Final Fantasy 3 Android for the PS Vita.\nThe port works by loading the official Android ARMv7 executable in memory, resolving its imports with native functions and patching it in order to properly run.\nDonation Link: https://ko-fi.com/frangar",
   "author_ids": [
-    "frangarcj"
+    "frangarcj",
+    "rinnegatamante",
+    "theflow"
   ],
   "category_id": "games",
   "subcategory_ids": [

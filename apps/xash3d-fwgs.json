@@ -5,7 +5,8 @@
   "description": "Port of Xash3D-FWGS for PSVITA.",
   "long_description": "Port of Xash3D-FWGS for PSVITA.\nXash3D-FWGS is an open source re-creation of the GoldSrc engine, a modified Quake Engine running Half-Life, Counter Strike and Team Fortress.\n\nNOTE: Data files are slightly different from vitaXash3D. This means both versions can't be installed at the same time.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
   "author_ids": [
-    "xash3d-fwgs-team"
+    "xash3d-fwgs-team",
+    "fgsfds"
   ],
   "category_id": "games",
   "subcategory_ids": [

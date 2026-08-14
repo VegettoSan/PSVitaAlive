@@ -5,7 +5,8 @@
   "description": "SNES emulator for the PS Vita.",
   "long_description": "Native SNES emulator for the PlayStation VITA.\nCurrently features Snes9x 1.52 core based on Snes9xNext.",
   "author_ids": [
-    "frangarcj"
+    "frangarcj",
+    "skogaby"
   ],
   "category_id": "games",
   "subcategory_ids": [

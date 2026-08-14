@@ -48,6 +48,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/hatoving/twewy-old-vita"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDBtoo VPK",
+      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/1112-TWEWY.vpk"
     }
   ],
   "source_name": "VitaDBtoo",

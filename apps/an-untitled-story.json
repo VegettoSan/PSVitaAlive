@@ -39,6 +39,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://drive.google.com/open?id=1WnmCXBQxEASaanJ0jX8fJoeK6NWbxTV7"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDBtoo VPK",
+      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/412-AnUntitledStory.vpk"
     }
   ],
   "source_name": "VitaDBtoo",

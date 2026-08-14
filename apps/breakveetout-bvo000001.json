@@ -5,7 +5,8 @@
   "description": "",
   "long_description": "BreakOut / Arkanoid clone for PSVITA/PSTV.",
   "author_ids": [
-    "dal3boy"
+    "dal3boy",
+    "ruben-wolfe"
   ],
   "category_id": "games",
   "subcategory_ids": [

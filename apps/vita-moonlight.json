@@ -5,7 +5,10 @@
   "description": "NVIDIA Moonlight Streamer port.",
   "long_description": "Vita Moonlight allows you to stream your full collection of Steam games from your powerful Windows desktop to your PSVITA.",
   "author_ids": [
-    "aorsiniyt"
+    "aorsiniyt",
+    "xyzz",
+    "d3m3vilurr",
+    "shadowprince"
   ],
   "category_id": "games",
   "subcategory_ids": [

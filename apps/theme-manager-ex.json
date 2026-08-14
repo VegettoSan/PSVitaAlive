@@ -36,6 +36,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://bitbucket.org/kylon/theme-manager-ex-theme-engine"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDBtoo VPK",
+      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/84-vtheme.vpk"
     }
   ],
   "source_name": "VitaDBtoo",

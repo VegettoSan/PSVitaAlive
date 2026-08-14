@@ -5,7 +5,8 @@
   "description": "PS5 streaming application for PSVita.",
   "long_description": "Port of Chiaki, an application allowing to stream PS5 to other devices.",
   "author_ids": [
-    "ywnico"
+    "ywnico",
+    "aagaming"
   ],
   "category_id": "games",
   "subcategory_ids": [

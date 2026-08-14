@@ -31,6 +31,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://drive.google.com/open?id=1gvEHq100kXuMjFLvhMC5MylRO7wiRY6S"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDBtoo VPK",
+      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/522-HyperPrincessPitch-Vita.vpk"
     }
   ],
   "source_name": "VitaDBtoo",

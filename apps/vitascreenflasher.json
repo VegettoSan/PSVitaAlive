@@ -31,6 +31,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/NamelessGhoul0/VitaScreenFlasher"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDBtoo VPK",
+      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/122-VitaScreenFlasher.vpk"
     }
   ],
   "source_name": "VitaDBtoo",

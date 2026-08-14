@@ -5,7 +5,9 @@
   "description": "Hatsune Miku random image viewer.",
   "long_description": "Application that shows random images taken from safebooru of Hatsune Miku and allows to save them on your Vita.",
   "author_ids": [
-    "avellea"
+    "avellea",
+    "ek720",
+    "sonicmastr"
   ],
   "category_id": "games",
   "subcategory_ids": [

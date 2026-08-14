@@ -36,6 +36,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://bitbucket.org/Lupo511/appstoragemanager/src"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDBtoo VPK",
+      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/217-AppStorageManager.vpk"
     }
   ],
   "source_name": "VitaDBtoo",

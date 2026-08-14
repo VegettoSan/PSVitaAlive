@@ -6,7 +6,8 @@
   "long_description": "Avoid obstacles and shrink when you need to (some obstacles can only be avoided by shrinking).\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
   "author_ids": [
     "aionmagan",
-    "aionmagan-elpichonart-gguihurt"
+    "elpichonart",
+    "gguihurt"
   ],
   "category_id": "games",
   "subcategory_ids": [
@@ -49,6 +50,16 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDBtoo VPK",
+      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/1165-flick.vpk"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDBtoo VPK",
+      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/1096-TopClassic.vpk"
     }
   ],
   "source_name": "VitaDBtoo",

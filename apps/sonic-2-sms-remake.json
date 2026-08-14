@@ -5,7 +5,8 @@
   "description": "Port of Sonic 2 SMS Remake for PSVITA.",
   "long_description": "Sonic 2 SMS Remake is a fan game that represents a redesigned version of the Master System game released by SEGA in 1993. This is an unofficial port, based on version 2.0.C of the game for PC.",
   "author_ids": [
-    "mdashk-creative-araya"
+    "mdashk",
+    "creative-araya"
   ],
   "category_id": "games",
   "subcategory_ids": [

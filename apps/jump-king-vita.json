@@ -5,7 +5,8 @@
   "description": "Port of a clone of Jump King for PSVITA.",
   "long_description": "This is a Godot-made clone of Jump King, with core gameplay that closely resembles the original. \nMost entities and some foliage missing, along with music and the babe at the end.",
   "author_ids": [
-    "kalekki"
+    "kalekki",
+    "rocroverss"
   ],
   "category_id": "games",
   "subcategory_ids": [

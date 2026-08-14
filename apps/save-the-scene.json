@@ -31,6 +31,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/Lapy055/Save_the_Scene"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDBtoo VPK",
+      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/445-Save_20the_20Scene.vpk"
     }
   ],
   "source_name": "VitaDBtoo",

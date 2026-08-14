@@ -5,7 +5,9 @@
   "description": "Port of the Unity remake of Welcome to Crazy Cattle 3D.",
   "long_description": "Port of the Unity remake made by Dimolade. Welcome to Crazy Cattle 3D, an exhilarating battle royale game where you control explosive sheep in a chaotic survival challenge across three distinct global environments. Master physics-based movement, outwit your opponents, and be the last sheep standing!",
   "author_ids": [
-    "anna3d"
+    "anna3d",
+    "lordchickenblaster",
+    "dimolade"
   ],
   "category_id": "games",
   "subcategory_ids": [

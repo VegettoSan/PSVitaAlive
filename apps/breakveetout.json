@@ -5,7 +5,8 @@
   "description": "Clone of BreakOut for the PS Vita.",
   "long_description": "BreakOut / Arkanoid clone for PSVITA/PSTV.",
   "author_ids": [
-    "ruben-wolfe"
+    "ruben-wolfe",
+    "dal3boy"
   ],
   "category_id": "games",
   "subcategory_ids": [
@@ -36,6 +37,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/InvalidExcepti0n/BreakVeetOut"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDBtoo VPK",
+      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/15-breakveetout.vpk"
     }
   ],
   "source_name": "VitaDBtoo",

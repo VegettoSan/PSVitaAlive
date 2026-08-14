@@ -38,6 +38,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/eleriaqueen/luaVitaSeccy"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDBtoo VPK",
+      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/333-luaVitaSeccy.vpk"
     }
   ],
   "source_name": "VitaDBtoo",

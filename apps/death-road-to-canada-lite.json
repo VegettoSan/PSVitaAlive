@@ -5,7 +5,9 @@
   "description": "Port of Death Road to Canada for PSVITA.",
   "long_description": "This is a wrapper/port of Death Road to Canada for the PS Vita.\nThe port works by loading the official Android ARMv7 executable in memory, resolving its imports with native functions and patching it in order to properly run.\nBy doing so, it's basically as if we emulate a minimalist Android environment in which we run natively the executables as it is.\nThis release is bundled with a mod made by CatoTheYounger to reduce workload of game maps in order to make the game playable on Vita hardware (Thus why the release is named Lite).",
   "author_ids": [
-    "bythos"
+    "bythos",
+    "rinnegatamante",
+    "catotheyounger"
   ],
   "category_id": "games",
   "subcategory_ids": [

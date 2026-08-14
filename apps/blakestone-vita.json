@@ -5,7 +5,8 @@
   "description": "Blake Stone port for PSVITA",
   "long_description": "Port of Blake Stone: Aliens of Gold and Blake Stone: Planet Strike for PSVITA/PSTV.\nThis build has a corrected LZH save system and minor fixes, and allows on-screen keyboard input for save games and high scores.",
   "author_ids": [
-    "01y"
+    "01y",
+    "andiweli"
   ],
   "category_id": "games",
   "subcategory_ids": [

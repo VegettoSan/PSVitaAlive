@@ -5,7 +5,9 @@
   "description": "Galaxy on Fire 2 port for PSVITA.",
   "long_description": "A loader for an Xperia Play edition of a popular spaceflight simulation video game. Please read the installation instructions on GitHub.",
   "author_ids": [
-    "danil-linad"
+    "danil-linad",
+    "gl33ntwine",
+    "pg-team"
   ],
   "category_id": "games",
   "subcategory_ids": [

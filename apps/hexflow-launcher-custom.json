@@ -5,7 +5,8 @@
   "description": "3D coverflow launcher for PSVITA.",
   "long_description": "Display and launch your games and homebrews in style.\nHexFlow Launcher features a 3d user interface to display your games with their box art and supports many customization options like custom covers and backgrounds.\n\nLaunching a game/app from HexFlow Launcher will close the launcher automaticaly without asking.",
   "author_ids": [
-    "blacksheepboy69"
+    "blacksheepboy69",
+    "vitahex-games"
   ],
   "category_id": "games",
   "subcategory_ids": [

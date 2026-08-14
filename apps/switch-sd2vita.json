@@ -5,7 +5,8 @@
   "description": "SD2Vita drivers manager.",
   "long_description": "Little application that allows you to install and manage SD2VITA drivers for both ux0:/ and uma0:/ mounting points.",
   "author_ids": [
-    "appleio"
+    "appleio",
+    "wth"
   ],
   "category_id": "games",
   "subcategory_ids": [
@@ -46,6 +47,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/Applelo/SwitchSD2Vita"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDBtoo VPK",
+      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/294-switch_sd2vita.vpk"
     }
   ],
   "source_name": "VitaDBtoo",

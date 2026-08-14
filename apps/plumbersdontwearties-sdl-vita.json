@@ -33,6 +33,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/Serph/PlumbersDontWearTies-SDL-vita"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDBtoo VPK",
+      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/770-PlumbersDontWearTies.vpk"
     }
   ],
   "source_name": "VitaDBtoo",

@@ -5,7 +5,8 @@
   "description": "Multifunctional file manager for PSVita.",
   "long_description": "FMVita (File Manager Vita) is an enhanced VitaShell (by TheFloW) fork by WolffsRoom with animated backgrounds, full touchscreen dialogs, column view, undo system, QR code scanning/downloading, and independent settings at ux0:FMVita/.",
   "author_ids": [
-    "wolff"
+    "wolff",
+    "theflow"
   ],
   "category_id": "games",
   "subcategory_ids": [

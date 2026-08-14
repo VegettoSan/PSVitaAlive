@@ -36,6 +36,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://gitlab.com/rlyx/vita-milk"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDBtoo VPK",
+      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/790-Vita_Milk.vpk"
     }
   ],
   "source_name": "VitaDBtoo",

@@ -5,7 +5,10 @@
   "description": "Port of Sonic 3 A.I.R. for PSVITA.",
   "long_description": "Sonic 3 A.I.R. (Angel Island Revisited) is a fan-made remaster of the classic Sega game Sonic 3 & Knuckles. This project modernizes the original game by adding widescreen support, improved graphics and audio, and new gameplay features. It is designed to offer a superior playing experience on modern systems while requiring original game data to run.",
   "author_ids": [
-    "danil-linad"
+    "danil-linad",
+    "mdashk",
+    "gl33ntwine",
+    "rinnegatamante"
   ],
   "category_id": "games",
   "subcategory_ids": [

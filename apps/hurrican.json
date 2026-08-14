@@ -49,6 +49,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/ammeir/hurrican"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDBtoo VPK",
+      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/617-hurrican.vpk"
     }
   ],
   "source_name": "VitaDBtoo",

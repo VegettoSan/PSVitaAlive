@@ -5,7 +5,10 @@
   "description": "Fighting game engine.",
   "long_description": "OpenBOR is the ultimate 2D gaming engine with over 10+ years of active development behind it. With OpenBOR you can build anything from simple button mashers to elaborate projects rivaling the most lavish professional offerings. Download one of the dozens of ready to play game modules available here, or grab the development kit and start up one of your own!",
   "author_ids": [
-    "meetpatty"
+    "meetpatty",
+    "cpasjuste",
+    "rsn8887",
+    "plombo"
   ],
   "category_id": "games",
   "subcategory_ids": [

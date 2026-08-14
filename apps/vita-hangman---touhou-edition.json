@@ -5,8 +5,9 @@
   "description": "Hangman game for PSVITA.",
   "long_description": "Hangman game for PSVITA coded in Lua. Enhanced version of Vita Hangman with sounds, BGMs, backgrounds and enhanced game mechanics.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
   "author_ids": [
-    "aurora-jackiepooh-rinnegatamante",
-    "jackiepooh-rinnegatamante",
+    "aurora",
+    "jackiepooh",
+    "rinnegatamante",
     "ifrit05"
   ],
   "category_id": "games",
@@ -41,6 +42,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDBtoo VPK",
+      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/379-VitaHangman.vpk"
     }
   ],
   "source_name": "VitaDBtoo",

@@ -38,6 +38,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://fuhen.homebrew-contest.com/dl/source%20code%20TECHMANIAC%20VS-MOD.zip"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDBtoo VPK",
+      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/1119-Techmaniac-THPG.vpk"
     }
   ],
   "source_name": "VitaDBtoo",

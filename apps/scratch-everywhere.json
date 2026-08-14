@@ -5,7 +5,8 @@
   "description": "Custom Scratch Runtime made in C++.",
   "long_description": "A work-in-progress runtime made in C++ aimed to bring most Scratch 3 projects over to 6-8th-generation console and handheld platforms (and more).",
   "author_ids": [
-    "dogo6647"
+    "dogo6647",
+    "natexs"
   ],
   "category_id": "games",
   "subcategory_ids": [

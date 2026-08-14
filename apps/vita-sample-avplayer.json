@@ -37,6 +37,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://gitee.com/yizhigai/vita-sample-avplayer"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDBtoo VPK",
+      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/1057-sample_avplayer.vpk"
     }
   ],
   "source_name": "VitaDBtoo",
