@@ -153,6 +153,15 @@
         $("cancel-author").addEventListener("click", closeCreateDialog);
         $("save-author").addEventListener("click", createLocalAuthor);
         $("new-author-id").addEventListener("input", () => { $("new-author-error").textContent = ""; });
+
+        // app-generator.js fills the select asynchronously after fetching authors.json.
+        // Observe those option changes so the custom picker always reflects the official catalog.
+        const observer = new MutationObserver(() => {
+            renderSelected();
+            renderResults($("author-search")?.value || "");
+        });
+        observer.observe(select, { childList: true });
+
         renderSelected();
         renderResults("");
     }
