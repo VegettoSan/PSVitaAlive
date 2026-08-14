@@ -11,10 +11,10 @@
   "subcategory_ids": [
     "other"
   ],
-  "version": "v.2.5",
-  "version_date": "2026-05-16",
+  "version": "v.2.6",
+  "version_date": "2026-08-14",
   "requirements": "- libshacccg.suprx",
-  "size": 3132843,
+  "size": 3099746,
   "status": "Legacy",
   "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/8064ba8cf5276704931ec20e5c9731e1431ba0966f9e26ff696425b0c196af0f.png",
   "screenshots": [

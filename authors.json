@@ -885,6 +885,21 @@
     "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
   },
   {
+    "id": "calligula87",
+    "name": "Calligula87",
+    "avatar": "https://github.com/calligula87.png",
+    "bio": "",
+    "links": [
+      {
+        "type": "GitHub",
+        "name": "GitHub",
+        "url": "https://github.com/calligula87",
+        "recommended": true
+      }
+    ],
+    "icon": "https://github.com/calligula87.png"
+  },
+  {
     "id": "callmebk",
     "name": "CallmeBK",
     "avatar": "https://github.com/CallmeBK.png",

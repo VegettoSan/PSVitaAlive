@@ -1,0 +1,46 @@
+{
+  "id": "bg2v",
+  "title_id": "BG2V00001",
+  "name": "BG2V",
+  "description": "Port of Baldur's Gate 2: Enhanced Edition for PSVita.",
+  "long_description": "BG2V is a community-made PlayStation Vita port of Baldur's Gate II: Enhanced Edition. It lets the game run on a homebrew-capable Vita with Vita controls, touchscreen support, and Vita-optimized startup videos.",
+  "author_ids": [
+    "calligula87"
+  ],
+  "category_id": "utilities",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.0 Beta",
+  "version_date": "2026-08-14",
+  "requirements": "- libshacccg.suprx\n- kubridge.skprx\n- Game Data Files: Android",
+  "size": 3195276,
+  "status": "Legacy",
+  "icon": "https://www.rinnegatamante.eu/vitadb/icons/630f5cb42bc1111b3026adc9e7acd61ad55b95da073a90bcc27f72bf37dad19f.png",
+  "screenshots": [
+    "https://www.rinnegatamante.eu/vitadb/icons/630f5cb42bc1111b3026adc9e7acd61ad55b95da073a90bcc27f72bf37dad19f.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1454",
+      "recommended": true
+    },
+    {
+      "type": "Official Website",
+      "name": "VitaDB Release Page",
+      "url": "https://github.com/Calligula87/BG2V/releases"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/Calligula87/BG2V"
+    }
+  ],
+  "source_name": "VitaDB",
+  "source_id": "1454",
+  "source_url": "https://github.com/Calligula87/BG2V",
+  "release_page": "https://github.com/Calligula87/BG2V/releases",
+  "updated_at": "2026-08-14T19:27:11.483910+00:00"
+}

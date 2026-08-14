@@ -11,10 +11,10 @@
   "subcategory_ids": [
     "other"
   ],
-  "version": "v2.1.1",
-  "version_date": "2026-08-07",
+  "version": "v.2.2",
+  "version_date": "2026-08-12",
   "requirements": "- libshacccg.suprx\n- Game Data Files: PC",
-  "size": 168369624,
+  "size": 168380572,
   "status": "Legacy",
   "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1390-openmw-vita.png",
   "screenshots": [
@@ -35,7 +35,7 @@
       "type": "Download",
       "name": "NeoVitaDB VPK",
       "url": "https://github.com/TheLostPantheon/openmw/releases/download/v2.1.1/openmw-2.2-partial.vpk",
-      "recommended": true
+      "recommended": false
     },
     {
       "type": "Official Website",
@@ -51,6 +51,12 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/TheLostPantheon/openmw"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1390",
+      "recommended": true
     }
   ],
   "source_name": "VitaDBtoo",

@@ -36,6 +36,12 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/withLogic/chrome-dinosaur-2d"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1453",
+      "recommended": false
     }
   ],
   "source_name": "VitaDBtoo",
