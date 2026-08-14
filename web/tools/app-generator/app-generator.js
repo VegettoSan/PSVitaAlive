@@ -81,6 +81,7 @@
             .sort((a, b) => String(a.name || a.id).localeCompare(String(b.name || b.id)))
             .map(author => `<option value="${escapeHtml(author.id)}">${escapeHtml(author.name || author.id)} — ${escapeHtml(author.id)}</option>`)
             .join("");
+        if (typeof window.refreshAuthorPicker === "function") window.refreshAuthorPicker();
     }
 
     function populateCategories(selectedId = "") {
@@ -119,7 +120,6 @@
         const row = document.createElement("div");
         row.className = "repeat-item screenshot-item";
         row.innerHTML = `<input class="screenshot-url" type="url" placeholder="https://example.org/screenshot.png" value="${escapeHtml(value)}"><button type="button" class="remove-button">Remove</button>`;
-        row.querySelector("remove-button");
         row.querySelector(".remove-button").addEventListener("click", () => { row.remove(); updatePreview(); });
         row.querySelector("input").addEventListener("input", updatePreview);
         list.appendChild(row);
@@ -201,13 +201,13 @@
         if (screenshots.length) app.screenshots = screenshots;
 
         const optionalFields = [
-            ["source_name", "source_name", "string"],
-            ["source_id", "source_id", "string"],
-            ["source_url", "source_url", "string"],
-            ["release_page", "release_page", "string"],
-            ["changelog", "changelog", "string"],
-            ["data_url", "data_url", "string"],
-            ["updated_at", "updated_at", "string"]
+            ["source_name", "source_name"],
+            ["source_id", "source_id"],
+            ["source_url", "source_url"],
+            ["release_page", "release_page"],
+            ["changelog", "changelog"],
+            ["data_url", "data_url"],
+            ["updated_at", "updated_at"]
         ];
         optionalFields.forEach(([id, key]) => {
             const value = optionalString(id);
@@ -247,7 +247,8 @@
         if (app.title_id && state.catalog.some(item => item.title_id === app.title_id)) errors.push(`The Title ID '${app.title_id}' already exists in catalog.json.`);
         if (!Array.isArray(app.author_ids) || !app.author_ids.length) errors.push("Select at least one author.");
         if (state.ready) {
-            const missingAuthors = app.author_ids.filter(id => !state.authors.some(author => author.id === id));
+            const isLocalAuthor = (id) => typeof window.isCreatedAuthor === "function" && window.isCreatedAuthor(id);
+            const missingAuthors = app.author_ids.filter(id => !state.authors.some(author => author.id === id) && !isLocalAuthor(id));
             if (missingAuthors.length) errors.push(`Author profiles missing from authors/: ${missingAuthors.join(", ")}.`);
             if (!app.category_id || !state.categories.some(category => category.id === app.category_id)) errors.push("Select an official category.");
             const category = state.categories.find(item => item.id === app.category_id);
@@ -279,9 +280,21 @@
         return errors;
     }
 
+    function getCreatedAuthors() {
+        return typeof window.getCreatedAuthorProfiles === "function" ? window.getCreatedAuthorProfiles() : [];
+    }
+
+    function updateDownloadButton() {
+        const button = $("download-json");
+        if (!button) return;
+        const count = getCreatedAuthors().length;
+        button.textContent = count ? `Download app.json + ${count} author JSON${count === 1 ? "" : "s"}` : "Download app.json";
+    }
+
     function updateValidation(app) {
         const box = $("validation-summary");
         const errors = validateApp(app);
+        updateDownloadButton();
         if (!errors.length) {
             box.className = "validation-summary valid";
             box.innerHTML = "<p><strong>✓ Ready.</strong> The generated object satisfies the client-side rules used by the current catalog validator.</p>";
@@ -301,6 +314,7 @@
     }
 
     function resetForm() {
+        if (typeof window.clearCreatedAuthors === "function") window.clearCreatedAuthors();
         $("app-form").reset();
         $("screenshots-list").innerHTML = "";
         $("links-list").innerHTML = "";
@@ -309,6 +323,7 @@
         document.querySelectorAll(".screenshot-url").forEach(input => input.remove());
         addLinkRow();
         setDefaultDate();
+        if (typeof window.refreshAuthorPicker === "function") window.refreshAuthorPicker();
         updatePreview();
     }
 
@@ -344,21 +359,28 @@
         $("links-list").innerHTML = "";
         (app.links || []).forEach(addLinkRow);
         if (!app.links || !app.links.length) addLinkRow();
+        if (typeof window.refreshAuthorPicker === "function") window.refreshAuthorPicker();
         updatePreview();
+    }
+
+    function downloadBlob(filename, object) {
+        const blob = new Blob([JSON.stringify(object, null, 2) + "\n"], { type: "application/json;charset=utf-8" });
+        const url = URL.createObjectURL(blob);
+        const anchor = document.createElement("a");
+        anchor.href = url;
+        anchor.download = filename;
+        document.body.appendChild(anchor);
+        anchor.click();
+        anchor.remove();
+        URL.revokeObjectURL(url);
     }
 
     function downloadJson() {
         const app = collectApp();
         if (validateApp(app).length) return;
-        const blob = new Blob([JSON.stringify(app, null, 2) + "\n"], { type: "application/json;charset=utf-8" });
-        const url = URL.createObjectURL(blob);
-        const anchor = document.createElement("a");
-        anchor.href = url;
-        anchor.download = `${app.id}.json`;
-        document.body.appendChild(anchor);
-        anchor.click();
-        anchor.remove();
-        URL.revokeObjectURL(url);
+        const authors = getCreatedAuthors();
+        authors.forEach(author => downloadBlob(`${author.id}.json`, author));
+        downloadBlob(`${app.id}.json`, app);
     }
 
     async function copyJson() {
