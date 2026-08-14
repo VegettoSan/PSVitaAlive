@@ -30,6 +30,8 @@
 
 .app-link-card {
 
+    position: relative;
+
     display: flex;
 
     flex-direction: column;
@@ -41,6 +43,8 @@
     min-width: 0;
 
     padding: 16px;
+
+    padding-top: 16px;
 
     background: var(--surface-hover);
 
@@ -75,11 +79,19 @@
 
 .app-link-card-recommended {
 
+    position: absolute;
+
+    top: 12px;
+
+    right: 12px;
+
     display: inline-flex;
 
     align-items: center;
 
-    width: fit-content;
+    justify-content: center;
+
+    max-width: calc(100% - 24px);
 
     padding: 5px 10px;
 
@@ -103,6 +115,8 @@
 
     box-shadow:
         0 4px 14px rgba(59, 255, 0, 0.18);
+
+    pointer-events: none;
 }
 
 
@@ -192,13 +206,17 @@
 
 .app-link-card-size {
 
-    display: block;
+    display: inline-flex;
+
+    align-items: center;
+
+    margin-top: 2px;
 
     color: var(--accent);
 
     font-size: 0.82rem;
 
-    font-weight: 700;
+    font-weight: 800;
 }
 
 
