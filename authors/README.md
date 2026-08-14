@@ -1,6 +1,6 @@
 # `authors/` — Perfiles individuales de autores
 
-Esta carpeta contiene un JSON por autor. VitaHub trata a cada desarrollador como una entidad independiente para que la web y el cliente puedan abrir su perfil y mostrar sus aplicaciones.
+Esta carpeta contiene un JSON por autor. PS Vita Alive Store trata a cada desarrollador como una entidad independiente para que la web y el cliente puedan abrir su perfil y mostrar sus aplicaciones.
 
 ## Estructura conceptual
 
