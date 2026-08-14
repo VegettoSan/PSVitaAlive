@@ -29,7 +29,7 @@
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/Northfear/rottexpr-vita/releases/download/v1.0-vita.1/rottexpr.vpk",
-      "recommended": true
+      "recommended": false
     },
     {
       "type": "Official Website",
@@ -49,7 +49,8 @@
     {
       "type": "Download",
       "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=804"
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=804",
+      "recommended": true
     }
   ],
   "source_name": "VitaDBtoo",

@@ -35,12 +35,14 @@
     {
       "type": "Download",
       "name": "VitaDBtoo VPK",
-      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/1081-ANIMANCER.vpk"
+      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/1081-ANIMANCER.vpk",
+      "recommended": false
     },
     {
       "type": "Download",
       "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1081"
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1081",
+      "recommended": false
     }
   ],
   "source_name": "VitaDBtoo",

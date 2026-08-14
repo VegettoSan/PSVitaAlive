@@ -40,12 +40,14 @@
     {
       "type": "Download",
       "name": "VitaDBtoo VPK",
-      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/381-PKGInstallerLauncher.vpk"
+      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/381-PKGInstallerLauncher.vpk",
+      "recommended": false
     },
     {
       "type": "Download",
       "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=381"
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=381",
+      "recommended": false
     }
   ],
   "source_name": "VitaDBtoo",

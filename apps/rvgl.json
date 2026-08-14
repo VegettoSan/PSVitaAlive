@@ -29,7 +29,7 @@
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/Rinnegatamante/rvgl-vita-native/releases/download/v%2C1%2C1/RVGL_new.vpk",
-      "recommended": true
+      "recommended": false
     },
     {
       "type": "Official Website",
@@ -39,7 +39,8 @@
     {
       "type": "Download",
       "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1217"
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1217",
+      "recommended": true
     }
   ],
   "source_name": "VitaDBtoo",

@@ -25,12 +25,13 @@
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/usineur/hode/releases/download/0.2.9/hode.vpk",
-      "recommended": true
+      "recommended": false
     },
     {
       "type": "Download",
       "name": "NeoVitaDB VPK",
-      "url": "https://github.com/usineur/hode/releases/download/0.2.9d/hode.vpk"
+      "url": "https://github.com/usineur/hode/releases/download/0.2.9d/hode.vpk",
+      "recommended": true
     },
     {
       "type": "Official Website",
@@ -50,7 +51,8 @@
     {
       "type": "Download",
       "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=512"
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=512",
+      "recommended": false
     }
   ],
   "source_name": "VitaDBtoo",

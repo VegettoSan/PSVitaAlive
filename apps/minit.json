@@ -28,7 +28,7 @@
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/m1s3ry/minit-vita/releases/download/v1.1/Minit.VPK",
-      "recommended": true
+      "recommended": false
     },
     {
       "type": "Official Website",
@@ -43,7 +43,8 @@
     {
       "type": "Download",
       "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=638"
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=638",
+      "recommended": true
     }
   ],
   "source_name": "VitaDBtoo",

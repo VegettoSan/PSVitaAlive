@@ -29,7 +29,7 @@
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/Grarak/DSVita/releases/download/0.9.4/dsvita.vpk",
-      "recommended": true
+      "recommended": false
     },
     {
       "type": "Official Website",
@@ -49,7 +49,8 @@
     {
       "type": "Download",
       "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1220"
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1220",
+      "recommended": true
     }
   ],
   "source_name": "VitaDBtoo",

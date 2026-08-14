@@ -40,12 +40,19 @@
     {
       "type": "Download",
       "name": "VitaDBtoo VPK",
-      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/783-SimpleFPSplatformer.vpk"
+      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/783-SimpleFPSplatformer.vpk",
+      "recommended": false
     },
     {
       "type": "Download",
       "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=783"
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=783",
+      "recommended": false
+    },
+    {
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
+      "url": "https://wololo.net/talk/viewtopic.php?f=116&t=47018"
     }
   ],
   "source_name": "VitaDBtoo",

@@ -41,12 +41,14 @@
     {
       "type": "Download",
       "name": "VitaDBtoo VPK",
-      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/766-hexagon.jumper_1.4.1.vpk"
+      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/766-hexagon.jumper_1.4.1.vpk",
+      "recommended": false
     },
     {
       "type": "Download",
       "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=766"
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=766",
+      "recommended": false
     }
   ],
   "source_name": "VitaDBtoo",

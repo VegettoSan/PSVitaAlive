@@ -26,7 +26,7 @@
       "type": "Download",
       "name": "NeoVitaDB VPK",
       "url": "https://git.silica.codes/Li/trophaxse/releases/download/latest/TrophaxSE.vpk",
-      "recommended": true
+      "recommended": false
     },
     {
       "type": "Repository",
@@ -36,7 +36,8 @@
     {
       "type": "Download",
       "name": "VitaDBtoo VPK",
-      "url": "https://git.silica.codes/Li/trophaxse/releases/download/v1.5/TrophaxSE.vpk"
+      "url": "https://git.silica.codes/Li/trophaxse/releases/download/v1.5/TrophaxSE.vpk",
+      "recommended": true
     },
     {
       "type": "Official Website",

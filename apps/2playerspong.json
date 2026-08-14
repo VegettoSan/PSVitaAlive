@@ -40,7 +40,8 @@
     {
       "type": "Download",
       "name": "VitaDBtoo VPK",
-      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/1049-2PlayersPong.vpk"
+      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/1049-2PlayersPong.vpk",
+      "recommended": false
     }
   ],
   "source_name": "VitaDBtoo",

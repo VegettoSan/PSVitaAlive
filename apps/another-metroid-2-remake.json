@@ -36,12 +36,14 @@
     {
       "type": "Download",
       "name": "VitaDBtoo VPK",
-      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/308-AMTR01693.vpk"
+      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/308-AMTR01693.vpk",
+      "recommended": false
     },
     {
       "type": "Download",
       "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=308"
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=308",
+      "recommended": false
     }
   ],
   "source_name": "VitaDBtoo",

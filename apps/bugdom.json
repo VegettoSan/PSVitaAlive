@@ -26,7 +26,7 @@
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/ywnico/bugdom-vita/releases/download/1.3.4-vita.1/Bugdom-1.3.4-vita.1.vpk",
-      "recommended": true
+      "recommended": false
     },
     {
       "type": "Official Website",
@@ -46,7 +46,8 @@
     {
       "type": "Download",
       "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=841"
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=841",
+      "recommended": true
     }
   ],
   "source_name": "VitaDBtoo",

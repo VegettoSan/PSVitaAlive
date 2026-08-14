@@ -40,7 +40,8 @@
     {
       "type": "Download",
       "name": "VitaDBtoo VPK",
-      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/TFoUAD.vpk"
+      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/TFoUAD.vpk",
+      "recommended": false
     },
     {
       "type": "Repository",

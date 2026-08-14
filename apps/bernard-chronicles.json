@@ -41,12 +41,14 @@
     {
       "type": "Download",
       "name": "VitaDBtoo VPK",
-      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/133-Bernard-Chronicles-Tetris-Attack.vpk"
+      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/133-Bernard-Chronicles-Tetris-Attack.vpk",
+      "recommended": false
     },
     {
       "type": "Download",
       "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=133"
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=133",
+      "recommended": false
     }
   ],
   "source_name": "VitaDBtoo",

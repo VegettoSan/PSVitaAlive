@@ -25,7 +25,7 @@
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/SilverCrow2323/Sakura-Succubus-4-Vita/releases/download/v.1.1/Sakura.Succubus.IV-01.10.vpk",
-      "recommended": true
+      "recommended": false
     },
     {
       "type": "Official Website",
@@ -40,7 +40,8 @@
     {
       "type": "Download",
       "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=813"
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=813",
+      "recommended": true
     }
   ],
   "source_name": "VitaDBtoo",

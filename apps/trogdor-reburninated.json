@@ -26,7 +26,7 @@
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/Mode8fx/Trogdor-Reburninated/releases/download/v2.4/Trogdor-Reburninated-v2.4-vita.zip",
-      "recommended": true
+      "recommended": false
     },
     {
       "type": "Official Website",
@@ -46,7 +46,8 @@
     {
       "type": "Download",
       "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1015"
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1015",
+      "recommended": true
     }
   ],
   "source_name": "VitaDBtoo",

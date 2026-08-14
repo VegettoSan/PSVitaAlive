@@ -29,12 +29,13 @@
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/SonicMastr/Vita-Media-Player/releases/download/v1.01/VitaMediaPlayer.vpk",
-      "recommended": true
+      "recommended": false
     },
     {
       "type": "Download",
       "name": "NeoVitaDB VPK",
-      "url": "https://github.com/SonicMastr/Vita-Media-Player/releases/download/v1.01-PSTV/VitaMediaPlayer-1080i.vpk"
+      "url": "https://github.com/SonicMastr/Vita-Media-Player/releases/download/v1.01-PSTV/VitaMediaPlayer-1080i.vpk",
+      "recommended": false
     },
     {
       "type": "Official Website",
@@ -54,7 +55,8 @@
     {
       "type": "Download",
       "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=869"
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=869",
+      "recommended": true
     }
   ],
   "source_name": "VitaDBtoo",

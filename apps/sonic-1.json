@@ -29,7 +29,7 @@
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/Xeeynamo/Sonic-1-2-2013-Decompilation/releases/download/v1.1.0/Sonic1-xeeynamo-v110.vpk",
-      "recommended": true
+      "recommended": false
     },
     {
       "type": "Official Website",
@@ -49,7 +49,8 @@
     {
       "type": "Download",
       "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=607"
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=607",
+      "recommended": true
     }
   ],
   "source_name": "VitaDBtoo",

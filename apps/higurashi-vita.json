@@ -40,12 +40,14 @@
     {
       "type": "Download",
       "name": "VitaDBtoo VPK",
-      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/271-Higurashi-Vita.vpk"
+      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/271-Higurashi-Vita.vpk",
+      "recommended": false
     },
     {
       "type": "Download",
       "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=271"
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=271",
+      "recommended": false
     }
   ],
   "source_name": "VitaDBtoo",

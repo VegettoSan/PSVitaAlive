@@ -28,12 +28,13 @@
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/609-freegemas.vpk",
-      "recommended": true
+      "recommended": false
     },
     {
       "type": "Download",
       "name": "NeoVitaDB VPK",
-      "url": "https://github.com/JoseTomasTocino/freegemas/releases/download/22.02/freegemas-vita.zip"
+      "url": "https://github.com/JoseTomasTocino/freegemas/releases/download/22.02/freegemas-vita.zip",
+      "recommended": false
     },
     {
       "type": "Official Website",
@@ -53,12 +54,14 @@
     {
       "type": "Download",
       "name": "VitaDBtoo VPK",
-      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/609-freegemas.vpk"
+      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/609-freegemas.vpk",
+      "recommended": false
     },
     {
       "type": "Download",
       "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=609"
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=609",
+      "recommended": true
     }
   ],
   "source_name": "VitaDBtoo",

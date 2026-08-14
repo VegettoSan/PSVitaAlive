@@ -25,7 +25,7 @@
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/Grimiku/Cradle-Song-Vita/releases/download/Latest/Cradle.Song.Vita-00.98.vpk",
-      "recommended": true
+      "recommended": false
     },
     {
       "type": "Official Website",
@@ -35,7 +35,8 @@
     {
       "type": "Download",
       "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1219"
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1219",
+      "recommended": true
     }
   ],
   "source_name": "VitaDBtoo",

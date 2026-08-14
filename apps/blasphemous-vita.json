@@ -29,7 +29,7 @@
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/gl00mm/Blasphemous_PSVITA/releases/download/Blasphemous_PSVITA-beta.1/BlasphemousVitaSTEAM.zip",
-      "recommended": true
+      "recommended": false
     },
     {
       "type": "Official Website",
@@ -44,7 +44,8 @@
     {
       "type": "Download",
       "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1209"
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1209",
+      "recommended": true
     }
   ],
   "source_name": "VitaDBtoo",

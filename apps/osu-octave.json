@@ -29,7 +29,7 @@
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/v-atamanenko/osu-octave/releases/download/1.20/osu-octave.vpk",
-      "recommended": true
+      "recommended": false
     },
     {
       "type": "Official Website",
@@ -49,7 +49,8 @@
     {
       "type": "Download",
       "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=814"
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=814",
+      "recommended": true
     }
   ],
   "source_name": "VitaDBtoo",

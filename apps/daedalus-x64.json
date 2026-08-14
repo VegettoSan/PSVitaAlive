@@ -25,7 +25,7 @@
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/Rinnegatamante/DaedalusX64-vitaGL/releases/download/Nightly/DaedalusX64.vpk",
-      "recommended": true
+      "recommended": false
     },
     {
       "type": "Official Website",
@@ -45,7 +45,8 @@
     {
       "type": "Download",
       "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=553"
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=553",
+      "recommended": true
     }
   ],
   "source_name": "VitaDBtoo",

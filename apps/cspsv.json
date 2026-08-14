@@ -28,7 +28,7 @@
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/CelloPoly314/CSPSV/releases/download/v1.0/CSPSP.vpk",
-      "recommended": true
+      "recommended": false
     },
     {
       "type": "Official Website",
@@ -48,7 +48,8 @@
     {
       "type": "Download",
       "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1243"
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1243",
+      "recommended": true
     }
   ],
   "source_name": "VitaDBtoo",

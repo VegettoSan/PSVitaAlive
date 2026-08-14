@@ -35,12 +35,14 @@
     {
       "type": "Download",
       "name": "VitaDBtoo VPK",
-      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/208-VITA-Net-Check.vpk"
+      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/208-VITA-Net-Check.vpk",
+      "recommended": false
     },
     {
       "type": "Download",
       "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=208"
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=208",
+      "recommended": false
     }
   ],
   "source_name": "VitaDBtoo",

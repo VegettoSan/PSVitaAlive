@@ -44,12 +44,14 @@
     {
       "type": "Download",
       "name": "VitaDBtoo VPK",
-      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/1163-hitem.vpk"
+      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/1163-hitem.vpk",
+      "recommended": false
     },
     {
       "type": "Download",
       "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1163"
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1163",
+      "recommended": false
     }
   ],
   "source_name": "VitaDBtoo",

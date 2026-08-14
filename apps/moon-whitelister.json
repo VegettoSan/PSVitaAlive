@@ -26,12 +26,13 @@
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/4-MoonWhitelister.vpk",
-      "recommended": true
+      "recommended": false
     },
     {
       "type": "Download",
       "name": "NeoVitaDB VPK",
-      "url": "https://github.com/gnmmarechal/moon-whitelister/releases/download/v1.0c/MoonWhitelisterv1.0c.vpk"
+      "url": "https://github.com/gnmmarechal/moon-whitelister/releases/download/v1.0c/MoonWhitelisterv1.0c.vpk",
+      "recommended": false
     },
     {
       "type": "Official Website",
@@ -51,12 +52,14 @@
     {
       "type": "Download",
       "name": "VitaDBtoo VPK",
-      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/4-MoonWhitelister.vpk"
+      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/4-MoonWhitelister.vpk",
+      "recommended": false
     },
     {
       "type": "Download",
       "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=4"
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=4",
+      "recommended": true
     }
   ],
   "source_name": "VitaDBtoo",

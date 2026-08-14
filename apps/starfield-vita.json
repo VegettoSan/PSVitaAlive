@@ -26,7 +26,7 @@
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/gnmmarechal/starfield-vita/releases/download/v0.2/Starfield-Vita-v0.2.vpk",
-      "recommended": true
+      "recommended": false
     },
     {
       "type": "Official Website",
@@ -46,7 +46,8 @@
     {
       "type": "Download",
       "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=128"
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=128",
+      "recommended": true
     }
   ],
   "source_name": "VitaDBtoo",

@@ -44,12 +44,14 @@
     {
       "type": "Download",
       "name": "VitaDBtoo VPK",
-      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/1087-katawa-crash.vpk"
+      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/1087-katawa-crash.vpk",
+      "recommended": false
     },
     {
       "type": "Download",
       "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1087"
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1087",
+      "recommended": false
     }
   ],
   "source_name": "VitaDBtoo",

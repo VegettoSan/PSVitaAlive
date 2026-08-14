@@ -40,12 +40,14 @@
     {
       "type": "Download",
       "name": "VitaDBtoo VPK",
-      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/833-Vita_First_Sight.vpk"
+      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/833-Vita_First_Sight.vpk",
+      "recommended": false
     },
     {
       "type": "Download",
       "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=833"
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=833",
+      "recommended": false
     }
   ],
   "source_name": "VitaDBtoo",

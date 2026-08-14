@@ -40,12 +40,14 @@
     {
       "type": "Download",
       "name": "VitaDBtoo VPK",
-      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/178-whitelister.vpk"
+      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/178-whitelister.vpk",
+      "recommended": false
     },
     {
       "type": "Download",
       "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=178"
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=178",
+      "recommended": false
     }
   ],
   "source_name": "VitaDBtoo",

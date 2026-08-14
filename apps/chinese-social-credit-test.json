@@ -41,12 +41,14 @@
     {
       "type": "Download",
       "name": "VitaDBtoo VPK",
-      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/1445-Chinese_Social_Credit_Test_PSVITA.vpk"
+      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/1445-Chinese_Social_Credit_Test_PSVITA.vpk",
+      "recommended": false
     },
     {
       "type": "Download",
       "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1445"
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1445",
+      "recommended": false
     }
   ],
   "source_name": "VitaDBtoo",

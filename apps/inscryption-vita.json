@@ -29,7 +29,7 @@
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/gl00mm/Inscryption_PSVITA/releases/download/Inscryption_PSVITA-alpha.1/inscryption.vpk",
-      "recommended": true
+      "recommended": false
     },
     {
       "type": "Official Website",
@@ -44,7 +44,8 @@
     {
       "type": "Download",
       "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1323"
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1323",
+      "recommended": true
     }
   ],
   "source_name": "VitaDBtoo",

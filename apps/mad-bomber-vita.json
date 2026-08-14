@@ -26,7 +26,7 @@
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/SonicMastr/Mad-Bomber-Vita/releases/download/1.0/Mad_Bomber_Vita.vpk",
-      "recommended": true
+      "recommended": false
     },
     {
       "type": "Official Website",
@@ -46,7 +46,8 @@
     {
       "type": "Download",
       "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=867"
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=867",
+      "recommended": true
     }
   ],
   "source_name": "VitaDBtoo",

@@ -29,7 +29,7 @@
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/JJH47E/snake/releases/download/0.9/Snake.vpk",
-      "recommended": true
+      "recommended": false
     },
     {
       "type": "Official Website",
@@ -44,7 +44,8 @@
     {
       "type": "Download",
       "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=577"
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=577",
+      "recommended": true
     }
   ],
   "source_name": "VitaDBtoo",

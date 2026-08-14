@@ -29,12 +29,13 @@
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/617-hurrican.vpk",
-      "recommended": true
+      "recommended": false
     },
     {
       "type": "Download",
       "name": "NeoVitaDB VPK",
-      "url": "https://github.com/ammeir/hurrican/releases/download/v0.9/hurrican_v09.zip"
+      "url": "https://github.com/ammeir/hurrican/releases/download/v0.9/hurrican_v09.zip",
+      "recommended": false
     },
     {
       "type": "Official Website",
@@ -54,12 +55,14 @@
     {
       "type": "Download",
       "name": "VitaDBtoo VPK",
-      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/617-hurrican.vpk"
+      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/617-hurrican.vpk",
+      "recommended": false
     },
     {
       "type": "Download",
       "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=617"
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=617",
+      "recommended": true
     }
   ],
   "source_name": "VitaDBtoo",

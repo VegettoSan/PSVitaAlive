@@ -27,12 +27,13 @@
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/onurkuru/skyrift/releases/download/v1.1.0/skyrift.vpk",
-      "recommended": true
+      "recommended": false
     },
     {
       "type": "Download",
       "name": "NeoVitaDB VPK",
-      "url": "https://github.com/onurkuru/skyrift/releases/download/v1.2.0/skyrift.vpk"
+      "url": "https://github.com/onurkuru/skyrift/releases/download/v1.2.0/skyrift.vpk",
+      "recommended": false
     },
     {
       "type": "Official Website",
@@ -52,7 +53,8 @@
     {
       "type": "Download",
       "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1427"
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1427",
+      "recommended": true
     }
   ],
   "source_name": "VitaDBtoo",

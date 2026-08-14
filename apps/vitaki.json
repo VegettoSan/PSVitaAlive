@@ -26,12 +26,13 @@
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/ywnico/vitaki-fork/releases/download/v0.06c/Vitaki.vpk",
-      "recommended": true
+      "recommended": false
     },
     {
       "type": "Download",
       "name": "NeoVitaDB VPK",
-      "url": "https://github.com/ywnico/vitaki-fork/releases/download/v0.06d/Vitaki.vpk"
+      "url": "https://github.com/ywnico/vitaki-fork/releases/download/v0.06d/Vitaki.vpk",
+      "recommended": true
     },
     {
       "type": "Official Website",
@@ -51,7 +52,8 @@
     {
       "type": "Download",
       "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1293"
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1293",
+      "recommended": false
     }
   ],
   "source_name": "VitaDBtoo",

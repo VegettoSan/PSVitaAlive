@@ -29,7 +29,7 @@
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/Northfear/fallout2-ce-vita/releases/download/v1.3.0-vita.8/fallout2-ce.vpk",
-      "recommended": true
+      "recommended": false
     },
     {
       "type": "Official Website",
@@ -49,7 +49,8 @@
     {
       "type": "Download",
       "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=842"
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=842",
+      "recommended": true
     }
   ],
   "source_name": "VitaDBtoo",

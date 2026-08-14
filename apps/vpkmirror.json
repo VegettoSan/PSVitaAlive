@@ -35,12 +35,14 @@
     {
       "type": "Download",
       "name": "VitaDBtoo VPK",
-      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/82-VPKMirror.vpk"
+      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/82-VPKMirror.vpk",
+      "recommended": false
     },
     {
       "type": "Download",
       "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=82"
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=82",
+      "recommended": false
     }
   ],
   "source_name": "VitaDBtoo",

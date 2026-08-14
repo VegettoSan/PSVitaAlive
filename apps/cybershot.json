@@ -44,7 +44,8 @@
     {
       "type": "Download",
       "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1108"
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1108",
+      "recommended": false
     }
   ],
   "source_name": "VitaDBtoo",

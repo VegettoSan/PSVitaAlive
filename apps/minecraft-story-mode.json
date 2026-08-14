@@ -30,7 +30,8 @@
     {
       "type": "Download",
       "name": "NeoVitaDB VPK",
-      "url": "https://github.com/LeZergan/mcsm-vita/releases/download/v1.10/MCSM-1.10-logging.vpk"
+      "url": "https://github.com/LeZergan/mcsm-vita/releases/download/v1.10/MCSM-1.10-logging.vpk",
+      "recommended": false
     },
     {
       "type": "Official Website",

@@ -28,7 +28,7 @@
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/nn9dev/tamatool-vita/releases/download/vita-0.1/tamatool-vita-0.1.vpk",
-      "recommended": true
+      "recommended": false
     },
     {
       "type": "Official Website",
@@ -48,7 +48,8 @@
     {
       "type": "Download",
       "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1222"
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1222",
+      "recommended": true
     }
   ],
   "source_name": "VitaDBtoo",

@@ -27,7 +27,7 @@
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/d3m3vilurr/vita-savemgr/releases/download/nightly/savemgr.vpk",
-      "recommended": true
+      "recommended": false
     },
     {
       "type": "Official Website",
@@ -42,7 +42,8 @@
     {
       "type": "Download",
       "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=9"
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=9",
+      "recommended": true
     }
   ],
   "source_name": "VitaDBtoo",

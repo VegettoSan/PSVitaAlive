@@ -29,7 +29,7 @@
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/Rocroverss/Toziuha-Night-Dracula-s-Revenge-patch-psvita/releases/download/v1.0/Toziuha.Night.-.Dracula.s.Revenge.vpk",
-      "recommended": true
+      "recommended": false
     },
     {
       "type": "Official Website",
@@ -44,7 +44,8 @@
     {
       "type": "Download",
       "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1368"
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1368",
+      "recommended": true
     }
   ],
   "source_name": "VitaDBtoo",

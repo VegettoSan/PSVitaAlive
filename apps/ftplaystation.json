@@ -25,7 +25,7 @@
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/StonedModder/FTPlaystation/releases/download/0.1/FTPlaystation.vpk",
-      "recommended": true
+      "recommended": false
     },
     {
       "type": "Official Website",
@@ -40,7 +40,8 @@
     {
       "type": "Download",
       "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=252"
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=252",
+      "recommended": true
     }
   ],
   "source_name": "VitaDBtoo",

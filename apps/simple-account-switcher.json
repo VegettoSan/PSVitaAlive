@@ -26,7 +26,7 @@
       "type": "Download",
       "name": "NeoVitaDB VPK",
       "url": "https://git.silica.codes/Li/simpleaccountswitcher/releases/download/latest/SimpleAccountSwitcher.vpk",
-      "recommended": true
+      "recommended": false
     },
     {
       "type": "Repository",
@@ -36,7 +36,8 @@
     {
       "type": "Download",
       "name": "VitaDBtoo VPK",
-      "url": "https://git.silica.codes/Li/simpleaccountswitcher/releases/download/v1.2/SimpleAccountSwitcher.vpk"
+      "url": "https://git.silica.codes/Li/simpleaccountswitcher/releases/download/v1.2/SimpleAccountSwitcher.vpk",
+      "recommended": true
     },
     {
       "type": "Official Website",

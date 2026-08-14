@@ -30,7 +30,7 @@
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/jimbob4000/RetroFlow-Launcher/releases/download/v8.2.0/RetroFlow_v8.2.0.vpk",
-      "recommended": true
+      "recommended": false
     },
     {
       "type": "Official Website",
@@ -50,7 +50,8 @@
     {
       "type": "Download",
       "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=745"
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=745",
+      "recommended": true
     }
   ],
   "source_name": "VitaDBtoo",

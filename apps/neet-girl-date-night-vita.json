@@ -25,7 +25,7 @@
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/raidengugga/Neet-Girl-Date-Night-PSVITA/releases/download/Latest/NGDN-01.00.vpk",
-      "recommended": true
+      "recommended": false
     },
     {
       "type": "Official Website",
@@ -35,7 +35,8 @@
     {
       "type": "Download",
       "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1228"
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1228",
+      "recommended": true
     }
   ],
   "source_name": "VitaDBtoo",

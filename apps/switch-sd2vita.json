@@ -26,12 +26,13 @@
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/294-switch_sd2vita.vpk",
-      "recommended": true
+      "recommended": false
     },
     {
       "type": "Download",
       "name": "NeoVitaDB VPK",
-      "url": "https://github.com/Applelo/SwitchSD2Vita/releases/download/2.1/switch_sd2vita.vpk"
+      "url": "https://github.com/Applelo/SwitchSD2Vita/releases/download/2.1/switch_sd2vita.vpk",
+      "recommended": false
     },
     {
       "type": "Official Website",
@@ -51,12 +52,14 @@
     {
       "type": "Download",
       "name": "VitaDBtoo VPK",
-      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/294-switch_sd2vita.vpk"
+      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/294-switch_sd2vita.vpk",
+      "recommended": false
     },
     {
       "type": "Download",
       "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=294"
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=294",
+      "recommended": true
     }
   ],
   "source_name": "VitaDBtoo",

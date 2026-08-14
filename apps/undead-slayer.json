@@ -35,12 +35,14 @@
     {
       "type": "Download",
       "name": "VitaDBtoo VPK",
-      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/805-UndeadSlayer.vpk"
+      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/805-UndeadSlayer.vpk",
+      "recommended": false
     },
     {
       "type": "Download",
       "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=805"
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=805",
+      "recommended": false
     }
   ],
   "source_name": "VitaDBtoo",

@@ -41,7 +41,8 @@
     {
       "type": "Download",
       "name": "VitaDBtoo VPK",
-      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/414-FryingMaster.vpk"
+      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/414-FryingMaster.vpk",
+      "recommended": false
     }
   ],
   "source_name": "NeoVitaDB",

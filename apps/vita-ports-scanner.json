@@ -25,7 +25,7 @@
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/lp1dev/vita_ports_scanner/releases/download/v0.10.0/ports_scanner.vpk",
-      "recommended": true
+      "recommended": false
     },
     {
       "type": "Official Website",
@@ -45,7 +45,8 @@
     {
       "type": "Download",
       "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1246"
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1246",
+      "recommended": true
     }
   ],
   "source_name": "VitaDBtoo",

@@ -42,12 +42,14 @@
     {
       "type": "Download",
       "name": "VitaDBtoo VPK",
-      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/166-prince.zip"
+      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/166-prince.zip",
+      "recommended": false
     },
     {
       "type": "Download",
       "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=166"
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=166",
+      "recommended": false
     }
   ],
   "source_name": "VitaDBtoo",

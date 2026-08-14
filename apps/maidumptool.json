@@ -28,12 +28,13 @@
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/LioMajor/MaiDumpToolEN/releases/download/V233.2zEx_eng/MaiDumpTool_V233.2zEx_eng.vpk",
-      "recommended": true
+      "recommended": false
     },
     {
       "type": "Download",
       "name": "VitaDBtoo VPK",
-      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/54-MaiDumpTool.vpk"
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/54-MaiDumpTool.vpk",
+      "recommended": true
     },
     {
       "type": "Official Website",
@@ -48,17 +49,20 @@
     {
       "type": "Download",
       "name": "VitaDBtoo VPK",
-      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/54-MaiDumpTool.vpk"
+      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/54-MaiDumpTool.vpk",
+      "recommended": false
     },
     {
       "type": "Download",
       "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=53"
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=53",
+      "recommended": false
     },
     {
       "type": "Download",
       "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=54"
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=54",
+      "recommended": false
     }
   ],
   "source_name": "VitaDBtoo",

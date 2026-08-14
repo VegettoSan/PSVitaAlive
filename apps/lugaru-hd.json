@@ -44,12 +44,14 @@
     {
       "type": "Download",
       "name": "VitaDBtoo VPK",
-      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/853-Lugaru-release-beta-1.vpk"
+      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/853-Lugaru-release-beta-1.vpk",
+      "recommended": false
     },
     {
       "type": "Download",
       "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=853"
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=853",
+      "recommended": false
     }
   ],
   "source_name": "VitaDBtoo",

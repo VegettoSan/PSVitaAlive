@@ -29,12 +29,13 @@
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1112-TWEWY.vpk",
-      "recommended": true
+      "recommended": false
     },
     {
       "type": "Download",
       "name": "NeoVitaDB VPK",
-      "url": "https://github.com/hatoving/twewy-old-vita/releases/download/v1.1/TWEWY.vpk"
+      "url": "https://github.com/hatoving/twewy-old-vita/releases/download/v1.1/TWEWY.vpk",
+      "recommended": false
     },
     {
       "type": "Official Website",
@@ -54,12 +55,14 @@
     {
       "type": "Download",
       "name": "VitaDBtoo VPK",
-      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/1112-TWEWY.vpk"
+      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/1112-TWEWY.vpk",
+      "recommended": false
     },
     {
       "type": "Download",
       "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1112"
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1112",
+      "recommended": true
     }
   ],
   "source_name": "VitaDBtoo",

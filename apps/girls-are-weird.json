@@ -30,12 +30,13 @@
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/834-GirlsAreWeird.vpk",
-      "recommended": true
+      "recommended": false
     },
     {
       "type": "Download",
       "name": "VitaDBtoo VPK",
-      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/492-GirlsAreWeird.vpk"
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/492-GirlsAreWeird.vpk",
+      "recommended": true
     },
     {
       "type": "Official Website",
@@ -55,17 +56,20 @@
     {
       "type": "Download",
       "name": "VitaDBtoo VPK",
-      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/834-GirlsAreWeird.vpk"
+      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/834-GirlsAreWeird.vpk",
+      "recommended": false
     },
     {
       "type": "Download",
       "name": "VitaDBtoo VPK",
-      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/492-GirlsAreWeird.vpk"
+      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/492-GirlsAreWeird.vpk",
+      "recommended": false
     },
     {
       "type": "Download",
       "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=492"
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=492",
+      "recommended": false
     }
   ],
   "source_name": "VitaDBtoo",

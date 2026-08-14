@@ -44,12 +44,14 @@
     {
       "type": "Download",
       "name": "VitaDBtoo VPK",
-      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/1063-Slither.io_Vita.vpk"
+      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/1063-Slither.io_Vita.vpk",
+      "recommended": false
     },
     {
       "type": "Download",
       "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1063"
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1063",
+      "recommended": false
     }
   ],
   "source_name": "VitaDBtoo",

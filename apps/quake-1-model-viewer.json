@@ -25,7 +25,7 @@
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/softwaregremlin2/Quake1ModelViewer/releases/download/Homebrew/mdlviewer.vpk",
-      "recommended": true
+      "recommended": false
     },
     {
       "type": "Official Website",
@@ -40,7 +40,8 @@
     {
       "type": "Download",
       "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1416"
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1416",
+      "recommended": true
     }
   ],
   "source_name": "VitaDBtoo",

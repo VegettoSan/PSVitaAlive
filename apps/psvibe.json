@@ -26,7 +26,7 @@
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/NamelessGhoul0/PSVibe/releases/download/v2-final/PSVibe.v2-final.vpk",
-      "recommended": true
+      "recommended": false
     },
     {
       "type": "Official Website",
@@ -46,7 +46,8 @@
     {
       "type": "Download",
       "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=48"
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=48",
+      "recommended": true
     }
   ],
   "source_name": "VitaDBtoo",

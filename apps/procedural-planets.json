@@ -42,12 +42,14 @@
     {
       "type": "Download",
       "name": "VitaDBtoo VPK",
-      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/91-Procedural_Planets.vpk"
+      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/91-Procedural_Planets.vpk",
+      "recommended": false
     },
     {
       "type": "Download",
       "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=91"
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=91",
+      "recommended": false
     }
   ],
   "source_name": "VitaDBtoo",

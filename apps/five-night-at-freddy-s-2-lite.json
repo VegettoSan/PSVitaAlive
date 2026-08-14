@@ -44,12 +44,14 @@
     {
       "type": "Download",
       "name": "VitaDBtoo VPK",
-      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/856-fnaf-2-vita.vpk"
+      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/856-fnaf-2-vita.vpk",
+      "recommended": false
     },
     {
       "type": "Download",
       "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=856"
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=856",
+      "recommended": false
     }
   ],
   "source_name": "VitaDBtoo",

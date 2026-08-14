@@ -25,12 +25,13 @@
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/807-dontopen.vpk",
-      "recommended": true
+      "recommended": false
     },
     {
       "type": "Download",
       "name": "NeoVitaDB VPK",
-      "url": "https://github.com/SilverCrow2323/Don-t-OpenYourVita/releases/download/v.1.11/dontopen-v.1.11.vpk"
+      "url": "https://github.com/SilverCrow2323/Don-t-OpenYourVita/releases/download/v.1.11/dontopen-v.1.11.vpk",
+      "recommended": true
     },
     {
       "type": "Official Website",
@@ -50,12 +51,14 @@
     {
       "type": "Download",
       "name": "VitaDBtoo VPK",
-      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/807-dontopen.vpk"
+      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/807-dontopen.vpk",
+      "recommended": false
     },
     {
       "type": "Download",
       "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=807"
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=807",
+      "recommended": false
     }
   ],
   "source_name": "VitaDBtoo",

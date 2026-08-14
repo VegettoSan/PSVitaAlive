@@ -28,7 +28,7 @@
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/suicvne/SpaceCadetPinball_Vita/releases/download/Release_1.1.1_VitaBuild_2/SpaceCadetPinballVita_VB2.vpk",
-      "recommended": true
+      "recommended": false
     },
     {
       "type": "Official Website",
@@ -48,7 +48,8 @@
     {
       "type": "Download",
       "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=730"
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=730",
+      "recommended": true
     }
   ],
   "source_name": "VitaDBtoo",

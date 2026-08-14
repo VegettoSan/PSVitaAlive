@@ -27,7 +27,7 @@
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/Keriew/augustus/releases/download/v4.0.0/augustus-4.0.0-vita.vpk",
-      "recommended": true
+      "recommended": false
     },
     {
       "type": "Official Website",
@@ -47,7 +47,8 @@
     {
       "type": "Download",
       "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=746"
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=746",
+      "recommended": true
     }
   ],
   "source_name": "VitaDBtoo",

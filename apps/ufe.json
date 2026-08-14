@@ -41,12 +41,14 @@
     {
       "type": "Download",
       "name": "VitaDBtoo VPK",
-      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/470-UFE_Demo.vpk"
+      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/470-UFE_Demo.vpk",
+      "recommended": false
     },
     {
       "type": "Download",
       "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=470"
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=470",
+      "recommended": false
     }
   ],
   "source_name": "VitaDBtoo",

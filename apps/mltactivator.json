@@ -41,12 +41,14 @@
     {
       "type": "Download",
       "name": "VitaDBtoo VPK",
-      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/301-MLTactivatorFIX2.vpk"
+      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/301-MLTactivatorFIX2.vpk",
+      "recommended": false
     },
     {
       "type": "Download",
       "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=301"
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=301",
+      "recommended": false
     }
   ],
   "source_name": "VitaDBtoo",

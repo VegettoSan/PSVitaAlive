@@ -29,7 +29,7 @@
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/Rocroverss/The-legend-of-lumina-patch-psvita/releases/download/first/TLOL.vpk",
-      "recommended": true
+      "recommended": false
     },
     {
       "type": "Official Website",
@@ -39,7 +39,8 @@
     {
       "type": "Download",
       "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1272"
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1272",
+      "recommended": true
     }
   ],
   "source_name": "VitaDBtoo",

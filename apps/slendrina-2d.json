@@ -29,7 +29,7 @@
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/MaloneCZSD/Slendrina2DVita/releases/download/Slendrina/Slendrina2D.vpk",
-      "recommended": true
+      "recommended": false
     },
     {
       "type": "Official Website",
@@ -44,7 +44,8 @@
     {
       "type": "Download",
       "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1237"
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1237",
+      "recommended": true
     }
   ],
   "source_name": "VitaDBtoo",

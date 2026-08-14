@@ -44,12 +44,14 @@
     {
       "type": "Download",
       "name": "VitaDBtoo VPK",
-      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/421-Zombiebound-Reloaded.vpk"
+      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/421-Zombiebound-Reloaded.vpk",
+      "recommended": false
     },
     {
       "type": "Download",
       "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=421"
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=421",
+      "recommended": false
     }
   ],
   "source_name": "VitaDBtoo",

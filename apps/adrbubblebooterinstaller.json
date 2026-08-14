@@ -40,12 +40,14 @@
     {
       "type": "Download",
       "name": "VitaDBtoo VPK",
-      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/307-AdrBubbleBooterInstaller_v1.3.vpk"
+      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/307-AdrBubbleBooterInstaller_v1.3.vpk",
+      "recommended": false
     },
     {
       "type": "Download",
       "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=307"
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=307",
+      "recommended": false
     }
   ],
   "source_name": "VitaDBtoo",

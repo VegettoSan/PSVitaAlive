@@ -25,7 +25,7 @@
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/SilverCrow2323/HIKE-BACK-Vita/releases/download/v.1.1/HIKE.BACK-v1.1.vpk",
-      "recommended": true
+      "recommended": false
     },
     {
       "type": "Official Website",
@@ -40,7 +40,8 @@
     {
       "type": "Download",
       "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=809"
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=809",
+      "recommended": true
     }
   ],
   "source_name": "VitaDBtoo",

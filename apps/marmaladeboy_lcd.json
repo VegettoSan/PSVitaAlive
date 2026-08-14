@@ -29,7 +29,7 @@
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1109-marmalade_bunkai.vpk",
-      "recommended": true
+      "recommended": false
     },
     {
       "type": "Official Website",
@@ -44,12 +44,14 @@
     {
       "type": "Download",
       "name": "VitaDBtoo VPK",
-      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/MarmaladeBoy_LCD.vpk"
+      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/MarmaladeBoy_LCD.vpk",
+      "recommended": true
     },
     {
       "type": "Download",
       "name": "VitaDBtoo VPK",
-      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/1109-marmalade_bunkai.vpk"
+      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/1109-marmalade_bunkai.vpk",
+      "recommended": false
     },
     {
       "type": "Official Website",
@@ -64,7 +66,8 @@
     {
       "type": "Download",
       "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1109"
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1109",
+      "recommended": false
     }
   ],
   "source_name": "VitaDBtoo",

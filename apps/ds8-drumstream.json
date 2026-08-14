@@ -41,7 +41,8 @@
     {
       "type": "Download",
       "name": "VitaDBtoo VPK",
-      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/1407-psvita-ds8-v0.6.3.zip"
+      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/1407-psvita-ds8-v0.6.3.zip",
+      "recommended": false
     }
   ],
   "source_name": "VitaDBtoo",

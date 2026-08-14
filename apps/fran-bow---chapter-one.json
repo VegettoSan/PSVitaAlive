@@ -28,7 +28,7 @@
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/639-FranBowChapter1.vpk",
-      "recommended": true
+      "recommended": false
     },
     {
       "type": "Official Website",
@@ -38,12 +38,14 @@
     {
       "type": "Download",
       "name": "VitaDBtoo VPK",
-      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/639-FranBowChapter1.vpk"
+      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/639-FranBowChapter1.vpk",
+      "recommended": false
     },
     {
       "type": "Download",
       "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=639"
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=639",
+      "recommended": true
     }
   ],
   "source_name": "VitaDBtoo",

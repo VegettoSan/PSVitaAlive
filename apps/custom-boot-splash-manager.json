@@ -26,7 +26,7 @@
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/SKGleba/CBS-Manager/releases/download/v3.1/cbs_manager.vpk",
-      "recommended": true
+      "recommended": false
     },
     {
       "type": "Official Website",
@@ -46,7 +46,8 @@
     {
       "type": "Download",
       "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=437"
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=437",
+      "recommended": true
     }
   ],
   "source_name": "VitaDBtoo",

@@ -39,12 +39,14 @@
     {
       "type": "Download",
       "name": "VitaDBtoo VPK",
-      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/992-call_of_vita.vpk"
+      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/992-call_of_vita.vpk",
+      "recommended": false
     },
     {
       "type": "Download",
       "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=992"
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=992",
+      "recommended": false
     }
   ],
   "source_name": "VitaDBtoo",

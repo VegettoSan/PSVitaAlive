@@ -31,7 +31,7 @@
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/TheOfficialFloW/gtasa_vita/releases/download/v2.1/GTASA.vpk",
-      "recommended": true
+      "recommended": false
     },
     {
       "type": "Official Website",
@@ -51,7 +51,8 @@
     {
       "type": "Download",
       "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=618"
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=618",
+      "recommended": true
     }
   ],
   "source_name": "VitaDBtoo",

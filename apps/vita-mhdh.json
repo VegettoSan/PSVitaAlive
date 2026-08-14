@@ -30,7 +30,7 @@
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/MuukalainenPuhuu/Vita-MH-DH/releases/download/1.1/MHDH.vpk",
-      "recommended": true
+      "recommended": false
     },
     {
       "type": "Official Website",
@@ -50,7 +50,8 @@
     {
       "type": "Download",
       "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1420"
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1420",
+      "recommended": true
     }
   ],
   "source_name": "VitaDBtoo",

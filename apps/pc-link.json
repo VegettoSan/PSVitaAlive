@@ -39,12 +39,14 @@
     {
       "type": "Download",
       "name": "VitaDBtoo VPK",
-      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/358-pclink.vpk"
+      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/358-pclink.vpk",
+      "recommended": false
     },
     {
       "type": "Download",
       "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=358"
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=358",
+      "recommended": false
     }
   ],
   "source_name": "VitaDBtoo",

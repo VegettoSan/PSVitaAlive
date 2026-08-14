@@ -27,7 +27,7 @@
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/joel16/VITAident/releases/download/0.7.4/VITAident.vpk",
-      "recommended": true
+      "recommended": false
     },
     {
       "type": "Official Website",
@@ -47,12 +47,14 @@
     {
       "type": "Download",
       "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=25"
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=25",
+      "recommended": true
     },
     {
       "type": "Download",
       "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=26"
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=26",
+      "recommended": false
     }
   ],
   "source_name": "VitaDBtoo",

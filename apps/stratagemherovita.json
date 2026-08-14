@@ -38,12 +38,14 @@
     {
       "type": "Download",
       "name": "VitaDBtoo VPK",
-      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/1205-StratagemHeroVita.vpk"
+      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/1205-StratagemHeroVita.vpk",
+      "recommended": false
     },
     {
       "type": "Download",
       "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1205"
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1205",
+      "recommended": false
     }
   ],
   "source_name": "VitaDBtoo",

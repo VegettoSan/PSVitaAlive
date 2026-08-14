@@ -38,12 +38,14 @@
     {
       "type": "Download",
       "name": "VitaDBtoo VPK",
-      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/449-Get_20the_20F_20off_20my_20lawn.vpk"
+      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/449-Get_20the_20F_20off_20my_20lawn.vpk",
+      "recommended": false
     },
     {
       "type": "Download",
       "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=449"
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=449",
+      "recommended": false
     }
   ],
   "source_name": "VitaDBtoo",

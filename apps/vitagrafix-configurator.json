@@ -28,7 +28,7 @@
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/Kirezar/VitaGrafixConfigurator/releases/download/v3.0/VitaGrafixConfigurator.vpk",
-      "recommended": true
+      "recommended": false
     },
     {
       "type": "Official Website",
@@ -48,7 +48,8 @@
     {
       "type": "Download",
       "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=400"
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=400",
+      "recommended": true
     }
   ],
   "source_name": "VitaDBtoo",

@@ -29,7 +29,7 @@
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/PatnosDD/Cat-Quest-Ps-Vita/releases/download/V1.0/CatQuest.vpk",
-      "recommended": true
+      "recommended": false
     },
     {
       "type": "Official Website",
@@ -44,7 +44,8 @@
     {
       "type": "Download",
       "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1311"
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1311",
+      "recommended": true
     }
   ],
   "source_name": "VitaDBtoo",

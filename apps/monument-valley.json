@@ -29,7 +29,7 @@
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/hatoving/mvalley-old-vita/releases/download/1.0.1/MV.vpk",
-      "recommended": true
+      "recommended": false
     },
     {
       "type": "Official Website",
@@ -49,7 +49,8 @@
     {
       "type": "Download",
       "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1023"
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1023",
+      "recommended": true
     }
   ],
   "source_name": "VitaDBtoo",

@@ -44,12 +44,14 @@
     {
       "type": "Download",
       "name": "VitaDBtoo VPK",
-      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/716-quakespasm.vpk"
+      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/716-quakespasm.vpk",
+      "recommended": false
     },
     {
       "type": "Download",
       "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=716"
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=716",
+      "recommended": false
     }
   ],
   "source_name": "VitaDBtoo",

@@ -26,7 +26,7 @@
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/RetroGamer74/SuperPixelRun/releases/download/1.0/buildspr.vpk",
-      "recommended": true
+      "recommended": false
     },
     {
       "type": "Official Website",
@@ -46,7 +46,8 @@
     {
       "type": "Download",
       "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=475"
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=475",
+      "recommended": true
     }
   ],
   "source_name": "VitaDBtoo",

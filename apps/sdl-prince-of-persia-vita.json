@@ -27,7 +27,7 @@
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/usineur/SDLPoP/releases/download/vita-1.7/SDLPoP-Vita.vpk",
-      "recommended": true
+      "recommended": false
     },
     {
       "type": "Official Website",
@@ -47,7 +47,8 @@
     {
       "type": "Download",
       "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=12"
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=12",
+      "recommended": true
     }
   ],
   "source_name": "VitaDBtoo",

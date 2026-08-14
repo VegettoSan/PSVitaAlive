@@ -26,7 +26,7 @@
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/McCallum99/PSVitaRebootShutdown/releases/download/v1.08/VitaRebootShutdown.vpk",
-      "recommended": true
+      "recommended": false
     },
     {
       "type": "Official Website",
@@ -46,7 +46,8 @@
     {
       "type": "Download",
       "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=431"
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=431",
+      "recommended": true
     }
   ],
   "source_name": "VitaDBtoo",

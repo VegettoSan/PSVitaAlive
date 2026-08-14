@@ -29,7 +29,7 @@
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/AntHJ/UX0toSD/releases/download/v2.3/UX0toSD_v2.3.vpk",
-      "recommended": true
+      "recommended": false
     },
     {
       "type": "Official Website",
@@ -49,7 +49,8 @@
     {
       "type": "Download",
       "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=724"
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=724",
+      "recommended": true
     }
   ],
   "source_name": "VitaDBtoo",

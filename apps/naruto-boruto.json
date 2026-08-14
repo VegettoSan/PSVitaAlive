@@ -39,12 +39,14 @@
     {
       "type": "Download",
       "name": "VitaDBtoo VPK",
-      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/510-NarutoBoruto.vpk"
+      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/510-NarutoBoruto.vpk",
+      "recommended": false
     },
     {
       "type": "Download",
       "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=510"
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=510",
+      "recommended": false
     }
   ],
   "source_name": "VitaDBtoo",

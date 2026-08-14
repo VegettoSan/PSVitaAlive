@@ -31,7 +31,7 @@
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/Rinnegatamante/Death-Road-to-Canada-Lite/releases/download/v.1.0/Canada.vpk",
-      "recommended": true
+      "recommended": false
     },
     {
       "type": "Official Website",
@@ -51,7 +51,8 @@
     {
       "type": "Download",
       "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=846"
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=846",
+      "recommended": true
     }
   ],
   "source_name": "VitaDBtoo",

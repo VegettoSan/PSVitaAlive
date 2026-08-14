@@ -29,7 +29,7 @@
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/anas-halid/HYPERFIGHT-VITA/releases/download/Release/HYPERFIGHT.vpk",
-      "recommended": true
+      "recommended": false
     },
     {
       "type": "Official Website",
@@ -44,7 +44,8 @@
     {
       "type": "Download",
       "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1072"
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1072",
+      "recommended": true
     }
   ],
   "source_name": "VitaDBtoo",

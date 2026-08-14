@@ -35,12 +35,14 @@
     {
       "type": "Download",
       "name": "VitaDBtoo VPK",
-      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/535-Vita_20Timer.vpk"
+      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/535-Vita_20Timer.vpk",
+      "recommended": false
     },
     {
       "type": "Download",
       "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=535"
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=535",
+      "recommended": false
     }
   ],
   "source_name": "VitaDBtoo",

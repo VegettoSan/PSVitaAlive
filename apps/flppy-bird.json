@@ -41,12 +41,14 @@
     {
       "type": "Download",
       "name": "VitaDBtoo VPK",
-      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/7-flppy_bird.vpk"
+      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/7-flppy_bird.vpk",
+      "recommended": false
     },
     {
       "type": "Download",
       "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=7"
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=7",
+      "recommended": false
     }
   ],
   "source_name": "VitaDBtoo",

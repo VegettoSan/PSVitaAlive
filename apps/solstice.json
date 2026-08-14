@@ -28,7 +28,7 @@
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/withLogic/solstice-godot/releases/download/v1.0.4/Solstice.vpk",
-      "recommended": true
+      "recommended": false
     },
     {
       "type": "Official Website",
@@ -48,7 +48,8 @@
     {
       "type": "Download",
       "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1175"
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1175",
+      "recommended": true
     }
   ],
   "source_name": "VitaDBtoo",

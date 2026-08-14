@@ -29,7 +29,7 @@
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/SonicMastr/Sonic-CD-Vita/releases/download/0.2/SonicCD.vpk",
-      "recommended": true
+      "recommended": false
     },
     {
       "type": "Official Website",
@@ -49,7 +49,8 @@
     {
       "type": "Download",
       "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=868"
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=868",
+      "recommended": true
     }
   ],
   "source_name": "VitaDBtoo",

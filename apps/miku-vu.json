@@ -31,7 +31,7 @@
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/Avellea/mikuvu/releases/download/1.8/MikuVU_1.8.vpk",
-      "recommended": true
+      "recommended": false
     },
     {
       "type": "Official Website",
@@ -51,7 +51,8 @@
     {
       "type": "Download",
       "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1073"
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1073",
+      "recommended": true
     }
   ],
   "source_name": "VitaDBtoo",

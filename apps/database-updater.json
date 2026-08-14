@@ -36,7 +36,18 @@
     {
       "type": "Download",
       "name": "VitaDBtoo VPK",
-      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/224-Database.Manager.vpk"
+      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/224-Database.Manager.vpk",
+      "recommended": false
+    },
+    {
+      "type": "Official Website",
+      "name": "NeoVitaDB Release Page",
+      "url": "https://github.com/deltaclock/Database-Manager/releases/tag/v1.20"
+    },
+    {
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
+      "url": "http://wololo.net/talk/viewtopic.php?f=116&t=48671"
     }
   ],
   "source_name": "VitaDBtoo",

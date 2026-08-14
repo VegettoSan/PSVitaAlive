@@ -27,7 +27,7 @@
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/aagallag/Vita_Doom/releases/download/aagallag_v1.1/Vita_Doom.vpk",
-      "recommended": true
+      "recommended": false
     },
     {
       "type": "Official Website",
@@ -47,7 +47,8 @@
     {
       "type": "Download",
       "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=172"
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=172",
+      "recommended": true
     }
   ],
   "source_name": "VitaDBtoo",

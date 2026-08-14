@@ -39,12 +39,14 @@
     {
       "type": "Download",
       "name": "VitaDBtoo VPK",
-      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/1071-HeartPotato.vpk"
+      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/1071-HeartPotato.vpk",
+      "recommended": false
     },
     {
       "type": "Download",
       "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1071"
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1071",
+      "recommended": false
     }
   ],
   "source_name": "VitaDBtoo",

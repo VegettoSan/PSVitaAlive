@@ -30,12 +30,13 @@
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1028-nzp.vpk",
-      "recommended": true
+      "recommended": false
     },
     {
       "type": "Download",
       "name": "NeoVitaDB VPK",
-      "url": "https://github.com/nzp-team/nzportable/releases/download/nightly/nzportable-vita.zip"
+      "url": "https://github.com/nzp-team/nzportable/releases/download/nightly/nzportable-vita.zip",
+      "recommended": true
     },
     {
       "type": "Official Website",
@@ -55,12 +56,14 @@
     {
       "type": "Download",
       "name": "VitaDBtoo VPK",
-      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/1028-nzp.vpk"
+      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/1028-nzp.vpk",
+      "recommended": false
     },
     {
       "type": "Download",
       "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1028"
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1028",
+      "recommended": false
     }
   ],
   "source_name": "VitaDBtoo",

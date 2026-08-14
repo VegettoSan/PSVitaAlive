@@ -41,7 +41,8 @@
     {
       "type": "Download",
       "name": "VitaDBtoo VPK",
-      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/1099-Parkour_Labs.vpk"
+      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/1099-Parkour_Labs.vpk",
+      "recommended": false
     }
   ],
   "source_name": "NeoVitaDB",

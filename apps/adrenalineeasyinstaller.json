@@ -29,12 +29,13 @@
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/36-AdrenalineEasyInstaller.vpk",
-      "recommended": true
+      "recommended": false
     },
     {
       "type": "Download",
       "name": "NeoVitaDB VPK",
-      "url": "https://github.com/Freakler/vita-AdrenalineEasyInstaller/releases/download/v1.15/AdrenalineEasyInstaller_v115.vpk"
+      "url": "https://github.com/Freakler/vita-AdrenalineEasyInstaller/releases/download/v1.15/AdrenalineEasyInstaller_v115.vpk",
+      "recommended": false
     },
     {
       "type": "Official Website",
@@ -49,12 +50,14 @@
     {
       "type": "Download",
       "name": "VitaDBtoo VPK",
-      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/36-AdrenalineEasyInstaller.vpk"
+      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/36-AdrenalineEasyInstaller.vpk",
+      "recommended": false
     },
     {
       "type": "Download",
       "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=36"
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=36",
+      "recommended": true
     }
   ],
   "source_name": "VitaDBtoo",

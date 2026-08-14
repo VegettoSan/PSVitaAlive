@@ -29,7 +29,7 @@
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/joel16/VITA-Homebrew-Sorter/releases/download/v1.27/VITA-Homebrew-Sorter.vpk",
-      "recommended": true
+      "recommended": false
     },
     {
       "type": "Official Website",
@@ -49,7 +49,8 @@
     {
       "type": "Download",
       "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=655"
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=655",
+      "recommended": true
     }
   ],
   "source_name": "VitaDBtoo",

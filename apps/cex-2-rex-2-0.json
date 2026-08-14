@@ -26,7 +26,7 @@
       "type": "Download",
       "name": "NeoVitaDB VPK",
       "url": "https://git.silica.codes/Li/cex-2-rex/releases/download/latest/CEX2REX.vpk",
-      "recommended": true
+      "recommended": false
     },
     {
       "type": "Repository",
@@ -36,7 +36,8 @@
     {
       "type": "Download",
       "name": "VitaDBtoo VPK",
-      "url": "https://git.silica.codes/Li/cex-2-rex/releases/download/2.0.1/CEX2REX.vpk"
+      "url": "https://git.silica.codes/Li/cex-2-rex/releases/download/2.0.1/CEX2REX.vpk",
+      "recommended": true
     },
     {
       "type": "Official Website",

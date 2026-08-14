@@ -44,12 +44,14 @@
     {
       "type": "Download",
       "name": "VitaDBtoo VPK",
-      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/1130-AnimalVitas.vpk"
+      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/1130-AnimalVitas.vpk",
+      "recommended": false
     },
     {
       "type": "Download",
       "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1130"
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1130",
+      "recommended": false
     }
   ],
   "source_name": "VitaDBtoo",

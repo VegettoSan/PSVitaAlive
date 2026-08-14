@@ -44,12 +44,14 @@
     {
       "type": "Download",
       "name": "VitaDBtoo VPK",
-      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/1300-GUARDENER_v1_2.vpk"
+      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/1300-GUARDENER_v1_2.vpk",
+      "recommended": false
     },
     {
       "type": "Download",
       "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1300"
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1300",
+      "recommended": false
     }
   ],
   "source_name": "VitaDBtoo",

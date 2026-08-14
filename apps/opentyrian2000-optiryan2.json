@@ -25,7 +25,7 @@
       "type": "Download",
       "name": "NeoVitaDB VPK",
       "url": "https://github.com/andyvand/opentyrian2000/releases/download/3.0.0-SDL3/OpenTyrian2000-PSVita.vpk",
-      "recommended": true
+      "recommended": false
     },
     {
       "type": "Official Website",
@@ -40,7 +40,8 @@
     {
       "type": "Download",
       "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1279"
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1279",
+      "recommended": true
     },
     {
       "type": "Official Website",

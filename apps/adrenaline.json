@@ -26,7 +26,7 @@
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/TheOfficialFloW/Adrenaline/releases/download/v7/Adrenaline.vpk",
-      "recommended": true
+      "recommended": false
     },
     {
       "type": "Official Website",
@@ -46,7 +46,8 @@
     {
       "type": "Download",
       "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=47"
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=47",
+      "recommended": true
     }
   ],
   "source_name": "VitaDBtoo",

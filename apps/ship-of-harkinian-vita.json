@@ -29,12 +29,13 @@
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1276-soh.vpk",
-      "recommended": true
+      "recommended": false
     },
     {
       "type": "Download",
       "name": "NeoVitaDB VPK",
-      "url": "https://github.com/Rinnegatamante/Shipwright/releases/download/v.1.2/soh.vpk"
+      "url": "https://github.com/Rinnegatamante/Shipwright/releases/download/v.1.2/soh.vpk",
+      "recommended": true
     },
     {
       "type": "Official Website",
@@ -54,12 +55,14 @@
     {
       "type": "Download",
       "name": "VitaDBtoo VPK",
-      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/1276-soh.vpk"
+      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/1276-soh.vpk",
+      "recommended": false
     },
     {
       "type": "Download",
       "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1276"
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1276",
+      "recommended": false
     }
   ],
   "source_name": "VitaDBtoo",

@@ -36,12 +36,14 @@
     {
       "type": "Download",
       "name": "VitaDBtoo VPK",
-      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/516-SuperCrateMod-Vita.VPK"
+      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/516-SuperCrateMod-Vita.VPK",
+      "recommended": false
     },
     {
       "type": "Download",
       "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=516"
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=516",
+      "recommended": false
     }
   ],
   "source_name": "VitaDBtoo",

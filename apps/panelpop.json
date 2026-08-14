@@ -29,7 +29,7 @@
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/sharkwouter/panel-pop/releases/download/0.0.3-vita/panel-pop.vpk",
-      "recommended": true
+      "recommended": false
     },
     {
       "type": "Official Website",
@@ -49,7 +49,8 @@
     {
       "type": "Download",
       "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=599"
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=599",
+      "recommended": true
     }
   ],
   "source_name": "VitaDBtoo",

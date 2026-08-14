@@ -28,7 +28,7 @@
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/WolffsRoom/DeltaruneVita/releases/download/v0.68/Deltarune-v0.68.vpk",
-      "recommended": true
+      "recommended": false
     },
     {
       "type": "Official Website",
@@ -43,7 +43,8 @@
     {
       "type": "Download",
       "name": "VitaDBtoo VPK",
-      "url": "https://github.com/WolffsRoom/DeltaruneVita/releases/download/v0.69/Deltarune-v0.69.vpk"
+      "url": "https://github.com/WolffsRoom/DeltaruneVita/releases/download/v0.69/Deltarune-v0.69.vpk",
+      "recommended": true
     }
   ],
   "source_name": "VitaDBtoo",

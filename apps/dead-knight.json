@@ -25,7 +25,7 @@
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/rodentcat/deadknight-vita-port/releases/download/1.0/DeadKnight.VPK",
-      "recommended": true
+      "recommended": false
     },
     {
       "type": "Official Website",
@@ -40,7 +40,8 @@
     {
       "type": "Download",
       "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=791"
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=791",
+      "recommended": true
     }
   ],
   "source_name": "VitaDBtoo",

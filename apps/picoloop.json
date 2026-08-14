@@ -25,12 +25,13 @@
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/191-picoloop.vpk",
-      "recommended": true
+      "recommended": false
     },
     {
       "type": "Download",
       "name": "NeoVitaDB VPK",
-      "url": "https://github.com/yoyz/picoloop/releases/download/picoloop-0.77a/picoloop-20170417-0.77a-psvita.zip"
+      "url": "https://github.com/yoyz/picoloop/releases/download/picoloop-0.77a/picoloop-20170417-0.77a-psvita.zip",
+      "recommended": false
     },
     {
       "type": "Official Website",
@@ -45,12 +46,14 @@
     {
       "type": "Download",
       "name": "VitaDBtoo VPK",
-      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/191-picoloop.vpk"
+      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/191-picoloop.vpk",
+      "recommended": false
     },
     {
       "type": "Download",
       "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=191"
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=191",
+      "recommended": true
     }
   ],
   "source_name": "VitaDBtoo",

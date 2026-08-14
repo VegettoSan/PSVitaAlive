@@ -29,7 +29,7 @@
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/xfangfang/DungeonRush-PSV/releases/download/01.00/dungeonrush_01.00.vpk",
-      "recommended": true
+      "recommended": false
     },
     {
       "type": "Official Website",
@@ -49,7 +49,8 @@
     {
       "type": "Download",
       "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=578"
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=578",
+      "recommended": true
     }
   ],
   "source_name": "VitaDBtoo",

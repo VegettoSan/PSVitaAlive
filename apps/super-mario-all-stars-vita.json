@@ -43,7 +43,8 @@
     {
       "type": "Download",
       "name": "VitaDBtoo VPK",
-      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/1280-allstars.vpk"
+      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/1280-allstars.vpk",
+      "recommended": false
     },
     {
       "type": "Repository",

@@ -45,12 +45,14 @@
     {
       "type": "Download",
       "name": "VitaDBtoo VPK",
-      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/416-Freeway_Mutant.vpk"
+      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/416-Freeway_Mutant.vpk",
+      "recommended": false
     },
     {
       "type": "Download",
       "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=416"
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=416",
+      "recommended": false
     }
   ],
   "source_name": "VitaDBtoo",

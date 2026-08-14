@@ -25,7 +25,7 @@
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/save-cloud/save-cloud-vita/releases/download/v2024.02.28/save-cloud-2026-04-06.vpk",
-      "recommended": true
+      "recommended": false
     },
     {
       "type": "Official Website",
@@ -40,7 +40,8 @@
     {
       "type": "Download",
       "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1419"
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1419",
+      "recommended": true
     }
   ],
   "source_name": "VitaDBtoo",

@@ -29,12 +29,13 @@
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/TheLostPantheon/openmw/releases/download/v2.1.1/openmw.vpk",
-      "recommended": true
+      "recommended": false
     },
     {
       "type": "Download",
       "name": "NeoVitaDB VPK",
-      "url": "https://github.com/TheLostPantheon/openmw/releases/download/v2.1.1/openmw-2.2-partial.vpk"
+      "url": "https://github.com/TheLostPantheon/openmw/releases/download/v2.1.1/openmw-2.2-partial.vpk",
+      "recommended": true
     },
     {
       "type": "Official Website",

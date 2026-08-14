@@ -44,7 +44,8 @@
     {
       "type": "Download",
       "name": "VitaDBtoo VPK",
-      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/310-Notepad.vpk"
+      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/310-Notepad.vpk",
+      "recommended": false
     }
   ],
   "source_name": "VitaDBtoo",

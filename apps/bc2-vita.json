@@ -31,7 +31,7 @@
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/TheOfficialFloW/bc2_vita/releases/download/v1.0/BC2.vpk",
-      "recommended": true
+      "recommended": false
     },
     {
       "type": "Official Website",
@@ -51,7 +51,8 @@
     {
       "type": "Download",
       "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=714"
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=714",
+      "recommended": true
     }
   ],
   "source_name": "VitaDBtoo",

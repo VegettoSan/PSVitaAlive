@@ -29,7 +29,7 @@
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/MEGAgameBoy/Italian-Plumber-Adventures-PS-Vita/releases/download/1.1/ipa.vpk",
-      "recommended": true
+      "recommended": false
     },
     {
       "type": "Official Website",
@@ -49,7 +49,8 @@
     {
       "type": "Download",
       "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1035"
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1035",
+      "recommended": true
     }
   ],
   "source_name": "VitaDBtoo",

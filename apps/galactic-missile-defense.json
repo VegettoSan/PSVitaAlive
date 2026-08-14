@@ -29,7 +29,7 @@
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/MDashK/Galactic-Missile-Defense-Vita/releases/download/v1.0.0/GAMIDEF00.VPK",
-      "recommended": true
+      "recommended": false
     },
     {
       "type": "Official Website",
@@ -44,7 +44,8 @@
     {
       "type": "Download",
       "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=743"
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=743",
+      "recommended": true
     }
   ],
   "source_name": "VitaDBtoo",

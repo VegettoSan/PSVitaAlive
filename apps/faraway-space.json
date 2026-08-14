@@ -25,7 +25,7 @@
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/ParallelProductions/FarawaySpace/releases/download/Vita-v0.1b/Faraway.Space.vpk",
-      "recommended": true
+      "recommended": false
     },
     {
       "type": "Official Website",
@@ -45,7 +45,8 @@
     {
       "type": "Download",
       "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1039"
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1039",
+      "recommended": true
     }
   ],
   "source_name": "VitaDBtoo",

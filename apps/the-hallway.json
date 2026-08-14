@@ -43,12 +43,14 @@
     {
       "type": "Download",
       "name": "VitaDBtoo VPK",
-      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/428-TheHallway.vpk"
+      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/428-TheHallway.vpk",
+      "recommended": false
     },
     {
       "type": "Download",
       "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=428"
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=428",
+      "recommended": false
     }
   ],
   "source_name": "VitaDBtoo",

@@ -28,7 +28,7 @@
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/bomblik/GNU_Robbo_PSVITA_PSP/releases/download/GNU_Robbo_0.68_PSVITA/gnurobbo_0.68.vpk",
-      "recommended": true
+      "recommended": false
     },
     {
       "type": "Official Website",
@@ -48,7 +48,8 @@
     {
       "type": "Download",
       "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=114"
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=114",
+      "recommended": true
     }
   ],
   "source_name": "VitaDBtoo",

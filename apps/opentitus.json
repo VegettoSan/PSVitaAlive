@@ -34,7 +34,8 @@
     {
       "type": "Download",
       "name": "VitaDBtoo VPK",
-      "url": "https://github.com/usineur/opentitus/releases/download/1.0/Moktar.vpk"
+      "url": "https://github.com/usineur/opentitus/releases/download/1.0/Moktar.vpk",
+      "recommended": false
     },
     {
       "type": "Official Website",
@@ -54,12 +55,14 @@
     {
       "type": "Download",
       "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=344"
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=344",
+      "recommended": false
     },
     {
       "type": "Download",
       "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=345"
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=345",
+      "recommended": false
     }
   ],
   "source_name": "VitaDBtoo",

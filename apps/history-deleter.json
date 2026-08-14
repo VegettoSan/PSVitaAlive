@@ -35,7 +35,8 @@
     {
       "type": "Download",
       "name": "VitaDBtoo VPK",
-      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/162-History_Deleter.vpk"
+      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/162-History_Deleter.vpk",
+      "recommended": false
     }
   ],
   "source_name": "VitaDBtoo",

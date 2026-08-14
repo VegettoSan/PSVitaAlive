@@ -43,7 +43,8 @@
     {
       "type": "Download",
       "name": "VitaDBtoo VPK",
-      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/782-RedMoon.vpk"
+      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/782-RedMoon.vpk",
+      "recommended": false
     }
   ],
   "source_name": "VitaDBtoo",

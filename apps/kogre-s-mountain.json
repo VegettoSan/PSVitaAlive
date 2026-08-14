@@ -40,7 +40,8 @@
     {
       "type": "Download",
       "name": "VitaDBtoo VPK",
-      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/557-KogresMountain.vpk"
+      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/557-KogresMountain.vpk",
+      "recommended": false
     }
   ],
   "source_name": "VitaDBtoo",
