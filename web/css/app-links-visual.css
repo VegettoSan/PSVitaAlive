@@ -70,6 +70,43 @@
 
 
 /* ========================================
+   Recommended badge
+======================================== */
+
+.app-link-card-recommended {
+
+    display: inline-flex;
+
+    align-items: center;
+
+    width: fit-content;
+
+    padding: 5px 10px;
+
+    background: var(--accent);
+
+    border: 1px solid var(--accent);
+
+    border-radius: 999px;
+
+    color: #071006;
+
+    font-size: 0.68rem;
+
+    font-weight: 950;
+
+    line-height: 1;
+
+    text-transform: uppercase;
+
+    letter-spacing: 0.06em;
+
+    box-shadow:
+        0 4px 14px rgba(59, 255, 0, 0.18);
+}
+
+
+/* ========================================
    Type badge
 ======================================== */
 
@@ -166,7 +203,7 @@
 
 
 /* ========================================
-   Recommended
+   Recommended card emphasis
 ======================================== */
 
 .app-link-card.recommended {
