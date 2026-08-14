@@ -4,7 +4,7 @@ Esta carpeta contiene correcciones y enriquecimiento manual sobre aplicaciones q
 
 ## Cuándo usar un Override
 
-Es apropiado cuando una fuente externa no contiene información que VitaHub quiere conservar, por ejemplo:
+Es apropiado cuando una fuente externa no contiene información que PS Vita Alive Store quiere conservar, por ejemplo:
 
 - descripción mejorada;
 - descripción larga;
@@ -17,7 +17,7 @@ Es apropiado cuando una fuente externa no contiene información que VitaHub quie
 
 ## Estructura
 
-Se crea un JSON por aplicación usando el `id` canónico de VitaHub:
+Se crea un JSON por aplicación usando el `id` canónico de PS Vita Alive Store:
 
 ```text
 catalog_overrides/adrenaline.json
@@ -112,4 +112,4 @@ Para un port que necesita datos externos del juego:
 }
 ```
 
-La aplicación sigue recibiendo automáticamente sus actualizaciones de versión desde las fuentes externas, mientras el enlace adicional permanece porque está definido en VitaHub.
+La aplicación sigue recibiendo automáticamente sus actualizaciones de versión desde las fuentes externas, mientras el enlace adicional permanece porque está definido en PS Vita Alive Store.
