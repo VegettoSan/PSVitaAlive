@@ -11,6 +11,7 @@
  * - Displays links as cards, matching the visual style
  *   used by PS Vita / PSP / PS1 game links.
  * - Clearly labels the recommended link.
+ * - Displays the download size for downloadable links.
  */
 
 function getHomebrewLinkLabel(link) {
@@ -41,6 +42,19 @@ function getHomebrewLinkType(link) {
         link && link.type
             ? link.type
             : "Other"
+    );
+}
+
+
+function isDownloadableHomebrewLink(link) {
+
+    const type = getHomebrewLinkType(link)
+        .trim()
+        .toLowerCase();
+
+    return (
+        type === "download" ||
+        type === "mirror"
     );
 }
 
@@ -236,7 +250,6 @@ function renderLinks(app) {
                  * Move meta after the title
                  * so the visual order is:
                  *
-                 * RECOMMENDED (optional)
                  * TYPE
                  * NAME
                  * metadata
@@ -269,6 +282,7 @@ function renderLinks(app) {
             }
 
             if (
+                isDownloadableHomebrewLink(linkData) &&
                 typeof linkData.size === "number" &&
                 linkData.size > 0
             ) {
@@ -282,9 +296,9 @@ function renderLinks(app) {
                     "app-link-card-size";
 
                 size.textContent =
-                    formatFileSize(
+                    `Size: ${formatFileSize(
                         linkData.size
-                    );
+                    )}`;
 
                 link.appendChild(
                     size
