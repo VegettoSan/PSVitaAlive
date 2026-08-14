@@ -9,12 +9,6 @@ generated catalogs cannot diverge.
 All media persisted by this pass is an absolute URL. Repository-local media is
 converted to the public raw GitHub URL so GitHub Pages and the Vita client do
 not depend on a relative filesystem path.
-
-This pass also repairs legacy compound author records. External catalogs often
-write several developers into one author field (for example "Aurora &
-Jackiepooh & Rinnegatamante"). VitaHub requires one author JSON/profile per
-developer, so compound profiles are expanded before the generated registry is
-validated.
 """
 from __future__ import annotations
 
@@ -57,38 +51,6 @@ def split_values(value):
     if not isinstance(value, str) or not value.strip():
         return []
     return [item.strip() for item in re.split(r"[;\r\n]+", value) if item.strip()]
-
-
-def split_author_names(value):
-    """Split human-readable compound author names into individual names."""
-    if isinstance(value, list):
-        result = []
-        seen = set()
-        for item in value:
-            for name in split_author_names(item):
-                key = name.casefold()
-                if key and key not in seen:
-                    seen.add(key)
-                    result.append(name)
-        return result
-    if not isinstance(value, str) or not value.strip():
-        return []
-    text = re.sub(r"\s+", " ", value.replace("\u00a0", " ")).strip()
-    text = re.sub(r"\s*&\s*", ",", text)
-    text = re.sub(r"\s+\band\b\s+", ",", text, flags=re.I)
-    text = re.sub(r"\s*\+\s*", ",", text)
-    text = re.sub(r"[;\n\r]+", ",", text)
-    result = []
-    seen = set()
-    for part in text.split(","):
-        name = part.strip(" \t,;|")
-        if not name:
-            continue
-        key = name.casefold()
-        if key not in seen:
-            seen.add(key)
-            result.append(name)
-    return result
 
 
 def is_remote(value):
@@ -268,20 +230,17 @@ def normalize_apps():
 
 
 def normalize_author_icon(author):
-    """Normalize author avatar/icon and always provide the VitaHub fallback."""
-    candidates = [author.get("avatar"), author.get("icon")]
-    for value in candidates:
-        if not isinstance(value, str) or not value.strip():
-            continue
-        value = value.strip()
+    """Normalize author icon and use the repository fallback when unavailable."""
+    value = author.get("icon")
+    if isinstance(value, str) and value.strip():
         if is_remote(value):
             if remote_ok(value):
-                return value
+                return value.strip()
         else:
             local_raw = resolve_local_raw(value)
             if local_raw and remote_ok(local_raw):
                 return local_raw
-            clean = value.lstrip("./").replace("\\", "/")
+            clean = value.strip().lstrip("./").replace("\\", "/")
             if not clean.startswith("authors/"):
                 candidate = RAW_ROOT + "authors/icon/" + "/".join(
                     quote(part, safe="@:+,;=-._~") for part in clean.split("/")
@@ -289,7 +248,7 @@ def normalize_author_icon(author):
                 if remote_ok(candidate):
                     return candidate
 
-    return AUTHOR_FALLBACK
+    return AUTHOR_FALLBACK if remote_ok(AUTHOR_FALLBACK) else ""
 
 
 def normalize_author_links(links):
@@ -325,93 +284,7 @@ def normalize_author_links(links):
     return normalized
 
 
-def canonicalize_compound_authors(apps, authors):
-    """Replace compound author IDs with one canonical ID per developer.
-
-    Existing compound author files are deliberately retained for preservation,
-    but applications stop referencing them. New individual profiles inherit
-    useful metadata when available and always receive a valid fallback avatar.
-    """
-    by_name = {}
-    for author_id, author in authors.items():
-        name = author.get("name")
-        if isinstance(name, str) and name.strip():
-            by_name[name.casefold()] = author_id
-
-    changed = 0
-    created = 0
-
-    for app in apps:
-        raw_ids = app.get("author_ids")
-        if not isinstance(raw_ids, list):
-            raw_ids = [app.get("author_id")] if app.get("author_id") else []
-
-        new_ids = []
-        for raw_id in raw_ids:
-            if not isinstance(raw_id, str) or not raw_id.strip():
-                continue
-            raw_id = raw_id.strip()
-            profile = authors.get(raw_id)
-            display = profile.get("name") if isinstance(profile, dict) else raw_id
-            names = split_author_names(display)
-            if len(names) <= 1:
-                aid = raw_id
-                if names:
-                    name_key = names[0].casefold()
-                    aid = by_name.get(name_key, aid)
-                if aid not in new_ids:
-                    new_ids.append(aid)
-                continue
-
-            for name in names:
-                name_key = name.casefold()
-                aid = by_name.get(name_key)
-                if not aid:
-                    # Use the same stable ID convention as the external identity
-                    # layer without introducing a dependency cycle.
-                    normalized = re.sub(r"[^a-z0-9]+", "-", name.lower()).strip("-")
-                    aid = normalized or "unknown-author"
-                    base = aid
-                    index = 2
-                    while aid in authors and str(authors[aid].get("name", "")).casefold() != name_key:
-                        aid = f"{base}-{index}"
-                        index += 1
-                    by_name[name_key] = aid
-
-                if aid not in authors:
-                    source_profile = profile if isinstance(profile, dict) else {}
-                    authors[aid] = {
-                        "id": aid,
-                        "name": name,
-                        "avatar": source_profile.get("avatar") or source_profile.get("icon") or AUTHOR_FALLBACK,
-                        "bio": "",
-                        "links": [],
-                        "icon": source_profile.get("icon") or source_profile.get("avatar") or AUTHOR_FALLBACK,
-                    }
-                    created += 1
-                if aid not in new_ids:
-                    new_ids.append(aid)
-
-        if new_ids != raw_ids or "author_id" in app:
-            app["author_ids"] = new_ids
-            app.pop("author_id", None)
-            changed += 1
-
-    return changed, created
-
-
 def normalize_authors(apps):
-    authors = {}
-    for path in sorted((ROOT / "authors").glob("*.json")):
-        try:
-            author = json.loads(path.read_text(encoding="utf-8"))
-        except Exception:
-            continue
-        if author.get("id"):
-            authors[author["id"]] = author
-
-    changed_apps, created_authors = canonicalize_compound_authors(apps, authors)
-
     by_author = {}
     for app in apps:
         links = app.get("links") if isinstance(app.get("links"), list) else []
@@ -427,34 +300,24 @@ def normalize_authors(apps):
                     continue
                 bucket.append(dict(link))
 
-    for author_id, author in authors.items():
+    for path in sorted((ROOT / "authors").glob("*.json")):
+        try:
+            author = json.loads(path.read_text(encoding="utf-8"))
+        except Exception:
+            continue
+
         links = author.get("links")
         if not isinstance(links, list) or not links:
-            author["links"] = by_author.get(author_id, [])[:5]
-        resolved_avatar = normalize_author_icon(author)
-        author["avatar"] = resolved_avatar
-        author["icon"] = resolved_avatar
-
-        path = ROOT / "authors" / f"{author_id}.json"
+            links = by_author.get(author.get("id"), [])[:5]
+        author["links"] = normalize_author_links(links)
+        author["icon"] = normalize_author_icon(author)
         path.write_text(json.dumps(author, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
-
-    return changed_apps, created_authors
 
 
 def main():
     apps = normalize_apps()
-    changed_apps, created_authors = normalize_authors(apps)
-
-    # Persist repaired application author_ids as part of the canonical source
-    # layer. The workflow regenerates authors.json after this pass.
-    for app in apps:
-        path = ROOT / "apps" / f"{app.get('id')}.json"
-        if app.get("id"):
-            path.write_text(json.dumps(app, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
-
+    normalize_authors(apps)
     print(f"Persisted source normalization: {len(apps)} applications processed")
-    print(f"Compound author groups repaired: {changed_apps}")
-    print(f"Individual author profiles created: {created_authors}")
 
 
 if __name__ == "__main__":
