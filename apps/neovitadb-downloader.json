@@ -2,7 +2,7 @@
   "id": "neovitadb-downloader",
   "title_id": "NEOVITADB",
   "name": "NeoVitaDB Downloader",
-  "description": "",
+  "description": "Homebrew store for PSVita.",
   "long_description": "The store itself. Browse, install and keep PSVita and PSP homebrew up to date.\nThis entry is what lets the app update itself, so its id must never change.",
   "author_ids": [
     "robin994",
@@ -19,14 +19,15 @@
   "status": "Legacy",
   "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/0001-neovitadb-downloader.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/0001-neovitadb-downloader.png"
+    "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/0001-neovitadb-downloader.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/35250126c2b5687ffa204df70e5ce3a4c0131f7dbe77762260a8c070db98b60d.png"
   ],
   "links": [
     {
       "type": "Download",
       "name": "NeoVitaDB VPK",
       "url": "https://github.com/robin994/NeoVitaDB-Downloader/releases/download/v2.9.0/NeoVitaDB.vpk",
-      "recommended": true
+      "recommended": false
     },
     {
       "type": "Official Website",
@@ -37,6 +38,17 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/robin994/NeoVitaDB-Downloader"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1456",
+      "recommended": true
+    },
+    {
+      "type": "Official Website",
+      "name": "VitaDB Release Page",
+      "url": "https://github.com/robin994/NeoVitaDB-Downloader/releases"
     }
   ],
   "source_name": "NeoVitaDB",

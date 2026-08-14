@@ -11,21 +11,23 @@
   "subcategory_ids": [
     "other"
   ],
-  "version": "v.0.1P",
-  "version_date": "2026-08-13",
+  "version": "v.0.1P fix1",
+  "version_date": "2026-08-14",
   "requirements": "Not specified",
-  "size": 823016,
+  "size": 826346,
   "status": "Legacy",
   "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/987247d98ae1b48517443c239e9a7bb0c08bc0a5433faa0183378fc3c1395125.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/987247d98ae1b48517443c239e9a7bb0c08bc0a5433faa0183378fc3c1395125.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/987247d98ae1b48517443c239e9a7bb0c08bc0a5433faa0183378fc3c1395125.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/aae458fb8b406fa61b61565b82b5a07058dd3fed0445ed650a03b82758b50b69.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/5b358fe22df802e97e224ce5528993add26be51e4a86517ed9de95e6230b04c6.png"
   ],
   "links": [
     {
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/LuckyI13I/WoozyLLM/releases/download/v0.1P/WoozyLLM.vpk",
-      "recommended": true
+      "recommended": false
     },
     {
       "type": "Official Website",
@@ -36,6 +38,12 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/LuckyI13I/WoozyLLM"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1455",
+      "recommended": true
     }
   ],
   "source_name": "VitaDBtoo",
