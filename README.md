@@ -23,11 +23,13 @@ Los tres catálogos superiores son generados automáticamente y no deben editars
 - [`categories/`](categories/README.md) — categorías oficiales y subcategorías.
 - [`catalog_overrides/`](catalog_overrides/README.md) — correcciones y enriquecimiento manual que prevalece sobre fuentes externas.
 - [`sources/`](sources/README.md) — configuración de fuentes externas y reglas de importación.
+- [`external_authors/`](external_authors/README.md) — identidad provisional de autores descubiertos externamente.
 - [`scripts/`](scripts/README.md) — pipeline de generación, normalización y validación.
 - [`scripts/external/`](scripts/external/README.md) — adaptadores, deduplicación, merge y autores externos.
 - [`web/`](web/README.md) — sitio GitHub Pages y consumo de los catálogos generados.
 - [`Client PSVitaAlive/`](Client%20PSVitaAlive/README.md) — cliente PS Vita, compilación e integración con VitaSDK.
-- [` .github/workflows/`](.github/workflows/README.md) — automatización de Actions, validación, rebuild y publicación.
+- [`.github/workflows/`](.github/workflows/README.md) — automatización de Actions, validación, rebuild y publicación.
+- [`docs/`](docs/README.md) — decisiones y memoria técnica del proyecto.
 
 ## Fuentes externas actuales
 
