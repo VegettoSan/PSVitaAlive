@@ -1,7 +1,7 @@
 {
   "id": "gemini-ai",
   "name": "Gemini AI",
-  "avatar": "icon/gemini-ai.png",
+  "avatar": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png",
   "bio": "Asistente de IA de Google orientado a ayuda creativa, análisis y productividad.",
   "links": [
     {

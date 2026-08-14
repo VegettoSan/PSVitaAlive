@@ -1,7 +1,7 @@
 {
   "id": "claude-ai",
   "name": "Claude AI",
-  "avatar": "icon/claude-ai.png",
+  "avatar": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png",
   "bio": "Asistente de IA de Anthropic usado como apoyo de programación, revisión y escritura.",
   "links": [
     {

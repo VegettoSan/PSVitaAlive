@@ -1,7 +1,7 @@
 {
   "id": "kimi-ai",
   "name": "Kimi AI",
-  "avatar": "icon/kimi-ai.png",
+  "avatar": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png",
   "bio": "Asistente de IA de Moonshot AI enfocado en lectura larga, análisis y tareas de programación.",
   "links": [
     {

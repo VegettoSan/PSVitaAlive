@@ -1,7 +1,7 @@
 {
   "id": "deepseek-ai",
   "name": "DeepSeek AI",
-  "avatar": "icon/deepseek-ai.png",
+  "avatar": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png",
   "bio": "Asistente de IA de DeepSeek orientado a razonamiento, código y asistencia de desarrollo.",
   "links": [
     {

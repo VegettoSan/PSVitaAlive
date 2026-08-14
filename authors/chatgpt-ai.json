@@ -1,7 +1,7 @@
 {
   "id": "chatgpt-ai",
   "name": "ChatGPT AI",
-  "avatar": "icon/chatgpt-ai.png",
+  "avatar": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png",
   "bio": "Asistente de IA de OpenAI usado como apoyo creativo y técnico en algunos homebrews de PS Vita.",
   "links": [
     {
