@@ -244,11 +244,19 @@
         if (!author) return;
         createdAuthors.set(author.id, author);
         downloadBlob(`${author.id}.json`, author);
+        if (typeof window.updatePreview === "function") window.updatePreview();
     }
 
     window.getCreatedAuthorProfiles = () => selectedIds().map(id => createdAuthors.get(id)).filter(Boolean);
     window.isCreatedAuthor = (id) => createdAuthors.has(id);
-    window.clearCreatedAuthors = () => createdAuthors.clear();
+    window.clearCreatedAuthors = () => {
+        createdAuthors.forEach((_, id) => {
+            const option = getOptions().find(item => item.value === id);
+            if (option) option.remove();
+        });
+        createdAuthors.clear();
+        if (typeof window.refreshAuthorPicker === "function") window.refreshAuthorPicker();
+    };
     window.downloadAuthorProfiles = (authors) => {
         authors.forEach(author => downloadBlob(`${author.id}.json`, author));
     };
@@ -297,9 +305,10 @@
         $("download-author").addEventListener("click", downloadCreatedAuthorJson);
         $("add-author-link").addEventListener("click", () => addAuthorLinkRow());
         $("new-author-name").addEventListener("input", event => {
-            if (!$("new-author-id").value || $("new-author-id").value === slugify(event.target.value)) {
-                $("new-author-id").value = slugify(event.target.value);
-            }
+            const currentId = $("new-author-id").value;
+            const previousSlug = slugify(event.target.dataset.previousName || "");
+            if (!currentId || currentId === previousSlug) $("new-author-id").value = slugify(event.target.value);
+            event.target.dataset.previousName = event.target.value;
             $("new-author-error").textContent = "";
         });
         $("new-author-id").addEventListener("input", () => { $("new-author-error").textContent = ""; });
