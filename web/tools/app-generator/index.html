@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>App JSON Generator — PS Vita Alive Store</title>
+    <meta name="description" content="Create and validate PS Vita Alive Store application JSON files without editing JSON manually.">
+    <link rel="stylesheet" href="../../css/main.css">
+    <link rel="stylesheet" href="app-generator.css">
+</head>
+<body>
+<header class="site-header">
+    <div class="container header-inner">
+        <a href="../../index.html" class="site-logo">
+            <img src="../../assets/logo/PSVitaAlive_Store_logo_text.png" alt="PSVitaAlive Store">
+        </a>
+        <nav class="main-nav" aria-label="Main navigation">
+            <a href="../../index.html">Home</a>
+            <a href="../../category.html">Categories</a>
+            <a href="../../authors.html">Authors</a>
+            <a class="active" href="index.html">App Generator</a>
+        </nav>
+    </div>
+</header>
+
+<main class="tool-page">
+    <div class="container">
+        <div class="tool-hero">
+            <span class="hero-label">DEVELOPER TOOL</span>
+            <h1>Application JSON Generator</h1>
+            <p>Create a PS Vita Alive Store <code>apps/*.json</code> file using a guided form. The generator validates the current catalog rules, loads official categories/authors, checks duplicate Title IDs, and never edits the catalog directly.</p>
+            <div class="tool-actions">
+                <label class="button secondary-button file-button">Import existing JSON<input id="import-json" type="file" accept=".json,application/json"></label>
+                <button id="reset-form" type="button" class="button secondary-button">Reset</button>
+            </div>
+            <div id="load-status" class="notice" role="status">Loading PS Vita Alive Store categories, authors and catalog...</div>
+        </div>
+
+        <div class="generator-layout">
+            <form id="app-form" novalidate>
+                <section class="form-card">
+                    <div class="card-heading"><h2>1. Identity</h2><p>These fields identify the Homebrew.</p></div>
+                    <div class="field-grid">
+                        <div class="field"><label for="id">Internal ID <span>*</span></label><input id="id" name="id" required pattern="[a-z0-9_-]+"><small>Lowercase letters, numbers, hyphens and underscores. It must become the filename, for example <code>my-app.json</code>.</small></div>
+                        <div class="field"><label for="title_id">Title ID <span>*</span></label><input id="title_id" name="title_id" required><small>Unique PS Vita Title ID. The generator checks it against the current catalog.</small></div>
+                        <div class="field full"><label for="name">Name <span>*</span></label><input id="name" name="name" required></div>
+                        <div class="field full"><label for="description">Short description <span>*</span></label><textarea id="description" name="description" rows="3" required></textarea></div>
+                        <div class="field full"><label for="long_description">Long description <span>*</span></label><textarea id="long_description" name="long_description" rows="6" required></textarea></div>
+                    </div>
+                </section>
+
+                <section class="form-card">
+                    <div class="card-heading"><h2>2. Authors & category</h2><p>Authors remain individual profiles and subcategories are restricted to the selected official category.</p></div>
+                    <div class="field-grid">
+                        <div class="field full"><label for="authors">Authors <span>*</span></label><select id="authors" multiple size="6" required></select><small>Hold Ctrl/Cmd to select multiple authors. New authors must have a profile in <code>authors/</code> before the generated app can pass repository validation.</small></div>
+                        <div class="field"><label for="category">Category <span>*</span></label><select id="category" required><option value="">Loading...</option></select></div>
+                        <div class="field"><label for="subcategories">Subcategories <span>*</span></label><select id="subcategories" multiple size="6" required></select><small>Select only subcategories belonging to the selected category.</small></div>
+                    </div>
+                </section>
+
+                <section class="form-card">
+                    <div class="card-heading"><h2>3. Release</h2><p>Release information used by the catalog and update logic.</p></div>
+                    <div class="field-grid">
+                        <div class="field"><label for="version">Version <span>*</span></label><input id="version" name="version" required placeholder="1.0.0"></div>
+                        <div class="field"><label for="version_date">Version date <span>*</span></label><input id="version_date" name="version_date" type="date" required></div>
+                        <div class="field"><label for="requirements">Requirements <span>*</span></label><input id="requirements" name="requirements" required placeholder="Firmware 3.60+"></div>
+                        <div class="field"><label for="size">File size in bytes <span>*</span></label><input id="size" name="size" type="number" min="1" step="1" required placeholder="1048576"><small>The current validator expects a positive integer in bytes.</small></div>
+                        <div class="field"><label for="status">Status <span>*</span></label><select id="status" name="status" required><option value="Verified">Verified</option><option value="Legacy">Legacy</option><option value="Archive">Archive</option></select></div>
+                    </div>
+                </section>
+
+                <section class="form-card">
+                    <div class="card-heading"><h2>4. Media</h2><p>Use absolute public URLs or valid repository resources. Missing icon/screenshots can use the repository fallbacks during validation/generation.</p></div>
+                    <div class="field-grid">
+                        <div class="field full"><label for="icon">Icon URL</label><input id="icon" name="icon" type="url" placeholder="https://example.org/icon.png"><small>Optional in the source JSON. Leave empty to allow the category icon fallback.</small></div>
+                        <div class="field full"><label>Screenshots</label><div id="screenshots-list" class="repeat-list"></div><button id="add-screenshot" type="button" class="small-button">+ Add screenshot</button><small>Optional. If provided, use 1–5 image URLs.</small></div>
+                    </div>
+                </section>
+
+                <section class="form-card">
+                    <div class="card-heading"><h2>5. Links</h2><p>Add all useful sources. At most one link can be recommended.</p></div>
+                    <div id="links-list" class="repeat-list"></div>
+                    <button id="add-link" type="button" class="small-button">+ Add link</button>
+                </section>
+
+                <details class="form-card advanced-card">
+                    <summary>6. Optional metadata</summary>
+                    <div class="field-grid advanced-grid">
+                        <div class="field full"><label for="release_page">Release page</label><input id="release_page" type="url"></div>
+                        <div class="field full"><label for="source_url">Source URL</label><input id="source_url" type="url"></div>
+                        <div class="field"><label for="source_name">Source name</label><input id="source_name"></div>
+                        <div class="field"><label for="source_id">Source ID</label><input id="source_id"></div>
+                        <div class="field full"><label for="changelog">Changelog</label><textarea id="changelog" rows="5"></textarea></div>
+                        <div class="field"><label for="downloads">Downloads</label><input id="downloads" type="number" min="0" step="1"></div>
+                        <div class="field"><label for="data_size">Data size</label><input id="data_size" type="number" min="0" step="1"></div>
+                        <div class="field full"><label for="data_url">Data URL</label><input id="data_url" type="url"></div>
+                        <div class="field"><label for="score">Score</label><input id="score" type="number" step="any"></div>
+                        <div class="field"><label for="updated_at">Updated at</label><input id="updated_at" type="datetime-local"></div>
+                    </div>
+                </details>
+
+                <div id="validation-summary" class="validation-summary" aria-live="polite"></div>
+                <div class="download-row"><button id="download-json" type="button" class="button primary-button" disabled>Download app.json</button></div>
+            </form>
+
+            <aside class="preview-panel">
+                <div class="preview-header"><div><span class="eyebrow">LIVE PREVIEW</span><h2>Generated JSON</h2></div><button id="copy-json" type="button" class="small-button">Copy JSON</button></div>
+                <pre id="json-preview" aria-label="Generated JSON preview">{}</pre>
+                <div class="preview-help"><strong>What happens next?</strong><p>This tool only creates the individual application JSON. Put the downloaded file in <code>apps/</code>. GitHub Actions will validate it and generate the official catalogs.</p></div>
+            </aside>
+        </div>
+    </div>
+</main>
+
+<footer class="site-footer"><div class="container">PSVitaAlive Store — Free and open PlayStation Vita homebrew catalog.</div></footer>
+<script src="app-generator.js"></script>
+</body>
+</html>
