@@ -1,6 +1,6 @@
-# PSVitaAlive — Cliente PS Vita
+# PSVitaAlive — Cliente PS Vita de PS Vita Alive Store
 
-Cliente nativo de [PSVitaAlive](https://github.com/VegettoSan/PSVitaAlive) para PlayStation Vita (VitaSDK).
+Cliente nativo de [PS Vita Alive Store](https://github.com/VegettoSan/PSVitaAlive) para PlayStation Vita (VitaSDK).
 
 ## Estado actual
 
