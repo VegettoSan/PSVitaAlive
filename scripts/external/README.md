@@ -1,6 +1,6 @@
 # `scripts/external/` — Motor de catálogos externos
 
-Este directorio contiene la lógica que lee fuentes externas, convierte sus registros al modelo interno de VitaHub, agrupa aplicaciones equivalentes, resuelve autores y aplica la lógica de merge.
+Este directorio contiene la lógica que lee fuentes externas, convierte sus registros al modelo interno de PS Vita Alive Store, agrupa aplicaciones equivalentes, resuelve autores y aplica la lógica de merge.
 
 ## Modelo interno
 
@@ -19,7 +19,7 @@ group_candidates()
    ↓
 merge_group()
    ↓
-app canónica VitaHub
+app canónica PS Vita Alive Store
 ```
 
 ## Componentes principales
@@ -40,7 +40,7 @@ Esto es una peculiaridad del origen y no debe trasladarse a otros catálogos sin
 
 ## Identidad de aplicaciones
 
-Las aplicaciones se agrupan por identidad, con `title_id` como identificador principal del ecosistema Vita. No depender de los IDs numéricos de las fuentes externas como ID canónico de VitaHub.
+Las aplicaciones se agrupan por identidad, con `title_id` como identificador principal del ecosistema Vita. No depender de los IDs numéricos de las fuentes externas como ID canónico de PS Vita Alive Store.
 
 ## Identidad de autores
 
