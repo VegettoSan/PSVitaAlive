@@ -7,6 +7,7 @@
     <meta name="description" content="Create and validate PS Vita Alive Store application JSON files without editing JSON manually.">
     <link rel="stylesheet" href="../../css/main.css">
     <link rel="stylesheet" href="app-generator.css">
+    <link rel="stylesheet" href="authors-picker.css">
 </head>
 <body>
 <header class="site-header">
@@ -50,9 +51,14 @@
                 </section>
 
                 <section class="form-card">
-                    <div class="card-heading"><h2>2. Authors & category</h2><p>Authors remain individual profiles and subcategories are restricted to the selected official category.</p></div>
+                    <div class="card-heading"><h2>2. Authors & category</h2><p>Search authors by name or ID, select as many individual profiles as needed, or create a new author reference. Subcategories are restricted to the selected official category.</p></div>
                     <div class="field-grid">
-                        <div class="field full"><label for="authors">Authors <span>*</span></label><select id="authors" multiple size="6" required></select><small>Hold Ctrl/Cmd to select multiple authors. New authors must have a profile in <code>authors/</code> before the generated app can pass repository validation.</small></div>
+                        <div class="field full">
+                            <label for="authors">Authors <span>*</span></label>
+                            <select id="authors" multiple size="6" required></select>
+                            <div id="author-picker"></div>
+                            <small>Type a name or ID to filter the official author list. Selected authors appear as chips and can be removed individually.</small>
+                        </div>
                         <div class="field"><label for="category">Category <span>*</span></label><select id="category" required><option value="">Loading...</option></select></div>
                         <div class="field"><label for="subcategories">Subcategories <span>*</span></label><select id="subcategories" multiple size="6" required></select><small>Select only subcategories belonging to the selected category.</small></div>
                     </div>
@@ -114,5 +120,6 @@
 
 <footer class="site-footer"><div class="container">PSVitaAlive Store — Free and open PlayStation Vita homebrew catalog.</div></footer>
 <script src="app-generator.js"></script>
+<script src="authors-picker.js"></script>
 </body>
 </html>
