@@ -20,7 +20,9 @@
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/e96382eea7017c4ea422ef58a622dc0b58a55baabaaf5f7e5360e96d5f9194eb.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/cf95f617e8c2eec36e282ef79029b80aaa5305ec1278be380b1ef25ccdec9a9a.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/4b840cdcad77b331c0a5aa52124a48b01ecbc89e4e610d4844affe1ee8751c33.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/4b840cdcad77b331c0a5aa52124a48b01ecbc89e4e610d4844affe1ee8751c33.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/e96382eea7017c4ea422ef58a622dc0b58a55baabaaf5f7e5360e96d5f9194eb.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/cf95f617e8c2eec36e282ef79029b80aaa5305ec1278be380b1ef25ccdec9a9a.png"
   ],
   "links": [
     {
@@ -43,6 +45,11 @@
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/624-Behind_Every_Great_One.vpk"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=624"
     }
   ],
   "source_name": "VitaDBtoo",

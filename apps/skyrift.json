@@ -5,7 +5,8 @@
   "description": "Sky-gliding adventure game for PSVita.",
   "long_description": "An original sky-gliding pixel-art adventure for PSVita.",
   "author_ids": [
-    "claude-ai"
+    "claude-ai",
+    "onur-kuru"
   ],
   "category_id": "games",
   "subcategory_ids": [
@@ -18,7 +19,8 @@
   "status": "Legacy",
   "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/37db4bb20940e7b1e1384ccdb3b20e8139e639bc357e2f92154a7cd15f8b3188.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/2d887fd4142583ed1cfe1193ebbcbe41104e04aeb3618e6787a190e4339ffe42.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/2d887fd4142583ed1cfe1193ebbcbe41104e04aeb3618e6787a190e4339ffe42.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/2d887fd4142583ed1cfe1193ebbcbe41104e04aeb3618e6787a190e4339ffe42.png"
   ],
   "links": [
     {
@@ -46,6 +48,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/onurkuru/skyrift"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1427"
     }
   ],
   "source_name": "VitaDBtoo",

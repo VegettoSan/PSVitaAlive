@@ -20,7 +20,9 @@
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/9ced41b6172cf0227f43fa743c894856b42168f7747183c31078a4e56ad83644.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/fc651402ad0bad5feae15c2ea33defa06b8973d6f5f939cc3bf50d1478b3b33e.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/103fbad92d439bd437eaad7bd49370addffbd39c2e5b45e0cac1c8bbe9c5bd2c.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/103fbad92d439bd437eaad7bd49370addffbd39c2e5b45e0cac1c8bbe9c5bd2c.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/9ced41b6172cf0227f43fa743c894856b42168f7747183c31078a4e56ad83644.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/fc651402ad0bad5feae15c2ea33defa06b8973d6f5f939cc3bf50d1478b3b33e.png"
   ],
   "links": [
     {
@@ -43,6 +45,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/Xeeynamo/Sonic-CD-11-Decompilation"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=604"
     }
   ],
   "source_name": "VitaDBtoo",

@@ -18,7 +18,11 @@
   "status": "Legacy",
   "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1496-project-void.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1496-project-void.png"
+    "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1496-project-void.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/void1.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/void2.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/void3.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/void.png"
   ],
   "links": [
     {
@@ -41,6 +45,11 @@
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/95-projectvoid.vpk"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=95"
     }
   ],
   "source_name": "VitaDBtoo",

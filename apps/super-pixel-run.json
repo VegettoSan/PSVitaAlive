@@ -18,7 +18,8 @@
   "status": "Legacy",
   "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/29b31348d30e290f9120d972ad194c1505d713f4eabed93c072024ee9159f5cc.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/0fe4223b425e1cd9474f0ae40f98d3169975f2e18b1301d6430031257128611f.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/0fe4223b425e1cd9474f0ae40f98d3169975f2e18b1301d6430031257128611f.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/0fe4223b425e1cd9474f0ae40f98d3169975f2e18b1301d6430031257128611f.png"
   ],
   "links": [
     {
@@ -41,6 +42,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/RetroGamer74/SuperPixelRun"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=475"
     }
   ],
   "source_name": "VitaDBtoo",

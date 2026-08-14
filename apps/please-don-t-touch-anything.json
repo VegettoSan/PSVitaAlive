@@ -20,7 +20,9 @@
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/a867c2a1ac482f216b126fc4a474fe3203ca7db4ea1605e6fdd77af58fd02ee1.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/438eaa8b1e7bac34b6b773ee8b4751a86abed63fa620584d07b1b6a7c4fb6a76.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/3d5f4465cd779f0d800043e09b3a086581ea3479f1ebebea429065f1c67d2337.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/3d5f4465cd779f0d800043e09b3a086581ea3479f1ebebea429065f1c67d2337.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/a867c2a1ac482f216b126fc4a474fe3203ca7db4ea1605e6fdd77af58fd02ee1.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/438eaa8b1e7bac34b6b773ee8b4751a86abed63fa620584d07b1b6a7c4fb6a76.png"
   ],
   "links": [
     {
@@ -38,6 +40,11 @@
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/640-PleaseDontTouchAnything.vpk"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=640"
     }
   ],
   "source_name": "VitaDBtoo",

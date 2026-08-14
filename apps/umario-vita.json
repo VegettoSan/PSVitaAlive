@@ -41,6 +41,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/Hammerill/uMario_Vita"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=830"
     }
   ],
   "source_name": "VitaDBtoo",

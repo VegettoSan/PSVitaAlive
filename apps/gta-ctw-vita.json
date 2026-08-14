@@ -20,7 +20,8 @@
   "status": "Legacy",
   "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/e62e6e8906a7a54edba2fa22b75271eb115e81e4425269a2dd3a607a41aaf382.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c73ed974e57ff2df20dcbbaf9903199099a130ac123b9a244fc7dbc072c97433.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c73ed974e57ff2df20dcbbaf9903199099a130ac123b9a244fc7dbc072c97433.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/c73ed974e57ff2df20dcbbaf9903199099a130ac123b9a244fc7dbc072c97433.png"
   ],
   "links": [
     {
@@ -43,6 +44,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/TheOfficialFloW/gtactw_vita"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=625"
     }
   ],
   "source_name": "VitaDBtoo",

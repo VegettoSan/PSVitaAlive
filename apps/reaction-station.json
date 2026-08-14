@@ -19,7 +19,9 @@
   "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/8bf7dc37549cfeb7510094dc32ae107e56c65332988aba668cdbf97b39710dda.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/0cd7ce6a4684e01e531301260a9ce2d2eee815c6930f843cdb2fd071f8346b48.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/0671db571411ea88e93328c19bc87604064e3e902d342bebf9b0c0e6af12b06d.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/0671db571411ea88e93328c19bc87604064e3e902d342bebf9b0c0e6af12b06d.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/0cd7ce6a4684e01e531301260a9ce2d2eee815c6930f843cdb2fd071f8346b48.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/0671db571411ea88e93328c19bc87604064e3e902d342bebf9b0c0e6af12b06d.png"
   ],
   "links": [
     {
@@ -52,6 +54,11 @@
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/1333-reaction_station.vpk"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1333"
     }
   ],
   "source_name": "VitaDBtoo",

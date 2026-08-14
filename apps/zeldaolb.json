@@ -20,7 +20,9 @@
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/03ce435ec6a577622c179531b34c0cf56b39db147f9c1895cf741b335e038750.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/ad7c9a8cc3abf42fecf72fbb911a9639500d533940dcedb1cd59a4cc7326beac.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/7c0675035f48e90677675ab69d0dc23027137529f62925a415894b3995e39423.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/7c0675035f48e90677675ab69d0dc23027137529f62925a415894b3995e39423.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/03ce435ec6a577622c179531b34c0cf56b39db147f9c1895cf741b335e038750.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/ad7c9a8cc3abf42fecf72fbb911a9639500d533940dcedb1cd59a4cc7326beac.png"
   ],
   "links": [
     {
@@ -43,6 +45,11 @@
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/265-ZeldaOLB.vpk"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=265"
     }
   ],
   "source_name": "VitaDBtoo",

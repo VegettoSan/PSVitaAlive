@@ -19,7 +19,9 @@
   "status": "Legacy",
   "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1482-maidumptool.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1482-maidumptool.png"
+    "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1482-maidumptool.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/maidump_eng.jpg",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/maidump.jpg"
   ],
   "links": [
     {
@@ -47,6 +49,16 @@
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/54-MaiDumpTool.vpk"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=53"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=54"
     }
   ],
   "source_name": "VitaDBtoo",

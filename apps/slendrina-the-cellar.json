@@ -20,7 +20,9 @@
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/8515cc8ee42485fb61d88fa30a015787e6dee453506b8ab205bc30b1e408bb05.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/d6124a54a89dd0ae23a68360fde522f2a69b6c3f84e01b46ada7ee9dfaa327e9.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/6bbb90ea253d1dc9a28acf783b1027692e024466b8710f204dab99e5f4c14474.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/6bbb90ea253d1dc9a28acf783b1027692e024466b8710f204dab99e5f4c14474.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/8515cc8ee42485fb61d88fa30a015787e6dee453506b8ab205bc30b1e408bb05.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/d6124a54a89dd0ae23a68360fde522f2a69b6c3f84e01b46ada7ee9dfaa327e9.png"
   ],
   "links": [
     {
@@ -43,6 +45,11 @@
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/1285-SlendrinaCellar.vpk"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1285"
     }
   ],
   "source_name": "VitaDBtoo",

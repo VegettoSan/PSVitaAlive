@@ -20,7 +20,9 @@
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/e346ac6bdc43feccc4394dd2b542d9d54790acf360503d547a4f40f19815e7f5.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/627fe7245af72a5e48dc3194ae2d567df1af8b8ff38fa764ce499418ba736d2a.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/d6af0a6ee4a5ccea5bc0a67ef523109b9c45311d17a9fa766ffcd2e0f6347e76.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/d6af0a6ee4a5ccea5bc0a67ef523109b9c45311d17a9fa766ffcd2e0f6347e76.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/e346ac6bdc43feccc4394dd2b542d9d54790acf360503d547a4f40f19815e7f5.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/627fe7245af72a5e48dc3194ae2d567df1af8b8ff38fa764ce499418ba736d2a.png"
   ],
   "links": [
     {
@@ -43,6 +45,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/island-games/Defendguin"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=876"
     }
   ],
   "source_name": "VitaDBtoo",

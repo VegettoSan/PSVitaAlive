@@ -19,7 +19,9 @@
   "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1678-fingerprint.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/fe7eb06f64851911bdd25d8923e8499da41bb3dc524ef89902ed1afedb8f845d.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/85cbcb8f8202abe085d53a50c4c8f3ade7668ec7adbc2933474721f8497798d1.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/85cbcb8f8202abe085d53a50c4c8f3ade7668ec7adbc2933474721f8497798d1.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/fe7eb06f64851911bdd25d8923e8499da41bb3dc524ef89902ed1afedb8f845d.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/85cbcb8f8202abe085d53a50c4c8f3ade7668ec7adbc2933474721f8497798d1.png"
   ],
   "links": [
     {
@@ -37,6 +39,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/Freakler/vita-Fingerprint"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=543"
     }
   ],
   "source_name": "VitaDBtoo",

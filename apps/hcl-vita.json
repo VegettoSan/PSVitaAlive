@@ -20,7 +20,9 @@
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/9d06da24552f4392af8e12122fdae57f06009259fde0cd4fedccf624c9c8c93f.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/88894610c024753c9cf118f611203db6c25034232d47bb3a31cdf9cfdbadb7e1.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/7f2f625f2855174da8b2f3ad00273b226e1d50188550fcbb950d5b3a92f84f63.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/7f2f625f2855174da8b2f3ad00273b226e1d50188550fcbb950d5b3a92f84f63.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/9d06da24552f4392af8e12122fdae57f06009259fde0cd4fedccf624c9c8c93f.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/88894610c024753c9cf118f611203db6c25034232d47bb3a31cdf9cfdbadb7e1.png"
   ],
   "links": [
     {
@@ -43,6 +45,11 @@
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/347-HCL.vpk"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=347"
     }
   ],
   "source_name": "VitaDBtoo",

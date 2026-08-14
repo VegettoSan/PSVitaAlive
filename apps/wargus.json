@@ -21,7 +21,8 @@
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/bc74b3bf3647a85ba10d30f35c68029006f9c776a030092e25715231fb279af8.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/057736aaaba52f174698d41e09107a731f7dd82e43458b7e2bbfef506341862e.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/d39b1a7ded03d9582aed6f694b30c5fe64eefdf3944efc87cb5745194ac04620.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/5b6ef116cb571e4f28c5530fe37c1fae9645f8a1dda55e197839f6576b7f25f1.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/5b6ef116cb571e4f28c5530fe37c1fae9645f8a1dda55e197839f6576b7f25f1.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/bc74b3bf3647a85ba10d30f35c68029006f9c776a030092e25715231fb279af8.png"
   ],
   "links": [
     {
@@ -44,6 +45,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/Northfear/stratagus-vita"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=717"
     }
   ],
   "source_name": "VitaDBtoo",

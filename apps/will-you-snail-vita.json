@@ -21,7 +21,8 @@
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/a67e2f3c7405c99ed87289a8a366cee82434c26edee6bc09c7454e04d870873f.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/1826d334bc300486e5ae4d6cc00d42c664a1ec4d26bee81b37c7e8aadd4221b7.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/75e596744c5382fc6f242a699770210be4b1f4c5e136f50774b3c98347245847.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/9fe5d7356d8aa21642d4da068646b1ae09398b6cc350f39cbbc419c0d36012db.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/9fe5d7356d8aa21642d4da068646b1ae09398b6cc350f39cbbc419c0d36012db.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/a67e2f3c7405c99ed87289a8a366cee82434c26edee6bc09c7454e04d870873f.png"
   ],
   "links": [
     {
@@ -44,6 +45,11 @@
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/1216-WSNL00001.vpk"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1216"
     }
   ],
   "source_name": "VitaDBtoo",

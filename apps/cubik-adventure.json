@@ -19,7 +19,9 @@
   "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1644-cubik-adventure.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/0c708b9fc94e6c57d14d960cbc1fb75a9b7de2a66d27891b3a1c972d81b05796.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/7ac30a595e9210079f5d1b14cdbacfea0ee175639a3cd7ad3af23f3f524d8ed8.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/7ac30a595e9210079f5d1b14cdbacfea0ee175639a3cd7ad3af23f3f524d8ed8.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/0c708b9fc94e6c57d14d960cbc1fb75a9b7de2a66d27891b3a1c972d81b05796.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/7ac30a595e9210079f5d1b14cdbacfea0ee175639a3cd7ad3af23f3f524d8ed8.png"
   ],
   "links": [
     {
@@ -37,6 +39,11 @@
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/471-Cubik_20Adventure.vpk"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=471"
     }
   ],
   "source_name": "VitaDBtoo",

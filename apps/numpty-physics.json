@@ -21,7 +21,9 @@
   "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1550-numpty-physics.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/272a8b67fb393d6725b52d1948ec95ff49ab43c0f6e577765d85bdf61bc18c27.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/874081e6c76c7d6ea38272b9447c80977dc909cd56b1780d3d86c232c7d3960f.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/874081e6c76c7d6ea38272b9447c80977dc909cd56b1780d3d86c232c7d3960f.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/272a8b67fb393d6725b52d1948ec95ff49ab43c0f6e577765d85bdf61bc18c27.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/874081e6c76c7d6ea38272b9447c80977dc909cd56b1780d3d86c232c7d3960f.png"
   ],
   "links": [
     {
@@ -44,6 +46,11 @@
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/243-NumptyPhysics.vpk"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=243"
     }
   ],
   "source_name": "VitaDBtoo",

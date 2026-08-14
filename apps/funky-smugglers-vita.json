@@ -21,7 +21,8 @@
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/45ff806fb3b18d247cbd6c054b88684f0314411aa617d1c499e36d562f0c016a.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/31ef4693c68cde98bfcb4035a6f818e2e4ba131ed644130b6c4c16747e8b4cb4.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/4de6f5af2bc1e657aa91456d3471810b7498a0bed4071c2f7cc25b25eff65de6.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/a63230aee07ac9ac265db1efc8b4fdd5e9ba8c7fe27093c7f0f6f4b2b7f30631.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/a63230aee07ac9ac265db1efc8b4fdd5e9ba8c7fe27093c7f0f6f4b2b7f30631.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/45ff806fb3b18d247cbd6c054b88684f0314411aa617d1c499e36d562f0c016a.png"
   ],
   "links": [
     {
@@ -44,6 +45,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/Rinnegatamante/funky_vita"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1044"
     }
   ],
   "source_name": "VitaDBtoo",

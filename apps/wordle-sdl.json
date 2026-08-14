@@ -20,7 +20,9 @@
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/939b5926cdb22f3373c96130aacf71f2abeaf4dd1acf27cbc60207147c31f176.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/cde08c6d58355d7de395fe52312c1ffb6e991d7ef0c934f90db4399c2c364fbb.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/323e20d9956a8fbea6e7de07f6fa523a44c69f557f08abf4ba9307a5fe0d6865.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/323e20d9956a8fbea6e7de07f6fa523a44c69f557f08abf4ba9307a5fe0d6865.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/939b5926cdb22f3373c96130aacf71f2abeaf4dd1acf27cbc60207147c31f176.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/cde08c6d58355d7de395fe52312c1ffb6e991d7ef0c934f90db4399c2c364fbb.png"
   ],
   "links": [
     {
@@ -43,6 +45,11 @@
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/855-Wordle.vpk"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=855"
     }
   ],
   "source_name": "VitaDBtoo",

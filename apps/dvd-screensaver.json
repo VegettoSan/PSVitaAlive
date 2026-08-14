@@ -41,6 +41,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/Electric1447/Vita-DVD-Screensaver"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=542"
     }
   ],
   "source_name": "VitaDBtoo",

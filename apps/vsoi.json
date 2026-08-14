@@ -41,6 +41,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/gnmmarechal/VSOI"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=370"
     }
   ],
   "source_name": "VitaDBtoo",

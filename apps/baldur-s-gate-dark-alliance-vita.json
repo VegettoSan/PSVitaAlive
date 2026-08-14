@@ -21,7 +21,8 @@
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/5bc3511f061b8d502571b6466cf4eb49f23229a291db3d87f642c74063488402.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/91fe4215d7a400afcc60b3526e5739d801376a7cc9502d10c736e50f8dad4da8.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/43b25860d7ed80eb6b36a6ffaea0490acfccd315d78f6c8279c01e5835619edc.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/8bb4d641f42ac1a0b0c5521a63a4ac2d614e3a43bb98c3fbd618670680ffc15b.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/8bb4d641f42ac1a0b0c5521a63a4ac2d614e3a43bb98c3fbd618670680ffc15b.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/5bc3511f061b8d502571b6466cf4eb49f23229a291db3d87f642c74063488402.png"
   ],
   "links": [
     {
@@ -44,6 +45,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/Nevak/bgda-vita"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1357"
     }
   ],
   "source_name": "VitaDBtoo",

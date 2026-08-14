@@ -21,7 +21,8 @@
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/97ac714875c63cac822ad32920abc6dfc5ede17129aaf472abc6926e3abdbd5d.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/b2162b9144eae336fa65ddb1e92343171d1638d29a5fea7a2bf0ed4adba3328f.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/a6d8bd9da77fd9f3b594fe7b02d6c68e6ac51b084bcdbd61e74ba902d0cbbe34.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/d9aab4389fe7e54f7eb48952d0a3f7909bea67392c5cbfa341d5e1794a9acd54.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/d9aab4389fe7e54f7eb48952d0a3f7909bea67392c5cbfa341d5e1794a9acd54.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/97ac714875c63cac822ad32920abc6dfc5ede17129aaf472abc6926e3abdbd5d.png"
   ],
   "links": [
     {
@@ -44,6 +45,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/DrDecki/Aleph-One-Marathon-Trilogy-PsVita-"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1421"
     }
   ],
   "source_name": "VitaDBtoo",

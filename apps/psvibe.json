@@ -18,7 +18,8 @@
   "status": "Legacy",
   "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/2451064b14e12d2b4eb2d912f42470ac1ffdd8f282e8a50051286381dbc64b7c.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/2451064b14e12d2b4eb2d912f42470ac1ffdd8f282e8a50051286381dbc64b7c.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/2451064b14e12d2b4eb2d912f42470ac1ffdd8f282e8a50051286381dbc64b7c.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/vibe.jpg"
   ],
   "links": [
     {
@@ -41,6 +42,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/NamelessGhoul0/PSVibe"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=48"
     }
   ],
   "source_name": "VitaDBtoo",

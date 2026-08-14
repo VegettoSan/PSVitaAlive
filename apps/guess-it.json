@@ -21,7 +21,8 @@
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/93a4e45aaafa775f39fe32e0d88e81c35c24087c932b599b7bf8ea85568f899b.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/110a5829e13c1fb3b1109245c7698e98c03046c7bc8d07b4c0ac0a2376efa0c4.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/8cd052787a4511008cb4350c7637c6a93234ea4975bdfdd8f842e3724f6d4809.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/60922f81accc75655a7958a35491658f53fbee9cef8efa439286cadacbdca7e5.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/60922f81accc75655a7958a35491658f53fbee9cef8efa439286cadacbdca7e5.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/93a4e45aaafa775f39fe32e0d88e81c35c24087c932b599b7bf8ea85568f899b.png"
   ],
   "links": [
     {
@@ -44,6 +45,11 @@
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/688-GuessIt.vpk"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=688"
     }
   ],
   "source_name": "VitaDBtoo",

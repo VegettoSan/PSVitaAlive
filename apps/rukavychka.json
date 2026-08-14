@@ -20,7 +20,9 @@
   "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1975-rukavychka.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/cb5150f96ef61bd8bbf5139a3d8a03aa39513929e3c21e26f57af5791e2c9064.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c6089fee4805026bd05f4e86e0cb6a897fb2d3a7b0b1a5b7abf135729d8dd3fa.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c6089fee4805026bd05f4e86e0cb6a897fb2d3a7b0b1a5b7abf135729d8dd3fa.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/cb5150f96ef61bd8bbf5139a3d8a03aa39513929e3c21e26f57af5791e2c9064.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/c6089fee4805026bd05f4e86e0cb6a897fb2d3a7b0b1a5b7abf135729d8dd3fa.png"
   ],
   "links": [
     {
@@ -43,6 +45,11 @@
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/1447-rukavychka-vita.vpk"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1447"
     }
   ],
   "source_name": "VitaDBtoo",

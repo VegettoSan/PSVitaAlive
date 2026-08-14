@@ -20,7 +20,9 @@
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/1dbccd39cd20d0bd467fddd46408a29680812a34f8dfd9ea21ffc00b40fb19d2.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/3a2585899b81eb83d7f6d85d0a28dfa64c9c20011baebccd1649173195b47fab.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/a925575875539e9499831e674301bd875ec1f822765802cbc098e3d547d3abc0.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/a925575875539e9499831e674301bd875ec1f822765802cbc098e3d547d3abc0.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/1dbccd39cd20d0bd467fddd46408a29680812a34f8dfd9ea21ffc00b40fb19d2.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/3a2585899b81eb83d7f6d85d0a28dfa64c9c20011baebccd1649173195b47fab.png"
   ],
   "links": [
     {
@@ -43,6 +45,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/Rinnegatamante/rolling-down-vita"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1312"
     }
   ],
   "source_name": "VitaDBtoo",

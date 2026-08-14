@@ -11,14 +11,15 @@
   "subcategory_ids": [
     "other"
   ],
-  "version": "v.latest",
+  "version": "v.1.02",
   "version_date": "2023-01-13",
   "requirements": "- libshacccg.suprx",
-  "size": 14638132,
+  "size": 1326086,
   "status": "Legacy",
   "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/79250cc45455551a1eb9f5a4b64ef0ca8bf02e5869095a9cfebbac89b92d7b91.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/99e261c60fcf8faa18bf9a7677d38e703606b0b0a4a1a820226f1dda3fc034a5.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/99e261c60fcf8faa18bf9a7677d38e703606b0b0a4a1a820226f1dda3fc034a5.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/99e261c60fcf8faa18bf9a7677d38e703606b0b0a4a1a820226f1dda3fc034a5.png"
   ],
   "links": [
     {
@@ -41,6 +42,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/cy33hc/vita-smb-client"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1024"
     }
   ],
   "source_name": "VitaDBtoo",

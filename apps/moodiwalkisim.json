@@ -20,7 +20,9 @@
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/3fc997d62c4a0bb8617b84267e9eb777355d238c2a544bb2083e01a3f6870073.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/5cb463d0cb0c25ab272ce6277aebd424e65e2a2085dde7d13a1413dedf6888aa.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/fdcb57e11223b75665c40a0477a3cab46488ba01e7a7746cd3fb38337adacd78.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/fdcb57e11223b75665c40a0477a3cab46488ba01e7a7746cd3fb38337adacd78.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/3fc997d62c4a0bb8617b84267e9eb777355d238c2a544bb2083e01a3f6870073.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/5cb463d0cb0c25ab272ce6277aebd424e65e2a2085dde7d13a1413dedf6888aa.png"
   ],
   "links": [
     {
@@ -43,6 +45,11 @@
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/1142-moodi.vpk"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1142"
     }
   ],
   "source_name": "VitaDBtoo",

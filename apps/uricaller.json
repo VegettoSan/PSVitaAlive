@@ -18,7 +18,8 @@
   "status": "Legacy",
   "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/0b7c46756dc882611f0575cf3e4100cf3b7876884c2c7dcf89defca241fd343f.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/0b7c46756dc882611f0575cf3e4100cf3b7876884c2c7dcf89defca241fd343f.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/0b7c46756dc882611f0575cf3e4100cf3b7876884c2c7dcf89defca241fd343f.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/uricall.jpg"
   ],
   "links": [
     {
@@ -36,6 +37,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/Freakler/vita-uriCaller"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=150"
     }
   ],
   "source_name": "VitaDBtoo",

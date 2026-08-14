@@ -21,7 +21,8 @@
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/7f1a2401547cf61204ea7b8b94e22873cdaec02fe21b55b9bfae987fab5002e6.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/6f01a28207457e480bdfcd1d29cb95d5cf3b430070e7d9a9b7a3b67e0b932dd9.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/0003cc0ee77de3a6af59347cb316136fa2ee779c2be79c5acf655a5c1f2e6065.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/2190a6a5519daa15dac0c7ed74d3defd9945099af12c57b016ec1d99fcb8b33d.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/2190a6a5519daa15dac0c7ed74d3defd9945099af12c57b016ec1d99fcb8b33d.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/7f1a2401547cf61204ea7b8b94e22873cdaec02fe21b55b9bfae987fab5002e6.png"
   ],
   "links": [
     {
@@ -44,6 +45,11 @@
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/692-happyblocks.vpk"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=692"
     }
   ],
   "source_name": "VitaDBtoo",

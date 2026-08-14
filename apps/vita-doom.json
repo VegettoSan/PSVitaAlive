@@ -19,7 +19,8 @@
   "status": "Legacy",
   "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/7efea6eae7184a48b41067fe4e194b89baab583afe5f0273e0eddb417096afb2.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/7efea6eae7184a48b41067fe4e194b89baab583afe5f0273e0eddb417096afb2.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/7efea6eae7184a48b41067fe4e194b89baab583afe5f0273e0eddb417096afb2.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/vitadoom.jpg"
   ],
   "links": [
     {
@@ -42,6 +43,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/aagallag/Vita_Doom"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=172"
     }
   ],
   "source_name": "VitaDBtoo",

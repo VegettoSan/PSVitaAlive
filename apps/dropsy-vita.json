@@ -20,7 +20,9 @@
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/7ebe8ecb3e3a640cb2177571886354ea33fdcc4cde3cf134468ce322edc64aa9.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/895a8a78eec290970f6389cdf5c11a1912cb7937fb3e72df306bbfa3018b830a.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/8f867e1d76a065946fa1f370d9ef1bff226c5f0355370f22836022eecfd821ab.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/8f867e1d76a065946fa1f370d9ef1bff226c5f0355370f22836022eecfd821ab.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/7ebe8ecb3e3a640cb2177571886354ea33fdcc4cde3cf134468ce322edc64aa9.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/895a8a78eec290970f6389cdf5c11a1912cb7937fb3e72df306bbfa3018b830a.png"
   ],
   "links": [
     {
@@ -43,6 +45,11 @@
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/1287-DropsyVITA.vpk"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1287"
     }
   ],
   "source_name": "VitaDBtoo",

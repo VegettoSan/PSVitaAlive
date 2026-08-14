@@ -21,7 +21,8 @@
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/b15ec731e179d5f570f1c9105434799c7974273cc8ab2d06fddab11dbf34a0a9.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/70ec3e225753e728d922289091553221560baf09327738e666d1dff271dc9034.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/364a3f7038ee22f3051bed20fa74d2d87b2a6020fa548f43615799ce293774bd.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/57e40aedd54be77025adacac7aa533076f7e3f6a95b742042f701bea4599f3d3.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/57e40aedd54be77025adacac7aa533076f7e3f6a95b742042f701bea4599f3d3.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/b15ec731e179d5f570f1c9105434799c7974273cc8ab2d06fddab11dbf34a0a9.png"
   ],
   "links": [
     {
@@ -44,6 +45,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/Rinnegatamante/hazard-vita"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1056"
     }
   ],
   "source_name": "VitaDBtoo",

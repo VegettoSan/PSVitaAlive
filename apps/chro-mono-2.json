@@ -21,7 +21,8 @@
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/466bcc292e32a12c0d300a5bdb8d91b367ed6ab60ec3c1372d732c5c7447cd1f.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/41eec3b8925a53fd6d7139e48b4a5731bb769de73cd4e2a146d7f7b5c76f27b1.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/ef8476aaaf6543906144986361d67c4984bcea1c0d6b71cf50bbea0a1268fde4.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/47d07ebdb7cae669c824d495ac5a1e51d8ec9f648365e82862198e627d1080c5.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/47d07ebdb7cae669c824d495ac5a1e51d8ec9f648365e82862198e627d1080c5.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/466bcc292e32a12c0d300a5bdb8d91b367ed6ab60ec3c1372d732c5c7447cd1f.png"
   ],
   "links": [
     {
@@ -44,6 +45,11 @@
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/477-chromono2.vpk"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=477"
     }
   ],
   "source_name": "VitaDBtoo",

@@ -36,6 +36,11 @@
       "type": "Official Website",
       "name": "NeoVitaDB Release Page",
       "url": "https://github.com/PatnosDD/Unsighted-Ps-Vita/releases/tag/V0.3"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1262"
     }
   ],
   "source_name": "VitaDBtoo",

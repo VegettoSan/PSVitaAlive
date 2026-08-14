@@ -21,7 +21,9 @@
   "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/d0a25e0775320ecb1a5fdcfed8c6f395ec40d7c4171f2a2f705c0d99aceee6d9.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/220d87987a50c4c39709ced1ee53e7b2618be4a414949ff401f61b1616377010.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/fc7320641b4ae949f63e0742af208c7fb6c3a31f7bc2c413b3bd38233cf6b29b.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/fc7320641b4ae949f63e0742af208c7fb6c3a31f7bc2c413b3bd38233cf6b29b.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/220d87987a50c4c39709ced1ee53e7b2618be4a414949ff401f61b1616377010.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/fc7320641b4ae949f63e0742af208c7fb6c3a31f7bc2c413b3bd38233cf6b29b.png"
   ],
   "links": [
     {
@@ -44,6 +46,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/DvaMishkiLapa/VitaOxiPad"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1239"
     }
   ],
   "source_name": "VitaDBtoo",

@@ -5,7 +5,8 @@
   "description": "Port of doomgeneric for PSVita.",
   "long_description": "Port of doomgeneric for PSVita.\nThe purpose of doomgeneric is to make porting Doom easier. Of course Doom is already portable but with doomgeneric it is possible with just a few functions.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
   "author_ids": [
-    "claude-ai"
+    "claude-ai",
+    "draxtube"
   ],
   "category_id": "games",
   "subcategory_ids": [
@@ -41,6 +42,11 @@
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/1370-ChexQuestVita.vpk"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1370"
     }
   ],
   "source_name": "VitaDBtoo",

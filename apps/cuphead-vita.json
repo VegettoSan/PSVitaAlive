@@ -20,7 +20,9 @@
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/f84ad7da2c22947eeaf67581ebac93bf0acf7fb0ce5994332f5ad131874631a0.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/22fa8c591fd9611cb177ad301bb065f8b507e0d8c4796c4f8099d12bd94ce851.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/393def075d9c7dcf2f2587ddc36a4480de96f2763eca116d8b6c1063e688fa2e.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/393def075d9c7dcf2f2587ddc36a4480de96f2763eca116d8b6c1063e688fa2e.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/f84ad7da2c22947eeaf67581ebac93bf0acf7fb0ce5994332f5ad131874631a0.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/22fa8c591fd9611cb177ad301bb065f8b507e0d8c4796c4f8099d12bd94ce851.png"
   ],
   "links": [
     {
@@ -38,6 +40,11 @@
       "type": "Official Website",
       "name": "NeoVitaDB Release Page",
       "url": "https://github.com/PatnosDD/Cuphead-PS-VITA/releases/tag/V0.82"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1202"
     }
   ],
   "source_name": "VitaDBtoo",

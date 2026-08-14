@@ -21,7 +21,8 @@
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/777596a33ac47236d9c193550248da38be46ce348b50bca623d07e4a471764be.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c3fb98e47a592897a0609fb0e25997893d927fc83c36ad987c47b0a14184a377.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/07a9f7c139212699290ecef949146f6fea23065b7cabc41ba72c124ba6b9191c.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/140f49ca87e3dc5f62d940297ef43ede650883add3d97b395ef1577814ea0fee.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/140f49ca87e3dc5f62d940297ef43ede650883add3d97b395ef1577814ea0fee.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/777596a33ac47236d9c193550248da38be46ce348b50bca623d07e4a471764be.png"
   ],
   "links": [
     {
@@ -44,6 +45,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/Rinnegatamante/rct-vita"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1182"
     }
   ],
   "source_name": "VitaDBtoo",

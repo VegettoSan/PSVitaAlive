@@ -21,7 +21,8 @@
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/22af1bdd44690a258fef63592158a5dd657e1f8659878a5e16c148cd4b914177.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/5e832d93f2c47667c909ecf195cf8a65a9d455565f5b4077cbd40d11b335a778.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/0f3ee29dbc211bf18ebcc9d6621fa76e37f4e1c33a2985df081843cafbbea021.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c5fa21393533e942e25438d15a6c844ffb842b99c40d58710db5f0aac220223a.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c5fa21393533e942e25438d15a6c844ffb842b99c40d58710db5f0aac220223a.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/22af1bdd44690a258fef63592158a5dd657e1f8659878a5e16c148cd4b914177.png"
   ],
   "links": [
     {
@@ -44,6 +45,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/Rinnegatamante/freeways-vita"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1184"
     }
   ],
   "source_name": "VitaDBtoo",

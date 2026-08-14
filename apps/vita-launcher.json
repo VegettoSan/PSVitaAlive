@@ -11,14 +11,15 @@
   "subcategory_ids": [
     "other"
   ],
-  "version": "v.latest",
+  "version": "v.3.9.6",
   "version_date": "2022-11-23",
   "requirements": "Not specified",
   "size": 5286589,
   "status": "Legacy",
   "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/d9b02819daa3bcf8b65a7087c0274550511b5547a25fb820e2074a2f29eacf77.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/4bc1367196ce9cdd22f298b086100c6985cbc6390f385378f11a8a98c0bcc283.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/4bc1367196ce9cdd22f298b086100c6985cbc6390f385378f11a8a98c0bcc283.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/4bc1367196ce9cdd22f298b086100c6985cbc6390f385378f11a8a98c0bcc283.png"
   ],
   "links": [
     {
@@ -41,6 +42,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/cy33hc/vita-launcher"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=583"
     }
   ],
   "source_name": "VitaDBtoo",

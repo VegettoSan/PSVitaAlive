@@ -20,7 +20,9 @@
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/cd65c91af83926a178213d916d1504ea507be56564c95a3d6f515928f149c7b6.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/75ba11d03a2d56ecec25f807c30af9d1012f9072780c09a8c1a714e4d313b2a6.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/20613613bc423dc4e82b8f17513b14d433fc0a71b56bf7cb753a5be478036758.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/20613613bc423dc4e82b8f17513b14d433fc0a71b56bf7cb753a5be478036758.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/cd65c91af83926a178213d916d1504ea507be56564c95a3d6f515928f149c7b6.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/75ba11d03a2d56ecec25f807c30af9d1012f9072780c09a8c1a714e4d313b2a6.png"
   ],
   "links": [
     {
@@ -43,6 +45,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/hatoving/mvalley-old-vita"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1023"
     }
   ],
   "source_name": "VitaDBtoo",

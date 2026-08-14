@@ -21,7 +21,8 @@
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/7f33ce1e310e8b893fcfd2d4667ae35ba783889e14cdadf90211ccf4cef0b33a.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/e3f2529179c3d37b73e4db9ab0f552f7b8c78caf7081acd834a183ad7b031947.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c964ad4421e24ba05ad77b7bc76d62e067b32ad89b94b2747abd7cf6c28f4492.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/a621403ad48b7600298ae78e768eb829d0d8c51080392d66c82bf63882a23451.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/a621403ad48b7600298ae78e768eb829d0d8c51080392d66c82bf63882a23451.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/7f33ce1e310e8b893fcfd2d4667ae35ba783889e14cdadf90211ccf4cef0b33a.png"
   ],
   "links": [
     {
@@ -44,6 +45,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/Rinnegatamante/mcpixel-vita"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1114"
     }
   ],
   "source_name": "VitaDBtoo",

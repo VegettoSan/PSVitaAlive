@@ -20,7 +20,9 @@
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/107ba1210e6342296a0afd72bb2cc6e61dd765dfb6712279d81e27a7f185ad95.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c822dc226f3bee7976e426a78d72b1bb207329d44c102f1eb9a2241f33629c26.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/ae376998c9e08ab2a01396f2bbc60c5387d6359d0669f6dbc09a9eee5965d55d.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/ae376998c9e08ab2a01396f2bbc60c5387d6359d0669f6dbc09a9eee5965d55d.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/107ba1210e6342296a0afd72bb2cc6e61dd765dfb6712279d81e27a7f185ad95.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/c822dc226f3bee7976e426a78d72b1bb207329d44c102f1eb9a2241f33629c26.png"
   ],
   "links": [
     {
@@ -43,6 +45,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/Rinnegatamante/paper-train-vita"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1304"
     }
   ],
   "source_name": "VitaDBtoo",

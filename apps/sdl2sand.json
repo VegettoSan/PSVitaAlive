@@ -19,7 +19,9 @@
   "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/aecd36a6517578a949ef01fbb08c483a8f49568fcd7ad67cd51914d1deeea834.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/a08cc1340506860347fc64728d92a6244e3d0b01f71bc746ca6692a8ba69bcd6.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/123aca462c1e21a0b82e46c93b31973893bdb3be1a3dde79c94b4853859b43ce.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/123aca462c1e21a0b82e46c93b31973893bdb3be1a3dde79c94b4853859b43ce.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/a08cc1340506860347fc64728d92a6244e3d0b01f71bc746ca6692a8ba69bcd6.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/123aca462c1e21a0b82e46c93b31973893bdb3be1a3dde79c94b4853859b43ce.png"
   ],
   "links": [
     {
@@ -42,6 +44,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/v-atamanenko/sdl2sand"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=778"
     }
   ],
   "source_name": "VitaDBtoo",

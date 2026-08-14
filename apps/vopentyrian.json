@@ -18,7 +18,8 @@
   "status": "Legacy",
   "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/0013-vopentyrian.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/0013-vopentyrian.png"
+    "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/0013-vopentyrian.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/vtyr.jpg"
   ],
   "links": [
     {
@@ -51,6 +52,11 @@
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/13-vOpenTyrian.vpk"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=13"
     }
   ],
   "source_name": "VitaDBtoo",

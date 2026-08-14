@@ -21,7 +21,8 @@
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/752bf8396d69ebe8c4a11ffb1a383c5eda6d48e70545ed3421680b26ac3d689d.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/95deeb83f60d8cbd03751ee37ad16252b9eb01bc3df3ac7659ba24a768ab31fd.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/abb96716624aa89d58b021b42800337224b426d467d9081d0c023175d4071e55.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/b949d875c554df38a621be34b3131ac3dec6cf71f8b943214366bd8d15d1cd94.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/b949d875c554df38a621be34b3131ac3dec6cf71f8b943214366bd8d15d1cd94.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/752bf8396d69ebe8c4a11ffb1a383c5eda6d48e70545ed3421680b26ac3d689d.png"
   ],
   "links": [
     {
@@ -44,6 +45,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/Rinnegatamante/32secs_vita"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1305"
     }
   ],
   "source_name": "VitaDBtoo",

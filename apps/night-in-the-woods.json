@@ -20,7 +20,9 @@
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/a3b5b8962f8c8c6523ac55e502a2cc3d206f7b1a1e8cfc4773817bcdb5749fd9.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/991d1a3f95f2c839dc714331c18bbe583b5470c0ce127bd751a3c725ed43c842.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/e74a0785975a55a524f3f5c4ecfbdcdf7ecacf015c41d54b69c971dccd0a9f91.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/e74a0785975a55a524f3f5c4ecfbdcdf7ecacf015c41d54b69c971dccd0a9f91.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/a3b5b8962f8c8c6523ac55e502a2cc3d206f7b1a1e8cfc4773817bcdb5749fd9.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/991d1a3f95f2c839dc714331c18bbe583b5470c0ce127bd751a3c725ed43c842.png"
   ],
   "links": [
     {
@@ -33,6 +35,11 @@
       "type": "Official Website",
       "name": "VitaDBtoo Release Page",
       "url": "https://github.com/PatnosDD/Night-In-The-Woods-PS-VITA"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1179"
     }
   ],
   "source_name": "VitaDBtoo",

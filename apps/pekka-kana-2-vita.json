@@ -21,7 +21,8 @@
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/bf48e3a477464d62a164bbbbed2873a9e2b803fd8b27f64f86d95396485bc0b8.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/f559d536b3c3b11eaf38536023f049ea22e017eb6fab846421c4514a4403e692.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/b32464bcfafaadbf66c13eb27ac53a30852f61496b654861fe5d012af13d9b16.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/d59d0ac00401f1a0bae3e2a111c9362a20bcf6333a23af03e8d97cebc7d11616.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/d59d0ac00401f1a0bae3e2a111c9362a20bcf6333a23af03e8d97cebc7d11616.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/bf48e3a477464d62a164bbbbed2873a9e2b803fd8b27f64f86d95396485bc0b8.png"
   ],
   "links": [
     {
@@ -44,6 +45,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/Rinnegatamante/Pekka-Kana-2-Vita"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=847"
     }
   ],
   "source_name": "VitaDBtoo",

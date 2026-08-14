@@ -21,7 +21,8 @@
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/f5881919628d666dda3811203dcb9fdd81257d661f7eb329d6b9ad7066eb5c7f.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/47e7dee6a033d980e62ad6cd0fc67edac927583e7d95082d0fae58e00d6361e5.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/13bd2a2574242f4c870d02a733342a36443c34ce761ae639e15a3d0c6d30b1f4.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c24fa07f7d82494bfdc96883e0e5a0ffda5af9d6c6cc0e909ecd0a5e3542f45e.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c24fa07f7d82494bfdc96883e0e5a0ffda5af9d6c6cc0e909ecd0a5e3542f45e.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/f5881919628d666dda3811203dcb9fdd81257d661f7eb329d6b9ad7066eb5c7f.png"
   ],
   "links": [
     {
@@ -44,6 +45,11 @@
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/1069-ufoai.vpk"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1069"
     }
   ],
   "source_name": "VitaDBtoo",

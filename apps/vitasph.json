@@ -19,7 +19,9 @@
   "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1318-vitasph.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/f68c16613f602dca38dda5b5e6984c316ef88362f429af914057dc25e8f05163.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/29336d6980d327e6a94254dfee99f1f41f03efc0802efd19a3d7ab9645a19dcf.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/29336d6980d327e6a94254dfee99f1f41f03efc0802efd19a3d7ab9645a19dcf.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/f68c16613f602dca38dda5b5e6984c316ef88362f429af914057dc25e8f05163.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/29336d6980d327e6a94254dfee99f1f41f03efc0802efd19a3d7ab9645a19dcf.png"
   ],
   "links": [
     {
@@ -42,6 +44,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/sjoerdev/fluid-simulation-vitagl"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1318"
     }
   ],
   "source_name": "VitaDBtoo",

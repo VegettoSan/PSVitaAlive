@@ -23,7 +23,9 @@
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/1b773197c7e6c73027a4f21ad9c57a976e6e041dbb61c1a0476234107523d51c.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/7b5a439143d38738005c9f432c0c879c3727d5a1777e39846d097dbfb07c8601.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/8278ea16da6dbc8ff168f339f56a0a9fe1a71e9fd71cde350a9f0dd941fd9996.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/8278ea16da6dbc8ff168f339f56a0a9fe1a71e9fd71cde350a9f0dd941fd9996.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/1b773197c7e6c73027a4f21ad9c57a976e6e041dbb61c1a0476234107523d51c.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/7b5a439143d38738005c9f432c0c879c3727d5a1777e39846d097dbfb07c8601.png"
   ],
   "links": [
     {
@@ -46,6 +48,11 @@
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/686-WTFDIGTS.vpk"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=686"
     }
   ],
   "source_name": "VitaDBtoo",

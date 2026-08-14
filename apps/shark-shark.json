@@ -18,7 +18,8 @@
   "status": "Legacy",
   "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1899-shark-shark.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/189004faf4a4028db0383705e0e8814101498db1ce26d87130401ccf444a479c.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/189004faf4a4028db0383705e0e8814101498db1ce26d87130401ccf444a479c.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/189004faf4a4028db0383705e0e8814101498db1ce26d87130401ccf444a479c.png"
   ],
   "links": [
     {
@@ -41,6 +42,11 @@
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/1210-SharkShark.vpk"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1210"
     }
   ],
   "source_name": "VitaDBtoo",

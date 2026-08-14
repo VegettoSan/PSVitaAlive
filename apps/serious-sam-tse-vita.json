@@ -20,7 +20,9 @@
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/60ab9e0a27ea3baa8de7026d40a00b052ad02fdb7d93be1579c051abdb0e3073.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/424f391fdc9f8b520c180b3fa0a602be44a28efbafc77fb07ddc60d975dbd373.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/b3daa676ea220d8c061720715bc874ba6f536fa183855e2103179b485bd23b8c.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/b3daa676ea220d8c061720715bc874ba6f536fa183855e2103179b485bd23b8c.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/60ab9e0a27ea3baa8de7026d40a00b052ad02fdb7d93be1579c051abdb0e3073.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/424f391fdc9f8b520c180b3fa0a602be44a28efbafc77fb07ddc60d975dbd373.png"
   ],
   "links": [
     {
@@ -43,6 +45,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/fgsfdsfgs/Serious-Engine/tree/psvita"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1345"
     }
   ],
   "source_name": "VitaDBtoo",

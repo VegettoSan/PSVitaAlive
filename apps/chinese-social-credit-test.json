@@ -18,7 +18,8 @@
   "status": "Legacy",
   "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1973-chinese-social-credit-test.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/2e376a6d78b5978bc10142973fb3512872b201720289934f2f2843687dd5484c.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/2e376a6d78b5978bc10142973fb3512872b201720289934f2f2843687dd5484c.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/2e376a6d78b5978bc10142973fb3512872b201720289934f2f2843687dd5484c.png"
   ],
   "links": [
     {
@@ -41,6 +42,11 @@
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/1445-Chinese_Social_Credit_Test_PSVITA.vpk"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1445"
     }
   ],
   "source_name": "VitaDBtoo",

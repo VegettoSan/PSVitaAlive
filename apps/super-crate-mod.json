@@ -18,7 +18,8 @@
   "status": "Legacy",
   "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1669-super-crate-mod.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/51953d009837689a5f06dbc518b487d7b38d4150fd5804b468ba2fb573a7072a.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/51953d009837689a5f06dbc518b487d7b38d4150fd5804b468ba2fb573a7072a.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/51953d009837689a5f06dbc518b487d7b38d4150fd5804b468ba2fb573a7072a.png"
   ],
   "links": [
     {
@@ -36,6 +37,11 @@
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/516-SuperCrateMod-Vita.VPK"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=516"
     }
   ],
   "source_name": "VitaDBtoo",

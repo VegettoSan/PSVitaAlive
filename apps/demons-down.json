@@ -21,7 +21,8 @@
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/225e767b2458d3538190900f569afa4e493a7217590c058208ceb6892f295d89.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/ed0ea46e7d7994e9f6bd4f110577486b5666e35e78e0b14ba40826ab84182ba4.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/5c0325e96fcd885cc9a8354029af1ab75b9fb82f5c2ace8e01717fda0827e45d.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/47b8ee81156dc39a0a6403d9d2e60f0bd53a2e0f8ccf421730445ab0260a537b.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/47b8ee81156dc39a0a6403d9d2e60f0bd53a2e0f8ccf421730445ab0260a537b.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/225e767b2458d3538190900f569afa4e493a7217590c058208ceb6892f295d89.png"
   ],
   "links": [
     {
@@ -44,6 +45,11 @@
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/679-DemonsDown.vpk"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=679"
     }
   ],
   "source_name": "VitaDBtoo",

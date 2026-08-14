@@ -36,6 +36,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/ParallelProductions/super-dungeon-delve-vita"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1036"
     }
   ],
   "source_name": "VitaDBtoo",

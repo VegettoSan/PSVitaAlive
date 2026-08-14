@@ -20,7 +20,9 @@
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/81e9aa5095509dd3784fd69baad113ddfcb53c54330375e7e9f24c52c8a722cb.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/03bdbbb2a943abee90acc32e0a9ee47f82371b519c715f762f35b1fb4fc0f838.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/f63ce8e58d7f7f1c4a21105726f3253ec9c1c653963132955a9c8ef5af3c23d1.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/f63ce8e58d7f7f1c4a21105726f3253ec9c1c653963132955a9c8ef5af3c23d1.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/81e9aa5095509dd3784fd69baad113ddfcb53c54330375e7e9f24c52c8a722cb.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/03bdbbb2a943abee90acc32e0a9ee47f82371b519c715f762f35b1fb4fc0f838.png"
   ],
   "links": [
     {
@@ -33,6 +35,11 @@
       "type": "Official Website",
       "name": "VitaDBtoo Release Page",
       "url": "https://github.com/PatnosDD/Keep-In-Mind-Remastered-PS-VITA"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1200"
     }
   ],
   "source_name": "VitaDBtoo",

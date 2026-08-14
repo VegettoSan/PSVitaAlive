@@ -18,7 +18,8 @@
   "status": "Legacy",
   "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/d3b48076cb1d4e7d381291fe0b103e8396d6ee720da5dfbbab670952dccb4e83.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c2e854daaa9c3c05ce9d8aba696a288e65af530f7dfb3518a6282a48b2b61e2e.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c2e854daaa9c3c05ce9d8aba696a288e65af530f7dfb3518a6282a48b2b61e2e.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/c2e854daaa9c3c05ce9d8aba696a288e65af530f7dfb3518a6282a48b2b61e2e.png"
   ],
   "links": [
     {
@@ -41,6 +42,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/Day-OS/green-vita"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1438"
     }
   ],
   "source_name": "VitaDBtoo",

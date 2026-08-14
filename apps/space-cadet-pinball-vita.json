@@ -19,7 +19,9 @@
   "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/13f8299758c95fa1af66aa10e383a3440dfbfbbb6a65549217c21f11b877a9a0.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/eb20cb5c87c078e4149e5d0edc10b644880966cec2b315842b8427e641a7b3f0.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/696de20ee051f8e72d6d710a96cd1f9b945ef9637dbbb8b96dab818174a0909e.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/696de20ee051f8e72d6d710a96cd1f9b945ef9637dbbb8b96dab818174a0909e.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/eb20cb5c87c078e4149e5d0edc10b644880966cec2b315842b8427e641a7b3f0.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/696de20ee051f8e72d6d710a96cd1f9b945ef9637dbbb8b96dab818174a0909e.png"
   ],
   "links": [
     {
@@ -42,6 +44,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/suicvne/SpaceCadetPinball_Vita"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=730"
     }
   ],
   "source_name": "VitaDBtoo",

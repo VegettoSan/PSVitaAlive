@@ -19,7 +19,9 @@
   "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1655-ps-scene-quiz.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c7879c0670fff802fe961ff623521da46376e73a2368816e8318086616169fff.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/07fa33a1960d9fb9cc9af03a530e54a1881c5411deaff4b3f47a9fb6da7f159b.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/07fa33a1960d9fb9cc9af03a530e54a1881c5411deaff4b3f47a9fb6da7f159b.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/c7879c0670fff802fe961ff623521da46376e73a2368816e8318086616169fff.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/07fa33a1960d9fb9cc9af03a530e54a1881c5411deaff4b3f47a9fb6da7f159b.png"
   ],
   "links": [
     {
@@ -37,6 +39,11 @@
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/489-quiz.vpk"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=489"
     }
   ],
   "source_name": "VitaDBtoo",

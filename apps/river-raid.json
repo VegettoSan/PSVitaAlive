@@ -18,7 +18,8 @@
   "status": "Legacy",
   "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1679-river-raid.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/eb3ebc2e60e7f91f8058a105063edd68750caf4c823fc35d51aaa90d4ee55b6b.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/eb3ebc2e60e7f91f8058a105063edd68750caf4c823fc35d51aaa90d4ee55b6b.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/eb3ebc2e60e7f91f8058a105063edd68750caf4c823fc35d51aaa90d4ee55b6b.png"
   ],
   "links": [
     {
@@ -36,6 +37,11 @@
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/548-RiverRaid.vpk"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=548"
     }
   ],
   "source_name": "VitaDBtoo",

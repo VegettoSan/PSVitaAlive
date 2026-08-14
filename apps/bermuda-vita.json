@@ -18,7 +18,9 @@
   "status": "Legacy",
   "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/84235dee32a942d678a6547e4e2dbac3cd63480d1a42d911bdc4cf4cb7d7a7cf.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/84235dee32a942d678a6547e4e2dbac3cd63480d1a42d911bdc4cf4cb7d7a7cf.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/84235dee32a942d678a6547e4e2dbac3cd63480d1a42d911bdc4cf4cb7d7a7cf.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/bermuda1.jpg",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/bermuda2.jpg"
   ],
   "links": [
     {
@@ -41,6 +43,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/usineur/bermuda/"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=115"
     }
   ],
   "source_name": "VitaDBtoo",

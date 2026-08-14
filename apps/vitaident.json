@@ -18,7 +18,9 @@
   "status": "Legacy",
   "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/8f39546ca79f8f0a48f4867089b946bcb13af615f7a72faa08f1ac72737a7145.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/8f39546ca79f8f0a48f4867089b946bcb13af615f7a72faa08f1ac72737a7145.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/8f39546ca79f8f0a48f4867089b946bcb13af615f7a72faa08f1ac72737a7145.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/vitaident.jpg",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/vitaident_gui.jpg"
   ],
   "links": [
     {
@@ -41,6 +43,16 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/joel16/VITAident"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=25"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=26"
     }
   ],
   "source_name": "VitaDBtoo",

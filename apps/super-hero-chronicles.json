@@ -18,7 +18,11 @@
   "status": "Legacy",
   "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1475-super-hero-chronicles.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1475-super-hero-chronicles.png"
+    "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1475-super-hero-chronicles.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/shc.jpg",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/shc2.jpg",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/shc3.jpg",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/shc4.jpg"
   ],
   "links": [
     {
@@ -41,6 +45,11 @@
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/32-Super_Hero_Chronicles.vpk"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=32"
     }
   ],
   "source_name": "VitaDBtoo",

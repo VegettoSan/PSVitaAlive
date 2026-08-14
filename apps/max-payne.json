@@ -21,7 +21,9 @@
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/f1bad53b5f3b9aa9e2098b1dcf687f1ac0b8ce544a06c4bcbff7c38fcb488371.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/951520721641d9459887404b7c161f3e29cbb1abc659c610b61adc94fdc8564f.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/f8b9a05847d77af2a3c3cdaa13b331857765f86f3ff0988c9a8e60f67739b112.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/f8b9a05847d77af2a3c3cdaa13b331857765f86f3ff0988c9a8e60f67739b112.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/f1bad53b5f3b9aa9e2098b1dcf687f1ac0b8ce544a06c4bcbff7c38fcb488371.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/951520721641d9459887404b7c161f3e29cbb1abc659c610b61adc94fdc8564f.png"
   ],
   "links": [
     {
@@ -44,6 +46,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/fgsfdsfgs/max_vita"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=612"
     }
   ],
   "source_name": "VitaDBtoo",

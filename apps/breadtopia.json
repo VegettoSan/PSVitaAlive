@@ -21,7 +21,8 @@
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/0d835910f57cfb2d93cfd6bb6757b09f8f470bad8c86618475c0216fd7d1cfc3.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/27b7780ef7d0e0d99dda81060f3a8c05af9bcfb004f0dc9fe7476739d935be93.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/e48f537a99f0bbc28ec4cdf49a9cb07307ad738b2642ee64b4f312ade504dd94.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/49c7c41b22e6e0bd262a2ecd31c3a68f5dd9d58fe08afad10517b703116082fd.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/49c7c41b22e6e0bd262a2ecd31c3a68f5dd9d58fe08afad10517b703116082fd.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/0d835910f57cfb2d93cfd6bb6757b09f8f470bad8c86618475c0216fd7d1cfc3.png"
   ],
   "links": [
     {
@@ -39,6 +40,11 @@
       "type": "Official Website",
       "name": "NeoVitaDB Release Page",
       "url": "https://github.com/kaonkaon/BreadToPIA/releases/tag/v1.1.0"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1225"
     }
   ],
   "source_name": "VitaDBtoo",

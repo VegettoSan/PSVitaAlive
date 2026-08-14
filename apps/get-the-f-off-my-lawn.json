@@ -19,7 +19,9 @@
   "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1626-get-the-f-off-my-lawn.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/bac794103e9a8700b5569af8e03e7cb270a0162da3663d5160cd0fa541d6310b.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/535ecc5b944597b854606a3216cef010fab3d5fd6c16005d323259ace9526de8.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/535ecc5b944597b854606a3216cef010fab3d5fd6c16005d323259ace9526de8.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/bac794103e9a8700b5569af8e03e7cb270a0162da3663d5160cd0fa541d6310b.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/535ecc5b944597b854606a3216cef010fab3d5fd6c16005d323259ace9526de8.png"
   ],
   "links": [
     {
@@ -37,6 +39,11 @@
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/449-Get_20the_20F_20off_20my_20lawn.vpk"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=449"
     }
   ],
   "source_name": "VitaDBtoo",

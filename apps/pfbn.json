@@ -18,7 +18,8 @@
   "status": "Legacy",
   "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/50411f5bba5045a351f2f62ab9558a6b53bbba94f6e4455f3805606eead4b9ac.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/87c702b065aa8a948c929acd69e389bb7f74617668d885c0bc87f31e0381379d.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/87c702b065aa8a948c929acd69e389bb7f74617668d885c0bc87f31e0381379d.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/87c702b065aa8a948c929acd69e389bb7f74617668d885c0bc87f31e0381379d.png"
   ],
   "links": [
     {
@@ -41,6 +42,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/Cpasjuste/pemu/tree/master/pfbneo"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=800"
     }
   ],
   "source_name": "VitaDBtoo",

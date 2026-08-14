@@ -5,7 +5,8 @@
   "description": "Port of Bloons TD 5 for PSVita.",
   "long_description": "An unofficial PlayStation Vita loader for the Android ARMv7 release of Bloons TD 5.",
   "author_ids": [
-    "claude-ai"
+    "claude-ai",
+    "reallootfury"
   ],
   "category_id": "games",
   "subcategory_ids": [
@@ -21,7 +22,8 @@
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/506ac2339c6a5a8d2a62a5a77d2066cef7e6098e8bccc8ed8245c7efe0acf53f.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/0ae935987f14356b56dedc4be145b3c2bf013814a9d6c707780ce0282cb25e75.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/50f1b5001c09b7a796f9330f8a6b99deccaba11d600a069ff90c7bcd9544d71e.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/05ba8e3d2faeb20d54c6341f128947959645733313ad978460ac64c8c7d52a16.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/05ba8e3d2faeb20d54c6341f128947959645733313ad978460ac64c8c7d52a16.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/506ac2339c6a5a8d2a62a5a77d2066cef7e6098e8bccc8ed8245c7efe0acf53f.png"
   ],
   "links": [
     {

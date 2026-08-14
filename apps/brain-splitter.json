@@ -20,7 +20,9 @@
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/74dd5ddb41223323001437dfc96edc67afdf9c1efbfb214819fd493f41271d55.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/fbcf5a5a9df14f75dfb7fa1da01eff466e3f69df685a7bd5590e741b5f9cddb7.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/b8a34222afc87afb45ec4c8763a852c73b37d03f3670655839f063843d1a8d83.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/b8a34222afc87afb45ec4c8763a852c73b37d03f3670655839f063843d1a8d83.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/74dd5ddb41223323001437dfc96edc67afdf9c1efbfb214819fd493f41271d55.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/fbcf5a5a9df14f75dfb7fa1da01eff466e3f69df685a7bd5590e741b5f9cddb7.png"
   ],
   "links": [
     {
@@ -43,6 +45,11 @@
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/665-BrainSplitter.vpk"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=665"
     }
   ],
   "source_name": "VitaDBtoo",

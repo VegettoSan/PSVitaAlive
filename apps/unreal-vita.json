@@ -21,7 +21,8 @@
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/85f2986d1e39c800d5130dcfb687f9556e3c7c1576f38e6608a2922f6b6200e1.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/91a73add2fa9e179f17389918ec456b96628cd20ab727724b9fd8f460baf01c0.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/ebeb6b0897c78a5eafc797016259ea5e7e90d02b0b63ecec6d34b9ecd776ddbd.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/5cece8c834ed0aced66355ebd677cc1901bae35b9cbab19d3ba50bd6e2d3498d.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/5cece8c834ed0aced66355ebd677cc1901bae35b9cbab19d3ba50bd6e2d3498d.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/85f2986d1e39c800d5130dcfb687f9556e3c7c1576f38e6608a2922f6b6200e1.png"
   ],
   "links": [
     {
@@ -44,6 +45,11 @@
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/1242-unreal.vpk"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1242"
     }
   ],
   "source_name": "VitaDBtoo",

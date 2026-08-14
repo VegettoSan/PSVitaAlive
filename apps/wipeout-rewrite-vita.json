@@ -21,7 +21,8 @@
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/ad26b5eac1e22ef0567b227d77c397a7ecad67376c6155deae22e6a3899bd499.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/13e810265926021f02d767af4b0cf85bbcfccc4d51fb5a0f74ee5b0d72fffc85.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/578faa39ee41d7dc6a7874706b4dc492231295235fa40a6cce3736c015d64cac.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/69412522bc9beb762b7f67b91ef5bda1bfbced72fa56826ffa6235fa9eb32ef9.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/69412522bc9beb762b7f67b91ef5bda1bfbced72fa56826ffa6235fa9eb32ef9.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/ad26b5eac1e22ef0567b227d77c397a7ecad67376c6155deae22e6a3899bd499.png"
   ],
   "links": [
     {
@@ -39,6 +40,11 @@
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/1116-Wipeout.vpk"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1116"
     }
   ],
   "source_name": "VitaDBtoo",

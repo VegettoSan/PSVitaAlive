@@ -18,7 +18,8 @@
   "status": "Legacy",
   "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1571-another-metroid-2-remake.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/60db97a2cbe037b7cf3378ecd52b5fcd3b118f0a86187432913eda10492cfed8.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/60db97a2cbe037b7cf3378ecd52b5fcd3b118f0a86187432913eda10492cfed8.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/60db97a2cbe037b7cf3378ecd52b5fcd3b118f0a86187432913eda10492cfed8.png"
   ],
   "links": [
     {
@@ -36,6 +37,11 @@
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/308-AMTR01693.vpk"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=308"
     }
   ],
   "source_name": "VitaDBtoo",

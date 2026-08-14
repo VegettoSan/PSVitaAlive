@@ -20,7 +20,9 @@
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/98c266add02f7fba6f3d664314df12d95e572937b06198bd0e18ccdcae814234.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/015c4e58e478e29d5cb1f4eca3876b75260dee62b8e08ab58415782dcb6ce6a2.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/05285fc563eb0e741ff1c86499c146e77d65c198822537c3e26ffd2ca0337839.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/05285fc563eb0e741ff1c86499c146e77d65c198822537c3e26ffd2ca0337839.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/98c266add02f7fba6f3d664314df12d95e572937b06198bd0e18ccdcae814234.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/015c4e58e478e29d5cb1f4eca3876b75260dee62b8e08ab58415782dcb6ce6a2.png"
   ],
   "links": [
     {
@@ -43,6 +45,11 @@
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/603-tspace2.vpk"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=603"
     }
   ],
   "source_name": "VitaDBtoo",

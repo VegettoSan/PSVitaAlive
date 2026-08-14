@@ -41,6 +41,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/Cpasjuste/pemu"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1358"
     }
   ],
   "source_name": "VitaDBtoo",

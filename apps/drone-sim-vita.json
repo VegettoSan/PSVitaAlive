@@ -20,7 +20,9 @@
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/bb9d7e7c7cb374d98baafd7a9230a5ca84efab8489993a6f8a98a6913fa538c5.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c5952ae12a3560e033d93134beddedd4aaad4718db056740e5d2622782e71cf7.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/ff52bc7929aee80ac0e56a907bea16e54984d8b4a1bdf1d2723d643a8edeed19.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/ff52bc7929aee80ac0e56a907bea16e54984d8b4a1bdf1d2723d643a8edeed19.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/bb9d7e7c7cb374d98baafd7a9230a5ca84efab8489993a6f8a98a6913fa538c5.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/c5952ae12a3560e033d93134beddedd4aaad4718db056740e5d2622782e71cf7.png"
   ],
   "links": [
     {
@@ -43,6 +45,11 @@
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/1115-Drone-Sim-Vita.vpk"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1115"
     }
   ],
   "source_name": "VitaDBtoo",

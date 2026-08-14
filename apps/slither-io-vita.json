@@ -20,7 +20,9 @@
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/5ceb6db0c13cc343f514212f40bc1e78ff5340c967afe028261e954ef81de42f.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/9e634d7752a18c7c8648aff6afdceb3650535c735baf8e39bed70ad159f9986b.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/4e2d9c1c5f0037d9cf1c7af068190d2adacfd59d6cb2d111f8466f964cbd8158.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/4e2d9c1c5f0037d9cf1c7af068190d2adacfd59d6cb2d111f8466f964cbd8158.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/5ceb6db0c13cc343f514212f40bc1e78ff5340c967afe028261e954ef81de42f.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/9e634d7752a18c7c8648aff6afdceb3650535c735baf8e39bed70ad159f9986b.png"
   ],
   "links": [
     {
@@ -43,6 +45,11 @@
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/1063-Slither.io_Vita.vpk"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1063"
     }
   ],
   "source_name": "VitaDBtoo",

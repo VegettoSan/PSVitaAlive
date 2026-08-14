@@ -21,7 +21,8 @@
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/8eddc0584a9a8549d0e88b74c196f88c0413fff2f07b160ca10b97d009a05948.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/0e432489073265c2dacd984f39b71bc3147dbe6196f0aa885794b8faac12408e.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/053cf3a983c869995665fd20dd4592e1ec213653029dfb88887ae212cb730a9c.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/2a439a98150d424a97e0b4cb738bc44c095a28af1a493352e7468e7e4cf9447c.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/2a439a98150d424a97e0b4cb738bc44c095a28af1a493352e7468e7e4cf9447c.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/8eddc0584a9a8549d0e88b74c196f88c0413fff2f07b160ca10b97d009a05948.png"
   ],
   "links": [
     {
@@ -44,6 +45,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/Rinnegatamante/raider-vita"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=845"
     }
   ],
   "source_name": "VitaDBtoo",

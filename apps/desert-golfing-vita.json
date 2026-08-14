@@ -20,7 +20,9 @@
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/8b13a8d0e6759e4827cbd92e337045ab98e0dac65632ca61280038a756dfa129.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/2c26fe813ce17f8819af11751b99e4c4d46ba0b2219753e3b18f5aaaf5ddd971.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/705dce598b4bf445bf026a80bc9d7b4e47a9981f2a6c2a3891138998c164e8ff.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/705dce598b4bf445bf026a80bc9d7b4e47a9981f2a6c2a3891138998c164e8ff.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/8b13a8d0e6759e4827cbd92e337045ab98e0dac65632ca61280038a756dfa129.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/2c26fe813ce17f8819af11751b99e4c4d46ba0b2219753e3b18f5aaaf5ddd971.png"
   ],
   "links": [
     {
@@ -43,6 +45,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/Rinnegatamante/desertgolfing_vita"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1180"
     }
   ],
   "source_name": "VitaDBtoo",

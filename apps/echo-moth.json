@@ -19,7 +19,9 @@
   "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1630-echo-moth.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/92c6b4496c18f02305eac0174ef0efcec55180a03f5ceca3dd5f53474004bf3f.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/ea33d67afc7e501dc74ecf708bcc469c0690598617cea7b486561845895a2260.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/ea33d67afc7e501dc74ecf708bcc469c0690598617cea7b486561845895a2260.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/92c6b4496c18f02305eac0174ef0efcec55180a03f5ceca3dd5f53474004bf3f.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/ea33d67afc7e501dc74ecf708bcc469c0690598617cea7b486561845895a2260.png"
   ],
   "links": [
     {
@@ -37,6 +39,11 @@
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/453-Echo_20Moth.vpk"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=453"
     }
   ],
   "source_name": "VitaDBtoo",

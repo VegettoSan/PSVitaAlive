@@ -21,7 +21,8 @@
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/a1226dbd22ddda24d63804b78bed4b41150a290d6763d45f892bbd5f4286e8b0.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/75b56211ef4b1fa796e37eff170dbd1c3f658ac9819080f08eba6bc1a817e662.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/aca7647cf7fdeb11d7ce91bcb6b55ea0738a9967775f0002aa45631cf3ea0e9d.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/5a02555336ea12cc57938f29e243397da7a6c2ecd4fbfa97511d1e0be5150e0d.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/5a02555336ea12cc57938f29e243397da7a6c2ecd4fbfa97511d1e0be5150e0d.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/a1226dbd22ddda24d63804b78bed4b41150a290d6763d45f892bbd5f4286e8b0.png"
   ],
   "links": [
     {
@@ -44,6 +45,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/MEGAgameBoy/I-Wanna-Reach-The-Unity-PS-Vita-Port"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1045"
     }
   ],
   "source_name": "VitaDBtoo",

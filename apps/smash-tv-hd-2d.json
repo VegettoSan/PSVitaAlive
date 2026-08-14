@@ -20,7 +20,9 @@
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/2c27cd95816ff7b66a38aeaf4b48d88ecd32f4070a98585eaa6b69297d16c38a.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/08084297ec56d01a3c8319c1b9e3333e909fd506e70b9dad63f1d757167df8d2.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/065e91600ec4239eebb9fbd785f264124ad7a04d04cdbd85bc1a878a3ec5d9d2.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/065e91600ec4239eebb9fbd785f264124ad7a04d04cdbd85bc1a878a3ec5d9d2.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/2c27cd95816ff7b66a38aeaf4b48d88ecd32f4070a98585eaa6b69297d16c38a.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/08084297ec56d01a3c8319c1b9e3333e909fd506e70b9dad63f1d757167df8d2.png"
   ],
   "links": [
     {
@@ -43,6 +45,11 @@
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/1190-smash_tv.vpk"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1190"
     }
   ],
   "source_name": "VitaDBtoo",

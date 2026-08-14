@@ -21,7 +21,8 @@
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/31d2a883089af75348faa977603056346c0ff2c212d0c838192e1f001933df15.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/73f91044b709f35acdfadc742c7b78819355fd2dce14ce52ee78ee3e7b920cba.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/1fd994662676015b29e59abbe41f9022106f416e7c865074171b4c2bb45108ce.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/1859b1935c4980d3f6d77ca963c3ce6ed24d72629552aa23316097d30832f59f.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/1859b1935c4980d3f6d77ca963c3ce6ed24d72629552aa23316097d30832f59f.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/31d2a883089af75348faa977603056346c0ff2c212d0c838192e1f001933df15.png"
   ],
   "links": [
     {
@@ -44,6 +45,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/Rinnegatamante/jetcarstunts_vita"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1176"
     }
   ],
   "source_name": "VitaDBtoo",

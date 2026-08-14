@@ -19,7 +19,9 @@
   "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1935-vita-webradios.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/99d8afc024668e5f466eda61c85283e998fe0fa5e630fbb411574520f3760312.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/538f02aa80c8f1446129aeb2350f8a0758f76e6e33eae5658a671edb0eb6267f.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/538f02aa80c8f1446129aeb2350f8a0758f76e6e33eae5658a671edb0eb6267f.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/99d8afc024668e5f466eda61c85283e998fe0fa5e630fbb411574520f3760312.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/538f02aa80c8f1446129aeb2350f8a0758f76e6e33eae5658a671edb0eb6267f.png"
   ],
   "links": [
     {
@@ -42,6 +44,11 @@
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/1316-webradio.vpk"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1316"
     }
   ],
   "source_name": "VitaDBtoo",

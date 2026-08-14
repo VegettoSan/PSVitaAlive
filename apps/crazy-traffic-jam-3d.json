@@ -1,0 +1,44 @@
+{
+  "id": "crazy-traffic-jam-3d",
+  "title_id": "CTJ300001",
+  "name": "Crazy Traffic Jam 3D",
+  "description": "3D arcade driving game.",
+  "long_description": "Crazy Traffic Jam 3D is an endless arcade driving game with stylized 3D graphics. Drive your car through highway traffic, earn coins, collect lightning boosts to speed up and maximize your score.\nThe game features local hi-score. The faster you drive the more score you get.",
+  "author_ids": [
+    "vitahex-games"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.1.0",
+  "version_date": "2017-08-06",
+  "requirements": "Not specified",
+  "size": 3118547,
+  "status": "Legacy",
+  "icon": "https://www.rinnegatamante.eu/vitadb/icons/7c036a38589673e1439a493a5da5d2162802bb9ad8bcfd5a499fdb9b5824a0b9.png",
+  "screenshots": [
+    "https://www.rinnegatamante.eu/vitadb/screenshots/c5b3ed06ea096669daf2fa1c55d39d8dc068a71e7c2ecfcb0d42c41ddb7f7f9d.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/b948d5b4c46b6d215cecfc824395fd859da528ee41da01e7015597105199bbe8.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/d0d3ccecab14138d3f196352022f136ca1503389fd9ff81dea9a3cae26e5c789.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/ff39755e5e8df1ea021ee9978c6ebabea4a689db06707a2111d24778babab226.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=292",
+      "recommended": true
+    },
+    {
+      "type": "Official Website",
+      "name": "VitaDB Release Page",
+      "url": "http://wololo.net/talk/viewtopic.php?f=116&t=48358"
+    }
+  ],
+  "source_name": "VitaDB",
+  "source_id": "292",
+  "source_url": "http://wololo.net/talk/viewtopic.php?f=116&t=48358",
+  "release_page": "http://wololo.net/talk/viewtopic.php?f=116&t=48358",
+  "updated_at": "2026-08-14T01:05:59.231221+00:00"
+}

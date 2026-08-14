@@ -18,7 +18,8 @@
   "status": "Legacy",
   "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1694-prboom-plus.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c466ff03ee2e7324b95154b30f413c558e4d3275b276a8332b1d21a62feca66d.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c466ff03ee2e7324b95154b30f413c558e4d3275b276a8332b1d21a62feca66d.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/c466ff03ee2e7324b95154b30f413c558e4d3275b276a8332b1d21a62feca66d.png"
   ],
   "links": [
     {
@@ -36,6 +37,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/fgsfdsfgs/prboom-plus"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=591"
     }
   ],
   "source_name": "VitaDBtoo",

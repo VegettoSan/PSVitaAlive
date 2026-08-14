@@ -1,0 +1,41 @@
+{
+  "id": "vita-hardware-test",
+  "title_id": "VHWT00001",
+  "name": "Vita Hardware Test",
+  "description": "Hardware tester for PSVITA.",
+  "long_description": "App that tests your console inputs and outputs (buttons, touchscreens, audio, video).",
+  "author_ids": [
+    "ifrit05"
+  ],
+  "category_id": "plugins",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.1.0",
+  "version_date": "2016-08-13",
+  "requirements": "Not specified",
+  "size": 1821008,
+  "status": "Legacy",
+  "icon": "https://www.rinnegatamante.eu/vitadb/icons/603b3bb3f040333bd85f317d4a0f646cae584938d256e940ec629f2daace3f2c.png",
+  "screenshots": [
+    "https://www.rinnegatamante.eu/vitadb/screenshots/hwtest.jpg"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=177",
+      "recommended": true
+    },
+    {
+      "type": "Official Website",
+      "name": "VitaDB Release Page",
+      "url": "https://gbatemp.net/threads/release-vita-hardware-test.437856/"
+    }
+  ],
+  "source_name": "VitaDB",
+  "source_id": "177",
+  "source_url": "https://gbatemp.net/threads/release-vita-hardware-test.437856/",
+  "release_page": "https://gbatemp.net/threads/release-vita-hardware-test.437856/",
+  "updated_at": "2026-08-14T01:05:59.234617+00:00"
+}

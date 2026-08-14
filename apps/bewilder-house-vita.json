@@ -20,7 +20,9 @@
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/f5b96fcdb98e9743bab146087275aafe7ffde210dcd7747b914e60c891809e43.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/2e8b4678c34ab46df510b0a8d12afa6cd3a48b5409b4e322917d4c1d0557d6f4.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/da9c45d6a4f00b03883e336cbcb9e7ba58653544b3082a7d984786eb4a0d7af3.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/da9c45d6a4f00b03883e336cbcb9e7ba58653544b3082a7d984786eb4a0d7af3.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/f5b96fcdb98e9743bab146087275aafe7ffde210dcd7747b914e60c891809e43.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/2e8b4678c34ab46df510b0a8d12afa6cd3a48b5409b4e322917d4c1d0557d6f4.png"
   ],
   "links": [
     {
@@ -43,6 +45,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/MaloneCZSD/BewilderHouse-PS-VITA"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1223"
     }
   ],
   "source_name": "VitaDBtoo",

@@ -18,7 +18,9 @@
   "status": "Legacy",
   "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1531-vitadl.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1531-vitadl.png"
+    "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1531-vitadl.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/vitadl1.jpg",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/vitadl2.jpg"
   ],
   "links": [
     {
@@ -36,6 +38,11 @@
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/180-VitaDL.vpk"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=180"
     }
   ],
   "source_name": "VitaDBtoo",

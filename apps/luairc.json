@@ -18,7 +18,10 @@
   "status": "Legacy",
   "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1479-luairc.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1479-luairc.png"
+    "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1479-luairc.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/irc1.jpg",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/irc2.jpg",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/irc3.jpg"
   ],
   "links": [
     {
@@ -41,6 +44,11 @@
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/51-luaIrc.vpk"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=51"
     }
   ],
   "source_name": "VitaDBtoo",

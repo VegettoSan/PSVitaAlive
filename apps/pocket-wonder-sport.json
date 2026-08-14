@@ -21,7 +21,8 @@
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/cababf1d42e54e7089f4e01bf5469ccc45ec3fa7d32e82b3782cf63d80231ed8.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/08c9de237bc31b217ad9496e6b0f52062a5900750194bcaaa8c2cbeb978d711f.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/34a3c19f8f7915e408de60ee2e3ed34b0b0cc56fca69b7bc431534b351afd733.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/1ca346d2c61d45f5c33b5525024423f4bf5adff9c211dc51070a99166b970e7d.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/1ca346d2c61d45f5c33b5525024423f4bf5adff9c211dc51070a99166b970e7d.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/cababf1d42e54e7089f4e01bf5469ccc45ec3fa7d32e82b3782cf63d80231ed8.png"
   ],
   "links": [
     {
@@ -44,6 +45,11 @@
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/648-Pocket_Wonder_Sport.vpk"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=648"
     }
   ],
   "source_name": "VitaDBtoo",

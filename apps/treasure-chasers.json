@@ -21,7 +21,8 @@
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/3a825f2d5a4780fd2af36378b22d340c0f53003171eb62c08d93a14c35bdf1cf.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/4045cab59bbad3da3af94ac023bcf5b732d4f91e19542ddf0e145c277d2d1cc1.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/ce4bf690c856ad72ab79d0fa6c8d45ab38d1229ff0fbb516ebb6ae3c424e0e0b.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c7a6b25baa6afb66f79996df12d2630dcc8b39d0b0349e292c9e67545ddf8a22.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c7a6b25baa6afb66f79996df12d2630dcc8b39d0b0349e292c9e67545ddf8a22.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/3a825f2d5a4780fd2af36378b22d340c0f53003171eb62c08d93a14c35bdf1cf.png"
   ],
   "links": [
     {
@@ -44,6 +45,11 @@
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/678-TreasureChasers.vpk"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=678"
     }
   ],
   "source_name": "VitaDBtoo",

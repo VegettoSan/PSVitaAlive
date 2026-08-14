@@ -20,7 +20,9 @@
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/8f8a4b3f2adc3a626797b7d7d585b5a2985a77aa252b1b7eb8cadb0322d1d46d.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/08c1cbb4291c2342311b23cc8b988a417cc643d3e87a4a6b67e11b08685c9662.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/b7e3f52ca451809027833e76f493203bfc0ad5d7122c4240d518d629045f7ef9.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/b7e3f52ca451809027833e76f493203bfc0ad5d7122c4240d518d629045f7ef9.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/8f8a4b3f2adc3a626797b7d7d585b5a2985a77aa252b1b7eb8cadb0322d1d46d.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/08c1cbb4291c2342311b23cc8b988a417cc643d3e87a4a6b67e11b08685c9662.png"
   ],
   "links": [
     {
@@ -43,6 +45,11 @@
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/1104-The-Four-of-Us-Are-Dying.vpk"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1104"
     }
   ],
   "source_name": "VitaDBtoo",

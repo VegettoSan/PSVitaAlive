@@ -23,7 +23,8 @@
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/a61b10313ce660cff761a7b4734109d3be8e38f774308634b0c52b6b7d4ccad4.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/6361f255d1400f7e8827b1298a5cc3ce421ac0b65faf4165edc42381d7778536.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/5ac5f20bc3c3cbb2cc91bdbdb726e6ff49ad0a985ac74cf4248d0089bd8fca13.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/ac8b07ca3bc5262bef07f4cca0defe126dd1c25f650f8c4e4a29ad7630be26b7.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/ac8b07ca3bc5262bef07f4cca0defe126dd1c25f650f8c4e4a29ad7630be26b7.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/a61b10313ce660cff761a7b4734109d3be8e38f774308634b0c52b6b7d4ccad4.png"
   ],
   "links": [
     {
@@ -46,6 +47,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/Rinnegatamante/Death-Road-to-Canada-Lite"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=846"
     }
   ],
   "source_name": "VitaDBtoo",

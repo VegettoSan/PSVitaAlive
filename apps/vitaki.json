@@ -47,6 +47,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/ywnico/vitaki-fork"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1293"
     }
   ],
   "source_name": "VitaDBtoo",

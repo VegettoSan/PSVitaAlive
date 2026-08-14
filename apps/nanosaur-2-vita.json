@@ -21,7 +21,8 @@
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/347ca0c6bb742136e1f8b4e4aa9cc9e86f5b1868ca1f17c8fb23d73644a88c2d.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/e3611709acd82a40ff38049be97acefc8708e47eee094bcdf7b3b0dd0ddca75a.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/d849c2f49c190257f846e3c259e0575470f5315918567b98eb1793ffeec65168.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/842f1e1f732f4bfdb7db5d6265d880c5397613f5c41df18d7bb73414875e54b7.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/842f1e1f732f4bfdb7db5d6265d880c5397613f5c41df18d7bb73414875e54b7.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/347ca0c6bb742136e1f8b4e4aa9cc9e86f5b1868ca1f17c8fb23d73644a88c2d.png"
   ],
   "links": [
     {
@@ -44,6 +45,11 @@
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/1241-Nanosaur2.vpk"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1241"
     }
   ],
   "source_name": "VitaDBtoo",

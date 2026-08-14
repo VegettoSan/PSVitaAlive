@@ -18,7 +18,11 @@
   "status": "Legacy",
   "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/aac16ae00587d26f5f0633def3e3fb658754afd99418fb9224fc6b8b24ebdb0b.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/aac16ae00587d26f5f0633def3e3fb658754afd99418fb9224fc6b8b24ebdb0b.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/aac16ae00587d26f5f0633def3e3fb658754afd99418fb9224fc6b8b24ebdb0b.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/jelly1.jpg",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/jelly2.jpg",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/jelly3.jpg",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/jelly4.jpg"
   ],
   "links": [
     {
@@ -41,6 +45,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/DrakonPL/JellyCar"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=27"
     }
   ],
   "source_name": "VitaDBtoo",

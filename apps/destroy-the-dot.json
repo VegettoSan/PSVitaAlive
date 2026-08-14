@@ -21,7 +21,8 @@
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/aaa019655ef665f57beafb7948e86f3cf3b29a8eedb0fcbf4cc98badecbce55b.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/a12e6fe3ac8fdfd2c9ee534f16641ba8270bb255f46aff094642371e2bb4936f.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/6709ed31da058b615cb0ffd87ba083cc80269da33083006e624ff3ebeb69c598.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/a61c7ab120a989b7e13a83c973dbbe73ecb313477a31724f37941b92ce8a97d6.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/a61c7ab120a989b7e13a83c973dbbe73ecb313477a31724f37941b92ce8a97d6.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/aaa019655ef665f57beafb7948e86f3cf3b29a8eedb0fcbf4cc98badecbce55b.png"
   ],
   "links": [
     {
@@ -34,6 +35,11 @@
       "type": "Official Website",
       "name": "VitaDBtoo Release Page",
       "url": "https://github.com/OrbitalFlagStudio/VitaGamesReleases/releases/tag/Destroy.The.Dot.v1.0"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1084"
     }
   ],
   "source_name": "VitaDBtoo",

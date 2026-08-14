@@ -23,7 +23,8 @@
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/2e6210d3370e490e36f6982fb4ed7da4b01582b5609ed41078c56a924f1799a0.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/551d7dee5d5503be49b73840c4c0f30e1fd0e02b686603569ee2149cf9d0885b.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/cc94d60094dc411b521524b01d3b9f9370e69136e3c751bfc0488f1145bb1a9b.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/00bf0536e6a34ef7bf1231dafa103bd6260b96b22c3e606f13f992073112374c.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/00bf0536e6a34ef7bf1231dafa103bd6260b96b22c3e606f13f992073112374c.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/2e6210d3370e490e36f6982fb4ed7da4b01582b5609ed41078c56a924f1799a0.png"
   ],
   "links": [
     {
@@ -46,6 +47,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/TheOfficialFloW/twom_vita"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=802"
     }
   ],
   "source_name": "VitaDBtoo",

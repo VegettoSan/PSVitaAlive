@@ -18,7 +18,10 @@
   "status": "Legacy",
   "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1502-zeldaroth.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1502-zeldaroth.png"
+    "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1502-zeldaroth.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/zelda1.jpg",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/zelda2.jpg",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/zelda3.jpg"
   ],
   "links": [
     {
@@ -41,6 +44,11 @@
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/109-ZeldaROTH.vpk"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=109"
     }
   ],
   "source_name": "VitaDBtoo",

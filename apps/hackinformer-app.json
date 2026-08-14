@@ -18,7 +18,9 @@
   "status": "Legacy",
   "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1548-hackinformer-app.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1548-hackinformer-app.png"
+    "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1548-hackinformer-app.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/hackinf1.jpg",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/hackinf2.jpg"
   ],
   "links": [
     {
@@ -36,6 +38,11 @@
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/227-HackInformer.vpk"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=227"
     }
   ],
   "source_name": "VitaDBtoo",

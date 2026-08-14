@@ -41,6 +41,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/technicaljicama/OpenRCT2-CE"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1269"
     }
   ],
   "source_name": "VitaDBtoo",

@@ -18,7 +18,8 @@
   "status": "Legacy",
   "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1406-vitavault.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/418246f70b033756d8a1a91f0d4c149ab885a9676680c6ecab8173a4f7f18f3d.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/418246f70b033756d8a1a91f0d4c149ab885a9676680c6ecab8173a4f7f18f3d.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/418246f70b033756d8a1a91f0d4c149ab885a9676680c6ecab8173a4f7f18f3d.png"
   ],
   "links": [
     {
@@ -41,6 +42,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/huceus/vitavault-vpk"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1406"
     }
   ],
   "source_name": "VitaDBtoo",

@@ -21,7 +21,8 @@
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/b4dbbfafe8707a90a2d2a2f01f5fea4b16b1d39dabaf9575bae287020f86ee3e.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c2ce5d079bc68e7b0db5f7eb6fa8722f1921156cf73df7b62e0e52180e9889ea.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/2b9b21a0fad43137664fbbcbcb89a8d8b87ecb4fcd80afcb0142ce78795db702.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/4ffbe9c276c3482386434d2dc3c289b304458a577395f6058aa8ceb52b24c6ce.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/4ffbe9c276c3482386434d2dc3c289b304458a577395f6058aa8ceb52b24c6ce.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/b4dbbfafe8707a90a2d2a2f01f5fea4b16b1d39dabaf9575bae287020f86ee3e.png"
   ],
   "links": [
     {
@@ -44,6 +45,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/v-atamanenko/deadspace-vita"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=999"
     }
   ],
   "source_name": "VitaDBtoo",

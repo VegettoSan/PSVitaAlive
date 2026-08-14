@@ -5,7 +5,8 @@
   "description": "Port of Soda Dungeon for PSVita.",
   "long_description": "An unofficial PS Vita loader for the Android release of Soda Dungeon. It runs the original ARMv7 libraries inside a small Android compatibility layer.",
   "author_ids": [
-    "claude-ai"
+    "claude-ai",
+    "reallootfury"
   ],
   "category_id": "games",
   "subcategory_ids": [
@@ -36,6 +37,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/reallootfury/soda-dungeon-vita"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1434"
     }
   ],
   "source_name": "VitaDBtoo",

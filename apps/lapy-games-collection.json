@@ -18,7 +18,8 @@
   "status": "Legacy",
   "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1701-lapy-games-collection.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/5477cbcb035ecc5fcf4485d1a185e16f18b94b34036de57f605f542987022d61.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/5477cbcb035ecc5fcf4485d1a185e16f18b94b34036de57f605f542987022d61.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/5477cbcb035ecc5fcf4485d1a185e16f18b94b34036de57f605f542987022d61.png"
   ],
   "links": [
     {
@@ -36,6 +37,11 @@
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/613-LapyGC.vpk"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=613"
     }
   ],
   "source_name": "VitaDBtoo",

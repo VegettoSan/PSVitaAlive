@@ -52,6 +52,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=414"
     }
   ],
   "source_name": "VitaDBtoo",

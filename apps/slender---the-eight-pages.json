@@ -21,7 +21,8 @@
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/4b94693f3b383cbb7281016de4c10a75e8e66899e638dd62d72d57f3c831e41a.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/34949c8d4a3174eac7242585c04337d9e7da0b61d50e4d9fd211888a20834930.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/36a51db17b842024f21a39dac2a520a0303b916cae94f8db869c698b4d941886.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/b2d465e9ca569529353826fe7da9e76e917cfe63fce59ba9efb81be57ab31d33.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/b2d465e9ca569529353826fe7da9e76e917cfe63fce59ba9efb81be57ab31d33.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/4b94693f3b383cbb7281016de4c10a75e8e66899e638dd62d72d57f3c831e41a.png"
   ],
   "links": [
     {
@@ -39,6 +40,11 @@
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/880-slender8.vpk"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=880"
     }
   ],
   "source_name": "VitaDBtoo",

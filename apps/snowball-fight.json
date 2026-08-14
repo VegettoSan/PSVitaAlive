@@ -21,7 +21,8 @@
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/d54dc00426b27134fa38a335857cd3e006842b248f424952ab5895789267c349.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/57476afda09735f2d307b6d803abfbfe5a1ce5524862fcfab3b78f2e90c024df.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/37fe80679d4a7c70253631d53e6b919d7a9824e9279de08ca4162c36064d7258.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/75876328825041890558c4ce88fb61896ea452fdb8a302c5029e291aadc72aaf.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/75876328825041890558c4ce88fb61896ea452fdb8a302c5029e291aadc72aaf.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/d54dc00426b27134fa38a335857cd3e006842b248f424952ab5895789267c349.png"
   ],
   "links": [
     {
@@ -44,6 +45,11 @@
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/1324-snowball.vpk"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1324"
     }
   ],
   "source_name": "VitaDBtoo",

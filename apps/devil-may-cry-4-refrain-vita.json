@@ -23,7 +23,8 @@
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/7ea8dc859502657562f93e7633da47dd5af89d603179bb1cddc88d2a96c5158b.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/da37405927a648d59b6facbfed9d1ce7fd903ee12d26052649b4356f881bd19e.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/f021b67c4c79bfa0a8f6918d6e590aa5b1a2e1fdcf7e917a623b6ec89e073cdd.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/d763be62846730f7ca6ac06a0f2705fcaa4bd5706a1fafe0a3aab5c3a353af75.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/d763be62846730f7ca6ac06a0f2705fcaa4bd5706a1fafe0a3aab5c3a353af75.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/7ea8dc859502657562f93e7633da47dd5af89d603179bb1cddc88d2a96c5158b.png"
   ],
   "links": [
     {
@@ -41,6 +42,11 @@
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/1377-dmc4.vpk"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1377"
     }
   ],
   "source_name": "VitaDBtoo",

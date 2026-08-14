@@ -18,7 +18,8 @@
   "status": "Legacy",
   "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1948-lantern-mouse.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/adb2c6a719671b312a426bea2b377a4ef35503a50bd042be54562b258b90f871.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/adb2c6a719671b312a426bea2b377a4ef35503a50bd042be54562b258b90f871.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/adb2c6a719671b312a426bea2b377a4ef35503a50bd042be54562b258b90f871.png"
   ],
   "links": [
     {
@@ -41,6 +42,11 @@
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/1335-LMSubmit.vpk"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1335"
     }
   ],
   "source_name": "VitaDBtoo",

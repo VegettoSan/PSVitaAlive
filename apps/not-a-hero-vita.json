@@ -21,7 +21,8 @@
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/77408e50b12eb7b8122dddfd61ddfe43857e664a830b41b0a5ceb1a0880bcd8d.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/10d43d966914cccfb7eea8972efef5d32fec5c0c86abc9926d0c4f1ebd3de05f.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/7a3aea9971b623fbd154b3bfb2a5d0eb834413471d2d384738717dd62c120ac2.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/babf767858d830b1ec7d8dc904bf7a93fed750776b8c9b17c178690d322282bf.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/babf767858d830b1ec7d8dc904bf7a93fed750776b8c9b17c178690d322282bf.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/77408e50b12eb7b8122dddfd61ddfe43857e664a830b41b0a5ceb1a0880bcd8d.png"
   ],
   "links": [
     {
@@ -44,6 +45,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/Rinnegatamante/not_a_hero-vita"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1199"
     }
   ],
   "source_name": "VitaDBtoo",

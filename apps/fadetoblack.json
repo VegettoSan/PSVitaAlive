@@ -21,7 +21,8 @@
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/441f6728836b3002d9d281bb147bcd489a534bbb173884471139f8c5775b1408.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/f8c948ecee1393ceb4d7c9b881c33d8195e0d5b99a960b6b01e17f922d210be0.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/cd5dcfcaec8747184ef2148a5b45ed4d81e9659957141603e3cbdda6788bdd28.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/8cfd50902412422967ca149f9c969eb6991cda9865b3c40bca4591f8cede2e45.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/8cfd50902412422967ca149f9c969eb6991cda9865b3c40bca4591f8cede2e45.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/441f6728836b3002d9d281bb147bcd489a534bbb173884471139f8c5775b1408.png"
   ],
   "links": [
     {
@@ -39,6 +40,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/usineur/f2bgl"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=367"
     }
   ],
   "source_name": "VitaDBtoo",

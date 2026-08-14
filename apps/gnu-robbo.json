@@ -18,7 +18,10 @@
   "status": "Legacy",
   "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/3c141bbfc70f8d29f2901938aefe7beff5d7f6847920a44e9ad5100ccd2cc0a2.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/3c141bbfc70f8d29f2901938aefe7beff5d7f6847920a44e9ad5100ccd2cc0a2.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/3c141bbfc70f8d29f2901938aefe7beff5d7f6847920a44e9ad5100ccd2cc0a2.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/robbo1.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/robbo2.jpg",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/robbo3.jpg"
   ],
   "links": [
     {
@@ -41,6 +44,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/bomblik/GNU_Robbo_PSVITA_PSP"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=114"
     }
   ],
   "source_name": "VitaDBtoo",

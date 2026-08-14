@@ -21,7 +21,8 @@
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/0f995c855bed739b857b8655b475ea83a6b30171e3d67f7f726a53ec7d6f9723.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/187343c8d73daeccd0406b97b0b040fcf32fc457e2fafe914741a1279a1421c4.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/8df29cbf1651e9fdc573cca4a4e0efbef4bbd5a64bcee783287bdb94d6e39070.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/43e078b3ffb8a071f67cd1ed7af34e5a83a3d0c47cc4482f3d32f643e37d5ea0.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/43e078b3ffb8a071f67cd1ed7af34e5a83a3d0c47cc4482f3d32f643e37d5ea0.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/0f995c855bed739b857b8655b475ea83a6b30171e3d67f7f726a53ec7d6f9723.png"
   ],
   "links": [
     {
@@ -44,6 +45,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/MEGAgameBoy/Super-Mario-UniMaker-PS-Vita-Port"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=832"
     }
   ],
   "source_name": "VitaDBtoo",

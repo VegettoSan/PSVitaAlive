@@ -2,7 +2,7 @@
   "id": "bogglevita-bogglestg",
   "title_id": "BOGGLESTG",
   "name": "BoggleVita",
-  "description": "",
+  "description": "Boggle game for PSVITA.",
   "long_description": "Boggle game for PSVITA.\nGrab a pen and paper and enjoy.",
   "author_ids": [
     "soultiegames"
@@ -11,10 +11,10 @@
   "subcategory_ids": [
     "other"
   ],
-  "version": "Vita",
+  "version": "v.1.0",
   "version_date": "2023-12-23",
   "requirements": "Not specified",
-  "size": 3496823,
+  "size": 3058336,
   "status": "Legacy",
   "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1169-bogglevita.png",
   "screenshots": [
@@ -36,6 +36,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/SoulTieGames/BoggleVita"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1169"
     }
   ],
   "source_name": "NeoVitaDB",

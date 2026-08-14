@@ -18,7 +18,8 @@
   "status": "Legacy",
   "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/9cd72f4c6a673fb382c5d441058538d9f4c05d28788353bb180529f69360004c.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/866241fa6c203431d4430d6babaf93b88bcf722c20a019140292fc63d07f211e.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/866241fa6c203431d4430d6babaf93b88bcf722c20a019140292fc63d07f211e.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/866241fa6c203431d4430d6babaf93b88bcf722c20a019140292fc63d07f211e.png"
   ],
   "links": [
     {
@@ -41,6 +42,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/SonicMastr/Mad-Bomber-Vita"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=867"
     }
   ],
   "source_name": "VitaDBtoo",

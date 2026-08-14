@@ -23,7 +23,8 @@
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/ad9f6a3006beb682161f74fc4ca5181dc4431a09b8a5dfed4242c9615e10bb84.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/3139772f14e6fd874027dc9b445d8954e84d2697d5d2789d0baf30844b313a20.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/793ea3d857fc1fc5fe264125dc9e4b4d8c86efbe99bb3eee988079e0e3f90201.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/d2b678cb78ad4abafa1916d7aa522162e3d6dafa558bc66eaa9ca113b78cc7ce.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/d2b678cb78ad4abafa1916d7aa522162e3d6dafa558bc66eaa9ca113b78cc7ce.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/ad9f6a3006beb682161f74fc4ca5181dc4431a09b8a5dfed4242c9615e10bb84.png"
   ],
   "links": [
     {
@@ -46,6 +47,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/v-atamanenko/gof2-vita/"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1055"
     }
   ],
   "source_name": "VitaDBtoo",

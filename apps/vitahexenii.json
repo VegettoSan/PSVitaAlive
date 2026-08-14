@@ -20,7 +20,9 @@
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/35ce1aa6df430a249a72b4c9ab2523c97173bab96b499ea5137658d99ba9b771.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/8b16399c241ddf247ac2babed8f1efa03a9617b4b4b2830e6b0f0ab26d28ae11.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/49193effba5d26f289b5d8369ffb57df0be46eb9bb5731ae35797aeca228c15b.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/49193effba5d26f289b5d8369ffb57df0be46eb9bb5731ae35797aeca228c15b.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/35ce1aa6df430a249a72b4c9ab2523c97173bab96b499ea5137658d99ba9b771.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/8b16399c241ddf247ac2babed8f1efa03a9617b4b4b2830e6b0f0ab26d28ae11.png"
   ],
   "links": [
     {
@@ -43,6 +45,11 @@
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/196-vitaHexenII.vpk"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=196"
     }
   ],
   "source_name": "VitaDBtoo",

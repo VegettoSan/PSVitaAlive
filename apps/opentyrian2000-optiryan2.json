@@ -2,7 +2,7 @@
   "id": "opentyrian2000-optiryan2",
   "title_id": "OPTIRYAN2",
   "name": "OpenTyrian2000",
-  "description": "",
+  "description": "Port of OpenTyrian for PSVITA.",
   "long_description": "OpenTyrian2000 is an open-source port of the DOS game Tyrian. It is a fork of OpenTyrian, with the end goal being to replicate the experience of Tyrian 2000 as closely as possible.\nTyrian is an arcade-style vertical scrolling shooter.  The story is set in 20031 where you play as Trent Hawkins, a skilled fighter-pilot employed to fight MicroSol and save the galaxy.\nTyrian features a story mode, one- and two-player arcade modes, and networked multiplayer.",
   "author_ids": [
     "andyvand"
@@ -36,6 +36,16 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/andyvand/opentyrian2000"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1279"
+    },
+    {
+      "type": "Official Website",
+      "name": "VitaDB Release Page",
+      "url": "https://github.com/andyvand/opentyrian2000/releases"
     }
   ],
   "source_name": "NeoVitaDB",

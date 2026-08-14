@@ -20,7 +20,9 @@
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/79d998009fa20d4bc265f1223b64a3fd6f506083e64d09302b7e283408368d62.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/7944f45996a3f52fdbdb6c87bc768dce4e89c92b0529de81a4fdb37dad2b7cae.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c2dfaaf23470f4b5aec355f81dcd73c942731fce6708dc6e062bda856fe1a526.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c2dfaaf23470f4b5aec355f81dcd73c942731fce6708dc6e062bda856fe1a526.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/79d998009fa20d4bc265f1223b64a3fd6f506083e64d09302b7e283408368d62.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/7944f45996a3f52fdbdb6c87bc768dce4e89c92b0529de81a4fdb37dad2b7cae.png"
   ],
   "links": [
     {
@@ -43,6 +45,11 @@
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/1147-Gone_Home_for_PlayStation_Vita_V1.0.1.vpk"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1147"
     }
   ],
   "source_name": "VitaDBtoo",

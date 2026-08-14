@@ -20,7 +20,9 @@
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/d37feb23166531d717d8411eef43a7835e19dfbe8215bd3cdc6782243f7085e7.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/cf7712e85e398e569215f14f853cedb17c31c104abfb2aef5ba44f19a26c787a.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/dad3803769f56b6625ff90f6f0f37552e9a37fe21b1dc4ea9a46fce2c2f4e7a1.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/dad3803769f56b6625ff90f6f0f37552e9a37fe21b1dc4ea9a46fce2c2f4e7a1.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/d37feb23166531d717d8411eef43a7835e19dfbe8215bd3cdc6782243f7085e7.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/cf7712e85e398e569215f14f853cedb17c31c104abfb2aef5ba44f19a26c787a.png"
   ],
   "links": [
     {
@@ -43,6 +45,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/withLogic/atomiks-psvita"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1371"
     }
   ],
   "source_name": "VitaDBtoo",

@@ -20,7 +20,9 @@
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/0bbc47faf85d6e59ca5f14c7460c56226ae2f79c308c9f2600849bae71a6559f.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/f435b8a5df4b7ba2ad82ff3c5574fd9b9500b46356c1004b122bc410dcb9eeee.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/f5818b747a5d2af5a89535491170bb98f7edb98cf461bb5ad3647dc4c0ac1dd2.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/f5818b747a5d2af5a89535491170bb98f7edb98cf461bb5ad3647dc4c0ac1dd2.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/0bbc47faf85d6e59ca5f14c7460c56226ae2f79c308c9f2600849bae71a6559f.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/f435b8a5df4b7ba2ad82ff3c5574fd9b9500b46356c1004b122bc410dcb9eeee.png"
   ],
   "links": [
     {
@@ -43,6 +45,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/VegettoSan/Halo2D_PsVita"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1095"
     }
   ],
   "source_name": "VitaDBtoo",

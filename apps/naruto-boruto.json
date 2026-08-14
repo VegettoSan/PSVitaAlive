@@ -20,7 +20,9 @@
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/2b3477242133cb750b298a6b7cae1493beed14fa9c2db590ca2904ef0a3d235e.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/b345dabb4cd0e7c25afe0ad7955730340c8d38dd4ef92d1c189b9dd82782a3ed.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/a076c9b7b886a971fbe8f64afba08dfb540c510dc9ce15ad8e132d762dc1cae5.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/a076c9b7b886a971fbe8f64afba08dfb540c510dc9ce15ad8e132d762dc1cae5.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/2b3477242133cb750b298a6b7cae1493beed14fa9c2db590ca2904ef0a3d235e.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/b345dabb4cd0e7c25afe0ad7955730340c8d38dd4ef92d1c189b9dd82782a3ed.png"
   ],
   "links": [
     {
@@ -38,6 +40,11 @@
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/510-NarutoBoruto.vpk"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=510"
     }
   ],
   "source_name": "VitaDBtoo",

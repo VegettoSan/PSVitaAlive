@@ -22,7 +22,8 @@
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/63b65f9338fe4e6221353a9523b119ddd5cfa1b1508bb432f207539bfde13572.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c18cb77c1de8093e4b7c19cae84476f852383ef6084c870924c8aa1a40ea5135.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/a840e0e0fff5daf20d284d882441b6d1858db3d44e972c4730982262885751f8.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/5f296f66d9f7b18a1978301b636d8650b15f829640a364d4c9ff0f5b82802246.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/5f296f66d9f7b18a1978301b636d8650b15f829640a364d4c9ff0f5b82802246.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/63b65f9338fe4e6221353a9523b119ddd5cfa1b1508bb432f207539bfde13572.png"
   ],
   "links": [
     {
@@ -40,6 +41,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/huckleberrypie/IsabelleDanceStudio"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1058"
     }
   ],
   "source_name": "VitaDBtoo",

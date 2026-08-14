@@ -21,7 +21,8 @@
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/9a65d0b245c5d91b800074020bb86aa8cd34279fca95d68e4a74b7ba3a857911.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c841d6d4845b73b2dcb0538488ba43c361efdc2edef4e347d70f7c2b75d6f389.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c0e60cee39fce71017c5552221e817d6108f1caff00af1d8d2800839ade39c74.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/bcb86869de31db57abf50c3b7a9ab77d1b30d50cc143d2918714c8893b2e7a46.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/bcb86869de31db57abf50c3b7a9ab77d1b30d50cc143d2918714c8893b2e7a46.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/9a65d0b245c5d91b800074020bb86aa8cd34279fca95d68e4a74b7ba3a857911.png"
   ],
   "links": [
     {
@@ -44,6 +45,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/Rinnegatamante/Doom64EX"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=881"
     }
   ],
   "source_name": "VitaDBtoo",

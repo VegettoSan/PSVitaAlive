@@ -21,7 +21,8 @@
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/e53d8a0aba485a3da42b0064642caec93f4ad4c95f81703599a7dd36a172b3af.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/e86253b02f9bccab023f9745bc759059c61ccfb69c8c23c9babbef88342c5d66.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/98f28abf274172f2ead17611e26e84c5ebc826e211bf6007f4cc473825928b56.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/f5040be902b07cbcd7d237f6a622f2572782021aa12d96cfdce3c0da559d1fc1.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/f5040be902b07cbcd7d237f6a622f2572782021aa12d96cfdce3c0da559d1fc1.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/e53d8a0aba485a3da42b0064642caec93f4ad4c95f81703599a7dd36a172b3af.png"
   ],
   "links": [
     {
@@ -44,6 +45,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/Grarak/DSVita"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1220"
     }
   ],
   "source_name": "VitaDBtoo",

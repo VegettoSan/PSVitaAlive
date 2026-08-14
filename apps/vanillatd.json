@@ -20,7 +20,9 @@
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/02ad7e60dc55b724908cb5123b7aaed570e9a0bf145bbc7802b379814481104d.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/5efc563fef6d8d54dfef7673e54fcf68ca64cdcff2590866367aa522ac0c41bf.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/e1d36f54cf3974ccdc85ddb66a8a0c67243760c33f75a521cff545ecfdbd60fd.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/e1d36f54cf3974ccdc85ddb66a8a0c67243760c33f75a521cff545ecfdbd60fd.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/02ad7e60dc55b724908cb5123b7aaed570e9a0bf145bbc7802b379814481104d.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/5efc563fef6d8d54dfef7673e54fcf68ca64cdcff2590866367aa522ac0c41bf.png"
   ],
   "links": [
     {
@@ -43,6 +45,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/Northfear/Vanilla-Conquer-vita"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=650"
     }
   ],
   "source_name": "VitaDBtoo",

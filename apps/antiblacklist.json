@@ -20,7 +20,9 @@
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c8779c59423a03dea315cdc77b8cba4d8bd63ad2efad53204692008dcd136e2c.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/07818a2f7192e8bb5578506cc77e47d5a7075867de28b2f696c5693bd872df29.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/fb81fe017a0ade7a4bbd2feb968f897768f544254b28fbf3303f37cb7ade3558.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/fb81fe017a0ade7a4bbd2feb968f897768f544254b28fbf3303f37cb7ade3558.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/c8779c59423a03dea315cdc77b8cba4d8bd63ad2efad53204692008dcd136e2c.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/07818a2f7192e8bb5578506cc77e47d5a7075867de28b2f696c5693bd872df29.png"
   ],
   "links": [
     {
@@ -43,6 +45,11 @@
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/11-AntiBlacklist.vpk"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=11"
     }
   ],
   "source_name": "VitaDBtoo",

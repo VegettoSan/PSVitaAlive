@@ -19,7 +19,9 @@
   "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1612-imcunlocklite.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/682c4f96c71d397244b0cc91d075601739fbec205d6ff4fbd15ae08f91dafd31.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/92323ab19316528742cbbc57d1085328331a78844aba98a987bea35a82138af1.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/92323ab19316528742cbbc57d1085328331a78844aba98a987bea35a82138af1.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/682c4f96c71d397244b0cc91d075601739fbec205d6ff4fbd15ae08f91dafd31.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/92323ab19316528742cbbc57d1085328331a78844aba98a987bea35a82138af1.png"
   ],
   "links": [
     {
@@ -42,6 +44,11 @@
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/420-IMCUnlockLite.vpk"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=420"
     }
   ],
   "source_name": "VitaDBtoo",

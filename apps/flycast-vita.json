@@ -21,7 +21,9 @@
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/be0b4290c4874681b65366407ef28f3f931927c4120f8af9ba9691875cf15ba9.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/fb7363b461d5ec0d0fc089659d9533be5b0f3bb95d0f97898462826e93154bf4.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/08aeba93c76c76e14d7bfb057d7282d52b6f43fef3885908c3480f458c53e5d7.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/08aeba93c76c76e14d7bfb057d7282d52b6f43fef3885908c3480f458c53e5d7.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/be0b4290c4874681b65366407ef28f3f931927c4120f8af9ba9691875cf15ba9.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/fb7363b461d5ec0d0fc089659d9533be5b0f3bb95d0f97898462826e93154bf4.png"
   ],
   "links": [
     {
@@ -44,6 +46,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/Rinnegatamante/flycast-vita"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=605"
     }
   ],
   "source_name": "VitaDBtoo",

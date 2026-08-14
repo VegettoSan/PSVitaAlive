@@ -20,7 +20,9 @@
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/cdb58fe7741fe24948997b6aef4b7531aa26a40f3b481b8ddb3330421c8504b0.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/bf03fcd99d2ec3943bc607da3d2a08637f6521c51425234eacefc95a6c5d6dc1.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/f3dd8e69408f5864d90320087204d26f7db7d3bb537083d98b3ac0e8986a7a27.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/f3dd8e69408f5864d90320087204d26f7db7d3bb537083d98b3ac0e8986a7a27.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/cdb58fe7741fe24948997b6aef4b7531aa26a40f3b481b8ddb3330421c8504b0.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/bf03fcd99d2ec3943bc607da3d2a08637f6521c51425234eacefc95a6c5d6dc1.png"
   ],
   "links": [
     {
@@ -43,6 +45,11 @@
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/1214-clasherball.vpk"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1214"
     }
   ],
   "source_name": "VitaDBtoo",

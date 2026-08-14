@@ -46,6 +46,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/usineur/hode"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=512"
     }
   ],
   "source_name": "VitaDBtoo",

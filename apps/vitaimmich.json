@@ -20,7 +20,9 @@
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/a8824950085caac595b7270225dff4df0d0e0e5731ccf02e812d450f52dbb17e.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/ae7a63357a429156feeef57b8906c707a826d93179e8e55d206353d2cf0cf50c.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/5a19463e5a20f486d7358e9b2f0b4f9814bf9f74268a0c0c55d809bc10f51cc3.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/5a19463e5a20f486d7358e9b2f0b4f9814bf9f74268a0c0c55d809bc10f51cc3.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/a8824950085caac595b7270225dff4df0d0e0e5731ccf02e812d450f52dbb17e.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/ae7a63357a429156feeef57b8906c707a826d93179e8e55d206353d2cf0cf50c.png"
   ],
   "links": [
     {
@@ -43,6 +45,11 @@
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/1417-vitaImmich.vpk"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1417"
     }
   ],
   "source_name": "VitaDBtoo",

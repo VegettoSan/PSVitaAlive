@@ -21,7 +21,8 @@
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/5d3c9084f4c77ca1c3f6a0da34370fd5883d2e19033970b02a464d37ef1c6e29.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/2ca6b3251c449b966af366a6f5b446753bd0f34916edb4d301af76f8e80fbb8a.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c122aa4718acd91771318fca80a5c227dd00a3e6666fd03395c54dbd6f117aee.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/a9f9eb9b62b2285f28004f61b1444a909acfb3f0aa60fced9693278c4621c56e.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/a9f9eb9b62b2285f28004f61b1444a909acfb3f0aa60fced9693278c4621c56e.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/5d3c9084f4c77ca1c3f6a0da34370fd5883d2e19033970b02a464d37ef1c6e29.png"
   ],
   "links": [
     {
@@ -44,6 +45,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/frangarcj/SMSplusVITA"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=169"
     }
   ],
   "source_name": "VitaDBtoo",

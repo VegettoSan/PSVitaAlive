@@ -21,7 +21,8 @@
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/1c9cc63410db7a1df9816e01a403caffb65d0d771d8edeefc246fbbcf70a97ba.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/0c643e051a52bf0689325cb215b8cd804d1fbd0f748ebffcafbb3e9227b13fc9.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/1bcf30cb673faf914817ba18069f7b2472c1e1751d07316cec6eb60406cfb492.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/a99ce442e682b7d8ec083ed49551bdffe443ea553fb80afa363c7eee7aac5d8e.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/a99ce442e682b7d8ec083ed49551bdffe443ea553fb80afa363c7eee7aac5d8e.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/1c9cc63410db7a1df9816e01a403caffb65d0d771d8edeefc246fbbcf70a97ba.png"
   ],
   "links": [
     {
@@ -39,6 +40,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/Northfear/OpenXcom-vita"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=658"
     }
   ],
   "source_name": "VitaDBtoo",

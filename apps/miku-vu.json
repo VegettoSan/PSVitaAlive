@@ -47,6 +47,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/EK720/MikuVU"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1073"
     }
   ],
   "source_name": "VitaDBtoo",

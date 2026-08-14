@@ -18,7 +18,8 @@
   "status": "Legacy",
   "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1671-hyper-princess-pitch-vita.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/e658dc220ca7194fd8a5a40719241af54add2887b843a397a6003827f808215f.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/e658dc220ca7194fd8a5a40719241af54add2887b843a397a6003827f808215f.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/e658dc220ca7194fd8a5a40719241af54add2887b843a397a6003827f808215f.png"
   ],
   "links": [
     {
@@ -36,6 +37,11 @@
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/522-HyperPrincessPitch-Vita.vpk"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=522"
     }
   ],
   "source_name": "VitaDBtoo",

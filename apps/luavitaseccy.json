@@ -20,7 +20,9 @@
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/327422e70d168c01082cee7ac08083c9b1e56f2b4331566114ed1c332420d7b3.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/e0f2240c6c115845019d237fd838b96f9bd208c85566b57e5e1b4f7cd06b4cf2.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/58923b3e63962ebb1c15eff3519ad31be09781463a6125b253a1d02e6fdf9716.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/58923b3e63962ebb1c15eff3519ad31be09781463a6125b253a1d02e6fdf9716.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/327422e70d168c01082cee7ac08083c9b1e56f2b4331566114ed1c332420d7b3.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/e0f2240c6c115845019d237fd838b96f9bd208c85566b57e5e1b4f7cd06b4cf2.png"
   ],
   "links": [
     {
@@ -43,6 +45,11 @@
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/333-luaVitaSeccy.vpk"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=333"
     }
   ],
   "source_name": "VitaDBtoo",

@@ -18,7 +18,8 @@
   "status": "Legacy",
   "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/0635-abbey-of-crime.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/b67bd7f09b5830d3e7d3936531ad76962c92e71b89935b0d844372e97fccd2a7.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/b67bd7f09b5830d3e7d3936531ad76962c92e71b89935b0d844372e97fccd2a7.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/b67bd7f09b5830d3e7d3936531ad76962c92e71b89935b0d844372e97fccd2a7.png"
   ],
   "links": [
     {
@@ -41,6 +42,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/Samuel85/Abbey"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=635"
     }
   ],
   "source_name": "VitaDBtoo",

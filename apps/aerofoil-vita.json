@@ -21,7 +21,8 @@
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/0fa8b0a400ec8872abc333f49974b3ced2f1de88e6b5b2921820f8743ab5ce9f.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/f350fef4ec0505b73997fc97aa59aef46ac92ddb076d9a5d4e69893e9b6b6d83.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/72a36e85f05cc00a779e279573000072aa9b2be2b0b93a450255f935228ab8ae.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/d15591d379aad225820d34e08d7176d3d156e3812e8f052e0668422f12ccee3b.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/d15591d379aad225820d34e08d7176d3d156e3812e8f052e0668422f12ccee3b.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/0fa8b0a400ec8872abc333f49974b3ced2f1de88e6b5b2921820f8743ab5ce9f.png"
   ],
   "links": [
     {
@@ -44,6 +45,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/Rinnegatamante/Aerofoil-Vita"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1040"
     }
   ],
   "source_name": "VitaDBtoo",

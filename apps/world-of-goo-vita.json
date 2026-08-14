@@ -21,7 +21,8 @@
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/4fad7996753d858c710fe9fbac89f683ec03a13b226f0d0bf14c44a9ea7139c5.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c925067f72da5f066715cc525e0f70cbc7f77ca954100c05a3f28196712bc8b0.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/7c04e2bc98cc12a2679195c611c9e2998ed3a2a39b3d6cff5a20bf59c27cb4a2.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/f192d542ee2bcc41de446bb9e9acb685e7633487d2af07cfef9326121b4fc084.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/f192d542ee2bcc41de446bb9e9acb685e7633487d2af07cfef9326121b4fc084.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/4fad7996753d858c710fe9fbac89f683ec03a13b226f0d0bf14c44a9ea7139c5.png"
   ],
   "links": [
     {
@@ -44,6 +45,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/Rinnegatamante/goo_vita"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=806"
     }
   ],
   "source_name": "VitaDBtoo",

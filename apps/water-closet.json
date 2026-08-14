@@ -18,7 +18,8 @@
   "status": "Legacy",
   "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/ec20e805491ec680cb8fdb6c766724a7d4790ae686c031218ef0951474037348.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/0849e462468b07f61857f982f3149bb652869414b023f9913abeda827d9a3d88.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/0849e462468b07f61857f982f3149bb652869414b023f9913abeda827d9a3d88.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/0849e462468b07f61857f982f3149bb652869414b023f9913abeda827d9a3d88.png"
   ],
   "links": [
     {
@@ -41,6 +42,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/withLogic/waterCloset"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=768"
     }
   ],
   "source_name": "VitaDBtoo",

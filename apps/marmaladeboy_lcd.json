@@ -20,7 +20,9 @@
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/950e44af3798c9ceecfcd2aa4dac7f43c3b2449958749a857c72c2ccbd37218d.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/db0ebd7be04d4fe17425c85c06e8bcafb3eed6e278389d3a41f100cb6cebd22b.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/69ab255d5ef6d9c0af5bf45b3041573b8d7628486922fc7ce64570b5dc94b401.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/69ab255d5ef6d9c0af5bf45b3041573b8d7628486922fc7ce64570b5dc94b401.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/950e44af3798c9ceecfcd2aa4dac7f43c3b2449958749a857c72c2ccbd37218d.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/db0ebd7be04d4fe17425c85c06e8bcafb3eed6e278389d3a41f100cb6cebd22b.png"
   ],
   "links": [
     {
@@ -58,6 +60,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/Bunkai9448/vita_gamemaker"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1109"
     }
   ],
   "source_name": "VitaDBtoo",

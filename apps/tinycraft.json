@@ -20,7 +20,9 @@
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/7c77411c0b406b8ef921289df075fb12ea85fa38160fc2d9f03a827e3bb87277.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/cc235546f843a40cf878c5b4292fd610a8c6628b527a69dc27096847f1050c51.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/ebe50f03688ff85b655dbc97487fb78a2a28faf89b98e276e77cb02a4779c8c1.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/ebe50f03688ff85b655dbc97487fb78a2a28faf89b98e276e77cb02a4779c8c1.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/7c77411c0b406b8ef921289df075fb12ea85fa38160fc2d9f03a827e3bb87277.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/cc235546f843a40cf878c5b4292fd610a8c6628b527a69dc27096847f1050c51.png"
   ],
   "links": [
     {
@@ -43,6 +45,11 @@
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/1146-tinycraft.vpk"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1146"
     }
   ],
   "source_name": "VitaDBtoo",

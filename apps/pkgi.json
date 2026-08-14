@@ -18,7 +18,8 @@
   "status": "Legacy",
   "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/786c9e9cc7bf0d4332e09c0280c8623b9d44f9673474b39d64b440c754120e3f.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/50b7fb19aff9d881ef507103d90c2a3d4416c3208cf72893a52b19f39b9ca7f4.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/50b7fb19aff9d881ef507103d90c2a3d4416c3208cf72893a52b19f39b9ca7f4.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/50b7fb19aff9d881ef507103d90c2a3d4416c3208cf72893a52b19f39b9ca7f4.png"
   ],
   "links": [
     {
@@ -41,6 +42,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/mmozeiko/pkgi"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=341"
     }
   ],
   "source_name": "VitaDBtoo",

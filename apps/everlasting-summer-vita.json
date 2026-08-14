@@ -21,7 +21,8 @@
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/396b762607afa735abf8bd94d7f8a78a1f395b452f6d57e41dcb19413b00bee1.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/0f2516c113ab94339856fb466c796d6d2c5ad44efd1e03310820e484a032e95a.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/138ccac4047dffff21c8e7350bc26a3da0ec6ec6973112fb80cefbc6d0118719.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/59fbbe0baed7e8757f4e725410e5a90d7c27b8bb273e6c756eb1b8f09e08f549.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/59fbbe0baed7e8757f4e725410e5a90d7c27b8bb273e6c756eb1b8f09e08f549.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/396b762607afa735abf8bd94d7f8a78a1f395b452f6d57e41dcb19413b00bee1.png"
   ],
   "links": [
     {
@@ -39,6 +40,11 @@
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/1118-everlasting_summer.vpk"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1118"
     }
   ],
   "source_name": "VitaDBtoo",

@@ -21,7 +21,8 @@
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/43e42d7c226675c0aa141988250a0caa42d83304201271f6f7cfb2f2b3792e52.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/8eb602943f9044494d6e5cc3683b2ea818a9d89a9c64a52e8c7f483aac773bb8.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/ebdc7627a90c086ecda4b9a723dd37279b8df8bb69f59270cbe03ccb5b705303.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/64adec499201dd70bd95c0b86b839164caaae029b9d37ddbf712338fa44f64ac.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/64adec499201dd70bd95c0b86b839164caaae029b9d37ddbf712338fa44f64ac.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/43e42d7c226675c0aa141988250a0caa42d83304201271f6f7cfb2f2b3792e52.png"
   ],
   "links": [
     {
@@ -44,6 +45,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/DRok17/QuickLaunch-Installer"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=663"
     }
   ],
   "source_name": "VitaDBtoo",

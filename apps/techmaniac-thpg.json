@@ -20,7 +20,9 @@
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/ef4b21887640cdb998cff8766057cef545e74b5a8e58e596a2c830c46b85ab26.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/9daee290b094945c7b0b653dc27d60ada3b68018e7506eb092f13996a87587d0.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/301de0cbf488e877f8b17a212ee08bcd887e826dc0604892abe88bf735a25d7c.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/301de0cbf488e877f8b17a212ee08bcd887e826dc0604892abe88bf735a25d7c.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/ef4b21887640cdb998cff8766057cef545e74b5a8e58e596a2c830c46b85ab26.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/9daee290b094945c7b0b653dc27d60ada3b68018e7506eb092f13996a87587d0.png"
   ],
   "links": [
     {
@@ -43,6 +45,11 @@
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/1119-Techmaniac-THPG.vpk"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1119"
     }
   ],
   "source_name": "VitaDBtoo",

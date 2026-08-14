@@ -5,7 +5,8 @@
   "description": "Port of Zombie Tsunami for PSVita.",
   "long_description": "Unofficial wrapper/port of Zombie Tsunami for PlayStation Vita.\nThe port operates by loading the official Android ARMv7 executable directly into memory, linking its dependencies to native functions, and applying the necessary patches for it to run correctly. In practice, this creates a lightweight Android-like environment where the original executable can run natively without modification.",
   "author_ids": [
-    "chatgpt-ai"
+    "chatgpt-ai",
+    "wolff"
   ],
   "category_id": "games",
   "subcategory_ids": [
@@ -21,7 +22,8 @@
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/b50ec109bdf05116a1287b6f9928f871909550ecd33967d426d392bc2059cd14.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/08424e29814a91598cde2881ac36ae0265424aa3246d28ec68dd80320245d05d.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/2b1336c9f339752a9b9be514992754e5e674567c0b1d3580293d14cf8a5e3f0e.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/6ef2acaacd850d780f6e325feeb3203b868b98a78ce2cf3805bfd9ab3e16a56c.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/6ef2acaacd850d780f6e325feeb3203b868b98a78ce2cf3805bfd9ab3e16a56c.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/b50ec109bdf05116a1287b6f9928f871909550ecd33967d426d392bc2059cd14.png"
   ],
   "links": [
     {
@@ -44,6 +46,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/WolffsRoom/ZombieTsunami-Vita"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1436"
     }
   ],
   "source_name": "VitaDBtoo",

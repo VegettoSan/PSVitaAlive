@@ -18,7 +18,8 @@
   "status": "Legacy",
   "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/eb6499181065394d0d042adae7e15354c1c26b3e31c99f76ad9ad4078adb3497.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/eb6499181065394d0d042adae7e15354c1c26b3e31c99f76ad9ad4078adb3497.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/eb6499181065394d0d042adae7e15354c1c26b3e31c99f76ad9ad4078adb3497.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/psvident.jpg"
   ],
   "links": [
     {
@@ -41,6 +42,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/Freakler/vita-PSVident"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=108"
     }
   ],
   "source_name": "VitaDBtoo",

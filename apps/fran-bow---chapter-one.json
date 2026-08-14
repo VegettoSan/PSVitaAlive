@@ -18,7 +18,10 @@
   "status": "Legacy",
   "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/76e9b46e71f7b6b2b0039a3ad18599dec6967bb7c8fa3eeb0eda9e9ff39dbee7.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/76e9b46e71f7b6b2b0039a3ad18599dec6967bb7c8fa3eeb0eda9e9ff39dbee7.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/76e9b46e71f7b6b2b0039a3ad18599dec6967bb7c8fa3eeb0eda9e9ff39dbee7.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/hato1.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/hato2.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/hato3.png"
   ],
   "links": [
     {
@@ -36,6 +39,11 @@
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/639-FranBowChapter1.vpk"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=639"
     }
   ],
   "source_name": "VitaDBtoo",

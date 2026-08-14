@@ -19,7 +19,9 @@
   "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1579-switchview-ui.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/0dcb687910c7cd2a9f04aab40a951c8c650e0ec32a16963a7fe5d5d9f5c3d89f.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/02a14a2a86ca0262a0a23ef9259206ceb89a61f7360219575b3e8f296fc09b94.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/02a14a2a86ca0262a0a23ef9259206ceb89a61f7360219575b3e8f296fc09b94.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/0dcb687910c7cd2a9f04aab40a951c8c650e0ec32a16963a7fe5d5d9f5c3d89f.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/02a14a2a86ca0262a0a23ef9259206ceb89a61f7360219575b3e8f296fc09b94.png"
   ],
   "links": [
     {
@@ -42,6 +44,11 @@
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/338-SwitchView.vpk"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=338"
     }
   ],
   "source_name": "VitaDBtoo",

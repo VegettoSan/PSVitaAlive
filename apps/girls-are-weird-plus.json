@@ -1,0 +1,43 @@
+{
+  "id": "girls-are-weird-plus",
+  "title_id": "SKEN12345",
+  "name": "Girls Are Weird Plus",
+  "description": "Remaster of Girls are Weird for PSVITA.",
+  "long_description": "Remaster of a visual novel called Girls are Weird for PSVITA/PSTV.",
+  "author_ids": [
+    "betterwinds"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.1.0",
+  "version_date": "2022-06-28",
+  "requirements": "Not specified",
+  "size": 19813881,
+  "status": "Legacy",
+  "icon": "https://www.rinnegatamante.eu/vitadb/icons/1e47263198db176186b3856bc98ca49bc568100cdc5d3eef2cc11f08f759e5d2.png",
+  "screenshots": [
+    "https://www.rinnegatamante.eu/vitadb/screenshots/171a07e8d20b77ccfb38710f1fd6c9fdd047a5d31ec23f40da67693c4ccc26cb.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/227ac04c4e3fb73184ca0004869f33b8ba842ce608333c8c514afb8286ab4bb0.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/6404be365ec5ceae5bcade9d2389158c3f11b6e630c420b1ff3b89d55b6d181b.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=834",
+      "recommended": true
+    },
+    {
+      "type": "Official Website",
+      "name": "VitaDB Release Page",
+      "url": "https://betterwinds.itch.io/girls-are-weird-plus"
+    }
+  ],
+  "source_name": "VitaDB",
+  "source_id": "834",
+  "source_url": "https://betterwinds.itch.io/girls-are-weird-plus",
+  "release_page": "https://betterwinds.itch.io/girls-are-weird-plus",
+  "updated_at": "2026-08-14T01:05:59.219827+00:00"
+}

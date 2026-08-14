@@ -18,7 +18,8 @@
   "status": "Legacy",
   "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1652-duck-hunt-remake.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/f2390c1c06e1a44611bf0febf59bec37b7d7f6f3e434d6066d3705e3ece30c08.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/f2390c1c06e1a44611bf0febf59bec37b7d7f6f3e434d6066d3705e3ece30c08.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/f2390c1c06e1a44611bf0febf59bec37b7d7f6f3e434d6066d3705e3ece30c08.png"
   ],
   "links": [
     {
@@ -36,6 +37,11 @@
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/483-Duck_20Hunt_20Remake.vpk"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=483"
     }
   ],
   "source_name": "VitaDBtoo",

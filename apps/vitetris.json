@@ -20,7 +20,9 @@
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/78720fe3a0c1b57118b90355a77a3f3d8332d82bfc7f1e38b5fe0e37e5122c83.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/76c9a0ca27def3f2e3764c7fb4e676f6fae441538e7807a950b9131f58061218.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/6519bfdbe6f767720d6015fe94b2a9158239346ef5fcf51086c8abde71138105.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/6519bfdbe6f767720d6015fe94b2a9158239346ef5fcf51086c8abde71138105.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/78720fe3a0c1b57118b90355a77a3f3d8332d82bfc7f1e38b5fe0e37e5122c83.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/76c9a0ca27def3f2e3764c7fb4e676f6fae441538e7807a950b9131f58061218.png"
   ],
   "links": [
     {
@@ -43,6 +45,11 @@
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/1135-ViTetris.vpk"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1135"
     }
   ],
   "source_name": "VitaDBtoo",

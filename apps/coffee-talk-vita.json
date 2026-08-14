@@ -20,7 +20,9 @@
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/9a0539fc31e81f5c6b3b62205148ebeb563d2b3eaf0a5f9ad316029d40392f1a.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/98e644fff1e9fd844cfa1a0d11cd67706721ff8a5dcf099fd5b70d80843d120d.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/7c59e3c31a736e28e8305c8031b4ed8b8a1b0e3985d1554cf2e7634519dc0d8b.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/7c59e3c31a736e28e8305c8031b4ed8b8a1b0e3985d1554cf2e7634519dc0d8b.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/9a0539fc31e81f5c6b3b62205148ebeb563d2b3eaf0a5f9ad316029d40392f1a.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/98e644fff1e9fd844cfa1a0d11cd67706721ff8a5dcf099fd5b70d80843d120d.png"
   ],
   "links": [
     {
@@ -33,6 +35,11 @@
       "type": "Official Website",
       "name": "VitaDBtoo Release Page",
       "url": "https://github.com/PatnosDD/Coffee-Talk-PS-VITA"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1201"
     }
   ],
   "source_name": "VitaDBtoo",

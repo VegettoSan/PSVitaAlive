@@ -20,7 +20,9 @@
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/8e77dc2e6790a0f026ea612d8abf39c336b910161cfac04c1b6aa25f9662933b.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/d4bfc2ab516fb1fa74a4b91e081123e4c8e6e9950b2834039660d324f1a3dffa.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/b41e6446f1296e5b536c24a323f6f2882f9e61a6f4ee56b79fd23b31a8c07558.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/b41e6446f1296e5b536c24a323f6f2882f9e61a6f4ee56b79fd23b31a8c07558.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/8e77dc2e6790a0f026ea612d8abf39c336b910161cfac04c1b6aa25f9662933b.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/d4bfc2ab516fb1fa74a4b91e081123e4c8e6e9950b2834039660d324f1a3dffa.png"
   ],
   "links": [
     {
@@ -43,6 +45,11 @@
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/1136-OnslaughtArena.vpk"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1136"
     }
   ],
   "source_name": "VitaDBtoo",

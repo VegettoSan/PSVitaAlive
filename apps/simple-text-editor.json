@@ -1,0 +1,44 @@
+{
+  "id": "simple-text-editor",
+  "title_id": "TXTE00001",
+  "name": "Simple Text Editor",
+  "description": "Text editor for PSVITA.",
+  "long_description": "Simple text editor wrote in Lua using Lua Player Plus.",
+  "author_ids": [
+    "jakibaki"
+  ],
+  "category_id": "plugins",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.1.1.1",
+  "version_date": "2016-09-06",
+  "requirements": "Not specified",
+  "size": 1677089,
+  "status": "Legacy",
+  "icon": "https://www.rinnegatamante.eu/vitadb/icons/411c029acd799955572be3429349e79465329db70158495167fb6f0ba93bc196.png",
+  "screenshots": [
+    "https://www.rinnegatamante.eu/vitadb/screenshots/text1.jpg",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/text2.jpg",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/text3.jpg",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/text4.jpg"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=33",
+      "recommended": true
+    },
+    {
+      "type": "Official Website",
+      "name": "VitaDB Release Page",
+      "url": "https://wololo.net/talk/viewtopic.php?f=116&t=47018"
+    }
+  ],
+  "source_name": "VitaDB",
+  "source_id": "33",
+  "source_url": "https://wololo.net/talk/viewtopic.php?f=116&t=47018",
+  "release_page": "https://wololo.net/talk/viewtopic.php?f=116&t=47018",
+  "updated_at": "2026-08-14T01:05:59.234531+00:00"
+}

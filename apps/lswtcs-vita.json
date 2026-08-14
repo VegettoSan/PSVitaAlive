@@ -21,7 +21,8 @@
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/fc33f2b310c972ccbc844b28591cda70992ff25a89e2459827192d112549d814.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/0aaa8b3c6931610a09bb039d507c066ff6fb01046d2512ac52385538aa1f8ab9.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/155928a3bb2206270de804be43ca861f87cdffdf104e816aa76918c19e6e5878.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/2fd8ab86449fc5b957c5474edc8106bf0b3b7ebc7952f2983e94d6c62feac4f5.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/2fd8ab86449fc5b957c5474edc8106bf0b3b7ebc7952f2983e94d6c62feac4f5.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/fc33f2b310c972ccbc844b28591cda70992ff25a89e2459827192d112549d814.png"
   ],
   "links": [
     {
@@ -39,6 +40,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/gm666q/lswtcs-vita"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1233"
     }
   ],
   "source_name": "VitaDBtoo",

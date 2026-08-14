@@ -20,7 +20,9 @@
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/e286cecb4b0d9b68a5111319d57201d098319d11a1fa4746477afe4ff5db0ee4.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/70e6244eb3a4e4bc1b8a80d7f6f2de7168570ef8dc451838a4bbc473486e1c2c.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/269ad5e02e8d1bf47a74ebabb6b477fdcccac49f1a7d769c54fa6dfe7d23d95b.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/269ad5e02e8d1bf47a74ebabb6b477fdcccac49f1a7d769c54fa6dfe7d23d95b.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/e286cecb4b0d9b68a5111319d57201d098319d11a1fa4746477afe4ff5db0ee4.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/70e6244eb3a4e4bc1b8a80d7f6f2de7168570ef8dc451838a4bbc473486e1c2c.png"
   ],
   "links": [
     {
@@ -43,6 +45,11 @@
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/672-thrustshot.vpk"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=672"
     }
   ],
   "source_name": "VitaDBtoo",

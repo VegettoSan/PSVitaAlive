@@ -21,7 +21,8 @@
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/e97acc1e23f7ed8984e310292a8e0d466d690980e4b724e93bab539c0f705376.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/588cfedcd5da5c57bdc6768328d0a2b618bd8348b976d2d81acaf3e3ff984fd5.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/219bd1d153a1aa643fa8689447126ac3ed784ad76eae14aad1425de436d7d899.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/d745e236f3e39f655b6d9b0c96faca209883922dba3c7459dcb9c776da3c1a7e.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/d745e236f3e39f655b6d9b0c96faca209883922dba3c7459dcb9c776da3c1a7e.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/e97acc1e23f7ed8984e310292a8e0d466d690980e4b724e93bab539c0f705376.png"
   ],
   "links": [
     {
@@ -39,6 +40,11 @@
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/1158-flare.vpk"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1158"
     }
   ],
   "source_name": "VitaDBtoo",

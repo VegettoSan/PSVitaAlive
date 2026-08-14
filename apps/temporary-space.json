@@ -20,7 +20,9 @@
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/510f4831b3c3b60b7fd2303f57f769fe58dc055f65492601a39071afdbd41081.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/fce007cfd955159a43ed1b90f6e9b2aeb50231b2cdc551ad399c2168d8060b23.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/9fa7b324a01b150da0954189f8bd769e5fb9a6546a28b1edce291595116fd5e8.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/9fa7b324a01b150da0954189f8bd769e5fb9a6546a28b1edce291595116fd5e8.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/510f4831b3c3b60b7fd2303f57f769fe58dc055f65492601a39071afdbd41081.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/fce007cfd955159a43ed1b90f6e9b2aeb50231b2cdc551ad399c2168d8060b23.png"
   ],
   "links": [
     {
@@ -38,6 +40,11 @@
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/551-TemporarySpace.vpk"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=551"
     }
   ],
   "source_name": "VitaDBtoo",

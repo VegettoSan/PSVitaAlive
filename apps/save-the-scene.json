@@ -18,7 +18,8 @@
   "status": "Legacy",
   "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1623-save-the-scene.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/52de9176beeac78dd6bfa07b7afe10f2fb516ce4a3cd88ec8fd0ef0ea2744f74.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/52de9176beeac78dd6bfa07b7afe10f2fb516ce4a3cd88ec8fd0ef0ea2744f74.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/52de9176beeac78dd6bfa07b7afe10f2fb516ce4a3cd88ec8fd0ef0ea2744f74.png"
   ],
   "links": [
     {
@@ -36,6 +37,11 @@
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/445-Save_20the_20Scene.vpk"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=445"
     }
   ],
   "source_name": "VitaDBtoo",

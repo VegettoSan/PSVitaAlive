@@ -18,7 +18,8 @@
   "status": "Legacy",
   "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/c2fcf6bdbf17422e2c851334c7274c01e83f6d87bda5eca1e8c5c81c2aa1daae.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/c2fcf6bdbf17422e2c851334c7274c01e83f6d87bda5eca1e8c5c81c2aa1daae.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/c2fcf6bdbf17422e2c851334c7274c01e83f6d87bda5eca1e8c5c81c2aa1daae.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/realboy.jpg"
   ],
   "links": [
     {
@@ -41,6 +42,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/xerpi/realboy-vita"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=167"
     }
   ],
   "source_name": "VitaDBtoo",

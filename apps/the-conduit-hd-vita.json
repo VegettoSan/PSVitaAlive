@@ -20,7 +20,8 @@
   "status": "Legacy",
   "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/533992aa6835e15635c208a9467aa6818ab7f778d52b1592847a7673e2740c0f.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/dd5d0f7cbb824421378221d23d4eb321dbfa9dc6183367f4e1ae6649fc756e82.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/dd5d0f7cbb824421378221d23d4eb321dbfa9dc6183367f4e1ae6649fc756e82.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/dd5d0f7cbb824421378221d23d4eb321dbfa9dc6183367f4e1ae6649fc756e82.png"
   ],
   "links": [
     {
@@ -43,6 +44,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/TheOfficialFloW/conduit_vita"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1054"
     }
   ],
   "source_name": "VitaDBtoo",

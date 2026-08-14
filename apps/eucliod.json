@@ -20,7 +20,9 @@
   "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1555-eucliod.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/93bded92b1ca5648619f8d38f039f0fe0a9c3c7456f97782bc0c59452f4a36e7.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/914b602e657a370f7675935a9ec97f91f9a51227ca65a43c7204d33c836deeb4.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/914b602e657a370f7675935a9ec97f91f9a51227ca65a43c7204d33c836deeb4.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/93bded92b1ca5648619f8d38f039f0fe0a9c3c7456f97782bc0c59452f4a36e7.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/914b602e657a370f7675935a9ec97f91f9a51227ca65a43c7204d33c836deeb4.png"
   ],
   "links": [
     {
@@ -43,6 +45,11 @@
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/263-EUCLIOD.vpk"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=263"
     }
   ],
   "source_name": "VitaDBtoo",

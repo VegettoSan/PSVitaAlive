@@ -21,7 +21,8 @@
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/2b4d525315d2aef0009cfd3b8e73dd9c6d367392805755d399416a077826d240.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/4d682660788e8a7595c376828f4da167c189a5eb3f017fb4355655557dca09b5.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/b94f30f98ecdf5948ee40a63e02e5c396230f44c81b08f5091ba91e24edceddc.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/d19885256e55aa7d9e8829dcf0dcae2328308e3bbb3564569d4d70115eca0982.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/d19885256e55aa7d9e8829dcf0dcae2328308e3bbb3564569d4d70115eca0982.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/2b4d525315d2aef0009cfd3b8e73dd9c6d367392805755d399416a077826d240.png"
   ],
   "links": [
     {
@@ -39,6 +40,11 @@
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/1125-anarch.vpk"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1125"
     }
   ],
   "source_name": "VitaDBtoo",

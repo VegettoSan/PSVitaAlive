@@ -19,7 +19,9 @@
   "status": "Legacy",
   "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1488-tema.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1488-tema.png"
+    "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1488-tema.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/tema1.jpg",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/tema2.jpg"
   ],
   "links": [
     {
@@ -42,6 +44,11 @@
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/73-tema.vpk"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=73"
     }
   ],
   "source_name": "VitaDBtoo",

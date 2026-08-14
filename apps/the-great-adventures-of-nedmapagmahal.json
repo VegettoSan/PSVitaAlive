@@ -20,7 +20,9 @@
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/078ccb0f81c1c0a577550436a0c852dbf7987c054e398296af60ab94e57d2fc6.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/f4076caa2a49818ae0d7c63a903334800f39d1b60f7b1e9cf760b3a414e6dae9.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/a2e3012063c76f69674e26468dfdc28dd5e12e98542860a1c3fdeb8cfe73d9fc.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/a2e3012063c76f69674e26468dfdc28dd5e12e98542860a1c3fdeb8cfe73d9fc.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/078ccb0f81c1c0a577550436a0c852dbf7987c054e398296af60ab94e57d2fc6.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/f4076caa2a49818ae0d7c63a903334800f39d1b60f7b1e9cf760b3a414e6dae9.png"
   ],
   "links": [
     {
@@ -38,6 +40,11 @@
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/562-NedoKun.vpk"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=562"
     }
   ],
   "source_name": "VitaDBtoo",

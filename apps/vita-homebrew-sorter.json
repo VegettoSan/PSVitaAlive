@@ -20,7 +20,9 @@
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/e109c1921f6882c0e862ba459e3bf7a6068f01b64eb8e475027fe682291cbd24.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/02596dc62f2884585a268d0817ba27ac4e9281c2f14dd1816eace536afd7e95d.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/1a5da092bbd6549c25ebbb3e607657cd1de67da027fae55e2a2c0f84b9cbb3bb.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/1a5da092bbd6549c25ebbb3e607657cd1de67da027fae55e2a2c0f84b9cbb3bb.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/e109c1921f6882c0e862ba459e3bf7a6068f01b64eb8e475027fe682291cbd24.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/02596dc62f2884585a268d0817ba27ac4e9281c2f14dd1816eace536afd7e95d.png"
   ],
   "links": [
     {
@@ -43,6 +45,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/joel16/VITA-Homebrew-Sorter"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=655"
     }
   ],
   "source_name": "VitaDBtoo",

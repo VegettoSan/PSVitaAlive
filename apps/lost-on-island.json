@@ -20,7 +20,9 @@
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/2159b04064fe7a5ce48f375b70061512f59be42ee37edc47fd877711e6b201b7.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/a11446763e2032edf073bc7ff1910c81bb220ed0c9a661dedd22b35ea0daae02.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/b78d724dc89d1a3056c5a54bf13fd08a5bd45e16d6dc06bf2f3d057ccb2d3022.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/b78d724dc89d1a3056c5a54bf13fd08a5bd45e16d6dc06bf2f3d057ccb2d3022.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/2159b04064fe7a5ce48f375b70061512f59be42ee37edc47fd877711e6b201b7.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/a11446763e2032edf073bc7ff1910c81bb220ed0c9a661dedd22b35ea0daae02.png"
   ],
   "links": [
     {
@@ -38,6 +40,11 @@
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/595-LostOnIsland.vpk"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=595"
     }
   ],
   "source_name": "VitaDBtoo",

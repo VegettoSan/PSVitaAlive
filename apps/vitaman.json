@@ -18,7 +18,8 @@
   "status": "Legacy",
   "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1740-vitaman.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/f47091a12fd1d257451249b23ff7738a667bfb2d525725df8c0c512fb0fb7cc2.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/f47091a12fd1d257451249b23ff7738a667bfb2d525725df8c0c512fb0fb7cc2.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/f47091a12fd1d257451249b23ff7738a667bfb2d525725df8c0c512fb0fb7cc2.png"
   ],
   "links": [
     {
@@ -41,6 +42,11 @@
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/696-vitaman.vpk"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=696"
     }
   ],
   "source_name": "VitaDBtoo",

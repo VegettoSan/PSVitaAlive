@@ -18,7 +18,8 @@
   "status": "Legacy",
   "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/3f65fe8488a558b8f8f7c5f0060c3ac8819359efa005b6cdd551e5665f013bcc.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c75864e6da64c7a5caa7be8f35cf3322410c7dde683feee3d03860a0885f8018.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c75864e6da64c7a5caa7be8f35cf3322410c7dde683feee3d03860a0885f8018.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/c75864e6da64c7a5caa7be8f35cf3322410c7dde683feee3d03860a0885f8018.png"
   ],
   "links": [
     {
@@ -41,6 +42,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/KiddRwxSsj/opensonic-vita"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1448"
     }
   ],
   "source_name": "VitaDBtoo",

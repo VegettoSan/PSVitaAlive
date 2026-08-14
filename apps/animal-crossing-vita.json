@@ -21,7 +21,8 @@
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/207795da99c68aac75e6dc3ca331f7b32e2aa0c5a42e35447258c4ed9eaee457.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/26653ea00279b37c1285bf734fcc4b17debee625e8343c866d6b221643024e96.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/45a4008e5b4953a38a79f444e67e4ea73c0d13772a07eabd908be54b695a8b97.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/3304e5f6166a144789219f42b4d008adefa1a6a556d7f777228087c1c5a1e86b.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/3304e5f6166a144789219f42b4d008adefa1a6a556d7f777228087c1c5a1e86b.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/207795da99c68aac75e6dc3ca331f7b32e2aa0c5a42e35447258c4ed9eaee457.png"
   ],
   "links": [
     {
@@ -44,6 +45,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/Brendonm17/ACGC-Vita-Port"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1381"
     }
   ],
   "source_name": "VitaDBtoo",

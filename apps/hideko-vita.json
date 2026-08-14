@@ -21,7 +21,8 @@
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/6019bdbce5bf124009be53c3287448de6aec673ebf6814b7588f94405dafa3d9.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/92b201a7accb641d4f08ebfa418434401de14f11354ab63ca49a32df1c155741.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/cc949dac8d9bb7055facd96bf424c4b99e511ae397b730d1e212ac75602699f7.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/2392d6f88d8dac69208f1bba7f7ec93b4cc1458575de4ab7a25f2e911a98bfbd.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/2392d6f88d8dac69208f1bba7f7ec93b4cc1458575de4ab7a25f2e911a98bfbd.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/6019bdbce5bf124009be53c3287448de6aec673ebf6814b7588f94405dafa3d9.png"
   ],
   "links": [
     {
@@ -44,6 +45,11 @@
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/1313-HIDEKO000.vpk"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1313"
     }
   ],
   "source_name": "VitaDBtoo",

@@ -18,7 +18,8 @@
   "status": "Legacy",
   "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/c657bee4b3f0d3de6fe99e5bbcf6de856abe9292198f49842129d1313dca890c.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/15c51a181385aa39a722fae8ce9ff76832b52c1777823c9b5eb3c01e39ff8dd7.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/15c51a181385aa39a722fae8ce9ff76832b52c1777823c9b5eb3c01e39ff8dd7.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/15c51a181385aa39a722fae8ce9ff76832b52c1777823c9b5eb3c01e39ff8dd7.png"
   ],
   "links": [
     {
@@ -41,6 +42,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/Tau5/mkrandom"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=630"
     }
   ],
   "source_name": "VitaDBtoo",

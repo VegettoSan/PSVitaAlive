@@ -18,7 +18,8 @@
   "status": "Legacy",
   "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/9ba15b44bba093fdbc6f0ad18fa33e957bac9c7714fb076e00d75bcf5e6888ef.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/fc5936a5787d94d71ebbccf50df00c9afb663ae111fd5c6e2ab823bd64343b71.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/fc5936a5787d94d71ebbccf50df00c9afb663ae111fd5c6e2ab823bd64343b71.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/fc5936a5787d94d71ebbccf50df00c9afb663ae111fd5c6e2ab823bd64343b71.png"
   ],
   "links": [
     {
@@ -41,6 +42,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/sharkwouter/oceanpop"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=792"
     }
   ],
   "source_name": "VitaDBtoo",

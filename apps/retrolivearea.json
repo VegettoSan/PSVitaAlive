@@ -18,7 +18,8 @@
   "status": "Legacy",
   "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1596-retrolivearea.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/94a131c7f14be7ad162d615c41321c2d51e9ed8335c26348a8cc93de78859fb5.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/94a131c7f14be7ad162d615c41321c2d51e9ed8335c26348a8cc93de78859fb5.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/94a131c7f14be7ad162d615c41321c2d51e9ed8335c26348a8cc93de78859fb5.png"
   ],
   "links": [
     {
@@ -41,6 +42,11 @@
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/380-RetroLivearea.vpk"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=380"
     }
   ],
   "source_name": "VitaDBtoo",

@@ -21,7 +21,8 @@
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/d655fa214a50d628221a2fcbefc738107300b892bc0a643a926a27543266e4ba.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/3a5e67e26fb1e3edd45c7b0d8fa8881a1f08526b694fe3fd2e5154bfba750dd3.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/ba5c3df02a4711feecac1a31247f8b9fefbb106dcc98ec6ac25ca91afdc27225.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/007430154eaa9defb84771fe1f1481dcfaf94f03e1d2c9fdb4942c7701f4e259.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/007430154eaa9defb84771fe1f1481dcfaf94f03e1d2c9fdb4942c7701f4e259.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/d655fa214a50d628221a2fcbefc738107300b892bc0a643a926a27543266e4ba.png"
   ],
   "links": [
     {
@@ -44,6 +45,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/Dane64/MaDn"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=565"
     }
   ],
   "source_name": "VitaDBtoo",

@@ -21,7 +21,8 @@
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/7589b4da9b9d85f23ed0c1764510016e72c0e9863c31c3c6afb67b877ab59fcd.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/0b93aa6e5390602d33a967cbecce5a448b8c13d2d4953e5798ca0a0088649cdf.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/8f3fe8f490f8b6bbde6437c51e93e503917dba815bca02d16a3578633e10066e.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/86c541962b2f950e5211ecb62f370a2f4025220a90f0b330250cf5b055fce7ac.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/86c541962b2f950e5211ecb62f370a2f4025220a90f0b330250cf5b055fce7ac.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/7589b4da9b9d85f23ed0c1764510016e72c0e9863c31c3c6afb67b877ab59fcd.png"
   ],
   "links": [
     {
@@ -39,6 +40,11 @@
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/1101-Beat2x.vpk"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1101"
     }
   ],
   "source_name": "VitaDBtoo",

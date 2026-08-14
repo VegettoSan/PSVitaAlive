@@ -18,7 +18,8 @@
   "status": "Legacy",
   "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/da7da22248abfeca2796221f7f28db2d4ae1521186382ad4a0fb562e4d76bf01.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/9320de0550e24f5cfba781872705d26f2e75973dc5a507c26a893193aadb8a90.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/9320de0550e24f5cfba781872705d26f2e75973dc5a507c26a893193aadb8a90.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/9320de0550e24f5cfba781872705d26f2e75973dc5a507c26a893193aadb8a90.png"
   ],
   "links": [
     {
@@ -36,6 +37,11 @@
       "type": "Official Website",
       "name": "NeoVitaDB Release Page",
       "url": "https://github.com/ZFhuang/ZATO-vita/releases/tag/v01_00"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1366"
     }
   ],
   "source_name": "VitaDBtoo",

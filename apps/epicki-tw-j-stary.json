@@ -18,7 +18,8 @@
   "status": "Legacy",
   "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1886-epicki-twoj-stary.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/fbfaa52939a66b303c78288263ebb78e14157ebbfd63ba045ff39fdf6d6a45a6.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/fbfaa52939a66b303c78288263ebb78e14157ebbfd63ba045ff39fdf6d6a45a6.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/fbfaa52939a66b303c78288263ebb78e14157ebbfd63ba045ff39fdf6d6a45a6.png"
   ],
   "links": [
     {
@@ -36,6 +37,11 @@
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/1160-ets.vpk"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1160"
     }
   ],
   "source_name": "VitaDBtoo",

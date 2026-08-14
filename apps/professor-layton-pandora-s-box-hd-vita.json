@@ -21,7 +21,8 @@
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/3b1daf45dd7701990d086487d7d8ea9a71ba8a75e395c219dae0fe2655b43fd0.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/a32c6c955c02b0259724d24b5128b604a156936c9ba883c2c64f2bab0bf32698.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/aab2b0326dd5ca0414d89ffa91c73c33b6aa644ce53c52d5cd9a992f695041bf.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/86e85f5a5d05074fadca4f73ca5b6b597cecb02a3f6788708341d861421474f6.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/86e85f5a5d05074fadca4f73ca5b6b597cecb02a3f6788708341d861421474f6.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/3b1daf45dd7701990d086487d7d8ea9a71ba8a75e395c219dae0fe2655b43fd0.png"
   ],
   "links": [
     {
@@ -44,6 +45,11 @@
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/1152-layton2.vpk"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1152"
     }
   ],
   "source_name": "VitaDBtoo",

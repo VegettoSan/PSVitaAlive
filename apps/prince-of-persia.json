@@ -18,7 +18,9 @@
   "status": "Legacy",
   "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1523-prince-of-persia.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1523-prince-of-persia.png"
+    "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1523-prince-of-persia.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/pop1.jpg",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/pop2.jpg"
   ],
   "links": [
     {
@@ -41,6 +43,11 @@
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/166-prince.zip"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=166"
     }
   ],
   "source_name": "VitaDBtoo",

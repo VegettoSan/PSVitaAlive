@@ -21,7 +21,8 @@
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/f92fab336012ef1b62c030dd7c152c6a6e3d56a722881392091021aac9ebeb87.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/818e683c32cd17a2607410942e8256d3bc1bdb0b592b198776b6c6c7f7f5deda.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/40751f6f7f5f66e423c43dac2a42a3993d3a23c5f1255ec49925b187cab6e813.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/483197a215358aa65be2df8037c8f12adcae012dd02016b399464a24578327ef.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/483197a215358aa65be2df8037c8f12adcae012dd02016b399464a24578327ef.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/f92fab336012ef1b62c030dd7c152c6a6e3d56a722881392091021aac9ebeb87.png"
   ],
   "links": [
     {
@@ -39,6 +40,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/HarommelRabbid/LifeLua"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1275"
     }
   ],
   "source_name": "VitaDBtoo",

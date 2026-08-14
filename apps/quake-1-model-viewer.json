@@ -36,6 +36,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/softwaregremlin2/Quake1ModelViewer"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1416"
     }
   ],
   "source_name": "VitaDBtoo",

@@ -20,7 +20,9 @@
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/e75f519d64967858a0068378c7f29a751fa54487c30d890697ccea66d0d598ab.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/73cf60c4cee69def9efabba41de92b2cebce1130559cc2e45cb6ce4fadcf236c.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/78a31d5259989c99d3fbc8ab37bcd451328cbee7a94f5d63ad2f83770f8d3a10.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/78a31d5259989c99d3fbc8ab37bcd451328cbee7a94f5d63ad2f83770f8d3a10.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/e75f519d64967858a0068378c7f29a751fa54487c30d890697ccea66d0d598ab.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/73cf60c4cee69def9efabba41de92b2cebce1130559cc2e45cb6ce4fadcf236c.png"
   ],
   "links": [
     {
@@ -43,6 +45,11 @@
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/1134-maze_planet.vpk"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1134"
     }
   ],
   "source_name": "VitaDBtoo",

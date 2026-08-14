@@ -19,7 +19,8 @@
   "status": "Legacy",
   "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1605-wizard-wizard.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/fa3a6488da9172deb5e76f0547a4d673fc7e05bb86252dadd8cb451ce11df638.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/fa3a6488da9172deb5e76f0547a4d673fc7e05bb86252dadd8cb451ce11df638.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/fa3a6488da9172deb5e76f0547a4d673fc7e05bb86252dadd8cb451ce11df638.png"
   ],
   "links": [
     {
@@ -37,6 +38,11 @@
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/408-WizardWizard.vpk"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=408"
     }
   ],
   "source_name": "VitaDBtoo",

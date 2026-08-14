@@ -36,6 +36,11 @@
       "type": "Official Website",
       "name": "NeoVitaDB Release Page",
       "url": "https://github.com/SilverCrow2323/Sakura-Succubus-3-Vita/releases/tag/v.1.1"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=812"
     }
   ],
   "source_name": "VitaDBtoo",

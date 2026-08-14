@@ -20,7 +20,9 @@
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/748f4b67033b272ae5fc71308e2b6960b096e36390cae3e391da4fc7650c43bc.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/ac695e56eb34d356a71da0f53f58c063c30283c7657e9ffc4a562ee37e79a144.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/14566691de629ec244deea878860187d2e62ebebede02e26f7ef433fb3461d19.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/14566691de629ec244deea878860187d2e62ebebede02e26f7ef433fb3461d19.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/748f4b67033b272ae5fc71308e2b6960b096e36390cae3e391da4fc7650c43bc.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/ac695e56eb34d356a71da0f53f58c063c30283c7657e9ffc4a562ee37e79a144.png"
   ],
   "links": [
     {
@@ -43,6 +45,11 @@
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/628-King-of-Machines.vpk"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=628"
     }
   ],
   "source_name": "VitaDBtoo",

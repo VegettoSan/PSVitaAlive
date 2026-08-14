@@ -19,7 +19,9 @@
   "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1818-vita-sample-avplayer.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/9707c8734c645d427a9c539a5c55d6ef4269f2648f0117abde8ce9d7d3a57cf6.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/1f39c81142aea9edf3fb334397591b19f76a9153326f257f1f44300bb19bb813.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/1f39c81142aea9edf3fb334397591b19f76a9153326f257f1f44300bb19bb813.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/9707c8734c645d427a9c539a5c55d6ef4269f2648f0117abde8ce9d7d3a57cf6.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/1f39c81142aea9edf3fb334397591b19f76a9153326f257f1f44300bb19bb813.png"
   ],
   "links": [
     {
@@ -42,6 +44,11 @@
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/1057-sample_avplayer.vpk"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1057"
     }
   ],
   "source_name": "VitaDBtoo",

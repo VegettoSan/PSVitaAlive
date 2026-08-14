@@ -20,7 +20,9 @@
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/25c5cad6e2bdbd313af8b87f295cb842e8d86fe6ace63c30b0e872946fa2fce9.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/9886f160734c5c627e4cdeef4b5434f7c44647b2b7287b3c7defd9be115da2d8.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/ed2fb3d99d316959d5421712b3e0cfd3411e9e676185bcf454715dbc1b36a0b4.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/ed2fb3d99d316959d5421712b3e0cfd3411e9e676185bcf454715dbc1b36a0b4.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/25c5cad6e2bdbd313af8b87f295cb842e8d86fe6ace63c30b0e872946fa2fce9.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/9886f160734c5c627e4cdeef4b5434f7c44647b2b7287b3c7defd9be115da2d8.png"
   ],
   "links": [
     {
@@ -43,6 +45,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/Rinnegatamante/layton-vita"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1148"
     }
   ],
   "source_name": "VitaDBtoo",

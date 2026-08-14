@@ -19,7 +19,9 @@
   "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/580a65c8aea5b23b2f1858ddcf775a7bee0ac7bcccdacd41b2198d68bfda46a2.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/cdcf21a0e4b65725b7be7bc392b2c2ee652c6071bb358822f6d62322b8286054.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/1366e5db83109aaad5e65b49346c4110eae4616c2891b0b6e56aa6882ffd3b6d.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/1366e5db83109aaad5e65b49346c4110eae4616c2891b0b6e56aa6882ffd3b6d.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/cdcf21a0e4b65725b7be7bc392b2c2ee652c6071bb358822f6d62322b8286054.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/1366e5db83109aaad5e65b49346c4110eae4616c2891b0b6e56aa6882ffd3b6d.png"
   ],
   "links": [
     {
@@ -42,6 +44,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/Creckeryop/VitaGraphs"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=363"
     }
   ],
   "source_name": "VitaDBtoo",

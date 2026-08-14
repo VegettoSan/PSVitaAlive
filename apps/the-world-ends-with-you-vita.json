@@ -20,7 +20,9 @@
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/b66e3591f66e68ab0089cd74fd70de9adcebbe787a86dbad96f843322d611c21.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/18aed8cb6db1232696c549fec0f5f963f80676e29222e905a261c686933de674.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/4713cd50a760dfc4b7b639cfe78fbf4e956120febdf51f040a510ad352c02938.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/4713cd50a760dfc4b7b639cfe78fbf4e956120febdf51f040a510ad352c02938.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/b66e3591f66e68ab0089cd74fd70de9adcebbe787a86dbad96f843322d611c21.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/18aed8cb6db1232696c549fec0f5f963f80676e29222e905a261c686933de674.png"
   ],
   "links": [
     {
@@ -53,6 +55,11 @@
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/1112-TWEWY.vpk"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1112"
     }
   ],
   "source_name": "VitaDBtoo",

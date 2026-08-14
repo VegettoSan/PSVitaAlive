@@ -19,7 +19,9 @@
   "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1896-de-shinde.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/8e939a3ffc23dfea43a241bb603213d5034dcfe9c91081c97db093de82e90439.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/ef8c027971c6062247011edfa7f4c5158ecc04f86a4b0148d575aa7d49603004.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/ef8c027971c6062247011edfa7f4c5158ecc04f86a4b0148d575aa7d49603004.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/8e939a3ffc23dfea43a241bb603213d5034dcfe9c91081c97db093de82e90439.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/ef8c027971c6062247011edfa7f4c5158ecc04f86a4b0148d575aa7d49603004.png"
   ],
   "links": [
     {
@@ -37,6 +39,11 @@
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/1198-deshinde.vpk"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1198"
     }
   ],
   "source_name": "VitaDBtoo",

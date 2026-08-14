@@ -20,7 +20,9 @@
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/439297104529227ae397dc59bf7d0286bc1c763251aa959b7143e3e00b402cca.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/5e2ab6e2496370bb0cab5a0e06d97704d875a481364bb176e5cf06ed383dc483.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/0325cfc275b588730235bfc4564d770fc4e50ed7419abd28141c35307be72ea5.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/0325cfc275b588730235bfc4564d770fc4e50ed7419abd28141c35307be72ea5.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/439297104529227ae397dc59bf7d0286bc1c763251aa959b7143e3e00b402cca.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/5e2ab6e2496370bb0cab5a0e06d97704d875a481364bb176e5cf06ed383dc483.png"
   ],
   "links": [
     {
@@ -38,6 +40,11 @@
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/637-PanComOS.vpk"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=637"
     }
   ],
   "source_name": "VitaDBtoo",

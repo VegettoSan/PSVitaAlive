@@ -21,7 +21,8 @@
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/87a9b7af841a4a209242760db480fd2b633a877e5bf40d7627b9d8d1b93317cc.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/6f4f11471b6a177e4640624bd8b1f2840215b98564c47a4858b2a4427c6e3255.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/bccb298132458a71990b91501d19d343978b2bc3bdf2ecad0978ac893bd621f9.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/aef82db23327cef5da7efa13aaa0db0d15583535c3afac2116c8ae8ee1023c9b.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/aef82db23327cef5da7efa13aaa0db0d15583535c3afac2116c8ae8ee1023c9b.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/87a9b7af841a4a209242760db480fd2b633a877e5bf40d7627b9d8d1b93317cc.png"
   ],
   "links": [
     {
@@ -44,6 +45,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/Rinnegatamante/toon-rescue-vita"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1315"
     }
   ],
   "source_name": "VitaDBtoo",

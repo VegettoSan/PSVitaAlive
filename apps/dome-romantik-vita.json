@@ -19,7 +19,9 @@
   "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1825-dome-romantik-vita.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/83bd7fd641ed12076cf9ccf1c10f615292bc5b382b999abfd881943f65634f7d.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c82b75483b372e702bf18f56c64c6912fa00b732eae7c81dcd4aedf4551f7dc9.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c82b75483b372e702bf18f56c64c6912fa00b732eae7c81dcd4aedf4551f7dc9.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/83bd7fd641ed12076cf9ccf1c10f615292bc5b382b999abfd881943f65634f7d.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/c82b75483b372e702bf18f56c64c6912fa00b732eae7c81dcd4aedf4551f7dc9.png"
   ],
   "links": [
     {
@@ -37,6 +39,11 @@
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/1076-Dome_Romantik.vpk"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1076"
     }
   ],
   "source_name": "VitaDBtoo",

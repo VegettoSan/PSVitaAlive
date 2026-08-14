@@ -18,7 +18,8 @@
   "status": "Legacy",
   "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/9e4e4249b4b33ed15858726d62fb79dbb6f06d32b90a9a064fe43080a2a02e34.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/21be1b88c0be049b793be8435f8d0c18ca398815a38861bf7fd17a49912d9a39.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/21be1b88c0be049b793be8435f8d0c18ca398815a38861bf7fd17a49912d9a39.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/21be1b88c0be049b793be8435f8d0c18ca398815a38861bf7fd17a49912d9a39.png"
   ],
   "links": [
     {
@@ -41,6 +42,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/AntHJ/Stock-App-Remover"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=764"
     }
   ],
   "source_name": "VitaDBtoo",

@@ -1,0 +1,15 @@
+{
+  "id": "fatlenny",
+  "name": "FatLenny",
+  "avatar": "https://github.com/muukalainenpuhuu.png",
+  "bio": "",
+  "links": [
+    {
+      "type": "GitHub",
+      "name": "GitHub",
+      "url": "https://github.com/muukalainenpuhuu",
+      "recommended": true
+    }
+  ],
+  "icon": "https://github.com/muukalainenpuhuu.png"
+}

@@ -20,7 +20,9 @@
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/a1bac04d54ae2e0c627d16c2926c27aaa57f43aa85dd07db30b4ae2dac4d6ef9.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/a69026f723837a1826a216e0c39a33b543a4e5ef9999f1147f3314d62d759d25.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/a31a6dfb775518068af4b4e7653cec259def4056bc89c66b2ddda83590c1b058.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/a31a6dfb775518068af4b4e7653cec259def4056bc89c66b2ddda83590c1b058.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/a1bac04d54ae2e0c627d16c2926c27aaa57f43aa85dd07db30b4ae2dac4d6ef9.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/a69026f723837a1826a216e0c39a33b543a4e5ef9999f1147f3314d62d759d25.png"
   ],
   "links": [
     {
@@ -43,6 +45,11 @@
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/1129-fire_and_fondness_2.vpk"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1129"
     }
   ],
   "source_name": "VitaDBtoo",

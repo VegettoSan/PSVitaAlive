@@ -21,7 +21,8 @@
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/a3ceda1eb96c04ed09a3c4ed253a1160ed14684ff8443a5b462a17a1bbf5a2cc.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/bc74f14b291cddba82d2e14d7c53221da06d902d0e3a49526f9413c68b92bcec.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/b2f62a76cb207a31fae80014b6b9e4e4d4ec5b838b0499aa9aee8432bb0c6f4f.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/24fa4f16a2f326a64cd456e42f170f39438519b8b527c5a02808ff5a19de409f.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/24fa4f16a2f326a64cd456e42f170f39438519b8b527c5a02808ff5a19de409f.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/a3ceda1eb96c04ed09a3c4ed253a1160ed14684ff8443a5b462a17a1bbf5a2cc.png"
   ],
   "links": [
     {
@@ -44,6 +45,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/Rinnegatamante/smashrush-vita"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1346"
     }
   ],
   "source_name": "VitaDBtoo",

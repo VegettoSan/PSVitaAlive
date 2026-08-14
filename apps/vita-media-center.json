@@ -19,7 +19,9 @@
   "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1590-vita-media-center.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/502b60d0a052082debb63f6f5d49ad8e27be3630a04761dbfffe5f7fa7088976.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/5d0443dca88bc835a3174120662e7d2a772b27761e3adf15fa8502caf895c5fc.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/5d0443dca88bc835a3174120662e7d2a772b27761e3adf15fa8502caf895c5fc.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/502b60d0a052082debb63f6f5d49ad8e27be3630a04761dbfffe5f7fa7088976.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/5d0443dca88bc835a3174120662e7d2a772b27761e3adf15fa8502caf895c5fc.png"
   ],
   "links": [
     {
@@ -42,6 +44,11 @@
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/364-mediacenter.vpk"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=364"
     }
   ],
   "source_name": "VitaDBtoo",

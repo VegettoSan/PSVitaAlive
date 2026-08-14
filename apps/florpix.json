@@ -21,7 +21,8 @@
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/e828acd25aca67617e8e624a4e478a002f7069e78cb9335a2e0176d16f48d72d.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/1a74fd04c1e02902291209096b8578f2ee28b14a9e35185ddf18fb1d59498d96.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/5f2c2f597ee17cefcc9f35bc9b01cc08d5b6d2b7b6e673c2363a167c6bba576a.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/8f4c75bafbf7f44538bfde82bae23cb92456ed73141a905ccce76b61eefe0706.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/8f4c75bafbf7f44538bfde82bae23cb92456ed73141a905ccce76b61eefe0706.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/e828acd25aca67617e8e624a4e478a002f7069e78cb9335a2e0176d16f48d72d.png"
   ],
   "links": [
     {
@@ -39,6 +40,11 @@
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/1232-Florpix.vpk"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1232"
     }
   ],
   "source_name": "VitaDBtoo",

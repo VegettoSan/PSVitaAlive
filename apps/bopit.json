@@ -21,7 +21,8 @@
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/fa43cb0b09e21340c3ced389fbde6be55b21f2df484b4d6b94b71063c9695991.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/778fddc988351194475949da8e0b4e90f4e2df97488c0074da5ab2b852e3810d.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/4a34ab6e61544221095cec57a75c4f310da7e82a54eea445a951a485ee1d8eb5.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/5b2c4aa3e1381f90d24e6e9adb931944754b507dd7f16161a59edd34127bd9f4.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/5b2c4aa3e1381f90d24e6e9adb931944754b507dd7f16161a59edd34127bd9f4.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/fa43cb0b09e21340c3ced389fbde6be55b21f2df484b4d6b94b71063c9695991.png"
   ],
   "links": [
     {
@@ -44,6 +45,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/AntHJ/BopIt-Vita"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=826"
     }
   ],
   "source_name": "VitaDBtoo",

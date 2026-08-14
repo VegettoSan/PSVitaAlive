@@ -18,7 +18,10 @@
   "status": "Legacy",
   "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1477-rincheat-se.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1477-rincheat-se.png"
+    "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1477-rincheat-se.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/cheatse.jpg",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/cheatse2.jpg",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/cheatse3.jpg"
   ],
   "links": [
     {
@@ -41,6 +44,11 @@
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/46-rinCheatSE.vpk"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=46"
     }
   ],
   "source_name": "VitaDBtoo",

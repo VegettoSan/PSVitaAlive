@@ -19,7 +19,9 @@
   "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1603-shiromino.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/dc026cf4c4e4cb434ece1f75f126d54f5ec9e6138fe74f68474bb84bbf3856b3.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/fd1166376b107871e56774cc676f3655a834a087208f1fe23d15044fc99f27f9.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/fd1166376b107871e56774cc676f3655a834a087208f1fe23d15044fc99f27f9.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/dc026cf4c4e4cb434ece1f75f126d54f5ec9e6138fe74f68474bb84bbf3856b3.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/fd1166376b107871e56774cc676f3655a834a087208f1fe23d15044fc99f27f9.png"
   ],
   "links": [
     {
@@ -42,6 +44,11 @@
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/406-shiromino.vpk"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=406"
     }
   ],
   "source_name": "VitaDBtoo",

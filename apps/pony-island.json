@@ -20,7 +20,9 @@
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/8245cdca1747ae2c30e96978b986249cb2d0540d2384a159b925bf7d897bf2f7.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/da370f0131de1622244fd4298a8b89943727b812913558e4480a109775b8b6bb.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/4027d5b1a0ea28f96e3c53847c97013c9f57a390e59ec7622fcfb0fb73d4d2b0.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/4027d5b1a0ea28f96e3c53847c97013c9f57a390e59ec7622fcfb0fb73d4d2b0.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/8245cdca1747ae2c30e96978b986249cb2d0540d2384a159b925bf7d897bf2f7.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/da370f0131de1622244fd4298a8b89943727b812913558e4480a109775b8b6bb.png"
   ],
   "links": [
     {
@@ -43,6 +45,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/hatoving/ponyisland-old-vita"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1021"
     }
   ],
   "source_name": "VitaDBtoo",

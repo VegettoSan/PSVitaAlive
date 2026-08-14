@@ -2,7 +2,7 @@
   "id": "sonic-1-sms-remake-s1smsr001",
   "title_id": "S1SMSR001",
   "name": "Sonic 1 SMS Remake",
-  "description": "",
+  "description": "Port of Sonic 1 SMS Remake for PSVITA.",
   "long_description": "Sonic 1 SMS Remake is a fan game that represents a redesigned version of the Master System game released by SEGA in 1991.\nThis is an official port, based on version 1.9 of the game.",
   "author_ids": [
     "mdashk",
@@ -12,14 +12,18 @@
   "subcategory_ids": [
     "other"
   ],
-  "version": "v1.9.2-vita",
-  "version_date": "2022-09-16",
+  "version": "v.1.9.2",
+  "version_date": "2022-12-01",
   "requirements": "Not specified",
   "size": 31781081,
   "status": "Legacy",
   "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/0737-sonic-1-sms-remake.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/0737-sonic-1-sms-remake.png"
+    "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/0737-sonic-1-sms-remake.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/6b0b880f75b4c6b7258712d6906584f5c4f517edc1209582145935f61c8e909f.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/e4184702c5a1b008e7d925547b27c872c6b3bcaaa1e663d166fa3815bb5d3777.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/05d371a0ecadf95c05adc2988e654c67e9dbf40545a6fbe300ebbb80541294df.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/50d20e6000f58f13791bc5232c4c765e8f5cb2955fca953f5062b6a1a06d486c.png"
   ],
   "links": [
     {
@@ -37,6 +41,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/MDashK/sonic-1-sms-remake-vita"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=737"
     }
   ],
   "source_name": "NeoVitaDB",

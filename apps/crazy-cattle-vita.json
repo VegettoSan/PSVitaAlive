@@ -43,6 +43,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/Lordchickenblaster/Crazy-Cattle-Vita/releases"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1270"
     }
   ],
   "source_name": "VitaDBtoo",

@@ -20,7 +20,9 @@
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/4284b396600995accc5da8566e967ad24a79d7c068b0ba6f8d26cde60e982eb5.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/677cd53a44191c6fff7e23cd4e3bfd225fc463be4886d2b23bdb859dd8f4fa42.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/ac7b0877e720ca5de4d413c99ae3cdb580670102138a39b0d70a6c436be05352.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/ac7b0877e720ca5de4d413c99ae3cdb580670102138a39b0d70a6c436be05352.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/4284b396600995accc5da8566e967ad24a79d7c068b0ba6f8d26cde60e982eb5.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/677cd53a44191c6fff7e23cd4e3bfd225fc463be4886d2b23bdb859dd8f4fa42.png"
   ],
   "links": [
     {
@@ -43,6 +45,11 @@
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/1150-feline_future.vpk"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1150"
     }
   ],
   "source_name": "VitaDBtoo",

@@ -19,7 +19,8 @@
   "status": "Legacy",
   "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1604-cubic-conundrum.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/ee2038a1f28a9786c0ecdc7ff36a0b13870873e62bfa58246be9ead91ced2fe4.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/ee2038a1f28a9786c0ecdc7ff36a0b13870873e62bfa58246be9ead91ced2fe4.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/ee2038a1f28a9786c0ecdc7ff36a0b13870873e62bfa58246be9ead91ced2fe4.png"
   ],
   "links": [
     {
@@ -37,6 +38,11 @@
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/407-CubicConundrum.vpk"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=407"
     }
   ],
   "source_name": "VitaDBtoo",

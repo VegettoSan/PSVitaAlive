@@ -21,7 +21,8 @@
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/2b0d4d74e8adf83bb280bf537258a8e26a77ad236197cd646621205ca0524ae2.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/824d5e4295117305b6dcdcad946b56dd28b9500694fc82b8e360315e0d3afc5d.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/78415d1dd9afe2c0817884e47ad9a9e15e0973aa9e898ec4ec23c572c891db70.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/a448d6d0319ede630614360c4d93f050316b5808324835aac759cc116aaf9ba0.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/a448d6d0319ede630614360c4d93f050316b5808324835aac759cc116aaf9ba0.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/2b0d4d74e8adf83bb280bf537258a8e26a77ad236197cd646621205ca0524ae2.png"
   ],
   "links": [
     {
@@ -39,6 +40,11 @@
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/556-NanospeedGamer.vpk"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=556"
     }
   ],
   "source_name": "VitaDBtoo",

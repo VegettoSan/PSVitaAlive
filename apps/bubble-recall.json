@@ -18,7 +18,8 @@
   "status": "Legacy",
   "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/038ab15b07241c6c685e1f7d1d0d94fc6eee1626e999580f1b948b453036f53a.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/f4db6403dce92dc5150cda082a3976d8d9aa7777986b984e798f64043fa76c21.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/f4db6403dce92dc5150cda082a3976d8d9aa7777986b984e798f64043fa76c21.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/f4db6403dce92dc5150cda082a3976d8d9aa7777986b984e798f64043fa76c21.png"
   ],
   "links": [
     {
@@ -41,6 +42,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/AntHJ/Bubble-Recall"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=763"
     }
   ],
   "source_name": "VitaDBtoo",

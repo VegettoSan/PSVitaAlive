@@ -18,7 +18,8 @@
   "status": "Legacy",
   "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/ea57f6370747c51b6ac7209db3defdf1b8bc46313283c908d6629d2882526f82.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/0ebf4e6a6bdb1544e4291a0505a5e84801601c94a51ae9454454edf40bac4a12.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/0ebf4e6a6bdb1544e4291a0505a5e84801601c94a51ae9454454edf40bac4a12.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/0ebf4e6a6bdb1544e4291a0505a5e84801601c94a51ae9454454edf40bac4a12.png"
   ],
   "links": [
     {
@@ -41,6 +42,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/nop90-PSVITA/SDLLopan-VITA"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=332"
     }
   ],
   "source_name": "VitaDBtoo",

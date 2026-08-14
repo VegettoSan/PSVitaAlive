@@ -1,0 +1,38 @@
+{
+  "id": "systemcheckenabled-actpsvita",
+  "title_id": "ACTPSVITA",
+  "name": "SystemCheckEnabled",
+  "description": "Check if the console is enabled.",
+  "long_description": "Simple homebrew that checks if your system is enabled.",
+  "author_ids": [
+    "draqen"
+  ],
+  "category_id": "plugins",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.1.0",
+  "version_date": "2017-02-22",
+  "requirements": "Not specified",
+  "size": 1837913,
+  "status": "Legacy",
+  "icon": "https://www.rinnegatamante.eu/vitadb/icons/b2994a379600a1e0df845f872f8fbc8fa1340281351e5175d9029434f609eddd.png",
+  "screenshots": [
+    "https://www.rinnegatamante.eu/vitadb/screenshots/check1.jpg",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/check2.jpg",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/check3.jpg"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=17",
+      "recommended": true
+    }
+  ],
+  "source_name": "VitaDB",
+  "source_id": "17",
+  "source_url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=17",
+  "release_page": "",
+  "updated_at": "2026-08-14T01:05:59.231940+00:00"
+}

@@ -19,7 +19,8 @@
   "status": "Legacy",
   "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/45f0c7927e26880bd8495d349e9e9dde9850acd9902e3d6b81b944c43827b974.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/26732f6e5704ad7d21694d4a1f596b1c4647c02dc3c4227a83832fa082ff4444.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/26732f6e5704ad7d21694d4a1f596b1c4647c02dc3c4227a83832fa082ff4444.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/26732f6e5704ad7d21694d4a1f596b1c4647c02dc3c4227a83832fa082ff4444.png"
   ],
   "links": [
     {
@@ -42,6 +43,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/ibrahim-dogan/vita-drop"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1383"
     }
   ],
   "source_name": "VitaDBtoo",

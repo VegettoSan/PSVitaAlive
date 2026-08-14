@@ -18,7 +18,9 @@
   "status": "Legacy",
   "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/4face0592c3c88ef3c63600f3025d9ade60418ba7d3861198ff1d2f92b5c50b7.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/4face0592c3c88ef3c63600f3025d9ade60418ba7d3861198ff1d2f92b5c50b7.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/4face0592c3c88ef3c63600f3025d9ade60418ba7d3861198ff1d2f92b5c50b7.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/remi1.jpg",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/remi2.png"
   ],
   "links": [
     {
@@ -41,6 +43,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/enriquesomolinos/REminiscence-Vita"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=168"
     }
   ],
   "source_name": "VitaDBtoo",

@@ -19,7 +19,9 @@
   "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1762-going-nowhere.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/b0dd128c2411b108535917ecf53dba2a4766aad24c49b50edd4dab49966cd199.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/62cf81bddf7af011e9c7cebe30e4018e0064480112beb072c101e182c2e8e64d.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/62cf81bddf7af011e9c7cebe30e4018e0064480112beb072c101e182c2e8e64d.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/b0dd128c2411b108535917ecf53dba2a4766aad24c49b50edd4dab49966cd199.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/62cf81bddf7af011e9c7cebe30e4018e0064480112beb072c101e182c2e8e64d.png"
   ],
   "links": [
     {
@@ -37,6 +39,11 @@
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/767-GoingNowhere.vpk"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=767"
     }
   ],
   "source_name": "VitaDBtoo",

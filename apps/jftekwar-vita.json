@@ -21,7 +21,8 @@
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/210b5b81e1453c57a6b57c1f251a50fcf6145cef177d5b8bd2c40c0fff94b7d6.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/27d8d0bf5a88d055656c801f375c59c2c3cde2f2376dd9a5a51cb46cb9be905f.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/5b0cc820f32ba756eae547bca0fb9152867a61cb6226596e696db9a18809b4f2.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/5f57da0bc5e41aac93630008adde031625d6af812ad0e99a30574031e0f19f1e.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/5f57da0bc5e41aac93630008adde031625d6af812ad0e99a30574031e0f19f1e.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/210b5b81e1453c57a6b57c1f251a50fcf6145cef177d5b8bd2c40c0fff94b7d6.png"
   ],
   "links": [
     {
@@ -44,6 +45,11 @@
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/1098-jftekwar.vpk"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1098"
     }
   ],
   "source_name": "VitaDBtoo",

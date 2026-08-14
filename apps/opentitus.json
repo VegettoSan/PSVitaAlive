@@ -20,7 +20,9 @@
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/7bdf4419b414a50c6605881d11f7cbe2b25c710322ed805353d3179315a0ef4f.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/b0c906a6350d0567b7142fed235935d98a3037ccd7ff3bbca98e087f18b07a60.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/1540204e202cd12740841b0973799115da79636134348e3488062e150c256629.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/1540204e202cd12740841b0973799115da79636134348e3488062e150c256629.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/7bdf4419b414a50c6605881d11f7cbe2b25c710322ed805353d3179315a0ef4f.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/b0c906a6350d0567b7142fed235935d98a3037ccd7ff3bbca98e087f18b07a60.png"
   ],
   "links": [
     {
@@ -48,6 +50,16 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/usineur/opentitus"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=344"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=345"
     }
   ],
   "source_name": "VitaDBtoo",

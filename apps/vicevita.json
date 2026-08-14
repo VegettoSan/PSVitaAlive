@@ -21,7 +21,8 @@
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/0d3469c7cd6f54b0c57342dec1bfd1b383f6693268d23968c22d3876b896880e.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/0656bb7c0c2eff9aaa572d962211bdf7d55602490d69c7f7fc319e78426bfe3d.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/4a1cfc4cf13ffc5611ddc9545ea908153ba6465bf2b4db063da4d56d1c03857e.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/b74f71c18d003f90a73be3cf91ff504331cd38c9f83d41b329b4f65836c2e27a.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/b74f71c18d003f90a73be3cf91ff504331cd38c9f83d41b329b4f65836c2e27a.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/0d3469c7cd6f54b0c57342dec1bfd1b383f6693268d23968c22d3876b896880e.png"
   ],
   "links": [
     {
@@ -44,6 +45,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/ammeir/vicevita"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=541"
     }
   ],
   "source_name": "VitaDBtoo",

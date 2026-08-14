@@ -21,7 +21,8 @@
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/1be879220ea746c1a47dcbcfee940029c46e0a1fa23d88a4bfea79180e46ff08.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/d3a14ce716c94e35ee0cfbf452e33b426cc4defc6455c684f7064d9771f57d1e.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/8cb83caa2d630ee3031eb8ca9155eb796853429fc5cdbc73ad9fcc631d298704.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/7dd5aba0da48f0a050677fb0100c0eaa379a421fb60aa4f27fb94ed03432d5a2.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/7dd5aba0da48f0a050677fb0100c0eaa379a421fb60aa4f27fb94ed03432d5a2.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/1be879220ea746c1a47dcbcfee940029c46e0a1fa23d88a4bfea79180e46ff08.png"
   ],
   "links": [
     {
@@ -44,6 +45,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/OrbitalFlagStudio/VitaGamesReleases"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1083"
     }
   ],
   "source_name": "VitaDBtoo",

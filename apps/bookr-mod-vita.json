@@ -18,7 +18,10 @@
   "status": "Legacy",
   "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/e92afcf9b0bdd1358c290c3b94685dc37d10c16f0aa0ba5ce8af7a565384eb82.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/e92afcf9b0bdd1358c290c3b94685dc37d10c16f0aa0ba5ce8af7a565384eb82.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/e92afcf9b0bdd1358c290c3b94685dc37d10c16f0aa0ba5ce8af7a565384eb82.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/bookr1.jpg",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/bookr2.jpg",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/bookr3.jpg"
   ],
   "links": [
     {
@@ -36,6 +39,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/pathway27/bookr-mod-vita"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=203"
     }
   ],
   "source_name": "VitaDBtoo",

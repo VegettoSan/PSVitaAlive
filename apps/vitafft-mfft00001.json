@@ -1,0 +1,46 @@
+{
+  "id": "vitafft-mfft00001",
+  "title_id": "MFFT00001",
+  "name": "VitaFFT",
+  "description": "Audio spectrum analyzer for PSVITA.",
+  "long_description": "This homebrew is a fast Fourier transformation (FFT) for the PSVita, which uses the internal microphone to read audio, formerly known as audio spectrum analyzer.",
+  "author_ids": [
+    "pyroesp"
+  ],
+  "category_id": "plugins",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.0.1.6",
+  "version_date": "2017-09-08",
+  "requirements": "Not specified",
+  "size": 74919,
+  "status": "Legacy",
+  "icon": "https://www.rinnegatamante.eu/vitadb/icons/1628e17d61f49fded332cf75f95dd24588c40dbfbd3c18590c7989e4bb37c4fb.png",
+  "screenshots": [
+    "https://www.rinnegatamante.eu/vitadb/screenshots/a00950eb4dcd9f392ad02a8cab6b1310d4a8f1b9c0743ab352e0c1d7d1520e09.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=303",
+      "recommended": true
+    },
+    {
+      "type": "Official Website",
+      "name": "VitaDB Release Page",
+      "url": "http://wololo.net/talk/viewtopic.php?f=52&t=48443"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/pyroesp/vitaFFT"
+    }
+  ],
+  "source_name": "VitaDB",
+  "source_id": "303",
+  "source_url": "https://github.com/pyroesp/vitaFFT",
+  "release_page": "http://wololo.net/talk/viewtopic.php?f=52&t=48443",
+  "updated_at": "2026-08-14T01:05:59.228786+00:00"
+}

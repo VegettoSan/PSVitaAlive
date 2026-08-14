@@ -19,7 +19,9 @@
   "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1697-trainslive-london.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/601a8ff5e672038c78ffe918841cec6b7155c5bd9cdc0ba3e1c3ff74366e946b.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/e96619211f1595d9cdd915f021f607768fc62d3f043c2efd072fc1f2394765e4.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/e96619211f1595d9cdd915f021f607768fc62d3f043c2efd072fc1f2394765e4.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/601a8ff5e672038c78ffe918841cec6b7155c5bd9cdc0ba3e1c3ff74366e946b.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/e96619211f1595d9cdd915f021f607768fc62d3f043c2efd072fc1f2394765e4.png"
   ],
   "links": [
     {
@@ -37,6 +39,11 @@
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/598-trainsliveldn.vpk"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=598"
     }
   ],
   "source_name": "VitaDBtoo",

@@ -20,7 +20,8 @@
   "status": "Legacy",
   "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/f305054f5ac115cf97e4cf62f66d43125138d50b435e36850a1be963406e9e19.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/59af4b7072633b2f150be877980ff28c03d303ff208437d88960200f371b0eef.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/59af4b7072633b2f150be877980ff28c03d303ff208437d88960200f371b0eef.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/59af4b7072633b2f150be877980ff28c03d303ff208437d88960200f371b0eef.png"
   ],
   "links": [
     {
@@ -43,6 +44,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/SKGleba/enso_ex"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=435"
     }
   ],
   "source_name": "VitaDBtoo",

@@ -20,7 +20,9 @@
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/8e0677bf24ee27bc795e329ddd4a735dd3dc494b2edda09efe994d43cb49faa5.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/67d97df6b4668d611bcbb0f84f025a488d2ad9ede1b075fcd0f8054a635c733f.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/da3d45758a53332a0521b8f40c439cd6fd1abf8b29c251ec44e6b3365d426609.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/da3d45758a53332a0521b8f40c439cd6fd1abf8b29c251ec44e6b3365d426609.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/8e0677bf24ee27bc795e329ddd4a735dd3dc494b2edda09efe994d43cb49faa5.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/67d97df6b4668d611bcbb0f84f025a488d2ad9ede1b075fcd0f8054a635c733f.png"
   ],
   "links": [
     {
@@ -38,6 +40,11 @@
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/816-Tic-Tac-Toe.vpk"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=816"
     }
   ],
   "source_name": "VitaDBtoo",

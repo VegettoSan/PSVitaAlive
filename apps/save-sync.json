@@ -20,7 +20,9 @@
   "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/83c69b7a7af19414b9ef23122b3eef46cb87e27b72c95e3689f3708595ba7fd4.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/5a2d0b34f3e30446bc21588eebe454af5e38a31468db34804c12f13bdc0903cd.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/2331d985b815c82cba96947a84ac940f387b081189ff91eeab03c904928f84fd.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/2331d985b815c82cba96947a84ac940f387b081189ff91eeab03c904928f84fd.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/5a2d0b34f3e30446bc21588eebe454af5e38a31468db34804c12f13bdc0903cd.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/2331d985b815c82cba96947a84ac940f387b081189ff91eeab03c904928f84fd.png"
   ],
   "links": [
     {
@@ -43,6 +45,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/unveroleone/vita-save-sync"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1418"
     }
   ],
   "source_name": "VitaDBtoo",

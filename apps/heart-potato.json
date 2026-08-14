@@ -20,7 +20,9 @@
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/6b068ef77154158d8b7dceb3c662764cefa2db0b983c93dbd2136f19aa0cf5b1.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/62a8b1644c7dc495d6dc348846b3c1c9f2d95b82c71dd4b82108bd5a1185dcfa.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/55ad56366e6a86b98437de50e66d06fcb6c0508829c04fea8918b0a59e5eb077.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/55ad56366e6a86b98437de50e66d06fcb6c0508829c04fea8918b0a59e5eb077.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/6b068ef77154158d8b7dceb3c662764cefa2db0b983c93dbd2136f19aa0cf5b1.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/62a8b1644c7dc495d6dc348846b3c1c9f2d95b82c71dd4b82108bd5a1185dcfa.png"
   ],
   "links": [
     {
@@ -38,6 +40,11 @@
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/1071-HeartPotato.vpk"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1071"
     }
   ],
   "source_name": "VitaDBtoo",

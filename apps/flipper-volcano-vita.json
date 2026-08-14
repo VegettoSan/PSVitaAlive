@@ -21,7 +21,8 @@
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/6461390ef35c7ff4394fd153a8c679cc2da482fe27a66985b7cbe11435546014.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c7e8725c1ee14d4ca80f0a6cf6dbc0cf0ccd96914ec66bc5355d39256ec1fed6.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/522f7cc646769ebac080ffe71bafc610e518f54f0689422c5cf25fb16c941099.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/3e48ada8d30e7573a24d7013dbe7d9b1980e6fdb8aa32169318d30fd9bcf4dfc.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/3e48ada8d30e7573a24d7013dbe7d9b1980e6fdb8aa32169318d30fd9bcf4dfc.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/6461390ef35c7ff4394fd153a8c679cc2da482fe27a66985b7cbe11435546014.png"
   ],
   "links": [
     {
@@ -44,6 +45,11 @@
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/1327-FlipperVolcano_v1_1.vpk"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1327"
     }
   ],
   "source_name": "VitaDBtoo",

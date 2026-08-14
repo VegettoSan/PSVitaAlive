@@ -20,7 +20,9 @@
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/e3453e9a9bd2cbdb095e96a00ac58d3ab8bd7a11dcef26c11e0e7ed82589587a.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/5e26a8e8cf4ae64d6717dd2dbdd69061f48bd0360d9ed12398607df41a089445.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/2992279f9e66914fa9e01da1cfeeb643cf07f80586377340c64640fec4c308ea.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/2992279f9e66914fa9e01da1cfeeb643cf07f80586377340c64640fec4c308ea.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/e3453e9a9bd2cbdb095e96a00ac58d3ab8bd7a11dcef26c11e0e7ed82589587a.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/5e26a8e8cf4ae64d6717dd2dbdd69061f48bd0360d9ed12398607df41a089445.png"
   ],
   "links": [
     {
@@ -43,6 +45,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/withLogic/sdl-sopwith-vita"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1404"
     }
   ],
   "source_name": "VitaDBtoo",

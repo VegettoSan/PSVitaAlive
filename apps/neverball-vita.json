@@ -21,7 +21,8 @@
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/e89b70846179df631b5060cdf9ecd88c6630a53ca8adbab8815e0dae3cea6679.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/0061dbd5aeca5ebffeea9cfc7fbdf3ad26301399d84096a1312093ce120fae42.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/9563ba8cc39399bf8cfc221aff3a74cb65d9573e83ab31435246ffc3910c1e34.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/bede7582c79969ef17ee97d8e8d64a0d05f167e9ec7dbb13275f347c7806fa9a.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/bede7582c79969ef17ee97d8e8d64a0d05f167e9ec7dbb13275f347c7806fa9a.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/e89b70846179df631b5060cdf9ecd88c6630a53ca8adbab8815e0dae3cea6679.png"
   ],
   "links": [
     {
@@ -44,6 +45,11 @@
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/873-neverball.vpk"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=873"
     }
   ],
   "source_name": "VitaDBtoo",

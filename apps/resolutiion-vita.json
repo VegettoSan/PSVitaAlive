@@ -21,7 +21,8 @@
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/40b23f4a92b2a1676e49ba9b20282b81308e43c39c50ac38afa1d6c449bc35a9.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/60fcb9902b975df40ac7dc68d4a08ffe19120f9dc1494c3d8b5aa5c44d53ec49.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/db6f0f1c44ae18eb27e612055dc6517ac617b3e9eeb0752f971a6e03640b5730.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/03dfb618dcc2467ad58e08eb52bafa468e49b1f6e72fb8aeeaeb68441aa81410.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/03dfb618dcc2467ad58e08eb52bafa468e49b1f6e72fb8aeeaeb68441aa81410.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/40b23f4a92b2a1676e49ba9b20282b81308e43c39c50ac38afa1d6c449bc35a9.png"
   ],
   "links": [
     {
@@ -39,6 +40,11 @@
       "type": "Official Website",
       "name": "NeoVitaDB Release Page",
       "url": "https://github.com/Rocroverss/resolutiion-patch-psvita/releases/tag/v1.0.reihen"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1291"
     }
   ],
   "source_name": "VitaDBtoo",

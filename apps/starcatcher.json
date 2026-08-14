@@ -20,7 +20,9 @@
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/b2fb50b2fa40232a3a579574a10cf5940d668f5e8c14d1c3a6adbed5268c7b55.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/fc4f0cbabc9827008cd568af215c9775244d4854e63e59864c310bc41f42a37b.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/436220b55c013ad9a2deb5d656e31647aefcb650070bb39288987bcf615a7f43.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/436220b55c013ad9a2deb5d656e31647aefcb650070bb39288987bcf615a7f43.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/b2fb50b2fa40232a3a579574a10cf5940d668f5e8c14d1c3a6adbed5268c7b55.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/fc4f0cbabc9827008cd568af215c9775244d4854e63e59864c310bc41f42a37b.png"
   ],
   "links": [
     {
@@ -43,6 +45,11 @@
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/1144-Starcatcher.vpk"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1144"
     }
   ],
   "source_name": "VitaDBtoo",

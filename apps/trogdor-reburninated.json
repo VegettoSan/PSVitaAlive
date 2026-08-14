@@ -18,7 +18,8 @@
   "status": "Legacy",
   "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/e5c00ba529829c233586dee95b900814eebfccf53d24c097fb8f4ba77e46b404.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/7c847dc6db88c445a91e5381c56376118e998e5aa9188f17022a7b08e3b10543.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/7c847dc6db88c445a91e5381c56376118e998e5aa9188f17022a7b08e3b10543.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/7c847dc6db88c445a91e5381c56376118e998e5aa9188f17022a7b08e3b10543.png"
   ],
   "links": [
     {
@@ -41,6 +42,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/Mips96/Trogdor-Reburninated"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1015"
     }
   ],
   "source_name": "VitaDBtoo",

@@ -19,7 +19,9 @@
   "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1848-pnglive.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/314c3fa272e02a2fafdce191ef2746ab6611fe4a81b8b5332e94129bd7b73be5.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/9390e705ace863448c4fb18dab4dc142d56a2582b8151ebbffe0f9fc799c0523.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/9390e705ace863448c4fb18dab4dc142d56a2582b8151ebbffe0f9fc799c0523.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/314c3fa272e02a2fafdce191ef2746ab6611fe4a81b8b5332e94129bd7b73be5.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/9390e705ace863448c4fb18dab4dc142d56a2582b8151ebbffe0f9fc799c0523.png"
   ],
   "links": [
     {
@@ -37,6 +39,11 @@
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/1113-pnglive.vpk"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1113"
     }
   ],
   "source_name": "VitaDBtoo",

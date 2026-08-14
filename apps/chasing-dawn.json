@@ -22,7 +22,8 @@
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/366227c19d3a0ef04cebee0ad58dd26d91926b546f72055a56ccd3943da57753.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/f754190dc38ed5ad358b3e96c50c68947157ee04bbafd7cb85529aef57ddcd7f.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/83fcfb9992c3e50616643a05693370855e07cc3fc80e0a0707eaafb42541b693.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/0d38770b528bb9aa4208cba9ec2e68fabbae877ef9dcaea38461eae5dd1d6c36.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/0d38770b528bb9aa4208cba9ec2e68fabbae877ef9dcaea38461eae5dd1d6c36.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/366227c19d3a0ef04cebee0ad58dd26d91926b546f72055a56ccd3943da57753.png"
   ],
   "links": [
     {
@@ -40,6 +41,11 @@
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/1250-ChasingDawn.vpk"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1250"
     }
   ],
   "source_name": "VitaDBtoo",

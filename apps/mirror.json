@@ -20,7 +20,9 @@
   "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1730-mirror.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/75fb472fbc155c51c32741e2efb8205de3313ffb21ff81285b37ad59470696f5.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/badbb8183259b6c2458a9ae2dfc638219c45742f88bcb53b34b41a23f5d399de.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/badbb8183259b6c2458a9ae2dfc638219c45742f88bcb53b34b41a23f5d399de.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/75fb472fbc155c51c32741e2efb8205de3313ffb21ff81285b37ad59470696f5.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/badbb8183259b6c2458a9ae2dfc638219c45742f88bcb53b34b41a23f5d399de.png"
   ],
   "links": [
     {
@@ -43,6 +45,11 @@
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/684-MIRROR.vpk"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=684"
     }
   ],
   "source_name": "VitaDBtoo",

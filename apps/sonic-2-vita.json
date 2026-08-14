@@ -20,7 +20,9 @@
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/afefbf3a924fc9785ee7a2f3f92d646624bad759e624a1ac9e37dc02964c4917.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/9564ced204b202e8e62d6006e043a2f723fd40057aa733de319bd1f775ffd630.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/d8b52ec861aa5f4d6bf699ffaf5f59c4ff35c5de87d1d191344a3a3d18ff9ade.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/d8b52ec861aa5f4d6bf699ffaf5f59c4ff35c5de87d1d191344a3a3d18ff9ade.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/afefbf3a924fc9785ee7a2f3f92d646624bad759e624a1ac9e37dc02964c4917.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/9564ced204b202e8e62d6006e043a2f723fd40057aa733de319bd1f775ffd630.png"
   ],
   "links": [
     {
@@ -43,6 +45,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/SonicMastr/Sonic-1-2-Vita"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=866"
     }
   ],
   "source_name": "VitaDBtoo",

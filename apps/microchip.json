@@ -20,7 +20,9 @@
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/9a13329475e0448df9217d7d307233309c8ce865fee7fa91253978571b5ef219.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/adc54c33113687ab3f374e60799d27f17cfafcfaef459153b585a982d2f6a8c4.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/a15f7c25849294e565cbb088191377dc07774d086fa9cce9f617ba6c86a39e8e.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/a15f7c25849294e565cbb088191377dc07774d086fa9cce9f617ba6c86a39e8e.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/9a13329475e0448df9217d7d307233309c8ce865fee7fa91253978571b5ef219.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/adc54c33113687ab3f374e60799d27f17cfafcfaef459153b585a982d2f6a8c4.png"
   ],
   "links": [
     {
@@ -43,6 +45,11 @@
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/337-MicroCHIP.vpk"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=337"
     }
   ],
   "source_name": "VitaDBtoo",

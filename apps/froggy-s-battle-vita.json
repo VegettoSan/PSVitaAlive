@@ -21,7 +21,8 @@
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/63f277a90c62d1e1d8661eeeb9f8c5de2631099330abc34a23d072df574e15d6.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/7e59d770832cdd2399e1fb28043f7ba4c4609592b13ba338740aa080e6804d20.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/fb707ec6ac5edd2e55841c342df1a18709646fbdf616631772b0780c4c571b60.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/bbccc12c8fbb958252be650055c4fa75bda37a58f7d6a708e8d8568ee2f701ec.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/bbccc12c8fbb958252be650055c4fa75bda37a58f7d6a708e8d8568ee2f701ec.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/63f277a90c62d1e1d8661eeeb9f8c5de2631099330abc34a23d072df574e15d6.png"
   ],
   "links": [
     {
@@ -44,6 +45,11 @@
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/1337-FroggysBattle_v1_1.vpk"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1337"
     }
   ],
   "source_name": "VitaDBtoo",

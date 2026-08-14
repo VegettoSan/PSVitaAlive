@@ -18,7 +18,8 @@
   "status": "Legacy",
   "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/a1226bc8803ada665073b9164c69cb7f85985e0de8e929689e74a485851f479e.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/60bd5d1cd16336e80491f7324963910d38759780be5815f626d8a652cc29f1fd.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/60bd5d1cd16336e80491f7324963910d38759780be5815f626d8a652cc29f1fd.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/60bd5d1cd16336e80491f7324963910d38759780be5815f626d8a652cc29f1fd.png"
   ],
   "links": [
     {
@@ -41,6 +42,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/Cpasjuste/pemu"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=546"
     }
   ],
   "source_name": "VitaDBtoo",

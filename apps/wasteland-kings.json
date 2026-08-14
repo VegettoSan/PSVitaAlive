@@ -19,7 +19,8 @@
   "status": "Legacy",
   "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1606-wasteland-kings.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/788bc9baea3c53cc1c0050dc5c32782b5faec8736e5a0b54e0dca19cfc086ef3.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/788bc9baea3c53cc1c0050dc5c32782b5faec8736e5a0b54e0dca19cfc086ef3.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/788bc9baea3c53cc1c0050dc5c32782b5faec8736e5a0b54e0dca19cfc086ef3.png"
   ],
   "links": [
     {
@@ -37,6 +38,11 @@
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/409-WastelandKings.vpk"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=409"
     }
   ],
   "source_name": "VitaDBtoo",

@@ -5,7 +5,8 @@
   "description": "Port of Beach Buggy Racing for PSVita.",
   "long_description": "Unofficial wrapper/port of Beach Buggy Racing for PlayStation Vita.\nThe port loads the official Android ARMv7 executable directly into memory, links its dependencies to native Vita functions, and applies the compatibility layer required to run it. In practice, this provides a lightweight Android-like environment in which the original game code can run natively on the PS Vita.",
   "author_ids": [
-    "chatgpt-ai"
+    "chatgpt-ai",
+    "wolff"
   ],
   "category_id": "games",
   "subcategory_ids": [
@@ -41,6 +42,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/WolffsRoom/BeachBuggyRacing-Vita"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1437"
     }
   ],
   "source_name": "VitaDBtoo",

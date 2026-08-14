@@ -20,7 +20,9 @@
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/414848085e8544b906a703387ac5738bccb1eaafc6df3426ede0c3e2cf5d767d.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/37b79fbbf6ae547666bfc3ba898fb4b14a566f338939dd52e265f672504bb52d.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/d0248b26a9dcae8b257f014b251e7b30e3e6dc9dbe25281a212fca0a8fe57b48.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/d0248b26a9dcae8b257f014b251e7b30e3e6dc9dbe25281a212fca0a8fe57b48.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/414848085e8544b906a703387ac5738bccb1eaafc6df3426ede0c3e2cf5d767d.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/37b79fbbf6ae547666bfc3ba898fb4b14a566f338939dd52e265f672504bb52d.png"
   ],
   "links": [
     {
@@ -43,6 +45,11 @@
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/673-AngelCollide.vpk"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=673"
     }
   ],
   "source_name": "VitaDBtoo",

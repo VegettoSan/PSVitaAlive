@@ -20,7 +20,9 @@
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/b397ce6b2f8e6b1d5d653bb0054b7f948f8b553d3baba02c7350642764305624.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/3b96d11c2ee97264cf4fa909718864563ad43637efa31805c4044f6cb8492ee1.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/588369e4270fb5d0d8f933c24e4a558cad09f89035bdd29813346d12fbfe7014.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/588369e4270fb5d0d8f933c24e4a558cad09f89035bdd29813346d12fbfe7014.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/b397ce6b2f8e6b1d5d653bb0054b7f948f8b553d3baba02c7350642764305624.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/3b96d11c2ee97264cf4fa909718864563ad43637efa31805c4044f6cb8492ee1.png"
   ],
   "links": [
     {
@@ -43,6 +45,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/JJH47E/MemoryGame"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=574"
     }
   ],
   "source_name": "VitaDBtoo",

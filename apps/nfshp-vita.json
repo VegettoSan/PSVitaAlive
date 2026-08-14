@@ -21,7 +21,8 @@
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/010a287d9ac9915c6762a775b94d0c00b5e3f932e5a4401f18d16ed9ec869188.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/cdd524c5dd14d5a30dbfe46315a3a9d10dd9f912de94f053925c3ad817036c38.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/147ab1b362c5cfc8e0c1f734a626e486cd5fa14100f2f9cf23190c4bde4500b1.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/cbedcfedf53207db4f614aea1d80fce4ff515d58d06ad273138a3ecf46c7c627.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/cbedcfedf53207db4f614aea1d80fce4ff515d58d06ad273138a3ecf46c7c627.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/010a287d9ac9915c6762a775b94d0c00b5e3f932e5a4401f18d16ed9ec869188.png"
   ],
   "links": [
     {
@@ -44,6 +45,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/Electry/nfshp_vita"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1173"
     }
   ],
   "source_name": "VitaDBtoo",

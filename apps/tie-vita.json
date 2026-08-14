@@ -20,7 +20,9 @@
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/145593725a44d7b1c6234b45ed4f6185225af5b17713d29be763eeae8c601151.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/016e4a3eb3e90e295932421b1732dc9025414bbb44dab11a1209bf1888dd0f99.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/15714aba92321fd0c083bea356a864b9300df76d5266a2abb36cf748d2dd29b6.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/15714aba92321fd0c083bea356a864b9300df76d5266a2abb36cf748d2dd29b6.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/145593725a44d7b1c6234b45ed4f6185225af5b17713d29be763eeae8c601151.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/016e4a3eb3e90e295932421b1732dc9025414bbb44dab11a1209bf1888dd0f99.png"
   ],
   "links": [
     {
@@ -43,6 +45,11 @@
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/1325-TIE.vpk"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1325"
     }
   ],
   "source_name": "VitaDBtoo",

@@ -1,0 +1,49 @@
+{
+  "id": "castlevania-attack-vita",
+  "title_id": "CAST00011",
+  "name": "Castlevania Attack Vita",
+  "description": "Port of Castlevania Attack for PSVita.",
+  "long_description": "Castlevania Attack is a combination of Castlevania and Tetris Attack. This Godot demo contains three fully playable levels.",
+  "author_ids": [
+    "rocroverss"
+  ],
+  "category_id": "utilities",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.1.0",
+  "version_date": "2026-07-30",
+  "requirements": "- Game Data Files: PC",
+  "size": 15202313,
+  "status": "Legacy",
+  "icon": "https://www.rinnegatamante.eu/vitadb/icons/f0ee398e8d56e6afd52ac49d793caac1a0b4ae9024c03a53586a2fe78ce5f85d.png",
+  "screenshots": [
+    "https://www.rinnegatamante.eu/vitadb/screenshots/1d98913aeafaa69b99493f7b77f38e04a575758fa215d957b0eec917d106c4c8.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/6604da17ce605b4127e47b454c8bb1422080d0450eff63df940874a3e9975351.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/25559c7e420fed46e7b66185888c27a95c7e9ceac63980a5e878ac2577e7f960.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/d84d258b6258795037ea46a4bc4531fa830663ec9b9f6d7d8757de292d0d229a.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1452",
+      "recommended": true
+    },
+    {
+      "type": "Official Website",
+      "name": "VitaDB Release Page",
+      "url": "https://github.com/Rocroverss/Castlevania-Attack-Demo/releases"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/Rocroverss/Castlevania-Attack-Demo"
+    }
+  ],
+  "source_name": "VitaDB",
+  "source_id": "1452",
+  "source_url": "https://github.com/Rocroverss/Castlevania-Attack-Demo",
+  "release_page": "https://github.com/Rocroverss/Castlevania-Attack-Demo/releases",
+  "updated_at": "2026-08-14T01:05:59.208515+00:00"
+}

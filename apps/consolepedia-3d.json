@@ -19,7 +19,9 @@
   "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/b672baf6cc04250a4be43f79fa5451a9cd9c671d86923216a9ca5c49a7032763.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/e774deca0cadf1c57f369ce9c9828a96a3efed8c1ab5957c0da3093120e7a57a.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/423d1ee2e8e21b61c7be3c6f003e51908c9cbcdb6adb263a6138f4e9bab2243a.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/423d1ee2e8e21b61c7be3c6f003e51908c9cbcdb6adb263a6138f4e9bab2243a.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/e774deca0cadf1c57f369ce9c9828a96a3efed8c1ab5957c0da3093120e7a57a.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/423d1ee2e8e21b61c7be3c6f003e51908c9cbcdb6adb263a6138f4e9bab2243a.png"
   ],
   "links": [
     {
@@ -42,6 +44,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/VitaHEX-Games/Consolepedia-3D"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=580"
     }
   ],
   "source_name": "VitaDBtoo",

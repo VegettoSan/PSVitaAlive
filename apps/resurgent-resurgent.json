@@ -20,7 +20,9 @@
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/4347318049a096f3d0efd8507cbb7dc84ac8672539b61d53aa2fc306b5f6e862.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/2ec1a29351ba05bf655d5efbdf4b5b921ef0c8fb285ad97a131de83d9dbed545.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/ca2e96eb368bd311924c3f62a64c9e00c466ec5adbf712523db55eef717f77d2.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/ca2e96eb368bd311924c3f62a64c9e00c466ec5adbf712523db55eef717f77d2.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/4347318049a096f3d0efd8507cbb7dc84ac8672539b61d53aa2fc306b5f6e862.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/2ec1a29351ba05bf655d5efbdf4b5b921ef0c8fb285ad97a131de83d9dbed545.png"
   ],
   "links": [
     {
@@ -43,6 +45,11 @@
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/718-Resurgent.vpk"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=718"
     }
   ],
   "source_name": "VitaDBtoo",

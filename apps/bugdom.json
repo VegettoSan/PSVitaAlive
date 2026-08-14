@@ -18,7 +18,8 @@
   "status": "Legacy",
   "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/d76e4a860cc703f6af5b67dca5325c98756c96edf16c6d3ee5a16c5e7d8076ed.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/fb369ce96d23b4b0eb72630be625c0c26b851cace6e64342f04be37447c00c1f.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/fb369ce96d23b4b0eb72630be625c0c26b851cace6e64342f04be37447c00c1f.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/fb369ce96d23b4b0eb72630be625c0c26b851cace6e64342f04be37447c00c1f.png"
   ],
   "links": [
     {
@@ -41,6 +42,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/ywnico/bugdom-vita"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=841"
     }
   ],
   "source_name": "VitaDBtoo",

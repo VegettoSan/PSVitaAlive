@@ -20,7 +20,9 @@
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/76ac1f35bc0bd40c308f90e8373089e9746bd541967a929cc774c2e67ad47c32.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/76e3aba04f7eb36964a8d5561bbce20c56e17d2c80617e6fa2220b1996180a3b.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/d34c244e112a3ff5933c316028e4a06beb831ae6b8453bf167766e8973540e93.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/d34c244e112a3ff5933c316028e4a06beb831ae6b8453bf167766e8973540e93.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/76ac1f35bc0bd40c308f90e8373089e9746bd541967a929cc774c2e67ad47c32.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/76e3aba04f7eb36964a8d5561bbce20c56e17d2c80617e6fa2220b1996180a3b.png"
   ],
   "links": [
     {
@@ -38,6 +40,11 @@
       "type": "Official Website",
       "name": "NeoVitaDB Release Page",
       "url": "https://github.com/m1s3ry/gungodz-vita/releases/tag/v1.0"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=694"
     }
   ],
   "source_name": "VitaDBtoo",

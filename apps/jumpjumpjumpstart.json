@@ -19,7 +19,9 @@
   "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1851-jumpjumpjumpstart.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/7a71f0730314d8f87d8f587a53b8c84d2a5f622561d437dd41735e5df4924ab3.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/9ebc09e20cdac3cd214f5e4502b428547733096d8f09511397a37f35984982de.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/9ebc09e20cdac3cd214f5e4502b428547733096d8f09511397a37f35984982de.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/7a71f0730314d8f87d8f587a53b8c84d2a5f622561d437dd41735e5df4924ab3.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/9ebc09e20cdac3cd214f5e4502b428547733096d8f09511397a37f35984982de.png"
   ],
   "links": [
     {
@@ -37,6 +39,11 @@
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/1117-jjjs.vpk"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1117"
     }
   ],
   "source_name": "VitaDBtoo",

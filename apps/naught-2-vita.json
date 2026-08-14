@@ -21,7 +21,8 @@
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/89d37569bb8a37fe26b0804c9e6ac034f22ac7daeae6c23b30a54eee8d21fa5a.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/d085796a2548a560b9296645c196c7af3f3f6805ec5f13820915365e0984afaf.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c53e853a67ab75a7501389089fb476b90010ef63c41e20c7bc78ccaa655635f9.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/ac79a1ce10afc93d79131b6fbc01e7dfc07ea8a0d54eb53e56886f4bc758b639.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/ac79a1ce10afc93d79131b6fbc01e7dfc07ea8a0d54eb53e56886f4bc758b639.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/89d37569bb8a37fe26b0804c9e6ac034f22ac7daeae6c23b30a54eee8d21fa5a.png"
   ],
   "links": [
     {
@@ -44,6 +45,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/usineur/naught2-vita"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1351"
     }
   ],
   "source_name": "VitaDBtoo",

@@ -18,7 +18,8 @@
   "status": "Legacy",
   "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/a8b1b6bcd17ff906f87a10d7b46de03458eba783031c079b2f38e173e24d0372.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/a8b1b6bcd17ff906f87a10d7b46de03458eba783031c079b2f38e173e24d0372.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/a8b1b6bcd17ff906f87a10d7b46de03458eba783031c079b2f38e173e24d0372.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/starfield.jpg"
   ],
   "links": [
     {
@@ -41,6 +42,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/gnmmarechal/starfield-vita"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=128"
     }
   ],
   "source_name": "VitaDBtoo",

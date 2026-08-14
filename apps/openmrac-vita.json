@@ -20,7 +20,9 @@
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/b93465fea3f96ea30307604aa7f7fe3cba79d6e06d195a5c0c933641aa9cb826.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/1c963f24bef823da7481bd01ed01aa457c2429ac383aa633990a84a5147a59cd.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/3dbda2499f206543b195d600664d5d450b769853d8addeae735ae4d384f31010.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/3dbda2499f206543b195d600664d5d450b769853d8addeae735ae4d384f31010.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/b93465fea3f96ea30307604aa7f7fe3cba79d6e06d195a5c0c933641aa9cb826.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/1c963f24bef823da7481bd01ed01aa457c2429ac383aa633990a84a5147a59cd.png"
   ],
   "links": [
     {
@@ -38,6 +40,11 @@
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/1127-OpenMRac.vpk"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1127"
     }
   ],
   "source_name": "VitaDBtoo",

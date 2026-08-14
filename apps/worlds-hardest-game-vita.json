@@ -36,6 +36,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/Comet-Games/Worlds-Hardest-Game-Vita"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=994"
     }
   ],
   "source_name": "VitaDBtoo",

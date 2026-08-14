@@ -20,7 +20,9 @@
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/d7723a8402461e7557a6e1ef2227f8c13bd15fa804952a5a66770cfc19bd041e.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/55d58c113cfe24a7600a8884f221503cfcc4f06bea54419268cad8f1d73688ec.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/0dbc91b538819cd281922993e4495cbe12985ddbe3bf37511e40de194b4aa791.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/0dbc91b538819cd281922993e4495cbe12985ddbe3bf37511e40de194b4aa791.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/d7723a8402461e7557a6e1ef2227f8c13bd15fa804952a5a66770cfc19bd041e.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/55d58c113cfe24a7600a8884f221503cfcc4f06bea54419268cad8f1d73688ec.png"
   ],
   "links": [
     {
@@ -43,6 +45,11 @@
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/1300-GUARDENER_v1_2.vpk"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1300"
     }
   ],
   "source_name": "VitaDBtoo",

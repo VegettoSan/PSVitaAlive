@@ -21,7 +21,8 @@
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/82ff23ae93d6fabd5764df568e943494801ba6a46cd6049e0c603909684e2a20.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/6c1dc500a61d91789bd0da9305cd084265f3647e375581e0d32e16a2aa6bd4b6.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/28878ad0c2a661c0a6b9a0bf192be0bdf437a3ec86935c25687ac4fe62fb2cd6.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/5387fdd5d8ab1fc830a0bc5af4642b63cba0f6b38e7c41905404c6c57ef0133b.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/5387fdd5d8ab1fc830a0bc5af4642b63cba0f6b38e7c41905404c6c57ef0133b.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/82ff23ae93d6fabd5764df568e943494801ba6a46cd6049e0c603909684e2a20.png"
   ],
   "links": [
     {
@@ -44,6 +45,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/TheLostPantheon/ArxLibertatis"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1367"
     }
   ],
   "source_name": "VitaDBtoo",

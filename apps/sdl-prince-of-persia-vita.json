@@ -18,7 +18,9 @@
   "status": "Legacy",
   "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/f80b48d9880373930c5349ac5104a072add87c6c99f0a62e6f9b24717b333da8.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/f80b48d9880373930c5349ac5104a072add87c6c99f0a62e6f9b24717b333da8.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/f80b48d9880373930c5349ac5104a072add87c6c99f0a62e6f9b24717b333da8.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/sdlpop.jpg",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/sdlpop2.jpg"
   ],
   "links": [
     {
@@ -41,6 +43,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/usineur/SDLPoP-Vita"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=12"
     }
   ],
   "source_name": "VitaDBtoo",

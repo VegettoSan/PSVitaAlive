@@ -18,7 +18,8 @@
   "status": "Legacy",
   "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/31777816305972eaceee85b3ec07fb58e530ec2fbe2db730442136e529730e2f.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/08e9642465e5db7a801563a5806e01ce05cca135ad48e725a227ecc29a389337.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/08e9642465e5db7a801563a5806e01ce05cca135ad48e725a227ecc29a389337.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/08e9642465e5db7a801563a5806e01ce05cca135ad48e725a227ecc29a389337.png"
   ],
   "links": [
     {
@@ -41,6 +42,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/l0wigh/CatacombVita"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1082"
     }
   ],
   "source_name": "VitaDBtoo",

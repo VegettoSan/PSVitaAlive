@@ -20,7 +20,9 @@
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/f0a94b8847951fb800fb2d2ba277857350ec31d6f4e85ae53cbd0a5a1558f4e9.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/1c9fd98477ce6d5a5b1173f2b80dc2807d1076ef489adc3521900a0bd6886d5a.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/b504289a7cd7583513e62b518b4d5f7befbe380ebba2abc81d52b4e5bfbc6d0e.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/b504289a7cd7583513e62b518b4d5f7befbe380ebba2abc81d52b4e5bfbc6d0e.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/f0a94b8847951fb800fb2d2ba277857350ec31d6f4e85ae53cbd0a5a1558f4e9.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/1c9fd98477ce6d5a5b1173f2b80dc2807d1076ef489adc3521900a0bd6886d5a.png"
   ],
   "links": [
     {
@@ -38,6 +40,11 @@
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/457-AGWOAN-PSV.vpk"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=457"
     }
   ],
   "source_name": "VitaDBtoo",

@@ -20,7 +20,9 @@
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/cba17a36b9786dfbfb97103a2ccdb4c3177269e62f1b4fdc6278fd36a327c89f.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/07f8cd5a573a74660e4f41469e77fe70e65e59615cf3e28eda9c3837716a391b.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/dd5e058be85810099cb49b663be84763609fa1cf6d77f4d41fe5f36ffbf7df34.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/dd5e058be85810099cb49b663be84763609fa1cf6d77f4d41fe5f36ffbf7df34.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/cba17a36b9786dfbfb97103a2ccdb4c3177269e62f1b4fdc6278fd36a327c89f.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/07f8cd5a573a74660e4f41469e77fe70e65e59615cf3e28eda9c3837716a391b.png"
   ],
   "links": [
     {
@@ -43,6 +45,11 @@
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/465-ToPieces.vpk"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=465"
     }
   ],
   "source_name": "VitaDBtoo",

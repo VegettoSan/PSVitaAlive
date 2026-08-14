@@ -21,7 +21,8 @@
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/e498dc0c0843c926c15a33af355d61ed03b38dd6464c5ca58aeeb6d722d5b684.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/6961c38041094d48986637751d3f37ad008c6345ab1caf6199f54c721c4ae5d9.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/bd76d1c4b9c97eefbe74961a6e6a00d7f3c0c8cd7b777ad012146d6288ff9f4c.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/911f80f11a01f131490c3ff5c3b9986f048cf58c10508cc9039047a863d62619.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/911f80f11a01f131490c3ff5c3b9986f048cf58c10508cc9039047a863d62619.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/e498dc0c0843c926c15a33af355d61ed03b38dd6464c5ca58aeeb6d722d5b684.png"
   ],
   "links": [
     {
@@ -44,6 +45,11 @@
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/853-Lugaru-release-beta-1.vpk"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=853"
     }
   ],
   "source_name": "VitaDBtoo",

@@ -18,7 +18,8 @@
   "status": "Legacy",
   "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1961-vita-virtualkeyboard.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c2eed8228b71b28945bc0a73f772bf5bb804d29f2bdf17e97f8dae043cc76d72.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c2eed8228b71b28945bc0a73f772bf5bb804d29f2bdf17e97f8dae043cc76d72.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/c2eed8228b71b28945bc0a73f772bf5bb804d29f2bdf17e97f8dae043cc76d72.png"
   ],
   "links": [
     {
@@ -36,6 +37,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/lp1dev/vita_virtualkeyboard"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1405"
     }
   ],
   "source_name": "VitaDBtoo",

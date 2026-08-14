@@ -18,7 +18,8 @@
   "status": "Legacy",
   "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1662-dungeon-survivor.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/bae03af66975ceb92b1abef2230349cd3b157c5800c131a28708de0f3fa9585b.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/bae03af66975ceb92b1abef2230349cd3b157c5800c131a28708de0f3fa9585b.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/bae03af66975ceb92b1abef2230349cd3b157c5800c131a28708de0f3fa9585b.png"
   ],
   "links": [
     {
@@ -36,6 +37,11 @@
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/501-Dungeon_Survivor.vpk"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=501"
     }
   ],
   "source_name": "VitaDBtoo",

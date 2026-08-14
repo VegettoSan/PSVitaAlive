@@ -5,7 +5,8 @@
   "description": "Save backup manager with Google Drive sync.",
   "long_description": "Back up your PS Vita and PSP save games and sync them to your own Google Drive. Made for people with more than one Vita (or a PS TV) who want their saves to follow them.",
   "author_ids": [
-    "claude-ai"
+    "claude-ai",
+    "falkenhawk"
   ],
   "category_id": "games",
   "subcategory_ids": [
@@ -18,7 +19,8 @@
   "status": "Legacy",
   "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1430-save-keeper.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/95165754f044f0af0b6154468b25e0c4e1b38bfba1a8657d87a5f80c2c300eb6.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/95165754f044f0af0b6154468b25e0c4e1b38bfba1a8657d87a5f80c2c300eb6.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/95165754f044f0af0b6154468b25e0c4e1b38bfba1a8657d87a5f80c2c300eb6.png"
   ],
   "links": [
     {

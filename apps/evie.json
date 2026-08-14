@@ -19,7 +19,9 @@
   "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/0fd605fa91ad0c88648eb01085bc4f73854a949f17e31d1c1712ab5f501ba160.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/a1e2f48a9242bcade701732b0da36134d94adf4d2d269e2d1cb229d17baead05.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/08e0247567e3821276aeb238aa13cda7ad26c3f7f47c0f4cc833ae8344a208da.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/08e0247567e3821276aeb238aa13cda7ad26c3f7f47c0f4cc833ae8344a208da.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/a1e2f48a9242bcade701732b0da36134d94adf4d2d269e2d1cb229d17baead05.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/08e0247567e3821276aeb238aa13cda7ad26c3f7f47c0f4cc833ae8344a208da.png"
   ],
   "links": [
     {
@@ -42,6 +44,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/LnlyPie/Evie-Vita"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1053"
     }
   ],
   "source_name": "VitaDBtoo",

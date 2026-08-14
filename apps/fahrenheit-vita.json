@@ -23,7 +23,8 @@
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c395b1068c74f953f59b93e6ce27b955ce4c9079fe0283e96dbe9c20b430981c.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/225a569b46d5ee07720eb2a87254cf611f4b8b2f6722cfdfbccdc27eab363f9e.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/d1bb9e75a63cfc6cfc8e1b36c4e98e8c696dac5dce8453fcbad30cb3ebe82c5a.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/adc196fda85b6640f45fe7aecc0c4aef801f40732240d646c69d95d3adc1a880.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/adc196fda85b6640f45fe7aecc0c4aef801f40732240d646c69d95d3adc1a880.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/c395b1068c74f953f59b93e6ce27b955ce4c9079fe0283e96dbe9c20b430981c.png"
   ],
   "links": [
     {
@@ -46,6 +47,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/Rinnegatamante/fahrenheit-vita"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=835"
     }
   ],
   "source_name": "VitaDBtoo",

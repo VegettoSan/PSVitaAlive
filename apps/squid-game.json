@@ -21,7 +21,8 @@
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/e0eea6141a508f6251dc870062716bf75806c5e05afe0a1843234ffb64524bcd.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/48cae90894c85d45c867a312e69d17907d07f004f2d981a3b1757e959936dbc5.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c387948293026d985da8bf8a511c855013e319d08106c1adb9c1050bfa29e6af.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/f8297eb63873e8d00ba8bdd825032cb92662a97b455326d92efc5d4d585a0ad3.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/f8297eb63873e8d00ba8bdd825032cb92662a97b455326d92efc5d4d585a0ad3.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/e0eea6141a508f6251dc870062716bf75806c5e05afe0a1843234ffb64524bcd.png"
   ],
   "links": [
     {
@@ -39,6 +40,11 @@
       "type": "Official Website",
       "name": "NeoVitaDB Release Page",
       "url": "https://github.com/AntHJ/Squid-Game/releases/tag/v1.0"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=750"
     }
   ],
   "source_name": "VitaDBtoo",

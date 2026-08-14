@@ -20,7 +20,9 @@
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/7f9347cee913d1632678e834ce1017e418ab65e1f5ab73b79b3f71853ce3e977.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/defd86872d08fd9e56d7f8f7a525a9fb0a581de2ac180c8daee792666431477f.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/867cfa75839cabb234d0fb8d92916ba3a33b7c8a1688cee916d1a72842d9da33.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/867cfa75839cabb234d0fb8d92916ba3a33b7c8a1688cee916d1a72842d9da33.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/7f9347cee913d1632678e834ce1017e418ab65e1f5ab73b79b3f71853ce3e977.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/defd86872d08fd9e56d7f8f7a525a9fb0a581de2ac180c8daee792666431477f.png"
   ],
   "links": [
     {
@@ -43,6 +45,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/Rinnegatamante/pickleball_vita"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1227"
     }
   ],
   "source_name": "VitaDBtoo",

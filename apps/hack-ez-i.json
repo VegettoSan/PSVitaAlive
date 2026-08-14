@@ -21,7 +21,8 @@
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/38466fed3affa3e0ad8a3c75458b8fb6de990ee6c5e067c36418adbf64224e24.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c6b01c74536c473d65277f4e17e2fde3b44e47a1b87ca059e04449ce69e2ae95.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/a3ebc5d4cd884c6d651051a4663085cfde3532722450e427b1e8ca2fe42247e5.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/ac648fc5aa766bb445495b67086b562047e37b683dfd03de0bcb91ba21ce5c5e.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/ac648fc5aa766bb445495b67086b562047e37b683dfd03de0bcb91ba21ce5c5e.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/38466fed3affa3e0ad8a3c75458b8fb6de990ee6c5e067c36418adbf64224e24.png"
   ],
   "links": [
     {
@@ -39,6 +40,11 @@
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/1339-hack-ez-i.vpk"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1339"
     }
   ],
   "source_name": "VitaDBtoo",

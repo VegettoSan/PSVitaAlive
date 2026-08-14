@@ -21,7 +21,8 @@
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/6173c1c23b65e514635a00fa4ac1ca47c9cc00f8f6271c25cff7733e0f90eea6.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/3d2b302639f887479251fc52ecc59400e74acd557a1f15a2edfc57089d5c66ab.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/445eaba460015e7e538c32c317c06e6924dca74df35262be9ad0fbc8c28f5d07.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/14e6367896988df9c90e1fa920d2c3fabbd6cc893fc82ae24de2ebd9e2a1a5c0.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/14e6367896988df9c90e1fa920d2c3fabbd6cc893fc82ae24de2ebd9e2a1a5c0.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/6173c1c23b65e514635a00fa4ac1ca47c9cc00f8f6271c25cff7733e0f90eea6.png"
   ],
   "links": [
     {
@@ -44,6 +45,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/Rinnegatamante/valiant-vita"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1297"
     }
   ],
   "source_name": "VitaDBtoo",

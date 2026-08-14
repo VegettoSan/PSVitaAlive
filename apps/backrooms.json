@@ -19,7 +19,9 @@
   "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1783-backrooms.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/fb56ee32cf562166a922d45c8bf9f4ff75bde729369812f537b71d5e0cfe08ea.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/aa1abaedee090f4c8aca5cd972d543023b41fae72922a2ac71b734dc14defd1b.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/aa1abaedee090f4c8aca5cd972d543023b41fae72922a2ac71b734dc14defd1b.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/fb56ee32cf562166a922d45c8bf9f4ff75bde729369812f537b71d5e0cfe08ea.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/aa1abaedee090f4c8aca5cd972d543023b41fae72922a2ac71b734dc14defd1b.png"
   ],
   "links": [
     {
@@ -42,6 +44,11 @@
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/821-Backrooms.vpk"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=821"
     }
   ],
   "source_name": "VitaDBtoo",

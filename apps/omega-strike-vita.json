@@ -36,6 +36,11 @@
       "type": "Official Website",
       "name": "NeoVitaDB Release Page",
       "url": "https://github.com/elpapadelospollitos/Omega-strike-vita/releases/tag/v1.0"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=827"
     }
   ],
   "source_name": "VitaDBtoo",

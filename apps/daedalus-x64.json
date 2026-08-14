@@ -11,8 +11,8 @@
   "subcategory_ids": [
     "other"
   ],
-  "version": "v.Nightly",
-  "version_date": "2020-05-29",
+  "version": "Nightly",
+  "version_date": "2026-02-01",
   "requirements": "Not specified",
   "size": 2823264,
   "status": "Legacy",
@@ -41,6 +41,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/Rinnegatamante/DaedalusX64-vitaGL"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=553"
     }
   ],
   "source_name": "VitaDBtoo",

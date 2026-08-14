@@ -20,7 +20,9 @@
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/b2e25540b7bcfd71a830f191c44be2901ef6bc96378c88b9744406239ea2b646.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/657aa53d18ebaf27c20f09169503705a38dbfb1198c8628dcf69d48cf9aba033.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/bc7b005cd45d89d90ec4327579b9d633b3a777ee6b75c9159a7f9ab0f7c44284.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/bc7b005cd45d89d90ec4327579b9d633b3a777ee6b75c9159a7f9ab0f7c44284.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/b2e25540b7bcfd71a830f191c44be2901ef6bc96378c88b9744406239ea2b646.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/657aa53d18ebaf27c20f09169503705a38dbfb1198c8628dcf69d48cf9aba033.png"
   ],
   "links": [
     {
@@ -38,6 +40,11 @@
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/573-BaldisBasics.vpk"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=573"
     }
   ],
   "source_name": "VitaDBtoo",

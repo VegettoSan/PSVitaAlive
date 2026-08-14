@@ -21,7 +21,8 @@
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/93f0321e856087f1efb00a716ba676a2519743f472611059ead5be547aa83cb7.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/0a75703d45e63438a14c2f7fd85e239fb924249cfac29c6ca51af19845d8fb78.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/dc9dc7e1d0a999a65ba4d5d1dcd1341bd3ec975058e4e77f0a22747a542a6a01.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/22105d1f66eaa6aece6d5ce82db442c2b6f19283eacae0effd659efc04495237.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/22105d1f66eaa6aece6d5ce82db442c2b6f19283eacae0effd659efc04495237.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/93f0321e856087f1efb00a716ba676a2519743f472611059ead5be547aa83cb7.png"
   ],
   "links": [
     {
@@ -44,6 +45,11 @@
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/818-BlueBayouVita.vpk"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=818"
     }
   ],
   "source_name": "VitaDBtoo",

@@ -36,6 +36,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/jtothebell/fake-08"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=623"
     }
   ],
   "source_name": "VitaDBtoo",

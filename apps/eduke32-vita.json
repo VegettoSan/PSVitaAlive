@@ -21,7 +21,8 @@
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/e3a004e3277df2ffdf24f3a69022a70fecbc50433e558db09c59f83ccbba19f5.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/953b17698b8265e02dca662bebef31000620f09bd517377926af9a7fd3842202.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/1d55a8a815c1d3d21bf862003a154c075c88e254725d07c1bdc4185e76ba2ed9.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c73cc6b72a717fff741ba91b452e9137a96e3c3944821be2372988fed67ed39d.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c73cc6b72a717fff741ba91b452e9137a96e3c3944821be2372988fed67ed39d.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/e3a004e3277df2ffdf24f3a69022a70fecbc50433e558db09c59f83ccbba19f5.png"
   ],
   "links": [
     {
@@ -44,6 +45,11 @@
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/397-EDuke32.vpk"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=397"
     }
   ],
   "source_name": "VitaDBtoo",

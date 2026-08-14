@@ -18,7 +18,9 @@
   "status": "Legacy",
   "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1510-hendoku.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1510-hendoku.png"
+    "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1510-hendoku.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/hendo.jpg",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/hendo2.jpg"
   ],
   "links": [
     {
@@ -41,6 +43,11 @@
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/130-sudokucpp.vpk"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=130"
     }
   ],
   "source_name": "VitaDBtoo",

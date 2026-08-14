@@ -18,7 +18,8 @@
   "status": "Legacy",
   "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1670-bitbot-runners.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/1ef18f6f06fdf5c05cb8a6ba26a086785748698ed5e1959eb08c499ba1e6467e.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/1ef18f6f06fdf5c05cb8a6ba26a086785748698ed5e1959eb08c499ba1e6467e.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/1ef18f6f06fdf5c05cb8a6ba26a086785748698ed5e1959eb08c499ba1e6467e.png"
   ],
   "links": [
     {
@@ -36,6 +37,11 @@
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/519-BitBot-Runners.vpk"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=519"
     }
   ],
   "source_name": "VitaDBtoo",

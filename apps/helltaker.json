@@ -19,7 +19,9 @@
   "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1742-helltaker.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/61569bf320ff8254c698baff7ff9cb7e93e8e507b4edae310b17c56972f1cb83.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/40a2c3dafd10031ce321553ac8724771a551c6f6347b20fc64b05545523321d3.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/40a2c3dafd10031ce321553ac8724771a551c6f6347b20fc64b05545523321d3.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/61569bf320ff8254c698baff7ff9cb7e93e8e507b4edae310b17c56972f1cb83.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/40a2c3dafd10031ce321553ac8724771a551c6f6347b20fc64b05545523321d3.png"
   ],
   "links": [
     {
@@ -37,6 +39,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=702"
     }
   ],
   "source_name": "VitaDBtoo",

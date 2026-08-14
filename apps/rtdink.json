@@ -42,6 +42,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/LumenTuoma/RTDink"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=742"
     }
   ],
   "source_name": "VitaDBtoo",

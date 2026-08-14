@@ -21,7 +21,8 @@
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/0a0f2f4066ae61b1781c04fd102a7d8f6cf37be2b72db1b60b7383b3249e523e.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/274482829898c0e96837029951cd7f1b2ecea3a89f0b676f4f841a7c0bb646bc.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/063856924675ed908eec5c353930f09ae5c5e8673a341676f64e143189582d1c.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/01d1a764b5f77ed0aaec703536ddd331213aaaa37247786ef5a30f262207e32b.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/01d1a764b5f77ed0aaec703536ddd331213aaaa37247786ef5a30f262207e32b.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/0a0f2f4066ae61b1781c04fd102a7d8f6cf37be2b72db1b60b7383b3249e523e.png"
   ],
   "links": [
     {
@@ -44,6 +45,11 @@
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/1302-ApertureReconstructed.vpk"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1302"
     }
   ],
   "source_name": "VitaDBtoo",

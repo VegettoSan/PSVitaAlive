@@ -18,7 +18,8 @@
   "status": "Legacy",
   "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/c8050f859fc6af4172e08fc80fd2e4e9c59ef806e7a6961fad9f877ff6097593.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/c8050f859fc6af4172e08fc80fd2e4e9c59ef806e7a6961fad9f877ff6097593.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/c8050f859fc6af4172e08fc80fd2e4e9c59ef806e7a6961fad9f877ff6097593.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/moonwhite.jpg"
   ],
   "links": [
     {
@@ -51,6 +52,11 @@
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/4-MoonWhitelister.vpk"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=4"
     }
   ],
   "source_name": "VitaDBtoo",

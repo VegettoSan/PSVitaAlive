@@ -23,7 +23,8 @@
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/79a416b81efbfd5ddfde015a46e6b817e4f841706626691a5bf201cdd6a11d3c.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/330c7808df3fd0d8c7abc18bed6c479c64b13adf3b96ce06f9510b8feedc16a0.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/f127bb3a2ea9d01627e62e3941ba42271e71bf8d138b8a5914405ddf45820722.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/02c8aa3521e4e738cd2b6c2a1ae38c0a6ac5559ca908d74220a25822ccb9dbf2.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/02c8aa3521e4e738cd2b6c2a1ae38c0a6ac5559ca908d74220a25822ccb9dbf2.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/79a416b81efbfd5ddfde015a46e6b817e4f841706626691a5bf201cdd6a11d3c.png"
   ],
   "links": [
     {
@@ -46,6 +47,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/TheOfficialFloW/gtasa_vita"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=618"
     }
   ],
   "source_name": "VitaDBtoo",

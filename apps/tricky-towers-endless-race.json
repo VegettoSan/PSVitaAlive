@@ -21,7 +21,8 @@
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/25c00217ca45ed96f208e17b3a81dac5810f326f6ddb8ee2f765b66239089125.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/a0623fca420a10ae0f8332e2f3d0c1a54b4cd37980ed3d407e75767673405213.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/71b6f27a2c1e8668e2715d5f20f0357fcab717553faa94d4838951da96433dcb.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/e4a1eae0fc9e3b95a79bdb29cff8da35e0c67e9f1d7f8f9116a4eb226929b738.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/e4a1eae0fc9e3b95a79bdb29cff8da35e0c67e9f1d7f8f9116a4eb226929b738.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/25c00217ca45ed96f208e17b3a81dac5810f326f6ddb8ee2f765b66239089125.png"
   ],
   "links": [
     {
@@ -39,6 +40,11 @@
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/484-TTER.vpk"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=484"
     }
   ],
   "source_name": "VitaDBtoo",

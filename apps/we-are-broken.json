@@ -19,7 +19,9 @@
   "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1712-we-are-broken.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/eb7503dbcc6ecec87b87ef11efea23c096ae7c375babeb329a375e44c05bd73b.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/6fe716ca95f6f45cd85bc0f67dbd7ff043a0cffcdb60bf76106ce394e29a9bfa.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/6fe716ca95f6f45cd85bc0f67dbd7ff043a0cffcdb60bf76106ce394e29a9bfa.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/eb7503dbcc6ecec87b87ef11efea23c096ae7c375babeb329a375e44c05bd73b.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/6fe716ca95f6f45cd85bc0f67dbd7ff043a0cffcdb60bf76106ce394e29a9bfa.png"
   ],
   "links": [
     {
@@ -42,6 +44,11 @@
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/634-WeAreBroken.vpk"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=634"
     }
   ],
   "source_name": "VitaDBtoo",

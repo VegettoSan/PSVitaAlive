@@ -21,7 +21,8 @@
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/4256f4d1544aeb0db1c02cf5b1b1f3ebca46fdd23304ba40bca6bebd6b807992.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/6a23f16e673e3120702cee94963fdb1038891703351ad3b742dc7a0c499cc1b4.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/dbc55794dd7b2e625c88459d56c6ebe3c69a184e23c6c699baddc65d78e03aa1.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/ed0398fc0d4182f3b2632209ba04099db6ae44c63de3a3ae693d0091b33f3168.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/ed0398fc0d4182f3b2632209ba04099db6ae44c63de3a3ae693d0091b33f3168.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/4256f4d1544aeb0db1c02cf5b1b1f3ebca46fdd23304ba40bca6bebd6b807992.png"
   ],
   "links": [
     {
@@ -44,6 +45,11 @@
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/1087-katawa-crash.vpk"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1087"
     }
   ],
   "source_name": "VitaDBtoo",

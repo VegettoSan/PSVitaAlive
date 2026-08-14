@@ -21,7 +21,9 @@
   "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1611-freeway-mutant.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/cd37b835c629f9a9ba99d418a6be2c00cc4b758d47103412b989b0e28d72b098.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/4666b15a3bd80d85aee86b9837bfaa3c2340bfc5ce53217b5e15f768745e3135.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/4666b15a3bd80d85aee86b9837bfaa3c2340bfc5ce53217b5e15f768745e3135.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/cd37b835c629f9a9ba99d418a6be2c00cc4b758d47103412b989b0e28d72b098.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/4666b15a3bd80d85aee86b9837bfaa3c2340bfc5ce53217b5e15f768745e3135.png"
   ],
   "links": [
     {
@@ -44,6 +46,11 @@
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/416-Freeway_Mutant.vpk"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=416"
     }
   ],
   "source_name": "VitaDBtoo",

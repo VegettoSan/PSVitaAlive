@@ -21,7 +21,8 @@
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/ae2dfeb4e8d75511b6f6015ca59cd639b9e60de0f67a550c3cdeef9bb51da3e5.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/020c51f291c16e99b4b0c50aa1ad87fc4ff846ad5f8bb6b24483a4cb8600d255.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/68a284ab6859fe18ce5a3e9789128536f35af94b9fdd30dad33f4a0c69f06864.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/805604ab3b8d8f9b442b433789fbbf77f0cd106d5171ca37d10812ceec4ed181.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/805604ab3b8d8f9b442b433789fbbf77f0cd106d5171ca37d10812ceec4ed181.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/ae2dfeb4e8d75511b6f6015ca59cd639b9e60de0f67a550c3cdeef9bb51da3e5.png"
   ],
   "links": [
     {
@@ -39,6 +40,11 @@
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/1212-sonic_unleashed.vpk"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1212"
     }
   ],
   "source_name": "VitaDBtoo",

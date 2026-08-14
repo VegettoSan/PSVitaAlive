@@ -18,7 +18,9 @@
   "status": "Legacy",
   "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1518-spidervita.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1518-spidervita.png"
+    "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1518-spidervita.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/spider1.jpg",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/spider2.jpg"
   ],
   "links": [
     {
@@ -41,6 +43,11 @@
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/142-SpiderVita.vpk"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=142"
     }
   ],
   "source_name": "VitaDBtoo",

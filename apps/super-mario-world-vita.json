@@ -21,7 +21,8 @@
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/da44e5035a740a3a9b1a1518cefdf392991561df155bbd9ff8265d551f99581e.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/8de34b610b539bf25a23baaf246b8175c7948b40d54606441f3e6cd419d4ca8d.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/e372508694a8ebe53921ec4c9c294f096bae07b903e9ac9f5d697ac0d92732cd.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/6610abcdf2d8e7d29e956f6681a7ca4adf827279ae19664c047f01ef0f68322d.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/6610abcdf2d8e7d29e956f6681a7ca4adf827279ae19664c047f01ef0f68322d.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/da44e5035a740a3a9b1a1518cefdf392991561df155bbd9ff8265d551f99581e.png"
   ],
   "links": [
     {
@@ -44,6 +45,11 @@
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/1215-smworld.vpk"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1215"
     }
   ],
   "source_name": "VitaDBtoo",

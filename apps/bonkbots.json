@@ -20,7 +20,9 @@
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/159e29b61f55efa23ea10753e5ed07fa27856c5453d79956ad1c8e1cd7f349bb.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/ebed10a0da6bd1e086d39779fe704b5ae424cc29c61ede5763d33b40ba49066a.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/63cc93880eb04c082f3ecb9ce7d0d4a74ef74d1e2329b4b66a1f08972faa1f14.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/63cc93880eb04c082f3ecb9ce7d0d4a74ef74d1e2329b4b66a1f08972faa1f14.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/159e29b61f55efa23ea10753e5ed07fa27856c5453d79956ad1c8e1cd7f349bb.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/ebed10a0da6bd1e086d39779fe704b5ae424cc29c61ede5763d33b40ba49066a.png"
   ],
   "links": [
     {
@@ -43,6 +45,11 @@
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/1149-BonkBots.vpk"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1149"
     }
   ],
   "source_name": "VitaDBtoo",

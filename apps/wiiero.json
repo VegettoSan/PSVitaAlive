@@ -19,7 +19,9 @@
   "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/7faf42a885158181802fe89c84af8d84db650ac961bf6168a78ef2dcdadbe097.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/cb94c7eb50b86850838a2a59ae9bf1becd92be2320624f5fa4562709eb29d960.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/f8437665ccc817a96298e54bdc090bba21498942e81a606c315e4f9ed9e984f9.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/f8437665ccc817a96298e54bdc090bba21498942e81a606c315e4f9ed9e984f9.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/cb94c7eb50b86850838a2a59ae9bf1becd92be2320624f5fa4562709eb29d960.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/f8437665ccc817a96298e54bdc090bba21498942e81a606c315e4f9ed9e984f9.png"
   ],
   "links": [
     {
@@ -42,6 +44,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/Grzybojad/wiiero-vita"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=417"
     }
   ],
   "source_name": "VitaDBtoo",

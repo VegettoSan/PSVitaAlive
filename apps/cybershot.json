@@ -21,7 +21,8 @@
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/2419e395d0e94325219385d2aedffb8e8b5a27c5d5ce574e2165790fae52efb1.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/a4c127e04703b33999ede7fea3c57ecd9492dc4d29cd96bd531fd6dd5e6f9679.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/bd1c9430374059c51419980b7e09ea1f2ae438e870b6fce711f70be76ddee82f.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/41202179db3359fdae00717cc89b97e2aa2d328ebb2efdf135bce3d58658975b.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/41202179db3359fdae00717cc89b97e2aa2d328ebb2efdf135bce3d58658975b.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/2419e395d0e94325219385d2aedffb8e8b5a27c5d5ce574e2165790fae52efb1.png"
   ],
   "links": [
     {
@@ -39,6 +40,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/SemvdH/cybershot-PSVita"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1108"
     }
   ],
   "source_name": "VitaDBtoo",

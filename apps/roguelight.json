@@ -20,7 +20,9 @@
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/ca83b40c410e0bb9d834e68b8ded40ddea97a49d235289f271ddc49fe53aa68e.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/a293ce3f1d7c089258184cb646d57d544b01751edb3f071a245071ad90f11f57.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/301f2c300df6a9e2d1b32c1a74c974eb338e0af111d1b8292d56da5fc6da6d6f.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/301f2c300df6a9e2d1b32c1a74c974eb338e0af111d1b8292d56da5fc6da6d6f.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/ca83b40c410e0bb9d834e68b8ded40ddea97a49d235289f271ddc49fe53aa68e.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/a293ce3f1d7c089258184cb646d57d544b01751edb3f071a245071ad90f11f57.png"
   ],
   "links": [
     {
@@ -43,6 +45,11 @@
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/627-Roguelight.vpk"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=627"
     }
   ],
   "source_name": "VitaDBtoo",

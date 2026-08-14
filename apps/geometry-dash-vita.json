@@ -19,7 +19,9 @@
   "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/e7c861029b4702135b010ab07db1cb2d201e872b6891dde294405b796fe3dd51.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/8f4546d2c9d633aade378e534004a2c1d3bcc4f6172736d39a939b659c2f3bd6.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/7a61a28923d99599adde7f1f654bae2002402a3cd3a23ff89dad457dbdd040e9.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/7a61a28923d99599adde7f1f654bae2002402a3cd3a23ff89dad457dbdd040e9.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/8f4546d2c9d633aade378e534004a2c1d3bcc4f6172736d39a939b659c2f3bd6.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/7a61a28923d99599adde7f1f654bae2002402a3cd3a23ff89dad457dbdd040e9.png"
   ],
   "links": [
     {
@@ -42,6 +44,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/hatoving/gdash-vita"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1177"
     }
   ],
   "source_name": "VitaDBtoo",

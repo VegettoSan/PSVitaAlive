@@ -21,7 +21,8 @@
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/b1e234209a971ff024744ded593ff93ba67274e0fccfea123bb2419fa938a77a.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/1648d3cf2e4a6d39da10f63e361be6d22e50213dcf3de600b8a2f0e763d07f97.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/404fbbaa67ca4d69f05e324c1da99b35b5e0a48e8522ea1f777701b245814ed3.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c5e093fd46c198eb3050d9e4b3dc673a06259c4b4b5fa503b318a9c0c6b0980a.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c5e093fd46c198eb3050d9e4b3dc673a06259c4b4b5fa503b318a9c0c6b0980a.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/b1e234209a971ff024744ded593ff93ba67274e0fccfea123bb2419fa938a77a.png"
   ],
   "links": [
     {
@@ -44,6 +45,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/Rinnegatamante/2ship2harkinian"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1384"
     }
   ],
   "source_name": "VitaDBtoo",

@@ -20,7 +20,9 @@
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/e77a5155a9f1ed62130c19e6b6a12957f15983bbca761666ccf57410aeec7830.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/01d72aed28eca348b0a6a1393194f92f4b8f635f980ef34634738315c541ecbd.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/905cfd02fbef74e9a06ff66d4397cfbd2152a72f9ddd8531c42c046de62aa4b0.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/905cfd02fbef74e9a06ff66d4397cfbd2152a72f9ddd8531c42c046de62aa4b0.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/e77a5155a9f1ed62130c19e6b6a12957f15983bbca761666ccf57410aeec7830.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/01d72aed28eca348b0a6a1393194f92f4b8f635f980ef34634738315c541ecbd.png"
   ],
   "links": [
     {
@@ -43,6 +45,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/THEN00P/EasyPlugin"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=440"
     }
   ],
   "source_name": "VitaDBtoo",

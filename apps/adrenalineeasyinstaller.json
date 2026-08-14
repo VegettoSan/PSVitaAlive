@@ -21,7 +21,8 @@
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/f19b8a99b2e208421b35f0b444c37dc3fc3afe5b63cd7760c8ceb066b6dfa8d8.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/b299508fb30cbf13b35fdc1d562d5469c2e814ab1f5a6f6e9f4f126ae9642769.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/968283c6c11e05b5a164904fe7ec917ddead42d79ec14c912c13da5ed6ca681e.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/5cb746dc09db46eb5846de8f2772f23b5f36061f0c53abee8dc63db78c152fd1.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/5cb746dc09db46eb5846de8f2772f23b5f36061f0c53abee8dc63db78c152fd1.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/f19b8a99b2e208421b35f0b444c37dc3fc3afe5b63cd7760c8ceb066b6dfa8d8.png"
   ],
   "links": [
     {
@@ -49,6 +50,11 @@
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/36-AdrenalineEasyInstaller.vpk"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=36"
     }
   ],
   "source_name": "VitaDBtoo",

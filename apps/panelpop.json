@@ -20,7 +20,9 @@
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/378a653a5af93b0737d1428014a283168cfe0a265018969bbdd8f38dbc41bbeb.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/fd3df3c0cdd85c5cb7a463c64c192911fe677aa27e285488eaf42e6c164c5811.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/1512a6f2eac9b3dc9bbf1eaf28620ae9d353decc46b119f427048fe31a286ad2.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/1512a6f2eac9b3dc9bbf1eaf28620ae9d353decc46b119f427048fe31a286ad2.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/378a653a5af93b0737d1428014a283168cfe0a265018969bbdd8f38dbc41bbeb.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/fd3df3c0cdd85c5cb7a463c64c192911fe677aa27e285488eaf42e6c164c5811.png"
   ],
   "links": [
     {
@@ -43,6 +45,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/sharkwouter/panel-pop"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=599"
     }
   ],
   "source_name": "VitaDBtoo",

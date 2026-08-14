@@ -18,7 +18,8 @@
   "status": "Legacy",
   "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/9b94160dff730fc8226d381238b88e9800831b335323300d880989a9baea08a2.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/6a54e69ed6b2e6008e4ea77fa47c3a4a583b59fe4616741bbc8e06795179ed0a.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/6a54e69ed6b2e6008e4ea77fa47c3a4a583b59fe4616741bbc8e06795179ed0a.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/6a54e69ed6b2e6008e4ea77fa47c3a4a583b59fe4616741bbc8e06795179ed0a.png"
   ],
   "links": [
     {
@@ -41,6 +42,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/cy33hc/vita-ezremote-client/"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1131"
     }
   ],
   "source_name": "VitaDBtoo",

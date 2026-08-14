@@ -20,7 +20,9 @@
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/9d971a82f83408d04fee36d4cefbd0dec23a681fb1197f25c0e52ac65ece5618.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/670acfd4065d791b0dcc319fedfa70dae17a926c1c40ad3e319d2d09b3772e9e.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/af7ee7f95595af164b9a23161a718d4e75d9b6ea32e0cb9917bcf070ffa80d39.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/af7ee7f95595af164b9a23161a718d4e75d9b6ea32e0cb9917bcf070ffa80d39.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/9d971a82f83408d04fee36d4cefbd0dec23a681fb1197f25c0e52ac65ece5618.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/670acfd4065d791b0dcc319fedfa70dae17a926c1c40ad3e319d2d09b3772e9e.png"
   ],
   "links": [
     {
@@ -43,6 +45,11 @@
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/359-AbbayeDesMorts.vpk"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=359"
     }
   ],
   "source_name": "VitaDBtoo",

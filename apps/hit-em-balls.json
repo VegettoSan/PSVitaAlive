@@ -21,7 +21,8 @@
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/2587a2101dd3bc52bf25febd186ddb792173c8604cb4885d2256cedc0575f653.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/f3cffb4b3596a420045488197692acac132fdb765605027316d771f7f15ee35d.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/d996cd75058066acc277dd0ec28b5557601caa99de9a80780cd6706756a91b38.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/6bee333142c853cda8d1a634e8f008d2cb9ee1d0ef2634a6d5e2f6f142221eeb.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/6bee333142c853cda8d1a634e8f008d2cb9ee1d0ef2634a6d5e2f6f142221eeb.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/2587a2101dd3bc52bf25febd186ddb792173c8604cb4885d2256cedc0575f653.png"
   ],
   "links": [
     {
@@ -44,6 +45,11 @@
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/1163-hitem.vpk"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1163"
     }
   ],
   "source_name": "VitaDBtoo",

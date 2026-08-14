@@ -21,7 +21,8 @@
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/352f4f7537eaea6d0756fca5bf48efc2a0c93d7032573db3c9f1dd541797eb0d.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/d8af2239a2fd7ac14bd80a6d92a8fb323694860437164981800b9875ba992145.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/bbf8b8be1b471249ee9e3a57c063c8b9f61c60f11ef82289e1d4bf0fc5eb1da9.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/01d84a19ac020026aa30e19eed71656365eb82be4d639b74727338da65c902b1.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/01d84a19ac020026aa30e19eed71656365eb82be4d639b74727338da65c902b1.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/352f4f7537eaea6d0756fca5bf48efc2a0c93d7032573db3c9f1dd541797eb0d.png"
   ],
   "links": [
     {
@@ -44,6 +45,11 @@
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/460-No-More-Dungeons.vpk"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=460"
     }
   ],
   "source_name": "VitaDBtoo",

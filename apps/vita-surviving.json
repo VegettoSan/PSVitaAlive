@@ -21,7 +21,8 @@
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/0c5e3c169f246eb939719eac2582db7bfaa39cf04f429061ca8f436cfc5e83f5.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/73e857a7a523d8e45e64126ae3e98bbbd68061f4ea2648a65d231bc9f0a3f9e3.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/b25b5e01817eb6e13e2a57f5fced32473176f0e2dc42ae4f8138dddae1ae3444.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/7f008edb6f730d4f6988e94eb625c33f39eaf2646f08852efaf13934c51938f4.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/7f008edb6f730d4f6988e94eb625c33f39eaf2646f08852efaf13934c51938f4.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/0c5e3c169f246eb939719eac2582db7bfaa39cf04f429061ca8f436cfc5e83f5.png"
   ],
   "links": [
     {
@@ -44,6 +45,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/pelayodc/VITASurviving"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1032"
     }
   ],
   "source_name": "VitaDBtoo",

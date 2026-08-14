@@ -20,7 +20,9 @@
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/915b143b04cf6ab34a01cb09b8bb9ba8b7cc6689817fd06dbf34d2e321f39120.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/35c254ed9946b9af5f2f5ead7afa8de3dbf3ba857942dce9c2a1b24ef49adc1c.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/ba3d63a1e217e9b92810ef6ea3601a62dc2956d9d34aeb9d49bb28d192fde1b8.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/ba3d63a1e217e9b92810ef6ea3601a62dc2956d9d34aeb9d49bb28d192fde1b8.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/915b143b04cf6ab34a01cb09b8bb9ba8b7cc6689817fd06dbf34d2e321f39120.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/35c254ed9946b9af5f2f5ead7afa8de3dbf3ba857942dce9c2a1b24ef49adc1c.png"
   ],
   "links": [
     {
@@ -38,6 +40,11 @@
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/744-RockRecker.vpk"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=744"
     }
   ],
   "source_name": "VitaDBtoo",

@@ -20,7 +20,9 @@
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/97e463ecc474b81f5ef50f269c846ac19be2d8e7c28256e21bba60c04c45e56b.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/49801fb2f75405f84bb417ddb2a8688751ae22120fe93b39a8888e1dcf973bd6.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/b3cbaf3fe343614091629fcdbb03ae75b4a89522bd03903ae1f9c0363cd3f0c0.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/b3cbaf3fe343614091629fcdbb03ae75b4a89522bd03903ae1f9c0363cd3f0c0.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/97e463ecc474b81f5ef50f269c846ac19be2d8e7c28256e21bba60c04c45e56b.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/49801fb2f75405f84bb417ddb2a8688751ae22120fe93b39a8888e1dcf973bd6.png"
   ],
   "links": [
     {
@@ -43,6 +45,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/xfangfang/wiliwili"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1164"
     }
   ],
   "source_name": "VitaDBtoo",

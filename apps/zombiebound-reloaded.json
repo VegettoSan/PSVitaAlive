@@ -20,7 +20,9 @@
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/ca773cfaacde7cc840ffe662e66f7055db5be937cca485c4f5a33c705282114c.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/4d9ee3a4b07f1459bad2692c71da948e746e93f05aab17e324661b32357b7092.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/35ec3b420c5a12b4a868891ff7797155e02eef4766361864319abdae9025d9de.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/35ec3b420c5a12b4a868891ff7797155e02eef4766361864319abdae9025d9de.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/ca773cfaacde7cc840ffe662e66f7055db5be937cca485c4f5a33c705282114c.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/4d9ee3a4b07f1459bad2692c71da948e746e93f05aab17e324661b32357b7092.png"
   ],
   "links": [
     {
@@ -43,6 +45,11 @@
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/421-Zombiebound-Reloaded.vpk"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=421"
     }
   ],
   "source_name": "VitaDBtoo",

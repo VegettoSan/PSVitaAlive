@@ -20,7 +20,9 @@
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/4685f028fc24dd29d3e008fa64adaf2e1caa6ab2cb60d298b31977c74bce6fe3.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/787cbc841f3e1d77a001d351c9e28d4667b6690c6344ddf370167f1d1325df51.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/023be16d92961d29dedba99382b84c821f8bd9eef40ae4380191abe1df57cc4f.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/023be16d92961d29dedba99382b84c821f8bd9eef40ae4380191abe1df57cc4f.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/4685f028fc24dd29d3e008fa64adaf2e1caa6ab2cb60d298b31977c74bce6fe3.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/787cbc841f3e1d77a001d351c9e28d4667b6690c6344ddf370167f1d1325df51.png"
   ],
   "links": [
     {
@@ -43,6 +45,11 @@
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/691-wonkeyadventures.vpk"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=691"
     }
   ],
   "source_name": "VitaDBtoo",

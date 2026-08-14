@@ -18,7 +18,8 @@
   "status": "Legacy",
   "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1646-sword-journey.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/626d853133f3a7133ecd93c73ea4ad320e1481413a3a8576492f0eaa16cb62c0.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/626d853133f3a7133ecd93c73ea4ad320e1481413a3a8576492f0eaa16cb62c0.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/626d853133f3a7133ecd93c73ea4ad320e1481413a3a8576492f0eaa16cb62c0.png"
   ],
   "links": [
     {
@@ -36,6 +37,11 @@
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/473-SJ0018.vpk"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=473"
     }
   ],
   "source_name": "VitaDBtoo",

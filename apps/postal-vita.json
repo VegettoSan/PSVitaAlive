@@ -20,7 +20,9 @@
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/05fe3d2bf74b98f76e7f559d112008007fdfc1d630d535f5826e0335dd9e12f6.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/42240a913fcf92c6841966d461019892dd6e3dd5761e58fe3d8fe52e216a1e78.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/9c64174d98b9e3ffb064482241b192fdcd297835b36c95253b549cfef74e8d39.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/9c64174d98b9e3ffb064482241b192fdcd297835b36c95253b549cfef74e8d39.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/05fe3d2bf74b98f76e7f559d112008007fdfc1d630d535f5826e0335dd9e12f6.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/42240a913fcf92c6841966d461019892dd6e3dd5761e58fe3d8fe52e216a1e78.png"
   ],
   "links": [
     {
@@ -43,6 +45,11 @@
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/415-Postal.vpk"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=415"
     }
   ],
   "source_name": "VitaDBtoo",

@@ -21,7 +21,8 @@
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/f0f21341cab407a2cc5829982ce0ee3c4ca39a21f2b6925b9abf18d0284d555f.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/9442fb48bb3d3a725350226ef0800e7a6b914d9c516188f226948c0ac250d22f.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/d94e687ac4df9469d94d4ce65525712904c0b95891ea506eb9ae9c63e41bfc41.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/5627d9f2bf1887f7a0f30ed38409a9e9981a32be3912da18a06df5a282d661b3.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/5627d9f2bf1887f7a0f30ed38409a9e9981a32be3912da18a06df5a282d661b3.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/f0f21341cab407a2cc5829982ce0ee3c4ca39a21f2b6925b9abf18d0284d555f.png"
   ],
   "links": [
     {
@@ -44,6 +45,11 @@
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/1338-TheOtherHer.vpk"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1338"
     }
   ],
   "source_name": "VitaDBtoo",

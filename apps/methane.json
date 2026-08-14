@@ -20,7 +20,9 @@
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/24d727d4f83e12b49e5a0c3fb3dad99bcf7d94ac5f75f89623d949ee030a54d4.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/405a55a51226fd837e334f8b7ee25753bbc3efe1122240e04db2186df909962d.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c6ffac8677d1d4c39d19cb1b3160d08c8d39a036dbb959d3d66607e8798f353c.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c6ffac8677d1d4c39d19cb1b3160d08c8d39a036dbb959d3d66607e8798f353c.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/24d727d4f83e12b49e5a0c3fb3dad99bcf7d94ac5f75f89623d949ee030a54d4.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/405a55a51226fd837e334f8b7ee25753bbc3efe1122240e04db2186df909962d.png"
   ],
   "links": [
     {
@@ -43,6 +45,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/usineur/methane"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=382"
     }
   ],
   "source_name": "VitaDBtoo",

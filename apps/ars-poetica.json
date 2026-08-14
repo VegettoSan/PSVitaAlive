@@ -20,7 +20,9 @@
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/32585ea39a26f58deabea95e4f9bcfab055a94ffbea71ea5c25f411d32356181.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c15b3504ba4c0b67ee5c17e2e830a194a2d9517719addea8b410a91d0d6f95b6.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/0b0e5e2b84604da8ac864f54f11ac37108cf434cffab97e2dd2ebcedb41fe071.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/0b0e5e2b84604da8ac864f54f11ac37108cf434cffab97e2dd2ebcedb41fe071.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/32585ea39a26f58deabea95e4f9bcfab055a94ffbea71ea5c25f411d32356181.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/c15b3504ba4c0b67ee5c17e2e830a194a2d9517719addea8b410a91d0d6f95b6.png"
   ],
   "links": [
     {
@@ -43,6 +45,11 @@
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/681-ArsPoetica.vpk"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=681"
     }
   ],
   "source_name": "VitaDBtoo",

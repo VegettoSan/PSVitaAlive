@@ -18,7 +18,10 @@
   "status": "Legacy",
   "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1498-game-shrinker.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1498-game-shrinker.png"
+    "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1498-game-shrinker.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/shrink1.jpg",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/shrink2.jpg",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/shrink3.jpg"
   ],
   "links": [
     {
@@ -36,6 +39,11 @@
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/97-game_shrinker.vpk"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=97"
     }
   ],
   "source_name": "VitaDBtoo",

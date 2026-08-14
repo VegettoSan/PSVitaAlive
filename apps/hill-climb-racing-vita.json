@@ -19,7 +19,9 @@
   "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1340-hill-climb-racing-vita.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/e14ebb345949c4ae87cc5ed1cea5de91585bf4a40486053f601cb263b585f644.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/1522ca97eb40b8d28401af361657486e86afaa3db1bbc315a587bed3b8d398b0.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/1522ca97eb40b8d28401af361657486e86afaa3db1bbc315a587bed3b8d398b0.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/e14ebb345949c4ae87cc5ed1cea5de91585bf4a40486053f601cb263b585f644.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/1522ca97eb40b8d28401af361657486e86afaa3db1bbc315a587bed3b8d398b0.png"
   ],
   "links": [
     {
@@ -42,6 +44,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/memory-hunter/hill-climb-racing-vita"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1340"
     }
   ],
   "source_name": "VitaDBtoo",

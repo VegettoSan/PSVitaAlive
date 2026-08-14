@@ -21,7 +21,8 @@
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/b24a75b9792aea1cf3fddff1dbf91419403a859c49b5d3af7591b28c7bce8b81.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/96d9f4aef9e6b5b1875d1e7de318f6b47c20a7d00bb1ffd0862af610f3cabf71.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/19a59e786924d9ab8f97e9c702eda4590cedb205e47917c4db49e9266248e174.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/5927340b69f57d63932b1520454dcefb920ed00bf648ad09d413af055ddee8b8.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/5927340b69f57d63932b1520454dcefb920ed00bf648ad09d413af055ddee8b8.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/b24a75b9792aea1cf3fddff1dbf91419403a859c49b5d3af7591b28c7bce8b81.png"
   ],
   "links": [
     {
@@ -44,6 +45,11 @@
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/788-nKaruga.vpk"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=788"
     }
   ],
   "source_name": "VitaDBtoo",

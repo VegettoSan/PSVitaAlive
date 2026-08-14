@@ -19,7 +19,9 @@
   "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1743-loonies-8192.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/f2235585d395007b786f82cd74cbeffd310a40616238b1add7145dfdaf7e0890.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/db24b17233c93404b0fa0ccc28fe95b562a38d6156ff398960f235a694138478.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/db24b17233c93404b0fa0ccc28fe95b562a38d6156ff398960f235a694138478.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/f2235585d395007b786f82cd74cbeffd310a40616238b1add7145dfdaf7e0890.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/db24b17233c93404b0fa0ccc28fe95b562a38d6156ff398960f235a694138478.png"
   ],
   "links": [
     {
@@ -42,6 +44,11 @@
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/704-loonies8192.vpk"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=704"
     }
   ],
   "source_name": "VitaDBtoo",

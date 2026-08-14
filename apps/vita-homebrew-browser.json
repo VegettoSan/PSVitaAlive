@@ -20,7 +20,9 @@
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/28d6e2c69030f5ca531013ba5834a0153e5c2c01c6c1506b5e3e37aa7a33784f.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/9e0fbebb2078abec29aed0f9c461c7938a597cfa27588ff6f95564ae0d18b49c.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/e3412b12258fb50c27a0c8e28d147eb8af3eaf028af74ee09bdf3a47abe01ba3.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/e3412b12258fb50c27a0c8e28d147eb8af3eaf028af74ee09bdf3a47abe01ba3.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/28d6e2c69030f5ca531013ba5834a0153e5c2c01c6c1506b5e3e37aa7a33784f.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/9e0fbebb2078abec29aed0f9c461c7938a597cfa27588ff6f95564ae0d18b49c.png"
   ],
   "links": [
     {
@@ -43,6 +45,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/devnoname120/vhbb"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=205"
     }
   ],
   "source_name": "VitaDBtoo",

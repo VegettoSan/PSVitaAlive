@@ -19,7 +19,8 @@
   "status": "Legacy",
   "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/70b7c6eb0f45f93164252107a5b54b0a05df99c7bdca18437f6e80fdd56045c4.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/70b7c6eb0f45f93164252107a5b54b0a05df99c7bdca18437f6e80fdd56045c4.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/70b7c6eb0f45f93164252107a5b54b0a05df99c7bdca18437f6e80fdd56045c4.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/veet.jpg"
   ],
   "links": [
     {
@@ -42,6 +43,11 @@
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/15-breakveetout.vpk"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=15"
     }
   ],
   "source_name": "VitaDBtoo",

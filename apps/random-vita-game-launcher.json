@@ -18,7 +18,8 @@
   "status": "Legacy",
   "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/48a4552d002414f9288fc3da1a477a4a04448e255634a25b266d4aa0c4f37ece.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/3407f4ff72ef98e1ffe6a7a08e99088f91e965729b425f41800ffd7969ff424a.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/3407f4ff72ef98e1ffe6a7a08e99088f91e965729b425f41800ffd7969ff424a.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/3407f4ff72ef98e1ffe6a7a08e99088f91e965729b425f41800ffd7969ff424a.png"
   ],
   "links": [
     {
@@ -41,6 +42,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/jimbob4000/Random-Vita-Game-Launcher"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1171"
     }
   ],
   "source_name": "VitaDBtoo",

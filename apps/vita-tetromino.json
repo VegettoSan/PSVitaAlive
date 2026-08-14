@@ -18,7 +18,8 @@
   "status": "Legacy",
   "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1575-vita-tetromino.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/0ffa25388147e62fdced68ba73b7605031ef76f17d7f3d1f08db1528698640ec.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/0ffa25388147e62fdced68ba73b7605031ef76f17d7f3d1f08db1528698640ec.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/0ffa25388147e62fdced68ba73b7605031ef76f17d7f3d1f08db1528698640ec.png"
   ],
   "links": [
     {
@@ -36,6 +37,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/svennd/vita-tetromino/"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=330"
     }
   ],
   "source_name": "VitaDBtoo",

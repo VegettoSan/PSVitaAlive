@@ -19,7 +19,9 @@
   "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1616-the-hallway.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/cc9cd2df072fac9bb6a5ba09b0e9382ed76a4ac41789c408812a79555c68c718.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/757bf4e40600c996e3b896180f4d409be822a800f99132124a50ddd86d77581c.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/757bf4e40600c996e3b896180f4d409be822a800f99132124a50ddd86d77581c.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/cc9cd2df072fac9bb6a5ba09b0e9382ed76a4ac41789c408812a79555c68c718.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/757bf4e40600c996e3b896180f4d409be822a800f99132124a50ddd86d77581c.png"
   ],
   "links": [
     {
@@ -42,6 +44,11 @@
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/428-TheHallway.vpk"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=428"
     }
   ],
   "source_name": "VitaDBtoo",

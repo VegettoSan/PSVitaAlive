@@ -22,7 +22,9 @@
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/b16ee50cc3f2b302561ec6ece541a703c3089c2eae8fcaf8948a12fcff4a5793.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/a4347444d2c4b21c827c190433a291ffaedca0e1ad4e41ed13753a44a49c8650.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/68b459235f7f52c7a15971abcab77caeeac06e79440436f789b14591868b38ba.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/68b459235f7f52c7a15971abcab77caeeac06e79440436f789b14591868b38ba.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/b16ee50cc3f2b302561ec6ece541a703c3089c2eae8fcaf8948a12fcff4a5793.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/a4347444d2c4b21c827c190433a291ffaedca0e1ad4e41ed13753a44a49c8650.png"
   ],
   "links": [
     {
@@ -45,6 +47,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/frangarcj/ff5_vita"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=733"
     }
   ],
   "source_name": "VitaDBtoo",

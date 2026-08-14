@@ -2030,6 +2030,21 @@
     "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
   },
   {
+    "id": "falkenhawk",
+    "name": "falkenhawk",
+    "avatar": "https://github.com/falkenhawk.png",
+    "bio": "",
+    "links": [
+      {
+        "type": "GitHub",
+        "name": "GitHub",
+        "url": "https://github.com/falkenhawk",
+        "recommended": true
+      }
+    ],
+    "icon": "https://github.com/falkenhawk.png"
+  },
+  {
     "id": "fantahourglass",
     "name": "FantaHourglass",
     "avatar": "",
@@ -2058,6 +2073,21 @@
       }
     ],
     "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
+  },
+  {
+    "id": "fatlenny",
+    "name": "FatLenny",
+    "avatar": "https://github.com/muukalainenpuhuu.png",
+    "bio": "",
+    "links": [
+      {
+        "type": "GitHub",
+        "name": "GitHub",
+        "url": "https://github.com/muukalainenpuhuu",
+        "recommended": true
+      }
+    ],
+    "icon": "https://github.com/muukalainenpuhuu.png"
   },
   {
     "id": "fgsfds",
@@ -4640,6 +4670,21 @@
     "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
   },
   {
+    "id": "onur-kuru",
+    "name": "Onur Kuru",
+    "avatar": "https://github.com/onurkuru.png",
+    "bio": "",
+    "links": [
+      {
+        "type": "GitHub",
+        "name": "GitHub",
+        "url": "https://github.com/onurkuru",
+        "recommended": true
+      }
+    ],
+    "icon": "https://github.com/onurkuru.png"
+  },
+  {
     "id": "orbitalflagstudio",
     "name": "OrbitalFlagStudio",
     "avatar": "https://github.com/OrbitalFlagStudio.png",
@@ -5013,6 +5058,21 @@
       }
     ],
     "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
+  },
+  {
+    "id": "reallootfury",
+    "name": "reallootfury",
+    "avatar": "https://github.com/reallootfury.png",
+    "bio": "",
+    "links": [
+      {
+        "type": "GitHub",
+        "name": "GitHub",
+        "url": "https://github.com/reallootfury",
+        "recommended": true
+      }
+    ],
+    "icon": "https://github.com/reallootfury.png"
   },
   {
     "id": "red-squirrel",
@@ -5783,6 +5843,21 @@
       }
     ],
     "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
+  },
+  {
+    "id": "stoicpingu",
+    "name": "stoicpingu",
+    "avatar": "https://github.com/stoicpingu.png",
+    "bio": "",
+    "links": [
+      {
+        "type": "GitHub",
+        "name": "GitHub",
+        "url": "https://github.com/stoicpingu",
+        "recommended": true
+      }
+    ],
+    "icon": "https://github.com/stoicpingu.png"
   },
   {
     "id": "sudovim",

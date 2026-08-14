@@ -21,7 +21,8 @@
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/6c8018ed5b0b235b7860a81cecda2f325fc9c11a95b5da0ae323c2844d50f032.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/d552cbd93cfc3239c7958f4ab4a4b1070ad9419801da08d959d7c049dd6cabcc.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/678c41ce9dc98f44953a188dbd3ab4157dbd1168713922efbe3afafbbcb9c336.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/9c66d0f5c201b0f1e8f1d3bcba65cd6616b74bda7974142decb19ca067e56c41.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/9c66d0f5c201b0f1e8f1d3bcba65cd6616b74bda7974142decb19ca067e56c41.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/6c8018ed5b0b235b7860a81cecda2f325fc9c11a95b5da0ae323c2844d50f032.png"
   ],
   "links": [
     {
@@ -44,6 +45,11 @@
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/1086-katawa2.vpk"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1086"
     }
   ],
   "source_name": "VitaDBtoo",

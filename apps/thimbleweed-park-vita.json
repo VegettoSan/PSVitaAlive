@@ -21,7 +21,8 @@
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/3fadbca764cd32fb7f47ef28be62cf8f921c47a0341b2eb8f2720ac66a4d7854.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/077ab4aafc2537d86c0e3dd4489e372d315aeec1b776a1e5e155cd3df889b8bb.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/56029ff4d22f47ea5e6f9975759c705815c05c95f6e1209072bc28b54d5f38ce.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/44bc8e17f41d7948ffb559372e08b2f269dd397e96b89001dbece73754f20347.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/44bc8e17f41d7948ffb559372e08b2f269dd397e96b89001dbece73754f20347.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/3fadbca764cd32fb7f47ef28be62cf8f921c47a0341b2eb8f2720ac66a4d7854.png"
   ],
   "links": [
     {
@@ -44,6 +45,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/Rinnegatamante/thimbleweed-vita"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1062"
     }
   ],
   "source_name": "VitaDBtoo",

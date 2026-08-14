@@ -22,7 +22,8 @@
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/700a132501a00d7586707b33c0a4727c2b0664e3ec9c86996efebd810a6cdcc3.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/6e7ece334d0b8604df007a714e9d33abc092dc86af50d4545d6e9177d01f832b.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/140e581c7bbf245de22fd278ef49270d10d8539201b32e6c4b3db7f44f9c17f8.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/a79e4d2418e3aecf44aeab0aca053932e1fa639ce53fc6fe7c0def570fb1ba35.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/a79e4d2418e3aecf44aeab0aca053932e1fa639ce53fc6fe7c0def570fb1ba35.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/700a132501a00d7586707b33c0a4727c2b0664e3ec9c86996efebd810a6cdcc3.png"
   ],
   "links": [
     {
@@ -55,6 +56,11 @@
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/1028-nzp.vpk"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1028"
     }
   ],
   "source_name": "VitaDBtoo",

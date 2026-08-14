@@ -19,7 +19,8 @@
   "status": "Legacy",
   "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/32f796262168fc75701939a242155bbddc17cb957728bee0b2410323d899c946.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/d71f98e78b3f9e2f0d171c8f7f5b05583e1d9617dc7bd1dc64eecec30fefb3e9.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/d71f98e78b3f9e2f0d171c8f7f5b05583e1d9617dc7bd1dc64eecec30fefb3e9.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/d71f98e78b3f9e2f0d171c8f7f5b05583e1d9617dc7bd1dc64eecec30fefb3e9.png"
   ],
   "links": [
     {
@@ -42,6 +43,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/Electric1447/EasyVPK"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=558"
     }
   ],
   "source_name": "VitaDBtoo",

@@ -20,7 +20,9 @@
   "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1593-tetromino-touhou-edition.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/7e99c1814e047f0145d27847b8aab1e1e4b6c7f67e6100c9562880665055c8a5.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/3c4ac35ff107682fb51da0eb9a31fe9dd555de8f3b0b49918b40e3899d076c2e.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/3c4ac35ff107682fb51da0eb9a31fe9dd555de8f3b0b49918b40e3899d076c2e.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/7e99c1814e047f0145d27847b8aab1e1e4b6c7f67e6100c9562880665055c8a5.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/3c4ac35ff107682fb51da0eb9a31fe9dd555de8f3b0b49918b40e3899d076c2e.png"
   ],
   "links": [
     {
@@ -43,6 +45,11 @@
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/376-Tetromino_20-_20Touhou_20Edition.vpk"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=376"
     }
   ],
   "source_name": "VitaDBtoo",

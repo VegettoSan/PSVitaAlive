@@ -1,0 +1,43 @@
+{
+  "id": "non-competitive-singing-potatoes",
+  "title_id": "DOS1POTAT",
+  "name": "Non-Competitive Singing Potatoes",
+  "description": "Music homebrew game for PSVita.",
+  "long_description": "o competing just singing now\nyou're a band of singing potatoes and you sing while not competing",
+  "author_ids": [
+    "dos",
+    "holy-pangolin"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.1.0",
+  "version_date": "2024-03-04",
+  "requirements": "Not specified",
+  "size": 22941783,
+  "status": "Legacy",
+  "icon": "https://www.rinnegatamante.eu/vitadb/icons/5edf9882698d2be5bd4b6f505e58aa5783b9f1068898880cac8d6e3ab149bb70.png",
+  "screenshots": [
+    "https://www.rinnegatamante.eu/vitadb/screenshots/da0ae2f0755e437a824286de6da881668aafc1f56863da3b2f118d19de5753b1.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/9cbde0e279515245e6ad43633f79b67fa728e28629e2524953fb7635dd373ddc.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1450",
+      "recommended": true
+    },
+    {
+      "type": "Official Website",
+      "name": "VitaDB Release Page",
+      "url": "https://dos.itch.io/potatoes"
+    }
+  ],
+  "source_name": "VitaDB",
+  "source_id": "1450",
+  "source_url": "https://dos.itch.io/potatoes",
+  "release_page": "https://dos.itch.io/potatoes",
+  "updated_at": "2026-08-14T01:05:59.215233+00:00"
+}

@@ -1,0 +1,41 @@
+{
+  "id": "boiled-corn",
+  "title_id": "DOS1BCORN",
+  "name": "Boiled Corn",
+  "description": "Short game for PSVita.",
+  "long_description": "Short game made for the Nomad Game Jam for PSVita.",
+  "author_ids": [
+    "dos"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.1.0",
+  "version_date": "2022-11-16",
+  "requirements": "Not specified",
+  "size": 5222174,
+  "status": "Legacy",
+  "icon": "https://www.rinnegatamante.eu/vitadb/icons/7827babdb63354a77ce42b8637a1a22b95297434bd363a3630a73175e215450c.png",
+  "screenshots": [
+    "https://www.rinnegatamante.eu/vitadb/icons/7827babdb63354a77ce42b8637a1a22b95297434bd363a3630a73175e215450c.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1451",
+      "recommended": true
+    },
+    {
+      "type": "Official Website",
+      "name": "VitaDB Release Page",
+      "url": "https://dos.itch.io/boiledcorn"
+    }
+  ],
+  "source_name": "VitaDB",
+  "source_id": "1451",
+  "source_url": "https://dos.itch.io/boiledcorn",
+  "release_page": "https://dos.itch.io/boiledcorn",
+  "updated_at": "2026-08-14T01:05:59.219475+00:00"
+}

@@ -21,7 +21,8 @@
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/df4dab81ad4ebe2a63231bac61900e9901a01f18b42b5ba6228f70832ceff866.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/bec267169a191830e09308d3413f1bb12957d90d14a2f54576731dc0798b7683.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/63d3abcdc9a5caf63765d3f9114689a69f81c79669b27d2775d672da6c40c271.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/8a2755dc742e5837b5b59993ea1bbd625d7842b0b978a4e16f5481a818cb5f50.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/8a2755dc742e5837b5b59993ea1bbd625d7842b0b978a4e16f5481a818cb5f50.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/df4dab81ad4ebe2a63231bac61900e9901a01f18b42b5ba6228f70832ceff866.png"
   ],
   "links": [
     {
@@ -39,6 +40,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/Rinnegatamante/dariusburst-vita"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1415"
     }
   ],
   "source_name": "VitaDBtoo",

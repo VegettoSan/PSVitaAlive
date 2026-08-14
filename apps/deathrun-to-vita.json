@@ -18,7 +18,8 @@
   "status": "Legacy",
   "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1553-deathrun-to-vita.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/65b763a01249810c96c07a735c1aee649dccfbb0f02a2698feb308934e8883e7.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/65b763a01249810c96c07a735c1aee649dccfbb0f02a2698feb308934e8883e7.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/65b763a01249810c96c07a735c1aee649dccfbb0f02a2698feb308934e8883e7.png"
   ],
   "links": [
     {
@@ -41,6 +42,11 @@
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/253-DeathRun.vpk"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=253"
     }
   ],
   "source_name": "VitaDBtoo",

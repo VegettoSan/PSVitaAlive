@@ -11,14 +11,16 @@
   "subcategory_ids": [
     "other"
   ],
-  "version": "v.0.1",
-  "version_date": "2026-08-12",
+  "version": "v.0.2",
+  "version_date": "2023-02-28",
   "requirements": "Not specified",
-  "size": 25002965,
+  "size": 34083842,
   "status": "Legacy",
   "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1882-nextbot-for-psvita.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/dfef123230ac528ece0ce9d6a107f64ac09dce6c2b0f85b7ab8ed79d50deb178.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/dfef123230ac528ece0ce9d6a107f64ac09dce6c2b0f85b7ab8ed79d50deb178.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/ce4fe7c38bb8883d041e25b87b0ee89ea3f86e0ab015a7b2d8b2b3002ad4b5e7.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/dfef123230ac528ece0ce9d6a107f64ac09dce6c2b0f85b7ab8ed79d50deb178.png"
   ],
   "links": [
     {
@@ -41,6 +43,16 @@
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/1155-Nextbot4Vita.vpk"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1049"
+    },
+    {
+      "type": "Official Website",
+      "name": "VitaDB Release Page",
+      "url": "https://soykhaler.itch.io/2playerspong"
     }
   ],
   "source_name": "VitaDBtoo",

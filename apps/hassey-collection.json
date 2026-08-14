@@ -21,7 +21,8 @@
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/6ca5444179d927323635548a46a47ab4860fd801b1d48b3d237c0cc0ddf5a8a4.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/145324f7112b0f26014d7cab122541c78794bde66912f8776b3a27ddcc5240b1.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/904d5f4a06af4fdfc0a6375319f925513f1fe90a43a5a0a4e9f526cacc653a0c.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/32902e64c9ee6b6e643a27438ae46856f7f7ca8685f63ad8157b8373e74f1af0.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/32902e64c9ee6b6e643a27438ae46856f7f7ca8685f63ad8157b8373e74f1af0.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/6ca5444179d927323635548a46a47ab4860fd801b1d48b3d237c0cc0ddf5a8a4.png"
   ],
   "links": [
     {
@@ -44,6 +45,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/Rinnegatamante/hassey-collection"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1014"
     }
   ],
   "source_name": "VitaDBtoo",

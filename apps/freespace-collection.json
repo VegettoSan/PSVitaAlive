@@ -21,7 +21,8 @@
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c1d6ba119d22aa6e890060d3dffca6f9d5e212504ef524b3a2f0b8b7c37fe9fa.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/dc4411b878633c4f55d554d641a0ff00ebe44949b7f96346c2d23105defd4244.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/9ca654547fdfb5b0d4d09b67b9ae539ab0ccaf1dc2625a4ceeaa7bf7cd0fb058.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/099dd364675f8db7ca10143cb9a48801b993f3d15aa2c19fded0519a897d9944.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/099dd364675f8db7ca10143cb9a48801b993f3d15aa2c19fded0519a897d9944.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/c1d6ba119d22aa6e890060d3dffca6f9d5e212504ef524b3a2f0b8b7c37fe9fa.png"
   ],
   "links": [
     {
@@ -39,6 +40,11 @@
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/1110-freespace.vpk"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1110"
     }
   ],
   "source_name": "VitaDBtoo",

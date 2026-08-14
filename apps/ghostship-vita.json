@@ -21,7 +21,8 @@
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/6c9fa9fc2cfd84d72d798489d63a75d69fa06421e01f55b39c08dfccbeb37449.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/0e0d76be5b1aa4e4d5d9f1ec5f35bc91ee175431e9de2057c7b45473bc6da478.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/89eed216e206770ff4b00124a59e8a60fb699109e8ca1bd48a7015561b872848.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/38276c24d52a9fc0776594f4af6071d3348ab62d8a6336b0ebfa4668ee95af88.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/38276c24d52a9fc0776594f4af6071d3348ab62d8a6336b0ebfa4668ee95af88.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/6c9fa9fc2cfd84d72d798489d63a75d69fa06421e01f55b39c08dfccbeb37449.png"
   ],
   "links": [
     {
@@ -44,6 +45,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/Rinnegatamante/Ghostship"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1387"
     }
   ],
   "source_name": "VitaDBtoo",

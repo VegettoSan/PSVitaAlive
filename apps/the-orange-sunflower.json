@@ -18,7 +18,8 @@
   "status": "Legacy",
   "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1631-the-orange-sunflower.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/b2fa9279c905d6bc94472cc49ebf311c52cdb11834f2823ae919b6e3b3053fb4.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/b2fa9279c905d6bc94472cc49ebf311c52cdb11834f2823ae919b6e3b3053fb4.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/b2fa9279c905d6bc94472cc49ebf311c52cdb11834f2823ae919b6e3b3053fb4.png"
   ],
   "links": [
     {
@@ -36,6 +37,11 @@
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/455-OrangeSunflower.vpk"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=455"
     }
   ],
   "source_name": "VitaDBtoo",

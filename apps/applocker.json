@@ -19,7 +19,9 @@
   "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/fe3a52a5bc3a23e6860b56b7f293d6e8dc42bcc3e58b50ca4277215cbd3ea960.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/f796c65c1430a71efb780655d14c21f74bcdc99a78738ec4f5e705344277ae37.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/de596c454b9bcef149e70da9186e1c0867adc361ed3823cd2170734487b39fb0.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/de596c454b9bcef149e70da9186e1c0867adc361ed3823cd2170734487b39fb0.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/f796c65c1430a71efb780655d14c21f74bcdc99a78738ec4f5e705344277ae37.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/de596c454b9bcef149e70da9186e1c0867adc361ed3823cd2170734487b39fb0.png"
   ],
   "links": [
     {
@@ -42,6 +44,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/AntHJ/AppLocker"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=720"
     }
   ],
   "source_name": "VitaDBtoo",

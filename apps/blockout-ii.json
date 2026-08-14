@@ -18,7 +18,10 @@
   "status": "Legacy",
   "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/cfcd39dca798b5462938a9288699256991790f928f6f356510798963323ebc9c.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/cfcd39dca798b5462938a9288699256991790f928f6f356510798963323ebc9c.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/cfcd39dca798b5462938a9288699256991790f928f6f356510798963323ebc9c.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/blockout1.jpg",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/blockout2.jpg",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/blockout3.jpg"
   ],
   "links": [
     {
@@ -41,6 +44,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/bomblik/BlockOut_II_PSVITA"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=18"
     }
   ],
   "source_name": "VitaDBtoo",

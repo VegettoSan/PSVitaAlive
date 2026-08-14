@@ -18,7 +18,8 @@
   "status": "Legacy",
   "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/6f9a852ed2e15001bf96a8c8f142aeb59ecc51b56bcb233d96a3e9774fec2667.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/6f9a852ed2e15001bf96a8c8f142aeb59ecc51b56bcb233d96a3e9774fec2667.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/6f9a852ed2e15001bf96a8c8f142aeb59ecc51b56bcb233d96a3e9774fec2667.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/wolf3d.jpeg"
   ],
   "links": [
     {
@@ -41,6 +42,11 @@
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/31-vitaWolfen.zip"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=31"
     }
   ],
   "source_name": "VitaDBtoo",

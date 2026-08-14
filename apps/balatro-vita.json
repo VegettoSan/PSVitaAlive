@@ -22,7 +22,9 @@
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/dfe38e52878bf4444e80a8b25c48867a5b2b39fae57d06c1e74097ac27a0a819.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/68919b634a2c663f6f29638170e5208da41a92638171cf07372f35e3049cfe4b.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/07ee80fea02ae611bdd482792f82098d9e1967e4b4648a0b4ea0b9437c890d27.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/07ee80fea02ae611bdd482792f82098d9e1967e4b4648a0b4ea0b9437c890d27.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/dfe38e52878bf4444e80a8b25c48867a5b2b39fae57d06c1e74097ac27a0a819.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/68919b634a2c663f6f29638170e5208da41a92638171cf07372f35e3049cfe4b.png"
   ],
   "links": [
     {
@@ -40,6 +42,11 @@
       "type": "Official Website",
       "name": "NeoVitaDB Release Page",
       "url": "https://github.com/Daexxxx/Balatro-Vita/releases/tag/v0.13"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1259"
     }
   ],
   "source_name": "VitaDBtoo",

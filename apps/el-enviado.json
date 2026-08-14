@@ -18,7 +18,8 @@
   "status": "Legacy",
   "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1940-el-enviado.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/10e578a89b23a10b39e202906dd4a2172ca2b4fe45978b8ab82f535f12e3b932.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/10e578a89b23a10b39e202906dd4a2172ca2b4fe45978b8ab82f535f12e3b932.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/10e578a89b23a10b39e202906dd4a2172ca2b4fe45978b8ab82f535f12e3b932.png"
   ],
   "links": [
     {
@@ -41,6 +42,11 @@
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/1326-enviado.vpk"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1326"
     }
   ],
   "source_name": "VitaDBtoo",

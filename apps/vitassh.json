@@ -20,7 +20,9 @@
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/627f625839c2724ac389bf892b5b821b6f616fa47341129982b2bd0cda22ae8a.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/db6cd64a139d29359ce4e50ed87dd5bb3970c32e72570750cbc87cbc52c184fd.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/fd01ffa16dffdfca220ffc0e7158e96b6ae2d2ca1fc73b8e6bf0c2370f58c9c7.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/fd01ffa16dffdfca220ffc0e7158e96b6ae2d2ca1fc73b8e6bf0c2370f58c9c7.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/627f625839c2724ac389bf892b5b821b6f616fa47341129982b2bd0cda22ae8a.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/db6cd64a139d29359ce4e50ed87dd5bb3970c32e72570750cbc87cbc52c184fd.png"
   ],
   "links": [
     {
@@ -43,6 +45,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/rompelhd/VitaSSH"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1373"
     }
   ],
   "source_name": "VitaDBtoo",

@@ -21,7 +21,8 @@
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/68f433c519938ce63c7442fb90e3abad43e1a32350b2b4d52fd8a63c41cc713d.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c2b766a1de711a7d4fb99ba96f4c59195160ebe0795b08635e20714ef00808ac.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/e61005cd429b62c6fe1d2b38d55a57453cfb344b298923db6f8a07eccae0c429.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/04074d4b110a4dfa867bc0900d7b0c32a015d4be62793d7d5230473999e0905e.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/04074d4b110a4dfa867bc0900d7b0c32a015d4be62793d7d5230473999e0905e.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/68f433c519938ce63c7442fb90e3abad43e1a32350b2b4d52fd8a63c41cc713d.png"
   ],
   "links": [
     {
@@ -39,6 +40,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/c0nduitra1n/QuantimmumChess"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1391"
     }
   ],
   "source_name": "VitaDBtoo",

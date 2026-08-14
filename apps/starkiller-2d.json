@@ -18,7 +18,10 @@
   "status": "Legacy",
   "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1501-starkiller-2d.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1501-starkiller-2d.png"
+    "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1501-starkiller-2d.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/starkill1.jpg",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/starkill2.jpg",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/starkill3.jpg"
   ],
   "links": [
     {
@@ -36,6 +39,11 @@
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/101-StarKiller2D.vpk"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=101"
     }
   ],
   "source_name": "VitaDBtoo",

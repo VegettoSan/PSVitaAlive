@@ -11,7 +11,7 @@
   "subcategory_ids": [
     "other"
   ],
-  "version": "v.Main",
+  "version": "v.1.0",
   "version_date": "2021-08-13",
   "requirements": "Not specified",
   "size": 1333060,
@@ -41,6 +41,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/softwaregremlin/Jetman3D/"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=719"
     }
   ],
   "source_name": "VitaDBtoo",

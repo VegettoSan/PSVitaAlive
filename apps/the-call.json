@@ -19,7 +19,9 @@
   "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1624-the-call.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/b7d9da6ff290c61993a9384b64c14e66b4f981bc215c19745adf8351fd69538c.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/699fcf7bfe0bc86e05e645f1995bdfef26942317d07f1508280c68556a1649db.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/699fcf7bfe0bc86e05e645f1995bdfef26942317d07f1508280c68556a1649db.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/b7d9da6ff290c61993a9384b64c14e66b4f981bc215c19745adf8351fd69538c.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/699fcf7bfe0bc86e05e645f1995bdfef26942317d07f1508280c68556a1649db.png"
   ],
   "links": [
     {
@@ -37,6 +39,11 @@
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/446-The_20Call.vpk"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=446"
     }
   ],
   "source_name": "VitaDBtoo",
