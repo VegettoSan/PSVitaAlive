@@ -1,6 +1,6 @@
 # `scripts/` — Automatización y validación del catálogo
 
-Los scripts de esta carpeta convierten las fuentes de datos en la capa canónica de VitaHub y validan que el resultado pueda ser consumido por la web y el cliente.
+Los scripts de esta carpeta convierten las fuentes de datos en la capa canónica de PS Vita Alive Store y validan que el resultado pueda ser consumido por la web y el cliente.
 
 ## Flujo principal
 
