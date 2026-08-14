@@ -1,6 +1,6 @@
-# `apps/` — Aplicaciones canónicas de VitaHub
+# `apps/` — Aplicaciones canónicas de PS Vita Alive Store
 
-Esta carpeta contiene **un JSON por aplicación**. Es la fuente canónica de aplicaciones de VitaHub y es la entrada que consume el generador antes de producir `catalog.json`.
+Esta carpeta contiene **un JSON por aplicación**. Es la fuente canónica de aplicaciones de PS Vita Alive Store y es la entrada que consume el generador antes de producir `catalog.json`.
 
 ## Regla principal
 
@@ -22,12 +22,12 @@ catalog.json
 
 Cada aplicación debe tener:
 
-- `id`: identificador interno único de VitaHub. No necesita coincidir con un ID externo.
+- `id`: identificador interno único de PS Vita Alive Store. No necesita coincidir con un ID externo.
 - `title_id`: Title ID de PS Vita. Es obligatorio y debe ser único dentro del catálogo.
 - `name`: nombre visible.
 - `description`: descripción corta.
 - `author_ids`: lista de autores individuales.
-- `category_id`: categoría oficial de VitaHub.
+- `category_id`: categoría oficial de PS Vita Alive Store.
 - `subcategory_ids`: subcategorías permitidas por esa categoría.
 - `version` y `version_date`: versión publicada y fecha de versión.
 - `icon` y `screenshots`: recursos multimedia válidos.
@@ -78,7 +78,7 @@ Ejemplo mínimo:
 
 ## Recursos externos
 
-No conservar rutas relativas externas como `screenshots/foo.png` si el archivo no existe dentro de VitaHub. Deben convertirse a URLs absolutas públicas y validarse.
+No conservar rutas relativas externas como `screenshots/foo.png` si el archivo no existe dentro de PS Vita Alive Store. Deben convertirse a URLs absolutas públicas y validarse.
 
 ## Actualizaciones externas
 
