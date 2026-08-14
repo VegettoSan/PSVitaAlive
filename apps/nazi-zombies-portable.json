@@ -12,10 +12,10 @@
   "subcategory_ids": [
     "other"
   ],
-  "version": "nightly",
-  "version_date": "2026-08-10",
+  "version": "Nightly",
+  "version_date": "2026-08-14",
   "requirements": "- libshacccg.suprx",
-  "size": 111558333,
+  "size": 2436113,
   "status": "Legacy",
   "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1028-nazi-zombies-portable.png",
   "screenshots": [
@@ -36,7 +36,7 @@
       "type": "Download",
       "name": "NeoVitaDB VPK",
       "url": "https://github.com/nzp-team/nzportable/releases/download/nightly/nzportable-vita.zip",
-      "recommended": true
+      "recommended": false
     },
     {
       "type": "Official Website",
@@ -63,7 +63,7 @@
       "type": "Download",
       "name": "VitaDB VPK",
       "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1028",
-      "recommended": false
+      "recommended": true
     }
   ],
   "source_name": "VitaDBtoo",
