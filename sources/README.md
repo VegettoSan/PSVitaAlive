@@ -1,6 +1,6 @@
 # `sources/` — Fuentes externas y reglas de importación
 
-`external_sources.json` define las fuentes consultadas por GitHub Actions. Las fuentes externas sirven para descubrir, actualizar, enriquecer y preservar aplicaciones; no sustituyen el formato canónico de VitaHub.
+`external_sources.json` define las fuentes consultadas por GitHub Actions. Las fuentes externas sirven para descubrir, actualizar, enriquecer y preservar aplicaciones; no sustituyen el formato canónico de PS Vita Alive Store.
 
 ## Fuentes actuales
 
@@ -30,11 +30,11 @@ Para seleccionar una descarga recomendada, el pipeline actual compara primero ve
 
 ## Mapeo de categorías
 
-`category_map.json` traduce valores de las fuentes externas al vocabulario oficial de VitaHub. Una fuente externa no puede crear libremente nuevas categorías o subcategorías durante la importación.
+`category_map.json` traduce valores de las fuentes externas al vocabulario oficial de PS Vita Alive Store. Una fuente externa no puede crear libremente nuevas categorías o subcategorías durante la importación.
 
 ## Recursos multimedia
 
-Los catálogos externos pueden proporcionar rutas relativas como `icon.png` o `screenshot1.png`. VitaHub debe convertirlas a URLs públicas absolutas cuando la fuente realmente publique esos recursos.
+Los catálogos externos pueden proporcionar rutas relativas como `icon.png` o `screenshot1.png`. PS Vita Alive Store debe convertirlas a URLs públicas absolutas cuando la fuente realmente publique esos recursos.
 
 No inventar URLs ni conservar rutas relativas que solo tengan significado dentro del sitio externo.
 
@@ -53,6 +53,6 @@ No inventar URLs ni conservar rutas relativas que solo tengan significado dentro
 
 ## Regla fundamental
 
-La fuente externa es una entrada. La autoridad final es VitaHub: `title_id`, autores individuales, taxonomía oficial, datos locales, Overrides y reglas de merge.
+La fuente externa es una entrada. La autoridad final es PS Vita Alive Store: `title_id`, autores individuales, taxonomía oficial, datos locales, Overrides y reglas de merge.
 
 El cliente PS Vita y la web siguen consumiendo únicamente los catálogos generados.
