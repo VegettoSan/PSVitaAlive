@@ -1,4 +1,4 @@
-# Documentación de VitaHub
+# Documentación de PS Vita Alive Store
 
 Este directorio sirve como índice y memoria técnica del proyecto. La intención es que otra persona pueda entender por qué existe cada pieza antes de tocarla.
 
@@ -24,13 +24,13 @@ catalog.json + authors.json + categories.json
 
 ### Catálogos externos
 
-VitaDB, NeoVitaDB y VitaDBtoo se utilizan como fuentes de entrada. Sus formatos no son el formato canónico de VitaHub.
+VitaDB, NeoVitaDB y VitaDBtoo se utilizan como fuentes de entrada. Sus formatos no son el formato canónico de PS Vita Alive Store.
 
 Cada fuente debe adaptarse mediante un lector/normalizador específico cuando sea necesario.
 
 ### Title ID
 
-El `title_id` permite deduplicar aplicaciones entre fuentes y detectar actualizaciones. Los IDs internos de las fuentes externas no se deben utilizar automáticamente como `id` de VitaHub.
+El `title_id` permite deduplicar aplicaciones entre fuentes y detectar actualizaciones. Los IDs internos de las fuentes externas no se deben utilizar automáticamente como `id` de PS Vita Alive Store.
 
 ### Versiones
 
@@ -38,7 +38,7 @@ Cuando varias fuentes ofrecen la misma aplicación, la frescura de versión/fech
 
 ### Overrides
 
-Los datos manuales de VitaHub pueden complementar o sustituir campos incompletos de fuentes externas. No se deben perder por una importación posterior.
+Los datos manuales de PS Vita Alive Store pueden complementar o sustituir campos incompletos de fuentes externas. No se deben perder por una importación posterior.
 
 ### Autores
 
