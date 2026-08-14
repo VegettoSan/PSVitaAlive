@@ -11,7 +11,8 @@
  * - Displays links as cards, matching the visual style
  *   used by PS Vita / PSP / PS1 game links.
  * - Clearly labels the recommended link.
- * - Displays the download size for downloadable links.
+ * - Displays link-specific size when provided.
+ * - Falls back to the application size for downloadable links.
  */
 
 function getHomebrewLinkLabel(link) {
@@ -56,6 +57,39 @@ function isDownloadableHomebrewLink(link) {
         type === "download" ||
         type === "mirror"
     );
+}
+
+
+function getHomebrewLinkSize(link, app) {
+
+    const linkSize =
+        link && link.size !== undefined && link.size !== null
+            ? Number(link.size)
+            : NaN;
+
+    if (
+        Number.isFinite(linkSize) &&
+        linkSize > 0
+    ) {
+        return linkSize;
+    }
+
+    if (isDownloadableHomebrewLink(link)) {
+
+        const appSize =
+            app && app.size !== undefined && app.size !== null
+                ? Number(app.size)
+                : NaN;
+
+        if (
+            Number.isFinite(appSize) &&
+            appSize > 0
+        ) {
+            return appSize;
+        }
+    }
+
+    return null;
 }
 
 
@@ -281,27 +315,27 @@ function renderLinks(app) {
                 );
             }
 
-            if (
-                isDownloadableHomebrewLink(linkData) &&
-                typeof linkData.size === "number" &&
-                linkData.size > 0
-            ) {
+            const size =
+                getHomebrewLinkSize(
+                    linkData,
+                    app
+                );
 
-                const size =
+            if (size !== null) {
+
+                const sizeElement =
                     document.createElement(
                         "span"
                     );
 
-                size.className =
+                sizeElement.className =
                     "app-link-card-size";
 
-                size.textContent =
-                    `Size: ${formatFileSize(
-                        linkData.size
-                    )}`;
+                sizeElement.textContent =
+                    `Size: ${formatFileSize(size)}`;
 
                 link.appendChild(
-                    size
+                    sizeElement
                 );
             }
 
