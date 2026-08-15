@@ -105,6 +105,9 @@ private:
     void drawCatalogPanel(int x, int y, int width, int height, bool splitMode);
     void drawDetailPanel(int x, int y, int width, int height);
     void drawCatalogCard(const CatalogItem& item, int index, int x, int y, int width, int height, bool focused);
+    void drawScrollFades(int x, int y, int width, int height) const;
+    void drawActivePanelFrame(int x, int y, int width, int height, const char* label) const;
+    float focusPulse() const;
     void drawDetailContent(const CatalogItem& item, int x, int y, int width, int height);
     void drawDetailLinks(const CatalogItem& item, int x, int y, int width, int& heightOut);
     void drawLoadingOverlay();
