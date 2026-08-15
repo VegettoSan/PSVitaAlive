@@ -12,7 +12,7 @@
     "other"
   ],
   "version": "v.1.0.1",
-  "version_date": "2026-08-12",
+  "version_date": "2026-08-15",
   "requirements": "- fd_fix.skprx OR repatch_ex.skprx.\n- Game Data Files: PC",
   "size": 3121871,
   "status": "Legacy",

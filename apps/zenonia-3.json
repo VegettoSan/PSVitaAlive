@@ -13,23 +13,39 @@
     "adventure",
     "arcade"
   ],
-  "version": "01.30",
-  "version_date": "2026-07-23",
+  "version": "v.1.30",
+  "version_date": "2026-07-24",
   "requirements": "- (Recommended) Make sure that you are either on 3.60 enso or 3.65 enso firmware version. Other versions may work too, but no support are provided for them! - Install or update kubridge and FdFix by copying kubridge.skprx and fd_fix.skprx to your taiHEN plugins folder - Make sure you have libshacccg.suprx in the ur0:/data/ folder on your console. If you don't, use ShaRKBR33D to get it quickly and easily.",
-  "size": 1590000,
+  "size": 1663702,
   "status": "Verified",
   "links": [
     {
       "type": "Download",
       "name": "Official VPK",
       "url": "https://github.com/MetalSyntax/zenonia3-psvita-port/releases/download/v01.30/zenonia_3.vpk",
-      "recommended": true
+      "recommended": false
     },
     {
       "type": "Download",
       "name": "Game Data Files + VPK ZIP - Mediafire",
       "url": "https://www.mediafire.com/file/m5x3w216oblydu1/zenonia3+vpk+e+data%F0%9F%86%9A%EF%B8%8F.zip/file",
       "recommended": false
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1459",
+      "recommended": true
+    },
+    {
+      "type": "Official Website",
+      "name": "VitaDB Release Page",
+      "url": "https://github.com/MetalSyntax/zenonia3-psvita-port/releases"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/MetalSyntax/zenonia3-psvita-port"
     }
   ],
   "icon": "https://raw.githubusercontent.com/MetalSyntax/zenonia3-psvita-port/refs/heads/master/sce_sys/icon0.png",

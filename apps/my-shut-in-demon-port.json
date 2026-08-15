@@ -11,10 +11,10 @@
   "subcategory_ids": [
     "other"
   ],
-  "version": "2.0",
-  "version_date": "2026-08-09",
+  "version": "2.01",
+  "version_date": "2026-08-13",
   "requirements": "PC Files from the itch.io version of the game",
-  "size": 25876640,
+  "size": 25877410,
   "status": "Legacy",
   "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1990-renpy-myshutindemon.png",
   "screenshots": [
@@ -25,7 +25,7 @@
       "type": "Download",
       "name": "NeoVitaDB VPK",
       "url": "https://github.com/OmegaStator/msid-vita/releases/download/2.0/My.shut-in.demon.vpk",
-      "recommended": true
+      "recommended": false
     },
     {
       "type": "Official Website",
@@ -36,6 +36,17 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/OmegaStator/msid-vita"
+    },
+    {
+      "type": "Download",
+      "name": "NeoVitaDB VPK",
+      "url": "https://github.com/OmegaStator/msid-vita/releases/download/2.01/my.shut-in.demon.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Official Website",
+      "name": "NeoVitaDB Release Page",
+      "url": "https://github.com/OmegaStator/msid-vita/releases/tag/2.01"
     }
   ],
   "source_name": "NeoVitaDB",

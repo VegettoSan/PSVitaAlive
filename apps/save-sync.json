@@ -12,10 +12,10 @@
   "subcategory_ids": [
     "other"
   ],
-  "version": "v.0.1.4",
-  "version_date": "2026-06-27",
+  "version": "v0.1.5",
+  "version_date": "2026-08-14",
   "requirements": "Not specified",
-  "size": 7664469,
+  "size": 8120593,
   "status": "Legacy",
   "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/83c69b7a7af19414b9ef23122b3eef46cb87e27b72c95e3689f3708595ba7fd4.png",
   "screenshots": [
@@ -50,7 +50,18 @@
       "type": "Download",
       "name": "VitaDB VPK",
       "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1418",
+      "recommended": false
+    },
+    {
+      "type": "Download",
+      "name": "NeoVitaDB VPK",
+      "url": "https://github.com/unveroleone/save-sync/releases/download/v0.1.5/vita-save-cloud.vpk",
       "recommended": true
+    },
+    {
+      "type": "Official Website",
+      "name": "NeoVitaDB Release Page",
+      "url": "https://github.com/unveroleone/save-sync/releases/tag/v0.1.5"
     }
   ],
   "source_name": "VitaDBtoo",

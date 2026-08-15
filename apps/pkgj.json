@@ -1,0 +1,46 @@
+{
+  "id": "pkgj",
+  "title_id": "PKGJ00000",
+  "name": "PKGj",
+  "description": "",
+  "long_description": "NoPayStation Client for PSVita.",
+  "author_ids": [
+    "blastrock"
+  ],
+  "category_id": "utilities",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v0.57",
+  "version_date": "2023-07-31",
+  "requirements": "Not specified",
+  "size": 1479217,
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1991-pkgj.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1991-pkgj.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "NeoVitaDB VPK",
+      "url": "https://github.com/blastrock/pkgj/releases/download/v0.57/pkgj.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Official Website",
+      "name": "NeoVitaDB Release Page",
+      "url": "https://github.com/blastrock/pkgj/releases/tag/v0.57"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/blastrock/pkgj"
+    }
+  ],
+  "source_name": "NeoVitaDB",
+  "source_id": "1991",
+  "source_url": "https://github.com/blastrock/pkgj",
+  "release_page": "https://github.com/blastrock/pkgj/releases/tag/v0.57",
+  "updated_at": "2026-08-15T09:57:03.730733+00:00"
+}

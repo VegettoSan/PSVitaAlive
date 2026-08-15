@@ -1,0 +1,15 @@
+{
+  "id": "blastrock",
+  "name": "blastrock",
+  "avatar": "https://github.com/blastrock.png",
+  "bio": "",
+  "links": [
+    {
+      "type": "GitHub",
+      "name": "GitHub",
+      "url": "https://github.com/blastrock",
+      "recommended": true
+    }
+  ],
+  "icon": "https://github.com/blastrock.png"
+}

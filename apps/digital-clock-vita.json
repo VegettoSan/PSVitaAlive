@@ -11,10 +11,10 @@
   "subcategory_ids": [
     "other"
   ],
-  "version": "1.00",
-  "version_date": "2026-08-02",
+  "version": "1.01",
+  "version_date": "2026-08-12",
   "requirements": "Not specified",
-  "size": 203632,
+  "size": 208803,
   "status": "Legacy",
   "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1450-digitalclockvita.png",
   "screenshots": [
@@ -25,7 +25,7 @@
       "type": "Download",
       "name": "NeoVitaDB VPK",
       "url": "https://github.com/theheroGAC/Digital-Clock-Vita/releases/download/1.00/DigitalClockVita.vpk",
-      "recommended": true
+      "recommended": false
     },
     {
       "type": "Official Website",
@@ -36,6 +36,17 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/theheroGAC/Digital-Clock-Vita"
+    },
+    {
+      "type": "Download",
+      "name": "NeoVitaDB VPK",
+      "url": "https://github.com/theheroGAC/Digital-Clock-Vita/releases/download/1.01/DigitalClockVita.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Official Website",
+      "name": "NeoVitaDB Release Page",
+      "url": "https://github.com/theheroGAC/Digital-Clock-Vita/releases/tag/1.01"
     }
   ],
   "source_name": "NeoVitaDB",

@@ -1,0 +1,41 @@
+{
+  "id": "earn-to-die-vita",
+  "title_id": "E2DV00001",
+  "name": "Earn to Die Vita",
+  "description": "Port of Earn to Die for PSVita.",
+  "long_description": "Port of the Android game Earn to Die for PSVita.",
+  "author_ids": [
+    "no-storage7413"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.1.0",
+  "version_date": "2026-07-30",
+  "requirements": "- libshacccg.suprx\n- kubridge.skprx\n- Game Data Files: Android",
+  "size": 3125070,
+  "status": "Legacy",
+  "icon": "https://www.rinnegatamante.eu/vitadb/icons/37726d0cf3483c5a7b30a6a4a8e7e576d2600061d9504ea39fbca5d8296e262a.png",
+  "screenshots": [
+    "https://www.rinnegatamante.eu/vitadb/icons/37726d0cf3483c5a7b30a6a4a8e7e576d2600061d9504ea39fbca5d8296e262a.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1460",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://drive.google.com/file/d/1B93krry5gZwq_uVA-E6ZB1MsrOdWTAnT/view?usp=sharing"
+    }
+  ],
+  "source_name": "VitaDB",
+  "source_id": "1460",
+  "source_url": "https://drive.google.com/file/d/1B93krry5gZwq_uVA-E6ZB1MsrOdWTAnT/view?usp=sharing",
+  "release_page": "",
+  "updated_at": "2026-08-15T09:57:03.727397+00:00"
+}

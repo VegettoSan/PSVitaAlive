@@ -25,7 +25,7 @@
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/KiddRwxSsj/trifle-psychotic-vita/releases/download/1.0.0/TriflePsychotic.vpk",
-      "recommended": true
+      "recommended": false
     },
     {
       "type": "Official Website",
@@ -41,6 +41,12 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/KiddRwxSsj/trifle-psychotic-vita"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1461",
+      "recommended": true
     }
   ],
   "source_name": "VitaDBtoo",

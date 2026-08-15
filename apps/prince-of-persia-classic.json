@@ -29,6 +29,16 @@
       "name": "Official VPK",
       "url": "https://github.com/MetalSyntax/prince-of-persia-classic-psvita-port/releases/download/v01.20/popclassic-v01.20.vpk",
       "recommended": true
+    },
+    {
+      "type": "Official Website",
+      "name": "VitaDB Release Page",
+      "url": "https://github.com/MetalSyntax/prince-of-persia-classic-psvita-port/releases"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/MetalSyntax/prince-of-persia-classic-psvita-port"
     }
   ],
   "icon": "https://raw.githubusercontent.com/MetalSyntax/prince-of-persia-classic-psvita-port/refs/heads/master/extras/livearea/icon0.png",

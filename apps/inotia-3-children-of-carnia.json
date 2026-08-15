@@ -14,17 +14,33 @@
     "rpg",
     "strategy"
   ],
-  "version": "1.0.0",
-  "version_date": "2026-08-11",
+  "version": "v.1.0.0",
+  "version_date": "2026-08-12",
   "requirements": "- (Recommended) Make sure that you are either on 3.60 enso or 3.65 enso firmware version. Other versions may work too, but no support are provided for them! - Install or update kubridge and FdFix by copying kubridge.skprx and fd_fix.skprx to your taiHEN plugins folder - Make sure you have libshacccg.suprx in the ur0:/data/ folder on your console. If you don't, use ShaRKBR33D to get it quickly and easily.",
-  "size": 978000,
+  "size": 1001403,
   "status": "Verified",
   "links": [
     {
       "type": "Download",
       "name": "Official VPK",
       "url": "https://github.com/MetalSyntax/Inotia3-vita/releases/download/1.0.0/inotia3-release.vpk",
+      "recommended": false
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1462",
       "recommended": true
+    },
+    {
+      "type": "Official Website",
+      "name": "VitaDB Release Page",
+      "url": "https://github.com/MetalSyntax/Inotia3-vita/releases"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/MetalSyntax/Inotia3-vita"
     }
   ],
   "icon": "https://raw.githubusercontent.com/MetalSyntax/Inotia3-vita/refs/heads/master/extras/livearea/icon0.png",

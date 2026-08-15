@@ -16,17 +16,33 @@
     "rpg",
     "strategy"
   ],
-  "version": "1.2.0",
-  "version_date": "2026-07-23",
+  "version": "v.1.20",
+  "version_date": "2026-07-18",
   "requirements": "- (Recommended) Make sure that you are either on 3.60 enso or 3.65 enso firmware version. Other versions may work too, but no support are provided for them! - Install or update kubridge and FdFix by copying kubridge.skprx and fd_fix.skprx to your taiHEN plugins folder - Make sure you have libshacccg.suprx in the ur0:/data/ folder on your console. If you don't, use ShaRKBR33D to get it quickly and easily.",
-  "size": 828000,
+  "size": 848304,
   "status": "Verified",
   "links": [
     {
       "type": "Download",
       "name": "Official VPK",
       "url": "https://github.com/MetalSyntax/Zenonia2-psvita-port/releases/download/v1.20/zenonia_2.vpk",
+      "recommended": false
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1465",
       "recommended": true
+    },
+    {
+      "type": "Official Website",
+      "name": "VitaDB Release Page",
+      "url": "https://github.com/MetalSyntax/Zenonia2-psvita-port/releases"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/MetalSyntax/Zenonia2-psvita-port"
     }
   ],
   "icon": "https://raw.githubusercontent.com/MetalSyntax/Zenonia2-psvita-port/refs/heads/master/sce_sys/icon0.png",

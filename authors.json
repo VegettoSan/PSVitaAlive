@@ -705,6 +705,21 @@
     "icon": "https://github.com/BlackSheepBoy69.png"
   },
   {
+    "id": "blastrock",
+    "name": "blastrock",
+    "avatar": "https://github.com/blastrock.png",
+    "bio": "",
+    "links": [
+      {
+        "type": "GitHub",
+        "name": "GitHub",
+        "url": "https://github.com/blastrock",
+        "recommended": true
+      }
+    ],
+    "icon": "https://github.com/blastrock.png"
+  },
+  {
     "id": "bokoyoss",
     "name": "bokoyoss",
     "avatar": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png",
