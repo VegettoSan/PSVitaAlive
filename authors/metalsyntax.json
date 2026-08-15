@@ -1,0 +1,27 @@
+{
+  "id": "metalsyntax",
+  "name": "MetalSyntax",
+  "avatar": "https://avatars.githubusercontent.com/u/25257337?v=4",
+  "bio": "Industrial Engineer 🏭 | UX/UI Designer & Full-Stack Developer 💻.",
+  "links": [
+    {
+      "type": "Repository",
+      "name": "GitHub",
+      "url": "https://github.com/MetalSyntax",
+      "recommended": true
+    },
+    {
+      "type": "Community",
+      "name": "X",
+      "url": "https://twitter.com/metalsyntax",
+      "recommended": false
+    },
+    {
+      "type": "Community",
+      "name": "Linktr.ee",
+      "url": "https://linktr.ee/MetalSyntax",
+      "recommended": false
+    }
+  ],
+  "icon": "https://avatars.githubusercontent.com/u/25257337?v=4"
+}

@@ -1,0 +1,21 @@
+{
+  "id": "spliffcurrybeats",
+  "name": "SpliffCurryBeats",
+  "avatar": "https://gitlab.com/uploads/-/system/user/avatar/41207472/avatar.png",
+  "bio": "Dev Ps Vita",
+  "links": [
+    {
+      "type": "Repository",
+      "name": "GitLab",
+      "url": "https://gitlab.com/sexcurrybeats",
+      "recommended": true
+    },
+    {
+      "type": "Community",
+      "name": "X",
+      "url": "https://x.com/sexcurrybeats",
+      "recommended": false
+    }
+  ],
+  "icon": "https://gitlab.com/uploads/-/system/user/avatar/41207472/avatar.png"
+}
