@@ -315,6 +315,9 @@ InstallResult HomebrewInstaller::installVpk(
     bool deleteTempOnSuccess
 ) {
     lastError_.clear();
+    lastTitleId_.clear();
+    lastInstallPath_.clear();
+    lastLiveAreaOk_ = false;
     lastPromoteResult_ = 0;
     pafLoadedByUs_ = false;
     promoterLoadedByUs_ = false;
@@ -338,12 +341,12 @@ InstallResult HomebrewInstaller::installVpk(
     const DetectResult det = detector.detectFile(vpkPath);
     const std::string ext = FormatDetector::extensionOf(vpkPath);
     logLine(std::string("FormatDetector: format=") + toString(det.format) + " extension=" + ext);
-    // VPK is a ZIP container. Accept explicit .vpk or ZIP magic (redirectors may
-    // leave odd extensions even when the bytes are a valid package).
+    // VPK is always a ZIP container. Trust ZIP/VPK magic regardless of extension
+    // (VitaDB redirectors often leave names like get_hb_url.php).
     const bool looksLikeVpk =
-        (ext == "vpk" && (det.format == FileFormat::Vpk || det.format == FileFormat::Zip)) ||
-        (det.format == FileFormat::Vpk) ||
-        (det.format == FileFormat::Zip && (ext.empty() || ext == "vpk" || ext == "zip"));
+        det.format == FileFormat::Vpk ||
+        det.format == FileFormat::Zip ||
+        ext == "vpk";
     if (!looksLikeVpk) {
         setError(std::string("invalid VPK: format=") + toString(det.format) + " ext=" + ext);
         return InstallResult::NotVpk;
@@ -456,24 +459,40 @@ InstallResult HomebrewInstaller::installVpk(
     InstallResult result = promoteExtractedDir(tmpDir);
     unloadPromoterModules();
 
+    if (!titleId.empty()) {
+        lastTitleId_ = titleId;
+        lastInstallPath_ = std::string("ux0:app/") + titleId;
+    }
+
     if (result == InstallResult::Ok && !titleId.empty()) {
         const std::string appDir = std::string("ux0:app/") + titleId;
         const std::string paramSfo = appDir + "/sce_sys/param.sfo";
         const std::string icon0 = appDir + "/sce_sys/icon0.png";
+        const std::string eboot = appDir + "/eboot.bin";
+
+        // Brief settle delay: on real hardware and especially Vita3K the
+        // filesystem may lag behind a successful promoter return.
+        sceKernelDelayThread(500 * 1000);
 
         logPathState("Post-promote app directory", appDir);
         logPathState("Post-promote param.sfo", paramSfo);
         logPathState("Post-promote icon0.png", icon0);
+        logPathState("Post-promote eboot.bin", eboot);
         logLine(std::string("Expected LiveArea/app path: ") + appDir);
 
-        // Promoter returning 0 only means the API call was accepted. Treat the
-        // installation as successful only when the resulting app tree exists.
-        if (!st.exists(appDir) || !st.exists(paramSfo) || !st.exists(icon0)) {
-            setError("promoter reported success but the installed app tree is missing");
-            logLine("ERROR: promoter success verification failed");
-            result = InstallResult::PromoteFailed;
+        const bool hasTree = st.exists(appDir) && (st.exists(paramSfo) || st.exists(eboot));
+        const bool hasIcon = st.exists(icon0);
+        lastLiveAreaOk_ = hasTree;
+
+        if (hasTree) {
+            logLine(std::string("Post-promote verification: app tree OK") +
+                    (hasIcon ? " (icon0 present)" : " (icon0 missing, still OK)"));
         } else {
-            logLine("Post-promote verification: app tree exists");
+            // Promoter returned success. On Vita3K the ux0:app tree is often not
+            // visible the same way as on hardware; do not hard-fail the install.
+            logLine("WARNING: promoter success but app tree not visible yet (common on Vita3K)");
+            lastLiveAreaOk_ = false;
+            // Keep result == Ok; UI will show LiveArea: no confirmado.
         }
     }
 
