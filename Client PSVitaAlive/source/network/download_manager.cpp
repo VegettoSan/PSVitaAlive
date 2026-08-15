@@ -8,11 +8,48 @@
 #include <psp2/io/stat.h>
 
 #include <algorithm>
+#include <cctype>
 #include <cstdio>
 #include <cstring>
 #include <utility>
 
 namespace psvitaalive {
+
+namespace {
+std::string sanitizePayloadFileName(const std::string& name, const std::string& url) {
+    std::string n = name;
+    auto lower = [](std::string s) {
+        for (char& c : s) c = static_cast<char>(std::tolower(static_cast<unsigned char>(c)));
+        return s;
+    };
+    const std::string low = lower(n);
+    const bool bad =
+        n.empty() ||
+        low.find("get_hb_url") != std::string::npos ||
+        (low.size() >= 4 && (
+            low.rfind(".php") == low.size() - 4 ||
+            low.rfind(".html") == low.size() - 5 ||
+            low.rfind(".htm") == low.size() - 4 ||
+            low.rfind(".asp") == low.size() - 4));
+    if (!bad) return n;
+    // Derive a stable .vpk name from URL query id= or fall back to download.vpk
+    std::string base = "download";
+    const std::size_t q = url.find("id=");
+    if (q != std::string::npos) {
+        std::string id;
+        for (std::size_t i = q + 3; i < url.size(); ++i) {
+            const char c = url[i];
+            if (c == '&' || c == '#') break;
+            if ((c >= '0' && c <= '9') || (c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z') || c == '_' || c == '-')
+                id.push_back(c);
+            else break;
+        }
+        if (!id.empty()) base = "vitadb_" + id;
+    }
+    return base + ".vpk";
+}
+} // namespace
+
 
 namespace { uint32_t g_jobCounter = 1; }
 
@@ -123,7 +160,9 @@ std::string DownloadManager::enqueue(const std::string& url, const std::string& 
     DownloadJob job;
     job.id = makeJobId();
     job.url = url;
-    job.fileName = finalFileName.empty() ? "download" : finalFileName;
+    job.fileName = sanitizePayloadFileName(
+        finalFileName.empty() ? "download" : finalFileName,
+        url);
     job.state = DownloadState::Queued;
     if (!ensureJobDirs(job)) return {};
     saveMetadata(job);
