@@ -10,6 +10,7 @@
 #include <functional>
 #include <string>
 #include <unordered_map>
+#include <unordered_set>
 #include <vector>
 
 namespace psvitaalive {
@@ -116,6 +117,8 @@ private:
     void drawImage(const std::string& url, const std::string& namespaceName, int x, int y, int width, int height);
     void releaseTextures();
     void releaseScreenshotTextures();
+    /** Free GPU textures whose disk path is not in keep (visible set). */
+    void releaseTexturesNotIn(const std::unordered_set<std::string>& keep);
     void touchTexture(const std::string& path);
     void evictTextureIfNeeded(const std::string& namespaceName);
 
