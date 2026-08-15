@@ -49,6 +49,12 @@ class MergeVersionDateTests(unittest.TestCase):
         merged = merge_group([local, external])
         self.assertEqual(merged.version_date, "2016-07-30")
 
+    def test_missing_all_dates_is_rejected(self):
+        local = candidate("local", "v.1.1", None)
+        external = candidate("vitadbtoo", "v.1.1", None)
+        with self.assertRaisesRegex(ValueError, "Missing version_date"):
+            merge_group([local, external])
+
 
 if __name__ == "__main__":
     unittest.main()
