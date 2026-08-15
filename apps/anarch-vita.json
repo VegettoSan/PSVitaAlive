@@ -18,23 +18,24 @@
   "status": "Legacy",
   "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1856-anarch-vita.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/2b4d525315d2aef0009cfd3b8e73dd9c6d367392805755d399416a077826d240.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/4d682660788e8a7595c376828f4da167c189a5eb3f017fb4355655557dca09b5.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/b94f30f98ecdf5948ee40a63e02e5c396230f44c81b08f5091ba91e24edceddc.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/d19885256e55aa7d9e8829dcf0dcae2328308e3bbb3564569d4d70115eca0982.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/2b4d525315d2aef0009cfd3b8e73dd9c6d367392805755d399416a077826d240.png"
+    "https://www.rinnegatamante.eu/vitadb/screenshots/2b4d525315d2aef0009cfd3b8e73dd9c6d367392805755d399416a077826d240.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/4d682660788e8a7595c376828f4da167c189a5eb3f017fb4355655557dca09b5.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/b94f30f98ecdf5948ee40a63e02e5c396230f44c81b08f5091ba91e24edceddc.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/d19885256e55aa7d9e8829dcf0dcae2328308e3bbb3564569d4d70115eca0982.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/2b4d525315d2aef0009cfd3b8e73dd9c6d367392805755d399416a077826d240.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "VitaDBtoo VPK",
+      "name": "NeoVitaDB VPK",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1125-anarch.vpk",
       "recommended": true
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://gitlab.com/sugardrenaline/anarch/"
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1125",
+      "recommended": false
     },
     {
       "type": "Download",
@@ -43,15 +44,14 @@
       "recommended": false
     },
     {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1125",
-      "recommended": false
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://gitlab.com/sugardrenaline/anarch/"
     }
   ],
-  "source_name": "VitaDBtoo",
-  "source_id": "1125",
-  "source_url": "https://gitlab.com/sugardrenaline/anarch/",
+  "source_name": "NeoVitaDB",
+  "source_id": "1856",
+  "source_url": "https://github.com",
   "release_page": "",
-  "updated_at": "2026-08-13T15:34:48.476745+00:00"
+  "updated_at": "2026-08-15T18:26:19.538255+00:00"
 }

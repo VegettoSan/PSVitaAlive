@@ -18,11 +18,11 @@
   "status": "Legacy",
   "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/0369-enigma.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/89a04cdf6759a2c258f60e0d55b09184d44d6ca3f4eee7d626c9f0d9f7beb786.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/223070d1b3fe4ed7d0e1240a0c412da5aa30c1f8f8d2fe4e12d370b1504540e3.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/298347c5576487d7968bd82fb3aab6d2dfe68f5657aa66a6fded97bed6f6f4c3.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/8f2dd775dc298553fd7da1d781a5a6ea97bd30a4afd50759cf8df0fd329e1152.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/89a04cdf6759a2c258f60e0d55b09184d44d6ca3f4eee7d626c9f0d9f7beb786.png"
+    "https://www.rinnegatamante.eu/vitadb/screenshots/89a04cdf6759a2c258f60e0d55b09184d44d6ca3f4eee7d626c9f0d9f7beb786.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/223070d1b3fe4ed7d0e1240a0c412da5aa30c1f8f8d2fe4e12d370b1504540e3.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/298347c5576487d7968bd82fb3aab6d2dfe68f5657aa66a6fded97bed6f6f4c3.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/8f2dd775dc298553fd7da1d781a5a6ea97bd30a4afd50759cf8df0fd329e1152.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/89a04cdf6759a2c258f60e0d55b09184d44d6ca3f4eee7d626c9f0d9f7beb786.png"
   ],
   "links": [
     {
@@ -46,5 +46,5 @@
   "source_id": "369",
   "source_url": "https://github.com/rsn8887/Enigma",
   "release_page": "https://github.com/rsn8887/Enigma/releases/tag/1.16",
-  "updated_at": "2026-08-13T15:34:48.661726+00:00"
+  "updated_at": "2026-08-15T18:26:20.377975+00:00"
 }

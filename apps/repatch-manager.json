@@ -16,24 +16,30 @@
   "requirements": "Not specified",
   "size": 3969733,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/cf55828cf6c7ee72918fec5623ee9c5c22e799ef287000582962b8e6e4b4279e.png",
+  "icon": "https://www.rinnegatamante.eu/vitadb/icons/cf55828cf6c7ee72918fec5623ee9c5c22e799ef287000582962b8e6e4b4279e.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/63a61be76c76e2c9cbcfb52093a1df5b2fda9551556ba67e85766404e23fdf03.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/fccfc19117dadcd5a5b2894957fb8092e6819bdadb79457190269700d25a4380.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/2c86b0609a03b59d409b827723ef29cdd62a5909f838fac727f018c165bdca76.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/9330c0b97e599db205c8b4a0a7b7879640126c84fb2f47fcf9bada7f4442c7f4.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/63a61be76c76e2c9cbcfb52093a1df5b2fda9551556ba67e85766404e23fdf03.png"
+    "https://www.rinnegatamante.eu/vitadb/screenshots/63a61be76c76e2c9cbcfb52093a1df5b2fda9551556ba67e85766404e23fdf03.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/fccfc19117dadcd5a5b2894957fb8092e6819bdadb79457190269700d25a4380.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/2c86b0609a03b59d409b827723ef29cdd62a5909f838fac727f018c165bdca76.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/9330c0b97e599db205c8b4a0a7b7879640126c84fb2f47fcf9bada7f4442c7f4.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/63a61be76c76e2c9cbcfb52093a1df5b2fda9551556ba67e85766404e23fdf03.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "VitaDBtoo VPK",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=795",
+      "recommended": true
+    },
+    {
+      "type": "Download",
+      "name": "NeoVitaDB VPK",
       "url": "https://github.com/Eyeman420/rePatch-Manager/releases/download/v1.10/rePatch.Manager.vpk",
       "recommended": false
     },
     {
       "type": "Official Website",
-      "name": "VitaDBtoo Release Page",
+      "name": "VitaDB Release Page",
       "url": "https://github.com/Eyeman420/rePatch-Manager/releases"
     },
     {
@@ -45,17 +51,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/Eyeman420/rePatch-Manager"
-    },
-    {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=795",
-      "recommended": true
     }
   ],
-  "source_name": "VitaDBtoo",
+  "source_name": "VitaDB",
   "source_id": "795",
   "source_url": "https://github.com/Eyeman420/rePatch-Manager",
   "release_page": "https://github.com/Eyeman420/rePatch-Manager/releases",
-  "updated_at": "2026-08-13T15:34:48.546456+00:00"
+  "updated_at": "2026-08-15T18:26:19.871911+00:00"
 }

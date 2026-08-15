@@ -16,11 +16,17 @@
   "requirements": "Not specified",
   "size": 3167033,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/10d6ad3cb6129fedf1ea2264896595dce73b12c73e00f23f2abd2ad9a258fa40.png",
+  "icon": "https://www.rinnegatamante.eu/vitadb/icons/10d6ad3cb6129fedf1ea2264896595dce73b12c73e00f23f2abd2ad9a258fa40.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/10d6ad3cb6129fedf1ea2264896595dce73b12c73e00f23f2abd2ad9a258fa40.png"
+    "https://www.rinnegatamante.eu/vitadb/icons/10d6ad3cb6129fedf1ea2264896595dce73b12c73e00f23f2abd2ad9a258fa40.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=827",
+      "recommended": true
+    },
     {
       "type": "Download",
       "name": "VitaDBtoo VPK",
@@ -29,24 +35,18 @@
     },
     {
       "type": "Official Website",
-      "name": "VitaDBtoo Release Page",
+      "name": "VitaDB Release Page",
       "url": "https://github.com/elpapadelospollitos/Omega-strike-vita"
     },
     {
       "type": "Official Website",
       "name": "NeoVitaDB Release Page",
       "url": "https://github.com/elpapadelospollitos/Omega-strike-vita/releases/tag/v1.0"
-    },
-    {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=827",
-      "recommended": true
     }
   ],
-  "source_name": "VitaDBtoo",
+  "source_name": "VitaDB",
   "source_id": "827",
   "source_url": "https://github.com/elpapadelospollitos/Omega-strike-vita",
   "release_page": "https://github.com/elpapadelospollitos/Omega-strike-vita",
-  "updated_at": "2026-08-13T15:34:48.545597+00:00"
+  "updated_at": "2026-08-15T18:26:19.869224+00:00"
 }

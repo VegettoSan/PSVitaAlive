@@ -23,14 +23,15 @@
   "links": [
     {
       "type": "Download",
-      "name": "VitaDBtoo VPK",
+      "name": "NeoVitaDB VPK",
       "url": "https://github.com/Hydr8gon/NooDS/releases/download/release/noods-vita.zip",
       "recommended": true
     },
     {
-      "type": "Official Website",
-      "name": "VitaDBtoo Release Page",
-      "url": "https://github.com/Hydr8gon/NooDS/releases"
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1093",
+      "recommended": false
     },
     {
       "type": "Official Website",
@@ -38,20 +39,19 @@
       "url": "https://github.com/Hydr8gon/NooDS/releases/tag/release"
     },
     {
+      "type": "Official Website",
+      "name": "VitaDB Release Page",
+      "url": "https://github.com/Hydr8gon/NooDS/releases"
+    },
+    {
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/Hydr8gon/NooDS"
-    },
-    {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1093",
-      "recommended": false
     }
   ],
-  "source_name": "VitaDBtoo",
+  "source_name": "NeoVitaDB",
   "source_id": "1093",
   "source_url": "https://github.com/Hydr8gon/NooDS",
-  "release_page": "https://github.com/Hydr8gon/NooDS/releases",
-  "updated_at": "2026-08-13T15:34:48.490564+00:00"
+  "release_page": "https://github.com/Hydr8gon/NooDS/releases/tag/release",
+  "updated_at": "2026-08-15T18:26:19.617234+00:00"
 }

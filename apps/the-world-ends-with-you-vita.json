@@ -16,20 +16,20 @@
   "requirements": "- Game Data Files: NDS/Android",
   "size": 36773104,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/5f3686ff46eff7c016081fc9dc657e8af155170f008c09be49b35460bf493fad.png",
+  "icon": "https://www.rinnegatamante.eu/vitadb/icons/5f3686ff46eff7c016081fc9dc657e8af155170f008c09be49b35460bf493fad.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/b66e3591f66e68ab0089cd74fd70de9adcebbe787a86dbad96f843322d611c21.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/18aed8cb6db1232696c549fec0f5f963f80676e29222e905a261c686933de674.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/4713cd50a760dfc4b7b639cfe78fbf4e956120febdf51f040a510ad352c02938.png",
     "https://www.rinnegatamante.eu/vitadb/screenshots/b66e3591f66e68ab0089cd74fd70de9adcebbe787a86dbad96f843322d611c21.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/18aed8cb6db1232696c549fec0f5f963f80676e29222e905a261c686933de674.png"
+    "https://www.rinnegatamante.eu/vitadb/screenshots/18aed8cb6db1232696c549fec0f5f963f80676e29222e905a261c686933de674.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/4713cd50a760dfc4b7b639cfe78fbf4e956120febdf51f040a510ad352c02938.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/b66e3591f66e68ab0089cd74fd70de9adcebbe787a86dbad96f843322d611c21.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/18aed8cb6db1232696c549fec0f5f963f80676e29222e905a261c686933de674.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "VitaDBtoo VPK",
-      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1112-TWEWY.vpk",
-      "recommended": false
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1112",
+      "recommended": true
     },
     {
       "type": "Download",
@@ -38,8 +38,14 @@
       "recommended": false
     },
     {
+      "type": "Download",
+      "name": "VitaDBtoo VPK",
+      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/1112-TWEWY.vpk",
+      "recommended": false
+    },
+    {
       "type": "Official Website",
-      "name": "VitaDBtoo Release Page",
+      "name": "VitaDB Release Page",
       "url": "https://fuhen.homebrew-contest.com/submissions/28/"
     },
     {
@@ -51,23 +57,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/hatoving/twewy-old-vita"
-    },
-    {
-      "type": "Download",
-      "name": "VitaDBtoo VPK",
-      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/1112-TWEWY.vpk",
-      "recommended": false
-    },
-    {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1112",
-      "recommended": true
     }
   ],
-  "source_name": "VitaDBtoo",
+  "source_name": "VitaDB",
   "source_id": "1112",
   "source_url": "https://fuhen.homebrew-contest.com/submissions/28/",
   "release_page": "https://fuhen.homebrew-contest.com/submissions/28/",
-  "updated_at": "2026-08-13T15:34:48.481958+00:00"
+  "updated_at": "2026-08-15T18:26:19.572682+00:00"
 }

@@ -17,16 +17,16 @@
   "requirements": "Not specified",
   "size": 250120,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/9e2fa1f38568c41f2c015ef509da37b35cfa809d4234500300823c220524a6cf.png",
+  "icon": "https://www.rinnegatamante.eu/vitadb/icons/9e2fa1f38568c41f2c015ef509da37b35cfa809d4234500300823c220524a6cf.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/9e2fa1f38568c41f2c015ef509da37b35cfa809d4234500300823c220524a6cf.png"
+    "https://www.rinnegatamante.eu/vitadb/icons/9e2fa1f38568c41f2c015ef509da37b35cfa809d4234500300823c220524a6cf.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "VitaDBtoo VPK",
-      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/294-switch_sd2vita.vpk",
-      "recommended": false
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=294",
+      "recommended": true
     },
     {
       "type": "Download",
@@ -35,8 +35,14 @@
       "recommended": false
     },
     {
+      "type": "Download",
+      "name": "VitaDBtoo VPK",
+      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/294-switch_sd2vita.vpk",
+      "recommended": false
+    },
+    {
       "type": "Official Website",
-      "name": "VitaDBtoo Release Page",
+      "name": "VitaDB Release Page",
       "url": "http://wololo.net/talk/viewtopic.php?p=419388"
     },
     {
@@ -48,23 +54,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/Applelo/SwitchSD2Vita"
-    },
-    {
-      "type": "Download",
-      "name": "VitaDBtoo VPK",
-      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/294-switch_sd2vita.vpk",
-      "recommended": false
-    },
-    {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=294",
-      "recommended": true
     }
   ],
-  "source_name": "VitaDBtoo",
+  "source_name": "VitaDB",
   "source_id": "294",
   "source_url": "https://github.com/Applelo/SwitchSD2Vita",
   "release_page": "http://wololo.net/talk/viewtopic.php?p=419388",
-  "updated_at": "2026-08-13T15:34:48.661488+00:00"
+  "updated_at": "2026-08-15T18:26:20.377482+00:00"
 }

@@ -16,21 +16,27 @@
   "requirements": "Not specified",
   "size": 6826055,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/859f7b23d9e05b3226de4a9d92c0caced0b1d4e7276eefaf47d98dd52b940a0e.png",
+  "icon": "https://www.rinnegatamante.eu/vitadb/icons/859f7b23d9e05b3226de4a9d92c0caced0b1d4e7276eefaf47d98dd52b940a0e.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/859f7b23d9e05b3226de4a9d92c0caced0b1d4e7276eefaf47d98dd52b940a0e.png"
+    "https://www.rinnegatamante.eu/vitadb/icons/859f7b23d9e05b3226de4a9d92c0caced0b1d4e7276eefaf47d98dd52b940a0e.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "VitaDBtoo VPK",
-      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/191-picoloop.vpk",
-      "recommended": false
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=191",
+      "recommended": true
     },
     {
       "type": "Download",
       "name": "NeoVitaDB VPK",
       "url": "https://github.com/yoyz/picoloop/releases/download/picoloop-0.77a/picoloop-20170417-0.77a-psvita.zip",
+      "recommended": false
+    },
+    {
+      "type": "Download",
+      "name": "VitaDBtoo VPK",
+      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/191-picoloop.vpk",
       "recommended": false
     },
     {
@@ -42,23 +48,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/yoyz/picoloop"
-    },
-    {
-      "type": "Download",
-      "name": "VitaDBtoo VPK",
-      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/191-picoloop.vpk",
-      "recommended": false
-    },
-    {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=191",
-      "recommended": true
     }
   ],
-  "source_name": "VitaDBtoo",
+  "source_name": "VitaDB",
   "source_id": "191",
   "source_url": "https://github.com/yoyz/picoloop",
   "release_page": "",
-  "updated_at": "2026-08-13T15:34:48.683525+00:00"
+  "updated_at": "2026-08-15T18:26:20.485151+00:00"
 }

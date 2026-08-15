@@ -16,21 +16,27 @@
   "requirements": "Not specified",
   "size": 2264647,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/bf0df94647d0ced602712612596d0062d863836ff6226ea66e28c4063066aa1e.png",
+  "icon": "https://www.rinnegatamante.eu/vitadb/icons/bf0df94647d0ced602712612596d0062d863836ff6226ea66e28c4063066aa1e.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/a36cc71cb0696a14c0a82734f747fe3d93a8ae9f5dd0cb778b21eb83c7a263ca.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/a36cc71cb0696a14c0a82734f747fe3d93a8ae9f5dd0cb778b21eb83c7a263ca.png"
+    "https://www.rinnegatamante.eu/vitadb/screenshots/a36cc71cb0696a14c0a82734f747fe3d93a8ae9f5dd0cb778b21eb83c7a263ca.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/a36cc71cb0696a14c0a82734f747fe3d93a8ae9f5dd0cb778b21eb83c7a263ca.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "VitaDBtoo VPK",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=398",
+      "recommended": true
+    },
+    {
+      "type": "Download",
+      "name": "NeoVitaDB VPK",
       "url": "https://github.com/Kirezar/EasySwitchVita/releases/download/1.0/EasySwitchVita.vpk",
       "recommended": false
     },
     {
       "type": "Official Website",
-      "name": "VitaDBtoo Release Page",
+      "name": "VitaDB Release Page",
       "url": "https://github.com/Kirezar/EasySwitchVita/releases"
     },
     {
@@ -42,17 +48,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/Kirezar/EasySwitchVita"
-    },
-    {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=398",
-      "recommended": true
     }
   ],
-  "source_name": "VitaDBtoo",
+  "source_name": "VitaDB",
   "source_id": "398",
   "source_url": "https://github.com/Kirezar/EasySwitchVita",
   "release_page": "https://github.com/Kirezar/EasySwitchVita/releases",
-  "updated_at": "2026-08-13T15:34:48.662105+00:00"
+  "updated_at": "2026-08-15T18:26:20.379522+00:00"
 }

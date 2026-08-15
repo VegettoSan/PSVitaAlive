@@ -10,27 +10,27 @@
   ],
   "category_id": "ports",
   "subcategory_ids": [
-    "platformer"
+    "other"
   ],
   "version": "v.1.1.6",
   "version_date": "2024-11-01",
   "requirements": "Not specified",
   "size": 23590662,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/0d3ffae5f13a2ca349bf52100a69921dcd7d29e65c0fe44e53715075f2ee6090.png",
+  "icon": "https://www.rinnegatamante.eu/vitadb/icons/0d3ffae5f13a2ca349bf52100a69921dcd7d29e65c0fe44e53715075f2ee6090.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/af2ffdce5d9276ebcb159df3e849a7864b5e5c6b78a969d41ef200767685eee4.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/7d08d84d4f502f5c2668d8dc9fc523cd2d78ed7d909c13114028281274caab5b.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c97d33ffadec32cf71758411f910fb9411f377fe7edb8bc96a01a00d494ff6d5.png",
     "https://www.rinnegatamante.eu/vitadb/screenshots/af2ffdce5d9276ebcb159df3e849a7864b5e5c6b78a969d41ef200767685eee4.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/7d08d84d4f502f5c2668d8dc9fc523cd2d78ed7d909c13114028281274caab5b.png"
+    "https://www.rinnegatamante.eu/vitadb/screenshots/7d08d84d4f502f5c2668d8dc9fc523cd2d78ed7d909c13114028281274caab5b.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/c97d33ffadec32cf71758411f910fb9411f377fe7edb8bc96a01a00d494ff6d5.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/af2ffdce5d9276ebcb159df3e849a7864b5e5c6b78a969d41ef200767685eee4.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/7d08d84d4f502f5c2668d8dc9fc523cd2d78ed7d909c13114028281274caab5b.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "VitaDBtoo VPK",
-      "url": "https://github.com/thatoneham/Tiny-Crate-Vita/releases/download/Main/Tiny.Crate.vpk",
-      "recommended": false
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1235",
+      "recommended": true
     },
     {
       "type": "Official Website",
@@ -41,17 +41,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/thatoneham/Tiny-Crate-Vita"
-    },
-    {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1235",
-      "recommended": true
     }
   ],
-  "source_name": "VitaDBtoo",
+  "source_name": "VitaDB",
   "source_id": "1235",
   "source_url": "https://github.com/thatoneham/Tiny-Crate-Vita",
   "release_page": "",
-  "updated_at": "2026-08-13T15:34:48.428810+00:00"
+  "updated_at": "2026-08-15T18:26:19.350087+00:00"
 }

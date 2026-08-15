@@ -16,15 +16,21 @@
   "requirements": "- Game Data Files: PC",
   "size": 15037090,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/74b634760cf29c428489ff3ef0bbbb80bce50ee9ee7542d8649c2a155d261ab0.png",
+  "icon": "https://www.rinnegatamante.eu/vitadb/icons/74b634760cf29c428489ff3ef0bbbb80bce50ee9ee7542d8649c2a155d261ab0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/9a0539fc31e81f5c6b3b62205148ebeb563d2b3eaf0a5f9ad316029d40392f1a.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/98e644fff1e9fd844cfa1a0d11cd67706721ff8a5dcf099fd5b70d80843d120d.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/7c59e3c31a736e28e8305c8031b4ed8b8a1b0e3985d1554cf2e7634519dc0d8b.png",
     "https://www.rinnegatamante.eu/vitadb/screenshots/9a0539fc31e81f5c6b3b62205148ebeb563d2b3eaf0a5f9ad316029d40392f1a.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/98e644fff1e9fd844cfa1a0d11cd67706721ff8a5dcf099fd5b70d80843d120d.png"
+    "https://www.rinnegatamante.eu/vitadb/screenshots/98e644fff1e9fd844cfa1a0d11cd67706721ff8a5dcf099fd5b70d80843d120d.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/7c59e3c31a736e28e8305c8031b4ed8b8a1b0e3985d1554cf2e7634519dc0d8b.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/9a0539fc31e81f5c6b3b62205148ebeb563d2b3eaf0a5f9ad316029d40392f1a.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/98e644fff1e9fd844cfa1a0d11cd67706721ff8a5dcf099fd5b70d80843d120d.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1201",
+      "recommended": true
+    },
     {
       "type": "Download",
       "name": "VitaDBtoo VPK",
@@ -33,19 +39,13 @@
     },
     {
       "type": "Official Website",
-      "name": "VitaDBtoo Release Page",
+      "name": "VitaDB Release Page",
       "url": "https://github.com/PatnosDD/Coffee-Talk-PS-VITA"
-    },
-    {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1201",
-      "recommended": true
     }
   ],
-  "source_name": "VitaDBtoo",
+  "source_name": "VitaDB",
   "source_id": "1201",
   "source_url": "https://github.com/PatnosDD/Coffee-Talk-PS-VITA",
   "release_page": "https://github.com/PatnosDD/Coffee-Talk-PS-VITA",
-  "updated_at": "2026-08-13T15:34:48.443919+00:00"
+  "updated_at": "2026-08-15T18:26:19.407852+00:00"
 }

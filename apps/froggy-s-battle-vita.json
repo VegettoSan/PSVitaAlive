@@ -18,28 +18,24 @@
   "status": "Legacy",
   "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1950-froggy-s-battle-vita.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/63f277a90c62d1e1d8661eeeb9f8c5de2631099330abc34a23d072df574e15d6.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/7e59d770832cdd2399e1fb28043f7ba4c4609592b13ba338740aa080e6804d20.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/fb707ec6ac5edd2e55841c342df1a18709646fbdf616631772b0780c4c571b60.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/bbccc12c8fbb958252be650055c4fa75bda37a58f7d6a708e8d8568ee2f701ec.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/63f277a90c62d1e1d8661eeeb9f8c5de2631099330abc34a23d072df574e15d6.png"
+    "https://www.rinnegatamante.eu/vitadb/screenshots/63f277a90c62d1e1d8661eeeb9f8c5de2631099330abc34a23d072df574e15d6.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/7e59d770832cdd2399e1fb28043f7ba4c4609592b13ba338740aa080e6804d20.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/fb707ec6ac5edd2e55841c342df1a18709646fbdf616631772b0780c4c571b60.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/bbccc12c8fbb958252be650055c4fa75bda37a58f7d6a708e8d8568ee2f701ec.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/63f277a90c62d1e1d8661eeeb9f8c5de2631099330abc34a23d072df574e15d6.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "VitaDBtoo VPK",
+      "name": "NeoVitaDB VPK",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1337-FroggysBattle_v1_1.vpk",
       "recommended": true
     },
     {
-      "type": "Official Website",
-      "name": "VitaDBtoo Release Page",
-      "url": "https://brendonm17.itch.io/froggys-battle-vita"
-    },
-    {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com"
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1337",
+      "recommended": false
     },
     {
       "type": "Download",
@@ -48,15 +44,19 @@
       "recommended": false
     },
     {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1337",
-      "recommended": false
+      "type": "Official Website",
+      "name": "VitaDB Release Page",
+      "url": "https://brendonm17.itch.io/froggys-battle-vita"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com"
     }
   ],
-  "source_name": "VitaDBtoo",
-  "source_id": "1337",
-  "source_url": "https://brendonm17.itch.io/froggys-battle-vita",
-  "release_page": "https://brendonm17.itch.io/froggys-battle-vita",
-  "updated_at": "2026-08-13T15:34:48.374289+00:00"
+  "source_name": "NeoVitaDB",
+  "source_id": "1950",
+  "source_url": "https://github.com",
+  "release_page": "",
+  "updated_at": "2026-08-15T18:26:19.114810+00:00"
 }

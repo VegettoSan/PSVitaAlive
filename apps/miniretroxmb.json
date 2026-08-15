@@ -16,11 +16,17 @@
   "requirements": "Not specified",
   "size": 407701,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/7ff7fbd9df4ac2041c1392493aedcbcf8b3c71ce2930dfc20b18addd3974c54f.png",
+  "icon": "https://www.rinnegatamante.eu/vitadb/icons/7ff7fbd9df4ac2041c1392493aedcbcf8b3c71ce2930dfc20b18addd3974c54f.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/7ff7fbd9df4ac2041c1392493aedcbcf8b3c71ce2930dfc20b18addd3974c54f.png"
+    "https://www.rinnegatamante.eu/vitadb/icons/7ff7fbd9df4ac2041c1392493aedcbcf8b3c71ce2930dfc20b18addd3974c54f.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1385",
+      "recommended": true
+    },
     {
       "type": "Download",
       "name": "VitaDBtoo VPK",
@@ -29,24 +35,18 @@
     },
     {
       "type": "Official Website",
-      "name": "VitaDBtoo Release Page",
+      "name": "VitaDB Release Page",
       "url": "https://github.com/goobercx/MiniRetroXMB-v1.0/releases"
     },
     {
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/goobercx/MiniRetroXMB-v1.0"
-    },
-    {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1385",
-      "recommended": true
     }
   ],
-  "source_name": "VitaDBtoo",
+  "source_name": "VitaDB",
   "source_id": "1385",
   "source_url": "https://github.com/goobercx/MiniRetroXMB-v1.0",
   "release_page": "https://github.com/goobercx/MiniRetroXMB-v1.0/releases",
-  "updated_at": "2026-08-13T15:34:48.354611+00:00"
+  "updated_at": "2026-08-15T18:26:19.011023+00:00"
 }

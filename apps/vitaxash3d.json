@@ -16,27 +16,17 @@
   "requirements": "- Game Data Files: PC",
   "size": 1794506,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/fcf258922f702bebaeca657dbeac153377c1716326fdeb9fce2ce7c369d0bcf0.png",
+  "icon": "https://www.rinnegatamante.eu/vitadb/icons/fcf258922f702bebaeca657dbeac153377c1716326fdeb9fce2ce7c369d0bcf0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/df0d1060f87c47ac5018324b4b84269a31ce88150375bc832fbefe948151c287.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/df0d1060f87c47ac5018324b4b84269a31ce88150375bc832fbefe948151c287.png"
+    "https://www.rinnegatamante.eu/vitadb/screenshots/df0d1060f87c47ac5018324b4b84269a31ce88150375bc832fbefe948151c287.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/df0d1060f87c47ac5018324b4b84269a31ce88150375bc832fbefe948151c287.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "VitaDBtoo VPK",
-      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/365-vitaXash3D.vpk",
-      "recommended": false
-    },
-    {
-      "type": "Official Website",
-      "name": "VitaDBtoo Release Page",
-      "url": "https://github.com/fgsfdsfgs/vitaXash3D/releases/latest"
-    },
-    {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/fgsfdsfgs/vitaXash3D"
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=365",
+      "recommended": true
     },
     {
       "type": "Download",
@@ -45,15 +35,19 @@
       "recommended": false
     },
     {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=365",
-      "recommended": true
+      "type": "Official Website",
+      "name": "VitaDB Release Page",
+      "url": "https://github.com/fgsfdsfgs/vitaXash3D/releases/latest"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/fgsfdsfgs/vitaXash3D"
     }
   ],
-  "source_name": "VitaDBtoo",
+  "source_name": "VitaDB",
   "source_id": "365",
   "source_url": "https://github.com/fgsfdsfgs/vitaXash3D",
   "release_page": "https://github.com/fgsfdsfgs/vitaXash3D/releases/latest",
-  "updated_at": "2026-08-13T15:34:48.662223+00:00"
+  "updated_at": "2026-08-15T18:26:20.379765+00:00"
 }

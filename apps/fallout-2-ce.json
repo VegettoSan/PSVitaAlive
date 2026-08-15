@@ -9,31 +9,37 @@
   ],
   "category_id": "ports",
   "subcategory_ids": [
-    "rpg"
+    "other"
   ],
   "version": "v.1.3.0-vita.8",
   "version_date": "2024-06-02",
   "requirements": "- Game Data Files: PC",
   "size": 1843349,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/f73714a204da618c0156eaad14ae1cad99ce5a7330cc6208fa4287395cbd1184.png",
+  "icon": "https://www.rinnegatamante.eu/vitadb/icons/f73714a204da618c0156eaad14ae1cad99ce5a7330cc6208fa4287395cbd1184.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/47543c29e489e30d08e8c4881483d7dc3c7a9df8701504ca53c4a6be9d6fb86d.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/31f39125bae88919f5a84994db9f927285a7b06e3d9315284ef8e7e10d3bd33d.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/836894c22ff90036a128675797b49be03f718f545c0f84f39dc6348efaeeefc4.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/769525afe199b084c6875bdebdc68b8ac5bcdcfbe242e467fe47c2f91985488a.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/47543c29e489e30d08e8c4881483d7dc3c7a9df8701504ca53c4a6be9d6fb86d.png"
+    "https://www.rinnegatamante.eu/vitadb/screenshots/47543c29e489e30d08e8c4881483d7dc3c7a9df8701504ca53c4a6be9d6fb86d.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/31f39125bae88919f5a84994db9f927285a7b06e3d9315284ef8e7e10d3bd33d.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/836894c22ff90036a128675797b49be03f718f545c0f84f39dc6348efaeeefc4.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/769525afe199b084c6875bdebdc68b8ac5bcdcfbe242e467fe47c2f91985488a.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/47543c29e489e30d08e8c4881483d7dc3c7a9df8701504ca53c4a6be9d6fb86d.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "VitaDBtoo VPK",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=842",
+      "recommended": true
+    },
+    {
+      "type": "Download",
+      "name": "NeoVitaDB VPK",
       "url": "https://github.com/Northfear/fallout2-ce-vita/releases/download/v1.3.0-vita.8/fallout2-ce.vpk",
       "recommended": false
     },
     {
       "type": "Official Website",
-      "name": "VitaDBtoo Release Page",
+      "name": "VitaDB Release Page",
       "url": "https://github.com/Northfear/fallout2-ce-vita/releases"
     },
     {
@@ -45,17 +51,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/Northfear/fallout2-ce-vita"
-    },
-    {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=842",
-      "recommended": true
     }
   ],
-  "source_name": "VitaDBtoo",
+  "source_name": "VitaDB",
   "source_id": "842",
   "source_url": "https://github.com/Northfear/fallout2-ce-vita",
   "release_page": "https://github.com/Northfear/fallout2-ce-vita/releases",
-  "updated_at": "2026-08-13T15:34:48.438187+00:00"
+  "updated_at": "2026-08-15T18:26:19.381715+00:00"
 }

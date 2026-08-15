@@ -18,28 +18,24 @@
   "status": "Legacy",
   "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1912-doom-ii-rpg-vita.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/2026f4d1e675b5d3ef508955914028c2312965f6a3f434301ee684613b2af35a.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/3675632048f8bf0a997030694ca18480c7b62de58eee0b9936c555410b1ea6a7.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/82af0a3b195162466415bc2b3cd4890ba1229325304b0ac3ab129b4837f0b692.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/5b146e1b8ff6b03d1b5cbc425fe1993dc4afcc16a25e56da55eea7035d53d0eb.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/2026f4d1e675b5d3ef508955914028c2312965f6a3f434301ee684613b2af35a.png"
+    "https://www.rinnegatamante.eu/vitadb/screenshots/2026f4d1e675b5d3ef508955914028c2312965f6a3f434301ee684613b2af35a.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/3675632048f8bf0a997030694ca18480c7b62de58eee0b9936c555410b1ea6a7.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/82af0a3b195162466415bc2b3cd4890ba1229325304b0ac3ab129b4837f0b692.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/5b146e1b8ff6b03d1b5cbc425fe1993dc4afcc16a25e56da55eea7035d53d0eb.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/2026f4d1e675b5d3ef508955914028c2312965f6a3f434301ee684613b2af35a.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "VitaDBtoo VPK",
+      "name": "NeoVitaDB VPK",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1247-DOOMIIRPG.vpk",
       "recommended": true
     },
     {
-      "type": "Official Website",
-      "name": "VitaDBtoo Release Page",
-      "url": "https://www.psx-place.com/threads/release-doom-ii-rpg-vita.45825/"
-    },
-    {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/Rinnegatamante/DoomIIRPG-RE"
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1247",
+      "recommended": false
     },
     {
       "type": "Download",
@@ -48,15 +44,19 @@
       "recommended": false
     },
     {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1247",
-      "recommended": false
+      "type": "Official Website",
+      "name": "VitaDB Release Page",
+      "url": "https://www.psx-place.com/threads/release-doom-ii-rpg-vita.45825/"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/Rinnegatamante/DoomIIRPG-RE"
     }
   ],
-  "source_name": "VitaDBtoo",
-  "source_id": "1247",
-  "source_url": "https://github.com/Rinnegatamante/DoomIIRPG-RE",
-  "release_page": "https://www.psx-place.com/threads/release-doom-ii-rpg-vita.45825/",
-  "updated_at": "2026-08-13T15:34:48.420560+00:00"
+  "source_name": "NeoVitaDB",
+  "source_id": "1912",
+  "source_url": "https://github.com",
+  "release_page": "",
+  "updated_at": "2026-08-15T18:26:19.313761+00:00"
 }

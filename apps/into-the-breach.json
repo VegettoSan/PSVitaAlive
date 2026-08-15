@@ -16,24 +16,30 @@
   "requirements": "- libshacccg.suprx\n- libfmodstudio.suprx\n- kubridge.skprx\n- Game Data Files: Android",
   "size": 2719702,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/d6c453c7f6de4f28107bcb02bf6e02e1793684ec5021ce0af566de350bbcc6de.png",
+  "icon": "https://www.rinnegatamante.eu/vitadb/icons/d6c453c7f6de4f28107bcb02bf6e02e1793684ec5021ce0af566de350bbcc6de.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/9b270ced925cb278012020ea6cd511ffb9e2beb3f6a8f277311da248a013f7dd.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/9abde1806b36d873b204267715321afd78bfefd4529398011c47385f690e1e47.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/e8a9d915df8743b44dd8ba3b1ba471a45ee5ccea58ddee762b7045d5442c6743.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/19950878dc12cc5d8bb222f4619519cac306e1ee2552bba37d56358f1f5370cc.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/9b270ced925cb278012020ea6cd511ffb9e2beb3f6a8f277311da248a013f7dd.png"
+    "https://www.rinnegatamante.eu/vitadb/screenshots/9b270ced925cb278012020ea6cd511ffb9e2beb3f6a8f277311da248a013f7dd.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/9abde1806b36d873b204267715321afd78bfefd4529398011c47385f690e1e47.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/e8a9d915df8743b44dd8ba3b1ba471a45ee5ccea58ddee762b7045d5442c6743.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/19950878dc12cc5d8bb222f4619519cac306e1ee2552bba37d56358f1f5370cc.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/9b270ced925cb278012020ea6cd511ffb9e2beb3f6a8f277311da248a013f7dd.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "VitaDBtoo VPK",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1289",
+      "recommended": true
+    },
+    {
+      "type": "Download",
+      "name": "NeoVitaDB VPK",
       "url": "https://github.com/Rinnegatamante/Into-The-Breach-Vita/releases/download/v.1.0/breach.vpk",
       "recommended": false
     },
     {
       "type": "Official Website",
-      "name": "VitaDBtoo Release Page",
+      "name": "VitaDB Release Page",
       "url": "https://github.com/Rinnegatamante/Into-The-Breach-Vita/releases"
     },
     {
@@ -45,17 +51,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/Rinnegatamante/Into-The-Breach-Vita"
-    },
-    {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1289",
-      "recommended": true
     }
   ],
-  "source_name": "VitaDBtoo",
+  "source_name": "VitaDB",
   "source_id": "1289",
   "source_url": "https://github.com/Rinnegatamante/Into-The-Breach-Vita",
   "release_page": "https://github.com/Rinnegatamante/Into-The-Breach-Vita/releases",
-  "updated_at": "2026-08-13T15:34:48.401921+00:00"
+  "updated_at": "2026-08-15T18:26:19.225697+00:00"
 }

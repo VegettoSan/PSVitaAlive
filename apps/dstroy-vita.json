@@ -18,28 +18,24 @@
   "status": "Legacy",
   "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1598-dstroy-vita.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/b3c181cd2623c7856ef5dc09e71b7451cea5adaaf4a1fff5227f8da6bfab73c9.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/6d6e430302bc926a2b0af45496b4ca998e27b0c78900718cc6cc1dabf85a4deb.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/a900d57c9552d369371d3051eee98dd30c01796d72442df866263397e9c32ad4.png",
     "https://www.rinnegatamante.eu/vitadb/screenshots/b3c181cd2623c7856ef5dc09e71b7451cea5adaaf4a1fff5227f8da6bfab73c9.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/6d6e430302bc926a2b0af45496b4ca998e27b0c78900718cc6cc1dabf85a4deb.png"
+    "https://www.rinnegatamante.eu/vitadb/screenshots/6d6e430302bc926a2b0af45496b4ca998e27b0c78900718cc6cc1dabf85a4deb.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/a900d57c9552d369371d3051eee98dd30c01796d72442df866263397e9c32ad4.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/b3c181cd2623c7856ef5dc09e71b7451cea5adaaf4a1fff5227f8da6bfab73c9.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/6d6e430302bc926a2b0af45496b4ca998e27b0c78900718cc6cc1dabf85a4deb.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "VitaDBtoo VPK",
+      "name": "NeoVitaDB VPK",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/383-DstroyVita.vpk",
       "recommended": true
     },
     {
-      "type": "Official Website",
-      "name": "VitaDBtoo Release Page",
-      "url": "https://www.psx-place.com/threads/dstroy-vita.32008/"
-    },
-    {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/Rinnegatamante/DstroyVita"
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=383",
+      "recommended": false
     },
     {
       "type": "Download",
@@ -48,15 +44,19 @@
       "recommended": false
     },
     {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=383",
-      "recommended": false
+      "type": "Official Website",
+      "name": "VitaDB Release Page",
+      "url": "https://www.psx-place.com/threads/dstroy-vita.32008/"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/Rinnegatamante/DstroyVita"
     }
   ],
-  "source_name": "VitaDBtoo",
-  "source_id": "383",
-  "source_url": "https://github.com/Rinnegatamante/DstroyVita",
-  "release_page": "https://www.psx-place.com/threads/dstroy-vita.32008/",
-  "updated_at": "2026-08-13T15:34:48.604385+00:00"
+  "source_name": "NeoVitaDB",
+  "source_id": "1598",
+  "source_url": "https://github.com",
+  "release_page": "",
+  "updated_at": "2026-08-15T18:26:20.152661+00:00"
 }

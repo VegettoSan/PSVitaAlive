@@ -18,28 +18,24 @@
   "status": "Legacy",
   "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1791-i-will-be-there.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/d7a8c3aea85629d9fdeee62d8b1a1ff83e5b37671c64e661d8477d3b2bbd16d3.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/2698309d181144cf65974d26a5bb3e70886d8835f20b2a1e0589e5ca83798fb8.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/a855cc31a84ba983081b12ae597b75ff13797f5d6ba692eca7c0ff65e626a25c.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/fa89ea3bed9137b304cb6abe6c100684e2f0e4cf4154708057f1606cf5917a58.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/d7a8c3aea85629d9fdeee62d8b1a1ff83e5b37671c64e661d8477d3b2bbd16d3.png"
+    "https://www.rinnegatamante.eu/vitadb/screenshots/d7a8c3aea85629d9fdeee62d8b1a1ff83e5b37671c64e661d8477d3b2bbd16d3.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/2698309d181144cf65974d26a5bb3e70886d8835f20b2a1e0589e5ca83798fb8.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/a855cc31a84ba983081b12ae597b75ff13797f5d6ba692eca7c0ff65e626a25c.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/fa89ea3bed9137b304cb6abe6c100684e2f0e4cf4154708057f1606cf5917a58.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/d7a8c3aea85629d9fdeee62d8b1a1ff83e5b37671c64e661d8477d3b2bbd16d3.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "VitaDBtoo VPK",
+      "name": "NeoVitaDB VPK",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/849-there_demo.vpk",
       "recommended": true
     },
     {
-      "type": "Official Website",
-      "name": "VitaDBtoo Release Page",
-      "url": "https://tayfuntuna.itch.io/iwillbethere-vita"
-    },
-    {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com"
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=849",
+      "recommended": false
     },
     {
       "type": "Download",
@@ -48,15 +44,19 @@
       "recommended": false
     },
     {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=849",
-      "recommended": false
+      "type": "Official Website",
+      "name": "VitaDB Release Page",
+      "url": "https://tayfuntuna.itch.io/iwillbethere-vita"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com"
     }
   ],
-  "source_name": "VitaDBtoo",
-  "source_id": "849",
-  "source_url": "https://tayfuntuna.itch.io/iwillbethere-vita",
-  "release_page": "https://tayfuntuna.itch.io/iwillbethere-vita",
-  "updated_at": "2026-08-13T15:34:48.537450+00:00"
+  "source_name": "NeoVitaDB",
+  "source_id": "1791",
+  "source_url": "https://github.com",
+  "release_page": "",
+  "updated_at": "2026-08-15T18:26:19.828096+00:00"
 }

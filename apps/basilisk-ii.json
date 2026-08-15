@@ -19,11 +19,11 @@
   "status": "Legacy",
   "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/0200-basilisk-ii.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/2e4d7060b1216b4d92d6eb9e78e108d09de7d64a6f94bce47e7cbfb30c790e15.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/5b0ac1b74dc8bed852fb7bf865d0275ee6d1617110acdb248bb0c018d1b81569.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/fbcb38e146eca817a68ef96edd1de4dc3b8f1eb92fa54643f01c67b2ff6d41bb.png",
     "https://www.rinnegatamante.eu/vitadb/screenshots/basilisk.jpg",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/2e4d7060b1216b4d92d6eb9e78e108d09de7d64a6f94bce47e7cbfb30c790e15.png"
+    "https://www.rinnegatamante.eu/vitadb/screenshots/2e4d7060b1216b4d92d6eb9e78e108d09de7d64a6f94bce47e7cbfb30c790e15.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/5b0ac1b74dc8bed852fb7bf865d0275ee6d1617110acdb248bb0c018d1b81569.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/fbcb38e146eca817a68ef96edd1de4dc3b8f1eb92fa54643f01c67b2ff6d41bb.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/2e4d7060b1216b4d92d6eb9e78e108d09de7d64a6f94bce47e7cbfb30c790e15.png"
   ],
   "links": [
     {
@@ -47,5 +47,5 @@
   "source_id": "200",
   "source_url": "https://github.com/rsn8887/basiliskii-vita",
   "release_page": "https://github.com/rsn8887/basiliskii-vita/releases/tag/0.33hgit-rsn8887",
-  "updated_at": "2026-08-13T15:34:48.591582+00:00"
+  "updated_at": "2026-08-15T18:26:20.093127+00:00"
 }

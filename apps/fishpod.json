@@ -16,20 +16,26 @@
   "requirements": "Not specified",
   "size": 9388768,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/69e33139a940d6a1948b92a913a2d8d26e91b6dc3dd9a56ea599515830695d9b.png",
+  "icon": "https://www.rinnegatamante.eu/vitadb/icons/69e33139a940d6a1948b92a913a2d8d26e91b6dc3dd9a56ea599515830695d9b.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/69e33139a940d6a1948b92a913a2d8d26e91b6dc3dd9a56ea599515830695d9b.png"
+    "https://www.rinnegatamante.eu/vitadb/icons/69e33139a940d6a1948b92a913a2d8d26e91b6dc3dd9a56ea599515830695d9b.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "VitaDBtoo VPK",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=642",
+      "recommended": true
+    },
+    {
+      "type": "Download",
+      "name": "NeoVitaDB VPK",
       "url": "https://github.com/Team789er/Fishpod-the-Platformer/releases/download/1.0.0/fishpod.vpk",
       "recommended": false
     },
     {
       "type": "Official Website",
-      "name": "VitaDBtoo Release Page",
+      "name": "VitaDB Release Page",
       "url": "https://github.com/Team789er/Fishpod-the-Platformer/releases/"
     },
     {
@@ -41,17 +47,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/Team789er/Fishpod-the-Platformer"
-    },
-    {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=642",
-      "recommended": true
     }
   ],
-  "source_name": "VitaDBtoo",
+  "source_name": "VitaDB",
   "source_id": "642",
   "source_url": "https://github.com/Team789er/Fishpod-the-Platformer/releases/",
   "release_page": "https://github.com/Team789er/Fishpod-the-Platformer/releases/",
-  "updated_at": "2026-08-13T15:34:48.612629+00:00"
+  "updated_at": "2026-08-15T18:26:20.185298+00:00"
 }

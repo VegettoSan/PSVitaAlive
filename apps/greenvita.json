@@ -16,12 +16,18 @@
   "requirements": "Not specified",
   "size": 14185797,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/d3b48076cb1d4e7d381291fe0b103e8396d6ee720da5dfbbab670952dccb4e83.png",
+  "icon": "https://www.rinnegatamante.eu/vitadb/icons/d3b48076cb1d4e7d381291fe0b103e8396d6ee720da5dfbbab670952dccb4e83.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c2e854daaa9c3c05ce9d8aba696a288e65af530f7dfb3518a6282a48b2b61e2e.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/c2e854daaa9c3c05ce9d8aba696a288e65af530f7dfb3518a6282a48b2b61e2e.png"
+    "https://www.rinnegatamante.eu/vitadb/screenshots/c2e854daaa9c3c05ce9d8aba696a288e65af530f7dfb3518a6282a48b2b61e2e.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c2e854daaa9c3c05ce9d8aba696a288e65af530f7dfb3518a6282a48b2b61e2e.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1438",
+      "recommended": true
+    },
     {
       "type": "Download",
       "name": "VitaDBtoo VPK",
@@ -30,7 +36,7 @@
     },
     {
       "type": "Official Website",
-      "name": "VitaDBtoo Release Page",
+      "name": "VitaDB Release Page",
       "url": "https://github.com/Day-OS/green-vita/releases"
     },
     {
@@ -42,17 +48,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/Day-OS/green-vita"
-    },
-    {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1438",
-      "recommended": true
     }
   ],
-  "source_name": "VitaDBtoo",
+  "source_name": "VitaDB",
   "source_id": "1438",
   "source_url": "https://github.com/Day-OS/green-vita",
   "release_page": "https://github.com/Day-OS/green-vita/releases",
-  "updated_at": "2026-08-13T15:34:48.327083+00:00"
+  "updated_at": "2026-08-15T18:26:18.897134+00:00"
 }

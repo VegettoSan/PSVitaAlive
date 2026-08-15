@@ -8,7 +8,7 @@
     "ywnico",
     "aagaming"
   ],
-  "category_id": "ports",
+  "category_id": "utilities",
   "subcategory_ids": [
     "other"
   ],
@@ -24,20 +24,21 @@
   "links": [
     {
       "type": "Download",
-      "name": "VitaDBtoo VPK",
-      "url": "https://github.com/ywnico/vitaki-fork/releases/download/v0.06c/Vitaki.vpk",
-      "recommended": false
-    },
-    {
-      "type": "Download",
       "name": "NeoVitaDB VPK",
       "url": "https://github.com/ywnico/vitaki-fork/releases/download/v0.06d/Vitaki.vpk",
       "recommended": true
     },
     {
-      "type": "Official Website",
-      "name": "VitaDBtoo Release Page",
-      "url": "https://github.com/ywnico/vitaki-fork/releases"
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1293",
+      "recommended": false
+    },
+    {
+      "type": "Download",
+      "name": "VitaDBtoo VPK",
+      "url": "https://github.com/ywnico/vitaki-fork/releases/download/v0.06c/Vitaki.vpk",
+      "recommended": false
     },
     {
       "type": "Official Website",
@@ -45,20 +46,19 @@
       "url": "https://github.com/ywnico/vitaki-fork/releases/tag/v0.06d"
     },
     {
+      "type": "Official Website",
+      "name": "VitaDB Release Page",
+      "url": "https://github.com/ywnico/vitaki-fork/releases"
+    },
+    {
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/ywnico/vitaki-fork"
-    },
-    {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1293",
-      "recommended": false
     }
   ],
-  "source_name": "VitaDBtoo",
+  "source_name": "NeoVitaDB",
   "source_id": "1293",
   "source_url": "https://github.com/ywnico/vitaki-fork",
-  "release_page": "https://github.com/ywnico/vitaki-fork/releases",
-  "updated_at": "2026-08-13T15:34:48.414344+00:00"
+  "release_page": "https://github.com/ywnico/vitaki-fork/releases/tag/v0.06d",
+  "updated_at": "2026-08-15T18:26:19.285380+00:00"
 }

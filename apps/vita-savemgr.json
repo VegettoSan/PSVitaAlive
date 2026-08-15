@@ -16,18 +16,17 @@
   "requirements": "Not specified",
   "size": 490724,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/6623e30364290bbb3b166046ce26b6a2f769bbedf63b15c02d51575fc5d87b3c.png",
+  "icon": "https://www.rinnegatamante.eu/vitadb/icons/6623e30364290bbb3b166046ce26b6a2f769bbedf63b15c02d51575fc5d87b3c.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/6623e30364290bbb3b166046ce26b6a2f769bbedf63b15c02d51575fc5d87b3c.png",
     "https://www.rinnegatamante.eu/vitadb/screenshots/savemgr1.jpg",
     "https://www.rinnegatamante.eu/vitadb/screenshots/savemgr2.jpg"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "VitaDBtoo VPK",
-      "url": "https://github.com/d3m3vilurr/vita-savemgr/releases/download/nightly/savemgr.vpk",
-      "recommended": false
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=9",
+      "recommended": true
     },
     {
       "type": "Official Website",
@@ -38,17 +37,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/d3m3vilurr/vita-savemgr"
-    },
-    {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=9",
-      "recommended": true
     }
   ],
-  "source_name": "VitaDBtoo",
+  "source_name": "VitaDB",
   "source_id": "9",
   "source_url": "https://github.com/d3m3vilurr/vita-savemgr",
   "release_page": "",
-  "updated_at": "2026-08-13T15:34:48.664996+00:00"
+  "updated_at": "2026-08-15T18:26:20.387033+00:00"
 }

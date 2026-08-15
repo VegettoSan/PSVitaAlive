@@ -18,7 +18,6 @@
   "status": "Legacy",
   "icon": "https://www.rinnegatamante.eu/vitadb/icons/630f5cb42bc1111b3026adc9e7acd61ad55b95da073a90bcc27f72bf37dad19f.png",
   "screenshots": [
-    "https://www.rinnegatamante.eu/vitadb/icons/630f5cb42bc1111b3026adc9e7acd61ad55b95da073a90bcc27f72bf37dad19f.png",
     "https://www.rinnegatamante.eu/vitadb/screenshots/128fc3e4d8fa7c7bd6e45c9e64d66b4090bb4f0b4e38c0c04caf3115aa106586.png",
     "https://www.rinnegatamante.eu/vitadb/screenshots/e6113d7c0672f0335ee61b55426ac3bdea96017ca97ea69c5111ca34c908df15.png",
     "https://www.rinnegatamante.eu/vitadb/screenshots/20b0a6b9bd3515fd9f07f85f3425783dcb421717b1a51e88294a04a97763da2f.png",
@@ -46,5 +45,5 @@
   "source_id": "1454",
   "source_url": "https://github.com/Calligula87/BG2V",
   "release_page": "https://github.com/Calligula87/BG2V/releases",
-  "updated_at": "2026-08-14T19:27:11.483910+00:00"
+  "updated_at": "2026-08-15T18:26:18.862525+00:00"
 }

@@ -16,15 +16,21 @@
   "requirements": "- fd_fix.skprx OR repatch_ex.skprx\n- Game Data Files: PC",
   "size": 3815383,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/a443705c218386088a4aa06ae29a11fca8aa4b30d938bf108467238b0c3e5fe9.png",
+  "icon": "https://www.rinnegatamante.eu/vitadb/icons/a443705c218386088a4aa06ae29a11fca8aa4b30d938bf108467238b0c3e5fe9.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/1c9cc63410db7a1df9816e01a403caffb65d0d771d8edeefc246fbbcf70a97ba.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/0c643e051a52bf0689325cb215b8cd804d1fbd0f748ebffcafbb3e9227b13fc9.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/1bcf30cb673faf914817ba18069f7b2472c1e1751d07316cec6eb60406cfb492.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/a99ce442e682b7d8ec083ed49551bdffe443ea553fb80afa363c7eee7aac5d8e.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/1c9cc63410db7a1df9816e01a403caffb65d0d771d8edeefc246fbbcf70a97ba.png"
+    "https://www.rinnegatamante.eu/vitadb/screenshots/1c9cc63410db7a1df9816e01a403caffb65d0d771d8edeefc246fbbcf70a97ba.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/0c643e051a52bf0689325cb215b8cd804d1fbd0f748ebffcafbb3e9227b13fc9.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/1bcf30cb673faf914817ba18069f7b2472c1e1751d07316cec6eb60406cfb492.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/a99ce442e682b7d8ec083ed49551bdffe443ea553fb80afa363c7eee7aac5d8e.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/1c9cc63410db7a1df9816e01a403caffb65d0d771d8edeefc246fbbcf70a97ba.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=658",
+      "recommended": true
+    },
     {
       "type": "Download",
       "name": "VitaDBtoo VPK",
@@ -33,24 +39,18 @@
     },
     {
       "type": "Official Website",
-      "name": "VitaDBtoo Release Page",
+      "name": "VitaDB Release Page",
       "url": "https://kyuhen.customprotocol.com/en/submissions/xcom/"
     },
     {
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/Northfear/OpenXcom-vita"
-    },
-    {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=658",
-      "recommended": true
     }
   ],
-  "source_name": "VitaDBtoo",
+  "source_name": "VitaDB",
   "source_id": "658",
   "source_url": "https://github.com/Northfear/OpenXcom-vita",
   "release_page": "https://kyuhen.customprotocol.com/en/submissions/xcom/",
-  "updated_at": "2026-08-13T15:34:48.458602+00:00"
+  "updated_at": "2026-08-15T18:26:19.462991+00:00"
 }

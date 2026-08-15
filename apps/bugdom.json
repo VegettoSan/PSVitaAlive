@@ -16,21 +16,27 @@
   "requirements": "- libshacccg.suprx",
   "size": 50453337,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/d76e4a860cc703f6af5b67dca5325c98756c96edf16c6d3ee5a16c5e7d8076ed.png",
+  "icon": "https://www.rinnegatamante.eu/vitadb/icons/d76e4a860cc703f6af5b67dca5325c98756c96edf16c6d3ee5a16c5e7d8076ed.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/fb369ce96d23b4b0eb72630be625c0c26b851cace6e64342f04be37447c00c1f.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/fb369ce96d23b4b0eb72630be625c0c26b851cace6e64342f04be37447c00c1f.png"
+    "https://www.rinnegatamante.eu/vitadb/screenshots/fb369ce96d23b4b0eb72630be625c0c26b851cace6e64342f04be37447c00c1f.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/fb369ce96d23b4b0eb72630be625c0c26b851cace6e64342f04be37447c00c1f.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "VitaDBtoo VPK",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=841",
+      "recommended": true
+    },
+    {
+      "type": "Download",
+      "name": "NeoVitaDB VPK",
       "url": "https://github.com/ywnico/bugdom-vita/releases/download/1.3.4-vita.1/Bugdom-1.3.4-vita.1.vpk",
       "recommended": false
     },
     {
       "type": "Official Website",
-      "name": "VitaDBtoo Release Page",
+      "name": "VitaDB Release Page",
       "url": "https://github.com/ywnico/bugdom-vita/releases"
     },
     {
@@ -42,17 +48,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/ywnico/bugdom-vita"
-    },
-    {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=841",
-      "recommended": true
     }
   ],
-  "source_name": "VitaDBtoo",
+  "source_name": "VitaDB",
   "source_id": "841",
   "source_url": "https://github.com/ywnico/bugdom-vita",
   "release_page": "https://github.com/ywnico/bugdom-vita/releases",
-  "updated_at": "2026-08-13T15:34:48.413290+00:00"
+  "updated_at": "2026-08-15T18:26:19.285031+00:00"
 }

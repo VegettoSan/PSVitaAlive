@@ -16,24 +16,30 @@
   "requirements": "- libshacccg.suprx\n- kubridge.skprx\n- Game Data Files: Android",
   "size": 1281852,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/62019490d2626f825092d6338b89a20a7d165d0deb9ee68eaf4118e00515bab8.png",
+  "icon": "https://www.rinnegatamante.eu/vitadb/icons/62019490d2626f825092d6338b89a20a7d165d0deb9ee68eaf4118e00515bab8.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/31d2a883089af75348faa977603056346c0ff2c212d0c838192e1f001933df15.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/73f91044b709f35acdfadc742c7b78819355fd2dce14ce52ee78ee3e7b920cba.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/1fd994662676015b29e59abbe41f9022106f416e7c865074171b4c2bb45108ce.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/1859b1935c4980d3f6d77ca963c3ce6ed24d72629552aa23316097d30832f59f.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/31d2a883089af75348faa977603056346c0ff2c212d0c838192e1f001933df15.png"
+    "https://www.rinnegatamante.eu/vitadb/screenshots/31d2a883089af75348faa977603056346c0ff2c212d0c838192e1f001933df15.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/73f91044b709f35acdfadc742c7b78819355fd2dce14ce52ee78ee3e7b920cba.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/1fd994662676015b29e59abbe41f9022106f416e7c865074171b4c2bb45108ce.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/1859b1935c4980d3f6d77ca963c3ce6ed24d72629552aa23316097d30832f59f.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/31d2a883089af75348faa977603056346c0ff2c212d0c838192e1f001933df15.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "VitaDBtoo VPK",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1176",
+      "recommended": true
+    },
+    {
+      "type": "Download",
+      "name": "NeoVitaDB VPK",
       "url": "https://github.com/Rinnegatamante/jetcarstunts_vita/releases/download/v.1.0/jetcarstunts.vpk",
       "recommended": false
     },
     {
       "type": "Official Website",
-      "name": "VitaDBtoo Release Page",
+      "name": "VitaDB Release Page",
       "url": "https://github.com/Rinnegatamante/jetcarstunts_vita/releases"
     },
     {
@@ -45,17 +51,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/Rinnegatamante/jetcarstunts_vita"
-    },
-    {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1176",
-      "recommended": true
     }
   ],
-  "source_name": "VitaDBtoo",
+  "source_name": "VitaDB",
   "source_id": "1176",
   "source_url": "https://github.com/Rinnegatamante/jetcarstunts_vita",
   "release_page": "https://github.com/Rinnegatamante/jetcarstunts_vita/releases",
-  "updated_at": "2026-08-13T15:34:48.454239+00:00"
+  "updated_at": "2026-08-15T18:26:19.444436+00:00"
 }

@@ -5,7 +5,6 @@
   "description": "Port of Fahrenheit: Indigo Prophecy for the PSVITA.",
   "long_description": "This is a wrapper/port of Fahrenheit: Indigo Prophecy Android for the PS Vita.\nThe port works by loading the official Android ARMv7 executable in memory, resolving its imports with native functions and patching it in order to properly run.\nBy doing so, it's basically as if we emulate a minimalist Android environment in which we run natively the executable as is.",
   "author_ids": [
-    "bythos",
     "rinnegatamante",
     "theflow"
   ],
@@ -18,24 +17,30 @@
   "requirements": "- libshacccg.suprx\n- kubridge.skprx\n- Game Data Files: Android",
   "size": 3264037,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/b759f6ff9116321a5a7b4d6f27106ffee0ab2d8978715bbabc99d128649664fc.png",
+  "icon": "https://www.rinnegatamante.eu/vitadb/icons/b759f6ff9116321a5a7b4d6f27106ffee0ab2d8978715bbabc99d128649664fc.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c395b1068c74f953f59b93e6ce27b955ce4c9079fe0283e96dbe9c20b430981c.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/225a569b46d5ee07720eb2a87254cf611f4b8b2f6722cfdfbccdc27eab363f9e.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/d1bb9e75a63cfc6cfc8e1b36c4e98e8c696dac5dce8453fcbad30cb3ebe82c5a.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/adc196fda85b6640f45fe7aecc0c4aef801f40732240d646c69d95d3adc1a880.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/c395b1068c74f953f59b93e6ce27b955ce4c9079fe0283e96dbe9c20b430981c.png"
+    "https://www.rinnegatamante.eu/vitadb/screenshots/c395b1068c74f953f59b93e6ce27b955ce4c9079fe0283e96dbe9c20b430981c.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/225a569b46d5ee07720eb2a87254cf611f4b8b2f6722cfdfbccdc27eab363f9e.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/d1bb9e75a63cfc6cfc8e1b36c4e98e8c696dac5dce8453fcbad30cb3ebe82c5a.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/adc196fda85b6640f45fe7aecc0c4aef801f40732240d646c69d95d3adc1a880.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c395b1068c74f953f59b93e6ce27b955ce4c9079fe0283e96dbe9c20b430981c.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "VitaDBtoo VPK",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=835",
+      "recommended": true
+    },
+    {
+      "type": "Download",
+      "name": "NeoVitaDB VPK",
       "url": "https://github.com/Rinnegatamante/fahrenheit-vita/releases/download/v.0.9.1/Fahrenheit.vpk",
       "recommended": false
     },
     {
       "type": "Official Website",
-      "name": "VitaDBtoo Release Page",
+      "name": "VitaDB Release Page",
       "url": "https://github.com/Rinnegatamante/fahrenheit-vita/releases"
     },
     {
@@ -47,17 +52,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/Rinnegatamante/fahrenheit-vita"
-    },
-    {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=835",
-      "recommended": true
     }
   ],
-  "source_name": "VitaDBtoo",
+  "source_name": "VitaDB",
   "source_id": "835",
   "source_url": "https://github.com/Rinnegatamante/fahrenheit-vita",
   "release_page": "https://github.com/Rinnegatamante/fahrenheit-vita/releases",
-  "updated_at": "2026-08-13T15:34:48.479270+00:00"
+  "updated_at": "2026-08-15T18:26:19.560737+00:00"
 }

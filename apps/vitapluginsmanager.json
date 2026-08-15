@@ -16,11 +16,17 @@
   "requirements": "Not specified",
   "size": 69673,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/35be653a38137b2e5f60845fe06ba539cbf6fb4909fe0d55401aeeecaccfb43c.png",
+  "icon": "https://www.rinnegatamante.eu/vitadb/icons/35be653a38137b2e5f60845fe06ba539cbf6fb4909fe0d55401aeeecaccfb43c.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/35be653a38137b2e5f60845fe06ba539cbf6fb4909fe0d55401aeeecaccfb43c.png"
+    "https://www.rinnegatamante.eu/vitadb/icons/35be653a38137b2e5f60845fe06ba539cbf6fb4909fe0d55401aeeecaccfb43c.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=152",
+      "recommended": true
+    },
     {
       "type": "Download",
       "name": "VitaDBtoo VPK",
@@ -36,17 +42,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/NeoLTK/VITAPluginsManager"
-    },
-    {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=152",
-      "recommended": true
     }
   ],
-  "source_name": "VitaDBtoo",
+  "source_name": "VitaDB",
   "source_id": "152",
   "source_url": "https://github.com/NeoLTK/VITAPluginsManager",
   "release_page": "",
-  "updated_at": "2026-08-13T15:34:48.695007+00:00"
+  "updated_at": "2026-08-15T18:26:20.532794+00:00"
 }

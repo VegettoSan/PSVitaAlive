@@ -16,41 +16,41 @@
   "requirements": "- Game Data Files: PC",
   "size": 15656987,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/5dce95c17dc62653f81adba1e3b2eaac81b8e86eeaf82fc30e05831800534b0e.png",
+  "icon": "https://www.rinnegatamante.eu/vitadb/icons/5dce95c17dc62653f81adba1e3b2eaac81b8e86eeaf82fc30e05831800534b0e.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c270e5aa18107b2f9d21961df25b9bae38cc4d429149e278c7b6c9a6909967b5.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/4328116359bc7a1e03fb737fc66bdae2112203149e69cab849a1b04a8501c2fe.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/afa951741aa2cf70e6019dceb9b8149c25d50adbae216273d62bcfb346582ac6.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/9071c58272fd20628e49dd9f9c2eaec9a7298ec837d82ef8745873b5eb185d2a.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/c270e5aa18107b2f9d21961df25b9bae38cc4d429149e278c7b6c9a6909967b5.png"
+    "https://www.rinnegatamante.eu/vitadb/screenshots/c270e5aa18107b2f9d21961df25b9bae38cc4d429149e278c7b6c9a6909967b5.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/4328116359bc7a1e03fb737fc66bdae2112203149e69cab849a1b04a8501c2fe.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/afa951741aa2cf70e6019dceb9b8149c25d50adbae216273d62bcfb346582ac6.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/9071c58272fd20628e49dd9f9c2eaec9a7298ec837d82ef8745873b5eb185d2a.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c270e5aa18107b2f9d21961df25b9bae38cc4d429149e278c7b6c9a6909967b5.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "VitaDBtoo VPK",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1413",
+      "recommended": true
+    },
+    {
+      "type": "Download",
+      "name": "NeoVitaDB VPK",
       "url": "https://github.com/Rocroverss/A-Bite-at-Freddy-s-psvita/releases/download/V1.01/AbAF-v1.01.vpk",
       "recommended": false
     },
     {
       "type": "Official Website",
-      "name": "VitaDBtoo Release Page",
+      "name": "VitaDB Release Page",
       "url": "https://github.com/Rocroverss/A-Bite-at-Freddy-s-psvita"
     },
     {
       "type": "Official Website",
       "name": "NeoVitaDB Release Page",
       "url": "https://github.com/Rocroverss/A-Bite-at-Freddy-s-psvita/releases/tag/V1.01"
-    },
-    {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1413",
-      "recommended": true
     }
   ],
-  "source_name": "VitaDBtoo",
+  "source_name": "VitaDB",
   "source_id": "1413",
   "source_url": "https://github.com/Rocroverss/A-Bite-at-Freddy-s-psvita",
   "release_page": "https://github.com/Rocroverss/A-Bite-at-Freddy-s-psvita",
-  "updated_at": "2026-08-13T15:34:48.339678+00:00"
+  "updated_at": "2026-08-15T18:26:18.946066+00:00"
 }

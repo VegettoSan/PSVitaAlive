@@ -16,42 +16,15 @@
   "requirements": "- libshacccg.suprx\n- Game Data Files: PC",
   "size": 168380572,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1390-openmw-vita.png",
+  "icon": "https://www.rinnegatamante.eu/vitadb/icons/6900fb1e14ac8ee119689ec3263e02f05463c79ac40b8f169e83967ce3ceabc6.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/7ee6fd95e0000c823930ff8cd0b566818833d78a8d360682e9d0d45bf39109f2.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/da9449df2bb712c5e1b6081925b259811ce36bd78d6f5dabbb5f40ef5a4cef86.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/814f32e8bec19e5f0b16e168353d1bd843328ede5d12d3d0ec3b6975f30266db.png",
     "https://www.rinnegatamante.eu/vitadb/screenshots/7ee6fd95e0000c823930ff8cd0b566818833d78a8d360682e9d0d45bf39109f2.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/da9449df2bb712c5e1b6081925b259811ce36bd78d6f5dabbb5f40ef5a4cef86.png"
+    "https://www.rinnegatamante.eu/vitadb/screenshots/da9449df2bb712c5e1b6081925b259811ce36bd78d6f5dabbb5f40ef5a4cef86.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/814f32e8bec19e5f0b16e168353d1bd843328ede5d12d3d0ec3b6975f30266db.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/7ee6fd95e0000c823930ff8cd0b566818833d78a8d360682e9d0d45bf39109f2.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/da9449df2bb712c5e1b6081925b259811ce36bd78d6f5dabbb5f40ef5a4cef86.png"
   ],
   "links": [
-    {
-      "type": "Download",
-      "name": "VitaDBtoo VPK",
-      "url": "https://github.com/TheLostPantheon/openmw/releases/download/v2.1.1/openmw.vpk",
-      "recommended": false
-    },
-    {
-      "type": "Download",
-      "name": "NeoVitaDB VPK",
-      "url": "https://github.com/TheLostPantheon/openmw/releases/download/v2.1.1/openmw-2.2-partial.vpk",
-      "recommended": false
-    },
-    {
-      "type": "Official Website",
-      "name": "VitaDBtoo Release Page",
-      "url": "https://github.com/TheLostPantheon/openmw/releases"
-    },
-    {
-      "type": "Official Website",
-      "name": "NeoVitaDB Release Page",
-      "url": "https://github.com/TheLostPantheon/openmw/releases/tag/v2.1.1"
-    },
-    {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/TheLostPantheon/openmw"
-    },
     {
       "type": "Download",
       "name": "VitaDB VPK",
@@ -66,13 +39,23 @@
     },
     {
       "type": "Official Website",
+      "name": "VitaDB Release Page",
+      "url": "https://github.com/TheLostPantheon/openmw/releases"
+    },
+    {
+      "type": "Official Website",
       "name": "NeoVitaDB Release Page",
       "url": "https://github.com/TheLostPantheon/openmw/releases/tag/v2.2"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/TheLostPantheon/openmw"
     }
   ],
-  "source_name": "VitaDBtoo",
+  "source_name": "VitaDB",
   "source_id": "1390",
   "source_url": "https://github.com/TheLostPantheon/openmw",
   "release_page": "https://github.com/TheLostPantheon/openmw/releases",
-  "updated_at": "2026-08-13T15:34:48.325950+00:00"
+  "updated_at": "2026-08-15T18:26:18.868570+00:00"
 }

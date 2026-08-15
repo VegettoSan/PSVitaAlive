@@ -16,24 +16,30 @@
   "requirements": "Not specified",
   "size": 18229085,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/42751b5fea85674e1b1a18640558b54dead616f88d9678ac05f371ffa958ddfc.png",
+  "icon": "https://www.rinnegatamante.eu/vitadb/icons/42751b5fea85674e1b1a18640558b54dead616f88d9678ac05f371ffa958ddfc.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/d62557166c58f5b2bca6933ad8269c86abde988a762753a3facc7937d0489fbb.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/12553bf2f001495311762b2f7764792093615ceb6b5e4fbf63618d04b961c2fe.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/56e513f7f79b143d53142c47e1fb037a6c3a4872010e8c4a5e2a87e08d795c5d.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/cb93b99584f3fe240abb3d4be88ee57d5c88e1f90848a750b8dc0c09b814e123.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/d62557166c58f5b2bca6933ad8269c86abde988a762753a3facc7937d0489fbb.png"
+    "https://www.rinnegatamante.eu/vitadb/screenshots/d62557166c58f5b2bca6933ad8269c86abde988a762753a3facc7937d0489fbb.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/12553bf2f001495311762b2f7764792093615ceb6b5e4fbf63618d04b961c2fe.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/56e513f7f79b143d53142c47e1fb037a6c3a4872010e8c4a5e2a87e08d795c5d.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/cb93b99584f3fe240abb3d4be88ee57d5c88e1f90848a750b8dc0c09b814e123.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/d62557166c58f5b2bca6933ad8269c86abde988a762753a3facc7937d0489fbb.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "VitaDBtoo VPK",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1066",
+      "recommended": true
+    },
+    {
+      "type": "Download",
+      "name": "NeoVitaDB VPK",
       "url": "https://github.com/MEGAgameBoy/Super-Mario-Boom-PS-Vita-Port/releases/download/1.0/smb1.0.VPK",
       "recommended": false
     },
     {
       "type": "Official Website",
-      "name": "VitaDBtoo Release Page",
+      "name": "VitaDB Release Page",
       "url": "https://github.com/MEGAgameBoy/Super-Mario-Boom-PS-Vita-Port/releases"
     },
     {
@@ -45,17 +51,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/MEGAgameBoy/Super-Mario-Boom-PS-Vita-Port"
-    },
-    {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1066",
-      "recommended": true
     }
   ],
-  "source_name": "VitaDBtoo",
+  "source_name": "VitaDB",
   "source_id": "1066",
   "source_url": "https://github.com/MEGAgameBoy/Super-Mario-Boom-PS-Vita-Port",
   "release_page": "https://github.com/MEGAgameBoy/Super-Mario-Boom-PS-Vita-Port/releases",
-  "updated_at": "2026-08-13T15:34:48.500037+00:00"
+  "updated_at": "2026-08-15T18:26:19.659476+00:00"
 }

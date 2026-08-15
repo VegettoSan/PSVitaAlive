@@ -18,11 +18,11 @@
   "status": "Legacy",
   "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/0366-cannonball.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/3de1a25f7d07f3e8457f89ce61a52c3237a81a3e00256f824d9b9dee33371262.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/1e0944b946f6780ce3dbf388ca4dac2ddc25deeee29f3456de63fc348ca1fdf0.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/fd3f03540d1035e82a5a78bd807e923fbf326f7133cbd3252bbd804c90149df4.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/47b56037efc2328ed0df0db7948b7b814e372435723150b404bc723a39098ff7.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/3de1a25f7d07f3e8457f89ce61a52c3237a81a3e00256f824d9b9dee33371262.png"
+    "https://www.rinnegatamante.eu/vitadb/screenshots/3de1a25f7d07f3e8457f89ce61a52c3237a81a3e00256f824d9b9dee33371262.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/1e0944b946f6780ce3dbf388ca4dac2ddc25deeee29f3456de63fc348ca1fdf0.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/fd3f03540d1035e82a5a78bd807e923fbf326f7133cbd3252bbd804c90149df4.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/47b56037efc2328ed0df0db7948b7b814e372435723150b404bc723a39098ff7.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/3de1a25f7d07f3e8457f89ce61a52c3237a81a3e00256f824d9b9dee33371262.png"
   ],
   "links": [
     {
@@ -46,5 +46,5 @@
   "source_id": "366",
   "source_url": "https://github.com/rsn8887/cannonball",
   "release_page": "https://github.com/rsn8887/cannonball/releases/tag/1.08switchgit-vita/switch-rsn8887",
-  "updated_at": "2026-08-13T15:34:48.666726+00:00"
+  "updated_at": "2026-08-15T18:26:20.394678+00:00"
 }

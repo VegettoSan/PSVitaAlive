@@ -16,9 +16,8 @@
   "requirements": "Not specified",
   "size": 34519153,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/aac16ae00587d26f5f0633def3e3fb658754afd99418fb9224fc6b8b24ebdb0b.png",
+  "icon": "https://www.rinnegatamante.eu/vitadb/icons/aac16ae00587d26f5f0633def3e3fb658754afd99418fb9224fc6b8b24ebdb0b.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/aac16ae00587d26f5f0633def3e3fb658754afd99418fb9224fc6b8b24ebdb0b.png",
     "https://www.rinnegatamante.eu/vitadb/screenshots/jelly1.jpg",
     "https://www.rinnegatamante.eu/vitadb/screenshots/jelly2.jpg",
     "https://www.rinnegatamante.eu/vitadb/screenshots/jelly3.jpg",
@@ -27,13 +26,19 @@
   "links": [
     {
       "type": "Download",
-      "name": "VitaDBtoo VPK",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=27",
+      "recommended": true
+    },
+    {
+      "type": "Download",
+      "name": "NeoVitaDB VPK",
       "url": "https://github.com/DrakonPL/JellyCar/releases/download/1.1/JellyCarVita.vpk",
       "recommended": false
     },
     {
       "type": "Official Website",
-      "name": "VitaDBtoo Release Page",
+      "name": "VitaDB Release Page",
       "url": "https://github.com/DrakonPL/JellyCar/releases"
     },
     {
@@ -45,17 +50,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/DrakonPL/JellyCar"
-    },
-    {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=27",
-      "recommended": true
     }
   ],
-  "source_name": "VitaDBtoo",
+  "source_name": "VitaDB",
   "source_id": "27",
   "source_url": "https://github.com/DrakonPL/JellyCar",
   "release_page": "https://github.com/DrakonPL/JellyCar/releases",
-  "updated_at": "2026-08-13T15:34:48.622981+00:00"
+  "updated_at": "2026-08-15T18:26:20.222431+00:00"
 }

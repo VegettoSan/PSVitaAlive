@@ -7,7 +7,7 @@
   "author_ids": [
     "morc"
   ],
-  "category_id": "ports",
+  "category_id": "utilities",
   "subcategory_ids": [
     "other"
   ],
@@ -16,11 +16,17 @@
   "requirements": "Not specified",
   "size": 1722901,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/9a5f110d854baf1660be24a1e920a4ad6487e3609581627a2e7b4b2712e49b17.png",
+  "icon": "https://www.rinnegatamante.eu/vitadb/icons/9a5f110d854baf1660be24a1e920a4ad6487e3609581627a2e7b4b2712e49b17.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/9a5f110d854baf1660be24a1e920a4ad6487e3609581627a2e7b4b2712e49b17.png"
+    "https://www.rinnegatamante.eu/vitadb/icons/9a5f110d854baf1660be24a1e920a4ad6487e3609581627a2e7b4b2712e49b17.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1085",
+      "recommended": true
+    },
     {
       "type": "Download",
       "name": "VitaDBtoo VPK",
@@ -29,7 +35,7 @@
     },
     {
       "type": "Official Website",
-      "name": "VitaDBtoo Release Page",
+      "name": "VitaDB Release Page",
       "url": "https://github.com/TheMorc/MilkyTrackerVita/releases"
     },
     {
@@ -41,17 +47,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/TheMorc/MilkyTrackerVita"
-    },
-    {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1085",
-      "recommended": true
     }
   ],
-  "source_name": "VitaDBtoo",
+  "source_name": "VitaDB",
   "source_id": "1085",
   "source_url": "https://github.com/TheMorc/MilkyTrackerVita",
   "release_page": "https://github.com/TheMorc/MilkyTrackerVita/releases",
-  "updated_at": "2026-08-13T15:34:48.491019+00:00"
+  "updated_at": "2026-08-15T18:26:19.619113+00:00"
 }

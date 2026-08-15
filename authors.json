@@ -1110,21 +1110,6 @@
     "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
   },
   {
-    "id": "clyppe",
-    "name": "Clyppe",
-    "avatar": "https://avatars.githubusercontent.com/u/147959848?v=4",
-    "bio": "Dev Ps Vita",
-    "links": [
-      {
-        "type": "Repository",
-        "name": "GitHub",
-        "url": "https://github.com/Clyppe",
-        "recommended": true
-      }
-    ],
-    "icon": "https://avatars.githubusercontent.com/u/147959848?v=4"
-  },
-  {
     "id": "cnsldv",
     "name": "cnsldv",
     "avatar": "https://github.com/cnsldv.png",
@@ -5870,27 +5855,6 @@
       }
     ],
     "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
-  },
-  {
-    "id": "spliffcurrybeats",
-    "name": "SpliffCurryBeats",
-    "avatar": "https://gitlab.com/uploads/-/system/user/avatar/41207472/avatar.png",
-    "bio": "Dev Ps Vita",
-    "links": [
-      {
-        "type": "Repository",
-        "name": "GitLab",
-        "url": "https://gitlab.com/sexcurrybeats",
-        "recommended": true
-      },
-      {
-        "type": "Community",
-        "name": "X",
-        "url": "https://x.com/sexcurrybeats",
-        "recommended": false
-      }
-    ],
-    "icon": "https://gitlab.com/uploads/-/system/user/avatar/41207472/avatar.png"
   },
   {
     "id": "spritelisen",

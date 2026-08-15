@@ -5,9 +5,9 @@
   "description": "Pong clone for PSVITA.",
   "long_description": "This is a classic pong clone I created as a throwback to the origin of video games. This is also my first homebrew game and I designed it to resemble the original Pong by Ralph Baer.",
   "author_ids": [
-    "no-storage7413",
     "namelessghoul0",
-    "nyorem"
+    "nyorem",
+    "no-storage7413"
   ],
   "category_id": "games",
   "subcategory_ids": [
@@ -18,15 +18,21 @@
   "requirements": "Not specified",
   "size": 706314,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/d09907cd72efbd9d2b97b36d672ff9c3ece97e10fee8b03adfbf1f4668fd35c6.png",
+  "icon": "https://www.rinnegatamante.eu/vitadb/icons/d09907cd72efbd9d2b97b36d672ff9c3ece97e10fee8b03adfbf1f4668fd35c6.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/e584600fb03783c97e8ee8f9d76d184a9389f7803292f24eb195ccd10c22f118.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/20e98595988bcdaf020bcbf721c4d3efea5795d8a67de20ea85676103cbcea62.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/52ebb0669998eb48b19266f7b0af24df5413bcb1a0030803c29b2c5159320227.png",
     "https://www.rinnegatamante.eu/vitadb/screenshots/pong1.jpg",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/pong2.jpg"
+    "https://www.rinnegatamante.eu/vitadb/screenshots/pong2.jpg",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/pong3.jpg",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/e584600fb03783c97e8ee8f9d76d184a9389f7803292f24eb195ccd10c22f118.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/20e98595988bcdaf020bcbf721c4d3efea5795d8a67de20ea85676103cbcea62.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=102",
+      "recommended": true
+    },
     {
       "type": "Download",
       "name": "VitaDBtoo VPK",
@@ -35,24 +41,18 @@
     },
     {
       "type": "Official Website",
-      "name": "VitaDBtoo Release Page",
+      "name": "VitaDB Release Page",
       "url": "http://gekihen.customprotocol.com/en/project/Pong"
     },
     {
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/NamelessGhoul0/VitaPong"
-    },
-    {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=102",
-      "recommended": true
     }
   ],
-  "source_name": "VitaDBtoo",
+  "source_name": "VitaDB",
   "source_id": "102",
   "source_url": "https://github.com/NamelessGhoul0/VitaPong",
   "release_page": "http://gekihen.customprotocol.com/en/project/Pong",
-  "updated_at": "2026-08-13T15:34:48.348883+00:00"
+  "updated_at": "2026-08-15T18:26:20.449847+00:00"
 }

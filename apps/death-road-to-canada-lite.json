@@ -5,7 +5,6 @@
   "description": "Port of Death Road to Canada for PSVITA.",
   "long_description": "This is a wrapper/port of Death Road to Canada for the PS Vita.\nThe port works by loading the official Android ARMv7 executable in memory, resolving its imports with native functions and patching it in order to properly run.\nBy doing so, it's basically as if we emulate a minimalist Android environment in which we run natively the executables as it is.\nThis release is bundled with a mod made by CatoTheYounger to reduce workload of game maps in order to make the game playable on Vita hardware (Thus why the release is named Lite).",
   "author_ids": [
-    "bythos",
     "rinnegatamante",
     "catotheyounger"
   ],
@@ -18,24 +17,30 @@
   "requirements": "- libshacccg.suprx\n- kubridge.skprx\n- fd_fix.skprx OR repatch_ex.skprx\n- Game Data Files: Android",
   "size": 2399930,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/ae7199691860a60b030011013fa2dc8e8484b8e35503573d8fec10352df56ffa.png",
+  "icon": "https://www.rinnegatamante.eu/vitadb/icons/ae7199691860a60b030011013fa2dc8e8484b8e35503573d8fec10352df56ffa.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/a61b10313ce660cff761a7b4734109d3be8e38f774308634b0c52b6b7d4ccad4.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/6361f255d1400f7e8827b1298a5cc3ce421ac0b65faf4165edc42381d7778536.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/5ac5f20bc3c3cbb2cc91bdbdb726e6ff49ad0a985ac74cf4248d0089bd8fca13.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/ac8b07ca3bc5262bef07f4cca0defe126dd1c25f650f8c4e4a29ad7630be26b7.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/a61b10313ce660cff761a7b4734109d3be8e38f774308634b0c52b6b7d4ccad4.png"
+    "https://www.rinnegatamante.eu/vitadb/screenshots/a61b10313ce660cff761a7b4734109d3be8e38f774308634b0c52b6b7d4ccad4.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/6361f255d1400f7e8827b1298a5cc3ce421ac0b65faf4165edc42381d7778536.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/5ac5f20bc3c3cbb2cc91bdbdb726e6ff49ad0a985ac74cf4248d0089bd8fca13.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/ac8b07ca3bc5262bef07f4cca0defe126dd1c25f650f8c4e4a29ad7630be26b7.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/a61b10313ce660cff761a7b4734109d3be8e38f774308634b0c52b6b7d4ccad4.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "VitaDBtoo VPK",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=846",
+      "recommended": true
+    },
+    {
+      "type": "Download",
+      "name": "NeoVitaDB VPK",
       "url": "https://github.com/Rinnegatamante/Death-Road-to-Canada-Lite/releases/download/v.1.0/Canada.vpk",
       "recommended": false
     },
     {
       "type": "Official Website",
-      "name": "VitaDBtoo Release Page",
+      "name": "VitaDB Release Page",
       "url": "https://github.com/Rinnegatamante/Death-Road-to-Canada-Lite/releases"
     },
     {
@@ -47,17 +52,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/Rinnegatamante/Death-Road-to-Canada-Lite"
-    },
-    {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=846",
-      "recommended": true
     }
   ],
-  "source_name": "VitaDBtoo",
+  "source_name": "VitaDB",
   "source_id": "846",
   "source_url": "https://github.com/Rinnegatamante/Death-Road-to-Canada-Lite",
   "release_page": "https://github.com/Rinnegatamante/Death-Road-to-Canada-Lite/releases",
-  "updated_at": "2026-08-13T15:34:48.539256+00:00"
+  "updated_at": "2026-08-15T18:26:19.837603+00:00"
 }

@@ -5,9 +5,9 @@
   "description": "Port of Grand Theft Auto: San Andreas for PSVITA.",
   "long_description": "A port of Grand Theft Auto: San Andreas for PSVITA/PSTV based on the Mobile (Android) version of the game.",
   "author_ids": [
-    "aap",
     "theflow",
-    "rinnegatamante"
+    "rinnegatamante",
+    "aap"
   ],
   "category_id": "ports",
   "subcategory_ids": [
@@ -18,24 +18,30 @@
   "requirements": "- libshacccg.suprx\n- kubridge.skprx\n- Game Data Files: Android",
   "size": 1455563,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/58cfaa639b114893d1a1ab4f5bf19920559242b4543b92cee8808b06af3cb721.png",
+  "icon": "https://www.rinnegatamante.eu/vitadb/icons/58cfaa639b114893d1a1ab4f5bf19920559242b4543b92cee8808b06af3cb721.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/79a416b81efbfd5ddfde015a46e6b817e4f841706626691a5bf201cdd6a11d3c.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/330c7808df3fd0d8c7abc18bed6c479c64b13adf3b96ce06f9510b8feedc16a0.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/f127bb3a2ea9d01627e62e3941ba42271e71bf8d138b8a5914405ddf45820722.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/02c8aa3521e4e738cd2b6c2a1ae38c0a6ac5559ca908d74220a25822ccb9dbf2.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/79a416b81efbfd5ddfde015a46e6b817e4f841706626691a5bf201cdd6a11d3c.png"
+    "https://www.rinnegatamante.eu/vitadb/screenshots/79a416b81efbfd5ddfde015a46e6b817e4f841706626691a5bf201cdd6a11d3c.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/330c7808df3fd0d8c7abc18bed6c479c64b13adf3b96ce06f9510b8feedc16a0.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/f127bb3a2ea9d01627e62e3941ba42271e71bf8d138b8a5914405ddf45820722.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/02c8aa3521e4e738cd2b6c2a1ae38c0a6ac5559ca908d74220a25822ccb9dbf2.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/79a416b81efbfd5ddfde015a46e6b817e4f841706626691a5bf201cdd6a11d3c.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "VitaDBtoo VPK",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=618",
+      "recommended": true
+    },
+    {
+      "type": "Download",
+      "name": "NeoVitaDB VPK",
       "url": "https://github.com/TheOfficialFloW/gtasa_vita/releases/download/v2.1/GTASA.vpk",
       "recommended": false
     },
     {
       "type": "Official Website",
-      "name": "VitaDBtoo Release Page",
+      "name": "VitaDB Release Page",
       "url": "https://github.com/TheOfficialFloW/gtasa_vita/releases"
     },
     {
@@ -47,17 +53,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/TheOfficialFloW/gtasa_vita"
-    },
-    {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=618",
-      "recommended": true
     }
   ],
-  "source_name": "VitaDBtoo",
+  "source_name": "VitaDB",
   "source_id": "618",
   "source_url": "https://github.com/TheOfficialFloW/gtasa_vita",
   "release_page": "https://github.com/TheOfficialFloW/gtasa_vita/releases",
-  "updated_at": "2026-08-13T15:34:48.571535+00:00"
+  "updated_at": "2026-08-15T18:26:19.982401+00:00"
 }

@@ -5,12 +5,12 @@
   "description": "HoMM II port for PSVITA.",
   "long_description": "Heroes of Might and Magic II: The Succession Wars is a turn-based strategy video game developed by Jon Van Caneghem through New World Computing and published in 1996 by the 3DO Company. The game is the second installment of the Heroes of Might and Magic series and is typically credited as the breakout game for the series. Heroes II was voted the sixth-best PC game of all time by PC Gamer in May 1997.\nAn expansion pack, The Price of Loyalty, was released in 1997. Later, 3DO bundled Heroes II and its expansion pack in one box, released as Heroes of Might and Magic II Gold in 1998.",
   "author_ids": [
-    "fheroes2-team",
-    "northfear"
+    "northfear",
+    "fheroes2-team"
   ],
   "category_id": "ports",
   "subcategory_ids": [
-    "strategy"
+    "other"
   ],
   "version": "1.1.17",
   "version_date": "2026-06-30",
@@ -19,11 +19,11 @@
   "status": "Legacy",
   "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/0354-fheroes2.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/dfd827eb465a9950e018754abf794bc1decabee6f7d7cb6848884a386d72f510.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/7941ace420beacf6b182d8e944aad8e2b79ecc02b88d93de1d52f94d61d96dc3.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/735ab339bfe29a9007061b7b7afbf248dec1c565ce2723a56abee5a01c16bf40.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/a36b55e36258a3e00fde42f5af08ff751e683046a995219b0539b9e47440b4e0.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/dfd827eb465a9950e018754abf794bc1decabee6f7d7cb6848884a386d72f510.png"
+    "https://www.rinnegatamante.eu/vitadb/screenshots/dfd827eb465a9950e018754abf794bc1decabee6f7d7cb6848884a386d72f510.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/7941ace420beacf6b182d8e944aad8e2b79ecc02b88d93de1d52f94d61d96dc3.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/735ab339bfe29a9007061b7b7afbf248dec1c565ce2723a56abee5a01c16bf40.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/a36b55e36258a3e00fde42f5af08ff751e683046a995219b0539b9e47440b4e0.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/dfd827eb465a9950e018754abf794bc1decabee6f7d7cb6848884a386d72f510.png"
   ],
   "links": [
     {
@@ -47,5 +47,5 @@
   "source_id": "354",
   "source_url": "https://github.com/ihhub/fheroes2",
   "release_page": "https://github.com/ihhub/fheroes2/releases/tag/1.1.17",
-  "updated_at": "2026-08-13T15:34:48.355426+00:00"
+  "updated_at": "2026-08-15T18:26:19.016591+00:00"
 }

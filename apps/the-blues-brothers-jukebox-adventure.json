@@ -16,23 +16,29 @@
   "requirements": "- Game Data Files: DOS",
   "size": 1308847,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/8fbdfb49acde1b9e16b41736dba68a4f9b1483cc3c0fcc5e51e25d159f217190.png",
+  "icon": "https://www.rinnegatamante.eu/vitadb/icons/8fbdfb49acde1b9e16b41736dba68a4f9b1483cc3c0fcc5e51e25d159f217190.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/6916eedd9dc959f8011e4f4a19f660ffd0f135d8d43ab1471c10b6c3813d076d.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/47829d698ed536bb7403d95a6578be629903da4be6ebad93777b9de89287827f.png",
     "https://www.rinnegatamante.eu/vitadb/screenshots/6916eedd9dc959f8011e4f4a19f660ffd0f135d8d43ab1471c10b6c3813d076d.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/47829d698ed536bb7403d95a6578be629903da4be6ebad93777b9de89287827f.png"
+    "https://www.rinnegatamante.eu/vitadb/screenshots/47829d698ed536bb7403d95a6578be629903da4be6ebad93777b9de89287827f.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/6916eedd9dc959f8011e4f4a19f660ffd0f135d8d43ab1471c10b6c3813d076d.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/47829d698ed536bb7403d95a6578be629903da4be6ebad93777b9de89287827f.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "VitaDBtoo VPK",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=776",
+      "recommended": true
+    },
+    {
+      "type": "Download",
+      "name": "NeoVitaDB VPK",
       "url": "https://github.com/v-atamanenko/blues-vita/releases/download/1.0/bb-jukebox.vpk",
       "recommended": false
     },
     {
       "type": "Official Website",
-      "name": "VitaDBtoo Release Page",
+      "name": "VitaDB Release Page",
       "url": "https://github.com/v-atamanenko/blues-vita/releases"
     },
     {
@@ -44,17 +50,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/v-atamanenko/blues-vita"
-    },
-    {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=776",
-      "recommended": true
     }
   ],
-  "source_name": "VitaDBtoo",
+  "source_name": "VitaDB",
   "source_id": "776",
   "source_url": "https://github.com/v-atamanenko/blues-vita",
   "release_page": "https://github.com/v-atamanenko/blues-vita/releases",
-  "updated_at": "2026-08-13T15:34:48.558719+00:00"
+  "updated_at": "2026-08-15T18:26:19.922381+00:00"
 }

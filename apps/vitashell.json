@@ -16,9 +16,8 @@
   "requirements": "Not specified",
   "size": 1889776,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/cbbb234e307a727b32c119d619187df61b1a60dbd63f2e7b66520ef9bc212e2d.png",
+  "icon": "https://www.rinnegatamante.eu/vitadb/icons/cbbb234e307a727b32c119d619187df61b1a60dbd63f2e7b66520ef9bc212e2d.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/cbbb234e307a727b32c119d619187df61b1a60dbd63f2e7b66520ef9bc212e2d.png",
     "https://www.rinnegatamante.eu/vitadb/screenshots/shell1.jpg",
     "https://www.rinnegatamante.eu/vitadb/screenshots/shell2.jpg",
     "https://www.rinnegatamante.eu/vitadb/screenshots/shell3.jpg",
@@ -27,13 +26,19 @@
   "links": [
     {
       "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=21",
+      "recommended": true
+    },
+    {
+      "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/TheOfficialFloW/VitaShell/releases/download/v2.02/VitaShell.vpk",
       "recommended": false
     },
     {
       "type": "Official Website",
-      "name": "VitaDBtoo Release Page",
+      "name": "VitaDB Release Page",
       "url": "https://github.com/TheOfficialFloW/VitaShell/releases"
     },
     {
@@ -45,17 +50,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/TheOfficialFloW/VitaShell"
-    },
-    {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=21",
-      "recommended": true
     }
   ],
-  "source_name": "VitaDBtoo",
+  "source_name": "VitaDB",
   "source_id": "21",
   "source_url": "https://github.com/TheOfficialFloW/VitaShell",
   "release_page": "https://github.com/TheOfficialFloW/VitaShell/releases",
-  "updated_at": "2026-08-13T15:34:48.625535+00:00"
+  "updated_at": "2026-08-15T18:26:20.232100+00:00"
 }

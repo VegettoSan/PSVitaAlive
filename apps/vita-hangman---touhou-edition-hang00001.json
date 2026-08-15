@@ -1,0 +1,59 @@
+{
+  "id": "vita-hangman---touhou-edition-hang00001",
+  "title_id": "HANG00001",
+  "name": "Vita Hangman - Touhou Edition",
+  "description": "Hangman game for PSVITA.",
+  "long_description": "Hangman game for PSVITA coded in Lua. Enhanced version of Vita Hangman with sounds, BGMs, backgrounds and enhanced game mechanics.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
+  "author_ids": [
+    "jackiepooh",
+    "rinnegatamante",
+    "ifrit05",
+    "aurora"
+  ],
+  "category_id": "games",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.1.1A-TH1",
+  "version_date": "2026-08-15",
+  "requirements": "Not specified",
+  "size": 2237731,
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1595-vita-hangman-touhou-edition.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/2afd4598148cdc5523c1cc50c855948801eac09fd522ebef63b3a76abbb136fe.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/60705ab699d8435613e30ef2d64c54c7ff3d8f42cb29e016d008923e3dde7df1.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/bec904c4bc365105313cfe89885032b72f39a4124d798178f4cf030db0464e2c.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/30f3a18bf3a686d628e80280b910337a6816c9dab1a842f45dd99563e66d24ba.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/bec904c4bc365105313cfe89885032b72f39a4124d798178f4cf030db0464e2c.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "NeoVitaDB VPK",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/379-VitaHangman.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Download",
+      "name": "VitaDBtoo VPK",
+      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/379-VitaHangman.vpk",
+      "recommended": false
+    },
+    {
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
+      "url": "http://wololo.net/talk/viewtopic.php?f=116&t=48977"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com"
+    }
+  ],
+  "source_name": "NeoVitaDB",
+  "source_id": "1595",
+  "source_url": "https://github.com",
+  "release_page": "",
+  "updated_at": "2026-08-15T18:26:20.444577+00:00"
+}

@@ -18,36 +18,36 @@
   "status": "Legacy",
   "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1694-prboom-plus.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c466ff03ee2e7324b95154b30f413c558e4d3275b276a8332b1d21a62feca66d.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/c466ff03ee2e7324b95154b30f413c558e4d3275b276a8332b1d21a62feca66d.png"
+    "https://www.rinnegatamante.eu/vitadb/screenshots/c466ff03ee2e7324b95154b30f413c558e4d3275b276a8332b1d21a62feca66d.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c466ff03ee2e7324b95154b30f413c558e4d3275b276a8332b1d21a62feca66d.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "VitaDBtoo VPK",
+      "name": "NeoVitaDB VPK",
       "url": "https://github.com/fgsfdsfgs/prboom-plus/releases/download/v2.5.1.7um-vita-r1.2/prboom-plus-r1.2.vpk",
       "recommended": true
-    },
-    {
-      "type": "Official Website",
-      "name": "VitaDBtoo Release Page",
-      "url": "https://github.com/fgsfdsfgs/prboom-plus/releases"
-    },
-    {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/fgsfdsfgs/prboom-plus"
     },
     {
       "type": "Download",
       "name": "VitaDB VPK",
       "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=591",
       "recommended": false
+    },
+    {
+      "type": "Official Website",
+      "name": "VitaDB Release Page",
+      "url": "https://github.com/fgsfdsfgs/prboom-plus/releases"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/fgsfdsfgs/prboom-plus"
     }
   ],
-  "source_name": "VitaDBtoo",
-  "source_id": "591",
-  "source_url": "https://github.com/fgsfdsfgs/prboom-plus",
-  "release_page": "https://github.com/fgsfdsfgs/prboom-plus/releases",
-  "updated_at": "2026-08-13T15:34:48.606673+00:00"
+  "source_name": "NeoVitaDB",
+  "source_id": "1694",
+  "source_url": "https://github.com",
+  "release_page": "",
+  "updated_at": "2026-08-15T18:26:20.161876+00:00"
 }

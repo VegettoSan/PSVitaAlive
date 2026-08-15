@@ -16,14 +16,20 @@
   "requirements": "Not specified",
   "size": 1501459,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/e845c7cee9483b977c1066a26a35ede02fc027264e53158ab05a104e121b3352.png",
+  "icon": "https://www.rinnegatamante.eu/vitadb/icons/e845c7cee9483b977c1066a26a35ede02fc027264e53158ab05a104e121b3352.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/e662cbc00e5274814c232541c9059bb632ee28b6e4a6887ad2af7503820c41c9.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/b98b4998d29ff21707a21433e33e49e7c46ac201458531c913791b6eeb45d75a.png",
     "https://www.rinnegatamante.eu/vitadb/screenshots/e662cbc00e5274814c232541c9059bb632ee28b6e4a6887ad2af7503820c41c9.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/b98b4998d29ff21707a21433e33e49e7c46ac201458531c913791b6eeb45d75a.png"
+    "https://www.rinnegatamante.eu/vitadb/screenshots/b98b4998d29ff21707a21433e33e49e7c46ac201458531c913791b6eeb45d75a.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/e662cbc00e5274814c232541c9059bb632ee28b6e4a6887ad2af7503820c41c9.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/b98b4998d29ff21707a21433e33e49e7c46ac201458531c913791b6eeb45d75a.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1286",
+      "recommended": true
+    },
     {
       "type": "Download",
       "name": "VitaDBtoo VPK",
@@ -32,24 +38,18 @@
     },
     {
       "type": "Official Website",
-      "name": "VitaDBtoo Release Page",
+      "name": "VitaDB Release Page",
       "url": "https://github.com/HarommelRabbid/BetterQRScanner/releases"
     },
     {
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/HarommelRabbid/BetterQRScanner"
-    },
-    {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1286",
-      "recommended": true
     }
   ],
-  "source_name": "VitaDBtoo",
+  "source_name": "VitaDB",
   "source_id": "1286",
   "source_url": "https://github.com/HarommelRabbid/BetterQRScanner",
   "release_page": "https://github.com/HarommelRabbid/BetterQRScanner/releases",
-  "updated_at": "2026-08-13T15:34:48.400831+00:00"
+  "updated_at": "2026-08-15T18:26:19.221096+00:00"
 }

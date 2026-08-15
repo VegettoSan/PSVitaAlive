@@ -16,12 +16,18 @@
   "requirements": "Not specified",
   "size": 303520,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/814d5a4ffd13bbba7db886bc18f5ffb80f48e00fa172025acfbdb0f18fc9bcf4.png",
+  "icon": "https://www.rinnegatamante.eu/vitadb/icons/814d5a4ffd13bbba7db886bc18f5ffb80f48e00fa172025acfbdb0f18fc9bcf4.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/a048dfcae7548219d5f0f50217f78b156dfe20786d798c2b7a1de72659875fb8.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/a048dfcae7548219d5f0f50217f78b156dfe20786d798c2b7a1de72659875fb8.png"
+    "https://www.rinnegatamante.eu/vitadb/screenshots/a048dfcae7548219d5f0f50217f78b156dfe20786d798c2b7a1de72659875fb8.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/a048dfcae7548219d5f0f50217f78b156dfe20786d798c2b7a1de72659875fb8.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=238",
+      "recommended": true
+    },
     {
       "type": "Download",
       "name": "VitaDBtoo VPK",
@@ -30,7 +36,7 @@
     },
     {
       "type": "Official Website",
-      "name": "VitaDBtoo Release Page",
+      "name": "VitaDB Release Page",
       "url": "http://wololo.net/talk/viewtopic.php?p=417846"
     },
     {
@@ -42,17 +48,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/joel16/PickrVITA"
-    },
-    {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=238",
-      "recommended": true
     }
   ],
-  "source_name": "VitaDBtoo",
+  "source_name": "VitaDB",
   "source_id": "238",
   "source_url": "https://github.com/joel16/PickrVITA",
   "release_page": "http://wololo.net/talk/viewtopic.php?p=417846",
-  "updated_at": "2026-08-13T15:34:48.683643+00:00"
+  "updated_at": "2026-08-15T18:26:20.485406+00:00"
 }

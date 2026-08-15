@@ -16,21 +16,27 @@
   "requirements": "- Game Data Files: PC",
   "size": 752944,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/159f6765a36e2307c1f371987b42061e98418e27f862b9fa77130a90dd1c2029.png",
+  "icon": "https://www.rinnegatamante.eu/vitadb/icons/159f6765a36e2307c1f371987b42061e98418e27f862b9fa77130a90dd1c2029.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/30652f4732a3025eccb49d3a3734b4787332911d2a7a6a7c5631cc575a64d845.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/30652f4732a3025eccb49d3a3734b4787332911d2a7a6a7c5631cc575a64d845.png"
+    "https://www.rinnegatamante.eu/vitadb/screenshots/30652f4732a3025eccb49d3a3734b4787332911d2a7a6a7c5631cc575a64d845.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/30652f4732a3025eccb49d3a3734b4787332911d2a7a6a7c5631cc575a64d845.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "VitaDBtoo VPK",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=378",
+      "recommended": true
+    },
+    {
+      "type": "Download",
+      "name": "NeoVitaDB VPK",
       "url": "https://github.com/usineur/openjazz/releases/download/1.1/OpenJazz.vpk",
       "recommended": false
     },
     {
       "type": "Official Website",
-      "name": "VitaDBtoo Release Page",
+      "name": "VitaDB Release Page",
       "url": "https://github.com/usineur/openjazz/releases/latest"
     },
     {
@@ -42,17 +48,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/usineur/openjazz"
-    },
-    {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=378",
-      "recommended": true
     }
   ],
-  "source_name": "VitaDBtoo",
+  "source_name": "VitaDB",
   "source_id": "378",
   "source_url": "https://github.com/usineur/openjazz",
   "release_page": "https://github.com/usineur/openjazz/releases/latest",
-  "updated_at": "2026-08-13T15:34:48.665112+00:00"
+  "updated_at": "2026-08-15T18:26:20.387274+00:00"
 }

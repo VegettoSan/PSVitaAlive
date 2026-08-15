@@ -14,29 +14,18 @@
   "version": "v.1.7",
   "version_date": "2020-11-30",
   "requirements": "Not specified",
-  "size": 1115769,
+  "size": 8298018,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/6f9a852ed2e15001bf96a8c8f142aeb59ecc51b56bcb233d96a3e9774fec2667.png",
+  "icon": "https://www.rinnegatamante.eu/vitadb/icons/6f9a852ed2e15001bf96a8c8f142aeb59ecc51b56bcb233d96a3e9774fec2667.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/6f9a852ed2e15001bf96a8c8f142aeb59ecc51b56bcb233d96a3e9774fec2667.png",
     "https://www.rinnegatamante.eu/vitadb/screenshots/wolf3d.jpeg"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "VitaDBtoo VPK",
-      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/31-vitaWolfen.zip",
-      "recommended": false
-    },
-    {
-      "type": "Official Website",
-      "name": "VitaDBtoo Release Page",
-      "url": "https://www.psx-place.com/threads/vitawolfen.31918/"
-    },
-    {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/Rinnegatamante/vitaWolfen"
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=31",
+      "recommended": true
     },
     {
       "type": "Download",
@@ -45,15 +34,19 @@
       "recommended": false
     },
     {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=31",
-      "recommended": true
+      "type": "Official Website",
+      "name": "VitaDB Release Page",
+      "url": "https://www.psx-place.com/threads/vitawolfen.31918/"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/Rinnegatamante/vitaWolfen"
     }
   ],
-  "source_name": "VitaDBtoo",
+  "source_name": "VitaDB",
   "source_id": "31",
   "source_url": "https://github.com/Rinnegatamante/vitaWolfen",
   "release_page": "https://www.psx-place.com/threads/vitawolfen.31918/",
-  "updated_at": "2026-08-13T15:34:48.606007+00:00"
+  "updated_at": "2026-08-15T18:26:20.159365+00:00"
 }

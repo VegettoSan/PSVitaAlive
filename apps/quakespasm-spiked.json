@@ -18,28 +18,24 @@
   "status": "Legacy",
   "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1748-quakespasm-spiked.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/d11e97a3aad54a024808b5296fb436ed591fdb28b3db4fcdf6f0704a5b9b4da2.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/ad43e903ba063d50d2cdfecb3c68be6ec502522b821e2e421dce9ce262b130e2.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/64c48456f72f36c17de9a568157cc8e8a5fa393a947f791429a05f327ef81d6b.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c80bf2a6cceebe514efc2b52ee7d554b729a5e314bbaa456ee734b4fdb528af4.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/d11e97a3aad54a024808b5296fb436ed591fdb28b3db4fcdf6f0704a5b9b4da2.png"
+    "https://www.rinnegatamante.eu/vitadb/screenshots/d11e97a3aad54a024808b5296fb436ed591fdb28b3db4fcdf6f0704a5b9b4da2.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/ad43e903ba063d50d2cdfecb3c68be6ec502522b821e2e421dce9ce262b130e2.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/64c48456f72f36c17de9a568157cc8e8a5fa393a947f791429a05f327ef81d6b.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/c80bf2a6cceebe514efc2b52ee7d554b729a5e314bbaa456ee734b4fdb528af4.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/d11e97a3aad54a024808b5296fb436ed591fdb28b3db4fcdf6f0704a5b9b4da2.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "VitaDBtoo VPK",
+      "name": "NeoVitaDB VPK",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/716-quakespasm.vpk",
       "recommended": true
     },
     {
-      "type": "Official Website",
-      "name": "VitaDBtoo Release Page",
-      "url": "https://www.psx-place.com/threads/release-quakespasm-spiked-modern-quake-sourceport-with-high-mods-compatibility.34786/"
-    },
-    {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/Rinnegatamante/Quakespasm"
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=716",
+      "recommended": false
     },
     {
       "type": "Download",
@@ -48,15 +44,19 @@
       "recommended": false
     },
     {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=716",
-      "recommended": false
+      "type": "Official Website",
+      "name": "VitaDB Release Page",
+      "url": "https://www.psx-place.com/threads/release-quakespasm-spiked-modern-quake-sourceport-with-high-mods-compatibility.34786/"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/Rinnegatamante/Quakespasm"
     }
   ],
-  "source_name": "VitaDBtoo",
-  "source_id": "716",
-  "source_url": "https://github.com/Rinnegatamante/Quakespasm",
-  "release_page": "https://www.psx-place.com/threads/release-quakespasm-spiked-modern-quake-sourceport-with-high-mods-compatibility.34786/",
-  "updated_at": "2026-08-13T15:34:48.519690+00:00"
+  "source_name": "NeoVitaDB",
+  "source_id": "1748",
+  "source_url": "https://github.com",
+  "release_page": "",
+  "updated_at": "2026-08-15T18:26:19.747699+00:00"
 }

@@ -5,8 +5,8 @@
   "description": "Package installer for PSVITA.",
   "long_description": "Package installer for PSVITA.",
   "author_ids": [
-    "lienby",
-    "li"
+    "li",
+    "lienby"
   ],
   "category_id": "utilities",
   "subcategory_ids": [
@@ -48,5 +48,5 @@
   "source_id": "1454",
   "source_url": "https://github.com/LiEnby/real-package-installer",
   "release_page": "https://github.com/LiEnby/real-package-installer/releases",
-  "updated_at": "2026-08-13T15:34:48.323488+00:00"
+  "updated_at": "2026-08-15T18:26:20.635389+00:00"
 }

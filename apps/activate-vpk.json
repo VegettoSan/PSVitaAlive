@@ -7,7 +7,7 @@
   "author_ids": [
     "li"
   ],
-  "category_id": "games",
+  "category_id": "utilities",
   "subcategory_ids": [
     "other"
   ],
@@ -37,5 +37,5 @@
   "source_id": "1985",
   "source_url": "https://git.silica.codes",
   "release_page": "",
-  "updated_at": "2026-08-13T15:34:48.725578+00:00"
+  "updated_at": "2026-08-15T18:26:20.695393+00:00"
 }

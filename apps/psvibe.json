@@ -16,21 +16,26 @@
   "requirements": "Not specified",
   "size": 159008,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/2451064b14e12d2b4eb2d912f42470ac1ffdd8f282e8a50051286381dbc64b7c.png",
+  "icon": "https://www.rinnegatamante.eu/vitadb/icons/2451064b14e12d2b4eb2d912f42470ac1ffdd8f282e8a50051286381dbc64b7c.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/2451064b14e12d2b4eb2d912f42470ac1ffdd8f282e8a50051286381dbc64b7c.png",
     "https://www.rinnegatamante.eu/vitadb/screenshots/vibe.jpg"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "VitaDBtoo VPK",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=48",
+      "recommended": true
+    },
+    {
+      "type": "Download",
+      "name": "NeoVitaDB VPK",
       "url": "https://github.com/NamelessGhoul0/PSVibe/releases/download/v2-final/PSVibe.v2-final.vpk",
       "recommended": false
     },
     {
       "type": "Official Website",
-      "name": "VitaDBtoo Release Page",
+      "name": "VitaDB Release Page",
       "url": "http://wololo.net/talk/viewtopic.php?f=116&t=47324&p=414479#p414479"
     },
     {
@@ -42,17 +47,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/NamelessGhoul0/PSVibe"
-    },
-    {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=48",
-      "recommended": true
     }
   ],
-  "source_name": "VitaDBtoo",
+  "source_name": "VitaDB",
   "source_id": "48",
   "source_url": "https://github.com/NamelessGhoul0/PSVibe",
   "release_page": "http://wololo.net/talk/viewtopic.php?f=116&t=47324&p=414479#p414479",
-  "updated_at": "2026-08-13T15:34:48.694282+00:00"
+  "updated_at": "2026-08-15T18:26:20.530074+00:00"
 }

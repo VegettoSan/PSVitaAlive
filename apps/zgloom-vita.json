@@ -5,7 +5,6 @@
   "description": "Port of ZGloom for PSVITA.",
   "long_description": "ZGloom is a re-implementation of Amiga FPS Gloom, including support for Gloom 3 and Zombie Massacre. It offers reflections, blob shadows, dust particles in the air, and many optimizations.\nGloom was a 1995 Doom-clone from Black Magic Software for Commodore Amiga. It had very messy and meaty graphics and needed a very powerful Amiga computer back then. It had several official successors like Gloom Deluxe/Ultimate Gloom (a graphical enhanced Gloom), Gloom 3 and Zombie Massacre.\nGloom was made freely available by its developers. Also other games with the engine like Gloom 3 or Zombie Massacre can be downloaded for free on Aminet. Otherwise you can take the original game files from your game installation.",
   "author_ids": [
-    "01y",
     "andiweli",
     "jetstreamsham"
   ],
@@ -29,14 +28,9 @@
   "links": [
     {
       "type": "Download",
-      "name": "VitaDBtoo VPK",
+      "name": "NeoVitaDB VPK",
       "url": "https://github.com/Andiweli/ZGloom-Vita-Vita2D/releases/download/v08.2026/ZGloomCollection.08.2026.vpk",
       "recommended": true
-    },
-    {
-      "type": "Official Website",
-      "name": "VitaDBtoo Release Page",
-      "url": "https://github.com/Andiweli/ZGloom-Vita-Vita2D/releases"
     },
     {
       "type": "Official Website",
@@ -44,14 +38,19 @@
       "url": "https://github.com/Andiweli/ZGloom-Vita-Vita2D/releases/tag/v08.2026"
     },
     {
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
+      "url": "https://github.com/Andiweli/ZGloom-Vita-Vita2D/releases"
+    },
+    {
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/Andiweli/ZGloom-Vita-Vita2D"
     }
   ],
-  "source_name": "VitaDBtoo",
+  "source_name": "NeoVitaDB",
   "source_id": "731",
   "source_url": "https://github.com/Andiweli/ZGloom-Vita-Vita2D",
-  "release_page": "https://github.com/Andiweli/ZGloom-Vita-Vita2D/releases",
-  "updated_at": "2026-08-13T15:34:48.346751+00:00"
+  "release_page": "https://github.com/Andiweli/ZGloom-Vita-Vita2D/releases/tag/v08.2026",
+  "updated_at": "2026-08-15T18:26:18.980481+00:00"
 }

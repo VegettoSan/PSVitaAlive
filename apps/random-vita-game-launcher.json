@@ -16,21 +16,27 @@
   "requirements": "Not specified",
   "size": 4707494,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/48a4552d002414f9288fc3da1a477a4a04448e255634a25b266d4aa0c4f37ece.png",
+  "icon": "https://www.rinnegatamante.eu/vitadb/icons/48a4552d002414f9288fc3da1a477a4a04448e255634a25b266d4aa0c4f37ece.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/3407f4ff72ef98e1ffe6a7a08e99088f91e965729b425f41800ffd7969ff424a.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/3407f4ff72ef98e1ffe6a7a08e99088f91e965729b425f41800ffd7969ff424a.png"
+    "https://www.rinnegatamante.eu/vitadb/screenshots/3407f4ff72ef98e1ffe6a7a08e99088f91e965729b425f41800ffd7969ff424a.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/3407f4ff72ef98e1ffe6a7a08e99088f91e965729b425f41800ffd7969ff424a.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "VitaDBtoo VPK",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1171",
+      "recommended": true
+    },
+    {
+      "type": "Download",
+      "name": "NeoVitaDB VPK",
       "url": "https://github.com/jimbob4000/Random-Vita-Game-Launcher/releases/download/v1.0/Random_Vita_Game_Launcher_v1.0.vpk",
       "recommended": false
     },
     {
       "type": "Official Website",
-      "name": "VitaDBtoo Release Page",
+      "name": "VitaDB Release Page",
       "url": "https://github.com/jimbob4000/Random-Vita-Game-Launcher/releases"
     },
     {
@@ -42,17 +48,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/jimbob4000/Random-Vita-Game-Launcher"
-    },
-    {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1171",
-      "recommended": true
     }
   ],
-  "source_name": "VitaDBtoo",
+  "source_name": "VitaDB",
   "source_id": "1171",
   "source_url": "https://github.com/jimbob4000/Random-Vita-Game-Launcher",
   "release_page": "https://github.com/jimbob4000/Random-Vita-Game-Launcher/releases",
-  "updated_at": "2026-08-13T15:34:48.454792+00:00"
+  "updated_at": "2026-08-15T18:26:19.445866+00:00"
 }

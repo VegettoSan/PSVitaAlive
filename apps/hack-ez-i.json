@@ -18,23 +18,24 @@
   "status": "Legacy",
   "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1952-hack-ez-i.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/38466fed3affa3e0ad8a3c75458b8fb6de990ee6c5e067c36418adbf64224e24.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c6b01c74536c473d65277f4e17e2fde3b44e47a1b87ca059e04449ce69e2ae95.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/a3ebc5d4cd884c6d651051a4663085cfde3532722450e427b1e8ca2fe42247e5.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/ac648fc5aa766bb445495b67086b562047e37b683dfd03de0bcb91ba21ce5c5e.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/38466fed3affa3e0ad8a3c75458b8fb6de990ee6c5e067c36418adbf64224e24.png"
+    "https://www.rinnegatamante.eu/vitadb/screenshots/38466fed3affa3e0ad8a3c75458b8fb6de990ee6c5e067c36418adbf64224e24.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/c6b01c74536c473d65277f4e17e2fde3b44e47a1b87ca059e04449ce69e2ae95.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/a3ebc5d4cd884c6d651051a4663085cfde3532722450e427b1e8ca2fe42247e5.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/ac648fc5aa766bb445495b67086b562047e37b683dfd03de0bcb91ba21ce5c5e.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/38466fed3affa3e0ad8a3c75458b8fb6de990ee6c5e067c36418adbf64224e24.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "VitaDBtoo VPK",
+      "name": "NeoVitaDB VPK",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1339-hack-ez-i.vpk",
       "recommended": true
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com"
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1339",
+      "recommended": false
     },
     {
       "type": "Download",
@@ -43,15 +44,14 @@
       "recommended": false
     },
     {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1339",
-      "recommended": false
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com"
     }
   ],
-  "source_name": "VitaDBtoo",
-  "source_id": "1339",
-  "source_url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1339-hack-ez-i.vpk",
+  "source_name": "NeoVitaDB",
+  "source_id": "1952",
+  "source_url": "https://github.com",
   "release_page": "",
-  "updated_at": "2026-08-13T15:34:48.380251+00:00"
+  "updated_at": "2026-08-15T18:26:19.141196+00:00"
 }

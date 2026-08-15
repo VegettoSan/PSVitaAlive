@@ -18,25 +18,21 @@
   "status": "Legacy",
   "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1553-deathrun-to-vita.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/65b763a01249810c96c07a735c1aee649dccfbb0f02a2698feb308934e8883e7.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/65b763a01249810c96c07a735c1aee649dccfbb0f02a2698feb308934e8883e7.png"
+    "https://www.rinnegatamante.eu/vitadb/screenshots/65b763a01249810c96c07a735c1aee649dccfbb0f02a2698feb308934e8883e7.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/65b763a01249810c96c07a735c1aee649dccfbb0f02a2698feb308934e8883e7.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "VitaDBtoo VPK",
+      "name": "NeoVitaDB VPK",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/253-DeathRun.vpk",
       "recommended": true
     },
     {
-      "type": "Official Website",
-      "name": "VitaDBtoo Release Page",
-      "url": "http://wololo.net/talk/viewtopic.php?t=46567"
-    },
-    {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com"
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=253",
+      "recommended": false
     },
     {
       "type": "Download",
@@ -45,15 +41,19 @@
       "recommended": false
     },
     {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=253",
-      "recommended": false
+      "type": "Official Website",
+      "name": "VitaDB Release Page",
+      "url": "http://wololo.net/talk/viewtopic.php?t=46567"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com"
     }
   ],
-  "source_name": "VitaDBtoo",
-  "source_id": "253",
-  "source_url": "http://wololo.net/talk/viewtopic.php?t=46567",
-  "release_page": "http://wololo.net/talk/viewtopic.php?t=46567",
-  "updated_at": "2026-08-13T15:34:48.705784+00:00"
+  "source_name": "NeoVitaDB",
+  "source_id": "1553",
+  "source_url": "https://github.com",
+  "release_page": "",
+  "updated_at": "2026-08-15T18:26:20.574690+00:00"
 }

@@ -16,20 +16,20 @@
   "requirements": "- libshacccg.suprx",
   "size": 1999158,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/364ab3f6ea61b9f2a57355e415d92519bb5de0370687c075d53e13a939bf5266.png",
+  "icon": "https://www.rinnegatamante.eu/vitadb/icons/364ab3f6ea61b9f2a57355e415d92519bb5de0370687c075d53e13a939bf5266.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/0db26f785375a7e4f2baa3b9a9ad8ecbde2de8f0737c67098a8ed9082c1678bf.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/02af94269f09d5179b115c5fd9b9370b80d71a477790e406cdf88d467a525b7a.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/9bb1b8225a07b6061c687566330c99c9460708ede89563dc8d362164a73728ae.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/a2c5818b2c19047464edfe0de072d4c7f2512fa7263259127bd38bc7ddef5955.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/0db26f785375a7e4f2baa3b9a9ad8ecbde2de8f0737c67098a8ed9082c1678bf.png"
+    "https://www.rinnegatamante.eu/vitadb/screenshots/0db26f785375a7e4f2baa3b9a9ad8ecbde2de8f0737c67098a8ed9082c1678bf.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/02af94269f09d5179b115c5fd9b9370b80d71a477790e406cdf88d467a525b7a.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/9bb1b8225a07b6061c687566330c99c9460708ede89563dc8d362164a73728ae.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/a2c5818b2c19047464edfe0de072d4c7f2512fa7263259127bd38bc7ddef5955.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/0db26f785375a7e4f2baa3b9a9ad8ecbde2de8f0737c67098a8ed9082c1678bf.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "VitaDBtoo VPK",
-      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/617-hurrican.vpk",
-      "recommended": false
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=617",
+      "recommended": true
     },
     {
       "type": "Download",
@@ -38,8 +38,14 @@
       "recommended": false
     },
     {
+      "type": "Download",
+      "name": "VitaDBtoo VPK",
+      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/617-hurrican.vpk",
+      "recommended": false
+    },
+    {
       "type": "Official Website",
-      "name": "VitaDBtoo Release Page",
+      "name": "VitaDB Release Page",
       "url": "https://github.com/ammeir/hurrican/releases"
     },
     {
@@ -51,23 +57,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/ammeir/hurrican"
-    },
-    {
-      "type": "Download",
-      "name": "VitaDBtoo VPK",
-      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/617-hurrican.vpk",
-      "recommended": false
-    },
-    {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=617",
-      "recommended": true
     }
   ],
-  "source_name": "VitaDBtoo",
+  "source_name": "VitaDB",
   "source_id": "617",
   "source_url": "https://github.com/ammeir/hurrican",
   "release_page": "https://github.com/ammeir/hurrican/releases",
-  "updated_at": "2026-08-13T15:34:48.596156+00:00"
+  "updated_at": "2026-08-15T18:26:20.117545+00:00"
 }

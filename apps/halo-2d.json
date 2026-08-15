@@ -9,8 +9,7 @@
   ],
   "category_id": "games",
   "subcategory_ids": [
-    "shooter",
-    "platformer"
+    "other"
   ],
   "version": "1.76",
   "version_date": "2024-07-27",
@@ -19,23 +18,24 @@
   "status": "Legacy",
   "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1095-halo-2d.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/0bbc47faf85d6e59ca5f14c7460c56226ae2f79c308c9f2600849bae71a6559f.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/f435b8a5df4b7ba2ad82ff3c5574fd9b9500b46356c1004b122bc410dcb9eeee.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/f5818b747a5d2af5a89535491170bb98f7edb98cf461bb5ad3647dc4c0ac1dd2.png",
     "https://www.rinnegatamante.eu/vitadb/screenshots/0bbc47faf85d6e59ca5f14c7460c56226ae2f79c308c9f2600849bae71a6559f.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/f435b8a5df4b7ba2ad82ff3c5574fd9b9500b46356c1004b122bc410dcb9eeee.png"
+    "https://www.rinnegatamante.eu/vitadb/screenshots/f435b8a5df4b7ba2ad82ff3c5574fd9b9500b46356c1004b122bc410dcb9eeee.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/f5818b747a5d2af5a89535491170bb98f7edb98cf461bb5ad3647dc4c0ac1dd2.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/0bbc47faf85d6e59ca5f14c7460c56226ae2f79c308c9f2600849bae71a6559f.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/f435b8a5df4b7ba2ad82ff3c5574fd9b9500b46356c1004b122bc410dcb9eeee.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "VitaDBtoo VPK",
+      "name": "NeoVitaDB VPK",
       "url": "https://github.com/VegettoSan/Halo2D_PsVita/releases/download/1.76/Halo2D.vpk",
       "recommended": true
     },
     {
-      "type": "Official Website",
-      "name": "VitaDBtoo Release Page",
-      "url": "https://github.com/VegettoSan/Halo2D_PsVita/releases"
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1095",
+      "recommended": false
     },
     {
       "type": "Official Website",
@@ -43,20 +43,19 @@
       "url": "https://github.com/VegettoSan/Halo2D_PsVita/releases/tag/1.76"
     },
     {
+      "type": "Official Website",
+      "name": "VitaDB Release Page",
+      "url": "https://github.com/VegettoSan/Halo2D_PsVita/releases"
+    },
+    {
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/VegettoSan/Halo2D_PsVita"
-    },
-    {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1095",
-      "recommended": false
     }
   ],
-  "source_name": "VitaDBtoo",
+  "source_name": "NeoVitaDB",
   "source_id": "1095",
   "source_url": "https://github.com/VegettoSan/Halo2D_PsVita",
-  "release_page": "https://github.com/VegettoSan/Halo2D_PsVita/releases",
-  "updated_at": "2026-08-13T15:34:48.436299+00:00"
+  "release_page": "https://github.com/VegettoSan/Halo2D_PsVita/releases/tag/1.76",
+  "updated_at": "2026-08-15T18:26:19.375470+00:00"
 }

@@ -16,21 +16,27 @@
   "requirements": "Not specified",
   "size": 2519289,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/b9855466923c344fc9699ad82b57098a0201a09b4a18f084cd61ce2f47959e7e.png",
+  "icon": "https://www.rinnegatamante.eu/vitadb/icons/b9855466923c344fc9699ad82b57098a0201a09b4a18f084cd61ce2f47959e7e.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/be8944ca904e980e4727e5355ac111eb42e68c83adb2be1c1456fce8d325ac6b.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/be8944ca904e980e4727e5355ac111eb42e68c83adb2be1c1456fce8d325ac6b.png"
+    "https://www.rinnegatamante.eu/vitadb/screenshots/be8944ca904e980e4727e5355ac111eb42e68c83adb2be1c1456fce8d325ac6b.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/be8944ca904e980e4727e5355ac111eb42e68c83adb2be1c1456fce8d325ac6b.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "VitaDBtoo VPK",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1343",
+      "recommended": true
+    },
+    {
+      "type": "Download",
+      "name": "NeoVitaDB VPK",
       "url": "https://github.com/HarommelRabbid/VitaSokoban/releases/download/02-11-25/Vita.Sokoban.vpk",
       "recommended": false
     },
     {
       "type": "Official Website",
-      "name": "VitaDBtoo Release Page",
+      "name": "VitaDB Release Page",
       "url": "https://github.com/HarommelRabbid/VitaSokoban/releases"
     },
     {
@@ -42,17 +48,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/HarommelRabbid/VitaSokoban"
-    },
-    {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1343",
-      "recommended": true
     }
   ],
-  "source_name": "VitaDBtoo",
+  "source_name": "VitaDB",
   "source_id": "1343",
   "source_url": "https://github.com/HarommelRabbid/VitaSokoban",
   "release_page": "https://github.com/HarommelRabbid/VitaSokoban/releases",
-  "updated_at": "2026-08-13T15:34:48.375318+00:00"
+  "updated_at": "2026-08-15T18:26:19.118324+00:00"
 }

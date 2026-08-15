@@ -18,28 +18,24 @@
   "status": "Legacy",
   "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1589-abbaye-des-morts-vita.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/9d971a82f83408d04fee36d4cefbd0dec23a681fb1197f25c0e52ac65ece5618.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/670acfd4065d791b0dcc319fedfa70dae17a926c1c40ad3e319d2d09b3772e9e.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/af7ee7f95595af164b9a23161a718d4e75d9b6ea32e0cb9917bcf070ffa80d39.png",
     "https://www.rinnegatamante.eu/vitadb/screenshots/9d971a82f83408d04fee36d4cefbd0dec23a681fb1197f25c0e52ac65ece5618.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/670acfd4065d791b0dcc319fedfa70dae17a926c1c40ad3e319d2d09b3772e9e.png"
+    "https://www.rinnegatamante.eu/vitadb/screenshots/670acfd4065d791b0dcc319fedfa70dae17a926c1c40ad3e319d2d09b3772e9e.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/af7ee7f95595af164b9a23161a718d4e75d9b6ea32e0cb9917bcf070ffa80d39.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/9d971a82f83408d04fee36d4cefbd0dec23a681fb1197f25c0e52ac65ece5618.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/670acfd4065d791b0dcc319fedfa70dae17a926c1c40ad3e319d2d09b3772e9e.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "VitaDBtoo VPK",
+      "name": "NeoVitaDB VPK",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/359-AbbayeDesMorts.vpk",
       "recommended": true
     },
     {
-      "type": "Official Website",
-      "name": "VitaDBtoo Release Page",
-      "url": "http://wololo.net/talk/viewtopic.php?f=116&t=48789"
-    },
-    {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/Rinnegatamante/AbbayeDesMorts-Vita"
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=359",
+      "recommended": false
     },
     {
       "type": "Download",
@@ -48,15 +44,19 @@
       "recommended": false
     },
     {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=359",
-      "recommended": false
+      "type": "Official Website",
+      "name": "VitaDB Release Page",
+      "url": "http://wololo.net/talk/viewtopic.php?f=116&t=48789"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/Rinnegatamante/AbbayeDesMorts-Vita"
     }
   ],
-  "source_name": "VitaDBtoo",
-  "source_id": "359",
-  "source_url": "https://github.com/Rinnegatamante/AbbayeDesMorts-Vita",
-  "release_page": "http://wololo.net/talk/viewtopic.php?f=116&t=48789",
-  "updated_at": "2026-08-13T15:34:48.669673+00:00"
+  "source_name": "NeoVitaDB",
+  "source_id": "1589",
+  "source_url": "https://github.com",
+  "release_page": "",
+  "updated_at": "2026-08-15T18:26:20.407082+00:00"
 }

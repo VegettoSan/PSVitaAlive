@@ -5,8 +5,8 @@
   "description": "Create backups of PSVITA game carts.",
   "long_description": "Creates 1:1 backups of PSVITA game carts, including CMD56 authentication and the p20-p18 unique keys. A companion PC application can receive the backup over the network when no memory card is available.",
   "author_ids": [
-    "oestriot",
-    "li"
+    "li",
+    "oestriot"
   ],
   "category_id": "utilities",
   "subcategory_ids": [
@@ -48,5 +48,5 @@
   "source_id": "1455",
   "source_url": "https://github.com/oestriot/GcToolKit",
   "release_page": "https://github.com/oestriot/GcToolKit/releases",
-  "updated_at": "2026-08-13T15:34:48.322772+00:00"
+  "updated_at": "2026-08-15T18:26:20.631958+00:00"
 }

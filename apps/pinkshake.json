@@ -18,28 +18,24 @@
   "status": "Legacy",
   "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1881-pinkshake.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/dfcb493f24d427a99af577832121c9942d64c23d908a83441bd26bbaa8135274.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/5bfc143e8d05738f2c30d2c88004ffd64e08f38f9104b5d51df33770cadfd466.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/197008c610a43e13fa2bc5199fa492d012ecd09496f83951efedf9e785b322ca.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/d7f4a4a0ffdf46a19ea6d8c25657d1cbcaf39b76f7ca2af154165e9d6b0cfbcc.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/dfcb493f24d427a99af577832121c9942d64c23d908a83441bd26bbaa8135274.png"
+    "https://www.rinnegatamante.eu/vitadb/screenshots/dfcb493f24d427a99af577832121c9942d64c23d908a83441bd26bbaa8135274.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/5bfc143e8d05738f2c30d2c88004ffd64e08f38f9104b5d51df33770cadfd466.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/197008c610a43e13fa2bc5199fa492d012ecd09496f83951efedf9e785b322ca.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/d7f4a4a0ffdf46a19ea6d8c25657d1cbcaf39b76f7ca2af154165e9d6b0cfbcc.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/dfcb493f24d427a99af577832121c9942d64c23d908a83441bd26bbaa8135274.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "VitaDBtoo VPK",
+      "name": "NeoVitaDB VPK",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1153-pinkshake.vpk",
       "recommended": true
     },
     {
-      "type": "Official Website",
-      "name": "VitaDBtoo Release Page",
-      "url": "https://cojam.itch.io/pinkshake"
-    },
-    {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com"
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1153",
+      "recommended": false
     },
     {
       "type": "Download",
@@ -48,15 +44,19 @@
       "recommended": false
     },
     {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1153",
-      "recommended": false
+      "type": "Official Website",
+      "name": "VitaDB Release Page",
+      "url": "https://cojam.itch.io/pinkshake"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com"
     }
   ],
-  "source_name": "VitaDBtoo",
-  "source_id": "1153",
-  "source_url": "https://cojam.itch.io/pinkshake",
-  "release_page": "https://cojam.itch.io/pinkshake",
-  "updated_at": "2026-08-13T15:34:48.469116+00:00"
+  "source_name": "NeoVitaDB",
+  "source_id": "1881",
+  "source_url": "https://github.com",
+  "release_page": "",
+  "updated_at": "2026-08-15T18:26:19.507207+00:00"
 }

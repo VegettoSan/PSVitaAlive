@@ -18,28 +18,24 @@
   "status": "Legacy",
   "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1695-dark-paradigm.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/b774809e38e19614fa6b66b757a2aefc10119ac08c7192ab9678a91de297f96e.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/04afc4b29a8702b5dd5fe320b65c9bb0f0f9a88447b2bf60aca91c2fc164e598.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/1c5483de7f417451e626d5d78062b1eb13f8f3e6611e5cb8aadbf5d34fa98b6b.png",
     "https://www.rinnegatamante.eu/vitadb/screenshots/b774809e38e19614fa6b66b757a2aefc10119ac08c7192ab9678a91de297f96e.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/04afc4b29a8702b5dd5fe320b65c9bb0f0f9a88447b2bf60aca91c2fc164e598.png"
+    "https://www.rinnegatamante.eu/vitadb/screenshots/04afc4b29a8702b5dd5fe320b65c9bb0f0f9a88447b2bf60aca91c2fc164e598.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/1c5483de7f417451e626d5d78062b1eb13f8f3e6611e5cb8aadbf5d34fa98b6b.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/b774809e38e19614fa6b66b757a2aefc10119ac08c7192ab9678a91de297f96e.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/04afc4b29a8702b5dd5fe320b65c9bb0f0f9a88447b2bf60aca91c2fc164e598.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "VitaDBtoo VPK",
+      "name": "NeoVitaDB VPK",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/594-DarkParadigm.vpk",
       "recommended": true
     },
     {
-      "type": "Official Website",
-      "name": "VitaDBtoo Release Page",
-      "url": "https://kyuhen.customprotocol.com/en/submissions/darkparadigm/"
-    },
-    {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com"
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=594",
+      "recommended": false
     },
     {
       "type": "Download",
@@ -48,15 +44,19 @@
       "recommended": false
     },
     {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=594",
-      "recommended": false
+      "type": "Official Website",
+      "name": "VitaDB Release Page",
+      "url": "https://kyuhen.customprotocol.com/en/submissions/darkparadigm/"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com"
     }
   ],
-  "source_name": "VitaDBtoo",
-  "source_id": "594",
-  "source_url": "https://kyuhen.customprotocol.com/en/submissions/darkparadigm/",
-  "release_page": "https://kyuhen.customprotocol.com/en/submissions/darkparadigm/",
-  "updated_at": "2026-08-13T15:34:48.578903+00:00"
+  "source_name": "NeoVitaDB",
+  "source_id": "1695",
+  "source_url": "https://github.com",
+  "release_page": "",
+  "updated_at": "2026-08-15T18:26:20.022330+00:00"
 }

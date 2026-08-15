@@ -18,39 +18,24 @@
   "status": "Legacy",
   "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/0344-opentitus.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/7bdf4419b414a50c6605881d11f7cbe2b25c710322ed805353d3179315a0ef4f.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/b0c906a6350d0567b7142fed235935d98a3037ccd7ff3bbca98e087f18b07a60.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/1540204e202cd12740841b0973799115da79636134348e3488062e150c256629.png",
     "https://www.rinnegatamante.eu/vitadb/screenshots/7bdf4419b414a50c6605881d11f7cbe2b25c710322ed805353d3179315a0ef4f.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/b0c906a6350d0567b7142fed235935d98a3037ccd7ff3bbca98e087f18b07a60.png"
+    "https://www.rinnegatamante.eu/vitadb/screenshots/b0c906a6350d0567b7142fed235935d98a3037ccd7ff3bbca98e087f18b07a60.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/1540204e202cd12740841b0973799115da79636134348e3488062e150c256629.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/7bdf4419b414a50c6605881d11f7cbe2b25c710322ed805353d3179315a0ef4f.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/b0c906a6350d0567b7142fed235935d98a3037ccd7ff3bbca98e087f18b07a60.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "VitaDBtoo VPK",
+      "name": "NeoVitaDB VPK",
       "url": "https://github.com/usineur/opentitus/releases/download/1.0/Titus.vpk",
       "recommended": true
     },
     {
       "type": "Download",
-      "name": "VitaDBtoo VPK",
+      "name": "NeoVitaDB VPK",
       "url": "https://github.com/usineur/opentitus/releases/download/1.0/Moktar.vpk",
       "recommended": false
-    },
-    {
-      "type": "Official Website",
-      "name": "VitaDBtoo Release Page",
-      "url": "http://wololo.net/talk/viewtopic.php?f=116&t=48673"
-    },
-    {
-      "type": "Official Website",
-      "name": "NeoVitaDB Release Page",
-      "url": "https://github.com/usineur/opentitus/releases/tag/1.0"
-    },
-    {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/usineur/opentitus"
     },
     {
       "type": "Download",
@@ -63,11 +48,26 @@
       "name": "VitaDB VPK",
       "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=345",
       "recommended": false
+    },
+    {
+      "type": "Official Website",
+      "name": "NeoVitaDB Release Page",
+      "url": "https://github.com/usineur/opentitus/releases/tag/1.0"
+    },
+    {
+      "type": "Official Website",
+      "name": "VitaDB Release Page",
+      "url": "http://wololo.net/talk/viewtopic.php?f=116&t=48673"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/usineur/opentitus"
     }
   ],
-  "source_name": "VitaDBtoo",
+  "source_name": "NeoVitaDB",
   "source_id": "344",
   "source_url": "https://github.com/usineur/opentitus",
-  "release_page": "http://wololo.net/talk/viewtopic.php?f=116&t=48673",
-  "updated_at": "2026-08-13T15:34:48.672849+00:00"
+  "release_page": "https://github.com/usineur/opentitus/releases/tag/1.0",
+  "updated_at": "2026-08-15T18:26:20.420259+00:00"
 }

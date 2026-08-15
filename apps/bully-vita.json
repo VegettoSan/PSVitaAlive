@@ -5,7 +5,6 @@
   "description": "Port of Bully: Anniversary Edition for PSVITA.",
   "long_description": "This is a wrapper/port of Bully: Anniversary Edition for the PS Vita.\nThe port works by loading the official Android ARMv7 executable in memory, resolving its imports with native functions and patching it in order to properly run.",
   "author_ids": [
-    "aap",
     "theflow",
     "rinnegatamante"
   ],
@@ -18,24 +17,30 @@
   "requirements": "- libshacccg.suprx\n- kubridge.skprx\n- fd_fix.skprx OR repatch_ex.skprx\n- Game Data Files: Android",
   "size": 896490,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/37ac44d302c68eeb7d35147b2cb43947eb6ad2492465da59776f86106aa02ba1.png",
+  "icon": "https://www.rinnegatamante.eu/vitadb/icons/37ac44d302c68eeb7d35147b2cb43947eb6ad2492465da59776f86106aa02ba1.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c9687144d41d1629f35ac3cfb26c677cdfc18ce2d915569df5a971eeab974f69.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/b89782b4546c9812b3818019cdd5b3cabcf6bb0ecc95327cb7b5237e6ef1f71f.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/b3778e3f004ea11bad1a0a19c3b96db75be32ce9d26accb985ae8a7c25fea605.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/12ee95fcf06f612f634c3522e374e4c6b9b9641bb08fad3f0f7a16d44be8d888.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/c9687144d41d1629f35ac3cfb26c677cdfc18ce2d915569df5a971eeab974f69.png"
+    "https://www.rinnegatamante.eu/vitadb/screenshots/c9687144d41d1629f35ac3cfb26c677cdfc18ce2d915569df5a971eeab974f69.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/b89782b4546c9812b3818019cdd5b3cabcf6bb0ecc95327cb7b5237e6ef1f71f.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/b3778e3f004ea11bad1a0a19c3b96db75be32ce9d26accb985ae8a7c25fea605.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/12ee95fcf06f612f634c3522e374e4c6b9b9641bb08fad3f0f7a16d44be8d888.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c9687144d41d1629f35ac3cfb26c677cdfc18ce2d915569df5a971eeab974f69.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "VitaDBtoo VPK",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=676",
+      "recommended": true
+    },
+    {
+      "type": "Download",
+      "name": "NeoVitaDB VPK",
       "url": "https://github.com/TheOfficialFloW/bully_vita/releases/download/v1.0/Bully.vpk",
       "recommended": false
     },
     {
       "type": "Official Website",
-      "name": "VitaDBtoo Release Page",
+      "name": "VitaDB Release Page",
       "url": "https://github.com/TheOfficialFloW/bully_vita/releases"
     },
     {
@@ -47,17 +52,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/TheOfficialFloW/bully_vita"
-    },
-    {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=676",
-      "recommended": true
     }
   ],
-  "source_name": "VitaDBtoo",
+  "source_name": "VitaDB",
   "source_id": "676",
   "source_url": "https://github.com/TheOfficialFloW/bully_vita",
   "release_page": "https://github.com/TheOfficialFloW/bully_vita/releases",
-  "updated_at": "2026-08-13T15:34:48.582042+00:00"
+  "updated_at": "2026-08-15T18:26:20.040194+00:00"
 }

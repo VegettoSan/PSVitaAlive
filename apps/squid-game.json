@@ -16,41 +16,41 @@
   "requirements": "Not specified",
   "size": 28319506,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/f07fea2284a8239f01af495520e7da75453858adb7f04f89f105ec0c7ae9e2a5.png",
+  "icon": "https://www.rinnegatamante.eu/vitadb/icons/f07fea2284a8239f01af495520e7da75453858adb7f04f89f105ec0c7ae9e2a5.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/e0eea6141a508f6251dc870062716bf75806c5e05afe0a1843234ffb64524bcd.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/48cae90894c85d45c867a312e69d17907d07f004f2d981a3b1757e959936dbc5.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c387948293026d985da8bf8a511c855013e319d08106c1adb9c1050bfa29e6af.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/f8297eb63873e8d00ba8bdd825032cb92662a97b455326d92efc5d4d585a0ad3.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/e0eea6141a508f6251dc870062716bf75806c5e05afe0a1843234ffb64524bcd.png"
+    "https://www.rinnegatamante.eu/vitadb/screenshots/e0eea6141a508f6251dc870062716bf75806c5e05afe0a1843234ffb64524bcd.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/48cae90894c85d45c867a312e69d17907d07f004f2d981a3b1757e959936dbc5.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/c387948293026d985da8bf8a511c855013e319d08106c1adb9c1050bfa29e6af.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/f8297eb63873e8d00ba8bdd825032cb92662a97b455326d92efc5d4d585a0ad3.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/e0eea6141a508f6251dc870062716bf75806c5e05afe0a1843234ffb64524bcd.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "VitaDBtoo VPK",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=750",
+      "recommended": true
+    },
+    {
+      "type": "Download",
+      "name": "NeoVitaDB VPK",
       "url": "https://github.com/AntHJ/Squid-Game/releases/download/v1.0/Squid.Game.vpk",
       "recommended": false
     },
     {
       "type": "Official Website",
-      "name": "VitaDBtoo Release Page",
+      "name": "VitaDB Release Page",
       "url": "https://github.com/AntHJ/Squid-Game"
     },
     {
       "type": "Official Website",
       "name": "NeoVitaDB Release Page",
       "url": "https://github.com/AntHJ/Squid-Game/releases/tag/v1.0"
-    },
-    {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=750",
-      "recommended": true
     }
   ],
-  "source_name": "VitaDBtoo",
+  "source_name": "VitaDB",
   "source_id": "750",
   "source_url": "https://github.com/AntHJ/Squid-Game",
   "release_page": "https://github.com/AntHJ/Squid-Game",
-  "updated_at": "2026-08-13T15:34:48.564737+00:00"
+  "updated_at": "2026-08-15T18:26:19.943223+00:00"
 }

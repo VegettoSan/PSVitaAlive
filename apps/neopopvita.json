@@ -16,15 +16,21 @@
   "requirements": "Not specified",
   "size": 1557875,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/5c92eca322982194dcf925c344f81c7407442a8fee38ec4e16925913d267acbc.png",
+  "icon": "https://www.rinnegatamante.eu/vitadb/icons/5c92eca322982194dcf925c344f81c7407442a8fee38ec4e16925913d267acbc.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/e90cfb2feede05ae2a5a1c907e2d344e176ff22965556252f9700490ccea252b.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/8bb8853d0852a6dbcf4f2b1e239a14912023ac7eab5bd7ffa8b40c06530dbf8b.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/790ac5aadf73cd01243dd04c9f41ae0422c961a006a241799db0499392a397f8.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/fcbd622a27e57380049b7d0fad90fbedafde1fba4164f4da3c1287e42a55bc79.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/e90cfb2feede05ae2a5a1c907e2d344e176ff22965556252f9700490ccea252b.png"
+    "https://www.rinnegatamante.eu/vitadb/screenshots/e90cfb2feede05ae2a5a1c907e2d344e176ff22965556252f9700490ccea252b.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/8bb8853d0852a6dbcf4f2b1e239a14912023ac7eab5bd7ffa8b40c06530dbf8b.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/790ac5aadf73cd01243dd04c9f41ae0422c961a006a241799db0499392a397f8.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/fcbd622a27e57380049b7d0fad90fbedafde1fba4164f4da3c1287e42a55bc79.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/e90cfb2feede05ae2a5a1c907e2d344e176ff22965556252f9700490ccea252b.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=165",
+      "recommended": true
+    },
     {
       "type": "Download",
       "name": "VitaDBtoo VPK",
@@ -33,7 +39,7 @@
     },
     {
       "type": "Official Website",
-      "name": "VitaDBtoo Release Page",
+      "name": "VitaDB Release Page",
       "url": "https://github.com/frangarcj/NeopopVITA/releases"
     },
     {
@@ -45,17 +51,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/frangarcj/NeopopVITA"
-    },
-    {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=165",
-      "recommended": true
     }
   ],
-  "source_name": "VitaDBtoo",
+  "source_name": "VitaDB",
   "source_id": "165",
   "source_url": "https://github.com/frangarcj/NeopopVITA",
   "release_page": "https://github.com/frangarcj/NeopopVITA/releases",
-  "updated_at": "2026-08-13T15:34:48.713555+00:00"
+  "updated_at": "2026-08-15T18:26:20.608414+00:00"
 }

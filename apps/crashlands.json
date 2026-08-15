@@ -16,15 +16,21 @@
   "requirements": "- Game Data Files: PC",
   "size": 3002252,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/e17dae38908067bd153b42da79b9f69ccf7e12f11d8c572f95f55d23e35f8eb9.png",
+  "icon": "https://www.rinnegatamante.eu/vitadb/icons/e17dae38908067bd153b42da79b9f69ccf7e12f11d8c572f95f55d23e35f8eb9.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/10eacb504fe755ac364f5ef5b72d941e9bed753e281ef556a05b764c317ccbbb.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/9e3a2871b829fdc96980af30b49624569ba683945786105919ddea78a073a2b0.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/d96ac6de547a5cba77468b97a99ab60ffa4e37bd34386733a2ee371fadea1fc8.png",
     "https://www.rinnegatamante.eu/vitadb/screenshots/10eacb504fe755ac364f5ef5b72d941e9bed753e281ef556a05b764c317ccbbb.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/9e3a2871b829fdc96980af30b49624569ba683945786105919ddea78a073a2b0.png"
+    "https://www.rinnegatamante.eu/vitadb/screenshots/9e3a2871b829fdc96980af30b49624569ba683945786105919ddea78a073a2b0.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/d96ac6de547a5cba77468b97a99ab60ffa4e37bd34386733a2ee371fadea1fc8.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/10eacb504fe755ac364f5ef5b72d941e9bed753e281ef556a05b764c317ccbbb.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/9e3a2871b829fdc96980af30b49624569ba683945786105919ddea78a073a2b0.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=671",
+      "recommended": true
+    },
     {
       "type": "Download",
       "name": "VitaDBtoo VPK",
@@ -33,19 +39,13 @@
     },
     {
       "type": "Official Website",
-      "name": "VitaDBtoo Release Page",
+      "name": "VitaDB Release Page",
       "url": "https://github.com/m1s3ry/crashlands-vita"
-    },
-    {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=671",
-      "recommended": true
     }
   ],
-  "source_name": "VitaDBtoo",
+  "source_name": "VitaDB",
   "source_id": "671",
   "source_url": "https://github.com/m1s3ry/crashlands-vita",
   "release_page": "https://github.com/m1s3ry/crashlands-vita",
-  "updated_at": "2026-08-13T15:34:48.587160+00:00"
+  "updated_at": "2026-08-15T18:26:20.080766+00:00"
 }

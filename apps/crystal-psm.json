@@ -18,8 +18,8 @@
   "status": "Legacy",
   "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/0740-crystal-psm.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/2a697cbeb1e21d9b0f134e23e34ceb3e4c3416d18aea7cd1939a639e64d3b8a4.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/2a697cbeb1e21d9b0f134e23e34ceb3e4c3416d18aea7cd1939a639e64d3b8a4.png"
+    "https://www.rinnegatamante.eu/vitadb/screenshots/2a697cbeb1e21d9b0f134e23e34ceb3e4c3416d18aea7cd1939a639e64d3b8a4.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/2a697cbeb1e21d9b0f134e23e34ceb3e4c3416d18aea7cd1939a639e64d3b8a4.png"
   ],
   "links": [
     {
@@ -43,5 +43,5 @@
   "source_id": "740",
   "source_url": "https://github.com/EliCrystal2001/CrystalPSM",
   "release_page": "https://github.com/EliCrystal2001/CrystalPSM/releases/tag/v2",
-  "updated_at": "2026-08-13T15:34:48.567700+00:00"
+  "updated_at": "2026-08-15T18:26:19.954567+00:00"
 }

@@ -17,15 +17,21 @@
   "requirements": "Not specified",
   "size": 17515315,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/358ba6cb336ed4a4667a3b7e2a6472985f23190896d1c191956641a649e48454.png",
+  "icon": "https://www.rinnegatamante.eu/vitadb/icons/358ba6cb336ed4a4667a3b7e2a6472985f23190896d1c191956641a649e48454.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/63b65f9338fe4e6221353a9523b119ddd5cfa1b1508bb432f207539bfde13572.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c18cb77c1de8093e4b7c19cae84476f852383ef6084c870924c8aa1a40ea5135.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/a840e0e0fff5daf20d284d882441b6d1858db3d44e972c4730982262885751f8.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/5f296f66d9f7b18a1978301b636d8650b15f829640a364d4c9ff0f5b82802246.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/63b65f9338fe4e6221353a9523b119ddd5cfa1b1508bb432f207539bfde13572.png"
+    "https://www.rinnegatamante.eu/vitadb/screenshots/63b65f9338fe4e6221353a9523b119ddd5cfa1b1508bb432f207539bfde13572.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/c18cb77c1de8093e4b7c19cae84476f852383ef6084c870924c8aa1a40ea5135.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/a840e0e0fff5daf20d284d882441b6d1858db3d44e972c4730982262885751f8.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/5f296f66d9f7b18a1978301b636d8650b15f829640a364d4c9ff0f5b82802246.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/63b65f9338fe4e6221353a9523b119ddd5cfa1b1508bb432f207539bfde13572.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1058",
+      "recommended": true
+    },
     {
       "type": "Download",
       "name": "VitaDBtoo VPK",
@@ -34,24 +40,18 @@
     },
     {
       "type": "Official Website",
-      "name": "VitaDBtoo Release Page",
+      "name": "VitaDB Release Page",
       "url": "https://github.com/huckleberrypie/IsabelleDanceStudio/releases"
     },
     {
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/huckleberrypie/IsabelleDanceStudio"
-    },
-    {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1058",
-      "recommended": true
     }
   ],
-  "source_name": "VitaDBtoo",
+  "source_name": "VitaDB",
   "source_id": "1058",
   "source_url": "https://github.com/huckleberrypie/IsabelleDanceStudio/releases",
   "release_page": "https://github.com/huckleberrypie/IsabelleDanceStudio/releases",
-  "updated_at": "2026-08-13T15:34:48.502061+00:00"
+  "updated_at": "2026-08-15T18:26:19.670712+00:00"
 }

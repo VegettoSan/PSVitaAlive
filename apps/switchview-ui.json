@@ -18,27 +18,23 @@
   "status": "Legacy",
   "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1579-switchview-ui.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/0dcb687910c7cd2a9f04aab40a951c8c650e0ec32a16963a7fe5d5d9f5c3d89f.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/02a14a2a86ca0262a0a23ef9259206ceb89a61f7360219575b3e8f296fc09b94.png",
     "https://www.rinnegatamante.eu/vitadb/screenshots/0dcb687910c7cd2a9f04aab40a951c8c650e0ec32a16963a7fe5d5d9f5c3d89f.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/02a14a2a86ca0262a0a23ef9259206ceb89a61f7360219575b3e8f296fc09b94.png"
+    "https://www.rinnegatamante.eu/vitadb/screenshots/02a14a2a86ca0262a0a23ef9259206ceb89a61f7360219575b3e8f296fc09b94.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/0dcb687910c7cd2a9f04aab40a951c8c650e0ec32a16963a7fe5d5d9f5c3d89f.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/02a14a2a86ca0262a0a23ef9259206ceb89a61f7360219575b3e8f296fc09b94.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "VitaDBtoo VPK",
+      "name": "NeoVitaDB VPK",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/338-SwitchView.vpk",
       "recommended": true
     },
     {
-      "type": "Official Website",
-      "name": "VitaDBtoo Release Page",
-      "url": "http://wololo.net/talk/viewtopic.php?f=116&t=48629"
-    },
-    {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com"
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=338",
+      "recommended": false
     },
     {
       "type": "Download",
@@ -47,15 +43,19 @@
       "recommended": false
     },
     {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=338",
-      "recommended": false
+      "type": "Official Website",
+      "name": "VitaDB Release Page",
+      "url": "http://wololo.net/talk/viewtopic.php?f=116&t=48629"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com"
     }
   ],
-  "source_name": "VitaDBtoo",
-  "source_id": "338",
-  "source_url": "http://wololo.net/talk/viewtopic.php?f=116&t=48629",
-  "release_page": "http://wololo.net/talk/viewtopic.php?f=116&t=48629",
-  "updated_at": "2026-08-13T15:34:48.672679+00:00"
+  "source_name": "NeoVitaDB",
+  "source_id": "1579",
+  "source_url": "https://github.com",
+  "release_page": "",
+  "updated_at": "2026-08-15T18:26:20.419883+00:00"
 }

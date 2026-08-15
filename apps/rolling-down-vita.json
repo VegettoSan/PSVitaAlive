@@ -16,24 +16,30 @@
   "requirements": "- libshacccg.suprx\n- kubridge.skprx\n- Game Data Files: Android",
   "size": 2769091,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/be64a79ab26ad4454fccc314fa56f124593886aa007c40ad1f3e73173a48e90b.png",
+  "icon": "https://www.rinnegatamante.eu/vitadb/icons/be64a79ab26ad4454fccc314fa56f124593886aa007c40ad1f3e73173a48e90b.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/1dbccd39cd20d0bd467fddd46408a29680812a34f8dfd9ea21ffc00b40fb19d2.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/3a2585899b81eb83d7f6d85d0a28dfa64c9c20011baebccd1649173195b47fab.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/a925575875539e9499831e674301bd875ec1f822765802cbc098e3d547d3abc0.png",
     "https://www.rinnegatamante.eu/vitadb/screenshots/1dbccd39cd20d0bd467fddd46408a29680812a34f8dfd9ea21ffc00b40fb19d2.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/3a2585899b81eb83d7f6d85d0a28dfa64c9c20011baebccd1649173195b47fab.png"
+    "https://www.rinnegatamante.eu/vitadb/screenshots/3a2585899b81eb83d7f6d85d0a28dfa64c9c20011baebccd1649173195b47fab.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/a925575875539e9499831e674301bd875ec1f822765802cbc098e3d547d3abc0.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/1dbccd39cd20d0bd467fddd46408a29680812a34f8dfd9ea21ffc00b40fb19d2.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/3a2585899b81eb83d7f6d85d0a28dfa64c9c20011baebccd1649173195b47fab.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "VitaDBtoo VPK",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1312",
+      "recommended": true
+    },
+    {
+      "type": "Download",
+      "name": "NeoVitaDB VPK",
       "url": "https://github.com/Rinnegatamante/rolling-down-vita/releases/download/v.1.0/emoji.vpk",
       "recommended": false
     },
     {
       "type": "Official Website",
-      "name": "VitaDBtoo Release Page",
+      "name": "VitaDB Release Page",
       "url": "https://github.com/Rinnegatamante/rolling-down-vita/releases"
     },
     {
@@ -45,17 +51,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/Rinnegatamante/rolling-down-vita"
-    },
-    {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1312",
-      "recommended": true
     }
   ],
-  "source_name": "VitaDBtoo",
+  "source_name": "VitaDB",
   "source_id": "1312",
   "source_url": "https://github.com/Rinnegatamante/rolling-down-vita",
   "release_page": "https://github.com/Rinnegatamante/rolling-down-vita/releases",
-  "updated_at": "2026-08-13T15:34:48.393093+00:00"
+  "updated_at": "2026-08-15T18:26:19.190799+00:00"
 }

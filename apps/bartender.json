@@ -16,24 +16,30 @@
   "requirements": "Not specified",
   "size": 2041208,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/9c1be0926bf8c48ac7d220cd6129a5d0b1e49fb9a7625615340a0a0d038a47d6.png",
+  "icon": "https://www.rinnegatamante.eu/vitadb/icons/9c1be0926bf8c48ac7d220cd6129a5d0b1e49fb9a7625615340a0a0d038a47d6.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/f4b5ec2649212c1b5aadba2b052920dc5beaf8ce430db045651bb71671ad87f7.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/8d9c5aee9b5a5cdaab7997aea6dbe1512ca713b3eff1adbf04ed3b3f8e8ac144.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/ff94266d49bc8001f354ce8705068dd75b90933898cbfa85ba7b516ec2f7c0d0.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/6f5e7d544ba34bab6ad4b2d42d9d8a0a0f4af30db26670b308a5c3f58825a344.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/f4b5ec2649212c1b5aadba2b052920dc5beaf8ce430db045651bb71671ad87f7.png"
+    "https://www.rinnegatamante.eu/vitadb/screenshots/f4b5ec2649212c1b5aadba2b052920dc5beaf8ce430db045651bb71671ad87f7.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/8d9c5aee9b5a5cdaab7997aea6dbe1512ca713b3eff1adbf04ed3b3f8e8ac144.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/ff94266d49bc8001f354ce8705068dd75b90933898cbfa85ba7b516ec2f7c0d0.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/6f5e7d544ba34bab6ad4b2d42d9d8a0a0f4af30db26670b308a5c3f58825a344.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/f4b5ec2649212c1b5aadba2b052920dc5beaf8ce430db045651bb71671ad87f7.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "VitaDBtoo VPK",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=751",
+      "recommended": true
+    },
+    {
+      "type": "Download",
+      "name": "NeoVitaDB VPK",
       "url": "https://github.com/island-games/Bartender/releases/download/v1.0/Bartender.vpk",
       "recommended": false
     },
     {
       "type": "Official Website",
-      "name": "VitaDBtoo Release Page",
+      "name": "VitaDB Release Page",
       "url": "https://github.com/island-games/Bartender/releases"
     },
     {
@@ -45,17 +51,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/island-games/Bartender"
-    },
-    {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=751",
-      "recommended": true
     }
   ],
-  "source_name": "VitaDBtoo",
+  "source_name": "VitaDB",
   "source_id": "751",
   "source_url": "https://github.com/island-games/Bartender/releases",
   "release_page": "https://github.com/island-games/Bartender/releases",
-  "updated_at": "2026-08-13T15:34:48.564060+00:00"
+  "updated_at": "2026-08-15T18:26:19.941198+00:00"
 }

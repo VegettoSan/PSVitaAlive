@@ -16,23 +16,29 @@
   "requirements": "- libshacccg.suprx",
   "size": 2379699,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/ba0d153685370cfedad58863e0baa3e06fbd5c2affb9946c278cf8d27cc19b26.png",
+  "icon": "https://www.rinnegatamante.eu/vitadb/icons/ba0d153685370cfedad58863e0baa3e06fbd5c2affb9946c278cf8d27cc19b26.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/85ddb9b99a5b3f607202fe9af53f5b24a55df2bbc9de8ca08c4162e79441f362.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/19f7f0f766e594c325e990e5aad1eb91d40a5f58610286c6d56a7410363d3a4f.png",
     "https://www.rinnegatamante.eu/vitadb/screenshots/85ddb9b99a5b3f607202fe9af53f5b24a55df2bbc9de8ca08c4162e79441f362.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/19f7f0f766e594c325e990e5aad1eb91d40a5f58610286c6d56a7410363d3a4f.png"
+    "https://www.rinnegatamante.eu/vitadb/screenshots/19f7f0f766e594c325e990e5aad1eb91d40a5f58610286c6d56a7410363d3a4f.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/85ddb9b99a5b3f607202fe9af53f5b24a55df2bbc9de8ca08c4162e79441f362.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/19f7f0f766e594c325e990e5aad1eb91d40a5f58610286c6d56a7410363d3a4f.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "VitaDBtoo VPK",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1243",
+      "recommended": true
+    },
+    {
+      "type": "Download",
+      "name": "NeoVitaDB VPK",
       "url": "https://github.com/CelloPoly314/CSPSV/releases/download/v1.0/CSPSP.vpk",
       "recommended": false
     },
     {
       "type": "Official Website",
-      "name": "VitaDBtoo Release Page",
+      "name": "VitaDB Release Page",
       "url": "https://github.com/CelloPoly314/CSPSV/releases"
     },
     {
@@ -44,17 +50,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/CelloPoly314/CSPSV"
-    },
-    {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1243",
-      "recommended": true
     }
   ],
-  "source_name": "VitaDBtoo",
+  "source_name": "VitaDB",
   "source_id": "1243",
   "source_url": "https://github.com/CelloPoly314/CSPSV",
   "release_page": "https://github.com/CelloPoly314/CSPSV/releases",
-  "updated_at": "2026-08-13T15:34:48.421901+00:00"
+  "updated_at": "2026-08-15T18:26:19.318120+00:00"
 }

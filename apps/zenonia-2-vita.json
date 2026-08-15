@@ -1,0 +1,46 @@
+{
+  "id": "zenonia-2-vita",
+  "title_id": "PSVZ00002",
+  "name": "Zenonia 2 Vita",
+  "description": "Port of Zenonia 2 for PSVita.",
+  "long_description": "ZENONIA 2: The Lost Memories has been highly enhanced in every aspect compared to the original. Full character and control customization, four characters following individual epic storylines, three different modes, asynchronous online PvP feature and an extended world of ZENONIA guarantee greater enjoyment!",
+  "author_ids": [
+    "metalsyntax"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.1.20",
+  "version_date": "2026-07-18",
+  "requirements": "- libshacccg.suprx\n- kubridge.skprx\n- Game Data Files: Android",
+  "size": 848304,
+  "status": "Legacy",
+  "icon": "https://www.rinnegatamante.eu/vitadb/icons/9796c617440a19913ab691d46a8014cd3d09231d83df03e4f8d1e41dbe10424c.png",
+  "screenshots": [
+    "https://www.rinnegatamante.eu/vitadb/icons/9796c617440a19913ab691d46a8014cd3d09231d83df03e4f8d1e41dbe10424c.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1465",
+      "recommended": true
+    },
+    {
+      "type": "Official Website",
+      "name": "VitaDB Release Page",
+      "url": "https://github.com/MetalSyntax/Zenonia2-psvita-port/releases"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/MetalSyntax/Zenonia2-psvita-port"
+    }
+  ],
+  "source_name": "VitaDB",
+  "source_id": "1465",
+  "source_url": "https://github.com/MetalSyntax/Zenonia2-psvita-port",
+  "release_page": "https://github.com/MetalSyntax/Zenonia2-psvita-port/releases",
+  "updated_at": "2026-08-15T18:26:18.903589+00:00"
+}

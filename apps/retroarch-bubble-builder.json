@@ -16,24 +16,30 @@
   "requirements": "Not specified",
   "size": 5885149,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/99945f82d4e2cab37383ce1fe2f0c746e539d2f9b5d7bec04e0760f2026f7b22.png",
+  "icon": "https://www.rinnegatamante.eu/vitadb/icons/99945f82d4e2cab37383ce1fe2f0c746e539d2f9b5d7bec04e0760f2026f7b22.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/bace2b0c8a22173152bd75c118c8ca76892f3c675cd747cbde699d9814ac8d2f.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/a49621701eae707fa1cfb46e6ba5b8073b39bc53de902e1ae2aae1286a3fcb98.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/74698c804cf357701a7c5ebd73a3c4a9f5b0f81420268f9e64a35458124c1e20.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/d22b55934e867501df56926b52b884da6553970aae415ec0c81f03843c77f1f8.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/bace2b0c8a22173152bd75c118c8ca76892f3c675cd747cbde699d9814ac8d2f.png"
+    "https://www.rinnegatamante.eu/vitadb/screenshots/bace2b0c8a22173152bd75c118c8ca76892f3c675cd747cbde699d9814ac8d2f.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/a49621701eae707fa1cfb46e6ba5b8073b39bc53de902e1ae2aae1286a3fcb98.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/74698c804cf357701a7c5ebd73a3c4a9f5b0f81420268f9e64a35458124c1e20.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/d22b55934e867501df56926b52b884da6553970aae415ec0c81f03843c77f1f8.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/bace2b0c8a22173152bd75c118c8ca76892f3c675cd747cbde699d9814ac8d2f.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "VitaDBtoo VPK",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=756",
+      "recommended": true
+    },
+    {
+      "type": "Download",
+      "name": "NeoVitaDB VPK",
       "url": "https://github.com/AntHJ/Retroarch-Bubble-Builder/releases/download/v1.0/Retroarch.Bubble.Builder.vpk",
       "recommended": false
     },
     {
       "type": "Official Website",
-      "name": "VitaDBtoo Release Page",
+      "name": "VitaDB Release Page",
       "url": "https://github.com/AntHJ/Retroarch-Bubble-Builder/releases"
     },
     {
@@ -45,17 +51,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/AntHJ/Retroarch-Bubble-Builder"
-    },
-    {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=756",
-      "recommended": true
     }
   ],
-  "source_name": "VitaDBtoo",
+  "source_name": "VitaDB",
   "source_id": "756",
   "source_url": "https://github.com/AntHJ/Retroarch-Bubble-Builder/releases",
   "release_page": "https://github.com/AntHJ/Retroarch-Bubble-Builder/releases",
-  "updated_at": "2026-08-13T15:34:48.563057+00:00"
+  "updated_at": "2026-08-15T18:26:19.937681+00:00"
 }

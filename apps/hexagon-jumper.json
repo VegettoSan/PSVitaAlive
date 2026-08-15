@@ -18,25 +18,21 @@
   "status": "Legacy",
   "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1761-hexagon-jumper.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/820e27a581b29dac7ad4345816c899745c7c12e605e2333827e142543c95ce26.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/820e27a581b29dac7ad4345816c899745c7c12e605e2333827e142543c95ce26.png"
+    "https://www.rinnegatamante.eu/vitadb/screenshots/820e27a581b29dac7ad4345816c899745c7c12e605e2333827e142543c95ce26.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/820e27a581b29dac7ad4345816c899745c7c12e605e2333827e142543c95ce26.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "VitaDBtoo VPK",
+      "name": "NeoVitaDB VPK",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/766-hexagon.jumper_1.4.1.vpk",
       "recommended": true
     },
     {
-      "type": "Official Website",
-      "name": "VitaDBtoo Release Page",
-      "url": "https://cubic-games-official.itch.io/hexagon-jumper"
-    },
-    {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com"
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=766",
+      "recommended": false
     },
     {
       "type": "Download",
@@ -45,15 +41,19 @@
       "recommended": false
     },
     {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=766",
-      "recommended": false
+      "type": "Official Website",
+      "name": "VitaDB Release Page",
+      "url": "https://cubic-games-official.itch.io/hexagon-jumper"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com"
     }
   ],
-  "source_name": "VitaDBtoo",
-  "source_id": "766",
-  "source_url": "https://cubic-games-official.itch.io/hexagon-jumper",
-  "release_page": "https://cubic-games-official.itch.io/hexagon-jumper",
-  "updated_at": "2026-08-13T15:34:48.568665+00:00"
+  "source_name": "NeoVitaDB",
+  "source_id": "1761",
+  "source_url": "https://github.com",
+  "release_page": "",
+  "updated_at": "2026-08-15T18:26:19.957961+00:00"
 }

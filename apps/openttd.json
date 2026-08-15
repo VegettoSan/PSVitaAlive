@@ -18,23 +18,24 @@
   "status": "Legacy",
   "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/0299-openttd.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/5c366c90013c8b02fca2e7c8c546c252936a2c3dfd37e3999abb37d2f0b3d48c.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/cf9ea6655e1f46f6b198e80de507fdbac263ffda327de750eb6ac43b259190aa.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/75b447c075d96c28abb81ddcaca4ef905913c142ec086238bf85dc967259fdb3.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/6ed488a358ffbc6a58f94bf61768fe8c10d69effe007f9747283e56e44f54958.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/5c366c90013c8b02fca2e7c8c546c252936a2c3dfd37e3999abb37d2f0b3d48c.png"
+    "https://www.rinnegatamante.eu/vitadb/screenshots/5c366c90013c8b02fca2e7c8c546c252936a2c3dfd37e3999abb37d2f0b3d48c.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/cf9ea6655e1f46f6b198e80de507fdbac263ffda327de750eb6ac43b259190aa.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/75b447c075d96c28abb81ddcaca4ef905913c142ec086238bf85dc967259fdb3.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/6ed488a358ffbc6a58f94bf61768fe8c10d69effe007f9747283e56e44f54958.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/5c366c90013c8b02fca2e7c8c546c252936a2c3dfd37e3999abb37d2f0b3d48c.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "VitaDBtoo VPK",
+      "name": "NeoVitaDB VPK",
       "url": "https://github.com/angguss/OpenTTD/releases/download/0.3-vita/openttd.vpk",
       "recommended": true
     },
     {
-      "type": "Official Website",
-      "name": "VitaDBtoo Release Page",
-      "url": "https://github.com/angguss/OpenTTD/releases"
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=299",
+      "recommended": false
     },
     {
       "type": "Official Website",
@@ -42,20 +43,19 @@
       "url": "https://github.com/angguss/OpenTTD/releases/tag/0.3-vita"
     },
     {
+      "type": "Official Website",
+      "name": "VitaDB Release Page",
+      "url": "https://github.com/angguss/OpenTTD/releases"
+    },
+    {
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/angguss/OpenTTD/"
-    },
-    {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=299",
-      "recommended": false
     }
   ],
-  "source_name": "VitaDBtoo",
+  "source_name": "NeoVitaDB",
   "source_id": "299",
-  "source_url": "https://github.com/angguss/OpenTTD/",
-  "release_page": "https://github.com/angguss/OpenTTD/releases",
-  "updated_at": "2026-08-13T15:34:48.652862+00:00"
+  "source_url": "https://github.com/angguss/OpenTTD",
+  "release_page": "https://github.com/angguss/OpenTTD/releases/tag/0.3-vita",
+  "updated_at": "2026-08-15T18:26:20.336831+00:00"
 }

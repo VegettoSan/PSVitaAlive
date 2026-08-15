@@ -16,11 +16,17 @@
   "requirements": "Not specified",
   "size": 127068435,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/14bc0ac1b9ea8badf7a15c81a252ff958a81a86db0df5ef2d6bd237f1e6e91c9.png",
+  "icon": "https://www.rinnegatamante.eu/vitadb/icons/14bc0ac1b9ea8badf7a15c81a252ff958a81a86db0df5ef2d6bd237f1e6e91c9.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/14bc0ac1b9ea8badf7a15c81a252ff958a81a86db0df5ef2d6bd237f1e6e91c9.png"
+    "https://www.rinnegatamante.eu/vitadb/icons/14bc0ac1b9ea8badf7a15c81a252ff958a81a86db0df5ef2d6bd237f1e6e91c9.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1219",
+      "recommended": true
+    },
     {
       "type": "Download",
       "name": "VitaDBtoo VPK",
@@ -29,19 +35,13 @@
     },
     {
       "type": "Official Website",
-      "name": "VitaDBtoo Release Page",
+      "name": "VitaDB Release Page",
       "url": "https://github.com/Grimiku/Cradle-Song-Vita"
-    },
-    {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1219",
-      "recommended": true
     }
   ],
-  "source_name": "VitaDBtoo",
+  "source_name": "VitaDB",
   "source_id": "1219",
   "source_url": "https://github.com/Grimiku/Cradle-Song-Vita",
   "release_page": "https://github.com/Grimiku/Cradle-Song-Vita",
-  "updated_at": "2026-08-13T15:34:48.438814+00:00"
+  "updated_at": "2026-08-15T18:26:19.383981+00:00"
 }

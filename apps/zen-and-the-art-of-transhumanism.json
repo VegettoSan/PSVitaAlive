@@ -18,28 +18,24 @@
   "status": "Legacy",
   "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1711-zen-and-the-art-of-transhumanism.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/bad66a5275a617b67bbdbad20b1e854187ed9f7fb732e085f596265a59c03f0c.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/cf6f5074231bda59ac074330a92a81946520b8eda31a1698bc391d7d5a55a284.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/40c751630c63b24862e5751570b617904e3f5fe65d749b6e7c4423566198e000.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/2cdf1373f5011113e65bfff3f9f232f0efed4cb1045097fb99170d65ce8e9073.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/bad66a5275a617b67bbdbad20b1e854187ed9f7fb732e085f596265a59c03f0c.png"
+    "https://www.rinnegatamante.eu/vitadb/screenshots/bad66a5275a617b67bbdbad20b1e854187ed9f7fb732e085f596265a59c03f0c.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/cf6f5074231bda59ac074330a92a81946520b8eda31a1698bc391d7d5a55a284.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/40c751630c63b24862e5751570b617904e3f5fe65d749b6e7c4423566198e000.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/2cdf1373f5011113e65bfff3f9f232f0efed4cb1045097fb99170d65ce8e9073.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/bad66a5275a617b67bbdbad20b1e854187ed9f7fb732e085f596265a59c03f0c.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "VitaDBtoo VPK",
+      "name": "NeoVitaDB VPK",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/631-Zen_Art_Transhumanism.vpk",
       "recommended": true
     },
     {
-      "type": "Official Website",
-      "name": "VitaDBtoo Release Page",
-      "url": "https://deconstructeam.itch.io/zen-and-the-art-of-transhumanism"
-    },
-    {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com"
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=631",
+      "recommended": false
     },
     {
       "type": "Download",
@@ -48,15 +44,19 @@
       "recommended": false
     },
     {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=631",
-      "recommended": false
+      "type": "Official Website",
+      "name": "VitaDB Release Page",
+      "url": "https://deconstructeam.itch.io/zen-and-the-art-of-transhumanism"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com"
     }
   ],
-  "source_name": "VitaDBtoo",
-  "source_id": "631",
-  "source_url": "https://deconstructeam.itch.io/zen-and-the-art-of-transhumanism",
-  "release_page": "https://deconstructeam.itch.io/zen-and-the-art-of-transhumanism",
-  "updated_at": "2026-08-13T15:34:48.591823+00:00"
+  "source_name": "NeoVitaDB",
+  "source_id": "1711",
+  "source_url": "https://github.com",
+  "release_page": "",
+  "updated_at": "2026-08-15T18:26:20.093616+00:00"
 }

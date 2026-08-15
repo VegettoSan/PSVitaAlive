@@ -16,24 +16,30 @@
   "requirements": "- libshacccg.suprx\n- Game Data Files: Android",
   "size": 2377115,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/2be89412bf85d77e03a3c71abc84ee3ee2df1d32f6fe502c5ffa503843bc794c.png",
+  "icon": "https://www.rinnegatamante.eu/vitadb/icons/2be89412bf85d77e03a3c71abc84ee3ee2df1d32f6fe502c5ffa503843bc794c.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/cf60095af084d05d8c8f51b2788d45e45813907a1c87782b140b61a4c11aa199.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/1a4ccd6ef71e290687fa6fcb9db51d58d1de365083e49575b55ea77c9f298390.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/590f2bf1ffb339e47a75fdb761e9e139ae17374cac8da8f96e2e0d5a41241671.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/b6f89755d710a69eda98ba351cf134ac3ff3eca85d566b7010d262c44be2b2d4.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/cf60095af084d05d8c8f51b2788d45e45813907a1c87782b140b61a4c11aa199.png"
+    "https://www.rinnegatamante.eu/vitadb/screenshots/cf60095af084d05d8c8f51b2788d45e45813907a1c87782b140b61a4c11aa199.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/1a4ccd6ef71e290687fa6fcb9db51d58d1de365083e49575b55ea77c9f298390.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/590f2bf1ffb339e47a75fdb761e9e139ae17374cac8da8f96e2e0d5a41241671.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/b6f89755d710a69eda98ba351cf134ac3ff3eca85d566b7010d262c44be2b2d4.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/cf60095af084d05d8c8f51b2788d45e45813907a1c87782b140b61a4c11aa199.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "VitaDBtoo VPK",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1380",
+      "recommended": true
+    },
+    {
+      "type": "Download",
+      "name": "NeoVitaDB VPK",
       "url": "https://github.com/Rocroverss/Defender-II-PS-Vita-Port/releases/download/v1.01/defender2_vita_1.01.vpk",
       "recommended": false
     },
     {
       "type": "Official Website",
-      "name": "VitaDBtoo Release Page",
+      "name": "VitaDB Release Page",
       "url": "https://github.com/Rocroverss/Defender-II-PS-Vita-Port/releases"
     },
     {
@@ -45,17 +51,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/Rocroverss/Defender-II-PS-Vita-Port"
-    },
-    {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1380",
-      "recommended": true
     }
   ],
-  "source_name": "VitaDBtoo",
+  "source_name": "VitaDB",
   "source_id": "1380",
   "source_url": "https://github.com/Rocroverss/Defender-II-PS-Vita-Port",
   "release_page": "https://github.com/Rocroverss/Defender-II-PS-Vita-Port/releases",
-  "updated_at": "2026-08-13T15:34:48.356417+00:00"
+  "updated_at": "2026-08-15T18:26:19.020566+00:00"
 }

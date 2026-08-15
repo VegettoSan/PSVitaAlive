@@ -1,0 +1,47 @@
+{
+  "id": "history-deleter-pcsf00092",
+  "title_id": "PCSF00092",
+  "name": "History Deleter",
+  "description": "Purge game logs and errors.",
+  "long_description": "Little application that purges game logs and coredumps.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
+  "author_ids": [
+    "kanadeengel"
+  ],
+  "category_id": "utilities",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.2.0",
+  "version_date": "2026-08-15",
+  "requirements": "Not specified",
+  "size": 131633,
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1520-history-deleter.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1520-history-deleter.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "NeoVitaDB VPK",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/162-History_Deleter.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Download",
+      "name": "VitaDBtoo VPK",
+      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/162-History_Deleter.vpk",
+      "recommended": false
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com"
+    }
+  ],
+  "source_name": "NeoVitaDB",
+  "source_id": "1520",
+  "source_url": "https://github.com",
+  "release_page": "",
+  "updated_at": "2026-08-15T18:26:20.677212+00:00"
+}

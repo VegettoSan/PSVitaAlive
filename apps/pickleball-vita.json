@@ -16,24 +16,30 @@
   "requirements": "- libshacccg.suprx\n- kubridge.skprx\n- Game Data Files: Android",
   "size": 2298938,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/551710c14649a56605ffcd3e63b713076ab5c484065e10687219b8d323dc35c0.png",
+  "icon": "https://www.rinnegatamante.eu/vitadb/icons/551710c14649a56605ffcd3e63b713076ab5c484065e10687219b8d323dc35c0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/7f9347cee913d1632678e834ce1017e418ab65e1f5ab73b79b3f71853ce3e977.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/defd86872d08fd9e56d7f8f7a525a9fb0a581de2ac180c8daee792666431477f.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/867cfa75839cabb234d0fb8d92916ba3a33b7c8a1688cee916d1a72842d9da33.png",
     "https://www.rinnegatamante.eu/vitadb/screenshots/7f9347cee913d1632678e834ce1017e418ab65e1f5ab73b79b3f71853ce3e977.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/defd86872d08fd9e56d7f8f7a525a9fb0a581de2ac180c8daee792666431477f.png"
+    "https://www.rinnegatamante.eu/vitadb/screenshots/defd86872d08fd9e56d7f8f7a525a9fb0a581de2ac180c8daee792666431477f.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/867cfa75839cabb234d0fb8d92916ba3a33b7c8a1688cee916d1a72842d9da33.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/7f9347cee913d1632678e834ce1017e418ab65e1f5ab73b79b3f71853ce3e977.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/defd86872d08fd9e56d7f8f7a525a9fb0a581de2ac180c8daee792666431477f.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "VitaDBtoo VPK",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1227",
+      "recommended": true
+    },
+    {
+      "type": "Download",
+      "name": "NeoVitaDB VPK",
       "url": "https://github.com/Rinnegatamante/pickleball_vita/releases/download/v.1.0/pickleball.vpk",
       "recommended": false
     },
     {
       "type": "Official Website",
-      "name": "VitaDBtoo Release Page",
+      "name": "VitaDB Release Page",
       "url": "https://github.com/Rinnegatamante/pickleball_vita/releases"
     },
     {
@@ -45,17 +51,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/Rinnegatamante/pickleball_vita"
-    },
-    {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1227",
-      "recommended": true
     }
   ],
-  "source_name": "VitaDBtoo",
+  "source_name": "VitaDB",
   "source_id": "1227",
   "source_url": "https://github.com/Rinnegatamante/pickleball_vita",
   "release_page": "https://github.com/Rinnegatamante/pickleball_vita/releases",
-  "updated_at": "2026-08-13T15:34:48.433832+00:00"
+  "updated_at": "2026-08-15T18:26:19.368552+00:00"
 }

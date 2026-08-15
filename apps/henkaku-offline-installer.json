@@ -16,20 +16,26 @@
   "requirements": "Not specified",
   "size": 409671,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/44db4893ef2d70a3c71cc199e6e90357fba4336bebe17dc4a467a5ba8bd945c7.png",
+  "icon": "https://www.rinnegatamante.eu/vitadb/icons/44db4893ef2d70a3c71cc199e6e90357fba4336bebe17dc4a467a5ba8bd945c7.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/44db4893ef2d70a3c71cc199e6e90357fba4336bebe17dc4a467a5ba8bd945c7.png"
+    "https://www.rinnegatamante.eu/vitadb/icons/44db4893ef2d70a3c71cc199e6e90357fba4336bebe17dc4a467a5ba8bd945c7.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "VitaDBtoo VPK",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=160",
+      "recommended": true
+    },
+    {
+      "type": "Download",
+      "name": "NeoVitaDB VPK",
       "url": "https://github.com/henkaku/offline-installer/releases/download/1.0/offlineInstaller.vpk",
       "recommended": false
     },
     {
       "type": "Official Website",
-      "name": "VitaDBtoo Release Page",
+      "name": "VitaDB Release Page",
       "url": "http://wololo.net/2016/08/11/henkaku-offline-installer-released/"
     },
     {
@@ -41,17 +47,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/henkaku/offline-installer"
-    },
-    {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=160",
-      "recommended": true
     }
   ],
-  "source_name": "VitaDBtoo",
+  "source_name": "VitaDB",
   "source_id": "160",
   "source_url": "https://github.com/henkaku/offline-installer",
   "release_page": "http://wololo.net/2016/08/11/henkaku-offline-installer-released/",
-  "updated_at": "2026-08-13T15:34:48.706386+00:00"
+  "updated_at": "2026-08-15T18:26:20.576466+00:00"
 }

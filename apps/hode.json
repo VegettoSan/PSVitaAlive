@@ -23,20 +23,21 @@
   "links": [
     {
       "type": "Download",
-      "name": "VitaDBtoo VPK",
-      "url": "https://github.com/usineur/hode/releases/download/0.2.9/hode.vpk",
-      "recommended": false
-    },
-    {
-      "type": "Download",
       "name": "NeoVitaDB VPK",
       "url": "https://github.com/usineur/hode/releases/download/0.2.9d/hode.vpk",
       "recommended": true
     },
     {
-      "type": "Official Website",
-      "name": "VitaDBtoo Release Page",
-      "url": "https://github.com/usineur/hode/releases"
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=512",
+      "recommended": false
+    },
+    {
+      "type": "Download",
+      "name": "VitaDBtoo VPK",
+      "url": "https://github.com/usineur/hode/releases/download/0.2.9/hode.vpk",
+      "recommended": false
     },
     {
       "type": "Official Website",
@@ -44,20 +45,19 @@
       "url": "https://github.com/usineur/hode/releases/tag/0.2.9d"
     },
     {
+      "type": "Official Website",
+      "name": "VitaDB Release Page",
+      "url": "https://github.com/usineur/hode/releases"
+    },
+    {
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/usineur/hode"
-    },
-    {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=512",
-      "recommended": false
     }
   ],
-  "source_name": "VitaDBtoo",
+  "source_name": "NeoVitaDB",
   "source_id": "512",
   "source_url": "https://github.com/usineur/hode",
-  "release_page": "https://github.com/usineur/hode/releases",
-  "updated_at": "2026-08-13T15:34:48.620575+00:00"
+  "release_page": "https://github.com/usineur/hode/releases/tag/0.2.9d",
+  "updated_at": "2026-08-15T18:26:20.213568+00:00"
 }

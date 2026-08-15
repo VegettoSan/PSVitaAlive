@@ -9,7 +9,7 @@
   ],
   "category_id": "games",
   "subcategory_ids": [
-    "shooter"
+    "other"
   ],
   "version": "v.1.0.3",
   "version_date": "2026-08-15",
@@ -18,23 +18,24 @@
   "status": "Legacy",
   "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1908-florpix.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/e828acd25aca67617e8e624a4e478a002f7069e78cb9335a2e0176d16f48d72d.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/1a74fd04c1e02902291209096b8578f2ee28b14a9e35185ddf18fb1d59498d96.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/5f2c2f597ee17cefcc9f35bc9b01cc08d5b6d2b7b6e673c2363a167c6bba576a.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/8f4c75bafbf7f44538bfde82bae23cb92456ed73141a905ccce76b61eefe0706.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/e828acd25aca67617e8e624a4e478a002f7069e78cb9335a2e0176d16f48d72d.png"
+    "https://www.rinnegatamante.eu/vitadb/screenshots/e828acd25aca67617e8e624a4e478a002f7069e78cb9335a2e0176d16f48d72d.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/1a74fd04c1e02902291209096b8578f2ee28b14a9e35185ddf18fb1d59498d96.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/5f2c2f597ee17cefcc9f35bc9b01cc08d5b6d2b7b6e673c2363a167c6bba576a.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/8f4c75bafbf7f44538bfde82bae23cb92456ed73141a905ccce76b61eefe0706.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/e828acd25aca67617e8e624a4e478a002f7069e78cb9335a2e0176d16f48d72d.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "VitaDBtoo VPK",
+      "name": "NeoVitaDB VPK",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1232-Florpix.vpk",
       "recommended": true
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com"
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1232",
+      "recommended": false
     },
     {
       "type": "Download",
@@ -43,15 +44,14 @@
       "recommended": false
     },
     {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1232",
-      "recommended": false
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com"
     }
   ],
-  "source_name": "VitaDBtoo",
-  "source_id": "1232",
-  "source_url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1232-Florpix.vpk",
+  "source_name": "NeoVitaDB",
+  "source_id": "1908",
+  "source_url": "https://github.com",
   "release_page": "",
-  "updated_at": "2026-08-13T15:34:48.430564+00:00"
+  "updated_at": "2026-08-15T18:26:19.356542+00:00"
 }

@@ -16,11 +16,17 @@
   "requirements": "Not specified",
   "size": 21986257,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/c533b65ec53065e1f163a1cbd6e2e5e8ceacfd19161a7b4559bd691669491feb.png",
+  "icon": "https://www.rinnegatamante.eu/vitadb/icons/c533b65ec53065e1f163a1cbd6e2e5e8ceacfd19161a7b4559bd691669491feb.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/c533b65ec53065e1f163a1cbd6e2e5e8ceacfd19161a7b4559bd691669491feb.png"
+    "https://www.rinnegatamante.eu/vitadb/icons/c533b65ec53065e1f163a1cbd6e2e5e8ceacfd19161a7b4559bd691669491feb.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1037",
+      "recommended": true
+    },
     {
       "type": "Download",
       "name": "VitaDBtoo VPK",
@@ -29,24 +35,18 @@
     },
     {
       "type": "Official Website",
-      "name": "VitaDBtoo Release Page",
+      "name": "VitaDB Release Page",
       "url": "https://github.com/ParallelProductions/godot-2d-space-game-PSVita/releases"
     },
     {
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/ParallelProductions/godot-2d-space-game-PSVita"
-    },
-    {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1037",
-      "recommended": true
     }
   ],
-  "source_name": "VitaDBtoo",
+  "source_name": "VitaDB",
   "source_id": "1037",
   "source_url": "https://github.com/ParallelProductions/godot-2d-space-game-PSVita",
   "release_page": "https://github.com/ParallelProductions/godot-2d-space-game-PSVita/releases",
-  "updated_at": "2026-08-13T15:34:48.516578+00:00"
+  "updated_at": "2026-08-15T18:26:19.734776+00:00"
 }

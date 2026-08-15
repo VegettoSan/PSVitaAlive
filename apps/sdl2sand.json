@@ -16,23 +16,29 @@
   "requirements": "Not specified",
   "size": 654139,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/aecd36a6517578a949ef01fbb08c483a8f49568fcd7ad67cd51914d1deeea834.png",
+  "icon": "https://www.rinnegatamante.eu/vitadb/icons/aecd36a6517578a949ef01fbb08c483a8f49568fcd7ad67cd51914d1deeea834.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/a08cc1340506860347fc64728d92a6244e3d0b01f71bc746ca6692a8ba69bcd6.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/123aca462c1e21a0b82e46c93b31973893bdb3be1a3dde79c94b4853859b43ce.png",
     "https://www.rinnegatamante.eu/vitadb/screenshots/a08cc1340506860347fc64728d92a6244e3d0b01f71bc746ca6692a8ba69bcd6.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/123aca462c1e21a0b82e46c93b31973893bdb3be1a3dde79c94b4853859b43ce.png"
+    "https://www.rinnegatamante.eu/vitadb/screenshots/123aca462c1e21a0b82e46c93b31973893bdb3be1a3dde79c94b4853859b43ce.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/a08cc1340506860347fc64728d92a6244e3d0b01f71bc746ca6692a8ba69bcd6.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/123aca462c1e21a0b82e46c93b31973893bdb3be1a3dde79c94b4853859b43ce.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "VitaDBtoo VPK",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=778",
+      "recommended": true
+    },
+    {
+      "type": "Download",
+      "name": "NeoVitaDB VPK",
       "url": "https://github.com/v-atamanenko/sdl2sand/releases/download/1.0/sdlsand.vpk",
       "recommended": false
     },
     {
       "type": "Official Website",
-      "name": "VitaDBtoo Release Page",
+      "name": "VitaDB Release Page",
       "url": "https://github.com/v-atamanenko/sdl2sand/releases"
     },
     {
@@ -44,17 +50,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/v-atamanenko/sdl2sand"
-    },
-    {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=778",
-      "recommended": true
     }
   ],
-  "source_name": "VitaDBtoo",
+  "source_name": "VitaDB",
   "source_id": "778",
   "source_url": "https://github.com/v-atamanenko/sdl2sand",
   "release_page": "https://github.com/v-atamanenko/sdl2sand/releases",
-  "updated_at": "2026-08-13T15:34:48.557950+00:00"
+  "updated_at": "2026-08-15T18:26:19.920079+00:00"
 }

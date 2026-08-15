@@ -16,40 +16,40 @@
   "requirements": "- Game Data Files: iOS",
   "size": 16974253,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/369546f3cd2adc115c999366f8b1baa9a1dcbb88fba9edb8be06c8d6e4bdf1df.png",
+  "icon": "https://www.rinnegatamante.eu/vitadb/icons/369546f3cd2adc115c999366f8b1baa9a1dcbb88fba9edb8be06c8d6e4bdf1df.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/30e017ab62dd41a3d7fc7806ce2e694fb9d018b2ad79e8dd89cd17fcba7f0587.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/a241a8f195a9c24f6b8643103bee33af2aae9ca64af0a0b58bf231de6f87fa52.png",
     "https://www.rinnegatamante.eu/vitadb/screenshots/30e017ab62dd41a3d7fc7806ce2e694fb9d018b2ad79e8dd89cd17fcba7f0587.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/a241a8f195a9c24f6b8643103bee33af2aae9ca64af0a0b58bf231de6f87fa52.png"
+    "https://www.rinnegatamante.eu/vitadb/screenshots/a241a8f195a9c24f6b8643103bee33af2aae9ca64af0a0b58bf231de6f87fa52.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/30e017ab62dd41a3d7fc7806ce2e694fb9d018b2ad79e8dd89cd17fcba7f0587.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/a241a8f195a9c24f6b8643103bee33af2aae9ca64af0a0b58bf231de6f87fa52.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "VitaDBtoo VPK",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1428",
+      "recommended": true
+    },
+    {
+      "type": "Download",
+      "name": "NeoVitaDB VPK",
       "url": "https://github.com/parindraaa867/AT-CardWars-Vita/releases/download/v5/CardWars_Stub.vpk",
       "recommended": false
     },
     {
       "type": "Official Website",
-      "name": "VitaDBtoo Release Page",
+      "name": "VitaDB Release Page",
       "url": "https://github.com/parindraaa867/AT-CardWars-Vita"
     },
     {
       "type": "Official Website",
       "name": "NeoVitaDB Release Page",
       "url": "https://github.com/parindraaa867/AT-CardWars-Vita/releases/tag/v5"
-    },
-    {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1428",
-      "recommended": true
     }
   ],
-  "source_name": "VitaDBtoo",
+  "source_name": "VitaDB",
   "source_id": "1428",
   "source_url": "https://github.com/parindraaa867/AT-CardWars-Vita",
   "release_page": "https://github.com/parindraaa867/AT-CardWars-Vita",
-  "updated_at": "2026-08-13T15:34:48.328141+00:00"
+  "updated_at": "2026-08-15T18:26:18.901869+00:00"
 }

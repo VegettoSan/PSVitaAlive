@@ -7,7 +7,7 @@
   "author_ids": [
     "bunkai"
   ],
-  "category_id": "ports",
+  "category_id": "games",
   "subcategory_ids": [
     "other"
   ],
@@ -18,33 +18,29 @@
   "status": "Legacy",
   "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1844-marmaladeboy-lcd.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/950e44af3798c9ceecfcd2aa4dac7f43c3b2449958749a857c72c2ccbd37218d.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/db0ebd7be04d4fe17425c85c06e8bcafb3eed6e278389d3a41f100cb6cebd22b.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/69ab255d5ef6d9c0af5bf45b3041573b8d7628486922fc7ce64570b5dc94b401.png",
     "https://www.rinnegatamante.eu/vitadb/screenshots/950e44af3798c9ceecfcd2aa4dac7f43c3b2449958749a857c72c2ccbd37218d.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/db0ebd7be04d4fe17425c85c06e8bcafb3eed6e278389d3a41f100cb6cebd22b.png"
+    "https://www.rinnegatamante.eu/vitadb/screenshots/db0ebd7be04d4fe17425c85c06e8bcafb3eed6e278389d3a41f100cb6cebd22b.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/69ab255d5ef6d9c0af5bf45b3041573b8d7628486922fc7ce64570b5dc94b401.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/950e44af3798c9ceecfcd2aa4dac7f43c3b2449958749a857c72c2ccbd37218d.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/db0ebd7be04d4fe17425c85c06e8bcafb3eed6e278389d3a41f100cb6cebd22b.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "VitaDBtoo VPK",
+      "name": "NeoVitaDB VPK",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1109-marmalade_bunkai.vpk",
       "recommended": true
-    },
-    {
-      "type": "Official Website",
-      "name": "VitaDBtoo Release Page",
-      "url": "https://fuhen.homebrew-contest.com/submissions/23/"
-    },
-    {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com"
     },
     {
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/MarmaladeBoy_LCD.vpk",
+      "recommended": false
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1109",
       "recommended": false
     },
     {
@@ -59,20 +55,19 @@
       "url": "https://bunkai.itch.io/"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/Bunkai9448/vita_gamemaker"
+      "type": "Official Website",
+      "name": "VitaDB Release Page",
+      "url": "https://fuhen.homebrew-contest.com/submissions/23/"
     },
     {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1109",
-      "recommended": false
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com"
     }
   ],
-  "source_name": "VitaDBtoo",
-  "source_id": "1109",
-  "source_url": "https://fuhen.homebrew-contest.com/submissions/23/",
-  "release_page": "https://fuhen.homebrew-contest.com/submissions/23/",
-  "updated_at": "2026-08-13T15:34:48.484525+00:00"
+  "source_name": "NeoVitaDB",
+  "source_id": "1844",
+  "source_url": "https://github.com",
+  "release_page": "",
+  "updated_at": "2026-08-15T18:26:19.585859+00:00"
 }

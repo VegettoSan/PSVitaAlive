@@ -18,21 +18,27 @@
   "requirements": "Not specified",
   "size": 84371,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/f305054f5ac115cf97e4cf62f66d43125138d50b435e36850a1be963406e9e19.png",
+  "icon": "https://www.rinnegatamante.eu/vitadb/icons/f305054f5ac115cf97e4cf62f66d43125138d50b435e36850a1be963406e9e19.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/59af4b7072633b2f150be877980ff28c03d303ff208437d88960200f371b0eef.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/59af4b7072633b2f150be877980ff28c03d303ff208437d88960200f371b0eef.png"
+    "https://www.rinnegatamante.eu/vitadb/screenshots/59af4b7072633b2f150be877980ff28c03d303ff208437d88960200f371b0eef.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/59af4b7072633b2f150be877980ff28c03d303ff208437d88960200f371b0eef.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "VitaDBtoo VPK",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=435",
+      "recommended": true
+    },
+    {
+      "type": "Download",
+      "name": "NeoVitaDB VPK",
       "url": "https://github.com/SKGleba/enso_ex/releases/download/v5.0/enso_ex.vpk",
       "recommended": false
     },
     {
       "type": "Official Website",
-      "name": "VitaDBtoo Release Page",
+      "name": "VitaDB Release Page",
       "url": "https://github.com/SKGleba/enso_ex/releases"
     },
     {
@@ -44,17 +50,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/SKGleba/enso_ex"
-    },
-    {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=435",
-      "recommended": true
     }
   ],
-  "source_name": "VitaDBtoo",
+  "source_name": "VitaDB",
   "source_id": "435",
   "source_url": "https://github.com/SKGleba/enso_ex",
   "release_page": "https://github.com/SKGleba/enso_ex/releases",
-  "updated_at": "2026-08-13T15:34:48.489197+00:00"
+  "updated_at": "2026-08-15T18:26:19.611693+00:00"
 }

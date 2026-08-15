@@ -16,25 +16,20 @@
   "requirements": "- Game Data Files: Android OR PC",
   "size": 2938656,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/249453e9a75d488873c368faced7a5ad2e9cb421fac175c91b8a48c81cc1507f.png",
+  "icon": "https://www.rinnegatamante.eu/vitadb/icons/249453e9a75d488873c368faced7a5ad2e9cb421fac175c91b8a48c81cc1507f.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/a867c2a1ac482f216b126fc4a474fe3203ca7db4ea1605e6fdd77af58fd02ee1.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/438eaa8b1e7bac34b6b773ee8b4751a86abed63fa620584d07b1b6a7c4fb6a76.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/3d5f4465cd779f0d800043e09b3a086581ea3479f1ebebea429065f1c67d2337.png",
     "https://www.rinnegatamante.eu/vitadb/screenshots/a867c2a1ac482f216b126fc4a474fe3203ca7db4ea1605e6fdd77af58fd02ee1.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/438eaa8b1e7bac34b6b773ee8b4751a86abed63fa620584d07b1b6a7c4fb6a76.png"
+    "https://www.rinnegatamante.eu/vitadb/screenshots/438eaa8b1e7bac34b6b773ee8b4751a86abed63fa620584d07b1b6a7c4fb6a76.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/3d5f4465cd779f0d800043e09b3a086581ea3479f1ebebea429065f1c67d2337.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/a867c2a1ac482f216b126fc4a474fe3203ca7db4ea1605e6fdd77af58fd02ee1.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/438eaa8b1e7bac34b6b773ee8b4751a86abed63fa620584d07b1b6a7c4fb6a76.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "VitaDBtoo VPK",
-      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/640-PleaseDontTouchAnything.vpk",
-      "recommended": false
-    },
-    {
-      "type": "Official Website",
-      "name": "VitaDBtoo Release Page",
-      "url": "https://github.com/hatoving/GMSVitaPortInstructions"
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=640",
+      "recommended": true
     },
     {
       "type": "Download",
@@ -43,15 +38,14 @@
       "recommended": false
     },
     {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=640",
-      "recommended": true
+      "type": "Official Website",
+      "name": "VitaDB Release Page",
+      "url": "https://github.com/hatoving/GMSVitaPortInstructions"
     }
   ],
-  "source_name": "VitaDBtoo",
+  "source_name": "VitaDB",
   "source_id": "640",
   "source_url": "https://github.com/hatoving/GMSVitaPortInstructions",
   "release_page": "https://github.com/hatoving/GMSVitaPortInstructions",
-  "updated_at": "2026-08-13T15:34:48.590550+00:00"
+  "updated_at": "2026-08-15T18:26:20.092613+00:00"
 }

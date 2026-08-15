@@ -18,23 +18,24 @@
   "status": "Legacy",
   "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1756-atlantis.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c1614ecd6e2c39e90e5d8f8f5b7c2a61220ad4afe0df50327d50af0ff21b68b1.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c14c39b2cb817855c07c7e95d7bea5e4c05f73fc4694be3c82822b14a2ebd8b0.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/be05a5f2d39fcb0d0de5f14af10d0c2f45fbc7cd88fac022f933c094788abce9.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/5cb46aca798c7153e973f07ffd9f1874a2b532b780380cbb7e795940fbb28ce2.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/c1614ecd6e2c39e90e5d8f8f5b7c2a61220ad4afe0df50327d50af0ff21b68b1.png"
+    "https://www.rinnegatamante.eu/vitadb/screenshots/c1614ecd6e2c39e90e5d8f8f5b7c2a61220ad4afe0df50327d50af0ff21b68b1.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/c14c39b2cb817855c07c7e95d7bea5e4c05f73fc4694be3c82822b14a2ebd8b0.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/be05a5f2d39fcb0d0de5f14af10d0c2f45fbc7cd88fac022f933c094788abce9.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/5cb46aca798c7153e973f07ffd9f1874a2b532b780380cbb7e795940fbb28ce2.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c1614ecd6e2c39e90e5d8f8f5b7c2a61220ad4afe0df50327d50af0ff21b68b1.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "VitaDBtoo VPK",
+      "name": "NeoVitaDB VPK",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/753-Atlantis.vpk",
       "recommended": true
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com"
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=753",
+      "recommended": false
     },
     {
       "type": "Download",
@@ -43,15 +44,14 @@
       "recommended": false
     },
     {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=753",
-      "recommended": false
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com"
     }
   ],
-  "source_name": "VitaDBtoo",
-  "source_id": "753",
-  "source_url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/753-Atlantis.vpk",
+  "source_name": "NeoVitaDB",
+  "source_id": "1756",
+  "source_url": "https://github.com",
   "release_page": "",
-  "updated_at": "2026-08-13T15:34:48.564174+00:00"
+  "updated_at": "2026-08-15T18:26:19.941421+00:00"
 }

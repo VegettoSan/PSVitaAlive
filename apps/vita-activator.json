@@ -16,11 +16,17 @@
   "requirements": "Not specified",
   "size": 66233,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/18746b487153dc1ca3d728ce57b841b6e8faeca65a0900aa46864f73d07642c8.png",
+  "icon": "https://www.rinnegatamante.eu/vitadb/icons/18746b487153dc1ca3d728ce57b841b6e8faeca65a0900aa46864f73d07642c8.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/18746b487153dc1ca3d728ce57b841b6e8faeca65a0900aa46864f73d07642c8.png"
+    "https://www.rinnegatamante.eu/vitadb/icons/18746b487153dc1ca3d728ce57b841b6e8faeca65a0900aa46864f73d07642c8.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=171",
+      "recommended": true
+    },
     {
       "type": "Download",
       "name": "VitaDBtoo VPK",
@@ -29,7 +35,7 @@
     },
     {
       "type": "Official Website",
-      "name": "VitaDBtoo Release Page",
+      "name": "VitaDB Release Page",
       "url": "http://wololo.net/2016/08/20/release-vita-activator-activate-3-60-ps-vita-without-ps3/"
     },
     {
@@ -41,17 +47,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/jitZpc/vita-activator"
-    },
-    {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=171",
-      "recommended": true
     }
   ],
-  "source_name": "VitaDBtoo",
+  "source_name": "VitaDB",
   "source_id": "171",
   "source_url": "https://github.com/jitZpc/vita-activator",
   "release_page": "http://wololo.net/2016/08/20/release-vita-activator-activate-3-60-ps-vita-without-ps3/",
-  "updated_at": "2026-08-13T15:34:48.702272+00:00"
+  "updated_at": "2026-08-15T18:26:20.561509+00:00"
 }

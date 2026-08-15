@@ -18,28 +18,24 @@
   "status": "Legacy",
   "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1744-jfsw-vita.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/6e25d8af49c98068e114372c756d24e81fbadee15a9d322ba118770b4af1ebcb.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/e3c8e9a2e23301df31d4b941e8821f7a33a50960f3fe716d3079d7f04b975164.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/d0f8f986b8b3e5008bc51923720331c751c1ed74f7236115749c1f8c994af56e.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/917294b7e6b07640514a0e61681cac6a05feb73a2c7aea9507722b63f82ed1c0.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/6e25d8af49c98068e114372c756d24e81fbadee15a9d322ba118770b4af1ebcb.png"
+    "https://www.rinnegatamante.eu/vitadb/screenshots/6e25d8af49c98068e114372c756d24e81fbadee15a9d322ba118770b4af1ebcb.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/e3c8e9a2e23301df31d4b941e8821f7a33a50960f3fe716d3079d7f04b975164.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/d0f8f986b8b3e5008bc51923720331c751c1ed74f7236115749c1f8c994af56e.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/917294b7e6b07640514a0e61681cac6a05feb73a2c7aea9507722b63f82ed1c0.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/6e25d8af49c98068e114372c756d24e81fbadee15a9d322ba118770b4af1ebcb.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "VitaDBtoo VPK",
+      "name": "NeoVitaDB VPK",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/705-jfsw.vpk",
       "recommended": true
     },
     {
-      "type": "Official Website",
-      "name": "VitaDBtoo Release Page",
-      "url": "https://www.psx-place.com/threads/release-jfsw-vita-port-of-shadow-warrior-classic-for-psvita-pstv.34568/"
-    },
-    {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/Rinnegatamante/jfsw-vita"
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=705",
+      "recommended": false
     },
     {
       "type": "Download",
@@ -48,15 +44,19 @@
       "recommended": false
     },
     {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=705",
-      "recommended": false
+      "type": "Official Website",
+      "name": "VitaDB Release Page",
+      "url": "https://www.psx-place.com/threads/release-jfsw-vita-port-of-shadow-warrior-classic-for-psvita-pstv.34568/"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/Rinnegatamante/jfsw-vita"
     }
   ],
-  "source_name": "VitaDBtoo",
-  "source_id": "705",
-  "source_url": "https://github.com/Rinnegatamante/jfsw-vita",
-  "release_page": "https://www.psx-place.com/threads/release-jfsw-vita-port-of-shadow-warrior-classic-for-psvita-pstv.34568/",
-  "updated_at": "2026-08-13T15:34:48.572646+00:00"
+  "source_name": "NeoVitaDB",
+  "source_id": "1744",
+  "source_url": "https://github.com",
+  "release_page": "",
+  "updated_at": "2026-08-15T18:26:19.988601+00:00"
 }

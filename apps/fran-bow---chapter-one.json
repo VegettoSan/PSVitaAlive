@@ -16,9 +16,8 @@
   "requirements": "- Game Data Files: Android OR PC",
   "size": 2949071,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/76e9b46e71f7b6b2b0039a3ad18599dec6967bb7c8fa3eeb0eda9e9ff39dbee7.png",
+  "icon": "https://www.rinnegatamante.eu/vitadb/icons/76e9b46e71f7b6b2b0039a3ad18599dec6967bb7c8fa3eeb0eda9e9ff39dbee7.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/76e9b46e71f7b6b2b0039a3ad18599dec6967bb7c8fa3eeb0eda9e9ff39dbee7.png",
     "https://www.rinnegatamante.eu/vitadb/screenshots/hato1.png",
     "https://www.rinnegatamante.eu/vitadb/screenshots/hato2.png",
     "https://www.rinnegatamante.eu/vitadb/screenshots/hato3.png"
@@ -26,14 +25,9 @@
   "links": [
     {
       "type": "Download",
-      "name": "VitaDBtoo VPK",
-      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/639-FranBowChapter1.vpk",
-      "recommended": false
-    },
-    {
-      "type": "Official Website",
-      "name": "VitaDBtoo Release Page",
-      "url": "https://github.com/hatoving/GMSVitaPortInstructions"
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=639",
+      "recommended": true
     },
     {
       "type": "Download",
@@ -42,15 +36,14 @@
       "recommended": false
     },
     {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=639",
-      "recommended": true
+      "type": "Official Website",
+      "name": "VitaDB Release Page",
+      "url": "https://github.com/hatoving/GMSVitaPortInstructions"
     }
   ],
-  "source_name": "VitaDBtoo",
+  "source_name": "VitaDB",
   "source_id": "639",
   "source_url": "https://github.com/hatoving/GMSVitaPortInstructions",
   "release_page": "https://github.com/hatoving/GMSVitaPortInstructions",
-  "updated_at": "2026-08-13T15:34:48.590451+00:00"
+  "updated_at": "2026-08-15T18:26:20.092412+00:00"
 }

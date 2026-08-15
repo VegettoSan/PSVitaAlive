@@ -5,9 +5,9 @@
   "description": "Maniac Mansion Virtual Machine emulator.",
   "long_description": "This download is the latest stable release. ScummVM is a program which allows you to run certain classic graphical point-and-click adventure games, provided you already have their data files.\nScummVM supports many adventure games, including LucasArts SCUMM games (such as Monkey Island 1-3, Day of the Tentacle, Sam & Max, ...), many of Sierra's AGI and SCI games (such as King's Quest 1-6, Space Quest 1-5, ...), Discworld 1 and 2, Simon the Sorcerer 1 and 2, Beneath A Steel Sky, Lure of the Temptress, Broken Sword 1 and 2, Flight of the Amazon Queen, Gobliiins 1-3, The Legend of Kyrandia 1-3, many of Humongous Entertainment's children's SCUMM games (including Freddi Fish and Putt Putt games) and many more.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
   "author_ids": [
-    "scummvm-team",
     "cpasjuste",
-    "rsn8887"
+    "rsn8887",
+    "scummvm-team"
   ],
   "category_id": "emulators",
   "subcategory_ids": [
@@ -20,28 +20,24 @@
   "status": "Legacy",
   "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1693-scummvm.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c56fec33982eaac100a19beb726f006ffa06fd50fd5365f9ef69ef8ce3c0b2dd.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/aca64d751e2b8e7082ccb34ba5f19f4c5b0fe732807a709532023ec6621c2392.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/18e219936b47071dcdcabd6c8de6492cb0f323e9ef10286c06b3cf8ddcf2d34c.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/f40ab5e649c96bb55823cc8dc7bb683f5c2c6397e648bcca50f1b5da525b5f97.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/70c639f7c94a7807c7571d62c9c23821521420f88b8bbf403f3f9cda0be0c81c.png"
+    "https://www.rinnegatamante.eu/vitadb/screenshots/c56fec33982eaac100a19beb726f006ffa06fd50fd5365f9ef69ef8ce3c0b2dd.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/aca64d751e2b8e7082ccb34ba5f19f4c5b0fe732807a709532023ec6621c2392.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/18e219936b47071dcdcabd6c8de6492cb0f323e9ef10286c06b3cf8ddcf2d34c.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/f40ab5e649c96bb55823cc8dc7bb683f5c2c6397e648bcca50f1b5da525b5f97.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c56fec33982eaac100a19beb726f006ffa06fd50fd5365f9ef69ef8ce3c0b2dd.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "VitaDBtoo VPK",
+      "name": "NeoVitaDB VPK",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/585-scummvm_release.vpk",
       "recommended": true
     },
     {
-      "type": "Official Website",
-      "name": "VitaDBtoo Release Page",
-      "url": "https://wiki.scummvm.org/index.php?title=PlayStation_Vita"
-    },
-    {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/scummvm/scummvm"
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=585",
+      "recommended": false
     },
     {
       "type": "Download",
@@ -50,15 +46,19 @@
       "recommended": false
     },
     {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=585",
-      "recommended": false
+      "type": "Official Website",
+      "name": "VitaDB Release Page",
+      "url": "https://wiki.scummvm.org/index.php?title=PlayStation_Vita"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/scummvm/scummvm"
     }
   ],
-  "source_name": "VitaDBtoo",
-  "source_id": "585",
-  "source_url": "https://github.com/scummvm/scummvm",
-  "release_page": "https://wiki.scummvm.org/index.php?title=PlayStation_Vita",
-  "updated_at": "2026-08-13T15:34:48.336636+00:00"
+  "source_name": "NeoVitaDB",
+  "source_id": "1693",
+  "source_url": "https://github.com",
+  "release_page": "",
+  "updated_at": "2026-08-15T18:26:18.938088+00:00"
 }

@@ -1,0 +1,52 @@
+{
+  "id": "kogre-s-mountain-kogresmou",
+  "title_id": "KOGRESMOU",
+  "name": "Kogre's Mountain",
+  "description": "Digital board game for PSVITA.",
+  "long_description": "Kogre's Mountain is a wholesome, family-friendly digital board game. The first player to reach the top of the mountain with all four of their knights wins!\nHowever, watch out for falling rocks! If the spinner lands on a gate icon, all the rocks will roll down the mountain- Getting hit by one will send your knight back to the bottom, so strategize by hiding your knights behind obstactles and other players.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
+  "author_ids": [
+    "crait"
+  ],
+  "category_id": "games",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.1.0",
+  "version_date": "2026-08-15",
+  "requirements": "Not specified",
+  "size": 48613219,
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1683-kogre-s-mountain.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/9c0e1c954aea67be22c6dfd28f6acf139f8200d0069474d3b4bbde3307481bfc.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "NeoVitaDB VPK",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/557-KogresMountain.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Download",
+      "name": "VitaDBtoo VPK",
+      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/557-KogresMountain.vpk",
+      "recommended": false
+    },
+    {
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
+      "url": "http://www.crait.net/"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com"
+    }
+  ],
+  "source_name": "NeoVitaDB",
+  "source_id": "1683",
+  "source_url": "https://github.com",
+  "release_page": "",
+  "updated_at": "2026-08-15T18:26:20.680554+00:00"
+}

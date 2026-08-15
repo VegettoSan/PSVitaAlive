@@ -16,15 +16,21 @@
   "requirements": "Not specified",
   "size": 2011467,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/fed314676a182bf702355bf0a46e6366933a92c9dceb8bec0504f21a034fbeda.png",
+  "icon": "https://www.rinnegatamante.eu/vitadb/icons/fed314676a182bf702355bf0a46e6366933a92c9dceb8bec0504f21a034fbeda.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/abcf0788862a35cdf1a41733249400ff5037f227878157c4819e16c8bc840cdb.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/696457c4cbc98bc7f7914c8d2ee2ce6c1d7ca678543cd0fdc52589793f9798ec.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/635271a9908206a26eee77809fd9449c9573d461057cfd7ec71ce1ee7779e946.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/02ae5a41052fd9fba10403e48498527e48517428b5498a535d377df464c8a6cc.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/abcf0788862a35cdf1a41733249400ff5037f227878157c4819e16c8bc840cdb.png"
+    "https://www.rinnegatamante.eu/vitadb/screenshots/abcf0788862a35cdf1a41733249400ff5037f227878157c4819e16c8bc840cdb.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/696457c4cbc98bc7f7914c8d2ee2ce6c1d7ca678543cd0fdc52589793f9798ec.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/635271a9908206a26eee77809fd9449c9573d461057cfd7ec71ce1ee7779e946.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/02ae5a41052fd9fba10403e48498527e48517428b5498a535d377df464c8a6cc.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/abcf0788862a35cdf1a41733249400ff5037f227878157c4819e16c8bc840cdb.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=158",
+      "recommended": true
+    },
     {
       "type": "Download",
       "name": "VitaDBtoo VPK",
@@ -33,7 +39,7 @@
     },
     {
       "type": "Official Website",
-      "name": "VitaDBtoo Release Page",
+      "name": "VitaDB Release Page",
       "url": "https://github.com/frangarcj/Genesis-Plus-GX/releases"
     },
     {
@@ -45,17 +51,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/frangarcj/Genesis-Plus-GX"
-    },
-    {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=158",
-      "recommended": true
     }
   ],
-  "source_name": "VitaDBtoo",
+  "source_name": "VitaDB",
   "source_id": "158",
   "source_url": "https://github.com/frangarcj/Genesis-Plus-GX",
   "release_page": "https://github.com/frangarcj/Genesis-Plus-GX/releases",
-  "updated_at": "2026-08-13T15:34:48.713422+00:00"
+  "updated_at": "2026-08-15T18:26:20.608153+00:00"
 }

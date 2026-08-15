@@ -16,21 +16,27 @@
   "requirements": "Not specified",
   "size": 1284846,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/c657bee4b3f0d3de6fe99e5bbcf6de856abe9292198f49842129d1313dca890c.png",
+  "icon": "https://www.rinnegatamante.eu/vitadb/icons/c657bee4b3f0d3de6fe99e5bbcf6de856abe9292198f49842129d1313dca890c.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/15c51a181385aa39a722fae8ce9ff76832b52c1777823c9b5eb3c01e39ff8dd7.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/15c51a181385aa39a722fae8ce9ff76832b52c1777823c9b5eb3c01e39ff8dd7.png"
+    "https://www.rinnegatamante.eu/vitadb/screenshots/15c51a181385aa39a722fae8ce9ff76832b52c1777823c9b5eb3c01e39ff8dd7.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/15c51a181385aa39a722fae8ce9ff76832b52c1777823c9b5eb3c01e39ff8dd7.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "VitaDBtoo VPK",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=630",
+      "recommended": true
+    },
+    {
+      "type": "Download",
+      "name": "NeoVitaDB VPK",
       "url": "https://github.com/Tau5/mkrandom/releases/download/1.00/mkrandom.vpk",
       "recommended": false
     },
     {
       "type": "Official Website",
-      "name": "VitaDBtoo Release Page",
+      "name": "VitaDB Release Page",
       "url": "https://github.com/Tau5/mkrandom/releases"
     },
     {
@@ -42,17 +48,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/Tau5/mkrandom"
-    },
-    {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=630",
-      "recommended": true
     }
   ],
-  "source_name": "VitaDBtoo",
+  "source_name": "VitaDB",
   "source_id": "630",
   "source_url": "https://github.com/Tau5/mkrandom",
   "release_page": "https://github.com/Tau5/mkrandom/releases",
-  "updated_at": "2026-08-13T15:34:48.592436+00:00"
+  "updated_at": "2026-08-15T18:26:20.096173+00:00"
 }

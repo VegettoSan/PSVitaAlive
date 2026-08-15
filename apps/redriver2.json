@@ -18,28 +18,24 @@
   "status": "Legacy",
   "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1874-redriver2.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/1607495b13b2f6ea6bb09065042b6df1acb8862c21059fb49664bf04756d6a4b.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/44a33e724589e7f56af4e749f7614f9b3360496626519b690136fc3013330a33.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/8ce0899f65b4a57c2662337afd301028a43c49691c0de09c81b9b39d89a8d390.png",
     "https://www.rinnegatamante.eu/vitadb/screenshots/1607495b13b2f6ea6bb09065042b6df1acb8862c21059fb49664bf04756d6a4b.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/44a33e724589e7f56af4e749f7614f9b3360496626519b690136fc3013330a33.png"
+    "https://www.rinnegatamante.eu/vitadb/screenshots/44a33e724589e7f56af4e749f7614f9b3360496626519b690136fc3013330a33.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/8ce0899f65b4a57c2662337afd301028a43c49691c0de09c81b9b39d89a8d390.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/1607495b13b2f6ea6bb09065042b6df1acb8862c21059fb49664bf04756d6a4b.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/44a33e724589e7f56af4e749f7614f9b3360496626519b690136fc3013330a33.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "VitaDBtoo VPK",
+      "name": "NeoVitaDB VPK",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1145-REDRIVER2.vpk",
       "recommended": true
     },
     {
-      "type": "Official Website",
-      "name": "VitaDBtoo Release Page",
-      "url": "https://fuhen.homebrew-contest.com/submissions/61/"
-    },
-    {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/OsirizX/REDRIVER2/tree/vita"
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1145",
+      "recommended": false
     },
     {
       "type": "Download",
@@ -48,15 +44,19 @@
       "recommended": false
     },
     {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1145",
-      "recommended": false
+      "type": "Official Website",
+      "name": "VitaDB Release Page",
+      "url": "https://fuhen.homebrew-contest.com/submissions/61/"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/OsirizX/REDRIVER2/tree/vita"
     }
   ],
-  "source_name": "VitaDBtoo",
-  "source_id": "1145",
-  "source_url": "https://github.com/OsirizX/REDRIVER2/tree/vita",
-  "release_page": "https://fuhen.homebrew-contest.com/submissions/61/",
-  "updated_at": "2026-08-13T15:34:48.474738+00:00"
+  "source_name": "NeoVitaDB",
+  "source_id": "1874",
+  "source_url": "https://github.com",
+  "release_page": "",
+  "updated_at": "2026-08-15T18:26:19.529975+00:00"
 }

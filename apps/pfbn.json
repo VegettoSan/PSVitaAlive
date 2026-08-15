@@ -16,21 +16,27 @@
   "requirements": "Not specified",
   "size": 14675424,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/50411f5bba5045a351f2f62ab9558a6b53bbba94f6e4455f3805606eead4b9ac.png",
+  "icon": "https://www.rinnegatamante.eu/vitadb/icons/50411f5bba5045a351f2f62ab9558a6b53bbba94f6e4455f3805606eead4b9ac.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/87c702b065aa8a948c929acd69e389bb7f74617668d885c0bc87f31e0381379d.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/87c702b065aa8a948c929acd69e389bb7f74617668d885c0bc87f31e0381379d.png"
+    "https://www.rinnegatamante.eu/vitadb/screenshots/87c702b065aa8a948c929acd69e389bb7f74617668d885c0bc87f31e0381379d.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/87c702b065aa8a948c929acd69e389bb7f74617668d885c0bc87f31e0381379d.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "VitaDBtoo VPK",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=800",
+      "recommended": true
+    },
+    {
+      "type": "Download",
+      "name": "NeoVitaDB VPK",
       "url": "https://github.com/Cpasjuste/pemu/releases/download/v7.1/pfbneo.vpk",
       "recommended": false
     },
     {
       "type": "Official Website",
-      "name": "VitaDBtoo Release Page",
+      "name": "VitaDB Release Page",
       "url": "https://github.com/Cpasjuste/pemu/releases"
     },
     {
@@ -42,17 +48,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/Cpasjuste/pemu/tree/master/pfbneo"
-    },
-    {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=800",
-      "recommended": true
     }
   ],
-  "source_name": "VitaDBtoo",
+  "source_name": "VitaDB",
   "source_id": "800",
   "source_url": "https://github.com/Cpasjuste/pemu/tree/master/pfbneo",
   "release_page": "https://github.com/Cpasjuste/pemu/releases",
-  "updated_at": "2026-08-13T15:34:48.370984+00:00"
+  "updated_at": "2026-08-15T18:26:19.101435+00:00"
 }

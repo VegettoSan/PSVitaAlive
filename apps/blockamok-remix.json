@@ -18,8 +18,8 @@
   "status": "Legacy",
   "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1281-blockamok-remix.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/39c768558473b29be19e5f10a615bde099e8498681317be71a25869d40c4ed0c.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/39c768558473b29be19e5f10a615bde099e8498681317be71a25869d40c4ed0c.png"
+    "https://www.rinnegatamante.eu/vitadb/screenshots/39c768558473b29be19e5f10a615bde099e8498681317be71a25869d40c4ed0c.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/39c768558473b29be19e5f10a615bde099e8498681317be71a25869d40c4ed0c.png"
   ],
   "links": [
     {
@@ -43,5 +43,5 @@
   "source_id": "1281",
   "source_url": "https://github.com/Mode8fx/blockamok",
   "release_page": "https://github.com/Mode8fx/blockamok/releases/tag/v1.21",
-  "updated_at": "2026-08-13T15:34:48.374767+00:00"
+  "updated_at": "2026-08-15T18:26:19.116640+00:00"
 }

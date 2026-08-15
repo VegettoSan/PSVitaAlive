@@ -18,16 +18,9 @@
   "status": "Legacy",
   "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/0013-vopentyrian.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/0013-vopentyrian.png",
     "https://www.rinnegatamante.eu/vitadb/screenshots/vtyr.jpg"
   ],
   "links": [
-    {
-      "type": "Download",
-      "name": "VitaDBtoo VPK",
-      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/13-vOpenTyrian.vpk",
-      "recommended": false
-    },
     {
       "type": "Download",
       "name": "NeoVitaDB VPK",
@@ -35,19 +28,10 @@
       "recommended": true
     },
     {
-      "type": "Official Website",
-      "name": "VitaDBtoo Release Page",
-      "url": "http://gekihen.customprotocol.com/en/project/vOpenTyrian"
-    },
-    {
-      "type": "Official Website",
-      "name": "NeoVitaDB Release Page",
-      "url": "https://github.com/Cpasjuste/vopentyrian/releases/tag/16-09-19"
-    },
-    {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/Cpasjuste/vopentyrian"
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=13",
+      "recommended": false
     },
     {
       "type": "Download",
@@ -56,15 +40,24 @@
       "recommended": false
     },
     {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=13",
-      "recommended": false
+      "type": "Official Website",
+      "name": "NeoVitaDB Release Page",
+      "url": "https://github.com/Cpasjuste/vopentyrian/releases/tag/16-09-19"
+    },
+    {
+      "type": "Official Website",
+      "name": "VitaDB Release Page",
+      "url": "http://gekihen.customprotocol.com/en/project/vOpenTyrian"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/Cpasjuste/vopentyrian"
     }
   ],
-  "source_name": "VitaDBtoo",
+  "source_name": "NeoVitaDB",
   "source_id": "13",
   "source_url": "https://github.com/Cpasjuste/vopentyrian",
-  "release_page": "http://gekihen.customprotocol.com/en/project/vOpenTyrian",
-  "updated_at": "2026-08-13T15:34:48.698149+00:00"
+  "release_page": "https://github.com/Cpasjuste/vopentyrian/releases/tag/16-09-19",
+  "updated_at": "2026-08-15T18:26:20.544194+00:00"
 }

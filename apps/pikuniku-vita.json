@@ -16,41 +16,41 @@
   "requirements": "- Game Data Files: PC",
   "size": 14955745,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/266cefc922207efee1f69a6b95d40ea5d4746f6257e6d0f46a2691730d0b8e5d.png",
+  "icon": "https://www.rinnegatamante.eu/vitadb/icons/266cefc922207efee1f69a6b95d40ea5d4746f6257e6d0f46a2691730d0b8e5d.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/3c9a2164bbd594685a52178d2bb9bf478651eb2bb9aedd9e365d5232efd2c3d1.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/6e625ef1ccf36bff3a92a723423ebb27e498aa92b3bf6ff5a68ff04690e10365.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/1b7936e23d311882a717da0f54eed2443fc48273f1525b10d7523a5031231abc.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/66b0c5fb5d0dc6b955fb94161429d8c978e54dde0cc795545a91485be02180f4.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/3c9a2164bbd594685a52178d2bb9bf478651eb2bb9aedd9e365d5232efd2c3d1.png"
+    "https://www.rinnegatamante.eu/vitadb/screenshots/3c9a2164bbd594685a52178d2bb9bf478651eb2bb9aedd9e365d5232efd2c3d1.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/6e625ef1ccf36bff3a92a723423ebb27e498aa92b3bf6ff5a68ff04690e10365.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/1b7936e23d311882a717da0f54eed2443fc48273f1525b10d7523a5031231abc.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/66b0c5fb5d0dc6b955fb94161429d8c978e54dde0cc795545a91485be02180f4.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/3c9a2164bbd594685a52178d2bb9bf478651eb2bb9aedd9e365d5232efd2c3d1.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "VitaDBtoo VPK",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1278",
+      "recommended": true
+    },
+    {
+      "type": "Download",
+      "name": "NeoVitaDB VPK",
       "url": "https://github.com/gl00mm/Pikuniku_PSVITA/releases/download/Pikuniku_PSVITA-v1.00/pikuniku.vpk",
       "recommended": false
     },
     {
       "type": "Official Website",
-      "name": "VitaDBtoo Release Page",
+      "name": "VitaDB Release Page",
       "url": "https://github.com/gl00mm/Pikuniku_PSVITA"
     },
     {
       "type": "Official Website",
       "name": "NeoVitaDB Release Page",
       "url": "https://github.com/gl00mm/Pikuniku_PSVITA/releases/tag/Pikuniku_PSVITA-v1.00"
-    },
-    {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1278",
-      "recommended": true
     }
   ],
-  "source_name": "VitaDBtoo",
+  "source_name": "VitaDB",
   "source_id": "1278",
   "source_url": "https://github.com/gl00mm/Pikuniku_PSVITA",
   "release_page": "https://github.com/gl00mm/Pikuniku_PSVITA",
-  "updated_at": "2026-08-13T15:34:48.404119+00:00"
+  "updated_at": "2026-08-15T18:26:19.235635+00:00"
 }

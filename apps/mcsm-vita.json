@@ -1,0 +1,49 @@
+{
+  "id": "mcsm-vita",
+  "title_id": "MCSM00001",
+  "name": "MCSM Vita",
+  "description": "Port of Minecraft: Story Mode for PSVita.",
+  "long_description": "Unofficial PS Vita port of Minecraft: Story Mode, based on the Android PowerVR v1.37 release. Supports all 8 episodes, trophies, multiple languages, controller input and custom made controller Glyphs.",
+  "author_ids": [
+    "lezergan"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.1.11",
+  "version_date": "2026-08-12",
+  "requirements": "- libshacccg.suprx\n- kubridge.skprx\n- Game Data Files: Android",
+  "size": 3441189,
+  "status": "Legacy",
+  "icon": "https://www.rinnegatamante.eu/vitadb/icons/f4104e82801abba720fb171728c8ecc3c0fd3a522b442b8e8f952f9646c65136.png",
+  "screenshots": [
+    "https://www.rinnegatamante.eu/vitadb/screenshots/4f577c56ac7b1377b25f428480b6cb64997c7d84b6d65bf4e965e1e093381036.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/be382a5d2682bcc46da10bb6c620ad0cf0ee056244f6a3807037df811c0865d3.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/476ed512454f990794333cc877877a6da8d851ef86270d157424f602d97a7523.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/9670ead62f192644d21efe7dfe2401ffd5261354e1389a6682a81ec12baf3bd6.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1442",
+      "recommended": true
+    },
+    {
+      "type": "Official Website",
+      "name": "VitaDB Release Page",
+      "url": "https://github.com/LeZergan/mcsm-vita/releases"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/LeZergan/mcsm-vita"
+    }
+  ],
+  "source_name": "VitaDB",
+  "source_id": "1442",
+  "source_url": "https://github.com/LeZergan/mcsm-vita",
+  "release_page": "https://github.com/LeZergan/mcsm-vita/releases",
+  "updated_at": "2026-08-15T18:26:18.870146+00:00"
+}

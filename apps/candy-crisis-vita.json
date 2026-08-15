@@ -18,23 +18,24 @@
   "status": "Legacy",
   "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1814-candy-crisis-vita.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c2fe3114de8eb24c08825d7aa3ff4fc89b14d09ad711c30cfa9a362469e9f9cd.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/aa7e6f00a665e2c66e8bd7217dee968b8a55e1c88520061d0418441366399bcf.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/a56e97e20ca1aa1f6f77f3c31b6ea7ee3d22a326b890dee0245ba0d5e3500a8d.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c765a619b3c78ea857286d57e14c3123258da13989dd743221e71b687549daa5.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/c2fe3114de8eb24c08825d7aa3ff4fc89b14d09ad711c30cfa9a362469e9f9cd.png"
+    "https://www.rinnegatamante.eu/vitadb/screenshots/c2fe3114de8eb24c08825d7aa3ff4fc89b14d09ad711c30cfa9a362469e9f9cd.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/aa7e6f00a665e2c66e8bd7217dee968b8a55e1c88520061d0418441366399bcf.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/a56e97e20ca1aa1f6f77f3c31b6ea7ee3d22a326b890dee0245ba0d5e3500a8d.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/c765a619b3c78ea857286d57e14c3123258da13989dd743221e71b687549daa5.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c2fe3114de8eb24c08825d7aa3ff4fc89b14d09ad711c30cfa9a362469e9f9cd.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "VitaDBtoo VPK",
+      "name": "NeoVitaDB VPK",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1043-candy.vpk",
       "recommended": true
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/Rinnegatamante/CandyCrisis"
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1043",
+      "recommended": false
     },
     {
       "type": "Download",
@@ -43,15 +44,14 @@
       "recommended": false
     },
     {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1043",
-      "recommended": false
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/Rinnegatamante/CandyCrisis"
     }
   ],
-  "source_name": "VitaDBtoo",
-  "source_id": "1043",
-  "source_url": "https://github.com/Rinnegatamante/CandyCrisis",
+  "source_name": "NeoVitaDB",
+  "source_id": "1814",
+  "source_url": "https://github.com",
   "release_page": "",
-  "updated_at": "2026-08-13T15:34:48.510698+00:00"
+  "updated_at": "2026-08-15T18:26:19.711315+00:00"
 }

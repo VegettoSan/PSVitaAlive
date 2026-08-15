@@ -16,11 +16,17 @@
   "requirements": "Not specified",
   "size": 14511015,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/34b18ae7e7c20707af7d20e4974b716894410de69f531abf6f2d0ed77ec9195c.png",
+  "icon": "https://www.rinnegatamante.eu/vitadb/icons/34b18ae7e7c20707af7d20e4974b716894410de69f531abf6f2d0ed77ec9195c.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/34b18ae7e7c20707af7d20e4974b716894410de69f531abf6f2d0ed77ec9195c.png"
+    "https://www.rinnegatamante.eu/vitadb/icons/34b18ae7e7c20707af7d20e4974b716894410de69f531abf6f2d0ed77ec9195c.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1228",
+      "recommended": true
+    },
     {
       "type": "Download",
       "name": "VitaDBtoo VPK",
@@ -29,19 +35,13 @@
     },
     {
       "type": "Official Website",
-      "name": "VitaDBtoo Release Page",
+      "name": "VitaDB Release Page",
       "url": "https://github.com/raidengugga/Neet-Girl-Date-Night-PSVITA"
-    },
-    {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1228",
-      "recommended": true
     }
   ],
-  "source_name": "VitaDBtoo",
+  "source_name": "VitaDB",
   "source_id": "1228",
   "source_url": "https://github.com/raidengugga/Neet-Girl-Date-Night-PSVITA",
   "release_page": "https://github.com/raidengugga/Neet-Girl-Date-Night-PSVITA",
-  "updated_at": "2026-08-13T15:34:48.433954+00:00"
+  "updated_at": "2026-08-15T18:26:19.368790+00:00"
 }

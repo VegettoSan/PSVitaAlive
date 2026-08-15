@@ -1,9 +1,9 @@
 {
   "id": "the-four-of-us-are-dying",
-  "title_id": "WSCG00005",
+  "title_id": "WSCG00004",
   "name": "The Four of Us Are Dying",
   "description": "Survival horror game for PSVITA.",
-  "long_description": "In progress survival horror game for PSVITA. This is a development build, mirrored with the author's permission.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
+  "long_description": "A Silent Hill 2/Alan Wake style survival horror game. I am striving to push the Vita as hard as possible towards modern AAA quality visuals as well as giving us a proper survival horror game on the platform.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
   "author_ids": [
     "noradninja"
   ],
@@ -11,37 +11,42 @@
   "subcategory_ids": [
     "other"
   ],
-  "version": "v.1.0",
+  "version": "v.0.2",
   "version_date": "2026-08-15",
   "requirements": "Not specified",
-  "size": 114337376,
+  "size": 119610374,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1981-the-four-of-us-are-dying.png",
+  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1842-the-four-of-us-are-dying.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1981-the-four-of-us-are-dying.png"
+    "https://www.rinnegatamante.eu/vitadb/screenshots/8f8a4b3f2adc3a626797b7d7d585b5a2985a77aa252b1b7eb8cadb0322d1d46d.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/08c1cbb4291c2342311b23cc8b988a417cc643d3e87a4a6b67e11b08685c9662.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/b7e3f52ca451809027833e76f493203bfc0ad5d7122c4240d518d629045f7ef9.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/8f8a4b3f2adc3a626797b7d7d585b5a2985a77aa252b1b7eb8cadb0322d1d46d.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/08c1cbb4291c2342311b23cc8b988a417cc643d3e87a4a6b67e11b08685c9662.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "VitaDBtoo VPK",
-      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/TFoUAD.vpk",
+      "name": "NeoVitaDB VPK",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1104-The-Four-of-Us-Are-Dying.vpk",
       "recommended": true
     },
     {
-      "type": "Official Website",
-      "name": "VitaDBtoo Release Page",
-      "url": "https://github.com/noradninja/The-Four-of-Us-Are-Dying/tree/Current"
-    },
-    {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/noradninja/The-Four-of-Us-Are-Dying"
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1104",
+      "recommended": false
     },
     {
       "type": "Download",
       "name": "VitaDBtoo VPK",
-      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/TFoUAD.vpk",
+      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/1104-The-Four-of-Us-Are-Dying.vpk",
       "recommended": false
+    },
+    {
+      "type": "Official Website",
+      "name": "VitaDB Release Page",
+      "url": "https://fuhen.homebrew-contest.com/submissions/20/"
     },
     {
       "type": "Repository",
@@ -49,9 +54,9 @@
       "url": "https://github.com"
     }
   ],
-  "source_name": "VitaDBtoo",
-  "source_id": "1456",
-  "source_url": "https://github.com/noradninja/The-Four-of-Us-Are-Dying",
-  "release_page": "https://github.com/noradninja/The-Four-of-Us-Are-Dying/tree/Current",
-  "updated_at": "2026-08-13T15:34:48.322344+00:00"
+  "source_name": "NeoVitaDB",
+  "source_id": "1842",
+  "source_url": "https://github.com",
+  "release_page": "",
+  "updated_at": "2026-08-15T18:26:19.507461+00:00"
 }

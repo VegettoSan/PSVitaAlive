@@ -19,28 +19,24 @@
   "status": "Legacy",
   "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1728-have-a-good-one.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/f0fdeba9e0c5fd2afdbb90c4d7bf4f8e7ed3b6179387ca885e9dc2ac957e033d.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/ebbcf647d64dc320b93b20e5189a34d3bd7d8ffb6aeb50e25c74d1c1926ea0cf.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/230250f89487e4cc2fa05d399eaf5787cf191bdf6604b270fa798b8ca6a52bb3.png",
     "https://www.rinnegatamante.eu/vitadb/screenshots/f0fdeba9e0c5fd2afdbb90c4d7bf4f8e7ed3b6179387ca885e9dc2ac957e033d.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/ebbcf647d64dc320b93b20e5189a34d3bd7d8ffb6aeb50e25c74d1c1926ea0cf.png"
+    "https://www.rinnegatamante.eu/vitadb/screenshots/ebbcf647d64dc320b93b20e5189a34d3bd7d8ffb6aeb50e25c74d1c1926ea0cf.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/230250f89487e4cc2fa05d399eaf5787cf191bdf6604b270fa798b8ca6a52bb3.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/f0fdeba9e0c5fd2afdbb90c4d7bf4f8e7ed3b6179387ca885e9dc2ac957e033d.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/ebbcf647d64dc320b93b20e5189a34d3bd7d8ffb6aeb50e25c74d1c1926ea0cf.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "VitaDBtoo VPK",
+      "name": "NeoVitaDB VPK",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/682-HaveAGoodOne.vpk",
       "recommended": true
     },
     {
-      "type": "Official Website",
-      "name": "VitaDBtoo Release Page",
-      "url": "https://kyuhen.customprotocol.com/en/submissions/goodone/"
-    },
-    {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com"
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=682",
+      "recommended": false
     },
     {
       "type": "Download",
@@ -49,15 +45,19 @@
       "recommended": false
     },
     {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=682",
-      "recommended": false
+      "type": "Official Website",
+      "name": "VitaDB Release Page",
+      "url": "https://kyuhen.customprotocol.com/en/submissions/goodone/"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com"
     }
   ],
-  "source_name": "VitaDBtoo",
-  "source_id": "682",
-  "source_url": "https://kyuhen.customprotocol.com/en/submissions/goodone/",
-  "release_page": "https://kyuhen.customprotocol.com/en/submissions/goodone/",
-  "updated_at": "2026-08-13T15:34:48.583474+00:00"
+  "source_name": "NeoVitaDB",
+  "source_id": "1728",
+  "source_url": "https://github.com",
+  "release_page": "",
+  "updated_at": "2026-08-15T18:26:20.048469+00:00"
 }

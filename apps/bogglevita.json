@@ -1,6 +1,6 @@
 {
   "id": "bogglevita",
-  "title_id": "VITBOGGLE",
+  "title_id": "BOGGLESTG",
   "name": "BoggleVita",
   "description": "Boggle game for PSVITA.",
   "long_description": "Boggle game for PSVITA.\nGrab a pen and paper and enjoy.",
@@ -11,31 +11,31 @@
   "subcategory_ids": [
     "other"
   ],
-  "version": "v.ita",
+  "version": "v.1.0",
   "version_date": "2023-12-23",
   "requirements": "Not specified",
-  "size": 3496823,
+  "size": 3058336,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/c83b4e4686a58c1a06934a1d07eac69c7c16d61e67dae4d430ee8b8145cab641.png",
+  "icon": "https://www.rinnegatamante.eu/vitadb/icons/c83b4e4686a58c1a06934a1d07eac69c7c16d61e67dae4d430ee8b8145cab641.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/c83b4e4686a58c1a06934a1d07eac69c7c16d61e67dae4d430ee8b8145cab641.png"
+    "https://www.rinnegatamante.eu/vitadb/icons/c83b4e4686a58c1a06934a1d07eac69c7c16d61e67dae4d430ee8b8145cab641.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "VitaDBtoo VPK",
-      "url": "https://github.com/SoulTieGames/BoggleVita/releases/download/Vita/boggle_v2.0.VPK",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1169",
       "recommended": true
     },
     {
       "type": "Official Website",
-      "name": "VitaDBtoo Release Page",
+      "name": "VitaDB Release Page",
       "url": "https://github.com/SoulTieGames/BoggleVita"
     }
   ],
-  "source_name": "VitaDBtoo",
+  "source_name": "VitaDB",
   "source_id": "1169",
   "source_url": "https://github.com/SoulTieGames/BoggleVita",
   "release_page": "https://github.com/SoulTieGames/BoggleVita",
-  "updated_at": "2026-08-13T15:34:48.457132+00:00"
+  "updated_at": "2026-08-15T18:26:19.456970+00:00"
 }

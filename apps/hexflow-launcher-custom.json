@@ -28,14 +28,9 @@
   "links": [
     {
       "type": "Download",
-      "name": "VitaDBtoo VPK",
+      "name": "NeoVitaDB VPK",
       "url": "https://github.com/BlackSheepBoy69/HexFlow-Launcher-Unofficial-Custom/releases/download/v2.9.1/HexFlow.Custom.2.9.1.vpk",
       "recommended": true
-    },
-    {
-      "type": "Official Website",
-      "name": "VitaDBtoo Release Page",
-      "url": "https://github.com/BlackSheepBoy69/HexFlow-Launcher-Unofficial-Custom/releases"
     },
     {
       "type": "Official Website",
@@ -43,14 +38,19 @@
       "url": "https://github.com/BlackSheepBoy69/HexFlow-Launcher-Unofficial-Custom/releases/tag/v2.9.1"
     },
     {
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
+      "url": "https://github.com/BlackSheepBoy69/HexFlow-Launcher-Unofficial-Custom/releases"
+    },
+    {
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/BlackSheepBoy69/HexFlow-Launcher-Unofficial-Custom"
     }
   ],
-  "source_name": "VitaDBtoo",
+  "source_name": "NeoVitaDB",
   "source_id": "587",
   "source_url": "https://github.com/BlackSheepBoy69/HexFlow-Launcher-Unofficial-Custom",
-  "release_page": "https://github.com/BlackSheepBoy69/HexFlow-Launcher-Unofficial-Custom/releases",
-  "updated_at": "2026-08-13T15:34:48.379083+00:00"
+  "release_page": "https://github.com/BlackSheepBoy69/HexFlow-Launcher-Unofficial-Custom/releases/tag/v2.9.1",
+  "updated_at": "2026-08-15T18:26:19.136297+00:00"
 }

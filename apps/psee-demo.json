@@ -18,28 +18,24 @@
   "status": "Legacy",
   "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1890-psee-demo.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/b465709f7b5df313035ad031b1a1bc1fb784dd8fb76be7c1ab4fdcc5bb341f69.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/d37a2af4a927fdcf1f46e01891583f4aecfac0b0b139772bf3ea20937eaac5b6.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/24d82b2f0a567c7ce1e15305cc7b04ec5aca90e70725fab685c58e4d64aad0f5.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/069e359f95665ac865b9bc049b09e1aae387af00cc96e505fed511ebae460e47.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/b465709f7b5df313035ad031b1a1bc1fb784dd8fb76be7c1ab4fdcc5bb341f69.png"
+    "https://www.rinnegatamante.eu/vitadb/screenshots/b465709f7b5df313035ad031b1a1bc1fb784dd8fb76be7c1ab4fdcc5bb341f69.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/d37a2af4a927fdcf1f46e01891583f4aecfac0b0b139772bf3ea20937eaac5b6.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/24d82b2f0a567c7ce1e15305cc7b04ec5aca90e70725fab685c58e4d64aad0f5.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/069e359f95665ac865b9bc049b09e1aae387af00cc96e505fed511ebae460e47.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/b465709f7b5df313035ad031b1a1bc1fb784dd8fb76be7c1ab4fdcc5bb341f69.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "VitaDBtoo VPK",
+      "name": "NeoVitaDB VPK",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1187-psee.vpk",
       "recommended": true
     },
     {
-      "type": "Official Website",
-      "name": "VitaDBtoo Release Page",
-      "url": "https://www.anfloppyarts.com/psee"
-    },
-    {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com"
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1187",
+      "recommended": false
     },
     {
       "type": "Download",
@@ -48,15 +44,19 @@
       "recommended": false
     },
     {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1187",
-      "recommended": false
+      "type": "Official Website",
+      "name": "VitaDB Release Page",
+      "url": "https://www.anfloppyarts.com/psee"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com"
     }
   ],
-  "source_name": "VitaDBtoo",
-  "source_id": "1187",
-  "source_url": "https://www.anfloppyarts.com/psee",
-  "release_page": "https://www.anfloppyarts.com/psee",
-  "updated_at": "2026-08-13T15:34:48.446664+00:00"
+  "source_name": "NeoVitaDB",
+  "source_id": "1890",
+  "source_url": "https://github.com",
+  "release_page": "",
+  "updated_at": "2026-08-15T18:26:19.419584+00:00"
 }

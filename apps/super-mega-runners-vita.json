@@ -16,41 +16,41 @@
   "requirements": "- Game Data Files: Android",
   "size": 14733060,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/4ba19e71a5db8922082ee7628f86b31be0fa8e6b9589db6c796f5abbd47213d5.png",
+  "icon": "https://www.rinnegatamante.eu/vitadb/icons/4ba19e71a5db8922082ee7628f86b31be0fa8e6b9589db6c796f5abbd47213d5.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/d6cb98c6f55c37e633e33bd827466047cd06a79385f455de187a1c92b2912a70.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/821408a640adca3c1b2ab079889892d5935b0ff3520d892f5723d7973e7c6400.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/5cb3fca58165d4488fb470e0d8cec1189b1ea8a1c110d398b1797da157c8ad80.png",
     "https://www.rinnegatamante.eu/vitadb/screenshots/d6cb98c6f55c37e633e33bd827466047cd06a79385f455de187a1c92b2912a70.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/821408a640adca3c1b2ab079889892d5935b0ff3520d892f5723d7973e7c6400.png"
+    "https://www.rinnegatamante.eu/vitadb/screenshots/821408a640adca3c1b2ab079889892d5935b0ff3520d892f5723d7973e7c6400.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/5cb3fca58165d4488fb470e0d8cec1189b1ea8a1c110d398b1797da157c8ad80.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/d6cb98c6f55c37e633e33bd827466047cd06a79385f455de187a1c92b2912a70.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/821408a640adca3c1b2ab079889892d5935b0ff3520d892f5723d7973e7c6400.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "VitaDBtoo VPK",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1369",
+      "recommended": true
+    },
+    {
+      "type": "Download",
+      "name": "NeoVitaDB VPK",
       "url": "https://github.com/RegularCharacter07/SuperMegaRunnersVita/releases/download/1.0/smrun.vpk",
       "recommended": false
     },
     {
       "type": "Official Website",
-      "name": "VitaDBtoo Release Page",
+      "name": "VitaDB Release Page",
       "url": "https://github.com/RegularCharacter07/SuperMegaRunnersVita"
     },
     {
       "type": "Official Website",
       "name": "NeoVitaDB Release Page",
       "url": "https://github.com/RegularCharacter07/SuperMegaRunnersVita/releases/tag/1.0"
-    },
-    {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1369",
-      "recommended": true
     }
   ],
-  "source_name": "VitaDBtoo",
+  "source_name": "VitaDB",
   "source_id": "1369",
   "source_url": "https://github.com/RegularCharacter07/SuperMegaRunnersVita",
   "release_page": "https://github.com/RegularCharacter07/SuperMegaRunnersVita",
-  "updated_at": "2026-08-13T15:34:48.363734+00:00"
+  "updated_at": "2026-08-15T18:26:19.057809+00:00"
 }

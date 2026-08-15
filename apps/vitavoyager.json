@@ -9,8 +9,7 @@
   ],
   "category_id": "ports",
   "subcategory_ids": [
-    "fps",
-    "action"
+    "other"
   ],
   "version": "v.1.0",
   "version_date": "2026-08-15",
@@ -19,28 +18,24 @@
   "status": "Legacy",
   "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1657-vitavoyager.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c7362d3024f72af24e02ed682d2dd19f216d309199f6f53a07700574c0041e6b.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/05eb91c5436ac21362989eff4d36c6ca8d6d3ffe6c9810ba9d4a6683490e53d0.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/ced6ffece58bd7443b153f9b18d9cf8b0051e8146c4ad2deb2beceec19f7fc2e.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/b52808d1600cc4fdb405dc9ca16dbd42ca73b381381301234b390916ab8ac79d.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/c7362d3024f72af24e02ed682d2dd19f216d309199f6f53a07700574c0041e6b.png"
+    "https://www.rinnegatamante.eu/vitadb/screenshots/c7362d3024f72af24e02ed682d2dd19f216d309199f6f53a07700574c0041e6b.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/05eb91c5436ac21362989eff4d36c6ca8d6d3ffe6c9810ba9d4a6683490e53d0.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/ced6ffece58bd7443b153f9b18d9cf8b0051e8146c4ad2deb2beceec19f7fc2e.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/b52808d1600cc4fdb405dc9ca16dbd42ca73b381381301234b390916ab8ac79d.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c7362d3024f72af24e02ed682d2dd19f216d309199f6f53a07700574c0041e6b.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "VitaDBtoo VPK",
+      "name": "NeoVitaDB VPK",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/491-vitaVoyager.vpk",
       "recommended": true
     },
     {
-      "type": "Official Website",
-      "name": "VitaDBtoo Release Page",
-      "url": "https://www.psx-place.com/threads/release-vitavoyager-port-of-start-trek-voyager-elite-force-holomatch.34490/"
-    },
-    {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/Rinnegatamante/vitaVoyager/tree/master"
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=491",
+      "recommended": false
     },
     {
       "type": "Download",
@@ -49,15 +44,19 @@
       "recommended": false
     },
     {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=491",
-      "recommended": false
+      "type": "Official Website",
+      "name": "VitaDB Release Page",
+      "url": "https://www.psx-place.com/threads/release-vitavoyager-port-of-start-trek-voyager-elite-force-holomatch.34490/"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/Rinnegatamante/vitaVoyager/tree/master"
     }
   ],
-  "source_name": "VitaDBtoo",
-  "source_id": "491",
-  "source_url": "https://github.com/Rinnegatamante/vitaVoyager/tree/master",
-  "release_page": "https://www.psx-place.com/threads/release-vitavoyager-port-of-start-trek-voyager-elite-force-holomatch.34490/",
-  "updated_at": "2026-08-13T15:34:48.424553+00:00"
+  "source_name": "NeoVitaDB",
+  "source_id": "1657",
+  "source_url": "https://github.com",
+  "release_page": "",
+  "updated_at": "2026-08-15T18:26:19.329905+00:00"
 }

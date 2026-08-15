@@ -9,48 +9,48 @@
   ],
   "category_id": "ports",
   "subcategory_ids": [
-    "arcade"
+    "other"
   ],
   "version": "v.1.0",
   "version_date": "2024-09-19",
   "requirements": "- Game Data Files: PC",
   "size": 16848282,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/e7a4dc5bfdc8baa34e60d831afeb333edc533160a180a3bd0a5360876aaed697.png",
+  "icon": "https://www.rinnegatamante.eu/vitadb/icons/e7a4dc5bfdc8baa34e60d831afeb333edc533160a180a3bd0a5360876aaed697.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/e549360bde1994278baad37403f594b88bbe27e9f0d977bac0562b997de676e8.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/6626a533b523d8e3f44ac43af07c3296b9606467d5e1e6116cbb7b6a5fc5161f.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/5ff2125a4c970e4c797479d1746231556eeca5eaae90558e816c6d8f7a360dc2.png",
     "https://www.rinnegatamante.eu/vitadb/screenshots/e549360bde1994278baad37403f594b88bbe27e9f0d977bac0562b997de676e8.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/6626a533b523d8e3f44ac43af07c3296b9606467d5e1e6116cbb7b6a5fc5161f.png"
+    "https://www.rinnegatamante.eu/vitadb/screenshots/6626a533b523d8e3f44ac43af07c3296b9606467d5e1e6116cbb7b6a5fc5161f.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/5ff2125a4c970e4c797479d1746231556eeca5eaae90558e816c6d8f7a360dc2.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/e549360bde1994278baad37403f594b88bbe27e9f0d977bac0562b997de676e8.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/6626a533b523d8e3f44ac43af07c3296b9606467d5e1e6116cbb7b6a5fc5161f.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "VitaDBtoo VPK",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1234",
+      "recommended": true
+    },
+    {
+      "type": "Download",
+      "name": "NeoVitaDB VPK",
       "url": "https://github.com/PatnosDD/Pureya-PS-VITA/releases/download/v1.0/pureya.vpk",
       "recommended": false
     },
     {
       "type": "Official Website",
-      "name": "VitaDBtoo Release Page",
+      "name": "VitaDB Release Page",
       "url": "https://github.com/PatnosDD/Pureya-PS-VITA"
     },
     {
       "type": "Official Website",
       "name": "NeoVitaDB Release Page",
       "url": "https://github.com/PatnosDD/Pureya-PS-VITA/releases/tag/v1.0"
-    },
-    {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1234",
-      "recommended": true
     }
   ],
-  "source_name": "VitaDBtoo",
+  "source_name": "VitaDB",
   "source_id": "1234",
   "source_url": "https://github.com/PatnosDD/Pureya-PS-VITA",
   "release_page": "https://github.com/PatnosDD/Pureya-PS-VITA",
-  "updated_at": "2026-08-13T15:34:48.431064+00:00"
+  "updated_at": "2026-08-15T18:26:19.358625+00:00"
 }

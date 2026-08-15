@@ -16,11 +16,17 @@
   "requirements": "- Game Data Files: PC",
   "size": 14558681,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/6b980802a4ecc394556bb722c38f63b5025df74bfb702fa9962bb94df0502202.png",
+  "icon": "https://www.rinnegatamante.eu/vitadb/icons/6b980802a4ecc394556bb722c38f63b5025df74bfb702fa9962bb94df0502202.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/6b980802a4ecc394556bb722c38f63b5025df74bfb702fa9962bb94df0502202.png"
+    "https://www.rinnegatamante.eu/vitadb/icons/6b980802a4ecc394556bb722c38f63b5025df74bfb702fa9962bb94df0502202.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=810",
+      "recommended": true
+    },
     {
       "type": "Download",
       "name": "VitaDBtoo VPK",
@@ -29,19 +35,13 @@
     },
     {
       "type": "Official Website",
-      "name": "VitaDBtoo Release Page",
+      "name": "VitaDB Release Page",
       "url": "https://github.com/SilverCrow2323/Sakura-Succubus-Vita"
-    },
-    {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=810",
-      "recommended": true
     }
   ],
-  "source_name": "VitaDBtoo",
+  "source_name": "VitaDB",
   "source_id": "810",
   "source_url": "https://github.com/SilverCrow2323/Sakura-Succubus-Vita",
   "release_page": "https://github.com/SilverCrow2323/Sakura-Succubus-Vita",
-  "updated_at": "2026-08-13T15:34:48.548757+00:00"
+  "updated_at": "2026-08-15T18:26:19.878420+00:00"
 }

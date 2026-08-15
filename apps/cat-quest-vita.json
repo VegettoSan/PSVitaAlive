@@ -16,41 +16,41 @@
   "requirements": "Not specified",
   "size": 17215212,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/8b362535a34713d3872c16e0fcaa72b2decfb746b3115541d2bb7f3b02cf5d87.png",
+  "icon": "https://www.rinnegatamante.eu/vitadb/icons/8b362535a34713d3872c16e0fcaa72b2decfb746b3115541d2bb7f3b02cf5d87.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/3f54ad6d1d6bc9d6cd6dfd085271dda74e7eac487f92066d0ec44105dea9d6f4.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/500281d9051cee6de763c153c627c0ce2ba706275f96b35e4974a64c71ad2e7c.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/4d0545f815ac52200b1707d465833f50482853d0dfd69078ab76e404927f6616.png",
     "https://www.rinnegatamante.eu/vitadb/screenshots/3f54ad6d1d6bc9d6cd6dfd085271dda74e7eac487f92066d0ec44105dea9d6f4.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/500281d9051cee6de763c153c627c0ce2ba706275f96b35e4974a64c71ad2e7c.png"
+    "https://www.rinnegatamante.eu/vitadb/screenshots/500281d9051cee6de763c153c627c0ce2ba706275f96b35e4974a64c71ad2e7c.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/4d0545f815ac52200b1707d465833f50482853d0dfd69078ab76e404927f6616.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/3f54ad6d1d6bc9d6cd6dfd085271dda74e7eac487f92066d0ec44105dea9d6f4.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/500281d9051cee6de763c153c627c0ce2ba706275f96b35e4974a64c71ad2e7c.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "VitaDBtoo VPK",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1311",
+      "recommended": true
+    },
+    {
+      "type": "Download",
+      "name": "NeoVitaDB VPK",
       "url": "https://github.com/PatnosDD/Cat-Quest-Ps-Vita/releases/download/V1.0/CatQuest.vpk",
       "recommended": false
     },
     {
       "type": "Official Website",
-      "name": "VitaDBtoo Release Page",
+      "name": "VitaDB Release Page",
       "url": "https://github.com/PatnosDD/Cat-Quest-Ps-Vita"
     },
     {
       "type": "Official Website",
       "name": "NeoVitaDB Release Page",
       "url": "https://github.com/PatnosDD/Cat-Quest-Ps-Vita/releases/tag/V1.0"
-    },
-    {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1311",
-      "recommended": true
     }
   ],
-  "source_name": "VitaDBtoo",
+  "source_name": "VitaDB",
   "source_id": "1311",
   "source_url": "https://github.com/PatnosDD/Cat-Quest-Ps-Vita",
   "release_page": "https://github.com/PatnosDD/Cat-Quest-Ps-Vita",
-  "updated_at": "2026-08-13T15:34:48.393728+00:00"
+  "updated_at": "2026-08-15T18:26:19.193132+00:00"
 }

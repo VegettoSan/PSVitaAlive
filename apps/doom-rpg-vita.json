@@ -16,24 +16,30 @@
   "requirements": "- Game Data Files: Mobile",
   "size": 3954027,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/90b13c65904d9b6eb716f3a4e2fc048cee46d284c8bc229d38068d51dc02b060.png",
+  "icon": "https://www.rinnegatamante.eu/vitadb/icons/90b13c65904d9b6eb716f3a4e2fc048cee46d284c8bc229d38068d51dc02b060.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/8a71637533f2f84878258ea97523bd328084248944633b2915c0acc2bf6f0c70.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c0040711aaf0d500372f56f0e7e0fd5f11acea194d1e56614907ed96087d487b.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/4130a339566cb71ef089fbf1dc1f705fa5bd3e6561df5790010b003a08917be5.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/bdcdb0aae8542b55b079f6c60ca8d3711ba57054da6127968a596dcfa44efa5f.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/8a71637533f2f84878258ea97523bd328084248944633b2915c0acc2bf6f0c70.png"
+    "https://www.rinnegatamante.eu/vitadb/screenshots/8a71637533f2f84878258ea97523bd328084248944633b2915c0acc2bf6f0c70.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/c0040711aaf0d500372f56f0e7e0fd5f11acea194d1e56614907ed96087d487b.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/4130a339566cb71ef089fbf1dc1f705fa5bd3e6561df5790010b003a08917be5.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/bdcdb0aae8542b55b079f6c60ca8d3711ba57054da6127968a596dcfa44efa5f.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/8a71637533f2f84878258ea97523bd328084248944633b2915c0acc2bf6f0c70.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "VitaDBtoo VPK",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1185",
+      "recommended": true
+    },
+    {
+      "type": "Download",
+      "name": "NeoVitaDB VPK",
       "url": "https://github.com/jakubito/DoomRPG-RE-vita/releases/download/v1.1.0/DoomRPG_vita_v1.1.0.vpk",
       "recommended": false
     },
     {
       "type": "Official Website",
-      "name": "VitaDBtoo Release Page",
+      "name": "VitaDB Release Page",
       "url": "https://github.com/jakubito/DoomRPG-RE-vita/releases"
     },
     {
@@ -45,17 +51,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/jakubito/DoomRPG-RE-vita"
-    },
-    {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1185",
-      "recommended": true
     }
   ],
-  "source_name": "VitaDBtoo",
+  "source_name": "VitaDB",
   "source_id": "1185",
   "source_url": "https://github.com/jakubito/DoomRPG-RE-vita",
   "release_page": "https://github.com/jakubito/DoomRPG-RE-vita/releases",
-  "updated_at": "2026-08-13T15:34:48.446534+00:00"
+  "updated_at": "2026-08-15T18:26:19.419251+00:00"
 }

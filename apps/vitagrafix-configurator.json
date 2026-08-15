@@ -14,25 +14,31 @@
   "version": "v.3.0",
   "version_date": "2020-01-12",
   "requirements": "Not specified",
-  "size": 2455900,
+  "size": 2450508,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/ecf8f219d5b2d3cfa140039652b50dae22a8515220cf24f3dd123abc38e9d2a9.png",
+  "icon": "https://www.rinnegatamante.eu/vitadb/icons/ecf8f219d5b2d3cfa140039652b50dae22a8515220cf24f3dd123abc38e9d2a9.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c8c3b30acfa102408c5ad5eb56b1e85fa1513bc6d2729fc17f20ea8bc794a73a.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/edf6992403ae10fb29a5426d6682353113d4477d798e55542745532976e5ce40.png",
     "https://www.rinnegatamante.eu/vitadb/screenshots/c8c3b30acfa102408c5ad5eb56b1e85fa1513bc6d2729fc17f20ea8bc794a73a.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/edf6992403ae10fb29a5426d6682353113d4477d798e55542745532976e5ce40.png"
+    "https://www.rinnegatamante.eu/vitadb/screenshots/edf6992403ae10fb29a5426d6682353113d4477d798e55542745532976e5ce40.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c8c3b30acfa102408c5ad5eb56b1e85fa1513bc6d2729fc17f20ea8bc794a73a.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/edf6992403ae10fb29a5426d6682353113d4477d798e55542745532976e5ce40.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "VitaDBtoo VPK",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=400",
+      "recommended": true
+    },
+    {
+      "type": "Download",
+      "name": "NeoVitaDB VPK",
       "url": "https://github.com/Kirezar/VitaGrafixConfigurator/releases/download/v3.0/VitaGrafixConfigurator.vpk",
       "recommended": false
     },
     {
       "type": "Official Website",
-      "name": "VitaDBtoo Release Page",
+      "name": "VitaDB Release Page",
       "url": "https://github.com/Kirezar/VitaGrafixConfigurator/releases"
     },
     {
@@ -44,17 +50,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/Kirezar/VitaGrafixConfigurator"
-    },
-    {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=400",
-      "recommended": true
     }
   ],
-  "source_name": "VitaDBtoo",
+  "source_name": "VitaDB",
   "source_id": "400",
   "source_url": "https://github.com/Kirezar/VitaGrafixConfigurator",
   "release_page": "https://github.com/Kirezar/VitaGrafixConfigurator/releases",
-  "updated_at": "2026-08-13T15:34:48.626513+00:00"
+  "updated_at": "2026-08-15T18:26:20.236067+00:00"
 }

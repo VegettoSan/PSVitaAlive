@@ -18,23 +18,24 @@
   "status": "Legacy",
   "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1841-zik-zak-vita.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/7ef32bbbeea93ce4032505272d202540333a312fbee5a79ed31e7c53059236a0.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/754ace2c22ae71082dfde4f6fffb1b6798343dfa7f4e4536d3819402ec90b5be.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/8a5e6a0ebe205326dc7ae0aec5672b331d2e685b46735848cff170bc332c47f6.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/d1e16b67d187b9d926a2dea1c301b2e788a9d33cd16f716cd34f7037efbdf9ff.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/7ef32bbbeea93ce4032505272d202540333a312fbee5a79ed31e7c53059236a0.png"
+    "https://www.rinnegatamante.eu/vitadb/screenshots/7ef32bbbeea93ce4032505272d202540333a312fbee5a79ed31e7c53059236a0.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/754ace2c22ae71082dfde4f6fffb1b6798343dfa7f4e4536d3819402ec90b5be.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/8a5e6a0ebe205326dc7ae0aec5672b331d2e685b46735848cff170bc332c47f6.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/d1e16b67d187b9d926a2dea1c301b2e788a9d33cd16f716cd34f7037efbdf9ff.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/7ef32bbbeea93ce4032505272d202540333a312fbee5a79ed31e7c53059236a0.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "VitaDBtoo VPK",
+      "name": "NeoVitaDB VPK",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1103-Zik-Zak.vpk",
       "recommended": true
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/Rinnegatamante/zikzak-vita"
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1103",
+      "recommended": false
     },
     {
       "type": "Download",
@@ -43,15 +44,14 @@
       "recommended": false
     },
     {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1103",
-      "recommended": false
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/Rinnegatamante/zikzak-vita"
     }
   ],
-  "source_name": "VitaDBtoo",
-  "source_id": "1103",
-  "source_url": "https://github.com/Rinnegatamante/zikzak-vita",
+  "source_name": "NeoVitaDB",
+  "source_id": "1841",
+  "source_url": "https://github.com",
   "release_page": "",
-  "updated_at": "2026-08-13T15:34:48.461738+00:00"
+  "updated_at": "2026-08-15T18:26:19.476816+00:00"
 }

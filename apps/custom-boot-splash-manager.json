@@ -16,21 +16,27 @@
   "requirements": "Not specified",
   "size": 895862,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/18746b487153dc1ca3d728ce57b841b6e8faeca65a0900aa46864f73d07642c8.png",
+  "icon": "https://www.rinnegatamante.eu/vitadb/icons/18746b487153dc1ca3d728ce57b841b6e8faeca65a0900aa46864f73d07642c8.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/1d7ae12e1f513abcbba0b6f3eeef04c03f9ae25a0acaa90a5673644fbae8f599.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/1d7ae12e1f513abcbba0b6f3eeef04c03f9ae25a0acaa90a5673644fbae8f599.png"
+    "https://www.rinnegatamante.eu/vitadb/screenshots/1d7ae12e1f513abcbba0b6f3eeef04c03f9ae25a0acaa90a5673644fbae8f599.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/1d7ae12e1f513abcbba0b6f3eeef04c03f9ae25a0acaa90a5673644fbae8f599.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "VitaDBtoo VPK",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=437",
+      "recommended": true
+    },
+    {
+      "type": "Download",
+      "name": "NeoVitaDB VPK",
       "url": "https://github.com/SKGleba/CBS-Manager/releases/download/v3.1/cbs_manager.vpk",
       "recommended": false
     },
     {
       "type": "Official Website",
-      "name": "VitaDBtoo Release Page",
+      "name": "VitaDB Release Page",
       "url": "https://github.com/SKGleba/CBS-Manager/releases"
     },
     {
@@ -42,17 +48,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/SKGleba/CBS-Manager"
-    },
-    {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=437",
-      "recommended": true
     }
   ],
-  "source_name": "VitaDBtoo",
+  "source_name": "VitaDB",
   "source_id": "437",
   "source_url": "https://github.com/SKGleba/CBS-Manager",
   "release_page": "https://github.com/SKGleba/CBS-Manager/releases",
-  "updated_at": "2026-08-13T15:34:48.628904+00:00"
+  "updated_at": "2026-08-15T18:26:20.245557+00:00"
 }

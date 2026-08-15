@@ -18,20 +18,21 @@
   "status": "Legacy",
   "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1406-vitavault.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/418246f70b033756d8a1a91f0d4c149ab885a9676680c6ecab8173a4f7f18f3d.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/418246f70b033756d8a1a91f0d4c149ab885a9676680c6ecab8173a4f7f18f3d.png"
+    "https://www.rinnegatamante.eu/vitadb/screenshots/418246f70b033756d8a1a91f0d4c149ab885a9676680c6ecab8173a4f7f18f3d.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/418246f70b033756d8a1a91f0d4c149ab885a9676680c6ecab8173a4f7f18f3d.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "VitaDBtoo VPK",
+      "name": "NeoVitaDB VPK",
       "url": "https://github.com/huceus/vitavault-vpk/releases/download/1.01/vitavault.vpk",
       "recommended": true
     },
     {
-      "type": "Official Website",
-      "name": "VitaDBtoo Release Page",
-      "url": "https://github.com/huceus/vitavault-vpk/releases"
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1406",
+      "recommended": false
     },
     {
       "type": "Official Website",
@@ -39,20 +40,19 @@
       "url": "https://github.com/huceus/vitavault-vpk/releases/tag/1.01"
     },
     {
+      "type": "Official Website",
+      "name": "VitaDB Release Page",
+      "url": "https://github.com/huceus/vitavault-vpk/releases"
+    },
+    {
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/huceus/vitavault-vpk"
-    },
-    {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1406",
-      "recommended": false
     }
   ],
-  "source_name": "VitaDBtoo",
+  "source_name": "NeoVitaDB",
   "source_id": "1406",
   "source_url": "https://github.com/huceus/vitavault-vpk",
-  "release_page": "https://github.com/huceus/vitavault-vpk/releases",
-  "updated_at": "2026-08-13T15:34:48.343588+00:00"
+  "release_page": "https://github.com/huceus/vitavault-vpk/releases/tag/1.01",
+  "updated_at": "2026-08-15T18:26:18.970276+00:00"
 }

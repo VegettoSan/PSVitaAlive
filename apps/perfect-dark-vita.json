@@ -5,7 +5,6 @@
   "description": "Port of Perfect Dark for PSVITA.",
   "long_description": "This is a port of the Prefect Dark sourceport by fgsfds based on the Perfect Dark decompilation efforts.\nPerfect Dark is a 2000 first-person shooter developed and published by Rare for the Nintendo 64. The first game of the Perfect Dark series, it follows Joanna Dark, an agent of the Carrington Institute research centre, as she attempts to stop an extraterrestrial conspiracy by rival corporation dataDyne. The game features a campaign mode where the player must complete a series of levels to progress through the story, as well as a range of multiplayer options, including a co-operative mode and traditional deathmatch settings with computer-controlled bots.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
   "author_ids": [
-    "bythos",
     "rinnegatamante",
     "fgsfds"
   ],
@@ -20,28 +19,24 @@
   "status": "Legacy",
   "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1924-perfect-dark-vita.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/85604375a945c5fd236cd7d78f07c8b520576c74011affe5850bb734d845fd8f.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/edcf49e0d8dfd3f695217192bcaa223bf2cbf138e17133d2274f1e64817751d3.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/2aea91d404ddec60b486c3dfe7788a357ec733efc78a9c68f235f30e85beb00d.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/1ab4fb2aac4cdd718f3730c04d4108252e7d73c125cc1316b5178b75e973ad8e.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/85604375a945c5fd236cd7d78f07c8b520576c74011affe5850bb734d845fd8f.png"
+    "https://www.rinnegatamante.eu/vitadb/screenshots/85604375a945c5fd236cd7d78f07c8b520576c74011affe5850bb734d845fd8f.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/edcf49e0d8dfd3f695217192bcaa223bf2cbf138e17133d2274f1e64817751d3.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/2aea91d404ddec60b486c3dfe7788a357ec733efc78a9c68f235f30e85beb00d.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/1ab4fb2aac4cdd718f3730c04d4108252e7d73c125cc1316b5178b75e973ad8e.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/85604375a945c5fd236cd7d78f07c8b520576c74011affe5850bb734d845fd8f.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "VitaDBtoo VPK",
+      "name": "NeoVitaDB VPK",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1273-pd.armv7.vpk",
       "recommended": true
     },
     {
-      "type": "Official Website",
-      "name": "VitaDBtoo Release Page",
-      "url": "https://www.psx-place.com/threads/release-perfect-dark-vita.47561/"
-    },
-    {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/Rinnegatamante/perfect_dark"
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1273",
+      "recommended": false
     },
     {
       "type": "Download",
@@ -50,15 +45,19 @@
       "recommended": false
     },
     {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1273",
-      "recommended": false
+      "type": "Official Website",
+      "name": "VitaDB Release Page",
+      "url": "https://www.psx-place.com/threads/release-perfect-dark-vita.47561/"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/Rinnegatamante/perfect_dark"
     }
   ],
-  "source_name": "VitaDBtoo",
-  "source_id": "1273",
-  "source_url": "https://github.com/Rinnegatamante/perfect_dark",
-  "release_page": "https://www.psx-place.com/threads/release-perfect-dark-vita.47561/",
-  "updated_at": "2026-08-13T15:34:48.351872+00:00"
+  "source_name": "NeoVitaDB",
+  "source_id": "1924",
+  "source_url": "https://github.com",
+  "release_page": "",
+  "updated_at": "2026-08-15T18:26:18.999767+00:00"
 }

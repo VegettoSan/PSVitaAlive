@@ -16,41 +16,41 @@
   "requirements": "- Game Data Files: Android",
   "size": 15121987,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/732d9bb0c4ff7eb9cf6b90a6b4ee5137c92493530b1c06e9fd053ffebf6d7637.png",
+  "icon": "https://www.rinnegatamante.eu/vitadb/icons/732d9bb0c4ff7eb9cf6b90a6b4ee5137c92493530b1c06e9fd053ffebf6d7637.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/5348e4df1d24299814f7cdc85269af039bc71cd247f1b0344adc731d234fbd63.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/f28c3234a41017a56609b3a35a4d74f4b7b5f13ea49635d085183da053cb2919.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/98577ef7d4a6c38bfb5d0b3ffb1c0f9bff0f628bd0c2da7b9534747e83813698.png",
     "https://www.rinnegatamante.eu/vitadb/screenshots/5348e4df1d24299814f7cdc85269af039bc71cd247f1b0344adc731d234fbd63.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/f28c3234a41017a56609b3a35a4d74f4b7b5f13ea49635d085183da053cb2919.png"
+    "https://www.rinnegatamante.eu/vitadb/screenshots/f28c3234a41017a56609b3a35a4d74f4b7b5f13ea49635d085183da053cb2919.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/98577ef7d4a6c38bfb5d0b3ffb1c0f9bff0f628bd0c2da7b9534747e83813698.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/5348e4df1d24299814f7cdc85269af039bc71cd247f1b0344adc731d234fbd63.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/f28c3234a41017a56609b3a35a4d74f4b7b5f13ea49635d085183da053cb2919.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "VitaDBtoo VPK",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1386",
+      "recommended": true
+    },
+    {
+      "type": "Download",
+      "name": "NeoVitaDB VPK",
       "url": "https://github.com/hatoving/starwarfare-vita/releases/download/0.9-hotfix.0/starwarfare.vpk",
       "recommended": false
     },
     {
       "type": "Official Website",
-      "name": "VitaDBtoo Release Page",
+      "name": "VitaDB Release Page",
       "url": "https://github.com/hatoving/starwarfare-vita"
     },
     {
       "type": "Official Website",
       "name": "NeoVitaDB Release Page",
       "url": "https://github.com/hatoving/starwarfare-vita/releases/tag/0.9-hotfix.0"
-    },
-    {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1386",
-      "recommended": true
     }
   ],
-  "source_name": "VitaDBtoo",
+  "source_name": "VitaDB",
   "source_id": "1386",
   "source_url": "https://github.com/hatoving/starwarfare-vita",
   "release_page": "https://github.com/hatoving/starwarfare-vita",
-  "updated_at": "2026-08-13T15:34:48.354494+00:00"
+  "updated_at": "2026-08-15T18:26:19.010776+00:00"
 }

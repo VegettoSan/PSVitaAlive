@@ -16,20 +16,26 @@
   "requirements": "Not specified",
   "size": 471886,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/4a80e0db0b97165d2894141efbe79ae3761981788cb5abd62ced0218071100e2.png",
+  "icon": "https://www.rinnegatamante.eu/vitadb/icons/4a80e0db0b97165d2894141efbe79ae3761981788cb5abd62ced0218071100e2.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/4a80e0db0b97165d2894141efbe79ae3761981788cb5abd62ced0218071100e2.png"
+    "https://www.rinnegatamante.eu/vitadb/icons/4a80e0db0b97165d2894141efbe79ae3761981788cb5abd62ced0218071100e2.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "VitaDBtoo VPK",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=601",
+      "recommended": true
+    },
+    {
+      "type": "Download",
+      "name": "NeoVitaDB VPK",
       "url": "https://github.com/devnoname120/vitabright-lut-editor/releases/download/1.1/vitabright-lut-editor-1.1.vpk",
       "recommended": false
     },
     {
       "type": "Official Website",
-      "name": "VitaDBtoo Release Page",
+      "name": "VitaDB Release Page",
       "url": "https://github.com/devnoname120/vitabright-lut-editor/releases"
     },
     {
@@ -41,17 +47,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/devnoname120/vitabright-lut-editor"
-    },
-    {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=601",
-      "recommended": true
     }
   ],
-  "source_name": "VitaDBtoo",
+  "source_name": "VitaDB",
   "source_id": "601",
   "source_url": "https://github.com/devnoname120/vitabright-lut-editor",
   "release_page": "https://github.com/devnoname120/vitabright-lut-editor/releases",
-  "updated_at": "2026-08-13T15:34:48.603138+00:00"
+  "updated_at": "2026-08-15T18:26:20.147941+00:00"
 }

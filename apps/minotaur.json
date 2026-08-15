@@ -16,41 +16,41 @@
   "requirements": "Not specified",
   "size": 13147507,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/9934fb584fecd3aa5d8f16321bc4d73e4769c8b8487d153ce602ca4c83ce5fcd.png",
+  "icon": "https://www.rinnegatamante.eu/vitadb/icons/9934fb584fecd3aa5d8f16321bc4d73e4769c8b8487d153ce602ca4c83ce5fcd.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/f3d40a66da82467e0d1c8acbac35f5aed1d86fb0375488844ec54b241fce5779.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/451abef6bfa54c015b3c93481836d545f86edb82f890419e9f88aabedf52dff3.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/d1362f298011a49a84869681292ab9defd7182a837442e20454f972d3e3f43b7.png",
     "https://www.rinnegatamante.eu/vitadb/screenshots/f3d40a66da82467e0d1c8acbac35f5aed1d86fb0375488844ec54b241fce5779.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/451abef6bfa54c015b3c93481836d545f86edb82f890419e9f88aabedf52dff3.png"
+    "https://www.rinnegatamante.eu/vitadb/screenshots/451abef6bfa54c015b3c93481836d545f86edb82f890419e9f88aabedf52dff3.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/d1362f298011a49a84869681292ab9defd7182a837442e20454f972d3e3f43b7.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/f3d40a66da82467e0d1c8acbac35f5aed1d86fb0375488844ec54b241fce5779.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/451abef6bfa54c015b3c93481836d545f86edb82f890419e9f88aabedf52dff3.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "VitaDBtoo VPK",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1349",
+      "recommended": true
+    },
+    {
+      "type": "Download",
+      "name": "NeoVitaDB VPK",
       "url": "https://github.com/Digital33Studios/minotaur/releases/download/v1.5/Minotaur.VPK",
       "recommended": false
     },
     {
       "type": "Official Website",
-      "name": "VitaDBtoo Release Page",
+      "name": "VitaDB Release Page",
       "url": "https://github.com/Digital33Studios/minotaur"
     },
     {
       "type": "Official Website",
       "name": "NeoVitaDB Release Page",
       "url": "https://github.com/Digital33Studios/minotaur/releases/tag/v1.5"
-    },
-    {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1349",
-      "recommended": true
     }
   ],
-  "source_name": "VitaDBtoo",
+  "source_name": "VitaDB",
   "source_id": "1349",
   "source_url": "https://github.com/Digital33Studios/minotaur",
   "release_page": "https://github.com/Digital33Studios/minotaur",
-  "updated_at": "2026-08-13T15:34:48.325369+00:00"
+  "updated_at": "2026-08-15T18:26:18.890856+00:00"
 }

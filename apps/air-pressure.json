@@ -16,21 +16,27 @@
   "requirements": "Not specified",
   "size": 26852528,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/3feef43e4c8f91e0a52d0b0b0b25e7d22027b747ac07b78198d1589dd7af2e4f.png",
+  "icon": "https://www.rinnegatamante.eu/vitadb/icons/3feef43e4c8f91e0a52d0b0b0b25e7d22027b747ac07b78198d1589dd7af2e4f.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/956311db4fbb821921a3a0e53cec7950d9df3252d809b7a48c242efe1f28fbae.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/956311db4fbb821921a3a0e53cec7950d9df3252d809b7a48c242efe1f28fbae.png"
+    "https://www.rinnegatamante.eu/vitadb/screenshots/956311db4fbb821921a3a0e53cec7950d9df3252d809b7a48c242efe1f28fbae.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/956311db4fbb821921a3a0e53cec7950d9df3252d809b7a48c242efe1f28fbae.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "VitaDBtoo VPK",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1020",
+      "recommended": true
+    },
+    {
+      "type": "Download",
+      "name": "NeoVitaDB VPK",
       "url": "https://github.com/majonessyltetoy/airpressure/releases/download/v1.0.0/airpressure.vpk",
       "recommended": false
     },
     {
       "type": "Official Website",
-      "name": "VitaDBtoo Release Page",
+      "name": "VitaDB Release Page",
       "url": "https://github.com/majonessyltetoy/airpressure/releases"
     },
     {
@@ -42,17 +48,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/majonessyltetoy/airpressure"
-    },
-    {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1020",
-      "recommended": true
     }
   ],
-  "source_name": "VitaDBtoo",
+  "source_name": "VitaDB",
   "source_id": "1020",
   "source_url": "https://github.com/majonessyltetoy/airpressure",
   "release_page": "https://github.com/majonessyltetoy/airpressure/releases",
-  "updated_at": "2026-08-13T15:34:48.523604+00:00"
+  "updated_at": "2026-08-15T18:26:19.766771+00:00"
 }

@@ -16,21 +16,27 @@
   "requirements": "Not specified",
   "size": 2440427,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/c1a248da9dc437b51a8e5da47217070ff011c0849156ed6ce8e0bb7af0b6fadd.png",
+  "icon": "https://www.rinnegatamante.eu/vitadb/icons/c1a248da9dc437b51a8e5da47217070ff011c0849156ed6ce8e0bb7af0b6fadd.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/27c05ba80244d6fc309924bc0362145747783f8e363e9a72971e0e1f6fff45ce.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/27c05ba80244d6fc309924bc0362145747783f8e363e9a72971e0e1f6fff45ce.png"
+    "https://www.rinnegatamante.eu/vitadb/screenshots/27c05ba80244d6fc309924bc0362145747783f8e363e9a72971e0e1f6fff45ce.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/27c05ba80244d6fc309924bc0362145747783f8e363e9a72971e0e1f6fff45ce.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "VitaDBtoo VPK",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=447",
+      "recommended": true
+    },
+    {
+      "type": "Download",
+      "name": "NeoVitaDB VPK",
       "url": "https://github.com/joel16/ElevenMPV/releases/download/v2.10/ElevenMPV.vpk",
       "recommended": false
     },
     {
       "type": "Official Website",
-      "name": "VitaDBtoo Release Page",
+      "name": "VitaDB Release Page",
       "url": "https://gbatemp.net/threads/elevenmpv-eleven-music-player-vita.534916/"
     },
     {
@@ -42,17 +48,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/joel16/ElevenMPV"
-    },
-    {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=447",
-      "recommended": true
     }
   ],
-  "source_name": "VitaDBtoo",
+  "source_name": "VitaDB",
   "source_id": "447",
   "source_url": "https://github.com/joel16/ElevenMPV",
   "release_page": "https://gbatemp.net/threads/elevenmpv-eleven-music-player-vita.534916/",
-  "updated_at": "2026-08-13T15:34:48.636012+00:00"
+  "updated_at": "2026-08-15T18:26:20.267870+00:00"
 }

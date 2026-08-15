@@ -16,24 +16,30 @@
   "requirements": "- libshacccg.suprx\n- kubridge.skprx\n- Game Data Files: Android",
   "size": 1828459,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/c87cee010571d705ec8b500a62c7b8927dce5448931cb970400fa7b5f0ba036c.png",
+  "icon": "https://www.rinnegatamante.eu/vitadb/icons/c87cee010571d705ec8b500a62c7b8927dce5448931cb970400fa7b5f0ba036c.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/17db7bdfde59a3f19ffd5c387d8862db908ec76ab814801a728bde95a15d6e63.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/2da24dd537f1650518fb914d0d3ec581406f3634be8a5686fa2311e47ba3414c.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c4370e89dc433e8fe220226ad4dcea72b1805871ba97cffa01d1f9315c40372f.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/ec329430f46dd994b96f8a8f931ee0030f23dd85ffc417e14e5b12639f2b3c65.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/17db7bdfde59a3f19ffd5c387d8862db908ec76ab814801a728bde95a15d6e63.png"
+    "https://www.rinnegatamante.eu/vitadb/screenshots/17db7bdfde59a3f19ffd5c387d8862db908ec76ab814801a728bde95a15d6e63.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/2da24dd537f1650518fb914d0d3ec581406f3634be8a5686fa2311e47ba3414c.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/c4370e89dc433e8fe220226ad4dcea72b1805871ba97cffa01d1f9315c40372f.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/ec329430f46dd994b96f8a8f931ee0030f23dd85ffc417e14e5b12639f2b3c65.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/17db7bdfde59a3f19ffd5c387d8862db908ec76ab814801a728bde95a15d6e63.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "VitaDBtoo VPK",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1425",
+      "recommended": true
+    },
+    {
+      "type": "Download",
+      "name": "NeoVitaDB VPK",
       "url": "https://github.com/Rocroverss/Dark-Lands-psvita/releases/download/v1.0/dla.vpk",
       "recommended": false
     },
     {
       "type": "Official Website",
-      "name": "VitaDBtoo Release Page",
+      "name": "VitaDB Release Page",
       "url": "https://github.com/Rocroverss/Dark-Lands-psvita/releases"
     },
     {
@@ -45,17 +51,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/Rocroverss/Dark-Lands-psvita"
-    },
-    {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1425",
-      "recommended": true
     }
   ],
-  "source_name": "VitaDBtoo",
+  "source_name": "VitaDB",
   "source_id": "1425",
   "source_url": "https://github.com/Rocroverss/Dark-Lands-psvita",
   "release_page": "https://github.com/Rocroverss/Dark-Lands-psvita/releases",
-  "updated_at": "2026-08-13T15:34:48.334131+00:00"
+  "updated_at": "2026-08-15T18:26:18.930082+00:00"
 }

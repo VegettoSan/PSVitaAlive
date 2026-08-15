@@ -18,28 +18,24 @@
   "status": "Legacy",
   "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1797-lynne.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/2d1538d197f113a90ab4a600bc2f8c9d8d0ea853d510c0beefb450a0667e6a21.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/26f5f3cf78cbbfd5c6b4e14309105bdcaf102a886920c18d7698446a597904bf.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/33deb7ffefd26185a58a4d8cb0761f478baadca97411951b1d263a3b1695b636.png",
     "https://www.rinnegatamante.eu/vitadb/screenshots/2d1538d197f113a90ab4a600bc2f8c9d8d0ea853d510c0beefb450a0667e6a21.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/26f5f3cf78cbbfd5c6b4e14309105bdcaf102a886920c18d7698446a597904bf.png"
+    "https://www.rinnegatamante.eu/vitadb/screenshots/26f5f3cf78cbbfd5c6b4e14309105bdcaf102a886920c18d7698446a597904bf.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/33deb7ffefd26185a58a4d8cb0761f478baadca97411951b1d263a3b1695b636.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/2d1538d197f113a90ab4a600bc2f8c9d8d0ea853d510c0beefb450a0667e6a21.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/26f5f3cf78cbbfd5c6b4e14309105bdcaf102a886920c18d7698446a597904bf.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "VitaDBtoo VPK",
+      "name": "NeoVitaDB VPK",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/862-Linne.vpk",
       "recommended": true
     },
     {
-      "type": "Official Website",
-      "name": "VitaDBtoo Release Page",
-      "url": "https://github.com/Fimo4ka/Linne-PSVita-port"
-    },
-    {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com"
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=862",
+      "recommended": false
     },
     {
       "type": "Download",
@@ -48,15 +44,19 @@
       "recommended": false
     },
     {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=862",
-      "recommended": false
+      "type": "Official Website",
+      "name": "VitaDB Release Page",
+      "url": "https://github.com/Fimo4ka/Linne-PSVita-port"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com"
     }
   ],
-  "source_name": "VitaDBtoo",
-  "source_id": "862",
-  "source_url": "https://github.com/Fimo4ka/Linne-PSVita-port",
-  "release_page": "https://github.com/Fimo4ka/Linne-PSVita-port",
-  "updated_at": "2026-08-13T15:34:48.534654+00:00"
+  "source_name": "NeoVitaDB",
+  "source_id": "1797",
+  "source_url": "https://github.com",
+  "release_page": "",
+  "updated_at": "2026-08-15T18:26:19.814847+00:00"
 }

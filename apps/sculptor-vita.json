@@ -16,26 +16,16 @@
   "requirements": "Not specified",
   "size": 43577856,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/299f913c1e6bdea4ec60fc4e227fb6f9c620256214d1f9a844ad92501707de25.png",
+  "icon": "https://www.rinnegatamante.eu/vitadb/icons/299f913c1e6bdea4ec60fc4e227fb6f9c620256214d1f9a844ad92501707de25.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/299f913c1e6bdea4ec60fc4e227fb6f9c620256214d1f9a844ad92501707de25.png"
+    "https://www.rinnegatamante.eu/vitadb/icons/299f913c1e6bdea4ec60fc4e227fb6f9c620256214d1f9a844ad92501707de25.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "VitaDBtoo VPK",
-      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1042-Sculptor.vpk",
-      "recommended": false
-    },
-    {
-      "type": "Official Website",
-      "name": "VitaDBtoo Release Page",
-      "url": "https://github.com/RaycGaming/SculptorVita"
-    },
-    {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/Raycx86/SculptorVita"
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1042",
+      "recommended": true
     },
     {
       "type": "Download",
@@ -44,15 +34,19 @@
       "recommended": false
     },
     {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1042",
-      "recommended": true
+      "type": "Official Website",
+      "name": "VitaDB Release Page",
+      "url": "https://github.com/RaycGaming/SculptorVita"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/Raycx86/SculptorVita"
     }
   ],
-  "source_name": "VitaDBtoo",
+  "source_name": "VitaDB",
   "source_id": "1042",
   "source_url": "https://github.com/RaycGaming/SculptorVita",
   "release_page": "https://github.com/RaycGaming/SculptorVita",
-  "updated_at": "2026-08-13T15:34:48.510151+00:00"
+  "updated_at": "2026-08-15T18:26:19.709084+00:00"
 }

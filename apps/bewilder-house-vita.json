@@ -16,24 +16,30 @@
   "requirements": "Not specified",
   "size": 61062119,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/a016b7690f759620976b648c92142b6aab0818230927fd747939db497fe128ad.png",
+  "icon": "https://www.rinnegatamante.eu/vitadb/icons/a016b7690f759620976b648c92142b6aab0818230927fd747939db497fe128ad.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/f5b96fcdb98e9743bab146087275aafe7ffde210dcd7747b914e60c891809e43.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/2e8b4678c34ab46df510b0a8d12afa6cd3a48b5409b4e322917d4c1d0557d6f4.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/da9c45d6a4f00b03883e336cbcb9e7ba58653544b3082a7d984786eb4a0d7af3.png",
     "https://www.rinnegatamante.eu/vitadb/screenshots/f5b96fcdb98e9743bab146087275aafe7ffde210dcd7747b914e60c891809e43.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/2e8b4678c34ab46df510b0a8d12afa6cd3a48b5409b4e322917d4c1d0557d6f4.png"
+    "https://www.rinnegatamante.eu/vitadb/screenshots/2e8b4678c34ab46df510b0a8d12afa6cd3a48b5409b4e322917d4c1d0557d6f4.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/da9c45d6a4f00b03883e336cbcb9e7ba58653544b3082a7d984786eb4a0d7af3.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/f5b96fcdb98e9743bab146087275aafe7ffde210dcd7747b914e60c891809e43.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/2e8b4678c34ab46df510b0a8d12afa6cd3a48b5409b4e322917d4c1d0557d6f4.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "VitaDBtoo VPK",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1223",
+      "recommended": true
+    },
+    {
+      "type": "Download",
+      "name": "NeoVitaDB VPK",
       "url": "https://github.com/MaloneCZSD/BewilderHouse-PS-VITA/releases/download/Pre-Final/BewilderHouseBuild43.vpk",
       "recommended": false
     },
     {
       "type": "Official Website",
-      "name": "VitaDBtoo Release Page",
+      "name": "VitaDB Release Page",
       "url": "https://github.com/malone46/BewilderHouseOpSource"
     },
     {
@@ -45,17 +51,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/MaloneCZSD/BewilderHouse-PS-VITA"
-    },
-    {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1223",
-      "recommended": true
     }
   ],
-  "source_name": "VitaDBtoo",
+  "source_name": "VitaDB",
   "source_id": "1223",
   "source_url": "https://github.com/malone46/BewilderHouseOpSource",
   "release_page": "https://github.com/malone46/BewilderHouseOpSource",
-  "updated_at": "2026-08-13T15:34:48.436740+00:00"
+  "updated_at": "2026-08-15T18:26:19.377203+00:00"
 }

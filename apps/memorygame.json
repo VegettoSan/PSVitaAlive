@@ -16,15 +16,21 @@
   "requirements": "Not specified",
   "size": 685212,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/f161fb3365146f2ddf7243b7569ec7c083ba8e54d80986dfb25e857b4176a045.png",
+  "icon": "https://www.rinnegatamante.eu/vitadb/icons/f161fb3365146f2ddf7243b7569ec7c083ba8e54d80986dfb25e857b4176a045.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/b397ce6b2f8e6b1d5d653bb0054b7f948f8b553d3baba02c7350642764305624.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/3b96d11c2ee97264cf4fa909718864563ad43637efa31805c4044f6cb8492ee1.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/588369e4270fb5d0d8f933c24e4a558cad09f89035bdd29813346d12fbfe7014.png",
     "https://www.rinnegatamante.eu/vitadb/screenshots/b397ce6b2f8e6b1d5d653bb0054b7f948f8b553d3baba02c7350642764305624.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/3b96d11c2ee97264cf4fa909718864563ad43637efa31805c4044f6cb8492ee1.png"
+    "https://www.rinnegatamante.eu/vitadb/screenshots/3b96d11c2ee97264cf4fa909718864563ad43637efa31805c4044f6cb8492ee1.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/588369e4270fb5d0d8f933c24e4a558cad09f89035bdd29813346d12fbfe7014.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/b397ce6b2f8e6b1d5d653bb0054b7f948f8b553d3baba02c7350642764305624.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/3b96d11c2ee97264cf4fa909718864563ad43637efa31805c4044f6cb8492ee1.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=574",
+      "recommended": true
+    },
     {
       "type": "Download",
       "name": "VitaDBtoo VPK",
@@ -33,7 +39,7 @@
     },
     {
       "type": "Official Website",
-      "name": "VitaDBtoo Release Page",
+      "name": "VitaDB Release Page",
       "url": "https://github.com/JJH47E/MemoryGame/releases"
     },
     {
@@ -45,17 +51,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/JJH47E/MemoryGame"
-    },
-    {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=574",
-      "recommended": true
     }
   ],
-  "source_name": "VitaDBtoo",
+  "source_name": "VitaDB",
   "source_id": "574",
   "source_url": "https://github.com/JJH47E/MemoryGame",
   "release_page": "https://github.com/JJH47E/MemoryGame/releases",
-  "updated_at": "2026-08-13T15:34:48.612994+00:00"
+  "updated_at": "2026-08-15T18:26:20.186694+00:00"
 }

@@ -16,22 +16,27 @@
   "requirements": "- Game Data Files: PC",
   "size": 1015517,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/84235dee32a942d678a6547e4e2dbac3cd63480d1a42d911bdc4cf4cb7d7a7cf.png",
+  "icon": "https://www.rinnegatamante.eu/vitadb/icons/84235dee32a942d678a6547e4e2dbac3cd63480d1a42d911bdc4cf4cb7d7a7cf.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/84235dee32a942d678a6547e4e2dbac3cd63480d1a42d911bdc4cf4cb7d7a7cf.png",
     "https://www.rinnegatamante.eu/vitadb/screenshots/bermuda1.jpg",
     "https://www.rinnegatamante.eu/vitadb/screenshots/bermuda2.jpg"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "VitaDBtoo VPK",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=115",
+      "recommended": true
+    },
+    {
+      "type": "Download",
+      "name": "NeoVitaDB VPK",
       "url": "https://github.com/usineur/bermuda/releases/download/1.4/bermuda-vita.vpk",
       "recommended": false
     },
     {
       "type": "Official Website",
-      "name": "VitaDBtoo Release Page",
+      "name": "VitaDB Release Page",
       "url": "https://gbatemp.net/threads/release-bermuda-syndrome.446812/"
     },
     {
@@ -43,17 +48,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/usineur/bermuda/"
-    },
-    {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=115",
-      "recommended": true
     }
   ],
-  "source_name": "VitaDBtoo",
+  "source_name": "VitaDB",
   "source_id": "115",
   "source_url": "https://github.com/usineur/bermuda/",
   "release_page": "https://gbatemp.net/threads/release-bermuda-syndrome.446812/",
-  "updated_at": "2026-08-13T15:34:48.669123+00:00"
+  "updated_at": "2026-08-15T18:26:20.404703+00:00"
 }

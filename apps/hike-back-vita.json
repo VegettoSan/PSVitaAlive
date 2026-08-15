@@ -16,37 +16,37 @@
   "requirements": "- Game Data Files: PC",
   "size": 14441674,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/90f9ffb800946ab2ccb9a2ab3a02f44b609461119a6b34edc1bc23acdcab2bf4.png",
+  "icon": "https://www.rinnegatamante.eu/vitadb/icons/90f9ffb800946ab2ccb9a2ab3a02f44b609461119a6b34edc1bc23acdcab2bf4.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/90f9ffb800946ab2ccb9a2ab3a02f44b609461119a6b34edc1bc23acdcab2bf4.png"
+    "https://www.rinnegatamante.eu/vitadb/icons/90f9ffb800946ab2ccb9a2ab3a02f44b609461119a6b34edc1bc23acdcab2bf4.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "VitaDBtoo VPK",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=809",
+      "recommended": true
+    },
+    {
+      "type": "Download",
+      "name": "NeoVitaDB VPK",
       "url": "https://github.com/SilverCrow2323/HIKE-BACK-Vita/releases/download/v.1.1/HIKE.BACK-v1.1.vpk",
       "recommended": false
     },
     {
       "type": "Official Website",
-      "name": "VitaDBtoo Release Page",
+      "name": "VitaDB Release Page",
       "url": "https://github.com/SilverCrow2323/HIKE-BACK-Vita"
     },
     {
       "type": "Official Website",
       "name": "NeoVitaDB Release Page",
       "url": "https://github.com/SilverCrow2323/HIKE-BACK-Vita/releases/tag/v.1.1"
-    },
-    {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=809",
-      "recommended": true
     }
   ],
-  "source_name": "VitaDBtoo",
+  "source_name": "VitaDB",
   "source_id": "809",
   "source_url": "https://github.com/SilverCrow2323/HIKE-BACK-Vita",
   "release_page": "https://github.com/SilverCrow2323/HIKE-BACK-Vita",
-  "updated_at": "2026-08-13T15:34:48.548176+00:00"
+  "updated_at": "2026-08-15T18:26:19.875991+00:00"
 }

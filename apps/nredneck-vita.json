@@ -18,28 +18,24 @@
   "status": "Legacy",
   "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1619-nredneck-vita.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/d8d9026a637a0c380e4bbe7ba8f2f71794ba32fc612c2da23024b047f7e0f8d1.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/7f02eb8b6143cee235cfe900a4e1d97140e586ffff449004b8947cecdab271b3.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/f655995822d7da4e50f32e792b053bb026c765b732844e9dcc1fd855f791c82c.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/4110ca63b1c05e96df3e8cfada85eefd1d54872aebd3a5e8c9a380295886976b.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/d8d9026a637a0c380e4bbe7ba8f2f71794ba32fc612c2da23024b047f7e0f8d1.png"
+    "https://www.rinnegatamante.eu/vitadb/screenshots/d8d9026a637a0c380e4bbe7ba8f2f71794ba32fc612c2da23024b047f7e0f8d1.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/7f02eb8b6143cee235cfe900a4e1d97140e586ffff449004b8947cecdab271b3.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/f655995822d7da4e50f32e792b053bb026c765b732844e9dcc1fd855f791c82c.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/4110ca63b1c05e96df3e8cfada85eefd1d54872aebd3a5e8c9a380295886976b.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/d8d9026a637a0c380e4bbe7ba8f2f71794ba32fc612c2da23024b047f7e0f8d1.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "VitaDBtoo VPK",
+      "name": "NeoVitaDB VPK",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/436-NRedneck.vpk",
       "recommended": true
     },
     {
-      "type": "Official Website",
-      "name": "VitaDBtoo Release Page",
-      "url": "http://wololo.net/talk/viewtopic.php?f=116&t=49710"
-    },
-    {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/Rinnegatamante/NRedneck-Vita"
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=436",
+      "recommended": false
     },
     {
       "type": "Download",
@@ -48,15 +44,19 @@
       "recommended": false
     },
     {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=436",
-      "recommended": false
+      "type": "Official Website",
+      "name": "VitaDB Release Page",
+      "url": "http://wololo.net/talk/viewtopic.php?f=116&t=49710"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/Rinnegatamante/NRedneck-Vita"
     }
   ],
-  "source_name": "VitaDBtoo",
-  "source_id": "436",
-  "source_url": "https://github.com/Rinnegatamante/NRedneck-Vita",
-  "release_page": "http://wololo.net/talk/viewtopic.php?f=116&t=49710",
-  "updated_at": "2026-08-13T15:34:48.624916+00:00"
+  "source_name": "NeoVitaDB",
+  "source_id": "1619",
+  "source_url": "https://github.com",
+  "release_page": "",
+  "updated_at": "2026-08-15T18:26:20.229445+00:00"
 }

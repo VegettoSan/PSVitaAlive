@@ -16,20 +16,26 @@
   "requirements": "Not specified",
   "size": 205639,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/a10e06d7f0b09586eba1f62e913acc2e40ee93969a51fa4dd24336111bf0a5b4.png",
+  "icon": "https://www.rinnegatamante.eu/vitadb/icons/a10e06d7f0b09586eba1f62e913acc2e40ee93969a51fa4dd24336111bf0a5b4.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/a10e06d7f0b09586eba1f62e913acc2e40ee93969a51fa4dd24336111bf0a5b4.png"
+    "https://www.rinnegatamante.eu/vitadb/icons/a10e06d7f0b09586eba1f62e913acc2e40ee93969a51fa4dd24336111bf0a5b4.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "VitaDBtoo VPK",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=504",
+      "recommended": true
+    },
+    {
+      "type": "Download",
+      "name": "NeoVitaDB VPK",
       "url": "https://github.com/windsurfer1122/Vita-Account-Manager/releases/download/vita-account-manager-0.91/vita-account-manager-0.91.vpk",
       "recommended": false
     },
     {
       "type": "Official Website",
-      "name": "VitaDBtoo Release Page",
+      "name": "VitaDB Release Page",
       "url": "https://github.com/windsurfer1122/Vita-Account-Manager/releases"
     },
     {
@@ -41,17 +47,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/windsurfer1122/Vita-Account-Manager"
-    },
-    {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=504",
-      "recommended": true
     }
   ],
-  "source_name": "VitaDBtoo",
+  "source_name": "VitaDB",
   "source_id": "504",
   "source_url": "https://github.com/windsurfer1122/Vita-Account-Manager",
   "release_page": "https://github.com/windsurfer1122/Vita-Account-Manager/releases",
-  "updated_at": "2026-08-13T15:34:48.631114+00:00"
+  "updated_at": "2026-08-15T18:26:20.252730+00:00"
 }

@@ -16,24 +16,30 @@
   "requirements": "- libshacccg.suprx\n- kubridge.skprx\n- Game Data Files: Android",
   "size": 2085575,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/a96b321240b70b4ad29f1ce8915833878be4623d8cb75c0b72428dc63703106e.png",
+  "icon": "https://www.rinnegatamante.eu/vitadb/icons/a96b321240b70b4ad29f1ce8915833878be4623d8cb75c0b72428dc63703106e.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/5efa0cabf21d96fdb52d22d59375b628a13a02e14e096ef550155872f71b4388.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/d0bf2d5f7879283aeae0e9d5e213b8de77c23f17302ed4f7ee172cfd12439508.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/5496a6cc99ca591276a0a559f0898caa84ebe0013e0c1ddbb42f7bda0845009b.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/5d1923e4b29ba8e590e9f90aad1ef2a95687192daf8061f4dfce45bf67b88e07.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/5efa0cabf21d96fdb52d22d59375b628a13a02e14e096ef550155872f71b4388.png"
+    "https://www.rinnegatamante.eu/vitadb/screenshots/5efa0cabf21d96fdb52d22d59375b628a13a02e14e096ef550155872f71b4388.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/d0bf2d5f7879283aeae0e9d5e213b8de77c23f17302ed4f7ee172cfd12439508.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/5496a6cc99ca591276a0a559f0898caa84ebe0013e0c1ddbb42f7bda0845009b.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/5d1923e4b29ba8e590e9f90aad1ef2a95687192daf8061f4dfce45bf67b88e07.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/5efa0cabf21d96fdb52d22d59375b628a13a02e14e096ef550155872f71b4388.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "VitaDBtoo VPK",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1019",
+      "recommended": true
+    },
+    {
+      "type": "Download",
+      "name": "NeoVitaDB VPK",
       "url": "https://github.com/v-atamanenko/masseffect-vita/releases/download/v1.0/MassEffectInfiltrator.vpk",
       "recommended": false
     },
     {
       "type": "Official Website",
-      "name": "VitaDBtoo Release Page",
+      "name": "VitaDB Release Page",
       "url": "https://github.com/v-atamanenko/masseffect-vita/releases"
     },
     {
@@ -45,17 +51,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/v-atamanenko/masseffect-vita"
-    },
-    {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1019",
-      "recommended": true
     }
   ],
-  "source_name": "VitaDBtoo",
+  "source_name": "VitaDB",
   "source_id": "1019",
   "source_url": "https://github.com/v-atamanenko/masseffect-vita",
   "release_page": "https://github.com/v-atamanenko/masseffect-vita/releases",
-  "updated_at": "2026-08-13T15:34:48.523831+00:00"
+  "updated_at": "2026-08-15T18:26:19.767260+00:00"
 }

@@ -1,6 +1,6 @@
 {
-  "id": "late-shift-vita-lateshift",
-  "title_id": "LATESHIFT",
+  "id": "late-shift-vita-late00001",
+  "title_id": "LATE00001",
   "name": "Late Shift Vita",
   "description": "Port of Late Shift for PSVITA.",
   "long_description": "This is a complete rewrite from scratch of the FMV game Late Shift from CtrlMovie studio. It runs on OpenFMV engine, an FMV game engine wrote from scratch to mimic Wales Interactive engine used for their FMV games.\nLate Shift is a high stakes FMV crime thriller. Forced into a brutal London heist, your choices matter in this interactive cinematic experience with adaptable storylines that lead to one of seven conclusions. Your decisions are you.",
@@ -16,23 +16,23 @@
   "requirements": "- libshacccg.suprx\n- Game Data Files: Steam",
   "size": 5195068,
   "status": "Legacy",
-  "icon": "https://www.rinnegatamante.eu/vitadb/icons/6e897b37a63b3d45ef1476959c5c191cda59a9cd47f9d4baf7d17c41f399b177.png",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/6e897b37a63b3d45ef1476959c5c191cda59a9cd47f9d4baf7d17c41f399b177.png",
   "screenshots": [
-    "https://www.rinnegatamante.eu/vitadb/screenshots/5c8052d35f9a6a51fff2886ac067e9dfabcfac3a74ea1d82ca50ee77a7f83a7e.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/6022653f84ce97e391ee859fc9d0e9ce76aa6dd2897584af9cbed2a74fc4f783.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/7354c604ceb85647116c87135137598e9a68a32f45ee7b396a05f5305e60eea0.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/388ab599818ff07805ace4362133954ac35ebc3727df99c26758da18b9cfe9fd.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/5c8052d35f9a6a51fff2886ac067e9dfabcfac3a74ea1d82ca50ee77a7f83a7e.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/6022653f84ce97e391ee859fc9d0e9ce76aa6dd2897584af9cbed2a74fc4f783.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/7354c604ceb85647116c87135137598e9a68a32f45ee7b396a05f5305e60eea0.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/388ab599818ff07805ace4362133954ac35ebc3727df99c26758da18b9cfe9fd.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1121",
+      "name": "VitaDBtoo VPK",
+      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/1121-lateshift.vpk",
       "recommended": true
     },
     {
       "type": "Official Website",
-      "name": "VitaDB Release Page",
+      "name": "VitaDBtoo Release Page",
       "url": "https://github.com/Rinnegatamante/OpenFMV/releases"
     },
     {
@@ -41,9 +41,9 @@
       "url": "https://github.com/Rinnegatamante/OpenFMV"
     }
   ],
-  "source_name": "VitaDB",
+  "source_name": "VitaDBtoo",
   "source_id": "1121",
   "source_url": "https://github.com/Rinnegatamante/OpenFMV",
   "release_page": "https://github.com/Rinnegatamante/OpenFMV/releases",
-  "updated_at": "2026-08-14T01:05:59.217254+00:00"
+  "updated_at": "2026-08-15T18:26:20.614135+00:00"
 }

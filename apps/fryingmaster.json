@@ -6,7 +6,6 @@
   "long_description": "The game is inspired by a mini game from \"Super Mario Party\" it has two modes, endless where you have to cook patties before the time limit and 4 sides where you have to cook all four sides of a steak and make a high score.",
   "author_ids": [
     "widegcg",
-    "mrkane",
     "polydood",
     "sungrand-studios",
     "aj170",
@@ -17,7 +16,8 @@
     "anchitpatra",
     "moe-baker",
     "retrogamer74",
-    "lazyox199"
+    "lazyox199",
+    "mrkane"
   ],
   "category_id": "games",
   "subcategory_ids": [
@@ -28,41 +28,35 @@
   "requirements": "Not specified",
   "size": 38554505,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/732fb895a9548b7c50db8e3f10c1bde45a7e130593b0ff3430c2b7cb19eab65c.png",
+  "icon": "https://www.rinnegatamante.eu/vitadb/icons/732fb895a9548b7c50db8e3f10c1bde45a7e130593b0ff3430c2b7cb19eab65c.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/fa05a7d03d42c4be8cd8f1e55b18b955dd7052ce67e99b1f149230da8477bd4b.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/22f0350a9c81a4ae1eacdbd04ca1cc99051a3adce5ef405487da45e235380929.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/84f081c01c8506d3084af4f90e684a50ce7dd8f227913df7262882dfa4ef7562.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/85af236b32f0eb86c7b056e009d8299dfd3d2383d53f93b37f24efe970b34984.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/d53b135872984c950a4721248b240370991c4130537ff51d965527e5712b82f9.png"
+    "https://www.rinnegatamante.eu/vitadb/screenshots/fa05a7d03d42c4be8cd8f1e55b18b955dd7052ce67e99b1f149230da8477bd4b.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/22f0350a9c81a4ae1eacdbd04ca1cc99051a3adce5ef405487da45e235380929.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/84f081c01c8506d3084af4f90e684a50ce7dd8f227913df7262882dfa4ef7562.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/85af236b32f0eb86c7b056e009d8299dfd3d2383d53f93b37f24efe970b34984.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/d53b135872984c950a4721248b240370991c4130537ff51d965527e5712b82f9.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "VitaDBtoo VPK",
-      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/414-FryingMaster.vpk",
-      "recommended": false
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=414",
+      "recommended": true
     },
     {
       "type": "Official Website",
-      "name": "VitaDBtoo Release Page",
+      "name": "VitaDB Release Page",
       "url": "https://www.reddit.com/r/vitahacks/comments/acai91/ported_a_game_im_working_on_for_android_to_psvita/"
     },
     {
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com"
-    },
-    {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=414",
-      "recommended": true
     }
   ],
-  "source_name": "VitaDBtoo",
+  "source_name": "VitaDB",
   "source_id": "414",
   "source_url": "https://www.reddit.com/r/vitahacks/comments/acai91/ported_a_game_im_working_on_for_android_to_psvita/",
   "release_page": "https://www.reddit.com/r/vitahacks/comments/acai91/ported_a_game_im_working_on_for_android_to_psvita/",
-  "updated_at": "2026-08-13T15:34:48.386124+00:00"
+  "updated_at": "2026-08-15T18:26:19.164078+00:00"
 }

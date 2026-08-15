@@ -1,9 +1,9 @@
 {
   "id": "red-moon-of-april",
-  "title_id": "RNPY03032",
+  "title_id": "RNPY20221",
   "name": "Red Moon of April",
   "description": "Sci-Fi visual novel for PSVITA.",
-  "long_description": "Red Moon of April is a Sci-Fi visual novel about Kohime, a Japanese girl who, after losing everything, set off on a one-month journey riding her Metal Knight.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
+  "long_description": "Red Moon of April is a Sci-Fi visual novel about Kohime, a Japanese girl who, after losing everything, set off on a one-month journey riding her Metal Knight.",
   "author_ids": [
     "sansigolo"
   ],
@@ -12,44 +12,33 @@
     "other"
   ],
   "version": "v.1.11",
-  "version_date": "2026-08-15",
+  "version_date": "2023-03-03",
   "requirements": "Not specified",
   "size": 43552816,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1767-red-moon-of-april.png",
+  "icon": "https://www.rinnegatamante.eu/vitadb/icons/dc5ef0601ec3969e4d5e204d2dfad57b73e5f4cb109fb42b02a57019cc75224a.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/9a9ffe1813f8b2d6b091c6dad0dfb14b4c434b115fc927a1ff9faa1438ec9a3c.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/8d4cab66e0510d204199fd593abffe302a76a59a42d3335ad4703283d2245c55.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/81b0e0a1a12e363c26d3cdb23dda7b528c27dc124faf4d6c43afa66868f21e18.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/f7b9018005621bea7a1c51ed04fe0ff47232aa620c5ff173f97ef619a0d4d42e.png"
+    "https://www.rinnegatamante.eu/vitadb/screenshots/9a9ffe1813f8b2d6b091c6dad0dfb14b4c434b115fc927a1ff9faa1438ec9a3c.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/8d4cab66e0510d204199fd593abffe302a76a59a42d3335ad4703283d2245c55.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/81b0e0a1a12e363c26d3cdb23dda7b528c27dc124faf4d6c43afa66868f21e18.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/f7b9018005621bea7a1c51ed04fe0ff47232aa620c5ff173f97ef619a0d4d42e.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "VitaDBtoo VPK",
-      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/782-RedMoon.vpk",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=782",
       "recommended": true
     },
     {
       "type": "Official Website",
-      "name": "VitaDBtoo Release Page",
+      "name": "VitaDB Release Page",
       "url": "https://neuromage.itch.io/red-moon-of-april"
-    },
-    {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com"
-    },
-    {
-      "type": "Download",
-      "name": "VitaDBtoo VPK",
-      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/782-RedMoon.vpk",
-      "recommended": false
     }
   ],
-  "source_name": "VitaDBtoo",
+  "source_name": "VitaDB",
   "source_id": "782",
   "source_url": "https://neuromage.itch.io/red-moon-of-april",
   "release_page": "https://neuromage.itch.io/red-moon-of-april",
-  "updated_at": "2026-08-13T15:34:48.507507+00:00"
+  "updated_at": "2026-08-15T18:26:19.700496+00:00"
 }

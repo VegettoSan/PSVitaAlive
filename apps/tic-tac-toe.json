@@ -18,23 +18,24 @@
   "status": "Legacy",
   "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1781-tic-tac-toe.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/8e0677bf24ee27bc795e329ddd4a735dd3dc494b2edda09efe994d43cb49faa5.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/67d97df6b4668d611bcbb0f84f025a488d2ad9ede1b075fcd0f8054a635c733f.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/da3d45758a53332a0521b8f40c439cd6fd1abf8b29c251ec44e6b3365d426609.png",
     "https://www.rinnegatamante.eu/vitadb/screenshots/8e0677bf24ee27bc795e329ddd4a735dd3dc494b2edda09efe994d43cb49faa5.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/67d97df6b4668d611bcbb0f84f025a488d2ad9ede1b075fcd0f8054a635c733f.png"
+    "https://www.rinnegatamante.eu/vitadb/screenshots/67d97df6b4668d611bcbb0f84f025a488d2ad9ede1b075fcd0f8054a635c733f.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/da3d45758a53332a0521b8f40c439cd6fd1abf8b29c251ec44e6b3365d426609.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/8e0677bf24ee27bc795e329ddd4a735dd3dc494b2edda09efe994d43cb49faa5.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/67d97df6b4668d611bcbb0f84f025a488d2ad9ede1b075fcd0f8054a635c733f.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "VitaDBtoo VPK",
+      "name": "NeoVitaDB VPK",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/816-Tic-Tac-Toe.vpk",
       "recommended": true
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com"
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=816",
+      "recommended": false
     },
     {
       "type": "Download",
@@ -43,15 +44,14 @@
       "recommended": false
     },
     {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=816",
-      "recommended": false
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com"
     }
   ],
-  "source_name": "VitaDBtoo",
-  "source_id": "816",
-  "source_url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/816-Tic-Tac-Toe.vpk",
+  "source_name": "NeoVitaDB",
+  "source_id": "1781",
+  "source_url": "https://github.com",
   "release_page": "",
-  "updated_at": "2026-08-13T15:34:48.545474+00:00"
+  "updated_at": "2026-08-15T18:26:19.868921+00:00"
 }

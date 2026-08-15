@@ -16,7 +16,7 @@
   "requirements": "- libshacccg.suprx\n- Game Data Files: Steam",
   "size": 2362196,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/fc2c4f161294c75bcb5dd74cfca553c70a6b01704a3e201c4192e1b62d4ae36d.png",
+  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1439-deltarune-vita.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/6333435bee98a287710e5f3ed29607af044080492acaa2c141b4dc0ea7b6b201.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/2039a12dcb869a437aa887c3e30949b3e03046acb0ecd8afa61df7a5f432e8d5.png",
@@ -26,9 +26,14 @@
   "links": [
     {
       "type": "Download",
-      "name": "VitaDBtoo VPK",
-      "url": "https://github.com/WolffsRoom/DeltaruneVita/releases/download/v0.68/Deltarune-v0.68.vpk",
-      "recommended": false
+      "name": "NeoVitaDB VPK",
+      "url": "https://github.com/WolffsRoom/DeltaruneVita/releases/download/v0.69/Deltarune-v0.69.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Official Website",
+      "name": "NeoVitaDB Release Page",
+      "url": "https://github.com/WolffsRoom/DeltaruneVita/releases/tag/v0.69"
     },
     {
       "type": "Official Website",
@@ -39,22 +44,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/WolffsRoom/DeltaruneVita"
-    },
-    {
-      "type": "Download",
-      "name": "VitaDBtoo VPK",
-      "url": "https://github.com/WolffsRoom/DeltaruneVita/releases/download/v0.69/Deltarune-v0.69.vpk",
-      "recommended": true
-    },
-    {
-      "type": "Official Website",
-      "name": "NeoVitaDB Release Page",
-      "url": "https://github.com/WolffsRoom/DeltaruneVita/releases/tag/v0.69"
     }
   ],
-  "source_name": "VitaDBtoo",
+  "source_name": "NeoVitaDB",
   "source_id": "1439",
   "source_url": "https://github.com/WolffsRoom/DeltaruneVita",
-  "release_page": "https://github.com/WolffsRoom/DeltaruneVita/releases",
-  "updated_at": "2026-08-13T15:34:48.325121+00:00"
+  "release_page": "https://github.com/WolffsRoom/DeltaruneVita/releases/tag/v0.69",
+  "updated_at": "2026-08-15T18:26:20.630358+00:00"
 }

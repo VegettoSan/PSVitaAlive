@@ -16,15 +16,21 @@
   "requirements": "Not specified",
   "size": 33517678,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/9ea1d1144e135e435e1183ec80dd69761eb60b5caa78dbb088868fc4ab9b5506.png",
+  "icon": "https://www.rinnegatamante.eu/vitadb/icons/9ea1d1144e135e435e1183ec80dd69761eb60b5caa78dbb088868fc4ab9b5506.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/af32844ecb1025e4de2f91975032ea92cabfa3ce95c7a12ce693ad06321e938f.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/9e380e1a4e089a2035aa683c3e0237da583a1e6e608d1f3938c1dfa9d87ad827.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/5e9becd8b04a8dacd525ae75f635e79935429ed585345bfd15f6689e380ad5aa.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/932ccacb8546021a9e35481a7c88a1d95056868c5019776cb08b749c02aafe79.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/af32844ecb1025e4de2f91975032ea92cabfa3ce95c7a12ce693ad06321e938f.png"
+    "https://www.rinnegatamante.eu/vitadb/screenshots/af32844ecb1025e4de2f91975032ea92cabfa3ce95c7a12ce693ad06321e938f.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/9e380e1a4e089a2035aa683c3e0237da583a1e6e608d1f3938c1dfa9d87ad827.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/5e9becd8b04a8dacd525ae75f635e79935429ed585345bfd15f6689e380ad5aa.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/932ccacb8546021a9e35481a7c88a1d95056868c5019776cb08b749c02aafe79.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/af32844ecb1025e4de2f91975032ea92cabfa3ce95c7a12ce693ad06321e938f.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1245",
+      "recommended": true
+    },
     {
       "type": "Download",
       "name": "VitaDBtoo VPK",
@@ -33,19 +39,13 @@
     },
     {
       "type": "Official Website",
-      "name": "VitaDBtoo Release Page",
+      "name": "VitaDB Release Page",
       "url": "https://github.com/anas-halid/SF1MR-VITA"
-    },
-    {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1245",
-      "recommended": true
     }
   ],
-  "source_name": "VitaDBtoo",
+  "source_name": "VitaDB",
   "source_id": "1245",
   "source_url": "https://github.com/anas-halid/SF1MR-VITA",
   "release_page": "https://github.com/anas-halid/SF1MR-VITA",
-  "updated_at": "2026-08-13T15:34:48.420833+00:00"
+  "updated_at": "2026-08-15T18:26:19.314402+00:00"
 }

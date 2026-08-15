@@ -18,11 +18,11 @@
   "status": "Legacy",
   "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/0734-better-homebrew-browser.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/2155f3667a56e4f9ec6c9fdd4e25489184347dfe1bcd1acda5a963b6e32a688d.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/e50853778e6b02e74dc7e6dfb2720319ee3969e0ad5d260fc6fcc8740296a347.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/be0ff85afb72f604ddcf8ba83917c31d8f1c66c62917879fac047dbd82d4a0cf.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/3cfc66aa265c17af30a6a714cbdf497f001f34010d9e29652ed5d1d726ba8269.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/2155f3667a56e4f9ec6c9fdd4e25489184347dfe1bcd1acda5a963b6e32a688d.png"
+    "https://www.rinnegatamante.eu/vitadb/screenshots/2155f3667a56e4f9ec6c9fdd4e25489184347dfe1bcd1acda5a963b6e32a688d.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/e50853778e6b02e74dc7e6dfb2720319ee3969e0ad5d260fc6fcc8740296a347.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/be0ff85afb72f604ddcf8ba83917c31d8f1c66c62917879fac047dbd82d4a0cf.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/3cfc66aa265c17af30a6a714cbdf497f001f34010d9e29652ed5d1d726ba8269.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/2155f3667a56e4f9ec6c9fdd4e25489184347dfe1bcd1acda5a963b6e32a688d.png"
   ],
   "links": [
     {
@@ -46,5 +46,5 @@
   "source_id": "734",
   "source_url": "https://github.com/Ibrahim778/BetterHomebrewBrowser",
   "release_page": "https://github.com/Ibrahim778/BetterHomebrewBrowser/releases/tag/V1.45",
-  "updated_at": "2026-08-13T15:34:48.431997+00:00"
+  "updated_at": "2026-08-15T18:26:19.362036+00:00"
 }

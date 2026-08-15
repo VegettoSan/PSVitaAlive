@@ -16,41 +16,41 @@
   "requirements": "- Game Data Files: PC",
   "size": 22126274,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/46c1acc7e0c8131c291d6930ca7c7fa9bd7ec9ab2afe26da1fc4a3dd1b727d55.png",
+  "icon": "https://www.rinnegatamante.eu/vitadb/icons/46c1acc7e0c8131c291d6930ca7c7fa9bd7ec9ab2afe26da1fc4a3dd1b727d55.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/1b4d82ce4970e9c3ff0e76c409855e126b9acbffb98d3b56c490dbc28d114686.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/07a6ed0ff71a49c302fae7c37355ffb999e4df091a1b79a681703e0703e75d39.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/e21a024d762c40c20bda362286591c3e5d5c7ed9a70ab3b4bb587dcbd13e34f5.png",
     "https://www.rinnegatamante.eu/vitadb/screenshots/1b4d82ce4970e9c3ff0e76c409855e126b9acbffb98d3b56c490dbc28d114686.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/07a6ed0ff71a49c302fae7c37355ffb999e4df091a1b79a681703e0703e75d39.png"
+    "https://www.rinnegatamante.eu/vitadb/screenshots/07a6ed0ff71a49c302fae7c37355ffb999e4df091a1b79a681703e0703e75d39.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/e21a024d762c40c20bda362286591c3e5d5c7ed9a70ab3b4bb587dcbd13e34f5.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/1b4d82ce4970e9c3ff0e76c409855e126b9acbffb98d3b56c490dbc28d114686.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/07a6ed0ff71a49c302fae7c37355ffb999e4df091a1b79a681703e0703e75d39.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "VitaDBtoo VPK",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1168",
+      "recommended": true
+    },
+    {
+      "type": "Download",
+      "name": "NeoVitaDB VPK",
       "url": "https://github.com/PatnosDD/Hollow-Knight-PsVita/releases/download/0.81/HollowKnight.vpk",
       "recommended": false
     },
     {
       "type": "Official Website",
-      "name": "VitaDBtoo Release Page",
+      "name": "VitaDB Release Page",
       "url": "https://github.com/PatnosDD/Hollow-Knight-PsVita"
     },
     {
       "type": "Official Website",
       "name": "NeoVitaDB Release Page",
       "url": "https://github.com/PatnosDD/Hollow-Knight-PsVita/releases/tag/0.81"
-    },
-    {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1168",
-      "recommended": true
     }
   ],
-  "source_name": "VitaDBtoo",
+  "source_name": "VitaDB",
   "source_id": "1168",
   "source_url": "https://github.com/PatnosDD/Hollow-Knight-PsVita",
   "release_page": "https://github.com/PatnosDD/Hollow-Knight-PsVita",
-  "updated_at": "2026-08-13T15:34:48.420005+00:00"
+  "updated_at": "2026-08-15T18:26:19.311527+00:00"
 }

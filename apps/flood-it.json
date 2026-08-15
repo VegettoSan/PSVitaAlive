@@ -11,12 +11,12 @@
   "subcategory_ids": [
     "other"
   ],
-  "version": "v.11.17.2016",
+  "version": "11.17.2016",
   "version_date": "2016-11-17",
   "requirements": "Not specified",
   "size": 3167160,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/cebb681351b58a33c475136d4f3796133442588454b4e4aa0bae3c21923559b6.png",
+  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/0156-flood-it.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/db0fd3b64a28e3a00572b66b28134c52e126f6869299a4a2ee8b371587d489e3.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/46597dc6a741c65b74ee836f0f019a0bfd0a18ab305a14503def8f508bea70b6.png",
@@ -26,14 +26,9 @@
   "links": [
     {
       "type": "Download",
-      "name": "VitaDBtoo VPK",
+      "name": "NeoVitaDB VPK",
       "url": "https://github.com/notnotme/NotEngine_PSV/releases/download/11.17.2016/floodit.vpk",
       "recommended": true
-    },
-    {
-      "type": "Official Website",
-      "name": "VitaDBtoo Release Page",
-      "url": "http://wololo.net/talk/viewtopic.php?f=113&t=45534"
     },
     {
       "type": "Official Website",
@@ -41,14 +36,19 @@
       "url": "https://github.com/notnotme/NotEngine_PSV/releases/tag/11.17.2016"
     },
     {
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
+      "url": "http://wololo.net/talk/viewtopic.php?f=113&t=45534"
+    },
+    {
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/notnotme/NotEngine_PSV"
     }
   ],
-  "source_name": "VitaDBtoo",
+  "source_name": "NeoVitaDB",
   "source_id": "156",
   "source_url": "https://github.com/notnotme/NotEngine_PSV",
-  "release_page": "http://wololo.net/talk/viewtopic.php?f=113&t=45534",
-  "updated_at": "2026-08-13T15:34:48.691012+00:00"
+  "release_page": "https://github.com/notnotme/NotEngine_PSV/releases/tag/11.17.2016",
+  "updated_at": "2026-08-15T18:26:20.517770+00:00"
 }

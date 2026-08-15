@@ -16,12 +16,18 @@
   "requirements": "Not specified",
   "size": 259995,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/383fbb647a5015e4a55fe3d2f795ab12a7807c068176a781c46710353ca3a030.png",
+  "icon": "https://www.rinnegatamante.eu/vitadb/icons/383fbb647a5015e4a55fe3d2f795ab12a7807c068176a781c46710353ca3a030.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/d23a675fc71243464b25bb88b1955fc70640739a83e6406f370ba5d74c2097e7.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/d23a675fc71243464b25bb88b1955fc70640739a83e6406f370ba5d74c2097e7.png"
+    "https://www.rinnegatamante.eu/vitadb/screenshots/d23a675fc71243464b25bb88b1955fc70640739a83e6406f370ba5d74c2097e7.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/d23a675fc71243464b25bb88b1955fc70640739a83e6406f370ba5d74c2097e7.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=431",
+      "recommended": true
+    },
     {
       "type": "Download",
       "name": "VitaDBtoo VPK",
@@ -30,7 +36,7 @@
     },
     {
       "type": "Official Website",
-      "name": "VitaDBtoo Release Page",
+      "name": "VitaDB Release Page",
       "url": "https://github.com/McCallum99/PSVitaRebootShutdown/releases"
     },
     {
@@ -42,17 +48,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/McCallum99/PSVitaRebootShutdown"
-    },
-    {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=431",
-      "recommended": true
     }
   ],
-  "source_name": "VitaDBtoo",
+  "source_name": "VitaDB",
   "source_id": "431",
   "source_url": "https://github.com/McCallum99/PSVitaRebootShutdown",
   "release_page": "https://github.com/McCallum99/PSVitaRebootShutdown/releases",
-  "updated_at": "2026-08-13T15:34:48.639588+00:00"
+  "updated_at": "2026-08-15T18:26:20.282186+00:00"
 }

@@ -16,23 +16,29 @@
   "requirements": "- Game Data Files: Tamagotchi",
   "size": 3748503,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/aaee2c6e873f3eef8026e6b8ff6366f6c38d7f71043d7ae46d58cb2a5cdbe213.png",
+  "icon": "https://www.rinnegatamante.eu/vitadb/icons/aaee2c6e873f3eef8026e6b8ff6366f6c38d7f71043d7ae46d58cb2a5cdbe213.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/727607add71b2efb029dac8f309f3569283626708ef1267acb762b7ac2d236f7.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/32594b0beed6187d3323eeca2046de9ab30dc1a7a9ccc09867a8fe41d97a2da0.png",
     "https://www.rinnegatamante.eu/vitadb/screenshots/727607add71b2efb029dac8f309f3569283626708ef1267acb762b7ac2d236f7.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/32594b0beed6187d3323eeca2046de9ab30dc1a7a9ccc09867a8fe41d97a2da0.png"
+    "https://www.rinnegatamante.eu/vitadb/screenshots/32594b0beed6187d3323eeca2046de9ab30dc1a7a9ccc09867a8fe41d97a2da0.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/727607add71b2efb029dac8f309f3569283626708ef1267acb762b7ac2d236f7.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/32594b0beed6187d3323eeca2046de9ab30dc1a7a9ccc09867a8fe41d97a2da0.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "VitaDBtoo VPK",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1222",
+      "recommended": true
+    },
+    {
+      "type": "Download",
+      "name": "NeoVitaDB VPK",
       "url": "https://github.com/nn9dev/tamatool-vita/releases/download/vita-0.1/tamatool-vita-0.1.vpk",
       "recommended": false
     },
     {
       "type": "Official Website",
-      "name": "VitaDBtoo Release Page",
+      "name": "VitaDB Release Page",
       "url": "https://github.com/nn9dev/tamatool-vita/releases"
     },
     {
@@ -44,17 +50,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/nn9dev/tamatool-vita"
-    },
-    {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1222",
-      "recommended": true
     }
   ],
-  "source_name": "VitaDBtoo",
+  "source_name": "VitaDB",
   "source_id": "1222",
   "source_url": "https://github.com/nn9dev/tamatool-vita",
   "release_page": "https://github.com/nn9dev/tamatool-vita/releases",
-  "updated_at": "2026-08-13T15:34:48.436863+00:00"
+  "updated_at": "2026-08-15T18:26:19.377463+00:00"
 }

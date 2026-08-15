@@ -1,9 +1,9 @@
 {
   "id": "kogre-s-mountain",
-  "title_id": "KOGRESMOU",
+  "title_id": "KOGREMOUN",
   "name": "Kogre's Mountain",
   "description": "Digital board game for PSVITA.",
-  "long_description": "Kogre's Mountain is a wholesome, family-friendly digital board game. The first player to reach the top of the mountain with all four of their knights wins!\nHowever, watch out for falling rocks! If the spinner lands on a gate icon, all the rocks will roll down the mountain- Getting hit by one will send your knight back to the bottom, so strategize by hiding your knights behind obstactles and other players.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
+  "long_description": "Kogre's Mountain is a wholesome, family-friendly digital board game. The first player to reach the top of the mountain with all four of their knights wins!\nHowever, watch out for falling rocks! If the spinner lands on a gate icon, all the rocks will roll down the mountain- Getting hit by one will send your knight back to the bottom, so strategize by hiding your knights behind obstactles and other players.",
   "author_ids": [
     "crait"
   ],
@@ -12,41 +12,30 @@
     "other"
   ],
   "version": "v.1.0",
-  "version_date": "2026-08-15",
+  "version_date": "2020-06-06",
   "requirements": "Not specified",
   "size": 48613219,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1683-kogre-s-mountain.png",
+  "icon": "https://www.rinnegatamante.eu/vitadb/icons/e98c35f71fcbad3ee5b36b20f93e480c0a94462a78a3a1004c45847fc738fb17.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/9c0e1c954aea67be22c6dfd28f6acf139f8200d0069474d3b4bbde3307481bfc.png"
+    "https://www.rinnegatamante.eu/vitadb/screenshots/9c0e1c954aea67be22c6dfd28f6acf139f8200d0069474d3b4bbde3307481bfc.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "VitaDBtoo VPK",
-      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/557-KogresMountain.vpk",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=557",
       "recommended": true
     },
     {
       "type": "Official Website",
-      "name": "VitaDBtoo Release Page",
+      "name": "VitaDB Release Page",
       "url": "http://www.crait.net/"
-    },
-    {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com"
-    },
-    {
-      "type": "Download",
-      "name": "VitaDBtoo VPK",
-      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/557-KogresMountain.vpk",
-      "recommended": false
     }
   ],
-  "source_name": "VitaDBtoo",
+  "source_name": "VitaDB",
   "source_id": "557",
   "source_url": "http://www.crait.net/",
   "release_page": "http://www.crait.net/",
-  "updated_at": "2026-08-13T15:34:48.618862+00:00"
+  "updated_at": "2026-08-15T18:26:20.209664+00:00"
 }

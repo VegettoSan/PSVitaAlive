@@ -16,20 +16,26 @@
   "requirements": "Not specified",
   "size": 24806566,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/2479a3a12a929c86007e4fe191a2ad8225dd1a4b8fb080689b568874c625515b.png",
+  "icon": "https://www.rinnegatamante.eu/vitadb/icons/2479a3a12a929c86007e4fe191a2ad8225dd1a4b8fb080689b568874c625515b.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/2479a3a12a929c86007e4fe191a2ad8225dd1a4b8fb080689b568874c625515b.png"
+    "https://www.rinnegatamante.eu/vitadb/icons/2479a3a12a929c86007e4fe191a2ad8225dd1a4b8fb080689b568874c625515b.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "VitaDBtoo VPK",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1013",
+      "recommended": true
+    },
+    {
+      "type": "Download",
+      "name": "NeoVitaDB VPK",
       "url": "https://github.com/alim395/FamilyFisticuffsVita/releases/download/v1.00/FamilyFeud.vpk",
       "recommended": false
     },
     {
       "type": "Official Website",
-      "name": "VitaDBtoo Release Page",
+      "name": "VitaDB Release Page",
       "url": "https://github.com/alim395/FamilyFisticuffsVita/releases"
     },
     {
@@ -41,17 +47,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/alim395/FamilyFisticuffsVita"
-    },
-    {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1013",
-      "recommended": true
     }
   ],
-  "source_name": "VitaDBtoo",
+  "source_name": "VitaDB",
   "source_id": "1013",
   "source_url": "https://github.com/alim395/FamilyFisticuffsVita",
   "release_page": "https://github.com/alim395/FamilyFisticuffsVita/releases",
-  "updated_at": "2026-08-13T15:34:48.525496+00:00"
+  "updated_at": "2026-08-15T18:26:19.774775+00:00"
 }

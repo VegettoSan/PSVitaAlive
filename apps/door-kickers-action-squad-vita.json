@@ -16,15 +16,21 @@
   "requirements": "- libshacccg.suprx\n- kubridge.skprx\n- Game Data Files: Android",
   "size": 1956223,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/b65c1973c970a971155280d9d6b27a377ee2107934f27bb7123d3ffb9a7839e5.png",
+  "icon": "https://www.rinnegatamante.eu/vitadb/icons/b65c1973c970a971155280d9d6b27a377ee2107934f27bb7123d3ffb9a7839e5.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/beaae2e1dd2b3a1b7a8fb53df91fd238a374e15202626b14a020d357efa8cee3.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/8ebd7e3ce759df63b030084dc77bf1e8d9fc77b43f00920a6553ec970e467ec9.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/f4e269b23245fad657cf8f9016a3372bb3c5227b97e020acba062453ff7e79ca.png",
     "https://www.rinnegatamante.eu/vitadb/screenshots/beaae2e1dd2b3a1b7a8fb53df91fd238a374e15202626b14a020d357efa8cee3.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/8ebd7e3ce759df63b030084dc77bf1e8d9fc77b43f00920a6553ec970e467ec9.png"
+    "https://www.rinnegatamante.eu/vitadb/screenshots/8ebd7e3ce759df63b030084dc77bf1e8d9fc77b43f00920a6553ec970e467ec9.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/f4e269b23245fad657cf8f9016a3372bb3c5227b97e020acba062453ff7e79ca.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/beaae2e1dd2b3a1b7a8fb53df91fd238a374e15202626b14a020d357efa8cee3.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/8ebd7e3ce759df63b030084dc77bf1e8d9fc77b43f00920a6553ec970e467ec9.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1364",
+      "recommended": true
+    },
     {
       "type": "Download",
       "name": "VitaDBtoo VPK",
@@ -33,24 +39,18 @@
     },
     {
       "type": "Official Website",
-      "name": "VitaDBtoo Release Page",
+      "name": "VitaDB Release Page",
       "url": "https://github.com/elliencode/actionsquad-psv"
     },
     {
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/elliencode/actionsquad-psv-internal/"
-    },
-    {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1364",
-      "recommended": true
     }
   ],
-  "source_name": "VitaDBtoo",
+  "source_name": "VitaDB",
   "source_id": "1364",
   "source_url": "https://github.com/elliencode/actionsquad-psv-internal/",
   "release_page": "https://github.com/elliencode/actionsquad-psv",
-  "updated_at": "2026-08-13T15:34:48.366245+00:00"
+  "updated_at": "2026-08-15T18:26:19.069595+00:00"
 }

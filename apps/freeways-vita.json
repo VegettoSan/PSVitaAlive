@@ -16,24 +16,30 @@
   "requirements": "- libshacccg.suprx\n- kubridge.skprx\n- Game Data Files: Android",
   "size": 837200,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/b92fb9029eb23acfdc6a8bbf6f8c36a18103f2619923c609a1b1beab7ce8fd66.png",
+  "icon": "https://www.rinnegatamante.eu/vitadb/icons/b92fb9029eb23acfdc6a8bbf6f8c36a18103f2619923c609a1b1beab7ce8fd66.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/22af1bdd44690a258fef63592158a5dd657e1f8659878a5e16c148cd4b914177.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/5e832d93f2c47667c909ecf195cf8a65a9d455565f5b4077cbd40d11b335a778.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/0f3ee29dbc211bf18ebcc9d6621fa76e37f4e1c33a2985df081843cafbbea021.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c5fa21393533e942e25438d15a6c844ffb842b99c40d58710db5f0aac220223a.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/22af1bdd44690a258fef63592158a5dd657e1f8659878a5e16c148cd4b914177.png"
+    "https://www.rinnegatamante.eu/vitadb/screenshots/22af1bdd44690a258fef63592158a5dd657e1f8659878a5e16c148cd4b914177.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/5e832d93f2c47667c909ecf195cf8a65a9d455565f5b4077cbd40d11b335a778.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/0f3ee29dbc211bf18ebcc9d6621fa76e37f4e1c33a2985df081843cafbbea021.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/c5fa21393533e942e25438d15a6c844ffb842b99c40d58710db5f0aac220223a.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/22af1bdd44690a258fef63592158a5dd657e1f8659878a5e16c148cd4b914177.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "VitaDBtoo VPK",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1184",
+      "recommended": true
+    },
+    {
+      "type": "Download",
+      "name": "NeoVitaDB VPK",
       "url": "https://github.com/Rinnegatamante/freeways-vita/releases/download/v.1.0/freeways.vpk",
       "recommended": false
     },
     {
       "type": "Official Website",
-      "name": "VitaDBtoo Release Page",
+      "name": "VitaDB Release Page",
       "url": "https://github.com/Rinnegatamante/freeways-vita/releases"
     },
     {
@@ -45,17 +51,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/Rinnegatamante/freeways-vita"
-    },
-    {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1184",
-      "recommended": true
     }
   ],
-  "source_name": "VitaDBtoo",
+  "source_name": "VitaDB",
   "source_id": "1184",
   "source_url": "https://github.com/Rinnegatamante/freeways-vita",
   "release_page": "https://github.com/Rinnegatamante/freeways-vita/releases",
-  "updated_at": "2026-08-13T15:34:48.449343+00:00"
+  "updated_at": "2026-08-15T18:26:19.428223+00:00"
 }

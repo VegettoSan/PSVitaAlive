@@ -5,7 +5,6 @@
   "description": "Port of Final Fantasy IV: The After Years for PSVITA.",
   "long_description": "This is a wrapper/port of Final Fantasy IV: The After Years Android for the PS Vita.\nThe port works by loading the official Android ARMv7 executable in memory, resolving its imports with native functions and patching it in order to properly run. By doing so, it's basically as if we emulate a minimalist Android environment in which we run natively the executable as is.",
   "author_ids": [
-    "bythos",
     "rinnegatamante",
     "frangarcj"
   ],
@@ -18,24 +17,30 @@
   "requirements": "- libshacccg.suprx\n- kubridge.skprx\n- Game Data Files: Android",
   "size": 21409360,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/4c7ca9e156df1f50c60b7fe66c4bd162d8c1696da7f1a883ec14da52515af4db.png",
+  "icon": "https://www.rinnegatamante.eu/vitadb/icons/4c7ca9e156df1f50c60b7fe66c4bd162d8c1696da7f1a883ec14da52515af4db.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/9a516f0a6313497a03aa39ddef40c485e127145acf30a3094671189560160918.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/05f4fe72ad22cac348ff9c47ec695dc276ed7d3948e642e9917efa487cca58d5.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/b903d7c2a2d95794d9cfe1eb249f081384e27628ec1357a81b23edac0f6aca9b.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/453028041b37a99b243f3ce0c64fe4bcdbc21772675233ef19bdfafe345753e7.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/9a516f0a6313497a03aa39ddef40c485e127145acf30a3094671189560160918.png"
+    "https://www.rinnegatamante.eu/vitadb/screenshots/9a516f0a6313497a03aa39ddef40c485e127145acf30a3094671189560160918.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/05f4fe72ad22cac348ff9c47ec695dc276ed7d3948e642e9917efa487cca58d5.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/b903d7c2a2d95794d9cfe1eb249f081384e27628ec1357a81b23edac0f6aca9b.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/453028041b37a99b243f3ce0c64fe4bcdbc21772675233ef19bdfafe345753e7.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/9a516f0a6313497a03aa39ddef40c485e127145acf30a3094671189560160918.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "VitaDBtoo VPK",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=989",
+      "recommended": true
+    },
+    {
+      "type": "Download",
+      "name": "NeoVitaDB VPK",
       "url": "https://github.com/Rinnegatamante/ff4a_vita/releases/download/v.1.0.1/FF4AY.vpk",
       "recommended": false
     },
     {
       "type": "Official Website",
-      "name": "VitaDBtoo Release Page",
+      "name": "VitaDB Release Page",
       "url": "https://github.com/Rinnegatamante/ff4a_vita/releases"
     },
     {
@@ -47,17 +52,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/Rinnegatamante/ff4a_vita"
-    },
-    {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=989",
-      "recommended": true
     }
   ],
-  "source_name": "VitaDBtoo",
+  "source_name": "VitaDB",
   "source_id": "989",
   "source_url": "https://github.com/Rinnegatamante/ff4a_vita",
   "release_page": "https://github.com/Rinnegatamante/ff4a_vita/releases",
-  "updated_at": "2026-08-13T15:34:48.480606+00:00"
+  "updated_at": "2026-08-15T18:26:19.567593+00:00"
 }

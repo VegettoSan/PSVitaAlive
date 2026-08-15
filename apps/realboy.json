@@ -16,21 +16,26 @@
   "requirements": "Not specified",
   "size": 140607,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/c2fcf6bdbf17422e2c851334c7274c01e83f6d87bda5eca1e8c5c81c2aa1daae.png",
+  "icon": "https://www.rinnegatamante.eu/vitadb/icons/c2fcf6bdbf17422e2c851334c7274c01e83f6d87bda5eca1e8c5c81c2aa1daae.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/c2fcf6bdbf17422e2c851334c7274c01e83f6d87bda5eca1e8c5c81c2aa1daae.png",
     "https://www.rinnegatamante.eu/vitadb/screenshots/realboy.jpg"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "VitaDBtoo VPK",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=167",
+      "recommended": true
+    },
+    {
+      "type": "Download",
+      "name": "NeoVitaDB VPK",
       "url": "https://github.com/xerpi/realboy-vita/releases/download/1.2/realboy.vpk",
       "recommended": false
     },
     {
       "type": "Official Website",
-      "name": "VitaDBtoo Release Page",
+      "name": "VitaDB Release Page",
       "url": "https://wololo.net/downloads/index.php/download/8330"
     },
     {
@@ -42,17 +47,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/xerpi/realboy-vita"
-    },
-    {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=167",
-      "recommended": true
     }
   ],
-  "source_name": "VitaDBtoo",
+  "source_name": "VitaDB",
   "source_id": "167",
   "source_url": "https://github.com/xerpi/realboy-vita",
   "release_page": "https://wololo.net/downloads/index.php/download/8330",
-  "updated_at": "2026-08-13T15:34:48.709070+00:00"
+  "updated_at": "2026-08-15T18:26:20.586225+00:00"
 }

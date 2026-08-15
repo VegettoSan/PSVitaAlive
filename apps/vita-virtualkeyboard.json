@@ -18,36 +18,36 @@
   "status": "Legacy",
   "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1961-vita-virtualkeyboard.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c2eed8228b71b28945bc0a73f772bf5bb804d29f2bdf17e97f8dae043cc76d72.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/c2eed8228b71b28945bc0a73f772bf5bb804d29f2bdf17e97f8dae043cc76d72.png"
+    "https://www.rinnegatamante.eu/vitadb/screenshots/c2eed8228b71b28945bc0a73f772bf5bb804d29f2bdf17e97f8dae043cc76d72.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c2eed8228b71b28945bc0a73f772bf5bb804d29f2bdf17e97f8dae043cc76d72.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "VitaDBtoo VPK",
+      "name": "NeoVitaDB VPK",
       "url": "https://github.com/lp1dev/vita_virtualkeyboard/releases/download/V00.01/VirtualKeyboard0001.vpk",
       "recommended": true
-    },
-    {
-      "type": "Official Website",
-      "name": "VitaDBtoo Release Page",
-      "url": "https://github.com/lp1dev/vita_virtualkeyboard/releases"
-    },
-    {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/lp1dev/vita_virtualkeyboard"
     },
     {
       "type": "Download",
       "name": "VitaDB VPK",
       "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1405",
       "recommended": false
+    },
+    {
+      "type": "Official Website",
+      "name": "VitaDB Release Page",
+      "url": "https://github.com/lp1dev/vita_virtualkeyboard/releases"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/lp1dev/vita_virtualkeyboard"
     }
   ],
-  "source_name": "VitaDBtoo",
-  "source_id": "1405",
-  "source_url": "https://github.com/lp1dev/vita_virtualkeyboard",
-  "release_page": "https://github.com/lp1dev/vita_virtualkeyboard/releases",
-  "updated_at": "2026-08-13T15:34:48.343469+00:00"
+  "source_name": "NeoVitaDB",
+  "source_id": "1961",
+  "source_url": "https://github.com",
+  "release_page": "",
+  "updated_at": "2026-08-15T18:26:18.970034+00:00"
 }

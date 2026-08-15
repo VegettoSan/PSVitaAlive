@@ -16,24 +16,30 @@
   "requirements": "- libshacccg.suprx\n- Game Data Files: PC",
   "size": 9793795,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/d6ee76423c2e081a8470e02079842c33745807e15008068555ae61bce3121ac0.png",
+  "icon": "https://www.rinnegatamante.eu/vitadb/icons/d6ee76423c2e081a8470e02079842c33745807e15008068555ae61bce3121ac0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/b56f33e891a9fb4f57eb31f19114eb98b6c91bb95039a2d7ede29d5f965886d5.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/341a26218b87ad5b805d8c1fc993c437a2c3ac4f1553382619569c2a428451ab.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/b8fc6a22e224f93f741349119cfe4dce404e403f6a079aaf8eb4ae81ece32e61.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/538d64a750527d58fd929c826513321e4dc30d18b3f87f94b57cdc9b963c2fd3.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/b56f33e891a9fb4f57eb31f19114eb98b6c91bb95039a2d7ede29d5f965886d5.png"
+    "https://www.rinnegatamante.eu/vitadb/screenshots/b56f33e891a9fb4f57eb31f19114eb98b6c91bb95039a2d7ede29d5f965886d5.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/341a26218b87ad5b805d8c1fc993c437a2c3ac4f1553382619569c2a428451ab.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/b8fc6a22e224f93f741349119cfe4dce404e403f6a079aaf8eb4ae81ece32e61.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/538d64a750527d58fd929c826513321e4dc30d18b3f87f94b57cdc9b963c2fd3.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/b56f33e891a9fb4f57eb31f19114eb98b6c91bb95039a2d7ede29d5f965886d5.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "VitaDBtoo VPK",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1444",
+      "recommended": true
+    },
+    {
+      "type": "Download",
+      "name": "NeoVitaDB VPK",
       "url": "https://github.com/Brendonm17/Barony-Vita/releases/download/v0.0.1-5.0.2/barony.vpk",
       "recommended": false
     },
     {
       "type": "Official Website",
-      "name": "VitaDBtoo Release Page",
+      "name": "VitaDB Release Page",
       "url": "https://github.com/Brendonm17/Barony-Vita/releases"
     },
     {
@@ -45,17 +51,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/Brendonm17/Barony-Vita"
-    },
-    {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1444",
-      "recommended": true
     }
   ],
-  "source_name": "VitaDBtoo",
+  "source_name": "VitaDB",
   "source_id": "1444",
   "source_url": "https://github.com/Brendonm17/Barony-Vita",
   "release_page": "https://github.com/Brendonm17/Barony-Vita/releases",
-  "updated_at": "2026-08-13T15:34:48.324920+00:00"
+  "updated_at": "2026-08-15T18:26:18.889994+00:00"
 }

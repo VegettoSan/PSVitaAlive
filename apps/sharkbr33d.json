@@ -16,20 +16,26 @@
   "requirements": "Not specified",
   "size": 1588522,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/18b80e6940f63cdd87cc3974b2c13eb8223581c603167250c85e9f8f3e7fc49b.png",
+  "icon": "https://www.rinnegatamante.eu/vitadb/icons/18b80e6940f63cdd87cc3974b2c13eb8223581c603167250c85e9f8f3e7fc49b.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/18b80e6940f63cdd87cc3974b2c13eb8223581c603167250c85e9f8f3e7fc49b.png"
+    "https://www.rinnegatamante.eu/vitadb/icons/18b80e6940f63cdd87cc3974b2c13eb8223581c603167250c85e9f8f3e7fc49b.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "VitaDBtoo VPK",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=997",
+      "recommended": true
+    },
+    {
+      "type": "Download",
+      "name": "NeoVitaDB VPK",
       "url": "https://github.com/Rinnegatamante/ShaRKBR33D/releases/download/v.1.2/ShaRKBR33D.vpk",
       "recommended": false
     },
     {
       "type": "Official Website",
-      "name": "VitaDBtoo Release Page",
+      "name": "VitaDB Release Page",
       "url": "https://github.com/Rinnegatamante/ShaRKBR33D/releases"
     },
     {
@@ -41,17 +47,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/Rinnegatamante/ShaRKBR33D"
-    },
-    {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=997",
-      "recommended": true
     }
   ],
-  "source_name": "VitaDBtoo",
+  "source_name": "VitaDB",
   "source_id": "997",
   "source_url": "https://github.com/Rinnegatamante/ShaRKBR33D",
   "release_page": "https://github.com/Rinnegatamante/ShaRKBR33D/releases",
-  "updated_at": "2026-08-13T15:34:48.427251+00:00"
+  "updated_at": "2026-08-15T18:26:19.341084+00:00"
 }

@@ -16,24 +16,30 @@
   "requirements": "- Game Data Files: PC Steam OR PS4 OR Switch",
   "size": 2111629,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/b688f17237780db1de66518fbd5fe82b2fdd78297f7a42e955774b5130afb7f0.png",
+  "icon": "https://www.rinnegatamante.eu/vitadb/icons/b688f17237780db1de66518fbd5fe82b2fdd78297f7a42e955774b5130afb7f0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/cefae8c7f1fb9332a4f25a991dbb425a257b18c20880447b530c75c8685ffc1b.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/d42ea2d8b514d51cc22278bb1fcd1aadc3907dad068e5857eaf2e9339bcec378.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/23b6939d109a160dd9f17a6d2d378884585be2fd2b199f7bcbb712949a712217.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/cda25fdc71bffaf54b532cb968d36c734df3dfceb488c13a7af7c51c3ad8da54.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/cefae8c7f1fb9332a4f25a991dbb425a257b18c20880447b530c75c8685ffc1b.png"
+    "https://www.rinnegatamante.eu/vitadb/screenshots/cefae8c7f1fb9332a4f25a991dbb425a257b18c20880447b530c75c8685ffc1b.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/d42ea2d8b514d51cc22278bb1fcd1aadc3907dad068e5857eaf2e9339bcec378.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/23b6939d109a160dd9f17a6d2d378884585be2fd2b199f7bcbb712949a712217.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/cda25fdc71bffaf54b532cb968d36c734df3dfceb488c13a7af7c51c3ad8da54.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/cefae8c7f1fb9332a4f25a991dbb425a257b18c20880447b530c75c8685ffc1b.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "VitaDBtoo VPK",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=858",
+      "recommended": true
+    },
+    {
+      "type": "Download",
+      "name": "NeoVitaDB VPK",
       "url": "https://github.com/SonicMastr/Sonic-Mania-Vita/releases/download/1.1/SonicMania.vpk",
       "recommended": false
     },
     {
       "type": "Official Website",
-      "name": "VitaDBtoo Release Page",
+      "name": "VitaDB Release Page",
       "url": "https://github.com/SonicMastr/Sonic-Mania-Vita/releases"
     },
     {
@@ -45,17 +51,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/SonicMastr/Sonic-Mania-Vita"
-    },
-    {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=858",
-      "recommended": true
     }
   ],
-  "source_name": "VitaDBtoo",
+  "source_name": "VitaDB",
   "source_id": "858",
   "source_url": "https://github.com/SonicMastr/Sonic-Mania-Vita",
   "release_page": "https://github.com/SonicMastr/Sonic-Mania-Vita/releases",
-  "updated_at": "2026-08-13T15:34:48.479863+00:00"
+  "updated_at": "2026-08-15T18:26:19.563277+00:00"
 }

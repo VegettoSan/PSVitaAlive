@@ -9,7 +9,7 @@
   ],
   "category_id": "ports",
   "subcategory_ids": [
-    "platformer"
+    "other"
   ],
   "version": "v.1.0",
   "version_date": "2026-08-15",
@@ -18,28 +18,24 @@
   "status": "Legacy",
   "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1904-will-you-snail-vita.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/a67e2f3c7405c99ed87289a8a366cee82434c26edee6bc09c7454e04d870873f.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/1826d334bc300486e5ae4d6cc00d42c664a1ec4d26bee81b37c7e8aadd4221b7.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/75e596744c5382fc6f242a699770210be4b1f4c5e136f50774b3c98347245847.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/9fe5d7356d8aa21642d4da068646b1ae09398b6cc350f39cbbc419c0d36012db.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/a67e2f3c7405c99ed87289a8a366cee82434c26edee6bc09c7454e04d870873f.png"
+    "https://www.rinnegatamante.eu/vitadb/screenshots/a67e2f3c7405c99ed87289a8a366cee82434c26edee6bc09c7454e04d870873f.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/1826d334bc300486e5ae4d6cc00d42c664a1ec4d26bee81b37c7e8aadd4221b7.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/75e596744c5382fc6f242a699770210be4b1f4c5e136f50774b3c98347245847.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/9fe5d7356d8aa21642d4da068646b1ae09398b6cc350f39cbbc419c0d36012db.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/a67e2f3c7405c99ed87289a8a366cee82434c26edee6bc09c7454e04d870873f.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "VitaDBtoo VPK",
+      "name": "NeoVitaDB VPK",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1216-WSNL00001.vpk",
       "recommended": true
     },
     {
-      "type": "Official Website",
-      "name": "VitaDBtoo Release Page",
-      "url": "https://avdr.duckdns.org:886/s/ZWxTAP9pwL4wffJ"
-    },
-    {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com"
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1216",
+      "recommended": false
     },
     {
       "type": "Download",
@@ -48,15 +44,19 @@
       "recommended": false
     },
     {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1216",
-      "recommended": false
+      "type": "Official Website",
+      "name": "VitaDB Release Page",
+      "url": "https://avdr.duckdns.org:886/s/ZWxTAP9pwL4wffJ"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com"
     }
   ],
-  "source_name": "VitaDBtoo",
-  "source_id": "1216",
-  "source_url": "https://avdr.duckdns.org:886/s/ZWxTAP9pwL4wffJ",
-  "release_page": "https://avdr.duckdns.org:886/s/ZWxTAP9pwL4wffJ",
-  "updated_at": "2026-08-13T15:34:48.437699+00:00"
+  "source_name": "NeoVitaDB",
+  "source_id": "1904",
+  "source_url": "https://github.com",
+  "release_page": "",
+  "updated_at": "2026-08-15T18:26:19.379717+00:00"
 }

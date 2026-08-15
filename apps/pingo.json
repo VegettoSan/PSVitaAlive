@@ -16,24 +16,30 @@
   "requirements": "Not specified",
   "size": 8404175,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/67036f0ecf23fe129d1ee9cc3c05f18859116ec28a4ce0f4421cd5cadd701076.png",
+  "icon": "https://www.rinnegatamante.eu/vitadb/icons/67036f0ecf23fe129d1ee9cc3c05f18859116ec28a4ce0f4421cd5cadd701076.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/7e4573afd391a9a1682251e98e999ca71bf178c1ed95cab9ce69bc4f83d5ee35.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/f49c3ec0c1da725b49de4158a8e673afdbf39a8ad2876d1009598ae849b0d609.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/04ea0adb9bcc574f1cf3309a400fb5cfc2eb84d74103dfe79819e6775aabc0d6.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/ac6f49112157bf7679f81b42ba1304f58c528fb3a99336e413e38b68b8ad2c29.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/7e4573afd391a9a1682251e98e999ca71bf178c1ed95cab9ce69bc4f83d5ee35.png"
+    "https://www.rinnegatamante.eu/vitadb/screenshots/7e4573afd391a9a1682251e98e999ca71bf178c1ed95cab9ce69bc4f83d5ee35.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/f49c3ec0c1da725b49de4158a8e673afdbf39a8ad2876d1009598ae849b0d609.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/04ea0adb9bcc574f1cf3309a400fb5cfc2eb84d74103dfe79819e6775aabc0d6.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/ac6f49112157bf7679f81b42ba1304f58c528fb3a99336e413e38b68b8ad2c29.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/7e4573afd391a9a1682251e98e999ca71bf178c1ed95cab9ce69bc4f83d5ee35.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "VitaDBtoo VPK",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=462",
+      "recommended": true
+    },
+    {
+      "type": "Download",
+      "name": "NeoVitaDB VPK",
       "url": "https://github.com/Grzybojad/Pingo/releases/download/2.1/Pingo.vpk",
       "recommended": false
     },
     {
       "type": "Official Website",
-      "name": "VitaDBtoo Release Page",
+      "name": "VitaDB Release Page",
       "url": "https://github.com/Grzybojad/Pingo/releases"
     },
     {
@@ -45,17 +51,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/Grzybojad/Pingo"
-    },
-    {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=462",
-      "recommended": true
     }
   ],
-  "source_name": "VitaDBtoo",
+  "source_name": "VitaDB",
   "source_id": "462",
   "source_url": "https://github.com/Grzybojad/Pingo",
   "release_page": "https://github.com/Grzybojad/Pingo/releases",
-  "updated_at": "2026-08-13T15:34:48.630792+00:00"
+  "updated_at": "2026-08-15T18:26:20.252125+00:00"
 }

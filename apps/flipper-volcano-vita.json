@@ -18,28 +18,24 @@
   "status": "Legacy",
   "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1941-flipper-volcano-vita.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/6461390ef35c7ff4394fd153a8c679cc2da482fe27a66985b7cbe11435546014.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c7e8725c1ee14d4ca80f0a6cf6dbc0cf0ccd96914ec66bc5355d39256ec1fed6.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/522f7cc646769ebac080ffe71bafc610e518f54f0689422c5cf25fb16c941099.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/3e48ada8d30e7573a24d7013dbe7d9b1980e6fdb8aa32169318d30fd9bcf4dfc.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/6461390ef35c7ff4394fd153a8c679cc2da482fe27a66985b7cbe11435546014.png"
+    "https://www.rinnegatamante.eu/vitadb/screenshots/6461390ef35c7ff4394fd153a8c679cc2da482fe27a66985b7cbe11435546014.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/c7e8725c1ee14d4ca80f0a6cf6dbc0cf0ccd96914ec66bc5355d39256ec1fed6.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/522f7cc646769ebac080ffe71bafc610e518f54f0689422c5cf25fb16c941099.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/3e48ada8d30e7573a24d7013dbe7d9b1980e6fdb8aa32169318d30fd9bcf4dfc.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/6461390ef35c7ff4394fd153a8c679cc2da482fe27a66985b7cbe11435546014.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "VitaDBtoo VPK",
+      "name": "NeoVitaDB VPK",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1327-FlipperVolcano_v1_1.vpk",
       "recommended": true
     },
     {
-      "type": "Official Website",
-      "name": "VitaDBtoo Release Page",
-      "url": "https://brendonm17.itch.io/flipper-volcano-vita"
-    },
-    {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com"
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1327",
+      "recommended": false
     },
     {
       "type": "Download",
@@ -48,15 +44,19 @@
       "recommended": false
     },
     {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1327",
-      "recommended": false
+      "type": "Official Website",
+      "name": "VitaDB Release Page",
+      "url": "https://brendonm17.itch.io/flipper-volcano-vita"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com"
     }
   ],
-  "source_name": "VitaDBtoo",
-  "source_id": "1327",
-  "source_url": "https://brendonm17.itch.io/flipper-volcano-vita",
-  "release_page": "https://brendonm17.itch.io/flipper-volcano-vita",
-  "updated_at": "2026-08-13T15:34:48.375000+00:00"
+  "source_name": "NeoVitaDB",
+  "source_id": "1941",
+  "source_url": "https://github.com",
+  "release_page": "",
+  "updated_at": "2026-08-15T18:26:19.117125+00:00"
 }

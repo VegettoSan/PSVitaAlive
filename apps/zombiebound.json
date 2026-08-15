@@ -18,28 +18,24 @@
   "status": "Legacy",
   "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1574-zombiebound.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/23b5c8c6ec0942b3d5f415ad28be56a5ec562c6dd79c7f94fd55263471c15a2f.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/6587ffb80ed99427fd8f9f9abc7d92bfabfbb25871aa02d88db76f775e247f7b.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/354923b87ec0d64b68068ffff7eb582b841613029bbb325d5a63b6818ee72e27.png",
     "https://www.rinnegatamante.eu/vitadb/screenshots/23b5c8c6ec0942b3d5f415ad28be56a5ec562c6dd79c7f94fd55263471c15a2f.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/6587ffb80ed99427fd8f9f9abc7d92bfabfbb25871aa02d88db76f775e247f7b.png"
+    "https://www.rinnegatamante.eu/vitadb/screenshots/6587ffb80ed99427fd8f9f9abc7d92bfabfbb25871aa02d88db76f775e247f7b.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/354923b87ec0d64b68068ffff7eb582b841613029bbb325d5a63b6818ee72e27.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/23b5c8c6ec0942b3d5f415ad28be56a5ec562c6dd79c7f94fd55263471c15a2f.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/6587ffb80ed99427fd8f9f9abc7d92bfabfbb25871aa02d88db76f775e247f7b.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "VitaDBtoo VPK",
+      "name": "NeoVitaDB VPK",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/328-Zombiebound.vpk",
       "recommended": true
     },
     {
-      "type": "Official Website",
-      "name": "VitaDBtoo Release Page",
-      "url": "http://wololo.net/talk/viewtopic.php?f=116&t=48583"
-    },
-    {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com"
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=328",
+      "recommended": false
     },
     {
       "type": "Download",
@@ -48,15 +44,19 @@
       "recommended": false
     },
     {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=328",
-      "recommended": false
+      "type": "Official Website",
+      "name": "VitaDB Release Page",
+      "url": "http://wololo.net/talk/viewtopic.php?f=116&t=48583"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com"
     }
   ],
-  "source_name": "VitaDBtoo",
-  "source_id": "328",
-  "source_url": "http://wololo.net/talk/viewtopic.php?f=116&t=48583",
-  "release_page": "http://wololo.net/talk/viewtopic.php?f=116&t=48583",
-  "updated_at": "2026-08-13T15:34:48.675755+00:00"
+  "source_name": "NeoVitaDB",
+  "source_id": "1574",
+  "source_url": "https://github.com",
+  "release_page": "",
+  "updated_at": "2026-08-15T18:26:20.430763+00:00"
 }

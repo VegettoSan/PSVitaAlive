@@ -16,24 +16,30 @@
   "requirements": "- Game Data Files: PC Steam/Android",
   "size": 34515748,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/f20c2a069133b7833721711a2c8c3dbe7a3538061023cb978ae79f8630c379a1.png",
+  "icon": "https://www.rinnegatamante.eu/vitadb/icons/f20c2a069133b7833721711a2c8c3dbe7a3538061023cb978ae79f8630c379a1.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/cd65c91af83926a178213d916d1504ea507be56564c95a3d6f515928f149c7b6.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/75ba11d03a2d56ecec25f807c30af9d1012f9072780c09a8c1a714e4d313b2a6.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/20613613bc423dc4e82b8f17513b14d433fc0a71b56bf7cb753a5be478036758.png",
     "https://www.rinnegatamante.eu/vitadb/screenshots/cd65c91af83926a178213d916d1504ea507be56564c95a3d6f515928f149c7b6.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/75ba11d03a2d56ecec25f807c30af9d1012f9072780c09a8c1a714e4d313b2a6.png"
+    "https://www.rinnegatamante.eu/vitadb/screenshots/75ba11d03a2d56ecec25f807c30af9d1012f9072780c09a8c1a714e4d313b2a6.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/20613613bc423dc4e82b8f17513b14d433fc0a71b56bf7cb753a5be478036758.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/cd65c91af83926a178213d916d1504ea507be56564c95a3d6f515928f149c7b6.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/75ba11d03a2d56ecec25f807c30af9d1012f9072780c09a8c1a714e4d313b2a6.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "VitaDBtoo VPK",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1023",
+      "recommended": true
+    },
+    {
+      "type": "Download",
+      "name": "NeoVitaDB VPK",
       "url": "https://github.com/hatoving/mvalley-old-vita/releases/download/1.0.1/MV.vpk",
       "recommended": false
     },
     {
       "type": "Official Website",
-      "name": "VitaDBtoo Release Page",
+      "name": "VitaDB Release Page",
       "url": "https://github.com/hatoving/MonumentValley"
     },
     {
@@ -45,17 +51,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/hatoving/mvalley-old-vita"
-    },
-    {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1023",
-      "recommended": true
     }
   ],
-  "source_name": "VitaDBtoo",
+  "source_name": "VitaDB",
   "source_id": "1023",
   "source_url": "https://github.com/hatoving/MonumentValley",
   "release_page": "https://github.com/hatoving/MonumentValley",
-  "updated_at": "2026-08-13T15:34:48.522228+00:00"
+  "updated_at": "2026-08-15T18:26:19.757468+00:00"
 }

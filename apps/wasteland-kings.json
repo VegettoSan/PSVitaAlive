@@ -19,20 +19,21 @@
   "status": "Legacy",
   "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1606-wasteland-kings.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/788bc9baea3c53cc1c0050dc5c32782b5faec8736e5a0b54e0dca19cfc086ef3.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/788bc9baea3c53cc1c0050dc5c32782b5faec8736e5a0b54e0dca19cfc086ef3.png"
+    "https://www.rinnegatamante.eu/vitadb/screenshots/788bc9baea3c53cc1c0050dc5c32782b5faec8736e5a0b54e0dca19cfc086ef3.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/788bc9baea3c53cc1c0050dc5c32782b5faec8736e5a0b54e0dca19cfc086ef3.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "VitaDBtoo VPK",
+      "name": "NeoVitaDB VPK",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/409-WastelandKings.vpk",
       "recommended": true
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com"
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=409",
+      "recommended": false
     },
     {
       "type": "Download",
@@ -41,15 +42,14 @@
       "recommended": false
     },
     {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=409",
-      "recommended": false
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com"
     }
   ],
-  "source_name": "VitaDBtoo",
-  "source_id": "409",
-  "source_url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/409-WastelandKings.vpk",
+  "source_name": "NeoVitaDB",
+  "source_id": "1606",
+  "source_url": "https://github.com",
   "release_page": "",
-  "updated_at": "2026-08-13T15:34:48.659942+00:00"
+  "updated_at": "2026-08-15T18:26:20.370862+00:00"
 }

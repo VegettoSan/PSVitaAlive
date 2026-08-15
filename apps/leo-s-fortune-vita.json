@@ -5,8 +5,8 @@
   "description": "Port of Leo's Fortune for PSVita.",
   "long_description": "This is a wrapper/port of Leo's Fortune for the PS Vita.\nThe port works by loading the official Android ARMv7 executable in memory, resolving its imports with native functions and patching it in order to properly run. By doing so, it's basically as if we emulate a minimalist Android environment in which we run natively the executable as it is.",
   "author_ids": [
-    "claude-ai",
-    "stoicpingu"
+    "stoicpingu",
+    "claude-ai"
   ],
   "category_id": "ports",
   "subcategory_ids": [
@@ -17,20 +17,26 @@
   "requirements": "- libshacccg.suprx\n- kubridge.skprx\n- Game Data Files: Android",
   "size": 2236369,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/03c8278a6838ed6588475a2b95696a443db2aea2c3e381714f7a7c591461a3dd.png",
+  "icon": "https://www.rinnegatamante.eu/vitadb/icons/03c8278a6838ed6588475a2b95696a443db2aea2c3e381714f7a7c591461a3dd.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/03c8278a6838ed6588475a2b95696a443db2aea2c3e381714f7a7c591461a3dd.png"
+    "https://www.rinnegatamante.eu/vitadb/icons/03c8278a6838ed6588475a2b95696a443db2aea2c3e381714f7a7c591461a3dd.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "VitaDBtoo VPK",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1396",
+      "recommended": true
+    },
+    {
+      "type": "Download",
+      "name": "NeoVitaDB VPK",
       "url": "https://github.com/stoicpingu/leos-fortune-vita/releases/download/v1.0/leosfortune.vpk",
       "recommended": false
     },
     {
       "type": "Official Website",
-      "name": "VitaDBtoo Release Page",
+      "name": "VitaDB Release Page",
       "url": "https://github.com/stoicpingu/leos-fortune-vita/releases"
     },
     {
@@ -42,17 +48,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/stoicpingu/leos-fortune-vita"
-    },
-    {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1396",
-      "recommended": true
     }
   ],
-  "source_name": "VitaDBtoo",
+  "source_name": "VitaDB",
   "source_id": "1396",
   "source_url": "https://github.com/stoicpingu/leos-fortune-vita",
   "release_page": "https://github.com/stoicpingu/leos-fortune-vita/releases",
-  "updated_at": "2026-08-13T15:34:48.350678+00:00"
+  "updated_at": "2026-08-15T18:26:18.994105+00:00"
 }

@@ -16,15 +16,21 @@
   "requirements": "Not specified",
   "size": 645999,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/27e53b470b66ab033c7f8f8cb125c0a018edc095187ebfbc3d31bc66ed20406f.png",
+  "icon": "https://www.rinnegatamante.eu/vitadb/icons/27e53b470b66ab033c7f8f8cb125c0a018edc095187ebfbc3d31bc66ed20406f.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c5f0867464400e02d768941712f05094c6bea282fc9519bc9ced91d89292c5ca.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/aa83a3dba2ad89b1cbc314bd800fd93c1e93ab4362f255ddd058a1027c26c372.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/84598c8624f6f1993e286d231fcb4176c088e1b41273a8cf78569e3e6e1ebef8.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/7b856a9b43ef12cccedcc976d63d14856dbe00311e12a493b20852f11ef3a096.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/c5f0867464400e02d768941712f05094c6bea282fc9519bc9ced91d89292c5ca.png"
+    "https://www.rinnegatamante.eu/vitadb/screenshots/c5f0867464400e02d768941712f05094c6bea282fc9519bc9ced91d89292c5ca.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/aa83a3dba2ad89b1cbc314bd800fd93c1e93ab4362f255ddd058a1027c26c372.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/84598c8624f6f1993e286d231fcb4176c088e1b41273a8cf78569e3e6e1ebef8.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/7b856a9b43ef12cccedcc976d63d14856dbe00311e12a493b20852f11ef3a096.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c5f0867464400e02d768941712f05094c6bea282fc9519bc9ced91d89292c5ca.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=577",
+      "recommended": true
+    },
     {
       "type": "Download",
       "name": "VitaDBtoo VPK",
@@ -33,24 +39,18 @@
     },
     {
       "type": "Official Website",
-      "name": "VitaDBtoo Release Page",
+      "name": "VitaDB Release Page",
       "url": "https://github.com/JJH47E/snake/releases"
     },
     {
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/JJH47E/snake"
-    },
-    {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=577",
-      "recommended": true
     }
   ],
-  "source_name": "VitaDBtoo",
+  "source_name": "VitaDB",
   "source_id": "577",
   "source_url": "https://github.com/JJH47E/snake",
   "release_page": "https://github.com/JJH47E/snake/releases",
-  "updated_at": "2026-08-13T15:34:48.612010+00:00"
+  "updated_at": "2026-08-15T18:26:20.182720+00:00"
 }

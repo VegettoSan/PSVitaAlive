@@ -9,22 +9,28 @@
   ],
   "category_id": "ports",
   "subcategory_ids": [
-    "puzzle"
+    "other"
   ],
   "version": "v.1.1",
   "version_date": "2024-10-08",
   "requirements": "Not specified",
   "size": 61468773,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/61267364f4d0060e403f0d86a737163fe39c9a8270943562bdfd58810a467327.png",
+  "icon": "https://www.rinnegatamante.eu/vitadb/icons/61267364f4d0060e403f0d86a737163fe39c9a8270943562bdfd58810a467327.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/51dde40c0c2bfe97d76a3810310aad0f339f45255feaf855a2ed77e66d2c541f.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/375aef8885e624026b9d8b01579f05a99ac48b8f93806210d430bd5b1916ea78.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/2e9392d2cc19e4b1df25d5e0599af05fcce066f813026d30810bbfbf851d693a.png",
     "https://www.rinnegatamante.eu/vitadb/screenshots/51dde40c0c2bfe97d76a3810310aad0f339f45255feaf855a2ed77e66d2c541f.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/375aef8885e624026b9d8b01579f05a99ac48b8f93806210d430bd5b1916ea78.png"
+    "https://www.rinnegatamante.eu/vitadb/screenshots/375aef8885e624026b9d8b01579f05a99ac48b8f93806210d430bd5b1916ea78.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/2e9392d2cc19e4b1df25d5e0599af05fcce066f813026d30810bbfbf851d693a.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/51dde40c0c2bfe97d76a3810310aad0f339f45255feaf855a2ed77e66d2c541f.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/375aef8885e624026b9d8b01579f05a99ac48b8f93806210d430bd5b1916ea78.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1237",
+      "recommended": true
+    },
     {
       "type": "Download",
       "name": "VitaDBtoo VPK",
@@ -33,24 +39,18 @@
     },
     {
       "type": "Official Website",
-      "name": "VitaDBtoo Release Page",
+      "name": "VitaDB Release Page",
       "url": "https://github.com/malone46/Slendrina2DVita"
     },
     {
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/MaloneCZSD/Slendrina2DVita"
-    },
-    {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1237",
-      "recommended": true
     }
   ],
-  "source_name": "VitaDBtoo",
+  "source_name": "VitaDB",
   "source_id": "1237",
   "source_url": "https://github.com/malone46/Slendrina2DVita",
   "release_page": "https://github.com/malone46/Slendrina2DVita",
-  "updated_at": "2026-08-13T15:34:48.430067+00:00"
+  "updated_at": "2026-08-15T18:26:19.354580+00:00"
 }

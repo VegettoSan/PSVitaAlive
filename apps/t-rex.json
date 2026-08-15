@@ -18,25 +18,21 @@
   "status": "Legacy",
   "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1733-t-rex.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/1cd2e24a4bb455d053fcc962faf648fe26475c3187fc8f7d52dc777f97ef704d.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/1cd2e24a4bb455d053fcc962faf648fe26475c3187fc8f7d52dc777f97ef704d.png"
+    "https://www.rinnegatamante.eu/vitadb/screenshots/1cd2e24a4bb455d053fcc962faf648fe26475c3187fc8f7d52dc777f97ef704d.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/1cd2e24a4bb455d053fcc962faf648fe26475c3187fc8f7d52dc777f97ef704d.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "VitaDBtoo VPK",
+      "name": "NeoVitaDB VPK",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/687-trex.vpk",
       "recommended": true
     },
     {
-      "type": "Official Website",
-      "name": "VitaDBtoo Release Page",
-      "url": "https://kyuhen.customprotocol.com/en/submissions/trex/"
-    },
-    {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com"
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=687",
+      "recommended": false
     },
     {
       "type": "Download",
@@ -45,15 +41,19 @@
       "recommended": false
     },
     {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=687",
-      "recommended": false
+      "type": "Official Website",
+      "name": "VitaDB Release Page",
+      "url": "https://kyuhen.customprotocol.com/en/submissions/trex/"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com"
     }
   ],
-  "source_name": "VitaDBtoo",
-  "source_id": "687",
-  "source_url": "https://kyuhen.customprotocol.com/en/submissions/trex/",
-  "release_page": "https://kyuhen.customprotocol.com/en/submissions/trex/",
-  "updated_at": "2026-08-13T15:34:48.585317+00:00"
+  "source_name": "NeoVitaDB",
+  "source_id": "1733",
+  "source_url": "https://github.com",
+  "release_page": "",
+  "updated_at": "2026-08-15T18:26:20.068168+00:00"
 }
