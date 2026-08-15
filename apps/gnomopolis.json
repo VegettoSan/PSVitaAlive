@@ -9,7 +9,9 @@
   ],
   "category_id": "games",
   "subcategory_ids": [
-    "other"
+    "casual",
+    "action",
+    "arcade"
   ],
   "version": "v0.8.203",
   "version_date": "2026-08-12",

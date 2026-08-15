@@ -9,7 +9,8 @@
   ],
   "category_id": "games",
   "subcategory_ids": [
-    "other"
+    "shooter",
+    "platformer"
   ],
   "version": "1.76",
   "version_date": "2024-07-27",
