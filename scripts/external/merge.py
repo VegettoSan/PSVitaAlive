@@ -90,6 +90,15 @@ def merge_group(candidates: list[Candidate]) -> Candidate:
     release = select_release_candidate(candidates, local)
     version_date = _select_version_date(candidates, release, local)
 
+    # version_date is a required VitaHub field. Never manufacture a date from
+    # the current day (or any other unrelated timestamp). A missing date must
+    # fail validation so the source can be reviewed/corrected instead.
+    if not isinstance(version_date, str) or not version_date.strip():
+        raise ValueError(
+            f"Missing version_date for {release.name!r} "
+            f"(title_id={release.title_id!r}, version={release.version!r})"
+        )
+
     def first_value(field):
         if local:
             value = getattr(local, field)
