@@ -18,16 +18,35 @@ def select_newest(candidates: list[Candidate]) -> Candidate:
     return max(candidates, key=version_key)
 
 
+def select_release_candidate(candidates: list[Candidate], local: Candidate | None) -> Candidate:
+    """Select release metadata without turning a source refresh into an update."""
+    if not local:
+        return select_newest(candidates)
+
+    local_version = normalize_version(local.version)
+    external = [item for item in candidates if item.source_id != "local"]
+    newer = [
+        item
+        for item in external
+        if normalize_version(item.version) > local_version
+    ]
+
+    if newer:
+        return select_newest(newer)
+
+    return local
+
+
 def merge_group(candidates: list[Candidate]) -> Candidate:
-    newest = select_newest(candidates)
     local = next((item for item in candidates if item.source_id == "local"), None)
+    release = select_release_candidate(candidates, local)
 
     def first_value(field):
         if local:
             value = getattr(local, field)
             if value not in (None, "", []):
                 return value
-        value = getattr(newest, field)
+        value = getattr(release, field)
         if value not in (None, "", []):
             return value
         for item in candidates:
@@ -50,31 +69,28 @@ def merge_group(candidates: list[Candidate]) -> Candidate:
             if url and url not in screenshots:
                 screenshots.append(url)
 
-    # External catalogs are allowed to omit screenshots. Once all source
-    # candidates have been inspected, use the resolved icon as the final
-    # screenshot fallback. Overrides are applied later and can replace this.
     icon = first_value("icon")
     if not screenshots and icon and any(item.source_id != "local" for item in candidates):
         screenshots = [icon]
 
     return Candidate(
         source_id="merged",
-        source_item_id=local.source_item_id if local else newest.source_item_id,
+        source_item_id=local.source_item_id if local else release.source_item_id,
         title_id=first_value("title_id"),
         name=first_value("name") or "Unnamed Homebrew",
         author_names=authors,
         repository_url=first_value("repository_url"),
         release_page=first_value("release_page"),
-        version=newest.version or first_value("version"),
-        version_date=newest.version_date or first_value("version_date"),
+        version=release.version or first_value("version"),
+        version_date=release.version_date or first_value("version_date"),
         description=first_value("description"),
         long_description=first_value("long_description"),
         requirements=first_value("requirements"),
         changelog=first_value("changelog"),
         icon=icon,
         screenshots=screenshots[:5],
-        download_url=newest.download_url or first_value("download_url"),
-        size=newest.size or first_value("size"),
+        download_url=release.download_url or first_value("download_url"),
+        size=release.size or first_value("size"),
         category_raw=local.category_raw if local and local.category_raw else first_value("category_raw"),
         platform="vita",
     )
