@@ -63,9 +63,51 @@ vitadb = normalize_vitadb({
 })
 assert vitadb.source_id == "vitadb"
 assert vitadb.title_id == "TEST00001"
-assert vitadb.category_raw == "port"
+assert vitadb.category_raw == "game"  # type 1 = Original Game (NeoVitaDB/VitaDBtoo)
 assert len(vitadb.screenshots) == 2
 assert vitadb.download_url == "https://example/app.vpk"
+
+vitadb_port = normalize_vitadb({
+    "id": 124,
+    "name": "Example Port",
+    "icon": "https://example/icon.png",
+    "version": "1.0",
+    "author": "ExampleDev",
+    "type": "2",
+    "date": "2026-08-12",
+    "titleid": "PORT00001",
+    "url": "https://example/port.vpk",
+    "size": "1",
+})
+assert vitadb_port.category_raw == "port"  # type 2 = Game Port
+
+vitadb_util = normalize_vitadb({
+    "id": 125,
+    "name": "Example Utility",
+    "icon": "https://example/icon.png",
+    "version": "1.0",
+    "author": "ExampleDev",
+    "type": "4",
+    "date": "2026-08-12",
+    "titleid": "UTIL00001",
+    "url": "https://example/util.vpk",
+    "size": "1",
+})
+assert vitadb_util.category_raw == "utility"  # type 4 = Utility
+
+vitadb_emu = normalize_vitadb({
+    "id": 126,
+    "name": "Example Emulator",
+    "icon": "https://example/icon.png",
+    "version": "1.0",
+    "author": "ExampleDev",
+    "type": "5",
+    "date": "2026-08-12",
+    "titleid": "EMUL00001",
+    "url": "https://example/emu.vpk",
+    "size": "1",
+})
+assert vitadb_emu.category_raw == "emulator"  # type 5 = Emulator
 
 with tempfile.TemporaryDirectory() as temp:
     root = Path(temp)
