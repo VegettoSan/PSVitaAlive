@@ -9,7 +9,8 @@
   ],
   "category_id": "games",
   "subcategory_ids": [
-    "other"
+    "arcade",
+    "casual"
   ],
   "version": "Demo",
   "version_date": "2026-08-12",
