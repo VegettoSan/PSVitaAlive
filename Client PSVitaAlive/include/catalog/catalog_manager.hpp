@@ -30,6 +30,8 @@ public:
     bool init();
     void shutdown();
     bool request(ui::CatalogType catalog);
+    /** True while a load is in flight (UI must ignore further tab switches). */
+    bool isBusy() const;
     Status status() const;
     bool takeReady(std::vector<ui::CatalogItem>& outItems, ui::CatalogType& catalog);
 
@@ -40,6 +42,9 @@ private:
 
     ui::CatalogType requestedCatalog_ = ui::CatalogType::Homebrew;
     bool requestPending_ = false;
+    /** Bumped on every request; worker only publishes matching generation. */
+    unsigned requestGeneration_ = 0;
+    unsigned loadingGeneration_ = 0;
 
     Status status_;
     std::vector<ui::CatalogItem> readyItems_;
