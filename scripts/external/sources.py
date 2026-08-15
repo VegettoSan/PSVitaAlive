@@ -64,6 +64,7 @@ class Candidate:
     size: int | None
     category_raw: str | None
     platform: str | None
+    tags: list[str] | None = None
 
 
 def fetch_json(url: str):
@@ -286,14 +287,77 @@ def _int_or_none(value):
         return None
 
 
+
+# Canonical VitaDB / VitaDBtoo / NeoVitaDB type → PSVitaAlive slug.
+# Numeric values match NeoVitaDB categories.json and the live VitaDBtoo feed:
+#   1 = Original Game, 2 = Game Port, 4 = Utility, 5 = Emulator.
+# Plugins are usually published in a separate list (no type field).
+EXTERNAL_TYPE_ALIASES = {
+    "1": "game",
+    "2": "port",
+    "4": "utility",
+    "5": "emulator",
+    "0": "game",  # legacy / defensive
+    "3": "emulator",  # legacy / defensive
+    "game": "game",
+    "games": "game",
+    "original": "game",
+    "original game": "game",
+    "original_game": "game",
+    "ps vita game": "game",
+    "port": "port",
+    "ports": "port",
+    "game port": "port",
+    "game_port": "port",
+    "utility": "utility",
+    "utilities": "utility",
+    "tool": "utility",
+    "tools": "utility",
+    "app": "utility",
+    "application": "utility",
+    "emulator": "emulator",
+    "emulators": "emulator",
+    "emu": "emulator",
+    "plugin": "plugin",
+    "plugins": "plugin",
+}
+
+
+def canonicalize_external_type(value) -> str | None:
+    if value is None:
+        return None
+    key = str(value).strip().lower()
+    if not key:
+        return None
+    return EXTERNAL_TYPE_ALIASES.get(key, key)
+
+
+def parse_tags(value) -> list[str]:
+    """Normalize free-form tags from VitaDB-family feeds into a clean list."""
+    if value is None:
+        return []
+    parts: list[str] = []
+    if isinstance(value, list):
+        for item in value:
+            if item is None:
+                continue
+            parts.extend(str(item).replace(";", ",").split(","))
+    else:
+        parts.extend(str(value).replace(";", ",").split(","))
+    out: list[str] = []
+    seen: set[str] = set()
+    for part in parts:
+        tag = part.strip().lower()
+        if not tag or tag in seen:
+            continue
+        seen.add(tag)
+        out.append(tag)
+    return out
+
+
 def normalize_vitadb(raw: dict) -> Candidate:
     """Normalize the official VitaDB list_hbs_json.php format."""
-    type_value = str(raw.get("type") if raw.get("type") is not None else "").strip().lower()
-    type_map = {
-        "0": "game", "1": "port", "2": "utility", "3": "emulator", "4": "plugin",
-        "game": "game", "port": "port", "utility": "utility", "emulator": "emulator", "plugin": "plugin",
-    }
-    category_raw = type_map.get(type_value, type_value or None)
+    category_raw = canonicalize_external_type(raw.get("type") if raw.get("type") is not None else raw.get("category"))
     return Candidate(
         source_id="vitadb",
         source_item_id=str(raw.get("id")) if raw.get("id") is not None else None,
@@ -313,6 +377,7 @@ def normalize_vitadb(raw: dict) -> Candidate:
         download_url=_first_url(raw.get("url") or raw.get("download_url") or raw.get("download")),
         size=_int_or_none(raw.get("size")),
         category_raw=category_raw,
+        tags=parse_tags(raw.get("tags")),
         platform="vita",
     )
 
@@ -336,7 +401,8 @@ def normalize_vitadbtoo(raw: dict) -> Candidate:
         screenshots=resolve_media_list("vitadbtoo", raw.get("screenshots"), "screenshot"),
         download_url=_first_url(raw.get("url") or raw.get("download_url") or raw.get("download")),
         size=_int_or_none(raw.get("size")),
-        category_raw=raw.get("type") or raw.get("category"),
+        category_raw=canonicalize_external_type(raw.get("type") if raw.get("type") is not None else raw.get("category")),
+        tags=parse_tags(raw.get("tags")),
         platform="vita",
     )
 
@@ -362,7 +428,8 @@ def normalize_neovitadb(raw: dict) -> Candidate:
         screenshots=screenshots,
         download_url=_first_url(raw.get("url") or raw.get("download_url")),
         size=_int_or_none(raw.get("size") or raw.get("size_bytes")),
-        category_raw=raw.get("category") or raw.get("type"),
+        category_raw=canonicalize_external_type(raw.get("category") if raw.get("category") is not None else raw.get("type")),
+        tags=parse_tags(raw.get("tags")),
         platform=raw.get("platform") or "vita",
     )
 
@@ -395,5 +462,6 @@ def normalize_psvitaalive(raw: dict) -> Candidate:
         download_url=download,
         size=_int_or_none(raw.get("size")),
         category_raw=raw.get("category_id"),
+        tags=parse_tags(raw.get("tags") or raw.get("subcategory_ids")),
         platform="vita",
     )

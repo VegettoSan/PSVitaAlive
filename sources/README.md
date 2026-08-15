@@ -32,6 +32,25 @@ Para seleccionar una descarga recomendada, el pipeline actual compara primero ve
 
 `category_map.json` traduce valores de las fuentes externas al vocabulario oficial de PS Vita Alive Store. Una fuente externa no puede crear libremente nuevas categorías o subcategorías durante la importación.
 
+### Tipos VitaDB / VitaDBtoo / NeoVitaDB
+
+Los tres feeds usan el mismo esquema numérico (documentado en NeoVitaDB `categories.json`):
+
+| type | Significado | `category_id` PSVitaAlive |
+|-----:|-------------|---------------------------|
+| 1 | Original Game | `games` |
+| 2 | Game Port | `ports` |
+| 4 | Utility | `utilities` |
+| 5 | Emulator | `emulators` |
+
+También se aceptan los slugs textuales (`game`, `port`, `utility`, `emulator`, `plugin`, …).
+
+Los **plugins** suelen llegar en un listado aparte (sin `type`); se mapean a `plugins`.
+
+### Tags → subcategorías
+
+Cuando la fuente trae `tags` (p. ej. `puzzle`, `rpg`, `fps`, `filebrowser`), el agregador los traduce a `subcategory_ids` oficiales mediante `tag_to_subcategory` en el mismo JSON. Solo se conservan IDs que existan en la categoría destino; se eliminan duplicados. Si no hay tag usable, se usa `other`.
+
 ## Recursos multimedia
 
 Los catálogos externos pueden proporcionar rutas relativas como `icon.png` o `screenshot1.png`. PS Vita Alive Store debe convertirlas a URLs públicas absolutas cuando la fuente realmente publique esos recursos.

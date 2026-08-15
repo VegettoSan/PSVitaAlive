@@ -109,25 +109,68 @@ def group_candidates(candidates):
     return groups
 
 
-def category_map():
+def category_map_config():
     if not CATEGORY_MAP.exists():
-        return {}
+        return {"mappings": {}, "tag_to_subcategory": {}}
     with CATEGORY_MAP.open(encoding="utf-8") as f:
-        return json.load(f).get("mappings", {})
+        data = json.load(f)
+    return {
+        "mappings": data.get("mappings", {}) or {},
+        "tag_to_subcategory": data.get("tag_to_subcategory", {}) or {},
+    }
+
+
+def category_map():
+    return category_map_config()["mappings"]
+
+
+def _dedupe_preserve(items: list[str]) -> list[str]:
+    seen: set[str] = set()
+    out: list[str] = []
+    for item in items:
+        if not item or item in seen:
+            continue
+        seen.add(item)
+        out.append(item)
+    return out
+
+
+def _subcategories_from_tags(tags, allowed: set[str], tag_map: dict) -> list[str]:
+    """Map free-form external tags onto official subcategory ids for this category."""
+    if not tags:
+        return []
+    result: list[str] = []
+    for raw_tag in tags:
+        tag = str(raw_tag).strip().lower()
+        if not tag:
+            continue
+        if tag in allowed:
+            result.append(tag)
+            continue
+        mapped = tag_map.get(tag)
+        if mapped and mapped in allowed and mapped != "other":
+            result.append(mapped)
+    return _dedupe_preserve(result)
 
 
 def normalize_categories(candidate: Candidate, categories, local_app: dict | None = None):
     valid = {item.get("id"): item for item in categories}
+    cfg = category_map_config()
+    mappings = cfg["mappings"]
+    tag_map = cfg["tag_to_subcategory"]
 
+    # Local curated apps always win for category/subcategory.
     if local_app:
         category_id = local_app.get("category_id")
         category = valid.get(category_id)
         if category:
             allowed = {item.get("id") for item in category.get("subcategories", [])}
             subs = [item for item in local_app.get("subcategory_ids", []) if item in allowed]
-            return category_id, subs
+            if not subs:
+                tags = getattr(candidate, "tags", None) or []
+                subs = _subcategories_from_tags(tags, allowed, tag_map)
+            return category_id, subs or (["other"] if "other" in allowed else ([next(iter(allowed))] if allowed else []))
 
-    mappings = category_map()
     raw = str(candidate.category_raw or "").strip().lower()
     mapping = mappings.get(raw)
     if not mapping:
@@ -135,10 +178,18 @@ def normalize_categories(candidate: Candidate, categories, local_app: dict | Non
     category_id = mapping.get("category_id") if mapping else None
     if category_id not in valid:
         return None, []
-    allowed = [item.get("id") for item in valid[category_id].get("subcategories", [])]
-    requested = list(mapping.get("subcategory_ids", [])) if mapping else []
-    subs = [item for item in requested if item in allowed]
-    return category_id, subs or (["other"] if "other" in allowed else ([allowed[0]] if allowed else []))
+
+    allowed_list = [item.get("id") for item in valid[category_id].get("subcategories", [])]
+    allowed = set(allowed_list)
+
+    tags = getattr(candidate, "tags", None) or []
+    subs = _subcategories_from_tags(tags, allowed, tag_map)
+
+    if not subs:
+        requested = list(mapping.get("subcategory_ids", [])) if mapping else []
+        subs = [item for item in requested if item in allowed]
+
+    return category_id, subs or (["other"] if "other" in allowed else ([allowed_list[0]] if allowed_list else []))
 
 
 def author_profile(author_id, name, repo_url=None):
