@@ -4,6 +4,7 @@
 #include "installer/homebrew_installer.hpp"
 #include "installer/vita_installer.hpp"
 #include "storage/storage_manager.hpp"
+#include "diagnostic_logger.hpp"
 
 #include <psp2/kernel/clib.h>
 #include <algorithm>
@@ -13,7 +14,9 @@ namespace psvitaalive {
 namespace {
 std::string lowerExtension(const std::string& path) {
     std::string out = FormatDetector::extensionOf(path);
-    std::transform(out.begin(), out.end(), out.begin(), [](unsigned char c) { return static_cast<char>(std::tolower(c)); });
+    std::transform(out.begin(), out.end(), out.begin(), [](unsigned char c) {
+        return static_cast<char>(std::tolower(c));
+    });
     return out;
 }
 }
@@ -36,6 +39,13 @@ const char* toString(InstallDispatchResult result) {
 void InstallDispatcher::setError(const std::string& message) {
     lastError_ = message;
     sceClibPrintf("[InstallDispatcher] %s\n", lastError_.c_str());
+    diagnostics::log(std::string("[InstallDispatcher] ") + lastError_);
+}
+
+void InstallDispatcher::clearResultMeta() {
+    lastTitleId_.clear();
+    lastInstallPath_.clear();
+    lastLiveAreaOk_ = false;
 }
 
 InstallDispatchResult InstallDispatcher::installFile(
@@ -45,6 +55,7 @@ InstallDispatchResult InstallDispatcher::installFile(
     const std::string& zipDestination
 ) {
     lastError_.clear();
+    clearResultMeta();
     if (path.empty()) { setError("empty installation path"); return InstallDispatchResult::InvalidArgument; }
     StorageManager st;
     if (!st.exists(path)) { setError("installation file not found"); return InstallDispatchResult::IoError; }
@@ -60,6 +71,7 @@ InstallDispatchResult InstallDispatcher::installFile(
     FormatDetector detector;
     const DetectResult detected = detector.detectFile(path);
     const std::string ext = lowerExtension(path);
+    diagnostics::log(std::string("[InstallDispatcher] detect format=") + toString(detected.format) + " ext=" + ext);
 
     if (detected.format == FileFormat::Vpk || ext == "vpk") {
         HomebrewInstaller installer;
@@ -84,7 +96,12 @@ InstallDispatchResult InstallDispatcher::installFile(
             shouldCancel,
             true
         );
+        lastTitleId_ = installer.lastTitleId();
+        lastInstallPath_ = installer.lastInstallPath();
+        lastLiveAreaOk_ = installer.lastLiveAreaOk();
         if (result == InstallResult::Ok) {
+            diagnostics::log(std::string("[InstallDispatcher] VPK OK path=") + lastInstallPath_ +
+                " liveArea=" + (lastLiveAreaOk_ ? "yes" : "no"));
             if (onProgress) {
                 InstallDispatchProgress p;
                 p.stage = InstallDispatchProgress::Completed;
@@ -125,7 +142,11 @@ InstallDispatchResult InstallDispatcher::installFile(
             shouldCancel,
             true
         );
+        // PKG path: Promoter may create LiveArea entry; we do not always know TITLE_ID.
+        lastInstallPath_ = "LiveArea (PKG via Promoter)";
+        lastLiveAreaOk_ = (result == VitaInstallResult::Ok);
         if (result == VitaInstallResult::Ok) {
+            diagnostics::log("[InstallDispatcher] PKG OK (promoter)");
             if (onProgress) {
                 InstallDispatchProgress p;
                 p.stage = InstallDispatchProgress::Completed;
@@ -160,8 +181,11 @@ InstallDispatchResult InstallDispatcher::installFile(
             },
             shouldCancel
         );
+        lastInstallPath_ = zipDestination;
+        lastLiveAreaOk_ = false; // ZIP extract is not a LiveArea promote
         if (result == ZipResult::Cancelled) { setError("ZIP extraction cancelled"); return InstallDispatchResult::Cancelled; }
         if (result != ZipResult::Ok) { setError(extractor.lastError()); return InstallDispatchResult::InstallFailed; }
+        diagnostics::log(std::string("[InstallDispatcher] ZIP extracted to ") + zipDestination);
         if (onProgress) {
             InstallDispatchProgress p;
             p.stage = InstallDispatchProgress::Completed;

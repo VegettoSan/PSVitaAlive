@@ -8,11 +8,17 @@
 #include <cstring>
 
 namespace psvitaalive {
+namespace {
+// Keep success/error panel visible long enough to read; user can dismiss earlier.
+constexpr uint64_t RESULT_AUTO_DISMISS_MS = 8000;
+}
 
 InstallController::InstallController() : downloads_(http_) {
     std::memset(message_, 0, sizeof(message_));
     std::memset(fileName_, 0, sizeof(fileName_));
     std::memset(stage_, 0, sizeof(stage_));
+    std::memset(installPath_, 0, sizeof(installPath_));
+    std::memset(titleId_, 0, sizeof(titleId_));
 }
 
 InstallController::~InstallController() { shutdown(); }
@@ -51,12 +57,32 @@ void InstallController::shutdown() {
     http_.shutdown();
     activeJobId_.clear();
     activeZipDestination_.clear();
+    activeFileName_.clear();
     workerDone_.store(true);
     setState(InstallStatus::State::Idle, "Stopped");
     diagnostics::log("[Installer] shutdown");
 }
 
-void InstallController::cancel(){const auto currentState=static_cast<InstallStatus::State>(state_.load());if(currentState!=InstallStatus::State::Downloading||activeJobId_.empty())return;downloads_.cancel(activeJobId_);setStage("Cancelling");setState(InstallStatus::State::Downloading,"Cancelling download...");diagnostics::log(std::string("[Installer] cancel requested job=")+activeJobId_);}
+void InstallController::cancel() {
+    const auto currentState = static_cast<InstallStatus::State>(state_.load());
+    if (currentState != InstallStatus::State::Downloading || activeJobId_.empty()) return;
+    downloads_.cancel(activeJobId_);
+    setStage("Cancelling");
+    setState(InstallStatus::State::Downloading, "Cancelling download...");
+    diagnostics::log(std::string("[Installer] cancel requested job=") + activeJobId_);
+}
+
+void InstallController::acknowledgeResult() {
+    const auto s = static_cast<InstallStatus::State>(state_.load());
+    if (s != InstallStatus::State::Completed && s != InstallStatus::State::Failed) return;
+    diagnostics::log("[Installer] result acknowledged by UI");
+    resultShownAtMs_.store(0);
+    liveAreaOk_.store(false);
+    setInstallPath("");
+    setTitleId("");
+    setStage("Idle");
+    setState(InstallStatus::State::Idle, "Ready");
+}
 
 bool InstallController::busy() const {
     const auto s = static_cast<InstallStatus::State>(state_.load());
@@ -65,6 +91,12 @@ bool InstallController::busy() const {
 
 bool InstallController::requestInstall(const std::string& url, const std::string& fileName, const std::string& zipDestination) {
     if (url.empty() || fileName.empty() || busy()) return false;
+
+    // Allow starting a new job after a result panel is still showing.
+    const auto s = static_cast<InstallStatus::State>(state_.load());
+    if (s == InstallStatus::State::Completed || s == InstallStatus::State::Failed) {
+        acknowledgeResult();
+    }
 
     if (workerThread_ >= 0 && workerDone_.load()) {
         sceKernelWaitThreadEnd(workerThread_, nullptr, nullptr);
@@ -82,9 +114,14 @@ bool InstallController::requestInstall(const std::string& url, const std::string
 
     activeJobId_ = jobId;
     activeZipDestination_ = zipDestination;
+    activeFileName_ = fileName;
     current_.store(0);
     total_.store(0);
     speed_.store(0);
+    liveAreaOk_.store(false);
+    resultShownAtMs_.store(0);
+    setInstallPath("");
+    setTitleId("");
     setFileName(fileName.c_str());
     setStage("Downloading");
     workerDone_.store(false);
@@ -118,6 +155,9 @@ bool InstallController::requestInstall(const std::string& url, const std::string
 }
 
 InstallStatus InstallController::status() const {
+    // Auto-dismiss long-lived result panels so the UI does not stick forever.
+    const_cast<InstallController*>(this)->maybeAutoAcknowledgeResult();
+
     InstallStatus result;
     result.state = static_cast<InstallStatus::State>(state_.load());
     result.current = current_.load();
@@ -126,7 +166,22 @@ InstallStatus InstallController::status() const {
     result.fileName = fileName_;
     result.stage = stage_;
     result.message = message_;
+    result.installPath = installPath_;
+    result.titleId = titleId_;
+    result.liveAreaOk = liveAreaOk_.load();
     return result;
+}
+
+void InstallController::maybeAutoAcknowledgeResult() {
+    const auto s = static_cast<InstallStatus::State>(state_.load());
+    if (s != InstallStatus::State::Completed && s != InstallStatus::State::Failed) return;
+    const uint64_t shown = resultShownAtMs_.load();
+    if (shown == 0) return;
+    const uint64_t now = sceKernelGetSystemTimeWide() / 1000ULL;
+    if (now >= shown && (now - shown) >= RESULT_AUTO_DISMISS_MS) {
+        diagnostics::log("[Installer] result auto-dismiss after timeout");
+        acknowledgeResult();
+    }
 }
 
 void InstallController::setMessage(const char* text) {
@@ -140,6 +195,14 @@ void InstallController::setFileName(const char* text) {
 void InstallController::setStage(const char* text) {
     if (!text) text = "";
     sceClibSnprintf(stage_, sizeof(stage_), "%s", text);
+}
+void InstallController::setInstallPath(const char* text) {
+    if (!text) text = "";
+    sceClibSnprintf(installPath_, sizeof(installPath_), "%s", text);
+}
+void InstallController::setTitleId(const char* text) {
+    if (!text) text = "";
+    sceClibSnprintf(titleId_, sizeof(titleId_), "%s", text);
 }
 void InstallController::setState(InstallStatus::State state, const char* message) {
     setMessage(message);
@@ -157,7 +220,21 @@ int InstallController::workerMain() {
     const bool downloaded = downloads_.processQueue();
     DownloadJob* job = downloads_.findJob(activeJobId_);
 
-    if(!downloaded||!job||job->state!=DownloadState::Completed){const bool cancelled=job&&job->state==DownloadState::Cancelled;const std::string error=cancelled?"Download cancelled":(job&&!job->lastError.empty()?job->lastError:"Download failed");setStage(cancelled?"Cancelled":"Error");setState(InstallStatus::State::Failed,error.c_str());diagnostics::log(std::string("[Installer] ")+(cancelled?"download cancelled":"download failed")+": "+error);if(!activeJobId_.empty())downloads_.cleanupCompletedJob(activeJobId_);activeJobId_.clear();sceKernelDelayThread(cancelled?700*1000:2500*1000);setState(InstallStatus::State::Idle,"Ready");workerDone_.store(true);return 0;}
+    if (!downloaded || !job || job->state != DownloadState::Completed) {
+        const bool cancelled = job && job->state == DownloadState::Cancelled;
+        const std::string error = cancelled ? "Download cancelled"
+            : (job && !job->lastError.empty() ? job->lastError : "Download failed");
+        setStage(cancelled ? "Cancelled" : "Error");
+        setState(InstallStatus::State::Failed, error.c_str());
+        liveAreaOk_.store(false);
+        setInstallPath("");
+        diagnostics::log(std::string("[Installer] ") + (cancelled ? "download cancelled" : "download failed") + ": " + error);
+        if (!activeJobId_.empty()) downloads_.cleanupCompletedJob(activeJobId_);
+        activeJobId_.clear();
+        resultShownAtMs_.store(sceKernelGetSystemTimeWide() / 1000ULL);
+        workerDone_.store(true);
+        return 0;
+    }
 
     current_.store(job->downloadedSize);
     total_.store(job->expectedSize ? job->expectedSize : job->downloadedSize);
@@ -182,21 +259,32 @@ int InstallController::workerMain() {
         const std::string error = dispatcher_.lastError().empty() ? "Installation failed" : dispatcher_.lastError();
         setStage("Error");
         setState(InstallStatus::State::Failed, error.c_str());
+        liveAreaOk_.store(false);
+        setInstallPath(dispatcher_.lastInstallPath().c_str());
+        setTitleId(dispatcher_.lastTitleId().c_str());
         diagnostics::log(std::string("[Installer] installation failed: ") + error);
-        // Failed installs must not leave the downloaded payload, partial file,
-        // metadata, or job directory behind.
         downloads_.cleanupCompletedJob(activeJobId_);
         activeJobId_.clear();
-        sceKernelDelayThread(2500 * 1000);
-        setState(InstallStatus::State::Idle, "Ready");
+        resultShownAtMs_.store(sceKernelGetSystemTimeWide() / 1000ULL);
     } else {
+        setInstallPath(dispatcher_.lastInstallPath().c_str());
+        setTitleId(dispatcher_.lastTitleId().c_str());
+        liveAreaOk_.store(dispatcher_.lastLiveAreaOk());
+
+        char okMsg[320];
+        if (!dispatcher_.lastInstallPath().empty()) {
+            sceClibSnprintf(okMsg, sizeof(okMsg), "Installed at %s", dispatcher_.lastInstallPath().c_str());
+        } else {
+            sceClibSnprintf(okMsg, sizeof(okMsg), "Installation completed");
+        }
         setStage("Completed");
-        setState(InstallStatus::State::Completed, "Installation completed");
-        diagnostics::log("[Installer] installation completed");
+        setState(InstallStatus::State::Completed, okMsg);
+        diagnostics::log(std::string("[Installer] installation completed path=") +
+            dispatcher_.lastInstallPath() + " titleId=" + dispatcher_.lastTitleId() +
+            " liveArea=" + (dispatcher_.lastLiveAreaOk() ? "yes" : "no"));
         downloads_.cleanupCompletedJob(activeJobId_);
         activeJobId_.clear();
-        sceKernelDelayThread(2500 * 1000);
-        setState(InstallStatus::State::Idle, "Ready");
+        resultShownAtMs_.store(sceKernelGetSystemTimeWide() / 1000ULL);
     }
 
     workerDone_.store(true);
