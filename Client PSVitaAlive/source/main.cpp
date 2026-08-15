@@ -128,7 +128,17 @@ int main(){
                 ++preloadIndex;
                 if(preloadIndex<catalogCount){const auto next=(psvitaalive::ui::CatalogType)preloadIndex;screen.setCatalogLoading(true,psvitaalive::ui::catalogName(next),0,0,"Checking next catalog cache...");catalogs.request(next);}
                 else{startupCatalogs=false;startupImageChoicePending=true;startupImagesJobs.clear();startupImageSeen.clear();for(const auto&items:startupCatalogItems)collectCatalogImages(startupImagesJobs,startupImageSeen,images,items,false);screen.setCatalogLoading(false,"",0,(uint64_t)startupImagesJobs.size(),"Catalogs ready");psvitaalive::diagnostics::log("[Startup] all catalogs ready; waiting for image warmup choice");}
-            }else{screen.setCatalogItems(std::move(ready));screen.setActiveCatalog(readyCatalog);screen.setCatalogLoading(false,psvitaalive::ui::catalogName(readyCatalog),1,1,"Ready");}
+            }else{
+                // Only clear loading if nothing else is still in flight (e.g. user
+                // already requested another tab before this result was published).
+                screen.setCatalogItems(std::move(ready));
+                screen.setActiveCatalog(readyCatalog);
+                if(catalogs.isBusy()){
+                    screen.setCatalogLoading(true,psvitaalive::ui::catalogName(readyCatalog),0,0,"Loading next catalog...");
+                }else{
+                    screen.setCatalogLoading(false,psvitaalive::ui::catalogName(readyCatalog),1,1,"Ready");
+                }
+            }
         }
 
         if(startupImageChoicePending){
@@ -145,7 +155,19 @@ int main(){
             }
         }
 
-        const psvitaalive::InstallStatus cur=installer.status();using InstallState=psvitaalive::InstallStatus::State;const bool active=cur.state==InstallState::Downloading||cur.state==InstallState::Installing||cur.state==InstallState::Completed||cur.state==InstallState::Failed;int outcome=0;if(cur.state==InstallState::Completed)outcome=1;else if(cur.state==InstallState::Failed)outcome=2;screen.setInstallProgress(active,cur.current,cur.total,cur.bytesPerSecond,cur.stage,cur.fileName,cur.message,outcome,cur.liveAreaOk,cur.installPath,cur.titleId);
+        
+        // Keep L/R locked for the whole CatalogManager busy window (not only startup).
+        if(!startupCatalogs){
+            const auto csBusy=catalogs.status();
+            if(catalogs.isBusy()||csBusy.state==psvitaalive::CatalogManager::State::Loading){
+                screen.setCatalogLoading(true,
+                    csBusy.label.empty()?psvitaalive::ui::catalogName(csBusy.catalog):csBusy.label,
+                    csBusy.current,csBusy.total,
+                    csBusy.message.empty()?"Loading catalog...":csBusy.message);
+            }
+        }
+
+const psvitaalive::InstallStatus cur=installer.status();using InstallState=psvitaalive::InstallStatus::State;const bool active=cur.state==InstallState::Downloading||cur.state==InstallState::Installing||cur.state==InstallState::Completed||cur.state==InstallState::Failed;int outcome=0;if(cur.state==InstallState::Completed)outcome=1;else if(cur.state==InstallState::Failed)outcome=2;screen.setInstallProgress(active,cur.current,cur.total,cur.bytesPerSecond,cur.stage,cur.fileName,cur.message,outcome,cur.liveAreaOk,cur.installPath,cur.titleId);
     }
 
     screen.setInstallProgress(false,0,0,0,"","","",0,false,"","");screen.shutdown();installer.shutdown();catalogs.shutdown();images.shutdown();psvitaalive::diagnostics::log("PSVitaAlive session END");psvitaalive::diagnostics::shutdown();sceKernelExitProcess(0);return 0;
