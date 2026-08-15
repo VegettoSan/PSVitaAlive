@@ -24,13 +24,13 @@ def parse_catalog_date(value):
 
 
 def sort_latest_first(apps):
+    """Sort Homebrew releases strictly by their actual version date."""
     indexed = list(enumerate(apps))
 
     def key(item):
         index, app = item
         version_date = parse_catalog_date(app.get("version_date"))
-        updated_at = parse_catalog_date(app.get("updated_at"))
-        return (version_date, updated_at, -index)
+        return (version_date, -index)
 
     indexed.sort(key=key, reverse=True)
     return [app for _, app in indexed]
