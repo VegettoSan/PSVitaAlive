@@ -338,7 +338,13 @@ InstallResult HomebrewInstaller::installVpk(
     const DetectResult det = detector.detectFile(vpkPath);
     const std::string ext = FormatDetector::extensionOf(vpkPath);
     logLine(std::string("FormatDetector: format=") + toString(det.format) + " extension=" + ext);
-    if (ext != "vpk" || det.format != FileFormat::Vpk) {
+    // VPK is a ZIP container. Accept explicit .vpk or ZIP magic (redirectors may
+    // leave odd extensions even when the bytes are a valid package).
+    const bool looksLikeVpk =
+        (ext == "vpk" && (det.format == FileFormat::Vpk || det.format == FileFormat::Zip)) ||
+        (det.format == FileFormat::Vpk) ||
+        (det.format == FileFormat::Zip && (ext.empty() || ext == "vpk" || ext == "zip"));
+    if (!looksLikeVpk) {
         setError(std::string("invalid VPK: format=") + toString(det.format) + " ext=" + ext);
         return InstallResult::NotVpk;
     }
