@@ -50,9 +50,18 @@ public:
 
     const std::string& lastError() const { return lastError_; }
     int lastPromoteResult() const { return lastPromoteResult_; }
+    /** TITLE_ID from param.sfo when available (empty on failure). */
+    const std::string& lastTitleId() const { return lastTitleId_; }
+    /** True when ux0:app/<TITLE_ID> tree was verified after promote. */
+    bool lastLiveAreaOk() const { return lastLiveAreaOk_; }
+    /** Install path shown to the user, e.g. ux0:app/ABCD12345 */
+    const std::string& lastInstallPath() const { return lastInstallPath_; }
 
 private:
     std::string lastError_;
+    std::string lastTitleId_;
+    std::string lastInstallPath_;
+    bool lastLiveAreaOk_ = false;
     int lastPromoteResult_ = 0;
     bool pafLoadedByUs_ = false;
     bool promoterLoadedByUs_ = false;

@@ -27,11 +27,20 @@ struct InstallStatus {
     std::string fileName;
     std::string stage;
     std::string message;
+    /** Final install location when known (e.g. ux0:app/TITLEID or ZIP path). */
+    std::string installPath;
+    /** TITLE_ID when known. */
+    std::string titleId;
+    /** True if the app tree / LiveArea entry was verified after promote. */
+    bool liveAreaOk = false;
 };
 
 /**
  * Orchestrates download -> format-specific install/extract -> cleanup.
  * The UI reads status only; it never performs filesystem/network work.
+ *
+ * Completed / Failed stay visible until acknowledgeResult() or a timeout,
+ * so the user can read success/error feedback.
  */
 class InstallController {
 public:
@@ -47,6 +56,8 @@ public:
         const std::string& zipDestination = std::string()
     );
     void cancel();
+    /** User dismissed the success/error result panel (or UI timeout). */
+    void acknowledgeResult();
     InstallStatus status() const;
 
     bool busy() const;
@@ -59,16 +70,21 @@ private:
     SceUID workerThread_ = -1;
     std::string activeJobId_;
     std::string activeZipDestination_;
+    std::string activeFileName_;
 
     std::atomic<int> state_{static_cast<int>(InstallStatus::State::Idle)};
     std::atomic<uint64_t> current_{0};
     std::atomic<uint64_t> total_{0};
     std::atomic<uint64_t> speed_{0};
     std::atomic<bool> workerDone_{true};
+    std::atomic<bool> liveAreaOk_{false};
+    std::atomic<uint64_t> resultShownAtMs_{0};
 
-    char message_[256] = {};
+    char message_[384] = {};
     char fileName_[256] = {};
     char stage_[64] = {};
+    char installPath_[256] = {};
+    char titleId_[32] = {};
 
     static int workerEntry(SceSize args, void* argp);
     int workerMain();
@@ -76,7 +92,10 @@ private:
     void setMessage(const char* text);
     void setFileName(const char* text);
     void setStage(const char* text);
+    void setInstallPath(const char* text);
+    void setTitleId(const char* text);
     void setState(InstallStatus::State state, const char* message);
+    void maybeAutoAcknowledgeResult();
 };
 
 } // namespace psvitaalive

@@ -2,7 +2,6 @@
 
 #include <functional>
 #include <string>
-#include <cstdint>
 
 namespace psvitaalive {
 
@@ -45,12 +44,10 @@ using InstallDispatchCancelFn =
 
 /**
  * InstallDispatcher
- *
  * Decide qué operación utilizar según el formato detectado:
  * - VPK -> HomebrewInstaller / Promoter Utility
  * - PKG -> VitaInstaller / Promoter Utility
  * - ZIP -> ZipExtractor a la ruta elegida por el usuario
- *
  * No maneja descargas ni DRM/licencias.
  */
 class InstallDispatcher {
@@ -62,14 +59,19 @@ public:
         const std::string& zipDestination = std::string()
     );
 
-    const std::string& lastError() const {
-        return lastError_;
-    }
+    const std::string& lastError() const { return lastError_; }
+    const std::string& lastTitleId() const { return lastTitleId_; }
+    const std::string& lastInstallPath() const { return lastInstallPath_; }
+    bool lastLiveAreaOk() const { return lastLiveAreaOk_; }
 
 private:
     std::string lastError_;
+    std::string lastTitleId_;
+    std::string lastInstallPath_;
+    bool lastLiveAreaOk_ = false;
 
     void setError(const std::string& message);
+    void clearResultMeta();
 };
 
 } // namespace psvitaalive
