@@ -5,6 +5,7 @@
   "description": "Fighting game engine.",
   "long_description": "OpenBOR is the ultimate 2D gaming engine with over 10+ years of active development behind it. With OpenBOR you can build anything from simple button mashers to elaborate projects rivaling the most lavish professional offerings. Download one of the dozens of ready to play game modules available here, or grab the development kit and start up one of your own!",
   "author_ids": [
+    "meetpatty",
     "cpasjuste",
     "rsn8887",
     "plombo"
@@ -13,12 +14,12 @@
   "subcategory_ids": [
     "other"
   ],
-  "version": "v4704-rsn8887git-1.2",
+  "version": "v.4704-rsn8887git-1.2",
   "version_date": "2020-10-02",
   "requirements": "Not specified",
   "size": 1026839,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/0410-openbor.png",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/53278376c8056b6609f80851e8e4af90e4b07a0a0cae1181faa317544a66fb15.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/b486e2bcf7658a7e5e45f302f97a82a7d8c5132fc4ca96c0100c741dcd2d5506.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/94cdc3d2728600bfdc9a3c4b0dc66f32af707e24b4700cae0200b02006f5caca.png",
@@ -29,14 +30,9 @@
   "links": [
     {
       "type": "Download",
-      "name": "NeoVitaDB VPK",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/rsn8887/openbor/releases/download/v4704-rsn8887git-1.2/OpenBOR.vpk",
       "recommended": true
-    },
-    {
-      "type": "Official Website",
-      "name": "NeoVitaDB Release Page",
-      "url": "https://github.com/rsn8887/openbor/releases/tag/v4704-rsn8887git-1.2"
     },
     {
       "type": "Official Website",
@@ -44,14 +40,19 @@
       "url": "https://gbatemp.net/threads/release-openbor-vita-port-by-cpasjuste.527852/"
     },
     {
+      "type": "Official Website",
+      "name": "NeoVitaDB Release Page",
+      "url": "https://github.com/rsn8887/openbor/releases/tag/v4704-rsn8887git-1.2"
+    },
+    {
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/rsn8887/openbor"
     }
   ],
-  "source_name": "NeoVitaDB",
+  "source_name": "VitaDBtoo",
   "source_id": "410",
   "source_url": "https://github.com/rsn8887/openbor",
-  "release_page": "https://github.com/rsn8887/openbor/releases/tag/v4704-rsn8887git-1.2",
-  "updated_at": "2026-08-15T18:26:20.172441+00:00"
+  "release_page": "https://gbatemp.net/threads/release-openbor-vita-port-by-cpasjuste.527852/",
+  "updated_at": "2026-08-13T15:34:48.609298+00:00"
 }

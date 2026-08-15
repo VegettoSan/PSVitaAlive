@@ -16,17 +16,11 @@
   "requirements": "Not specified",
   "size": 86355323,
   "status": "Legacy",
-  "icon": "https://www.rinnegatamante.eu/vitadb/icons/459f71024fd78039ef2b20852141f49aa95f7a16e9c495a7a7eb4f8a5e096f28.png",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/459f71024fd78039ef2b20852141f49aa95f7a16e9c495a7a7eb4f8a5e096f28.png",
   "screenshots": [
-    "https://www.rinnegatamante.eu/vitadb/icons/459f71024fd78039ef2b20852141f49aa95f7a16e9c495a7a7eb4f8a5e096f28.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/459f71024fd78039ef2b20852141f49aa95f7a16e9c495a7a7eb4f8a5e096f28.png"
   ],
   "links": [
-    {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1424",
-      "recommended": true
-    },
     {
       "type": "Download",
       "name": "VitaDBtoo VPK",
@@ -35,13 +29,19 @@
     },
     {
       "type": "Official Website",
-      "name": "VitaDB Release Page",
+      "name": "VitaDBtoo Release Page",
       "url": "https://github.com/rerulon/dushi4kDX"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1424",
+      "recommended": true
     }
   ],
-  "source_name": "VitaDB",
+  "source_name": "VitaDBtoo",
   "source_id": "1424",
   "source_url": "https://github.com/rerulon/dushi4kDX",
   "release_page": "https://github.com/rerulon/dushi4kDX",
-  "updated_at": "2026-08-15T18:26:18.933495+00:00"
+  "updated_at": "2026-08-13T15:34:48.335574+00:00"
 }

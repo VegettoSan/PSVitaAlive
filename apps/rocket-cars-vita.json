@@ -18,24 +18,23 @@
   "status": "Legacy",
   "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1753-rocket-cars-vita.png",
   "screenshots": [
-    "https://www.rinnegatamante.eu/vitadb/screenshots/bce7d7cea44746ca8dd5ea28d44732e88d78c0db4dc12bea4d727e784c73373f.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/b8824b7635ac459d0a42c0c3ca5fcd97f5f894cc02b5eb31adc73b1dca52fc5a.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/74593117c9bdbcb71d577fbed19a12459d76d25d0cd910e2e2c5281a9ceff9e3.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/bce7d7cea44746ca8dd5ea28d44732e88d78c0db4dc12bea4d727e784c73373f.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/b8824b7635ac459d0a42c0c3ca5fcd97f5f894cc02b5eb31adc73b1dca52fc5a.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/b8824b7635ac459d0a42c0c3ca5fcd97f5f894cc02b5eb31adc73b1dca52fc5a.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/74593117c9bdbcb71d577fbed19a12459d76d25d0cd910e2e2c5281a9ceff9e3.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/bce7d7cea44746ca8dd5ea28d44732e88d78c0db4dc12bea4d727e784c73373f.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/b8824b7635ac459d0a42c0c3ca5fcd97f5f894cc02b5eb31adc73b1dca52fc5a.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "NeoVitaDB VPK",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/729-rocket_league.vpk",
       "recommended": true
     },
     {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=729",
-      "recommended": false
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com"
     },
     {
       "type": "Download",
@@ -44,14 +43,15 @@
       "recommended": false
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com"
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=729",
+      "recommended": false
     }
   ],
-  "source_name": "NeoVitaDB",
-  "source_id": "1753",
-  "source_url": "https://github.com",
+  "source_name": "VitaDBtoo",
+  "source_id": "729",
+  "source_url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/729-rocket_league.vpk",
   "release_page": "",
-  "updated_at": "2026-08-15T18:26:19.582472+00:00"
+  "updated_at": "2026-08-13T15:34:48.484326+00:00"
 }

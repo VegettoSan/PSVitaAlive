@@ -16,30 +16,24 @@
   "requirements": "- Game Data Files: Android",
   "size": 818584,
   "status": "Legacy",
-  "icon": "https://www.rinnegatamante.eu/vitadb/icons/f70fb449b312754129fb965c62921af4ac9ac4238e55751910cc3c9c78253c80.png",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/f70fb449b312754129fb965c62921af4ac9ac4238e55751910cc3c9c78253c80.png",
   "screenshots": [
-    "https://www.rinnegatamante.eu/vitadb/screenshots/b5a3d53c33e56d11d916b81d1f390f8714627faa76e88eef9b40512e3b24f5b2.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/020234e9497b68920227b107a00685f983db25d6f732deb0a20d1958b037947c.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/9127234c027d6cb75e0070bdf45825b0f9b890f60ed19c01b01d55cfac066a0c.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/b5a3d53c33e56d11d916b81d1f390f8714627faa76e88eef9b40512e3b24f5b2.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/020234e9497b68920227b107a00685f983db25d6f732deb0a20d1958b037947c.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/020234e9497b68920227b107a00685f983db25d6f732deb0a20d1958b037947c.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/9127234c027d6cb75e0070bdf45825b0f9b890f60ed19c01b01d55cfac066a0c.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/b5a3d53c33e56d11d916b81d1f390f8714627faa76e88eef9b40512e3b24f5b2.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/020234e9497b68920227b107a00685f983db25d6f732deb0a20d1958b037947c.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=607",
-      "recommended": true
-    },
-    {
-      "type": "Download",
-      "name": "NeoVitaDB VPK",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/Xeeynamo/Sonic-1-2-2013-Decompilation/releases/download/v1.1.0/Sonic1-xeeynamo-v110.vpk",
       "recommended": false
     },
     {
       "type": "Official Website",
-      "name": "VitaDB Release Page",
+      "name": "VitaDBtoo Release Page",
       "url": "https://github.com/Xeeynamo/Sonic-1-2-2013-Decompilation/releases/"
     },
     {
@@ -51,11 +45,17 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/Xeeynamo/Sonic-1-2-2013-Decompilation"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=607",
+      "recommended": true
     }
   ],
-  "source_name": "VitaDB",
+  "source_name": "VitaDBtoo",
   "source_id": "607",
   "source_url": "https://github.com/Xeeynamo/Sonic-1-2-2013-Decompilation",
   "release_page": "https://github.com/Xeeynamo/Sonic-1-2-2013-Decompilation/releases/",
-  "updated_at": "2026-08-15T18:26:20.127121+00:00"
+  "updated_at": "2026-08-13T15:34:48.598587+00:00"
 }

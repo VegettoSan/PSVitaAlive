@@ -14,32 +14,26 @@
   "version": "v.1.0",
   "version_date": "2021-05-08",
   "requirements": "Not specified",
-  "size": 872823,
+  "size": 29017876,
   "status": "Legacy",
-  "icon": "https://www.rinnegatamante.eu/vitadb/icons/204f7752e888cd9fff1d75ada3f6a229c57eb3d031e46c5781b4e682dcd07449.png",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/204f7752e888cd9fff1d75ada3f6a229c57eb3d031e46c5781b4e682dcd07449.png",
   "screenshots": [
-    "https://www.rinnegatamante.eu/vitadb/screenshots/8f9072fc01ac948ab3efdc304b53748f6b650d4a2652ff347088251bac8f4149.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/53a786562ae06ecb3ec5cb4a299b80abb3189b681f88c75a3c076197a483a8b7.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/3c0db538ca4e39a56d76b034ca17e9a3727c247fa60fc1b4ea9d3c312cb457fc.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/8438baf6bc062e7f749d01a2176b465ccbba920db1318254a40b31a88c6f2397.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/8f9072fc01ac948ab3efdc304b53748f6b650d4a2652ff347088251bac8f4149.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/8f9072fc01ac948ab3efdc304b53748f6b650d4a2652ff347088251bac8f4149.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/53a786562ae06ecb3ec5cb4a299b80abb3189b681f88c75a3c076197a483a8b7.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/3c0db538ca4e39a56d76b034ca17e9a3727c247fa60fc1b4ea9d3c312cb457fc.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/8438baf6bc062e7f749d01a2176b465ccbba920db1318254a40b31a88c6f2397.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/8f9072fc01ac948ab3efdc304b53748f6b650d4a2652ff347088251bac8f4149.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=664",
-      "recommended": true
-    },
-    {
-      "type": "Download",
-      "name": "NeoVitaDB VPK",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/ammeir/worminator/releases/download/v1.0/worminator_v10.zip",
       "recommended": false
     },
     {
       "type": "Official Website",
-      "name": "VitaDB Release Page",
+      "name": "VitaDBtoo Release Page",
       "url": "https://kyuhen.customprotocol.com/en/submissions/worminator3/"
     },
     {
@@ -51,11 +45,17 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/ammeir/worminator"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=664",
+      "recommended": true
     }
   ],
-  "source_name": "VitaDB",
+  "source_name": "VitaDBtoo",
   "source_id": "664",
   "source_url": "https://github.com/ammeir/worminator",
   "release_page": "https://kyuhen.customprotocol.com/en/submissions/worminator3/",
-  "updated_at": "2026-08-15T18:26:20.085043+00:00"
+  "updated_at": "2026-08-13T15:34:48.588257+00:00"
 }

@@ -16,30 +16,24 @@
   "requirements": "Not specified",
   "size": 2687137,
   "status": "Legacy",
-  "icon": "https://www.rinnegatamante.eu/vitadb/icons/ac4ad56f0dd2c109c16a4957eb3e4f764d75a502be66a0a6104db1915dacf3a1.png",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/ac4ad56f0dd2c109c16a4957eb3e4f764d75a502be66a0a6104db1915dacf3a1.png",
   "screenshots": [
-    "https://www.rinnegatamante.eu/vitadb/screenshots/7ec7b4cf1cbb36b048e7eab961131157067b4c9526736f722de194464b9a8407.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/c6999dc2e3faa2b2e9de26bcfa8f60c428bf34be7e738083c6ebc7f23c6f8729.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/07ab5d73e5483d13f1925600e5d5dc3b2c907a037f0f411ef8f7f482f4873a8e.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/b9cd19aac0a1920ce20db74603339c2389b3d323b3e4af4fd88652bb4fed5f11.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/7ec7b4cf1cbb36b048e7eab961131157067b4c9526736f722de194464b9a8407.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/7ec7b4cf1cbb36b048e7eab961131157067b4c9526736f722de194464b9a8407.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c6999dc2e3faa2b2e9de26bcfa8f60c428bf34be7e738083c6ebc7f23c6f8729.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/07ab5d73e5483d13f1925600e5d5dc3b2c907a037f0f411ef8f7f482f4873a8e.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/b9cd19aac0a1920ce20db74603339c2389b3d323b3e4af4fd88652bb4fed5f11.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/7ec7b4cf1cbb36b048e7eab961131157067b4c9526736f722de194464b9a8407.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=752",
-      "recommended": true
-    },
-    {
-      "type": "Download",
-      "name": "NeoVitaDB VPK",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/island-games/A-Super-Small-Shmup/releases/download/v1.02/ASUPERSMALLSHMUP.vpk",
       "recommended": false
     },
     {
       "type": "Official Website",
-      "name": "VitaDB Release Page",
+      "name": "VitaDBtoo Release Page",
       "url": "https://github.com/island-games/A-Super-Small-Shmup/releases"
     },
     {
@@ -51,11 +45,17 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/island-games/A-Super-Small-Shmup"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=752",
+      "recommended": true
     }
   ],
-  "source_name": "VitaDB",
+  "source_name": "VitaDBtoo",
   "source_id": "752",
   "source_url": "https://github.com/island-games/A-Super-Small-Shmup",
   "release_page": "https://github.com/island-games/A-Super-Small-Shmup/releases",
-  "updated_at": "2026-08-15T18:26:19.934043+00:00"
+  "updated_at": "2026-08-13T15:34:48.561993+00:00"
 }

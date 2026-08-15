@@ -16,26 +16,20 @@
   "requirements": "Not specified",
   "size": 77837069,
   "status": "Legacy",
-  "icon": "https://www.rinnegatamante.eu/vitadb/icons/6b7119f71709a9905f37c44ce7c2fee5884e9805f59dcd2684d93e2812cae019.png",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/6b7119f71709a9905f37c44ce7c2fee5884e9805f59dcd2684d93e2812cae019.png",
   "screenshots": [
-    "https://www.rinnegatamante.eu/vitadb/icons/6b7119f71709a9905f37c44ce7c2fee5884e9805f59dcd2684d93e2812cae019.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/6b7119f71709a9905f37c44ce7c2fee5884e9805f59dcd2684d93e2812cae019.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=633",
-      "recommended": true
-    },
-    {
-      "type": "Download",
-      "name": "NeoVitaDB VPK",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/mrdivdiz/bpvita/releases/download/1.4/BPV1.4.vpk",
       "recommended": false
     },
     {
       "type": "Official Website",
-      "name": "VitaDB Release Page",
+      "name": "VitaDBtoo Release Page",
       "url": "https://github.com/mrdivdiz/bpvita/releases"
     },
     {
@@ -47,11 +41,17 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/mrdivdiz/bpvita"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=633",
+      "recommended": true
     }
   ],
-  "source_name": "VitaDB",
+  "source_name": "VitaDBtoo",
   "source_id": "633",
   "source_url": "https://github.com/mrdivdiz/bpvita",
   "release_page": "https://github.com/mrdivdiz/bpvita/releases",
-  "updated_at": "2026-08-15T18:26:20.003053+00:00"
+  "updated_at": "2026-08-13T15:34:48.575578+00:00"
 }

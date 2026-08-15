@@ -16,21 +16,15 @@
   "requirements": "- Game Data Files: PC",
   "size": 2934430,
   "status": "Legacy",
-  "icon": "https://www.rinnegatamante.eu/vitadb/icons/8f0ffe8213d23afbdccef24aab122471d284aaf7426f688ab2de95b7e1e5d5d1.png",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/8f0ffe8213d23afbdccef24aab122471d284aaf7426f688ab2de95b7e1e5d5d1.png",
   "screenshots": [
-    "https://www.rinnegatamante.eu/vitadb/screenshots/a34223bbdcbf90b241346c526aa9d5553de6bd849a09e1ea11ffa8905f5759f1.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/cf169771553dbc5588b8839c3b9e0c7474f33834ee9ca0fb172cbe6e2aced7fa.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/5abbb2dc6eebff99c7b343c0cb2b82c21b9a462f653d78c7e9a592f858d4b50c.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/a34223bbdcbf90b241346c526aa9d5553de6bd849a09e1ea11ffa8905f5759f1.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/cf169771553dbc5588b8839c3b9e0c7474f33834ee9ca0fb172cbe6e2aced7fa.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/cf169771553dbc5588b8839c3b9e0c7474f33834ee9ca0fb172cbe6e2aced7fa.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/5abbb2dc6eebff99c7b343c0cb2b82c21b9a462f653d78c7e9a592f858d4b50c.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/a34223bbdcbf90b241346c526aa9d5553de6bd849a09e1ea11ffa8905f5759f1.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/cf169771553dbc5588b8839c3b9e0c7474f33834ee9ca0fb172cbe6e2aced7fa.png"
   ],
   "links": [
-    {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=654",
-      "recommended": true
-    },
     {
       "type": "Download",
       "name": "VitaDBtoo VPK",
@@ -39,13 +33,19 @@
     },
     {
       "type": "Official Website",
-      "name": "VitaDB Release Page",
+      "name": "VitaDBtoo Release Page",
       "url": "https://github.com/m1s3ry/minit-fun-racer-vita"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=654",
+      "recommended": true
     }
   ],
-  "source_name": "VitaDB",
+  "source_name": "VitaDBtoo",
   "source_id": "654",
   "source_url": "https://github.com/m1s3ry/minit-fun-racer-vita",
   "release_page": "https://github.com/m1s3ry/minit-fun-racer-vita",
-  "updated_at": "2026-08-15T18:26:20.086695+00:00"
+  "updated_at": "2026-08-13T15:34:48.588812+00:00"
 }

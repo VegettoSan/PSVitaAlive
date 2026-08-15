@@ -1,0 +1,58 @@
+{
+  "id": "trophy-dumper",
+  "title_id": "TROPTOOLS",
+  "name": "Trophy Dumper",
+  "description": "Decrypt and encrypt trophy data files.",
+  "long_description": "Decrypt and Encrypt Trophy Data Files.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
+  "author_ids": [
+    "li",
+    "lienby"
+  ],
+  "category_id": "utilities",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.1.1",
+  "version_date": "2026-08-13",
+  "requirements": "Not specified",
+  "size": 84055,
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1987-trophy-dumper.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1987-trophy-dumper.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "NeoVitaDB VPK",
+      "url": "https://git.silica.codes/Li/trophydumper/releases/download/latest/TrophyDumper.vpk",
+      "recommended": false
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://git.silica.codes"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDBtoo VPK",
+      "url": "https://git.silica.codes/Li/trophydumper/releases/download/v1.1/TrophyDumper.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
+      "url": "https://git.silica.codes/Li/trophydumper/releases"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://git.silica.codes/Li/trophydumper"
+    }
+  ],
+  "source_name": "NeoVitaDB",
+  "source_id": "1987",
+  "source_url": "https://git.silica.codes",
+  "release_page": "",
+  "updated_at": "2026-08-13T15:34:48.726309+00:00"
+}

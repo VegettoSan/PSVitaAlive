@@ -9,37 +9,31 @@
   ],
   "category_id": "utilities",
   "subcategory_ids": [
-    "other"
+    "file-manager"
   ],
   "version": "v.1.27",
   "version_date": "2024-05-12",
   "requirements": "Not specified",
   "size": 2501645,
   "status": "Legacy",
-  "icon": "https://www.rinnegatamante.eu/vitadb/icons/43119da93c64388a90ca92f3f78283b264f1ad7c8b7fc8f03635c87fb2c2a9f4.png",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/43119da93c64388a90ca92f3f78283b264f1ad7c8b7fc8f03635c87fb2c2a9f4.png",
   "screenshots": [
-    "https://www.rinnegatamante.eu/vitadb/screenshots/e109c1921f6882c0e862ba459e3bf7a6068f01b64eb8e475027fe682291cbd24.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/02596dc62f2884585a268d0817ba27ac4e9281c2f14dd1816eace536afd7e95d.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/1a5da092bbd6549c25ebbb3e607657cd1de67da027fae55e2a2c0f84b9cbb3bb.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/e109c1921f6882c0e862ba459e3bf7a6068f01b64eb8e475027fe682291cbd24.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/02596dc62f2884585a268d0817ba27ac4e9281c2f14dd1816eace536afd7e95d.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/02596dc62f2884585a268d0817ba27ac4e9281c2f14dd1816eace536afd7e95d.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/1a5da092bbd6549c25ebbb3e607657cd1de67da027fae55e2a2c0f84b9cbb3bb.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/e109c1921f6882c0e862ba459e3bf7a6068f01b64eb8e475027fe682291cbd24.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/02596dc62f2884585a268d0817ba27ac4e9281c2f14dd1816eace536afd7e95d.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=655",
-      "recommended": true
-    },
-    {
-      "type": "Download",
-      "name": "NeoVitaDB VPK",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/joel16/VITA-Homebrew-Sorter/releases/download/v1.27/VITA-Homebrew-Sorter.vpk",
       "recommended": false
     },
     {
       "type": "Official Website",
-      "name": "VitaDB Release Page",
+      "name": "VitaDBtoo Release Page",
       "url": "https://github.com/joel16/VITA-Homebrew-Sorter/releases"
     },
     {
@@ -51,11 +45,17 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/joel16/VITA-Homebrew-Sorter"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=655",
+      "recommended": true
     }
   ],
-  "source_name": "VitaDB",
+  "source_name": "VitaDBtoo",
   "source_id": "655",
   "source_url": "https://github.com/joel16/VITA-Homebrew-Sorter",
   "release_page": "https://github.com/joel16/VITA-Homebrew-Sorter/releases",
-  "updated_at": "2026-08-15T18:26:19.388393+00:00"
+  "updated_at": "2026-08-13T15:34:48.439951+00:00"
 }

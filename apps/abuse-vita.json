@@ -18,24 +18,28 @@
   "status": "Legacy",
   "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1718-abuse-vita.png",
   "screenshots": [
-    "https://www.rinnegatamante.eu/vitadb/screenshots/d7e3b0ff4a84c9abccb2ac09848573a5fb8d690f4b2179ed02f2f325f705669e.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/513bae396a26983c9865f46d4203e17c9e8a3cdeb561797b7d2c2fc53b4b4db9.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/eaa7b3acc7414c3929eb7535523689ec754ef97ec24859e279c952d3f0477943.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/d7e3b0ff4a84c9abccb2ac09848573a5fb8d690f4b2179ed02f2f325f705669e.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/513bae396a26983c9865f46d4203e17c9e8a3cdeb561797b7d2c2fc53b4b4db9.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/513bae396a26983c9865f46d4203e17c9e8a3cdeb561797b7d2c2fc53b4b4db9.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/eaa7b3acc7414c3929eb7535523689ec754ef97ec24859e279c952d3f0477943.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/d7e3b0ff4a84c9abccb2ac09848573a5fb8d690f4b2179ed02f2f325f705669e.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/513bae396a26983c9865f46d4203e17c9e8a3cdeb561797b7d2c2fc53b4b4db9.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "NeoVitaDB VPK",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/651-Abuse.vpk",
       "recommended": true
     },
     {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=651",
-      "recommended": false
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
+      "url": "https://www.psx-place.com/threads/release-abuse-vita-abuse-sdl-port-for-psvita-pstv.33594/"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/Rinnegatamante/abuse-vita"
     },
     {
       "type": "Download",
@@ -44,19 +48,15 @@
       "recommended": false
     },
     {
-      "type": "Official Website",
-      "name": "VitaDB Release Page",
-      "url": "https://www.psx-place.com/threads/release-abuse-vita-abuse-sdl-port-for-psvita-pstv.33594/"
-    },
-    {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/Rinnegatamante/abuse-vita"
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=651",
+      "recommended": false
     }
   ],
-  "source_name": "NeoVitaDB",
-  "source_id": "1718",
-  "source_url": "https://github.com",
-  "release_page": "",
-  "updated_at": "2026-08-15T18:26:20.089186+00:00"
+  "source_name": "VitaDBtoo",
+  "source_id": "651",
+  "source_url": "https://github.com/Rinnegatamante/abuse-vita",
+  "release_page": "https://www.psx-place.com/threads/release-abuse-vita-abuse-sdl-port-for-psvita-pstv.33594/",
+  "updated_at": "2026-08-13T15:34:48.589484+00:00"
 }

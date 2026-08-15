@@ -16,26 +16,20 @@
   "requirements": "Not specified",
   "size": 51165,
   "status": "Legacy",
-  "icon": "https://www.rinnegatamante.eu/vitadb/icons/18746b487153dc1ca3d728ce57b841b6e8faeca65a0900aa46864f73d07642c8.png",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/18746b487153dc1ca3d728ce57b841b6e8faeca65a0900aa46864f73d07642c8.png",
   "screenshots": [
-    "https://www.rinnegatamante.eu/vitadb/icons/18746b487153dc1ca3d728ce57b841b6e8faeca65a0900aa46864f73d07642c8.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/18746b487153dc1ca3d728ce57b841b6e8faeca65a0900aa46864f73d07642c8.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=148",
-      "recommended": true
-    },
-    {
-      "type": "Download",
-      "name": "NeoVitaDB VPK",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/MajorTomSec/VitaCID/releases/download/1.0/VitaCID.vpk",
       "recommended": false
     },
     {
       "type": "Official Website",
-      "name": "VitaDB Release Page",
+      "name": "VitaDBtoo Release Page",
       "url": "http://wololo.net/2016/08/18/release-vitacid-get-ps-vita-console-id/"
     },
     {
@@ -47,11 +41,17 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/tomtomdu80/VitaCID"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=148",
+      "recommended": true
     }
   ],
-  "source_name": "VitaDB",
+  "source_name": "VitaDBtoo",
   "source_id": "148",
   "source_url": "https://github.com/tomtomdu80/VitaCID",
   "release_page": "http://wololo.net/2016/08/18/release-vitacid-get-ps-vita-console-id/",
-  "updated_at": "2026-08-15T18:26:20.571975+00:00"
+  "updated_at": "2026-08-13T15:34:48.705148+00:00"
 }

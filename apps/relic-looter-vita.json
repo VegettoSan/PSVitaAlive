@@ -16,30 +16,24 @@
   "requirements": "- libshacccg.suprx\n- kubridge.skprx\n- Game Data Files: Android",
   "size": 2720788,
   "status": "Legacy",
-  "icon": "https://www.rinnegatamante.eu/vitadb/icons/791efdbbac04223838c55deabab9a128f3789436bb06166c09131c51dcc41427.png",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/791efdbbac04223838c55deabab9a128f3789436bb06166c09131c51dcc41427.png",
   "screenshots": [
-    "https://www.rinnegatamante.eu/vitadb/screenshots/a9aa35f9f4adbb511f27b3987dd3f77f908f24a4905fed14ca6e783484f34357.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/10eff1e175cc39a27d4f44b5a39d432bf34d9f8f1ce6d8eba5b4d14157f3a558.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/d48ceaf496db67626f655851f76b62a697659ae3f2458bf9d68eec966eac8cb6.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/a9aa35f9f4adbb511f27b3987dd3f77f908f24a4905fed14ca6e783484f34357.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/10eff1e175cc39a27d4f44b5a39d432bf34d9f8f1ce6d8eba5b4d14157f3a558.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/10eff1e175cc39a27d4f44b5a39d432bf34d9f8f1ce6d8eba5b4d14157f3a558.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/d48ceaf496db67626f655851f76b62a697659ae3f2458bf9d68eec966eac8cb6.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/a9aa35f9f4adbb511f27b3987dd3f77f908f24a4905fed14ca6e783484f34357.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/10eff1e175cc39a27d4f44b5a39d432bf34d9f8f1ce6d8eba5b4d14157f3a558.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1314",
-      "recommended": true
-    },
-    {
-      "type": "Download",
-      "name": "NeoVitaDB VPK",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/Rinnegatamante/relic-looter-vita/releases/download/v.1.0/relic.vpk",
       "recommended": false
     },
     {
       "type": "Official Website",
-      "name": "VitaDB Release Page",
+      "name": "VitaDBtoo Release Page",
       "url": "https://github.com/Rinnegatamante/relic-looter-vita/releases"
     },
     {
@@ -51,11 +45,17 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/Rinnegatamante/relic-looter-vita"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1314",
+      "recommended": true
     }
   ],
-  "source_name": "VitaDB",
+  "source_name": "VitaDBtoo",
   "source_id": "1314",
   "source_url": "https://github.com/Rinnegatamante/relic-looter-vita",
   "release_page": "https://github.com/Rinnegatamante/relic-looter-vita/releases",
-  "updated_at": "2026-08-15T18:26:19.188572+00:00"
+  "updated_at": "2026-08-13T15:34:48.392562+00:00"
 }

@@ -19,8 +19,8 @@
   "status": "Legacy",
   "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/0848-crosscraft-classic.png",
   "screenshots": [
-    "https://www.rinnegatamante.eu/vitadb/screenshots/808852b117f554d12ebdfb82a88f2f44948758e9f31a1648dfcebcd4f8f1be35.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/808852b117f554d12ebdfb82a88f2f44948758e9f31a1648dfcebcd4f8f1be35.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/808852b117f554d12ebdfb82a88f2f44948758e9f31a1648dfcebcd4f8f1be35.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/808852b117f554d12ebdfb82a88f2f44948758e9f31a1648dfcebcd4f8f1be35.png"
   ],
   "links": [
     {
@@ -44,5 +44,5 @@
   "source_id": "848",
   "source_url": "https://github.com/CrossCraft/CrossCraft-Classic",
   "release_page": "https://github.com/CrossCraft/CrossCraft-Classic/releases/tag/v1.3",
-  "updated_at": "2026-08-15T18:26:19.827858+00:00"
+  "updated_at": "2026-08-13T15:34:48.537320+00:00"
 }

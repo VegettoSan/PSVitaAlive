@@ -16,30 +16,24 @@
   "requirements": "Not specified",
   "size": 1764631,
   "status": "Legacy",
-  "icon": "https://www.rinnegatamante.eu/vitadb/icons/7ba40e0c954a68e60fadc5797925dc93197d6c353a7531f1ead31bbee96d0fcf.png",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/7ba40e0c954a68e60fadc5797925dc93197d6c353a7531f1ead31bbee96d0fcf.png",
   "screenshots": [
-    "https://www.rinnegatamante.eu/vitadb/screenshots/6609c3a869ae6b9d6942af01bd89b7d794c8160de102b75d04a250662bcfc2ff.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/bdb94d9f2f9c4bd62704df06d61a7a0900cc0a6e9ffb60ab7280d1ba46bc168b.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/c0d8e01f89dbe90217e64699482d123412fd360cac0d0c02cff95fa10519e02d.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/137eb2e50e791763ff0a5f3888e3c7c26dc23993c5834dd855fec59a2e64c145.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/6609c3a869ae6b9d6942af01bd89b7d794c8160de102b75d04a250662bcfc2ff.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/6609c3a869ae6b9d6942af01bd89b7d794c8160de102b75d04a250662bcfc2ff.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/bdb94d9f2f9c4bd62704df06d61a7a0900cc0a6e9ffb60ab7280d1ba46bc168b.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c0d8e01f89dbe90217e64699482d123412fd360cac0d0c02cff95fa10519e02d.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/137eb2e50e791763ff0a5f3888e3c7c26dc23993c5834dd855fec59a2e64c145.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/6609c3a869ae6b9d6942af01bd89b7d794c8160de102b75d04a250662bcfc2ff.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=758",
-      "recommended": true
-    },
-    {
-      "type": "Download",
-      "name": "NeoVitaDB VPK",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/softwaregremlin/Covid-19-Apocalypse/releases/download/v1%2C0/covid19Apocalypse.vpk",
       "recommended": false
     },
     {
       "type": "Official Website",
-      "name": "VitaDB Release Page",
+      "name": "VitaDBtoo Release Page",
       "url": "https://github.com/softwaregremlin/Covid-19-Apocalypse/releases"
     },
     {
@@ -51,11 +45,17 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/softwaregremlin/Covid-19-Apocalypse"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=758",
+      "recommended": true
     }
   ],
-  "source_name": "VitaDB",
+  "source_name": "VitaDBtoo",
   "source_id": "758",
   "source_url": "https://github.com/softwaregremlin/Covid-19-Apocalypse",
   "release_page": "https://github.com/softwaregremlin/Covid-19-Apocalypse/releases",
-  "updated_at": "2026-08-15T18:26:19.949176+00:00"
+  "updated_at": "2026-08-13T15:34:48.566264+00:00"
 }

@@ -16,21 +16,15 @@
   "requirements": "Not specified",
   "size": 2832504,
   "status": "Legacy",
-  "icon": "https://www.rinnegatamante.eu/vitadb/icons/17a24f848cdd49fb0fa0711c0ea823861fd91f5aaef18463d2067a28c5610534.png",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/17a24f848cdd49fb0fa0711c0ea823861fd91f5aaef18463d2067a28c5610534.png",
   "screenshots": [
-    "https://www.rinnegatamante.eu/vitadb/screenshots/bc9ed355726f7f9e59f5af8688bfa4eaa6492638d41880ae984004e4f2a2fcfb.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/4d7550e44d669ab4542fcac8aa46b72aa3e78941d50f7507ae64a7070cfc6ce3.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/f2cd3cdd6ea8b9a5a2b9cf1bd6f3163f52085c03a197feefe2ce74f68f13fbec.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/bc9ed355726f7f9e59f5af8688bfa4eaa6492638d41880ae984004e4f2a2fcfb.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/4d7550e44d669ab4542fcac8aa46b72aa3e78941d50f7507ae64a7070cfc6ce3.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/4d7550e44d669ab4542fcac8aa46b72aa3e78941d50f7507ae64a7070cfc6ce3.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/f2cd3cdd6ea8b9a5a2b9cf1bd6f3163f52085c03a197feefe2ce74f68f13fbec.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/bc9ed355726f7f9e59f5af8688bfa4eaa6492638d41880ae984004e4f2a2fcfb.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/4d7550e44d669ab4542fcac8aa46b72aa3e78941d50f7507ae64a7070cfc6ce3.png"
   ],
   "links": [
-    {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1374",
-      "recommended": true
-    },
     {
       "type": "Download",
       "name": "VitaDBtoo VPK",
@@ -39,7 +33,7 @@
     },
     {
       "type": "Official Website",
-      "name": "VitaDB Release Page",
+      "name": "VitaDBtoo Release Page",
       "url": "https://github.com/withLogic/hexahop-vita/releases"
     },
     {
@@ -51,11 +45,17 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/withLogic/hexahop-vita"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1374",
+      "recommended": true
     }
   ],
-  "source_name": "VitaDB",
+  "source_name": "VitaDBtoo",
   "source_id": "1374",
   "source_url": "https://github.com/withLogic/hexahop-vita",
   "release_page": "https://github.com/withLogic/hexahop-vita/releases",
-  "updated_at": "2026-08-15T18:26:19.035322+00:00"
+  "updated_at": "2026-08-13T15:34:48.359136+00:00"
 }

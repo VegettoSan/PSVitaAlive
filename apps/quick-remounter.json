@@ -16,18 +16,12 @@
   "requirements": "Not specified",
   "size": 4799848,
   "status": "Legacy",
-  "icon": "https://www.rinnegatamante.eu/vitadb/icons/ed5ebd1267831443961b6ce54a6a021aa80a1cd90e2d93b689a8653a623537f7.png",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/ed5ebd1267831443961b6ce54a6a021aa80a1cd90e2d93b689a8653a623537f7.png",
   "screenshots": [
-    "https://www.rinnegatamante.eu/vitadb/screenshots/4cd6126722db33d45cee6d8017d08aeaddd3c61f18bda9d9f010040148de3dd0.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/4cd6126722db33d45cee6d8017d08aeaddd3c61f18bda9d9f010040148de3dd0.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/4cd6126722db33d45cee6d8017d08aeaddd3c61f18bda9d9f010040148de3dd0.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/4cd6126722db33d45cee6d8017d08aeaddd3c61f18bda9d9f010040148de3dd0.png"
   ],
   "links": [
-    {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1078",
-      "recommended": true
-    },
     {
       "type": "Download",
       "name": "VitaDBtoo VPK",
@@ -36,7 +30,7 @@
     },
     {
       "type": "Official Website",
-      "name": "VitaDB Release Page",
+      "name": "VitaDBtoo Release Page",
       "url": "https://github.com/AntHJ/Quick-Remounter/releases"
     },
     {
@@ -48,11 +42,17 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/AntHJ/Quick-Remounter"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1078",
+      "recommended": true
     }
   ],
-  "source_name": "VitaDB",
+  "source_name": "VitaDBtoo",
   "source_id": "1078",
   "source_url": "https://github.com/AntHJ/Quick-Remounter/releases",
   "release_page": "https://github.com/AntHJ/Quick-Remounter/releases",
-  "updated_at": "2026-08-15T18:26:19.735216+00:00"
+  "updated_at": "2026-08-13T15:34:48.516735+00:00"
 }

@@ -1,0 +1,39 @@
+{
+  "id": "cut-the-rope-magic",
+  "title_id": "CTRMAG001",
+  "name": "Cut the Rope: Magic",
+  "description": "Unofficial so-loader port of Cut the Rope: Magic (ZeptoLab / libctrm.so) for PlayStation Vita.",
+  "long_description": "Unofficial so-loader port of Cut the Rope: Magic (ZeptoLab / libctrm.so) for PlayStation Vita.\n\nGame data path: ux0:data/ctrm/",
+  "author_ids": [
+    "clyppe"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "arcade",
+    "puzzle"
+  ],
+  "version": "0.10 BETA",
+  "version_date": "2026-08-05",
+  "requirements": "- PS Vita / PSTV with HENkaku / Ensō - kubridge kernel plugin - libshacccg.suprx (e.g. via ShaRKBR33D)",
+  "size": 2050000,
+  "status": "Verified",
+  "links": [
+    {
+      "type": "Download",
+      "name": "Official VPK",
+      "url": "https://github.com/Clyppe/cut-the-rope-magic-vita/releases/download/v0.10-BETA/CutTheRopeMagic.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Download",
+      "name": "Game Data Files - Mediafire",
+      "url": "http://www.mediafire.com/file/ltbbcalbf4ujok3/CTRMDATA.zip",
+      "recommended": false
+    }
+  ],
+  "icon": "https://raw.githubusercontent.com/Clyppe/cut-the-rope-magic-vita/refs/heads/master/soloader-boilerplate/extras/livearea/icon0.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/Clyppe/cut-the-rope-magic-vita/refs/heads/master/soloader-boilerplate/extras/livearea/bg0.png",
+    "https://raw.githubusercontent.com/Clyppe/cut-the-rope-magic-vita/refs/heads/master/soloader-boilerplate/extras/livearea/pic0.png"
+  ]
+}

@@ -18,24 +18,28 @@
   "status": "Legacy",
   "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1800-neverputt-vita.png",
   "screenshots": [
-    "https://www.rinnegatamante.eu/vitadb/screenshots/3e1b10cb50c41778589f1644edd0784e9b136a786ff708554fc620045868e0b8.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/3582507c01bdad5c3067b2b0da8920092ef76b03676b2c03eb9fd7d31d940e82.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/8b5d3f99a67a8a95a864f980eec0fb3a1ad9a26cf06817ff9d9b38970c9748c1.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/ee6329f00b11741538366633521249fda7428f6b888d9a0f84d62196c358f673.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/3e1b10cb50c41778589f1644edd0784e9b136a786ff708554fc620045868e0b8.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/3e1b10cb50c41778589f1644edd0784e9b136a786ff708554fc620045868e0b8.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/3582507c01bdad5c3067b2b0da8920092ef76b03676b2c03eb9fd7d31d940e82.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/8b5d3f99a67a8a95a864f980eec0fb3a1ad9a26cf06817ff9d9b38970c9748c1.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/ee6329f00b11741538366633521249fda7428f6b888d9a0f84d62196c358f673.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/3e1b10cb50c41778589f1644edd0784e9b136a786ff708554fc620045868e0b8.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "NeoVitaDB VPK",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/874-neverputt.vpk",
       "recommended": true
     },
     {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=874",
-      "recommended": false
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
+      "url": "https://www.psx-place.com/threads/release-neverputt-vita-port-of-neverputt-for-psvita-pstv.38248/"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/Rinnegatamante/neverball"
     },
     {
       "type": "Download",
@@ -44,19 +48,15 @@
       "recommended": false
     },
     {
-      "type": "Official Website",
-      "name": "VitaDB Release Page",
-      "url": "https://www.psx-place.com/threads/release-neverputt-vita-port-of-neverputt-for-psvita-pstv.38248/"
-    },
-    {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/Rinnegatamante/neverball"
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=874",
+      "recommended": false
     }
   ],
-  "source_name": "NeoVitaDB",
-  "source_id": "1800",
-  "source_url": "https://github.com",
-  "release_page": "",
-  "updated_at": "2026-08-15T18:26:19.813152+00:00"
+  "source_name": "VitaDBtoo",
+  "source_id": "874",
+  "source_url": "https://github.com/Rinnegatamante/neverball",
+  "release_page": "https://www.psx-place.com/threads/release-neverputt-vita-port-of-neverputt-for-psvita-pstv.38248/",
+  "updated_at": "2026-08-13T15:34:48.534144+00:00"
 }

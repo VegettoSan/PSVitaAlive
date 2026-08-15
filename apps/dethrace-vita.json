@@ -18,24 +18,28 @@
   "status": "Legacy",
   "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1911-dethrace-vita.png",
   "screenshots": [
-    "https://www.rinnegatamante.eu/vitadb/screenshots/2451017086fcda2c435f7890bfbc9610288a6733b8981dd5f50f119e1352cf5a.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/26d00a3af9a0086f33bbbfeb57ffb225d241d8f166b3cdd7bf4980d64f7d499d.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/3fa4b3f4ff4b66a0c72e6847350399a6cac09f996c51cdb18275d35abf1dc6f5.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/7b2c0b6bba252f86f40e924aa6bc9755e1d699dd97f1155bf9d37fe28f9340ed.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/2451017086fcda2c435f7890bfbc9610288a6733b8981dd5f50f119e1352cf5a.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/2451017086fcda2c435f7890bfbc9610288a6733b8981dd5f50f119e1352cf5a.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/26d00a3af9a0086f33bbbfeb57ffb225d241d8f166b3cdd7bf4980d64f7d499d.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/3fa4b3f4ff4b66a0c72e6847350399a6cac09f996c51cdb18275d35abf1dc6f5.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/7b2c0b6bba252f86f40e924aa6bc9755e1d699dd97f1155bf9d37fe28f9340ed.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/2451017086fcda2c435f7890bfbc9610288a6733b8981dd5f50f119e1352cf5a.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "NeoVitaDB VPK",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1244-dethrace.vpk",
       "recommended": true
     },
     {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1244",
-      "recommended": false
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
+      "url": "https://www.psx-place.com/threads/release-dethrace-vita.45638/"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/Rinnegatamante/dethrace"
     },
     {
       "type": "Download",
@@ -44,19 +48,15 @@
       "recommended": false
     },
     {
-      "type": "Official Website",
-      "name": "VitaDB Release Page",
-      "url": "https://www.psx-place.com/threads/release-dethrace-vita.45638/"
-    },
-    {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/Rinnegatamante/dethrace"
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1244",
+      "recommended": false
     }
   ],
-  "source_name": "NeoVitaDB",
-  "source_id": "1911",
-  "source_url": "https://github.com",
-  "release_page": "",
-  "updated_at": "2026-08-15T18:26:19.316650+00:00"
+  "source_name": "VitaDBtoo",
+  "source_id": "1244",
+  "source_url": "https://github.com/Rinnegatamante/dethrace",
+  "release_page": "https://www.psx-place.com/threads/release-dethrace-vita.45638/",
+  "updated_at": "2026-08-13T15:34:48.421367+00:00"
 }

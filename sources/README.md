@@ -4,8 +4,7 @@
 
 ## Fuentes actuales
 
-- **VitaDB** — fuente oficial de VitaDB y fuente externa prioritaria entre las actuales.
-- **NeoVitaDB** — catálogo estático alternativo.
+- **VitaDB** — fuente oficial de VitaDB y fuente externa prioritaria.
 - **VitaDBtoo** — catálogo comunitario/rescate que actúa como respaldo y fuente de enriquecimiento.
 
 La configuración real se encuentra en `sources/external_sources.json`.
@@ -22,19 +21,27 @@ El adaptador actual usa HTTPS, fallbacks y un User-Agent de navegador porque Vit
 
 No sustituir el lector específico por un `GET` genérico sin comprobar primero el comportamiento real del endpoint.
 
+## VitaDBtoo
+
+VitaDBtoo se consume desde su catálogo `apps.json` público. Se utiliza como fuente secundaria para completar huecos y cruzar información con VitaDB.
+
 ## Prioridad y versiones
 
 La prioridad de fuente es un criterio de preferencia y desempate. No sustituye la comparación de frescura.
 
 Para seleccionar una descarga recomendada, el pipeline actual compara primero versión y fecha; la prioridad de fuente se utiliza solamente cuando esos criterios empatan.
 
+## Protección de aplicaciones VitaHub
+
+Las aplicaciones existentes en `apps/` son autoridad local. Un rebuild externo nunca puede eliminarlas por el simple hecho de que no aparezcan en VitaDB o VitaDBtoo.
+
+El agregador carga las aplicaciones locales en todos los modos, las mezcla con las fuentes externas y verifica antes de persistir que ninguna aplicación local protegida haya desaparecido.
+
 ## Mapeo de categorías
 
 `category_map.json` traduce valores de las fuentes externas al vocabulario oficial de PS Vita Alive Store. Una fuente externa no puede crear libremente nuevas categorías o subcategorías durante la importación.
 
-### Tipos VitaDB / VitaDBtoo / NeoVitaDB
-
-Los tres feeds usan el mismo esquema numérico (documentado en NeoVitaDB `categories.json`):
+### Tipos VitaDB / VitaDBtoo
 
 | type | Significado | `category_id` PSVitaAlive |
 |-----:|-------------|---------------------------|

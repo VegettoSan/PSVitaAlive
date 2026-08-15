@@ -16,20 +16,15 @@
   "requirements": "Not specified",
   "size": 198429,
   "status": "Legacy",
-  "icon": "https://www.rinnegatamante.eu/vitadb/icons/0b7c46756dc882611f0575cf3e4100cf3b7876884c2c7dcf89defca241fd343f.png",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/0b7c46756dc882611f0575cf3e4100cf3b7876884c2c7dcf89defca241fd343f.png",
   "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/0b7c46756dc882611f0575cf3e4100cf3b7876884c2c7dcf89defca241fd343f.png",
     "https://www.rinnegatamante.eu/vitadb/screenshots/uricall.jpg"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=150",
-      "recommended": true
-    },
-    {
-      "type": "Download",
-      "name": "NeoVitaDB VPK",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/Freakler/vita-uriCaller/releases/download/0.1/uriCaller.vpk",
       "recommended": false
     },
@@ -42,11 +37,17 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/Freakler/vita-uriCaller"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=150",
+      "recommended": true
     }
   ],
-  "source_name": "VitaDB",
+  "source_name": "VitaDBtoo",
   "source_id": "150",
   "source_url": "https://github.com/Freakler/vita-uriCaller",
   "release_page": "",
-  "updated_at": "2026-08-15T18:26:20.565152+00:00"
+  "updated_at": "2026-08-13T15:34:48.703234+00:00"
 }

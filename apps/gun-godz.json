@@ -16,41 +16,41 @@
   "requirements": "- Game Data Files: PC Steam",
   "size": 2937475,
   "status": "Legacy",
-  "icon": "https://www.rinnegatamante.eu/vitadb/icons/4a3016aaa8342ae74a4338e37537d1c66e6441fad281dc22f29406b09680bc4f.png",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/4a3016aaa8342ae74a4338e37537d1c66e6441fad281dc22f29406b09680bc4f.png",
   "screenshots": [
-    "https://www.rinnegatamante.eu/vitadb/screenshots/76ac1f35bc0bd40c308f90e8373089e9746bd541967a929cc774c2e67ad47c32.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/76e3aba04f7eb36964a8d5561bbce20c56e17d2c80617e6fa2220b1996180a3b.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/d34c244e112a3ff5933c316028e4a06beb831ae6b8453bf167766e8973540e93.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/76ac1f35bc0bd40c308f90e8373089e9746bd541967a929cc774c2e67ad47c32.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/76e3aba04f7eb36964a8d5561bbce20c56e17d2c80617e6fa2220b1996180a3b.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/76e3aba04f7eb36964a8d5561bbce20c56e17d2c80617e6fa2220b1996180a3b.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/d34c244e112a3ff5933c316028e4a06beb831ae6b8453bf167766e8973540e93.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/76ac1f35bc0bd40c308f90e8373089e9746bd541967a929cc774c2e67ad47c32.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/76e3aba04f7eb36964a8d5561bbce20c56e17d2c80617e6fa2220b1996180a3b.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=694",
-      "recommended": true
-    },
-    {
-      "type": "Download",
-      "name": "NeoVitaDB VPK",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/m1s3ry/gungodz-vita/releases/download/v1.0/GUN_GODZ_v1.0.VPK",
       "recommended": false
     },
     {
       "type": "Official Website",
-      "name": "VitaDB Release Page",
+      "name": "VitaDBtoo Release Page",
       "url": "https://github.com/m1s3ry/gungodz-vita"
     },
     {
       "type": "Official Website",
       "name": "NeoVitaDB Release Page",
       "url": "https://github.com/m1s3ry/gungodz-vita/releases/tag/v1.0"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=694",
+      "recommended": true
     }
   ],
-  "source_name": "VitaDB",
+  "source_name": "VitaDBtoo",
   "source_id": "694",
   "source_url": "https://github.com/m1s3ry/gungodz-vita",
   "release_page": "https://github.com/m1s3ry/gungodz-vita",
-  "updated_at": "2026-08-15T18:26:20.028022+00:00"
+  "updated_at": "2026-08-13T15:34:48.580471+00:00"
 }

@@ -5,9 +5,10 @@
   "description": "Port of Craxy Taxi Classic for PSVITA.",
   "long_description": "This is a wrapper/port of Craxy Taxi Classic Android for the PS Vita.\nThe port works by loading the official Android ARMv7 executable in memory, resolving its imports with native functions and patching it in order to properly run.",
   "author_ids": [
+    "aap",
+    "vitahex-games",
     "theflow",
-    "rinnegatamante",
-    "vitahex-games"
+    "rinnegatamante"
   ],
   "category_id": "ports",
   "subcategory_ids": [
@@ -18,30 +19,24 @@
   "requirements": "- libshacccg.suprx\n- kubridge.skprx\n- fd_fix.skprx OR repatch_ex.skprx\n- Game Data Files: Android",
   "size": 1468779,
   "status": "Legacy",
-  "icon": "https://www.rinnegatamante.eu/vitadb/icons/7da8a8979887ace94b802e60a37d3033ab46a1345d0b30e8f36a13eb2f7f3325.png",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/7da8a8979887ace94b802e60a37d3033ab46a1345d0b30e8f36a13eb2f7f3325.png",
   "screenshots": [
-    "https://www.rinnegatamante.eu/vitadb/screenshots/1250844e9b98308b37b42a2d9810a48fc329faab35fe53c9e90e9cb835fe0353.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/0babd76189d664309bf856c40d34e69ff706febb37e8a3f6d493e10223bc8c26.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/68b8a05192ada20d07c7c3ccfd370bfc246801b569a0268cca0bb014b1ce222d.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/a15f5d127fe018f2cdb1bec8acf91158e05d47e9c252c10dbf9019989e34796b.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/1250844e9b98308b37b42a2d9810a48fc329faab35fe53c9e90e9cb835fe0353.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/1250844e9b98308b37b42a2d9810a48fc329faab35fe53c9e90e9cb835fe0353.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/0babd76189d664309bf856c40d34e69ff706febb37e8a3f6d493e10223bc8c26.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/68b8a05192ada20d07c7c3ccfd370bfc246801b569a0268cca0bb014b1ce222d.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/a15f5d127fe018f2cdb1bec8acf91158e05d47e9c252c10dbf9019989e34796b.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c5b3ed06ea096669daf2fa1c55d39d8dc068a71e7c2ecfcb0d42c41ddb7f7f9d.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=728",
-      "recommended": true
-    },
-    {
-      "type": "Download",
-      "name": "NeoVitaDB VPK",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/TheOfficialFloW/crazytaxi_vita/releases/download/v1.2/CRAZYTAXI.vpk",
       "recommended": false
     },
     {
       "type": "Official Website",
-      "name": "VitaDB Release Page",
+      "name": "VitaDBtoo Release Page",
       "url": "https://github.com/TheOfficialFloW/crazytaxi_vita/releases"
     },
     {
@@ -53,11 +48,17 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/TheOfficialFloW/crazytaxi_vita"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=728",
+      "recommended": true
     }
   ],
-  "source_name": "VitaDB",
+  "source_name": "VitaDBtoo",
   "source_id": "728",
   "source_url": "https://github.com/TheOfficialFloW/crazytaxi_vita",
   "release_page": "https://github.com/TheOfficialFloW/crazytaxi_vita/releases",
-  "updated_at": "2026-08-15T18:26:19.864223+00:00"
+  "updated_at": "2026-08-13T15:34:48.544353+00:00"
 }

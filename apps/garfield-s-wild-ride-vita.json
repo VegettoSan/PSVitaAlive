@@ -16,29 +16,23 @@
   "requirements": "- libshacccg.suprx\n- kubridge.skprx\n- Game Data Files: Android",
   "size": 2478546,
   "status": "Legacy",
-  "icon": "https://www.rinnegatamante.eu/vitadb/icons/04ec2d03b10ae002711a29e2561cc0a0c1d0a5cc3a8ad9a11b0a0300322139c2.png",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/04ec2d03b10ae002711a29e2561cc0a0c1d0a5cc3a8ad9a11b0a0300322139c2.png",
   "screenshots": [
-    "https://www.rinnegatamante.eu/vitadb/screenshots/2e9482f80e310c725bd9cfe2cbc32354a32a8dd07aea1b22c81835250b7efcfe.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/bbf520361d370e5d35e58df1a1bae1a757bd3ce0d4b27a651de649379968b002.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/2e9482f80e310c725bd9cfe2cbc32354a32a8dd07aea1b22c81835250b7efcfe.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/bbf520361d370e5d35e58df1a1bae1a757bd3ce0d4b27a651de649379968b002.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/bbf520361d370e5d35e58df1a1bae1a757bd3ce0d4b27a651de649379968b002.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/2e9482f80e310c725bd9cfe2cbc32354a32a8dd07aea1b22c81835250b7efcfe.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/bbf520361d370e5d35e58df1a1bae1a757bd3ce0d4b27a651de649379968b002.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1435",
-      "recommended": true
-    },
-    {
-      "type": "Download",
-      "name": "NeoVitaDB VPK",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/memory-hunter/garfield-wild-ride-vita/releases/download/1.0/garfield.vpk",
       "recommended": false
     },
     {
       "type": "Official Website",
-      "name": "VitaDB Release Page",
+      "name": "VitaDBtoo Release Page",
       "url": "https://github.com/memory-hunter/garfield-wild-ride-vita/releases"
     },
     {
@@ -50,11 +44,17 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/memory-hunter/garfield-wild-ride-vita"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1435",
+      "recommended": true
     }
   ],
-  "source_name": "VitaDB",
+  "source_name": "VitaDBtoo",
   "source_id": "1435",
   "source_url": "https://github.com/memory-hunter/garfield-wild-ride-vita",
   "release_page": "https://github.com/memory-hunter/garfield-wild-ride-vita/releases",
-  "updated_at": "2026-08-15T18:26:18.913095+00:00"
+  "updated_at": "2026-08-13T15:34:48.329333+00:00"
 }

@@ -16,30 +16,24 @@
   "requirements": "Not specified",
   "size": 2529584,
   "status": "Legacy",
-  "icon": "https://www.rinnegatamante.eu/vitadb/icons/5b344f0eb564a265f2e40a7b2c877c28ce1eb1c19ff5c6ac000389ab9c3d5516.png",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/5b344f0eb564a265f2e40a7b2c877c28ce1eb1c19ff5c6ac000389ab9c3d5516.png",
   "screenshots": [
-    "https://www.rinnegatamante.eu/vitadb/screenshots/e19fc078c2065f4841fe6208e097cc2f8b0cbd163b53a356eb775342f2b3c5aa.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/f8c7cda9d6af41b58119d6b1dd54693a2d1512e18e0dbd79bd9aedee57e91a68.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/2fb2263306cb514c52dbf29f32c64bb5c9039501ab064fe0354cf2c5021a05fa.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/6924824f436c8b92ff4ae93ac762f44b1628c1188db5d7fb26749b4480d20347.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/e19fc078c2065f4841fe6208e097cc2f8b0cbd163b53a356eb775342f2b3c5aa.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/e19fc078c2065f4841fe6208e097cc2f8b0cbd163b53a356eb775342f2b3c5aa.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/f8c7cda9d6af41b58119d6b1dd54693a2d1512e18e0dbd79bd9aedee57e91a68.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/2fb2263306cb514c52dbf29f32c64bb5c9039501ab064fe0354cf2c5021a05fa.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/6924824f436c8b92ff4ae93ac762f44b1628c1188db5d7fb26749b4480d20347.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/e19fc078c2065f4841fe6208e097cc2f8b0cbd163b53a356eb775342f2b3c5aa.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=392",
-      "recommended": true
-    },
-    {
-      "type": "Download",
-      "name": "NeoVitaDB VPK",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/Creckeryop/PiCrest/releases/download/1.15/PiCrest.vpk",
       "recommended": false
     },
     {
       "type": "Official Website",
-      "name": "VitaDB Release Page",
+      "name": "VitaDBtoo Release Page",
       "url": "https://gbatemp.net/threads/release-picrest-picross-for-ps-vita.513063/#post-8182254"
     },
     {
@@ -51,11 +45,17 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/Creckeryop/PiCrest"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=392",
+      "recommended": true
     }
   ],
-  "source_name": "VitaDB",
+  "source_name": "VitaDBtoo",
   "source_id": "392",
   "source_url": "https://github.com/Creckeryop/PiCrest",
   "release_page": "https://gbatemp.net/threads/release-picrest-picross-for-ps-vita.513063/#post-8182254",
-  "updated_at": "2026-08-15T18:26:19.909338+00:00"
+  "updated_at": "2026-08-13T15:34:48.554855+00:00"
 }

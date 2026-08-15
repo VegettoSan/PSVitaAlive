@@ -5,8 +5,8 @@
   "description": "Ukrainian OS localization installer.",
   "long_description": "This application allows you to install a complete Ukrainian localization for the PlayStation Vita system, including all standard apps.\nTo use it, you need a homebrew-enabled PSVita running 3.60 or 3.65 firmware version. Compatibility with PSTV or other firmware versions has not been tested.\nWarning: After installing or uninstalling the localization using this application, a database update will be enforced. This means that your bubble layout will be reset.",
   "author_ids": [
-    "gl33ntwine",
-    "danil-linad"
+    "danil-linad",
+    "gl33ntwine"
   ],
   "category_id": "utilities",
   "subcategory_ids": [
@@ -17,30 +17,24 @@
   "requirements": "Not specified",
   "size": 19650155,
   "status": "Legacy",
-  "icon": "https://www.rinnegatamante.eu/vitadb/icons/f9858879891ee2c1bdf374a84bdfb74b7daecaae31617647728769da09193e50.png",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/f9858879891ee2c1bdf374a84bdfb74b7daecaae31617647728769da09193e50.png",
   "screenshots": [
-    "https://www.rinnegatamante.eu/vitadb/screenshots/c293fddca27a7535b573385c44b22b70bd207b11b8ac5f968ce193b66d294d75.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/c5245565d9c2b8f8cc580c26b4ad0c644056644285806c91ddcc90d11acd698d.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/0e626da7d7f98d28b8cf04ad646a34acca676c89ae4c24c952c65347432bb827.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c293fddca27a7535b573385c44b22b70bd207b11b8ac5f968ce193b66d294d75.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c5245565d9c2b8f8cc580c26b4ad0c644056644285806c91ddcc90d11acd698d.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c5245565d9c2b8f8cc580c26b4ad0c644056644285806c91ddcc90d11acd698d.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/0e626da7d7f98d28b8cf04ad646a34acca676c89ae4c24c952c65347432bb827.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/c293fddca27a7535b573385c44b22b70bd207b11b8ac5f968ce193b66d294d75.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/c5245565d9c2b8f8cc580c26b4ad0c644056644285806c91ddcc90d11acd698d.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1226",
-      "recommended": true
-    },
-    {
-      "type": "Download",
-      "name": "NeoVitaDB VPK",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/v-atamanenko/vitohlyad/releases/download/v0.9/vitohlyad.vpk",
       "recommended": false
     },
     {
       "type": "Official Website",
-      "name": "VitaDB Release Page",
+      "name": "VitaDBtoo Release Page",
       "url": "https://github.com/v-atamanenko/vitohlyad/releases"
     },
     {
@@ -52,11 +46,17 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/v-atamanenko/vitohlyad"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1226",
+      "recommended": true
     }
   ],
-  "source_name": "VitaDB",
+  "source_name": "VitaDBtoo",
   "source_id": "1226",
   "source_url": "https://github.com/v-atamanenko/vitohlyad",
   "release_page": "https://github.com/v-atamanenko/vitohlyad/releases",
-  "updated_at": "2026-08-15T18:26:19.370187+00:00"
+  "updated_at": "2026-08-13T15:34:48.434732+00:00"
 }

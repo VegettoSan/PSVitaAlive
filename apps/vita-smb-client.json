@@ -16,32 +16,43 @@
   "requirements": "- libshacccg.suprx",
   "size": 1326086,
   "status": "Legacy",
-  "icon": "https://www.rinnegatamante.eu/vitadb/icons/79250cc45455551a1eb9f5a4b64ef0ca8bf02e5869095a9cfebbac89b92d7b91.png",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/79250cc45455551a1eb9f5a4b64ef0ca8bf02e5869095a9cfebbac89b92d7b91.png",
   "screenshots": [
-    "https://www.rinnegatamante.eu/vitadb/screenshots/99e261c60fcf8faa18bf9a7677d38e703606b0b0a4a1a820226f1dda3fc034a5.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/99e261c60fcf8faa18bf9a7677d38e703606b0b0a4a1a820226f1dda3fc034a5.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/99e261c60fcf8faa18bf9a7677d38e703606b0b0a4a1a820226f1dda3fc034a5.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/99e261c60fcf8faa18bf9a7677d38e703606b0b0a4a1a820226f1dda3fc034a5.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1024",
-      "recommended": true
+      "name": "VitaDBtoo VPK",
+      "url": "https://github.com/cy33hc/vita-smb-client/releases/download/latest/smbclient.vpk",
+      "recommended": false
     },
     {
       "type": "Official Website",
-      "name": "VitaDB Release Page",
+      "name": "VitaDBtoo Release Page",
       "url": "https://github.com/cy33hc/vita-smb-client/releases"
+    },
+    {
+      "type": "Official Website",
+      "name": "NeoVitaDB Release Page",
+      "url": "https://github.com/cy33hc/vita-smb-client/releases/tag/latest"
     },
     {
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/cy33hc/vita-smb-client"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1024",
+      "recommended": true
     }
   ],
-  "source_name": "VitaDB",
+  "source_name": "VitaDBtoo",
   "source_id": "1024",
   "source_url": "https://github.com/cy33hc/vita-smb-client",
   "release_page": "https://github.com/cy33hc/vita-smb-client/releases",
-  "updated_at": "2026-08-15T18:26:19.747925+00:00"
+  "updated_at": "2026-08-13T15:34:48.519799+00:00"
 }

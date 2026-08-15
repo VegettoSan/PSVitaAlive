@@ -17,30 +17,24 @@
   "requirements": "Not specified",
   "size": 9493224,
   "status": "Legacy",
-  "icon": "https://www.rinnegatamante.eu/vitadb/icons/1a2ec67616a1e41eac28c335a7fb98612874f9d6203aa3f395710d016e341048.png",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/1a2ec67616a1e41eac28c335a7fb98612874f9d6203aa3f395710d016e341048.png",
   "screenshots": [
-    "https://www.rinnegatamante.eu/vitadb/screenshots/2d5522845c06adeae1f0ba50ee3881fdd22c66dcebaafaa0ac256b41ffa634b3.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/e88c3a011de9646eaac99bd2f7011239f520239c9c95f71456adf8ac8fc40720.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/7e32b98774df53474eb188f7ec610be109be2d0267161af17a3721acbc113bd8.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/d982fb4f33931aca6ed6a48bb741622ea8ec2ae169073cb6af78e2791cec05d4.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/2d5522845c06adeae1f0ba50ee3881fdd22c66dcebaafaa0ac256b41ffa634b3.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/2d5522845c06adeae1f0ba50ee3881fdd22c66dcebaafaa0ac256b41ffa634b3.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/e88c3a011de9646eaac99bd2f7011239f520239c9c95f71456adf8ac8fc40720.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/7e32b98774df53474eb188f7ec610be109be2d0267161af17a3721acbc113bd8.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/d982fb4f33931aca6ed6a48bb741622ea8ec2ae169073cb6af78e2791cec05d4.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/2d5522845c06adeae1f0ba50ee3881fdd22c66dcebaafaa0ac256b41ffa634b3.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=399",
-      "recommended": true
-    },
-    {
-      "type": "Download",
-      "name": "NeoVitaDB VPK",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/G333333/RPPHS/releases/download/v1.2/RPPHS.vpk",
       "recommended": false
     },
     {
       "type": "Official Website",
-      "name": "VitaDB Release Page",
+      "name": "VitaDBtoo Release Page",
       "url": "http://wololo.net/talk/viewtopic.php?f=116&p=423389#p423389"
     },
     {
@@ -52,11 +46,17 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/G333333/RPPHS"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=399",
+      "recommended": true
     }
   ],
-  "source_name": "VitaDB",
+  "source_name": "VitaDBtoo",
   "source_id": "399",
   "source_url": "https://github.com/G333333/RPPHS",
   "release_page": "http://wololo.net/talk/viewtopic.php?f=116&p=423389#p423389",
-  "updated_at": "2026-08-15T18:26:20.350563+00:00"
+  "updated_at": "2026-08-13T15:34:48.655976+00:00"
 }

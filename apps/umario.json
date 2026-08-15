@@ -16,26 +16,20 @@
   "requirements": "Not specified",
   "size": 18786585,
   "status": "Legacy",
-  "icon": "https://www.rinnegatamante.eu/vitadb/icons/7cb7efe2afb694e6c8d8a124450865cd2edf2c851fffacf90d7b51db496c541a.png",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/7cb7efe2afb694e6c8d8a124450865cd2edf2c851fffacf90d7b51db496c541a.png",
   "screenshots": [
-    "https://www.rinnegatamante.eu/vitadb/icons/7cb7efe2afb694e6c8d8a124450865cd2edf2c851fffacf90d7b51db496c541a.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/7cb7efe2afb694e6c8d8a124450865cd2edf2c851fffacf90d7b51db496c541a.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=748",
-      "recommended": true
-    },
-    {
-      "type": "Download",
-      "name": "NeoVitaDB VPK",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/WeegeeDEVELOPER/uMario-PSVita-Port/releases/download/1.2.7/uMario.vpk",
       "recommended": false
     },
     {
       "type": "Official Website",
-      "name": "VitaDB Release Page",
+      "name": "VitaDBtoo Release Page",
       "url": "https://github.com/WeegeeDEVELOPER/uMario-PSVita-Port/releases"
     },
     {
@@ -47,11 +41,17 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/WeegeeDEVELOPER/uMario-PSVita-Port"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=748",
+      "recommended": true
     }
   ],
-  "source_name": "VitaDB",
+  "source_name": "VitaDBtoo",
   "source_id": "748",
   "source_url": "https://github.com/WeegeeDEVELOPER/uMario-PSVita-Port",
   "release_page": "https://github.com/WeegeeDEVELOPER/uMario-PSVita-Port/releases",
-  "updated_at": "2026-08-15T18:26:19.937060+00:00"
+  "updated_at": "2026-08-13T15:34:48.562791+00:00"
 }

@@ -16,17 +16,12 @@
   "requirements": "Not specified",
   "size": 6051088,
   "status": "Legacy",
-  "icon": "https://www.rinnegatamante.eu/vitadb/icons/a8b1b6bcd17ff906f87a10d7b46de03458eba783031c079b2f38e173e24d0372.png",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/a8b1b6bcd17ff906f87a10d7b46de03458eba783031c079b2f38e173e24d0372.png",
   "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/a8b1b6bcd17ff906f87a10d7b46de03458eba783031c079b2f38e173e24d0372.png",
     "https://www.rinnegatamante.eu/vitadb/screenshots/starfield.jpg"
   ],
   "links": [
-    {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=128",
-      "recommended": true
-    },
     {
       "type": "Download",
       "name": "VitaDBtoo VPK",
@@ -35,7 +30,7 @@
     },
     {
       "type": "Official Website",
-      "name": "VitaDB Release Page",
+      "name": "VitaDBtoo Release Page",
       "url": "http://gekihen.customprotocol.com/en/project/Starfield-Vita"
     },
     {
@@ -47,11 +42,17 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/gnmmarechal/starfield-vita"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=128",
+      "recommended": true
     }
   ],
-  "source_name": "VitaDB",
+  "source_name": "VitaDBtoo",
   "source_id": "128",
   "source_url": "https://github.com/gnmmarechal/starfield-vita",
   "release_page": "http://gekihen.customprotocol.com/en/project/Starfield-Vita",
-  "updated_at": "2026-08-15T18:26:20.491807+00:00"
+  "updated_at": "2026-08-13T15:34:48.684669+00:00"
 }

@@ -16,30 +16,24 @@
   "requirements": "- libshacccg.suprx\n- kubridge.skprx\n- Game Data Files: Android",
   "size": 2574892,
   "status": "Legacy",
-  "icon": "https://www.rinnegatamante.eu/vitadb/icons/2455fc20c2b6f7f20d91ea5e3523978758ff840c491e6babf3917341493f49b1.png",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/2455fc20c2b6f7f20d91ea5e3523978758ff840c491e6babf3917341493f49b1.png",
   "screenshots": [
-    "https://www.rinnegatamante.eu/vitadb/screenshots/70b323d3aaf92a6569b051e9459b89a6403df1878f99f4f0948ce23340988d6b.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/d33a5597a7cb663df71362378e5659c459c352f0fb6072e82fd833acb9c91cda.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/4422fd13f1a9df0ab50edef03395e2190c0d6d39ed7e8bc1609ac84dc7ddb01e.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/70b323d3aaf92a6569b051e9459b89a6403df1878f99f4f0948ce23340988d6b.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/d33a5597a7cb663df71362378e5659c459c352f0fb6072e82fd833acb9c91cda.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/d33a5597a7cb663df71362378e5659c459c352f0fb6072e82fd833acb9c91cda.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/4422fd13f1a9df0ab50edef03395e2190c0d6d39ed7e8bc1609ac84dc7ddb01e.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/70b323d3aaf92a6569b051e9459b89a6403df1878f99f4f0948ce23340988d6b.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/d33a5597a7cb663df71362378e5659c459c352f0fb6072e82fd833acb9c91cda.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1303",
-      "recommended": true
-    },
-    {
-      "type": "Download",
-      "name": "NeoVitaDB VPK",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/Rinnegatamante/flappy-nyan-vita/releases/download/v.1.0/flappy.vpk",
       "recommended": false
     },
     {
       "type": "Official Website",
-      "name": "VitaDB Release Page",
+      "name": "VitaDBtoo Release Page",
       "url": "https://github.com/Rinnegatamante/flappy-nyan-vita/releases"
     },
     {
@@ -51,11 +45,17 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/Rinnegatamante/flappy-nyan-vita"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1303",
+      "recommended": true
     }
   ],
-  "source_name": "VitaDB",
+  "source_name": "VitaDBtoo",
   "source_id": "1303",
   "source_url": "https://github.com/Rinnegatamante/flappy-nyan-vita",
   "release_page": "https://github.com/Rinnegatamante/flappy-nyan-vita/releases",
-  "updated_at": "2026-08-15T18:26:19.208880+00:00"
+  "updated_at": "2026-08-13T15:34:48.397591+00:00"
 }

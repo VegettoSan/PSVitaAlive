@@ -19,24 +19,23 @@
   "status": "Legacy",
   "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1786-sonic-time-twisted.png",
   "screenshots": [
-    "https://www.rinnegatamante.eu/vitadb/screenshots/c0e9f5417c182c5d3907122a0ab85cbd35d8e6fe1b5b862c59adf27216f78570.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/3bac8cadfdd6a6db6fae609d0434e3e4e1f88a19d2306c950048ea72e4e55549.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/f022ecaf931055ca28ad91b6cc8fec2292244fe264895005a01451547f1252e3.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/6486535b0081258cea08ac64bae1c3edb6cacba9dfd26997fbd3f49afaf4cd40.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c0e9f5417c182c5d3907122a0ab85cbd35d8e6fe1b5b862c59adf27216f78570.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c0e9f5417c182c5d3907122a0ab85cbd35d8e6fe1b5b862c59adf27216f78570.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/3bac8cadfdd6a6db6fae609d0434e3e4e1f88a19d2306c950048ea72e4e55549.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/f022ecaf931055ca28ad91b6cc8fec2292244fe264895005a01451547f1252e3.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/6486535b0081258cea08ac64bae1c3edb6cacba9dfd26997fbd3f49afaf4cd40.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/c0e9f5417c182c5d3907122a0ab85cbd35d8e6fe1b5b862c59adf27216f78570.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "NeoVitaDB VPK",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/836-SonicTimeTwisted.vpk",
       "recommended": true
     },
     {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=836",
-      "recommended": false
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/MEGAgameBoy/Sonic-Time-Twisted-PS-Vita-Port"
     },
     {
       "type": "Download",
@@ -45,14 +44,15 @@
       "recommended": false
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/MEGAgameBoy/Sonic-Time-Twisted-PS-Vita-Port"
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=836",
+      "recommended": false
     }
   ],
-  "source_name": "NeoVitaDB",
-  "source_id": "1786",
-  "source_url": "https://github.com",
+  "source_name": "VitaDBtoo",
+  "source_id": "836",
+  "source_url": "https://github.com/MEGAgameBoy/Sonic-Time-Twisted-PS-Vita-Port",
   "release_page": "",
-  "updated_at": "2026-08-15T18:26:19.850131+00:00"
+  "updated_at": "2026-08-13T15:34:48.542148+00:00"
 }

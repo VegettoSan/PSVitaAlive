@@ -16,30 +16,24 @@
   "requirements": "Not specified",
   "size": 8489084,
   "status": "Legacy",
-  "icon": "https://www.rinnegatamante.eu/vitadb/icons/560d8347a65513367ee8c119f09a9f041f2323f5175d4f48b3702233fad0cb39.png",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/560d8347a65513367ee8c119f09a9f041f2323f5175d4f48b3702233fad0cb39.png",
   "screenshots": [
-    "https://www.rinnegatamante.eu/vitadb/screenshots/7fd51de1c6a4ae1f87bb0be163fecab12979a036da34bb98b51ae4b498187326.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/2870b622fa00640ffa004973150bd744da842a6ee7d80100584ab13ac4ebab4e.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/8d9f8ce485ef5fc04d2c4921f50ca8c923ef171f4e0a70c3210f43cf5bc65184.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/19c7c6709fb90c2c135c1c206a5842e83e4ccc58a220337de5a8ea766b0acd7d.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/7fd51de1c6a4ae1f87bb0be163fecab12979a036da34bb98b51ae4b498187326.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/7fd51de1c6a4ae1f87bb0be163fecab12979a036da34bb98b51ae4b498187326.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/2870b622fa00640ffa004973150bd744da842a6ee7d80100584ab13ac4ebab4e.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/8d9f8ce485ef5fc04d2c4921f50ca8c923ef171f4e0a70c3210f43cf5bc65184.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/19c7c6709fb90c2c135c1c206a5842e83e4ccc58a220337de5a8ea766b0acd7d.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/7fd51de1c6a4ae1f87bb0be163fecab12979a036da34bb98b51ae4b498187326.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=878",
-      "recommended": true
-    },
-    {
-      "type": "Download",
-      "name": "NeoVitaDB VPK",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/island-games/Tux-Football-Vita/releases/download/1.0/TuxFootball.vpk",
       "recommended": false
     },
     {
       "type": "Official Website",
-      "name": "VitaDB Release Page",
+      "name": "VitaDBtoo Release Page",
       "url": "https://github.com/island-games/Tux-Football-Vita/releases"
     },
     {
@@ -51,11 +45,17 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/island-games/Tux-Football-Vita"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=878",
+      "recommended": true
     }
   ],
-  "source_name": "VitaDB",
+  "source_name": "VitaDBtoo",
   "source_id": "878",
   "source_url": "https://github.com/island-games/Tux-Football-Vita",
   "release_page": "https://github.com/island-games/Tux-Football-Vita/releases",
-  "updated_at": "2026-08-15T18:26:19.800163+00:00"
+  "updated_at": "2026-08-13T15:34:48.531285+00:00"
 }

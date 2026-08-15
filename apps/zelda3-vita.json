@@ -9,7 +9,7 @@
   ],
   "category_id": "ports",
   "subcategory_ids": [
-    "other"
+    "adventure"
   ],
   "version": "v.1.3",
   "version_date": "2026-08-15",
@@ -18,24 +18,28 @@
   "status": "Legacy",
   "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1806-zelda3-vita.png",
   "screenshots": [
-    "https://www.rinnegatamante.eu/vitadb/screenshots/c4be391b5d1f3e84dbfbbb59f6f387496b8fd2fa1ee2f33394f47880ee031353.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/f4524ee2fac91e9ce5f6b748d5bc7b9ed791cd176817c8a515e9a4873049b292.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/4b32f02ac6e09dc0c6887a270442ca9ded93fc1ecc5b6874b44259b9ea6dc046.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/09f6a63a8d578935c24332dcf5967b2de68d3a7add29d6fa530632d7f4ec5615.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c4be391b5d1f3e84dbfbbb59f6f387496b8fd2fa1ee2f33394f47880ee031353.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c4be391b5d1f3e84dbfbbb59f6f387496b8fd2fa1ee2f33394f47880ee031353.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/f4524ee2fac91e9ce5f6b748d5bc7b9ed791cd176817c8a515e9a4873049b292.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/4b32f02ac6e09dc0c6887a270442ca9ded93fc1ecc5b6874b44259b9ea6dc046.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/09f6a63a8d578935c24332dcf5967b2de68d3a7add29d6fa530632d7f4ec5615.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/c4be391b5d1f3e84dbfbbb59f6f387496b8fd2fa1ee2f33394f47880ee031353.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "NeoVitaDB VPK",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/993-zelda3_attp.vpk",
       "recommended": true
     },
     {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=993",
-      "recommended": false
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
+      "url": "https://www.psx-place.com/threads/release-zelda3-vita-port-of-the-legend-of-zelda-a-link-to-the-past.38470/"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/Rinnegatamante/zelda3"
     },
     {
       "type": "Download",
@@ -44,19 +48,15 @@
       "recommended": false
     },
     {
-      "type": "Official Website",
-      "name": "VitaDB Release Page",
-      "url": "https://www.psx-place.com/threads/release-zelda3-vita-port-of-the-legend-of-zelda-a-link-to-the-past.38470/"
-    },
-    {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/Rinnegatamante/zelda3"
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=993",
+      "recommended": false
     }
   ],
-  "source_name": "NeoVitaDB",
-  "source_id": "1806",
-  "source_url": "https://github.com",
-  "release_page": "",
-  "updated_at": "2026-08-15T18:26:19.233160+00:00"
+  "source_name": "VitaDBtoo",
+  "source_id": "993",
+  "source_url": "https://github.com/Rinnegatamante/zelda3",
+  "release_page": "https://www.psx-place.com/threads/release-zelda3-vita-port-of-the-legend-of-zelda-a-link-to-the-past.38470/",
+  "updated_at": "2026-08-13T15:34:48.403462+00:00"
 }

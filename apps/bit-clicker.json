@@ -23,15 +23,19 @@
   "links": [
     {
       "type": "Download",
-      "name": "NeoVitaDB VPK",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/645-BitCliker.vpk",
       "recommended": true
     },
     {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=645",
-      "recommended": false
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
+      "url": "https://github.com/Ccoolguy/BitClickerVita"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com"
     },
     {
       "type": "Download",
@@ -40,19 +44,15 @@
       "recommended": false
     },
     {
-      "type": "Official Website",
-      "name": "VitaDB Release Page",
-      "url": "https://github.com/Ccoolguy/BitClickerVita"
-    },
-    {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com"
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=645",
+      "recommended": false
     }
   ],
-  "source_name": "NeoVitaDB",
-  "source_id": "1716",
-  "source_url": "https://github.com",
-  "release_page": "",
-  "updated_at": "2026-08-15T18:26:20.212441+00:00"
+  "source_name": "VitaDBtoo",
+  "source_id": "645",
+  "source_url": "https://github.com/Ccoolguy/BitClickerVita",
+  "release_page": "https://github.com/Ccoolguy/BitClickerVita",
+  "updated_at": "2026-08-13T15:34:48.620198+00:00"
 }

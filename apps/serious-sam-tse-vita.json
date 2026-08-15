@@ -16,30 +16,24 @@
   "requirements": "- libshacccg.suprx\n- Game Data Files: PC",
   "size": 4225479,
   "status": "Legacy",
-  "icon": "https://www.rinnegatamante.eu/vitadb/icons/866a4fcad6baf45cba26a3378390523858dd8a49ee170e6541dacb71f907e114.png",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/866a4fcad6baf45cba26a3378390523858dd8a49ee170e6541dacb71f907e114.png",
   "screenshots": [
-    "https://www.rinnegatamante.eu/vitadb/screenshots/60ab9e0a27ea3baa8de7026d40a00b052ad02fdb7d93be1579c051abdb0e3073.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/424f391fdc9f8b520c180b3fa0a602be44a28efbafc77fb07ddc60d975dbd373.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/b3daa676ea220d8c061720715bc874ba6f536fa183855e2103179b485bd23b8c.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/60ab9e0a27ea3baa8de7026d40a00b052ad02fdb7d93be1579c051abdb0e3073.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/424f391fdc9f8b520c180b3fa0a602be44a28efbafc77fb07ddc60d975dbd373.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/424f391fdc9f8b520c180b3fa0a602be44a28efbafc77fb07ddc60d975dbd373.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/b3daa676ea220d8c061720715bc874ba6f536fa183855e2103179b485bd23b8c.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/60ab9e0a27ea3baa8de7026d40a00b052ad02fdb7d93be1579c051abdb0e3073.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/424f391fdc9f8b520c180b3fa0a602be44a28efbafc77fb07ddc60d975dbd373.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1345",
-      "recommended": true
-    },
-    {
-      "type": "Download",
-      "name": "NeoVitaDB VPK",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/fgsfdsfgs/Serious-Engine/releases/download/psvita2/ssam_tse_v2.vpk",
       "recommended": false
     },
     {
       "type": "Official Website",
-      "name": "VitaDB Release Page",
+      "name": "VitaDBtoo Release Page",
       "url": "https://github.com/fgsfdsfgs/Serious-Engine/releases"
     },
     {
@@ -51,11 +45,17 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/fgsfdsfgs/Serious-Engine/tree/psvita"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1345",
+      "recommended": true
     }
   ],
-  "source_name": "VitaDB",
+  "source_name": "VitaDBtoo",
   "source_id": "1345",
   "source_url": "https://github.com/fgsfdsfgs/Serious-Engine/tree/psvita",
   "release_page": "https://github.com/fgsfdsfgs/Serious-Engine/releases",
-  "updated_at": "2026-08-15T18:26:19.104111+00:00"
+  "updated_at": "2026-08-13T15:34:48.371965+00:00"
 }

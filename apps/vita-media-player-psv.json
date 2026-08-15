@@ -16,20 +16,20 @@
   "requirements": "Not specified",
   "size": 319320,
   "status": "Legacy",
-  "icon": "https://www.rinnegatamante.eu/vitadb/icons/182f23bfbdfab54601c6221e196e9038649236ad25f3ae47475360a2f6081ac9.png",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/182f23bfbdfab54601c6221e196e9038649236ad25f3ae47475360a2f6081ac9.png",
   "screenshots": [
-    "https://www.rinnegatamante.eu/vitadb/screenshots/e494911e065c94cb3fa499267db49d8be76f328defb93ac6deeacb405291c074.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/9e77d67aedba5dd1ba058f48886bd535150414f27c9f044b3d0b344de5981ff7.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/2ec9cc8359f8cfab9f7066e742457ff0146efc4f50696788c898585656dc9c65.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/e494911e065c94cb3fa499267db49d8be76f328defb93ac6deeacb405291c074.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/9e77d67aedba5dd1ba058f48886bd535150414f27c9f044b3d0b344de5981ff7.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/9e77d67aedba5dd1ba058f48886bd535150414f27c9f044b3d0b344de5981ff7.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/2ec9cc8359f8cfab9f7066e742457ff0146efc4f50696788c898585656dc9c65.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/e494911e065c94cb3fa499267db49d8be76f328defb93ac6deeacb405291c074.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/9e77d67aedba5dd1ba058f48886bd535150414f27c9f044b3d0b344de5981ff7.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=869",
-      "recommended": true
+      "name": "VitaDBtoo VPK",
+      "url": "https://github.com/SonicMastr/Vita-Media-Player/releases/download/v1.01/VitaMediaPlayer.vpk",
+      "recommended": false
     },
     {
       "type": "Download",
@@ -38,14 +38,8 @@
       "recommended": false
     },
     {
-      "type": "Download",
-      "name": "VitaDBtoo VPK",
-      "url": "https://github.com/SonicMastr/Vita-Media-Player/releases/download/v1.01/VitaMediaPlayer.vpk",
-      "recommended": false
-    },
-    {
       "type": "Official Website",
-      "name": "VitaDB Release Page",
+      "name": "VitaDBtoo Release Page",
       "url": "https://github.com/SonicMastr/Vita-Media-Player/releases"
     },
     {
@@ -57,11 +51,17 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/SonicMastr/Vita-Media-Player"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=869",
+      "recommended": true
     }
   ],
-  "source_name": "VitaDB",
+  "source_name": "VitaDBtoo",
   "source_id": "869",
   "source_url": "https://github.com/SonicMastr/Vita-Media-Player",
   "release_page": "https://github.com/SonicMastr/Vita-Media-Player/releases",
-  "updated_at": "2026-08-15T18:26:20.092207+00:00"
+  "updated_at": "2026-08-13T15:34:48.590333+00:00"
 }

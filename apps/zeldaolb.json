@@ -18,24 +18,28 @@
   "status": "Legacy",
   "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1557-zeldaolb.png",
   "screenshots": [
-    "https://www.rinnegatamante.eu/vitadb/screenshots/03ce435ec6a577622c179531b34c0cf56b39db147f9c1895cf741b335e038750.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/ad7c9a8cc3abf42fecf72fbb911a9639500d533940dcedb1cd59a4cc7326beac.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/7c0675035f48e90677675ab69d0dc23027137529f62925a415894b3995e39423.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/03ce435ec6a577622c179531b34c0cf56b39db147f9c1895cf741b335e038750.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/ad7c9a8cc3abf42fecf72fbb911a9639500d533940dcedb1cd59a4cc7326beac.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/ad7c9a8cc3abf42fecf72fbb911a9639500d533940dcedb1cd59a4cc7326beac.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/7c0675035f48e90677675ab69d0dc23027137529f62925a415894b3995e39423.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/03ce435ec6a577622c179531b34c0cf56b39db147f9c1895cf741b335e038750.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/ad7c9a8cc3abf42fecf72fbb911a9639500d533940dcedb1cd59a4cc7326beac.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "NeoVitaDB VPK",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/265-ZeldaOLB.vpk",
       "recommended": true
     },
     {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=265",
-      "recommended": false
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
+      "url": "http://wololo.net/talk/viewtopic.php?f=116&t=48186"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/Rinnegatamante/ZeldaOLB"
     },
     {
       "type": "Download",
@@ -44,19 +48,15 @@
       "recommended": false
     },
     {
-      "type": "Official Website",
-      "name": "VitaDB Release Page",
-      "url": "http://wololo.net/talk/viewtopic.php?f=116&t=48186"
-    },
-    {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/Rinnegatamante/ZeldaOLB"
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=265",
+      "recommended": false
     }
   ],
-  "source_name": "NeoVitaDB",
-  "source_id": "1557",
-  "source_url": "https://github.com",
-  "release_page": "",
-  "updated_at": "2026-08-15T18:26:20.386544+00:00"
+  "source_name": "VitaDBtoo",
+  "source_id": "265",
+  "source_url": "https://github.com/Rinnegatamante/ZeldaOLB",
+  "release_page": "http://wololo.net/talk/viewtopic.php?f=116&t=48186",
+  "updated_at": "2026-08-13T15:34:48.664767+00:00"
 }

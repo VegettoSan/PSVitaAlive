@@ -9,7 +9,8 @@
   ],
   "category_id": "ports",
   "subcategory_ids": [
-    "other"
+    "fps",
+    "action"
   ],
   "version": "v.1.3",
   "version_date": "2026-08-15",
@@ -18,24 +19,28 @@
   "status": "Legacy",
   "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1592-vitaquakeiii.png",
   "screenshots": [
-    "https://www.rinnegatamante.eu/vitadb/screenshots/ae5d69d9852e0a9574a8e7bcdabc60fde2c7ebf71f54e7f6be43947e6beb131e.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/cea44d0370d8cd3dabe2ffb33093d0545ce0361478cd32ef89ddd0513a669bcc.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/1df52b47db67a0b4d9f946144726c9d44e810bb4fa53fa84071a6a10ba80ef51.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/a4a72a86acbc35882c17e0e0568e97e48c6ce9bff4d1692f0a88e1f78338c8f1.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/ae5d69d9852e0a9574a8e7bcdabc60fde2c7ebf71f54e7f6be43947e6beb131e.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/ae5d69d9852e0a9574a8e7bcdabc60fde2c7ebf71f54e7f6be43947e6beb131e.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/cea44d0370d8cd3dabe2ffb33093d0545ce0361478cd32ef89ddd0513a669bcc.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/1df52b47db67a0b4d9f946144726c9d44e810bb4fa53fa84071a6a10ba80ef51.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/a4a72a86acbc35882c17e0e0568e97e48c6ce9bff4d1692f0a88e1f78338c8f1.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/ae5d69d9852e0a9574a8e7bcdabc60fde2c7ebf71f54e7f6be43947e6beb131e.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "NeoVitaDB VPK",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/375-vitaQuakeIII.vpk",
       "recommended": true
     },
     {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=375",
-      "recommended": false
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
+      "url": "https://www.psx-place.com/threads/release-vitaquakeiii-ioquake3-port-for-psvita-quake-iii-quake-iii-team-arena-openarena.34480/"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/Rinnegatamante/vitaQuakeIII"
     },
     {
       "type": "Download",
@@ -44,19 +49,15 @@
       "recommended": false
     },
     {
-      "type": "Official Website",
-      "name": "VitaDB Release Page",
-      "url": "https://www.psx-place.com/threads/release-vitaquakeiii-ioquake3-port-for-psvita-quake-iii-quake-iii-team-arena-openarena.34480/"
-    },
-    {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/Rinnegatamante/vitaQuakeIII"
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=375",
+      "recommended": false
     }
   ],
-  "source_name": "NeoVitaDB",
-  "source_id": "1592",
-  "source_url": "https://github.com",
-  "release_page": "",
-  "updated_at": "2026-08-15T18:26:19.338830+00:00"
+  "source_name": "VitaDBtoo",
+  "source_id": "375",
+  "source_url": "https://github.com/Rinnegatamante/vitaQuakeIII",
+  "release_page": "https://www.psx-place.com/threads/release-vitaquakeiii-ioquake3-port-for-psvita-quake-iii-quake-iii-team-arena-openarena.34480/",
+  "updated_at": "2026-08-13T15:34:48.426717+00:00"
 }

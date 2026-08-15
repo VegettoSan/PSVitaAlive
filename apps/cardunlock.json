@@ -16,26 +16,20 @@
   "requirements": "Not specified",
   "size": 120861,
   "status": "Legacy",
-  "icon": "https://www.rinnegatamante.eu/vitadb/icons/370a78d711fce77199d787f2614287600ea890c3909b7c280727e5afd7c1f421.png",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/370a78d711fce77199d787f2614287600ea890c3909b7c280727e5afd7c1f421.png",
   "screenshots": [
-    "https://www.rinnegatamante.eu/vitadb/icons/370a78d711fce77199d787f2614287600ea890c3909b7c280727e5afd7c1f421.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/370a78d711fce77199d787f2614287600ea890c3909b7c280727e5afd7c1f421.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=249",
-      "recommended": true
-    },
-    {
-      "type": "Download",
-      "name": "NeoVitaDB VPK",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/cnsldv/CardUnlock/releases/download/v1.0/CardUnlock.vpk",
       "recommended": false
     },
     {
       "type": "Official Website",
-      "name": "VitaDB Release Page",
+      "name": "VitaDBtoo Release Page",
       "url": "https://wololo.net/talk/viewtopic.php?f=116&t=48104"
     },
     {
@@ -47,11 +41,17 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/cnsldv/CardUnlock"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=249",
+      "recommended": true
     }
   ],
-  "source_name": "VitaDB",
+  "source_name": "VitaDBtoo",
   "source_id": "249",
   "source_url": "https://github.com/cnsldv/CardUnlock",
   "release_page": "https://wololo.net/talk/viewtopic.php?f=116&t=48104",
-  "updated_at": "2026-08-15T18:26:20.482387+00:00"
+  "updated_at": "2026-08-13T15:34:48.682729+00:00"
 }

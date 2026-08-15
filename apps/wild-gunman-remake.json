@@ -18,21 +18,20 @@
   "status": "Legacy",
   "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1654-wild-gunman-remake.png",
   "screenshots": [
-    "https://www.rinnegatamante.eu/vitadb/screenshots/684c5bdeb1a9e6ba43d8210a76763a5f58c4766100e78c7b975f339c7e8218ee.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/684c5bdeb1a9e6ba43d8210a76763a5f58c4766100e78c7b975f339c7e8218ee.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/684c5bdeb1a9e6ba43d8210a76763a5f58c4766100e78c7b975f339c7e8218ee.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/684c5bdeb1a9e6ba43d8210a76763a5f58c4766100e78c7b975f339c7e8218ee.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "NeoVitaDB VPK",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/486-Wild_20Gunman.vpk",
       "recommended": true
     },
     {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=486",
-      "recommended": false
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com"
     },
     {
       "type": "Download",
@@ -41,14 +40,15 @@
       "recommended": false
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com"
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=486",
+      "recommended": false
     }
   ],
-  "source_name": "NeoVitaDB",
-  "source_id": "1654",
-  "source_url": "https://github.com",
+  "source_name": "VitaDBtoo",
+  "source_id": "486",
+  "source_url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/486-Wild_20Gunman.vpk",
   "release_page": "",
-  "updated_at": "2026-08-15T18:26:20.272310+00:00"
+  "updated_at": "2026-08-13T15:34:48.637148+00:00"
 }

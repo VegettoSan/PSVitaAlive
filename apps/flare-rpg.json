@@ -18,24 +18,23 @@
   "status": "Legacy",
   "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1884-flare-rpg.png",
   "screenshots": [
-    "https://www.rinnegatamante.eu/vitadb/screenshots/e97acc1e23f7ed8984e310292a8e0d466d690980e4b724e93bab539c0f705376.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/588cfedcd5da5c57bdc6768328d0a2b618bd8348b976d2d81acaf3e3ff984fd5.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/219bd1d153a1aa643fa8689447126ac3ed784ad76eae14aad1425de436d7d899.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/d745e236f3e39f655b6d9b0c96faca209883922dba3c7459dcb9c776da3c1a7e.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/e97acc1e23f7ed8984e310292a8e0d466d690980e4b724e93bab539c0f705376.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/e97acc1e23f7ed8984e310292a8e0d466d690980e4b724e93bab539c0f705376.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/588cfedcd5da5c57bdc6768328d0a2b618bd8348b976d2d81acaf3e3ff984fd5.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/219bd1d153a1aa643fa8689447126ac3ed784ad76eae14aad1425de436d7d899.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/d745e236f3e39f655b6d9b0c96faca209883922dba3c7459dcb9c776da3c1a7e.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/e97acc1e23f7ed8984e310292a8e0d466d690980e4b724e93bab539c0f705376.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "NeoVitaDB VPK",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1158-flare.vpk",
       "recommended": true
     },
     {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1158",
-      "recommended": false
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/Rinnegatamante/flare-engine"
     },
     {
       "type": "Download",
@@ -44,14 +43,15 @@
       "recommended": false
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/Rinnegatamante/flare-engine"
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1158",
+      "recommended": false
     }
   ],
-  "source_name": "NeoVitaDB",
-  "source_id": "1884",
-  "source_url": "https://github.com",
+  "source_name": "VitaDBtoo",
+  "source_id": "1158",
+  "source_url": "https://github.com/Rinnegatamante/flare-engine",
   "release_page": "",
-  "updated_at": "2026-08-15T18:26:19.474494+00:00"
+  "updated_at": "2026-08-13T15:34:48.461189+00:00"
 }

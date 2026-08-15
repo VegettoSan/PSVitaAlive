@@ -16,17 +16,11 @@
   "requirements": "- libshacccg.suprx",
   "size": 12075762,
   "status": "Legacy",
-  "icon": "https://www.rinnegatamante.eu/vitadb/icons/614a6b2b2a7224e835b1019abe2d57a5191ea139feaddb5f41941b047b9be301.png",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/614a6b2b2a7224e835b1019abe2d57a5191ea139feaddb5f41941b047b9be301.png",
   "screenshots": [
-    "https://www.rinnegatamante.eu/vitadb/icons/614a6b2b2a7224e835b1019abe2d57a5191ea139feaddb5f41941b047b9be301.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/614a6b2b2a7224e835b1019abe2d57a5191ea139feaddb5f41941b047b9be301.png"
   ],
   "links": [
-    {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1416",
-      "recommended": true
-    },
     {
       "type": "Download",
       "name": "VitaDBtoo VPK",
@@ -35,18 +29,24 @@
     },
     {
       "type": "Official Website",
-      "name": "VitaDB Release Page",
+      "name": "VitaDBtoo Release Page",
       "url": "https://github.com/softwaregremlin2/Quake1ModelViewer/releases"
     },
     {
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/softwaregremlin2/Quake1ModelViewer"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1416",
+      "recommended": true
     }
   ],
-  "source_name": "VitaDB",
+  "source_name": "VitaDBtoo",
   "source_id": "1416",
   "source_url": "https://github.com/softwaregremlin2/Quake1ModelViewer",
   "release_page": "https://github.com/softwaregremlin2/Quake1ModelViewer/releases",
-  "updated_at": "2026-08-15T18:26:18.941550+00:00"
+  "updated_at": "2026-08-13T15:34:48.338578+00:00"
 }

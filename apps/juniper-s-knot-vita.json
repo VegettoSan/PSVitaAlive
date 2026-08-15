@@ -16,17 +16,11 @@
   "requirements": "Not specified",
   "size": 165025013,
   "status": "Legacy",
-  "icon": "https://www.rinnegatamante.eu/vitadb/icons/f0bd5089374613bd95b7bd8e01199619158215e6057e726744ce8a301ca6bd79.png",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/f0bd5089374613bd95b7bd8e01199619158215e6057e726744ce8a301ca6bd79.png",
   "screenshots": [
-    "https://www.rinnegatamante.eu/vitadb/icons/f0bd5089374613bd95b7bd8e01199619158215e6057e726744ce8a301ca6bd79.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/f0bd5089374613bd95b7bd8e01199619158215e6057e726744ce8a301ca6bd79.png"
   ],
   "links": [
-    {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1218",
-      "recommended": true
-    },
     {
       "type": "Download",
       "name": "VitaDBtoo VPK",
@@ -35,13 +29,19 @@
     },
     {
       "type": "Official Website",
-      "name": "VitaDB Release Page",
+      "name": "VitaDBtoo Release Page",
       "url": "https://github.com/Grimiku/Junipers-Knot-Vita"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1218",
+      "recommended": true
     }
   ],
-  "source_name": "VitaDB",
+  "source_name": "VitaDBtoo",
   "source_id": "1218",
   "source_url": "https://github.com/Grimiku/Junipers-Knot-Vita",
   "release_page": "https://github.com/Grimiku/Junipers-Knot-Vita",
-  "updated_at": "2026-08-15T18:26:19.379253+00:00"
+  "updated_at": "2026-08-13T15:34:48.437461+00:00"
 }

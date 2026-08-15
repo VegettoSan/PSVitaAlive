@@ -16,30 +16,24 @@
   "requirements": "Not specified",
   "size": 2765534,
   "status": "Legacy",
-  "icon": "https://www.rinnegatamante.eu/vitadb/icons/bbc3a8adf4cd784926266d78db903ef2175408130a4cf4103da33eab5d1512d5.png",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/bbc3a8adf4cd784926266d78db903ef2175408130a4cf4103da33eab5d1512d5.png",
   "screenshots": [
-    "https://www.rinnegatamante.eu/vitadb/screenshots/cd5f4c2e2c198fe9e571f51afdcd4ec7811d5245a933a376cbfc53f5ab7e1890.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/bdff9a3b03e3bdd1b11e8b14bcc33d9f12d29e35e0b7c2fe8fbcfc322c1f0393.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/15c0858a98bde44497e5a9dd6ad95229a2640e38220f713b76c1df8bf686423e.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/53d0fda535e48c49a5f955deb2292fc6f4332c2eded1aa79f4eb108b19bccc12.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/cd5f4c2e2c198fe9e571f51afdcd4ec7811d5245a933a376cbfc53f5ab7e1890.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/cd5f4c2e2c198fe9e571f51afdcd4ec7811d5245a933a376cbfc53f5ab7e1890.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/bdff9a3b03e3bdd1b11e8b14bcc33d9f12d29e35e0b7c2fe8fbcfc322c1f0393.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/15c0858a98bde44497e5a9dd6ad95229a2640e38220f713b76c1df8bf686423e.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/53d0fda535e48c49a5f955deb2292fc6f4332c2eded1aa79f4eb108b19bccc12.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/cd5f4c2e2c198fe9e571f51afdcd4ec7811d5245a933a376cbfc53f5ab7e1890.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=266",
-      "recommended": true
-    },
-    {
-      "type": "Download",
-      "name": "NeoVitaDB VPK",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/devingDev/VitaCord/releases/download/1.5fix1/vita_cord.vpk",
       "recommended": false
     },
     {
       "type": "Official Website",
-      "name": "VitaDB Release Page",
+      "name": "VitaDBtoo Release Page",
       "url": "http://wololo.net/2017/06/05/vitacord-psvita-client-discord-released/"
     },
     {
@@ -51,11 +45,17 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/devingDev/VitaCord"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=266",
+      "recommended": true
     }
   ],
-  "source_name": "VitaDB",
+  "source_name": "VitaDBtoo",
   "source_id": "266",
   "source_url": "https://github.com/devingDev/VitaCord",
   "release_page": "http://wololo.net/2017/06/05/vitacord-psvita-client-discord-released/",
-  "updated_at": "2026-08-15T18:26:20.417060+00:00"
+  "updated_at": "2026-08-13T15:34:48.672022+00:00"
 }

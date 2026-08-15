@@ -16,30 +16,24 @@
   "requirements": "- libshacccg.suprx\n- Game Data Files: N64",
   "size": 7722903,
   "status": "Legacy",
-  "icon": "https://www.rinnegatamante.eu/vitadb/icons/1b6f60507a0dfa9122b491b83c885817f511203af45f619ad2f5ad9ca48e7a0e.png",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/1b6f60507a0dfa9122b491b83c885817f511203af45f619ad2f5ad9ca48e7a0e.png",
   "screenshots": [
-    "https://www.rinnegatamante.eu/vitadb/screenshots/cdaf791df7b49b776fd454bb22bb11051df4c6ff91a959b60a6cfdd7cd3bf386.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/20b6e483c87309d3394c235cd4968b1ce65eba8057cd17c61bc5f79faf638474.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/869511cee9d90369a1924b226cc0f866e1b0599b3840a7b0895b67cc1b03c073.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/26820f8e65826f74387251197a052bfccc52b10646966a9c959ebeb0676da904.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/cdaf791df7b49b776fd454bb22bb11051df4c6ff91a959b60a6cfdd7cd3bf386.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/cdaf791df7b49b776fd454bb22bb11051df4c6ff91a959b60a6cfdd7cd3bf386.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/20b6e483c87309d3394c235cd4968b1ce65eba8057cd17c61bc5f79faf638474.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/869511cee9d90369a1924b226cc0f866e1b0599b3840a7b0895b67cc1b03c073.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/26820f8e65826f74387251197a052bfccc52b10646966a9c959ebeb0676da904.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/cdaf791df7b49b776fd454bb22bb11051df4c6ff91a959b60a6cfdd7cd3bf386.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1393",
-      "recommended": true
-    },
-    {
-      "type": "Download",
-      "name": "NeoVitaDB VPK",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/Rinnegatamante/SpaghettiKart/releases/download/v.1.1/spaghetti.vpk",
       "recommended": false
     },
     {
       "type": "Official Website",
-      "name": "VitaDB Release Page",
+      "name": "VitaDBtoo Release Page",
       "url": "https://github.com/Rinnegatamante/SpaghettiKart/releases"
     },
     {
@@ -51,11 +45,17 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/Rinnegatamante/SpaghettiKart"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1393",
+      "recommended": true
     }
   ],
-  "source_name": "VitaDB",
+  "source_name": "VitaDBtoo",
   "source_id": "1393",
   "source_url": "https://github.com/Rinnegatamante/SpaghettiKart",
   "release_page": "https://github.com/Rinnegatamante/SpaghettiKart/releases",
-  "updated_at": "2026-08-15T18:26:18.993442+00:00"
+  "updated_at": "2026-08-13T15:34:48.350465+00:00"
 }

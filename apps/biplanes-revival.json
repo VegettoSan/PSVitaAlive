@@ -16,30 +16,24 @@
   "requirements": "Not specified",
   "size": 2279182,
   "status": "Legacy",
-  "icon": "https://www.rinnegatamante.eu/vitadb/icons/940f66dd4c944dcbb1678646d294654bcc379659b8d9ee0aac0c2320ed5e6984.png",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/940f66dd4c944dcbb1678646d294654bcc379659b8d9ee0aac0c2320ed5e6984.png",
   "screenshots": [
-    "https://www.rinnegatamante.eu/vitadb/screenshots/47e10458d54eeaf86699755e00487d1021a27d349f01b0c74b176b9ff1777296.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/4d7252213c16be4f00c171e20f8a9ab320f3247e01f8beb4c0c56e00acc9949f.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/f732a57ca4a83344dd349a63cdfa0feec5125421f0f7392cf9fb2dbd8ec679fc.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/ab1694e557983eb650ef3a4e34fa5013eb06948352b40392eee0fd2e147ef55c.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/47e10458d54eeaf86699755e00487d1021a27d349f01b0c74b176b9ff1777296.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/47e10458d54eeaf86699755e00487d1021a27d349f01b0c74b176b9ff1777296.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/4d7252213c16be4f00c171e20f8a9ab320f3247e01f8beb4c0c56e00acc9949f.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/f732a57ca4a83344dd349a63cdfa0feec5125421f0f7392cf9fb2dbd8ec679fc.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/ab1694e557983eb650ef3a4e34fa5013eb06948352b40392eee0fd2e147ef55c.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/47e10458d54eeaf86699755e00487d1021a27d349f01b0c74b176b9ff1777296.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1295",
-      "recommended": true
-    },
-    {
-      "type": "Download",
-      "name": "NeoVitaDB VPK",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/DvaMishkiLapa/biplanes-revival-vita/releases/download/v1.2.1-fix1/BiplanesRevival.vpk",
       "recommended": false
     },
     {
       "type": "Official Website",
-      "name": "VitaDB Release Page",
+      "name": "VitaDBtoo Release Page",
       "url": "https://github.com/DvaMishkiLapa/biplanes-revival-vita/releases"
     },
     {
@@ -51,11 +45,17 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/DvaMishkiLapa/biplanes-revival-vita"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1295",
+      "recommended": true
     }
   ],
-  "source_name": "VitaDB",
+  "source_name": "VitaDBtoo",
   "source_id": "1295",
   "source_url": "https://github.com/DvaMishkiLapa/biplanes-revival-vita",
   "release_page": "https://github.com/DvaMishkiLapa/biplanes-revival-vita/releases",
-  "updated_at": "2026-08-15T18:26:19.179034+00:00"
+  "updated_at": "2026-08-13T15:34:48.390198+00:00"
 }

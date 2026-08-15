@@ -5,8 +5,8 @@
   "description": "Clone of BreakOut for the PS Vita.",
   "long_description": "BreakOut / Arkanoid clone for PSVITA/PSTV.",
   "author_ids": [
-    "dal3boy",
-    "ruben-wolfe"
+    "ruben-wolfe",
+    "dal3boy"
   ],
   "category_id": "games",
   "subcategory_ids": [
@@ -17,16 +17,27 @@
   "requirements": "Not specified",
   "size": 1520655,
   "status": "Legacy",
-  "icon": "https://www.rinnegatamante.eu/vitadb/icons/70b7c6eb0f45f93164252107a5b54b0a05df99c7bdca18437f6e80fdd56045c4.png",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/70b7c6eb0f45f93164252107a5b54b0a05df99c7bdca18437f6e80fdd56045c4.png",
   "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/70b7c6eb0f45f93164252107a5b54b0a05df99c7bdca18437f6e80fdd56045c4.png",
     "https://www.rinnegatamante.eu/vitadb/screenshots/veet.jpg"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=15",
-      "recommended": true
+      "name": "VitaDBtoo VPK",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/15-breakveetout.vpk",
+      "recommended": false
+    },
+    {
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
+      "url": "https://wololo.net/talk/viewtopic.php?f=116&t=46215"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/InvalidExcepti0n/BreakVeetOut"
     },
     {
       "type": "Download",
@@ -35,19 +46,15 @@
       "recommended": false
     },
     {
-      "type": "Official Website",
-      "name": "VitaDB Release Page",
-      "url": "https://wololo.net/talk/viewtopic.php?f=116&t=46215"
-    },
-    {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/InvalidExcepti0n/BreakVeetOut"
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=15",
+      "recommended": true
     }
   ],
-  "source_name": "VitaDB",
+  "source_name": "VitaDBtoo",
   "source_id": "15",
   "source_url": "https://github.com/InvalidExcepti0n/BreakVeetOut",
   "release_page": "https://wololo.net/talk/viewtopic.php?f=116&t=46215",
-  "updated_at": "2026-08-15T18:26:20.588519+00:00"
+  "updated_at": "2026-08-13T15:34:48.710051+00:00"
 }

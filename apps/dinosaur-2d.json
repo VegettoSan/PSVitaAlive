@@ -28,12 +28,6 @@
       "recommended": true
     },
     {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1453",
-      "recommended": false
-    },
-    {
       "type": "Official Website",
       "name": "VitaDBtoo Release Page",
       "url": "https://github.com/withLogic/chrome-dinosaur-2d/releases"
@@ -42,11 +36,17 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/withLogic/chrome-dinosaur-2d"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1453",
+      "recommended": false
     }
   ],
   "source_name": "VitaDBtoo",
   "source_id": "1469",
   "source_url": "https://github.com/withLogic/chrome-dinosaur-2d",
   "release_page": "https://github.com/withLogic/chrome-dinosaur-2d/releases",
-  "updated_at": "2026-08-15T18:26:18.881311+00:00"
+  "updated_at": "2026-08-13T15:34:48.320466+00:00"
 }

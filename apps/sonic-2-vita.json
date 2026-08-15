@@ -16,30 +16,24 @@
   "requirements": "- Game Data Files: Android",
   "size": 962589,
   "status": "Legacy",
-  "icon": "https://www.rinnegatamante.eu/vitadb/icons/30591e21bef15ce3e6752483fd418be92ac58f7ccae4e156065b1b445b498875.png",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/30591e21bef15ce3e6752483fd418be92ac58f7ccae4e156065b1b445b498875.png",
   "screenshots": [
-    "https://www.rinnegatamante.eu/vitadb/screenshots/afefbf3a924fc9785ee7a2f3f92d646624bad759e624a1ac9e37dc02964c4917.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/9564ced204b202e8e62d6006e043a2f723fd40057aa733de319bd1f775ffd630.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/d8b52ec861aa5f4d6bf699ffaf5f59c4ff35c5de87d1d191344a3a3d18ff9ade.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/afefbf3a924fc9785ee7a2f3f92d646624bad759e624a1ac9e37dc02964c4917.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/9564ced204b202e8e62d6006e043a2f723fd40057aa733de319bd1f775ffd630.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/9564ced204b202e8e62d6006e043a2f723fd40057aa733de319bd1f775ffd630.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/d8b52ec861aa5f4d6bf699ffaf5f59c4ff35c5de87d1d191344a3a3d18ff9ade.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/afefbf3a924fc9785ee7a2f3f92d646624bad759e624a1ac9e37dc02964c4917.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/9564ced204b202e8e62d6006e043a2f723fd40057aa733de319bd1f775ffd630.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=866",
-      "recommended": true
-    },
-    {
-      "type": "Download",
-      "name": "NeoVitaDB VPK",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/SonicMastr/Sonic-1-2-Vita/releases/download/1.1.0/Sonic2.vpk",
       "recommended": false
     },
     {
       "type": "Official Website",
-      "name": "VitaDB Release Page",
+      "name": "VitaDBtoo Release Page",
       "url": "https://github.com/SonicMastr/Sonic-1-2-Vita/releases"
     },
     {
@@ -51,11 +45,17 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/SonicMastr/Sonic-1-2-Vita"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=866",
+      "recommended": true
     }
   ],
-  "source_name": "VitaDB",
+  "source_name": "VitaDBtoo",
   "source_id": "866",
   "source_url": "https://github.com/SonicMastr/Sonic-1-2-Vita",
   "release_page": "https://github.com/SonicMastr/Sonic-1-2-Vita/releases",
-  "updated_at": "2026-08-15T18:26:20.124264+00:00"
+  "updated_at": "2026-08-13T15:34:48.597913+00:00"
 }

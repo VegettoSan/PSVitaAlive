@@ -18,24 +18,28 @@
   "status": "Legacy",
   "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1929-dropsy-vita.png",
   "screenshots": [
-    "https://www.rinnegatamante.eu/vitadb/screenshots/7ebe8ecb3e3a640cb2177571886354ea33fdcc4cde3cf134468ce322edc64aa9.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/895a8a78eec290970f6389cdf5c11a1912cb7937fb3e72df306bbfa3018b830a.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/8f867e1d76a065946fa1f370d9ef1bff226c5f0355370f22836022eecfd821ab.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/7ebe8ecb3e3a640cb2177571886354ea33fdcc4cde3cf134468ce322edc64aa9.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/895a8a78eec290970f6389cdf5c11a1912cb7937fb3e72df306bbfa3018b830a.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/895a8a78eec290970f6389cdf5c11a1912cb7937fb3e72df306bbfa3018b830a.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/8f867e1d76a065946fa1f370d9ef1bff226c5f0355370f22836022eecfd821ab.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/7ebe8ecb3e3a640cb2177571886354ea33fdcc4cde3cf134468ce322edc64aa9.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/895a8a78eec290970f6389cdf5c11a1912cb7937fb3e72df306bbfa3018b830a.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "NeoVitaDB VPK",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1287-DropsyVITA.vpk",
       "recommended": true
     },
     {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1287",
-      "recommended": false
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
+      "url": "https://itch.io/jam/reihen-ps-vita-homebrew-contest/rate/3740886"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com"
     },
     {
       "type": "Download",
@@ -44,19 +48,15 @@
       "recommended": false
     },
     {
-      "type": "Official Website",
-      "name": "VitaDB Release Page",
-      "url": "https://itch.io/jam/reihen-ps-vita-homebrew-contest/rate/3740886"
-    },
-    {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com"
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1287",
+      "recommended": false
     }
   ],
-  "source_name": "NeoVitaDB",
-  "source_id": "1929",
-  "source_url": "https://github.com",
-  "release_page": "",
-  "updated_at": "2026-08-15T18:26:19.219877+00:00"
+  "source_name": "VitaDBtoo",
+  "source_id": "1287",
+  "source_url": "https://itch.io/jam/reihen-ps-vita-homebrew-contest/rate/3740886",
+  "release_page": "https://itch.io/jam/reihen-ps-vita-homebrew-contest/rate/3740886",
+  "updated_at": "2026-08-13T15:34:48.400510+00:00"
 }

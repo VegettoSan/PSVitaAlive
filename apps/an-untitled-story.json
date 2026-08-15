@@ -18,24 +18,28 @@
   "status": "Legacy",
   "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1608-an-untitled-story.png",
   "screenshots": [
-    "https://www.rinnegatamante.eu/vitadb/screenshots/c003a50fa705ca5258ecbe844f9a43fd5fdc72c02f095335c3647e1f418b22d8.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/4cb735d599e9059eb50159f4439c522547db5024a50355ae3434314a56b6b487.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/6197199ff58e77794bb2cc783de9f0edc6833a0d9b1485c645d0dc217971afa5.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/2544f2585319024e4e47718092510bf8cb2b891de84ac36eeccfb4d141cdb30d.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c003a50fa705ca5258ecbe844f9a43fd5fdc72c02f095335c3647e1f418b22d8.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c003a50fa705ca5258ecbe844f9a43fd5fdc72c02f095335c3647e1f418b22d8.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/4cb735d599e9059eb50159f4439c522547db5024a50355ae3434314a56b6b487.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/6197199ff58e77794bb2cc783de9f0edc6833a0d9b1485c645d0dc217971afa5.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/2544f2585319024e4e47718092510bf8cb2b891de84ac36eeccfb4d141cdb30d.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/c003a50fa705ca5258ecbe844f9a43fd5fdc72c02f095335c3647e1f418b22d8.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "NeoVitaDB VPK",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/412-AnUntitledStory.vpk",
       "recommended": true
     },
     {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=412",
-      "recommended": false
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
+      "url": "https://www.reddit.com/r/vitahacks/comments/abzr7c/release_an_untitled_story_gms_port/"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://drive.google.com/open?id=1WnmCXBQxEASaanJ0jX8fJoeK6NWbxTV7"
     },
     {
       "type": "Download",
@@ -44,19 +48,15 @@
       "recommended": false
     },
     {
-      "type": "Official Website",
-      "name": "VitaDB Release Page",
-      "url": "https://www.reddit.com/r/vitahacks/comments/abzr7c/release_an_untitled_story_gms_port/"
-    },
-    {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://drive.google.com/open?id=1WnmCXBQxEASaanJ0jX8fJoeK6NWbxTV7"
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=412",
+      "recommended": false
     }
   ],
-  "source_name": "NeoVitaDB",
-  "source_id": "1608",
-  "source_url": "https://github.com",
-  "release_page": "",
-  "updated_at": "2026-08-15T18:26:20.356576+00:00"
+  "source_name": "VitaDBtoo",
+  "source_id": "412",
+  "source_url": "https://drive.google.com/open?id=1WnmCXBQxEASaanJ0jX8fJoeK6NWbxTV7",
+  "release_page": "https://www.reddit.com/r/vitahacks/comments/abzr7c/release_an_untitled_story_gms_port/",
+  "updated_at": "2026-08-13T15:34:48.658012+00:00"
 }

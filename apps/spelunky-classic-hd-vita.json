@@ -16,21 +16,15 @@
   "requirements": "Not specified",
   "size": 7648928,
   "status": "Legacy",
-  "icon": "https://www.rinnegatamante.eu/vitadb/icons/243f3fb0a29dfdcb3d343b7a1cfff7b63ecfb3c53028e80094cb97f34907972b.png",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/243f3fb0a29dfdcb3d343b7a1cfff7b63ecfb3c53028e80094cb97f34907972b.png",
   "screenshots": [
-    "https://www.rinnegatamante.eu/vitadb/screenshots/e09bd73e042d0c56af081ff30a662998f9de31c2abee1ed18121210cdb008c14.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/5125928f9c1417002d091487092d40256846092f4b87131ae99e8ae1ce3a3090.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/c8966ec9bb1d7d41772465da2bc9219778aaf82a0adb56799d5f046f47384aaf.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/f073800a75f4210ea1ab342cf03f6c88ac1cd241f3bc8cb634c7dc072dcf13de.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/e09bd73e042d0c56af081ff30a662998f9de31c2abee1ed18121210cdb008c14.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/e09bd73e042d0c56af081ff30a662998f9de31c2abee1ed18121210cdb008c14.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/5125928f9c1417002d091487092d40256846092f4b87131ae99e8ae1ce3a3090.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c8966ec9bb1d7d41772465da2bc9219778aaf82a0adb56799d5f046f47384aaf.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/f073800a75f4210ea1ab342cf03f6c88ac1cd241f3bc8cb634c7dc072dcf13de.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/e09bd73e042d0c56af081ff30a662998f9de31c2abee1ed18121210cdb008c14.png"
   ],
   "links": [
-    {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=996",
-      "recommended": true
-    },
     {
       "type": "Download",
       "name": "VitaDBtoo VPK",
@@ -39,18 +33,24 @@
     },
     {
       "type": "Official Website",
-      "name": "VitaDB Release Page",
+      "name": "VitaDBtoo Release Page",
       "url": "https://github.com/SiulPop/Spelunky.Classic.HD.VITA./releases"
     },
     {
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/SiulPop/Spelunky.Classic.HD.VITA."
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=996",
+      "recommended": true
     }
   ],
-  "source_name": "VitaDB",
+  "source_name": "VitaDBtoo",
   "source_id": "996",
   "source_url": "https://github.com/SiulPop/Spelunky.Classic.HD.VITA.",
   "release_page": "https://github.com/SiulPop/Spelunky.Classic.HD.VITA./releases",
-  "updated_at": "2026-08-15T18:26:19.782377+00:00"
+  "updated_at": "2026-08-13T15:34:48.526936+00:00"
 }

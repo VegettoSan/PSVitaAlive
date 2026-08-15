@@ -11,23 +11,30 @@
   "subcategory_ids": [
     "other"
   ],
-  "version": "v0.2b",
+  "version": "v.0.2b",
   "version_date": "2026-07-09",
   "requirements": "- Game Data Files: PC",
   "size": 18607538,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1431-mother-encore-vita.png",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/fafaf665b992f346c89869bb06694e3130dc0b88668daea7c7e15b04348e1316.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/55e0a25e3058c9b13abca5281c332fd10eea5c2c7f2f1586e37061367f34e605.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/bf352648ba023fadf08ffc55a900b7a8cda6893eae81ad859a8e573194c2c016.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/6dd013f2e03ec7c7558aa88132ef21add48b0b99c4290ad3b9aeaf9d3f975e1a.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/6dd013f2e03ec7c7558aa88132ef21add48b0b99c4290ad3b9aeaf9d3f975e1a.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/55e0a25e3058c9b13abca5281c332fd10eea5c2c7f2f1586e37061367f34e605.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/bf352648ba023fadf08ffc55a900b7a8cda6893eae81ad859a8e573194c2c016.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "NeoVitaDB VPK",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/WolffsRoom/MotherEncore-PSVita/releases/download/v0.2b/MotherEncore-Vita-v0.2b.vpk",
       "recommended": true
+    },
+    {
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
+      "url": "https://github.com/WolffsRoom/MotherEncore-PSVita"
     },
     {
       "type": "Official Website",
@@ -35,14 +42,15 @@
       "url": "https://github.com/WolffsRoom/MotherEncore-PSVita/releases/tag/v0.2b"
     },
     {
-      "type": "Official Website",
-      "name": "VitaDBtoo Release Page",
-      "url": "https://github.com/WolffsRoom/MotherEncore-PSVita"
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1431",
+      "recommended": false
     }
   ],
-  "source_name": "NeoVitaDB",
+  "source_name": "VitaDBtoo",
   "source_id": "1431",
   "source_url": "https://github.com/WolffsRoom/MotherEncore-PSVita",
-  "release_page": "https://github.com/WolffsRoom/MotherEncore-PSVita/releases/tag/v0.2b",
-  "updated_at": "2026-08-15T18:26:20.629691+00:00"
+  "release_page": "https://github.com/WolffsRoom/MotherEncore-PSVita",
+  "updated_at": "2026-08-13T15:34:48.331173+00:00"
 }

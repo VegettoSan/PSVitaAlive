@@ -16,21 +16,15 @@
   "requirements": "- Game Data Files: PC",
   "size": 16561478,
   "status": "Legacy",
-  "icon": "https://www.rinnegatamante.eu/vitadb/icons/97a0e8547dbc87a5b7680dcc914059a924a783c50e82434cd80b5b2bbac71daa.png",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/97a0e8547dbc87a5b7680dcc914059a924a783c50e82434cd80b5b2bbac71daa.png",
   "screenshots": [
-    "https://www.rinnegatamante.eu/vitadb/screenshots/c4bfb1e13bd174f5dbb7b41663f077822a57e63ee29425a654d7a5a550aa44a7.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/7328d44bb138b3b250b4bedd4e3d17e98620977d294cdb7245d2ee4ca887a437.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/65a83ff024704407f89f3e85f81989bb3bf8f63e17d58b5abc0d33f9fc911236.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/a1edd7e48a4614866c665b4af98bfb4354b07c40200a1aca203774b67a50395c.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c4bfb1e13bd174f5dbb7b41663f077822a57e63ee29425a654d7a5a550aa44a7.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c4bfb1e13bd174f5dbb7b41663f077822a57e63ee29425a654d7a5a550aa44a7.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/7328d44bb138b3b250b4bedd4e3d17e98620977d294cdb7245d2ee4ca887a437.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/65a83ff024704407f89f3e85f81989bb3bf8f63e17d58b5abc0d33f9fc911236.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/a1edd7e48a4614866c665b4af98bfb4354b07c40200a1aca203774b67a50395c.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/c4bfb1e13bd174f5dbb7b41663f077822a57e63ee29425a654d7a5a550aa44a7.png"
   ],
   "links": [
-    {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1272",
-      "recommended": true
-    },
     {
       "type": "Download",
       "name": "VitaDBtoo VPK",
@@ -39,13 +33,19 @@
     },
     {
       "type": "Official Website",
-      "name": "VitaDB Release Page",
+      "name": "VitaDBtoo Release Page",
       "url": "https://github.com/Rocroverss/The-legend-of-lumina-patch-psvita"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1272",
+      "recommended": true
     }
   ],
-  "source_name": "VitaDB",
+  "source_name": "VitaDBtoo",
   "source_id": "1272",
   "source_url": "https://github.com/Rocroverss/The-legend-of-lumina-patch-psvita",
   "release_page": "https://github.com/Rocroverss/The-legend-of-lumina-patch-psvita",
-  "updated_at": "2026-08-15T18:26:19.250671+00:00"
+  "updated_at": "2026-08-13T15:34:48.407289+00:00"
 }

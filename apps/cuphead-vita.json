@@ -9,48 +9,48 @@
   ],
   "category_id": "ports",
   "subcategory_ids": [
-    "other"
+    "shooter"
   ],
   "version": "v.0.82",
   "version_date": "2024-10-10",
   "requirements": "- Game Data Files: PC",
   "size": 17382192,
   "status": "Legacy",
-  "icon": "https://www.rinnegatamante.eu/vitadb/icons/7511397a1dc1fcea1399450f08082ac64e420ab8116c15f261ea1947a925f032.png",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/7511397a1dc1fcea1399450f08082ac64e420ab8116c15f261ea1947a925f032.png",
   "screenshots": [
-    "https://www.rinnegatamante.eu/vitadb/screenshots/f84ad7da2c22947eeaf67581ebac93bf0acf7fb0ce5994332f5ad131874631a0.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/22fa8c591fd9611cb177ad301bb065f8b507e0d8c4796c4f8099d12bd94ce851.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/393def075d9c7dcf2f2587ddc36a4480de96f2763eca116d8b6c1063e688fa2e.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/f84ad7da2c22947eeaf67581ebac93bf0acf7fb0ce5994332f5ad131874631a0.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/22fa8c591fd9611cb177ad301bb065f8b507e0d8c4796c4f8099d12bd94ce851.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/22fa8c591fd9611cb177ad301bb065f8b507e0d8c4796c4f8099d12bd94ce851.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/393def075d9c7dcf2f2587ddc36a4480de96f2763eca116d8b6c1063e688fa2e.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/f84ad7da2c22947eeaf67581ebac93bf0acf7fb0ce5994332f5ad131874631a0.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/22fa8c591fd9611cb177ad301bb065f8b507e0d8c4796c4f8099d12bd94ce851.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1202",
-      "recommended": true
-    },
-    {
-      "type": "Download",
-      "name": "NeoVitaDB VPK",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/PatnosDD/Cuphead-PS-VITA/releases/download/V0.82/Cuphead.vpk",
       "recommended": false
     },
     {
       "type": "Official Website",
-      "name": "VitaDB Release Page",
+      "name": "VitaDBtoo Release Page",
       "url": "https://github.com/PatnosDD/Cuphead-PS-VITA"
     },
     {
       "type": "Official Website",
       "name": "NeoVitaDB Release Page",
       "url": "https://github.com/PatnosDD/Cuphead-PS-VITA/releases/tag/V0.82"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1202",
+      "recommended": true
     }
   ],
-  "source_name": "VitaDB",
+  "source_name": "VitaDBtoo",
   "source_id": "1202",
   "source_url": "https://github.com/PatnosDD/Cuphead-PS-VITA",
   "release_page": "https://github.com/PatnosDD/Cuphead-PS-VITA",
-  "updated_at": "2026-08-15T18:26:19.352868+00:00"
+  "updated_at": "2026-08-13T15:34:48.429643+00:00"
 }

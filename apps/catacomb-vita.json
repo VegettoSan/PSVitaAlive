@@ -16,27 +16,21 @@
   "requirements": "- Game Data Files: PC",
   "size": 572647,
   "status": "Legacy",
-  "icon": "https://www.rinnegatamante.eu/vitadb/icons/31777816305972eaceee85b3ec07fb58e530ec2fbe2db730442136e529730e2f.png",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/31777816305972eaceee85b3ec07fb58e530ec2fbe2db730442136e529730e2f.png",
   "screenshots": [
-    "https://www.rinnegatamante.eu/vitadb/screenshots/08e9642465e5db7a801563a5806e01ce05cca135ad48e725a227ecc29a389337.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/08e9642465e5db7a801563a5806e01ce05cca135ad48e725a227ecc29a389337.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/08e9642465e5db7a801563a5806e01ce05cca135ad48e725a227ecc29a389337.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/08e9642465e5db7a801563a5806e01ce05cca135ad48e725a227ecc29a389337.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1082",
-      "recommended": true
-    },
-    {
-      "type": "Download",
-      "name": "NeoVitaDB VPK",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/l0wigh/CatacombVita/releases/download/v1.0/Catacomb-Vita.vpk",
       "recommended": false
     },
     {
       "type": "Official Website",
-      "name": "VitaDB Release Page",
+      "name": "VitaDBtoo Release Page",
       "url": "https://github.com/l0wigh/CatacombVita/releases"
     },
     {
@@ -48,11 +42,17 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/l0wigh/CatacombVita"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1082",
+      "recommended": true
     }
   ],
-  "source_name": "VitaDB",
+  "source_name": "VitaDBtoo",
   "source_id": "1082",
   "source_url": "https://github.com/l0wigh/CatacombVita",
   "release_page": "https://github.com/l0wigh/CatacombVita/releases",
-  "updated_at": "2026-08-15T18:26:19.620659+00:00"
+  "updated_at": "2026-08-13T15:34:48.491431+00:00"
 }

@@ -16,18 +16,12 @@
   "requirements": "- Game Data Files: PC",
   "size": 4949129,
   "status": "Legacy",
-  "icon": "https://www.rinnegatamante.eu/vitadb/icons/b3264249dee3a7d84cd6def058f82022de8f2ef7ad6562bd14ef11f7e701bae3.png",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/b3264249dee3a7d84cd6def058f82022de8f2ef7ad6562bd14ef11f7e701bae3.png",
   "screenshots": [
-    "https://www.rinnegatamante.eu/vitadb/screenshots/f747895d3bb3c0b29ceb71cec5a893c862b3398d1da66eece98404d1e537dad0.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/f747895d3bb3c0b29ceb71cec5a893c862b3398d1da66eece98404d1e537dad0.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/f747895d3bb3c0b29ceb71cec5a893c862b3398d1da66eece98404d1e537dad0.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/f747895d3bb3c0b29ceb71cec5a893c862b3398d1da66eece98404d1e537dad0.png"
   ],
   "links": [
-    {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=572",
-      "recommended": true
-    },
     {
       "type": "Download",
       "name": "VitaDBtoo VPK",
@@ -36,7 +30,7 @@
     },
     {
       "type": "Official Website",
-      "name": "VitaDB Release Page",
+      "name": "VitaDBtoo Release Page",
       "url": "https://github.com/Northfear/gemrb-vita/releases"
     },
     {
@@ -48,11 +42,17 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/Northfear/gemrb-vita"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=572",
+      "recommended": true
     }
   ],
-  "source_name": "VitaDB",
+  "source_name": "VitaDBtoo",
   "source_id": "572",
   "source_url": "https://github.com/Northfear/gemrb-vita",
   "release_page": "https://github.com/Northfear/gemrb-vita/releases",
-  "updated_at": "2026-08-15T18:26:19.947014+00:00"
+  "updated_at": "2026-08-13T15:34:48.565692+00:00"
 }

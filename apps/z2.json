@@ -16,30 +16,24 @@
   "requirements": "Not specified",
   "size": 62290108,
   "status": "Legacy",
-  "icon": "https://www.rinnegatamante.eu/vitadb/icons/5ee6b83dfc5672efafaca7f045d365fca52843d2e7d32077422fc7d1048a4128.png",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/5ee6b83dfc5672efafaca7f045d365fca52843d2e7d32077422fc7d1048a4128.png",
   "screenshots": [
-    "https://www.rinnegatamante.eu/vitadb/screenshots/fa63f5737731a43f5df01455c1b88381c49ede8da34679d87fc6ee1e0163c358.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/ceb7d4b17f29b6f33306bbe9cbbea7339377c275dc98c3e52b220f173162dc76.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/4aa5359fd519a432f12ee95eacc5ba503bf6ea2403d74ee196aa0fe68bf961a3.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/fa63f5737731a43f5df01455c1b88381c49ede8da34679d87fc6ee1e0163c358.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/ceb7d4b17f29b6f33306bbe9cbbea7339377c275dc98c3e52b220f173162dc76.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/ceb7d4b17f29b6f33306bbe9cbbea7339377c275dc98c3e52b220f173162dc76.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/4aa5359fd519a432f12ee95eacc5ba503bf6ea2403d74ee196aa0fe68bf961a3.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/fa63f5737731a43f5df01455c1b88381c49ede8da34679d87fc6ee1e0163c358.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/ceb7d4b17f29b6f33306bbe9cbbea7339377c275dc98c3e52b220f173162dc76.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1170",
-      "recommended": true
-    },
-    {
-      "type": "Download",
-      "name": "NeoVitaDB VPK",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/kaonkaon/ztwo/releases/download/v1.2.0/z2.VPK",
       "recommended": false
     },
     {
       "type": "Official Website",
-      "name": "VitaDB Release Page",
+      "name": "VitaDBtoo Release Page",
       "url": "https://github.com/kaonkaon/ztwo/releases"
     },
     {
@@ -51,11 +45,17 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/kaonkaon/ztwo"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1170",
+      "recommended": true
     }
   ],
-  "source_name": "VitaDB",
+  "source_name": "VitaDBtoo",
   "source_id": "1170",
   "source_url": "https://github.com/kaonkaon/ztwo",
   "release_page": "https://github.com/kaonkaon/ztwo/releases",
-  "updated_at": "2026-08-15T18:26:19.449419+00:00"
+  "updated_at": "2026-08-13T15:34:48.455704+00:00"
 }

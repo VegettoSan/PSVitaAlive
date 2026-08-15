@@ -16,19 +16,14 @@
   "requirements": "Not specified",
   "size": 29049449,
   "status": "Legacy",
-  "icon": "https://www.rinnegatamante.eu/vitadb/icons/e92afcf9b0bdd1358c290c3b94685dc37d10c16f0aa0ba5ce8af7a565384eb82.png",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/e92afcf9b0bdd1358c290c3b94685dc37d10c16f0aa0ba5ce8af7a565384eb82.png",
   "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/e92afcf9b0bdd1358c290c3b94685dc37d10c16f0aa0ba5ce8af7a565384eb82.png",
     "https://www.rinnegatamante.eu/vitadb/screenshots/bookr1.jpg",
     "https://www.rinnegatamante.eu/vitadb/screenshots/bookr2.jpg",
     "https://www.rinnegatamante.eu/vitadb/screenshots/bookr3.jpg"
   ],
   "links": [
-    {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=203",
-      "recommended": true
-    },
     {
       "type": "Download",
       "name": "VitaDBtoo VPK",
@@ -37,18 +32,24 @@
     },
     {
       "type": "Official Website",
-      "name": "VitaDB Release Page",
+      "name": "VitaDBtoo Release Page",
       "url": "https://gbatemp.net/threads/release-bookr-mod-vita-0-2-0.496911/"
     },
     {
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/pathway27/bookr-mod-vita"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=203",
+      "recommended": true
     }
   ],
-  "source_name": "VitaDB",
+  "source_name": "VitaDBtoo",
   "source_id": "203",
   "source_url": "https://github.com/pathway27/bookr-mod-vita",
   "release_page": "https://gbatemp.net/threads/release-bookr-mod-vita-0-2-0.496911/",
-  "updated_at": "2026-08-15T18:26:20.077310+00:00"
+  "updated_at": "2026-08-13T15:34:48.586155+00:00"
 }

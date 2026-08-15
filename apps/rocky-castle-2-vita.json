@@ -16,30 +16,24 @@
   "requirements": "- libshacccg.suprx\n- kubridge.skprx\n- Game Data Files: Android",
   "size": 2794258,
   "status": "Legacy",
-  "icon": "https://www.rinnegatamante.eu/vitadb/icons/ab2476aea9365c7c070e2b7f5aabb8f886db7d720e487bb31c446250679238de.png",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/ab2476aea9365c7c070e2b7f5aabb8f886db7d720e487bb31c446250679238de.png",
   "screenshots": [
-    "https://www.rinnegatamante.eu/vitadb/screenshots/1e99c8b1f15a85caef02694300e59f1c0469bd6296a59822454ea54222376c25.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/8ec988d06c13c7db4955eb09d593d69d57da14679950e0a3f65ac823b93cf1c9.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/e3a29cda73015157c556efbf36660694faf99a9fefcd4ff9c13d7a7a67a571c4.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/406625ddea050ffbaac1c1f062a6409b6c6709abf611c6e5ea3a29bb9574c3dc.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/1e99c8b1f15a85caef02694300e59f1c0469bd6296a59822454ea54222376c25.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/1e99c8b1f15a85caef02694300e59f1c0469bd6296a59822454ea54222376c25.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/8ec988d06c13c7db4955eb09d593d69d57da14679950e0a3f65ac823b93cf1c9.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/e3a29cda73015157c556efbf36660694faf99a9fefcd4ff9c13d7a7a67a571c4.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/406625ddea050ffbaac1c1f062a6409b6c6709abf611c6e5ea3a29bb9574c3dc.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/1e99c8b1f15a85caef02694300e59f1c0469bd6296a59822454ea54222376c25.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1310",
-      "recommended": true
-    },
-    {
-      "type": "Download",
-      "name": "NeoVitaDB VPK",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/Rinnegatamante/rocky-castle-2-vita/releases/download/v.1.0/rocky2.vpk",
       "recommended": false
     },
     {
       "type": "Official Website",
-      "name": "VitaDB Release Page",
+      "name": "VitaDBtoo Release Page",
       "url": "https://github.com/Rinnegatamante/rocky-castle-2-vita/releases"
     },
     {
@@ -51,11 +45,17 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/Rinnegatamante/rocky-castle-2-vita"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1310",
+      "recommended": true
     }
   ],
-  "source_name": "VitaDB",
+  "source_name": "VitaDBtoo",
   "source_id": "1310",
   "source_url": "https://github.com/Rinnegatamante/rocky-castle-2-vita",
   "release_page": "https://github.com/Rinnegatamante/rocky-castle-2-vita/releases",
-  "updated_at": "2026-08-15T18:26:19.197572+00:00"
+  "updated_at": "2026-08-13T15:34:48.394797+00:00"
 }

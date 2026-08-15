@@ -16,19 +16,29 @@
   "requirements": "Not specified",
   "size": 3918135,
   "status": "Legacy",
-  "icon": "https://www.rinnegatamante.eu/vitadb/icons/e190633339b2a98f6aac63d5012c7ff4d23fc912650ede28ec25e31fe6dcc567.png",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/e190633339b2a98f6aac63d5012c7ff4d23fc912650ede28ec25e31fe6dcc567.png",
   "screenshots": [
-    "https://www.rinnegatamante.eu/vitadb/screenshots/3db6df03c8e2e19609f98c9f135c7546ba63a454f3b4993c1fe3922b377966b9.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/45b1901cb7aed793d7fd343bbcfd9c3b342bab275115650a03960c3e5e11d3c2.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/3db6df03c8e2e19609f98c9f135c7546ba63a454f3b4993c1fe3922b377966b9.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/45b1901cb7aed793d7fd343bbcfd9c3b342bab275115650a03960c3e5e11d3c2.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/45b1901cb7aed793d7fd343bbcfd9c3b342bab275115650a03960c3e5e11d3c2.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/3db6df03c8e2e19609f98c9f135c7546ba63a454f3b4993c1fe3922b377966b9.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/45b1901cb7aed793d7fd343bbcfd9c3b342bab275115650a03960c3e5e11d3c2.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1332",
-      "recommended": true
+      "name": "VitaDBtoo VPK",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1332-VITADECK0.vpk",
+      "recommended": false
+    },
+    {
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
+      "url": "https://anthj.itch.io/vita-deck"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/AntHJ/VitaDeck"
     },
     {
       "type": "Download",
@@ -37,19 +47,15 @@
       "recommended": false
     },
     {
-      "type": "Official Website",
-      "name": "VitaDB Release Page",
-      "url": "https://anthj.itch.io/vita-deck"
-    },
-    {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/AntHJ/VitaDeck"
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1332",
+      "recommended": true
     }
   ],
-  "source_name": "VitaDB",
+  "source_name": "VitaDBtoo",
   "source_id": "1332",
   "source_url": "https://anthj.itch.io/vita-deck",
   "release_page": "https://anthj.itch.io/vita-deck",
-  "updated_at": "2026-08-15T18:26:19.144809+00:00"
+  "updated_at": "2026-08-13T15:34:48.381281+00:00"
 }

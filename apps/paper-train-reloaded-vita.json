@@ -16,30 +16,24 @@
   "requirements": "- libshacccg.suprx\n- kubridge.skprx\n- Game Data Files: Android",
   "size": 2874768,
   "status": "Legacy",
-  "icon": "https://www.rinnegatamante.eu/vitadb/icons/efbdc52ff8d3ed1e76b6726769f13fbaaab15752817f3e094e35db8c43c173e7.png",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/efbdc52ff8d3ed1e76b6726769f13fbaaab15752817f3e094e35db8c43c173e7.png",
   "screenshots": [
-    "https://www.rinnegatamante.eu/vitadb/screenshots/107ba1210e6342296a0afd72bb2cc6e61dd765dfb6712279d81e27a7f185ad95.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/c822dc226f3bee7976e426a78d72b1bb207329d44c102f1eb9a2241f33629c26.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/ae376998c9e08ab2a01396f2bbc60c5387d6359d0669f6dbc09a9eee5965d55d.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/107ba1210e6342296a0afd72bb2cc6e61dd765dfb6712279d81e27a7f185ad95.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c822dc226f3bee7976e426a78d72b1bb207329d44c102f1eb9a2241f33629c26.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c822dc226f3bee7976e426a78d72b1bb207329d44c102f1eb9a2241f33629c26.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/ae376998c9e08ab2a01396f2bbc60c5387d6359d0669f6dbc09a9eee5965d55d.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/107ba1210e6342296a0afd72bb2cc6e61dd765dfb6712279d81e27a7f185ad95.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/c822dc226f3bee7976e426a78d72b1bb207329d44c102f1eb9a2241f33629c26.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1304",
-      "recommended": true
-    },
-    {
-      "type": "Download",
-      "name": "NeoVitaDB VPK",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/Rinnegatamante/paper-train-vita/releases/download/v.1.0/papertrain.vpk",
       "recommended": false
     },
     {
       "type": "Official Website",
-      "name": "VitaDB Release Page",
+      "name": "VitaDBtoo Release Page",
       "url": "https://github.com/Rinnegatamante/paper-train-vita/releases"
     },
     {
@@ -51,11 +45,17 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/Rinnegatamante/paper-train-vita"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1304",
+      "recommended": true
     }
   ],
-  "source_name": "VitaDB",
+  "source_name": "VitaDBtoo",
   "source_id": "1304",
   "source_url": "https://github.com/Rinnegatamante/paper-train-vita",
   "release_page": "https://github.com/Rinnegatamante/paper-train-vita/releases",
-  "updated_at": "2026-08-15T18:26:19.206666+00:00"
+  "updated_at": "2026-08-13T15:34:48.397037+00:00"
 }

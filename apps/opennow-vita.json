@@ -18,8 +18,8 @@
   "status": "Legacy",
   "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1977-opennow-vita.png",
   "screenshots": [
-    "https://www.rinnegatamante.eu/vitadb/screenshots/88bc1777e5a861604f863529e3acb9354623b13ea4226d1370bee3cdcb0ea18d.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/88bc1777e5a861604f863529e3acb9354623b13ea4226d1370bee3cdcb0ea18d.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/88bc1777e5a861604f863529e3acb9354623b13ea4226d1370bee3cdcb0ea18d.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/88bc1777e5a861604f863529e3acb9354623b13ea4226d1370bee3cdcb0ea18d.png"
   ],
   "links": [
     {
@@ -43,5 +43,5 @@
   "source_id": "1977",
   "source_url": "https://github.com/OpenCloudGaming/OpenNOW-vita",
   "release_page": "https://github.com/OpenCloudGaming/OpenNOW-vita/releases/tag/v0.3.1",
-  "updated_at": "2026-08-15T18:26:18.882290+00:00"
+  "updated_at": "2026-08-13T15:34:48.324387+00:00"
 }

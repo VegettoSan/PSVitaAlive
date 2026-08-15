@@ -16,26 +16,20 @@
   "requirements": "Not specified",
   "size": 2010352,
   "status": "Legacy",
-  "icon": "https://www.rinnegatamante.eu/vitadb/icons/2bfc5f0b82a1fcefa645bacfd97e1df37a7ed68d4c4789ffc51d58442e4eef9f.png",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/2bfc5f0b82a1fcefa645bacfd97e1df37a7ed68d4c4789ffc51d58442e4eef9f.png",
   "screenshots": [
-    "https://www.rinnegatamante.eu/vitadb/icons/2bfc5f0b82a1fcefa645bacfd97e1df37a7ed68d4c4789ffc51d58442e4eef9f.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/2bfc5f0b82a1fcefa645bacfd97e1df37a7ed68d4c4789ffc51d58442e4eef9f.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=372",
-      "recommended": true
-    },
-    {
-      "type": "Download",
-      "name": "NeoVitaDB VPK",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/emiyl/HBInjector/releases/download/v1.2.6/HBInjector.vpk",
       "recommended": false
     },
     {
       "type": "Official Website",
-      "name": "VitaDB Release Page",
+      "name": "VitaDBtoo Release Page",
       "url": "https://github.com/emiyl/HBInjector/releases"
     },
     {
@@ -47,11 +41,17 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/emiyl/HBInjector"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=372",
+      "recommended": true
     }
   ],
-  "source_name": "VitaDB",
+  "source_name": "VitaDBtoo",
   "source_id": "372",
   "source_url": "https://github.com/emiyl/HBInjector",
   "release_page": "https://github.com/emiyl/HBInjector/releases",
-  "updated_at": "2026-08-15T18:26:20.389790+00:00"
+  "updated_at": "2026-08-13T15:34:48.665794+00:00"
 }

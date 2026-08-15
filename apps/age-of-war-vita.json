@@ -16,26 +16,20 @@
   "requirements": "Not specified",
   "size": 49070621,
   "status": "Legacy",
-  "icon": "https://www.rinnegatamante.eu/vitadb/icons/193adad742dcc2151cfcbe394cb9e9d4840976b01384cf0d40d867bbfef26173.png",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/193adad742dcc2151cfcbe394cb9e9d4840976b01384cf0d40d867bbfef26173.png",
   "screenshots": [
-    "https://www.rinnegatamante.eu/vitadb/icons/193adad742dcc2151cfcbe394cb9e9d4840976b01384cf0d40d867bbfef26173.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/193adad742dcc2151cfcbe394cb9e9d4840976b01384cf0d40d867bbfef26173.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1033",
-      "recommended": true
-    },
-    {
-      "type": "Download",
-      "name": "NeoVitaDB VPK",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/mrdivdiz/aowv/releases/download/v1.1/aowv2.vpk",
       "recommended": false
     },
     {
       "type": "Official Website",
-      "name": "VitaDB Release Page",
+      "name": "VitaDBtoo Release Page",
       "url": "https://github.com/mrdivdiz/aowv/releases"
     },
     {
@@ -47,11 +41,17 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/mrdivdiz/aowv"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1033",
+      "recommended": true
     }
   ],
-  "source_name": "VitaDB",
+  "source_name": "VitaDBtoo",
   "source_id": "1033",
   "source_url": "https://github.com/mrdivdiz/aowv/releases",
   "release_page": "https://github.com/mrdivdiz/aowv/releases",
-  "updated_at": "2026-08-15T18:26:19.721126+00:00"
+  "updated_at": "2026-08-13T15:34:48.513092+00:00"
 }

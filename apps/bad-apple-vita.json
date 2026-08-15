@@ -17,29 +17,23 @@
   "requirements": "Not specified",
   "size": 15437907,
   "status": "Legacy",
-  "icon": "https://www.rinnegatamante.eu/vitadb/icons/da79a8eed5fa4585e4faadc3d30e98395e09731ef6f4d4d13904bd6deb566a71.png",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/da79a8eed5fa4585e4faadc3d30e98395e09731ef6f4d4d13904bd6deb566a71.png",
   "screenshots": [
-    "https://www.rinnegatamante.eu/vitadb/screenshots/cd316151a4cd358b2852cab35dd3f9451337718f50fb5bbdaa166547ea9e4b6b.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/6dae72367833942c495e12eddec4b328bd052c526133af940f31881d5ae25677.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/cd316151a4cd358b2852cab35dd3f9451337718f50fb5bbdaa166547ea9e4b6b.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/6dae72367833942c495e12eddec4b328bd052c526133af940f31881d5ae25677.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/6dae72367833942c495e12eddec4b328bd052c526133af940f31881d5ae25677.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/cd316151a4cd358b2852cab35dd3f9451337718f50fb5bbdaa166547ea9e4b6b.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/6dae72367833942c495e12eddec4b328bd052c526133af940f31881d5ae25677.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=439",
-      "recommended": true
-    },
-    {
-      "type": "Download",
-      "name": "NeoVitaDB VPK",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/knight-ryu12/badapplevita/releases/download/v1.0/badapple_VITA.vpk",
       "recommended": false
     },
     {
       "type": "Official Website",
-      "name": "VitaDB Release Page",
+      "name": "VitaDBtoo Release Page",
       "url": "https://github.com/knight-ryu12/badapplevita/releases"
     },
     {
@@ -51,11 +45,17 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/knight-ryu12/badapplevita"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=439",
+      "recommended": true
     }
   ],
-  "source_name": "VitaDB",
+  "source_name": "VitaDBtoo",
   "source_id": "439",
   "source_url": "https://github.com/knight-ryu12/badapplevita",
   "release_page": "https://github.com/knight-ryu12/badapplevita/releases",
-  "updated_at": "2026-08-15T18:26:20.360924+00:00"
+  "updated_at": "2026-08-13T15:34:48.659015+00:00"
 }

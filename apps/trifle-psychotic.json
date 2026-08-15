@@ -1,9 +1,9 @@
 {
-  "id": "trifle-psychotic-vita",
+  "id": "trifle-psychotic",
   "title_id": "TRFL00001",
-  "name": "Trifle Psychotic Vita",
-  "description": "Port of Trifle Psychotic for PSVita.",
-  "long_description": "Trifle Psychotic is a retro sci-fi platformer written in C. This repository contains the native PlayStation Vita port, built using SDL2.",
+  "name": "Trifle Psychotic",
+  "description": "Port of Trifle Psychotic for PSVITA.",
+  "long_description": "Port of Trifle Psychotic for PSVITA.",
   "author_ids": [
     "kiddrwxssj"
   ],
@@ -16,26 +16,20 @@
   "requirements": "Not specified",
   "size": 22709547,
   "status": "Legacy",
-  "icon": "https://www.rinnegatamante.eu/vitadb/icons/f39b477c41e114fa48d213784e857cb7c776028d6e7dd3378149adb838da289f.png",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/06c2e06af2aa49a9ff89a20bf5512d8ca3702b273af32a6156a62bfafa008ddb.png",
   "screenshots": [
-    "https://www.rinnegatamante.eu/vitadb/icons/f39b477c41e114fa48d213784e857cb7c776028d6e7dd3378149adb838da289f.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/06c2e06af2aa49a9ff89a20bf5512d8ca3702b273af32a6156a62bfafa008ddb.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1461",
-      "recommended": true
-    },
-    {
-      "type": "Download",
-      "name": "NeoVitaDB VPK",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/KiddRwxSsj/trifle-psychotic-vita/releases/download/1.0.0/TriflePsychotic.vpk",
       "recommended": false
     },
     {
       "type": "Official Website",
-      "name": "VitaDB Release Page",
+      "name": "VitaDBtoo Release Page",
       "url": "https://github.com/KiddRwxSsj/trifle-psychotic-vita/releases"
     },
     {
@@ -47,11 +41,17 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/KiddRwxSsj/trifle-psychotic-vita"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1461",
+      "recommended": true
     }
   ],
-  "source_name": "VitaDB",
-  "source_id": "1461",
+  "source_name": "VitaDBtoo",
+  "source_id": "1470",
   "source_url": "https://github.com/KiddRwxSsj/trifle-psychotic-vita",
   "release_page": "https://github.com/KiddRwxSsj/trifle-psychotic-vita/releases",
-  "updated_at": "2026-08-15T18:26:18.873591+00:00"
+  "updated_at": "2026-08-13T15:34:48.319770+00:00"
 }

@@ -17,17 +17,11 @@
   "requirements": "Not specified",
   "size": 121209,
   "status": "Legacy",
-  "icon": "https://www.rinnegatamante.eu/vitadb/icons/63af1b0fe121e2e9de3fe8e9b8668aec095bb44b5c1697be40f10b59df133e6f.png",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/63af1b0fe121e2e9de3fe8e9b8668aec095bb44b5c1697be40f10b59df133e6f.png",
   "screenshots": [
-    "https://www.rinnegatamante.eu/vitadb/icons/63af1b0fe121e2e9de3fe8e9b8668aec095bb44b5c1697be40f10b59df133e6f.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/63af1b0fe121e2e9de3fe8e9b8668aec095bb44b5c1697be40f10b59df133e6f.png"
   ],
   "links": [
-    {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=209",
-      "recommended": true
-    },
     {
       "type": "Download",
       "name": "VitaDBtoo VPK",
@@ -36,7 +30,7 @@
     },
     {
       "type": "Official Website",
-      "name": "VitaDB Release Page",
+      "name": "VitaDBtoo Release Page",
       "url": "https://github.com/devnoname120/RegistryEditorMOD/releases"
     },
     {
@@ -48,11 +42,17 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/devnoname120/RegistryEditorMOD"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=209",
+      "recommended": true
     }
   ],
-  "source_name": "VitaDB",
+  "source_name": "VitaDBtoo",
   "source_id": "209",
   "source_url": "https://github.com/devnoname120/RegistryEditorMOD",
   "release_page": "https://github.com/devnoname120/RegistryEditorMOD/releases",
-  "updated_at": "2026-08-15T18:26:20.252478+00:00"
+  "updated_at": "2026-08-13T15:34:48.630990+00:00"
 }

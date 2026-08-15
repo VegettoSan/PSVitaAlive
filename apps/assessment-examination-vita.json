@@ -18,23 +18,27 @@
   "status": "Legacy",
   "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1933-assessment-examination-vita.png",
   "screenshots": [
-    "https://www.rinnegatamante.eu/vitadb/screenshots/ea5c7bb80772e227b7b18edaca84fd4ae0de1e03f96d484167062805960f927f.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/47e04758ff18fe1b186be5c4d26a21df341ec554eb9fa172fdec2e63b9ebc18c.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/ea5c7bb80772e227b7b18edaca84fd4ae0de1e03f96d484167062805960f927f.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/47e04758ff18fe1b186be5c4d26a21df341ec554eb9fa172fdec2e63b9ebc18c.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/47e04758ff18fe1b186be5c4d26a21df341ec554eb9fa172fdec2e63b9ebc18c.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/ea5c7bb80772e227b7b18edaca84fd4ae0de1e03f96d484167062805960f927f.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/47e04758ff18fe1b186be5c4d26a21df341ec554eb9fa172fdec2e63b9ebc18c.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "NeoVitaDB VPK",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1309-AssessmentExamination.vpk",
       "recommended": true
     },
     {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1309",
-      "recommended": false
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
+      "url": "https://patnosd.itch.io/assessment-examination"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com"
     },
     {
       "type": "Download",
@@ -43,19 +47,15 @@
       "recommended": false
     },
     {
-      "type": "Official Website",
-      "name": "VitaDB Release Page",
-      "url": "https://patnosd.itch.io/assessment-examination"
-    },
-    {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com"
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1309",
+      "recommended": false
     }
   ],
-  "source_name": "NeoVitaDB",
-  "source_id": "1933",
-  "source_url": "https://github.com",
-  "release_page": "",
-  "updated_at": "2026-08-15T18:26:19.201908+00:00"
+  "source_name": "VitaDBtoo",
+  "source_id": "1309",
+  "source_url": "https://patnosd.itch.io/assessment-examination",
+  "release_page": "https://patnosd.itch.io/assessment-examination",
+  "updated_at": "2026-08-13T15:34:48.395842+00:00"
 }

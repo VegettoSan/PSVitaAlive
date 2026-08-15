@@ -16,16 +16,27 @@
   "requirements": "- Game Data Files: PC",
   "size": 778772,
   "status": "Legacy",
-  "icon": "https://www.rinnegatamante.eu/vitadb/icons/cf83893eff0c6f59b638fc6087b0d806d64eeae4faf0a771ab54e6b61cf394e5.png",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/cf83893eff0c6f59b638fc6087b0d806d64eeae4faf0a771ab54e6b61cf394e5.png",
   "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/cf83893eff0c6f59b638fc6087b0d806d64eeae4faf0a771ab54e6b61cf394e5.png",
     "https://www.rinnegatamante.eu/vitadb/screenshots/another.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=132",
-      "recommended": true
+      "name": "VitaDBtoo VPK",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/132-Another_world.vpk",
+      "recommended": false
+    },
+    {
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
+      "url": "http://gekihen.customprotocol.com/en/project/Another-World-Vita"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/enriquesomolinos/Another-World-Vita"
     },
     {
       "type": "Download",
@@ -34,19 +45,15 @@
       "recommended": false
     },
     {
-      "type": "Official Website",
-      "name": "VitaDB Release Page",
-      "url": "http://gekihen.customprotocol.com/en/project/Another-World-Vita"
-    },
-    {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/enriquesomolinos/Another-World-Vita"
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=132",
+      "recommended": true
     }
   ],
-  "source_name": "VitaDB",
+  "source_name": "VitaDBtoo",
   "source_id": "132",
   "source_url": "https://github.com/enriquesomolinos/Another-World-Vita",
   "release_page": "http://gekihen.customprotocol.com/en/project/Another-World-Vita",
-  "updated_at": "2026-08-15T18:26:20.541756+00:00"
+  "updated_at": "2026-08-13T15:34:48.697439+00:00"
 }

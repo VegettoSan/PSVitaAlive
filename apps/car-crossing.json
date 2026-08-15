@@ -16,26 +16,20 @@
   "requirements": "Not specified",
   "size": 7655427,
   "status": "Legacy",
-  "icon": "https://www.rinnegatamante.eu/vitadb/icons/1c04121db30ad367e035063b8b44dc19dd963da970904b139393be907d41e7a2.png",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/1c04121db30ad367e035063b8b44dc19dd963da970904b139393be907d41e7a2.png",
   "screenshots": [
-    "https://www.rinnegatamante.eu/vitadb/icons/1c04121db30ad367e035063b8b44dc19dd963da970904b139393be907d41e7a2.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/1c04121db30ad367e035063b8b44dc19dd963da970904b139393be907d41e7a2.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=643",
-      "recommended": true
-    },
-    {
-      "type": "Download",
-      "name": "NeoVitaDB VPK",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/Team789er/Car-Crossing-PSVita/releases/download/1.0.0/Classic.Car.Crossing.vpk",
       "recommended": false
     },
     {
       "type": "Official Website",
-      "name": "VitaDB Release Page",
+      "name": "VitaDBtoo Release Page",
       "url": "https://github.com/Team789er/Car-Crossing-PSVita/releases/"
     },
     {
@@ -47,11 +41,17 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/Team789er/Car-Crossing-PSVita"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=643",
+      "recommended": true
     }
   ],
-  "source_name": "VitaDB",
+  "source_name": "VitaDBtoo",
   "source_id": "643",
   "source_url": "https://github.com/Team789er/Car-Crossing-PSVita/releases/",
   "release_page": "https://github.com/Team789er/Car-Crossing-PSVita/releases/",
-  "updated_at": "2026-08-15T18:26:20.209476+00:00"
+  "updated_at": "2026-08-13T15:34:48.618746+00:00"
 }

@@ -16,21 +16,15 @@
   "requirements": "Not specified",
   "size": 2363770,
   "status": "Legacy",
-  "icon": "https://www.rinnegatamante.eu/vitadb/icons/1cebf0af0185110bbde0b7d42257a12ccf61b5ff852e4c5b6a64c0abc2f4fbf1.png",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/1cebf0af0185110bbde0b7d42257a12ccf61b5ff852e4c5b6a64c0abc2f4fbf1.png",
   "screenshots": [
-    "https://www.rinnegatamante.eu/vitadb/screenshots/3805ed75aeeab2a15b40a967cbd1690c5ef031f6741711bf7b71acb36b8cc575.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/16238c0c34013f36e9a8a306d786ba583edb02fae8ac982fec02b68e4a8b7a06.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/4a3cadf1bd293a93e0644e8c7b9e3b00b7b66542ce06c4210192b70a6fe679e3.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/3805ed75aeeab2a15b40a967cbd1690c5ef031f6741711bf7b71acb36b8cc575.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/16238c0c34013f36e9a8a306d786ba583edb02fae8ac982fec02b68e4a8b7a06.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/16238c0c34013f36e9a8a306d786ba583edb02fae8ac982fec02b68e4a8b7a06.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/4a3cadf1bd293a93e0644e8c7b9e3b00b7b66542ce06c4210192b70a6fe679e3.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/3805ed75aeeab2a15b40a967cbd1690c5ef031f6741711bf7b71acb36b8cc575.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/16238c0c34013f36e9a8a306d786ba583edb02fae8ac982fec02b68e4a8b7a06.png"
   ],
   "links": [
-    {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1414",
-      "recommended": true
-    },
     {
       "type": "Download",
       "name": "VitaDBtoo VPK",
@@ -39,7 +33,7 @@
     },
     {
       "type": "Official Website",
-      "name": "VitaDB Release Page",
+      "name": "VitaDBtoo Release Page",
       "url": "https://github.com/withLogic/mog-vita/releases"
     },
     {
@@ -51,11 +45,17 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/withLogic/mog-vita"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1414",
+      "recommended": true
     }
   ],
-  "source_name": "VitaDB",
+  "source_name": "VitaDBtoo",
   "source_id": "1414",
   "source_url": "https://github.com/withLogic/mog-vita",
   "release_page": "https://github.com/withLogic/mog-vita/releases",
-  "updated_at": "2026-08-15T18:26:18.948857+00:00"
+  "updated_at": "2026-08-13T15:34:48.340315+00:00"
 }

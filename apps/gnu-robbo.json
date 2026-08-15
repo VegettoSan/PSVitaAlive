@@ -11,24 +11,19 @@
   "subcategory_ids": [
     "other"
   ],
-  "version": "v.0.68",
+  "version": "v.GNU_Robbo_0.68_PSVITA",
   "version_date": "2017-02-20",
   "requirements": "Not specified",
   "size": 3840296,
   "status": "Legacy",
-  "icon": "https://www.rinnegatamante.eu/vitadb/icons/3c141bbfc70f8d29f2901938aefe7beff5d7f6847920a44e9ad5100ccd2cc0a2.png",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/3c141bbfc70f8d29f2901938aefe7beff5d7f6847920a44e9ad5100ccd2cc0a2.png",
   "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/3c141bbfc70f8d29f2901938aefe7beff5d7f6847920a44e9ad5100ccd2cc0a2.png",
     "https://www.rinnegatamante.eu/vitadb/screenshots/robbo1.png",
     "https://www.rinnegatamante.eu/vitadb/screenshots/robbo2.jpg",
     "https://www.rinnegatamante.eu/vitadb/screenshots/robbo3.jpg"
   ],
   "links": [
-    {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=114",
-      "recommended": true
-    },
     {
       "type": "Download",
       "name": "VitaDBtoo VPK",
@@ -37,7 +32,7 @@
     },
     {
       "type": "Official Website",
-      "name": "VitaDB Release Page",
+      "name": "VitaDBtoo Release Page",
       "url": "http://gekihen.customprotocol.com/en/project/GNU-Robbo"
     },
     {
@@ -49,11 +44,17 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/bomblik/GNU_Robbo_PSVITA_PSP"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=114",
+      "recommended": true
     }
   ],
-  "source_name": "VitaDB",
+  "source_name": "VitaDBtoo",
   "source_id": "114",
   "source_url": "https://github.com/bomblik/GNU_Robbo_PSVITA_PSP",
   "release_page": "http://gekihen.customprotocol.com/en/project/GNU-Robbo",
-  "updated_at": "2026-08-15T18:26:20.499022+00:00"
+  "updated_at": "2026-08-13T15:34:48.686491+00:00"
 }

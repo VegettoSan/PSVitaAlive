@@ -18,28 +18,22 @@
   "status": "Legacy",
   "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/0868-sonic-cd-vita.png",
   "screenshots": [
-    "https://www.rinnegatamante.eu/vitadb/screenshots/149afeb5058e59092a6a634485a2fdada35a0b2a46c30d78b73a3545f73543da.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/69f3bfaec762e09a1f08ff0acfa8aea878bcf2d541cfd2e2481aef7133df3efa.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/1446323683e93fd7d5442d52e7b564da91ac3a9b9dd66319f796472cfae9072b.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/149afeb5058e59092a6a634485a2fdada35a0b2a46c30d78b73a3545f73543da.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/69f3bfaec762e09a1f08ff0acfa8aea878bcf2d541cfd2e2481aef7133df3efa.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/69f3bfaec762e09a1f08ff0acfa8aea878bcf2d541cfd2e2481aef7133df3efa.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/1446323683e93fd7d5442d52e7b564da91ac3a9b9dd66319f796472cfae9072b.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/149afeb5058e59092a6a634485a2fdada35a0b2a46c30d78b73a3545f73543da.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/69f3bfaec762e09a1f08ff0acfa8aea878bcf2d541cfd2e2481aef7133df3efa.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=868",
-      "recommended": true
-    },
-    {
-      "type": "Download",
-      "name": "NeoVitaDB VPK",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/SonicMastr/Sonic-CD-Vita/releases/download/0.2/SonicCD.vpk",
       "recommended": false
     },
     {
       "type": "Official Website",
-      "name": "VitaDB Release Page",
+      "name": "VitaDBtoo Release Page",
       "url": "https://github.com/SonicMastr/Sonic-CD-Vita/releases"
     },
     {
@@ -51,11 +45,17 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/SonicMastr/Sonic-CD-Vita"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=868",
+      "recommended": true
     }
   ],
-  "source_name": "VitaDB",
+  "source_name": "VitaDBtoo",
   "source_id": "868",
   "source_url": "https://github.com/SonicMastr/Sonic-CD-Vita",
   "release_page": "https://github.com/SonicMastr/Sonic-CD-Vita/releases",
-  "updated_at": "2026-08-15T18:26:20.137344+00:00"
+  "updated_at": "2026-08-13T15:34:48.601091+00:00"
 }

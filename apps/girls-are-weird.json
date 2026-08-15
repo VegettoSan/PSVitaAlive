@@ -2,11 +2,11 @@
   "id": "girls-are-weird",
   "title_id": "CFFVNPGAW",
   "name": "Girls Are Weird",
-  "description": "Port of Girls are Weird.",
+  "description": "Remaster of Girls are Weird for PSVITA.",
   "long_description": "Port of a visual novel called Girls are Weird for PSVITA/PSTV.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
   "author_ids": [
-    "10tr-ll-on-percent",
-    "betterwinds"
+    "betterwinds",
+    "10tr-ll-on-percent"
   ],
   "category_id": "ports",
   "subcategory_ids": [
@@ -22,21 +22,36 @@
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/171a07e8d20b77ccfb38710f1fd6c9fdd047a5d31ec23f40da67693c4ccc26cb.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/227ac04c4e3fb73184ca0004869f33b8ba842ce608333c8c514afb8286ab4bb0.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/6404be365ec5ceae5bcade9d2389158c3f11b6e630c420b1ff3b89d55b6d181b.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/a551a290c0b2dff5a101b5c218390410fc306242b93790a0f436e04099378338.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/a551a290c0b2dff5a101b5c218390410fc306242b93790a0f436e04099378338.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/a551a290c0b2dff5a101b5c218390410fc306242b93790a0f436e04099378338.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/a551a290c0b2dff5a101b5c218390410fc306242b93790a0f436e04099378338.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "NeoVitaDB VPK",
+      "name": "VitaDBtoo VPK",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/834-GirlsAreWeird.vpk",
+      "recommended": false
+    },
+    {
+      "type": "Download",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/492-GirlsAreWeird.vpk",
       "recommended": true
     },
     {
-      "type": "Download",
-      "name": "NeoVitaDB VPK",
-      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/834-GirlsAreWeird.vpk",
-      "recommended": false
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
+      "url": "https://betterwinds.itch.io/girls-are-weird-plus"
+    },
+    {
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
+      "url": "https://siinclaiir.wordpress.com/2017/12/01/girls-are-weird-psvita-port/"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com"
     },
     {
       "type": "Download",
@@ -46,35 +61,20 @@
     },
     {
       "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=492",
-      "recommended": false
-    },
-    {
-      "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/492-GirlsAreWeird.vpk",
       "recommended": false
     },
     {
-      "type": "Official Website",
-      "name": "VitaDBtoo Release Page",
-      "url": "https://betterwinds.itch.io/girls-are-weird-plus"
-    },
-    {
-      "type": "Official Website",
-      "name": "VitaDB Release Page",
-      "url": "https://siinclaiir.wordpress.com/2017/12/01/girls-are-weird-psvita-port/"
-    },
-    {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com"
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=492",
+      "recommended": false
     }
   ],
-  "source_name": "NeoVitaDB",
-  "source_id": "1658",
-  "source_url": "https://github.com",
-  "release_page": "",
-  "updated_at": "2026-08-15T18:26:20.412698+00:00"
+  "source_name": "VitaDBtoo",
+  "source_id": "834",
+  "source_url": "https://betterwinds.itch.io/girls-are-weird-plus",
+  "release_page": "https://betterwinds.itch.io/girls-are-weird-plus",
+  "updated_at": "2026-08-13T15:34:48.542639+00:00"
 }

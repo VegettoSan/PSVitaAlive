@@ -16,26 +16,20 @@
   "requirements": "Not specified",
   "size": 19596302,
   "status": "Legacy",
-  "icon": "https://www.rinnegatamante.eu/vitadb/icons/c31f14b27689cae2c6876cfbc07c981e1f026ed8fcaea53d68cf5bcacd6ce36f.png",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/c31f14b27689cae2c6876cfbc07c981e1f026ed8fcaea53d68cf5bcacd6ce36f.png",
   "screenshots": [
-    "https://www.rinnegatamante.eu/vitadb/icons/c31f14b27689cae2c6876cfbc07c981e1f026ed8fcaea53d68cf5bcacd6ce36f.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/c31f14b27689cae2c6876cfbc07c981e1f026ed8fcaea53d68cf5bcacd6ce36f.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1189",
-      "recommended": true
-    },
-    {
-      "type": "Download",
-      "name": "NeoVitaDB VPK",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/Bunkai9448/StackerVitaGodot/releases/download/StackerVita-v.01.00/Stacker.for.Vita.vpk",
       "recommended": false
     },
     {
       "type": "Official Website",
-      "name": "VitaDB Release Page",
+      "name": "VitaDBtoo Release Page",
       "url": "https://github.com/Bunkai9448/StackerVitaGodot/releases"
     },
     {
@@ -47,11 +41,17 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/Bunkai9448/StackerVitaGodot"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1189",
+      "recommended": true
     }
   ],
-  "source_name": "VitaDB",
+  "source_name": "VitaDBtoo",
   "source_id": "1189",
   "source_url": "https://github.com/Bunkai9448/StackerVitaGodot",
   "release_page": "https://github.com/Bunkai9448/StackerVitaGodot/releases",
-  "updated_at": "2026-08-15T18:26:19.421364+00:00"
+  "updated_at": "2026-08-13T15:34:48.446853+00:00"
 }

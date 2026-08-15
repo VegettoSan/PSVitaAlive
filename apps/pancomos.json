@@ -18,24 +18,23 @@
   "status": "Legacy",
   "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1714-pancomos.png",
   "screenshots": [
-    "https://www.rinnegatamante.eu/vitadb/screenshots/439297104529227ae397dc59bf7d0286bc1c763251aa959b7143e3e00b402cca.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/5e2ab6e2496370bb0cab5a0e06d97704d875a481364bb176e5cf06ed383dc483.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/0325cfc275b588730235bfc4564d770fc4e50ed7419abd28141c35307be72ea5.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/439297104529227ae397dc59bf7d0286bc1c763251aa959b7143e3e00b402cca.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/5e2ab6e2496370bb0cab5a0e06d97704d875a481364bb176e5cf06ed383dc483.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/5e2ab6e2496370bb0cab5a0e06d97704d875a481364bb176e5cf06ed383dc483.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/0325cfc275b588730235bfc4564d770fc4e50ed7419abd28141c35307be72ea5.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/439297104529227ae397dc59bf7d0286bc1c763251aa959b7143e3e00b402cca.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/5e2ab6e2496370bb0cab5a0e06d97704d875a481364bb176e5cf06ed383dc483.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "NeoVitaDB VPK",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/637-PanComOS.vpk",
       "recommended": true
     },
     {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=637",
-      "recommended": false
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com"
     },
     {
       "type": "Download",
@@ -44,14 +43,15 @@
       "recommended": false
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com"
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=637",
+      "recommended": false
     }
   ],
-  "source_name": "NeoVitaDB",
-  "source_id": "1714",
-  "source_url": "https://github.com",
+  "source_name": "VitaDBtoo",
+  "source_id": "637",
+  "source_url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/637-PanComOS.vpk",
   "release_page": "",
-  "updated_at": "2026-08-15T18:26:20.092825+00:00"
+  "updated_at": "2026-08-13T15:34:48.590660+00:00"
 }

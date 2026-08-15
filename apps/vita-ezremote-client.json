@@ -9,34 +9,28 @@
   ],
   "category_id": "utilities",
   "subcategory_ids": [
-    "other"
+    "file-manager"
   ],
   "version": "v.1.12",
   "version_date": "2025-03-02",
   "requirements": "- libshacccg.suprx",
   "size": 17773809,
   "status": "Legacy",
-  "icon": "https://www.rinnegatamante.eu/vitadb/icons/9b94160dff730fc8226d381238b88e9800831b335323300d880989a9baea08a2.png",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/9b94160dff730fc8226d381238b88e9800831b335323300d880989a9baea08a2.png",
   "screenshots": [
-    "https://www.rinnegatamante.eu/vitadb/screenshots/6a54e69ed6b2e6008e4ea77fa47c3a4a583b59fe4616741bbc8e06795179ed0a.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/6a54e69ed6b2e6008e4ea77fa47c3a4a583b59fe4616741bbc8e06795179ed0a.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/6a54e69ed6b2e6008e4ea77fa47c3a4a583b59fe4616741bbc8e06795179ed0a.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/6a54e69ed6b2e6008e4ea77fa47c3a4a583b59fe4616741bbc8e06795179ed0a.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1131",
-      "recommended": true
-    },
-    {
-      "type": "Download",
-      "name": "NeoVitaDB VPK",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/cy33hc/vita-ezremote-client/releases/download/1.12/ezremoteclient.vpk",
       "recommended": false
     },
     {
       "type": "Official Website",
-      "name": "VitaDB Release Page",
+      "name": "VitaDBtoo Release Page",
       "url": "https://github.com/cy33hc/vita-ezremote-client/releases"
     },
     {
@@ -48,11 +42,17 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/cy33hc/vita-ezremote-client/"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1131",
+      "recommended": true
     }
   ],
-  "source_name": "VitaDB",
+  "source_name": "VitaDBtoo",
   "source_id": "1131",
   "source_url": "https://github.com/cy33hc/vita-ezremote-client/",
   "release_page": "https://github.com/cy33hc/vita-ezremote-client/releases",
-  "updated_at": "2026-08-15T18:26:19.284755+00:00"
+  "updated_at": "2026-08-13T15:34:48.413165+00:00"
 }

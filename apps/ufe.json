@@ -18,21 +18,25 @@
   "status": "Legacy",
   "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1643-ufe.png",
   "screenshots": [
-    "https://www.rinnegatamante.eu/vitadb/screenshots/456d5d08a8565e2820849bff472353ee160b19c963de54774f32ad4c41db6629.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/456d5d08a8565e2820849bff472353ee160b19c963de54774f32ad4c41db6629.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/456d5d08a8565e2820849bff472353ee160b19c963de54774f32ad4c41db6629.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/456d5d08a8565e2820849bff472353ee160b19c963de54774f32ad4c41db6629.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "NeoVitaDB VPK",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/470-UFE_Demo.vpk",
       "recommended": true
     },
     {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=470",
-      "recommended": false
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
+      "url": "https://twitter.com/RetroGamer_74/status/1120398841071714305"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com"
     },
     {
       "type": "Download",
@@ -41,19 +45,15 @@
       "recommended": false
     },
     {
-      "type": "Official Website",
-      "name": "VitaDB Release Page",
-      "url": "https://twitter.com/RetroGamer_74/status/1120398841071714305"
-    },
-    {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com"
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=470",
+      "recommended": false
     }
   ],
-  "source_name": "NeoVitaDB",
-  "source_id": "1643",
-  "source_url": "https://github.com",
-  "release_page": "",
-  "updated_at": "2026-08-15T18:26:20.307752+00:00"
+  "source_name": "VitaDBtoo",
+  "source_id": "470",
+  "source_url": "https://twitter.com/RetroGamer_74/status/1120398841071714305",
+  "release_page": "https://twitter.com/RetroGamer_74/status/1120398841071714305",
+  "updated_at": "2026-08-13T15:34:48.645943+00:00"
 }

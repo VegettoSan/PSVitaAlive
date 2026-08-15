@@ -18,24 +18,28 @@
   "status": "Legacy",
   "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1726-demons-down.png",
   "screenshots": [
-    "https://www.rinnegatamante.eu/vitadb/screenshots/225e767b2458d3538190900f569afa4e493a7217590c058208ceb6892f295d89.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/ed0ea46e7d7994e9f6bd4f110577486b5666e35e78e0b14ba40826ab84182ba4.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/5c0325e96fcd885cc9a8354029af1ab75b9fb82f5c2ace8e01717fda0827e45d.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/47b8ee81156dc39a0a6403d9d2e60f0bd53a2e0f8ccf421730445ab0260a537b.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/225e767b2458d3538190900f569afa4e493a7217590c058208ceb6892f295d89.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/225e767b2458d3538190900f569afa4e493a7217590c058208ceb6892f295d89.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/ed0ea46e7d7994e9f6bd4f110577486b5666e35e78e0b14ba40826ab84182ba4.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/5c0325e96fcd885cc9a8354029af1ab75b9fb82f5c2ace8e01717fda0827e45d.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/47b8ee81156dc39a0a6403d9d2e60f0bd53a2e0f8ccf421730445ab0260a537b.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/225e767b2458d3538190900f569afa4e493a7217590c058208ceb6892f295d89.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "NeoVitaDB VPK",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/679-DemonsDown.vpk",
       "recommended": true
     },
     {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=679",
-      "recommended": false
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
+      "url": "https://kyuhen.customprotocol.com/en/submissions/demonsdown/"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com"
     },
     {
       "type": "Download",
@@ -44,19 +48,15 @@
       "recommended": false
     },
     {
-      "type": "Official Website",
-      "name": "VitaDB Release Page",
-      "url": "https://kyuhen.customprotocol.com/en/submissions/demonsdown/"
-    },
-    {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com"
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=679",
+      "recommended": false
     }
   ],
-  "source_name": "NeoVitaDB",
-  "source_id": "1726",
-  "source_url": "https://github.com",
-  "release_page": "",
-  "updated_at": "2026-08-15T18:26:20.043223+00:00"
+  "source_name": "VitaDBtoo",
+  "source_id": "679",
+  "source_url": "https://kyuhen.customprotocol.com/en/submissions/demonsdown/",
+  "release_page": "https://kyuhen.customprotocol.com/en/submissions/demonsdown/",
+  "updated_at": "2026-08-13T15:34:48.582810+00:00"
 }

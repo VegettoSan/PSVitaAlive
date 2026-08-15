@@ -23,20 +23,14 @@
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c1b96646e18f8c178e01ad850d3d65f189c80b7eb8d600c27ebe4da7470f583f.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/4b4bce6e6d5fdcf4de4a39b128aa977cff273cf6fb848debffe0cdab3f114fb0.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/71e5af3a077f76d71f175f6706b94386eb71170e7482b93bb8eebbcfad715241.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/7d735d31c36a24b46b492a14e194d778ed5584a28142699cefe5dec6d7b5dcd7.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/7d735d31c36a24b46b492a14e194d778ed5584a28142699cefe5dec6d7b5dcd7.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "NeoVitaDB VPK",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1274-fnaf-world.vpk",
       "recommended": true
-    },
-    {
-      "type": "Download",
-      "name": "VitaDBtoo VPK",
-      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/1274-fnaf-world.vpk",
-      "recommended": false
     },
     {
       "type": "Official Website",
@@ -47,11 +41,17 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDBtoo VPK",
+      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/1274-fnaf-world.vpk",
+      "recommended": false
     }
   ],
-  "source_name": "NeoVitaDB",
-  "source_id": "1925",
-  "source_url": "https://github.com",
-  "release_page": "",
-  "updated_at": "2026-08-15T18:26:18.891213+00:00"
+  "source_name": "VitaDBtoo",
+  "source_id": "1274",
+  "source_url": "https://gamejolt.com/games/FWpsVita/996208",
+  "release_page": "https://gamejolt.com/games/FWpsVita/996208",
+  "updated_at": "2026-08-13T15:34:48.325567+00:00"
 }

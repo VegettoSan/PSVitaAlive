@@ -16,17 +16,11 @@
   "requirements": "Not specified",
   "size": 2823264,
   "status": "Legacy",
-  "icon": "https://www.rinnegatamante.eu/vitadb/icons/932a2c421cd1217626c59ea726d5e6a16ba737f98ce86c193db75e9e633fcec9.png",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/932a2c421cd1217626c59ea726d5e6a16ba737f98ce86c193db75e9e633fcec9.png",
   "screenshots": [
-    "https://www.rinnegatamante.eu/vitadb/icons/932a2c421cd1217626c59ea726d5e6a16ba737f98ce86c193db75e9e633fcec9.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/932a2c421cd1217626c59ea726d5e6a16ba737f98ce86c193db75e9e633fcec9.png"
   ],
   "links": [
-    {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=553",
-      "recommended": true
-    },
     {
       "type": "Download",
       "name": "VitaDBtoo VPK",
@@ -35,7 +29,7 @@
     },
     {
       "type": "Official Website",
-      "name": "VitaDB Release Page",
+      "name": "VitaDBtoo Release Page",
       "url": "https://github.com/Rinnegatamante/DaedalusX64-vitaGL/releases"
     },
     {
@@ -47,11 +41,17 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/Rinnegatamante/DaedalusX64-vitaGL"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=553",
+      "recommended": true
     }
   ],
-  "source_name": "VitaDB",
+  "source_name": "VitaDBtoo",
   "source_id": "553",
   "source_url": "https://github.com/Rinnegatamante/DaedalusX64-vitaGL",
   "release_page": "https://github.com/Rinnegatamante/DaedalusX64-vitaGL/releases",
-  "updated_at": "2026-08-15T18:26:19.069347+00:00"
+  "updated_at": "2026-08-13T15:34:48.619999+00:00"
 }
