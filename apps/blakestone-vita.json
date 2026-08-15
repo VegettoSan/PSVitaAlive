@@ -37,6 +37,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/01y/bstone-vita"
+    },
+    {
+      "type": "Official Website",
+      "name": "VitaDB Release Page",
+      "url": "http://wololo.net/talk/viewtopic.php?f=116&t=49428"
     }
   ],
   "source_name": "NeoVitaDB",

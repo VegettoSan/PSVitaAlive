@@ -11,8 +11,8 @@
   "subcategory_ids": [
     "other"
   ],
-  "version": "v1.0",
-  "version_date": "2025-08-31",
+  "version": "v.1.0",
+  "version_date": "2025-08-30",
   "requirements": "- libshacccg.suprx",
   "size": 742391,
   "status": "Legacy",

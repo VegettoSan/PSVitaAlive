@@ -11,10 +11,10 @@
   "subcategory_ids": [
     "other"
   ],
-  "version": "0.2.9d",
-  "version_date": "2020-11-22",
+  "version": "v.0.2.9",
+  "version_date": "2020-05-04",
   "requirements": "- Game Data Files: PC",
-  "size": 690276,
+  "size": 690248,
   "status": "Legacy",
   "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/0512-hode.png",
   "screenshots": [

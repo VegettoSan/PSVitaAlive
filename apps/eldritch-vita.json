@@ -12,9 +12,9 @@
     "other"
   ],
   "version": "v.1.2",
-  "version_date": "2026-08-15",
+  "version_date": "2025-10-29",
   "requirements": "- libshacccg.suprx\n- Game Data Files: PC",
-  "size": 4527067,
+  "size": 4428029,
   "status": "Legacy",
   "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1838-eldritch-vita.png",
   "screenshots": [

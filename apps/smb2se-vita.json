@@ -40,6 +40,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/Rinnegatamante/smb2se-vita"
+    },
+    {
+      "type": "Official Website",
+      "name": "VitaDB Release Page",
+      "url": "https://github.com/Rinnegatamante/smb2se-vita/releases"
     }
   ],
   "source_name": "NeoVitaDB",

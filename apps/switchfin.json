@@ -40,6 +40,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/dragonflylee/switchfin"
+    },
+    {
+      "type": "Official Website",
+      "name": "VitaDB Release Page",
+      "url": "https://github.com/dragonflylee/switchfin/releases"
     }
   ],
   "source_name": "NeoVitaDB",

@@ -11,10 +11,10 @@
   "subcategory_ids": [
     "other"
   ],
-  "version": "v0.69",
-  "version_date": "2026-08-11",
+  "version": "v.0.69",
+  "version_date": "2026-07-27",
   "requirements": "- libshacccg.suprx\n- Game Data Files: Steam",
-  "size": 2362196,
+  "size": 2359680,
   "status": "Legacy",
   "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/fc2c4f161294c75bcb5dd74cfca553c70a6b01704a3e201c4192e1b62d4ae36d.png",
   "screenshots": [

@@ -37,6 +37,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/LukeZGD/DDLC-LOVE"
+    },
+    {
+      "type": "Official Website",
+      "name": "VitaDB Release Page",
+      "url": "https://github.com/LukeZGD/DDLC-LOVE/releases"
     }
   ],
   "source_name": "NeoVitaDB",

@@ -39,6 +39,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/EliCrystal2001/CrystalArchiver"
+    },
+    {
+      "type": "Official Website",
+      "name": "VitaDB Release Page",
+      "url": "https://github.com/EliCrystal2001/CrystalArchiver/releases"
     }
   ],
   "source_name": "NeoVitaDB",

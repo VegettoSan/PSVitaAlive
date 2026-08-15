@@ -36,6 +36,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/thcolin/gamepad-media-center-aggregator"
+    },
+    {
+      "type": "Official Website",
+      "name": "VitaDB Release Page",
+      "url": "https://github.com/thcolin/gamepad-media-center-aggregator/releases"
     }
   ],
   "source_name": "NeoVitaDB",

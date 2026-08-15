@@ -37,6 +37,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/CrossCraft/CrossCraft-SurvivalTest"
+    },
+    {
+      "type": "Official Website",
+      "name": "VitaDB Release Page",
+      "url": "https://github.com/CrossCraft/CrossCraft-SurvivalTest/releases"
     }
   ],
   "source_name": "NeoVitaDB",

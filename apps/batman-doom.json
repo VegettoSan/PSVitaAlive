@@ -12,7 +12,7 @@
     "other"
   ],
   "version": "v.1.0",
-  "version_date": "2026-08-15",
+  "version_date": "2026-08-07",
   "requirements": "- Game Data Files: doom2.wad, batman.wad and batman.deh in ux0:data/batmandoom/",
   "size": 592662,
   "status": "Legacy",

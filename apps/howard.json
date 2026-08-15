@@ -39,6 +39,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/Narwher/Howard"
+    },
+    {
+      "type": "Official Website",
+      "name": "VitaDB Release Page",
+      "url": "https://github.com/Narwher/Howard/releases"
     }
   ],
   "source_name": "NeoVitaDB",

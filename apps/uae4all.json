@@ -42,6 +42,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/rsn8887/uae4all2"
+    },
+    {
+      "type": "Official Website",
+      "name": "VitaDB Release Page",
+      "url": "https://github.com/rsn8887/uae4all2/releases/latest"
     }
   ],
   "source_name": "NeoVitaDB",

@@ -12,7 +12,7 @@
   "subcategory_ids": [
     "other"
   ],
-  "version": "1.5.5",
+  "version": "v.1.5.5",
   "version_date": "2025-10-30",
   "requirements": "- Game Data Files: PC",
   "size": 7599439,
@@ -30,7 +30,7 @@
       "type": "Download",
       "name": "NeoVitaDB VPK",
       "url": "https://github.com/diasurgical/DevilutionX/releases/download/1.5.5/devilutionx-vita.vpk",
-      "recommended": true
+      "recommended": false
     },
     {
       "type": "Official Website",
@@ -41,6 +41,17 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/diasurgical/devilutionX"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=600",
+      "recommended": true
+    },
+    {
+      "type": "Official Website",
+      "name": "VitaDB Release Page",
+      "url": "https://github.com/diasurgical/devilutionX/releases/"
     }
   ],
   "source_name": "NeoVitaDB",

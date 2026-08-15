@@ -40,6 +40,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/Jyotiraditya-Samal/Vitawave"
+    },
+    {
+      "type": "Official Website",
+      "name": "VitaDB Release Page",
+      "url": "https://jyotiraditya-samal.itch.io/vitawave"
     }
   ],
   "source_name": "NeoVitaDB",

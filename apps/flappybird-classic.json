@@ -40,6 +40,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/Creckeryop/Flappy-Bird-Classic-vita"
+    },
+    {
+      "type": "Official Website",
+      "name": "VitaDB Release Page",
+      "url": "https://github.com/Creckeryop/Flappy-Bird-Classic-vita/releases"
     }
   ],
   "source_name": "NeoVitaDB",

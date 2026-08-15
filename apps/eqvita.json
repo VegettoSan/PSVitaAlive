@@ -40,6 +40,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/shev0k/EQVita"
+    },
+    {
+      "type": "Official Website",
+      "name": "VitaDB Release Page",
+      "url": "https://github.com/shev0k/EQVita/releases"
     }
   ],
   "source_name": "NeoVitaDB",

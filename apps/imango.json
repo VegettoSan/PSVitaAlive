@@ -11,10 +11,10 @@
   "subcategory_ids": [
     "other"
   ],
-  "version": "v.1.0",
-  "version_date": "2026-08-15",
+  "version": "2026-08-06",
+  "version_date": "2026-08-06",
   "requirements": "Not specified",
-  "size": 3763993,
+  "size": 3795012,
   "status": "Legacy",
   "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1971-imango.png",
   "screenshots": [
@@ -25,7 +25,7 @@
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1441-imango.vpk",
-      "recommended": true
+      "recommended": false
     },
     {
       "type": "Official Website",
@@ -47,7 +47,7 @@
       "type": "Download",
       "name": "VitaDB VPK",
       "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1441",
-      "recommended": false
+      "recommended": true
     }
   ],
   "source_name": "VitaDBtoo",

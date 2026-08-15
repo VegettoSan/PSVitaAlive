@@ -40,6 +40,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/rsn8887/cannonball"
+    },
+    {
+      "type": "Official Website",
+      "name": "VitaDB Release Page",
+      "url": "https://github.com/rsn8887/cannonball/releases"
     }
   ],
   "source_name": "NeoVitaDB",

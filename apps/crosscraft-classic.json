@@ -38,6 +38,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/CrossCraft/CrossCraft-Classic"
+    },
+    {
+      "type": "Official Website",
+      "name": "VitaDB Release Page",
+      "url": "https://github.com/CrossCraft/CrossCraft-Classic/releases"
     }
   ],
   "source_name": "NeoVitaDB",

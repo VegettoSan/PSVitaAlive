@@ -40,6 +40,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/NekoMimiOfficial/NekoDrome"
+    },
+    {
+      "type": "Official Website",
+      "name": "VitaDB Release Page",
+      "url": "https://github.com/NekoMimiOfficial/NekoDrome/releases"
     }
   ],
   "source_name": "NeoVitaDB",

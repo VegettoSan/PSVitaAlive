@@ -40,6 +40,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/rsn8887/rocksndiamonds"
+    },
+    {
+      "type": "Official Website",
+      "name": "VitaDB Release Page",
+      "url": "https://github.com/rsn8887/rocksndiamonds/releases/latest"
     }
   ],
   "source_name": "NeoVitaDB",

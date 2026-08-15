@@ -41,6 +41,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/ihhub/fheroes2"
+    },
+    {
+      "type": "Official Website",
+      "name": "VitaDB Release Page",
+      "url": "http://wololo.net/talk/viewtopic.php?f=116&t=48768"
     }
   ],
   "source_name": "NeoVitaDB",

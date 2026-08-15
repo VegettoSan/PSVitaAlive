@@ -36,6 +36,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/jamsilva/emu4vita"
+    },
+    {
+      "type": "Official Website",
+      "name": "VitaDB Release Page",
+      "url": "https://github.com/jamsilva/emu4vita/releases"
     }
   ],
   "source_name": "NeoVitaDB",

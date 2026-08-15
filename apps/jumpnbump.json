@@ -40,6 +40,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/rsn8887/jumpnbump"
+    },
+    {
+      "type": "Official Website",
+      "name": "VitaDB Release Page",
+      "url": "https://github.com/rsn8887/jumpnbump/releases"
     }
   ],
   "source_name": "NeoVitaDB",

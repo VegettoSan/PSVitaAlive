@@ -40,6 +40,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/WolffsRoom/FMVita"
+    },
+    {
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
+      "url": "https://github.com/WolffsRoom/FMVita/releases"
     }
   ],
   "source_name": "NeoVitaDB",

@@ -40,6 +40,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/hatoving/imscared-old-vita"
+    },
+    {
+      "type": "Official Website",
+      "name": "VitaDB Release Page",
+      "url": "https://github.com/hatoving/imscared/"
     }
   ],
   "source_name": "NeoVitaDB",

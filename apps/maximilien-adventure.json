@@ -41,6 +41,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/SonicMastr/godot-vita"
+    },
+    {
+      "type": "Official Website",
+      "name": "VitaDB Release Page",
+      "url": "https://soykhaler.itch.io/parkour-labs-vita-port"
     }
   ],
   "source_name": "NeoVitaDB",

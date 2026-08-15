@@ -37,6 +37,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/Mode8fx/blockamok"
+    },
+    {
+      "type": "Official Website",
+      "name": "VitaDB Release Page",
+      "url": "https://github.com/Mode8fx/blockamok/releases"
     }
   ],
   "source_name": "NeoVitaDB",

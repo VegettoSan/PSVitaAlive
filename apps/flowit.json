@@ -40,6 +40,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/ywnico/flowit-vita"
+    },
+    {
+      "type": "Official Website",
+      "name": "VitaDB Release Page",
+      "url": "https://github.com/ywnico/flowit-vita/releases"
     }
   ],
   "source_name": "NeoVitaDB",
