@@ -1,0 +1,4 @@
+{
+  "reason": "Rebuild canonical apps from VitaDB/VitaDBtoo/NeoVitaDB to repair version_date values after importer merge fix.",
+  "created_by": "PSVitaAlive maintenance"
+}
