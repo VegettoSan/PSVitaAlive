@@ -94,6 +94,9 @@ private:
 
     std::unordered_map<std::string, vita2d_texture*> textures_;
     std::vector<std::string> textureOrder_;
+    /** Freed one frame later so the GPU is done with the previous swap. */
+    std::vector<vita2d_texture*> deferredFreeTextures_;
+    int catalogSwitchCooldownFrames_ = 0;
 
     void handleInput();
     void draw();
@@ -117,6 +120,8 @@ private:
     void drawImage(const std::string& url, const std::string& namespaceName, int x, int y, int width, int height);
     void releaseTextures();
     void releaseScreenshotTextures();
+    void scheduleTextureFree(vita2d_texture* texture);
+    void flushDeferredTextureFrees();
     /** Free GPU textures whose disk path is not in keep (visible set). */
     void releaseTexturesNotIn(const std::unordered_set<std::string>& keep);
     void touchTexture(const std::string& path);
