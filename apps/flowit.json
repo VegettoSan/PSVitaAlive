@@ -9,7 +9,7 @@
   ],
   "category_id": "games",
   "subcategory_ids": [
-    "other"
+    "puzzle"
   ],
   "version": "v1.03",
   "version_date": "2022-10-12",
@@ -18,11 +18,11 @@
   "status": "Legacy",
   "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/0771-flowit.png",
   "screenshots": [
-    "https://www.rinnegatamante.eu/vitadb/screenshots/7d2a6fdea4047bc93a414c28f0d35a61b5944dea2b3b85210989c4ee7a0fd31c.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/7a491bc6b2ea22a5f7d84025f4442c3f5259b25f254bf740d63c5beeafbca6e6.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/f67c50e30decada1abd63055645ad58d880e11f3c7874c04e731e66a63d9b267.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/6eabc17fce40c434a21a97d922629c3134a2c0995136b455a8c32d706dac1331.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/7d2a6fdea4047bc93a414c28f0d35a61b5944dea2b3b85210989c4ee7a0fd31c.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/7d2a6fdea4047bc93a414c28f0d35a61b5944dea2b3b85210989c4ee7a0fd31c.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/7a491bc6b2ea22a5f7d84025f4442c3f5259b25f254bf740d63c5beeafbca6e6.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/f67c50e30decada1abd63055645ad58d880e11f3c7874c04e731e66a63d9b267.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/6eabc17fce40c434a21a97d922629c3134a2c0995136b455a8c32d706dac1331.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/7d2a6fdea4047bc93a414c28f0d35a61b5944dea2b3b85210989c4ee7a0fd31c.png"
   ],
   "links": [
     {
@@ -46,5 +46,5 @@
   "source_id": "771",
   "source_url": "https://github.com/ywnico/flowit-vita",
   "release_page": "https://github.com/ywnico/flowit-vita/releases/tag/v1.03",
-  "updated_at": "2026-08-15T18:26:19.370427+00:00"
+  "updated_at": "2026-08-13T15:34:48.434860+00:00"
 }

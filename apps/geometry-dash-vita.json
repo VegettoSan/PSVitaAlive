@@ -16,29 +16,23 @@
   "requirements": "- libshacccg.suprx\n- libfmodstudio.suprx\n- kubridge.skprx\n- Game Data Files: Android",
   "size": 1125000,
   "status": "Legacy",
-  "icon": "https://www.rinnegatamante.eu/vitadb/icons/e7c861029b4702135b010ab07db1cb2d201e872b6891dde294405b796fe3dd51.png",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/e7c861029b4702135b010ab07db1cb2d201e872b6891dde294405b796fe3dd51.png",
   "screenshots": [
-    "https://www.rinnegatamante.eu/vitadb/screenshots/8f4546d2c9d633aade378e534004a2c1d3bcc4f6172736d39a939b659c2f3bd6.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/7a61a28923d99599adde7f1f654bae2002402a3cd3a23ff89dad457dbdd040e9.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/8f4546d2c9d633aade378e534004a2c1d3bcc4f6172736d39a939b659c2f3bd6.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/7a61a28923d99599adde7f1f654bae2002402a3cd3a23ff89dad457dbdd040e9.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/7a61a28923d99599adde7f1f654bae2002402a3cd3a23ff89dad457dbdd040e9.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/8f4546d2c9d633aade378e534004a2c1d3bcc4f6172736d39a939b659c2f3bd6.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/7a61a28923d99599adde7f1f654bae2002402a3cd3a23ff89dad457dbdd040e9.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1177",
-      "recommended": true
-    },
-    {
-      "type": "Download",
-      "name": "NeoVitaDB VPK",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/hatoving/gdash-vita/releases/download/v1.02/gdash.vpk",
       "recommended": false
     },
     {
       "type": "Official Website",
-      "name": "VitaDB Release Page",
+      "name": "VitaDBtoo Release Page",
       "url": "https://github.com/hatoving/gdash-vita/releases"
     },
     {
@@ -50,11 +44,17 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/hatoving/gdash-vita"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1177",
+      "recommended": true
     }
   ],
-  "source_name": "VitaDB",
+  "source_name": "VitaDBtoo",
   "source_id": "1177",
   "source_url": "https://github.com/hatoving/gdash-vita",
   "release_page": "https://github.com/hatoving/gdash-vita/releases",
-  "updated_at": "2026-08-15T18:26:19.439392+00:00"
+  "updated_at": "2026-08-13T15:34:48.453056+00:00"
 }

@@ -16,21 +16,15 @@
   "requirements": "Not specified",
   "size": 27141519,
   "status": "Legacy",
-  "icon": "https://www.rinnegatamante.eu/vitadb/icons/696b66ae8056cef4de5c9f74ef3c42b116394f3ada3f41f135c78c67905363fa.png",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/696b66ae8056cef4de5c9f74ef3c42b116394f3ada3f41f135c78c67905363fa.png",
   "screenshots": [
-    "https://www.rinnegatamante.eu/vitadb/screenshots/9ce51405437a313a9e52de1c39f68ccd66ee1bdf94616587f6ee81ace32b7cb6.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/36d9755c71e56c369a87ba9b3348f601eb396f2ac42cf77aa65d7e9c9298361e.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/ed92bbe1112be65459c7bdbc7a1eb5e82306daca6cab082a09d20c991ce31268.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/9f2318a3007ea25fcacea37372743e0e8626d5ff59245e5fc7d4c5ecdbe46843.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/9ce51405437a313a9e52de1c39f68ccd66ee1bdf94616587f6ee81ace32b7cb6.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/9ce51405437a313a9e52de1c39f68ccd66ee1bdf94616587f6ee81ace32b7cb6.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/36d9755c71e56c369a87ba9b3348f601eb396f2ac42cf77aa65d7e9c9298361e.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/ed92bbe1112be65459c7bdbc7a1eb5e82306daca6cab082a09d20c991ce31268.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/9f2318a3007ea25fcacea37372743e0e8626d5ff59245e5fc7d4c5ecdbe46843.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/9ce51405437a313a9e52de1c39f68ccd66ee1bdf94616587f6ee81ace32b7cb6.png"
   ],
   "links": [
-    {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1072",
-      "recommended": true
-    },
     {
       "type": "Download",
       "name": "VitaDBtoo VPK",
@@ -39,18 +33,24 @@
     },
     {
       "type": "Official Website",
-      "name": "VitaDB Release Page",
+      "name": "VitaDBtoo Release Page",
       "url": "https://github.com/anas-halid/HYPERFIGHT-VITA/releases"
     },
     {
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/anas-halid/HYPERFIGHT-VITA"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1072",
+      "recommended": true
     }
   ],
-  "source_name": "VitaDB",
+  "source_name": "VitaDBtoo",
   "source_id": "1072",
   "source_url": "https://github.com/anas-halid/HYPERFIGHT-VITA",
   "release_page": "https://github.com/anas-halid/HYPERFIGHT-VITA/releases",
-  "updated_at": "2026-08-15T18:26:19.644654+00:00"
+  "updated_at": "2026-08-13T15:34:48.496453+00:00"
 }

@@ -14,29 +14,23 @@
   "version": "v.2.0",
   "version_date": "2024-12-20",
   "requirements": "Not specified",
-  "size": 28875218,
+  "size": 28872251,
   "status": "Legacy",
-  "icon": "https://www.rinnegatamante.eu/vitadb/icons/9ba15b44bba093fdbc6f0ad18fa33e957bac9c7714fb076e00d75bcf5e6888ef.png",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/9ba15b44bba093fdbc6f0ad18fa33e957bac9c7714fb076e00d75bcf5e6888ef.png",
   "screenshots": [
-    "https://www.rinnegatamante.eu/vitadb/screenshots/fc5936a5787d94d71ebbccf50df00c9afb663ae111fd5c6e2ab823bd64343b71.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/fc5936a5787d94d71ebbccf50df00c9afb663ae111fd5c6e2ab823bd64343b71.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/fc5936a5787d94d71ebbccf50df00c9afb663ae111fd5c6e2ab823bd64343b71.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/fc5936a5787d94d71ebbccf50df00c9afb663ae111fd5c6e2ab823bd64343b71.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=792",
-      "recommended": true
-    },
-    {
-      "type": "Download",
-      "name": "NeoVitaDB VPK",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/sharkwouter/oceanpop/releases/download/2.0/oceanpop-vita.zip",
       "recommended": false
     },
     {
       "type": "Official Website",
-      "name": "VitaDB Release Page",
+      "name": "VitaDBtoo Release Page",
       "url": "https://sharkwouter.github.io/oceanpop/"
     },
     {
@@ -48,11 +42,17 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/sharkwouter/oceanpop"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=792",
+      "recommended": true
     }
   ],
-  "source_name": "VitaDB",
+  "source_name": "VitaDBtoo",
   "source_id": "792",
   "source_url": "https://github.com/sharkwouter/oceanpop",
   "release_page": "https://sharkwouter.github.io/oceanpop/",
-  "updated_at": "2026-08-15T18:26:19.317493+00:00"
+  "updated_at": "2026-08-13T15:34:48.421705+00:00"
 }

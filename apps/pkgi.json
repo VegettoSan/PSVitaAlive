@@ -16,27 +16,21 @@
   "requirements": "Not specified",
   "size": 159126,
   "status": "Legacy",
-  "icon": "https://www.rinnegatamante.eu/vitadb/icons/786c9e9cc7bf0d4332e09c0280c8623b9d44f9673474b39d64b440c754120e3f.png",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/786c9e9cc7bf0d4332e09c0280c8623b9d44f9673474b39d64b440c754120e3f.png",
   "screenshots": [
-    "https://www.rinnegatamante.eu/vitadb/screenshots/50b7fb19aff9d881ef507103d90c2a3d4416c3208cf72893a52b19f39b9ca7f4.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/50b7fb19aff9d881ef507103d90c2a3d4416c3208cf72893a52b19f39b9ca7f4.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/50b7fb19aff9d881ef507103d90c2a3d4416c3208cf72893a52b19f39b9ca7f4.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/50b7fb19aff9d881ef507103d90c2a3d4416c3208cf72893a52b19f39b9ca7f4.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=341",
-      "recommended": true
-    },
-    {
-      "type": "Download",
-      "name": "NeoVitaDB VPK",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/mmozeiko/pkgi/releases/download/v0.05/pkgi-v0.05.vpk",
       "recommended": false
     },
     {
       "type": "Official Website",
-      "name": "VitaDB Release Page",
+      "name": "VitaDBtoo Release Page",
       "url": "https://github.com/mmozeiko/pkgi/releases"
     },
     {
@@ -48,11 +42,17 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/mmozeiko/pkgi"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=341",
+      "recommended": true
     }
   ],
-  "source_name": "VitaDB",
+  "source_name": "VitaDBtoo",
   "source_id": "341",
   "source_url": "https://github.com/mmozeiko/pkgi",
   "release_page": "https://github.com/mmozeiko/pkgi/releases",
-  "updated_at": "2026-08-15T18:26:20.420525+00:00"
+  "updated_at": "2026-08-13T15:34:48.672975+00:00"
 }

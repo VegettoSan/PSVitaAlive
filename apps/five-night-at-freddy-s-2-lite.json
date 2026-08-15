@@ -18,24 +18,28 @@
   "status": "Legacy",
   "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1795-five-night-at-freddy-s-2-lite.png",
   "screenshots": [
-    "https://www.rinnegatamante.eu/vitadb/screenshots/5d4ca28713ef83024f46f2a9a552abc7287d64478215d991a06acf7d8cb96dd3.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/9eb120b263960893ccdbf59cfd95c9d7a598a89251dea9b0f5f06eaa94e8f4aa.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/2b687ec2827b2fe6ecdc1d3a8d0d8ea7f04dd3572545a327320e1df0c1a93a99.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/5d4ca28713ef83024f46f2a9a552abc7287d64478215d991a06acf7d8cb96dd3.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/9eb120b263960893ccdbf59cfd95c9d7a598a89251dea9b0f5f06eaa94e8f4aa.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/9eb120b263960893ccdbf59cfd95c9d7a598a89251dea9b0f5f06eaa94e8f4aa.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/2b687ec2827b2fe6ecdc1d3a8d0d8ea7f04dd3572545a327320e1df0c1a93a99.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/5d4ca28713ef83024f46f2a9a552abc7287d64478215d991a06acf7d8cb96dd3.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/9eb120b263960893ccdbf59cfd95c9d7a598a89251dea9b0f5f06eaa94e8f4aa.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "NeoVitaDB VPK",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/856-fnaf-2-vita.vpk",
       "recommended": true
     },
     {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=856",
-      "recommended": false
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
+      "url": "https://gamejolt.com/games/FNAF2PSP/680533"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com"
     },
     {
       "type": "Download",
@@ -44,19 +48,15 @@
       "recommended": false
     },
     {
-      "type": "Official Website",
-      "name": "VitaDB Release Page",
-      "url": "https://gamejolt.com/games/FNAF2PSP/680533"
-    },
-    {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com"
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=856",
+      "recommended": false
     }
   ],
-  "source_name": "NeoVitaDB",
-  "source_id": "1795",
-  "source_url": "https://github.com",
-  "release_page": "",
-  "updated_at": "2026-08-15T18:26:19.910208+00:00"
+  "source_name": "VitaDBtoo",
+  "source_id": "856",
+  "source_url": "https://gamejolt.com/games/FNAF2PSP/680533",
+  "release_page": "https://gamejolt.com/games/FNAF2PSP/680533",
+  "updated_at": "2026-08-13T15:34:48.555231+00:00"
 }

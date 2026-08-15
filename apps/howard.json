@@ -18,10 +18,10 @@
   "status": "Legacy",
   "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/0647-howard.png",
   "screenshots": [
-    "https://www.rinnegatamante.eu/vitadb/screenshots/b1e940891a1b368db7b1fbaa3a2ab65dc40e710acd17267d3d0e914a23fe6520.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/39b43b8fb2a6ccf365d9ca3c861e7e5a73fa254661e58fe86da2eed53b5b27b7.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/b1e940891a1b368db7b1fbaa3a2ab65dc40e710acd17267d3d0e914a23fe6520.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/39b43b8fb2a6ccf365d9ca3c861e7e5a73fa254661e58fe86da2eed53b5b27b7.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/39b43b8fb2a6ccf365d9ca3c861e7e5a73fa254661e58fe86da2eed53b5b27b7.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/b1e940891a1b368db7b1fbaa3a2ab65dc40e710acd17267d3d0e914a23fe6520.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/39b43b8fb2a6ccf365d9ca3c861e7e5a73fa254661e58fe86da2eed53b5b27b7.png"
   ],
   "links": [
     {
@@ -45,5 +45,5 @@
   "source_id": "647",
   "source_url": "https://github.com/Narwher/Howard",
   "release_page": "https://github.com/Narwher/Howard/releases/tag/0.1a",
-  "updated_at": "2026-08-15T18:26:19.120228+00:00"
+  "updated_at": "2026-08-13T15:34:48.375803+00:00"
 }

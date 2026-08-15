@@ -5,8 +5,8 @@
   "description": "Custom Scratch Runtime made in C++.",
   "long_description": "A work-in-progress runtime made in C++ aimed to bring most Scratch 3 projects over to 6-8th-generation console and handheld platforms (and more).",
   "author_ids": [
-    "natexs",
-    "dogo6647"
+    "dogo6647",
+    "natexs"
   ],
   "category_id": "utilities",
   "subcategory_ids": [
@@ -17,21 +17,15 @@
   "requirements": "Not specified",
   "size": 4188074,
   "status": "Legacy",
-  "icon": "https://www.rinnegatamante.eu/vitadb/icons/03e18747e33716a15a7d48b0412cfec9b74592f00c065388cf0ec709278ef79e.png",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/03e18747e33716a15a7d48b0412cfec9b74592f00c065388cf0ec709278ef79e.png",
   "screenshots": [
-    "https://www.rinnegatamante.eu/vitadb/screenshots/8d131a1e8d3bdf89f9d40000c60235adbf204efa3cfec15aedf0a9e645f6c27a.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/e88571d36aeb78a9596345fb98dcaff69af25a869e4b2f12a1e44c0f28d68f44.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/a975253adb6dd49725048130475fc1d5917657eca11a046c5c383085c9eb9652.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/8d131a1e8d3bdf89f9d40000c60235adbf204efa3cfec15aedf0a9e645f6c27a.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/e88571d36aeb78a9596345fb98dcaff69af25a869e4b2f12a1e44c0f28d68f44.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/e88571d36aeb78a9596345fb98dcaff69af25a869e4b2f12a1e44c0f28d68f44.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/a975253adb6dd49725048130475fc1d5917657eca11a046c5c383085c9eb9652.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/8d131a1e8d3bdf89f9d40000c60235adbf204efa3cfec15aedf0a9e645f6c27a.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/e88571d36aeb78a9596345fb98dcaff69af25a869e4b2f12a1e44c0f28d68f44.png"
   ],
   "links": [
-    {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1320",
-      "recommended": true
-    },
     {
       "type": "Download",
       "name": "VitaDBtoo VPK",
@@ -40,18 +34,24 @@
     },
     {
       "type": "Official Website",
-      "name": "VitaDB Release Page",
+      "name": "VitaDBtoo Release Page",
       "url": "https://github.com/ScratchEverywhere/ScratchEverywhere/releases"
     },
     {
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/ScratchEverywhere/ScratchEverywhere"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1320",
+      "recommended": true
     }
   ],
-  "source_name": "VitaDB",
+  "source_name": "VitaDBtoo",
   "source_id": "1320",
   "source_url": "https://github.com/ScratchEverywhere/ScratchEverywhere",
   "release_page": "https://github.com/ScratchEverywhere/ScratchEverywhere/releases",
-  "updated_at": "2026-08-15T18:26:19.008034+00:00"
+  "updated_at": "2026-08-13T15:34:48.353682+00:00"
 }

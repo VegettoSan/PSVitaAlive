@@ -18,24 +18,23 @@
   "status": "Legacy",
   "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1632-doom-vita.png",
   "screenshots": [
-    "https://www.rinnegatamante.eu/vitadb/screenshots/ae6964287f171305c3dafe1c8a98464a91c313d24cb82868ad0968555ab06834.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/95a2dce0f3303e92d783713862be27d1080ef2c46a61e55dd352bcbc8726a973.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/e227a9c2272930ba7b4d7d99f620962e306fe2788047993217e95b34e550f395.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/54d1593adfcfb951506815328ef36b02a6f4ab7b2a52ec7effa7512f21b9eef2.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/ae6964287f171305c3dafe1c8a98464a91c313d24cb82868ad0968555ab06834.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/ae6964287f171305c3dafe1c8a98464a91c313d24cb82868ad0968555ab06834.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/95a2dce0f3303e92d783713862be27d1080ef2c46a61e55dd352bcbc8726a973.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/e227a9c2272930ba7b4d7d99f620962e306fe2788047993217e95b34e550f395.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/54d1593adfcfb951506815328ef36b02a6f4ab7b2a52ec7effa7512f21b9eef2.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/ae6964287f171305c3dafe1c8a98464a91c313d24cb82868ad0968555ab06834.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "NeoVitaDB VPK",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/456-DooM_Vita.vpk",
       "recommended": true
     },
     {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=456",
-      "recommended": false
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com"
     },
     {
       "type": "Download",
@@ -44,14 +43,15 @@
       "recommended": false
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com"
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=456",
+      "recommended": false
     }
   ],
-  "source_name": "NeoVitaDB",
-  "source_id": "1632",
-  "source_url": "https://github.com",
+  "source_name": "VitaDBtoo",
+  "source_id": "456",
+  "source_url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/456-DooM_Vita.vpk",
   "release_page": "",
-  "updated_at": "2026-08-15T18:26:20.243136+00:00"
+  "updated_at": "2026-08-13T15:34:48.628318+00:00"
 }

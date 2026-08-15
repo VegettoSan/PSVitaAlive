@@ -18,39 +18,39 @@
   "status": "Legacy",
   "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1958-quantimmum-chess.png",
   "screenshots": [
-    "https://www.rinnegatamante.eu/vitadb/screenshots/68f433c519938ce63c7442fb90e3abad43e1a32350b2b4d52fd8a63c41cc713d.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/c2b766a1de711a7d4fb99ba96f4c59195160ebe0795b08635e20714ef00808ac.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/e61005cd429b62c6fe1d2b38d55a57453cfb344b298923db6f8a07eccae0c429.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/04074d4b110a4dfa867bc0900d7b0c32a015d4be62793d7d5230473999e0905e.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/68f433c519938ce63c7442fb90e3abad43e1a32350b2b4d52fd8a63c41cc713d.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/68f433c519938ce63c7442fb90e3abad43e1a32350b2b4d52fd8a63c41cc713d.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c2b766a1de711a7d4fb99ba96f4c59195160ebe0795b08635e20714ef00808ac.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/e61005cd429b62c6fe1d2b38d55a57453cfb344b298923db6f8a07eccae0c429.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/04074d4b110a4dfa867bc0900d7b0c32a015d4be62793d7d5230473999e0905e.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/68f433c519938ce63c7442fb90e3abad43e1a32350b2b4d52fd8a63c41cc713d.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "NeoVitaDB VPK",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/c0nduitra1n/QuantimmumChess/releases/download/Beta/quantimmum_chess.vpk",
       "recommended": true
     },
     {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1391",
-      "recommended": false
-    },
-    {
       "type": "Official Website",
-      "name": "VitaDB Release Page",
+      "name": "VitaDBtoo Release Page",
       "url": "https://github.com/c0nduitra1n/QuantimmumChess/releases"
     },
     {
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/c0nduitra1n/QuantimmumChess"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1391",
+      "recommended": false
     }
   ],
-  "source_name": "NeoVitaDB",
-  "source_id": "1958",
-  "source_url": "https://github.com",
-  "release_page": "",
-  "updated_at": "2026-08-15T18:26:19.002908+00:00"
+  "source_name": "VitaDBtoo",
+  "source_id": "1391",
+  "source_url": "https://github.com/c0nduitra1n/QuantimmumChess",
+  "release_page": "https://github.com/c0nduitra1n/QuantimmumChess/releases",
+  "updated_at": "2026-08-13T15:34:48.352758+00:00"
 }

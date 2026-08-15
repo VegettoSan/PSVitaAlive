@@ -16,21 +16,15 @@
   "requirements": "- libshacccg.suprx\n- Game Data Files: Gamecube",
   "size": 6742478,
   "status": "Legacy",
-  "icon": "https://www.rinnegatamante.eu/vitadb/icons/a31463401d82e00e05347f9020acadc12128145adbd31746ba628ca04a4752f4.png",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/a31463401d82e00e05347f9020acadc12128145adbd31746ba628ca04a4752f4.png",
   "screenshots": [
-    "https://www.rinnegatamante.eu/vitadb/screenshots/207795da99c68aac75e6dc3ca331f7b32e2aa0c5a42e35447258c4ed9eaee457.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/26653ea00279b37c1285bf734fcc4b17debee625e8343c866d6b221643024e96.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/45a4008e5b4953a38a79f444e67e4ea73c0d13772a07eabd908be54b695a8b97.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/3304e5f6166a144789219f42b4d008adefa1a6a556d7f777228087c1c5a1e86b.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/207795da99c68aac75e6dc3ca331f7b32e2aa0c5a42e35447258c4ed9eaee457.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/207795da99c68aac75e6dc3ca331f7b32e2aa0c5a42e35447258c4ed9eaee457.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/26653ea00279b37c1285bf734fcc4b17debee625e8343c866d6b221643024e96.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/45a4008e5b4953a38a79f444e67e4ea73c0d13772a07eabd908be54b695a8b97.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/3304e5f6166a144789219f42b4d008adefa1a6a556d7f777228087c1c5a1e86b.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/207795da99c68aac75e6dc3ca331f7b32e2aa0c5a42e35447258c4ed9eaee457.png"
   ],
   "links": [
-    {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1381",
-      "recommended": true
-    },
     {
       "type": "Download",
       "name": "VitaDBtoo VPK",
@@ -39,7 +33,7 @@
     },
     {
       "type": "Official Website",
-      "name": "VitaDB Release Page",
+      "name": "VitaDBtoo Release Page",
       "url": "https://github.com/Brendonm17/ACGC-Vita-Port/releases"
     },
     {
@@ -51,11 +45,17 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/Brendonm17/ACGC-Vita-Port"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1381",
+      "recommended": true
     }
   ],
-  "source_name": "VitaDB",
+  "source_name": "VitaDBtoo",
   "source_id": "1381",
   "source_url": "https://github.com/Brendonm17/ACGC-Vita-Port",
   "release_page": "https://github.com/Brendonm17/ACGC-Vita-Port/releases",
-  "updated_at": "2026-08-15T18:26:18.958702+00:00"
+  "updated_at": "2026-08-13T15:34:48.341665+00:00"
 }

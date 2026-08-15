@@ -16,29 +16,23 @@
   "requirements": "- Game Data Files: Android",
   "size": 13193713,
   "status": "Legacy",
-  "icon": "https://www.rinnegatamante.eu/vitadb/icons/aac21744fcc03deeaefc1b8495fbab6447787c624eda1491de46ac1a01f2d1ac.png",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/aac21744fcc03deeaefc1b8495fbab6447787c624eda1491de46ac1a01f2d1ac.png",
   "screenshots": [
-    "https://www.rinnegatamante.eu/vitadb/screenshots/ce07a194f6de8dfa0f73d8c52cf2875ef45aa353f2a4c58251085a1b8707c6ea.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/688b84e8e1f16f77b301b9a09490b44cacfd3a3ef6674996e6a051fb802745fb.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/ce07a194f6de8dfa0f73d8c52cf2875ef45aa353f2a4c58251085a1b8707c6ea.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/688b84e8e1f16f77b301b9a09490b44cacfd3a3ef6674996e6a051fb802745fb.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/688b84e8e1f16f77b301b9a09490b44cacfd3a3ef6674996e6a051fb802745fb.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/ce07a194f6de8dfa0f73d8c52cf2875ef45aa353f2a4c58251085a1b8707c6ea.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/688b84e8e1f16f77b301b9a09490b44cacfd3a3ef6674996e6a051fb802745fb.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1354",
-      "recommended": true
-    },
-    {
-      "type": "Download",
-      "name": "NeoVitaDB VPK",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/MaloneCZSD/NFH-PS-VITA/releases/download/V1.0/NFHV1.0.vpk",
       "recommended": false
     },
     {
       "type": "Official Website",
-      "name": "VitaDB Release Page",
+      "name": "VitaDBtoo Release Page",
       "url": "https://github.com/malone46/NFH-PS-VITA/"
     },
     {
@@ -50,11 +44,17 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/MaloneCZSD/NFH-PS-VITA"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1354",
+      "recommended": true
     }
   ],
-  "source_name": "VitaDB",
+  "source_name": "VitaDBtoo",
   "source_id": "1354",
   "source_url": "https://github.com/malone46/NFH-PS-VITA/",
   "release_page": "https://github.com/malone46/NFH-PS-VITA/",
-  "updated_at": "2026-08-15T18:26:19.103633+00:00"
+  "updated_at": "2026-08-13T15:34:48.371727+00:00"
 }

@@ -16,27 +16,21 @@
   "requirements": "Not specified",
   "size": 3887269,
   "status": "Legacy",
-  "icon": "https://www.rinnegatamante.eu/vitadb/icons/a1226bc8803ada665073b9164c69cb7f85985e0de8e929689e74a485851f479e.png",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/a1226bc8803ada665073b9164c69cb7f85985e0de8e929689e74a485851f479e.png",
   "screenshots": [
-    "https://www.rinnegatamante.eu/vitadb/screenshots/60bd5d1cd16336e80491f7324963910d38759780be5815f626d8a652cc29f1fd.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/60bd5d1cd16336e80491f7324963910d38759780be5815f626d8a652cc29f1fd.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/60bd5d1cd16336e80491f7324963910d38759780be5815f626d8a652cc29f1fd.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/60bd5d1cd16336e80491f7324963910d38759780be5815f626d8a652cc29f1fd.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=546",
-      "recommended": true
-    },
-    {
-      "type": "Download",
-      "name": "NeoVitaDB VPK",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/Cpasjuste/pemu/releases/download/v7.1/psnes.vpk",
       "recommended": false
     },
     {
       "type": "Official Website",
-      "name": "VitaDB Release Page",
+      "name": "VitaDBtoo Release Page",
       "url": "https://gbatemp.net/threads/psnes-a-snes9x-port-for-the-ps-vita.509360/"
     },
     {
@@ -48,11 +42,17 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/Cpasjuste/pemu"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=546",
+      "recommended": true
     }
   ],
-  "source_name": "VitaDB",
+  "source_name": "VitaDBtoo",
   "source_id": "546",
   "source_url": "https://github.com/Cpasjuste/pemu",
   "release_page": "https://gbatemp.net/threads/psnes-a-snes9x-port-for-the-ps-vita.509360/",
-  "updated_at": "2026-08-15T18:26:19.100699+00:00"
+  "updated_at": "2026-08-13T15:34:48.370631+00:00"
 }

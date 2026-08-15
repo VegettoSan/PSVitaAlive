@@ -10,17 +10,7 @@
       "method": "POST",
       "priority": 110,
       "platform": "vita",
-      "notes": "Official VitaDB homebrew JSON feed. Requires POST with an empty body (no parameters). HTTPS is preferred; HTTP is used as fallback. Prefer this source over NeoVitaDB and VitaDBtoo when merging fields."
-    },
-    {
-      "id": "neovitadb",
-      "name": "NeoVitaDB",
-      "enabled": true,
-      "kind": "github_catalog",
-      "url": "https://robin994.github.io/NeoVitaDB-Catalog/",
-      "priority": 100,
-      "platform": "vita",
-      "notes": "Static GitHub Pages catalog. Used when VitaDB lacks an entry or field."
+      "notes": "Official VitaDB homebrew JSON feed. Requires POST with an empty body (no parameters). HTTPS is preferred; HTTP is used as fallback. Primary external catalog for version and release-date data."
     },
     {
       "id": "vitadbtoo",
@@ -30,7 +20,7 @@
       "url": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/apps.json",
       "priority": 90,
       "platform": "vita",
-      "notes": "Community rescue dump. Lowest priority among the three Vita catalogs; fills gaps only."
+      "notes": "Community rescue dump. Used as the secondary external source to fill gaps and cross-check VitaDB data."
     }
   ]
 }

@@ -5,8 +5,8 @@
   "description": "SNES emulator for the PS Vita.",
   "long_description": "Native SNES emulator for the PlayStation VITA.\nCurrently features Snes9x 1.52 core based on Snes9xNext.",
   "author_ids": [
-    "skogaby",
-    "frangarcj"
+    "frangarcj",
+    "skogaby"
   ],
   "category_id": "emulators",
   "subcategory_ids": [
@@ -17,30 +17,24 @@
   "requirements": "Not specified",
   "size": 1612893,
   "status": "Legacy",
-  "icon": "https://www.rinnegatamante.eu/vitadb/icons/18746b487153dc1ca3d728ce57b841b6e8faeca65a0900aa46864f73d07642c8.png",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/18746b487153dc1ca3d728ce57b841b6e8faeca65a0900aa46864f73d07642c8.png",
   "screenshots": [
-    "https://www.rinnegatamante.eu/vitadb/screenshots/95ac2db9ac5f872e6edcab12e0e083e2bf38bb165b8159d50abbb3b02e88be2e.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/f858048d7ccee60c15bc2e1a70c2398e23cf7d35b1903a419797054f2e474f45.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/ff57332deea9764e1cb9c3e800a798ab4c1f6f52e9313aadb3dc66831e9f163b.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/4e101d00dc6a3b93083861dd444fbb427b1da36664a44b38ae1b026cdc4a5996.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/95ac2db9ac5f872e6edcab12e0e083e2bf38bb165b8159d50abbb3b02e88be2e.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/95ac2db9ac5f872e6edcab12e0e083e2bf38bb165b8159d50abbb3b02e88be2e.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/f858048d7ccee60c15bc2e1a70c2398e23cf7d35b1903a419797054f2e474f45.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/ff57332deea9764e1cb9c3e800a798ab4c1f6f52e9313aadb3dc66831e9f163b.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/4e101d00dc6a3b93083861dd444fbb427b1da36664a44b38ae1b026cdc4a5996.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/95ac2db9ac5f872e6edcab12e0e083e2bf38bb165b8159d50abbb3b02e88be2e.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=194",
-      "recommended": true
-    },
-    {
-      "type": "Download",
-      "name": "NeoVitaDB VPK",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/frangarcj/Snes9xVITA/releases/download/1.1-Henkaku/Snes9xVITA.vpk",
       "recommended": false
     },
     {
       "type": "Official Website",
-      "name": "VitaDB Release Page",
+      "name": "VitaDBtoo Release Page",
       "url": "https://github.com/frangarcj/Snes9xVITA/releases"
     },
     {
@@ -52,11 +46,17 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/frangarcj/Snes9xVITA"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=194",
+      "recommended": true
     }
   ],
-  "source_name": "VitaDB",
+  "source_name": "VitaDBtoo",
   "source_id": "194",
   "source_url": "https://github.com/frangarcj/Snes9xVITA",
   "release_page": "https://github.com/frangarcj/Snes9xVITA/releases",
-  "updated_at": "2026-08-15T18:26:20.608947+00:00"
+  "updated_at": "2026-08-13T15:34:48.714508+00:00"
 }

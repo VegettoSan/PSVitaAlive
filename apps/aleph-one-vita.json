@@ -16,30 +16,24 @@
   "requirements": "- Game Data Files: PC",
   "size": 6765491,
   "status": "Legacy",
-  "icon": "https://www.rinnegatamante.eu/vitadb/icons/3764bafe72317f28295c5ac2812e44f62ac42e0cc0268a1508819a8ad93e5c00.png",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/3764bafe72317f28295c5ac2812e44f62ac42e0cc0268a1508819a8ad93e5c00.png",
   "screenshots": [
-    "https://www.rinnegatamante.eu/vitadb/screenshots/97ac714875c63cac822ad32920abc6dfc5ede17129aaf472abc6926e3abdbd5d.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/b2162b9144eae336fa65ddb1e92343171d1638d29a5fea7a2bf0ed4adba3328f.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/a6d8bd9da77fd9f3b594fe7b02d6c68e6ac51b084bcdbd61e74ba902d0cbbe34.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/d9aab4389fe7e54f7eb48952d0a3f7909bea67392c5cbfa341d5e1794a9acd54.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/97ac714875c63cac822ad32920abc6dfc5ede17129aaf472abc6926e3abdbd5d.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/97ac714875c63cac822ad32920abc6dfc5ede17129aaf472abc6926e3abdbd5d.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/b2162b9144eae336fa65ddb1e92343171d1638d29a5fea7a2bf0ed4adba3328f.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/a6d8bd9da77fd9f3b594fe7b02d6c68e6ac51b084bcdbd61e74ba902d0cbbe34.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/d9aab4389fe7e54f7eb48952d0a3f7909bea67392c5cbfa341d5e1794a9acd54.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/97ac714875c63cac822ad32920abc6dfc5ede17129aaf472abc6926e3abdbd5d.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1421",
-      "recommended": true
-    },
-    {
-      "type": "Download",
-      "name": "NeoVitaDB VPK",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/Aleph-One-Marathon-Trilogy-PsVita-/releases/download/AlephOneVita1.4/alephone.vpk",
       "recommended": false
     },
     {
       "type": "Official Website",
-      "name": "VitaDB Release Page",
+      "name": "VitaDBtoo Release Page",
       "url": "https://github.com/DrDecki/Aleph-One-Marathon-Trilogy-PsVita-/releases"
     },
     {
@@ -51,11 +45,17 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/DrDecki/Aleph-One-Marathon-Trilogy-PsVita-"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1421",
+      "recommended": true
     }
   ],
-  "source_name": "VitaDB",
+  "source_name": "VitaDBtoo",
   "source_id": "1421",
   "source_url": "https://github.com/DrDecki/Aleph-One-Marathon-Trilogy-PsVita-",
   "release_page": "https://github.com/DrDecki/Aleph-One-Marathon-Trilogy-PsVita-/releases",
-  "updated_at": "2026-08-15T18:26:18.918568+00:00"
+  "updated_at": "2026-08-13T15:34:48.331689+00:00"
 }

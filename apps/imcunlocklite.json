@@ -18,23 +18,27 @@
   "status": "Legacy",
   "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1612-imcunlocklite.png",
   "screenshots": [
-    "https://www.rinnegatamante.eu/vitadb/screenshots/682c4f96c71d397244b0cc91d075601739fbec205d6ff4fbd15ae08f91dafd31.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/92323ab19316528742cbbc57d1085328331a78844aba98a987bea35a82138af1.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/682c4f96c71d397244b0cc91d075601739fbec205d6ff4fbd15ae08f91dafd31.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/92323ab19316528742cbbc57d1085328331a78844aba98a987bea35a82138af1.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/92323ab19316528742cbbc57d1085328331a78844aba98a987bea35a82138af1.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/682c4f96c71d397244b0cc91d075601739fbec205d6ff4fbd15ae08f91dafd31.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/92323ab19316528742cbbc57d1085328331a78844aba98a987bea35a82138af1.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "NeoVitaDB VPK",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/420-IMCUnlockLite.vpk",
       "recommended": true
     },
     {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=420",
-      "recommended": false
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
+      "url": "https://github.com/SKGleba/IMCUnlockLite/releases"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/SKGleba/IMCUnlockLite"
     },
     {
       "type": "Download",
@@ -43,19 +47,15 @@
       "recommended": false
     },
     {
-      "type": "Official Website",
-      "name": "VitaDB Release Page",
-      "url": "https://github.com/SKGleba/IMCUnlockLite/releases"
-    },
-    {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/SKGleba/IMCUnlockLite"
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=420",
+      "recommended": false
     }
   ],
-  "source_name": "NeoVitaDB",
-  "source_id": "1612",
-  "source_url": "https://github.com",
-  "release_page": "",
-  "updated_at": "2026-08-15T18:26:20.352979+00:00"
+  "source_name": "VitaDBtoo",
+  "source_id": "420",
+  "source_url": "https://github.com/SKGleba/IMCUnlockLite",
+  "release_page": "https://github.com/SKGleba/IMCUnlockLite/releases",
+  "updated_at": "2026-08-13T15:34:48.656563+00:00"
 }

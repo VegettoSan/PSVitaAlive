@@ -16,26 +16,21 @@
   "requirements": "Not specified",
   "size": 159945,
   "status": "Legacy",
-  "icon": "https://www.rinnegatamante.eu/vitadb/icons/eb6499181065394d0d042adae7e15354c1c26b3e31c99f76ad9ad4078adb3497.png",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/eb6499181065394d0d042adae7e15354c1c26b3e31c99f76ad9ad4078adb3497.png",
   "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/eb6499181065394d0d042adae7e15354c1c26b3e31c99f76ad9ad4078adb3497.png",
     "https://www.rinnegatamante.eu/vitadb/screenshots/psvident.jpg"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=108",
-      "recommended": true
-    },
-    {
-      "type": "Download",
-      "name": "NeoVitaDB VPK",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/Freakler/vita-PSVident/releases/download/0.43/PSVident_v043.vpk",
       "recommended": false
     },
     {
       "type": "Official Website",
-      "name": "VitaDB Release Page",
+      "name": "VitaDBtoo Release Page",
       "url": "https://github.com/Freakler/vita-PSVident/releases"
     },
     {
@@ -47,11 +42,17 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/Freakler/vita-PSVident"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=108",
+      "recommended": true
     }
   ],
-  "source_name": "VitaDB",
+  "source_name": "VitaDBtoo",
   "source_id": "108",
   "source_url": "https://github.com/Freakler/vita-PSVident",
   "release_page": "https://github.com/Freakler/vita-PSVident/releases",
-  "updated_at": "2026-08-15T18:26:19.466400+00:00"
+  "updated_at": "2026-08-13T15:34:48.459516+00:00"
 }

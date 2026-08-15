@@ -16,29 +16,23 @@
   "requirements": "Not specified",
   "size": 42630,
   "status": "Legacy",
-  "icon": "https://www.rinnegatamante.eu/vitadb/icons/c799e0f2d405114bbdc5de82ba0c04f1ae467f1177b788ee74403918ed25442b.png",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/c799e0f2d405114bbdc5de82ba0c04f1ae467f1177b788ee74403918ed25442b.png",
   "screenshots": [
-    "https://www.rinnegatamante.eu/vitadb/screenshots/4da3c31efb121a8b0c210ff631803ee774c41f43807a3736ed5b99db1b7e0d84.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/aac4856d3fb2f319eaf5fb8627978b425bf6ba0e41a71dc2376c46b76d582578.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/4da3c31efb121a8b0c210ff631803ee774c41f43807a3736ed5b99db1b7e0d84.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/aac4856d3fb2f319eaf5fb8627978b425bf6ba0e41a71dc2376c46b76d582578.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/aac4856d3fb2f319eaf5fb8627978b425bf6ba0e41a71dc2376c46b76d582578.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/4da3c31efb121a8b0c210ff631803ee774c41f43807a3736ed5b99db1b7e0d84.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/aac4856d3fb2f319eaf5fb8627978b425bf6ba0e41a71dc2376c46b76d582578.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=528",
-      "recommended": true
-    },
-    {
-      "type": "Download",
-      "name": "NeoVitaDB VPK",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/Dane64/VitOut/releases/download/2.0/VitOut.vpk",
       "recommended": false
     },
     {
       "type": "Official Website",
-      "name": "VitaDB Release Page",
+      "name": "VitaDBtoo Release Page",
       "url": "https://github.com/Dane64/VitOut/releases"
     },
     {
@@ -50,11 +44,17 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/Dane64/VitOut"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=528",
+      "recommended": true
     }
   ],
-  "source_name": "VitaDB",
+  "source_name": "VitaDBtoo",
   "source_id": "528",
   "source_url": "https://github.com/Dane64/VitOut",
   "release_page": "https://github.com/Dane64/VitOut/releases",
-  "updated_at": "2026-08-15T18:26:20.213253+00:00"
+  "updated_at": "2026-08-13T15:34:48.620445+00:00"
 }

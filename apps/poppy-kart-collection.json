@@ -16,30 +16,24 @@
   "requirements": "- libshacccg.suprx\n- kubridge.skprx\n- Game Data Files: Android",
   "size": 3017065,
   "status": "Legacy",
-  "icon": "https://www.rinnegatamante.eu/vitadb/icons/ac05b0949fc0b2c8f2e12bc6ce87acdce92c55711daee9138873eb7c8db5900e.png",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/ac05b0949fc0b2c8f2e12bc6ce87acdce92c55711daee9138873eb7c8db5900e.png",
   "screenshots": [
-    "https://www.rinnegatamante.eu/vitadb/screenshots/f9447cf8f1ed8f204abb877d1e73de55a1f0ceeaedba9e88519743f90f1652e7.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/65dcbcaf89841a19c5826c01100b1649e73b3c3ebdc9be451660bfcfb805abb8.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/c5c251987fcac53b8fcc257122e960baa0e61f7908f5002f2b0ed905ac4a5893.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/9fa4ba2663047f79894892c645ed5f5e9bc9559f2c00514ade14975c4591d98d.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/f9447cf8f1ed8f204abb877d1e73de55a1f0ceeaedba9e88519743f90f1652e7.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/f9447cf8f1ed8f204abb877d1e73de55a1f0ceeaedba9e88519743f90f1652e7.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/65dcbcaf89841a19c5826c01100b1649e73b3c3ebdc9be451660bfcfb805abb8.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c5c251987fcac53b8fcc257122e960baa0e61f7908f5002f2b0ed905ac4a5893.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/9fa4ba2663047f79894892c645ed5f5e9bc9559f2c00514ade14975c4591d98d.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/f9447cf8f1ed8f204abb877d1e73de55a1f0ceeaedba9e88519743f90f1652e7.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1030",
-      "recommended": true
-    },
-    {
-      "type": "Download",
-      "name": "NeoVitaDB VPK",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/Rinnegatamante/Poppy-Kart-Collection/releases/download/v.1.0/PoppyKart.vpk",
       "recommended": false
     },
     {
       "type": "Official Website",
-      "name": "VitaDB Release Page",
+      "name": "VitaDBtoo Release Page",
       "url": "https://github.com/Rinnegatamante/Poppy-Kart-Collection/releases"
     },
     {
@@ -51,11 +45,17 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/Rinnegatamante/Poppy-Kart-Collection"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1030",
+      "recommended": true
     }
   ],
-  "source_name": "VitaDB",
+  "source_name": "VitaDBtoo",
   "source_id": "1030",
   "source_url": "https://github.com/Rinnegatamante/Poppy-Kart-Collection",
   "release_page": "https://github.com/Rinnegatamante/Poppy-Kart-Collection/releases",
-  "updated_at": "2026-08-15T18:26:19.737487+00:00"
+  "updated_at": "2026-08-13T15:34:48.517268+00:00"
 }

@@ -16,26 +16,20 @@
   "requirements": "Not specified",
   "size": 52118,
   "status": "Legacy",
-  "icon": "https://www.rinnegatamante.eu/vitadb/icons/18746b487153dc1ca3d728ce57b841b6e8faeca65a0900aa46864f73d07642c8.png",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/18746b487153dc1ca3d728ce57b841b6e8faeca65a0900aa46864f73d07642c8.png",
   "screenshots": [
-    "https://www.rinnegatamante.eu/vitadb/icons/18746b487153dc1ca3d728ce57b841b6e8faeca65a0900aa46864f73d07642c8.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/18746b487153dc1ca3d728ce57b841b6e8faeca65a0900aa46864f73d07642c8.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=147",
-      "recommended": true
-    },
-    {
-      "type": "Download",
-      "name": "NeoVitaDB VPK",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/xyzz/vita-button-swapper/releases/download/1.0/button-swapper.vpk",
       "recommended": false
     },
     {
       "type": "Official Website",
-      "name": "VitaDB Release Page",
+      "name": "VitaDBtoo Release Page",
       "url": "https://www.reddit.com/r/vitahacks/comments/4x853u/release_button_swapper_swap_xo_confirm_button/"
     },
     {
@@ -47,11 +41,17 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/xyzz/vita-button-swapper"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=147",
+      "recommended": true
     }
   ],
-  "source_name": "VitaDB",
+  "source_name": "VitaDBtoo",
   "source_id": "147",
   "source_url": "https://github.com/xyzz/vita-button-swapper",
   "release_page": "https://www.reddit.com/r/vitahacks/comments/4x853u/release_button_swapper_swap_xo_confirm_button/",
-  "updated_at": "2026-08-15T18:26:20.576229+00:00"
+  "updated_at": "2026-08-13T15:34:48.706263+00:00"
 }

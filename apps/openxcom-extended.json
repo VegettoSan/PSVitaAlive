@@ -16,21 +16,15 @@
   "requirements": "- Game Data Files: PC",
   "size": 6884745,
   "status": "Legacy",
-  "icon": "https://www.rinnegatamante.eu/vitadb/icons/9d5273f40cd8b8d51e489542b338134d1cd2d91a8257adb4a3623f7a99c3e05e.png",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/9d5273f40cd8b8d51e489542b338134d1cd2d91a8257adb4a3623f7a99c3e05e.png",
   "screenshots": [
-    "https://www.rinnegatamante.eu/vitadb/screenshots/c002589b5c49a9fe866e70063f4c0ac69bd2839e0d5fc07fe7d703fab0f806f5.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/8c122a9b6c48aa210bfdc8d68fc70e358d54c87f207d8aa4156fb60860770404.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/97483be185418870cdbd5a6ecbb5e3edeed1355c6673e6a459c4ed30e56d7f44.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/7d3bf022d1b7a04295687ab159640f7c0077cfb8c2d7c43438ffa37e05634f20.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c002589b5c49a9fe866e70063f4c0ac69bd2839e0d5fc07fe7d703fab0f806f5.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c002589b5c49a9fe866e70063f4c0ac69bd2839e0d5fc07fe7d703fab0f806f5.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/8c122a9b6c48aa210bfdc8d68fc70e358d54c87f207d8aa4156fb60860770404.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/97483be185418870cdbd5a6ecbb5e3edeed1355c6673e6a459c4ed30e56d7f44.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/7d3bf022d1b7a04295687ab159640f7c0077cfb8c2d7c43438ffa37e05634f20.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/c002589b5c49a9fe866e70063f4c0ac69bd2839e0d5fc07fe7d703fab0f806f5.png"
   ],
   "links": [
-    {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1172",
-      "recommended": true
-    },
     {
       "type": "Download",
       "name": "VitaDBtoo VPK",
@@ -39,18 +33,24 @@
     },
     {
       "type": "Official Website",
-      "name": "VitaDB Release Page",
+      "name": "VitaDBtoo Release Page",
       "url": "https://github.com/Northfear/OpenXcom-vita/releases"
     },
     {
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/Northfear/OpenXcom-vita/tree/oxce-plus-vita"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1172",
+      "recommended": true
     }
   ],
-  "source_name": "VitaDB",
+  "source_name": "VitaDBtoo",
   "source_id": "1172",
   "source_url": "https://github.com/Northfear/OpenXcom-vita/tree/oxce-plus-vita",
   "release_page": "https://github.com/Northfear/OpenXcom-vita/releases",
-  "updated_at": "2026-08-15T18:26:19.447942+00:00"
+  "updated_at": "2026-08-13T15:34:48.455306+00:00"
 }

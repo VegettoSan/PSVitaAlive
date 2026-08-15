@@ -16,38 +16,38 @@
   "requirements": "- Game Data Files: Steam",
   "size": 21298478,
   "status": "Legacy",
-  "icon": "https://www.rinnegatamante.eu/vitadb/icons/da7da22248abfeca2796221f7f28db2d4ae1521186382ad4a0fb562e4d76bf01.png",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/da7da22248abfeca2796221f7f28db2d4ae1521186382ad4a0fb562e4d76bf01.png",
   "screenshots": [
-    "https://www.rinnegatamante.eu/vitadb/screenshots/9320de0550e24f5cfba781872705d26f2e75973dc5a507c26a893193aadb8a90.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/9320de0550e24f5cfba781872705d26f2e75973dc5a507c26a893193aadb8a90.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/9320de0550e24f5cfba781872705d26f2e75973dc5a507c26a893193aadb8a90.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/9320de0550e24f5cfba781872705d26f2e75973dc5a507c26a893193aadb8a90.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1366",
-      "recommended": true
-    },
-    {
-      "type": "Download",
-      "name": "NeoVitaDB VPK",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/ZFhuang/ZATO-vita/releases/download/v01_00/Z.A.T.O.I.Love.the.World.and.Everything.In.It-01.00.vpk",
       "recommended": false
     },
     {
       "type": "Official Website",
-      "name": "VitaDB Release Page",
+      "name": "VitaDBtoo Release Page",
       "url": "https://github.com/ZFhuang/ZATO-vita"
     },
     {
       "type": "Official Website",
       "name": "NeoVitaDB Release Page",
       "url": "https://github.com/ZFhuang/ZATO-vita/releases/tag/v01_00"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1366",
+      "recommended": true
     }
   ],
-  "source_name": "VitaDB",
+  "source_name": "VitaDBtoo",
   "source_id": "1366",
   "source_url": "https://github.com/ZFhuang/ZATO-vita",
   "release_page": "https://github.com/ZFhuang/ZATO-vita",
-  "updated_at": "2026-08-15T18:26:19.064406+00:00"
+  "updated_at": "2026-08-13T15:34:48.365331+00:00"
 }

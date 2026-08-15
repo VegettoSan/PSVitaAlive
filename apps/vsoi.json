@@ -16,26 +16,20 @@
   "requirements": "Not specified",
   "size": 1897634,
   "status": "Legacy",
-  "icon": "https://www.rinnegatamante.eu/vitadb/icons/18746b487153dc1ca3d728ce57b841b6e8faeca65a0900aa46864f73d07642c8.png",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/18746b487153dc1ca3d728ce57b841b6e8faeca65a0900aa46864f73d07642c8.png",
   "screenshots": [
-    "https://www.rinnegatamante.eu/vitadb/icons/18746b487153dc1ca3d728ce57b841b6e8faeca65a0900aa46864f73d07642c8.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/18746b487153dc1ca3d728ce57b841b6e8faeca65a0900aa46864f73d07642c8.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=370",
-      "recommended": true
-    },
-    {
-      "type": "Download",
-      "name": "NeoVitaDB VPK",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/gnmmarechal/VSOI/releases/download/v0.1/VSOI.vpk",
       "recommended": false
     },
     {
       "type": "Official Website",
-      "name": "VitaDB Release Page",
+      "name": "VitaDBtoo Release Page",
       "url": "https://gbatemp.net/threads/release-vitashell-one-click-installer-for-near.498903/"
     },
     {
@@ -47,11 +41,17 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/gnmmarechal/VSOI"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=370",
+      "recommended": true
     }
   ],
-  "source_name": "VitaDB",
+  "source_name": "VitaDBtoo",
   "source_id": "370",
   "source_url": "https://github.com/gnmmarechal/VSOI",
   "release_page": "https://gbatemp.net/threads/release-vitashell-one-click-installer-for-near.498903/",
-  "updated_at": "2026-08-15T18:26:20.394929+00:00"
+  "updated_at": "2026-08-13T15:34:48.666846+00:00"
 }

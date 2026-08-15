@@ -16,30 +16,24 @@
   "requirements": "Not specified",
   "size": 22282549,
   "status": "Legacy",
-  "icon": "https://www.rinnegatamante.eu/vitadb/icons/7d5c3daff8c235de31ab306cb72dc14c233b09b9fffcb8304f34df9d23369780.png",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/7d5c3daff8c235de31ab306cb72dc14c233b09b9fffcb8304f34df9d23369780.png",
   "screenshots": [
-    "https://www.rinnegatamante.eu/vitadb/screenshots/686a058f18e544eb55bed4b39685f1f318bbd31102d1e81da3da0cff123460d3.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/7a0af1a7fc6e6fd7a97545d5e6847ef030ff4614afaba3e227ffd62986d8fd65.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/5731156ea88373ebbfc4e6e6224bb3bae7c3c23be5479133e9d30e51a901346e.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/74f99012cbf4898a066acab1d465cb77347d60190efb4d7e22cf701fd6566398.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/686a058f18e544eb55bed4b39685f1f318bbd31102d1e81da3da0cff123460d3.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/686a058f18e544eb55bed4b39685f1f318bbd31102d1e81da3da0cff123460d3.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/7a0af1a7fc6e6fd7a97545d5e6847ef030ff4614afaba3e227ffd62986d8fd65.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/5731156ea88373ebbfc4e6e6224bb3bae7c3c23be5479133e9d30e51a901346e.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/74f99012cbf4898a066acab1d465cb77347d60190efb4d7e22cf701fd6566398.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/686a058f18e544eb55bed4b39685f1f318bbd31102d1e81da3da0cff123460d3.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=861",
-      "recommended": true
-    },
-    {
-      "type": "Download",
-      "name": "NeoVitaDB VPK",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/hatoving/zeldapicross_vita/releases/download/1.1/ZeldaPicross.vpk",
       "recommended": false
     },
     {
       "type": "Official Website",
-      "name": "VitaDB Release Page",
+      "name": "VitaDBtoo Release Page",
       "url": "https://github.com/hatoving/zeldapicross_vita/releases"
     },
     {
@@ -51,11 +45,17 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/hatoving/zeldapicross_vita"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=861",
+      "recommended": true
     }
   ],
-  "source_name": "VitaDB",
+  "source_name": "VitaDBtoo",
   "source_id": "861",
   "source_url": "https://github.com/hatoving/zeldapicross_vita",
   "release_page": "https://github.com/hatoving/zeldapicross_vita/releases",
-  "updated_at": "2026-08-15T18:26:19.813399+00:00"
+  "updated_at": "2026-08-13T15:34:48.534268+00:00"
 }

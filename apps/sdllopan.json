@@ -16,27 +16,21 @@
   "requirements": "Not specified",
   "size": 882916,
   "status": "Legacy",
-  "icon": "https://www.rinnegatamante.eu/vitadb/icons/ea57f6370747c51b6ac7209db3defdf1b8bc46313283c908d6629d2882526f82.png",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/ea57f6370747c51b6ac7209db3defdf1b8bc46313283c908d6629d2882526f82.png",
   "screenshots": [
-    "https://www.rinnegatamante.eu/vitadb/screenshots/0ebf4e6a6bdb1544e4291a0505a5e84801601c94a51ae9454454edf40bac4a12.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/0ebf4e6a6bdb1544e4291a0505a5e84801601c94a51ae9454454edf40bac4a12.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/0ebf4e6a6bdb1544e4291a0505a5e84801601c94a51ae9454454edf40bac4a12.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/0ebf4e6a6bdb1544e4291a0505a5e84801601c94a51ae9454454edf40bac4a12.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=332",
-      "recommended": true
-    },
-    {
-      "type": "Download",
-      "name": "NeoVitaDB VPK",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/nop90-PSVITA/SDLLopan-VITA/releases/download/v1.0/SDLLopan.vpk",
       "recommended": false
     },
     {
       "type": "Official Website",
-      "name": "VitaDB Release Page",
+      "name": "VitaDBtoo Release Page",
       "url": "https://gbatemp.net/threads/release-sdl-lopan-a-simple-mahjong-solitaire-game-ported-to-ps-vita.485852/"
     },
     {
@@ -48,11 +42,17 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/nop90-PSVITA/SDLLopan-VITA"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=332",
+      "recommended": true
     }
   ],
-  "source_name": "VitaDB",
+  "source_name": "VitaDBtoo",
   "source_id": "332",
   "source_url": "https://github.com/nop90-PSVITA/SDLLopan-VITA",
   "release_page": "https://gbatemp.net/threads/release-sdl-lopan-a-simple-mahjong-solitaire-game-ported-to-ps-vita.485852/",
-  "updated_at": "2026-08-15T18:26:20.427958+00:00"
+  "updated_at": "2026-08-13T15:34:48.675111+00:00"
 }

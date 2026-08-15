@@ -18,11 +18,11 @@
   "status": "Legacy",
   "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1348-sakura-pass.png",
   "screenshots": [
-    "https://www.rinnegatamante.eu/vitadb/screenshots/af2dea86352dfb388c2af8cb87cee69fddf59e39a8f252285ca4b48129eb5daa.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/cd9df2bd86fb556e3cddd1a84d8505fad309c403ecd8a73f63f3e2acc21066c8.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/cdead2e75c67d2b4daf916cb7d090a49652d3fa25449b9c57a24fa0bbb96fa67.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/58009da80622286f63a30ab9e5474405a9801ea84e49ef0a8908d6b05f3b39cc.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/af2dea86352dfb388c2af8cb87cee69fddf59e39a8f252285ca4b48129eb5daa.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/af2dea86352dfb388c2af8cb87cee69fddf59e39a8f252285ca4b48129eb5daa.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/cd9df2bd86fb556e3cddd1a84d8505fad309c403ecd8a73f63f3e2acc21066c8.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/cdead2e75c67d2b4daf916cb7d090a49652d3fa25449b9c57a24fa0bbb96fa67.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/58009da80622286f63a30ab9e5474405a9801ea84e49ef0a8908d6b05f3b39cc.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/af2dea86352dfb388c2af8cb87cee69fddf59e39a8f252285ca4b48129eb5daa.png"
   ],
   "links": [
     {
@@ -46,5 +46,5 @@
   "source_id": "1348",
   "source_url": "https://github.com/Digital33Studios/sakurapass",
   "release_page": "https://github.com/Digital33Studios/sakurapass/releases/tag/v.075",
-  "updated_at": "2026-08-15T18:26:19.107451+00:00"
+  "updated_at": "2026-08-13T15:34:48.372889+00:00"
 }

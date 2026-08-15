@@ -18,6 +18,7 @@
   "status": "Legacy",
   "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1837-parkour-labs.png",
   "screenshots": [
+    "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1837-parkour-labs.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c99306cc2d72e01dadf45de697e94b422dd33ddfdf2a5ef5cff1e5a0c1ec8503.png"
   ],
   "links": [
@@ -28,10 +29,9 @@
       "recommended": true
     },
     {
-      "type": "Download",
-      "name": "VitaDBtoo VPK",
-      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/1099-Parkour_Labs.vpk",
-      "recommended": false
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com"
     },
     {
       "type": "Official Website",
@@ -39,14 +39,15 @@
       "url": "https://soykhaler.itch.io/parkour-labs-vita-port"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com"
+      "type": "Download",
+      "name": "VitaDBtoo VPK",
+      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/1099-Parkour_Labs.vpk",
+      "recommended": false
     }
   ],
   "source_name": "NeoVitaDB",
   "source_id": "1837",
   "source_url": "https://github.com",
   "release_page": "",
-  "updated_at": "2026-08-15T18:26:20.687882+00:00"
+  "updated_at": "2026-08-13T15:34:48.725190+00:00"
 }

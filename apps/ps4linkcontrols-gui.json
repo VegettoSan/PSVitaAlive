@@ -16,27 +16,21 @@
   "requirements": "Not specified",
   "size": 338830,
   "status": "Legacy",
-  "icon": "https://www.rinnegatamante.eu/vitadb/icons/ca1547ed559c1d393301cc41a1203fbdfaac76949d7cadf5c4a6655b2d5e0fa4.png",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/ca1547ed559c1d393301cc41a1203fbdfaac76949d7cadf5c4a6655b2d5e0fa4.png",
   "screenshots": [
-    "https://www.rinnegatamante.eu/vitadb/screenshots/3f02d6b6bb378c513fc37f7b7c7e736f0965e46c2990edf07c1059fd3360efb1.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/3f02d6b6bb378c513fc37f7b7c7e736f0965e46c2990edf07c1059fd3360efb1.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/3f02d6b6bb378c513fc37f7b7c7e736f0965e46c2990edf07c1059fd3360efb1.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/3f02d6b6bb378c513fc37f7b7c7e736f0965e46c2990edf07c1059fd3360efb1.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=560",
-      "recommended": true
-    },
-    {
-      "type": "Download",
-      "name": "NeoVitaDB VPK",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/keltar/ps4linkcontrols-gui/releases/download/0.1/ps4linkcontrols-gui.vpk",
       "recommended": false
     },
     {
       "type": "Official Website",
-      "name": "VitaDB Release Page",
+      "name": "VitaDBtoo Release Page",
       "url": "https://github.com/keltar/ps4linkcontrols-gui/releases"
     },
     {
@@ -48,11 +42,17 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/keltar/ps4linkcontrols-gui"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=560",
+      "recommended": true
     }
   ],
-  "source_name": "VitaDB",
+  "source_name": "VitaDBtoo",
   "source_id": "560",
   "source_url": "https://github.com/keltar/ps4linkcontrols-gui",
   "release_page": "https://github.com/keltar/ps4linkcontrols-gui/releases",
-  "updated_at": "2026-08-15T18:26:20.202171+00:00"
+  "updated_at": "2026-08-13T15:34:48.617001+00:00"
 }

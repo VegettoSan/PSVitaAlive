@@ -6,8 +6,8 @@
   "long_description": "A simple homebrew for testing the input data on the PSVita.",
   "author_ids": [
     "avellea",
-    "pookette",
-    "namelessghoul0"
+    "namelessghoul0",
+    "pookette"
   ],
   "category_id": "utilities",
   "subcategory_ids": [
@@ -16,28 +16,39 @@
   "version": "v.1.3",
   "version_date": "2016-08-29",
   "requirements": "Not specified",
-  "size": 651512,
+  "size": 828541,
   "status": "Legacy",
-  "icon": "https://www.rinnegatamante.eu/vitadb/icons/18746b487153dc1ca3d728ce57b841b6e8faeca65a0900aa46864f73d07642c8.png",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/18746b487153dc1ca3d728ce57b841b6e8faeca65a0900aa46864f73d07642c8.png",
   "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/d0ad649800ab1a4e42dbacb05f0442308eabe98dda8397ea7eec2502be7d4ad7.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/f589309d2ab448197b38f770e1c5cfb822a39e6b7c33308c2231acfe02c6d0b8.png",
     "https://www.rinnegatamante.eu/vitadb/screenshots/tester.jpg",
     "https://www.rinnegatamante.eu/vitadb/screenshots/d0ad649800ab1a4e42dbacb05f0442308eabe98dda8397ea7eec2502be7d4ad7.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/f589309d2ab448197b38f770e1c5cfb822a39e6b7c33308c2231acfe02c6d0b8.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/d0ad649800ab1a4e42dbacb05f0442308eabe98dda8397ea7eec2502be7d4ad7.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/f589309d2ab448197b38f770e1c5cfb822a39e6b7c33308c2231acfe02c6d0b8.png"
+    "https://www.rinnegatamante.eu/vitadb/screenshots/f589309d2ab448197b38f770e1c5cfb822a39e6b7c33308c2231acfe02c6d0b8.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=121",
-      "recommended": true
+      "name": "VitaDBtoo VPK",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/121-VitaTester-mod.vpk",
+      "recommended": false
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/Avellea/VitaTester"
     },
     {
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/121-VitaTester-mod.vpk",
       "recommended": false
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=121",
+      "recommended": true
     },
     {
       "type": "Official Website",
@@ -48,16 +59,11 @@
       "type": "Official Website",
       "name": "NeoVitaDB Release Page",
       "url": "https://github.com/Avellea/VitaTester/releases/tag/1.0"
-    },
-    {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/Avellea/VitaTester"
     }
   ],
-  "source_name": "VitaDB",
+  "source_name": "VitaDBtoo",
   "source_id": "121",
   "source_url": "https://github.com/NamelessGhoul0/VitaTester",
   "release_page": "",
-  "updated_at": "2026-08-15T18:26:19.628552+00:00"
+  "updated_at": "2026-08-13T15:34:48.492560+00:00"
 }

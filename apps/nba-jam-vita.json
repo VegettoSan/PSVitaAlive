@@ -16,29 +16,23 @@
   "requirements": "- libshacccg.suprx\n- kubridge.skprx\n- Game Data Files: Android",
   "size": 2376120,
   "status": "Legacy",
-  "icon": "https://www.rinnegatamante.eu/vitadb/icons/1f04c641e86b72d0ff92927e5e83241137941c3ea782a11bf83d893320735108.png",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/1f04c641e86b72d0ff92927e5e83241137941c3ea782a11bf83d893320735108.png",
   "screenshots": [
-    "https://www.rinnegatamante.eu/vitadb/screenshots/12f0d0d707f9f84540b092171978a55f803e3abea6cb1e7278aea75879caf61e.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/9c9bff5a414c0e5dd24f4ac49449e7a791c5f118dda3f94876d4c0cfb09757bd.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/12f0d0d707f9f84540b092171978a55f803e3abea6cb1e7278aea75879caf61e.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/9c9bff5a414c0e5dd24f4ac49449e7a791c5f118dda3f94876d4c0cfb09757bd.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/9c9bff5a414c0e5dd24f4ac49449e7a791c5f118dda3f94876d4c0cfb09757bd.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/12f0d0d707f9f84540b092171978a55f803e3abea6cb1e7278aea75879caf61e.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/9c9bff5a414c0e5dd24f4ac49449e7a791c5f118dda3f94876d4c0cfb09757bd.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1365",
-      "recommended": true
-    },
-    {
-      "type": "Download",
-      "name": "NeoVitaDB VPK",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/elliencode/nba-jam-psv/releases/download/v1.00/com.eamobile.nbajam_row_wf-v1.00.vpk",
       "recommended": false
     },
     {
       "type": "Official Website",
-      "name": "VitaDB Release Page",
+      "name": "VitaDBtoo Release Page",
       "url": "https://github.com/elliencode/nba-jam-psv/releases"
     },
     {
@@ -50,11 +44,17 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/elliencode/nba-jam-psv"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1365",
+      "recommended": true
     }
   ],
-  "source_name": "VitaDB",
+  "source_name": "VitaDBtoo",
   "source_id": "1365",
   "source_url": "https://github.com/elliencode/nba-jam-psv",
   "release_page": "https://github.com/elliencode/nba-jam-psv/releases",
-  "updated_at": "2026-08-15T18:26:19.067131+00:00"
+  "updated_at": "2026-08-13T15:34:48.366125+00:00"
 }

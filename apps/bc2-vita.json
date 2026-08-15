@@ -5,6 +5,7 @@
   "description": "Port of Battlefield: Bad Company 2 Mobile for PSVITA.",
   "long_description": "This is a wrapper/port of Battlefield: Bad Company 2 Android for the PS Vita.\nThe port works by loading the official Android ARMv6 executable in memory, resolving its imports with native functions and patching it in order to properly run.",
   "author_ids": [
+    "aap",
     "theflow",
     "rinnegatamante"
   ],
@@ -17,30 +18,24 @@
   "requirements": "- libshacccg.suprx\n- kubridge.skprx\n- Game Data Files: Android",
   "size": 534541,
   "status": "Legacy",
-  "icon": "https://www.rinnegatamante.eu/vitadb/icons/16fb69931aa9b7df1f2be0746e5cd278fda81640096fd886e1bc6f98b4825b62.png",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/16fb69931aa9b7df1f2be0746e5cd278fda81640096fd886e1bc6f98b4825b62.png",
   "screenshots": [
-    "https://www.rinnegatamante.eu/vitadb/screenshots/afed3a69c037de508feafcff32ef6cbf65b9aa9481a13b06907b9bbee29bf8cb.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/7e4456fe47b5c43935342b3c92961067a6c6bcccaa61612e5dfc61d26d72acbe.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/4502287b13fb2243e11ab7aaf6327230460cf810a44ae6ae8e6ef2ec2276c945.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/751c059327690651a7684b57e0b7f1f14d7503e8dd2db1624e97b7377aa39a89.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/afed3a69c037de508feafcff32ef6cbf65b9aa9481a13b06907b9bbee29bf8cb.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/afed3a69c037de508feafcff32ef6cbf65b9aa9481a13b06907b9bbee29bf8cb.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/7e4456fe47b5c43935342b3c92961067a6c6bcccaa61612e5dfc61d26d72acbe.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/4502287b13fb2243e11ab7aaf6327230460cf810a44ae6ae8e6ef2ec2276c945.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/751c059327690651a7684b57e0b7f1f14d7503e8dd2db1624e97b7377aa39a89.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/afed3a69c037de508feafcff32ef6cbf65b9aa9481a13b06907b9bbee29bf8cb.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=714",
-      "recommended": true
-    },
-    {
-      "type": "Download",
-      "name": "NeoVitaDB VPK",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/TheOfficialFloW/bc2_vita/releases/download/v1.0/BC2.vpk",
       "recommended": false
     },
     {
       "type": "Official Website",
-      "name": "VitaDB Release Page",
+      "name": "VitaDBtoo Release Page",
       "url": "https://github.com/TheOfficialFloW/bc2_vita/releases"
     },
     {
@@ -52,11 +47,17 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/TheOfficialFloW/bc2_vita"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=714",
+      "recommended": true
     }
   ],
-  "source_name": "VitaDB",
+  "source_name": "VitaDBtoo",
   "source_id": "714",
   "source_url": "https://github.com/TheOfficialFloW/bc2_vita",
   "release_page": "https://github.com/TheOfficialFloW/bc2_vita/releases",
-  "updated_at": "2026-08-15T18:26:20.012247+00:00"
+  "updated_at": "2026-08-13T15:34:48.576267+00:00"
 }

@@ -18,11 +18,11 @@
   "status": "Legacy",
   "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1376-vitawave.png",
   "screenshots": [
-    "https://www.rinnegatamante.eu/vitadb/screenshots/5532ad494f56d6d09a6a066ce45cfab30c24d1eac95e840469dce1d9ba6703d9.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/432e63753a4376d979835bf2d777eacd6541194c922e01a7a6fef46983984e08.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/a41a6930949352d2dfe737286034cc67f7d8c46330e146e340ed63ff5b3f614b.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/5532ad494f56d6d09a6a066ce45cfab30c24d1eac95e840469dce1d9ba6703d9.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/432e63753a4376d979835bf2d777eacd6541194c922e01a7a6fef46983984e08.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/432e63753a4376d979835bf2d777eacd6541194c922e01a7a6fef46983984e08.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/a41a6930949352d2dfe737286034cc67f7d8c46330e146e340ed63ff5b3f614b.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/5532ad494f56d6d09a6a066ce45cfab30c24d1eac95e840469dce1d9ba6703d9.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/432e63753a4376d979835bf2d777eacd6541194c922e01a7a6fef46983984e08.png"
   ],
   "links": [
     {
@@ -46,5 +46,5 @@
   "source_id": "1376",
   "source_url": "https://github.com/Jyotiraditya-Samal/Vitawave",
   "release_page": "https://github.com/Jyotiraditya-Samal/Vitawave/releases/tag/v1.0.0-stable",
-  "updated_at": "2026-08-15T18:26:19.030124+00:00"
+  "updated_at": "2026-08-13T15:34:48.357785+00:00"
 }

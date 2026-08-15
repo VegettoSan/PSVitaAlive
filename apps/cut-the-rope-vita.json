@@ -18,24 +18,28 @@
   "status": "Legacy",
   "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1813-cut-the-rope-vita.png",
   "screenshots": [
-    "https://www.rinnegatamante.eu/vitadb/screenshots/04353ca871ca75cadc5071e74134b4159d726005b9dfe579c63ef1d71ecb1cd7.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/8f3edeecbcdb281914df884fefe8c911b11d4723c21c1313222588026c8d6623.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/258d3c975f33bb2c14ffeaf617602fd978b2132b3f924b8422ece6cf0603a6c5.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/04353ca871ca75cadc5071e74134b4159d726005b9dfe579c63ef1d71ecb1cd7.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/8f3edeecbcdb281914df884fefe8c911b11d4723c21c1313222588026c8d6623.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/8f3edeecbcdb281914df884fefe8c911b11d4723c21c1313222588026c8d6623.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/258d3c975f33bb2c14ffeaf617602fd978b2132b3f924b8422ece6cf0603a6c5.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/04353ca871ca75cadc5071e74134b4159d726005b9dfe579c63ef1d71ecb1cd7.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/8f3edeecbcdb281914df884fefe8c911b11d4723c21c1313222588026c8d6623.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "NeoVitaDB VPK",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1041-cut_the_rope.vpk",
       "recommended": true
     },
     {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1041",
-      "recommended": false
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
+      "url": "https://github.com/SpanishFreddy/Cut-The-Rope-Vita"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com"
     },
     {
       "type": "Download",
@@ -44,19 +48,15 @@
       "recommended": false
     },
     {
-      "type": "Official Website",
-      "name": "VitaDB Release Page",
-      "url": "https://github.com/SpanishFreddy/Cut-The-Rope-Vita"
-    },
-    {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com"
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1041",
+      "recommended": false
     }
   ],
-  "source_name": "NeoVitaDB",
-  "source_id": "1813",
-  "source_url": "https://github.com",
-  "release_page": "",
-  "updated_at": "2026-08-15T18:26:19.716075+00:00"
+  "source_name": "VitaDBtoo",
+  "source_id": "1041",
+  "source_url": "https://github.com/SpanishFreddy/Cut-The-Rope-Vita",
+  "release_page": "https://github.com/SpanishFreddy/Cut-The-Rope-Vita",
+  "updated_at": "2026-08-13T15:34:48.511837+00:00"
 }

@@ -16,21 +16,15 @@
   "requirements": "- Game Data Files: PC",
   "size": 15108770,
   "status": "Legacy",
-  "icon": "https://www.rinnegatamante.eu/vitadb/icons/932102655a9eaa1e20426ea0e3a1ddbf7265bdae0daf8ffd6f4d1394250b19ba.png",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/932102655a9eaa1e20426ea0e3a1ddbf7265bdae0daf8ffd6f4d1394250b19ba.png",
   "screenshots": [
-    "https://www.rinnegatamante.eu/vitadb/screenshots/355998793cb4aae640fb8430859c0bdf9497390355e1d24b52e5cbd582e3c70d.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/be76623d38a98fb4ff38654955e1a074d376cb496d71bcc97ec5405fddb927c5.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/064e0f45575f47e863867e9f27b3135bc81ccdde53c36b16ba3c39fd6dcf9fae.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/75c75516a077bb1c55202a54cef4060577aa934256e01d99651a1d1e0ce694a3.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/355998793cb4aae640fb8430859c0bdf9497390355e1d24b52e5cbd582e3c70d.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/355998793cb4aae640fb8430859c0bdf9497390355e1d24b52e5cbd582e3c70d.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/be76623d38a98fb4ff38654955e1a074d376cb496d71bcc97ec5405fddb927c5.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/064e0f45575f47e863867e9f27b3135bc81ccdde53c36b16ba3c39fd6dcf9fae.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/75c75516a077bb1c55202a54cef4060577aa934256e01d99651a1d1e0ce694a3.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/355998793cb4aae640fb8430859c0bdf9497390355e1d24b52e5cbd582e3c70d.png"
   ],
   "links": [
-    {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1323",
-      "recommended": true
-    },
     {
       "type": "Download",
       "name": "VitaDBtoo VPK",
@@ -39,18 +33,24 @@
     },
     {
       "type": "Official Website",
-      "name": "VitaDB Release Page",
+      "name": "VitaDBtoo Release Page",
       "url": "https://github.com/gl00mm/Inscryption_PSVITA"
     },
     {
       "type": "Official Website",
       "name": "NeoVitaDB Release Page",
       "url": "https://github.com/gl00mm/Inscryption_PSVITA/releases/tag/Inscryption_PSVITA-alpha.1"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1323",
+      "recommended": true
     }
   ],
-  "source_name": "VitaDB",
+  "source_name": "VitaDBtoo",
   "source_id": "1323",
   "source_url": "https://github.com/gl00mm/Inscryption_PSVITA",
   "release_page": "https://github.com/gl00mm/Inscryption_PSVITA",
-  "updated_at": "2026-08-15T18:26:19.171465+00:00"
+  "updated_at": "2026-08-13T15:34:48.388096+00:00"
 }

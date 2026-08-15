@@ -7,7 +7,7 @@
   "author_ids": [
     "theherogac"
   ],
-  "category_id": "utilities",
+  "category_id": "games",
   "subcategory_ids": [
     "other"
   ],
@@ -24,6 +24,22 @@
     {
       "type": "Download",
       "name": "NeoVitaDB VPK",
+      "url": "https://github.com/theheroGAC/Digital-Clock-Vita/releases/download/1.00/DigitalClockVita.vpk",
+      "recommended": false
+    },
+    {
+      "type": "Official Website",
+      "name": "NeoVitaDB Release Page",
+      "url": "https://github.com/theheroGAC/Digital-Clock-Vita/releases/tag/1.00"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/theheroGAC/Digital-Clock-Vita"
+    },
+    {
+      "type": "Download",
+      "name": "NeoVitaDB VPK",
       "url": "https://github.com/theheroGAC/Digital-Clock-Vita/releases/download/1.01/DigitalClockVita.vpk",
       "recommended": true
     },
@@ -31,16 +47,11 @@
       "type": "Official Website",
       "name": "NeoVitaDB Release Page",
       "url": "https://github.com/theheroGAC/Digital-Clock-Vita/releases/tag/1.01"
-    },
-    {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/theheroGAC/Digital-Clock-Vita"
     }
   ],
   "source_name": "NeoVitaDB",
   "source_id": "1450",
   "source_url": "https://github.com/theheroGAC/Digital-Clock-Vita",
-  "release_page": "https://github.com/theheroGAC/Digital-Clock-Vita/releases/tag/1.01",
-  "updated_at": "2026-08-15T18:26:20.643952+00:00"
+  "release_page": "https://github.com/theheroGAC/Digital-Clock-Vita/releases/tag/1.00",
+  "updated_at": "2026-08-13T15:34:48.719516+00:00"
 }

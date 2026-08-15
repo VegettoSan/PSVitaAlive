@@ -7,7 +7,7 @@
   "author_ids": [
     "theherogac"
   ],
-  "category_id": "utilities",
+  "category_id": "games",
   "subcategory_ids": [
     "other"
   ],
@@ -24,6 +24,22 @@
     {
       "type": "Download",
       "name": "NeoVitaDB VPK",
+      "url": "https://github.com/theheroGAC/PSV-Cleaner/releases/download/1.15/PSV_Cleaner.vpk",
+      "recommended": false
+    },
+    {
+      "type": "Official Website",
+      "name": "NeoVitaDB Release Page",
+      "url": "https://github.com/theheroGAC/PSV-Cleaner/releases/tag/1.15"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/theheroGAC/PSV-Cleaner"
+    },
+    {
+      "type": "Download",
+      "name": "NeoVitaDB VPK",
       "url": "https://github.com/theheroGAC/PSV-Cleaner/releases/download/1.16/PSV_Cleaner.vpk",
       "recommended": true
     },
@@ -31,16 +47,11 @@
       "type": "Official Website",
       "name": "NeoVitaDB Release Page",
       "url": "https://github.com/theheroGAC/PSV-Cleaner/releases/tag/1.16"
-    },
-    {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/theheroGAC/PSV-Cleaner"
     }
   ],
   "source_name": "NeoVitaDB",
   "source_id": "1454",
   "source_url": "https://github.com/theheroGAC/PSV-Cleaner",
-  "release_page": "https://github.com/theheroGAC/PSV-Cleaner/releases/tag/1.16",
-  "updated_at": "2026-08-15T18:26:20.650301+00:00"
+  "release_page": "https://github.com/theheroGAC/PSV-Cleaner/releases/tag/1.15",
+  "updated_at": "2026-08-13T15:34:48.720960+00:00"
 }

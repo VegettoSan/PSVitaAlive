@@ -16,26 +16,20 @@
   "requirements": "Not specified",
   "size": 212089,
   "status": "Legacy",
-  "icon": "https://www.rinnegatamante.eu/vitadb/icons/8af1d7bea8029968167f12fc6c1007846ab5c3df42aa9ebbf03dd6adff6855ac.png",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/8af1d7bea8029968167f12fc6c1007846ab5c3df42aa9ebbf03dd6adff6855ac.png",
   "screenshots": [
-    "https://www.rinnegatamante.eu/vitadb/icons/8af1d7bea8029968167f12fc6c1007846ab5c3df42aa9ebbf03dd6adff6855ac.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/8af1d7bea8029968167f12fc6c1007846ab5c3df42aa9ebbf03dd6adff6855ac.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=567",
-      "recommended": true
-    },
-    {
-      "type": "Download",
-      "name": "NeoVitaDB VPK",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/OsirizX/ShaRKF00D/releases/download/1.3/ShaRKF00D.vpk",
       "recommended": false
     },
     {
       "type": "Official Website",
-      "name": "VitaDB Release Page",
+      "name": "VitaDBtoo Release Page",
       "url": "https://github.com/OsirizX/ShaRKF00D/releases"
     },
     {
@@ -47,11 +41,17 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/OsirizX/ShaRKF00D"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=567",
+      "recommended": true
     }
   ],
-  "source_name": "VitaDB",
+  "source_name": "VitaDBtoo",
   "source_id": "567",
   "source_url": "https://github.com/OsirizX/ShaRKF00D",
   "release_page": "https://github.com/OsirizX/ShaRKF00D/releases",
-  "updated_at": "2026-08-15T18:26:20.198956+00:00"
+  "updated_at": "2026-08-13T15:34:48.616056+00:00"
 }

@@ -16,26 +16,20 @@
   "requirements": "Not specified",
   "size": 3980825,
   "status": "Legacy",
-  "icon": "https://www.rinnegatamante.eu/vitadb/icons/f6e23d355a33615497491dff94effd91b4e563c75c98c2c8eb7b066b14a70105.png",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/f6e23d355a33615497491dff94effd91b4e563c75c98c2c8eb7b066b14a70105.png",
   "screenshots": [
-    "https://www.rinnegatamante.eu/vitadb/icons/f6e23d355a33615497491dff94effd91b4e563c75c98c2c8eb7b066b14a70105.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/f6e23d355a33615497491dff94effd91b4e563c75c98c2c8eb7b066b14a70105.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=829",
-      "recommended": true
-    },
-    {
-      "type": "Download",
-      "name": "NeoVitaDB VPK",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/einmueller/exult-vita/releases/download/v1.9.vita.2/exult.vpk",
       "recommended": false
     },
     {
       "type": "Official Website",
-      "name": "VitaDB Release Page",
+      "name": "VitaDBtoo Release Page",
       "url": "https://github.com/einmueller/exult-vita/releases"
     },
     {
@@ -47,11 +41,17 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/einmueller/exult-vita"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=829",
+      "recommended": true
     }
   ],
-  "source_name": "VitaDB",
+  "source_name": "VitaDBtoo",
   "source_id": "829",
   "source_url": "https://github.com/einmueller/exult-vita",
   "release_page": "https://github.com/einmueller/exult-vita/releases",
-  "updated_at": "2026-08-15T18:26:19.851338+00:00"
+  "updated_at": "2026-08-13T15:34:48.542769+00:00"
 }

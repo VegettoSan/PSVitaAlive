@@ -16,30 +16,24 @@
   "requirements": "- libshacccg.suprx\n- kubridge.skprx\n- fd_fix.skprx OR repatch_ex.skprx\n- Game Data Files: Android",
   "size": 11636659,
   "status": "Legacy",
-  "icon": "https://www.rinnegatamante.eu/vitadb/icons/82ce805315dc85d255a4c436cb953893ade062fe0f1dfa2ab73bc0465c4f7732.png",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/82ce805315dc85d255a4c436cb953893ade062fe0f1dfa2ab73bc0465c4f7732.png",
   "screenshots": [
-    "https://www.rinnegatamante.eu/vitadb/screenshots/427a497917fbfc28f6da96ad3f84dbf3edd01438a2ba547e102ec87f167efc4c.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/786437205956b4da3f2f37196d1b5b4287ca99e2144e8dd2f1b25e4e58ee4f47.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/09a55b4c778578b1cefc675bb85f725e4e8c323d8a55ef12de338a96957cf891.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/dea95bf376f0cb7973f8a8096d8318089fe41a0f4e59efe5027ee667f333c28a.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/427a497917fbfc28f6da96ad3f84dbf3edd01438a2ba547e102ec87f167efc4c.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/427a497917fbfc28f6da96ad3f84dbf3edd01438a2ba547e102ec87f167efc4c.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/786437205956b4da3f2f37196d1b5b4287ca99e2144e8dd2f1b25e4e58ee4f47.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/09a55b4c778578b1cefc675bb85f725e4e8c323d8a55ef12de338a96957cf891.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/dea95bf376f0cb7973f8a8096d8318089fe41a0f4e59efe5027ee667f333c28a.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/427a497917fbfc28f6da96ad3f84dbf3edd01438a2ba547e102ec87f167efc4c.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1051",
-      "recommended": true
-    },
-    {
-      "type": "Download",
-      "name": "NeoVitaDB VPK",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/Rinnegatamante/anomaly-defenders_vita/releases/download/v.1.1/anomaly_defenders.vpk",
       "recommended": false
     },
     {
       "type": "Official Website",
-      "name": "VitaDB Release Page",
+      "name": "VitaDBtoo Release Page",
       "url": "https://github.com/Rinnegatamante/anomaly-defenders_vita/releases"
     },
     {
@@ -51,11 +45,17 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/Rinnegatamante/anomaly-defenders_vita"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1051",
+      "recommended": true
     }
   ],
-  "source_name": "VitaDB",
+  "source_name": "VitaDBtoo",
   "source_id": "1051",
   "source_url": "https://github.com/Rinnegatamante/anomaly-defenders_vita",
   "release_page": "https://github.com/Rinnegatamante/anomaly-defenders_vita/releases",
-  "updated_at": "2026-08-15T18:26:19.693662+00:00"
+  "updated_at": "2026-08-13T15:34:48.505854+00:00"
 }

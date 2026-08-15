@@ -16,27 +16,21 @@
   "requirements": "Not specified",
   "size": 1524725,
   "status": "Legacy",
-  "icon": "https://www.rinnegatamante.eu/vitadb/icons/39e13379d4af6efccb00c7380b148d7356010208224046d4552c329bb3f8fbbc.png",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/39e13379d4af6efccb00c7380b148d7356010208224046d4552c329bb3f8fbbc.png",
   "screenshots": [
-    "https://www.rinnegatamante.eu/vitadb/screenshots/c1130ded31f24b0c7a7d45f3b5b825a452a1b025638d016963c9896edc7f136f.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c1130ded31f24b0c7a7d45f3b5b825a452a1b025638d016963c9896edc7f136f.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c1130ded31f24b0c7a7d45f3b5b825a452a1b025638d016963c9896edc7f136f.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/c1130ded31f24b0c7a7d45f3b5b825a452a1b025638d016963c9896edc7f136f.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=566",
-      "recommended": true
-    },
-    {
-      "type": "Download",
-      "name": "NeoVitaDB VPK",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/joel16/VITAlbum/releases/download/v1.40/VITAlbum.vpk",
       "recommended": false
     },
     {
       "type": "Official Website",
-      "name": "VitaDB Release Page",
+      "name": "VitaDBtoo Release Page",
       "url": "https://github.com/joel16/VITAlbum/releases"
     },
     {
@@ -48,11 +42,17 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/joel16/VITAlbum"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=566",
+      "recommended": true
     }
   ],
-  "source_name": "VitaDB",
+  "source_name": "VitaDBtoo",
   "source_id": "566",
   "source_url": "https://github.com/joel16/VITAlbum",
   "release_page": "https://github.com/joel16/VITAlbum/releases",
-  "updated_at": "2026-08-15T18:26:20.143502+00:00"
+  "updated_at": "2026-08-13T15:34:48.602035+00:00"
 }

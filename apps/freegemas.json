@@ -16,19 +16,19 @@
   "requirements": "Not specified",
   "size": 5516346,
   "status": "Legacy",
-  "icon": "https://www.rinnegatamante.eu/vitadb/icons/84cb4eb71998c3b235483491b3f688746925230c6cb8f68fb13655ea43f9e753.png",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/84cb4eb71998c3b235483491b3f688746925230c6cb8f68fb13655ea43f9e753.png",
   "screenshots": [
-    "https://www.rinnegatamante.eu/vitadb/screenshots/934eb37ba2c3cd67ca81477ad9ef6db15b13fe43dc70cabfcb250e75bfd90f82.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/1851400e9504c907600962d8ee9e4818db1840b3eb2fa04a766091b633d6de65.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/934eb37ba2c3cd67ca81477ad9ef6db15b13fe43dc70cabfcb250e75bfd90f82.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/1851400e9504c907600962d8ee9e4818db1840b3eb2fa04a766091b633d6de65.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/1851400e9504c907600962d8ee9e4818db1840b3eb2fa04a766091b633d6de65.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/934eb37ba2c3cd67ca81477ad9ef6db15b13fe43dc70cabfcb250e75bfd90f82.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/1851400e9504c907600962d8ee9e4818db1840b3eb2fa04a766091b633d6de65.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=609",
-      "recommended": true
+      "name": "VitaDBtoo VPK",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/609-freegemas.vpk",
+      "recommended": false
     },
     {
       "type": "Download",
@@ -37,14 +37,8 @@
       "recommended": false
     },
     {
-      "type": "Download",
-      "name": "VitaDBtoo VPK",
-      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/609-freegemas.vpk",
-      "recommended": false
-    },
-    {
       "type": "Official Website",
-      "name": "VitaDB Release Page",
+      "name": "VitaDBtoo Release Page",
       "url": "https://github.com/JoseTomasTocino/freegemas/releases"
     },
     {
@@ -56,11 +50,23 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/JoseTomasTocino/freegemas"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDBtoo VPK",
+      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/609-freegemas.vpk",
+      "recommended": false
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=609",
+      "recommended": true
     }
   ],
-  "source_name": "VitaDB",
+  "source_name": "VitaDBtoo",
   "source_id": "609",
   "source_url": "https://github.com/JoseTomasTocino/freegemas",
   "release_page": "https://github.com/JoseTomasTocino/freegemas/releases",
-  "updated_at": "2026-08-15T18:26:19.918170+00:00"
+  "updated_at": "2026-08-13T15:34:48.557273+00:00"
 }

@@ -16,27 +16,21 @@
   "requirements": "Not specified",
   "size": 43566,
   "status": "Legacy",
-  "icon": "https://www.rinnegatamante.eu/vitadb/icons/f74326575de03fca664bb29fea56b1872eac87023c37bb160858b3b38f0edc49.png",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/f74326575de03fca664bb29fea56b1872eac87023c37bb160858b3b38f0edc49.png",
   "screenshots": [
-    "https://www.rinnegatamante.eu/vitadb/screenshots/8f0d625a378b55f86460d1478b790a0ad8b04a56c6c09a336c063954ed4df33e.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/8f0d625a378b55f86460d1478b790a0ad8b04a56c6c09a336c063954ed4df33e.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/8f0d625a378b55f86460d1478b790a0ad8b04a56c6c09a336c063954ed4df33e.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/8f0d625a378b55f86460d1478b790a0ad8b04a56c6c09a336c063954ed4df33e.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=479",
-      "recommended": true
-    },
-    {
-      "type": "Download",
-      "name": "NeoVitaDB VPK",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/SKGleba/PSP2-batteryFixer/releases/download/v3.0.1/batteryFixer.vpk",
       "recommended": false
     },
     {
       "type": "Official Website",
-      "name": "VitaDB Release Page",
+      "name": "VitaDBtoo Release Page",
       "url": "https://github.com/SKGleba/PSP2-batteryFixer/releases"
     },
     {
@@ -48,11 +42,17 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/SKGleba/PSP2-batteryFixer"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=479",
+      "recommended": true
     }
   ],
-  "source_name": "VitaDB",
+  "source_name": "VitaDBtoo",
   "source_id": "479",
   "source_url": "https://github.com/SKGleba/PSP2-batteryFixer",
   "release_page": "https://github.com/SKGleba/PSP2-batteryFixer/releases",
-  "updated_at": "2026-08-15T18:26:19.753094+00:00"
+  "updated_at": "2026-08-13T15:34:48.521087+00:00"
 }

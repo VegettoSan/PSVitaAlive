@@ -18,10 +18,10 @@
   "status": "Legacy",
   "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/0561-lcd-color-saturation.png",
   "screenshots": [
-    "https://www.rinnegatamante.eu/vitadb/screenshots/0fb73c3fffaed5c1e0ba7d91387fc789d910c2a680b7d2b734b88413774be847.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/c5d9a04e8aa95d987fd1edd98a589ada85157f5a77b4a214c4bb22782279f1d5.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/0fb73c3fffaed5c1e0ba7d91387fc789d910c2a680b7d2b734b88413774be847.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c5d9a04e8aa95d987fd1edd98a589ada85157f5a77b4a214c4bb22782279f1d5.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c5d9a04e8aa95d987fd1edd98a589ada85157f5a77b4a214c4bb22782279f1d5.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/0fb73c3fffaed5c1e0ba7d91387fc789d910c2a680b7d2b734b88413774be847.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/c5d9a04e8aa95d987fd1edd98a589ada85157f5a77b4a214c4bb22782279f1d5.png"
   ],
   "links": [
     {
@@ -45,5 +45,5 @@
   "source_id": "561",
   "source_url": "https://github.com/Electric1447/lcd-color-saturation",
   "release_page": "https://github.com/Electric1447/lcd-color-saturation/releases/tag/v1.2.0",
-  "updated_at": "2026-08-15T18:26:20.201879+00:00"
+  "updated_at": "2026-08-13T15:34:48.616879+00:00"
 }

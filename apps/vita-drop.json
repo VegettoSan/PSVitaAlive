@@ -5,8 +5,8 @@
   "description": "Wireless file server for PSVita.",
   "long_description": "VitaDrop transforms your PS Vita into a wireless file server. Browse, upload, download, and manage your entire Vita filesystem from any device with a web browser. No USB cables, no FTP clients, no hassle.",
   "author_ids": [
-    "ibrahim-dogan",
-    "claude-ai"
+    "claude-ai",
+    "ibrahim-dogan"
   ],
   "category_id": "utilities",
   "subcategory_ids": [
@@ -17,18 +17,12 @@
   "requirements": "Not specified",
   "size": 324433,
   "status": "Legacy",
-  "icon": "https://www.rinnegatamante.eu/vitadb/icons/45f0c7927e26880bd8495d349e9e9dde9850acd9902e3d6b81b944c43827b974.png",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/45f0c7927e26880bd8495d349e9e9dde9850acd9902e3d6b81b944c43827b974.png",
   "screenshots": [
-    "https://www.rinnegatamante.eu/vitadb/screenshots/26732f6e5704ad7d21694d4a1f596b1c4647c02dc3c4227a83832fa082ff4444.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/26732f6e5704ad7d21694d4a1f596b1c4647c02dc3c4227a83832fa082ff4444.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/26732f6e5704ad7d21694d4a1f596b1c4647c02dc3c4227a83832fa082ff4444.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/26732f6e5704ad7d21694d4a1f596b1c4647c02dc3c4227a83832fa082ff4444.png"
   ],
   "links": [
-    {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1383",
-      "recommended": true
-    },
     {
       "type": "Download",
       "name": "VitaDBtoo VPK",
@@ -37,7 +31,7 @@
     },
     {
       "type": "Official Website",
-      "name": "VitaDB Release Page",
+      "name": "VitaDBtoo Release Page",
       "url": "https://github.com/ibrahim-dogan/vita-drop/releases"
     },
     {
@@ -49,11 +43,17 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/ibrahim-dogan/vita-drop"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1383",
+      "recommended": true
     }
   ],
-  "source_name": "VitaDB",
+  "source_name": "VitaDBtoo",
   "source_id": "1383",
   "source_url": "https://github.com/ibrahim-dogan/vita-drop",
   "release_page": "https://github.com/ibrahim-dogan/vita-drop/releases",
-  "updated_at": "2026-08-15T18:26:19.018296+00:00"
+  "updated_at": "2026-08-13T15:34:48.355853+00:00"
 }

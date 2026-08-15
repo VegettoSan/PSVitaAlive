@@ -18,24 +18,28 @@
   "status": "Legacy",
   "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1536-vitahexenii.png",
   "screenshots": [
-    "https://www.rinnegatamante.eu/vitadb/screenshots/35ce1aa6df430a249a72b4c9ab2523c97173bab96b499ea5137658d99ba9b771.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/8b16399c241ddf247ac2babed8f1efa03a9617b4b4b2830e6b0f0ab26d28ae11.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/49193effba5d26f289b5d8369ffb57df0be46eb9bb5731ae35797aeca228c15b.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/35ce1aa6df430a249a72b4c9ab2523c97173bab96b499ea5137658d99ba9b771.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/8b16399c241ddf247ac2babed8f1efa03a9617b4b4b2830e6b0f0ab26d28ae11.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/8b16399c241ddf247ac2babed8f1efa03a9617b4b4b2830e6b0f0ab26d28ae11.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/49193effba5d26f289b5d8369ffb57df0be46eb9bb5731ae35797aeca228c15b.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/35ce1aa6df430a249a72b4c9ab2523c97173bab96b499ea5137658d99ba9b771.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/8b16399c241ddf247ac2babed8f1efa03a9617b4b4b2830e6b0f0ab26d28ae11.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "NeoVitaDB VPK",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/196-vitaHexenII.vpk",
       "recommended": true
     },
     {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=196",
-      "recommended": false
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
+      "url": "http://wololo.net/talk/viewtopic.php?f=116&t=46740"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/Rinnegatamante/vitaHexenII"
     },
     {
       "type": "Download",
@@ -44,19 +48,15 @@
       "recommended": false
     },
     {
-      "type": "Official Website",
-      "name": "VitaDB Release Page",
-      "url": "http://wololo.net/talk/viewtopic.php?f=116&t=46740"
-    },
-    {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/Rinnegatamante/vitaHexenII"
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=196",
+      "recommended": false
     }
   ],
-  "source_name": "NeoVitaDB",
-  "source_id": "1536",
-  "source_url": "https://github.com",
-  "release_page": "",
-  "updated_at": "2026-08-15T18:26:20.221518+00:00"
+  "source_name": "VitaDBtoo",
+  "source_id": "196",
+  "source_url": "https://github.com/Rinnegatamante/vitaHexenII",
+  "release_page": "http://wololo.net/talk/viewtopic.php?f=116&t=46740",
+  "updated_at": "2026-08-13T15:34:48.622722+00:00"
 }

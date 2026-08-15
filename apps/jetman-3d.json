@@ -16,31 +16,42 @@
   "requirements": "Not specified",
   "size": 1333060,
   "status": "Legacy",
-  "icon": "https://www.rinnegatamante.eu/vitadb/icons/d5515dc3a7808701fb7a98cf09d779981aa70b06848370712e5e6fc8545fa1f0.png",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/d5515dc3a7808701fb7a98cf09d779981aa70b06848370712e5e6fc8545fa1f0.png",
   "screenshots": [
-    "https://www.rinnegatamante.eu/vitadb/icons/d5515dc3a7808701fb7a98cf09d779981aa70b06848370712e5e6fc8545fa1f0.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/d5515dc3a7808701fb7a98cf09d779981aa70b06848370712e5e6fc8545fa1f0.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=719",
-      "recommended": true
+      "name": "VitaDBtoo VPK",
+      "url": "https://github.com/softwaregremlin/Jetman3D/releases/download/Main/JetMan-3D.vpk",
+      "recommended": false
     },
     {
       "type": "Official Website",
-      "name": "VitaDB Release Page",
+      "name": "VitaDBtoo Release Page",
       "url": "http://www.gremlinsoftware.co.nz/jetman3D.html"
+    },
+    {
+      "type": "Official Website",
+      "name": "NeoVitaDB Release Page",
+      "url": "https://github.com/softwaregremlin/Jetman3D/releases/tag/Main"
     },
     {
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/softwaregremlin/Jetman3D/"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=719",
+      "recommended": true
     }
   ],
-  "source_name": "VitaDB",
+  "source_name": "VitaDBtoo",
   "source_id": "719",
   "source_url": "https://github.com/softwaregremlin/Jetman3D/",
   "release_page": "http://www.gremlinsoftware.co.nz/jetman3D.html",
-  "updated_at": "2026-08-15T18:26:20.002212+00:00"
+  "updated_at": "2026-08-13T15:34:48.575202+00:00"
 }

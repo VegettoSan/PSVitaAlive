@@ -16,30 +16,24 @@
   "requirements": "- libshacccg.suprx\n- libfmodstudio.suprx\n- kubridge.skprx\n- Game Data Files: Android",
   "size": 556257,
   "status": "Legacy",
-  "icon": "https://www.rinnegatamante.eu/vitadb/icons/1ac2501fdf66048f7a08f7453d58d71984bbf0124199940c02c3078b6b0e3bf8.png",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/1ac2501fdf66048f7a08f7453d58d71984bbf0124199940c02c3078b6b0e3bf8.png",
   "screenshots": [
-    "https://www.rinnegatamante.eu/vitadb/screenshots/8b13a8d0e6759e4827cbd92e337045ab98e0dac65632ca61280038a756dfa129.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/2c26fe813ce17f8819af11751b99e4c4d46ba0b2219753e3b18f5aaaf5ddd971.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/705dce598b4bf445bf026a80bc9d7b4e47a9981f2a6c2a3891138998c164e8ff.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/8b13a8d0e6759e4827cbd92e337045ab98e0dac65632ca61280038a756dfa129.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/2c26fe813ce17f8819af11751b99e4c4d46ba0b2219753e3b18f5aaaf5ddd971.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/2c26fe813ce17f8819af11751b99e4c4d46ba0b2219753e3b18f5aaaf5ddd971.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/705dce598b4bf445bf026a80bc9d7b4e47a9981f2a6c2a3891138998c164e8ff.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/8b13a8d0e6759e4827cbd92e337045ab98e0dac65632ca61280038a756dfa129.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/2c26fe813ce17f8819af11751b99e4c4d46ba0b2219753e3b18f5aaaf5ddd971.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1180",
-      "recommended": true
-    },
-    {
-      "type": "Download",
-      "name": "NeoVitaDB VPK",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/Rinnegatamante/desertgolfing_vita/releases/download/v.1.0/desertgolfing.vpk",
       "recommended": false
     },
     {
       "type": "Official Website",
-      "name": "VitaDB Release Page",
+      "name": "VitaDBtoo Release Page",
       "url": "https://github.com/Rinnegatamante/desertgolfing_vita/releases"
     },
     {
@@ -51,11 +45,17 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/Rinnegatamante/desertgolfing_vita"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1180",
+      "recommended": true
     }
   ],
-  "source_name": "VitaDB",
+  "source_name": "VitaDBtoo",
   "source_id": "1180",
   "source_url": "https://github.com/Rinnegatamante/desertgolfing_vita",
   "release_page": "https://github.com/Rinnegatamante/desertgolfing_vita/releases",
-  "updated_at": "2026-08-15T18:26:19.434932+00:00"
+  "updated_at": "2026-08-13T15:34:48.451914+00:00"
 }

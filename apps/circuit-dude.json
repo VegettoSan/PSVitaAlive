@@ -18,24 +18,28 @@
   "status": "Legacy",
   "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1708-circuit-dude.png",
   "screenshots": [
-    "https://www.rinnegatamante.eu/vitadb/screenshots/4fd0ed4deb65547bd2266b2913ee1bb2d08cf2e7e469b88cec740b94acc9d8b1.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/e332c924680e60b28ee38297db177704ff8e140ff96a9edd413997d3d78dc00e.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/b6bcb629854cd919ec07bc0480d1ba80b2a5b7b98133c6ded3a3a9282f3a69f2.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/4fd0ed4deb65547bd2266b2913ee1bb2d08cf2e7e469b88cec740b94acc9d8b1.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/e332c924680e60b28ee38297db177704ff8e140ff96a9edd413997d3d78dc00e.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/e332c924680e60b28ee38297db177704ff8e140ff96a9edd413997d3d78dc00e.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/b6bcb629854cd919ec07bc0480d1ba80b2a5b7b98133c6ded3a3a9282f3a69f2.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/4fd0ed4deb65547bd2266b2913ee1bb2d08cf2e7e469b88cec740b94acc9d8b1.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/e332c924680e60b28ee38297db177704ff8e140ff96a9edd413997d3d78dc00e.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "NeoVitaDB VPK",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/626-CircuitDude.vpk",
       "recommended": true
     },
     {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=626",
-      "recommended": false
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
+      "url": "http://www.crait.net/"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com"
     },
     {
       "type": "Download",
@@ -44,19 +48,15 @@
       "recommended": false
     },
     {
-      "type": "Official Website",
-      "name": "VitaDB Release Page",
-      "url": "http://www.crait.net/"
-    },
-    {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com"
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=626",
+      "recommended": false
     }
   ],
-  "source_name": "NeoVitaDB",
-  "source_id": "1708",
-  "source_url": "https://github.com",
-  "release_page": "",
-  "updated_at": "2026-08-15T18:26:20.096660+00:00"
+  "source_name": "VitaDBtoo",
+  "source_id": "626",
+  "source_url": "http://www.crait.net/",
+  "release_page": "http://www.crait.net/",
+  "updated_at": "2026-08-13T15:34:48.592672+00:00"
 }

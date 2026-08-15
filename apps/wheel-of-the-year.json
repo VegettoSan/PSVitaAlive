@@ -7,7 +7,7 @@
   "author_ids": [
     "li"
   ],
-  "category_id": "utilities",
+  "category_id": "games",
   "subcategory_ids": [
     "other"
   ],
@@ -42,5 +42,5 @@
   "source_id": "1451",
   "source_url": "https://github.com/LiEnby/WheelOfTheYearGM",
   "release_page": "https://github.com/LiEnby/WheelOfTheYearGM/releases/tag/v1.1",
-  "updated_at": "2026-08-15T18:26:20.645519+00:00"
+  "updated_at": "2026-08-13T15:34:48.719895+00:00"
 }

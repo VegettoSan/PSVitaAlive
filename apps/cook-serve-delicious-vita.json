@@ -16,41 +16,41 @@
   "requirements": "- Game Data Files: PC Steam",
   "size": 3189944,
   "status": "Legacy",
-  "icon": "https://www.rinnegatamante.eu/vitadb/icons/c4bd98c0d4f2389981f01cc84ab5a7c233abcb706ab297b89cb9c9481edda52a.png",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/c4bd98c0d4f2389981f01cc84ab5a7c233abcb706ab297b89cb9c9481edda52a.png",
   "screenshots": [
-    "https://www.rinnegatamante.eu/vitadb/screenshots/0a5b6f3c5cc44d2775e3224d7f7caf291659a80697b94cfb61c5796c03c5bd97.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/074eefbbcec3f194c28d4280fc1ba3617682bb45c21832be57c29408ba6d6641.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/1cd44f33b7e53b5c45a10ce692de7a5cfb6e49b8c3ed36577ad40d628a43e908.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/40881d6570e49eb529c0dd377d74ecac1bcfea47e91054e08d8ca7ab16cfc849.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/0a5b6f3c5cc44d2775e3224d7f7caf291659a80697b94cfb61c5796c03c5bd97.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/0a5b6f3c5cc44d2775e3224d7f7caf291659a80697b94cfb61c5796c03c5bd97.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/074eefbbcec3f194c28d4280fc1ba3617682bb45c21832be57c29408ba6d6641.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/1cd44f33b7e53b5c45a10ce692de7a5cfb6e49b8c3ed36577ad40d628a43e908.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/40881d6570e49eb529c0dd377d74ecac1bcfea47e91054e08d8ca7ab16cfc849.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/0a5b6f3c5cc44d2775e3224d7f7caf291659a80697b94cfb61c5796c03c5bd97.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=735",
-      "recommended": true
-    },
-    {
-      "type": "Download",
-      "name": "NeoVitaDB VPK",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/MDashK/cook-serve-delicious-vita/releases/download/v1.0.0/CSDLICIUS.VPK",
       "recommended": false
     },
     {
       "type": "Official Website",
-      "name": "VitaDB Release Page",
+      "name": "VitaDBtoo Release Page",
       "url": "https://github.com/MDashK/cook-serve-delicious-vita"
     },
     {
       "type": "Official Website",
       "name": "NeoVitaDB Release Page",
       "url": "https://github.com/MDashK/cook-serve-delicious-vita/releases/tag/v1.0.0"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=735",
+      "recommended": true
     }
   ],
-  "source_name": "VitaDB",
+  "source_name": "VitaDBtoo",
   "source_id": "735",
   "source_url": "https://github.com/MDashK/cook-serve-delicious-vita",
   "release_page": "https://github.com/MDashK/cook-serve-delicious-vita",
-  "updated_at": "2026-08-15T18:26:19.957244+00:00"
+  "updated_at": "2026-08-13T15:34:48.568431+00:00"
 }

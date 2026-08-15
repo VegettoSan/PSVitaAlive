@@ -1,0 +1,57 @@
+{
+  "id": "sonic-2-sms-remake-s2smsr001",
+  "title_id": "S2SMSR001",
+  "name": "Sonic 2 SMS Remake",
+  "description": "Port of Sonic 2 SMS Remake for PSVITA.",
+  "long_description": "Sonic 2 SMS Remake is a fan game that represents a redesigned version of the Master System game released by SEGA in 1993. This is an unofficial port, based on version 2.0.C of the game for PC.",
+  "author_ids": [
+    "mdashk",
+    "creative-araya"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.2.9.2",
+  "version_date": "2022-12-01",
+  "requirements": "Not specified",
+  "size": 47985755,
+  "status": "Legacy",
+  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/0738-sonic-2-sms-remake.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/0738-sonic-2-sms-remake.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/cccba2b4bb39c25797249b8054fddd972a7b2e548001033d1cc828170fd6b13d.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/f526a13a4125ff3cd70f32766970f5673c3f9edfd2c1d257035f4083aeb11ce3.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/81362e28d480eaff8d083bfae52550930da0ea7ce9d3b4a2a7f9c47ab25761f2.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/37967bb335733b372384e7fb628f519481dbabbb1aff553fd72f56cf86921ec9.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "NeoVitaDB VPK",
+      "url": "https://github.com/MDashK/Sonic-2-SMS-Remake-Vita/releases/download/v2.9.2-vita/SOSR00002.VPK",
+      "recommended": false
+    },
+    {
+      "type": "Official Website",
+      "name": "NeoVitaDB Release Page",
+      "url": "https://github.com/MDashK/Sonic-2-SMS-Remake-Vita/releases/tag/v2.9.2-vita"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/MDashK/Sonic-2-SMS-Remake-Vita"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=738",
+      "recommended": true
+    }
+  ],
+  "source_name": "NeoVitaDB",
+  "source_id": "738",
+  "source_url": "https://github.com/MDashK/Sonic-2-SMS-Remake-Vita",
+  "release_page": "https://github.com/MDashK/Sonic-2-SMS-Remake-Vita/releases/tag/v2.9.2-vita",
+  "updated_at": "2026-08-13T15:34:48.717226+00:00"
+}

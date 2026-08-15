@@ -16,27 +16,21 @@
   "requirements": "Not specified",
   "size": 29143204,
   "status": "Legacy",
-  "icon": "https://www.rinnegatamante.eu/vitadb/icons/29b31348d30e290f9120d972ad194c1505d713f4eabed93c072024ee9159f5cc.png",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/29b31348d30e290f9120d972ad194c1505d713f4eabed93c072024ee9159f5cc.png",
   "screenshots": [
-    "https://www.rinnegatamante.eu/vitadb/screenshots/0fe4223b425e1cd9474f0ae40f98d3169975f2e18b1301d6430031257128611f.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/0fe4223b425e1cd9474f0ae40f98d3169975f2e18b1301d6430031257128611f.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/0fe4223b425e1cd9474f0ae40f98d3169975f2e18b1301d6430031257128611f.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/0fe4223b425e1cd9474f0ae40f98d3169975f2e18b1301d6430031257128611f.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=475",
-      "recommended": true
-    },
-    {
-      "type": "Download",
-      "name": "NeoVitaDB VPK",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/RetroGamer74/SuperPixelRun/releases/download/1.0/buildspr.vpk",
       "recommended": false
     },
     {
       "type": "Official Website",
-      "name": "VitaDB Release Page",
+      "name": "VitaDBtoo Release Page",
       "url": "https://github.com/RetroGamer74/SuperPixelRun/releases"
     },
     {
@@ -48,11 +42,17 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/RetroGamer74/SuperPixelRun"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=475",
+      "recommended": true
     }
   ],
-  "source_name": "VitaDB",
+  "source_name": "VitaDBtoo",
   "source_id": "475",
   "source_url": "https://github.com/RetroGamer74/SuperPixelRun/releases",
   "release_page": "https://github.com/RetroGamer74/SuperPixelRun/releases",
-  "updated_at": "2026-08-15T18:26:20.303258+00:00"
+  "updated_at": "2026-08-13T15:34:48.644812+00:00"
 }

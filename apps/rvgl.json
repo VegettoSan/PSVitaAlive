@@ -9,28 +9,22 @@
   ],
   "category_id": "ports",
   "subcategory_ids": [
-    "other"
+    "racing"
   ],
   "version": "v.1.1",
   "version_date": "2024-11-02",
   "requirements": "- libshacccg.suprx\n- Game Data Files: PC",
   "size": 4335841,
   "status": "Legacy",
-  "icon": "https://www.rinnegatamante.eu/vitadb/icons/80975f3c0ab33555cd7de9a9d983ae14d4d08ade47a1eff5e0a88ce79fb085c6.png",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/80975f3c0ab33555cd7de9a9d983ae14d4d08ade47a1eff5e0a88ce79fb085c6.png",
   "screenshots": [
-    "https://www.rinnegatamante.eu/vitadb/screenshots/1659bc74376356b3c21a9a263f8d90c477c9fcc57738f695dc92e22974f0d6c2.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/f2c926108d4d214354d04f1b533ffe8ae49fd9514af326017d01677fe20500d3.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/a83b2459ed44932db23bc099e3529316144df04c94478a86485fe022973b9655.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/5b9e0e308d340992199584fefe052edabbe3455014952a22b6d2a5284f0e6313.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/1659bc74376356b3c21a9a263f8d90c477c9fcc57738f695dc92e22974f0d6c2.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/1659bc74376356b3c21a9a263f8d90c477c9fcc57738f695dc92e22974f0d6c2.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/f2c926108d4d214354d04f1b533ffe8ae49fd9514af326017d01677fe20500d3.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/a83b2459ed44932db23bc099e3529316144df04c94478a86485fe022973b9655.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/5b9e0e308d340992199584fefe052edabbe3455014952a22b6d2a5284f0e6313.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/1659bc74376356b3c21a9a263f8d90c477c9fcc57738f695dc92e22974f0d6c2.png"
   ],
   "links": [
-    {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1217",
-      "recommended": true
-    },
     {
       "type": "Download",
       "name": "VitaDBtoo VPK",
@@ -39,13 +33,19 @@
     },
     {
       "type": "Official Website",
-      "name": "VitaDB Release Page",
+      "name": "VitaDBtoo Release Page",
       "url": "https://github.com/Rinnegatamante/rvgl-vita-native"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1217",
+      "recommended": true
     }
   ],
-  "source_name": "VitaDB",
+  "source_name": "VitaDBtoo",
   "source_id": "1217",
   "source_url": "https://github.com/Rinnegatamante/rvgl-vita-native",
   "release_page": "https://github.com/Rinnegatamante/rvgl-vita-native",
-  "updated_at": "2026-08-15T18:26:19.343325+00:00"
+  "updated_at": "2026-08-13T15:34:48.427804+00:00"
 }

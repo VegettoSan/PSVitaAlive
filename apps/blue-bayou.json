@@ -18,24 +18,28 @@
   "status": "Legacy",
   "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1782-blue-bayou.png",
   "screenshots": [
-    "https://www.rinnegatamante.eu/vitadb/screenshots/93f0321e856087f1efb00a716ba676a2519743f472611059ead5be547aa83cb7.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/0a75703d45e63438a14c2f7fd85e239fb924249cfac29c6ca51af19845d8fb78.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/dc9dc7e1d0a999a65ba4d5d1dcd1341bd3ec975058e4e77f0a22747a542a6a01.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/22105d1f66eaa6aece6d5ce82db442c2b6f19283eacae0effd659efc04495237.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/93f0321e856087f1efb00a716ba676a2519743f472611059ead5be547aa83cb7.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/93f0321e856087f1efb00a716ba676a2519743f472611059ead5be547aa83cb7.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/0a75703d45e63438a14c2f7fd85e239fb924249cfac29c6ca51af19845d8fb78.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/dc9dc7e1d0a999a65ba4d5d1dcd1341bd3ec975058e4e77f0a22747a542a6a01.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/22105d1f66eaa6aece6d5ce82db442c2b6f19283eacae0effd659efc04495237.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/93f0321e856087f1efb00a716ba676a2519743f472611059ead5be547aa83cb7.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "NeoVitaDB VPK",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/818-BlueBayouVita.vpk",
       "recommended": true
     },
     {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=818",
-      "recommended": false
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
+      "url": "https://bokonon-yossarian.itch.io/blue-bayou"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com"
     },
     {
       "type": "Download",
@@ -44,19 +48,15 @@
       "recommended": false
     },
     {
-      "type": "Official Website",
-      "name": "VitaDB Release Page",
-      "url": "https://bokonon-yossarian.itch.io/blue-bayou"
-    },
-    {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com"
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=818",
+      "recommended": false
     }
   ],
-  "source_name": "NeoVitaDB",
-  "source_id": "1782",
-  "source_url": "https://github.com",
-  "release_page": "",
-  "updated_at": "2026-08-15T18:26:19.873327+00:00"
+  "source_name": "VitaDBtoo",
+  "source_id": "818",
+  "source_url": "https://bokonon-yossarian.itch.io/blue-bayou",
+  "release_page": "https://bokonon-yossarian.itch.io/blue-bayou",
+  "updated_at": "2026-08-13T15:34:48.546949+00:00"
 }

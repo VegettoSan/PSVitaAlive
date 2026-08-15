@@ -16,27 +16,21 @@
   "requirements": "Not specified",
   "size": 3290005,
   "status": "Legacy",
-  "icon": "https://www.rinnegatamante.eu/vitadb/icons/9cd72f4c6a673fb382c5d441058538d9f4c05d28788353bb180529f69360004c.png",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/9cd72f4c6a673fb382c5d441058538d9f4c05d28788353bb180529f69360004c.png",
   "screenshots": [
-    "https://www.rinnegatamante.eu/vitadb/screenshots/866241fa6c203431d4430d6babaf93b88bcf722c20a019140292fc63d07f211e.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/866241fa6c203431d4430d6babaf93b88bcf722c20a019140292fc63d07f211e.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/866241fa6c203431d4430d6babaf93b88bcf722c20a019140292fc63d07f211e.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/866241fa6c203431d4430d6babaf93b88bcf722c20a019140292fc63d07f211e.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=867",
-      "recommended": true
-    },
-    {
-      "type": "Download",
-      "name": "NeoVitaDB VPK",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/SonicMastr/Mad-Bomber-Vita/releases/download/1.0/Mad_Bomber_Vita.vpk",
       "recommended": false
     },
     {
       "type": "Official Website",
-      "name": "VitaDB Release Page",
+      "name": "VitaDBtoo Release Page",
       "url": "https://github.com/SonicMastr/Mad-Bomber-Vita/releases"
     },
     {
@@ -48,11 +42,17 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/SonicMastr/Mad-Bomber-Vita"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=867",
+      "recommended": true
     }
   ],
-  "source_name": "VitaDB",
+  "source_name": "VitaDBtoo",
   "source_id": "867",
   "source_url": "https://github.com/SonicMastr/Mad-Bomber-Vita",
   "release_page": "https://github.com/SonicMastr/Mad-Bomber-Vita/releases",
-  "updated_at": "2026-08-15T18:26:20.234557+00:00"
+  "updated_at": "2026-08-13T15:34:48.626107+00:00"
 }

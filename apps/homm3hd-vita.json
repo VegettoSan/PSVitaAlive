@@ -16,30 +16,24 @@
   "requirements": "- libshacccg.suprx\n- Game Data Files: Android\n- kubridge.skprx",
   "size": 4270900,
   "status": "Legacy",
-  "icon": "https://www.rinnegatamante.eu/vitadb/icons/1ccb156d169db996b728009c78137fb45f6ec1cc1d57c59c7337f4c5abb9d408.png",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/1ccb156d169db996b728009c78137fb45f6ec1cc1d57c59c7337f4c5abb9d408.png",
   "screenshots": [
-    "https://www.rinnegatamante.eu/vitadb/screenshots/0117a99a1979ae9b0c1f44edf87aa92ce0a9d401c38d4216fd7ee8c101dd0f1f.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/cb93ed9ac362500e4fb04c3ccb28a67480eef3c369e89921d8a703c6e3c92277.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/90755a2e555a697ab711597092deb4436beb17482ca3eecdb3d6a3f4b1da7949.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/be046a34054d86532497da0709f1d4a209182f13e828e5349a286d34e6d7b2f3.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/0117a99a1979ae9b0c1f44edf87aa92ce0a9d401c38d4216fd7ee8c101dd0f1f.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/0117a99a1979ae9b0c1f44edf87aa92ce0a9d401c38d4216fd7ee8c101dd0f1f.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/cb93ed9ac362500e4fb04c3ccb28a67480eef3c369e89921d8a703c6e3c92277.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/90755a2e555a697ab711597092deb4436beb17482ca3eecdb3d6a3f4b1da7949.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/be046a34054d86532497da0709f1d4a209182f13e828e5349a286d34e6d7b2f3.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/0117a99a1979ae9b0c1f44edf87aa92ce0a9d401c38d4216fd7ee8c101dd0f1f.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=928",
-      "recommended": true
-    },
-    {
-      "type": "Download",
-      "name": "NeoVitaDB VPK",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/Northfear/homm3hd-vita/releases/download/v1.2.3/HOMM3.vpk",
       "recommended": false
     },
     {
       "type": "Official Website",
-      "name": "VitaDB Release Page",
+      "name": "VitaDBtoo Release Page",
       "url": "https://github.com/Northfear/homm3hd-vita/releases"
     },
     {
@@ -51,11 +45,17 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/Northfear/homm3hd-vita"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=928",
+      "recommended": true
     }
   ],
-  "source_name": "VitaDB",
+  "source_name": "VitaDBtoo",
   "source_id": "928",
   "source_url": "https://github.com/Northfear/homm3hd-vita",
   "release_page": "https://github.com/Northfear/homm3hd-vita/releases",
-  "updated_at": "2026-08-15T18:26:19.423394+00:00"
+  "updated_at": "2026-08-13T15:34:48.447333+00:00"
 }

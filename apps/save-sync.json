@@ -17,14 +17,41 @@
   "requirements": "Not specified",
   "size": 8120593,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1418-save-sync.png",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/83c69b7a7af19414b9ef23122b3eef46cb87e27b72c95e3689f3708595ba7fd4.png",
   "screenshots": [
-    "https://www.rinnegatamante.eu/vitadb/screenshots/5a2d0b34f3e30446bc21588eebe454af5e38a31468db34804c12f13bdc0903cd.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/2331d985b815c82cba96947a84ac940f387b081189ff91eeab03c904928f84fd.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/5a2d0b34f3e30446bc21588eebe454af5e38a31468db34804c12f13bdc0903cd.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/2331d985b815c82cba96947a84ac940f387b081189ff91eeab03c904928f84fd.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/2331d985b815c82cba96947a84ac940f387b081189ff91eeab03c904928f84fd.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/5a2d0b34f3e30446bc21588eebe454af5e38a31468db34804c12f13bdc0903cd.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/2331d985b815c82cba96947a84ac940f387b081189ff91eeab03c904928f84fd.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VitaDBtoo VPK",
+      "url": "https://github.com/unveroleone/save-sync/releases/download/v0.1.4/vita-save-cloud.vpk",
+      "recommended": false
+    },
+    {
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
+      "url": "https://github.com/unveroleone/vita-save-sync/releases"
+    },
+    {
+      "type": "Official Website",
+      "name": "NeoVitaDB Release Page",
+      "url": "https://github.com/unveroleone/save-sync/releases/tag/v0.1.4"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/unveroleone/vita-save-sync"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1418",
+      "recommended": false
+    },
     {
       "type": "Download",
       "name": "NeoVitaDB VPK",
@@ -35,16 +62,11 @@
       "type": "Official Website",
       "name": "NeoVitaDB Release Page",
       "url": "https://github.com/unveroleone/save-sync/releases/tag/v0.1.5"
-    },
-    {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/unveroleone/vita-save-sync"
     }
   ],
-  "source_name": "NeoVitaDB",
+  "source_name": "VitaDBtoo",
   "source_id": "1418",
-  "source_url": "https://github.com/unveroleone/save-sync",
-  "release_page": "https://github.com/unveroleone/save-sync/releases/tag/v0.1.5",
-  "updated_at": "2026-08-15T18:26:18.927546+00:00"
+  "source_url": "https://github.com/unveroleone/vita-save-sync",
+  "release_page": "https://github.com/unveroleone/vita-save-sync/releases",
+  "updated_at": "2026-08-13T15:34:48.333453+00:00"
 }

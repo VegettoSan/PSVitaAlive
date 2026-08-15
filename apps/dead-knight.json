@@ -16,37 +16,37 @@
   "requirements": "- Game Data Files: PC",
   "size": 2870412,
   "status": "Legacy",
-  "icon": "https://www.rinnegatamante.eu/vitadb/icons/91bc9ded318ca831b4a7686bb6daad955b547dd2b4de56e0eedcb77eb32cc551.png",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/91bc9ded318ca831b4a7686bb6daad955b547dd2b4de56e0eedcb77eb32cc551.png",
   "screenshots": [
-    "https://www.rinnegatamante.eu/vitadb/icons/91bc9ded318ca831b4a7686bb6daad955b547dd2b4de56e0eedcb77eb32cc551.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/91bc9ded318ca831b4a7686bb6daad955b547dd2b4de56e0eedcb77eb32cc551.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=791",
-      "recommended": true
-    },
-    {
-      "type": "Download",
-      "name": "NeoVitaDB VPK",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/rodentcat/deadknight-vita-port/releases/download/1.0/DeadKnight.VPK",
       "recommended": false
     },
     {
       "type": "Official Website",
-      "name": "VitaDB Release Page",
+      "name": "VitaDBtoo Release Page",
       "url": "https://github.com/rodentcat/deadknight-vita-port"
     },
     {
       "type": "Official Website",
       "name": "NeoVitaDB Release Page",
       "url": "https://github.com/rodentcat/deadknight-vita-port/releases/tag/1.0"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=791",
+      "recommended": true
     }
   ],
-  "source_name": "VitaDB",
+  "source_name": "VitaDBtoo",
   "source_id": "791",
   "source_url": "https://github.com/rodentcat/deadknight-vita-port",
   "release_page": "https://github.com/rodentcat/deadknight-vita-port",
-  "updated_at": "2026-08-15T18:26:19.919824+00:00"
+  "updated_at": "2026-08-13T15:34:48.557833+00:00"
 }

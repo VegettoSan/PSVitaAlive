@@ -23,14 +23,9 @@
   "links": [
     {
       "type": "Download",
-      "name": "NeoVitaDB VPK",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/Yoti/psv_idpsdump/releases/download/v1.1/PSV_IDPS_Dumper_v1.1.vpk",
       "recommended": true
-    },
-    {
-      "type": "Official Website",
-      "name": "NeoVitaDB Release Page",
-      "url": "https://github.com/Yoti/psv_idpsdump/releases/tag/v1.1"
     },
     {
       "type": "Official Website",
@@ -38,14 +33,19 @@
       "url": "https://github.com/Yoti/psv_idpsdump/releases"
     },
     {
+      "type": "Official Website",
+      "name": "NeoVitaDB Release Page",
+      "url": "https://github.com/Yoti/psv_idpsdump/releases/tag/v1.1"
+    },
+    {
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/Yoti/psv_idpsdump"
     }
   ],
-  "source_name": "NeoVitaDB",
+  "source_name": "VitaDBtoo",
   "source_id": "619",
   "source_url": "https://github.com/Yoti/psv_idpsdump",
-  "release_page": "https://github.com/Yoti/psv_idpsdump/releases/tag/v1.1",
-  "updated_at": "2026-08-15T18:26:20.112282+00:00"
+  "release_page": "https://github.com/Yoti/psv_idpsdump/releases",
+  "updated_at": "2026-08-13T15:34:48.595223+00:00"
 }

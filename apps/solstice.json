@@ -16,29 +16,23 @@
   "requirements": "Not specified",
   "size": 62286885,
   "status": "Legacy",
-  "icon": "https://www.rinnegatamante.eu/vitadb/icons/c5c12e129060f8a0bcb3e82138a7c5f266149f3344d094605bed4829d250a969.png",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/c5c12e129060f8a0bcb3e82138a7c5f266149f3344d094605bed4829d250a969.png",
   "screenshots": [
-    "https://www.rinnegatamante.eu/vitadb/screenshots/1c720834fee36730bb606b2afa697e8db407924e8f941049b6a3a870514b767c.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/1fd6a57926b3e8035d16afbe630268841cfc0aef1c99b44a942c5e75fadf0e1c.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/1c720834fee36730bb606b2afa697e8db407924e8f941049b6a3a870514b767c.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/1fd6a57926b3e8035d16afbe630268841cfc0aef1c99b44a942c5e75fadf0e1c.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/1fd6a57926b3e8035d16afbe630268841cfc0aef1c99b44a942c5e75fadf0e1c.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/1c720834fee36730bb606b2afa697e8db407924e8f941049b6a3a870514b767c.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/1fd6a57926b3e8035d16afbe630268841cfc0aef1c99b44a942c5e75fadf0e1c.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1175",
-      "recommended": true
-    },
-    {
-      "type": "Download",
-      "name": "NeoVitaDB VPK",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/withLogic/solstice-godot/releases/download/v1.0.4/Solstice.vpk",
       "recommended": false
     },
     {
       "type": "Official Website",
-      "name": "VitaDB Release Page",
+      "name": "VitaDBtoo Release Page",
       "url": "https://github.com/withLogic/solstice-godot/releases"
     },
     {
@@ -50,11 +44,17 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/withLogic/solstice-godot"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1175",
+      "recommended": true
     }
   ],
-  "source_name": "VitaDB",
+  "source_name": "VitaDBtoo",
   "source_id": "1175",
   "source_url": "https://github.com/withLogic/solstice-godot",
   "release_page": "https://github.com/withLogic/solstice-godot/releases",
-  "updated_at": "2026-08-15T18:26:19.442195+00:00"
+  "updated_at": "2026-08-13T15:34:48.453709+00:00"
 }

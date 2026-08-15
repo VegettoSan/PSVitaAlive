@@ -18,11 +18,11 @@
   "status": "Legacy",
   "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/0387-mirrormagic.png",
   "screenshots": [
-    "https://www.rinnegatamante.eu/vitadb/screenshots/2a2472fe17e701edb6c3cbda4ce94f999aa90d0dc7d3b551c1576af19a1a19e2.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/06f23b671e7836485d85944951ac90cce82b3da2f46d28f1941ce7c8be2edb57.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/70ac6d1428244cd3652bdbb3ba36c0fe108d50b3fe572e45145301121ee39eee.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/a381c005face18623292125db84a00699086ad70418e0f15fcfccb8d0224e3e0.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/2a2472fe17e701edb6c3cbda4ce94f999aa90d0dc7d3b551c1576af19a1a19e2.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/2a2472fe17e701edb6c3cbda4ce94f999aa90d0dc7d3b551c1576af19a1a19e2.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/06f23b671e7836485d85944951ac90cce82b3da2f46d28f1941ce7c8be2edb57.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/70ac6d1428244cd3652bdbb3ba36c0fe108d50b3fe572e45145301121ee39eee.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/a381c005face18623292125db84a00699086ad70418e0f15fcfccb8d0224e3e0.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/2a2472fe17e701edb6c3cbda4ce94f999aa90d0dc7d3b551c1576af19a1a19e2.png"
   ],
   "links": [
     {
@@ -46,5 +46,5 @@
   "source_id": "387",
   "source_url": "https://github.com/rsn8887/rocksndiamonds",
   "release_page": "https://github.com/rsn8887/rocksndiamonds/releases/tag/1.15",
-  "updated_at": "2026-08-15T18:26:20.353248+00:00"
+  "updated_at": "2026-08-13T15:34:48.656683+00:00"
 }

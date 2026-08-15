@@ -18,6 +18,7 @@
   "status": "Legacy",
   "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1609-fryingmaster.png",
   "screenshots": [
+    "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1609-fryingmaster.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/fa05a7d03d42c4be8cd8f1e55b18b955dd7052ce67e99b1f149230da8477bd4b.png"
   ],
   "links": [
@@ -28,10 +29,9 @@
       "recommended": true
     },
     {
-      "type": "Download",
-      "name": "VitaDBtoo VPK",
-      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/414-FryingMaster.vpk",
-      "recommended": false
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com"
     },
     {
       "type": "Official Website",
@@ -39,14 +39,15 @@
       "url": "https://www.reddit.com/r/vitahacks/comments/acai91/ported_a_game_im_working_on_for_android_to_psvita/"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com"
+      "type": "Download",
+      "name": "VitaDBtoo VPK",
+      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/414-FryingMaster.vpk",
+      "recommended": false
     }
   ],
   "source_name": "NeoVitaDB",
   "source_id": "1609",
   "source_url": "https://github.com",
   "release_page": "",
-  "updated_at": "2026-08-15T18:26:20.678811+00:00"
+  "updated_at": "2026-08-13T15:34:48.724631+00:00"
 }

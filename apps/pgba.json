@@ -16,26 +16,20 @@
   "requirements": "Not specified",
   "size": 3202992,
   "status": "Legacy",
-  "icon": "https://www.rinnegatamante.eu/vitadb/icons/5e0d0eb2a8f3388002ab296bc55896d1fc203a6c0714d0bde74ece22ad233179.png",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/5e0d0eb2a8f3388002ab296bc55896d1fc203a6c0714d0bde74ece22ad233179.png",
   "screenshots": [
-    "https://www.rinnegatamante.eu/vitadb/icons/5e0d0eb2a8f3388002ab296bc55896d1fc203a6c0714d0bde74ece22ad233179.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/5e0d0eb2a8f3388002ab296bc55896d1fc203a6c0714d0bde74ece22ad233179.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1358",
-      "recommended": true
-    },
-    {
-      "type": "Download",
-      "name": "NeoVitaDB VPK",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/Cpasjuste/pemu/releases/download/v7.1/pgba.vpk",
       "recommended": false
     },
     {
       "type": "Official Website",
-      "name": "VitaDB Release Page",
+      "name": "VitaDBtoo Release Page",
       "url": "https://github.com/Cpasjuste/pemu/releases"
     },
     {
@@ -47,11 +41,17 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/Cpasjuste/pemu"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1358",
+      "recommended": true
     }
   ],
-  "source_name": "VitaDB",
+  "source_name": "VitaDBtoo",
   "source_id": "1358",
   "source_url": "https://github.com/Cpasjuste/pemu",
   "release_page": "https://github.com/Cpasjuste/pemu/releases",
-  "updated_at": "2026-08-15T18:26:19.101672+00:00"
+  "updated_at": "2026-08-13T15:34:48.371103+00:00"
 }

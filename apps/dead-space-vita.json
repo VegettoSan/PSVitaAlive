@@ -16,30 +16,24 @@
   "requirements": "- libshacccg.suprx\n- kubridge.skprx v.0.3 or higher\n- Game Data Files: Android",
   "size": 1451351,
   "status": "Legacy",
-  "icon": "https://www.rinnegatamante.eu/vitadb/icons/ec0c9eaf7a7645a700f8b6937ade5b7199b263ff469f2ec1d565f00b2bb04b6d.png",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/ec0c9eaf7a7645a700f8b6937ade5b7199b263ff469f2ec1d565f00b2bb04b6d.png",
   "screenshots": [
-    "https://www.rinnegatamante.eu/vitadb/screenshots/b4dbbfafe8707a90a2d2a2f01f5fea4b16b1d39dabaf9575bae287020f86ee3e.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/c2ce5d079bc68e7b0db5f7eb6fa8722f1921156cf73df7b62e0e52180e9889ea.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/2b9b21a0fad43137664fbbcbcb89a8d8b87ecb4fcd80afcb0142ce78795db702.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/4ffbe9c276c3482386434d2dc3c289b304458a577395f6058aa8ceb52b24c6ce.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/b4dbbfafe8707a90a2d2a2f01f5fea4b16b1d39dabaf9575bae287020f86ee3e.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/b4dbbfafe8707a90a2d2a2f01f5fea4b16b1d39dabaf9575bae287020f86ee3e.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c2ce5d079bc68e7b0db5f7eb6fa8722f1921156cf73df7b62e0e52180e9889ea.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/2b9b21a0fad43137664fbbcbcb89a8d8b87ecb4fcd80afcb0142ce78795db702.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/4ffbe9c276c3482386434d2dc3c289b304458a577395f6058aa8ceb52b24c6ce.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/b4dbbfafe8707a90a2d2a2f01f5fea4b16b1d39dabaf9575bae287020f86ee3e.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=999",
-      "recommended": true
-    },
-    {
-      "type": "Download",
-      "name": "NeoVitaDB VPK",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/v-atamanenko/deadspace-vita/releases/download/v1.3/Dead.Space.v1.3.vpk",
       "recommended": false
     },
     {
       "type": "Official Website",
-      "name": "VitaDB Release Page",
+      "name": "VitaDBtoo Release Page",
       "url": "https://github.com/v-atamanenko/deadspace-vita/releases"
     },
     {
@@ -51,11 +45,17 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/v-atamanenko/deadspace-vita"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=999",
+      "recommended": true
     }
   ],
-  "source_name": "VitaDB",
+  "source_name": "VitaDBtoo",
   "source_id": "999",
   "source_url": "https://github.com/v-atamanenko/deadspace-vita",
   "release_page": "https://github.com/v-atamanenko/deadspace-vita/releases",
-  "updated_at": "2026-08-15T18:26:19.748188+00:00"
+  "updated_at": "2026-08-13T15:34:48.519919+00:00"
 }

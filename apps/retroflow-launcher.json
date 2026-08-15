@@ -17,30 +17,24 @@
   "requirements": "Not specified",
   "size": 13704491,
   "status": "Legacy",
-  "icon": "https://www.rinnegatamante.eu/vitadb/icons/ed7cd72db26f2761fb41b343492e51d4dfd5e27064a3ccd7447e70c256341706.png",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/ed7cd72db26f2761fb41b343492e51d4dfd5e27064a3ccd7447e70c256341706.png",
   "screenshots": [
-    "https://www.rinnegatamante.eu/vitadb/screenshots/88d9a1fdba5f9235725b1d4ccecd3d38a12551c73ff71d6255f556d88bde6e71.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/de1416077452d50b69ceb1027819c1273697928c3a395a99b1cc790f76eba38f.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/f659d762d5577ce8376416271bb0f840d4220bcea23ae324c1c528e458e5d637.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/77d8705f5c8141fa853df3c2a45805427d46f26f6972488c41f4bf79456f1541.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/88d9a1fdba5f9235725b1d4ccecd3d38a12551c73ff71d6255f556d88bde6e71.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/88d9a1fdba5f9235725b1d4ccecd3d38a12551c73ff71d6255f556d88bde6e71.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/de1416077452d50b69ceb1027819c1273697928c3a395a99b1cc790f76eba38f.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/f659d762d5577ce8376416271bb0f840d4220bcea23ae324c1c528e458e5d637.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/77d8705f5c8141fa853df3c2a45805427d46f26f6972488c41f4bf79456f1541.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/88d9a1fdba5f9235725b1d4ccecd3d38a12551c73ff71d6255f556d88bde6e71.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=745",
-      "recommended": true
-    },
-    {
-      "type": "Download",
-      "name": "NeoVitaDB VPK",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/jimbob4000/RetroFlow-Launcher/releases/download/v8.2.0/RetroFlow_v8.2.0.vpk",
       "recommended": false
     },
     {
       "type": "Official Website",
-      "name": "VitaDB Release Page",
+      "name": "VitaDBtoo Release Page",
       "url": "https://github.com/jimbob4000/RetroFlow-Launcher/releases"
     },
     {
@@ -52,11 +46,17 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/jimbob4000/RetroFlow-Launcher"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=745",
+      "recommended": true
     }
   ],
-  "source_name": "VitaDB",
+  "source_name": "VitaDBtoo",
   "source_id": "745",
   "source_url": "https://github.com/jimbob4000/RetroFlow-Launcher",
   "release_page": "https://github.com/jimbob4000/RetroFlow-Launcher/releases",
-  "updated_at": "2026-08-15T18:26:18.923649+00:00"
+  "updated_at": "2026-08-13T15:34:48.332588+00:00"
 }

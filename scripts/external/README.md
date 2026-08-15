@@ -8,7 +8,6 @@ Los lectores externos convierten sus datos a `Candidate`. El objetivo es que el 
 
 ```text
 VitaDB
-NeoVitaDB
 VitaDBtoo
    ↓
 adaptador de fuente
@@ -22,15 +21,16 @@ merge_group()
 app canónica PS Vita Alive Store
 ```
 
+El pipeline conserva además todas las aplicaciones que ya existen en VitaHub, aunque una fuente externa no las contenga.
+
 ## Componentes principales
 
-- `sources.py`: adquisición y normalización de fuentes compatibles, incluyendo VitaDB.
+- `sources.py`: adquisición y normalización de VitaDB y VitaDBtoo.
 - `aggregate.py`: carga local, obtiene candidatos externos, deduplica, fusiona, resuelve autores, categorías y persistencia.
 - `identity.py`: identidad/canonicalización de autores y comparación de identidades.
 - `merge.py`: combinación de registros equivalentes.
 - `overrides.py`: aplicación de Overrides.
 - `normalizer.py`: normalización de texto, repositorios y versiones.
-- `neovitadb.py`: lector específico de NeoVitaDB.
 
 ## VitaDB
 
@@ -38,9 +38,19 @@ El lector específico de VitaDB hace `POST` con cuerpo vacío al endpoint oficia
 
 Esto es una peculiaridad del origen y no debe trasladarse a otros catálogos sin comprobar su comportamiento real.
 
+## VitaDBtoo
+
+VitaDBtoo se consume desde su `apps.json` público y se utiliza como fuente secundaria para completar datos y cruzar información con VitaDB.
+
 ## Identidad de aplicaciones
 
 Las aplicaciones se agrupan por identidad, con `title_id` como identificador principal del ecosistema Vita. No depender de los IDs numéricos de las fuentes externas como ID canónico de PS Vita Alive Store.
+
+## Protección de aplicaciones VitaHub
+
+El modo de reconstrucción externa es **no destructivo**. Las aplicaciones existentes en `apps/` siempre se mantienen como entradas del merge. Una aplicación exclusiva de VitaHub no puede ser eliminada simplemente porque no exista en VitaDB o VitaDBtoo.
+
+El agregador además verifica al finalizar que ninguna aplicación local protegida haya desaparecido del resultado.
 
 ## Identidad de autores
 

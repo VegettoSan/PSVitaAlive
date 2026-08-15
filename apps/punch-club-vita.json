@@ -16,41 +16,41 @@
   "requirements": "- Game Data Files: Steam",
   "size": 17054914,
   "status": "Legacy",
-  "icon": "https://www.rinnegatamante.eu/vitadb/icons/e2a8f91086eb42b61b2b2efc9c945676427bdd710a7a9d18c562c04efbbb1aa1.png",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/e2a8f91086eb42b61b2b2efc9c945676427bdd710a7a9d18c562c04efbbb1aa1.png",
   "screenshots": [
-    "https://www.rinnegatamante.eu/vitadb/screenshots/80470d8b98cfc8a516fb963cc687b2e43ac9fb60b2ae67b47617f15482dffe24.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/ab20d67a035a14ea36a47ccbc8a4d62f38048fe2dceb01025851ea5d1b923567.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/d9a94215d09d672af0c33573af14160b737f43b2438e9022959583f698a09259.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/80470d8b98cfc8a516fb963cc687b2e43ac9fb60b2ae67b47617f15482dffe24.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/ab20d67a035a14ea36a47ccbc8a4d62f38048fe2dceb01025851ea5d1b923567.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/ab20d67a035a14ea36a47ccbc8a4d62f38048fe2dceb01025851ea5d1b923567.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/d9a94215d09d672af0c33573af14160b737f43b2438e9022959583f698a09259.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/80470d8b98cfc8a516fb963cc687b2e43ac9fb60b2ae67b47617f15482dffe24.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/ab20d67a035a14ea36a47ccbc8a4d62f38048fe2dceb01025851ea5d1b923567.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1322",
-      "recommended": true
-    },
-    {
-      "type": "Download",
-      "name": "NeoVitaDB VPK",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/PatnosDD/Punch-Club-Ps-Vita/releases/download/V1.0/PunchClub.vpk",
       "recommended": false
     },
     {
       "type": "Official Website",
-      "name": "VitaDB Release Page",
+      "name": "VitaDBtoo Release Page",
       "url": "https://github.com/PatnosDD/Punch-Club-Ps-Vita"
     },
     {
       "type": "Official Website",
       "name": "NeoVitaDB Release Page",
       "url": "https://github.com/PatnosDD/Punch-Club-Ps-Vita/releases/tag/V1.0"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1322",
+      "recommended": true
     }
   ],
-  "source_name": "VitaDB",
+  "source_name": "VitaDBtoo",
   "source_id": "1322",
   "source_url": "https://github.com/PatnosDD/Punch-Club-Ps-Vita",
   "release_page": "https://github.com/PatnosDD/Punch-Club-Ps-Vita",
-  "updated_at": "2026-08-15T18:26:19.173543+00:00"
+  "updated_at": "2026-08-13T15:34:48.388619+00:00"
 }

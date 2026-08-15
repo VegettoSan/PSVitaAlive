@@ -16,26 +16,20 @@
   "requirements": "Not specified",
   "size": 2995698,
   "status": "Legacy",
-  "icon": "https://www.rinnegatamante.eu/vitadb/icons/5e90e9b965562d06ce6fe7c8eed3f2f4017165df6a01d49406281e5030b30d6b.png",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/5e90e9b965562d06ce6fe7c8eed3f2f4017165df6a01d49406281e5030b30d6b.png",
   "screenshots": [
-    "https://www.rinnegatamante.eu/vitadb/icons/5e90e9b965562d06ce6fe7c8eed3f2f4017165df6a01d49406281e5030b30d6b.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/5e90e9b965562d06ce6fe7c8eed3f2f4017165df6a01d49406281e5030b30d6b.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1246",
-      "recommended": true
-    },
-    {
-      "type": "Download",
-      "name": "NeoVitaDB VPK",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/lp1dev/vita_ports_scanner/releases/download/v0.10.0/ports_scanner.vpk",
       "recommended": false
     },
     {
       "type": "Official Website",
-      "name": "VitaDB Release Page",
+      "name": "VitaDBtoo Release Page",
       "url": "https://github.com/lp1dev/vita_ports_scanner/releases"
     },
     {
@@ -47,11 +41,17 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/lp1dev/vita_ports_scanner"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1246",
+      "recommended": true
     }
   ],
-  "source_name": "VitaDB",
+  "source_name": "VitaDBtoo",
   "source_id": "1246",
   "source_url": "https://github.com/lp1dev/vita_ports_scanner",
   "release_page": "https://github.com/lp1dev/vita_ports_scanner/releases",
-  "updated_at": "2026-08-15T18:26:19.314039+00:00"
+  "updated_at": "2026-08-13T15:34:48.420686+00:00"
 }

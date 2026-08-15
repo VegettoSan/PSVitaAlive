@@ -16,20 +16,25 @@
   "requirements": "- Game Data Files: Android OR PC",
   "size": 2991445,
   "status": "Legacy",
-  "icon": "https://www.rinnegatamante.eu/vitadb/icons/d2fcd2dddb178ddb5a0a9b757c6ab0e55e21e804e6177bad9af680e4f79fa1ce.png",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/d2fcd2dddb178ddb5a0a9b757c6ab0e55e21e804e6177bad9af680e4f79fa1ce.png",
   "screenshots": [
-    "https://www.rinnegatamante.eu/vitadb/screenshots/d6a79cadd9e15a5fe32b6912470faf604201daec914318aa747220fdabfff27f.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/89c835c53ada5e89c92941ca1514e4390beb28942614e89809fe2c0cd35b000e.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/da0506fc0e1b01737350ba730f03fd278379e3ccb600f3ecee64096983fa235e.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/d6a79cadd9e15a5fe32b6912470faf604201daec914318aa747220fdabfff27f.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/89c835c53ada5e89c92941ca1514e4390beb28942614e89809fe2c0cd35b000e.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/89c835c53ada5e89c92941ca1514e4390beb28942614e89809fe2c0cd35b000e.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/da0506fc0e1b01737350ba730f03fd278379e3ccb600f3ecee64096983fa235e.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/d6a79cadd9e15a5fe32b6912470faf604201daec914318aa747220fdabfff27f.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/89c835c53ada5e89c92941ca1514e4390beb28942614e89809fe2c0cd35b000e.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=657",
-      "recommended": true
+      "name": "VitaDBtoo VPK",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/657-FranBowChapter3.vpk",
+      "recommended": false
+    },
+    {
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
+      "url": "https://github.com/hatoving/GMSVitaPortInstructions"
     },
     {
       "type": "Download",
@@ -38,14 +43,15 @@
       "recommended": false
     },
     {
-      "type": "Official Website",
-      "name": "VitaDB Release Page",
-      "url": "https://github.com/hatoving/GMSVitaPortInstructions"
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=657",
+      "recommended": true
     }
   ],
-  "source_name": "VitaDB",
+  "source_name": "VitaDBtoo",
   "source_id": "657",
   "source_url": "https://github.com/hatoving/GMSVitaPortInstructions",
   "release_page": "https://github.com/hatoving/GMSVitaPortInstructions",
-  "updated_at": "2026-08-15T18:26:20.086452+00:00"
+  "updated_at": "2026-08-13T15:34:48.588695+00:00"
 }

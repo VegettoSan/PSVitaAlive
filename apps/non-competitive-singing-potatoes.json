@@ -8,7 +8,7 @@
     "dos",
     "holy-pangolin"
   ],
-  "category_id": "games",
+  "category_id": "ports",
   "subcategory_ids": [
     "other"
   ],
@@ -39,5 +39,5 @@
   "source_id": "1450",
   "source_url": "https://dos.itch.io/potatoes",
   "release_page": "https://dos.itch.io/potatoes",
-  "updated_at": "2026-08-15T18:26:19.420771+00:00"
+  "updated_at": "2026-08-14T01:05:59.215233+00:00"
 }

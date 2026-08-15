@@ -16,27 +16,21 @@
   "requirements": "Not specified",
   "size": 187573,
   "status": "Legacy",
-  "icon": "https://www.rinnegatamante.eu/vitadb/icons/ae3d5aa9e219d81a96a931b4b93847c1773096bcfdaf692d91877e239b5d34a5.png",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/ae3d5aa9e219d81a96a931b4b93847c1773096bcfdaf692d91877e239b5d34a5.png",
   "screenshots": [
-    "https://www.rinnegatamante.eu/vitadb/screenshots/07aec9266204ddb0ce96d4429deed18136ebe87ca4b4cfdf4c01789dbd0ebbbf.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/07aec9266204ddb0ce96d4429deed18136ebe87ca4b4cfdf4c01789dbd0ebbbf.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/07aec9266204ddb0ce96d4429deed18136ebe87ca4b4cfdf4c01789dbd0ebbbf.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/07aec9266204ddb0ce96d4429deed18136ebe87ca4b4cfdf4c01789dbd0ebbbf.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=544",
-      "recommended": true
-    },
-    {
-      "type": "Download",
-      "name": "NeoVitaDB VPK",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/Freakler/vita-ConsoleID/releases/download/1.00/ConsoleID_v100.vpk",
       "recommended": false
     },
     {
       "type": "Official Website",
-      "name": "VitaDB Release Page",
+      "name": "VitaDBtoo Release Page",
       "url": "https://github.com/Freakler/vita-ConsoleID/releases"
     },
     {
@@ -48,11 +42,17 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/Freakler/vita-ConsoleID"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=544",
+      "recommended": true
     }
   ],
-  "source_name": "VitaDB",
+  "source_name": "VitaDBtoo",
   "source_id": "544",
   "source_url": "https://github.com/Freakler/vita-ConsoleID",
   "release_page": "https://github.com/Freakler/vita-ConsoleID/releases",
-  "updated_at": "2026-08-15T18:26:20.218307+00:00"
+  "updated_at": "2026-08-13T15:34:48.621898+00:00"
 }

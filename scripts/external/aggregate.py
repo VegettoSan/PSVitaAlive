@@ -11,7 +11,6 @@ from pathlib import Path
 
 from .identity import canonical_author_id, same_identity
 from .merge import merge_group
-from .neovitadb import fetch_candidates as fetch_neovita
 from .normalizer import canonical_repo, normalize_text, normalize_version
 from .overrides import apply_override, load_overrides
 from .sources import Candidate, extract_catalog_items, fetch_json, fetch_vitadb, normalize_vitadb, normalize_vitadbtoo
@@ -23,7 +22,6 @@ CATEGORY_MAP = ROOT / "sources" / "category_map.json"
 SOURCE_NAMES = {
     "vitadb": "VitaDB",
     "vitadbtoo": "VitaDBtoo",
-    "neovitadb": "NeoVitaDB",
 }
 
 AUTHOR_ICON_FALLBACK = (
@@ -75,13 +73,6 @@ def external_candidates():
                     candidate = normalize_vitadbtoo(item)
                     if candidate.name and candidate.platform == "vita" and candidate.title_id:
                         result.append(candidate)
-            elif source_id == "neovitadb":
-                for item in fetch_neovita():
-                    if item.get("platform", "vita") == "vita":
-                        from .neovitadb import normalize
-                        candidate = normalize(item)
-                        if candidate.name and candidate.title_id:
-                            result.append(candidate)
             source_counts[source_id] = len(result) - before
         except Exception as exc:
             source_counts[source_id] = 0
@@ -136,7 +127,6 @@ def _dedupe_preserve(items: list[str]) -> list[str]:
 
 
 def _subcategories_from_tags(tags, allowed: set[str], tag_map: dict) -> list[str]:
-    """Map free-form external tags onto official subcategory ids for this category."""
     if not tags:
         return []
     result: list[str] = []
@@ -159,7 +149,6 @@ def normalize_categories(candidate: Candidate, categories, local_app: dict | Non
     mappings = cfg["mappings"]
     tag_map = cfg["tag_to_subcategory"]
 
-    # Local curated apps always win for category/subcategory.
     if local_app:
         category_id = local_app.get("category_id")
         category = valid.get(category_id)
@@ -181,7 +170,6 @@ def normalize_categories(candidate: Candidate, categories, local_app: dict | Non
 
     allowed_list = [item.get("id") for item in valid[category_id].get("subcategories", [])]
     allowed = set(allowed_list)
-
     tags = getattr(candidate, "tags", None) or []
     subs = _subcategories_from_tags(tags, allowed, tag_map)
 
@@ -231,6 +219,7 @@ def resolve_author_id(name: str, authors: dict, group: list[Candidate]) -> str:
     if raw in authors:
         return raw
     normalized = normalize_text(raw)
+
     def slug_key(value: str) -> str:
         return re.sub(r"[-_]+", "-", normalize_text(value)).strip("-")
 
@@ -284,16 +273,10 @@ def write_json_if_changed(path: Path, value: dict) -> bool:
     return True
 
 
-def persist_source_files(root: Path, final_apps: list[dict], final_authors: dict[str, dict], clean_rebuild: bool = False):
+def persist_source_files(root: Path, final_apps: list[dict], final_authors: dict[str, dict], rebuild_requested: bool = False, protected_local_ids: set[str] | None = None):
     changed_apps = 0
     changed_authors = 0
-    final_ids = {app.get("id") for app in final_apps if app.get("id")}
-
-    if clean_rebuild:
-        for path in sorted((root / "apps").glob("*.json")):
-            if path.stem not in final_ids:
-                path.unlink()
-                changed_apps += 1
+    protected_local_ids = protected_local_ids or set()
 
     for app in sorted(final_apps, key=lambda item: str(item.get("id", ""))):
         app_id = app.get("id")
@@ -315,20 +298,22 @@ def persist_source_files(root: Path, final_apps: list[dict], final_authors: dict
             changed_authors += 1
 
     print("Canonical source persistence:")
-    print(f"  Clean rebuild: {'yes' if clean_rebuild else 'no'}")
-    print(f"  App JSON files changed/created/deleted: {changed_apps}")
+    print(f"  External rebuild requested: {'yes' if rebuild_requested else 'no'}")
+    print("  Protected local-only apps: {}".format(len(protected_local_ids)))
+    print(f"  App JSON files changed/created: {changed_apps}")
     print(f"  Author JSON files created: {changed_authors}")
 
 
 def build(root: Path):
-    clean_rebuild = os.environ.get("VITAHUB_REBUILD_FROM_EXTERNAL", "").lower() in {"1", "true", "yes"}
+    rebuild_requested = os.environ.get("VITAHUB_REBUILD_FROM_EXTERNAL", "").lower() in {"1", "true", "yes"}
     local_apps, authors, categories = load_local()
-    if clean_rebuild:
-        local_apps = []
+    protected_local_ids = {app.get("id") for _, app in local_apps if app.get("id")}
 
+    # Rebuild mode refreshes the catalog from external candidates, but is
+    # deliberately non-destructive: all existing VitaHub apps remain inputs.
     locals_as_candidates = []
     local_by_id = {}
-    local_ids = {app.get("id") for _, app in local_apps if app.get("id")}
+    local_ids = set(protected_local_ids)
 
     for _, app in local_apps:
         repo = next((x.get("url") for x in app.get("links", []) if x.get("type") == "Repository"), None)
@@ -404,7 +389,7 @@ def build(root: Path):
             "category_id": category_id,
             "subcategory_ids": subcategory_ids,
             "version": merged.version or app.get("version", "0"),
-            "version_date": (merged.version_date or app.get("version_date") or datetime.now(timezone.utc).date().isoformat())[:10],
+            "version_date": merged.version_date[:10],
             "requirements": merged.requirements if merged.requirements is not None else app.get("requirements", ""),
             "size": int(merged.size or app.get("size") or 1),
             "status": app.get("status", "Legacy") if local_app else "Legacy",
@@ -417,7 +402,6 @@ def build(root: Path):
         existing_links = list(app.get("links", []))
         existing_urls = {item.get("url") for item in existing_links if isinstance(item, dict)}
 
-        # Prefer newest version, then newest date; source priority is only a tie-breaker.
         def freshness_key(item):
             return (
                 normalize_version(item.version),
@@ -430,7 +414,6 @@ def build(root: Path):
             key=freshness_key,
             reverse=True,
         )
-        # Only surface Download links for the newest version (keeps catalog current).
         matching_external = []
         if download_candidates:
             best_version = normalize_version(download_candidates[0].version)
@@ -473,7 +456,6 @@ def build(root: Path):
             })
             existing_urls.add(url)
 
-        # Recommended download = newest version/date (matching_external already sorted).
         if matching_external:
             preferred = matching_external[0].download_url
             for item in existing_links:
@@ -507,11 +489,27 @@ def build(root: Path):
             override_count += 1
         final_apps.append(app)
 
-    persist_source_files(root, final_apps, final_authors, clean_rebuild=clean_rebuild)
+    final_ids = {app.get("id") for app in final_apps if app.get("id")}
+    missing_local = sorted(protected_local_ids - final_ids)
+    if missing_local:
+        raise RuntimeError(
+            "Protected VitaHub apps would be lost during external aggregation: "
+            + ", ".join(missing_local[:20])
+            + (" ..." if len(missing_local) > 20 else "")
+        )
+
+    persist_source_files(
+        root,
+        final_apps,
+        final_authors,
+        rebuild_requested=rebuild_requested,
+        protected_local_ids=protected_local_ids,
+    )
 
     print("External aggregation summary:")
-    print(f"  Clean rebuild from external sources: {'yes' if clean_rebuild else 'no'}")
+    print(f"  External rebuild requested: {'yes' if rebuild_requested else 'no'}")
     print(f"  Local applications used as input: {len(local_apps)}")
+    print(f"  Protected local applications: {len(protected_local_ids)}")
     print(f"  External candidates: {len(external)}")
     print(f"  Deduplicated application groups: {len(groups)}")
     print(f"  New external applications: {new_external}")

@@ -19,24 +19,28 @@
   "status": "Legacy",
   "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1469-pfba.png",
   "screenshots": [
-    "https://www.rinnegatamante.eu/vitadb/screenshots/edc974b709ab1f8aee5e3f85063919a9244dc88ccfd9ba380a9c2400a6579c29.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/5f6264cb832b450e8b88b0af4d299222b70550ae3f4af0778a7210d519b79ed2.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/2533fecd68af45fdb0a0f93e3ce149ed8d86df7bc64dd3b8fb8c1f50d5e4c507.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/14f448c4feb0ca25e06da91a74830cd1c17c824b5dd5bcbdf7408981da5e72c4.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/edc974b709ab1f8aee5e3f85063919a9244dc88ccfd9ba380a9c2400a6579c29.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/edc974b709ab1f8aee5e3f85063919a9244dc88ccfd9ba380a9c2400a6579c29.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/5f6264cb832b450e8b88b0af4d299222b70550ae3f4af0778a7210d519b79ed2.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/2533fecd68af45fdb0a0f93e3ce149ed8d86df7bc64dd3b8fb8c1f50d5e4c507.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/14f448c4feb0ca25e06da91a74830cd1c17c824b5dd5bcbdf7408981da5e72c4.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/edc974b709ab1f8aee5e3f85063919a9244dc88ccfd9ba380a9c2400a6579c29.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "NeoVitaDB VPK",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/20-pfba.vpk",
       "recommended": true
     },
     {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=20",
-      "recommended": false
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
+      "url": "https://github.com/cpasjuste/pfba/releases"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/cpasjuste/pfba"
     },
     {
       "type": "Download",
@@ -45,19 +49,15 @@
       "recommended": false
     },
     {
-      "type": "Official Website",
-      "name": "VitaDB Release Page",
-      "url": "https://github.com/cpasjuste/pfba/releases"
-    },
-    {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/cpasjuste/pfba"
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=20",
+      "recommended": false
     }
   ],
-  "source_name": "NeoVitaDB",
-  "source_id": "1469",
-  "source_url": "https://github.com",
-  "release_page": "",
-  "updated_at": "2026-08-15T18:26:20.381645+00:00"
+  "source_name": "VitaDBtoo",
+  "source_id": "20",
+  "source_url": "https://github.com/cpasjuste/pfba",
+  "release_page": "https://github.com/cpasjuste/pfba/releases",
+  "updated_at": "2026-08-13T15:34:48.663389+00:00"
 }

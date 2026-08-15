@@ -16,27 +16,21 @@
   "requirements": "- kubridge.skprx\n- fd_fix.skprx OR repatch_ex.skprx\n- Game Data Files: Android",
   "size": 2087673,
   "status": "Legacy",
-  "icon": "https://www.rinnegatamante.eu/vitadb/icons/0e49a75b8ca147ac49d4460e44afc29b7d086776d48d85f65f7a6db55681d7da.png",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/0e49a75b8ca147ac49d4460e44afc29b7d086776d48d85f65f7a6db55681d7da.png",
   "screenshots": [
-    "https://www.rinnegatamante.eu/vitadb/screenshots/f23ca3b42385534d2b383c278542f803bc44fecc6e7b7749c2006a0de6e59b59.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/f23ca3b42385534d2b383c278542f803bc44fecc6e7b7749c2006a0de6e59b59.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/f23ca3b42385534d2b383c278542f803bc44fecc6e7b7749c2006a0de6e59b59.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/f23ca3b42385534d2b383c278542f803bc44fecc6e7b7749c2006a0de6e59b59.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=825",
-      "recommended": true
-    },
-    {
-      "type": "Download",
-      "name": "NeoVitaDB VPK",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/kaaass/Kero-Blaster-vita/releases/download/v1.2/Kero-Blaster.vpk",
       "recommended": false
     },
     {
       "type": "Official Website",
-      "name": "VitaDB Release Page",
+      "name": "VitaDBtoo Release Page",
       "url": "https://github.com/kaaass/Kero-Blaster-vita/releases"
     },
     {
@@ -48,11 +42,17 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/kaaass/Kero-Blaster-vita"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=825",
+      "recommended": true
     }
   ],
-  "source_name": "VitaDB",
+  "source_name": "VitaDBtoo",
   "source_id": "825",
   "source_url": "https://github.com/kaaass/Kero-Blaster-vita",
   "release_page": "https://github.com/kaaass/Kero-Blaster-vita/releases",
-  "updated_at": "2026-08-15T18:26:19.843654+00:00"
+  "updated_at": "2026-08-13T15:34:48.541230+00:00"
 }

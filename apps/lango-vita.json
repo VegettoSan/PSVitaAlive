@@ -16,26 +16,20 @@
   "requirements": "Not specified",
   "size": 27567790,
   "status": "Legacy",
-  "icon": "https://www.rinnegatamante.eu/vitadb/icons/fb1940e14dbf33d573460405c868a48cf7932906b97150f2eafcfb5a34254605.png",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/fb1940e14dbf33d573460405c868a48cf7932906b97150f2eafcfb5a34254605.png",
   "screenshots": [
-    "https://www.rinnegatamante.eu/vitadb/icons/fb1940e14dbf33d573460405c868a48cf7932906b97150f2eafcfb5a34254605.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/fb1940e14dbf33d573460405c868a48cf7932906b97150f2eafcfb5a34254605.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1038",
-      "recommended": true
-    },
-    {
-      "type": "Download",
-      "name": "NeoVitaDB VPK",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/ParallelProductions/Lango_GodotRPG-Vita/releases/download/v0.1.0-vita/Lango.vpk",
       "recommended": false
     },
     {
       "type": "Official Website",
-      "name": "VitaDB Release Page",
+      "name": "VitaDBtoo Release Page",
       "url": "https://github.com/ParallelProductions/Lango_GodotRPG-Vita/releases"
     },
     {
@@ -47,11 +41,17 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/ParallelProductions/Lango_GodotRPG-Vita"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1038",
+      "recommended": true
     }
   ],
-  "source_name": "VitaDB",
+  "source_name": "VitaDBtoo",
   "source_id": "1038",
   "source_url": "https://github.com/ParallelProductions/Lango_GodotRPG-Vita",
   "release_page": "https://github.com/ParallelProductions/Lango_GodotRPG-Vita/releases",
-  "updated_at": "2026-08-15T18:26:19.727437+00:00"
+  "updated_at": "2026-08-13T15:34:48.514653+00:00"
 }

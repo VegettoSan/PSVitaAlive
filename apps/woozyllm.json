@@ -2,8 +2,8 @@
   "id": "woozyllm",
   "title_id": "TCHAT0013",
   "name": "WoozyLLM",
-  "description": "Local model AI chatbot for PSVita.",
-  "long_description": "Local LLM chat client for PlayStation Vita. It runs a SmolLM 135M Q8_0 model entirely on-device, no network required.",
+  "description": "AI chat client for PSVITA.",
+  "long_description": "Runs a SmolLM 135M model quantized to Q8_0 entirely on the device, with no network connection required. Chat history is kept per session.",
   "author_ids": [
     "luckyi13i"
   ],
@@ -16,32 +16,39 @@
   "requirements": "Not specified",
   "size": 826346,
   "status": "Legacy",
-  "icon": "https://www.rinnegatamante.eu/vitadb/icons/e13c8bf221df57dab9c2fe98c4e3245c45b0f356f44dcf5a9defc613a6f4a4ce.png",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/987247d98ae1b48517443c239e9a7bb0c08bc0a5433faa0183378fc3c1395125.png",
   "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/987247d98ae1b48517443c239e9a7bb0c08bc0a5433faa0183378fc3c1395125.png",
     "https://www.rinnegatamante.eu/vitadb/screenshots/aae458fb8b406fa61b61565b82b5a07058dd3fed0445ed650a03b82758b50b69.png",
     "https://www.rinnegatamante.eu/vitadb/screenshots/5b358fe22df802e97e224ce5528993add26be51e4a86517ed9de95e6230b04c6.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1455",
-      "recommended": true
+      "name": "VitaDBtoo VPK",
+      "url": "https://github.com/LuckyI13I/WoozyLLM/releases/download/v0.1P/WoozyLLM.vpk",
+      "recommended": false
     },
     {
       "type": "Official Website",
-      "name": "VitaDB Release Page",
+      "name": "VitaDBtoo Release Page",
       "url": "https://github.com/LuckyI13I/WoozyLLM/releases"
     },
     {
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/LuckyI13I/WoozyLLM"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1455",
+      "recommended": true
     }
   ],
-  "source_name": "VitaDB",
-  "source_id": "1455",
+  "source_name": "VitaDBtoo",
+  "source_id": "1490",
   "source_url": "https://github.com/LuckyI13I/WoozyLLM",
   "release_page": "https://github.com/LuckyI13I/WoozyLLM/releases",
-  "updated_at": "2026-08-15T18:26:18.867070+00:00"
+  "updated_at": "2026-08-13T17:59:53.540062+00:00"
 }

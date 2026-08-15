@@ -16,30 +16,24 @@
   "requirements": "Not specified",
   "size": 73348351,
   "status": "Legacy",
-  "icon": "https://www.rinnegatamante.eu/vitadb/icons/bba0e0ab859f3161b5c3e6ecaaab30aed545443dcc895ac502c66de35780cc9f.png",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/bba0e0ab859f3161b5c3e6ecaaab30aed545443dcc895ac502c66de35780cc9f.png",
   "screenshots": [
-    "https://www.rinnegatamante.eu/vitadb/screenshots/275d0b60ac82e8c5fd1ee3c8d4a8ffa5d9d6bfc856e6811e5c3d346cac669193.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/8a20d577b4abea8c70228706c0a88031fe445d2e65b0b1818fe2545b44cc6610.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/2542041dc93db0a7b9e72b1486581a3ea10bc16c1f3536602b5ea58f55a65034.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/275d0b60ac82e8c5fd1ee3c8d4a8ffa5d9d6bfc856e6811e5c3d346cac669193.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/8a20d577b4abea8c70228706c0a88031fe445d2e65b0b1818fe2545b44cc6610.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/8a20d577b4abea8c70228706c0a88031fe445d2e65b0b1818fe2545b44cc6610.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/2542041dc93db0a7b9e72b1486581a3ea10bc16c1f3536602b5ea58f55a65034.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/275d0b60ac82e8c5fd1ee3c8d4a8ffa5d9d6bfc856e6811e5c3d346cac669193.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/8a20d577b4abea8c70228706c0a88031fe445d2e65b0b1818fe2545b44cc6610.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1224",
-      "recommended": true
-    },
-    {
-      "type": "Download",
-      "name": "NeoVitaDB VPK",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/MaloneCZSD/VanishVita/releases/download/Beta/VanishB16.vpk",
       "recommended": false
     },
     {
       "type": "Official Website",
-      "name": "VitaDB Release Page",
+      "name": "VitaDBtoo Release Page",
       "url": "https://github.com/malone46/VanishVita"
     },
     {
@@ -51,11 +45,17 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/MaloneCZSD/VanishVita"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1224",
+      "recommended": true
     }
   ],
-  "source_name": "VitaDB",
+  "source_name": "VitaDBtoo",
   "source_id": "1224",
   "source_url": "https://github.com/malone46/VanishVita",
   "release_page": "https://github.com/malone46/VanishVita",
-  "updated_at": "2026-08-15T18:26:19.372125+00:00"
+  "updated_at": "2026-08-13T15:34:48.435276+00:00"
 }

@@ -11,20 +11,41 @@
   "subcategory_ids": [
     "other"
   ],
-  "version": "v.2.7",
-  "version_date": "2026-08-15",
+  "version": "v.2.6",
+  "version_date": "2026-08-14",
   "requirements": "- libshacccg.suprx",
-  "size": 3101129,
+  "size": 3099746,
   "status": "Legacy",
-  "icon": "https://www.rinnegatamante.eu/vitadb/icons/8064ba8cf5276704931ec20e5c9731e1431ba0966f9e26ff696425b0c196af0f.png",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/8064ba8cf5276704931ec20e5c9731e1431ba0966f9e26ff696425b0c196af0f.png",
   "screenshots": [
-    "https://www.rinnegatamante.eu/vitadb/screenshots/3236d19c26907eca1eebde5c3fe417f74e4e290e1695858ed38d1d6cf0b5a7dd.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/bd56455344bf3c33a8052db57b852f3e08a18dc804f4f35baee0d64a793ce977.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/dbfc64adf46ebe4296208ec8c342bffed804c32525de743fd8c108aaf25d9ea7.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/097d35f941881fb96f11c4dcd8cd9edb616cadab07cf95ab56a6738018f67071.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/3236d19c26907eca1eebde5c3fe417f74e4e290e1695858ed38d1d6cf0b5a7dd.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/3236d19c26907eca1eebde5c3fe417f74e4e290e1695858ed38d1d6cf0b5a7dd.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/bd56455344bf3c33a8052db57b852f3e08a18dc804f4f35baee0d64a793ce977.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/dbfc64adf46ebe4296208ec8c342bffed804c32525de743fd8c108aaf25d9ea7.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/097d35f941881fb96f11c4dcd8cd9edb616cadab07cf95ab56a6738018f67071.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/3236d19c26907eca1eebde5c3fe417f74e4e290e1695858ed38d1d6cf0b5a7dd.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VitaDBtoo VPK",
+      "url": "https://github.com/Rinnegatamante/VitaDB-Downloader/releases/download/v.2.5/VitaDB.vpk",
+      "recommended": false
+    },
+    {
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
+      "url": "https://github.com/Rinnegatamante/VitaDB-Downloader/releases"
+    },
+    {
+      "type": "Official Website",
+      "name": "NeoVitaDB Release Page",
+      "url": "https://github.com/Rinnegatamante/VitaDB-Downloader/releases/tag/v.2.5"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/Rinnegatamante/VitaDB-Downloader"
+    },
     {
       "type": "Download",
       "name": "VitaDB VPK",
@@ -39,23 +60,13 @@
     },
     {
       "type": "Official Website",
-      "name": "VitaDB Release Page",
-      "url": "https://github.com/Rinnegatamante/VitaDB-Downloader/releases"
-    },
-    {
-      "type": "Official Website",
       "name": "NeoVitaDB Release Page",
       "url": "https://github.com/Rinnegatamante/VitaDB-Downloader/releases/tag/v.2.6"
-    },
-    {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/Rinnegatamante/VitaDB-Downloader"
     }
   ],
-  "source_name": "VitaDB",
+  "source_name": "VitaDBtoo",
   "source_id": "877",
   "source_url": "https://github.com/Rinnegatamante/VitaDB-Downloader",
   "release_page": "https://github.com/Rinnegatamante/VitaDB-Downloader/releases",
-  "updated_at": "2026-08-15T18:26:18.859775+00:00"
+  "updated_at": "2026-08-13T15:34:48.346042+00:00"
 }

@@ -16,31 +16,25 @@
   "requirements": "Not specified",
   "size": 6646381,
   "status": "Legacy",
-  "icon": "https://www.rinnegatamante.eu/vitadb/icons/51b5645f05a45f13901b73e6a17c167ca5cafac8435eb3e005dc4941f45743ca.png",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/51b5645f05a45f13901b73e6a17c167ca5cafac8435eb3e005dc4941f45743ca.png",
   "screenshots": [
-    "https://www.rinnegatamante.eu/vitadb/screenshots/f19b8a99b2e208421b35f0b444c37dc3fc3afe5b63cd7760c8ceb066b6dfa8d8.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/b299508fb30cbf13b35fdc1d562d5469c2e814ab1f5a6f6e9f4f126ae9642769.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/968283c6c11e05b5a164904fe7ec917ddead42d79ec14c912c13da5ed6ca681e.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/5cb746dc09db46eb5846de8f2772f23b5f36061f0c53abee8dc63db78c152fd1.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/f19b8a99b2e208421b35f0b444c37dc3fc3afe5b63cd7760c8ceb066b6dfa8d8.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/f19b8a99b2e208421b35f0b444c37dc3fc3afe5b63cd7760c8ceb066b6dfa8d8.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/b299508fb30cbf13b35fdc1d562d5469c2e814ab1f5a6f6e9f4f126ae9642769.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/968283c6c11e05b5a164904fe7ec917ddead42d79ec14c912c13da5ed6ca681e.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/5cb746dc09db46eb5846de8f2772f23b5f36061f0c53abee8dc63db78c152fd1.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/f19b8a99b2e208421b35f0b444c37dc3fc3afe5b63cd7760c8ceb066b6dfa8d8.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=36",
-      "recommended": true
+      "name": "VitaDBtoo VPK",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/36-AdrenalineEasyInstaller.vpk",
+      "recommended": false
     },
     {
       "type": "Download",
       "name": "NeoVitaDB VPK",
       "url": "https://github.com/Freakler/vita-AdrenalineEasyInstaller/releases/download/v1.15/AdrenalineEasyInstaller_v115.vpk",
-      "recommended": false
-    },
-    {
-      "type": "Download",
-      "name": "VitaDBtoo VPK",
-      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/36-AdrenalineEasyInstaller.vpk",
       "recommended": false
     },
     {
@@ -52,11 +46,23 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/Freakler/vita-AdrenalineEasyInstaller"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDBtoo VPK",
+      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/36-AdrenalineEasyInstaller.vpk",
+      "recommended": false
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=36",
+      "recommended": true
     }
   ],
-  "source_name": "VitaDB",
+  "source_name": "VitaDBtoo",
   "source_id": "36",
   "source_url": "https://github.com/Freakler/vita-AdrenalineEasyInstaller",
   "release_page": "",
-  "updated_at": "2026-08-15T18:26:20.474704+00:00"
+  "updated_at": "2026-08-13T15:34:48.681831+00:00"
 }

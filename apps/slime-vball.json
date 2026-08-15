@@ -16,30 +16,24 @@
   "requirements": "Not specified",
   "size": 429097,
   "status": "Legacy",
-  "icon": "https://www.rinnegatamante.eu/vitadb/icons/3a0dbffc76f594f8f37f986f6b29261836eeb2830702d3fafcfc70d2bf8d18cb.png",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/3a0dbffc76f594f8f37f986f6b29261836eeb2830702d3fafcfc70d2bf8d18cb.png",
   "screenshots": [
-    "https://www.rinnegatamante.eu/vitadb/screenshots/734b3bed7bedb1bd7dd552890048a63f6b7756b8d2b686ba8dbc76beea49c4e2.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/cd8dcea0d34b13c52540ba30bfe8b06804265ebaf26ac88a4c3bab9d9c96880d.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/b278050552d52611db1991bc114708f8417710485b7af6dfd40ff1e581eb7cb0.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/734b3bed7bedb1bd7dd552890048a63f6b7756b8d2b686ba8dbc76beea49c4e2.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/cd8dcea0d34b13c52540ba30bfe8b06804265ebaf26ac88a4c3bab9d9c96880d.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/cd8dcea0d34b13c52540ba30bfe8b06804265ebaf26ac88a4c3bab9d9c96880d.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/b278050552d52611db1991bc114708f8417710485b7af6dfd40ff1e581eb7cb0.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/734b3bed7bedb1bd7dd552890048a63f6b7756b8d2b686ba8dbc76beea49c4e2.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/cd8dcea0d34b13c52540ba30bfe8b06804265ebaf26ac88a4c3bab9d9c96880d.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=875",
-      "recommended": true
-    },
-    {
-      "type": "Download",
-      "name": "NeoVitaDB VPK",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/island-games/slime-vball/releases/download/v1.0.0/Slime-vBall.vpk",
       "recommended": false
     },
     {
       "type": "Official Website",
-      "name": "VitaDB Release Page",
+      "name": "VitaDBtoo Release Page",
       "url": "https://github.com/island-games/slime-vball/releases"
     },
     {
@@ -51,11 +45,17 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/island-games/slime-vball"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=875",
+      "recommended": true
     }
   ],
-  "source_name": "VitaDB",
+  "source_name": "VitaDBtoo",
   "source_id": "875",
   "source_url": "https://github.com/island-games/slime-vball",
   "release_page": "https://github.com/island-games/slime-vball/releases",
-  "updated_at": "2026-08-15T18:26:19.803907+00:00"
+  "updated_at": "2026-08-13T15:34:48.532383+00:00"
 }

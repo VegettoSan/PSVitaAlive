@@ -16,30 +16,24 @@
   "requirements": "Not specified",
   "size": 2672942,
   "status": "Legacy",
-  "icon": "https://www.rinnegatamante.eu/vitadb/icons/72ce8f03b862fc58a901126d09a994c213f4fe0f08edd7662634136fbc06c789.png",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/72ce8f03b862fc58a901126d09a994c213f4fe0f08edd7662634136fbc06c789.png",
   "screenshots": [
-    "https://www.rinnegatamante.eu/vitadb/screenshots/e77a5155a9f1ed62130c19e6b6a12957f15983bbca761666ccf57410aeec7830.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/01d72aed28eca348b0a6a1393194f92f4b8f635f980ef34634738315c541ecbd.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/905cfd02fbef74e9a06ff66d4397cfbd2152a72f9ddd8531c42c046de62aa4b0.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/e77a5155a9f1ed62130c19e6b6a12957f15983bbca761666ccf57410aeec7830.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/01d72aed28eca348b0a6a1393194f92f4b8f635f980ef34634738315c541ecbd.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/01d72aed28eca348b0a6a1393194f92f4b8f635f980ef34634738315c541ecbd.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/905cfd02fbef74e9a06ff66d4397cfbd2152a72f9ddd8531c42c046de62aa4b0.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/e77a5155a9f1ed62130c19e6b6a12957f15983bbca761666ccf57410aeec7830.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/01d72aed28eca348b0a6a1393194f92f4b8f635f980ef34634738315c541ecbd.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=440",
-      "recommended": true
-    },
-    {
-      "type": "Download",
-      "name": "NeoVitaDB VPK",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/THEN00P/EasyPlugin/releases/download/1.1.1/easyplugin.vpk",
       "recommended": false
     },
     {
       "type": "Official Website",
-      "name": "VitaDB Release Page",
+      "name": "VitaDBtoo Release Page",
       "url": "https://gbatemp.net/threads/release-easy-plugin-vitadb-plugin-installer.532956/"
     },
     {
@@ -51,11 +45,17 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/THEN00P/EasyPlugin"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=440",
+      "recommended": true
     }
   ],
-  "source_name": "VitaDB",
+  "source_name": "VitaDBtoo",
   "source_id": "440",
   "source_url": "https://github.com/THEN00P/EasyPlugin",
   "release_page": "https://gbatemp.net/threads/release-easy-plugin-vitadb-plugin-installer.532956/",
-  "updated_at": "2026-08-15T18:26:20.206905+00:00"
+  "updated_at": "2026-08-13T15:34:48.618133+00:00"
 }

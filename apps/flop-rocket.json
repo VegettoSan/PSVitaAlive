@@ -16,41 +16,41 @@
   "requirements": "- Game Data Files: Android",
   "size": 4568043,
   "status": "Legacy",
-  "icon": "https://www.rinnegatamante.eu/vitadb/icons/5b7232713488cf8168c6d0bcd9091f97ea11120d92c29ae00a2c711fe99b5a6f.png",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/5b7232713488cf8168c6d0bcd9091f97ea11120d92c29ae00a2c711fe99b5a6f.png",
   "screenshots": [
-    "https://www.rinnegatamante.eu/vitadb/screenshots/8d45ad7da57d9444289363be0c8456ff010fd9e17d19beeece6872edb4917478.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/861bfad11c9446005f512f16b20bbf7a86597368631c32b5faf98ae2f29eddc5.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/a7feddbb3a1ed719579b05420be7b6aa407633eea3558f40b3fbe5b2e96e5f7f.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/247f3f43c4e6bee91783c174edfa951f7a1951d23be4f6aeed99a0b57cf0fc3c.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/8d45ad7da57d9444289363be0c8456ff010fd9e17d19beeece6872edb4917478.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/8d45ad7da57d9444289363be0c8456ff010fd9e17d19beeece6872edb4917478.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/861bfad11c9446005f512f16b20bbf7a86597368631c32b5faf98ae2f29eddc5.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/a7feddbb3a1ed719579b05420be7b6aa407633eea3558f40b3fbe5b2e96e5f7f.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/247f3f43c4e6bee91783c174edfa951f7a1951d23be4f6aeed99a0b57cf0fc3c.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/8d45ad7da57d9444289363be0c8456ff010fd9e17d19beeece6872edb4917478.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=749",
-      "recommended": true
-    },
-    {
-      "type": "Download",
-      "name": "NeoVitaDB VPK",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/MDashK/Flop-Rocket-Vita/releases/download/v1.0.0/FLOP_ROCKET.VPK",
       "recommended": false
     },
     {
       "type": "Official Website",
-      "name": "VitaDB Release Page",
+      "name": "VitaDBtoo Release Page",
       "url": "https://github.com/MDashK/Flop-Rocket-Vita"
     },
     {
       "type": "Official Website",
       "name": "NeoVitaDB Release Page",
       "url": "https://github.com/MDashK/Flop-Rocket-Vita/releases/tag/v1.0.0"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=749",
+      "recommended": true
     }
   ],
-  "source_name": "VitaDB",
+  "source_name": "VitaDBtoo",
   "source_id": "749",
   "source_url": "https://github.com/MDashK/Flop-Rocket-Vita",
   "release_page": "https://github.com/MDashK/Flop-Rocket-Vita",
-  "updated_at": "2026-08-15T18:26:19.944977+00:00"
+  "updated_at": "2026-08-13T15:34:48.565180+00:00"
 }

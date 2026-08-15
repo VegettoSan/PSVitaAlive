@@ -16,27 +16,21 @@
   "requirements": "Not specified",
   "size": 1524796,
   "status": "Legacy",
-  "icon": "https://www.rinnegatamante.eu/vitadb/icons/87df6eed0808073b86b03daec0f56f26fd061d8aedb7e43e368c048a1279fd6e.png",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/87df6eed0808073b86b03daec0f56f26fd061d8aedb7e43e368c048a1279fd6e.png",
   "screenshots": [
-    "https://www.rinnegatamante.eu/vitadb/screenshots/0c48e0234888bf5c966dd9fd3c32f737d8a937b204050dc073be1b122dcb86ac.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/0c48e0234888bf5c966dd9fd3c32f737d8a937b204050dc073be1b122dcb86ac.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/0c48e0234888bf5c966dd9fd3c32f737d8a937b204050dc073be1b122dcb86ac.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/0c48e0234888bf5c966dd9fd3c32f737d8a937b204050dc073be1b122dcb86ac.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1398",
-      "recommended": true
-    },
-    {
-      "type": "Download",
-      "name": "NeoVitaDB VPK",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/Ak1M1223/vitaliero/releases/download/0.3/openliero.vpk",
       "recommended": false
     },
     {
       "type": "Official Website",
-      "name": "VitaDB Release Page",
+      "name": "VitaDBtoo Release Page",
       "url": "https://github.com/Ak1M1223/vitaliero/releases"
     },
     {
@@ -48,11 +42,17 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/Ak1M1223/vitaliero"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1398",
+      "recommended": true
     }
   ],
-  "source_name": "VitaDB",
+  "source_name": "VitaDBtoo",
   "source_id": "1398",
   "source_url": "https://github.com/Ak1M1223/vitaliero",
   "release_page": "https://github.com/Ak1M1223/vitaliero/releases",
-  "updated_at": "2026-08-15T18:26:18.980802+00:00"
+  "updated_at": "2026-08-13T15:34:48.346891+00:00"
 }

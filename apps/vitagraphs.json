@@ -16,29 +16,23 @@
   "requirements": "Not specified",
   "size": 2143646,
   "status": "Legacy",
-  "icon": "https://www.rinnegatamante.eu/vitadb/icons/580a65c8aea5b23b2f1858ddcf775a7bee0ac7bcccdacd41b2198d68bfda46a2.png",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/580a65c8aea5b23b2f1858ddcf775a7bee0ac7bcccdacd41b2198d68bfda46a2.png",
   "screenshots": [
-    "https://www.rinnegatamante.eu/vitadb/screenshots/cdcf21a0e4b65725b7be7bc392b2c2ee652c6071bb358822f6d62322b8286054.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/1366e5db83109aaad5e65b49346c4110eae4616c2891b0b6e56aa6882ffd3b6d.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/cdcf21a0e4b65725b7be7bc392b2c2ee652c6071bb358822f6d62322b8286054.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/1366e5db83109aaad5e65b49346c4110eae4616c2891b0b6e56aa6882ffd3b6d.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/1366e5db83109aaad5e65b49346c4110eae4616c2891b0b6e56aa6882ffd3b6d.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/cdcf21a0e4b65725b7be7bc392b2c2ee652c6071bb358822f6d62322b8286054.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/1366e5db83109aaad5e65b49346c4110eae4616c2891b0b6e56aa6882ffd3b6d.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=363",
-      "recommended": true
-    },
-    {
-      "type": "Download",
-      "name": "NeoVitaDB VPK",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/Creckeryop/VitaGraphs/releases/download/0010/VitaGraphs.vpk",
       "recommended": false
     },
     {
       "type": "Official Website",
-      "name": "VitaDB Release Page",
+      "name": "VitaDBtoo Release Page",
       "url": "http://gbatemp.net/threads/release-vitagraphs-simple-graphing-calculator-for-ps-vita.496111/"
     },
     {
@@ -50,11 +44,17 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/Creckeryop/VitaGraphs"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=363",
+      "recommended": true
     }
   ],
-  "source_name": "VitaDB",
+  "source_name": "VitaDBtoo",
   "source_id": "363",
   "source_url": "https://github.com/Creckeryop/VitaGraphs",
   "release_page": "http://gbatemp.net/threads/release-vitagraphs-simple-graphing-calculator-for-ps-vita.496111/",
-  "updated_at": "2026-08-15T18:26:20.404441+00:00"
+  "updated_at": "2026-08-13T15:34:48.668998+00:00"
 }

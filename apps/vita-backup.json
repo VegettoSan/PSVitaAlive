@@ -16,30 +16,24 @@
   "requirements": "Not specified",
   "size": 1264304,
   "status": "Legacy",
-  "icon": "https://www.rinnegatamante.eu/vitadb/icons/f2b40cadd9b3a8367ef59b9e43008a3968bf73bc1c8d65ed83cab53b843f0ad4.png",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/f2b40cadd9b3a8367ef59b9e43008a3968bf73bc1c8d65ed83cab53b843f0ad4.png",
   "screenshots": [
-    "https://www.rinnegatamante.eu/vitadb/screenshots/4a256a6ea8e30496595115dbe7070df5c4caeb1328bae8f61c6e5ea0cf569373.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/648d5835382f48ec22d61c3eedf95ee64209352dc13c873626e5fa2ced9a0551.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/3a0636f29cc953eb136a8d89074d311decb9904bd8dcb845de4211e2eb05e935.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/6574bbab6b58193affc88c20984a8c51cbd26419e5cb3497463039a8b996358a.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/4a256a6ea8e30496595115dbe7070df5c4caeb1328bae8f61c6e5ea0cf569373.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/4a256a6ea8e30496595115dbe7070df5c4caeb1328bae8f61c6e5ea0cf569373.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/648d5835382f48ec22d61c3eedf95ee64209352dc13c873626e5fa2ced9a0551.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/3a0636f29cc953eb136a8d89074d311decb9904bd8dcb845de4211e2eb05e935.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/6574bbab6b58193affc88c20984a8c51cbd26419e5cb3497463039a8b996358a.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/4a256a6ea8e30496595115dbe7070df5c4caeb1328bae8f61c6e5ea0cf569373.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=361",
-      "recommended": true
-    },
-    {
-      "type": "Download",
-      "name": "NeoVitaDB VPK",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/joel16/VitaBackup/releases/download/2.00/VitaBackup.vpk",
       "recommended": false
     },
     {
       "type": "Official Website",
-      "name": "VitaDB Release Page",
+      "name": "VitaDBtoo Release Page",
       "url": "https://gbatemp.net/threads/vitabackup-wip.495625/"
     },
     {
@@ -51,11 +45,17 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/joel16/VitaBackup"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=361",
+      "recommended": true
     }
   ],
-  "source_name": "VitaDB",
+  "source_name": "VitaDBtoo",
   "source_id": "361",
   "source_url": "https://github.com/joel16/VitaBackup",
   "release_page": "https://gbatemp.net/threads/vitabackup-wip.495625/",
-  "updated_at": "2026-08-15T18:26:20.356820+00:00"
+  "updated_at": "2026-08-13T15:34:48.658136+00:00"
 }

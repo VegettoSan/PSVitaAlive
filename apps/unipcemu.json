@@ -18,23 +18,27 @@
   "status": "Legacy",
   "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1775-unipcemu.png",
   "screenshots": [
-    "https://www.rinnegatamante.eu/vitadb/screenshots/ea4101650f1f11df02faf41e94c196e266029d2a2bb8ef37c45ce0908ee44edd.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/171db04edc9716a18649c4442c99f44e94fb5e9ac3fe2252192c79cbe3974de9.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/ea4101650f1f11df02faf41e94c196e266029d2a2bb8ef37c45ce0908ee44edd.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/171db04edc9716a18649c4442c99f44e94fb5e9ac3fe2252192c79cbe3974de9.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/171db04edc9716a18649c4442c99f44e94fb5e9ac3fe2252192c79cbe3974de9.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/ea4101650f1f11df02faf41e94c196e266029d2a2bb8ef37c45ce0908ee44edd.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/171db04edc9716a18649c4442c99f44e94fb5e9ac3fe2252192c79cbe3974de9.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "NeoVitaDB VPK",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/798-UniPCemu.vpk",
       "recommended": true
     },
     {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=798",
-      "recommended": false
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
+      "url": "https://superfury.itch.io/unipcemu"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://bitbucket.org/superfury/unipcemu/src/default/"
     },
     {
       "type": "Download",
@@ -43,19 +47,15 @@
       "recommended": false
     },
     {
-      "type": "Official Website",
-      "name": "VitaDB Release Page",
-      "url": "https://superfury.itch.io/unipcemu"
-    },
-    {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://bitbucket.org/superfury/unipcemu/src/default/"
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=798",
+      "recommended": false
     }
   ],
-  "source_name": "NeoVitaDB",
-  "source_id": "1775",
-  "source_url": "https://github.com",
-  "release_page": "",
-  "updated_at": "2026-08-15T18:26:19.784934+00:00"
+  "source_name": "VitaDBtoo",
+  "source_id": "798",
+  "source_url": "https://bitbucket.org/superfury/unipcemu/src/default/",
+  "release_page": "https://superfury.itch.io/unipcemu",
+  "updated_at": "2026-08-13T15:34:48.527543+00:00"
 }

@@ -16,30 +16,24 @@
   "requirements": "Not specified",
   "size": 6437586,
   "status": "Legacy",
-  "icon": "https://www.rinnegatamante.eu/vitadb/icons/ef1dd8d2a1983766417a6863cd8c24e0dd291103a5cdf458aaf196dd2afa16d5.png",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/ef1dd8d2a1983766417a6863cd8c24e0dd291103a5cdf458aaf196dd2afa16d5.png",
   "screenshots": [
-    "https://www.rinnegatamante.eu/vitadb/screenshots/bee406079de25665b61e58bf5614e7900dbbde9d2fd3d95aa018ab387394e9b7.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/e579bf9d998569ba9d64bcc6df6256d1658ef5b497d54599a2ba1d8ea10122fe.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/e5330df708f09f0f62859343cadaf13a8475de49df931eed7428d047ab5e2c8a.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/9a1610393f4a8381c800d72b1ab7059d4f1a9592e9a23c1693c76892c430a8f7.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/bee406079de25665b61e58bf5614e7900dbbde9d2fd3d95aa018ab387394e9b7.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/bee406079de25665b61e58bf5614e7900dbbde9d2fd3d95aa018ab387394e9b7.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/e579bf9d998569ba9d64bcc6df6256d1658ef5b497d54599a2ba1d8ea10122fe.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/e5330df708f09f0f62859343cadaf13a8475de49df931eed7428d047ab5e2c8a.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/9a1610393f4a8381c800d72b1ab7059d4f1a9592e9a23c1693c76892c430a8f7.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/bee406079de25665b61e58bf5614e7900dbbde9d2fd3d95aa018ab387394e9b7.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=986",
-      "recommended": true
-    },
-    {
-      "type": "Download",
-      "name": "NeoVitaDB VPK",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/SiulPop/Cars-vita/releases/download/v1.2/cars.VPK",
       "recommended": false
     },
     {
       "type": "Official Website",
-      "name": "VitaDB Release Page",
+      "name": "VitaDBtoo Release Page",
       "url": "https://github.com/SiulPop/Cars-vita/releases"
     },
     {
@@ -51,11 +45,17 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/SiulPop/Cars-vita"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=986",
+      "recommended": true
     }
   ],
-  "source_name": "VitaDB",
+  "source_name": "VitaDBtoo",
   "source_id": "986",
   "source_url": "https://github.com/SiulPop/Cars-vita",
   "release_page": "https://github.com/SiulPop/Cars-vita/releases",
-  "updated_at": "2026-08-15T18:26:19.794127+00:00"
+  "updated_at": "2026-08-13T15:34:48.529811+00:00"
 }

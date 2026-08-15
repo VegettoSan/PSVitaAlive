@@ -16,21 +16,15 @@
   "requirements": "- Game Data Files: PC",
   "size": 14910713,
   "status": "Legacy",
-  "icon": "https://www.rinnegatamante.eu/vitadb/icons/ea5ec76a6f36fa98af6537da8cbc9e825e5451dc1b0d26f69a0f31a80dc7cfb1.png",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/ea5ec76a6f36fa98af6537da8cbc9e825e5451dc1b0d26f69a0f31a80dc7cfb1.png",
   "screenshots": [
-    "https://www.rinnegatamante.eu/vitadb/screenshots/a3b5b8962f8c8c6523ac55e502a2cc3d206f7b1a1e8cfc4773817bcdb5749fd9.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/991d1a3f95f2c839dc714331c18bbe583b5470c0ce127bd751a3c725ed43c842.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/e74a0785975a55a524f3f5c4ecfbdcdf7ecacf015c41d54b69c971dccd0a9f91.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/a3b5b8962f8c8c6523ac55e502a2cc3d206f7b1a1e8cfc4773817bcdb5749fd9.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/991d1a3f95f2c839dc714331c18bbe583b5470c0ce127bd751a3c725ed43c842.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/991d1a3f95f2c839dc714331c18bbe583b5470c0ce127bd751a3c725ed43c842.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/e74a0785975a55a524f3f5c4ecfbdcdf7ecacf015c41d54b69c971dccd0a9f91.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/a3b5b8962f8c8c6523ac55e502a2cc3d206f7b1a1e8cfc4773817bcdb5749fd9.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/991d1a3f95f2c839dc714331c18bbe583b5470c0ce127bd751a3c725ed43c842.png"
   ],
   "links": [
-    {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1179",
-      "recommended": true
-    },
     {
       "type": "Download",
       "name": "VitaDBtoo VPK",
@@ -39,13 +33,19 @@
     },
     {
       "type": "Official Website",
-      "name": "VitaDB Release Page",
+      "name": "VitaDBtoo Release Page",
       "url": "https://github.com/PatnosDD/Night-In-The-Woods-PS-VITA"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1179",
+      "recommended": true
     }
   ],
-  "source_name": "VitaDB",
+  "source_name": "VitaDBtoo",
   "source_id": "1179",
   "source_url": "https://github.com/PatnosDD/Night-In-The-Woods-PS-VITA",
   "release_page": "https://github.com/PatnosDD/Night-In-The-Woods-PS-VITA",
-  "updated_at": "2026-08-15T18:26:19.439140+00:00"
+  "updated_at": "2026-08-13T15:34:48.452938+00:00"
 }

@@ -9,7 +9,7 @@
   ],
   "category_id": "games",
   "subcategory_ids": [
-    "other"
+    "platformer"
   ],
   "version": "v.1.6",
   "version_date": "2026-08-15",
@@ -18,24 +18,23 @@
   "status": "Legacy",
   "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1900-sonic-unleashed.png",
   "screenshots": [
-    "https://www.rinnegatamante.eu/vitadb/screenshots/ae2dfeb4e8d75511b6f6015ca59cd639b9e60de0f67a550c3cdeef9bb51da3e5.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/020c51f291c16e99b4b0c50aa1ad87fc4ff846ad5f8bb6b24483a4cb8600d255.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/68a284ab6859fe18ce5a3e9789128536f35af94b9fdd30dad33f4a0c69f06864.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/805604ab3b8d8f9b442b433789fbbf77f0cd106d5171ca37d10812ceec4ed181.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/ae2dfeb4e8d75511b6f6015ca59cd639b9e60de0f67a550c3cdeef9bb51da3e5.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/ae2dfeb4e8d75511b6f6015ca59cd639b9e60de0f67a550c3cdeef9bb51da3e5.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/020c51f291c16e99b4b0c50aa1ad87fc4ff846ad5f8bb6b24483a4cb8600d255.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/68a284ab6859fe18ce5a3e9789128536f35af94b9fdd30dad33f4a0c69f06864.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/805604ab3b8d8f9b442b433789fbbf77f0cd106d5171ca37d10812ceec4ed181.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/ae2dfeb4e8d75511b6f6015ca59cd639b9e60de0f67a550c3cdeef9bb51da3e5.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "NeoVitaDB VPK",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1212-sonic_unleashed.vpk",
       "recommended": true
     },
     {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1212",
-      "recommended": false
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com"
     },
     {
       "type": "Download",
@@ -44,14 +43,15 @@
       "recommended": false
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com"
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1212",
+      "recommended": false
     }
   ],
-  "source_name": "NeoVitaDB",
-  "source_id": "1900",
-  "source_url": "https://github.com",
+  "source_name": "VitaDBtoo",
+  "source_id": "1212",
+  "source_url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1212-sonic_unleashed.vpk",
   "release_page": "",
-  "updated_at": "2026-08-15T18:26:19.181880+00:00"
+  "updated_at": "2026-08-13T15:34:48.390938+00:00"
 }

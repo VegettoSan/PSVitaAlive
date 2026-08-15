@@ -5,8 +5,8 @@
   "description": "Sega Dreamcast emulator for PSVITA/PSTV.",
   "long_description": "Flycast Vita is a port of flycast, popular multiplatform Dreamcast emulator maintained by flyinghead. It's based on the standalone version of the emulator modified with added features to fasten the emulation compared to a regular vanilla port of the emulator.",
   "author_ids": [
-    "rinnegatamante",
-    "bythos"
+    "bythos",
+    "rinnegatamante"
   ],
   "category_id": "emulators",
   "subcategory_ids": [
@@ -17,30 +17,24 @@
   "requirements": "- libshacccg.suprx\n- kubridge.skprx",
   "size": 4873249,
   "status": "Legacy",
-  "icon": "https://www.rinnegatamante.eu/vitadb/icons/4bc6dee03540ede916ab5cb42d49c1fee0e3e6f600779402ee9beed60cbc77df.png",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/4bc6dee03540ede916ab5cb42d49c1fee0e3e6f600779402ee9beed60cbc77df.png",
   "screenshots": [
-    "https://www.rinnegatamante.eu/vitadb/screenshots/be0b4290c4874681b65366407ef28f3f931927c4120f8af9ba9691875cf15ba9.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/fb7363b461d5ec0d0fc089659d9533be5b0f3bb95d0f97898462826e93154bf4.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/08aeba93c76c76e14d7bfb057d7282d52b6f43fef3885908c3480f458c53e5d7.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/be0b4290c4874681b65366407ef28f3f931927c4120f8af9ba9691875cf15ba9.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/fb7363b461d5ec0d0fc089659d9533be5b0f3bb95d0f97898462826e93154bf4.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/fb7363b461d5ec0d0fc089659d9533be5b0f3bb95d0f97898462826e93154bf4.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/08aeba93c76c76e14d7bfb057d7282d52b6f43fef3885908c3480f458c53e5d7.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/be0b4290c4874681b65366407ef28f3f931927c4120f8af9ba9691875cf15ba9.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/fb7363b461d5ec0d0fc089659d9533be5b0f3bb95d0f97898462826e93154bf4.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=605",
-      "recommended": true
-    },
-    {
-      "type": "Download",
-      "name": "NeoVitaDB VPK",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/Rinnegatamante/flycast-vita/releases/download/v.1.1/Flycast.vpk",
       "recommended": false
     },
     {
       "type": "Official Website",
-      "name": "VitaDB Release Page",
+      "name": "VitaDBtoo Release Page",
       "url": "https://www.psx-place.com/threads/release-flycast-vita-v-1-0-sega-dreamcast-emulator-for-psvita-pstv.38180/"
     },
     {
@@ -52,11 +46,17 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/Rinnegatamante/flycast-vita"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=605",
+      "recommended": true
     }
   ],
-  "source_name": "VitaDB",
+  "source_name": "VitaDBtoo",
   "source_id": "605",
   "source_url": "https://github.com/Rinnegatamante/flycast-vita",
   "release_page": "https://www.psx-place.com/threads/release-flycast-vita-v-1-0-sega-dreamcast-emulator-for-psvita-pstv.38180/",
-  "updated_at": "2026-08-15T18:26:19.779697+00:00"
+  "updated_at": "2026-08-13T15:34:48.526228+00:00"
 }

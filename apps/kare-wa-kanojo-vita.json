@@ -16,37 +16,37 @@
   "requirements": "- Game Data Files: PC",
   "size": 14380556,
   "status": "Legacy",
-  "icon": "https://www.rinnegatamante.eu/vitadb/icons/2ad346392e41ea9a2c1c91ab7712629147c91e0b76bb22c80e669bc128703436.png",
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/2ad346392e41ea9a2c1c91ab7712629147c91e0b76bb22c80e669bc128703436.png",
   "screenshots": [
-    "https://www.rinnegatamante.eu/vitadb/icons/2ad346392e41ea9a2c1c91ab7712629147c91e0b76bb22c80e669bc128703436.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/2ad346392e41ea9a2c1c91ab7712629147c91e0b76bb22c80e669bc128703436.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1400",
-      "recommended": true
-    },
-    {
-      "type": "Download",
-      "name": "NeoVitaDB VPK",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/PuppetHuggerDX/Kare-wa-Kanojo-PS-Vita-Port/releases/download/v01.00/Kare.wa.Kanojo-01.00.vpk",
       "recommended": false
     },
     {
       "type": "Official Website",
-      "name": "VitaDB Release Page",
+      "name": "VitaDBtoo Release Page",
       "url": "https://github.com/PuppetHuggerDX/Kare-wa-Kanojo-PS-Vita-Port"
     },
     {
       "type": "Official Website",
       "name": "NeoVitaDB Release Page",
       "url": "https://github.com/PuppetHuggerDX/Kare-wa-Kanojo-PS-Vita-Port/releases/tag/v01.00"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1400",
+      "recommended": true
     }
   ],
-  "source_name": "VitaDB",
+  "source_name": "VitaDBtoo",
   "source_id": "1400",
   "source_url": "https://github.com/PuppetHuggerDX/Kare-wa-Kanojo-PS-Vita-Port",
   "release_page": "https://github.com/PuppetHuggerDX/Kare-wa-Kanojo-PS-Vita-Port",
-  "updated_at": "2026-08-15T18:26:18.982985+00:00"
+  "updated_at": "2026-08-13T15:34:48.347435+00:00"
 }

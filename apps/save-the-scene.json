@@ -18,21 +18,20 @@
   "status": "Legacy",
   "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1623-save-the-scene.png",
   "screenshots": [
-    "https://www.rinnegatamante.eu/vitadb/screenshots/52de9176beeac78dd6bfa07b7afe10f2fb516ce4a3cd88ec8fd0ef0ea2744f74.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/52de9176beeac78dd6bfa07b7afe10f2fb516ce4a3cd88ec8fd0ef0ea2744f74.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/52de9176beeac78dd6bfa07b7afe10f2fb516ce4a3cd88ec8fd0ef0ea2744f74.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/52de9176beeac78dd6bfa07b7afe10f2fb516ce4a3cd88ec8fd0ef0ea2744f74.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "NeoVitaDB VPK",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/445-Save_20the_20Scene.vpk",
       "recommended": true
     },
     {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=445",
-      "recommended": false
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/Lapy055/Save_the_Scene"
     },
     {
       "type": "Download",
@@ -41,14 +40,15 @@
       "recommended": false
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/Lapy055/Save_the_Scene"
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=445",
+      "recommended": false
     }
   ],
-  "source_name": "NeoVitaDB",
-  "source_id": "1623",
-  "source_url": "https://github.com",
+  "source_name": "VitaDBtoo",
+  "source_id": "445",
+  "source_url": "https://github.com/Lapy055/Save_the_Scene",
   "release_page": "",
-  "updated_at": "2026-08-15T18:26:20.321395+00:00"
+  "updated_at": "2026-08-13T15:34:48.649305+00:00"
 }

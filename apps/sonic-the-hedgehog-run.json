@@ -18,23 +18,22 @@
   "status": "Legacy",
   "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1893-sonic-the-hedgehog-run.png",
   "screenshots": [
-    "https://www.rinnegatamante.eu/vitadb/screenshots/d841591d95d98765b1561bde9781e8370a8e657cf24dedb0f2d691261784992e.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/ccb397f3aebf2a00149f4fe0704a77e6ff9cf47cf1264db7e20f43c88b63ba94.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/d841591d95d98765b1561bde9781e8370a8e657cf24dedb0f2d691261784992e.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/ccb397f3aebf2a00149f4fe0704a77e6ff9cf47cf1264db7e20f43c88b63ba94.png"
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/ccb397f3aebf2a00149f4fe0704a77e6ff9cf47cf1264db7e20f43c88b63ba94.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/d841591d95d98765b1561bde9781e8370a8e657cf24dedb0f2d691261784992e.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/ccb397f3aebf2a00149f4fe0704a77e6ff9cf47cf1264db7e20f43c88b63ba94.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "NeoVitaDB VPK",
+      "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1195-sonic_run.vpk",
       "recommended": true
     },
     {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1195",
-      "recommended": false
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com"
     },
     {
       "type": "Download",
@@ -43,14 +42,15 @@
       "recommended": false
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com"
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1195",
+      "recommended": false
     }
   ],
-  "source_name": "NeoVitaDB",
-  "source_id": "1893",
-  "source_url": "https://github.com",
+  "source_name": "VitaDBtoo",
+  "source_id": "1195",
+  "source_url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1195-sonic_run.vpk",
   "release_page": "",
-  "updated_at": "2026-08-15T18:26:19.418693+00:00"
+  "updated_at": "2026-08-13T15:34:48.446273+00:00"
 }
