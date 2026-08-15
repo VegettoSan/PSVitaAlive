@@ -29,7 +29,7 @@
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/WolffsRoom/GoldenIdol-PSVita/releases/download/v0.8.7/GoldenIdol-Vita-v0.8.7.vpk",
-      "recommended": false
+      "recommended": true
     },
     {
       "type": "Official Website",
@@ -50,7 +50,7 @@
       "type": "Download",
       "name": "VitaDB VPK",
       "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1403",
-      "recommended": true
+      "recommended": false
     }
   ],
   "source_name": "VitaDBtoo",

@@ -29,7 +29,7 @@
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/WolffsRoom/MotherEncore-PSVita/releases/download/v0.2b/MotherEncore-Vita-v0.2b.vpk",
-      "recommended": false
+      "recommended": true
     },
     {
       "type": "Official Website",
@@ -45,7 +45,7 @@
       "type": "Download",
       "name": "VitaDB VPK",
       "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1431",
-      "recommended": true
+      "recommended": false
     }
   ],
   "source_name": "VitaDBtoo",
