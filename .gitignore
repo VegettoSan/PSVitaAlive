@@ -11,4 +11,10 @@ CMakeCache.txt
 CMakeFiles/
 cmake_install.cmake
 Makefile
+# Windows Mark-of-the-Web / Alternate Data Stream leftovers
+# Appear as "file:Zone.Identifier" (sometimes shown as fileZone.Identifier)
+*Zone.Identifier
+*:Zone.Identifier
 *.Zone.Identifier
+**/*:Zone.Identifier
+**/Zone.Identifier
