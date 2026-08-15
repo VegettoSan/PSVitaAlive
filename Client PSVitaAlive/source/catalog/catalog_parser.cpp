@@ -82,7 +82,27 @@ std::string makeDownloadFileName(const std::string& url, const std::string& id) 
     if (fragment != std::string::npos) clean.erase(fragment);
     const std::size_t slash = clean.find_last_of('/');
     std::string fileName = slash != std::string::npos ? clean.substr(slash + 1) : clean;
-    if (fileName.empty()) fileName = id + ".vpk";
+
+    // VitaDB / similar redirectors expose get_hb_url.php — that is not a payload name.
+    // Force a .vpk so FormatDetector and InstallDispatcher treat the file as homebrew.
+    auto lower = [](std::string s) {
+        for (char& c : s) c = static_cast<char>(std::tolower(static_cast<unsigned char>(c)));
+        return s;
+    };
+    const std::string low = lower(fileName);
+    const bool badName =
+        fileName.empty() ||
+        low == "get_hb_url.php" ||
+        low.find("get_hb_url") != std::string::npos ||
+        (low.size() >= 4 && (low.rfind(".php") == low.size() - 4 ||
+                             low.rfind(".asp") == low.size() - 4 ||
+                             low.rfind(".aspx") == low.size() - 5 ||
+                             low.rfind(".html") == low.size() - 5 ||
+                             low.rfind(".htm") == low.size() - 4));
+    if (badName) {
+        const std::string base = id.empty() ? "download" : id;
+        return base + ".vpk";
+    }
     return fileName;
 }
 
