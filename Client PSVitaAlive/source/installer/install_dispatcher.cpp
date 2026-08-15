@@ -166,7 +166,60 @@ InstallDispatchResult InstallDispatcher::installFile(
     }
 
     if (detected.format == FileFormat::Zip || ext == "zip") {
-        if (zipDestination.empty()) { setError("ZIP destination is required"); return InstallDispatchResult::InvalidArgument; }
+        // VPKs are ZIP containers. If the download lost the .vpk extension (or
+        // magic detection only saw ZIP), try HomebrewInstaller when the user did
+        // not supply an explicit extract path. A real data ZIP still needs a
+        // destination and will fail the VPK layout check with a clear error.
+        if (zipDestination.empty()) {
+            diagnostics::log("[InstallDispatcher] ZIP without destination — trying as VPK (ZIP-backed homebrew)");
+            HomebrewInstaller installer;
+            const InstallResult result = installer.installVpk(
+                path,
+                [&](const InstallProgress& ip) {
+                    if (!onProgress) return;
+                    InstallDispatchProgress p;
+                    p.current = ip.bytesWritten;
+                    p.total = ip.bytesTotal;
+                    switch (ip.stage) {
+                        case InstallProgress::Preparing: p.stage = InstallDispatchProgress::Detecting; break;
+                        case InstallProgress::Extracting: p.stage = InstallDispatchProgress::Extracting; break;
+                        case InstallProgress::Promoting: p.stage = InstallDispatchProgress::Promoting; break;
+                        case InstallProgress::Cleaning: p.stage = InstallDispatchProgress::Cleaning; break;
+                        case InstallProgress::Done: p.stage = InstallDispatchProgress::Completed; break;
+                        default: p.stage = InstallDispatchProgress::Error; break;
+                    }
+                    p.message = ip.message;
+                    onProgress(p);
+                },
+                shouldCancel,
+                true
+            );
+            lastTitleId_ = installer.lastTitleId();
+            lastInstallPath_ = installer.lastInstallPath();
+            lastLiveAreaOk_ = installer.lastLiveAreaOk();
+            if (result == InstallResult::Ok) {
+                diagnostics::log(std::string("[InstallDispatcher] ZIP-as-VPK OK titleId=") + lastTitleId_);
+                if (onProgress) {
+                    InstallDispatchProgress p;
+                    p.stage = InstallDispatchProgress::Completed;
+                    p.current = 1;
+                    p.total = 1;
+                    p.message = "VPK installed";
+                    onProgress(p);
+                }
+                return InstallDispatchResult::Ok;
+            }
+            if (result == InstallResult::Cancelled) {
+                setError(installer.lastError());
+                return InstallDispatchResult::Cancelled;
+            }
+            // Not a valid VPK layout — report clearly instead of the old
+            // "ZIP destination is required" message that hid the real problem.
+            setError(installer.lastError().empty()
+                ? "ZIP file is not a VPK and no extract path was provided"
+                : (std::string("Not a VPK / install failed: ") + installer.lastError()));
+            return InstallDispatchResult::InstallFailed;
+        }
         ZipExtractor extractor;
         const ZipResult result = extractor.extract(
             path, zipDestination,
