@@ -27180,64 +27180,6 @@
     "updated_at": "2026-08-15T18:26:18.917186+00:00"
   },
   {
-    "id": "imango",
-    "title_id": "IMNG00001",
-    "name": "iMango",
-    "description": "Media player for PSVita.",
-    "long_description": "Coverflow style media player for PSVita.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
-    "author_ids": [
-      "capitanbarbacoa"
-    ],
-    "category_id": "utilities",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "v.1.0",
-    "version_date": "2026-08-15",
-    "requirements": "Not specified",
-    "size": 3763993,
-    "status": "Legacy",
-    "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1971-imango.png",
-    "screenshots": [
-      "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1971-imango.png"
-    ],
-    "links": [
-      {
-        "type": "Download",
-        "name": "NeoVitaDB VPK",
-        "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1441-imango.vpk",
-        "recommended": true
-      },
-      {
-        "type": "Download",
-        "name": "VitaDB VPK",
-        "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1441",
-        "recommended": false
-      },
-      {
-        "type": "Download",
-        "name": "VitaDBtoo VPK",
-        "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/1441-imango.vpk",
-        "recommended": false
-      },
-      {
-        "type": "Official Website",
-        "name": "VitaDB Release Page",
-        "url": "https://capitanbarbacoa.itch.io/imango-psvita"
-      },
-      {
-        "type": "Repository",
-        "name": "Repositorio",
-        "url": "https://github.com"
-      }
-    ],
-    "source_name": "NeoVitaDB",
-    "source_id": "1971",
-    "source_url": "https://github.com",
-    "release_page": "",
-    "updated_at": "2026-08-15T18:26:18.914614+00:00"
-  },
-  {
     "id": "cod-boz-vita",
     "title_id": "BOZ000001",
     "name": "COD: BOZ Vita",
@@ -27352,6 +27294,67 @@
     "source_url": "https://github.com",
     "release_page": "",
     "updated_at": "2026-08-15T18:26:18.891213+00:00"
+  },
+  {
+    "id": "vitadb-downloader",
+    "title_id": "VITADBDLD",
+    "name": "VitaDB Downloader",
+    "description": "Official Vita client for VitaDB.",
+    "long_description": "VitaDB Downloader is the official Vita client for VitaDB allowing to easily install homebrews from VitaDB directly from your PSVITA/PSTV.",
+    "author_ids": [
+      "rinnegatamante"
+    ],
+    "category_id": "utilities",
+    "subcategory_ids": [
+      "other"
+    ],
+    "version": "v.2.7",
+    "version_date": "2026-08-15",
+    "requirements": "- libshacccg.suprx",
+    "size": 3101129,
+    "status": "Legacy",
+    "icon": "https://www.rinnegatamante.eu/vitadb/icons/8064ba8cf5276704931ec20e5c9731e1431ba0966f9e26ff696425b0c196af0f.png",
+    "screenshots": [
+      "https://www.rinnegatamante.eu/vitadb/screenshots/3236d19c26907eca1eebde5c3fe417f74e4e290e1695858ed38d1d6cf0b5a7dd.png",
+      "https://www.rinnegatamante.eu/vitadb/screenshots/bd56455344bf3c33a8052db57b852f3e08a18dc804f4f35baee0d64a793ce977.png",
+      "https://www.rinnegatamante.eu/vitadb/screenshots/dbfc64adf46ebe4296208ec8c342bffed804c32525de743fd8c108aaf25d9ea7.png",
+      "https://www.rinnegatamante.eu/vitadb/screenshots/097d35f941881fb96f11c4dcd8cd9edb616cadab07cf95ab56a6738018f67071.png",
+      "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/3236d19c26907eca1eebde5c3fe417f74e4e290e1695858ed38d1d6cf0b5a7dd.png"
+    ],
+    "links": [
+      {
+        "type": "Download",
+        "name": "VitaDB VPK",
+        "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=877",
+        "recommended": true
+      },
+      {
+        "type": "Download",
+        "name": "NeoVitaDB VPK",
+        "url": "https://github.com/Rinnegatamante/VitaDB-Downloader/releases/download/v.2.6/VitaDB.vpk",
+        "recommended": false
+      },
+      {
+        "type": "Official Website",
+        "name": "VitaDB Release Page",
+        "url": "https://github.com/Rinnegatamante/VitaDB-Downloader/releases"
+      },
+      {
+        "type": "Official Website",
+        "name": "NeoVitaDB Release Page",
+        "url": "https://github.com/Rinnegatamante/VitaDB-Downloader/releases/tag/v.2.6"
+      },
+      {
+        "type": "Repository",
+        "name": "Repositorio",
+        "url": "https://github.com/Rinnegatamante/VitaDB-Downloader"
+      }
+    ],
+    "source_name": "VitaDB",
+    "source_id": "877",
+    "source_url": "https://github.com/Rinnegatamante/VitaDB-Downloader",
+    "release_page": "https://github.com/Rinnegatamante/VitaDB-Downloader/releases",
+    "updated_at": "2026-08-15T18:26:18.859775+00:00"
   },
   {
     "id": "zenonia-4-vita",
@@ -27811,67 +27814,6 @@
     "source_url": "https://github.com/Rinnegatamante/yoyoloader_vita",
     "release_page": "https://github.com/Rinnegatamante/yoyoloader_vita/releases",
     "updated_at": "2026-08-15T18:26:18.862015+00:00"
-  },
-  {
-    "id": "vitadb-downloader",
-    "title_id": "VITADBDLD",
-    "name": "VitaDB Downloader",
-    "description": "Official Vita client for VitaDB.",
-    "long_description": "VitaDB Downloader is the official Vita client for VitaDB allowing to easily install homebrews from VitaDB directly from your PSVITA/PSTV.",
-    "author_ids": [
-      "rinnegatamante"
-    ],
-    "category_id": "utilities",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "v.2.6",
-    "version_date": "2026-08-14",
-    "requirements": "- libshacccg.suprx",
-    "size": 3099746,
-    "status": "Legacy",
-    "icon": "https://www.rinnegatamante.eu/vitadb/icons/8064ba8cf5276704931ec20e5c9731e1431ba0966f9e26ff696425b0c196af0f.png",
-    "screenshots": [
-      "https://www.rinnegatamante.eu/vitadb/screenshots/3236d19c26907eca1eebde5c3fe417f74e4e290e1695858ed38d1d6cf0b5a7dd.png",
-      "https://www.rinnegatamante.eu/vitadb/screenshots/bd56455344bf3c33a8052db57b852f3e08a18dc804f4f35baee0d64a793ce977.png",
-      "https://www.rinnegatamante.eu/vitadb/screenshots/dbfc64adf46ebe4296208ec8c342bffed804c32525de743fd8c108aaf25d9ea7.png",
-      "https://www.rinnegatamante.eu/vitadb/screenshots/097d35f941881fb96f11c4dcd8cd9edb616cadab07cf95ab56a6738018f67071.png",
-      "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/3236d19c26907eca1eebde5c3fe417f74e4e290e1695858ed38d1d6cf0b5a7dd.png"
-    ],
-    "links": [
-      {
-        "type": "Download",
-        "name": "VitaDB VPK",
-        "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=877",
-        "recommended": true
-      },
-      {
-        "type": "Download",
-        "name": "NeoVitaDB VPK",
-        "url": "https://github.com/Rinnegatamante/VitaDB-Downloader/releases/download/v.2.6/VitaDB.vpk",
-        "recommended": false
-      },
-      {
-        "type": "Official Website",
-        "name": "VitaDB Release Page",
-        "url": "https://github.com/Rinnegatamante/VitaDB-Downloader/releases"
-      },
-      {
-        "type": "Official Website",
-        "name": "NeoVitaDB Release Page",
-        "url": "https://github.com/Rinnegatamante/VitaDB-Downloader/releases/tag/v.2.6"
-      },
-      {
-        "type": "Repository",
-        "name": "Repositorio",
-        "url": "https://github.com/Rinnegatamante/VitaDB-Downloader"
-      }
-    ],
-    "source_name": "VitaDB",
-    "source_id": "877",
-    "source_url": "https://github.com/Rinnegatamante/VitaDB-Downloader",
-    "release_page": "https://github.com/Rinnegatamante/VitaDB-Downloader/releases",
-    "updated_at": "2026-08-15T18:26:18.859775+00:00"
   },
   {
     "id": "my-shut-in-demon-port",
@@ -29224,6 +29166,64 @@
     "source_url": "https://github.com/largepelotas/JaVitaScript-Snake",
     "release_page": "https://github.com/largepelotas/JaVitaScript-Snake/releases/tag/v1.2.0",
     "updated_at": "2026-08-15T18:26:20.671689+00:00"
+  },
+  {
+    "id": "imango",
+    "title_id": "IMNG00001",
+    "name": "iMango",
+    "description": "Media player for PSVita.",
+    "long_description": "Coverflow style media player for PSVita.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
+    "author_ids": [
+      "capitanbarbacoa"
+    ],
+    "category_id": "utilities",
+    "subcategory_ids": [
+      "other"
+    ],
+    "version": "2026-08-06",
+    "version_date": "2026-08-06",
+    "requirements": "Not specified",
+    "size": 3795012,
+    "status": "Legacy",
+    "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1971-imango.png",
+    "screenshots": [
+      "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1971-imango.png"
+    ],
+    "links": [
+      {
+        "type": "Download",
+        "name": "NeoVitaDB VPK",
+        "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1441-imango.vpk",
+        "recommended": false
+      },
+      {
+        "type": "Download",
+        "name": "VitaDB VPK",
+        "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1441",
+        "recommended": true
+      },
+      {
+        "type": "Download",
+        "name": "VitaDBtoo VPK",
+        "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/1441-imango.vpk",
+        "recommended": false
+      },
+      {
+        "type": "Official Website",
+        "name": "VitaDB Release Page",
+        "url": "https://capitanbarbacoa.itch.io/imango-psvita"
+      },
+      {
+        "type": "Repository",
+        "name": "Repositorio",
+        "url": "https://github.com"
+      }
+    ],
+    "source_name": "NeoVitaDB",
+    "source_id": "1971",
+    "source_url": "https://github.com",
+    "release_page": "",
+    "updated_at": "2026-08-15T18:26:18.914614+00:00"
   },
   {
     "id": "lego-island",
