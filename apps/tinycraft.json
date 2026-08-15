@@ -9,7 +9,8 @@
   ],
   "category_id": "games",
   "subcategory_ids": [
-    "other"
+    "simulation",
+    "adventure"
   ],
   "version": "v.1.1",
   "version_date": "2026-08-12",
