@@ -406,6 +406,8 @@ InstallResult HomebrewInstaller::installVpk(
     std::string titleId;
     if (readSfoTitleId(paramPath, titleId)) {
         logLine(std::string("param.sfo TITLE_ID=") + titleId);
+        lastTitleId_ = titleId;
+        lastInstallPath_ = std::string("ux0:app/") + titleId;
     } else {
         logLine("param.sfo TITLE_ID could not be read");
     }
