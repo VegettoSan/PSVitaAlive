@@ -37,7 +37,71 @@ std::string CatalogManager::cachePath(ui::CatalogType catalog)const{return std::
 std::string CatalogManager::metadataPath(ui::CatalogType catalog)const{return cachePath(catalog)+".meta";}
 void CatalogManager::setStatus(State state,ui::CatalogType catalog,const char* message,const char* error){sceKernelLockMutex(mutex_,1,nullptr);status_.state=state;status_.catalog=catalog;status_.label=label(catalog);status_.message=message?message:"";status_.error=error?error:"";sceKernelUnlockMutex(mutex_,1);}
 
-bool CatalogManager::request(ui::CatalogType catalog){if(mutex_<0)return false;const int idx=(int)catalog;if(idx<0||idx>=(int)ui::CatalogType::Count)return false;sceKernelLockMutex(mutex_,1,nullptr);if(status_.state==State::Loading){sceKernelUnlockMutex(mutex_,1);return false;}if(cachedValid_[idx]&&!cachedItems_[idx].empty()){readyItems_=cachedItems_[idx];readyCatalog_=catalog;readyPending_=true;status_.state=State::Ready;status_.catalog=catalog;status_.current=1;status_.total=1;status_.label=label(catalog);status_.message="Loaded from memory cache";status_.error.clear();sceKernelUnlockMutex(mutex_,1);diagnostics::log(std::string("[CatalogManager] memory cache hit: ")+label(catalog));return true;}requestedCatalog_=catalog;requestPending_=true;readyPending_=false;status_.state=State::Loading;status_.catalog=catalog;status_.current=0;status_.total=0;status_.label=label(catalog);status_.message="Checking catalog cache...";status_.error.clear();sceKernelUnlockMutex(mutex_,1);diagnostics::log(std::string("[CatalogManager] request ")+label(catalog));return true;}
+bool CatalogManager::isBusy() const {
+    if (mutex_ < 0) return false;
+    sceKernelLockMutex(mutex_, 1, nullptr);
+    const bool busy = (status_.state == State::Loading) || requestPending_;
+    sceKernelUnlockMutex(mutex_, 1);
+    return busy;
+}
+
+bool CatalogManager::request(ui::CatalogType catalog) {
+    if (mutex_ < 0) return false;
+    sceKernelLockMutex(mutex_, 1, nullptr);
+
+    if (status_.state == State::Loading && requestedCatalog_ == catalog) {
+        sceKernelUnlockMutex(mutex_, 1);
+        return true;
+    }
+
+    // Mid-load retarget: keep Loading, only change what the worker should finish next.
+    if (status_.state == State::Loading) {
+        ++requestGeneration_;
+        requestedCatalog_ = catalog;
+        requestPending_ = true;
+        status_.catalog = catalog;
+        status_.label = label(catalog);
+        status_.message = "Switching catalog...";
+        status_.error.clear();
+        sceKernelUnlockMutex(mutex_, 1);
+        diagnostics::log(std::string("[CatalogManager] supersede in-flight load -> ") + label(catalog));
+        return true;
+    }
+
+    const int idx = static_cast<int>(catalog);
+    if (idx >= 0 && idx < static_cast<int>(ui::CatalogType::Count) &&
+        cachedValid_[idx] && !cachedItems_[idx].empty()) {
+        readyItems_ = cachedItems_[idx];
+        readyCatalog_ = catalog;
+        readyPending_ = true;
+        status_.state = State::Ready;
+        status_.catalog = catalog;
+        status_.current = 1;
+        status_.total = 1;
+        status_.label = label(catalog);
+        status_.message = "Ready (memory cache)";
+        status_.error.clear();
+        requestedCatalog_ = catalog;
+        requestPending_ = false;
+        sceKernelUnlockMutex(mutex_, 1);
+        diagnostics::log(std::string("[CatalogManager] memory cache hit for ") + label(catalog));
+        return true;
+    }
+
+    ++requestGeneration_;
+    status_.state = State::Loading;
+    status_.catalog = catalog;
+    status_.current = 0;
+    status_.total = 0;
+    status_.label = label(catalog);
+    status_.message = "Checking catalog cache...";
+    status_.error.clear();
+    requestPending_ = true;
+    requestedCatalog_ = catalog;
+    sceKernelUnlockMutex(mutex_, 1);
+    return true;
+}
+
 CatalogManager::Status CatalogManager::status()const{Status result;if(mutex_<0)return result;sceKernelLockMutex(mutex_,1,nullptr);result=status_;sceKernelUnlockMutex(mutex_,1);return result;}
 bool CatalogManager::takeReady(std::vector<ui::CatalogItem>&outItems,ui::CatalogType&catalog){if(mutex_<0)return false;sceKernelLockMutex(mutex_,1,nullptr);if(!readyPending_){sceKernelUnlockMutex(mutex_,1);return false;}outItems=std::move(readyItems_);catalog=readyCatalog_;readyPending_=false;sceKernelUnlockMutex(mutex_,1);return true;}
 
@@ -48,6 +112,66 @@ bool CatalogManager::loadCatalog(ui::CatalogType catalog,std::vector<ui::Catalog
     sceIoRemove(temp.c_str());if(haveCache&&CatalogParser::parseFile(path,outItems)&&!outItems.empty()){sceKernelLockMutex(mutex_,1,nullptr);cachedItems_[idx]=outItems;cachedValid_[idx]=true;sceKernelUnlockMutex(mutex_,1);diagnostics::log(std::string("[CatalogManager] refresh failed; retained valid cache: ")+label(catalog));http.shutdown();return true;}diagnostics::log(std::string("[CatalogManager] catalog unavailable: ")+label(catalog)+" error="+http.lastError());http.shutdown();return false;}
 
 int CatalogManager::workerEntry(SceSize args,void*argp){(void)args;CatalogManager*self=nullptr;if(argp)std::memcpy(&self,argp,sizeof(self));return self?self->workerMain():-1;}
-int CatalogManager::workerMain(){while(!stopping_){ui::CatalogType catalog=ui::CatalogType::Homebrew;bool haveRequest=false;sceKernelLockMutex(mutex_,1,nullptr);if(requestPending_){catalog=requestedCatalog_;requestPending_=false;haveRequest=true;}sceKernelUnlockMutex(mutex_,1);if(!haveRequest){sceKernelDelayThread(50*1000);continue;}std::vector<ui::CatalogItem>loaded;if(loadCatalog(catalog,loaded)&&!loaded.empty()){sceKernelLockMutex(mutex_,1,nullptr);readyItems_=std::move(loaded);readyCatalog_=catalog;readyPending_=true;status_.state=State::Ready;status_.current=status_.total>0?status_.total:1;status_.message="Catalog ready";status_.error.clear();sceKernelUnlockMutex(mutex_,1);}else{sceKernelLockMutex(mutex_,1,nullptr);status_.state=State::Failed;status_.message="Unable to load catalog";status_.error="Remote catalog and cache unavailable";sceKernelUnlockMutex(mutex_,1);}}return 0;}
+int CatalogManager::workerMain() {
+    while (!stopping_) {
+        ui::CatalogType catalog = ui::CatalogType::Homebrew;
+        bool haveRequest = false;
+        unsigned gen = 0;
+
+        sceKernelLockMutex(mutex_, 1, nullptr);
+        if (requestPending_) {
+            catalog = requestedCatalog_;
+            gen = requestGeneration_;
+            loadingGeneration_ = gen;
+            requestPending_ = false;
+            haveRequest = true;
+            status_.state = State::Loading;
+            status_.catalog = catalog;
+            status_.label = label(catalog);
+            status_.message = "Checking catalog cache...";
+            status_.error.clear();
+        }
+        sceKernelUnlockMutex(mutex_, 1);
+
+        if (!haveRequest) {
+            sceKernelDelayThread(50 * 1000);
+            continue;
+        }
+
+        std::vector<ui::CatalogItem> loaded;
+        const bool ok = loadCatalog(catalog, loaded) && !loaded.empty();
+
+        sceKernelLockMutex(mutex_, 1, nullptr);
+        // User asked for another tab while we were busy: drop this result.
+        if (requestPending_ || catalog != requestedCatalog_ || gen != requestGeneration_) {
+            diagnostics::log(std::string("[CatalogManager] discard stale result for ") + label(catalog));
+            // Stay in Loading so the UI keeps the lock until the new job finishes.
+            status_.state = State::Loading;
+            status_.catalog = requestedCatalog_;
+            status_.label = label(requestedCatalog_);
+            status_.message = "Switching catalog...";
+            sceKernelUnlockMutex(mutex_, 1);
+            continue;
+        }
+
+        if (ok) {
+            readyItems_ = std::move(loaded);
+            readyCatalog_ = catalog;
+            readyPending_ = true;
+            status_.state = State::Ready;
+            status_.catalog = catalog;
+            status_.current = status_.total > 0 ? status_.total : 1;
+            status_.message = "Catalog ready";
+            status_.error.clear();
+        } else {
+            status_.state = State::Failed;
+            status_.catalog = catalog;
+            status_.message = "Unable to load catalog";
+            status_.error = "Remote catalog and cache unavailable";
+        }
+        sceKernelUnlockMutex(mutex_, 1);
+    }
+    return 0;
+}
 
 } // namespace psvitaalive
