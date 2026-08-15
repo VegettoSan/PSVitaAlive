@@ -8,6 +8,7 @@
 #include <cctype>
 #include <cstring>
 #include <set>
+#include <unordered_set>
 #include <utility>
 namespace psvitaalive::ui { namespace {
 constexpr unsigned BG=RGBA8(0,0,0,255),SURFACE=RGBA8(0x37,0x37,0x37,255),SURFACE2=RGBA8(0x2A,0x2A,0x2A,255),BORDER=RGBA8(0x6E,0x6E,0x6E,255),TEXT=RGBA8(0xAA,0xAA,0xAA,255),DIM=RGBA8(0x6E,0x6E,0x6E,255),ACCENT=RGBA8(0x3B,0xFF,0,255),WHITE=RGBA8(255,255,255,255),PANEL=RGBA8(0x20,0x20,0x20,255);
@@ -44,11 +45,95 @@ void FullCatalogScreen::setCatalogItems(std::vector<CatalogItem>items){releaseTe
     installResultPath_ = installPath;
     installResultTitleId_ = titleId;
 }
-bool FullCatalogScreen::init(){vita2d_init();vita2d_set_clear_color(BG);font_=vita2d_load_default_pgf();if(!font_)return false;sceCtrlSetSamplingMode(SCE_CTRL_MODE_ANALOG);state_=UiState{};ready_=true;diagnostics::log("[UI] initialized");return true;}void FullCatalogScreen::releaseTextures(){if(!textures_.empty())vita2d_wait_rendering_done();for(auto&e:textures_)if(e.second)vita2d_free_texture(e.second);textures_.clear();textureOrder_.clear();}void FullCatalogScreen::releaseScreenshotTextures(){bool any=false;for(const auto&kv:textures_)if(kv.first.find("/shot_")!=std::string::npos){any=true;break;}if(any)vita2d_wait_rendering_done();for(auto i=textures_.begin();i!=textures_.end();){if(i->first.find("/shot_")!=std::string::npos){if(i->second)vita2d_free_texture(i->second);i=textures_.erase(i);}else ++i;}textureOrder_.erase(std::remove_if(textureOrder_.begin(),textureOrder_.end(),[](const std::string&p){return p.find("/shot_")!=std::string::npos;}),textureOrder_.end());}void FullCatalogScreen::touchTexture(const std::string&p){auto i=std::find(textureOrder_.begin(),textureOrder_.end(),p);if(i!=textureOrder_.end())textureOrder_.erase(i);textureOrder_.push_back(p);}void FullCatalogScreen::evictTextureIfNeeded(const std::string&ns){if(ns=="shot")return;size_t lim=MAX_APP_TEXTURES,c=0;for(const auto&p:textureOrder_)if(p.find("/app_")!=std::string::npos)++c;if(c<lim)return;for(auto i=textureOrder_.begin();i!=textureOrder_.end();++i)if(i->find("/app_")!=std::string::npos){auto t=textures_.find(*i);if(t!=textures_.end()){if(t->second){vita2d_wait_rendering_done();vita2d_free_texture(t->second);textures_.erase(t);}}textureOrder_.erase(i);return;}}void FullCatalogScreen::shutdown(){releaseTextures();if(font_){vita2d_free_pgf(font_);font_=nullptr;}if(ready_){vita2d_fini();ready_=false;}diagnostics::log("[UI] shutdown");}
+bool FullCatalogScreen::init(){vita2d_init();vita2d_set_clear_color(BG);font_=vita2d_load_default_pgf();if(!font_)return false;sceCtrlSetSamplingMode(SCE_CTRL_MODE_ANALOG);state_=UiState{};ready_=true;diagnostics::log("[UI] initialized");return true;}void FullCatalogScreen::releaseTextures(){
+    if(!textures_.empty())vita2d_wait_rendering_done();
+    for(auto&e:textures_)if(e.second)vita2d_free_texture(e.second);
+    textures_.clear();
+    textureOrder_.clear();
+}
+void FullCatalogScreen::releaseScreenshotTextures(){
+    bool any=false;
+    for(const auto&kv:textures_)if(kv.first.find("/shot_")!=std::string::npos){any=true;break;}
+    if(!any)return;
+    vita2d_wait_rendering_done();
+    for(auto i=textures_.begin();i!=textures_.end();){
+        if(i->first.find("/shot_")!=std::string::npos){
+            if(i->second)vita2d_free_texture(i->second);
+            i=textures_.erase(i);
+        }else ++i;
+    }
+    textureOrder_.erase(std::remove_if(textureOrder_.begin(),textureOrder_.end(),[](const std::string&p){
+        return p.find("/shot_")!=std::string::npos;
+    }),textureOrder_.end());
+}
+void FullCatalogScreen::releaseTexturesNotIn(const std::unordered_set<std::string>& keep){
+    bool any=false;
+    for(const auto&kv:textures_){
+        if(keep.find(kv.first)==keep.end()){any=true;break;}
+    }
+    if(!any)return;
+    vita2d_wait_rendering_done();
+    size_t freed=0;
+    for(auto i=textures_.begin();i!=textures_.end();){
+        if(keep.find(i->first)==keep.end()){
+            if(i->second)vita2d_free_texture(i->second);
+            i=textures_.erase(i);
+            ++freed;
+        }else ++i;
+    }
+    textureOrder_.erase(std::remove_if(textureOrder_.begin(),textureOrder_.end(),[&](const std::string&p){
+        return keep.find(p)==keep.end();
+    }),textureOrder_.end());
+    if(freed>0){
+        char m[96];
+        sceClibSnprintf(m,sizeof(m),"[UI] freed %u off-screen textures (kept %u)",(unsigned)freed,(unsigned)textures_.size());
+        diagnostics::log(m);
+    }
+}
+void FullCatalogScreen::touchTexture(const std::string&p){
+    auto i=std::find(textureOrder_.begin(),textureOrder_.end(),p);
+    if(i!=textureOrder_.end())textureOrder_.erase(i);
+    textureOrder_.push_back(p);
+}
+void FullCatalogScreen::evictTextureIfNeeded(const std::string&ns){
+    // Prefer releasing oldest textures of the same namespace when over hard caps.
+    const size_t lim=(ns=="shot")?MAX_SCREENSHOT_TEXTURES:MAX_APP_TEXTURES;
+    const char* marker=(ns=="shot")?"/shot_":"/app_";
+    size_t c=0;
+    for(const auto&p:textureOrder_)if(p.find(marker)!=std::string::npos)++c;
+    while(c>=lim){
+        bool removed=false;
+        for(auto i=textureOrder_.begin();i!=textureOrder_.end();++i){
+            if(i->find(marker)==std::string::npos)continue;
+            auto t=textures_.find(*i);
+            if(t!=textures_.end()){
+                if(t->second){vita2d_wait_rendering_done();vita2d_free_texture(t->second);}
+                textures_.erase(t);
+            }
+            textureOrder_.erase(i);
+            --c;
+            removed=true;
+            break;
+        }
+        if(!removed)break;
+    }
+}
+void FullCatalogScreen::shutdown(){releaseTextures();if(font_){vita2d_free_pgf(font_);font_=nullptr;}if(ready_){vita2d_fini();ready_=false;}diagnostics::log("[UI] shutdown");}
 int FullCatalogScreen::totalRows()const{return items_.empty()?0:(int(items_.size())+2)/3;}int FullCatalogScreen::visibleRowsFull()const{return 3;}int FullCatalogScreen::visibleRowsSplit()const{return std::max(1,(SCREEN_H-HEADER_H-TABS_H-FOOTER_H-GRID_PAD*2)/(SPLIT_CARD_H+CARD_GAP));}int FullCatalogScreen::selectedIndex()const{return items_.empty()?-1:std::max(0,std::min(state_.focusIndex,(int)items_.size()-1));}void FullCatalogScreen::clampCatalogFocus(){if(items_.empty())state_.focusIndex=0;else state_.focusIndex=std::max(0,std::min(state_.focusIndex,(int)items_.size()-1));}void FullCatalogScreen::clampCatalogScroll(){if(items_.empty()){state_.catalogScrollRow=0;return;}int v=state_.mode==UiMode::FULL_CATALOG?visibleRowsFull():visibleRowsSplit();if(state_.mode==UiMode::FULL_CATALOG){int r=state_.focusIndex/3;if(r<state_.catalogScrollRow)state_.catalogScrollRow=r;if(r>=state_.catalogScrollRow+v)state_.catalogScrollRow=r-v+1;state_.catalogScrollRow=std::max(0,std::min(state_.catalogScrollRow,std::max(0,totalRows()-v)));}else{int m=std::max(0,(int)items_.size()-v);if(state_.focusIndex<state_.catalogScrollRow)state_.catalogScrollRow=state_.focusIndex;if(state_.focusIndex>=state_.catalogScrollRow+v)state_.catalogScrollRow=state_.focusIndex-v+1;state_.catalogScrollRow=std::max(0,std::min(state_.catalogScrollRow,m));}}
 void FullCatalogScreen::sortItemsByDate(std::vector<CatalogItem>&v)const{std::stable_sort(v.begin(),v.end(),[](const CatalogItem&a,const CatalogItem&b){if(a.versionDate!=b.versionDate)return a.versionDate>b.versionDate;return lowerAscii(a.name)<lowerAscii(b.name);});}bool FullCatalogScreen::matchesSearch(const CatalogItem&i,const std::string&q)const{if(q.empty())return true;std::string x=lowerAscii(q),h=lowerAscii(i.name+"\n"+i.titleId+"\n"+i.author+"\n"+i.description+"\n"+i.longDescription+"\n"+i.category+"\n"+i.subcategory);return h.find(x)!=std::string::npos;}void FullCatalogScreen::applySearch(const std::string&q){searchQuery_=q;items_.clear();for(const auto&i:allItems_)if(matchesSearch(i,q))items_.push_back(i);state_.focusIndex=0;state_.catalogScrollRow=0;state_.detailScroll=0;detailScrollBeforeLinkMode_=0;state_.linkFocus=-1;state_.linkNavigation=false;char m[256];sceClibSnprintf(m,sizeof(m),"[UI] search query='%s' results=%u",searchQuery_.c_str(),(unsigned)items_.size());diagnostics::log(m);}
 int FullCatalogScreen::detailContentHeight(const CatalogItem&i,int w)const{int cw=std::max(1,w-36),mc=std::max(18,cw/7);std::vector<std::string>pre,post;auto add=[&](std::vector<std::string>&l,const char*t,const std::string&v){if(v.empty())return;l.push_back(t);std::vector<std::string>q;wrapText(v,mc,q);for(auto&s:q)l.push_back(s);l.push_back("");};add(pre,"Description",i.description);add(pre,"Long Description",i.longDescription);add(post,"Requirements",i.requirements);post.push_back("Information");post.push_back("Title ID: "+i.titleId);post.push_back("Version: "+i.version);post.push_back("Release date: "+i.versionDate);post.push_back("Category: "+i.category);post.push_back("Subcategory: "+i.subcategory);post.push_back("Size: "+i.size);post.push_back("Status: "+i.status);post.push_back("");add(post,"Changelog",i.changelog);int lh=i.linkDetails.empty()?0:10+(int)i.linkDetails.size()*(LINK_ROW_H+LINK_GAP),sc=std::min(5,(int)i.screenshots.size());return lh+((int)pre.size()+(int)post.size())*LINE_H+sc*SCREENSHOT_ROW_H+32;}int FullCatalogScreen::detailLinkScrollLimit(const CatalogItem&i,int w,int h)const{(void)w;if(i.linkDetails.empty())return 0;int lh=10+(int)i.linkDetails.size()*(LINK_ROW_H+LINK_GAP),v=std::max(1,h-DETAIL_HEADER_H-18);return std::max(0,lh-v);}void FullCatalogScreen::clampDetailScroll(){int i=selectedIndex();if(i<0){state_.detailScroll=0;return;}int vh=std::max(1,SCREEN_H-HEADER_H-TABS_H-FOOTER_H-DETAIL_HEADER_H-18),total=detailContentHeight(items_[i],SCREEN_W/2),mx=std::max(0,total-vh);state_.detailScroll=std::max(0,std::min(state_.detailScroll,mx));if(items_[i].linkDetails.empty()){state_.linkFocus=-1;state_.linkNavigation=false;}else if(state_.linkFocus>=(int)items_[i].linkDetails.size())state_.linkFocus=(int)items_[i].linkDetails.size()-1;if(state_.linkNavigation){int lim=detailLinkScrollLimit(items_[i],SCREEN_W/2,SCREEN_H-HEADER_H-TABS_H-FOOTER_H);state_.detailScroll=std::max(0,std::min(state_.detailScroll,lim));}}
-void FullCatalogScreen::moveCatalogFocus(int d){if(items_.empty())return;if(state_.mode!=UiMode::FULL_CATALOG)releaseScreenshotTextures();if(state_.mode==UiMode::FULL_CATALOG){if(d<0&&state_.focusIndex>=3)state_.focusIndex-=3;if(d>0&&state_.focusIndex+3<(int)items_.size())state_.focusIndex+=3;}else{if(d<0&&state_.focusIndex>0)--state_.focusIndex;if(d>0&&state_.focusIndex+1<(int)items_.size())++state_.focusIndex;}clampCatalogFocus();clampCatalogScroll();state_.detailScroll=0;detailScrollBeforeLinkMode_=0;state_.linkFocus=-1;state_.linkNavigation=false;}void FullCatalogScreen::moveDetailScroll(int d){state_.detailScroll+=d<0?-72:72;clampDetailScroll();}void FullCatalogScreen::enterLinkNavigation(){int i=selectedIndex();if(i<0||items_[i].linkDetails.empty())return;detailScrollBeforeLinkMode_=state_.detailScroll;state_.linkNavigation=true;state_.linkFocus=0;state_.detailScroll=0;clampDetailScroll();diagnostics::log("[UI] link navigation enabled; detail scroll bounded to links");}void FullCatalogScreen::exitLinkNavigation(){if(!state_.linkNavigation)return;state_.linkNavigation=false;state_.linkFocus=-1;state_.detailScroll=detailScrollBeforeLinkMode_;detailScrollBeforeLinkMode_=0;clampDetailScroll();diagnostics::log("[UI] link navigation disabled; detail scroll restored");}void FullCatalogScreen::moveLinkFocus(int dx,int dy){(void)dx;int i=selectedIndex();if(i<0||items_[i].linkDetails.empty())return;int c=(int)items_[i].linkDetails.size();if(state_.linkFocus<0)state_.linkFocus=0;else state_.linkFocus=std::max(0,std::min(c-1,state_.linkFocus+dy));state_.linkNavigation=true;int top=DETAIL_HEADER_H+10+state_.linkFocus*(LINK_ROW_H+LINK_GAP),vis=SCREEN_H-HEADER_H-TABS_H-FOOTER_H-DETAIL_HEADER_H-18,lim=detailLinkScrollLimit(items_[i],SCREEN_W/2,SCREEN_H-HEADER_H-TABS_H-FOOTER_H);if(top<state_.detailScroll)state_.detailScroll=top;if(top+LINK_ROW_H>state_.detailScroll+vis)state_.detailScroll=top+LINK_ROW_H-vis;state_.detailScroll=std::max(0,std::min(state_.detailScroll,lim));}void FullCatalogScreen::activateFocusedLink(){int i=selectedIndex();if(i<0||state_.linkFocus<0||state_.linkFocus>=(int)items_[i].linkDetails.size())return;const CatalogLink&l=items_[i].linkDetails[state_.linkFocus];if(!linkAction_||!actionableLink(l)){diagnostics::log(std::string("[UI] non-download link selected: ")+l.url);return;}if(linkAction_(items_[i],l))exitLinkNavigation();}void FullCatalogScreen::changeCatalog(int d){int v=(int)state_.catalog+d,c=(int)CatalogType::Count;if(v<0)v=c-1;if(v>=c)v=0;CatalogType n=(CatalogType)v;if(catalogChange_){releaseTextures();if(catalogChange_(n)){searchQuery_.clear();items_=allItems_;state_.focusIndex=0;state_.catalogScrollRow=0;state_.detailScroll=0;detailScrollBeforeLinkMode_=0;state_.linkFocus=-1;state_.linkNavigation=false;catalogLoading_=true;catalogLoadingLabel_=catalogName(n);catalogLoadingCurrent_=0;catalogLoadingTotal_=0;catalogLoadingMessage_="Checking catalog cache...";catalogError_.clear();}return;}setActiveCatalog(n);}bool FullCatalogScreen::isTransitioning()const{return state_.mode==UiMode::OPENING_DETAIL||state_.mode==UiMode::CLOSING_DETAIL;}void FullCatalogScreen::startOpeningDetail(){if(state_.mode!=UiMode::FULL_CATALOG||catalogLoading_||installProgressActive_||selectedIndex()<0)return;state_.detailScroll=0;detailScrollBeforeLinkMode_=0;state_.linkFocus=-1;state_.linkNavigation=false;state_.transitionStart=sceKernelGetProcessTimeWide();state_.mode=UiMode::OPENING_DETAIL;diagnostics::log("[UI] opening detail");}void FullCatalogScreen::startClosingDetail(){releaseScreenshotTextures();if(state_.mode!=UiMode::SPLIT_DETAIL)return;exitLinkNavigation();state_.transitionStart=sceKernelGetProcessTimeWide();state_.mode=UiMode::CLOSING_DETAIL;diagnostics::log("[UI] closing detail");}float FullCatalogScreen::transitionProgress()const{if(!isTransitioning())return 1.0f;uint64_t e=sceKernelGetProcessTimeWide()-state_.transitionStart;return std::max(0.0f,std::min(1.0f,(float)e/(float)(TRANSITION_MS*1000)));}void FullCatalogScreen::updateTransition(){if(!isTransitioning()||transitionProgress()<1.0f)return;state_.mode=state_.mode==UiMode::OPENING_DETAIL?UiMode::SPLIT_DETAIL:UiMode::FULL_CATALOG;state_.activePanel=UiPanel::Catalog;clampCatalogScroll();}
+void FullCatalogScreen::moveCatalogFocus(int d){if(items_.empty())return;if(state_.mode!=UiMode::FULL_CATALOG)releaseScreenshotTextures();if(state_.mode==UiMode::FULL_CATALOG){if(d<0&&state_.focusIndex>=3)state_.focusIndex-=3;if(d>0&&state_.focusIndex+3<(int)items_.size())state_.focusIndex+=3;}else{if(d<0&&state_.focusIndex>0)--state_.focusIndex;if(d>0&&state_.focusIndex+1<(int)items_.size())++state_.focusIndex;}clampCatalogFocus();clampCatalogScroll();state_.detailScroll=0;detailScrollBeforeLinkMode_=0;state_.linkFocus=-1;state_.linkNavigation=false;}void FullCatalogScreen::moveDetailScroll(int d){state_.detailScroll+=d<0?-72:72;clampDetailScroll();}void FullCatalogScreen::enterLinkNavigation(){int i=selectedIndex();if(i<0||items_[i].linkDetails.empty())return;detailScrollBeforeLinkMode_=state_.detailScroll;state_.linkNavigation=true;state_.linkFocus=0;state_.detailScroll=0;clampDetailScroll();diagnostics::log("[UI] link navigation enabled; detail scroll bounded to links");}void FullCatalogScreen::exitLinkNavigation(){if(!state_.linkNavigation)return;state_.linkNavigation=false;state_.linkFocus=-1;state_.detailScroll=detailScrollBeforeLinkMode_;detailScrollBeforeLinkMode_=0;clampDetailScroll();diagnostics::log("[UI] link navigation disabled; detail scroll restored");}void FullCatalogScreen::moveLinkFocus(int dx,int dy){(void)dx;int i=selectedIndex();if(i<0||items_[i].linkDetails.empty())return;int c=(int)items_[i].linkDetails.size();if(state_.linkFocus<0)state_.linkFocus=0;else state_.linkFocus=std::max(0,std::min(c-1,state_.linkFocus+dy));state_.linkNavigation=true;int top=DETAIL_HEADER_H+10+state_.linkFocus*(LINK_ROW_H+LINK_GAP),vis=SCREEN_H-HEADER_H-TABS_H-FOOTER_H-DETAIL_HEADER_H-18,lim=detailLinkScrollLimit(items_[i],SCREEN_W/2,SCREEN_H-HEADER_H-TABS_H-FOOTER_H);if(top<state_.detailScroll)state_.detailScroll=top;if(top+LINK_ROW_H>state_.detailScroll+vis)state_.detailScroll=top+LINK_ROW_H-vis;state_.detailScroll=std::max(0,std::min(state_.detailScroll,lim));}void FullCatalogScreen::activateFocusedLink(){int i=selectedIndex();if(i<0||state_.linkFocus<0||state_.linkFocus>=(int)items_[i].linkDetails.size())return;const CatalogLink&l=items_[i].linkDetails[state_.linkFocus];if(!linkAction_||!actionableLink(l)){diagnostics::log(std::string("[UI] non-download link selected: ")+l.url);return;}if(linkAction_(items_[i],l))exitLinkNavigation();}void FullCatalogScreen::changeCatalog(int d){int v=(int)state_.catalog+d,c=(int)CatalogType::Count;if(v<0)v=c-1;if(v>=c)v=0;CatalogType n=(CatalogType)v;if(catalogChange_){releaseTextures();if(catalogChange_(n)){searchQuery_.clear();items_=allItems_;state_.focusIndex=0;state_.catalogScrollRow=0;state_.detailScroll=0;detailScrollBeforeLinkMode_=0;state_.linkFocus=-1;state_.linkNavigation=false;catalogLoading_=true;catalogLoadingLabel_=catalogName(n);catalogLoadingCurrent_=0;catalogLoadingTotal_=0;catalogLoadingMessage_="Checking catalog cache...";catalogError_.clear();}return;}setActiveCatalog(n);}bool FullCatalogScreen::isTransitioning()const{return state_.mode==UiMode::OPENING_DETAIL||state_.mode==UiMode::CLOSING_DETAIL;}void FullCatalogScreen::startOpeningDetail(){if(state_.mode!=UiMode::FULL_CATALOG||catalogLoading_||installProgressActive_||selectedIndex()<0)return;state_.detailScroll=0;detailScrollBeforeLinkMode_=0;state_.linkFocus=-1;state_.linkNavigation=false;state_.transitionStart=sceKernelGetProcessTimeWide();state_.mode=UiMode::OPENING_DETAIL;diagnostics::log("[UI] opening detail");}void FullCatalogScreen::startClosingDetail(){releaseScreenshotTextures();if(state_.mode!=UiMode::SPLIT_DETAIL)return;exitLinkNavigation();state_.transitionStart=sceKernelGetProcessTimeWide();state_.mode=UiMode::CLOSING_DETAIL;diagnostics::log("[UI] closing detail");}float FullCatalogScreen::transitionProgress()const{if(!isTransitioning())return 1.0f;uint64_t e=sceKernelGetProcessTimeWide()-state_.transitionStart;return std::max(0.0f,std::min(1.0f,(float)e/(float)(TRANSITION_MS*1000)));}void FullCatalogScreen::updateTransition(){
+    if(!isTransitioning()||transitionProgress()<1.0f)return;
+    const bool closing=(state_.mode==UiMode::CLOSING_DETAIL);
+    state_.mode=state_.mode==UiMode::OPENING_DETAIL?UiMode::SPLIT_DETAIL:UiMode::FULL_CATALOG;
+    state_.activePanel=UiPanel::Catalog;
+    clampCatalogScroll();
+    if(closing){
+        // Detail closed: screenshots are no longer needed in GPU memory.
+        releaseScreenshotTextures();
+        diagnostics::log("[UI] detail closed — screenshot textures released");
+    }
+}
 void FullCatalogScreen::handleInput(){if(isTransitioning())return;SceCtrlData p{};sceCtrlPeekBufferPositive(0,&p,1);static uint32_t prev=0;static uint64_t repeatAt=0;uint32_t mask=SCE_CTRL_UP|SCE_CTRL_DOWN|SCE_CTRL_LEFT|SCE_CTRL_RIGHT,pressed=p.buttons&~prev,direct=pressed&mask;uint64_t now=sceKernelGetProcessTimeWide(),repeat=0;if((p.buttons&mask)==0)repeatAt=0;else if(direct)repeatAt=now+DIRECTION_REPEAT_DELAY_US;else if(repeatAt&&now>=repeatAt){repeat=p.buttons&mask;repeatAt=now+DIRECTION_REPEAT_INTERVAL_US;}prev=p.buttons;uint32_t nav=direct|repeat;if(pressed&SCE_CTRL_START){state_.requestExit=true;return;}if(pressed&SCE_CTRL_LTRIGGER){changeCatalog(-1);return;}if(pressed&SCE_CTRL_RTRIGGER){changeCatalog(1);return;}if(installProgressActive_&&(pressed&SCE_CTRL_CIRCLE)){if(installOutcome_==1||installOutcome_==2){if(installAcknowledge_)installAcknowledge_();}else if(installCancel_)installCancel_();return;}if(catalogLoading_||installProgressActive_)return;if(pressed&SCE_CTRL_SQUARE){if(!searchQuery_.empty())applySearch("");return;}if(state_.mode==UiMode::FULL_CATALOG){if(pressed&SCE_CTRL_TRIANGLE){if(searchRequest_)applySearch(searchRequest_(searchQuery_));return;}if(nav&SCE_CTRL_LEFT&&state_.focusIndex%3>0)--state_.focusIndex;if(nav&SCE_CTRL_RIGHT&&state_.focusIndex%3<2&&state_.focusIndex+1<(int)items_.size())++state_.focusIndex;if(nav&SCE_CTRL_UP)moveCatalogFocus(-1);if(nav&SCE_CTRL_DOWN)moveCatalogFocus(1);clampCatalogScroll();if(pressed&SCE_CTRL_CROSS)startOpeningDetail();return;}if(state_.mode!=UiMode::SPLIT_DETAIL)return;if(pressed&SCE_CTRL_CIRCLE){startClosingDetail();return;}if(state_.activePanel==UiPanel::Catalog){if(pressed&SCE_CTRL_RIGHT)state_.activePanel=UiPanel::Detail;if(nav&SCE_CTRL_UP)moveCatalogFocus(-1);if(nav&SCE_CTRL_DOWN)moveCatalogFocus(1);return;}if(nav&SCE_CTRL_LEFT)state_.activePanel=UiPanel::Catalog;if(pressed&SCE_CTRL_TRIANGLE){if(state_.linkNavigation)exitLinkNavigation();else enterLinkNavigation();return;}if(state_.linkNavigation){if(nav&SCE_CTRL_UP)moveLinkFocus(0,-1);if(nav&SCE_CTRL_DOWN)moveLinkFocus(0,1);if(pressed&SCE_CTRL_CROSS)activateFocusedLink();return;}if(nav&SCE_CTRL_UP)moveDetailScroll(-1);if(nav&SCE_CTRL_DOWN)moveDetailScroll(1);}
 unsigned FullCatalogScreen::colorForStatus(const std::string&s)const{if(s=="Verified")return ACCENT;if(s=="Legacy")return TEXT;if(s=="Archive")return DIM;return TEXT;}void FullCatalogScreen::drawHeader(int w){vita2d_draw_rectangle(0,0,w,HEADER_H,SURFACE2);vita2d_pgf_draw_text(font_,16,32,ACCENT,1.12f,"PSVitaAlive Store");vita2d_pgf_draw_text(font_,w-132,32,DIM,.76f,"START: Exit");if(!searchQuery_.empty()){std::string q=ellipsize(searchQuery_,22);int pw=std::max(156,std::min(w-300,(int)(q.size()*7+86))),bx=(w-pw)/2,by=11,bh=28;vita2d_draw_rectangle(bx,by,pw,bh,SURFACE);vita2d_draw_rectangle(bx,by,pw,2,ACCENT);vita2d_draw_rectangle(bx,by+bh-2,pw,2,ACCENT);vita2d_pgf_draw_text(font_,bx+12,by+19,ACCENT,.58f,"FILTER");vita2d_pgf_draw_text(font_,bx+62,by+19,WHITE,.58f,q.c_str());}}
 void FullCatalogScreen::drawTabs(int w){vita2d_draw_rectangle(0,HEADER_H,w,TABS_H,SURFACE);float tw=(float)w/(int)CatalogType::Count;for(int i=0;i<(int)CatalogType::Count;++i){int x=(int)(i*tw);bool a=(int)state_.catalog==i;if(a)vita2d_draw_rectangle(x,HEADER_H+TABS_H-3,(int)tw,3,ACCENT);vita2d_pgf_draw_text(font_,x+12,HEADER_H+24,a?ACCENT:TEXT,.80f,catalogName((CatalogType)i));}}
@@ -70,48 +155,126 @@ void FullCatalogScreen::prepareImageTexture(const std::string&url,const std::str
 }
 void FullCatalogScreen::prepareVisibleTextures(){
     if(!imageCache_||catalogLoading_||installProgressActive_)return;
-    if(state_.mode==UiMode::FULL_CATALOG){
-        std::vector<std::string> staleShots;
-        for(const auto&e:textures_)if(e.first.find("/shot_")!=std::string::npos)staleShots.push_back(e.first);
-        if(!staleShots.empty()){
-            vita2d_wait_rendering_done();
-            for(const auto&p:staleShots){auto it=textures_.find(p);if(it!=textures_.end()){if(it->second)vita2d_free_texture(it->second);textures_.erase(it);}textureOrder_.erase(std::remove(textureOrder_.begin(),textureOrder_.end(),p),textureOrder_.end());}
-        }
-    }
-    bool loadedThisFrame=false;
-    auto prepareOne=[&](const std::string&url,const char*ns){
-        if(loadedThisFrame||url.empty())return;
-        const size_t before=textures_.size();
-        prepareImageTexture(url,ns);
-        loadedThisFrame=textures_.size()>before;
+
+    std::unordered_set<std::string> keep;
+    auto pathFor=[&](const std::string& url, const char* ns)->std::string{
+        if(url.empty())return {};
+        return imageCache_->request(url, ns);
     };
+    auto markKeep=[&](const std::string& url, const char* ns){
+        const std::string path=pathFor(url, ns);
+        if(!path.empty())keep.insert(path);
+    };
+
     if(state_.mode==UiMode::FULL_CATALOG){
-        const int first=std::max(0,state_.catalogScrollRow*3);
-        const int last=std::min((int)items_.size(),first+9);
-        for(int i=first;i<last&&!loadedThisFrame;++i)prepareOne(!items_[i].icon.empty()?items_[i].icon:items_[i].cover,"app");
+        // Visible grid + one row buffer above/below for smoother scroll.
+        const int firstRow=std::max(0, state_.catalogScrollRow-1);
+        const int lastRow=state_.catalogScrollRow+visibleRowsFull()+1;
+        const int first=firstRow*3;
+        const int last=std::min((int)items_.size(), lastRow*3);
+        for(int i=first;i<last;++i){
+            const CatalogItem& it=items_[i];
+            markKeep(!it.icon.empty()?it.icon:it.cover, "app");
+        }
+        // Drop every screenshot texture in list mode (detail-only).
+        releaseTexturesNotIn(keep);
+        // Load at most one missing visible icon per frame.
+        bool loaded=false;
+        for(int i=first;i<last&&!loaded;++i){
+            const CatalogItem& it=items_[i];
+            const std::string& url=!it.icon.empty()?it.icon:it.cover;
+            if(url.empty())continue;
+            const size_t before=textures_.size();
+            prepareImageTexture(url, "app");
+            loaded=textures_.size()>before;
+        }
         return;
     }
+
     if(state_.mode==UiMode::OPENING_DETAIL||state_.mode==UiMode::SPLIT_DETAIL||state_.mode==UiMode::CLOSING_DETAIL){
-        const int first=std::max(0,state_.catalogScrollRow);
-        const int last=std::min((int)items_.size(),first+visibleRowsSplit()+1);
-        for(int i=first;i<last&&!loadedThisFrame;++i)prepareOne(!items_[i].icon.empty()?items_[i].icon:items_[i].cover,"app");
-        const int i=selectedIndex();
-        if(i>=0&&!loadedThisFrame){
-            const CatalogItem&it=items_[i];
-            const int panelX=SCREEN_W/2,panelY=HEADER_H+TABS_H,panelW=SCREEN_W-panelX,panelH=SCREEN_H-HEADER_H-TABS_H-FOOTER_H;
-            const int cx=panelX+18,cw=panelW-36,top=panelY+DETAIL_HEADER_H+10,bottom=panelY+panelH-10,scroll=std::max(0,state_.detailScroll);
-            int mc=std::max(18,cw/7);std::vector<std::string>pre;auto add=[&](const std::string&v){if(v.empty())return;pre.push_back("");std::vector<std::string>q;wrapText(v,mc,q);pre.insert(pre.end(),q.begin(),q.end());pre.push_back("");};add(it.description);add(it.longDescription);
-            const int links=it.linkDetails.empty()?0:10+(int)it.linkDetails.size()*(LINK_ROW_H+LINK_GAP);
-            const int shotTop=top+links+(int)pre.size()*LINE_H-scroll,shotH=SCREENSHOT_ROW_H-18,sc=std::min(5,(int)it.screenshots.size());
-            std::set<std::string> visibleShotPaths;
-            for(int k=0;k<sc;++k){const int sy=shotTop+k*SCREENSHOT_ROW_H;if(sy+shotH>top&&sy<bottom){const std::string p=imageCache_->request(it.screenshots[k],"shot");if(!p.empty())visibleShotPaths.insert(p);}}
-            std::vector<std::string> staleShots;
-            for(const auto&e:textures_)if(e.first.find("/shot_")!=std::string::npos&&visibleShotPaths.find(e.first)==visibleShotPaths.end())staleShots.push_back(e.first);
-            if(!staleShots.empty()){vita2d_wait_rendering_done();for(const auto&p:staleShots){auto itTex=textures_.find(p);if(itTex!=textures_.end()){if(itTex->second)vita2d_free_texture(itTex->second);textures_.erase(itTex);}textureOrder_.erase(std::remove(textureOrder_.begin(),textureOrder_.end(),p),textureOrder_.end());}}
-            for(int k=0;k<sc&&!loadedThisFrame;++k){const int sy=shotTop+k*SCREENSHOT_ROW_H;if(sy+shotH>top&&sy<bottom)prepareOne(it.screenshots[k],"shot");}
+        const int first=std::max(0, state_.catalogScrollRow-1);
+        const int last=std::min((int)items_.size(), state_.catalogScrollRow+visibleRowsSplit()+2);
+        for(int i=first;i<last;++i){
+            const CatalogItem& it=items_[i];
+            markKeep(!it.icon.empty()?it.icon:it.cover, "app");
         }
+        const int sel=selectedIndex();
+        if(sel>=0){
+            const CatalogItem& it=items_[sel];
+            markKeep(!it.icon.empty()?it.icon:it.cover, "app");
+            // Only keep screenshots that intersect the detail viewport.
+            const int panelX=SCREEN_W/2, panelY=HEADER_H+TABS_H;
+            const int panelW=SCREEN_W-panelX, panelH=SCREEN_H-HEADER_H-TABS_H-FOOTER_H;
+            const int cx=panelX+18, cw=panelW-36;
+            const int top=panelY+DETAIL_HEADER_H+10, bottom=panelY+panelH-10;
+            const int scroll=std::max(0, state_.detailScroll);
+            int mc=std::max(18, cw/7);
+            std::vector<std::string> pre;
+            auto add=[&](const std::string& v){
+                if(v.empty())return;
+                pre.push_back("");
+                std::vector<std::string> q; wrapText(v, mc, q);
+                pre.insert(pre.end(), q.begin(), q.end());
+                pre.push_back("");
+            };
+            add(it.description);
+            add(it.longDescription);
+            const int links=it.linkDetails.empty()?0:10+(int)it.linkDetails.size()*(LINK_ROW_H+LINK_GAP);
+            const int shotTop=top+links+(int)pre.size()*LINE_H-scroll;
+            const int shotH=SCREENSHOT_ROW_H-12;
+            const int sc=std::min((int)it.screenshots.size(), 8);
+            for(int k=0;k<sc;++k){
+                const int sy=shotTop+k*SCREENSHOT_ROW_H;
+                if(sy+shotH>top&&sy<bottom)markKeep(it.screenshots[k], "shot");
+            }
+        }
+        // Free icons/shots that scrolled away or belong to another app.
+        releaseTexturesNotIn(keep);
+
+        bool loaded=false;
+        auto prepareOne=[&](const std::string& url, const char* ns){
+            if(loaded||url.empty())return;
+            const size_t before=textures_.size();
+            prepareImageTexture(url, ns);
+            loaded=textures_.size()>before;
+        };
+        for(int i=first;i<last&&!loaded;++i){
+            const CatalogItem& it=items_[i];
+            prepareOne(!it.icon.empty()?it.icon:it.cover, "app");
+        }
+        if(sel>=0&&!loaded){
+            const CatalogItem& it=items_[sel];
+            const int panelX=SCREEN_W/2, panelY=HEADER_H+TABS_H;
+            const int panelW=SCREEN_W-panelX, panelH=SCREEN_H-HEADER_H-TABS_H-FOOTER_H;
+            const int top=panelY+DETAIL_HEADER_H+10, bottom=panelY+panelH-10;
+            const int scroll=std::max(0, state_.detailScroll);
+            int mc=std::max(18, (panelW-36)/7);
+            std::vector<std::string> pre;
+            auto add=[&](const std::string& v){
+                if(v.empty())return;
+                pre.push_back("");
+                std::vector<std::string> q; wrapText(v, mc, q);
+                pre.insert(pre.end(), q.begin(), q.end());
+                pre.push_back("");
+            };
+            add(it.description);
+            add(it.longDescription);
+            const int links=it.linkDetails.empty()?0:10+(int)it.linkDetails.size()*(LINK_ROW_H+LINK_GAP);
+            const int shotTop=top+links+(int)pre.size()*LINE_H-scroll;
+            const int shotH=SCREENSHOT_ROW_H-12;
+            const int sc=std::min((int)it.screenshots.size(), 8);
+            for(int k=0;k<sc&&!loaded;++k){
+                const int sy=shotTop+k*SCREENSHOT_ROW_H;
+                if(sy+shotH>top&&sy<bottom)prepareOne(it.screenshots[k], "shot");
+            }
+        }
+        return;
     }
+
+    // Any other mode: keep nothing exotic, drop screenshots.
+    releaseScreenshotTextures();
 }
+
 void FullCatalogScreen::drawImage(const std::string&url,const std::string&ns,int x,int y,int w,int h){
     vita2d_draw_rectangle(x,y,w,h,SURFACE2);
     if(!imageCache_||url.empty())return;
