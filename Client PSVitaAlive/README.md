@@ -1,86 +1,61 @@
-# PSVitaAlive — Cliente PS Vita de PS Vita Alive Store
+# PSVitaAlive — Cliente nativo (VitaSDK)
 
-Cliente nativo de [PS Vita Alive Store](https://github.com/VegettoSan/PSVitaAlive) para PlayStation Vita (VitaSDK).
+Cliente Homebrew de [PS Vita Alive Store](https://github.com/VegettoSan/PSVitaAlive) para PS Vita / PSTV.
 
-## Estado actual
+## Qué hace hoy
 
-**Fase 0 + Fase 1**
-
-- Estructura CMake
-- `StorageManager`
-- Creación de `ux0:data/psvitaalive/`
-- Escritura / lectura de archivo de prueba
-
-## Requisitos
-
-- VitaSDK instalado (`$VITASDK` definido)
-- PS Vita con HENkaku/Ensō y VitaShell
-
-### Paquetes recomendados (vdpm)
-
-Ya deberían estar con `./install-all.sh`. Si falta algo:
-
-```bash
-vdpm zlib
-vdpm libpng
-vdpm libjpeg-turbo
-vdpm freetype
-vdpm vita2d
-# Más adelante:
-# vdpm curl
-# vdpm libzip
-```
+- Catálogos JSON publicados por el repo (`catalog.json`, etc.) — **sin** hablar con VitaDB/NeoVitaDB directamente.
+- Descarga HTTP de VPK / PKG / ZIP.
+- Instalación VPK vía Promoter Utility + verificación de árbol en `ux0:app/`.
+- UI de catálogo, detalle, progreso y **resultado claro** (éxito / error + LiveArea).
+- Logs de sesión en `ux0:data/psvitaalive/logs/session.log` (se reinician cada vez que abres la app).
 
 ## Compilar
 
 ```bash
-cd ~/PSVitaAlive
+export VITASDK=/usr/local/vitasdk   # o tu ruta
+cd "Client PSVitaAlive"
 mkdir -p build && cd build
 cmake ..
 make -j$(nproc)
 ```
 
-Salida: `PSVitaAlive.vpk`
+Salida: `PSVitaAlive.vpk` (TitleID `PSVA00001`).
 
-## Instalar en la Vita
-
-1. VitaShell → SELECT → FTP ON
-2. Subir `PSVitaAlive.vpk` a `ux0:data/`
-3. Instalar el VPK desde VitaShell
-4. Abrir la app (pulsa ✕ para salir)
-
-## Verificar Fase 1
-
-Tras ejecutar la app, en VitaShell revisa:
+## Datos en la Vita
 
 ```text
-ux0:data/psvitaalive/test/phase1.txt
-ux0:data/psvitaalive/test/summary.txt
+ux0:data/psvitaalive/
+  logs/session.log     # log de la sesión actual (reset al boot)
+  logs/install.log     # detalle de instalación
+  cache/               # catálogos e imágenes
+  tmp/                 # staging temporal
 ```
 
-Si `summary.txt` contiene `dirs=1 write=1 read=1 size=1`, la Fase 1 está validada.
+## Módulos (código)
 
-## Estructura
+| Carpeta | Responsabilidad |
+|---------|-----------------|
+| `source/catalog/` | Parseo y gestión del catálogo |
+| `source/network/` | HTTP + cola de descarga |
+| `source/installer/` | VPK/PKG/ZIP → disco / LiveArea |
+| `source/ui/` | vita2d, overlays, navegación |
+| `source/storage/` | Rutas y FS del proyecto |
+| `source/archive/` | Detección de formato + ZIP |
 
-```text
-PSVitaAlive/
-├── CMakeLists.txt
-├── include/storage/storage_manager.hpp
-├── source/main.cpp
-├── source/storage/storage_manager.cpp
-└── assets/sce_sys/          # icono / LiveArea (opcional por ahora)
-```
+Cada subcarpeta importante tiene un `README.md` técnico breve.
 
-## Fases siguientes
+## Requisitos en consola
 
-2. HttpClient  
-3. DownloadManager  
-4. ZipExtractor  
-5. FormatDetector  
-6. HomebrewInstaller (VPK)  
-7. VitaInstaller (PKG)  
-8. UI FULL_CATALOG  
-9. SPLIT_DETAIL  
-10. Integración UI ↔ install  
+- CFW (HENkaku / Enso / h-encore) + VitaShell.
+- Unsafe homebrew habilitado.
+- Para PKG comerciales con licencia: plugin **NoNpDrm** (el cliente no implementa DRM).
 
-Ver documento maestro: `PSVitaAlive_Cliente_VitaSDK_Instrucciones_Completas.md`
+## Contribuir / reutilizar
+
+El diseño separa **catálogo (pipeline CI)** de **cliente (instalación y UI)**. Si te basas en este trabajo:
+
+1. Lee los README de `source/installer/` y `source/ui/`.
+2. No acoples el cliente a APIs externas de catálogo.
+3. Conserva la verificación post-promote de LiveArea en VPK.
+4. Mantén el log de sesión corto (reset al inicio).

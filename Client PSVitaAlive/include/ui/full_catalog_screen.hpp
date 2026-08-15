@@ -20,6 +20,7 @@ public:
     using InstallRequestFn = std::function<bool(const CatalogItem&)>;
     using InstallStatusFn = std::function<std::string()>;
     using InstallCancelFn = std::function<void()>;
+    using InstallAcknowledgeFn = std::function<void()>;
     using CatalogChangeFn = std::function<bool(CatalogType)>;
     using SearchRequestFn = std::function<std::string(const std::string&)>;
     using LinkActionFn = std::function<bool(const CatalogItem&, const CatalogLink&)>;
@@ -32,6 +33,7 @@ public:
 
     void setInstallCallbacks(InstallRequestFn requestInstall, InstallStatusFn statusText);
     void setInstallCancelCallback(InstallCancelFn callback);
+    void setInstallAcknowledgeCallback(InstallAcknowledgeFn callback);
     void setCatalogChangeCallback(CatalogChangeFn callback);
     void setSearchCallback(SearchRequestFn callback);
     void setLinkActionCallback(LinkActionFn callback);
@@ -40,9 +42,14 @@ public:
     void setActiveCatalog(CatalogType catalog);
     void setCatalogLoading(bool loading, const std::string& label, uint64_t current, uint64_t total, const std::string& message);
     void setCatalogError(const std::string& error);
+    // outcome: 0 = progress, 1 = success, 2 = error
     void setInstallProgress(bool active, uint64_t current, uint64_t total, uint64_t bytesPerSecond,
                             const std::string& stage, const std::string& fileName,
-                            const std::string& message);
+                            const std::string& message,
+                            int outcome = 0,
+                            bool liveAreaOk = false,
+                            const std::string& installPath = std::string(),
+                            const std::string& titleId = std::string());
 
 private:
     UiState state_;
@@ -51,6 +58,7 @@ private:
     InstallRequestFn installRequest_;
     InstallStatusFn installStatusText_;
     InstallCancelFn installCancel_;
+    InstallAcknowledgeFn installAcknowledge_;
     CatalogChangeFn catalogChange_;
     SearchRequestFn searchRequest_;
     LinkActionFn linkAction_;
@@ -74,6 +82,10 @@ private:
     std::string installProgressStage_;
     std::string installProgressFile_;
     std::string installProgressMessage_;
+    int installOutcome_ = 0; // 0 progress, 1 success, 2 error
+    bool installLiveAreaOk_ = false;
+    std::string installResultPath_;
+    std::string installResultTitleId_;
 
     // Preserves the normal detail position while the temporary link-navigation
     // viewport is active.
