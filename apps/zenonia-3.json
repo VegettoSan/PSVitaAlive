@@ -28,7 +28,8 @@
     {
       "type": "Download",
       "name": "Game Data Files + VPK ZIP - Mediafire",
-      "url": "https://www.mediafire.com/file/m5x3w216oblydu1/zenonia3+vpk+e+data%F0%9F%86%9A%EF%B8%8F.zip/file"
+      "url": "https://www.mediafire.com/file/m5x3w216oblydu1/zenonia3+vpk+e+data%F0%9F%86%9A%EF%B8%8F.zip/file",
+      "recommended": false
     }
   ],
   "icon": "https://raw.githubusercontent.com/MetalSyntax/zenonia3-psvita-port/refs/heads/master/sce_sys/icon0.png",

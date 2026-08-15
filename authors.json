@@ -1095,6 +1095,21 @@
     "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
   },
   {
+    "id": "clyppe",
+    "name": "Clyppe",
+    "avatar": "https://avatars.githubusercontent.com/u/147959848?v=4",
+    "bio": "Dev Ps Vita",
+    "links": [
+      {
+        "type": "Repository",
+        "name": "GitHub",
+        "url": "https://github.com/Clyppe",
+        "recommended": true
+      }
+    ],
+    "icon": "https://avatars.githubusercontent.com/u/147959848?v=4"
+  },
+  {
     "id": "cnsldv",
     "name": "cnsldv",
     "avatar": "https://github.com/cnsldv.png",
@@ -4070,6 +4085,33 @@
     "icon": "https://github.com/memory-hunter.png"
   },
   {
+    "id": "metalsyntax",
+    "name": "MetalSyntax",
+    "avatar": "https://avatars.githubusercontent.com/u/25257337?v=4",
+    "bio": "Industrial Engineer 🏭 | UX/UI Designer & Full-Stack Developer 💻.",
+    "links": [
+      {
+        "type": "Repository",
+        "name": "GitHub",
+        "url": "https://github.com/MetalSyntax",
+        "recommended": true
+      },
+      {
+        "type": "Community",
+        "name": "X",
+        "url": "https://twitter.com/metalsyntax",
+        "recommended": false
+      },
+      {
+        "type": "Community",
+        "name": "Linktr.ee",
+        "url": "https://linktr.ee/MetalSyntax",
+        "recommended": false
+      }
+    ],
+    "icon": "https://avatars.githubusercontent.com/u/25257337?v=4"
+  },
+  {
     "id": "michal4132",
     "name": "michal4132",
     "avatar": "https://github.com/michal4132.png",
@@ -5813,6 +5855,27 @@
       }
     ],
     "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
+  },
+  {
+    "id": "spliffcurrybeats",
+    "name": "SpliffCurryBeats",
+    "avatar": "https://gitlab.com/uploads/-/system/user/avatar/41207472/avatar.png",
+    "bio": "Dev Ps Vita",
+    "links": [
+      {
+        "type": "Repository",
+        "name": "GitLab",
+        "url": "https://gitlab.com/sexcurrybeats",
+        "recommended": true
+      },
+      {
+        "type": "Community",
+        "name": "X",
+        "url": "https://x.com/sexcurrybeats",
+        "recommended": false
+      }
+    ],
+    "icon": "https://gitlab.com/uploads/-/system/user/avatar/41207472/avatar.png"
   },
   {
     "id": "spritelisen",

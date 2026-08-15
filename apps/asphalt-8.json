@@ -27,7 +27,8 @@
     {
       "type": "Download",
       "name": "Game Data Files - Google Drive",
-      "url": "https://drive.google.com/file/d/1d281lFddylYUAv9o2jnS74k9OLI-PEuf/view"
+      "url": "https://drive.google.com/file/d/1d281lFddylYUAv9o2jnS74k9OLI-PEuf/view",
+      "recommended": false
     }
   ],
   "icon": "https://gitlab.com/sexcurrybeats/asphalt8-vita/-/raw/main/extras/livearea/icon0.png",

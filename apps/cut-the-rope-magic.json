@@ -27,7 +27,8 @@
     {
       "type": "Download",
       "name": "Game Data Files - Mediafire",
-      "url": "http://www.mediafire.com/file/ltbbcalbf4ujok3/CTRMDATA.zip"
+      "url": "http://www.mediafire.com/file/ltbbcalbf4ujok3/CTRMDATA.zip",
+      "recommended": false
     }
   ],
   "icon": "https://raw.githubusercontent.com/Clyppe/cut-the-rope-magic-vita/refs/heads/master/soloader-boilerplate/extras/livearea/icon0.png",

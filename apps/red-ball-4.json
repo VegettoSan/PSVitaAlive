@@ -28,7 +28,8 @@
     {
       "type": "Download",
       "name": "Game Files Mediafire",
-      "url": "https://www.mediafire.com/file/ioa5bk8217k3zgh/REDBALL4DATA.zip/file"
+      "url": "https://www.mediafire.com/file/ioa5bk8217k3zgh/REDBALL4DATA.zip/file",
+      "recommended": false
     }
   ],
   "icon": "https://raw.githubusercontent.com/Clyppe/red-ball-4-vita/refs/heads/main/soloader-boilerplate/extras/livearea/icon0.png",

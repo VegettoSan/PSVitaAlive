@@ -27,7 +27,8 @@
     {
       "type": "Download",
       "name": "Game Data Files - Mediafire",
-      "url": "https://www.mediafire.com/file/q6382ts4lvhj6dz/CTRDATA.zip"
+      "url": "https://www.mediafire.com/file/q6382ts4lvhj6dz/CTRDATA.zip",
+      "recommended": false
     }
   ],
   "icon": "https://raw.githubusercontent.com/Clyppe/cut-the-rope-vita/refs/heads/main/soloader-boilerplate/extras/livearea/icon0.png",

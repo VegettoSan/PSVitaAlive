@@ -1,5 +1,45 @@
 [
   {
+    "id": "red-ball-4",
+    "title_id": "RDBL40001",
+    "name": "Red Ball 4 PS Vita",
+    "description": "Unofficial so-loader port of the Android Cocos2d-x build of Red Ball 4.",
+    "long_description": "Unofficial so-loader port of the Android Cocos2d-x build of Red Ball 4.",
+    "author_ids": [
+      "clyppe"
+    ],
+    "category_id": "ports",
+    "subcategory_ids": [
+      "arcade",
+      "platformer",
+      "source-port"
+    ],
+    "version": "1.1.1",
+    "version_date": "2026-08-15",
+    "requirements": "- PS Vita / PSTV with HENkaku / Ensō - kubridge kernel plugin - libshacccg.suprx (e.g. via ShaRKBR33D)",
+    "size": 2220000,
+    "status": "Verified",
+    "links": [
+      {
+        "type": "Download",
+        "name": "Oficial VPK",
+        "url": "https://github.com/Clyppe/red-ball-4-vita/releases/download/v1.1.1/RedBall4.vpk",
+        "recommended": true
+      },
+      {
+        "type": "Download",
+        "name": "Game Files Mediafire",
+        "url": "https://www.mediafire.com/file/ioa5bk8217k3zgh/REDBALL4DATA.zip/file",
+        "recommended": false
+      }
+    ],
+    "icon": "https://raw.githubusercontent.com/Clyppe/red-ball-4-vita/refs/heads/main/soloader-boilerplate/extras/livearea/icon0.png",
+    "screenshots": [
+      "https://raw.githubusercontent.com/Clyppe/red-ball-4-vita/refs/heads/main/soloader-boilerplate/extras/livearea/bg0.png",
+      "https://raw.githubusercontent.com/Clyppe/red-ball-4-vita/refs/heads/main/soloader-boilerplate/extras/livearea/pic0.png"
+    ]
+  },
+  {
     "id": "bg2v",
     "title_id": "BG2V00001",
     "name": "BG2V",
@@ -28540,6 +28580,79 @@
     "updated_at": "2026-08-13T15:34:48.323857+00:00"
   },
   {
+    "id": "asphalt-8",
+    "title_id": "ASPHALT20",
+    "name": "Asphalt 8 Vita",
+    "description": "Native compatibility port of Asphalt 8 Android v2.0.0e for PlayStation Vita. Data-free; users supply exact game files.",
+    "long_description": "A port of the Android version of Asphalt 8 v2.0.0e for PS Vita\nIt uses the original ARMv7 Android game library, with so_util, FalsoJNI and VitaGL.\nRaces, menus, saving, physical controls and touch are working\nPerformance runs in the high 50s during races",
+    "author_ids": [
+      "spliffcurrybeats"
+    ],
+    "category_id": "ports",
+    "subcategory_ids": [
+      "arcade",
+      "racing"
+    ],
+    "version": "0.1",
+    "version_date": "2026-08-11",
+    "requirements": "- Homebrew enabled PS Vita with VitaShell - kubridge.skprx installed - libshacccg.suprx at ur0:/data/libshacccg.suprx or ur0:/data/external/libshacccg.suprx - Your own Asphalt 8 v2.0.0e APK and OBB",
+    "size": 2058721,
+    "status": "Verified",
+    "links": [
+      {
+        "type": "Download",
+        "name": "Official ZIP VPK + TOOLS",
+        "url": "https://gitlab.com/sexcurrybeats/asphalt8-vita/-/releases/v0.1/downloads/artifacts/Asphalt8Vita_v0.1.zip",
+        "recommended": true
+      },
+      {
+        "type": "Download",
+        "name": "Game Data Files - Google Drive",
+        "url": "https://drive.google.com/file/d/1d281lFddylYUAv9o2jnS74k9OLI-PEuf/view",
+        "recommended": false
+      }
+    ],
+    "icon": "https://gitlab.com/sexcurrybeats/asphalt8-vita/-/raw/main/extras/livearea/icon0.png",
+    "screenshots": [
+      "https://gitlab.com/sexcurrybeats/asphalt8-vita/-/raw/main/docs/images/hero.png"
+    ]
+  },
+  {
+    "id": "inotia-3-children-of-carnia",
+    "title_id": "INOTIA3PV",
+    "name": "Inotia 3: Children of Carnia",
+    "description": "PS Vita port of the classic ARPG Inotia 3: Children of Carnia, originally published by Com2uS for Android, built on soloader-boilerplate.",
+    "long_description": "An unofficial, native Android-to-PS Vita wrapper port of Inotia 3: Children of Carnia (originally developed by Com2uS). This port utilizes so-loader technology, FalsoJNI, and vitaGL to load the official ARMv6 shared library (libgame.so) directly in native PS Vita RAM.",
+    "author_ids": [
+      "claude-ai",
+      "metalsyntax"
+    ],
+    "category_id": "ports",
+    "subcategory_ids": [
+      "adventure",
+      "rpg",
+      "strategy"
+    ],
+    "version": "1.0.0",
+    "version_date": "2026-08-11",
+    "requirements": "- (Recommended) Make sure that you are either on 3.60 enso or 3.65 enso firmware version. Other versions may work too, but no support are provided for them! - Install or update kubridge and FdFix by copying kubridge.skprx and fd_fix.skprx to your taiHEN plugins folder - Make sure you have libshacccg.suprx in the ur0:/data/ folder on your console. If you don't, use ShaRKBR33D to get it quickly and easily.",
+    "size": 978000,
+    "status": "Verified",
+    "links": [
+      {
+        "type": "Download",
+        "name": "Official VPK",
+        "url": "https://github.com/MetalSyntax/Inotia3-vita/releases/download/1.0.0/inotia3-release.vpk",
+        "recommended": true
+      }
+    ],
+    "icon": "https://raw.githubusercontent.com/MetalSyntax/Inotia3-vita/refs/heads/master/extras/livearea/icon0.png",
+    "screenshots": [
+      "https://raw.githubusercontent.com/MetalSyntax/Inotia3-vita/refs/heads/master/extras/livearea/bg0.png",
+      "https://raw.githubusercontent.com/MetalSyntax/Inotia3-vita/refs/heads/master/extras/livearea/pic0.png"
+    ]
+  },
+  {
     "id": "psv-cleaner",
     "title_id": "CLEAN0000",
     "name": "Psv Cleaner",
@@ -29409,6 +29522,45 @@
     "updated_at": "2026-08-13T15:34:48.322772+00:00"
   },
   {
+    "id": "cut-the-rope-magic",
+    "title_id": "CTRMAG001",
+    "name": "Cut the Rope: Magic",
+    "description": "Unofficial so-loader port of Cut the Rope: Magic (ZeptoLab / libctrm.so) for PlayStation Vita.",
+    "long_description": "Unofficial so-loader port of Cut the Rope: Magic (ZeptoLab / libctrm.so) for PlayStation Vita.\n\nGame data path: ux0:data/ctrm/",
+    "author_ids": [
+      "clyppe"
+    ],
+    "category_id": "ports",
+    "subcategory_ids": [
+      "arcade",
+      "puzzle"
+    ],
+    "version": "0.10 BETA",
+    "version_date": "2026-08-05",
+    "requirements": "- PS Vita / PSTV with HENkaku / Ensō - kubridge kernel plugin - libshacccg.suprx (e.g. via ShaRKBR33D)",
+    "size": 2050000,
+    "status": "Verified",
+    "links": [
+      {
+        "type": "Download",
+        "name": "Official VPK",
+        "url": "https://github.com/Clyppe/cut-the-rope-magic-vita/releases/download/v0.10-BETA/CutTheRopeMagic.vpk",
+        "recommended": true
+      },
+      {
+        "type": "Download",
+        "name": "Game Data Files - Mediafire",
+        "url": "http://www.mediafire.com/file/ltbbcalbf4ujok3/CTRMDATA.zip",
+        "recommended": false
+      }
+    ],
+    "icon": "https://raw.githubusercontent.com/Clyppe/cut-the-rope-magic-vita/refs/heads/master/soloader-boilerplate/extras/livearea/icon0.png",
+    "screenshots": [
+      "https://raw.githubusercontent.com/Clyppe/cut-the-rope-magic-vita/refs/heads/master/soloader-boilerplate/extras/livearea/bg0.png",
+      "https://raw.githubusercontent.com/Clyppe/cut-the-rope-magic-vita/refs/heads/master/soloader-boilerplate/extras/livearea/pic0.png"
+    ]
+  },
+  {
     "id": "save-keeper",
     "title_id": "SVK000001",
     "name": "Save Keeper",
@@ -29647,6 +29799,45 @@
     "updated_at": "2026-08-13T15:34:48.338246+00:00"
   },
   {
+    "id": "cut-the-rope-classic",
+    "title_id": "CTROPE001",
+    "name": "Cut the Rope Classic",
+    "description": "Unofficial so-loader port of Cut the Rope (classic cardboard-box Android build) for PlayStation Vita.",
+    "long_description": "Unofficial so-loader port of Cut the Rope (classic cardboard-box Android build) for PlayStation Vita.\n\nGame data (ux0:data/ctr)",
+    "author_ids": [
+      "clyppe"
+    ],
+    "category_id": "ports",
+    "subcategory_ids": [
+      "arcade",
+      "puzzle"
+    ],
+    "version": "0.2.0",
+    "version_date": "2026-07-31",
+    "requirements": "- PS Vita / PSTV with HENkaku / Ensō - kubridge kernel plugin - libshacccg.suprx (e.g. via ShaRKBR33D)",
+    "size": 2210000,
+    "status": "Verified",
+    "links": [
+      {
+        "type": "Download",
+        "name": "Official VPK",
+        "url": "https://github.com/Clyppe/cut-the-rope-vita/releases/download/v0.2.0/CutTheRope.vpk",
+        "recommended": true
+      },
+      {
+        "type": "Download",
+        "name": "Game Data Files - Mediafire",
+        "url": "https://www.mediafire.com/file/q6382ts4lvhj6dz/CTRDATA.zip",
+        "recommended": false
+      }
+    ],
+    "icon": "https://raw.githubusercontent.com/Clyppe/cut-the-rope-vita/refs/heads/main/soloader-boilerplate/extras/livearea/icon0.png",
+    "screenshots": [
+      "https://raw.githubusercontent.com/Clyppe/cut-the-rope-vita/refs/heads/main/soloader-boilerplate/extras/livearea/bg0.png",
+      "https://raw.githubusercontent.com/Clyppe/cut-the-rope-vita/refs/heads/main/soloader-boilerplate/extras/livearea/pic0.png"
+    ]
+  },
+  {
     "id": "castlevania-attack-vita",
     "title_id": "CAST00011",
     "name": "Castlevania Attack Vita",
@@ -29815,6 +30006,44 @@
     "updated_at": "2026-08-13T15:34:48.324920+00:00"
   },
   {
+    "id": "prince-of-persia-classic",
+    "title_id": "POPC00001",
+    "name": "Prince of Persia Classic",
+    "description": "PS Vita homebrew port/wrapper for Prince of Persia Classic (Android), originally published by Ubisoft for Android,built on soloader-boilerplate.",
+    "long_description": "Prince of Persia Classic is a 2012 release for Android and iOS devices that recreates the levels of the legendary 1989 classic game with modernized 3D graphics",
+    "author_ids": [
+      "claude-ai",
+      "metalsyntax"
+    ],
+    "category_id": "ports",
+    "subcategory_ids": [
+      "action",
+      "adventure",
+      "arcade",
+      "platformer",
+      "puzzle",
+      "rpg",
+      "strategy"
+    ],
+    "version": "01.20",
+    "version_date": "2026-07-28",
+    "requirements": "- (Recommended) Make sure that you are either on 3.60 enso or 3.65 enso firmware version. Other versions may work too, but no support are provided for them! - Install or update kubridge and FdFix by copying kubridge.skprx and fd_fix.skprx to your taiHEN plugins folder - Make sure you have libshacccg.suprx in the ur0:/data/ folder on your console. If you don't, use ShaRKBR33D to get it quickly and easily.",
+    "size": 1080001,
+    "status": "Verified",
+    "links": [
+      {
+        "type": "Download",
+        "name": "Official VPK",
+        "url": "https://github.com/MetalSyntax/prince-of-persia-classic-psvita-port/releases/download/v01.20/popclassic-v01.20.vpk",
+        "recommended": true
+      }
+    ],
+    "icon": "https://raw.githubusercontent.com/MetalSyntax/prince-of-persia-classic-psvita-port/refs/heads/master/extras/livearea/icon0.png",
+    "screenshots": [
+      "https://raw.githubusercontent.com/MetalSyntax/prince-of-persia-classic-psvita-port/refs/heads/master/extras/livearea/bg0.png"
+    ]
+  },
+  {
     "id": "switchfin",
     "title_id": "SWITCHFIN",
     "name": "Switchfin",
@@ -29974,6 +30203,81 @@
     "source_url": "https://github.com/Digital33Studios/minotaur",
     "release_page": "https://github.com/Digital33Studios/minotaur",
     "updated_at": "2026-08-13T15:34:48.325369+00:00"
+  },
+  {
+    "id": "zenonia-2",
+    "title_id": "PSVZ00002",
+    "name": "Zenonia 2",
+    "description": "PS Vita port/loader of the Android release of Zenonia 2, originally published by Gamevil for Android, built on soloader-boilerplate.",
+    "long_description": "ZENONIA® 2: The Lost Memories has been highly enhanced in every aspect compared to the original. Full character and control customization, four characters following individual epic storylines, three different modes, asynchronous online PvP feature and an extended world of ZENONIA guarantee greater enjoyment!",
+    "author_ids": [
+      "claude-ai",
+      "metalsyntax"
+    ],
+    "category_id": "ports",
+    "subcategory_ids": [
+      "adventure",
+      "arcade",
+      "puzzle",
+      "rpg",
+      "strategy"
+    ],
+    "version": "1.2.0",
+    "version_date": "2026-07-23",
+    "requirements": "- (Recommended) Make sure that you are either on 3.60 enso or 3.65 enso firmware version. Other versions may work too, but no support are provided for them! - Install or update kubridge and FdFix by copying kubridge.skprx and fd_fix.skprx to your taiHEN plugins folder - Make sure you have libshacccg.suprx in the ur0:/data/ folder on your console. If you don't, use ShaRKBR33D to get it quickly and easily.",
+    "size": 828000,
+    "status": "Verified",
+    "links": [
+      {
+        "type": "Download",
+        "name": "Official VPK",
+        "url": "https://github.com/MetalSyntax/Zenonia2-psvita-port/releases/download/v1.20/zenonia_2.vpk",
+        "recommended": true
+      }
+    ],
+    "icon": "https://raw.githubusercontent.com/MetalSyntax/Zenonia2-psvita-port/refs/heads/master/sce_sys/icon0.png",
+    "screenshots": [
+      "https://raw.githubusercontent.com/MetalSyntax/Zenonia2-psvita-port/refs/heads/master/sce_sys/livearea/contents/bg0.png"
+    ]
+  },
+  {
+    "id": "zenonia-3",
+    "title_id": "PSVZ00003",
+    "name": "Zenonia 3",
+    "description": "PS Vita wrapper/port of Zenonia 3, originally published by Gamevil for Android, built on soloader-boilerplate.",
+    "long_description": "This repository contains a loader of the Android release of Zenonia 3, based on the Android SO Loader by TheFloW. The loader provides a tailored, minimalistic Android-like environment to run the official ARMv6 game executable on the PS Vita.",
+    "author_ids": [
+      "claude-ai",
+      "metalsyntax"
+    ],
+    "category_id": "ports",
+    "subcategory_ids": [
+      "adventure",
+      "arcade"
+    ],
+    "version": "01.30",
+    "version_date": "2026-07-23",
+    "requirements": "- (Recommended) Make sure that you are either on 3.60 enso or 3.65 enso firmware version. Other versions may work too, but no support are provided for them! - Install or update kubridge and FdFix by copying kubridge.skprx and fd_fix.skprx to your taiHEN plugins folder - Make sure you have libshacccg.suprx in the ur0:/data/ folder on your console. If you don't, use ShaRKBR33D to get it quickly and easily.",
+    "size": 1590000,
+    "status": "Verified",
+    "links": [
+      {
+        "type": "Download",
+        "name": "Official VPK",
+        "url": "https://github.com/MetalSyntax/zenonia3-psvita-port/releases/download/v01.30/zenonia_3.vpk",
+        "recommended": true
+      },
+      {
+        "type": "Download",
+        "name": "Game Data Files + VPK ZIP - Mediafire",
+        "url": "https://www.mediafire.com/file/m5x3w216oblydu1/zenonia3+vpk+e+data%F0%9F%86%9A%EF%B8%8F.zip/file",
+        "recommended": false
+      }
+    ],
+    "icon": "https://raw.githubusercontent.com/MetalSyntax/zenonia3-psvita-port/refs/heads/master/sce_sys/icon0.png",
+    "screenshots": [
+      "https://raw.githubusercontent.com/MetalSyntax/zenonia3-psvita-port/refs/heads/master/sce_sys/pic0.png"
+    ]
   },
   {
     "id": "zgloom-vita",
