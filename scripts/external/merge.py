@@ -6,6 +6,18 @@ from .normalizer import normalize_version
 from .sources import Candidate
 
 
+# External source authority for release-date data. Lower numeric priority is
+# weaker. VitaDB is the primary source; VitaDBtoo is the secondary fallback.
+SOURCE_PRIORITY = {
+    "vitadb": 110,
+    "vitadbtoo": 90,
+}
+
+
+def source_priority(candidate: Candidate) -> int:
+    return SOURCE_PRIORITY.get(candidate.source_id, 0)
+
+
 def version_key(candidate: Candidate):
     version = normalize_version(candidate.version)
     date = str(candidate.version_date or "")
@@ -20,16 +32,16 @@ def select_newest(candidates: list[Candidate]) -> Candidate:
 def select_release_candidate(candidates: list[Candidate], local: Candidate | None) -> Candidate:
     """Select release metadata without turning a source refresh into an update.
 
-    A local app and an external catalog can describe the same version. In that
-    case the external catalog's release metadata is still valuable, especially
-    for repairing a stale/incorrect local ``version_date``. Therefore the
-    newest external candidate is preferred when it describes the same version
-    and has a real version date. A local date is only retained when no external
-    candidate provides a date for that same version.
+    A local app and an external catalog can describe the same version. For the
+    same version, source authority is used before the date: VitaDB is primary
+    and VitaDBtoo is the fallback. A newer external version can still replace
+    the local version normally.
     """
     external = [item for item in candidates if item.source_id != "local"]
     if not local:
-        return select_newest(candidates)
+        if not external:
+            return select_newest(candidates)
+        return max(external, key=lambda item: (normalize_version(item.version), 1, source_priority(item), str(item.version_date or "")))
 
     local_version = normalize_version(local.version)
     newer = [
@@ -38,7 +50,7 @@ def select_release_candidate(candidates: list[Candidate], local: Candidate | Non
         if normalize_version(item.version) > local_version
     ]
     if newer:
-        return select_newest(newer)
+        return max(newer, key=lambda item: (normalize_version(item.version), 1, source_priority(item), str(item.version_date or "")))
 
     same_version_with_date = [
         item
@@ -48,40 +60,42 @@ def select_release_candidate(candidates: list[Candidate], local: Candidate | Non
         and item.version_date.strip()
     ]
     if same_version_with_date:
-        return select_newest(same_version_with_date)
+        return max(same_version_with_date, key=lambda item: (source_priority(item), str(item.version_date or "")))
 
     return local
 
 
 def _select_version_date(candidates: list[Candidate], release: Candidate, local: Candidate | None) -> str | None:
-    """Return the best known date for the selected version.
+    """Resolve version_date using source authority, never apparent recency.
 
-    External catalogs are authoritative for their published release date when
-    they provide one. For an existing local app at the same version this lets
-    VitaDB/VitaDBtoo/NeoVitaDB repair a stale imported date without changing
-    the local version itself.
+    For a given version, VitaDB is authoritative when it provides a date.
+    VitaDBtoo is used only when VitaDB does not provide one. A local date is
+    used only when neither external source has a date for that version.
     """
     target_version = normalize_version(release.version)
     dated_external = [
         item
         for item in candidates
-        if item.source_id != "local"
+        if item.source_id in SOURCE_PRIORITY
         and normalize_version(item.version) == target_version
         and isinstance(item.version_date, str)
         and item.version_date.strip()
     ]
-    if dated_external:
-        return select_newest(dated_external).version_date
 
-    if local and normalize_version(local.version) == target_version:
+    if dated_external:
+        # Pick the highest-authority source first. Within one source, if there
+        # are duplicate records for the same version, use the newest dated one.
+        return max(
+            dated_external,
+            key=lambda item: (source_priority(item), str(item.version_date or "")),
+        ).version_date
+
+    if local and normalize_version(local.version) == target_version and local.version_date:
         return local.version_date
 
     if release.version_date:
         return release.version_date
 
-    for item in candidates:
-        if normalize_version(item.version) == target_version and item.version_date:
-            return item.version_date
     return None
 
 
