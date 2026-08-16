@@ -99,8 +99,8 @@ ZipDestChoice promptZipDestinationChoice() {
         const int listY = boxY + 100;
 
         vita2d_start_drawing();
-        vita2d_clear_screen();
-        vita2d_draw_rectangle(0, 0, SW, SH, RGBA8(0, 0, 0, 200));
+        // Keep prior frame visible: soft dim like other overlays (not solid black).
+        vita2d_draw_rectangle(0, 0, SW, SH, RGBA8(0, 0, 0, 130));
         vita2d_draw_rectangle(boxX, boxY, boxW, boxH, SURFACE2);
         vita2d_draw_rectangle(boxX, boxY, boxW, 3, ACCENT);
         vita2d_draw_rectangle(boxX, boxY + boxH - 1, boxW, 1, ACCENT);
