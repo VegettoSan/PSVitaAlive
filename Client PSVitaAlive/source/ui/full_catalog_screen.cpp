@@ -729,7 +729,7 @@ void FullCatalogScreen::drawSettings() {
         bool sectionStart;
     };
     Opt opts[4] = {
-        {"INSTALL", "Install method", methodLabel(), "Auto uses direct download for now", true},
+        {"INSTALL", "Install method", methodLabel(), "Auto: BGDL for PKG when available", true},
         {"", "PSP / PS1 target", pspLabel(), "ISO/CSO/PBP under ux0:pspemu", false},
         {"INTERFACE", "Warn missing plugins", settingsEdit_.warnMissingPlugins ? "Yes" : "No", "Startup toast if NoNpDrm is missing", true},
         {"CATALOG", "Prompt image download", settingsEdit_.promptImageWarmup ? "Yes" : "No", "If you choose No once, it will not ask again", true},
