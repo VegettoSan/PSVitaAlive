@@ -97,6 +97,8 @@ private:
     /** Freed one frame later so the GPU is done with the previous swap. */
     std::vector<vita2d_texture*> deferredFreeTextures_;
     int catalogSwitchCooldownFrames_ = 0;
+    /** Absolute debounce so spam L/R cannot thrash GPU frees (ms, process time). */
+    uint64_t lastCatalogSwitchMs_ = 0;
 
     void handleInput();
     void draw();
