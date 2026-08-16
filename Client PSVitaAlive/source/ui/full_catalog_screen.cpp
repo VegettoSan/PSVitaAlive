@@ -259,17 +259,49 @@ bool FullCatalogScreen::isTransitioning()const{return state_.mode==UiMode::OPENI
     }
 }
 void FullCatalogScreen::handleTouch() {
-    if (isTransitioning() || catalogLoading_ || installProgressActive_) return;
+    if (isTransitioning()) return;
 
     SceTouchData td{};
-    const int n = sceTouchPeek(SCE_TOUCH_PORT_FRONT, &td, 1);
-    if (n <= 0) return;
+    if (sceTouchPeek(SCE_TOUCH_PORT_FRONT, &td, 1) <= 0) return;
 
-    // Vita touch reports ~1920x1088; map to 960x544 framebuffer.
+    // Vita front touch is typically 1920x1088 logical units.
     auto mapX = [](int tx) { return tx * SCREEN_W / 1920; };
     auto mapY = [](int ty) { return ty * SCREEN_H / 1088; };
+    auto hit = [](int x, int y, int rx, int ry, int rw, int rh) {
+        return x >= rx && x < rx + rw && y >= ry && y < ry + rh;
+    };
 
-    const uint64_t now = sceKernelGetProcessTimeWide();
+    // --- Install overlay: allow dismissing / canceling by tap ---
+    if (installProgressActive_) {
+        if (td.reportNum > 0) {
+            if (!touchDown_) {
+                touchDown_ = true;
+                touchStartX_ = mapX(td.report[0].x);
+                touchStartY_ = mapY(td.report[0].y);
+                touchMoved_ = false;
+            }
+        } else if (touchDown_) {
+            const int x = touchStartX_, y = touchStartY_;
+            touchDown_ = false;
+            if (touchMoved_) return;
+            // Button region roughly matches drawLoadingOverlay (centered card)
+            const int ow = 640, oh = 380, ox = (SCREEN_W - ow) / 2, oy = (SCREEN_H - oh) / 2;
+            const int by = oy + 300, bw = 280, bh = 44;
+            if (hit(x, y, ox + 28, by, bw, bh) || hit(x, y, ox, oy, ow, oh)) {
+                if (installOutcome_ == 1 || installOutcome_ == 2) {
+                    if (installAcknowledge_) installAcknowledge_();
+                } else if (installCancel_) {
+                    installCancel_();
+                }
+            }
+        }
+        return;
+    }
+
+    if (catalogLoading_) return;
+
+    constexpr int kDragSlop = 20;       // px before a gesture counts as drag
+    constexpr float kScrollPx = 48.f;   // pixels of drag per one catalog/detail step
 
     if (td.reportNum > 0) {
         const int x = mapX(td.report[0].x);
@@ -280,100 +312,181 @@ void FullCatalogScreen::handleTouch() {
             touchStartY_ = y;
             touchLastY_ = y;
             touchMoved_ = false;
-            touchDownMs_ = now / 1000ULL;
+            touchAccumY_ = 0.f;
+            touchDownMs_ = sceKernelGetProcessTimeWide() / 1000ULL;
         } else {
             const int dy = y - touchLastY_;
-            const int adx = std::abs(x - touchStartX_);
-            const int ady = std::abs(y - touchStartY_);
-            if (adx > 12 || ady > 12) touchMoved_ = true;
-            // Vertical drag scrolls catalog (or detail when detail panel is active)
-            if (std::abs(dy) >= 18) {
-                const int steps = dy / 18;
+            touchLastY_ = y;
+            if (std::abs(x - touchStartX_) > kDragSlop || std::abs(y - touchStartY_) > kDragSlop)
+                touchMoved_ = true;
+
+            if (!touchMoved_) return;
+
+            touchAccumY_ += static_cast<float>(dy);
+            while (touchAccumY_ <= -kScrollPx) {
+                touchAccumY_ += kScrollPx;
+                // Scroll direction: finger up → content moves up → next items
                 if (state_.mode == UiMode::FULL_CATALOG) {
-                    if (steps > 0) {
-                        for (int i = 0; i < steps; ++i) moveCatalogFocus(1);
+                    moveCatalogFocus(1);
+                } else if (state_.mode == UiMode::SPLIT_DETAIL) {
+                    if (state_.activePanel == UiPanel::Detail || touchStartX_ >= SCREEN_W / 2) {
+                        state_.activePanel = UiPanel::Detail;
+                        moveDetailScroll(1);
                     } else {
-                        for (int i = 0; i < -steps; ++i) moveCatalogFocus(-1);
-                    }
-                } else if (state_.activePanel == UiPanel::Detail) {
-                    if (steps > 0) {
-                        for (int i = 0; i < steps; ++i) moveDetailScroll(1);
-                    } else {
-                        for (int i = 0; i < -steps; ++i) moveDetailScroll(-1);
-                    }
-                } else {
-                    if (steps > 0) {
-                        for (int i = 0; i < steps; ++i) moveCatalogFocus(1);
-                    } else {
-                        for (int i = 0; i < -steps; ++i) moveCatalogFocus(-1);
+                        moveCatalogFocus(1);
                     }
                 }
-                touchLastY_ = y;
+            }
+            while (touchAccumY_ >= kScrollPx) {
+                touchAccumY_ -= kScrollPx;
+                if (state_.mode == UiMode::FULL_CATALOG) {
+                    moveCatalogFocus(-1);
+                } else if (state_.mode == UiMode::SPLIT_DETAIL) {
+                    if (state_.activePanel == UiPanel::Detail || touchStartX_ >= SCREEN_W / 2) {
+                        state_.activePanel = UiPanel::Detail;
+                        moveDetailScroll(-1);
+                    } else {
+                        moveCatalogFocus(-1);
+                    }
+                }
             }
         }
-    } else if (touchDown_) {
-        // Finger up — treat as tap if not a drag
-        const int x = touchStartX_;
-        const int y = touchStartY_;
-        const bool wasDrag = touchMoved_;
-        touchDown_ = false;
+        return;
+    }
 
-        if (wasDrag) return;
+    if (!touchDown_) return;
 
-        // Tabs strip
-        if (y >= HEADER_H && y < HEADER_H + TABS_H) {
-            const float tw = static_cast<float>(SCREEN_W) / static_cast<float>(CatalogType::Count);
-            const int tab = std::min((int)CatalogType::Count - 1, std::max(0, (int)(x / tw)));
-            const int cur = (int)state_.catalog;
-            const int delta = tab - cur;
-            if (delta != 0) changeCatalog(delta);
+    // Finger lifted
+    const int x = touchStartX_;
+    const int y = touchStartY_;
+    const bool wasDrag = touchMoved_;
+    touchDown_ = false;
+    touchAccumY_ = 0.f;
+    if (wasDrag) return;
+
+    // --- Header: search / clear filter ---
+    if (y < HEADER_H) {
+        // Center filter chip → clear (□)
+        if (!searchQuery_.empty()) {
+            const int pw = std::max(156, std::min(SCREEN_W - 300, (int)(searchQuery_.size() * 7 + 86)));
+            const int bx = (SCREEN_W - pw) / 2, by = 11, bh = 28;
+            if (hit(x, y, bx, by, pw, bh)) {
+                applySearch("");
+                return;
+            }
+        }
+        // Right side → open search (△)
+        if (x > SCREEN_W - 160) {
+            if (searchRequest_) applySearch(searchRequest_(searchQuery_));
             return;
         }
+        return;
+    }
 
-        const int panelTop = HEADER_H + TABS_H;
-        const int panelBottom = SCREEN_H - FOOTER_H;
-        if (y < panelTop || y >= panelBottom) return;
+    // --- Tabs (L/R equivalent) ---
+    if (y >= HEADER_H && y < HEADER_H + TABS_H) {
+        const float tw = static_cast<float>(SCREEN_W) / static_cast<float>(CatalogType::Count);
+        const int tab = std::min((int)CatalogType::Count - 1, std::max(0, (int)(x / tw)));
+        const int delta = tab - (int)state_.catalog;
+        if (delta != 0) changeCatalog(delta);
+        return;
+    }
 
-        if (state_.mode == UiMode::FULL_CATALOG) {
-            const int gridX = 0, gridY = panelTop;
-            const int gridW = SCREEN_W, gridH = panelBottom - panelTop;
-            const int cw = (gridW - GRID_PAD * 2 - CARD_GAP * 2) / 3;
-            const float rowH = static_cast<float>(FULL_CARD_H + CARD_GAP);
-            const int localX = x - (gridX + GRID_PAD);
-            const int localY = y - (gridY + GRID_PAD);
-            if (localX < 0 || localY < 0) return;
-            const int col = localX / (cw + CARD_GAP);
-            const int row = static_cast<int>((localY / rowH) + visualCatalogScroll_);
-            if (col < 0 || col > 2) return;
-            const int idx = row * 3 + col;
-            if (idx < 0 || idx >= (int)items_.size()) return;
-            if (idx == state_.focusIndex) {
-                startOpeningDetail();
-            } else {
+    const int panelTop = HEADER_H + TABS_H;
+    const int panelBottom = SCREEN_H - FOOTER_H;
+    if (y < panelTop || y >= panelBottom) {
+        // Footer: in full catalog, left area can open search
+        if (y >= panelBottom && state_.mode == UiMode::FULL_CATALOG && x < SCREEN_W / 2) {
+            if (searchRequest_) applySearch(searchRequest_(searchQuery_));
+        }
+        return;
+    }
+
+    // --- Full catalog grid ---
+    if (state_.mode == UiMode::FULL_CATALOG) {
+        const int cw = (SCREEN_W - GRID_PAD * 2 - CARD_GAP * 2) / 3;
+        const float rowH = static_cast<float>(FULL_CARD_H + CARD_GAP);
+        const int localX = x - GRID_PAD;
+        const int localY = y - (panelTop + GRID_PAD);
+        if (localX < 0 || localY < 0) return;
+        const int col = localX / (cw + CARD_GAP);
+        const int row = static_cast<int>(localY / rowH + visualCatalogScroll_);
+        if (col < 0 || col > 2) return;
+        const int idx = row * 3 + col;
+        if (idx < 0 || idx >= (int)items_.size()) return;
+        if (idx == state_.focusIndex) startOpeningDetail();
+        else {
+            state_.focusIndex = idx;
+            clampCatalogFocus();
+            clampCatalogScroll();
+        }
+        return;
+    }
+
+    if (state_.mode != UiMode::SPLIT_DETAIL) return;
+
+    const int mid = SCREEN_W / 2;
+
+    // --- Left list ---
+    if (x < mid) {
+        state_.activePanel = UiPanel::Catalog;
+        const float rowH = static_cast<float>(SPLIT_CARD_H + CARD_GAP);
+        const int localY = y - (panelTop + GRID_PAD);
+        if (localY >= 0) {
+            const int idx = static_cast<int>(localY / rowH + visualCatalogScroll_);
+            if (idx >= 0 && idx < (int)items_.size()) {
                 state_.focusIndex = idx;
+                state_.detailScroll = 0;
+                visualDetailScroll_ = 0.f;
                 clampCatalogFocus();
                 clampCatalogScroll();
             }
-            return;
         }
+        // Tap near left edge bottom could close — not needed
+        return;
+    }
 
-        // Split: left list / right detail
-        const int mid = SCREEN_W / 2;
-        if (x < mid) {
-            state_.activePanel = UiPanel::Catalog;
-            const float rowH = static_cast<float>(SPLIT_CARD_H + CARD_GAP);
-            const int localY = y - (panelTop + GRID_PAD);
-            if (localY < 0) return;
-            const int idx = static_cast<int>(localY / rowH + visualCatalogScroll_);
-            if (idx < 0 || idx >= (int)items_.size()) return;
-            state_.focusIndex = idx;
-            state_.detailScroll = 0;
-            visualDetailScroll_ = 0.f;
-            clampCatalogFocus();
-            clampCatalogScroll();
-        } else {
-            state_.activePanel = UiPanel::Detail;
+    // --- Right detail panel ---
+    state_.activePanel = UiPanel::Detail;
+    const int dx = mid, dy = panelTop;
+    const int dw = SCREEN_W - mid, dh = panelBottom - panelTop;
+
+    // Close detail: tap top-left of detail header strip or outside-ish
+    // Links button (same coords as drawDetailPanel)
+    if (!items_.empty()) {
+        const int i = selectedIndex();
+        if (i >= 0 && !items_[i].linkDetails.empty()) {
+            const int bx = dx + dw - 142, by = dy + 12, bw = 128, bh = 28;
+            if (hit(x, y, bx, by, bw, bh)) {
+                if (state_.linkNavigation) exitLinkNavigation();
+                else enterLinkNavigation();
+                return;
+            }
         }
+    }
+
+    // Tap in header left → close detail (○)
+    if (y < dy + DETAIL_HEADER_H && x < dx + 90) {
+        startClosingDetail();
+        return;
+    }
+
+    // Link rows when in link navigation
+    if (state_.linkNavigation) {
+        const int i = selectedIndex();
+        if (i >= 0) {
+            const auto& links = items_[i].linkDetails;
+            const int listTop = dy + DETAIL_HEADER_H + 10;
+            for (int li = 0; li < (int)links.size(); ++li) {
+                const int ry = listTop + li * (LINK_ROW_H + LINK_GAP);
+                if (hit(x, y, dx + 18, ry, dw - 36, LINK_ROW_H)) {
+                    state_.linkFocus = li;
+                    activateFocusedLink();
+                    return;
+                }
+            }
+        }
+        return;
     }
 }
 
