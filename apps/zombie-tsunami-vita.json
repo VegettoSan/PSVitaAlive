@@ -22,7 +22,8 @@
     "https://archive.org/download/zombie-tsunami-psvita/2026-07-14-000337-423991.png",
     "https://archive.org/download/zombie-tsunami-psvita/2026-07-14-000424-304127.png",
     "https://archive.org/download/zombie-tsunami-psvita/2026-07-14-000458-554996.png",
-    "https://archive.org/download/zombie-tsunami-psvita/2026-07-14-000551-123963.png"
+    "https://archive.org/download/zombie-tsunami-psvita/2026-07-14-000551-123963.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/b50ec109bdf05116a1287b6f9928f871909550ecd33967d426d392bc2059cd14.png"
   ],
   "links": [
     {
@@ -54,6 +55,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/WolffsRoom/ZombieTsunami-Vita"
+    },
+    {
+      "type": "Official Website",
+      "name": "VitaDB Release Page",
+      "url": "https://github.com/WolffsRoom/ZombieTsunami-Vita/releases"
     }
   ],
   "source_name": "VitaDBtoo",

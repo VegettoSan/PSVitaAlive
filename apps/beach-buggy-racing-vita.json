@@ -61,6 +61,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/WolffsRoom/BeachBuggyRacing-Vita"
+    },
+    {
+      "type": "Official Website",
+      "name": "VitaDB Release Page",
+      "url": "https://github.com/WolffsRoom/BeachBuggyRacing-Vita/releases"
     }
   ],
   "source_name": "VitaDBtoo",

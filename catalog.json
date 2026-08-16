@@ -323,21 +323,22 @@
     "links": [
       {
         "type": "Download",
-        "name": "Oficial VPK",
-        "url": "https://github.com/Clyppe/red-ball-4-vita/releases/download/v1.1.1/RedBall4.vpk",
+        "name": "VPK",
+        "url": "https://archive.org/download/rdball4-psvita/RedBall4%201.1.1.vpk",
         "recommended": true
       },
       {
         "type": "Download",
-        "name": "Game Files Mediafire",
-        "url": "https://www.mediafire.com/file/ioa5bk8217k3zgh/REDBALL4DATA.zip/file",
-        "recommended": false
+        "name": "Game Data Files ZIP",
+        "url": "https://archive.org/download/rdball4-psvita/rdball4.zip",
+        "recommended": false,
+        "size": 103300000
       }
     ],
-    "icon": "https://raw.githubusercontent.com/Clyppe/red-ball-4-vita/refs/heads/main/soloader-boilerplate/extras/livearea/icon0.png",
+    "icon": "https://archive.org/download/rdball4-psvita/icon0.png",
     "screenshots": [
-      "https://raw.githubusercontent.com/Clyppe/red-ball-4-vita/refs/heads/main/soloader-boilerplate/extras/livearea/bg0.png",
-      "https://raw.githubusercontent.com/Clyppe/red-ball-4-vita/refs/heads/main/soloader-boilerplate/extras/livearea/pic0.png"
+      "https://archive.org/download/rdball4-psvita/bg0.png",
+      "https://archive.org/download/rdball4-psvita/pic0.png"
     ]
   },
   {
@@ -1683,20 +1684,27 @@
     "links": [
       {
         "type": "Download",
-        "name": "Official ZIP VPK + TOOLS",
-        "url": "https://gitlab.com/sexcurrybeats/asphalt8-vita/-/releases/v0.1/downloads/artifacts/Asphalt8Vita_v0.1.zip",
+        "name": "VPK",
+        "url": "https://archive.org/download/asphalt-8-psvita/Asphalt8Vita%20v0.1.vpk",
         "recommended": true
       },
       {
         "type": "Download",
-        "name": "Game Data Files - Google Drive",
-        "url": "https://drive.google.com/file/d/1d281lFddylYUAv9o2jnS74k9OLI-PEuf/view",
+        "name": "Game Data Files ZIP",
+        "url": "https://archive.org/download/asphalt-8-psvita/asphalt8%20game%20data.zip",
+        "recommended": false,
+        "size": 1500000000
+      },
+      {
+        "type": "Download",
+        "name": "GitLab VPK + Tools",
+        "url": "https://gitlab.com/sexcurrybeats/asphalt8-vita/-/releases/v0.1/downloads/artifacts/Asphalt8Vita_v0.1.zip",
         "recommended": false
       }
     ],
-    "icon": "https://gitlab.com/sexcurrybeats/asphalt8-vita/-/raw/main/extras/livearea/icon0.png",
+    "icon": "https://archive.org/download/asphalt-8-psvita/icon0.png",
     "screenshots": [
-      "https://gitlab.com/sexcurrybeats/asphalt8-vita/-/raw/main/docs/images/hero.png"
+      "https://archive.org/download/asphalt-8-psvita/bg0.png"
     ]
   },
   {
@@ -2497,21 +2505,28 @@
     "links": [
       {
         "type": "Download",
-        "name": "Official VPK",
-        "url": "https://github.com/Clyppe/cut-the-rope-magic-vita/releases/download/v0.10-BETA/CutTheRopeMagic.vpk",
+        "name": "VPK",
+        "url": "https://archive.org/download/ctrm-psvita/CutTheRopeMagic.vpk",
         "recommended": true
       },
       {
         "type": "Download",
-        "name": "Game Data Files - Mediafire",
-        "url": "http://www.mediafire.com/file/ltbbcalbf4ujok3/CTRMDATA.zip",
+        "name": "Game Data Files ZIP",
+        "url": "https://archive.org/download/ctrm-psvita/Game%20Files.zip",
+        "recommended": false,
+        "size": 58700000
+      },
+      {
+        "type": "Download",
+        "name": "GitHub VPK",
+        "url": "https://github.com/Clyppe/cut-the-rope-magic-vita/releases/download/v0.10-BETA/CutTheRopeMagic.vpk",
         "recommended": false
       }
     ],
-    "icon": "https://raw.githubusercontent.com/Clyppe/cut-the-rope-magic-vita/refs/heads/master/soloader-boilerplate/extras/livearea/icon0.png",
+    "icon": "https://archive.org/download/ctrm-psvita/icon0.png",
     "screenshots": [
-      "https://raw.githubusercontent.com/Clyppe/cut-the-rope-magic-vita/refs/heads/master/soloader-boilerplate/extras/livearea/bg0.png",
-      "https://raw.githubusercontent.com/Clyppe/cut-the-rope-magic-vita/refs/heads/master/soloader-boilerplate/extras/livearea/pic0.png"
+      "https://archive.org/download/ctrm-psvita/bg0.png",
+      "https://archive.org/download/ctrm-psvita/pic0.png"
     ]
   },
   {
@@ -2708,21 +2723,28 @@
     "links": [
       {
         "type": "Download",
-        "name": "Official VPK",
-        "url": "https://github.com/Clyppe/cut-the-rope-vita/releases/download/v0.2.0/CutTheRope.vpk",
+        "name": "VPK",
+        "url": "https://archive.org/download/ctrc-psvita/CutTheRope%200.2.0.vpk",
         "recommended": true
       },
       {
         "type": "Download",
-        "name": "Game Data Files - Mediafire",
-        "url": "https://www.mediafire.com/file/q6382ts4lvhj6dz/CTRDATA.zip",
+        "name": "Game Data Files ZIP",
+        "url": "https://archive.org/download/ctrc-psvita/Game%20Data.zip",
+        "recommended": false,
+        "size": 11100000
+      },
+      {
+        "type": "Download",
+        "name": "Github VPK",
+        "url": "https://github.com/Clyppe/cut-the-rope-vita/releases/download/v0.2.0/CutTheRope.vpk",
         "recommended": false
       }
     ],
-    "icon": "https://raw.githubusercontent.com/Clyppe/cut-the-rope-vita/refs/heads/main/soloader-boilerplate/extras/livearea/icon0.png",
+    "icon": "https://archive.org/download/ctrc-psvita/icon0.png",
     "screenshots": [
-      "https://raw.githubusercontent.com/Clyppe/cut-the-rope-vita/refs/heads/main/soloader-boilerplate/extras/livearea/bg0.png",
-      "https://raw.githubusercontent.com/Clyppe/cut-the-rope-vita/refs/heads/main/soloader-boilerplate/extras/livearea/pic0.png"
+      "https://archive.org/download/ctrc-psvita/bg0.png",
+      "https://archive.org/download/ctrc-psvita/pic0.png"
     ]
   },
   {
@@ -3177,20 +3199,27 @@
       {
         "type": "Download",
         "name": "Official VPK",
-        "url": "https://github.com/MetalSyntax/zenonia3-psvita-port/releases/download/v01.30/zenonia_3.vpk",
-        "recommended": false
+        "url": "https://archive.org/download/zenonia-3-psvita/ZEN3.vpk",
+        "recommended": true
       },
       {
         "type": "Download",
-        "name": "Game Data Files + VPK ZIP - Mediafire",
-        "url": "https://www.mediafire.com/file/m5x3w216oblydu1/zenonia3+vpk+e+data%F0%9F%86%9A%EF%B8%8F.zip/file",
+        "name": "Game Data Files ZIP",
+        "url": "https://archive.org/download/zenonia-3-psvita/Game%20Files.zip",
+        "recommended": false,
+        "size": 12200000
+      },
+      {
+        "type": "Download",
+        "name": "GitHub VPK",
+        "url": "https://github.com/MetalSyntax/zenonia3-psvita-port/releases/download/v01.30/zenonia_3.vpk",
         "recommended": false
       },
       {
         "type": "Download",
         "name": "VitaDB VPK",
         "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1459",
-        "recommended": true
+        "recommended": false
       },
       {
         "type": "Official Website",
@@ -3203,9 +3232,9 @@
         "url": "https://github.com/MetalSyntax/zenonia3-psvita-port"
       }
     ],
-    "icon": "https://raw.githubusercontent.com/MetalSyntax/zenonia3-psvita-port/refs/heads/master/sce_sys/icon0.png",
+    "icon": "https://archive.org/download/zenonia-3-psvita/icon0.png",
     "screenshots": [
-      "https://raw.githubusercontent.com/MetalSyntax/zenonia3-psvita-port/refs/heads/master/sce_sys/pic0.png"
+      "https://archive.org/download/zenonia-3-psvita/pic0.png"
     ]
   },
   {
@@ -3581,17 +3610,25 @@
     "requirements": "- Game Data Files: iOS",
     "size": 16974253,
     "status": "Legacy",
-    "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/369546f3cd2adc115c999366f8b1baa9a1dcbb88fba9edb8be06c8d6e4bdf1df.png",
+    "icon": "https://archive.org/download/card-wars-vita-v-2/icon0.png",
     "screenshots": [
-      "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/30e017ab62dd41a3d7fc7806ce2e694fb9d018b2ad79e8dd89cd17fcba7f0587.png",
-      "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/a241a8f195a9c24f6b8643103bee33af2aae9ca64af0a0b58bf231de6f87fa52.png",
+      "https://archive.org/download/card-wars-vita-v-2/0.png",
+      "https://archive.org/download/card-wars-vita-v-2/1.png",
       "https://www.rinnegatamante.eu/vitadb/screenshots/30e017ab62dd41a3d7fc7806ce2e694fb9d018b2ad79e8dd89cd17fcba7f0587.png",
-      "https://www.rinnegatamante.eu/vitadb/screenshots/a241a8f195a9c24f6b8643103bee33af2aae9ca64af0a0b58bf231de6f87fa52.png"
+      "https://www.rinnegatamante.eu/vitadb/screenshots/a241a8f195a9c24f6b8643103bee33af2aae9ca64af0a0b58bf231de6f87fa52.png",
+      "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/30e017ab62dd41a3d7fc7806ce2e694fb9d018b2ad79e8dd89cd17fcba7f0587.png"
     ],
     "links": [
       {
         "type": "Download",
-        "name": "VitaDBtoo VPK",
+        "name": "VPK + Game Data Files",
+        "url": "https://archive.org/download/card-wars-vita-v-2/CardWarsVitaV2.vpk",
+        "recommended": true,
+        "size": 145700000
+      },
+      {
+        "type": "Download",
+        "name": "GitHub VPK",
         "url": "https://github.com/parindraaa867/AT-CardWars-Vita/releases/download/v5/CardWars_Stub.vpk",
         "recommended": false
       },
@@ -3601,15 +3638,10 @@
         "url": "https://github.com/parindraaa867/AT-CardWars-Vita"
       },
       {
-        "type": "Official Website",
-        "name": "NeoVitaDB Release Page",
-        "url": "https://github.com/parindraaa867/AT-CardWars-Vita/releases/tag/v5"
-      },
-      {
         "type": "Download",
         "name": "VitaDB VPK",
         "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1428",
-        "recommended": true
+        "recommended": false
       }
     ],
     "source_name": "VitaDBtoo",
@@ -3740,26 +3772,45 @@
     "requirements": "- libshacccg.suprx\n- kubridge.skprx\n- Game Data Files: Android",
     "size": 2322516,
     "status": "Legacy",
-    "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/a43a7e9835c72dc6b05702c136e6a5cbd6d142c9b9e004b48283dc2d7aee529a.png",
+    "icon": "https://archive.org/download/bbr-psvita/icon0.png",
     "screenshots": [
-      "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/a43a7e9835c72dc6b05702c136e6a5cbd6d142c9b9e004b48283dc2d7aee529a.png"
+      "https://archive.org/download/bbr-psvita/pic0.png",
+      "https://archive.org/download/bbr-psvita/bg0.png",
+      "https://archive.org/download/bbr-psvita/2026-07-14-232935-036089.png",
+      "https://archive.org/download/bbr-psvita/2026-07-14-232958-553833.png",
+      "https://archive.org/download/bbr-psvita/2026-07-14-233042-013923.png"
     ],
     "links": [
       {
         "type": "Download",
-        "name": "VitaDBtoo VPK",
+        "name": "VPK",
+        "url": "https://archive.org/download/bbr-psvita/BeachBuggyRacing.Vita-v1.0.vpk",
+        "recommended": true
+      },
+      {
+        "type": "Download",
+        "name": "Game Data Files ZIP",
+        "url": "https://archive.org/download/bbr-psvita/Game%20Files.zip",
+        "recommended": false,
+        "size": 70800000
+      },
+      {
+        "type": "Download",
+        "name": "GitHub VPK",
         "url": "https://github.com/WolffsRoom/BeachBuggyRacing-Vita/releases/download/v1.0/BeachBuggyRacing.Vita-v1.0.vpk",
         "recommended": false
       },
       {
-        "type": "Official Website",
-        "name": "VitaDBtoo Release Page",
-        "url": "https://github.com/WolffsRoom/BeachBuggyRacing-Vita/releases"
+        "type": "Download",
+        "name": "VitaDB VPK",
+        "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1437",
+        "recommended": false
       },
       {
-        "type": "Official Website",
-        "name": "NeoVitaDB Release Page",
-        "url": "https://github.com/WolffsRoom/BeachBuggyRacing-Vita/releases/tag/v1.0"
+        "type": "Download",
+        "name": "VitaDB VPK",
+        "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1437",
+        "recommended": false
       },
       {
         "type": "Repository",
@@ -3767,10 +3818,9 @@
         "url": "https://github.com/WolffsRoom/BeachBuggyRacing-Vita"
       },
       {
-        "type": "Download",
-        "name": "VitaDB VPK",
-        "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1437",
-        "recommended": true
+        "type": "Official Website",
+        "name": "VitaDB Release Page",
+        "url": "https://github.com/WolffsRoom/BeachBuggyRacing-Vita/releases"
       }
     ],
     "source_name": "VitaDBtoo",
@@ -3798,30 +3848,39 @@
     "requirements": "- libshacccg.suprx\n- kubridge.skprx\n- Game Data Files: Android",
     "size": 6318259,
     "status": "Legacy",
-    "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/6d04d42d839fe8ec9d93b52385b5853bc2a7b997811554665a7e04c2fa78f551.png",
+    "icon": "https://archive.org/download/zombie-tsunami-psvita/icon0.png",
     "screenshots": [
-      "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/b50ec109bdf05116a1287b6f9928f871909550ecd33967d426d392bc2059cd14.png",
-      "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/08424e29814a91598cde2881ac36ae0265424aa3246d28ec68dd80320245d05d.png",
-      "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/2b1336c9f339752a9b9be514992754e5e674567c0b1d3580293d14cf8a5e3f0e.png",
-      "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/6ef2acaacd850d780f6e325feeb3203b868b98a78ce2cf3805bfd9ab3e16a56c.png",
+      "https://archive.org/download/zombie-tsunami-psvita/2026-07-14-000337-423991.png",
+      "https://archive.org/download/zombie-tsunami-psvita/2026-07-14-000424-304127.png",
+      "https://archive.org/download/zombie-tsunami-psvita/2026-07-14-000458-554996.png",
+      "https://archive.org/download/zombie-tsunami-psvita/2026-07-14-000551-123963.png",
       "https://www.rinnegatamante.eu/vitadb/screenshots/b50ec109bdf05116a1287b6f9928f871909550ecd33967d426d392bc2059cd14.png"
     ],
     "links": [
       {
         "type": "Download",
-        "name": "VitaDBtoo VPK",
+        "name": "VPK",
+        "url": "https://archive.org/download/zombie-tsunami-psvita/ZombieTsunami-v1.0.vpk",
+        "recommended": true
+      },
+      {
+        "type": "Download",
+        "name": "Game Data Files ZIP",
+        "url": "https://archive.org/download/zombie-tsunami-psvita/Game%20Files.zip",
+        "recommended": false,
+        "size": 42100000
+      },
+      {
+        "type": "Download",
+        "name": "GitHub VPK",
         "url": "https://github.com/WolffsRoom/ZombieTsunami-Vita/releases/download/v1.0/ZombieTsunami-v1.0.vpk",
         "recommended": false
       },
       {
-        "type": "Official Website",
-        "name": "VitaDBtoo Release Page",
-        "url": "https://github.com/WolffsRoom/ZombieTsunami-Vita/releases"
-      },
-      {
-        "type": "Official Website",
-        "name": "NeoVitaDB Release Page",
-        "url": "https://github.com/WolffsRoom/ZombieTsunami-Vita/releases/tag/v1.0"
+        "type": "Download",
+        "name": "VitaDB VPK",
+        "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1436",
+        "recommended": false
       },
       {
         "type": "Repository",
@@ -3829,10 +3888,9 @@
         "url": "https://github.com/WolffsRoom/ZombieTsunami-Vita"
       },
       {
-        "type": "Download",
-        "name": "VitaDB VPK",
-        "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1436",
-        "recommended": true
+        "type": "Official Website",
+        "name": "VitaDB Release Page",
+        "url": "https://github.com/WolffsRoom/ZombieTsunami-Vita/releases"
       }
     ],
     "source_name": "VitaDBtoo",
