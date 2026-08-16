@@ -101,6 +101,9 @@ private:
     // Smooth motion / feedback
     float visualCatalogScroll_ = 0.f;
     float visualDetailScroll_ = 0.f;
+    float visualFocusIndex_ = 0.f;
+    float detailCrossfade_ = 1.f;
+    int detailCrossfadeFrom_ = -1;
     float tabIndicatorX_ = 0.f;
     float tabIndicatorReady_ = 0.f;
     float contentFade_ = 1.f;
@@ -132,6 +135,7 @@ private:
     void prepareImageTexture(const std::string& url, const std::string& namespaceName);
     void prepareVisibleTextures();
     void drawImage(const std::string& url, const std::string& namespaceName, int x, int y, int width, int height);
+    void drawImageLoadingPlaceholder(const std::string& url, const std::string& namespaceName, int x, int y, int width, int height);
     void releaseTextures();
     void releaseScreenshotTextures();
     void scheduleTextureFree(vita2d_texture* texture);
