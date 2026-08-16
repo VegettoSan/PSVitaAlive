@@ -26,9 +26,22 @@
   "links": [
     {
       "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/ppc-psvita/popclassic-v01.20.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Download",
+      "name": "Game Data Files ZIP",
+      "url": "https://archive.org/download/ppc-psvita/Game%20Files.zip",
+      "recommended": false,
+      "size": 81700000
+    },
+    {
+      "type": "Download",
       "name": "Official VPK",
       "url": "https://github.com/MetalSyntax/prince-of-persia-classic-psvita-port/releases/download/v01.20/popclassic-v01.20.vpk",
-      "recommended": true
+      "recommended": false
     },
     {
       "type": "Official Website",
@@ -41,8 +54,8 @@
       "url": "https://github.com/MetalSyntax/prince-of-persia-classic-psvita-port"
     }
   ],
-  "icon": "https://raw.githubusercontent.com/MetalSyntax/prince-of-persia-classic-psvita-port/refs/heads/master/extras/livearea/icon0.png",
+  "icon": "",
   "screenshots": [
-    "https://raw.githubusercontent.com/MetalSyntax/prince-of-persia-classic-psvita-port/refs/heads/master/extras/livearea/bg0.png"
+    ""
   ]
 }
