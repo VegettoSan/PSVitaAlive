@@ -271,7 +271,8 @@ void FullCatalogScreen::handleTouch() {
         return x >= rx && x < rx + rw && y >= ry && y < ry + rh;
     };
 
-    // --- Install overlay: allow dismissing / canceling by tap ---
+    // --- Install overlay: only the explicit button is tappable ---
+    // (Tapping the whole card used to cancel mid-download → "Download cancelled".)
     if (installProgressActive_) {
         if (td.reportNum > 0) {
             if (!touchDown_) {
@@ -284,15 +285,13 @@ void FullCatalogScreen::handleTouch() {
             const int x = touchStartX_, y = touchStartY_;
             touchDown_ = false;
             if (touchMoved_) return;
-            // Button region roughly matches drawLoadingOverlay (centered card)
             const int ow = 640, oh = 380, ox = (SCREEN_W - ow) / 2, oy = (SCREEN_H - oh) / 2;
             const int by = oy + 300, bw = 280, bh = 44;
-            if (hit(x, y, ox + 28, by, bw, bh) || hit(x, y, ox, oy, ow, oh)) {
-                if (installOutcome_ == 1 || installOutcome_ == 2) {
-                    if (installAcknowledge_) installAcknowledge_();
-                } else if (installCancel_) {
-                    installCancel_();
-                }
+            if (!hit(x, y, ox + 28, by, bw, bh)) return;
+            if (installOutcome_ == 1 || installOutcome_ == 2) {
+                if (installAcknowledge_) installAcknowledge_();
+            } else if (installCancel_) {
+                installCancel_();
             }
         }
         return;
