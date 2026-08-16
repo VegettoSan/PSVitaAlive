@@ -15,11 +15,14 @@ Remote policy:
 * Successful URL responses are cached for the current validation run so the
   same remote resource is not checked repeatedly.
 
+When VITAHUB_SKIP_REMOTE_CHECKS=true, the initial catalog-mode decision skips
+network fetches but still validates URL syntax and all non-network catalog
+rules. The full remote validation remains enabled later in the workflow.
+
 The wrapper also understands the canonical validator's human-readable output:
 summary lines such as "VitaHub validation failed" and "N error(s) found" are
 not themselves blocking errors. Only concrete catalog issue lines are
-classified. This prevents transient remote warnings from triggering an
-unnecessary external rebuild.
+classified.
 
 The canonical source directories (apps/, authors/ and categories/) may also
 contain README.md documentation for contributors. Those Markdown files are
@@ -30,6 +33,7 @@ source validator runs, then restores them before returning.
 
 from __future__ import annotations
 
+import os
 import re
 import subprocess
 import sys
@@ -46,9 +50,9 @@ CATALOG_DIRECTORIES = (
     ROOT / "categories",
 )
 
-# Keep the total retry budget bounded. The canonical validator checks both HEAD
-# and GET when HEAD does not succeed, so overly large per-attempt timeouts can
-# multiply into many minutes across a large catalog.
+# Keep the retry budget bounded. The canonical validator checks both HEAD and
+# GET when HEAD does not succeed, so large per-attempt timeouts multiply across
+# a large catalog.
 REMOTE_TIMEOUT = 15
 REMOTE_ATTEMPTS = 2
 REMOTE_BACKOFF_SECONDS = (1,)
@@ -159,19 +163,13 @@ def resilient_urlopen(request, timeout=REMOTE_TIMEOUT, *args, **kwargs):
 
         except urllib.error.HTTPError as exc:
             last_error = exc
-
             if exc.code not in RETRYABLE_HTTP_CODES:
                 raise
-
             if attempt + 1 >= REMOTE_ATTEMPTS:
                 raise
 
-        except (
-            urllib.error.URLError,
-            TimeoutError,
-        ) as exc:
+        except (urllib.error.URLError, TimeoutError) as exc:
             last_error = exc
-
             if attempt + 1 >= REMOTE_ATTEMPTS:
                 raise
 
@@ -188,17 +186,22 @@ _ORIGINAL_URLOPEN = urllib.request.urlopen
 
 
 def run_validator() -> subprocess.CompletedProcess[str]:
-    """Run the canonical validator with resilient urllib behavior."""
+    """Run the canonical validator with CI-specific behavior injected."""
     runner = """
-import runpy
+import os
 import urllib.request
-from pathlib import Path
-
+from scripts import validate_catalog as validator
 from scripts import validate_catalog_ci as ci
 
 ci._URL_CACHE.clear()
 urllib.request.urlopen = ci.resilient_urlopen
-runpy.run_path(str(Path('scripts/validate_catalog.py')), run_name='__main__')
+
+if os.environ.get('VITAHUB_SKIP_REMOTE_CHECKS', '').lower() == 'true':
+    def validate_remote_structure_only(url, path, errors, expect_image=False):
+        validator.validate_url(url, path, errors)
+    validator.validate_remote = validate_remote_structure_only
+
+raise SystemExit(validator.main())
 """
 
     return subprocess.run(
@@ -219,14 +222,12 @@ def classify_output(output: str) -> tuple[list[str], list[str], bool]:
             continue
 
         candidate_count += 1
-
         if TRANSIENT_REMOTE_RE.search(line):
             warnings.append(line)
         else:
             blocking.append(line)
 
-    # If the validator failed but did not provide concrete issue lines, preserve
-    # the failure instead of accidentally masking an unexpected runtime error.
+    # Preserve unexpected validator failures instead of masking them.
     has_unclassified_failure = (
         candidate_count == 0 and "validation failed" in output.lower()
     )
