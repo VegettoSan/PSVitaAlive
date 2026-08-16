@@ -161,7 +161,7 @@ ZipDestChoice promptZipDestinationChoice() {
         vita2d_draw_rectangle(boxX, boxY, 1, boxH, ACCENT);
         vita2d_draw_rectangle(boxX + boxW - 1, boxY, 1, boxH, ACCENT);
 
-        vita2d_pgf_draw_text(font, boxX + 24, boxY + 36, ACCENT, 1.05f, "Archivo ZIP detectado");
+        vita2d_pgf_draw_text(font, boxX + 24, boxY + 36, ACCENT, 1.05f, "ZIP file detected");
         vita2d_pgf_draw_text(font, boxX + 24, boxY + 68, WHITE, 0.70f,
             "Elige la carpeta donde se extraera el contenido:");
 
@@ -303,8 +303,8 @@ bool promptDownloadAllImages(size_t totalImages){
         const unsigned WARN=RGBA8(0xFF,0xB0,0x20,255);
         vita2d_draw_rectangle(x+24,y+136,w-48,36,RGBA8(0x3A,0x2A,0x10,255));
         vita2d_draw_rectangle(x+24,y+136,3,36,WARN);
-        vita2d_pgf_draw_text(font,x+36,y+150,WARN,.56f,"Advertencia: el total puede superar 2 GB");
-        vita2d_pgf_draw_text(font,x+36,y+166,WARN,.50f,"de datos. Usa Wi-Fi y revisa espacio libre.");
+        vita2d_pgf_draw_text(font,x+36,y+150,WARN,.56f,"Warning: total may exceed 2 GB");
+        vita2d_pgf_draw_text(font,x+36,y+166,WARN,.50f,"of data. Use Wi-Fi and check free space.");
         char count[96];
         sceClibSnprintf(count,sizeof(count),"Pending images: %u",(unsigned)totalImages);
         vita2d_pgf_draw_text(font,x+28,y+188,ACCENT,.68f,count);
@@ -418,9 +418,9 @@ int main(){
     if (installer.settings().warnMissingPlugins) {
         const auto& pl = installer.plugins();
         if (!pl.nonpdrm) {
-            screen.showToast("NoNpDrm no detectado: PKG con licencia pueden fallar", 3500);
+            screen.showToast("NoNpDrm not found: licensed Vita PKGs may fail", 3500);
         } else if (!pl.nopspemudrmKern) {
-            screen.showToast("NoPspEmuDrm no detectado: PSP solo via Adrenaline", 3200);
+            screen.showToast("NoPspEmuDrm not found: PSP via Adrenaline only", 3200);
         }
     }
 
