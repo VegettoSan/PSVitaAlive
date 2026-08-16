@@ -19,6 +19,8 @@ struct AppSettingsData {
     InstallMethod installMethod = InstallMethod::Auto;
     PspTarget pspTarget = PspTarget::Adrenaline;
     bool warnMissingPlugins = true;
+    /** If false, skip the startup "download all images?" dialog (on-demand only). */
+    bool promptImageWarmup = true;
 };
 
 /**
