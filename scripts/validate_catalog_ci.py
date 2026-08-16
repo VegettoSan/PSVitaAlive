@@ -2,32 +2,35 @@
 
 """CI wrapper for the VitaHub source validator.
 
-The source validator intentionally checks remote resources, but GitHub Actions
-can occasionally lose connectivity to otherwise valid hosts. A transient
-network failure must not make the whole catalog build fail.
+The canonical validator remains responsible for validating structure and remote
+resources. This wrapper adds CI-specific resilience for unreliable remote
+servers without weakening real catalog errors.
 
-The wrapper keeps the canonical validator as the source of truth while adding
-CI-specific resilience for remote resources:
+Remote policy:
+* 15 second timeout per HTTP attempt.
+* Up to 2 attempts for transient HTTP/network failures.
+* 1 second backoff between attempts.
+* HTTP 429/5xx and connection/time-out failures are warnings after retries.
+* Permanent HTTP errors and structural validation errors remain blocking.
+* Successful URL responses are cached for the current validation run so the
+  same remote resource is not checked repeatedly.
 
-* 30 second timeout for remote HTTP requests.
-* Up to 3 attempts for transient HTTP/network failures.
-* Exponential backoff between attempts.
-* HTTP 429/5xx and connection/time-out failures are warnings after retries,
-  while structural errors and permanent HTTP errors remain blocking.
+The wrapper also understands the canonical validator's human-readable output:
+summary lines such as "VitaHub validation failed" and "N error(s) found" are
+not themselves blocking errors. Only concrete catalog issue lines are
+classified. This prevents transient remote warnings from triggering an
+unnecessary external rebuild.
 
 The canonical source directories (apps/, authors/ and categories/) may also
 contain README.md documentation for contributors. Those Markdown files are
 not catalog entries, while validate_catalog.py intentionally rejects unknown
 non-JSON files. The CI wrapper therefore hides README.md files only while the
-source validator runs, then restores them before returning. This keeps the
-repository documentation next to the data it documents without weakening the
-catalog validator for arbitrary non-JSON files.
+source validator runs, then restores them before returning.
 """
 
 from __future__ import annotations
 
 import re
-import runpy
 import subprocess
 import sys
 import time
@@ -43,15 +46,47 @@ CATALOG_DIRECTORIES = (
     ROOT / "categories",
 )
 
-REMOTE_TIMEOUT = 30
-REMOTE_ATTEMPTS = 3
-REMOTE_BACKOFF_SECONDS = (2, 5)
+# Keep the total retry budget bounded. The canonical validator checks both HEAD
+# and GET when HEAD does not succeed, so overly large per-attempt timeouts can
+# multiply into many minutes across a large catalog.
+REMOTE_TIMEOUT = 15
+REMOTE_ATTEMPTS = 2
+REMOTE_BACKOFF_SECONDS = (1,)
 RETRYABLE_HTTP_CODES = {429, 500, 502, 503, 504}
 
 TRANSIENT_REMOTE_RE = re.compile(
     r"remote URL could not be reached:"
     r"|remote URL returned HTTP (?:429|500|502|503|504)"
 )
+
+CANDIDATE_ERROR_RE = re.compile(r"^- ")
+
+
+class CachedResponse:
+    """Minimal response object sufficient for validate_catalog.py."""
+
+    def __init__(self, status, headers, body=b""):
+        self.status = status
+        self.headers = headers
+        self._body = body
+
+    def __enter__(self):
+        return self
+
+    def __exit__(self, exc_type, exc_value, traceback):
+        return False
+
+    def read(self, size=-1):
+        if size is None or size < 0:
+            data = self._body
+            self._body = b""
+            return data
+        data = self._body[:size]
+        self._body = self._body[size:]
+        return data
+
+
+_URL_CACHE: dict[tuple[str, str], tuple[int, object, bytes]] = {}
 
 
 def temporarily_hide_documentation() -> list[tuple[Path, Path]]:
@@ -82,8 +117,26 @@ def restore_documentation(moved: list[tuple[Path, Path]]) -> None:
             hidden.rename(readme)
 
 
+def _request_cache_key(request) -> tuple[str, str]:
+    return request.full_url, request.get_method()
+
+
+def _cache_response(response) -> tuple[int, object, bytes]:
+    status = getattr(response, "status", 200)
+    headers = response.headers
+    # The validator only reads status and headers. Keep no response body.
+    return status, headers, b""
+
+
 def resilient_urlopen(request, timeout=REMOTE_TIMEOUT, *args, **kwargs):
-    """Retry transient remote failures without changing the canonical validator."""
+    """Retry transient failures and cache successful URL checks for this run."""
+    key = _request_cache_key(request)
+
+    cached = _URL_CACHE.get(key)
+    if cached is not None:
+        status, headers, body = cached
+        return CachedResponse(status, headers, body)
+
     effective_timeout = max(
         REMOTE_TIMEOUT,
         timeout if isinstance(timeout, (int, float)) else 0,
@@ -93,12 +146,16 @@ def resilient_urlopen(request, timeout=REMOTE_TIMEOUT, *args, **kwargs):
 
     for attempt in range(REMOTE_ATTEMPTS):
         try:
-            return _ORIGINAL_URLOPEN(
+            response = _ORIGINAL_URLOPEN(
                 request,
                 timeout=effective_timeout,
                 *args,
                 **kwargs,
             )
+
+            _URL_CACHE[key] = _cache_response(response)
+            status, headers, body = _URL_CACHE[key]
+            return CachedResponse(status, headers, body)
 
         except urllib.error.HTTPError as exc:
             last_error = exc
@@ -139,6 +196,7 @@ from pathlib import Path
 
 from scripts import validate_catalog_ci as ci
 
+ci._URL_CACHE.clear()
 urllib.request.urlopen = ci.resilient_urlopen
 runpy.run_path(str(Path('scripts/validate_catalog.py')), run_name='__main__')
 """
@@ -148,6 +206,31 @@ runpy.run_path(str(Path('scripts/validate_catalog.py')), run_name='__main__')
         text=True,
         capture_output=True,
     )
+
+
+def classify_output(output: str) -> tuple[list[str], list[str], bool]:
+    """Split concrete validator issue lines into blocking and transient lists."""
+    blocking: list[str] = []
+    warnings: list[str] = []
+    candidate_count = 0
+
+    for line in output.splitlines():
+        if not CANDIDATE_ERROR_RE.match(line):
+            continue
+
+        candidate_count += 1
+
+        if TRANSIENT_REMOTE_RE.search(line):
+            warnings.append(line)
+        else:
+            blocking.append(line)
+
+    # If the validator failed but did not provide concrete issue lines, preserve
+    # the failure instead of accidentally masking an unexpected runtime error.
+    has_unclassified_failure = (
+        candidate_count == 0 and "validation failed" in output.lower()
+    )
+    return blocking, warnings, has_unclassified_failure
 
 
 def main() -> int:
@@ -169,31 +252,29 @@ def main() -> int:
         print(output, end="")
         return 0
 
-    lines = output.splitlines()
-    blocking = []
-    warnings = []
+    blocking, warnings, unexpected_failure = classify_output(output)
 
-    for line in lines:
-        if TRANSIENT_REMOTE_RE.search(line):
-            warnings.append(line)
-        else:
-            blocking.append(line)
-
-    if warnings and not blocking:
+    if warnings and not blocking and not unexpected_failure:
         print("VitaHub validation passed with remote-resource warnings:")
         for line in warnings:
-            print(f"::warning::{line.lstrip('- ')}")
+            print(f"::warning::{line[2:]}")
         return 0
 
-    print(output, end="")
+    if blocking:
+        print("VitaHub validation failed:")
+        for line in blocking:
+            print(line)
 
     if warnings:
-        print()
-        print("Remote-resource warnings:")
+        print("\nRemote-resource warnings:")
         for line in warnings:
-            print(f"::warning::{line.lstrip('- ')}")
+            print(f"::warning::{line[2:]}")
 
-    return process.returncode
+    if unexpected_failure:
+        print("\nUnexpected validator failure:")
+        print(output, end="")
+
+    return 1
 
 
 if __name__ == "__main__":
