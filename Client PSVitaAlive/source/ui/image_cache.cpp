@@ -38,8 +38,31 @@ std::string ImageCache::request(const std::string&url,const std::string&ns){if(u
 void ImageCache::preload(const std::vector<std::string>&urls,const std::string&ns){if(mutex_<0||urls.empty())return;sceKernelLockMutex(mutex_,1,nullptr);bulkPreload_=true;sceKernelUnlockMutex(mutex_,1);size_t queued=0;for(const auto&url:urls){if(url.empty())continue;std::string before=request(url,ns);if(!before.empty())++queued;}sceKernelLockMutex(mutex_,1,nullptr);bulkPreload_=false;sceKernelUnlockMutex(mutex_,1);if(queued){char m[160];sceClibSnprintf(m,sizeof(m),"[ImageCache] preload requested ns=%s count=%u",ns.c_str(),(unsigned)queued);diagnostics::log(m);}}
 bool ImageCache::isReady(const std::string&p)const{if(p.empty()||mutex_<0)return false;sceKernelLockMutex(mutex_,1,nullptr);bool r=contains(ready_,p);sceKernelUnlockMutex(mutex_,1);return r;}
 bool ImageCache::isFailed(const std::string&p)const{if(mutex_<0||p.empty())return false;sceKernelLockMutex(mutex_,1,nullptr);bool r=contains(failed_,p);sceKernelUnlockMutex(mutex_,1);return r;}
+bool ImageCache::isPending(const std::string& localPath) const {
+    if (mutex_ < 0 || localPath.empty()) return false;
+    sceKernelLockMutex(mutex_, 1, nullptr);
+    const bool pending = contains(pending_, localPath) || currentPath_ == localPath;
+    sceKernelUnlockMutex(mutex_, 1);
+    return pending;
+}
+
 bool ImageCache::isCached(const std::string&url,const std::string&ns)const{if(mutex_<0||url.empty())return false;const std::string path=makePath(normalizeUrl(url),ns);SceIoStat st={};return sceIoGetstat(path.c_str(),&st)>=0&&st.st_size>0;}
-ImageCache::ProgressSnapshot ImageCache::progress()const{ProgressSnapshot s;if(mutex_<0)return s;sceKernelLockMutex(mutex_,1,nullptr);s.active=!currentPath_.empty();s.downloaded=currentDownloaded_;s.total=currentTotal_;s.speed=currentSpeed_;s.completedBytes=completedBytes_;s.knownTotalBytes=completedTotalBytes_;if(s.active&&s.total>0)s.knownTotalBytes+=s.total;s.fileName=currentFile_;sceKernelUnlockMutex(mutex_,1);return s;}
+ImageCache::ProgressSnapshot ImageCache::progress()const{
+    ProgressSnapshot s;
+    if(mutex_<0)return s;
+    sceKernelLockMutex(mutex_,1,nullptr);
+    s.active=!currentPath_.empty();
+    s.downloaded=currentDownloaded_;
+    s.total=currentTotal_;
+    s.speed=currentSpeed_;
+    s.completedBytes=completedBytes_;
+    s.knownTotalBytes=completedTotalBytes_;
+    if(s.active&&s.total>0)s.knownTotalBytes+=s.total;
+    s.fileName=currentFile_;
+    s.localPath=currentPath_;
+    sceKernelUnlockMutex(mutex_,1);
+    return s;
+}
 void ImageCache::resetProgress(){if(mutex_<0)return;sceKernelLockMutex(mutex_,1,nullptr);completedBytes_=0;completedTotalBytes_=0;currentDownloaded_=0;currentTotal_=0;currentSpeed_=0;currentFile_.clear();currentPath_.clear();sceKernelUnlockMutex(mutex_,1);}
 void ImageCache::cancelAll(){if(mutex_<0)return;sceKernelLockMutex(mutex_,1,nullptr);const bool active=!currentPath_.empty();const size_t queued=queue_.size();for(const Job&j:queue_)pending_.erase(std::remove(pending_.begin(),pending_.end(),j.path),pending_.end());queue_.clear();cancelRequested_=active;sceKernelUnlockMutex(mutex_,1);if(queued||active)diagnostics::log("[ImageCache] cancel requested for image work");}
 void ImageCache::cancelQueuedRequests(){if(mutex_<0)return;sceKernelLockMutex(mutex_,1,nullptr);std::vector<std::string>cancelled;cancelled.reserve(queue_.size());for(const Job&j:queue_)cancelled.push_back(j.path);const size_t count=queue_.size();queue_.clear();for(const auto&p:cancelled)pending_.erase(std::remove(pending_.begin(),pending_.end(),p),pending_.end());sceKernelUnlockMutex(mutex_,1);if(count){char m[160];sceClibSnprintf(m,sizeof(m),"[ImageCache] cancelled queued requests=%u",(unsigned)count);diagnostics::log(m);}}
