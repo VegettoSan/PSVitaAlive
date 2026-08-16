@@ -39,6 +39,24 @@ uint64_t getUnsigned(const sce::Json::Value& object, const char* key) {
 std::string formatSize(uint64_t bytes) {
     if (bytes == 0) return {};
     char buffer[64];
+    if (bytes >= 1024ULL * 1024ULL * 1024ULL) {
+        const double gb = static_cast<double>(bytes) / (1024.0 * 1024.0 * 1024.0);
+        sceClibSnprintf(buffer, sizeof(buffer), "%.2f GB", gb);
+        return buffer;
+    }
+    if (bytes >= 1024ULL * 1024ULL) {
+        const double mb = static_cast<double>(bytes) / (1024.0 * 1024.0);
+        sceClibSnprintf(buffer, sizeof(buffer), "%.1f MB", mb);
+        return buffer;
+    }
+    if (bytes >= 1024ULL) {
+        sceClibSnprintf(buffer, sizeof(buffer), "%llu KB", static_cast<unsigned long long>(bytes / 1024ULL));
+        return buffer;
+    }
+    sceClibSnprintf(buffer, sizeof(buffer), "%llu B", static_cast<unsigned long long>(bytes));
+    return buffer;
+};
+    char buffer[64];
     if (bytes >= 1024ULL * 1024ULL) {
         const double mb = static_cast<double>(bytes) / (1024.0 * 1024.0);
         sceClibSnprintf(buffer, sizeof(buffer), "%.1f MB", mb);
@@ -126,6 +144,16 @@ void parseLinks(const sce::Json::Value& application, ui::CatalogItem& item) {
         detail.name = name;
         detail.url = url;
         detail.recommended = link["recommended"].getBoolean();
+        // Optional per-link size (bytes number or preformatted string).
+        if (link["size"]) {
+            try {
+                const uint64_t bytes = static_cast<uint64_t>(link["size"].getUInteger());
+                detail.size = formatSize(bytes);
+            } catch (...) {
+                const std::string raw = getString(link, "size");
+                detail.size = raw;
+            }
+        }
         item.linkDetails.push_back(detail);
 
         std::string display = type;
