@@ -587,11 +587,11 @@ void FullCatalogScreen::handleTouch() {
 
 
 
-void FullCatalogScreen::setAppSettings(const AppSettingsData& settings) {
+void FullCatalogScreen::setAppSettings(const ::psvitaalive::AppSettingsData& settings) {
     settingsEdit_ = settings;
 }
 
-void FullCatalogScreen::setPluginStatus(const PluginStatus& plugins) {
+void FullCatalogScreen::setPluginStatus(const ::psvitaalive::PluginStatus& plugins) {
     pluginsStatus_ = plugins;
 }
 
@@ -629,8 +629,8 @@ void FullCatalogScreen::cycleSettingsOption(int row, int delta) {
         if (v < 0) v += 3;
         settingsEdit_.installMethod = static_cast<InstallMethod>(v);
     } else if (row == 1) {
-        settingsEdit_.pspTarget = (settingsEdit_.pspTarget == PspTarget::Adrenaline)
-            ? PspTarget::LiveArea : PspTarget::Adrenaline;
+        settingsEdit_.pspTarget = (settingsEdit_.pspTarget == ::psvitaalive::PspTarget::Adrenaline)
+            ? ::psvitaalive::PspTarget::LiveArea : ::psvitaalive::PspTarget::Adrenaline;
     } else if (row == 2) {
         settingsEdit_.warnMissingPlugins = !settingsEdit_.warnMissingPlugins;
     }
@@ -678,13 +678,13 @@ void FullCatalogScreen::drawSettings() {
         std::string value;
         const char* hint;
     };
-    const char* methodVal = AppSettings::toString(settingsEdit_.installMethod);
+    const char* methodVal = ::psvitaalive::AppSettings::toString(settingsEdit_.installMethod);
     std::string methodLabel = methodVal;
-    if (settingsEdit_.installMethod == InstallMethod::Auto) methodLabel = "auto (recomendado)";
-    else if (settingsEdit_.installMethod == InstallMethod::Direct) methodLabel = "direct";
+    if (settingsEdit_.installMethod == ::psvitaalive::InstallMethod::Auto) methodLabel = "auto (recomendado)";
+    else if (settingsEdit_.installMethod == ::psvitaalive::InstallMethod::Direct) methodLabel = "direct";
     else methodLabel = "bgdl (proximamente)";
 
-    const char* pspVal = (settingsEdit_.pspTarget == PspTarget::Adrenaline) ? "Adrenaline (ISO/PBP)" : "LiveArea (NoPspEmuDrm)";
+    const char* pspVal = (settingsEdit_.pspTarget == ::psvitaalive::PspTarget::Adrenaline) ? "Adrenaline (ISO/PBP)" : "LiveArea (NoPspEmuDrm)";
     const char* warnVal = settingsEdit_.warnMissingPlugins ? "Si" : "No";
 
     Row rows[3] = {
