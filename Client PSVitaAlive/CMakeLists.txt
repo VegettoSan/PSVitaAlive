@@ -30,6 +30,8 @@ set(SOURCES
   source/installer/psp_installer.cpp
   source/installer/license_helper.cpp
   source/installer/plugin_detector.cpp
+  source/installer/refresh_manager.cpp
+  source/installer/app_settings.cpp
   source/installer/install_dispatcher.cpp
   source/installer/install_controller.cpp
   source/catalog/catalog_parser.cpp
