@@ -536,31 +536,39 @@ void FullCatalogScreen::prepareImageTexture(const std::string&url,const std::str
 }
 void FullCatalogScreen::prepareVisibleTextures(){
     if(!imageCache_||catalogLoading_||installProgressActive_)return;
+    // Do not thrash GPU while frees are still draining or right after a catalog switch.
+    if(catalogSwitchCooldownFrames_>0||!deferredFreeTextures_.empty())return;
 
     std::unordered_set<std::string> keep;
+    auto pathOnly=[&](const std::string& url, const char* ns)->std::string{
+        if(url.empty())return {};
+        return imageCache_->pathFor(url, ns);
+    };
     auto markKeep=[&](const std::string& url, const char* ns){
-        if(url.empty())return;
-        const std::string path=imageCache_->request(url, ns);
+        const std::string path=pathOnly(url, ns);
         if(!path.empty())keep.insert(path);
     };
 
-    constexpr int kLoadsPerFrame = 3; // fill the 3x3 grid quickly without stalling a frame
+    // At most one new GPU texture decode per frame (avoids hitch + free/load storms).
+    constexpr int kLoadsPerFrame = 1;
 
     if(state_.mode==UiMode::FULL_CATALOG){
-        // Strict visible set: the 9 on-screen cells only (no huge buffer that fights the cap).
         const int first=std::max(0, state_.catalogScrollRow*3);
         const int last=std::min((int)items_.size(), first+9);
         for(int i=first;i<last;++i){
             const CatalogItem& it=items_[i];
             markKeep(!it.icon.empty()?it.icon:it.cover, "app");
         }
+        // Drop GPU textures that scrolled away, then drop their download jobs too.
         releaseTexturesNotIn(keep);
+        imageCache_->cancelQueuedExcept(keep);
 
         int loads=0;
         for(int i=first;i<last&&loads<kLoadsPerFrame;++i){
             const CatalogItem& it=items_[i];
             const std::string& url=!it.icon.empty()?it.icon:it.cover;
             if(url.empty())continue;
+            // Only enqueue download / decode for the current viewport.
             const size_t before=textures_.size();
             prepareImageTexture(url, "app");
             if(textures_.size()>before)++loads;
@@ -582,7 +590,7 @@ void FullCatalogScreen::prepareVisibleTextures(){
             const int panelX=SCREEN_W/2, panelY=HEADER_H+TABS_H;
             const int panelW=SCREEN_W-panelX, panelH=SCREEN_H-HEADER_H-TABS_H-FOOTER_H;
             const int top=panelY+DETAIL_HEADER_H+10, bottom=panelY+panelH-10;
-            const int scroll=std::max(0, state_.detailScroll);
+            const int scroll=std::max(0, (int)visualDetailScroll_);
             int mc=std::max(18, (panelW-36)/7);
             std::vector<std::string> pre;
             auto add=[&](const std::string& v){
@@ -604,6 +612,7 @@ void FullCatalogScreen::prepareVisibleTextures(){
             }
         }
         releaseTexturesNotIn(keep);
+        imageCache_->cancelQueuedExcept(keep);
 
         int loads=0;
         auto prepareOne=[&](const std::string& url, const char* ns){
@@ -621,7 +630,7 @@ void FullCatalogScreen::prepareVisibleTextures(){
             const int panelX=SCREEN_W/2, panelY=HEADER_H+TABS_H;
             const int panelW=SCREEN_W-panelX, panelH=SCREEN_H-HEADER_H-TABS_H-FOOTER_H;
             const int top=panelY+DETAIL_HEADER_H+10, bottom=panelY+panelH-10;
-            const int scroll=std::max(0, state_.detailScroll);
+            const int scroll=std::max(0, (int)visualDetailScroll_);
             int mc=std::max(18, (panelW-36)/7);
             std::vector<std::string> pre;
             auto add=[&](const std::string& v){
@@ -649,23 +658,20 @@ void FullCatalogScreen::prepareVisibleTextures(){
 }
 
 void FullCatalogScreen::drawImageLoadingPlaceholder(const std::string& url, const std::string& ns, int x, int y, int w, int h) {
-    // Compact progress only — no text (overflows small icon/cover cells).
     vita2d_draw_rectangle(x, y, w, h, SURFACE2);
-    if (w < 8 || h < 6) return;
+    if (w < 8 || h < 6 || !imageCache_ || url.empty()) return;
 
+    const std::string path = imageCache_->pathFor(url, ns);
+    const auto prog = imageCache_->progress();
     float pct = 0.f;
     bool determinate = false;
-    if (imageCache_ && !url.empty()) {
-        const std::string path = imageCache_->request(url, ns);
-        const auto prog = imageCache_->progress();
-        if (prog.active && !prog.localPath.empty() && prog.localPath == path && prog.total > 0) {
-            pct = std::min(1.f, static_cast<float>(prog.downloaded) / static_cast<float>(prog.total));
-            determinate = true;
-        } else if (imageCache_->isPending(path)) {
-            // Indeterminate pulse
-            pct = focusPulse();
-            determinate = false;
-        }
+    if (prog.active && !prog.localPath.empty() && prog.localPath == path && prog.total > 0) {
+        pct = std::min(1.f, static_cast<float>(prog.downloaded) / static_cast<float>(prog.total));
+        determinate = true;
+    } else if (imageCache_->isPending(path)) {
+        pct = focusPulse();
+    } else {
+        return; // not loading — nothing to show
     }
 
     const int pad = 3;
@@ -673,14 +679,12 @@ void FullCatalogScreen::drawImageLoadingPlaceholder(const std::string& url, cons
     const int barX = x + pad;
     const int barY = y + h - pad - barH;
     const int barW = std::max(1, w - pad * 2);
-
     vita2d_draw_rectangle(barX, barY, barW, barH, BORDER);
     if (determinate) {
-        const int fill = std::max(1, static_cast<int>(barW * pct));
-        vita2d_draw_rectangle(barX, barY, fill, barH, ACCENT);
+        vita2d_draw_rectangle(barX, barY, std::max(1, (int)(barW * pct)), barH, ACCENT);
     } else {
         const int slideW = std::max(8, barW / 3);
-        const int slide = static_cast<int>((barW - slideW) * pct);
+        const int slide = (int)((barW - slideW) * pct);
         vita2d_draw_rectangle(barX + slide, barY, slideW, barH, ACCENT);
     }
 }
@@ -695,18 +699,28 @@ void FullCatalogScreen::drawImage(const std::string& url, const std::string& ns,
         const int clipBottom = SCREEN_H - FOOTER_H;
         if (y + h <= clipTop || y >= clipBottom) return;
     }
-    std::string path = imageCache_->request(url, ns);
-    if (imageCache_->isFailed(path)) {
+
+    // Resolve path without enqueueing. Downloads are only started from prepareVisibleTextures.
+    const std::string path = imageCache_->pathFor(url, ns);
+    if (path.empty()) {
         vita2d_draw_rectangle(x, y, w, h, SURFACE2);
-        if (font_) vita2d_pgf_draw_text(font_, x + 12, y + h / 2, DIM, 0.58f, "Sin imagen");
         return;
     }
+
+    if (imageCache_->isFailed(path)) {
+        vita2d_draw_rectangle(x, y, w, h, SURFACE2);
+        return;
+    }
+
     if (!imageCache_->isReady(path)) {
+        // Soft nudge: if file already on disk, request() will mark ready; else may queue once.
+        // prepareVisibleTextures is the primary enqueue path for visible cells only.
         drawImageLoadingPlaceholder(url, ns, x, y, w, h);
         return;
     }
+
     auto it = textures_.find(path);
-    if (it == textures_.end()) {
+    if (it == textures_.end() || !it->second) {
         drawImageLoadingPlaceholder(url, ns, x, y, w, h);
         return;
     }
