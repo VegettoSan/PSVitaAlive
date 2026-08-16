@@ -263,7 +263,7 @@ jobs:
           print(f'Referenced authors: {len(referenced)}')
           print(f'Missing author profiles ensured (auto-created): {created}')
           if created:
-            print('Auto-created missing author profiles: ' + ', '.join(missing))
+              print('Auto-created missing author profiles: ' + ', '.join(missing))
           print(f'Authors published: {len(authors)}')
           print(f'Orphan profiles excluded from authors.json: {max(0, total_profiles - len(authors))}')
           PY
