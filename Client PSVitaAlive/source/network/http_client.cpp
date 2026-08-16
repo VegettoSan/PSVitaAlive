@@ -246,7 +246,12 @@ HttpResult HttpClient::fetchRemoteValidators(const std::string& url, std::string
     curl_easy_setopt(curl, CURLOPT_USERAGENT, "PSVitaAlive/1.0 (PS Vita)");
     curl_easy_setopt(curl, CURLOPT_SSL_VERIFYHOST, 0L);
     curl_easy_setopt(curl, CURLOPT_SSL_VERIFYPEER, 0L);
-    curl_easy_setopt(curl, CURLOPT_SSLVERSION, CURL_SSLVERSION_TLSv1_2);
+    // DEFAULT negotiates best TLS; forcing 1.2 alone fails on some hosts (Vita3K/GitHub).
+    curl_easy_setopt(curl, CURLOPT_SSLVERSION, CURL_SSLVERSION_DEFAULT);
+#if defined(CURLSSLOPT_NO_REVOKE)
+    curl_easy_setopt(curl, CURLOPT_SSL_OPTIONS, (long)CURLSSLOPT_NO_REVOKE);
+#endif
+    curl_easy_setopt(curl, CURLOPT_SSL_SESSIONID_CACHE, 1L);
     curl_easy_setopt(curl, CURLOPT_CONNECTTIMEOUT, CONNECT_TIMEOUT_SECONDS);
     curl_easy_setopt(curl, CURLOPT_LOW_SPEED_LIMIT, LOW_SPEED_LIMIT);
     curl_easy_setopt(curl, CURLOPT_LOW_SPEED_TIME, LOW_SPEED_TIME_SECONDS);
@@ -338,7 +343,12 @@ HttpResult HttpClient::downloadToFile(
     curl_easy_setopt(curl, CURLOPT_USERAGENT, "PSVitaAlive/1.0 (PS Vita)");
     curl_easy_setopt(curl, CURLOPT_SSL_VERIFYHOST, 0L);
     curl_easy_setopt(curl, CURLOPT_SSL_VERIFYPEER, 0L);
-    curl_easy_setopt(curl, CURLOPT_SSLVERSION, CURL_SSLVERSION_TLSv1_2);
+    // DEFAULT negotiates best TLS; forcing 1.2 alone fails on some hosts (Vita3K/GitHub).
+    curl_easy_setopt(curl, CURLOPT_SSLVERSION, CURL_SSLVERSION_DEFAULT);
+#if defined(CURLSSLOPT_NO_REVOKE)
+    curl_easy_setopt(curl, CURLOPT_SSL_OPTIONS, (long)CURLSSLOPT_NO_REVOKE);
+#endif
+    curl_easy_setopt(curl, CURLOPT_SSL_SESSIONID_CACHE, 1L);
     curl_easy_setopt(curl, CURLOPT_CONNECTTIMEOUT, CONNECT_TIMEOUT_SECONDS);
     curl_easy_setopt(curl, CURLOPT_LOW_SPEED_LIMIT, LOW_SPEED_LIMIT);
     curl_easy_setopt(curl, CURLOPT_LOW_SPEED_TIME, LOW_SPEED_TIME_SECONDS);
@@ -358,7 +368,28 @@ HttpResult HttpClient::downloadToFile(
     headers = curl_slist_append(headers, "Content-Length: 0");
     curl_easy_setopt(curl, CURLOPT_HTTPHEADER, headers);
 
-    const CURLcode result = curl_easy_perform(curl);
+        CURLcode result = CURLE_OK;
+    for (int attempt = 0; attempt < 3; ++attempt) {
+        if (attempt == 1) {
+            curl_easy_setopt(curl, CURLOPT_SSLVERSION, CURL_SSLVERSION_TLSv1_2);
+            httpDiagnostic("SSL retry with TLSv1_2");
+        } else if (attempt == 2) {
+            curl_easy_setopt(curl, CURLOPT_SSLVERSION, CURL_SSLVERSION_TLSv1_0);
+            httpDiagnostic("SSL retry with TLSv1_0");
+        }
+        result = curl_easy_perform(curl);
+        if (result != CURLE_SSL_CONNECT_ERROR && result != CURLE_SSL_CIPHER &&
+            result != CURLE_PEER_FAILED_VERIFICATION && result != CURLE_SSL_CACERT) {
+            break;
+        }
+        char retryMsg[96];
+        sceClibSnprintf(retryMsg, sizeof(retryMsg), "SSL attempt %d failed: %s", attempt + 1, curl_easy_strerror(result));
+        httpDiagnostic(retryMsg);
+        // Reset partial file for clean retry when nothing useful was written
+        if (ctx.downloaded == 0 && resumeOffset == 0 && ctx.fd >= 0) {
+            sceIoLseek(ctx.fd, 0, SCE_SEEK_SET);
+        }
+    }
     long responseCode = 0;
     curl_easy_getinfo(curl, CURLINFO_RESPONSE_CODE, &responseCode);
     lastStatus_ = static_cast<int>(responseCode);
