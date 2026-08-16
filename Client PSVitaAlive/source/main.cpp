@@ -405,7 +405,17 @@ int main(){
     screen.setCatalogLoading(true,psvitaalive::ui::catalogName(psvitaalive::ui::CatalogType::Homebrew),0,0,"Checking catalog cache...");
     if(!catalogs.request(psvitaalive::ui::CatalogType::Homebrew)){startupCatalogs=false;screen.setCatalogError("Unable to start catalog check");}
 
-    while(screen.updateAndDraw()){
+        // Plugin warnings (settings.warn_missing_plugins)
+    if (installer.settings().warnMissingPlugins) {
+        const auto& pl = installer.plugins();
+        if (!pl.nonpdrm) {
+            screen.showToast("NoNpDrm no detectado: PKG con licencia pueden fallar", 3500);
+        } else if (!pl.nopspemudrmKern) {
+            screen.showToast("NoPspEmuDrm no detectado: PSP solo via Adrenaline", 3200);
+        }
+    }
+
+while(screen.updateAndDraw()){
         const uint64_t now=sceKernelGetSystemTimeWide();
         psvitaalive::CatalogManager::Status cs=catalogs.status();
         if(startupCatalogs&&cs.state==psvitaalive::CatalogManager::State::Loading){screen.setCatalogLoading(true,cs.label,cs.current,cs.total,progressMessage(cs.current,cs.total,cs.message,""));}
