@@ -210,11 +210,40 @@ bool DownloadManager::runJob(DownloadJob& job) {
     };
     auto cancelFn = [&]() -> bool { return job.cancelRequested; };
 
-    const HttpResult hr = http_.downloadToFile(job.url, job.temporaryPath, offset, progress, cancelFn);
+        HttpResult hr = http_.downloadToFile(job.url, job.temporaryPath, offset, progress, cancelFn);
+    // One automatic full-job retry on transient network/SSL failures (not user cancel).
+    if (hr != HttpResult::Ok && hr != HttpResult::Cancelled && !job.cancelRequested) {
+        const std::string firstErr = http_.lastError();
+        sceClibPrintf("[DownloadManager] first attempt failed: %s — retrying once
+", firstErr.c_str());
+        sceKernelDelayThread(800 * 1000);
+        if (job.downloadedSize == 0) {
+            st.removeFile(job.temporaryPath);
+            offset = 0;
+        } else {
+            const int64_t sz = st.fileSize(job.temporaryPath);
+            offset = sz > 0 ? static_cast<uint64_t>(sz) : 0;
+            job.downloadedSize = offset;
+        }
+        hr = http_.downloadToFile(job.url, job.temporaryPath, offset, progress, cancelFn);
+    }
     job.lastHttpStatus = http_.lastStatusCode();
     activeJobId_.clear();
 
-    if(hr==HttpResult::Cancelled||job.cancelRequested){st.removeFile(job.temporaryPath);job.downloadedSize=0;job.state=DownloadState::Cancelled;job.lastError="cancelled";saveMetadata(job);return false;}
+    if (hr == HttpResult::Cancelled || job.cancelRequested) {
+        st.removeFile(job.temporaryPath);
+        job.downloadedSize = 0;
+        job.state = DownloadState::Cancelled;
+        job.lastError = "cancelled by user";
+        saveMetadata(job);
+        return false;
+    }
+    if (hr != HttpResult::Ok) {
+        job.state = DownloadState::Failed;
+        job.lastError = http_.lastError().empty() ? "download failed" : http_.lastError();
+        saveMetadata(job);
+        return false;
+    }
     if (hr != HttpResult::Ok) {
         job.state = DownloadState::Failed;
         job.lastError = http_.lastError();
