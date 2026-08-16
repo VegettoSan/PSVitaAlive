@@ -1,0 +1,123 @@
+#include "installer/app_settings.hpp"
+#include "storage/storage_manager.hpp"
+
+#include <psp2/io/fcntl.h>
+#include <psp2/kernel/clib.h>
+
+#include <cstring>
+#include <string>
+
+namespace psvitaalive {
+namespace {
+
+bool containsKey(const std::string& json, const char* key, std::string& valueOut) {
+    // Minimal JSON string value extractor: "key" : "value"
+    const std::string pattern = std::string("\"") + key + "\"";
+    size_t p = json.find(pattern);
+    if (p == std::string::npos) return false;
+    p = json.find(':', p);
+    if (p == std::string::npos) return false;
+    p = json.find('"', p);
+    if (p == std::string::npos) return false;
+    const size_t start = p + 1;
+    const size_t end = json.find('"', start);
+    if (end == std::string::npos) return false;
+    valueOut = json.substr(start, end - start);
+    return true;
+}
+
+bool containsBool(const std::string& json, const char* key, bool& out) {
+    const std::string pattern = std::string("\"") + key + "\"";
+    size_t p = json.find(pattern);
+    if (p == std::string::npos) return false;
+    p = json.find(':', p);
+    if (p == std::string::npos) return false;
+    while (p < json.size() && (json[p] == ':' || json[p] == ' ' || json[p] == '\t')) ++p;
+    if (json.compare(p, 4, "true") == 0) { out = true; return true; }
+    if (json.compare(p, 5, "false") == 0) { out = false; return true; }
+    return false;
+}
+
+} // namespace
+
+const char* AppSettings::toString(InstallMethod m) {
+    switch (m) {
+        case InstallMethod::Direct: return "direct";
+        case InstallMethod::Bgdl: return "bgdl";
+        case InstallMethod::Auto:
+        default: return "auto";
+    }
+}
+
+const char* AppSettings::toString(PspTarget t) {
+    switch (t) {
+        case PspTarget::LiveArea: return "livearea";
+        case PspTarget::Adrenaline:
+        default: return "adrenaline";
+    }
+}
+
+InstallMethod AppSettings::parseInstallMethod(const std::string& s) {
+    if (s == "direct") return InstallMethod::Direct;
+    if (s == "bgdl") return InstallMethod::Bgdl;
+    return InstallMethod::Auto;
+}
+
+PspTarget AppSettings::parsePspTarget(const std::string& s) {
+    if (s == "livearea") return PspTarget::LiveArea;
+    return PspTarget::Adrenaline;
+}
+
+AppSettingsData AppSettings::load() {
+    AppSettingsData data;
+    StorageManager st;
+    st.createDirectories(StorageManager::BASE_DIR);
+
+    SceUID fd = sceIoOpen(kConfigPath, SCE_O_RDONLY, 0);
+    if (fd < 0) {
+        // Write defaults on first run.
+        save(data);
+        return data;
+    }
+    char buf[1024];
+    const int n = sceIoRead(fd, buf, sizeof(buf) - 1);
+    sceIoClose(fd);
+    if (n <= 0) return data;
+    buf[n] = 0;
+    const std::string json(buf);
+
+    std::string v;
+    if (containsKey(json, "install_method", v)) data.installMethod = parseInstallMethod(v);
+    if (containsKey(json, "psp_target", v)) data.pspTarget = parsePspTarget(v);
+    bool b = true;
+    if (containsBool(json, "warn_missing_plugins", b)) data.warnMissingPlugins = b;
+
+    sceClibPrintf("[AppSettings] loaded method=%s psp=%s warn=%d\n",
+                  toString(data.installMethod), toString(data.pspTarget),
+                  data.warnMissingPlugins ? 1 : 0);
+    return data;
+}
+
+bool AppSettings::save(const AppSettingsData& data) {
+    StorageManager st;
+    st.createDirectories(StorageManager::BASE_DIR);
+    char json[512];
+    sceClibSnprintf(
+        json, sizeof(json),
+        "{\n"
+        "  \"install_method\": \"%s\",\n"
+        "  \"psp_target\": \"%s\",\n"
+        "  \"warn_missing_plugins\": %s\n"
+        "}\n",
+        toString(data.installMethod),
+        toString(data.pspTarget),
+        data.warnMissingPlugins ? "true" : "false"
+    );
+    SceUID fd = sceIoOpen(kConfigPath, SCE_O_WRONLY | SCE_O_CREAT | SCE_O_TRUNC, 0666);
+    if (fd < 0) return false;
+    const int wr = sceIoWrite(fd, json, std::strlen(json));
+    sceIoClose(fd);
+    return wr > 0;
+}
+
+} // namespace psvitaalive
