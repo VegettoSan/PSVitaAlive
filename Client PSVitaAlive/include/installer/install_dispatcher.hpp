@@ -56,7 +56,8 @@ public:
         const std::string& path,
         InstallDispatchProgressFn onProgress = nullptr,
         InstallDispatchCancelFn shouldCancel = nullptr,
-        const std::string& zipDestination = std::string()
+        const std::string& zipDestination = std::string(),
+        const std::string& rifPath = std::string()
     );
 
     const std::string& lastError() const { return lastError_; }
