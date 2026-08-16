@@ -214,7 +214,7 @@ bool DownloadManager::runJob(DownloadJob& job) {
     // One automatic full-job retry on transient network/SSL failures (not user cancel).
     if (hr != HttpResult::Ok && hr != HttpResult::Cancelled && !job.cancelRequested) {
         const std::string firstErr = http_.lastError();
-        sceClibPrintf("[DownloadManager] first attempt failed: %s — retrying once
+        sceClibPrintf("[DownloadManager] first attempt failed: %s - retrying once
 ", firstErr.c_str());
         sceKernelDelayThread(800 * 1000);
         if (job.downloadedSize == 0) {
