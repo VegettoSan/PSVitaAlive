@@ -1,81 +1,115 @@
-# Documentación de PS Vita Alive Store
+# PS Vita Alive Store documentation
 
-Este directorio sirve como índice y memoria técnica del proyecto. La intención es que otra persona pueda entender por qué existe cada pieza antes de tocarla.
+This directory is the technical index and project memory. It exists so a contributor can understand the reason and responsibility of each layer before changing it.
 
-## Arquitectura oficial
+## Official architecture
 
 ```text
 apps/ + authors/ + categories/
             ↓
-     importación externa
+     external import / discovery
             ↓
-       merge + dedupe
+       normalize + dedupe
+            ↓
+          merge
             ↓
         Overrides
             ↓
-        validación
+        validation
             ↓
 catalog.json + authors.json + categories.json
             ↓
-        Web + PS Vita
+       Website + PS Vita
 ```
 
-## Decisiones importantes
+The three generated Homebrew catalogs are the public compatibility contract. They are outputs, not editable source files.
 
-### Catálogos externos
+## Important decisions
 
-VitaDB, NeoVitaDB y VitaDBtoo se utilizan como fuentes de entrada. Sus formatos no son el formato canónico de PS Vita Alive Store.
+### External catalogs
 
-Cada fuente debe adaptarse mediante un lector/normalizador específico cuando sea necesario.
+VitaDB and VitaDBtoo are external inputs. Their formats are not the canonical PS Vita Alive Store format.
+
+Each source is adapted and normalized before its data is merged into the canonical model. The original source data is not modified to fit VitaHub.
 
 ### Title ID
 
-El `title_id` permite deduplicar aplicaciones entre fuentes y detectar actualizaciones. Los IDs internos de las fuentes externas no se deben utilizar automáticamente como `id` de PS Vita Alive Store.
+`title_id` is the primary Vita identity used for deduplication, installation identity and update detection. External numeric IDs must not automatically become the canonical internal `id`.
 
-### Versiones
+### Versions
 
-Cuando varias fuentes ofrecen la misma aplicación, la frescura de versión/fecha debe tener prioridad sobre la prioridad fija de la fuente. La prioridad sirve como desempate y para decidir qué información es preferida cuando los registros son equivalentes.
+When several sources describe the same application, version and release-date freshness take precedence over fixed source priority. Source priority is used as a tie-breaker and preference when records are otherwise equivalent.
 
 ### Overrides
 
-Los datos manuales de PS Vita Alive Store pueden complementar o sustituir campos incompletos de fuentes externas. No se deben perder por una importación posterior.
+Manual PS Vita Alive Store data can complement or replace incomplete external fields. It must survive later external imports unless the protected-field rules explicitly prevent the change.
 
-### Autores
+### Authors
 
-Los autores son entidades individuales. Las fuentes que entregan varios nombres en un solo campo se normalizan a perfiles separados cuando la separación es inequívoca.
+Authors are individual entities. External records containing multiple names are split into separate profiles when identity separation is sufficiently clear.
 
-### Recursos
+### Media
 
-La capa canónica debe preferir URLs absolutas para imágenes y descargas. Las rutas relativas solo son válidas si apuntan realmente a un recurso dentro del propio repositorio.
+The canonical layer should prefer absolute public URLs for images and downloads. Relative paths are only valid when they genuinely resolve inside a published PS Vita Alive Store resource tree.
 
-## Historial técnico resumido
+### Generated catalogs
 
-Los principales problemas que motivaron el diseño actual fueron:
+Never patch `catalog.json`, `authors.json` or `categories.json` by hand. Fix the responsible source, canonical record, Override, adapter, normalizer or generation rule instead.
 
-- endpoints externos que cambiaban de comportamiento;
-- VitaDB devolviendo `200 + []` con User-Agent no compatible;
-- screenshots externos guardados como rutas locales;
-- iconos/avatares rotos sin fallback;
-- varios desarrolladores representados como un solo autor;
-- autores nuevos referenciados pero sin JSON;
-- dos Actions publicando simultáneamente y provocando conflictos Git;
-- enlaces recomendados que podían quedar ligados a la prioridad de la fuente en vez de a la versión más reciente.
+## PS Vita client packaging and LiveArea
 
-Estas situaciones se documentan para evitar repetir los mismos errores.
+The native client now has a validated Vita LiveArea build layout under:
 
-## Regla para futuros cambios
+```text
+Client PSVitaAlive/assets/sce_sys/
+├── icon0.png
+├── pic0.png
+└── livearea/
+    └── contents/
+        ├── bg0.png
+        ├── startup.png
+        └── template.xml
+```
 
-Antes de modificar una pieza del sistema, identificar si el problema pertenece a:
+The client packages this directory into `sce_sys/` when generating the VPK. The project path may contain spaces, so the client CMake configuration intentionally invokes `vita-pack-vpk` with relative arguments and `VERBATIM` rather than relying on the problematic absolute-path behavior of `vita_create_vpk()` for this step.
 
-1. adquisición externa;
-2. normalización;
-3. identidad/deduplicación;
+The four PNG assets are prepared as 8-bit indexed PNGs for the current Vita packaging flow. `pic0.png` is 960×544 and is also indexed to a maximum of 256 colors. See `Client PSVitaAlive/assets/sce_sys/README.md` for the exact asset contract.
+
+## Historical technical problems preserved here
+
+The current architecture was shaped by issues including:
+
+- changing external endpoint behavior;
+- VitaDB returning `200 + []` to incompatible User-Agents;
+- external screenshots being stored as invalid relative paths;
+- broken icons/avatars without fallbacks;
+- multiple developers represented as one author;
+- newly discovered authors without canonical profiles;
+- concurrent Actions publishing the same records;
+- recommended downloads being selected from source priority instead of release freshness;
+- VPK packaging failing when the local project path contained spaces;
+- Vita LiveArea PNGs requiring consistent indexed-image preparation.
+
+These cases are documented so future changes do not reintroduce the same classes of failure.
+
+## Change classification
+
+Before changing a component, identify which layer owns the problem:
+
+1. external acquisition;
+2. normalization;
+3. identity/deduplication;
 4. merge/enrichment;
 5. Overrides;
-6. persistencia canónica;
-7. generación de catálogos;
-8. validación;
-9. publicación/Pages;
-10. web o cliente.
+6. canonical persistence;
+7. catalog generation;
+8. validation;
+9. publication/GitHub Pages;
+10. website;
+11. PS Vita client/build system.
 
-Corregir la capa responsable en lugar de introducir parches en los catálogos generados.
+Fix the responsible layer instead of introducing a patch in a generated catalog or downstream consumer.
+
+## Documentation priority
+
+When documentation conflicts with the real repository state, verify the current code and generated artifacts first, then update the documentation so the repository remains self-describing.
