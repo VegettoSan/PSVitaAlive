@@ -1,5 +1,6 @@
 #include "installer/install_controller.hpp"
 #include "diagnostic_logger.hpp"
+#include "installer/plugin_detector.hpp"
 
 #include <psp2/kernel/clib.h>
 #include <psp2/kernel/processmgr.h>
@@ -50,6 +51,14 @@ bool InstallController::init() {
     }
     setStage("Idle");
     setState(InstallStatus::State::Idle, "Ready");
+    const PluginStatus plugins = PluginDetector::scan();
+    diagnostics::log(std::string("[Installer] plugins: ") + plugins.detail);
+    if (!plugins.nonpdrm) {
+        diagnostics::log("[Installer] NoNpDrm not detected — licensed Vita PKG installs may fail");
+    }
+    if (!plugins.nopspemudrmKern) {
+        diagnostics::log("[Installer] NoPspEmuDrm not detected — PSP LiveArea bubbles unavailable (Adrenaline ISO path still works)");
+    }
     diagnostics::log("[Installer] initialized");
     return true;
 }
