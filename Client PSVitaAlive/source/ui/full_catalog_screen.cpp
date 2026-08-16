@@ -16,6 +16,8 @@
 #include <unordered_set>
 #include <utility>
 namespace psvitaalive::ui { namespace {
+void drawFooterBar(vita2d_pgf* font, const char* leftHints);
+
 
 std::string currentTimeLabel() {
     SceDateTime dt{};
