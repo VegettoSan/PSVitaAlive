@@ -1,67 +1,76 @@
-# `authors/` — Perfiles individuales de autores
+# `authors/` — Individual author profiles
 
-Esta carpeta contiene un JSON por autor. PS Vita Alive Store trata a cada desarrollador como una entidad independiente para que la web y el cliente puedan abrir su perfil y mostrar sus aplicaciones.
+This directory contains one JSON file per author. PS Vita Alive Store treats each developer or team as an independent identity so the website and PS Vita client can open a profile and list that author's applications.
 
-## Estructura conceptual
+## Structure
 
 ```text
 authors/
-├── autor-a.json
-├── autor-b.json
+├── author-a.json
+├── author-b.json
 └── icon/
     └── autoricon.png
 ```
 
-## Campos
+## Profile data
 
-Un perfil utiliza como base:
+A profile can contain fields such as:
 
 ```json
 {
-  "id": "autor-a",
-  "name": "Autor A",
-  "avatar": "https://...",
+  "id": "author-a",
+  "name": "Author A",
+  "avatar": "https://example.org/avatar.png",
   "bio": "...",
   "links": [
     {
       "type": "GitHub",
       "name": "GitHub",
-      "url": "https://github.com/autor-a",
+      "url": "https://github.com/author-a",
       "recommended": true
     }
   ],
-  "icon": "https://..."
+  "icon": "https://example.org/avatar.png"
 }
 ```
 
-## Autores múltiples
+The exact optional fields may evolve. Consumers should ignore unknown fields and tolerate missing optional values.
 
-Si una fuente externa entrega un campo como `Autor A & Autor B`, el pipeline intenta separarlo y resolver dos perfiles independientes. La aplicación resultante debe referenciar ambos mediante `author_ids`.
+## Multiple authors
 
-La separación debe ser conservadora para no romper nombres legítimos.
+Applications reference authors through `author_ids`:
 
-## Autores nuevos
+```json
+"author_ids": [
+  "author-a",
+  "author-b"
+]
+```
 
-Cuando una aplicación importada referencia un autor que todavía no existe, el pipeline puede crear un perfil mínimo automáticamente. Posteriormente puede enriquecerse con repositorio, enlaces y avatar encontrados en las fuentes.
+Do not create a synthetic profile such as `author-a & author-b`. When an external source contains multiple names in one field, the pipeline attempts conservative identity resolution and creates individual profiles when the separation is unambiguous.
 
-## Avatar e icono de fallback
+## New authors
 
-El fallback oficial es:
+When an imported application references an author that does not yet exist, the pipeline may create a minimal profile and enrich it later with repositories, links and public avatars.
 
-`https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png`
+## Avatar fallback
 
-Si no hay avatar válido, el perfil persistido debe apuntar a una URL absoluta usable por GitHub Pages y el cliente Vita.
+The repository fallback image is:
 
-## Enlaces
+```text
+https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png
+```
 
-Los enlaces del autor deben ser útiles y válidos. El pipeline normaliza duplicados y permite como máximo un enlace marcado como `recommended`.
+If no reliable avatar exists, the canonical profile should use a valid absolute fallback URL rather than a broken relative path.
 
-Cuando no se conoce un repositorio, se puede conservar un enlace de búsqueda/identificación para que el perfil siga siendo válido.
+## Links
 
-## Autores huérfanos
+Author links should be useful and valid. The pipeline normalizes duplicates and allows at most one link to be marked `recommended`.
 
-Un JSON físico puede conservarse aunque no esté actualmente referenciado por una aplicación para fines de preservación. Sin embargo, `authors.json` se genera a partir de los autores que realmente participan en el catálogo final.
+## Orphaned profiles
 
-## No editar
+A physical author JSON may remain for preservation even when no current application references it. The generated `authors.json` represents the author records included by the final catalog generation process.
 
-`authors.json` es un registro generado. Las modificaciones permanentes deben realizarse en `authors/*.json` o mediante el sistema de agregación/Overrides correspondiente.
+## Do not edit
+
+`authors.json` is generated data. Permanent changes belong in `authors/*.json`, the external identity layer or the relevant aggregation/Override logic.
