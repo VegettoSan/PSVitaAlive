@@ -1,10 +1,10 @@
-# `categories/` — Categorías oficiales de PS Vita Alive Store
+# `categories/` — Official category taxonomy
 
-Las categorías de PS Vita Alive Store son controladas por el proyecto. Las aplicaciones importadas desde fuentes externas deben adaptarse a estas categorías mediante `sources/category_map.json` y el agregador.
+PS Vita Alive Store controls the category vocabulary used by the catalog. External sources are mapped into this taxonomy instead of creating arbitrary categories during import.
 
-## Estructura
+## Structure
 
-Cada categoría tiene su propio JSON y puede definir subcategorías:
+Each category has its own JSON file and may declare its allowed subcategories:
 
 ```json
 {
@@ -20,19 +20,25 @@ Cada categoría tiene su propio JSON y puede definir subcategorías:
 }
 ```
 
-## Reglas
+## Rules
 
-- `category_id` debe corresponder a una categoría existente.
-- `subcategory_ids` solo puede usar subcategorías declaradas por esa categoría.
-- Una fuente externa no puede crear arbitrariamente una categoría nueva durante la importación.
-- `category_map.json` traduce valores externos al vocabulario oficial de PS Vita Alive Store.
+- `category_id` must refer to an existing official category.
+- `subcategory_ids` may contain only subcategories declared by that category.
+- An external source cannot create a new official category simply by importing a new value.
+- `sources/category_map.json` translates external category/type values into the official vocabulary.
+- Applications should remain compatible when optional category metadata is added later.
 
-## Iconos
+## Category icons
 
-Los iconos de categorías se conservan en la estructura de recursos correspondiente. Cuando el icono de una aplicación externa no es válido, la normalización puede utilizar el icono de su categoría como fallback.
+Category icons are maintained in the project's resource structure. They may also be used as application-image fallbacks when an imported application does not provide a usable icon.
 
-## Cambiar una categoría
+## Changing the taxonomy
 
-Modificar primero el JSON individual de `categories/` y revisar la tabla de mapeo externa. Después ejecutar las validaciones antes de publicar.
+When adding or changing a category:
 
-`categories.json` es generado automáticamente y no debe editarse manualmente.
+1. Modify the individual JSON file in `categories/`.
+2. Review the external mapping in `sources/category_map.json`.
+3. Check existing `category_id` and `subcategory_ids` references.
+4. Run the catalog validation before publishing.
+
+`categories.json` is generated automatically and must not be edited manually.
