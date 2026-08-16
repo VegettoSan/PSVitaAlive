@@ -191,6 +191,8 @@ private:
     SettingsSaveFn settingsSave_;
     int settingsFocus_ = 0;
     UiMode settingsReturnMode_ = UiMode::FULL_CATALOG;
+    float settingsEnter_ = 1.f;   // 0..1 open transition
+    float settingsFocusY_ = 0.f;  // animated highlight Y
     bool matchesSearch(const CatalogItem& item, const std::string& query) const;
     void sortItemsByDate(std::vector<CatalogItem>& items) const;
     int detailContentHeight(const CatalogItem& item, int width) const;
