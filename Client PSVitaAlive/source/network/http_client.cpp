@@ -15,7 +15,7 @@ namespace psvitaalive {
 
 namespace {
 constexpr size_t DOWNLOAD_BUFFER_SIZE = 512 * 1024;
-constexpr long CONNECT_TIMEOUT_SECONDS = 10;
+constexpr long CONNECT_TIMEOUT_SECONDS = 30;
 constexpr long LOW_SPEED_LIMIT = 1;
 constexpr long LOW_SPEED_TIME_SECONDS = 30;
 constexpr const char* DIAG_LOG = "ux0:data/psvitaalive/logs/session.log";
@@ -243,7 +243,9 @@ HttpResult HttpClient::fetchRemoteValidators(const std::string& url, std::string
     ctx.curl = curl;
     curl_easy_setopt(curl, CURLOPT_URL, url.c_str());
     curl_easy_setopt(curl, CURLOPT_NOBODY, 1L);
-    curl_easy_setopt(curl, CURLOPT_USERAGENT, "PSVitaAlive/1.0 (PS Vita)");
+    curl_easy_setopt(curl, CURLOPT_USERAGENT, "Mozilla/5.0 (PlayStation Vita) PSVitaAlive/1.0");
+    curl_easy_setopt(curl, CURLOPT_IPRESOLVE, CURL_IPRESOLVE_V4);
+    curl_easy_setopt(curl, CURLOPT_HTTP_VERSION, CURL_HTTP_VERSION_1_1);
     curl_easy_setopt(curl, CURLOPT_SSL_VERIFYHOST, 0L);
     curl_easy_setopt(curl, CURLOPT_SSL_VERIFYPEER, 0L);
     // DEFAULT negotiates best TLS; forcing 1.2 alone fails on some hosts (Vita3K/GitHub).
@@ -340,16 +342,20 @@ HttpResult HttpClient::downloadToFile(
 
     curl_easy_setopt(curl, CURLOPT_URL, url.c_str());
     curl_easy_setopt(curl, CURLOPT_HTTPGET, 1L);
-    curl_easy_setopt(curl, CURLOPT_USERAGENT, "PSVitaAlive/1.0 (PS Vita)");
+    // Browser-like UA helps some CDNs (GitLab package registry, etc.)
+    curl_easy_setopt(curl, CURLOPT_USERAGENT, "Mozilla/5.0 (PlayStation Vita) PSVitaAlive/1.0");
     curl_easy_setopt(curl, CURLOPT_SSL_VERIFYHOST, 0L);
     curl_easy_setopt(curl, CURLOPT_SSL_VERIFYPEER, 0L);
-    // DEFAULT negotiates best TLS; forcing 1.2 alone fails on some hosts (Vita3K/GitHub).
     curl_easy_setopt(curl, CURLOPT_SSLVERSION, CURL_SSLVERSION_DEFAULT);
 #if defined(CURLSSLOPT_NO_REVOKE)
     curl_easy_setopt(curl, CURLOPT_SSL_OPTIONS, (long)CURLSSLOPT_NO_REVOKE);
 #endif
     curl_easy_setopt(curl, CURLOPT_SSL_SESSIONID_CACHE, 1L);
+    // Prefer IPv4 — dual-stack SSL handshakes often fail on Vita/Vita3K.
+    curl_easy_setopt(curl, CURLOPT_IPRESOLVE, CURL_IPRESOLVE_V4);
+    curl_easy_setopt(curl, CURLOPT_HTTP_VERSION, CURL_HTTP_VERSION_1_1);
     curl_easy_setopt(curl, CURLOPT_CONNECTTIMEOUT, CONNECT_TIMEOUT_SECONDS);
+    curl_easy_setopt(curl, CURLOPT_TCP_KEEPALIVE, 1L);
     curl_easy_setopt(curl, CURLOPT_LOW_SPEED_LIMIT, LOW_SPEED_LIMIT);
     curl_easy_setopt(curl, CURLOPT_LOW_SPEED_TIME, LOW_SPEED_TIME_SECONDS);
     curl_easy_setopt(curl, CURLOPT_FOLLOWLOCATION, 1L);
@@ -369,23 +375,28 @@ HttpResult HttpClient::downloadToFile(
     curl_easy_setopt(curl, CURLOPT_HTTPHEADER, headers);
 
         CURLcode result = CURLE_OK;
-    for (int attempt = 0; attempt < 3; ++attempt) {
-        if (attempt == 1) {
-            curl_easy_setopt(curl, CURLOPT_SSLVERSION, CURL_SSLVERSION_TLSv1_2);
-            httpDiagnostic("SSL retry with TLSv1_2");
-        } else if (attempt == 2) {
-            curl_easy_setopt(curl, CURLOPT_SSLVERSION, CURL_SSLVERSION_TLSv1_0);
-            httpDiagnostic("SSL retry with TLSv1_0");
+    // Vita/Vita3K OpenSSL is picky with GitLab/Cloudflare; try several TLS modes.
+    const long sslAttempts[] = {
+        CURL_SSLVERSION_DEFAULT,
+        CURL_SSLVERSION_TLSv1_2,
+        CURL_SSLVERSION_TLSv1_1,
+        CURL_SSLVERSION_TLSv1_0,
+    };
+    for (int attempt = 0; attempt < 4; ++attempt) {
+        curl_easy_setopt(curl, CURLOPT_SSLVERSION, sslAttempts[attempt]);
+        if (attempt > 0) {
+            char retryMsg[96];
+            sceClibSnprintf(retryMsg, sizeof(retryMsg), "SSL retry attempt %d", attempt + 1);
+            httpDiagnostic(retryMsg);
         }
         result = curl_easy_perform(curl);
         if (result != CURLE_SSL_CONNECT_ERROR &&
             result != CURLE_PEER_FAILED_VERIFICATION) {
             break;
         }
-        char retryMsg[96];
-        sceClibSnprintf(retryMsg, sizeof(retryMsg), "SSL attempt %d failed: %s", attempt + 1, curl_easy_strerror(result));
-        httpDiagnostic(retryMsg);
-        // Reset partial file for clean retry when nothing useful was written
+        char failMsg[120];
+        sceClibSnprintf(failMsg, sizeof(failMsg), "SSL attempt %d failed: %s", attempt + 1, curl_easy_strerror(result));
+        httpDiagnostic(failMsg);
         if (ctx.downloaded == 0 && resumeOffset == 0 && ctx.fd >= 0) {
             sceIoLseek(ctx.fd, 0, SCE_SEEK_SET);
         }
