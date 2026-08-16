@@ -144,14 +144,13 @@ void parseLinks(const sce::Json::Value& application, ui::CatalogItem& item) {
         detail.name = name;
         detail.url = url;
         detail.recommended = link["recommended"].getBoolean();
-        // Optional per-link size (bytes number or preformatted string).
+        // Optional per-link size (numeric bytes preferred).
         if (link["size"]) {
-            try {
-                const uint64_t bytes = static_cast<uint64_t>(link["size"].getUInteger());
-                detail.size = formatSize(bytes);
-            } catch (...) {
+            const uint64_t bytes = getUnsigned(link, "size");
+            if (bytes > 0) detail.size = formatSize(bytes);
+            else {
                 const std::string raw = getString(link, "size");
-                detail.size = raw;
+                if (!raw.empty()) detail.size = raw;
             }
         }
         item.linkDetails.push_back(detail);
