@@ -93,6 +93,15 @@ vita_create_vpk(${PROJECT_NAME}.vpk ${VITA_TITLEID}
   eboot.bin
   VERSION ${VITA_VERSION}
   NAME ${VITA_APP_NAME}
+
+  # LiveArea resources. The source PNGs are currently stored together
+  # under assets/sce_sys/livearea/contents; package them at the exact
+  # sce_sys paths expected by the Vita.
+  FILE assets/sce_sys/livearea/contents/icon0.png sce_sys/icon0.png
+  FILE assets/sce_sys/livearea/contents/pic0.png sce_sys/pic0.png
+  FILE assets/sce_sys/livearea/contents/bg0.png sce_sys/livearea/contents/bg0.png
+  FILE assets/sce_sys/livearea/contents/startup.png sce_sys/livearea/contents/startup.png
+  FILE assets/sce_sys/livearea/contents/template.xml sce_sys/livearea/contents/template.xml
 )
 
 message(STATUS "PSVitaAlive configured. TitleID=${VITA_TITLEID}")
