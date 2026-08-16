@@ -98,6 +98,13 @@ private:
     std::vector<vita2d_texture*> deferredFreeTextures_;
     int catalogSwitchCooldownFrames_ = 0;
     uint64_t lastCatalogSwitchMs_ = 0;
+    // Front-touch navigation (works alongside buttons)
+    bool touchDown_ = false;
+    int touchStartX_ = 0;
+    int touchStartY_ = 0;
+    int touchLastY_ = 0;
+    bool touchMoved_ = false;
+    uint64_t touchDownMs_ = 0;
     // Smooth motion / feedback
     float visualCatalogScroll_ = 0.f;
     float visualDetailScroll_ = 0.f;
@@ -112,6 +119,7 @@ private:
     uint64_t toastShownMs_ = 0;
 
     void handleInput();
+    void handleTouch();
     void draw();
     void drawFullCatalog();
     void drawOpeningDetail();
