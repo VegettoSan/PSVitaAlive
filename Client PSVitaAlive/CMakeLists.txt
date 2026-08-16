@@ -89,18 +89,46 @@ target_link_libraries(${PROJECT_NAME}
 
 vita_create_self(eboot.bin ${PROJECT_NAME})
 
-vita_create_vpk(${PROJECT_NAME}.vpk ${VITA_TITLEID}
-  eboot.bin
-  VERSION ${VITA_VERSION}
-  NAME ${VITA_APP_NAME}
+# Build the VPK explicitly instead of using vita_create_vpk().
+# VitaSDK's vita_create_vpk() converts FILE paths to absolute paths and its
+# vita-pack-vpk custom command does not use VERBATIM. That is unsafe when the
+# project path contains spaces (for example: "Client PSVitaAlive").
+# We therefore invoke vita-mksfoex and vita-pack-vpk with relative arguments
+# from the build directory, so the source path never contains a space.
+set(VPK_PARAM_SFO "${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}.vpk_param.sfo")
+set(VPK_OUT "${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}.vpk.out")
+set(VPK_FILE "${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}.vpk")
 
-  # LiveArea resources. pic0 is intentionally excluded until it is converted
-  # to the Vita-required indexed PNG format; the other LiveArea assets are
-  # packaged in their canonical sce_sys locations.
-  FILE assets/sce_sys/icon0.png sce_sys/icon0.png
-  FILE assets/sce_sys/livearea/contents/bg0.png sce_sys/livearea/contents/bg0.png
-  FILE assets/sce_sys/livearea/contents/startup.png sce_sys/livearea/contents/startup.png
-  FILE assets/sce_sys/livearea/contents/template.xml sce_sys/livearea/contents/template.xml
+add_custom_command(
+  OUTPUT "${VPK_OUT}"
+  COMMAND ${VITA_MKSFOEX}
+    -d PARENTAL_LEVEL=1
+    -s APP_VER=${VITA_VERSION}
+    -s TITLE_ID=${VITA_TITLEID}
+    "${VITA_APP_NAME}"
+    "${VPK_PARAM_SFO}"
+  COMMAND ${VITA_PACK_VPK}
+    -a "../assets/sce_sys=sce_sys"
+    -s "${PROJECT_NAME}.vpk_param.sfo"
+    -b "eboot.bin"
+    "${PROJECT_NAME}.vpk.out"
+  WORKING_DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}"
+  DEPENDS
+    eboot.bin
+    "${CMAKE_SOURCE_DIR}/assets/sce_sys"
+  COMMENT "Building vpk ${PROJECT_NAME}"
+  VERBATIM
 )
+
+add_custom_target(${PROJECT_NAME}-vpk
+  ALL
+  DEPENDS "${VPK_OUT}"
+  COMMAND ${CMAKE_COMMAND} -E copy "${VPK_OUT}" "${VPK_FILE}"
+  BYPRODUCTS "${VPK_FILE}"
+)
+
+if(TARGET eboot.bin)
+  add_dependencies(${PROJECT_NAME}-vpk eboot.bin)
+endif()
 
 message(STATUS "PSVitaAlive configured. TitleID=${VITA_TITLEID}")
