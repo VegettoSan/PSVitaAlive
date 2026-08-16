@@ -16,7 +16,6 @@
 #include <unordered_set>
 #include <utility>
 namespace psvitaalive::ui { namespace {
-void drawFooterBar(vita2d_pgf* font, const char* leftHints);
 
 
 std::string currentTimeLabel() {
@@ -725,7 +724,8 @@ void FullCatalogScreen::drawSettings() {
         vita2d_pgf_draw_text(font_, panelX + 24, cardY + 82, DIM, 0.46f, pluginsStatus_.configPathUsed.c_str());
     }
 
-    drawFooterBar(font_, "D-Pad: mover   X/>: cambiar   O/SELECT: guardar y volver");
+    vita2d_draw_rectangle(0, SCREEN_H - FOOTER_H, SCREEN_W, FOOTER_H, SURFACE2);
+    vita2d_pgf_draw_text(font_, 12, SCREEN_H - 14, TEXT, 0.50f, "D-Pad: mover   X/>: cambiar   O/SELECT: guardar y volver");
     drawToast();
     vita2d_end_drawing();
     vita2d_swap_buffers();
