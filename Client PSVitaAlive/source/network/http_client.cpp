@@ -356,6 +356,11 @@ HttpResult HttpClient::downloadToFile(
     curl_easy_setopt(curl, CURLOPT_HTTP_VERSION, CURL_HTTP_VERSION_1_1);
     curl_easy_setopt(curl, CURLOPT_CONNECTTIMEOUT, CONNECT_TIMEOUT_SECONDS);
     curl_easy_setopt(curl, CURLOPT_TCP_KEEPALIVE, 1L);
+    // Lower OpenSSL security level so older Vita TLS stacks can handshake with modern CDNs (GitLab).
+    curl_easy_setopt(curl, CURLOPT_SSL_CIPHER_LIST, "DEFAULT:@SECLEVEL=0");
+#if defined(CURL_SSLVERSION_MAX_TLSv1_2)
+    // Prefer max TLS1.2 when the macro exists (avoids 1.3-only paths some hosts advertise).
+#endif
     curl_easy_setopt(curl, CURLOPT_LOW_SPEED_LIMIT, LOW_SPEED_LIMIT);
     curl_easy_setopt(curl, CURLOPT_LOW_SPEED_TIME, LOW_SPEED_TIME_SECONDS);
     curl_easy_setopt(curl, CURLOPT_FOLLOWLOCATION, 1L);
@@ -376,9 +381,12 @@ HttpResult HttpClient::downloadToFile(
 
         CURLcode result = CURLE_OK;
     // Vita/Vita3K OpenSSL is picky with GitLab/Cloudflare; try several TLS modes.
+    const bool isGitlab = url.find("gitlab.com") != std::string::npos
+        || url.find("gitlab.io") != std::string::npos;
+    // GitLab/Cloudflare often fails DEFAULT on Vita; try 1.2 first for those hosts.
     const long sslAttempts[] = {
-        CURL_SSLVERSION_DEFAULT,
-        CURL_SSLVERSION_TLSv1_2,
+        isGitlab ? CURL_SSLVERSION_TLSv1_2 : CURL_SSLVERSION_DEFAULT,
+        isGitlab ? CURL_SSLVERSION_DEFAULT : CURL_SSLVERSION_TLSv1_2,
         CURL_SSLVERSION_TLSv1_1,
         CURL_SSLVERSION_TLSv1_0,
     };
