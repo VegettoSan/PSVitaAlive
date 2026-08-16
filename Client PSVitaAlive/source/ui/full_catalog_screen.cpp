@@ -4,6 +4,8 @@
 #include <psp2/touch.h>
 #include <psp2/kernel/clib.h>
 #include <psp2/kernel/processmgr.h>
+#include <psp2/rtc.h>
+#include <psp2/io/devctl.h>
 #include <algorithm>
 #include <cmath>
 #include <cctype>
@@ -12,6 +14,54 @@
 #include <unordered_set>
 #include <utility>
 namespace psvitaalive::ui { namespace {
+
+std::string currentTimeLabel() {
+    SceDateTime dt{};
+    if (sceRtcGetCurrentClockLocalTime(&dt) < 0) return "--:--";
+    char buf[16];
+    sceClibSnprintf(buf, sizeof(buf), "%02d:%02d", (int)dt.hour, (int)dt.minute);
+    return buf;
+}
+
+std::string ux0FreeSpaceLabel() {
+    static std::string cached = "ux0: --";
+    static uint64_t lastMs = 0;
+    const uint64_t nowMs = sceKernelGetProcessTimeWide() / 1000ULL;
+    if (lastMs != 0 && nowMs >= lastMs && (nowMs - lastMs) < 3000ULL) return cached;
+
+    // SceIoDevInfo free_size via devctl 0x3001
+    struct {
+        uint64_t max_size;
+        uint64_t free_size;
+        uint32_t cluster_size;
+        void* unk;
+    } info{};
+    const int ret = sceIoDevctl("ux0:", 0x3001, nullptr, 0, &info, sizeof(info));
+    lastMs = nowMs;
+    if (ret < 0 || info.free_size == 0) {
+        // Fallback: try ur0 if ux0 fails (rare)
+        cached = "ux0: ?";
+        return cached;
+    }
+    const uint64_t bytes = info.free_size;
+    char buf[48];
+    if (bytes >= 1024ULL * 1024ULL * 1024ULL) {
+        sceClibSnprintf(buf, sizeof(buf), "ux0 libre: %.2f GB",
+                        (double)bytes / (1024.0 * 1024.0 * 1024.0));
+    } else if (bytes >= 1024ULL * 1024ULL) {
+        sceClibSnprintf(buf, sizeof(buf), "ux0 libre: %.1f MB",
+                        (double)bytes / (1024.0 * 1024.0));
+    } else if (bytes >= 1024ULL) {
+        sceClibSnprintf(buf, sizeof(buf), "ux0 libre: %llu KB",
+                        (unsigned long long)(bytes / 1024ULL));
+    } else {
+        sceClibSnprintf(buf, sizeof(buf), "ux0 libre: %llu B", (unsigned long long)bytes);
+    }
+    cached = buf;
+    return cached;
+}
+
+
 constexpr unsigned BG=RGBA8(0,0,0,255),SURFACE=RGBA8(0x37,0x37,0x37,255),SURFACE2=RGBA8(0x2A,0x2A,0x2A,255),BORDER=RGBA8(0x6E,0x6E,0x6E,255),TEXT=RGBA8(0xAA,0xAA,0xAA,255),DIM=RGBA8(0x6E,0x6E,0x6E,255),ACCENT=RGBA8(0x3B,0xFF,0,255),WHITE=RGBA8(255,255,255,255),PANEL=RGBA8(0x20,0x20,0x20,255);
 constexpr int FULL_CARD_H=120,SPLIT_CARD_H=82,DETAIL_HEADER_H=92,LINE_H=18,TRANSITION_MS=340,LINK_ROW_H=38,LINK_GAP=6,SCREENSHOT_ROW_H=250;
 constexpr size_t MAX_APP_TEXTURES=18,MAX_SCREENSHOT_TEXTURES=6;
@@ -508,7 +558,7 @@ unsigned FullCatalogScreen::colorForStatus(const std::string&s)const{if(s=="Veri
     vita2d_pgf_draw_text(font_,16,32,ACCENT,1.12f,"PSVitaAlive");
     // Center search field (tap / Triangle)
     const int barX = 200, barY = 10, barH = 32;
-    const int barW = w - barX - 140;
+    const int barW = w - barX - 100; // leave room for clock on the right
     vita2d_draw_rectangle(barX, barY, barW, barH, SURFACE);
     vita2d_draw_rectangle(barX, barY, barW, 2, ACCENT);
     vita2d_draw_rectangle(barX, barY + barH - 2, barW, 2, searchQuery_.empty() ? BORDER : ACCENT);
@@ -520,7 +570,12 @@ unsigned FullCatalogScreen::colorForStatus(const std::string&s)const{if(s=="Veri
         // clear hint
         vita2d_pgf_draw_text(font_, barX + barW - 52, barY + 21, DIM, 0.52f, "□ clear");
     }
-    vita2d_pgf_draw_text(font_, w - 120, 32, DIM, 0.72f, "START: Exit");
+    {
+        const std::string clock = currentTimeLabel();
+        // Right-align roughly in the top-right slot
+        const int clockX = w - 16 - (int)clock.size() * 11;
+        vita2d_pgf_draw_text(font_, clockX, 32, WHITE, 0.78f, clock.c_str());
+    }
 }
 void FullCatalogScreen::drawTabs(int w){
     vita2d_draw_rectangle(0,HEADER_H,w,TABS_H,SURFACE);
@@ -1144,7 +1199,18 @@ vita2d_draw_rectangle(x+28,by2,bw2,1,BORDER);
 vita2d_pgf_draw_text(font_,x+92,by2+26,WHITE,.62f,"CIRCLE  CANCEL DOWNLOAD");
 vita2d_pgf_draw_text(font_,x+28,y+h-14,DIM,.50f,"Circle: Cancel download and remove incomplete file");
 }
-void FullCatalogScreen::drawFullCatalog(){vita2d_start_drawing();vita2d_clear_screen();drawHeader(SCREEN_W);drawTabs(SCREEN_W);drawCatalogPanel(0,HEADER_H+TABS_H,SCREEN_W,SCREEN_H-HEADER_H-TABS_H-FOOTER_H,false);vita2d_draw_rectangle(0,SCREEN_H-FOOTER_H,SCREEN_W,FOOTER_H,SURFACE2);vita2d_pgf_draw_text(font_,12,SCREEN_H-14,TEXT,.58f,"D-Pad: Navigate   X: Detail   △: Search   □: Clear Filter   L/R: Catalog   START: Exit");if(catalogLoading_||installProgressActive_)drawLoadingOverlay();if(!catalogError_.empty())vita2d_pgf_draw_text(font_,18,HEADER_H+TABS_H+26,ACCENT,.66f,catalogError_.c_str());drawToast();vita2d_end_drawing();vita2d_swap_buffers();}void FullCatalogScreen::drawSplitDetail(){vita2d_start_drawing();vita2d_clear_screen();drawHeader(SCREEN_W);drawTabs(SCREEN_W);int top=HEADER_H+TABS_H,hh=SCREEN_H-HEADER_H-TABS_H-FOOTER_H,lw=SCREEN_W/2;drawCatalogPanel(0,top,lw,hh,true);drawDetailPanel(lw,top,SCREEN_W-lw,hh);vita2d_draw_rectangle(lw-1,top,2,hh,BORDER);vita2d_draw_rectangle(0,SCREEN_H-FOOTER_H,SCREEN_W,FOOTER_H,SURFACE2);vita2d_pgf_draw_text(font_,12,SCREEN_H-14,TEXT,.54f,state_.activePanel==UiPanel::Catalog?"PANEL: LISTA  |  → Detail   D-Pad: Navigate   O: Back   L/R: Catalog":"PANEL: DETALLE  |  ← Lista   D-Pad: Scroll   △: Links   X: Action   O: Back");if(catalogLoading_||installProgressActive_)drawLoadingOverlay();drawToast();vita2d_end_drawing();vita2d_swap_buffers();}void FullCatalogScreen::drawOpeningDetail(){float p=transitionProgress();int lw=SCREEN_W-(int)(SCREEN_W/2*p),rw=SCREEN_W-lw;vita2d_start_drawing();vita2d_clear_screen();drawHeader(SCREEN_W);drawTabs(SCREEN_W);int top=HEADER_H+TABS_H,hh=SCREEN_H-HEADER_H-TABS_H-FOOTER_H;drawCatalogPanel(0,top,lw,hh,true);if(rw>0)drawDetailPanel(lw,top,rw,hh);vita2d_end_drawing();vita2d_swap_buffers();}void FullCatalogScreen::drawClosingDetail(){float p=1.0f-transitionProgress();int lw=SCREEN_W-(int)(SCREEN_W/2*p),rw=SCREEN_W-lw;vita2d_start_drawing();vita2d_clear_screen();drawHeader(SCREEN_W);drawTabs(SCREEN_W);int top=HEADER_H+TABS_H,hh=SCREEN_H-HEADER_H-TABS_H-FOOTER_H;drawCatalogPanel(0,top,lw,hh,true);if(rw>0)drawDetailPanel(lw,top,SCREEN_W-lw,hh);vita2d_end_drawing();vita2d_swap_buffers();}void FullCatalogScreen::draw(){switch(state_.mode){case UiMode::FULL_CATALOG:drawFullCatalog();break;case UiMode::OPENING_DETAIL:drawOpeningDetail();break;case UiMode::SPLIT_DETAIL:drawSplitDetail();break;case UiMode::CLOSING_DETAIL:drawClosingDetail();break;}}bool FullCatalogScreen::updateAndDraw(){
+
+void drawFooterBar(vita2d_pgf* font, const char* leftHints) {
+    vita2d_draw_rectangle(0, SCREEN_H - FOOTER_H, SCREEN_W, FOOTER_H, SURFACE2);
+    if (leftHints && font)
+        vita2d_pgf_draw_text(font, 12, SCREEN_H - 14, TEXT, 0.54f, leftHints);
+    if (font) {
+        const std::string freeLbl = ux0FreeSpaceLabel();
+        const int approx = (int)freeLbl.size() * 8;
+        vita2d_pgf_draw_text(font, SCREEN_W - 12 - approx, SCREEN_H - 14, ACCENT, 0.54f, freeLbl.c_str());
+    }
+}
+void FullCatalogScreen::drawFullCatalog(){vita2d_start_drawing();vita2d_clear_screen();drawHeader(SCREEN_W);drawTabs(SCREEN_W);drawCatalogPanel(0,HEADER_H+TABS_H,SCREEN_W,SCREEN_H-HEADER_H-TABS_H-FOOTER_H,false);drawFooterBar(font_, "D-Pad: Navigate   X: Detail   △: Search   □: Clear   L/R: Catalog   START: Exit");if(catalogLoading_||installProgressActive_)drawLoadingOverlay();if(!catalogError_.empty())vita2d_pgf_draw_text(font_,18,HEADER_H+TABS_H+26,ACCENT,.66f,catalogError_.c_str());drawToast();vita2d_end_drawing();vita2d_swap_buffers();}void FullCatalogScreen::drawSplitDetail(){vita2d_start_drawing();vita2d_clear_screen();drawHeader(SCREEN_W);drawTabs(SCREEN_W);int top=HEADER_H+TABS_H,hh=SCREEN_H-HEADER_H-TABS_H-FOOTER_H,lw=SCREEN_W/2;drawCatalogPanel(0,top,lw,hh,true);drawDetailPanel(lw,top,SCREEN_W-lw,hh);vita2d_draw_rectangle(lw-1,top,2,hh,BORDER);drawFooterBar(font_, state_.activePanel==UiPanel::Catalog?"PANEL: LISTA  |  → Detail   D-Pad: Navigate   O: Back   L/R: Catalog":"PANEL: DETALLE  |  ← Lista   D-Pad: Scroll   △: Links   X: Action   O: Back");if(catalogLoading_||installProgressActive_)drawLoadingOverlay();drawToast();vita2d_end_drawing();vita2d_swap_buffers();}void FullCatalogScreen::drawOpeningDetail(){float p=transitionProgress();int lw=SCREEN_W-(int)(SCREEN_W/2*p),rw=SCREEN_W-lw;vita2d_start_drawing();vita2d_clear_screen();drawHeader(SCREEN_W);drawTabs(SCREEN_W);int top=HEADER_H+TABS_H,hh=SCREEN_H-HEADER_H-TABS_H-FOOTER_H;drawCatalogPanel(0,top,lw,hh,true);if(rw>0)drawDetailPanel(lw,top,rw,hh);vita2d_end_drawing();vita2d_swap_buffers();}void FullCatalogScreen::drawClosingDetail(){float p=1.0f-transitionProgress();int lw=SCREEN_W-(int)(SCREEN_W/2*p),rw=SCREEN_W-lw;vita2d_start_drawing();vita2d_clear_screen();drawHeader(SCREEN_W);drawTabs(SCREEN_W);int top=HEADER_H+TABS_H,hh=SCREEN_H-HEADER_H-TABS_H-FOOTER_H;drawCatalogPanel(0,top,lw,hh,true);if(rw>0)drawDetailPanel(lw,top,SCREEN_W-lw,hh);vita2d_end_drawing();vita2d_swap_buffers();}void FullCatalogScreen::draw(){switch(state_.mode){case UiMode::FULL_CATALOG:drawFullCatalog();break;case UiMode::OPENING_DETAIL:drawOpeningDetail();break;case UiMode::SPLIT_DETAIL:drawSplitDetail();break;case UiMode::CLOSING_DETAIL:drawClosingDetail();break;}}bool FullCatalogScreen::updateAndDraw(){
     if(!ready_)return false;
     flushDeferredTextureFrees();
     if(catalogSwitchCooldownFrames_>0)--catalogSwitchCooldownFrames_;
