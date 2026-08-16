@@ -13,7 +13,7 @@
     "other"
   ],
   "version": "v.1.0",
-  "version_date": "2026-08-13",
+  "version_date": "2020-01-01",
   "requirements": "Not specified",
   "size": 39072326,
   "status": "Legacy",
@@ -54,5 +54,5 @@
   "source_id": "1460",
   "source_url": "https://git.silica.codes",
   "release_page": "",
-  "updated_at": "2026-08-13T15:34:48.723650+00:00"
+  "updated_at": "2020-01-01T00:00:00+00:00"
 }
