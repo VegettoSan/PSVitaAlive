@@ -2,6 +2,8 @@
 
 #include "ui/ui_types.hpp"
 #include "ui/image_cache.hpp"
+#include "installer/app_settings.hpp"
+#include "installer/plugin_detector.hpp"
 
 #include <vita2d.h>
 #include <psp2/io/stat.h>
@@ -44,6 +46,12 @@ public:
     void setCatalogLoading(bool loading, const std::string& label, uint64_t current, uint64_t total, const std::string& message);
     void setCatalogError(const std::string& error);
     void showToast(const std::string& message, uint64_t durationMs = 1400);
+    void setAppSettings(const AppSettingsData& settings);
+    void setPluginStatus(const PluginStatus& plugins);
+    using SettingsSaveFn = std::function<void(const AppSettingsData&)>;
+    void setSettingsSaveCallback(SettingsSaveFn callback);
+    void openSettings();
+    void closeSettings(bool save);
     // outcome: 0 = progress, 1 = success, 2 = error
     void setInstallProgress(bool active, uint64_t current, uint64_t total, uint64_t bytesPerSecond,
                             const std::string& stage, const std::string& fileName,
@@ -175,6 +183,14 @@ private:
     void moveLinkFocus(int dx, int dy);
     void activateFocusedLink();
     void applySearch(const std::string& query);
+    void drawSettings();
+    void handleSettingsInput(uint32_t pressed, uint32_t nav);
+    void cycleSettingsOption(int row, int delta);
+    AppSettingsData settingsEdit_{};
+    PluginStatus pluginsStatus_{};
+    SettingsSaveFn settingsSave_;
+    int settingsFocus_ = 0;
+    UiMode settingsReturnMode_ = UiMode::FULL_CATALOG;
     bool matchesSearch(const CatalogItem& item, const std::string& query) const;
     void sortItemsByDate(std::vector<CatalogItem>& items) const;
     int detailContentHeight(const CatalogItem& item, int width) const;
