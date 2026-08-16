@@ -94,9 +94,10 @@ vita_create_vpk(${PROJECT_NAME}.vpk ${VITA_TITLEID}
   VERSION ${VITA_VERSION}
   NAME ${VITA_APP_NAME}
 
-  # LiveArea: keep the source tree identical to the layout expected in sce_sys.
+  # LiveArea resources. pic0 is intentionally excluded until it is converted
+  # to the Vita-required indexed PNG format; the other LiveArea assets are
+  # packaged in their canonical sce_sys locations.
   FILE assets/sce_sys/icon0.png sce_sys/icon0.png
-  FILE assets/sce_sys/pic0.png sce_sys/pic0.png
   FILE assets/sce_sys/livearea/contents/bg0.png sce_sys/livearea/contents/bg0.png
   FILE assets/sce_sys/livearea/contents/startup.png sce_sys/livearea/contents/startup.png
   FILE assets/sce_sys/livearea/contents/template.xml sce_sys/livearea/contents/template.xml
