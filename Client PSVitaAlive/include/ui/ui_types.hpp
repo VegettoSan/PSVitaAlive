@@ -33,6 +33,7 @@ struct CatalogLink {
     std::string type;
     std::string name;
     std::string url;
+    std::string size; // human-readable, e.g. "1.4 GB"
     bool recommended = false;
 };
 
