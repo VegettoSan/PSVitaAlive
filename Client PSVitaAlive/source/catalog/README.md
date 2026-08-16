@@ -1,47 +1,60 @@
-# `Client PSVitaAlive/source/catalog/` — Consumo del catálogo
+# `Client PSVitaAlive/source/catalog/` — Catalog consumption
 
-Este módulo es la frontera entre los catálogos generados y el cliente PS Vita.
+This module is the boundary between the generated PS Vita Alive Store catalogs and the native client.
 
-## Fuente de datos
+## Data sources
 
-Solo debe consumir:
+The client consumes only:
 
 - `catalog.json`
 - `authors.json`
 - `categories.json`
 
-No realizar scraping ni consultas directas a VitaDB, NeoVitaDB o VitaDBtoo desde el cliente.
+Do not add scraping or direct API calls to VitaDB, VitaDBtoo or other external catalog providers here.
 
-## Campos importantes
+## Application fields
 
-El cliente puede utilizar:
+The parser currently understands fields including:
 
 - `id`
 - `title_id`
 - `name`
 - `description`
+- `long_description`
 - `author_ids`
 - `category_id`
 - `subcategory_ids`
 - `version`
 - `version_date`
 - `icon`
+- `cover`
 - `screenshots`
 - `links`
 - `status`
+- `requirements`
+- `changelog`
+- `size`
 
-Los demás campos pueden ser opcionales y no deben romper el parser.
+Other fields are allowed and must not break parsing.
 
-## Autores
+## Authors
 
-`author_ids` permite navegar a perfiles individuales mediante `authors.json`.
+`author_ids` resolves individual profiles through `authors.json`. An application with multiple authors should not be reduced to one combined author name.
 
-Una aplicación con varios autores no debe mostrarse como un único nombre compuesto.
+## Version/update identity
 
-## Versiones y actualización
+Use `title_id` as the primary Vita installation/update identity. Use `version` and `version_date` as release information shown to the user and used by higher-level update logic.
 
-El `title_id` es la identidad de instalación/actualización. La versión y fecha permiten informar al usuario de una actualización disponible.
+## Links
 
-## Recursos remotos
+The parser supports multiple link records and recognizes `Download` links, including the optional `recommended` flag. If the recommended download is unavailable, the client can fall back to another valid Download link.
 
-Iconos y screenshots pueden ser URLs HTTPS/HTTP absolutas. El cliente debe manejar fallos de red y recursos faltantes sin bloquear la navegación del catálogo.
+The client also preserves link metadata for mirrors, repositories, websites and documentation so the UI can expose them when supported.
+
+## Remote resources
+
+Icons and screenshots may be HTTP/HTTPS URLs. Network failures or missing media must not block catalog navigation.
+
+## Compatibility rule
+
+Optional fields may be absent in older records. The parser must use safe defaults and continue loading the rest of the catalog instead of assuming a fully populated record.
