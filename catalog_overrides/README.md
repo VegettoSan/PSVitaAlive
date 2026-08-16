@@ -1,39 +1,40 @@
-# `catalog_overrides/` — Overrides manuales
+# `catalog_overrides/` — Manual enrichment and corrections
 
-Esta carpeta contiene correcciones y enriquecimiento manual sobre aplicaciones que también pueden recibir datos desde catálogos externos.
+This directory contains controlled manual data that must survive external catalog imports.
 
-## Cuándo usar un Override
+## When to use an Override
 
-Es apropiado cuando una fuente externa no contiene información que PS Vita Alive Store quiere conservar, por ejemplo:
+Use an Override when an external source does not contain information that PS Vita Alive Store wants to preserve, for example:
 
-- descripción mejorada;
-- descripción larga;
-- screenshots adicionales;
-- icono corregido;
-- requisitos;
-- changelog;
-- enlaces adicionales, como datos de un juego/port;
-- fuentes de descarga alternativas.
+- improved descriptions;
+- long descriptions;
+- additional screenshots;
+- corrected icons;
+- requirements;
+- changelogs;
+- additional download or game-data links;
+- alternative mirrors;
+- preservation-specific metadata.
 
-## Estructura
+## Structure
 
-Se crea un JSON por aplicación usando el `id` canónico de PS Vita Alive Store:
+Create one JSON file per canonical application ID:
 
 ```text
 catalog_overrides/adrenaline.json
 ```
 
-El archivo debe contener solamente los campos que se quieren cambiar o enriquecer.
+The file should contain only the fields that need to be changed or enriched.
 
-## Operaciones de listas
+## List operations
 
-Las listas pueden utilizar:
+Supported list operations can use:
 
-- `replace`: sustituir la lista completa;
-- `add`: añadir elementos conservando los existentes;
-- `remove`: eliminar elementos específicos.
+- `replace` — replace the complete list;
+- `add` — add elements while keeping existing values;
+- `remove` — remove specific elements.
 
-Ejemplo:
+Example:
 
 ```json
 {
@@ -51,25 +52,27 @@ Ejemplo:
 }
 ```
 
-## Prioridad
+## Priority
 
-Conceptualmente:
+The conceptual order is:
 
 ```text
-fuente externa
-    ↓
-merge/enrichment
-    ↓
+external source
+      ↓
+merge / enrichment
+      ↓
 Override
-    ↓
-app/*.json final
+      ↓
+canonical application
+      ↓
+generated catalog
 ```
 
-Un Override parcial no debe borrar campos que no está modificando.
+A partial Override must not erase fields that it does not modify.
 
-## Campos restringidos
+## Protected fields
 
-La implementación actual no permite overrides normales para:
+Normal Overrides do not change core identity/update fields such as:
 
 - `id`
 - `title_id`
@@ -81,24 +84,22 @@ La implementación actual no permite overrides normales para:
 - `version_date`
 - `size`
 
-Estas restricciones protegen la identidad y la lógica de actualización del catálogo.
+These restrictions protect application identity and update logic.
 
-## Buenas prácticas
+## Best practices
 
-- Utilizar el `id` canónico exacto.
-- Añadir solamente los datos necesarios.
-- Usar URLs absolutas.
-- No editar `catalog.json`.
-- No usar el Override para ocultar un problema que debería corregirse en el adaptador de una fuente.
-- Documentar en un comentario/commit la razón de una modificación especial.
+- Use the exact canonical application `id`.
+- Add only the data that is actually needed.
+- Use absolute URLs.
+- Never edit `catalog.json` directly.
+- Do not use an Override to hide a bug that belongs in a source adapter or normalizer.
+- Explain unusual preservation decisions in the commit message or related documentation.
 
-## Ejemplo útil
-
-Para un port que necesita datos externos del juego:
+## Example: game data for a port
 
 ```json
 {
-  "id": "mi-port",
+  "id": "my-port",
   "links": {
     "add": [
       {
@@ -112,4 +113,4 @@ Para un port que necesita datos externos del juego:
 }
 ```
 
-La aplicación sigue recibiendo automáticamente sus actualizaciones de versión desde las fuentes externas, mientras el enlace adicional permanece porque está definido en PS Vita Alive Store.
+The application can continue receiving version updates from external sources while the additional game-data link remains a PS Vita Alive Store-specific enrichment.
