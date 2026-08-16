@@ -91,10 +91,11 @@ AppSettingsData AppSettings::load() {
     if (containsKey(json, "psp_target", v)) data.pspTarget = parsePspTarget(v);
     bool b = true;
     if (containsBool(json, "warn_missing_plugins", b)) data.warnMissingPlugins = b;
+    if (containsBool(json, "prompt_image_warmup", b)) data.promptImageWarmup = b;
 
-    sceClibPrintf("[AppSettings] loaded method=%s psp=%s warn=%d\n",
+    sceClibPrintf("[AppSettings] loaded method=%s psp=%s warn=%d imagesPrompt=%d\n",
                   toString(data.installMethod), toString(data.pspTarget),
-                  data.warnMissingPlugins ? 1 : 0);
+                  data.warnMissingPlugins ? 1 : 0, data.promptImageWarmup ? 1 : 0);
     return data;
 }
 
@@ -107,11 +108,13 @@ bool AppSettings::save(const AppSettingsData& data) {
         "{\n"
         "  \"install_method\": \"%s\",\n"
         "  \"psp_target\": \"%s\",\n"
-        "  \"warn_missing_plugins\": %s\n"
+        "  \"warn_missing_plugins\": %s,\n"
+        "  \"prompt_image_warmup\": %s\n"
         "}\n",
         toString(data.installMethod),
         toString(data.pspTarget),
-        data.warnMissingPlugins ? "true" : "false"
+        data.warnMissingPlugins ? "true" : "false",
+        data.promptImageWarmup ? "true" : "false"
     );
     SceUID fd = sceIoOpen(kConfigPath, SCE_O_WRONLY | SCE_O_CREAT | SCE_O_TRUNC, 0666);
     if (fd < 0) return false;
