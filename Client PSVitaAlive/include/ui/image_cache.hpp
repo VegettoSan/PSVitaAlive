@@ -36,6 +36,7 @@ public:
         uint64_t completedBytes = 0;
         uint64_t knownTotalBytes = 0;
         std::string fileName;
+        std::string localPath;
     };
 
     ProgressSnapshot progress() const;
