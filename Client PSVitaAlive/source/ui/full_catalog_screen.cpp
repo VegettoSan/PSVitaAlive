@@ -82,8 +82,7 @@ void FullCatalogScreen::setCatalogItems(std::vector<CatalogItem>items){
     installResultTitleId_ = titleId;
 }
 bool FullCatalogScreen::init(){vita2d_init();vita2d_set_clear_color(BG);font_=vita2d_load_default_pgf();if(!font_)return false;sceCtrlSetSamplingMode(SCE_CTRL_MODE_ANALOG);
-    sceTouchSetSamplingState(SCE_TOUCH_PORT_FRONT, SCE_TOUCH_SAMPLING_STATE_START);
-    sceTouchEnableTouchForce(SCE_TOUCH_PORT_FRONT);state_=UiState{};ready_=true;diagnostics::log("[UI] initialized");return true;}void FullCatalogScreen::scheduleTextureFree(vita2d_texture* texture){
+    sceTouchSetSamplingState(SCE_TOUCH_PORT_FRONT, SCE_TOUCH_SAMPLING_STATE_START);state_=UiState{};ready_=true;diagnostics::log("[UI] initialized");return true;}void FullCatalogScreen::scheduleTextureFree(vita2d_texture* texture){
     if(!texture)return;
     deferredFreeTextures_.push_back(texture);
 }
