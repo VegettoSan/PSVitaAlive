@@ -1,38 +1,55 @@
-# `source/installer/` — Instalación en el cliente
+# `source/installer/` — Client-side installation
 
-Módulos que convierten un archivo local (tras la descarga) en contenido instalado en la Vita.
+These modules turn downloaded local payloads into installed content on the Vita.
 
-## Piezas
+## Components
 
-| Archivo | Rol |
-|---------|-----|
-| `install_controller.cpp` | Orquesta **download → install**. Expone `InstallStatus` a la UI. |
-| `install_dispatcher.cpp` | Elige instalador según formato (VPK / PKG / ZIP / …). |
-| `homebrew_installer.cpp` | VPK: extract → FakePackageBuilder → `scePromoterUtilityPromotePkg` (sync) → verifica `ux0:app/<TITLE_ID>`. |
-| `vita_installer.cpp` | PKG: staging + Promoter (sin lógica de DRM/RIF propia). |
-| `fake_package_builder.cpp` | Metadatos mínimos (`head.bin`) para que el Promoter acepte homebrew. |
+| File | Responsibility |
+|---|---|
+| `install_controller.cpp` | Orchestrates download → install and exposes installation status to the UI. |
+| `install_dispatcher.cpp` | Selects the installer according to detected format. |
+| `homebrew_installer.cpp` | Handles VPK Homebrew extraction, package preparation, promotion and post-install verification. |
+| `vita_installer.cpp` | Handles Vita PKG staging/promotion without implementing DRM/RIF bypass. |
+| `fake_package_builder.cpp` | Builds the minimum metadata needed by the Homebrew promotion flow. |
 
-## Flujo de resultado (UI)
+## Result flow
 
-Tras éxito o error, el controlador **no** vuelve a `Idle` de inmediato:
+After success or failure, the controller keeps an explicit result state instead of immediately returning to idle:
 
-1. Estado `Completed` o `Failed` con `message`, `installPath`, `titleId`, `liveAreaOk`.
-2. La UI muestra panel grande de éxito (verde) o error (rojo).
-3. El usuario pulsa **○** (`acknowledgeResult`) o expira un timeout (~8 s).
+1. `Completed` or `Failed` exposes a message, install path, Title ID and LiveArea verification result.
+2. The UI displays a large success or error panel.
+3. The user can acknowledge the result or the result can expire after the configured timeout.
 
-`liveAreaOk` es `true` solo cuando, tras el promote de un VPK, existen:
+For a promoted VPK, `liveAreaOk` is true only when the expected application tree contains at least:
 
-- `ux0:app/<TITLE_ID>/`
-- `.../sce_sys/param.sfo`
-- `.../sce_sys/icon0.png`
+```text
+ux0:app/<TITLE_ID>/
+ux0:app/<TITLE_ID>/sce_sys/param.sfo
+ux0:app/<TITLE_ID>/sce_sys/icon0.png
+```
+
+The LiveArea resources packaged by PSVitaAlive are documented separately under `assets/sce_sys/README.md`.
 
 ## Logs
 
-- `ux0:data/psvitaalive/logs/session.log` — sesión completa (se **reinicia al abrir** la app).
-- `ux0:data/psvitaalive/logs/install.log` — detalle de promote/extract (también se reinicia al abrir).
+```text
+ux0:data/psvitaalive/logs/session.log
+ux0:data/psvitaalive/logs/install.log
+```
 
-## Qué no hace (aún)
+The session/install logs are reset when the application starts according to the current implementation.
 
-- Bypass de DRM / generación de licencias (NoNpDrm es responsabilidad del sistema).
-- Instaladores PBP / ISO / CSO.
-- BGDL (descarga en segundo plano del sistema).
+## Security and scope
+
+The installer must not:
+
+- bypass DRM;
+- generate fake licenses/RIFs for protected content;
+- load entire large packages into RAM when streaming/staging is possible;
+- extract ZIP paths without traversal checks.
+
+ZIP extraction must reject absolute paths, `..` traversal and any final path that escapes the intended destination.
+
+## Not currently implemented here
+
+The current installer documentation does not claim full PBP/ISO/CSO support. BGDL/system-background download is also outside this module's current responsibility.
