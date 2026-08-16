@@ -30,7 +30,7 @@
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/17-systemshock.vpk",
-      "recommended": true
+      "recommended": false
     },
     {
       "type": "Repository",
@@ -41,7 +41,7 @@
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/17-systemshock.vpk",
-      "recommended": false
+      "recommended": true
     },
     {
       "type": "Official Website",

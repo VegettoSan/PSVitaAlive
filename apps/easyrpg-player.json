@@ -33,7 +33,7 @@
       "type": "Download",
       "name": "NeoVitaDB VPK",
       "url": "https://ci.easyrpg.org/view/Player/job/player-vita/lastSuccessfulBuild/artifact/easyrpg-player-psvita.zip",
-      "recommended": true
+      "recommended": false
     },
     {
       "type": "Official Website",
@@ -55,7 +55,7 @@
       "type": "Download",
       "name": "VitaDB VPK",
       "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=5",
-      "recommended": false
+      "recommended": true
     }
   ],
   "source_name": "VitaDBtoo",

@@ -6554,6 +6554,21 @@
     "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
   },
   {
+    "id": "wavy667",
+    "name": "Wavy667",
+    "avatar": "https://github.com/wavy667.png",
+    "bio": "",
+    "links": [
+      {
+        "type": "GitHub",
+        "name": "GitHub",
+        "url": "https://github.com/wavy667",
+        "recommended": true
+      }
+    ],
+    "icon": "https://github.com/wavy667.png"
+  },
+  {
     "id": "weegeedeveloper",
     "name": "WeegeeDEVELOPER",
     "avatar": "https://github.com/WeegeeDEVELOPER.png",

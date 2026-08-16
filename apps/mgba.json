@@ -29,7 +29,7 @@
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/mgba-emu/mgba/releases/download/0.10.5/mGBA-0.10.5-vita.7z",
-      "recommended": true
+      "recommended": false
     },
     {
       "type": "Official Website",
@@ -50,7 +50,7 @@
       "type": "Download",
       "name": "VitaDB VPK",
       "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=164",
-      "recommended": false
+      "recommended": true
     }
   ],
   "source_name": "VitaDBtoo",

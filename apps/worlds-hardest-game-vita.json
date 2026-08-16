@@ -25,7 +25,7 @@
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/Comet-Games/Worlds-Hardest-Game-Vita/releases/download/v01.15/WHGVita.vpk",
-      "recommended": true
+      "recommended": false
     },
     {
       "type": "Official Website",
@@ -41,7 +41,7 @@
       "type": "Download",
       "name": "VitaDB VPK",
       "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=994",
-      "recommended": false
+      "recommended": true
     }
   ],
   "source_name": "VitaDBtoo",

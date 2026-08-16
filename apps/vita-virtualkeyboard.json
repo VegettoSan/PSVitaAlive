@@ -26,7 +26,7 @@
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/lp1dev/vita_virtualkeyboard/releases/download/V00.01/VirtualKeyboard0001.vpk",
-      "recommended": true
+      "recommended": false
     },
     {
       "type": "Official Website",
@@ -42,7 +42,7 @@
       "type": "Download",
       "name": "VitaDB VPK",
       "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1405",
-      "recommended": false
+      "recommended": true
     }
   ],
   "source_name": "VitaDBtoo",

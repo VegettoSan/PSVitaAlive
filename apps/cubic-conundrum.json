@@ -27,7 +27,7 @@
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/407-CubicConundrum.vpk",
-      "recommended": true
+      "recommended": false
     },
     {
       "type": "Repository",
@@ -44,7 +44,7 @@
       "type": "Download",
       "name": "VitaDB VPK",
       "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=407",
-      "recommended": false
+      "recommended": true
     }
   ],
   "source_name": "VitaDBtoo",

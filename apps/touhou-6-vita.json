@@ -1,0 +1,46 @@
+{
+  "id": "touhou-6-vita",
+  "title_id": "TOHO06REV",
+  "name": "Touhou 6 Vita",
+  "description": "Port of Touhou 6 for PSVita.",
+  "long_description": "This is a port of Touhou Koumakyou - the Embodiment of Scarlet Devil to the Playstation Vita using GensokyoClub's portable EoSD decompilation.",
+  "author_ids": [
+    "wavy667"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.0.1",
+  "version_date": "2026-08-12",
+  "requirements": "- libshacccg.suprx\n- Game Data Files: PC",
+  "size": 2679945,
+  "status": "Legacy",
+  "icon": "https://www.rinnegatamante.eu/vitadb/icons/da957e006ab02e2d8dedb2bb56542122cd45412745ff299774003f39f3f9ffe6.png",
+  "screenshots": [
+    "https://www.rinnegatamante.eu/vitadb/icons/da957e006ab02e2d8dedb2bb56542122cd45412745ff299774003f39f3f9ffe6.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1467",
+      "recommended": true
+    },
+    {
+      "type": "Official Website",
+      "name": "VitaDB Release Page",
+      "url": "https://gbatemp.net/threads/release-touhou-6-vita-port.683739/"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/Wavy667/th06-vita"
+    }
+  ],
+  "source_name": "VitaDB",
+  "source_id": "1467",
+  "source_url": "https://github.com/Wavy667/th06-vita",
+  "release_page": "https://gbatemp.net/threads/release-touhou-6-vita-port.683739/",
+  "updated_at": "2026-08-16T01:06:26.919218+00:00"
+}

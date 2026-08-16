@@ -29,7 +29,7 @@
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/usineur/opentitus/releases/download/1.0/Titus.vpk",
-      "recommended": true
+      "recommended": false
     },
     {
       "type": "Download",
@@ -56,7 +56,7 @@
       "type": "Download",
       "name": "VitaDB VPK",
       "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=344",
-      "recommended": false
+      "recommended": true
     },
     {
       "type": "Download",

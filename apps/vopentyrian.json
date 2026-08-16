@@ -32,7 +32,7 @@
       "type": "Download",
       "name": "NeoVitaDB VPK",
       "url": "https://github.com/Cpasjuste/vopentyrian/releases/download/16-09-19/vOpenTiryan-16-09-19.vpk",
-      "recommended": true
+      "recommended": false
     },
     {
       "type": "Official Website",
@@ -59,7 +59,7 @@
       "type": "Download",
       "name": "VitaDB VPK",
       "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=13",
-      "recommended": false
+      "recommended": true
     }
   ],
   "source_name": "VitaDBtoo",

@@ -30,7 +30,7 @@
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/VegettoSan/Halo2D_PsVita/releases/download/1.76/Halo2D.vpk",
-      "recommended": true
+      "recommended": false
     },
     {
       "type": "Official Website",
@@ -51,7 +51,7 @@
       "type": "Download",
       "name": "VitaDB VPK",
       "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1095",
-      "recommended": false
+      "recommended": true
     }
   ],
   "source_name": "VitaDBtoo",

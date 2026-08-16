@@ -28,7 +28,7 @@
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/446-The_20Call.vpk",
-      "recommended": true
+      "recommended": false
     },
     {
       "type": "Repository",
@@ -45,7 +45,7 @@
       "type": "Download",
       "name": "VitaDB VPK",
       "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=446",
-      "recommended": false
+      "recommended": true
     }
   ],
   "source_name": "VitaDBtoo",

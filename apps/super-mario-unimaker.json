@@ -29,7 +29,7 @@
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/MEGAgameBoy/Super-Mario-UniMaker-PS-Vita-Port/releases/download/1.2.3.4/unimaker.vpk",
-      "recommended": true
+      "recommended": false
     },
     {
       "type": "Official Website",
@@ -50,7 +50,7 @@
       "type": "Download",
       "name": "VitaDB VPK",
       "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=832",
-      "recommended": false
+      "recommended": true
     }
   ],
   "source_name": "VitaDBtoo",

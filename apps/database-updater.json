@@ -26,7 +26,7 @@
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/224-Database.Manager.vpk",
-      "recommended": true
+      "recommended": false
     },
     {
       "type": "Repository",
@@ -37,7 +37,7 @@
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/224-Database.Manager.vpk",
-      "recommended": false
+      "recommended": true
     },
     {
       "type": "Official Website",

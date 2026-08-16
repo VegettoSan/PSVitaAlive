@@ -12,7 +12,7 @@
     "other"
   ],
   "version": "v.1.2",
-  "version_date": "2020-01-01",
+  "version_date": "2026-03-09",
   "requirements": "Not specified",
   "size": 43264784,
   "status": "Legacy",
@@ -26,7 +26,7 @@
       "type": "Download",
       "name": "NeoVitaDB VPK",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1099-Parkour_Labs.vpk",
-      "recommended": true
+      "recommended": false
     },
     {
       "type": "Repository",
@@ -42,7 +42,7 @@
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/1099-Parkour_Labs.vpk",
-      "recommended": false
+      "recommended": true
     }
   ],
   "source_name": "NeoVitaDB",

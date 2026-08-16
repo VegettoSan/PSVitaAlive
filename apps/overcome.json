@@ -25,7 +25,7 @@
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/458-Overcome.vpk",
-      "recommended": true
+      "recommended": false
     },
     {
       "type": "Repository",
@@ -36,7 +36,7 @@
       "type": "Download",
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/458-Overcome.vpk",
-      "recommended": false
+      "recommended": true
     }
   ],
   "source_name": "VitaDBtoo",
