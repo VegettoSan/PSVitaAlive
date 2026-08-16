@@ -13,12 +13,27 @@
 namespace psvitaalive::ui { namespace {
 constexpr unsigned BG=RGBA8(0,0,0,255),SURFACE=RGBA8(0x37,0x37,0x37,255),SURFACE2=RGBA8(0x2A,0x2A,0x2A,255),BORDER=RGBA8(0x6E,0x6E,0x6E,255),TEXT=RGBA8(0xAA,0xAA,0xAA,255),DIM=RGBA8(0x6E,0x6E,0x6E,255),ACCENT=RGBA8(0x3B,0xFF,0,255),WHITE=RGBA8(255,255,255,255),PANEL=RGBA8(0x20,0x20,0x20,255);
 constexpr int FULL_CARD_H=120,SPLIT_CARD_H=82,DETAIL_HEADER_H=92,LINE_H=18,TRANSITION_MS=200,LINK_ROW_H=38,LINK_GAP=6,SCREENSHOT_ROW_H=250;
-constexpr size_t MAX_APP_TEXTURES=18,MAX_SCREENSHOT_TEXTURES=6;constexpr uint64_t DIRECTION_REPEAT_DELAY_US=250000,DIRECTION_REPEAT_INTERVAL_US=333333;
+constexpr size_t MAX_APP_TEXTURES=18,MAX_SCREENSHOT_TEXTURES=6;
+constexpr int CATALOG_SWITCH_COOLDOWN_FRAMES=40; // ~0.66s at 60fps
+constexpr uint64_t CATALOG_SWITCH_MIN_MS=700; // hard debounce against L/R spam
+constexpr size_t MAX_DEFERRED_FREES_PER_FRAME=8;constexpr uint64_t DIRECTION_REPEAT_DELAY_US=250000,DIRECTION_REPEAT_INTERVAL_US=333333;
 const char* extOf(const std::string&p){const size_t d=p.find_last_of('.');return d==std::string::npos?"":p.c_str()+d;}std::string formatBytes(uint64_t b){char o[64];double v=(double)b;if(b>=1024ULL*1024ULL*1024ULL)sceClibSnprintf(o,sizeof(o),"%.2f GB",v/(1024.0*1024.0*1024.0));else if(b>=1024ULL*1024ULL)sceClibSnprintf(o,sizeof(o),"%.2f MB",v/(1024.0*1024.0));else if(b>=1024ULL)sceClibSnprintf(o,sizeof(o),"%.2f KB",v/1024.0);else sceClibSnprintf(o,sizeof(o),"%llu B",(unsigned long long)b);return o;}std::string lowerAscii(std::string s){for(char&c:s)c=(char)std::tolower((unsigned char)c);return s;}std::string ellipsize(const std::string&s,size_t n){if(s.size()<=n)return s;if(n<=3)return s.substr(0,n);return s.substr(0,n-3)+"...";}bool actionableLink(const CatalogLink&l){std::string t=lowerAscii(l.type);if(t=="download"||t=="downloads"||t=="mirror"||t=="dlc")return true;std::string u=lowerAscii(l.url);return u.find(".vpk")!=std::string::npos||u.find(".pkg")!=std::string::npos||u.find(".zip")!=std::string::npos||u.find(".pbp")!=std::string::npos||u.find(".iso")!=std::string::npos||u.find(".cso")!=std::string::npos;}}
 std::string formatEta(uint64_t seconds){if(seconds==0)return "--";uint64_t h=seconds/3600,m=(seconds%3600)/60,sec=seconds%60;char o[64];if(h)sceClibSnprintf(o,sizeof(o),"%llu:%02llu:%02llu",(unsigned long long)h,(unsigned long long)m,(unsigned long long)sec);else sceClibSnprintf(o,sizeof(o),"%02llu:%02llu",(unsigned long long)m,(unsigned long long)sec);return o;}
 FullCatalogScreen::FullCatalogScreen()=default;FullCatalogScreen::~FullCatalogScreen(){shutdown();}
 void FullCatalogScreen::setInstallCallbacks(InstallRequestFn r,InstallStatusFn s){installRequest_=std::move(r);installStatusText_=std::move(s);}void FullCatalogScreen::setInstallCancelCallback(InstallCancelFn c){installCancel_=std::move(c);}void FullCatalogScreen::setInstallAcknowledgeCallback(InstallAcknowledgeFn c){installAcknowledge_=std::move(c);}void FullCatalogScreen::setCatalogChangeCallback(CatalogChangeFn c){catalogChange_=std::move(c);}void FullCatalogScreen::setSearchCallback(SearchRequestFn c){searchRequest_=std::move(c);}void FullCatalogScreen::setLinkActionCallback(LinkActionFn c){linkAction_=std::move(c);}void FullCatalogScreen::setImageCache(ImageCache*c){imageCache_=c;}
-void FullCatalogScreen::setCatalogItems(std::vector<CatalogItem>items){releaseTextures();allItems_=std::move(items);sortItemsByDate(allItems_);applySearch(searchQuery_);catalogLoading_=false;catalogError_.clear();}void FullCatalogScreen::setActiveCatalog(CatalogType c){releaseTextures();state_.catalog=c;searchQuery_.clear();items_=allItems_;state_.focusIndex=0;state_.catalogScrollRow=0;state_.detailScroll=0;detailScrollBeforeLinkMode_=0;state_.linkFocus=-1;state_.linkNavigation=false;}void FullCatalogScreen::setCatalogLoading(bool l,const std::string&lab,uint64_t cur,uint64_t tot,const std::string&msg){catalogLoading_=l;catalogLoadingLabel_=lab;catalogLoadingCurrent_=cur;catalogLoadingTotal_=tot;catalogLoadingMessage_=msg;if(l)catalogError_.clear();}void FullCatalogScreen::setCatalogError(const std::string&e){catalogLoading_=false;catalogError_=e;}void FullCatalogScreen::setInstallProgress(
+void FullCatalogScreen::setCatalogItems(std::vector<CatalogItem>items){
+    // Textures for the previous tab may still be draining; only schedule free if needed.
+    releaseTextures();
+    allItems_=std::move(items);
+    sortItemsByDate(allItems_);
+    applySearch(searchQuery_);
+    catalogLoading_=false;
+    catalogError_.clear();
+    // Instant memory-cache hits clear loading quickly; keep debounce so spam L/R cannot thrash.
+    if(catalogSwitchCooldownFrames_<CATALOG_SWITCH_COOLDOWN_FRAMES/2)
+        catalogSwitchCooldownFrames_=CATALOG_SWITCH_COOLDOWN_FRAMES/2;
+    lastCatalogSwitchMs_=sceKernelGetProcessTimeWide()/1000ULL;
+}void FullCatalogScreen::setActiveCatalog(CatalogType c){releaseTextures();state_.catalog=c;searchQuery_.clear();items_=allItems_;state_.focusIndex=0;state_.catalogScrollRow=0;state_.detailScroll=0;detailScrollBeforeLinkMode_=0;state_.linkFocus=-1;state_.linkNavigation=false;}void FullCatalogScreen::setCatalogLoading(bool l,const std::string&lab,uint64_t cur,uint64_t tot,const std::string&msg){catalogLoading_=l;catalogLoadingLabel_=lab;catalogLoadingCurrent_=cur;catalogLoadingTotal_=tot;catalogLoadingMessage_=msg;if(l)catalogError_.clear();}void FullCatalogScreen::setCatalogError(const std::string&e){catalogLoading_=false;catalogError_=e;}void FullCatalogScreen::setInstallProgress(
     bool active,
     uint64_t current,
     uint64_t total,
@@ -52,11 +67,15 @@ bool FullCatalogScreen::init(){vita2d_init();vita2d_set_clear_color(BG);font_=vi
 void FullCatalogScreen::flushDeferredTextureFrees(){
     if(deferredFreeTextures_.empty())return;
     // Previous frame has been presented; safe to return memory to vita2d.
+    // Cap per frame so spam L/R cannot free dozens of textures in one shot (Vita3K crash).
     vita2d_wait_rendering_done();
-    for(vita2d_texture* t:deferredFreeTextures_){
+    size_t n=0;
+    while(!deferredFreeTextures_.empty() && n<MAX_DEFERRED_FREES_PER_FRAME){
+        vita2d_texture* t=deferredFreeTextures_.front();
+        deferredFreeTextures_.erase(deferredFreeTextures_.begin());
         if(t)vita2d_free_texture(t);
+        ++n;
     }
-    deferredFreeTextures_.clear();
 }
 void FullCatalogScreen::releaseTextures(){
     if(textures_.empty()){
@@ -146,10 +165,19 @@ int FullCatalogScreen::detailContentHeight(const CatalogItem&i,int w)const{int c
 void FullCatalogScreen::moveCatalogFocus(int d){if(items_.empty())return;if(state_.mode!=UiMode::FULL_CATALOG)releaseScreenshotTextures();if(state_.mode==UiMode::FULL_CATALOG){if(d<0&&state_.focusIndex>=3)state_.focusIndex-=3;if(d>0&&state_.focusIndex+3<(int)items_.size())state_.focusIndex+=3;}else{if(d<0&&state_.focusIndex>0)--state_.focusIndex;if(d>0&&state_.focusIndex+1<(int)items_.size())++state_.focusIndex;}clampCatalogFocus();clampCatalogScroll();state_.detailScroll=0;detailScrollBeforeLinkMode_=0;state_.linkFocus=-1;state_.linkNavigation=false;}void FullCatalogScreen::moveDetailScroll(int d){state_.detailScroll+=d<0?-72:72;clampDetailScroll();}void FullCatalogScreen::enterLinkNavigation(){int i=selectedIndex();if(i<0||items_[i].linkDetails.empty())return;detailScrollBeforeLinkMode_=state_.detailScroll;state_.linkNavigation=true;state_.linkFocus=0;state_.detailScroll=0;clampDetailScroll();diagnostics::log("[UI] link navigation enabled; detail scroll bounded to links");}void FullCatalogScreen::exitLinkNavigation(){if(!state_.linkNavigation)return;state_.linkNavigation=false;state_.linkFocus=-1;state_.detailScroll=detailScrollBeforeLinkMode_;detailScrollBeforeLinkMode_=0;clampDetailScroll();diagnostics::log("[UI] link navigation disabled; detail scroll restored");}void FullCatalogScreen::moveLinkFocus(int dx,int dy){(void)dx;int i=selectedIndex();if(i<0||items_[i].linkDetails.empty())return;int c=(int)items_[i].linkDetails.size();if(state_.linkFocus<0)state_.linkFocus=0;else state_.linkFocus=std::max(0,std::min(c-1,state_.linkFocus+dy));state_.linkNavigation=true;int top=DETAIL_HEADER_H+10+state_.linkFocus*(LINK_ROW_H+LINK_GAP),vis=SCREEN_H-HEADER_H-TABS_H-FOOTER_H-DETAIL_HEADER_H-18,lim=detailLinkScrollLimit(items_[i],SCREEN_W/2,SCREEN_H-HEADER_H-TABS_H-FOOTER_H);if(top<state_.detailScroll)state_.detailScroll=top;if(top+LINK_ROW_H>state_.detailScroll+vis)state_.detailScroll=top+LINK_ROW_H-vis;state_.detailScroll=std::max(0,std::min(state_.detailScroll,lim));}void FullCatalogScreen::activateFocusedLink(){int i=selectedIndex();if(i<0||state_.linkFocus<0||state_.linkFocus>=(int)items_[i].linkDetails.size())return;const CatalogLink&l=items_[i].linkDetails[state_.linkFocus];if(!linkAction_||!actionableLink(l)){diagnostics::log(std::string("[UI] non-download link selected: ")+l.url);return;}if(linkAction_(items_[i],l))exitLinkNavigation();}void FullCatalogScreen::changeCatalog(int d){
     if(catalogLoading_||installProgressActive_||isTransitioning())return;
     if(catalogSwitchCooldownFrames_>0)return;
+    if(!deferredFreeTextures_.empty())return; // wait until GPU frees drain
+
+    const uint64_t nowMs=sceKernelGetProcessTimeWide()/1000ULL;
+    if(lastCatalogSwitchMs_!=0 && nowMs>=lastCatalogSwitchMs_ &&
+       (nowMs-lastCatalogSwitchMs_)<CATALOG_SWITCH_MIN_MS){
+        return;
+    }
+
     int v=(int)state_.catalog+d,c=(int)CatalogType::Count;
     if(v<0)v=c-1;if(v>=c)v=0;
     CatalogType n=(CatalogType)v;
     if(n==state_.catalog)return;
+
     if(state_.mode!=UiMode::FULL_CATALOG){
         exitLinkNavigation();
         state_.mode=UiMode::FULL_CATALOG;
@@ -157,8 +185,8 @@ void FullCatalogScreen::moveCatalogFocus(int d){if(items_.empty())return;if(stat
         state_.detailScroll=0;
         releaseScreenshotTextures();
     }
-    // Lock the UI BEFORE invoking the loader so a second L/R in the same
-    // frame (or before main sets loading from status) cannot start another switch.
+
+    // Lock BEFORE loader callback.
     catalogLoading_=true;
     catalogLoadingLabel_=catalogName(n);
     catalogLoadingCurrent_=0;
@@ -170,7 +198,9 @@ void FullCatalogScreen::moveCatalogFocus(int d){if(items_.empty())return;if(stat
     state_.focusIndex=0;
     state_.catalogScrollRow=0;
     releaseTextures();
-    catalogSwitchCooldownFrames_=6;
+    catalogSwitchCooldownFrames_=CATALOG_SWITCH_COOLDOWN_FRAMES;
+    lastCatalogSwitchMs_=nowMs;
+
     if(catalogChange_){
         if(!catalogChange_(n)){
             catalogLoading_=false;
@@ -200,7 +230,7 @@ bool FullCatalogScreen::isTransitioning()const{return state_.mode==UiMode::OPENI
         diagnostics::log("[UI] detail closed — screenshot textures scheduled for free");
     }
 }
-void FullCatalogScreen::handleInput(){if(isTransitioning())return;SceCtrlData p{};sceCtrlPeekBufferPositive(0,&p,1);static uint32_t prev=0;static uint64_t repeatAt=0;uint32_t mask=SCE_CTRL_UP|SCE_CTRL_DOWN|SCE_CTRL_LEFT|SCE_CTRL_RIGHT,pressed=p.buttons&~prev,direct=pressed&mask;uint64_t now=sceKernelGetProcessTimeWide(),repeat=0;if((p.buttons&mask)==0)repeatAt=0;else if(direct)repeatAt=now+DIRECTION_REPEAT_DELAY_US;else if(repeatAt&&now>=repeatAt){repeat=p.buttons&mask;repeatAt=now+DIRECTION_REPEAT_INTERVAL_US;}prev=p.buttons;uint32_t nav=direct|repeat;if(pressed&SCE_CTRL_START){state_.requestExit=true;return;}if((pressed&SCE_CTRL_LTRIGGER)||(pressed&SCE_CTRL_RTRIGGER)){if(!catalogLoading_&&!installProgressActive_&&!isTransitioning()&&catalogSwitchCooldownFrames_<=0){if(pressed&SCE_CTRL_LTRIGGER)changeCatalog(-1);else changeCatalog(1);}return;}if(installProgressActive_&&(pressed&SCE_CTRL_CIRCLE)){if(installOutcome_==1||installOutcome_==2){if(installAcknowledge_)installAcknowledge_();}else if(installCancel_)installCancel_();return;}if(catalogLoading_||installProgressActive_)return;if(pressed&SCE_CTRL_SQUARE){if(!searchQuery_.empty())applySearch("");return;}if(state_.mode==UiMode::FULL_CATALOG){if(pressed&SCE_CTRL_TRIANGLE){if(searchRequest_)applySearch(searchRequest_(searchQuery_));return;}if(nav&SCE_CTRL_LEFT&&state_.focusIndex%3>0)--state_.focusIndex;if(nav&SCE_CTRL_RIGHT&&state_.focusIndex%3<2&&state_.focusIndex+1<(int)items_.size())++state_.focusIndex;if(nav&SCE_CTRL_UP)moveCatalogFocus(-1);if(nav&SCE_CTRL_DOWN)moveCatalogFocus(1);clampCatalogScroll();if(pressed&SCE_CTRL_CROSS)startOpeningDetail();return;}if(state_.mode!=UiMode::SPLIT_DETAIL)return;if(pressed&SCE_CTRL_CIRCLE){startClosingDetail();return;}if(state_.activePanel==UiPanel::Catalog){if(pressed&SCE_CTRL_RIGHT)state_.activePanel=UiPanel::Detail;if(nav&SCE_CTRL_UP)moveCatalogFocus(-1);if(nav&SCE_CTRL_DOWN)moveCatalogFocus(1);return;}if(nav&SCE_CTRL_LEFT)state_.activePanel=UiPanel::Catalog;if(pressed&SCE_CTRL_TRIANGLE){if(state_.linkNavigation)exitLinkNavigation();else enterLinkNavigation();return;}if(state_.linkNavigation){if(nav&SCE_CTRL_UP)moveLinkFocus(0,-1);if(nav&SCE_CTRL_DOWN)moveLinkFocus(0,1);if(pressed&SCE_CTRL_CROSS)activateFocusedLink();return;}if(nav&SCE_CTRL_UP)moveDetailScroll(-1);if(nav&SCE_CTRL_DOWN)moveDetailScroll(1);}
+void FullCatalogScreen::handleInput(){if(isTransitioning())return;SceCtrlData p{};sceCtrlPeekBufferPositive(0,&p,1);static uint32_t prev=0;static uint64_t repeatAt=0;uint32_t mask=SCE_CTRL_UP|SCE_CTRL_DOWN|SCE_CTRL_LEFT|SCE_CTRL_RIGHT,pressed=p.buttons&~prev,direct=pressed&mask;uint64_t now=sceKernelGetProcessTimeWide(),repeat=0;if((p.buttons&mask)==0)repeatAt=0;else if(direct)repeatAt=now+DIRECTION_REPEAT_DELAY_US;else if(repeatAt&&now>=repeatAt){repeat=p.buttons&mask;repeatAt=now+DIRECTION_REPEAT_INTERVAL_US;}prev=p.buttons;uint32_t nav=direct|repeat;if(pressed&SCE_CTRL_START){state_.requestExit=true;return;}if((pressed&SCE_CTRL_LTRIGGER)||(pressed&SCE_CTRL_RTRIGGER)){if(!catalogLoading_&&!installProgressActive_&&!isTransitioning()&&catalogSwitchCooldownFrames_<=0&&deferredFreeTextures_.empty()){if(pressed&SCE_CTRL_LTRIGGER)changeCatalog(-1);else changeCatalog(1);}return;}if(installProgressActive_&&(pressed&SCE_CTRL_CIRCLE)){if(installOutcome_==1||installOutcome_==2){if(installAcknowledge_)installAcknowledge_();}else if(installCancel_)installCancel_();return;}if(catalogLoading_||installProgressActive_)return;if(pressed&SCE_CTRL_SQUARE){if(!searchQuery_.empty())applySearch("");return;}if(state_.mode==UiMode::FULL_CATALOG){if(pressed&SCE_CTRL_TRIANGLE){if(searchRequest_)applySearch(searchRequest_(searchQuery_));return;}if(nav&SCE_CTRL_LEFT&&state_.focusIndex%3>0)--state_.focusIndex;if(nav&SCE_CTRL_RIGHT&&state_.focusIndex%3<2&&state_.focusIndex+1<(int)items_.size())++state_.focusIndex;if(nav&SCE_CTRL_UP)moveCatalogFocus(-1);if(nav&SCE_CTRL_DOWN)moveCatalogFocus(1);clampCatalogScroll();if(pressed&SCE_CTRL_CROSS)startOpeningDetail();return;}if(state_.mode!=UiMode::SPLIT_DETAIL)return;if(pressed&SCE_CTRL_CIRCLE){startClosingDetail();return;}if(state_.activePanel==UiPanel::Catalog){if(pressed&SCE_CTRL_RIGHT)state_.activePanel=UiPanel::Detail;if(nav&SCE_CTRL_UP)moveCatalogFocus(-1);if(nav&SCE_CTRL_DOWN)moveCatalogFocus(1);return;}if(nav&SCE_CTRL_LEFT)state_.activePanel=UiPanel::Catalog;if(pressed&SCE_CTRL_TRIANGLE){if(state_.linkNavigation)exitLinkNavigation();else enterLinkNavigation();return;}if(state_.linkNavigation){if(nav&SCE_CTRL_UP)moveLinkFocus(0,-1);if(nav&SCE_CTRL_DOWN)moveLinkFocus(0,1);if(pressed&SCE_CTRL_CROSS)activateFocusedLink();return;}if(nav&SCE_CTRL_UP)moveDetailScroll(-1);if(nav&SCE_CTRL_DOWN)moveDetailScroll(1);}
 unsigned FullCatalogScreen::colorForStatus(const std::string&s)const{if(s=="Verified")return ACCENT;if(s=="Legacy")return TEXT;if(s=="Archive")return DIM;return TEXT;}void FullCatalogScreen::drawHeader(int w){vita2d_draw_rectangle(0,0,w,HEADER_H,SURFACE2);vita2d_pgf_draw_text(font_,16,32,ACCENT,1.12f,"PSVitaAlive Store");vita2d_pgf_draw_text(font_,w-132,32,DIM,.76f,"START: Exit");if(!searchQuery_.empty()){std::string q=ellipsize(searchQuery_,22);int pw=std::max(156,std::min(w-300,(int)(q.size()*7+86))),bx=(w-pw)/2,by=11,bh=28;vita2d_draw_rectangle(bx,by,pw,bh,SURFACE);vita2d_draw_rectangle(bx,by,pw,2,ACCENT);vita2d_draw_rectangle(bx,by+bh-2,pw,2,ACCENT);vita2d_pgf_draw_text(font_,bx+12,by+19,ACCENT,.58f,"FILTER");vita2d_pgf_draw_text(font_,bx+62,by+19,WHITE,.58f,q.c_str());}}
 void FullCatalogScreen::drawTabs(int w){vita2d_draw_rectangle(0,HEADER_H,w,TABS_H,SURFACE);float tw=(float)w/(int)CatalogType::Count;for(int i=0;i<(int)CatalogType::Count;++i){int x=(int)(i*tw);bool a=(int)state_.catalog==i;if(a)vita2d_draw_rectangle(x,HEADER_H+TABS_H-3,(int)tw,3,ACCENT);vita2d_pgf_draw_text(font_,x+12,HEADER_H+24,a?ACCENT:TEXT,.80f,catalogName((CatalogType)i));}}
 void FullCatalogScreen::prepareImageTexture(const std::string&url,const std::string&ns){
