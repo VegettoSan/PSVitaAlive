@@ -31,6 +31,7 @@ set(SOURCES
   source/installer/license_helper.cpp
   source/installer/plugin_detector.cpp
   source/installer/refresh_manager.cpp
+  source/installer/bgdl_client.cpp
   source/installer/app_settings.cpp
   source/installer/install_dispatcher.cpp
   source/installer/install_controller.cpp
@@ -72,6 +73,7 @@ target_link_libraries(${PROJECT_NAME}
   SceNet_stub
   SceNetCtl_stub
   ScePromoterUtil_stub
+  taihen_stub
   SceGxm_stub
   ScePgf_stub
   zstd
