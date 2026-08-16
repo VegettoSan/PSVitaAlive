@@ -3,6 +3,7 @@
 #include "installer/plugin_detector.hpp"
 #include "installer/app_settings.hpp"
 #include "installer/refresh_manager.hpp"
+#include "installer/bgdl_client.hpp"
 
 #include <psp2/kernel/clib.h>
 #include <psp2/kernel/processmgr.h>
@@ -62,7 +63,12 @@ bool InstallController::init() {
         diagnostics::log("[Installer] NoNpDrm not detected — licensed Vita PKG installs may fail");
     }
     if (!plugins_.nopspemudrmKern) {
-        diagnostics::log("[Installer] NoPspEmuDrm not detected — PSP LiveArea bubbles unavailable (Adrenaline ISO path still works)");
+        diagnostics::log("[Installer] NoPspEmuDrm not detected - PSP LiveArea bubbles unavailable (Adrenaline ISO path still works)");
+    }
+    if (BgdlClient::instance().init()) {
+        diagnostics::log("[Installer] BGDL available");
+    } else {
+        diagnostics::log("[Installer] BGDL not available (will use direct download)");
     }
     diagnostics::log("[Installer] initialized");
     return true;
@@ -118,13 +124,50 @@ bool InstallController::busy() const {
 
 bool InstallController::requestInstall(const std::string& url, const std::string& fileName, const std::string& zipDestination) {
     if (url.empty() || fileName.empty() || busy()) return false;
-    if (settings_.installMethod == InstallMethod::Bgdl) {
-        setState(InstallStatus::State::Failed,
-                 "BGDL still not available. Set install_method to auto or direct in config.json");
-        diagnostics::log("[Installer] BGDL requested but not implemented yet");
-        resultShownAtMs_.store(sceKernelGetSystemTimeWide() / 1000ULL);
-        return false;
+    // BGDL path: system download manager (PKG). Auto tries BGDL when available; else direct.
+    const bool wantBgdl =
+        settings_.installMethod == InstallMethod::Bgdl ||
+        (settings_.installMethod == InstallMethod::Auto &&
+         BgdlClient::looksLikePkgUrl(url, fileName) &&
+         BgdlClient::instance().available());
+
+    if (wantBgdl && BgdlClient::looksLikePkgUrl(url, fileName)) {
+        if (!BgdlClient::instance().available() && !BgdlClient::instance().init()) {
+            if (settings_.installMethod == InstallMethod::Bgdl) {
+                setState(InstallStatus::State::Failed,
+                         "BGDL unavailable on this device. Use Auto or Direct.");
+                resultShownAtMs_.store(sceKernelGetSystemTimeWide() / 1000ULL);
+                return false;
+            }
+            // Auto falls through to direct.
+        } else {
+            const auto bg = BgdlClient::instance().enqueue(
+                fileName, url, std::string(), BgdlTaskType::Game);
+            if (bg.ok) {
+                setFileName(fileName.c_str());
+                setStage("BGDL");
+                setInstallPath("");
+                setTitleId("");
+                liveAreaOk_.store(false);
+                setState(InstallStatus::State::Completed,
+                         "Queued in system download manager. Check LiveArea notifications.");
+                resultShownAtMs_.store(sceKernelGetSystemTimeWide() / 1000ULL);
+                diagnostics::log(std::string("[Installer] BGDL queued id=") + std::to_string(bg.bgdlId));
+                return true;
+            }
+            if (settings_.installMethod == InstallMethod::Bgdl) {
+                setState(InstallStatus::State::Failed,
+                         bg.message.empty() ? "BGDL enqueue failed" : bg.message.c_str());
+                resultShownAtMs_.store(sceKernelGetSystemTimeWide() / 1000ULL);
+                return false;
+            }
+            diagnostics::log("[Installer] BGDL failed — falling back to direct download");
+        }
+    } else if (settings_.installMethod == InstallMethod::Bgdl) {
+        // Non-PKG content cannot use native BGDL reliably.
+        diagnostics::log("[Installer] BGDL selected but file is not PKG — using direct path");
     }
+
 
     // Allow starting a new job after a result panel is still showing.
     const auto s = static_cast<InstallStatus::State>(state_.load());
