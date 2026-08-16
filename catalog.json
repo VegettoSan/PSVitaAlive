@@ -1,5 +1,64 @@
 [
   {
+    "id": "neovitadb-downloader",
+    "title_id": "NEOVITADB",
+    "name": "NeoVitaDB Downloader",
+    "description": "Homebrew store for PSVita.",
+    "long_description": "The store itself. Browse, install and keep PSVita and PSP homebrew up to date.\nThis entry is what lets the app update itself, so its id must never change.",
+    "author_ids": [
+      "robin994",
+      "rinnegatamante"
+    ],
+    "category_id": "games",
+    "subcategory_ids": [
+      "other"
+    ],
+    "version": "v.2.9.1",
+    "version_date": "2026-08-16",
+    "requirements": "Not specified",
+    "size": 3941103,
+    "status": "Legacy",
+    "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/0001-neovitadb-downloader.png",
+    "screenshots": [
+      "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/0001-neovitadb-downloader.png",
+      "https://www.rinnegatamante.eu/vitadb/screenshots/35250126c2b5687ffa204df70e5ce3a4c0131f7dbe77762260a8c070db98b60d.png"
+    ],
+    "links": [
+      {
+        "type": "Download",
+        "name": "NeoVitaDB VPK",
+        "url": "https://github.com/robin994/NeoVitaDB-Downloader/releases/download/v2.9.0/NeoVitaDB.vpk",
+        "recommended": false
+      },
+      {
+        "type": "Official Website",
+        "name": "NeoVitaDB Release Page",
+        "url": "https://github.com/robin994/NeoVitaDB-Downloader/releases/tag/v2.9.0"
+      },
+      {
+        "type": "Repository",
+        "name": "Repositorio",
+        "url": "https://github.com/robin994/NeoVitaDB-Downloader"
+      },
+      {
+        "type": "Download",
+        "name": "VitaDB VPK",
+        "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1456",
+        "recommended": true
+      },
+      {
+        "type": "Official Website",
+        "name": "VitaDB Release Page",
+        "url": "https://github.com/robin994/NeoVitaDB-Downloader/releases"
+      }
+    ],
+    "source_name": "NeoVitaDB",
+    "source_id": "1",
+    "source_url": "https://github.com/robin994/NeoVitaDB-Downloader",
+    "release_page": "https://github.com/robin994/NeoVitaDB-Downloader/releases/tag/v2.9.0",
+    "updated_at": "2026-08-13T15:34:48.715469+00:00"
+  },
+  {
     "id": "nazi-zombies-portable",
     "title_id": "NZZMBSPTB",
     "name": "Nazi Zombies Portable",
@@ -1862,65 +1921,6 @@
     "updated_at": "2026-08-13T15:34:48.727072+00:00"
   },
   {
-    "id": "neovitadb-downloader",
-    "title_id": "NEOVITADB",
-    "name": "NeoVitaDB Downloader",
-    "description": "Homebrew store for PSVita.",
-    "long_description": "The store itself. Browse, install and keep PSVita and PSP homebrew up to date.\nThis entry is what lets the app update itself, so its id must never change.",
-    "author_ids": [
-      "robin994",
-      "rinnegatamante"
-    ],
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "v.2.9.0",
-    "version_date": "2026-08-08",
-    "requirements": "Not specified",
-    "size": 3938138,
-    "status": "Legacy",
-    "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/0001-neovitadb-downloader.png",
-    "screenshots": [
-      "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/0001-neovitadb-downloader.png",
-      "https://www.rinnegatamante.eu/vitadb/screenshots/35250126c2b5687ffa204df70e5ce3a4c0131f7dbe77762260a8c070db98b60d.png"
-    ],
-    "links": [
-      {
-        "type": "Download",
-        "name": "NeoVitaDB VPK",
-        "url": "https://github.com/robin994/NeoVitaDB-Downloader/releases/download/v2.9.0/NeoVitaDB.vpk",
-        "recommended": false
-      },
-      {
-        "type": "Official Website",
-        "name": "NeoVitaDB Release Page",
-        "url": "https://github.com/robin994/NeoVitaDB-Downloader/releases/tag/v2.9.0"
-      },
-      {
-        "type": "Repository",
-        "name": "Repositorio",
-        "url": "https://github.com/robin994/NeoVitaDB-Downloader"
-      },
-      {
-        "type": "Download",
-        "name": "VitaDB VPK",
-        "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1456",
-        "recommended": true
-      },
-      {
-        "type": "Official Website",
-        "name": "VitaDB Release Page",
-        "url": "https://github.com/robin994/NeoVitaDB-Downloader/releases"
-      }
-    ],
-    "source_name": "NeoVitaDB",
-    "source_id": "1",
-    "source_url": "https://github.com/robin994/NeoVitaDB-Downloader",
-    "release_page": "https://github.com/robin994/NeoVitaDB-Downloader/releases/tag/v2.9.0",
-    "updated_at": "2026-08-13T15:34:48.715469+00:00"
-  },
-  {
     "id": "batman-doom",
     "title_id": "BATM00001",
     "name": "Batman Doom",
@@ -3012,9 +3012,9 @@
         "url": "https://github.com/MetalSyntax/prince-of-persia-classic-psvita-port"
       }
     ],
-    "icon": "https://www.rinnegatamante.eu/vitadb/icons/603e54eef48638baca00b2b203bbbd6c58c2de4aae123a7875f38f6d67c8a2b4.png",
+    "icon": "https://archive.org/download/ppc-psvita/icon0.png",
     "screenshots": [
-      "https://www.rinnegatamante.eu/vitadb/icons/603e54eef48638baca00b2b203bbbd6c58c2de4aae123a7875f38f6d67c8a2b4.png"
+      "https://archive.org/download/ppc-psvita/pic0.png"
     ]
   },
   {
