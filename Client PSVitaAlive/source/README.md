@@ -1,21 +1,19 @@
-# `Client PSVitaAlive/source/` — Código del cliente PS Vita
+# `Client PSVitaAlive/source/` — PS Vita client source
 
-Este directorio contiene la implementación del cliente Homebrew de PSVitaAlive.
+This directory contains the implementation of the PSVitaAlive native Homebrew client.
 
-## Módulos actuales
+## Current modules
 
-- `catalog/` — lectura, parseo, búsqueda y representación del catálogo.
-- `network/` — comunicación HTTP/HTTPS y descarga de datos.
-- `storage/` — persistencia local y archivos del cliente.
-- `ui/` — interfaz y pantallas.
-- `installer/` — fundamentos de instalación/gestión de VPK.
-- `archive/` — código histórico/archivado que no debe confundirse con la implementación activa.
+- `catalog/` — catalog parsing, application records and catalog-facing behavior.
+- `network/` — HTTP/HTTPS communication and download handling.
+- `storage/` — local filesystem paths and persistence.
+- `ui/` — vita2d screens, overlays and navigation.
+- `installer/` — VPK/PKG/ZIP installation orchestration.
+- `archive/` — archive and format-detection support.
 
-## Contrato con el catálogo
+## Catalog boundary
 
-El cliente no debe conocer VitaDB, NeoVitaDB ni VitaDBtoo directamente.
-
-Su fuente pública es:
+The client consumes only the generated public catalogs:
 
 ```text
 catalog.json
@@ -23,36 +21,43 @@ authors.json
 categories.json
 ```
 
-La responsabilidad de combinar las fuentes externas pertenece a GitHub Actions.
+It must not know how VitaDB, VitaDBtoo or another external source is fetched or merged.
 
 ```text
-Fuentes externas
+external sources
       ↓
-GitHub Actions
+gitHub Actions
       ↓
 catalog.json / authors.json / categories.json
       ↓
-Cliente Vita
+PS Vita client
 ```
 
-## Compatibilidad
+This separation keeps the client simple, cacheable and independent from source-specific APIs.
 
-El parser debe tolerar campos opcionales del esquema y conservar compatibilidad con aplicaciones antiguas. No asumir que todos los campos opcionales estarán presentes.
+## Compatibility
 
-## Descargas
+The parser must tolerate optional fields and preserve compatibility with older application records. Unknown fields should be ignored rather than treated as fatal errors.
 
-Una aplicación puede tener varios enlaces. El cliente debe presentar el enlace recomendado cuando exista, pero permitir acceder a otras fuentes de descarga y a enlaces de repositorio/documentación cuando la UI lo soporte.
+Use `title_id` as the Vita application identity for installation/update logic.
 
-## Instalación
+## Downloads
 
-La lógica de instalación VPK pertenece al cliente y no al pipeline web. Una modificación del instalador no debe cambiar el contrato del catálogo salvo que se documente y actualice toda la cadena.
+An application may expose multiple links. The client should prefer a `Download` link marked `recommended: true` when available, while still allowing other download/mirror sources where the UI supports them.
 
-## Desarrollo
+Do not assume every download is a GitHub Release.
 
-Para cambios de UI o catálogo:
+## Installation boundary
 
-1. Revisar primero el JSON publicado.
-2. No introducir llamadas directas a fuentes externas desde el cliente.
-3. Probar con catálogo local y remoto.
-4. Mantener compatibilidad con VitaSDK y Vita3K.
-5. Evitar SQLite mientras no sea necesario.
+Installation logic belongs to the client, not the catalog pipeline. UI code should request installation through the controller/dispatcher layer rather than calling filesystem or promoter APIs directly.
+
+## Development
+
+For catalog-related changes:
+
+1. Inspect the published JSON contract.
+2. Do not add direct external-source calls to the client.
+3. Test with both local and remote catalog data.
+4. Preserve VitaSDK/Vita3K compatibility.
+5. Avoid SQLite unless a concrete performance or functionality requirement justifies it.
+6. Keep UI and installation logic separated.
