@@ -235,12 +235,16 @@ bool DownloadManager::runJob(DownloadJob& job) {
         job.state = DownloadState::Cancelled;
         job.lastError = "cancelled by user";
         saveMetadata(job);
+        st.removeFile(job.finalPath);
         return false;
     }
     if (hr != HttpResult::Ok) {
         job.state = DownloadState::Failed;
         job.lastError = http_.lastError().empty() ? "download failed" : http_.lastError();
         saveMetadata(job);
+        // Do not leave partial payloads around after a failed transfer.
+        st.removeFile(job.temporaryPath);
+        st.removeFile(job.finalPath);
         return false;
     }
     if (hr != HttpResult::Ok) {
@@ -301,26 +305,64 @@ bool DownloadManager::cleanupCompletedJob(const std::string& jobId) {
     return ok;
 }
 
-int DownloadManager::recoverJobs() {
+
+int DownloadManager::purgeIncompleteJobs() {
     StorageManager st;
     st.createDirectories(jobsRoot());
     const std::string root = jobsRoot();
     SceUID uid = sceIoDopen(root.c_str());
     if (uid < 0) return 0;
-    int recovered = 0;
+    int purged = 0;
     SceIoDirent ent;
+    std::vector<std::string> victims;
     while (sceIoDread(uid, &ent) > 0) {
         if (ent.d_name[0] == '.' || (ent.d_stat.st_mode & SCE_S_IFDIR) == 0) continue;
-        DownloadJob job;
-        job.id = ent.d_name;
-        if (!ensureJobDirs(job) || !loadMetadata(job)) continue;
-        if (job.state == DownloadState::Completed) continue;
-        if (job.state == DownloadState::Downloading || job.state == DownloadState::Preparing) job.state = DownloadState::Queued;
-        jobs_.push_back(job);
-        ++recovered;
+        victims.push_back(ent.d_name);
     }
     sceIoDclose(uid);
-    return recovered;
+
+    for (const auto& id : victims) {
+        DownloadJob job;
+        job.id = id;
+        if (!ensureJobDirs(job)) continue;
+        const bool hasMeta = loadMetadata(job);
+        // Keep only fully completed payloads that might still be in use briefly.
+        // Everything else (queued/downloading/failed/cancelled/missing meta) is residual.
+        if (hasMeta && job.state == DownloadState::Completed) continue;
+        if (st.exists(job.temporaryPath)) st.removeFile(job.temporaryPath);
+        if (st.exists(job.finalPath)) st.removeFile(job.finalPath);
+        if (st.exists(job.metadataPath)) st.removeFile(job.metadataPath);
+        const std::string jobDir = jobsRoot() + "/" + id;
+        // best-effort remove leftover files in dir
+        SceUID d = sceIoDopen(jobDir.c_str());
+        if (d >= 0) {
+            SceIoDirent e2;
+            while (sceIoDread(d, &e2) > 0) {
+                if (e2.d_name[0] == '.') continue;
+                st.removeFile(jobDir + "/" + e2.d_name);
+            }
+            sceIoDclose(d);
+        }
+        st.removeDirectory(jobDir);
+        ++purged;
+    }
+
+    // Drop in-memory jobs that were purged
+    jobs_.erase(std::remove_if(jobs_.begin(), jobs_.end(), [](const DownloadJob& j) {
+        return j.state != DownloadState::Completed && j.state != DownloadState::Downloading;
+    }), jobs_.end());
+
+    if (purged > 0) {
+        char m[128];
+        sceClibSnprintf(m, sizeof(m), "[DownloadManager] purged %d incomplete job folders", purged);
+        sceClibPrintf("%s\n", m);
+    }
+    return purged;
 }
+int DownloadManager::recoverJobs() {
+    // Prefer a clean slate: incomplete jobs are residual risk after crashes/cancels.
+    return purgeIncompleteJobs();
+}
+
 
 } // namespace psvitaalive
