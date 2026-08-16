@@ -27,6 +27,9 @@ set(SOURCES
   source/installer/homebrew_installer.cpp
   source/installer/fake_package_builder.cpp
   source/installer/vita_installer.cpp
+  source/installer/psp_installer.cpp
+  source/installer/license_helper.cpp
+  source/installer/plugin_detector.cpp
   source/installer/install_dispatcher.cpp
   source/installer/install_controller.cpp
   source/catalog/catalog_parser.cpp
