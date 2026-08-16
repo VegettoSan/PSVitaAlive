@@ -375,6 +375,12 @@ int main(){
     psvitaalive::StorageManager storage;storage.initProjectDirs();
     psvitaalive::InstallController installer;psvitaalive::CatalogManager catalogs;psvitaalive::ui::ImageCache images;
     if(!installer.init())psvitaalive::diagnostics::log("[System] InstallController init failed");
+    screen.setAppSettings(installer.settings());
+    screen.setPluginStatus(installer.plugins());
+    screen.setSettingsSaveCallback([&installer,&screen](const psvitaalive::AppSettingsData& s){
+        installer.setSettings(s);
+        screen.setAppSettings(s);
+    });
     if(!catalogs.init())psvitaalive::diagnostics::log("[System] CatalogManager init failed");
     if(!images.init())psvitaalive::diagnostics::log("[System] ImageCache init failed");
 
