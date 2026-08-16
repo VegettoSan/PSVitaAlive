@@ -1,78 +1,69 @@
-# `scripts/external/` — Motor de catálogos externos
+# `scripts/external/` — External catalog integration engine
 
-Este directorio contiene la lógica que lee fuentes externas, convierte sus registros al modelo interno de PS Vita Alive Store, agrupa aplicaciones equivalentes, resuelve autores y aplica la lógica de merge.
+This directory contains the source-specific logic that reads external catalogs, converts their records into the internal PS Vita Alive Store model, groups equivalent applications, resolves authors and applies merge rules.
 
-## Modelo interno
+## Internal model
 
-Los lectores externos convierten sus datos a `Candidate`. El objetivo es que el resto del pipeline no tenga que conocer detalles específicos de cada catálogo.
+External readers should hide source-specific details behind the internal `Candidate` model:
 
 ```text
-VitaDB
-VitaDBtoo
-   ↓
-adaptador de fuente
-   ↓
+VitaDB / VitaDBtoo
+        ↓
+source adapter
+        ↓
 Candidate
-   ↓
+        ↓
 group_candidates()
-   ↓
+        ↓
 merge_group()
-   ↓
-app canónica PS Vita Alive Store
+        ↓
+canonical PS Vita Alive Store application
 ```
 
-El pipeline conserva además todas las aplicaciones que ya existen en VitaHub, aunque una fuente externa no las contenga.
+The aggregation process is non-destructive: applications already maintained in `apps/` remain part of the merge even when an external source temporarily omits them.
 
-## Componentes principales
+## Main components
 
-- `sources.py`: adquisición y normalización de VitaDB y VitaDBtoo.
-- `aggregate.py`: carga local, obtiene candidatos externos, deduplica, fusiona, resuelve autores, categorías y persistencia.
-- `identity.py`: identidad/canonicalización de autores y comparación de identidades.
-- `merge.py`: combinación de registros equivalentes.
-- `overrides.py`: aplicación de Overrides.
-- `normalizer.py`: normalización de texto, repositorios y versiones.
+- `sources.py` — acquisition and normalization of the currently supported external sources.
+- `aggregate.py` — loads local data, obtains external candidates, deduplicates, merges, resolves authors/categories and persists results.
+- `identity.py` — author canonicalization and identity comparison.
+- `merge.py` — combines equivalent application records.
+- `overrides.py` — applies manual catalog Overrides.
+- `normalizer.py` — normalizes text, repositories, versions and related values.
 
-## VitaDB
+## Application identity
 
-El lector específico de VitaDB hace `POST` con cuerpo vacío al endpoint oficial. Usa un User-Agent de navegador y varios endpoints HTTPS/HTTP de respaldo porque el servidor puede devolver `200 + []` para agentes no compatibles.
+`title_id` is the primary Vita identity used to group equivalent applications. External numeric IDs must not automatically become the canonical PS Vita Alive Store `id`.
 
-Esto es una peculiaridad del origen y no debe trasladarse a otros catálogos sin comprobar su comportamiento real.
+If records are ambiguous or have conflicting Title IDs, the system should prefer explicit review over silent replacement.
 
-## VitaDBtoo
+## Source freshness and recommended downloads
 
-VitaDBtoo se consume desde su `apps.json` público y se utiliza como fuente secundaria para completar datos y cruzar información con VitaDB.
+The highest-priority source does not automatically win. Current aggregation considers version and date freshness before using source priority as a tie-breaker.
 
-## Identidad de aplicaciones
+This allows a newer valid VPK from a lower-priority source to become the recommended download when appropriate.
 
-Las aplicaciones se agrupan por identidad, con `title_id` como identificador principal del ecosistema Vita. No depender de los IDs numéricos de las fuentes externas como ID canónico de PS Vita Alive Store.
+## Author identity
 
-## Protección de aplicaciones VitaHub
+External names may contain multiple developers in a single field. The identity layer attempts conservative splitting and uses repositories/public identifiers to resolve existing authors.
 
-El modo de reconstrucción externa es **no destructivo**. Las aplicaciones existentes en `apps/` siempre se mantienen como entradas del merge. Una aplicación exclusiva de VitaHub no puede ser eliminada simplemente porque no exista en VitaDB o VitaDBtoo.
+When identity is not known, a minimal provisional profile may be created instead of silently merging unrelated developers.
 
-El agregador además verifica al finalizar que ninguna aplicación local protegida haya desaparecido del resultado.
+## Media resources
 
-## Identidad de autores
+Adapters should return absolute public URLs when icons and screenshots are actually published by the source. Never manufacture a URL from an assumed directory structure.
 
-Los nombres externos pueden venir con varios desarrolladores en un solo campo. El pipeline intenta separar nombres compuestos y usar repositorios/GitHub para resolver si un autor ya existe.
+## Adding a new adapter
 
-Cuando un autor no existe, se puede crear un perfil mínimo.
+1. Study the real source format and endpoint behavior.
+2. Implement a source-specific fetcher when a plain JSON reader is insufficient.
+3. Convert records into the existing `Candidate` interface.
+4. Normalize Title ID, author identity, version, category and media.
+5. Add useful logs for counts and failures.
+6. Add a smoke test when practical.
+7. Update `sources/README.md` with the source behavior.
+8. Run full validation without manually editing generated catalogs.
 
-## Versión y descarga recomendada
+## Preservation rule
 
-La fuente con mayor prioridad no gana automáticamente una descarga. La lógica actual compara primero la versión y la fecha; la prioridad se usa como desempate. Esto permite que un VPK de una fuente menos prioritaria sea recomendado si realmente corresponde a una versión más reciente.
-
-## Recursos
-
-Los adaptadores deben devolver URLs multimedia absolutas cuando existan. Nunca fabricar una URL de screenshot simplemente concatenando carpetas si la fuente no publica ese recurso.
-
-## Añadir un adaptador nuevo
-
-1. Estudiar el formato real de la fuente.
-2. Implementar `fetch`/lectura específica si no coincide con un JSON simple.
-3. Devolver registros `dict` o `Candidate` según la interfaz existente.
-4. Normalizar Title ID, autor, versión, categoría y recursos.
-5. Añadir logs de conteo y errores.
-6. Añadir una prueba/smoke test cuando sea útil.
-7. Actualizar `sources/README.md` y la documentación de la fuente.
-8. Validar sin modificar los catálogos generados a mano.
+The original external source must remain intact. PS Vita Alive Store's converter/normalizer is responsible for adapting it to the canonical model; external files must never be modified merely to make them fit the VitaHub schema.
