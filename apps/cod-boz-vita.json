@@ -11,10 +11,10 @@
   "subcategory_ids": [
     "other"
   ],
-  "version": "v.1.06",
-  "version_date": "2026-07-20",
+  "version": "v.2.0",
+  "version_date": "2026-08-16",
   "requirements": "- libshacccg.suprx\n- kubridge.skprx\n- Game Data Files: Android",
-  "size": 1863993,
+  "size": 1936972,
   "status": "Legacy",
   "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1965-cod-boz-vita.png",
   "screenshots": [
