@@ -457,11 +457,28 @@ def build(root: Path):
             existing_urls.add(url)
 
         if matching_external:
-            preferred = matching_external[0].download_url
+            # Prefer a human-chosen recommended Download already present in apps/*.json
+            # (e.g. archive.org mirrors). Only fall back to the freshest external URL.
+            sticky = next(
+                (
+                    item.get("url")
+                    for item in existing_links
+                    if isinstance(item, dict)
+                    and item.get("type") == "Download"
+                    and item.get("recommended") is True
+                    and item.get("url")
+                ),
+                None,
+            )
+            preferred = sticky or matching_external[0].download_url
             for item in existing_links:
-                if not isinstance(item, dict) or item.get("type") != "Download":
+                if not isinstance(item, dict):
                     continue
-                item["recommended"] = item.get("url") == preferred
+                if item.get("type") == "Download":
+                    item["recommended"] = item.get("url") == preferred
+                elif item.get("recommended") is True:
+                    # Install recommendation is only meaningful on Download links.
+                    item["recommended"] = False
 
         repo_candidates = sorted(
             [item for item in group if item.repository_url],
