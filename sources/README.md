@@ -1,84 +1,78 @@
-# `sources/` — Fuentes externas y reglas de importación
+# `sources/` — External sources and import rules
 
-`external_sources.json` define las fuentes consultadas por GitHub Actions. Las fuentes externas sirven para descubrir, actualizar, enriquecer y preservar aplicaciones; no sustituyen el formato canónico de PS Vita Alive Store.
+External catalogs are discovery, enrichment, update and preservation inputs. They are **not** the canonical PS Vita Alive Store format and they are never consumed directly by the website or PS Vita client.
 
-## Fuentes actuales
+The active source configuration is defined in `sources/external_sources.json`.
 
-- **VitaDB** — fuente oficial de VitaDB y fuente externa prioritaria.
-- **VitaDBtoo** — catálogo comunitario/rescate que actúa como respaldo y fuente de enriquecimiento.
+## Current sources
 
-La configuración real se encuentra en `sources/external_sources.json`.
+The current source layer documents:
+
+- **VitaDB** — primary external Vita Homebrew source.
+- **VitaDBtoo** — secondary/community source used for cross-checking, enrichment and preservation.
+
+If another source is enabled in the configuration later, its adapter and behavior must be documented here before relying on it in production.
 
 ## VitaDB
 
-El endpoint documentado por VitaDB utiliza `POST` sin parámetros:
+The current VitaDB adapter uses the documented endpoint behavior and may use HTTPS/HTTP fallbacks plus a browser-like User-Agent because the service can return an empty successful response to unrecognized agents.
 
-```text
-https://rinnegatamante.eu/vitadb/list_hbs_json.php
-```
-
-El adaptador actual usa HTTPS, fallbacks y un User-Agent de navegador porque VitaDB puede devolver una lista vacía a User-Agents no reconocidos.
-
-No sustituir el lector específico por un `GET` genérico sin comprobar primero el comportamiento real del endpoint.
+Do not replace the source-specific reader with a generic GET without verifying the actual endpoint behavior first.
 
 ## VitaDBtoo
 
-VitaDBtoo se consume desde su catálogo `apps.json` público. Se utiliza como fuente secundaria para completar huecos y cruzar información con VitaDB.
+VitaDBtoo is consumed from its public `apps.json` catalog and is treated as a secondary source for completing and cross-checking application records.
 
-## Prioridad y versiones
+## Source priority and versions
 
-La prioridad de fuente es un criterio de preferencia y desempate. No sustituye la comparación de frescura.
+Source priority is a preference/tie-breaker, not an automatic winner.
 
-Para seleccionar una descarga recomendada, el pipeline actual compara primero versión y fecha; la prioridad de fuente se utiliza solamente cuando esos criterios empatan.
+The aggregation logic considers version and version date freshness before source priority when choosing the most appropriate current record or recommended download.
 
-## Protección de aplicaciones VitaHub
+## Protecting local applications
 
-Las aplicaciones existentes en `apps/` son autoridad local. Un rebuild externo nunca puede eliminarlas por el simple hecho de que no aparezcan en VitaDB o VitaDBtoo.
+Applications already maintained in `apps/` are local authority. A source rebuild must not delete a local application merely because an external source temporarily omits it.
 
-El agregador carga las aplicaciones locales en todos los modos, las mezcla con las fuentes externas y verifica antes de persistir que ninguna aplicación local protegida haya desaparecido.
+The aggregator loads local applications into the merge process and validates that protected local entries remain present before persistence.
 
-## Mapeo de categorías
+## Category mapping
 
-`category_map.json` traduce valores de las fuentes externas al vocabulario oficial de PS Vita Alive Store. Una fuente externa no puede crear libremente nuevas categorías o subcategorías durante la importación.
+`sources/category_map.json` translates external types/tags into the official PS Vita Alive Store taxonomy. External sources cannot freely create official categories or subcategories.
 
-### Tipos VitaDB / VitaDBtoo
+Typical mappings include:
 
-| type | Significado | `category_id` PSVitaAlive |
-|-----:|-------------|---------------------------|
-| 1 | Original Game | `games` |
-| 2 | Game Port | `ports` |
-| 4 | Utility | `utilities` |
-| 5 | Emulator | `emulators` |
+| External type | Meaning | PS Vita Alive Store category |
+|---:|---|---|
+| `1` | Original Game | `games` |
+| `2` | Game Port | `ports` |
+| `4` | Utility | `utilities` |
+| `5` | Emulator | `emulators` |
 
-También se aceptan los slugs textuales (`game`, `port`, `utility`, `emulator`, `plugin`, …).
+Textual slugs such as `game`, `port`, `utility` and `emulator` are also handled by the active mapping. Plugin records may arrive through a separate source list and are mapped to `plugins`.
 
-Los **plugins** suelen llegar en un listado aparte (sin `type`); se mapean a `plugins`.
+External tags can be translated into official `subcategory_ids`. Only IDs declared by the destination category are retained; duplicates are removed and an `other` fallback may be used when no usable tag exists.
 
-### Tags → subcategorías
+## Media resources
 
-Cuando la fuente trae `tags` (p. ej. `puzzle`, `rpg`, `fps`, `filebrowser`), el agregador los traduce a `subcategory_ids` oficiales mediante `tag_to_subcategory` en el mismo JSON. Solo se conservan IDs que existan en la categoría destino; se eliminan duplicados. Si no hay tag usable, se usa `other`.
+External sources may provide relative paths such as `icon.png` or `screenshot1.png`. The adapter must convert them to absolute public URLs only when the source actually publishes those resources.
 
-## Recursos multimedia
+Never invent a URL by concatenating an assumed directory structure.
 
-Los catálogos externos pueden proporcionar rutas relativas como `icon.png` o `screenshot1.png`. PS Vita Alive Store debe convertirlas a URLs públicas absolutas cuando la fuente realmente publique esos recursos.
+## Adding a new source
 
-No inventar URLs ni conservar rutas relativas que solo tengan significado dentro del sitio externo.
+1. Identify the real catalog format.
+2. Document endpoint, HTTP method, authentication and rate limits when applicable.
+3. Implement or adapt an isolated reader.
+4. Convert each record to the internal `Candidate` model.
+5. Resolve authors as individual identities.
+6. Resolve categories through `category_map.json`.
+7. Normalize icons, screenshots and download URLs.
+8. Define source priority and freshness behavior.
+9. Add smoke tests where useful.
+10. Run the complete validation before enabling the source in production.
 
-## Agregar una nueva fuente
+## Fundamental rule
 
-1. Identificar el formato real del catálogo.
-2. Documentar endpoint, método HTTP, autenticación y límites.
-3. Crear/adaptar un lector aislado.
-4. Convertir cada registro al modelo interno `Candidate`.
-5. Resolver autores como perfiles individuales.
-6. Resolver categorías mediante `category_map.json`.
-7. Resolver iconos/screenshots.
-8. Definir prioridad.
-9. Añadir/practicar smoke tests.
-10. Ejecutar la validación completa antes de habilitar la fuente.
+An external source is an **input**. The final authority is PS Vita Alive Store's canonical model: `title_id`, individual authors, official taxonomy, local data, Overrides and merge rules.
 
-## Regla fundamental
-
-La fuente externa es una entrada. La autoridad final es PS Vita Alive Store: `title_id`, autores individuales, taxonomía oficial, datos locales, Overrides y reglas de merge.
-
-El cliente PS Vita y la web siguen consumiendo únicamente los catálogos generados.
+The original source data must remain untouched. The adapter/normalizer performs the conversion into PS Vita Alive Store's model.
