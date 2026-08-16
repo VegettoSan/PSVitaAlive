@@ -463,10 +463,19 @@ while(screen.updateAndDraw()){
             if(startupImagesJobs.empty()){
                 screen.setCatalogLoading(false,"",0,0,"All catalog images are already cached");psvitaalive::diagnostics::log("[Startup] no pending catalog images");
                 if(homebrewReady){screen.setCatalogItems(startupCatalogItems[(int)psvitaalive::ui::CatalogType::Homebrew]);screen.setActiveCatalog(psvitaalive::ui::CatalogType::Homebrew);}
-            }else if(promptDownloadAllImages(startupImagesJobs.size())){
+            }else if(installer.settings().promptImageWarmup && promptDownloadAllImages(startupImagesJobs.size())){
                 const bool completed=runImageWarmup(startupImagesJobs,images);screen.setCatalogLoading(false,"",completed?startupImagesJobs.size():0,(uint64_t)startupImagesJobs.size(),completed?"Image cache ready":"Image download cancelled");psvitaalive::diagnostics::log(std::string("[Startup] full image warmup finished result=")+(completed?"COMPLETE":"CANCELLED"));
                 if(homebrewReady){screen.setCatalogItems(startupCatalogItems[(int)psvitaalive::ui::CatalogType::Homebrew]);screen.setActiveCatalog(psvitaalive::ui::CatalogType::Homebrew);}
             }else{
+                // User declined once (or prompt disabled in settings): remember and stay on-demand.
+                if(installer.settings().promptImageWarmup){
+                    auto s=installer.settings();
+                    s.promptImageWarmup=false;
+                    installer.setSettings(s);
+                    screen.setAppSettings(s);
+                    psvitaalive::diagnostics::log("[Startup] image warmup declined — will not ask again (enable in Settings)");
+                }
+
                 screen.setCatalogLoading(false,"",0,0,"Images will download while browsing");startupImagesJobs.clear();startupImageSeen.clear();psvitaalive::diagnostics::log("[Startup] user selected on-demand image loading");
                 if(homebrewReady){screen.setCatalogItems(startupCatalogItems[(int)psvitaalive::ui::CatalogType::Homebrew]);screen.setActiveCatalog(psvitaalive::ui::CatalogType::Homebrew);}
             }
