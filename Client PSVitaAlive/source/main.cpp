@@ -473,7 +473,7 @@ while(screen.updateAndDraw()){
                     s.promptImageWarmup=false;
                     installer.setSettings(s);
                     screen.setAppSettings(s);
-                    psvitaalive::diagnostics::log("[Startup] image warmup declined — will not ask again (enable in Settings)");
+                    psvitaalive::diagnostics::log("[Startup] image warmup declined - will not ask again (enable in Settings)");
                 }
 
                 screen.setCatalogLoading(false,"",0,0,"Images will download while browsing");startupImagesJobs.clear();startupImageSeen.clear();psvitaalive::diagnostics::log("[Startup] user selected on-demand image loading");
