@@ -1,5 +1,79 @@
 [
   {
+    "id": "nazi-zombies-portable",
+    "title_id": "NZZMBSPTB",
+    "name": "Nazi Zombies Portable",
+    "description": "Port of Nazi Zombies Portable for PSVITA.",
+    "long_description": "Call of Duty: Zombies \"de-make\" for PlayStation Portable & VITA, Nintendo Switch & 3DS, Windows, & Linux (ARM & x86). Powered by various Quake sourceports. Includes \"Nacht der Untoten\" and several community-made maps.",
+    "author_ids": [
+      "nzp-reboot-team",
+      "rinnegatamante"
+    ],
+    "category_id": "ports",
+    "subcategory_ids": [
+      "other"
+    ],
+    "version": "Nightly",
+    "version_date": "2026-08-16",
+    "requirements": "- libshacccg.suprx",
+    "size": 2445293,
+    "status": "Legacy",
+    "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1028-nazi-zombies-portable.png",
+    "screenshots": [
+      "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/700a132501a00d7586707b33c0a4727c2b0664e3ec9c86996efebd810a6cdcc3.png",
+      "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/6e7ece334d0b8604df007a714e9d33abc092dc86af50d4545d6e9177d01f832b.png",
+      "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/140e581c7bbf245de22fd278ef49270d10d8539201b32e6c4b3db7f44f9c17f8.png",
+      "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/a79e4d2418e3aecf44aeab0aca053932e1fa639ce53fc6fe7c0def570fb1ba35.png",
+      "https://www.rinnegatamante.eu/vitadb/screenshots/700a132501a00d7586707b33c0a4727c2b0664e3ec9c86996efebd810a6cdcc3.png"
+    ],
+    "links": [
+      {
+        "type": "Download",
+        "name": "VitaDBtoo VPK",
+        "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1028-nzp.vpk",
+        "recommended": false
+      },
+      {
+        "type": "Download",
+        "name": "NeoVitaDB VPK",
+        "url": "https://github.com/nzp-team/nzportable/releases/download/nightly/nzportable-vita.zip",
+        "recommended": false
+      },
+      {
+        "type": "Official Website",
+        "name": "VitaDBtoo Release Page",
+        "url": "https://github.com/nzp-team/nzportable/releases"
+      },
+      {
+        "type": "Official Website",
+        "name": "NeoVitaDB Release Page",
+        "url": "https://github.com/nzp-team/nzportable/releases/tag/nightly"
+      },
+      {
+        "type": "Repository",
+        "name": "Repositorio",
+        "url": "https://github.com/nzp-team/nzportable"
+      },
+      {
+        "type": "Download",
+        "name": "VitaDBtoo VPK",
+        "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/1028-nzp.vpk",
+        "recommended": false
+      },
+      {
+        "type": "Download",
+        "name": "VitaDB VPK",
+        "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1028",
+        "recommended": true
+      }
+    ],
+    "source_name": "VitaDBtoo",
+    "source_id": "1028",
+    "source_url": "https://github.com/nzp-team/nzportable",
+    "release_page": "https://github.com/nzp-team/nzportable/releases",
+    "updated_at": "2026-08-13T15:34:48.451358+00:00"
+  },
+  {
     "id": "zenonia-2-remaster-vita",
     "title_id": "ZNNA00001",
     "name": "Zenonia 2 Remaster Vita",
@@ -92,80 +166,6 @@
     "source_url": "https://github.com/MetalSyntax/Zenonia4-psvita-port",
     "release_page": "https://github.com/MetalSyntax/Zenonia4-psvita-port/releases",
     "updated_at": "2026-08-15T09:57:03.725442+00:00"
-  },
-  {
-    "id": "nazi-zombies-portable",
-    "title_id": "NZZMBSPTB",
-    "name": "Nazi Zombies Portable",
-    "description": "Port of Nazi Zombies Portable for PSVITA.",
-    "long_description": "Call of Duty: Zombies \"de-make\" for PlayStation Portable & VITA, Nintendo Switch & 3DS, Windows, & Linux (ARM & x86). Powered by various Quake sourceports. Includes \"Nacht der Untoten\" and several community-made maps.",
-    "author_ids": [
-      "nzp-reboot-team",
-      "rinnegatamante"
-    ],
-    "category_id": "ports",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "Nightly",
-    "version_date": "2026-08-15",
-    "requirements": "- libshacccg.suprx",
-    "size": 2438907,
-    "status": "Legacy",
-    "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1028-nazi-zombies-portable.png",
-    "screenshots": [
-      "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/700a132501a00d7586707b33c0a4727c2b0664e3ec9c86996efebd810a6cdcc3.png",
-      "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/6e7ece334d0b8604df007a714e9d33abc092dc86af50d4545d6e9177d01f832b.png",
-      "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/140e581c7bbf245de22fd278ef49270d10d8539201b32e6c4b3db7f44f9c17f8.png",
-      "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/a79e4d2418e3aecf44aeab0aca053932e1fa639ce53fc6fe7c0def570fb1ba35.png",
-      "https://www.rinnegatamante.eu/vitadb/screenshots/700a132501a00d7586707b33c0a4727c2b0664e3ec9c86996efebd810a6cdcc3.png"
-    ],
-    "links": [
-      {
-        "type": "Download",
-        "name": "VitaDBtoo VPK",
-        "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1028-nzp.vpk",
-        "recommended": false
-      },
-      {
-        "type": "Download",
-        "name": "NeoVitaDB VPK",
-        "url": "https://github.com/nzp-team/nzportable/releases/download/nightly/nzportable-vita.zip",
-        "recommended": false
-      },
-      {
-        "type": "Official Website",
-        "name": "VitaDBtoo Release Page",
-        "url": "https://github.com/nzp-team/nzportable/releases"
-      },
-      {
-        "type": "Official Website",
-        "name": "NeoVitaDB Release Page",
-        "url": "https://github.com/nzp-team/nzportable/releases/tag/nightly"
-      },
-      {
-        "type": "Repository",
-        "name": "Repositorio",
-        "url": "https://github.com/nzp-team/nzportable"
-      },
-      {
-        "type": "Download",
-        "name": "VitaDBtoo VPK",
-        "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/1028-nzp.vpk",
-        "recommended": false
-      },
-      {
-        "type": "Download",
-        "name": "VitaDB VPK",
-        "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1028",
-        "recommended": true
-      }
-    ],
-    "source_name": "VitaDBtoo",
-    "source_id": "1028",
-    "source_url": "https://github.com/nzp-team/nzportable",
-    "release_page": "https://github.com/nzp-team/nzportable/releases",
-    "updated_at": "2026-08-13T15:34:48.451358+00:00"
   },
   {
     "id": "vitadb-downloader",
@@ -2984,9 +2984,22 @@
     "links": [
       {
         "type": "Download",
+        "name": "VPK",
+        "url": "https://archive.org/download/ppc-psvita/popclassic-v01.20.vpk",
+        "recommended": true
+      },
+      {
+        "type": "Download",
+        "name": "Game Data Files ZIP",
+        "url": "https://archive.org/download/ppc-psvita/Game%20Files.zip",
+        "recommended": false,
+        "size": 81700000
+      },
+      {
+        "type": "Download",
         "name": "Official VPK",
         "url": "https://github.com/MetalSyntax/prince-of-persia-classic-psvita-port/releases/download/v01.20/popclassic-v01.20.vpk",
-        "recommended": true
+        "recommended": false
       },
       {
         "type": "Official Website",
@@ -2999,9 +3012,9 @@
         "url": "https://github.com/MetalSyntax/prince-of-persia-classic-psvita-port"
       }
     ],
-    "icon": "https://raw.githubusercontent.com/MetalSyntax/prince-of-persia-classic-psvita-port/refs/heads/master/extras/livearea/icon0.png",
+    "icon": "https://www.rinnegatamante.eu/vitadb/icons/603e54eef48638baca00b2b203bbbd6c58c2de4aae123a7875f38f6d67c8a2b4.png",
     "screenshots": [
-      "https://raw.githubusercontent.com/MetalSyntax/prince-of-persia-classic-psvita-port/refs/heads/master/extras/livearea/bg0.png"
+      "https://www.rinnegatamante.eu/vitadb/icons/603e54eef48638baca00b2b203bbbd6c58c2de4aae123a7875f38f6d67c8a2b4.png"
     ]
   },
   {
