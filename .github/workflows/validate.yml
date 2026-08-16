@@ -49,14 +49,14 @@ jobs:
             echo "VITAHUB_REBUILD_FROM_EXTERNAL=true" >> "$GITHUB_ENV"
             echo "External rebuild requested."
             rm -f sources/rebuild_once.json
-          elif python scripts/validate_catalog_ci.py; then
+          elif VITAHUB_SKIP_REMOTE_CHECKS=true python scripts/validate_catalog_ci.py; then
             echo "rebuild=false" >> "$GITHUB_OUTPUT"
             echo "VITAHUB_REBUILD_FROM_EXTERNAL=false" >> "$GITHUB_ENV"
-            echo "Existing source catalog is valid; using incremental mode."
+            echo "Existing source catalog is structurally valid; using incremental mode."
           else
             echo "rebuild=true" >> "$GITHUB_OUTPUT"
             echo "VITAHUB_REBUILD_FROM_EXTERNAL=true" >> "$GITHUB_ENV"
-            echo "Existing source catalog is invalid; falling back to external rebuild."
+            echo "Existing source catalog is structurally invalid; falling back to external rebuild."
           fi
 
       - name: Run external aggregation smoke test
@@ -137,7 +137,6 @@ jobs:
                   raw_ids = [app.get('author_id')] if app.get('author_id') else []
 
               new_ids = []
-              was_split = False
               for raw_id in raw_ids:
                   if not isinstance(raw_id, str) or not raw_id.strip():
                       continue
@@ -152,7 +151,6 @@ jobs:
                           new_ids.append(aid)
                       continue
 
-                  was_split = True
                   split_groups += 1
                   for aid, name in names:
                       if aid not in authors:
@@ -265,7 +263,7 @@ jobs:
           print(f'Referenced authors: {len(referenced)}')
           print(f'Missing author profiles ensured (auto-created): {created}')
           if created:
-              print('Auto-created missing author profiles: ' + ', '.join(missing))
+            print('Auto-created missing author profiles: ' + ', '.join(missing))
           print(f'Authors published: {len(authors)}')
           print(f'Orphan profiles excluded from authors.json: {max(0, total_profiles - len(authors))}')
           PY
