@@ -20,19 +20,26 @@
   "links": [
     {
       "type": "Download",
-      "name": "Official ZIP VPK + TOOLS",
-      "url": "https://gitlab.com/sexcurrybeats/asphalt8-vita/-/releases/v0.1/downloads/artifacts/Asphalt8Vita_v0.1.zip",
+      "name": "VPK",
+      "url": "https://archive.org/download/asphalt-8-psvita/Asphalt8Vita%20v0.1.vpk",
       "recommended": true
     },
     {
       "type": "Download",
-      "name": "Game Data Files - Google Drive",
-      "url": "https://drive.google.com/file/d/1d281lFddylYUAv9o2jnS74k9OLI-PEuf/view",
+      "name": "Game Data Files ZIP",
+      "url": "https://archive.org/download/asphalt-8-psvita/asphalt8%20game%20data.zip",
+      "recommended": false,
+      "size": 1500000000
+    },
+    {
+      "type": "Download",
+      "name": "GitLab VPK + Tools",
+      "url": "https://gitlab.com/sexcurrybeats/asphalt8-vita/-/releases/v0.1/downloads/artifacts/Asphalt8Vita_v0.1.zip",
       "recommended": false
     }
   ],
-  "icon": "https://gitlab.com/sexcurrybeats/asphalt8-vita/-/raw/main/extras/livearea/icon0.png",
+  "icon": "https://archive.org/download/asphalt-8-psvita/icon0.png",
   "screenshots": [
-    "https://gitlab.com/sexcurrybeats/asphalt8-vita/-/raw/main/docs/images/hero.png"
+    "https://archive.org/download/asphalt-8-psvita/bg0.png"
   ]
 }

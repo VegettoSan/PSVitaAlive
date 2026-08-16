@@ -17,41 +17,43 @@
   "requirements": "- libshacccg.suprx\n- kubridge.skprx\n- Game Data Files: Android",
   "size": 6318259,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/6d04d42d839fe8ec9d93b52385b5853bc2a7b997811554665a7e04c2fa78f551.png",
+  "icon": "https://archive.org/download/zombie-tsunami-psvita/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/b50ec109bdf05116a1287b6f9928f871909550ecd33967d426d392bc2059cd14.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/08424e29814a91598cde2881ac36ae0265424aa3246d28ec68dd80320245d05d.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/2b1336c9f339752a9b9be514992754e5e674567c0b1d3580293d14cf8a5e3f0e.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/6ef2acaacd850d780f6e325feeb3203b868b98a78ce2cf3805bfd9ab3e16a56c.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/b50ec109bdf05116a1287b6f9928f871909550ecd33967d426d392bc2059cd14.png"
+    "https://archive.org/download/zombie-tsunami-psvita/2026-07-14-000337-423991.png",
+    "https://archive.org/download/zombie-tsunami-psvita/2026-07-14-000424-304127.png",
+    "https://archive.org/download/zombie-tsunami-psvita/2026-07-14-000458-554996.png",
+    "https://archive.org/download/zombie-tsunami-psvita/2026-07-14-000551-123963.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "VitaDBtoo VPK",
+      "name": "VPK",
+      "url": "https://archive.org/download/zombie-tsunami-psvita/ZombieTsunami-v1.0.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Download",
+      "name": "Game Data Files ZIP",
+      "url": "https://archive.org/download/zombie-tsunami-psvita/Game%20Files.zip",
+      "recommended": false,
+      "size": 42100000
+    },
+    {
+      "type": "Download",
+      "name": "GitHub VPK",
       "url": "https://github.com/WolffsRoom/ZombieTsunami-Vita/releases/download/v1.0/ZombieTsunami-v1.0.vpk",
       "recommended": false
-    },
-    {
-      "type": "Official Website",
-      "name": "VitaDBtoo Release Page",
-      "url": "https://github.com/WolffsRoom/ZombieTsunami-Vita/releases"
-    },
-    {
-      "type": "Official Website",
-      "name": "NeoVitaDB Release Page",
-      "url": "https://github.com/WolffsRoom/ZombieTsunami-Vita/releases/tag/v1.0"
-    },
-    {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/WolffsRoom/ZombieTsunami-Vita"
     },
     {
       "type": "Download",
       "name": "VitaDB VPK",
       "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1436",
-      "recommended": true
+      "recommended": false
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/WolffsRoom/ZombieTsunami-Vita"
     }
   ],
   "source_name": "VitaDBtoo",

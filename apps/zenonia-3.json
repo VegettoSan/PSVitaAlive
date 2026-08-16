@@ -22,20 +22,27 @@
     {
       "type": "Download",
       "name": "Official VPK",
-      "url": "https://github.com/MetalSyntax/zenonia3-psvita-port/releases/download/v01.30/zenonia_3.vpk",
-      "recommended": false
+      "url": "https://archive.org/download/zenonia-3-psvita/ZEN3.vpk",
+      "recommended": true
     },
     {
       "type": "Download",
-      "name": "Game Data Files + VPK ZIP - Mediafire",
-      "url": "https://www.mediafire.com/file/m5x3w216oblydu1/zenonia3+vpk+e+data%F0%9F%86%9A%EF%B8%8F.zip/file",
+      "name": "Game Data Files ZIP",
+      "url": "https://archive.org/download/zenonia-3-psvita/Game%20Files.zip",
+      "recommended": false,
+      "size": 12200000
+    },
+    {
+      "type": "Download",
+      "name": "GitHub VPK",
+      "url": "https://github.com/MetalSyntax/zenonia3-psvita-port/releases/download/v01.30/zenonia_3.vpk",
       "recommended": false
     },
     {
       "type": "Download",
       "name": "VitaDB VPK",
       "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1459",
-      "recommended": true
+      "recommended": false
     },
     {
       "type": "Official Website",
@@ -48,8 +55,8 @@
       "url": "https://github.com/MetalSyntax/zenonia3-psvita-port"
     }
   ],
-  "icon": "https://raw.githubusercontent.com/MetalSyntax/zenonia3-psvita-port/refs/heads/master/sce_sys/icon0.png",
+  "icon": "https://archive.org/download/zenonia-3-psvita/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/MetalSyntax/zenonia3-psvita-port/refs/heads/master/sce_sys/pic0.png"
+    "https://archive.org/download/zenonia-3-psvita/pic0.png"
   ]
 }

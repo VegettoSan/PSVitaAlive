@@ -17,37 +17,50 @@
   "requirements": "- libshacccg.suprx\n- kubridge.skprx\n- Game Data Files: Android",
   "size": 2322516,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/a43a7e9835c72dc6b05702c136e6a5cbd6d142c9b9e004b48283dc2d7aee529a.png",
+  "icon": "https://archive.org/download/bbr-psvita/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/a43a7e9835c72dc6b05702c136e6a5cbd6d142c9b9e004b48283dc2d7aee529a.png"
+    "https://archive.org/download/bbr-psvita/pic0.png",
+    "https://archive.org/download/bbr-psvita/bg0.png",
+    "https://archive.org/download/bbr-psvita/2026-07-14-232935-036089.png",
+    "https://archive.org/download/bbr-psvita/2026-07-14-232958-553833.png",
+    "https://archive.org/download/bbr-psvita/2026-07-14-233042-013923.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "VitaDBtoo VPK",
+      "name": "VPK",
+      "url": "https://archive.org/download/bbr-psvita/BeachBuggyRacing.Vita-v1.0.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Download",
+      "name": "Game Data Files ZIP",
+      "url": "https://archive.org/download/bbr-psvita/Game%20Files.zip",
+      "recommended": false,
+      "size": 70800000
+    },
+    {
+      "type": "Download",
+      "name": "GitHub VPK",
       "url": "https://github.com/WolffsRoom/BeachBuggyRacing-Vita/releases/download/v1.0/BeachBuggyRacing.Vita-v1.0.vpk",
       "recommended": false
-    },
-    {
-      "type": "Official Website",
-      "name": "VitaDBtoo Release Page",
-      "url": "https://github.com/WolffsRoom/BeachBuggyRacing-Vita/releases"
-    },
-    {
-      "type": "Official Website",
-      "name": "NeoVitaDB Release Page",
-      "url": "https://github.com/WolffsRoom/BeachBuggyRacing-Vita/releases/tag/v1.0"
-    },
-    {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/WolffsRoom/BeachBuggyRacing-Vita"
     },
     {
       "type": "Download",
       "name": "VitaDB VPK",
       "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1437",
-      "recommended": true
+      "recommended": false
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1437",
+      "recommended": false
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/WolffsRoom/BeachBuggyRacing-Vita"
     }
   ],
   "source_name": "VitaDBtoo",

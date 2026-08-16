@@ -21,20 +21,21 @@
   "links": [
     {
       "type": "Download",
-      "name": "Oficial VPK",
-      "url": "https://github.com/Clyppe/red-ball-4-vita/releases/download/v1.1.1/RedBall4.vpk",
+      "name": "VPK",
+      "url": "https://archive.org/download/rdball4-psvita/RedBall4%201.1.1.vpk",
       "recommended": true
     },
     {
       "type": "Download",
-      "name": "Game Files Mediafire",
-      "url": "https://www.mediafire.com/file/ioa5bk8217k3zgh/REDBALL4DATA.zip/file",
-      "recommended": false
+      "name": "Game Data Files ZIP",
+      "url": "https://archive.org/download/rdball4-psvita/rdball4.zip",
+      "recommended": false,
+      "size": 103300000
     }
   ],
-  "icon": "https://raw.githubusercontent.com/Clyppe/red-ball-4-vita/refs/heads/main/soloader-boilerplate/extras/livearea/icon0.png",
+  "icon": "https://archive.org/download/rdball4-psvita/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/Clyppe/red-ball-4-vita/refs/heads/main/soloader-boilerplate/extras/livearea/bg0.png",
-    "https://raw.githubusercontent.com/Clyppe/red-ball-4-vita/refs/heads/main/soloader-boilerplate/extras/livearea/pic0.png"
+    "https://archive.org/download/rdball4-psvita/bg0.png",
+    "https://archive.org/download/rdball4-psvita/pic0.png"
   ]
 }

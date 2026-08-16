@@ -20,20 +20,27 @@
   "links": [
     {
       "type": "Download",
-      "name": "Official VPK",
-      "url": "https://github.com/Clyppe/cut-the-rope-vita/releases/download/v0.2.0/CutTheRope.vpk",
+      "name": "VPK",
+      "url": "https://archive.org/download/ctrc-psvita/CutTheRope%200.2.0.vpk",
       "recommended": true
     },
     {
       "type": "Download",
-      "name": "Game Data Files - Mediafire",
-      "url": "https://www.mediafire.com/file/q6382ts4lvhj6dz/CTRDATA.zip",
+      "name": "Game Data Files ZIP",
+      "url": "https://archive.org/download/ctrc-psvita/Game%20Data.zip",
+      "recommended": false,
+      "size": 11100000
+    },
+    {
+      "type": "Download",
+      "name": "Github VPK",
+      "url": "https://github.com/Clyppe/cut-the-rope-vita/releases/download/v0.2.0/CutTheRope.vpk",
       "recommended": false
     }
   ],
-  "icon": "https://raw.githubusercontent.com/Clyppe/cut-the-rope-vita/refs/heads/main/soloader-boilerplate/extras/livearea/icon0.png",
+  "icon": "https://archive.org/download/ctrc-psvita/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/Clyppe/cut-the-rope-vita/refs/heads/main/soloader-boilerplate/extras/livearea/bg0.png",
-    "https://raw.githubusercontent.com/Clyppe/cut-the-rope-vita/refs/heads/main/soloader-boilerplate/extras/livearea/pic0.png"
+    "https://archive.org/download/ctrc-psvita/bg0.png",
+    "https://archive.org/download/ctrc-psvita/pic0.png"
   ]
 }

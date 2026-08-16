@@ -20,20 +20,27 @@
   "links": [
     {
       "type": "Download",
-      "name": "Official VPK",
-      "url": "https://github.com/Clyppe/cut-the-rope-magic-vita/releases/download/v0.10-BETA/CutTheRopeMagic.vpk",
+      "name": "VPK",
+      "url": "https://archive.org/download/ctrm-psvita/CutTheRopeMagic.vpk",
       "recommended": true
     },
     {
       "type": "Download",
-      "name": "Game Data Files - Mediafire",
-      "url": "http://www.mediafire.com/file/ltbbcalbf4ujok3/CTRMDATA.zip",
+      "name": "Game Data Files ZIP",
+      "url": "https://archive.org/download/ctrm-psvita/Game%20Files.zip",
+      "recommended": false,
+      "size": 58700000
+    },
+    {
+      "type": "Download",
+      "name": "GitHub VPK",
+      "url": "https://github.com/Clyppe/cut-the-rope-magic-vita/releases/download/v0.10-BETA/CutTheRopeMagic.vpk",
       "recommended": false
     }
   ],
-  "icon": "https://raw.githubusercontent.com/Clyppe/cut-the-rope-magic-vita/refs/heads/master/soloader-boilerplate/extras/livearea/icon0.png",
+  "icon": "https://archive.org/download/ctrm-psvita/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/Clyppe/cut-the-rope-magic-vita/refs/heads/master/soloader-boilerplate/extras/livearea/bg0.png",
-    "https://raw.githubusercontent.com/Clyppe/cut-the-rope-magic-vita/refs/heads/master/soloader-boilerplate/extras/livearea/pic0.png"
+    "https://archive.org/download/ctrm-psvita/bg0.png",
+    "https://archive.org/download/ctrm-psvita/pic0.png"
   ]
 }
