@@ -1,65 +1,77 @@
-# `scripts/` — Automatización y validación del catálogo
+# `scripts/` — Catalog automation and validation
 
-Los scripts de esta carpeta convierten las fuentes de datos en la capa canónica de PS Vita Alive Store y validan que el resultado pueda ser consumido por la web y el cliente.
+This directory contains the automation that turns canonical data and external sources into the generated PS Vita Alive Store catalogs and validates the result before publication.
 
-## Flujo principal
+## Main flow
 
 ```text
 external sources + apps/ + authors/ + categories/
                      ↓
           scripts/external/aggregate.py
                      ↓
-             merge + deduplicación
+              merge + deduplication
                      ↓
-              persistencia canónica
+              canonical persistence
                      ↓
 scripts/normalize_persisted_sources.py
                      ↓
-            normalización de recursos
+             resource normalization
                      ↓
 scripts/validate_catalog_ci.py
                      ↓
-              catálogos generados
+          generated catalog validation
+                     ↓
+catalog.json / authors.json / categories.json
 ```
 
-## Scripts importantes
+The exact workflow order is controlled by `.github/workflows/validate.yml`; this README describes the responsibilities rather than replacing the workflow itself.
+
+## Important scripts
 
 ### `generate_catalog.py`
 
-Entrada principal del pipeline de generación. Coordina la agregación y genera los archivos canónicos/publicados según la implementación actual.
+Coordinates catalog generation and the active aggregation/persistence process.
 
 ### `normalize_persisted_sources.py`
 
-Sincroniza en los JSON realmente persistidos las decisiones de normalización tomadas por el pipeline. Su función es evitar que la información corregida exista solamente en memoria.
-
-Entre otras tareas, puede resolver URLs multimedia, aplicar fallbacks y mantener autores consistentes.
+Persists normalization decisions that should survive future runs, including media URL normalization, fallbacks and author consistency where supported by the current implementation.
 
 ### `external_smoke_test.py`
 
-Pruebas rápidas para comprobar que las fuentes externas responden de una forma que el agregador puede procesar.
+Performs quick checks that external sources respond in a form the adapters can process.
 
 ### `validate_catalog.py`
 
-Validación completa del contenido del catálogo.
+Performs catalog-content validation.
 
 ### `validate_catalog_ci.py`
 
-Validación utilizada dentro de GitHub Actions antes de publicar.
+Runs the CI-specific validation used by GitHub Actions before publication.
 
 ### `validate_registry.py`
 
-Comprobaciones adicionales de registros y catálogos generados.
+Performs additional registry and generated-catalog consistency checks.
 
-## Desarrollo seguro
+## Safe development procedure
 
-Antes de tocar la lógica de agregación:
+Before changing aggregation logic:
 
-1. Revisar `scripts/external/README.md`.
-2. Probar el lector de la fuente afectada.
-3. Ejecutar smoke tests.
-4. Ejecutar la validación completa.
-5. Confirmar que `catalog.json`, `authors.json` y `categories.json` siguen siendo generados.
+1. Read `scripts/external/README.md`.
+2. Identify the source or layer responsible for the behavior.
+3. Test the affected reader/normalizer.
+4. Run smoke tests.
+5. Run the full catalog validation.
+6. Confirm that generated catalogs are still generated rather than hand-edited.
+7. Confirm that locally protected applications remain present.
 
-## No editar manualmente
+## Generated files are not source files
 
-Los catálogos generados no son la fuente de verdad. Las correcciones deben hacerse en los JSON canónicos, en los Overrides o en el código que normaliza la fuente correspondiente.
+The following are generated outputs:
+
+```text
+catalog.json
+authors.json
+categories.json
+```
+
+Do not manually patch them to fix a problem. Correct the canonical JSON, Override, source adapter or normalization logic responsible for the data.
