@@ -1,6 +1,7 @@
 #include "installer/vita_installer.hpp"
 #include "archive/format_detector.hpp"
 #include "storage/storage_manager.hpp"
+#include "installer/license_helper.hpp"
 
 #include <psp2/kernel/clib.h>
 #include <psp2/kernel/processmgr.h>
@@ -51,7 +52,7 @@ bool VitaInstaller::loadPromoterModule() {
     return true;
 }
 
-VitaInstallResult VitaInstaller::promotePath(const std::string& path) {
+VitaInstallResult VitaInstaller::promotePath(const std::string& path, bool withRif) {
     int r = scePromoterUtilityInit();
     if (r < 0) {
         char buf[64];
@@ -61,7 +62,11 @@ VitaInstallResult VitaInstaller::promotePath(const std::string& path) {
         return VitaInstallResult::PromoteFailed;
     }
 
-    r = scePromoterUtilityPromotePkg(path.c_str(), 0);
+    if (withRif) {
+        r = scePromoterUtilityPromotePkgWithRif(path.c_str(), 0);
+    } else {
+        r = scePromoterUtilityPromotePkg(path.c_str(), 0);
+    }
     lastPromoteResult_ = r;
 
     if (r >= 0) {
@@ -220,7 +225,7 @@ VitaInstallResult VitaInstaller::installPkg(
         onProgress(p);
     }
 
-    VitaInstallResult pr = promotePath(stagedPath);
+    VitaInstallResult pr = promotePath(stagedPath, false);
 
     if (pr == VitaInstallResult::Ok && deleteTempOnSuccess) {
         st.removeFile(stagedPath);
@@ -237,6 +242,83 @@ VitaInstallResult VitaInstaller::installPkg(
     }
 
     return pr;
+}
+
+
+VitaInstallResult VitaInstaller::installPkgWithRif(
+    const std::string& pkgPath,
+    const std::string& rifPath,
+    VitaInstallProgressFn onProgress,
+    VitaInstallCancelFn shouldCancel,
+    bool deleteTempOnSuccess
+) {
+    if (rifPath.empty()) {
+        return installPkg(pkgPath, onProgress, shouldCancel, deleteTempOnSuccess);
+    }
+    lastError_.clear();
+    lastPromoteResult_ = 0;
+    if (pkgPath.empty()) { setError("empty pkg path"); return VitaInstallResult::InvalidArgument; }
+    StorageManager st;
+    if (!st.exists(pkgPath)) { setError("pkg not found"); return VitaInstallResult::IoError; }
+    if (!st.exists(rifPath)) { setError("rif not found"); return VitaInstallResult::IoError; }
+    if (onProgress) {
+        VitaInstallProgress p; p.stage = VitaInstallProgress::Preparing; p.message = "validating PKG + RIF"; onProgress(p);
+    }
+    FormatDetector detector;
+    DetectResult det = detector.detectFile(pkgPath);
+    const std::string ext = FormatDetector::extensionOf(pkgPath);
+    if (!(det.format == FileFormat::Pkg || ext == "pkg")) {
+        setError("not a pkg"); return VitaInstallResult::NotPkg;
+    }
+    if (shouldCancel && shouldCancel()) { setError("cancelled"); return VitaInstallResult::Cancelled; }
+    if (!loadPromoterModule()) return VitaInstallResult::ModuleFailed;
+    if (!st.createDirectories(TMP_ROOT)) { setError("cannot create tmp"); return VitaInstallResult::IoError; }
+
+    char staged[256];
+    sceClibSnprintf(staged, sizeof(staged), "%s/pkg_%u.pkg", TMP_ROOT, (unsigned)sceKernelGetProcessTimeLow());
+    const std::string stagedPath = staged;
+
+    SceUID in = sceIoOpen(pkgPath.c_str(), SCE_O_RDONLY, 0);
+    if (in < 0) { setError("open source pkg failed"); return VitaInstallResult::IoError; }
+    SceUID out = sceIoOpen(stagedPath.c_str(), SCE_O_WRONLY | SCE_O_CREAT | SCE_O_TRUNC, 0777);
+    if (out < 0) { sceIoClose(in); setError("open staged pkg failed"); return VitaInstallResult::IoError; }
+    std::vector<char> buf(64 * 1024);
+    while (true) {
+        if (shouldCancel && shouldCancel()) {
+            sceIoClose(in); sceIoClose(out); st.removeFile(stagedPath);
+            setError("cancelled during stage"); return VitaInstallResult::Cancelled;
+        }
+        const int rd = sceIoRead(in, buf.data(), buf.size());
+        if (rd < 0) { sceIoClose(in); sceIoClose(out); setError("pkg read failed"); return VitaInstallResult::IoError; }
+        if (rd == 0) break;
+        if (sceIoWrite(out, buf.data(), rd) != rd) {
+            sceIoClose(in); sceIoClose(out); setError("pkg write failed"); return VitaInstallResult::IoError;
+        }
+    }
+    sceIoClose(in); sceIoClose(out);
+
+    const std::string stagedRif = std::string(TMP_ROOT) + "/work.bin";
+    std::string err;
+    if (!LicenseHelper::copyRifFile(rifPath, stagedRif, err)) {
+        setError(std::string("rif stage failed: ") + err);
+        st.removeFile(stagedPath);
+        return VitaInstallResult::IoError;
+    }
+
+    if (onProgress) {
+        VitaInstallProgress p; p.stage = VitaInstallProgress::Promoting; p.message = "promoting PKG with RIF"; onProgress(p);
+    }
+    const VitaInstallResult pr = promotePath(stagedPath, true);
+    if (deleteTempOnSuccess) {
+        st.removeFile(stagedPath);
+        st.removeFile(stagedRif);
+    }
+    if (pr != VitaInstallResult::Ok) return pr;
+    if (onProgress) {
+        VitaInstallProgress p; p.stage = VitaInstallProgress::Done; p.current = 1; p.total = 1;
+        p.message = "PKG installed with RIF"; onProgress(p);
+    }
+    return VitaInstallResult::Ok;
 }
 
 } // namespace psvitaalive
