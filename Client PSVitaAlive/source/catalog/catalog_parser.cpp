@@ -55,19 +55,6 @@ std::string formatSize(uint64_t bytes) {
     }
     sceClibSnprintf(buffer, sizeof(buffer), "%llu B", static_cast<unsigned long long>(bytes));
     return buffer;
-};
-    char buffer[64];
-    if (bytes >= 1024ULL * 1024ULL) {
-        const double mb = static_cast<double>(bytes) / (1024.0 * 1024.0);
-        sceClibSnprintf(buffer, sizeof(buffer), "%.1f MB", mb);
-        return buffer;
-    }
-    if (bytes >= 1024ULL) {
-        sceClibSnprintf(buffer, sizeof(buffer), "%llu KB", static_cast<unsigned long long>(bytes / 1024ULL));
-        return buffer;
-    }
-    sceClibSnprintf(buffer, sizeof(buffer), "%llu B", static_cast<unsigned long long>(bytes));
-    return buffer;
 }
 
 std::string firstArrayString(const sce::Json::Value& object, const char* key) {
