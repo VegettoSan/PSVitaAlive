@@ -105,6 +105,7 @@ private:
     int touchLastY_ = 0;
     bool touchMoved_ = false;
     uint64_t touchDownMs_ = 0;
+    float touchAccumY_ = 0.f; // residual drag for less-sensitive scroll
     // Smooth motion / feedback
     float visualCatalogScroll_ = 0.f;
     float visualDetailScroll_ = 0.f;
