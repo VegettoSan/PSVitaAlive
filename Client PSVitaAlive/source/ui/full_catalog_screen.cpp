@@ -1,6 +1,7 @@
 #include "ui/full_catalog_screen.hpp"
 #include "diagnostic_logger.hpp"
 #include <psp2/ctrl.h>
+#include <psp2/touch.h>
 #include <psp2/kernel/clib.h>
 #include <psp2/kernel/processmgr.h>
 #include <algorithm>
@@ -80,7 +81,9 @@ void FullCatalogScreen::setCatalogItems(std::vector<CatalogItem>items){
     installResultPath_ = installPath;
     installResultTitleId_ = titleId;
 }
-bool FullCatalogScreen::init(){vita2d_init();vita2d_set_clear_color(BG);font_=vita2d_load_default_pgf();if(!font_)return false;sceCtrlSetSamplingMode(SCE_CTRL_MODE_ANALOG);state_=UiState{};ready_=true;diagnostics::log("[UI] initialized");return true;}void FullCatalogScreen::scheduleTextureFree(vita2d_texture* texture){
+bool FullCatalogScreen::init(){vita2d_init();vita2d_set_clear_color(BG);font_=vita2d_load_default_pgf();if(!font_)return false;sceCtrlSetSamplingMode(SCE_CTRL_MODE_ANALOG);
+    sceTouchSetSamplingState(SCE_TOUCH_PORT_FRONT, SCE_TOUCH_SAMPLING_STATE_START);
+    sceTouchEnableTouchForce(SCE_TOUCH_PORT_FRONT);state_=UiState{};ready_=true;diagnostics::log("[UI] initialized");return true;}void FullCatalogScreen::scheduleTextureFree(vita2d_texture* texture){
     if(!texture)return;
     deferredFreeTextures_.push_back(texture);
 }
@@ -256,6 +259,125 @@ bool FullCatalogScreen::isTransitioning()const{return state_.mode==UiMode::OPENI
         diagnostics::log("[UI] detail closed — screenshot textures scheduled for free");
     }
 }
+void FullCatalogScreen::handleTouch() {
+    if (isTransitioning() || catalogLoading_ || installProgressActive_) return;
+
+    SceTouchData td{};
+    const int n = sceTouchPeek(SCE_TOUCH_PORT_FRONT, &td, 1);
+    if (n <= 0) return;
+
+    // Vita touch reports ~1920x1088; map to 960x544 framebuffer.
+    auto mapX = [](int tx) { return tx * SCREEN_W / 1920; };
+    auto mapY = [](int ty) { return ty * SCREEN_H / 1088; };
+
+    const uint64_t now = sceKernelGetProcessTimeWide();
+
+    if (td.reportNum > 0) {
+        const int x = mapX(td.report[0].x);
+        const int y = mapY(td.report[0].y);
+        if (!touchDown_) {
+            touchDown_ = true;
+            touchStartX_ = x;
+            touchStartY_ = y;
+            touchLastY_ = y;
+            touchMoved_ = false;
+            touchDownMs_ = now / 1000ULL;
+        } else {
+            const int dy = y - touchLastY_;
+            const int adx = std::abs(x - touchStartX_);
+            const int ady = std::abs(y - touchStartY_);
+            if (adx > 12 || ady > 12) touchMoved_ = true;
+            // Vertical drag scrolls catalog (or detail when detail panel is active)
+            if (std::abs(dy) >= 18) {
+                const int steps = dy / 18;
+                if (state_.mode == UiMode::FULL_CATALOG) {
+                    if (steps > 0) {
+                        for (int i = 0; i < steps; ++i) moveCatalogFocus(1);
+                    } else {
+                        for (int i = 0; i < -steps; ++i) moveCatalogFocus(-1);
+                    }
+                } else if (state_.activePanel == UiPanel::Detail) {
+                    if (steps > 0) {
+                        for (int i = 0; i < steps; ++i) moveDetailScroll(1);
+                    } else {
+                        for (int i = 0; i < -steps; ++i) moveDetailScroll(-1);
+                    }
+                } else {
+                    if (steps > 0) {
+                        for (int i = 0; i < steps; ++i) moveCatalogFocus(1);
+                    } else {
+                        for (int i = 0; i < -steps; ++i) moveCatalogFocus(-1);
+                    }
+                }
+                touchLastY_ = y;
+            }
+        }
+    } else if (touchDown_) {
+        // Finger up — treat as tap if not a drag
+        const int x = touchStartX_;
+        const int y = touchStartY_;
+        const bool wasDrag = touchMoved_;
+        touchDown_ = false;
+
+        if (wasDrag) return;
+
+        // Tabs strip
+        if (y >= HEADER_H && y < HEADER_H + TABS_H) {
+            const float tw = static_cast<float>(SCREEN_W) / static_cast<float>(CatalogType::Count);
+            const int tab = std::min((int)CatalogType::Count - 1, std::max(0, (int)(x / tw)));
+            const int cur = (int)state_.catalog;
+            const int delta = tab - cur;
+            if (delta != 0) changeCatalog(delta);
+            return;
+        }
+
+        const int panelTop = HEADER_H + TABS_H;
+        const int panelBottom = SCREEN_H - FOOTER_H;
+        if (y < panelTop || y >= panelBottom) return;
+
+        if (state_.mode == UiMode::FULL_CATALOG) {
+            const int gridX = 0, gridY = panelTop;
+            const int gridW = SCREEN_W, gridH = panelBottom - panelTop;
+            const int cw = (gridW - GRID_PAD * 2 - CARD_GAP * 2) / 3;
+            const float rowH = static_cast<float>(FULL_CARD_H + CARD_GAP);
+            const int localX = x - (gridX + GRID_PAD);
+            const int localY = y - (gridY + GRID_PAD);
+            if (localX < 0 || localY < 0) return;
+            const int col = localX / (cw + CARD_GAP);
+            const int row = static_cast<int>((localY / rowH) + visualCatalogScroll_);
+            if (col < 0 || col > 2) return;
+            const int idx = row * 3 + col;
+            if (idx < 0 || idx >= (int)items_.size()) return;
+            if (idx == state_.focusIndex) {
+                startOpeningDetail();
+            } else {
+                state_.focusIndex = idx;
+                clampCatalogFocus();
+                clampCatalogScroll();
+            }
+            return;
+        }
+
+        // Split: left list / right detail
+        const int mid = SCREEN_W / 2;
+        if (x < mid) {
+            state_.activePanel = UiPanel::Catalog;
+            const float rowH = static_cast<float>(SPLIT_CARD_H + CARD_GAP);
+            const int localY = y - (panelTop + GRID_PAD);
+            if (localY < 0) return;
+            const int idx = static_cast<int>(localY / rowH + visualCatalogScroll_);
+            if (idx < 0 || idx >= (int)items_.size()) return;
+            state_.focusIndex = idx;
+            state_.detailScroll = 0;
+            visualDetailScroll_ = 0.f;
+            clampCatalogFocus();
+            clampCatalogScroll();
+        } else {
+            state_.activePanel = UiPanel::Detail;
+        }
+    }
+}
+
 void FullCatalogScreen::handleInput(){if(isTransitioning())return;SceCtrlData p{};sceCtrlPeekBufferPositive(0,&p,1);static uint32_t prev=0;static uint64_t repeatAt=0;uint32_t mask=SCE_CTRL_UP|SCE_CTRL_DOWN|SCE_CTRL_LEFT|SCE_CTRL_RIGHT,pressed=p.buttons&~prev,direct=pressed&mask;uint64_t now=sceKernelGetProcessTimeWide(),repeat=0;if((p.buttons&mask)==0)repeatAt=0;else if(direct)repeatAt=now+DIRECTION_REPEAT_DELAY_US;else if(repeatAt&&now>=repeatAt){repeat=p.buttons&mask;repeatAt=now+DIRECTION_REPEAT_INTERVAL_US;}prev=p.buttons;uint32_t nav=direct|repeat;if(pressed&SCE_CTRL_START){state_.requestExit=true;return;}if((pressed&SCE_CTRL_LTRIGGER)||(pressed&SCE_CTRL_RTRIGGER)){
         const bool canSwitch=!catalogLoading_&&!installProgressActive_&&!isTransitioning()
             &&catalogSwitchCooldownFrames_<=0&&deferredFreeTextures_.empty();
@@ -415,54 +537,39 @@ void FullCatalogScreen::prepareVisibleTextures(){
 }
 
 void FullCatalogScreen::drawImageLoadingPlaceholder(const std::string& url, const std::string& ns, int x, int y, int w, int h) {
+    // Compact progress only — no text (overflows small icon/cover cells).
     vita2d_draw_rectangle(x, y, w, h, SURFACE2);
-    if (!imageCache_ || url.empty() || !font_) {
-        vita2d_pgf_draw_text(font_, x + 12, y + h / 2, DIM, 0.60f, "Cargando...");
-        return;
-    }
-    const std::string path = imageCache_->request(url, ns);
-    const auto prog = imageCache_->progress();
-    const bool thisActive = prog.active && !prog.localPath.empty() && prog.localPath == path;
+    if (w < 8 || h < 6) return;
 
-    if (thisActive && prog.total > 0) {
-        const float pct = std::min(1.f, static_cast<float>(prog.downloaded) / static_cast<float>(prog.total));
-        const int barW = w - 40;
-        const int barH = 10;
-        const int barX = x + 20;
-        const int barY = y + h / 2 - 4;
-        vita2d_draw_rectangle(barX, barY, barW, barH, BORDER);
-        vita2d_draw_rectangle(barX, barY, std::max(1, static_cast<int>(barW * pct)), barH, ACCENT);
-
-        char line1[96];
-        sceClibSnprintf(line1, sizeof(line1), "Descargando  %d%%", static_cast<int>(pct * 100.f));
-        vita2d_pgf_draw_text(font_, barX, barY - 18, WHITE, 0.58f, line1);
-
-        char line2[128];
-        const uint64_t speed = prog.speed;
-        const double kb = speed / 1024.0;
-        if (speed > 0 && prog.downloaded < prog.total) {
-            const uint64_t left = prog.total - prog.downloaded;
-            const uint64_t eta = left / std::max<uint64_t>(1, speed);
-            sceClibSnprintf(line2, sizeof(line2), "%.1f KB/s   ETA %llu s", kb, (unsigned long long)eta);
-        } else if (speed > 0) {
-            sceClibSnprintf(line2, sizeof(line2), "%.1f KB/s", kb);
-        } else {
-            sceClibSnprintf(line2, sizeof(line2), "Preparando...");
+    float pct = 0.f;
+    bool determinate = false;
+    if (imageCache_ && !url.empty()) {
+        const std::string path = imageCache_->request(url, ns);
+        const auto prog = imageCache_->progress();
+        if (prog.active && !prog.localPath.empty() && prog.localPath == path && prog.total > 0) {
+            pct = std::min(1.f, static_cast<float>(prog.downloaded) / static_cast<float>(prog.total));
+            determinate = true;
+        } else if (imageCache_->isPending(path)) {
+            // Indeterminate pulse
+            pct = focusPulse();
+            determinate = false;
         }
-        vita2d_pgf_draw_text(font_, barX, barY + 24, TEXT, 0.54f, line2);
-    } else if (imageCache_->isPending(path)) {
-        // Queued or waiting — indeterminate pulse bar
-        const float pulse = focusPulse();
-        const int barW = w - 40;
-        const int barH = 8;
-        const int barX = x + 20;
-        const int barY = y + h / 2;
-        vita2d_draw_rectangle(barX, barY, barW, barH, BORDER);
-        const int slide = static_cast<int>((barW - 60) * pulse);
-        vita2d_draw_rectangle(barX + slide, barY, 60, barH, ACCENT);
-        vita2d_pgf_draw_text(font_, barX, barY - 18, TEXT, 0.58f, "En cola / cargando...");
+    }
+
+    const int pad = 3;
+    const int barH = std::max(3, std::min(6, h / 8));
+    const int barX = x + pad;
+    const int barY = y + h - pad - barH;
+    const int barW = std::max(1, w - pad * 2);
+
+    vita2d_draw_rectangle(barX, barY, barW, barH, BORDER);
+    if (determinate) {
+        const int fill = std::max(1, static_cast<int>(barW * pct));
+        vita2d_draw_rectangle(barX, barY, fill, barH, ACCENT);
     } else {
-        vita2d_pgf_draw_text(font_, x + 12, y + h / 2, DIM, 0.60f, "Cargando imagen...");
+        const int slideW = std::max(8, barW / 3);
+        const int slide = static_cast<int>((barW - slideW) * pct);
+        vita2d_draw_rectangle(barX + slide, barY, slideW, barH, ACCENT);
     }
 }
 
@@ -533,12 +640,8 @@ void FullCatalogScreen::updateAnimations() {
     if (std::fabs(targetDet - visualDetailScroll_) < 0.02f)
         visualDetailScroll_ = targetDet;
 
-    // Soft focus handoff between app cards
-    const float targetFocus = static_cast<float>(state_.focusIndex);
-    const float prevFocus = visualFocusIndex_;
-    visualFocusIndex_ += (targetFocus - visualFocusIndex_) * 0.20f;
-    if (std::fabs(targetFocus - visualFocusIndex_) < 0.02f)
-        visualFocusIndex_ = targetFocus;
+    // Keep visual focus in sync with logical focus (no laggy card handoff).
+    visualFocusIndex_ = static_cast<float>(state_.focusIndex);
 
     // When selection jumps to another app in detail mode, fade content briefly
     if (state_.mode == UiMode::SPLIT_DETAIL || state_.mode == UiMode::OPENING_DETAIL) {
@@ -571,7 +674,6 @@ void FullCatalogScreen::updateAnimations() {
         contentFade_ += (1.f - contentFade_) * 0.12f;
         if (contentFade_ > 0.995f) contentFade_ = 1.f;
     }
-    (void)prevFocus;
 }
 
 void FullCatalogScreen::drawToast() const {
@@ -695,9 +797,7 @@ void FullCatalogScreen::drawCatalogPanel(int x,int y,int w,int h,bool split){
                 if (i < 0 || i >= (int)items_.size()) continue;
                 const float fy = static_cast<float>(y + GRID_PAD) + (static_cast<float>(baseRow + r) - visualCatalogScroll_) * rowH;
                 if (fy + FULL_CARD_H < y || fy > y + h) continue;
-                const float dist = std::fabs(static_cast<float>(i) - visualFocusIndex_);
-                const bool focus = dist < 0.55f;
-                drawCatalogCard(items_[i], i, x + GRID_PAD + c * (cw + CARD_GAP), static_cast<int>(fy), cw, FULL_CARD_H, focus);
+                drawCatalogCard(items_[i], i, x + GRID_PAD + c * (cw + CARD_GAP), static_cast<int>(fy), cw, FULL_CARD_H, i == state_.focusIndex);
             }
         }
         vita2d_disable_clipping();
@@ -720,9 +820,7 @@ void FullCatalogScreen::drawCatalogPanel(int x,int y,int w,int h,bool split){
             if (i < 0 || i >= (int)items_.size()) continue;
             const float fy = static_cast<float>(y + GRID_PAD) + (static_cast<float>(i) - visualCatalogScroll_) * rowH;
             if (fy + SPLIT_CARD_H < y || fy > y + h) continue;
-            const float dist = std::fabs(static_cast<float>(i) - visualFocusIndex_);
-            const bool focus = dist < 0.55f;
-            drawCatalogCard(items_[i], i, x + GRID_PAD, static_cast<int>(fy), w - GRID_PAD * 2 - 4, SPLIT_CARD_H, focus);
+            drawCatalogCard(items_[i], i, x + GRID_PAD, static_cast<int>(fy), w - GRID_PAD * 2 - 4, SPLIT_CARD_H, i == state_.focusIndex);
         }
         vita2d_disable_clipping();
         const int total = (int)items_.size();
@@ -883,6 +981,7 @@ void FullCatalogScreen::drawFullCatalog(){vita2d_start_drawing();vita2d_clear_sc
         if(now>=toastExpiresMs_){toastMessage_.clear();toastExpiresMs_=0;}
     }
     handleInput();
+    handleTouch();
     updateTransition();
     updateAnimations();
     if(catalogSwitchCooldownFrames_==0)prepareVisibleTextures();
