@@ -60,7 +60,7 @@ Ux0SpaceInfo queryUx0Space() {
     if (ret < 0) return cached;
     cached.ok = true;
     cached.freeBytes = info.free_size;
-    cached.totalBytes = info.max_size;
+    cached.totalBytes = info.max_size > 0 ? info.max_size : info.free_size;
     return cached;
 }
 
@@ -68,7 +68,7 @@ std::string ux0FreeSpaceLabel() {
     const Ux0SpaceInfo s = queryUx0Space();
     if (!s.ok) return "ux0 --";
     char buf[64];
-    sceClibSnprintf(buf, sizeof(buf), "ux0 %s / %s",
+    sceClibSnprintf(buf, sizeof(buf), "%s/%s",
                     formatBytesShort(s.freeBytes).c_str(),
                     formatBytesShort(s.totalBytes).c_str());
     return buf;
@@ -82,10 +82,10 @@ void drawFooterBar(vita2d_pgf* font, const char* leftHints) {
     if (!font) return;
 
     const Ux0SpaceInfo sp = queryUx0Space();
-    const int panelW = 168;
-    const int panelH = FOOTER_H - 8;
-    const int panelX = SCREEN_W - panelW - 8;
-    const int panelY = SCREEN_H - FOOTER_H + 4;
+    const int panelW = 172;
+    const int panelH = FOOTER_H - 6;
+    const int panelX = SCREEN_W - panelW - 6;
+    const int panelY = SCREEN_H - FOOTER_H + 3;
     vita2d_draw_rectangle(panelX, panelY, panelW, panelH, SURFACE);
     vita2d_draw_rectangle(panelX, panelY, 2, panelH, ACCENT);
 
@@ -93,24 +93,26 @@ void drawFooterBar(vita2d_pgf* font, const char* leftHints) {
         vita2d_pgf_draw_text(font, panelX + 10, panelY + 18, DIM, 0.50f, "ux0 n/d");
         return;
     }
-    vita2d_pgf_draw_text(font, panelX + 8, panelY + 14, ACCENT, 0.48f, "UX0");
+    vita2d_pgf_draw_text(font, panelX + 8, panelY + 13, ACCENT, 0.46f, "UX0");
     char line[48];
     sceClibSnprintf(line, sizeof(line), "%s libres", formatBytesShort(sp.freeBytes).c_str());
-    vita2d_pgf_draw_text(font, panelX + 36, panelY + 14, WHITE, 0.48f, line);
-    sceClibSnprintf(line, sizeof(line), "de %s", formatBytesShort(sp.totalBytes).c_str());
-    vita2d_pgf_draw_text(font, panelX + 8, panelY + 28, TEXT, 0.46f, line);
+    vita2d_pgf_draw_text(font, panelX + 34, panelY + 13, WHITE, 0.48f, line);
+    sceClibSnprintf(line, sizeof(line), "de %s total", formatBytesShort(sp.totalBytes).c_str());
+    vita2d_pgf_draw_text(font, panelX + 8, panelY + 26, TEXT, 0.44f, line);
 
-    // Mini usage bar
-    const int barX = panelX + 8, barY = panelY + panelH - 8, barW = panelW - 16, barH = 4;
+    const int barX = panelX + 8, barY = panelY + panelH - 7, barW = panelW - 16, barH = 4;
     vita2d_draw_rectangle(barX, barY, barW, barH, BORDER);
     float used = 0.f;
     if (sp.totalBytes > 0)
         used = 1.f - (float)((double)sp.freeBytes / (double)sp.totalBytes);
     if (used < 0.f) used = 0.f;
     if (used > 1.f) used = 1.f;
-    const unsigned fill = used > 0.90f ? RGBA8(0xE0,0x32,0x32,255) : (used > 0.75f ? RGBA8(0xFF,0xB0,0x20,255) : ACCENT);
+    const unsigned fill = used > 0.90f ? RGBA8(0xE0, 0x32, 0x32, 255)
+                        : (used > 0.75f ? RGBA8(0xFF, 0xB0, 0x20, 255) : ACCENT);
     vita2d_draw_rectangle(barX, barY, std::max(1, (int)(barW * used)), barH, fill);
 }
+
+
 void FullCatalogScreen::drawFullCatalog(){vita2d_start_drawing();vita2d_clear_screen();drawHeader(SCREEN_W);drawTabs(SCREEN_W);drawCatalogPanel(0,HEADER_H+TABS_H,SCREEN_W,SCREEN_H-HEADER_H-TABS_H-FOOTER_H,false);drawFooterBar(font_, "D-Pad: Navigate   X: Detail   △: Search   □: Clear   L/R: Catalog   START: Exit");if(catalogLoading_||installProgressActive_)drawLoadingOverlay();if(!catalogError_.empty())vita2d_pgf_draw_text(font_,18,HEADER_H+TABS_H+26,ACCENT,.66f,catalogError_.c_str());drawToast();vita2d_end_drawing();vita2d_swap_buffers();}void FullCatalogScreen::drawSplitDetail(){vita2d_start_drawing();vita2d_clear_screen();drawHeader(SCREEN_W);drawTabs(SCREEN_W);int top=HEADER_H+TABS_H,hh=SCREEN_H-HEADER_H-TABS_H-FOOTER_H,lw=SCREEN_W/2;drawCatalogPanel(0,top,lw,hh,true);drawDetailPanel(lw,top,SCREEN_W-lw,hh);vita2d_draw_rectangle(lw-1,top,2,hh,BORDER);drawFooterBar(font_, state_.activePanel==UiPanel::Catalog?"PANEL: LISTA  |  → Detail   D-Pad: Navigate   O: Back   L/R: Catalog":"PANEL: DETALLE  |  ← Lista   D-Pad: Scroll   △: Links   X: Action   O: Back");if(catalogLoading_||installProgressActive_)drawLoadingOverlay();drawToast();vita2d_end_drawing();vita2d_swap_buffers();}void FullCatalogScreen::drawOpeningDetail(){float p=transitionProgress();int lw=SCREEN_W-(int)(SCREEN_W/2*p),rw=SCREEN_W-lw;vita2d_start_drawing();vita2d_clear_screen();drawHeader(SCREEN_W);drawTabs(SCREEN_W);int top=HEADER_H+TABS_H,hh=SCREEN_H-HEADER_H-TABS_H-FOOTER_H;drawCatalogPanel(0,top,lw,hh,true);if(rw>0)drawDetailPanel(lw,top,rw,hh);vita2d_end_drawing();vita2d_swap_buffers();}void FullCatalogScreen::drawClosingDetail(){float p=1.0f-transitionProgress();int lw=SCREEN_W-(int)(SCREEN_W/2*p),rw=SCREEN_W-lw;vita2d_start_drawing();vita2d_clear_screen();drawHeader(SCREEN_W);drawTabs(SCREEN_W);int top=HEADER_H+TABS_H,hh=SCREEN_H-HEADER_H-TABS_H-FOOTER_H;drawCatalogPanel(0,top,lw,hh,true);if(rw>0)drawDetailPanel(lw,top,SCREEN_W-lw,hh);vita2d_end_drawing();vita2d_swap_buffers();}void FullCatalogScreen::draw(){switch(state_.mode){case UiMode::FULL_CATALOG:drawFullCatalog();break;case UiMode::OPENING_DETAIL:drawOpeningDetail();break;case UiMode::SPLIT_DETAIL:drawSplitDetail();break;case UiMode::CLOSING_DETAIL:drawClosingDetail();break;}}bool FullCatalogScreen::updateAndDraw(){
     if(!ready_)return false;
     flushDeferredTextureFrees();
