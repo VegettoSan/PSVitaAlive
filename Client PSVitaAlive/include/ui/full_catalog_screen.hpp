@@ -43,6 +43,7 @@ public:
     void setActiveCatalog(CatalogType catalog);
     void setCatalogLoading(bool loading, const std::string& label, uint64_t current, uint64_t total, const std::string& message);
     void setCatalogError(const std::string& error);
+    void showToast(const std::string& message, uint64_t durationMs = 1400);
     // outcome: 0 = progress, 1 = success, 2 = error
     void setInstallProgress(bool active, uint64_t current, uint64_t total, uint64_t bytesPerSecond,
                             const std::string& stage, const std::string& fileName,
@@ -135,7 +136,6 @@ private:
     void drawActivePanelFrame(int x, int y, int width, int height, const char* label) const;
     float focusPulse() const;
     float easeInOut(float t) const;
-    void showToast(const std::string& message, uint64_t durationMs = 1400);
     void updateAnimations();
     void drawToast() const;
     void drawDetailContent(const CatalogItem& item, int x, int y, int width, int height);
