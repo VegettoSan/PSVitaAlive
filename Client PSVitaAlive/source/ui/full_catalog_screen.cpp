@@ -1,4 +1,6 @@
 #include "ui/full_catalog_screen.hpp"
+#include "installer/app_settings.hpp"
+#include "installer/plugin_detector.hpp"
 #include "diagnostic_logger.hpp"
 #include <psp2/ctrl.h>
 #include <psp2/touch.h>
@@ -430,7 +432,37 @@ void FullCatalogScreen::handleTouch() {
     touchAccumY_ = 0.f;
     if (wasDrag) return;
 
-    // --- Header search bar ---
+    
+    if (state_.mode == UiMode::SETTINGS) {
+        if (td.reportNum > 0) {
+            if (!touchDown_) {
+                touchDown_ = true;
+                touchStartX_ = mapX(td.report[0].x);
+                touchStartY_ = mapY(td.report[0].y);
+                touchMoved_ = false;
+            }
+        } else if (touchDown_) {
+            const int x = touchStartX_, y = touchStartY_;
+            touchDown_ = false;
+            if (touchMoved_) return;
+            const int panelX = 40, panelY = HEADER_H + 52, panelW = SCREEN_W - 80;
+            for (int i = 0; i < 3; ++i) {
+                const int ry = panelY + 24 + i * 72 - 8;
+                if (hit(x, y, panelX + 8, ry, panelW - 16, 64)) {
+                    if (settingsFocus_ == i) cycleSettingsOption(i, +1);
+                    else settingsFocus_ = i;
+                    return;
+                }
+            }
+            // tap header-ish area -> save and close
+            if (y < HEADER_H + 40) {
+                closeSettings(true);
+            }
+        }
+        return;
+    }
+
+// --- Header search bar ---
     if (y < HEADER_H) {
         const int barX = 200, barY = 10, barH = 32;
         const int barW = SCREEN_W - barX - 140;
@@ -554,7 +586,152 @@ void FullCatalogScreen::handleTouch() {
 }
 
 
-void FullCatalogScreen::handleInput(){if(isTransitioning())return;SceCtrlData p{};sceCtrlPeekBufferPositive(0,&p,1);static uint32_t prev=0;static uint64_t repeatAt=0;uint32_t mask=SCE_CTRL_UP|SCE_CTRL_DOWN|SCE_CTRL_LEFT|SCE_CTRL_RIGHT,pressed=p.buttons&~prev,direct=pressed&mask;uint64_t now=sceKernelGetProcessTimeWide(),repeat=0;if((p.buttons&mask)==0)repeatAt=0;else if(direct)repeatAt=now+DIRECTION_REPEAT_DELAY_US;else if(repeatAt&&now>=repeatAt){repeat=p.buttons&mask;repeatAt=now+DIRECTION_REPEAT_INTERVAL_US;}prev=p.buttons;uint32_t nav=direct|repeat;if(pressed&SCE_CTRL_START){if(installProgressActive_){showToast("Hay una descarga/instalacion en curso",1800);return;}state_.requestExit=true;return;}if((pressed&SCE_CTRL_LTRIGGER)||(pressed&SCE_CTRL_RTRIGGER)){
+
+void FullCatalogScreen::setAppSettings(const AppSettingsData& settings) {
+    settingsEdit_ = settings;
+}
+
+void FullCatalogScreen::setPluginStatus(const PluginStatus& plugins) {
+    pluginsStatus_ = plugins;
+}
+
+void FullCatalogScreen::setSettingsSaveCallback(SettingsSaveFn callback) {
+    settingsSave_ = std::move(callback);
+}
+
+void FullCatalogScreen::openSettings() {
+    if (installProgressActive_ || catalogLoading_) {
+        showToast("Espera a que termine la carga/instalacion", 1800);
+        return;
+    }
+    if (state_.mode == UiMode::SETTINGS) return;
+    settingsReturnMode_ = (state_.mode == UiMode::SPLIT_DETAIL) ? UiMode::SPLIT_DETAIL : UiMode::FULL_CATALOG;
+    settingsFocus_ = 0;
+    state_.mode = UiMode::SETTINGS;
+    diagnostics::log("[UI] settings opened");
+}
+
+void FullCatalogScreen::closeSettings(bool save) {
+    if (state_.mode != UiMode::SETTINGS) return;
+    if (save) {
+        if (settingsSave_) settingsSave_(settingsEdit_);
+        showToast("Ajustes guardados", 1600);
+        diagnostics::log("[UI] settings saved");
+    }
+    state_.mode = settingsReturnMode_;
+}
+
+void FullCatalogScreen::cycleSettingsOption(int row, int delta) {
+    if (delta == 0) return;
+    if (row == 0) {
+        int v = static_cast<int>(settingsEdit_.installMethod);
+        v = (v + delta) % 3;
+        if (v < 0) v += 3;
+        settingsEdit_.installMethod = static_cast<InstallMethod>(v);
+    } else if (row == 1) {
+        settingsEdit_.pspTarget = (settingsEdit_.pspTarget == PspTarget::Adrenaline)
+            ? PspTarget::LiveArea : PspTarget::Adrenaline;
+    } else if (row == 2) {
+        settingsEdit_.warnMissingPlugins = !settingsEdit_.warnMissingPlugins;
+    }
+}
+
+void FullCatalogScreen::handleSettingsInput(uint32_t pressed, uint32_t nav) {
+    constexpr int kRows = 3;
+    if (nav & SCE_CTRL_UP) {
+        settingsFocus_ = (settingsFocus_ + kRows - 1) % kRows;
+    }
+    if (nav & SCE_CTRL_DOWN) {
+        settingsFocus_ = (settingsFocus_ + 1) % kRows;
+    }
+    if ((nav & SCE_CTRL_LEFT) || (pressed & SCE_CTRL_SQUARE)) {
+        cycleSettingsOption(settingsFocus_, -1);
+    }
+    if ((nav & SCE_CTRL_RIGHT) || (pressed & SCE_CTRL_CROSS)) {
+        cycleSettingsOption(settingsFocus_, +1);
+    }
+    if (pressed & SCE_CTRL_CIRCLE) {
+        closeSettings(true);
+        return;
+    }
+    if (pressed & SCE_CTRL_SELECT) {
+        closeSettings(true);
+        return;
+    }
+}
+
+void FullCatalogScreen::drawSettings() {
+    vita2d_start_drawing();
+    vita2d_clear_screen();
+    drawHeader(SCREEN_W);
+    // Title strip
+    vita2d_draw_rectangle(0, HEADER_H, SCREEN_W, 36, SURFACE);
+    vita2d_pgf_draw_text(font_, 16, HEADER_H + 24, ACCENT, 0.90f, "Ajustes");
+    vita2d_pgf_draw_text(font_, SCREEN_W - 220, HEADER_H + 24, DIM, 0.52f, "SELECT/O: Guardar y volver");
+
+    const int panelX = 40, panelY = HEADER_H + 52, panelW = SCREEN_W - 80, panelH = SCREEN_H - HEADER_H - FOOTER_H - 60;
+    vita2d_draw_rectangle(panelX, panelY, panelW, panelH, SURFACE2);
+    vita2d_draw_rectangle(panelX, panelY, panelW, 2, ACCENT);
+
+    struct Row {
+        const char* label;
+        std::string value;
+        const char* hint;
+    };
+    const char* methodVal = AppSettings::toString(settingsEdit_.installMethod);
+    std::string methodLabel = methodVal;
+    if (settingsEdit_.installMethod == InstallMethod::Auto) methodLabel = "auto (recomendado)";
+    else if (settingsEdit_.installMethod == InstallMethod::Direct) methodLabel = "direct";
+    else methodLabel = "bgdl (proximamente)";
+
+    const char* pspVal = (settingsEdit_.pspTarget == PspTarget::Adrenaline) ? "Adrenaline (ISO/PBP)" : "LiveArea (NoPspEmuDrm)";
+    const char* warnVal = settingsEdit_.warnMissingPlugins ? "Si" : "No";
+
+    Row rows[3] = {
+        {"Metodo de instalacion", methodLabel, "Auto/Directo ahora; BGDL aun no"},
+        {"Destino PSP / PS1", pspVal, "Adrenaline usa ux0:pspemu"},
+        {"Avisar plugins faltantes", warnVal, "Toast al iniciar si falta NoNpDrm"},
+    };
+
+    for (int i = 0; i < 3; ++i) {
+        const int ry = panelY + 24 + i * 72;
+        const bool focus = (settingsFocus_ == i);
+        if (focus) {
+            vita2d_draw_rectangle(panelX + 8, ry - 8, panelW - 16, 64, SURFACE);
+            vita2d_draw_rectangle(panelX + 8, ry - 8, 3, 64, ACCENT);
+        }
+        vita2d_pgf_draw_text(font_, panelX + 24, ry + 12, focus ? ACCENT : TEXT, 0.62f, rows[i].label);
+        vita2d_pgf_draw_text(font_, panelX + 24, ry + 34, focus ? WHITE : ACCENT, 0.78f, rows[i].value.c_str());
+        vita2d_pgf_draw_text(font_, panelX + 24, ry + 52, DIM, 0.48f, rows[i].hint);
+        if (focus) {
+            vita2d_pgf_draw_text(font_, panelX + panelW - 100, ry + 34, ACCENT, 0.56f, "<  >");
+        }
+    }
+
+    // Plugin status card
+    const int cardY = panelY + panelH - 110;
+    vita2d_draw_rectangle(panelX + 12, cardY, panelW - 24, 90, SURFACE);
+    vita2d_pgf_draw_text(font_, panelX + 24, cardY + 22, ACCENT, 0.58f, "Plugins detectados");
+    char line[128];
+    sceClibSnprintf(line, sizeof(line), "NoNpDrm: %s", pluginsStatus_.nonpdrm ? "OK" : "NO");
+    vita2d_pgf_draw_text(font_, panelX + 24, cardY + 44, pluginsStatus_.nonpdrm ? ACCENT : RGBA8(0xE0,0x32,0x32,255), 0.56f, line);
+    sceClibSnprintf(line, sizeof(line), "NoPspEmuDrm: %s",
+                    (pluginsStatus_.nopspemudrmKern && pluginsStatus_.nopspemudrmUser) ? "OK" :
+                    (pluginsStatus_.nopspemudrmKern ? "parcial" : "NO"));
+    vita2d_pgf_draw_text(font_, panelX + 24, cardY + 64, pluginsStatus_.nopspemudrmKern ? ACCENT : RGBA8(0xE0,0x32,0x32,255), 0.56f, line);
+    if (!pluginsStatus_.configPathUsed.empty()) {
+        vita2d_pgf_draw_text(font_, panelX + 24, cardY + 82, DIM, 0.46f, pluginsStatus_.configPathUsed.c_str());
+    }
+
+    drawFooterBar(font_, "D-Pad: mover   X/>: cambiar   O/SELECT: guardar y volver");
+    drawToast();
+    vita2d_end_drawing();
+    vita2d_swap_buffers();
+}
+
+void FullCatalogScreen::handleInput(){if(isTransitioning())return;SceCtrlData p{};sceCtrlPeekBufferPositive(0,&p,1);static uint32_t prev=0;static uint64_t repeatAt=0;uint32_t mask=SCE_CTRL_UP|SCE_CTRL_DOWN|SCE_CTRL_LEFT|SCE_CTRL_RIGHT,pressed=p.buttons&~prev,direct=pressed&mask;uint64_t now=sceKernelGetProcessTimeWide(),repeat=0;if((p.buttons&mask)==0)repeatAt=0;else if(direct)repeatAt=now+DIRECTION_REPEAT_DELAY_US;else if(repeatAt&&now>=repeatAt){repeat=p.buttons&mask;repeatAt=now+DIRECTION_REPEAT_INTERVAL_US;}prev=p.buttons;uint32_t nav=direct|repeat;if(state_.mode==UiMode::SETTINGS){handleSettingsInput(pressed,nav);return;}
+if(pressed&SCE_CTRL_SELECT){openSettings();return;}
+if(pressed&SCE_CTRL_START){if(installProgressActive_){showToast("Hay una descarga/instalacion en curso",1800);return;}state_.requestExit=true;return;}if((pressed&SCE_CTRL_LTRIGGER)||(pressed&SCE_CTRL_RTRIGGER)){
         const bool canSwitch=!catalogLoading_&&!installProgressActive_&&!isTransitioning()
             &&catalogSwitchCooldownFrames_<=0&&deferredFreeTextures_.empty();
         if(canSwitch){
@@ -1249,7 +1426,7 @@ void drawFooterBar(vita2d_pgf* font, const char* leftHints) {
                         : (used > 0.75f ? RGBA8(0xFF, 0xB0, 0x20, 255) : ACCENT);
     vita2d_draw_rectangle(barX, barY, std::max(1, (int)(barW * used)), barH, fill);
 }
-void FullCatalogScreen::drawFullCatalog(){vita2d_start_drawing();vita2d_clear_screen();drawHeader(SCREEN_W);drawTabs(SCREEN_W);drawCatalogPanel(0,HEADER_H+TABS_H,SCREEN_W,SCREEN_H-HEADER_H-TABS_H-FOOTER_H,false);drawFooterBar(font_, "D-Pad: Navigate   X: Detail   △: Search   □: Clear   L/R: Catalog   START: Exit");if(catalogLoading_||installProgressActive_)drawLoadingOverlay();if(!catalogError_.empty())vita2d_pgf_draw_text(font_,18,HEADER_H+TABS_H+26,ACCENT,.66f,catalogError_.c_str());drawToast();vita2d_end_drawing();vita2d_swap_buffers();}void FullCatalogScreen::drawSplitDetail(){vita2d_start_drawing();vita2d_clear_screen();drawHeader(SCREEN_W);drawTabs(SCREEN_W);int top=HEADER_H+TABS_H,hh=SCREEN_H-HEADER_H-TABS_H-FOOTER_H,lw=SCREEN_W/2;drawCatalogPanel(0,top,lw,hh,true);drawDetailPanel(lw,top,SCREEN_W-lw,hh);vita2d_draw_rectangle(lw-1,top,2,hh,BORDER);drawFooterBar(font_, state_.activePanel==UiPanel::Catalog?"PANEL: LISTA  |  → Detail   D-Pad: Navigate   O: Back   L/R: Catalog":"PANEL: DETALLE  |  ← Lista   D-Pad: Scroll   △: Links   X: Action   O: Back");if(catalogLoading_||installProgressActive_)drawLoadingOverlay();drawToast();vita2d_end_drawing();vita2d_swap_buffers();}void FullCatalogScreen::drawOpeningDetail(){float p=transitionProgress();int lw=SCREEN_W-(int)(SCREEN_W/2*p),rw=SCREEN_W-lw;vita2d_start_drawing();vita2d_clear_screen();drawHeader(SCREEN_W);drawTabs(SCREEN_W);int top=HEADER_H+TABS_H,hh=SCREEN_H-HEADER_H-TABS_H-FOOTER_H;drawCatalogPanel(0,top,lw,hh,true);if(rw>0)drawDetailPanel(lw,top,rw,hh);vita2d_end_drawing();vita2d_swap_buffers();}void FullCatalogScreen::drawClosingDetail(){float p=1.0f-transitionProgress();int lw=SCREEN_W-(int)(SCREEN_W/2*p),rw=SCREEN_W-lw;vita2d_start_drawing();vita2d_clear_screen();drawHeader(SCREEN_W);drawTabs(SCREEN_W);int top=HEADER_H+TABS_H,hh=SCREEN_H-HEADER_H-TABS_H-FOOTER_H;drawCatalogPanel(0,top,lw,hh,true);if(rw>0)drawDetailPanel(lw,top,SCREEN_W-lw,hh);vita2d_end_drawing();vita2d_swap_buffers();}void FullCatalogScreen::draw(){switch(state_.mode){case UiMode::FULL_CATALOG:drawFullCatalog();break;case UiMode::OPENING_DETAIL:drawOpeningDetail();break;case UiMode::SPLIT_DETAIL:drawSplitDetail();break;case UiMode::CLOSING_DETAIL:drawClosingDetail();break;}}bool FullCatalogScreen::updateAndDraw(){
+void FullCatalogScreen::drawFullCatalog(){vita2d_start_drawing();vita2d_clear_screen();drawHeader(SCREEN_W);drawTabs(SCREEN_W);drawCatalogPanel(0,HEADER_H+TABS_H,SCREEN_W,SCREEN_H-HEADER_H-TABS_H-FOOTER_H,false);drawFooterBar(font_, "D-Pad: Nav   X: Detail   △: Search   SELECT: Ajustes   L/R: Catalog   START: Exit");if(catalogLoading_||installProgressActive_)drawLoadingOverlay();if(!catalogError_.empty())vita2d_pgf_draw_text(font_,18,HEADER_H+TABS_H+26,ACCENT,.66f,catalogError_.c_str());drawToast();vita2d_end_drawing();vita2d_swap_buffers();}void FullCatalogScreen::drawSplitDetail(){vita2d_start_drawing();vita2d_clear_screen();drawHeader(SCREEN_W);drawTabs(SCREEN_W);int top=HEADER_H+TABS_H,hh=SCREEN_H-HEADER_H-TABS_H-FOOTER_H,lw=SCREEN_W/2;drawCatalogPanel(0,top,lw,hh,true);drawDetailPanel(lw,top,SCREEN_W-lw,hh);vita2d_draw_rectangle(lw-1,top,2,hh,BORDER);drawFooterBar(font_, state_.activePanel==UiPanel::Catalog?"PANEL: LISTA  |  → Detail   D-Pad: Navigate   O: Back   L/R: Catalog":"PANEL: DETALLE  |  ← Lista   D-Pad: Scroll   △: Links   X: Action   O: Back");if(catalogLoading_||installProgressActive_)drawLoadingOverlay();drawToast();vita2d_end_drawing();vita2d_swap_buffers();}void FullCatalogScreen::drawOpeningDetail(){float p=transitionProgress();int lw=SCREEN_W-(int)(SCREEN_W/2*p),rw=SCREEN_W-lw;vita2d_start_drawing();vita2d_clear_screen();drawHeader(SCREEN_W);drawTabs(SCREEN_W);int top=HEADER_H+TABS_H,hh=SCREEN_H-HEADER_H-TABS_H-FOOTER_H;drawCatalogPanel(0,top,lw,hh,true);if(rw>0)drawDetailPanel(lw,top,rw,hh);vita2d_end_drawing();vita2d_swap_buffers();}void FullCatalogScreen::drawClosingDetail(){float p=1.0f-transitionProgress();int lw=SCREEN_W-(int)(SCREEN_W/2*p),rw=SCREEN_W-lw;vita2d_start_drawing();vita2d_clear_screen();drawHeader(SCREEN_W);drawTabs(SCREEN_W);int top=HEADER_H+TABS_H,hh=SCREEN_H-HEADER_H-TABS_H-FOOTER_H;drawCatalogPanel(0,top,lw,hh,true);if(rw>0)drawDetailPanel(lw,top,SCREEN_W-lw,hh);vita2d_end_drawing();vita2d_swap_buffers();}void FullCatalogScreen::draw(){switch(state_.mode){case UiMode::FULL_CATALOG:drawFullCatalog();break;case UiMode::OPENING_DETAIL:drawOpeningDetail();break;case UiMode::SPLIT_DETAIL:drawSplitDetail();break;case UiMode::CLOSING_DETAIL:drawClosingDetail();break;case UiMode::SETTINGS:drawSettings();break;}}bool FullCatalogScreen::updateAndDraw(){
     if(!ready_)return false;
     flushDeferredTextureFrees();
     if(catalogSwitchCooldownFrames_>0)--catalogSwitchCooldownFrames_;
