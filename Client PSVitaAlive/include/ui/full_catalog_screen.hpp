@@ -46,9 +46,9 @@ public:
     void setCatalogLoading(bool loading, const std::string& label, uint64_t current, uint64_t total, const std::string& message);
     void setCatalogError(const std::string& error);
     void showToast(const std::string& message, uint64_t durationMs = 1400);
-    void setAppSettings(const AppSettingsData& settings);
-    void setPluginStatus(const PluginStatus& plugins);
-    using SettingsSaveFn = std::function<void(const AppSettingsData&)>;
+    void setAppSettings(const ::psvitaalive::AppSettingsData& settings);
+    void setPluginStatus(const ::psvitaalive::PluginStatus& plugins);
+    using SettingsSaveFn = std::function<void(const ::psvitaalive::AppSettingsData&)>;
     void setSettingsSaveCallback(SettingsSaveFn callback);
     void openSettings();
     void closeSettings(bool save);
@@ -186,8 +186,8 @@ private:
     void drawSettings();
     void handleSettingsInput(uint32_t pressed, uint32_t nav);
     void cycleSettingsOption(int row, int delta);
-    AppSettingsData settingsEdit_{};
-    PluginStatus pluginsStatus_{};
+    ::psvitaalive::AppSettingsData settingsEdit_{};
+    ::psvitaalive::PluginStatus pluginsStatus_{};
     SettingsSaveFn settingsSave_;
     int settingsFocus_ = 0;
     UiMode settingsReturnMode_ = UiMode::FULL_CATALOG;
