@@ -97,8 +97,16 @@ private:
     /** Freed one frame later so the GPU is done with the previous swap. */
     std::vector<vita2d_texture*> deferredFreeTextures_;
     int catalogSwitchCooldownFrames_ = 0;
-    /** Absolute debounce so spam L/R cannot thrash GPU frees (ms, process time). */
     uint64_t lastCatalogSwitchMs_ = 0;
+    // Smooth motion / feedback
+    float visualCatalogScroll_ = 0.f;
+    float visualDetailScroll_ = 0.f;
+    float tabIndicatorX_ = 0.f;
+    float tabIndicatorReady_ = 0.f;
+    float contentFade_ = 1.f;
+    std::string toastMessage_;
+    uint64_t toastExpiresMs_ = 0;
+    uint64_t toastShownMs_ = 0;
 
     void handleInput();
     void draw();
@@ -114,6 +122,10 @@ private:
     void drawScrollFades(int x, int y, int width, int height) const;
     void drawActivePanelFrame(int x, int y, int width, int height, const char* label) const;
     float focusPulse() const;
+    float easeInOut(float t) const;
+    void showToast(const std::string& message, uint64_t durationMs = 1400);
+    void updateAnimations();
+    void drawToast() const;
     void drawDetailContent(const CatalogItem& item, int x, int y, int width, int height);
     void drawDetailLinks(const CatalogItem& item, int x, int y, int width, int& heightOut);
     void drawLoadingOverlay();
