@@ -29,6 +29,9 @@ void FullCatalogScreen::setCatalogItems(std::vector<CatalogItem>items){
     applySearch(searchQuery_);
     visualCatalogScroll_=0.f;
     visualDetailScroll_=0.f;
+    visualFocusIndex_=0.f;
+    detailCrossfade_=1.f;
+    detailCrossfadeFrom_=-1;
     contentFade_=0.4f;
     catalogLoading_=false;
     catalogError_.clear();
@@ -411,24 +414,90 @@ void FullCatalogScreen::prepareVisibleTextures(){
     releaseScreenshotTextures();
 }
 
-void FullCatalogScreen::drawImage(const std::string&url,const std::string&ns,int x,int y,int w,int h){
-    vita2d_draw_rectangle(x,y,w,h,SURFACE2);
-    if(!imageCache_||url.empty())return;
-    if(ns=="shot"){
-        const int clipTop=HEADER_H+TABS_H+DETAIL_HEADER_H;
-        const int clipBottom=SCREEN_H-FOOTER_H;
-        if(y+h<=clipTop||y>=clipBottom)return;
+void FullCatalogScreen::drawImageLoadingPlaceholder(const std::string& url, const std::string& ns, int x, int y, int w, int h) {
+    vita2d_draw_rectangle(x, y, w, h, SURFACE2);
+    if (!imageCache_ || url.empty() || !font_) {
+        vita2d_pgf_draw_text(font_, x + 12, y + h / 2, DIM, 0.60f, "Cargando...");
+        return;
     }
-    std::string path=imageCache_->request(url,ns);
-    if(imageCache_->isFailed(path)||!imageCache_->isReady(path))return;
-    auto it=textures_.find(path);
-    if(it==textures_.end())return;
+    const std::string path = imageCache_->request(url, ns);
+    const auto prog = imageCache_->progress();
+    const bool thisActive = prog.active && !prog.localPath.empty() && prog.localPath == path;
+
+    if (thisActive && prog.total > 0) {
+        const float pct = std::min(1.f, static_cast<float>(prog.downloaded) / static_cast<float>(prog.total));
+        const int barW = w - 40;
+        const int barH = 10;
+        const int barX = x + 20;
+        const int barY = y + h / 2 - 4;
+        vita2d_draw_rectangle(barX, barY, barW, barH, BORDER);
+        vita2d_draw_rectangle(barX, barY, std::max(1, static_cast<int>(barW * pct)), barH, ACCENT);
+
+        char line1[96];
+        sceClibSnprintf(line1, sizeof(line1), "Descargando  %d%%", static_cast<int>(pct * 100.f));
+        vita2d_pgf_draw_text(font_, barX, barY - 18, WHITE, 0.58f, line1);
+
+        char line2[128];
+        const uint64_t speed = prog.speed;
+        const double kb = speed / 1024.0;
+        if (speed > 0 && prog.downloaded < prog.total) {
+            const uint64_t left = prog.total - prog.downloaded;
+            const uint64_t eta = left / std::max<uint64_t>(1, speed);
+            sceClibSnprintf(line2, sizeof(line2), "%.1f KB/s   ETA %llu s", kb, (unsigned long long)eta);
+        } else if (speed > 0) {
+            sceClibSnprintf(line2, sizeof(line2), "%.1f KB/s", kb);
+        } else {
+            sceClibSnprintf(line2, sizeof(line2), "Preparando...");
+        }
+        vita2d_pgf_draw_text(font_, barX, barY + 24, TEXT, 0.54f, line2);
+    } else if (imageCache_->isPending(path)) {
+        // Queued or waiting — indeterminate pulse bar
+        const float pulse = focusPulse();
+        const int barW = w - 40;
+        const int barH = 8;
+        const int barX = x + 20;
+        const int barY = y + h / 2;
+        vita2d_draw_rectangle(barX, barY, barW, barH, BORDER);
+        const int slide = static_cast<int>((barW - 60) * pulse);
+        vita2d_draw_rectangle(barX + slide, barY, 60, barH, ACCENT);
+        vita2d_pgf_draw_text(font_, barX, barY - 18, TEXT, 0.58f, "En cola / cargando...");
+    } else {
+        vita2d_pgf_draw_text(font_, x + 12, y + h / 2, DIM, 0.60f, "Cargando imagen...");
+    }
+}
+
+void FullCatalogScreen::drawImage(const std::string& url, const std::string& ns, int x, int y, int w, int h) {
+    if (!imageCache_ || url.empty()) {
+        vita2d_draw_rectangle(x, y, w, h, SURFACE2);
+        return;
+    }
+    if (ns == "shot") {
+        const int clipTop = HEADER_H + TABS_H + DETAIL_HEADER_H;
+        const int clipBottom = SCREEN_H - FOOTER_H;
+        if (y + h <= clipTop || y >= clipBottom) return;
+    }
+    std::string path = imageCache_->request(url, ns);
+    if (imageCache_->isFailed(path)) {
+        vita2d_draw_rectangle(x, y, w, h, SURFACE2);
+        if (font_) vita2d_pgf_draw_text(font_, x + 12, y + h / 2, DIM, 0.58f, "Sin imagen");
+        return;
+    }
+    if (!imageCache_->isReady(path)) {
+        drawImageLoadingPlaceholder(url, ns, x, y, w, h);
+        return;
+    }
+    auto it = textures_.find(path);
+    if (it == textures_.end()) {
+        drawImageLoadingPlaceholder(url, ns, x, y, w, h);
+        return;
+    }
+    vita2d_draw_rectangle(x, y, w, h, SURFACE2);
     touchTexture(path);
-    vita2d_texture*t=it->second;
-    float tw=(float)vita2d_texture_get_width(t),th=(float)vita2d_texture_get_height(t);
-    if(tw<=0||th<=0)return;
-    float sc=std::min((float)w/tw,(float)h/th),dw=tw*sc,dh=th*sc;
-    vita2d_draw_texture_scale(t,x+(w-dw)/2.0f,y+(h-dh)/2.0f,sc,sc);
+    vita2d_texture* t = it->second;
+    float tw = (float)vita2d_texture_get_width(t), th = (float)vita2d_texture_get_height(t);
+    if (tw <= 0 || th <= 0) return;
+    float sc = std::min((float)w / tw, (float)h / th), dw = tw * sc, dh = th * sc;
+    vita2d_draw_texture_scale(t, x + (w - dw) / 2.0f, y + (h - dh) / 2.0f, sc, sc);
 }
 
 float FullCatalogScreen::focusPulse() const {
@@ -454,15 +523,36 @@ void FullCatalogScreen::showToast(const std::string& message, uint64_t durationM
 void FullCatalogScreen::updateAnimations() {
     // Catalog list scroll (row units)
     const float targetCat = static_cast<float>(state_.catalogScrollRow);
-    visualCatalogScroll_ += (targetCat - visualCatalogScroll_) * 0.22f;
-    if (std::fabs(targetCat - visualCatalogScroll_) < 0.01f)
+    visualCatalogScroll_ += (targetCat - visualCatalogScroll_) * 0.18f;
+    if (std::fabs(targetCat - visualCatalogScroll_) < 0.008f)
         visualCatalogScroll_ = targetCat;
 
-    // Detail body scroll (line units)
+    // Detail body scroll (pixel-ish line units) — same smoothing as catalog
     const float targetDet = static_cast<float>(state_.detailScroll);
-    visualDetailScroll_ += (targetDet - visualDetailScroll_) * 0.24f;
+    visualDetailScroll_ += (targetDet - visualDetailScroll_) * 0.18f;
     if (std::fabs(targetDet - visualDetailScroll_) < 0.02f)
         visualDetailScroll_ = targetDet;
+
+    // Soft focus handoff between app cards
+    const float targetFocus = static_cast<float>(state_.focusIndex);
+    const float prevFocus = visualFocusIndex_;
+    visualFocusIndex_ += (targetFocus - visualFocusIndex_) * 0.20f;
+    if (std::fabs(targetFocus - visualFocusIndex_) < 0.02f)
+        visualFocusIndex_ = targetFocus;
+
+    // When selection jumps to another app in detail mode, fade content briefly
+    if (state_.mode == UiMode::SPLIT_DETAIL || state_.mode == UiMode::OPENING_DETAIL) {
+        if (detailCrossfadeFrom_ != state_.focusIndex) {
+            if (detailCrossfadeFrom_ >= 0)
+                detailCrossfade_ = 0.25f;
+            detailCrossfadeFrom_ = state_.focusIndex;
+        }
+        detailCrossfade_ += (1.f - detailCrossfade_) * 0.14f;
+        if (detailCrossfade_ > 0.995f) detailCrossfade_ = 1.f;
+    } else {
+        detailCrossfade_ = 1.f;
+        detailCrossfadeFrom_ = state_.focusIndex;
+    }
 
     // Tab underline slides toward active catalog
     const float tabW = static_cast<float>(SCREEN_W) / static_cast<float>(CatalogType::Count);
@@ -471,7 +561,7 @@ void FullCatalogScreen::updateAnimations() {
         tabIndicatorX_ = targetTabX;
         tabIndicatorReady_ = 1.f;
     } else {
-        tabIndicatorX_ += (targetTabX - tabIndicatorX_) * 0.20f;
+        tabIndicatorX_ += (targetTabX - tabIndicatorX_) * 0.18f;
     }
 
     // Soft fade-in after catalog data arrives
@@ -481,6 +571,7 @@ void FullCatalogScreen::updateAnimations() {
         contentFade_ += (1.f - contentFade_) * 0.12f;
         if (contentFade_ > 0.995f) contentFade_ = 1.f;
     }
+    (void)prevFocus;
 }
 
 void FullCatalogScreen::drawToast() const {
@@ -586,8 +677,11 @@ void FullCatalogScreen::drawCatalogCard(const CatalogItem&it,int idx,int x,int y
 }
 void FullCatalogScreen::drawCatalogPanel(int x,int y,int w,int h,bool split){
     vita2d_draw_rectangle(x, y, w, h, PANEL);
-    // Dim content slightly while fading in after a catalog switch
     const unsigned dimPanel = contentFade_ < 0.99f ? RGBA8(0,0,0, static_cast<unsigned>((1.f-contentFade_)*90)) : 0;
+
+    // Clip cards to the panel so smooth scroll never spills outside the frame
+    vita2d_enable_clipping();
+    vita2d_set_clip_rectangle(x + 1, y + 1, x + w - 1, y + h - 1);
 
     if (!split) {
         const int vis = visibleRowsFull();
@@ -595,16 +689,18 @@ void FullCatalogScreen::drawCatalogPanel(int x,int y,int w,int h,bool split){
         const int cw = (w - GRID_PAD * 2 - CARD_GAP * 2) / 3;
         const float rowH = static_cast<float>(FULL_CARD_H + CARD_GAP);
         const int baseRow = std::max(0, static_cast<int>(std::floor(visualCatalogScroll_)) - 0);
-        // Draw one extra row above/below for smooth scroll without gaps
         for (int r = -1; r <= vis; ++r) {
             for (int c = 0; c < 3; ++c) {
                 const int i = (baseRow + r) * 3 + c;
                 if (i < 0 || i >= (int)items_.size()) continue;
                 const float fy = static_cast<float>(y + GRID_PAD) + (static_cast<float>(baseRow + r) - visualCatalogScroll_) * rowH;
                 if (fy + FULL_CARD_H < y || fy > y + h) continue;
-                drawCatalogCard(items_[i], i, x + GRID_PAD + c * (cw + CARD_GAP), static_cast<int>(fy), cw, FULL_CARD_H, i == state_.focusIndex);
+                const float dist = std::fabs(static_cast<float>(i) - visualFocusIndex_);
+                const bool focus = dist < 0.55f;
+                drawCatalogCard(items_[i], i, x + GRID_PAD + c * (cw + CARD_GAP), static_cast<int>(fy), cw, FULL_CARD_H, focus);
             }
         }
+        vita2d_disable_clipping();
         if (rows > vis) {
             int tx = x + w - 8, ty = y + 12, th = h - 24;
             vita2d_draw_rectangle(tx, ty, 4, th, BORDER);
@@ -624,8 +720,11 @@ void FullCatalogScreen::drawCatalogPanel(int x,int y,int w,int h,bool split){
             if (i < 0 || i >= (int)items_.size()) continue;
             const float fy = static_cast<float>(y + GRID_PAD) + (static_cast<float>(i) - visualCatalogScroll_) * rowH;
             if (fy + SPLIT_CARD_H < y || fy > y + h) continue;
-            drawCatalogCard(items_[i], i, x + GRID_PAD, static_cast<int>(fy), w - GRID_PAD * 2 - 4, SPLIT_CARD_H, i == state_.focusIndex);
+            const float dist = std::fabs(static_cast<float>(i) - visualFocusIndex_);
+            const bool focus = dist < 0.55f;
+            drawCatalogCard(items_[i], i, x + GRID_PAD, static_cast<int>(fy), w - GRID_PAD * 2 - 4, SPLIT_CARD_H, focus);
         }
+        vita2d_disable_clipping();
         const int total = (int)items_.size();
         if (total > vis) {
             int tx = x + w - 8, ty = y + 12, th = h - 24;
@@ -644,9 +743,12 @@ void FullCatalogScreen::drawCatalogPanel(int x,int y,int w,int h,bool split){
         vita2d_draw_rectangle(x, y, w, h, dimPanel);
 }
 
+
 void FullCatalogScreen::wrapText(const std::string&t,int max,std::vector<std::string>&out)const{out.clear();std::string cur;for(char c:t){if(c=='\n'){out.push_back(cur);cur.clear();continue;}if((int)cur.size()>=max&&c==' '){out.push_back(cur);cur.clear();continue;}cur.push_back(c);if((int)cur.size()>=max){out.push_back(cur);cur.clear();}}if(!cur.empty())out.push_back(cur);}void FullCatalogScreen::drawTextLines(const std::vector<std::string>&l,int x,int y,int lh,unsigned col,float sc,int start,int max,int top,int bottom){int first=std::max(0,start),last=std::min((int)l.size(),first+max),dy=y+first*lh;for(int i=first;i<last;++i){if(dy>=top&&dy<=bottom)vita2d_pgf_draw_text(font_,x,dy,col,sc,l[i].c_str());dy+=lh;}}
 void FullCatalogScreen::drawDetailLinks(const CatalogItem&it,int x,int y,int w,int&heightOut){heightOut=0;if(it.linkDetails.empty())return;for(size_t i=0;i<it.linkDetails.size();++i){const CatalogLink&l=it.linkDetails[i];bool f=state_.linkNavigation&&state_.linkFocus==(int)i,can=actionableLink(l);int ry=y+(int)i*(LINK_ROW_H+LINK_GAP);vita2d_draw_rectangle(x,ry,w,LINK_ROW_H,f?ACCENT:SURFACE2);vita2d_draw_rectangle(x,ry,w,1,f?ACCENT:BORDER);unsigned mc=f?BG:(can?WHITE:TEXT);std::string title=l.name.empty()?l.type:l.name;int bw=l.recommended?104:0;vita2d_pgf_draw_text(font_,x+10,ry+15,mc,.66f,ellipsize(title,bw?24:30).c_str());std::string meta=l.type;if(can)meta+="  • Cross: action";vita2d_pgf_draw_text(font_,x+10,ry+31,f?BG:DIM,.52f,ellipsize(meta,bw?30:50).c_str());if(l.recommended){int bx=x+w-bw-10,by=ry+8;vita2d_draw_rectangle(bx,by,bw,22,f?BG:ACCENT);vita2d_pgf_draw_text(font_,bx+8,by+15,f?ACCENT:BG,.52f,"Recommended");}}heightOut=10+(int)it.linkDetails.size()*(LINK_ROW_H+LINK_GAP);}
-void FullCatalogScreen::drawDetailContent(const CatalogItem&it,int x,int y,int w,int h){int cx=x+18,cw=w-36,mc=std::max(18,cw/7),top=y+DETAIL_HEADER_H+10,bottom=y+h-10,scroll=std::max(0,state_.detailScroll);std::vector<std::string>pre,post;auto add=[&](std::vector<std::string>&l,const char*t,const std::string&v){if(v.empty())return;l.push_back(t);std::vector<std::string>q;wrapText(v,mc,q);for(auto&s:q)l.push_back(s);l.push_back("");};add(pre,"Description",it.description);add(pre,"Long Description",it.longDescription);add(post,"Requirements",it.requirements);post.push_back("Information");post.push_back("Title ID: "+it.titleId);post.push_back("Version: "+it.version);post.push_back("Release date: "+it.versionDate);post.push_back("Category: "+it.category);post.push_back("Subcategory: "+it.subcategory);post.push_back("Size: "+it.size);post.push_back("Status: "+it.status);post.push_back("");add(post,"Changelog",it.changelog);int sc=std::min(5,(int)it.screenshots.size()),shotH=sc*SCREENSHOT_ROW_H,links=0;vita2d_enable_clipping();vita2d_set_clip_rectangle(x+2,top,x+w-18,bottom);drawDetailLinks(it,cx,top-scroll,cw,links);int preTop=top+links-scroll;drawTextLines(pre,cx,preTop,LINE_H,TEXT,.66f,0,(int)pre.size(),top,bottom);int shotTop=preTop+(int)pre.size()*LINE_H;for(int i=0;i<sc;++i)drawImage(it.screenshots[i],"shot",cx,shotTop+i*SCREENSHOT_ROW_H,cw,SCREENSHOT_ROW_H-18);int postTop=shotTop+shotH+8;drawTextLines(post,cx,postTop,LINE_H,TEXT,.66f,0,(int)post.size(),top,bottom);vita2d_disable_clipping();int total=detailContentHeight(it,w),vis=std::max(1,h-DETAIL_HEADER_H-18),mx=std::max(0,total-vis);if(mx>0){int tx=x+w-8,ty=y+DETAIL_HEADER_H+8,th=h-DETAIL_HEADER_H-18;vita2d_draw_rectangle(tx,ty,3,th,BORDER);int thumb=std::max(20,th*vis/std::max(1,total)),yy=ty+(th-thumb)*scroll/mx;vita2d_draw_rectangle(tx,yy,3,thumb,ACCENT);}}
+void FullCatalogScreen::drawDetailContent(const CatalogItem&it,int x,int y,int w,int h){
+if(detailCrossfade_<0.99f){vita2d_draw_rectangle(x,y,w,h,RGBA8(0,0,0,static_cast<unsigned>((1.f-detailCrossfade_)*140)));}
+int cx=x+18,cw=w-36,mc=std::max(18,cw/7),top=y+DETAIL_HEADER_H+10,bottom=y+h-10,scroll=std::max(0.f,visualDetailScroll_);std::vector<std::string>pre,post;auto add=[&](std::vector<std::string>&l,const char*t,const std::string&v){if(v.empty())return;l.push_back(t);std::vector<std::string>q;wrapText(v,mc,q);for(auto&s:q)l.push_back(s);l.push_back("");};add(pre,"Description",it.description);add(pre,"Long Description",it.longDescription);add(post,"Requirements",it.requirements);post.push_back("Information");post.push_back("Title ID: "+it.titleId);post.push_back("Version: "+it.version);post.push_back("Release date: "+it.versionDate);post.push_back("Category: "+it.category);post.push_back("Subcategory: "+it.subcategory);post.push_back("Size: "+it.size);post.push_back("Status: "+it.status);post.push_back("");add(post,"Changelog",it.changelog);int sc=std::min(5,(int)it.screenshots.size()),shotH=sc*SCREENSHOT_ROW_H,links=0;vita2d_enable_clipping();vita2d_set_clip_rectangle(x+2,top,x+w-18,bottom);drawDetailLinks(it,cx,top-scroll,cw,links);int preTop=top+links-scroll;drawTextLines(pre,cx,preTop,LINE_H,TEXT,.66f,0,(int)pre.size(),top,bottom);int shotTop=preTop+(int)pre.size()*LINE_H;for(int i=0;i<sc;++i)drawImage(it.screenshots[i],"shot",cx,shotTop+i*SCREENSHOT_ROW_H,cw,SCREENSHOT_ROW_H-18);int postTop=shotTop+shotH+8;drawTextLines(post,cx,postTop,LINE_H,TEXT,.66f,0,(int)post.size(),top,bottom);vita2d_disable_clipping();int total=detailContentHeight(it,w),vis=std::max(1,h-DETAIL_HEADER_H-18),mx=std::max(0,total-vis);if(mx>0){int tx=x+w-8,ty=y+DETAIL_HEADER_H+8,th=h-DETAIL_HEADER_H-18;vita2d_draw_rectangle(tx,ty,3,th,BORDER);int thumb=std::max(20,th*vis/std::max(1,total));int yy=ty+(int)((th-thumb)*(scroll/std::max(1.f,(float)mx)));vita2d_draw_rectangle(tx,yy,3,thumb,ACCENT);}}
 void FullCatalogScreen::drawDetailPanel(int x,int y,int w,int h){
     vita2d_draw_rectangle(x, y, w, h, PANEL);
     int i = selectedIndex();
