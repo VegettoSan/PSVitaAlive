@@ -375,12 +375,6 @@ int main(){
     psvitaalive::StorageManager storage;storage.initProjectDirs();
     psvitaalive::InstallController installer;psvitaalive::CatalogManager catalogs;psvitaalive::ui::ImageCache images;
     if(!installer.init())psvitaalive::diagnostics::log("[System] InstallController init failed");
-    screen.setAppSettings(installer.settings());
-    screen.setPluginStatus(installer.plugins());
-    screen.setSettingsSaveCallback([&installer,&screen](const psvitaalive::AppSettingsData& s){
-        installer.setSettings(s);
-        screen.setAppSettings(s);
-    });
     if(!catalogs.init())psvitaalive::diagnostics::log("[System] CatalogManager init failed");
     if(!images.init())psvitaalive::diagnostics::log("[System] ImageCache init failed");
 
@@ -412,7 +406,15 @@ int main(){
     screen.setCatalogLoading(true,psvitaalive::ui::catalogName(psvitaalive::ui::CatalogType::Homebrew),0,0,"Checking catalog cache...");
     if(!catalogs.request(psvitaalive::ui::CatalogType::Homebrew)){startupCatalogs=false;screen.setCatalogError("Unable to start catalog check");}
 
-        // Plugin warnings (settings.warn_missing_plugins)
+        
+    screen.setAppSettings(installer.settings());
+    screen.setPluginStatus(installer.plugins());
+    screen.setSettingsSaveCallback([&installer, &screen](const psvitaalive::AppSettingsData& s) {
+        installer.setSettings(s);
+        screen.setAppSettings(s);
+    });
+
+    // Plugin warnings (settings.warn_missing_plugins)
     if (installer.settings().warnMissingPlugins) {
         const auto& pl = installer.plugins();
         if (!pl.nonpdrm) {
