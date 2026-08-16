@@ -124,9 +124,7 @@ InstallDispatchResult InstallDispatcher::installFile(
 
     if (detected.format == FileFormat::Pkg || ext == "pkg") {
         VitaInstaller installer;
-        const VitaInstallResult result = installer.installPkg(
-            path,
-            [&](const VitaInstallProgress& ip) {
+        auto progressBridge = [&](const VitaInstallProgress& ip) {
                 if (!onProgress) return;
                 InstallDispatchProgress p;
                 p.current = ip.current;
@@ -140,102 +138,11 @@ InstallDispatchResult InstallDispatcher::installFile(
                 }
                 p.message = ip.message;
                 onProgress(p);
-            },
-            shouldCancel,
-            true
-        );
-        // PKG path: Promoter may create LiveArea entry; we do not always know TITLE_ID.
-        lastInstallPath_ = "LiveArea (PKG via Promoter)";
-        lastLiveAreaOk_ = (result == VitaInstallResult::Ok);
-        if (result == VitaInstallResult::Ok) {
-            diagnostics::log("[InstallDispatcher] PKG OK (promoter)");
-            if (onProgress) {
-                InstallDispatchProgress p;
-                p.stage = InstallDispatchProgress::Completed;
-                p.current = 1;
-                p.total = 1;
-                p.message = "PKG installed";
-                onProgress(p);
-            }
-            return InstallDispatchResult::Ok;
-        }
-        if (result == VitaInstallResult::Cancelled) {
-            setError(installer.lastError());
-            return InstallDispatchResult::Cancelled;
-        }
-        setError(installer.lastError());
-        return InstallDispatchResult::InstallFailed;
-    }
+        };
+        const VitaInstallResult result = rifPath.empty()
+            ? installer.installPkg(path, progressBridge, shouldCancel)
+            : installer.installPkgWithRif(path, rifPath, progressBridge, shouldCancel);
 
-    if (detected.format == FileFormat::Zip || ext == "zip") {
-        // VPKs are ZIP containers. If the download lost the .vpk extension (or
-        // magic detection only saw ZIP), try HomebrewInstaller when the user did
-        // not supply an explicit extract path. A real data ZIP still needs a
-        // destination and will fail the VPK layout check with a clear error.
-        if (zipDestination.empty()) {
-            diagnostics::log("[InstallDispatcher] ZIP without destination — trying as VPK (ZIP-backed homebrew)");
-            HomebrewInstaller installer;
-            const InstallResult result = installer.installVpk(
-                path,
-                [&](const InstallProgress& ip) {
-                    if (!onProgress) return;
-                    InstallDispatchProgress p;
-                    p.current = ip.bytesWritten;
-                    p.total = ip.bytesTotal;
-                    switch (ip.stage) {
-                        case InstallProgress::Preparing: p.stage = InstallDispatchProgress::Detecting; break;
-                        case InstallProgress::Extracting: p.stage = InstallDispatchProgress::Extracting; break;
-                        case InstallProgress::Promoting: p.stage = InstallDispatchProgress::Promoting; break;
-                        case InstallProgress::Cleaning: p.stage = InstallDispatchProgress::Cleaning; break;
-                        case InstallProgress::Done: p.stage = InstallDispatchProgress::Completed; break;
-                        default: p.stage = InstallDispatchProgress::Error; break;
-                    }
-                    p.message = ip.message;
-                    onProgress(p);
-                },
-                shouldCancel,
-                true
-            );
-            lastTitleId_ = installer.lastTitleId();
-            lastInstallPath_ = installer.lastInstallPath();
-            lastLiveAreaOk_ = installer.lastLiveAreaOk();
-            if (result == InstallResult::Ok) {
-                diagnostics::log(std::string("[InstallDispatcher] ZIP-as-VPK OK titleId=") + lastTitleId_);
-                if (onProgress) {
-                    InstallDispatchProgress p;
-                    p.stage = InstallDispatchProgress::Completed;
-                    p.current = 1;
-                    p.total = 1;
-                    p.message = "VPK installed";
-                    onProgress(p);
-                }
-                return InstallDispatchResult::Ok;
-            }
-            if (result == InstallResult::Cancelled) {
-                setError(installer.lastError());
-                return InstallDispatchResult::Cancelled;
-            }
-            // Not a valid VPK layout — report clearly instead of the old
-            // "ZIP destination is required" message that hid the real problem.
-            setError(installer.lastError().empty()
-                ? "ZIP file is not a VPK and no extract path was provided"
-                : (std::string("Not a VPK / install failed: ") + installer.lastError()));
-            return InstallDispatchResult::InstallFailed;
-        }
-        ZipExtractor extractor;
-        const ZipResult result = extractor.extract(
-            path, zipDestination,
-            [&](const ZipProgress& zp) {
-                if (!onProgress) return;
-                InstallDispatchProgress p;
-                p.stage = InstallDispatchProgress::Extracting;
-                p.current = zp.bytesWritten;
-                p.total = zp.bytesTotal;
-                p.message = zp.currentEntry.empty() ? "Extracting ZIP" : std::string("Extracting: ") + zp.currentEntry;
-                onProgress(p);
-            },
-            shouldCancel
-        );
         lastInstallPath_ = zipDestination;
         lastLiveAreaOk_ = false; // ZIP extract is not a LiveArea promote
         if (result == ZipResult::Cancelled) { setError("ZIP extraction cancelled"); return InstallDispatchResult::Cancelled; }
