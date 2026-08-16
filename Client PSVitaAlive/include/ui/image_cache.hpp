@@ -4,6 +4,7 @@
 
 #include <string>
 #include <unordered_map>
+#include <unordered_set>
 #include <vector>
 
 namespace psvitaalive {
@@ -18,6 +19,10 @@ public:
     void shutdown();
 
     std::string request(const std::string& url, const std::string& namespaceName);
+    /** Resolve local cache path without queueing a download. */
+    std::string pathFor(const std::string& url, const std::string& namespaceName) const;
+    /** Drop queued jobs whose path is not in keep (active download is left alone). */
+    void cancelQueuedExcept(const std::unordered_set<std::string>& keep);
 
     // Queue a remote image for background download without requiring it to be
     // visible on screen. Used at startup to warm the complete catalog cache.
