@@ -1,6 +1,8 @@
 #include "installer/install_controller.hpp"
 #include "diagnostic_logger.hpp"
 #include "installer/plugin_detector.hpp"
+#include "installer/app_settings.hpp"
+#include "installer/refresh_manager.hpp"
 
 #include <psp2/kernel/clib.h>
 #include <psp2/kernel/processmgr.h>
@@ -51,12 +53,15 @@ bool InstallController::init() {
     }
     setStage("Idle");
     setState(InstallStatus::State::Idle, "Ready");
-    const PluginStatus plugins = PluginDetector::scan();
-    diagnostics::log(std::string("[Installer] plugins: ") + plugins.detail);
-    if (!plugins.nonpdrm) {
+    settings_ = AppSettings::load();
+    plugins_ = PluginDetector::scan();
+    diagnostics::log(std::string("[Installer] plugins: ") + plugins_.detail);
+    diagnostics::log(std::string("[Installer] settings method=") + AppSettings::toString(settings_.installMethod) +
+        " psp=" + AppSettings::toString(settings_.pspTarget));
+    if (!plugins_.nonpdrm) {
         diagnostics::log("[Installer] NoNpDrm not detected — licensed Vita PKG installs may fail");
     }
-    if (!plugins.nopspemudrmKern) {
+    if (!plugins_.nopspemudrmKern) {
         diagnostics::log("[Installer] NoPspEmuDrm not detected — PSP LiveArea bubbles unavailable (Adrenaline ISO path still works)");
     }
     diagnostics::log("[Installer] initialized");
@@ -76,6 +81,13 @@ void InstallController::shutdown() {
     workerDone_.store(true);
     setState(InstallStatus::State::Idle, "Stopped");
     diagnostics::log("[Installer] shutdown");
+}
+
+void InstallController::setSettings(const AppSettingsData& s) {
+    settings_ = s;
+    AppSettings::save(settings_);
+    diagnostics::log(std::string("[Installer] settings saved method=") +
+        AppSettings::toString(settings_.installMethod));
 }
 
 void InstallController::cancel() {
@@ -106,6 +118,13 @@ bool InstallController::busy() const {
 
 bool InstallController::requestInstall(const std::string& url, const std::string& fileName, const std::string& zipDestination) {
     if (url.empty() || fileName.empty() || busy()) return false;
+    if (settings_.installMethod == InstallMethod::Bgdl) {
+        setState(InstallStatus::State::Failed,
+                 "BGDL still not available. Set install_method to auto or direct in config.json");
+        diagnostics::log("[Installer] BGDL requested but not implemented yet");
+        resultShownAtMs_.store(sceKernelGetSystemTimeWide() / 1000ULL);
+        return false;
+    }
 
     // Allow starting a new job after a result panel is still showing.
     const auto s = static_cast<InstallStatus::State>(state_.load());
@@ -292,11 +311,28 @@ int InstallController::workerMain() {
         } else {
             sceClibSnprintf(okMsg, sizeof(okMsg), "Installation completed");
         }
+        std::string verifyMsg;
+        const bool verified = RefreshManager::verifyAfterInstall(
+            dispatcher_.lastTitleId(),
+            dispatcher_.lastInstallPath(),
+            dispatcher_.lastLiveAreaOk(),
+            verifyMsg
+        );
+        liveAreaOk_.store(dispatcher_.lastLiveAreaOk() || verified);
+        if (!verifyMsg.empty()) {
+            // Prefer verification detail for the user-facing panel when available.
+            if (verified && !dispatcher_.lastInstallPath().empty()) {
+                sceClibSnprintf(okMsg, sizeof(okMsg), "%s", verifyMsg.c_str());
+            } else if (!verified) {
+                sceClibSnprintf(okMsg, sizeof(okMsg), "%s", verifyMsg.c_str());
+            }
+        }
         setStage("Completed");
         setState(InstallStatus::State::Completed, okMsg);
         diagnostics::log(std::string("[Installer] installation completed path=") +
             dispatcher_.lastInstallPath() + " titleId=" + dispatcher_.lastTitleId() +
-            " liveArea=" + (dispatcher_.lastLiveAreaOk() ? "yes" : "no"));
+            " liveArea=" + (dispatcher_.lastLiveAreaOk() ? "yes" : "no") +
+            " verify=" + verifyMsg);
         downloads_.cleanupCompletedJob(activeJobId_);
         activeJobId_.clear();
         resultShownAtMs_.store(sceKernelGetSystemTimeWide() / 1000ULL);
