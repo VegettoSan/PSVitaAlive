@@ -77,6 +77,9 @@ public:
     /** Remove final payload, metadata and the empty job directory. */
     bool cleanupCompletedJob(const std::string& jobId);
 
+    /** Delete incomplete/failed/cancelled job folders left on disk (startup + after errors). */
+    int purgeIncompleteJobs();
+
     const std::vector<DownloadJob>& jobs() const { return jobs_; }
     DownloadJob* findJob(const std::string& id);
 
