@@ -447,8 +447,8 @@ void FullCatalogScreen::handleTouch() {
             touchDown_ = false;
             if (touchMoved_) return;
             const int panelX = 40, panelY = HEADER_H + 52, panelW = SCREEN_W - 80;
-            for (int i = 0; i < 3; ++i) {
-                const int ry = panelY + 24 + i * 72 - 8;
+            for (int i = 0; i < 4; ++i) {
+                const int ry = panelY + 20 + i * 58 - 6;
                 if (hit(x, y, panelX + 8, ry, panelW - 16, 64)) {
                     if (settingsFocus_ == i) cycleSettingsOption(i, +1);
                     else settingsFocus_ = i;
@@ -628,17 +628,19 @@ void FullCatalogScreen::cycleSettingsOption(int row, int delta) {
         int v = static_cast<int>(settingsEdit_.installMethod);
         v = (v + delta) % 3;
         if (v < 0) v += 3;
-        settingsEdit_.installMethod = static_cast<InstallMethod>(v);
+        settingsEdit_.installMethod = static_cast<::psvitaalive::InstallMethod>(v);
     } else if (row == 1) {
         settingsEdit_.pspTarget = (settingsEdit_.pspTarget == ::psvitaalive::PspTarget::Adrenaline)
             ? ::psvitaalive::PspTarget::LiveArea : ::psvitaalive::PspTarget::Adrenaline;
     } else if (row == 2) {
         settingsEdit_.warnMissingPlugins = !settingsEdit_.warnMissingPlugins;
+    } else if (row == 3) {
+        settingsEdit_.promptImageWarmup = !settingsEdit_.promptImageWarmup;
     }
 }
 
 void FullCatalogScreen::handleSettingsInput(uint32_t pressed, uint32_t nav) {
-    constexpr int kRows = 3;
+    constexpr int kRows = 4;
     if (nav & SCE_CTRL_UP) {
         settingsFocus_ = (settingsFocus_ + kRows - 1) % kRows;
     }
@@ -664,68 +666,110 @@ void FullCatalogScreen::handleSettingsInput(uint32_t pressed, uint32_t nav) {
 void FullCatalogScreen::drawSettings() {
     vita2d_start_drawing();
     vita2d_clear_screen();
+    // Soft background like overlays
+    vita2d_draw_rectangle(0, 0, SCREEN_W, SCREEN_H, RGBA8(0x12, 0x12, 0x12, 255));
     drawHeader(SCREEN_W);
-    // Title strip
-    vita2d_draw_rectangle(0, HEADER_H, SCREEN_W, 36, SURFACE);
-    vita2d_pgf_draw_text(font_, 16, HEADER_H + 24, ACCENT, 0.90f, "Ajustes");
-    vita2d_pgf_draw_text(font_, SCREEN_W - 220, HEADER_H + 24, DIM, 0.52f, "SELECT/O: Guardar y volver");
 
-    const int panelX = 40, panelY = HEADER_H + 52, panelW = SCREEN_W - 80, panelH = SCREEN_H - HEADER_H - FOOTER_H - 60;
-    vita2d_draw_rectangle(panelX, panelY, panelW, panelH, SURFACE2);
-    vita2d_draw_rectangle(panelX, panelY, panelW, 2, ACCENT);
+    vita2d_draw_rectangle(0, HEADER_H, SCREEN_W, 40, SURFACE2);
+    vita2d_draw_rectangle(0, HEADER_H, SCREEN_W, 2, ACCENT);
+    vita2d_pgf_draw_text(font_, 18, HEADER_H + 28, ACCENT, 0.92f, "Ajustes");
+    vita2d_pgf_draw_text(font_, SCREEN_W - 280, HEADER_H + 26, DIM, 0.50f, "O / SELECT: guardar y volver");
 
-    struct Row {
+    const int margin = 24;
+    const int contentTop = HEADER_H + 52;
+    const int contentH = SCREEN_H - contentTop - FOOTER_H - 8;
+    const int colW = SCREEN_W - margin * 2;
+
+    // Left options column
+    const int listX = margin;
+    const int listW = colW * 58 / 100;
+    const int sideX = listX + listW + 12;
+    const int sideW = colW - listW - 12;
+
+    auto methodLabel = [&]() -> std::string {
+        if (settingsEdit_.installMethod == ::psvitaalive::InstallMethod::Auto) return "Auto";
+        if (settingsEdit_.installMethod == ::psvitaalive::InstallMethod::Direct) return "Directo";
+        return "BGDL";
+    };
+    auto pspLabel = [&]() -> std::string {
+        return settingsEdit_.pspTarget == ::psvitaalive::PspTarget::Adrenaline ? "Adrenaline" : "LiveArea";
+    };
+
+    struct Opt {
+        const char* section;
         const char* label;
         std::string value;
         const char* hint;
+        bool sectionStart;
     };
-    const char* methodVal = ::psvitaalive::AppSettings::toString(settingsEdit_.installMethod);
-    std::string methodLabel = methodVal;
-    if (settingsEdit_.installMethod == ::psvitaalive::InstallMethod::Auto) methodLabel = "auto (recomendado)";
-    else if (settingsEdit_.installMethod == ::psvitaalive::InstallMethod::Direct) methodLabel = "direct";
-    else methodLabel = "bgdl (proximamente)";
-
-    const char* pspVal = (settingsEdit_.pspTarget == ::psvitaalive::PspTarget::Adrenaline) ? "Adrenaline (ISO/PBP)" : "LiveArea (NoPspEmuDrm)";
-    const char* warnVal = settingsEdit_.warnMissingPlugins ? "Si" : "No";
-
-    Row rows[3] = {
-        {"Metodo de instalacion", methodLabel, "Auto/Directo ahora; BGDL aun no"},
-        {"Destino PSP / PS1", pspVal, "Adrenaline usa ux0:pspemu"},
-        {"Avisar plugins faltantes", warnVal, "Toast al iniciar si falta NoNpDrm"},
+    Opt opts[4] = {
+        {"INSTALACION", "Metodo de instalacion", methodLabel(), "Auto usa descarga directa por ahora", true},
+        {"", "Destino PSP / PS1", pspLabel(), "ISO/CSO/PBP en ux0:pspemu", false},
+        {"INTERFAZ", "Avisar plugins faltantes", settingsEdit_.warnMissingPlugins ? "Si" : "No", "Toast al iniciar si falta NoNpDrm", true},
+        {"CATALOGO", "Preguntar descarga de imagenes", settingsEdit_.promptImageWarmup ? "Si" : "No", "Si dices No al inicio, no vuelve a salir", true},
     };
 
-    for (int i = 0; i < 3; ++i) {
-        const int ry = panelY + 24 + i * 72;
+    int y = contentTop;
+    for (int i = 0; i < 4; ++i) {
+        if (opts[i].sectionStart && opts[i].section[0]) {
+            vita2d_pgf_draw_text(font_, listX + 4, y + 14, DIM, 0.48f, opts[i].section);
+            y += 22;
+        }
+        const int rowH = 54;
         const bool focus = (settingsFocus_ == i);
+        // Card
+        vita2d_draw_rectangle(listX, y, listW, rowH, focus ? SURFACE : SURFACE2);
         if (focus) {
-            vita2d_draw_rectangle(panelX + 8, ry - 8, panelW - 16, 64, SURFACE);
-            vita2d_draw_rectangle(panelX + 8, ry - 8, 3, 64, ACCENT);
+            vita2d_draw_rectangle(listX, y, 3, rowH, ACCENT);
+            vita2d_draw_rectangle(listX, y, listW, 1, ACCENT);
+            vita2d_draw_rectangle(listX, y + rowH - 1, listW, 1, ACCENT);
+        } else {
+            vita2d_draw_rectangle(listX, y, listW, 1, BORDER);
         }
-        vita2d_pgf_draw_text(font_, panelX + 24, ry + 12, focus ? ACCENT : TEXT, 0.62f, rows[i].label);
-        vita2d_pgf_draw_text(font_, panelX + 24, ry + 34, focus ? WHITE : ACCENT, 0.78f, rows[i].value.c_str());
-        vita2d_pgf_draw_text(font_, panelX + 24, ry + 52, DIM, 0.48f, rows[i].hint);
+        vita2d_pgf_draw_text(font_, listX + 14, y + 18, focus ? WHITE : TEXT, 0.58f, opts[i].label);
+        // Value chip
+        const int chipW = 96;
+        const int chipX = listX + listW - chipW - 12;
+        const int chipY = y + 10;
+        vita2d_draw_rectangle(chipX, chipY, chipW, 22, focus ? ACCENT : SURFACE);
+        vita2d_pgf_draw_text(font_, chipX + 10, chipY + 16, focus ? BG : ACCENT, 0.54f, opts[i].value.c_str());
+        vita2d_pgf_draw_text(font_, listX + 14, y + 40, DIM, 0.44f, opts[i].hint);
         if (focus) {
-            vita2d_pgf_draw_text(font_, panelX + panelW - 100, ry + 34, ACCENT, 0.56f, "<  >");
+            vita2d_pgf_draw_text(font_, chipX - 36, chipY + 16, ACCENT, 0.50f, "< >");
         }
+        y += rowH + 8;
     }
 
-    // Plugin status card
-    const int cardY = panelY + panelH - 110;
-    vita2d_draw_rectangle(panelX + 12, cardY, panelW - 24, 90, SURFACE);
-    vita2d_pgf_draw_text(font_, panelX + 24, cardY + 22, ACCENT, 0.58f, "Plugins detectados");
-    char line[128];
-    sceClibSnprintf(line, sizeof(line), "NoNpDrm: %s", pluginsStatus_.nonpdrm ? "OK" : "NO");
-    vita2d_pgf_draw_text(font_, panelX + 24, cardY + 44, pluginsStatus_.nonpdrm ? ACCENT : RGBA8(0xE0,0x32,0x32,255), 0.56f, line);
-    sceClibSnprintf(line, sizeof(line), "NoPspEmuDrm: %s",
-                    (pluginsStatus_.nopspemudrmKern && pluginsStatus_.nopspemudrmUser) ? "OK" :
-                    (pluginsStatus_.nopspemudrmKern ? "parcial" : "NO"));
-    vita2d_pgf_draw_text(font_, panelX + 24, cardY + 64, pluginsStatus_.nopspemudrmKern ? ACCENT : RGBA8(0xE0,0x32,0x32,255), 0.56f, line);
+    // Right info panel
+    vita2d_draw_rectangle(sideX, contentTop, sideW, contentH - 4, SURFACE2);
+    vita2d_draw_rectangle(sideX, contentTop, sideW, 2, ACCENT);
+    vita2d_pgf_draw_text(font_, sideX + 14, contentTop + 24, ACCENT, 0.62f, "Estado del sistema");
+    vita2d_pgf_draw_text(font_, sideX + 14, contentTop + 48, DIM, 0.48f, "Plugins taiHEN");
+
+    auto drawFlag = [&](int yy, const char* name, bool ok) {
+        vita2d_draw_rectangle(sideX + 14, yy, sideW - 28, 36, SURFACE);
+        vita2d_draw_rectangle(sideX + 14, yy, 3, 36, ok ? ACCENT : RGBA8(0xE0, 0x40, 0x40, 255));
+        vita2d_pgf_draw_text(font_, sideX + 28, yy + 16, WHITE, 0.54f, name);
+        vita2d_pgf_draw_text(font_, sideX + 28, yy + 30, ok ? ACCENT : RGBA8(0xE0, 0x40, 0x40, 255), 0.50f, ok ? "Detectado" : "No encontrado");
+    };
+    drawFlag(contentTop + 64, "NoNpDrm", pluginsStatus_.nonpdrm);
+    const bool pspOk = pluginsStatus_.nopspemudrmKern;
+    drawFlag(contentTop + 108, "NoPspEmuDrm", pspOk);
+
     if (!pluginsStatus_.configPathUsed.empty()) {
-        vita2d_pgf_draw_text(font_, panelX + 24, cardY + 82, DIM, 0.46f, pluginsStatus_.configPathUsed.c_str());
+        vita2d_pgf_draw_text(font_, sideX + 14, contentTop + 160, DIM, 0.42f, "Config:");
+        vita2d_pgf_draw_text(font_, sideX + 14, contentTop + 176, TEXT, 0.42f,
+                             pluginsStatus_.configPathUsed.c_str());
     }
+
+    vita2d_pgf_draw_text(font_, sideX + 14, contentTop + 210, DIM, 0.46f, "Archivo:");
+    vita2d_pgf_draw_text(font_, sideX + 14, contentTop + 226, TEXT, 0.42f, "ux0:data/psvitaalive/");
+    vita2d_pgf_draw_text(font_, sideX + 14, contentTop + 242, TEXT, 0.42f, "config.json");
+
+    vita2d_pgf_draw_text(font_, sideX + 14, contentTop + contentH - 28, DIM, 0.44f, "Cambios se guardan al salir");
 
     vita2d_draw_rectangle(0, SCREEN_H - FOOTER_H, SCREEN_W, FOOTER_H, SURFACE2);
-    vita2d_pgf_draw_text(font_, 12, SCREEN_H - 14, TEXT, 0.50f, "D-Pad: mover   X/>: cambiar   O/SELECT: guardar y volver");
+    vita2d_pgf_draw_text(font_, 12, SCREEN_H - 14, TEXT, 0.50f, "D-Pad: mover   X / <>: cambiar valor   O: guardar");
     drawToast();
     vita2d_end_drawing();
     vita2d_swap_buffers();
