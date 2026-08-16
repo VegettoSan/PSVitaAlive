@@ -21,7 +21,8 @@ enum class UiMode {
     FULL_CATALOG = 0,
     OPENING_DETAIL,
     SPLIT_DETAIL,
-    CLOSING_DETAIL
+    CLOSING_DETAIL,
+    SETTINGS
 };
 
 enum class UiPanel {
