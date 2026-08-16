@@ -1,63 +1,57 @@
-# `apps/` — Aplicaciones canónicas de PS Vita Alive Store
+# `apps/` — Canonical application records
 
-Esta carpeta contiene **un JSON por aplicación**. Es la fuente canónica de aplicaciones de PS Vita Alive Store y es la entrada que consume el generador antes de producir `catalog.json`.
+This directory contains **one JSON file per application**. It is the canonical editable application layer used by the catalog pipeline before `catalog.json` is generated.
 
-## Regla principal
+## Core rule
 
-No crear ni editar `catalog.json` manualmente. Las aplicaciones deben mantenerse aquí.
-
-Flujo:
+Do not create or manually edit `catalog.json`. Application changes belong here, or in `catalog_overrides/` when the data is enrichment that must survive external imports.
 
 ```text
 apps/*.json
     ↓
-normalización + merge + Overrides
+external merge + normalization + overrides
     ↓
-validación
+validation
     ↓
 catalog.json
 ```
 
-## Identidad
+## Application identity
 
-Cada aplicación debe tener:
+The main application contract includes:
 
-- `id`: identificador interno único de PS Vita Alive Store. No necesita coincidir con un ID externo.
-- `title_id`: Title ID de PS Vita. Es obligatorio y debe ser único dentro del catálogo.
-- `name`: nombre visible.
-- `description`: descripción corta.
-- `author_ids`: lista de autores individuales.
-- `category_id`: categoría oficial de PS Vita Alive Store.
-- `subcategory_ids`: subcategorías permitidas por esa categoría.
-- `version` y `version_date`: versión publicada y fecha de versión.
-- `icon` y `screenshots`: recursos multimedia válidos.
-- `links`: fuentes de descarga, repositorio, sitio oficial, documentación, etc.
-- `status`: `Verified`, `Legacy` o `Archive`.
+- `id` — unique PS Vita Alive Store internal identifier. It does not have to match an external source ID.
+- `title_id` — Vita Title ID. Required and unique across the catalog.
+- `name` — display name.
+- `description` — short description.
+- `author_ids` — one or more individual author IDs.
+- `category_id` — official category ID.
+- `subcategory_ids` — subcategories allowed by that category.
+- `version` and `version_date` — published release information.
+- `icon` and `screenshots` — public media URLs.
+- `links` — download, mirror, repository, website, documentation, issues, community and other useful sources.
+- `status` — `Verified`, `Legacy` or `Archive`.
 
-## Autores
+Optional preservation/enrichment fields may include `long_description`, `changelog`, `requirements`, `downloads`, `hash`, `hash2`, `size`, `data_size`, `data_url`, `score` and `updated_at`.
 
-Las aplicaciones utilizan `author_ids` y no guardan un único string con varios desarrolladores.
+Consumers and validation code should tolerate optional fields being absent.
 
-Correcto:
+## Authors
+
+Use individual `author_ids` rather than a single string containing multiple developers:
 
 ```json
 "author_ids": [
-  "autor-a",
-  "autor-b"
+  "author-a",
+  "author-b"
 ]
 ```
 
-No recomendado:
+This allows the website and PS Vita client to open each author's profile independently.
 
-```json
-"author_id": "autor-a & autor-b"
-```
+## Links
 
-## Enlaces
-
-Puede haber varios enlaces de descarga. El pipeline externo determina el enlace recomendado según frescura de versión/fecha; la prioridad de fuente se utiliza como desempate. Los Overrides pueden fijar manualmente el resultado.
-
-Ejemplo mínimo:
+Applications may expose multiple sources. A recommended link is optional.
 
 ```json
 "links": [
@@ -69,35 +63,43 @@ Ejemplo mínimo:
   },
   {
     "type": "Repository",
-    "name": "GitHub",
+    "name": "Source",
     "url": "https://github.com/example/project",
     "recommended": false
   }
 ]
 ```
 
-## Recursos externos
+Do not assume that a download must come from GitHub Releases.
 
-No conservar rutas relativas externas como `screenshots/foo.png` si el archivo no existe dentro de PS Vita Alive Store. Deben convertirse a URLs absolutas públicas y validarse.
+## External media
 
-## Actualizaciones externas
+Use absolute public URLs for externally hosted icons and screenshots. Do not preserve a relative path such as `screenshots/foo.png` unless that path is genuinely part of a resource tree published by PS Vita Alive Store.
 
-Cuando una aplicación existe localmente y una fuente externa contiene una versión más reciente, la agregación puede actualizar/enriquecer el JSON, respetando información local y Overrides.
+## Versions and updates
 
-## Publicación manual
+`title_id` is the primary Vita application identity. `version` and `version_date` describe the release. When external sources provide newer information, the aggregation layer may enrich or update the record while preserving protected local information and Overrides.
 
-Para una aplicación mantenida por un desarrollador:
+## Status values
 
-1. Crear o modificar su JSON en `apps/`.
-2. Verificar `title_id`.
-3. Verificar autores y categorías.
-4. Ejecutar la validación local si corresponde.
-5. Commit y push.
-6. GitHub Actions regenerará los catálogos.
+- `Verified` — project registered through the maintained/verified publishing flow.
+- `Legacy` — older project preserved from historical sources.
+- `Archive` — primarily preserved for historical/reference purposes.
 
-## Nunca hacer
+## Publishing a maintained application
 
-- Editar manualmente `catalog.json`.
-- Repetir una aplicación con otro `id` si tiene el mismo `title_id`.
-- Inventar URLs de screenshots.
-- Convertir varios autores en un único perfil compuesto.
+1. Create or update the application's JSON in `apps/`.
+2. Verify `title_id` uniqueness.
+3. Verify authors and official category/subcategories.
+4. Validate all required URLs and media.
+5. Run the relevant local validation.
+6. Commit and push or open the appropriate Pull Request.
+7. GitHub Actions validates and regenerates the published catalogs.
+
+## Never do
+
+- Manually edit `catalog.json`.
+- Create another application with the same `title_id` to represent the same Vita application.
+- Invent screenshot or icon URLs.
+- Collapse multiple authors into a combined profile.
+- Depend on an external numeric ID as the canonical PS Vita Alive Store `id`.
