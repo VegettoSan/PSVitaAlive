@@ -374,6 +374,7 @@ int main(){
 
     psvitaalive::StorageManager storage;storage.initProjectDirs();
     psvitaalive::InstallController installer;psvitaalive::CatalogManager catalogs;psvitaalive::ui::ImageCache images;
+    if(!installer.init())psvitaalive::diagnostics::log("[System] InstallController init failed");
     if(!catalogs.init())psvitaalive::diagnostics::log("[System] CatalogManager init failed");
     if(!images.init())psvitaalive::diagnostics::log("[System] ImageCache init failed");
 
