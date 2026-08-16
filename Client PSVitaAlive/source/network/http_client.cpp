@@ -15,9 +15,9 @@ namespace psvitaalive {
 
 namespace {
 constexpr size_t DOWNLOAD_BUFFER_SIZE = 512 * 1024;
-constexpr long CONNECT_TIMEOUT_SECONDS = 30;
+constexpr long CONNECT_TIMEOUT_SECONDS = 45;
 constexpr long LOW_SPEED_LIMIT = 1;
-constexpr long LOW_SPEED_TIME_SECONDS = 30;
+constexpr long LOW_SPEED_TIME_SECONDS = 60;
 constexpr const char* DIAG_LOG = "ux0:data/psvitaalive/logs/session.log";
 
 void httpDiagnostic(const char* message) {
@@ -373,38 +373,65 @@ HttpResult HttpClient::downloadToFile(
 
     struct curl_slist* headers = nullptr;
     headers = curl_slist_append(headers, "Accept: */*");
-    headers = curl_slist_append(headers, "Content-Length: 0");
+    headers = curl_slist_append(headers, "Accept-Encoding: identity");
+    headers = curl_slist_append(headers, "Connection: close");
     curl_easy_setopt(curl, CURLOPT_HTTPHEADER, headers);
 
-        CURLcode result = CURLE_OK;
-    // Vita/Vita3K OpenSSL is picky with GitLab/Cloudflare; try several TLS modes.
+    curl_easy_setopt(curl, CURLOPT_MAXREDIRS, 12L);
+    curl_easy_setopt(curl, CURLOPT_NOSIGNAL, 1L);
+
+    CURLcode result = CURLE_OK;
     const bool isGitlab = url.find("gitlab.com") != std::string::npos
         || url.find("gitlab.io") != std::string::npos;
-    // GitLab/Cloudflare often fails DEFAULT on Vita; try 1.2 first for those hosts.
+    const bool isArchive = url.find("archive.org") != std::string::npos;
+    const bool isGithub = url.find("github.com") != std::string::npos
+        || url.find("githubusercontent.com") != std::string::npos;
+
+    // Host-aware TLS order + generic network retries (fresh connection each try).
     const long sslAttempts[] = {
         isGitlab ? CURL_SSLVERSION_TLSv1_2 : CURL_SSLVERSION_DEFAULT,
-        isGitlab ? CURL_SSLVERSION_DEFAULT : CURL_SSLVERSION_TLSv1_2,
+        CURL_SSLVERSION_TLSv1_2,
+        CURL_SSLVERSION_DEFAULT,
         CURL_SSLVERSION_TLSv1_1,
-        CURL_SSLVERSION_TLSv1_0,
     };
-    for (int attempt = 0; attempt < 4; ++attempt) {
+    constexpr int kMaxAttempts = 4;
+    for (int attempt = 0; attempt < kMaxAttempts; ++attempt) {
         curl_easy_setopt(curl, CURLOPT_SSLVERSION, sslAttempts[attempt]);
+        curl_easy_setopt(curl, CURLOPT_FRESH_CONNECT, attempt > 0 ? 1L : 0L);
+        curl_easy_setopt(curl, CURLOPT_FORBID_REUSE, attempt > 0 ? 1L : 0L);
         if (attempt > 0) {
-            char retryMsg[96];
-            sceClibSnprintf(retryMsg, sizeof(retryMsg), "SSL retry attempt %d", attempt + 1);
+            char retryMsg[140];
+            sceClibSnprintf(retryMsg, sizeof(retryMsg), "download retry %d/%d hostHints=gitlab:%d archive:%d github:%d",
+                attempt + 1, kMaxAttempts, isGitlab ? 1 : 0, isArchive ? 1 : 0, isGithub ? 1 : 0);
             httpDiagnostic(retryMsg);
+            // Brief pause before retry (network / TLS recovery)
+            sceKernelDelayThread(400 * 1000);
+            ctx.cancelled = false;
+            if (ctx.downloaded == 0 && resumeOffset == 0 && ctx.fd >= 0) {
+                sceIoLseek(ctx.fd, 0, SCE_SEEK_SET);
+            }
         }
+
         result = curl_easy_perform(curl);
-        if (result != CURLE_SSL_CONNECT_ERROR &&
-            result != CURLE_PEER_FAILED_VERIFICATION) {
-            break;
-        }
-        char failMsg[120];
-        sceClibSnprintf(failMsg, sizeof(failMsg), "SSL attempt %d failed: %s", attempt + 1, curl_easy_strerror(result));
+
+        if (ctx.cancelled) break;
+        if (result == CURLE_OK) break;
+
+        const bool retryable =
+            result == CURLE_SSL_CONNECT_ERROR ||
+            result == CURLE_PEER_FAILED_VERIFICATION ||
+            result == CURLE_COULDNT_CONNECT ||
+            result == CURLE_COULDNT_RESOLVE_HOST ||
+            result == CURLE_OPERATION_TIMEDOUT ||
+            result == CURLE_RECV_ERROR ||
+            result == CURLE_SEND_ERROR ||
+            result == CURLE_GOT_NOTHING ||
+            result == CURLE_PARTIAL_FILE;
+        char failMsg[160];
+        sceClibSnprintf(failMsg, sizeof(failMsg), "attempt %d failed curl=%d %s retryable=%d",
+            attempt + 1, static_cast<int>(result), curl_easy_strerror(result), retryable ? 1 : 0);
         httpDiagnostic(failMsg);
-        if (ctx.downloaded == 0 && resumeOffset == 0 && ctx.fd >= 0) {
-            sceIoLseek(ctx.fd, 0, SCE_SEEK_SET);
-        }
+        if (!retryable) break;
     }
     long responseCode = 0;
     curl_easy_getinfo(curl, CURLINFO_RESPONSE_CODE, &responseCode);
@@ -424,6 +451,11 @@ HttpResult HttpClient::downloadToFile(
         setError("cancelled");
         return HttpResult::Cancelled;
     }
+    if (result == CURLE_ABORTED_BY_CALLBACK) {
+        setError("transfer aborted");
+        return HttpResult::NetworkError;
+    }
+
     if (ctx.ioError) {
         setError("sceIoWrite failed");
         return HttpResult::IoError;
