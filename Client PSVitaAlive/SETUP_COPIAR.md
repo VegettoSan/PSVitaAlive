@@ -1,54 +1,135 @@
-# Cómo copiar este proyecto a tu WSL
+# PS Vita Alive client setup and build guide
 
-Desde PowerShell o desde el explorador de Windows, la carpeta generada está en el entorno de trabajo del asistente.  
-Copia el contenido de `PSVitaAlive/` a:
+This file is the practical setup companion for `Client PSVitaAlive/README.md`. It is intentionally focused on building and validating the current client rather than describing the original bootstrap prototype.
 
-```text
-\\wsl.localhost\Ubuntu\home\vegettosandev\PSVitaAlive\
-```
+## 1. Host environment
 
-O dentro de WSL:
+On Windows, WSL2 with Ubuntu is a practical development environment. On Linux/macOS, use the native shell and install the equivalent build tools.
 
-```bash
-# Si descargas/copias el árbol a /mnt/c/... ajústalo.
-# Ejemplo si tienes el zip en Downloads:
-cd ~
-# Asegúrate de que ~/PSVitaAlive existe
-mkdir -p ~/PSVitaAlive
-# Copia archivos (ajusta origen)
-# cp -r /ruta/al/PSVitaAlive/* ~/PSVitaAlive/
-```
+Required tools include:
 
-## Comandos exactos en tu Ubuntu WSL
+- Git
+- CMake
+- GNU Make
+- Python 3 where required by the repository scripts
+- VitaSDK
+
+## 2. VitaSDK environment
+
+Set the SDK path before building:
 
 ```bash
-cd ~/PSVitaAlive
+export VITASDK=/usr/local/vitasdk
+export PATH="$VITASDK/bin:$PATH"
+```
 
-# Si ya tenías un main vacío, este proyecto lo sustituye de forma controlada.
-# Revisa que queden estos archivos:
-#   CMakeLists.txt
-#   source/main.cpp
-#   source/storage/storage_manager.cpp
-#   include/storage/storage_manager.hpp
-#   README.md
+Verify it:
 
-mkdir -p build
+```bash
+echo "$VITASDK"
+arm-vita-eabi-g++ --version
+cmake --version
+```
+
+## 3. Build the client
+
+From the repository root:
+
+```bash
+cd ~/PSVitaAlive/"Client PSVitaAlive"
+rm -rf build
+mkdir build
 cd build
 cmake ..
-make -j$(nproc)
+make -j1
 ```
 
-Si `cmake` o `make` fallan, pega el error completo.
+The expected output is:
 
-## Validación en Vita
+```text
+PSVitaAlive.vpk
+```
 
-1. Instala el nuevo `PSVitaAlive.vpk`
-2. Ábrelo (pantalla en negro / mínima; espera y pulsa ✕)
-3. Con VitaShell abre:
-   - `ux0:data/psvitaalive/test/summary.txt`
-4. Debe decir algo como:
-   ```text
-   dirs=1 write=1 read=1 size=1
-   ```
+with Title ID `PSVA00001`.
 
-Cuando eso esté OK, pasamos a **Fase 2: HttpClient**.
+`-j1` is recommended for diagnostics. Once the build is known to work, a parallel build may be used if desired.
+
+## 4. LiveArea packaging
+
+The VPK includes:
+
+```text
+sce_sys/
+├── param.sfo
+├── icon0.png
+├── pic0.png
+└── livearea/
+    └── contents/
+        ├── bg0.png
+        ├── startup.png
+        └── template.xml
+```
+
+The build uses an explicit `vita-pack-vpk` invocation with a relative source mapping so the repository can be built even when the local project directory contains spaces.
+
+See `assets/sce_sys/README.md` for the exact LiveArea asset requirements.
+
+## 5. Install and validate on Vita
+
+1. Transfer the generated `PSVitaAlive.vpk` to the Vita with VitaShell/FTP or another trusted transfer method.
+2. Install the VPK with VitaShell.
+3. Launch PSVitaAlive from LiveArea.
+4. Verify that the application icon, LiveArea background and startup image appear correctly.
+5. Test the catalog and installation flows relevant to the current development phase.
+
+## 6. Useful runtime paths
+
+```text
+ux0:data/psvitaalive/
+├── logs/
+│   ├── session.log
+│   └── install.log
+├── cache/
+└── tmp/
+```
+
+## 7. Clean rebuild
+
+When changing CMake, packaging assets or generated build metadata, use a clean build:
+
+```bash
+cd ~/PSVitaAlive/"Client PSVitaAlive"
+rm -rf build
+mkdir build
+cd build
+cmake ..
+make -j1
+```
+
+Do not commit the generated `build/` directory unless the repository explicitly requires it.
+
+## 8. Troubleshooting
+
+### Generic `Error 2`
+
+Run:
+
+```bash
+make VERBOSE=1 -j1
+```
+
+Look for the first real compiler, linker or packaging error above the final `Error 2` line.
+
+### `vita-pack-vpk` segmentation fault
+
+Check the generated command. The current CMake configuration intentionally uses a relative mapping:
+
+```text
+-a ../assets/sce_sys=sce_sys
+```
+
+Do not revert to absolute resource paths that contain the repository's `Client PSVitaAlive` space.
+
+### `No rule to make target 'eboot.bin'`
+
+The VitaSDK `vita_create_self(eboot.bin ...)` flow exposes the generated dependency as `eboot.bin-self` in the current toolchain. The VPK target must depend on `eboot.bin-self` before packaging `eboot.bin`.
