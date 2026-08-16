@@ -264,14 +264,8 @@ VITA_MAKE_FSELF_FLAGS:STRING=
 //vita-mksfoex
 VITA_MKSFOEX:PATH=/usr/local/vitasdk/bin/vita-mksfoex
 
-//vita-mksfoex flags
-VITA_MKSFOEX_FLAGS:STRING= -d PARENTAL_LEVEL=1
-
 //vita-pack-vpk
 VITA_PACK_VPK:PATH=/usr/local/vitasdk/bin/vita-pack-vpk
-
-//vita-pack-vpk flags
-VITA_PACK_VPK_FLAGS:STRING=
 
 
 ########################
