@@ -24,10 +24,17 @@ std::string installStatusText(const psvitaalive::InstallStatus&s){using S=psvita
 bool asciiToWide(const std::string&text,SceWChar16*out,size_t cap){if(!out||!cap)return false;size_t i=0;for(;i+1<cap&&i<text.size();++i){unsigned char c=(unsigned char)text[i];out[i]=(SceWChar16)(c<128?c:'?');}out[i]=0;return true;}
 std::string wideToAscii(const SceWChar16*t){if(!t)return{};std::string r;for(size_t i=0;t[i]&&i<2048;++i)r.push_back(t[i]<=0x7F?(char)t[i]:'?');return r;}
 bool promptText(const std::string&initial,const std::string&title,std::string&out){static bool loaded=false;if(!loaded){int r=sceSysmoduleLoadModule(SCE_SYSMODULE_IME);if(r<0)return false;loaded=true;}SceWChar16 input[256]={},wtitle[128]={};asciiToWide(initial,input,256);asciiToWide(title,wtitle,128);SceImeDialogParam p={};p.type=SCE_IME_TYPE_BASIC_LATIN;p.option=SCE_IME_OPTION_NO_AUTO_CAPITALIZATION;p.dialogMode=SCE_IME_DIALOG_DIALOG_MODE_WITH_CANCEL;p.textBoxMode=SCE_IME_DIALOG_TEXTBOX_MODE_WITH_CLEAR;p.title=wtitle;p.maxTextLength=255;p.initialText=input;p.inputTextBuffer=input;p.supportedLanguages=SCE_IME_LANGUAGE_ENGLISH|SCE_IME_LANGUAGE_SPANISH;p.enterLabel=SCE_IME_ENTER_LABEL_SEARCH;p.commonParam.magic=SCE_COMMON_DIALOG_MAGIC_NUMBER;if(sceImeDialogInit(&p)<0)return false;while(sceImeDialogGetStatus()==SCE_COMMON_DIALOG_STATUS_RUNNING)sceKernelDelayThread(10*1000);SceImeDialogResult r={};sceImeDialogGetResult(&r);bool ok=r.button==SCE_IME_DIALOG_BUTTON_ENTER;if(ok)out=wideToAscii(input);sceImeDialogTerm();return ok;}
-// In-app confirmation panel (matches PSVitaAlive look) before the system IME.
-// Vita has no custom folder browser; IME is still required for the path string.
-bool confirmZipExtractDialog() {
-    constexpr unsigned BG = RGBA8(0, 0, 0, 255);
+// In-app ZIP destination picker (matches PSVitaAlive look).
+// Quick paths avoid the system IME; "Escribir ruta..." still uses IME for custom paths.
+enum class ZipDestChoice {
+    Cancel = 0,
+    QuickData,
+    QuickApp,
+    QuickRepatch,
+    CustomIme
+};
+
+ZipDestChoice promptZipDestinationChoice() {
     constexpr unsigned SURFACE = RGBA8(0x37, 0x37, 0x37, 255);
     constexpr unsigned SURFACE2 = RGBA8(0x2A, 0x2A, 0x2A, 255);
     constexpr unsigned ACCENT = RGBA8(0x3B, 0xFF, 0, 255);
@@ -36,36 +43,60 @@ bool confirmZipExtractDialog() {
     constexpr unsigned DIM = RGBA8(0x6E, 0x6E, 0x6E, 255);
     constexpr int SW = 960, SH = 544;
 
+    static const char* kOptions[] = {
+        "ux0:data/",
+        "ux0:app/",
+        "ux0:repatch/",
+        "Escribir ruta personalizada...",
+    };
+    constexpr int kCount = 4;
+
     vita2d_pgf* font = vita2d_load_default_pgf();
-    if (!font) return false;
+    if (!font) return ZipDestChoice::Cancel;
 
     sceCtrlSetSamplingMode(SCE_CTRL_MODE_ANALOG);
     uint32_t prev = 0;
-    // Swallow the button that triggered install so it does not auto-confirm.
     {
         SceCtrlData pad{};
         sceCtrlPeekBufferPositive(0, &pad, 1);
         prev = pad.buttons;
     }
 
+    int focus = 0;
+    ZipDestChoice result = ZipDestChoice::Cancel;
     bool decided = false;
-    bool accepted = false;
+
     while (!decided) {
         SceCtrlData pad{};
         sceCtrlPeekBufferPositive(0, &pad, 1);
         const uint32_t pressed = pad.buttons & ~prev;
         prev = pad.buttons;
 
+        if (pressed & SCE_CTRL_UP) {
+            if (focus > 0) --focus;
+            else focus = kCount - 1;
+        }
+        if (pressed & SCE_CTRL_DOWN) {
+            if (focus + 1 < kCount) ++focus;
+            else focus = 0;
+        }
         if (pressed & SCE_CTRL_CROSS) {
-            accepted = true;
+            switch (focus) {
+                case 0: result = ZipDestChoice::QuickData; break;
+                case 1: result = ZipDestChoice::QuickApp; break;
+                case 2: result = ZipDestChoice::QuickRepatch; break;
+                default: result = ZipDestChoice::CustomIme; break;
+            }
             decided = true;
         } else if (pressed & SCE_CTRL_CIRCLE) {
-            accepted = false;
+            result = ZipDestChoice::Cancel;
             decided = true;
         }
 
-        const int boxW = 560, boxH = 220;
+        const int boxW = 580, boxH = 320;
         const int boxX = (SW - boxW) / 2, boxY = (SH - boxH) / 2;
+        const int rowH = 36;
+        const int listY = boxY + 100;
 
         vita2d_start_drawing();
         vita2d_clear_screen();
@@ -77,24 +108,21 @@ bool confirmZipExtractDialog() {
         vita2d_draw_rectangle(boxX + boxW - 1, boxY, 1, boxH, ACCENT);
 
         vita2d_pgf_draw_text(font, boxX + 24, boxY + 36, ACCENT, 1.05f, "Archivo ZIP detectado");
-        vita2d_pgf_draw_text(font, boxX + 24, boxY + 72, WHITE, 0.72f,
-            "Listo. A continuacion se pedira la ruta de la");
-        vita2d_pgf_draw_text(font, boxX + 24, boxY + 94, WHITE, 0.72f,
-            "carpeta donde se extraera el contenido.");
-        vita2d_pgf_draw_text(font, boxX + 24, boxY + 116, TEXT, 0.64f,
-            "Ejemplo: ux0:data/MiApp  o  ux0:data/");
+        vita2d_pgf_draw_text(font, boxX + 24, boxY + 68, WHITE, 0.70f,
+            "Elige la carpeta donde se extraera el contenido:");
 
-        const int btnY = boxY + boxH - 56;
-        const int btnW = 150, btnH = 34;
-        const int okX = boxX + boxW - btnW - 24;
-        const int cancelX = okX - btnW - 12;
-        vita2d_draw_rectangle(cancelX, btnY, btnW, btnH, SURFACE);
-        vita2d_draw_rectangle(okX, btnY, btnW, btnH, SURFACE);
-        vita2d_draw_rectangle(okX, btnY, btnW, 2, ACCENT);
-        vita2d_pgf_draw_text(font, cancelX + 28, btnY + 23, TEXT, 0.68f, "O Cancelar");
-        vita2d_pgf_draw_text(font, okX + 36, btnY + 23, ACCENT, 0.68f, "X Continuar");
-        vita2d_pgf_draw_text(font, boxX + 24, boxY + boxH - 18, DIM, 0.55f,
-            "Luego escribe la ruta y confirma en el teclado");
+        for (int i = 0; i < kCount; ++i) {
+            const int ry = listY + i * rowH;
+            const bool on = (i == focus);
+            if (on) {
+                vita2d_draw_rectangle(boxX + 20, ry - 20, boxW - 40, rowH - 4, SURFACE);
+                vita2d_draw_rectangle(boxX + 20, ry - 20, 3, rowH - 4, ACCENT);
+            }
+            vita2d_pgf_draw_text(font, boxX + 36, ry + 2, on ? ACCENT : TEXT, 0.74f, kOptions[i]);
+        }
+
+        vita2d_pgf_draw_text(font, boxX + 24, boxY + boxH - 28, DIM, 0.58f,
+            "D-Pad: elegir   X: aceptar   O: cancelar");
 
         vita2d_end_drawing();
         vita2d_swap_buffers();
@@ -103,15 +131,29 @@ bool confirmZipExtractDialog() {
 
     vita2d_wait_rendering_done();
     vita2d_free_pgf(font);
-    return accepted;
+    return result;
 }
 
 bool promptZipDestination(std::string& dst) {
-    if (!confirmZipExtractDialog()) {
-        psvitaalive::diagnostics::log("[UI] ZIP destination cancelled at confirm dialog");
+    const ZipDestChoice choice = promptZipDestinationChoice();
+    if (choice == ZipDestChoice::Cancel) {
+        psvitaalive::diagnostics::log("[UI] ZIP destination cancelled at path picker");
         return false;
     }
+    if (choice == ZipDestChoice::QuickData) {
+        dst = "ux0:data/";
+        return true;
+    }
+    if (choice == ZipDestChoice::QuickApp) {
+        dst = "ux0:app/";
+        return true;
+    }
+    if (choice == ZipDestChoice::QuickRepatch) {
+        dst = "ux0:repatch/";
+        return true;
+    }
 
+    // Custom path via system IME (pre-filled with ux0:data/).
     static bool loaded = false;
     if (!loaded) {
         const int r = sceSysmoduleLoadModule(SCE_SYSMODULE_IME);
