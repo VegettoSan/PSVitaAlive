@@ -5,223 +5,242 @@
 </p>
 
 <p align="center">
-  <strong>Tienda alternativa, gratuita y abierta de Homebrew para PlayStation Vita.</strong>
+  <strong>A free, open and preservation-focused Homebrew catalog for PlayStation Vita.</strong>
 </p>
 
-<p align="center">
-  Descubre, preserva, descarga y mantén actualizado tu Homebrew de PS Vita desde una arquitectura abierta basada únicamente en GitHub.
-</p>
+PS Vita Alive Store is an open platform for discovering, preserving, downloading and maintaining PlayStation Vita Homebrew. It is designed to remain free, scalable and maintainable without dedicated servers: GitHub, GitHub Actions and GitHub Pages provide the infrastructure.
 
 ---
 
-## ¿Qué es PS Vita Alive Store?
+## What is in this repository?
 
-**PS Vita Alive Store** es una plataforma abierta para descubrir y distribuir Homebrew de PlayStation Vita. El proyecto está diseñado para ser gratuito, escalable y fácil de mantener sin depender de servidores propios.
+The project has three main parts:
 
-El proyecto combina tres piezas principales:
+- **Canonical catalog data** in `apps/`, `authors/` and `categories/`.
+- **Automation** in `scripts/` and `.github/workflows/`, which imports, normalizes, deduplicates, validates and publishes the catalog.
+- **Clients**: the static website in `web/` and the native PS Vita client in `Client PSVitaAlive/`.
 
-- **Cliente nativo para PS Vita**, desarrollado con VitaSDK.
-- **Sitio web estático**, publicado mediante GitHub Pages.
-- **Pipeline de catálogo**, automatizado con GitHub Actions.
-
-La idea central es que desarrolladores, colaboradores y preservadores puedan mantener aplicaciones individuales sin tener que editar manualmente un catálogo gigante.
-
----
-
-## ✨ ¿Qué ofrece?
-
-### Para usuarios
-
-- 🔎 Buscar Homebrew por nombre, Title ID, autor o categoría.
-- 🗂️ Explorar categorías y subcategorías propias de PS Vita Alive Store.
-- 👤 Consultar perfiles individuales de desarrolladores.
-- 🖼️ Ver iconos y screenshots.
-- 📦 Encontrar múltiples fuentes de descarga.
-- ⭐ Identificar la descarga recomendada.
-- 📅 Consultar versión y fecha de publicación.
-- 🔄 Recibir información actualizada desde múltiples catálogos externos.
-- 🕰️ Conservar proyectos antiguos mediante estados `Legacy` y `Archive`.
-- ✅ Identificar proyectos mantenidos mediante el flujo `Verified`.
-
-### Para desarrolladores y colaboradores
-
-- Un archivo JSON individual por aplicación.
-- Un perfil JSON individual por autor.
-- Categorías y subcategorías controladas por el proyecto.
-- Pull Requests para registrar proyectos mantenidos.
-- Overrides para corregir o enriquecer información sin perder las actualizaciones externas.
-- Posibilidad de mantener varios enlaces de descarga, repositorio, documentación, mirrors, datos adicionales, etc.
-- Integración automática de fuentes externas sin tener que copiar manualmente sus catálogos.
-
----
-
-## 🏗️ Arquitectura
-
-La arquitectura canónica es deliberadamente sencilla:
+The core data architecture is:
 
 ```text
-apps/
-authors/
-categories/
-    │
-    ├───────────────┐
-    │               │
-    │        Fuentes externas
-    │        VitaDB / VitaDBtoo /
-    │        NeoVitaDB / otras
-    │               │
-    └───────┬───────┘
-            ▼
-     Normalización
-            ▼
-      Deduplicación
-       por Title ID
-            ▼
-   Comparación de versiones
-            ▼
-    Merge / Enrichment
-            ▼
-        Overrides
-            ▼
-       Validación
-            ▼
-  ┌──────────────────────────────┐
-  │ catalog.json                 │
-  │ authors.json                 │
-  │ categories.json              │
-  └──────────────────────────────┘
-            │
-       ┌────┴────┐
-       ▼         ▼
-     Web      Cliente PS Vita
+apps/*.json
+ authors/*.json
+ categories/*.json
+        │
+        ├──────── external sources
+        │          (VitaDB, VitaDBtoo, ...)
+        │
+        ▼
+ normalize → deduplicate → merge/enrich → overrides → validate
+        │
+        ▼
+ catalog.json
+ authors.json
+ categories.json
+        │
+        ├───────────────┐
+        ▼               ▼
+      Website       PS Vita client
 ```
 
-Los tres catálogos finales son **archivos generados**. No deben editarse manualmente.
-
-La fuente de verdad está en los archivos individuales de `apps/`, `authors/` y `categories/`, junto con las reglas de normalización y los Overrides.
+The three generated Homebrew catalogs are the public contract consumed by the website and PS Vita client. **Do not edit generated catalogs manually.**
 
 ---
 
-## 🔄 Catálogos externos
+## Public catalog API for other projects
 
-PS Vita Alive Store puede importar información de diferentes fuentes de Homebrew.
+You do **not** need to use the PS Vita Alive Store website or client to use the catalog. Any application capable of reading JSON over HTTP can consume the published files directly.
 
-Actualmente se contemplan:
+### Canonical Homebrew endpoints
 
-- **VitaDB**
-- **NeoVitaDB**
-- **VitaDBtoo**
-
-Los formatos externos no se consumen directamente por la web ni por el cliente. Cada fuente se transforma al modelo interno antes de incorporarse al catálogo.
-
-Esto permite que una fuente externa esté incompleta sin destruir información propia de PS Vita Alive Store.
-
-### Actualización y deduplicación
-
-Si varias fuentes contienen la misma aplicación, se utiliza `title_id` para identificarla y evitar duplicados.
-
-Cuando existen diferentes versiones, la lógica de agregación compara principalmente:
-
-1. versión;
-2. fecha de versión;
-3. prioridad de fuente como desempate.
-
-Por ejemplo, una fuente con menor prioridad puede proporcionar la descarga recomendada si contiene realmente una versión más reciente.
-
----
-
-## 🧩 Overrides
-
-Los Overrides permiten mantener información propia aunque las fuentes externas no la proporcionen.
-
-Ejemplo de uso:
+Raw GitHub endpoints:
 
 ```text
-catalog_overrides/
-└── mi-aplicacion.json
+https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/catalog.json
+https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors.json
+https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/categories.json
 ```
 
-Un Override puede añadir o corregir, entre otros:
+GitHub Pages also exposes the repository's public site and generated data. For applications that need a machine-readable source, the raw GitHub URLs above are the simplest integration point.
 
-- descripción;
-- descripción larga;
-- screenshots;
-- icono;
-- requisitos;
-- changelog;
-- enlaces adicionales;
-- datos de juegos necesarios para un port;
-- fuentes alternativas de descarga.
+### What each catalog contains
 
-El flujo es:
+| File | Purpose |
+|---|---|
+| `catalog.json` | Homebrew application records |
+| `authors.json` | Author profiles referenced by applications |
+| `categories.json` | Official categories and their allowed subcategories |
 
-```text
-Fuente externa
-      ↓
-Merge / enriquecimiento
-      ↓
-Override
-      ↓
-Aplicación canónica
+The current `catalog.json` is a JSON array. Each application record contains a stable internal `id` and a unique `title_id`, plus metadata such as name, description, author IDs, category, version, media and download links.
+
+### Minimal JavaScript example
+
+```js
+const CATALOG_URL =
+  "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/catalog.json";
+
+const response = await fetch(CATALOG_URL);
+if (!response.ok) throw new Error(`Catalog HTTP ${response.status}`);
+
+const apps = await response.json();
+
+for (const app of apps) {
+  console.log(app.name, app.title_id, app.version);
+}
 ```
 
-Así una aplicación puede seguir recibiendo automáticamente nuevas versiones mientras conserva información manual que no existe en los catálogos externos.
+### Resolving authors and categories
 
----
+Applications reference authors and categories by ID instead of duplicating their profiles:
 
-## 👥 Autores individuales
+```js
+const [apps, authors, categories] = await Promise.all([
+  fetch("https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/catalog.json").then(r => r.json()),
+  fetch("https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors.json").then(r => r.json()),
+  fetch("https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/categories.json").then(r => r.json())
+]);
 
-Los autores se mantienen como entidades independientes.
+const authorById = new Map(authors.map(author => [author.id, author]));
+const categoryById = new Map(categories.map(category => [category.id, category]));
 
-Una aplicación con varios desarrolladores utiliza varios IDs:
+const app = apps[0];
+const appAuthors = (app.author_ids || [])
+  .map(id => authorById.get(id))
+  .filter(Boolean);
+const category = categoryById.get(app.category_id);
+```
+
+### Application fields
+
+The main application contract includes:
+
+- `id` — PS Vita Alive Store internal identifier.
+- `title_id` — unique Vita Title ID and the primary installation/update identity.
+- `name` — display name.
+- `description` — short description.
+- `author_ids` — one or more individual author IDs.
+- `category_id` — official category ID.
+- `subcategory_ids` — valid subcategory IDs for that category.
+- `version` and `version_date` — published version information.
+- `icon` — application icon URL.
+- `screenshots` — screenshot URLs.
+- `links` — download, mirror, repository, website, documentation, issues, community and other useful links.
+- `status` — `Verified`, `Legacy` or `Archive`.
+
+Additional optional fields may be present for preservation and enrichment, including `long_description`, `changelog`, `requirements`, `downloads`, `hash`, `hash2`, `size`, `data_size`, `data_url`, `score` and `updated_at`.
+
+**Consumers should ignore unknown fields and tolerate missing optional fields.** This is important for forward compatibility and for older Homebrew records.
+
+### Download links
+
+Do not assume that every application uses GitHub Releases. An application can expose multiple links:
 
 ```json
-"author_ids": [
-  "autor-a",
-  "autor-b"
+"links": [
+  {
+    "type": "Download",
+    "name": "VPK",
+    "url": "https://example.org/app.vpk",
+    "recommended": true
+  },
+  {
+    "type": "Mirror",
+    "name": "Mirror",
+    "url": "https://example.org/mirror/app.vpk",
+    "recommended": false
+  },
+  {
+    "type": "Repository",
+    "name": "Source",
+    "url": "https://github.com/example/project",
+    "recommended": false
+  }
 ]
 ```
 
-No se crea un perfil combinado como `autor-a & autor-b`.
+A consumer should prefer a `Download` link marked `recommended: true` when present, while still allowing users to access other valid sources.
 
-Esto permite que la web y el cliente puedan abrir el perfil de cada desarrollador y mostrar todas sus aplicaciones.
+### Version and update handling
 
-Cuando una fuente externa descubre un autor que todavía no existe, el pipeline puede crear un perfil mínimo y posteriormente enriquecerlo con la información disponible.
+Use `title_id` to identify an installed Vita application. Use `version` and `version_date` to determine whether the catalog describes a newer release. Do not use the internal `id` as a replacement for `title_id` when implementing installation or update detection.
+
+### Caching and reliability
+
+The catalog is generated data, not a real-time API. A consumer should cache downloaded JSON locally, refresh it periodically, and handle temporary HTTP failures without destroying its last known good catalog.
+
+If reproducible builds are required, pin a specific Git commit instead of relying on the moving `main` branch URL.
+
+### Image handling
+
+`icon` and `screenshots` are normally public absolute URLs. A consumer should handle missing or unavailable images gracefully and should not assume that every remote resource remains online forever.
 
 ---
 
-## 🖼️ Recursos y fallbacks
+## Canonical data model
 
-Las imágenes externas se normalizan a URLs públicas válidas cuando la fuente realmente publica esos recursos.
+### Applications
 
-No se asume que una ruta relativa como:
+Every application has its own JSON file:
 
 ```text
-screenshots/screenshot1.png
+apps/<application-id>.json
 ```
 
-existe dentro de GitHub Pages.
+`title_id` must be unique. The internal `id` does not have to match an external catalog's numeric identifier.
 
-También existen fallbacks para evitar interfaces rotas cuando una imagen externa deja de estar disponible:
+### Authors
 
-- avatar de autor → `authors/icon/autoricon.png`;
-- icono de aplicación → icono de su categoría;
-- fallback visual adicional en la interfaz web.
+Every author has an individual profile:
+
+```text
+authors/<author-id>.json
+```
+
+Applications reference `author_ids`. Multiple developers are represented as multiple profiles, not as one combined author string.
+
+### Categories
+
+Official categories live in `categories/`. Subcategories are declared by the category itself. External sources are mapped into this controlled vocabulary rather than creating arbitrary categories during import.
+
+### Overrides
+
+`catalog_overrides/` stores manual enrichment that should survive external imports, such as extra screenshots, requirements, game-data links or additional download sources.
 
 ---
 
-## 🌐 Sitio web
+## External catalog integration
 
-El sitio web está construido con:
+External catalogs are **inputs**, not the public data contract. The current source layer documents VitaDB and VitaDBtoo. Their records are normalized into the PS Vita Alive Store model before they reach the generated catalog.
 
-- HTML
-- CSS
-- JavaScript
-- GitHub Pages
+The import process is designed to be non-destructive: an application already maintained locally should not disappear merely because an external source temporarily omits it.
 
-No necesita un backend propio.
+`title_id` is the main identity used to deduplicate Vita applications. Version/date freshness is considered before source priority when selecting the most appropriate current data.
 
-Consume únicamente:
+The original external data should remain untouched; adapters and normalizers perform the conversion.
+
+---
+
+## Website
+
+The website is a static HTML/CSS/JavaScript application deployed with GitHub Pages. It consumes the generated catalogs and does not require a custom backend.
+
+See [`web/README.md`](web/README.md).
+
+---
+
+## Native PS Vita client
+
+The native client uses VitaSDK, C/C++, CMake, vita2d and libcurl. It consumes the generated catalogs rather than contacting external catalog providers directly.
+
+The VPK currently includes a working Vita LiveArea with the project branding. Its build documentation, packaging rules and LiveArea asset requirements are documented in [`Client PSVitaAlive/README.md`](Client%20PSVitaAlive/README.md) and [`Client PSVitaAlive/assets/sce_sys/README.md`](Client%20PSVitaAlive/assets/sce_sys/README.md).
+
+---
+
+## GitHub Actions
+
+The automation layer performs source acquisition, normalization, merge/deduplication, persistence, validation, catalog generation and GitHub Pages publication according to the active workflows.
+
+Generated files include:
 
 ```text
 catalog.json
@@ -229,105 +248,58 @@ authors.json
 categories.json
 ```
 
-El código web se encuentra en [`web/`](web/README.md).
+See [`.github/workflows/README.md`](.github/workflows/README.md).
 
 ---
 
-## 🎮 Cliente PS Vita
+## Documentation map
 
-El cliente nativo se desarrolla con:
-
-- VitaSDK
-- C
-- C++
-- CMake
-- vita2d
-- libcurl
-- otras librerías de VitaSDK según la fase del proyecto
-
-El cliente está diseñado para consumir los catálogos generados, buscar aplicaciones, mostrar información y posteriormente gestionar descargas, instalaciones y actualizaciones.
-
-La documentación del cliente está en [`Client PSVitaAlive/`](Client%20PSVitaAlive/README.md).
-
----
-
-## ⚙️ Automatización
-
-GitHub Actions se encarga de:
-
-- leer fuentes externas;
-- normalizar registros;
-- deduplicar aplicaciones;
-- comparar versiones;
-- resolver autores;
-- aplicar Overrides;
-- persistir cambios canónicos;
-- validar JSON, IDs, recursos y enlaces;
-- generar los catálogos finales;
-- publicar GitHub Pages cuando corresponde.
-
-El sistema también utiliza concurrencia para evitar que dos ejecuciones intenten publicar cambios simultáneamente.
+- [`apps/README.md`](apps/README.md) — application records and publishing rules.
+- [`authors/README.md`](authors/README.md) — individual author profiles.
+- [`categories/README.md`](categories/README.md) — official taxonomy.
+- [`catalog_overrides/README.md`](catalog_overrides/README.md) — manual enrichment.
+- [`sources/README.md`](sources/README.md) — external sources and mappings.
+- [`external_authors/README.md`](external_authors/README.md) — provisional external identities.
+- [`scripts/README.md`](scripts/README.md) — catalog automation and validation.
+- [`scripts/external/README.md`](scripts/external/README.md) — external-source integration engine.
+- [`web/README.md`](web/README.md) — static website.
+- [`Client PSVitaAlive/README.md`](Client%20PSVitaAlive/README.md) — native PS Vita client.
+- [`.github/workflows/README.md`](.github/workflows/README.md) — CI/CD workflows.
+- [`docs/README.md`](docs/README.md) — technical decisions and project memory.
 
 ---
 
-## 📚 Documentación
+## Contributing
 
-La documentación está distribuida junto a cada área para que sea posible entender una parte del proyecto sin tener que estudiar todo el repositorio.
+Before changing the repository:
 
-- [`apps/`](apps/README.md) — estructura y reglas de las aplicaciones.
-- [`authors/`](authors/README.md) — perfiles, múltiples autores y fallbacks.
-- [`categories/`](categories/README.md) — categorías y subcategorías oficiales.
-- [`catalog_overrides/`](catalog_overrides/README.md) — enriquecimiento y correcciones manuales.
-- [`sources/`](sources/README.md) — fuentes externas y reglas de importación.
-- [`external_authors/`](external_authors/README.md) — identidad provisional de autores externos.
-- [`scripts/`](scripts/README.md) — generación, normalización y validación.
-- [`scripts/external/`](scripts/external/README.md) — motor de integración de catálogos externos.
-- [`web/`](web/README.md) — sitio web y GitHub Pages.
-- [`Client PSVitaAlive/`](Client%20PSVitaAlive/README.md) — cliente PS Vita.
-- [`.github/workflows/`](.github/workflows/README.md) — automatización de Actions.
-- [`docs/`](docs/README.md) — decisiones técnicas y memoria del proyecto.
+1. Read the README for the area you are modifying.
+2. Never edit generated catalogs manually.
+3. Change application data in `apps/` or `catalog_overrides/` as appropriate.
+4. Change author data in `authors/`.
+5. Change taxonomy in `categories/` and update mappings when required.
+6. Change source adapters when an external format needs normalization.
+7. Run the relevant validation before publishing.
+8. Preserve compatibility with both the website and PS Vita client.
 
 ---
 
-## 🤝 Contribuir
+## Project principles
 
-Antes de modificar el proyecto:
-
-1. Lee el `README.md` de la carpeta que vas a modificar.
-2. No edites manualmente los catálogos generados.
-3. Si el cambio afecta a una aplicación, trabaja sobre `apps/` o `catalog_overrides/` según corresponda.
-4. Si el cambio afecta a un autor, utiliza su JSON individual.
-5. Si el cambio afecta a una fuente externa, modifica su adaptador/normalizador y documenta el comportamiento.
-6. Ejecuta las validaciones antes de publicar.
-7. Comprueba que web y cliente continúan consumiendo el mismo contrato de catálogo.
+- Free to use.
+- Open and GitHub-based.
+- No dedicated backend required.
+- Modular and scalable.
+- Friendly to new and legacy Homebrew.
+- Designed for preservation as well as distribution.
+- Generated catalogs are treated as a public compatibility contract.
 
 ---
 
-## 📌 Filosofía del proyecto
+## License
 
-PS Vita Alive Store busca mantener una infraestructura:
-
-- gratuita;
-- abierta;
-- sin servidores propios;
-- basada en servicios gratuitos de GitHub;
-- modular;
-- escalable;
-- orientada a preservación;
-- compatible con Homebrew nuevo y antiguo.
-
-El objetivo no es solamente crear otra lista de descargas: es construir una base de datos mantenible y una herramienta de preservación para el ecosistema Homebrew de PlayStation Vita.
-
----
-
-## Estado del proyecto
-
-El repositorio evoluciona por fases. La arquitectura de catálogo y el pipeline de integración externa ya están establecidos, mientras el cliente PS Vita continúa desarrollándose por etapas.
-
-Consulta la documentación específica antes de implementar una nueva fase.
-
----
+See [`LICENSE`](LICENSE) for the repository license. Individual Homebrew projects remain subject to their own licenses and distribution terms.
 
 <p align="center">
-  <sub>PS Vita Alive Store — Free & Open PlayStation Vita Homebrew Store</sub>
+  <sub>PS Vita Alive Store — Free & Open PlayStation Vita Homebrew Catalog</sub>
 </p>
