@@ -1,31 +1,38 @@
-# `source/ui/` — Interfaz del catálogo
+# `source/ui/` — Native user interface
 
-UI nativa con **vita2d** (sin Dear ImGui).
+The client UI is rendered with **vita2d** and does not depend on Dear ImGui.
 
-## Pantalla principal
+## Main screens
 
-`FullCatalogScreen` implementa:
+`FullCatalogScreen` currently supports the main catalog/detail presentation and the related overlays:
 
-- Grid de catálogo (`FULL_CATALOG`) y detalle partido (`SPLIT_DETAIL`).
-- Overlays de **carga de catálogo**, **progreso de descarga/instalación**, y **resultado** (éxito / error).
+- `FULL_CATALOG` grid view;
+- `SPLIT_DETAIL` detail view;
+- catalog loading/error state;
+- download/install progress;
+- final success/error result state.
 
-## Overlay de instalación
+The visual design targets the PS Vita's 960×544 landscape display and uses the project's dark background with the green `#3BFF00` accent.
 
-`setInstallProgress(..., outcome, liveAreaOk, installPath, titleId)`:
+## Installation overlay
 
-| outcome | Significado | Aspecto |
-|--------:|-------------|------------------------------|
-| 0 | Progreso | Barra % + Cancel |
-| 1 | Éxito | Título verde, destino, LiveArea sí/no |
-| 2 | Error | Título rojo, motivo, pista al `session.log` |
+The installation progress/result state can carry:
 
-Callbacks:
+- progress percentage;
+- cancel action;
+- success/error outcome;
+- destination path;
+- Title ID;
+- LiveArea verification result;
+- a diagnostic hint pointing to the session log.
 
-- `setInstallCancelCallback` — cancela descarga en curso.
-- `setInstallAcknowledgeCallback` — cierra el panel de resultado.
+## Callbacks
 
-## Contratos
+- `setInstallCancelCallback` — cancels an active operation.
+- `setInstallAcknowledgeCallback` — closes the final result panel.
 
-La UI **no** escribe en disco ni llama al Promoter. Solo lee estado del `InstallController` y pide acciones (install / cancel / acknowledge).
+## UI contracts
 
-Colores de marca: fondo oscuro, acento `#3BFF00`, error `#E03232`.
+The UI must not perform filesystem writes or call the Promoter directly. It reads state from the installation/controller layers and requests actions such as install, cancel and acknowledge.
+
+Keep rendering, navigation and application state separate from network/storage/installer implementation details.
