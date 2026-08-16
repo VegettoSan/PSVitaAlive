@@ -1,61 +1,72 @@
-# `.github/workflows/` — Automatización de GitHub Actions
+# `.github/workflows/` — GitHub Actions automation
 
-Los workflows automatizan validación, regeneración de catálogos y publicación de GitHub Pages.
+The workflows automate catalog validation, generation/persistence and GitHub Pages publication. The generated Homebrew catalogs are:
 
-## Workflow del catálogo
+```text
+catalog.json
+authors.json
+categories.json
+```
 
-`validate.yml` ejecuta conceptualmente:
+## Catalog workflow
+
+`validate.yml` currently coordinates the catalog pipeline around steps such as:
 
 ```text
 checkout
-  ↓
-determinar modo incremental/rebuild
-  ↓
-smoke tests externos
-  ↓
-generate_catalog.py
-  ↓
-normalize_persisted_sources.py
-  ↓
-normalización adicional de autores/registros
-  ↓
-validate_catalog_ci.py
-  ↓
-verificación de catalog.json/authors.json/categories.json
-  ↓
-commit + publicación
+   ↓
+determine incremental/rebuild mode
+   ↓
+external smoke tests
+   ↓
+generate / aggregate catalog
+   ↓
+normalize persisted source data
+   ↓
+validate catalog and registry
+   ↓
+verify generated outputs
+   ↓
+publish changes when the workflow is configured to do so
 ```
 
-## Ejecución automática
+The exact command order is defined by the workflow file itself. This README is an operational guide, not a replacement for the YAML configuration.
 
-La generación se ejecuta periódicamente y también puede ejecutarse por `push`/manual según la configuración actual del workflow.
+## GitHub Pages
 
-## Concurrencia
+`pages.yml` publishes the static `web/` application through GitHub Pages. The website consumes generated catalog data and does not require a custom backend.
 
-El workflow utiliza un grupo de concurrencia para evitar que dos publishers modifiquen `main` simultáneamente. Esto evita conflictos de tipo `add/add` que pueden producirse cuando dos ejecuciones crean el mismo JSON de autor o aplicación.
+## Automatic execution
 
-La intención es esperar a que termine la publicación anterior en lugar de cancelar silenciosamente la ejecución que contiene datos nuevos.
+The active workflow configuration determines which events run generation, validation and publication. Always inspect the current YAML before changing trigger behavior.
 
-## Modo incremental y rebuild
+## Concurrency
 
-Si existe un marcador explícito de rebuild o la validación de la capa fuente falla, el workflow puede reconstruir desde las fuentes externas.
+The catalog publishing workflow uses a concurrency group so two publisher executions do not modify `main` simultaneously. This is important because concurrent runs can otherwise create Git conflicts when both generate the same author/application files.
 
-El rebuild no significa editar los catálogos generados a mano. Reconstruye los archivos canónicos y luego vuelve a generar los catálogos.
+The intended behavior is to wait for the active publisher rather than silently discard the newer data run.
 
-## Publicación
+## Incremental mode and rebuilds
 
-`catalog.json`, `authors.json` y `categories.json` se verifican antes de publicar.
+The workflow can distinguish incremental processing from a full external rebuild according to the current workflow markers and source state.
 
-Si hay un error de validación, el workflow debe detenerse antes de publicar un catálogo incompleto.
+A rebuild still follows the canonical architecture: it reconstructs canonical data and then regenerates the public catalogs. It does not mean manually editing generated JSON files.
 
-## Diagnóstico
+## Publication safety
 
-Cuando un workflow falla, mirar primero el primer paso rojo y no solamente el resumen final. Diferenciar entre:
+`catalog.json`, `authors.json` and `categories.json` must pass validation before publication.
 
-- adquisición externa;
-- normalización;
-- validación;
-- concurrencia/publicación;
-- despliegue de Pages.
+If validation fails, the workflow should stop before publishing an incomplete catalog.
 
-Esto evita corregir código de catálogo cuando el problema real es un `git push` o una ejecución simultánea.
+## Troubleshooting
+
+When a workflow fails, inspect the **first failed step** and its logs rather than relying only on the final `Error` summary. Classify the failure as one of:
+
+- external acquisition;
+- normalization/aggregation;
+- validation;
+- persistence/commit;
+- concurrency;
+- GitHub Pages deployment.
+
+Fix the layer that actually failed instead of patching generated catalog output.
