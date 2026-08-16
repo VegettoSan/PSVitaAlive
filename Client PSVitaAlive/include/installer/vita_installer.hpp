@@ -48,6 +48,14 @@ public:
         bool deleteTempOnSuccess = true
     );
 
+    VitaInstallResult installPkgWithRif(
+        const std::string& pkgPath,
+        const std::string& rifPath,
+        VitaInstallProgressFn onProgress = nullptr,
+        VitaInstallCancelFn shouldCancel = nullptr,
+        bool deleteTempOnSuccess = true
+    );
+
     const std::string& lastError() const { return lastError_; }
     int lastPromoteResult() const { return lastPromoteResult_; }
 
@@ -57,7 +65,7 @@ private:
 
     void setError(const std::string& msg);
     bool loadPromoterModule();
-    VitaInstallResult promotePath(const std::string& path);
+    VitaInstallResult promotePath(const std::string& path, bool withRif = false);
 };
 
 } // namespace psvitaalive
