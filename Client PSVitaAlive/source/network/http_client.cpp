@@ -356,11 +356,8 @@ HttpResult HttpClient::downloadToFile(
     curl_easy_setopt(curl, CURLOPT_HTTP_VERSION, CURL_HTTP_VERSION_1_1);
     curl_easy_setopt(curl, CURLOPT_CONNECTTIMEOUT, CONNECT_TIMEOUT_SECONDS);
     curl_easy_setopt(curl, CURLOPT_TCP_KEEPALIVE, 1L);
-    // Lower OpenSSL security level so older Vita TLS stacks can handshake with modern CDNs (GitLab).
-    curl_easy_setopt(curl, CURLOPT_SSL_CIPHER_LIST, "DEFAULT:@SECLEVEL=0");
-#if defined(CURL_SSLVERSION_MAX_TLSv1_2)
-    // Prefer max TLS1.2 when the macro exists (avoids 1.3-only paths some hosts advertise).
-#endif
+    // Do not set CURLOPT_SSL_CIPHER_LIST: Vita libcurl often returns CURLE_SSL_CIPHER (59)
+    // for OpenSSL "SECLEVEL" syntax. Leave cipher negotiation to the TLS backend.
     curl_easy_setopt(curl, CURLOPT_LOW_SPEED_LIMIT, LOW_SPEED_LIMIT);
     curl_easy_setopt(curl, CURLOPT_LOW_SPEED_TIME, LOW_SPEED_TIME_SECONDS);
     curl_easy_setopt(curl, CURLOPT_FOLLOWLOCATION, 1L);
