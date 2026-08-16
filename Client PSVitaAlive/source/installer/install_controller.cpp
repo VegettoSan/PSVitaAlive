@@ -60,7 +60,7 @@ bool InstallController::init() {
     diagnostics::log(std::string("[Installer] settings method=") + AppSettings::toString(settings_.installMethod) +
         " psp=" + AppSettings::toString(settings_.pspTarget));
     if (!plugins_.nonpdrm) {
-        diagnostics::log("[Installer] NoNpDrm not detected — licensed Vita PKG installs may fail");
+        diagnostics::log("[Installer] NoNpDrm not detected - licensed Vita PKG installs may fail");
     }
     if (!plugins_.nopspemudrmKern) {
         diagnostics::log("[Installer] NoPspEmuDrm not detected - PSP LiveArea bubbles unavailable (Adrenaline ISO path still works)");
@@ -161,11 +161,11 @@ bool InstallController::requestInstall(const std::string& url, const std::string
                 resultShownAtMs_.store(sceKernelGetSystemTimeWide() / 1000ULL);
                 return false;
             }
-            diagnostics::log("[Installer] BGDL failed — falling back to direct download");
+            diagnostics::log("[Installer] BGDL failed - falling back to direct download");
         }
     } else if (settings_.installMethod == InstallMethod::Bgdl) {
         // Non-PKG content cannot use native BGDL reliably.
-        diagnostics::log("[Installer] BGDL selected but file is not PKG — using direct path");
+        diagnostics::log("[Installer] BGDL selected but file is not PKG - using direct path");
     }
 
 
