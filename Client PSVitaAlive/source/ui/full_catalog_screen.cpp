@@ -18,7 +18,11 @@ constexpr size_t MAX_APP_TEXTURES=18,MAX_SCREENSHOT_TEXTURES=6;
 constexpr int CATALOG_SWITCH_COOLDOWN_FRAMES=40; // ~0.66s at 60fps
 constexpr uint64_t CATALOG_SWITCH_MIN_MS=700; // hard debounce against L/R spam
 constexpr size_t MAX_DEFERRED_FREES_PER_FRAME=8;constexpr uint64_t DIRECTION_REPEAT_DELAY_US=320000,DIRECTION_REPEAT_INTERVAL_US=420000;
-const char* extOf(const std::string&p){const size_t d=p.find_last_of('.');return d==std::string::npos?"":p.c_str()+d;}std::string formatBytes(uint64_t b){char o[64];double v=(double)b;if(b>=1024ULL*1024ULL*1024ULL)sceClibSnprintf(o,sizeof(o),"%.2f GB",v/(1024.0*1024.0*1024.0));else if(b>=1024ULL*1024ULL)sceClibSnprintf(o,sizeof(o),"%.2f MB",v/(1024.0*1024.0));else if(b>=1024ULL)sceClibSnprintf(o,sizeof(o),"%.2f KB",v/1024.0);else sceClibSnprintf(o,sizeof(o),"%llu B",(unsigned long long)b);return o;}std::string lowerAscii(std::string s){for(char&c:s)c=(char)std::tolower((unsigned char)c);return s;}std::string ellipsize(const std::string&s,size_t n){if(s.size()<=n)return s;if(n<=3)return s.substr(0,n);return s.substr(0,n-3)+"...";}bool actionableLink(const CatalogLink&l){std::string t=lowerAscii(l.type);if(t=="download"||t=="downloads"||t=="mirror"||t=="dlc")return true;std::string u=lowerAscii(l.url);return u.find(".vpk")!=std::string::npos||u.find(".pkg")!=std::string::npos||u.find(".zip")!=std::string::npos||u.find(".pbp")!=std::string::npos||u.find(".iso")!=std::string::npos||u.find(".cso")!=std::string::npos;}}
+const char* extOf(const std::string&p){const size_t d=p.find_last_of('.');return d==std::string::npos?"":p.c_str()+d;}std::string formatBytes(uint64_t b){char o[64];double v=(double)b;if(b>=1024ULL*1024ULL*1024ULL)sceClibSnprintf(o,sizeof(o),"%.2f GB",v/(1024.0*1024.0*1024.0));else if(b>=1024ULL*1024ULL)sceClibSnprintf(o,sizeof(o),"%.2f MB",v/(1024.0*1024.0));else if(b>=1024ULL)sceClibSnprintf(o,sizeof(o),"%.2f KB",v/1024.0);else sceClibSnprintf(o,sizeof(o),"%llu B",(unsigned long long)b);return o;}std::string lowerAscii(std::string s){for(char&c:s)c=(char)std::tolower((unsigned char)c);return s;}std::string ellipsize(const std::string&s,size_t n){if(s.size()<=n)return s;if(n<=3)return s.substr(0,n);return s.substr(0,n-3)+"...";}bool actionableLink(const CatalogLink&l){std::string t=lowerAscii(l.type);if(t=="download"||t=="downloads"||t=="mirror"||t=="dlc")return true;std::string u=lowerAscii(l.url);return u.find(".vpk")!=std::string::npos||u.find(".pkg")!=std::string::npos||u.find(".zip")!=std::string::npos||u.find(".pbp")!=std::string::npos||u.find(".iso")!=std::string::npos||u.find(".cso")!=std::string::npos;}
+bool isDownloadLink(const CatalogLink&l){return lowerAscii(l.type)=="download"||lowerAscii(l.type)=="downloads"||lowerAscii(l.type)=="mirror"||lowerAscii(l.type)=="dlc";}
+std::vector<int> downloadLinkIndices(const CatalogItem&it){std::vector<int> out;for(size_t i=0;i<it.linkDetails.size();++i)if(isDownloadLink(it.linkDetails[i]))out.push_back((int)i);return out;}
+std::string formatLinkSizeLabel(const CatalogLink&l,const CatalogItem&it){if(!l.size.empty())return l.size;if(!it.size.empty())return it.size;return {};}
+}
 std::string formatEta(uint64_t seconds){if(seconds==0)return "--";uint64_t h=seconds/3600,m=(seconds%3600)/60,sec=seconds%60;char o[64];if(h)sceClibSnprintf(o,sizeof(o),"%llu:%02llu:%02llu",(unsigned long long)h,(unsigned long long)m,(unsigned long long)sec);else sceClibSnprintf(o,sizeof(o),"%02llu:%02llu",(unsigned long long)m,(unsigned long long)sec);return o;}
 FullCatalogScreen::FullCatalogScreen()=default;FullCatalogScreen::~FullCatalogScreen(){shutdown();}
 void FullCatalogScreen::setInstallCallbacks(InstallRequestFn r,InstallStatusFn s){installRequest_=std::move(r);installStatusText_=std::move(s);}void FullCatalogScreen::setInstallCancelCallback(InstallCancelFn c){installCancel_=std::move(c);}void FullCatalogScreen::setInstallAcknowledgeCallback(InstallAcknowledgeFn c){installAcknowledge_=std::move(c);}void FullCatalogScreen::setCatalogChangeCallback(CatalogChangeFn c){catalogChange_=std::move(c);}void FullCatalogScreen::setSearchCallback(SearchRequestFn c){searchRequest_=std::move(c);}void FullCatalogScreen::setLinkActionCallback(LinkActionFn c){linkAction_=std::move(c);}void FullCatalogScreen::setImageCache(ImageCache*c){imageCache_=c;}
@@ -184,7 +188,7 @@ void FullCatalogScreen::shutdown(){releaseTextures();flushDeferredTextureFrees()
 int FullCatalogScreen::totalRows()const{return items_.empty()?0:(int(items_.size())+2)/3;}int FullCatalogScreen::visibleRowsFull()const{return 3;}int FullCatalogScreen::visibleRowsSplit()const{return std::max(1,(SCREEN_H-HEADER_H-TABS_H-FOOTER_H-GRID_PAD*2)/(SPLIT_CARD_H+CARD_GAP));}int FullCatalogScreen::selectedIndex()const{return items_.empty()?-1:std::max(0,std::min(state_.focusIndex,(int)items_.size()-1));}void FullCatalogScreen::clampCatalogFocus(){if(items_.empty())state_.focusIndex=0;else state_.focusIndex=std::max(0,std::min(state_.focusIndex,(int)items_.size()-1));}void FullCatalogScreen::clampCatalogScroll(){if(items_.empty()){state_.catalogScrollRow=0;return;}int v=state_.mode==UiMode::FULL_CATALOG?visibleRowsFull():visibleRowsSplit();if(state_.mode==UiMode::FULL_CATALOG){int r=state_.focusIndex/3;if(r<state_.catalogScrollRow)state_.catalogScrollRow=r;if(r>=state_.catalogScrollRow+v)state_.catalogScrollRow=r-v+1;state_.catalogScrollRow=std::max(0,std::min(state_.catalogScrollRow,std::max(0,totalRows()-v)));}else{int m=std::max(0,(int)items_.size()-v);if(state_.focusIndex<state_.catalogScrollRow)state_.catalogScrollRow=state_.focusIndex;if(state_.focusIndex>=state_.catalogScrollRow+v)state_.catalogScrollRow=state_.focusIndex-v+1;state_.catalogScrollRow=std::max(0,std::min(state_.catalogScrollRow,m));}}
 void FullCatalogScreen::sortItemsByDate(std::vector<CatalogItem>&v)const{std::stable_sort(v.begin(),v.end(),[](const CatalogItem&a,const CatalogItem&b){if(a.versionDate!=b.versionDate)return a.versionDate>b.versionDate;return lowerAscii(a.name)<lowerAscii(b.name);});}bool FullCatalogScreen::matchesSearch(const CatalogItem&i,const std::string&q)const{if(q.empty())return true;std::string x=lowerAscii(q),h=lowerAscii(i.name+"\n"+i.titleId+"\n"+i.author+"\n"+i.description+"\n"+i.longDescription+"\n"+i.category+"\n"+i.subcategory);return h.find(x)!=std::string::npos;}void FullCatalogScreen::applySearch(const std::string&q){searchQuery_=q;items_.clear();for(const auto&i:allItems_)if(matchesSearch(i,q))items_.push_back(i);state_.focusIndex=0;state_.catalogScrollRow=0;state_.detailScroll=0;detailScrollBeforeLinkMode_=0;state_.linkFocus=-1;state_.linkNavigation=false;char m[256];sceClibSnprintf(m,sizeof(m),"[UI] search query='%s' results=%u",searchQuery_.c_str(),(unsigned)items_.size());diagnostics::log(m);}
 int FullCatalogScreen::detailContentHeight(const CatalogItem&i,int w)const{int cw=std::max(1,w-36),mc=std::max(18,cw/7);std::vector<std::string>pre,post;auto add=[&](std::vector<std::string>&l,const char*t,const std::string&v){if(v.empty())return;l.push_back(t);std::vector<std::string>q;wrapText(v,mc,q);for(auto&s:q)l.push_back(s);l.push_back("");};add(pre,"Description",i.description);add(pre,"Long Description",i.longDescription);add(post,"Requirements",i.requirements);post.push_back("Information");post.push_back("Title ID: "+i.titleId);post.push_back("Version: "+i.version);post.push_back("Release date: "+i.versionDate);post.push_back("Category: "+i.category);post.push_back("Subcategory: "+i.subcategory);post.push_back("Size: "+i.size);post.push_back("Status: "+i.status);post.push_back("");add(post,"Changelog",i.changelog);int lh=i.linkDetails.empty()?0:10+(int)i.linkDetails.size()*(LINK_ROW_H+LINK_GAP),sc=std::min(5,(int)i.screenshots.size());return lh+((int)pre.size()+(int)post.size())*LINE_H+sc*SCREENSHOT_ROW_H+32;}int FullCatalogScreen::detailLinkScrollLimit(const CatalogItem&i,int w,int h)const{(void)w;if(i.linkDetails.empty())return 0;int lh=10+(int)i.linkDetails.size()*(LINK_ROW_H+LINK_GAP),v=std::max(1,h-DETAIL_HEADER_H-18);return std::max(0,lh-v);}void FullCatalogScreen::clampDetailScroll(){int i=selectedIndex();if(i<0){state_.detailScroll=0;return;}int vh=std::max(1,SCREEN_H-HEADER_H-TABS_H-FOOTER_H-DETAIL_HEADER_H-18),total=detailContentHeight(items_[i],SCREEN_W/2),mx=std::max(0,total-vh);state_.detailScroll=std::max(0,std::min(state_.detailScroll,mx));if(items_[i].linkDetails.empty()){state_.linkFocus=-1;state_.linkNavigation=false;}else if(state_.linkFocus>=(int)items_[i].linkDetails.size())state_.linkFocus=(int)items_[i].linkDetails.size()-1;if(state_.linkNavigation){int lim=detailLinkScrollLimit(items_[i],SCREEN_W/2,SCREEN_H-HEADER_H-TABS_H-FOOTER_H);state_.detailScroll=std::max(0,std::min(state_.detailScroll,lim));}}
-void FullCatalogScreen::moveCatalogFocus(int d){if(items_.empty())return;if(state_.mode!=UiMode::FULL_CATALOG)releaseScreenshotTextures();if(state_.mode==UiMode::FULL_CATALOG){if(d<0&&state_.focusIndex>=3)state_.focusIndex-=3;if(d>0&&state_.focusIndex+3<(int)items_.size())state_.focusIndex+=3;}else{if(d<0&&state_.focusIndex>0)--state_.focusIndex;if(d>0&&state_.focusIndex+1<(int)items_.size())++state_.focusIndex;}clampCatalogFocus();clampCatalogScroll();state_.detailScroll=0;detailScrollBeforeLinkMode_=0;state_.linkFocus=-1;state_.linkNavigation=false;}void FullCatalogScreen::moveDetailScroll(int d){state_.detailScroll+=d<0?-72:72;clampDetailScroll();}void FullCatalogScreen::enterLinkNavigation(){int i=selectedIndex();if(i<0||items_[i].linkDetails.empty())return;detailScrollBeforeLinkMode_=state_.detailScroll;state_.linkNavigation=true;state_.linkFocus=0;state_.detailScroll=0;clampDetailScroll();diagnostics::log("[UI] link navigation enabled; detail scroll bounded to links");}void FullCatalogScreen::exitLinkNavigation(){if(!state_.linkNavigation)return;state_.linkNavigation=false;state_.linkFocus=-1;state_.detailScroll=detailScrollBeforeLinkMode_;detailScrollBeforeLinkMode_=0;clampDetailScroll();diagnostics::log("[UI] link navigation disabled; detail scroll restored");}void FullCatalogScreen::moveLinkFocus(int dx,int dy){(void)dx;int i=selectedIndex();if(i<0||items_[i].linkDetails.empty())return;int c=(int)items_[i].linkDetails.size();if(state_.linkFocus<0)state_.linkFocus=0;else state_.linkFocus=std::max(0,std::min(c-1,state_.linkFocus+dy));state_.linkNavigation=true;int top=DETAIL_HEADER_H+10+state_.linkFocus*(LINK_ROW_H+LINK_GAP),vis=SCREEN_H-HEADER_H-TABS_H-FOOTER_H-DETAIL_HEADER_H-18,lim=detailLinkScrollLimit(items_[i],SCREEN_W/2,SCREEN_H-HEADER_H-TABS_H-FOOTER_H);if(top<state_.detailScroll)state_.detailScroll=top;if(top+LINK_ROW_H>state_.detailScroll+vis)state_.detailScroll=top+LINK_ROW_H-vis;state_.detailScroll=std::max(0,std::min(state_.detailScroll,lim));}void FullCatalogScreen::activateFocusedLink(){int i=selectedIndex();if(i<0||state_.linkFocus<0||state_.linkFocus>=(int)items_[i].linkDetails.size())return;const CatalogLink&l=items_[i].linkDetails[state_.linkFocus];if(!linkAction_||!actionableLink(l)){diagnostics::log(std::string("[UI] non-download link selected: ")+l.url);return;}if(linkAction_(items_[i],l))exitLinkNavigation();}void FullCatalogScreen::changeCatalog(int d){
+void FullCatalogScreen::moveCatalogFocus(int d){if(items_.empty())return;if(state_.mode!=UiMode::FULL_CATALOG)releaseScreenshotTextures();if(state_.mode==UiMode::FULL_CATALOG){if(d<0&&state_.focusIndex>=3)state_.focusIndex-=3;if(d>0&&state_.focusIndex+3<(int)items_.size())state_.focusIndex+=3;}else{if(d<0&&state_.focusIndex>0)--state_.focusIndex;if(d>0&&state_.focusIndex+1<(int)items_.size())++state_.focusIndex;}clampCatalogFocus();clampCatalogScroll();state_.detailScroll=0;detailScrollBeforeLinkMode_=0;state_.linkFocus=-1;state_.linkNavigation=false;}void FullCatalogScreen::moveDetailScroll(int d){state_.detailScroll+=d<0?-72:72;clampDetailScroll();}void FullCatalogScreen::enterLinkNavigation(){int i=selectedIndex();if(i<0)return;const auto idxs=downloadLinkIndices(items_[i]);if(idxs.empty())return;detailScrollBeforeLinkMode_=state_.detailScroll;state_.linkNavigation=true;state_.linkFocus=0;state_.detailScroll=0;clampDetailScroll();diagnostics::log("[UI] link navigation enabled (downloads only)");}void FullCatalogScreen::exitLinkNavigation(){if(!state_.linkNavigation)return;state_.linkNavigation=false;state_.linkFocus=-1;state_.detailScroll=detailScrollBeforeLinkMode_;detailScrollBeforeLinkMode_=0;clampDetailScroll();diagnostics::log("[UI] link navigation disabled; detail scroll restored");}void FullCatalogScreen::moveLinkFocus(int dx,int dy){(void)dx;int i=selectedIndex();if(i<0)return;const auto idxs=downloadLinkIndices(items_[i]);int c=(int)idxs.size();if(c<=0)return;if(state_.linkFocus<0)state_.linkFocus=0;else state_.linkFocus=std::max(0,std::min(c-1,state_.linkFocus+dy));state_.linkNavigation=true;int top=DETAIL_HEADER_H+10+state_.linkFocus*(LINK_ROW_H+LINK_GAP),vis=SCREEN_H-HEADER_H-TABS_H-FOOTER_H-DETAIL_HEADER_H-18,lim=detailLinkScrollLimit(items_[i],SCREEN_W/2,SCREEN_H-HEADER_H-TABS_H-FOOTER_H);if(top<state_.detailScroll)state_.detailScroll=top;if(top+LINK_ROW_H>state_.detailScroll+vis)state_.detailScroll=top+LINK_ROW_H-vis;state_.detailScroll=std::max(0,std::min(state_.detailScroll,lim));}void FullCatalogScreen::activateFocusedLink(){int i=selectedIndex();if(i<0||state_.linkFocus<0)return;const auto idxs=downloadLinkIndices(items_[i]);if(state_.linkFocus>=(int)idxs.size())return;const CatalogLink&l=items_[i].linkDetails[idxs[state_.linkFocus]];if(!linkAction_||!actionableLink(l)){diagnostics::log(std::string("[UI] non-download link selected: ")+l.url);return;}if(linkAction_(items_[i],l))exitLinkNavigation();}void FullCatalogScreen::changeCatalog(int d){
     if(catalogLoading_||installProgressActive_||isTransitioning())return;
     if(catalogSwitchCooldownFrames_>0)return;
     if(!deferredFreeTextures_.empty())return; // wait until GPU frees drain
@@ -363,19 +367,16 @@ void FullCatalogScreen::handleTouch() {
     touchAccumY_ = 0.f;
     if (wasDrag) return;
 
-    // --- Header: search / clear filter ---
+    // --- Header search bar ---
     if (y < HEADER_H) {
-        // Center filter chip → clear (□)
-        if (!searchQuery_.empty()) {
-            const int pw = std::max(156, std::min(SCREEN_W - 300, (int)(searchQuery_.size() * 7 + 86)));
-            const int bx = (SCREEN_W - pw) / 2, by = 11, bh = 28;
-            if (hit(x, y, bx, by, pw, bh)) {
+        const int barX = 200, barY = 10, barH = 32;
+        const int barW = SCREEN_W - barX - 140;
+        if (hit(x, y, barX, barY, barW, barH)) {
+            // Right edge of bar clears filter when active
+            if (!searchQuery_.empty() && x > barX + barW - 56) {
                 applySearch("");
                 return;
             }
-        }
-        // Right side → open search (△)
-        if (x > SCREEN_W - 160) {
             if (searchRequest_) applySearch(searchRequest_(searchQuery_));
             return;
         }
@@ -470,24 +471,25 @@ void FullCatalogScreen::handleTouch() {
         return;
     }
 
-    // Link rows when in link navigation
-    if (state_.linkNavigation) {
+    // Download link rows (even without link mode — tap installs)
+    {
         const int i = selectedIndex();
         if (i >= 0) {
-            const auto& links = items_[i].linkDetails;
-            const int listTop = dy + DETAIL_HEADER_H + 10;
-            for (int li = 0; li < (int)links.size(); ++li) {
-                const int ry = listTop + li * (LINK_ROW_H + LINK_GAP);
+            const auto idxs = downloadLinkIndices(items_[i]);
+            const int listTop = dy + DETAIL_HEADER_H + 10 - (int)visualDetailScroll_;
+            for (int row = 0; row < (int)idxs.size(); ++row) {
+                const int ry = listTop + row * (LINK_ROW_H + LINK_GAP);
                 if (hit(x, y, dx + 18, ry, dw - 36, LINK_ROW_H)) {
-                    state_.linkFocus = li;
+                    state_.linkNavigation = true;
+                    state_.linkFocus = row;
                     activateFocusedLink();
                     return;
                 }
             }
         }
-        return;
     }
 }
+
 
 void FullCatalogScreen::handleInput(){if(isTransitioning())return;SceCtrlData p{};sceCtrlPeekBufferPositive(0,&p,1);static uint32_t prev=0;static uint64_t repeatAt=0;uint32_t mask=SCE_CTRL_UP|SCE_CTRL_DOWN|SCE_CTRL_LEFT|SCE_CTRL_RIGHT,pressed=p.buttons&~prev,direct=pressed&mask;uint64_t now=sceKernelGetProcessTimeWide(),repeat=0;if((p.buttons&mask)==0)repeatAt=0;else if(direct)repeatAt=now+DIRECTION_REPEAT_DELAY_US;else if(repeatAt&&now>=repeatAt){repeat=p.buttons&mask;repeatAt=now+DIRECTION_REPEAT_INTERVAL_US;}prev=p.buttons;uint32_t nav=direct|repeat;if(pressed&SCE_CTRL_START){state_.requestExit=true;return;}if((pressed&SCE_CTRL_LTRIGGER)||(pressed&SCE_CTRL_RTRIGGER)){
         const bool canSwitch=!catalogLoading_&&!installProgressActive_&&!isTransitioning()
@@ -500,8 +502,26 @@ void FullCatalogScreen::handleInput(){if(isTransitioning())return;SceCtrlData p{
             showToast("Espera un momento...", 900);
         }
         return;
-    }if(installProgressActive_&&(pressed&SCE_CTRL_CIRCLE)){if(installOutcome_==1||installOutcome_==2){if(installAcknowledge_)installAcknowledge_();}else if(installCancel_)installCancel_();return;}if(catalogLoading_||installProgressActive_)return;if(pressed&SCE_CTRL_SQUARE){if(!searchQuery_.empty())applySearch("");return;}if(state_.mode==UiMode::FULL_CATALOG){if(pressed&SCE_CTRL_TRIANGLE){if(searchRequest_)applySearch(searchRequest_(searchQuery_));return;}if(nav&SCE_CTRL_LEFT&&state_.focusIndex%3>0)--state_.focusIndex;if(nav&SCE_CTRL_RIGHT&&state_.focusIndex%3<2&&state_.focusIndex+1<(int)items_.size())++state_.focusIndex;if(nav&SCE_CTRL_UP)moveCatalogFocus(-1);if(nav&SCE_CTRL_DOWN)moveCatalogFocus(1);clampCatalogScroll();if(pressed&SCE_CTRL_CROSS)startOpeningDetail();return;}if(state_.mode!=UiMode::SPLIT_DETAIL)return;if(pressed&SCE_CTRL_CIRCLE){startClosingDetail();return;}if(state_.activePanel==UiPanel::Catalog){if(pressed&SCE_CTRL_RIGHT)state_.activePanel=UiPanel::Detail;if(nav&SCE_CTRL_UP)moveCatalogFocus(-1);if(nav&SCE_CTRL_DOWN)moveCatalogFocus(1);return;}if(nav&SCE_CTRL_LEFT)state_.activePanel=UiPanel::Catalog;if(pressed&SCE_CTRL_TRIANGLE){if(state_.linkNavigation)exitLinkNavigation();else enterLinkNavigation();return;}if(state_.linkNavigation){if(nav&SCE_CTRL_UP)moveLinkFocus(0,-1);if(nav&SCE_CTRL_DOWN)moveLinkFocus(0,1);if(pressed&SCE_CTRL_CROSS)activateFocusedLink();return;}if(nav&SCE_CTRL_UP)moveDetailScroll(-1);if(nav&SCE_CTRL_DOWN)moveDetailScroll(1);}
-unsigned FullCatalogScreen::colorForStatus(const std::string&s)const{if(s=="Verified")return ACCENT;if(s=="Legacy")return TEXT;if(s=="Archive")return DIM;return TEXT;}void FullCatalogScreen::drawHeader(int w){vita2d_draw_rectangle(0,0,w,HEADER_H,SURFACE2);vita2d_pgf_draw_text(font_,16,32,ACCENT,1.12f,"PSVitaAlive Store");vita2d_pgf_draw_text(font_,w-132,32,DIM,.76f,"START: Exit");if(!searchQuery_.empty()){std::string q=ellipsize(searchQuery_,22);int pw=std::max(156,std::min(w-300,(int)(q.size()*7+86))),bx=(w-pw)/2,by=11,bh=28;vita2d_draw_rectangle(bx,by,pw,bh,SURFACE);vita2d_draw_rectangle(bx,by,pw,2,ACCENT);vita2d_draw_rectangle(bx,by+bh-2,pw,2,ACCENT);vita2d_pgf_draw_text(font_,bx+12,by+19,ACCENT,.58f,"FILTER");vita2d_pgf_draw_text(font_,bx+62,by+19,WHITE,.58f,q.c_str());}}
+    }if(installProgressActive_&&(pressed&SCE_CTRL_CIRCLE)){if(installOutcome_==1||installOutcome_==2){if(installAcknowledge_)installAcknowledge_();}else if(installCancel_)installCancel_();return;}if(catalogLoading_||installProgressActive_)return;if(pressed&SCE_CTRL_SQUARE){if(!searchQuery_.empty())applySearch("");return;}if(state_.mode==UiMode::FULL_CATALOG){if(pressed&SCE_CTRL_TRIANGLE){if(searchRequest_)applySearch(searchRequest_(searchQuery_));return;}if(nav&SCE_CTRL_LEFT&&state_.focusIndex%3>0)--state_.focusIndex;if(nav&SCE_CTRL_RIGHT&&state_.focusIndex%3<2&&state_.focusIndex+1<(int)items_.size())++state_.focusIndex;if(nav&SCE_CTRL_UP)moveCatalogFocus(-1);if(nav&SCE_CTRL_DOWN)moveCatalogFocus(1);clampCatalogScroll();if(pressed&SCE_CTRL_CROSS)startOpeningDetail();return;}if(state_.mode!=UiMode::SPLIT_DETAIL)return;if(pressed&SCE_CTRL_TRIANGLE){if(searchRequest_)applySearch(searchRequest_(searchQuery_));return;}if(pressed&SCE_CTRL_CIRCLE){startClosingDetail();return;}if(state_.activePanel==UiPanel::Catalog){if(pressed&SCE_CTRL_RIGHT)state_.activePanel=UiPanel::Detail;if(nav&SCE_CTRL_UP)moveCatalogFocus(-1);if(nav&SCE_CTRL_DOWN)moveCatalogFocus(1);return;}if(nav&SCE_CTRL_LEFT)state_.activePanel=UiPanel::Catalog;if(pressed&SCE_CTRL_TRIANGLE){if(state_.linkNavigation)exitLinkNavigation();else enterLinkNavigation();return;}if(state_.linkNavigation){if(nav&SCE_CTRL_UP)moveLinkFocus(0,-1);if(nav&SCE_CTRL_DOWN)moveLinkFocus(0,1);if(pressed&SCE_CTRL_CROSS)activateFocusedLink();return;}if(nav&SCE_CTRL_UP)moveDetailScroll(-1);if(nav&SCE_CTRL_DOWN)moveDetailScroll(1);}
+unsigned FullCatalogScreen::colorForStatus(const std::string&s)const{if(s=="Verified")return ACCENT;if(s=="Legacy")return TEXT;if(s=="Archive")return DIM;return TEXT;}void FullCatalogScreen::drawHeader(int w){
+    vita2d_draw_rectangle(0,0,w,HEADER_H,SURFACE2);
+    vita2d_pgf_draw_text(font_,16,32,ACCENT,1.12f,"PSVitaAlive");
+    // Center search field (tap / Triangle)
+    const int barX = 200, barY = 10, barH = 32;
+    const int barW = w - barX - 140;
+    vita2d_draw_rectangle(barX, barY, barW, barH, SURFACE);
+    vita2d_draw_rectangle(barX, barY, barW, 2, ACCENT);
+    vita2d_draw_rectangle(barX, barY + barH - 2, barW, 2, searchQuery_.empty() ? BORDER : ACCENT);
+    if (searchQuery_.empty()) {
+        vita2d_pgf_draw_text(font_, barX + 12, barY + 21, DIM, 0.58f, "Buscar...  (△)");
+    } else {
+        vita2d_pgf_draw_text(font_, barX + 12, barY + 21, ACCENT, 0.56f, "FILTRO");
+        vita2d_pgf_draw_text(font_, barX + 70, barY + 21, WHITE, 0.58f, ellipsize(searchQuery_, 28).c_str());
+        // clear hint
+        vita2d_pgf_draw_text(font_, barX + barW - 52, barY + 21, DIM, 0.52f, "□ clear");
+    }
+    vita2d_pgf_draw_text(font_, w - 120, 32, DIM, 0.72f, "START: Exit");
+}
 void FullCatalogScreen::drawTabs(int w){
     vita2d_draw_rectangle(0,HEADER_H,w,TABS_H,SURFACE);
     float tw=(float)w/(int)CatalogType::Count;
@@ -968,7 +988,35 @@ void FullCatalogScreen::drawCatalogPanel(int x,int y,int w,int h,bool split){
 
 
 void FullCatalogScreen::wrapText(const std::string&t,int max,std::vector<std::string>&out)const{out.clear();std::string cur;for(char c:t){if(c=='\n'){out.push_back(cur);cur.clear();continue;}if((int)cur.size()>=max&&c==' '){out.push_back(cur);cur.clear();continue;}cur.push_back(c);if((int)cur.size()>=max){out.push_back(cur);cur.clear();}}if(!cur.empty())out.push_back(cur);}void FullCatalogScreen::drawTextLines(const std::vector<std::string>&l,int x,int y,int lh,unsigned col,float sc,int start,int max,int top,int bottom){int first=std::max(0,start),last=std::min((int)l.size(),first+max),dy=y+first*lh;for(int i=first;i<last;++i){if(dy>=top&&dy<=bottom)vita2d_pgf_draw_text(font_,x,dy,col,sc,l[i].c_str());dy+=lh;}}
-void FullCatalogScreen::drawDetailLinks(const CatalogItem&it,int x,int y,int w,int&heightOut){heightOut=0;if(it.linkDetails.empty())return;for(size_t i=0;i<it.linkDetails.size();++i){const CatalogLink&l=it.linkDetails[i];bool f=state_.linkNavigation&&state_.linkFocus==(int)i,can=actionableLink(l);int ry=y+(int)i*(LINK_ROW_H+LINK_GAP);vita2d_draw_rectangle(x,ry,w,LINK_ROW_H,f?ACCENT:SURFACE2);vita2d_draw_rectangle(x,ry,w,1,f?ACCENT:BORDER);unsigned mc=f?BG:(can?WHITE:TEXT);std::string title=l.name.empty()?l.type:l.name;int bw=l.recommended?104:0;vita2d_pgf_draw_text(font_,x+10,ry+15,mc,.66f,ellipsize(title,bw?24:30).c_str());std::string meta=l.type;if(can)meta+="  • Cross: action";vita2d_pgf_draw_text(font_,x+10,ry+31,f?BG:DIM,.52f,ellipsize(meta,bw?30:50).c_str());if(l.recommended){int bx=x+w-bw-10,by=ry+8;vita2d_draw_rectangle(bx,by,bw,22,f?BG:ACCENT);vita2d_pgf_draw_text(font_,bx+8,by+15,f?ACCENT:BG,.52f,"Recommended");}}heightOut=10+(int)it.linkDetails.size()*(LINK_ROW_H+LINK_GAP);}
+void FullCatalogScreen::drawDetailLinks(const CatalogItem& it, int x, int y, int w, int& heightOut) {
+    heightOut = 0;
+    const auto idxs = downloadLinkIndices(it);
+    if (idxs.empty()) return;
+    for (size_t row = 0; row < idxs.size(); ++row) {
+        const int li = idxs[row];
+        const CatalogLink& l = it.linkDetails[li];
+        const bool f = state_.linkNavigation && state_.linkFocus == (int)row;
+        const bool can = actionableLink(l);
+        const int ry = y + (int)row * (LINK_ROW_H + LINK_GAP);
+        vita2d_draw_rectangle(x, ry, w, LINK_ROW_H, f ? ACCENT : SURFACE2);
+        vita2d_draw_rectangle(x, ry, w, 1, f ? ACCENT : BORDER);
+        const unsigned mc = f ? BG : (can ? WHITE : TEXT);
+        std::string title = l.name.empty() ? l.type : l.name;
+        const std::string sizeLabel = formatLinkSizeLabel(l, it);
+        const int badgeW = l.recommended ? 96 : 0;
+        vita2d_pgf_draw_text(font_, x + 10, ry + 15, mc, 0.64f, ellipsize(title, badgeW ? 18 : 26).c_str());
+        std::string meta = "Download";
+        if (!sizeLabel.empty()) meta += "  •  " + sizeLabel;
+        if (can) meta += f ? "  •  X: instalar" : "  •  X";
+        vita2d_pgf_draw_text(font_, x + 10, ry + 31, f ? BG : DIM, 0.50f, ellipsize(meta, badgeW ? 28 : 42).c_str());
+        if (l.recommended) {
+            const int bx = x + w - badgeW - 8, by = ry + 8;
+            vita2d_draw_rectangle(bx, by, badgeW, 22, f ? BG : ACCENT);
+            vita2d_pgf_draw_text(font_, bx + 6, by + 15, f ? ACCENT : BG, 0.50f, "Recommended");
+        }
+    }
+    heightOut = 10 + (int)idxs.size() * (LINK_ROW_H + LINK_GAP);
+}
 void FullCatalogScreen::drawDetailContent(const CatalogItem&it,int x,int y,int w,int h){
 if(detailCrossfade_<0.99f){vita2d_draw_rectangle(x,y,w,h,RGBA8(0,0,0,static_cast<unsigned>((1.f-detailCrossfade_)*140)));}
 int cx=x+18,cw=w-36,mc=std::max(18,cw/7),top=y+DETAIL_HEADER_H+10,bottom=y+h-10;float scroll=std::max(0.f,visualDetailScroll_);std::vector<std::string>pre,post;auto add=[&](std::vector<std::string>&l,const char*t,const std::string&v){if(v.empty())return;l.push_back(t);std::vector<std::string>q;wrapText(v,mc,q);for(auto&s:q)l.push_back(s);l.push_back("");};add(pre,"Description",it.description);add(pre,"Long Description",it.longDescription);add(post,"Requirements",it.requirements);post.push_back("Information");post.push_back("Title ID: "+it.titleId);post.push_back("Version: "+it.version);post.push_back("Release date: "+it.versionDate);post.push_back("Category: "+it.category);post.push_back("Subcategory: "+it.subcategory);post.push_back("Size: "+it.size);post.push_back("Status: "+it.status);post.push_back("");add(post,"Changelog",it.changelog);int sc=std::min(5,(int)it.screenshots.size()),shotH=sc*SCREENSHOT_ROW_H,links=0;vita2d_enable_clipping();vita2d_set_clip_rectangle(x+2,top,x+w-18,bottom);drawDetailLinks(it,cx,top-scroll,cw,links);int preTop=top+links-scroll;drawTextLines(pre,cx,preTop,LINE_H,TEXT,.66f,0,(int)pre.size(),top,bottom);int shotTop=preTop+(int)pre.size()*LINE_H;for(int i=0;i<sc;++i)drawImage(it.screenshots[i],"shot",cx,shotTop+i*SCREENSHOT_ROW_H,cw,SCREENSHOT_ROW_H-18);int postTop=shotTop+shotH+8;drawTextLines(post,cx,postTop,LINE_H,TEXT,.66f,0,(int)post.size(),top,bottom);vita2d_disable_clipping();int total=detailContentHeight(it,w),vis=std::max(1,h-DETAIL_HEADER_H-18),mx=std::max(0,total-vis);if(mx>0){int tx=x+w-8,ty=y+DETAIL_HEADER_H+8,th=h-DETAIL_HEADER_H-18;vita2d_draw_rectangle(tx,ty,3,th,BORDER);int thumb=std::max(20,th*vis/std::max(1,total));int yy=ty+(int)((th-thumb)*(scroll/std::max(1.f,(float)mx)));vita2d_draw_rectangle(tx,yy,3,thumb,ACCENT);}}
