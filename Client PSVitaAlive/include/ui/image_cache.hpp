@@ -25,6 +25,7 @@ public:
 
     bool isReady(const std::string& localPath) const;
     bool isFailed(const std::string& localPath) const;
+    bool isPending(const std::string& localPath) const;
     bool isCached(const std::string& url, const std::string& namespaceName) const;
 
     struct ProgressSnapshot {
