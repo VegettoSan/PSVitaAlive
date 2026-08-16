@@ -3,6 +3,7 @@
 #include "archive/zip_extractor.hpp"
 #include "installer/homebrew_installer.hpp"
 #include "installer/vita_installer.hpp"
+#include "installer/psp_installer.hpp"
 #include "storage/storage_manager.hpp"
 #include "diagnostic_logger.hpp"
 
@@ -52,7 +53,8 @@ InstallDispatchResult InstallDispatcher::installFile(
     const std::string& path,
     InstallDispatchProgressFn onProgress,
     InstallDispatchCancelFn shouldCancel,
-    const std::string& zipDestination
+    const std::string& zipDestination,
+    const std::string& rifPath
 ) {
     lastError_.clear();
     clearResultMeta();
@@ -250,9 +252,46 @@ InstallDispatchResult InstallDispatcher::installFile(
         return InstallDispatchResult::Ok;
     }
 
-    if (detected.format == FileFormat::Pbp) { setError("PBP installer is not implemented yet"); return InstallDispatchResult::UnsupportedFormat; }
-    if (detected.format == FileFormat::Iso) { setError("ISO installer is not implemented yet"); return InstallDispatchResult::UnsupportedFormat; }
-    if (detected.format == FileFormat::Cso) { setError("CSO installer is not implemented yet"); return InstallDispatchResult::UnsupportedFormat; }
+    if (detected.format == FileFormat::Pbp) {
+        PspInstaller psp;
+        const PspInstallResult pr = psp.installPbp(path,
+            [&](const PspInstallProgress& pp) {
+                if (!onProgress) return;
+                InstallDispatchProgress p;
+                p.stage = InstallDispatchProgress::Installing;
+                p.current = pp.current; p.total = pp.total;
+                p.message = pp.message.empty() ? "Installing PBP" : pp.message;
+                onProgress(p);
+            }, shouldCancel);
+        lastInstallPath_ = psp.lastInstallPath(); lastLiveAreaOk_ = false;
+        if (pr == PspInstallResult::Cancelled) { setError("PBP install cancelled"); return InstallDispatchResult::Cancelled; }
+        if (pr != PspInstallResult::Ok) { setError(psp.lastError()); return InstallDispatchResult::InstallFailed; }
+        if (onProgress) {
+            InstallDispatchProgress p; p.stage = InstallDispatchProgress::Completed; p.current=1; p.total=1;
+            p.message = "PBP copied to pspemu"; onProgress(p);
+        }
+        return InstallDispatchResult::Ok;
+    }
+    if (detected.format == FileFormat::Iso || detected.format == FileFormat::Cso) {
+        PspInstaller psp;
+        const PspInstallResult pr = psp.installIsoCso(path,
+            [&](const PspInstallProgress& pp) {
+                if (!onProgress) return;
+                InstallDispatchProgress p;
+                p.stage = InstallDispatchProgress::Installing;
+                p.current = pp.current; p.total = pp.total;
+                p.message = pp.message.empty() ? "Installing ISO/CSO" : pp.message;
+                onProgress(p);
+            }, shouldCancel);
+        lastInstallPath_ = psp.lastInstallPath(); lastLiveAreaOk_ = false;
+        if (pr == PspInstallResult::Cancelled) { setError("ISO/CSO install cancelled"); return InstallDispatchResult::Cancelled; }
+        if (pr != PspInstallResult::Ok) { setError(psp.lastError()); return InstallDispatchResult::InstallFailed; }
+        if (onProgress) {
+            InstallDispatchProgress p; p.stage = InstallDispatchProgress::Completed; p.current=1; p.total=1;
+            p.message = "ISO/CSO ready for Adrenaline"; onProgress(p);
+        }
+        return InstallDispatchResult::Ok;
+    }
     setError(std::string("unsupported format: ") + toString(detected.format));
     return InstallDispatchResult::UnsupportedFormat;
 }
