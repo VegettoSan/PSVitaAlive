@@ -114,7 +114,7 @@ add_custom_command(
     "${PROJECT_NAME}.vpk.out"
   WORKING_DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}"
   DEPENDS
-    eboot.bin
+    eboot.bin-self
     "${CMAKE_SOURCE_DIR}/assets/sce_sys"
   COMMENT "Building vpk ${PROJECT_NAME}"
   VERBATIM
@@ -127,8 +127,8 @@ add_custom_target(${PROJECT_NAME}-vpk
   BYPRODUCTS "${VPK_FILE}"
 )
 
-if(TARGET eboot.bin)
-  add_dependencies(${PROJECT_NAME}-vpk eboot.bin)
+if(TARGET eboot.bin-self)
+  add_dependencies(${PROJECT_NAME}-vpk eboot.bin-self)
 endif()
 
 message(STATUS "PSVitaAlive configured. TitleID=${VITA_TITLEID}")
