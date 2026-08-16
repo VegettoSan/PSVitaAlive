@@ -42,6 +42,12 @@ bool InstallController::init() {
         setMessage("Downloading...");
     });
 
+    const int purged = downloads_.purgeIncompleteJobs();
+    if (purged > 0) {
+        char m[96];
+        sceClibSnprintf(m, sizeof(m), "[Installer] purged %d residual download jobs", purged);
+        diagnostics::log(m);
+    }
     setStage("Idle");
     setState(InstallStatus::State::Idle, "Ready");
     diagnostics::log("[Installer] initialized");
