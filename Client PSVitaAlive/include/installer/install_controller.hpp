@@ -2,6 +2,8 @@
 
 #include "network/download_manager.hpp"
 #include "installer/install_dispatcher.hpp"
+#include "installer/app_settings.hpp"
+#include "installer/plugin_detector.hpp"
 
 #include <psp2/kernel/threadmgr.h>
 
@@ -62,10 +64,19 @@ public:
 
     bool busy() const;
 
+    /** Loaded from config.json (install_method, psp_target, plugin warnings). */
+    const AppSettingsData& settings() const { return settings_; }
+    void setSettings(const AppSettingsData& s);
+
+    /** Last plugin scan (updated in init). */
+    const PluginStatus& plugins() const { return plugins_; }
+
 private:
     HttpClient http_;
     DownloadManager downloads_;
     InstallDispatcher dispatcher_;
+    AppSettingsData settings_{};
+    PluginStatus plugins_{};
 
     SceUID workerThread_ = -1;
     std::string activeJobId_;
