@@ -24,7 +24,134 @@ std::string installStatusText(const psvitaalive::InstallStatus&s){using S=psvita
 bool asciiToWide(const std::string&text,SceWChar16*out,size_t cap){if(!out||!cap)return false;size_t i=0;for(;i+1<cap&&i<text.size();++i){unsigned char c=(unsigned char)text[i];out[i]=(SceWChar16)(c<128?c:'?');}out[i]=0;return true;}
 std::string wideToAscii(const SceWChar16*t){if(!t)return{};std::string r;for(size_t i=0;t[i]&&i<2048;++i)r.push_back(t[i]<=0x7F?(char)t[i]:'?');return r;}
 bool promptText(const std::string&initial,const std::string&title,std::string&out){static bool loaded=false;if(!loaded){int r=sceSysmoduleLoadModule(SCE_SYSMODULE_IME);if(r<0)return false;loaded=true;}SceWChar16 input[256]={},wtitle[128]={};asciiToWide(initial,input,256);asciiToWide(title,wtitle,128);SceImeDialogParam p={};p.type=SCE_IME_TYPE_BASIC_LATIN;p.option=SCE_IME_OPTION_NO_AUTO_CAPITALIZATION;p.dialogMode=SCE_IME_DIALOG_DIALOG_MODE_WITH_CANCEL;p.textBoxMode=SCE_IME_DIALOG_TEXTBOX_MODE_WITH_CLEAR;p.title=wtitle;p.maxTextLength=255;p.initialText=input;p.inputTextBuffer=input;p.supportedLanguages=SCE_IME_LANGUAGE_ENGLISH|SCE_IME_LANGUAGE_SPANISH;p.enterLabel=SCE_IME_ENTER_LABEL_SEARCH;p.commonParam.magic=SCE_COMMON_DIALOG_MAGIC_NUMBER;if(sceImeDialogInit(&p)<0)return false;while(sceImeDialogGetStatus()==SCE_COMMON_DIALOG_STATUS_RUNNING)sceKernelDelayThread(10*1000);SceImeDialogResult r={};sceImeDialogGetResult(&r);bool ok=r.button==SCE_IME_DIALOG_BUTTON_ENTER;if(ok)out=wideToAscii(input);sceImeDialogTerm();return ok;}
-bool promptZipDestination(std::string&dst){static bool loaded=false;if(!loaded){int r=sceSysmoduleLoadModule(SCE_SYSMODULE_IME);if(r<0)return false;loaded=true;}SceWChar16 input[256]={},title[128]={};asciiToWide(dst.empty()?"ux0:data/":dst,input,256);asciiToWide("ZIP extraction path",title,128);SceImeDialogParam p={};p.type=SCE_IME_TYPE_BASIC_LATIN;p.option=SCE_IME_OPTION_NO_AUTO_CAPITALIZATION;p.dialogMode=SCE_IME_DIALOG_DIALOG_MODE_WITH_CANCEL;p.textBoxMode=SCE_IME_DIALOG_TEXTBOX_MODE_DEFAULT;p.title=title;p.maxTextLength=255;p.initialText=input;p.inputTextBuffer=input;p.supportedLanguages=SCE_IME_LANGUAGE_ENGLISH|SCE_IME_LANGUAGE_SPANISH;p.enterLabel=SCE_IME_ENTER_LABEL_GO;p.commonParam.magic=SCE_COMMON_DIALOG_MAGIC_NUMBER;if(sceImeDialogInit(&p)<0)return false;while(sceImeDialogGetStatus()==SCE_COMMON_DIALOG_STATUS_RUNNING)sceKernelDelayThread(10*1000);SceImeDialogResult r={};sceImeDialogGetResult(&r);bool ok=r.button==SCE_IME_DIALOG_BUTTON_ENTER;if(ok){dst=wideToAscii(input);for(char&c:dst)if(c=='\\')c='/';while(dst.size()>1&&dst.back()=='/')dst.pop_back();}sceImeDialogTerm();return ok&&!dst.empty();}
+// In-app confirmation panel (matches PSVitaAlive look) before the system IME.
+// Vita has no custom folder browser; IME is still required for the path string.
+bool confirmZipExtractDialog() {
+    constexpr unsigned BG = RGBA8(0, 0, 0, 255);
+    constexpr unsigned SURFACE = RGBA8(0x37, 0x37, 0x37, 255);
+    constexpr unsigned SURFACE2 = RGBA8(0x2A, 0x2A, 0x2A, 255);
+    constexpr unsigned ACCENT = RGBA8(0x3B, 0xFF, 0, 255);
+    constexpr unsigned TEXT = RGBA8(0xAA, 0xAA, 0xAA, 255);
+    constexpr unsigned WHITE = RGBA8(255, 255, 255, 255);
+    constexpr unsigned DIM = RGBA8(0x6E, 0x6E, 0x6E, 255);
+    constexpr int SW = 960, SH = 544;
+
+    vita2d_pgf* font = vita2d_load_default_pgf();
+    if (!font) return false;
+
+    sceCtrlSetSamplingMode(SCE_CTRL_MODE_ANALOG);
+    uint32_t prev = 0;
+    // Swallow the button that triggered install so it does not auto-confirm.
+    {
+        SceCtrlData pad{};
+        sceCtrlPeekBufferPositive(0, &pad, 1);
+        prev = pad.buttons;
+    }
+
+    bool decided = false;
+    bool accepted = false;
+    while (!decided) {
+        SceCtrlData pad{};
+        sceCtrlPeekBufferPositive(0, &pad, 1);
+        const uint32_t pressed = pad.buttons & ~prev;
+        prev = pad.buttons;
+
+        if (pressed & SCE_CTRL_CROSS) {
+            accepted = true;
+            decided = true;
+        } else if (pressed & SCE_CTRL_CIRCLE) {
+            accepted = false;
+            decided = true;
+        }
+
+        const int boxW = 560, boxH = 220;
+        const int boxX = (SW - boxW) / 2, boxY = (SH - boxH) / 2;
+
+        vita2d_start_drawing();
+        vita2d_clear_screen();
+        vita2d_draw_rectangle(0, 0, SW, SH, RGBA8(0, 0, 0, 200));
+        vita2d_draw_rectangle(boxX, boxY, boxW, boxH, SURFACE2);
+        vita2d_draw_rectangle(boxX, boxY, boxW, 3, ACCENT);
+        vita2d_draw_rectangle(boxX, boxY + boxH - 1, boxW, 1, ACCENT);
+        vita2d_draw_rectangle(boxX, boxY, 1, boxH, ACCENT);
+        vita2d_draw_rectangle(boxX + boxW - 1, boxY, 1, boxH, ACCENT);
+
+        vita2d_pgf_draw_text(font, boxX + 24, boxY + 36, ACCENT, 1.05f, "Archivo ZIP detectado");
+        vita2d_pgf_draw_text(font, boxX + 24, boxY + 72, WHITE, 0.72f,
+            "Listo. A continuacion se pedira la ruta de la");
+        vita2d_pgf_draw_text(font, boxX + 24, boxY + 94, WHITE, 0.72f,
+            "carpeta donde se extraera el contenido.");
+        vita2d_pgf_draw_text(font, boxX + 24, boxY + 116, TEXT, 0.64f,
+            "Ejemplo: ux0:data/MiApp  o  ux0:data/");
+
+        const int btnY = boxY + boxH - 56;
+        const int btnW = 150, btnH = 34;
+        const int okX = boxX + boxW - btnW - 24;
+        const int cancelX = okX - btnW - 12;
+        vita2d_draw_rectangle(cancelX, btnY, btnW, btnH, SURFACE);
+        vita2d_draw_rectangle(okX, btnY, btnW, btnH, SURFACE);
+        vita2d_draw_rectangle(okX, btnY, btnW, 2, ACCENT);
+        vita2d_pgf_draw_text(font, cancelX + 28, btnY + 23, TEXT, 0.68f, "O Cancelar");
+        vita2d_pgf_draw_text(font, okX + 36, btnY + 23, ACCENT, 0.68f, "X Continuar");
+        vita2d_pgf_draw_text(font, boxX + 24, boxY + boxH - 18, DIM, 0.55f,
+            "Luego escribe la ruta y confirma en el teclado");
+
+        vita2d_end_drawing();
+        vita2d_swap_buffers();
+        sceKernelDelayThread(16 * 1000);
+    }
+
+    vita2d_wait_rendering_done();
+    vita2d_free_pgf(font);
+    return accepted;
+}
+
+bool promptZipDestination(std::string& dst) {
+    if (!confirmZipExtractDialog()) {
+        psvitaalive::diagnostics::log("[UI] ZIP destination cancelled at confirm dialog");
+        return false;
+    }
+
+    static bool loaded = false;
+    if (!loaded) {
+        const int r = sceSysmoduleLoadModule(SCE_SYSMODULE_IME);
+        if (r < 0) return false;
+        loaded = true;
+    }
+
+    SceWChar16 input[256] = {}, title[128] = {};
+    asciiToWide(dst.empty() ? "ux0:data/" : dst, input, 256);
+    asciiToWide("Ruta de extraccion ZIP", title, 128);
+
+    SceImeDialogParam p = {};
+    p.type = SCE_IME_TYPE_BASIC_LATIN;
+    p.option = SCE_IME_OPTION_NO_AUTO_CAPITALIZATION;
+    p.dialogMode = SCE_IME_DIALOG_DIALOG_MODE_WITH_CANCEL;
+    p.textBoxMode = SCE_IME_DIALOG_TEXTBOX_MODE_DEFAULT;
+    p.title = title;
+    p.maxTextLength = 255;
+    p.initialText = input;
+    p.inputTextBuffer = input;
+    p.supportedLanguages = SCE_IME_LANGUAGE_ENGLISH | SCE_IME_LANGUAGE_SPANISH;
+    p.enterLabel = SCE_IME_ENTER_LABEL_GO;
+    p.commonParam.magic = SCE_COMMON_DIALOG_MAGIC_NUMBER;
+
+    if (sceImeDialogInit(&p) < 0) return false;
+    while (sceImeDialogGetStatus() == SCE_COMMON_DIALOG_STATUS_RUNNING) {
+        sceKernelDelayThread(10 * 1000);
+    }
+    SceImeDialogResult r = {};
+    sceImeDialogGetResult(&r);
+    const bool ok = r.button == SCE_IME_DIALOG_BUTTON_ENTER;
+    if (ok) {
+        dst = wideToAscii(input);
+        for (char& c : dst) if (c == '\\') c = '/';
+        while (dst.size() > 1 && dst.back() == '/') dst.pop_back();
+    }
+    sceImeDialogTerm();
+    return ok && !dst.empty();
+}
+
 std::string formatEta(uint64_t seconds){if(seconds==0)return "--";uint64_t h=seconds/3600,m=(seconds%3600)/60,sec=seconds%60;char o[64];if(h)sceClibSnprintf(o,sizeof(o),"%llu:%02llu:%02llu",(unsigned long long)h,(unsigned long long)m,(unsigned long long)sec);else sceClibSnprintf(o,sizeof(o),"%02llu:%02llu",(unsigned long long)m,(unsigned long long)sec);return o;}
 bool promptDownloadAllImages(size_t totalImages){vita2d_wait_rendering_done();vita2d_pgf*font=vita2d_load_default_pgf();if(!font)return false;bool yes=false,done=false;int selected=0;uint32_t prev=0;while(!done){SceCtrlData pad={};sceCtrlPeekBufferPositive(0,&pad,1);uint32_t pressed=pad.buttons&~prev;prev=pad.buttons;if(pressed&SCE_CTRL_LEFT)selected=0;if(pressed&SCE_CTRL_RIGHT)selected=1;if(pressed&SCE_CTRL_CROSS){yes=selected==0;done=true;}if(pressed&SCE_CTRL_CIRCLE){yes=false;done=true;}vita2d_start_drawing();vita2d_draw_rectangle(0,0,960,544,RGBA8(0,0,0,96));const unsigned SURFACE=RGBA8(0x37,0x37,0x37,255),BORDER=RGBA8(0x6E,0x6E,0x6E,255),TEXT=RGBA8(0xAA,0xAA,0xAA,255),DIM=RGBA8(0x6E,0x6E,0x6E,255),ACCENT=RGBA8(0x3B,0xFF,0,255),WHITE=RGBA8(255,255,255,255),BLACK=RGBA8(0,0,0,255),PANEL=RGBA8(0x20,0x20,0x20,255);const int w=620,h=360,x=(960-w)/2,y=(544-h)/2;vita2d_draw_rectangle(0,0,960,544,RGBA8(0x18,0x18,0x18,255));vita2d_draw_rectangle(0,0,960,544,RGBA8(0,0,0,70));vita2d_draw_rectangle(x,y,w,h,PANEL);vita2d_draw_rectangle(x,y,w,2,ACCENT);vita2d_draw_rectangle(x,y+2,2,h-4,ACCENT);vita2d_draw_rectangle(x+w-2,y+2,2,h-4,BORDER);vita2d_draw_rectangle(x,y+h-2,w,2,BORDER);vita2d_pgf_draw_text(font,x+28,y+36,ACCENT,.68f,"PSVitaAlive");vita2d_pgf_draw_text(font,x+28,y+78,WHITE,1.02f,"Download catalog images?");vita2d_pgf_draw_text(font,x+28,y+108,TEXT,.58f,"Images are downloaded once and kept in the local cache.");vita2d_pgf_draw_text(font,x+28,y+130,DIM,.54f,"This can take a very long time and use network data.");char count[96];sceClibSnprintf(count,sizeof(count),"Pending images: %u",(unsigned)totalImages);vita2d_pgf_draw_text(font,x+28,y+160,ACCENT,.68f,count);vita2d_pgf_draw_text(font,x+28,y+190,TEXT,.54f,"Already cached images are excluded from this count.");vita2d_pgf_draw_text(font,x+28,y+212,TEXT,.54f,"Total size is calculated while downloading.");vita2d_pgf_draw_text(font,x+28,y+234,TEXT,.54f,"Speed, ETA and overall progress appear in the next panel.");int by=y+266,bw=220,bh=38;vita2d_draw_rectangle(x+58,by,bw,bh,selected==0?ACCENT:SURFACE);vita2d_draw_rectangle(x+342,by,bw,bh,selected==1?ACCENT:SURFACE);vita2d_pgf_draw_text(font,x+125,by+25,selected==0?BLACK:WHITE,.62f,"DOWNLOAD ALL");vita2d_pgf_draw_text(font,x+425,by+25,selected==1?BLACK:WHITE,.62f,"LATER");vita2d_pgf_draw_text(font,x+28,y+h-14,DIM,.52f,"Left/Right: Select    Cross: Confirm    Circle: Later");vita2d_end_drawing();vita2d_swap_buffers();sceKernelDelayThread(16*1000);}vita2d_wait_rendering_done();vita2d_free_pgf(font);return yes;}
 std::string formatBytes(uint64_t b){char o[64];double v=(double)b;if(b>=1024ULL*1024ULL*1024ULL)sceClibSnprintf(o,sizeof(o),"%.2f GB",v/(1024.0*1024.0*1024.0));else if(b>=1024ULL*1024ULL)sceClibSnprintf(o,sizeof(o),"%.2f MB",v/(1024.0*1024.0));else if(b>=1024ULL)sceClibSnprintf(o,sizeof(o),"%.2f KB",v/1024.0);else sceClibSnprintf(o,sizeof(o),"%llu B",(unsigned long long)b);return o;}
