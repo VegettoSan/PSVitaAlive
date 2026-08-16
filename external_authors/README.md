@@ -1,41 +1,43 @@
-# `external_authors/` — Autores externos provisionales
+# `external_authors/` — Provisional external identities
 
-Esta capa representa autores descubiertos automáticamente que todavía no forman parte de la colección canónica de perfiles de `authors/` o que necesitan resolución de identidad adicional.
+This layer represents authors discovered automatically who are not yet fully curated in `authors/`, or whose identity still needs resolution.
 
-## Flujo
-
-```text
-fuente externa
-    ↓
-nombre/repo externo
-    ↓
-resolución de identidad
-    ↓
-external_authors/ (si hace falta información provisional)
-    ↓
-authors/<id>.json
-```
-
-El `author_id` debe ser estable. Cuando el autor sea curado manualmente, crea:
+## Flow
 
 ```text
-authors/<mismo-id>.json
+external source
+      ↓
+name / repository / links
+      ↓
+identity resolution
+      ↓
+external_authors/ (when provisional data is needed)
+      ↓
+authors/<stable-id>.json
 ```
 
-No cambies el ID de las aplicaciones que lo utilizan.
+The `author_id` must remain stable. When an identity is manually curated, create:
 
-## Identidad
+```text
+authors/<same-id>.json
+```
 
-El pipeline puede comparar nombre normalizado, variantes de guion/guion bajo y enlaces/repositorios para evitar perfiles duplicados.
+Do not change the ID used by applications merely because the profile moved from provisional to canonical storage.
 
-Si una fuente representa a varios desarrolladores en un solo campo, el objetivo es generar perfiles individuales cuando la separación sea inequívoca.
+## Identity resolution
+
+The pipeline may compare normalized names, hyphen/underscore variants, repositories, GitHub links and other public identifiers to avoid duplicate profiles.
+
+When an external source represents multiple developers in one field, the goal is to create individual profiles only when the separation is sufficiently unambiguous.
 
 ## Fallback
 
-Cuando no exista avatar fiable, el perfil canónico puede utilizar:
+When no reliable avatar exists, the canonical profile may use:
 
-`https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png`
+```text
+https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png
+```
 
-## Importante
+## Important
 
-`external_authors/` no sustituye `authors/`. Los perfiles que la web y el cliente consumen pertenecen a la capa canónica `authors/` y se reflejan en `authors.json` generado.
+`external_authors/` does not replace `authors/`. The website and PS Vita client consume canonical author data through generated `authors.json`.
