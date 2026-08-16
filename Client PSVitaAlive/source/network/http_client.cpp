@@ -378,8 +378,8 @@ HttpResult HttpClient::downloadToFile(
             httpDiagnostic("SSL retry with TLSv1_0");
         }
         result = curl_easy_perform(curl);
-        if (result != CURLE_SSL_CONNECT_ERROR && result != CURLE_SSL_CIPHER &&
-            result != CURLE_PEER_FAILED_VERIFICATION && result != CURLE_SSL_CACERT) {
+        if (result != CURLE_SSL_CONNECT_ERROR &&
+            result != CURLE_PEER_FAILED_VERIFICATION) {
             break;
         }
         char retryMsg[96];
