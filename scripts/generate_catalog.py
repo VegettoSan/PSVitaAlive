@@ -128,6 +128,67 @@ def filter_remote_screenshots(urls):
     return [url for url in urls if results.get(url, True)]
 
 
+
+def ensure_single_recommended(app):
+    """At most one links[].recommended=true, preferring Download URLs.
+
+    Manual edits and multi-source merges can leave more than one recommended
+    flag. The client only needs a single primary install target.
+    """
+    links = app.get("links")
+    if not isinstance(links, list) or not links:
+        return app
+
+    download_idxs = [
+        i for i, link in enumerate(links)
+        if isinstance(link, dict) and link.get("type") == "Download"
+    ]
+    recommended_idxs = [
+        i for i, link in enumerate(links)
+        if isinstance(link, dict) and link.get("recommended") is True
+    ]
+
+    # Clear recommended on non-download links (not actionable installs).
+    for i, link in enumerate(links):
+        if isinstance(link, dict) and link.get("type") != "Download" and link.get("recommended") is True:
+            link["recommended"] = False
+
+    recommended_downloads = [
+        i for i in download_idxs
+        if isinstance(links[i], dict) and links[i].get("recommended") is True
+    ]
+
+    def score(i):
+        url = (links[i].get("url") or "").lower()
+        name = (links[i].get("name") or "").lower()
+        s = 0
+        if "archive.org" in url:
+            s += 50
+        if "github.com" in url and "/download/" in url:
+            s += 40
+        if "gitlab.com" in url:
+            s += 20
+        if "vitadb" in url or "get_hb_url" in url:
+            s += 5
+        if "neovita" in name:
+            s += 1
+        return s
+
+    if len(recommended_downloads) > 1:
+        keep = max(recommended_downloads, key=score)
+        for i in recommended_downloads:
+            links[i]["recommended"] = (i == keep)
+    elif len(recommended_downloads) == 0 and download_idxs:
+        # No recommended download: pick the best scored Download so the client
+        # always has a primary install target.
+        keep = max(download_idxs, key=score)
+        for i in download_idxs:
+            links[i]["recommended"] = (i == keep)
+
+    app["links"] = links
+    return app
+
+
 def validate_final(apps, authors, categories):
     author_ids = {item.get("id") for item in authors}
     category_map = {item.get("id"): item for item in categories}
@@ -287,6 +348,9 @@ def generate():
         avatar = author.get("avatar")
         if not isinstance(avatar, str) or not avatar.strip():
             author["avatar"] = "icon/autoricon.png"
+
+    for app in apps:
+        ensure_single_recommended(app)
 
     validate_final(apps, authors, categories)
 
