@@ -53,6 +53,12 @@
       "name": "Data Files",
       "url": "https://github.com/Andiweli/ZGloom-Vita-Vita2D/releases/download/v11.2025/ZGloom-Datafiles.zip",
       "recommended": false
+    },
+    {
+      "type": "Download",
+      "name": "Data Files",
+      "url": "https://www.rinnegatamante.eu/files/vitadb/ZGloom.zip",
+      "recommended": false
     }
   ],
   "source_name": "VitaDBtoo",

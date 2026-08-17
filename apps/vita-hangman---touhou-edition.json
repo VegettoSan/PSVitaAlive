@@ -49,6 +49,11 @@
       "name": "VitaDBtoo VPK",
       "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/379-VitaHangman.vpk",
       "recommended": true
+    },
+    {
+      "type": "Official Website",
+      "name": "VitaDB Release Page",
+      "url": "http://wololo.net/2017/09/08/vita-hangman-released-vita-guess-away-stick-figures-life/"
     }
   ],
   "source_name": "VitaDBtoo",

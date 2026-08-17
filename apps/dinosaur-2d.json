@@ -48,6 +48,12 @@
       "name": "Data Files",
       "url": "https://github.com/withLogic/chrome-dinosaur-2d/releases/download/v1.0/assets.zip",
       "recommended": false
+    },
+    {
+      "type": "Download",
+      "name": "Data Files",
+      "url": "https://www.rinnegatamante.eu/files/vitadb/chrome-dinosaur-2d.zip",
+      "recommended": false
     }
   ],
   "source_name": "VitaDBtoo",
