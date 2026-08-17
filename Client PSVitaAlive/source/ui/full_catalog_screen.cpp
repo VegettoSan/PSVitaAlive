@@ -1539,17 +1539,30 @@ if (catalogSplashAlpha_ > 0.01f && !installProgressActive_) {
     } else {
         vita2d_draw_rectangle(0, 0, SCREEN_W, SCREEN_H, RGBA8(0x0A, 0x0A, 0x0A, a > 255 ? 255 : a));
     }
-    // Bottom progress panel (fades with splash)
-    const int barX = 80, barW = SCREEN_W - 160, barH = 16;
-    const int barY = SCREEN_H - 72;
-    const unsigned panelA = (unsigned)(catalogSplashAlpha_ * 200.f);
-    vita2d_draw_rectangle(0, SCREEN_H - 110, SCREEN_W, 110, RGBA8(0x0A, 0x0A, 0x0A, panelA > 255 ? 255 : panelA));
-    vita2d_draw_rectangle(0, SCREEN_H - 110, SCREEN_W, 2, RGBA8(0x3B, 0xFF, 0x00, (unsigned)(catalogSplashAlpha_ * 255.f)));
-    const char* title = catalogLoadingLabel_.empty() ? "Loading catalogs..." : catalogLoadingLabel_.c_str();
-    vita2d_pgf_draw_text(font_, barX, SCREEN_H - 88, ACCENT, 0.72f, title);
-    if (!catalogLoadingMessage_.empty()) {
-        vita2d_pgf_draw_text(font_, barX, SCREEN_H - 68, TEXT, 0.54f, ellipsize(catalogLoadingMessage_, 70).c_str());
+    // Bottom progress strip — roomy layout (title / message / bar / %)
+    const int stripH = 128;
+    const int stripY = SCREEN_H - stripH;
+    const int barX = 72, barW = SCREEN_W - 144, barH = 14;
+    const int barY = SCREEN_H - 36;
+    const unsigned panelA = (unsigned)(catalogSplashAlpha_ * 210.f);
+    const unsigned ta = (unsigned)(catalogSplashAlpha_ * 255.f);
+    vita2d_draw_rectangle(0, stripY, SCREEN_W, stripH, RGBA8(0x0A, 0x0A, 0x0A, panelA > 255 ? 255 : panelA));
+    vita2d_draw_rectangle(0, stripY, SCREEN_W, 2, RGBA8(0x3B, 0xFF, 0x00, ta > 255 ? 255 : ta));
+
+    // One status line only (prefer message; else label) to avoid stacked text
+    std::string statusLine;
+    if (!catalogLoadingMessage_.empty()) statusLine = catalogLoadingMessage_;
+    else if (!catalogLoadingLabel_.empty()) statusLine = catalogLoadingLabel_;
+    else statusLine = "Loading catalogs...";
+    vita2d_pgf_draw_text(font_, barX, stripY + 28, ACCENT, 0.64f, ellipsize(statusLine, 64).c_str());
+
+    // Optional second line only if both label and message exist and differ
+    if (!catalogLoadingLabel_.empty() && !catalogLoadingMessage_.empty() &&
+        catalogLoadingLabel_ != catalogLoadingMessage_) {
+        vita2d_pgf_draw_text(font_, barX, stripY + 50, TEXT, 0.52f,
+                             ellipsize(catalogLoadingLabel_, 64).c_str());
     }
+
     vita2d_draw_rectangle(barX, barY, barW, barH, SURFACE);
     vita2d_draw_rectangle(barX, barY, barW, 1, ACCENT_SOFT);
     vita2d_draw_rectangle(barX, barY + barH - 1, barW, 1, ACCENT_SOFT);
@@ -1559,21 +1572,17 @@ if (catalogSplashAlpha_ > 0.01f && !installProgressActive_) {
         if (pct < 0.f) pct = 0.f;
         if (pct > 1.f) pct = 1.f;
     } else {
-        // Indeterminate pulse when total unknown
         const float t = (float)(sceKernelGetProcessTimeWide() / 1000ULL % 1200) / 1200.f;
         pct = 0.15f + 0.35f * (t < 0.5f ? (t * 2.f) : (2.f - t * 2.f));
     }
     const int fill = (int)(barW * pct);
-    if (fill > 0) {
-        vita2d_draw_rectangle(barX, barY, fill, barH, ACCENT);
-    }
+    if (fill > 0) vita2d_draw_rectangle(barX, barY, fill, barH, ACCENT);
     char pctBuf[32];
-    if (catalogLoadingTotal_ > 0) {
+    if (catalogLoadingTotal_ > 0)
         sceClibSnprintf(pctBuf, sizeof(pctBuf), "%d%%", (int)(pct * 100.f + 0.5f));
-    } else {
+    else
         sceClibSnprintf(pctBuf, sizeof(pctBuf), "...");
-    }
-    vita2d_pgf_draw_text(font_, barX + barW - 48, barY - 4, WHITE, 0.56f, pctBuf);
+    vita2d_pgf_draw_text(font_, barX + barW + 8, barY + 12, WHITE, 0.54f, pctBuf);
     return;
 }
 
@@ -1589,22 +1598,38 @@ vita2d_draw_rectangle(x,y+h-3,w,3,BORDER);
 vita2d_pgf_draw_text(font_,x+28,y+36,edge,.68f,"PSVitaAlive");
 
 if(installOutcome_==1){
-  vita2d_pgf_draw_text(font_,x+28,y+80,GREEN,1.05f,"Instalacion finalizada");
-  std::string file=installProgressFile_.empty()?"(archivo)":ellipsize(installProgressFile_,70);
-  vita2d_pgf_draw_text(font_,x+28,y+118,WHITE,.66f,("Archivo: "+file).c_str());
-  if(!installResultTitleId_.empty())
-    vita2d_pgf_draw_text(font_,x+28,y+144,TEXT,.60f,("Title ID: "+installResultTitleId_).c_str());
-  if(!installResultPath_.empty())
-    vita2d_pgf_draw_text(font_,x+28,y+168,TEXT,.60f,("Destino: "+ellipsize(installResultPath_,62)).c_str());
-  if(installLiveAreaOk_)
-    vita2d_pgf_draw_text(font_,x+28,y+200,GREEN,.72f,"LiveArea: SI — burbuja / app verificada");
-  else if(!installResultPath_.empty() && installResultPath_.find("ux0:app/")==0)
-    vita2d_pgf_draw_text(font_,x+28,y+200,RGBA8(0xFF,0xC0,0x40,255),.68f,"LiveArea: no confirmado (revisa el log)");
-  else
-    vita2d_pgf_draw_text(font_,x+28,y+200,TEXT,.62f,"LiveArea: N/A para este tipo de contenido");
-  if(!installProgressMessage_.empty())
-    vita2d_pgf_draw_text(font_,x+28,y+232,DIM,.54f,ellipsize(installProgressMessage_,78).c_str());
-  const int by2=y+300,bw2=280,bh2=40;
+  const bool zipExtract =
+      !installLiveAreaOk_ &&
+      installResultTitleId_.empty() &&
+      !installResultPath_.empty() &&
+      (installResultPath_.find("ux0:app/") != 0);
+  if (zipExtract) {
+    vita2d_pgf_draw_text(font_,x+28,y+80,GREEN,1.05f,"ZIP extraction complete");
+    std::string file=installProgressFile_.empty()?"(archive)":ellipsize(installProgressFile_,70);
+    vita2d_pgf_draw_text(font_,x+28,y+118,WHITE,.66f,("File: "+file).c_str());
+    vita2d_pgf_draw_text(font_,x+28,y+150,TEXT,.62f,("Extracted to: "+ellipsize(installResultPath_,58)).c_str());
+    vita2d_pgf_draw_text(font_,x+28,y+182,DIM,.56f,"No LiveArea bubble — files only");
+    if(!installProgressMessage_.empty())
+      vita2d_pgf_draw_text(font_,x+28,y+214,DIM,.54f,ellipsize(installProgressMessage_,78).c_str());
+  } else {
+    vita2d_pgf_draw_text(font_,x+28,y+80,GREEN,1.05f,"Installation complete");
+    std::string file=installProgressFile_.empty()?"(file)":ellipsize(installProgressFile_,70);
+    vita2d_pgf_draw_text(font_,x+28,y+118,WHITE,.66f,("File: "+file).c_str());
+    if(!installResultTitleId_.empty())
+      vita2d_pgf_draw_text(font_,x+28,y+144,TEXT,.60f,("Title ID: "+installResultTitleId_).c_str());
+    if(!installResultPath_.empty())
+      vita2d_pgf_draw_text(font_,x+28,y+168,TEXT,.60f,("Path: "+ellipsize(installResultPath_,62)).c_str());
+    if(installLiveAreaOk_)
+      vita2d_pgf_draw_text(font_,x+28,y+200,GREEN,.72f,"LiveArea: OK — app bubble verified");
+    else if(!installResultPath_.empty() && installResultPath_.find("ux0:app/")==0)
+      vita2d_pgf_draw_text(font_,x+28,y+200,RGBA8(0xFF,0xC0,0x40,255),.68f,"LiveArea: not confirmed yet");
+    else
+      vita2d_pgf_draw_text(font_,x+28,y+200,TEXT,.62f,"LiveArea: N/A for this content");
+    if(!installProgressMessage_.empty())
+      vita2d_pgf_draw_text(font_,x+28,y+232,DIM,.54f,ellipsize(installProgressMessage_,78).c_str());
+  }
+
+    const int by2=y+300,bw2=280,bh2=40;
   vita2d_draw_rectangle(x+28,by2,bw2,bh2,GREEN);
   vita2d_pgf_draw_text(font_,x+100,by2+26,BLACK,.62f,"O  Continuar");
   vita2d_pgf_draw_text(font_,x+28,y+h-16,DIM,.50f,"Circle: cerrar este mensaje");
