@@ -221,6 +221,97 @@ void HttpClient::shutdown() {
     httpDiagnostic("libcurl shutdown");
 }
 
+
+namespace {
+struct StringWriteCtx {
+    std::string* body = nullptr;
+    size_t maxBytes = 0;
+    bool overflow = false;
+};
+
+size_t stringWriteCb(char* ptr, size_t size, size_t nmemb, void* userdata) {
+    auto* ctx = static_cast<StringWriteCtx*>(userdata);
+    if (!ctx || !ctx->body) return 0;
+    const size_t n = size * nmemb;
+    if (ctx->body->size() + n > ctx->maxBytes) {
+        ctx->overflow = true;
+        return 0; // abort
+    }
+    ctx->body->append(ptr, n);
+    return n;
+}
+} // namespace
+
+HttpResult HttpClient::fetchToString(
+    const std::string& url,
+    std::string& outBody,
+    size_t maxBytes
+) {
+    lastStatus_ = 0;
+    lastError_.clear();
+    outBody.clear();
+    if (!initialized_) {
+        setError("not initialized");
+        return HttpResult::NotInitialized;
+    }
+    if (url.empty()) {
+        setError("empty url");
+        return HttpResult::InvalidArgument;
+    }
+    if (maxBytes < 1024) maxBytes = 1024;
+
+    CURL* curl = curl_easy_init();
+    if (!curl) {
+        setError("curl_easy_init failed");
+        return HttpResult::NetworkError;
+    }
+
+    StringWriteCtx ctx;
+    ctx.body = &outBody;
+    ctx.maxBytes = maxBytes;
+
+    curl_easy_setopt(curl, CURLOPT_URL, url.c_str());
+    curl_easy_setopt(curl, CURLOPT_FOLLOWLOCATION, 1L);
+    curl_easy_setopt(curl, CURLOPT_MAXREDIRS, 8L);
+    curl_easy_setopt(curl, CURLOPT_USERAGENT,
+        "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36");
+    curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, stringWriteCb);
+    curl_easy_setopt(curl, CURLOPT_WRITEDATA, &ctx);
+    curl_easy_setopt(curl, CURLOPT_CONNECTTIMEOUT, 20L);
+    curl_easy_setopt(curl, CURLOPT_TIMEOUT, 45L);
+    curl_easy_setopt(curl, CURLOPT_SSL_VERIFYPEER, 0L);
+    curl_easy_setopt(curl, CURLOPT_SSL_VERIFYHOST, 0L);
+    curl_easy_setopt(curl, CURLOPT_ACCEPT_ENCODING, "");
+    curl_easy_setopt(curl, CURLOPT_HTTP_VERSION, CURL_HTTP_VERSION_1_1);
+
+    const CURLcode rc = curl_easy_perform(curl);
+    long status = 0;
+    curl_easy_getinfo(curl, CURLINFO_RESPONSE_CODE, &status);
+    lastStatus_ = static_cast<int>(status);
+    curl_easy_cleanup(curl);
+
+    if (ctx.overflow) {
+        setError("response larger than maxBytes");
+        outBody.clear();
+        return HttpResult::IoError;
+    }
+    if (rc != CURLE_OK) {
+        setError(std::string("curl: ") + curl_easy_strerror(rc));
+        outBody.clear();
+        if (rc == CURLE_SSL_CONNECT_ERROR || rc == CURLE_SSL_CERTPROBLEM)
+            return HttpResult::SslError;
+        return HttpResult::NetworkError;
+    }
+    if (status < 200 || status >= 400) {
+        char m[96];
+        sceClibSnprintf(m, sizeof(m), "HTTP %ld", status);
+        setError(m);
+        outBody.clear();
+        return HttpResult::HttpError;
+    }
+    return HttpResult::Ok;
+}
+
 HttpResult HttpClient::fetchRemoteValidators(const std::string& url, std::string& etag, std::string& lastModified) {
     etag.clear();
     lastModified.clear();
