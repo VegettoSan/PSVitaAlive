@@ -218,10 +218,10 @@ bool DownloadManager::runJob(DownloadJob& job) {
         std::string mfErr;
         if (!resolveMediaFireDirectUrl(http_, job.url, direct, mfErr) || direct.empty()) {
             job.state = DownloadState::Failed;
-            job.errorMessage = mfErr.empty() ? "MediaFire resolve failed" : mfErr;
+            job.lastError = mfErr.empty() ? "MediaFire resolve failed" : mfErr;
             saveMetadata(job);
             activeJobId_.clear();
-            diagnostics::log(std::string("[DownloadManager] MediaFire resolve failed: ") + job.errorMessage);
+            diagnostics::log(std::string("[DownloadManager] MediaFire resolve failed: ") + job.lastError);
             return false;
         }
         effectiveUrl = direct;
