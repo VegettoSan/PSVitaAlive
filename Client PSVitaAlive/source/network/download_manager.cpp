@@ -1,4 +1,5 @@
 #include "network/download_manager.hpp"
+#include "network/mediafire_resolver.hpp"
 #include "storage/storage_manager.hpp"
 
 #include <psp2/kernel/clib.h>
@@ -210,7 +211,24 @@ bool DownloadManager::runJob(DownloadJob& job) {
     };
     auto cancelFn = [&]() -> bool { return job.cancelRequested; };
 
-        HttpResult hr = http_.downloadToFile(job.url, job.temporaryPath, offset, progress, cancelFn);
+    std::string effectiveUrl = job.url;
+    if (isMediaFireUrl(job.url)) {
+        diagnostics::log("[DownloadManager] MediaFire URL detected - resolving direct link");
+        std::string direct;
+        std::string mfErr;
+        if (!resolveMediaFireDirectUrl(http_, job.url, direct, mfErr) || direct.empty()) {
+            job.state = DownloadState::Failed;
+            job.errorMessage = mfErr.empty() ? "MediaFire resolve failed" : mfErr;
+            saveMetadata(job);
+            activeJobId_.clear();
+            diagnostics::log(std::string("[DownloadManager] MediaFire resolve failed: ") + job.errorMessage);
+            return false;
+        }
+        effectiveUrl = direct;
+        diagnostics::log("[DownloadManager] MediaFire direct link OK");
+    }
+
+        HttpResult hr = http_.downloadToFile(effectiveUrl, job.temporaryPath, offset, progress, cancelFn);
     // One automatic full-job retry on transient network/SSL failures (not user cancel).
     if (hr != HttpResult::Ok && hr != HttpResult::Cancelled && !job.cancelRequested) {
         const std::string firstErr = http_.lastError();
