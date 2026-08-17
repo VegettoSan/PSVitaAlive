@@ -52,6 +52,12 @@
       "name": "VitaDB VPK",
       "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=278",
       "recommended": true
+    },
+    {
+      "type": "Download",
+      "name": "Data Files",
+      "url": "https://www.rinnegatamante.eu/files/vitadb/13/quake2.zip",
+      "recommended": false
     }
   ],
   "source_name": "VitaDBtoo",

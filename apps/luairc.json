@@ -51,6 +51,12 @@
       "name": "VitaDB VPK",
       "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=51",
       "recommended": true
+    },
+    {
+      "type": "Download",
+      "name": "Data Files",
+      "url": "https://www.rinnegatamante.eu/files/vitadb/Homebrews%20Data%20Files/luaIrc.zip",
+      "recommended": false
     }
   ],
   "source_name": "VitaDBtoo",

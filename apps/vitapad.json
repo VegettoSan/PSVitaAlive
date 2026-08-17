@@ -48,6 +48,12 @@
       "name": "VitaDB VPK",
       "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=50",
       "recommended": true
+    },
+    {
+      "type": "Download",
+      "name": "Data Files",
+      "url": "https://www.rinnegatamante.eu/files/vitadb/VitaPad.zip",
+      "recommended": false
     }
   ],
   "source_name": "VitaDBtoo",

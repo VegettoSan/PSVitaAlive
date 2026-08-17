@@ -47,6 +47,12 @@
       "name": "VitaDB VPK",
       "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1052",
       "recommended": true
+    },
+    {
+      "type": "Download",
+      "name": "Data Files",
+      "url": "https://www.rinnegatamante.eu/files/vitadb/dhewm3.zip",
+      "recommended": false
     }
   ],
   "source_name": "VitaDBtoo",

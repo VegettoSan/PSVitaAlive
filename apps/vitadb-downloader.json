@@ -62,6 +62,12 @@
       "type": "Official Website",
       "name": "NeoVitaDB Release Page",
       "url": "https://github.com/Rinnegatamante/VitaDB-Downloader/releases/tag/v.2.6"
+    },
+    {
+      "type": "Download",
+      "name": "Data Files",
+      "url": "https://www.rinnegatamante.eu/files/vitadb/VitaDB.zip",
+      "recommended": false
     }
   ],
   "source_name": "VitaDBtoo",

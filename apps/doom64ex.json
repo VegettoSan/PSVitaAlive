@@ -51,6 +51,12 @@
       "name": "VitaDB VPK",
       "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=881",
       "recommended": true
+    },
+    {
+      "type": "Download",
+      "name": "Data Files",
+      "url": "https://www.rinnegatamante.eu/files/vitadb/Doom64EX.zip",
+      "recommended": false
     }
   ],
   "source_name": "VitaDBtoo",

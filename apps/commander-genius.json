@@ -51,6 +51,12 @@
       "name": "VitaDB VPK",
       "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=610",
       "recommended": true
+    },
+    {
+      "type": "Download",
+      "name": "Data Files",
+      "url": "https://www.rinnegatamante.eu/files/vitadb/CommanderGenius_data.zip",
+      "recommended": false
     }
   ],
   "source_name": "VitaDBtoo",

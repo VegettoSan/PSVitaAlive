@@ -42,6 +42,12 @@
       "type": "Official Website",
       "name": "VitaDB Release Page",
       "url": "https://github.com/CrossCraft/CrossCraft-SurvivalTest/releases"
+    },
+    {
+      "type": "Download",
+      "name": "Data Files",
+      "url": "https://www.rinnegatamante.eu/files/vitadb/CrossCraftST.zip",
+      "recommended": false
     }
   ],
   "source_name": "NeoVitaDB",

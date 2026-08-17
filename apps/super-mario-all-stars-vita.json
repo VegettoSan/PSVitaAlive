@@ -50,6 +50,12 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com"
+    },
+    {
+      "type": "Download",
+      "name": "Data Files",
+      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/1280-data-allstars.zip",
+      "recommended": false
     }
   ],
   "source_name": "VitaDBtoo",

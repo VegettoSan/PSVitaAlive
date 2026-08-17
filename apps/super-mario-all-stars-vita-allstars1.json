@@ -39,6 +39,12 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/Rinnegatamante/smw"
+    },
+    {
+      "type": "Download",
+      "name": "Data Files",
+      "url": "https://www.rinnegatamante.eu/files/vitadb/allstars.zip",
+      "recommended": false
     }
   ],
   "source_name": "VitaDB",

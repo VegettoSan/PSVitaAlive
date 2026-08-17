@@ -39,6 +39,12 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/Rinnegatamante/OpenFMV"
+    },
+    {
+      "type": "Download",
+      "name": "Data Files",
+      "url": "https://www.rinnegatamante.eu/files/vitadb/lateshift_data.zip",
+      "recommended": false
     }
   ],
   "source_name": "VitaDB",

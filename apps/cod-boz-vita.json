@@ -49,6 +49,12 @@
       "name": "VitaDB VPK",
       "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1410",
       "recommended": true
+    },
+    {
+      "type": "Download",
+      "name": "Data Files",
+      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/boz_vita-lgpl-relink-kit.zip",
+      "recommended": false
     }
   ],
   "source_name": "VitaDBtoo",

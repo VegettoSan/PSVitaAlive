@@ -45,6 +45,12 @@
       "type": "Official Website",
       "name": "VitaDB Release Page",
       "url": "https://github.com/shev0k/EQVita/releases"
+    },
+    {
+      "type": "Download",
+      "name": "Data Files",
+      "url": "https://www.rinnegatamante.eu/files/vitadb/eq_speaker.zip",
+      "recommended": false
     }
   ],
   "source_name": "NeoVitaDB",

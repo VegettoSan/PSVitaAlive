@@ -42,6 +42,12 @@
       "name": "VitaDB VPK",
       "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1453",
       "recommended": false
+    },
+    {
+      "type": "Download",
+      "name": "Data Files",
+      "url": "https://github.com/withLogic/chrome-dinosaur-2d/releases/download/v1.0/assets.zip",
+      "recommended": false
     }
   ],
   "source_name": "VitaDBtoo",
