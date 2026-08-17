@@ -361,13 +361,21 @@ int InstallController::workerMain() {
             dispatcher_.lastLiveAreaOk(),
             verifyMsg
         );
-        liveAreaOk_.store(dispatcher_.lastLiveAreaOk() || verified);
+                // LiveArea flag only from real promote/VPK path — never from "path exists" alone
+        // (ZIP extract would otherwise show a false LiveArea success).
+        liveAreaOk_.store(dispatcher_.lastLiveAreaOk());
         if (!verifyMsg.empty()) {
-            // Prefer verification detail for the user-facing panel when available.
-            if (verified && !dispatcher_.lastInstallPath().empty()) {
-                sceClibSnprintf(okMsg, sizeof(okMsg), "%s", verifyMsg.c_str());
-            } else if (!verified) {
-                sceClibSnprintf(okMsg, sizeof(okMsg), "%s", verifyMsg.c_str());
+            sceClibSnprintf(okMsg, sizeof(okMsg), "%s", verifyMsg.c_str());
+        }
+        // Coherent ZIP message when we only extracted files
+        {
+            const std::string& p = dispatcher_.lastInstallPath();
+            const bool zipLike = !dispatcher_.lastLiveAreaOk() && !p.empty() &&
+                (p.find("ux0:data") != std::string::npos ||
+                 p.find("ux0:repatch") != std::string::npos ||
+                 p.find("ux0:app/") == std::string::npos);
+            if (zipLike && dispatcher_.lastTitleId().empty()) {
+                sceClibSnprintf(okMsg, sizeof(okMsg), "ZIP extracted to %s", p.c_str());
             }
         }
         setStage("Completed");
