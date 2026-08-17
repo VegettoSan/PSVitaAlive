@@ -18,37 +18,10 @@
 namespace psvitaalive {
 
 namespace {
-std::string sanitizePayloadFileName(const std::string& name, const std::string& url) {
-    std::string n = name;
-    auto lower = [](std::string s) {
-        for (char& c : s) c = static_cast<char>(std::tolower(static_cast<unsigned char>(c)));
-        return s;
-    };
-    const std::string low = lower(n);
-    const bool bad =
-        n.empty() ||
-        low.find("get_hb_url") != std::string::npos ||
-        (low.size() >= 4 && (
-            low.rfind(".php") == low.size() - 4 ||
-            low.rfind(".html") == low.size() - 5 ||
-            low.rfind(".htm") == low.size() - 4 ||
-            low.rfind(".asp") == low.size() - 4));
-    if (!bad) return n;
-    std::string base = "download";
-    const std::size_t q = url.find("id=");
-    if (q != std::string::npos) {
-        std::string id;
-        for (std::size_t i = q + 3; i < url.size(); ++i) {
-            const char c = url[i];
-            if (c == '&' || c == '#') break;
-            if ((c >= '0' && c <= '9') || (c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z') || c == '_' || c == '-')
-                id.push_back(c);
-            else break;
-        }
-        if (!id.empty()) base = "vitadb_" + id;
-    }
-    return base + ".vpk";
-}
+int hexValue(char c){if(c>='0'&&c<='9')return c-'0';if(c>='a'&&c<='f')return c-'a'+10;if(c>='A'&&c<='F')return c-'A'+10;return -1;}
+std::string urlDecodePath(std::string value){for(int pass=0;pass<2;++pass){std::string out;out.reserve(value.size());bool changed=false;for(size_t i=0;i<value.size();++i){if(value[i]=='%'&&i+2<value.size()){const int h=hexValue(value[i+1]);const int l=hexValue(value[i+2]);if(h>=0&&l>=0){out.push_back(static_cast<char>((h<<4)|l));i+=2;changed=true;continue;}}out.push_back(value[i]);}value.swap(out);if(!changed)break;}return value;}
+std::string inferFileNameFromUrl(const std::string&url){std::string clean=url;const size_t q=clean.find('?');if(q!=std::string::npos)clean.erase(q);const size_t f=clean.find('#');if(f!=std::string::npos)clean.erase(f);std::string name;const size_t media=clean.find("mediafire.com");const size_t marker=clean.find("/file/",media==std::string::npos?0:media);if(media!=std::string::npos&&marker!=std::string::npos){const size_t idEnd=clean.find('/',marker+6);if(idEnd!=std::string::npos){const size_t nameEnd=clean.find('/',idEnd+1);name=clean.substr(idEnd+1,nameEnd==std::string::npos?std::string::npos:nameEnd-(idEnd+1));}}if(name.empty()){const size_t slash=clean.find_last_of('/');name=slash==std::string::npos?clean:clean.substr(slash+1);if(name=="file"&&slash!=std::string::npos){const size_t prev=clean.find_last_of('/',slash-1);if(prev!=std::string::npos)name=clean.substr(prev+1,slash-prev-1);}}return urlDecodePath(name);}
+std::string sanitizePayloadFileName(const std::string&name,const std::string&url){std::string n=name;auto lower=[](std::string s){for(char&c:s)c=static_cast<char>(std::tolower(static_cast<unsigned char>(c)));return s;};const std::string low=lower(n);const bool placeholder=n.empty()||low=="file"||low=="download"||low=="payload"||low=="payload.bin"||low.find("get_hb_url")!=std::string::npos;if(placeholder){const std::string inferred=inferFileNameFromUrl(url);if(!inferred.empty()&&inferred!="file")n=inferred;}if(!n.empty()&&lower(n)!="file"&&lower(n)!="download")return n;return "payload.bin";}
 } // namespace
 
 namespace { uint32_t g_jobCounter = 1; }
