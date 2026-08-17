@@ -151,7 +151,21 @@ void FullCatalogScreen::setCatalogItems(std::vector<CatalogItem>items){
     detailScrollBeforeLinkMode_=0;
     state_.linkFocus=-1;
     state_.linkNavigation=false;
-}void FullCatalogScreen::setCatalogLoading(bool l,const std::string&lab,uint64_t cur,uint64_t tot,const std::string&msg){catalogLoading_=l;catalogLoadingLabel_=lab;catalogLoadingCurrent_=cur;catalogLoadingTotal_=tot;catalogLoadingMessage_=msg;if(l)catalogError_.clear();}void FullCatalogScreen::setCatalogError(const std::string&e){catalogLoading_=false;catalogError_=e;}void FullCatalogScreen::setInstallProgress(
+}void FullCatalogScreen::setCatalogLoading(bool l,const std::string&lab,uint64_t cur,uint64_t tot,const std::string&msg){
+    if (l) {
+        catalogLoading_ = true;
+        catalogSplashAlpha_ = 1.f;
+        catalogError_.clear();
+    } else {
+        catalogLoading_ = false;
+        // Keep splash visible until fade-out completes in updateAnimations / drawLoadingOverlay
+        if (catalogSplashAlpha_ < 0.05f) catalogSplashAlpha_ = 0.f;
+    }
+    catalogLoadingLabel_=lab;
+    catalogLoadingCurrent_=cur;
+    catalogLoadingTotal_=tot;
+    catalogLoadingMessage_=msg;
+}void FullCatalogScreen::setCatalogError(const std::string&e){catalogLoading_=false;catalogError_=e;}void FullCatalogScreen::setInstallProgress(
     bool active,
     uint64_t current,
     uint64_t total,
@@ -194,6 +208,15 @@ bool FullCatalogScreen::init(){
         diagnostics::log("[UI] catalog_loading.png loaded");
     } else {
         diagnostics::log("[UI] catalog_loading.png not found (fallback overlay)");
+    }
+    headerLogoTex_ = vita2d_load_PNG_file("app0:ui/PSVitaAlive_Store_logo_text.png");
+    if (!headerLogoTex_) {
+        headerLogoTex_ = vita2d_load_PNG_file("app0:ui/logo.png");
+    }
+    if (headerLogoTex_) {
+        diagnostics::log("[UI] header logo loaded");
+    } else {
+        diagnostics::log("[UI] header logo not found (text fallback)");
     }
     state_=UiState{};
     ready_=true;
@@ -303,6 +326,10 @@ void FullCatalogScreen::shutdown(){
     if (catalogLoadingTex_) {
         vita2d_free_texture(catalogLoadingTex_);
         catalogLoadingTex_ = nullptr;
+    }
+    if (headerLogoTex_) {
+        vita2d_free_texture(headerLogoTex_);
+        headerLogoTex_ = nullptr;
     }
     if(font_){vita2d_free_pgf(font_);font_=nullptr;}
     if(ready_){vita2d_fini();ready_=false;}
@@ -881,14 +908,28 @@ unsigned FullCatalogScreen::colorForStatus(const std::string&s)const{if(s=="Veri
     vita2d_draw_rectangle(0, 0, w, HEADER_H, SURFACE2);
     vita2d_draw_rectangle(0, 0, w, 2, ACCENT);
     vita2d_draw_rectangle(0, HEADER_H - 1, w, 1, ACCENT_SOFT);
-    // Brand lockup: PSVITA (lime) + Alive (silver) + STORE
-    const float brandScale = 0.92f;
-    vita2d_pgf_draw_text(font_, 14, 22, ACCENT, brandScale, "PSVITA");
-    const int aliveX = 14 + (int)vita2d_pgf_text_width(font_, brandScale, "PSVITA");
-    vita2d_pgf_draw_text(font_, aliveX, 22, SILVER, brandScale, "Alive");
-    vita2d_pgf_draw_text(font_, 16, 38, DIM, 0.48f, "STORE");
+    // Brand: logo image (preferred) or compact text fallback
+    int searchLeft = 200;
+    if (headerLogoTex_) {
+        const float lw = (float)vita2d_texture_get_width(headerLogoTex_);
+        const float lh = (float)vita2d_texture_get_height(headerLogoTex_);
+        const float maxH = (float)(HEADER_H - 10);
+        const float maxW = 190.f;
+        float sc = maxH / (lh > 1.f ? lh : 1.f);
+        if (lw * sc > maxW) sc = maxW / (lw > 1.f ? lw : 1.f);
+        const float dw = lw * sc;
+        const float dh = lh * sc;
+        const float dx = 10.f;
+        const float dy = ((float)HEADER_H - dh) * 0.5f;
+        vita2d_draw_texture_scale(headerLogoTex_, dx, dy, sc, sc);
+        searchLeft = (int)(dx + dw + 12.f);
+        if (searchLeft < 160) searchLeft = 160;
+    } else {
+        vita2d_pgf_draw_text(font_, 14, 28, ACCENT, 0.88f, "PSVitaAlive");
+        searchLeft = 200;
+    }
     // Center search field with neon frame
-    const int barX = 200, barY = 10, barH = 32;
+    const int barX = searchLeft, barY = 10, barH = 32;
     const int barW = w - barX - 100;
     vita2d_draw_rectangle(barX, barY, barW, barH, SURFACE);
     vita2d_draw_rectangle(barX - 1, barY - 1, barW + 2, 1, RGBA8(0x3B, 0xFF, 0x00, 50));
@@ -1216,6 +1257,19 @@ void FullCatalogScreen::updateAnimations() {
         if (contentFade_ > 0.995f) contentFade_ = 1.f;
     }
 
+
+    // Catalog splash fade-out when loading finished
+    if (catalogLoading_) {
+        if (catalogSplashAlpha_ < 1.f) {
+            catalogSplashAlpha_ += (1.f - catalogSplashAlpha_) * 0.25f;
+            if (catalogSplashAlpha_ > 0.995f) catalogSplashAlpha_ = 1.f;
+        }
+    } else if (catalogSplashAlpha_ > 0.f) {
+        catalogSplashAlpha_ *= 0.88f;
+        catalogSplashAlpha_ -= 0.02f;
+        if (catalogSplashAlpha_ < 0.02f) catalogSplashAlpha_ = 0.f;
+    }
+
     // Settings open fade/slide
     if (state_.mode == UiMode::SETTINGS) {
         settingsEnter_ += (1.f - settingsEnter_) * 0.18f;
@@ -1472,15 +1526,18 @@ void FullCatalogScreen::drawDetailPanel(int x,int y,int w,int h){
 }
 void FullCatalogScreen::drawLoadingOverlay(){
 // Catalog load/download at startup: full-screen brand image + progress (not used for installs).
-if (catalogLoading_ && !installProgressActive_) {
+if (catalogSplashAlpha_ > 0.01f && !installProgressActive_) {
+    const unsigned a = (unsigned)(catalogSplashAlpha_ * 255.f);
+    if (a > 255) { /* clamp */ }
+    const unsigned tint = RGBA8(255, 255, 255, a > 255 ? 255 : a);
     if (catalogLoadingTex_) {
         const float tw = (float)vita2d_texture_get_width(catalogLoadingTex_);
         const float th = (float)vita2d_texture_get_height(catalogLoadingTex_);
         const float sx = (tw > 1.f) ? (SCREEN_W / tw) : 1.f;
         const float sy = (th > 1.f) ? (SCREEN_H / th) : 1.f;
-        vita2d_draw_texture_scale(catalogLoadingTex_, 0.f, 0.f, sx, sy);
+        vita2d_draw_texture_tint_scale(catalogLoadingTex_, 0.f, 0.f, sx, sy, tint);
     } else {
-        vita2d_draw_rectangle(0, 0, SCREEN_W, SCREEN_H, BG);
+        vita2d_draw_rectangle(0, 0, SCREEN_W, SCREEN_H, RGBA8(0x0A, 0x0A, 0x0A, a > 255 ? 255 : a));
     }
     // Bottom progress panel
     const int barX = 80, barW = SCREEN_W - 160, barH = 16;
@@ -1645,7 +1702,7 @@ void drawFooterBar(vita2d_pgf* font, const char* leftHints) {
                         : (used > 0.75f ? RGBA8(0xFF, 0xB0, 0x20, 255) : ACCENT);
     vita2d_draw_rectangle(barX, barY, std::max(1, (int)(barW * used)), barH, fill);
 }
-void FullCatalogScreen::drawFullCatalog(){vita2d_start_drawing();vita2d_set_clear_color(BG);vita2d_clear_screen();drawHeader(SCREEN_W);drawTabs(SCREEN_W);drawCatalogPanel(0,HEADER_H+TABS_H,SCREEN_W,SCREEN_H-HEADER_H-TABS_H-FOOTER_H,false);drawFooterBar(font_, "D-Pad: Nav   X: Detail   △: Search   SELECT: Settings   L/R: Catalog   START: Exit");if(catalogLoading_||installProgressActive_)drawLoadingOverlay();if(!catalogError_.empty())vita2d_pgf_draw_text(font_,18,HEADER_H+TABS_H+26,ACCENT,.66f,catalogError_.c_str());drawToast();vita2d_end_drawing();vita2d_swap_buffers();}void FullCatalogScreen::drawSplitDetail(){vita2d_start_drawing();vita2d_set_clear_color(BG);vita2d_clear_screen();drawHeader(SCREEN_W);drawTabs(SCREEN_W);int top=HEADER_H+TABS_H,hh=SCREEN_H-HEADER_H-TABS_H-FOOTER_H,lw=SCREEN_W/2;drawCatalogPanel(0,top,lw,hh,true);drawDetailPanel(lw,top,SCREEN_W-lw,hh);vita2d_draw_rectangle(lw-1,top,2,hh,BORDER);drawFooterBar(font_, state_.activePanel==UiPanel::Catalog?"PANEL: LIST  |  → Detail   D-Pad: Navigate   O: Back   L/R: Catalog":"PANEL: DETAIL  |  ← List   D-Pad: Scroll   △: Links   X: Action   O: Back");if(catalogLoading_||installProgressActive_)drawLoadingOverlay();drawToast();vita2d_end_drawing();vita2d_swap_buffers();}void FullCatalogScreen::drawOpeningDetail(){float p=transitionProgress();int lw=SCREEN_W-(int)(SCREEN_W/2*p),rw=SCREEN_W-lw;vita2d_start_drawing();vita2d_set_clear_color(BG);vita2d_clear_screen();drawHeader(SCREEN_W);drawTabs(SCREEN_W);int top=HEADER_H+TABS_H,hh=SCREEN_H-HEADER_H-TABS_H-FOOTER_H;drawCatalogPanel(0,top,lw,hh,true);if(rw>0)drawDetailPanel(lw,top,rw,hh);vita2d_end_drawing();vita2d_swap_buffers();}void FullCatalogScreen::drawClosingDetail(){float p=1.0f-transitionProgress();int lw=SCREEN_W-(int)(SCREEN_W/2*p),rw=SCREEN_W-lw;vita2d_start_drawing();vita2d_set_clear_color(BG);vita2d_clear_screen();drawHeader(SCREEN_W);drawTabs(SCREEN_W);int top=HEADER_H+TABS_H,hh=SCREEN_H-HEADER_H-TABS_H-FOOTER_H;drawCatalogPanel(0,top,lw,hh,true);if(rw>0)drawDetailPanel(lw,top,SCREEN_W-lw,hh);vita2d_end_drawing();vita2d_swap_buffers();}void FullCatalogScreen::draw(){switch(state_.mode){case UiMode::FULL_CATALOG:drawFullCatalog();break;case UiMode::OPENING_DETAIL:drawOpeningDetail();break;case UiMode::SPLIT_DETAIL:drawSplitDetail();break;case UiMode::CLOSING_DETAIL:drawClosingDetail();break;case UiMode::SETTINGS:drawSettings();break;}}bool FullCatalogScreen::updateAndDraw(){
+void FullCatalogScreen::drawFullCatalog(){vita2d_start_drawing();vita2d_set_clear_color(BG);vita2d_clear_screen();drawHeader(SCREEN_W);drawTabs(SCREEN_W);drawCatalogPanel(0,HEADER_H+TABS_H,SCREEN_W,SCREEN_H-HEADER_H-TABS_H-FOOTER_H,false);drawFooterBar(font_, "D-Pad: Nav   X: Detail   △: Search   SELECT: Settings   L/R: Catalog   START: Exit");if(catalogLoading_||installProgressActive_||catalogSplashAlpha_>0.01f)drawLoadingOverlay();if(!catalogError_.empty())vita2d_pgf_draw_text(font_,18,HEADER_H+TABS_H+26,ACCENT,.66f,catalogError_.c_str());drawToast();vita2d_end_drawing();vita2d_swap_buffers();}void FullCatalogScreen::drawSplitDetail(){vita2d_start_drawing();vita2d_set_clear_color(BG);vita2d_clear_screen();drawHeader(SCREEN_W);drawTabs(SCREEN_W);int top=HEADER_H+TABS_H,hh=SCREEN_H-HEADER_H-TABS_H-FOOTER_H,lw=SCREEN_W/2;drawCatalogPanel(0,top,lw,hh,true);drawDetailPanel(lw,top,SCREEN_W-lw,hh);vita2d_draw_rectangle(lw-1,top,2,hh,BORDER);drawFooterBar(font_, state_.activePanel==UiPanel::Catalog?"PANEL: LIST  |  → Detail   D-Pad: Navigate   O: Back   L/R: Catalog":"PANEL: DETAIL  |  ← List   D-Pad: Scroll   △: Links   X: Action   O: Back");if(catalogLoading_||installProgressActive_||catalogSplashAlpha_>0.01f)drawLoadingOverlay();drawToast();vita2d_end_drawing();vita2d_swap_buffers();}void FullCatalogScreen::drawOpeningDetail(){float p=transitionProgress();int lw=SCREEN_W-(int)(SCREEN_W/2*p),rw=SCREEN_W-lw;vita2d_start_drawing();vita2d_set_clear_color(BG);vita2d_clear_screen();drawHeader(SCREEN_W);drawTabs(SCREEN_W);int top=HEADER_H+TABS_H,hh=SCREEN_H-HEADER_H-TABS_H-FOOTER_H;drawCatalogPanel(0,top,lw,hh,true);if(rw>0)drawDetailPanel(lw,top,rw,hh);vita2d_end_drawing();vita2d_swap_buffers();}void FullCatalogScreen::drawClosingDetail(){float p=1.0f-transitionProgress();int lw=SCREEN_W-(int)(SCREEN_W/2*p),rw=SCREEN_W-lw;vita2d_start_drawing();vita2d_set_clear_color(BG);vita2d_clear_screen();drawHeader(SCREEN_W);drawTabs(SCREEN_W);int top=HEADER_H+TABS_H,hh=SCREEN_H-HEADER_H-TABS_H-FOOTER_H;drawCatalogPanel(0,top,lw,hh,true);if(rw>0)drawDetailPanel(lw,top,SCREEN_W-lw,hh);vita2d_end_drawing();vita2d_swap_buffers();}void FullCatalogScreen::draw(){switch(state_.mode){case UiMode::FULL_CATALOG:drawFullCatalog();break;case UiMode::OPENING_DETAIL:drawOpeningDetail();break;case UiMode::SPLIT_DETAIL:drawSplitDetail();break;case UiMode::CLOSING_DETAIL:drawClosingDetail();break;case UiMode::SETTINGS:drawSettings();break;}}bool FullCatalogScreen::updateAndDraw(){
     if(!ready_)return false;
     flushDeferredTextureFrees();
     if(catalogSwitchCooldownFrames_>0)--catalogSwitchCooldownFrames_;
