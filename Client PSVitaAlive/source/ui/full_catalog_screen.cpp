@@ -91,6 +91,21 @@ constexpr unsigned ACCENT_DIM=RGBA8(0x3B,0xFF,0x00,90);
 constexpr unsigned ACCENT_SOFT=RGBA8(0x3B,0xFF,0x00,40);
 constexpr unsigned WHITE=RGBA8(0xF0,0xF0,0xF0,255);
 constexpr unsigned SILVER=RGBA8(0xC8,0xC8,0xCC,255);
+
+/** Thin neon frame used across cards, panels, and modals (LiveArea brand). */
+void drawNeonFrame(int x, int y, int w, int h, unsigned alphaOuter = 70, unsigned alphaInner = 180) {
+    const unsigned outer = RGBA8(0x3B, 0xFF, 0x00, alphaOuter);
+    const unsigned inner = RGBA8(0x3B, 0xFF, 0x00, alphaInner);
+    vita2d_draw_rectangle(x - 1, y - 1, w + 2, 1, outer);
+    vita2d_draw_rectangle(x - 1, y + h, w + 2, 1, outer);
+    vita2d_draw_rectangle(x - 1, y - 1, 1, h + 2, outer);
+    vita2d_draw_rectangle(x + w, y - 1, 1, h + 2, outer);
+    vita2d_draw_rectangle(x, y, w, 1, inner);
+    vita2d_draw_rectangle(x, y + h - 1, w, 1, inner);
+    vita2d_draw_rectangle(x, y, 1, h, inner);
+    vita2d_draw_rectangle(x + w - 1, y, 1, h, inner);
+}
+
 constexpr int FULL_CARD_H=120,SPLIT_CARD_H=82,DETAIL_HEADER_H=92,LINE_H=18,TRANSITION_MS=340,LINK_ROW_H=38,LINK_GAP=6,SCREENSHOT_ROW_H=250;
 constexpr size_t MAX_APP_TEXTURES=18,MAX_SCREENSHOT_TEXTURES=6;
 constexpr int CATALOG_SWITCH_COOLDOWN_FRAMES=40; // ~0.66s at 60fps
@@ -846,7 +861,14 @@ unsigned FullCatalogScreen::colorForStatus(const std::string&s)const{if(s=="Veri
     const int barX = 200, barY = 10, barH = 32;
     const int barW = w - barX - 100;
     vita2d_draw_rectangle(barX, barY, barW, barH, SURFACE);
-    drawNeonFrame(barX, barY, barW, barH, 50, 140);
+    vita2d_draw_rectangle(barX - 1, barY - 1, barW + 2, 1, RGBA8(0x3B, 0xFF, 0x00, 50));
+    vita2d_draw_rectangle(barX - 1, barY + barH, barW + 2, 1, RGBA8(0x3B, 0xFF, 0x00, 50));
+    vita2d_draw_rectangle(barX - 1, barY - 1, 1, barH + 2, RGBA8(0x3B, 0xFF, 0x00, 50));
+    vita2d_draw_rectangle(barX + barW, barY - 1, 1, barH + 2, RGBA8(0x3B, 0xFF, 0x00, 50));
+    vita2d_draw_rectangle(barX, barY, barW, 1, RGBA8(0x3B, 0xFF, 0x00, 140));
+    vita2d_draw_rectangle(barX, barY + barH - 1, barW, 1, RGBA8(0x3B, 0xFF, 0x00, 140));
+    vita2d_draw_rectangle(barX, barY, 1, barH, RGBA8(0x3B, 0xFF, 0x00, 140));
+    vita2d_draw_rectangle(barX + barW - 1, barY, 1, barH, RGBA8(0x3B, 0xFF, 0x00, 140));
     if (searchQuery_.empty()) {
         vita2d_pgf_draw_text(font_, barX + 12, barY + 21, DIM, 0.58f, "Search...  (△)");
     } else {
@@ -1244,19 +1266,6 @@ void FullCatalogScreen::drawActivePanelFrame(int x, int y, int width, int height
 }
 
 
-/** Thin neon frame used across cards, panels, and modals (LiveArea brand). */
-void drawNeonFrame(int x, int y, int w, int h, unsigned alphaOuter = 70, unsigned alphaInner = 180) {
-    const unsigned outer = RGBA8(0x3B, 0xFF, 0x00, alphaOuter);
-    const unsigned inner = RGBA8(0x3B, 0xFF, 0x00, alphaInner);
-    vita2d_draw_rectangle(x - 1, y - 1, w + 2, 1, outer);
-    vita2d_draw_rectangle(x - 1, y + h, w + 2, 1, outer);
-    vita2d_draw_rectangle(x - 1, y - 1, 1, h + 2, outer);
-    vita2d_draw_rectangle(x + w, y - 1, 1, h + 2, outer);
-    vita2d_draw_rectangle(x, y, w, 1, inner);
-    vita2d_draw_rectangle(x, y + h - 1, w, 1, inner);
-    vita2d_draw_rectangle(x, y, 1, h, inner);
-    vita2d_draw_rectangle(x + w - 1, y, 1, h, inner);
-}
 
 void FullCatalogScreen::drawCatalogCard(const CatalogItem&it,int idx,int x,int y,int w,int h,bool focus){
     const float pulse = focus ? focusPulse() : 0.f;
