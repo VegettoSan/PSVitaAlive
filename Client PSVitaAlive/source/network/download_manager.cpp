@@ -33,7 +33,6 @@ std::string sanitizePayloadFileName(const std::string& name, const std::string& 
             low.rfind(".htm") == low.size() - 4 ||
             low.rfind(".asp") == low.size() - 4));
     if (!bad) return n;
-    // Derive a stable .vpk name from URL query id= or fall back to download.vpk
     std::string base = "download";
     const std::size_t q = url.find("id=");
     if (q != std::string::npos) {
@@ -50,7 +49,6 @@ std::string sanitizePayloadFileName(const std::string& name, const std::string& 
     return base + ".vpk";
 }
 } // namespace
-
 
 namespace { uint32_t g_jobCounter = 1; }
 
@@ -91,9 +89,7 @@ bool DownloadManager::ensureJobDirs(DownloadJob& job) {
     job.temporaryPath = dir + "/payload.part";
     job.metadataPath = dir + "/metadata.json";
 
-    // Usar el nombre original para conservar .vpk / .pkg / .zip
     std::string name = job.fileName.empty() ? "payload.bin" : job.fileName;
-    // Sanitizar solo separadores de ruta
     for (char& c : name) {
         if (c == '/' || c == '\\') c = '_';
     }
@@ -161,9 +157,7 @@ std::string DownloadManager::enqueue(const std::string& url, const std::string& 
     DownloadJob job;
     job.id = makeJobId();
     job.url = url;
-    job.fileName = sanitizePayloadFileName(
-        finalFileName.empty() ? "download" : finalFileName,
-        url);
+    job.fileName = sanitizePayloadFileName(finalFileName.empty() ? "download" : finalFileName, url);
     job.state = DownloadState::Queued;
     if (!ensureJobDirs(job)) return {};
     saveMetadata(job);
@@ -171,7 +165,18 @@ std::string DownloadManager::enqueue(const std::string& url, const std::string& 
     return job.id;
 }
 
-void DownloadManager::cancel(const std::string& jobId){if(auto*j=findJob(jobId)){j->cancelRequested=true;StorageManager st;if(j->state==DownloadState::Queued){st.removeFile(j->temporaryPath);j->state=DownloadState::Cancelled;j->lastError="cancelled";saveMetadata(*j);}}}
+void DownloadManager::cancel(const std::string& jobId) {
+    if (auto* j = findJob(jobId)) {
+        j->cancelRequested = true;
+        StorageManager st;
+        if (j->state == DownloadState::Queued) {
+            st.removeFile(j->temporaryPath);
+            j->state = DownloadState::Cancelled;
+            j->lastError = "cancelled";
+            saveMetadata(*j);
+        }
+    }
+}
 
 bool DownloadManager::runJob(DownloadJob& job) {
     job.state = DownloadState::Preparing;
@@ -228,11 +233,11 @@ bool DownloadManager::runJob(DownloadJob& job) {
         diagnostics::log("[DownloadManager] MediaFire direct link OK");
     }
 
-        HttpResult hr = http_.downloadToFile(effectiveUrl, job.temporaryPath, offset, progress, cancelFn);
-    // One automatic full-job retry on transient network/SSL failures (not user cancel).
+    HttpResult hr = http_.downloadToFile(effectiveUrl, job.temporaryPath, offset, progress, cancelFn);
     if (hr != HttpResult::Ok && hr != HttpResult::Cancelled && !job.cancelRequested) {
         const std::string firstErr = http_.lastError();
         sceClibPrintf("[DownloadManager] first attempt failed: %s - retrying once\n", firstErr.c_str());
+        diagnostics::log(std::string("[DownloadManager] retrying effective URL: ") + effectiveUrl);
         sceKernelDelayThread(800 * 1000);
         if (job.downloadedSize == 0) {
             st.removeFile(job.temporaryPath);
@@ -242,7 +247,7 @@ bool DownloadManager::runJob(DownloadJob& job) {
             offset = sz > 0 ? static_cast<uint64_t>(sz) : 0;
             job.downloadedSize = offset;
         }
-        hr = http_.downloadToFile(job.url, job.temporaryPath, offset, progress, cancelFn);
+        hr = http_.downloadToFile(effectiveUrl, job.temporaryPath, offset, progress, cancelFn);
     }
     job.lastHttpStatus = http_.lastStatusCode();
     activeJobId_.clear();
@@ -260,15 +265,8 @@ bool DownloadManager::runJob(DownloadJob& job) {
         job.state = DownloadState::Failed;
         job.lastError = http_.lastError().empty() ? "download failed" : http_.lastError();
         saveMetadata(job);
-        // Do not leave partial payloads around after a failed transfer.
         st.removeFile(job.temporaryPath);
         st.removeFile(job.finalPath);
-        return false;
-    }
-    if (hr != HttpResult::Ok) {
-        job.state = DownloadState::Failed;
-        job.lastError = http_.lastError();
-        saveMetadata(job);
         return false;
     }
 
@@ -323,7 +321,6 @@ bool DownloadManager::cleanupCompletedJob(const std::string& jobId) {
     return ok;
 }
 
-
 int DownloadManager::purgeIncompleteJobs() {
     StorageManager st;
     st.createDirectories(jobsRoot());
@@ -344,14 +341,11 @@ int DownloadManager::purgeIncompleteJobs() {
         job.id = id;
         if (!ensureJobDirs(job)) continue;
         const bool hasMeta = loadMetadata(job);
-        // Keep only fully completed payloads that might still be in use briefly.
-        // Everything else (queued/downloading/failed/cancelled/missing meta) is residual.
         if (hasMeta && job.state == DownloadState::Completed) continue;
         if (st.exists(job.temporaryPath)) st.removeFile(job.temporaryPath);
         if (st.exists(job.finalPath)) st.removeFile(job.finalPath);
         if (st.exists(job.metadataPath)) st.removeFile(job.metadataPath);
         const std::string jobDir = jobsRoot() + "/" + id;
-        // best-effort remove leftover files in dir
         SceUID d = sceIoDopen(jobDir.c_str());
         if (d >= 0) {
             SceIoDirent e2;
@@ -365,7 +359,6 @@ int DownloadManager::purgeIncompleteJobs() {
         ++purged;
     }
 
-    // Drop in-memory jobs that were purged
     jobs_.erase(std::remove_if(jobs_.begin(), jobs_.end(), [](const DownloadJob& j) {
         return j.state != DownloadState::Completed && j.state != DownloadState::Downloading;
     }), jobs_.end());
@@ -377,10 +370,9 @@ int DownloadManager::purgeIncompleteJobs() {
     }
     return purged;
 }
+
 int DownloadManager::recoverJobs() {
-    // Prefer a clean slate: incomplete jobs are residual risk after crashes/cancels.
     return purgeIncompleteJobs();
 }
-
 
 } // namespace psvitaalive
