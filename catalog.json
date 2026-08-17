@@ -606,10 +606,29 @@
       },
       {
         "type": "Download",
+        "name": "VPK - MediaFire",
+        "url": "https://www.mediafire.com/file/vysylzqwwjwxm9w/RedBall4_1.1.1.vpk/file",
+        "recommended": false
+      },
+      {
+        "type": "Download",
         "name": "Game Data Files ZIP",
         "url": "https://archive.org/download/rdball4-psvita/rdball4.zip",
         "recommended": false,
         "size": 103300000
+      },
+      {
+        "type": "Download",
+        "name": "Game Data Files ZIP - MediaFire",
+        "url": "https://www.mediafire.com/file/ukw7oqpeers2ueg/rdball4.zip/file",
+        "recommended": false,
+        "size": 103300000
+      },
+      {
+        "type": "Download",
+        "name": "GitHub VPK",
+        "url": "https://github.com/Clyppe/red-ball-4-vita/releases/download/v1.1.1/RedBall4.vpk",
+        "recommended": false
       }
     ],
     "icon": "https://archive.org/download/rdball4-psvita/icon0.png",
@@ -1967,8 +1986,21 @@
       },
       {
         "type": "Download",
+        "name": "VPK - Mediafire",
+        "url": "https://www.mediafire.com/file/kun05u66gixx3eg/Asphalt8Vita_v0.1.vpk/file",
+        "recommended": false
+      },
+      {
+        "type": "Download",
         "name": "Game Data Files ZIP",
         "url": "https://archive.org/download/asphalt-8-psvita/asphalt8%20game%20data.zip",
+        "recommended": false,
+        "size": 1500000000
+      },
+      {
+        "type": "Download",
+        "name": "Game Data Files ZIP - Mediafire",
+        "url": "https://www.mediafire.com/file/w1lqvp8lfxnk9q0/asphalt8_game_data.zip/file",
         "recommended": false,
         "size": 1500000000
       },
@@ -2729,8 +2761,21 @@
       },
       {
         "type": "Download",
+        "name": "VPK - MediaFire",
+        "url": "https://www.mediafire.com/file/5iko16ns0qm188r/CutTheRopeMagic.vpk/file",
+        "recommended": false
+      },
+      {
+        "type": "Download",
         "name": "Game Data Files ZIP",
         "url": "https://archive.org/download/ctrm-psvita/Game%20Files.zip",
+        "recommended": false,
+        "size": 58700000
+      },
+      {
+        "type": "Download",
+        "name": "Game Data Files ZIP - MediaFire",
+        "url": "https://www.mediafire.com/file/5fpkqn43vlonozy/Game_Files.zip/file",
         "recommended": false,
         "size": 58700000
       },
@@ -2889,8 +2934,21 @@
       },
       {
         "type": "Download",
+        "name": "VPK - MediaFire",
+        "url": "https://www.mediafire.com/file/wpptb90v1fdaq1e/CutTheRope_0.2.0.vpk/file",
+        "recommended": false
+      },
+      {
+        "type": "Download",
         "name": "Game Data Files ZIP",
         "url": "https://archive.org/download/ctrc-psvita/Game%20Data.zip",
+        "recommended": false,
+        "size": 11100000
+      },
+      {
+        "type": "Download",
+        "name": "Game Data Files ZIP - Mediafire",
+        "url": "https://www.mediafire.com/file/76qw8cqvq46lyjb/Game_Data.zip/file",
         "recommended": false,
         "size": 11100000
       },
@@ -3150,8 +3208,21 @@
       },
       {
         "type": "Download",
+        "name": "VPK - Mediafire",
+        "url": "https://www.mediafire.com/file/f9saa49yr81u504/popclassic-v01.20.vpk/file",
+        "recommended": false
+      },
+      {
+        "type": "Download",
         "name": "Game Data Files ZIP",
         "url": "https://archive.org/download/ppc-psvita/Game%20Files.zip",
+        "recommended": false,
+        "size": 81700000
+      },
+      {
+        "type": "Download",
+        "name": "Game Data Files ZIP - MediaFire",
+        "url": "https://www.mediafire.com/file/ovjjpaeqwidfqek/Game_Files.zip/file",
         "recommended": false,
         "size": 81700000
       },
@@ -3371,14 +3442,27 @@
     "links": [
       {
         "type": "Download",
-        "name": "Official VPK",
+        "name": "VPK",
         "url": "https://archive.org/download/zenonia-3-psvita/ZEN3.vpk",
         "recommended": true
       },
       {
         "type": "Download",
+        "name": "VPK - MediaFire",
+        "url": "https://www.mediafire.com/file/rto093fw6cr0dd8/ZEN3.vpk/file",
+        "recommended": false
+      },
+      {
+        "type": "Download",
         "name": "Game Data Files ZIP",
         "url": "https://archive.org/download/zenonia-3-psvita/Game%20Files.zip",
+        "recommended": false,
+        "size": 12200000
+      },
+      {
+        "type": "Download",
+        "name": "Game Data Files ZIP - MediaFire",
+        "url": "https://www.mediafire.com/file/3uxmygtsbymkhqc/Game_Files.zip/file",
         "recommended": false,
         "size": 12200000
       },
@@ -3742,6 +3826,13 @@
       },
       {
         "type": "Download",
+        "name": "VPK + Game Data Files - MediaFire",
+        "url": "https://www.mediafire.com/file/7de1ux7ccmo6exi/CardWarsVitaV2.vpk/file",
+        "recommended": false,
+        "size": 145700000
+      },
+      {
+        "type": "Download",
         "name": "GitHub VPK",
         "url": "https://github.com/parindraaa867/AT-CardWars-Vita/releases/download/v5/CardWars_Stub.vpk",
         "recommended": false
@@ -3903,8 +3994,21 @@
       },
       {
         "type": "Download",
+        "name": "VPK - MediaFire",
+        "url": "https://www.mediafire.com/file/9dydme43e2doma5/BeachBuggyRacing.Vita-v1.0.vpk/file",
+        "recommended": false
+      },
+      {
+        "type": "Download",
         "name": "Game Data Files ZIP",
         "url": "https://archive.org/download/bbr-psvita/Game%20Files.zip",
+        "recommended": false,
+        "size": 70800000
+      },
+      {
+        "type": "Download",
+        "name": "Game Data Files ZIP - MediaFire",
+        "url": "https://www.mediafire.com/file/3alvqh8g0kzifsn/Game_Files.zip/file",
         "recommended": false,
         "size": 70800000
       },
@@ -3979,8 +4083,21 @@
       },
       {
         "type": "Download",
+        "name": "VPK - MediaFire",
+        "url": "https://www.mediafire.com/file/pt5tp2hlc1ec75r/ZombieTsunami-v1.0.vpk/file",
+        "recommended": false
+      },
+      {
+        "type": "Download",
         "name": "Game Data Files ZIP",
         "url": "https://archive.org/download/zombie-tsunami-psvita/Game%20Files.zip",
+        "recommended": false,
+        "size": 42100000
+      },
+      {
+        "type": "Download",
+        "name": "Game Data Files ZIP - MediaFire",
+        "url": "https://www.mediafire.com/file/resfszr3lfgxfo7/Game_Files.zip/file",
         "recommended": false,
         "size": 42100000
       },
