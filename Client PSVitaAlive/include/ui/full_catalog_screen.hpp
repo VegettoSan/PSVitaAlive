@@ -4,10 +4,13 @@
 #include "ui/image_cache.hpp"
 #include "installer/app_settings.hpp"
 #include "installer/plugin_detector.hpp"
+#include "update/update_checker.hpp"
 
 #include <vita2d.h>
 #include <psp2/io/stat.h>
+#include <psp2/kernel/threadmgr.h>
 
+#include <atomic>
 #include <cstdint>
 #include <functional>
 #include <string>
@@ -192,6 +195,10 @@ private:
     void drawSettings();
     void handleSettingsInput(uint32_t pressed, uint32_t nav);
     void cycleSettingsOption(int row, int delta);
+    void triggerSelfUpdateAction();
+    void pollSelfUpdateProgress();
+    static int selfUpdateWorkerEntry(SceSize args, void* argp);
+
     ::psvitaalive::AppSettingsData settingsEdit_{};
     ::psvitaalive::PluginStatus pluginsStatus_{};
     SettingsSaveFn settingsSave_;
@@ -199,6 +206,17 @@ private:
     UiMode settingsReturnMode_ = UiMode::FULL_CATALOG;
     float settingsEnter_ = 1.f;   // 0..1 open transition
     float settingsFocusY_ = 0.f;  // animated highlight Y
+
+    // Self-update (GitHub Releases → in-place extract to ux0:app/TITLEID)
+    ::psvitaalive::UpdateChecker::Result selfUpdateInfo_{};
+    bool selfUpdateChecked_ = false;
+    std::atomic<bool> selfUpdateBusy_{false};
+    std::atomic<bool> selfUpdateDone_{false};
+    std::atomic<bool> selfUpdateOk_{false};
+    std::atomic<uint64_t> selfUpdateCur_{0};
+    std::atomic<uint64_t> selfUpdateTot_{0};
+    char selfUpdateMsg_[160] = {};
+    SceUID selfUpdateThread_ = -1;
     bool matchesSearch(const CatalogItem& item, const std::string& query) const;
     void sortItemsByDate(std::vector<CatalogItem>& items) const;
     int detailContentHeight(const CatalogItem& item, int width) const;
