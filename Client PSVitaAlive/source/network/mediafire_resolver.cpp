@@ -4,11 +4,11 @@
 #include <psp2/kernel/clib.h>
 #include <psp2/kernel/processmgr.h>
 
-#include <algorithm>
 #include <cctype>
 #include <cstdint>
 #include <cstring>
 #include <string>
+#include <utility>
 
 namespace psvitaalive {
 namespace {
@@ -25,26 +25,25 @@ bool containsIgnoreCase(const std::string& hay, const char* needle) {
     return toLowerAscii(hay).find(toLowerAscii(needle)) != std::string::npos;
 }
 
+int base64Value(unsigned char c) {
+    if (c >= 'A' && c <= 'Z') return c - 'A';
+    if (c >= 'a' && c <= 'z') return c - 'a' + 26;
+    if (c >= '0' && c <= '9') return c - '0' + 52;
+    if (c == '+') return 62;
+    if (c == '/') return 63;
+    return -1;
+}
+
 std::string b64Decode(const std::string& in) {
-    static const int8_t kDec[256] = {
-        -1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,
-        -1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,
-        -1,-1,-1,-1,-1,-1,-1,62,-1,-1,-1,-1,-1,62,-1,63,
-        52,53,54,55,56,57,58,59,60,61,-1,-1,-1,-1,-1,-1,
-        -1, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9,10,11,12,13,14,
-        15,16,17,18,19,20,21,22,23,24,25,-1,-1,-1,-1,-1,
-        -1,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,
-        41,42,43,44,45,46,47,48,49,50,51,-1,-1,-1,-1,-1
-    };
     std::string out;
     out.reserve(in.size() * 3 / 4 + 4);
     int val = 0;
     int valb = -8;
     for (unsigned char c : in) {
         if (c == '=' || c == '\n' || c == '\r' || c == ' ' || c == '\t') continue;
-        const int d = kDec[c];
+        const int d = base64Value(c);
         if (d < 0) return {};
-        val = (val << 6) + d;
+        val = (val << 6) | d;
         valb += 6;
         if (valb >= 0) {
             out.push_back(static_cast<char>((val >> valb) & 0xFF));
@@ -161,7 +160,6 @@ std::string tagContaining(const std::string& html, size_t markerPos) {
 std::string findDirectFromHtml(const std::string& html) {
     const std::string lowerHtml = toLowerAscii(html);
 
-    // 1) data-scrambled-url (single- or double-quoted).
     for (const char quote : {'"', '\''}) {
         const std::string key = std::string("data-scrambled-url=") + quote;
         size_t p = 0;
@@ -175,7 +173,6 @@ std::string findDirectFromHtml(const std::string& html) {
         }
     }
 
-    // 2) Primary download button. Attribute order may vary.
     for (const char quote : {'"', '\''}) {
         const std::string key = std::string("id=") + quote + "downloadButton" + quote;
         size_t p = 0;
@@ -186,7 +183,6 @@ std::string findDirectFromHtml(const std::string& html) {
         }
     }
 
-    // 3) Accessible current-style download control.
     for (const char quote : {'"', '\''}) {
         const std::string key = std::string("aria-label=") + quote + "download file" + quote;
         size_t p = 0;
@@ -197,7 +193,6 @@ std::string findDirectFromHtml(const std::string& html) {
         }
     }
 
-    // 4) Older MediaFire markup using the popsok class.
     size_t p = 0;
     while ((p = lowerHtml.find("popsok", p)) != std::string::npos) {
         const std::string direct = extractDownloadAttribute(tagContaining(html, p));
@@ -205,7 +200,6 @@ std::string findDirectFromHtml(const std::string& html) {
         p += 6;
     }
 
-    // 5) Explicit CDN URL anywhere in the HTML.
     for (const char* prefix : {"https://download", "http://download"}) {
         p = 0;
         while ((p = html.find(prefix, p)) != std::string::npos) {
@@ -215,7 +209,6 @@ std::string findDirectFromHtml(const std::string& html) {
         }
     }
 
-    // 6) API/JSON-ish fields that expose the normal/direct download link.
     for (const char* key : {"normal_download", "direct_download", "download_link"}) {
         p = 0;
         while ((p = lowerHtml.find(key, p)) != std::string::npos) {
