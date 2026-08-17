@@ -1,0 +1,134 @@
+name: Temporary MediaFire filename fix
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+
+jobs:
+  patch:
+    if: ${{ github.event.head_commit.message != 'fix(client): preserve MediaFire file formats' }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout main
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - name: Apply MediaFire filename and format fixes
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+
+          main = Path('Client PSVitaAlive/source/main.cpp')
+          text = main.read_text(encoding='utf-8')
+
+          old_file_name = '''std::string fileNameFromUrl(const std::string&url,const std::string&id){std::string clean=url;const size_t q=clean.find('?');if(q!=std::string::npos)clean.erase(q);const size_t f=clean.find('#');if(f!=std::string::npos)clean.erase(f);const size_t slash=clean.find_last_of('/');std::string name=slash==std::string::npos?clean:clean.substr(slash+1);return name.empty()?id+".bin":name;}'''
+          new_file_name = r'''int hexValue(char c){if(c>='0'&&c<='9')return c-'0';if(c>='a'&&c<='f')return c-'a'+10;if(c>='A'&&c<='F')return c-'A'+10;return -1;}
+          std::string urlDecodePath(std::string value){for(int pass=0;pass<2;++pass){std::string out;out.reserve(value.size());bool changed=false;for(size_t i=0;i<value.size();++i){if(value[i]=='%'&&i+2<value.size()){const int h=hexValue(value[i+1]);const int l=hexValue(value[i+2]);if(h>=0&&l>=0){out.push_back(static_cast<char>((h<<4)|l));i+=2;changed=true;continue;}}out.push_back(value[i]);}value.swap(out);if(!changed)break;}return value;}
+          std::string fileNameFromUrl(const std::string&url,const std::string&id){
+              std::string clean=url;const size_t q=clean.find('?');if(q!=std::string::npos)clean.erase(q);const size_t f=clean.find('#');if(f!=std::string::npos)clean.erase(f);
+              std::string name;
+              const std::string lower=clean;
+              const size_t media=lower.find("mediafire.com");
+              const size_t marker=lower.find("/file/",media==std::string::npos?0:media);
+              if(media!=std::string::npos&&marker!=std::string::npos){
+                  const size_t idEnd=clean.find('/',marker+6);
+                  if(idEnd!=std::string::npos){const size_t nameEnd=clean.find('/',idEnd+1);name=clean.substr(idEnd+1,nameEnd==std::string::npos?std::string::npos:nameEnd-(idEnd+1));}
+              }
+              if(name.empty()){
+                  const size_t slash=clean.find_last_of('/');name=slash==std::string::npos?clean:clean.substr(slash+1);
+                  if(name=="file"&&slash!=std::string::npos){const size_t prev=clean.find_last_of('/',slash-1);if(prev!=std::string::npos)name=clean.substr(prev+1,slash-prev-1);}
+              }
+              name=urlDecodePath(name);
+              return name.empty()||name=="file"?id+".bin":name;
+          }'''
+          if old_file_name not in text:
+              raise SystemExit('main.cpp: fileNameFromUrl pattern not found')
+          text = text.replace(old_file_name, new_file_name, 1)
+
+          old_zip = 'bool isZipName(const std::string&name){return name.size()>=4&&name.substr(name.size()-4)==".zip";}'
+          new_zip = r'''bool isZipName(const std::string&name){if(name.size()<4)return false;const std::string ext=name.substr(name.size()-4);for(char&c:const_cast<std::string&>(ext)){if(c>='A'&&c<='Z')c=static_cast<char>(c-'A'+'a');}return ext==".zip";}'''
+          if old_zip not in text:
+              raise SystemExit('main.cpp: isZipName pattern not found')
+          text = text.replace(old_zip, new_zip, 1)
+          main.write_text(text, encoding='utf-8')
+
+          dm = Path('Client PSVitaAlive/source/network/download_manager.cpp')
+          text = dm.read_text(encoding='utf-8')
+          old_helper = '''namespace {
+          std::string sanitizePayloadFileName(const std::string& name, const std::string& url) {
+              std::string n = name;
+              auto lower = [](std::string s) {
+                  for (char& c : s) c = static_cast<char>(std::tolower(static_cast<unsigned char>(c)));
+                  return s;
+              };
+              const std::string low = lower(n);
+              const bool bad =
+                  n.empty() ||
+                  low.find("get_hb_url") != std::string::npos ||
+                  (low.size() >= 4 && (
+                      low.rfind(".php") == low.size() - 4 ||
+                      low.rfind(".html") == low.size() - 5 ||
+                      low.rfind(".htm") == low.size() - 4 ||
+                      low.rfind(".asp") == low.size() - 4));
+              if (!bad) return n;
+              std::string base = "download";
+              const std::size_t q = url.find("id=");
+              if (q != std::string::npos) {
+                  std::string id;
+                  for (std::size_t i = q + 3; i < url.size(); ++i) {
+                      const char c = url[i];
+                      if (c == '&' || c == '#') break;
+                      if ((c >= '0' && c <= '9') || (c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z') || c == '_' || c == '-')
+                          id.push_back(c);
+                      else break;
+                  }
+                  if (!id.empty()) base = "vitadb_" + id;
+              }
+              return base + ".vpk";
+          }
+          } // namespace'''
+          new_helper = r'''namespace {
+          int hexValue(char c){if(c>='0'&&c<='9')return c-'0';if(c>='a'&&c<='f')return c-'a'+10;if(c>='A'&&c<='F')return c-'A'+10;return -1;}
+          std::string urlDecodePath(std::string value){for(int pass=0;pass<2;++pass){std::string out;out.reserve(value.size());bool changed=false;for(size_t i=0;i<value.size();++i){if(value[i]=='%'&&i+2<value.size()){const int h=hexValue(value[i+1]);const int l=hexValue(value[i+2]);if(h>=0&&l>=0){out.push_back(static_cast<char>((h<<4)|l));i+=2;changed=true;continue;}}out.push_back(value[i]);}value.swap(out);if(!changed)break;}return value;}
+          std::string inferFileNameFromUrl(const std::string&url){
+              std::string clean=url;const size_t q=clean.find('?');if(q!=std::string::npos)clean.erase(q);const size_t f=clean.find('#');if(f!=std::string::npos)clean.erase(f);
+              std::string name;const size_t media=clean.find("mediafire.com");const size_t marker=clean.find("/file/",media==std::string::npos?0:media);
+              if(media!=std::string::npos&&marker!=std::string::npos){const size_t idEnd=clean.find('/',marker+6);if(idEnd!=std::string::npos){const size_t nameEnd=clean.find('/',idEnd+1);name=clean.substr(idEnd+1,nameEnd==std::string::npos?std::string::npos:nameEnd-(idEnd+1));}}
+              if(name.empty()){const size_t slash=clean.find_last_of('/');name=slash==std::string::npos?clean:clean.substr(slash+1);if(name=="file"&&slash!=std::string::npos){const size_t prev=clean.find_last_of('/',slash-1);if(prev!=std::string::npos)name=clean.substr(prev+1,slash-prev-1);}}
+              return urlDecodePath(name);
+          }
+          std::string sanitizePayloadFileName(const std::string&name,const std::string&url){
+              std::string n=name;auto lower=[](std::string s){for(char&c:s)c=static_cast<char>(std::tolower(static_cast<unsigned char>(c)));return s;};const std::string low=lower(n);
+              const bool placeholder=n.empty()||low=="file"||low=="download"||low=="payload"||low=="payload.bin"||low.find("get_hb_url")!=std::string::npos;
+              if(placeholder){const std::string inferred=inferFileNameFromUrl(url);if(!inferred.empty()&&inferred!="file")n=inferred;}
+              if(!n.empty()&&lower(n)!="file"&&lower(n)!="download")return n;
+              return "payload.bin";
+          }
+          } // namespace'''
+          if old_helper not in text:
+              raise SystemExit('download_manager.cpp: helper pattern not found')
+          text = text.replace(old_helper, new_helper, 1)
+          dm.write_text(text, encoding='utf-8')
+          PY
+
+      - name: Validate changed source files
+        run: |
+          grep -n "fileNameFromUrl" "Client PSVitaAlive/source/main.cpp"
+          grep -n "sanitizePayloadFileName" "Client PSVitaAlive/source/network/download_manager.cpp"
+          grep -n 'return "payload.bin"' "Client PSVitaAlive/source/network/download_manager.cpp"
+
+      - name: Commit fixes and remove temporary workflow
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add "Client PSVitaAlive/source/main.cpp" "Client PSVitaAlive/source/network/download_manager.cpp"
+          git rm .github/workflows/_temp_mediafire_filename_fix.yml
+          git commit -m "fix(client): preserve MediaFire file formats"
+          git push origin HEAD:main
