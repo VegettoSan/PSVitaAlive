@@ -832,29 +832,35 @@ if(pressed&SCE_CTRL_START){if(installProgressActive_){showToast("A download/inst
         return;
     }if(installProgressActive_&&(pressed&SCE_CTRL_CIRCLE)){if(installOutcome_==1||installOutcome_==2){if(installAcknowledge_)installAcknowledge_();}else if(installCancel_)installCancel_();return;}if(catalogLoading_||installProgressActive_)return;if(pressed&SCE_CTRL_SQUARE){if(!searchQuery_.empty())applySearch("");return;}if(state_.mode==UiMode::FULL_CATALOG){if(pressed&SCE_CTRL_TRIANGLE){if(searchRequest_)applySearch(searchRequest_(searchQuery_));return;}if(nav&SCE_CTRL_LEFT&&state_.focusIndex%3>0)--state_.focusIndex;if(nav&SCE_CTRL_RIGHT&&state_.focusIndex%3<2&&state_.focusIndex+1<(int)items_.size())++state_.focusIndex;if(nav&SCE_CTRL_UP)moveCatalogFocus(-1);if(nav&SCE_CTRL_DOWN)moveCatalogFocus(1);clampCatalogScroll();if(pressed&SCE_CTRL_CROSS)startOpeningDetail();return;}if(state_.mode!=UiMode::SPLIT_DETAIL)return;if(pressed&SCE_CTRL_TRIANGLE){if(searchRequest_)applySearch(searchRequest_(searchQuery_));return;}if(pressed&SCE_CTRL_CIRCLE){startClosingDetail();return;}if(state_.activePanel==UiPanel::Catalog){if(pressed&SCE_CTRL_RIGHT)state_.activePanel=UiPanel::Detail;if(nav&SCE_CTRL_UP)moveCatalogFocus(-1);if(nav&SCE_CTRL_DOWN)moveCatalogFocus(1);return;}if(nav&SCE_CTRL_LEFT)state_.activePanel=UiPanel::Catalog;if(pressed&SCE_CTRL_TRIANGLE){if(state_.linkNavigation)exitLinkNavigation();else enterLinkNavigation();return;}if(state_.linkNavigation){if(nav&SCE_CTRL_UP)moveLinkFocus(0,-1);if(nav&SCE_CTRL_DOWN)moveLinkFocus(0,1);if(pressed&SCE_CTRL_CROSS)activateFocusedLink();return;}if(nav&SCE_CTRL_UP)moveDetailScroll(-1);if(nav&SCE_CTRL_DOWN)moveDetailScroll(1);}
 unsigned FullCatalogScreen::colorForStatus(const std::string&s)const{if(s=="Verified")return ACCENT;if(s=="Legacy")return TEXT;if(s=="Archive")return DIM;return TEXT;}void FullCatalogScreen::drawHeader(int w){
-    vita2d_draw_rectangle(0,0,w,HEADER_H,SURFACE2);
-    vita2d_pgf_draw_text(font_,16,32,ACCENT,1.12f,"PSVitaAlive");
-    // Center search field (tap / Triangle)
+    // Near-black bar + dual neon edge (LiveArea brand)
+    vita2d_draw_rectangle(0, 0, w, HEADER_H, SURFACE2);
+    vita2d_draw_rectangle(0, 0, w, 2, ACCENT);
+    vita2d_draw_rectangle(0, HEADER_H - 1, w, 1, ACCENT_SOFT);
+    // Brand lockup: PSVITA (lime) + Alive (silver) + STORE
+    const float brandScale = 0.92f;
+    vita2d_pgf_draw_text(font_, 14, 22, ACCENT, brandScale, "PSVITA");
+    const int aliveX = 14 + (int)vita2d_pgf_text_width(font_, brandScale, "PSVITA");
+    vita2d_pgf_draw_text(font_, aliveX, 22, SILVER, brandScale, "Alive");
+    vita2d_pgf_draw_text(font_, 16, 38, DIM, 0.48f, "STORE");
+    // Center search field with neon frame
     const int barX = 200, barY = 10, barH = 32;
-    const int barW = w - barX - 100; // leave room for clock on the right
+    const int barW = w - barX - 100;
     vita2d_draw_rectangle(barX, barY, barW, barH, SURFACE);
-    vita2d_draw_rectangle(barX, barY, barW, 2, ACCENT);
-    vita2d_draw_rectangle(barX, barY + barH - 2, barW, 2, searchQuery_.empty() ? BORDER : ACCENT);
+    drawNeonFrame(barX, barY, barW, barH, 50, 140);
     if (searchQuery_.empty()) {
         vita2d_pgf_draw_text(font_, barX + 12, barY + 21, DIM, 0.58f, "Search...  (△)");
     } else {
         vita2d_pgf_draw_text(font_, barX + 12, barY + 21, ACCENT, 0.56f, "FILTER");
         vita2d_pgf_draw_text(font_, barX + 70, barY + 21, WHITE, 0.58f, ellipsize(searchQuery_, 28).c_str());
-        // clear hint
         vita2d_pgf_draw_text(font_, barX + barW - 52, barY + 21, DIM, 0.52f, "□ clear");
     }
     {
         const std::string clock = currentTimeLabel();
-        // Right-align roughly in the top-right slot
         const int clockX = w - 16 - (int)clock.size() * 11;
-        vita2d_pgf_draw_text(font_, clockX, 32, WHITE, 0.78f, clock.c_str());
+        vita2d_pgf_draw_text(font_, clockX, 32, SILVER, 0.78f, clock.c_str());
     }
 }
+
 void FullCatalogScreen::drawTabs(int w){
     vita2d_draw_rectangle(0, HEADER_H, w, TABS_H, SURFACE2);
     vita2d_draw_rectangle(0, HEADER_H, w, 1, BORDER);
@@ -1261,6 +1267,8 @@ void FullCatalogScreen::drawCatalogCard(const CatalogItem&it,int idx,int x,int y
     int hh = focus ? h + 2 : h;
     const unsigned bg = focus ? SURFACE2 : SURFACE;
     vita2d_draw_rectangle(x + ox, y + oy, ww, hh, bg);
+    // Brand accent rail on every card (stronger when focused)
+    vita2d_draw_rectangle(x + ox, y + oy, focus ? 3 : 2, hh, focus ? ACCENT : ACCENT_SOFT);
     if (focus) {
         const unsigned glow = RGBA8(0x3B, 0xFF, 0x00, static_cast<unsigned>(55 + pulse * 100));
         vita2d_draw_rectangle(x + ox - 2, y + oy - 2, ww + 4, 2, glow);
