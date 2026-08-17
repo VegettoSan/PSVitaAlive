@@ -14,6 +14,7 @@
 #include <cstdlib>
 #include <cstring>
 #include <string>
+#include <vector>
 
 namespace psvitaalive {
 namespace {
@@ -48,29 +49,6 @@ uint64_t getUnsigned(const sce::Json::Value& object, const char* key) {
     return value.getUInteger();
 }
 
-std::string extractVersion(const std::string& text) {
-    for (size_t i = 0; i < text.size(); ++i) {
-        if (!std::isdigit(static_cast<unsigned char>(text[i]))) continue;
-        size_t end = i;
-        int dots = 0;
-        while (end < text.size()) {
-            if (std::isdigit(static_cast<unsigned char>(text[end]))) {
-                ++end;
-                continue;
-            }
-            if (text[end] == '.' && dots < 2 && end + 1 < text.size() &&
-                std::isdigit(static_cast<unsigned char>(text[end + 1]))) {
-                ++dots;
-                ++end;
-                continue;
-            }
-            break;
-        }
-        if (end > i) return text.substr(i, end - i);
-    }
-    return {};
-}
-
 bool parseVersionPart(const std::string& text, size_t& pos, uint64_t& out) {
     if (pos >= text.size() || !std::isdigit(static_cast<unsigned char>(text[pos]))) return false;
     uint64_t value = 0;
@@ -101,6 +79,109 @@ int compareVersions(const std::string& left, const std::string& right) {
         if (rp < right.size() && right[rp] == '.') ++rp;
     }
     return 0;
+}
+
+// Extract a dotted numeric version starting at index i (digits and up to 2 dots).
+std::string extractVersionAt(const std::string& text, size_t i) {
+    if (i >= text.size() || !std::isdigit(static_cast<unsigned char>(text[i]))) return {};
+    size_t end = i;
+    int dots = 0;
+    while (end < text.size()) {
+        if (std::isdigit(static_cast<unsigned char>(text[end]))) {
+            ++end;
+            continue;
+        }
+        if (text[end] == '.' && dots < 2 && end + 1 < text.size() &&
+            std::isdigit(static_cast<unsigned char>(text[end + 1]))) {
+            ++dots;
+            ++end;
+            continue;
+        }
+        break;
+    }
+    if (end <= i) return {};
+    return text.substr(i, end - i);
+}
+
+bool isVersionContextChar(char c) {
+    return std::isalnum(static_cast<unsigned char>(c)) || c == '.' || c == '_' || c == '-';
+}
+
+/**
+ * Collect version-like tokens from free text.
+ * Handles: 01.00, 1.0.1, v1.2.3, BETA-0.1, BETA_0.1, version 01.01, etc.
+ */
+void collectVersionsFromText(const std::string& text, std::vector<std::string>& out) {
+    if (text.empty()) return;
+
+    for (size_t i = 0; i < text.size(); ++i) {
+        // Optional leading v/V immediately before a digit
+        size_t start = i;
+        if ((text[i] == 'v' || text[i] == 'V') && i + 1 < text.size() &&
+            std::isdigit(static_cast<unsigned char>(text[i + 1]))) {
+            start = i + 1;
+        } else if (!std::isdigit(static_cast<unsigned char>(text[i]))) {
+            continue;
+        }
+
+        // Avoid matching pure years or long numbers without dots when better candidates exist:
+        // still accept them; ranking later prefers dotted forms.
+        const std::string ver = extractVersionAt(text, start);
+        if (ver.empty()) continue;
+
+        // Skip isolated single digits with no dot (too noisy) unless whole token is that.
+        if (ver.find('.') == std::string::npos && ver.size() <= 1) {
+            i = start;
+            continue;
+        }
+
+        out.push_back(ver);
+        // Advance past this match to reduce duplicates
+        i = start + ver.size() - 1;
+    }
+}
+
+// Prefer richer / higher versions for the *same* release metadata blob.
+std::string pickBestVersion(const std::vector<std::string>& candidates) {
+    if (candidates.empty()) return {};
+    std::string best = candidates[0];
+    for (size_t i = 1; i < candidates.size(); ++i) {
+        const std::string& c = candidates[i];
+        const int cmp = compareVersions(best, c);
+        if (cmp < 0) {
+            best = c;
+            continue;
+        }
+        if (cmp == 0) {
+            // Prefer more segments / longer string for display stability (01.00.0 vs 01.00)
+            if (c.size() > best.size()) best = c;
+        }
+    }
+    return best;
+}
+
+std::string resolveRemoteVersion(const std::string& tag, const std::string& name, const std::string& body) {
+    std::vector<std::string> candidates;
+
+    // 1) Tag: "v01.01", "01.01", "BETA-0.1", "BETA_0.1"
+    collectVersionsFromText(tag, candidates);
+
+    // 2) Release name: "PsVita Alive Store BETA 01.00"
+    collectVersionsFromText(name, candidates);
+
+    // 3) Body (limited): "BETA 01.01", "version 1.2.0"
+    if (!body.empty()) {
+        const std::string slice = body.size() > 4096 ? body.substr(0, 4096) : body;
+        collectVersionsFromText(slice, candidates);
+    }
+
+    // De-noise: drop empty
+    std::vector<std::string> cleaned;
+    cleaned.reserve(candidates.size());
+    for (const auto& c : candidates) {
+        if (!c.empty()) cleaned.push_back(c);
+    }
+    return pickBestVersion(cleaned);
 }
 
 bool endsWithIgnoreCase(const std::string& value, const char* suffix) {
@@ -141,7 +222,6 @@ bool pickVpkAsset(const sce::Json::Value& assetsValue, UpdateChecker::Result& re
             fallbackDigest = getString(asset, "digest");
         }
     }
-    // If the preferred name is missing but exactly one .vpk exists, use it.
     if (vpkCount == 1 && !fallbackUrl.empty()) {
         result.assetName = fallbackName;
         result.downloadUrl = fallbackUrl;
@@ -174,11 +254,19 @@ bool writeVersionMarker(const std::string& version) {
     return n >= 0;
 }
 
+std::string extractLocalVersion(const std::string& currentVersion) {
+    std::vector<std::string> c;
+    collectVersionsFromText(currentVersion, c);
+    if (!c.empty()) return pickBestVersion(c);
+    // Fallback: entire string if it already looks numeric
+    return currentVersion;
+}
+
 } // namespace
 
 UpdateChecker::Result UpdateChecker::checkLatest(const std::string& currentVersion) {
     Result result;
-    result.localVersion = extractVersion(currentVersion);
+    result.localVersion = extractLocalVersion(currentVersion);
     if (result.localVersion.empty()) {
         result.error = "Invalid local application version";
         diagnostics::log("[UpdateChecker] invalid local version: " + currentVersion);
@@ -231,30 +319,29 @@ UpdateChecker::Result UpdateChecker::checkLatest(const std::string& currentVersi
 
     result.releaseTag = getString(root, "tag_name");
     result.releaseName = getString(root, "name");
+    const std::string releaseBody = getString(root, "body");
 
-    const bool conventionalTag = !result.releaseTag.empty() &&
-        (std::isdigit(static_cast<unsigned char>(result.releaseTag[0])) ||
-         result.releaseTag[0] == 'v' || result.releaseTag[0] == 'V');
-    if (conventionalTag) result.remoteVersion = extractVersion(result.releaseTag);
-    if (result.remoteVersion.empty()) result.remoteVersion = extractVersion(result.releaseName);
-    if (result.remoteVersion.empty()) result.remoteVersion = extractVersion(result.releaseTag);
+    result.remoteVersion = resolveRemoteVersion(result.releaseTag, result.releaseName, releaseBody);
 
     if (!pickVpkAsset(root["assets"], result)) {
-        // leave downloadUrl empty
+        // downloadUrl stays empty
     }
 
     if (result.remoteVersion.empty()) {
-        result.error = "GitHub release does not expose a usable version";
+        result.error = "GitHub release does not expose a usable version (tag/name/body)";
     } else if (result.downloadUrl.empty()) {
         result.error = "GitHub release does not contain a .vpk asset (expected PSVitaAlive.vpk)";
     } else if (compareVersions(result.localVersion, result.remoteVersion) < 0) {
         result.state = State::UpdateAvailable;
         diagnostics::log("[UpdateChecker] update available: local=" + result.localVersion +
-                         " remote=" + result.remoteVersion + " asset=" + result.assetName);
+                         " remote=" + result.remoteVersion +
+                         " tag=" + result.releaseTag +
+                         " asset=" + result.assetName);
     } else {
         result.state = State::UpToDate;
-        diagnostics::log("[UpdateChecker] client is up to date: " + result.localVersion +
-                         " remote=" + result.remoteVersion);
+        diagnostics::log("[UpdateChecker] client is up to date: local=" + result.localVersion +
+                         " remote=" + result.remoteVersion +
+                         " tag=" + result.releaseTag);
     }
 
     if (result.state == State::Failed) {
@@ -322,13 +409,11 @@ bool UpdateChecker::applyUpdate(
     }
     http.shutdown();
 
-    // Extraction is not cancellable (VitaDB-style) to avoid a half-written app tree.
     emitProgress(onProgress, ApplyStage::Extracting, 0, 0, "Installing update (do not power off)");
     diagnostics::log("[UpdateChecker] extracting in-place to " + std::string(kAppDir));
 
     if (!st.createDirectories(kAppDir)) {
         diagnostics::log("[UpdateChecker] app dir missing and could not create");
-        // still try extract; folder usually already exists when app is running
     }
 
     ZipExtractor zip;
