@@ -1,6 +1,7 @@
 #include "network/download_manager.hpp"
 #include "network/mediafire_resolver.hpp"
 #include "storage/storage_manager.hpp"
+#include "diagnostic_logger.hpp"
 
 #include <psp2/kernel/clib.h>
 #include <psp2/kernel/processmgr.h>
