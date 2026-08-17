@@ -74,6 +74,8 @@ private:
     LinkActionFn linkAction_;
     ImageCache* imageCache_ = nullptr;
     vita2d_pgf* font_ = nullptr;
+    /** Full-screen splash while catalogs download/load at startup (app0:ui/catalog_loading.png). */
+    vita2d_texture* catalogLoadingTex_ = nullptr;
     bool ready_ = false;
 
     std::string searchQuery_;
