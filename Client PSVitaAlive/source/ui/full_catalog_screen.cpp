@@ -1,6 +1,11 @@
 #include "ui/full_catalog_screen.hpp"
 #include "installer/app_settings.hpp"
 #include "installer/plugin_detector.hpp"
+#include "update/update_checker.hpp"
+
+#ifndef PSVITAALIVE_VERSION
+#define PSVITAALIVE_VERSION "01.00"
+#endif
 #include "diagnostic_logger.hpp"
 #include <psp2/ctrl.h>
 #include <psp2/touch.h>
@@ -745,11 +750,13 @@ void FullCatalogScreen::cycleSettingsOption(int row, int delta) {
         settingsEdit_.warnMissingPlugins = !settingsEdit_.warnMissingPlugins;
     } else if (row == 3) {
         settingsEdit_.promptImageWarmup = !settingsEdit_.promptImageWarmup;
+    } else if (row == 4) {
+        triggerSelfUpdateAction();
     }
 }
 
 void FullCatalogScreen::handleSettingsInput(uint32_t pressed, uint32_t nav) {
-    constexpr int kRows = 4;
+    constexpr int kRows = 5;
     if (nav & SCE_CTRL_UP) {
         settingsFocus_ = (settingsFocus_ + kRows - 1) % kRows;
     }
@@ -812,17 +819,32 @@ void FullCatalogScreen::drawSettings() {
         const char* hint;
         bool sectionStart;
     };
-    Opt opts[4] = {
+    auto updateLabel = [&]() -> std::string {
+        if (selfUpdateBusy_.load()) return "Working...";
+        if (selfUpdateChecked_ && selfUpdateInfo_.state == ::psvitaalive::UpdateChecker::State::UpdateAvailable) {
+            return std::string("Install ") + selfUpdateInfo_.remoteVersion;
+        }
+        if (selfUpdateChecked_ && selfUpdateInfo_.state == ::psvitaalive::UpdateChecker::State::UpToDate) {
+            return "Up to date";
+        }
+        if (selfUpdateChecked_ && selfUpdateInfo_.state == ::psvitaalive::UpdateChecker::State::Failed) {
+            return "Check failed";
+        }
+        return std::string("v") + PSVITAALIVE_VERSION;
+    };
+
+    Opt opts[5] = {
         {"INSTALL", "Install method", methodLabel(), "Auto: BGDL for PKG when available", true},
         {"", "PSP / PS1 target", pspLabel(), "ISO/CSO/PBP under ux0:pspemu", false},
         {"INTERFACE", "Warn missing plugins", settingsEdit_.warnMissingPlugins ? "Yes" : "No", "Startup toast if NoNpDrm is missing", true},
         {"CATALOG", "Prompt image download", settingsEdit_.promptImageWarmup ? "Yes" : "No", "If you choose No once, it will not ask again", true},
+        {"UPDATES", "App updates", updateLabel(), "GitHub Releases — X to check / install", true},
     };
 
     // Shared layout for touch: store row rects via static computed positions
-    int rowY[4] = {};
+    int rowY[5] = {};
     int y = contentTop;
-    for (int i = 0; i < 4; ++i) {
+    for (int i = 0; i < 5; ++i) {
         if (opts[i].sectionStart && opts[i].section[0]) {
             vita2d_pgf_draw_text(font_, listX + 6, y + 16, DIM, 0.56f, opts[i].section);
             y += 24;
