@@ -39,17 +39,67 @@ void VitaInstaller::setError(const std::string& msg) {
 }
 
 bool VitaInstaller::loadPromoterModule() {
-    int r = sceSysmoduleLoadModuleInternal(SCE_SYSMODULE_INTERNAL_PROMOTER_UTIL);
-    if (r < 0) {
-        r = sceSysmoduleLoadModule(static_cast<SceSysmoduleModuleId>(0x165));
+    // Same sequence as HomebrewInstaller / VitaShell / LPP:
+    // ScePaf must be loaded with args before PROMOTER_UTIL, or load fails (0x805A1000).
+    pafLoadedByUs_ = false;
+    promoterLoadedByUs_ = false;
+
+    if (sceSysmoduleIsLoadedInternal(SCE_SYSMODULE_INTERNAL_PAF) < 0) {
+        uint32_t ptr[0x100] = {0};
+        ptr[0] = 0;
+        ptr[1] = static_cast<uint32_t>(reinterpret_cast<uintptr_t>(&ptr[0]));
+        uint32_t scepafArgp[] = { 0x400000u, 0xEA60u, 0x40000u, 0u, 0u };
+        const int r = sceSysmoduleLoadModuleInternalWithArg(
+            SCE_SYSMODULE_INTERNAL_PAF,
+            sizeof(scepafArgp),
+            scepafArgp,
+            reinterpret_cast<SceSysmoduleOpt*>(ptr)
+        );
+        if (r < 0) {
+            char buf[80];
+            sceClibSnprintf(buf, sizeof(buf), "load PAF failed: 0x%08X", r);
+            setError(buf);
+            return false;
+        }
+        pafLoadedByUs_ = true;
     }
-    if (r < 0) {
-        char buf[64];
-        sceClibSnprintf(buf, sizeof(buf), "load promoter failed: 0x%08X", r);
-        setError(buf);
-        return false;
+
+    if (sceSysmoduleIsLoadedInternal(SCE_SYSMODULE_INTERNAL_PROMOTER_UTIL) < 0) {
+        int r = sceSysmoduleLoadModuleInternal(SCE_SYSMODULE_INTERNAL_PROMOTER_UTIL);
+        if (r < 0) {
+            r = sceSysmoduleLoadModule(static_cast<SceSysmoduleModuleId>(0x165));
+        }
+        if (r < 0) {
+            char buf[64];
+            sceClibSnprintf(buf, sizeof(buf), "load promoter failed: 0x%08X", r);
+            setError(buf);
+            unloadPromoterModules();
+            return false;
+        }
+        promoterLoadedByUs_ = true;
     }
     return true;
+}
+
+void VitaInstaller::unloadPromoterModules() {
+    if (promoterLoadedByUs_) {
+        const int r = sceSysmoduleUnloadModuleInternal(SCE_SYSMODULE_INTERNAL_PROMOTER_UTIL);
+        if (r < 0) {
+            sceClibPrintf("[VitaInstaller] unload promoter failed: 0x%08X\n", r);
+        }
+        promoterLoadedByUs_ = false;
+    }
+    if (pafLoadedByUs_) {
+        SceSysmoduleOpt opt{};
+        std::memset(&opt.flags, 0, sizeof(opt.flags));
+        const int r = sceSysmoduleUnloadModuleInternalWithArg(
+            SCE_SYSMODULE_INTERNAL_PAF, 0, nullptr, &opt
+        );
+        if (r < 0) {
+            sceClibPrintf("[VitaInstaller] unload PAF failed: 0x%08X\n", r);
+        }
+        pafLoadedByUs_ = false;
+    }
 }
 
 VitaInstallResult VitaInstaller::promotePath(const std::string& path, bool withRif) {
@@ -139,6 +189,11 @@ VitaInstallResult VitaInstaller::installPkg(
     if (!loadPromoterModule()) {
         return VitaInstallResult::ModuleFailed;
     }
+    // Unload PAF/Promoter on every exit path after a successful load.
+    struct PromoterScope {
+        VitaInstaller* self;
+        ~PromoterScope() { if (self) self->unloadPromoterModules(); }
+    } promoterScope{this};
 
     if (!st.createDirectories(TMP_ROOT)) {
         setError("cannot create tmp");
