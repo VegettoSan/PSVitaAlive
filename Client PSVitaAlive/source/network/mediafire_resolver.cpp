@@ -5,6 +5,7 @@
 
 #include <cctype>
 #include <cstring>
+#include <algorithm>
 #include <string>
 
 namespace psvitaalive {
