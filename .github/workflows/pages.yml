@@ -4,10 +4,11 @@ on:
   push:
     branches:
       - main
+
   workflow_dispatch:
 
 permissions:
-  contents: write
+  contents: read
   pages: write
   id-token: write
 
@@ -20,46 +21,12 @@ jobs:
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
+
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout
         uses: actions/checkout@v6
-
-      - name: Temporary MediaFire filename and format fix
-        shell: bash
-        run: |
-          python - <<'PY'
-          from pathlib import Path
-
-          def patch_file(path, replacements):
-              text = Path(path).read_text(encoding='utf-8')
-              changed = False
-              for old, new in replacements:
-                  if old in text:
-                      text = text.replace(old, new, 1)
-                      changed = True
-              Path(path).write_text(text, encoding='utf-8')
-              return changed
-
-          main_changed = patch_file('Client PSVitaAlive/source/main.cpp', [
-              ('''std::string fileNameFromUrl(const std::string&url,const std::string&id){std::string clean=url;const size_t q=clean.find('?');if(q!=std::string::npos)clean.erase(q);const size_t f=clean.find('#');if(f!=std::string::npos)clean.erase(f);const size_t slash=clean.find_last_of('/');std::string name=slash==std::string::npos?clean:clean.substr(slash+1);return name.empty()?id+".bin":name;}''', '''int hexValue(char c){if(c>='0'&&c<='9')return c-'0';if(c>='a'&&c<='f')return c-'a'+10;if(c>='A'&&c<='F')return c-'A'+10;return -1;}\nstd::string urlDecodePath(std::string value){for(int pass=0;pass<2;++pass){std::string out;out.reserve(value.size());bool changed=false;for(size_t i=0;i<value.size();++i){if(value[i]=='%'&&i+2<value.size()){const int h=hexValue(value[i+1]);const int l=hexValue(value[i+2]);if(h>=0&&l>=0){out.push_back(static_cast<char>((h<<4)|l));i+=2;changed=true;continue;}}out.push_back(value[i]);}value.swap(out);if(!changed)break;}return value;}\nstd::string fileNameFromUrl(const std::string&url,const std::string&id){\n    std::string clean=url;const size_t q=clean.find('?');if(q!=std::string::npos)clean.erase(q);const size_t f=clean.find('#');if(f!=std::string::npos)clean.erase(f);\n    std::string name;const size_t media=clean.find("mediafire.com");const size_t marker=clean.find("/file/",media==std::string::npos?0:media);\n    if(media!=std::string::npos&&marker!=std::string::npos){const size_t idEnd=clean.find('/',marker+6);if(idEnd!=std::string::npos){const size_t nameEnd=clean.find('/',idEnd+1);name=clean.substr(idEnd+1,nameEnd==std::string::npos?std::string::npos:nameEnd-(idEnd+1));}}\n    if(name.empty()){const size_t slash=clean.find_last_of('/');name=slash==std::string::npos?clean:clean.substr(slash+1);if(name=="file"&&slash!=std::string::npos){const size_t prev=clean.find_last_of('/',slash-1);if(prev!=std::string::npos)name=clean.substr(prev+1,slash-prev-1);}}\n    name=urlDecodePath(name);return name.empty()||name=="file"?id+".bin":name;\n}'''),
-              ('bool isZipName(const std::string&name){return name.size()>=4&&name.substr(name.size()-4)==".zip";}', 'bool isZipName(const std::string&name){if(name.size()<4)return false;std::string ext=name.substr(name.size()-4);for(char&c:ext){if(c>=\'A\'&&c<=\'Z\')c=static_cast<char>(c-\'A\'+\'a\');}return ext==".zip";}')
-          ])
-
-          dm_changed = patch_file('Client PSVitaAlive/source/network/download_manager.cpp', [
-              ('''namespace {\nstd::string sanitizePayloadFileName(const std::string& name, const std::string& url) {\n    std::string n = name;\n    auto lower = [](std::string s) {\n        for (char& c : s) c = static_cast<char>(std::tolower(static_cast<unsigned char>(c)));\n        return s;\n    };\n    const std::string low = lower(n);\n    const bool bad =\n        n.empty() ||\n        low.find("get_hb_url") != std::string::npos ||\n        (low.size() >= 4 && (\n            low.rfind(".php") == low.size() - 4 ||\n            low.rfind(".html") == low.size() - 5 ||\n            low.rfind(".htm") == low.size() - 4 ||\n            low.rfind(".asp") == low.size() - 4));\n    if (!bad) return n;\n    std::string base = "download";\n    const std::size_t q = url.find("id=");\n    if (q != std::string::npos) {\n        std::string id;\n        for (std::size_t i = q + 3; i < url.size(); ++i) {\n            const char c = url[i];\n            if (c == '&' || c == '#') break;\n            if ((c >= '0' && c <= '9') || (c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z') || c == '_' || c == '-')\n                id.push_back(c);\n            else break;\n        }\n        if (!id.empty()) base = "vitadb_" + id;\n    }\n    return base + ".vpk";\n}\n} // namespace''', '''namespace {\nint hexValue(char c){if(c>='0'&&c<='9')return c-'0';if(c>='a'&&c<='f')return c-'a'+10;if(c>='A'&&c<='F')return c-'A'+10;return -1;}\nstd::string urlDecodePath(std::string value){for(int pass=0;pass<2;++pass){std::string out;out.reserve(value.size());bool changed=false;for(size_t i=0;i<value.size();++i){if(value[i]=='%'&&i+2<value.size()){const int h=hexValue(value[i+1]);const int l=hexValue(value[i+2]);if(h>=0&&l>=0){out.push_back(static_cast<char>((h<<4)|l));i+=2;changed=true;continue;}}out.push_back(value[i]);}value.swap(out);if(!changed)break;}return value;}\nstd::string inferFileNameFromUrl(const std::string&url){std::string clean=url;const size_t q=clean.find('?');if(q!=std::string::npos)clean.erase(q);const size_t f=clean.find('#');if(f!=std::string::npos)clean.erase(f);std::string name;const size_t media=clean.find("mediafire.com");const size_t marker=clean.find("/file/",media==std::string::npos?0:media);if(media!=std::string::npos&&marker!=std::string::npos){const size_t idEnd=clean.find('/',marker+6);if(idEnd!=std::string::npos){const size_t nameEnd=clean.find('/',idEnd+1);name=clean.substr(idEnd+1,nameEnd==std::string::npos?std::string::npos:nameEnd-(idEnd+1));}}if(name.empty()){const size_t slash=clean.find_last_of('/');name=slash==std::string::npos?clean:clean.substr(slash+1);if(name=="file"&&slash!=std::string::npos){const size_t prev=clean.find_last_of('/',slash-1);if(prev!=std::string::npos)name=clean.substr(prev+1,slash-prev-1);}}return urlDecodePath(name);}\nstd::string sanitizePayloadFileName(const std::string&name,const std::string&url){std::string n=name;auto lower=[](std::string s){for(char&c:s)c=static_cast<char>(std::tolower(static_cast<unsigned char>(c)));return s;};const std::string low=lower(n);const bool placeholder=n.empty()||low=="file"||low=="download"||low=="payload"||low=="payload.bin"||low.find("get_hb_url")!=std::string::npos;if(placeholder){const std::string inferred=inferFileNameFromUrl(url);if(!inferred.empty()&&inferred!="file")n=inferred;}if(!n.empty()&&lower(n)!="file"&&lower(n)!="download")return n;return "payload.bin";}\n} // namespace''')
-          ])
-
-          if not (main_changed or dm_changed):
-              print('MediaFire source patch already present; nothing to commit.')
-              raise SystemExit(0)
-          PY
-
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add "Client PSVitaAlive/source/main.cpp" "Client PSVitaAlive/source/network/download_manager.cpp"
-          git commit -m "fix(client): preserve MediaFire file formats"
-          git push origin HEAD:main
 
       - name: Setup GitHub Pages
         uses: actions/configure-pages@v5
