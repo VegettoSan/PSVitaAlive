@@ -22,6 +22,7 @@ set(SOURCES
   source/storage/storage_manager.cpp
   source/network/http_client.cpp
   source/network/download_manager.cpp
+  source/network/mediafire_resolver.cpp
   source/archive/zip_extractor.cpp
   source/archive/format_detector.cpp
   source/installer/homebrew_installer.cpp

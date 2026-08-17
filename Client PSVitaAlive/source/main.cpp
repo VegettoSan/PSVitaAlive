@@ -54,6 +54,8 @@ enum class ZipDestChoice {
     QuickData,
     QuickApp,
     QuickRepatch,
+    QuickPspIso,   // ux0:pspemu/ISO/  (ISO/CSO)
+    QuickPspGame,  // ux0:pspemu/PSP/GAME/  (PSP/PS1 PBP)
     CustomIme
 };
 
@@ -70,9 +72,11 @@ ZipDestChoice promptZipDestinationChoice() {
         "ux0:data/",
         "ux0:app/",
         "ux0:repatch/",
-        "Escribir ruta personalizada...",
+        "ux0:pspemu/ISO/  (ISO/CSO)",
+        "ux0:pspemu/PSP/GAME/  (PSP/PS1)",
+        "Custom path...",
     };
-    constexpr int kCount = 4;
+    constexpr int kCount = 6;
 
     vita2d_pgf* font = vita2d_load_default_pgf();
     if (!font) return ZipDestChoice::Cancel;
@@ -108,6 +112,8 @@ ZipDestChoice promptZipDestinationChoice() {
                 case 0: result = ZipDestChoice::QuickData; break;
                 case 1: result = ZipDestChoice::QuickApp; break;
                 case 2: result = ZipDestChoice::QuickRepatch; break;
+                case 3: result = ZipDestChoice::QuickPspIso; break;
+                case 4: result = ZipDestChoice::QuickPspGame; break;
                 default: result = ZipDestChoice::CustomIme; break;
             }
             decided = true;
@@ -116,9 +122,9 @@ ZipDestChoice promptZipDestinationChoice() {
             decided = true;
         }
 
-        const int boxW = 580, boxH = 320;
+        const int boxW = 620, boxH = 400;
         const int boxX = (SW - boxW) / 2, boxY = (SH - boxH) / 2;
-        const int rowH = 36;
+        const int rowH = 34;
         const int listY = boxY + 100;
 
         // Touch: tap a row to select/confirm, tap outside panel to cancel.
@@ -139,6 +145,8 @@ ZipDestChoice promptZipDestinationChoice() {
                                 case 0: result = ZipDestChoice::QuickData; break;
                                 case 1: result = ZipDestChoice::QuickApp; break;
                                 case 2: result = ZipDestChoice::QuickRepatch; break;
+                                case 3: result = ZipDestChoice::QuickPspIso; break;
+                                case 4: result = ZipDestChoice::QuickPspGame; break;
                                 default: result = ZipDestChoice::CustomIme; break;
                             }
                             decided = true;
@@ -204,6 +212,14 @@ bool promptZipDestination(std::string& dst) {
     }
     if (choice == ZipDestChoice::QuickRepatch) {
         dst = "ux0:repatch/";
+        return true;
+    }
+    if (choice == ZipDestChoice::QuickPspIso) {
+        dst = "ux0:pspemu/ISO/";
+        return true;
+    }
+    if (choice == ZipDestChoice::QuickPspGame) {
+        dst = "ux0:pspemu/PSP/GAME/";
         return true;
     }
 

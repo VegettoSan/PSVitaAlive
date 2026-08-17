@@ -47,6 +47,16 @@ public:
         HttpCancelFn shouldCancel = nullptr
     );
 
+    /**
+     * GET body into memory (capped). Used for MediaFire HTML resolve, etc.
+     * Not for large file payloads.
+     */
+    HttpResult fetchToString(
+        const std::string& url,
+        std::string& outBody,
+        size_t maxBytes = 512 * 1024
+    );
+
     // Performs a lightweight HEAD request and returns the validators exposed by
     // the remote server. These are used by CatalogManager to avoid downloading
     // an unchanged catalog body.
