@@ -76,6 +76,10 @@ private:
     vita2d_pgf* font_ = nullptr;
     /** Full-screen splash while catalogs download/load at startup (app0:ui/catalog_loading.png). */
     vita2d_texture* catalogLoadingTex_ = nullptr;
+    /** Header brand image (app0:ui/PSVitaAlive_Store_logo_text.png). */
+    vita2d_texture* headerLogoTex_ = nullptr;
+    /** 1 = show splash, animates to 0 when catalog load ends. */
+    float catalogSplashAlpha_ = 0.f;
     bool ready_ = false;
 
     std::string searchQuery_;
