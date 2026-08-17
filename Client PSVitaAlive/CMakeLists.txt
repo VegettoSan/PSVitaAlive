@@ -38,6 +38,7 @@ set(SOURCES
   source/installer/install_controller.cpp
   source/catalog/catalog_parser.cpp
   source/catalog/catalog_manager.cpp
+  source/update/update_checker.cpp
   source/ui/ui_types.cpp
   source/ui/image_cache.cpp
   source/ui/full_catalog_screen.cpp
@@ -52,6 +53,10 @@ target_include_directories(${PROJECT_NAME} PRIVATE
 
 target_compile_options(${PROJECT_NAME} PRIVATE
   -fno-rtti
+)
+
+target_compile_definitions(${PROJECT_NAME} PRIVATE
+  PSVITAALIVE_VERSION="${VITA_VERSION}"
 )
 
 target_link_libraries(${PROJECT_NAME}
