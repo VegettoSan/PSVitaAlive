@@ -145,6 +145,8 @@ ZipDestChoice promptZipDestinationChoice() {
                                 case 0: result = ZipDestChoice::QuickData; break;
                                 case 1: result = ZipDestChoice::QuickApp; break;
                                 case 2: result = ZipDestChoice::QuickRepatch; break;
+                                case 3: result = ZipDestChoice::QuickPspIso; break;
+                                case 4: result = ZipDestChoice::QuickPspGame; break;
                                 default: result = ZipDestChoice::CustomIme; break;
                             }
                             decided = true;
