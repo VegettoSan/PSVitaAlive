@@ -109,6 +109,7 @@ add_custom_command(
     "${VPK_PARAM_SFO}"
   COMMAND ${VITA_PACK_VPK}
     -a "../assets/sce_sys=sce_sys"
+    -a "../assets/ui=ui"
     -s "${PROJECT_NAME}.vpk_param.sfo"
     -b "eboot.bin"
     "${PROJECT_NAME}.vpk.out"
@@ -116,6 +117,7 @@ add_custom_command(
   DEPENDS
     eboot.bin-self
     "${CMAKE_SOURCE_DIR}/assets/sce_sys"
+    "${CMAKE_SOURCE_DIR}/assets/ui"
   COMMENT "Building vpk ${PROJECT_NAME}"
   VERBATIM
 )
