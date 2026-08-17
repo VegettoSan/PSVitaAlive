@@ -65,12 +65,16 @@ def external_candidates():
                 items = fetch_vitadb(source.get("url"))
                 for item in items:
                     candidate = normalize_vitadb(item)
+                    if isinstance(item.get("data"), str) and item.get("data").strip().startswith(("http://", "https://")):
+                        candidate.data_url = item.get("data").strip()
                     if candidate.name and candidate.platform == "vita" and candidate.title_id:
                         result.append(candidate)
             elif source_id == "vitadbtoo":
                 data = fetch_json(source["url"])
                 for item in extract_catalog_items(data, source_id):
                     candidate = normalize_vitadbtoo(item)
+                    if isinstance(item.get("data"), str) and item.get("data").strip().startswith(("http://", "https://")):
+                        candidate.data_url = item.get("data").strip()
                     if candidate.name and candidate.platform == "vita" and candidate.title_id:
                         result.append(candidate)
             source_counts[source_id] = len(result) - before
@@ -433,6 +437,40 @@ def build(root: Path):
                 "url": url,
             })
             existing_urls.add(url)
+
+        # VitaDB-family feeds may provide an optional companion data archive.
+        # It is intentionally a separate Download link and is never marked as
+        # recommended. Empty/missing data fields produce no link.
+        data_candidates = [
+            item for item in group
+            if isinstance(getattr(item, "data_url", None), str)
+            and getattr(item, "data_url", "").strip()
+        ]
+        if data_candidates:
+            if download_candidates:
+                best_version = normalize_version(download_candidates[0].version)
+                same_version_data = [
+                    item for item in data_candidates
+                    if normalize_version(item.version) == best_version
+                ]
+                if same_version_data:
+                    data_candidates = same_version_data
+            data_candidate = max(
+                data_candidates,
+                key=lambda item: (
+                    normalize_version(item.version),
+                    str(item.version_date or ""),
+                    source_priority.get(item.source_id, 0),
+                ),
+            )
+            data_url = getattr(data_candidate, "data_url", "").strip()
+            if data_url and data_url not in existing_urls:
+                existing_links.append({
+                    "type": "Download",
+                    "name": "Data Files",
+                    "url": data_url,
+                })
+                existing_urls.add(data_url)
 
         release_candidates = sorted(
             [item for item in group if item.release_page],
