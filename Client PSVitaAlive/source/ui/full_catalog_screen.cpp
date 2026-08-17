@@ -178,8 +178,28 @@ void FullCatalogScreen::setCatalogItems(std::vector<CatalogItem>items){
     installResultPath_ = installPath;
     installResultTitleId_ = titleId;
 }
-bool FullCatalogScreen::init(){vita2d_init();vita2d_set_clear_color(BG);font_=vita2d_load_default_pgf();if(!font_)return false;sceCtrlSetSamplingMode(SCE_CTRL_MODE_ANALOG);
-    sceTouchSetSamplingState(SCE_TOUCH_PORT_FRONT, SCE_TOUCH_SAMPLING_STATE_START);state_=UiState{};ready_=true;diagnostics::log("[UI] initialized");return true;}void FullCatalogScreen::scheduleTextureFree(vita2d_texture* texture){
+bool FullCatalogScreen::init(){
+    vita2d_init();
+    vita2d_set_clear_color(BG);
+    font_=vita2d_load_default_pgf();
+    if(!font_)return false;
+    sceCtrlSetSamplingMode(SCE_CTRL_MODE_ANALOG);
+    sceTouchSetSamplingState(SCE_TOUCH_PORT_FRONT, SCE_TOUCH_SAMPLING_STATE_START);
+    // Optional full-screen catalog splash (bundled in VPK as ui/catalog_loading.png)
+    catalogLoadingTex_ = vita2d_load_PNG_file("app0:ui/catalog_loading.png");
+    if (!catalogLoadingTex_) {
+        catalogLoadingTex_ = vita2d_load_PNG_file("app0:ui/catalog_loading.PNG");
+    }
+    if (catalogLoadingTex_) {
+        diagnostics::log("[UI] catalog_loading.png loaded");
+    } else {
+        diagnostics::log("[UI] catalog_loading.png not found (fallback overlay)");
+    }
+    state_=UiState{};
+    ready_=true;
+    diagnostics::log("[UI] initialized");
+    return true;
+}void FullCatalogScreen::scheduleTextureFree(vita2d_texture* texture){
     if(!texture)return;
     deferredFreeTextures_.push_back(texture);
 }
@@ -277,7 +297,17 @@ void FullCatalogScreen::evictTextureIfNeeded(const std::string& ns){
         if(!removed)break;
     }
 }
-void FullCatalogScreen::shutdown(){releaseTextures();flushDeferredTextureFrees();if(font_){vita2d_free_pgf(font_);font_=nullptr;}if(ready_){vita2d_fini();ready_=false;}diagnostics::log("[UI] shutdown");}
+void FullCatalogScreen::shutdown(){
+    releaseTextures();
+    flushDeferredTextureFrees();
+    if (catalogLoadingTex_) {
+        vita2d_free_texture(catalogLoadingTex_);
+        catalogLoadingTex_ = nullptr;
+    }
+    if(font_){vita2d_free_pgf(font_);font_=nullptr;}
+    if(ready_){vita2d_fini();ready_=false;}
+    diagnostics::log("[UI] shutdown");
+}
 int FullCatalogScreen::totalRows()const{return items_.empty()?0:(int(items_.size())+2)/3;}int FullCatalogScreen::visibleRowsFull()const{return 3;}int FullCatalogScreen::visibleRowsSplit()const{return std::max(1,(SCREEN_H-HEADER_H-TABS_H-FOOTER_H-GRID_PAD*2)/(SPLIT_CARD_H+CARD_GAP));}int FullCatalogScreen::selectedIndex()const{return items_.empty()?-1:std::max(0,std::min(state_.focusIndex,(int)items_.size()-1));}void FullCatalogScreen::clampCatalogFocus(){if(items_.empty())state_.focusIndex=0;else state_.focusIndex=std::max(0,std::min(state_.focusIndex,(int)items_.size()-1));}void FullCatalogScreen::clampCatalogScroll(){if(items_.empty()){state_.catalogScrollRow=0;return;}int v=state_.mode==UiMode::FULL_CATALOG?visibleRowsFull():visibleRowsSplit();if(state_.mode==UiMode::FULL_CATALOG){int r=state_.focusIndex/3;if(r<state_.catalogScrollRow)state_.catalogScrollRow=r;if(r>=state_.catalogScrollRow+v)state_.catalogScrollRow=r-v+1;state_.catalogScrollRow=std::max(0,std::min(state_.catalogScrollRow,std::max(0,totalRows()-v)));}else{int m=std::max(0,(int)items_.size()-v);if(state_.focusIndex<state_.catalogScrollRow)state_.catalogScrollRow=state_.focusIndex;if(state_.focusIndex>=state_.catalogScrollRow+v)state_.catalogScrollRow=state_.focusIndex-v+1;state_.catalogScrollRow=std::max(0,std::min(state_.catalogScrollRow,m));}}
 void FullCatalogScreen::sortItemsByDate(std::vector<CatalogItem>&v)const{std::stable_sort(v.begin(),v.end(),[](const CatalogItem&a,const CatalogItem&b){if(a.versionDate!=b.versionDate)return a.versionDate>b.versionDate;return lowerAscii(a.name)<lowerAscii(b.name);});}bool FullCatalogScreen::matchesSearch(const CatalogItem&i,const std::string&q)const{if(q.empty())return true;std::string x=lowerAscii(q),h=lowerAscii(i.name+"\n"+i.titleId+"\n"+i.author+"\n"+i.description+"\n"+i.longDescription+"\n"+i.category+"\n"+i.subcategory);return h.find(x)!=std::string::npos;}void FullCatalogScreen::applySearch(const std::string&q){searchQuery_=q;items_.clear();for(const auto&i:allItems_)if(matchesSearch(i,q))items_.push_back(i);state_.focusIndex=0;state_.catalogScrollRow=0;state_.detailScroll=0;detailScrollBeforeLinkMode_=0;state_.linkFocus=-1;state_.linkNavigation=false;char m[256];sceClibSnprintf(m,sizeof(m),"[UI] search query='%s' results=%u",searchQuery_.c_str(),(unsigned)items_.size());diagnostics::log(m);}
 int FullCatalogScreen::detailContentHeight(const CatalogItem&i,int w)const{int cw=std::max(1,w-36),mc=std::max(18,cw/7);std::vector<std::string>pre,post;auto add=[&](std::vector<std::string>&l,const char*t,const std::string&v){if(v.empty())return;l.push_back(t);std::vector<std::string>q;wrapText(v,mc,q);for(auto&s:q)l.push_back(s);l.push_back("");};add(pre,"Description",i.description);add(pre,"Long Description",i.longDescription);add(post,"Requirements",i.requirements);post.push_back("Information");post.push_back("Title ID: "+i.titleId);post.push_back("Version: "+i.version);post.push_back("Release date: "+i.versionDate);post.push_back("Category: "+i.category);post.push_back("Subcategory: "+i.subcategory);post.push_back("Size: "+i.size);post.push_back("Status: "+i.status);post.push_back("");add(post,"Changelog",i.changelog);int lh=i.linkDetails.empty()?0:10+(int)i.linkDetails.size()*(LINK_ROW_H+LINK_GAP),sc=std::min(5,(int)i.screenshots.size());return lh+((int)pre.size()+(int)post.size())*LINE_H+sc*SCREENSHOT_ROW_H+32;}int FullCatalogScreen::detailLinkScrollLimit(const CatalogItem&i,int w,int h)const{(void)w;const int n=(int)downloadLinkIndices(i).size();if(n<=0)return 0;int lh=10+n*(LINK_ROW_H+LINK_GAP),v=std::max(1,h-DETAIL_HEADER_H-18);return std::max(0,lh-v);}void FullCatalogScreen::clampDetailScroll(){int i=selectedIndex();if(i<0){state_.detailScroll=0;return;}int vh=std::max(1,SCREEN_H-HEADER_H-TABS_H-FOOTER_H-DETAIL_HEADER_H-18),total=detailContentHeight(items_[i],SCREEN_W/2),mx=std::max(0,total-vh);state_.detailScroll=std::max(0,std::min(state_.detailScroll,mx));if(items_[i].linkDetails.empty()){state_.linkFocus=-1;state_.linkNavigation=false;}else if(state_.linkFocus>=(int)items_[i].linkDetails.size())state_.linkFocus=(int)items_[i].linkDetails.size()-1;if(state_.linkNavigation){int lim=detailLinkScrollLimit(items_[i],SCREEN_W/2,SCREEN_H-HEADER_H-TABS_H-FOOTER_H);state_.detailScroll=std::max(0,std::min(state_.detailScroll,lim));}}
@@ -1441,6 +1471,54 @@ void FullCatalogScreen::drawDetailPanel(int x,int y,int w,int h){
         drawActivePanelFrame(x + 2, y + 2, w - 4, h - 4, "DETAIL");
 }
 void FullCatalogScreen::drawLoadingOverlay(){
+// Catalog load/download at startup: full-screen brand image + progress (not used for installs).
+if (catalogLoading_ && !installProgressActive_) {
+    if (catalogLoadingTex_) {
+        const float tw = (float)vita2d_texture_get_width(catalogLoadingTex_);
+        const float th = (float)vita2d_texture_get_height(catalogLoadingTex_);
+        const float sx = (tw > 1.f) ? (SCREEN_W / tw) : 1.f;
+        const float sy = (th > 1.f) ? (SCREEN_H / th) : 1.f;
+        vita2d_draw_texture_scale(catalogLoadingTex_, 0.f, 0.f, sx, sy);
+    } else {
+        vita2d_draw_rectangle(0, 0, SCREEN_W, SCREEN_H, BG);
+    }
+    // Bottom progress panel
+    const int barX = 80, barW = SCREEN_W - 160, barH = 16;
+    const int barY = SCREEN_H - 72;
+    vita2d_draw_rectangle(0, SCREEN_H - 110, SCREEN_W, 110, RGBA8(0x0A, 0x0A, 0x0A, 200));
+    vita2d_draw_rectangle(0, SCREEN_H - 110, SCREEN_W, 2, ACCENT);
+    const char* title = catalogLoadingLabel_.empty() ? "Loading catalogs..." : catalogLoadingLabel_.c_str();
+    vita2d_pgf_draw_text(font_, barX, SCREEN_H - 88, ACCENT, 0.72f, title);
+    if (!catalogLoadingMessage_.empty()) {
+        vita2d_pgf_draw_text(font_, barX, SCREEN_H - 68, TEXT, 0.54f, ellipsize(catalogLoadingMessage_, 70).c_str());
+    }
+    vita2d_draw_rectangle(barX, barY, barW, barH, SURFACE);
+    vita2d_draw_rectangle(barX, barY, barW, 1, ACCENT_SOFT);
+    vita2d_draw_rectangle(barX, barY + barH - 1, barW, 1, ACCENT_SOFT);
+    float pct = 0.f;
+    if (catalogLoadingTotal_ > 0) {
+        pct = (float)catalogLoadingCurrent_ / (float)catalogLoadingTotal_;
+        if (pct < 0.f) pct = 0.f;
+        if (pct > 1.f) pct = 1.f;
+    } else {
+        // Indeterminate pulse when total unknown
+        const float t = (float)(sceKernelGetProcessTimeWide() / 1000ULL % 1200) / 1200.f;
+        pct = 0.15f + 0.35f * (t < 0.5f ? (t * 2.f) : (2.f - t * 2.f));
+    }
+    const int fill = (int)(barW * pct);
+    if (fill > 0) {
+        vita2d_draw_rectangle(barX, barY, fill, barH, ACCENT);
+    }
+    char pctBuf[32];
+    if (catalogLoadingTotal_ > 0) {
+        sceClibSnprintf(pctBuf, sizeof(pctBuf), "%d%%", (int)(pct * 100.f + 0.5f));
+    } else {
+        sceClibSnprintf(pctBuf, sizeof(pctBuf), "...");
+    }
+    vita2d_pgf_draw_text(font_, barX + barW - 48, barY - 4, WHITE, 0.56f, pctBuf);
+    return;
+}
+
 const unsigned RED=RGBA8(0xE0,0x32,0x32,255), GREEN=RGBA8(0x3B,0xD9,0x60,255), BLACK=RGBA8(0,0,0,255);
 const int w=640,h=380,x=(SCREEN_W-w)/2,y=(SCREEN_H-h)/2;
 vita2d_draw_rectangle(0,0,SCREEN_W,SCREEN_H,RGBA8(0,0,0,120));
