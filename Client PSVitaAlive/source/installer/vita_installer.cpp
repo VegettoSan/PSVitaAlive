@@ -327,6 +327,10 @@ VitaInstallResult VitaInstaller::installPkgWithRif(
     }
     if (shouldCancel && shouldCancel()) { setError("cancelled"); return VitaInstallResult::Cancelled; }
     if (!loadPromoterModule()) return VitaInstallResult::ModuleFailed;
+    struct PromoterScope {
+        VitaInstaller* self;
+        ~PromoterScope() { if (self) self->unloadPromoterModules(); }
+    } promoterScope{this};
     if (!st.createDirectories(TMP_ROOT)) { setError("cannot create tmp"); return VitaInstallResult::IoError; }
 
     char staged[256];
