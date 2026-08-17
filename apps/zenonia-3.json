@@ -21,14 +21,27 @@
   "links": [
     {
       "type": "Download",
-      "name": "Official VPK",
+      "name": "VPK",
       "url": "https://archive.org/download/zenonia-3-psvita/ZEN3.vpk",
       "recommended": true
     },
     {
       "type": "Download",
+      "name": "VPK - MediaFire",
+      "url": "https://www.mediafire.com/file/rto093fw6cr0dd8/ZEN3.vpk/file",
+      "recommended": false
+    },
+    {
+      "type": "Download",
       "name": "Game Data Files ZIP",
       "url": "https://archive.org/download/zenonia-3-psvita/Game%20Files.zip",
+      "recommended": false,
+      "size": 12200000
+    },
+    {
+      "type": "Download",
+      "name": "Game Data Files ZIP - MediaFire",
+      "url": "https://www.mediafire.com/file/3uxmygtsbymkhqc/Game_Files.zip/file",
       "recommended": false,
       "size": 12200000
     },

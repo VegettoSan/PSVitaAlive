@@ -26,8 +26,21 @@
     },
     {
       "type": "Download",
+      "name": "VPK - MediaFire",
+      "url": "https://www.mediafire.com/file/5iko16ns0qm188r/CutTheRopeMagic.vpk/file",
+      "recommended": false
+    },
+    {
+      "type": "Download",
       "name": "Game Data Files ZIP",
       "url": "https://archive.org/download/ctrm-psvita/Game%20Files.zip",
+      "recommended": false,
+      "size": 58700000
+    },
+    {
+      "type": "Download",
+      "name": "Game Data Files ZIP - MediaFire",
+      "url": "https://www.mediafire.com/file/5fpkqn43vlonozy/Game_Files.zip/file",
       "recommended": false,
       "size": 58700000
     },

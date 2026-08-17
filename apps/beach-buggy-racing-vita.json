@@ -34,8 +34,21 @@
     },
     {
       "type": "Download",
+      "name": "VPK - MediaFire",
+      "url": "https://www.mediafire.com/file/9dydme43e2doma5/BeachBuggyRacing.Vita-v1.0.vpk/file",
+      "recommended": false
+    },
+    {
+      "type": "Download",
       "name": "Game Data Files ZIP",
       "url": "https://archive.org/download/bbr-psvita/Game%20Files.zip",
+      "recommended": false,
+      "size": 70800000
+    },
+    {
+      "type": "Download",
+      "name": "Game Data Files ZIP - MediaFire",
+      "url": "https://www.mediafire.com/file/3alvqh8g0kzifsn/Game_Files.zip/file",
       "recommended": false,
       "size": 70800000
     },

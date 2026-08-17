@@ -34,6 +34,13 @@
     },
     {
       "type": "Download",
+      "name": "VPK + Game Data Files - MediaFire",
+      "url": "https://www.mediafire.com/file/7de1ux7ccmo6exi/CardWarsVitaV2.vpk/file",
+      "recommended": false,
+      "size": 145700000
+    },
+    {
+      "type": "Download",
       "name": "GitHub VPK",
       "url": "https://github.com/parindraaa867/AT-CardWars-Vita/releases/download/v5/CardWars_Stub.vpk",
       "recommended": false

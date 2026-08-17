@@ -32,8 +32,21 @@
     },
     {
       "type": "Download",
+      "name": "VPK - Mediafire",
+      "url": "https://www.mediafire.com/file/f9saa49yr81u504/popclassic-v01.20.vpk/file",
+      "recommended": false
+    },
+    {
+      "type": "Download",
       "name": "Game Data Files ZIP",
       "url": "https://archive.org/download/ppc-psvita/Game%20Files.zip",
+      "recommended": false,
+      "size": 81700000
+    },
+    {
+      "type": "Download",
+      "name": "Game Data Files ZIP - MediaFire",
+      "url": "https://www.mediafire.com/file/ovjjpaeqwidfqek/Game_Files.zip/file",
       "recommended": false,
       "size": 81700000
     },
