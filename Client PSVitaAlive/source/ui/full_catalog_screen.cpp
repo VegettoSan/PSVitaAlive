@@ -493,7 +493,7 @@ void FullCatalogScreen::handleTouch() {
             const int x = touchStartX_, yy = touchStartY_;
             touchDown_ = false;
             // Allow slight finger jitter — still treat as tap if not a long drag
-            for (int i = 0; i < 4; ++i) {
+            for (int i = 0; i < 5; ++i) {
                 if (hit(x, yy, listX, rowY[i], listW, rowH)) {
                     if (settingsFocus_ == i) cycleSettingsOption(i, +1);
                     else settingsFocus_ = i;
@@ -713,7 +713,7 @@ void FullCatalogScreen::setSettingsSaveCallback(SettingsSaveFn callback) {
 }
 
 void FullCatalogScreen::openSettings() {
-    if (installProgressActive_ || catalogLoading_) {
+    if (installProgressActive_ || catalogLoading_ || selfUpdateBusy_.load()) {
         showToast("Wait until loading/install finishes", 1800);
         return;
     }
@@ -734,6 +734,135 @@ void FullCatalogScreen::closeSettings(bool save) {
         diagnostics::log("[UI] settings saved");
     }
     state_.mode = settingsReturnMode_;
+}
+
+
+void FullCatalogScreen::pollSelfUpdateProgress() {
+    if (!selfUpdateBusy_.load() && !selfUpdateDone_.load()) return;
+
+    if (selfUpdateBusy_.load()) {
+        const uint64_t cur = selfUpdateCur_.load();
+        const uint64_t tot = selfUpdateTot_.load();
+        setInstallProgress(
+            true,
+            cur,
+            tot,
+            0,
+            "Self-update",
+            "PSVitaAlive.vpk",
+            selfUpdateMsg_[0] ? selfUpdateMsg_ : "Updating...",
+            0,
+            false
+        );
+        return;
+    }
+
+    if (selfUpdateDone_.load()) {
+        const bool ok = selfUpdateOk_.load();
+        setInstallProgress(
+            true,
+            1,
+            1,
+            0,
+            "Self-update",
+            "PSVitaAlive.vpk",
+            selfUpdateMsg_[0] ? selfUpdateMsg_ : (ok ? "Update installed — close and reopen" : "Update failed"),
+            ok ? 1 : 2,
+            false
+        );
+        selfUpdateDone_.store(false);
+        if (selfUpdateThread_ >= 0) {
+            sceKernelWaitThreadEnd(selfUpdateThread_, nullptr, nullptr);
+            sceKernelDeleteThread(selfUpdateThread_);
+            selfUpdateThread_ = -1;
+        }
+    }
+}
+
+int FullCatalogScreen::selfUpdateWorkerEntry(SceSize args, void* argp) {
+    (void)args;
+    FullCatalogScreen* self = *reinterpret_cast<FullCatalogScreen**>(argp);
+    if (!self) return 0;
+
+    auto onProg = [self](const ::psvitaalive::UpdateChecker::ApplyProgress& p) {
+        self->selfUpdateCur_.store(p.current);
+        self->selfUpdateTot_.store(p.total);
+        sceClibSnprintf(self->selfUpdateMsg_, sizeof(self->selfUpdateMsg_), "%s", p.message.c_str());
+    };
+
+    const bool ok = ::psvitaalive::UpdateChecker::applyUpdate(self->selfUpdateInfo_, onProg, nullptr);
+    self->selfUpdateOk_.store(ok);
+    if (ok) {
+        sceClibSnprintf(self->selfUpdateMsg_, sizeof(self->selfUpdateMsg_),
+                        "Update installed — close and reopen the app");
+    } else if (self->selfUpdateMsg_[0] == 0) {
+        sceClibSnprintf(self->selfUpdateMsg_, sizeof(self->selfUpdateMsg_), "Update failed");
+    }
+    self->selfUpdateBusy_.store(false);
+    self->selfUpdateDone_.store(true);
+    return 0;
+}
+
+void FullCatalogScreen::triggerSelfUpdateAction() {
+    if (selfUpdateBusy_.load() || installProgressActive_) {
+        showToast("Wait until the current operation finishes", 1800);
+        return;
+    }
+
+    if (selfUpdateChecked_ &&
+        selfUpdateInfo_.state == ::psvitaalive::UpdateChecker::State::UpdateAvailable &&
+        !selfUpdateInfo_.downloadUrl.empty()) {
+        // Start VitaDB-style in-place install on a worker thread.
+        selfUpdateBusy_.store(true);
+        selfUpdateDone_.store(false);
+        selfUpdateOk_.store(false);
+        selfUpdateCur_.store(0);
+        selfUpdateTot_.store(selfUpdateInfo_.assetSize);
+        sceClibSnprintf(selfUpdateMsg_, sizeof(selfUpdateMsg_), "Starting update...");
+        closeSettings(true);
+        setInstallProgress(true, 0, selfUpdateInfo_.assetSize, 0, "Self-update", "PSVitaAlive.vpk",
+                           "Starting update...", 0, false);
+
+        FullCatalogScreen* self = this;
+        selfUpdateThread_ = sceKernelCreateThread(
+            "PSVitaAliveSelfUpdate",
+            &FullCatalogScreen::selfUpdateWorkerEntry,
+            0x10000100,
+            64 * 1024,
+            0,
+            0,
+            nullptr
+        );
+        if (selfUpdateThread_ < 0) {
+            selfUpdateBusy_.store(false);
+            setInstallProgress(true, 0, 0, 0, "Self-update", "PSVitaAlive.vpk",
+                               "Could not start update thread", 2, false);
+            showToast("Update thread failed", 2000);
+            return;
+        }
+        const int st = sceKernelStartThread(selfUpdateThread_, sizeof(self), &self);
+        if (st < 0) {
+            sceKernelDeleteThread(selfUpdateThread_);
+            selfUpdateThread_ = -1;
+            selfUpdateBusy_.store(false);
+            setInstallProgress(true, 0, 0, 0, "Self-update", "PSVitaAlive.vpk",
+                               "Could not start update thread", 2, false);
+            return;
+        }
+        diagnostics::log("[UI] self-update apply started");
+        return;
+    }
+
+    showToast("Checking GitHub for updates...", 1200);
+    selfUpdateInfo_ = ::psvitaalive::UpdateChecker::checkLatest(PSVITAALIVE_VERSION);
+    selfUpdateChecked_ = true;
+    if (selfUpdateInfo_.state == ::psvitaalive::UpdateChecker::State::UpdateAvailable) {
+        showToast(std::string("Update ") + selfUpdateInfo_.remoteVersion + " available — press X to install", 2800);
+    } else if (selfUpdateInfo_.state == ::psvitaalive::UpdateChecker::State::UpToDate) {
+        showToast(std::string("Already up to date (v") + selfUpdateInfo_.localVersion + ")", 2200);
+    } else {
+        showToast(selfUpdateInfo_.error.empty() ? "Update check failed" : selfUpdateInfo_.error, 2600);
+    }
 }
 
 void FullCatalogScreen::cycleSettingsOption(int row, int delta) {
@@ -1762,6 +1891,7 @@ void FullCatalogScreen::drawFullCatalog(){vita2d_start_drawing();vita2d_set_clea
     handleInput();
     handleTouch();
     updateTransition();
+    pollSelfUpdateProgress();
     updateAnimations();
     if(catalogSwitchCooldownFrames_==0)prepareVisibleTextures();
     draw();
