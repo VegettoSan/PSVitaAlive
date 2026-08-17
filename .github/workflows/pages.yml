@@ -102,19 +102,16 @@ jobs:
 
           temp=Path('.github/workflows/_temp_mediafire_filename_fix.yml')
           if temp.exists(): temp.unlink()
-
-          pages=Path('.github/workflows/pages.yml')
-          p=pages.read_text(encoding='utf-8')
-          start=p.find('      - name: Temporary MediaFire filename and format fix\n')
-          end=p.find('      - name: Setup GitHub Pages\n',start)
-          if start>=0 and end>=0:
-              p=p[:start]+p[end:]
-              pages.write_text(p,encoding='utf-8')
           PY
+
+          # Restore the original Pages workflow before committing. The GITHUB_TOKEN
+          # used here may not modify .github/workflows, so only the client sources
+          # are published by this temporary step.
+          git show 49fde855a62a64dad9eed90df373f8ac07b4d9fa:.github/workflows/pages.yml > .github/workflows/pages.yml
 
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add "Client PSVitaAlive/source/main.cpp" "Client PSVitaAlive/source/network/download_manager.cpp" .github/workflows/pages.yml .github/workflows/_temp_mediafire_filename_fix.yml
+          git add "Client PSVitaAlive/source/main.cpp" "Client PSVitaAlive/source/network/download_manager.cpp"
           git commit -m "fix(client): preserve MediaFire file formats"
           git push origin HEAD:main
 
