@@ -1539,11 +1539,12 @@ if (catalogSplashAlpha_ > 0.01f && !installProgressActive_) {
     } else {
         vita2d_draw_rectangle(0, 0, SCREEN_W, SCREEN_H, RGBA8(0x0A, 0x0A, 0x0A, a > 255 ? 255 : a));
     }
-    // Bottom progress panel
+    // Bottom progress panel (fades with splash)
     const int barX = 80, barW = SCREEN_W - 160, barH = 16;
     const int barY = SCREEN_H - 72;
-    vita2d_draw_rectangle(0, SCREEN_H - 110, SCREEN_W, 110, RGBA8(0x0A, 0x0A, 0x0A, 200));
-    vita2d_draw_rectangle(0, SCREEN_H - 110, SCREEN_W, 2, ACCENT);
+    const unsigned panelA = (unsigned)(catalogSplashAlpha_ * 200.f);
+    vita2d_draw_rectangle(0, SCREEN_H - 110, SCREEN_W, 110, RGBA8(0x0A, 0x0A, 0x0A, panelA > 255 ? 255 : panelA));
+    vita2d_draw_rectangle(0, SCREEN_H - 110, SCREEN_W, 2, RGBA8(0x3B, 0xFF, 0x00, (unsigned)(catalogSplashAlpha_ * 255.f)));
     const char* title = catalogLoadingLabel_.empty() ? "Loading catalogs..." : catalogLoadingLabel_.c_str();
     vita2d_pgf_draw_text(font_, barX, SCREEN_H - 88, ACCENT, 0.72f, title);
     if (!catalogLoadingMessage_.empty()) {
