@@ -62,9 +62,12 @@ public:
 private:
     std::string lastError_;
     int lastPromoteResult_ = 0;
+    bool pafLoadedByUs_ = false;
+    bool promoterLoadedByUs_ = false;
 
     void setError(const std::string& msg);
     bool loadPromoterModule();
+    void unloadPromoterModules();
     VitaInstallResult promotePath(const std::string& path, bool withRif = false);
 };
 
