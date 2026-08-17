@@ -465,12 +465,12 @@ void FullCatalogScreen::handleTouch() {
         const int listW = (colW * 60) / 100;
         // Mirror drawSettings vertical layout
         struct Meta { bool sectionStart; const char* section; };
-        Meta meta[4] = {
-            {true, "INSTALL"}, {false, ""}, {true, "INTERFACE"}, {true, "CATALOG"}
+        Meta meta[5] = {
+            {true, "INSTALL"}, {false, ""}, {true, "INTERFACE"}, {true, "CATALOG"}, {true, "UPDATES"}
         };
-        int rowY[4];
+        int rowY[5];
         int y = contentTop;
-        for (int i = 0; i < 4; ++i) {
+        for (int i = 0; i < 5; ++i) {
             if (meta[i].sectionStart && meta[i].section[0]) y += 24;
             rowY[i] = y;
             y += 58 + 10;
