@@ -10,6 +10,7 @@
 #include <cstring>
 #include <strings.h>
 #include <utility>
+#include <atomic>
 
 namespace psvitaalive {
 
@@ -19,6 +20,10 @@ constexpr long CONNECT_TIMEOUT_SECONDS = 45;
 constexpr long LOW_SPEED_LIMIT = 1;
 constexpr long LOW_SPEED_TIME_SECONDS = 60;
 constexpr const char* DIAG_LOG = "ux0:data/psvitaalive/logs/session.log";
+
+// libcurl global state belongs to the whole process, not to individual HttpClient objects.
+// Multiple PSVitaAlive workers can own HttpClient instances at the same time.
+std::atomic<int> gCurlGlobalState{0}; // 0=not initialized, 1=initializing, 2=ready
 
 void httpDiagnostic(const char* message) {
     if (!message) return;
@@ -202,23 +207,46 @@ HttpResult HttpClient::init() {
     lastError_.clear();
     lastStatus_ = 0;
     lastRangeAccepted_ = false;
-    const CURLcode result = curl_global_init(CURL_GLOBAL_DEFAULT);
-    if (result != CURLE_OK) {
-        setError(curl_easy_strerror(result));
-        return HttpResult::NetworkError;
+
+    int state = gCurlGlobalState.load(std::memory_order_acquire);
+    if (state != 2) {
+        int expected = 0;
+        if (gCurlGlobalState.compare_exchange_strong(expected, 1, std::memory_order_acq_rel)) {
+            const CURLcode result = curl_global_init(CURL_GLOBAL_DEFAULT);
+            if (result != CURLE_OK) {
+                gCurlGlobalState.store(0, std::memory_order_release);
+                setError(curl_easy_strerror(result));
+                return HttpResult::NetworkError;
+            }
+            gCurlGlobalState.store(2, std::memory_order_release);
+            httpDiagnostic("libcurl global init");
+        } else {
+            // Another thread is initializing libcurl. Wait briefly without touching curl.
+            int spins = 0;
+            while (gCurlGlobalState.load(std::memory_order_acquire) == 1 && spins++ < 500) {
+                sceKernelDelayThread(1000);
+            }
+            if (gCurlGlobalState.load(std::memory_order_acquire) != 2) {
+                setError("libcurl global initialization did not complete");
+                return HttpResult::NetworkError;
+            }
+        }
     }
+
     initialized_ = true;
-    sceClibPrintf("[HttpClient] libcurl initialized\n");
-    httpDiagnostic("libcurl initialized");
+    sceClibPrintf("[HttpClient] libcurl initialized (process-global)\n");
+    httpDiagnostic("libcurl initialized (process-global)");
     return HttpResult::Ok;
 }
 
 void HttpClient::shutdown() {
     if (!initialized_) return;
-    curl_global_cleanup();
+    // IMPORTANT: never call curl_global_cleanup() here. Other HttpClient instances
+    // may still be active on ImageCache/CatalogManager/other worker threads.
+    // libcurl global state remains alive until the Vita process terminates.
     initialized_ = false;
-    sceClibPrintf("[HttpClient] libcurl shutdown\n");
-    httpDiagnostic("libcurl shutdown");
+    sceClibPrintf("[HttpClient] libcurl shutdown (global state kept alive)\n");
+    httpDiagnostic("libcurl shutdown (global state kept alive)");
 }
 
 
