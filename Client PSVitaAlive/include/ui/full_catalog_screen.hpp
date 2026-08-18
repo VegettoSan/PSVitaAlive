@@ -206,6 +206,7 @@ private:
     UiMode settingsReturnMode_ = UiMode::FULL_CATALOG;
     float settingsEnter_ = 1.f;   // 0..1 open transition
     float settingsFocusY_ = 0.f;  // animated highlight Y
+    float settingsScrollY_ = 0.f; // adaptive list scroll (px)
 
     // Self-update (GitHub Releases → in-place extract to ux0:app/TITLEID)
     ::psvitaalive::UpdateChecker::Result selfUpdateInfo_{};
