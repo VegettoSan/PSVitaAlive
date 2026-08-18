@@ -1,0 +1,114 @@
+name: Temporary startup flags migration
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.tmp/apply-startup-flags'
+      - '.github/workflows/_tmp_startup_flags.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  apply:
+    if: github.event_name == 'push'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: true
+      - name: Apply startup flags
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          from pathlib import Path
+          import re
+
+          root = Path('Client PSVitaAlive')
+
+          # AppSettings: add two hidden internal startup switches.
+          h = root/'include/installer/app_settings.hpp'
+          s = h.read_text()
+          old = '    bool promptImageWarmup = true;\n'
+          new = ('    bool promptImageWarmup = true;\n'
+                 '    // Internal startup diagnostics; intentionally hidden from the UI.\n'
+                 '    bool startupPluginDetection = true;\n'
+                 '    bool startupUpdateCheck = true;\n')
+          if old not in s:
+              raise SystemExit('app_settings.hpp insertion point not found')
+          if 'startupPluginDetection' not in s:
+              s = s.replace(old, new, 1)
+          h.write_text(s)
+
+          c = root/'source/installer/app_settings.cpp'
+          s = c.read_text()
+          old = '''    bool b = true;\n    if (containsBool(json, "warn_missing_plugins", b)) data.warnMissingPlugins = b;\n    if (containsBool(json, "prompt_image_warmup", b)) data.promptImageWarmup = b;\n\n    sceClibPrintf("[AppSettings] loaded method=%s psp=%s warn=%d imagesPrompt=%d\\n",\n                  toString(data.installMethod), toString(data.pspTarget),\n                  data.warnMissingPlugins ? 1 : 0, data.promptImageWarmup ? 1 : 0);\n    return data;\n'''
+          new = '''    bool b = true;\n    const bool hasWarnMissingPlugins = containsBool(json, "warn_missing_plugins", b);\n    if (hasWarnMissingPlugins) data.warnMissingPlugins = b;\n    const bool hasPromptImageWarmup = containsBool(json, "prompt_image_warmup", b);\n    if (hasPromptImageWarmup) data.promptImageWarmup = b;\n    const bool hasStartupPluginDetection = containsBool(json, "startup_plugin_detection", b);\n    if (hasStartupPluginDetection) data.startupPluginDetection = b;\n    const bool hasStartupUpdateCheck = containsBool(json, "startup_update_check", b);\n    if (hasStartupUpdateCheck) data.startupUpdateCheck = b;\n\n    // Older config.json files do not contain the internal startup switches.\n    // Persist the default=true values once so the user can toggle them manually.\n    if (!hasStartupPluginDetection || !hasStartupUpdateCheck) {\n        save(data);\n    }\n\n    sceClibPrintf("[AppSettings] loaded method=%s psp=%s warn=%d imagesPrompt=%d pluginDetect=%d updateCheck=%d\\n",\n                  toString(data.installMethod), toString(data.pspTarget),\n                  data.warnMissingPlugins ? 1 : 0, data.promptImageWarmup ? 1 : 0,\n                  data.startupPluginDetection ? 1 : 0, data.startupUpdateCheck ? 1 : 0);\n    return data;\n'''
+          if old not in s:
+              raise SystemExit('app_settings.cpp load block not found')
+          s = s.replace(old, new, 1)
+          old = '''        "  \\\"warn_missing_plugins\\\": %s,\\n"\n        "  \\\"prompt_image_warmup\\\": %s\\n"\n        "}\\n",\n'''
+          new = '''        "  \\\"warn_missing_plugins\\\": %s,\\n"\n        "  \\\"prompt_image_warmup\\\": %s,\\n"\n        "  \\\"startup_plugin_detection\\\": %s,\\n"\n        "  \\\"startup_update_check\\\": %s\\n"\n        "}\\n",\n'''
+          if old not in s:
+              raise SystemExit('app_settings.cpp save template not found')
+          s = s.replace(old, new, 1)
+          old = '''        data.warnMissingPlugins ? "true" : "false",\n        data.promptImageWarmup ? "true" : "false"\n'''
+          new = '''        data.warnMissingPlugins ? "true" : "false",\n        data.promptImageWarmup ? "true" : "false",\n        data.startupPluginDetection ? "true" : "false",\n        data.startupUpdateCheck ? "true" : "false"\n'''
+          if old not in s:
+              raise SystemExit('app_settings.cpp save args not found')
+          s = s.replace(old, new, 1)
+          c.write_text(s)
+
+          # InstallController: load settings first; only run plugin detection when enabled.
+          c = root/'source/installer/install_controller.cpp'
+          s = c.read_text()
+          old = '''bool InstallController::init() {\n    if (http_.isInitialized()) return true;\n    const HttpResult result = http_.init();\n'''
+          new = '''bool InstallController::init() {\n    if (http_.isInitialized()) return true;\n\n    // Load config before optional startup probes so those probes can be disabled\n    // without executing any of their work. Missing/new config values default true.\n    settings_ = AppSettings::load();\n\n    const HttpResult result = http_.init();\n'''
+          if old not in s:
+              raise SystemExit('install_controller init start not found')
+          s = s.replace(old, new, 1)
+          old = '''    setStage("Idle");\n    setState(InstallStatus::State::Idle, "Ready");\n    settings_ = AppSettings::load();\n    plugins_ = PluginDetector::scan();\n    diagnostics::log(std::string("[Installer] plugins: ") + plugins_.detail);\n'''
+          new = '''    setStage("Idle");\n    setState(InstallStatus::State::Idle, "Ready");\n\n    if (settings_.startupPluginDetection) {\n        plugins_ = PluginDetector::scan();\n        diagnostics::log(std::string("[Installer] plugins: ") + plugins_.detail);\n    } else {\n        plugins_ = PluginStatus{};\n        diagnostics::log("[Startup] plugin detection disabled by config");\n    }\n'''
+          if old not in s:
+              raise SystemExit('install_controller plugin block not found')
+          s = s.replace(old, new, 1)
+          c.write_text(s)
+
+          # main: gate the entire startup update phase and plugin warning UI.
+          m = root/'source/main.cpp'
+          s = m.read_text()
+          old = '''    psvitaalive::StartupUpdateManager startupUpdate;\n    screen.setCatalogLoading(true, "Startup Update", 0, 0, "Checking for application updates...");\n    if(!startupUpdate.start(PSVITAALIVE_VERSION)){\n        screen.showToast("Update startup unavailable — continuing", 1800);\n    }else{\n        while(startupUpdate.isBusy()){\n            const auto us = startupUpdate.snapshot();\n            screen.setCatalogLoading(true, "Startup Update", us.current, us.total,\n                                      us.message.empty()?"Updating application...":us.message);\n            if(!screen.updateAndDraw()){\n                startupUpdate.requestCancel();\n                break;\n            }\n            sceKernelDelayThread(16 * 1000);\n        }\n        startupUpdate.wait();\n        const auto us = startupUpdate.snapshot();\n        if(us.restartRequired){\n            screen.setCatalogLoading(true, "Self-update", 1, 1, "Update installed — press START to restart");\n            while(screen.updateAndDraw()){\n                SceCtrlData pad{};\n                sceCtrlPeekBufferPositive(0, &pad, 1);\n                if(pad.buttons & SCE_CTRL_START){\n                    screen.shutdown();\n                    installer.shutdown();\n                    psvitaalive::diagnostics::log("PSVitaAlive session END after self-update");\n                    psvitaalive::diagnostics::shutdown();\n                    sceKernelExitProcess(0);\n                }\n                sceKernelDelayThread(50 * 1000);\n            }\n            screen.shutdown();\n            installer.shutdown();\n            psvitaalive::diagnostics::shutdown();\n            sceKernelExitProcess(0);\n        }\n        if(us.state == psvitaalive::StartupUpdateManager::State::Failed)\n            screen.showToast("Update unavailable — continuing", 1800);\n        else if(us.state == psvitaalive::StartupUpdateManager::State::Cancelled)\n            screen.showToast("Update cancelled — continuing", 1600);\n    }\n'''
+          new = '''    if (installer.settings().startupUpdateCheck) {\n        psvitaalive::diagnostics::log("[Startup] update check enabled by config");\n        psvitaalive::StartupUpdateManager startupUpdate;\n        screen.setCatalogLoading(true, "Startup Update", 0, 0, "Checking for application updates...");\n        if(!startupUpdate.start(PSVITAALIVE_VERSION)){\n            screen.showToast("Update startup unavailable — continuing", 1800);\n        }else{\n            while(startupUpdate.isBusy()){\n                const auto us = startupUpdate.snapshot();\n                screen.setCatalogLoading(true, "Startup Update", us.current, us.total,\n                                          us.message.empty()?"Updating application...":us.message);\n                if(!screen.updateAndDraw()){\n                    startupUpdate.requestCancel();\n                    break;\n                }\n                sceKernelDelayThread(16 * 1000);\n            }\n            startupUpdate.wait();\n            const auto us = startupUpdate.snapshot();\n            if(us.restartRequired){\n                screen.setCatalogLoading(true, "Self-update", 1, 1, "Update installed — press START to restart");\n                while(screen.updateAndDraw()){\n                    SceCtrlData pad{};\n                    sceCtrlPeekBufferPositive(0, &pad, 1);\n                    if(pad.buttons & SCE_CTRL_START){\n                        screen.shutdown();\n                        installer.shutdown();\n                        psvitaalive::diagnostics::log("PSVitaAlive session END after self-update");\n                        psvitaalive::diagnostics::shutdown();\n                        sceKernelExitProcess(0);\n                    }\n                    sceKernelDelayThread(50 * 1000);\n                }\n                screen.shutdown();\n                installer.shutdown();\n                psvitaalive::diagnostics::shutdown();\n                sceKernelExitProcess(0);\n            }\n            if(us.state == psvitaalive::StartupUpdateManager::State::Failed)\n                screen.showToast("Update unavailable — continuing", 1800);\n            else if(us.state == psvitaalive::StartupUpdateManager::State::Cancelled)\n                screen.showToast("Update cancelled — continuing", 1600);\n        }\n    } else {\n        psvitaalive::diagnostics::log("[Startup] update check disabled by config");\n    }\n'''
+          if old not in s:
+              raise SystemExit('main update block not found')
+          s = s.replace(old, new, 1)
+
+          old = '''    if (installer.settings().warnMissingPlugins) {\n        const auto& pl = installer.plugins();\n'''
+          new = '''    if (installer.settings().startupPluginDetection && installer.settings().warnMissingPlugins) {\n        const auto& pl = installer.plugins();\n'''
+          if old not in s:
+              raise SystemExit('main plugin warning condition not found')
+          s = s.replace(old, new, 1)
+          m.write_text(s)
+
+          print('startup flags migration complete')
+          PY
+
+          # Remove the trigger marker after applying the changes and commit everything once.
+          rm -f .tmp/apply-startup-flags
+          if git diff --quiet; then
+            echo 'No changes produced' >&2
+            exit 1
+          fi
+          git config user.name 'VegettoSanDev'
+          git config user.email '72358120+VegettoSan@users.noreply.github.com'
+          git add 'Client PSVitaAlive/include/installer/app_settings.hpp' \
+                  'Client PSVitaAlive/source/installer/app_settings.cpp' \
+                  'Client PSVitaAlive/source/installer/install_controller.cpp' \
+                  'Client PSVitaAlive/source/main.cpp' \
+                  .tmp/apply-startup-flags
+          git commit -m 'feat: add internal startup diagnostics flags'
+          git push origin main
+          PY_END=1
