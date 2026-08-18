@@ -142,6 +142,8 @@ void FullCatalogScreen::setCatalogItems(std::vector<CatalogItem>items){
     contentFade_=0.4f;
     catalogLoading_=false;
     catalogError_.clear();
+    // Give the catalog/UI time to settle before any ux0:app probes begin.
+    installStatusWarmupUntilMs_ = sceKernelGetProcessTimeWide() / 1000ULL + 1500ULL;
     // Instant memory-cache hits clear loading quickly; keep debounce so spam L/R cannot thrash.
     if(catalogSwitchCooldownFrames_<CATALOG_SWITCH_COOLDOWN_FRAMES/2)
         catalogSwitchCooldownFrames_=CATALOG_SWITCH_COOLDOWN_FRAMES/2;
@@ -149,6 +151,7 @@ void FullCatalogScreen::setCatalogItems(std::vector<CatalogItem>items){
 }void FullCatalogScreen::setActiveCatalog(CatalogType c){
     releaseTextures();
     state_.catalog=c;
+    installStatusWarmupUntilMs_ = sceKernelGetProcessTimeWide() / 1000ULL + 1500ULL;
     searchQuery_.clear();
     items_=allItems_;
     state_.focusIndex=0;
@@ -1736,6 +1739,10 @@ LocalInstallInfo FullCatalogScreen::queryLocalInstall(const CatalogItem& item) {
 
     const std::string key = installProbeKey(tid, item.version);
     const uint64_t nowMs = sceKernelGetProcessTimeWide() / 1000ULL;
+    // Never probe the Vita filesystem while catalogs are loading or immediately after.
+    if (catalogLoading_ || nowMs < installStatusWarmupUntilMs_) {
+        return unknown;
+    }
     auto& cache = installProbeCache();
     auto cached = cache.find(key);
 

@@ -105,6 +105,8 @@ private:
     std::string catalogLoadingMessage_;
     uint64_t catalogLoadingCurrent_ = 0;
     uint64_t catalogLoadingTotal_ = 0;
+    // Do not touch ux0:app while catalogs/splash are settling.
+    uint64_t installStatusWarmupUntilMs_ = 0;
     std::string catalogError_;
 
     bool installProgressActive_ = false;
