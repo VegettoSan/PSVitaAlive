@@ -1,4 +1,5 @@
 #include "installer/homebrew_installer.hpp"
+#include "installer/refresh_manager.hpp"
 #include "installer/fake_package_builder.hpp"
 #include "archive/format_detector.hpp"
 #include "archive/zip_extractor.hpp"
@@ -591,6 +592,24 @@ InstallResult HomebrewInstaller::installVpk(
                 logMilestone(hasTree
                     ? "Fallback copy to ux0:app succeeded"
                     : "Fallback copy finished but verification still failed");
+
+                // Fallback only copies files; it does not register the LiveArea bubble.
+                // VitaShell-style refresh: move ux0:app/<id> → ux0:temp/app and PromotePkg.
+                if (hasTree && !titleId.empty()) {
+                    logMilestone("Fallback: attempting LiveArea refresh promote");
+                    std::string refreshMsg;
+                    if (RefreshManager::refreshTitleLiveArea(titleId, refreshMsg)) {
+                        logMilestone(std::string("Fallback LiveArea refresh OK: ") + refreshMsg);
+                        hasTree = st.exists(appDir) && (st.exists(paramSfo) || st.exists(eboot));
+                        hasIcon = st.exists(icon0);
+                        lastLiveAreaOk_ = hasTree;
+                    } else {
+                        logMilestone(std::string("Fallback LiveArea refresh soft-fail: ") + refreshMsg);
+                        // Files should still be under ux0:app from the copy / restore path.
+                        hasTree = st.exists(appDir) && (st.exists(paramSfo) || st.exists(eboot));
+                        hasIcon = st.exists(icon0);
+                    }
+                }
             } else {
                 logMilestone("Fallback copy failed or tmpDir missing");
             }
