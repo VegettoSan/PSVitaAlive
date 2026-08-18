@@ -722,6 +722,7 @@ void FullCatalogScreen::openSettings() {
     settingsFocus_ = 0;
     settingsEnter_ = 0.f;
     settingsFocusY_ = 0.f;
+    settingsScrollY_ = 0.f;
     state_.mode = UiMode::SETTINGS;
     diagnostics::log("[UI] settings opened");
 }
@@ -892,6 +893,15 @@ void FullCatalogScreen::handleSettingsInput(uint32_t pressed, uint32_t nav) {
     if (nav & SCE_CTRL_DOWN) {
         settingsFocus_ = (settingsFocus_ + 1) % kRows;
     }
+    // Keep focused row roughly in view (row pitch ~68 + occasional section 24)
+    if (nav & (SCE_CTRL_UP | SCE_CTRL_DOWN)) {
+        const float rowPitch = 68.f;
+        const float target = static_cast<float>(settingsFocus_) * rowPitch;
+        const float viewH = static_cast<float>(SCREEN_H - HEADER_H - FOOTER_H - 80);
+        if (target < settingsScrollY_) settingsScrollY_ = target;
+        if (target + rowPitch > settingsScrollY_ + viewH) settingsScrollY_ = target + rowPitch - viewH;
+        if (settingsScrollY_ < 0.f) settingsScrollY_ = 0.f;
+    }
     if ((nav & SCE_CTRL_LEFT) || (pressed & SCE_CTRL_SQUARE)) {
         cycleSettingsOption(settingsFocus_, -1);
     }
@@ -926,6 +936,13 @@ void FullCatalogScreen::drawSettings() {
     const int margin = 20;
     const int contentTop = HEADER_H + 56 + slide;
     const int contentH = SCREEN_H - contentTop - FOOTER_H - 6;
+    const int listClipBottom = contentTop + contentH - 8;
+    // Approximate list height: 5 rows * 68 + section headers * 24
+    const int listContentH = 5 * 68 + 4 * 24;
+    const int listViewH = contentH - 8;
+    const float maxScroll = static_cast<float>(std::max(0, listContentH - listViewH));
+    if (settingsScrollY_ < 0.f) settingsScrollY_ = 0.f;
+    if (settingsScrollY_ > maxScroll) settingsScrollY_ = maxScroll;
     const int colW = SCREEN_W - margin * 2;
     const int listX = margin;
     const int listW = (colW * 60) / 100;
@@ -972,15 +989,22 @@ void FullCatalogScreen::drawSettings() {
 
     // Shared layout for touch: store row rects via static computed positions
     int rowY[5] = {};
-    int y = contentTop;
+    int y = contentTop - static_cast<int>(settingsScrollY_);
     for (int i = 0; i < 5; ++i) {
         if (opts[i].sectionStart && opts[i].section[0]) {
-            vita2d_pgf_draw_text(font_, listX + 6, y + 16, DIM, 0.56f, opts[i].section);
+            if (y + 16 >= contentTop - 4 && y + 16 <= listClipBottom) {
+                vita2d_pgf_draw_text(font_, listX + 6, y + 16, DIM, 0.56f, opts[i].section);
+            }
             y += 24;
         }
         const int rowH = 58;
         rowY[i] = y;
         const bool focus = (settingsFocus_ == i);
+        // Skip drawing fully off-screen rows (keep rowY for input)
+        if (y + rowH < contentTop || y > listClipBottom) {
+            y += rowH + 10;
+            continue;
+        }
         // Soft highlight with animated focus indicator
         const float focusMix = 1.f - std::min(1.f, std::abs(settingsFocusY_ - static_cast<float>(i)));
         const unsigned cardBg = focus ? SURFACE : SURFACE2;
