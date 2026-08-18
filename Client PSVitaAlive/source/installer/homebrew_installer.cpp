@@ -3,6 +3,7 @@
 #include "archive/format_detector.hpp"
 #include "archive/zip_extractor.hpp"
 #include "storage/storage_manager.hpp"
+#include "diagnostic_logger.hpp"
 
 #include <psp2/kernel/clib.h>
 #include <psp2/kernel/processmgr.h>
@@ -34,15 +35,25 @@ void logLine(const std::string& message) {
     ensureLogDirectory();
     SceUID fd = sceIoOpen(INSTALL_LOG, SCE_O_WRONLY | SCE_O_CREAT | SCE_O_APPEND, 0666);
     if (fd < 0) {
-        sceClibPrintf("[InstallLog] open failed: 0x%08X\n", fd);
+        sceClibPrintf("[InstallLog] open failed: 0x%08X
+", fd);
         return;
     }
 
     char line[1024];
     const uint64_t ms = sceKernelGetProcessTimeWide() / 1000ULL;
-    sceClibSnprintf(line, sizeof(line), "[%llu ms] %s\n", (unsigned long long)ms, message.c_str());
+    sceClibSnprintf(line, sizeof(line), "[%llu ms] %s
+", (unsigned long long)ms, message.c_str());
     sceIoWrite(fd, line, std::strlen(line));
     sceIoClose(fd);
+    // Force media flush so a crash mid-promote still leaves the last lines on disk.
+    sceIoSync("ux0:", 0);
+}
+
+// Mirror critical steps to session.log (field reports only had a partial install.log).
+void logMilestone(const std::string& message) {
+    logLine(message);
+    diagnostics::log(std::string("[Installer] ") + message);
 }
 
 void logResult(const char* name, int result) {
@@ -263,13 +274,27 @@ InstallResult HomebrewInstaller::promoteExtractedDir(const std::string& dir) {
     // promoter completion. Use the synchronous mode here so the call only
     // returns after the package has been promoted and the LiveArea entry has
     // been created.
+    logMilestone("PromotePkg sync begin (waiting for system...)");
     const int promoteResult = scePromoterUtilityPromotePkg(dir.c_str(), 1);
     logResult("scePromoterUtilityPromotePkg(sync=1)", promoteResult);
     lastPromoteResult_ = promoteResult;
+    {
+        char buf[128];
+        sceClibSnprintf(buf, sizeof(buf), "PromotePkg returned 0x%08X (%d)", promoteResult, promoteResult);
+        logMilestone(buf);
+    }
 
     int operationResult = 0;
     const int getResultCall = scePromoterUtilityGetResult(&operationResult);
-    logResult("scePromoterUtilityGetResult", getResultCall);
+    {
+        char buf[192];
+        sceClibSnprintf(
+            buf, sizeof(buf),
+            "scePromoterUtilityGetResult call=0x%08X (%d) operationResult=0x%08X (%d)",
+            getResultCall, getResultCall, operationResult, operationResult
+        );
+        logMilestone(buf);
+    }
     if (getResultCall < 0) {
         lastPromoteResult_ = getResultCall;
     } else if (operationResult != 0) {
@@ -278,6 +303,11 @@ InstallResult HomebrewInstaller::promoteExtractedDir(const std::string& dir) {
 
     const int exitResult = scePromoterUtilityExit();
     logResult("scePromoterUtilityExit", exitResult);
+    {
+        char buf[96];
+        sceClibSnprintf(buf, sizeof(buf), "scePromoterUtilityExit => 0x%08X (%d)", exitResult, exitResult);
+        logMilestone(buf);
+    }
 
     if (promoteResult < 0) {
         char buf[80];
@@ -472,29 +502,46 @@ InstallResult HomebrewInstaller::installVpk(
         const std::string icon0 = appDir + "/sce_sys/icon0.png";
         const std::string eboot = appDir + "/eboot.bin";
 
-        // Brief settle delay: on real hardware and especially Vita3K the
-        // filesystem may lag behind a successful promoter return.
-        sceKernelDelayThread(500 * 1000);
+        logMilestone(std::string("Expected LiveArea/app path: ") + appDir);
+
+        // Hardware can lag after PromotePkg; retry instead of a single short wait.
+        bool hasTree = false;
+        bool hasIcon = false;
+        for (int attempt = 1; attempt <= 8; ++attempt) {
+            sceKernelDelayThread((400 + attempt * 200) * 1000);
+
+            hasTree = st.exists(appDir) && (st.exists(paramSfo) || st.exists(eboot));
+            hasIcon = st.exists(icon0);
+
+            char buf[160];
+            sceClibSnprintf(
+                buf, sizeof(buf),
+                "Post-promote check #%d: dir=%d param=%d eboot=%d icon0=%d",
+                attempt,
+                st.exists(appDir) ? 1 : 0,
+                st.exists(paramSfo) ? 1 : 0,
+                st.exists(eboot) ? 1 : 0,
+                hasIcon ? 1 : 0
+            );
+            logMilestone(buf);
+
+            if (hasTree) break;
+        }
 
         logPathState("Post-promote app directory", appDir);
         logPathState("Post-promote param.sfo", paramSfo);
         logPathState("Post-promote icon0.png", icon0);
         logPathState("Post-promote eboot.bin", eboot);
-        logLine(std::string("Expected LiveArea/app path: ") + appDir);
 
-        const bool hasTree = st.exists(appDir) && (st.exists(paramSfo) || st.exists(eboot));
-        const bool hasIcon = st.exists(icon0);
         lastLiveAreaOk_ = hasTree;
 
         if (hasTree) {
-            logLine(std::string("Post-promote verification: app tree OK") +
-                    (hasIcon ? " (icon0 present)" : " (icon0 missing, still OK)"));
+            logMilestone(std::string("Post-promote verification: app tree OK") +
+                         (hasIcon ? " (icon0 present)" : " (icon0 missing, still OK)"));
         } else {
-            // Promoter returned success. On Vita3K the ux0:app tree is often not
-            // visible the same way as on hardware; do not hard-fail the install.
-            logLine("WARNING: promoter success but app tree not visible yet (common on Vita3K)");
+            logMilestone("WARNING: promoter success but ux0:app tree not visible yet");
+            logMilestone("Hint: VitaShell → Refresh LiveArea, or reboot the console");
             lastLiveAreaOk_ = false;
-            // Keep result == Ok; UI will show LiveArea: no confirmado.
         }
     }
 
@@ -505,24 +552,42 @@ InstallResult HomebrewInstaller::installVpk(
         onProgress(p);
     }
 
+    // Cleanup only after verification so mid-crash still leaves tmp + logs.
     if (result == InstallResult::Ok && deleteTempOnSuccess) {
         if (!removeTree(tmpDir)) {
-            sceClibPrintf("[HomebrewInstaller] warning: cleanup failed for %s\n", tmpDir.c_str());
+            sceClibPrintf("[HomebrewInstaller] warning: cleanup failed for %s
+", tmpDir.c_str());
             logLine(std::string("WARNING: cleanup failed for ") + tmpDir);
         } else {
             logLine("Temporary directory cleanup: success");
         }
     }
 
-    logLine(std::string("installVpk END result=") + toString(result) +
-            " promote=0x" + std::to_string(static_cast<unsigned int>(lastPromoteResult_)));
+    {
+        char endBuf[192];
+        sceClibSnprintf(
+            endBuf, sizeof(endBuf),
+            "installVpk END result=%s promote=0x%08X liveArea=%s titleId=%s",
+            toString(result),
+            static_cast<unsigned int>(lastPromoteResult_),
+            lastLiveAreaOk_ ? "yes" : "no",
+            titleId.c_str()
+        );
+        logMilestone(endBuf);
+    }
 
     if (result == InstallResult::Ok && onProgress) {
         InstallProgress p;
         p.stage = InstallProgress::Done;
         p.bytesWritten = 1;
         p.bytesTotal = 1;
-        p.message = "VPK installed";
+        if (lastLiveAreaOk_) {
+            p.message = "Installed — open LiveArea (Refresh LiveArea if bubble missing)";
+        } else if (!titleId.empty()) {
+            p.message = "Promote OK — check ux0:app and Refresh LiveArea if needed";
+        } else {
+            p.message = "VPK install finished";
+        }
         onProgress(p);
     }
     return result;
