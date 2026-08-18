@@ -127,6 +127,7 @@ void FullCatalogScreen::setInstallCallbacks(InstallRequestFn r,InstallStatusFn s
 void FullCatalogScreen::setCatalogItems(std::vector<CatalogItem>items){
     // Textures for the previous tab may still be draining; only schedule free if needed.
     releaseTextures();
+    installStatusCache_.clear();
     allItems_=std::move(items);
     sortItemsByDate(allItems_);
     applySearch(searchQuery_);
@@ -196,6 +197,10 @@ void FullCatalogScreen::setCatalogItems(std::vector<CatalogItem>items){
     installLiveAreaOk_ = liveAreaOk;
     installResultPath_ = installPath;
     installResultTitleId_ = titleId;
+    // Refresh local install badges after a finished install attempt
+    if (outcome == 1 && !titleId.empty()) {
+        invalidateInstallStatus(titleId);
+    }
 }
 bool FullCatalogScreen::init(){
     vita2d_init();
@@ -1629,6 +1634,20 @@ void FullCatalogScreen::drawCatalogCard(const CatalogItem&it,int idx,int x,int y
     std::string meta = (it.version.empty() ? "" : "v" + it.version) + (it.versionDate.empty() ? "" : "  " + it.versionDate);
     if (meta.empty()) meta = it.size;
     if (!meta.empty()) vita2d_pgf_draw_text(font_, x + 10 + ox, y + h - 10 + oy, DIM, 0.58f, ellipsize(meta, 30).c_str());
+
+    // Installed / update badge (top-right of card)
+    {
+        const LocalInstallInfo li = queryLocalInstall(it);
+        if (li.state == LocalInstallState::Installed || li.state == LocalInstallState::UpdateAvailable) {
+            const char* lab = (li.state == LocalInstallState::UpdateAvailable) ? "UPD" : "ON";
+            const float sc = 0.48f;
+            const int tw = vita2d_pgf_text_width(font_, sc, lab);
+            const int bw = tw + 10;
+            const int bx = x + ox + ww - bw - 6;
+            const int by = y + oy + 6;
+            drawInstallBadge(bx, by, li, true);
+        }
+    }
     (void)idx;
 }
 void FullCatalogScreen::drawCatalogPanel(int x,int y,int w,int h,bool split){
@@ -1729,7 +1748,7 @@ void FullCatalogScreen::drawDetailLinks(const CatalogItem& it, int x, int y, int
 }
 void FullCatalogScreen::drawDetailContent(const CatalogItem&it,int x,int y,int w,int h){
 if(detailCrossfade_<0.99f){vita2d_draw_rectangle(x,y,w,h,RGBA8(0,0,0,static_cast<unsigned>((1.f-detailCrossfade_)*140)));}
-int cx=x+18,cw=w-36,mc=std::max(18,cw/7),top=y+DETAIL_HEADER_H+10,bottom=y+h-10;float scroll=std::max(0.f,visualDetailScroll_);std::vector<std::string>pre,post;auto add=[&](std::vector<std::string>&l,const char*t,const std::string&v){if(v.empty())return;l.push_back(t);std::vector<std::string>q;wrapText(v,mc,q);for(auto&s:q)l.push_back(s);l.push_back("");};add(pre,"Description",it.description);add(pre,"Long Description",it.longDescription);add(post,"Requirements",it.requirements);post.push_back("Information");post.push_back("Title ID: "+it.titleId);post.push_back("Version: "+it.version);post.push_back("Release date: "+it.versionDate);post.push_back("Category: "+it.category);post.push_back("Subcategory: "+it.subcategory);post.push_back("Size: "+it.size);post.push_back("Status: "+it.status);post.push_back("");add(post,"Changelog",it.changelog);int sc=std::min(5,(int)it.screenshots.size()),shotH=sc*SCREENSHOT_ROW_H,links=0;vita2d_enable_clipping();vita2d_set_clip_rectangle(x+2,top,x+w-18,bottom);drawDetailLinks(it,cx,top-scroll,cw,links);int preTop=top+links-scroll;drawTextLines(pre,cx,preTop,LINE_H,TEXT,.66f,0,(int)pre.size(),top,bottom);int shotTop=preTop+(int)pre.size()*LINE_H;for(int i=0;i<sc;++i)drawImage(it.screenshots[i],"shot",cx,shotTop+i*SCREENSHOT_ROW_H,cw,SCREENSHOT_ROW_H-18);int postTop=shotTop+shotH+8;drawTextLines(post,cx,postTop,LINE_H,TEXT,.66f,0,(int)post.size(),top,bottom);vita2d_disable_clipping();int total=detailContentHeight(it,w),vis=std::max(1,h-DETAIL_HEADER_H-18),mx=std::max(0,total-vis);if(mx>0){int tx=x+w-8,ty=y+DETAIL_HEADER_H+8,th=h-DETAIL_HEADER_H-18;vita2d_draw_rectangle(tx,ty,3,th,BORDER);int thumb=std::max(20,th*vis/std::max(1,total));int yy=ty+(int)((th-thumb)*(scroll/std::max(1.f,(float)mx)));vita2d_draw_rectangle(tx,yy,3,thumb,ACCENT);}}
+int cx=x+18,cw=w-36,mc=std::max(18,cw/7),top=y+DETAIL_HEADER_H+10,bottom=y+h-10;float scroll=std::max(0.f,visualDetailScroll_);std::vector<std::string>pre,post;auto add=[&](std::vector<std::string>&l,const char*t,const std::string&v){if(v.empty())return;l.push_back(t);std::vector<std::string>q;wrapText(v,mc,q);for(auto&s:q)l.push_back(s);l.push_back("");};add(pre,"Description",it.description);add(pre,"Long Description",it.longDescription);add(post,"Requirements",it.requirements);post.push_back("Information");post.push_back("Title ID: "+it.titleId);post.push_back("Version: "+it.version);{const LocalInstallInfo li=queryLocalInstall(it);if(li.state==LocalInstallState::Installed||li.state==LocalInstallState::UpdateAvailable){std::string line=li.state==LocalInstallState::UpdateAvailable?"Install: update available":"Install: installed";if(!li.installedVersion.empty())line+=" (local v"+li.installedVersion+")";post.push_back(line);}else if(!it.titleId.empty())post.push_back("Install: not installed");}post.push_back("Release date: "+it.versionDate);post.push_back("Category: "+it.category);post.push_back("Subcategory: "+it.subcategory);post.push_back("Size: "+it.size);post.push_back("Status: "+it.status);post.push_back("");add(post,"Changelog",it.changelog);int sc=std::min(5,(int)it.screenshots.size()),shotH=sc*SCREENSHOT_ROW_H,links=0;vita2d_enable_clipping();vita2d_set_clip_rectangle(x+2,top,x+w-18,bottom);drawDetailLinks(it,cx,top-scroll,cw,links);int preTop=top+links-scroll;drawTextLines(pre,cx,preTop,LINE_H,TEXT,.66f,0,(int)pre.size(),top,bottom);int shotTop=preTop+(int)pre.size()*LINE_H;for(int i=0;i<sc;++i)drawImage(it.screenshots[i],"shot",cx,shotTop+i*SCREENSHOT_ROW_H,cw,SCREENSHOT_ROW_H-18);int postTop=shotTop+shotH+8;drawTextLines(post,cx,postTop,LINE_H,TEXT,.66f,0,(int)post.size(),top,bottom);vita2d_disable_clipping();int total=detailContentHeight(it,w),vis=std::max(1,h-DETAIL_HEADER_H-18),mx=std::max(0,total-vis);if(mx>0){int tx=x+w-8,ty=y+DETAIL_HEADER_H+8,th=h-DETAIL_HEADER_H-18;vita2d_draw_rectangle(tx,ty,3,th,BORDER);int thumb=std::max(20,th*vis/std::max(1,total));int yy=ty+(int)((th-thumb)*(scroll/std::max(1.f,(float)mx)));vita2d_draw_rectangle(tx,yy,3,thumb,ACCENT);}}
 void FullCatalogScreen::drawDetailPanel(int x,int y,int w,int h){
     vita2d_draw_rectangle(x, y, w, h, PANEL);
     vita2d_draw_rectangle(x, y, 2, h, ACCENT_SOFT);
@@ -1746,6 +1765,23 @@ void FullCatalogScreen::drawDetailPanel(int x,int y,int w,int h){
     vita2d_pgf_draw_text(font_, titleX, y + 50, TEXT, 0.64f, ellipsize(it.author.empty() ? "Unknown author" : it.author, 20).c_str());
     std::string meta = (it.version.empty() ? "" : "v" + it.version) + (it.versionDate.empty() ? "" : "  " + it.versionDate);
     vita2d_pgf_draw_text(font_, titleX, y + 70, colorForStatus(it.status), 0.60f, ellipsize(meta.empty() ? it.status : meta, 22).c_str());
+
+    {
+        const LocalInstallInfo li = queryLocalInstall(it);
+        if (li.state == LocalInstallState::Installed || li.state == LocalInstallState::UpdateAvailable) {
+            const char* lab = (li.state == LocalInstallState::UpdateAvailable) ? "UPDATE" : "INSTALLED";
+            const float sc = 0.54f;
+            const int tw = vita2d_pgf_text_width(font_, sc, lab);
+            const int bw = tw + 14;
+            drawInstallBadge(x + w - bw - 10, y + 12, li, false);
+            if (!li.installedVersion.empty()) {
+                char iv[48];
+                sceClibSnprintf(iv, sizeof(iv), "Local v%s", li.installedVersion.c_str());
+                const int lw = vita2d_pgf_text_width(font_, 0.48f, iv);
+                vita2d_pgf_draw_text(font_, x + w - lw - 12, y + 36, DIM, 0.48f, iv);
+            }
+        }
+    }
     if (!it.linkDetails.empty()) {
         int bx = x + w - 142, by = y + 12, bw = 128, bh = 28;
         const bool linkOn = state_.linkNavigation;
