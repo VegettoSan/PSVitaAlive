@@ -5,8 +5,11 @@
 namespace psvitaalive {
 
 /**
- * Minimal LiveArea / install verification helpers (guide phase 5).
- * Does not clone full VitaShell refresh.c — verifies trees and logs guidance.
+ * LiveArea helpers.
+ * - appTreeExists / verifyAfterInstall: post-install checks and UI messages.
+ * - refreshTitleLiveArea: VitaShell-style single-title refresh (move to
+ *   ux0:temp/app + scePromoterUtilityPromotePkg). Used after fallback copy
+ *   when Promote reported success but the system bubble was not registered.
  */
 class RefreshManager {
 public:
@@ -23,6 +26,13 @@ public:
         bool liveAreaHint,
         std::string& messageOut
     );
+
+    /**
+     * Attempt a VitaShell-like LiveArea refresh for one title already present
+     * under ux0:app/<titleId>. Returns true if the app tree is visible after
+     * promote. On failure, best-effort restores the folder and fills messageOut.
+     */
+    static bool refreshTitleLiveArea(const std::string& titleId, std::string& messageOut);
 };
 
 } // namespace psvitaalive
