@@ -1,0 +1,94 @@
+name: Temporary Title ID migration
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.tmp/titleid-migration'
+
+permissions:
+  contents: write
+
+jobs:
+  migrate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Replace legacy client Title ID
+        shell: bash
+        run: |
+          set -euo pipefail
+          old='PSVAS1178'
+          new='PSVA00001'
+
+          python - <<'PY'
+          from pathlib import Path
+
+          root = Path('Client PSVitaAlive')
+          text_exts = {'.c', '.cc', '.cpp', '.cxx', '.h', '.hh', '.hpp', '.hxx', '.cmake'}
+          exact_names = {'CMakeLists.txt'}
+          changed = []
+
+          for path in root.rglob('*'):
+              if not path.is_file():
+                  continue
+              if path.suffix.lower() not in text_exts and path.name not in exact_names:
+                  continue
+              try:
+                  data = path.read_text(encoding='utf-8')
+              except UnicodeDecodeError:
+                  continue
+              if 'PSVAS1178' in data:
+                  path.write_text(data.replace('PSVAS1178', 'PSVA00001'), encoding='utf-8')
+                  changed.append(str(path))
+
+          if not changed:
+              raise SystemExit('No legacy Title ID references found in client source files')
+
+          print('Changed files:')
+          for path in changed:
+              print(' - ' + path)
+          print(f'Total changed files: {len(changed)}')
+          PY
+
+      - name: Verify legacy Title ID is gone from client source
+        shell: bash
+        run: |
+          set -euo pipefail
+          if grep -RIn --exclude-dir=.git --include='*.c' --include='*.cc' --include='*.cpp' --include='*.cxx' --include='*.h' --include='*.hh' --include='*.hpp' --include='*.hxx' --include='*.cmake' --include='CMakeLists.txt' 'PSVAS1178' 'Client PSVitaAlive'; then
+            echo '::error::Legacy Title ID still present in client source files.'
+            exit 1
+          fi
+          echo 'Legacy Title ID is absent from client source files.'
+
+      - name: Verify current Title ID exists in build and updater
+        shell: bash
+        run: |
+          set -euo pipefail
+          grep -Fq 'set(VITA_TITLEID  "PSVA00001")' 'Client PSVitaAlive/CMakeLists.txt'
+          grep -Fq 'kTitleId = "PSVA00001"' 'Client PSVitaAlive/include/update/update_checker.hpp'
+          grep -Fq 'ux0:app/PSVA00001' 'Client PSVitaAlive/include/update/update_checker.hpp'
+          grep -Fq 'ux0:app/PSVA00001/psvitaalive_version.txt' 'Client PSVitaAlive/source/update/update_checker.cpp'
+          echo 'Current Title ID references verified.'
+
+      - name: Commit migration and remove temporary files
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -f .tmp/titleid-migration .github/workflows/_tmp_titleid_migration.yml
+
+          git config user.name 'VegettoSanDev'
+          git config user.email '72358120+VegettoSan@users.noreply.github.com'
+          git add -A -- 'Client PSVitaAlive' .github/workflows/_tmp_titleid_migration.yml .tmp/titleid-migration
+
+          if git diff --cached --quiet; then
+            echo 'No changes to commit.'
+            exit 1
+          fi
+
+          git commit -m 'fix: update client Title ID to PSVA00001'
+          git push origin main
