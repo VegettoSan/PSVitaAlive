@@ -1,0 +1,81 @@
+name: Update client Title ID
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  update-title-id:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout main
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+          ref: main
+
+      - name: Replace old client Title ID only
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          OLD='PSVA00001'
+          NEW='PSVAS1178'
+          CLIENT='Client PSVitaAlive'
+
+          echo 'References before replacement:'
+          git grep -n "$OLD" -- "$CLIENT" || true
+
+          mapfile -t files < <(git grep -l "$OLD" -- "$CLIENT" || true)
+          if [ "${#files[@]}" -eq 0 ]; then
+            echo 'No old Title ID reference found in the client.'
+            rm -f .github/workflows/update-client-title-id.yml
+            git config user.name 'github-actions[bot]'
+            git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+            git add -u .github/workflows/update-client-title-id.yml
+            git diff --cached --quiet || git commit -m 'Remove temporary Title ID update workflow'
+            git push origin main
+            exit 0
+          fi
+
+          for file in "${files[@]}"; do
+            case "$file" in
+              "$CLIENT/CMakeLists.txt"|"$CLIENT/README.md"|"$CLIENT/SETUP_COPIAR.md"|"$CLIENT/source/main.cpp")
+                sed -i "s/$OLD/$NEW/g" "$file"
+                ;;
+              *)
+                echo "Unexpected client file containing the old Title ID: $file" >&2
+                exit 1
+                ;;
+            esac
+          done
+
+          echo 'Diff:'
+          git diff -- "$CLIENT/CMakeLists.txt" "$CLIENT/README.md" "$CLIENT/SETUP_COPIAR.md" "$CLIENT/source/main.cpp"
+
+          if git grep -n "$OLD" -- "$CLIENT"; then
+            echo 'ERROR: old Title ID still exists in client files.' >&2
+            exit 1
+          fi
+
+          if ! git grep -n "$NEW" -- "$CLIENT"; then
+            echo 'ERROR: new Title ID was not found in client files.' >&2
+            exit 1
+          fi
+
+          git diff --check
+
+      - name: Commit client Title ID update and remove temporary workflow
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git rm .github/workflows/update-client-title-id.yml
+          git add -- "Client PSVitaAlive/CMakeLists.txt" "Client PSVitaAlive/README.md" "Client PSVitaAlive/SETUP_COPIAR.md" "Client PSVitaAlive/source/main.cpp"
+          git commit -m 'Update client Title ID to PSVAS1178'
+          git push origin main
