@@ -26,6 +26,56 @@ bool isDotEntry(const char* name) {
     return name && (std::strcmp(name, ".") == 0 || std::strcmp(name, "..") == 0);
 }
 
+bool copyFileBytes(const std::string& src, const std::string& dst) {
+    SceUID in = sceIoOpen(src.c_str(), SCE_O_RDONLY, 0);
+    if (in < 0) return false;
+    SceUID out = sceIoOpen(dst.c_str(), SCE_O_WRONLY | SCE_O_CREAT | SCE_O_TRUNC, 0666);
+    if (out < 0) {
+        sceIoClose(in);
+        return false;
+    }
+    char buf[16 * 1024];
+    bool ok = true;
+    while (true) {
+        const int n = sceIoRead(in, buf, sizeof(buf));
+        if (n < 0) { ok = false; break; }
+        if (n == 0) break;
+        if (sceIoWrite(out, buf, n) != n) { ok = false; break; }
+    }
+    sceIoClose(in);
+    sceIoClose(out);
+    return ok;
+}
+
+bool copyTreeRecursive(const std::string& src, const std::string& dst) {
+    StorageManager st;
+    if (!st.exists(src)) return false;
+    if (!st.isDirectory(src)) {
+        return copyFileBytes(src, dst);
+    }
+    if (!st.createDirectories(dst) && !st.exists(dst)) return false;
+
+    SceUID uid = sceIoDopen(src.c_str());
+    if (uid < 0) return false;
+    bool ok = true;
+    SceIoDirent ent;
+    while (sceIoDread(uid, &ent) > 0) {
+        if (isDotEntry(ent.d_name)) continue;
+        const std::string childSrc = src + "/" + ent.d_name;
+        const std::string childDst = dst + "/" + ent.d_name;
+        const bool childIsDir = (ent.d_stat.st_mode & SCE_S_IFDIR) != 0;
+        if (childIsDir) {
+            if (!copyTreeRecursive(childSrc, childDst)) { ok = false; break; }
+        } else if (!copyFileBytes(childSrc, childDst)) {
+            ok = false;
+            break;
+        }
+    }
+    sceIoDclose(uid);
+    return ok;
+}
+
+
 void ensureLogDirectory() {
     sceIoMkdir("ux0:data/psvitaalive", 0777);
     sceIoMkdir(LOG_ROOT, 0777);
@@ -530,6 +580,21 @@ InstallResult HomebrewInstaller::installVpk(
         logPathState("Post-promote param.sfo", paramSfo);
         logPathState("Post-promote icon0.png", icon0);
         logPathState("Post-promote eboot.bin", eboot);
+
+        if (!hasTree) {
+            // Vita3K often returns PromotePkg success without creating ux0:app.
+            // Fallback: copy the extracted package tree into place (homebrew layout).
+            logMilestone("Promote returned OK but app tree missing — trying direct copy fallback");
+            if (st.exists(tmpDir) && copyTreeRecursive(tmpDir, appDir)) {
+                hasTree = st.exists(appDir) && (st.exists(paramSfo) || st.exists(eboot));
+                hasIcon = st.exists(icon0);
+                logMilestone(hasTree
+                    ? "Fallback copy to ux0:app succeeded"
+                    : "Fallback copy finished but verification still failed");
+            } else {
+                logMilestone("Fallback copy failed or tmpDir missing");
+            }
+        }
 
         lastLiveAreaOk_ = hasTree;
 
