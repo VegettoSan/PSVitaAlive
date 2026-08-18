@@ -395,7 +395,7 @@ int main(){
     psvitaalive::diagnostics::init();
     psvitaalive::diagnostics::log("============================================================");
     psvitaalive::diagnostics::log("PSVitaAlive session BEGIN");
-    psvitaalive::diagnostics::log("TitleID=PSVA00001");
+    psvitaalive::diagnostics::log("TitleID=PSVAS1178");
 
     psvitaalive::StorageManager storage;storage.initProjectDirs();
     psvitaalive::InstallController installer;psvitaalive::CatalogManager catalogs;psvitaalive::ui::ImageCache images;
