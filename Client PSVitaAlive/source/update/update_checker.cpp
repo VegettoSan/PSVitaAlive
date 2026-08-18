@@ -22,7 +22,7 @@ namespace {
 constexpr const char* RELEASES_LATEST_URL =
     "https://api.github.com/repos/VegettoSan/PSVitaAlive/releases/latest";
 constexpr const char* UPDATE_ASSET_NAME = "PSVitaAlive.vpk";
-constexpr const char* VERSION_MARKER = "ux0:app/PSVA00001/psvitaalive_version.txt";
+constexpr const char* VERSION_MARKER = "ux0:app/PSVAS1178/psvitaalive_version.txt";
 
 class VitaJsonAllocator : public sce::Json::MemAllocator {
 public:
