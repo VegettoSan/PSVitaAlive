@@ -462,8 +462,7 @@ void FullCatalogScreen::handleTouch() {
         const int contentTop = HEADER_H + 56;
         const int colW = SCREEN_W - margin * 2;
         const int listX = margin;
-        const int listW = (colW * 60) / 100;
-        // Mirror drawSettings vertical layout
+        const int listW = SCREEN_W - margin * 2;
         struct Meta { bool sectionStart; const char* section; };
         Meta meta[5] = {
             {true, "INSTALL"}, {false, ""}, {true, "INTERFACE"}, {true, "CATALOG"}, {true, "UPDATES"}
@@ -471,11 +470,11 @@ void FullCatalogScreen::handleTouch() {
         int rowY[5];
         int y = contentTop - static_cast<int>(settingsScrollY_);
         for (int i = 0; i < 5; ++i) {
-            if (meta[i].sectionStart && meta[i].section[0]) y += 24;
+            if (meta[i].sectionStart && meta[i].section[0]) y += 22;
             rowY[i] = y;
-            y += 58 + 10;
+            y += 52 + 8;
         }
-        const int rowH = 58;
+        const int rowH = 52;
 
         if (td.reportNum > 0) {
             if (!touchDown_) {
@@ -893,15 +892,6 @@ void FullCatalogScreen::handleSettingsInput(uint32_t pressed, uint32_t nav) {
     if (nav & SCE_CTRL_DOWN) {
         settingsFocus_ = (settingsFocus_ + 1) % kRows;
     }
-    // Keep focused row roughly in view (row pitch ~68 + occasional section 24)
-    if (nav & (SCE_CTRL_UP | SCE_CTRL_DOWN)) {
-        const float rowPitch = 68.f;
-        const float target = static_cast<float>(settingsFocus_) * rowPitch;
-        const float viewH = static_cast<float>(SCREEN_H - HEADER_H - FOOTER_H - 80);
-        if (target < settingsScrollY_) settingsScrollY_ = target;
-        if (target + rowPitch > settingsScrollY_ + viewH) settingsScrollY_ = target + rowPitch - viewH;
-        if (settingsScrollY_ < 0.f) settingsScrollY_ = 0.f;
-    }
     if ((nav & SCE_CTRL_LEFT) || (pressed & SCE_CTRL_SQUARE)) {
         cycleSettingsOption(settingsFocus_, -1);
     }
@@ -957,14 +947,6 @@ void FullCatalogScreen::drawSettings() {
     auto pspLabel = [&]() -> std::string {
         return settingsEdit_.pspTarget == ::psvitaalive::PspTarget::Adrenaline ? "Adrenaline" : "LiveArea";
     };
-
-    struct Opt {
-        const char* section;
-        const char* label;
-        std::string value;
-        const char* hint;
-        bool sectionStart;
-    };
     auto updateLabel = [&]() -> std::string {
         if (selfUpdateBusy_.load()) return "Working...";
         if (selfUpdateChecked_ && selfUpdateInfo_.state == ::psvitaalive::UpdateChecker::State::UpdateAvailable) {
@@ -979,6 +961,13 @@ void FullCatalogScreen::drawSettings() {
         return std::string("v") + PSVITAALIVE_VERSION;
     };
 
+    struct Opt {
+        const char* section;
+        const char* label;
+        std::string value;
+        const char* hint;
+        bool sectionStart;
+    };
     Opt opts[5] = {
         {"INSTALL", "Install method", methodLabel(), "Auto: BGDL for PKG when available", true},
         {"", "PSP / PS1 target", pspLabel(), "ISO/CSO/PBP under ux0:pspemu", false},
@@ -987,71 +976,102 @@ void FullCatalogScreen::drawSettings() {
         {"UPDATES", "App updates", updateLabel(), "GitHub Releases — X to check / install", true},
     };
 
-    // Shared layout for touch: store row rects via static computed positions
+    // Full-width list (system status is a compact strip under the title bar)
+    const int listX = margin;
+    const int listW = SCREEN_W - margin * 2;
+    const int rowH = 52;
+    const int sectionH = 22;
+    const int rowGap = 8;
+
+    // Measure content height
+    int measured = 0;
+    for (int i = 0; i < 5; ++i) {
+        if (opts[i].sectionStart && opts[i].section[0]) measured += sectionH;
+        measured += rowH + rowGap;
+    }
+    measured += 70; // plugin status block at end of scroll content
+
+    const int listViewH = listClipBottom - contentTop;
+    const float maxScroll = static_cast<float>(std::max(0, measured - listViewH));
+    if (settingsScrollY_ < 0.f) settingsScrollY_ = 0.f;
+    if (settingsScrollY_ > maxScroll) settingsScrollY_ = maxScroll;
+
+    // Keep focused row visible
+    {
+        int fy = 0;
+        for (int i = 0; i <= settingsFocus_ && i < 5; ++i) {
+            if (opts[i].sectionStart && opts[i].section[0]) fy += sectionH;
+            if (i < settingsFocus_) fy += rowH + rowGap;
+        }
+        const float rowTop = static_cast<float>(fy);
+        const float rowBot = rowTop + static_cast<float>(rowH);
+        if (rowTop < settingsScrollY_) settingsScrollY_ = rowTop;
+        if (rowBot > settingsScrollY_ + static_cast<float>(listViewH)) {
+            settingsScrollY_ = rowBot - static_cast<float>(listViewH);
+        }
+        if (settingsScrollY_ < 0.f) settingsScrollY_ = 0.f;
+        if (settingsScrollY_ > maxScroll) settingsScrollY_ = maxScroll;
+    }
+
     int rowY[5] = {};
     int y = contentTop - static_cast<int>(settingsScrollY_);
     for (int i = 0; i < 5; ++i) {
         if (opts[i].sectionStart && opts[i].section[0]) {
-            if (y + 16 >= contentTop - 4 && y + 16 <= listClipBottom) {
+            if (y + 16 >= contentTop && y + 4 <= listClipBottom) {
                 vita2d_pgf_draw_text(font_, listX + 6, y + 16, DIM, 0.56f, opts[i].section);
             }
-            y += 24;
+            y += sectionH;
         }
-        const int rowH = 58;
         rowY[i] = y;
         const bool focus = (settingsFocus_ == i);
-        // Skip drawing fully off-screen rows (keep rowY for input)
-        if (y + rowH < contentTop || y > listClipBottom) {
-            y += rowH + 10;
-            continue;
+        if (y + rowH >= contentTop && y <= listClipBottom) {
+            const unsigned cardBg = focus ? SURFACE : SURFACE2;
+            vita2d_draw_rectangle(listX, y, listW, rowH, cardBg);
+            if (focus) {
+                vita2d_draw_rectangle(listX, y, 4, rowH, ACCENT);
+                vita2d_draw_rectangle(listX, y, listW, 2, ACCENT);
+                vita2d_draw_rectangle(listX, y + rowH - 2, listW, 2, ACCENT);
+            } else {
+                vita2d_draw_rectangle(listX, y + rowH - 1, listW, 1, BORDER);
+            }
+            vita2d_pgf_draw_text(font_, listX + 16, y + 20, focus ? WHITE : TEXT, 0.70f, opts[i].label);
+            const int chipW = 120;
+            const int chipX = listX + listW - chipW - 14;
+            const int chipY = y + 10;
+            vita2d_draw_rectangle(chipX, chipY, chipW, 24, focus ? ACCENT : SURFACE);
+            vita2d_pgf_draw_text(font_, chipX + 10, chipY + 17, focus ? BG : ACCENT, 0.58f, opts[i].value.c_str());
+            vita2d_pgf_draw_text(font_, listX + 16, y + 42, DIM, 0.50f, opts[i].hint);
+            if (focus) {
+                vita2d_pgf_draw_text(font_, chipX - 36, chipY + 17, ACCENT, 0.56f, "< >");
+            }
         }
-        // Soft highlight with animated focus indicator
-        const float focusMix = 1.f - std::min(1.f, std::abs(settingsFocusY_ - static_cast<float>(i)));
-        const unsigned cardBg = focus ? SURFACE : SURFACE2;
-        vita2d_draw_rectangle(listX, y, listW, rowH, cardBg);
-        if (focus) {
-            vita2d_draw_rectangle(listX, y, 4, rowH, ACCENT);
-            vita2d_draw_rectangle(listX, y, listW, 2, ACCENT);
-            vita2d_draw_rectangle(listX, y + rowH - 2, listW, 2, ACCENT);
-        } else {
-            vita2d_draw_rectangle(listX, y + rowH - 1, listW, 1, BORDER);
-        }
-        vita2d_pgf_draw_text(font_, listX + 16, y + 22, focus ? WHITE : TEXT, 0.70f, opts[i].label);
-        const int chipW = 110;
-        const int chipX = listX + listW - chipW - 14;
-        const int chipY = y + 12;
-        vita2d_draw_rectangle(chipX, chipY, chipW, 26, focus ? ACCENT : SURFACE);
-        vita2d_pgf_draw_text(font_, chipX + 12, chipY + 18, focus ? BG : ACCENT, 0.62f, opts[i].value.c_str());
-        vita2d_pgf_draw_text(font_, listX + 16, y + 44, DIM, 0.52f, opts[i].hint);
-        if (focus) {
-            vita2d_pgf_draw_text(font_, chipX - 40, chipY + 18, ACCENT, 0.58f, "< >");
-        }
-        y += rowH + 10;
+        y += rowH + rowGap;
     }
 
-    // Right panel
-    vita2d_draw_rectangle(sideX, contentTop, sideW, contentH - 4, SURFACE2);
-    vita2d_draw_rectangle(sideX, contentTop, sideW, 3, ACCENT);
-    vita2d_pgf_draw_text(font_, sideX + 16, contentTop + 28, ACCENT, 0.72f, "System status");
-    vita2d_pgf_draw_text(font_, sideX + 16, contentTop + 52, DIM, 0.54f, "taiHEN plugins");
-
-    auto drawFlag = [&](int yy, const char* name, bool ok) {
-        vita2d_draw_rectangle(sideX + 14, yy, sideW - 28, 42, SURFACE);
-        vita2d_draw_rectangle(sideX + 14, yy, 4, 42, ok ? ACCENT : RGBA8(0xE0, 0x40, 0x40, 255));
-        vita2d_pgf_draw_text(font_, sideX + 28, yy + 18, WHITE, 0.62f, name);
-        vita2d_pgf_draw_text(font_, sideX + 28, yy + 36, ok ? ACCENT : RGBA8(0xE0, 0x40, 0x40, 255), 0.56f, ok ? "Detected" : "Not found");
-    };
-    drawFlag(contentTop + 68, "NoNpDrm", pluginsStatus_.nonpdrm);
-    drawFlag(contentTop + 120, "NoPspEmuDrm", pluginsStatus_.nopspemudrmKern);
-
-    if (!pluginsStatus_.configPathUsed.empty()) {
-        vita2d_pgf_draw_text(font_, sideX + 16, contentTop + 180, DIM, 0.50f, "Config:");
-        vita2d_pgf_draw_text(font_, sideX + 16, contentTop + 198, TEXT, 0.50f, pluginsStatus_.configPathUsed.c_str());
+    // Plugin status at end of scroll content
+    if (y + 60 >= contentTop && y <= listClipBottom) {
+        vita2d_pgf_draw_text(font_, listX + 6, y + 16, DIM, 0.54f, "SYSTEM");
+        char plug[128];
+        sceClibSnprintf(
+            plug, sizeof(plug), "NoNpDrm: %s   NoPspEmuDrm: %s",
+            pluginsStatus_.nonpdrm ? "OK" : "missing",
+            pluginsStatus_.nopspemudrmKern ? "OK" : "missing"
+        );
+        vita2d_pgf_draw_text(font_, listX + 16, y + 38, TEXT, 0.56f, plug);
+        if (!pluginsStatus_.configPathUsed.empty()) {
+            vita2d_pgf_draw_text(font_, listX + 16, y + 56, DIM, 0.48f, pluginsStatus_.configPathUsed.c_str());
+        }
     }
-    vita2d_pgf_draw_text(font_, sideX + 16, contentTop + 230, DIM, 0.52f, "Settings file:");
-    vita2d_pgf_draw_text(font_, sideX + 16, contentTop + 248, TEXT, 0.50f, "ux0:data/psvitaalive/");
-    vita2d_pgf_draw_text(font_, sideX + 16, contentTop + 266, TEXT, 0.50f, "config.json");
-    vita2d_pgf_draw_text(font_, sideX + 16, contentTop + contentH - 24, DIM, 0.50f, "Saved when you go back");
+
+    // Scroll hint
+    if (maxScroll > 1.f) {
+        const float ratio = settingsScrollY_ / maxScroll;
+        const int trackH = listViewH - 8;
+        const int thumbH = std::max(24, trackH / 4);
+        const int thumbY = contentTop + 4 + static_cast<int>(ratio * (trackH - thumbH));
+        vita2d_draw_rectangle(SCREEN_W - 10, contentTop + 4, 3, trackH, BORDER);
+        vita2d_draw_rectangle(SCREEN_W - 10, thumbY, 3, thumbH, ACCENT);
+    }
 
     vita2d_draw_rectangle(0, SCREEN_H - FOOTER_H, SCREEN_W, FOOTER_H, SURFACE2);
     vita2d_pgf_draw_text(font_, 12, SCREEN_H - 14, TEXT, 0.56f, "D-Pad: move   X / <>: change   O: save & back");
