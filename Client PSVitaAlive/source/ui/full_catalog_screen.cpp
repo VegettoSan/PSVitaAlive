@@ -469,7 +469,7 @@ void FullCatalogScreen::handleTouch() {
             {true, "INSTALL"}, {false, ""}, {true, "INTERFACE"}, {true, "CATALOG"}, {true, "UPDATES"}
         };
         int rowY[5];
-        int y = contentTop;
+        int y = contentTop - static_cast<int>(settingsScrollY_);
         for (int i = 0; i < 5; ++i) {
             if (meta[i].sectionStart && meta[i].section[0]) y += 24;
             rowY[i] = y;
