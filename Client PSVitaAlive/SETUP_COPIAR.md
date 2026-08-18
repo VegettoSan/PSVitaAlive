@@ -50,7 +50,7 @@ The expected output is:
 PSVitaAlive.vpk
 ```
 
-with Title ID `PSVA00001`.
+with Title ID `PSVAS1178`.
 
 `-j1` is recommended for diagnostics. Once the build is known to work, a parallel build may be used if desired.
 
