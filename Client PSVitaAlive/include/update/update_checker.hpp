@@ -51,8 +51,8 @@ public:
     using ApplyProgressFn = std::function<void(const ApplyProgress&)>;
     using ApplyCancelFn = std::function<bool()>;
 
-    static constexpr const char* kTitleId = "PSVAS1178";
-    static constexpr const char* kAppDir = "ux0:app/PSVAS1178";
+    static constexpr const char* kTitleId = "PSVA00001";
+    static constexpr const char* kAppDir = "ux0:app/PSVA00001";
     static constexpr const char* kUpdateDir = "ux0:data/psvitaalive/update";
     static constexpr const char* kVpkPath = "ux0:data/psvitaalive/update/PSVitaAlive.vpk";
 
