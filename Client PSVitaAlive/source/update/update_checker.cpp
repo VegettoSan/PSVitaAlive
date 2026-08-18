@@ -298,8 +298,13 @@ UpdateChecker::Result UpdateChecker::checkLatest(const std::string& currentVersi
     }
 
     VitaJsonAllocator allocator;
+    sce::Json::InitParameter params;
+    params.allocator = &allocator;
+    params.userData = nullptr;
+    params.bufSize = 64 * 1024;
+
     sce::Json::Initializer initializer;
-    if (initializer.initialize(&allocator, nullptr) < 0) {
+    if (initializer.initialize(&params) < 0) {
         result.error = "Unable to initialize JSON parser";
         diagnostics::log("[UpdateChecker] JSON initializer failed");
         sceSysmoduleUnloadModule(SCE_SYSMODULE_JSON);
