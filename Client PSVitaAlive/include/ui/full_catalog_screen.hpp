@@ -21,6 +21,18 @@
 namespace psvitaalive {
 namespace ui {
 
+enum class LocalInstallState {
+    Unknown = 0,
+    NotInstalled,
+    Installed,
+    UpdateAvailable
+};
+
+struct LocalInstallInfo {
+    LocalInstallState state = LocalInstallState::Unknown;
+    std::string installedVersion;
+};
+
 class FullCatalogScreen {
 public:
     using InstallRequestFn = std::function<bool(const CatalogItem&)>;
@@ -88,6 +100,7 @@ private:
     std::string searchQuery_;
 
     bool catalogLoading_ = false;
+    std::unordered_map<std::string, LocalInstallInfo> installStatusCache_;
     std::string catalogLoadingLabel_;
     std::string catalogLoadingMessage_;
     uint64_t catalogLoadingCurrent_ = 0;
@@ -149,6 +162,9 @@ private:
     void drawCatalogPanel(int x, int y, int width, int height, bool splitMode);
     void drawDetailPanel(int x, int y, int width, int height);
     void drawCatalogCard(const CatalogItem& item, int index, int x, int y, int width, int height, bool focused);
+    LocalInstallInfo queryLocalInstall(const CatalogItem& item);
+    void invalidateInstallStatus(const std::string& titleId = {});
+    void drawInstallBadge(int x, int y, const LocalInstallInfo& info, bool compact);
     void drawScrollFades(int x, int y, int width, int height) const;
     void drawActivePanelFrame(int x, int y, int width, int height, const char* label) const;
     float focusPulse() const;
