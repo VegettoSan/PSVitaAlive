@@ -1,0 +1,175 @@
+name: temporary-vita-install-probe-fix
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/_tmp_vita_install_probe_fix.yml'
+permissions:
+  contents: write
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Patch local install probing
+        shell: python
+        run: |
+          from pathlib import Path
+          p = Path('Client PSVitaAlive/source/ui/full_catalog_screen.cpp')
+          text = p.read_text(encoding='utf-8')
+          marker = '} // namespace (install-status helpers)\n\nLocalInstallInfo FullCatalogScreen::queryLocalInstall'
+          if marker not in text:
+              raise SystemExit('install-status helper marker not found')
+          helper = r'''struct InstallProbeEntry {
+              LocalInstallInfo info{};
+              uint64_t checkedMs = 0;
+              bool valid = false;
+          };
+
+          std::unordered_map<std::string, InstallProbeEntry>& installProbeCache() {
+              static std::unordered_map<std::string, InstallProbeEntry> cache;
+              return cache;
+          }
+
+          bool consumeInstallProbeBudget(uint64_t nowMs) {
+              static uint64_t windowMs = 0;
+              static unsigned probes = 0;
+              constexpr uint64_t kWindowMs = 250;
+              constexpr unsigned kMaxProbesPerWindow = 2;
+              if (windowMs == 0 || nowMs < windowMs || (nowMs - windowMs) >= kWindowMs) {
+                  windowMs = nowMs;
+                  probes = 0;
+              }
+              if (probes >= kMaxProbesPerWindow) return false;
+              ++probes;
+              return true;
+          }
+
+          std::string installProbeKey(const std::string&titleId, const std::string&version) {
+              return titleId + "\n" + version;
+          }
+
+          '''
+          text = text.replace(marker, helper + marker, 1)
+          start = text.index('LocalInstallInfo FullCatalogScreen::queryLocalInstall')
+          end = text.index('void FullCatalogScreen::invalidateInstallStatus', start)
+          new_query = r'''LocalInstallInfo FullCatalogScreen::queryLocalInstall(const CatalogItem& item) {
+              LocalInstallInfo unknown;
+              unknown.state = LocalInstallState::Unknown;
+              if (item.titleId.empty()) return unknown;
+
+              std::string tid = item.titleId;
+              for (char& c : tid) {
+                  if (c >= 'a' && c <= 'z') c = static_cast<char>(c - 'a' + 'A');
+              }
+
+              const std::string key = installProbeKey(tid, item.version);
+              const uint64_t nowMs = sceKernelGetProcessTimeWide() / 1000ULL;
+              auto& cache = installProbeCache();
+              auto cached = cache.find(key);
+
+              constexpr uint64_t kPositiveTtlMs = 8000;
+              constexpr uint64_t kNegativeTtlMs = 4000;
+              if (cached != cache.end() && cached->second.valid) {
+                  const uint64_t age = nowMs >= cached->second.checkedMs ? nowMs - cached->second.checkedMs : 0;
+                  const uint64_t ttl =
+                      (cached->second.info.state == LocalInstallState::NotInstalled)
+                          ? kNegativeTtlMs
+                          : kPositiveTtlMs;
+                  if (age < ttl) return cached->second.info;
+              }
+
+              if (!consumeInstallProbeBudget(nowMs)) {
+                  if (cached != cache.end() && cached->second.valid) return cached->second.info;
+                  return unknown;
+              }
+
+              LocalInstallInfo info;
+              info.state = LocalInstallState::NotInstalled;
+
+              const std::string candidates[] = {
+                  std::string("ux0:app/") + tid,
+                  (tid == item.titleId) ? std::string() : (std::string("ux0:app/") + item.titleId),
+              };
+
+              std::string paramPath;
+              bool foundAppDir = false;
+              bool hasParam = false;
+
+              for (const std::string&dir : candidates) {
+                  if (dir.empty()) continue;
+                  SceIoStat dirStat{};
+                  if (sceIoGetstat(dir.c_str(), &dirStat) < 0) continue;
+                  foundAppDir = true;
+                  paramPath = dir + "/sce_sys/param.sfo";
+                  SceIoStat paramStat{};
+                  hasParam = sceIoGetstat(paramPath.c_str(), &paramStat) >= 0;
+                  break;
+              }
+
+              if (!foundAppDir) {
+                  info.state = LocalInstallState::NotInstalled;
+              } else {
+                  info.state = LocalInstallState::Installed;
+                  if (hasParam) {
+                      std::string ver;
+                      if (!readSfoStringKey(paramPath, "APP_VER", ver))
+                          readSfoStringKey(paramPath, "VERSION", ver);
+                      info.installedVersion = ver;
+                      if (!ver.empty() && !item.version.empty() &&
+                          compareVersionStrings(ver, item.version) < 0) {
+                          info.state = LocalInstallState::UpdateAvailable;
+                      }
+                  }
+              }
+
+              InstallProbeEntry& entry = cache[key];
+              entry.info = info;
+              entry.checkedMs = nowMs;
+              entry.valid = true;
+
+              installStatusCache_[item.titleId] = info;
+              if (tid != item.titleId) installStatusCache_[tid] = info;
+              return info;
+          }
+
+          '''
+          text = text[:start] + new_query + text[end:]
+          start = text.index('void FullCatalogScreen::invalidateInstallStatus')
+          end = text.index('void FullCatalogScreen::drawInstallBadge', start)
+          new_invalidate = r'''void FullCatalogScreen::invalidateInstallStatus(const std::string& titleId) {
+              if (titleId.empty()) {
+                  installStatusCache_.clear();
+                  installProbeCache().clear();
+                  return;
+              }
+
+              installStatusCache_.erase(titleId);
+              for (auto it = installProbeCache().begin(); it != installProbeCache().end();) {
+                  if (it->first == titleId || it->first.rfind(titleId + "\n", 0) == 0 ||
+                      (!titleId.empty() && it->first.rfind(titleId, 0) == 0)) {
+                      it = installProbeCache().erase(it);
+                  } else {
+                      ++it;
+                  }
+              }
+          }
+
+          '''
+          text = text[:start] + new_invalidate + text[end:]
+          p.write_text(text, encoding='utf-8')
+      - name: Verify patch shape
+        run: |
+          grep -q 'kMaxProbesPerWindow = 2' 'Client PSVitaAlive/source/ui/full_catalog_screen.cpp'
+          grep -q 'kPositiveTtlMs = 8000' 'Client PSVitaAlive/source/ui/full_catalog_screen.cpp'
+          grep -q 'kNegativeTtlMs = 4000' 'Client PSVitaAlive/source/ui/full_catalog_screen.cpp'
+      - name: Commit patch and remove temporary workflow
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          rm -f '.github/workflows/_tmp_vita_install_probe_fix.yml'
+          git add 'Client PSVitaAlive/source/ui/full_catalog_screen.cpp' '.github/workflows/_tmp_vita_install_probe_fix.yml'
+          git commit -m 'ui: rate-limit and cache local install detection'
+          git push origin HEAD:main
