@@ -462,7 +462,7 @@ void FullCatalogScreen::handleTouch() {
         const int contentTop = HEADER_H + 56;
         const int colW = SCREEN_W - margin * 2;
         const int listX = margin;
-        const int listW = SCREEN_W - margin * 2;
+        const int listW = (colW * 58) / 100;
         struct Meta { bool sectionStart; const char* section; };
         Meta meta[5] = {
             {true, "INSTALL"}, {false, ""}, {true, "INTERFACE"}, {true, "CATALOG"}, {true, "UPDATES"}
@@ -475,18 +475,31 @@ void FullCatalogScreen::handleTouch() {
             y += 52 + 8;
         }
         const int rowH = 52;
+        const int measured = 5 * (52 + 8) + 4 * 22;
+        const int listViewH = SCREEN_H - contentTop - FOOTER_H - 8;
+        const float maxScroll = static_cast<float>(std::max(0, measured - listViewH));
 
         if (td.reportNum > 0) {
+            const int x = mapX(td.report[0].x);
+            const int yy = mapY(td.report[0].y);
             if (!touchDown_) {
                 touchDown_ = true;
-                touchStartX_ = mapX(td.report[0].x);
-                touchStartY_ = mapY(td.report[0].y);
+                touchStartX_ = x;
+                touchStartY_ = yy;
+                touchLastY_ = yy;
                 touchMoved_ = false;
+                touchAccumY_ = 0.f;
             } else {
-                const int x = mapX(td.report[0].x);
-                const int yy = mapY(td.report[0].y);
-                if (std::abs(x - touchStartX_) > 30 || std::abs(yy - touchStartY_) > 30)
+                const int dy = yy - touchLastY_;
+                touchLastY_ = yy;
+                if (std::abs(x - touchStartX_) > 20 || std::abs(yy - touchStartY_) > 20)
                     touchMoved_ = true;
+                // Vertical drag scrolls the settings list (finger up → content up)
+                if (touchMoved_) {
+                    settingsScrollY_ -= static_cast<float>(dy);
+                    if (settingsScrollY_ < 0.f) settingsScrollY_ = 0.f;
+                    if (settingsScrollY_ > maxScroll) settingsScrollY_ = maxScroll;
+                }
             }
         } else if (touchDown_) {
             const int x = touchStartX_, yy = touchStartY_;
@@ -965,27 +978,26 @@ void FullCatalogScreen::drawSettings() {
         {"UPDATES", "App updates", updateLabel(), "GitHub Releases — X to check / install", true},
     };
 
-    // Full-width list (system status is a compact strip under the title bar)
+    // List (left) + contextual help panel (right)
+    const int colW = SCREEN_W - margin * 2;
     const int listX = margin;
-    const int listW = SCREEN_W - margin * 2;
+    const int listW = (colW * 58) / 100;
+    const int sideX = listX + listW + 12;
+    const int sideW = colW - listW - 12;
     const int rowH = 52;
     const int sectionH = 22;
     const int rowGap = 8;
 
-    // Measure content height
     int measured = 0;
     for (int i = 0; i < 5; ++i) {
         if (opts[i].sectionStart && opts[i].section[0]) measured += sectionH;
         measured += rowH + rowGap;
     }
-    measured += 70; // plugin status block at end of scroll content
-
     const int listViewH = listClipBottom - contentTop;
     const float maxScroll = static_cast<float>(std::max(0, measured - listViewH));
     if (settingsScrollY_ < 0.f) settingsScrollY_ = 0.f;
     if (settingsScrollY_ > maxScroll) settingsScrollY_ = maxScroll;
 
-    // Keep focused row visible
     {
         int fy = 0;
         for (int i = 0; i <= settingsFocus_ && i < 5; ++i) {
@@ -995,9 +1007,8 @@ void FullCatalogScreen::drawSettings() {
         const float rowTop = static_cast<float>(fy);
         const float rowBot = rowTop + static_cast<float>(rowH);
         if (rowTop < settingsScrollY_) settingsScrollY_ = rowTop;
-        if (rowBot > settingsScrollY_ + static_cast<float>(listViewH)) {
+        if (rowBot > settingsScrollY_ + static_cast<float>(listViewH))
             settingsScrollY_ = rowBot - static_cast<float>(listViewH);
-        }
         if (settingsScrollY_ < 0.f) settingsScrollY_ = 0.f;
         if (settingsScrollY_ > maxScroll) settingsScrollY_ = maxScroll;
     }
@@ -1006,16 +1017,14 @@ void FullCatalogScreen::drawSettings() {
     int y = contentTop - static_cast<int>(settingsScrollY_);
     for (int i = 0; i < 5; ++i) {
         if (opts[i].sectionStart && opts[i].section[0]) {
-            if (y + 16 >= contentTop && y + 4 <= listClipBottom) {
+            if (y + 16 >= contentTop && y + 4 <= listClipBottom)
                 vita2d_pgf_draw_text(font_, listX + 6, y + 16, DIM, 0.56f, opts[i].section);
-            }
             y += sectionH;
         }
         rowY[i] = y;
         const bool focus = (settingsFocus_ == i);
         if (y + rowH >= contentTop && y <= listClipBottom) {
-            const unsigned cardBg = focus ? SURFACE : SURFACE2;
-            vita2d_draw_rectangle(listX, y, listW, rowH, cardBg);
+            vita2d_draw_rectangle(listX, y, listW, rowH, focus ? SURFACE : SURFACE2);
             if (focus) {
                 vita2d_draw_rectangle(listX, y, 4, rowH, ACCENT);
                 vita2d_draw_rectangle(listX, y, listW, 2, ACCENT);
@@ -1023,43 +1032,94 @@ void FullCatalogScreen::drawSettings() {
             } else {
                 vita2d_draw_rectangle(listX, y + rowH - 1, listW, 1, BORDER);
             }
-            vita2d_pgf_draw_text(font_, listX + 16, y + 20, focus ? WHITE : TEXT, 0.70f, opts[i].label);
-            const int chipW = 120;
-            const int chipX = listX + listW - chipW - 14;
-            const int chipY = y + 10;
+            vita2d_pgf_draw_text(font_, listX + 14, y + 20, focus ? WHITE : TEXT, 0.68f, opts[i].label);
+            const int chipW = 110;
+            const int chipX = listX + listW - chipW - 10;
+            const int chipY = y + 12;
             vita2d_draw_rectangle(chipX, chipY, chipW, 24, focus ? ACCENT : SURFACE);
-            vita2d_pgf_draw_text(font_, chipX + 10, chipY + 17, focus ? BG : ACCENT, 0.58f, opts[i].value.c_str());
-            vita2d_pgf_draw_text(font_, listX + 16, y + 42, DIM, 0.50f, opts[i].hint);
-            if (focus) {
-                vita2d_pgf_draw_text(font_, chipX - 36, chipY + 17, ACCENT, 0.56f, "< >");
-            }
+            vita2d_pgf_draw_text(font_, chipX + 8, chipY + 17, focus ? BG : ACCENT, 0.54f, opts[i].value.c_str());
+            vita2d_pgf_draw_text(font_, listX + 14, y + 42, DIM, 0.48f, opts[i].hint);
+            if (focus) vita2d_pgf_draw_text(font_, chipX - 32, chipY + 17, ACCENT, 0.52f, "<>");
         }
         y += rowH + rowGap;
     }
 
-    // Plugin status at end of scroll content
-    if (y + 60 >= contentTop && y <= listClipBottom) {
-        vita2d_pgf_draw_text(font_, listX + 6, y + 16, DIM, 0.54f, "SYSTEM");
-        char plug[128];
-        sceClibSnprintf(
-            plug, sizeof(plug), "NoNpDrm: %s   NoPspEmuDrm: %s",
-            pluginsStatus_.nonpdrm ? "OK" : "missing",
-            pluginsStatus_.nopspemudrmKern ? "OK" : "missing"
-        );
-        vita2d_pgf_draw_text(font_, listX + 16, y + 38, TEXT, 0.56f, plug);
+    {
+        const int panelH = listClipBottom - contentTop;
+        vita2d_draw_rectangle(sideX, contentTop, sideW, panelH, SURFACE2);
+        vita2d_draw_rectangle(sideX, contentTop, 3, panelH, ACCENT);
+        vita2d_pgf_draw_text(font_, sideX + 14, contentTop + 22, ACCENT, 0.62f, "INFO");
+
+        const char* title = opts[settingsFocus_].label;
+        const char* body1 = "";
+        const char* body2 = "";
+        const char* body3 = "";
+        switch (settingsFocus_) {
+        case 0:
+            body1 = "How packages are installed.";
+            body2 = "Auto uses BGDL for PKG when";
+            body3 = "Shell supports it, else Direct.";
+            break;
+        case 1:
+            body1 = "Where PSP/PS1 content goes.";
+            body2 = "Adrenaline: ISO/CSO under";
+            body3 = "ux0:pspemu. LiveArea needs plugins.";
+            break;
+        case 2:
+            body1 = "Show a toast at startup when";
+            body2 = "NoNpDrm / NoPspEmuDrm are";
+            body3 = "missing from taiHEN config.";
+            break;
+        case 3:
+            body1 = "Ask once whether to download";
+            body2 = "all catalog images at startup.";
+            body3 = "Off = load images on demand.";
+            break;
+        case 4:
+            body1 = "Checks GitHub Releases for a";
+            body2 = "newer PSVitaAlive.vpk and can";
+            body3 = "install it in-place (VitaDB style).";
+            break;
+        default: break;
+        }
+        vita2d_pgf_draw_text(font_, sideX + 14, contentTop + 48, WHITE, 0.64f, title);
+        vita2d_pgf_draw_text(font_, sideX + 14, contentTop + 74, TEXT, 0.52f, body1);
+        vita2d_pgf_draw_text(font_, sideX + 14, contentTop + 94, TEXT, 0.52f, body2);
+        vita2d_pgf_draw_text(font_, sideX + 14, contentTop + 114, TEXT, 0.52f, body3);
+
+        vita2d_pgf_draw_text(font_, sideX + 14, contentTop + 150, DIM, 0.52f, "SYSTEM");
+        char plug[96];
+        sceClibSnprintf(plug, sizeof(plug), "NoNpDrm: %s", pluginsStatus_.nonpdrm ? "OK" : "missing");
+        vita2d_pgf_draw_text(font_, sideX + 14, contentTop + 172, TEXT, 0.52f, plug);
+        sceClibSnprintf(plug, sizeof(plug), "NoPspEmuDrm: %s", pluginsStatus_.nopspemudrmKern ? "OK" : "missing");
+        vita2d_pgf_draw_text(font_, sideX + 14, contentTop + 192, TEXT, 0.52f, plug);
         if (!pluginsStatus_.configPathUsed.empty()) {
-            vita2d_pgf_draw_text(font_, listX + 16, y + 56, DIM, 0.48f, pluginsStatus_.configPathUsed.c_str());
+            vita2d_pgf_draw_text(font_, sideX + 14, contentTop + 214, DIM, 0.46f,
+                                 ellipsize(pluginsStatus_.configPathUsed, 28).c_str());
+        }
+        if (settingsFocus_ == 4) {
+            char ver[64];
+            sceClibSnprintf(ver, sizeof(ver), "Local: v%s", PSVITAALIVE_VERSION);
+            vita2d_pgf_draw_text(font_, sideX + 14, contentTop + 240, ACCENT, 0.52f, ver);
+            if (selfUpdateChecked_) {
+                if (selfUpdateInfo_.state == ::psvitaalive::UpdateChecker::State::UpdateAvailable)
+                    sceClibSnprintf(ver, sizeof(ver), "Remote: v%s", selfUpdateInfo_.remoteVersion.c_str());
+                else if (selfUpdateInfo_.state == ::psvitaalive::UpdateChecker::State::UpToDate)
+                    sceClibSnprintf(ver, sizeof(ver), "Remote: up to date");
+                else
+                    sceClibSnprintf(ver, sizeof(ver), "Remote: check failed");
+                vita2d_pgf_draw_text(font_, sideX + 14, contentTop + 260, TEXT, 0.50f, ver);
+            }
         }
     }
 
-    // Scroll hint
     if (maxScroll > 1.f) {
         const float ratio = settingsScrollY_ / maxScroll;
         const int trackH = listViewH - 8;
         const int thumbH = std::max(24, trackH / 4);
         const int thumbY = contentTop + 4 + static_cast<int>(ratio * (trackH - thumbH));
-        vita2d_draw_rectangle(SCREEN_W - 10, contentTop + 4, 3, trackH, BORDER);
-        vita2d_draw_rectangle(SCREEN_W - 10, thumbY, 3, thumbH, ACCENT);
+        vita2d_draw_rectangle(listX + listW + 2, contentTop + 4, 3, trackH, BORDER);
+        vita2d_draw_rectangle(listX + listW + 2, thumbY, 3, thumbH, ACCENT);
     }
 
     vita2d_draw_rectangle(0, SCREEN_H - FOOTER_H, SCREEN_W, FOOTER_H, SURFACE2);
@@ -1723,28 +1783,34 @@ if (catalogSplashAlpha_ > 0.01f && !installProgressActive_) {
     } else {
         vita2d_draw_rectangle(0, 0, SCREEN_W, SCREEN_H, RGBA8(0x0A, 0x0A, 0x0A, a > 255 ? 255 : a));
     }
-    // Bottom progress strip — roomy layout (title / message / bar / %)
-    const int stripH = 128;
+    // Bottom progress panel — clear hierarchy for startup / self-update / catalogs
+    const int stripH = 148;
     const int stripY = SCREEN_H - stripH;
-    const int barX = 72, barW = SCREEN_W - 144, barH = 14;
-    const int barY = SCREEN_H - 36;
-    const unsigned panelA = (unsigned)(catalogSplashAlpha_ * 210.f);
+    const int barX = 48, barW = SCREEN_W - 96, barH = 16;
+    const int barY = SCREEN_H - 40;
+    const unsigned panelA = (unsigned)(catalogSplashAlpha_ * 230.f);
     const unsigned ta = (unsigned)(catalogSplashAlpha_ * 255.f);
-    vita2d_draw_rectangle(0, stripY, SCREEN_W, stripH, RGBA8(0x0A, 0x0A, 0x0A, panelA > 255 ? 255 : panelA));
-    vita2d_draw_rectangle(0, stripY, SCREEN_W, 2, RGBA8(0x3B, 0xFF, 0x00, ta > 255 ? 255 : ta));
+    vita2d_draw_rectangle(0, stripY, SCREEN_W, stripH, RGBA8(0x08, 0x08, 0x0A, panelA > 255 ? 255 : panelA));
+    vita2d_draw_rectangle(0, stripY, SCREEN_W, 3, RGBA8(0x3B, 0xFF, 0x00, ta > 255 ? 255 : ta));
 
-    // One status line only (prefer message; else label) to avoid stacked text
-    std::string statusLine;
-    if (!catalogLoadingMessage_.empty()) statusLine = catalogLoadingMessage_;
-    else if (!catalogLoadingLabel_.empty()) statusLine = catalogLoadingLabel_;
-    else statusLine = "Loading catalogs...";
-    vita2d_pgf_draw_text(font_, barX, stripY + 28, ACCENT, 0.64f, ellipsize(statusLine, 64).c_str());
+    std::string phase = catalogLoadingLabel_.empty() ? "Startup" : catalogLoadingLabel_;
+    vita2d_pgf_draw_text(font_, barX, stripY + 28, ACCENT, 0.78f, ellipsize(phase, 40).c_str());
 
-    // Optional second line only if both label and message exist and differ
-    if (!catalogLoadingLabel_.empty() && !catalogLoadingMessage_.empty() &&
-        catalogLoadingLabel_ != catalogLoadingMessage_) {
-        vita2d_pgf_draw_text(font_, barX, stripY + 50, TEXT, 0.52f,
-                             ellipsize(catalogLoadingLabel_, 64).c_str());
+    std::string detail = catalogLoadingMessage_.empty() ? "Please wait..." : catalogLoadingMessage_;
+    vita2d_pgf_draw_text(font_, barX, stripY + 52, WHITE, 0.58f, ellipsize(detail, 78).c_str());
+
+    if (catalogLoadingTotal_ > 0) {
+        char sizeLine[96];
+        if (catalogLoadingTotal_ >= 8192ULL) {
+            const double curMb = (double)catalogLoadingCurrent_ / (1024.0 * 1024.0);
+            const double totMb = (double)catalogLoadingTotal_ / (1024.0 * 1024.0);
+            sceClibSnprintf(sizeLine, sizeof(sizeLine), "%.2f MB  /  %.2f MB", curMb, totMb);
+        } else {
+            sceClibSnprintf(sizeLine, sizeof(sizeLine), "%llu  /  %llu",
+                (unsigned long long)catalogLoadingCurrent_,
+                (unsigned long long)catalogLoadingTotal_);
+        }
+        vita2d_pgf_draw_text(font_, barX, stripY + 74, TEXT, 0.52f, sizeLine);
     }
 
     vita2d_draw_rectangle(barX, barY, barW, barH, SURFACE);
@@ -1766,9 +1832,11 @@ if (catalogSplashAlpha_ > 0.01f && !installProgressActive_) {
         sceClibSnprintf(pctBuf, sizeof(pctBuf), "%d%%", (int)(pct * 100.f + 0.5f));
     else
         sceClibSnprintf(pctBuf, sizeof(pctBuf), "...");
-    vita2d_pgf_draw_text(font_, barX + barW + 8, barY + 12, WHITE, 0.54f, pctBuf);
+    const int pctW = vita2d_pgf_text_width(font_, 0.58f, pctBuf);
+    vita2d_pgf_draw_text(font_, barX + barW - pctW, barY - 18, WHITE, 0.58f, pctBuf);
     return;
 }
+
 
 const unsigned RED=RGBA8(0xE0,0x32,0x32,255), GREEN=RGBA8(0x3B,0xD9,0x60,255), BLACK=RGBA8(0,0,0,255);
 const int w=640,h=380,x=(SCREEN_W-w)/2,y=(SCREEN_H-h)/2;
