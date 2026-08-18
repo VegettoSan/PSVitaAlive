@@ -14,6 +14,7 @@
 #include <psp2/rtc.h>
 #include <psp2/io/stat.h>
 #include <psp2/io/fcntl.h>
+#include <psp2/io/dirent.h>
 #include <psp2/io/devctl.h>
 #include <algorithm>
 #include <cmath>
@@ -200,7 +201,7 @@ void FullCatalogScreen::setCatalogItems(std::vector<CatalogItem>items){
     installResultPath_ = installPath;
     installResultTitleId_ = titleId;
     // Refresh local install badges after a finished install attempt
-    if (outcome == 1 && !titleId.empty()) {
+    if (!titleId.empty() && (outcome == 1 || outcome == 2)) {
         invalidateInstallStatus(titleId);
     }
 }
@@ -1686,20 +1687,64 @@ LocalInstallInfo FullCatalogScreen::queryLocalInstall(const CatalogItem& item) {
     info.state = LocalInstallState::NotInstalled;
     if (item.titleId.empty()) return info;
 
+    // Only cache positive results permanently. "Not installed" is re-checked so a
+    // just-finished install (or Vita3K FS lag) still shows the badge.
     auto cached = installStatusCache_.find(item.titleId);
-    if (cached != installStatusCache_.end()) return cached->second;
+    if (cached != installStatusCache_.end() &&
+        cached->second.state != LocalInstallState::NotInstalled) {
+        return cached->second;
+    }
 
-    const std::string appDir = std::string("ux0:app/") + item.titleId;
-    const std::string param = appDir + "/sce_sys/param.sfo";
-    const std::string eboot = appDir + "/eboot.bin";
+    auto pathExists = [](const std::string& path) -> bool {
+        SceIoStat st{};
+        if (sceIoGetstat(path.c_str(), &st) >= 0) return true;
+        // Vita3K sometimes needs a trailing slash for directories
+        if (!path.empty() && path.back() != '/') {
+            const std::string withSlash = path + "/";
+            if (sceIoGetstat(withSlash.c_str(), &st) >= 0) return true;
+        }
+        // Directory open as another signal
+        SceUID d = sceIoDopen(path.c_str());
+        if (d >= 0) {
+            sceIoDclose(d);
+            return true;
+        }
+        return false;
+    };
 
-    SceIoStat st{};
-    const bool hasDir = sceIoGetstat(appDir.c_str(), &st) >= 0;
-    const bool hasParam = sceIoGetstat(param.c_str(), &st) >= 0;
-    const bool hasEboot = sceIoGetstat(eboot.c_str(), &st) >= 0;
+    // Prefer TITLE_ID as-is; also try upper-case (param.sfo / folders are usually upper).
+    std::string tid = item.titleId;
+    for (char& c : tid) {
+        if (c >= 'a' && c <= 'z') c = static_cast<char>(c - 'a' + 'A');
+    }
 
-    if (!hasDir || (!hasParam && !hasEboot)) {
-        installStatusCache_[item.titleId] = info;
+    const std::string candidates[] = {
+        std::string("ux0:app/") + tid,
+        std::string("ux0:app/") + item.titleId,
+        std::string("ux0:/app/") + tid,
+    };
+
+    std::string appDir;
+    std::string param;
+    std::string eboot;
+    bool hasParam = false;
+    bool hasEboot = false;
+    bool found = false;
+
+    for (const std::string& dir : candidates) {
+        param = dir + "/sce_sys/param.sfo";
+        eboot = dir + "/eboot.bin";
+        hasParam = pathExists(param);
+        hasEboot = pathExists(eboot);
+        if (pathExists(dir) || hasParam || hasEboot) {
+            appDir = dir;
+            found = hasParam || hasEboot || pathExists(dir);
+            if (hasParam || hasEboot) break;
+        }
+    }
+
+    if (!found || (!hasParam && !hasEboot)) {
+        // Do not cache negatives — next frame / next open can pick up a new install.
         return info;
     }
 
@@ -1717,6 +1762,7 @@ LocalInstallInfo FullCatalogScreen::queryLocalInstall(const CatalogItem& item) {
     }
 
     installStatusCache_[item.titleId] = info;
+    if (tid != item.titleId) installStatusCache_[tid] = info;
     return info;
 }
 
@@ -1776,17 +1822,17 @@ void FullCatalogScreen::drawCatalogCard(const CatalogItem&it,int idx,int x,int y
     if (meta.empty()) meta = it.size;
     if (!meta.empty()) vita2d_pgf_draw_text(font_, x + 10 + ox, y + h - 10 + oy, DIM, 0.58f, ellipsize(meta, 30).c_str());
 
-    // Installed / update badge (top-right of card)
+    // Installed / update badge: bottom-left on icon + top-right of card
     {
         const LocalInstallInfo li = queryLocalInstall(it);
         if (li.state == LocalInstallState::Installed || li.state == LocalInstallState::UpdateAvailable) {
+            // Overlay on icon corner (always visible even when title text is long)
+            drawInstallBadge(x + 10 + ox, y + 9 + oy + is - 18, li, true);
             const char* lab = (li.state == LocalInstallState::UpdateAvailable) ? "UPD" : "ON";
             const float sc = 0.48f;
             const int tw = vita2d_pgf_text_width(font_, sc, lab);
             const int bw = tw + 10;
-            const int bx = x + ox + ww - bw - 6;
-            const int by = y + oy + 6;
-            drawInstallBadge(bx, by, li, true);
+            drawInstallBadge(x + ox + ww - bw - 6, y + oy + 6, li, true);
         }
     }
     (void)idx;
