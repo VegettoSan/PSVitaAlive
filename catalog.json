@@ -12,10 +12,10 @@
     "subcategory_ids": [
       "other"
     ],
-    "version": "v.1.1",
+    "version": "v.1.2",
     "version_date": "2026-08-18",
     "requirements": "- Game Data Files: Different Systems",
-    "size": 11991018,
+    "size": 11989270,
     "status": "Legacy",
     "icon": "https://www.rinnegatamante.eu/vitadb/icons/30ed058f56e2f90d58bf083f34bdbdec40ae0df71806975caeb25f55f090024f.png",
     "screenshots": [
@@ -61,7 +61,7 @@
     "version": "Nightly",
     "version_date": "2026-08-18",
     "requirements": "Not specified",
-    "size": 2857971,
+    "size": 2858911,
     "status": "Legacy",
     "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/932a2c421cd1217626c59ea726d5e6a16ba737f98ce86c193db75e9e633fcec9.png",
     "screenshots": [
