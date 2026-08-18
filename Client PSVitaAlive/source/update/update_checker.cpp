@@ -21,6 +21,9 @@ namespace {
 
 constexpr const char* RELEASES_LATEST_URL =
     "https://api.github.com/repos/VegettoSan/PSVitaAlive/releases/latest";
+// Fallback when /latest is empty (e.g. only prereleases published).
+constexpr const char* RELEASES_LIST_URL =
+    "https://api.github.com/repos/VegettoSan/PSVitaAlive/releases?per_page=10";
 constexpr const char* UPDATE_ASSET_NAME = "PSVitaAlive.vpk";
 constexpr const char* VERSION_MARKER = "ux0:app/PSVAS1178/psvitaalive_version.txt";
 
@@ -256,6 +259,49 @@ bool writeVersionMarker(const std::string& version) {
     return n >= 0;
 }
 
+
+bool jsonIsTrue(const sce::Json::Value& object, const char* key) {
+    const sce::Json::Value& value = object[key];
+    if (!value) return false;
+    return value.getBoolean();
+}
+
+// Fill Result fields from a single GitHub release object (not an array).
+void fillFromReleaseObject(const sce::Json::Value& release, UpdateChecker::Result& result) {
+    result.releaseTag = getString(release, "tag_name");
+    result.releaseName = getString(release, "name");
+    const std::string releaseBody = getString(release, "body");
+    result.remoteVersion = resolveRemoteVersion(result.releaseTag, result.releaseName, releaseBody);
+    result.downloadUrl.clear();
+    result.assetName.clear();
+    result.digest.clear();
+    result.assetSize = 0;
+    pickVpkAsset(release["assets"], result);
+}
+
+bool selectReleaseFromRoot(const sce::Json::Value& root, UpdateChecker::Result& result, bool rootIsArray) {
+    if (!rootIsArray) {
+        if (jsonIsTrue(root, "draft")) return false;
+        fillFromReleaseObject(root, result);
+        return !result.remoteVersion.empty() && !result.downloadUrl.empty();
+    }
+
+    // Array from GET /releases — newest first. Prefer a non-draft entry that has a VPK.
+    // Prereleases are intentionally allowed (BETA tags).
+    if (!root) return false;
+    const sce::Json::Array& releases = root.getArray();
+    for (SceSize i = 0; i < releases.size(); ++i) {
+        const sce::Json::Value& rel = root[i];
+        if (!rel) continue;
+        if (jsonIsTrue(rel, "draft")) continue;
+        fillFromReleaseObject(rel, result);
+        if (!result.remoteVersion.empty() && !result.downloadUrl.empty()) {
+            return true;
+        }
+    }
+    return false;
+}
+
 std::string extractLocalVersion(const std::string& currentVersion) {
     std::vector<std::string> c;
     collectVersionsFromText(currentVersion, c);
@@ -283,12 +329,54 @@ UpdateChecker::Result UpdateChecker::checkLatest(const std::string& currentVersi
     }
 
     std::string body;
-    const HttpResult fetchResult = http.fetchToString(RELEASES_LATEST_URL, body, 512 * 1024);
-    if (fetchResult != HttpResult::Ok) {
-        result.error = http.lastError().empty() ? toString(fetchResult) : http.lastError();
-        diagnostics::log("[UpdateChecker] GitHub request failed: " + result.error);
+    bool usedReleaseList = false;
+
+    auto logFetch = [](const char* label, int status, size_t bytes, HttpResult hr) {
+        char line[192];
+        sceClibSnprintf(
+            line, sizeof(line),
+            "[UpdateChecker] %s status=%d bytes=%u result=%s",
+            label,
+            status,
+            (unsigned)bytes,
+            toString(hr)
+        );
+        diagnostics::log(line);
+    };
+
+    HttpResult fetchResult = http.fetchToString(RELEASES_LATEST_URL, body, 512 * 1024);
+    logFetch("GET releases/latest", http.lastStatusCode(), body.size(), fetchResult);
+
+    const int statusLatest = http.lastStatusCode();
+    // Soft-fail rate limits / forbidden: startup continues without treating this as a hard fault path.
+    if (statusLatest == 403 || statusLatest == 429) {
+        result.error = "GitHub temporarily unavailable (HTTP 403/429) — update check skipped";
+        diagnostics::log("[UpdateChecker] " + result.error);
         http.shutdown();
         return result;
+    }
+
+    // /releases/latest ignores prereleases. If missing (404) or request failed, try the full list.
+    if (fetchResult != HttpResult::Ok || statusLatest == 404 || body.empty()) {
+        diagnostics::log("[UpdateChecker] releases/latest unavailable — falling back to releases list");
+        body.clear();
+        fetchResult = http.fetchToString(RELEASES_LIST_URL, body, 512 * 1024);
+        usedReleaseList = true;
+        logFetch("GET releases?per_page=10", http.lastStatusCode(), body.size(), fetchResult);
+
+        const int statusList = http.lastStatusCode();
+        if (statusList == 403 || statusList == 429) {
+            result.error = "GitHub temporarily unavailable (HTTP 403/429) — update check skipped";
+            diagnostics::log("[UpdateChecker] " + result.error);
+            http.shutdown();
+            return result;
+        }
+        if (fetchResult != HttpResult::Ok) {
+            result.error = http.lastError().empty() ? toString(fetchResult) : http.lastError();
+            diagnostics::log("[UpdateChecker] GitHub list request failed: " + result.error);
+            http.shutdown();
+            return result;
+        }
     }
 
     const int moduleResult = sceSysmoduleLoadModule(SCE_SYSMODULE_JSON);
@@ -322,24 +410,30 @@ UpdateChecker::Result UpdateChecker::checkLatest(const std::string& currentVersi
         const int parseRc = sce::Json::Parser::parse(root, body.c_str(), static_cast<SceSize>(body.size()));
         if (parseRc < 0) {
             result.error = "Invalid GitHub release JSON";
-            char perr[96];
-            sceClibSnprintf(perr, sizeof(perr), "[UpdateChecker] GitHub release JSON parse failed: 0x%08X bytes=%u", parseRc, (unsigned)body.size());
+            char perr[128];
+            sceClibSnprintf(
+                perr, sizeof(perr),
+                "[UpdateChecker] GitHub JSON parse failed: 0x%08X bytes=%u list=%d",
+                parseRc, (unsigned)body.size(), usedReleaseList ? 1 : 0
+            );
             diagnostics::log(perr);
             parseFailed = true;
         } else {
-            diagnostics::log("[UpdateChecker] JSON parsed");
+            char okline[96];
+            sceClibSnprintf(
+                okline, sizeof(okline),
+                "[UpdateChecker] JSON parsed OK bytes=%u list=%d",
+                (unsigned)body.size(), usedReleaseList ? 1 : 0
+            );
+            diagnostics::log(okline);
 
-            result.releaseTag = getString(root, "tag_name");
-            result.releaseName = getString(root, "name");
-            const std::string releaseBody = getString(root, "body");
-
-            result.remoteVersion = resolveRemoteVersion(result.releaseTag, result.releaseName, releaseBody);
-
-            if (!pickVpkAsset(root["assets"], result)) {
-                // downloadUrl stays empty
-            }
-
-            diagnostics::log("[UpdateChecker] release metadata extracted");
+            const bool ok = selectReleaseFromRoot(root, result, usedReleaseList);
+            diagnostics::log(
+                std::string("[UpdateChecker] release metadata extracted tag=") + result.releaseTag +
+                " remote=" + result.remoteVersion +
+                " asset=" + result.assetName +
+                " selected=" + (ok ? "yes" : "no")
+            );
 
             if (result.remoteVersion.empty()) {
                 result.error = "GitHub release does not expose a usable version (tag/name/body)";
