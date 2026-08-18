@@ -12,7 +12,7 @@ project(PSVitaAlive)
 include("$ENV{VITASDK}/share/vita.cmake" REQUIRED)
 
 set(VITA_APP_NAME "PSVitaAlive")
-set(VITA_TITLEID  "PSVA00001")
+set(VITA_TITLEID  "PSVAS1178")
 set(VITA_VERSION "01.01")
 set(VITA_MKSFOEX_FLAGS "${VITA_MKSFOEX_FLAGS} -d PARENTAL_LEVEL=1")
 
