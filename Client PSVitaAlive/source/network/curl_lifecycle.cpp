@@ -24,3 +24,13 @@ extern "C" CURLcode psvitaalive_curl_global_init(long flags) {
     gCurlInitialized = true;
     return CURLE_OK;
 }
+
+// HttpClient is compiled through the local curl.h wrapper. Redirect its
+// curl_easy_perform() calls here so every HttpClient easy handle gets
+// CURLOPT_NOSIGNAL before the transfer starts. This is important on Vita
+// because signal-based DNS timeouts are unsafe in a multithreaded process.
+extern "C" CURLcode psvitaalive_curl_easy_perform(CURL* curl) {
+    if (!curl) return CURLE_FAILED_INIT;
+    curl_easy_setopt(curl, CURLOPT_NOSIGNAL, 1L);
+    return curl_easy_perform(curl);
+}
