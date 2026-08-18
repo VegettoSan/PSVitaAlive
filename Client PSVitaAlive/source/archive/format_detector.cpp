@@ -150,6 +150,27 @@ ContentKind FormatDetector::guessKind(FileFormat fmt, const std::string& ext) {
     }
 }
 
+
+// Scan ZIP local-file headers / plain name bytes for Vita package markers.
+// VitaDB get_hb_url.php downloads are ZIP/VPK without a .vpk filename.
+static bool zipLooksLikeVpk(const uint8_t* data, size_t size) {
+    if (!data || size < 8) return false;
+    auto has = [&](const char* s) -> bool {
+        const size_t n = std::strlen(s);
+        if (n == 0 || size < n) return false;
+        for (size_t i = 0; i + n <= size; ++i) {
+            if (std::memcmp(data + i, s, n) == 0) return true;
+        }
+        return false;
+    };
+    // Typical VPK entry names (stored uncompressed in local headers)
+    if (has("eboot.bin")) return true;
+    if (has("sce_sys/param.sfo") || has("sce_sys\\param.sfo")) return true;
+    if (has("SCE_SYS/PARAM.SFO")) return true;
+    if (has("sce_sys/package/head.bin")) return true;
+    return false;
+}
+
 DetectResult FormatDetector::detectBuffer(
     const uint8_t* data,
     size_t size,
@@ -170,6 +191,10 @@ DetectResult FormatDetector::detectBuffer(
     if (byMagic == FileFormat::Zip && byExt == FileFormat::Vpk) {
         r.format = FileFormat::Vpk;
         r.detail = "zip_magic+vpk_ext";
+    } else if (byMagic == FileFormat::Zip && zipLooksLikeVpk(data, size)) {
+        // Content looks like a Vita package even without .vpk extension (VitaDB, etc.)
+        r.format = FileFormat::Vpk;
+        r.detail = "zip_magic+vpk_layout";
     } else if (byMagic != FileFormat::Unknown) {
         r.format = byMagic;
     } else {
