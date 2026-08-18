@@ -301,6 +301,7 @@ HttpResult HttpClient::fetchToString(
     curl_easy_setopt(curl, CURLOPT_URL, url.c_str());
     curl_easy_setopt(curl, CURLOPT_FOLLOWLOCATION, 1L);
     curl_easy_setopt(curl, CURLOPT_MAXREDIRS, 8L);
+    // Keep existing browser UA (not changed). GitHub requires a non-empty User-Agent.
     curl_easy_setopt(curl, CURLOPT_USERAGENT,
         "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36");
     curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, stringWriteCb);
@@ -312,10 +313,22 @@ HttpResult HttpClient::fetchToString(
     curl_easy_setopt(curl, CURLOPT_ACCEPT_ENCODING, "");
     curl_easy_setopt(curl, CURLOPT_HTTP_VERSION, CURL_HTTP_VERSION_1_1);
 
+    // GitHub REST recommends Accept: application/vnd.github+json for API hosts.
+    // Do not alter User-Agent here. Extra headers only for api.github.com.
+    struct curl_slist* headers = nullptr;
+    if (url.find("api.github.com") != std::string::npos) {
+        headers = curl_slist_append(headers, "Accept: application/vnd.github+json");
+        curl_easy_setopt(curl, CURLOPT_HTTPHEADER, headers);
+    }
+
     const CURLcode rc = curl_easy_perform(curl);
     long status = 0;
     curl_easy_getinfo(curl, CURLINFO_RESPONSE_CODE, &status);
     lastStatus_ = static_cast<int>(status);
+    if (headers) {
+        curl_slist_free_all(headers);
+        headers = nullptr;
+    }
     curl_easy_cleanup(curl);
 
     if (ctx.overflow) {
