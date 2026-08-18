@@ -29,6 +29,11 @@ InstallController::~InstallController() { shutdown(); }
 
 bool InstallController::init() {
     if (http_.isInitialized()) return true;
+
+    // Load config before optional startup probes so those probes can be disabled
+    // without executing any of their work. Missing/new config values default true.
+    settings_ = AppSettings::load();
+
     const HttpResult result = http_.init();
     if (result != HttpResult::Ok) {
         setState(InstallStatus::State::Failed, http_.lastError().c_str());
@@ -54,9 +59,14 @@ bool InstallController::init() {
     }
     setStage("Idle");
     setState(InstallStatus::State::Idle, "Ready");
-    settings_ = AppSettings::load();
-    plugins_ = PluginDetector::scan();
-    diagnostics::log(std::string("[Installer] plugins: ") + plugins_.detail);
+
+    if (settings_.startupPluginDetection) {
+        plugins_ = PluginDetector::scan();
+        diagnostics::log(std::string("[Installer] plugins: ") + plugins_.detail);
+    } else {
+        plugins_ = PluginStatus{};
+        diagnostics::log("[Startup] plugin detection disabled by config");
+    }
     diagnostics::log(std::string("[Installer] settings method=") + AppSettings::toString(settings_.installMethod) +
         " psp=" + AppSettings::toString(settings_.pspTarget));
     if (!plugins_.nonpdrm) {

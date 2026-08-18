@@ -90,12 +90,25 @@ AppSettingsData AppSettings::load() {
     if (containsKey(json, "install_method", v)) data.installMethod = parseInstallMethod(v);
     if (containsKey(json, "psp_target", v)) data.pspTarget = parsePspTarget(v);
     bool b = true;
-    if (containsBool(json, "warn_missing_plugins", b)) data.warnMissingPlugins = b;
-    if (containsBool(json, "prompt_image_warmup", b)) data.promptImageWarmup = b;
+    const bool hasWarnMissingPlugins = containsBool(json, "warn_missing_plugins", b);
+    if (hasWarnMissingPlugins) data.warnMissingPlugins = b;
+    const bool hasPromptImageWarmup = containsBool(json, "prompt_image_warmup", b);
+    if (hasPromptImageWarmup) data.promptImageWarmup = b;
+    const bool hasStartupPluginDetection = containsBool(json, "startup_plugin_detection", b);
+    if (hasStartupPluginDetection) data.startupPluginDetection = b;
+    const bool hasStartupUpdateCheck = containsBool(json, "startup_update_check", b);
+    if (hasStartupUpdateCheck) data.startupUpdateCheck = b;
 
-    sceClibPrintf("[AppSettings] loaded method=%s psp=%s warn=%d imagesPrompt=%d\n",
+    // Older config.json files do not contain the internal startup switches.
+    // Persist the default=true values once so the user can toggle them manually.
+    if (!hasStartupPluginDetection || !hasStartupUpdateCheck) {
+        save(data);
+    }
+
+    sceClibPrintf("[AppSettings] loaded method=%s psp=%s warn=%d imagesPrompt=%d pluginDetect=%d updateCheck=%d\n",
                   toString(data.installMethod), toString(data.pspTarget),
-                  data.warnMissingPlugins ? 1 : 0, data.promptImageWarmup ? 1 : 0);
+                  data.warnMissingPlugins ? 1 : 0, data.promptImageWarmup ? 1 : 0,
+                  data.startupPluginDetection ? 1 : 0, data.startupUpdateCheck ? 1 : 0);
     return data;
 }
 
@@ -109,12 +122,16 @@ bool AppSettings::save(const AppSettingsData& data) {
         "  \"install_method\": \"%s\",\n"
         "  \"psp_target\": \"%s\",\n"
         "  \"warn_missing_plugins\": %s,\n"
-        "  \"prompt_image_warmup\": %s\n"
+        "  \"prompt_image_warmup\": %s,\n"
+        "  \"startup_plugin_detection\": %s,\n"
+        "  \"startup_update_check\": %s\n"
         "}\n",
         toString(data.installMethod),
         toString(data.pspTarget),
         data.warnMissingPlugins ? "true" : "false",
-        data.promptImageWarmup ? "true" : "false"
+        data.promptImageWarmup ? "true" : "false",
+        data.startupPluginDetection ? "true" : "false",
+        data.startupUpdateCheck ? "true" : "false"
     );
     SceUID fd = sceIoOpen(kConfigPath, SCE_O_WRONLY | SCE_O_CREAT | SCE_O_TRUNC, 0666);
     if (fd < 0) return false;

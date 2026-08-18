@@ -21,6 +21,9 @@ struct AppSettingsData {
     bool warnMissingPlugins = true;
     /** If false, skip the startup "download all images?" dialog (on-demand only). */
     bool promptImageWarmup = true;
+    // Internal startup diagnostics; intentionally hidden from the UI.
+    bool startupPluginDetection = true;
+    bool startupUpdateCheck = true;
 };
 
 /**

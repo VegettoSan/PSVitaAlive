@@ -420,46 +420,51 @@ int main(){
 
     if(!screen.init()){psvitaalive::diagnostics::log("[System] UI initialization failed");installer.shutdown();catalogs.shutdown();images.shutdown();psvitaalive::diagnostics::shutdown();sceKernelExitProcess(1);return 1;}
 
-    psvitaalive::StartupUpdateManager startupUpdate;
-    screen.setCatalogLoading(true, "Startup Update", 0, 0, "Checking for application updates...");
-    if(!startupUpdate.start(PSVITAALIVE_VERSION)){
-        screen.showToast("Update startup unavailable — continuing", 1800);
-    }else{
-        while(startupUpdate.isBusy()){
-            const auto us = startupUpdate.snapshot();
-            screen.setCatalogLoading(true, "Startup Update", us.current, us.total,
-                                      us.message.empty()?"Updating application...":us.message);
-            if(!screen.updateAndDraw()){
-                startupUpdate.requestCancel();
-                break;
-            }
-            sceKernelDelayThread(16 * 1000);
-        }
-        startupUpdate.wait();
-        const auto us = startupUpdate.snapshot();
-        if(us.restartRequired){
-            screen.setCatalogLoading(true, "Self-update", 1, 1, "Update installed — press START to restart");
-            while(screen.updateAndDraw()){
-                SceCtrlData pad{};
-                sceCtrlPeekBufferPositive(0, &pad, 1);
-                if(pad.buttons & SCE_CTRL_START){
-                    screen.shutdown();
-                    installer.shutdown();
-                    psvitaalive::diagnostics::log("PSVitaAlive session END after self-update");
-                    psvitaalive::diagnostics::shutdown();
-                    sceKernelExitProcess(0);
+    if (installer.settings().startupUpdateCheck) {
+        psvitaalive::diagnostics::log("[Startup] update check enabled by config");
+        psvitaalive::StartupUpdateManager startupUpdate;
+        screen.setCatalogLoading(true, "Startup Update", 0, 0, "Checking for application updates...");
+        if(!startupUpdate.start(PSVITAALIVE_VERSION)){
+            screen.showToast("Update startup unavailable — continuing", 1800);
+        }else{
+            while(startupUpdate.isBusy()){
+                const auto us = startupUpdate.snapshot();
+                screen.setCatalogLoading(true, "Startup Update", us.current, us.total,
+                                          us.message.empty()?"Updating application...":us.message);
+                if(!screen.updateAndDraw()){
+                    startupUpdate.requestCancel();
+                    break;
                 }
-                sceKernelDelayThread(50 * 1000);
+                sceKernelDelayThread(16 * 1000);
             }
-            screen.shutdown();
-            installer.shutdown();
-            psvitaalive::diagnostics::shutdown();
-            sceKernelExitProcess(0);
+            startupUpdate.wait();
+            const auto us = startupUpdate.snapshot();
+            if(us.restartRequired){
+                screen.setCatalogLoading(true, "Self-update", 1, 1, "Update installed — press START to restart");
+                while(screen.updateAndDraw()){
+                    SceCtrlData pad{};
+                    sceCtrlPeekBufferPositive(0, &pad, 1);
+                    if(pad.buttons & SCE_CTRL_START){
+                        screen.shutdown();
+                        installer.shutdown();
+                        psvitaalive::diagnostics::log("PSVitaAlive session END after self-update");
+                        psvitaalive::diagnostics::shutdown();
+                        sceKernelExitProcess(0);
+                    }
+                    sceKernelDelayThread(50 * 1000);
+                }
+                screen.shutdown();
+                installer.shutdown();
+                psvitaalive::diagnostics::shutdown();
+                sceKernelExitProcess(0);
+            }
+            if(us.state == psvitaalive::StartupUpdateManager::State::Failed)
+                screen.showToast("Update unavailable — continuing", 1800);
+            else if(us.state == psvitaalive::StartupUpdateManager::State::Cancelled)
+                screen.showToast("Update cancelled — continuing", 1600);
         }
-        if(us.state == psvitaalive::StartupUpdateManager::State::Failed)
-            screen.showToast("Update unavailable — continuing", 1800);
-        else if(us.state == psvitaalive::StartupUpdateManager::State::Cancelled)
-            screen.showToast("Update cancelled — continuing", 1600);
+    } else {
+        psvitaalive::diagnostics::log("[Startup] update check disabled by config");
     }
 
     // Catalog and image workers do not exist until the startup update phase is finished.
@@ -485,7 +490,7 @@ int main(){
     });
 
     // Plugin warnings (settings.warn_missing_plugins)
-    if (installer.settings().warnMissingPlugins) {
+    if (installer.settings().startupPluginDetection && installer.settings().warnMissingPlugins) {
         const auto& pl = installer.plugins();
         if (!pl.nonpdrm) {
             screen.showToast("NoNpDrm not found: licensed Vita PKGs may fail", 3500);
