@@ -184,9 +184,21 @@ bool CatalogManager::loadCatalog(ui::CatalogType catalog,std::vector<ui::Catalog
             );
 
             if (ok) {
-                setPhase("Self-update", "Update installed — press START to close, then reopen the app");
-                diagnostics::log("[CatalogManager] self-update applied successfully");
-                sceKernelDelayThread(2800 * 1000);
+                setPhase("Self-update", "Update installed — press START to exit, then reopen the app");
+                diagnostics::log("[CatalogManager] self-update applied successfully — waiting for START (will not load catalogs)");
+                // Hard stop: do not continue catalog preload. Wait until the user
+                // presses START, then exit so the new eboot is used on next launch.
+                while (!stopping_) {
+                    SceCtrlData pad;
+                    std::memset(&pad, 0, sizeof(pad));
+                    sceCtrlPeekBufferPositive(0, &pad, 1);
+                    if (pad.buttons & SCE_CTRL_START) {
+                        diagnostics::log("[CatalogManager] START pressed after self-update — exiting process");
+                        sceKernelExitProcess(0);
+                    }
+                    sceKernelDelayThread(50 * 1000);
+                }
+                return 0;
             } else {
                 setPhase("Startup", "Update failed — continuing with catalogs");
                 diagnostics::log("[CatalogManager] self-update apply failed; continuing startup");
