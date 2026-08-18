@@ -35,15 +35,13 @@ void logLine(const std::string& message) {
     ensureLogDirectory();
     SceUID fd = sceIoOpen(INSTALL_LOG, SCE_O_WRONLY | SCE_O_CREAT | SCE_O_APPEND, 0666);
     if (fd < 0) {
-        sceClibPrintf("[InstallLog] open failed: 0x%08X
-", fd);
+        sceClibPrintf("[InstallLog] open failed: 0x%08X\n", fd);
         return;
     }
 
     char line[1024];
     const uint64_t ms = sceKernelGetProcessTimeWide() / 1000ULL;
-    sceClibSnprintf(line, sizeof(line), "[%llu ms] %s
-", (unsigned long long)ms, message.c_str());
+    sceClibSnprintf(line, sizeof(line), "[%llu ms] %s\n", (unsigned long long)ms, message.c_str());
     sceIoWrite(fd, line, std::strlen(line));
     sceIoClose(fd);
     // Force media flush so a crash mid-promote still leaves the last lines on disk.
@@ -555,8 +553,7 @@ InstallResult HomebrewInstaller::installVpk(
     // Cleanup only after verification so mid-crash still leaves tmp + logs.
     if (result == InstallResult::Ok && deleteTempOnSuccess) {
         if (!removeTree(tmpDir)) {
-            sceClibPrintf("[HomebrewInstaller] warning: cleanup failed for %s
-", tmpDir.c_str());
+            sceClibPrintf("[HomebrewInstaller] warning: cleanup failed for %s\n", tmpDir.c_str());
             logLine(std::string("WARNING: cleanup failed for ") + tmpDir);
         } else {
             logLine("Temporary directory cleanup: success");
