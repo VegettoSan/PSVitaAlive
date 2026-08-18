@@ -236,12 +236,14 @@ void emitProgress(UpdateChecker::ApplyProgressFn& onProgress,
                   UpdateChecker::ApplyStage stage,
                   uint64_t current,
                   uint64_t total,
-                  const char* message) {
+                  const char* message,
+                  uint64_t bytesPerSecond = 0) {
     if (!onProgress) return;
     UpdateChecker::ApplyProgress p;
     p.stage = stage;
     p.current = current;
     p.total = total;
+    p.bytesPerSecond = bytesPerSecond;
     p.message = message ? message : "";
     onProgress(p);
 }
@@ -402,7 +404,8 @@ bool UpdateChecker::applyUpdate(
         kVpkPath,
         0,
         [&](const HttpProgress& hp) {
-            emitProgress(onProgress, ApplyStage::Downloading, hp.downloaded, hp.total > 0 ? hp.total : info.assetSize, "Downloading update VPK");
+            const uint64_t tot = hp.total > 0 ? hp.total : info.assetSize;
+            emitProgress(onProgress, ApplyStage::Downloading, hp.downloaded, tot, "Downloading update", hp.bytesPerSecond);
         },
         shouldCancel
     );
