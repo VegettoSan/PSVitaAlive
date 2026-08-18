@@ -59,9 +59,6 @@ private:
     std::vector<ui::CatalogItem> cachedItems_[static_cast<int>(ui::CatalogType::Count)];
     bool cachedValid_[static_cast<int>(ui::CatalogType::Count)] = {};
 
-    // The update check is performed once per client process, before the first
-    // catalog is loaded. The result is surfaced through the existing loading UI.
-    bool updateChecked_ = false;
 
     static int workerEntry(SceSize args, void* argp);
     int workerMain();

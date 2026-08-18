@@ -4,7 +4,6 @@
 #include "diagnostic_logger.hpp"
 #include "network/http_client.hpp"
 #include "storage/storage_manager.hpp"
-#include "update/update_checker.hpp"
 
 #include <psp2/kernel/clib.h>
 #include <psp2/io/fcntl.h>
@@ -37,48 +36,6 @@ bool CatalogManager::init(){
     mutex_=sceKernelCreateMutex("PSVitaAliveCatalog",0,0,nullptr);
     if(mutex_<0)return false;
     stopping_=false;
-
-    // IMPORTANT: perform the application update phase synchronously before
-    // starting the CatalogManager worker. ImageCache is initialized later by
-    // main(), so no catalog/image HTTP worker can overlap this phase.
-    updateChecked_ = true;
-    diagnostics::log("[CatalogManager] startup update check begins before worker startup");
-    const UpdateChecker::Result update = UpdateChecker::checkLatest(PSVITAALIVE_VERSION);
-    if(update.state == UpdateChecker::State::UpdateAvailable){
-        diagnostics::log("[CatalogManager] startup update available remote=" + update.remoteVersion + " asset=" + update.assetName);
-        const bool ok = UpdateChecker::applyUpdate(
-            update,
-            [](const UpdateChecker::ApplyProgress& p){
-                if(p.stage == UpdateChecker::ApplyStage::Downloading){
-                    diagnostics::log("[CatalogManager] startup update download=" + std::to_string(p.current) + "/" + std::to_string(p.total));
-                }else if(p.stage == UpdateChecker::ApplyStage::Extracting){
-                    diagnostics::log("[CatalogManager] startup update install=" + std::to_string(p.current) + "/" + std::to_string(p.total));
-                }else if(!p.message.empty()){
-                    diagnostics::log(std::string("[CatalogManager] startup update: ") + p.message);
-                }
-            },
-            nullptr
-        );
-        if(ok){
-            diagnostics::log("[CatalogManager] startup update installed successfully; press START to exit");
-            sceCtrlSetSamplingMode(SCE_CTRL_MODE_ANALOG);
-            while(!stopping_){
-                SceCtrlData pad{};
-                sceCtrlPeekBufferPositive(0,&pad,1);
-                if(pad.buttons & SCE_CTRL_START){
-                    diagnostics::log("[CatalogManager] START pressed after startup update; exiting");
-                    sceKernelExitProcess(0);
-                }
-                sceKernelDelayThread(50 * 1000);
-            }
-            return false;
-        }
-        diagnostics::log("[CatalogManager] startup update apply failed; continuing with current version");
-    }else if(update.state == UpdateChecker::State::UpToDate){
-        diagnostics::log("[CatalogManager] startup update check complete local=" + update.localVersion + " remote=" + update.remoteVersion);
-    }else{
-        diagnostics::log(std::string("[CatalogManager] startup update check unavailable: ") + update.error);
-    }
 
     workerThread_=sceKernelCreateThread("PSVitaAliveCatalogWorker",&CatalogManager::workerEntry,WORKER_PRIORITY,WORKER_STACK,0,0,nullptr);
     if(workerThread_<0){sceKernelDeleteMutex(mutex_);mutex_=-1;return false;}
@@ -164,13 +121,6 @@ CatalogManager::Status CatalogManager::status()const{Status result;if(mutex_<0)r
 bool CatalogManager::takeReady(std::vector<ui::CatalogItem>&outItems,ui::CatalogType&catalog){if(mutex_<0)return false;sceKernelLockMutex(mutex_,1,nullptr);if(!readyPending_){sceKernelUnlockMutex(mutex_,1);return false;}outItems=std::move(readyItems_);catalog=readyCatalog_;readyPending_=false;sceKernelUnlockMutex(mutex_,1);return true;}
 
 bool CatalogManager::loadCatalog(ui::CatalogType catalog,std::vector<ui::CatalogItem>&outItems){
-    // Startup update work is completed in init() before this worker exists.
-    // Keep this guard for process lifetime compatibility; it must remain true.
-    if (!updateChecked_) {
-        updateChecked_ = true;
-        diagnostics::log("[CatalogManager] unexpected update gate fallback; catalog worker should already have completed update phase");
-    }
-
     const int idx=(int)catalog;const std::string path=cachePath(catalog),meta=metadataPath(catalog),temp=path+".new",url=std::string(RAW_BASE)+fileName(catalog);const bool haveCache=fileExists(path);HttpClient http;if(http.init()!=HttpResult::Ok)return false;
     if(haveCache){std::vector<ui::CatalogItem>cached;if(CatalogParser::parseFile(path,cached)&&!cached.empty()){std::string storedText,storedEtag,storedModified;parseValidators(readTextFile(meta,storedText)?storedText:std::string(),storedEtag,storedModified);std::string remoteEtag,remoteModified;setStatus(State::Loading,catalog,"Checking remote catalog...");const HttpResult validatorResult=http.fetchRemoteValidators(url,remoteEtag,remoteModified);if(validatorResult==HttpResult::Ok&&validatorsMatch(storedEtag,storedModified,remoteEtag,remoteModified)){outItems=std::move(cached);sceKernelLockMutex(mutex_,1,nullptr);cachedItems_[idx]=outItems;cachedValid_[idx]=true;sceKernelUnlockMutex(mutex_,1);setStatus(State::Ready,catalog,"Using cached catalog");diagnostics::log(std::string("[CatalogManager] cache valid: ")+label(catalog));http.shutdown();return true;}if(validatorResult!=HttpResult::Ok&&!storedEtag.empty()){outItems=std::move(cached);sceKernelLockMutex(mutex_,1,nullptr);cachedItems_[idx]=outItems;cachedValid_[idx]=true;sceKernelUnlockMutex(mutex_,1);setStatus(State::Ready,catalog,"Using cached catalog (offline)");diagnostics::log(std::string("[CatalogManager] offline cache: ")+label(catalog));http.shutdown();return true;}}}
     setStatus(State::Loading,catalog,"Downloading catalog...");diagnostics::log(std::string("[CatalogManager] downloading: ")+label(catalog));const HttpResult result=http.downloadToFile(url,temp,0,[this,catalog](const HttpProgress&progress){sceKernelLockMutex(mutex_,1,nullptr);status_.current=progress.downloaded;status_.total=progress.total;status_.message="Downloading catalog...";sceKernelUnlockMutex(mutex_,1);(void)catalog;});

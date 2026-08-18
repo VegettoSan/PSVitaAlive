@@ -19,6 +19,7 @@
 #include "ui/full_catalog_screen.hpp"
 #include "ui/image_cache.hpp"
 #include "catalog/catalog_manager.hpp"
+#include "update/startup_update_manager.hpp"
 
 namespace {
 std::string installStatusText(const psvitaalive::InstallStatus&s){using S=psvitaalive::InstallStatus::State;if(s.state==S::Idle)return{};char b[384];uint64_t p=s.total?std::min<uint64_t>(100,(s.current*100)/s.total):0;sceClibSnprintf(b,sizeof(b),"%s | %s | %llu%% | %s",s.stage.c_str(),s.fileName.empty()?"file":s.fileName.c_str(),(unsigned long long)p,s.message.c_str());return b;}
@@ -399,8 +400,6 @@ int main(){
     psvitaalive::StorageManager storage;storage.initProjectDirs();
     psvitaalive::InstallController installer;psvitaalive::CatalogManager catalogs;psvitaalive::ui::ImageCache images;
     if(!installer.init())psvitaalive::diagnostics::log("[System] InstallController init failed");
-    if(!catalogs.init())psvitaalive::diagnostics::log("[System] CatalogManager init failed");
-    if(!images.init())psvitaalive::diagnostics::log("[System] ImageCache init failed");
 
     psvitaalive::ui::FullCatalogScreen screen;screen.setImageCache(&images);
     screen.setCatalogChangeCallback([&](psvitaalive::ui::CatalogType next){psvitaalive::diagnostics::log(std::string("[UI] catalog requested: ")+psvitaalive::ui::catalogName(next));images.cancelQueuedRequests();return catalogs.request(next);});
@@ -420,6 +419,53 @@ int main(){
     });
 
     if(!screen.init()){psvitaalive::diagnostics::log("[System] UI initialization failed");installer.shutdown();catalogs.shutdown();images.shutdown();psvitaalive::diagnostics::shutdown();sceKernelExitProcess(1);return 1;}
+
+    psvitaalive::StartupUpdateManager startupUpdate;
+    screen.setCatalogLoading(true, "Startup Update", 0, 0, "Checking for application updates...");
+    if(!startupUpdate.start(PSVITAALIVE_VERSION)){
+        screen.showToast("Update startup unavailable — continuing", 1800);
+    }else{
+        while(startupUpdate.isBusy()){
+            const auto us = startupUpdate.snapshot();
+            screen.setCatalogLoading(true, "Startup Update", us.current, us.total,
+                                      us.message.empty()?"Updating application...":us.message);
+            if(!screen.updateAndDraw()){
+                startupUpdate.requestCancel();
+                break;
+            }
+            sceKernelDelayThread(16 * 1000);
+        }
+        startupUpdate.wait();
+        const auto us = startupUpdate.snapshot();
+        if(us.restartRequired){
+            screen.setCatalogLoading(true, "Self-update", 1, 1, "Update installed — press START to restart");
+            while(screen.updateAndDraw()){
+                SceCtrlData pad{};
+                sceCtrlPeekBufferPositive(0, &pad, 1);
+                if(pad.buttons & SCE_CTRL_START){
+                    screen.shutdown();
+                    installer.shutdown();
+                    psvitaalive::diagnostics::log("PSVitaAlive session END after self-update");
+                    psvitaalive::diagnostics::shutdown();
+                    sceKernelExitProcess(0);
+                }
+                sceKernelDelayThread(50 * 1000);
+            }
+            screen.shutdown();
+            installer.shutdown();
+            psvitaalive::diagnostics::shutdown();
+            sceKernelExitProcess(0);
+        }
+        if(us.state == psvitaalive::StartupUpdateManager::State::Failed)
+            screen.showToast("Update unavailable — continuing", 1800);
+        else if(us.state == psvitaalive::StartupUpdateManager::State::Cancelled)
+            screen.showToast("Update cancelled — continuing", 1600);
+    }
+
+    // Catalog and image workers do not exist until the startup update phase is finished.
+    if(!catalogs.init())psvitaalive::diagnostics::log("[System] CatalogManager init failed");
+    if(!images.init())psvitaalive::diagnostics::log("[System] ImageCache init failed");
+    screen.setImageCache(&images);
 
     const int catalogCount=(int)psvitaalive::ui::CatalogType::Count;
     int preloadIndex=0;bool startupCatalogs=true;bool homebrewReady=false;bool startupImageChoicePending=false;
