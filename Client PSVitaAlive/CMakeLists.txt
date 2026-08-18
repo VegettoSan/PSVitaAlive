@@ -21,6 +21,7 @@ set(SOURCES
   source/diagnostic_logger.cpp
   source/storage/storage_manager.cpp
   source/network/http_client.cpp
+  source/network/curl_lifecycle.cpp
   source/network/download_manager.cpp
   source/network/mediafire_resolver.cpp
   source/archive/zip_extractor.cpp
@@ -45,6 +46,17 @@ set(SOURCES
 )
 
 add_executable(${PROJECT_NAME} ${SOURCES})
+
+# Redirect only HttpClient's curl_global_* calls to the process-wide,
+# reference-counted lifecycle proxy. Other sources continue to use libcurl's
+# public API normally.
+set_source_files_properties(source/network/http_client.cpp PROPERTIES
+  COMPILE_DEFINITIONS "PSVITAALIVE_CURL_LIFECYCLE_PROXY"
+)
+
+set_source_files_properties(source/network/curl_lifecycle.cpp PROPERTIES
+  COMPILE_DEFINITIONS "PSVITAALIVE_CURL_LIFECYCLE_IMPL"
+)
 
 target_include_directories(${PROJECT_NAME} PRIVATE
   ${CMAKE_SOURCE_DIR}/include
