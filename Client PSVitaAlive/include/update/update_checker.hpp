@@ -44,6 +44,7 @@ public:
         ApplyStage stage = ApplyStage::Preparing;
         uint64_t current = 0;
         uint64_t total = 0;
+        uint64_t bytesPerSecond = 0;
         std::string message;
     };
 
