@@ -1693,86 +1693,111 @@ int compareVersionStrings(const std::string& installed, const std::string& catal
     }
     return 0;
 }
+struct InstallProbeEntry {
+    LocalInstallInfo info{};
+    uint64_t checkedMs = 0;
+    bool valid = false;
+};
+
+std::unordered_map<std::string, InstallProbeEntry>& installProbeCache() {
+    static std::unordered_map<std::string, InstallProbeEntry> cache;
+    return cache;
+}
+
+bool consumeInstallProbeBudget(uint64_t nowMs) {
+    static uint64_t windowMs = 0;
+    static unsigned probes = 0;
+    constexpr uint64_t kWindowMs = 250;
+    constexpr unsigned kMaxProbesPerWindow = 2;
+    if (windowMs == 0 || nowMs < windowMs || (nowMs - windowMs) >= kWindowMs) {
+        windowMs = nowMs;
+        probes = 0;
+    }
+    if (probes >= kMaxProbesPerWindow) return false;
+    ++probes;
+    return true;
+}
+
+std::string installProbeKey(const std::string&titleId, const std::string&version) {
+    return titleId + "\n" + version;
+}
+
 } // namespace (install-status helpers)
 
 LocalInstallInfo FullCatalogScreen::queryLocalInstall(const CatalogItem& item) {
-    LocalInstallInfo info;
-    info.state = LocalInstallState::NotInstalled;
-    if (item.titleId.empty()) return info;
+    LocalInstallInfo unknown;
+    unknown.state = LocalInstallState::Unknown;
+    if (item.titleId.empty()) return unknown;
 
-    // Only cache positive results permanently. "Not installed" is re-checked so a
-    // just-finished install (or Vita3K FS lag) still shows the badge.
-    auto cached = installStatusCache_.find(item.titleId);
-    if (cached != installStatusCache_.end() &&
-        cached->second.state != LocalInstallState::NotInstalled) {
-        return cached->second;
-    }
-
-    auto pathExists = [](const std::string& path) -> bool {
-        SceIoStat st{};
-        if (sceIoGetstat(path.c_str(), &st) >= 0) return true;
-        // Vita3K sometimes needs a trailing slash for directories
-        if (!path.empty() && path.back() != '/') {
-            const std::string withSlash = path + "/";
-            if (sceIoGetstat(withSlash.c_str(), &st) >= 0) return true;
-        }
-        // Directory open as another signal
-        SceUID d = sceIoDopen(path.c_str());
-        if (d >= 0) {
-            sceIoDclose(d);
-            return true;
-        }
-        return false;
-    };
-
-    // Prefer TITLE_ID as-is; also try upper-case (param.sfo / folders are usually upper).
     std::string tid = item.titleId;
     for (char& c : tid) {
         if (c >= 'a' && c <= 'z') c = static_cast<char>(c - 'a' + 'A');
     }
 
+    const std::string key = installProbeKey(tid, item.version);
+    const uint64_t nowMs = sceKernelGetProcessTimeWide() / 1000ULL;
+    auto& cache = installProbeCache();
+    auto cached = cache.find(key);
+
+    constexpr uint64_t kPositiveTtlMs = 8000;
+    constexpr uint64_t kNegativeTtlMs = 4000;
+    if (cached != cache.end() && cached->second.valid) {
+        const uint64_t age = nowMs >= cached->second.checkedMs ? nowMs - cached->second.checkedMs : 0;
+        const uint64_t ttl =
+            (cached->second.info.state == LocalInstallState::NotInstalled)
+                ? kNegativeTtlMs
+                : kPositiveTtlMs;
+        if (age < ttl) return cached->second.info;
+    }
+
+    if (!consumeInstallProbeBudget(nowMs)) {
+        if (cached != cache.end() && cached->second.valid) return cached->second.info;
+        return unknown;
+    }
+
+    LocalInstallInfo info;
+    info.state = LocalInstallState::NotInstalled;
+
     const std::string candidates[] = {
         std::string("ux0:app/") + tid,
-        std::string("ux0:app/") + item.titleId,
-        std::string("ux0:/app/") + tid,
+        (tid == item.titleId) ? std::string() : (std::string("ux0:app/") + item.titleId),
     };
 
-    std::string appDir;
-    std::string param;
-    std::string eboot;
+    std::string paramPath;
+    bool foundAppDir = false;
     bool hasParam = false;
-    bool hasEboot = false;
-    bool found = false;
 
-    for (const std::string& dir : candidates) {
-        param = dir + "/sce_sys/param.sfo";
-        eboot = dir + "/eboot.bin";
-        hasParam = pathExists(param);
-        hasEboot = pathExists(eboot);
-        if (pathExists(dir) || hasParam || hasEboot) {
-            appDir = dir;
-            found = hasParam || hasEboot || pathExists(dir);
-            if (hasParam || hasEboot) break;
+    for (const std::string&dir : candidates) {
+        if (dir.empty()) continue;
+        SceIoStat dirStat{};
+        if (sceIoGetstat(dir.c_str(), &dirStat) < 0) continue;
+        foundAppDir = true;
+        paramPath = dir + "/sce_sys/param.sfo";
+        SceIoStat paramStat{};
+        hasParam = sceIoGetstat(paramPath.c_str(), &paramStat) >= 0;
+        break;
+    }
+
+    if (!foundAppDir) {
+        info.state = LocalInstallState::NotInstalled;
+    } else {
+        info.state = LocalInstallState::Installed;
+        if (hasParam) {
+            std::string ver;
+            if (!readSfoStringKey(paramPath, "APP_VER", ver))
+                readSfoStringKey(paramPath, "VERSION", ver);
+            info.installedVersion = ver;
+            if (!ver.empty() && !item.version.empty() &&
+                compareVersionStrings(ver, item.version) < 0) {
+                info.state = LocalInstallState::UpdateAvailable;
+            }
         }
     }
 
-    if (!found || (!hasParam && !hasEboot)) {
-        // Do not cache negatives — next frame / next open can pick up a new install.
-        return info;
-    }
-
-    info.state = LocalInstallState::Installed;
-    std::string ver;
-    if (hasParam) {
-        if (!readSfoStringKey(param, "APP_VER", ver))
-            readSfoStringKey(param, "VERSION", ver);
-    }
-    info.installedVersion = ver;
-
-    if (!ver.empty() && !item.version.empty()) {
-        if (compareVersionStrings(ver, item.version) < 0)
-            info.state = LocalInstallState::UpdateAvailable;
-    }
+    InstallProbeEntry& entry = cache[key];
+    entry.info = info;
+    entry.checkedMs = nowMs;
+    entry.valid = true;
 
     installStatusCache_[item.titleId] = info;
     if (tid != item.titleId) installStatusCache_[tid] = info;
@@ -1780,8 +1805,21 @@ LocalInstallInfo FullCatalogScreen::queryLocalInstall(const CatalogItem& item) {
 }
 
 void FullCatalogScreen::invalidateInstallStatus(const std::string& titleId) {
-    if (titleId.empty()) installStatusCache_.clear();
-    else installStatusCache_.erase(titleId);
+    if (titleId.empty()) {
+        installStatusCache_.clear();
+        installProbeCache().clear();
+        return;
+    }
+
+    installStatusCache_.erase(titleId);
+    for (auto it = installProbeCache().begin(); it != installProbeCache().end();) {
+        if (it->first == titleId || it->first.rfind(titleId + "\n", 0) == 0 ||
+            (!titleId.empty() && it->first.rfind(titleId, 0) == 0)) {
+            it = installProbeCache().erase(it);
+        } else {
+            ++it;
+        }
+    }
 }
 
 void FullCatalogScreen::drawInstallBadge(int x, int y, const LocalInstallInfo& info, bool compact) {
