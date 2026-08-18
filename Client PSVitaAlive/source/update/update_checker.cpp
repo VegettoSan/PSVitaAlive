@@ -313,9 +313,12 @@ UpdateChecker::Result UpdateChecker::checkLatest(const std::string& currentVersi
     }
 
     sce::Json::Value root;
-    if (sce::Json::Parser::parse(root, body.c_str()) < 0) {
+    const int parseRc = sce::Json::Parser::parse(root, body.c_str(), static_cast<SceSize>(body.size()));
+    if (parseRc < 0) {
         result.error = "Invalid GitHub release JSON";
-        diagnostics::log("[UpdateChecker] GitHub release JSON parse failed");
+        char perr[96];
+        sceClibSnprintf(perr, sizeof(perr), "[UpdateChecker] GitHub release JSON parse failed: 0x%08X bytes=%u", parseRc, (unsigned)body.size());
+        diagnostics::log(perr);
         initializer.terminate();
         sceSysmoduleUnloadModule(SCE_SYSMODULE_JSON);
         http.shutdown();
