@@ -787,7 +787,7 @@ void FullCatalogScreen::pollSelfUpdateProgress() {
             0,
             "Self-update",
             "PSVitaAlive.vpk",
-            selfUpdateMsg_[0] ? selfUpdateMsg_ : (ok ? "Update installed — close and reopen" : "Update failed"),
+            selfUpdateMsg_[0] ? selfUpdateMsg_ : (ok ? "Update installed — press START to exit, then reopen" : "Update failed"),
             ok ? 1 : 2,
             false
         );
@@ -815,7 +815,7 @@ int FullCatalogScreen::selfUpdateWorkerEntry(SceSize args, void* argp) {
     self->selfUpdateOk_.store(ok);
     if (ok) {
         sceClibSnprintf(self->selfUpdateMsg_, sizeof(self->selfUpdateMsg_),
-                        "Update installed — close and reopen the app");
+                        "Update installed — press START to exit, then reopen");
     } else if (self->selfUpdateMsg_[0] == 0) {
         sceClibSnprintf(self->selfUpdateMsg_, sizeof(self->selfUpdateMsg_), "Update failed");
     }
@@ -1143,7 +1143,20 @@ void FullCatalogScreen::drawSettings() {
 
 void FullCatalogScreen::handleInput(){if(isTransitioning())return;SceCtrlData p{};sceCtrlPeekBufferPositive(0,&p,1);static uint32_t prev=0;static uint64_t repeatAt=0;uint32_t mask=SCE_CTRL_UP|SCE_CTRL_DOWN|SCE_CTRL_LEFT|SCE_CTRL_RIGHT,pressed=p.buttons&~prev,direct=pressed&mask;uint64_t now=sceKernelGetProcessTimeWide(),repeat=0;if((p.buttons&mask)==0)repeatAt=0;else if(direct)repeatAt=now+DIRECTION_REPEAT_DELAY_US;else if(repeatAt&&now>=repeatAt){repeat=p.buttons&mask;repeatAt=now+DIRECTION_REPEAT_INTERVAL_US;}prev=p.buttons;uint32_t nav=direct|repeat;if(state_.mode==UiMode::SETTINGS){handleSettingsInput(pressed,nav);return;}
 if(pressed&SCE_CTRL_SELECT){openSettings();return;}
-if(pressed&SCE_CTRL_START){if(installProgressActive_){showToast("A download/install is in progress",1800);return;}state_.requestExit=true;return;}if((pressed&SCE_CTRL_LTRIGGER)||(pressed&SCE_CTRL_RTRIGGER)){
+if(pressed&SCE_CTRL_START){
+        if(installProgressActive_ && installOutcome_==0){
+            showToast("A download/install is in progress",1800);
+            return;
+        }
+        // After a successful self-update the running binary is stale — force exit.
+        if(installProgressActive_ && installOutcome_==1 &&
+           installProgressStage_.find("Self-update")!=std::string::npos){
+            sceKernelExitProcess(0);
+            return;
+        }
+        state_.requestExit=true;
+        return;
+    }if((pressed&SCE_CTRL_LTRIGGER)||(pressed&SCE_CTRL_RTRIGGER)){
         const bool canSwitch=!catalogLoading_&&!installProgressActive_&&!isTransitioning()
             &&catalogSwitchCooldownFrames_<=0&&deferredFreeTextures_.empty();
         if(canSwitch){
