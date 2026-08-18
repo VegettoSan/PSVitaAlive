@@ -69,11 +69,13 @@ bool InstallController::init() {
     }
     diagnostics::log(std::string("[Installer] settings method=") + AppSettings::toString(settings_.installMethod) +
         " psp=" + AppSettings::toString(settings_.pspTarget));
-    if (!plugins_.nonpdrm) {
-        diagnostics::log("[Installer] NoNpDrm not detected - licensed Vita PKG installs may fail");
-    }
-    if (!plugins_.nopspemudrmKern) {
-        diagnostics::log("[Installer] NoPspEmuDrm not detected - PSP LiveArea bubbles unavailable (Adrenaline ISO path still works)");
+    if (settings_.startupPluginDetection) {
+        if (!plugins_.nonpdrm) {
+            diagnostics::log("[Installer] NoNpDrm not detected - licensed Vita PKG installs may fail");
+        }
+        if (!plugins_.nopspemudrmKern) {
+            diagnostics::log("[Installer] NoPspEmuDrm not detected - PSP LiveArea bubbles unavailable (Adrenaline ISO path still works)");
+        }
     }
 
     // IMPORTANT: BGDL binds against internal SceShellSvc exports through taiHEN.
