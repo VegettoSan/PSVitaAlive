@@ -378,6 +378,15 @@ int InstallController::workerMain() {
                 sceClibSnprintf(okMsg, sizeof(okMsg), "ZIP extracted to %s", p.c_str());
             }
         }
+        // VPK promote OK but LiveArea tree not confirmed
+        if (!dispatcher_.lastLiveAreaOk() && !dispatcher_.lastTitleId().empty() &&
+            dispatcher_.lastInstallPath().find("ux0:app/") != std::string::npos) {
+            sceClibSnprintf(
+                okMsg, sizeof(okMsg),
+                "Installed %s — if bubble missing: VitaShell Refresh LiveArea or reboot",
+                dispatcher_.lastTitleId().c_str()
+            );
+        }
         setStage("Completed");
         setState(InstallStatus::State::Completed, okMsg);
         diagnostics::log(std::string("[Installer] installation completed path=") +
