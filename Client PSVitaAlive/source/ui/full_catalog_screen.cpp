@@ -1600,6 +1600,145 @@ void FullCatalogScreen::drawActivePanelFrame(int x, int y, int width, int height
 
 
 
+
+namespace {
+bool readSfoStringKey(const std::string& path, const char* keyName, std::string& out) {
+    out.clear();
+    SceUID fd = sceIoOpen(path.c_str(), SCE_O_RDONLY, 0);
+    if (fd < 0) return false;
+    SceIoStat st{};
+    if (sceIoGetstat(path.c_str(), &st) < 0 || st.st_size < 0x14 || st.st_size > 1024 * 1024) {
+        sceIoClose(fd);
+        return false;
+    }
+    std::string data(static_cast<size_t>(st.st_size), '\0');
+    size_t done = 0;
+    while (done < data.size()) {
+        const int r = sceIoRead(fd, &data[done], data.size() - done);
+        if (r <= 0) { sceIoClose(fd); return false; }
+        done += static_cast<size_t>(r);
+    }
+    sceIoClose(fd);
+    const unsigned char* p = reinterpret_cast<const unsigned char*>(data.data());
+    if (std::memcmp(p, "\0PSF", 4) != 0) return false;
+    auto u16 = [](const unsigned char* q) -> uint16_t {
+        return static_cast<uint16_t>(q[0]) | static_cast<uint16_t>(q[1] << 8);
+    };
+    auto u32 = [](const unsigned char* q) -> uint32_t {
+        return static_cast<uint32_t>(q[0]) | (static_cast<uint32_t>(q[1]) << 8) |
+               (static_cast<uint32_t>(q[2]) << 16) | (static_cast<uint32_t>(q[3]) << 24);
+    };
+    const uint32_t keyTable = u32(p + 8);
+    const uint32_t dataTable = u32(p + 12);
+    const uint32_t count = u32(p + 16);
+    if (keyTable >= data.size() || dataTable >= data.size()) return false;
+    for (uint32_t i = 0; i < count; ++i) {
+        const size_t entry = 0x14 + static_cast<size_t>(i) * 16;
+        if (entry + 16 > data.size()) break;
+        const uint16_t keyOff = u16(p + entry);
+        const uint32_t dataLen = u32(p + entry + 4);
+        const uint32_t dataOff = u32(p + entry + 12);
+        const size_t keyPos = static_cast<size_t>(keyTable) + keyOff;
+        const size_t valPos = static_cast<size_t>(dataTable) + dataOff;
+        if (keyPos >= data.size() || valPos >= data.size()) continue;
+        const char* key = reinterpret_cast<const char*>(p + keyPos);
+        if (std::strcmp(key, keyName) != 0) continue;
+        const size_t n = std::min(static_cast<size_t>(dataLen), data.size() - valPos);
+        out.assign(reinterpret_cast<const char*>(p + valPos), n);
+        while (!out.empty() && (out.back() == '\0' || out.back() == ' ')) out.pop_back();
+        return !out.empty();
+    }
+    return false;
+}
+
+void versionParts(const std::string& s, int* parts, int maxParts) {
+    for (int i = 0; i < maxParts; ++i) parts[i] = 0;
+    int idx = 0;
+    int cur = -1;
+    for (char ch : s) {
+        if (ch >= '0' && ch <= '9') {
+            if (cur < 0) cur = 0;
+            cur = cur * 10 + (ch - '0');
+        } else if (cur >= 0) {
+            if (idx < maxParts) parts[idx++] = cur;
+            cur = -1;
+        }
+    }
+    if (cur >= 0 && idx < maxParts) parts[idx] = cur;
+}
+
+int compareVersionStrings(const std::string& installed, const std::string& catalog) {
+    int a[4], b[4];
+    versionParts(installed, a, 4);
+    versionParts(catalog, b, 4);
+    for (int i = 0; i < 4; ++i) {
+        if (a[i] < b[i]) return -1;
+        if (a[i] > b[i]) return 1;
+    }
+    return 0;
+}
+} // namespace (install-status helpers)
+
+LocalInstallInfo FullCatalogScreen::queryLocalInstall(const CatalogItem& item) {
+    LocalInstallInfo info;
+    info.state = LocalInstallState::NotInstalled;
+    if (item.titleId.empty()) return info;
+
+    auto cached = installStatusCache_.find(item.titleId);
+    if (cached != installStatusCache_.end()) return cached->second;
+
+    const std::string appDir = std::string("ux0:app/") + item.titleId;
+    const std::string param = appDir + "/sce_sys/param.sfo";
+    const std::string eboot = appDir + "/eboot.bin";
+
+    SceIoStat st{};
+    const bool hasDir = sceIoGetstat(appDir.c_str(), &st) >= 0;
+    const bool hasParam = sceIoGetstat(param.c_str(), &st) >= 0;
+    const bool hasEboot = sceIoGetstat(eboot.c_str(), &st) >= 0;
+
+    if (!hasDir || (!hasParam && !hasEboot)) {
+        installStatusCache_[item.titleId] = info;
+        return info;
+    }
+
+    info.state = LocalInstallState::Installed;
+    std::string ver;
+    if (hasParam) {
+        if (!readSfoStringKey(param, "APP_VER", ver))
+            readSfoStringKey(param, "VERSION", ver);
+    }
+    info.installedVersion = ver;
+
+    if (!ver.empty() && !item.version.empty()) {
+        if (compareVersionStrings(ver, item.version) < 0)
+            info.state = LocalInstallState::UpdateAvailable;
+    }
+
+    installStatusCache_[item.titleId] = info;
+    return info;
+}
+
+void FullCatalogScreen::invalidateInstallStatus(const std::string& titleId) {
+    if (titleId.empty()) installStatusCache_.clear();
+    else installStatusCache_.erase(titleId);
+}
+
+void FullCatalogScreen::drawInstallBadge(int x, int y, const LocalInstallInfo& info, bool compact) {
+    if (info.state != LocalInstallState::Installed && info.state != LocalInstallState::UpdateAvailable)
+        return;
+    const bool upd = (info.state == LocalInstallState::UpdateAvailable);
+    const char* label = upd ? (compact ? "UPD" : "UPDATE") : (compact ? "ON" : "INSTALLED");
+    const unsigned bg = upd ? RGBA8(0xE0, 0x8A, 0x10, 255) : ACCENT;
+    const unsigned fg = upd ? WHITE : BG;
+    const float scale = compact ? 0.48f : 0.54f;
+    const int tw = vita2d_pgf_text_width(font_, scale, label);
+    const int padX = compact ? 5 : 7;
+    const int bh = compact ? 16 : 18;
+    const int bw = tw + padX * 2;
+    vita2d_draw_rectangle(x, y, bw, bh, bg);
+    vita2d_pgf_draw_text(font_, x + padX, y + (compact ? 12 : 13), fg, scale, label);
+}
+
 void FullCatalogScreen::drawCatalogCard(const CatalogItem&it,int idx,int x,int y,int w,int h,bool focus){
     const float pulse = focus ? focusPulse() : 0.f;
     // Subtle lift / scale for focused card
