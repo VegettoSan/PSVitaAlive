@@ -927,17 +927,6 @@ void FullCatalogScreen::drawSettings() {
     const int contentTop = HEADER_H + 56 + slide;
     const int contentH = SCREEN_H - contentTop - FOOTER_H - 6;
     const int listClipBottom = contentTop + contentH - 8;
-    // Approximate list height: 5 rows * 68 + section headers * 24
-    const int listContentH = 5 * 68 + 4 * 24;
-    const int listViewH = contentH - 8;
-    const float maxScroll = static_cast<float>(std::max(0, listContentH - listViewH));
-    if (settingsScrollY_ < 0.f) settingsScrollY_ = 0.f;
-    if (settingsScrollY_ > maxScroll) settingsScrollY_ = maxScroll;
-    const int colW = SCREEN_W - margin * 2;
-    const int listX = margin;
-    const int listW = (colW * 60) / 100;
-    const int sideX = listX + listW + 14;
-    const int sideW = colW - listW - 14;
 
     auto methodLabel = [&]() -> std::string {
         if (settingsEdit_.installMethod == ::psvitaalive::InstallMethod::Auto) return "Auto";
