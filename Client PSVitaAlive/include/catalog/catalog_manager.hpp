@@ -6,6 +6,8 @@
 #include <string>
 #include <vector>
 
+#include <psp2/ctrl.h>
+#include <psp2/kernel/processmgr.h>
 #include <psp2/kernel/threadmgr.h>
 
 namespace psvitaalive {
