@@ -314,44 +314,65 @@ UpdateChecker::Result UpdateChecker::checkLatest(const std::string& currentVersi
         return result;
     }
 
-    sce::Json::Value root;
-    const int parseRc = sce::Json::Parser::parse(root, body.c_str(), static_cast<SceSize>(body.size()));
-    if (parseRc < 0) {
-        result.error = "Invalid GitHub release JSON";
-        char perr[96];
-        sceClibSnprintf(perr, sizeof(perr), "[UpdateChecker] GitHub release JSON parse failed: 0x%08X bytes=%u", parseRc, (unsigned)body.size());
-        diagnostics::log(perr);
+    bool parseFailed = false;
+    {
+        // Keep the JSON root alive only while the JSON module/initializer are active.
+        // It must be destroyed before terminate() / module unload on real hardware.
+        sce::Json::Value root;
+        const int parseRc = sce::Json::Parser::parse(root, body.c_str(), static_cast<SceSize>(body.size()));
+        if (parseRc < 0) {
+            result.error = "Invalid GitHub release JSON";
+            char perr[96];
+            sceClibSnprintf(perr, sizeof(perr), "[UpdateChecker] GitHub release JSON parse failed: 0x%08X bytes=%u", parseRc, (unsigned)body.size());
+            diagnostics::log(perr);
+            parseFailed = true;
+        } else {
+            diagnostics::log("[UpdateChecker] JSON parsed");
+
+            result.releaseTag = getString(root, "tag_name");
+            result.releaseName = getString(root, "name");
+            const std::string releaseBody = getString(root, "body");
+
+            result.remoteVersion = resolveRemoteVersion(result.releaseTag, result.releaseName, releaseBody);
+
+            if (!pickVpkAsset(root["assets"], result)) {
+                // downloadUrl stays empty
+            }
+
+            diagnostics::log("[UpdateChecker] release metadata extracted");
+
+            if (result.remoteVersion.empty()) {
+                result.error = "GitHub release does not expose a usable version (tag/name/body)";
+            } else if (result.downloadUrl.empty()) {
+                result.error = "GitHub release does not contain a .vpk asset (expected PSVitaAlive.vpk)";
+            } else if (compareVersions(result.localVersion, result.remoteVersion) < 0) {
+                result.state = State::UpdateAvailable;
+                diagnostics::log("[UpdateChecker] update available: local=" + result.localVersion +
+                                 " remote=" + result.remoteVersion +
+                                 " tag=" + result.releaseTag +
+                                 " asset=" + result.assetName);
+            } else {
+                result.state = State::UpToDate;
+                diagnostics::log("[UpdateChecker] client is up to date: local=" + result.localVersion +
+                                 " remote=" + result.remoteVersion +
+                                 " tag=" + result.releaseTag);
+            }
+
+            diagnostics::log("[UpdateChecker] version comparison complete");
+        }
+    }
+
+    // `root` has been destroyed here while the JSON module is still valid.
+    diagnostics::log("[UpdateChecker] JSON root released");
+
+    if (parseFailed) {
         initializer.terminate();
+        diagnostics::log("[UpdateChecker] JSON initializer terminated");
         sceSysmoduleUnloadModule(SCE_SYSMODULE_JSON);
+        diagnostics::log("[UpdateChecker] JSON module unloaded");
         http.shutdown();
+        diagnostics::log("[UpdateChecker] HTTP shutdown complete");
         return result;
-    }
-
-    result.releaseTag = getString(root, "tag_name");
-    result.releaseName = getString(root, "name");
-    const std::string releaseBody = getString(root, "body");
-
-    result.remoteVersion = resolveRemoteVersion(result.releaseTag, result.releaseName, releaseBody);
-
-    if (!pickVpkAsset(root["assets"], result)) {
-        // downloadUrl stays empty
-    }
-
-    if (result.remoteVersion.empty()) {
-        result.error = "GitHub release does not expose a usable version (tag/name/body)";
-    } else if (result.downloadUrl.empty()) {
-        result.error = "GitHub release does not contain a .vpk asset (expected PSVitaAlive.vpk)";
-    } else if (compareVersions(result.localVersion, result.remoteVersion) < 0) {
-        result.state = State::UpdateAvailable;
-        diagnostics::log("[UpdateChecker] update available: local=" + result.localVersion +
-                         " remote=" + result.remoteVersion +
-                         " tag=" + result.releaseTag +
-                         " asset=" + result.assetName);
-    } else {
-        result.state = State::UpToDate;
-        diagnostics::log("[UpdateChecker] client is up to date: local=" + result.localVersion +
-                         " remote=" + result.remoteVersion +
-                         " tag=" + result.releaseTag);
     }
 
     if (result.state == State::Failed) {
@@ -359,8 +380,11 @@ UpdateChecker::Result UpdateChecker::checkLatest(const std::string& currentVersi
     }
 
     initializer.terminate();
+    diagnostics::log("[UpdateChecker] JSON initializer terminated");
     sceSysmoduleUnloadModule(SCE_SYSMODULE_JSON);
+    diagnostics::log("[UpdateChecker] JSON module unloaded");
     http.shutdown();
+    diagnostics::log("[UpdateChecker] HTTP shutdown complete");
     return result;
 }
 
