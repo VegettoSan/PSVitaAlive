@@ -50,7 +50,7 @@ PSVitaAlive.vpk
 Title ID:
 
 ```text
-PSVA00001
+PSVAS1178
 ```
 
 Using `-j1` is recommended when diagnosing build failures because it keeps the first real error visible. Parallel builds can otherwise end with a generic `Error 2` after the useful error has scrolled away.
