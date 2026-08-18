@@ -30,7 +30,64 @@ bool validatorsMatch(const std::string& oldEtag,const std::string& oldModified,c
 
 CatalogManager::CatalogManager()=default;
 CatalogManager::~CatalogManager(){shutdown();}
-bool CatalogManager::init(){if(workerThread_>=0)return true;StorageManager storage;if(!storage.createDirectories(CACHE_DIR)){diagnostics::log("[CatalogManager] cannot create cache directory");return false;}mutex_=sceKernelCreateMutex("PSVitaAliveCatalog",0,0,nullptr);if(mutex_<0)return false;stopping_=false;workerThread_=sceKernelCreateThread("PSVitaAliveCatalogWorker",&CatalogManager::workerEntry,WORKER_PRIORITY,WORKER_STACK,0,0,nullptr);if(workerThread_<0){sceKernelDeleteMutex(mutex_);mutex_=-1;return false;}CatalogManager*self=this;const int result=sceKernelStartThread(workerThread_,sizeof(self),&self);if(result<0){sceKernelDeleteThread(workerThread_);workerThread_=-1;sceKernelDeleteMutex(mutex_);mutex_=-1;return false;}diagnostics::log("[CatalogManager] initialized");return true;}
+bool CatalogManager::init(){
+    if(workerThread_>=0)return true;
+    StorageManager storage;
+    if(!storage.createDirectories(CACHE_DIR)){diagnostics::log("[CatalogManager] cannot create cache directory");return false;}
+    mutex_=sceKernelCreateMutex("PSVitaAliveCatalog",0,0,nullptr);
+    if(mutex_<0)return false;
+    stopping_=false;
+
+    // IMPORTANT: perform the application update phase synchronously before
+    // starting the CatalogManager worker. ImageCache is initialized later by
+    // main(), so no catalog/image HTTP worker can overlap this phase.
+    updateChecked_ = true;
+    diagnostics::log("[CatalogManager] startup update check begins before worker startup");
+    const UpdateChecker::Result update = UpdateChecker::checkLatest(PSVITAALIVE_VERSION);
+    if(update.state == UpdateChecker::State::UpdateAvailable){
+        diagnostics::log("[CatalogManager] startup update available remote=" + update.remoteVersion + " asset=" + update.assetName);
+        const bool ok = UpdateChecker::applyUpdate(
+            update,
+            [](const UpdateChecker::ApplyProgress& p){
+                if(p.stage == UpdateChecker::ApplyStage::Downloading){
+                    diagnostics::log("[CatalogManager] startup update download=" + std::to_string(p.current) + "/" + std::to_string(p.total));
+                }else if(p.stage == UpdateChecker::ApplyStage::Extracting){
+                    diagnostics::log("[CatalogManager] startup update install=" + std::to_string(p.current) + "/" + std::to_string(p.total));
+                }else if(!p.message.empty()){
+                    diagnostics::log(std::string("[CatalogManager] startup update: ") + p.message);
+                }
+            },
+            nullptr
+        );
+        if(ok){
+            diagnostics::log("[CatalogManager] startup update installed successfully; press START to exit");
+            sceCtrlSetSamplingMode(SCE_CTRL_MODE_ANALOG);
+            while(!stopping_){
+                SceCtrlData pad{};
+                sceCtrlPeekBufferPositive(0,&pad,1);
+                if(pad.buttons & SCE_CTRL_START){
+                    diagnostics::log("[CatalogManager] START pressed after startup update; exiting");
+                    sceKernelExitProcess(0);
+                }
+                sceKernelDelayThread(50 * 1000);
+            }
+            return false;
+        }
+        diagnostics::log("[CatalogManager] startup update apply failed; continuing with current version");
+    }else if(update.state == UpdateChecker::State::UpToDate){
+        diagnostics::log("[CatalogManager] startup update check complete local=" + update.localVersion + " remote=" + update.remoteVersion);
+    }else{
+        diagnostics::log(std::string("[CatalogManager] startup update check unavailable: ") + update.error);
+    }
+
+    workerThread_=sceKernelCreateThread("PSVitaAliveCatalogWorker",&CatalogManager::workerEntry,WORKER_PRIORITY,WORKER_STACK,0,0,nullptr);
+    if(workerThread_<0){sceKernelDeleteMutex(mutex_);mutex_=-1;return false;}
+    CatalogManager*self=this;
+    const int result=sceKernelStartThread(workerThread_,sizeof(self),&self);
+    if(result<0){sceKernelDeleteThread(workerThread_);workerThread_=-1;sceKernelDeleteMutex(mutex_);mutex_=-1;return false;}
+    diagnostics::log("[CatalogManager] initialized");
+    return true;
+}
 void CatalogManager::shutdown(){stopping_=true;if(workerThread_>=0){sceKernelWaitThreadEnd(workerThread_,nullptr,nullptr);sceKernelDeleteThread(workerThread_);workerThread_=-1;}if(mutex_>=0){sceKernelDeleteMutex(mutex_);mutex_=-1;}diagnostics::log("[CatalogManager] shutdown");}
 const char* CatalogManager::fileName(ui::CatalogType catalog)const{switch(catalog){case ui::CatalogType::VitaGames:return"catalog_psvita_games.json";case ui::CatalogType::PspGames:return"catalog_psp_games.json";case ui::CatalogType::Ps1Games:return"catalog_ps1_games.json";default:return"catalog.json";}}
 const char* CatalogManager::label(ui::CatalogType catalog)const{return ui::catalogName(catalog);}
@@ -107,113 +164,11 @@ CatalogManager::Status CatalogManager::status()const{Status result;if(mutex_<0)r
 bool CatalogManager::takeReady(std::vector<ui::CatalogItem>&outItems,ui::CatalogType&catalog){if(mutex_<0)return false;sceKernelLockMutex(mutex_,1,nullptr);if(!readyPending_){sceKernelUnlockMutex(mutex_,1);return false;}outItems=std::move(readyItems_);catalog=readyCatalog_;readyPending_=false;sceKernelUnlockMutex(mutex_,1);return true;}
 
 bool CatalogManager::loadCatalog(ui::CatalogType catalog,std::vector<ui::CatalogItem>&outItems){
+    // Startup update work is completed in init() before this worker exists.
+    // Keep this guard for process lifetime compatibility; it must remain true.
     if (!updateChecked_) {
         updateChecked_ = true;
-
-        auto setPhase = [this, catalog](const char* phaseLabel, const char* message, uint64_t cur = 0, uint64_t tot = 0) {
-            sceKernelLockMutex(mutex_, 1, nullptr);
-            status_.state = State::Loading;
-            status_.catalog = catalog;
-            status_.label = phaseLabel ? phaseLabel : "Startup";
-            status_.message = message ? message : "";
-            status_.current = cur;
-            status_.total = tot;
-            status_.error.clear();
-            sceKernelUnlockMutex(mutex_, 1);
-        };
-
-        setPhase("Startup", "Checking for application updates...");
-        const UpdateChecker::Result update = UpdateChecker::checkLatest(PSVITAALIVE_VERSION);
-
-        if (update.state == UpdateChecker::State::UpdateAvailable) {
-            char intro[160];
-            if (update.assetSize > 0) {
-                sceClibSnprintf(intro, sizeof(intro), "Update v%s available (%.1f MB) — installing...",
-                    update.remoteVersion.c_str(),
-                    (double)update.assetSize / (1024.0 * 1024.0));
-            } else {
-                sceClibSnprintf(intro, sizeof(intro), "Update v%s available — installing...",
-                    update.remoteVersion.c_str());
-            }
-            setPhase("Self-update", intro, 0, update.assetSize);
-            diagnostics::log("[CatalogManager] update available remote=" + update.remoteVersion + " — applying in-place");
-
-            const bool ok = UpdateChecker::applyUpdate(
-                update,
-                [this, catalog](const UpdateChecker::ApplyProgress& p) {
-                    char msg[192];
-                    if (p.stage == UpdateChecker::ApplyStage::Downloading) {
-                        if (p.total > 0) {
-                            const double curMb = (double)p.current / (1024.0 * 1024.0);
-                            const double totMb = (double)p.total / (1024.0 * 1024.0);
-                            if (p.bytesPerSecond > 0) {
-                                const double spd = (double)p.bytesPerSecond / (1024.0 * 1024.0);
-                                const uint64_t left = (p.total > p.current) ? (p.total - p.current) : 0;
-                                const uint64_t eta = left / p.bytesPerSecond;
-                                sceClibSnprintf(msg, sizeof(msg),
-                                    "Downloading  %.1f / %.1f MB   %.1f MB/s   ETA %llus",
-                                    curMb, totMb, spd, (unsigned long long)eta);
-                            } else {
-                                sceClibSnprintf(msg, sizeof(msg),
-                                    "Downloading  %.1f / %.1f MB", curMb, totMb);
-                            }
-                        } else {
-                            sceClibSnprintf(msg, sizeof(msg), "Downloading update...");
-                        }
-                    } else if (p.stage == UpdateChecker::ApplyStage::Extracting) {
-                        if (p.total > 0) {
-                            sceClibSnprintf(msg, sizeof(msg), "Installing files  %llu / %llu",
-                                (unsigned long long)p.current, (unsigned long long)p.total);
-                        } else {
-                            sceClibSnprintf(msg, sizeof(msg), "Installing update (do not power off)");
-                        }
-                    } else {
-                        sceClibSnprintf(msg, sizeof(msg), "%s", p.message.empty() ? "Working..." : p.message.c_str());
-                    }
-                    sceKernelLockMutex(mutex_, 1, nullptr);
-                    status_.state = State::Loading;
-                    status_.catalog = catalog;
-                    status_.label = "Self-update";
-                    status_.current = p.current;
-                    status_.total = p.total;
-                    status_.message = msg;
-                    status_.error.clear();
-                    sceKernelUnlockMutex(mutex_, 1);
-                },
-                nullptr
-            );
-
-            if (ok) {
-                setPhase("Self-update", "Update installed — press START to exit, then reopen the app");
-                diagnostics::log("[CatalogManager] self-update applied successfully — waiting for START (will not load catalogs)");
-                // Hard stop: do not continue catalog preload. Wait until the user
-                // presses START, then exit so the new eboot is used on next launch.
-                while (!stopping_) {
-                    SceCtrlData pad;
-                    std::memset(&pad, 0, sizeof(pad));
-                    sceCtrlPeekBufferPositive(0, &pad, 1);
-                    if (pad.buttons & SCE_CTRL_START) {
-                        diagnostics::log("[CatalogManager] START pressed after self-update — exiting process");
-                        sceKernelExitProcess(0);
-                    }
-                    sceKernelDelayThread(50 * 1000);
-                }
-                return 0;
-            } else {
-                setPhase("Startup", "Update failed — continuing with catalogs");
-                diagnostics::log("[CatalogManager] self-update apply failed; continuing startup");
-                sceKernelDelayThread(1400 * 1000);
-            }
-        } else if (update.state == UpdateChecker::State::UpToDate) {
-            char msg[96];
-            sceClibSnprintf(msg, sizeof(msg), "Already up to date  ·  v%s", update.localVersion.c_str());
-            setPhase("Startup", msg);
-            sceKernelDelayThread(700 * 1000);
-        } else {
-            setPhase("Startup", "Update check unavailable — continuing...");
-            diagnostics::log("[CatalogManager] update check failed; continuing with catalog startup");
-            sceKernelDelayThread(500 * 1000);
-        }
+        diagnostics::log("[CatalogManager] unexpected update gate fallback; catalog worker should already have completed update phase");
     }
 
     const int idx=(int)catalog;const std::string path=cachePath(catalog),meta=metadataPath(catalog),temp=path+".new",url=std::string(RAW_BASE)+fileName(catalog);const bool haveCache=fileExists(path);HttpClient http;if(http.init()!=HttpResult::Ok)return false;
