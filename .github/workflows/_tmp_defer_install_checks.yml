@@ -1,0 +1,75 @@
+name: temporary-defer-install-checks
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/_tmp_defer_install_checks.yml'
+permissions:
+  contents: write
+jobs:
+  patch:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Patch deferred install checks
+        env:
+          CPP: 'Client PSVitaAlive/source/ui/full_catalog_screen.cpp'
+          HPP: 'Client PSVitaAlive/include/ui/full_catalog_screen.hpp'
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+
+          cpp = Path('Client PSVitaAlive/source/ui/full_catalog_screen.cpp')
+          hpp = Path('Client PSVitaAlive/include/ui/full_catalog_screen.hpp')
+          c = cpp.read_text()
+          h = hpp.read_text()
+
+          old_h = '    uint64_t catalogLoadingTotal_ = 0;\n    std::string catalogError_;'
+          new_h = '    uint64_t catalogLoadingTotal_ = 0;\n    // Do not touch ux0:app while catalogs/splash are settling.\n    uint64_t installStatusWarmupUntilMs_ = 0;\n    std::string catalogError_;'
+          if 'installStatusWarmupUntilMs_' not in h:
+              if old_h not in h:
+                  raise SystemExit('header anchor not found')
+              h = h.replace(old_h, new_h, 1)
+              hpp.write_text(h)
+
+          old_set = '    catalogError_.clear();\n    // Instant memory-cache hits clear loading quickly; keep debounce so spam L/R cannot thrash.\n'
+          new_set = '    catalogError_.clear();\n    // Give the catalog/UI time to settle before any ux0:app probes begin.\n    installStatusWarmupUntilMs_ = sceKernelGetProcessTimeWide() / 1000ULL + 1500ULL;\n    // Instant memory-cache hits clear loading quickly; keep debounce so spam L/R cannot thrash.\n'
+          if 'installStatusWarmupUntilMs_ = sceKernelGetProcessTimeWide() / 1000ULL + 1500ULL;' not in c:
+              if old_set not in c:
+                  raise SystemExit('setCatalogItems anchor not found')
+              c = c.replace(old_set, new_set, 1)
+
+          old_active = '    state_.catalog=c;\n    searchQuery_.clear();\n'
+          new_active = '    state_.catalog=c;\n    installStatusWarmupUntilMs_ = sceKernelGetProcessTimeWide() / 1000ULL + 1500ULL;\n    searchQuery_.clear();\n'
+          if 'state_.catalog=c;\n    installStatusWarmupUntilMs_' not in c:
+              if old_active not in c:
+                  raise SystemExit('setActiveCatalog anchor not found')
+              c = c.replace(old_active, new_active, 1)
+
+          old_query = '    const uint64_t nowMs = sceKernelGetProcessTimeWide() / 1000ULL;\n    auto& cache = installProbeCache();'
+          new_query = '    const uint64_t nowMs = sceKernelGetProcessTimeWide() / 1000ULL;\n    // Never probe the Vita filesystem while catalogs are loading or immediately after.\n    if (catalogLoading_ || nowMs < installStatusWarmupUntilMs_) {\n        return unknown;\n    }\n    auto& cache = installProbeCache();'
+          if 'if (catalogLoading_ || nowMs < installStatusWarmupUntilMs_)' not in c:
+              if old_query not in c:
+                  raise SystemExit('query anchor not found')
+              c = c.replace(old_query, new_query, 1)
+
+          cpp.write_text(c)
+          print('patched')
+          PY
+
+      - name: Verify patch
+        run: |
+          grep -q 'installStatusWarmupUntilMs_' 'Client PSVitaAlive/source/ui/full_catalog_screen.cpp'
+          grep -q 'installStatusWarmupUntilMs_' 'Client PSVitaAlive/include/ui/full_catalog_screen.hpp'
+          grep -q 'catalogLoading_ || nowMs < installStatusWarmupUntilMs_' 'Client PSVitaAlive/source/ui/full_catalog_screen.cpp'
+          grep -q '+ 1500ULL' 'Client PSVitaAlive/source/ui/full_catalog_screen.cpp'
+
+      - name: Commit patch and remove temporary workflow
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          rm -f '.github/workflows/_tmp_defer_install_checks.yml'
+          git add 'Client PSVitaAlive/source/ui/full_catalog_screen.cpp' 'Client PSVitaAlive/include/ui/full_catalog_screen.hpp' '.github/workflows/_tmp_defer_install_checks.yml'
+          git commit -m 'Fix Vita startup load order for installed-app checks'
+          git push origin HEAD:main
