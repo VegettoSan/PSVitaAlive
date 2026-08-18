@@ -1,0 +1,41 @@
+name: Temporary plugin gate cleanup
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.tmp/apply-plugin-gate-fix'
+      - '.github/workflows/_tmp_fix_plugin_gate.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  apply:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: true
+      - name: Fix plugin gate
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [ ! -f .tmp/apply-plugin-gate-fix ]; then exit 0; fi
+          python - <<'PY'
+          from pathlib import Path
+          p = Path('Client PSVitaAlive/source/installer/install_controller.cpp')
+          s = p.read_text()
+          old = '''    if (!plugins_.nonpdrm) {\n        diagnostics::log("[Installer] NoNpDrm not detected - licensed Vita PKG installs may fail");\n    }\n    if (!plugins_.nopspemudrmKern) {\n        diagnostics::log("[Installer] NoPspEmuDrm not detected - PSP LiveArea bubbles unavailable (Adrenaline ISO path still works)");\n    }\n'''
+          new = '''    if (settings_.startupPluginDetection) {\n        if (!plugins_.nonpdrm) {\n            diagnostics::log("[Installer] NoNpDrm not detected - licensed Vita PKG installs may fail");\n        }\n        if (!plugins_.nopspemudrmKern) {\n            diagnostics::log("[Installer] NoPspEmuDrm not detected - PSP LiveArea bubbles unavailable (Adrenaline ISO path still works)");\n        }\n    }\n'''
+          if old not in s:
+              raise SystemExit('plugin warnings block not found')
+          p.write_text(s.replace(old, new, 1))
+          PY
+          rm -f .tmp/apply-plugin-gate-fix .github/workflows/_tmp_fix_plugin_gate.yml
+          git config user.name 'VegettoSanDev'
+          git config user.email '72358120+VegettoSan@users.noreply.github.com'
+          git add 'Client PSVitaAlive/source/installer/install_controller.cpp' .tmp/apply-plugin-gate-fix .github/workflows/_tmp_fix_plugin_gate.yml
+          git commit -m 'fix: fully gate plugin startup detection'
+          git push origin main
