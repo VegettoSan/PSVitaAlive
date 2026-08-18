@@ -47,9 +47,9 @@ set(SOURCES
 
 add_executable(${PROJECT_NAME} ${SOURCES})
 
-# Redirect only HttpClient's curl_global_* calls to the process-wide,
-# reference-counted lifecycle proxy. Other sources continue to use libcurl's
-# public API normally.
+# Redirect only HttpClient's curl_global_init() call to the process-wide,
+# one-shot lifecycle proxy. There is deliberately no cleanup proxy: libcurl
+# global state remains alive for the complete Vita process lifetime.
 set_source_files_properties(source/network/http_client.cpp PROPERTIES
   COMPILE_DEFINITIONS "PSVITAALIVE_CURL_LIFECYCLE_PROXY"
 )
@@ -85,11 +85,6 @@ target_link_libraries(${PROJECT_NAME}
   SceAppMgr_stub
   SceCommonDialog_stub
   SceIme_stub
-  SceIofilemgr_stub
-  SceLibKernel_stub
-  ScePower_stub
-  SceNet_stub
-  SceNetCtl_stub
   ScePromoterUtil_stub
   taihen_stub
   SceGxm_stub
