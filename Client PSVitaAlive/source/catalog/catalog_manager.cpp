@@ -109,18 +109,47 @@ bool CatalogManager::takeReady(std::vector<ui::CatalogItem>&outItems,ui::Catalog
 bool CatalogManager::loadCatalog(ui::CatalogType catalog,std::vector<ui::CatalogItem>&outItems){
     if (!updateChecked_) {
         updateChecked_ = true;
-        setStatus(State::Loading,catalog,"Checking for PSVitaAlive updates...");
+        setStatus(State::Loading, catalog, "Checking for PSVitaAlive updates...");
         const UpdateChecker::Result update = UpdateChecker::checkLatest(PSVITAALIVE_VERSION);
         if (update.state == UpdateChecker::State::UpdateAvailable) {
-            const std::string message = "Update available: " + update.remoteVersion;
-            setStatus(State::Loading,catalog,message.c_str());
-            diagnostics::log("[CatalogManager] update detected; installation will be added in the self-update phase");
+            const std::string message = "Update available: " + update.remoteVersion + " — installing...";
+            setStatus(State::Loading, catalog, message.c_str());
+            diagnostics::log("[CatalogManager] update available remote=" + update.remoteVersion + " — applying in-place");
+
+            const bool ok = UpdateChecker::applyUpdate(
+                update,
+                [this, catalog](const UpdateChecker::ApplyProgress& p) {
+                    sceKernelLockMutex(mutex_, 1, nullptr);
+                    status_.state = State::Loading;
+                    status_.catalog = catalog;
+                    status_.label = "Self-update";
+                    status_.current = p.current;
+                    status_.total = p.total;
+                    status_.message = p.message;
+                    status_.error.clear();
+                    sceKernelUnlockMutex(mutex_, 1);
+                },
+                nullptr
+            );
+
+            if (ok) {
+                setStatus(State::Loading, catalog, "Update installed — close the app (START) and reopen");
+                diagnostics::log("[CatalogManager] self-update applied successfully");
+                // Give the loading UI time to show the final message.
+                sceKernelDelayThread(2500 * 1000);
+            } else {
+                setStatus(State::Loading, catalog, "Update failed — continuing with catalogs");
+                diagnostics::log("[CatalogManager] self-update apply failed; continuing startup");
+                sceKernelDelayThread(1200 * 1000);
+            }
         } else if (update.state == UpdateChecker::State::UpToDate) {
-            const std::string message = "PSVitaAlive is up to date: " + update.localVersion;
-            setStatus(State::Loading,catalog,message.c_str());
+            const std::string message = "PSVitaAlive is up to date (v" + update.localVersion + ")";
+            setStatus(State::Loading, catalog, message.c_str());
+            sceKernelDelayThread(400 * 1000);
         } else {
-            setStatus(State::Loading,catalog,"Update check unavailable; continuing...");
+            setStatus(State::Loading, catalog, "Update check unavailable — continuing...");
             diagnostics::log("[CatalogManager] update check failed; continuing with catalog startup");
+            sceKernelDelayThread(400 * 1000);
         }
     }
 
