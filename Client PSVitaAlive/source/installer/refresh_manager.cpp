@@ -9,7 +9,7 @@
 namespace psvitaalive {
 
 bool RefreshManager::appTreeExists(const std::string& titleId) {
-    if (titleId.size() < 9) return false;
+    if (titleId.size() < 4 || titleId.size() > 16) return false;
     StorageManager st;
     const std::string base = std::string("ux0:app/") + titleId;
     if (!st.exists(base) || !st.isDirectory(base)) return false;
@@ -47,13 +47,13 @@ bool RefreshManager::verifyAfterInstall(
     }
 
     if (liveAreaHint) {
-        messageOut = "Promote finished; if the bubble is missing, open VitaShell → Refresh LiveArea.";
+        messageOut = "Promote finished; if the bubble is missing: VitaShell → Refresh LiveArea, or reboot.";
         return true; // soft success — promoter may lag on Vita3K
     }
 
     if (!titleId.empty()) {
         messageOut = std::string("App tree not found yet for ") + titleId +
-                     ". Try VitaShell Refresh LiveArea if needed.";
+                     ". Check ux0:app/" + titleId + " then Refresh LiveArea or reboot.";
         return false;
     }
 
