@@ -126,21 +126,27 @@ enum class ZipDestChoice {
 };
 
 ZipDestChoice promptZipDestinationChoice() {
-    constexpr unsigned SURFACE = RGBA8(0x37, 0x37, 0x37, 255);
     constexpr unsigned SURFACE2 = RGBA8(0x2A, 0x2A, 0x2A, 255);
+    constexpr unsigned PANEL = RGBA8(0x20, 0x20, 0x20, 255);
     constexpr unsigned ACCENT = RGBA8(0x3B, 0xFF, 0, 255);
+    constexpr unsigned ACCENT_SOFT = RGBA8(0x2A, 0xB0, 0, 255);
     constexpr unsigned TEXT = RGBA8(0xAA, 0xAA, 0xAA, 255);
     constexpr unsigned WHITE = RGBA8(255, 255, 255, 255);
     constexpr unsigned DIM = RGBA8(0x6E, 0x6E, 0x6E, 255);
+    constexpr unsigned ROW_BG = RGBA8(0x2E, 0x2E, 0x2E, 255);
     constexpr int SW = 960, SH = 544;
 
-    static const char* kOptions[] = {
-        "ux0:data/",
-        "ux0:app/",
-        "ux0:repatch/",
-        "ux0:pspemu/ISO/  (ISO/CSO)",
-        "ux0:pspemu/PSP/GAME/  (PSP/PS1)",
-        "Custom path...",
+    struct ZipOption {
+        const char* path;
+        const char* desc;
+    };
+    static const ZipOption kOptions[] = {
+        { "ux0:data/",            "Homebrew app data and game data files" },
+        { "ux0:app/",             "PS Vita apps - homebrew or games" },
+        { "ux0:repatch/",         "Mods and game patches (rePatch)" },
+        { "ux0:pspemu/ISO/",      "PSP / PS1 disc images (ISO or CSO)" },
+        { "ux0:pspemu/PSP/GAME/", "PSP / PS1 folder-style games and EBOOTs" },
+        { "Custom path...",       "Type any extraction folder manually" },
     };
     constexpr int kCount = 6;
 
@@ -158,6 +164,18 @@ ZipDestChoice promptZipDestinationChoice() {
     int focus = 0;
     ZipDestChoice result = ZipDestChoice::Cancel;
     bool decided = false;
+    static bool touchWasDown = false;
+
+    auto choiceFromFocus = [](int f) -> ZipDestChoice {
+        switch (f) {
+            case 0: return ZipDestChoice::QuickData;
+            case 1: return ZipDestChoice::QuickApp;
+            case 2: return ZipDestChoice::QuickRepatch;
+            case 3: return ZipDestChoice::QuickPspIso;
+            case 4: return ZipDestChoice::QuickPspGame;
+            default: return ZipDestChoice::CustomIme;
+        }
+    };
 
     while (!decided) {
         SceCtrlData pad{};
@@ -166,55 +184,46 @@ ZipDestChoice promptZipDestinationChoice() {
         prev = pad.buttons;
 
         if (pressed & SCE_CTRL_UP) {
-            if (focus > 0) --focus;
-            else focus = kCount - 1;
+            focus = (focus > 0) ? (focus - 1) : (kCount - 1);
         }
         if (pressed & SCE_CTRL_DOWN) {
-            if (focus + 1 < kCount) ++focus;
-            else focus = 0;
+            focus = (focus + 1 < kCount) ? (focus + 1) : 0;
         }
         if (pressed & SCE_CTRL_CROSS) {
-            switch (focus) {
-                case 0: result = ZipDestChoice::QuickData; break;
-                case 1: result = ZipDestChoice::QuickApp; break;
-                case 2: result = ZipDestChoice::QuickRepatch; break;
-                case 3: result = ZipDestChoice::QuickPspIso; break;
-                case 4: result = ZipDestChoice::QuickPspGame; break;
-                default: result = ZipDestChoice::CustomIme; break;
-            }
+            result = choiceFromFocus(focus);
             decided = true;
         } else if (pressed & SCE_CTRL_CIRCLE) {
             result = ZipDestChoice::Cancel;
             decided = true;
         }
 
-        const int boxW = 620, boxH = 400;
-        const int boxX = (SW - boxW) / 2, boxY = (SH - boxH) / 2;
-        const int rowH = 34;
-        const int listY = boxY + 100;
+        const int boxW = 720;
+        const int boxH = 500;
+        const int boxX = (SW - boxW) / 2;
+        const int boxY = (SH - boxH) / 2;
+        const int rowH = 56;
+        const int listTop = boxY + 92;
+        const int listLeft = boxX + 22;
+        const int listW = boxW - 44;
 
-        // Touch: tap a row to select/confirm, tap outside panel to cancel.
         {
-            static bool touchWasDown = false;
-            int tx = 0, ty = 0; bool touchDown = false;
+            int tx = 0, ty = 0;
+            bool touchDown = false;
             peekFrontTouch(tx, ty, touchDown);
             if (touchDown && !touchWasDown) {
-                if (tx < boxX || tx > boxX + boxW || ty < boxY || ty > boxY + boxH) {
+                const bool inside =
+                    tx >= boxX && tx < boxX + boxW &&
+                    ty >= boxY && ty < boxY + boxH;
+                if (!inside) {
                     result = ZipDestChoice::Cancel;
                     decided = true;
                 } else {
                     for (int i = 0; i < kCount; ++i) {
-                        const int ry = listY + i * rowH;
-                        if (ty >= ry - 20 && ty < ry - 20 + rowH - 4) {
+                        const int ry = listTop + i * rowH;
+                        if (ty >= ry && ty < ry + rowH - 4 &&
+                            tx >= listLeft && tx < listLeft + listW) {
                             focus = i;
-                            switch (focus) {
-                                case 0: result = ZipDestChoice::QuickData; break;
-                                case 1: result = ZipDestChoice::QuickApp; break;
-                                case 2: result = ZipDestChoice::QuickRepatch; break;
-                                case 3: result = ZipDestChoice::QuickPspIso; break;
-                                case 4: result = ZipDestChoice::QuickPspGame; break;
-                                default: result = ZipDestChoice::CustomIme; break;
-                            }
+                            result = choiceFromFocus(focus);
                             decided = true;
                             break;
                         }
@@ -225,38 +234,46 @@ ZipDestChoice promptZipDestinationChoice() {
         }
 
         vita2d_start_drawing();
-        // Soft backdrop (same family as in-app overlays), not pure black.
-        vita2d_set_clear_color(RGBA8(0x14, 0x14, 0x14, 255));
+        vita2d_set_clear_color(RGBA8(0x12, 0x12, 0x12, 255));
         vita2d_clear_screen();
-        vita2d_draw_rectangle(0, 0, SW, SH, RGBA8(0, 0, 0, 100));
-        vita2d_draw_rectangle(boxX, boxY, boxW, boxH, SURFACE2);
-        vita2d_draw_rectangle(boxX, boxY, boxW, 3, ACCENT);
-        vita2d_draw_rectangle(boxX, boxY + boxH - 1, boxW, 1, ACCENT);
-        vita2d_draw_rectangle(boxX, boxY, 1, boxH, ACCENT);
-        vita2d_draw_rectangle(boxX + boxW - 1, boxY, 1, boxH, ACCENT);
+        vita2d_draw_rectangle(0, 0, SW, SH, RGBA8(0, 0, 0, 120));
 
-        vita2d_pgf_draw_text(font, boxX + 24, boxY + 36, ACCENT, 1.05f, "ZIP file detected");
-        vita2d_pgf_draw_text(font, boxX + 24, boxY + 68, WHITE, 0.70f,
-            "Elige la carpeta donde se extraera el contenido:");
+        vita2d_draw_rectangle(boxX, boxY, boxW, boxH, PANEL);
+        vita2d_draw_rectangle(boxX, boxY, boxW, 3, ACCENT);
+        vita2d_draw_rectangle(boxX, boxY + boxH - 1, boxW, 1, ACCENT_SOFT);
+        vita2d_draw_rectangle(boxX, boxY, 2, boxH, ACCENT);
+        vita2d_draw_rectangle(boxX + boxW - 2, boxY, 2, boxH, ACCENT_SOFT);
+
+        vita2d_pgf_draw_text(font, boxX + 28, boxY + 32, ACCENT, 0.62f, "PSVitaAlive");
+        vita2d_pgf_draw_text(font, boxX + 28, boxY + 58, WHITE, 1.00f, "ZIP file detected");
+        vita2d_pgf_draw_text(font, boxX + 28, boxY + 80, TEXT, 0.58f,
+            "Choose where to extract the archive contents:");
 
         for (int i = 0; i < kCount; ++i) {
-            const int ry = listY + i * rowH;
+            const int ry = listTop + i * rowH;
             const bool on = (i == focus);
             if (on) {
-                vita2d_draw_rectangle(boxX + 20, ry - 20, boxW - 40, rowH - 4, SURFACE);
-                vita2d_draw_rectangle(boxX + 20, ry - 20, 3, rowH - 4, ACCENT);
+                vita2d_draw_rectangle(listLeft, ry, listW, rowH - 6, ROW_BG);
+                vita2d_draw_rectangle(listLeft, ry, 4, rowH - 6, ACCENT);
+            } else {
+                vita2d_draw_rectangle(listLeft, ry, listW, rowH - 6, SURFACE2);
             }
-            vita2d_pgf_draw_text(font, boxX + 36, ry + 2, on ? ACCENT : TEXT, 0.74f, kOptions[i]);
+            const unsigned pathCol = on ? ACCENT : WHITE;
+            const unsigned descCol = on ? TEXT : DIM;
+            vita2d_pgf_draw_text(font, listLeft + 16, ry + 18, pathCol, 0.72f, kOptions[i].path);
+            vita2d_pgf_draw_text(font, listLeft + 16, ry + 38, descCol, 0.52f, kOptions[i].desc);
         }
 
-        vita2d_pgf_draw_text(font, boxX + 24, boxY + boxH - 28, DIM, 0.58f,
-            "Touch / D-Pad: elegir   X: aceptar   O: cancelar");
+        vita2d_draw_rectangle(boxX + 1, boxY + boxH - 36, boxW - 2, 35, SURFACE2);
+        vita2d_pgf_draw_text(font, boxX + 28, boxY + boxH - 14, DIM, 0.52f,
+            "D-Pad / Touch: select    Cross: confirm    Circle: cancel");
 
         vita2d_end_drawing();
         vita2d_swap_buffers();
         sceKernelDelayThread(16 * 1000);
     }
 
+    touchWasDown = false;
     vita2d_wait_rendering_done();
     vita2d_free_pgf(font);
     return result;
@@ -290,45 +307,22 @@ bool promptZipDestination(std::string& dst) {
     }
 
     // Custom path via system IME (pre-filled with ux0:data/).
-    static bool loaded = false;
-    if (!loaded) {
-        const int r = sceSysmoduleLoadModule(SCE_SYSMODULE_IME);
-        if (r < 0) return false;
-        loaded = true;
+    // Uses the same Vita-safe promptText() as catalog search (AppUtil + dialog update loop).
+    std::string custom = dst.empty() ? "ux0:data/" : dst;
+    if (!promptText(custom, "ZIP extract path", custom)) {
+        return false;
     }
-
-    SceWChar16 input[256] = {}, title[128] = {};
-    asciiToWide(dst.empty() ? "ux0:data/" : dst, input, 256);
-    asciiToWide("Ruta de extraccion ZIP", title, 128);
-
-    SceImeDialogParam p = {};
-    p.type = SCE_IME_TYPE_BASIC_LATIN;
-    p.option = SCE_IME_OPTION_NO_AUTO_CAPITALIZATION;
-    p.dialogMode = SCE_IME_DIALOG_DIALOG_MODE_WITH_CANCEL;
-    p.textBoxMode = SCE_IME_DIALOG_TEXTBOX_MODE_DEFAULT;
-    p.title = title;
-    p.maxTextLength = 255;
-    p.initialText = input;
-    p.inputTextBuffer = input;
-    p.supportedLanguages = SCE_IME_LANGUAGE_ENGLISH | SCE_IME_LANGUAGE_SPANISH;
-    p.enterLabel = SCE_IME_ENTER_LABEL_GO;
-    p.commonParam.magic = SCE_COMMON_DIALOG_MAGIC_NUMBER;
-
-    if (sceImeDialogInit(&p) < 0) return false;
-    while (sceImeDialogGetStatus() == SCE_COMMON_DIALOG_STATUS_RUNNING) {
-        sceKernelDelayThread(10 * 1000);
+    for (char& c : custom) {
+        if (c == '\\') c = '/';
     }
-    SceImeDialogResult r = {};
-    sceImeDialogGetResult(&r);
-    const bool ok = r.button == SCE_IME_DIALOG_BUTTON_ENTER;
-    if (ok) {
-        dst = wideToAscii(input);
-        for (char& c : dst) if (c == '\\') c = '/';
-        while (dst.size() > 1 && dst.back() == '/') dst.pop_back();
+    while (custom.size() > 1 && custom.back() == '/') {
+        custom.pop_back();
     }
-    sceImeDialogTerm();
-    return ok && !dst.empty();
+    if (custom.empty()) return false;
+    dst = custom;
+    return true;
 }
+
 
 std::string formatEta(uint64_t seconds){if(seconds==0)return "--";uint64_t h=seconds/3600,m=(seconds%3600)/60,sec=seconds%60;char o[64];if(h)sceClibSnprintf(o,sizeof(o),"%llu:%02llu:%02llu",(unsigned long long)h,(unsigned long long)m,(unsigned long long)sec);else sceClibSnprintf(o,sizeof(o),"%02llu:%02llu",(unsigned long long)m,(unsigned long long)sec);return o;}
 bool promptDownloadAllImages(size_t totalImages){
