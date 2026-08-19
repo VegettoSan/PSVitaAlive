@@ -1,34 +1,33 @@
-# `source/installer/` — Client-side installation
+# `source/installer/` — Installation pipeline
 
-These modules turn downloaded local payloads into installed content on the Vita.
+Turns downloaded payloads into installed content on the device.
 
 ## Components
 
 | File | Responsibility |
-|---|---|
-| `install_controller.cpp` | Orchestrates download → install and exposes installation status to the UI. |
-| `install_dispatcher.cpp` | Selects the installer according to detected format. |
-| `homebrew_installer.cpp` | Handles VPK Homebrew extraction, package preparation, promotion and post-install verification. |
-| `vita_installer.cpp` | Handles Vita PKG staging/promotion without implementing DRM/RIF bypass. |
-| `fake_package_builder.cpp` | Builds the minimum metadata needed by the Homebrew promotion flow. |
+|------|----------------|
+| `install_controller.cpp` | Orchestrates download → install; status for UI |
+| `install_dispatcher.cpp` | Picks installer by detected format |
+| `homebrew_installer.cpp` | VPK extract, head/package prep, promote, verify tree |
+| `vita_installer.cpp` | Vita PKG staging/promotion (no DRM bypass) |
+| `psp_installer.cpp` | PSP-oriented install paths (e.g. Adrenaline) |
+| `fake_package_builder.cpp` | Minimal package metadata for homebrew promote |
+| `plugin_detector.cpp` | Detect taiHEN plugins / config (**prefer ur0**, then ux0) |
+| `refresh_manager.cpp` | LiveArea refresh helpers (fallback / VitaShell-style patterns) |
+| `bgdl_client.cpp` | Optional BGDL hooks when ShellSvc exports exist |
+| `app_settings.cpp` | Install-related settings |
+| `license_helper.cpp` | License-related helpers without fake RIF generation for piracy |
 
-## Result flow
+## VPK / LiveArea
 
-After success or failure, the controller keeps an explicit result state instead of immediately returning to idle:
-
-1. `Completed` or `Failed` exposes a message, install path, Title ID and LiveArea verification result.
-2. The UI displays a large success or error panel.
-3. The user can acknowledge the result or the result can expire after the configured timeout.
-
-For a promoted VPK, `liveAreaOk` is true only when the expected application tree contains at least:
+Successful promote should yield an app tree such as:
 
 ```text
 ux0:app/<TITLE_ID>/
 ux0:app/<TITLE_ID>/sce_sys/param.sfo
-ux0:app/<TITLE_ID>/sce_sys/icon0.png
 ```
 
-The LiveArea resources packaged by PSVitaAlive are documented separately under `assets/sce_sys/README.md`.
+`liveAreaOk` reflects whether verification sees the expected tree. On some environments (e.g. emulators), promoter success and bubble visibility can diverge; fallback copy + optional refresh paths exist for recovery.
 
 ## Logs
 
@@ -37,19 +36,10 @@ ux0:data/psvitaalive/logs/session.log
 ux0:data/psvitaalive/logs/install.log
 ```
 
-The session/install logs are reset when the application starts according to the current implementation.
+## Security
 
-## Security and scope
+Must not:
 
-The installer must not:
-
-- bypass DRM;
-- generate fake licenses/RIFs for protected content;
-- load entire large packages into RAM when streaming/staging is possible;
-- extract ZIP paths without traversal checks.
-
-ZIP extraction must reject absolute paths, `..` traversal and any final path that escapes the intended destination.
-
-## Not currently implemented here
-
-The current installer documentation does not claim full PBP/ISO/CSO support. BGDL/system-background download is also outside this module's current responsibility.
+- Bypass DRM or mint fake licenses for protected content as a feature
+- Extract ZIP entries with path traversal (`..`, absolute paths)
+- Load entire huge packages into RAM when streaming is possible
