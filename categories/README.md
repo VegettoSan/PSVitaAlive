@@ -1,44 +1,24 @@
-# `categories/` — Official category taxonomy
+# `categories/` — Official taxonomy
 
-PS Vita Alive Store controls the category vocabulary used by the catalog. External sources are mapped into this taxonomy instead of creating arbitrary categories during import.
+Defines the category and subcategory IDs used by homebrew applications.
+
+## Role
+
+- Source of truth for `category_id` / `subcategory_ids` on apps
+- Emitted into generated `categories.json`
+- Icons live under the website/client asset trees as configured by the project
 
 ## Structure
 
-Each category has its own JSON file and may declare its allowed subcategories:
+Each category typically includes:
 
-```json
-{
-  "id": "games",
-  "name": "Games",
-  "description": "...",
-  "subcategories": [
-    {
-      "id": "arcade",
-      "name": "Arcade"
-    }
-  ]
-}
-```
+- `id`, `name`, `description`
+- `order` (display ordering)
+- `subcategories[]` with `id` and `name`
+- optional `icon` path
 
 ## Rules
 
-- `category_id` must refer to an existing official category.
-- `subcategory_ids` may contain only subcategories declared by that category.
-- An external source cannot create a new official category simply by importing a new value.
-- `sources/category_map.json` translates external category/type values into the official vocabulary.
-- Applications should remain compatible when optional category metadata is added later.
-
-## Category icons
-
-Category icons are maintained in the project's resource structure. They may also be used as application-image fallbacks when an imported application does not provide a usable icon.
-
-## Changing the taxonomy
-
-When adding or changing a category:
-
-1. Modify the individual JSON file in `categories/`.
-2. Review the external mapping in `sources/category_map.json`.
-3. Check existing `category_id` and `subcategory_ids` references.
-4. Run the catalog validation before publishing.
-
-`categories.json` is generated automatically and must not be edited manually.
+- App `category_id` must exist here.
+- App `subcategory_ids` must belong to that category.
+- Prefer the project’s normalized VitaDB / VitaDBtoo mapping rather than inventing parallel duplicate categories.
