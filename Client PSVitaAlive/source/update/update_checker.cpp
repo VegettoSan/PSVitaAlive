@@ -481,6 +481,173 @@ bool launchUpdaterAndExit() {
     return true;
 }
 
+} // namespace
+
+UpdateChecker::Result UpdateChecker::checkLatest(const std::string& currentVersion) {
+    Result result;
+    result.localVersion = extractLocalVersion(currentVersion);
+    if (result.localVersion.empty()) {
+        result.error = "Invalid local application version";
+        diagnostics::log("[UpdateChecker] invalid local version: " + currentVersion);
+        return result;
+    }
+
+    HttpClient http;
+    if (http.init() != HttpResult::Ok) {
+        result.error = "Unable to initialize HTTP client";
+        diagnostics::log("[UpdateChecker] HTTP initialization failed");
+        return result;
+    }
+
+    std::string body;
+    bool usedReleaseList = false;
+
+    auto logFetch = [](const char* label, int status, size_t bytes, HttpResult hr) {
+        char line[192];
+        sceClibSnprintf(
+            line, sizeof(line),
+            "[UpdateChecker] %s status=%d bytes=%u result=%s",
+            label,
+            status,
+            (unsigned)bytes,
+            toString(hr)
+        );
+        diagnostics::log(line);
+    };
+
+    HttpResult fetchResult = http.fetchToString(RELEASES_LATEST_URL, body, 512 * 1024);
+    logFetch("GET releases/latest", http.lastStatusCode(), body.size(), fetchResult);
+
+    const int statusLatest = http.lastStatusCode();
+    if (statusLatest == 403 || statusLatest == 429) {
+        result.error = "GitHub temporarily unavailable (HTTP 403/429) — update check skipped";
+        diagnostics::log("[UpdateChecker] " + result.error);
+        http.shutdown();
+        return result;
+    }
+
+    if (fetchResult != HttpResult::Ok || statusLatest == 404 || body.empty()) {
+        diagnostics::log("[UpdateChecker] releases/latest unavailable — falling back to releases list");
+        body.clear();
+        fetchResult = http.fetchToString(RELEASES_LIST_URL, body, 512 * 1024);
+        usedReleaseList = true;
+        logFetch("GET releases?per_page=10", http.lastStatusCode(), body.size(), fetchResult);
+
+        const int statusList = http.lastStatusCode();
+        if (statusList == 403 || statusList == 429) {
+            result.error = "GitHub temporarily unavailable (HTTP 403/429) — update check skipped";
+            diagnostics::log("[UpdateChecker] " + result.error);
+            http.shutdown();
+            return result;
+        }
+        if (fetchResult != HttpResult::Ok) {
+            result.error = http.lastError().empty() ? toString(fetchResult) : http.lastError();
+            diagnostics::log("[UpdateChecker] GitHub list request failed: " + result.error);
+            http.shutdown();
+            return result;
+        }
+    }
+
+    http.shutdown();
+    diagnostics::log("[UpdateChecker] HTTP shutdown complete (before JSON parse)");
+
+    static bool sJsonModuleLoaded = false;
+    if (!sJsonModuleLoaded) {
+        const int moduleResult = sceSysmoduleLoadModule(SCE_SYSMODULE_JSON);
+        if (moduleResult < 0) {
+            result.error = "Unable to load Vita JSON module";
+            diagnostics::log("[UpdateChecker] JSON module load failed");
+            return result;
+        }
+        sJsonModuleLoaded = true;
+        diagnostics::log("[UpdateChecker] JSON module loaded (kept for process lifetime)");
+    } else {
+        diagnostics::log("[UpdateChecker] JSON module already loaded");
+    }
+
+    VitaJsonAllocator allocator;
+    sce::Json::InitParameter params;
+    params.allocator = &allocator;
+    params.userData = nullptr;
+    params.bufSize = 64 * 1024;
+
+    sce::Json::Initializer initializer;
+    if (initializer.initialize(&params) < 0) {
+        result.error = "Unable to initialize JSON parser";
+        diagnostics::log("[UpdateChecker] JSON initializer failed");
+        return result;
+    }
+
+    bool parseFailed = false;
+    {
+        sce::Json::Value root;
+        const int parseRc = sce::Json::Parser::parse(root, body.c_str(), static_cast<SceSize>(body.size()));
+        if (parseRc < 0) {
+            result.error = "Invalid GitHub release JSON";
+            char perr[128];
+            sceClibSnprintf(
+                perr, sizeof(perr),
+                "[UpdateChecker] GitHub JSON parse failed: 0x%08X bytes=%u list=%d",
+                parseRc, (unsigned)body.size(), usedReleaseList ? 1 : 0
+            );
+            diagnostics::log(perr);
+            parseFailed = true;
+        } else {
+            char okline[96];
+            sceClibSnprintf(
+                okline, sizeof(okline),
+                "[UpdateChecker] JSON parsed OK bytes=%u list=%d",
+                (unsigned)body.size(), usedReleaseList ? 1 : 0
+            );
+            diagnostics::log(okline);
+
+            const bool ok = selectReleaseFromRoot(root, result, usedReleaseList);
+            diagnostics::log(
+                std::string("[UpdateChecker] release metadata extracted tag=") + result.releaseTag +
+                " remote=" + result.remoteVersion +
+                " asset=" + result.assetName +
+                " selected=" + (ok ? "yes" : "no")
+            );
+
+            if (result.remoteVersion.empty()) {
+                result.error = "GitHub release does not expose a usable version (tag/name/body)";
+            } else if (result.downloadUrl.empty()) {
+                result.error = "GitHub release does not contain a .vpk asset (expected PSVitaAlive.vpk)";
+            } else if (compareVersions(result.localVersion, result.remoteVersion) < 0) {
+                result.state = State::UpdateAvailable;
+                diagnostics::log("[UpdateChecker] update available: local=" + result.localVersion +
+                                 " remote=" + result.remoteVersion +
+                                 " tag=" + result.releaseTag +
+                                 " asset=" + result.assetName);
+            } else {
+                result.state = State::UpToDate;
+                diagnostics::log("[UpdateChecker] client is up to date: local=" + result.localVersion +
+                                 " remote=" + result.remoteVersion +
+                                 " tag=" + result.releaseTag);
+            }
+
+            diagnostics::log("[UpdateChecker] version comparison complete");
+        }
+    }
+
+    diagnostics::log("[UpdateChecker] JSON root released");
+
+    if (parseFailed) {
+        initializer.terminate();
+        diagnostics::log("[UpdateChecker] JSON initializer terminated (module kept loaded)");
+        return result;
+    }
+
+    if (result.state == State::Failed) {
+        diagnostics::log("[UpdateChecker] check failed: " + result.error);
+    }
+
+    initializer.terminate();
+    diagnostics::log("[UpdateChecker] JSON initializer terminated (module kept loaded)");
+    diagnostics::log("[UpdateChecker] checkLatest finished");
+    return result;
+}
+
 bool UpdateChecker::applyUpdate(
     const Result& info,
     ApplyProgressFn onProgress,
