@@ -1,1 +1,5 @@
-Fixtures in this directory must contain only the minimal source records required to reproduce a parser or merge regression. Do not store full external catalogs here.
+# `tests/fixtures/`
+
+Sample inputs for offline tests and validation experiments.
+
+Keep fixtures small and deterministic. Do not store large binary packages or secrets here.
