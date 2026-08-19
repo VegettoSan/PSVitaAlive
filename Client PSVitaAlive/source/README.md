@@ -1,63 +1,23 @@
-# `Client PSVitaAlive/source/` — PS Vita client source
+# `source/` — Client modules
 
-This directory contains the implementation of the PSVitaAlive native Homebrew client.
+Native C++ sources for the PS Vita client.
 
-## Current modules
+## Modules
 
-- `catalog/` — catalog parsing, application records and catalog-facing behavior.
-- `network/` — HTTP/HTTPS communication and download handling.
-- `storage/` — local filesystem paths and persistence.
-- `ui/` — vita2d screens, overlays and navigation.
-- `installer/` — VPK/PKG/ZIP installation orchestration.
-- `archive/` — archive and format-detection support.
+| Directory | Responsibility |
+|-----------|----------------|
+| `catalog/` | Fetch, parse, cache multi-catalog JSON |
+| `network/` | libcurl HTTP, download manager, MediaFire resolver, curl lifecycle |
+| `installer/` | Install controller, dispatcher, VPK/PKG/PSP helpers, plugins, LiveArea refresh |
+| `archive/` | Format detection, ZIP extract |
+| `ui/` | Full-catalog UI, image cache |
+| `update/` | GitHub Releases self-update check / startup flow |
+| `storage/` | Storage paths and helpers |
+| `main.cpp` | Application entry and wiring |
+| `diagnostic_logger.cpp` | Session logging |
 
-## Catalog boundary
+## Design rules
 
-The client consumes only the generated public catalogs:
-
-```text
-catalog.json
-authors.json
-categories.json
-```
-
-It must not know how VitaDB, VitaDBtoo or another external source is fetched or merged.
-
-```text
-external sources
-      ↓
-gitHub Actions
-      ↓
-catalog.json / authors.json / categories.json
-      ↓
-PS Vita client
-```
-
-This separation keeps the client simple, cacheable and independent from source-specific APIs.
-
-## Compatibility
-
-The parser must tolerate optional fields and preserve compatibility with older application records. Unknown fields should be ignored rather than treated as fatal errors.
-
-Use `title_id` as the Vita application identity for installation/update logic.
-
-## Downloads
-
-An application may expose multiple links. The client should prefer a `Download` link marked `recommended: true` when available, while still allowing other download/mirror sources where the UI supports them.
-
-Do not assume every download is a GitHub Release.
-
-## Installation boundary
-
-Installation logic belongs to the client, not the catalog pipeline. UI code should request installation through the controller/dispatcher layer rather than calling filesystem or promoter APIs directly.
-
-## Development
-
-For catalog-related changes:
-
-1. Inspect the published JSON contract.
-2. Do not add direct external-source calls to the client.
-3. Test with both local and remote catalog data.
-4. Preserve VitaSDK/Vita3K compatibility.
-5. Avoid SQLite unless a concrete performance or functionality requirement justifies it.
-6. Keep UI and installation logic separated.
+- UI does not call promoter or write packages directly; it talks to controller layers.
+- Network code must init/cleanup libcurl carefully (avoid double global cleanup crashes).
+- Optional features (plugin scan, update check) respect settings / config flags when present.
