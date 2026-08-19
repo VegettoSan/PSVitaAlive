@@ -1,136 +1,64 @@
-# PSVitaAlive — Native PS Vita client
+# Client PSVitaAlive — Native PS Vita client
 
-The PSVitaAlive client is the native PlayStation Vita/PSTV application for PS Vita Alive Store. It is built with VitaSDK, C/C++, CMake, vita2d and libcurl.
+Native catalog client for PlayStation Vita / PSTV (and Vita3K for testing).
 
-## Current responsibilities
+## Identity
 
-The client currently provides the native catalog/UI and download/install flow for supported content. It consumes the generated catalogs published by this repository and does **not** contact VitaDB, VitaDBtoo or other external catalog providers directly.
+| Item | Value |
+|------|--------|
+| Title ID | **PSVAS1178** |
+| Build system | CMake + VitaSDK |
+| Rendering | vita2d (no Dear ImGui) |
 
-Current documented behavior includes:
+## Features (high level)
 
-- loading published catalog JSON data;
-- browsing catalog entries and application details;
-- handling multiple application links;
-- HTTP downloads for supported VPK/PKG/ZIP content;
-- VPK installation through the Vita homebrew promotion flow;
-- post-install verification of the expected application tree;
-- installation progress and explicit success/error result panels;
-- session and installation logging;
-- a branded, working Vita LiveArea in the generated VPK.
+- Catalogs: **Homebrew**, **Vita Games**, **PSP**, **PS1**
+- Search, settings, touch + buttons
+- Image cache with on-demand loading
+- Downloads via libcurl (MediaFire resolution supported where implemented)
+- Install pipeline: VPK / ZIP extraction / PKG-related paths
+- Self-update check against **GitHub Releases** (see `source/update/`)
+- Plugin detection (prefer **ur0** tai config over ux0)
+- Logs: `ux0:data/psvitaalive/logs/session.log`, `install.log`
 
-The client is still under active development, so a documented module should be treated as the current implementation contract rather than a promise that every future feature is complete.
-
-## Build environment
-
-### Requirements
-
-- VitaSDK installed and available through `VITASDK`.
-- CMake and GNU Make.
-- A PS Vita/PSTV test environment when possible; Vita3K can be used for development checks.
-- VitaShell for installing test VPKs on real hardware.
-
-### Build
+## Build (typical)
 
 ```bash
-export VITASDK=/usr/local/vitasdk   # or your VitaSDK path
 cd "Client PSVitaAlive"
-rm -rf build
-mkdir build
-cd build
+rm -rf build && mkdir build && cd build
 cmake ..
-make -j1
+cmake --build . -j$(nproc)
 ```
 
-The build produces:
+Requires a working VitaSDK toolchain (`arm-vita-eabi-gcc`, etc.).
 
-```text
-PSVitaAlive.vpk
-```
+## Source layout
 
-Title ID:
+| Path | Role |
+|------|------|
+| `source/main.cpp` | Entry, lifecycle |
+| `source/catalog/` | Catalog download/parse/cache |
+| `source/network/` | HTTP, downloads, MediaFire |
+| `source/installer/` | Install/dispatch/promote |
+| `source/archive/` | ZIP / format detection |
+| `source/ui/` | Full catalog UI, image cache |
+| `source/update/` | GitHub release update checker |
+| `source/storage/` | Paths and storage helpers |
+| `assets/` | LiveArea, UI images |
 
-```text
-PSVAS1178
-```
+See module READMEs under `source/*/`.
 
-Using `-j1` is recommended when diagnosing build failures because it keeps the first real error visible. Parallel builds can otherwise end with a generic `Error 2` after the useful error has scrolled away.
-
-## VPK and LiveArea packaging
-
-The client uses an explicit VPK packaging command instead of `vita_create_vpk()` for the final resource packaging step. This is intentional: the project directory can contain spaces (`Client PSVitaAlive`), while the VitaSDK helper's generated `vita-pack-vpk` command can mishandle those absolute paths.
-
-The current CMake configuration therefore invokes `vita-pack-vpk` from the build directory with a relative resource mapping:
-
-```text
--a ../assets/sce_sys=sce_sys
-```
-
-The generated `eboot.bin` target is `eboot.bin-self`, and the VPK target depends on that target before invoking `vita-pack-vpk`.
-
-The LiveArea resource contract is documented separately in:
-
-[`assets/sce_sys/README.md`](assets/sce_sys/README.md)
-
-## Data consumed by the client
-
-The canonical Homebrew data contract is:
-
-```text
-catalog.json
-authors.json
-categories.json
-```
-
-The client must not scrape or query external catalog providers directly.
-
-Applications reference `author_ids`, `category_id` and `subcategory_ids`. The parser must tolerate optional fields so older records remain usable.
-
-## Local Vita data
-
-The client uses the following working areas under `ux0:data/psvitaalive/`:
+## Runtime data
 
 ```text
 ux0:data/psvitaalive/
-├── logs/
-│   ├── session.log
-│   └── install.log
-├── cache/
-└── tmp/
+  logs/
+  downloads/
+  …
 ```
 
-Temporary files should be cleaned after successful operations and retained only when needed for diagnostics or resumable work.
+## Scope notes
 
-## Modules
-
-| Module | Responsibility |
-|---|---|
-| `source/catalog/` | Catalog parsing and catalog-facing data handling |
-| `source/network/` | HTTP/HTTPS communication and download management |
-| `source/storage/` | Local paths and filesystem persistence |
-| `source/installer/` | VPK/PKG/ZIP installation orchestration |
-| `source/archive/` | Archive/format detection and extraction support |
-| `source/ui/` | vita2d rendering, screens, overlays and navigation |
-
-Each important module has its own README.
-
-## Installation requirements
-
-For homebrew VPK installation, the Vita must support the normal homebrew environment and VitaShell. The client does not implement DRM bypass or license generation.
-
-Commercial PKG behavior depends on the Vita environment and its installed plugins; the client does not create licenses or bypass NPDRM protections.
-
-## Reusing the client/catalog
-
-If you build another Vita application on top of this project:
-
-1. Treat `catalog.json`, `authors.json` and `categories.json` as the public data contract.
-2. Keep catalog acquisition separate from external-source adapters.
-3. Ignore unknown optional JSON fields.
-4. Use `title_id` for Vita installation/update identity.
-5. Support multiple `links` rather than assuming one download provider.
-6. Keep UI logic separate from filesystem/promoter operations.
-7. Preserve the LiveArea packaging contract if you reuse the VPK build system.
-
-## Development rule
-
-Implement and validate changes in small phases. Prefer a known-good build over broad simultaneous changes, and verify the result on real hardware when practical.
+- Does not implement DRM/RIF piracy bypasses.
+- LiveArea registration relies on promoter utilities; hardware and Vita3K may differ.
+- Prefer reading current code when docs and behaviour diverge.
