@@ -22,6 +22,7 @@
 #include "ui/image_cache.hpp"
 #include "catalog/catalog_manager.hpp"
 #include "update/startup_update_manager.hpp"
+#include "update/update_checker.hpp"
 
 namespace {
 std::string installStatusText(const psvitaalive::InstallStatus&s){using S=psvitaalive::InstallStatus::State;if(s.state==S::Idle)return{};char b[384];uint64_t p=s.total?std::min<uint64_t>(100,(s.current*100)/s.total):0;sceClibSnprintf(b,sizeof(b),"%s | %s | %llu%% | %s",s.stage.c_str(),s.fileName.empty()?"file":s.fileName.c_str(),(unsigned long long)p,s.message.c_str());return b;}
@@ -497,6 +498,9 @@ int main(){
     });
 
     if(!screen.init()){psvitaalive::diagnostics::log("[System] UI initialization failed");installer.shutdown();catalogs.shutdown();images.shutdown();psvitaalive::diagnostics::shutdown();sceKernelExitProcess(1);return 1;}
+
+    // VitaShell pattern: remove temporary self-update helper bubble if present.
+    psvitaalive::UpdateChecker::cleanupUpdaterBubble();
 
     if (installer.settings().startupUpdateCheck) {
         psvitaalive::diagnostics::log("[Startup] update check enabled by config");
