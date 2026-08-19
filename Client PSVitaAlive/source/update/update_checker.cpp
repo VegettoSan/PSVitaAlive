@@ -400,6 +400,18 @@ bool promoteSelfUpdate(const std::string& stagedDir) {
         return false;
     }
 
+    // The running application keeps app0: mounted. VitaSDK documents that
+    // unmounting app0: enables write access to ux0:app/TITLEID, which is
+    // required before Promoter can replace this application's files.
+    const int umountResult = sceAppMgrUmount("app0:");
+    diagnostics::log("[UpdateChecker] sceAppMgrUmount(app0:) result=" + std::to_string(umountResult));
+    if (umountResult < 0) {
+        diagnostics::log("[UpdateChecker] cannot unmount app0: before self-update");
+        scePromoterUtilityExit();
+        removeTree(PROMOTE_DIR);
+        return false;
+    }
+
     const int promoteResult = scePromoterUtilityPromotePkg(PROMOTE_DIR, 0);
     diagnostics::log("[UpdateChecker] scePromoterUtilityPromotePkg result=" + std::to_string(promoteResult));
     if (promoteResult < 0) {
@@ -435,14 +447,17 @@ bool promoteSelfUpdate(const std::string& stagedDir) {
     scePromoterUtilityExit();
 
     const bool appTreeExists = st.exists(UpdateChecker::kAppDir + std::string("/eboot.bin"));
-    const bool stagingConsumed = !st.exists(PROMOTE_DIR);
-    if (state != 0 || !appTreeExists || !stagingConsumed) {
-        diagnostics::log("[UpdateChecker] Promoter self-update verification failed: app=" +
-                         std::string(appTreeExists ? "yes" : "no") +
-                         " stagingConsumed=" + (stagingConsumed ? "yes" : "no"));
+    if (state != 0 || getResultCall < 0 || operationResult != 0 || !appTreeExists) {
+        diagnostics::log("[UpdateChecker] Promoter self-update verification failed: result=" +
+                         std::to_string(operationResult) +
+                         " getResultCall=" + std::to_string(getResultCall) +
+                         " app=" + std::string(appTreeExists ? "yes" : "no"));
+        removeTree(PROMOTE_DIR);
         return false;
     }
 
+    // Promoter is asynchronous and does not have to delete its source tree;
+    // staging directory existence is therefore not used as a success signal.
     diagnostics::log("[UpdateChecker] Promoter self-update verification OK");
     return true;
 }
