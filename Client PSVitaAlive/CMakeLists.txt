@@ -107,6 +107,50 @@ target_link_libraries(${PROJECT_NAME}
   m
 )
 
+# ---------------------------------------------------------------------------
+# PSVitaAlive Updater (TITLE_ID PSVAUPDT1)
+# Separate process used for self-update (VitaShell pattern). Built first and
+# packed into the main VPK under updater/ so the client can promote it.
+# ---------------------------------------------------------------------------
+set(UPDATER_TITLEID "PSVAUPDT1")
+set(UPDATER_APP_NAME "PSVitaAlive Updater")
+set(UPDATER_SOURCES updater/main.c)
+
+add_executable(PSVitaAliveUpdater ${UPDATER_SOURCES})
+target_compile_options(PSVitaAliveUpdater PRIVATE -fno-rtti)
+target_link_libraries(PSVitaAliveUpdater
+  vita2d
+  png
+  jpeg
+  z
+  SceDisplay_stub
+  SceGxm_stub
+  ScePgf_stub
+  SceCommonDialog_stub
+  SceSysmodule_stub
+  SceAppMgr_stub
+  ScePromoterUtil_stub
+  SceIofilemgr_stub
+  SceLibKernel_stub
+  m
+)
+
+vita_create_self(updater_eboot.bin PSVitaAliveUpdater UNSAFE)
+
+set(UPDATER_PARAM_SFO "${CMAKE_CURRENT_BINARY_DIR}/updater_param.sfo")
+add_custom_command(
+  OUTPUT "${UPDATER_PARAM_SFO}"
+  COMMAND ${VITA_MKSFOEX}
+    -d PARENTAL_LEVEL=1
+    -s APP_VER=01.00
+    -s TITLE_ID=${UPDATER_TITLEID}
+    "${UPDATER_APP_NAME}"
+    "${UPDATER_PARAM_SFO}"
+  COMMENT "Building updater param.sfo"
+  VERBATIM
+)
+add_custom_target(PSVitaAliveUpdaterSfo ALL DEPENDS "${UPDATER_PARAM_SFO}")
+
 # The self-update uses the system Promoter APIs to replace the running app.
 # These private Vita APIs require an UNSAFE SELF.
 vita_create_self(eboot.bin ${PROJECT_NAME} UNSAFE)
@@ -132,12 +176,16 @@ add_custom_command(
   COMMAND ${VITA_PACK_VPK}
     -a "../assets/sce_sys=sce_sys"
     -a "../assets/ui=ui"
+    -a "updater_eboot.bin=updater/eboot.bin"
+    -a "updater_param.sfo=updater/param.sfo"
     -s "${PROJECT_NAME}.vpk_param.sfo"
     -b "eboot.bin"
     "${PROJECT_NAME}.vpk.out"
   WORKING_DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}"
   DEPENDS
     eboot.bin-self
+    updater_eboot.bin-self
+    PSVitaAliveUpdaterSfo
     "${CMAKE_SOURCE_DIR}/assets/sce_sys"
     "${CMAKE_SOURCE_DIR}/assets/ui"
   COMMENT "Building vpk ${PROJECT_NAME}"
