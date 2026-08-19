@@ -109,7 +109,7 @@
     "version": "Nightly",
     "version_date": "2026-08-19",
     "requirements": "Not specified",
-    "size": 2862904,
+    "size": 2953398,
     "status": "Legacy",
     "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/932a2c421cd1217626c59ea726d5e6a16ba737f98ce86c193db75e9e633fcec9.png",
     "screenshots": [
@@ -201,6 +201,80 @@
     "source_url": "https://github.com/KiddRwxSsj/naoh-ac",
     "release_page": "https://github.com/KiddRwxSsj/naoh-ac/releases",
     "updated_at": "2026-08-17T21:42:40.081896+00:00"
+  },
+  {
+    "id": "vitabright-lut-editor",
+    "title_id": "VBRIGHTTL",
+    "name": "Vitabright Lut Editor",
+    "description": "Companion app for vitabright plugin.",
+    "long_description": "A companion app for vitabright plugin that allows to easily tweak OLED gamma tables.",
+    "author_ids": [
+      "devnoname120",
+      "zushikina-kun"
+    ],
+    "category_id": "utilities",
+    "subcategory_ids": [
+      "other"
+    ],
+    "version": "v.4.2",
+    "version_date": "2026-08-18",
+    "requirements": "Not specified",
+    "size": 459389,
+    "status": "Legacy",
+    "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/4a80e0db0b97165d2894141efbe79ae3761981788cb5abd62ced0218071100e2.png",
+    "screenshots": [
+      "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/4a80e0db0b97165d2894141efbe79ae3761981788cb5abd62ced0218071100e2.png"
+    ],
+    "links": [
+      {
+        "type": "Download",
+        "name": "VitaDBtoo VPK",
+        "url": "https://github.com/devnoname120/vitabright-lut-editor/releases/download/1.1/vitabright-lut-editor-1.1.vpk",
+        "recommended": false
+      },
+      {
+        "type": "Official Website",
+        "name": "VitaDBtoo Release Page",
+        "url": "https://github.com/devnoname120/vitabright-lut-editor/releases"
+      },
+      {
+        "type": "Official Website",
+        "name": "NeoVitaDB Release Page",
+        "url": "https://github.com/devnoname120/vitabright-lut-editor/releases/tag/1.1"
+      },
+      {
+        "type": "Repository",
+        "name": "Repositorio",
+        "url": "https://github.com/devnoname120/vitabright-lut-editor"
+      },
+      {
+        "type": "Download",
+        "name": "VitaDB VPK",
+        "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=601",
+        "recommended": true
+      },
+      {
+        "type": "Download",
+        "name": "VitaDB VPK",
+        "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1474",
+        "recommended": false
+      },
+      {
+        "type": "Official Website",
+        "name": "VitaDB Release Page",
+        "url": "https://github.com/Zushikina-kun/VitaBrightEX/releases"
+      },
+      {
+        "type": "Repository",
+        "name": "Repositorio",
+        "url": "https://github.com/Zushikina-kun/VitaBrightEX"
+      }
+    ],
+    "source_name": "VitaDBtoo",
+    "source_id": "601",
+    "source_url": "https://github.com/devnoname120/vitabright-lut-editor",
+    "release_page": "https://github.com/devnoname120/vitabright-lut-editor/releases",
+    "updated_at": "2026-08-13T15:34:48.603138+00:00"
   },
   {
     "id": "cod-boz-vita",
@@ -43512,63 +43586,6 @@
     "source_url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/602-Tropical_Zone.vpk",
     "release_page": "",
     "updated_at": "2026-08-13T15:34:48.602677+00:00"
-  },
-  {
-    "id": "vitabright-lut-editor",
-    "title_id": "VBRIGHTTL",
-    "name": "Vitabright Lut Editor",
-    "description": "Companion app for vitabright plugin.",
-    "long_description": "A companion app for vitabright plugin that allows to easily tweak OLED gamma tables.",
-    "author_ids": [
-      "devnoname120"
-    ],
-    "category_id": "utilities",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "v.1.1",
-    "version_date": "2020-12-20",
-    "requirements": "Not specified",
-    "size": 471886,
-    "status": "Legacy",
-    "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/4a80e0db0b97165d2894141efbe79ae3761981788cb5abd62ced0218071100e2.png",
-    "screenshots": [
-      "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/4a80e0db0b97165d2894141efbe79ae3761981788cb5abd62ced0218071100e2.png"
-    ],
-    "links": [
-      {
-        "type": "Download",
-        "name": "VitaDBtoo VPK",
-        "url": "https://github.com/devnoname120/vitabright-lut-editor/releases/download/1.1/vitabright-lut-editor-1.1.vpk",
-        "recommended": false
-      },
-      {
-        "type": "Official Website",
-        "name": "VitaDBtoo Release Page",
-        "url": "https://github.com/devnoname120/vitabright-lut-editor/releases"
-      },
-      {
-        "type": "Official Website",
-        "name": "NeoVitaDB Release Page",
-        "url": "https://github.com/devnoname120/vitabright-lut-editor/releases/tag/1.1"
-      },
-      {
-        "type": "Repository",
-        "name": "Repositorio",
-        "url": "https://github.com/devnoname120/vitabright-lut-editor"
-      },
-      {
-        "type": "Download",
-        "name": "VitaDB VPK",
-        "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=601",
-        "recommended": true
-      }
-    ],
-    "source_name": "VitaDBtoo",
-    "source_id": "601",
-    "source_url": "https://github.com/devnoname120/vitabright-lut-editor",
-    "release_page": "https://github.com/devnoname120/vitabright-lut-editor/releases",
-    "updated_at": "2026-08-13T15:34:48.603138+00:00"
   },
   {
     "id": "vitabrot",

@@ -5,16 +5,17 @@
   "description": "Companion app for vitabright plugin.",
   "long_description": "A companion app for vitabright plugin that allows to easily tweak OLED gamma tables.",
   "author_ids": [
-    "devnoname120"
+    "devnoname120",
+    "zushikina-kun"
   ],
   "category_id": "utilities",
   "subcategory_ids": [
     "other"
   ],
-  "version": "v.1.1",
-  "version_date": "2020-12-20",
+  "version": "v.4.2",
+  "version_date": "2026-08-18",
   "requirements": "Not specified",
-  "size": 471886,
+  "size": 459389,
   "status": "Legacy",
   "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/4a80e0db0b97165d2894141efbe79ae3761981788cb5abd62ced0218071100e2.png",
   "screenshots": [
@@ -47,6 +48,22 @@
       "name": "VitaDB VPK",
       "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=601",
       "recommended": true
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1474",
+      "recommended": false
+    },
+    {
+      "type": "Official Website",
+      "name": "VitaDB Release Page",
+      "url": "https://github.com/Zushikina-kun/VitaBrightEX/releases"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/Zushikina-kun/VitaBrightEX"
     }
   ],
   "source_name": "VitaDBtoo",
