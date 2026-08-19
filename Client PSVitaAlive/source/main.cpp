@@ -467,6 +467,8 @@ int main(){
         psvitaalive::diagnostics::log("[Startup] update check disabled by config");
     }
 
+    psvitaalive::diagnostics::log("[Startup] update phase finished — starting catalogs");
+
     // Catalog and image workers do not exist until the startup update phase is finished.
     if(!catalogs.init())psvitaalive::diagnostics::log("[System] CatalogManager init failed");
     if(!images.init())psvitaalive::diagnostics::log("[System] ImageCache init failed");
