@@ -1,5 +1,51 @@
 [
   {
+    "id": "gbvitaex",
+    "title_id": "GBVX00001",
+    "name": "GBVitaEX",
+    "description": "GB/GBC/GBA emulator for PSVita.",
+    "long_description": "Combines the fastest GBA emulator (gpSP ARMv7 JIT dynarec) with the most accurate GB/GBC emulator (mGBA), in a single standalone native VPK no RetroArch required.",
+    "author_ids": [
+      "zushikina-kun"
+    ],
+    "category_id": "emulators",
+    "subcategory_ids": [
+      "other"
+    ],
+    "version": "v.1.5.2",
+    "version_date": "2026-08-19",
+    "requirements": "Not specified",
+    "size": 792049,
+    "status": "Legacy",
+    "icon": "https://www.rinnegatamante.eu/vitadb/icons/d545734f1f773460151287490f2de15bfa6ea675e58b43baeb1d3fcc1d52bf89.png",
+    "screenshots": [
+      "https://www.rinnegatamante.eu/vitadb/icons/d545734f1f773460151287490f2de15bfa6ea675e58b43baeb1d3fcc1d52bf89.png"
+    ],
+    "links": [
+      {
+        "type": "Download",
+        "name": "VitaDB VPK",
+        "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1472",
+        "recommended": true
+      },
+      {
+        "type": "Official Website",
+        "name": "VitaDB Release Page",
+        "url": "https://github.com/Zushikina-kun/GBVitaEX/releases"
+      },
+      {
+        "type": "Repository",
+        "name": "Repositorio",
+        "url": "https://github.com/Zushikina-kun/GBVitaEX"
+      }
+    ],
+    "source_name": "VitaDB",
+    "source_id": "1472",
+    "source_url": "https://github.com/Zushikina-kun/GBVitaEX",
+    "release_page": "https://github.com/Zushikina-kun/GBVitaEX/releases",
+    "updated_at": "2026-08-19T18:56:46.398303+00:00"
+  },
+  {
     "id": "zenonia-1-remastered-vita",
     "title_id": "ZNNA00002",
     "name": "Zenonia 1 Remastered Vita",
