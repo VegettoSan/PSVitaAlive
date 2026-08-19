@@ -687,7 +687,7 @@ bool UpdateChecker::applyUpdate(
     st.removeFile(kVpkPath);
 
     if (zr != ZipResult::Ok) {
-        diagnostics::log("[UpdateChecker] self-update staging failed: " + toString(zr));
+        diagnostics::log(std::string("[UpdateChecker] self-update staging failed: ") + toString(zr));
         removeTree(STAGE_DIR);
         emitProgress(onProgress, ApplyStage::Error, 0, 0, "Cannot extract update package");
         return false;
