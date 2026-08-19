@@ -1,12 +1,12 @@
 #include "update/update_checker.hpp"
 
 #include "archive/zip_extractor.hpp"
-#include "installer/homebrew_installer.hpp"
 #include "diagnostic_logger.hpp"
 #include "network/http_client.hpp"
 #include "storage/storage_manager.hpp"
 
 #include <psp2/io/fcntl.h>
+#include <psp2/appmgr.h>
 #include <psp2/json.h>
 #include <psp2/kernel/clib.h>
 #include <psp2/sysmodule.h>
@@ -26,7 +26,7 @@ constexpr const char* RELEASES_LATEST_URL =
 constexpr const char* RELEASES_LIST_URL =
     "https://api.github.com/repos/VegettoSan/PSVitaAlive/releases?per_page=10";
 constexpr const char* UPDATE_ASSET_NAME = "PSVitaAlive.vpk";
-constexpr const char* VERSION_MARKER = "ux0:app/PSVAS1178/psvitaalive_version.txt";
+constexpr const char* VERSION_MARKER = "ux0:/app/PSVAS1178/psvitaalive_version.txt";
 
 class VitaJsonAllocator : public sce::Json::MemAllocator {
 public:
@@ -544,44 +544,35 @@ bool UpdateChecker::applyUpdate(
     }
     http.shutdown();
 
-    // Real hardware cannot reliably unzip into ux0:app/<TITLE> while the app is
-    // running ("cannot create destination"). Install the downloaded VPK through
-    // the same HomebrewInstaller / Promoter path used for normal VPK installs
-    // (VitaDB-style promote of PSVAS1178 over itself).
+    // VitaDB / NeoVitaDB self-update (NOT Promoter):
+    //   extract_zip/psarc → ux0:/app/<OWN_TITLEID>
+    //   write hash/version marker
+    //   sceAppMgrLoadExec("app0:eboot.bin", ...) to relaunch
+    // Regular homebrew installs still use Promoter; only the store updates itself this way.
     emitProgress(onProgress, ApplyStage::Extracting, 0, 0, "Installing update (do not power off)");
-    diagnostics::log("[UpdateChecker] installing update VPK via HomebrewInstaller/Promoter");
+    diagnostics::log(std::string("[UpdateChecker] VitaDB-style in-place extract to ") + kAppDir);
 
-    HomebrewInstaller installer;
-    const InstallResult ir = installer.installVpk(
+    ZipExtractor zip;
+    const ZipResult zr = zip.extract(
         kVpkPath,
-        [&](const InstallProgress& ip) {
-            ApplyStage stage = ApplyStage::Extracting;
-            if (ip.stage == InstallProgress::Promoting || ip.stage == InstallProgress::Cleaning) {
-                stage = ApplyStage::Finalizing;
-            } else if (ip.stage == InstallProgress::Done) {
-                stage = ApplyStage::Done;
-            } else if (ip.stage == InstallProgress::Error) {
-                stage = ApplyStage::Error;
-            }
-            const uint64_t cur = ip.entriesTotal > 0 ? ip.entriesDone : ip.bytesWritten;
-            const uint64_t tot = ip.entriesTotal > 0 ? ip.entriesTotal : ip.bytesTotal;
+        kAppDir,
+        [&](const ZipProgress& zp) {
             emitProgress(
                 onProgress,
-                stage,
-                cur,
-                tot,
-                ip.message.empty() ? "Installing update (do not power off)" : ip.message
+                ApplyStage::Extracting,
+                zp.entriesDone,
+                zp.entriesTotal,
+                "Installing update (do not power off)"
             );
         },
-        shouldCancel,
-        true
+        shouldCancel
     );
 
     st.removeFile(kVpkPath);
 
-    if (ir != InstallResult::Ok) {
-        const std::string err = installer.lastError().empty() ? toString(ir) : installer.lastError();
-        diagnostics::log("[UpdateChecker] self-update install failed: " + err);
+    if (zr != ZipResult::Ok) {
+        const std::string err = zip.lastError().empty() ? toString(zr) : zip.lastError();
+        diagnostics::log("[UpdateChecker] self-update extract failed: " + err);
         emitProgress(onProgress, ApplyStage::Error, 0, 0, err.c_str());
         return false;
     }
@@ -592,12 +583,14 @@ bool UpdateChecker::applyUpdate(
         diagnostics::log("[UpdateChecker] version marker write failed (non-fatal)");
     }
 
-    diagnostics::log(
-        "[UpdateChecker] apply OK remote=" + ver +
-        " titleId=" + installer.lastTitleId() +
-        " liveArea=" + (installer.lastLiveAreaOk() ? "yes" : "no")
-    );
-    emitProgress(onProgress, ApplyStage::Done, 1, 1, "Update installed — press START to restart");
+    diagnostics::log("[UpdateChecker] apply OK remote=" + ver + " — relaunching via sceAppMgrLoadExec");
+    emitProgress(onProgress, ApplyStage::Done, 1, 1, "Update installed — restarting");
+
+    // VitaDB: sceAppMgrLoadExec("app0:eboot.bin", NULL, NULL) after self-extract.
+    // If LoadExec fails, caller still shows "press START" via restartRequired.
+    sceAppMgrLoadExec("app0:eboot.bin", nullptr, nullptr);
+
+    diagnostics::log("[UpdateChecker] sceAppMgrLoadExec returned (unexpected) — user must restart manually");
     return true;
 }
 
