@@ -107,7 +107,9 @@ target_link_libraries(${PROJECT_NAME}
   m
 )
 
-vita_create_self(eboot.bin ${PROJECT_NAME})
+# The self-update uses the system Promoter APIs to replace the running app.
+# These private Vita APIs require an UNSAFE SELF.
+vita_create_self(eboot.bin ${PROJECT_NAME} UNSAFE)
 
 # Build the VPK explicitly instead of using vita_create_vpk().
 # VitaSDK's vita_create_vpk() converts FILE paths to absolute paths and its
