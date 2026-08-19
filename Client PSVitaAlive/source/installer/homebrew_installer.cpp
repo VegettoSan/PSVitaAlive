@@ -728,8 +728,7 @@ InstallResult HomebrewInstaller::installVpk(
     if (result == InstallResult::Ok && deleteTempOnSuccess) {
         if (st.exists(tmpDir)) {
             if (!removeTree(tmpDir)) {
-                sceClibPrintf("[HomebrewInstaller] warning: cleanup failed for %s
-", tmpDir.c_str());
+                sceClibPrintf("[HomebrewInstaller] warning: cleanup failed for %s\n", tmpDir.c_str());
                 logLine(std::string("WARNING: cleanup failed for ") + tmpDir);
             } else {
                 logLine("Temporary directory cleanup: success");
