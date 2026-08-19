@@ -63,14 +63,17 @@ public:
     static Result checkLatest(const std::string& currentVersion);
 
     /**
-     * Download and install the client update without writing into the running
-     * application directory. The VPK is staged and promoted by the Vita system.
+     * Download the client update VPK, stage it for PSVAUPDT1, install the helper
+     * process and hand off (VitaShell-style). Never writes into the running app dir.
      */
     static bool applyUpdate(
         const Result& info,
         ApplyProgressFn onProgress = nullptr,
         ApplyCancelFn shouldCancel = nullptr
     );
+
+    /** Remove temporary PSVAUPDT1 bubble after a successful self-update (VitaShell pattern). */
+    static bool cleanupUpdaterBubble();
 };
 
 } // namespace psvitaalive
