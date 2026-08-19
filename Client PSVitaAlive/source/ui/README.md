@@ -1,38 +1,27 @@
-# `source/ui/` — Native user interface
+# `source/ui/` — Native UI
 
-The client UI is rendered with **vita2d** and does not depend on Dear ImGui.
+Rendered with **vita2d** (960×544). Accent color aligns with the store green (`#3BFF00`).
 
-## Main screens
+## Main surface
 
-`FullCatalogScreen` currently supports the main catalog/detail presentation and the related overlays:
+`FullCatalogScreen` covers:
 
-- `FULL_CATALOG` grid view;
-- `SPLIT_DETAIL` detail view;
-- catalog loading/error state;
-- download/install progress;
-- final success/error result state.
+- Full catalog grid
+- Split detail view
+- Catalog loading (including full-screen loading art when configured)
+- Settings
+- Download / install progress and result overlays
+- Search and catalog switching
 
-The visual design targets the PS Vita's 960×544 landscape display and uses the project's dark background with the green `#3BFF00` accent.
+## Supporting pieces
 
-## Installation overlay
+| File | Role |
+|------|------|
+| `image_cache.cpp` | Async icon/screenshot cache; release textures when leaving views |
+| `ui_types.cpp` | Shared UI types |
 
-The installation progress/result state can carry:
+## Rules
 
-- progress percentage;
-- cancel action;
-- success/error outcome;
-- destination path;
-- Title ID;
-- LiveArea verification result;
-- a diagnostic hint pointing to the session log.
-
-## Callbacks
-
-- `setInstallCancelCallback` — cancels an active operation.
-- `setInstallAcknowledgeCallback` — closes the final result panel.
-
-## UI contracts
-
-The UI must not perform filesystem writes or call the Promoter directly. It reads state from the installation/controller layers and requests actions such as install, cancel and acknowledge.
-
-Keep rendering, navigation and application state separate from network/storage/installer implementation details.
+- UI requests actions (install, cancel, acknowledge); it does not promote packages itself.
+- Touch and controls should share the same actions where implemented.
+- Heavy textures should not stay resident when the user leaves a catalog/detail context.
