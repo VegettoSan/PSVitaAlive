@@ -4,6 +4,8 @@
 #include <psp2/kernel/threadmgr.h>
 #include <psp2/sysmodule.h>
 #include <psp2/ime_dialog.h>
+#include <psp2/apputil.h>
+#include <psp2/common_dialog.h>
 #include <psp2/message_dialog.h>
 #include <psp2/ctrl.h>
 #include <psp2/touch.h>
@@ -25,7 +27,70 @@ namespace {
 std::string installStatusText(const psvitaalive::InstallStatus&s){using S=psvitaalive::InstallStatus::State;if(s.state==S::Idle)return{};char b[384];uint64_t p=s.total?std::min<uint64_t>(100,(s.current*100)/s.total):0;sceClibSnprintf(b,sizeof(b),"%s | %s | %llu%% | %s",s.stage.c_str(),s.fileName.empty()?"file":s.fileName.c_str(),(unsigned long long)p,s.message.c_str());return b;}
 bool asciiToWide(const std::string&text,SceWChar16*out,size_t cap){if(!out||!cap)return false;size_t i=0;for(;i+1<cap&&i<text.size();++i){unsigned char c=(unsigned char)text[i];out[i]=(SceWChar16)(c<128?c:'?');}out[i]=0;return true;}
 std::string wideToAscii(const SceWChar16*t){if(!t)return{};std::string r;for(size_t i=0;t[i]&&i<2048;++i)r.push_back(t[i]<=0x7F?(char)t[i]:'?');return r;}
-bool promptText(const std::string&initial,const std::string&title,std::string&out){static bool loaded=false;if(!loaded){int r=sceSysmoduleLoadModule(SCE_SYSMODULE_IME);if(r<0)return false;loaded=true;}SceWChar16 input[256]={},wtitle[128]={};asciiToWide(initial,input,256);asciiToWide(title,wtitle,128);SceImeDialogParam p={};p.type=SCE_IME_TYPE_BASIC_LATIN;p.option=SCE_IME_OPTION_NO_AUTO_CAPITALIZATION;p.dialogMode=SCE_IME_DIALOG_DIALOG_MODE_WITH_CANCEL;p.textBoxMode=SCE_IME_DIALOG_TEXTBOX_MODE_WITH_CLEAR;p.title=wtitle;p.maxTextLength=255;p.initialText=input;p.inputTextBuffer=input;p.supportedLanguages=SCE_IME_LANGUAGE_ENGLISH|SCE_IME_LANGUAGE_SPANISH;p.enterLabel=SCE_IME_ENTER_LABEL_SEARCH;p.commonParam.magic=SCE_COMMON_DIALOG_MAGIC_NUMBER;if(sceImeDialogInit(&p)<0)return false;while(sceImeDialogGetStatus()==SCE_COMMON_DIALOG_STATUS_RUNNING)sceKernelDelayThread(10*1000);SceImeDialogResult r={};sceImeDialogGetResult(&r);bool ok=r.button==SCE_IME_DIALOG_BUTTON_ENTER;if(ok)out=wideToAscii(input);sceImeDialogTerm();return ok;}
+bool promptText(const std::string& initial, const std::string& title, std::string& out) {
+    // Real hardware requires:
+    //   1) sceAppUtilInit + sceCommonDialogSetConfigParam (done at startup)
+    //   2) sceImeDialogParamInit (not manual magic)
+    //   3) a render loop with vita2d_common_dialog_update() + swap
+    // Vita3K tolerates a delay-only wait; the console does not (keyboard never appears).
+    static bool imeModuleLoaded = false;
+    if (!imeModuleLoaded) {
+        const int r = sceSysmoduleLoadModule(SCE_SYSMODULE_IME);
+        if (r < 0) {
+            sceClibPrintf("[UI] SCE_SYSMODULE_IME load failed: 0x%08X\n", r);
+            return false;
+        }
+        imeModuleLoaded = true;
+    }
+
+    SceWChar16 input[SCE_IME_DIALOG_MAX_TEXT_LENGTH + 1];
+    SceWChar16 wtitle[SCE_IME_DIALOG_MAX_TITLE_LENGTH + 1];
+    sceClibMemset(input, 0, sizeof(input));
+    sceClibMemset(wtitle, 0, sizeof(wtitle));
+    asciiToWide(initial, input, SCE_IME_DIALOG_MAX_TEXT_LENGTH + 1);
+    asciiToWide(title, wtitle, SCE_IME_DIALOG_MAX_TITLE_LENGTH + 1);
+
+    SceImeDialogParam param;
+    sceImeDialogParamInit(&param);
+    param.supportedLanguages = SCE_IME_LANGUAGE_ENGLISH | SCE_IME_LANGUAGE_SPANISH;
+    param.languagesForced = SCE_TRUE;
+    param.type = SCE_IME_TYPE_BASIC_LATIN;
+    param.option = SCE_IME_OPTION_NO_AUTO_CAPITALIZATION;
+    param.dialogMode = SCE_IME_DIALOG_DIALOG_MODE_WITH_CANCEL;
+    param.textBoxMode = SCE_IME_DIALOG_TEXTBOX_MODE_WITH_CLEAR;
+    param.title = wtitle;
+    param.maxTextLength = SCE_IME_DIALOG_MAX_TEXT_LENGTH;
+    param.initialText = input;
+    param.inputTextBuffer = input;
+    param.enterLabel = SCE_IME_ENTER_LABEL_SEARCH;
+
+    const int initRes = sceImeDialogInit(&param);
+    if (initRes < 0) {
+        sceClibPrintf("[UI] sceImeDialogInit failed: 0x%08X\n", initRes);
+        return false;
+    }
+
+    while (sceImeDialogGetStatus() != SCE_COMMON_DIALOG_STATUS_FINISHED) {
+        vita2d_start_drawing();
+        vita2d_clear_screen();
+        // Dim backdrop so the OS keyboard has contrast; common dialog draws on top.
+        vita2d_draw_rectangle(0, 0, 960, 544, RGBA8(0, 0, 0, 180));
+        vita2d_end_drawing();
+        vita2d_common_dialog_update();
+        vita2d_swap_buffers();
+        sceKernelDelayThread(1000); // ~1ms, keep responsive
+    }
+
+    SceImeDialogResult result;
+    sceClibMemset(&result, 0, sizeof(result));
+    sceImeDialogGetResult(&result);
+    const bool ok = (result.button == SCE_IME_DIALOG_BUTTON_ENTER);
+    if (ok) {
+        out = wideToAscii(input);
+    }
+    sceImeDialogTerm();
+    return ok;
+}
 
 bool peekFrontTouch(int& outX, int& outY, bool& down) {
     static bool touchInited = false;
@@ -396,6 +461,25 @@ int main(){
     psvitaalive::diagnostics::log("============================================================");
     psvitaalive::diagnostics::log("PSVitaAlive session BEGIN");
     psvitaalive::diagnostics::log("TitleID=PSVAS1178");
+
+    // Required for system dialogs (IME keyboard) on real hardware — VitaDB does this.
+    {
+        SceAppUtilInitParam appUtilParam;
+        SceAppUtilBootParam appUtilBootParam;
+        sceClibMemset(&appUtilParam, 0, sizeof(appUtilParam));
+        sceClibMemset(&appUtilBootParam, 0, sizeof(appUtilBootParam));
+        const int appUtilRes = sceAppUtilInit(&appUtilParam, &appUtilBootParam);
+        if (appUtilRes < 0) {
+            psvitaalive::diagnostics::log("[System] sceAppUtilInit failed (IME may not work)");
+        }
+
+        SceCommonDialogConfigParam cmnDlgCfgParam;
+        sceCommonDialogConfigParamInit(&cmnDlgCfgParam);
+        sceAppUtilSystemParamGetInt(SCE_SYSTEM_PARAM_ID_LANG, (int*)&cmnDlgCfgParam.language);
+        sceAppUtilSystemParamGetInt(SCE_SYSTEM_PARAM_ID_ENTER_BUTTON, (int*)&cmnDlgCfgParam.enterButtonAssign);
+        sceCommonDialogSetConfigParam(&cmnDlgCfgParam);
+        psvitaalive::diagnostics::log("[System] AppUtil + CommonDialog initialized for IME");
+    }
 
     psvitaalive::StorageManager storage;storage.initProjectDirs();
     psvitaalive::InstallController installer;psvitaalive::CatalogManager catalogs;psvitaalive::ui::ImageCache images;
