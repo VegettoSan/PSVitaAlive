@@ -482,6 +482,26 @@ function renderGameLinkList(
             }
 
             if (
+                linkData.version
+            ) {
+
+                metaParts.push(
+                    "v" + String(linkData.version)
+                );
+
+            }
+
+            if (
+                linkData.required_fw
+            ) {
+
+                metaParts.push(
+                    "FW " + String(linkData.required_fw)
+                );
+
+            }
+
+            if (
                 linkData.description
             ) {
 
@@ -597,6 +617,16 @@ function renderGameLinks(game) {
             "game-dlc"
         );
 
+    const updatesSection =
+        document.getElementById(
+            "game-updates-section"
+        );
+
+    const updatesContainer =
+        document.getElementById(
+            "game-updates"
+        );
+
     const otherLinksSection =
         document.getElementById(
             "game-other-links-section"
@@ -609,10 +639,16 @@ function renderGameLinks(game) {
 
     downloadsContainer.innerHTML = "";
     dlcContainer.innerHTML = "";
+    if (updatesContainer) {
+        updatesContainer.innerHTML = "";
+    }
     otherLinksContainer.innerHTML = "";
 
     downloadsSection.hidden = true;
     dlcSection.hidden = true;
+    if (updatesSection) {
+        updatesSection.hidden = true;
+    }
     otherLinksSection.hidden = true;
 
     const links =
@@ -628,6 +664,7 @@ function renderGameLinks(game) {
 
     const downloads = [];
     const dlcs = [];
+    const updates = [];
     const otherLinks = [];
 
     links.forEach(
@@ -662,6 +699,20 @@ function renderGameLinks(game) {
                 return;
             }
 
+            if (
+                type === "update" ||
+                type === "updates" ||
+                type === "patch" ||
+                type === "patches"
+            ) {
+
+                updates.push(
+                    link
+                );
+
+                return;
+            }
+
             /*
              * Everything else goes here.
              *
@@ -672,7 +723,6 @@ function renderGameLinks(game) {
              * Issues
              * Community
              * Mirror
-             * Update
              * Other
              * and future types.
              */
@@ -708,6 +758,24 @@ function renderGameLinks(game) {
         }
     );
 
+    // Prefer newer update versions first when version field exists
+    updates.sort(
+        (a, b) => {
+            const va = String(a.version || "");
+            const vb = String(b.version || "");
+            if (va && vb && va !== vb) {
+                return vb.localeCompare(va, undefined, { numeric: true });
+            }
+            if (a.recommended === true && b.recommended !== true) {
+                return -1;
+            }
+            if (a.recommended !== true && b.recommended === true) {
+                return 1;
+            }
+            return 0;
+        }
+    );
+
     renderGameLinkList(
         downloads,
         downloadsContainer,
@@ -720,6 +788,14 @@ function renderGameLinks(game) {
         "dlc"
     );
 
+    if (updatesContainer) {
+        renderGameLinkList(
+            updates,
+            updatesContainer,
+            "update"
+        );
+    }
+
     renderGameLinkList(
         otherLinks,
         otherLinksContainer,
@@ -731,6 +807,11 @@ function renderGameLinks(game) {
 
     dlcSection.hidden =
         dlcs.length === 0;
+
+    if (updatesSection) {
+        updatesSection.hidden =
+            updates.length === 0;
+    }
 
     otherLinksSection.hidden =
         otherLinks.length === 0;
