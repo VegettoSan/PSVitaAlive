@@ -11,10 +11,10 @@
   "subcategory_ids": [
     "other"
   ],
-  "version": "v.0.1",
-  "version_date": "2026-08-18",
+  "version": "v.0.1.1",
+  "version_date": "2026-08-19",
   "requirements": "- libshacccg.suprx\n- kubridge.skprx\n- Game Data Files: Android",
-  "size": 2567574,
+  "size": 2567578,
   "status": "Legacy",
   "icon": "https://www.rinnegatamante.eu/vitadb/icons/a3e2c3b210c6c1b938b0a840009078e78c501f16a2ed78e233958183322d9382.png",
   "screenshots": [
