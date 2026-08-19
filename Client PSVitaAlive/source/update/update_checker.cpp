@@ -770,9 +770,7 @@ bool UpdateChecker::applyUpdate(
     );
 
     if (zr != ZipResult::Ok) {
-        diagnostics::log(std::string("[UpdateChecker] extract failed: ") + toString(zr) +
-                         " err=" + ZipExtractor().lastError());
-        // lastError on a temporary extractor is empty - log result only
+        diagnostics::log(std::string("[UpdateChecker] extract failed: ") + toString(zr));
         removeTree(PROMOTE_DIR);
         emitProgress(
             onProgress,
