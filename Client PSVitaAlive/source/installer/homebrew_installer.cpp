@@ -306,6 +306,31 @@ bool HomebrewInstaller::removeTree(const std::string& path) {
 InstallResult HomebrewInstaller::promoteExtractedDir(const std::string& dir) {
     logLine(std::string("promoteExtractedDir: ") + dir);
 
+    // VitaDB uses a shallow path under ux0:data (ux0:/data/vdb_vpk). Deep paths
+    // under ux0:data/psvitaalive/tmp/inst_* have produced operationResult=-1 on
+    // real hardware even when PromotePkg(sync) returned 0.
+    constexpr const char* kPromoteDir = "ux0:data/psvitaalive/pkg";
+    StorageManager st;
+    std::string promoteDir = kPromoteDir;
+
+    if (dir != promoteDir) {
+        logLine(std::string("staging promote dir: ") + promoteDir);
+        st.removeDirectory(promoteDir);
+        const int ren = sceIoRename(dir.c_str(), promoteDir.c_str());
+        if (ren < 0) {
+            char buf[112];
+            sceClibSnprintf(buf, sizeof(buf), "sceIoRename to promote dir failed: 0x%08X — copying", ren);
+            logLine(buf);
+            if (!st.createDirectories(promoteDir) || !copyTreeRecursive(dir, promoteDir)) {
+                setError("cannot stage package into promote directory");
+                return InstallResult::IoError;
+            }
+            removeTree(dir);
+        } else {
+            logLine("promote package staged via rename");
+        }
+    }
+
     const int initResult = scePromoterUtilityInit();
     logResult("scePromoterUtilityInit", initResult);
     if (initResult < 0) {
@@ -316,16 +341,11 @@ InstallResult HomebrewInstaller::promoteExtractedDir(const std::string& dir) {
         return InstallResult::PromoteFailed;
     }
 
-    // The previous implementation used sync=0 and immediately called Exit and
-    // unloaded the promoter modules. That starts an asynchronous operation and
-    // can leave the installer reporting success while ux0:app/<TITLE_ID> does
-    // not exist yet (or ever completes). VitaDB/NeoVitaDB explicitly waits for
-    // promoter completion. Use the synchronous mode here so the call only
-    // returns after the package has been promoted and the LiveArea entry has
-    // been created.
-    logMilestone("PromotePkg sync begin (waiting for system...)");
-    const int promoteResult = scePromoterUtilityPromotePkg(dir.c_str(), 1);
-    logResult("scePromoterUtilityPromotePkg(sync=1)", promoteResult);
+    // VitaDB pattern: PromotePkg(..., 0) async + poll GetState until 0.
+    // Sync mode (1) returned API success but operationResult=-1 on real hardware.
+    logMilestone("PromotePkg async begin (VitaDB-style wait)");
+    const int promoteResult = scePromoterUtilityPromotePkg(promoteDir.c_str(), 0);
+    logResult("scePromoterUtilityPromotePkg(sync=0)", promoteResult);
     lastPromoteResult_ = promoteResult;
     {
         char buf[128];
@@ -333,21 +353,47 @@ InstallResult HomebrewInstaller::promoteExtractedDir(const std::string& dir) {
         logMilestone(buf);
     }
 
+    if (promoteResult < 0) {
+        const int exitResult = scePromoterUtilityExit();
+        logResult("scePromoterUtilityExit", exitResult);
+        char buf[80];
+        sceClibSnprintf(buf, sizeof(buf), "scePromoterUtilityPromotePkg: 0x%08X", promoteResult);
+        setError(buf);
+        return InstallResult::PromoteFailed;
+    }
+
+    int state = 1;
+    int pollCount = 0;
+    const int kMaxPolls = 6000;
+    while (pollCount < kMaxPolls) {
+        const int stRes = scePromoterUtilityGetState(&state);
+        if (stRes < 0) {
+            char buf[96];
+            sceClibSnprintf(buf, sizeof(buf), "scePromoterUtilityGetState failed: 0x%08X", stRes);
+            logLine(buf);
+            lastPromoteResult_ = stRes;
+            break;
+        }
+        if (state == 0) break;
+        ++pollCount;
+        if ((pollCount % 100) == 0) {
+            char buf[72];
+            sceClibSnprintf(buf, sizeof(buf), "PromotePkg waiting state=%d polls=%d", state, pollCount);
+            logLine(buf);
+        }
+        sceKernelDelayThread(10 * 1000);
+    }
+
     int operationResult = 0;
     const int getResultCall = scePromoterUtilityGetResult(&operationResult);
     {
-        char buf[192];
+        char buf[200];
         sceClibSnprintf(
             buf, sizeof(buf),
-            "scePromoterUtilityGetResult call=0x%08X (%d) operationResult=0x%08X (%d)",
-            getResultCall, getResultCall, operationResult, operationResult
+            "scePromoterUtilityGetResult call=0x%08X (%d) operationResult=0x%08X (%d) polls=%d finalState=%d",
+            getResultCall, getResultCall, operationResult, operationResult, pollCount, state
         );
         logMilestone(buf);
-    }
-    if (getResultCall < 0) {
-        lastPromoteResult_ = getResultCall;
-    } else if (operationResult != 0) {
-        lastPromoteResult_ = operationResult;
     }
 
     const int exitResult = scePromoterUtilityExit();
@@ -358,24 +404,29 @@ InstallResult HomebrewInstaller::promoteExtractedDir(const std::string& dir) {
         logMilestone(buf);
     }
 
-    if (promoteResult < 0) {
-        char buf[80];
-        sceClibSnprintf(buf, sizeof(buf), "scePromoterUtilityPromotePkg: 0x%08X", promoteResult);
-        setError(buf);
+    // VitaDB success signal: promote directory was consumed by the system.
+    const bool promoteDirGone = !st.exists(promoteDir);
+    logLine(promoteDirGone
+        ? "promote dir consumed (success signal, VitaDB-style)"
+        : "promote dir still present after PromotePkg");
+
+    if (getResultCall >= 0 && operationResult != 0) {
+        lastPromoteResult_ = operationResult;
+        if (!promoteDirGone) {
+            char buf[80];
+            sceClibSnprintf(buf, sizeof(buf), "promoter operation failed: 0x%08X", operationResult);
+            setError(buf);
+            return InstallResult::PromoteFailed;
+        }
+        logLine("GetResult non-zero but promote dir consumed — treating as success");
+    }
+
+    if (state != 0 && !promoteDirGone) {
+        setError("promoter did not finish (timeout or stuck state)");
+        lastPromoteResult_ = -1;
         return InstallResult::PromoteFailed;
     }
-    if (getResultCall < 0) {
-        char buf[80];
-        sceClibSnprintf(buf, sizeof(buf), "scePromoterUtilityGetResult: 0x%08X", getResultCall);
-        setError(buf);
-        return InstallResult::PromoteFailed;
-    }
-    if (operationResult != 0) {
-        char buf[80];
-        sceClibSnprintf(buf, sizeof(buf), "promoter operation failed: 0x%08X", operationResult);
-        setError(buf);
-        return InstallResult::PromoteFailed;
-    }
+
     if (exitResult < 0) {
         char buf[80];
         sceClibSnprintf(buf, sizeof(buf), "scePromoterUtilityExit: 0x%08X", exitResult);
