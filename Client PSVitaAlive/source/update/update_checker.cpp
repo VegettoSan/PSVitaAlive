@@ -32,12 +32,16 @@ constexpr const char* RELEASES_LIST_URL =
     "https://api.github.com/repos/VegettoSan/PSVitaAlive/releases?per_page=10";
 constexpr const char* UPDATE_ASSET_NAME = "PSVitaAlive.vpk";
 constexpr const char* VERSION_MARKER = "ux0:/app/PSVAS1178/psvitaalive_version.txt";
-// Staging package consumed by the PSVAUPDT1 helper process (VitaShell pattern).
+// Same shallow promote path as HomebrewInstaller (working VPK installs).
+constexpr const char* PROMOTE_DIR = "ux0:data/psva_vpk";
+// Legacy intermediate path (migrated to PROMOTE_DIR before launching updater).
 constexpr const char* PACKAGE_DIR = "ux0:data/psvitaalive/pkg";
 constexpr const char* UPDATER_TITLE_ID = "PSVAUPDT1";
 constexpr const char* UPDATER_PKG_DIR = "ux0:data/psvitaalive/updater_pkg";
 constexpr const char* UPDATER_EBOOT_SRC = "app0:updater/eboot.bin";
 constexpr const char* UPDATER_SFO_SRC = "app0:updater/param.sfo";
+constexpr const char* UPDATE_LOG_NOTE =
+    "ux0:data/psvitaalive/logs/updater.log (written by PSVAUPDT1)";
 
 class VitaJsonAllocator : public sce::Json::MemAllocator {
 public:
@@ -396,14 +400,16 @@ bool copyFileSimple(const std::string& src, const std::string& dst) {
 }
 
 bool promoteDirAsync(const std::string& dir) {
-    if (!loadPromoterModules()) return false;
-    const int initResult = scePromoterUtilityInit();
-    if (initResult < 0) {
-        diagnostics::log("[UpdateChecker] scePromoterUtilityInit failed " + std::to_string(initResult));
+    diagnostics::log("[UpdateChecker] promoteDirAsync: " + dir);
+    if (!loadPromoterModules()) {
+        diagnostics::log("[UpdateChecker] promoteDirAsync: loadPromoterModules failed");
         return false;
     }
+    const int initResult = scePromoterUtilityInit();
+    diagnostics::log("[UpdateChecker] scePromoterUtilityInit -> " + std::to_string(initResult));
+    if (initResult < 0) return false;
     const int promoteResult = scePromoterUtilityPromotePkg(dir.c_str(), 0);
-    diagnostics::log("[UpdateChecker] PromotePkg(" + dir + ") -> " + std::to_string(promoteResult));
+    diagnostics::log("[UpdateChecker] PromotePkg(sync=0) " + dir + " -> " + std::to_string(promoteResult));
     if (promoteResult < 0) {
         scePromoterUtilityExit();
         return false;
@@ -413,17 +419,29 @@ bool promoteDirAsync(const std::string& dir) {
     while (polls < 12000) {
         state = 0;
         const int sr = scePromoterUtilityGetState(&state);
-        if (sr < 0) break;
+        if (sr < 0) {
+            diagnostics::log("[UpdateChecker] GetState -> " + std::to_string(sr));
+            break;
+        }
         if (state == 0) break;
+        if ((polls % 200) == 0) {
+            diagnostics::log("[UpdateChecker] promote wait state=" + std::to_string(state) +
+                             " polls=" + std::to_string(polls));
+        }
         sceKernelDelayThread(10 * 1000);
         ++polls;
     }
     int op = 0;
-    scePromoterUtilityGetResult(&op);
+    const int gr = scePromoterUtilityGetResult(&op);
+    diagnostics::log("[UpdateChecker] GetResult call=" + std::to_string(gr) +
+                     " op=" + std::to_string(op) +
+                     " polls=" + std::to_string(polls) +
+                     " state=" + std::to_string(state));
     scePromoterUtilityExit();
-    if (state != 0 || op != 0) {
-        diagnostics::log("[UpdateChecker] promote incomplete state=" + std::to_string(state) +
-                         " op=" + std::to_string(op));
+    const bool gone = !fileExists(dir);
+    diagnostics::log(std::string("[UpdateChecker] promote dir consumed=") + (gone ? "yes" : "no"));
+    if (state != 0) {
+        diagnostics::log("[UpdateChecker] promote incomplete state=" + std::to_string(state));
         return false;
     }
     return true;
@@ -431,6 +449,7 @@ bool promoteDirAsync(const std::string& dir) {
 
 // Install/refresh the temporary PSVAUPDT1 helper from files packed in the client VPK.
 bool installUpdaterHelper() {
+    diagnostics::log("[UpdateChecker] installUpdaterHelper: begin");
     StorageManager st;
     removeTree(UPDATER_PKG_DIR);
     if (!st.createDirectories(std::string(UPDATER_PKG_DIR) + "/sce_sys")) {
@@ -445,15 +464,19 @@ bool installUpdaterHelper() {
         diagnostics::log("[UpdateChecker] failed to copy updater eboot");
         return false;
     }
+    diagnostics::log("[UpdateChecker] copied updater eboot.bin");
     if (!copyFileSimple(UPDATER_SFO_SRC, std::string(UPDATER_PKG_DIR) + "/sce_sys/param.sfo")) {
         diagnostics::log("[UpdateChecker] failed to copy updater param.sfo");
         return false;
     }
-    // Optional UI asset so the helper can show the same loading background.
+    diagnostics::log("[UpdateChecker] copied updater param.sfo");
     st.createDirectories(std::string(UPDATER_PKG_DIR) + "/ui");
     if (fileExists("app0:ui/catalog_loading.png")) {
-        copyFileSimple("app0:ui/catalog_loading.png",
+        const bool ok = copyFileSimple("app0:ui/catalog_loading.png",
                        std::string(UPDATER_PKG_DIR) + "/ui/catalog_loading.png");
+        diagnostics::log(std::string("[UpdateChecker] catalog_loading.png copy ") + (ok ? "OK" : "FAIL"));
+    } else {
+        diagnostics::log("[UpdateChecker] catalog_loading.png not in app0:ui (UI will be plain)");
     }
 
     FakePackageBuilder builder;
@@ -462,6 +485,7 @@ bool installUpdaterHelper() {
         removeTree(UPDATER_PKG_DIR);
         return false;
     }
+    diagnostics::log("[UpdateChecker] updater head.bin OK - promoting PSVAUPDT1");
     if (!promoteDirAsync(UPDATER_PKG_DIR)) {
         diagnostics::log("[UpdateChecker] updater promote failed");
         removeTree(UPDATER_PKG_DIR);
@@ -653,6 +677,16 @@ bool UpdateChecker::applyUpdate(
     ApplyProgressFn onProgress,
     ApplyCancelFn shouldCancel
 ) {
+    diagnostics::log("[UpdateChecker] ===== applyUpdate BEGIN =====");
+    diagnostics::log(std::string("[UpdateChecker] remote=") + info.remoteVersion +
+                     " tag=" + info.releaseTag +
+                     " asset=" + info.assetName +
+                     " url=" + info.downloadUrl +
+                     " size=" + std::to_string(info.assetSize));
+    diagnostics::log(std::string("[UpdateChecker] VPK path=") + kVpkPath);
+    diagnostics::log(std::string("[UpdateChecker] promote path (homebrew-aligned)=") + PROMOTE_DIR);
+    diagnostics::log(std::string("[UpdateChecker] updater log will be at ") + UPDATE_LOG_NOTE);
+
     if (info.downloadUrl.empty()) {
         diagnostics::log("[UpdateChecker] apply failed: empty download URL");
         emitProgress(onProgress, ApplyStage::Error, 0, 0, "No download URL");
@@ -669,7 +703,9 @@ bool UpdateChecker::applyUpdate(
     }
     st.removeFile(kVpkPath);
     removeTree(PACKAGE_DIR);
+    removeTree(PROMOTE_DIR);
     removeTree(UPDATER_PKG_DIR);
+    diagnostics::log("[UpdateChecker] cleaned previous staging/update dirs");
 
     if (shouldCancel && shouldCancel()) {
         emitProgress(onProgress, ApplyStage::Error, 0, 0, "Cancelled");
@@ -678,6 +714,7 @@ bool UpdateChecker::applyUpdate(
 
     HttpClient http;
     if (http.init() != HttpResult::Ok) {
+        diagnostics::log("[UpdateChecker] HTTP init failed");
         emitProgress(onProgress, ApplyStage::Error, 0, 0, "HTTP init failed");
         return false;
     }
@@ -698,21 +735,33 @@ bool UpdateChecker::applyUpdate(
 
     if (dl != HttpResult::Ok) {
         const std::string err = http.lastError().empty() ? toString(dl) : http.lastError();
-        diagnostics::log("[UpdateChecker] download failed: " + err);
+        diagnostics::log("[UpdateChecker] download failed: " + err +
+                         " status=" + std::to_string(http.lastStatusCode()));
         st.removeFile(kVpkPath);
         http.shutdown();
         emitProgress(onProgress, ApplyStage::Error, 0, 0, err.c_str());
         return false;
     }
     http.shutdown();
+    {
+        SceIoStat vst{};
+        const int vr = sceIoGetstat(kVpkPath, &vst);
+        char buf[160];
+        sceClibSnprintf(buf, sizeof(buf),
+            "[UpdateChecker] VPK on disk stat=%d size=%u path=%s",
+            vr, vr >= 0 ? (unsigned)vst.st_size : 0u, kVpkPath);
+        diagnostics::log(buf);
+    }
 
     // Keep the VPK on disk for manual recovery if anything below fails.
     emitProgress(onProgress, ApplyStage::Extracting, 0, 0, "Extracting update package");
-    diagnostics::log(std::string("[UpdateChecker] extracting update VPK to ") + PACKAGE_DIR);
+    diagnostics::log(std::string("[UpdateChecker] extracting VPK -> ") + PROMOTE_DIR +
+                     " (same path as homebrew VPK installs)");
 
+    removeTree(PROMOTE_DIR);
     const ZipResult zr = ZipExtractor().extract(
         kVpkPath,
-        PACKAGE_DIR,
+        PROMOTE_DIR,
         [&](const ZipProgress& zp) {
             emitProgress(onProgress, ApplyStage::Extracting, zp.entriesDone, zp.entriesTotal,
                          "Extracting update package");
@@ -721,8 +770,10 @@ bool UpdateChecker::applyUpdate(
     );
 
     if (zr != ZipResult::Ok) {
-        diagnostics::log(std::string("[UpdateChecker] extract failed: ") + toString(zr));
-        removeTree(PACKAGE_DIR);
+        diagnostics::log(std::string("[UpdateChecker] extract failed: ") + toString(zr) +
+                         " err=" + ZipExtractor().lastError());
+        // lastError on a temporary extractor is empty - log result only
+        removeTree(PROMOTE_DIR);
         emitProgress(
             onProgress,
             ApplyStage::Error,
@@ -732,9 +783,14 @@ bool UpdateChecker::applyUpdate(
         );
         return false;
     }
+    diagnostics::log("[UpdateChecker] extract OK");
+    diagnostics::log(std::string("[UpdateChecker] exists eboot=") +
+                     (fileExists(std::string(PROMOTE_DIR) + "/eboot.bin") ? "yes" : "no") +
+                     " param=" +
+                     (fileExists(std::string(PROMOTE_DIR) + "/sce_sys/param.sfo") ? "yes" : "no"));
 
     FakePackageBuilder builder;
-    if (!builder.build(PACKAGE_DIR)) {
+    if (!builder.build(PROMOTE_DIR)) {
         diagnostics::log("[UpdateChecker] head.bin failed: " + builder.lastError());
         emitProgress(
             onProgress,
@@ -745,11 +801,17 @@ bool UpdateChecker::applyUpdate(
         );
         return false;
     }
+    diagnostics::log(std::string("[UpdateChecker] head.bin OK exists=") +
+                     (fileExists(std::string(PROMOTE_DIR) + "/sce_sys/package/head.bin") ? "yes" : "no"));
 
     emitProgress(onProgress, ApplyStage::Finalizing, 0, 0, "Preparing updater...");
-    diagnostics::log("[UpdateChecker] installing PSVAUPDT1 helper (VitaShell-style)");
+    diagnostics::log("[UpdateChecker] installing PSVAUPDT1 helper from app0:updater/");
+    diagnostics::log(std::string("[UpdateChecker] updater eboot src exists=") +
+                     (fileExists(UPDATER_EBOOT_SRC) ? "yes" : "no") +
+                     " sfo=" + (fileExists(UPDATER_SFO_SRC) ? "yes" : "no"));
 
     if (!installUpdaterHelper()) {
+        diagnostics::log("[UpdateChecker] installUpdaterHelper FAILED");
         emitProgress(
             onProgress,
             ApplyStage::Error,
@@ -759,15 +821,19 @@ bool UpdateChecker::applyUpdate(
         );
         return false;
     }
+    diagnostics::log("[UpdateChecker] PSVAUPDT1 helper installed OK");
 
     const std::string ver = info.remoteVersion.empty() ? info.releaseTag : info.remoteVersion;
     if (!writeVersionMarker(ver)) {
         diagnostics::log("[UpdateChecker] version marker write failed (non-fatal)");
+    } else {
+        diagnostics::log("[UpdateChecker] version marker written: " + ver);
     }
 
-    diagnostics::log("[UpdateChecker] launching PSVAUPDT1 then exiting client");
+    diagnostics::log("[UpdateChecker] handing off to PSVAUPDT1 (client will exit)");
+    diagnostics::log("[UpdateChecker] after update, check ux0:data/psvitaalive/logs/updater.log");
+    diagnostics::log("[UpdateChecker] ===== applyUpdate handoff =====");
     emitProgress(onProgress, ApplyStage::Done, 1, 1, "Starting updater...");
-    // Does not return on success.
     launchUpdaterAndExit();
     diagnostics::log("[UpdateChecker] launchUpdater returned unexpectedly");
     emitProgress(
@@ -798,7 +864,7 @@ bool UpdateChecker::cleanupUpdaterBubble() {
         scePromoterUtilityExit();
         return true;
     }
-    diagnostics::log("[UpdateChecker] cleanupUpdater: deleting PSVAUPDT1");
+    diagnostics::log("[UpdateChecker] cleanupUpdater: deleting PSVAUPDT1 bubble");
     sceAppMgrDestroyOtherApp();
     const int del = scePromoterUtilityDeletePkg(UPDATER_TITLE_ID);
     diagnostics::log("[UpdateChecker] DeletePkg(PSVAUPDT1) -> " + std::to_string(del));
