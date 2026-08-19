@@ -22,6 +22,8 @@ namespace {
 constexpr const char* TMP_ROOT = "ux0:data/psvitaalive/tmp";
 constexpr const char* LOG_ROOT = "ux0:data/psvitaalive/logs";
 constexpr const char* INSTALL_LOG = "ux0:data/psvitaalive/logs/install.log";
+// VitaDB uses ux0:/data/vdb_vpk — shallow path under ux0:data is required on real hardware.
+constexpr const char* kVpkPromoteDir = "ux0:data/psva_vpk";
 
 bool isDotEntry(const char* name) {
     return name && (std::strcmp(name, ".") == 0 || std::strcmp(name, "..") == 0);
@@ -304,31 +306,53 @@ bool HomebrewInstaller::removeTree(const std::string& path) {
 }
 
 InstallResult HomebrewInstaller::promoteExtractedDir(const std::string& dir) {
+    // VitaDB install sequence (source/main.cpp + promoter.cpp):
+    //   1) package lives at shallow ux0:/data/vdb_vpk
+    //   2) makeHeadBin(dir) if head.bin missing
+    //   3) scePromoterUtilityInit()
+    //   4) scePromoterUtilityPromotePkg(dir, 0)   // ASYNC
+    //   5) while (GetState(&state) >= 0 && state) wait
+    //   6) scePromoterUtilityTerm/Exit
+    //   7) success iff promote dir was consumed (stat fails)
+    // We mirror that exactly. GetResult is logged only — VitaDB never uses it.
     logLine(std::string("promoteExtractedDir: ") + dir);
 
-    // VitaDB uses a shallow path under ux0:data (ux0:/data/vdb_vpk). Deep paths
-    // under ux0:data/psvitaalive/tmp/inst_* have produced operationResult=-1 on
-    // real hardware even when PromotePkg(sync) returned 0.
-    constexpr const char* kPromoteDir = "ux0:data/psvitaalive/pkg";
     StorageManager st;
-    std::string promoteDir = kPromoteDir;
+    std::string promoteDir = kVpkPromoteDir;
 
     if (dir != promoteDir) {
-        logLine(std::string("staging promote dir: ") + promoteDir);
-        st.removeDirectory(promoteDir);
+        logLine(std::string("staging to VitaDB-style path: ") + promoteDir);
+        if (st.exists(promoteDir)) {
+            removeTree(promoteDir);
+        }
         const int ren = sceIoRename(dir.c_str(), promoteDir.c_str());
         if (ren < 0) {
             char buf[112];
-            sceClibSnprintf(buf, sizeof(buf), "sceIoRename to promote dir failed: 0x%08X — copying", ren);
+            sceClibSnprintf(buf, sizeof(buf), "sceIoRename failed: 0x%08X — recursive copy", ren);
             logLine(buf);
             if (!st.createDirectories(promoteDir) || !copyTreeRecursive(dir, promoteDir)) {
-                setError("cannot stage package into promote directory");
+                setError("cannot stage package into ux0:data/psva_vpk");
                 return InstallResult::IoError;
             }
             removeTree(dir);
         } else {
-            logLine("promote package staged via rename");
+            logLine("package staged via rename");
         }
+    }
+
+    // Ensure package dir ends without requiring trailing slash for PromotePkg.
+    logPathState("Promote package root", promoteDir);
+    logPathState("Promote eboot.bin", promoteDir + "/eboot.bin");
+    logPathState("Promote param.sfo", promoteDir + "/sce_sys/param.sfo");
+    logPathState("Promote head.bin", promoteDir + "/sce_sys/package/head.bin");
+
+    if (!st.exists(promoteDir + "/eboot.bin") || !st.exists(promoteDir + "/sce_sys/param.sfo")) {
+        setError("invalid package layout before promote");
+        return InstallResult::ExtractFailed;
+    }
+    if (!st.exists(promoteDir + "/sce_sys/package/head.bin")) {
+        setError("missing sce_sys/package/head.bin before promote");
+        return InstallResult::PromoteFailed;
     }
 
     const int initResult = scePromoterUtilityInit();
@@ -341,9 +365,7 @@ InstallResult HomebrewInstaller::promoteExtractedDir(const std::string& dir) {
         return InstallResult::PromoteFailed;
     }
 
-    // VitaDB pattern: PromotePkg(..., 0) async + poll GetState until 0.
-    // Sync mode (1) returned API success but operationResult=-1 on real hardware.
-    logMilestone("PromotePkg async begin (VitaDB-style wait)");
+    logMilestone("PromotePkg async begin (VitaDB: sync=0 + GetState)");
     const int promoteResult = scePromoterUtilityPromotePkg(promoteDir.c_str(), 0);
     logResult("scePromoterUtilityPromotePkg(sync=0)", promoteResult);
     lastPromoteResult_ = promoteResult;
@@ -354,29 +376,30 @@ InstallResult HomebrewInstaller::promoteExtractedDir(const std::string& dir) {
     }
 
     if (promoteResult < 0) {
-        const int exitResult = scePromoterUtilityExit();
-        logResult("scePromoterUtilityExit", exitResult);
+        scePromoterUtilityExit();
         char buf[80];
         sceClibSnprintf(buf, sizeof(buf), "scePromoterUtilityPromotePkg: 0x%08X", promoteResult);
         setError(buf);
         return InstallResult::PromoteFailed;
     }
 
+    // Poll until idle — same loop structure as VitaDB (no frame swap required).
     int state = 1;
     int pollCount = 0;
-    const int kMaxPolls = 6000;
+    const int kMaxPolls = 12000; // ~120s @ 10ms
     while (pollCount < kMaxPolls) {
+        state = 0;
         const int stRes = scePromoterUtilityGetState(&state);
         if (stRes < 0) {
             char buf[96];
-            sceClibSnprintf(buf, sizeof(buf), "scePromoterUtilityGetState failed: 0x%08X", stRes);
+            sceClibSnprintf(buf, sizeof(buf), "scePromoterUtilityGetState: 0x%08X", stRes);
             logLine(buf);
             lastPromoteResult_ = stRes;
             break;
         }
         if (state == 0) break;
         ++pollCount;
-        if ((pollCount % 100) == 0) {
+        if ((pollCount % 200) == 0) {
             char buf[72];
             sceClibSnprintf(buf, sizeof(buf), "PromotePkg waiting state=%d polls=%d", state, pollCount);
             logLine(buf);
@@ -384,57 +407,48 @@ InstallResult HomebrewInstaller::promoteExtractedDir(const std::string& dir) {
         sceKernelDelayThread(10 * 1000);
     }
 
+    // Diagnostic only — VitaDB does not gate success on GetResult.
     int operationResult = 0;
     const int getResultCall = scePromoterUtilityGetResult(&operationResult);
     {
         char buf[200];
         sceClibSnprintf(
             buf, sizeof(buf),
-            "scePromoterUtilityGetResult call=0x%08X (%d) operationResult=0x%08X (%d) polls=%d finalState=%d",
-            getResultCall, getResultCall, operationResult, operationResult, pollCount, state
+            "GetResult (diagnostic) call=0x%08X op=0x%08X polls=%d finalState=%d",
+            getResultCall, operationResult, pollCount, state
         );
         logMilestone(buf);
     }
 
     const int exitResult = scePromoterUtilityExit();
     logResult("scePromoterUtilityExit", exitResult);
-    {
-        char buf[96];
-        sceClibSnprintf(buf, sizeof(buf), "scePromoterUtilityExit => 0x%08X (%d)", exitResult, exitResult);
-        logMilestone(buf);
-    }
 
-    // VitaDB success signal: promote directory was consumed by the system.
+    // VitaDB success criterion: TEMP_INSTALL_DIR no longer exists.
     const bool promoteDirGone = !st.exists(promoteDir);
     logLine(promoteDirGone
-        ? "promote dir consumed (success signal, VitaDB-style)"
+        ? "promote dir consumed (VitaDB success signal)"
         : "promote dir still present after PromotePkg");
 
-    if (getResultCall >= 0 && operationResult != 0) {
-        lastPromoteResult_ = operationResult;
-        if (!promoteDirGone) {
-            char buf[80];
-            sceClibSnprintf(buf, sizeof(buf), "promoter operation failed: 0x%08X", operationResult);
-            setError(buf);
-            return InstallResult::PromoteFailed;
-        }
-        logLine("GetResult non-zero but promote dir consumed — treating as success");
+    if (promoteResult < 0) {
+        setError("PromotePkg failed");
+        return InstallResult::PromoteFailed;
     }
 
-    if (state != 0 && !promoteDirGone) {
-        setError("promoter did not finish (timeout or stuck state)");
+    if (!promoteDirGone && state != 0) {
+        setError("promoter did not finish (timeout)");
         lastPromoteResult_ = -1;
         return InstallResult::PromoteFailed;
     }
 
-    if (exitResult < 0) {
-        char buf[80];
-        sceClibSnprintf(buf, sizeof(buf), "scePromoterUtilityExit: 0x%08X", exitResult);
-        setError(buf);
-        return InstallResult::PromoteFailed;
+    // If dir still present but state==0, treat as soft failure for caller to recover
+    // via copy fallback; do not hard-fail on GetResult==-1 (common on some FW).
+    if (!promoteDirGone) {
+        logLine("WARNING: promote finished but staging dir remains — caller may fallback");
+        lastPromoteResult_ = (getResultCall >= 0 && operationResult != 0) ? operationResult : lastPromoteResult_;
+        // Still return Ok so post-check / fallback can run; filesystem is source of truth.
     }
 
-    logLine("promoteExtractedDir: promoter completed successfully");
+    logLine("promoteExtractedDir: promoter sequence completed");
     return InstallResult::Ok;
 }
 
@@ -484,12 +498,17 @@ InstallResult HomebrewInstaller::installVpk(
     if (shouldCancel && shouldCancel()) { setError("cancelled"); return InstallResult::Cancelled; }
     if (!st.createDirectories(TMP_ROOT)) { setError("cannot create tmp root"); return InstallResult::IoError; }
 
-    char tmpName[160];
-    sceClibSnprintf(tmpName, sizeof(tmpName), "%s/inst_%llu", TMP_ROOT,
-        (unsigned long long)sceKernelGetProcessTimeWide());
-    const std::string tmpDir = tmpName;
-    if (!st.createDirectories(tmpDir)) { setError("cannot create VPK temp directory"); return InstallResult::IoError; }
-    logLine(std::string("Temporary directory: ") + tmpDir);
+    // Extract straight into the shallow promote root (VitaDB: ux0:/data/vdb_vpk).
+    const std::string tmpDir = kVpkPromoteDir;
+    if (st.exists(tmpDir)) {
+        removeTree(tmpDir);
+        logLine(std::string("cleared previous promote dir: ") + tmpDir);
+    }
+    if (!st.createDirectories(tmpDir)) {
+        setError("cannot create VPK promote directory (ux0:data/psva_vpk)");
+        return InstallResult::IoError;
+    }
+    logLine(std::string("VPK extract/promote directory: ") + tmpDir);
 
     if (onProgress) {
         InstallProgress p;
@@ -604,7 +623,7 @@ InstallResult HomebrewInstaller::installVpk(
         const std::string paramSfo = appDir + "/sce_sys/param.sfo";
         const std::string icon0 = appDir + "/sce_sys/icon0.png";
         const std::string eboot = appDir + "/eboot.bin";
-        constexpr const char* kPromoteDir = "ux0:data/psvitaalive/pkg";
+        constexpr const char* kPromoteDir = "ux0:data/psva_vpk";
 
         logMilestone(std::string("Expected LiveArea/app path: ") + appDir);
 
@@ -704,8 +723,8 @@ InstallResult HomebrewInstaller::installVpk(
 
     // Cleanup staging after verification.
     // Real hardware often consumes the package dir; Vita3K frequently leaves
-    // ux0:data/psvitaalive/pkg behind — always scrub extract + promote paths.
-    constexpr const char* kPromoteDirCleanup = "ux0:data/psvitaalive/pkg";
+    // ux0:data/psva_vpk behind — always scrub extract + promote paths.
+    constexpr const char* kVpkPromoteDir = "ux0:data/psva_vpk";
     if (result == InstallResult::Ok && deleteTempOnSuccess) {
         if (st.exists(tmpDir)) {
             if (!removeTree(tmpDir)) {
@@ -716,16 +735,16 @@ InstallResult HomebrewInstaller::installVpk(
                 logLine("Temporary directory cleanup: success");
             }
         }
-        if (st.exists(kPromoteDirCleanup)) {
-            if (!removeTree(kPromoteDirCleanup)) {
-                logLine(std::string("WARNING: cleanup failed for ") + kPromoteDirCleanup);
+        if (st.exists(kVpkPromoteDir)) {
+            if (!removeTree(kVpkPromoteDir)) {
+                logLine(std::string("WARNING: cleanup failed for ") + kVpkPromoteDir);
             } else {
                 logLine("Promote staging directory cleanup: success");
             }
         }
     } else if (result != InstallResult::Ok) {
-        if (st.exists(kPromoteDirCleanup)) {
-            removeTree(kPromoteDirCleanup);
+        if (st.exists(kVpkPromoteDir)) {
+            removeTree(kVpkPromoteDir);
             logLine("Promote staging directory removed after failed install");
         }
         if (st.exists(tmpDir)) {
