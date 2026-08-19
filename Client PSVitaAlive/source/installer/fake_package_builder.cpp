@@ -200,8 +200,7 @@ bool FakePackageBuilder::build(const std::string& packageDir) {
         SceUID existing = sceIoOpen(headPath.c_str(), SCE_O_RDONLY, 0);
         if (existing >= 0) {
             sceIoClose(existing);
-            sceClibPrintf("[FakePackageBuilder] head.bin already present - skip
-");
+            sceClibPrintf("[FakePackageBuilder] head.bin already present - skip\n");
             return true;
         }
     }
