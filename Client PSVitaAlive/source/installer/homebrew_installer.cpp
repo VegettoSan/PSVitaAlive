@@ -702,13 +702,35 @@ InstallResult HomebrewInstaller::installVpk(
         onProgress(p);
     }
 
-    // Cleanup only after verification so mid-crash still leaves tmp + logs.
+    // Cleanup staging after verification.
+    // Real hardware often consumes the package dir; Vita3K frequently leaves
+    // ux0:data/psvitaalive/pkg behind — always scrub extract + promote paths.
+    constexpr const char* kPromoteDirCleanup = "ux0:data/psvitaalive/pkg";
     if (result == InstallResult::Ok && deleteTempOnSuccess) {
-        if (!removeTree(tmpDir)) {
-            sceClibPrintf("[HomebrewInstaller] warning: cleanup failed for %s\n", tmpDir.c_str());
-            logLine(std::string("WARNING: cleanup failed for ") + tmpDir);
-        } else {
-            logLine("Temporary directory cleanup: success");
+        if (st.exists(tmpDir)) {
+            if (!removeTree(tmpDir)) {
+                sceClibPrintf("[HomebrewInstaller] warning: cleanup failed for %s
+", tmpDir.c_str());
+                logLine(std::string("WARNING: cleanup failed for ") + tmpDir);
+            } else {
+                logLine("Temporary directory cleanup: success");
+            }
+        }
+        if (st.exists(kPromoteDirCleanup)) {
+            if (!removeTree(kPromoteDirCleanup)) {
+                logLine(std::string("WARNING: cleanup failed for ") + kPromoteDirCleanup);
+            } else {
+                logLine("Promote staging directory cleanup: success");
+            }
+        }
+    } else if (result != InstallResult::Ok) {
+        if (st.exists(kPromoteDirCleanup)) {
+            removeTree(kPromoteDirCleanup);
+            logLine("Promote staging directory removed after failed install");
+        }
+        if (st.exists(tmpDir)) {
+            removeTree(tmpDir);
+            logLine("Temporary directory removed after failed install");
         }
     }
 
