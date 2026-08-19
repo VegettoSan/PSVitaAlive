@@ -45,9 +45,13 @@ private:
     std::string message_;
     std::string error_;
     std::string version_;
+    // Filled on the main thread by checkLatest; worker only runs applyUpdate.
+    UpdateChecker::Result pendingCheck_{};
+    bool hasPendingCheck_ = false;
 
     static int workerEntry(SceSize args, void* argp);
     int workerMain();
+    bool startApplyWorker();
     void setProgress(State state, uint64_t current, uint64_t total, uint64_t bytesPerSecond, const std::string& message);
     void setError(const std::string& error);
 };
