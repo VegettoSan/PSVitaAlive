@@ -596,18 +596,23 @@ InstallResult HomebrewInstaller::installVpk(
         lastInstallPath_ = std::string("ux0:app/") + titleId;
     }
 
-    if (result == InstallResult::Ok && !titleId.empty()) {
+    // Verify / recover install whenever we have a Title ID: promoter OK, or
+    // promoter failed but staged package may still be recovered via copy+refresh.
+    if (!titleId.empty() &&
+        (result == InstallResult::Ok || result == InstallResult::PromoteFailed)) {
         const std::string appDir = std::string("ux0:app/") + titleId;
         const std::string paramSfo = appDir + "/sce_sys/param.sfo";
         const std::string icon0 = appDir + "/sce_sys/icon0.png";
         const std::string eboot = appDir + "/eboot.bin";
+        constexpr const char* kPromoteDir = "ux0:data/psvitaalive/pkg";
 
         logMilestone(std::string("Expected LiveArea/app path: ") + appDir);
 
         // Hardware can lag after PromotePkg; retry instead of a single short wait.
         bool hasTree = false;
         bool hasIcon = false;
-        for (int attempt = 1; attempt <= 8; ++attempt) {
+        const int maxAttempts = (result == InstallResult::Ok) ? 8 : 2;
+        for (int attempt = 1; attempt <= maxAttempts; ++attempt) {
             sceKernelDelayThread((400 + attempt * 200) * 1000);
 
             hasTree = st.exists(appDir) && (st.exists(paramSfo) || st.exists(eboot));
@@ -633,16 +638,28 @@ InstallResult HomebrewInstaller::installVpk(
         logPathState("Post-promote icon0.png", icon0);
         logPathState("Post-promote eboot.bin", eboot);
 
+        if (hasTree && result == InstallResult::PromoteFailed) {
+            logMilestone("App tree present after reported promote failure — treating as success");
+            result = InstallResult::Ok;
+            lastError_.clear();
+        }
+
         if (!hasTree) {
-            // Vita3K often returns PromotePkg success without creating ux0:app.
-            // Fallback: copy the extracted package tree into place (homebrew layout).
-            logMilestone("Promote returned OK but app tree missing — trying direct copy fallback");
-            if (st.exists(tmpDir) && copyTreeRecursive(tmpDir, appDir)) {
+            // Prefer staged promote dir (after rename); fall back to original extract dir.
+            const std::string srcDir = st.exists(kPromoteDir) ? std::string(kPromoteDir)
+                : (st.exists(tmpDir) ? tmpDir : std::string());
+            logMilestone(std::string("App tree missing — trying direct copy fallback from ") +
+                (srcDir.empty() ? "(none)" : srcDir));
+            if (!srcDir.empty() && copyTreeRecursive(srcDir, appDir)) {
                 hasTree = st.exists(appDir) && (st.exists(paramSfo) || st.exists(eboot));
                 hasIcon = st.exists(icon0);
                 logMilestone(hasTree
                     ? "Fallback copy to ux0:app succeeded"
                     : "Fallback copy finished but verification still failed");
+                if (hasTree) {
+                    result = InstallResult::Ok;
+                    lastError_.clear();
+                }
 
                 // Fallback only copies files; it does not register the LiveArea bubble.
                 // VitaShell-style refresh: move ux0:app/<id> → ux0:temp/app and PromotePkg.
