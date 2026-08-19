@@ -1,6 +1,7 @@
 #include "update/update_checker.hpp"
 
 #include "archive/zip_extractor.hpp"
+#include "installer/homebrew_installer.hpp"
 #include "diagnostic_logger.hpp"
 #include "network/http_client.hpp"
 #include "storage/storage_manager.hpp"
@@ -543,33 +544,44 @@ bool UpdateChecker::applyUpdate(
     }
     http.shutdown();
 
+    // Real hardware cannot reliably unzip into ux0:app/<TITLE> while the app is
+    // running ("cannot create destination"). Install the downloaded VPK through
+    // the same HomebrewInstaller / Promoter path used for normal VPK installs
+    // (VitaDB-style promote of PSVAS1178 over itself).
     emitProgress(onProgress, ApplyStage::Extracting, 0, 0, "Installing update (do not power off)");
-    diagnostics::log("[UpdateChecker] extracting in-place to " + std::string(kAppDir));
+    diagnostics::log("[UpdateChecker] installing update VPK via HomebrewInstaller/Promoter");
 
-    if (!st.createDirectories(kAppDir)) {
-        diagnostics::log("[UpdateChecker] app dir missing and could not create");
-    }
-
-    ZipExtractor zip;
-    const ZipResult zr = zip.extract(
+    HomebrewInstaller installer;
+    const InstallResult ir = installer.installVpk(
         kVpkPath,
-        kAppDir,
-        [&](const ZipProgress& zp) {
+        [&](const InstallProgress& ip) {
+            ApplyStage stage = ApplyStage::Extracting;
+            if (ip.stage == InstallProgress::Promoting || ip.stage == InstallProgress::Cleaning) {
+                stage = ApplyStage::Finalizing;
+            } else if (ip.stage == InstallProgress::Done) {
+                stage = ApplyStage::Done;
+            } else if (ip.stage == InstallProgress::Error) {
+                stage = ApplyStage::Error;
+            }
+            const uint64_t cur = ip.entriesTotal > 0 ? ip.entriesDone : ip.bytesWritten;
+            const uint64_t tot = ip.entriesTotal > 0 ? ip.entriesTotal : ip.bytesTotal;
             emitProgress(
                 onProgress,
-                ApplyStage::Extracting,
-                zp.entriesDone,
-                zp.entriesTotal,
-                "Installing update (do not power off)"
+                stage,
+                cur,
+                tot,
+                ip.message.empty() ? "Installing update (do not power off)" : ip.message
             );
         },
-        nullptr
+        shouldCancel,
+        true
     );
 
-    if (zr != ZipResult::Ok) {
-        const std::string err = zip.lastError().empty() ? toString(zr) : zip.lastError();
-        diagnostics::log("[UpdateChecker] extract failed: " + err);
-        st.removeFile(kVpkPath);
+    st.removeFile(kVpkPath);
+
+    if (ir != InstallResult::Ok) {
+        const std::string err = installer.lastError().empty() ? toString(ir) : installer.lastError();
+        diagnostics::log("[UpdateChecker] self-update install failed: " + err);
         emitProgress(onProgress, ApplyStage::Error, 0, 0, err.c_str());
         return false;
     }
@@ -580,9 +592,12 @@ bool UpdateChecker::applyUpdate(
         diagnostics::log("[UpdateChecker] version marker write failed (non-fatal)");
     }
 
-    st.removeFile(kVpkPath);
-    diagnostics::log("[UpdateChecker] apply OK remote=" + ver);
-    emitProgress(onProgress, ApplyStage::Done, 1, 1, "Update installed — close and reopen the app");
+    diagnostics::log(
+        "[UpdateChecker] apply OK remote=" + ver +
+        " titleId=" + installer.lastTitleId() +
+        " liveArea=" + (installer.lastLiveAreaOk() ? "yes" : "no")
+    );
+    emitProgress(onProgress, ApplyStage::Done, 1, 1, "Update installed — press START to restart");
     return true;
 }
 
