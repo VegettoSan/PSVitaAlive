@@ -520,14 +520,14 @@ UpdateChecker::Result UpdateChecker::checkLatest(const std::string& currentVersi
 
     const int statusLatest = http.lastStatusCode();
     if (statusLatest == 403 || statusLatest == 429) {
-        result.error = "GitHub temporarily unavailable (HTTP 403/429) — update check skipped";
+        result.error = "GitHub temporarily unavailable (HTTP 403/429) - update check skipped";
         diagnostics::log("[UpdateChecker] " + result.error);
         http.shutdown();
         return result;
     }
 
     if (fetchResult != HttpResult::Ok || statusLatest == 404 || body.empty()) {
-        diagnostics::log("[UpdateChecker] releases/latest unavailable — falling back to releases list");
+        diagnostics::log("[UpdateChecker] releases/latest unavailable - falling back to releases list");
         body.clear();
         fetchResult = http.fetchToString(RELEASES_LIST_URL, body, 512 * 1024);
         usedReleaseList = true;
@@ -535,7 +535,7 @@ UpdateChecker::Result UpdateChecker::checkLatest(const std::string& currentVersi
 
         const int statusList = http.lastStatusCode();
         if (statusList == 403 || statusList == 429) {
-            result.error = "GitHub temporarily unavailable (HTTP 403/429) — update check skipped";
+            result.error = "GitHub temporarily unavailable (HTTP 403/429) - update check skipped";
             diagnostics::log("[UpdateChecker] " + result.error);
             http.shutdown();
             return result;
@@ -794,7 +794,7 @@ bool UpdateChecker::cleanupUpdaterBubble() {
     int exists = 0;
     const int check = scePromoterUtilityCheckExist(UPDATER_TITLE_ID, &exists);
     if (check < 0) {
-        // Not installed / API quirk — treat as nothing to do.
+        // Not installed / API quirk - treat as nothing to do.
         scePromoterUtilityExit();
         return true;
     }
