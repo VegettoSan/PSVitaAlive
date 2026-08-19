@@ -195,6 +195,17 @@ bool FakePackageBuilder::build(const std::string& packageDir) {
     const std::string packagePath = packageDir + "/sce_sys/package";
     const std::string headPath = packagePath + "/head.bin";
 
+    // VitaDB makeHeadBin: if head.bin already exists, leave it untouched.
+    {
+        SceUID existing = sceIoOpen(headPath.c_str(), SCE_O_RDONLY, 0);
+        if (existing >= 0) {
+            sceIoClose(existing);
+            sceClibPrintf("[FakePackageBuilder] head.bin already present — skip
+");
+            return true;
+        }
+    }
+
     std::vector<uint8_t> sfo;
     std::string error;
     if (!readFile(paramPath, sfo, error)) {
