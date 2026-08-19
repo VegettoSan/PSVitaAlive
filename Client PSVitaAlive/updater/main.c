@@ -27,7 +27,6 @@
 #include <vita2d.h>
 
 #include <stdio.h>
-#include <stdarg.h>
 #include <string.h>
 
 #define CLIENT_TITLE_ID    "PSVAS1178"
@@ -65,16 +64,6 @@ static void logLine(const char* msg) {
     }
 }
 
-static void logf(const char* fmt, ...) {
-    char buf[480];
-    va_list ap;
-    va_start(ap, fmt);
-    /* sceClibVsnprintf may not exist on all SDKs; use vsnprintf from newlib if linked.
-       Fallback: format via sceClibSnprintf only for simple cases. */
-    vsnprintf(buf, sizeof(buf), fmt, ap);
-    va_end(ap);
-    logLine(buf);
-}
 
 static int fileExists(const char* path) {
     SceIoStat st;
@@ -134,7 +123,7 @@ static int removeTree(const char* path) {
 static int launchClientAndExit(void) {
     char uri[48];
     sceClibSnprintf(uri, sizeof(uri), "psgm:play?titleid=%s", CLIENT_TITLE_ID);
-    logf("launchClient uri=%s", uri);
+    { char _lb[480]; sceClibSnprintf(_lb, sizeof(_lb), "launchClient uri=%s", uri); logLine(_lb); };
     logClose();
     sceAppMgrLaunchAppByUri(0xFFFFF, uri);
     sceKernelExitProcess(0);
@@ -150,20 +139,20 @@ static int loadScePaf(void) {
     buf[2] = (uint32_t)-1;
     buf[3] = (uint32_t)-1;
     const int r = sceSysmoduleLoadModuleInternalWithArg(SCE_SYSMODULE_INTERNAL_PAF, sizeof(argp), argp, buf);
-    logf("loadScePaf -> 0x%08X result=%d", (unsigned)r, result);
+    { char _lb[480]; sceClibSnprintf(_lb, sizeof(_lb), "loadScePaf -> 0x%08X result=%d", (unsigned)r, result); logLine(_lb); };
     return r;
 }
 
 static int unloadScePaf(void) {
     uint32_t buf = 0;
     const int r = sceSysmoduleUnloadModuleInternalWithArg(SCE_SYSMODULE_INTERNAL_PAF, 0, NULL, &buf);
-    logf("unloadScePaf -> 0x%08X", (unsigned)r);
+    { char _lb[480]; sceClibSnprintf(_lb, sizeof(_lb), "unloadScePaf -> 0x%08X", (unsigned)r); logLine(_lb); };
     return r;
 }
 
 /* Mirror HomebrewInstaller::promoteExtractedDir success rules. */
 static int promotePackageHomebrewStyle(const char* path) {
-    logf("promote begin path=%s", path);
+    { char _lb[480]; sceClibSnprintf(_lb, sizeof(_lb), "promote begin path=%s", path); logLine(_lb); };
     logPathState("package root", path);
     logPathState("eboot.bin", "ux0:data/psva_vpk/eboot.bin");
     logPathState("param.sfo", "ux0:data/psva_vpk/sce_sys/param.sfo");
@@ -185,14 +174,14 @@ static int promotePackageHomebrewStyle(const char* path) {
     }
 
     res = sceSysmoduleLoadModuleInternal(SCE_SYSMODULE_INTERNAL_PROMOTER_UTIL);
-    logf("LoadModuleInternal(PROMOTER_UTIL) -> 0x%08X", (unsigned)res);
+    { char _lb[480]; sceClibSnprintf(_lb, sizeof(_lb), "LoadModuleInternal(PROMOTER_UTIL) -> 0x%08X", (unsigned)res); logLine(_lb); };
     if (res < 0 && sceSysmoduleIsLoadedInternal(SCE_SYSMODULE_INTERNAL_PROMOTER_UTIL) < 0) {
         unloadScePaf();
         return res;
     }
 
     const int initResult = scePromoterUtilityInit();
-    logf("scePromoterUtilityInit -> 0x%08X", (unsigned)initResult);
+    { char _lb[480]; sceClibSnprintf(_lb, sizeof(_lb), "scePromoterUtilityInit -> 0x%08X", (unsigned)initResult); logLine(_lb); };
     if (initResult < 0) {
         sceSysmoduleUnloadModuleInternal(SCE_SYSMODULE_INTERNAL_PROMOTER_UTIL);
         unloadScePaf();
@@ -201,8 +190,8 @@ static int promotePackageHomebrewStyle(const char* path) {
 
     logLine("PromotePkg async begin (homebrew/VitaDB: sync=0 + GetState)");
     const int promoteResult = scePromoterUtilityPromotePkg(path, 0);
-    logf("scePromoterUtilityPromotePkg(sync=0) -> 0x%08X (%d)",
-         (unsigned)promoteResult, promoteResult);
+    { char _lb[480]; sceClibSnprintf(_lb, sizeof(_lb), "scePromoterUtilityPromotePkg(sync=0) -> 0x%08X (%d)",
+         (unsigned)promoteResult, promoteResult); logLine(_lb); };
 
     if (promoteResult < 0) {
         scePromoterUtilityExit();
@@ -218,24 +207,24 @@ static int promotePackageHomebrewStyle(const char* path) {
         state = 0;
         const int stRes = scePromoterUtilityGetState(&state);
         if (stRes < 0) {
-            logf("scePromoterUtilityGetState -> 0x%08X", (unsigned)stRes);
+            { char _lb[480]; sceClibSnprintf(_lb, sizeof(_lb), "scePromoterUtilityGetState -> 0x%08X", (unsigned)stRes); logLine(_lb); };
             break;
         }
         if (state == 0) break;
         ++pollCount;
         if ((pollCount % 200) == 0) {
-            logf("PromotePkg waiting state=%d polls=%d", state, pollCount);
+            { char _lb[480]; sceClibSnprintf(_lb, sizeof(_lb), "PromotePkg waiting state=%d polls=%d", state, pollCount); logLine(_lb); };
         }
         sceKernelDelayThread(10 * 1000);
     }
 
     int operationResult = 0;
     const int getResultCall = scePromoterUtilityGetResult(&operationResult);
-    logf("GetResult (diagnostic) call=0x%08X op=0x%08X polls=%d finalState=%d",
-         (unsigned)getResultCall, (unsigned)operationResult, pollCount, state);
+    { char _lb[480]; sceClibSnprintf(_lb, sizeof(_lb), "GetResult (diagnostic) call=0x%08X op=0x%08X polls=%d finalState=%d",
+         (unsigned)getResultCall, (unsigned)operationResult, pollCount, state); logLine(_lb); };
 
     const int exitResult = scePromoterUtilityExit();
-    logf("scePromoterUtilityExit -> 0x%08X", (unsigned)exitResult);
+    { char _lb[480]; sceClibSnprintf(_lb, sizeof(_lb), "scePromoterUtilityExit -> 0x%08X", (unsigned)exitResult); logLine(_lb); };
     sceSysmoduleUnloadModuleInternal(SCE_SYSMODULE_INTERNAL_PROMOTER_UTIL);
     unloadScePaf();
 
@@ -265,7 +254,7 @@ static int ensurePromoteDirReady(void) {
         logLine("migrating legacy pkg -> ux0:data/psva_vpk");
         removeTree(PROMOTE_DIR);
         const int ren = sceIoRename(LEGACY_PKG_DIR, PROMOTE_DIR);
-        logf("sceIoRename(legacy->psva_vpk) -> 0x%08X", (unsigned)ren);
+        { char _lb[480]; sceClibSnprintf(_lb, sizeof(_lb), "sceIoRename(legacy->psva_vpk) -> 0x%08X", (unsigned)ren); logLine(_lb); };
         if (ren < 0) {
             logLine("ERROR: cannot migrate legacy package dir");
             return -1;
@@ -336,7 +325,7 @@ static void waitFrames(vita2d_pgf* font, vita2d_texture* bg,
 
 static void failLoop(vita2d_pgf* font, vita2d_texture* bg,
                      const char* title, const char* l1, const char* l2) {
-    logf("FAIL: %s | %s | %s", title ? title : "", l1 ? l1 : "", l2 ? l2 : "");
+    { char _lb[480]; sceClibSnprintf(_lb, sizeof(_lb), "FAIL: %s | %s | %s", title ? title : "", l1 ? l1 : "", l2 ? l2 : ""); logLine(_lb); };
     logClose();
     for (;;) {
         drawFrame(font, bg, title, l1, l2, 0.f, 0);
@@ -358,7 +347,7 @@ int main(int argc, char* argv[]) {
     vita2d_set_clear_color(RGBA8(0x12, 0x12, 0x12, 255));
     vita2d_pgf* font = vita2d_load_default_pgf();
     vita2d_texture* bg = vita2d_load_PNG_file("app0:ui/catalog_loading.png");
-    logf("ui font=%p bg=%p", (void*)font, (void*)bg);
+    { char _lb[480]; sceClibSnprintf(_lb, sizeof(_lb), "ui font=%p bg=%p", (void*)font, (void*)bg); logLine(_lb); };
 
     waitFrames(font, bg, "Installing update", "Closing other applications...", "", 0.10f, 1, 20);
     logLine("sceAppMgrDestroyOtherApp()");
@@ -390,7 +379,7 @@ int main(int argc, char* argv[]) {
     const int ok =
         fileExists("ux0:app/" CLIENT_TITLE_ID "/eboot.bin") ||
         fileExists("ux0:/app/" CLIENT_TITLE_ID "/eboot.bin");
-    logf("verify client eboot -> %s", ok ? "OK" : "MISSING");
+    { char _lb[480]; sceClibSnprintf(_lb, sizeof(_lb), "verify client eboot -> %s", ok ? "OK" : "MISSING"); logLine(_lb); };
     logPathState("client eboot", "ux0:app/" CLIENT_TITLE_ID "/eboot.bin");
     logPathState("client param", "ux0:app/" CLIENT_TITLE_ID "/sce_sys/param.sfo");
 
