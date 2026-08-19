@@ -627,6 +627,16 @@ function renderGameLinks(game) {
             "game-updates"
         );
 
+    const modsSection =
+        document.getElementById(
+            "game-mods-section"
+        );
+
+    const modsContainer =
+        document.getElementById(
+            "game-mods"
+        );
+
     const otherLinksSection =
         document.getElementById(
             "game-other-links-section"
@@ -642,12 +652,18 @@ function renderGameLinks(game) {
     if (updatesContainer) {
         updatesContainer.innerHTML = "";
     }
+    if (modsContainer) {
+        modsContainer.innerHTML = "";
+    }
     otherLinksContainer.innerHTML = "";
 
     downloadsSection.hidden = true;
     dlcSection.hidden = true;
     if (updatesSection) {
         updatesSection.hidden = true;
+    }
+    if (modsSection) {
+        modsSection.hidden = true;
     }
     otherLinksSection.hidden = true;
 
@@ -665,6 +681,7 @@ function renderGameLinks(game) {
     const downloads = [];
     const dlcs = [];
     const updates = [];
+    const mods = [];
     const otherLinks = [];
 
     links.forEach(
@@ -707,6 +724,21 @@ function renderGameLinks(game) {
             ) {
 
                 updates.push(
+                    link
+                );
+
+                return;
+            }
+
+            if (
+                type === "mod" ||
+                type === "mods" ||
+                type === "modding" ||
+                type === "mod pack" ||
+                type === "modpack"
+            ) {
+
+                mods.push(
                     link
                 );
 
@@ -796,6 +828,14 @@ function renderGameLinks(game) {
         );
     }
 
+    if (modsContainer) {
+        renderGameLinkList(
+            mods,
+            modsContainer,
+            "mod"
+        );
+    }
+
     renderGameLinkList(
         otherLinks,
         otherLinksContainer,
@@ -811,6 +851,11 @@ function renderGameLinks(game) {
     if (updatesSection) {
         updatesSection.hidden =
             updates.length === 0;
+    }
+
+    if (modsSection) {
+        modsSection.hidden =
+            mods.length === 0;
     }
 
     otherLinksSection.hidden =
