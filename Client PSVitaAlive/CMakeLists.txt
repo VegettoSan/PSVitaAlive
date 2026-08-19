@@ -117,7 +117,6 @@ set(UPDATER_APP_NAME "PSVitaAlive Updater")
 set(UPDATER_SOURCES updater/main.c)
 
 add_executable(PSVitaAliveUpdater ${UPDATER_SOURCES})
-target_compile_options(PSVitaAliveUpdater PRIVATE -fno-rtti)
 target_link_libraries(PSVitaAliveUpdater
   vita2d
   png
