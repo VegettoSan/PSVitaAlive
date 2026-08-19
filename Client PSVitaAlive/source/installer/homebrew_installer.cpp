@@ -22,7 +22,7 @@ namespace {
 constexpr const char* TMP_ROOT = "ux0:data/psvitaalive/tmp";
 constexpr const char* LOG_ROOT = "ux0:data/psvitaalive/logs";
 constexpr const char* INSTALL_LOG = "ux0:data/psvitaalive/logs/install.log";
-// VitaDB uses ux0:/data/vdb_vpk — shallow path under ux0:data is required on real hardware.
+// VitaDB uses ux0:/data/vdb_vpk - shallow path under ux0:data is required on real hardware.
 constexpr const char* kVpkPromoteDir = "ux0:data/psva_vpk";
 
 bool isDotEntry(const char* name) {
@@ -314,7 +314,7 @@ InstallResult HomebrewInstaller::promoteExtractedDir(const std::string& dir) {
     //   5) while (GetState(&state) >= 0 && state) wait
     //   6) scePromoterUtilityTerm/Exit
     //   7) success iff promote dir was consumed (stat fails)
-    // We mirror that exactly. GetResult is logged only — VitaDB never uses it.
+    // We mirror that exactly. GetResult is logged only - VitaDB never uses it.
     logLine(std::string("promoteExtractedDir: ") + dir);
 
     StorageManager st;
@@ -328,7 +328,7 @@ InstallResult HomebrewInstaller::promoteExtractedDir(const std::string& dir) {
         const int ren = sceIoRename(dir.c_str(), promoteDir.c_str());
         if (ren < 0) {
             char buf[112];
-            sceClibSnprintf(buf, sizeof(buf), "sceIoRename failed: 0x%08X — recursive copy", ren);
+            sceClibSnprintf(buf, sizeof(buf), "sceIoRename failed: 0x%08X - recursive copy", ren);
             logLine(buf);
             if (!st.createDirectories(promoteDir) || !copyTreeRecursive(dir, promoteDir)) {
                 setError("cannot stage package into ux0:data/psva_vpk");
@@ -383,7 +383,7 @@ InstallResult HomebrewInstaller::promoteExtractedDir(const std::string& dir) {
         return InstallResult::PromoteFailed;
     }
 
-    // Poll until idle — same loop structure as VitaDB (no frame swap required).
+    // Poll until idle - same loop structure as VitaDB (no frame swap required).
     int state = 1;
     int pollCount = 0;
     const int kMaxPolls = 12000; // ~120s @ 10ms
@@ -407,7 +407,7 @@ InstallResult HomebrewInstaller::promoteExtractedDir(const std::string& dir) {
         sceKernelDelayThread(10 * 1000);
     }
 
-    // Diagnostic only — VitaDB does not gate success on GetResult.
+    // Diagnostic only - VitaDB does not gate success on GetResult.
     int operationResult = 0;
     const int getResultCall = scePromoterUtilityGetResult(&operationResult);
     {
@@ -443,7 +443,7 @@ InstallResult HomebrewInstaller::promoteExtractedDir(const std::string& dir) {
     // If dir still present but state==0, treat as soft failure for caller to recover
     // via copy fallback; do not hard-fail on GetResult==-1 (common on some FW).
     if (!promoteDirGone) {
-        logLine("WARNING: promote finished but staging dir remains — caller may fallback");
+        logLine("WARNING: promote finished but staging dir remains - caller may fallback");
         lastPromoteResult_ = (getResultCall >= 0 && operationResult != 0) ? operationResult : lastPromoteResult_;
         // Still return Ok so post-check / fallback can run; filesystem is source of truth.
     }
@@ -658,7 +658,7 @@ InstallResult HomebrewInstaller::installVpk(
         logPathState("Post-promote eboot.bin", eboot);
 
         if (hasTree && result == InstallResult::PromoteFailed) {
-            logMilestone("App tree present after reported promote failure — treating as success");
+            logMilestone("App tree present after reported promote failure - treating as success");
             result = InstallResult::Ok;
             lastError_.clear();
         }
@@ -667,7 +667,7 @@ InstallResult HomebrewInstaller::installVpk(
             // Prefer staged promote dir (after rename); fall back to original extract dir.
             const std::string srcDir = st.exists(kPromoteDir) ? std::string(kPromoteDir)
                 : (st.exists(tmpDir) ? tmpDir : std::string());
-            logMilestone(std::string("App tree missing — trying direct copy fallback from ") +
+            logMilestone(std::string("App tree missing - trying direct copy fallback from ") +
                 (srcDir.empty() ? "(none)" : srcDir));
             if (!srcDir.empty() && copyTreeRecursive(srcDir, appDir)) {
                 hasTree = st.exists(appDir) && (st.exists(paramSfo) || st.exists(eboot));
@@ -723,7 +723,7 @@ InstallResult HomebrewInstaller::installVpk(
 
     // Cleanup staging after verification.
     // Real hardware often consumes the package dir; Vita3K frequently leaves
-    // ux0:data/psva_vpk behind — always scrub extract + promote paths.
+    // ux0:data/psva_vpk behind - always scrub extract + promote paths.
     constexpr const char* kVpkPromoteDir = "ux0:data/psva_vpk";
     if (result == InstallResult::Ok && deleteTempOnSuccess) {
         if (st.exists(tmpDir)) {
@@ -772,9 +772,9 @@ InstallResult HomebrewInstaller::installVpk(
         p.bytesWritten = 1;
         p.bytesTotal = 1;
         if (lastLiveAreaOk_) {
-            p.message = "Installed — open LiveArea (Refresh LiveArea if bubble missing)";
+            p.message = "Installed - open LiveArea (Refresh LiveArea if bubble missing)";
         } else if (!titleId.empty()) {
-            p.message = "Promote OK — check ux0:app and Refresh LiveArea if needed";
+            p.message = "Promote OK - check ux0:app and Refresh LiveArea if needed";
         } else {
             p.message = "VPK install finished";
         }
