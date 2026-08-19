@@ -7,8 +7,12 @@
 namespace psvitaalive {
 
 /**
- * Client self-update against GitHub Releases (latest).
- * Install path follows VitaDB: download VPK, extract in-place into ux0:app/<TITLEID>/.
+ * Client self-update against GitHub Releases.
+ *
+ * The update VPK is downloaded to ux0:data, extracted into a staging
+ * directory, converted to a fake package header, and installed through
+ * ScePromoterUtil. The running ux0:/app/PSVAS1178 tree is never used as the
+ * extraction destination.
  */
 class UpdateChecker {
 public:
@@ -59,9 +63,8 @@ public:
     static Result checkLatest(const std::string& currentVersion);
 
     /**
-     * VitaDB-style apply: download the release VPK, extract into ux0:app/TITLEID
-     * (in-place overwrite), write a local version marker, delete the temp VPK.
-     * Extraction is not cancellable once started.
+     * Download and install the client update without writing into the running
+     * application directory. The VPK is staged and promoted by the Vita system.
      */
     static bool applyUpdate(
         const Result& info,
