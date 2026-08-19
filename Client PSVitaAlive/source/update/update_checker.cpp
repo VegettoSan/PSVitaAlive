@@ -379,12 +379,26 @@ UpdateChecker::Result UpdateChecker::checkLatest(const std::string& currentVersi
         }
     }
 
-    const int moduleResult = sceSysmoduleLoadModule(SCE_SYSMODULE_JSON);
-    if (moduleResult < 0) {
-        result.error = "Unable to load Vita JSON module";
-        diagnostics::log("[UpdateChecker] JSON module load failed");
-        http.shutdown();
-        return result;
+    // Finish HTTP before touching sce::Json. Real hardware is unstable if
+    // libcurl handles and sysmodule JSON teardown interleave on a worker thread.
+    http.shutdown();
+    diagnostics::log("[UpdateChecker] HTTP shutdown complete (before JSON parse)");
+
+    // Load JSON module once per process. Never unload: UnloadModule(JSON) from a
+    // secondary thread (and often even on main after recent network work) has
+    // crashed real PS Vita units while Vita3K still succeeds.
+    static bool sJsonModuleLoaded = false;
+    if (!sJsonModuleLoaded) {
+        const int moduleResult = sceSysmoduleLoadModule(SCE_SYSMODULE_JSON);
+        if (moduleResult < 0) {
+            result.error = "Unable to load Vita JSON module";
+            diagnostics::log("[UpdateChecker] JSON module load failed");
+            return result;
+        }
+        sJsonModuleLoaded = true;
+        diagnostics::log("[UpdateChecker] JSON module loaded (kept for process lifetime)");
+    } else {
+        diagnostics::log("[UpdateChecker] JSON module already loaded");
     }
 
     VitaJsonAllocator allocator;
@@ -397,8 +411,6 @@ UpdateChecker::Result UpdateChecker::checkLatest(const std::string& currentVersi
     if (initializer.initialize(&params) < 0) {
         result.error = "Unable to initialize JSON parser";
         diagnostics::log("[UpdateChecker] JSON initializer failed");
-        sceSysmoduleUnloadModule(SCE_SYSMODULE_JSON);
-        http.shutdown();
         return result;
     }
 
@@ -456,16 +468,12 @@ UpdateChecker::Result UpdateChecker::checkLatest(const std::string& currentVersi
         }
     }
 
-    // `root` has been destroyed here while the JSON module is still valid.
+    // `root` destroyed while initializer is still valid.
     diagnostics::log("[UpdateChecker] JSON root released");
 
     if (parseFailed) {
         initializer.terminate();
-        diagnostics::log("[UpdateChecker] JSON initializer terminated");
-        sceSysmoduleUnloadModule(SCE_SYSMODULE_JSON);
-        diagnostics::log("[UpdateChecker] JSON module unloaded");
-        http.shutdown();
-        diagnostics::log("[UpdateChecker] HTTP shutdown complete");
+        diagnostics::log("[UpdateChecker] JSON initializer terminated (module kept loaded)");
         return result;
     }
 
@@ -474,11 +482,8 @@ UpdateChecker::Result UpdateChecker::checkLatest(const std::string& currentVersi
     }
 
     initializer.terminate();
-    diagnostics::log("[UpdateChecker] JSON initializer terminated");
-    sceSysmoduleUnloadModule(SCE_SYSMODULE_JSON);
-    diagnostics::log("[UpdateChecker] JSON module unloaded");
-    http.shutdown();
-    diagnostics::log("[UpdateChecker] HTTP shutdown complete");
+    diagnostics::log("[UpdateChecker] JSON initializer terminated (module kept loaded)");
+    diagnostics::log("[UpdateChecker] checkLatest finished");
     return result;
 }
 
