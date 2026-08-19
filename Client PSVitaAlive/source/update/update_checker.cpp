@@ -32,9 +32,12 @@ constexpr const char* RELEASES_LIST_URL =
     "https://api.github.com/repos/VegettoSan/PSVitaAlive/releases?per_page=10";
 constexpr const char* UPDATE_ASSET_NAME = "PSVitaAlive.vpk";
 constexpr const char* VERSION_MARKER = "ux0:/app/PSVAS1178/psvitaalive_version.txt";
-// VitaDB/NeoVitaDB use this shallow ux0:data path for Promoter.
-constexpr const char* PROMOTE_DIR = "ux0:data/psva_vpk";
-constexpr const char* STAGE_DIR = "ux0:data/psvitaalive/update/stage";
+// Staging package consumed by the PSVAUPDT1 helper process (VitaShell pattern).
+constexpr const char* PACKAGE_DIR = "ux0:data/psvitaalive/pkg";
+constexpr const char* UPDATER_TITLE_ID = "PSVAUPDT1";
+constexpr const char* UPDATER_PKG_DIR = "ux0:data/psvitaalive/updater_pkg";
+constexpr const char* UPDATER_EBOOT_SRC = "app0:updater/eboot.bin";
+constexpr const char* UPDATER_SFO_SRC = "app0:updater/param.sfo";
 
 class VitaJsonAllocator : public sce::Json::MemAllocator {
 public:
@@ -366,267 +369,116 @@ bool loadPromoterModules() {
     return true;
 }
 
-bool promoteSelfUpdate(const std::string& stagedDir) {
-    StorageManager st;
+bool fileExists(const std::string& path) {
+    SceIoStat st{};
+    return sceIoGetstat(path.c_str(), &st) >= 0;
+}
 
-    if (!removeTree(PROMOTE_DIR)) {
-        diagnostics::log("[UpdateChecker] cannot clear previous Promoter staging directory");
+bool copyFileSimple(const std::string& src, const std::string& dst) {
+    const SceUID in = sceIoOpen(src.c_str(), SCE_O_RDONLY, 0);
+    if (in < 0) return false;
+    const SceUID out = sceIoOpen(dst.c_str(), SCE_O_WRONLY | SCE_O_CREAT | SCE_O_TRUNC, 0777);
+    if (out < 0) {
+        sceIoClose(in);
         return false;
     }
-
-    const int renameResult = sceIoRename(stagedDir.c_str(), PROMOTE_DIR);
-    if (renameResult < 0) {
-        diagnostics::log("[UpdateChecker] staging rename failed result=" + std::to_string(renameResult));
-        return false;
+    char buf[64 * 1024];
+    bool ok = true;
+    while (true) {
+        const int n = sceIoRead(in, buf, sizeof(buf));
+        if (n < 0) { ok = false; break; }
+        if (n == 0) break;
+        if (sceIoWrite(out, buf, n) != n) { ok = false; break; }
     }
+    sceIoClose(out);
+    sceIoClose(in);
+    return ok;
+}
 
-    FakePackageBuilder builder;
-    if (!builder.build(PROMOTE_DIR)) {
-        diagnostics::log("[UpdateChecker] head.bin generation failed: " + builder.lastError());
-        removeTree(PROMOTE_DIR);
-        return false;
-    }
-
-    if (!loadPromoterModules()) {
-        diagnostics::log("[UpdateChecker] unable to load Promoter modules");
-        removeTree(PROMOTE_DIR);
-        return false;
-    }
-
+bool promoteDirAsync(const std::string& dir) {
+    if (!loadPromoterModules()) return false;
     const int initResult = scePromoterUtilityInit();
-    diagnostics::log("[UpdateChecker] scePromoterUtilityInit result=" + std::to_string(initResult));
     if (initResult < 0) {
-        removeTree(PROMOTE_DIR);
+        diagnostics::log("[UpdateChecker] scePromoterUtilityInit failed " + std::to_string(initResult));
         return false;
     }
-
-    // The running application keeps app0: mounted. VitaSDK documents that
-    // unmounting app0: enables write access to ux0:app/TITLEID, which is
-    // required before Promoter can replace this application's files.
-    const int umountResult = sceAppMgrUmount("app0:");
-    diagnostics::log("[UpdateChecker] sceAppMgrUmount(app0:) result=" + std::to_string(umountResult));
-    if (umountResult < 0) {
-        diagnostics::log("[UpdateChecker] cannot unmount app0: before self-update");
-        scePromoterUtilityExit();
-        removeTree(PROMOTE_DIR);
-        return false;
-    }
-
-    const int promoteResult = scePromoterUtilityPromotePkg(PROMOTE_DIR, 0);
-    diagnostics::log("[UpdateChecker] scePromoterUtilityPromotePkg result=" + std::to_string(promoteResult));
+    const int promoteResult = scePromoterUtilityPromotePkg(dir.c_str(), 0);
+    diagnostics::log("[UpdateChecker] PromotePkg(" + dir + ") -> " + std::to_string(promoteResult));
     if (promoteResult < 0) {
         scePromoterUtilityExit();
-        removeTree(PROMOTE_DIR);
         return false;
     }
-
     int state = 1;
-    const int maxPolls = 12000;
     int polls = 0;
-    while (polls < maxPolls) {
+    while (polls < 12000) {
         state = 0;
-        const int stateResult = scePromoterUtilityGetState(&state);
-        if (stateResult < 0) {
-            diagnostics::log("[UpdateChecker] scePromoterUtilityGetState result=" + std::to_string(stateResult));
-            break;
-        }
+        const int sr = scePromoterUtilityGetState(&state);
+        if (sr < 0) break;
         if (state == 0) break;
-        if ((polls % 200) == 0) {
-            diagnostics::log("[UpdateChecker] Promoter waiting state=" + std::to_string(state) +
-                             " polls=" + std::to_string(polls));
-        }
         sceKernelDelayThread(10 * 1000);
         ++polls;
     }
-
-    int operationResult = 0;
-    const int getResultCall = scePromoterUtilityGetResult(&operationResult);
-    diagnostics::log("[UpdateChecker] Promoter GetResult call=" + std::to_string(getResultCall) +
-                     " operation=" + std::to_string(operationResult) +
-                     " state=" + std::to_string(state));
+    int op = 0;
+    scePromoterUtilityGetResult(&op);
     scePromoterUtilityExit();
-
-    const bool appTreeExists = st.exists(UpdateChecker::kAppDir + std::string("/eboot.bin"));
-    if (state != 0 || getResultCall < 0 || operationResult != 0 || !appTreeExists) {
-        diagnostics::log("[UpdateChecker] Promoter self-update verification failed: result=" +
-                         std::to_string(operationResult) +
-                         " getResultCall=" + std::to_string(getResultCall) +
-                         " app=" + std::string(appTreeExists ? "yes" : "no"));
-        removeTree(PROMOTE_DIR);
+    if (state != 0 || op != 0) {
+        diagnostics::log("[UpdateChecker] promote incomplete state=" + std::to_string(state) +
+                         " op=" + std::to_string(op));
         return false;
     }
-
-    // Promoter is asynchronous and does not have to delete its source tree;
-    // staging directory existence is therefore not used as a success signal.
-    diagnostics::log("[UpdateChecker] Promoter self-update verification OK");
     return true;
 }
 
-} // namespace
-
-UpdateChecker::Result UpdateChecker::checkLatest(const std::string& currentVersion) {
-    Result result;
-    result.localVersion = extractLocalVersion(currentVersion);
-    if (result.localVersion.empty()) {
-        result.error = "Invalid local application version";
-        diagnostics::log("[UpdateChecker] invalid local version: " + currentVersion);
-        return result;
+// Install/refresh the temporary PSVAUPDT1 helper from files packed in the client VPK.
+bool installUpdaterHelper() {
+    StorageManager st;
+    removeTree(UPDATER_PKG_DIR);
+    if (!st.createDirectories(std::string(UPDATER_PKG_DIR) + "/sce_sys")) {
+        diagnostics::log("[UpdateChecker] cannot create updater package dirs");
+        return false;
+    }
+    if (!fileExists(UPDATER_EBOOT_SRC) || !fileExists(UPDATER_SFO_SRC)) {
+        diagnostics::log("[UpdateChecker] updater payload missing from app0:updater/");
+        return false;
+    }
+    if (!copyFileSimple(UPDATER_EBOOT_SRC, std::string(UPDATER_PKG_DIR) + "/eboot.bin")) {
+        diagnostics::log("[UpdateChecker] failed to copy updater eboot");
+        return false;
+    }
+    if (!copyFileSimple(UPDATER_SFO_SRC, std::string(UPDATER_PKG_DIR) + "/sce_sys/param.sfo")) {
+        diagnostics::log("[UpdateChecker] failed to copy updater param.sfo");
+        return false;
+    }
+    // Optional UI asset so the helper can show the same loading background.
+    st.createDirectories(std::string(UPDATER_PKG_DIR) + "/ui");
+    if (fileExists("app0:ui/catalog_loading.png")) {
+        copyFileSimple("app0:ui/catalog_loading.png",
+                       std::string(UPDATER_PKG_DIR) + "/ui/catalog_loading.png");
     }
 
-    HttpClient http;
-    if (http.init() != HttpResult::Ok) {
-        result.error = "Unable to initialize HTTP client";
-        diagnostics::log("[UpdateChecker] HTTP initialization failed");
-        return result;
+    FakePackageBuilder builder;
+    if (!builder.build(UPDATER_PKG_DIR)) {
+        diagnostics::log("[UpdateChecker] updater head.bin failed: " + builder.lastError());
+        removeTree(UPDATER_PKG_DIR);
+        return false;
     }
-
-    std::string body;
-    bool usedReleaseList = false;
-
-    auto logFetch = [](const char* label, int status, size_t bytes, HttpResult hr) {
-        char line[192];
-        sceClibSnprintf(
-            line, sizeof(line),
-            "[UpdateChecker] %s status=%d bytes=%u result=%s",
-            label,
-            status,
-            (unsigned)bytes,
-            toString(hr)
-        );
-        diagnostics::log(line);
-    };
-
-    HttpResult fetchResult = http.fetchToString(RELEASES_LATEST_URL, body, 512 * 1024);
-    logFetch("GET releases/latest", http.lastStatusCode(), body.size(), fetchResult);
-
-    const int statusLatest = http.lastStatusCode();
-    if (statusLatest == 403 || statusLatest == 429) {
-        result.error = "GitHub temporarily unavailable (HTTP 403/429) — update check skipped";
-        diagnostics::log("[UpdateChecker] " + result.error);
-        http.shutdown();
-        return result;
+    if (!promoteDirAsync(UPDATER_PKG_DIR)) {
+        diagnostics::log("[UpdateChecker] updater promote failed");
+        removeTree(UPDATER_PKG_DIR);
+        return false;
     }
+    removeTree(UPDATER_PKG_DIR);
+    diagnostics::log("[UpdateChecker] updater helper installed (PSVAUPDT1)");
+    return true;
+}
 
-    if (fetchResult != HttpResult::Ok || statusLatest == 404 || body.empty()) {
-        diagnostics::log("[UpdateChecker] releases/latest unavailable — falling back to releases list");
-        body.clear();
-        fetchResult = http.fetchToString(RELEASES_LIST_URL, body, 512 * 1024);
-        usedReleaseList = true;
-        logFetch("GET releases?per_page=10", http.lastStatusCode(), body.size(), fetchResult);
-
-        const int statusList = http.lastStatusCode();
-        if (statusList == 403 || statusList == 429) {
-            result.error = "GitHub temporarily unavailable (HTTP 403/429) — update check skipped";
-            diagnostics::log("[UpdateChecker] " + result.error);
-            http.shutdown();
-            return result;
-        }
-        if (fetchResult != HttpResult::Ok) {
-            result.error = http.lastError().empty() ? toString(fetchResult) : http.lastError();
-            diagnostics::log("[UpdateChecker] GitHub list request failed: " + result.error);
-            http.shutdown();
-            return result;
-        }
-    }
-
-    http.shutdown();
-    diagnostics::log("[UpdateChecker] HTTP shutdown complete (before JSON parse)");
-
-    static bool sJsonModuleLoaded = false;
-    if (!sJsonModuleLoaded) {
-        const int moduleResult = sceSysmoduleLoadModule(SCE_SYSMODULE_JSON);
-        if (moduleResult < 0) {
-            result.error = "Unable to load Vita JSON module";
-            diagnostics::log("[UpdateChecker] JSON module load failed");
-            return result;
-        }
-        sJsonModuleLoaded = true;
-        diagnostics::log("[UpdateChecker] JSON module loaded (kept for process lifetime)");
-    } else {
-        diagnostics::log("[UpdateChecker] JSON module already loaded");
-    }
-
-    VitaJsonAllocator allocator;
-    sce::Json::InitParameter params;
-    params.allocator = &allocator;
-    params.userData = nullptr;
-    params.bufSize = 64 * 1024;
-
-    sce::Json::Initializer initializer;
-    if (initializer.initialize(&params) < 0) {
-        result.error = "Unable to initialize JSON parser";
-        diagnostics::log("[UpdateChecker] JSON initializer failed");
-        return result;
-    }
-
-    bool parseFailed = false;
-    {
-        sce::Json::Value root;
-        const int parseRc = sce::Json::Parser::parse(root, body.c_str(), static_cast<SceSize>(body.size()));
-        if (parseRc < 0) {
-            result.error = "Invalid GitHub release JSON";
-            char perr[128];
-            sceClibSnprintf(
-                perr, sizeof(perr),
-                "[UpdateChecker] GitHub JSON parse failed: 0x%08X bytes=%u list=%d",
-                parseRc, (unsigned)body.size(), usedReleaseList ? 1 : 0
-            );
-            diagnostics::log(perr);
-            parseFailed = true;
-        } else {
-            char okline[96];
-            sceClibSnprintf(
-                okline, sizeof(okline),
-                "[UpdateChecker] JSON parsed OK bytes=%u list=%d",
-                (unsigned)body.size(), usedReleaseList ? 1 : 0
-            );
-            diagnostics::log(okline);
-
-            const bool ok = selectReleaseFromRoot(root, result, usedReleaseList);
-            diagnostics::log(
-                std::string("[UpdateChecker] release metadata extracted tag=") + result.releaseTag +
-                " remote=" + result.remoteVersion +
-                " asset=" + result.assetName +
-                " selected=" + (ok ? "yes" : "no")
-            );
-
-            if (result.remoteVersion.empty()) {
-                result.error = "GitHub release does not expose a usable version (tag/name/body)";
-            } else if (result.downloadUrl.empty()) {
-                result.error = "GitHub release does not contain a .vpk asset (expected PSVitaAlive.vpk)";
-            } else if (compareVersions(result.localVersion, result.remoteVersion) < 0) {
-                result.state = State::UpdateAvailable;
-                diagnostics::log("[UpdateChecker] update available: local=" + result.localVersion +
-                                 " remote=" + result.remoteVersion +
-                                 " tag=" + result.releaseTag +
-                                 " asset=" + result.assetName);
-            } else {
-                result.state = State::UpToDate;
-                diagnostics::log("[UpdateChecker] client is up to date: local=" + result.localVersion +
-                                 " remote=" + result.remoteVersion +
-                                 " tag=" + result.releaseTag);
-            }
-
-            diagnostics::log("[UpdateChecker] version comparison complete");
-        }
-    }
-
-    diagnostics::log("[UpdateChecker] JSON root released");
-
-    if (parseFailed) {
-        initializer.terminate();
-        diagnostics::log("[UpdateChecker] JSON initializer terminated (module kept loaded)");
-        return result;
-    }
-
-    if (result.state == State::Failed) {
-        diagnostics::log("[UpdateChecker] check failed: " + result.error);
-    }
-
-    initializer.terminate();
-    diagnostics::log("[UpdateChecker] JSON initializer terminated (module kept loaded)");
-    diagnostics::log("[UpdateChecker] checkLatest finished");
-    return result;
+bool launchUpdaterAndExit() {
+    char uri[48];
+    sceClibSnprintf(uri, sizeof(uri), "psgm:play?titleid=%s", UPDATER_TITLE_ID);
+    diagnostics::log(std::string("[UpdateChecker] launching updater uri=") + uri);
+    sceAppMgrLaunchAppByUri(0xFFFFF, uri);
+    sceKernelExitProcess(0);
+    return true;
 }
 
 bool UpdateChecker::applyUpdate(
@@ -649,8 +501,8 @@ bool UpdateChecker::applyUpdate(
         return false;
     }
     st.removeFile(kVpkPath);
-    removeTree(STAGE_DIR);
-    removeTree(PROMOTE_DIR);
+    removeTree(PACKAGE_DIR);
+    removeTree(UPDATER_PKG_DIR);
 
     if (shouldCancel && shouldCancel()) {
         emitProgress(onProgress, ApplyStage::Error, 0, 0, "Cancelled");
@@ -687,48 +539,117 @@ bool UpdateChecker::applyUpdate(
     }
     http.shutdown();
 
-    emitProgress(onProgress, ApplyStage::Extracting, 0, 0, "Preparing update package");
-    diagnostics::log(std::string("[UpdateChecker] extracting update VPK to staging ") + STAGE_DIR);
+    // Keep the VPK on disk for manual recovery if anything below fails.
+    emitProgress(onProgress, ApplyStage::Extracting, 0, 0, "Extracting update package");
+    diagnostics::log(std::string("[UpdateChecker] extracting update VPK to ") + PACKAGE_DIR);
 
     const ZipResult zr = ZipExtractor().extract(
         kVpkPath,
-        STAGE_DIR,
+        PACKAGE_DIR,
         [&](const ZipProgress& zp) {
             emitProgress(onProgress, ApplyStage::Extracting, zp.entriesDone, zp.entriesTotal,
-                         "Preparing update package");
+                         "Extracting update package");
         },
         shouldCancel
     );
-    st.removeFile(kVpkPath);
 
     if (zr != ZipResult::Ok) {
-        diagnostics::log(std::string("[UpdateChecker] self-update staging failed: ") + toString(zr));
-        removeTree(STAGE_DIR);
-        emitProgress(onProgress, ApplyStage::Error, 0, 0, "Cannot extract update package");
+        diagnostics::log(std::string("[UpdateChecker] extract failed: ") + toString(zr));
+        removeTree(PACKAGE_DIR);
+        emitProgress(
+            onProgress,
+            ApplyStage::Error,
+            0,
+            0,
+            "Extract failed. Manual VPK: ux0:data/psvitaalive/update/PSVitaAlive.vpk"
+        );
         return false;
     }
 
-    emitProgress(onProgress, ApplyStage::Finalizing, 0, 0, "Installing update (do not power off)");
-    diagnostics::log("[UpdateChecker] installing update VPK via ScePromoterUtil");
-
-    if (!promoteSelfUpdate(STAGE_DIR)) {
-        diagnostics::log("[UpdateChecker] self-update Promoter install failed");
-        removeTree(STAGE_DIR);
-        emitProgress(onProgress, ApplyStage::Error, 0, 0, "Promoter could not install the update");
+    FakePackageBuilder builder;
+    if (!builder.build(PACKAGE_DIR)) {
+        diagnostics::log("[UpdateChecker] head.bin failed: " + builder.lastError());
+        emitProgress(
+            onProgress,
+            ApplyStage::Error,
+            0,
+            0,
+            "Package prepare failed. Manual VPK: ux0:data/psvitaalive/update/PSVitaAlive.vpk"
+        );
         return false;
     }
 
-    removeTree(STAGE_DIR);
+    emitProgress(onProgress, ApplyStage::Finalizing, 0, 0, "Preparing updater...");
+    diagnostics::log("[UpdateChecker] installing PSVAUPDT1 helper (VitaShell-style)");
+
+    if (!installUpdaterHelper()) {
+        emitProgress(
+            onProgress,
+            ApplyStage::Error,
+            0,
+            0,
+            "Updater install failed. Manual VPK: ux0:data/psvitaalive/update/PSVitaAlive.vpk"
+        );
+        return false;
+    }
+
     const std::string ver = info.remoteVersion.empty() ? info.releaseTag : info.remoteVersion;
     if (!writeVersionMarker(ver)) {
         diagnostics::log("[UpdateChecker] version marker write failed (non-fatal)");
     }
 
-    diagnostics::log("[UpdateChecker] apply OK remote=" + ver + " — relaunching via sceAppMgrLoadExec");
-    emitProgress(onProgress, ApplyStage::Done, 1, 1, "Update installed — restarting");
-    sceAppMgrLoadExec("app0:eboot.bin", nullptr, nullptr);
-    diagnostics::log("[UpdateChecker] sceAppMgrLoadExec returned (unexpected) — user must restart manually");
-    return true;
+    diagnostics::log("[UpdateChecker] launching PSVAUPDT1 then exiting client");
+    emitProgress(onProgress, ApplyStage::Done, 1, 1, "Starting updater...");
+    // Does not return on success.
+    launchUpdaterAndExit();
+    diagnostics::log("[UpdateChecker] launchUpdater returned unexpectedly");
+    emitProgress(
+        onProgress,
+        ApplyStage::Error,
+        0,
+        0,
+        "Could not start updater. Manual VPK: ux0:data/psvitaalive/update/PSVitaAlive.vpk"
+    );
+    return false;
 }
+
+// Remove temporary updater bubble after a successful self-update cycle.
+bool UpdateChecker::cleanupUpdaterBubble() {
+    if (!loadPromoterModules()) {
+        diagnostics::log("[UpdateChecker] cleanupUpdater: promoter load failed");
+        return false;
+    }
+    const int initResult = scePromoterUtilityInit();
+    if (initResult < 0) {
+        diagnostics::log("[UpdateChecker] cleanupUpdater: init failed " + std::to_string(initResult));
+        return false;
+    }
+    int exists = 0;
+    const int check = scePromoterUtilityCheckExist(UPDATER_TITLE_ID, &exists);
+    if (check < 0) {
+        // Not installed / API quirk — treat as nothing to do.
+        scePromoterUtilityExit();
+        return true;
+    }
+    diagnostics::log("[UpdateChecker] cleanupUpdater: deleting PSVAUPDT1");
+    sceAppMgrDestroyOtherApp();
+    const int del = scePromoterUtilityDeletePkg(UPDATER_TITLE_ID);
+    diagnostics::log("[UpdateChecker] DeletePkg(PSVAUPDT1) -> " + std::to_string(del));
+    int state = 1;
+    int polls = 0;
+    while (polls < 2000) {
+        state = 0;
+        if (scePromoterUtilityGetState(&state) < 0) break;
+        if (state == 0) break;
+        sceKernelDelayThread(10 * 1000);
+        ++polls;
+    }
+    scePromoterUtilityExit();
+    // Best-effort: also drop leftover VPK after a clean update cycle.
+    StorageManager st;
+    st.removeFile(kVpkPath);
+    return del >= 0;
+}
+
 
 } // namespace psvitaalive
