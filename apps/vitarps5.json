@@ -13,10 +13,10 @@
   "subcategory_ids": [
     "other"
   ],
-  "version": "v.3.0.3",
+  "version": "v.3.1.0",
   "version_date": "2026-03-05",
   "requirements": "Not specified",
-  "size": 3712050,
+  "size": 4108047,
   "status": "Legacy",
   "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1356-vitarps5.png",
   "screenshots": [
@@ -47,6 +47,12 @@
       "type": "Official Website",
       "name": "VitaDBtoo Release Page",
       "url": "https://github.com/mauricio-gg/vitaki-vitarps5/releases"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDBtoo VPK",
+      "url": "https://github.com/mauricio-gg/vitaki-vitarps5/releases/download/v3.1.0/VitakiFork-v3.1.0.vpk",
+      "recommended": false
     }
   ],
   "source_name": "NeoVitaDB",

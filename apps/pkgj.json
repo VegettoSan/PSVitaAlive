@@ -2,7 +2,7 @@
   "id": "pkgj",
   "title_id": "PKGJ00000",
   "name": "PKGj",
-  "description": "",
+  "description": "PKG downloader/installer that downloads and unpacks PKG files directly on the Vita, together with NoNpDrm/NoPsmDrm fake licenses. Supports PS Vita, PSP and PSX content.",
   "long_description": "NoPayStation Client for PSVita.",
   "author_ids": [
     "blastrock"
@@ -11,8 +11,8 @@
   "subcategory_ids": [
     "other"
   ],
-  "version": "v0.57",
-  "version_date": "2023-07-31",
+  "version": "v.0.57",
+  "version_date": "2026-08-20",
   "requirements": "Not specified",
   "size": 1479217,
   "status": "Legacy",
@@ -36,6 +36,11 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/blastrock/pkgj"
+    },
+    {
+      "type": "Official Website",
+      "name": "VitaDBtoo Release Page",
+      "url": "https://github.com/blastrock/pkgj/releases"
     }
   ],
   "source_name": "NeoVitaDB",
