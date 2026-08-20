@@ -131,24 +131,38 @@ static int launchClientAndExit(void) {
 }
 
 static int loadScePaf(void) {
-    static uint32_t argp[] = { 0x180000, (uint32_t)-1, (uint32_t)-1, 1, (uint32_t)-1, (uint32_t)-1 };
-    int result = -1;
-    uint32_t buf[4];
-    buf[0] = sizeof(buf);
-    buf[1] = (uint32_t)&result;
-    buf[2] = (uint32_t)-1;
-    buf[3] = (uint32_t)-1;
-    const int r = sceSysmoduleLoadModuleInternalWithArg(SCE_SYSMODULE_INTERNAL_PAF, sizeof(argp), argp, buf);
+    /* Same pattern as HomebrewInstaller (builds with current VitaSDK).
+       4th argument must be const SceSysmoduleOpt*. */
+    uint32_t scepafArgp[] = { 0x400000u, 0xEA60u, 0x40000u, 0u, 0u };
+    SceSysmoduleOpt opt;
+    int result = 0;
+    memset(&opt, 0, sizeof(opt));
+    opt.result = &result;
+    const int r = sceSysmoduleLoadModuleInternalWithArg(
+        SCE_SYSMODULE_INTERNAL_PAF,
+        sizeof(scepafArgp),
+        scepafArgp,
+        &opt
+    );
     { char _lb[480]; sceClibSnprintf(_lb, sizeof(_lb), "loadScePaf -> 0x%08X result=%d", (unsigned)r, result); logLine(_lb); };
     return r;
 }
 
 static int unloadScePaf(void) {
-    uint32_t buf = 0;
-    const int r = sceSysmoduleUnloadModuleInternalWithArg(SCE_SYSMODULE_INTERNAL_PAF, 0, NULL, &buf);
-    { char _lb[480]; sceClibSnprintf(_lb, sizeof(_lb), "unloadScePaf -> 0x%08X", (unsigned)r); logLine(_lb); };
+    SceSysmoduleOpt opt;
+    int result = 0;
+    memset(&opt, 0, sizeof(opt));
+    opt.result = &result;
+    const int r = sceSysmoduleUnloadModuleInternalWithArg(
+        SCE_SYSMODULE_INTERNAL_PAF,
+        0,
+        NULL,
+        &opt
+    );
+    { char _lb[480]; sceClibSnprintf(_lb, sizeof(_lb), "unloadScePaf -> 0x%08X result=%d", (unsigned)r, result); logLine(_lb); };
     return r;
 }
+
 
 /* Mirror HomebrewInstaller::promoteExtractedDir success rules. */
 static int promotePackageHomebrewStyle(const char* path) {
