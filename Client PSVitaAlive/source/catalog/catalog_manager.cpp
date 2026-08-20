@@ -18,7 +18,7 @@ namespace {
 constexpr const char* RAW_BASE = "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/";
 constexpr const char* CACHE_DIR = "ux0:data/psvitaalive/cache/catalog";
 constexpr int WORKER_PRIORITY = 0x10000100;
-constexpr int WORKER_STACK = 64 * 1024;
+constexpr int WORKER_STACK = 512 * 1024; // large JSON parse needs headroom on real Vita
 
 bool fileExists(const std::string& path) { SceIoStat stat={}; return sceIoGetstat(path.c_str(),&stat)>=0&&stat.st_size>0; }
 bool readTextFile(const std::string& path,std::string& out){out.clear();SceIoStat stat={};if(sceIoGetstat(path.c_str(),&stat)<0||stat.st_size<=0||stat.st_size>4096)return false;SceUID fd=sceIoOpen(path.c_str(),SCE_O_RDONLY,0);if(fd<0)return false;out.resize((size_t)stat.st_size);const int read=sceIoRead(fd,&out[0],(unsigned int)out.size());sceIoClose(fd);if(read<=0){out.clear();return false;}out.resize((size_t)read);return true;}
