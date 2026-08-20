@@ -53,9 +53,17 @@ PkgBgdlResult PkgBgdlInstaller::enqueue(const PkgBgdlRequest& req) {
     std::string err;
     bool haveLicense = false;
 
-    // Vita path: zRIF from NoPayStation.
-    if (!req.zrif.empty() || !req.rifPath.empty()) {
-        haveLicense = LicenseHelper::prepareBgdlLicense(req.zrif, req.rifPath, rifPath, err);
+    // Vita path: zRIF from request, or on-demand from catalog .zrifidx (not kept in RAM).
+    std::string zrif = req.zrif;
+    if (zrif.empty() && req.rifPath.empty()) {
+        std::string looked;
+        if (LicenseHelper::lookupZrifForUrl(req.url, looked)) {
+            zrif = looked;
+            diagnostics::log("[PkgBgdl] zRIF resolved from disk index");
+        }
+    }
+    if (!zrif.empty() || !req.rifPath.empty()) {
+        haveLicense = LicenseHelper::prepareBgdlLicense(zrif, req.rifPath, rifPath, err);
     }
 
     // PSP / PS1 path (PKGj): synthetic RIF from Content ID — does NOT use RAP from TSV.
