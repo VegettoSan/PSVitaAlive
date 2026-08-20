@@ -11,6 +11,7 @@ struct PkgBgdlRequest {
     std::string url;
     std::string zrif;       // NoPayStation zRIF (preferred)
     std::string rifPath;    // optional existing .rif on disk
+    std::string contentId; // required for PSP/PS1 synthetic RIF (PKGj)
     BgdlTaskType type = BgdlTaskType::Game;
 };
 
