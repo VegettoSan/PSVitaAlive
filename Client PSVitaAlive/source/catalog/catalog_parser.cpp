@@ -234,7 +234,9 @@ bool CatalogParser::parseFile(const std::string& path, std::vector<ui::CatalogIt
         item.titleId = getString(app, "title_id");
         item.name = getString(app, "name");
         item.description = getString(app, "description");
-        item.longDescription = getString(app, "long_description");
+        // long_description skipped — was a major RAM cost on Vita Games catalog.
+        if (item.description.size() > 480) item.description.resize(480);
+        item.longDescription.clear();
         item.version = getString(app, "version");
         item.versionDate = getString(app, "version_date");
         if (item.versionDate.empty()) item.versionDate = getString(app, "date");
@@ -243,11 +245,12 @@ bool CatalogParser::parseFile(const std::string& path, std::vector<ui::CatalogIt
         item.category = getString(app, "category_id");
         if (item.category.empty()) item.category = getString(app, "category");
         item.subcategory = firstArrayString(app, "subcategory_ids");
-        item.changelog = getString(app, "changelog");
+        item.changelog.clear(); // skipped for RAM (detail can show description only)
         item.size = formatSize(getUnsigned(app, "size"));
         item.icon = getString(app, "icon");
         item.cover = getString(app, "cover");
         parseStringArray(app, "screenshots", item.screenshots);
+        if (item.screenshots.size() > 4) item.screenshots.resize(4);
         item.author = firstArrayString(app, "author_ids");
         if (item.author.empty()) item.author = getString(app, "author");
 
