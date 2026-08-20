@@ -411,9 +411,14 @@ void unloadPromoterModules() {
         diagnostics::log("[UpdateChecker] Promoter unload -> " + std::to_string(r));
     }
     if (sceSysmoduleIsLoadedInternal(SCE_SYSMODULE_INTERNAL_PAF) >= 0) {
-        uint32_t buf = 0;
+        // Same SceSysmoduleOpt layout as load path / updater main.c (not uint32_t*).
+        uint32_t optMem[4] = {0};
+        optMem[0] = sizeof(optMem);
         const int r = sceSysmoduleUnloadModuleInternalWithArg(
-            SCE_SYSMODULE_INTERNAL_PAF, 0, nullptr, &buf);
+            SCE_SYSMODULE_INTERNAL_PAF,
+            0,
+            nullptr,
+            reinterpret_cast<const SceSysmoduleOpt*>(optMem));
         diagnostics::log("[UpdateChecker] PAF unload -> " + std::to_string(r));
     }
 }
