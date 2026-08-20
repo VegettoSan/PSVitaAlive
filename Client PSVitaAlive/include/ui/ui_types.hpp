@@ -35,6 +35,8 @@ struct CatalogLink {
     std::string name;
     std::string url;
     std::string size; // human-readable, e.g. "1.4 GB"
+    std::string zrif; // Vita NoPayStation zRIF (optional)
+    std::string contentId; // NPS Content ID (Vita/PSP/PS1) for license / BGDL
     bool recommended = false;
 };
 

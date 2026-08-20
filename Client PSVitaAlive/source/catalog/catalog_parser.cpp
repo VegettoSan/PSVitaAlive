@@ -130,6 +130,11 @@ void parseLinks(const sce::Json::Value& application, ui::CatalogItem& item) {
         detail.type = type;
         detail.name = name;
         detail.url = url;
+        detail.zrif = getString(link, "zrif");
+        if (detail.zrif.empty()) detail.zrif = getString(link, "zRIF");
+        if (detail.zrif.empty()) detail.zrif = getString(link, "license");
+        detail.contentId = getString(link, "content_id");
+        if (detail.contentId.empty()) detail.contentId = getString(link, "contentId");
         detail.recommended = link["recommended"].getBoolean();
         // Optional per-link size (numeric bytes preferred).
         if (link["size"]) {
