@@ -1,0 +1,48 @@
+{
+  "id": "cordless",
+  "title_id": "CRDL00001",
+  "name": "Cordless",
+  "description": "Discord client for PSVita.",
+  "long_description": "Unoffical Discord Client port for Playstation Vita.",
+  "author_ids": [
+    "bren",
+    "harommel-rabbid"
+  ],
+  "category_id": "utilities",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.1.0.0",
+  "version_date": "2026-08-20",
+  "requirements": "Not specified",
+  "size": 3253276,
+  "status": "Legacy",
+  "icon": "https://www.rinnegatamante.eu/vitadb/icons/b3b8d6c95c1d76f5a46fba0496eb7296139f0336f18b92c0abdd6b9c56234ba0.png",
+  "screenshots": [
+    "https://www.rinnegatamante.eu/vitadb/screenshots/d69a53e11cc724d162310a8d5042e03825854700621873aa878534a1c19f9304.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/5d68b4db6e3ffcc7ef5938ce367b79d0356299d6672b6c7cdf19cdc95d029863.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1475",
+      "recommended": true
+    },
+    {
+      "type": "Official Website",
+      "name": "VitaDB Release Page",
+      "url": "https://github.com/Brendonm17/Cordless/releases"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/Brendonm17/Cordless"
+    }
+  ],
+  "source_name": "VitaDB",
+  "source_id": "1475",
+  "source_url": "https://github.com/Brendonm17/Cordless",
+  "release_page": "https://github.com/Brendonm17/Cordless/releases",
+  "updated_at": "2026-08-20T09:53:08.634753+00:00"
+}
