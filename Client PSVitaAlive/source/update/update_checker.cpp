@@ -402,52 +402,86 @@ bool copyFileSimple(const std::string& src, const std::string& dst) {
     return ok;
 }
 
-bool promoteDirAsync(const std::string& dir) {
-    diagnostics::log("[UpdateChecker] promoteDirAsync: " + dir);
+void unloadPromoterModules() {
+    // VitaShell pattern: fully tear down promoter + PAF before launching another app.
+    // Leaving them loaded makes sceAppMgrLaunchAppByUri intermittent (freeze/crash).
+    scePromoterUtilityExit();
+    if (sceSysmoduleIsLoadedInternal(SCE_SYSMODULE_INTERNAL_PROMOTER_UTIL) >= 0) {
+        const int r = sceSysmoduleUnloadModuleInternal(SCE_SYSMODULE_INTERNAL_PROMOTER_UTIL);
+        diagnostics::log("[UpdateChecker] Promoter unload -> " + std::to_string(r));
+    }
+    if (sceSysmoduleIsLoadedInternal(SCE_SYSMODULE_INTERNAL_PAF) >= 0) {
+        uint32_t buf = 0;
+        const int r = sceSysmoduleUnloadModuleInternalWithArg(
+            SCE_SYSMODULE_INTERNAL_PAF, 0, nullptr, &buf);
+        diagnostics::log("[UpdateChecker] PAF unload -> " + std::to_string(r));
+    }
+}
+
+// Prefer VitaShell-style synchronous promote for the tiny PSVAUPDT1 package,
+// then unload modules so LiveArea can register the bubble cleanly.
+bool promoteDirSyncAndUnload(const std::string& dir) {
+    diagnostics::log("[UpdateChecker] promoteDirSyncAndUnload: " + dir);
     if (!loadPromoterModules()) {
-        diagnostics::log("[UpdateChecker] promoteDirAsync: loadPromoterModules failed");
+        diagnostics::log("[UpdateChecker] promoteDirSync: loadPromoterModules failed");
         return false;
     }
     const int initResult = scePromoterUtilityInit();
     diagnostics::log("[UpdateChecker] scePromoterUtilityInit -> " + std::to_string(initResult));
-    if (initResult < 0) return false;
-    const int promoteResult = scePromoterUtilityPromotePkg(dir.c_str(), 0);
-    diagnostics::log("[UpdateChecker] PromotePkg(sync=0) " + dir + " -> " + std::to_string(promoteResult));
-    if (promoteResult < 0) {
-        scePromoterUtilityExit();
+    if (initResult < 0) {
+        unloadPromoterModules();
         return false;
     }
-    int state = 1;
-    int polls = 0;
-    while (polls < 12000) {
-        state = 0;
-        const int sr = scePromoterUtilityGetState(&state);
-        if (sr < 0) {
-            diagnostics::log("[UpdateChecker] GetState -> " + std::to_string(sr));
-            break;
+
+    // sync=1 blocks until promote finishes (VitaShell updater uses this path).
+    const int promoteResult = scePromoterUtilityPromotePkg(dir.c_str(), 1);
+    diagnostics::log("[UpdateChecker] PromotePkg(sync=1) " + dir + " -> " + std::to_string(promoteResult));
+    if (promoteResult < 0) {
+        // Fallback: async + poll (some firmwares reject sync for certain packages)
+        diagnostics::log("[UpdateChecker] sync promote failed; trying async fallback");
+        const int asyncR = scePromoterUtilityPromotePkg(dir.c_str(), 0);
+        diagnostics::log("[UpdateChecker] PromotePkg(sync=0) -> " + std::to_string(asyncR));
+        if (asyncR < 0) {
+            scePromoterUtilityExit();
+            unloadPromoterModules();
+            return false;
         }
-        if (state == 0) break;
-        if ((polls % 200) == 0) {
-            diagnostics::log("[UpdateChecker] promote wait state=" + std::to_string(state) +
-                             " polls=" + std::to_string(polls));
+        int state = 1;
+        int polls = 0;
+        while (polls < 12000) {
+            state = 0;
+            if (scePromoterUtilityGetState(&state) < 0) break;
+            if (state == 0) break;
+            if ((polls % 200) == 0) {
+                diagnostics::log("[UpdateChecker] async promote wait state=" + std::to_string(state));
+            }
+            sceKernelDelayThread(10 * 1000);
+            ++polls;
         }
-        sceKernelDelayThread(10 * 1000);
-        ++polls;
+        int op = 0;
+        const int gr = scePromoterUtilityGetResult(&op);
+        diagnostics::log("[UpdateChecker] async GetResult call=" + std::to_string(gr) +
+                         " op=" + std::to_string(op) + " state=" + std::to_string(state));
+        if (state != 0) {
+            scePromoterUtilityExit();
+            unloadPromoterModules();
+            return false;
+        }
     }
-    int op = 0;
-    const int gr = scePromoterUtilityGetResult(&op);
-    diagnostics::log("[UpdateChecker] GetResult call=" + std::to_string(gr) +
-                     " op=" + std::to_string(op) +
-                     " polls=" + std::to_string(polls) +
-                     " state=" + std::to_string(state));
+
     scePromoterUtilityExit();
+    unloadPromoterModules();
+
     const bool gone = !fileExists(dir);
     diagnostics::log(std::string("[UpdateChecker] promote dir consumed=") + (gone ? "yes" : "no"));
-    if (state != 0) {
-        diagnostics::log("[UpdateChecker] promote incomplete state=" + std::to_string(state));
-        return false;
-    }
+    // Give LiveArea a moment to register the new title id.
+    sceKernelDelayThread(500 * 1000);
     return true;
+}
+
+bool promoteDirAsync(const std::string& dir) {
+    // Kept for any non-updater callers; updater uses promoteDirSyncAndUnload.
+    return promoteDirSyncAndUnload(dir);
 }
 
 // Install/refresh the temporary PSVAUPDT1 helper from files packed in the client VPK.
@@ -506,11 +540,77 @@ bool installUpdaterHelper() {
     return true;
 }
 
+bool waitForUpdaterBubble(int maxMs) {
+    if (!loadPromoterModules()) {
+        diagnostics::log("[UpdateChecker] waitForUpdaterBubble: cannot load promoter");
+        return false;
+    }
+    const int initR = scePromoterUtilityInit();
+    if (initR < 0) {
+        diagnostics::log("[UpdateChecker] waitForUpdaterBubble: Init -> " + std::to_string(initR));
+        unloadPromoterModules();
+        return false;
+    }
+    int waited = 0;
+    bool found = false;
+    while (waited <= maxMs) {
+        int exists = 0;
+        const int cr = scePromoterUtilityCheckExist(UPDATER_TITLE_ID, &exists);
+        if (cr >= 0 && exists) {
+            found = true;
+            diagnostics::log("[UpdateChecker] PSVAUPDT1 bubble visible after " +
+                             std::to_string(waited) + " ms");
+            break;
+        }
+        if ((waited % 500) == 0) {
+            diagnostics::log("[UpdateChecker] waiting for PSVAUPDT1 bubble exists=" +
+                             std::to_string(exists) + " check=" + std::to_string(cr) +
+                             " t=" + std::to_string(waited));
+        }
+        sceKernelDelayThread(100 * 1000);
+        waited += 100;
+    }
+    scePromoterUtilityExit();
+    unloadPromoterModules();
+    return found;
+}
+
 bool launchUpdaterAndExit() {
+    // Stabilize handoff (real Vita flakiness):
+    // 1) Wait until promoter sees PSVAUPDT1.
+    // 2) Unload promoter/PAF completely.
+    // 3) Destroy other apps / brief delay so Shell can switch.
+    // 4) Launch via URI with retries.
+    diagnostics::log("[UpdateChecker] launchUpdaterAndExit: prepare handoff");
+
+    if (!waitForUpdaterBubble(8000)) {
+        diagnostics::log("[UpdateChecker] PSVAUPDT1 not visible yet; launching anyway after delay");
+        sceKernelDelayThread(1500 * 1000);
+    } else {
+        sceKernelDelayThread(800 * 1000);
+    }
+
+    diagnostics::log("[UpdateChecker] DestroyOtherApp before updater launch");
+    sceAppMgrDestroyOtherApp();
+    sceKernelDelayThread(400 * 1000);
+
     char uri[48];
     sceClibSnprintf(uri, sizeof(uri), "psgm:play?titleid=%s", UPDATER_TITLE_ID);
     diagnostics::log(std::string("[UpdateChecker] launching updater uri=") + uri);
-    sceAppMgrLaunchAppByUri(0xFFFFF, uri);
+
+    int launchR = -1;
+    for (int attempt = 1; attempt <= 3; ++attempt) {
+        launchR = sceAppMgrLaunchAppByUri(0xFFFFF, uri);
+        diagnostics::log("[UpdateChecker] LaunchAppByUri attempt=" + std::to_string(attempt) +
+                         " -> " + std::to_string(launchR));
+        if (launchR >= 0) break;
+        sceKernelDelayThread(700 * 1000);
+    }
+
+    // Always exit this process so Shell can focus the updater (even if launchR < 0;
+    // user can still open PSVAUPDT1 manually from LiveArea if needed).
+    sceKernelDelayThread(200 * 1000);
+    diagnostics::log("[UpdateChecker] client exiting for updater handoff");
     sceKernelExitProcess(0);
     return true;
 }
