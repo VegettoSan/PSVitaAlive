@@ -616,10 +616,14 @@ while(screen.updateAndDraw()){
             startupImageChoicePending=false;
             if(startupImagesJobs.empty()){
                 screen.setCatalogLoading(false,"",0,0,"All catalog images are already cached");psvitaalive::diagnostics::log("[Startup] no pending catalog images");
-                if(homebrewReady){screen.setCatalogItems(startupCatalogItems[(int)psvitaalive::ui::CatalogType::Homebrew]);screen.setActiveCatalog(psvitaalive::ui::CatalogType::Homebrew);}
+                if(homebrewReady){screen.setCatalogItems(std::move(startupCatalogItems[(int)psvitaalive::ui::CatalogType::Homebrew]));screen.setActiveCatalog(psvitaalive::ui::CatalogType::Homebrew);}
+                // Drop the other preloaded catalogs from RAM (Vita Games + zRIF was huge).
+                for(auto& bucket : startupCatalogItems){ std::vector<psvitaalive::ui::CatalogItem> empty; bucket.swap(empty); }
             }else if(installer.settings().promptImageWarmup && promptDownloadAllImages(startupImagesJobs.size())){
                 const bool completed=runImageWarmup(startupImagesJobs,images);screen.setCatalogLoading(false,"",completed?startupImagesJobs.size():0,(uint64_t)startupImagesJobs.size(),completed?"Image cache ready":"Image download cancelled");psvitaalive::diagnostics::log(std::string("[Startup] full image warmup finished result=")+(completed?"COMPLETE":"CANCELLED"));
-                if(homebrewReady){screen.setCatalogItems(startupCatalogItems[(int)psvitaalive::ui::CatalogType::Homebrew]);screen.setActiveCatalog(psvitaalive::ui::CatalogType::Homebrew);}
+                if(homebrewReady){screen.setCatalogItems(std::move(startupCatalogItems[(int)psvitaalive::ui::CatalogType::Homebrew]));screen.setActiveCatalog(psvitaalive::ui::CatalogType::Homebrew);}
+                // Drop the other preloaded catalogs from RAM (Vita Games + zRIF was huge).
+                for(auto& bucket : startupCatalogItems){ std::vector<psvitaalive::ui::CatalogItem> empty; bucket.swap(empty); }
             }else{
                 // User declined once (or prompt disabled in settings): remember and stay on-demand.
                 if(installer.settings().promptImageWarmup){
@@ -631,7 +635,9 @@ while(screen.updateAndDraw()){
                 }
 
                 screen.setCatalogLoading(false,"",0,0,"Images will download while browsing");startupImagesJobs.clear();startupImageSeen.clear();psvitaalive::diagnostics::log("[Startup] user selected on-demand image loading");
-                if(homebrewReady){screen.setCatalogItems(startupCatalogItems[(int)psvitaalive::ui::CatalogType::Homebrew]);screen.setActiveCatalog(psvitaalive::ui::CatalogType::Homebrew);}
+                if(homebrewReady){screen.setCatalogItems(std::move(startupCatalogItems[(int)psvitaalive::ui::CatalogType::Homebrew]));screen.setActiveCatalog(psvitaalive::ui::CatalogType::Homebrew);}
+                // Drop the other preloaded catalogs from RAM (Vita Games + zRIF was huge).
+                for(auto& bucket : startupCatalogItems){ std::vector<psvitaalive::ui::CatalogItem> empty; bucket.swap(empty); }
             }
         }
 
