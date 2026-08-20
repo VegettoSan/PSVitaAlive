@@ -45,6 +45,9 @@ public:
     static bool createPspRif(const std::string& contentId, std::vector<uint8_t>& outBytes, std::string& errorOut);
 
     /** Load one zRIF from catalog sidecar indexes (not held in RAM with catalog items). */
+    /** Lookup zRIF by Content ID (primary key in catalog_psvita_games.zrifidx). */
+    static bool lookupZrifForContentId(const std::string& contentId, std::string& outZrif);
+    /** Legacy: also tries Content ID if the string looks like one; URL keys are no longer in the index. */
     static bool lookupZrifForUrl(const std::string& url, std::string& outZrif);
 
     static bool prepareBgdlLicense(
