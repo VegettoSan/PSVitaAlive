@@ -527,24 +527,16 @@ bool installUpdaterHelper() {
 }
 
 bool launchUpdaterAndExitInternal() {
-    diagnostics::log("[UpdateChecker] launchUpdaterAndExit: prepare handoff");
-    sceKernelDelayThread(800 * 1000);
-    diagnostics::log("[UpdateChecker] DestroyOtherApp before updater launch");
-    sceAppMgrDestroyOtherApp();
-    sceKernelDelayThread(300 * 1000);
+    // Mirror PSVAUPDT1 launchClientAndExit (works reliably):
+    //   log → LaunchAppByUri → ExitProcess
+    // Do NOT DestroyOtherApp here — that path is only used by the updater BEFORE
+    // promoting packages, not before launching the other title. Client→updater
+    // hangs when we call DestroyOtherApp / long delays; updater→client does not.
     char uri[48];
     sceClibSnprintf(uri, sizeof(uri), "psgm:play?titleid=%s", UPDATER_TITLE_ID);
-    diagnostics::log(std::string("[UpdateChecker] launching updater uri=") + uri);
-    int launchR = -1;
-    for (int attempt = 1; attempt <= 3; ++attempt) {
-        launchR = sceAppMgrLaunchAppByUri(0xFFFFF, uri);
-        diagnostics::log("[UpdateChecker] LaunchAppByUri attempt=" + std::to_string(attempt) +
-                         " -> " + std::to_string(launchR));
-        if (launchR >= 0) break;
-        sceKernelDelayThread(500 * 1000);
-    }
-    diagnostics::log("[UpdateChecker] client exiting for updater handoff");
-    sceKernelDelayThread(150 * 1000);
+    diagnostics::log(std::string("[UpdateChecker] launchUpdater (updater-style) uri=") + uri);
+    const int launchR = sceAppMgrLaunchAppByUri(0xFFFFF, uri);
+    diagnostics::log("[UpdateChecker] LaunchAppByUri -> " + std::to_string(launchR));
     sceKernelExitProcess(0);
     return true;
 }
