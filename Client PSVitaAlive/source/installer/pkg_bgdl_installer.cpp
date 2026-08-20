@@ -19,7 +19,8 @@ BgdlTaskType PkgBgdlInstaller::typeFromLinkType(const std::string& linkType) {
         return BgdlTaskType::AddCont;
     }
     if (t.find("update") != std::string::npos || t.find("patch") != std::string::npos) {
-        return BgdlTaskType::GameUpdate;
+        // PKGj uses Game type for packages; dedicated update id is not always accepted.
+        return BgdlTaskType::Game;
     }
     if (t.find("theme") != std::string::npos) {
         return BgdlTaskType::Theme;
