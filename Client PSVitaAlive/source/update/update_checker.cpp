@@ -402,90 +402,73 @@ bool copyFileSimple(const std::string& src, const std::string& dst) {
     return ok;
 }
 
-void unloadPromoterModules() {
-    // VitaShell pattern: fully tear down promoter + PAF before launching another app.
-    // Leaving them loaded makes sceAppMgrLaunchAppByUri intermittent (freeze/crash).
-    scePromoterUtilityExit();
-    if (sceSysmoduleIsLoadedInternal(SCE_SYSMODULE_INTERNAL_PROMOTER_UTIL) >= 0) {
-        const int r = sceSysmoduleUnloadModuleInternal(SCE_SYSMODULE_INTERNAL_PROMOTER_UTIL);
-        diagnostics::log("[UpdateChecker] Promoter unload -> " + std::to_string(r));
-    }
-    if (sceSysmoduleIsLoadedInternal(SCE_SYSMODULE_INTERNAL_PAF) >= 0) {
-        // Same SceSysmoduleOpt layout as load path / updater main.c (not uint32_t*).
-        uint32_t optMem[4] = {0};
-        optMem[0] = sizeof(optMem);
-        const int r = sceSysmoduleUnloadModuleInternalWithArg(
-            SCE_SYSMODULE_INTERNAL_PAF,
-            0,
-            nullptr,
-            reinterpret_cast<const SceSysmoduleOpt*>(optMem));
-        diagnostics::log("[UpdateChecker] PAF unload -> " + std::to_string(r));
-    }
+void softExitPromoter() {
+    // Only Exit — do NOT unload PAF/Promoter modules.
+    // Real Vita hung after PromotePkg(sync=1) when full unload ran; async+Exit was stable.
+    diagnostics::log("[UpdateChecker] scePromoterUtilityExit...");
+    const int er = scePromoterUtilityExit();
+    diagnostics::log("[UpdateChecker] scePromoterUtilityExit -> " + std::to_string(er));
 }
 
-// Prefer VitaShell-style synchronous promote for the tiny PSVAUPDT1 package,
-// then unload modules so LiveArea can register the bubble cleanly.
+// ASYNC promote + poll (device-proven). Avoid sync=1 (hang after return 0 on real Vita).
 bool promoteDirSyncAndUnload(const std::string& dir) {
-    diagnostics::log("[UpdateChecker] promoteDirSyncAndUnload: " + dir);
+    diagnostics::log("[UpdateChecker] promoteUpdaterPkg (async): " + dir);
     if (!loadPromoterModules()) {
-        diagnostics::log("[UpdateChecker] promoteDirSync: loadPromoterModules failed");
+        diagnostics::log("[UpdateChecker] promoteUpdaterPkg: loadPromoterModules failed");
         return false;
     }
     const int initResult = scePromoterUtilityInit();
     diagnostics::log("[UpdateChecker] scePromoterUtilityInit -> " + std::to_string(initResult));
     if (initResult < 0) {
-        unloadPromoterModules();
+        softExitPromoter();
         return false;
     }
 
-    // sync=1 blocks until promote finishes (VitaShell updater uses this path).
-    const int promoteResult = scePromoterUtilityPromotePkg(dir.c_str(), 1);
-    diagnostics::log("[UpdateChecker] PromotePkg(sync=1) " + dir + " -> " + std::to_string(promoteResult));
+    const int promoteResult = scePromoterUtilityPromotePkg(dir.c_str(), 0);
+    diagnostics::log("[UpdateChecker] PromotePkg(sync=0) " + dir + " -> " + std::to_string(promoteResult));
     if (promoteResult < 0) {
-        // Fallback: async + poll (some firmwares reject sync for certain packages)
-        diagnostics::log("[UpdateChecker] sync promote failed; trying async fallback");
-        const int asyncR = scePromoterUtilityPromotePkg(dir.c_str(), 0);
-        diagnostics::log("[UpdateChecker] PromotePkg(sync=0) -> " + std::to_string(asyncR));
-        if (asyncR < 0) {
-            scePromoterUtilityExit();
-            unloadPromoterModules();
-            return false;
-        }
-        int state = 1;
-        int polls = 0;
-        while (polls < 12000) {
-            state = 0;
-            if (scePromoterUtilityGetState(&state) < 0) break;
-            if (state == 0) break;
-            if ((polls % 200) == 0) {
-                diagnostics::log("[UpdateChecker] async promote wait state=" + std::to_string(state));
-            }
-            sceKernelDelayThread(10 * 1000);
-            ++polls;
-        }
-        int op = 0;
-        const int gr = scePromoterUtilityGetResult(&op);
-        diagnostics::log("[UpdateChecker] async GetResult call=" + std::to_string(gr) +
-                         " op=" + std::to_string(op) + " state=" + std::to_string(state));
-        if (state != 0) {
-            scePromoterUtilityExit();
-            unloadPromoterModules();
-            return false;
-        }
+        softExitPromoter();
+        return false;
     }
 
-    scePromoterUtilityExit();
-    unloadPromoterModules();
+    int state = 1;
+    int polls = 0;
+    while (polls < 12000) {
+        state = 0;
+        const int sr = scePromoterUtilityGetState(&state);
+        if (sr < 0) {
+            diagnostics::log("[UpdateChecker] GetState -> " + std::to_string(sr));
+            break;
+        }
+        if (state == 0) break;
+        if ((polls % 200) == 0) {
+            diagnostics::log("[UpdateChecker] promote wait state=" + std::to_string(state) +
+                             " polls=" + std::to_string(polls));
+        }
+        sceKernelDelayThread(10 * 1000);
+        ++polls;
+    }
+    int op = 0;
+    const int gr = scePromoterUtilityGetResult(&op);
+    diagnostics::log("[UpdateChecker] GetResult call=" + std::to_string(gr) +
+                     " op=" + std::to_string(op) +
+                     " polls=" + std::to_string(polls) +
+                     " state=" + std::to_string(state));
+
+    softExitPromoter();
 
     const bool gone = !fileExists(dir);
     diagnostics::log(std::string("[UpdateChecker] promote dir consumed=") + (gone ? "yes" : "no"));
-    // Give LiveArea a moment to register the new title id.
-    sceKernelDelayThread(500 * 1000);
+    if (state != 0) {
+        diagnostics::log("[UpdateChecker] promote incomplete state=" + std::to_string(state));
+        return false;
+    }
+    sceKernelDelayThread(300 * 1000);
+    diagnostics::log("[UpdateChecker] promoteUpdaterPkg OK");
     return true;
 }
 
 bool promoteDirAsync(const std::string& dir) {
-    // Kept for any non-updater callers; updater uses promoteDirSyncAndUnload.
     return promoteDirSyncAndUnload(dir);
 }
 
@@ -545,59 +528,15 @@ bool installUpdaterHelper() {
     return true;
 }
 
-bool waitForUpdaterBubble(int maxMs) {
-    if (!loadPromoterModules()) {
-        diagnostics::log("[UpdateChecker] waitForUpdaterBubble: cannot load promoter");
-        return false;
-    }
-    const int initR = scePromoterUtilityInit();
-    if (initR < 0) {
-        diagnostics::log("[UpdateChecker] waitForUpdaterBubble: Init -> " + std::to_string(initR));
-        unloadPromoterModules();
-        return false;
-    }
-    int waited = 0;
-    bool found = false;
-    while (waited <= maxMs) {
-        int exists = 0;
-        const int cr = scePromoterUtilityCheckExist(UPDATER_TITLE_ID, &exists);
-        if (cr >= 0 && exists) {
-            found = true;
-            diagnostics::log("[UpdateChecker] PSVAUPDT1 bubble visible after " +
-                             std::to_string(waited) + " ms");
-            break;
-        }
-        if ((waited % 500) == 0) {
-            diagnostics::log("[UpdateChecker] waiting for PSVAUPDT1 bubble exists=" +
-                             std::to_string(exists) + " check=" + std::to_string(cr) +
-                             " t=" + std::to_string(waited));
-        }
-        sceKernelDelayThread(100 * 1000);
-        waited += 100;
-    }
-    scePromoterUtilityExit();
-    unloadPromoterModules();
-    return found;
-}
-
 bool launchUpdaterAndExitInternal() {
-    // Stabilize handoff (real Vita flakiness):
-    // 1) Wait until promoter sees PSVAUPDT1.
-    // 2) Unload promoter/PAF completely.
-    // 3) Destroy other apps / brief delay so Shell can switch.
-    // 4) Launch via URI with retries.
+    // Main-thread only. Keep this simple: delay, launch URI, exit process.
+    // Manual open of PSVAUPDT1 already works; we only need a reliable LaunchAppByUri.
     diagnostics::log("[UpdateChecker] launchUpdaterAndExit: prepare handoff");
-
-    if (!waitForUpdaterBubble(8000)) {
-        diagnostics::log("[UpdateChecker] PSVAUPDT1 not visible yet; launching anyway after delay");
-        sceKernelDelayThread(1500 * 1000);
-    } else {
-        sceKernelDelayThread(800 * 1000);
-    }
+    sceKernelDelayThread(800 * 1000);
 
     diagnostics::log("[UpdateChecker] DestroyOtherApp before updater launch");
     sceAppMgrDestroyOtherApp();
-    sceKernelDelayThread(400 * 1000);
+    sceKernelDelayThread(300 * 1000);
 
     char uri[48];
     sceClibSnprintf(uri, sizeof(uri), "psgm:play?titleid=%s", UPDATER_TITLE_ID);
@@ -609,347 +548,12 @@ bool launchUpdaterAndExitInternal() {
         diagnostics::log("[UpdateChecker] LaunchAppByUri attempt=" + std::to_string(attempt) +
                          " -> " + std::to_string(launchR));
         if (launchR >= 0) break;
-        sceKernelDelayThread(700 * 1000);
+        sceKernelDelayThread(500 * 1000);
     }
 
-    // Always exit this process so Shell can focus the updater (even if launchR < 0;
-    // user can still open PSVAUPDT1 manually from LiveArea if needed).
-    sceKernelDelayThread(200 * 1000);
     diagnostics::log("[UpdateChecker] client exiting for updater handoff");
+    sceKernelDelayThread(150 * 1000);
     sceKernelExitProcess(0);
-    return true;
-}
-
-} // namespace
-
-UpdateChecker::Result UpdateChecker::checkLatest(const std::string& currentVersion) {
-    Result result;
-    result.localVersion = extractLocalVersion(currentVersion);
-    if (result.localVersion.empty()) {
-        result.error = "Invalid local application version";
-        diagnostics::log("[UpdateChecker] invalid local version: " + currentVersion);
-        return result;
-    }
-
-    HttpClient http;
-    if (http.init() != HttpResult::Ok) {
-        result.error = "Unable to initialize HTTP client";
-        diagnostics::log("[UpdateChecker] HTTP initialization failed");
-        return result;
-    }
-
-    std::string body;
-    bool usedReleaseList = false;
-
-    auto logFetch = [](const char* label, int status, size_t bytes, HttpResult hr) {
-        char line[192];
-        sceClibSnprintf(
-            line, sizeof(line),
-            "[UpdateChecker] %s status=%d bytes=%u result=%s",
-            label,
-            status,
-            (unsigned)bytes,
-            toString(hr)
-        );
-        diagnostics::log(line);
-    };
-
-    HttpResult fetchResult = http.fetchToString(RELEASES_LATEST_URL, body, 512 * 1024);
-    logFetch("GET releases/latest", http.lastStatusCode(), body.size(), fetchResult);
-
-    const int statusLatest = http.lastStatusCode();
-    if (statusLatest == 403 || statusLatest == 429) {
-        result.error = "GitHub temporarily unavailable (HTTP 403/429) - update check skipped";
-        diagnostics::log("[UpdateChecker] " + result.error);
-        http.shutdown();
-        return result;
-    }
-
-    if (fetchResult != HttpResult::Ok || statusLatest == 404 || body.empty()) {
-        diagnostics::log("[UpdateChecker] releases/latest unavailable - falling back to releases list");
-        body.clear();
-        fetchResult = http.fetchToString(RELEASES_LIST_URL, body, 512 * 1024);
-        usedReleaseList = true;
-        logFetch("GET releases?per_page=10", http.lastStatusCode(), body.size(), fetchResult);
-
-        const int statusList = http.lastStatusCode();
-        if (statusList == 403 || statusList == 429) {
-            result.error = "GitHub temporarily unavailable (HTTP 403/429) - update check skipped";
-            diagnostics::log("[UpdateChecker] " + result.error);
-            http.shutdown();
-            return result;
-        }
-        if (fetchResult != HttpResult::Ok) {
-            result.error = http.lastError().empty() ? toString(fetchResult) : http.lastError();
-            diagnostics::log("[UpdateChecker] GitHub list request failed: " + result.error);
-            http.shutdown();
-            return result;
-        }
-    }
-
-    http.shutdown();
-    diagnostics::log("[UpdateChecker] HTTP shutdown complete (before JSON parse)");
-
-    static bool sJsonModuleLoaded = false;
-    if (!sJsonModuleLoaded) {
-        const int moduleResult = sceSysmoduleLoadModule(SCE_SYSMODULE_JSON);
-        if (moduleResult < 0) {
-            result.error = "Unable to load Vita JSON module";
-            diagnostics::log("[UpdateChecker] JSON module load failed");
-            return result;
-        }
-        sJsonModuleLoaded = true;
-        diagnostics::log("[UpdateChecker] JSON module loaded (kept for process lifetime)");
-    } else {
-        diagnostics::log("[UpdateChecker] JSON module already loaded");
-    }
-
-    VitaJsonAllocator allocator;
-    sce::Json::InitParameter params;
-    params.allocator = &allocator;
-    params.userData = nullptr;
-    params.bufSize = 64 * 1024;
-
-    sce::Json::Initializer initializer;
-    if (initializer.initialize(&params) < 0) {
-        result.error = "Unable to initialize JSON parser";
-        diagnostics::log("[UpdateChecker] JSON initializer failed");
-        return result;
-    }
-
-    bool parseFailed = false;
-    {
-        sce::Json::Value root;
-        const int parseRc = sce::Json::Parser::parse(root, body.c_str(), static_cast<SceSize>(body.size()));
-        if (parseRc < 0) {
-            result.error = "Invalid GitHub release JSON";
-            char perr[128];
-            sceClibSnprintf(
-                perr, sizeof(perr),
-                "[UpdateChecker] GitHub JSON parse failed: 0x%08X bytes=%u list=%d",
-                parseRc, (unsigned)body.size(), usedReleaseList ? 1 : 0
-            );
-            diagnostics::log(perr);
-            parseFailed = true;
-        } else {
-            char okline[96];
-            sceClibSnprintf(
-                okline, sizeof(okline),
-                "[UpdateChecker] JSON parsed OK bytes=%u list=%d",
-                (unsigned)body.size(), usedReleaseList ? 1 : 0
-            );
-            diagnostics::log(okline);
-
-            const bool ok = selectReleaseFromRoot(root, result, usedReleaseList);
-            diagnostics::log(
-                std::string("[UpdateChecker] release metadata extracted tag=") + result.releaseTag +
-                " remote=" + result.remoteVersion +
-                " asset=" + result.assetName +
-                " selected=" + (ok ? "yes" : "no")
-            );
-
-            if (result.remoteVersion.empty()) {
-                result.error = "GitHub release does not expose a usable version (tag/name/body)";
-            } else if (result.downloadUrl.empty()) {
-                result.error = "GitHub release does not contain a .vpk asset (expected PSVitaAlive.vpk)";
-            } else if (compareVersions(result.localVersion, result.remoteVersion) < 0) {
-                result.state = State::UpdateAvailable;
-                diagnostics::log("[UpdateChecker] update available: local=" + result.localVersion +
-                                 " remote=" + result.remoteVersion +
-                                 " tag=" + result.releaseTag +
-                                 " asset=" + result.assetName);
-            } else {
-                result.state = State::UpToDate;
-                diagnostics::log("[UpdateChecker] client is up to date: local=" + result.localVersion +
-                                 " remote=" + result.remoteVersion +
-                                 " tag=" + result.releaseTag);
-            }
-
-            diagnostics::log("[UpdateChecker] version comparison complete");
-        }
-    }
-
-    diagnostics::log("[UpdateChecker] JSON root released");
-
-    if (parseFailed) {
-        initializer.terminate();
-        diagnostics::log("[UpdateChecker] JSON initializer terminated (module kept loaded)");
-        return result;
-    }
-
-    if (result.state == State::Failed) {
-        diagnostics::log("[UpdateChecker] check failed: " + result.error);
-    }
-
-    initializer.terminate();
-    diagnostics::log("[UpdateChecker] JSON initializer terminated (module kept loaded)");
-    diagnostics::log("[UpdateChecker] checkLatest finished");
-    return result;
-}
-
-bool UpdateChecker::applyUpdate(
-    const Result& info,
-    ApplyProgressFn onProgress,
-    ApplyCancelFn shouldCancel
-) {
-    diagnostics::log("[UpdateChecker] ===== applyUpdate BEGIN =====");
-    diagnostics::log(std::string("[UpdateChecker] remote=") + info.remoteVersion +
-                     " tag=" + info.releaseTag +
-                     " asset=" + info.assetName +
-                     " url=" + info.downloadUrl +
-                     " size=" + std::to_string(info.assetSize));
-    diagnostics::log(std::string("[UpdateChecker] VPK path=") + kVpkPath);
-    diagnostics::log(std::string("[UpdateChecker] promote path (homebrew-aligned)=") + PROMOTE_DIR);
-    diagnostics::log(std::string("[UpdateChecker] updater log will be at ") + UPDATE_LOG_NOTE);
-
-    if (info.downloadUrl.empty()) {
-        diagnostics::log("[UpdateChecker] apply failed: empty download URL");
-        emitProgress(onProgress, ApplyStage::Error, 0, 0, "No download URL");
-        return false;
-    }
-
-    emitProgress(onProgress, ApplyStage::Preparing, 0, 0, "Preparing update");
-
-    StorageManager st;
-    if (!st.createDirectories(kUpdateDir)) {
-        diagnostics::log("[UpdateChecker] cannot create update dir");
-        emitProgress(onProgress, ApplyStage::Error, 0, 0, "Cannot create update folder");
-        return false;
-    }
-    st.removeFile(kVpkPath);
-    removeTree(PACKAGE_DIR);
-    removeTree(PROMOTE_DIR);
-    removeTree(UPDATER_PKG_DIR);
-    diagnostics::log("[UpdateChecker] cleaned previous staging/update dirs");
-
-    if (shouldCancel && shouldCancel()) {
-        emitProgress(onProgress, ApplyStage::Error, 0, 0, "Cancelled");
-        return false;
-    }
-
-    HttpClient http;
-    if (http.init() != HttpResult::Ok) {
-        diagnostics::log("[UpdateChecker] HTTP init failed");
-        emitProgress(onProgress, ApplyStage::Error, 0, 0, "HTTP init failed");
-        return false;
-    }
-
-    emitProgress(onProgress, ApplyStage::Downloading, 0, info.assetSize, "Downloading update VPK");
-    diagnostics::log("[UpdateChecker] downloading " + info.downloadUrl);
-
-    const HttpResult dl = http.downloadToFile(
-        info.downloadUrl,
-        kVpkPath,
-        0,
-        [&](const HttpProgress& hp) {
-            const uint64_t tot = hp.total > 0 ? hp.total : info.assetSize;
-            emitProgress(onProgress, ApplyStage::Downloading, hp.downloaded, tot, "Downloading update", hp.bytesPerSecond);
-        },
-        shouldCancel
-    );
-
-    if (dl != HttpResult::Ok) {
-        const std::string err = http.lastError().empty() ? toString(dl) : http.lastError();
-        diagnostics::log("[UpdateChecker] download failed: " + err +
-                         " status=" + std::to_string(http.lastStatusCode()));
-        st.removeFile(kVpkPath);
-        http.shutdown();
-        emitProgress(onProgress, ApplyStage::Error, 0, 0, err.c_str());
-        return false;
-    }
-    http.shutdown();
-    {
-        SceIoStat vst{};
-        const int vr = sceIoGetstat(kVpkPath, &vst);
-        char buf[160];
-        sceClibSnprintf(buf, sizeof(buf),
-            "[UpdateChecker] VPK on disk stat=%d size=%u path=%s",
-            vr, vr >= 0 ? (unsigned)vst.st_size : 0u, kVpkPath);
-        diagnostics::log(buf);
-    }
-
-    // Keep the VPK on disk for manual recovery if anything below fails.
-    emitProgress(onProgress, ApplyStage::Extracting, 0, 0, "Extracting update package");
-    diagnostics::log(std::string("[UpdateChecker] extracting VPK -> ") + PROMOTE_DIR +
-                     " (same path as homebrew VPK installs)");
-
-    removeTree(PROMOTE_DIR);
-    const ZipResult zr = ZipExtractor().extract(
-        kVpkPath,
-        PROMOTE_DIR,
-        [&](const ZipProgress& zp) {
-            emitProgress(onProgress, ApplyStage::Extracting, zp.entriesDone, zp.entriesTotal,
-                         "Extracting update package");
-        },
-        shouldCancel
-    );
-
-    if (zr != ZipResult::Ok) {
-        diagnostics::log(std::string("[UpdateChecker] extract failed: ") + toString(zr));
-        removeTree(PROMOTE_DIR);
-        emitProgress(
-            onProgress,
-            ApplyStage::Error,
-            0,
-            0,
-            "Extract failed. Manual VPK: ux0:data/psvitaalive/update/PSVitaAlive.vpk"
-        );
-        return false;
-    }
-    diagnostics::log("[UpdateChecker] extract OK");
-    diagnostics::log(std::string("[UpdateChecker] exists eboot=") +
-                     (fileExists(std::string(PROMOTE_DIR) + "/eboot.bin") ? "yes" : "no") +
-                     " param=" +
-                     (fileExists(std::string(PROMOTE_DIR) + "/sce_sys/param.sfo") ? "yes" : "no"));
-
-    FakePackageBuilder builder;
-    if (!builder.build(PROMOTE_DIR)) {
-        diagnostics::log("[UpdateChecker] head.bin failed: " + builder.lastError());
-        emitProgress(
-            onProgress,
-            ApplyStage::Error,
-            0,
-            0,
-            "Package prepare failed. Manual VPK: ux0:data/psvitaalive/update/PSVitaAlive.vpk"
-        );
-        return false;
-    }
-    diagnostics::log(std::string("[UpdateChecker] head.bin OK exists=") +
-                     (fileExists(std::string(PROMOTE_DIR) + "/sce_sys/package/head.bin") ? "yes" : "no"));
-
-    emitProgress(onProgress, ApplyStage::Finalizing, 0, 0, "Preparing updater...");
-    diagnostics::log("[UpdateChecker] installing PSVAUPDT1 helper from app0:updater/");
-    diagnostics::log(std::string("[UpdateChecker] updater eboot src exists=") +
-                     (fileExists(UPDATER_EBOOT_SRC) ? "yes" : "no") +
-                     " sfo=" + (fileExists(UPDATER_SFO_SRC) ? "yes" : "no"));
-
-    if (!installUpdaterHelper()) {
-        diagnostics::log("[UpdateChecker] installUpdaterHelper FAILED");
-        emitProgress(
-            onProgress,
-            ApplyStage::Error,
-            0,
-            0,
-            "Updater install failed. Manual VPK: ux0:data/psvitaalive/update/PSVitaAlive.vpk"
-        );
-        return false;
-    }
-    diagnostics::log("[UpdateChecker] PSVAUPDT1 helper installed OK");
-
-    const std::string ver = info.remoteVersion.empty() ? info.releaseTag : info.remoteVersion;
-    if (!writeVersionMarker(ver)) {
-        diagnostics::log("[UpdateChecker] version marker write failed (non-fatal)");
-    } else {
-        diagnostics::log("[UpdateChecker] version marker written: " + ver);
-    }
-
-    // Do NOT launch here — applyUpdate runs on a worker thread. sceAppMgrLaunchAppByUri
-    // from a non-main thread freezes/crashes on real hardware. Main thread must call
-    // UpdateChecker::launchUpdaterAndExit() after this returns true.
-    diagnostics::log("[UpdateChecker] helper ready — main thread must launch PSVAUPDT1");
-    diagnostics::log("[UpdateChecker] after update, check ux0:data/psvitaalive/logs/updater.log");
-    diagnostics::log("[UpdateChecker] ===== applyUpdate DONE (no launch from worker) =====");
-    emitProgress(onProgress, ApplyStage::Done, 1, 1, "Updater ready");
     return true;
 }
 
