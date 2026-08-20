@@ -14,7 +14,7 @@
 #include <vector>
 namespace psvitaalive::ui { namespace {
 constexpr const char* IMAGE_ROOT="ux0:data/psvitaalive/cache/images/v2";
-constexpr int WORKER_PRIORITY=0x10000100,WORKER_STACK=48*1024,MAX_RETRIES=3;
+constexpr int WORKER_PRIORITY=0x10000100,WORKER_STACK=128*1024,MAX_RETRIES=3;
 constexpr uint64_t RETRY_COOLDOWN_US=3000000ULL;
 constexpr size_t MAX_INTERACTIVE_QUEUE=12;
 uint32_t fnv1a(const std::string&v){uint32_t h=2166136261u;for(unsigned char c:v){h^=c;h*=16777619u;}return h;}
