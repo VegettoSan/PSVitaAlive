@@ -83,26 +83,7 @@ bool CatalogManager::request(ui::CatalogType catalog) {
         return true;
     }
 
-    const int idx = static_cast<int>(catalog);
-    if (idx >= 0 && idx < static_cast<int>(ui::CatalogType::Count) &&
-        cachedValid_[idx] && !cachedItems_[idx].empty()) {
-        readyItems_ = cachedItems_[idx];
-        readyCatalog_ = catalog;
-        readyPending_ = true;
-        status_.state = State::Ready;
-        status_.catalog = catalog;
-        status_.current = 1;
-        status_.total = 1;
-        status_.label = label(catalog);
-        status_.message = "Ready (memory cache)";
-        status_.error.clear();
-        requestedCatalog_ = catalog;
-        requestPending_ = false;
-        sceKernelUnlockMutex(mutex_, 1);
-        diagnostics::log(std::string("[CatalogManager] memory cache hit for ") + label(catalog));
-        return true;
-    }
-
+    // Always load from disk/network worker — no multi-catalog RAM cache.
     ++requestGeneration_;
     status_.state = State::Loading;
     status_.catalog = catalog;
@@ -122,10 +103,10 @@ bool CatalogManager::takeReady(std::vector<ui::CatalogItem>&outItems,ui::Catalog
 
 bool CatalogManager::loadCatalog(ui::CatalogType catalog,std::vector<ui::CatalogItem>&outItems){
     const int idx=(int)catalog;const std::string path=cachePath(catalog),meta=metadataPath(catalog),temp=path+".new",url=std::string(RAW_BASE)+fileName(catalog);const bool haveCache=fileExists(path);HttpClient http;if(http.init()!=HttpResult::Ok)return false;
-    if(haveCache){std::vector<ui::CatalogItem>cached;if(CatalogParser::parseFile(path,cached)&&!cached.empty()){std::string storedText,storedEtag,storedModified;parseValidators(readTextFile(meta,storedText)?storedText:std::string(),storedEtag,storedModified);std::string remoteEtag,remoteModified;setStatus(State::Loading,catalog,"Checking remote catalog...");const HttpResult validatorResult=http.fetchRemoteValidators(url,remoteEtag,remoteModified);if(validatorResult==HttpResult::Ok&&validatorsMatch(storedEtag,storedModified,remoteEtag,remoteModified)){outItems=std::move(cached);sceKernelLockMutex(mutex_,1,nullptr);cachedItems_[idx]=outItems;cachedValid_[idx]=true;sceKernelUnlockMutex(mutex_,1);setStatus(State::Ready,catalog,"Using cached catalog");diagnostics::log(std::string("[CatalogManager] cache valid: ")+label(catalog));http.shutdown();return true;}if(validatorResult!=HttpResult::Ok&&!storedEtag.empty()){outItems=std::move(cached);sceKernelLockMutex(mutex_,1,nullptr);cachedItems_[idx]=outItems;cachedValid_[idx]=true;sceKernelUnlockMutex(mutex_,1);setStatus(State::Ready,catalog,"Using cached catalog (offline)");diagnostics::log(std::string("[CatalogManager] offline cache: ")+label(catalog));http.shutdown();return true;}}}
+    if(haveCache){std::vector<ui::CatalogItem>cached;if(CatalogParser::parseFile(path,cached)&&!cached.empty()){std::string storedText,storedEtag,storedModified;parseValidators(readTextFile(meta,storedText)?storedText:std::string(),storedEtag,storedModified);std::string remoteEtag,remoteModified;setStatus(State::Loading,catalog,"Checking remote catalog...");const HttpResult validatorResult=http.fetchRemoteValidators(url,remoteEtag,remoteModified);if(validatorResult==HttpResult::Ok&&validatorsMatch(storedEtag,storedModified,remoteEtag,remoteModified)){outItems=std::move(cached);setStatus(State::Ready,catalog,"Using cached catalog");diagnostics::log(std::string("[CatalogManager] cache valid: ")+label(catalog));http.shutdown();return true;}if(validatorResult!=HttpResult::Ok&&!storedEtag.empty()){outItems=std::move(cached);setStatus(State::Ready,catalog,"Using cached catalog (offline)");diagnostics::log(std::string("[CatalogManager] offline cache: ")+label(catalog));http.shutdown();return true;}}}
     setStatus(State::Loading,catalog,"Downloading catalog...");diagnostics::log(std::string("[CatalogManager] downloading: ")+label(catalog));const HttpResult result=http.downloadToFile(url,temp,0,[this,catalog](const HttpProgress&progress){sceKernelLockMutex(mutex_,1,nullptr);status_.current=progress.downloaded;status_.total=progress.total;status_.message="Downloading catalog...";sceKernelUnlockMutex(mutex_,1);(void)catalog;});
-    if(result==HttpResult::Ok){std::vector<ui::CatalogItem>fresh;if(CatalogParser::parseFile(temp,fresh)&&!fresh.empty()){sceIoRemove(path.c_str());if(sceIoRename(temp.c_str(),path.c_str())>=0){std::string etag,modified;http.fetchRemoteValidators(url,etag,modified);std::string metadata="etag="+etag+"\nlast_modified="+modified+"\n";writeTextFile(meta,metadata);outItems=std::move(fresh);sceKernelLockMutex(mutex_,1,nullptr);cachedItems_[idx]=outItems;cachedValid_[idx]=true;sceKernelUnlockMutex(mutex_,1);diagnostics::log(std::string("[CatalogManager] downloaded and cached: ")+label(catalog));http.shutdown();return true;}}}
-    sceIoRemove(temp.c_str());if(haveCache&&CatalogParser::parseFile(path,outItems)&&!outItems.empty()){sceKernelLockMutex(mutex_,1,nullptr);cachedItems_[idx]=outItems;cachedValid_[idx]=true;sceKernelUnlockMutex(mutex_,1);diagnostics::log(std::string("[CatalogManager] refresh failed; retained valid cache: ")+label(catalog));http.shutdown();return true;}diagnostics::log(std::string("[CatalogManager] catalog unavailable: ")+label(catalog)+" error="+http.lastError());http.shutdown();return false;}
+    if(result==HttpResult::Ok){std::vector<ui::CatalogItem>fresh;if(CatalogParser::parseFile(temp,fresh)&&!fresh.empty()){sceIoRemove(path.c_str());if(sceIoRename(temp.c_str(),path.c_str())>=0){std::string etag,modified;http.fetchRemoteValidators(url,etag,modified);std::string metadata="etag="+etag+"\nlast_modified="+modified+"\n";writeTextFile(meta,metadata);outItems=std::move(fresh);diagnostics::log(std::string("[CatalogManager] downloaded and cached: ")+label(catalog));http.shutdown();return true;}}}
+    sceIoRemove(temp.c_str());if(haveCache&&CatalogParser::parseFile(path,outItems)&&!outItems.empty()){diagnostics::log(std::string("[CatalogManager] refresh failed; retained valid cache: ")+label(catalog));http.shutdown();return true;}diagnostics::log(std::string("[CatalogManager] catalog unavailable: ")+label(catalog)+" error="+http.lastError());http.shutdown();return false;}
 
 int CatalogManager::workerEntry(SceSize args,void*argp){(void)args;CatalogManager*self=nullptr;if(argp)std::memcpy(&self,argp,sizeof(self));return self?self->workerMain():-1;}
 int CatalogManager::workerMain() {
