@@ -53,8 +53,9 @@ private:
     bool readyPending_ = false;
     ui::CatalogType readyCatalog_ = ui::CatalogType::Homebrew;
 
-    // Intentionally NO multi-catalog RAM cache. Holding Vita Games + zRIF + other
-    // catalogs caused OOM on real hardware when switching tabs. Disk cache is used.
+    // In-memory cache of validated catalogs (zRIF lives in separate .zrifidx files).
+    std::vector<ui::CatalogItem> cachedItems_[static_cast<int>(ui::CatalogType::Count)];
+    bool cachedValid_[static_cast<int>(ui::CatalogType::Count)] = {};
 
 
     static int workerEntry(SceSize args, void* argp);
