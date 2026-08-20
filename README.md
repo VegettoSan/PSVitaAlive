@@ -19,7 +19,8 @@ PS Vita Alive Store helps users discover, download and install content on PlaySt
 | `apps/`, `authors/`, `categories/` | Canonical **homebrew** editable data |
 | `scripts/`, `.github/workflows/` | Import, normalize, validate, generate catalogs |
 | `catalog.json`, `authors.json`, `categories.json` | Generated **homebrew** public contract |
-| `catalog_psvita_games.json` | Commercial **PS Vita** games (PKG / DLC / Updates / Mods) |
+| `catalog_psvita_games.json` | Commercial **PS Vita** games (PKG / DLC / Updates / Mods) — **no** embedded zRIF |
+| `catalog_psvita_games.zrifidx` | Separate **zRIF** index for Vita PKG licenses (url → zRIF) |
 | `catalog_psp_games.json` | **PSP** commercial catalog |
 | `catalog_ps1_games.json` | **PS1** commercial catalog |
 | `web/` | Static website (GitHub Pages) |
@@ -63,7 +64,11 @@ https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/categories.json
 https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/catalog_psvita_games.json
 https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/catalog_psp_games.json
 https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/catalog_ps1_games.json
+https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/catalog_psvita_games.zrifidx
 ```
+
+The **zRIF index** (`catalog_psvita_games.zrifidx`) is a separate license sidecar for commercial Vita PKGs (NoPayStation). Format: one line per entry, `pkg_url<TAB>zrif`. It is **not** embedded in the main Vita catalog JSON so the client can keep four catalogs in RAM without saturating memory. The client downloads this file on demand when loading Vita Games and looks up licenses only at PKG install time.
+
 
 Any HTTP client can consume these JSON files without using this store’s UI.
 
@@ -99,11 +104,12 @@ Native client (Title ID **PSVAS1178**) with:
 - Search, settings, touch + controls
 - Download (including MediaFire resolution where implemented)
 - Install paths for VPK / ZIP / PKG-related flows
-- Self-update check against **GitHub Releases**
-- Plugin detection preferences (prefer `ur0` for taiHEN config)
-- Session logs under `ux0:data/psvitaalive/logs/`
+- Self-update via **GitHub Releases** using a helper bubble **PSVAUPDT1** (client cannot safely promote itself while running)
+- Plugin detection (AutoPlugin2-style `tai/config.txt` parse; prefer `ur0`)
+- Licensed Vita PKG installs via system **BGDL** when zRIF is available
+- Session logs under `ux0:data/psvitaalive/logs/` (including `updater.log`)
 
-See `Client PSVitaAlive/README.md` for build and runtime details.
+See `Client PSVitaAlive/README.md` for build, self-update handoff and runtime details.
 
 ---
 
