@@ -1,33 +1,46 @@
-# `source/installer/` — Installation pipeline
+# `source/installer/` — Install pipeline
 
-Turns downloaded payloads into installed content on the device.
+Install and LiveArea-related operations for the native client.
 
-## Components
+## Responsibilities
 
-| File | Responsibility |
-|------|----------------|
-| `install_controller.cpp` | Orchestrates download → install; status for UI |
-| `install_dispatcher.cpp` | Picks installer by detected format |
-| `homebrew_installer.cpp` | VPK extract, head/package prep, promote, verify tree |
-| `vita_installer.cpp` | Vita PKG staging/promotion (no DRM bypass) |
-| `psp_installer.cpp` | PSP-oriented install paths (e.g. Adrenaline) |
-| `fake_package_builder.cpp` | Minimal package metadata for homebrew promote |
-| `plugin_detector.cpp` | Detect taiHEN plugins / config (**prefer ur0**, then ux0) |
-| `refresh_manager.cpp` | LiveArea refresh helpers (fallback / VitaShell-style patterns) |
-| `bgdl_client.cpp` | Optional BGDL hooks when ShellSvc exports exist |
-| `app_settings.cpp` | Install-related settings |
-| `license_helper.cpp` | License-related helpers without fake RIF generation for piracy |
+- Queue and drive download → detect format → install
+- **Homebrew VPK**: extract + promoter (async `PromotePkg` + poll), shallow path `ux0:data/psva_vpk`
+- **ZIP data**: extract to user-chosen path (quick paths include `ux0:data/`, `ux0:app/`, `ux0:repatch/`, PSP/PS1 folders)
+- **Licensed Vita PKG**: system **BGDL** + RIF from zRIF (NoPayStation-style), separate from homebrew promote
+- **PSP/PS1 PKG**: synthetic RIF helpers where content ID is known
+- Plugin detection (AutoPlugin2-style `tai/config.txt` parse; prefer **ur0** then ux0)
+- Settings persistence for install method / PSP path preferences
+- Optional LiveArea refresh helpers for edge cases where promote succeeds but the bubble is not visible
 
-## VPK / LiveArea
+## Main components
 
-Successful promote should yield an app tree such as:
+| File | Role |
+|------|------|
+| `install_controller.cpp` | Public API used by UI |
+| `install_dispatcher.cpp` | Format routing |
+| `homebrew_installer.cpp` | VPK promote path |
+| `pkg_bgdl_installer.cpp` | BGDL package + license enqueue |
+| `license_helper.cpp` | zRIF decode / RIF write / **zRIF disk index lookup** |
+| `plugin_detector.cpp` | Scan `ur0:tai` / `ux0:tai` config for NoNpDrm, NoPspEmuDrm, … |
+| `bgdl_client.cpp` | Low-level BGDL task helpers |
+| `vita_installer.cpp` / `psp_installer.cpp` | Platform-specific helpers |
+| `fake_package_builder.cpp` | head.bin / package scaffolding |
+| `refresh_manager.cpp` | LiveArea refresh helpers |
+| `app_settings.cpp` | Client settings (including feature toggles) |
 
-```text
-ux0:app/<TITLE_ID>/
-ux0:app/<TITLE_ID>/sce_sys/param.sfo
-```
+## zRIF lookup
 
-`liveAreaOk` reflects whether verification sees the expected tree. On some environments (e.g. emulators), promoter success and bubble visibility can diverge; fallback copy + optional refresh paths exist for recovery.
+Catalog items do not carry zRIF in RAM. At PKG install:
+
+1. Use link zRIF if present (legacy)
+2. Else `LicenseHelper::lookupZrifForUrl(url)` on `catalog_psvita_games.zrifidx` (and legacy sidecar names)
+
+## Homebrew VPK notes
+
+- Prefer the same shallow promote directory used by successful device tests (`ux0:data/psva_vpk`)
+- Clean residual job/pkg directories after success or failure when possible
+- Success and bubble visibility can diverge; fallback copy + optional refresh paths exist for recovery
 
 ## Logs
 
@@ -40,6 +53,6 @@ ux0:data/psvitaalive/logs/install.log
 
 Must not:
 
-- Bypass DRM or mint fake licenses for protected content as a feature
+- Bypass DRM beyond supplying NPS-style license data the pipeline already expects
 - Extract ZIP entries with path traversal (`..`, absolute paths)
 - Load entire huge packages into RAM when streaming is possible
