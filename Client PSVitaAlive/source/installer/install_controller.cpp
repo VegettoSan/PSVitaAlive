@@ -4,6 +4,7 @@
 #include "installer/app_settings.hpp"
 #include "installer/refresh_manager.hpp"
 #include "installer/bgdl_client.hpp"
+#include "installer/pkg_bgdl_installer.hpp"
 
 #include <psp2/kernel/clib.h>
 #include <psp2/kernel/processmgr.h>
@@ -136,11 +137,17 @@ bool InstallController::busy() const {
     return s == InstallStatus::State::Downloading || s == InstallStatus::State::Installing;
 }
 
-bool InstallController::requestInstall(const std::string& url, const std::string& fileName, const std::string& zipDestination) {
+bool InstallController::requestInstall(
+    const std::string& url,
+    const std::string& fileName,
+    const std::string& zipDestination,
+    const std::string& zrif,
+    const std::string& linkType
+) {
     if (url.empty() || fileName.empty() || busy()) return false;
 
-    // BGDL uses internal SceShellSvc/taiHEN exports and is intentionally lazy.
-    // Normal application startup must not touch this optional path.
+    // Licensed Vita PKG path (NoPayStation): system BGDL + RIF.
+    // Completely separate from HomebrewInstaller VPK promote.
     const bool pkgInstall = BgdlClient::looksLikePkgUrl(url, fileName);
     if (pkgInstall &&
         (settings_.installMethod == InstallMethod::Auto ||
@@ -151,7 +158,6 @@ bool InstallController::requestInstall(const std::string& url, const std::string
             (bgdlReady ? "available" : "unavailable"));
     }
 
-    // BGDL path: system download manager (PKG). Auto tries BGDL when available; else direct.
     const bool wantBgdl =
         settings_.installMethod == InstallMethod::Bgdl ||
         (settings_.installMethod == InstallMethod::Auto &&
@@ -166,10 +172,18 @@ bool InstallController::requestInstall(const std::string& url, const std::string
                 resultShownAtMs_.store(sceKernelGetSystemTimeWide() / 1000ULL);
                 return false;
             }
-            // Auto falls through to direct.
+            // Auto falls through to direct (no license promote for full PKG).
         } else {
-            const auto bg = BgdlClient::instance().enqueue(
-                fileName, url, std::string(), BgdlTaskType::Game);
+            PkgBgdlRequest preq;
+            preq.title = fileName;
+            preq.url = url;
+            preq.zrif = zrif;
+            preq.type = PkgBgdlInstaller::typeFromLinkType(linkType);
+            diagnostics::log(std::string("[Installer] PKG via PkgBgdlInstaller type=") +
+                             std::to_string(static_cast<int>(preq.type)) +
+                             " zrif=" + (zrif.empty() ? "no" : "yes"));
+
+            const PkgBgdlResult bg = PkgBgdlInstaller::enqueue(preq);
             if (bg.ok) {
                 setFileName(fileName.c_str());
                 setStage("BGDL");
@@ -177,21 +191,23 @@ bool InstallController::requestInstall(const std::string& url, const std::string
                 setTitleId("");
                 liveAreaOk_.store(false);
                 setState(InstallStatus::State::Completed,
-                         "Queued in system download manager. Check LiveArea notifications.");
+                         bg.message.empty()
+                             ? "Queued in system download manager. Check LiveArea notifications."
+                             : bg.message.c_str());
                 resultShownAtMs_.store(sceKernelGetSystemTimeWide() / 1000ULL);
-                diagnostics::log(std::string("[Installer] BGDL queued id=") + std::to_string(bg.bgdlId));
+                diagnostics::log(std::string("[Installer] PKG BGDL queued id=") + std::to_string(bg.bgdlId));
                 return true;
             }
-            if (settings_.installMethod == InstallMethod::Bgdl) {
+            if (settings_.installMethod == InstallMethod::Bgdl || !zrif.empty()) {
+                // With a license we refuse silent direct fallback (direct cannot apply NPS RIF).
                 setState(InstallStatus::State::Failed,
-                         bg.message.empty() ? "BGDL enqueue failed" : bg.message.c_str());
+                         bg.message.empty() ? "PKG BGDL enqueue failed" : bg.message.c_str());
                 resultShownAtMs_.store(sceKernelGetSystemTimeWide() / 1000ULL);
                 return false;
             }
-            diagnostics::log("[Installer] BGDL failed - falling back to direct download");
+            diagnostics::log("[Installer] PKG BGDL failed without zrif - falling back to direct download");
         }
     } else if (settings_.installMethod == InstallMethod::Bgdl) {
-        // Non-PKG content cannot use native BGDL reliably.
         diagnostics::log("[Installer] BGDL selected but file is not PKG - using direct path");
     }
 
