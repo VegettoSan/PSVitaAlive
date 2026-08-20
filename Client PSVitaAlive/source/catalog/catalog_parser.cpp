@@ -3,6 +3,7 @@
 #include <psp2/json.h>
 #include <psp2/sysmodule.h>
 #include <psp2/kernel/clib.h>
+#include <psp2/io/fcntl.h>
 
 #include <cstdlib>
 #include <string>
@@ -111,7 +112,7 @@ std::string makeDownloadFileName(const std::string& url, const std::string& id) 
     return fileName;
 }
 
-void parseLinks(const sce::Json::Value& application, ui::CatalogItem& item) {
+void parseLinks(const sce::Json::Value& application, ui::CatalogItem& item, SceUID zrifIdxFd, uint32_t* zrifWritten) {
     const sce::Json::Value& linksValue = application["links"];
     if (!linksValue) return;
 
@@ -130,9 +131,21 @@ void parseLinks(const sce::Json::Value& application, ui::CatalogItem& item) {
         detail.type = type;
         detail.name = name;
         detail.url = url;
-        detail.zrif = getString(link, "zrif");
-        if (detail.zrif.empty()) detail.zrif = getString(link, "zRIF");
-        if (detail.zrif.empty()) detail.zrif = getString(link, "license");
+        // Keep zRIF off the heap: write to sidecar index, leave detail.zrif empty.
+        {
+            std::string z = getString(link, "zrif");
+            if (z.empty()) z = getString(link, "zRIF");
+            if (z.empty()) z = getString(link, "license");
+            if (!z.empty() && zrifIdxFd >= 0) {
+                sceIoWrite(zrifIdxFd, url.c_str(), static_cast<SceSize>(url.size()));
+                const char tab = '\t';
+                sceIoWrite(zrifIdxFd, &tab, 1);
+                sceIoWrite(zrifIdxFd, z.c_str(), static_cast<SceSize>(z.size()));
+                const char nl = '\n';
+                sceIoWrite(zrifIdxFd, &nl, 1);
+                if (zrifWritten) ++(*zrifWritten);
+            }
+        }
         detail.contentId = getString(link, "content_id");
         if (detail.contentId.empty()) detail.contentId = getString(link, "contentId");
         detail.recommended = link["recommended"].getBoolean();
@@ -176,6 +189,14 @@ void parseLinks(const sce::Json::Value& application, ui::CatalogItem& item) {
 
 bool CatalogParser::parseFile(const std::string& path, std::vector<ui::CatalogItem>& outItems) {
     outItems.clear();
+
+    // Sidecar zRIF index next to the catalog JSON. Install looks up by URL so
+    // we never keep thousands of license strings in RAM (Vita Games OOM).
+    const std::string zrifIndexPath = path + ".zrifidx";
+    sceIoRemove(zrifIndexPath.c_str());
+    const SceUID zrifIdxFd = sceIoOpen(
+        zrifIndexPath.c_str(), SCE_O_WRONLY | SCE_O_CREAT | SCE_O_TRUNC, 0777);
+    uint32_t zrifWritten = 0;
 
     const int moduleResult = sceSysmoduleLoadModule(SCE_SYSMODULE_JSON);
     if (moduleResult < 0) {
@@ -230,7 +251,7 @@ bool CatalogParser::parseFile(const std::string& path, std::vector<ui::CatalogIt
         item.author = firstArrayString(app, "author_ids");
         if (item.author.empty()) item.author = getString(app, "author");
 
-        parseLinks(app, item);
+        parseLinks(app, item, zrifIdxFd, &zrifWritten);
 
         // Official game catalogs may use cover instead of icon and may not have
         // a Homebrew-style status. Keep the UI stable with a neutral badge.
@@ -246,7 +267,10 @@ bool CatalogParser::parseFile(const std::string& path, std::vector<ui::CatalogIt
     }
 
     initializer.terminate();
-    sceClibPrintf("[CatalogParser] Loaded %u applications\n", static_cast<unsigned>(outItems.size()));
+    if (zrifIdxFd >= 0) sceIoClose(zrifIdxFd);
+    sceClibPrintf("[CatalogParser] Loaded %u applications (zrif index entries=%u)\n",
+                  static_cast<unsigned>(outItems.size()),
+                  static_cast<unsigned>(zrifWritten));
     return !outItems.empty();
 }
 
