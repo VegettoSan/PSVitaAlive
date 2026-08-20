@@ -25,3 +25,7 @@ Rendered with **vita2d** (960×544). Accent color aligns with the store green (`
 - UI requests actions (install, cancel, acknowledge); it does not promote packages itself.
 - Touch and controls should share the same actions where implemented.
 - Heavy textures should not stay resident when the user leaves a catalog/detail context.
+
+## Catalog list memory
+
+For large catalogs (Vita Games), browsing with an empty search should use `catalogView()` backed by `allItems_` so the filtered `items_` vector is not a full second copy of the catalog in RAM.
