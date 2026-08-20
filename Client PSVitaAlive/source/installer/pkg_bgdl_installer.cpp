@@ -15,11 +15,14 @@ BgdlTaskType PkgBgdlInstaller::typeFromLinkType(const std::string& linkType) {
     for (char c : linkType) {
         t.push_back(static_cast<char>(std::tolower(static_cast<unsigned char>(c))));
     }
+    if (t.find("psp") != std::string::npos || t.find("ps1") != std::string::npos ||
+        t.find("psx") != std::string::npos) {
+        return BgdlTaskType::Psp;
+    }
     if (t.find("dlc") != std::string::npos || t == "addcont" || t == "add_cont") {
         return BgdlTaskType::AddCont;
     }
     if (t.find("update") != std::string::npos || t.find("patch") != std::string::npos) {
-        // PKGj uses Game type for packages; dedicated update id is not always accepted.
         return BgdlTaskType::Game;
     }
     if (t.find("theme") != std::string::npos) {
@@ -48,12 +51,30 @@ PkgBgdlResult PkgBgdlInstaller::enqueue(const PkgBgdlRequest& req) {
 
     std::string rifPath;
     std::string err;
-    const bool haveLicense = LicenseHelper::prepareBgdlLicense(req.zrif, req.rifPath, rifPath, err);
+    bool haveLicense = false;
+
+    // Vita path: zRIF from NoPayStation.
+    if (!req.zrif.empty() || !req.rifPath.empty()) {
+        haveLicense = LicenseHelper::prepareBgdlLicense(req.zrif, req.rifPath, rifPath, err);
+    }
+
+    // PSP / PS1 path (PKGj): synthetic RIF from Content ID — does NOT use RAP from TSV.
+    if (!haveLicense &&
+        (req.type == BgdlTaskType::Psp || !req.contentId.empty()) &&
+        !req.contentId.empty() &&
+        req.zrif.empty()) {
+        std::vector<uint8_t> pspRif;
+        if (LicenseHelper::createPspRif(req.contentId, pspRif, err)) {
+            if (LicenseHelper::writeRifBytes(pspRif, LicenseHelper::kBgdlTempRif, err)) {
+                rifPath = LicenseHelper::kBgdlTempRif;
+                haveLicense = true;
+                diagnostics::log("[PkgBgdl] using synthetic PSP/PS1 RIF (PKGj-style)");
+            }
+        }
+    }
+
     if (!haveLicense) {
-        // Still allow queue without license (will almost always fail for NPS content),
-        // but surface a clear warning — PKGj refuses without zRIF for games.
-        diagnostics::log(std::string("[PkgBgdl] license prepare failed: ") + err +
-                         " — queuing without license is unsupported for NoPayStation PKGs");
+        diagnostics::log(std::string("[PkgBgdl] license prepare failed: ") + err);
         out.message = std::string("license required: ") + err;
         out.errorCode = -10;
         return out;
