@@ -63,14 +63,21 @@ public:
     static Result checkLatest(const std::string& currentVersion);
 
     /**
-     * Download the client update VPK, stage it for PSVAUPDT1, install the helper
-     * process and hand off (VitaShell-style). Never writes into the running app dir.
+     * Download the client update VPK, stage it for PSVAUPDT1 and install the helper.
+     * Does NOT launch the updater — call launchUpdaterAndExit() from the MAIN thread
+     * after applyUpdate returns true (LaunchAppByUri from a worker freezes on real Vita).
      */
     static bool applyUpdate(
         const Result& info,
         ApplyProgressFn onProgress = nullptr,
         ApplyCancelFn shouldCancel = nullptr
     );
+
+    /**
+     * Main-thread only: wait for PSVAUPDT1 bubble, LaunchAppByUri, ExitProcess.
+     * Must not be called from the update worker thread.
+     */
+    static void launchUpdaterAndExit();
 
     /** Remove temporary PSVAUPDT1 bubble after a successful self-update (VitaShell pattern). */
     static bool cleanupUpdaterBubble();
