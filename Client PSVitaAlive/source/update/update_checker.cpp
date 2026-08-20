@@ -386,13 +386,16 @@ bool copyFileSimple(const std::string& src, const std::string& dst) {
         sceIoClose(in);
         return false;
     }
-    char buf[64 * 1024];
+    // Keep buffer small: update worker used to have only 64KB stack and a
+    // 64KB local buffer here overflowed it on real hardware during
+    // installUpdaterHelper (crash right after "begin").
+    char buf[8 * 1024];
     bool ok = true;
     while (true) {
         const int n = sceIoRead(in, buf, sizeof(buf));
         if (n < 0) { ok = false; break; }
         if (n == 0) break;
-        if (sceIoWrite(out, buf, n) != n) { ok = false; break; }
+        if (sceIoWrite(out, buf, static_cast<SceSize>(n)) != n) { ok = false; break; }
     }
     sceIoClose(out);
     sceIoClose(in);
@@ -451,20 +454,25 @@ bool promoteDirAsync(const std::string& dir) {
 bool installUpdaterHelper() {
     diagnostics::log("[UpdateChecker] installUpdaterHelper: begin");
     StorageManager st;
+    diagnostics::log("[UpdateChecker] installUpdaterHelper: removeTree updater_pkg");
     removeTree(UPDATER_PKG_DIR);
+    diagnostics::log("[UpdateChecker] installUpdaterHelper: createDirectories");
     if (!st.createDirectories(std::string(UPDATER_PKG_DIR) + "/sce_sys")) {
         diagnostics::log("[UpdateChecker] cannot create updater package dirs");
         return false;
     }
+    diagnostics::log("[UpdateChecker] installUpdaterHelper: checking app0:updater payload");
     if (!fileExists(UPDATER_EBOOT_SRC) || !fileExists(UPDATER_SFO_SRC)) {
         diagnostics::log("[UpdateChecker] updater payload missing from app0:updater/");
         return false;
     }
+    diagnostics::log("[UpdateChecker] installUpdaterHelper: copy eboot.bin");
     if (!copyFileSimple(UPDATER_EBOOT_SRC, std::string(UPDATER_PKG_DIR) + "/eboot.bin")) {
         diagnostics::log("[UpdateChecker] failed to copy updater eboot");
         return false;
     }
     diagnostics::log("[UpdateChecker] copied updater eboot.bin");
+    diagnostics::log("[UpdateChecker] installUpdaterHelper: copy param.sfo");
     if (!copyFileSimple(UPDATER_SFO_SRC, std::string(UPDATER_PKG_DIR) + "/sce_sys/param.sfo")) {
         diagnostics::log("[UpdateChecker] failed to copy updater param.sfo");
         return false;
@@ -472,6 +480,7 @@ bool installUpdaterHelper() {
     diagnostics::log("[UpdateChecker] copied updater param.sfo");
     st.createDirectories(std::string(UPDATER_PKG_DIR) + "/ui");
     if (fileExists("app0:ui/catalog_loading.png")) {
+        diagnostics::log("[UpdateChecker] installUpdaterHelper: copy catalog_loading.png");
         const bool ok = copyFileSimple("app0:ui/catalog_loading.png",
                        std::string(UPDATER_PKG_DIR) + "/ui/catalog_loading.png");
         diagnostics::log(std::string("[UpdateChecker] catalog_loading.png copy ") + (ok ? "OK" : "FAIL"));
@@ -479,6 +488,7 @@ bool installUpdaterHelper() {
         diagnostics::log("[UpdateChecker] catalog_loading.png not in app0:ui (UI will be plain)");
     }
 
+    diagnostics::log("[UpdateChecker] installUpdaterHelper: FakePackageBuilder");
     FakePackageBuilder builder;
     if (!builder.build(UPDATER_PKG_DIR)) {
         diagnostics::log("[UpdateChecker] updater head.bin failed: " + builder.lastError());
