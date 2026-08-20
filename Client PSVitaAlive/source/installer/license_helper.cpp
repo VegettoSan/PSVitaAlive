@@ -304,6 +304,9 @@ bool LicenseHelper::lookupZrifForUrl(const std::string& url, std::string& outZri
     if (url.empty()) return false;
 
     static const char* kIndexes[] = {
+        // Primary: separate repo file downloaded next to catalogs
+        "ux0:data/psvitaalive/cache/catalog/catalog_psvita_games.zrifidx",
+        // Legacy path if index was generated beside JSON
         "ux0:data/psvitaalive/cache/catalog/catalog_psvita_games.json.zrifidx",
         "ux0:data/psvitaalive/cache/catalog/catalog.json.zrifidx",
         "ux0:data/psvitaalive/cache/catalog/catalog_psp_games.json.zrifidx",
