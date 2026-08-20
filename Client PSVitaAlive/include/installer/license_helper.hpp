@@ -44,6 +44,9 @@ public:
      */
     static bool createPspRif(const std::string& contentId, std::vector<uint8_t>& outBytes, std::string& errorOut);
 
+    /** Load one zRIF from catalog sidecar indexes (not held in RAM with catalog items). */
+    static bool lookupZrifForUrl(const std::string& url, std::string& outZrif);
+
     static bool prepareBgdlLicense(
         const std::string& zrifOrEmpty,
         const std::string& existingRifPathOrEmpty,
