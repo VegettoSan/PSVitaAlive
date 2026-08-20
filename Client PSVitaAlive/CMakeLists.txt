@@ -34,6 +34,7 @@ set(SOURCES
   source/installer/plugin_detector.cpp
   source/installer/refresh_manager.cpp
   source/installer/bgdl_client.cpp
+  source/installer/pkg_bgdl_installer.cpp
   source/installer/app_settings.cpp
   source/installer/install_dispatcher.cpp
   source/installer/install_controller.cpp
