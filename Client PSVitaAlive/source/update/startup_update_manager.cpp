@@ -10,11 +10,14 @@ StartupUpdateManager::StartupUpdateManager() = default;
 StartupUpdateManager::~StartupUpdateManager() { requestCancel(); wait(); }
 
 bool StartupUpdateManager::startApplyWorker() {
+    // Real Vita: applyUpdate promotes packages and copies files with moderate
+    // stack use (FakePackageBuilder + promoter). 64KB was observed to crash
+    // right after installUpdaterHelper:begin on hardware (stack overflow).
     thread_ = sceKernelCreateThread(
         "PSVitaAliveUpdateWorker",
         &StartupUpdateManager::workerEntry,
         0x10000100,
-        64 * 1024,
+        512 * 1024,
         0,
         0,
         nullptr
