@@ -125,20 +125,40 @@ void ensureZrifIndexDownloaded(ui::CatalogType catalog, HttpClient& http) {
     const std::string idxName = "catalog_psvita_games.zrifidx";
     const std::string local = std::string(CACHE_DIR) + "/" + idxName;
     const std::string remote = std::string(RAW_BASE) + idxName;
-    // Always refresh if missing or tiny
+
+    // Detect legacy URL-keyed index (larger / starts with "http") and refresh.
+    bool needDownload = true;
     SceIoStat st{};
-    const bool have = sceIoGetstat(local.c_str(), &st) >= 0 && st.st_size > 1024;
-    if (have) {
-        diagnostics::log("[CatalogManager] zRIF index present on disk");
-        return;
+    if (sceIoGetstat(local.c_str(), &st) >= 0 && st.st_size > 1024) {
+        bool legacy = st.st_size > 2500000; // old URL-keyed file was ~3.5MB
+        if (!legacy) {
+            const SceUID fd = sceIoOpen(local.c_str(), SCE_O_RDONLY, 0);
+            if (fd >= 0) {
+                char head[8] = {};
+                sceIoRead(fd, head, 7);
+                sceIoClose(fd);
+                if (std::strncmp(head, "http://", 7) == 0 || std::strncmp(head, "https:/", 7) == 0) {
+                    legacy = true;
+                }
+            }
+        }
+        if (!legacy) {
+            diagnostics::log("[CatalogManager] zRIF index present on disk (content_id keys)");
+            needDownload = false;
+        } else {
+            diagnostics::log("[CatalogManager] legacy zRIF index detected — re-downloading content_id index");
+            sceIoRemove(local.c_str());
+        }
     }
+    if (!needDownload) return;
+
     diagnostics::log("[CatalogManager] downloading zRIF index...");
     const std::string temp = local + ".new";
     const HttpResult r = http.downloadToFile(remote, temp, 0, nullptr, nullptr);
     if (r == HttpResult::Ok) {
         sceIoRemove(local.c_str());
         sceIoRename(temp.c_str(), local.c_str());
-        diagnostics::log("[CatalogManager] zRIF index downloaded");
+        diagnostics::log("[CatalogManager] zRIF index downloaded (content_id keys)");
     } else {
         sceIoRemove(temp.c_str());
         diagnostics::log(std::string("[CatalogManager] zRIF index download failed: ") + http.lastError());
