@@ -575,7 +575,7 @@ bool waitForUpdaterBubble(int maxMs) {
     return found;
 }
 
-bool launchUpdaterAndExit() {
+bool launchUpdaterAndExitInternal() {
     // Stabilize handoff (real Vita flakiness):
     // 1) Wait until promoter sees PSVAUPDT1.
     // 2) Unload promoter/PAF completely.
@@ -938,20 +938,20 @@ bool UpdateChecker::applyUpdate(
         diagnostics::log("[UpdateChecker] version marker written: " + ver);
     }
 
-    diagnostics::log("[UpdateChecker] handing off to PSVAUPDT1 (client will exit)");
+    // Do NOT launch here — applyUpdate runs on a worker thread. sceAppMgrLaunchAppByUri
+    // from a non-main thread freezes/crashes on real hardware. Main thread must call
+    // UpdateChecker::launchUpdaterAndExit() after this returns true.
+    diagnostics::log("[UpdateChecker] helper ready — main thread must launch PSVAUPDT1");
     diagnostics::log("[UpdateChecker] after update, check ux0:data/psvitaalive/logs/updater.log");
-    diagnostics::log("[UpdateChecker] ===== applyUpdate handoff =====");
-    emitProgress(onProgress, ApplyStage::Done, 1, 1, "Starting updater...");
-    launchUpdaterAndExit();
-    diagnostics::log("[UpdateChecker] launchUpdater returned unexpectedly");
-    emitProgress(
-        onProgress,
-        ApplyStage::Error,
-        0,
-        0,
-        "Could not start updater. Manual VPK: ux0:data/psvitaalive/update/PSVitaAlive.vpk"
-    );
-    return false;
+    diagnostics::log("[UpdateChecker] ===== applyUpdate DONE (no launch from worker) =====");
+    emitProgress(onProgress, ApplyStage::Done, 1, 1, "Updater ready");
+    return true;
+}
+
+void UpdateChecker::launchUpdaterAndExit() {
+    diagnostics::log("[UpdateChecker] launchUpdaterAndExit on MAIN thread");
+    // Reuse internal handoff (wait bubble + DestroyOtherApp + retries + ExitProcess).
+    launchUpdaterAndExitInternal();
 }
 
 // Remove temporary updater bubble after a successful self-update cycle.
