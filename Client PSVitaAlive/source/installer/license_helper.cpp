@@ -298,6 +298,50 @@ bool LicenseHelper::decodeZrif(const std::string& zrif, std::vector<uint8_t>& ou
     return true;
 }
 
+bool LicenseHelper::createPspRif(const std::string& contentId, std::vector<uint8_t>& outBytes, std::string& errorOut) {
+    errorOut.clear();
+    outBytes.clear();
+    if (contentId.empty()) {
+        errorOut = "empty content id for PSP RIF";
+        return false;
+    }
+    // Mirror PKGj pkgi_create_psp_rif / SceNpDrmLicense (0x200 bytes).
+    std::vector<uint8_t> rif(0x200, 0);
+    // account_id at offset 0x08 (after version fields) — little-endian uint64
+    // Layout from psp2common/npdrm.h SceNpDrmLicense:
+    // 0x00 int16 version, 0x02 version_flags, 0x04 license_type, 0x06 license_flags
+    // 0x08 uint64 account_id
+    // 0x10 content_id[0x30]
+    // ...
+    // 0x80 ecdsa_signature[0x28]  (approx — use PKGj offsets carefully)
+    //
+    // PKGj does:
+    //   memset 0
+    //   license.account_id = 0x0123456789ABCDEFLL
+    //   memset(license.ecdsa_signature, 0xFF, 0x28)
+    //   snprintf(license.content_id, ...)
+    //   memcpy(rif, &license, PKGI_PSP_RIF_SIZE)
+    //
+    // We write the same fields into the packed struct layout.
+    const uint64_t accountId = 0x0123456789ABCDEFULL;
+    std::memcpy(rif.data() + 0x08, &accountId, sizeof(accountId));
+    // content_id at 0x10
+    const size_t n = contentId.size() < 0x2F ? contentId.size() : 0x2F;
+    std::memcpy(rif.data() + 0x10, contentId.data(), n);
+    // ecdsa_signature: in SceNpDrmLicense after start_time(8)+expiration(8)+key fields...
+    // From struct:
+    // 0x10 content_id[0x30] -> 0x40
+    // 0x40 key_table[0x10] -> 0x50
+    // 0x50 key1[0x10] -> 0x60
+    // 0x60 start_time (8) -> 0x68
+    // 0x68 expiration (8) -> 0x70
+    // 0x70 ecdsa_signature[0x28]
+    std::memset(rif.data() + 0x70, 0xFF, 0x28);
+    outBytes.swap(rif);
+    diagnostics::log(std::string("[LicenseHelper] synthetic PSP RIF content_id=") + contentId);
+    return true;
+}
+
 bool LicenseHelper::prepareBgdlLicense(
     const std::string& zrifOrEmpty,
     const std::string& existingRifPathOrEmpty,
