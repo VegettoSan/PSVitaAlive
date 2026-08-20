@@ -522,18 +522,20 @@ int main(){
             startupUpdate.wait();
             const auto us = startupUpdate.snapshot();
             if(us.restartRequired){
-                // CRITICAL: Launch PSVAUPDT1 from the MAIN thread only.
-                // Worker-thread LaunchAppByUri freezes/crashes on real Vita; opening
-                // the updater bubble manually works because Shell starts it cleanly.
+                // Launch PSVAUPDT1 exactly like updater launches PSVAS1178:
+                // LaunchAppByUri + ExitProcess (see updater/main.c launchClientAndExit).
+                // Avoid DestroyOtherApp and heavy teardown that can hang client→updater.
                 screen.setCatalogLoading(true, "Self-update", 1, 1, "Starting updater...");
                 screen.updateAndDraw();
-                psvitaalive::diagnostics::log("[Startup] main-thread handoff to PSVAUPDT1");
-                // Best-effort UI teardown before Shell switches process.
-                screen.shutdown();
+                psvitaalive::diagnostics::log("[Startup] main-thread handoff to PSVAUPDT1 (updater-style)");
+                // Stop background workers so Shell is not fighting live threads.
+                catalogs.shutdown();
+                images.shutdown();
                 installer.shutdown();
+                screen.shutdown();
                 psvitaalive::diagnostics::log("PSVitaAlive session END — launching updater");
                 psvitaalive::diagnostics::shutdown();
-                psvitaalive::UpdateChecker::launchUpdaterAndExit(); // does not return
+                psvitaalive::UpdateChecker::launchUpdaterAndExit(); // LaunchAppByUri + ExitProcess
             }
             if(us.state == psvitaalive::StartupUpdateManager::State::Failed)
                 screen.showToast("Update unavailable — continuing", 1800);
