@@ -79,7 +79,11 @@ public:
 private:
     UiState state_;
     std::vector<CatalogItem> allItems_;
-    std::vector<CatalogItem> items_;
+    std::vector<CatalogItem> items_; // filtered only when searchQuery_ non-empty
+    /** Browse list: allItems_ when not searching (avoids 2x RAM on large catalogs). */
+    const std::vector<CatalogItem>& catalogView() const {
+        return searchQuery_.empty() ? allItems_ : items_;
+    }
     InstallRequestFn installRequest_;
     InstallStatusFn installStatusText_;
     InstallCancelFn installCancel_;
