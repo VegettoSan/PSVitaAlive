@@ -53,13 +53,14 @@ PkgBgdlResult PkgBgdlInstaller::enqueue(const PkgBgdlRequest& req) {
     std::string err;
     bool haveLicense = false;
 
-    // Vita path: zRIF from request, or on-demand from catalog .zrifidx (not kept in RAM).
+    // Vita path: zRIF from request, or on-demand from content_id index (not kept in RAM).
     std::string zrif = req.zrif;
     if (zrif.empty() && req.rifPath.empty()) {
         std::string looked;
-        if (LicenseHelper::lookupZrifForUrl(req.url, looked)) {
+        const std::string& cid = req.contentId;
+        if (!cid.empty() && LicenseHelper::lookupZrifForContentId(cid, looked)) {
             zrif = looked;
-            diagnostics::log("[PkgBgdl] zRIF resolved from disk index");
+            diagnostics::log("[PkgBgdl] zRIF resolved from content_id index");
         }
     }
     if (!zrif.empty() || !req.rifPath.empty()) {
