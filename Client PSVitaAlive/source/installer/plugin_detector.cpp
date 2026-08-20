@@ -1,5 +1,7 @@
 #include "installer/plugin_detector.hpp"
 
+#include "diagnostic_logger.hpp"
+
 #include <psp2/io/fcntl.h>
 #include <psp2/io/stat.h>
 #include <psp2/kernel/clib.h>
@@ -12,11 +14,39 @@
 namespace psvitaalive {
 namespace {
 
-std::string toLower(std::string s) {
-    for (char& c : s) {
+struct ConfigEntry {
+    std::string section;   // without leading '*'
+    std::string path;      // full path as written in config
+    std::string basename;  // lower-case file name only
+    int line = 0;
+};
+
+std::string toLowerCopy(const std::string& s) {
+    std::string o = s;
+    for (char& c : o) {
         c = static_cast<char>(std::tolower(static_cast<unsigned char>(c)));
     }
-    return s;
+    return o;
+}
+
+void trimInPlace(std::string& s) {
+    size_t b = 0;
+    while (b < s.size() && (s[b] == ' ' || s[b] == '\t' || s[b] == '\r')) ++b;
+    size_t e = s.size();
+    while (e > b && (s[e - 1] == ' ' || s[e - 1] == '\t' || s[e - 1] == '\r')) --e;
+    s = s.substr(b, e - b);
+}
+
+std::string basenameOf(const std::string& path) {
+    size_t slash = path.find_last_of("/\\");
+    std::string name = (slash == std::string::npos) ? path : path.substr(slash + 1);
+    return toLowerCopy(name);
+}
+
+bool pathExists(const char* path) {
+    if (!path || !path[0]) return false;
+    SceIoStat st{};
+    return sceIoGetstat(path, &st) >= 0;
 }
 
 bool readWholeFile(const char* path, std::string& out) {
@@ -33,154 +63,287 @@ bool readWholeFile(const char* path, std::string& out) {
         return false;
     }
     out.resize(n);
-    const int rd = sceIoRead(fd, &out[0], n);
+    const int rd = sceIoRead(fd, &out[0], static_cast<int>(n));
     sceIoClose(fd);
-    return rd > 0;
+    if (rd <= 0) {
+        out.clear();
+        return false;
+    }
+    if (static_cast<size_t>(rd) != n) {
+        out.resize(static_cast<size_t>(rd));
+    }
+    return true;
 }
 
-bool pathExists(const char* path) {
-    SceIoStat st{};
-    return sceIoGetstat(path, &st) >= 0;
-}
-
-bool containsAny(const std::string& hay, const char* const* needles) {
-    for (int i = 0; needles[i] != nullptr; ++i) {
-        if (hay.find(needles[i]) != std::string::npos) return true;
+// AutoPlugin2 tai.find: match by basename, case-insensitive, plain substring on path.
+bool basenameMatches(const std::string& entryBase, const char* const* names) {
+    for (int i = 0; names[i] != nullptr; ++i) {
+        if (entryBase == names[i]) return true;
     }
     return false;
 }
 
-void scanTextForPlugins(const std::string& text, PluginStatus& st) {
-    const std::string low = toLower(text);
-
-    // NoNpDrm (kernel): official + common forks
-    static const char* kNoNpDrm[] = {
-        "nonpdrm.skprx",
-        "nonpdrm_un.skprx",
-        "nonpdrm",
+bool filePresentForEntry(const ConfigEntry& e) {
+    if (!e.path.empty() && pathExists(e.path.c_str())) return true;
+    // Common AutoPlugin2 / manual install locations
+    static const char* kRoots[] = {
+        "ur0:tai/",
+        "ux0:tai/",
+        "ur0:/tai/",
+        "ux0:/tai/",
+        "ur0:tai/plugins/",
+        "ux0:tai/plugins/",
         nullptr
     };
-    if (containsAny(low, kNoNpDrm)) {
-        st.nonpdrm = true;
+    for (int i = 0; kRoots[i] != nullptr; ++i) {
+        const std::string candidate = std::string(kRoots[i]) + e.basename;
+        if (pathExists(candidate.c_str())) return true;
+        // Also try original casing variants for known plugins
+        if (e.basename == "nopspemudrm_kern.skprx") {
+            const std::string a = std::string(kRoots[i]) + "NoPspEmuDrm_kern.skprx";
+            if (pathExists(a.c_str())) return true;
+        }
+        if (e.basename == "nopspemudrm_user.suprx") {
+            const std::string a = std::string(kRoots[i]) + "NoPspEmuDrm_user.suprx";
+            if (pathExists(a.c_str())) return true;
+        }
+        if (e.basename == "nonpdrm.skprx") {
+            const std::string a = std::string(kRoots[i]) + "NoNpDrm.skprx";
+            if (pathExists(a.c_str())) return true;
+        }
     }
+    return false;
+}
 
-    // NoPspEmuDrm kernel half
-    static const char* kNoPspKern[] = {
-        "nopspemudrm_kern",
-        "nopspemudrm.skprx",
-        nullptr
-    };
-    if (containsAny(low, kNoPspKern)) {
-        st.nopspemudrmKern = true;
+void parseConfigText(const std::string& text, std::vector<ConfigEntry>& out) {
+    std::string section = "KERNEL";
+    int lineNo = 0;
+    size_t i = 0;
+    const size_t n = text.size();
+    while (i <= n) {
+        size_t j = i;
+        while (j < n && text[j] != '\n') ++j;
+        std::string line = text.substr(i, j - i);
+        if (!line.empty() && line.back() == '\r') line.pop_back();
+        trimInPlace(line);
+        ++lineNo;
+
+        if (line.empty()) {
+            // skip
+        } else if (line[0] == '#') {
+            // commented plugin / note - not active
+        } else if (line[0] == '*') {
+            section = line.substr(1);
+            trimInPlace(section);
+            // Normalize like AutoPlugin2 tai.parse
+            const std::string low = toLowerCopy(section);
+            if (low == "kernel") section = "KERNEL";
+            else if (low == "main") section = "main";
+            else if (low == "all") section = "ALL";
+        } else {
+            // Plugin path line
+            ConfigEntry e;
+            e.section = section;
+            e.path = line;
+            e.basename = basenameOf(line);
+            e.line = lineNo;
+            if (!e.basename.empty()) {
+                out.push_back(e);
+            }
+        }
+
+        if (j >= n) break;
+        i = j + 1;
     }
+}
 
-    // NoPspEmuDrm user half
-    static const char* kNoPspUser[] = {
-        "nopspemudrm_user",
-        "nopspemudrm_user.suprx",
-        nullptr
-    };
-    if (containsAny(low, kNoPspUser)) {
-        st.nopspemudrmUser = true;
+struct Hit {
+    bool listed = false;
+    bool fileOk = false;
+    std::string section;
+    std::string path;
+    int line = 0;
+};
+
+Hit findPlugin(
+    const std::vector<ConfigEntry>& entries,
+    const char* const* names
+) {
+    Hit hit;
+    for (const ConfigEntry& e : entries) {
+        if (!basenameMatches(e.basename, names)) continue;
+        hit.listed = true;
+        hit.section = e.section;
+        hit.path = e.path;
+        hit.line = e.line;
+        hit.fileOk = filePresentForEntry(e);
+        // First match wins (AutoPlugin2 style)
+        break;
     }
+    return hit;
+}
 
-    // Generic token without confusing nopsmdrm (PSM plugin)
-    // If only "nopspemudrm" appears without _kern/_user, treat as kern hint only when
-    // ".skprx" is on the same line-ish — already covered by nopspemudrm.skprx above.
+void logHit(const char* label, const Hit& h) {
+    char buf[320];
+    if (!h.listed) {
+        sceClibSnprintf(buf, sizeof(buf), "[PluginDetector] %s: not listed in config", label);
+    } else {
+        sceClibSnprintf(
+            buf, sizeof(buf),
+            "[PluginDetector] %s: listed section=%s line=%d file=%s path=%s",
+            label,
+            h.section.c_str(),
+            h.line,
+            h.fileOk ? "OK" : "MISSING",
+            h.path.c_str()
+        );
+    }
+    diagnostics::log(buf);
+    sceClibPrintf("%s\n", buf);
 }
 
 } // namespace
 
 PluginStatus PluginDetector::scan() {
     PluginStatus st;
+    diagnostics::log("[PluginDetector] scan begin (AutoPlugin2-style parser)");
 
-    // Preferred practice: plugins live under ur0:tai (esp. SD2Vita).
-    // Fall back to ux0 only if ur0 config is missing.
-    // If BOTH exist, merge (OR flags) so a stale ux0 config does not hide ur0 plugins,
-    // and report which paths were read.
-    const char* ur0Config = "ur0:tai/config.txt";
-    const char* ux0Config = "ux0:tai/config.txt";
+    // taiHEN: if ux0:tai/config.txt exists it is the active config.
+    // ur0:tai/config.txt is the usual AutoPlugin2 / SD2Vita location and fallback.
+    static const char* kUx0 = "ux0:tai/config.txt";
+    static const char* kUr0 = "ur0:tai/config.txt";
+    static const char* kUx0Alt = "ux0:/tai/config.txt";
+    static const char* kUr0Alt = "ur0:/tai/config.txt";
 
-    std::string ur0Text;
-    std::string ux0Text;
-    const bool hasUr0 = readWholeFile(ur0Config, ur0Text);
-    const bool hasUx0 = readWholeFile(ux0Config, ux0Text);
+    const bool hasUx0 = pathExists(kUx0) || pathExists(kUx0Alt);
+    const bool hasUr0 = pathExists(kUr0) || pathExists(kUr0Alt);
 
-    if (!hasUr0 && !hasUx0) {
-        st.detail = "tai config.txt not found on ur0 or ux0";
+    const char* primary = nullptr;
+    const char* secondary = nullptr;
+    if (hasUx0) {
+        primary = pathExists(kUx0) ? kUx0 : kUx0Alt;
+        if (hasUr0) secondary = pathExists(kUr0) ? kUr0 : kUr0Alt;
+    } else if (hasUr0) {
+        primary = pathExists(kUr0) ? kUr0 : kUr0Alt;
+    }
+
+    {
+        char buf[192];
+        sceClibSnprintf(
+            buf, sizeof(buf),
+            "[PluginDetector] configs ux0=%d ur0=%d primary=%s",
+            hasUx0 ? 1 : 0,
+            hasUr0 ? 1 : 0,
+            primary ? primary : "(none)"
+        );
+        diagnostics::log(buf);
+    }
+
+    if (!primary) {
+        st.detail = "tai config.txt not found on ux0 or ur0";
+        diagnostics::log(std::string("[PluginDetector] ") + st.detail);
         sceClibPrintf("[PluginDetector] %s\n", st.detail.c_str());
         return st;
     }
 
-    if (hasUr0) {
-        scanTextForPlugins(ur0Text, st);
-        st.configPathUsed = ur0Config;
+    std::string text;
+    if (!readWholeFile(primary, text)) {
+        st.detail = std::string("failed to read ") + primary;
+        diagnostics::log(std::string("[PluginDetector] ") + st.detail);
+        return st;
     }
-    if (hasUx0) {
-        scanTextForPlugins(ux0Text, st);
-        if (st.configPathUsed.empty()) {
-            st.configPathUsed = ux0Config;
-        } else {
-            st.configPathUsed = std::string(ur0Config) + "+" + ux0Config;
+    st.configPathUsed = primary;
+
+    std::vector<ConfigEntry> entries;
+    parseConfigText(text, entries);
+    {
+        char buf[160];
+        sceClibSnprintf(
+            buf, sizeof(buf),
+            "[PluginDetector] parsed %s bytes=%u entries=%u",
+            primary,
+            (unsigned)text.size(),
+            (unsigned)entries.size()
+        );
+        diagnostics::log(buf);
+    }
+
+    // Secondary config: merge entries (some installs split plugins)
+    if (secondary) {
+        std::string text2;
+        if (readWholeFile(secondary, text2)) {
+            const size_t before = entries.size();
+            parseConfigText(text2, entries);
+            char buf[160];
+            sceClibSnprintf(
+                buf, sizeof(buf),
+                "[PluginDetector] merged secondary %s extra_entries=%u",
+                secondary,
+                (unsigned)(entries.size() - before)
+            );
+            diagnostics::log(buf);
+            st.configPathUsed = std::string(primary) + "+" + secondary;
         }
     }
 
-    // Optional: verify common plugin file locations when listed.
-    if (st.nonpdrm) {
-        const bool fileOk =
-            pathExists("ur0:tai/nonpdrm.skprx") ||
-            pathExists("ur0:tai/nonpdrm_un.skprx") ||
-            pathExists("ux0:tai/nonpdrm.skprx") ||
-            pathExists("ur0:tai/plugins/nonpdrm.skprx") ||
-            pathExists("ux0:tai/plugins/nonpdrm.skprx") ||
-            pathExists("ur0:/tai/nonpdrm.skprx");
-        if (!fileOk) {
-            st.detail += "nonpdrm listed but .skprx not found in common paths; ";
-        }
-    }
-    if (st.nopspemudrmKern) {
-        const bool fileOk =
-            pathExists("ur0:tai/NoPspEmuDrm_kern.skprx") ||
-            pathExists("ux0:tai/NoPspEmuDrm_kern.skprx") ||
-            pathExists("ur0:/tai/NoPspEmuDrm_kern.skprx") ||
-            pathExists("ur0:tai/nopspemudrm_kern.skprx") ||
-            pathExists("ux0:tai/nopspemudrm_kern.skprx");
-        if (!fileOk) {
-            st.detail += "NoPspEmuDrm_kern listed but file missing; ";
-        }
-    }
-    if (st.nopspemudrmUser) {
-        const bool fileOk =
-            pathExists("ur0:tai/NoPspEmuDrm_user.suprx") ||
-            pathExists("ux0:tai/NoPspEmuDrm_user.suprx") ||
-            pathExists("ur0:/tai/NoPspEmuDrm_user.suprx") ||
-            pathExists("ur0:tai/nopspemudrm_user.suprx");
-        if (!fileOk) {
-            st.detail += "NoPspEmuDrm_user listed but file missing; ";
-        }
-    }
+    static const char* kNoNpDrmNames[] = {
+        "nonpdrm.skprx",
+        "nonpdrm_un.skprx",
+        "nonpdrm_en.skprx",
+        nullptr
+    };
+    static const char* kNoPspKernNames[] = {
+        "nopspemudrm_kern.skprx",
+        "nopspemudrm.skprx",
+        nullptr
+    };
+    static const char* kNoPspUserNames[] = {
+        "nopspemudrm_user.suprx",
+        nullptr
+    };
 
-    char buf[256];
+    const Hit nonpdrm = findPlugin(entries, kNoNpDrmNames);
+    const Hit nopspK = findPlugin(entries, kNoPspKernNames);
+    const Hit nopspU = findPlugin(entries, kNoPspUserNames);
+
+    logHit("NoNpDrm", nonpdrm);
+    logHit("NoPspEmuDrm_kern", nopspK);
+    logHit("NoPspEmuDrm_user", nopspU);
+
+    // Present for install warnings: listed in active config AND file on disk.
+    st.nonpdrm = nonpdrm.listed && nonpdrm.fileOk;
+    st.nopspemudrmKern = nopspK.listed && nopspK.fileOk;
+    st.nopspemudrmUser = nopspU.listed && nopspU.fileOk;
+
+    // Soft signal: listed but missing file still reports in detail
+    char summary[384];
     sceClibSnprintf(
-        buf, sizeof(buf),
-        "config=%s nonpdrm=%d nopspemudrm_kern=%d user=%d",
+        summary, sizeof(summary),
+        "config=%s nonpdrm=%d (listed=%d file=%d) nopsp_kern=%d (listed=%d file=%d) nopsp_user=%d (listed=%d file=%d) entries=%u",
         st.configPathUsed.c_str(),
-        st.nonpdrm ? 1 : 0,
-        st.nopspemudrmKern ? 1 : 0,
-        st.nopspemudrmUser ? 1 : 0
+        st.nonpdrm ? 1 : 0, nonpdrm.listed ? 1 : 0, nonpdrm.fileOk ? 1 : 0,
+        st.nopspemudrmKern ? 1 : 0, nopspK.listed ? 1 : 0, nopspK.fileOk ? 1 : 0,
+        st.nopspemudrmUser ? 1 : 0, nopspU.listed ? 1 : 0, nopspU.fileOk ? 1 : 0,
+        (unsigned)entries.size()
     );
-    if (st.detail.empty()) {
-        st.detail = buf;
-    } else {
-        st.detail = std::string(buf) + " | " + st.detail;
+    st.detail = summary;
+
+    if (hasUx0 && hasUr0) {
+        st.detail += " | both ux0+ur0 configs present; primary is ux0 (taiHEN)";
+    }
+    if (nonpdrm.listed && !nonpdrm.fileOk) {
+        st.detail += " | NoNpDrm listed but .skprx missing";
+    }
+    if (nopspK.listed && !nopspK.fileOk) {
+        st.detail += " | NoPspEmuDrm_kern listed but file missing";
+    }
+    if (nopspU.listed && !nopspU.fileOk) {
+        st.detail += " | NoPspEmuDrm_user listed but file missing";
     }
 
-    // Note when both configs exist (taiHEN prefers ux0 if present).
-    if (hasUr0 && hasUx0) {
-        st.detail += " | note: both configs exist; taiHEN uses ux0 if present";
-    }
-
+    diagnostics::log(std::string("[PluginDetector] ") + st.detail);
     sceClibPrintf("[PluginDetector] %s\n", st.detail.c_str());
+    diagnostics::log("[PluginDetector] scan end");
     return st;
 }
 
