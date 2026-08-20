@@ -76,7 +76,7 @@ Cached on device as:
 ux0:data/psvitaalive/cache/catalog/catalog_psvita_games.zrifidx
 ```
 
-Format: `pkg_url<TAB>zrif` per line. Looked up only when starting a licensed PKG install.
+Format: `content_id<TAB>zrif` per line. Looked up only when starting a licensed PKG install.
 
 ## Build (typical)
 
