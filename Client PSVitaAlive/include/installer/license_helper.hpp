@@ -37,6 +37,13 @@ public:
      * Accepts either a zRIF string or an existing .rif/.bin path.
      * Returns the path written on success (usually kBgdlTempRif).
      */
+    /**
+     * PKGj-style synthetic PSP/PS1 license for NoPspEmuDrm BGDL.
+     * Does NOT use RAP from TSV — PKGj builds RIF from Content ID:
+     * account_id=0x0123456789ABCDEF, ecdsa_signature filled with 0xFF.
+     */
+    static bool createPspRif(const std::string& contentId, std::vector<uint8_t>& outBytes, std::string& errorOut);
+
     static bool prepareBgdlLicense(
         const std::string& zrifOrEmpty,
         const std::string& existingRifPathOrEmpty,
