@@ -142,7 +142,8 @@ bool InstallController::requestInstall(
     const std::string& fileName,
     const std::string& zipDestination,
     const std::string& zrif,
-    const std::string& linkType
+    const std::string& linkType,
+    const std::string& contentId
 ) {
     if (url.empty() || fileName.empty() || busy()) return false;
 
@@ -178,7 +179,25 @@ bool InstallController::requestInstall(
             preq.title = fileName;
             preq.url = url;
             preq.zrif = zrif;
+            preq.contentId = contentId;
             preq.type = PkgBgdlInstaller::typeFromLinkType(linkType);
+            // PSP/PS1 catalogs: force Psp BGDL type when content id present and no zRIF
+            if (preq.zrif.empty() && !preq.contentId.empty() &&
+                (preq.type == BgdlTaskType::Game || preq.type == BgdlTaskType::Psp)) {
+                // Heuristic: NPS content ids for PSP/PS1 often start with UP/EP/JP and title like NPU*
+                if (preq.contentId.find("-NPU") != std::string::npos ||
+                    preq.contentId.find("-ULES") != std::string::npos ||
+                    preq.contentId.find("-ULUS") != std::string::npos ||
+                    preq.contentId.find("-UCUS") != std::string::npos ||
+                    preq.contentId.find("-NPE") != std::string::npos ||
+                    preq.contentId.find("-NPJ") != std::string::npos ||
+                    preq.contentId.find("-NPH") != std::string::npos ||
+                    linkType.find("PSP") != std::string::npos ||
+                    linkType.find("PS1") != std::string::npos ||
+                    linkType.find("PSX") != std::string::npos) {
+                    preq.type = BgdlTaskType::Psp;
+                }
+            }
             diagnostics::log(std::string("[Installer] PKG via PkgBgdlInstaller type=") +
                              std::to_string(static_cast<int>(preq.type)) +
                              " zrif=" + (zrif.empty() ? "no" : "yes"));
