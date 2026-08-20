@@ -53,11 +53,8 @@ private:
     bool readyPending_ = false;
     ui::CatalogType readyCatalog_ = ui::CatalogType::Homebrew;
 
-    // Once startup has validated a catalog, keep its parsed representation in
-    // memory. Switching tabs after startup must not perform another network
-    // request; it should only hand this already-validated catalog to the UI.
-    std::vector<ui::CatalogItem> cachedItems_[static_cast<int>(ui::CatalogType::Count)];
-    bool cachedValid_[static_cast<int>(ui::CatalogType::Count)] = {};
+    // Intentionally NO multi-catalog RAM cache. Holding Vita Games + zRIF + other
+    // catalogs caused OOM on real hardware when switching tabs. Disk cache is used.
 
 
     static int workerEntry(SceSize args, void* argp);
