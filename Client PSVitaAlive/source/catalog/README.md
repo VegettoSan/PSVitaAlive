@@ -35,7 +35,7 @@ License strings are **not** stored inside `catalog_psvita_games.json` (avoids OO
 |------|----------|
 | Remote | `catalog_psvita_games.zrifidx` (repo root) |
 | Device cache | `ux0:data/psvitaalive/cache/catalog/catalog_psvita_games.zrifidx` |
-| Line format | `pkg_url<TAB>zrif` |
+| Line format | `content_id<TAB>zrif` |
 
 `CatalogManager` downloads the index when the Vita Games catalog is loaded (if missing/too small).  
 `LicenseHelper::lookupZrifForUrl()` resolves a zRIF at **install time** only.
