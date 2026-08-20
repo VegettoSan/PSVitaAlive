@@ -298,6 +298,68 @@ bool LicenseHelper::decodeZrif(const std::string& zrif, std::vector<uint8_t>& ou
     return true;
 }
 
+
+bool LicenseHelper::lookupZrifForUrl(const std::string& url, std::string& outZrif) {
+    outZrif.clear();
+    if (url.empty()) return false;
+
+    static const char* kIndexes[] = {
+        "ux0:data/psvitaalive/cache/catalog/catalog_psvita_games.json.zrifidx",
+        "ux0:data/psvitaalive/cache/catalog/catalog.json.zrifidx",
+        "ux0:data/psvitaalive/cache/catalog/catalog_psp_games.json.zrifidx",
+        "ux0:data/psvitaalive/cache/catalog/catalog_ps1_games.json.zrifidx",
+    };
+
+    const std::string urlNoQuery = url.substr(0, url.find('?'));
+
+    for (const char* indexPath : kIndexes) {
+        const SceUID fd = sceIoOpen(indexPath, SCE_O_RDONLY, 0);
+        if (fd < 0) continue;
+
+        std::string line;
+        line.reserve(512);
+        char ch = 0;
+        bool found = false;
+        while (sceIoRead(fd, &ch, 1) == 1) {
+            if (ch == '\n' || ch == '\r') {
+                if (!line.empty()) {
+                    const size_t tab = line.find('\t');
+                    if (tab != std::string::npos) {
+                        const std::string key = line.substr(0, tab);
+                        if (key == url || key == urlNoQuery) {
+                            outZrif = line.substr(tab + 1);
+                            found = !outZrif.empty();
+                        }
+                    }
+                    line.clear();
+                    if (found) break;
+                }
+            } else {
+                line.push_back(ch);
+                if (line.size() > 8192) line.clear(); // safety
+            }
+        }
+        // last line without newline
+        if (!found && !line.empty()) {
+            const size_t tab = line.find('\t');
+            if (tab != std::string::npos) {
+                const std::string key = line.substr(0, tab);
+                if (key == url || key == urlNoQuery) {
+                    outZrif = line.substr(tab + 1);
+                    found = !outZrif.empty();
+                }
+            }
+        }
+        sceIoClose(fd);
+        if (found) {
+            diagnostics::log(std::string("[LicenseHelper] zRIF loaded from index for url len=") +
+                             std::to_string(url.size()));
+            return true;
+        }
+    }
+    return false;
+}
+
 bool LicenseHelper::createPspRif(const std::string& contentId, std::vector<uint8_t>& outBytes, std::string& errorOut) {
     errorOut.clear();
     outBytes.clear();
