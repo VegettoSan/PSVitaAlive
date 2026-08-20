@@ -594,15 +594,13 @@ while(screen.updateAndDraw()){
         std::vector<psvitaalive::ui::CatalogItem> ready;psvitaalive::ui::CatalogType readyCatalog;
         if(catalogs.takeReady(ready,readyCatalog)){
             psvitaalive::diagnostics::log(std::string("[System] catalog ready: ")+psvitaalive::ui::catalogName(readyCatalog));
+            startupCatalogItems[(int)readyCatalog]=ready;
             if(startupCatalogs){
-                // Never retain Vita/PSP/PS1 full catalogs in startupCatalogItems — OOM.
                 if(readyCatalog==psvitaalive::ui::CatalogType::Homebrew){
-                    startupCatalogItems[(int)readyCatalog]=ready;
                     screen.setCatalogItems(ready);
                     screen.setActiveCatalog(psvitaalive::ui::CatalogType::Homebrew);
                     homebrewReady=true;
                 }
-                // Other catalogs: validated/cached on disk only; drop in-memory payload.
                 ++preloadIndex;
                 if(preloadIndex<catalogCount){const auto next=(psvitaalive::ui::CatalogType)preloadIndex;screen.setCatalogLoading(true,psvitaalive::ui::catalogName(next),0,0,"Checking next catalog cache...");catalogs.request(next);}
                 else{startupCatalogs=false;startupImageChoicePending=true;startupImagesJobs.clear();startupImageSeen.clear();for(const auto&items:startupCatalogItems)collectCatalogImages(startupImagesJobs,startupImageSeen,images,items,false);screen.setCatalogLoading(false,"",0,(uint64_t)startupImagesJobs.size(),"Catalogs ready");psvitaalive::diagnostics::log("[Startup] all catalogs ready; waiting for image warmup choice");}
