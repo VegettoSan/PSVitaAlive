@@ -172,13 +172,16 @@ Hit findPlugin(
     Hit hit;
     for (const ConfigEntry& e : entries) {
         if (!basenameMatches(e.basename, names)) continue;
-        hit.listed = true;
-        hit.section = e.section;
-        hit.path = e.path;
-        hit.line = e.line;
-        hit.fileOk = filePresentForEntry(e);
-        // First match wins (AutoPlugin2 style)
-        break;
+        const bool ok = filePresentForEntry(e);
+        // Prefer a match whose file exists on disk.
+        if (!hit.listed || (ok && !hit.fileOk)) {
+            hit.listed = true;
+            hit.section = e.section;
+            hit.path = e.path;
+            hit.line = e.line;
+            hit.fileOk = ok;
+        }
+        if (hit.fileOk) break;
     }
     return hit;
 }
