@@ -28,6 +28,7 @@
 
 #include <stdio.h>
 #include <string.h>
+#include <stdint.h>
 
 #define CLIENT_TITLE_ID    "PSVAS1178"
 /* Same shallow promote path used by HomebrewInstaller (working path). */
@@ -131,37 +132,37 @@ static int launchClientAndExit(void) {
 }
 
 static int loadScePaf(void) {
-    /* Same pattern as HomebrewInstaller (builds with current VitaSDK).
-       4th argument must be const SceSysmoduleOpt*. */
+    /* Identical approach to HomebrewInstaller::loadPromoterModule (client builds OK). */
+    uint32_t ptr[0x100];
+    unsigned i;
+    for (i = 0; i < 0x100; ++i) ptr[i] = 0;
+    ptr[0] = 0;
+    ptr[1] = (uint32_t)(uintptr_t)&ptr[0];
+
     uint32_t scepafArgp[] = { 0x400000u, 0xEA60u, 0x40000u, 0u, 0u };
-    SceSysmoduleOpt opt;
-    int result = 0;
-    memset(&opt, 0, sizeof(opt));
-    opt.result = &result;
     const int r = sceSysmoduleLoadModuleInternalWithArg(
         SCE_SYSMODULE_INTERNAL_PAF,
         sizeof(scepafArgp),
         scepafArgp,
-        &opt
+        (const SceSysmoduleOpt*)ptr
     );
-    { char _lb[480]; sceClibSnprintf(_lb, sizeof(_lb), "loadScePaf -> 0x%08X result=%d", (unsigned)r, result); logLine(_lb); };
+    { char _lb[480]; sceClibSnprintf(_lb, sizeof(_lb), "loadScePaf -> 0x%08X", (unsigned)r); logLine(_lb); };
     return r;
 }
 
 static int unloadScePaf(void) {
     SceSysmoduleOpt opt;
-    int result = 0;
     memset(&opt, 0, sizeof(opt));
-    opt.result = &result;
     const int r = sceSysmoduleUnloadModuleInternalWithArg(
         SCE_SYSMODULE_INTERNAL_PAF,
         0,
         NULL,
         &opt
     );
-    { char _lb[480]; sceClibSnprintf(_lb, sizeof(_lb), "unloadScePaf -> 0x%08X result=%d", (unsigned)r, result); logLine(_lb); };
+    { char _lb[480]; sceClibSnprintf(_lb, sizeof(_lb), "unloadScePaf -> 0x%08X", (unsigned)r); logLine(_lb); };
     return r;
 }
+
 
 
 /* Mirror HomebrewInstaller::promoteExtractedDir success rules. */
