@@ -5,15 +5,14 @@
 
 namespace psvitaalive {
 
+// Values aligned with PKGj bgdl.hpp (Shell download manager).
 enum class BgdlTaskType : int {
-    Image = 0x01,
-    Audio = 0x02,
-    Video = 0x03,
-    Game = 0x06,       // Vita game PKG
-    AddCont = 0x07,    // DLC
-    GameUpdate = 0x08,
+    Psp = 0x00,
+    Psm = 0x06,
     Theme = 0x0C,
-    Psp = 0x00
+    Game = 0x16,       // Vita game PKG (NOT 0x06 — that is PSM in PKGj)
+    AddCont = 0x17,    // DLC / additional content
+    GameUpdate = 0x18  // package update (best-effort; falls back to Game if rejected)
 };
 
 struct BgdlEnqueueResult {
