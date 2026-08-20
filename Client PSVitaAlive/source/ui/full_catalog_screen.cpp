@@ -116,8 +116,8 @@ void drawNeonFrame(int x, int y, int w, int h, unsigned alphaOuter = 70, unsigne
 
 constexpr int FULL_CARD_H=120,SPLIT_CARD_H=82,DETAIL_HEADER_H=92,LINE_H=18,TRANSITION_MS=340,LINK_ROW_H=38,LINK_GAP=6,SCREENSHOT_ROW_H=250;
 constexpr size_t MAX_APP_TEXTURES=18,MAX_SCREENSHOT_TEXTURES=6;
-constexpr int CATALOG_SWITCH_COOLDOWN_FRAMES=40; // ~0.66s at 60fps
-constexpr uint64_t CATALOG_SWITCH_MIN_MS=700; // hard debounce against L/R spam
+constexpr int CATALOG_SWITCH_COOLDOWN_FRAMES=50; // ~0.83s at 60fps
+constexpr uint64_t CATALOG_SWITCH_MIN_MS=900; // hard debounce against L/R spam
 constexpr size_t MAX_DEFERRED_FREES_PER_FRAME=8;constexpr uint64_t DIRECTION_REPEAT_DELAY_US=320000,DIRECTION_REPEAT_INTERVAL_US=420000;
 const char* extOf(const std::string&p){const size_t d=p.find_last_of('.');return d==std::string::npos?"":p.c_str()+d;}std::string formatBytes(uint64_t b){char o[64];double v=(double)b;if(b>=1024ULL*1024ULL*1024ULL)sceClibSnprintf(o,sizeof(o),"%.2f GB",v/(1024.0*1024.0*1024.0));else if(b>=1024ULL*1024ULL)sceClibSnprintf(o,sizeof(o),"%.2f MB",v/(1024.0*1024.0));else if(b>=1024ULL)sceClibSnprintf(o,sizeof(o),"%.2f KB",v/1024.0);else sceClibSnprintf(o,sizeof(o),"%llu B",(unsigned long long)b);return o;}std::string lowerAscii(std::string s){for(char&c:s)c=(char)std::tolower((unsigned char)c);return s;}std::string ellipsize(const std::string&s,size_t n){if(s.size()<=n)return s;if(n<=3)return s.substr(0,n);return s.substr(0,n-3)+"...";}bool actionableLink(const CatalogLink&l){std::string t=lowerAscii(l.type);if(t=="download"||t=="downloads"||t=="mirror"||t=="dlc")return true;std::string u=lowerAscii(l.url);return u.find(".vpk")!=std::string::npos||u.find(".pkg")!=std::string::npos||u.find(".zip")!=std::string::npos||u.find(".pbp")!=std::string::npos||u.find(".iso")!=std::string::npos||u.find(".cso")!=std::string::npos;}
 bool isDownloadLink(const CatalogLink&l){return lowerAscii(l.type)=="download"||lowerAscii(l.type)=="downloads"||lowerAscii(l.type)=="mirror"||lowerAscii(l.type)=="dlc";}
@@ -149,11 +149,15 @@ void FullCatalogScreen::setCatalogItems(std::vector<CatalogItem>items){
         catalogSwitchCooldownFrames_=CATALOG_SWITCH_COOLDOWN_FRAMES/2;
     lastCatalogSwitchMs_=sceKernelGetProcessTimeWide()/1000ULL;
 }void FullCatalogScreen::setActiveCatalog(CatalogType c){
-    releaseTextures();
+    // Textures usually already released in changeCatalog; release again only if any remain.
+    if(!textures_.empty() || !deferredFreeTextures_.empty()){
+        releaseTextures();
+    }
     state_.catalog=c;
     installStatusWarmupUntilMs_ = sceKernelGetProcessTimeWide() / 1000ULL + 1500ULL;
     searchQuery_.clear();
-    items_=allItems_;
+    items_.clear();
+    items_ = allItems_; // filtered view starts as full list
     state_.focusIndex=0;
     state_.catalogScrollRow=0;
     state_.detailScroll=0;
@@ -258,16 +262,26 @@ void FullCatalogScreen::flushDeferredTextureFrees(){
 void FullCatalogScreen::releaseTextures(){
     if(textures_.empty()){
         textureOrder_.clear();
-        return;
+    } else {
+        for(auto& e:textures_){
+            if(e.second){
+                scheduleTextureFree(e.second);
+                e.second=nullptr;
+            }
+        }
+        textures_.clear();
+        textureOrder_.clear();
     }
-    for(auto& e:textures_){
-        if(e.second){
-            scheduleTextureFree(e.second);
-            e.second=nullptr;
+    // Catalog switches free many textures at once — drain immediately after GPU
+    // wait so the next catalog does not pile deferred frees / UAF under load.
+    if(!deferredFreeTextures_.empty()){
+        vita2d_wait_rendering_done();
+        while(!deferredFreeTextures_.empty()){
+            vita2d_texture* t=deferredFreeTextures_.front();
+            deferredFreeTextures_.erase(deferredFreeTextures_.begin());
+            if(t)vita2d_free_texture(t);
         }
     }
-    textures_.clear();
-    textureOrder_.clear();
 }
 void FullCatalogScreen::releaseScreenshotTextures(){
     bool any=false;
@@ -357,7 +371,16 @@ int FullCatalogScreen::detailContentHeight(const CatalogItem&i,int w)const{int c
 void FullCatalogScreen::moveCatalogFocus(int d){if(items_.empty())return;if(state_.mode!=UiMode::FULL_CATALOG)releaseScreenshotTextures();if(state_.mode==UiMode::FULL_CATALOG){if(d<0&&state_.focusIndex>=3)state_.focusIndex-=3;if(d>0&&state_.focusIndex+3<(int)items_.size())state_.focusIndex+=3;}else{if(d<0&&state_.focusIndex>0)--state_.focusIndex;if(d>0&&state_.focusIndex+1<(int)items_.size())++state_.focusIndex;}clampCatalogFocus();clampCatalogScroll();state_.detailScroll=0;detailScrollBeforeLinkMode_=0;state_.linkFocus=-1;state_.linkNavigation=false;}void FullCatalogScreen::moveDetailScroll(int d){state_.detailScroll+=d<0?-72:72;clampDetailScroll();}void FullCatalogScreen::enterLinkNavigation(){int i=selectedIndex();if(i<0)return;const auto idxs=downloadLinkIndices(items_[i]);if(idxs.empty())return;detailScrollBeforeLinkMode_=state_.detailScroll;state_.linkNavigation=true;state_.linkFocus=0;state_.detailScroll=0;clampDetailScroll();diagnostics::log("[UI] link navigation enabled (downloads only)");}void FullCatalogScreen::exitLinkNavigation(){if(!state_.linkNavigation)return;state_.linkNavigation=false;state_.linkFocus=-1;state_.detailScroll=detailScrollBeforeLinkMode_;detailScrollBeforeLinkMode_=0;clampDetailScroll();diagnostics::log("[UI] link navigation disabled; detail scroll restored");}void FullCatalogScreen::moveLinkFocus(int dx,int dy){(void)dx;int i=selectedIndex();if(i<0)return;const auto idxs=downloadLinkIndices(items_[i]);int c=(int)idxs.size();if(c<=0)return;if(state_.linkFocus<0)state_.linkFocus=0;else state_.linkFocus=std::max(0,std::min(c-1,state_.linkFocus+dy));state_.linkNavigation=true;int top=DETAIL_HEADER_H+10+state_.linkFocus*(LINK_ROW_H+LINK_GAP),vis=SCREEN_H-HEADER_H-TABS_H-FOOTER_H-DETAIL_HEADER_H-18,lim=detailLinkScrollLimit(items_[i],SCREEN_W/2,SCREEN_H-HEADER_H-TABS_H-FOOTER_H);if(top<state_.detailScroll)state_.detailScroll=top;if(top+LINK_ROW_H>state_.detailScroll+vis)state_.detailScroll=top+LINK_ROW_H-vis;state_.detailScroll=std::max(0,std::min(state_.detailScroll,lim));}void FullCatalogScreen::activateFocusedLink(){int i=selectedIndex();if(i<0||state_.linkFocus<0)return;const auto idxs=downloadLinkIndices(items_[i]);if(state_.linkFocus>=(int)idxs.size())return;const CatalogLink&l=items_[i].linkDetails[idxs[state_.linkFocus]];if(!linkAction_||!actionableLink(l)){diagnostics::log(std::string("[UI] non-download link selected: ")+l.url);return;}if(linkAction_(items_[i],l))exitLinkNavigation();}void FullCatalogScreen::changeCatalog(int d){
     if(catalogLoading_||installProgressActive_||isTransitioning())return;
     if(catalogSwitchCooldownFrames_>0)return;
-    if(!deferredFreeTextures_.empty())return; // wait until GPU frees drain
+
+    // Drain any pending texture frees before switching (do not soft-skip the input).
+    if(!deferredFreeTextures_.empty()){
+        vita2d_wait_rendering_done();
+        while(!deferredFreeTextures_.empty()){
+            vita2d_texture* t=deferredFreeTextures_.front();
+            deferredFreeTextures_.erase(deferredFreeTextures_.begin());
+            if(t)vita2d_free_texture(t);
+        }
+    }
 
     const uint64_t nowMs=sceKernelGetProcessTimeWide()/1000ULL;
     if(lastCatalogSwitchMs_!=0 && nowMs>=lastCatalogSwitchMs_ &&
@@ -378,7 +401,7 @@ void FullCatalogScreen::moveCatalogFocus(int d){if(items_.empty())return;if(stat
         releaseScreenshotTextures();
     }
 
-    // Lock BEFORE loader callback.
+    // Lock BEFORE loader callback — blocks install probes and image binds.
     catalogLoading_=true;
     catalogLoadingLabel_=catalogName(n);
     catalogLoadingCurrent_=0;
@@ -388,11 +411,18 @@ void FullCatalogScreen::moveCatalogFocus(int d){if(items_.empty())return;if(stat
     showToast(std::string("Loading ") + catalogName(n) + "...", 1200);
     state_.catalog=n;
     items_.clear();
+    // Drop previous catalog payload early to free RAM before the next load.
+    {
+        std::vector<CatalogItem> empty;
+        allItems_.swap(empty);
+    }
     state_.focusIndex=0;
     state_.catalogScrollRow=0;
     releaseTextures();
+    installStatusCache_.clear();
     catalogSwitchCooldownFrames_=CATALOG_SWITCH_COOLDOWN_FRAMES;
     lastCatalogSwitchMs_=nowMs;
+    installStatusWarmupUntilMs_=nowMs+1500ULL;
 
     if(catalogChange_){
         if(!catalogChange_(n)){
