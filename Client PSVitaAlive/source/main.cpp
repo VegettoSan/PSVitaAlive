@@ -522,23 +522,18 @@ int main(){
             startupUpdate.wait();
             const auto us = startupUpdate.snapshot();
             if(us.restartRequired){
-                screen.setCatalogLoading(true, "Self-update", 1, 1, "Update installed — press START to restart");
-                while(screen.updateAndDraw()){
-                    SceCtrlData pad{};
-                    sceCtrlPeekBufferPositive(0, &pad, 1);
-                    if(pad.buttons & SCE_CTRL_START){
-                        screen.shutdown();
-                        installer.shutdown();
-                        psvitaalive::diagnostics::log("PSVitaAlive session END after self-update");
-                        psvitaalive::diagnostics::shutdown();
-                        sceKernelExitProcess(0);
-                    }
-                    sceKernelDelayThread(50 * 1000);
-                }
+                // CRITICAL: Launch PSVAUPDT1 from the MAIN thread only.
+                // Worker-thread LaunchAppByUri freezes/crashes on real Vita; opening
+                // the updater bubble manually works because Shell starts it cleanly.
+                screen.setCatalogLoading(true, "Self-update", 1, 1, "Starting updater...");
+                screen.updateAndDraw();
+                psvitaalive::diagnostics::log("[Startup] main-thread handoff to PSVAUPDT1");
+                // Best-effort UI teardown before Shell switches process.
                 screen.shutdown();
                 installer.shutdown();
+                psvitaalive::diagnostics::log("PSVitaAlive session END — launching updater");
                 psvitaalive::diagnostics::shutdown();
-                sceKernelExitProcess(0);
+                psvitaalive::UpdateChecker::launchUpdaterAndExit(); // does not return
             }
             if(us.state == psvitaalive::StartupUpdateManager::State::Failed)
                 screen.showToast("Update unavailable — continuing", 1800);
