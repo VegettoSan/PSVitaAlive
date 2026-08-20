@@ -35,6 +35,7 @@ struct CatalogLink {
     std::string name;
     std::string url;
     std::string size; // human-readable, e.g. "1.4 GB"
+    std::string zrif; // NoPayStation / PKGj license string (optional)
     bool recommended = false;
 };
 
