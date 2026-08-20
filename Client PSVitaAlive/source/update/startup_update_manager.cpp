@@ -217,8 +217,8 @@ int StartupUpdateManager::workerMain() {
         return 0;
     }
     restartRequired_.store(true, std::memory_order_release);
-    setProgress(State::Completed, 1, 1, 0, "Update installed — press START to restart");
-    diagnostics::log("[StartupUpdate] update installed successfully; restart required");
+    setProgress(State::Completed, 1, 1, 0, "Updater ready — handing off");
+    diagnostics::log("[StartupUpdate] helper installed; main thread will launch PSVAUPDT1");
     return 0;
 }
 
