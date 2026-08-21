@@ -123,26 +123,6 @@
     ]
   },
   {
-    "id": "12-ji-no-kane-to-cinderella-series-triple-zenkan-pack",
-    "title_ids": {
-      "JP": "PCSG00561"
-    },
-    "name": "12-Ji no Kane to Cinderella Series Triple Zenkan Pack",
-    "description": "JP | JP: JA",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "1",
-    "version_date": "2019-04-02",
-    "requirements": "",
-    "size": 0,
-    "cover": "https://raw.githubusercontent.com/SvenGDK/PSMT-Covers/main/PSVita/PCSG00561.png",
-    "icon": "",
-    "screenshots": [],
-    "links": []
-  },
-  {
     "id": "2013-infected-wars",
     "title_ids": {
       "US": "PCSE00634",
@@ -1160,26 +1140,6 @@
     ]
   },
   {
-    "id": "a-w-pheonix-festa",
-    "title_ids": {
-      "ASIA": "PCSH00262"
-    },
-    "name": "A.W. Pheonix Festa",
-    "description": "ASIA | ASIA: EN/JA",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "1",
-    "version_date": "",
-    "requirements": "",
-    "size": 0,
-    "cover": "https://raw.githubusercontent.com/SvenGDK/PSMT-Covers/main/PSVita/PCSH00262.png",
-    "icon": "",
-    "screenshots": [],
-    "links": []
-  },
-  {
     "id": "a-w-phoenix-festa",
     "title_ids": {
       "US": "PCSE00871",
@@ -2059,26 +2019,6 @@
         "content_id": "JP0082-PCSG00759_00-SEIKENFFGAIDENRM"
       }
     ]
-  },
-  {
-    "id": "aegis-of-earth",
-    "title_ids": {
-      "ASIA": "PCSH00186"
-    },
-    "name": "Aegis of Earth (KOR)",
-    "description": "ASIA | ASIA: EN/JA",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "1",
-    "version_date": "2019-02-12",
-    "requirements": "",
-    "size": 0,
-    "cover": "https://raw.githubusercontent.com/SvenGDK/PSMT-Covers/main/PSVita/PCSH00186.png",
-    "icon": "",
-    "screenshots": [],
-    "links": []
   },
   {
     "id": "aegis-of-earth-protonovus-assault",
@@ -5862,26 +5802,6 @@
     ]
   },
   {
-    "id": "ar-play-free-download-set",
-    "title_ids": {
-      "JP": "PCSC00029"
-    },
-    "name": "AR Play Free Download Set",
-    "description": "JP | JP: JA",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "1",
-    "version_date": "",
-    "requirements": "",
-    "size": 409442512,
-    "cover": "https://raw.githubusercontent.com/SvenGDK/PSMT-Covers/main/PSVita/PCSC00029.png",
-    "icon": "",
-    "screenshots": [],
-    "links": []
-  },
-  {
     "id": "arcana-famiglia-la-storia-della-arcana-famiglia-ancora",
     "title_ids": {
       "JP": "PCSG00751"
@@ -6016,26 +5936,6 @@
         "content_id": "JP0036-PCSG00328_00-ARCANAHEART3LOVE"
       }
     ]
-  },
-  {
-    "id": "arcana-heart-3-lovemax",
-    "title_ids": {
-      "ASIA": "PCSH00093"
-    },
-    "name": "Arcana Heart 3: LOVEMAX!!!!!",
-    "description": "ASIA | ASIA: EN/JA",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "1",
-    "version_date": "",
-    "requirements": "",
-    "size": 2128092160,
-    "cover": "https://raw.githubusercontent.com/SvenGDK/PSMT-Covers/main/PSVita/PCSH00093.png",
-    "icon": "",
-    "screenshots": [],
-    "links": []
   },
   {
     "id": "army-corps-of-hell",
@@ -10153,26 +10053,6 @@
     ]
   },
   {
-    "id": "axiom-verge-multiverse-edition",
-    "title_ids": {
-      "EU": "PCSB01181"
-    },
-    "name": "Axiom Verge: Multiverse Edition",
-    "description": "EU | EU: EN/FR/DE/ES/IT",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "0",
-    "version_date": "",
-    "requirements": "FW 0+",
-    "size": 0,
-    "cover": "https://raw.githubusercontent.com/SvenGDK/PSMT-Covers/main/PSVita/PCSB01181.png",
-    "icon": "",
-    "screenshots": [],
-    "links": []
-  },
-  {
     "id": "ayakashi-gohan-oomori",
     "title_ids": {
       "JP": "PCSG00666"
@@ -11386,26 +11266,6 @@
     ]
   },
   {
-    "id": "berserk-and-band-of-the-hawk",
-    "title_ids": {
-      "ASIA": "PCSH10031"
-    },
-    "name": "Berserk and Band of The Hawk (KOR)",
-    "description": "ASIA | ASIA: EN/JA",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "1",
-    "version_date": "",
-    "requirements": "",
-    "size": 0,
-    "cover": "https://raw.githubusercontent.com/SvenGDK/PSMT-Covers/main/PSVita/PCSH10031.png",
-    "icon": "",
-    "screenshots": [],
-    "links": []
-  },
-  {
     "id": "berserk-and-the-band-of-the-hawk-3-63",
     "title_ids": {
       "US": "PCSE01034",
@@ -12278,26 +12138,6 @@
     ]
   },
   {
-    "id": "bit-dungeon",
-    "title_ids": {
-      "JP": "PCSG01098"
-    },
-    "name": "Bit Dungeon+",
-    "description": "JP | JP: JA",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "1",
-    "version_date": "",
-    "requirements": "",
-    "size": 233125664,
-    "cover": "https://raw.githubusercontent.com/SvenGDK/PSMT-Covers/main/PSVita/PCSG01098.png",
-    "icon": "",
-    "screenshots": [],
-    "links": []
-  },
-  {
     "id": "bit-trip-presents-runner2-future-legend-of-rhythm-alien",
     "title_ids": {
       "US": "PCSE00302",
@@ -12336,16 +12176,6 @@
         "size": 8674816,
         "recommended": false,
         "content_id": "UP4457-PCSE00302_00-RUNNER2DLC100000"
-      },
-      {
-        "type": "Download",
-        "name": "PKG US",
-        "region": "US",
-        "title_id": "PCSE00953",
-        "url": "CART ONLY",
-        "size": 0,
-        "recommended": false,
-        "content_id": "HP2005-PCSH10282_00-JETSETKNIGHTS000"
       },
       {
         "type": "Download",
@@ -14622,16 +14452,6 @@
         "size": 1721313936,
         "recommended": true,
         "content_id": "UP2154-PCSE00657_00-BROKENAGEPLAYSVI"
-      },
-      {
-        "type": "Download",
-        "name": "PKG US",
-        "region": "US",
-        "title_id": "PCSE01058",
-        "url": "CART ONLY",
-        "size": 0,
-        "recommended": false,
-        "content_id": "HP2005-PCSH10282_00-JETSETKNIGHTS000"
       },
       {
         "type": "Download",
@@ -17062,37 +16882,6 @@
         "size": 1513086736,
         "recommended": true,
         "content_id": "JP0745-PCSG00995_00-CHAOSCHILDLCCPSV"
-      }
-    ]
-  },
-  {
-    "id": "chaos-head-dual",
-    "title_ids": {
-      "JP": "PCSG00411"
-    },
-    "name": "CHAOS;HEAD DUAL",
-    "description": "JP | JP: JA",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "1",
-    "version_date": "1970-01-01",
-    "requirements": "",
-    "size": 0,
-    "cover": "https://raw.githubusercontent.com/SvenGDK/PSMT-Covers/main/PSVita/PCSG00411.png",
-    "icon": "",
-    "screenshots": [],
-    "links": [
-      {
-        "type": "Download",
-        "name": "PKG JP",
-        "region": "JP",
-        "title_id": "PCSG00411",
-        "url": "CART ONLY",
-        "size": 0,
-        "recommended": true,
-        "content_id": "HP2005-PCSH10282_00-JETSETKNIGHTS000"
       }
     ]
   },
@@ -21703,26 +21492,6 @@
         "content_id": "EP2114-PCSB00853_00-0000000000000001"
       }
     ]
-  },
-  {
-    "id": "curve-studios-mega-bundle",
-    "title_ids": {
-      "ASIA": "PCSH00092"
-    },
-    "name": "Curve Studios Mega Bundle",
-    "description": "ASIA | ASIA: EN/JA",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "1",
-    "version_date": "",
-    "requirements": "",
-    "size": 277215568,
-    "cover": "https://raw.githubusercontent.com/SvenGDK/PSMT-Covers/main/PSVita/PCSH00092.png",
-    "icon": "",
-    "screenshots": [],
-    "links": []
   },
   {
     "id": "cybarian-the-time-traveling-warrior",
@@ -27455,26 +27224,6 @@
     ]
   },
   {
-    "id": "deemo-original-soundtrack-vol-1-digital-version",
-    "title_ids": {
-      "JP": "PCSG00816"
-    },
-    "name": "DEEMO Original Soundtrack Vol.1 Digital Version",
-    "description": "JP | JP: JA",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "1",
-    "version_date": "",
-    "requirements": "",
-    "size": 170560864,
-    "cover": "https://raw.githubusercontent.com/SvenGDK/PSMT-Covers/main/PSVita/PCSG00816.png",
-    "icon": "",
-    "screenshots": [],
-    "links": []
-  },
-  {
     "id": "deemo-last-recital",
     "title_ids": {
       "ASIA": "PCSH00216"
@@ -27507,26 +27256,6 @@
         "content_id": "HP1248-PCSH00216_00-DEEMOLASTRECITAL"
       }
     ]
-  },
-  {
-    "id": "deemo-last-recital-original-soundtrack-vol-1",
-    "title_ids": {
-      "ASIA": "PCSH00215"
-    },
-    "name": "DEEMO: Last Recital - Original Soundtrack Vol.1",
-    "description": "ASIA | ASIA: EN/JA",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "1",
-    "version_date": "",
-    "requirements": "",
-    "size": 0,
-    "cover": "https://raw.githubusercontent.com/SvenGDK/PSMT-Covers/main/PSVita/PCSH00215.png",
-    "icon": "",
-    "screenshots": [],
-    "links": []
   },
   {
     "id": "deemo-the-last-recital",
@@ -28496,16 +28225,6 @@
     "links": [
       {
         "type": "Download",
-        "name": "PKG ASIA",
-        "region": "ASIA",
-        "title_id": "PCSH00128",
-        "url": "CART ONLY",
-        "size": 0,
-        "recommended": true,
-        "content_id": "HP2005-PCSH10282_00-JETSETKNIGHTS000"
-      },
-      {
-        "type": "Download",
         "name": "PKG JP",
         "region": "JP",
         "title_id": "PCSG00310",
@@ -28553,16 +28272,6 @@
         "size": 514022848,
         "recommended": false,
         "content_id": "JP0507-PCSG00311_00-0000000000000000"
-      },
-      {
-        "type": "Download",
-        "name": "PKG JP",
-        "region": "JP",
-        "title_id": "PCSG00447",
-        "url": "CART ONLY",
-        "size": 0,
-        "recommended": false,
-        "content_id": "HP2005-PCSH10282_00-JETSETKNIGHTS000"
       },
       {
         "type": "Update",
@@ -31144,16 +30853,6 @@
       },
       {
         "type": "Download",
-        "name": "PKG ASIA",
-        "region": "ASIA",
-        "title_id": "PCSH10079",
-        "url": "CART ONLY",
-        "size": 0,
-        "recommended": false,
-        "content_id": "HP2005-PCSH10282_00-JETSETKNIGHTS000"
-      },
-      {
-        "type": "Download",
         "name": "PKG JP",
         "region": "JP",
         "title_id": "PCSG01119",
@@ -31211,16 +30910,6 @@
         "size": 102400,
         "recommended": false,
         "content_id": "JP0700-PCSG01119_00-DSCSHMDLC0000007"
-      },
-      {
-        "type": "Download",
-        "name": "PKG JP",
-        "region": "JP",
-        "title_id": "PCSG01126",
-        "url": "CART ONLY",
-        "size": 0,
-        "recommended": false,
-        "content_id": "HP2005-PCSH10282_00-JETSETKNIGHTS000"
       },
       {
         "type": "Update",
@@ -31905,16 +31594,6 @@
         "size": 3211045760,
         "recommended": false,
         "content_id": "EP9000-PCSF00309_00-EPICMICKEY2THE00"
-      },
-      {
-        "type": "Download",
-        "name": "PKG EU",
-        "region": "EU",
-        "title_id": "PCSF00311",
-        "url": "CART ONLY",
-        "size": 0,
-        "recommended": false,
-        "content_id": "HP2005-PCSH10282_00-JETSETKNIGHTS000"
       }
     ]
   },
@@ -31937,16 +31616,6 @@
     "icon": "",
     "screenshots": [],
     "links": [
-      {
-        "type": "Download",
-        "name": "PKG US",
-        "region": "US",
-        "title_id": "PCSE00520",
-        "url": "CART ONLY",
-        "size": 0,
-        "recommended": true,
-        "content_id": "HP2005-PCSH10282_00-JETSETKNIGHTS000"
-      },
       {
         "type": "Update",
         "name": "Update US 1.01",
@@ -31981,26 +31650,6 @@
     "icon": "",
     "screenshots": [],
     "links": [
-      {
-        "type": "Download",
-        "name": "PKG EU",
-        "region": "EU",
-        "title_id": "PCSB00698",
-        "url": "CART ONLY",
-        "size": 0,
-        "recommended": true,
-        "content_id": "HP2005-PCSH10282_00-JETSETKNIGHTS000"
-      },
-      {
-        "type": "Download",
-        "name": "PKG EU",
-        "region": "EU",
-        "title_id": "PCSB00699",
-        "url": "CART ONLY",
-        "size": 0,
-        "recommended": false,
-        "content_id": "HP2005-PCSH10282_00-JETSETKNIGHTS000"
-      },
       {
         "type": "Update",
         "name": "Update EU 1.01",
@@ -33496,47 +33145,6 @@
         "pkg_name": "Dragon Fantasy Book II",
         "recommended": false,
         "content_id": "UP2087-PCSE00299_00-DRAGONFANTASYBK2"
-      }
-    ]
-  },
-  {
-    "id": "dragon-fantasy-black-tome-of-ice",
-    "title_ids": {
-      "US": "PCSE00952"
-    },
-    "name": "Dragon Fantasy: Black Tome of Ice",
-    "description": "US | US: EN",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "1",
-    "version_date": "2023-07-29",
-    "requirements": "",
-    "size": 0,
-    "cover": "https://raw.githubusercontent.com/SvenGDK/PSMT-Covers/main/PSVita/PCSE00952.png",
-    "icon": "",
-    "screenshots": [],
-    "links": [
-      {
-        "type": "Download",
-        "name": "PKG US",
-        "region": "US",
-        "title_id": "PCSE00952",
-        "url": "CART ONLY",
-        "size": 0,
-        "recommended": true,
-        "content_id": "HP2005-PCSH10282_00-JETSETKNIGHTS000"
-      },
-      {
-        "type": "Download",
-        "name": "PKG US",
-        "region": "US",
-        "title_id": "PCSE00952",
-        "url": "CART ONLY",
-        "size": 0,
-        "recommended": false,
-        "content_id": "HP2005-PCSH10282_00-JETSETKNIGHTS000"
       }
     ]
   },
@@ -39895,16 +39503,6 @@
         "type": "Download",
         "name": "PKG EU",
         "region": "EU",
-        "title_id": "PCSB00055",
-        "url": "CART ONLY",
-        "size": 0,
-        "recommended": true,
-        "content_id": "HP2005-PCSH10282_00-JETSETKNIGHTS000"
-      },
-      {
-        "type": "Download",
-        "name": "PKG EU",
-        "region": "EU",
         "title_id": "PCSB00052",
         "url": "http://zeus.dl.playstation.net/cdn/EP0006/PCSB00052_00/ncTKhCgOGNAwgxmdzrptmFMVQTHTvSwTsQIoYpizwlLuAaUEwmBFZEfHYqgBFXmt.pkg",
         "size": 3017629392,
@@ -44848,37 +44446,6 @@
     ]
   },
   {
-    "id": "exstetra",
-    "title_ids": {
-      "JP": "PCSG00196"
-    },
-    "name": "Exstetra",
-    "description": "JP | JP: JA",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "1",
-    "version_date": "2019-01-20",
-    "requirements": "",
-    "size": 0,
-    "cover": "https://raw.githubusercontent.com/SvenGDK/PSMT-Covers/main/PSVita/PCSG00196.png",
-    "icon": "",
-    "screenshots": [],
-    "links": [
-      {
-        "type": "Download",
-        "name": "PKG JP",
-        "region": "JP",
-        "title_id": "PCSG00196",
-        "url": "CART ONLY",
-        "size": 0,
-        "recommended": true,
-        "content_id": "HP2005-PCSH10282_00-JETSETKNIGHTS000"
-      }
-    ]
-  },
-  {
     "id": "extella-link",
     "title_ids": {
       "EU": "PCSB01243"
@@ -47837,26 +47404,6 @@
     ]
   },
   {
-    "id": "fifa-13-world-class-soccer",
-    "title_ids": {
-      "JP": "PCSG00107"
-    },
-    "name": "FIFA 13: World Class Soccer",
-    "description": "JP | JP: JA",
-    "category_id": "games",
-    "subcategory_ids": [
-      "sports"
-    ],
-    "version": "1",
-    "version_date": "",
-    "requirements": "",
-    "size": 0,
-    "cover": "https://raw.githubusercontent.com/SvenGDK/PSMT-Covers/main/PSVita/PCSG00107.png",
-    "icon": "",
-    "screenshots": [],
-    "links": []
-  },
-  {
     "id": "fifa-14",
     "title_ids": {
       "US": "PCSE00263",
@@ -48011,97 +47558,6 @@
         "content_id": "JP0006-PCSG00404_00-FIFAVITA20150001"
       }
     ]
-  },
-  {
-    "id": "fifa-football",
-    "title_ids": {
-      "EU": "PCSB00051"
-    },
-    "name": "FIFA Football",
-    "description": "EU | EU: EN/FR/DE/ES/IT",
-    "category_id": "games",
-    "subcategory_ids": [
-      "sports"
-    ],
-    "version": "1",
-    "version_date": "2018-04-17",
-    "requirements": "",
-    "size": 0,
-    "cover": "https://raw.githubusercontent.com/SvenGDK/PSMT-Covers/main/PSVita/PCSB00051.png",
-    "icon": "",
-    "screenshots": [],
-    "links": [
-      {
-        "type": "Download",
-        "name": "PKG EU",
-        "region": "EU",
-        "title_id": "PCSB00051",
-        "url": "CART ONLY",
-        "size": 0,
-        "recommended": true,
-        "content_id": "HP2005-PCSH10282_00-JETSETKNIGHTS000"
-      },
-      {
-        "type": "Download",
-        "name": "PKG EU",
-        "region": "EU",
-        "title_id": "PCSB00053",
-        "url": "CART ONLY",
-        "size": 0,
-        "recommended": false,
-        "content_id": "HP2005-PCSH10282_00-JETSETKNIGHTS000"
-      },
-      {
-        "type": "Download",
-        "name": "PKG EU",
-        "region": "EU",
-        "title_id": "PCSB00054",
-        "url": "CART ONLY",
-        "size": 0,
-        "recommended": false,
-        "content_id": "HP2005-PCSH10282_00-JETSETKNIGHTS000"
-      }
-    ]
-  },
-  {
-    "id": "fifa-soccer",
-    "title_ids": {
-      "US": "PCSE00013"
-    },
-    "name": "FIFA Soccer",
-    "description": "US | US: EN",
-    "category_id": "games",
-    "subcategory_ids": [
-      "sports"
-    ],
-    "version": "0",
-    "version_date": "",
-    "requirements": "FW 0+",
-    "size": 0,
-    "cover": "https://raw.githubusercontent.com/SvenGDK/PSMT-Covers/main/PSVita/PCSE00013.png",
-    "icon": "",
-    "screenshots": [],
-    "links": []
-  },
-  {
-    "id": "fifa-world-class-soccer",
-    "title_ids": {
-      "JP": "PCSG00039"
-    },
-    "name": "FIFA World Class Soccer",
-    "description": "JP | JP: JA",
-    "category_id": "games",
-    "subcategory_ids": [
-      "sports"
-    ],
-    "version": "1",
-    "version_date": "",
-    "requirements": "",
-    "size": 0,
-    "cover": "https://raw.githubusercontent.com/SvenGDK/PSMT-Covers/main/PSVita/PCSG00039.png",
-    "icon": "",
-    "screenshots": [],
-    "links": []
   },
   {
     "id": "fifty-words-by-powgi",
@@ -52969,26 +52425,6 @@
     ]
   },
   {
-    "id": "gakuen-k-wonderful-school-days-v-edition",
-    "title_ids": {
-      "JP": "PCSG00654"
-    },
-    "name": "Gakuen K: Wonderful School Days V Edition",
-    "description": "JP | JP: JA",
-    "category_id": "games",
-    "subcategory_ids": [
-      "rpg"
-    ],
-    "version": "1",
-    "version_date": "",
-    "requirements": "",
-    "size": 1534749312,
-    "cover": "https://raw.githubusercontent.com/SvenGDK/PSMT-Covers/main/PSVita/PCSG00654.png",
-    "icon": "",
-    "screenshots": [],
-    "links": []
-  },
-  {
     "id": "gal-gunvolt",
     "title_ids": {
       "JP": "PCSG00704"
@@ -53990,26 +53426,6 @@
         "content_id": "JP0155-PCSG00256_00-GCF2013GENIMUS00"
       }
     ]
-  },
-  {
-    "id": "genji-koi-emaki",
-    "title_ids": {
-      "JP": "PCSG00619"
-    },
-    "name": "Genji Koi Emaki",
-    "description": "JP | JP: JA",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "1",
-    "version_date": "",
-    "requirements": "",
-    "size": 0,
-    "cover": "https://raw.githubusercontent.com/SvenGDK/PSMT-Covers/main/PSVita/PCSG00619.png",
-    "icon": "",
-    "screenshots": [],
-    "links": []
   },
   {
     "id": "genkai-tokki-moe-chronicle",
@@ -58592,26 +58008,6 @@
     ]
   },
   {
-    "id": "guilty-gear-xx-core-plus-r",
-    "title_ids": {
-      "ASIA": "PCSH00038"
-    },
-    "name": "GUILTY GEAR XX ΛCORE PLUS R",
-    "description": "ASIA | ASIA: EN/JA",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "1",
-    "version_date": "",
-    "requirements": "",
-    "size": 934724912,
-    "cover": "https://raw.githubusercontent.com/SvenGDK/PSMT-Covers/main/PSVita/PCSH00038.png",
-    "icon": "",
-    "screenshots": [],
-    "links": []
-  },
-  {
     "id": "gun-gun-pixies-3-63",
     "title_ids": {
       "JP": "PCSG01013"
@@ -59498,26 +58894,6 @@
         "content_id": "JP0078-PCSG01330_00-HABROXIA20000000"
       }
     ]
-  },
-  {
-    "id": "haitaka-no-psychedelica",
-    "title_ids": {
-      "JP": "PCSG00812"
-    },
-    "name": "Haitaka no Psychedelica",
-    "description": "JP | JP: JA",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "1",
-    "version_date": "",
-    "requirements": "",
-    "size": 0,
-    "cover": "https://raw.githubusercontent.com/SvenGDK/PSMT-Covers/main/PSVita/PCSG00812.png",
-    "icon": "",
-    "screenshots": [],
-    "links": []
   },
   {
     "id": "haiyore-nyaruko-san-meijoushigatai-game-no-you-na-mono",
@@ -64838,16 +64214,6 @@
     "screenshots": [],
     "links": [
       {
-        "type": "Download",
-        "name": "PKG JP",
-        "region": "JP",
-        "title_id": "PCSG00059",
-        "url": "CART ONLY",
-        "size": 0,
-        "recommended": true,
-        "content_id": "HP2005-PCSH10282_00-JETSETKNIGHTS000"
-      },
-      {
         "type": "DLC",
         "name": "DLC JP - ヴィクトリーパック",
         "region": "JP",
@@ -65118,26 +64484,6 @@
     ]
   },
   {
-    "id": "hiiro-no-kakera-scarlet-fragments-memories-of-a-certain-color",
-    "title_ids": {
-      "JP": "PCSG01036"
-    },
-    "name": "Hiiro no Kakera - Scarlet fragments - Memories of a Certain Color",
-    "description": "JP | JP: JA",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "1",
-    "version_date": "",
-    "requirements": "",
-    "size": 2920768224,
-    "cover": "https://raw.githubusercontent.com/SvenGDK/PSMT-Covers/main/PSVita/PCSG01036.png",
-    "icon": "",
-    "screenshots": [],
-    "links": []
-  },
-  {
     "id": "himawari-pebble-in-the-sky",
     "title_ids": {
       "JP": "PCSG00639"
@@ -65180,26 +64526,6 @@
         "content_id": "JP0548-PCSG00639_00-0000000000000000"
       }
     ]
-  },
-  {
-    "id": "himehibi-new-princess-days-zoku-ni-gakki",
-    "title_ids": {
-      "JP": "PCSG01144"
-    },
-    "name": "Himehibi: New Princess Days!! Zoku! Ni-Gakki",
-    "description": "JP | JP: JA",
-    "category_id": "games",
-    "subcategory_ids": [
-      "rpg"
-    ],
-    "version": "1",
-    "version_date": "",
-    "requirements": "",
-    "size": 1418883344,
-    "cover": "https://raw.githubusercontent.com/SvenGDK/PSMT-Covers/main/PSVita/PCSG01144.png",
-    "icon": "",
-    "screenshots": [],
-    "links": []
   },
   {
     "id": "himno-3-69",
@@ -65706,26 +65032,6 @@
     ]
   },
   {
-    "id": "holy-sorcery-story",
-    "title_ids": {
-      "ASIA": "PCSH00039"
-    },
-    "name": "Holy Sorcery Story",
-    "description": "ASIA | ASIA: EN/JA",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "1",
-    "version_date": "",
-    "requirements": "",
-    "size": 998142960,
-    "cover": "https://raw.githubusercontent.com/SvenGDK/PSMT-Covers/main/PSVita/PCSH00039.png",
-    "icon": "",
-    "screenshots": [],
-    "links": []
-  },
-  {
     "id": "home-a-unique-horror-adventure",
     "title_ids": {
       "US": "PCSE00533",
@@ -65792,26 +65098,6 @@
         "content_id": "UP2150-PCSE00533_00-000000000HOMEPSV"
       }
     ]
-  },
-  {
-    "id": "horizon-chase-turbo",
-    "title_ids": {
-      "ASIA": "PCSH10315"
-    },
-    "name": "Horizon Chase Turbo",
-    "description": "ASIA | ASIA: EN/JA",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "0",
-    "version_date": "",
-    "requirements": "FW 0+",
-    "size": 0,
-    "cover": "https://raw.githubusercontent.com/SvenGDK/PSMT-Covers/main/PSVita/PCSH10315.png",
-    "icon": "",
-    "screenshots": [],
-    "links": []
   },
   {
     "id": "hot-shots-golf-world-invitational",
@@ -66595,26 +65881,6 @@
         "content_id": "UP3643-PCSE00402_00-HOTLINEMIAMI2000"
       }
     ]
-  },
-  {
-    "id": "htol-niq-hotaru-no-nikki",
-    "title_ids": {
-      "ASIA": "PCSH00096"
-    },
-    "name": "htoL#NiQ -HOTARU NO NIKKI-",
-    "description": "ASIA | ASIA: EN/JA",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "1",
-    "version_date": "",
-    "requirements": "",
-    "size": 600784272,
-    "cover": "https://raw.githubusercontent.com/SvenGDK/PSMT-Covers/main/PSVita/PCSH00096.png",
-    "icon": "",
-    "screenshots": [],
-    "links": []
   },
   {
     "id": "htol-niq-the-firefly-diary",
@@ -69642,26 +68908,6 @@
     ]
   },
   {
-    "id": "i-doll-u",
-    "title_ids": {
-      "JP": "PCSG00592"
-    },
-    "name": "I DOLL U",
-    "description": "JP | JP: JA",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "1",
-    "version_date": "",
-    "requirements": "",
-    "size": 2628693728,
-    "cover": "https://raw.githubusercontent.com/SvenGDK/PSMT-Covers/main/PSVita/PCSG00592.png",
-    "icon": "",
-    "screenshots": [],
-    "links": []
-  },
-  {
     "id": "ia-vt-colorful",
     "title_ids": {
       "JP": "PCSG00355"
@@ -70586,37 +69832,6 @@
     ]
   },
   {
-    "id": "injustice-gods-among-us",
-    "title_ids": {
-      "JP": "PCSG00248"
-    },
-    "name": "Injustice: Gods Among Us",
-    "description": "JP | JP: JA",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "0",
-    "version_date": "2023-06-16",
-    "requirements": "FW 0+",
-    "size": 0,
-    "cover": "https://raw.githubusercontent.com/SvenGDK/PSMT-Covers/main/PSVita/PCSG00248.png",
-    "icon": "",
-    "screenshots": [],
-    "links": [
-      {
-        "type": "Download",
-        "name": "PKG JP",
-        "region": "JP",
-        "title_id": "PCSG00248",
-        "url": "CART ONLY",
-        "size": 0,
-        "recommended": true,
-        "content_id": "HP2005-PCSH10282_00-JETSETKNIGHTS000"
-      }
-    ]
-  },
-  {
     "id": "injustice-gods-among-us-ultimate-edition",
     "title_ids": {
       "US": "PCSE00271",
@@ -71181,26 +70396,6 @@
     ]
   },
   {
-    "id": "irotoridori-no-sekai-world-s-end-re-birth",
-    "title_ids": {
-      "JP": "PCSG00462"
-    },
-    "name": "Irotoridori no Sekai: World's End Re-Birth",
-    "description": "JP | JP: JA",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "1",
-    "version_date": "",
-    "requirements": "",
-    "size": 0,
-    "cover": "https://raw.githubusercontent.com/SvenGDK/PSMT-Covers/main/PSVita/PCSG00462.png",
-    "icon": "",
-    "screenshots": [],
-    "links": []
-  },
-  {
     "id": "is-it-wrong-to-try-to-pick-up-girls-in-a-dungeon-infinite-combate",
     "title_ids": {
       "JP": "PCSG01002"
@@ -71708,31 +70903,11 @@
         "type": "Download",
         "name": "PKG JP",
         "region": "JP",
-        "title_id": "PCSG00301",
-        "url": "CART ONLY",
-        "size": 0,
-        "recommended": false,
-        "content_id": "HP2005-PCSH10282_00-JETSETKNIGHTS000"
-      },
-      {
-        "type": "Download",
-        "name": "PKG JP",
-        "region": "JP",
         "title_id": "PCSG00300",
         "url": "http://zeus.dl.playstation.net/cdn/JP0700/PCSG00300_00/PUkmXamDrIETRMBIivBFpeWxtadpWIAofkLOTcHxpLGVtmsphNmDQzuIGxFWibeobhhNLtGqwNQcjZNWnVWDzWCJbEQtgQkOOJNdu.pkg",
         "size": 1876676816,
         "recommended": false,
         "content_id": "JP0700-PCSG00300_00-WJ45JSVVSPSV0000"
-      },
-      {
-        "type": "Download",
-        "name": "PKG JP",
-        "region": "JP",
-        "title_id": "PCSG00301",
-        "url": "CART ONLY",
-        "size": 0,
-        "recommended": false,
-        "content_id": "HP2005-PCSH10282_00-JETSETKNIGHTS000"
       },
       {
         "type": "Update",
@@ -72064,37 +71239,6 @@
         "size": 188850400,
         "recommended": false,
         "content_id": "EP4151-PCSB00496_00-GAME000000000000"
-      }
-    ]
-  },
-  {
-    "id": "jet-set-knights",
-    "title_ids": {
-      "ASIA": "PCSH10282"
-    },
-    "name": "Jet Set Knights",
-    "description": "ASIA | ASIA: EN/JA",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "0",
-    "version_date": "2023-07-31",
-    "requirements": "FW 3.69+",
-    "size": 0,
-    "cover": "https://raw.githubusercontent.com/SvenGDK/PSMT-Covers/main/PSVita/PCSH10282.png",
-    "icon": "",
-    "screenshots": [],
-    "links": [
-      {
-        "type": "Download",
-        "name": "PKG ASIA",
-        "region": "ASIA",
-        "title_id": "PCSH10282",
-        "url": "CART ONLY",
-        "size": 0,
-        "recommended": true,
-        "content_id": "HP2005-PCSH10282_00-JETSETKNIGHTS000"
       }
     ]
   },
@@ -73499,26 +72643,6 @@
     ]
   },
   {
-    "id": "jyuzaengi-engetsu-sangokuden-1-2",
-    "title_ids": {
-      "JP": "PCSG00635"
-    },
-    "name": "Jyuzaengi: Engetsu Sangokuden 1+2",
-    "description": "JP | JP: JA",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "1",
-    "version_date": "",
-    "requirements": "",
-    "size": 0,
-    "cover": "https://raw.githubusercontent.com/SvenGDK/PSMT-Covers/main/PSVita/PCSG00635.png",
-    "icon": "",
-    "screenshots": [],
-    "links": []
-  },
-  {
     "id": "kadenz-fermata-akkord-fortissimo",
     "title_ids": {
       "JP": "PCSG00381"
@@ -73592,26 +72716,6 @@
         "content_id": "JP0380-PCSG00501_00-KAERU00000000000"
       }
     ]
-  },
-  {
-    "id": "kaeru-batake-de-tsukamaete-natsu-chigira-sansen",
-    "title_ids": {
-      "JP": "PCSG00534"
-    },
-    "name": "Kaeru Batake de Tsukamaete: Natsu Chigira Sansen!",
-    "description": "JP | JP: JA",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "1",
-    "version_date": "2018-12-03",
-    "requirements": "",
-    "size": 2272262080,
-    "cover": "https://raw.githubusercontent.com/SvenGDK/PSMT-Covers/main/PSVita/PCSG00534.png",
-    "icon": "",
-    "screenshots": [],
-    "links": []
   },
   {
     "id": "kagero-darkside-princess",
@@ -73887,26 +72991,6 @@
     ]
   },
   {
-    "id": "kaleidoeve",
-    "title_ids": {
-      "JP": "PCSG00520"
-    },
-    "name": "Kaleidoeve",
-    "description": "JP | JP: JA",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "1",
-    "version_date": "",
-    "requirements": "",
-    "size": 0,
-    "cover": "https://raw.githubusercontent.com/SvenGDK/PSMT-Covers/main/PSVita/PCSG00520.png",
-    "icon": "",
-    "screenshots": [],
-    "links": []
-  },
-  {
     "id": "kamaitachi-no-yoru-rinne-saisei-3-63",
     "title_ids": {
       "JP": "PCSG01007"
@@ -74041,26 +73125,6 @@
         "content_id": "JP0741-PCSG01106_00-KAMIDANOMISISUGI"
       }
     ]
-  },
-  {
-    "id": "kamisama-to-koi-gokoro",
-    "title_ids": {
-      "JP": "PCSG00449"
-    },
-    "name": "Kamisama to Koi Gokoro",
-    "description": "JP | JP: JA",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "1",
-    "version_date": "",
-    "requirements": "",
-    "size": 1612777056,
-    "cover": "https://raw.githubusercontent.com/SvenGDK/PSMT-Covers/main/PSVita/PCSG00449.png",
-    "icon": "",
-    "screenshots": [],
-    "links": []
   },
   {
     "id": "kancolle-kai",
@@ -74260,26 +73324,6 @@
         "content_id": "JP0548-PCSG01153_00-0000000000000000"
       }
     ]
-  },
-  {
-    "id": "kawaii-death-desu",
-    "title_ids": {
-      "ASIA": "PCSH10286"
-    },
-    "name": "Kawaii Death Desu",
-    "description": "ASIA | ASIA: EN/JA",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "0",
-    "version_date": "",
-    "requirements": "FW 0+",
-    "size": 0,
-    "cover": "https://raw.githubusercontent.com/SvenGDK/PSMT-Covers/main/PSVita/PCSH10286.png",
-    "icon": "",
-    "screenshots": [],
-    "links": []
   },
   {
     "id": "kawaii-deathu-desu",
@@ -76866,26 +75910,6 @@
         "content_id": "EP1122-PCSB01082_00-G000000000000998"
       }
     ]
-  },
-  {
-    "id": "kurogane-kaikitan-senya-ichiya",
-    "title_ids": {
-      "JP": "PCSG00417"
-    },
-    "name": "Kurogane Kaikitan: Senya Ichiya",
-    "description": "JP | JP: JA",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "1",
-    "version_date": "",
-    "requirements": "",
-    "size": 3145051680,
-    "cover": "https://raw.githubusercontent.com/SvenGDK/PSMT-Covers/main/PSVita/PCSG00417.png",
-    "icon": "",
-    "screenshots": [],
-    "links": []
   },
   {
     "id": "kyoukai-no-shirayuki",
@@ -82768,26 +81792,6 @@
     ]
   },
   {
-    "id": "littlebigplanet-playstation-vita-kiosk-demo",
-    "title_ids": {
-      "US": "PCSA00081"
-    },
-    "name": "LittleBigPlanet™ PlayStation®Vita Kiosk Demo",
-    "description": "US | US: EN",
-    "category_id": "games",
-    "subcategory_ids": [
-      "platformer"
-    ],
-    "version": "0",
-    "version_date": "",
-    "requirements": "FW 0+",
-    "size": 0,
-    "cover": "https://raw.githubusercontent.com/SvenGDK/PSMT-Covers/main/PSVita/PCSA00081.png",
-    "icon": "",
-    "screenshots": [],
-    "links": []
-  },
-  {
     "id": "live-from-playstation",
     "title_ids": {
       "US": "PCSA00531",
@@ -85649,46 +84653,6 @@
     ]
   },
   {
-    "id": "malicious-rebirth-original-soundtrack-saitan-hen",
-    "title_ids": {
-      "JP": "PCSG80005"
-    },
-    "name": "Malicious Rebirth Original Soundtrack Saitan-hen",
-    "description": "JP | JP: JA",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "1",
-    "version_date": "",
-    "requirements": "",
-    "size": 0,
-    "cover": "https://raw.githubusercontent.com/SvenGDK/PSMT-Covers/main/PSVita/PCSG80005.png",
-    "icon": "",
-    "screenshots": [],
-    "links": []
-  },
-  {
-    "id": "malicious-rebirth-original-soundtrack-toubatsu-hen",
-    "title_ids": {
-      "JP": "PCSG80006"
-    },
-    "name": "Malicious Rebirth Original Soundtrack Toubatsu-hen",
-    "description": "JP | JP: JA",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "1",
-    "version_date": "",
-    "requirements": "",
-    "size": 0,
-    "cover": "https://raw.githubusercontent.com/SvenGDK/PSMT-Covers/main/PSVita/PCSG80006.png",
-    "icon": "",
-    "screenshots": [],
-    "links": []
-  },
-  {
     "id": "maliya",
     "title_ids": {
       "US": "PCSE00736"
@@ -86569,26 +85533,6 @@
         "content_id": "JP0745-PCSG00896_00-MEIKOIVITA000000"
       }
     ]
-  },
-  {
-    "id": "meikyuu-cross-blood-infinity",
-    "title_ids": {
-      "JP": "PCSG00179"
-    },
-    "name": "Meikyuu Cross Blood: Infinity",
-    "description": "JP | JP: JA",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "1",
-    "version_date": "",
-    "requirements": "",
-    "size": 0,
-    "cover": "https://raw.githubusercontent.com/SvenGDK/PSMT-Covers/main/PSVita/PCSG00179.png",
-    "icon": "",
-    "screenshots": [],
-    "links": []
   },
   {
     "id": "meikyuu-cross-blood-infinity-ultimate",
@@ -87874,26 +86818,6 @@
         "content_id": "JP0101-PCSG00035_00-MGSHDVITA0000000"
       }
     ]
-  },
-  {
-    "id": "metal-max-25th-anniversary-soundtrack",
-    "title_ids": {
-      "JP": "PCSG01190"
-    },
-    "name": "METAL MAX 25th Anniversary Soundtrack",
-    "description": "JP | JP: JA",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "1",
-    "version_date": "",
-    "requirements": "",
-    "size": 378926432,
-    "cover": "https://raw.githubusercontent.com/SvenGDK/PSMT-Covers/main/PSVita/PCSG01190.png",
-    "icon": "",
-    "screenshots": [],
-    "links": []
   },
   {
     "id": "metal-max-xeno-3-67",
@@ -94590,26 +93514,6 @@
     ]
   },
   {
-    "id": "moujuu-tachi-to-ohimesama-in-blossom",
-    "title_ids": {
-      "JP": "PCSG01096"
-    },
-    "name": "Moujuu-Tachi to Ohimesama ~ in blossom ~",
-    "description": "JP | JP: JA",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "1",
-    "version_date": "",
-    "requirements": "",
-    "size": 2078861536,
-    "cover": "https://raw.githubusercontent.com/SvenGDK/PSMT-Covers/main/PSVita/PCSG01096.png",
-    "icon": "",
-    "screenshots": [],
-    "links": []
-  },
-  {
     "id": "moujuutsukai-to-oujisama-beast-master-and-prince",
     "title_ids": {
       "JP": "PCSG00244"
@@ -94639,26 +93543,6 @@
         "content_id": "JP0031-PCSG00244_00-IFVITAMOUJYU0001"
       }
     ]
-  },
-  {
-    "id": "moujuutsukai-to-oujisama-flower-snow",
-    "title_ids": {
-      "JP": "PCSG00604"
-    },
-    "name": "Moujuutsukai to Oujisama: Flower & Snow",
-    "description": "JP | JP: JA",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "1",
-    "version_date": "",
-    "requirements": "",
-    "size": 3388874000,
-    "cover": "https://raw.githubusercontent.com/SvenGDK/PSMT-Covers/main/PSVita/PCSG00604.png",
-    "icon": "",
-    "screenshots": [],
-    "links": []
   },
   {
     "id": "mousecraft",
@@ -96197,26 +95081,6 @@
     ]
   },
   {
-    "id": "naitei-shuukatsu-kanzen-taisaku-es-spi-mensetsu",
-    "title_ids": {
-      "JP": "PCSG00155"
-    },
-    "name": "Naitei! Shuukatsu Kanzen Taisaku - ES - SPI - Mensetsu",
-    "description": "JP | JP: JA",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "1",
-    "version_date": "",
-    "requirements": "",
-    "size": 269986624,
-    "cover": "https://raw.githubusercontent.com/SvenGDK/PSMT-Covers/main/PSVita/PCSG00155.png",
-    "icon": "",
-    "screenshots": [],
-    "links": []
-  },
-  {
     "id": "nanairo-reincarnation",
     "title_ids": {
       "JP": "PCSG00664"
@@ -97121,26 +95985,6 @@
     ]
   },
   {
-    "id": "neo-angelique-tenshi-no-namida",
-    "title_ids": {
-      "JP": "PCSG01068"
-    },
-    "name": "Neo Angelique: Tenshi no Namida",
-    "description": "JP | JP: JA",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "1",
-    "version_date": "",
-    "requirements": "",
-    "size": 0,
-    "cover": "https://raw.githubusercontent.com/SvenGDK/PSMT-Covers/main/PSVita/PCSG01068.png",
-    "icon": "",
-    "screenshots": [],
-    "links": []
-  },
-  {
     "id": "neo-atlas-1469-3-61",
     "title_ids": {
       "JP": "PCSG00877"
@@ -98034,26 +96878,6 @@
     ]
   },
   {
-    "id": "nextrev-care-manager-shiken",
-    "title_ids": {
-      "JP": "PCSG00192"
-    },
-    "name": "NextRev: Care Manager Shiken",
-    "description": "JP | JP: JA",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "1",
-    "version_date": "",
-    "requirements": "",
-    "size": 324414528,
-    "cover": "https://raw.githubusercontent.com/SvenGDK/PSMT-Covers/main/PSVita/PCSG00192.png",
-    "icon": "",
-    "screenshots": [],
-    "links": []
-  },
-  {
     "id": "nextrev-chuushoukigyou-shindanshi-shiken-1",
     "title_ids": {
       "JP": "PCSG00143"
@@ -98122,166 +96946,6 @@
     ]
   },
   {
-    "id": "nextrev-eibunpou-tettei-tokkun",
-    "title_ids": {
-      "JP": "PCSG00052"
-    },
-    "name": "NextRev: Eibunpou Tettei Tokkun",
-    "description": "JP | JP: JA",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "1",
-    "version_date": "",
-    "requirements": "",
-    "size": 403232736,
-    "cover": "https://raw.githubusercontent.com/SvenGDK/PSMT-Covers/main/PSVita/PCSG00052.png",
-    "icon": "",
-    "screenshots": [],
-    "links": []
-  },
-  {
-    "id": "nextrev-eiken",
-    "title_ids": {
-      "JP": "PCSG00174"
-    },
-    "name": "NextRev: Eiken",
-    "description": "JP | JP: JA",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "1",
-    "version_date": "",
-    "requirements": "",
-    "size": 1409351104,
-    "cover": "https://raw.githubusercontent.com/SvenGDK/PSMT-Covers/main/PSVita/PCSG00174.png",
-    "icon": "",
-    "screenshots": [],
-    "links": []
-  },
-  {
-    "id": "nextrev-fp-ginoukentei-shiken-2-kyuu",
-    "title_ids": {
-      "JP": "PCSG00085"
-    },
-    "name": "NextRev: FP Ginoukentei Shiken 2-Kyuu",
-    "description": "JP | JP: JA",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "1",
-    "version_date": "",
-    "requirements": "",
-    "size": 619133712,
-    "cover": "https://raw.githubusercontent.com/SvenGDK/PSMT-Covers/main/PSVita/PCSG00085.png",
-    "icon": "",
-    "screenshots": [],
-    "links": []
-  },
-  {
-    "id": "nextrev-fp-ginoukentei-shiken-3-kyuu",
-    "title_ids": {
-      "JP": "PCSG00086"
-    },
-    "name": "NextRev: FP Ginoukentei Shiken 3-Kyuu",
-    "description": "JP | JP: JA",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "1",
-    "version_date": "",
-    "requirements": "",
-    "size": 382243088,
-    "cover": "https://raw.githubusercontent.com/SvenGDK/PSMT-Covers/main/PSVita/PCSG00086.png",
-    "icon": "",
-    "screenshots": [],
-    "links": []
-  },
-  {
-    "id": "nextrev-gyouseishoshi-shiken",
-    "title_ids": {
-      "JP": "PCSG00056"
-    },
-    "name": "NextRev: Gyouseishoshi Shiken",
-    "description": "JP | JP: JA",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "1",
-    "version_date": "",
-    "requirements": "",
-    "size": 346782384,
-    "cover": "https://raw.githubusercontent.com/SvenGDK/PSMT-Covers/main/PSVita/PCSG00056.png",
-    "icon": "",
-    "screenshots": [],
-    "links": []
-  },
-  {
-    "id": "nextrev-hisho-kentei-shiken",
-    "title_ids": {
-      "JP": "PCSG00186"
-    },
-    "name": "NextRev: Hisho Kentei Shiken",
-    "description": "JP | JP: JA",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "1",
-    "version_date": "",
-    "requirements": "",
-    "size": 209328304,
-    "cover": "https://raw.githubusercontent.com/SvenGDK/PSMT-Covers/main/PSVita/PCSG00186.png",
-    "icon": "",
-    "screenshots": [],
-    "links": []
-  },
-  {
-    "id": "nextrev-it-passport-shiken",
-    "title_ids": {
-      "JP": "PCSG00073"
-    },
-    "name": "NextRev: IT Passport Shiken",
-    "description": "JP | JP: JA",
-    "category_id": "games",
-    "subcategory_ids": [
-      "sports"
-    ],
-    "version": "1",
-    "version_date": "",
-    "requirements": "",
-    "size": 467469680,
-    "cover": "https://raw.githubusercontent.com/SvenGDK/PSMT-Covers/main/PSVita/PCSG00073.png",
-    "icon": "",
-    "screenshots": [],
-    "links": []
-  },
-  {
-    "id": "nextrev-jouhou-security-specialist-shiken",
-    "title_ids": {
-      "JP": "PCSG00100"
-    },
-    "name": "NextRev: Jouhou Security Specialist Shiken",
-    "description": "JP | JP: JA",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "1",
-    "version_date": "",
-    "requirements": "",
-    "size": 430214352,
-    "cover": "https://raw.githubusercontent.com/SvenGDK/PSMT-Covers/main/PSVita/PCSG00100.png",
-    "icon": "",
-    "screenshots": [],
-    "links": []
-  },
-  {
     "id": "nextrev-kaigo-fukushishi-shiken",
     "title_ids": {
       "JP": "PCSG00121"
@@ -98314,46 +96978,6 @@
         "content_id": "JP0007-PCSG00121_00-M5NR012KAIGOMAIN"
       }
     ]
-  },
-  {
-    "id": "nextrev-kihonjouhou-gijutsusha-shiken",
-    "title_ids": {
-      "JP": "PCSG00072"
-    },
-    "name": "NextRev: Kihonjouhou Gijutsusha Shiken",
-    "description": "JP | JP: JA",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "1",
-    "version_date": "",
-    "requirements": "",
-    "size": 410836320,
-    "cover": "https://raw.githubusercontent.com/SvenGDK/PSMT-Covers/main/PSVita/PCSG00072.png",
-    "icon": "",
-    "screenshots": [],
-    "links": []
-  },
-  {
-    "id": "nextrev-ouyou-jouhougijutsusha-shiken",
-    "title_ids": {
-      "JP": "PCSG00071"
-    },
-    "name": "NextRev: Ouyou Jouhougijutsusha Shiken",
-    "description": "JP | JP: JA",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "1",
-    "version_date": "",
-    "requirements": "",
-    "size": 420489040,
-    "cover": "https://raw.githubusercontent.com/SvenGDK/PSMT-Covers/main/PSVita/PCSG00071.png",
-    "icon": "",
-    "screenshots": [],
-    "links": []
   },
   {
     "id": "nextrev-shakai-fukushishi-shiken",
@@ -98912,26 +97536,6 @@
     ]
   },
   {
-    "id": "nights-of-azure",
-    "title_ids": {
-      "ASIA": "PCSH00256"
-    },
-    "name": "Nights Of Azure (KOR)",
-    "description": "ASIA | ASIA: EN/JA",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "1",
-    "version_date": "2019-02-12",
-    "requirements": "",
-    "size": 0,
-    "cover": "https://raw.githubusercontent.com/SvenGDK/PSMT-Covers/main/PSVita/PCSH00256.png",
-    "icon": "",
-    "screenshots": [],
-    "links": []
-  },
-  {
     "id": "nights-of-azure-yoru-no-nai-kuni",
     "title_ids": {
       "JP": "PCSG00557"
@@ -99252,26 +97856,6 @@
         "content_id": "JP0394-PCSG00222_00-PKGMT20SC0000000"
       }
     ]
-  },
-  {
-    "id": "nihon-pro-mahjong-renmei-suisen-tokoton-mahjong-joryuu-pro-ni-chousen-tetsuman-m",
-    "title_ids": {
-      "JP": "PCSG00223"
-    },
-    "name": "Nihon Pro Mahjong Renmei Suisen: Tokoton Mahjong! Joryuu Pro ni Chousen! Tetsuman Megami Special",
-    "description": "JP | JP: JA",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "1",
-    "version_date": "",
-    "requirements": "",
-    "size": 0,
-    "cover": "https://raw.githubusercontent.com/SvenGDK/PSMT-Covers/main/PSVita/PCSG00223.png",
-    "icon": "",
-    "screenshots": [],
-    "links": []
   },
   {
     "id": "nikoli-no-puzzle-v-akari",
@@ -100932,26 +99516,6 @@
     ]
   },
   {
-    "id": "norn-nonette-act-tune",
-    "title_ids": {
-      "JP": "PCSG00833"
-    },
-    "name": "Norn + Nonette Act Tune",
-    "description": "JP | JP: JA",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "1",
-    "version_date": "",
-    "requirements": "",
-    "size": 3207866544,
-    "cover": "https://raw.githubusercontent.com/SvenGDK/PSMT-Covers/main/PSVita/PCSG00833.png",
-    "icon": "",
-    "screenshots": [],
-    "links": []
-  },
-  {
     "id": "norn9-last-era",
     "title_ids": {
       "JP": "PCSG00429"
@@ -101545,37 +100109,6 @@
         "size": 109236608,
         "recommended": true,
         "content_id": "JP0155-PCSG00089_00-GCF2012OCTALIDEO"
-      }
-    ]
-  },
-  {
-    "id": "octodad-the-deadliest-catch",
-    "title_ids": {
-      "US": "PCSE00917"
-    },
-    "name": "Octodad The Deadliest Catch",
-    "description": "US | US: EN",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "1",
-    "version_date": "1970-01-01",
-    "requirements": "",
-    "size": 0,
-    "cover": "https://raw.githubusercontent.com/SvenGDK/PSMT-Covers/main/PSVita/PCSE00917.png",
-    "icon": "",
-    "screenshots": [],
-    "links": [
-      {
-        "type": "Download",
-        "name": "PKG US",
-        "region": "US",
-        "title_id": "PCSE00917",
-        "url": "CART ONLY",
-        "size": 0,
-        "recommended": true,
-        "content_id": "HP2005-PCSH10282_00-JETSETKNIGHTS000"
       }
     ]
   },
@@ -102592,26 +101125,6 @@
         "content_id": "JP0367-PCSG00939_00-0000000000000002"
       }
     ]
-  },
-  {
-    "id": "omerta-code-tycoon-kai",
-    "title_ids": {
-      "JP": "PCSG00789"
-    },
-    "name": "Omerta Code: Tycoon Kai",
-    "description": "JP | JP: JA",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "1",
-    "version_date": "",
-    "requirements": "FW 3.55+",
-    "size": 1428220400,
-    "cover": "https://raw.githubusercontent.com/SvenGDK/PSMT-Covers/main/PSVita/PCSG00789.png",
-    "icon": "",
-    "screenshots": [],
-    "links": []
   },
   {
     "id": "omg-hd-zombies",
@@ -106862,26 +105375,6 @@
     ]
   },
   {
-    "id": "osomatsu-san-the-game",
-    "title_ids": {
-      "JP": "PCSG00950"
-    },
-    "name": "Osomatsu-san: The Game",
-    "description": "JP | JP: JA",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "1",
-    "version_date": "",
-    "requirements": "",
-    "size": 1275615632,
-    "cover": "https://raw.githubusercontent.com/SvenGDK/PSMT-Covers/main/PSVita/PCSG00950.png",
-    "icon": "",
-    "screenshots": [],
-    "links": []
-  },
-  {
     "id": "othello",
     "title_ids": {
       "JP": "PCSG00427"
@@ -107125,26 +105618,6 @@
     ]
   },
   {
-    "id": "owari-no-seraph-unmei-no-hajimari",
-    "title_ids": {
-      "JP": "PCSG00728"
-    },
-    "name": "Owari no Seraph: Unmei no Hajimari",
-    "description": "JP | JP: JA",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "1",
-    "version_date": "",
-    "requirements": "",
-    "size": 0,
-    "cover": "https://raw.githubusercontent.com/SvenGDK/PSMT-Covers/main/PSVita/PCSG00728.png",
-    "icon": "",
-    "screenshots": [],
-    "links": []
-  },
-  {
     "id": "owaru-sekai-to-birthday-3-63",
     "title_ids": {
       "JP": "PCSG00967"
@@ -107205,27 +105678,6 @@
         "content_id": "JP0746-PCSG00496_00-OZMAFIAVIVACE226"
       }
     ]
-  },
-  {
-    "id": "p3d-p5d-full-soundtrack",
-    "title_ids": {
-      "ASIA": "PCSH10130",
-      "JP": "PCSG01215"
-    },
-    "name": "P3D ＆ P5D FULL SOUNDTRACK",
-    "description": "ASIA · JP | ASIA: EN/JA · JP: JA",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "1",
-    "version_date": "",
-    "requirements": "",
-    "size": 206192544,
-    "cover": "https://raw.githubusercontent.com/SvenGDK/PSMT-Covers/main/PSVita/PCSH10130.png",
-    "icon": "",
-    "screenshots": [],
-    "links": []
   },
   {
     "id": "pachi-pachi-on-a-roll",
@@ -113904,26 +112356,6 @@
     ]
   },
   {
-    "id": "phantom-breaker-battle-grounds",
-    "title_ids": {
-      "ASIA": "PCSH00091"
-    },
-    "name": "Phantom Breaker: Battle Grounds (KOR)",
-    "description": "ASIA | ASIA: EN/JA",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "1",
-    "version_date": "",
-    "requirements": "",
-    "size": 0,
-    "cover": "https://raw.githubusercontent.com/SvenGDK/PSMT-Covers/main/PSVita/PCSH00091.png",
-    "icon": "",
-    "screenshots": [],
-    "links": []
-  },
-  {
     "id": "phantom-breaker-battlegrounds",
     "title_ids": {
       "US": "PCSE00458",
@@ -119246,26 +117678,6 @@
     ]
   },
   {
-    "id": "princess-days-first-semester-princess-days",
-    "title_ids": {
-      "JP": "PCSG01092"
-    },
-    "name": "Princess Days First Semester -Princess Days-",
-    "description": "JP | JP: JA",
-    "category_id": "games",
-    "subcategory_ids": [
-      "rpg"
-    ],
-    "version": "1",
-    "version_date": "",
-    "requirements": "",
-    "size": 1357174480,
-    "cover": "https://raw.githubusercontent.com/SvenGDK/PSMT-Covers/main/PSVita/PCSG01092.png",
-    "icon": "",
-    "screenshots": [],
-    "links": []
-  },
-  {
     "id": "pro-yakyuu-spirits-2012",
     "title_ids": {
       "JP": "PCSG00031"
@@ -119583,26 +117995,6 @@
         "content_id": "UP4395-PCSE00311_00-PROTEUSVITA00000"
       }
     ]
-  },
-  {
-    "id": "psv-lego-movie-videogame",
-    "title_ids": {
-      "EU": "PCSB00418"
-    },
-    "name": "PSV LEGO Movie: Videogame",
-    "description": "EU | EU: EN/FR/DE/ES/IT",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "0",
-    "version_date": "",
-    "requirements": "FW 0+",
-    "size": 0,
-    "cover": "https://raw.githubusercontent.com/SvenGDK/PSMT-Covers/main/PSVita/PCSB00418.png",
-    "icon": "",
-    "screenshots": [],
-    "links": []
   },
   {
     "id": "psychedelica-of-black-butterfly-3-65",
@@ -120413,26 +118805,6 @@
     ]
   },
   {
-    "id": "pushy-and-pully-in-blockland",
-    "title_ids": {
-      "ASIA": "PCSH10307"
-    },
-    "name": "Pushy and Pully in Blockland",
-    "description": "ASIA | ASIA: EN/JA",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "0",
-    "version_date": "",
-    "requirements": "FW 0+",
-    "size": 0,
-    "cover": "https://raw.githubusercontent.com/SvenGDK/PSMT-Covers/main/PSVita/PCSH10307.png",
-    "icon": "",
-    "screenshots": [],
-    "links": []
-  },
-  {
     "id": "putty-squad",
     "title_ids": {
       "US": "PCSE00389",
@@ -120906,46 +119278,6 @@
     ]
   },
   {
-    "id": "puzzle-by-nikoli-v-kakuro",
-    "title_ids": {
-      "ASIA": "PCSH00008"
-    },
-    "name": "Puzzle by Nikoli V Kakuro",
-    "description": "ASIA | ASIA: EN/JA",
-    "category_id": "games",
-    "subcategory_ids": [
-      "puzzle"
-    ],
-    "version": "1",
-    "version_date": "",
-    "requirements": "",
-    "size": 72343152,
-    "cover": "https://raw.githubusercontent.com/SvenGDK/PSMT-Covers/main/PSVita/PCSH00008.png",
-    "icon": "",
-    "screenshots": [],
-    "links": []
-  },
-  {
-    "id": "puzzle-by-nikoli-v-nurikabe",
-    "title_ids": {
-      "ASIA": "PCSH00010"
-    },
-    "name": "Puzzle by Nikoli V Nurikabe",
-    "description": "ASIA | ASIA: EN/JA",
-    "category_id": "games",
-    "subcategory_ids": [
-      "puzzle"
-    ],
-    "version": "1",
-    "version_date": "",
-    "requirements": "",
-    "size": 65472576,
-    "cover": "https://raw.githubusercontent.com/SvenGDK/PSMT-Covers/main/PSVita/PCSH00010.png",
-    "icon": "",
-    "screenshots": [],
-    "links": []
-  },
-  {
     "id": "puzzle-by-nikoli-v-slitherlink",
     "title_ids": {
       "US": "PCSE00108",
@@ -121096,37 +119428,6 @@
         "pkg_name": "Q*bert: Rebooted",
         "recommended": false,
         "content_id": "UP2135-PCSE00561_00-QBERTREBOOTEDPSV"
-      }
-    ]
-  },
-  {
-    "id": "qa-flag-utility-sdk180-type3",
-    "title_ids": {
-      "INT": "PCSI90043"
-    },
-    "name": "QA flag utility SDK180 type3",
-    "description": "INT",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "0",
-    "version_date": "2023-07-29",
-    "requirements": "FW 0+",
-    "size": 0,
-    "cover": "https://raw.githubusercontent.com/SvenGDK/PSMT-Covers/main/PSVita/PCSI90043.png",
-    "icon": "",
-    "screenshots": [],
-    "links": [
-      {
-        "type": "Download",
-        "name": "PKG INT",
-        "region": "INT",
-        "title_id": "PCSI90043",
-        "url": "CART ONLY",
-        "size": 0,
-        "recommended": true,
-        "content_id": "HP2005-PCSH10282_00-JETSETKNIGHTS000"
       }
     ]
   },
@@ -121342,16 +119643,6 @@
         "size": 112763744,
         "recommended": true,
         "content_id": "UP2127-PCSE00461_00-RACETHESUNPSV001"
-      },
-      {
-        "type": "Download",
-        "name": "PKG US",
-        "region": "US",
-        "title_id": "PCSE01109",
-        "url": "CART ONLY",
-        "size": 0,
-        "recommended": false,
-        "content_id": "HP2005-PCSH10282_00-JETSETKNIGHTS000"
       },
       {
         "type": "Download",
@@ -124784,16 +123075,6 @@
       },
       {
         "type": "Download",
-        "name": "PKG US",
-        "region": "US",
-        "title_id": "PCSE00908",
-        "url": "CART ONLY",
-        "size": 0,
-        "recommended": false,
-        "content_id": "HP2005-PCSH10282_00-JETSETKNIGHTS000"
-      },
-      {
-        "type": "Download",
         "name": "PKG EU",
         "region": "EU",
         "title_id": "PCSB00370",
@@ -125068,46 +123349,6 @@
         "content_id": "UP2005-PCSE00318_00-RAINBOWSKIES0001"
       }
     ]
-  },
-  {
-    "id": "raishi",
-    "title_ids": {
-      "JP": "PCSG00686"
-    },
-    "name": "Raishi",
-    "description": "JP | JP: JA",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "1",
-    "version_date": "2018-09-12",
-    "requirements": "",
-    "size": 0,
-    "cover": "https://raw.githubusercontent.com/SvenGDK/PSMT-Covers/main/PSVita/PCSG00686.png",
-    "icon": "",
-    "screenshots": [],
-    "links": []
-  },
-  {
-    "id": "raishi-konpeki-no-shou",
-    "title_ids": {
-      "JP": "PCSG00806"
-    },
-    "name": "Raishi: Konpeki no Shou",
-    "description": "JP | JP: JA",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "1",
-    "version_date": "",
-    "requirements": "",
-    "size": 0,
-    "cover": "https://raw.githubusercontent.com/SvenGDK/PSMT-Covers/main/PSVita/PCSG00806.png",
-    "icon": "",
-    "screenshots": [],
-    "links": []
   },
   {
     "id": "rally-copters",
@@ -125919,37 +124160,6 @@
         "size": 958126528,
         "recommended": false,
         "content_id": "JP0001-PCSG00015_00-RAYMANORIGINS000"
-      }
-    ]
-  },
-  {
-    "id": "rayman-origins-legends",
-    "title_ids": {
-      "EU": "PCSB00726"
-    },
-    "name": "Rayman Origins + Legends",
-    "description": "EU | EU: EN/FR/DE/ES/IT",
-    "category_id": "games",
-    "subcategory_ids": [
-      "platformer"
-    ],
-    "version": "1",
-    "version_date": "1970-01-01",
-    "requirements": "",
-    "size": 0,
-    "cover": "https://raw.githubusercontent.com/SvenGDK/PSMT-Covers/main/PSVita/PCSB00726.png",
-    "icon": "",
-    "screenshots": [],
-    "links": [
-      {
-        "type": "Download",
-        "name": "PKG EU",
-        "region": "EU",
-        "title_id": "PCSB00726",
-        "url": "CART ONLY",
-        "size": 0,
-        "recommended": true,
-        "content_id": "HP2005-PCSH10282_00-JETSETKNIGHTS000"
       }
     ]
   },
@@ -129655,16 +127865,6 @@
         "size": 20692720,
         "recommended": true,
         "content_id": "UP2077-PCSE00546_00-RETROCITYRAMPAGE"
-      },
-      {
-        "type": "Download",
-        "name": "PKG US",
-        "region": "US",
-        "title_id": "PCSE00630",
-        "url": "CART ONLY",
-        "size": 0,
-        "recommended": false,
-        "content_id": "HP2005-PCSH10282_00-JETSETKNIGHTS000"
       },
       {
         "type": "Download",
@@ -134679,26 +132879,6 @@
     ]
   },
   {
-    "id": "romeo-vs-juliet-zenkan-pack",
-    "title_ids": {
-      "JP": "PCSG00618"
-    },
-    "name": "Romeo VS Juliet: Zenkan Pack",
-    "description": "JP | JP: JA",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "1",
-    "version_date": "2019-03-14",
-    "requirements": "",
-    "size": 0,
-    "cover": "https://raw.githubusercontent.com/SvenGDK/PSMT-Covers/main/PSVita/PCSG00618.png",
-    "icon": "",
-    "screenshots": [],
-    "links": []
-  },
-  {
     "id": "root-double-before-crime-after-days-xtend-edition-3-67",
     "title_ids": {
       "US": "PCSE01055",
@@ -134910,26 +133090,6 @@
         "content_id": "JP0117-PCSG01238_00-ROOTLETTERLAST00"
       }
     ]
-  },
-  {
-    "id": "root-rexx",
-    "title_ids": {
-      "JP": "PCSG00458"
-    },
-    "name": "ROOT∞REXX",
-    "description": "JP | JP: JA",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "1",
-    "version_date": "",
-    "requirements": "",
-    "size": 2603185424,
-    "cover": "https://raw.githubusercontent.com/SvenGDK/PSMT-Covers/main/PSVita/PCSG00458.png",
-    "icon": "",
-    "screenshots": [],
-    "links": []
   },
   {
     "id": "rose-to-tasogare-no-kojo",
@@ -138902,26 +137062,6 @@
     ]
   },
   {
-    "id": "school-wars-zenkan-pack-honpen-sotsugyou-sensen",
-    "title_ids": {
-      "JP": "PCSG00574"
-    },
-    "name": "School Wars: Zenkan Pack Honpen & Sotsugyou Sensen",
-    "description": "JP | JP: JA",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "1",
-    "version_date": "",
-    "requirements": "",
-    "size": 0,
-    "cover": "https://raw.githubusercontent.com/SvenGDK/PSMT-Covers/main/PSVita/PCSG00574.png",
-    "icon": "",
-    "screenshots": [],
-    "links": []
-  },
-  {
     "id": "schwarzesmarken-kouketsu-no-monshou",
     "title_ids": {
       "JP": "PCSG90202"
@@ -140960,26 +139100,6 @@
     ]
   },
   {
-    "id": "sengokuhime-3rd",
-    "title_ids": {
-      "ASIA": "PCSH00035"
-    },
-    "name": "Sengokuhime 3rd",
-    "description": "ASIA | ASIA: EN/JA",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "1",
-    "version_date": "",
-    "requirements": "",
-    "size": 2857686704,
-    "cover": "https://raw.githubusercontent.com/SvenGDK/PSMT-Covers/main/PSVita/PCSH00035.png",
-    "icon": "",
-    "screenshots": [],
-    "links": []
-  },
-  {
     "id": "senjou-no-waltz",
     "title_ids": {
       "JP": "PCSG00428"
@@ -141922,37 +140042,6 @@
         "pkg_name": "Senran Kagura Bon Appetit! (Hanzo x Crimson Squad)",
         "recommended": false,
         "content_id": "UP1023-PCSE00471_00-APP0000000000000"
-      }
-    ]
-  },
-  {
-    "id": "senran-kagura-bon-appetit-full-course-3-67",
-    "title_ids": {
-      "US": "PCSE01244"
-    },
-    "name": "Senran Kagura: Bon Appetit! Full Course (3.61+!) [3.67]",
-    "description": "US | US: EN",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "1",
-    "version_date": "1970-01-01",
-    "requirements": "FW 3.67+",
-    "size": 0,
-    "cover": "https://raw.githubusercontent.com/SvenGDK/PSMT-Covers/main/PSVita/PCSE01244.png",
-    "icon": "",
-    "screenshots": [],
-    "links": [
-      {
-        "type": "Download",
-        "name": "PKG US",
-        "region": "US",
-        "title_id": "PCSE01244",
-        "url": "CART ONLY",
-        "size": 0,
-        "recommended": true,
-        "content_id": "HP2005-PCSH10282_00-JETSETKNIGHTS000"
       }
     ]
   },
@@ -150135,86 +148224,6 @@
     ]
   },
   {
-    "id": "shinsouban-crimson-empire",
-    "title_ids": {
-      "JP": "PCSG00481"
-    },
-    "name": "Shinsouban Crimson Empire",
-    "description": "JP | JP: JA",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "0",
-    "version_date": "",
-    "requirements": "FW 0+",
-    "size": 0,
-    "cover": "https://raw.githubusercontent.com/SvenGDK/PSMT-Covers/main/PSVita/PCSG00481.png",
-    "icon": "",
-    "screenshots": [],
-    "links": []
-  },
-  {
-    "id": "shinsouban-heart-no-kuni-no-alice",
-    "title_ids": {
-      "JP": "PCSG00614"
-    },
-    "name": "Shinsouban Heart no Kuni no Alice",
-    "description": "JP | JP: JA",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "1",
-    "version_date": "",
-    "requirements": "",
-    "size": 0,
-    "cover": "https://raw.githubusercontent.com/SvenGDK/PSMT-Covers/main/PSVita/PCSG00614.png",
-    "icon": "",
-    "screenshots": [],
-    "links": []
-  },
-  {
-    "id": "shinsouban-mahou-tsukai-no-goshujinsama",
-    "title_ids": {
-      "JP": "PCSG00580"
-    },
-    "name": "Shinsouban Mahou Tsukai no Goshujinsama",
-    "description": "JP | JP: JA",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "1",
-    "version_date": "2018-07-30",
-    "requirements": "",
-    "size": 0,
-    "cover": "https://raw.githubusercontent.com/SvenGDK/PSMT-Covers/main/PSVita/PCSG00580.png",
-    "icon": "",
-    "screenshots": [],
-    "links": []
-  },
-  {
-    "id": "shinsouban-okashi-na-shima-no-peter-pan-sweet-never-land",
-    "title_ids": {
-      "JP": "PCSG00526"
-    },
-    "name": "Shinsouban Okashi na Shima no Peter Pan: Sweet Never Land",
-    "description": "JP | JP: JA",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "1",
-    "version_date": "",
-    "requirements": "",
-    "size": 0,
-    "cover": "https://raw.githubusercontent.com/SvenGDK/PSMT-Covers/main/PSVita/PCSG00526.png",
-    "icon": "",
-    "screenshots": [],
-    "links": []
-  },
-  {
     "id": "shiren-the-wanderer-the-tower-of-fortune-and-dice",
     "title_ids": {
       "JP": "PCSG00479"
@@ -151960,26 +149969,6 @@
     ]
   },
   {
-    "id": "slotter-mania-v-zettai-shogeki-ii",
-    "title_ids": {
-      "JP": "PCSG00178"
-    },
-    "name": "Slotter Mania V: Zettai Shogeki II",
-    "description": "JP | JP: JA",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "1",
-    "version_date": "",
-    "requirements": "",
-    "size": 0,
-    "cover": "https://raw.githubusercontent.com/SvenGDK/PSMT-Covers/main/PSVita/PCSG00178.png",
-    "icon": "",
-    "screenshots": [],
-    "links": []
-  },
-  {
     "id": "sly-2-band-of-thieves",
     "title_ids": {
       "US": "PCSA00097",
@@ -152116,46 +150105,6 @@
         "content_id": "UP9000-PCSA00096_00-SLY1US030100SHIP"
       }
     ]
-  },
-  {
-    "id": "sly-cooper-and-the-thievius-raccoonus-sly-2-band-of-thieves",
-    "title_ids": {
-      "ASIA": "PCSD00070"
-    },
-    "name": "Sly Cooper and the Thievius Raccoonus + Sly 2: Band of Thieves  (KOR)",
-    "description": "ASIA | ASIA: EN/JA",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "1",
-    "version_date": "",
-    "requirements": "",
-    "size": 2825096144,
-    "cover": "https://raw.githubusercontent.com/SvenGDK/PSMT-Covers/main/PSVita/PCSD00070.png",
-    "icon": "",
-    "screenshots": [],
-    "links": []
-  },
-  {
-    "id": "sly-cooper-collection",
-    "title_ids": {
-      "ASIA": "PCSD00091"
-    },
-    "name": "Sly Cooper Collection",
-    "description": "ASIA | ASIA: EN/JA",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "1",
-    "version_date": "",
-    "requirements": "",
-    "size": 2952502080,
-    "cover": "https://raw.githubusercontent.com/SvenGDK/PSMT-Covers/main/PSVita/PCSD00091.png",
-    "icon": "",
-    "screenshots": [],
-    "links": []
   },
   {
     "id": "sly-cooper-thieves-in-time",
@@ -153065,26 +151014,6 @@
         "content_id": "JP0745-PCSG00239_00-ANDVITA000000000"
       }
     ]
-  },
-  {
-    "id": "sorayume",
-    "title_ids": {
-      "JP": "PCSG00401"
-    },
-    "name": "Sorayume",
-    "description": "JP | JP: JA",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "1",
-    "version_date": "",
-    "requirements": "",
-    "size": 1589081120,
-    "cover": "https://raw.githubusercontent.com/SvenGDK/PSMT-Covers/main/PSVita/PCSG00401.png",
-    "icon": "",
-    "screenshots": [],
-    "links": []
   },
   {
     "id": "sorcery-saga-curse-of-the-great-curry-god",
@@ -160552,16 +158481,6 @@
         "content_id": "JP0700-PCSG00069_00-HEROESPSVSTD0100"
       },
       {
-        "type": "Download",
-        "name": "PKG JP",
-        "region": "JP",
-        "title_id": "PCSG00440",
-        "url": "CART ONLY",
-        "size": 0,
-        "recommended": false,
-        "content_id": "HP2005-PCSH10282_00-JETSETKNIGHTS000"
-      },
-      {
         "type": "Update",
         "name": "Update JP 1.02",
         "region": "JP",
@@ -165140,66 +163059,6 @@
         "content_id": "EP4143-PCSB00439_00-SURGEDELUXE00000"
       }
     ]
-  },
-  {
-    "id": "suugaku-rikiou-chuukyuu-naka-2-level",
-    "title_ids": {
-      "JP": "PCSG00119"
-    },
-    "name": "Suugaku Rikiou: Chuukyuu Naka-2-Level",
-    "description": "JP | JP: JA",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "1",
-    "version_date": "",
-    "requirements": "",
-    "size": 436413216,
-    "cover": "https://raw.githubusercontent.com/SvenGDK/PSMT-Covers/main/PSVita/PCSG00119.png",
-    "icon": "",
-    "screenshots": [],
-    "links": []
-  },
-  {
-    "id": "suugaku-rikiou-joukyuu-naka-3-level",
-    "title_ids": {
-      "JP": "PCSG00120"
-    },
-    "name": "Suugaku Rikiou: Joukyuu Naka-3-Level",
-    "description": "JP | JP: JA",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "1",
-    "version_date": "",
-    "requirements": "",
-    "size": 441380992,
-    "cover": "https://raw.githubusercontent.com/SvenGDK/PSMT-Covers/main/PSVita/PCSG00120.png",
-    "icon": "",
-    "screenshots": [],
-    "links": []
-  },
-  {
-    "id": "suugaku-rikiou-shokyuu-naka-1-level",
-    "title_ids": {
-      "JP": "PCSG00118"
-    },
-    "name": "Suugaku Rikiou: Shokyuu Naka-1-Level",
-    "description": "JP | JP: JA",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "1",
-    "version_date": "",
-    "requirements": "",
-    "size": 439069728,
-    "cover": "https://raw.githubusercontent.com/SvenGDK/PSMT-Covers/main/PSVita/PCSG00118.png",
-    "icon": "",
-    "screenshots": [],
-    "links": []
   },
   {
     "id": "swapquest",
@@ -171566,16 +169425,6 @@
         "content_id": "UP9000-PCSA00144_00-TEARAWAY0TRIAL00"
       },
       {
-        "type": "Download",
-        "name": "PKG EU",
-        "region": "EU",
-        "title_id": "PCSF00214",
-        "url": "CART ONLY",
-        "size": 0,
-        "recommended": false,
-        "content_id": "HP2005-PCSH10282_00-JETSETKNIGHTS000"
-      },
-      {
         "type": "DLC",
         "name": "DLC EU - Tearaway The LittleBigPaper Pack",
         "region": "EU",
@@ -171808,16 +169657,6 @@
     "icon": "",
     "screenshots": [],
     "links": [
-      {
-        "type": "Download",
-        "name": "PKG JP",
-        "region": "JP",
-        "title_id": "PCSC00048",
-        "url": "CART ONLY",
-        "size": 0,
-        "recommended": true,
-        "content_id": "HP2005-PCSH10282_00-JETSETKNIGHTS000"
-      },
       {
         "type": "Update",
         "name": "Update JP 1.02",
@@ -177990,16 +175829,6 @@
     "links": [
       {
         "type": "Download",
-        "name": "PKG US",
-        "region": "US",
-        "title_id": "PCSE00556",
-        "url": "CART ONLY",
-        "size": 0,
-        "recommended": true,
-        "content_id": "HP2005-PCSH10282_00-JETSETKNIGHTS000"
-      },
-      {
-        "type": "Download",
         "name": "PKG JP",
         "region": "JP",
         "title_id": "PCSG00872",
@@ -179043,26 +176872,6 @@
     ]
   },
   {
-    "id": "toeic-test-jissen-tokkun-2",
-    "title_ids": {
-      "JP": "PCSG00175"
-    },
-    "name": "TOEIC Test: Jissen Tokkun 2",
-    "description": "JP | JP: JA",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "1",
-    "version_date": "",
-    "requirements": "",
-    "size": 589924896,
-    "cover": "https://raw.githubusercontent.com/SvenGDK/PSMT-Covers/main/PSVita/PCSG00175.png",
-    "icon": "",
-    "screenshots": [],
-    "links": []
-  },
-  {
     "id": "toheart-2-dungeon-travelers",
     "title_ids": {
       "JP": "PCSG00575"
@@ -179149,26 +176958,6 @@
         "content_id": "JP0746-PCSG01015_00-LEYLINEKAGEROU00"
       }
     ]
-  },
-  {
-    "id": "tokimeki-restaurant-project-tristars",
-    "title_ids": {
-      "JP": "PCSG01171"
-    },
-    "name": "Tokimeki Restaurant: Project Tristars",
-    "description": "JP | JP: JA",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "1",
-    "version_date": "",
-    "requirements": "",
-    "size": 2979151616,
-    "cover": "https://raw.githubusercontent.com/SvenGDK/PSMT-Covers/main/PSVita/PCSG01171.png",
-    "icon": "",
-    "screenshots": [],
-    "links": []
   },
   {
     "id": "tokushu-houdoubu",
@@ -179612,26 +177401,6 @@
         "content_id": "HP0036-PCSH10032_00-TTGHDAYBREAKSPGJ"
       }
     ]
-  },
-  {
-    "id": "tokyo-twilight-ghosthunters",
-    "title_ids": {
-      "ASIA": "PCSH00089"
-    },
-    "name": "TOKYO TWILIGHT GHOSTHUNTERS",
-    "description": "ASIA | ASIA: EN/JA",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "1",
-    "version_date": "",
-    "requirements": "",
-    "size": 1669317264,
-    "cover": "https://raw.githubusercontent.com/SvenGDK/PSMT-Covers/main/PSVita/PCSH00089.png",
-    "icon": "",
-    "screenshots": [],
-    "links": []
   },
   {
     "id": "tokyo-xanadu-3-63",
@@ -187479,16 +185248,6 @@
         "content_id": "JP0215-PCSG01112_00-TF000000PSVJP084"
       },
       {
-        "type": "Download",
-        "name": "PKG JP",
-        "region": "JP",
-        "title_id": "PCSG01176",
-        "url": "CART ONLY",
-        "size": 0,
-        "recommended": false,
-        "content_id": "HP2005-PCSH10282_00-JETSETKNIGHTS000"
-      },
-      {
         "type": "Update",
         "name": "Update EU 1.08",
         "region": "EU",
@@ -187646,26 +185405,6 @@
         "content_id": "HP2005-PCSH10078_00-UNEPICGAMEASIA00"
       }
     ]
-  },
-  {
-    "id": "unholy-heights",
-    "title_ids": {
-      "ASIA": "PCSH10030"
-    },
-    "name": "Unholy Heights (KOR)",
-    "description": "ASIA | ASIA: EN/JA",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "1",
-    "version_date": "",
-    "requirements": "",
-    "size": 203579840,
-    "cover": "https://raw.githubusercontent.com/SvenGDK/PSMT-Covers/main/PSVita/PCSH10030.png",
-    "icon": "",
-    "screenshots": [],
-    "links": []
   },
   {
     "id": "uni-uni-union",
@@ -187849,57 +185588,6 @@
         "content_id": "EP9000-PCSF00034_00-UNIT13ZIPPER0100"
       }
     ]
-  },
-  {
-    "id": "unity-runtime-for-playstation-mobile",
-    "title_ids": {
-      "INT": "PCSI00010"
-    },
-    "name": "Unity Runtime for PlayStation Mobile",
-    "description": "INT",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "1.02",
-    "version_date": "2018-11-11",
-    "requirements": "FW 3.3+",
-    "size": 0,
-    "cover": "https://raw.githubusercontent.com/SvenGDK/PSMT-Covers/main/PSVita/PCSI00010.png",
-    "icon": "",
-    "screenshots": [],
-    "links": [
-      {
-        "type": "Download",
-        "name": "PKG INT",
-        "region": "INT",
-        "title_id": "PCSI00010",
-        "url": "NOT REQUIRED",
-        "size": 0,
-        "recommended": true,
-        "content_id": "IP9100-PCSI00010_00-UNITYRUNTIME0000"
-      }
-    ]
-  },
-  {
-    "id": "unmetal",
-    "title_ids": {
-      "ASIA": "PCSH10310"
-    },
-    "name": "Unmetal",
-    "description": "ASIA | ASIA: EN/JA",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "0",
-    "version_date": "",
-    "requirements": "FW 0+",
-    "size": 0,
-    "cover": "https://raw.githubusercontent.com/SvenGDK/PSMT-Covers/main/PSVita/PCSH10310.png",
-    "icon": "",
-    "screenshots": [],
-    "links": []
   },
   {
     "id": "uppers",
@@ -188193,26 +185881,6 @@
         "content_id": "JP0177-PCSG00199_00-UTAKUMI575SEIHIN"
       }
     ]
-  },
-  {
-    "id": "uta-no-prince-sama-amazing-aria-sweet-serenade-love",
-    "title_ids": {
-      "JP": "PCSG01081"
-    },
-    "name": "Uta no * Prince-Sama: Amazing Aria & Sweet Serenade Love",
-    "description": "JP | JP: JA",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "1",
-    "version_date": "",
-    "requirements": "",
-    "size": 3085414000,
-    "cover": "https://raw.githubusercontent.com/SvenGDK/PSMT-Covers/main/PSVita/PCSG01081.png",
-    "icon": "",
-    "screenshots": [],
-    "links": []
   },
   {
     "id": "uta-no-prince-sama-music-3",
@@ -197115,26 +194783,6 @@
       },
       {
         "type": "Download",
-        "name": "PKG US",
-        "region": "US",
-        "title_id": "PCSE00910",
-        "url": "CART ONLY",
-        "size": 0,
-        "recommended": false,
-        "content_id": "HP2005-PCSH10282_00-JETSETKNIGHTS000"
-      },
-      {
-        "type": "Download",
-        "name": "PKG US",
-        "region": "US",
-        "title_id": "PCSE00910",
-        "url": "CART ONLY",
-        "size": 0,
-        "recommended": false,
-        "content_id": "HP2005-PCSH10282_00-JETSETKNIGHTS000"
-      },
-      {
-        "type": "Download",
         "name": "PKG EU",
         "region": "EU",
         "title_id": "PCSB00827",
@@ -198687,26 +196335,6 @@
     ]
   },
   {
-    "id": "welcome-park",
-    "title_ids": {
-      "UNKNOWN": "NPXS10007"
-    },
-    "name": "Welcome Park",
-    "description": "UNKNOWN",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "0",
-    "version_date": "",
-    "requirements": "FW 0+",
-    "size": 0,
-    "cover": "https://raw.githubusercontent.com/SvenGDK/PSMT-Covers/main/PSVita/NPXS10007.png",
-    "icon": "",
-    "screenshots": [],
-    "links": []
-  },
-  {
     "id": "when-vikings-attack",
     "title_ids": {
       "US": "PCSA00075",
@@ -198992,26 +196620,6 @@
         "content_id": "UP1482-PCSE01032_00-WINDJAMMERSVITA1"
       }
     ]
-  },
-  {
-    "id": "winning-post-7-2013",
-    "title_ids": {
-      "JP": "PCSG00194"
-    },
-    "name": "Winning Post 7 2013",
-    "description": "JP | JP: JA",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "1",
-    "version_date": "",
-    "requirements": "",
-    "size": 0,
-    "cover": "https://raw.githubusercontent.com/SvenGDK/PSMT-Covers/main/PSVita/PCSG00194.png",
-    "icon": "",
-    "screenshots": [],
-    "links": []
   },
   {
     "id": "winning-post-8",
@@ -201819,16 +199427,6 @@
       },
       {
         "type": "Download",
-        "name": "PKG US",
-        "region": "US",
-        "title_id": "PCSE00853",
-        "url": "CART ONLY",
-        "size": 0,
-        "recommended": false,
-        "content_id": "HP2005-PCSH10282_00-JETSETKNIGHTS000"
-      },
-      {
-        "type": "Download",
         "name": "PKG EU",
         "region": "EU",
         "title_id": "PCSB00797",
@@ -204156,26 +201754,6 @@
         "content_id": "JP0404-PCSG00693_00-YUSHASHISUVITA00"
       }
     ]
-  },
-  {
-    "id": "yuusha-sisu",
-    "title_ids": {
-      "ASIA": "PCSH00260"
-    },
-    "name": "Yuusha Sisu.",
-    "description": "ASIA | ASIA: EN/JA",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "1",
-    "version_date": "",
-    "requirements": "",
-    "size": 0,
-    "cover": "https://raw.githubusercontent.com/SvenGDK/PSMT-Covers/main/PSVita/PCSH00260.png",
-    "icon": "",
-    "screenshots": [],
-    "links": []
   },
   {
     "id": "z-run",
