@@ -122,6 +122,40 @@ See `Client PSVitaAlive/README.md` for build, self-update handoff and runtime de
 
 ---
 
+## Data sources & credits
+
+This project **aggregates, normalizes, validates and curates** metadata from multiple
+public homebrew databases and community work. Automation does bulk import and cleanup;
+maintainers also apply **manual** fixes, categories, links and quality control.
+
+### Upstream homebrew databases (acknowledged)
+
+We gratefully acknowledge the communities and projects whose public data helped seed
+or enrich parts of the homebrew catalog, including:
+
+| Source | Role (typical) |
+|--------|----------------|
+| **[VitaDB](https://www.rinnegatamante.eu/vitadb/)** (Rinnegatamante & contributors) | Long-standing Vita homebrew database / client ecosystem |
+| **[VitaHomebrewDB / VitaDBtoo](https://github.com/DrDecki/VitaDBtoo-db)** and related mirrors | Community catalog continuity and static hosting after VitaDB outages |
+| Individual homebrew **authors** | Original apps, icons, screenshots and release pages |
+
+Exact import rules live under `sources/` and the catalog workflows. Presence in our
+catalog does **not** mean we claim ownership of any third-party homebrew binary or brand.
+
+### What this project adds
+
+- Unified JSON contracts (`catalog.json`, `authors.json`, `categories.json`)
+- Validation, deduplication and category/subcategory consistency
+- Manual curation and ongoing maintenance
+- Public clients and documentation so others can **learn from the design**
+
+### Commercial catalogs
+
+PS Vita / PSP / PS1 package listings and license sidecars may incorporate public
+metadata associated with communities such as **NoPayStation** and related tools.
+Those files are **not** the same as the homebrew CC BY catalog; respect third-party
+rights and do not treat zRIF or PKG links as redistributable “owned” content of this repo.
+
 ## License
 
 | Part | Terms |
@@ -131,7 +165,11 @@ See `Client PSVitaAlive/README.md` for build, self-update handoff and runtime de
 
 ### Software (clients & tooling)
 
-The repository is public so others can learn from the design. That is **not** permission to copy the codebase (including forks that redistribute this source). Build your own implementation if inspired by the ideas.
+The repository is **public** and the READMEs document how the system works so other
+developers can use it as **inspiration** for their own projects.
+
+That is **not** permission to copy-paste or redistribute this source code as the basis
+of another app. Please implement your own code; use our docs and design as reference.
 
 Official release binaries are for personal use on your devices unless a release says otherwise.
 
