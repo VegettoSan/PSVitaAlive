@@ -68,42 +68,6 @@
     ]
   },
   {
-    "id": "99-kosuhien",
-    "title_ids": {
-      "JP": "NPJJ00596"
-    },
-    "name": "99 Kosuhien",
-    "description": "JP",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/%2799%20Koushien%20%28Japan%29%20%28Demo%29.png",
-    "links": []
-  },
-  {
-    "id": "a-bug-s-life-and-monster-s-inc",
-    "title_ids": {
-      "EU": "NPEF00153"
-    },
-    "name": "A Bug's life and Monster's Inc",
-    "description": "EU",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Disney-Pixar%20A%20Bug%27s%20Life%20%28USA%29%20%28Rerelease%29.png",
-    "links": []
-  },
-  {
     "id": "a-bug-s-life",
     "title_ids": {
       "US": "NPUJ01538",
@@ -222,42 +186,6 @@
     ]
   },
   {
-    "id": "abe-a-go-go",
-    "title_ids": {
-      "JP": "NPJJ00682"
-    },
-    "name": "Abe a GO GO",
-    "description": "JP",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Abe%20a%20GoGo%20%28Japan%29.png",
-    "links": []
-  },
-  {
-    "id": "abe-99",
-    "title_ids": {
-      "JP": "NPJJ00684"
-    },
-    "name": "ABE'99",
-    "description": "JP",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Abe%20%2799%20%28Japan%29%20%28Disc%201%29.png",
-    "links": []
-  },
-  {
     "id": "aces-of-the-air",
     "title_ids": {
       "US": "NPUJ01470"
@@ -287,25 +215,6 @@
     ]
   },
   {
-    "id": "acid",
-    "title_ids": {
-      "ASIA": "NPHJ00092",
-      "JP": "NPJJ00165"
-    },
-    "name": "Acid",
-    "description": "ASIA · JP",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "2017-11-13",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Acid%20%28Japan%29.png",
-    "links": []
-  },
-  {
     "id": "actua-golf-3",
     "title_ids": {
       "EU": "NPEF00002"
@@ -333,24 +242,6 @@
         "content_id": "EP4039-NPEF00002_00-GACTUAGENG000001"
       }
     ]
-  },
-  {
-    "id": "actua-tennis",
-    "title_ids": {
-      "EU": "NPEF00003"
-    },
-    "name": "Actua Tennis",
-    "description": "EU",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Actua%20Tennis%20%28Europe%29.png",
-    "links": []
   },
   {
     "id": "addie-no-okurimono-to-moze-from-addie",
@@ -440,80 +331,6 @@
     ]
   },
   {
-    "id": "aero-dive",
-    "title_ids": {
-      "JP": "NPJJ00564"
-    },
-    "name": "AERO DIVE",
-    "description": "JP",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Aerodive%20%28Japan%29.png",
-    "links": []
-  },
-  {
-    "id": "ai-mahjong-selection",
-    "title_ids": {
-      "ASIA": "NPHJ00036",
-      "JP": "NPJJ00062"
-    },
-    "name": "AI MAHJONG SELECTION",
-    "description": "ASIA · JP",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/AI%20Mahjong%20Selection%20%28Japan%29.png",
-    "links": []
-  },
-  {
-    "id": "ai-shogi-selection",
-    "title_ids": {
-      "ASIA": "NPHJ00042",
-      "JP": "NPJJ00072"
-    },
-    "name": "AI SHOGI SELECTION",
-    "description": "ASIA · JP",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/AI%20Shougi%20Selection%20%28Japan%29.png",
-    "links": []
-  },
-  {
-    "id": "airboat-racing",
-    "title_ids": {
-      "EU": "NPEF00106"
-    },
-    "name": "Airboat Racing",
-    "description": "EU",
-    "category_id": "games",
-    "subcategory_ids": [
-      "racing"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/XS%20Airboat%20Racing%20%28Europe%29%20%28En%2CFr%2CDe%2CEs%2CIt%29.png",
-    "links": []
-  },
-  {
     "id": "akagawa-jirou-majotachi-no-nemuri-fukkatsusai",
     "title_ids": {
       "JP": "NPJJ00503"
@@ -541,24 +358,6 @@
         "content_id": "JP0507-NPJJ00503_00-0000000000000001"
       }
     ]
-  },
-  {
-    "id": "akagawa-jirou-yasoukyoku",
-    "title_ids": {
-      "JP": "NPJJ00447"
-    },
-    "name": "Akagawa Jirou: Yasoukyoku",
-    "description": "JP",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Akagawa%20Jirou%20-%20Yasoukyoku%20%28Japan%29%20%28Shokai%20Genteiban%29.png",
-    "links": []
   },
   {
     "id": "akagawa-jirou-yasoukyoku-2",
@@ -784,78 +583,6 @@
         "content_id": "JP9000-NPJI00044_00-0000000000000001"
       }
     ]
-  },
-  {
-    "id": "angel-eyes",
-    "title_ids": {
-      "ASIA": "NPHJ00102"
-    },
-    "name": "ANGEL EYES(TOUKI DENSETU)",
-    "description": "ASIA",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Touki%20Denshou%20-%20Angel%20Eyes%20%28Japan%29.png",
-    "links": []
-  },
-  {
-    "id": "angolmois-99",
-    "title_ids": {
-      "JP": "NPJJ00453"
-    },
-    "name": "Angolmois 99 (SuperLite 1500 Series)",
-    "description": "JP",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/SuperLite%201500%20Series%20-%20Angolmois%2099%20%28Japan%29.png",
-    "links": []
-  },
-  {
-    "id": "anoko-doko-noko",
-    "title_ids": {
-      "JP": "NPJJ00434"
-    },
-    "name": "Anoko Doko Noko",
-    "description": "JP",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Ano%20Ko%20Doko%20no%20Ko%20%28Japan%29.png",
-    "links": []
-  },
-  {
-    "id": "anokodokonoko",
-    "title_ids": {
-      "ASIA": "NPHJ00241"
-    },
-    "name": "ANOKODOKONOKO",
-    "description": "ASIA",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Ano%20Ko%20Doko%20no%20Ko%20%28Japan%29.png",
-    "links": []
   },
   {
     "id": "ape-escape",
@@ -1160,43 +887,6 @@
     ]
   },
   {
-    "id": "arc-the-lad-monster-game-with-casino-game",
-    "title_ids": {
-      "ASIA": "NPHI00028",
-      "JP": "NPJI00052"
-    },
-    "name": "Arc the Lad Monster Game with Casino Game",
-    "description": "ASIA · JP",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Arc%20the%20Lad%20%28Japan%29.png",
-    "links": []
-  },
-  {
-    "id": "arcade-hits-wolf-fang",
-    "title_ids": {
-      "ASIA": "NPHJ00154"
-    },
-    "name": "Arcade Hits WOLF FANG",
-    "description": "ASIA",
-    "category_id": "games",
-    "subcategory_ids": [
-      "arcade"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Arcade%20Hits%20-%20Wolf%20Fang%20-%20Kuuga%202001%20%28Japan%29.png",
-    "links": []
-  },
-  {
     "id": "arcade-hits-magical-drop",
     "title_ids": {
       "JP": "NPUF30031"
@@ -1234,24 +924,6 @@
         "content_id": "JP0571-NPJJ00127_00-0000000000000001"
       }
     ]
-  },
-  {
-    "id": "arcade-hits-moon-cresta",
-    "title_ids": {
-      "JP": "NPJJ00108"
-    },
-    "name": "Arcade Hits: Moon Cresta",
-    "description": "JP",
-    "category_id": "games",
-    "subcategory_ids": [
-      "arcade"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Arcade%20Hits%20-%20Moon%20Cresta%20%28Japan%29.png",
-    "links": []
   },
   {
     "id": "arcade-hits-outlaws-of-the-lost-dynasty",
@@ -1422,24 +1094,6 @@
         "content_id": "JP0571-NPJJ00081_00-0000000000000001"
       }
     ]
-  },
-  {
-    "id": "arkanoid-returns",
-    "title_ids": {
-      "JP": "NPJJ00187"
-    },
-    "name": "ARKANOID RETURNS",
-    "description": "JP",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "2017-11-13",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Arkanoid%20Returns%20%28Japan%29.png",
-    "links": []
   },
   {
     "id": "armored-core",
@@ -1756,42 +1410,6 @@
     ]
   },
   {
-    "id": "atelier-elie",
-    "title_ids": {
-      "ASIA": "NPHJ00082"
-    },
-    "name": "Atelier Elie",
-    "description": "ASIA",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Atelier%20Elie%20-%20Elie%20no%20Atelier%20-%20Salburg%20no%20Renkinjutsushi%202%20%28Japan%29%20%28PlayStation%20the%20Best%29.png",
-    "links": []
-  },
-  {
-    "id": "atelier-marie-plus",
-    "title_ids": {
-      "ASIA": "NPHJ00065"
-    },
-    "name": "Atelier Marie Plus",
-    "description": "ASIA",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Marie%20no%20Atelier%20Plus%20-%20Salburg%20no%20Renkinjutsushi%20%28Japan%29.png",
-    "links": []
-  },
-  {
     "id": "athena-awakening-from-the-ordinary-life",
     "title_ids": {
       "ASIA": "NPHJ00053",
@@ -1849,24 +1467,6 @@
         "content_id": "JP0035-NPJJ00132_00-0000000000000001"
       }
     ]
-  },
-  {
-    "id": "atlantis-and-hercules",
-    "title_ids": {
-      "EU": "NPEF00154"
-    },
-    "name": "Atlantis and Hercules",
-    "description": "EU",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Disney%27s%20Atlantis%20-%20The%20Lost%20Empire%20%28USA%29.png",
-    "links": []
   },
   {
     "id": "atlantis-the-lost-empire",
@@ -1967,25 +1567,6 @@
     ]
   },
   {
-    "id": "azito",
-    "title_ids": {
-      "ASIA": "NPHJ00062",
-      "JP": "NPJJ00087"
-    },
-    "name": "AZITO",
-    "description": "ASIA · JP",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Azito%20%28Japan%29.png",
-    "links": []
-  },
-  {
     "id": "b-l-u-e-legend-of-water",
     "title_ids": {
       "JP": "NPJJ00178"
@@ -2073,24 +1654,6 @@
     ]
   },
   {
-    "id": "bakuretsu-akindo-uchuu-goushouden",
-    "title_ids": {
-      "ASIA": "NPHJ00152"
-    },
-    "name": "Bakuretsu Akindo Uchuu Goushouden",
-    "description": "ASIA",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Uchuu%20Goushouden%20-%20Bakuretsu%20Akindo%20%28Japan%29.png",
-    "links": []
-  },
-  {
     "id": "baroque",
     "title_ids": {
       "JP": "NPJJ00126"
@@ -2147,60 +1710,6 @@
         "content_id": "JP0292-NPJJ00141_00-0000000000000001"
       }
     ]
-  },
-  {
-    "id": "battle-arena-toshinden",
-    "title_ids": {
-      "JP": "NPJJ00747"
-    },
-    "name": "Battle Arena Toshinden",
-    "description": "JP",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Battle%20Arena%20Toshinden%20%28USA%29.png",
-    "links": []
-  },
-  {
-    "id": "battle-arena-toshinden-2-plus",
-    "title_ids": {
-      "JP": "NPJJ00748"
-    },
-    "name": "Battle Arena Toshinden 2 Plus",
-    "description": "JP",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Battle%20Arena%20Toshinden%20%28Europe%29.png",
-    "links": []
-  },
-  {
-    "id": "battle-arena-toshinden-3",
-    "title_ids": {
-      "JP": "NPJJ00749"
-    },
-    "name": "Battle Arena Toshinden 3",
-    "description": "JP",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Battle%20Arena%20Toshinden%203%20%28Europe%29.png",
-    "links": []
   },
   {
     "id": "battle-athletess-daiundoukai-alternative",
@@ -2387,24 +1896,6 @@
         "content_id": "JP0128-NPJJ00191_00-0000000000000001"
       }
     ]
-  },
-  {
-    "id": "big-league-slugger-baseball",
-    "title_ids": {
-      "JP": "NPJJ00135"
-    },
-    "name": "Big League Slugger Baseball",
-    "description": "JP",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Big%20League%20Slugger%20Baseball%20%28USA%29.png",
-    "links": []
   },
   {
     "id": "biohazard-2",
@@ -2594,24 +2085,6 @@
         "content_id": "JP0202-NPJJ00615_00-0000000000000001"
       }
     ]
-  },
-  {
-    "id": "block-kuzushi",
-    "title_ids": {
-      "ASIA": "NPHJ00070"
-    },
-    "name": "BLOCK KUZUSHI",
-    "description": "ASIA",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Block%20Kuzushi%20%28Japan%29.png",
-    "links": []
   },
   {
     "id": "block-kuzushi-kowashite-help",
@@ -2804,60 +2277,6 @@
     ]
   },
   {
-    "id": "blue-breaker",
-    "title_ids": {
-      "ASIA": "NPHJ00061"
-    },
-    "name": "BLUE BREAKER",
-    "description": "ASIA",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Blue%20Breaker%20-%20Egao%20no%20Yakusoku%20%28Japan%29%20%28Major%20Wave%29.png",
-    "links": []
-  },
-  {
-    "id": "blue-breaker-burst",
-    "title_ids": {
-      "ASIA": "NPHJ00067"
-    },
-    "name": "BLUE BREAKER BURST",
-    "description": "ASIA",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Blue%20Breaker%20Burst%20-%20Egao%20no%20Asu%20ni%20%28Japan%29%20%28Major%20Wave%29.png",
-    "links": []
-  },
-  {
-    "id": "blue-breaker-burst-2",
-    "title_ids": {
-      "ASIA": "NPHJ00068"
-    },
-    "name": "BLUE BREAKER BURST-2",
-    "description": "ASIA",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Blue%20Breaker%20Burst%20-%20Egao%20no%20Asu%20ni%20%28Japan%29%20%28Major%20Wave%29.png",
-    "links": []
-  },
-  {
     "id": "blue-breaker-burst-bishou-o-anata-to",
     "title_ids": {
       "JP": "NPJJ00109"
@@ -2885,78 +2304,6 @@
         "content_id": "JP0571-NPJJ00109_00-0000000000000001"
       }
     ]
-  },
-  {
-    "id": "blue-breaker-burst-egao-no-asuni",
-    "title_ids": {
-      "JP": "NPJJ00118"
-    },
-    "name": "Blue Breaker Burst: Egao no Asuni",
-    "description": "JP",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Blue%20Breaker%20Burst%20-%20Egao%20no%20Asu%20ni%20%28Japan%29%20%28Major%20Wave%29.png",
-    "links": []
-  },
-  {
-    "id": "blue-breaker-egao-no-yakusoku",
-    "title_ids": {
-      "JP": "NPJJ00086"
-    },
-    "name": "Blue Breaker: Egao no Yakusoku",
-    "description": "JP",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Blue%20Breaker%20-%20Egao%20no%20Yakusoku%20%28Japan%29.png",
-    "links": []
-  },
-  {
-    "id": "bokujou-monogatari-harvest-moon",
-    "title_ids": {
-      "ASIA": "NPHJ00104"
-    },
-    "name": "Bokujou Monogatari Harvest Moon",
-    "description": "ASIA",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Bokujou%20Monogatari%20-%20Harvest%20Moon%20%28Japan%29.png",
-    "links": []
-  },
-  {
-    "id": "bokujou-monogatari-harvest-moon-for-girl",
-    "title_ids": {
-      "ASIA": "NPHJ00105"
-    },
-    "name": "Bokujou Monogatari Harvest Moon for Girl",
-    "description": "ASIA",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Bokujou%20Monogatari%20-%20Harvest%20Moon%20for%20Girl%20%28Japan%29.png",
-    "links": []
   },
   {
     "id": "bomberman-fantasy-race",
@@ -3071,42 +2418,6 @@
     ]
   },
   {
-    "id": "bounty-sword-first",
-    "title_ids": {
-      "JP": "NPJJ00552"
-    },
-    "name": "Bounty Sword First",
-    "description": "JP",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Bounty%20Sword%20First%20%28Japan%29.png",
-    "links": []
-  },
-  {
-    "id": "bounty-sword-double-edge",
-    "title_ids": {
-      "JP": "NPJJ00559"
-    },
-    "name": "Bounty Sword: Double Edge",
-    "description": "JP",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Bounty%20Sword%20-%20Double%20Edge%20%28Japan%29.png",
-    "links": []
-  },
-  {
     "id": "bowling",
     "title_ids": {
       "US": "NPUJ01288"
@@ -3134,25 +2445,6 @@
         "content_id": "UP9000-NPUJ01288_00-0000000000000001"
       }
     ]
-  },
-  {
-    "id": "boxer-s-road",
-    "title_ids": {
-      "ASIA": "NPHJ00040",
-      "JP": "NPJJ00070"
-    },
-    "name": "BOXER'S ROAD",
-    "description": "ASIA · JP",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Boxer%27s%20Road%20%28Japan%29.png",
-    "links": []
   },
   {
     "id": "boxing",
@@ -3389,24 +2681,6 @@
     ]
   },
   {
-    "id": "bushido-blade",
-    "title_ids": {
-      "JP": "NPJJ00225"
-    },
-    "name": "Bushido Blade",
-    "description": "JP",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Bushido%20Blade%20%28Japan%29.png",
-    "links": []
-  },
-  {
     "id": "bushido-blade-2",
     "title_ids": {
       "JP": "NPJJ00233"
@@ -3463,24 +2737,6 @@
         "content_id": "UP9000-NPUJ00754_00-0000000000000001"
       }
     ]
-  },
-  {
-    "id": "buster-bros-collection",
-    "title_ids": {
-      "ASIA": "NPHJ00318"
-    },
-    "name": "Buster Bros. Collection",
-    "description": "ASIA",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Buster%20Bros.%20Collection%20%28USA%29.png",
-    "links": []
   },
   {
     "id": "buzz-lightyear-of-star-command",
@@ -3793,24 +3049,6 @@
     ]
   },
   {
-    "id": "catch-kimochi-sensation",
-    "title_ids": {
-      "JP": "NPJJ00296"
-    },
-    "name": "Catch! Kimochi Sensation",
-    "description": "JP",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Pandora%20Max%20Series%20Vol.%204%20-%20Catch%21%20Kimochi%20Sensation%20%28Japan%29.png",
-    "links": []
-  },
-  {
     "id": "centipede",
     "title_ids": {
       "US": "NPUJ00807",
@@ -4107,42 +3345,6 @@
     ]
   },
   {
-    "id": "chocobo-no-fushigina-dungeon",
-    "title_ids": {
-      "ASIA": "NPHJ00182"
-    },
-    "name": "Chocobo no Fushigina Dungeon",
-    "description": "ASIA",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Chocobo%20no%20Fushigi%20na%20Dungeon%20%28Japan%29.png",
-    "links": []
-  },
-  {
-    "id": "chocobo-no-fushigina-dungeon-2",
-    "title_ids": {
-      "ASIA": "NPHJ00221"
-    },
-    "name": "Chocobo no Fushigina Dungeon 2",
-    "description": "ASIA",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Chocobo%20no%20Fushigi%20na%20Dungeon%20%28Japan%29.png",
-    "links": []
-  },
-  {
     "id": "chocobo-racing",
     "title_ids": {
       "JP": "NPJJ00184"
@@ -4170,24 +3372,6 @@
         "content_id": "JP0082-NPJJ00184_00-0000000000000001"
       }
     ]
-  },
-  {
-    "id": "choujin-gakuen-gowcaizer",
-    "title_ids": {
-      "JP": "NPJJ00600"
-    },
-    "name": "Choujin Gakuen Gowcaizer",
-    "description": "JP",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Choujin%20Gakuen%20-%20Gowcaizer%20%28Japan%29.png",
-    "links": []
   },
   {
     "id": "chrono-cross",
@@ -4260,24 +3444,6 @@
         "content_id": "UP9000-NPUJ01363_00-0000000000000001"
       }
     ]
-  },
-  {
-    "id": "circadia",
-    "title_ids": {
-      "ASIA": "NPHI00031"
-    },
-    "name": "CIRCADIA",
-    "description": "ASIA",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Circadia%20%28Japan%29%20%28Disc%201%29.png",
-    "links": []
   },
   {
     "id": "clock-tower-2",
@@ -4407,24 +3573,6 @@
     ]
   },
   {
-    "id": "command-conquer-retaliation",
-    "title_ids": {
-      "ASIA": "NPHJ00280"
-    },
-    "name": "Command & Conquer Retaliation",
-    "description": "ASIA",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Command%20_%20Conquer%20-%20Red%20Alert%20-%20Retaliation%20%28Europe%29%20%28Disc%201%29%20%28Allies%29.png",
-    "links": []
-  },
-  {
     "id": "command-conquer-red-alert",
     "title_ids": {
       "US": "NPUJ00431",
@@ -4534,24 +3682,6 @@
         "content_id": "EP0006-NPEF00042_00-GREDALERTG000001"
       }
     ]
-  },
-  {
-    "id": "command-and-conquer",
-    "title_ids": {
-      "ASIA": "NPHJ00278"
-    },
-    "name": "COMMAND AND CONQUER",
-    "description": "ASIA",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Command%20_%20Conquer%20%28Europe%29%20%28Disc%201%29%20%28GDI%29.png",
-    "links": []
   },
   {
     "id": "community-pom-omoide-o-dakishimete",
@@ -5397,24 +4527,6 @@
     ]
   },
   {
-    "id": "cyberbots",
-    "title_ids": {
-      "ASIA": "NPHJ00273"
-    },
-    "name": "CYBERBOTS",
-    "description": "ASIA",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Cyberbots%20-%20Fullmetal%20Madness%20%28Japan%29.png",
-    "links": []
-  },
-  {
     "id": "cyberbots-fullmetal-madness",
     "title_ids": {
       "JP": "NPUF30028"
@@ -5541,24 +4653,6 @@
     ]
   },
   {
-    "id": "damdam-stompland",
-    "title_ids": {
-      "JP": "NPJJ00745"
-    },
-    "name": "DamDam StompLand",
-    "description": "JP",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/DamDam%20Stompland%20%28Japan%29.png",
-    "links": []
-  },
-  {
     "id": "dangan",
     "title_ids": {
       "JP": "NPJJ00579"
@@ -5646,24 +4740,6 @@
     ]
   },
   {
-    "id": "darkstalkers-3-vampire-savior-ex-edition",
-    "title_ids": {
-      "ASIA": "NPHJ00274"
-    },
-    "name": "DARKSTALKERS 3 （VAMPIRE SAVIOR EX EDITION)",
-    "description": "ASIA",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Darkstalkers%203%20%28Europe%29.png",
-    "links": []
-  },
-  {
     "id": "dead-in-the-water",
     "title_ids": {
       "US": "NPUJ00693"
@@ -5723,24 +4799,6 @@
     ]
   },
   {
-    "id": "deadheat-road",
-    "title_ids": {
-      "JP": "NPJJ00329"
-    },
-    "name": "Deadheat Road",
-    "description": "JP",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Deadheat%20Road%20%28Japan%29.png",
-    "links": []
-  },
-  {
     "id": "deception-iii-dark-delusion",
     "title_ids": {
       "JP": "NPJJ00242"
@@ -5768,24 +4826,6 @@
         "content_id": "JP0325-NPJJ00242_00-0000000000000001"
       }
     ]
-  },
-  {
-    "id": "deception",
-    "title_ids": {
-      "ASIA": "NPHJ00098"
-    },
-    "name": "DECEPTION(KOKUMEIKAN)",
-    "description": "ASIA",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Devil%27s%20Deception%20%28Europe%29%20%28En%2CFr%2CDe%29.png",
-    "links": []
   },
   {
     "id": "dekiru-game-center",
@@ -6086,24 +5126,6 @@
     ]
   },
   {
-    "id": "dice-de-chocobo",
-    "title_ids": {
-      "ASIA": "NPHJ00109"
-    },
-    "name": "DICE DE CHOCOBO",
-    "description": "ASIA",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Dice%20de%20Chocobo%20%28Japan%29.png",
-    "links": []
-  },
-  {
     "id": "digital-glider-airman",
     "title_ids": {
       "JP": "NPJJ00507"
@@ -6131,24 +5153,6 @@
         "content_id": "JP0571-NPJJ00507_00-0000000000000001"
       }
     ]
-  },
-  {
-    "id": "digitalglider-airman",
-    "title_ids": {
-      "ASIA": "NPHJ00268"
-    },
-    "name": "DIGITALGLIDER AIRMAN",
-    "description": "ASIA",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Digital%20Glider%20Airman%20%28Japan%29.png",
-    "links": []
   },
   {
     "id": "dino-crisis",
@@ -6221,25 +5225,6 @@
         "content_id": "UP9000-NPUJ01279_00-0000000000000001"
       }
     ]
-  },
-  {
-    "id": "dioramos",
-    "title_ids": {
-      "ASIA": "NPHJ00305",
-      "JP": "NPJJ00571"
-    },
-    "name": "DIORAMOS",
-    "description": "ASIA · JP",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Dioramos%20%28Japan%29.png",
-    "links": []
   },
   {
     "id": "dirt-jockey",
@@ -6465,24 +5450,6 @@
     ]
   },
   {
-    "id": "docchi-mecha",
-    "title_ids": {
-      "JP": "NPJI00057"
-    },
-    "name": "Docchi Mecha!",
-    "description": "JP",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Dotchi%20Mecha%21%20%28Japan%29.png",
-    "links": []
-  },
-  {
     "id": "dodonpachi",
     "title_ids": {
       "ASIA": "NPHJ00156",
@@ -6569,24 +5536,6 @@
         "content_id": "JP0067-NPJJ00746_00-0000000000000001"
       }
     ]
-  },
-  {
-    "id": "doki-doki-shutter-chance",
-    "title_ids": {
-      "JP": "NPJJ00594"
-    },
-    "name": "Doki Doki Shutter Chance",
-    "description": "JP",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Doki%20Doki%20Shutter%20Chance%20-%20Koi%20no%20Puzzle%20o%20Kumitatete%20%28Japan%29%20%28Major%20Wave%29.png",
-    "links": []
   },
   {
     "id": "doko-demo-issho",
@@ -6785,24 +5734,6 @@
     ]
   },
   {
-    "id": "dragon-knights-glorious",
-    "title_ids": {
-      "JP": "NPJJ00283"
-    },
-    "name": "Dragon Knights Glorious",
-    "description": "JP",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Dragon%20Knight%204%20%28Japan%29.png",
-    "links": []
-  },
-  {
     "id": "dragon-money",
     "title_ids": {
       "JP": "NPJJ00465"
@@ -6832,24 +5763,6 @@
     ]
   },
   {
-    "id": "dragon-seeds",
-    "title_ids": {
-      "ASIA": "NPHJ00303"
-    },
-    "name": "Dragon Seeds",
-    "description": "ASIA",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Dragon%20Seeds%20%28USA%29.png",
-    "links": []
-  },
-  {
     "id": "dragon-valor",
     "title_ids": {
       "JP": "NPJJ00708"
@@ -6877,24 +5790,6 @@
         "content_id": "JP0700-NPJJ00708_00-0000000000000001"
       }
     ]
-  },
-  {
-    "id": "dragonseeds",
-    "title_ids": {
-      "JP": "NPJJ00738"
-    },
-    "name": "Dragonseeds",
-    "description": "JP",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Dragon%20Seeds%20%28USA%29.png",
-    "links": []
   },
   {
     "id": "dream-generation",
@@ -7055,24 +5950,6 @@
     ]
   },
   {
-    "id": "echo-night-2",
-    "title_ids": {
-      "ASIA": "NPHJ00052"
-    },
-    "name": "ECHO NIGHT 2",
-    "description": "ASIA",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Echo%20Night%20%28Japan%29.png",
-    "links": []
-  },
-  {
     "id": "ehrgeiz",
     "title_ids": {
       "JP": "NPJJ00173"
@@ -7191,79 +6068,6 @@
     ]
   },
   {
-    "id": "embrace-in-the-sand",
-    "title_ids": {
-      "ASIA": "NPHJ00023"
-    },
-    "name": "EMBRACE in the SAND",
-    "description": "ASIA",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Suna%20no%20Embrace%20-%20Edin%20no%20Sato%20no%20Navel%20%28Japan%29.png",
-    "links": []
-  },
-  {
-    "id": "endless-season-anoko-doko-noko",
-    "title_ids": {
-      "JP": "NPJJ00454"
-    },
-    "name": "Endless Season: Anoko Doko Noko (SuperLite 1500 Series)",
-    "description": "JP",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/SuperLite%201500%20Series%20-%20Ano%20Ko%20Doko%20no%20Ko%20-%20Endless%20Season%20%28Japan%29.png",
-    "links": []
-  },
-  {
-    "id": "epica-stella",
-    "title_ids": {
-      "ASIA": "NPHJ00119",
-      "JP": "NPJJ00291"
-    },
-    "name": "Epica Stella",
-    "description": "ASIA · JP",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Epica%20Stella%20%28Japan%29.png",
-    "links": []
-  },
-  {
-    "id": "epidemic",
-    "title_ids": {
-      "JP": "NPJJ00736"
-    },
-    "name": "Epidemic",
-    "description": "JP",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Epidemic%20%28USA%29.png",
-    "links": []
-  },
-  {
     "id": "er-no-atorie-z-ruburugu-no-renkinjutsushi-2",
     "title_ids": {
       "JP": "NPJJ00148"
@@ -7332,24 +6136,6 @@
     ]
   },
   {
-    "id": "everybody-s-golf2",
-    "title_ids": {
-      "ASIA": "NPHI00002"
-    },
-    "name": "Everybody's Golf2",
-    "description": "ASIA",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Everybody%27s%20Golf%20%28Europe%2C%20Australia%29%20%28En%2CFr%2CDe%2CEs%2CIt%29.png",
-    "links": []
-  },
-  {
     "id": "everybody-s-golf-2",
     "title_ids": {
       "EU": "NPEE00025"
@@ -7377,60 +6163,6 @@
         "content_id": "EP9000-NPEE00025_00-GEVERYGOLE000002"
       }
     ]
-  },
-  {
-    "id": "exector",
-    "title_ids": {
-      "JP": "NPJJ00762"
-    },
-    "name": "EXECTOR",
-    "description": "JP",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Exector%20%28Japan%29.png",
-    "links": []
-  },
-  {
-    "id": "expert",
-    "title_ids": {
-      "JP": "NPJJ00711"
-    },
-    "name": "Expert",
-    "description": "JP",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Expert%20%28Japan%29.png",
-    "links": []
-  },
-  {
-    "id": "extreme-go-kart-racing",
-    "title_ids": {
-      "JP": "NPJJ00136"
-    },
-    "name": "Extreme Go-Kart Racing",
-    "description": "JP",
-    "category_id": "games",
-    "subcategory_ids": [
-      "racing"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Extreme%20Go-Kart%20Racing%20%28USA%29.png",
-    "links": []
   },
   {
     "id": "extreme-pinball",
@@ -7491,100 +6223,6 @@
         "content_id": "EP0006-NPEF00016_00-GFADETOBLE000001"
       }
     ]
-  },
-  {
-    "id": "falcata",
-    "title_ids": {
-      "ASIA": "NPHJ00072",
-      "JP": "NPJJ00120"
-    },
-    "name": "Falcata",
-    "description": "ASIA · JP",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Falcata%20-%20Astran%20Pardma%20no%20Monshou%20%28Japan%29.png",
-    "links": []
-  },
-  {
-    "id": "family-bowling",
-    "title_ids": {
-      "JP": "NPJJ00142"
-    },
-    "name": "Family Bowling",
-    "description": "JP",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Family%20Bowling%20%28Japan%29.png",
-    "links": []
-  },
-  {
-    "id": "family-chess",
-    "title_ids": {
-      "ASIA": "NPHJ00148",
-      "JP": "NPJJ00327"
-    },
-    "name": "Family Chess",
-    "description": "ASIA · JP",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Family%20Chess%20%28Japan%29.png",
-    "links": []
-  },
-  {
-    "id": "family-diamond",
-    "title_ids": {
-      "ASIA": "NPHJ00149",
-      "JP": "NPJJ00330"
-    },
-    "name": "Family Diamond",
-    "description": "ASIA · JP",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Family%20Diamond%20%28Japan%29.png",
-    "links": []
-  },
-  {
-    "id": "family-gunjin-shogi",
-    "title_ids": {
-      "ASIA": "NPHJ00150",
-      "JP": "NPJJ00335"
-    },
-    "name": "Family Gunjin Shogi",
-    "description": "ASIA · JP",
-    "category_id": "games",
-    "subcategory_ids": [
-      "shooter"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Family%20Gunjin%20Shougi%20%28Japan%29.png",
-    "links": []
   },
   {
     "id": "fantastic-pinball-kyutenkai",
@@ -7859,24 +6497,6 @@
     ]
   },
   {
-    "id": "fighters-impact",
-    "title_ids": {
-      "JP": "NPJJ00171"
-    },
-    "name": "FIGHTERS' IMPACT",
-    "description": "JP",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Fighters%27%20Impact%20%28Japan%29.png",
-    "links": []
-  },
-  {
     "id": "fighting-force",
     "title_ids": {
       "US": "NPUJ00433",
@@ -7954,24 +6574,6 @@
         "content_id": "EP0776-NPEF00114_00-GFIGHTINGF000GER"
       }
     ]
-  },
-  {
-    "id": "final-fantasy",
-    "title_ids": {
-      "ASIA": "NPHJ00111"
-    },
-    "name": "FINAL FANTASY",
-    "description": "ASIA",
-    "category_id": "games",
-    "subcategory_ids": [
-      "rpg"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Final%20Fantasy%20%28Japan%29.png",
-    "links": []
   },
   {
     "id": "final-fantasy-i",
@@ -8600,24 +7202,6 @@
     ]
   },
   {
-    "id": "fire-panic",
-    "title_ids": {
-      "JP": "NPJI00070"
-    },
-    "name": "Fire Panic",
-    "description": "JP",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Fire%20Panic%20-%20Mack%20no%20Rescue%20Daisakusen%20%28Japan%29.png",
-    "links": []
-  },
-  {
     "id": "fire-pro-wrestling-g",
     "title_ids": {
       "JP": "NPJJ00250"
@@ -8732,42 +7316,6 @@
         "content_id": "UP9000-NPUJ01301_00-0000000000000001"
       }
     ]
-  },
-  {
-    "id": "frisky-tom",
-    "title_ids": {
-      "JP": "NPJJ00107"
-    },
-    "name": "Frisky Tom",
-    "description": "JP",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Arcade%20Hits%20-%20Frisky%20Tom%20%28Japan%29.png",
-    "links": []
-  },
-  {
-    "id": "front-mission-1st",
-    "title_ids": {
-      "JP": "NPJJ00218"
-    },
-    "name": "Front Mission 1st",
-    "description": "JP",
-    "category_id": "games",
-    "subcategory_ids": [
-      "sports"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Front%20Mission%201st%20%28Japan%29.png",
-    "links": []
   },
   {
     "id": "front-mission-2",
@@ -8918,24 +7466,6 @@
         "content_id": "JP0082-NPJJ00218_00-0000000000000001"
       }
     ]
-  },
-  {
-    "id": "fushigi-deka",
-    "title_ids": {
-      "JP": "NPJJ00030"
-    },
-    "name": "Fushigi Deka",
-    "description": "JP",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Fushigi%20Deka%20%28Japan%29.png",
-    "links": []
   },
   {
     "id": "future-cop-l-a-p-d",
@@ -9125,24 +7655,6 @@
     ]
   },
   {
-    "id": "gaia-master",
-    "title_ids": {
-      "JP": "NPJJ00623"
-    },
-    "name": "Gaia Master",
-    "description": "JP",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Master%20of%20Monsters%20-%20Disciples%20of%20Gaia%20%28Europe%29%20%28En%2CFr%2CDe%29.png",
-    "links": []
-  },
-  {
     "id": "gaia-seed-project-seed-trap",
     "title_ids": {
       "EU": "NPEF00179"
@@ -9212,78 +7724,6 @@
     ]
   },
   {
-    "id": "gakkou-de-atta-kowaihanasi",
-    "title_ids": {
-      "ASIA": "NPHJ00054"
-    },
-    "name": "GAKKOU DE ATTA KOWAIHANASI",
-    "description": "ASIA",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Gakkou%20de%20Atta%20Kowai%20Hanashi%20S%20%28Japan%29.png",
-    "links": []
-  },
-  {
-    "id": "gakkou-deatta-kowai-hanashi-s",
-    "title_ids": {
-      "JP": "NPJJ00077"
-    },
-    "name": "Gakkou Deatta Kowai Hanashi S",
-    "description": "JP",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Gakkou%20de%20Atta%20Kowai%20Hanashi%20S%20%28Japan%29.png",
-    "links": []
-  },
-  {
-    "id": "gakkou-o-tsukurou",
-    "title_ids": {
-      "JP": "NPJJ00144"
-    },
-    "name": "Gakkou o Tsukurou!!",
-    "description": "JP",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Gakkou%20o%20Tsukurou%21%21%202%20%28Japan%29.png",
-    "links": []
-  },
-  {
-    "id": "gakkou-o-tsukurou-2",
-    "title_ids": {
-      "JP": "NPJJ00248"
-    },
-    "name": "Gakkou o Tsukurou!! 2",
-    "description": "JP",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Gakkou%20o%20Tsukurou%21%21%202%20%28Japan%29.png",
-    "links": []
-  },
-  {
     "id": "gakkou-o-tsukurou-kouchou-sensei-monogatari",
     "title_ids": {
       "JP": "NPJJ00261"
@@ -9311,25 +7751,6 @@
         "content_id": "JP0507-NPJJ00261_00-0000000000000001"
       }
     ]
-  },
-  {
-    "id": "galaxian-3",
-    "title_ids": {
-      "ASIA": "NPHJ00336",
-      "JP": "NPJJ00698"
-    },
-    "name": "Galaxian 3",
-    "description": "ASIA · JP",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Galaxian%5E3%20%28Europe%29.png",
-    "links": []
   },
   {
     "id": "galaxy-fight",
@@ -9370,24 +7791,6 @@
         "content_id": "JP0202-NPJJ00026_00-0000000000000001"
       }
     ]
-  },
-  {
-    "id": "gambler-jiko-chuushinha-ippatsu-shoubu",
-    "title_ids": {
-      "JP": "NPJJ00741"
-    },
-    "name": "Gambler Jiko Chuushinha: Ippatsu Shoubu!",
-    "description": "JP",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Gyuwambler%20Jiko%20Chuushinha%20-%20Ippatsu%20Shoubu%21%20%28Japan%29.png",
-    "links": []
   },
   {
     "id": "ganbare-goemon-uchuu-kaizoku-akogingu",
@@ -9446,24 +7849,6 @@
         "content_id": "JP9000-NPJI00013_00-0000000000000001"
       }
     ]
-  },
-  {
-    "id": "ganso-family-mahjong",
-    "title_ids": {
-      "JP": "NPJJ00344"
-    },
-    "name": "Ganso Family Mahjong",
-    "description": "JP",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Ganso%20Family%20Mahjong%20%28Japan%29.png",
-    "links": []
   },
   {
     "id": "garou-densetsu-wild-ambition",
@@ -9551,25 +7936,6 @@
         "content_id": "JP0213-NPJJ00210_00-0000000000000001"
       }
     ]
-  },
-  {
-    "id": "geom-cube",
-    "title_ids": {
-      "ASIA": "NPHJ00307",
-      "JP": "NPJJ00598"
-    },
-    "name": "GEOM CUBE",
-    "description": "ASIA · JP",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Geom%20Cube%20%28Japan%29.png",
-    "links": []
   },
   {
     "id": "gex",
@@ -9720,42 +8086,6 @@
     ]
   },
   {
-    "id": "global-force-new-battle-nation",
-    "title_ids": {
-      "JP": "NPJI00006"
-    },
-    "name": "GLOBAL FORCE～New Battle Nation",
-    "description": "JP",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "2017-11-14",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Global%20Force%20-%20Shin%20Sentou%20Kokka%20%28Japan%29%20%28Rev%201%29.png",
-    "links": []
-  },
-  {
-    "id": "gochachiru",
-    "title_ids": {
-      "JP": "NPJJ00300"
-    },
-    "name": "Gochachiru",
-    "description": "JP",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Pandora%20Max%20Series%20Vol.%205%20-%20Gochachiru%20%28Japan%29.png",
-    "links": []
-  },
-  {
     "id": "goiken-muyou-ii",
     "title_ids": {
       "JP": "NPJJ00553"
@@ -9783,60 +8113,6 @@
         "content_id": "JP0747-NPJJ00553_00-0000000000000001"
       }
     ]
-  },
-  {
-    "id": "goryuzin-electro",
-    "title_ids": {
-      "ASIA": "NPHJ00267"
-    },
-    "name": "GORYUZIN ELECTRO",
-    "description": "ASIA",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Goryuujin%20%2B%20Electro%20%28Japan%29.png",
-    "links": []
-  },
-  {
-    "id": "gotatsujin-electro",
-    "title_ids": {
-      "JP": "NPJJ00506"
-    },
-    "name": "Gotatsujin: Electro",
-    "description": "JP",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Goryuujin%20%2B%20Electro%20%28Japan%29.png",
-    "links": []
-  },
-  {
-    "id": "gourmet-action-game-manpuku-nabe-kazoku",
-    "title_ids": {
-      "JP": "NPJJ00310"
-    },
-    "name": "Gourmet Action Game: Manpuku!! Nabe Kazoku",
-    "description": "JP",
-    "category_id": "games",
-    "subcategory_ids": [
-      "action"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Gourmet%20Action%20Game%20-%20Manpuku%21%21%20Nabe%20Kazoku%20%28Japan%29.png",
-    "links": []
   },
   {
     "id": "grandia",
@@ -10009,24 +8285,6 @@
     ]
   },
   {
-    "id": "guiltygear",
-    "title_ids": {
-      "ASIA": "NPHJ00024"
-    },
-    "name": "GUILTYGEAR",
-    "description": "ASIA",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Guilty%20Gear%20%28Europe%29.png",
-    "links": []
-  },
-  {
     "id": "gunbare-game-tengoku",
     "title_ids": {
       "JP": "NPJJ00771"
@@ -10145,60 +8403,6 @@
     ]
   },
   {
-    "id": "hamster-club",
-    "title_ids": {
-      "JP": "NPJJ00357"
-    },
-    "name": "Hamster Club",
-    "description": "JP",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Hamster%20Club-i%20%28Japan%29.png",
-    "links": []
-  },
-  {
-    "id": "hana-to-ryuu",
-    "title_ids": {
-      "JP": "NPJJ00098"
-    },
-    "name": "Hana to Ryuu",
-    "description": "JP",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Hana%20to%20Ryuu%20%28Japan%29.png",
-    "links": []
-  },
-  {
-    "id": "hana-to-ryuu-hanafuda-mah-jong",
-    "title_ids": {
-      "ASIA": "NPHJ00141"
-    },
-    "name": "Hana to Ryuu ～Hanafuda・Mah-jong～",
-    "description": "ASIA",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Hana%20to%20Ryuu%20%28Japan%29.png",
-    "links": []
-  },
-  {
     "id": "hanabi-fantast",
     "title_ids": {
       "JP": "NPJJ00514"
@@ -10226,42 +8430,6 @@
         "content_id": "JP0747-NPJJ00514_00-0000000000000001"
       }
     ]
-  },
-  {
-    "id": "hanafuda-graffiti-koikoi-monogatari",
-    "title_ids": {
-      "ASIA": "NPHJ00140"
-    },
-    "name": "Hanafuda Graffiti Koikoi Monogatari",
-    "description": "ASIA",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Hanafuda%20Graffiti%20-%20Koi%20Koi%20Monogatari%20%28Japan%29%20%28Major%20Wave%29.png",
-    "links": []
-  },
-  {
-    "id": "hanafuda-graffiti-koi-koi-monogatari",
-    "title_ids": {
-      "JP": "NPJJ00092"
-    },
-    "name": "Hanafuda Graffiti: Koi Koi Monogatari",
-    "description": "JP",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Hanafuda%20Graffiti%20-%20Koi%20Koi%20Monogatari%20%28Japan%29.png",
-    "links": []
   },
   {
     "id": "hanafuda-ii",
@@ -10418,24 +8586,6 @@
         "content_id": "EP1014-NPEF00286_00-GHARVESTMO000GER"
       }
     ]
-  },
-  {
-    "id": "hashiriya-ookami-tachi-no-densetsu",
-    "title_ids": {
-      "JP": "NPJJ00359"
-    },
-    "name": "Hashiriya: Ookami Tachi no Densetsu",
-    "description": "JP",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Hashiriya%20-%20Ookami-tachi%20no%20Densetsu%20%28Japan%29.png",
-    "links": []
   },
   {
     "id": "hatsukoi-valentine",
@@ -10799,24 +8949,6 @@
     ]
   },
   {
-    "id": "hi-hou-ou",
-    "title_ids": {
-      "ASIA": "NPHJ00229"
-    },
-    "name": "Hi・Hou・Ou",
-    "description": "ASIA",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Hi-Hou-Ou%20-%20Mou%20Omae%20to%20wa%20Kuchi%20Kikan%21%21%20%28Japan%29.png",
-    "links": []
-  },
-  {
     "id": "hogs-of-war",
     "title_ids": {
       "US": "NPUJ01195"
@@ -10844,42 +8976,6 @@
         "content_id": "UP9000-NPUJ01195_00-0000000000000001"
       }
     ]
-  },
-  {
-    "id": "honoo-no-ryourinin-cooking-fighter-hao",
-    "title_ids": {
-      "JP": "NPJJ00731"
-    },
-    "name": "Honoo no Ryourinin: Cooking Fighter Hao",
-    "description": "JP",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Honoo%20no%20Ryourinin%20-%20Cooking%20Fighter%20Hao%20%28Japan%29.png",
-    "links": []
-  },
-  {
-    "id": "hoshi-no-mahoroba",
-    "title_ids": {
-      "JP": "NPJJ00356"
-    },
-    "name": "Hoshi no Mahoroba",
-    "description": "JP",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Hoshi%20no%20Mahoroba%20%28Japan%29.png",
-    "links": []
   },
   {
     "id": "hot-shots-golf-2",
@@ -10979,24 +9075,6 @@
     ]
   },
   {
-    "id": "i-max-shogi-ii",
-    "title_ids": {
-      "JP": "NPJJ00729"
-    },
-    "name": "I'Max Shogi II",
-    "description": "JP",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/I%27Max%20Shougi%20II%20%28Japan%29.png",
-    "links": []
-  },
-  {
     "id": "i-q-final",
     "title_ids": {
       "ASIA": "NPHI00025",
@@ -11025,24 +9103,6 @@
         "content_id": "JP9000-NPJI00048_00-0000000000000001"
       }
     ]
-  },
-  {
-    "id": "i-q-intelligent-qube",
-    "title_ids": {
-      "ASIA": "NPHI00024"
-    },
-    "name": "I.Q Intelligent Qube",
-    "description": "ASIA",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/I.Q%20-%20Intelligent%20Qube%20%28Japan%29.png",
-    "links": []
   },
   {
     "id": "ide-yosuke-no-mahjong-kyoshitsu",
@@ -11279,60 +9339,6 @@
     ]
   },
   {
-    "id": "jet-copter-x",
-    "title_ids": {
-      "ASIA": "NPHJ00157"
-    },
-    "name": "Jet Copter X",
-    "description": "ASIA",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Jet%20Copter%20X%20%28Japan%29.png",
-    "links": []
-  },
-  {
-    "id": "jet-copterx",
-    "title_ids": {
-      "JP": "NPJJ00378"
-    },
-    "name": "Jet CopterX",
-    "description": "JP",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Jet%20Copter%20X%20%28Japan%29.png",
-    "links": []
-  },
-  {
-    "id": "jet-moto",
-    "title_ids": {
-      "JP": "NPJI00020"
-    },
-    "name": "Jet Moto",
-    "description": "JP",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Jet%20Moto%20%28USA%29.png",
-    "links": []
-  },
-  {
     "id": "jet-moto-2",
     "title_ids": {
       "US": "NPUI94167"
@@ -11459,24 +9465,6 @@
     ]
   },
   {
-    "id": "jigsaw-island-japan-graffiti",
-    "title_ids": {
-      "JP": "NPJJ00588"
-    },
-    "name": "Jigsaw Island: Japan Graffiti",
-    "description": "JP",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Jigsaw%20Island%20-%20Japan%20Graffiti%20%28Japan%29.png",
-    "links": []
-  },
-  {
     "id": "jigsaw-madness",
     "title_ids": {
       "US": "NPUJ01509",
@@ -11515,24 +9503,6 @@
         "content_id": "EP1025-NPEF00105_00-GJIGSAWMAD000ENG"
       }
     ]
-  },
-  {
-    "id": "jigsaw-world",
-    "title_ids": {
-      "JP": "NPJJ00036"
-    },
-    "name": "JIGSAW WORLD",
-    "description": "JP",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Jigsaw%20World%20%28Japan%29%20%28Honkakuha%20de%201300%29.png",
-    "links": []
   },
   {
     "id": "jiisan-2-tabi-bikkuri-cg-mukashibanashi",
@@ -11702,42 +9672,6 @@
     ]
   },
   {
-    "id": "jumpingflash",
-    "title_ids": {
-      "ASIA": "NPHI00003"
-    },
-    "name": "JumpingFlash!",
-    "description": "ASIA",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Jumping%20Flash%21%20%28Europe%29.png",
-    "links": []
-  },
-  {
-    "id": "jumpingflash-2",
-    "title_ids": {
-      "ASIA": "NPHI00014"
-    },
-    "name": "JumpingFlash!2",
-    "description": "ASIA",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Jumping%20Flash%21%202%20%28Europe%29.png",
-    "links": []
-  },
-  {
     "id": "kagero",
     "title_ids": {
       "ASIA": "NPHJ00100",
@@ -11768,42 +9702,6 @@
     ]
   },
   {
-    "id": "kakuge-yarou-fightinggamecreator",
-    "title_ids": {
-      "ASIA": "NPHJ00147"
-    },
-    "name": "KAKUGE- YAROU -FightingGameCreator",
-    "description": "ASIA",
-    "category_id": "games",
-    "subcategory_ids": [
-      "fighting"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Kakuge%20Yarou%20-%20Fighting%20Game%20Creator%20%28Japan%29.png",
-    "links": []
-  },
-  {
-    "id": "kakuge-yaro-fighting-game-creator",
-    "title_ids": {
-      "JP": "NPJJ00324"
-    },
-    "name": "Kakuge-Yaro: Fighting Game Creator",
-    "description": "JP",
-    "category_id": "games",
-    "subcategory_ids": [
-      "fighting"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Kakuge%20Yarou%20-%20Fighting%20Game%20Creator%20%28Japan%29.png",
-    "links": []
-  },
-  {
     "id": "kawa-no-nushi-tsuri-hikyou-o-motomete",
     "title_ids": {
       "JP": "NPJJ00143"
@@ -11831,24 +9729,6 @@
         "content_id": "JP0507-NPJJ00143_00-0000000000000001"
       }
     ]
-  },
-  {
-    "id": "kawa-no-nushi-zuri",
-    "title_ids": {
-      "ASIA": "NPHJ00103"
-    },
-    "name": "Kawa No Nushi Zuri",
-    "description": "ASIA",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Kawa%20no%20Nushi-tsuri%20-%20Hikyou%20o%20Motomete%20%28Japan%29.png",
-    "links": []
   },
   {
     "id": "kaze-no-oka-kouen-nite",
@@ -11936,42 +9816,6 @@
         "content_id": "UP9000-NPUJ01412_00-0000000000000001"
       }
     ]
-  },
-  {
-    "id": "kid-klown-in-crazy-chase-2-love-love-hani-soudatsusen",
-    "title_ids": {
-      "JP": "NPJJ00568"
-    },
-    "name": "Kid Klown in Crazy Chase 2: Love Love Hani Soudatsusen",
-    "description": "JP",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Kid%20Clown%20no%20Crazy%20Chase%202%20-%20Love%20Love%20Honey%20Soudatsusen%20%28Japan%29.png",
-    "links": []
-  },
-  {
-    "id": "kileak-the-dna-imperative",
-    "title_ids": {
-      "JP": "NPJJ00735"
-    },
-    "name": "Kileak: The DNA Imperative",
-    "description": "JP",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Kileak%20-%20The%20DNA%20Imperative%20%28USA%29.png",
-    "links": []
   },
   {
     "id": "king-s-field",
@@ -12062,24 +9906,6 @@
         "content_id": "JP0506-NPJJ00095_00-0000000000000001"
       }
     ]
-  },
-  {
-    "id": "kisou-jidaigeki-sugoroku-ninroku",
-    "title_ids": {
-      "JP": "NPJJ00366"
-    },
-    "name": "Kisou Jidaigeki Sugoroku: Ninroku",
-    "description": "JP",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Simple%201500%20Series%20Vol.%2019%20-%20The%20Sugoroku%20%28Japan%29.png",
-    "links": []
   },
   {
     "id": "kitchen-panic",
@@ -12241,24 +10067,6 @@
     ]
   },
   {
-    "id": "kohnishogun",
-    "title_ids": {
-      "ASIA": "NPHJ00266"
-    },
-    "name": "KohniShogun",
-    "description": "ASIA",
-    "category_id": "games",
-    "subcategory_ids": [
-      "shooter"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Kouni%20Shougun%20%28Japan%29.png",
-    "links": []
-  },
-  {
     "id": "kokohore-pukka-dig-a-dig-pukka",
     "title_ids": {
       "JP": "NPJI00053"
@@ -12373,24 +10181,6 @@
         "content_id": "JP0571-NPJJ00495_00-0000000000000001"
       }
     ]
-  },
-  {
-    "id": "koushien-v",
-    "title_ids": {
-      "JP": "NPJJ00542"
-    },
-    "name": "Koushien V",
-    "description": "JP",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Koushien%20V%20%28Japan%29.png",
-    "links": []
   },
   {
     "id": "koutetsu-reiiki-steeldom",
@@ -12781,24 +10571,6 @@
     ]
   },
   {
-    "id": "land-maker",
-    "title_ids": {
-      "JP": "NPJJ00219"
-    },
-    "name": "LAND MAKER",
-    "description": "JP",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Land%20Maker%20%28Europe%29.png",
-    "links": []
-  },
-  {
     "id": "langrisser-i-ii",
     "title_ids": {
       "JP": "NPJJ00264"
@@ -13093,24 +10865,6 @@
     ]
   },
   {
-    "id": "little-mermaid-2-winnie-the-pooh",
-    "title_ids": {
-      "EU": "NPEF00155"
-    },
-    "name": "Little Mermaid 2 & Winnie the Pooh",
-    "description": "EU",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Disney%27s%20The%20Little%20Mermaid%20II%20%28USA%29.png",
-    "links": []
-  },
-  {
     "id": "little-princess-1-maru-oukoku-no-ningyou-hime-2",
     "title_ids": {
       "JP": "NPJJ00048"
@@ -13167,114 +10921,6 @@
         "content_id": "EP4039-NPEF00006_00-GLOADEDENG000001"
       }
     ]
-  },
-  {
-    "id": "logic-mahjong-soryu-3-or-4players",
-    "title_ids": {
-      "JP": "NPJJ00018"
-    },
-    "name": "Logic Mahjong Soryu 3 or 4players",
-    "description": "JP",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Logic%20Mahjong%20Souryuu%20-%20Yonin%20Uchi%2C%20Sannin%20Uchi%20%28Japan%29.png",
-    "links": []
-  },
-  {
-    "id": "lord-monarch",
-    "title_ids": {
-      "ASIA": "NPHJ00085"
-    },
-    "name": "LORD MONARCH",
-    "description": "ASIA",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Lord%20Monarch%20-%20Shin%20Gaia%20Oukokuki%20%28Japan%29%20%28Major%20Wave%29.png",
-    "links": []
-  },
-  {
-    "id": "lord-monarch-shin-gaia-oukokuki",
-    "title_ids": {
-      "JP": "NPJJ00159"
-    },
-    "name": "Lord Monarch: Shin Gaia Oukokuki",
-    "description": "JP",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Lord%20Monarch%20-%20Shin%20Gaia%20Oukokuki%20%28Japan%29.png",
-    "links": []
-  },
-  {
-    "id": "love-game-s-waiwai-tennis",
-    "title_ids": {
-      "ASIA": "NPHJ00240"
-    },
-    "name": "Love Game's WaiWai Tennis",
-    "description": "ASIA",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Love%20Game%27s%20-%20Wai%20Wai%20Tennis%20%28Japan%29%20%28Major%20Wave%29.png",
-    "links": []
-  },
-  {
-    "id": "love-game-s-waiwai-tennis-plus",
-    "title_ids": {
-      "JP": "NPJJ00031"
-    },
-    "name": "LOVE GAME'S WAIWAI TENNIS PLUS",
-    "description": "JP",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Love%20Game%27s%20-%20Wai%20Wai%20Tennis%20%28Japan%29%20%28Major%20Wave%29.png",
-    "links": []
-  },
-  {
-    "id": "love-game-s-wai-wai-tennis",
-    "title_ids": {
-      "JP": "NPJJ00433"
-    },
-    "name": "Love Game's: Wai Wai Tennis",
-    "description": "JP",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Love%20Game%27s%20-%20Wai%20Wai%20Tennis%20%28Japan%29.png",
-    "links": []
   },
   {
     "id": "lsd",
@@ -13611,42 +11257,6 @@
     ]
   },
   {
-    "id": "magical-date-doki-doki-kokuhaku-daisakusen",
-    "title_ids": {
-      "JP": "NPJJ00190"
-    },
-    "name": "Magical Date: Doki Doki Kokuhaku Daisakusen",
-    "description": "JP",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Magical%20Date%20-%20Doki%20Doki%20Kokuhaku%20Daisakusen%20%28Japan%29.png",
-    "links": []
-  },
-  {
-    "id": "magical-dice-kids",
-    "title_ids": {
-      "JP": "NPJI00054"
-    },
-    "name": "Magical Dice Kids",
-    "description": "JP",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Magical%20Dice%20Kids%20%28Japan%29.png",
-    "links": []
-  },
-  {
     "id": "magical-drop-f",
     "title_ids": {
       "JP": "NPUF30003"
@@ -13957,24 +11567,6 @@
     ]
   },
   {
-    "id": "marby-baby-story",
-    "title_ids": {
-      "JP": "NPJJ00592"
-    },
-    "name": "Marby Baby Story",
-    "description": "JP",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Marby%20Baby%20Story%20%28Japan%29.png",
-    "links": []
-  },
-  {
     "id": "marionette-company",
     "title_ids": {
       "JP": "NPJJ00431"
@@ -14062,24 +11654,6 @@
     ]
   },
   {
-    "id": "marl-kingdom2-little-princess",
-    "title_ids": {
-      "ASIA": "NPHJ00019"
-    },
-    "name": "Marl Kingdom2 ～Little Princess～",
-    "description": "ASIA",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Little%20Princess%20-%20Marl%20Oukoku%20no%20Ningyou-hime%202%20%28Japan%29%20%28Demo%29.png",
-    "links": []
-  },
-  {
     "id": "marl-kingdom-doll-princess",
     "title_ids": {
       "ASIA": "NPHJ00005"
@@ -14165,42 +11739,6 @@
         "content_id": "UP9000-NPUJ00462_00-0000000000000001"
       }
     ]
-  },
-  {
-    "id": "master-of-monsters-akatsuki-no-kenjatachi",
-    "title_ids": {
-      "ASIA": "NPHJ00077"
-    },
-    "name": "Master Of Monsters  Akatsuki no Kenjatachi",
-    "description": "ASIA",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Master%20of%20Monsters%20-%20Akatsuki%20no%20Kenja-tachi%20%28Japan%29%20%28Major%20Wave%29.png",
-    "links": []
-  },
-  {
-    "id": "master-of-monsters-disciples-of-gaia",
-    "title_ids": {
-      "JP": "NPJJ00149"
-    },
-    "name": "Master of Monsters: Disciples of Gaia",
-    "description": "JP",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Master%20of%20Monsters%20-%20Disciples%20of%20Gaia%20%28Europe%29%20%28En%2CFr%2CDe%29.png",
-    "links": []
   },
   {
     "id": "max-surfing-2000",
@@ -14399,24 +11937,6 @@
         "content_id": "JP9000-NPJI00027_00-0000000000000001"
       }
     ]
-  },
-  {
-    "id": "medievil-yomigaetta-gallowmere-no-yuusha",
-    "title_ids": {
-      "JP": "NPJI00027"
-    },
-    "name": "MediEvil: Yomigaetta Gallowmere no Yuusha",
-    "description": "JP",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/MediEvil%20%28USA%29.png",
-    "links": []
   },
   {
     "id": "mega-man",
@@ -14854,78 +12374,6 @@
     ]
   },
   {
-    "id": "memorial-series-sunsoft-vol-1",
-    "title_ids": {
-      "ASIA": "NPHJ00056"
-    },
-    "name": "Memorial☆Series SUNSOFT Vol.1",
-    "description": "ASIA",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Memorial%20Series%20-%20Sunsoft%20Vol.%201%20%28Japan%29.png",
-    "links": []
-  },
-  {
-    "id": "memorial-series-sunsoft-vol-2",
-    "title_ids": {
-      "ASIA": "NPHJ00057"
-    },
-    "name": "Memorial☆Series SUNSOFT Vol.2",
-    "description": "ASIA",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Memorial%20Series%20-%20Sunsoft%20Vol.%202%20%28Japan%29.png",
-    "links": []
-  },
-  {
-    "id": "memorial-series-sunsoft-vol-3",
-    "title_ids": {
-      "ASIA": "NPHJ00058"
-    },
-    "name": "Memorial☆Series SUNSOFT Vol.3",
-    "description": "ASIA",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Memorial%20Series%20-%20Sunsoft%20Vol.%203%20%28Japan%29.png",
-    "links": []
-  },
-  {
-    "id": "merbybabystory",
-    "title_ids": {
-      "ASIA": "NPHJ00311"
-    },
-    "name": "MerbyBabyStory",
-    "description": "ASIA",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Marby%20Baby%20Story%20%28Japan%29.png",
-    "links": []
-  },
-  {
     "id": "meremanoid",
     "title_ids": {
       "JP": "NPJJ00767"
@@ -14953,25 +12401,6 @@
         "content_id": "JP0188-NPJJ00767_00-0000000000000001"
       }
     ]
-  },
-  {
-    "id": "meru-purana",
-    "title_ids": {
-      "ASIA": "NPHJ00073",
-      "JP": "NPJJ00138"
-    },
-    "name": "Meru Purana",
-    "description": "ASIA · JP",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Meru%20Purana%20%28Japan%29.png",
-    "links": []
   },
   {
     "id": "metal-gear-solid",
@@ -15429,24 +12858,6 @@
     ]
   },
   {
-    "id": "military-madness-nectaris",
-    "title_ids": {
-      "ASIA": "NPHJ00176"
-    },
-    "name": "Military Madness: Nectaris",
-    "description": "ASIA",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Nectaris%20-%20Military%20Madness%20%28USA%29.png",
-    "links": []
-  },
-  {
     "id": "minna-atsumare-igo-kyoushitsu",
     "title_ids": {
       "ASIA": "NPHJ00233",
@@ -15681,24 +13092,6 @@
         "content_id": "JP0106-NPJJ00714_00-0000000000000001"
       }
     ]
-  },
-  {
-    "id": "monster-farm-jump",
-    "title_ids": {
-      "ASIA": "NPHJ00099"
-    },
-    "name": "MONSTER FARM JUMP",
-    "description": "ASIA",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Monster%20Farm%20Jump%20%28Japan%29.png",
-    "links": []
   },
   {
     "id": "monsters-co-l-isola-dello-spavento",
@@ -16094,24 +13487,6 @@
     ]
   },
   {
-    "id": "ms-pac-man-maze-madness",
-    "title_ids": {
-      "JP": "NPJJ00705"
-    },
-    "name": "Ms. Pac-Man Maze Madness",
-    "description": "JP",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "2017-11-14",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Ms.%20Pac-Man%20Maze%20Madness%20%28Japan%29.png",
-    "links": []
-  },
-  {
     "id": "my-garden",
     "title_ids": {
       "JP": "NPJJ00342"
@@ -16338,24 +13713,6 @@
         "content_id": "JP0700-NPJJ00695_00-0000000000000001"
       }
     ]
-  },
-  {
-    "id": "namco-heritage-bundle",
-    "title_ids": {
-      "EU": "NPEF00200"
-    },
-    "name": "NAMCO Heritage Bundle",
-    "description": "EU",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Namco%20Museum%20Encore%20%28Japan%29%20%28Shokai%20Gentei%20Special%20Box%29%20%28Rev%201%29.png",
-    "links": []
   },
   {
     "id": "namco-museum-encore",
@@ -16593,24 +13950,6 @@
     ]
   },
   {
-    "id": "nectaris-military-madness",
-    "title_ids": {
-      "JP": "NPJJ00156"
-    },
-    "name": "Nectaris: Military Madness",
-    "description": "JP",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Nectaris%20%28Japan%29.png",
-    "links": []
-  },
-  {
     "id": "nekketsu-oyako",
     "title_ids": {
       "JP": "NPJJ00763"
@@ -16638,25 +13977,6 @@
         "content_id": "JP0177-NPJJ00763_00-0000000000000001"
       }
     ]
-  },
-  {
-    "id": "nekozamurai",
-    "title_ids": {
-      "ASIA": "NPHJ00129",
-      "JP": "NPJJ00301"
-    },
-    "name": "NEKOZAMURAI",
-    "description": "ASIA · JP",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Neko%20Zamurai%20%28Japan%29.png",
-    "links": []
   },
   {
     "id": "neo-atlas",
@@ -16812,24 +14132,6 @@
         "content_id": "JP0242-NPJJ00365_00-0000000000000001"
       }
     ]
-  },
-  {
-    "id": "neorude2",
-    "title_ids": {
-      "JP": "NPJJ00754"
-    },
-    "name": "Neorude2",
-    "description": "JP",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Neorude%202%20%28Japan%29.png",
-    "links": []
   },
   {
     "id": "neorude-kizamareta-monshou",
@@ -17004,78 +14306,6 @@
         "content_id": "JP0106-NPJJ00481_00-0000000000000001"
       }
     ]
-  },
-  {
-    "id": "noel3-mission-on-the-line",
-    "title_ids": {
-      "ASIA": "NPHJ00245"
-    },
-    "name": "Noel3 MISSION ON THE LINE",
-    "description": "ASIA",
-    "category_id": "games",
-    "subcategory_ids": [
-      "sports"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/NOeL%203%20-%20Mission%20on%20the%20Line%20%28Japan%29%20%28Disc%201%29.png",
-    "links": []
-  },
-  {
-    "id": "noel-la-neige",
-    "title_ids": {
-      "ASIA": "NPHJ00232"
-    },
-    "name": "NOel～La neige",
-    "description": "ASIA",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/NOeL%20-%20La%20Neige%20%28Japan%29%20%28Disc%201%29%20%28Special%20Edition%29.png",
-    "links": []
-  },
-  {
-    "id": "noel-la-neige-special",
-    "title_ids": {
-      "ASIA": "NPHJ00234"
-    },
-    "name": "NOel～La neige Special",
-    "description": "ASIA",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/NOeL%20-%20La%20Neige%20Special%20%28Japan%29.png",
-    "links": []
-  },
-  {
-    "id": "noir-yeux-noire-cielgris-fantasm",
-    "title_ids": {
-      "ASIA": "NPHJ00074"
-    },
-    "name": "Noir yeux noire -Cielgris Fantasm-",
-    "description": "ASIA",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Kuroi%20Hitomi%20no%20Noir%20-%20Cielgris%20Fantasm%20%28Japan%29.png",
-    "links": []
   },
   {
     "id": "noon-new-type-action-game",
@@ -17253,24 +14483,6 @@
     ]
   },
   {
-    "id": "nyan-to-wonderful",
-    "title_ids": {
-      "JP": "NPJJ00563"
-    },
-    "name": "Nyan to Wonderful",
-    "description": "JP",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Nyan%20to%20Wonderful%20%28Japan%29.png",
-    "links": []
-  },
-  {
     "id": "oasis-road",
     "title_ids": {
       "ASIA": "NPHJ00034",
@@ -17299,25 +14511,6 @@
         "content_id": "JP0031-NPJJ00055_00-0000000000000001"
       }
     ]
-  },
-  {
-    "id": "ochanoma-battle",
-    "title_ids": {
-      "ASIA": "NPHJ00308",
-      "JP": "NPJJ00572"
-    },
-    "name": "OCHANOMA BATTLE",
-    "description": "ASIA · JP",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Ocha%20no%20Ma%20Battle%20%28Japan%29.png",
-    "links": []
   },
   {
     "id": "oddworld-abe-s-exoddus",
@@ -17566,24 +14759,6 @@
     ]
   },
   {
-    "id": "oekaki-puzzle-shuu",
-    "title_ids": {
-      "JP": "NPJJ00544"
-    },
-    "name": "Oekaki Puzzle Shuu (SuperLite 3in1 Series)",
-    "description": "JP",
-    "category_id": "games",
-    "subcategory_ids": [
-      "puzzle"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/SuperLite%203in1%20Series%20-%20Oekaki%20Puzzle-shuu%20%28Japan%29.png",
-    "links": []
-  },
-  {
     "id": "omise-de-tensyu",
     "title_ids": {
       "JP": "NPJJ00411"
@@ -17640,42 +14815,6 @@
         "content_id": "UP9000-NPUJ00469_00-0000000000000001"
       }
     ]
-  },
-  {
-    "id": "oni-zero-fukkatsu",
-    "title_ids": {
-      "JP": "NPJJ00302"
-    },
-    "name": "Oni Zero: Fukkatsu",
-    "description": "JP",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Pandora%20Max%20Series%20Vol.%206%20-%20Oni%20Zero%20-%20Fukkatsu%20%28Japan%29.png",
-    "links": []
-  },
-  {
-    "id": "ooedo-huusui-ingaritsu-hanabi-2",
-    "title_ids": {
-      "JP": "NPJJ00529"
-    },
-    "name": "Ooedo Huusui Ingaritsu Hanabi 2",
-    "description": "JP",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Ooedo%20Huusui%20Ingaritsu%20-%20Hanabi%202%20%28Japan%29.png",
-    "links": []
   },
   {
     "id": "ore-no-shikabane-o-koete-yuke",
@@ -18443,78 +15582,6 @@
     ]
   },
   {
-    "id": "plasma-sword",
-    "title_ids": {
-      "ASIA": "NPHJ00275"
-    },
-    "name": "PLASMA SWORD",
-    "description": "ASIA",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://raw.githubusercontent.com/xlenore/psx-covers/main/covers/default/SLUS-00834.jpg",
-    "links": []
-  },
-  {
-    "id": "pocke-kano-fumio-ueno",
-    "title_ids": {
-      "JP": "NPJJ00719"
-    },
-    "name": "Pocke-Kano: Fumio Ueno",
-    "description": "JP",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Pocke-Kano%20-%20Aida%20Yumi%20%28Japan%29.png",
-    "links": []
-  },
-  {
-    "id": "pocke-kano-shizuka-houjouin",
-    "title_ids": {
-      "JP": "NPJJ00720"
-    },
-    "name": "Pocke-Kano: Shizuka Houjouin",
-    "description": "JP",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Pocke-Kano%20-%20Aida%20Yumi%20%28Japan%29.png",
-    "links": []
-  },
-  {
-    "id": "pocke-kano-yumi-aida",
-    "title_ids": {
-      "JP": "NPJJ00718"
-    },
-    "name": "Pocke-Kano: Yumi Aida",
-    "description": "JP",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Pocke-Kano%20-%20Aida%20Yumi%20%28Japan%29.png",
-    "links": []
-  },
-  {
     "id": "pocket-fighter",
     "title_ids": {
       "US": "NPUJ00653",
@@ -18573,24 +15640,6 @@
         "content_id": "JP9000-NPJI00079_00-0000000000000001"
       }
     ]
-  },
-  {
-    "id": "pocket-muumuu",
-    "title_ids": {
-      "JP": "NPJI00081"
-    },
-    "name": "Pocket MuuMuu",
-    "description": "JP",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Pocket%20MuuMuu%20%28Japan%29.png",
-    "links": []
   },
   {
     "id": "pocket-tuner",
@@ -18897,42 +15946,6 @@
     ]
   },
   {
-    "id": "power-serve-3d-tennis",
-    "title_ids": {
-      "JP": "NPJJ00367"
-    },
-    "name": "Power Serve 3D Tennis",
-    "description": "JP",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Power%20Serve%203D%20Tennis%20%28USA%29.png",
-    "links": []
-  },
-  {
-    "id": "poy-poy",
-    "title_ids": {
-      "JP": "NPJJ00111"
-    },
-    "name": "Poy Poy",
-    "description": "JP",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Poy%20Poy%20%28USA%29.png",
-    "links": []
-  },
-  {
     "id": "prismaticallization",
     "title_ids": {
       "ASIA": "NPHJ00055",
@@ -19019,24 +16032,6 @@
         "content_id": "JP0035-NPJJ00147_00-0000000000000001"
       }
     ]
-  },
-  {
-    "id": "pro-mahjong-kiwame-tengensenhen",
-    "title_ids": {
-      "JP": "NPJJ00153"
-    },
-    "name": "Pro Mahjong Kiwame Tengensenhen",
-    "description": "JP",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Pro%20Mahjong%20Kiwame%20-%20Tengensen-hen%20%28Japan%29.png",
-    "links": []
   },
   {
     "id": "pro-wrestling-sengokuden-2",
@@ -19155,24 +16150,6 @@
     ]
   },
   {
-    "id": "puchi-carat",
-    "title_ids": {
-      "JP": "NPJJ00202"
-    },
-    "name": "Puchi Carat",
-    "description": "JP",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Puchi%20Carat%20%28Japan%29.png",
-    "links": []
-  },
-  {
     "id": "pukunpa-joshikouki-no-houkago",
     "title_ids": {
       "JP": "NPJJ00152"
@@ -19200,25 +16177,6 @@
         "content_id": "JP0035-NPJJ00152_00-0000000000000001"
       }
     ]
-  },
-  {
-    "id": "puppet-zoo-pilomy",
-    "title_ids": {
-      "ASIA": "NPHJ00151",
-      "JP": "NPJJ00336"
-    },
-    "name": "PUPPET ZOO PILOMY",
-    "description": "ASIA · JP",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Puppet%20Zoo%20Pilomy%20%28Japan%29%20%28En%2CJa%29.png",
-    "links": []
   },
   {
     "id": "putter-golf",
@@ -19422,61 +16380,6 @@
         "content_id": "JP0305-NPJJ00230_00-0000000000000001"
       }
     ]
-  },
-  {
-    "id": "puzzle-mania",
-    "title_ids": {
-      "JP": "NPJJ00021"
-    },
-    "name": "PUZZLE MANIA",
-    "description": "JP",
-    "category_id": "games",
-    "subcategory_ids": [
-      "puzzle"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Puzzle%20Mania%20%28Japan%29.png",
-    "links": []
-  },
-  {
-    "id": "puzzle-mania-2",
-    "title_ids": {
-      "ASIA": "NPHJ00039",
-      "JP": "NPJJ00064"
-    },
-    "name": "PUZZLE MANIA 2",
-    "description": "ASIA · JP",
-    "category_id": "games",
-    "subcategory_ids": [
-      "puzzle"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Puzzle%20Mania%202%20%28Japan%29.png",
-    "links": []
-  },
-  {
-    "id": "quiz-nanairo-dreams-nijiiro-machi-no-kiseki",
-    "title_ids": {
-      "JP": "NPJJ00591"
-    },
-    "name": "Quiz Nanairo Dreams: Nijiiro Machi no Kiseki",
-    "description": "JP",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Quiz%20Nanairo%20Dreams%20-%20Nijiiro-chou%20no%20Kiseki%20%28Japan%29.png",
-    "links": []
   },
   {
     "id": "r-type-delta",
@@ -19756,24 +16659,6 @@
     ]
   },
   {
-    "id": "rapid-racer",
-    "title_ids": {
-      "JP": "NPJI00069"
-    },
-    "name": "Rapid Racer",
-    "description": "JP",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Rapid%20Racer%20%28Japan%29.png",
-    "links": []
-  },
-  {
     "id": "rascal-racers",
     "title_ids": {
       "EU": "NPEF00185"
@@ -19811,24 +16696,6 @@
         "content_id": "EP4061-NPEF00185_00-GRASCALRAC000GER"
       }
     ]
-  },
-  {
-    "id": "ray-tracers",
-    "title_ids": {
-      "JP": "NPJJ00209"
-    },
-    "name": "RAY TRACERS",
-    "description": "JP",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Ray%20Tracers%20%28Europe%29.png",
-    "links": []
   },
   {
     "id": "rayblade",
@@ -20100,24 +16967,6 @@
     ]
   },
   {
-    "id": "real-bout-fatal-fury-special-dominated-mind",
-    "title_ids": {
-      "ASIA": "NPHJ00018"
-    },
-    "name": "REAL BOUT FATAL FURY SPECIAL DOMINATED MIND",
-    "description": "ASIA",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Real%20Bout%20Fatal%20Fury%20%28Europe%29.png",
-    "links": []
-  },
-  {
     "id": "real-bout-garou-densetsu",
     "title_ids": {
       "JP": "NPJJ00039"
@@ -20312,24 +17161,6 @@
         "content_id": "EP4039-NPEF00009_00-GRELOADEDG000001"
       }
     ]
-  },
-  {
-    "id": "rescue-24-hours",
-    "title_ids": {
-      "JP": "NPJJ00535"
-    },
-    "name": "Rescue 24 Hours",
-    "description": "JP",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Rescue%2024%20Hours%20%28Japan%29.png",
-    "links": []
   },
   {
     "id": "resident-evil-director-s-cut",
@@ -20699,24 +17530,6 @@
     ]
   },
   {
-    "id": "rockman-2",
-    "title_ids": {
-      "ASIA": "NPHJ00295"
-    },
-    "name": "ROCKMAN 2",
-    "description": "ASIA",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Rockman%20%28Japan%29.png",
-    "links": []
-  },
-  {
     "id": "rockman-2-dr-wily-no-nazo",
     "title_ids": {
       "JP": "NPJJ00287"
@@ -20744,24 +17557,6 @@
         "content_id": "JP0102-NPJJ00287_00-0000000000000001"
       }
     ]
-  },
-  {
-    "id": "rockman-3",
-    "title_ids": {
-      "ASIA": "NPHJ00296"
-    },
-    "name": "ROCKMAN 3",
-    "description": "ASIA",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Rockman%20%28Japan%29.png",
-    "links": []
   },
   {
     "id": "rockman-3-dr-wily-no-saigo",
@@ -20793,24 +17588,6 @@
     ]
   },
   {
-    "id": "rockman-4",
-    "title_ids": {
-      "ASIA": "NPHJ00297"
-    },
-    "name": "ROCKMAN 4",
-    "description": "ASIA",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Rockman%20%28Japan%29.png",
-    "links": []
-  },
-  {
     "id": "rockman-4-aratanaru-yabou",
     "title_ids": {
       "JP": "NPJJ00511"
@@ -20838,24 +17615,6 @@
         "content_id": "JP0102-NPJJ00511_00-0000000000000001"
       }
     ]
-  },
-  {
-    "id": "rockman-5",
-    "title_ids": {
-      "ASIA": "NPHJ00298"
-    },
-    "name": "ROCKMAN 5",
-    "description": "ASIA",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Rockman%20%28Japan%29.png",
-    "links": []
   },
   {
     "id": "rockman-5-blues-no-wana",
@@ -21088,42 +17847,6 @@
         "content_id": "UP9000-NPUJ00195_00-0000000000000001"
       }
     ]
-  },
-  {
-    "id": "roommate-inoue-ryoko",
-    "title_ids": {
-      "JP": "NPJJ00715"
-    },
-    "name": "Roommate: Inoue Ryoko",
-    "description": "JP",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Roommate%20-%20Inoue%20Ryoko%20%28Japan%29.png",
-    "links": []
-  },
-  {
-    "id": "rubbish-blazon",
-    "title_ids": {
-      "JP": "NPJJ00290"
-    },
-    "name": "Rubbish Blazon",
-    "description": "JP",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Pandora%20Max%20Series%20Vol.%203%20-%20Rubbish%20Blazon%20%28Japan%29.png",
-    "links": []
   },
   {
     "id": "rungrung-oz-no-mahou-tsukai-another-world",
@@ -21360,24 +18083,6 @@
     ]
   },
   {
-    "id": "saikyou-ginsei-shougi-2",
-    "title_ids": {
-      "ASIA": "NPHJ00262"
-    },
-    "name": "Saikyou Ginsei Shougi 2",
-    "description": "ASIA",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Saikyou%20Ginsei%20Shougi%202%20%28Japan%29.png",
-    "links": []
-  },
-  {
     "id": "saiyuki-journey-west",
     "title_ids": {
       "US": "NPUJ01381"
@@ -21435,24 +18140,6 @@
         "content_id": "JP0571-NPJJ00462_00-0000000000000001"
       }
     ]
-  },
-  {
-    "id": "samurai-shodown-3",
-    "title_ids": {
-      "ASIA": "NPHJ00027"
-    },
-    "name": "SAMURAI SHODOWN 3",
-    "description": "ASIA",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Samurai%20Shodown%20-%20Warriors%20Rage%20%28USA%29.png",
-    "links": []
   },
   {
     "id": "samurai-shodown-4-special",
@@ -21843,60 +18530,6 @@
     ]
   },
   {
-    "id": "sekai-saikyou-ginsei-igo-3",
-    "title_ids": {
-      "JP": "NPJJ00370"
-    },
-    "name": "Sekai Saikyou Ginsei Igo 3",
-    "description": "JP",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Sekai%20Saikyou%20Ginsei%20Igo%203%20%28Japan%29.png",
-    "links": []
-  },
-  {
-    "id": "sekai-saikyou-ginsei-igo3",
-    "title_ids": {
-      "ASIA": "NPHJ00155"
-    },
-    "name": "Sekai Saikyou Ginsei Igo3",
-    "description": "ASIA",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Sekai%20Saikyou%20Ginsei%20Igo%20%28Japan%29.png",
-    "links": []
-  },
-  {
-    "id": "sengoku-mugen",
-    "title_ids": {
-      "JP": "NPJJ00562"
-    },
-    "name": "Sengoku Mugen",
-    "description": "JP",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Sengoku%20Mugen%20%28Japan%29.png",
-    "links": []
-  },
-  {
     "id": "sentimental-graffiti",
     "title_ids": {
       "JP": "NPUF30049"
@@ -21965,42 +18598,6 @@
     ]
   },
   {
-    "id": "septentrion",
-    "title_ids": {
-      "ASIA": "NPHJ00020"
-    },
-    "name": "SEPTENTRION",
-    "description": "ASIA",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Septentrion%20-%20Out%20of%20the%20Blue%20%28Japan%29%20%28Major%20Wave%29.png",
-    "links": []
-  },
-  {
-    "id": "septentrion-out-of-the-blue",
-    "title_ids": {
-      "JP": "NPJJ00047"
-    },
-    "name": "Septentrion ~Out of the Blue~",
-    "description": "JP",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Septentrion%20-%20Out%20of%20the%20Blue%20%28Japan%29.png",
-    "links": []
-  },
-  {
     "id": "shadow-tower",
     "title_ids": {
       "US": "NPUJ00863",
@@ -22040,60 +18637,6 @@
         "content_id": "JP0506-NPJJ00088_00-0000000000000001"
       }
     ]
-  },
-  {
-    "id": "shanghai-dynasty",
-    "title_ids": {
-      "JP": "NPJJ00023"
-    },
-    "name": "Shanghai: Dynasty",
-    "description": "JP",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Shanghai%20-%20Banri%20no%20Choujou%20%28Japan%29%20%28Gentei%20Box%29.png",
-    "links": []
-  },
-  {
-    "id": "sheep",
-    "title_ids": {
-      "EU": "NPEF00020"
-    },
-    "name": "SHEEP",
-    "description": "EU",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "2017-11-04",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Sheep%20%28Europe%29%20%28En%2CFr%2CDe%2CEs%2CIt%29.png",
-    "links": []
-  },
-  {
-    "id": "shijin-no-maki-koten-tsumego-shuu",
-    "title_ids": {
-      "ASIA": "NPHJ00265"
-    },
-    "name": "Shijin no Maki Koten Tsumego Shuu",
-    "description": "ASIA",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Koten%20Tsumego-shuu%20-%20Shijin%20no%20Maki%20%28Japan%29.png",
-    "links": []
   },
   {
     "id": "shin-megami-tensei",
@@ -22212,24 +18755,6 @@
     ]
   },
   {
-    "id": "shin-super-robot-taisen",
-    "title_ids": {
-      "JP": "NPJJ00574"
-    },
-    "name": "Shin Super Robot Taisen",
-    "description": "JP",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Shin%20Super%20Robot%20Taisen%20%28Japan%29.png",
-    "links": []
-  },
-  {
     "id": "shingata-kururin-pa",
     "title_ids": {
       "JP": "NPJJ00632"
@@ -22257,24 +18782,6 @@
         "content_id": "JP0047-NPJJ00632_00-0000000000000001"
       }
     ]
-  },
-  {
-    "id": "shinobi-no-roku",
-    "title_ids": {
-      "ASIA": "NPHJ00153"
-    },
-    "name": "Shinobi no Roku",
-    "description": "ASIA",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Shinobi%20no%20Roku%20%28Japan%29.png",
-    "links": []
   },
   {
     "id": "shinsou-kaiten-wanwan-umi-monogatari-sanyo-pachinko-paradise-dx",
@@ -22364,60 +18871,6 @@
     ]
   },
   {
-    "id": "shisha-no-yobu-tachi",
-    "title_ids": {
-      "JP": "NPJJ00284"
-    },
-    "name": "Shisha no Yobu Tachi",
-    "description": "JP",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Pandora%20Max%20Series%20Vol.%202%20-%20Shisha%20no%20Yobu%20Yakata%20%28Japan%29.png",
-    "links": []
-  },
-  {
-    "id": "side-pocket-3",
-    "title_ids": {
-      "JP": "NPJJ00288"
-    },
-    "name": "Side Pocket 3",
-    "description": "JP",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Side%20Pocket%203%20%28Japan%29.png",
-    "links": []
-  },
-  {
-    "id": "sihouette-stories",
-    "title_ids": {
-      "JP": "NPJJ00716"
-    },
-    "name": "Sihouette☆Stories",
-    "description": "JP",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Silhouette%20Stories%20%28Japan%29.png",
-    "links": []
-  },
-  {
     "id": "silent-bomber",
     "title_ids": {
       "JP": "NPJJ00003"
@@ -22497,24 +18950,6 @@
     ]
   },
   {
-    "id": "silentbomber",
-    "title_ids": {
-      "ASIA": "NPHJ00002"
-    },
-    "name": "SilentBomber",
-    "description": "ASIA",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Silent%20Bomber%20%28Europe%29.png",
-    "links": []
-  },
-  {
     "id": "silhouette-mirage",
     "title_ids": {
       "JP": "NPJJ00446"
@@ -22542,24 +18977,6 @@
         "content_id": "JP0571-NPJJ00446_00-0000000000000001"
       }
     ]
-  },
-  {
-    "id": "silhouette-mirage-reprogrammed-hope",
-    "title_ids": {
-      "ASIA": "NPHJ00246"
-    },
-    "name": "SILHOUETTE MIRAGE REPROGRAMMED HOPE",
-    "description": "ASIA",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Silhouette%20Mirage%20-%20Reprogrammed%20Hope%20%28Japan%29.png",
-    "links": []
   },
   {
     "id": "silver-jiken",
@@ -23996,457 +20413,6 @@
     ]
   },
   {
-    "id": "simple1500series-vol-14-the-block-breaker",
-    "title_ids": {
-      "ASIA": "NPHJ00207"
-    },
-    "name": "SIMPLE1500SERIES Vol.14 THE BLOCK BREAKER",
-    "description": "ASIA",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Simple%201500%20Series%20Vol.%2014%20-%20The%20Block%20Kuzushi%20%28Japan%29.png",
-    "links": []
-  },
-  {
-    "id": "simple1500series-vol-15-the-pachinko",
-    "title_ids": {
-      "ASIA": "NPHJ00214"
-    },
-    "name": "SIMPLE1500SERIES Vol.15 THE PACHINKO",
-    "description": "ASIA",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Simple%201500%20Series%20Vol.%2015%20-%20The%20Pachinko%20%28Japan%29.png",
-    "links": []
-  },
-  {
-    "id": "simple1500series-vol-18-the-bowling",
-    "title_ids": {
-      "ASIA": "NPHJ00202"
-    },
-    "name": "SIMPLE1500SERIES Vol.18 THE BOWLING",
-    "description": "ASIA",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Simple%201500%20Series%20Vol.%2018%20-%20The%20Bowling%20%28Japan%29.png",
-    "links": []
-  },
-  {
-    "id": "simple1500series-vol-28-the-dungeon-rpg",
-    "title_ids": {
-      "ASIA": "NPHJ00216"
-    },
-    "name": "SIMPLE1500SERIES Vol.28 THE DUNGEON RPG",
-    "description": "ASIA",
-    "category_id": "games",
-    "subcategory_ids": [
-      "rpg"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Simple%201500%20Series%20Vol.%2028%20-%20The%20Dungeon%20RPG%20%28Japan%29.png",
-    "links": []
-  },
-  {
-    "id": "simple1500series-vol-31-the-sound-novelle",
-    "title_ids": {
-      "ASIA": "NPHJ00220"
-    },
-    "name": "SIMPLE1500SERIES Vol.31 THE SOUND NOVELLE",
-    "description": "ASIA",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Simple%201500%20Series%20Vol.%2031%20-%20The%20Sound%20Novel%20%28Japan%29.png",
-    "links": []
-  },
-  {
-    "id": "simple1500series-vol-32-the-boxing",
-    "title_ids": {
-      "ASIA": "NPHJ00199"
-    },
-    "name": "SIMPLE1500SERIES Vol.32 THE BOXING",
-    "description": "ASIA",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Simple%201500%20Series%20Vol.%2032%20-%20The%20Boxing%20%28Japan%29.png",
-    "links": []
-  },
-  {
-    "id": "simple1500series-vol-33-the-table-tennis",
-    "title_ids": {
-      "ASIA": "NPHJ00198"
-    },
-    "name": "SIMPLE1500SERIES Vol.33 THE TABLE TENNIS",
-    "description": "ASIA",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Simple%201500%20Series%20Vol.%2026%20-%20The%20Tennis%20%28Japan%29.png",
-    "links": []
-  },
-  {
-    "id": "simple1500series-vol-35-the-shooting",
-    "title_ids": {
-      "ASIA": "NPHJ00204"
-    },
-    "name": "SIMPLE1500SERIES Vol.35 THE SHOOTING",
-    "description": "ASIA",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Simple%201500%20Series%20Vol.%2035%20-%20The%20Shooting%20%28Japan%29.png",
-    "links": []
-  },
-  {
-    "id": "simple1500series-vol-37-the-picture-slide-puzzle",
-    "title_ids": {
-      "ASIA": "NPHJ00206"
-    },
-    "name": "SIMPLE1500SERIES Vol.37 THE PICTURE & SLIDE PUZZLE",
-    "description": "ASIA",
-    "category_id": "games",
-    "subcategory_ids": [
-      "puzzle"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Simple%201500%20Series%20Vol.%2037%20-%20The%20Illust%20Puzzle%20_%20Slide%20Puzzle%20%28Japan%29.png",
-    "links": []
-  },
-  {
-    "id": "simple1500series-vol-39-the-mah-johng-2",
-    "title_ids": {
-      "ASIA": "NPHJ00210"
-    },
-    "name": "SIMPLE1500SERIES Vol.39 THE MAH-JOHNG 2",
-    "description": "ASIA",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Simple%201500%20Series%20Vol.%2039%20-%20The%20Mahjong%202%20%28Japan%29.png",
-    "links": []
-  },
-  {
-    "id": "simple1500series-vol-41-the-reversi-2",
-    "title_ids": {
-      "ASIA": "NPHJ00211"
-    },
-    "name": "SIMPLE1500SERIES Vol.41 THE REVERSI 2",
-    "description": "ASIA",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Simple%201500%20Series%20Vol.%2041%20-%20The%20Reversi%202%20%28Japan%29.png",
-    "links": []
-  },
-  {
-    "id": "simple1500series-vol-44-the-card-2",
-    "title_ids": {
-      "ASIA": "NPHJ00209"
-    },
-    "name": "SIMPLE1500SERIES Vol.44 THE CARD 2",
-    "description": "ASIA",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Simple%201500%20Series%20Vol.%2044%20-%20The%20Card%202%20%28Japan%29.png",
-    "links": []
-  },
-  {
-    "id": "simple1500series-vol-45-the-block-breaker-2",
-    "title_ids": {
-      "ASIA": "NPHJ00208"
-    },
-    "name": "SIMPLE1500SERIES Vol.45 THE BLOCK BREAKER 2",
-    "description": "ASIA",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Simple%201500%20Series%20Vol.%2045%20-%20The%20Block%20Kuzushi%202%20%28Japan%29.png",
-    "links": []
-  },
-  {
-    "id": "simple1500series-vol-49-the-casino",
-    "title_ids": {
-      "ASIA": "NPHJ00219"
-    },
-    "name": "SIMPLE1500SERIES Vol.49 THE CASINO",
-    "description": "ASIA",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Simple%201500%20Series%20Vol.%2049%20-%20The%20Casino%20%28Japan%29.png",
-    "links": []
-  },
-  {
-    "id": "simple1500series-vol-53-the-helicopter",
-    "title_ids": {
-      "ASIA": "NPHJ00217"
-    },
-    "name": "SIMPLE1500SERIES Vol.53 THE HELICOPTER",
-    "description": "ASIA",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Simple%201500%20Series%20Vol.%2053%20-%20The%20Helicopter%20%28Japan%29.png",
-    "links": []
-  },
-  {
-    "id": "simple1500series-vol-55-the-darts",
-    "title_ids": {
-      "ASIA": "NPHJ00212"
-    },
-    "name": "SIMPLE1500SERIES Vol.55 THE DARTS",
-    "description": "ASIA",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Simple%201500%20Series%20Vol.%2055%20-%20The%20Darts%20%28Japan%29.png",
-    "links": []
-  },
-  {
-    "id": "simple1500series-vol-56-the-sniper",
-    "title_ids": {
-      "ASIA": "NPHJ00205"
-    },
-    "name": "SIMPLE1500SERIES Vol.56 THE SNIPER",
-    "description": "ASIA",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Simple%201500%20Series%20Vol.%2056%20-%20The%20Sniper%20%28Japan%29.png",
-    "links": []
-  },
-  {
-    "id": "simple1500series-vol-57-the-maze",
-    "title_ids": {
-      "ASIA": "NPHJ00218"
-    },
-    "name": "SIMPLE1500SERIES Vol.57 THE MAZE",
-    "description": "ASIA",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Simple%201500%20Series%20Vol.%2057%20-%20The%20Meiro%20%28Japan%29.png",
-    "links": []
-  },
-  {
-    "id": "simple1500series-vol-60-the-table-hockey",
-    "title_ids": {
-      "ASIA": "NPHJ00213"
-    },
-    "name": "SIMPLE1500SERIES Vol.60 THE TABLE HOCKEY",
-    "description": "ASIA",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Simple%201500%20Series%20Vol.%2060%20-%20The%20Table%20Hockey%20%28Japan%29.png",
-    "links": []
-  },
-  {
-    "id": "simple1500series-vol-63-the-gun-shooting-2",
-    "title_ids": {
-      "ASIA": "NPHJ00203"
-    },
-    "name": "SIMPLE1500SERIES Vol.63 THE GUN SHOOTING 2",
-    "description": "ASIA",
-    "category_id": "games",
-    "subcategory_ids": [
-      "shooter"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Simple%201500%20Series%20Vol.%2063%20-%20The%20Gun%20Shooting%202%20%28Japan%29.png",
-    "links": []
-  },
-  {
-    "id": "simple1500series-vol-64-the-kick-boxing",
-    "title_ids": {
-      "ASIA": "NPHJ00200"
-    },
-    "name": "SIMPLE1500SERIES Vol.64 THE KICK-BOXING",
-    "description": "ASIA",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Simple%201500%20Series%20Vol.%2064%20-%20The%20Kick%20Boxing%20%28Japan%29.png",
-    "links": []
-  },
-  {
-    "id": "simple1500series-vol-65-the-golf",
-    "title_ids": {
-      "ASIA": "NPHJ00197"
-    },
-    "name": "SIMPLE1500SERIES Vol.65 THE GOLF",
-    "description": "ASIA",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Simple%201500%20Series%20Vol.%2065%20-%20The%20Golf%20%28Japan%29.png",
-    "links": []
-  },
-  {
-    "id": "simple1500series-vol-70-the-war-simulation",
-    "title_ids": {
-      "ASIA": "NPHJ00215"
-    },
-    "name": "SIMPLE1500SERIES Vol.70 THE WAR SIMULATION",
-    "description": "ASIA",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Simple%201500%20Series%20Vol.%2071%20-%20The%20Ren%27ai%20Simulation%202%20-%20Fureai%20%28Japan%29.png",
-    "links": []
-  },
-  {
-    "id": "simple1500series-vol-72-the-beach-volleyball",
-    "title_ids": {
-      "ASIA": "NPHJ00201"
-    },
-    "name": "SIMPLE1500SERIES Vol.72 THE BEACH VOLLEYBALL",
-    "description": "ASIA",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Simple%201500%20Series%20Vol.%2072%20-%20The%20Beach%20Volley%20%28Japan%29.png",
-    "links": []
-  },
-  {
-    "id": "slam-dragon",
-    "title_ids": {
-      "ASIA": "NPHJ00304",
-      "JP": "NPJJ00740"
-    },
-    "name": "Slam Dragon",
-    "description": "ASIA · JP",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Slam%20Dragon%20%28Japan%29.png",
-    "links": []
-  },
-  {
     "id": "slap-happy-rhythm-busters",
     "title_ids": {
       "JP": "NPJJ00558"
@@ -24474,24 +20440,6 @@
         "content_id": "JP0017-NPJJ00558_00-0000000000000001"
       }
     ]
-  },
-  {
-    "id": "smash-court",
-    "title_ids": {
-      "ASIA": "NPHJ00323"
-    },
-    "name": "SMASH COURT",
-    "description": "ASIA",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Smash%20Court%20%28Japan%29.png",
-    "links": []
   },
   {
     "id": "sno-cross-championship-racing",
@@ -24619,60 +20567,6 @@
         "content_id": "JP0747-NPJJ00421_00-0000000000000001"
       }
     ]
-  },
-  {
-    "id": "soukaigi",
-    "title_ids": {
-      "JP": "NPJJ00189"
-    },
-    "name": "Soukaigi",
-    "description": "JP",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Soukaigi%20%28Japan%29.png",
-    "links": []
-  },
-  {
-    "id": "soukuu-no-tsubasa-gotha-world",
-    "title_ids": {
-      "JP": "NPJJ00679"
-    },
-    "name": "Soukuu no Tsubasa: Gotha World",
-    "description": "JP",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Soukuu%20no%20Tsubasa%20-%20Gotha%20World%20%28Japan%29%20%28Disc%201%29.png",
-    "links": []
-  },
-  {
-    "id": "soumatou",
-    "title_ids": {
-      "ASIA": "NPHJ00101"
-    },
-    "name": "SOUMATOU(DARK DELUSION)",
-    "description": "ASIA",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Soumatou%20%28Japan%29.png",
-    "links": []
   },
   {
     "id": "sound-novel-evolution-1-otogirisou-sosei-hen",
@@ -25003,24 +20897,6 @@
         "content_id": "JP0031-NPJJ00017_00-0000000000000001"
       }
     ]
-  },
-  {
-    "id": "spectral-force-2",
-    "title_ids": {
-      "ASIA": "NPHJ00022"
-    },
-    "name": "SPECTRAL FORCE 2",
-    "description": "ASIA",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Spectral%20Force%202%20%28Japan%29.png",
-    "links": []
   },
   {
     "id": "spectral-force-2-eien-naru-kiseki",
@@ -25534,24 +21410,6 @@
     ]
   },
   {
-    "id": "starblade",
-    "title_ids": {
-      "ASIA": "NPHJ00335"
-    },
-    "name": "Starblade α",
-    "description": "ASIA",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Starblade%20Alpha%20%28Europe%29.png",
-    "links": []
-  },
-  {
     "id": "starfighter-sanvein",
     "title_ids": {
       "US": "NPUJ01302"
@@ -26044,24 +21902,6 @@
     ]
   },
   {
-    "id": "strikers-1945-ii",
-    "title_ids": {
-      "JP": "NPJJ00589"
-    },
-    "name": "Strikers 1945 II",
-    "description": "JP",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Strikers%201945%20II%20%28Japan%29.png",
-    "links": []
-  },
-  {
     "id": "suikoden",
     "title_ids": {
       "US": "NPUJ00292",
@@ -26140,24 +21980,6 @@
         "content_id": "EP0101-NPEF00186_00-GSUIKODEN2000001"
       }
     ]
-  },
-  {
-    "id": "suizokukan-project-fish-hunter-e-no-michi",
-    "title_ids": {
-      "JP": "NPJJ00519"
-    },
-    "name": "Suizokukan Project: Fish Hunter e no Michi",
-    "description": "JP",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Suizokukan%20Project%20-%20Fish%20Hunter%20e%20no%20Michi%20%28Japan%29.png",
-    "links": []
   },
   {
     "id": "summon-night",
@@ -26479,369 +22301,6 @@
     ]
   },
   {
-    "id": "superlite-1500-series-chitty-chitty-chicken",
-    "title_ids": {
-      "ASIA": "NPHJ00044"
-    },
-    "name": "SuperLite 1500 Series CHITTY　CHITTY　CHICKEN",
-    "description": "ASIA",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/SuperLite%201500%20Series%20-%20Chitty%20Chitty%20Chicken%20%28Japan%29.png",
-    "links": []
-  },
-  {
-    "id": "superlite1500-series-angolmois99",
-    "title_ids": {
-      "ASIA": "NPHJ00251"
-    },
-    "name": "SuperLite1500 Series Angolmois99",
-    "description": "ASIA",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/SuperLite%201500%20Series%20-%20Angolmois%2099%20%28Japan%29.png",
-    "links": []
-  },
-  {
-    "id": "superlite1500-series-anokodokonoko-endless-season",
-    "title_ids": {
-      "ASIA": "NPHJ00252"
-    },
-    "name": "SuperLite1500 Series ANOKODOKONOKO ENDLESS SEASON",
-    "description": "ASIA",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/SuperLite%201500%20Series%20-%20Ano%20Ko%20Doko%20no%20Ko%20-%20Endless%20Season%20%28Japan%29.png",
-    "links": []
-  },
-  {
-    "id": "superlite1500-series-battle-sugoroku-the-hunter-a-r-0062",
-    "title_ids": {
-      "ASIA": "NPHJ00237"
-    },
-    "name": "SuperLite1500 Series Battle SUGOROKU THE HUNTER A.R.0062",
-    "description": "ASIA",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/SuperLite%201500%20Series%20-%20Battle%20Sugoroku%20the%20Hunter%20-%20A.R.0062%20%28Japan%29.png",
-    "links": []
-  },
-  {
-    "id": "superlite1500-series-bomb-boat",
-    "title_ids": {
-      "ASIA": "NPHJ00244",
-      "JP": "NPJJ00427"
-    },
-    "name": "SuperLite1500 Series BOMB BOAT",
-    "description": "ASIA · JP",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/SuperLite%201500%20Series%20-%20Bomboat%20%28Japan%29.png",
-    "links": []
-  },
-  {
-    "id": "superlite1500-series-cards",
-    "title_ids": {
-      "ASIA": "NPHJ00239"
-    },
-    "name": "SuperLite1500 Series CardsⅡ",
-    "description": "ASIA",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/SuperLite%201500%20Series%20-%20Card%20II%20%28Japan%29.png",
-    "links": []
-  },
-  {
-    "id": "superlite1500-series-cotton-100",
-    "title_ids": {
-      "ASIA": "NPHJ00261"
-    },
-    "name": "SuperLite1500 Series COTTON 100%",
-    "description": "ASIA",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/SuperLite%201500%20Series%20-%20Uno%20%28Japan%29.png",
-    "links": []
-  },
-  {
-    "id": "superlite1500-series-hanafuda",
-    "title_ids": {
-      "ASIA": "NPHJ00264"
-    },
-    "name": "SuperLite1500 Series HANAFUDAⅡ",
-    "description": "ASIA",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/SuperLite%201500%20Series%20-%20Hanafuda%20II%20%28Japan%29.png",
-    "links": []
-  },
-  {
-    "id": "superlite1500-series-hooockey",
-    "title_ids": {
-      "ASIA": "NPHJ00242",
-      "JP": "NPJJ00426"
-    },
-    "name": "SuperLite1500 Series Hooockey!!",
-    "description": "ASIA · JP",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/SuperLite%201500%20Series%20-%20Hooockey%21%21%20%28Japan%29.png",
-    "links": []
-  },
-  {
-    "id": "superlite1500-series-oekaki-puzzle",
-    "title_ids": {
-      "ASIA": "NPHJ00238"
-    },
-    "name": "SuperLite1500 Series Oekaki Puzzle",
-    "description": "ASIA",
-    "category_id": "games",
-    "subcategory_ids": [
-      "puzzle"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/SuperLite%201500%20Series%20-%20Oekaki%20Puzzle%20%28Japan%29.png",
-    "links": []
-  },
-  {
-    "id": "superlite1500-series-oekaki-puzzle-2",
-    "title_ids": {
-      "ASIA": "NPHJ00243",
-      "JP": "NPJJ00428"
-    },
-    "name": "SuperLite1500 Series Oekaki Puzzle 2",
-    "description": "ASIA · JP",
-    "category_id": "games",
-    "subcategory_ids": [
-      "puzzle"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/SuperLite%201500%20Series%20-%20Oekaki%20Puzzle%202%20%28Japan%29.png",
-    "links": []
-  },
-  {
-    "id": "superlite1500-series-oekaki-puzzle-3",
-    "title_ids": {
-      "ASIA": "NPHJ00253"
-    },
-    "name": "SuperLite1500 Series Oekaki Puzzle 3",
-    "description": "ASIA",
-    "category_id": "games",
-    "subcategory_ids": [
-      "puzzle"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/SuperLite%201500%20Series%20-%20Oekaki%20Puzzle%203%20%28Japan%29.png",
-    "links": []
-  },
-  {
-    "id": "superlite1500-series-oekaki-puzzle-4",
-    "title_ids": {
-      "ASIA": "NPHJ00258"
-    },
-    "name": "SuperLite1500 Series Oekaki Puzzle 4",
-    "description": "ASIA",
-    "category_id": "games",
-    "subcategory_ids": [
-      "puzzle"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/SuperLite%201500%20Series%20-%20Oekaki%20Puzzle%204%20%28Japan%29.png",
-    "links": []
-  },
-  {
-    "id": "superlite1500-series-oekaki-puzzle-5",
-    "title_ids": {
-      "ASIA": "NPHJ00260"
-    },
-    "name": "SuperLite1500 Series Oekaki Puzzle 5",
-    "description": "ASIA",
-    "category_id": "games",
-    "subcategory_ids": [
-      "puzzle"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/SuperLite%201500%20Series%20-%20Oekaki%20Puzzle%205%20%28Japan%29.png",
-    "links": []
-  },
-  {
-    "id": "superlite1500-series-pangaea",
-    "title_ids": {
-      "ASIA": "NPHJ00248"
-    },
-    "name": "SuperLite1500 Series PANGAEA",
-    "description": "ASIA",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/SuperLite%201500%20Series%20-%20Pangaea%20%28Japan%29.png",
-    "links": []
-  },
-  {
-    "id": "superlite1500-series-pinball-golden-logres",
-    "title_ids": {
-      "ASIA": "NPHJ00254"
-    },
-    "name": "SuperLite1500 Series Pinball Golden Logres",
-    "description": "ASIA",
-    "category_id": "games",
-    "subcategory_ids": [
-      "sports"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/SuperLite%201500%20Series%20-%20Pinball%20-%20Golden%20Logres%20%28Japan%29.png",
-    "links": []
-  },
-  {
-    "id": "superlite1500-series-quiz-master-blue",
-    "title_ids": {
-      "ASIA": "NPHJ00250"
-    },
-    "name": "SuperLite1500 Series QUIZ MASTER BLUE",
-    "description": "ASIA",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/SuperLite%201500%20Series%20-%20Quiz%20Master%20-%20Blue%20%28Japan%29.png",
-    "links": []
-  },
-  {
-    "id": "superlite1500-series-quiz-master-red",
-    "title_ids": {
-      "ASIA": "NPHJ00247"
-    },
-    "name": "SuperLite1500 Series QUIZ MASTER RED",
-    "description": "ASIA",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/SuperLite%201500%20Series%20-%20Quiz%20Master%20-%20Red%20%28Japan%29.png",
-    "links": []
-  },
-  {
-    "id": "superlite1500-series-quiz-master-yellow",
-    "title_ids": {
-      "ASIA": "NPHJ00255"
-    },
-    "name": "SuperLite1500 Series QUIZ MASTER YELLOW",
-    "description": "ASIA",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/SuperLite%201500%20Series%20-%20Quiz%20Master%20-%20Yellow%20%28Japan%29.png",
-    "links": []
-  },
-  {
-    "id": "superlite1500-series-the-curling",
-    "title_ids": {
-      "ASIA": "NPHJ00249"
-    },
-    "name": "SuperLite1500 Series THE CURLING",
-    "description": "ASIA",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/SuperLite%201500%20Series%20-%20The%20Curling%20%28Japan%29.png",
-    "links": []
-  },
-  {
     "id": "superstar-dance-club",
     "title_ids": {
       "EU": "NPEF00104"
@@ -26869,24 +22328,6 @@
         "content_id": "EP1025-NPEF00104_00-GSUPERSTAR000ENG"
       }
     ]
-  },
-  {
-    "id": "susume-kaizoku",
-    "title_ids": {
-      "JP": "NPJJ00713"
-    },
-    "name": "Susume! Kaizoku",
-    "description": "JP",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Susume%21%20Kaizoku%20-%20Be%20Pirates%21%20%28Japan%29.png",
-    "links": []
   },
   {
     "id": "syndicate-wars",
@@ -27096,60 +22537,6 @@
     ]
   },
   {
-    "id": "t-kara-hajimaru-monogatari",
-    "title_ids": {
-      "JP": "NPJJ00739"
-    },
-    "name": "T: Kara Hajimaru Monogatari",
-    "description": "JP",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/T%20kara%20Hajimaru%20Monogatari%20%28Japan%29.png",
-    "links": []
-  },
-  {
-    "id": "taikai-nobunaga-ten-ge-ten-ii",
-    "title_ids": {
-      "JP": "NPJJ00730"
-    },
-    "name": "Taikai Nobunaga Ten: Ge-Ten II",
-    "description": "JP",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Game%20Nihonshi%20-%20Kakumeiji%20Oda%20Nobunaga%20%28Japan%29.png",
-    "links": []
-  },
-  {
-    "id": "tail-of-the-sun-wild-pure-simple-life",
-    "title_ids": {
-      "ASIA": "NPHJ00006"
-    },
-    "name": "Tail of the Sun　WILD・PURE・SIMPLE LIFE",
-    "description": "ASIA",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Tail%20of%20the%20Sun%20%28USA%29.png",
-    "links": []
-  },
-  {
     "id": "taiyou-no-shippo-wild-pure-simple-life",
     "title_ids": {
       "JP": "NPJJ00014"
@@ -27177,25 +22564,6 @@
         "content_id": "JP0011-NPJJ00014_00-0000000000000001"
       }
     ]
-  },
-  {
-    "id": "tall-twins-tower",
-    "title_ids": {
-      "ASIA": "NPHJ00114",
-      "JP": "NPJJ00278"
-    },
-    "name": "TALL TWINS TOWER",
-    "description": "ASIA · JP",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Tall%20-%20Twins%20Tower%20%28Japan%29.png",
-    "links": []
   },
   {
     "id": "tall-unlimited",
@@ -27266,24 +22634,6 @@
         "content_id": "JP0128-NPJJ00161_00-0000000000000001"
       }
     ]
-  },
-  {
-    "id": "tecmo-stackers",
-    "title_ids": {
-      "JP": "NPJJ00276"
-    },
-    "name": "Tecmo Stackers",
-    "description": "JP",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Tecmo%20Stackers%20%28USA%29.png",
-    "links": []
   },
   {
     "id": "tecmo-s-deception-invitation-to-darkness",
@@ -27624,114 +22974,6 @@
     ]
   },
   {
-    "id": "the-adventures-of-robin-lloyd",
-    "title_ids": {
-      "ASIA": "NPHJ00075"
-    },
-    "name": "The adventures of Robin Lloyd",
-    "description": "ASIA",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Adventures%20of%20Lomax%2C%20The%20%28USA%29.png",
-    "links": []
-  },
-  {
-    "id": "the-aquanaut-s-holiday-2",
-    "title_ids": {
-      "ASIA": "NPHJ00094"
-    },
-    "name": "THE AQUANAUT'S HOLIDAY 2",
-    "description": "ASIA",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Aquanaut%27s%20Holiday%20%28Europe%29.png",
-    "links": []
-  },
-  {
-    "id": "the-aquanaut-s-holiday-memories-of-summer-1996",
-    "title_ids": {
-      "ASIA": "NPHJ00093"
-    },
-    "name": "THE AQUANAUT'S HOLIDAY: MEMORIES OF SUMMER 1996",
-    "description": "ASIA",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Aquanaut%27s%20Holiday%20%28Europe%29.png",
-    "links": []
-  },
-  {
-    "id": "the-bombing-islands",
-    "title_ids": {
-      "JP": "NPJJ00577"
-    },
-    "name": "The Bombing Islands",
-    "description": "JP",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Bombing%20Islands%2C%20The%20%28Europe%29.png",
-    "links": []
-  },
-  {
-    "id": "the-chronicles-of-berdeseruba",
-    "title_ids": {
-      "ASIA": "NPHI00032"
-    },
-    "name": "The Chronicles of Berdeseruba",
-    "description": "ASIA",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Chronicles%20of%20the%20Sword%20%28Europe%29%20%28Disc%201%29.png",
-    "links": []
-  },
-  {
-    "id": "the-conveni-2",
-    "title_ids": {
-      "ASIA": "NPHJ00059"
-    },
-    "name": "THE CONVENI 2",
-    "description": "ASIA",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Conveni%202%2C%20The%20-%20Zenkoku%20Chain%20Tenkai%20da%21%20%28Japan%29%20%28Major%20Wave%29.png",
-    "links": []
-  },
-  {
     "id": "the-conveni-2-zenkoku-chain-tenkai-da",
     "title_ids": {
       "JP": "NPJJ00082"
@@ -27759,78 +23001,6 @@
         "content_id": "JP0571-NPJJ00082_00-0000000000000001"
       }
     ]
-  },
-  {
-    "id": "the-conveni",
-    "title_ids": {
-      "ASIA": "NPHJ00009"
-    },
-    "name": "THE CONVENI!",
-    "description": "ASIA",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Conveni%2C%20The%20-%20Ano%20Machi%20o%20Dokusen%20seyo%20%28Japan%29%20%28Major%20Wave%29.png",
-    "links": []
-  },
-  {
-    "id": "the-conveni-ano-machi-wo-dokusen-seyo",
-    "title_ids": {
-      "JP": "NPJJ00010"
-    },
-    "name": "The Conveni: Ano Machi wo Dokusen Seyo",
-    "description": "JP",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Conveni%2C%20The%20-%20Ano%20Machi%20o%20Dokusen%20seyo%20%28Japan%29%20%28Major%20Wave%29.png",
-    "links": []
-  },
-  {
-    "id": "the-curling",
-    "title_ids": {
-      "JP": "NPJJ00440"
-    },
-    "name": "The Curling (SuperLite 1500 Series)",
-    "description": "JP",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/SuperLite%201500%20Series%20-%20The%20Curling%20%28Japan%29.png",
-    "links": []
-  },
-  {
-    "id": "the-drug-store",
-    "title_ids": {
-      "JP": "NPJJ00020"
-    },
-    "name": "THE DRUG STORE",
-    "description": "JP",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Drug%20Store%2C%20The%20%28Japan%29.png",
-    "links": []
   },
   {
     "id": "the-emperor-s-new-groove",
@@ -27889,24 +23059,6 @@
         "content_id": "JP0571-NPJJ00046_00-0000000000000001"
       }
     ]
-  },
-  {
-    "id": "the-firemen-2",
-    "title_ids": {
-      "ASIA": "NPHJ00230"
-    },
-    "name": "THE FIREMEN 2",
-    "description": "ASIA",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Firemen%202%2C%20The%20-%20Pete%20_%20Danny%20%28Japan%29.png",
-    "links": []
   },
   {
     "id": "the-firemen-2-pete-danny",
@@ -28237,24 +23389,6 @@
     ]
   },
   {
-    "id": "the-match-golf",
-    "title_ids": {
-      "JP": "NPJJ00670"
-    },
-    "name": "The Match Golf",
-    "description": "JP",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Match%20Golf%2C%20The%20%28Japan%29.png",
-    "links": []
-  },
-  {
     "id": "the-misadventures-of-tron-bonne",
     "title_ids": {
       "US": "NPUJ00896"
@@ -28284,24 +23418,6 @@
     ]
   },
   {
-    "id": "the-oni-taiji-mezase-nidaime-momotarou",
-    "title_ids": {
-      "JP": "NPJJ00582"
-    },
-    "name": "The Oni Taiji: Mezase! Nidaime Momotarou",
-    "description": "JP",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Oni%20Taiji%21%21%2C%20The%20-%20Mezase%21%20Nidaime%20Momotarou%20%28Japan%29%20%28Major%20Wave%29.png",
-    "links": []
-  },
-  {
     "id": "the-pro-mahjong-menkyo-minnaten",
     "title_ids": {
       "JP": "NPJJ00331"
@@ -28329,24 +23445,6 @@
         "content_id": "JP0394-NPJJ00331_00-0000000000000001"
       }
     ]
-  },
-  {
-    "id": "the-rapid-angel",
-    "title_ids": {
-      "ASIA": "NPHJ00117"
-    },
-    "name": "THE RAPID ANGEL",
-    "description": "ASIA",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Kaisoku%20Tenshi%20-%20The%20Rapid%20Angel%20%28Japan%29.png",
-    "links": []
   },
   {
     "id": "the-shanghai",
@@ -29132,24 +24230,6 @@
     ]
   },
   {
-    "id": "tomarunner",
-    "title_ids": {
-      "ASIA": "NPHI00004"
-    },
-    "name": "TOMARUNNER!",
-    "description": "ASIA",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Gekisou%20Tomarunner%20%28Japan%29.png",
-    "links": []
-  },
-  {
     "id": "tomb-raider-2",
     "title_ids": {
       "US": "NPUJ00437",
@@ -29572,24 +24652,6 @@
     ]
   },
   {
-    "id": "touki-denshou-angel-eyes",
-    "title_ids": {
-      "JP": "NPJJ00217"
-    },
-    "name": "Touki Denshou: Angel Eyes",
-    "description": "JP",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Touki%20Denshou%20-%20Angel%20Eyes%20%28Japan%29.png",
-    "links": []
-  },
-  {
     "id": "toy-dream",
     "title_ids": {
       "JP": "NPJJ00575"
@@ -29717,24 +24779,6 @@
         "content_id": "EP1006-NPEF00094_00-GTOYSTORYR000ENG"
       }
     ]
-  },
-  {
-    "id": "toy-story-racer-toy-story-2",
-    "title_ids": {
-      "EU": "NPEF00156"
-    },
-    "name": "Toy Story Racer & Toy Story 2",
-    "description": "EU",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Disney-Pixar%20Toy%20Story%20Racer%20%28Europe%29%20%28Es%2CIt%2CNl%29.png",
-    "links": []
   },
   {
     "id": "tron-ni-kobun",
@@ -30000,24 +25044,6 @@
     ]
   },
   {
-    "id": "u-sa",
-    "title_ids": {
-      "ASIA": "NPHJ00007"
-    },
-    "name": "U-SA",
-    "description": "ASIA",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/U-SA%20%28Japan%29.png",
-    "links": []
-  },
-  {
     "id": "u-p-p",
     "title_ids": {
       "JP": "NPJJ00534"
@@ -30045,78 +25071,6 @@
         "content_id": "JP0505-NPJJ00534_00-0000000000000001"
       }
     ]
-  },
-  {
-    "id": "uchuu-goushouden-bakuretsu-akindo",
-    "title_ids": {
-      "JP": "NPJJ00343"
-    },
-    "name": "Uchuu Goushouden: Bakuretsu Akindo",
-    "description": "JP",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Uchuu%20Goushouden%20-%20Bakuretsu%20Akindo%20%28Japan%29.png",
-    "links": []
-  },
-  {
-    "id": "uki-uki-tsuri-tengoku-kawa-monogatari",
-    "title_ids": {
-      "JP": "NPJJ00525"
-    },
-    "name": "Uki Uki Tsuri Tengoku: Kawa Monogatari",
-    "description": "JP",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Uki%20Uki%20Tsuri%20Tengoku%20-%20Kawa%20Monogatari%20%28Japan%29.png",
-    "links": []
-  },
-  {
-    "id": "uki-uki-tsuri-tengoku-ningyo-densetsu-no-nazo",
-    "title_ids": {
-      "JP": "NPJJ00515"
-    },
-    "name": "Uki Uki Tsuri Tengoku: Ningyo Densetsu no Nazo",
-    "description": "JP",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Uki%20Uki%20Tsuri%20Tengoku%20-%20Ningyo%20Densetsu%20no%20Nazo%20%28Japan%29%20%28Dual%20Shock%20Edition%29.png",
-    "links": []
-  },
-  {
-    "id": "uki-uki-tsuri-tengoku-uokami-densetsu-o-oe",
-    "title_ids": {
-      "JP": "NPJJ00531"
-    },
-    "name": "Uki Uki Tsuri Tengoku: Uokami Densetsu o Oe",
-    "description": "JP",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Uki%20Uki%20Tsuri%20Tengoku%20-%20Gyoshin%20Densetsu%20o%20Oe%20%28Japan%29.png",
-    "links": []
   },
   {
     "id": "um-jammer-lammy",
@@ -30741,60 +25695,6 @@
     ]
   },
   {
-    "id": "voltage-fighter-gowcaizwer",
-    "title_ids": {
-      "ASIA": "NPHJ00313"
-    },
-    "name": "Voltage Fighter GOWCAIZWER",
-    "description": "ASIA",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Choujin%20Gakuen%20-%20Gowcaizer%20%28Japan%29.png",
-    "links": []
-  },
-  {
-    "id": "wai-wai-3-nin-uchi-mahjong",
-    "title_ids": {
-      "JP": "NPJJ00578"
-    },
-    "name": "Wai Wai 3-nin Uchi Mahjong",
-    "description": "JP",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Wai%20Wai%203-nin%20Uchi%20Mahjong%20%28Japan%29.png",
-    "links": []
-  },
-  {
-    "id": "wai-wai-trump-taisen",
-    "title_ids": {
-      "JP": "NPJJ00581"
-    },
-    "name": "Wai Wai Trump Taisen",
-    "description": "JP",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Wai%20Wai%20Trump%20Taisen%20%28Japan%29.png",
-    "links": []
-  },
-  {
     "id": "waiwai-kart",
     "title_ids": {
       "ASIA": "NPHJ00069"
@@ -30822,60 +25722,6 @@
         "content_id": "HP0571-NPHJ00069_00-0000000000000001"
       }
     ]
-  },
-  {
-    "id": "waiwai-kusayakyu",
-    "title_ids": {
-      "ASIA": "NPHJ00071"
-    },
-    "name": "WAIWAI KUSAYAKYU",
-    "description": "ASIA",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Wai%20Wai%20Kusa%20Yakyuu%20%28Japan%29.png",
-    "links": []
-  },
-  {
-    "id": "waiwai-sannin-uchi-mahjong",
-    "title_ids": {
-      "ASIA": "NPHJ00309"
-    },
-    "name": "Waiwai Sannin Uchi Mahjong",
-    "description": "ASIA",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Wai%20Wai%203-nin%20Uchi%20Mahjong%20%28Japan%29.png",
-    "links": []
-  },
-  {
-    "id": "waiwai-trump-taisen",
-    "title_ids": {
-      "ASIA": "NPHJ00310"
-    },
-    "name": "Waiwai Trump Taisen",
-    "description": "ASIA",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Wai%20Wai%20Trump%20Taisen%20%28Japan%29.png",
-    "links": []
   },
   {
     "id": "waku-waku-derby",
@@ -31076,42 +25922,6 @@
     ]
   },
   {
-    "id": "warriors-of-fate-tenchi-wo-kurau-ii",
-    "title_ids": {
-      "ASIA": "NPHJ00319"
-    },
-    "name": "Warriors of Fate: Tenchi Wo Kurau II",
-    "description": "ASIA",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Warriors%20of%20Might%20and%20Magic%20%28Europe%29%20%28En%2CEs%2CIt%29.png",
-    "links": []
-  },
-  {
-    "id": "weltorv-estleia",
-    "title_ids": {
-      "JP": "NPJJ00201"
-    },
-    "name": "Weltorv Estleia",
-    "description": "JP",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Weltorv%20Estleia%20%28Japan%29.png",
-    "links": []
-  },
-  {
     "id": "wild-arms",
     "title_ids": {
       "EU": "NPEE00056",
@@ -31287,25 +26097,6 @@
         "content_id": "UP9000-NPUJ00270_00-0000000000000001"
       }
     ]
-  },
-  {
-    "id": "winning-lure",
-    "title_ids": {
-      "ASIA": "NPHJ00312",
-      "JP": "NPJJ00587"
-    },
-    "name": "WINNING LURE",
-    "description": "ASIA · JP",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Winning%20Lure%20%28Japan%29.png",
-    "links": []
   },
   {
     "id": "wipeout",
@@ -31960,132 +26751,6 @@
     ]
   },
   {
-    "id": "yamasa-digi",
-    "title_ids": {
-      "JP": "NPJJ00208"
-    },
-    "name": "Yamasa Digi",
-    "description": "JP",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Yamasa%20Digi%20Guide%20-%20Faust%20%28Japan%29.png",
-    "links": []
-  },
-  {
-    "id": "yamasa-digi-guide-hyper-rush",
-    "title_ids": {
-      "JP": "NPJJ00163"
-    },
-    "name": "Yamasa Digi Guide: Hyper Rush",
-    "description": "JP",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Yamasa%20Digi%20Guide%20-%20Hyper%20Rush%20%28Japan%29.png",
-    "links": []
-  },
-  {
-    "id": "yamasa-digi-guide-m-771",
-    "title_ids": {
-      "JP": "NPJJ00164"
-    },
-    "name": "Yamasa Digi Guide: M-771",
-    "description": "JP",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Yamasa%20Digi%20Guide%20-%20Faust%20%28Japan%29.png",
-    "links": []
-  },
-  {
-    "id": "yamasa-digi-guide-new-pulsar-r",
-    "title_ids": {
-      "JP": "NPJJ00162"
-    },
-    "name": "Yamasa Digi Guide: New Pulsar R",
-    "description": "JP",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Yamasa%20Digi%20Guide%20-%20New%20Pulsar%20R%20%28Japan%29.png",
-    "links": []
-  },
-  {
-    "id": "yamasa-digi-guide-umekagetsu-r",
-    "title_ids": {
-      "JP": "NPJJ00254"
-    },
-    "name": "Yamasa Digi Guide: Umekagetsu R",
-    "description": "JP",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Yamasa%20Digi%20Guide%20-%20Umekagetsu%20R%20%28Japan%29.png",
-    "links": []
-  },
-  {
-    "id": "yamasa-digi-selection",
-    "title_ids": {
-      "JP": "NPJJ00175"
-    },
-    "name": "Yamasa Digi Selection",
-    "description": "JP",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Yamasa%20Digi%20Selection%20%28Japan%29.png",
-    "links": []
-  },
-  {
-    "id": "yamasa-digi-selection-2",
-    "title_ids": {
-      "JP": "NPJJ00176"
-    },
-    "name": "Yamasa Digi Selection 2",
-    "description": "JP",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Yamasa%20Digi%20Selection%202%20%28Japan%29.png",
-    "links": []
-  },
-  {
     "id": "yamasa-digi-world-tetra-master",
     "title_ids": {
       "JP": "NPJJ00500"
@@ -32406,60 +27071,6 @@
     ]
   },
   {
-    "id": "zipangu-jima-unmei-wa-saikoro-ga-kimeru",
-    "title_ids": {
-      "JP": "NPJJ00063"
-    },
-    "name": "Zipangu Jima: Unmei wa Saikoro ga Kimeru!?",
-    "description": "JP",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Zipangu-jima%20-%20Unmei%20wa%20Saikoro%20ga%20Kimeru%21%20%28Japan%29.png",
-    "links": []
-  },
-  {
-    "id": "zipangujima-unmei-wa-saikoro-ga-kimeru",
-    "title_ids": {
-      "ASIA": "NPHJ00037"
-    },
-    "name": "ZIPANGUJIMA～Unmei wa Saikoro ga Kimeru!?～",
-    "description": "ASIA",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Zipangu-jima%20-%20Unmei%20wa%20Saikoro%20ga%20Kimeru%21%20%28Japan%29.png",
-    "links": []
-  },
-  {
-    "id": "zoku-gussun-oyoyo",
-    "title_ids": {
-      "JP": "NPJJ00565"
-    },
-    "name": "Zoku Gussun Oyoyo",
-    "description": "JP",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Zoku%20Gussun%20Oyoyo%20%28Japan%29.png",
-    "links": []
-  },
-  {
     "id": "zoku-mikagura-shoujo-tanteidan-kanketsuhen",
     "title_ids": {
       "JP": "NPJJ00304"
@@ -32487,24 +27098,6 @@
         "content_id": "JP0571-NPJJ00304_00-0000000000000001"
       }
     ]
-  },
-  {
-    "id": "zoku-mikagura-shoujo-tanteidan-kanketsu-hen",
-    "title_ids": {
-      "ASIA": "NPHJ00143"
-    },
-    "name": "Zoku Mikagura Shoujo Tanteidan ～Kanketsu Hen～",
-    "description": "ASIA",
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "",
-    "version_date": "",
-    "requirements": "PS Vita/PSTV with Adrenaline (or PSP CFW/POPS) for PS1 classics.",
-    "size": 0,
-    "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Zoku%20Mikagura%20Shoujo%20Tanteidan%20-%20Kanketsu-hen%20%28Japan%29%20%28Disc%201%29.png",
-    "links": []
   },
   {
     "id": "zutto-issho",
