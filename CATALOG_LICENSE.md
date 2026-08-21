@@ -2,7 +2,7 @@
 
 The **homebrew catalog data** published by this project is available for public use
 under the terms below. This is separate from the MIT license that covers the
-software source code in this repository (see root `LICENSE`).
+software source code in this repository (see root `LICENSE` — source available, no copy).
 
 ## Covered data
 
@@ -16,7 +16,7 @@ Includes, without limitation:
 
 - Third-party homebrew binaries, icons, screenshots, or trademarks (rights remain with their authors)
 - Commercial / NPS-oriented catalogs (`catalog_psvita_games.json`, `catalog_psp_games.json`, `catalog_ps1_games.json`) and the zRIF index, which aggregate third-party store metadata and license strings
-- The PS Vita / web **client source code** (see root `LICENSE` — MIT)
+- The PS Vita / web **client source code** and tooling (see root `LICENSE` — not MIT; no copy of source)
 
 ## License
 
