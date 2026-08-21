@@ -61,6 +61,24 @@ recognizes that work and helps users find the canonical project.
 - Prefer the canonical JSON contracts rather than undocumented scrapes of the website alone
 - Report corrections upstream so everyone benefits
 
+
+## Upstream databases
+
+Much of the homebrew metadata ecosystem builds on work by other projects and authors.
+PS Vita Alive Store’s pipeline **imports, merges, cleans and curates** that data; it does
+not replace credit to the originals.
+
+When documenting *your* use of our catalog, credit **PS Vita Alive Store** as required
+above. When documenting *lineage* of specific entries, also acknowledge upstream
+databases where relevant, for example:
+
+- [VitaDB](https://www.rinnegatamante.eu/vitadb/) (Rinnegatamante & contributors)
+- [VitaHomebrewDB / VitaDBtoo](https://github.com/DrDecki/VitaDBtoo-db) and community mirrors
+- The original homebrew authors linked from each entry
+
+See the root `README.md` section **Data sources & credits** for the project’s own
+acknowledgments.
+
 ## Disclaimer
 
 The catalog is provided as-is. Entries describe third-party homebrew; this project
