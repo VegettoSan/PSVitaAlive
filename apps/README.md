@@ -66,3 +66,10 @@ Use individual IDs:
 ## Media
 
 Use absolute HTTP(S) URLs for external icons/screenshots. Relative paths only if the file is published inside this repository’s public tree.
+
+## License / attribution
+
+Homebrew entry data in this tree is part of the **PS Vita Alive Store** catalog and is
+offered under **CC BY 4.0**. Reuse is welcome if you **credit the project**.
+
+See [`../CATALOG_LICENSE.md`](../CATALOG_LICENSE.md).
