@@ -124,4 +124,15 @@ See `Client PSVitaAlive/README.md` for build, self-update handoff and runtime de
 
 ## License
 
-See `LICENSE` in the repository root.
+| Part | Terms |
+|------|--------|
+| **Software** (clients, scripts, tooling, docs as code) | MIT — see root [`LICENSE`](LICENSE) |
+| **Homebrew catalog data** (`catalog.json`, `authors.json`, `categories.json`, `apps/`, …) | **CC BY 4.0** — use allowed **with attribution** to **PS Vita Alive Store** / this repository. Details: [`CATALOG_LICENSE.md`](CATALOG_LICENSE.md) |
+
+### Using the homebrew catalog in your own project
+
+You may consume or mirror the public homebrew catalog JSON. Please credit the project, for example:
+
+> Homebrew catalog data from **PS Vita Alive Store** — https://github.com/VegettoSan/PSVitaAlive (CC BY 4.0)
+
+Commercial game catalogs and zRIF data are third-party aggregations; treat them separately and respect applicable rights.
