@@ -58,7 +58,8 @@ public:
         const std::string& zipDestination = std::string(),
         const std::string& zrif = std::string(),
         const std::string& linkType = std::string(),
-        const std::string& contentId = std::string()
+        const std::string& contentId = std::string(),
+        const std::string& displayTitle = std::string()
     );
     void cancel();
     /** User dismissed the success/error result panel (or UI timeout). */
