@@ -94,6 +94,8 @@ target_link_libraries(${PROJECT_NAME}
   SceNet_stub
   SceNetCtl_stub
   ScePromoterUtil_stub
+  SceShellSvc_stub
+  SceVshBridge_stub
   taihen_stub
   SceGxm_stub
   ScePgf_stub
