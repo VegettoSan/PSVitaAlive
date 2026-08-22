@@ -1,5 +1,51 @@
 [
   {
+    "id": "destinia-vita-destinia1",
+    "title_id": "DESTINIA1",
+    "name": "DESTINIA Vita",
+    "description": "Port of Destinia for PSVita.",
+    "long_description": "DESTINIA is an acclaimed 2D action-RPG originally released by Gamevil and Morisoft for mobile devices. This port runs the compiled C shared library (libdestinia_jni.so) from the Android version natively on the PlayStation Vita's ARM Cortex-A9 processor using a dynamic loader (soloader) and Android environment emulation (FalsoJNI).",
+    "author_ids": [
+      "metalsyntax"
+    ],
+    "category_id": "ports",
+    "subcategory_ids": [
+      "other"
+    ],
+    "version": "v.1.0",
+    "version_date": "2026-08-21",
+    "requirements": "- libshacccg.suprx\n- kubridge.skprx\n- Game Data Files: Android",
+    "size": 1206375,
+    "status": "Legacy",
+    "icon": "https://www.rinnegatamante.eu/vitadb/icons/94b26caaf8991a4c4efe74af98a7303312d7f8bb6574645274c0792baf9ab046.png",
+    "screenshots": [
+      "https://www.rinnegatamante.eu/vitadb/icons/94b26caaf8991a4c4efe74af98a7303312d7f8bb6574645274c0792baf9ab046.png"
+    ],
+    "links": [
+      {
+        "type": "Download",
+        "name": "VitaDB VPK",
+        "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1477",
+        "recommended": true
+      },
+      {
+        "type": "Official Website",
+        "name": "VitaDB Release Page",
+        "url": "https://github.com/MetalSyntax/Destinia-vita/releases"
+      },
+      {
+        "type": "Repository",
+        "name": "Repositorio",
+        "url": "https://github.com/MetalSyntax/Destinia-vita"
+      }
+    ],
+    "source_name": "VitaDB",
+    "source_id": "1477",
+    "source_url": "https://github.com/MetalSyntax/Destinia-vita",
+    "release_page": "https://github.com/MetalSyntax/Destinia-vita/releases",
+    "updated_at": "2026-08-21T23:38:25.795507+00:00"
+  },
+  {
     "id": "daedalus-x64",
     "title_id": "DEDALOX64",
     "name": "Daedalus X64",
