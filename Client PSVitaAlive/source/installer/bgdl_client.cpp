@@ -177,8 +177,19 @@ bool BgdlClient::init() {
     if (initAttempted_) return ready_;
     initAttempted_ = true;
 
-    // Load ShellSvc if present (may already be resident).
-    sceKernelLoadStartModule("vs0:sys/external/libshellsvc.suprx", 0, nullptr, 0, nullptr, nullptr);
+    // PKGj path: load libshellsvc then resolve SceShellSvc IPMI exports via taiHEN.
+    // Requires eboot built with UNSAFE (see CMakeLists) — same as PKGj.
+    static const char* kShellPaths[] = {
+        "vs0:sys/external/libshellsvc.suprx",
+        "vs0:/sys/external/libshellsvc.suprx",
+    };
+    SceUID loadUid = -1;
+    for (const char* path : kShellPaths) {
+        loadUid = sceKernelLoadStartModule(path, 0, nullptr, 0, nullptr, nullptr);
+        diagnostics::log(std::string("[BGDL] LoadStartModule ") + path + " -> " + std::to_string(loadUid));
+        if (loadUid >= 0) break;
+        // Already loaded often returns an error code; continue to export resolve anyway.
+    }
 
     int r1 = taiGetModuleExportFunc(
         "SceShellSvc", 0xF4E34EDB, 0x4E255C31, reinterpret_cast<uintptr_t*>(&SceIpmi_4E255C31));
@@ -186,8 +197,12 @@ bool BgdlClient::init() {
         "SceShellSvc", 0xF4E34EDB, 0xB282B430, reinterpret_cast<uintptr_t*>(&SceIpmi_B282B430));
 
     if (r1 < 0 || r2 < 0 || !SceIpmi_4E255C31 || !SceIpmi_B282B430) {
-        diagnostics::log(std::string("[BGDL] ShellSvc exports unavailable r1=") + std::to_string(r1) +
-                         " r2=" + std::to_string(r2));
+        char hex1[16], hex2[16];
+        sceClibSnprintf(hex1, sizeof(hex1), "0x%08X", static_cast<unsigned>(r1));
+        sceClibSnprintf(hex2, sizeof(hex2), "0x%08X", static_cast<unsigned>(r2));
+        diagnostics::log(std::string("[BGDL] ShellSvc exports unavailable r1=") + hex1 +
+                         " r2=" + hex2 + " loadUid=" + std::to_string(loadUid) +
+                         " (need UNSAFE eboot + taiHEN; same NIDs as PKGj)");
         ready_ = false;
         return false;
     }
