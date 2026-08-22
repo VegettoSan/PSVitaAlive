@@ -47,6 +47,8 @@ public:
     /** Load one zRIF from catalog sidecar indexes (not held in RAM with catalog items). */
     /** Lookup zRIF by Content ID (primary key in catalog_psvita_games.zrifidx). */
     static bool lookupZrifForContentId(const std::string& contentId, std::string& outZrif);
+    /** Fallback: first zRIF whose key contains -TITLEID_ (when content_id missing on link). */
+    static bool lookupZrifForTitleId(const std::string& titleId, std::string& outZrif);
     /** Legacy: also tries Content ID if the string looks like one; URL keys are no longer in the index. */
     static bool lookupZrifForUrl(const std::string& url, std::string& outZrif);
 
