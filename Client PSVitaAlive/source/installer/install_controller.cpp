@@ -5,6 +5,8 @@
 #include "installer/refresh_manager.hpp"
 #include "installer/bgdl_client.hpp"
 #include "installer/pkg_bgdl_installer.hpp"
+#include "installer/license_helper.hpp"
+#include "archive/format_detector.hpp"
 
 #include <psp2/kernel/clib.h>
 #include <psp2/kernel/processmgr.h>
@@ -147,6 +149,10 @@ bool InstallController::requestInstall(
 ) {
     if (url.empty() || fileName.empty() || busy()) return false;
 
+    // Carry license metadata for Direct PKG install (ignored by VPK/ZIP paths).
+    activeZrif_ = zrif;
+    activeContentId_ = contentId;
+
     // Licensed Vita PKG path (NoPayStation): system BGDL + RIF.
     // Completely separate from HomebrewInstaller VPK promote.
     const bool pkgInstall = BgdlClient::looksLikePkgUrl(url, fileName);
@@ -173,7 +179,7 @@ bool InstallController::requestInstall(
                 resultShownAtMs_.store(sceKernelGetSystemTimeWide() / 1000ULL);
                 return false;
             }
-            // Auto falls through to direct (no license promote for full PKG).
+            // Auto falls through to direct download; workerMain will attach RIF from zRIF if available.
         } else {
             PkgBgdlRequest preq;
             preq.title = fileName;
@@ -370,6 +376,8 @@ int InstallController::workerMain() {
         diagnostics::log(std::string("[Installer] ") + (cancelled ? "download cancelled" : "download failed") + ": " + error);
         if (!activeJobId_.empty()) downloads_.cleanupCompletedJob(activeJobId_);
         activeJobId_.clear();
+        activeZrif_.clear();
+        activeContentId_.clear();
         resultShownAtMs_.store(sceKernelGetSystemTimeWide() / 1000ULL);
         workerDone_.store(true);
         return 0;
@@ -382,6 +390,38 @@ int InstallController::workerMain() {
     setState(InstallStatus::State::Installing, "Preparing installation...");
     diagnostics::log(std::string("[Installer] installing job=") + activeJobId_ + " file=" + job->finalPath);
 
+    // --- Direct PKG + zRIF (separate from VPK HomebrewInstaller path) ---
+    // If the downloaded file is a PKG, decode license and pass RIF into InstallDispatcher.
+    // VPK/ZIP/ISO keep rifPath empty so their existing paths are unchanged.
+    std::string directRifPath;
+    {
+        FormatDetector det;
+        const DetectResult dr = det.detectFile(job->finalPath);
+        const std::string ext = FormatDetector::extensionOf(job->finalPath);
+        const bool isPkg = (dr.format == FileFormat::Pkg) || (ext == "pkg");
+        if (isPkg) {
+            std::string zrif = activeZrif_;
+            if (zrif.empty() && !activeContentId_.empty()) {
+                std::string looked;
+                if (LicenseHelper::lookupZrifForContentId(activeContentId_, looked)) {
+                    zrif = looked;
+                    diagnostics::log("[Installer] Direct PKG: zRIF from content_id index");
+                }
+            }
+            if (!zrif.empty()) {
+                std::string err;
+                if (LicenseHelper::prepareBgdlLicense(zrif, std::string(), directRifPath, err)) {
+                    diagnostics::log(std::string("[Installer] Direct PKG: RIF ready at ") + directRifPath);
+                } else {
+                    diagnostics::log(std::string("[Installer] Direct PKG: license prepare failed: ") + err);
+                    directRifPath.clear();
+                }
+            } else {
+                diagnostics::log("[Installer] Direct PKG: no zRIF/content_id — promote without RIF (may fail)");
+            }
+        }
+    }
+
     const InstallDispatchResult result = dispatcher_.installFile(
         job->finalPath,
         [&](const InstallDispatchProgress& progress) {
@@ -391,7 +431,8 @@ int InstallController::workerMain() {
             if (!progress.message.empty()) setMessage(progress.message.c_str());
         },
         nullptr,
-        activeZipDestination_
+        activeZipDestination_,
+        directRifPath
     );
 
     if (result != InstallDispatchResult::Ok) {
