@@ -156,20 +156,26 @@ bool InstallController::requestInstall(
     // Licensed Vita PKG path (NoPayStation): system BGDL + RIF.
     // Completely separate from HomebrewInstaller VPK promote.
     const bool pkgInstall = BgdlClient::looksLikePkgUrl(url, fileName);
+    // PKG installs: prefer system BGDL (PKGj path). Always (re)try init with full logs.
     if (pkgInstall &&
         (settings_.installMethod == InstallMethod::Auto ||
-         settings_.installMethod == InstallMethod::Bgdl) &&
-        !BgdlClient::instance().available()) {
+         settings_.installMethod == InstallMethod::Bgdl ||
+         settings_.installMethod == InstallMethod::Direct)) {
+        diagnostics::log(std::string("[Installer] PKG install method=") +
+                         AppSettings::toString(settings_.installMethod) +
+                         " — probing BGDL");
         const bool bgdlReady = BgdlClient::instance().init();
-        diagnostics::log(std::string("[Installer] BGDL lazy init result=") +
+        diagnostics::log(std::string("[Installer] BGDL probe result=") +
             (bgdlReady ? "available" : "unavailable"));
     }
 
+    // Prefer BGDL for PKG whenever it is available (even if user selected Direct),
+    // because retail PKG cannot be promoted as a raw file.
     const bool wantBgdl =
-        settings_.installMethod == InstallMethod::Bgdl ||
-        (settings_.installMethod == InstallMethod::Auto &&
-         pkgInstall &&
-         BgdlClient::instance().available());
+        pkgInstall && BgdlClient::instance().available() &&
+        (settings_.installMethod == InstallMethod::Bgdl ||
+         settings_.installMethod == InstallMethod::Auto ||
+         settings_.installMethod == InstallMethod::Direct);
 
     if (wantBgdl && pkgInstall) {
         if (!BgdlClient::instance().available() && !BgdlClient::instance().init()) {
