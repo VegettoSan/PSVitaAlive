@@ -29,67 +29,106 @@ std::string installStatusText(const psvitaalive::InstallStatus&s){using S=psvita
 bool asciiToWide(const std::string&text,SceWChar16*out,size_t cap){if(!out||!cap)return false;size_t i=0;for(;i+1<cap&&i<text.size();++i){unsigned char c=(unsigned char)text[i];out[i]=(SceWChar16)(c<128?c:'?');}out[i]=0;return true;}
 std::string wideToAscii(const SceWChar16*t){if(!t)return{};std::string r;for(size_t i=0;t[i]&&i<2048;++i)r.push_back(t[i]<=0x7F?(char)t[i]:'?');return r;}
 bool promptText(const std::string& initial, const std::string& title, std::string& out) {
-    // Real hardware requires:
-    //   1) sceAppUtilInit + sceCommonDialogSetConfigParam (done at startup)
-    //   2) sceImeDialogParamInit (not manual magic)
-    //   3) a render loop with vita2d_common_dialog_update() + swap
-    // Vita3K tolerates a delay-only wait; the console does not (keyboard never appears).
+    // Vita-safe IME (aligned with VitaSDK sample + VitaShell):
+    //   - sceAppUtilInit + sceCommonDialogSetConfigParam at startup
+    //   - separate UTF-16 buffers for initialText vs inputTextBuffer (same buffer crashes)
+    //   - no re-entry; term leftover dialogs before init
+    //   - render loop with vita2d_common_dialog_update()
     static bool imeModuleLoaded = false;
+    static bool imeBusy = false;
+    if (imeBusy) {
+        sceClibPrintf("[UI] IME re-entry blocked\n");
+        return false;
+    }
+
     if (!imeModuleLoaded) {
         const int r = sceSysmoduleLoadModule(SCE_SYSMODULE_IME);
-        if (r < 0) {
-            sceClibPrintf("[UI] SCE_SYSMODULE_IME load failed: 0x%08X\n", r);
-            return false;
+        if (r < 0 && r != static_cast<int>(0x8002D013) /* already loaded variants vary */) {
+            // Some firmwares return success or "already loaded"; only hard-fail on real errors
+            // if status stays unusable after init.
+            sceClibPrintf("[UI] SCE_SYSMODULE_IME load: 0x%08X (continuing)\n", r);
         }
         imeModuleLoaded = true;
     }
 
-    SceWChar16 input[SCE_IME_DIALOG_MAX_TEXT_LENGTH + 1];
-    SceWChar16 wtitle[SCE_IME_DIALOG_MAX_TITLE_LENGTH + 1];
-    sceClibMemset(input, 0, sizeof(input));
-    sceClibMemset(wtitle, 0, sizeof(wtitle));
-    asciiToWide(initial, input, SCE_IME_DIALOG_MAX_TEXT_LENGTH + 1);
-    asciiToWide(title, wtitle, SCE_IME_DIALOG_MAX_TITLE_LENGTH + 1);
+    // If a previous dialog was aborted mid-way, clean it up (prevents ALREADY_OPENED crashes).
+    {
+        const SceCommonDialogStatus st = sceImeDialogGetStatus();
+        if (st != SCE_COMMON_DIALOG_STATUS_NONE) {
+            sceClibPrintf("[UI] IME leftover status=%d — terminating\n", (int)st);
+            sceImeDialogTerm();
+        }
+    }
+
+    // IMPORTANT: initialText and inputTextBuffer MUST be distinct (VitaShell / SDK sample).
+    constexpr SceUInt32 kMaxLen = 128; // enough for search; avoids huge stack + dialog stress
+    SceWChar16 inputBuf[kMaxLen + 1];
+    SceWChar16 initialBuf[kMaxLen + 1];
+    SceWChar16 titleBuf[SCE_IME_DIALOG_MAX_TITLE_LENGTH + 1];
+    sceClibMemset(inputBuf, 0, sizeof(inputBuf));
+    sceClibMemset(initialBuf, 0, sizeof(initialBuf));
+    sceClibMemset(titleBuf, 0, sizeof(titleBuf));
+
+    asciiToWide(initial, initialBuf, kMaxLen + 1);
+    asciiToWide(initial, inputBuf, kMaxLen + 1);
+    asciiToWide(title.empty() ? "Search" : title, titleBuf, SCE_IME_DIALOG_MAX_TITLE_LENGTH + 1);
 
     SceImeDialogParam param;
     sceImeDialogParamInit(&param);
-    param.supportedLanguages = SCE_IME_LANGUAGE_ENGLISH | SCE_IME_LANGUAGE_SPANISH;
+    // Broad language mask like VitaShell; still forced so dialog opens consistently.
+    param.supportedLanguages = 0x0001FFFF;
     param.languagesForced = SCE_TRUE;
     param.type = SCE_IME_TYPE_BASIC_LATIN;
     param.option = SCE_IME_OPTION_NO_AUTO_CAPITALIZATION;
     param.dialogMode = SCE_IME_DIALOG_DIALOG_MODE_WITH_CANCEL;
     param.textBoxMode = SCE_IME_DIALOG_TEXTBOX_MODE_WITH_CLEAR;
-    param.title = wtitle;
-    param.maxTextLength = SCE_IME_DIALOG_MAX_TEXT_LENGTH;
-    param.initialText = input;
-    param.inputTextBuffer = input;
+    param.title = titleBuf;
+    param.maxTextLength = kMaxLen;
+    param.initialText = initialBuf;
+    param.inputTextBuffer = inputBuf;
     param.enterLabel = SCE_IME_ENTER_LABEL_SEARCH;
 
+    imeBusy = true;
     const int initRes = sceImeDialogInit(&param);
     if (initRes < 0) {
         sceClibPrintf("[UI] sceImeDialogInit failed: 0x%08X\n", initRes);
+        // Best-effort cleanup if half-open
+        if (sceImeDialogGetStatus() != SCE_COMMON_DIALOG_STATUS_NONE) {
+            sceImeDialogTerm();
+        }
+        imeBusy = false;
         return false;
     }
 
+    // Cap wait so a stuck dialog cannot hang the process forever.
+    int spin = 0;
     while (sceImeDialogGetStatus() != SCE_COMMON_DIALOG_STATUS_FINISHED) {
         vita2d_start_drawing();
         vita2d_clear_screen();
-        // Dim backdrop so the OS keyboard has contrast; common dialog draws on top.
         vita2d_draw_rectangle(0, 0, 960, 544, RGBA8(0, 0, 0, 180));
         vita2d_end_drawing();
         vita2d_common_dialog_update();
         vita2d_swap_buffers();
-        sceKernelDelayThread(1000); // ~1ms, keep responsive
+        sceKernelDelayThread(16 * 1000); // ~60 FPS pacing (more stable than 1ms busy loop)
+        if (++spin > 60 * 120) { // ~2 minutes safety
+            sceClibPrintf("[UI] IME wait timeout — aborting dialog\n");
+            sceImeDialogAbort();
+            break;
+        }
     }
 
     SceImeDialogResult result;
     sceClibMemset(&result, 0, sizeof(result));
-    sceImeDialogGetResult(&result);
+    const int gr = sceImeDialogGetResult(&result);
+    if (gr < 0) {
+        sceClibPrintf("[UI] sceImeDialogGetResult failed: 0x%08X\n", gr);
+    }
     const bool ok = (result.button == SCE_IME_DIALOG_BUTTON_ENTER);
     if (ok) {
-        out = wideToAscii(input);
+        out = wideToAscii(inputBuf);
     }
     sceImeDialogTerm();
+    imeBusy = false;
     return ok;
 }
 
