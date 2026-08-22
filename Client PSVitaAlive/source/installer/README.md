@@ -67,3 +67,14 @@ Licensed Vita/PSP PKG installs use **ShellSvc IPMI** the same way as **PKGj**:
 4. Write a real **RIF** under `ux0:bgdl/` (from zRIF or synthetic PSP RIF), then enqueue URL + type (`0x16` game, `0x17` DLC, `0x00` PSP).
 
 If logs show `ShellSvc exports unavailable` (`0x90010002`), the build is almost always missing **UNSAFE** or taiHEN is inactive. Vita3K does not implement this path.
+
+## Direct PKG install (with zRIF)
+
+Separate from **VPK / HomebrewInstaller** and from **BGDL**:
+
+1. Download `.pkg` with the normal HTTP downloader.
+2. Resolve zRIF (`requestInstall` arg or `catalog_psvita_games.zrifidx` by `content_id`).
+3. Decode to RIF via `LicenseHelper` → `ux0:bgdl/temp.dat`.
+4. `InstallDispatcher` → `VitaInstaller::installPkgWithRif` → `scePromoterUtilityPromotePkgWithRif`.
+
+VPK installs never receive a `rifPath`. Requires **NoNpDrm** on device.
