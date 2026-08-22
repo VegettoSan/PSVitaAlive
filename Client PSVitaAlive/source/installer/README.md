@@ -56,3 +56,14 @@ Must not:
 - Bypass DRM beyond supplying NPS-style license data the pipeline already expects
 - Extract ZIP entries with path traversal (`..`, absolute paths)
 - Load entire huge packages into RAM when streaming is possible
+
+## BGDL (system download manager)
+
+Licensed Vita/PSP PKG installs use **ShellSvc IPMI** the same way as **PKGj**:
+
+1. Eboot must be built with **`vita_create_self(... UNSAFE)`** (required to reach `SceShellSvc` exports).
+2. Link **`SceShellSvc_stub`**, **`SceVshBridge_stub`**, **`taihen_stub`**.
+3. Load `vs0:sys/external/libshellsvc.suprx`, resolve NIDs `0x4E255C31` / `0xB282B430` under library `0xF4E34EDB`.
+4. Write a real **RIF** under `ux0:bgdl/` (from zRIF or synthetic PSP RIF), then enqueue URL + type (`0x16` game, `0x17` DLC, `0x00` PSP).
+
+If logs show `ShellSvc exports unavailable` (`0x90010002`), the build is almost always missing **UNSAFE** or taiHEN is inactive. Vita3K does not implement this path.
