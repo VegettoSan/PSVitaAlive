@@ -86,6 +86,20 @@ std::string ux0FreeSpaceLabel() {
 }
 
 
+/** Best human-readable size for a catalog card (item.size or first download link size). */
+std::string itemDisplaySize(const CatalogItem& it) {
+    if (!it.size.empty()) return it.size;
+    for (const auto& link : it.linkDetails) {
+        if (link.recommended && !link.size.empty()) return link.size;
+    }
+    for (const auto& link : it.linkDetails) {
+        if (!link.size.empty()) return link.size;
+    }
+    return std::string();
+}
+
+
+
 // LiveArea brand palette (PSVitaAlive Store): neon lime on near-black honeycomb look
 constexpr unsigned BG=RGBA8(0x0A,0x0A,0x0A,255);
 constexpr unsigned SURFACE=RGBA8(0x1A,0x1A,0x1A,255);
@@ -1916,9 +1930,23 @@ void FullCatalogScreen::drawCatalogCard(const CatalogItem&it,int idx,int x,int y
     vita2d_pgf_draw_text(font_, tx, y + 25 + oy, WHITE, focus ? 0.80f : 0.76f, ellipsize(it.name, h >= 100 ? 24 : 22).c_str());
     vita2d_pgf_draw_text(font_, tx, y + 45 + oy, TEXT, 0.64f, ellipsize(it.author.empty() ? "Unknown author" : it.author, 20).c_str());
     vita2d_pgf_draw_text(font_, tx, y + 64 + oy, colorForStatus(it.status), 0.62f, ellipsize(it.status, 16).c_str());
+    // Version / date bottom-left; size always bottom-right when known (all catalogs).
     std::string meta = (it.version.empty() ? "" : "v" + it.version) + (it.versionDate.empty() ? "" : "  " + it.versionDate);
-    if (meta.empty()) meta = it.size;
-    if (!meta.empty()) vita2d_pgf_draw_text(font_, x + 10 + ox, y + h - 10 + oy, DIM, 0.58f, ellipsize(meta, 30).c_str());
+    if (!meta.empty())
+        vita2d_pgf_draw_text(font_, x + 10 + ox, y + h - 10 + oy, DIM, 0.56f, ellipsize(meta, 22).c_str());
+    {
+        const std::string sz = itemDisplaySize(it);
+        if (!sz.empty()) {
+            const float sc = 0.54f;
+            const std::string label = ellipsize(sz, 14);
+            const int tw = vita2d_pgf_text_width(font_, sc, label.c_str());
+            const int sx = x + ox + ww - tw - 8;
+            const int sy = y + h - 10 + oy;
+            // Soft chip so size stays readable on busy cards
+            vita2d_draw_rectangle(sx - 4, sy - 12, tw + 8, 16, SURFACE2);
+            vita2d_pgf_draw_text(font_, sx, sy, TEXT, sc, label.c_str());
+        }
+    }
 
     // Installed / update badge: bottom-left on icon + top-right of card
     {
@@ -2272,25 +2300,26 @@ void drawFooterBar(vita2d_pgf* font, const char* leftHints) {
     if (!font) return;
 
     const Ux0SpaceInfo sp = queryUx0Space();
-    const int panelW = 172;
+    // Wider panel + larger type for readability on real Vita screens.
+    const int panelW = 220;
     const int panelH = FOOTER_H - 6;
     const int panelX = SCREEN_W - panelW - 6;
     const int panelY = SCREEN_H - FOOTER_H + 3;
     vita2d_draw_rectangle(panelX, panelY, panelW, panelH, SURFACE);
-    vita2d_draw_rectangle(panelX, panelY, 2, panelH, ACCENT);
+    vita2d_draw_rectangle(panelX, panelY, 3, panelH, ACCENT);
 
     if (!sp.ok) {
-        vita2d_pgf_draw_text(font, panelX + 10, panelY + 18, DIM, 0.50f, "ux0 n/d");
+        vita2d_pgf_draw_text(font, panelX + 12, panelY + 20, DIM, 0.58f, "ux0 n/a");
         return;
     }
-    vita2d_pgf_draw_text(font, panelX + 8, panelY + 13, ACCENT, 0.46f, "UX0");
+    vita2d_pgf_draw_text(font, panelX + 10, panelY + 15, ACCENT, 0.56f, "UX0");
     char line[48];
     sceClibSnprintf(line, sizeof(line), "%s free", formatBytesShort(sp.freeBytes).c_str());
-    vita2d_pgf_draw_text(font, panelX + 34, panelY + 13, WHITE, 0.48f, line);
+    vita2d_pgf_draw_text(font, panelX + 48, panelY + 15, WHITE, 0.56f, line);
     sceClibSnprintf(line, sizeof(line), "of %s total", formatBytesShort(sp.totalBytes).c_str());
-    vita2d_pgf_draw_text(font, panelX + 8, panelY + 26, TEXT, 0.44f, line);
+    vita2d_pgf_draw_text(font, panelX + 10, panelY + 30, TEXT, 0.52f, line);
 
-    const int barX = panelX + 8, barY = panelY + panelH - 7, barW = panelW - 16, barH = 4;
+    const int barX = panelX + 10, barY = panelY + panelH - 8, barW = panelW - 20, barH = 5;
     vita2d_draw_rectangle(barX, barY, barW, barH, BORDER);
     float used = 0.f;
     if (sp.totalBytes > 0)
