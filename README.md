@@ -20,7 +20,7 @@ PS Vita Alive Store helps users discover, download and install content on PlaySt
 | `scripts/`, `.github/workflows/` | Import, normalize, validate, generate catalogs |
 | `catalog.json`, `authors.json`, `categories.json` | Generated **homebrew** public contract |
 | `catalog_psvita_games.json` | Commercial **PS Vita** games (PKG / DLC / Updates / Mods) — **no** embedded zRIF |
-| `catalog_psvita_games.zrifidx` | Separate **zRIF** index for Vita PKG licenses (url → zRIF) |
+| `catalog_psvita_games.zrifidx` | Separate **zRIF** index for Vita PKG licenses (`content_id` → zRIF) |
 | `catalog_psp_games.json` | **PSP** commercial catalog |
 | `catalog_ps1_games.json` | **PS1** commercial catalog |
 | `web/` | Static website (GitHub Pages) |
@@ -67,7 +67,17 @@ https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/catalog_ps1_games.
 https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/catalog_psvita_games.zrifidx
 ```
 
-The **zRIF index** (`catalog_psvita_games.zrifidx`) is a separate license sidecar for commercial Vita PKGs (NoPayStation). Format: one line per entry, `content_id<TAB>zrif`. It is **not** embedded in the main Vita catalog JSON so the client can keep four catalogs in RAM without saturating memory. The client downloads this file on demand when loading Vita Games and looks up licenses only at PKG install time.
+The **zRIF index** (`catalog_psvita_games.zrifidx`) is a separate license sidecar for commercial Vita PKGs (NoPayStation-style). Format: one line per entry, `content_id<TAB>zrif`. It is **not** embedded in the main Vita catalog JSON so the client can keep four catalogs in RAM without saturating memory. The client downloads this file on demand when loading Vita Games and looks up licenses only at PKG install time (`content_id` first, Title ID fallback if the link omits `content_id`).
+
+### Native client — commercial PKG install (verified)
+
+The **PS Vita client** installs commercial packages from **Vita Games**, **PSP**, and **PS1** catalogs through the console’s system download manager (**BGDL**), not by promoting a raw `.pkg` file:
+
+1. Resolve zRIF / RIF for the **selected link** (per-region / per-DLC `content_id`)
+2. Enqueue URL + license with the system UI (notification title = **game name**)
+3. User monitors LiveArea notifications until install completes
+
+Requires a real device with taiHEN, **NoNpDrm** (and related plugins as needed), and a client build with **UNSAFE** privileges for ShellSvc access. See [`Client PSVitaAlive/source/installer/README.md`](Client%20PSVitaAlive/source/installer/README.md).
 
 
 Any HTTP client can consume these JSON files without using this store’s UI.
@@ -106,7 +116,7 @@ Native client (Title ID **PSVAS1178**) with:
 - Install paths for VPK / ZIP / PKG-related flows
 - Self-update via **GitHub Releases** using a helper bubble **PSVAUPDT1** (client cannot safely promote itself while running)
 - Plugin detection (AutoPlugin2-style `tai/config.txt` parse; prefer `ur0`)
-- Licensed Vita PKG installs via system **BGDL** when zRIF is available
+- Licensed **Vita / PSP / PS1 PKG** installs via system **BGDL** (verified on real hardware) when license data resolves
 - Session logs under `ux0:data/psvitaalive/logs/` (including `updater.log`)
 
 See `Client PSVitaAlive/README.md` for build, self-update handoff and runtime details.
