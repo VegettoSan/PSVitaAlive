@@ -261,14 +261,15 @@ bool InstallController::requestInstall(
                                  " title=" + niceTitle);
                 return true;
             }
-            if (settings_.installMethod == InstallMethod::Bgdl || !zrif.empty()) {
-                // With a license we refuse silent direct fallback (direct cannot apply NPS RIF).
-                setState(InstallStatus::State::Failed,
-                         bg.message.empty() ? "PKG BGDL enqueue failed" : bg.message.c_str());
-                resultShownAtMs_.store(sceKernelGetSystemTimeWide() / 1000ULL);
-                return false;
-            }
-            diagnostics::log("[Installer] PKG BGDL failed without zrif - falling back to direct download");
+            // Never promote a raw retail .pkg without RIF (fails with 0x80010014).
+            // Prefer a clear error over a long useless direct download.
+            const char* failMsg = bg.message.empty()
+                ? "PKG license (zRIF) missing or BGDL queue failed"
+                : bg.message.c_str();
+            setState(InstallStatus::State::Failed, failMsg);
+            resultShownAtMs_.store(sceKernelGetSystemTimeWide() / 1000ULL);
+            diagnostics::log(std::string("[Installer] PKG BGDL failed — no direct fallback: ") + failMsg);
+            return false;
         }
     } else if (settings_.installMethod == InstallMethod::Bgdl) {
         diagnostics::log("[Installer] BGDL selected but file is not PKG - using direct path");
