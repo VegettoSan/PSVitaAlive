@@ -308,41 +308,41 @@ bool LicenseHelper::lookupZrifForContentId(const std::string& contentId, std::st
         "ux0:data/psvitaalive/cache/catalog/catalog_psvita_games.json.zrifidx",
     };
 
+    // Buffered scan — byte-at-a-time sceIoRead is extremely slow on real hardware (~minutes for 1.6MB).
+    char buf[64 * 1024];
     for (const char* indexPath : kIndexes) {
         const SceUID fd = sceIoOpen(indexPath, SCE_O_RDONLY, 0);
         if (fd < 0) continue;
 
         std::string line;
-        line.reserve(256);
-        char ch = 0;
+        line.reserve(512);
         bool found = false;
-        while (sceIoRead(fd, &ch, 1) == 1) {
-            if (ch == '\n' || ch == '\r') {
-                if (!line.empty()) {
-                    const size_t tab = line.find('\t');
-                    if (tab != std::string::npos) {
-                        const std::string key = line.substr(0, tab);
-                        if (key == contentId) {
+        while (!found) {
+            const int n = sceIoRead(fd, buf, sizeof(buf));
+            if (n <= 0) break;
+            for (int i = 0; i < n; ++i) {
+                const char ch = buf[i];
+                if (ch == '\n' || ch == '\r') {
+                    if (!line.empty()) {
+                        const size_t tab = line.find('\t');
+                        if (tab != std::string::npos && line.compare(0, tab, contentId) == 0) {
                             outZrif = line.substr(tab + 1);
                             found = !outZrif.empty();
                         }
+                        line.clear();
+                        if (found) break;
                     }
-                    line.clear();
-                    if (found) break;
+                } else {
+                    line.push_back(ch);
+                    if (line.size() > 8192) line.clear();
                 }
-            } else {
-                line.push_back(ch);
-                if (line.size() > 8192) line.clear();
             }
         }
         if (!found && !line.empty()) {
             const size_t tab = line.find('\t');
-            if (tab != std::string::npos) {
-                const std::string key = line.substr(0, tab);
-                if (key == contentId) {
-                    outZrif = line.substr(tab + 1);
-                    found = !outZrif.empty();
-                }
+            if (tab != std::string::npos && line.compare(0, tab, contentId) == 0) {
+                outZrif = line.substr(tab + 1);
+                found = !outZrif.empty();
             }
         }
         sceIoClose(fd);
