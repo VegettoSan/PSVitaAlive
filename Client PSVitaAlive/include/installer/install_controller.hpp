@@ -85,6 +85,9 @@ private:
     std::string activeJobId_;
     std::string activeZipDestination_;
     std::string activeFileName_;
+    /** Direct PKG path only: zRIF / content_id carried from requestInstall (VPK ignores these). */
+    std::string activeZrif_;
+    std::string activeContentId_;
 
     std::atomic<int> state_{static_cast<int>(InstallStatus::State::Idle)};
     std::atomic<uint64_t> current_{0};
