@@ -355,6 +355,78 @@ bool LicenseHelper::lookupZrifForContentId(const std::string& contentId, std::st
     return false;
 }
 
+bool LicenseHelper::lookupZrifForTitleId(const std::string& titleId, std::string& outZrif) {
+    outZrif.clear();
+    if (titleId.size() < 9) return false;
+
+    // Index keys look like JA0003-PCSC80020_00-TSUTAYA000000000 — match -TITLEID_
+    const std::string needle = std::string("-") + titleId + "_";
+
+    static const char* kIndexes[] = {
+        "ux0:data/psvitaalive/cache/catalog/catalog_psvita_games.zrifidx",
+        "ux0:data/psvitaalive/cache/catalog/catalog_psvita_games.json.zrifidx",
+    };
+
+    char buf[64 * 1024];
+    std::string firstHit;
+    int hits = 0;
+
+    for (const char* indexPath : kIndexes) {
+        const SceUID fd = sceIoOpen(indexPath, SCE_O_RDONLY, 0);
+        if (fd < 0) continue;
+
+        std::string line;
+        line.reserve(512);
+        while (true) {
+            const int n = sceIoRead(fd, buf, sizeof(buf));
+            if (n <= 0) break;
+            for (int i = 0; i < n; ++i) {
+                const char ch = buf[i];
+                if (ch == '\n' || ch == '\r') {
+                    if (!line.empty()) {
+                        const size_t tab = line.find('\t');
+                        if (tab != std::string::npos) {
+                            const std::string key = line.substr(0, tab);
+                            if (key.find(needle) != std::string::npos) {
+                                const std::string z = line.substr(tab + 1);
+                                if (!z.empty()) {
+                                    if (hits == 0) firstHit = z;
+                                    ++hits;
+                                }
+                            }
+                        }
+                        line.clear();
+                    }
+                } else {
+                    line.push_back(ch);
+                    if (line.size() > 8192) line.clear();
+                }
+            }
+        }
+        if (!line.empty()) {
+            const size_t tab = line.find('\t');
+            if (tab != std::string::npos) {
+                const std::string key = line.substr(0, tab);
+                if (key.find(needle) != std::string::npos) {
+                    const std::string z = line.substr(tab + 1);
+                    if (!z.empty()) {
+                        if (hits == 0) firstHit = z;
+                        ++hits;
+                    }
+                }
+            }
+        }
+        sceIoClose(fd);
+        if (hits > 0) break;
+    }
+
+    if (hits == 0) return false;
+    outZrif = firstHit;
+    diagnostics::log(std::string("[LicenseHelper] zRIF by title_id=") + titleId +
+                     " hits=" + std::to_string(hits) + " (using first)");
+    return true;
+}
+
 bool LicenseHelper::lookupZrifForUrl(const std::string& url, std::string& outZrif) {
     // Index is keyed by Content ID now. Keep this entry point for callers that
     // only pass a URL: it cannot resolve zRIF without a content_id.
