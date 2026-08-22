@@ -183659,7 +183659,8 @@
         "title_id": "PCSC80020",
         "url": "http://zeus.dl.playstation.net/cdn/JA0003/PCSC80020_00/XxSkcESfbaJyNzueJuXlkIGzCpjAWgvBmrmlNOeiTJRPhQZvCWhbYsFllnpNHlQTRsOBeIoqprDbPajPXsCRowKTqbfJcWMsEWSRp.pkg",
         "size": 20705968,
-        "recommended": true
+        "recommended": true,
+        "content_id": "JA0003-PCSC80020_00-TSUTAYA000000000"
       },
       {
         "type": "Download",
