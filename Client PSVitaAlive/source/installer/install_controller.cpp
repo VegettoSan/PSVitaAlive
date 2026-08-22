@@ -145,9 +145,32 @@ bool InstallController::requestInstall(
     const std::string& zipDestination,
     const std::string& zrif,
     const std::string& linkType,
-    const std::string& contentId
+    const std::string& contentId,
+    const std::string& displayTitle
 ) {
     if (url.empty() || fileName.empty() || busy()) return false;
+
+    // Human-readable name for UI + system BGDL notification (not the CDN hash filename).
+    std::string niceTitle = displayTitle;
+    if (niceTitle.empty()) niceTitle = fileName;
+    // Strip control chars / collapse whitespace; cap length for Shell notification.
+    {
+        std::string cleaned;
+        cleaned.reserve(niceTitle.size());
+        bool space = false;
+        for (unsigned char c : niceTitle) {
+            if (c < 32) continue;
+            if (c == ' ' || c == '\t') {
+                if (!cleaned.empty() && !space) { cleaned.push_back(' '); space = true; }
+            } else {
+                cleaned.push_back(static_cast<char>(c));
+                space = false;
+            }
+        }
+        while (!cleaned.empty() && cleaned.back() == ' ') cleaned.pop_back();
+        if (cleaned.size() > 80) cleaned.resize(80);
+        if (!cleaned.empty()) niceTitle = cleaned;
+    }
 
     // Carry license metadata for Direct PKG install (ignored by VPK/ZIP paths).
     activeZrif_ = zrif;
@@ -178,6 +201,11 @@ bool InstallController::requestInstall(
          settings_.installMethod == InstallMethod::Direct);
 
     if (wantBgdl && pkgInstall) {
+        // Immediate UI feedback (zRIF lookup + ShellSvc can take a moment).
+        setFileName(niceTitle.c_str());
+        setStage("BGDL");
+        setState(InstallStatus::State::Downloading,
+                 "Preparing license and system download...");
         if (!BgdlClient::instance().available() && !BgdlClient::instance().init()) {
             if (settings_.installMethod == InstallMethod::Bgdl) {
                 setState(InstallStatus::State::Failed,
@@ -188,7 +216,7 @@ bool InstallController::requestInstall(
             // Auto falls through to direct download; workerMain will attach RIF from zRIF if available.
         } else {
             PkgBgdlRequest preq;
-            preq.title = fileName;
+            preq.title = niceTitle;
             preq.url = url;
             preq.zrif = zrif;
             preq.contentId = contentId;
@@ -214,19 +242,23 @@ bool InstallController::requestInstall(
                              std::to_string(static_cast<int>(preq.type)) +
                              " zrif=" + (zrif.empty() ? "no" : "yes"));
 
+            setMessage("Queuing system download...");
             const PkgBgdlResult bg = PkgBgdlInstaller::enqueue(preq);
             if (bg.ok) {
-                setFileName(fileName.c_str());
+                setFileName(niceTitle.c_str());
                 setStage("BGDL");
                 setInstallPath("");
                 setTitleId("");
                 liveAreaOk_.store(false);
-                setState(InstallStatus::State::Completed,
-                         bg.message.empty()
-                             ? "Queued in system download manager. Check LiveArea notifications."
-                             : bg.message.c_str());
+                // Success = queued, not installed. Be explicit so the user checks LiveArea.
+                char msg[384];
+                sceClibSnprintf(msg, sizeof(msg),
+                    "Queued: %s — open LiveArea notifications to watch download/install.",
+                    niceTitle.c_str());
+                setState(InstallStatus::State::Completed, msg);
                 resultShownAtMs_.store(sceKernelGetSystemTimeWide() / 1000ULL);
-                diagnostics::log(std::string("[Installer] PKG BGDL queued id=") + std::to_string(bg.bgdlId));
+                diagnostics::log(std::string("[Installer] PKG BGDL queued id=") + std::to_string(bg.bgdlId) +
+                                 " title=" + niceTitle);
                 return true;
             }
             if (settings_.installMethod == InstallMethod::Bgdl || !zrif.empty()) {
