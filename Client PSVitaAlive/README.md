@@ -17,10 +17,30 @@ Native catalog client for PlayStation Vita / PSTV (and Vita3K for testing).
 - Search, settings, touch + buttons
 - Image cache with on-demand loading
 - Downloads via libcurl (MediaFire resolution supported where implemented)
-- Install pipeline: VPK promote, ZIP extract, licensed PKG via **BGDL**
+- Install pipeline: VPK promote, ZIP extract, licensed commercial **PKG via system BGDL** (verified on real Vita)
 - Self-update against **GitHub Releases** via helper **PSVAUPDT1**
 - Plugin detection (AutoPlugin2-style parser; prefer **ur0:tai** over ux0)
 - Logs: `session.log`, `install.log`, `updater.log`
+
+## Install paths
+
+| Content | Path | Notes |
+|---------|------|--------|
+| Homebrew **VPK** | Extract + `scePromoterUtility` | Shallow dir `ux0:data/psva_vpk` |
+| Data **ZIP** | ZipExtractor | User picks folder (quick paths for data/app/repatch/PSP) |
+| **Vita / PSP / PS1 PKG** | **BGDL** (system queue) | Needs zRIF or synthetic RIF; progress in **LiveArea notifications** |
+
+### Commercial PKG (verified)
+
+On a real PS Vita with CFW + **NoNpDrm** (and **NoPspEmuDrm** when needed):
+
+1. User selects a Download / DLC / Update link that points to a `.pkg`
+2. Client resolves license from `catalog_psvita_games.zrifidx` using link **`content_id`** (preferred) or Title ID fallback
+3. Client enqueues the job in the system download manager (PKGj-style ShellSvc / BGDL)
+4. UI shows **Queued: &lt;game name&gt;**; the user watches progress under LiveArea notifications
+5. Install completes in the background; the title appears when the system finishes
+
+Build the client eboot with the **UNSAFE** flag (required for ShellSvc exports, same class of requirement as PKGj). Full detail: [`source/installer/README.md`](source/installer/README.md).
 
 ## Self-update architecture
 
