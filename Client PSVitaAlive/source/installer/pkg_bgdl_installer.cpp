@@ -62,6 +62,35 @@ PkgBgdlResult PkgBgdlInstaller::enqueue(const PkgBgdlRequest& req) {
             zrif = looked;
             diagnostics::log("[PkgBgdl] zRIF resolved from content_id index");
         }
+        // Link often lacks content_id (only title_id / path PCSC#####_00). Fall back by title id.
+        if (zrif.empty()) {
+            std::string tid = req.contentId; // may already be empty
+            // Prefer explicit title from content id: JA0003-PCSC80020_00-XXX -> PCSC80020
+            auto extractTid = [](const std::string& s) -> std::string {
+                // Match PCS[ABCEGH]##### or PSS##### style title ids
+                for (size_t i = 0; i + 9 <= s.size(); ++i) {
+                    if (s[i] == 'P' && s[i+1] == 'C' && (s[i+2] == 'S' || s[i+2] == 'C') &&
+                        (s[i+3] >= 'A' && s[i+3] <= 'Z')) {
+                        bool ok = true;
+                        for (int k = 4; k < 9; ++k) {
+                            if (s[i+k] < '0' || s[i+k] > '9') { ok = false; break; }
+                        }
+                        if (ok) return s.substr(i, 9);
+                    }
+                }
+                return {};
+            };
+            if (tid.empty()) tid = extractTid(req.url);
+            if (tid.empty()) tid = extractTid(req.title);
+            if (tid.size() >= 9) {
+                // Normalize to 9-char TITLEID if longer path fragment
+                if (tid.size() > 9) tid = tid.substr(0, 9);
+                if (LicenseHelper::lookupZrifForTitleId(tid, looked)) {
+                    zrif = looked;
+                    diagnostics::log(std::string("[PkgBgdl] zRIF resolved from title_id=") + tid);
+                }
+            }
+        }
     }
     if (!zrif.empty() || !req.rifPath.empty()) {
         haveLicense = LicenseHelper::prepareBgdlLicense(zrif, req.rifPath, rifPath, err);
