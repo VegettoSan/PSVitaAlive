@@ -4457,6 +4457,21 @@
     "icon": "https://github.com/NathanKewley.png"
   },
   {
+    "id": "ndrw",
+    "name": "NDRW",
+    "avatar": "https://github.com/ndrwhun.png",
+    "bio": "",
+    "links": [
+      {
+        "type": "GitHub",
+        "name": "GitHub",
+        "url": "https://github.com/ndrwhun",
+        "recommended": true
+      }
+    ],
+    "icon": "https://github.com/ndrwhun.png"
+  },
+  {
     "id": "nedmapagmahal",
     "name": "nedmapagmahal",
     "avatar": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png",

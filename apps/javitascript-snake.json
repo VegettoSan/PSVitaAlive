@@ -41,6 +41,12 @@
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/largepelotas/JaVitaScript-Snake"
+    },
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1479",
+      "recommended": false
     }
   ],
   "source_name": "VitaDBtoo",
