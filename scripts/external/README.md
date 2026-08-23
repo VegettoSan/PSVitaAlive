@@ -24,3 +24,7 @@ Imports homebrew metadata from configured upstream catalogs and merges it with l
 ## Output
 
 Merged application list + authors + categories (+ optional conflict report under `reports/` when generated).
+
+## VitaDB `data` field
+
+Companion archives from VitaDB/VitaDBtoo `data` URLs are emitted as link type **`Data Files`** (not `Download`). The VPK stays `Download`.
