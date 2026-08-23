@@ -31,9 +31,14 @@
             <h1>Application JSON Generator</h1>
             <p>Create a PS Vita Alive Store <code>apps/*.json</code> file using a guided form. The generator validates the current catalog rules, loads official categories/authors, checks duplicate Title IDs, and never edits the catalog directly.</p>
             <div class="tool-actions">
-                <label class="button secondary-button file-button">Import existing JSON<input id="import-json" type="file" accept=".json,application/json"></label>
+                <div class="mode-switch" role="group" aria-label="Generator mode">
+                    <button type="button" id="mode-create" class="active">Create new</button>
+                    <button type="button" id="mode-edit">Edit existing</button>
+                </div>
+                <label class="button secondary-button file-button">Import JSON<input id="import-json" type="file" accept=".json,application/json"></label>
                 <button id="reset-form" type="button" class="button secondary-button">Reset</button>
             </div>
+            <div id="mode-hint" class="notice info">Create mode: the app ID and Title ID must be new in the catalog.</div>
             <div id="load-status" class="notice" role="status">Loading PS Vita Alive Store categories, authors and catalog...</div>
         </div>
 
@@ -84,7 +89,7 @@
                 </section>
 
                 <section class="form-card">
-                    <div class="card-heading"><h2>5. Links</h2><p>Add all useful sources. At most one link can be recommended.</p></div>
+                    <div class="card-heading"><h2>5. Links</h2><p>Add all useful sources. Drag the ⋮⋮ handle to reorder. At most one link can be recommended. extract_path defaults to ux0:data/.</p></div>
                     <div id="links-list" class="repeat-list"></div>
                     <button id="add-link" type="button" class="small-button">+ Add link</button>
                 </section>
