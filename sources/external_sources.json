@@ -14,13 +14,13 @@
     },
     {
       "id": "vitadbtoo",
-      "name": "VitaDBtoo",
+      "name": "VitaHomebrewDB",
       "enabled": true,
       "kind": "github_json",
       "url": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/apps.json",
       "priority": 90,
       "platform": "vita",
-      "notes": "Community rescue dump. Used as the secondary external source to fill gaps and cross-check VitaDB data."
+      "notes": "VitaHomebrewDB community-preserved catalog. Used as the secondary external source to fill gaps and cross-check VitaDB data. The repository URL is retained for compatibility with the current hosted source path."
     }
   ]
 }
