@@ -74,7 +74,8 @@ public:
                             int outcome = 0,
                             bool liveAreaOk = false,
                             const std::string& installPath = std::string(),
-                            const std::string& titleId = std::string());
+                            const std::string& titleId = std::string(),
+                            uint64_t resultAutoCloseRemainingMs = 0);
 
 private:
     UiState state_;
@@ -120,7 +121,8 @@ private:
     std::string installProgressStage_;
     std::string installProgressFile_;
     std::string installProgressMessage_;
-    int installOutcome_ = 0; // 0 progress, 1 success, 2 error
+    int installOutcome_ = 0;
+    uint64_t installResultAutoCloseMs_ = 0; // 0 progress, 1 success, 2 error
     bool installLiveAreaOk_ = false;
     std::string installResultPath_;
     std::string installResultTitleId_;
