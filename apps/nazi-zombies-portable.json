@@ -13,9 +13,9 @@
     "other"
   ],
   "version": "Nightly",
-  "version_date": "2026-08-16",
+  "version_date": "2026-08-23",
   "requirements": "- libshacccg.suprx",
-  "size": 2445293,
+  "size": 2446141,
   "status": "Legacy",
   "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1028-nazi-zombies-portable.png",
   "screenshots": [
