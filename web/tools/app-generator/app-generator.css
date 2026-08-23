@@ -279,15 +279,58 @@
 .checkbox-inline {
     display: inline-flex;
     align-items: center;
-    gap: 8px;
+    gap: 10px;
     color: #ddd;
     font-size: 0.95rem;
     white-space: nowrap;
+    user-select: none;
+    cursor: pointer;
+    padding: 8px 12px;
+    border-radius: 999px;
+    border: 1px solid #333;
+    background: rgba(255, 255, 255, 0.04);
+    transition: border-color 0.15s ease, background 0.15s ease, color 0.15s ease;
+}
+
+.checkbox-inline:hover {
+    border-color: rgba(59, 255, 0, 0.35);
+}
+
+.checkbox-inline:has(input:checked) {
+    border-color: rgba(59, 255, 0, 0.55);
+    background: rgba(59, 255, 0, 0.12);
+    color: #c8ffb0;
 }
 
 .checkbox-inline input {
-    width: auto;
+    appearance: none;
+    -webkit-appearance: none;
+    width: 20px;
+    height: 20px;
     min-height: 0;
+    margin: 0;
+    border: 2px solid #666;
+    border-radius: 6px;
+    background: rgba(0, 0, 0, 0.45);
+    display: grid;
+    place-items: center;
+    cursor: pointer;
+    flex: 0 0 auto;
+    transition: border-color 0.15s ease, background 0.15s ease;
+}
+
+.checkbox-inline input:checked {
+    border-color: var(--accent, #3bff00);
+    background: var(--accent, #3bff00);
+}
+
+.checkbox-inline input:checked::after {
+    content: "";
+    width: 5px;
+    height: 10px;
+    border: solid #0a0a0a;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg) translateY(-1px);
 }
 
 .small-button,
