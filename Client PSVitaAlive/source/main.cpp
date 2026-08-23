@@ -532,7 +532,20 @@ int main(){
         if(!actionable){psvitaalive::diagnostics::log(std::string("[UI] link is informational only: ")+link.url);return false;}
         psvitaalive::ui::CatalogItem requestItem=item;requestItem.downloadUrl=link.url;requestItem.downloadFileName=fileNameFromUrl(link.url,item.id);
         psvitaalive::diagnostics::log(std::string("[UI] LINK INSTALL name=")+item.name+" type="+link.type+" url="+link.url);
-        std::string zipDestination;if(isZipName(requestItem.downloadFileName)){zipDestination="ux0:data/";if(!promptZipDestination(zipDestination)){psvitaalive::diagnostics::log("[UI] ZIP destination cancelled");return false;}}
+        std::string zipDestination;
+        if(isZipName(requestItem.downloadFileName)){
+            // Prefer per-link extract_path when present; otherwise ask the user.
+            if(!link.extractPath.empty()){
+                zipDestination=link.extractPath;
+                psvitaalive::diagnostics::log(std::string("[UI] ZIP extract_path from catalog: ")+zipDestination);
+            }else{
+                zipDestination="ux0:data/";
+                if(!promptZipDestination(zipDestination)){
+                    psvitaalive::diagnostics::log("[UI] ZIP destination cancelled");
+                    return false;
+                }
+            }
+        }
         return installer.requestInstall(requestItem.downloadUrl,requestItem.downloadFileName,zipDestination,link.zrif,link.type,link.contentId,item.name);
     });
 
