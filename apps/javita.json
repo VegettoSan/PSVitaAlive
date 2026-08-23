@@ -18,14 +18,16 @@
   "status": "Legacy",
   "icon": "https://www.rinnegatamante.eu/vitadb/icons/1bb9917dfa6da37c1a4f8fabe93be3a03435e8231b1c3b3f88bfb2b192701acb.png",
   "screenshots": [
-    "https://www.rinnegatamante.eu/vitadb/icons/1bb9917dfa6da37c1a4f8fabe93be3a03435e8231b1c3b3f88bfb2b192701acb.png"
+    "https://www.rinnegatamante.eu/vitadb/icons/1bb9917dfa6da37c1a4f8fabe93be3a03435e8231b1c3b3f88bfb2b192701acb.png",
+    "https://archive.org/download/JK2VITA/bg.png"
   ],
   "links": [
     {
       "type": "Download",
       "name": "VitaDB VPK",
       "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1481",
-      "recommended": true
+      "recommended": true,
+      "size": 3819434
     },
     {
       "type": "Official Website",
