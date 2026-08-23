@@ -53,6 +53,43 @@ function proxyVitaDbMediaUrl(url) {
     return `https://images.weserv.nl/?url=${encodeURIComponent(url)}`;
 }
 
+/**
+ * Rewrite VitaDB download URLs so the browser does not hit anti-hotlink 403.
+ * Uses Cloudflare Worker when configured; otherwise falls back to VitaDB info page.
+ */
+function resolveDownloadUrl(url) {
+    if (!url || typeof url !== "string") {
+        return url;
+    }
+
+    const isVitaDbHost = /(?:^|\/\/)(?:www\.)?rinnegatamante\.eu\//i.test(url);
+    const isDownloadPath =
+        /\/vitadb\/get_hb_url\.php/i.test(url) ||
+        /\/files\/vitadb\//i.test(url);
+
+    if (!isVitaDbHost || !isDownloadPath) {
+        return url;
+    }
+
+    const cfg =
+        (typeof window !== "undefined" && window.PSVITAALIVE_CONFIG) || {};
+    const proxy =
+        typeof cfg.vitadbDownloadProxy === "string"
+            ? cfg.vitadbDownloadProxy.trim().replace(/\/$/, "")
+            : "";
+
+    if (proxy) {
+        return `${proxy}/?url=${encodeURIComponent(url)}`;
+    }
+
+    const idMatch = url.match(/[?&]id=(\d+)/i);
+    if (idMatch) {
+        return `https://www.rinnegatamante.eu/vitadb/#/info/${idMatch[1]}`;
+    }
+
+    return url;
+}
+
 function resolveAssetPath(path) {
     if (!path) return null;
 
