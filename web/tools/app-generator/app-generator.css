@@ -221,9 +221,7 @@
     justify-self: start;
 }
 
-.repeat-item.link-item .remove-button {
-    grid-area: remove;
-    justify-self: end;
+.repeat-item .remove-button {
     border: 1px solid rgba(255, 92, 92, 0.55);
     background: rgba(255, 60, 60, 0.12);
     color: #ff9a9a;
@@ -234,17 +232,23 @@
     min-height: 44px;
     cursor: pointer;
     transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+    white-space: nowrap;
 }
 
-.repeat-item.link-item .remove-button:hover {
+.repeat-item .remove-button:hover {
     background: rgba(255, 60, 60, 0.28);
     border-color: #ff5c5c;
     color: #fff;
 }
 
-.repeat-item.link-item .remove-button:focus {
+.repeat-item .remove-button:focus {
     outline: 2px solid #ff5c5c;
     outline-offset: 2px;
+}
+
+.repeat-item.link-item .remove-button {
+    grid-area: remove;
+    justify-self: end;
 }
 
 .drag-handle {
@@ -675,4 +679,12 @@
     margin: 10px 0 0;
     color: var(--text-secondary);
     font-size: 0.88rem;
+}
+
+
+.repeat-item.screenshot-item {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 12px;
+    align-items: center;
 }
