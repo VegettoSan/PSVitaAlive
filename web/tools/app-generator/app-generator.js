@@ -108,12 +108,38 @@
     function updateSubcategories(selected = []) {
         const category = state.categories.find(item => item.id === $("category").value);
         const select = $("subcategories");
+        const picker = $("subcategory-picker");
         const subcategories = category && Array.isArray(category.subcategories) ? category.subcategories : [];
-        select.innerHTML = subcategories.map(item => `<option value="${escapeHtml(item.id)}">${escapeHtml(item.name || item.id)}</option>`).join("");
-        selected.forEach(id => {
-            const option = [...select.options].find(item => item.value === id);
-            if (option) option.selected = true;
-        });
+        const selectedSet = new Set((selected || []).map(String));
+
+        select.innerHTML = subcategories.map(item => {
+            const id = String(item.id);
+            const isOn = selectedSet.has(id);
+            return `<option value="${escapeHtml(id)}" ${isOn ? "selected" : ""}>${escapeHtml(item.name || item.id)}</option>`;
+        }).join("");
+
+        if (picker) {
+            if (!subcategories.length) {
+                picker.innerHTML = `<div class="subcategory-empty">${category ? "This category has no subcategories." : "Select a category first."}</div>`;
+            } else {
+                picker.innerHTML = subcategories.map(item => {
+                    const id = String(item.id);
+                    const isOn = selectedSet.has(id);
+                    return `<button type="button" class="subcategory-chip${isOn ? " is-selected" : ""}" data-id="${escapeHtml(id)}" aria-pressed="${isOn ? "true" : "false"}">${escapeHtml(item.name || item.id)}</button>`;
+                }).join("");
+                picker.querySelectorAll(".subcategory-chip").forEach(btn => {
+                    btn.addEventListener("click", () => {
+                        const id = btn.getAttribute("data-id");
+                        const option = [...select.options].find(item => item.value === id);
+                        if (!option) return;
+                        option.selected = !option.selected;
+                        btn.classList.toggle("is-selected", option.selected);
+                        btn.setAttribute("aria-pressed", option.selected ? "true" : "false");
+                        updatePreview();
+                    });
+                });
+            }
+        }
         updatePreview();
     }
 
