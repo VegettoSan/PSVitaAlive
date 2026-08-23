@@ -27,8 +27,34 @@ function getCategoryName(categoryId) {
     return category ? category.name : (categoryId || "Unknown");
 }
 
+/**
+ * VitaDB blocks cross-site <img> embeds (Sec-Fetch / anti-hotlink).
+ * Proxy only icon files hosted on rinnegatamante.eu so the store website
+ * can display them; downloads and other hosts are left unchanged.
+ */
+function proxyVitaDbIconUrl(url) {
+    if (!url || typeof url !== "string") {
+        return url;
+    }
+
+    if (url.includes("images.weserv.nl")) {
+        return url;
+    }
+
+    const isVitaDbHost = /(?:^|\/\/)(?:www\.)?rinnegatamante\.eu\//i.test(url);
+    const isIconPath = /\/vitadb\/icons\//i.test(url);
+
+    if (!isVitaDbHost || !isIconPath) {
+        return url;
+    }
+
+    return `https://images.weserv.nl/?url=${encodeURIComponent(url)}`;
+}
+
 function resolveAssetPath(path) {
     if (!path) return null;
+
+    let resolved;
 
     if (
         path.startsWith("http://") ||
@@ -36,14 +62,14 @@ function resolveAssetPath(path) {
         path.startsWith("data:") ||
         path.startsWith("/")
     ) {
-        return path;
+        resolved = path;
+    } else if (path.startsWith("../")) {
+        resolved = `${VITAHUB_RAW_BASE}/${path.substring(3)}`;
+    } else {
+        resolved = `${VITAHUB_RAW_BASE}/${path}`;
     }
 
-    if (path.startsWith("../")) {
-        return `${VITAHUB_RAW_BASE}/${path.substring(3)}`;
-    }
-
-    return `${VITAHUB_RAW_BASE}/${path}`;
+    return proxyVitaDbIconUrl(resolved);
 }
 
 function getCategoryIconFallback(categoryId) {
