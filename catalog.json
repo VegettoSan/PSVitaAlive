@@ -1,5 +1,174 @@
 [
   {
+    "id": "nazi-zombies-portable",
+    "title_id": "NZZMBSPTB",
+    "name": "Nazi Zombies Portable",
+    "description": "Port of Nazi Zombies Portable for PSVITA.",
+    "long_description": "Call of Duty: Zombies \"de-make\" for PlayStation Portable & VITA, Nintendo Switch & 3DS, Windows, & Linux (ARM & x86). Powered by various Quake sourceports. Includes \"Nacht der Untoten\" and several community-made maps.",
+    "author_ids": [
+      "nzp-reboot-team",
+      "rinnegatamante"
+    ],
+    "category_id": "ports",
+    "subcategory_ids": [
+      "other"
+    ],
+    "version": "Nightly",
+    "version_date": "2026-08-23",
+    "requirements": "- libshacccg.suprx",
+    "size": 2446141,
+    "status": "Legacy",
+    "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1028-nazi-zombies-portable.png",
+    "screenshots": [
+      "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/700a132501a00d7586707b33c0a4727c2b0664e3ec9c86996efebd810a6cdcc3.png",
+      "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/6e7ece334d0b8604df007a714e9d33abc092dc86af50d4545d6e9177d01f832b.png",
+      "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/140e581c7bbf245de22fd278ef49270d10d8539201b32e6c4b3db7f44f9c17f8.png",
+      "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/a79e4d2418e3aecf44aeab0aca053932e1fa639ce53fc6fe7c0def570fb1ba35.png",
+      "https://www.rinnegatamante.eu/vitadb/screenshots/700a132501a00d7586707b33c0a4727c2b0664e3ec9c86996efebd810a6cdcc3.png"
+    ],
+    "links": [
+      {
+        "type": "Download",
+        "name": "VitaDBtoo VPK",
+        "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1028-nzp.vpk",
+        "recommended": false
+      },
+      {
+        "type": "Download",
+        "name": "NeoVitaDB VPK",
+        "url": "https://github.com/nzp-team/nzportable/releases/download/nightly/nzportable-vita.zip",
+        "recommended": false
+      },
+      {
+        "type": "Official Website",
+        "name": "VitaDBtoo Release Page",
+        "url": "https://github.com/nzp-team/nzportable/releases"
+      },
+      {
+        "type": "Official Website",
+        "name": "NeoVitaDB Release Page",
+        "url": "https://github.com/nzp-team/nzportable/releases/tag/nightly"
+      },
+      {
+        "type": "Repository",
+        "name": "Repositorio",
+        "url": "https://github.com/nzp-team/nzportable"
+      },
+      {
+        "type": "Download",
+        "name": "VitaDBtoo VPK",
+        "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/1028-nzp.vpk",
+        "recommended": false
+      },
+      {
+        "type": "Download",
+        "name": "VitaDB VPK",
+        "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1028",
+        "recommended": true
+      },
+      {
+        "type": "Download",
+        "name": "Data Files",
+        "url": "https://www.rinnegatamante.eu/files/vitadb/nzp_nightly.zip",
+        "recommended": false
+      }
+    ],
+    "source_name": "VitaDBtoo",
+    "source_id": "1028",
+    "source_url": "https://github.com/nzp-team/nzportable",
+    "release_page": "https://github.com/nzp-team/nzportable/releases",
+    "updated_at": "2026-08-13T15:34:48.451358+00:00"
+  },
+  {
+    "id": "pocket-mortys-vita",
+    "title_id": "POMO00137",
+    "name": "Pocket Mortys Vita",
+    "description": "Native port of Pocket Mortys.",
+    "long_description": "Native port of Pocket Mortys,",
+    "author_ids": [
+      "celtic-gaming"
+    ],
+    "category_id": "ports",
+    "subcategory_ids": [
+      "other"
+    ],
+    "version": "v.0.9",
+    "version_date": "2026-08-22",
+    "requirements": "- Game Data Files: Android",
+    "size": 16814806,
+    "status": "Legacy",
+    "icon": "https://www.rinnegatamante.eu/vitadb/icons/03a7746d6a9e3ab53f6ecdc0cfd1eb7fa5f5d53cac00e7fbfc95089275b6527f.png",
+    "screenshots": [
+      "https://www.rinnegatamante.eu/vitadb/screenshots/d937ebb4dbec1d94919e9c22b6a2652679be2d39db32c9228904509175db0bde.png",
+      "https://www.rinnegatamante.eu/vitadb/screenshots/25dbcde1f5dc42fe88da1b490ceff50c0751707d4f9337fc67874f2849443b5d.png",
+      "https://www.rinnegatamante.eu/vitadb/screenshots/7376ebd15ac4867d27edec0f6c52a571d416611455428eddc3a328813715858f.png"
+    ],
+    "links": [
+      {
+        "type": "Download",
+        "name": "VitaDB VPK",
+        "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1482",
+        "recommended": true
+      },
+      {
+        "type": "Official Website",
+        "name": "VitaDB Release Page",
+        "url": "https://github.com/celticg/AS-Pocket-Mortys-vita"
+      }
+    ],
+    "source_name": "VitaDB",
+    "source_id": "1482",
+    "source_url": "https://github.com/celticg/AS-Pocket-Mortys-vita",
+    "release_page": "https://github.com/celticg/AS-Pocket-Mortys-vita",
+    "updated_at": "2026-08-23T09:47:03.656067+00:00"
+  },
+  {
+    "id": "javita",
+    "title_id": "JAVITA001",
+    "name": "JAVITA",
+    "description": "Port of Star Wars Jedi Knight: Jedi Academy for PSVita.",
+    "long_description": "Port of Star Wars Jedi Knight: Jedi Academy for PSVita based on OpenJK.",
+    "author_ids": [
+      "ndrw"
+    ],
+    "category_id": "ports",
+    "subcategory_ids": [
+      "other"
+    ],
+    "version": "v.1.0",
+    "version_date": "2026-08-22",
+    "requirements": "- Game Data Files: PC",
+    "size": 3819434,
+    "status": "Legacy",
+    "icon": "https://www.rinnegatamante.eu/vitadb/icons/1bb9917dfa6da37c1a4f8fabe93be3a03435e8231b1c3b3f88bfb2b192701acb.png",
+    "screenshots": [
+      "https://www.rinnegatamante.eu/vitadb/icons/1bb9917dfa6da37c1a4f8fabe93be3a03435e8231b1c3b3f88bfb2b192701acb.png"
+    ],
+    "links": [
+      {
+        "type": "Download",
+        "name": "VitaDB VPK",
+        "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1481",
+        "recommended": true
+      },
+      {
+        "type": "Official Website",
+        "name": "VitaDB Release Page",
+        "url": "https://github.com/NDRWhun/JAVITA/releases"
+      },
+      {
+        "type": "Repository",
+        "name": "Repositorio",
+        "url": "https://github.com/NDRWhun/JAVITA"
+      }
+    ],
+    "source_name": "VitaDB",
+    "source_id": "1481",
+    "source_url": "https://github.com/NDRWhun/JAVITA",
+    "release_page": "https://github.com/NDRWhun/JAVITA/releases",
+    "updated_at": "2026-08-22T15:39:32.749156+00:00"
+  },
+  {
     "id": "immortal-dusk-vita",
     "title_id": "IMMDUSK01",
     "name": "Immortal Dusk Vita",
@@ -750,86 +919,6 @@
     "source_url": "https://github.com/robin994/NeoVitaDB-Downloader",
     "release_page": "https://github.com/robin994/NeoVitaDB-Downloader/releases/tag/v2.9.0",
     "updated_at": "2026-08-13T15:34:48.715469+00:00"
-  },
-  {
-    "id": "nazi-zombies-portable",
-    "title_id": "NZZMBSPTB",
-    "name": "Nazi Zombies Portable",
-    "description": "Port of Nazi Zombies Portable for PSVITA.",
-    "long_description": "Call of Duty: Zombies \"de-make\" for PlayStation Portable & VITA, Nintendo Switch & 3DS, Windows, & Linux (ARM & x86). Powered by various Quake sourceports. Includes \"Nacht der Untoten\" and several community-made maps.",
-    "author_ids": [
-      "nzp-reboot-team",
-      "rinnegatamante"
-    ],
-    "category_id": "ports",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "Nightly",
-    "version_date": "2026-08-16",
-    "requirements": "- libshacccg.suprx",
-    "size": 2445293,
-    "status": "Legacy",
-    "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1028-nazi-zombies-portable.png",
-    "screenshots": [
-      "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/700a132501a00d7586707b33c0a4727c2b0664e3ec9c86996efebd810a6cdcc3.png",
-      "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/6e7ece334d0b8604df007a714e9d33abc092dc86af50d4545d6e9177d01f832b.png",
-      "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/140e581c7bbf245de22fd278ef49270d10d8539201b32e6c4b3db7f44f9c17f8.png",
-      "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/a79e4d2418e3aecf44aeab0aca053932e1fa639ce53fc6fe7c0def570fb1ba35.png",
-      "https://www.rinnegatamante.eu/vitadb/screenshots/700a132501a00d7586707b33c0a4727c2b0664e3ec9c86996efebd810a6cdcc3.png"
-    ],
-    "links": [
-      {
-        "type": "Download",
-        "name": "VitaDBtoo VPK",
-        "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1028-nzp.vpk",
-        "recommended": false
-      },
-      {
-        "type": "Download",
-        "name": "NeoVitaDB VPK",
-        "url": "https://github.com/nzp-team/nzportable/releases/download/nightly/nzportable-vita.zip",
-        "recommended": false
-      },
-      {
-        "type": "Official Website",
-        "name": "VitaDBtoo Release Page",
-        "url": "https://github.com/nzp-team/nzportable/releases"
-      },
-      {
-        "type": "Official Website",
-        "name": "NeoVitaDB Release Page",
-        "url": "https://github.com/nzp-team/nzportable/releases/tag/nightly"
-      },
-      {
-        "type": "Repository",
-        "name": "Repositorio",
-        "url": "https://github.com/nzp-team/nzportable"
-      },
-      {
-        "type": "Download",
-        "name": "VitaDBtoo VPK",
-        "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/1028-nzp.vpk",
-        "recommended": false
-      },
-      {
-        "type": "Download",
-        "name": "VitaDB VPK",
-        "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1028",
-        "recommended": true
-      },
-      {
-        "type": "Download",
-        "name": "Data Files",
-        "url": "https://www.rinnegatamante.eu/files/vitadb/nzp_nightly.zip",
-        "recommended": false
-      }
-    ],
-    "source_name": "VitaDBtoo",
-    "source_id": "1028",
-    "source_url": "https://github.com/nzp-team/nzportable",
-    "release_page": "https://github.com/nzp-team/nzportable/releases",
-    "updated_at": "2026-08-13T15:34:48.451358+00:00"
   },
   {
     "id": "opennow-vita",
@@ -2568,6 +2657,52 @@
     ]
   },
   {
+    "id": "jk2vita",
+    "title_id": "JK2VITA01",
+    "name": "JK2VITA",
+    "description": "Port of Star Wars Jedi Knight II: Jedi Outcast for PSVita.",
+    "long_description": "Port of Star Wars Jedi Knight II: Jedi Outcast for PSVita based over OpenJK.",
+    "author_ids": [
+      "ndrw"
+    ],
+    "category_id": "ports",
+    "subcategory_ids": [
+      "other"
+    ],
+    "version": "v.1.0",
+    "version_date": "2026-08-10",
+    "requirements": "- Game Data Files: PC",
+    "size": 3422087,
+    "status": "Legacy",
+    "icon": "https://www.rinnegatamante.eu/vitadb/icons/7c73928974001e42e16d7629daaea63144b6a76b5b013d9ee47953ce6c204881.png",
+    "screenshots": [
+      "https://www.rinnegatamante.eu/vitadb/icons/7c73928974001e42e16d7629daaea63144b6a76b5b013d9ee47953ce6c204881.png"
+    ],
+    "links": [
+      {
+        "type": "Download",
+        "name": "VitaDB VPK",
+        "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1480",
+        "recommended": true
+      },
+      {
+        "type": "Official Website",
+        "name": "VitaDB Release Page",
+        "url": "https://github.com/NDRWhun/JK2VITA/releases"
+      },
+      {
+        "type": "Repository",
+        "name": "Repositorio",
+        "url": "https://github.com/NDRWhun/JK2VITA"
+      }
+    ],
+    "source_name": "VitaDB",
+    "source_id": "1480",
+    "source_url": "https://github.com/NDRWhun/JK2VITA",
+    "release_page": "https://github.com/NDRWhun/JK2VITA/releases",
+    "updated_at": "2026-08-22T15:39:32.751200+00:00"
+  },
+  {
     "id": "supertux-classic",
     "title_id": "SUPERTUX1",
     "name": "SuperTux Classic",
@@ -2920,6 +3055,12 @@
         "type": "Repository",
         "name": "Repositorio",
         "url": "https://github.com/largepelotas/JaVitaScript-Snake"
+      },
+      {
+        "type": "Download",
+        "name": "VitaDB VPK",
+        "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1479",
+        "recommended": false
       }
     ],
     "source_name": "VitaDBtoo",

@@ -20,7 +20,7 @@ Supplementary documentation for architecture, pipelines and client behaviour.
 | `Client PSVitaAlive/` | Native client build and modules |
 | `Client PSVitaAlive/source/update/README.md` | Self-update (PSVAUPDT1) handoff rules |
 | `Client PSVitaAlive/source/catalog/README.md` | Multi-catalog cache + zRIF sidecar |
-| `Client PSVitaAlive/source/installer/README.md` | VPK / BGDL / plugins |
+| `Client PSVitaAlive/source/installer/README.md` | VPK / **BGDL PKG (verified)** / plugins / zRIF lookup |
 | `.github/workflows/` | CI / Pages |
 
 ## Change classification

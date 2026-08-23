@@ -165,7 +165,7 @@ function renderLinks(app) {
                 );
 
             link.href =
-                linkData.url;
+                resolveDownloadUrl(linkData.url);
 
             link.target =
                 "_blank";

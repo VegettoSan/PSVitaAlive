@@ -1,0 +1,46 @@
+{
+  "id": "javita",
+  "title_id": "JAVITA001",
+  "name": "JAVITA",
+  "description": "Port of Star Wars Jedi Knight: Jedi Academy for PSVita.",
+  "long_description": "Port of Star Wars Jedi Knight: Jedi Academy for PSVita based on OpenJK.",
+  "author_ids": [
+    "ndrw"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.1.0",
+  "version_date": "2026-08-22",
+  "requirements": "- Game Data Files: PC",
+  "size": 3819434,
+  "status": "Legacy",
+  "icon": "https://www.rinnegatamante.eu/vitadb/icons/1bb9917dfa6da37c1a4f8fabe93be3a03435e8231b1c3b3f88bfb2b192701acb.png",
+  "screenshots": [
+    "https://www.rinnegatamante.eu/vitadb/icons/1bb9917dfa6da37c1a4f8fabe93be3a03435e8231b1c3b3f88bfb2b192701acb.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1481",
+      "recommended": true
+    },
+    {
+      "type": "Official Website",
+      "name": "VitaDB Release Page",
+      "url": "https://github.com/NDRWhun/JAVITA/releases"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/NDRWhun/JAVITA"
+    }
+  ],
+  "source_name": "VitaDB",
+  "source_id": "1481",
+  "source_url": "https://github.com/NDRWhun/JAVITA",
+  "release_page": "https://github.com/NDRWhun/JAVITA/releases",
+  "updated_at": "2026-08-22T15:39:32.749156+00:00"
+}

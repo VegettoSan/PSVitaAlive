@@ -29,6 +29,10 @@ Loads public JSON catalogs from the PS Vita Alive Store repository (or configure
 
 ### zRIF sidecar (Vita Games)
 
+Used by **BGDL PKG installs** on real hardware (verified). Index is keyed by **content_id** (not URL).
+
+### zRIF sidecar (Vita Games)
+
 License strings are **not** stored inside `catalog_psvita_games.json` (avoids OOM when all four catalogs stay in memory).
 
 | Item | Location |
@@ -38,7 +42,7 @@ License strings are **not** stored inside `catalog_psvita_games.json` (avoids OO
 | Line format | `content_id<TAB>zrif` |
 
 `CatalogManager` downloads the index when the Vita Games catalog is loaded (if missing/too small).  
-`LicenseHelper::lookupZrifForUrl()` resolves a zRIF at **install time** only.
+`LicenseHelper` resolves a zRIF at **install time** only: exact `content_id` match first, then Title ID fallback. See `source/installer/README.md`.
 
 ## Memory notes
 
@@ -51,3 +55,15 @@ License strings are **not** stored inside `catalog_psvita_games.json` (avoids OO
 Optional JSON fields may be missing. Parser must use safe defaults and keep loading.
 
 Media URLs may be HTTP(S); failures must not block catalog readiness.
+
+## License lookup (install time)
+
+The catalog JSON does **not** embed zRIF strings. The client downloads `catalog_psvita_games.zrifidx` when Vita Games is loaded.
+
+| Step | Key |
+|------|-----|
+| 1 (preferred) | Link field `content_id` → exact line in `.zrifidx` |
+| 2 (fallback) | Title ID from URL/path (e.g. `PCSB00040`) → first key containing `-TITLEID_` |
+| 3 | No match → PKG install fails with a clear license error (no raw `.pkg` promote) |
+
+Each region / DLC / update should expose its own `content_id` on the link so the correct license is used.

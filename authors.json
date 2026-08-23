@@ -1050,6 +1050,21 @@
     "icon": "https://github.com/CelloPoly314.png"
   },
   {
+    "id": "celtic-gaming",
+    "name": "Celtic Gaming",
+    "avatar": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png",
+    "bio": "",
+    "links": [
+      {
+        "type": "Other",
+        "name": "Buscar autor",
+        "url": "https://github.com/search?q=Celtic%20Gaming&type=users",
+        "recommended": true
+      }
+    ],
+    "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
+  },
+  {
     "id": "chatgpt-ai",
     "name": "ChatGPT AI",
     "avatar": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png",
@@ -4455,6 +4470,21 @@
       }
     ],
     "icon": "https://github.com/NathanKewley.png"
+  },
+  {
+    "id": "ndrw",
+    "name": "NDRW",
+    "avatar": "https://github.com/ndrwhun.png",
+    "bio": "",
+    "links": [
+      {
+        "type": "GitHub",
+        "name": "GitHub",
+        "url": "https://github.com/ndrwhun",
+        "recommended": true
+      }
+    ],
+    "icon": "https://github.com/ndrwhun.png"
   },
   {
     "id": "nedmapagmahal",

@@ -1,0 +1,43 @@
+{
+  "id": "pocket-mortys-vita",
+  "title_id": "POMO00137",
+  "name": "Pocket Mortys Vita",
+  "description": "Native port of Pocket Mortys.",
+  "long_description": "Native port of Pocket Mortys,",
+  "author_ids": [
+    "celtic-gaming"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.0.9",
+  "version_date": "2026-08-22",
+  "requirements": "- Game Data Files: Android",
+  "size": 16814806,
+  "status": "Legacy",
+  "icon": "https://www.rinnegatamante.eu/vitadb/icons/03a7746d6a9e3ab53f6ecdc0cfd1eb7fa5f5d53cac00e7fbfc95089275b6527f.png",
+  "screenshots": [
+    "https://www.rinnegatamante.eu/vitadb/screenshots/d937ebb4dbec1d94919e9c22b6a2652679be2d39db32c9228904509175db0bde.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/25dbcde1f5dc42fe88da1b490ceff50c0751707d4f9337fc67874f2849443b5d.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/7376ebd15ac4867d27edec0f6c52a571d416611455428eddc3a328813715858f.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1482",
+      "recommended": true
+    },
+    {
+      "type": "Official Website",
+      "name": "VitaDB Release Page",
+      "url": "https://github.com/celticg/AS-Pocket-Mortys-vita"
+    }
+  ],
+  "source_name": "VitaDB",
+  "source_id": "1482",
+  "source_url": "https://github.com/celticg/AS-Pocket-Mortys-vita",
+  "release_page": "https://github.com/celticg/AS-Pocket-Mortys-vita",
+  "updated_at": "2026-08-23T09:47:03.656067+00:00"
+}
