@@ -29,10 +29,10 @@ function getCategoryName(categoryId) {
 
 /**
  * VitaDB blocks cross-site <img> embeds (Sec-Fetch / anti-hotlink).
- * Proxy only icon files hosted on rinnegatamante.eu so the store website
- * can display them; downloads and other hosts are left unchanged.
+ * Proxy icon and screenshot files hosted on rinnegatamante.eu so the store
+ * website can display them; downloads and other hosts are left unchanged.
  */
-function proxyVitaDbIconUrl(url) {
+function proxyVitaDbMediaUrl(url) {
     if (!url || typeof url !== "string") {
         return url;
     }
@@ -42,9 +42,11 @@ function proxyVitaDbIconUrl(url) {
     }
 
     const isVitaDbHost = /(?:^|\/\/)(?:www\.)?rinnegatamante\.eu\//i.test(url);
-    const isIconPath = /\/vitadb\/icons\//i.test(url);
+    const isMediaPath =
+        /\/vitadb\/icons\//i.test(url) ||
+        /\/vitadb\/screenshots\//i.test(url);
 
-    if (!isVitaDbHost || !isIconPath) {
+    if (!isVitaDbHost || !isMediaPath) {
         return url;
     }
 
@@ -69,7 +71,7 @@ function resolveAssetPath(path) {
         resolved = `${VITAHUB_RAW_BASE}/${path}`;
     }
 
-    return proxyVitaDbIconUrl(resolved);
+    return proxyVitaDbMediaUrl(resolved);
 }
 
 function getCategoryIconFallback(categoryId) {
