@@ -10,7 +10,7 @@ permissions:
 
 jobs:
   apply-fix:
-    if: github.event.head_commit.message == 'chore: prepare link type fix'
+    if: github.actor != 'github-actions[bot]'
     runs-on: ubuntu-latest
     steps:
       - name: Checkout main
@@ -36,11 +36,12 @@ jobs:
           git diff --check
           git diff -- 'Client PSVitaAlive/source/ui/full_catalog_screen.cpp'
 
-      - name: Commit directly to main
+      - name: Commit directly to main and remove temporary workflow
         run: |
+          set -euo pipefail
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add 'Client PSVitaAlive/source/ui/full_catalog_screen.cpp' '.github/workflows/_temp_add_game_data_link_types.yml'
+          git add 'Client PSVitaAlive/source/ui/full_catalog_screen.cpp'
           git rm '.github/workflows/_temp_add_game_data_link_types.yml'
           git commit -m 'fix: show Game Files and Data Files links in Vita client'
           git push origin HEAD:main
