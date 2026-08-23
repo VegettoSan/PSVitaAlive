@@ -4,6 +4,14 @@
     const RAW_BASE = "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main";
     const DOWNLOAD_TYPES = [
         "Download",
+        "PKG",
+        "DLC",
+        "Update",
+        "Patch",
+        "Mod",
+        "Mod Pack",
+        "Data Files",
+        "Game Files",
         "Mirror",
         "Repository",
         "Official Website",
