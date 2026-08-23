@@ -241,7 +241,8 @@ void FullCatalogScreen::setCatalogItems(std::vector<CatalogItem>items){
     int outcome,
     bool liveAreaOk,
     const std::string& installPath,
-    const std::string& titleId)
+    const std::string& titleId,
+    uint64_t resultAutoCloseRemainingMs)
 {
     installProgressActive_ = active;
     installProgressCurrent_ = current;
@@ -251,6 +252,7 @@ void FullCatalogScreen::setCatalogItems(std::vector<CatalogItem>items){
     installProgressStage_ = stage;
     installProgressFile_ = fileName;
     installProgressMessage_ = message;
+    installResultAutoCloseMs_ = resultAutoCloseRemainingMs;
 
     installOutcome_ = outcome;
     installLiveAreaOk_ = liveAreaOk;
@@ -2274,25 +2276,45 @@ if(installOutcome_==1){
 
     const int by2=y+300,bw2=280,bh2=40;
   vita2d_draw_rectangle(x+28,by2,bw2,bh2,GREEN);
-  vita2d_pgf_draw_text(font_,x+100,by2+26,BLACK,.62f,"O  Continuar");
-  vita2d_pgf_draw_text(font_,x+28,y+h-16,DIM,.50f,"Circle: cerrar este mensaje");
+  vita2d_pgf_draw_text(font_,x+100,by2+26,BLACK,.62f,"O  Continue");
+  // Auto-close countdown bar (success only)
+  {
+    const int barX = x + 28;
+    const int barW = w - 56;
+    const int barY = y + h - 28;
+    const int barH = 6;
+    vita2d_draw_rectangle(barX, barY, barW, barH, BORDER);
+    // RESULT_AUTO_DISMISS_MS is 8000 in InstallController; remaining comes from status.
+    const uint64_t totalMs = 8000;
+    uint64_t rem = installResultAutoCloseMs_;
+    if (rem > totalMs) rem = totalMs;
+    const int fill = (rem > 0 && totalMs > 0)
+        ? (int)((barW * rem) / totalMs)
+        : 0;
+    if (fill > 0) vita2d_draw_rectangle(barX, barY, fill, barH, GREEN);
+    char tbuf[48];
+    const unsigned sec = (unsigned)((rem + 999) / 1000);
+    sceClibSnprintf(tbuf, sizeof(tbuf), "Closes in %us  ·  Circle: close now", sec);
+    vita2d_pgf_draw_text(font_, barX, barY - 6, DIM, .48f, tbuf);
+  }
   return;
 }
 
 if(installOutcome_==2){
-  vita2d_pgf_draw_text(font_,x+28,y+80,RED,1.05f,"No se pudo instalar");
-  std::string file=installProgressFile_.empty()?"(archivo)":ellipsize(installProgressFile_,70);
-  vita2d_pgf_draw_text(font_,x+28,y+118,WHITE,.66f,("Archivo: "+file).c_str());
-  vita2d_pgf_draw_text(font_,x+28,y+152,RED,.68f,"Motivo:");
-  std::string err=installProgressMessage_.empty()?"Error desconocido":installProgressMessage_;
+  vita2d_pgf_draw_text(font_,x+28,y+80,RED,1.05f,"Installation failed");
+  std::string file=installProgressFile_.empty()?"(file)":ellipsize(installProgressFile_,70);
+  vita2d_pgf_draw_text(font_,x+28,y+118,WHITE,.66f,("File: "+file).c_str());
+  vita2d_pgf_draw_text(font_,x+28,y+152,RED,.68f,"Reason:");
+  std::string err=installProgressMessage_.empty()?"Unknown error":installProgressMessage_;
   vita2d_pgf_draw_text(font_,x+28,y+180,TEXT,.60f,ellipsize(err,78).c_str());
   if(err.size()>78)
     vita2d_pgf_draw_text(font_,x+28,y+202,TEXT,.58f,ellipsize(err.substr(70),78).c_str());
-  vita2d_pgf_draw_text(font_,x+28,y+236,DIM,.54f,"Revisa espacio libre, formato y session.log");
+  vita2d_pgf_draw_text(font_,x+28,y+236,DIM,.54f,"Check free space, format, and session.log");
   vita2d_pgf_draw_text(font_,x+28,y+258,DIM,.52f,"ux0:data/psvitaalive/logs/session.log");
   const int by2=y+300,bw2=280,bh2=40;
   vita2d_draw_rectangle(x+28,by2,bw2,bh2,RED);
-  vita2d_pgf_draw_text(font_,x+110,by2+26,WHITE,.62f,"O  Cerrar");
+  vita2d_pgf_draw_text(font_,x+110,by2+26,WHITE,.62f,"O  Close");
+  vita2d_pgf_draw_text(font_,x+28,y+h-16,DIM,.48f,"This message stays open until you close it");
   vita2d_pgf_draw_text(font_,x+28,y+h-16,DIM,.50f,"Circle: cerrar este mensaje");
   return;
 }
