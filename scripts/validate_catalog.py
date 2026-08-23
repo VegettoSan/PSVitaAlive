@@ -417,8 +417,6 @@ def validate_links(
             "must contain at least one link",
         )
 
-    recommended_count = 0
-
     for index, link in enumerate(links):
         item_path = f"{field_path}[{index}]"
 
@@ -484,18 +482,7 @@ def validate_links(
                     "must be boolean",
                 )
 
-            elif link["recommended"]:
-                recommended_count += 1
 
-    if recommended_count > 1:
-        add_error(
-            errors,
-            field_path,
-            (
-                "at most one link may have "
-                "recommended=true"
-            ),
-        )
 
 
 def validate_apps(
