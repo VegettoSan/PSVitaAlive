@@ -165,11 +165,20 @@
 }
 
 .repeat-item.link-item {
-    /* Flexible wrap: never force one ultra-wide row that overflows the card */
-    grid-template-columns: 40px repeat(auto-fit, minmax(160px, 1fr));
+    /* Always stacked like the mobile card — stable on maximized desktop */
+    display: grid;
+    grid-template-columns: 44px minmax(0, 1fr) auto;
+    grid-template-areas:
+        "handle type   name"
+        "url    url    url"
+        "size   size   size"
+        "path   path   path"
+        "rec    .      remove";
+    gap: 12px;
     align-items: center;
     min-width: 0;
     overflow: hidden;
+    padding: 16px;
 }
 
 .repeat-item.link-item > * {
@@ -178,29 +187,64 @@
 }
 
 .repeat-item.link-item .drag-handle {
-    grid-column: 1;
-    grid-row: 1;
+    grid-area: handle;
+    width: 44px;
+    height: 48px;
 }
 
 .repeat-item.link-item .link-type {
-    grid-column: 2;
+    grid-area: type;
+}
+
+.repeat-item.link-item .link-name {
+    grid-area: name;
 }
 
 .repeat-item.link-item .url-field {
-    grid-column: 1 / -1;
+    grid-area: url;
 }
 
-.repeat-item.link-item .link-size,
+.repeat-item.link-item .link-size {
+    grid-area: size;
+    min-width: 0;
+    width: 100%;
+}
+
 .repeat-item.link-item .link-extract-path {
-    grid-column: span 1;
+    grid-area: path;
+    min-width: 0;
+    width: 100%;
 }
 
 .repeat-item.link-item .checkbox-inline {
+    grid-area: rec;
     justify-self: start;
 }
 
 .repeat-item.link-item .remove-button {
+    grid-area: remove;
     justify-self: end;
+    border: 1px solid rgba(255, 92, 92, 0.55);
+    background: rgba(255, 60, 60, 0.12);
+    color: #ff9a9a;
+    border-radius: 10px;
+    padding: 10px 16px;
+    font-size: 0.95rem;
+    font-weight: 700;
+    min-height: 44px;
+    cursor: pointer;
+    transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+}
+
+.repeat-item.link-item .remove-button:hover {
+    background: rgba(255, 60, 60, 0.28);
+    border-color: #ff5c5c;
+    color: #fff;
+}
+
+.repeat-item.link-item .remove-button:focus {
+    outline: 2px solid #ff5c5c;
+    outline-offset: 2px;
 }
 
 .drag-handle {
@@ -436,42 +480,9 @@
         min-height: 52px;
         padding: 14px 16px;
     }
-
-    /* handle | type | name | size | extract_path | recommended | remove */
-    .repeat-item.link-item {
-        grid-template-columns:
-            40px
-            minmax(120px, 0.9fr)
-            minmax(120px, 1fr)
-            minmax(140px, 0.85fr)
-            minmax(180px, 1.2fr)
-            auto
-            auto;
-    }
-
-    .repeat-item.link-item .drag-handle { grid-column: 1; grid-row: 1; }
-    .repeat-item.link-item .link-type { grid-column: 2; grid-row: 1; }
-    .repeat-item.link-item .link-name { grid-column: 3; grid-row: 1; }
-    .repeat-item.link-item .link-size { grid-column: 4; grid-row: 1; min-width: 140px; }
-    .repeat-item.link-item .link-extract-path { grid-column: 5; grid-row: 1; }
-    .repeat-item.link-item .checkbox-inline { grid-column: 6; grid-row: 1; }
-    .repeat-item.link-item .remove-button { grid-column: 7; grid-row: 1; justify-self: end; }
-    .repeat-item.link-item .url-field { grid-column: 2 / -1; grid-row: 2; }
 }
 
-/* Mid desktop: keep size readable when columns wrap */
-@media (min-width: 901px) and (max-width: 1099px) {
-    .repeat-item.link-item {
-        grid-template-columns: 40px repeat(2, minmax(0, 1fr));
-    }
-    .repeat-item.link-item .url-field { grid-column: 2 / -1; }
-    .repeat-item.link-item .link-size {
-        grid-column: 2 / -1;
-        min-width: 0;
-        width: 100%;
-    }
-    .repeat-item.link-item .link-extract-path { grid-column: 2 / -1; }
-}
+
 
 @media (max-width: 900px) {
     .generator-layout {
@@ -510,9 +521,6 @@
         padding: 18px;
     }
 
-    .repeat-item.link-item {
-        grid-template-columns: 32px 1fr;
-    }
 
     .preview-panel pre {
         max-height: 500px;
@@ -537,4 +545,17 @@
     min-height: 120px;
     font-family: inherit;
     white-space: pre-wrap;
+}
+
+@media (max-width: 520px) {
+    .repeat-item.link-item {
+        grid-template-columns: 44px minmax(0, 1fr);
+        grid-template-areas:
+            "handle type"
+            "name   name"
+            "url    url"
+            "size   size"
+            "path   path"
+            "rec    remove";
+    }
 }
