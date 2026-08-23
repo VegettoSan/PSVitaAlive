@@ -18,9 +18,9 @@ TEXT_SUFFIXES = {
     ".md", ".json", ".py", ".yml", ".yaml", ".txt", ".html", ".js", ".css"
 }
 SKIP_DIRS = {
-    ".git", ".github/workflows/build", "Client PSVitaAlive/build", "node_modules"
+    ".github/workflows/build", "Client PSVitaAlive/build", "node_modules"
 }
-URL_RE = re.compile(r"https?://[^\\s\\\"'<>`]+")
+URL_RE = re.compile(r'''https?://[^\s"'<>`]+''')
 
 
 def replace_non_url_text(text: str) -> str:
