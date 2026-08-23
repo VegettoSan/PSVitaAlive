@@ -55,7 +55,12 @@ function isDownloadableHomebrewLink(link) {
 
     return (
         type === "download" ||
-        type === "mirror"
+        type === "mirror" ||
+        type === "data files" ||
+        type === "data file" ||
+        type === "game files" ||
+        type === "game file" ||
+        type === "pkg"
     );
 }
 
