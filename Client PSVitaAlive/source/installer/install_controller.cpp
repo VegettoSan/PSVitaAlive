@@ -201,76 +201,53 @@ bool InstallController::requestInstall(
          settings_.installMethod == InstallMethod::Direct);
 
     if (wantBgdl && pkgInstall) {
-        // Immediate UI feedback (zRIF lookup + ShellSvc can take a moment).
+        // Show progress UI immediately; do heavy work on the install worker so the
+        // main thread keeps rendering (zRIF index + ShellSvc can take seconds).
         setFileName(niceTitle.c_str());
         setStage("BGDL");
+        setInstallPath("");
+        setTitleId("");
+        liveAreaOk_.store(false);
+        current_.store(0);
+        total_.store(0);
+        speed_.store(0);
         setState(InstallStatus::State::Downloading,
-                 "Preparing license and system download...");
-        if (!BgdlClient::instance().available() && !BgdlClient::instance().init()) {
-            if (settings_.installMethod == InstallMethod::Bgdl) {
-                setState(InstallStatus::State::Failed,
-                         "BGDL unavailable on this device. Use Auto or Direct.");
-                resultShownAtMs_.store(sceKernelGetSystemTimeWide() / 1000ULL);
-                return false;
-            }
-            // Auto falls through to direct download; workerMain will attach RIF from zRIF if available.
-        } else {
-            PkgBgdlRequest preq;
-            preq.title = niceTitle;
-            preq.url = url;
-            preq.zrif = zrif;
-            preq.contentId = contentId;
-            preq.type = PkgBgdlInstaller::typeFromLinkType(linkType);
-            // PSP/PS1 catalogs: force Psp BGDL type when content id present and no zRIF
-            if (preq.zrif.empty() && !preq.contentId.empty() &&
-                (preq.type == BgdlTaskType::Game || preq.type == BgdlTaskType::Psp)) {
-                // Heuristic: NPS content ids for PSP/PS1 often start with UP/EP/JP and title like NPU*
-                if (preq.contentId.find("-NPU") != std::string::npos ||
-                    preq.contentId.find("-ULES") != std::string::npos ||
-                    preq.contentId.find("-ULUS") != std::string::npos ||
-                    preq.contentId.find("-UCUS") != std::string::npos ||
-                    preq.contentId.find("-NPE") != std::string::npos ||
-                    preq.contentId.find("-NPJ") != std::string::npos ||
-                    preq.contentId.find("-NPH") != std::string::npos ||
-                    linkType.find("PSP") != std::string::npos ||
-                    linkType.find("PS1") != std::string::npos ||
-                    linkType.find("PSX") != std::string::npos) {
-                    preq.type = BgdlTaskType::Psp;
-                }
-            }
-            diagnostics::log(std::string("[Installer] PKG via PkgBgdlInstaller type=") +
-                             std::to_string(static_cast<int>(preq.type)) +
-                             " zrif=" + (zrif.empty() ? "no" : "yes"));
+                 "Preparing license and queuing system download...");
 
-            setMessage("Queuing system download...");
-            const PkgBgdlResult bg = PkgBgdlInstaller::enqueue(preq);
-            if (bg.ok) {
-                setFileName(niceTitle.c_str());
-                setStage("BGDL");
-                setInstallPath("");
-                setTitleId("");
-                liveAreaOk_.store(false);
-                // Success = queued, not installed. Be explicit so the user checks LiveArea.
-                char msg[384];
-                sceClibSnprintf(msg, sizeof(msg),
-                    "Queued: %s — open LiveArea notifications to watch download/install.",
-                    niceTitle.c_str());
-                setState(InstallStatus::State::Completed, msg);
-                resultShownAtMs_.store(sceKernelGetSystemTimeWide() / 1000ULL);
-                diagnostics::log(std::string("[Installer] PKG BGDL queued id=") + std::to_string(bg.bgdlId) +
-                                 " title=" + niceTitle);
-                return true;
-            }
-            // Never promote a raw retail .pkg without RIF (fails with 0x80010014).
-            // Prefer a clear error over a long useless direct download.
-            const char* failMsg = bg.message.empty()
-                ? "PKG license (zRIF) missing or BGDL queue failed"
-                : bg.message.c_str();
-            setState(InstallStatus::State::Failed, failMsg);
+        activeBgdlJob_ = true;
+        activeBgdlUrl_ = url;
+        activeBgdlTitle_ = niceTitle;
+        activeBgdlLinkType_ = linkType;
+        activeZrif_ = zrif;
+        activeContentId_ = contentId;
+        activeJobId_.clear();
+        activeZipDestination_.clear();
+        activeFileName_ = niceTitle;
+        workerDone_.store(false);
+
+        workerThread_ = sceKernelCreateThread("PSVitaAliveInstall", &InstallController::workerEntry,
+            0x10000100, 64 * 1024, 0, 0, nullptr);
+        if (workerThread_ < 0) {
+            activeBgdlJob_ = false;
+            setState(InstallStatus::State::Failed, "Could not create worker thread");
             resultShownAtMs_.store(sceKernelGetSystemTimeWide() / 1000ULL);
-            diagnostics::log(std::string("[Installer] PKG BGDL failed — no direct fallback: ") + failMsg);
+            workerDone_.store(true);
             return false;
         }
+
+        InstallController* self = this;
+        const int result = sceKernelStartThread(workerThread_, sizeof(self), &self);
+        if (result < 0) {
+            activeBgdlJob_ = false;
+            sceKernelDeleteThread(workerThread_);
+            workerThread_ = -1;
+            setState(InstallStatus::State::Failed, "Could not start worker thread");
+            resultShownAtMs_.store(sceKernelGetSystemTimeWide() / 1000ULL);
+            workerDone_.store(true);
+            return false;
+        }
+        diagnostics::log(std::string("[Installer] PKG BGDL job started (async) title=") + niceTitle);
+        return true;
     } else if (settings_.installMethod == InstallMethod::Bgdl) {
         diagnostics::log("[Installer] BGDL selected but file is not PKG - using direct path");
     }
@@ -353,17 +330,28 @@ InstallStatus InstallController::status() const {
     result.installPath = installPath_;
     result.titleId = titleId_;
     result.liveAreaOk = liveAreaOk_.load();
+    result.resultAutoCloseRemainingMs = 0;
+    if (result.state == InstallStatus::State::Completed) {
+        const uint64_t shown = resultShownAtMs_.load();
+        if (shown != 0) {
+            const uint64_t now = sceKernelGetSystemTimeWide() / 1000ULL;
+            const uint64_t elapsed = (now > shown) ? (now - shown) : 0;
+            if (elapsed < RESULT_AUTO_DISMISS_MS)
+                result.resultAutoCloseRemainingMs = RESULT_AUTO_DISMISS_MS - elapsed;
+        }
+    }
     return result;
 }
 
 void InstallController::maybeAutoAcknowledgeResult() {
+    // Only successful results auto-dismiss. Errors stay until the user acknowledges.
     const auto s = static_cast<InstallStatus::State>(state_.load());
-    if (s != InstallStatus::State::Completed && s != InstallStatus::State::Failed) return;
+    if (s != InstallStatus::State::Completed) return;
     const uint64_t shown = resultShownAtMs_.load();
     if (shown == 0) return;
     const uint64_t now = sceKernelGetSystemTimeWide() / 1000ULL;
     if (now >= shown && (now - shown) >= RESULT_AUTO_DISMISS_MS) {
-        diagnostics::log("[Installer] result auto-dismiss after timeout");
+        diagnostics::log("[Installer] success result auto-dismiss after timeout");
         acknowledgeResult();
     }
 }
@@ -401,6 +389,79 @@ int InstallController::workerEntry(SceSize args, void* argp) {
 }
 
 int InstallController::workerMain() {
+    if (activeBgdlJob_) {
+        activeBgdlJob_ = false;
+        const std::string title = activeBgdlTitle_;
+        const std::string url = activeBgdlUrl_;
+        const std::string linkType = activeBgdlLinkType_;
+        const std::string zrif = activeZrif_;
+        const std::string contentId = activeContentId_;
+
+        setMessage("Preparing license...");
+        if (!BgdlClient::instance().available() && !BgdlClient::instance().init()) {
+            setState(InstallStatus::State::Failed,
+                     "BGDL unavailable on this device. Try again or check plugins.");
+            resultShownAtMs_.store(sceKernelGetSystemTimeWide() / 1000ULL);
+            workerDone_.store(true);
+            workerThread_ = -1;
+            return 0;
+        }
+
+        setMessage("Queuing system download...");
+        PkgBgdlRequest preq;
+        preq.title = title;
+        preq.url = url;
+        preq.zrif = zrif;
+        preq.contentId = contentId;
+        preq.type = PkgBgdlInstaller::typeFromLinkType(linkType);
+        if (preq.zrif.empty() && !preq.contentId.empty() &&
+            (preq.type == BgdlTaskType::Game || preq.type == BgdlTaskType::Psp)) {
+            if (preq.contentId.find("-NPU") != std::string::npos ||
+                preq.contentId.find("-ULES") != std::string::npos ||
+                preq.contentId.find("-ULUS") != std::string::npos ||
+                preq.contentId.find("-UCUS") != std::string::npos ||
+                preq.contentId.find("-NPE") != std::string::npos ||
+                preq.contentId.find("-NPJ") != std::string::npos ||
+                preq.contentId.find("-NPH") != std::string::npos ||
+                linkType.find("PSP") != std::string::npos ||
+                linkType.find("PS1") != std::string::npos ||
+                linkType.find("PSX") != std::string::npos) {
+                preq.type = BgdlTaskType::Psp;
+            }
+        }
+
+        diagnostics::log(std::string("[Installer] PKG via PkgBgdlInstaller (worker) type=") +
+                         std::to_string(static_cast<int>(preq.type)) +
+                         " zrif=" + (zrif.empty() ? "no" : "yes"));
+
+        const PkgBgdlResult bg = PkgBgdlInstaller::enqueue(preq);
+        if (bg.ok) {
+            setFileName(title.c_str());
+            setStage("BGDL");
+            setInstallPath("");
+            setTitleId("");
+            liveAreaOk_.store(false);
+            char msg[384];
+            sceClibSnprintf(msg, sizeof(msg),
+                "Queued: %s — open LiveArea notifications to watch download/install.",
+                title.c_str());
+            setState(InstallStatus::State::Completed, msg);
+            resultShownAtMs_.store(sceKernelGetSystemTimeWide() / 1000ULL);
+            diagnostics::log(std::string("[Installer] PKG BGDL queued id=") + std::to_string(bg.bgdlId) +
+                             " title=" + title);
+        } else {
+            const char* failMsg = bg.message.empty()
+                ? "PKG license (zRIF) missing or BGDL queue failed"
+                : bg.message.c_str();
+            setState(InstallStatus::State::Failed, failMsg);
+            resultShownAtMs_.store(sceKernelGetSystemTimeWide() / 1000ULL);
+            diagnostics::log(std::string("[Installer] PKG BGDL failed: ") + failMsg);
+        }
+        workerDone_.store(true);
+        workerThread_ = -1;
+        return 0;
+    }
+
     const bool downloaded = downloads_.processQueue();
     DownloadJob* job = downloads_.findJob(activeJobId_);
 
