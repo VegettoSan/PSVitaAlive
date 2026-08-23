@@ -1,5 +1,53 @@
 [
   {
+    "id": "battleship-vita",
+    "title_id": "SSB64VITA",
+    "name": "Battleship Vita",
+    "description": "Port of Battleship for PSVita.",
+    "long_description": "Port of Battleship for PSVita. Battleship is a port of Super Smash Bros based on the decompilation efforts of the game.",
+    "author_ids": [
+      "robin994"
+    ],
+    "category_id": "ports",
+    "subcategory_ids": [
+      "other"
+    ],
+    "version": "v.1.0",
+    "version_date": "2026-08-23",
+    "requirements": "- libshacccg.suprx\n- Game Data Files: N64",
+    "size": 7201907,
+    "status": "Legacy",
+    "icon": "https://www.rinnegatamante.eu/vitadb/icons/98fdcc737c4fbbbe84068396478b4990274e5122301d508d1fda39bfad44db62.png",
+    "screenshots": [
+      "https://www.rinnegatamante.eu/vitadb/screenshots/4c18ceedb403dfbc85434f27517081660aba9762172f2a038bcfe7559f43ad25.png",
+      "https://www.rinnegatamante.eu/vitadb/screenshots/f9180c25b3ddeb764a88fa6b54b794f747d6e167ea9c6413ddb36742c4df0b2d.png",
+      "https://www.rinnegatamante.eu/vitadb/screenshots/34d3bbaaf6ef4a2b7e69bdf9b996f99f8bba4b29fe9c8c55c49e522472a4e7fe.png"
+    ],
+    "links": [
+      {
+        "type": "Download",
+        "name": "VitaDB VPK",
+        "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1483",
+        "recommended": true
+      },
+      {
+        "type": "Official Website",
+        "name": "VitaDB Release Page",
+        "url": "https://github.com/robin994/battleship-vita/releases"
+      },
+      {
+        "type": "Repository",
+        "name": "Repositorio",
+        "url": "https://github.com/robin994/battleship-vita"
+      }
+    ],
+    "source_name": "VitaDB",
+    "source_id": "1483",
+    "source_url": "https://github.com/robin994/battleship-vita",
+    "release_page": "https://github.com/robin994/battleship-vita/releases",
+    "updated_at": "2026-08-23T23:03:44.658071+00:00"
+  },
+  {
     "id": "nazi-zombies-portable",
     "title_id": "NZZMBSPTB",
     "name": "Nazi Zombies Portable",
@@ -80,6 +128,101 @@
     "updated_at": "2026-08-13T15:34:48.451358+00:00"
   },
   {
+    "id": "asphalt-8",
+    "title_id": "ASPHALT20",
+    "name": "Asphalt 8 Vita",
+    "description": "Native compatibility port of Asphalt 8 Android v2.0.0e for PlayStation Vita. Data-free; users supply exact game files.",
+    "long_description": "A port of the Android version of Asphalt 8 v2.0.0e for PS Vita\nIt uses the original ARMv7 Android game library, with so_util, FalsoJNI and VitaGL.\nRaces, menus, saving, physical controls and touch are working\nPerformance runs in the high 50s during races",
+    "author_ids": [
+      "spliffcurrybeats"
+    ],
+    "category_id": "ports",
+    "subcategory_ids": [
+      "arcade",
+      "racing"
+    ],
+    "version": "0.2",
+    "version_date": "2026-08-23",
+    "requirements": "- Homebrew enabled PS Vita with VitaShell - kubridge.skprx installed - libshacccg.suprx at ur0:/data/libshacccg.suprx or ur0:/data/external/libshacccg.suprx - Your own Asphalt 8 v2.0.0e APK and OBB",
+    "size": 2058721,
+    "status": "Verified",
+    "links": [
+      {
+        "type": "Download",
+        "name": "VPK",
+        "url": "https://www.mediafire.com/file/4u8khqdm0shpfyd/Asphalt8Vita_v0.2.vpk/file",
+        "recommended": true
+      },
+      {
+        "type": "Download",
+        "name": "VPK - Mediafire",
+        "url": "https://www.mediafire.com/file/4u8khqdm0shpfyd/Asphalt8Vita_v0.2.vpk/file",
+        "recommended": true
+      },
+      {
+        "type": "Game Files",
+        "name": "Game Data Files ZIP",
+        "url": "https://archive.org/download/asphalt-8-psvita/asphalt8%20game%20data.zip",
+        "size": 1500000000,
+        "extract_path": "ux0:data/"
+      },
+      {
+        "type": "Game Files",
+        "name": "Game Data Files ZIP - Mediafire",
+        "url": "https://www.mediafire.com/file/w1lqvp8lfxnk9q0/asphalt8_game_data.zip/file",
+        "size": 1500000000,
+        "extract_path": "ux0:data/"
+      },
+      {
+        "type": "Download",
+        "name": "GitLab VPK + Tools",
+        "url": "https://gitlab.com/sexcurrybeats/asphalt8-vita/-/releases/v0.2/downloads/Asphalt8Vita_v0.2.zip",
+        "recommended": false
+      }
+    ],
+    "icon": "https://archive.org/download/asphalt-8-psvita/icon0.png",
+    "screenshots": [
+      "https://archive.org/download/asphalt-8-psvita/bg0.png"
+    ]
+  },
+  {
+    "id": "jet-set-knights",
+    "title_id": "PCSH10282",
+    "name": "Jet Set Knights",
+    "description": "Jet Set Knights is an old-school arcade action platformer inspired by classics from the golden age",
+    "long_description": "Jet Set Knights is an old-school arcade action platformer inspired by classics from the golden age such as Mario Bros, Snow Bros or newest Super Crate Box. If You love retro 2D platformers mixed with tower defense and RPG elements, Jet Set Knight is for You!",
+    "author_ids": [
+      "fobti-interactive"
+    ],
+    "category_id": "games",
+    "subcategory_ids": [
+      "adventure",
+      "arcade",
+      "platformer"
+    ],
+    "version": "1.00",
+    "version_date": "2026-08-23",
+    "requirements": "Ps Vita",
+    "size": 21100000,
+    "status": "Verified",
+    "links": [
+      {
+        "type": "Download",
+        "name": "VPK",
+        "url": "https://archive.org/download/jet-set-knights/Jet%20Set%20Knights.vpk",
+        "recommended": true
+      }
+    ],
+    "icon": "https://archive.org/download/jet-set-knights/icon0.png",
+    "screenshots": [
+      "https://archive.org/download/jet-set-knights/0.png",
+      "https://archive.org/download/jet-set-knights/1.png",
+      "https://archive.org/download/jet-set-knights/2.png",
+      "https://archive.org/download/jet-set-knights/3.png",
+      "https://archive.org/download/jet-set-knights/4.png"
+    ]
+  },
+  {
     "id": "pocket-mortys-vita",
     "title_id": "POMO00137",
     "name": "Pocket Mortys Vita",
@@ -106,9 +249,40 @@
     "links": [
       {
         "type": "Download",
+        "name": "VPK",
+        "url": "https://archive.org/download/pocket-mortys-psvita/PocketMortys_Stub.vpk",
+        "recommended": true,
+        "size": 16814806
+      },
+      {
+        "type": "Download",
         "name": "VitaDB VPK",
         "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1482",
-        "recommended": true
+        "recommended": false,
+        "size": 16814806
+      },
+      {
+        "type": "Download",
+        "name": "VPK Mediafire",
+        "url": "https://www.mediafire.com/file/vc202q0xpsqjhgq/PocketMortys_Stub.vpk/file",
+        "recommended": false,
+        "size": 16814806
+      },
+      {
+        "type": "Game Files",
+        "name": "Game Data Files ZIP",
+        "url": "https://archive.org/download/pocket-mortys-psvita/Data%20Files.zip",
+        "recommended": false,
+        "size": 73900000,
+        "extract_path": "ux0:app/POMO00137/"
+      },
+      {
+        "type": "Game Files",
+        "name": "Game Data Files ZIP Mediafire",
+        "url": "https://www.mediafire.com/file/vjkrnaa4chh9xfz/Data+Files.zip/file",
+        "recommended": false,
+        "size": 73900000,
+        "extract_path": "ux0:app/POMO00137/"
       },
       {
         "type": "Official Website",
@@ -142,14 +316,16 @@
     "status": "Legacy",
     "icon": "https://www.rinnegatamante.eu/vitadb/icons/1bb9917dfa6da37c1a4f8fabe93be3a03435e8231b1c3b3f88bfb2b192701acb.png",
     "screenshots": [
-      "https://www.rinnegatamante.eu/vitadb/icons/1bb9917dfa6da37c1a4f8fabe93be3a03435e8231b1c3b3f88bfb2b192701acb.png"
+      "https://www.rinnegatamante.eu/vitadb/icons/1bb9917dfa6da37c1a4f8fabe93be3a03435e8231b1c3b3f88bfb2b192701acb.png",
+      "https://archive.org/download/JK2VITA/bg.png"
     ],
     "links": [
       {
         "type": "Download",
         "name": "VitaDB VPK",
         "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1481",
-        "recommended": true
+        "recommended": true,
+        "size": 3819434
       },
       {
         "type": "Official Website",
@@ -844,6 +1020,13 @@
         "recommended": true
       },
       {
+        "type": "Game Files",
+        "name": "Game Data Files ZIP Mediafire",
+        "url": "https://www.mediafire.com/file/9be1no8he289e2c/BanjoKazooieVita.zip/file",
+        "recommended": false,
+        "size": 257980000
+      },
+      {
         "type": "Repository",
         "name": "Repositorio",
         "url": "https://github.com/Rinnegatamante/Lighthouse"
@@ -1251,18 +1434,20 @@
         "recommended": false
       },
       {
-        "type": "Download",
+        "type": "Game Files",
         "name": "Game Data Files ZIP",
         "url": "https://archive.org/download/rdball4-psvita/rdball4.zip",
         "recommended": false,
-        "size": 103300000
+        "size": 103300000,
+        "extract_path": "ux0:data/"
       },
       {
-        "type": "Download",
+        "type": "Game Files",
         "name": "Game Data Files ZIP - MediaFire",
         "url": "https://www.mediafire.com/file/ukw7oqpeers2ueg/rdball4.zip/file",
         "recommended": false,
-        "size": 103300000
+        "size": 103300000,
+        "extract_path": "ux0:data/"
       },
       {
         "type": "Download",
@@ -2599,64 +2784,6 @@
     "updated_at": "2026-08-13T15:34:48.323857+00:00"
   },
   {
-    "id": "asphalt-8",
-    "title_id": "ASPHALT20",
-    "name": "Asphalt 8 Vita",
-    "description": "Native compatibility port of Asphalt 8 Android v2.0.0e for PlayStation Vita. Data-free; users supply exact game files.",
-    "long_description": "A port of the Android version of Asphalt 8 v2.0.0e for PS Vita\nIt uses the original ARMv7 Android game library, with so_util, FalsoJNI and VitaGL.\nRaces, menus, saving, physical controls and touch are working\nPerformance runs in the high 50s during races",
-    "author_ids": [
-      "spliffcurrybeats"
-    ],
-    "category_id": "ports",
-    "subcategory_ids": [
-      "arcade",
-      "racing"
-    ],
-    "version": "0.1",
-    "version_date": "2026-08-11",
-    "requirements": "- Homebrew enabled PS Vita with VitaShell - kubridge.skprx installed - libshacccg.suprx at ur0:/data/libshacccg.suprx or ur0:/data/external/libshacccg.suprx - Your own Asphalt 8 v2.0.0e APK and OBB",
-    "size": 2058721,
-    "status": "Verified",
-    "links": [
-      {
-        "type": "Download",
-        "name": "VPK",
-        "url": "https://archive.org/download/asphalt-8-psvita/Asphalt8Vita%20v0.1.vpk",
-        "recommended": true
-      },
-      {
-        "type": "Download",
-        "name": "VPK - Mediafire",
-        "url": "https://www.mediafire.com/file/kun05u66gixx3eg/Asphalt8Vita_v0.1.vpk/file",
-        "recommended": false
-      },
-      {
-        "type": "Download",
-        "name": "Game Data Files ZIP",
-        "url": "https://archive.org/download/asphalt-8-psvita/asphalt8%20game%20data.zip",
-        "recommended": false,
-        "size": 1500000000
-      },
-      {
-        "type": "Download",
-        "name": "Game Data Files ZIP - Mediafire",
-        "url": "https://www.mediafire.com/file/w1lqvp8lfxnk9q0/asphalt8_game_data.zip/file",
-        "recommended": false,
-        "size": 1500000000
-      },
-      {
-        "type": "Download",
-        "name": "GitLab VPK + Tools",
-        "url": "https://gitlab.com/sexcurrybeats/asphalt8-vita/-/releases/v0.1/downloads/artifacts/Asphalt8Vita_v0.1.zip",
-        "recommended": false
-      }
-    ],
-    "icon": "https://archive.org/download/asphalt-8-psvita/icon0.png",
-    "screenshots": [
-      "https://archive.org/download/asphalt-8-psvita/bg0.png"
-    ]
-  },
-  {
     "id": "jk2vita",
     "title_id": "JK2VITA01",
     "name": "JK2VITA",
@@ -2681,9 +2808,40 @@
     "links": [
       {
         "type": "Download",
+        "name": "VPK",
+        "url": "https://archive.org/download/JK2VITA/JAVITA-1.0.vpk",
+        "recommended": true,
+        "size": 3422087
+      },
+      {
+        "type": "Download",
         "name": "VitaDB VPK",
         "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1480",
-        "recommended": true
+        "recommended": false,
+        "size": 3422087
+      },
+      {
+        "type": "Download",
+        "name": "VPK Mediafire",
+        "url": "https://www.mediafire.com/file/0alnjuu3bskbi5h/JAVITA-1.0.vpk/file",
+        "recommended": false,
+        "size": 3819434
+      },
+      {
+        "type": "Game Files",
+        "name": "Game Data Files ZIP",
+        "url": "https://archive.org/download/JK2VITA/Game%20Data%20Files.zip",
+        "recommended": false,
+        "size": 1100000000,
+        "extract_path": "ux0:data/"
+      },
+      {
+        "type": "Game Files",
+        "name": "Game Data Files ZIP Mediafire",
+        "url": "https://www.mediafire.com/file/wc8bo83559pasxd/Game_Data_Files.zip/file",
+        "recommended": false,
+        "size": 1100000000,
+        "extract_path": "ux0:data/"
       },
       {
         "type": "Official Website",
@@ -3470,18 +3628,20 @@
         "recommended": false
       },
       {
-        "type": "Download",
+        "type": "Game Files",
         "name": "Game Data Files ZIP",
         "url": "https://archive.org/download/ctrm-psvita/Game%20Files.zip",
         "recommended": false,
-        "size": 58700000
+        "size": 58700000,
+        "extract_path": "ux0:data/"
       },
       {
-        "type": "Download",
+        "type": "Game Files",
         "name": "Game Data Files ZIP - MediaFire",
         "url": "https://www.mediafire.com/file/5fpkqn43vlonozy/Game_Files.zip/file",
         "recommended": false,
-        "size": 58700000
+        "size": 58700000,
+        "extract_path": "ux0:data/"
       },
       {
         "type": "Download",
@@ -3643,18 +3803,20 @@
         "recommended": false
       },
       {
-        "type": "Download",
+        "type": "Game Files",
         "name": "Game Data Files ZIP",
         "url": "https://archive.org/download/ctrc-psvita/Game%20Data.zip",
         "recommended": false,
-        "size": 11100000
+        "size": 11100000,
+        "extract_path": "ux0:data/"
       },
       {
-        "type": "Download",
+        "type": "Game Files",
         "name": "Game Data Files ZIP - Mediafire",
         "url": "https://www.mediafire.com/file/76qw8cqvq46lyjb/Game_Data.zip/file",
         "recommended": false,
-        "size": 11100000
+        "size": 11100000,
+        "extract_path": "ux0:data/"
       },
       {
         "type": "Download",
@@ -3917,18 +4079,20 @@
         "recommended": false
       },
       {
-        "type": "Download",
+        "type": "Game Files",
         "name": "Game Data Files ZIP",
         "url": "https://archive.org/download/ppc-psvita/Game%20Files.zip",
         "recommended": false,
-        "size": 81700000
+        "size": 81700000,
+        "extract_path": "ux0:data/"
       },
       {
-        "type": "Download",
+        "type": "Game Files",
         "name": "Game Data Files ZIP - MediaFire",
         "url": "https://www.mediafire.com/file/ovjjpaeqwidfqek/Game_Files.zip/file",
         "recommended": false,
-        "size": 81700000
+        "size": 81700000,
+        "extract_path": "ux0:data/"
       },
       {
         "type": "Download",
@@ -4163,18 +4327,20 @@
         "recommended": false
       },
       {
-        "type": "Download",
+        "type": "Game Files",
         "name": "Game Data Files ZIP",
         "url": "https://archive.org/download/zenonia-3-psvita/Game%20Files.zip",
         "recommended": false,
-        "size": 12200000
+        "size": 12200000,
+        "extract_path": "ux0:data/"
       },
       {
-        "type": "Download",
+        "type": "Game Files",
         "name": "Game Data Files ZIP - MediaFire",
         "url": "https://www.mediafire.com/file/3uxmygtsbymkhqc/Game_Files.zip/file",
         "recommended": false,
-        "size": 12200000
+        "size": 12200000,
+        "extract_path": "ux0:data/"
       },
       {
         "type": "Download",
@@ -4715,18 +4881,20 @@
         "recommended": false
       },
       {
-        "type": "Download",
+        "type": "Game Files",
         "name": "Game Data Files ZIP",
         "url": "https://archive.org/download/bbr-psvita/Game%20Files.zip",
         "recommended": false,
-        "size": 70800000
+        "size": 70800000,
+        "extract_path": "ux0:data/"
       },
       {
-        "type": "Download",
+        "type": "Game Files",
         "name": "Game Data Files ZIP - MediaFire",
         "url": "https://www.mediafire.com/file/3alvqh8g0kzifsn/Game_Files.zip/file",
         "recommended": false,
-        "size": 70800000
+        "size": 70800000,
+        "extract_path": "ux0:data/"
       },
       {
         "type": "Download",
@@ -4804,18 +4972,20 @@
         "recommended": false
       },
       {
-        "type": "Download",
+        "type": "Game Files",
         "name": "Game Data Files ZIP",
         "url": "https://archive.org/download/zombie-tsunami-psvita/Game%20Files.zip",
         "recommended": false,
-        "size": 42100000
+        "size": 42100000,
+        "extract_path": "ux0:data/"
       },
       {
-        "type": "Download",
+        "type": "Game Files",
         "name": "Game Data Files ZIP - MediaFire",
         "url": "https://www.mediafire.com/file/resfszr3lfgxfo7/Game_Files.zip/file",
         "recommended": false,
-        "size": 42100000
+        "size": 42100000,
+        "extract_path": "ux0:data/"
       },
       {
         "type": "Download",
@@ -5319,73 +5489,6 @@
     "source_url": "https://github.com/4brm01/Picture-Poker",
     "release_page": "",
     "updated_at": "2026-08-13T15:34:48.331425+00:00"
-  },
-  {
-    "id": "aleph-one-vita",
-    "title_id": "ALPH00001",
-    "name": "Aleph One Vita",
-    "description": "Port of Aleph One for PSVita.",
-    "long_description": "Aleph One is the open source continuation of Bungie's Marathon 2 game engine. Aleph One supports Marathon, Marathon 2 and Marathon Infinity natively. Many third party scenarios and net maps are also available.",
-    "author_ids": [
-      "drdecki"
-    ],
-    "category_id": "ports",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "v.1.4",
-    "version_date": "2026-07-02",
-    "requirements": "- Game Data Files: PC",
-    "size": 6765491,
-    "status": "Legacy",
-    "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/3764bafe72317f28295c5ac2812e44f62ac42e0cc0268a1508819a8ad93e5c00.png",
-    "screenshots": [
-      "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/97ac714875c63cac822ad32920abc6dfc5ede17129aaf472abc6926e3abdbd5d.png",
-      "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/b2162b9144eae336fa65ddb1e92343171d1638d29a5fea7a2bf0ed4adba3328f.png",
-      "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/a6d8bd9da77fd9f3b594fe7b02d6c68e6ac51b084bcdbd61e74ba902d0cbbe34.png",
-      "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/d9aab4389fe7e54f7eb48952d0a3f7909bea67392c5cbfa341d5e1794a9acd54.png",
-      "https://www.rinnegatamante.eu/vitadb/screenshots/97ac714875c63cac822ad32920abc6dfc5ede17129aaf472abc6926e3abdbd5d.png"
-    ],
-    "links": [
-      {
-        "type": "Download",
-        "name": "VitaHomebrewDB VPK",
-        "url": "https://github.com/DrDecki/Aleph-One-Marathon-Trilogy-PsVita-/releases/download/AlephOneVita1.4/alephone.vpk",
-        "recommended": false
-      },
-      {
-        "type": "Official Website",
-        "name": "VitaHomebrewDB Release Page",
-        "url": "https://github.com/DrDecki/Aleph-One-Marathon-Trilogy-PsVita-/releases"
-      },
-      {
-        "type": "Official Website",
-        "name": "NeoVitaDB Release Page",
-        "url": "https://github.com/DrDecki/Aleph-One-Marathon-Trilogy-PsVita-/releases/tag/AlephOneVita1.4"
-      },
-      {
-        "type": "Repository",
-        "name": "Repositorio",
-        "url": "https://github.com/DrDecki/Aleph-One-Marathon-Trilogy-PsVita-"
-      },
-      {
-        "type": "Download",
-        "name": "VitaDB VPK",
-        "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1421",
-        "recommended": true
-      },
-      {
-        "type": "Download",
-        "name": "Data Files",
-        "url": "https://www.rinnegatamante.eu/files/vitadb/AlephOne.zip",
-        "recommended": false
-      }
-    ],
-    "source_name": "VitaHomebrewDB",
-    "source_id": "1421",
-    "source_url": "https://github.com/DrDecki/Aleph-One-Marathon-Trilogy-PsVita-",
-    "release_page": "https://github.com/DrDecki/Aleph-One-Marathon-Trilogy-PsVita-/releases",
-    "updated_at": "2026-08-13T15:34:48.331689+00:00"
   },
   {
     "id": "fheroes2",

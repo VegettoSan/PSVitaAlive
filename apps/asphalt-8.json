@@ -27,7 +27,8 @@
     {
       "type": "Download",
       "name": "VPK - Mediafire",
-      "url": "https://www.mediafire.com/file/4u8khqdm0shpfyd/Asphalt8Vita_v0.2.vpk/file"
+      "url": "https://www.mediafire.com/file/4u8khqdm0shpfyd/Asphalt8Vita_v0.2.vpk/file",
+      "recommended": true
     },
     {
       "type": "Game Files",
@@ -46,7 +47,8 @@
     {
       "type": "Download",
       "name": "GitLab VPK + Tools",
-      "url": "https://gitlab.com/sexcurrybeats/asphalt8-vita/-/releases/v0.2/downloads/Asphalt8Vita_v0.2.zip"
+      "url": "https://gitlab.com/sexcurrybeats/asphalt8-vita/-/releases/v0.2/downloads/Asphalt8Vita_v0.2.zip",
+      "recommended": false
     }
   ],
   "icon": "https://archive.org/download/asphalt-8-psvita/icon0.png",

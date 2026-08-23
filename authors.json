@@ -1820,21 +1820,6 @@
     "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
   },
   {
-    "id": "drdecki",
-    "name": "DrDecki",
-    "avatar": "https://github.com/DrDecki.png",
-    "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
-    "links": [
-      {
-        "type": "GitHub",
-        "name": "GitHub",
-        "url": "https://github.com/DrDecki",
-        "recommended": true
-      }
-    ],
-    "icon": "https://github.com/DrDecki.png"
-  },
-  {
     "id": "drok17",
     "name": "DRok17",
     "avatar": "https://github.com/DRok17.png",
@@ -2208,6 +2193,21 @@
       }
     ],
     "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
+  },
+  {
+    "id": "fobti-interactive",
+    "name": "FobTi interactive",
+    "avatar": "https://avatars.fastly.steamstatic.com/6658c0f842deccf58cdd61da8f246812d5f89382_full.jpg",
+    "bio": "Dev",
+    "links": [
+      {
+        "type": "Repository",
+        "name": "Steam",
+        "url": "https://store.steampowered.com/developer/FobTi",
+        "recommended": true
+      }
+    ],
+    "icon": "https://avatars.fastly.steamstatic.com/6658c0f842deccf58cdd61da8f246812d5f89382_full.jpg"
   },
   {
     "id": "forthw",
