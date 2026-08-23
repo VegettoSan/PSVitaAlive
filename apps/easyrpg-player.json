@@ -25,7 +25,7 @@
   "links": [
     {
       "type": "Download",
-      "name": "VitaDBtoo VPK",
+      "name": "VitaHomebrewDB VPK",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/5-EasyRPG_Player.vpk",
       "recommended": false
     },
@@ -37,7 +37,7 @@
     },
     {
       "type": "Official Website",
-      "name": "VitaDBtoo Release Page",
+      "name": "VitaHomebrewDB Release Page",
       "url": "https://blog.easyrpg.org/"
     },
     {
@@ -47,7 +47,7 @@
     },
     {
       "type": "Download",
-      "name": "VitaDBtoo VPK",
+      "name": "VitaHomebrewDB VPK",
       "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/5-EasyRPG_Player.vpk",
       "recommended": false
     },
@@ -64,7 +64,7 @@
       "recommended": false
     }
   ],
-  "source_name": "VitaDBtoo",
+  "source_name": "VitaHomebrewDB",
   "source_id": "5",
   "source_url": "https://github.com/EasyRPG/Player",
   "release_page": "https://blog.easyrpg.org/",

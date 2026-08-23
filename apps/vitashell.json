@@ -27,13 +27,13 @@
   "links": [
     {
       "type": "Download",
-      "name": "VitaDBtoo VPK",
+      "name": "VitaHomebrewDB VPK",
       "url": "https://github.com/TheOfficialFloW/VitaShell/releases/download/v2.02/VitaShell.vpk",
       "recommended": false
     },
     {
       "type": "Official Website",
-      "name": "VitaDBtoo Release Page",
+      "name": "VitaHomebrewDB Release Page",
       "url": "https://github.com/TheOfficialFloW/VitaShell/releases"
     },
     {
@@ -53,7 +53,7 @@
       "recommended": true
     }
   ],
-  "source_name": "VitaDBtoo",
+  "source_name": "VitaHomebrewDB",
   "source_id": "21",
   "source_url": "https://github.com/TheOfficialFloW/VitaShell",
   "release_page": "https://github.com/TheOfficialFloW/VitaShell/releases",

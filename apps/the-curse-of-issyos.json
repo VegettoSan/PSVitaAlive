@@ -23,13 +23,13 @@
   "links": [
     {
       "type": "Download",
-      "name": "VitaDBtoo VPK",
+      "name": "VitaHomebrewDB VPK",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/784-Issyos.vpk",
       "recommended": false
     },
     {
       "type": "Official Website",
-      "name": "VitaDBtoo Release Page",
+      "name": "VitaHomebrewDB Release Page",
       "url": "https://www.reddit.com/r/vitahacks/comments/ssftqg/the_curse_of_issyos_port/"
     },
     {
@@ -39,7 +39,7 @@
     },
     {
       "type": "Download",
-      "name": "VitaDBtoo VPK",
+      "name": "VitaHomebrewDB VPK",
       "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/784-Issyos.vpk",
       "recommended": false
     },
@@ -50,7 +50,7 @@
       "recommended": true
     }
   ],
-  "source_name": "VitaDBtoo",
+  "source_name": "VitaHomebrewDB",
   "source_id": "784",
   "source_url": "https://www.reddit.com/r/vitahacks/comments/ssftqg/the_curse_of_issyos_port/",
   "release_page": "https://www.reddit.com/r/vitahacks/comments/ssftqg/the_curse_of_issyos_port/",

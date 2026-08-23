@@ -24,13 +24,13 @@
   "links": [
     {
       "type": "Download",
-      "name": "VitaDBtoo VPK",
+      "name": "VitaHomebrewDB VPK",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/253-DeathRun.vpk",
       "recommended": false
     },
     {
       "type": "Official Website",
-      "name": "VitaDBtoo Release Page",
+      "name": "VitaHomebrewDB Release Page",
       "url": "http://wololo.net/talk/viewtopic.php?t=46567"
     },
     {
@@ -40,7 +40,7 @@
     },
     {
       "type": "Download",
-      "name": "VitaDBtoo VPK",
+      "name": "VitaHomebrewDB VPK",
       "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/253-DeathRun.vpk",
       "recommended": false
     },
@@ -51,7 +51,7 @@
       "recommended": true
     }
   ],
-  "source_name": "VitaDBtoo",
+  "source_name": "VitaHomebrewDB",
   "source_id": "253",
   "source_url": "http://wololo.net/talk/viewtopic.php?t=46567",
   "release_page": "http://wololo.net/talk/viewtopic.php?t=46567",

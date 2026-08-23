@@ -23,13 +23,13 @@
   "links": [
     {
       "type": "Download",
-      "name": "VitaDBtoo VPK",
+      "name": "VitaHomebrewDB VPK",
       "url": "https://github.com/pyroesp/vitaFFT/releases/download/v0.1.6/VitaFFT.vpk",
       "recommended": true
     },
     {
       "type": "Official Website",
-      "name": "VitaDBtoo Release Page",
+      "name": "VitaHomebrewDB Release Page",
       "url": "http://wololo.net/talk/viewtopic.php?f=52&t=48443"
     },
     {
@@ -43,7 +43,7 @@
       "url": "https://github.com/pyroesp/vitaFFT"
     }
   ],
-  "source_name": "VitaDBtoo",
+  "source_name": "VitaHomebrewDB",
   "source_id": "303",
   "source_url": "https://github.com/pyroesp/vitaFFT",
   "release_page": "http://wololo.net/talk/viewtopic.php?f=52&t=48443",

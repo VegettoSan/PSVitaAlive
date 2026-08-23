@@ -23,13 +23,13 @@
   "links": [
     {
       "type": "Download",
-      "name": "VitaDBtoo VPK",
+      "name": "VitaHomebrewDB VPK",
       "url": "https://github.com/MajorTomSec/VitaCID/releases/download/1.0/VitaCID.vpk",
       "recommended": false
     },
     {
       "type": "Official Website",
-      "name": "VitaDBtoo Release Page",
+      "name": "VitaHomebrewDB Release Page",
       "url": "http://wololo.net/2016/08/18/release-vitacid-get-ps-vita-console-id/"
     },
     {
@@ -49,7 +49,7 @@
       "recommended": true
     }
   ],
-  "source_name": "VitaDBtoo",
+  "source_name": "VitaHomebrewDB",
   "source_id": "148",
   "source_url": "https://github.com/tomtomdu80/VitaCID",
   "release_page": "http://wololo.net/2016/08/18/release-vitacid-get-ps-vita-console-id/",

@@ -27,13 +27,13 @@
   "links": [
     {
       "type": "Download",
-      "name": "VitaDBtoo VPK",
+      "name": "VitaHomebrewDB VPK",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1102-SOSR00003.vpk",
       "recommended": false
     },
     {
       "type": "Official Website",
-      "name": "VitaDBtoo Release Page",
+      "name": "VitaHomebrewDB Release Page",
       "url": "https://fuhen.homebrew-contest.com/submissions/16/"
     },
     {
@@ -43,7 +43,7 @@
     },
     {
       "type": "Download",
-      "name": "VitaDBtoo VPK",
+      "name": "VitaHomebrewDB VPK",
       "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/1102-SOSR00003.vpk",
       "recommended": false
     },
@@ -60,7 +60,7 @@
       "recommended": false
     }
   ],
-  "source_name": "VitaDBtoo",
+  "source_name": "VitaHomebrewDB",
   "source_id": "1102",
   "source_url": "https://fuhen.homebrew-contest.com/submissions/16/",
   "release_page": "https://fuhen.homebrew-contest.com/submissions/16/",

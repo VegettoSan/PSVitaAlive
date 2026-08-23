@@ -29,13 +29,13 @@
   "links": [
     {
       "type": "Download",
-      "name": "VitaDBtoo VPK",
+      "name": "VitaHomebrewDB VPK",
       "url": "https://github.com/TheOfficialFloW/gtasa_vita/releases/download/v2.1/GTASA.vpk",
       "recommended": false
     },
     {
       "type": "Official Website",
-      "name": "VitaDBtoo Release Page",
+      "name": "VitaHomebrewDB Release Page",
       "url": "https://github.com/TheOfficialFloW/gtasa_vita/releases"
     },
     {
@@ -61,7 +61,7 @@
       "recommended": false
     }
   ],
-  "source_name": "VitaDBtoo",
+  "source_name": "VitaHomebrewDB",
   "source_id": "618",
   "source_url": "https://github.com/TheOfficialFloW/gtasa_vita",
   "release_page": "https://github.com/TheOfficialFloW/gtasa_vita/releases",

@@ -26,13 +26,13 @@
   "links": [
     {
       "type": "Download",
-      "name": "VitaDBtoo VPK",
+      "name": "VitaHomebrewDB VPK",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/51-luaIrc.vpk",
       "recommended": false
     },
     {
       "type": "Official Website",
-      "name": "VitaDBtoo Release Page",
+      "name": "VitaHomebrewDB Release Page",
       "url": "http://wololo.net/talk/viewtopic.php?f=116&t=47107"
     },
     {
@@ -42,7 +42,7 @@
     },
     {
       "type": "Download",
-      "name": "VitaDBtoo VPK",
+      "name": "VitaHomebrewDB VPK",
       "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/51-luaIrc.vpk",
       "recommended": false
     },
@@ -59,7 +59,7 @@
       "recommended": false
     }
   ],
-  "source_name": "VitaDBtoo",
+  "source_name": "VitaHomebrewDB",
   "source_id": "51",
   "source_url": "http://wololo.net/talk/viewtopic.php?f=116&t=47107",
   "release_page": "http://wololo.net/talk/viewtopic.php?f=116&t=47107",

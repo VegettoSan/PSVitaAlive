@@ -27,13 +27,13 @@
   "links": [
     {
       "type": "Download",
-      "name": "VitaDBtoo VPK",
+      "name": "VitaHomebrewDB VPK",
       "url": "https://github.com/Rinnegatamante/Ghostship/releases/download/v.1.2/Ghostship.vpk",
       "recommended": false
     },
     {
       "type": "Official Website",
-      "name": "VitaDBtoo Release Page",
+      "name": "VitaHomebrewDB Release Page",
       "url": "https://github.com/Rinnegatamante/Ghostship/releases"
     },
     {
@@ -59,7 +59,7 @@
       "recommended": false
     }
   ],
-  "source_name": "VitaDBtoo",
+  "source_name": "VitaHomebrewDB",
   "source_id": "1387",
   "source_url": "https://github.com/Rinnegatamante/Ghostship",
   "release_page": "https://github.com/Rinnegatamante/Ghostship/releases",

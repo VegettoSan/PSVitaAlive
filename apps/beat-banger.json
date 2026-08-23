@@ -27,13 +27,13 @@
   "links": [
     {
       "type": "Download",
-      "name": "VitaDBtoo VPK",
+      "name": "VitaHomebrewDB VPK",
       "url": "https://github.com/masteroga101/Beat-Banger-PsVita-/releases/download/v0.99/Beat.Banger.vpk",
       "recommended": false
     },
     {
       "type": "Official Website",
-      "name": "VitaDBtoo Release Page",
+      "name": "VitaHomebrewDB Release Page",
       "url": "https://github.com/masteroga101/Beat-Banger-PsVita-"
     },
     {
@@ -48,7 +48,7 @@
       "recommended": true
     }
   ],
-  "source_name": "VitaDBtoo",
+  "source_name": "VitaHomebrewDB",
   "source_id": "1329",
   "source_url": "https://github.com/masteroga101/Beat-Banger-PsVita-",
   "release_page": "https://github.com/masteroga101/Beat-Banger-PsVita-",

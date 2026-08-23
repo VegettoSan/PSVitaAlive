@@ -24,13 +24,13 @@
   "links": [
     {
       "type": "Download",
-      "name": "VitaDBtoo VPK",
+      "name": "VitaHomebrewDB VPK",
       "url": "https://github.com/gnmmarechal/starfield-vita/releases/download/v0.2/Starfield-Vita-v0.2.vpk",
       "recommended": false
     },
     {
       "type": "Official Website",
-      "name": "VitaDBtoo Release Page",
+      "name": "VitaHomebrewDB Release Page",
       "url": "http://gekihen.customprotocol.com/en/project/Starfield-Vita"
     },
     {
@@ -50,7 +50,7 @@
       "recommended": true
     }
   ],
-  "source_name": "VitaDBtoo",
+  "source_name": "VitaHomebrewDB",
   "source_id": "128",
   "source_url": "https://github.com/gnmmarechal/starfield-vita",
   "release_page": "http://gekihen.customprotocol.com/en/project/Starfield-Vita",

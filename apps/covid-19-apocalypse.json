@@ -27,13 +27,13 @@
   "links": [
     {
       "type": "Download",
-      "name": "VitaDBtoo VPK",
+      "name": "VitaHomebrewDB VPK",
       "url": "https://github.com/softwaregremlin/Covid-19-Apocalypse/releases/download/v1%2C0/covid19Apocalypse.vpk",
       "recommended": false
     },
     {
       "type": "Official Website",
-      "name": "VitaDBtoo Release Page",
+      "name": "VitaHomebrewDB Release Page",
       "url": "https://github.com/softwaregremlin/Covid-19-Apocalypse/releases"
     },
     {
@@ -53,7 +53,7 @@
       "recommended": true
     }
   ],
-  "source_name": "VitaDBtoo",
+  "source_name": "VitaHomebrewDB",
   "source_id": "758",
   "source_url": "https://github.com/softwaregremlin/Covid-19-Apocalypse",
   "release_page": "https://github.com/softwaregremlin/Covid-19-Apocalypse/releases",

@@ -26,13 +26,13 @@
   "links": [
     {
       "type": "Download",
-      "name": "VitaDBtoo VPK",
+      "name": "VitaHomebrewDB VPK",
       "url": "https://github.com/Creckeryop/CookieClicker-Vita/releases/download/0.2/Cookie.Clicker.vpk",
       "recommended": false
     },
     {
       "type": "Official Website",
-      "name": "VitaDBtoo Release Page",
+      "name": "VitaHomebrewDB Release Page",
       "url": "http://gbatemp.net/threads/wip-cookie-clicker-vita.489060/"
     },
     {
@@ -47,7 +47,7 @@
       "recommended": true
     }
   ],
-  "source_name": "VitaDBtoo",
+  "source_name": "VitaHomebrewDB",
   "source_id": "351",
   "source_url": "https://github.com/Creckeryop/CookieClicker-Vita",
   "release_page": "http://gbatemp.net/threads/wip-cookie-clicker-vita.489060/",

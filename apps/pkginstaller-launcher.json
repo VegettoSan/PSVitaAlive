@@ -23,13 +23,13 @@
   "links": [
     {
       "type": "Download",
-      "name": "VitaDBtoo VPK",
+      "name": "VitaHomebrewDB VPK",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/381-PKGInstallerLauncher.vpk",
       "recommended": false
     },
     {
       "type": "Official Website",
-      "name": "VitaDBtoo Release Page",
+      "name": "VitaHomebrewDB Release Page",
       "url": "https://gbatemp.net/threads/release-pkginstaller-launcher-install-pkgs-from-desired-partition.487118/"
     },
     {
@@ -39,7 +39,7 @@
     },
     {
       "type": "Download",
-      "name": "VitaDBtoo VPK",
+      "name": "VitaHomebrewDB VPK",
       "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/381-PKGInstallerLauncher.vpk",
       "recommended": false
     },
@@ -50,7 +50,7 @@
       "recommended": true
     }
   ],
-  "source_name": "VitaDBtoo",
+  "source_name": "VitaHomebrewDB",
   "source_id": "381",
   "source_url": "https://gbatemp.net/threads/release-pkginstaller-launcher-install-pkgs-from-desired-partition.487118/",
   "release_page": "https://gbatemp.net/threads/release-pkginstaller-launcher-install-pkgs-from-desired-partition.487118/",

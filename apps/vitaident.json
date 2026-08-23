@@ -25,13 +25,13 @@
   "links": [
     {
       "type": "Download",
-      "name": "VitaDBtoo VPK",
+      "name": "VitaHomebrewDB VPK",
       "url": "https://github.com/joel16/VITAident/releases/download/0.7.4/VITAident.vpk",
       "recommended": false
     },
     {
       "type": "Official Website",
-      "name": "VitaDBtoo Release Page",
+      "name": "VitaHomebrewDB Release Page",
       "url": "http://wololo.net/talk/viewtopic.php?f=116&t=46381"
     },
     {
@@ -57,7 +57,7 @@
       "recommended": false
     }
   ],
-  "source_name": "VitaDBtoo",
+  "source_name": "VitaHomebrewDB",
   "source_id": "25",
   "source_url": "https://github.com/joel16/VITAident",
   "release_page": "http://wololo.net/talk/viewtopic.php?f=116&t=46381",

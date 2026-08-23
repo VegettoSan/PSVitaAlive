@@ -27,7 +27,7 @@
   "links": [
     {
       "type": "Download",
-      "name": "VitaDBtoo VPK",
+      "name": "VitaHomebrewDB VPK",
       "url": "https://github.com/VMHoss/Innyume-Vita/releases/download/1.8/Innyume_1_8.vpk",
       "recommended": true
     },
@@ -37,7 +37,7 @@
       "url": "https://github.com/VMHoss/Innyume-Vita"
     }
   ],
-  "source_name": "VitaDBtoo",
+  "source_name": "VitaHomebrewDB",
   "source_id": "772",
   "source_url": "https://github.com/VMHoss/Innyume-Vita",
   "release_page": "",

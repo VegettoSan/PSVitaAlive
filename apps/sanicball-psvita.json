@@ -27,13 +27,13 @@
   "links": [
     {
       "type": "Download",
-      "name": "VitaDBtoo VPK",
+      "name": "VitaHomebrewDB VPK",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1027-sanicball.vpk",
       "recommended": false
     },
     {
       "type": "Official Website",
-      "name": "VitaDBtoo Release Page",
+      "name": "VitaHomebrewDB Release Page",
       "url": "https://github.com/SpanishFreddy/SanicBall-PSVita-Port"
     },
     {
@@ -43,7 +43,7 @@
     },
     {
       "type": "Download",
-      "name": "VitaDBtoo VPK",
+      "name": "VitaHomebrewDB VPK",
       "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/1027-sanicball.vpk",
       "recommended": false
     },
@@ -54,7 +54,7 @@
       "recommended": true
     }
   ],
-  "source_name": "VitaDBtoo",
+  "source_name": "VitaHomebrewDB",
   "source_id": "1027",
   "source_url": "https://github.com/SpanishFreddy/SanicBall-PSVita-Port",
   "release_page": "https://github.com/SpanishFreddy/SanicBall-PSVita-Port",

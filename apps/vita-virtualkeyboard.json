@@ -24,13 +24,13 @@
   "links": [
     {
       "type": "Download",
-      "name": "VitaDBtoo VPK",
+      "name": "VitaHomebrewDB VPK",
       "url": "https://github.com/lp1dev/vita_virtualkeyboard/releases/download/V00.01/VirtualKeyboard0001.vpk",
       "recommended": false
     },
     {
       "type": "Official Website",
-      "name": "VitaDBtoo Release Page",
+      "name": "VitaHomebrewDB Release Page",
       "url": "https://github.com/lp1dev/vita_virtualkeyboard/releases"
     },
     {
@@ -45,7 +45,7 @@
       "recommended": true
     }
   ],
-  "source_name": "VitaDBtoo",
+  "source_name": "VitaHomebrewDB",
   "source_id": "1405",
   "source_url": "https://github.com/lp1dev/vita_virtualkeyboard",
   "release_page": "https://github.com/lp1dev/vita_virtualkeyboard/releases",

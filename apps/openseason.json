@@ -24,13 +24,13 @@
   "links": [
     {
       "type": "Download",
-      "name": "VitaDBtoo VPK",
+      "name": "VitaHomebrewDB VPK",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/466-OpenSeason.vpk",
       "recommended": false
     },
     {
       "type": "Official Website",
-      "name": "VitaDBtoo Release Page",
+      "name": "VitaHomebrewDB Release Page",
       "url": "https://twitter.com/Yoyogames28/status/1120550464121122816"
     },
     {
@@ -40,7 +40,7 @@
     },
     {
       "type": "Download",
-      "name": "VitaDBtoo VPK",
+      "name": "VitaHomebrewDB VPK",
       "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/466-OpenSeason.vpk",
       "recommended": false
     },
@@ -51,7 +51,7 @@
       "recommended": true
     }
   ],
-  "source_name": "VitaDBtoo",
+  "source_name": "VitaHomebrewDB",
   "source_id": "466",
   "source_url": "https://twitter.com/Yoyogames28/status/1120550464121122816",
   "release_page": "https://twitter.com/Yoyogames28/status/1120550464121122816",

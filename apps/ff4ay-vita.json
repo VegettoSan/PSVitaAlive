@@ -29,13 +29,13 @@
   "links": [
     {
       "type": "Download",
-      "name": "VitaDBtoo VPK",
+      "name": "VitaHomebrewDB VPK",
       "url": "https://github.com/Rinnegatamante/ff4a_vita/releases/download/v.1.0.1/FF4AY.vpk",
       "recommended": false
     },
     {
       "type": "Official Website",
-      "name": "VitaDBtoo Release Page",
+      "name": "VitaHomebrewDB Release Page",
       "url": "https://github.com/Rinnegatamante/ff4a_vita/releases"
     },
     {
@@ -55,7 +55,7 @@
       "recommended": true
     }
   ],
-  "source_name": "VitaDBtoo",
+  "source_name": "VitaHomebrewDB",
   "source_id": "989",
   "source_url": "https://github.com/Rinnegatamante/ff4a_vita",
   "release_page": "https://github.com/Rinnegatamante/ff4a_vita/releases",

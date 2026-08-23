@@ -23,7 +23,7 @@
   "links": [
     {
       "type": "Download",
-      "name": "VitaDBtoo VPK",
+      "name": "VitaHomebrewDB VPK",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/807-dontopen.vpk",
       "recommended": false
     },
@@ -35,7 +35,7 @@
     },
     {
       "type": "Official Website",
-      "name": "VitaDBtoo Release Page",
+      "name": "VitaHomebrewDB Release Page",
       "url": "https://via01.itch.io/dont-open-your-eyes"
     },
     {
@@ -50,7 +50,7 @@
     },
     {
       "type": "Download",
-      "name": "VitaDBtoo VPK",
+      "name": "VitaHomebrewDB VPK",
       "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/807-dontopen.vpk",
       "recommended": false
     },
@@ -61,7 +61,7 @@
       "recommended": true
     }
   ],
-  "source_name": "VitaDBtoo",
+  "source_name": "VitaHomebrewDB",
   "source_id": "807",
   "source_url": "https://via01.itch.io/dont-open-your-eyes",
   "release_page": "https://via01.itch.io/dont-open-your-eyes",

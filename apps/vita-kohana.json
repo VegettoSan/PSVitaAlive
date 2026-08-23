@@ -23,13 +23,13 @@
   "links": [
     {
       "type": "Download",
-      "name": "VitaDBtoo VPK",
+      "name": "VitaHomebrewDB VPK",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/793-Vita_Kohana_1.02.vpk",
       "recommended": false
     },
     {
       "type": "Official Website",
-      "name": "VitaDBtoo Release Page",
+      "name": "VitaHomebrewDB Release Page",
       "url": "https://gitlab.com/rlyx/vita-kohana/-/releases"
     },
     {
@@ -39,7 +39,7 @@
     },
     {
       "type": "Download",
-      "name": "VitaDBtoo VPK",
+      "name": "VitaHomebrewDB VPK",
       "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/793-Vita_Kohana_1.02.vpk",
       "recommended": false
     },
@@ -50,7 +50,7 @@
       "recommended": true
     }
   ],
-  "source_name": "VitaDBtoo",
+  "source_name": "VitaHomebrewDB",
   "source_id": "793",
   "source_url": "https://gitlab.com/rlyx/vita-kohana",
   "release_page": "https://gitlab.com/rlyx/vita-kohana/-/releases",

@@ -7,7 +7,7 @@ from .sources import Candidate
 
 
 # External source authority for release-date data. Lower numeric priority is
-# weaker. VitaDB is the primary source; VitaDBtoo is the secondary fallback.
+# weaker. VitaDB is the primary source; VitaHomebrewDB is the secondary fallback.
 SOURCE_PRIORITY = {
     "vitadb": 110,
     "vitadbtoo": 90,
@@ -34,7 +34,7 @@ def select_release_candidate(candidates: list[Candidate], local: Candidate | Non
 
     A local app and an external catalog can describe the same version. For the
     same version, source authority is used before the date: VitaDB is primary
-    and VitaDBtoo is the fallback. A newer external version can still replace
+    and VitaHomebrewDB is the fallback. A newer external version can still replace
     the local version normally.
     """
     external = [item for item in candidates if item.source_id != "local"]
@@ -69,7 +69,7 @@ def _select_version_date(candidates: list[Candidate], release: Candidate, local:
     """Resolve version_date using source authority, never apparent recency.
 
     For a given version, VitaDB is authoritative when it provides a date.
-    VitaDBtoo is used only when VitaDB does not provide one. A local date is
+    VitaHomebrewDB is used only when VitaDB does not provide one. A local date is
     used only when neither external source has a date for that version.
     """
     target_version = normalize_version(release.version)

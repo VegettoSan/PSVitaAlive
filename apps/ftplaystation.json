@@ -23,7 +23,7 @@
   "links": [
     {
       "type": "Download",
-      "name": "VitaDBtoo VPK",
+      "name": "VitaHomebrewDB VPK",
       "url": "https://github.com/StonedModder/FTPlaystation/releases/download/0.1/FTPlaystation.vpk",
       "recommended": false
     },
@@ -44,7 +44,7 @@
       "recommended": true
     }
   ],
-  "source_name": "VitaDBtoo",
+  "source_name": "VitaHomebrewDB",
   "source_id": "252",
   "source_url": "https://github.com/ItsDeidara/FTPlaystation",
   "release_page": "",

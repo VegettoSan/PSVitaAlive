@@ -29,7 +29,7 @@
   "links": [
     {
       "type": "Download",
-      "name": "VitaDBtoo VPK",
+      "name": "VitaHomebrewDB VPK",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/121-VitaTester-mod.vpk",
       "recommended": false
     },
@@ -40,7 +40,7 @@
     },
     {
       "type": "Download",
-      "name": "VitaDBtoo VPK",
+      "name": "VitaHomebrewDB VPK",
       "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/121-VitaTester-mod.vpk",
       "recommended": false
     },
@@ -61,7 +61,7 @@
       "url": "https://github.com/Avellea/VitaTester/releases/tag/1.0"
     }
   ],
-  "source_name": "VitaDBtoo",
+  "source_name": "VitaHomebrewDB",
   "source_id": "121",
   "source_url": "https://github.com/NamelessGhoul0/VitaTester",
   "release_page": "",

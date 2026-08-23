@@ -27,13 +27,13 @@
   "links": [
     {
       "type": "Download",
-      "name": "VitaDBtoo VPK",
+      "name": "VitaHomebrewDB VPK",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/651-Abuse.vpk",
       "recommended": false
     },
     {
       "type": "Official Website",
-      "name": "VitaDBtoo Release Page",
+      "name": "VitaHomebrewDB Release Page",
       "url": "https://www.psx-place.com/threads/release-abuse-vita-abuse-sdl-port-for-psvita-pstv.33594/"
     },
     {
@@ -43,7 +43,7 @@
     },
     {
       "type": "Download",
-      "name": "VitaDBtoo VPK",
+      "name": "VitaHomebrewDB VPK",
       "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/651-Abuse.vpk",
       "recommended": false
     },
@@ -54,7 +54,7 @@
       "recommended": true
     }
   ],
-  "source_name": "VitaDBtoo",
+  "source_name": "VitaHomebrewDB",
   "source_id": "651",
   "source_url": "https://github.com/Rinnegatamante/abuse-vita",
   "release_page": "https://www.psx-place.com/threads/release-abuse-vita-abuse-sdl-port-for-psvita-pstv.33594/",

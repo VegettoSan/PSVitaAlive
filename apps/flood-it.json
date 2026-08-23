@@ -26,13 +26,13 @@
   "links": [
     {
       "type": "Download",
-      "name": "VitaDBtoo VPK",
+      "name": "VitaHomebrewDB VPK",
       "url": "https://github.com/notnotme/NotEngine_PSV/releases/download/11.17.2016/floodit.vpk",
       "recommended": true
     },
     {
       "type": "Official Website",
-      "name": "VitaDBtoo Release Page",
+      "name": "VitaHomebrewDB Release Page",
       "url": "http://wololo.net/talk/viewtopic.php?f=113&t=45534"
     },
     {
@@ -46,7 +46,7 @@
       "url": "https://github.com/notnotme/NotEngine_PSV"
     }
   ],
-  "source_name": "VitaDBtoo",
+  "source_name": "VitaHomebrewDB",
   "source_id": "156",
   "source_url": "https://github.com/notnotme/NotEngine_PSV",
   "release_page": "http://wololo.net/talk/viewtopic.php?f=113&t=45534",

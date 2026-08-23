@@ -25,13 +25,13 @@
   "links": [
     {
       "type": "Download",
-      "name": "VitaDBtoo VPK",
+      "name": "VitaHomebrewDB VPK",
       "url": "https://github.com/skogaby/CATSFC-libretro/releases/download/1.3.0/CATSFC-libretro-vita-1.3.0.vpk",
       "recommended": true
     },
     {
       "type": "Official Website",
-      "name": "VitaDBtoo Release Page",
+      "name": "VitaHomebrewDB Release Page",
       "url": "http://wololo.net/talk/viewtopic.php?t=46394"
     },
     {
@@ -45,7 +45,7 @@
       "url": "https://github.com/skogaby/CATSFC-libretro"
     }
   ],
-  "source_name": "VitaDBtoo",
+  "source_name": "VitaHomebrewDB",
   "source_id": "75",
   "source_url": "https://github.com/skogaby/CATSFC-libretro",
   "release_page": "http://wololo.net/talk/viewtopic.php?t=46394",

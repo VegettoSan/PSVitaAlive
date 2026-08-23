@@ -23,13 +23,13 @@
   "links": [
     {
       "type": "Download",
-      "name": "VitaDBtoo VPK",
+      "name": "VitaHomebrewDB VPK",
       "url": "https://github.com/theheroGAC/SuperTux-PSVITA/releases/download/1.04/SuperTux-PSVITA.vpk",
       "recommended": true
     },
     {
       "type": "Official Website",
-      "name": "VitaDBtoo Release Page",
+      "name": "VitaHomebrewDB Release Page",
       "url": "https://github.com/theheroGAC/SuperTux-PSVITA/releases"
     },
     {
@@ -43,7 +43,7 @@
       "url": "https://github.com/theheroGAC/SuperTux-PSVITA"
     }
   ],
-  "source_name": "VitaDBtoo",
+  "source_name": "VitaHomebrewDB",
   "source_id": "1468",
   "source_url": "https://github.com/theheroGAC/SuperTux-PSVITA",
   "release_page": "https://github.com/theheroGAC/SuperTux-PSVITA/releases",

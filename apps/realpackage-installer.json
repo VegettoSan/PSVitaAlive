@@ -24,13 +24,13 @@
   "links": [
     {
       "type": "Download",
-      "name": "VitaDBtoo VPK",
+      "name": "VitaHomebrewDB VPK",
       "url": "https://github.com/LiEnby/real-package-installer/releases/download/1.4/real_package_installer.vpk",
       "recommended": true
     },
     {
       "type": "Official Website",
-      "name": "VitaDBtoo Release Page",
+      "name": "VitaHomebrewDB Release Page",
       "url": "https://github.com/LiEnby/real-package-installer/releases"
     },
     {
@@ -44,7 +44,7 @@
       "url": "https://github.com/LiEnby/real-package-installer"
     }
   ],
-  "source_name": "VitaDBtoo",
+  "source_name": "VitaHomebrewDB",
   "source_id": "1454",
   "source_url": "https://github.com/LiEnby/real-package-installer",
   "release_page": "https://github.com/LiEnby/real-package-installer/releases",

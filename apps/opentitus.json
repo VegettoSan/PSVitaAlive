@@ -27,19 +27,19 @@
   "links": [
     {
       "type": "Download",
-      "name": "VitaDBtoo VPK",
+      "name": "VitaHomebrewDB VPK",
       "url": "https://github.com/usineur/opentitus/releases/download/1.0/Titus.vpk",
       "recommended": false
     },
     {
       "type": "Download",
-      "name": "VitaDBtoo VPK",
+      "name": "VitaHomebrewDB VPK",
       "url": "https://github.com/usineur/opentitus/releases/download/1.0/Moktar.vpk",
       "recommended": false
     },
     {
       "type": "Official Website",
-      "name": "VitaDBtoo Release Page",
+      "name": "VitaHomebrewDB Release Page",
       "url": "http://wololo.net/talk/viewtopic.php?f=116&t=48673"
     },
     {
@@ -65,7 +65,7 @@
       "recommended": false
     }
   ],
-  "source_name": "VitaDBtoo",
+  "source_name": "VitaHomebrewDB",
   "source_id": "344",
   "source_url": "https://github.com/usineur/opentitus",
   "release_page": "http://wololo.net/talk/viewtopic.php?f=116&t=48673",

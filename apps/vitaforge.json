@@ -3,7 +3,7 @@
   "title_id": "VITAFORGE",
   "name": "VitaForge",
   "description": "Homebrew store client.",
-  "long_description": "Client for browsing and installing PSVITA homebrew, written in Rust with SDL2. Reads its catalogue from VitaDBtoo-db.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
+  "long_description": "Client for browsing and installing PSVITA homebrew, written in Rust with SDL2. Reads its catalogue from VitaHomebrewDB-db.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
   "author_ids": [
     "josephinoo"
   ],
@@ -23,13 +23,13 @@
   "links": [
     {
       "type": "Download",
-      "name": "VitaDBtoo VPK",
+      "name": "VitaHomebrewDB VPK",
       "url": "https://github.com/josephinoo/vitaForge/releases/download/v0.1.0/vitaforge.vpk",
       "recommended": false
     },
     {
       "type": "Official Website",
-      "name": "VitaDBtoo Release Page",
+      "name": "VitaHomebrewDB Release Page",
       "url": "https://github.com/josephinoo/vitaForge/releases"
     },
     {
@@ -49,7 +49,7 @@
       "recommended": true
     }
   ],
-  "source_name": "VitaDBtoo",
+  "source_name": "VitaHomebrewDB",
   "source_id": "1451",
   "source_url": "https://github.com/josephinoo/vitaForge",
   "release_page": "https://github.com/josephinoo/vitaForge/releases",

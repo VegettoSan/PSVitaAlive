@@ -23,13 +23,13 @@
   "links": [
     {
       "type": "Download",
-      "name": "VitaDBtoo VPK",
+      "name": "VitaHomebrewDB VPK",
       "url": "https://github.com/jtothebell/fake-08/releases/download/v0.0.2.20/fake_08.vpk",
       "recommended": false
     },
     {
       "type": "Official Website",
-      "name": "VitaDBtoo Release Page",
+      "name": "VitaHomebrewDB Release Page",
       "url": "https://github.com/jtothebell/fake-08/releases"
     },
     {
@@ -44,7 +44,7 @@
       "recommended": true
     }
   ],
-  "source_name": "VitaDBtoo",
+  "source_name": "VitaHomebrewDB",
   "source_id": "623",
   "source_url": "https://github.com/jtothebell/fake-08",
   "release_page": "https://github.com/jtothebell/fake-08/releases",

@@ -23,13 +23,13 @@
   "links": [
     {
       "type": "Download",
-      "name": "VitaDBtoo VPK",
+      "name": "VitaHomebrewDB VPK",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/TFoUAD.vpk",
       "recommended": false
     },
     {
       "type": "Official Website",
-      "name": "VitaDBtoo Release Page",
+      "name": "VitaHomebrewDB Release Page",
       "url": "https://github.com/noradninja/The-Four-of-Us-Are-Dying/tree/Current"
     },
     {
@@ -39,7 +39,7 @@
     },
     {
       "type": "Download",
-      "name": "VitaDBtoo VPK",
+      "name": "VitaHomebrewDB VPK",
       "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/TFoUAD.vpk",
       "recommended": true
     },
@@ -49,7 +49,7 @@
       "url": "https://github.com"
     }
   ],
-  "source_name": "VitaDBtoo",
+  "source_name": "VitaHomebrewDB",
   "source_id": "1456",
   "source_url": "https://github.com/noradninja/The-Four-of-Us-Are-Dying",
   "release_page": "https://github.com/noradninja/The-Four-of-Us-Are-Dying/tree/Current",

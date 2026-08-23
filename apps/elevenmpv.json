@@ -24,13 +24,13 @@
   "links": [
     {
       "type": "Download",
-      "name": "VitaDBtoo VPK",
+      "name": "VitaHomebrewDB VPK",
       "url": "https://github.com/joel16/ElevenMPV/releases/download/v2.10/ElevenMPV.vpk",
       "recommended": false
     },
     {
       "type": "Official Website",
-      "name": "VitaDBtoo Release Page",
+      "name": "VitaHomebrewDB Release Page",
       "url": "https://gbatemp.net/threads/elevenmpv-eleven-music-player-vita.534916/"
     },
     {
@@ -50,7 +50,7 @@
       "recommended": true
     }
   ],
-  "source_name": "VitaDBtoo",
+  "source_name": "VitaHomebrewDB",
   "source_id": "447",
   "source_url": "https://github.com/joel16/ElevenMPV",
   "release_page": "https://gbatemp.net/threads/elevenmpv-eleven-music-player-vita.534916/",

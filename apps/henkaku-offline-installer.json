@@ -23,13 +23,13 @@
   "links": [
     {
       "type": "Download",
-      "name": "VitaDBtoo VPK",
+      "name": "VitaHomebrewDB VPK",
       "url": "https://github.com/henkaku/offline-installer/releases/download/1.0/offlineInstaller.vpk",
       "recommended": false
     },
     {
       "type": "Official Website",
-      "name": "VitaDBtoo Release Page",
+      "name": "VitaHomebrewDB Release Page",
       "url": "http://wololo.net/2016/08/11/henkaku-offline-installer-released/"
     },
     {
@@ -49,7 +49,7 @@
       "recommended": true
     }
   ],
-  "source_name": "VitaDBtoo",
+  "source_name": "VitaHomebrewDB",
   "source_id": "160",
   "source_url": "https://github.com/henkaku/offline-installer",
   "release_page": "http://wololo.net/2016/08/11/henkaku-offline-installer-released/",

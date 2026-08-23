@@ -27,13 +27,13 @@
   "links": [
     {
       "type": "Download",
-      "name": "VitaDBtoo VPK",
+      "name": "VitaHomebrewDB VPK",
       "url": "https://github.com/kaonkaon/ztwo/releases/download/v1.2.0/z2.VPK",
       "recommended": false
     },
     {
       "type": "Official Website",
-      "name": "VitaDBtoo Release Page",
+      "name": "VitaHomebrewDB Release Page",
       "url": "https://github.com/kaonkaon/ztwo/releases"
     },
     {
@@ -53,7 +53,7 @@
       "recommended": true
     }
   ],
-  "source_name": "VitaDBtoo",
+  "source_name": "VitaHomebrewDB",
   "source_id": "1170",
   "source_url": "https://github.com/kaonkaon/ztwo",
   "release_page": "https://github.com/kaonkaon/ztwo/releases",

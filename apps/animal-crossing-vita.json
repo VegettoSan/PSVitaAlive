@@ -27,13 +27,13 @@
   "links": [
     {
       "type": "Download",
-      "name": "VitaDBtoo VPK",
+      "name": "VitaHomebrewDB VPK",
       "url": "https://github.com/Brendonm17/ACGC-Vita-Port/releases/download/v0.4.1/ac_vita.vpk",
       "recommended": false
     },
     {
       "type": "Official Website",
-      "name": "VitaDBtoo Release Page",
+      "name": "VitaHomebrewDB Release Page",
       "url": "https://github.com/Brendonm17/ACGC-Vita-Port/releases"
     },
     {
@@ -53,7 +53,7 @@
       "recommended": true
     }
   ],
-  "source_name": "VitaDBtoo",
+  "source_name": "VitaHomebrewDB",
   "source_id": "1381",
   "source_url": "https://github.com/Brendonm17/ACGC-Vita-Port",
   "release_page": "https://github.com/Brendonm17/ACGC-Vita-Port/releases",

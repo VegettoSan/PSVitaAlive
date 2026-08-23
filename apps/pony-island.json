@@ -27,13 +27,13 @@
   "links": [
     {
       "type": "Download",
-      "name": "VitaDBtoo VPK",
+      "name": "VitaHomebrewDB VPK",
       "url": "https://github.com/hatoving/ponyisland-old-vita/releases/download/1.2-vita/PonyIsland.vpk",
       "recommended": false
     },
     {
       "type": "Official Website",
-      "name": "VitaDBtoo Release Page",
+      "name": "VitaHomebrewDB Release Page",
       "url": "https://github.com/hatoving/PonyIsland"
     },
     {
@@ -53,7 +53,7 @@
       "recommended": true
     }
   ],
-  "source_name": "VitaDBtoo",
+  "source_name": "VitaHomebrewDB",
   "source_id": "1021",
   "source_url": "https://github.com/hatoving/PonyIsland",
   "release_page": "https://github.com/hatoving/PonyIsland",

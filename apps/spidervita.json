@@ -25,13 +25,13 @@
   "links": [
     {
       "type": "Download",
-      "name": "VitaDBtoo VPK",
+      "name": "VitaHomebrewDB VPK",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/142-SpiderVita.vpk",
       "recommended": false
     },
     {
       "type": "Official Website",
-      "name": "VitaDBtoo Release Page",
+      "name": "VitaHomebrewDB Release Page",
       "url": "http://www.psx-place.com/resources/spidervita.245/"
     },
     {
@@ -41,7 +41,7 @@
     },
     {
       "type": "Download",
-      "name": "VitaDBtoo VPK",
+      "name": "VitaHomebrewDB VPK",
       "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/142-SpiderVita.vpk",
       "recommended": false
     },
@@ -52,7 +52,7 @@
       "recommended": true
     }
   ],
-  "source_name": "VitaDBtoo",
+  "source_name": "VitaHomebrewDB",
   "source_id": "142",
   "source_url": "http://www.psx-place.com/resources/spidervita.245/",
   "release_page": "http://www.psx-place.com/resources/spidervita.245/",

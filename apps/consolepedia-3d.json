@@ -26,13 +26,13 @@
   "links": [
     {
       "type": "Download",
-      "name": "VitaDBtoo VPK",
+      "name": "VitaHomebrewDB VPK",
       "url": "https://github.com/VitaHEX-Games/Consolepedia-3D/releases/download/v0.3/Consolepedia3D_0.3-PSVita.vpk",
       "recommended": false
     },
     {
       "type": "Official Website",
-      "name": "VitaDBtoo Release Page",
+      "name": "VitaHomebrewDB Release Page",
       "url": "https://github.com/VitaHEX-Games/Consolepedia-3D/releases"
     },
     {
@@ -52,7 +52,7 @@
       "recommended": true
     }
   ],
-  "source_name": "VitaDBtoo",
+  "source_name": "VitaHomebrewDB",
   "source_id": "580",
   "source_url": "https://github.com/VitaHEX-Games/Consolepedia-3D/releases",
   "release_page": "https://github.com/VitaHEX-Games/Consolepedia-3D/releases",

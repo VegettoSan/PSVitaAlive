@@ -25,13 +25,13 @@
   "links": [
     {
       "type": "Download",
-      "name": "VitaDBtoo VPK",
+      "name": "VitaHomebrewDB VPK",
       "url": "https://github.com/Lordchickenblaster/Crazy-Cattle-Vita/releases/download/1.4/CC3DV1.4.vpk",
       "recommended": false
     },
     {
       "type": "Official Website",
-      "name": "VitaDBtoo Release Page",
+      "name": "VitaHomebrewDB Release Page",
       "url": "https://github.com/Lordchickenblaster/Crazy-Cattle-Vita"
     },
     {
@@ -51,7 +51,7 @@
       "recommended": true
     }
   ],
-  "source_name": "VitaDBtoo",
+  "source_name": "VitaHomebrewDB",
   "source_id": "1270",
   "source_url": "https://github.com/Lordchickenblaster/Crazy-Cattle-Vita/releases",
   "release_page": "https://github.com/Lordchickenblaster/Crazy-Cattle-Vita",

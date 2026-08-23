@@ -23,13 +23,13 @@
   "links": [
     {
       "type": "Download",
-      "name": "VitaDBtoo VPK",
+      "name": "VitaHomebrewDB VPK",
       "url": "https://github.com/mrdivdiz/bpvita/releases/download/1.4/BPV1.4.vpk",
       "recommended": false
     },
     {
       "type": "Official Website",
-      "name": "VitaDBtoo Release Page",
+      "name": "VitaHomebrewDB Release Page",
       "url": "https://github.com/mrdivdiz/bpvita/releases"
     },
     {
@@ -49,7 +49,7 @@
       "recommended": true
     }
   ],
-  "source_name": "VitaDBtoo",
+  "source_name": "VitaHomebrewDB",
   "source_id": "633",
   "source_url": "https://github.com/mrdivdiz/bpvita",
   "release_page": "https://github.com/mrdivdiz/bpvita/releases",

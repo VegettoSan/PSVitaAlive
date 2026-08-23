@@ -23,13 +23,13 @@
   "links": [
     {
       "type": "Download",
-      "name": "VitaDBtoo VPK",
+      "name": "VitaHomebrewDB VPK",
       "url": "https://github.com/Yoti/psv_npdrmfix/releases/download/v2.1/PSM_Manager.vpk",
       "recommended": true
     },
     {
       "type": "Official Website",
-      "name": "VitaDBtoo Release Page",
+      "name": "VitaHomebrewDB Release Page",
       "url": "https://github.com/Yoti/psv_npdrmfix/releases"
     },
     {
@@ -43,7 +43,7 @@
       "url": "https://github.com/Yoti/psv_npdrmfix"
     }
   ],
-  "source_name": "VitaDBtoo",
+  "source_name": "VitaHomebrewDB",
   "source_id": "500",
   "source_url": "https://github.com/Yoti/psv_npdrmfix",
   "release_page": "https://github.com/Yoti/psv_npdrmfix/releases",

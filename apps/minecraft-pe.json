@@ -23,13 +23,13 @@
   "links": [
     {
       "type": "Download",
-      "name": "VitaDBtoo VPK",
+      "name": "VitaHomebrewDB VPK",
       "url": "https://github.com/minecraftpe-vita/minecraftpe-vita/releases/download/v1.0.7/minecraftpe.vpk",
       "recommended": true
     },
     {
       "type": "Official Website",
-      "name": "VitaDBtoo Release Page",
+      "name": "VitaHomebrewDB Release Page",
       "url": "https://github.com/minecraftpe-vita/minecraftpe-vita/releases"
     },
     {
@@ -43,7 +43,7 @@
       "url": "https://github.com/minecraftpe-vita/minecraftpe-vita"
     }
   ],
-  "source_name": "VitaDBtoo",
+  "source_name": "VitaHomebrewDB",
   "source_id": "1453",
   "source_url": "https://github.com/minecraftpe-vita/minecraftpe-vita",
   "release_page": "https://github.com/minecraftpe-vita/minecraftpe-vita/releases",

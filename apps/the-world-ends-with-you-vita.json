@@ -27,7 +27,7 @@
   "links": [
     {
       "type": "Download",
-      "name": "VitaDBtoo VPK",
+      "name": "VitaHomebrewDB VPK",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1112-TWEWY.vpk",
       "recommended": false
     },
@@ -39,7 +39,7 @@
     },
     {
       "type": "Official Website",
-      "name": "VitaDBtoo Release Page",
+      "name": "VitaHomebrewDB Release Page",
       "url": "https://fuhen.homebrew-contest.com/submissions/28/"
     },
     {
@@ -54,7 +54,7 @@
     },
     {
       "type": "Download",
-      "name": "VitaDBtoo VPK",
+      "name": "VitaHomebrewDB VPK",
       "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/1112-TWEWY.vpk",
       "recommended": false
     },
@@ -65,7 +65,7 @@
       "recommended": true
     }
   ],
-  "source_name": "VitaDBtoo",
+  "source_name": "VitaHomebrewDB",
   "source_id": "1112",
   "source_url": "https://fuhen.homebrew-contest.com/submissions/28/",
   "release_page": "https://fuhen.homebrew-contest.com/submissions/28/",

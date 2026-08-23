@@ -30,13 +30,13 @@
   "links": [
     {
       "type": "Download",
-      "name": "VitaDBtoo VPK",
+      "name": "VitaHomebrewDB VPK",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/686-WTFDIGTS.vpk",
       "recommended": false
     },
     {
       "type": "Official Website",
-      "name": "VitaDBtoo Release Page",
+      "name": "VitaHomebrewDB Release Page",
       "url": "https://kyuhen.customprotocol.com/en/submissions/sunglass/"
     },
     {
@@ -46,7 +46,7 @@
     },
     {
       "type": "Download",
-      "name": "VitaDBtoo VPK",
+      "name": "VitaHomebrewDB VPK",
       "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/686-WTFDIGTS.vpk",
       "recommended": false
     },
@@ -57,7 +57,7 @@
       "recommended": true
     }
   ],
-  "source_name": "VitaDBtoo",
+  "source_name": "VitaHomebrewDB",
   "source_id": "686",
   "source_url": "https://kyuhen.customprotocol.com/en/submissions/sunglass/",
   "release_page": "https://kyuhen.customprotocol.com/en/submissions/sunglass/",

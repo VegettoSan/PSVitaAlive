@@ -23,13 +23,13 @@
   "links": [
     {
       "type": "Download",
-      "name": "VitaDBtoo VPK",
+      "name": "VitaHomebrewDB VPK",
       "url": "https://github.com/PatnosDD/Unsighted-Ps-Vita/releases/download/V0.3/Unsighted.vpk",
       "recommended": false
     },
     {
       "type": "Official Website",
-      "name": "VitaDBtoo Release Page",
+      "name": "VitaHomebrewDB Release Page",
       "url": "https://github.com/PatnosDD/Unsighted-Ps-Vita"
     },
     {
@@ -44,7 +44,7 @@
       "recommended": true
     }
   ],
-  "source_name": "VitaDBtoo",
+  "source_name": "VitaHomebrewDB",
   "source_id": "1262",
   "source_url": "https://github.com/PatnosDD/Unsighted-Ps-Vita",
   "release_page": "https://github.com/PatnosDD/Unsighted-Ps-Vita",

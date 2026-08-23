@@ -24,7 +24,7 @@
   "links": [
     {
       "type": "Download",
-      "name": "VitaDBtoo VPK",
+      "name": "VitaHomebrewDB VPK",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/516-SuperCrateMod-Vita.VPK",
       "recommended": false
     },
@@ -35,7 +35,7 @@
     },
     {
       "type": "Download",
-      "name": "VitaDBtoo VPK",
+      "name": "VitaHomebrewDB VPK",
       "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/516-SuperCrateMod-Vita.VPK",
       "recommended": false
     },
@@ -46,7 +46,7 @@
       "recommended": true
     }
   ],
-  "source_name": "VitaDBtoo",
+  "source_name": "VitaHomebrewDB",
   "source_id": "516",
   "source_url": "https://drive.google.com/open?id=1u67SpFEYYLzzzw0QVuY_VVsNFS4dgbrP",
   "release_page": "",

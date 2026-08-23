@@ -27,7 +27,7 @@
   "links": [
     {
       "type": "Download",
-      "name": "VitaDBtoo VPK",
+      "name": "VitaHomebrewDB VPK",
       "url": "https://github.com/LeZergan/mcsm-vita/releases/download/v1.10/MCSM-1.10.vpk",
       "recommended": false
     },
@@ -39,7 +39,7 @@
     },
     {
       "type": "Official Website",
-      "name": "VitaDBtoo Release Page",
+      "name": "VitaHomebrewDB Release Page",
       "url": "https://github.com/LeZergan/mcsm-vita/releases"
     },
     {
@@ -59,7 +59,7 @@
       "recommended": true
     }
   ],
-  "source_name": "VitaDBtoo",
+  "source_name": "VitaHomebrewDB",
   "source_id": "1450",
   "source_url": "https://github.com/LeZergan/mcsm-vita",
   "release_page": "https://github.com/LeZergan/mcsm-vita/releases",

@@ -27,13 +27,13 @@
   "links": [
     {
       "type": "Download",
-      "name": "VitaDBtoo VPK",
+      "name": "VitaHomebrewDB VPK",
       "url": "https://github.com/Eyeman420/rePatch-Manager/releases/download/v1.10/rePatch.Manager.vpk",
       "recommended": false
     },
     {
       "type": "Official Website",
-      "name": "VitaDBtoo Release Page",
+      "name": "VitaHomebrewDB Release Page",
       "url": "https://github.com/Eyeman420/rePatch-Manager/releases"
     },
     {
@@ -53,7 +53,7 @@
       "recommended": true
     }
   ],
-  "source_name": "VitaDBtoo",
+  "source_name": "VitaHomebrewDB",
   "source_id": "795",
   "source_url": "https://github.com/Eyeman420/rePatch-Manager",
   "release_page": "https://github.com/Eyeman420/rePatch-Manager/releases",

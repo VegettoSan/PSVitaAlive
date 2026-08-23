@@ -288,8 +288,8 @@ def _int_or_none(value):
 
 
 
-# Canonical VitaDB / VitaDBtoo / NeoVitaDB type → PSVitaAlive slug.
-# Numeric values match NeoVitaDB categories.json and the live VitaDBtoo feed:
+# Canonical VitaDB / VitaHomebrewDB / NeoVitaDB type → PSVitaAlive slug.
+# Numeric values match NeoVitaDB categories.json and the live VitaHomebrewDB feed:
 #   1 = Original Game, 2 = Game Port, 4 = Utility, 5 = Emulator.
 # Plugins are usually published in a separate list (no type field).
 EXTERNAL_TYPE_ALIASES = {

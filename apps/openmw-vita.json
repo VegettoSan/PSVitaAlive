@@ -27,7 +27,7 @@
   "links": [
     {
       "type": "Download",
-      "name": "VitaDBtoo VPK",
+      "name": "VitaHomebrewDB VPK",
       "url": "https://github.com/TheLostPantheon/openmw/releases/download/v2.1.1/openmw.vpk",
       "recommended": false
     },
@@ -39,7 +39,7 @@
     },
     {
       "type": "Official Website",
-      "name": "VitaDBtoo Release Page",
+      "name": "VitaHomebrewDB Release Page",
       "url": "https://github.com/TheLostPantheon/openmw/releases"
     },
     {
@@ -70,7 +70,7 @@
       "url": "https://github.com/TheLostPantheon/openmw/releases/tag/v2.2"
     }
   ],
-  "source_name": "VitaDBtoo",
+  "source_name": "VitaHomebrewDB",
   "source_id": "1390",
   "source_url": "https://github.com/TheLostPantheon/openmw",
   "release_page": "https://github.com/TheLostPantheon/openmw/releases",

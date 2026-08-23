@@ -35,13 +35,13 @@
     },
     {
       "type": "Download",
-      "name": "VitaDBtoo VPK",
+      "name": "VitaHomebrewDB VPK",
       "url": "https://git.silica.codes/Li/trophydumper/releases/download/v1.1/TrophyDumper.vpk",
       "recommended": true
     },
     {
       "type": "Official Website",
-      "name": "VitaDBtoo Release Page",
+      "name": "VitaHomebrewDB Release Page",
       "url": "https://git.silica.codes/Li/trophydumper/releases"
     },
     {

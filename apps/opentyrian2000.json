@@ -23,13 +23,13 @@
   "links": [
     {
       "type": "Download",
-      "name": "VitaDBtoo VPK",
+      "name": "VitaHomebrewDB VPK",
       "url": "https://github.com/andyvand/opentyrian2000/releases/download/3.0.0-SDL3/OpenTyrian2000-PSVita.vpk",
       "recommended": true
     },
     {
       "type": "Official Website",
-      "name": "VitaDBtoo Release Page",
+      "name": "VitaHomebrewDB Release Page",
       "url": "https://github.com/andyvand/opentyrian2000/releases"
     },
     {
@@ -38,7 +38,7 @@
       "url": "https://github.com/andyvand/opentyrian2000"
     }
   ],
-  "source_name": "VitaDBtoo",
+  "source_name": "VitaHomebrewDB",
   "source_id": "1279",
   "source_url": "https://github.com/andyvand/opentyrian2000",
   "release_page": "https://github.com/andyvand/opentyrian2000/releases",

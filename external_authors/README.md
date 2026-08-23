@@ -4,7 +4,7 @@ Holds author-related data produced or cached from external homebrew catalogs dur
 
 ## Role
 
-- Feed the merge layer with author names/avatars/links from VitaDB, VitaDBtoo, etc.
+- Feed the merge layer with author names/avatars/links from VitaDB, VitaHomebrewDB, etc.
 - Does not replace canonical `authors/` for long-term curated profiles
 
 ## Rules

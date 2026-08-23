@@ -26,13 +26,13 @@
   "links": [
     {
       "type": "Download",
-      "name": "VitaDBtoo VPK",
+      "name": "VitaHomebrewDB VPK",
       "url": "https://github.com/Dane64/VitOut/releases/download/2.0/VitOut.vpk",
       "recommended": false
     },
     {
       "type": "Official Website",
-      "name": "VitaDBtoo Release Page",
+      "name": "VitaHomebrewDB Release Page",
       "url": "https://github.com/Dane64/VitOut/releases"
     },
     {
@@ -52,7 +52,7 @@
       "recommended": true
     }
   ],
-  "source_name": "VitaDBtoo",
+  "source_name": "VitaHomebrewDB",
   "source_id": "528",
   "source_url": "https://github.com/Dane64/VitOut",
   "release_page": "https://github.com/Dane64/VitOut/releases",

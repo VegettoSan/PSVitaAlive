@@ -21,4 +21,4 @@ Each category typically includes:
 
 - App `category_id` must exist here.
 - App `subcategory_ids` must belong to that category.
-- Prefer the project’s normalized VitaDB / VitaDBtoo mapping rather than inventing parallel duplicate categories.
+- Prefer the project’s normalized VitaDB / VitaHomebrewDB mapping rather than inventing parallel duplicate categories.

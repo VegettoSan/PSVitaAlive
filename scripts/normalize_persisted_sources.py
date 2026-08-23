@@ -22,7 +22,7 @@ from urllib.parse import quote, urljoin, urlparse
 ROOT = Path(__file__).resolve().parents[1]
 RAW_ROOT = "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/"
 AUTHOR_FALLBACK = RAW_ROOT + "authors/icon/autoricon.png"
-SOURCE_DISPLAY_OLD = "VitaDBtoo"
+SOURCE_DISPLAY_OLD = "VitaHomebrewDB"
 SOURCE_DISPLAY_NEW = "VitaHomebrewDB"
 
 MEDIA_ROOTS = {
@@ -89,7 +89,7 @@ def rename_source_display_text(value):
 
 
 def normalize_app_source_labels(app):
-    """Migrate legacy VitaDBtoo labels in canonical app metadata.
+    """Migrate legacy VitaHomebrewDB labels in canonical app metadata.
 
     Internal source IDs and technical upstream URLs intentionally remain
     unchanged for compatibility. Human-readable names shown in VitaHub do not.

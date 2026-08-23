@@ -6,7 +6,7 @@ Imports homebrew metadata from configured upstream catalogs and merges it with l
 
 | Module | Role |
 |--------|------|
-| `sources.py` | Fetch + normalize candidates (VitaDB, VitaDBtoo, local, …) |
+| `sources.py` | Fetch + normalize candidates (VitaDB, VitaHomebrewDB, local, …) |
 | `identity.py` | Title ID / name / repo identity helpers |
 | `merge.py` | Merge candidates into records |
 | `overrides.py` | Apply `catalog_overrides/` |
@@ -27,4 +27,4 @@ Merged application list + authors + categories (+ optional conflict report under
 
 ## VitaDB `data` field
 
-Companion archives from VitaDB/VitaDBtoo `data` URLs are emitted as link type **`Data Files`** (not `Download`). The VPK stays `Download`.
+Companion archives from VitaDB/VitaHomebrewDB `data` URLs are emitted as link type **`Data Files`** (not `Download`). The VPK stays `Download`.

@@ -27,13 +27,13 @@
   "links": [
     {
       "type": "Download",
-      "name": "VitaDBtoo VPK",
+      "name": "VitaHomebrewDB VPK",
       "url": "https://github.com/TheXTech/TheXTech/releases/download/v1.3.7.3-1/thextech-vita-v1.3.7.3.zip",
       "recommended": true
     },
     {
       "type": "Official Website",
-      "name": "VitaDBtoo Release Page",
+      "name": "VitaHomebrewDB Release Page",
       "url": "https://wohlsoft.ru/projects/TheXTech/"
     },
     {
@@ -47,7 +47,7 @@
       "url": "https://github.com/TheXTech/TheXTech"
     }
   ],
-  "source_name": "VitaDBtoo",
+  "source_name": "VitaHomebrewDB",
   "source_id": "727",
   "source_url": "https://github.com/TheXTech/TheXTech",
   "release_page": "https://wohlsoft.ru/projects/TheXTech/",

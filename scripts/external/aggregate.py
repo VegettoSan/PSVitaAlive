@@ -21,7 +21,7 @@ CATEGORY_MAP = ROOT / "sources" / "category_map.json"
 
 SOURCE_NAMES = {
     "vitadb": "VitaDB",
-    "vitadbtoo": "VitaDBtoo",
+    "vitadbtoo": "VitaHomebrewDB",
 }
 
 AUTHOR_ICON_FALLBACK = (

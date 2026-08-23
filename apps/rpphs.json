@@ -28,13 +28,13 @@
   "links": [
     {
       "type": "Download",
-      "name": "VitaDBtoo VPK",
+      "name": "VitaHomebrewDB VPK",
       "url": "https://github.com/G333333/RPPHS/releases/download/v1.2/RPPHS.vpk",
       "recommended": false
     },
     {
       "type": "Official Website",
-      "name": "VitaDBtoo Release Page",
+      "name": "VitaHomebrewDB Release Page",
       "url": "http://wololo.net/talk/viewtopic.php?f=116&p=423389#p423389"
     },
     {
@@ -54,7 +54,7 @@
       "recommended": true
     }
   ],
-  "source_name": "VitaDBtoo",
+  "source_name": "VitaHomebrewDB",
   "source_id": "399",
   "source_url": "https://github.com/G333333/RPPHS",
   "release_page": "http://wololo.net/talk/viewtopic.php?f=116&p=423389#p423389",

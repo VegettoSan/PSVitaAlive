@@ -63,7 +63,7 @@ vitadb = normalize_vitadb({
 })
 assert vitadb.source_id == "vitadb"
 assert vitadb.title_id == "TEST00001"
-assert vitadb.category_raw == "game"  # type 1 = Original Game (NeoVitaDB/VitaDBtoo)
+assert vitadb.category_raw == "game"  # type 1 = Original Game (NeoVitaDB/VitaHomebrewDB)
 assert len(vitadb.screenshots) == 2
 assert vitadb.download_url == "https://example/app.vpk"
 

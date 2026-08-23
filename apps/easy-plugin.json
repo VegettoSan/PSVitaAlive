@@ -27,13 +27,13 @@
   "links": [
     {
       "type": "Download",
-      "name": "VitaDBtoo VPK",
+      "name": "VitaHomebrewDB VPK",
       "url": "https://github.com/THEN00P/EasyPlugin/releases/download/1.1.1/easyplugin.vpk",
       "recommended": false
     },
     {
       "type": "Official Website",
-      "name": "VitaDBtoo Release Page",
+      "name": "VitaHomebrewDB Release Page",
       "url": "https://gbatemp.net/threads/release-easy-plugin-vitadb-plugin-installer.532956/"
     },
     {
@@ -53,7 +53,7 @@
       "recommended": true
     }
   ],
-  "source_name": "VitaDBtoo",
+  "source_name": "VitaHomebrewDB",
   "source_id": "440",
   "source_url": "https://github.com/THEN00P/EasyPlugin",
   "release_page": "https://gbatemp.net/threads/release-easy-plugin-vitadb-plugin-installer.532956/",

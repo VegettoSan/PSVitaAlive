@@ -28,13 +28,13 @@
   "links": [
     {
       "type": "Download",
-      "name": "VitaDBtoo VPK",
+      "name": "VitaHomebrewDB VPK",
       "url": "https://github.com/reallootfury/bloons-td-5-vita/releases/download/v1.01/btd5-vita-v1.01.vpk",
       "recommended": true
     },
     {
       "type": "Official Website",
-      "name": "VitaDBtoo Release Page",
+      "name": "VitaHomebrewDB Release Page",
       "url": "https://github.com/reallootfury/bloons-td-5-vita/releases"
     },
     {
@@ -43,7 +43,7 @@
       "url": "https://github.com/reallootfury/bloons-td-5-vita"
     }
   ],
-  "source_name": "VitaDBtoo",
+  "source_name": "VitaHomebrewDB",
   "source_id": "1440",
   "source_url": "https://github.com/reallootfury/bloons-td-5-vita",
   "release_page": "https://github.com/reallootfury/bloons-td-5-vita/releases",

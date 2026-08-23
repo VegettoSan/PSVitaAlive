@@ -24,13 +24,13 @@
   "links": [
     {
       "type": "Download",
-      "name": "VitaDBtoo VPK",
+      "name": "VitaHomebrewDB VPK",
       "url": "https://github.com/nop90-PSVITA/SDLLopan-VITA/releases/download/v1.0/SDLLopan.vpk",
       "recommended": false
     },
     {
       "type": "Official Website",
-      "name": "VitaDBtoo Release Page",
+      "name": "VitaHomebrewDB Release Page",
       "url": "https://gbatemp.net/threads/release-sdl-lopan-a-simple-mahjong-solitaire-game-ported-to-ps-vita.485852/"
     },
     {
@@ -50,7 +50,7 @@
       "recommended": true
     }
   ],
-  "source_name": "VitaDBtoo",
+  "source_name": "VitaHomebrewDB",
   "source_id": "332",
   "source_url": "https://github.com/nop90-PSVITA/SDLLopan-VITA",
   "release_page": "https://gbatemp.net/threads/release-sdl-lopan-a-simple-mahjong-solitaire-game-ported-to-ps-vita.485852/",

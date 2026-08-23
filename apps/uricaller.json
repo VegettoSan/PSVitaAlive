@@ -24,7 +24,7 @@
   "links": [
     {
       "type": "Download",
-      "name": "VitaDBtoo VPK",
+      "name": "VitaHomebrewDB VPK",
       "url": "https://github.com/Freakler/vita-uriCaller/releases/download/0.1/uriCaller.vpk",
       "recommended": false
     },
@@ -45,7 +45,7 @@
       "recommended": true
     }
   ],
-  "source_name": "VitaDBtoo",
+  "source_name": "VitaHomebrewDB",
   "source_id": "150",
   "source_url": "https://github.com/Freakler/vita-uriCaller",
   "release_page": "",

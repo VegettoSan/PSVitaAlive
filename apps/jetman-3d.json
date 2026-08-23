@@ -23,13 +23,13 @@
   "links": [
     {
       "type": "Download",
-      "name": "VitaDBtoo VPK",
+      "name": "VitaHomebrewDB VPK",
       "url": "https://github.com/softwaregremlin/Jetman3D/releases/download/Main/JetMan-3D.vpk",
       "recommended": false
     },
     {
       "type": "Official Website",
-      "name": "VitaDBtoo Release Page",
+      "name": "VitaHomebrewDB Release Page",
       "url": "http://www.gremlinsoftware.co.nz/jetman3D.html"
     },
     {
@@ -49,7 +49,7 @@
       "recommended": true
     }
   ],
-  "source_name": "VitaDBtoo",
+  "source_name": "VitaHomebrewDB",
   "source_id": "719",
   "source_url": "https://github.com/softwaregremlin/Jetman3D/",
   "release_page": "http://www.gremlinsoftware.co.nz/jetman3D.html",

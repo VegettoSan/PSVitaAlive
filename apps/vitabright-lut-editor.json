@@ -24,13 +24,13 @@
   "links": [
     {
       "type": "Download",
-      "name": "VitaDBtoo VPK",
+      "name": "VitaHomebrewDB VPK",
       "url": "https://github.com/devnoname120/vitabright-lut-editor/releases/download/1.1/vitabright-lut-editor-1.1.vpk",
       "recommended": false
     },
     {
       "type": "Official Website",
-      "name": "VitaDBtoo Release Page",
+      "name": "VitaHomebrewDB Release Page",
       "url": "https://github.com/devnoname120/vitabright-lut-editor/releases"
     },
     {
@@ -66,7 +66,7 @@
       "url": "https://github.com/Zushikina-kun/VitaBrightEX"
     }
   ],
-  "source_name": "VitaDBtoo",
+  "source_name": "VitaHomebrewDB",
   "source_id": "601",
   "source_url": "https://github.com/devnoname120/vitabright-lut-editor",
   "release_page": "https://github.com/devnoname120/vitabright-lut-editor/releases",

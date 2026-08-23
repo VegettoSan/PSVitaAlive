@@ -27,13 +27,13 @@
   "links": [
     {
       "type": "Download",
-      "name": "VitaDBtoo VPK",
+      "name": "VitaHomebrewDB VPK",
       "url": "https://github.com/OrbitalFlagStudio/VitaGamesReleases/releases/download/Destroy.The.Dot.v1.0.1/Destroy.The.Dot.-.Vita.Edition.-.Release.1.0.1.vpk",
       "recommended": false
     },
     {
       "type": "Official Website",
-      "name": "VitaDBtoo Release Page",
+      "name": "VitaHomebrewDB Release Page",
       "url": "https://github.com/OrbitalFlagStudio/VitaGamesReleases/releases/tag/Destroy.The.Dot.v1.0"
     },
     {
@@ -43,7 +43,7 @@
       "recommended": true
     }
   ],
-  "source_name": "VitaDBtoo",
+  "source_name": "VitaHomebrewDB",
   "source_id": "1084",
   "source_url": "https://github.com/OrbitalFlagStudio/VitaGamesReleases/releases/tag/Destroy.The.Dot.v1.0",
   "release_page": "https://github.com/OrbitalFlagStudio/VitaGamesReleases/releases/tag/Destroy.The.Dot.v1.0",

@@ -27,13 +27,13 @@
   "links": [
     {
       "type": "Download",
-      "name": "VitaDBtoo VPK",
+      "name": "VitaHomebrewDB VPK",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/705-jfsw.vpk",
       "recommended": false
     },
     {
       "type": "Official Website",
-      "name": "VitaDBtoo Release Page",
+      "name": "VitaHomebrewDB Release Page",
       "url": "https://www.psx-place.com/threads/release-jfsw-vita-port-of-shadow-warrior-classic-for-psvita-pstv.34568/"
     },
     {
@@ -43,7 +43,7 @@
     },
     {
       "type": "Download",
-      "name": "VitaDBtoo VPK",
+      "name": "VitaHomebrewDB VPK",
       "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/705-jfsw.vpk",
       "recommended": false
     },
@@ -60,7 +60,7 @@
       "recommended": false
     }
   ],
-  "source_name": "VitaDBtoo",
+  "source_name": "VitaHomebrewDB",
   "source_id": "705",
   "source_url": "https://github.com/Rinnegatamante/jfsw-vita",
   "release_page": "https://www.psx-place.com/threads/release-jfsw-vita-port-of-shadow-warrior-classic-for-psvita-pstv.34568/",

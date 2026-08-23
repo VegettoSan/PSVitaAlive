@@ -23,13 +23,13 @@
   "links": [
     {
       "type": "Download",
-      "name": "VitaDBtoo VPK",
+      "name": "VitaHomebrewDB VPK",
       "url": "https://github.com/Comet-Games/Worlds-Hardest-Game-Vita/releases/download/v01.15/WHGVita.vpk",
       "recommended": false
     },
     {
       "type": "Official Website",
-      "name": "VitaDBtoo Release Page",
+      "name": "VitaHomebrewDB Release Page",
       "url": "https://github.com/Comet-Games/Worlds-Hardest-Game-Vita/releases"
     },
     {
@@ -44,7 +44,7 @@
       "recommended": true
     }
   ],
-  "source_name": "VitaDBtoo",
+  "source_name": "VitaHomebrewDB",
   "source_id": "994",
   "source_url": "https://github.com/Comet-Games/Worlds-Hardest-Game-Vita",
   "release_page": "https://github.com/Comet-Games/Worlds-Hardest-Game-Vita/releases",

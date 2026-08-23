@@ -25,13 +25,13 @@
   "links": [
     {
       "type": "Download",
-      "name": "VitaDBtoo VPK",
+      "name": "VitaHomebrewDB VPK",
       "url": "https://github.com/enriquesomolinos/REminiscence-Vita/releases/download/v0.4.2/REminiscence-0.4.2.vpk",
       "recommended": false
     },
     {
       "type": "Official Website",
-      "name": "VitaDBtoo Release Page",
+      "name": "VitaHomebrewDB Release Page",
       "url": "http://wololo.net/2016/09/14/release-reminiscence-vita-0-3-2-play-flashback-vita/"
     },
     {
@@ -51,7 +51,7 @@
       "recommended": true
     }
   ],
-  "source_name": "VitaDBtoo",
+  "source_name": "VitaHomebrewDB",
   "source_id": "168",
   "source_url": "https://github.com/enriquesomolinos/REminiscence-Vita",
   "release_page": "http://wololo.net/2016/09/14/release-reminiscence-vita-0-3-2-play-flashback-vita/",

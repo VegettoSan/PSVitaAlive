@@ -25,13 +25,13 @@
   "links": [
     {
       "type": "Download",
-      "name": "VitaDBtoo VPK",
+      "name": "VitaHomebrewDB VPK",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/130-sudokucpp.vpk",
       "recommended": false
     },
     {
       "type": "Official Website",
-      "name": "VitaDBtoo Release Page",
+      "name": "VitaHomebrewDB Release Page",
       "url": "https://gbatemp.net/threads/release-hendoku-sudoku-for-vita.437511/"
     },
     {
@@ -41,7 +41,7 @@
     },
     {
       "type": "Download",
-      "name": "VitaDBtoo VPK",
+      "name": "VitaHomebrewDB VPK",
       "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/130-sudokucpp.vpk",
       "recommended": false
     },
@@ -52,7 +52,7 @@
       "recommended": true
     }
   ],
-  "source_name": "VitaDBtoo",
+  "source_name": "VitaHomebrewDB",
   "source_id": "130",
   "source_url": "http://www.mediafire.com/file/wu7ptl6t57wo5tl/SudokuCPP.rar",
   "release_page": "https://gbatemp.net/threads/release-hendoku-sudoku-for-vita.437511/",

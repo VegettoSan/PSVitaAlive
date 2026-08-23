@@ -29,13 +29,13 @@
   "links": [
     {
       "type": "Download",
-      "name": "VitaDBtoo VPK",
+      "name": "VitaHomebrewDB VPK",
       "url": "https://github.com/Rinnegatamante/fahrenheit-vita/releases/download/v.0.9.1/Fahrenheit.vpk",
       "recommended": false
     },
     {
       "type": "Official Website",
-      "name": "VitaDBtoo Release Page",
+      "name": "VitaHomebrewDB Release Page",
       "url": "https://github.com/Rinnegatamante/fahrenheit-vita/releases"
     },
     {
@@ -61,7 +61,7 @@
       "recommended": false
     }
   ],
-  "source_name": "VitaDBtoo",
+  "source_name": "VitaHomebrewDB",
   "source_id": "835",
   "source_url": "https://github.com/Rinnegatamante/fahrenheit-vita",
   "release_page": "https://github.com/Rinnegatamante/fahrenheit-vita/releases",

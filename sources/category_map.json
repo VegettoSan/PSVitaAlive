@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "comment": "Maps VitaDB / VitaDBtoo / NeoVitaDB category values onto PSVitaAlive category_id + optional default subcategory_ids. Numeric types follow NeoVitaDB/VitaDBtoo: 1=game, 2=port, 4=utility, 5=emulator. Plugins are usually a separate feed. Tags are mapped to subcategory_ids via tag_to_subcategory.",
+  "comment": "Maps VitaDB / VitaHomebrewDB / NeoVitaDB category values onto PSVitaAlive category_id + optional default subcategory_ids. Numeric types follow NeoVitaDB/VitaHomebrewDB: 1=game, 2=port, 4=utility, 5=emulator. Plugins are usually a separate feed. Tags are mapped to subcategory_ids via tag_to_subcategory.",
   "mappings": {
     "1": {"category_id": "games", "subcategory_ids": ["other"]},
     "2": {"category_id": "ports", "subcategory_ids": ["other"]},

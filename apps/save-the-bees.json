@@ -26,13 +26,13 @@
   "links": [
     {
       "type": "Download",
-      "name": "VitaDBtoo VPK",
+      "name": "VitaHomebrewDB VPK",
       "url": "https://github.com/NathanKewley/godot_save_the_bees/releases/download/release-1/SaveTheBees.vpk",
       "recommended": false
     },
     {
       "type": "Official Website",
-      "name": "VitaDBtoo Release Page",
+      "name": "VitaHomebrewDB Release Page",
       "url": "https://github.com/NathanKewley/godot_save_the_bees/releases"
     },
     {
@@ -47,7 +47,7 @@
       "recommended": true
     }
   ],
-  "source_name": "VitaDBtoo",
+  "source_name": "VitaHomebrewDB",
   "source_id": "1230",
   "source_url": "https://github.com/NathanKewley/godot_save_the_bees/tree/port/psp-vita",
   "release_page": "https://github.com/NathanKewley/godot_save_the_bees/releases",

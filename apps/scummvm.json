@@ -29,13 +29,13 @@
   "links": [
     {
       "type": "Download",
-      "name": "VitaDBtoo VPK",
+      "name": "VitaHomebrewDB VPK",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/585-scummvm_release.vpk",
       "recommended": false
     },
     {
       "type": "Official Website",
-      "name": "VitaDBtoo Release Page",
+      "name": "VitaHomebrewDB Release Page",
       "url": "https://wiki.scummvm.org/index.php?title=PlayStation_Vita"
     },
     {
@@ -45,7 +45,7 @@
     },
     {
       "type": "Download",
-      "name": "VitaDBtoo VPK",
+      "name": "VitaHomebrewDB VPK",
       "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/585-scummvm_release.vpk",
       "recommended": false
     },
@@ -56,7 +56,7 @@
       "recommended": true
     }
   ],
-  "source_name": "VitaDBtoo",
+  "source_name": "VitaHomebrewDB",
   "source_id": "585",
   "source_url": "https://github.com/scummvm/scummvm",
   "release_page": "https://wiki.scummvm.org/index.php?title=PlayStation_Vita",

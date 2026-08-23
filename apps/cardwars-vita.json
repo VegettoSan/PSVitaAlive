@@ -47,7 +47,7 @@
     },
     {
       "type": "Official Website",
-      "name": "VitaDBtoo Release Page",
+      "name": "VitaHomebrewDB Release Page",
       "url": "https://github.com/parindraaa867/AT-CardWars-Vita"
     },
     {
@@ -57,7 +57,7 @@
       "recommended": false
     }
   ],
-  "source_name": "VitaDBtoo",
+  "source_name": "VitaHomebrewDB",
   "source_id": "1428",
   "source_url": "https://github.com/parindraaa867/AT-CardWars-Vita",
   "release_page": "https://github.com/parindraaa867/AT-CardWars-Vita",

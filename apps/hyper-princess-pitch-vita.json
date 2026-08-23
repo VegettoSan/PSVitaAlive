@@ -24,7 +24,7 @@
   "links": [
     {
       "type": "Download",
-      "name": "VitaDBtoo VPK",
+      "name": "VitaHomebrewDB VPK",
       "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/522-HyperPrincessPitch-Vita.vpk",
       "recommended": false
     },
@@ -35,7 +35,7 @@
     },
     {
       "type": "Download",
-      "name": "VitaDBtoo VPK",
+      "name": "VitaHomebrewDB VPK",
       "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/522-HyperPrincessPitch-Vita.vpk",
       "recommended": false
     },
@@ -46,7 +46,7 @@
       "recommended": true
     }
   ],
-  "source_name": "VitaDBtoo",
+  "source_name": "VitaHomebrewDB",
   "source_id": "522",
   "source_url": "https://drive.google.com/open?id=1gvEHq100kXuMjFLvhMC5MylRO7wiRY6S",
   "release_page": "",

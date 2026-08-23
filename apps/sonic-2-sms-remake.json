@@ -27,17 +27,17 @@
   "links": [
     {
       "type": "Download",
-      "name": "VitaDBtoo VPK",
+      "name": "VitaHomebrewDB VPK",
       "url": "https://github.com/MDashK/Sonic-2-SMS-Remake-Vita/releases/download/v2.9.2-vita/SOSR00002.VPK",
       "recommended": true
     },
     {
       "type": "Official Website",
-      "name": "VitaDBtoo Release Page",
+      "name": "VitaHomebrewDB Release Page",
       "url": "https://github.com/MDashK/Sonic-2-SMS-Remake-Vita"
     }
   ],
-  "source_name": "VitaDBtoo",
+  "source_name": "VitaHomebrewDB",
   "source_id": "738",
   "source_url": "https://github.com/MDashK/Sonic-2-SMS-Remake-Vita",
   "release_page": "https://github.com/MDashK/Sonic-2-SMS-Remake-Vita",

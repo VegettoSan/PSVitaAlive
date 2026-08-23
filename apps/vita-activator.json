@@ -23,13 +23,13 @@
   "links": [
     {
       "type": "Download",
-      "name": "VitaDBtoo VPK",
+      "name": "VitaHomebrewDB VPK",
       "url": "https://github.com/yhtez/vita-activator/releases/download/v1.1/vita-activator.vpk",
       "recommended": false
     },
     {
       "type": "Official Website",
-      "name": "VitaDBtoo Release Page",
+      "name": "VitaHomebrewDB Release Page",
       "url": "http://wololo.net/2016/08/20/release-vita-activator-activate-3-60-ps-vita-without-ps3/"
     },
     {
@@ -49,7 +49,7 @@
       "recommended": true
     }
   ],
-  "source_name": "VitaDBtoo",
+  "source_name": "VitaHomebrewDB",
   "source_id": "171",
   "source_url": "https://github.com/jitZpc/vita-activator",
   "release_page": "http://wololo.net/2016/08/20/release-vita-activator-activate-3-60-ps-vita-without-ps3/",

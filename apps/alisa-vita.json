@@ -29,13 +29,13 @@
   "links": [
     {
       "type": "Download",
-      "name": "VitaDBtoo VPK",
+      "name": "VitaHomebrewDB VPK",
       "url": "https://github.com/Rinnegatamante/Alisa-Vita/releases/download/v.1.2/alisa.vpk",
       "recommended": false
     },
     {
       "type": "Official Website",
-      "name": "VitaDBtoo Release Page",
+      "name": "VitaHomebrewDB Release Page",
       "url": "https://github.com/Rinnegatamante/Alisa-Vita"
     },
     {
@@ -50,7 +50,7 @@
       "recommended": true
     }
   ],
-  "source_name": "VitaDBtoo",
+  "source_name": "VitaHomebrewDB",
   "source_id": "1355",
   "source_url": "https://github.com/Rinnegatamante/Alisa-Vita",
   "release_page": "https://github.com/Rinnegatamante/Alisa-Vita",

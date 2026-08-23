@@ -23,13 +23,13 @@
   "links": [
     {
       "type": "Download",
-      "name": "VitaDBtoo VPK",
+      "name": "VitaHomebrewDB VPK",
       "url": "https://github.com/largepelotas/JaVitaScript-Snake/releases/download/v1.2.0/snake.vpk",
       "recommended": true
     },
     {
       "type": "Official Website",
-      "name": "VitaDBtoo Release Page",
+      "name": "VitaHomebrewDB Release Page",
       "url": "https://github.com/largepelotas/JaVitaScript-Snake/releases"
     },
     {
@@ -49,7 +49,7 @@
       "recommended": false
     }
   ],
-  "source_name": "VitaDBtoo",
+  "source_name": "VitaHomebrewDB",
   "source_id": "1464",
   "source_url": "https://github.com/largepelotas/JaVitaScript-Snake",
   "release_page": "https://github.com/largepelotas/JaVitaScript-Snake/releases",

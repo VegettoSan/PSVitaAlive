@@ -27,13 +27,13 @@
   "links": [
     {
       "type": "Download",
-      "name": "VitaDBtoo VPK",
+      "name": "VitaHomebrewDB VPK",
       "url": "https://github.com/Northfear/stratagus-vita/releases/download/v3.3.2-vita.3/stratagus.vpk",
       "recommended": false
     },
     {
       "type": "Official Website",
-      "name": "VitaDBtoo Release Page",
+      "name": "VitaHomebrewDB Release Page",
       "url": "https://github.com/Northfear/stratagus-vita/releases"
     },
     {
@@ -59,7 +59,7 @@
       "recommended": false
     }
   ],
-  "source_name": "VitaDBtoo",
+  "source_name": "VitaHomebrewDB",
   "source_id": "717",
   "source_url": "https://github.com/Northfear/stratagus-vita",
   "release_page": "https://github.com/Northfear/stratagus-vita/releases",

@@ -23,13 +23,13 @@
   "links": [
     {
       "type": "Download",
-      "name": "VitaDBtoo VPK",
+      "name": "VitaHomebrewDB VPK",
       "url": "https://github.com/PuppetHuggerDX/Kare-wa-Kanojo-PS-Vita-Port/releases/download/v01.00/Kare.wa.Kanojo-01.00.vpk",
       "recommended": false
     },
     {
       "type": "Official Website",
-      "name": "VitaDBtoo Release Page",
+      "name": "VitaHomebrewDB Release Page",
       "url": "https://github.com/PuppetHuggerDX/Kare-wa-Kanojo-PS-Vita-Port"
     },
     {
@@ -44,7 +44,7 @@
       "recommended": true
     }
   ],
-  "source_name": "VitaDBtoo",
+  "source_name": "VitaHomebrewDB",
   "source_id": "1400",
   "source_url": "https://github.com/PuppetHuggerDX/Kare-wa-Kanojo-PS-Vita-Port",
   "release_page": "https://github.com/PuppetHuggerDX/Kare-wa-Kanojo-PS-Vita-Port",

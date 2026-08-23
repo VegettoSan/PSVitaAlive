@@ -23,13 +23,13 @@
   "links": [
     {
       "type": "Download",
-      "name": "VitaDBtoo VPK",
+      "name": "VitaHomebrewDB VPK",
       "url": "https://github.com/SKGleba/VitaDeploy/releases/download/v1.2.3/VitaDeploy.vpk",
       "recommended": true
     },
     {
       "type": "Official Website",
-      "name": "VitaDBtoo Release Page",
+      "name": "VitaHomebrewDB Release Page",
       "url": "https://github.com/SKGleba/VitaDeploy/releases"
     },
     {
@@ -38,7 +38,7 @@
       "url": "https://github.com/SKGleba/VitaDeploy"
     }
   ],
-  "source_name": "VitaDBtoo",
+  "source_name": "VitaHomebrewDB",
   "source_id": "1465",
   "source_url": "https://github.com/SKGleba/VitaDeploy",
   "release_page": "https://github.com/SKGleba/VitaDeploy/releases",

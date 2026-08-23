@@ -24,13 +24,13 @@
   "links": [
     {
       "type": "Download",
-      "name": "VitaDBtoo VPK",
+      "name": "VitaHomebrewDB VPK",
       "url": "https://github.com/oestriot/GcToolKit/releases/download/v1.9/GcToolKit.vpk",
       "recommended": true
     },
     {
       "type": "Official Website",
-      "name": "VitaDBtoo Release Page",
+      "name": "VitaHomebrewDB Release Page",
       "url": "https://github.com/oestriot/GcToolKit/releases"
     },
     {
@@ -44,7 +44,7 @@
       "url": "https://github.com/oestriot/GcToolKit"
     }
   ],
-  "source_name": "VitaDBtoo",
+  "source_name": "VitaHomebrewDB",
   "source_id": "1455",
   "source_url": "https://github.com/oestriot/GcToolKit",
   "release_page": "https://github.com/oestriot/GcToolKit/releases",

@@ -28,13 +28,13 @@
   "links": [
     {
       "type": "Download",
-      "name": "VitaDBtoo VPK",
+      "name": "VitaHomebrewDB VPK",
       "url": "https://github.com/kaonkaon/BreadToPIA/releases/download/v1.1.0/BreadToPIA.VPK",
       "recommended": false
     },
     {
       "type": "Official Website",
-      "name": "VitaDBtoo Release Page",
+      "name": "VitaHomebrewDB Release Page",
       "url": "https://github.com/kaonkaon/BreadToPIA"
     },
     {
@@ -49,7 +49,7 @@
       "recommended": true
     }
   ],
-  "source_name": "VitaDBtoo",
+  "source_name": "VitaHomebrewDB",
   "source_id": "1225",
   "source_url": "https://github.com/kaonkaon/BreadToPIA",
   "release_page": "https://github.com/kaonkaon/BreadToPIA",

@@ -28,13 +28,13 @@
   "links": [
     {
       "type": "Download",
-      "name": "VitaDBtoo VPK",
+      "name": "VitaHomebrewDB VPK",
       "url": "https://github.com/bvschaik/julius/releases/download/v1.8.0/julius-1.8.0-vita.vpk",
       "recommended": false
     },
     {
       "type": "Official Website",
-      "name": "VitaDBtoo Release Page",
+      "name": "VitaHomebrewDB Release Page",
       "url": "https://github.com/bvschaik/julius/releases"
     },
     {
@@ -54,7 +54,7 @@
       "recommended": true
     }
   ],
-  "source_name": "VitaDBtoo",
+  "source_name": "VitaHomebrewDB",
   "source_id": "427",
   "source_url": "https://github.com/bvschaik/julius",
   "release_page": "https://github.com/bvschaik/julius/releases",

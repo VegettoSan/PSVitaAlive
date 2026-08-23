@@ -23,13 +23,13 @@
   "links": [
     {
       "type": "Download",
-      "name": "VitaDBtoo VPK",
+      "name": "VitaHomebrewDB VPK",
       "url": "https://github.com/xyzz/vita-button-swapper/releases/download/1.0/button-swapper.vpk",
       "recommended": false
     },
     {
       "type": "Official Website",
-      "name": "VitaDBtoo Release Page",
+      "name": "VitaHomebrewDB Release Page",
       "url": "https://www.reddit.com/r/vitahacks/comments/4x853u/release_button_swapper_swap_xo_confirm_button/"
     },
     {
@@ -49,7 +49,7 @@
       "recommended": true
     }
   ],
-  "source_name": "VitaDBtoo",
+  "source_name": "VitaHomebrewDB",
   "source_id": "147",
   "source_url": "https://github.com/xyzz/vita-button-swapper",
   "release_page": "https://www.reddit.com/r/vitahacks/comments/4x853u/release_button_swapper_swap_xo_confirm_button/",
