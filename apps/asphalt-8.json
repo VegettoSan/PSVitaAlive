@@ -12,8 +12,8 @@
     "arcade",
     "racing"
   ],
-  "version": "0.1",
-  "version_date": "2026-08-11",
+  "version": "0.2",
+  "version_date": "2026-08-23",
   "requirements": "- Homebrew enabled PS Vita with VitaShell - kubridge.skprx installed - libshacccg.suprx at ur0:/data/libshacccg.suprx or ur0:/data/external/libshacccg.suprx - Your own Asphalt 8 v2.0.0e APK and OBB",
   "size": 2058721,
   "status": "Verified",
@@ -21,13 +21,13 @@
     {
       "type": "Download",
       "name": "VPK",
-      "url": "https://archive.org/download/asphalt-8-psvita/Asphalt8Vita%20v0.1.vpk",
+      "url": "https://www.mediafire.com/file/4u8khqdm0shpfyd/Asphalt8Vita_v0.2.vpk/file",
       "recommended": true
     },
     {
       "type": "Download",
       "name": "VPK - Mediafire",
-      "url": "https://www.mediafire.com/file/kun05u66gixx3eg/Asphalt8Vita_v0.1.vpk/file",
+      "url": "https://www.mediafire.com/file/4u8khqdm0shpfyd/Asphalt8Vita_v0.2.vpk/file",
       "recommended": false
     },
     {
@@ -47,7 +47,7 @@
     {
       "type": "Download",
       "name": "GitLab VPK + Tools",
-      "url": "https://gitlab.com/sexcurrybeats/asphalt8-vita/-/releases/v0.1/downloads/artifacts/Asphalt8Vita_v0.1.zip",
+      "url": "https://gitlab.com/sexcurrybeats/asphalt8-vita/-/releases/v0.2/downloads/Asphalt8Vita_v0.2.zip",
       "recommended": false
     }
   ],
