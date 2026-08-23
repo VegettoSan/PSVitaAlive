@@ -22,6 +22,8 @@ from urllib.parse import quote, urljoin, urlparse
 ROOT = Path(__file__).resolve().parents[1]
 RAW_ROOT = "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/"
 AUTHOR_FALLBACK = RAW_ROOT + "authors/icon/autoricon.png"
+SOURCE_DISPLAY_OLD = "VitaDBtoo"
+SOURCE_DISPLAY_NEW = "VitaHomebrewDB"
 
 MEDIA_ROOTS = {
     "vitadbtoo": {
@@ -77,6 +79,33 @@ def remote_ok(url):
         return exc.code != 404
     except Exception:
         return True
+
+
+def rename_source_display_text(value):
+    """Rename only human-readable source labels, never technical URLs/IDs."""
+    if not isinstance(value, str):
+        return value
+    return value.replace(SOURCE_DISPLAY_OLD, SOURCE_DISPLAY_NEW)
+
+
+def normalize_app_source_labels(app):
+    """Migrate legacy VitaDBtoo labels in canonical app metadata.
+
+    Internal source IDs and technical upstream URLs intentionally remain
+    unchanged for compatibility. Human-readable names shown in VitaHub do not.
+    """
+    if isinstance(app.get("source_name"), str):
+        app["source_name"] = rename_source_display_text(app["source_name"])
+
+    links = app.get("links")
+    if isinstance(links, list):
+        for link in links:
+            if not isinstance(link, dict):
+                continue
+            if isinstance(link.get("name"), str):
+                link["name"] = rename_source_display_text(link["name"])
+
+    return app
 
 
 def source_from_app(app):
@@ -201,6 +230,7 @@ def normalize_apps():
             continue
 
         source_hint = source_from_app(app)
+        normalize_app_source_labels(app)
 
         requirements = app.get("requirements")
         if not isinstance(requirements, str) or not requirements.strip():
