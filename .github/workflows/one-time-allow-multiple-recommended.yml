@@ -1,0 +1,53 @@
+name: One-time allow multiple recommended links
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+
+concurrency:
+  group: vitahub-one-time-validator-rule-fix
+  cancel-in-progress: false
+
+jobs:
+  fix:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Update recommended link validation
+        shell: python
+        run: |
+          from pathlib import Path
+
+          path = Path("scripts/validate_catalog.py")
+          text = path.read_text(encoding="utf-8")
+
+          old = '''    recommended_count = 0\n\n'''
+          if old not in text:
+              raise SystemExit("Expected recommended_count initialization was not found")
+          text = text.replace(old, "", 1)
+
+          old = '''            elif link["recommended"]:\n                recommended_count += 1\n\n    if recommended_count > 1:\n        add_error(\n            errors,\n            field_path,\n            (\n                "at most one link may have "\n                "recommended=true"\n            ),\n        )\n'''
+          if old not in text:
+              raise SystemExit("Expected single-recommended validation block was not found")
+          text = text.replace(old, '''\n''', 1)
+
+          path.write_text(text, encoding="utf-8")
+
+      - name: Commit validator rule and remove one-time workflow
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git rm .github/workflows/one-time-allow-multiple-recommended.yml
+          git add scripts/validate_catalog.py
+          git commit -m "Allow multiple recommended links"
+          git push origin HEAD:main
