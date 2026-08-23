@@ -47,14 +47,16 @@
       "name": "Game Data Files ZIP",
       "url": "https://archive.org/download/JK2VITA/Game%20Data%20Files.zip",
       "recommended": false,
-      "size": 1100000000
+      "size": 1100000000,
+      "extract_path": "ux0:data/"
     },
     {
       "type": "Game Files",
       "name": "Game Data Files ZIP Mediafire",
       "url": "https://www.mediafire.com/file/wc8bo83559pasxd/Game_Data_Files.zip/file",
       "recommended": false,
-      "size": 1100000000
+      "size": 1100000000,
+      "extract_path": "ux0:data/"
     },
     {
       "type": "Official Website",

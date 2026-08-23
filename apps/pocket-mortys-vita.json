@@ -25,9 +25,40 @@
   "links": [
     {
       "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/pocket-mortys-psvita/PocketMortys_Stub.vpk",
+      "recommended": true,
+      "size": 16814806
+    },
+    {
+      "type": "Download",
       "name": "VitaDB VPK",
       "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1482",
-      "recommended": true
+      "recommended": false,
+      "size": 16814806
+    },
+    {
+      "type": "Download",
+      "name": "VPK Mediafire",
+      "url": "https://www.mediafire.com/file/vc202q0xpsqjhgq/PocketMortys_Stub.vpk/file",
+      "recommended": false,
+      "size": 16814806
+    },
+    {
+      "type": "Game Files",
+      "name": "Game Data Files ZIP",
+      "url": "https://archive.org/download/pocket-mortys-psvita/Data%20Files.zip",
+      "recommended": false,
+      "size": 73900000,
+      "extract_path": "ux0:app/POMO00137/"
+    },
+    {
+      "type": "Game Files",
+      "name": "Game Data Files ZIP Mediafire",
+      "url": "https://www.mediafire.com/file/vjkrnaa4chh9xfz/Data+Files.zip/file",
+      "recommended": false,
+      "size": 73900000,
+      "extract_path": "ux0:app/POMO00137/"
     },
     {
       "type": "Official Website",
