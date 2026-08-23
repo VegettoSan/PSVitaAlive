@@ -169,8 +169,7 @@ def retype_companion_data_links(app):
     return app
 
 
-def retype_companion_data_links(app)
-        ensure_single_recommended(app):
+def ensure_single_recommended(app):
     """At most one links[].recommended=true, preferring Download URLs.
 
     Manual edits and multi-source merges can leave more than one recommended
@@ -228,6 +227,7 @@ def retype_companion_data_links(app)
 
     app["links"] = links
     return app
+
 
 
 def validate_final(apps, authors, categories):
