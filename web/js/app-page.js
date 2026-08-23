@@ -252,7 +252,7 @@ function renderLinks(app) {
             document.createElement("a");
 
         link.href =
-            linkData.url;
+            resolveDownloadUrl(linkData.url);
 
         link.target =
             "_blank";
