@@ -438,9 +438,9 @@ def build(root: Path):
             })
             existing_urls.add(url)
 
-        # VitaDB-family feeds may provide an optional companion data archive.
-        # It is intentionally a separate Download link and is never marked as
-        # recommended. Empty/missing data fields produce no link.
+        # VitaDB-family feeds may provide an optional companion data archive
+        # (VitaDB JSON field "data"). Publish it as type "Data Files", never as
+        # Download, and never recommended. Empty/missing data → no link.
         data_candidates = [
             item for item in group
             if isinstance(getattr(item, "data_url", None), str)
@@ -465,10 +465,12 @@ def build(root: Path):
             )
             data_url = getattr(data_candidate, "data_url", "").strip()
             if data_url and data_url not in existing_urls:
+                label = SOURCE_NAMES.get(data_candidate.source_id, data_candidate.source_id)
                 existing_links.append({
-                    "type": "Download",
-                    "name": "Data Files",
+                    "type": "Data Files",
+                    "name": f"{label} Data Files",
                     "url": data_url,
+                    "recommended": False,
                 })
                 existing_urls.add(data_url)
 
