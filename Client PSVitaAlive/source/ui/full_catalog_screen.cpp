@@ -2332,14 +2332,30 @@ if(catalogLoading_){
   return;
 }
 
-vita2d_pgf_draw_text(font_,x+28,y+76,WHITE,1.00f,(installProgressStage_=="Downloading"||installProgressStage_=="Cancelling"||installProgressStage_.empty())?"Downloading":"Installing");
+{
+  const char* title = "Installing";
+  if (installProgressStage_ == "BGDL") title = "Preparing download";
+  else if (installProgressStage_ == "Downloading" || installProgressStage_ == "Cancelling" || installProgressStage_.empty())
+    title = "Downloading";
+  else if (installProgressStage_ == "Installing") title = "Installing";
+  else if (!installProgressStage_.empty()) title = installProgressStage_.c_str();
+  vita2d_pgf_draw_text(font_,x+28,y+76,WHITE,1.00f,title);
+}
 std::string file=installProgressFile_.empty()?"Preparing...":ellipsize(installProgressFile_,72);
 vita2d_pgf_draw_text(font_,x+28,y+108,TEXT,.62f,file.c_str());
 const uint64_t total=installProgressTotal_,current=std::min<uint64_t>(installProgressCurrent_,total?total:installProgressCurrent_);
 const uint64_t pct=total?std::min<uint64_t>(100,(current*100)/total):0;
 int bx=x+28,by=y+140,bw=w-56,bh=12;
 vita2d_draw_rectangle(bx,by,bw,bh,BORDER);
-vita2d_draw_rectangle(bx,by,bw*(int)pct/100,bh,ACCENT);
+if (total == 0 && installProgressStage_ == "BGDL") {
+  // Indeterminate pulse while license/queue runs on the worker thread
+  const float t = (float)(sceKernelGetProcessTimeWide() / 1000ULL % 1000) / 1000.f;
+  const int pulse = (int)(bw * (0.25f + 0.5f * (t < 0.5f ? t * 2.f : (2.f - t * 2.f))));
+  const int off = (int)((bw - pulse) * t);
+  if (pulse > 0) vita2d_draw_rectangle(bx + off, by, pulse, bh, ACCENT);
+} else {
+  vita2d_draw_rectangle(bx,by,bw*(int)pct/100,bh,ACCENT);
+}
 char stats[220];
 sceClibSnprintf(stats,sizeof(stats),"%llu%%  %s / %s  •  %s/s",(unsigned long long)pct,formatBytes(current).c_str(),total?formatBytes(total).c_str():"?",formatBytes(installProgressSpeed_).c_str());
 vita2d_pgf_draw_text(font_,x+28,y+168,TEXT,.58f,stats);
