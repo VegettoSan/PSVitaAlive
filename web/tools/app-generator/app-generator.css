@@ -111,10 +111,10 @@
     font-weight: 600;
 }
 
-.field input,
+.field input:not([type="checkbox"]),
 .field select,
 .field textarea,
-.repeat-item input,
+.repeat-item input:not([type="checkbox"]),
 .repeat-item select {
     width: 100%;
     box-sizing: border-box;
@@ -142,7 +142,7 @@
 .field input:focus,
 .field select:focus,
 .field textarea:focus,
-.repeat-item input:focus,
+.repeat-item input:not([type="checkbox"]):focus,
 .repeat-item select:focus {
     outline: 2px solid var(--accent);
     outline-offset: 1px;
@@ -530,10 +530,10 @@
 }
 
 @media (min-width: 1100px) {
-    .field input,
+    .field input:not([type="checkbox"]),
     .field select,
     .field textarea,
-    .repeat-item input,
+    .repeat-item input:not([type="checkbox"]),
     .repeat-item select {
         font-size: 1.1rem;
         min-height: 52px;
