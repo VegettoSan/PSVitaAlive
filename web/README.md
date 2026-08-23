@@ -25,7 +25,9 @@ Browser frontend for PS Vita Alive Store (GitHub Pages).
 
 | Type | Section |
 |------|---------|
-| `Download` | Downloads |
+| `Download` / `PKG` | Downloads |
+| `Data Files` | Data Files |
+| `Game Files` | Game Files |
 | `DLC` | DLC |
 | `Update` / `Patch` | Updates |
 | `Mod` / `Mod Pack` | Mods (hidden until at least one exists) |
