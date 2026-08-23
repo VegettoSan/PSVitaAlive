@@ -37,6 +37,8 @@ struct CatalogLink {
     std::string size; // human-readable, e.g. "1.4 GB"
     std::string zrif; // Vita NoPayStation zRIF (optional)
     std::string contentId; // NPS Content ID (Vita/PSP/PS1) for license / BGDL
+    /** Optional ZIP extract destination (e.g. ux0:data/AppFolder/). Empty → user picks path. */
+    std::string extractPath;
     bool recommended = false;
 };
 
