@@ -493,20 +493,6 @@
         position: static;
     }
 
-    .repeat-item.link-item {
-        grid-template-columns: 36px minmax(0, 1fr);
-    }
-
-    .repeat-item.link-item .link-type,
-    .repeat-item.link-item .link-name,
-    .repeat-item.link-item .url-field,
-    .repeat-item.link-item .link-size,
-    .repeat-item.link-item .link-extract-path,
-    .repeat-item.link-item .checkbox-inline,
-    .repeat-item.link-item .remove-button {
-        grid-column: 2 / -1;
-    }
-
     .field-grid {
         grid-template-columns: 1fr;
     }
