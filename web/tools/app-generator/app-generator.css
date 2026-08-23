@@ -437,18 +437,40 @@
         padding: 14px 16px;
     }
 
+    /* handle | type | name | size | extract_path | recommended | remove */
     .repeat-item.link-item {
-        grid-template-columns: 40px repeat(3, minmax(0, 1fr));
+        grid-template-columns:
+            40px
+            minmax(120px, 0.9fr)
+            minmax(120px, 1fr)
+            minmax(140px, 0.85fr)
+            minmax(180px, 1.2fr)
+            auto
+            auto;
     }
 
-    .repeat-item.link-item .url-field {
+    .repeat-item.link-item .drag-handle { grid-column: 1; grid-row: 1; }
+    .repeat-item.link-item .link-type { grid-column: 2; grid-row: 1; }
+    .repeat-item.link-item .link-name { grid-column: 3; grid-row: 1; }
+    .repeat-item.link-item .link-size { grid-column: 4; grid-row: 1; min-width: 140px; }
+    .repeat-item.link-item .link-extract-path { grid-column: 5; grid-row: 1; }
+    .repeat-item.link-item .checkbox-inline { grid-column: 6; grid-row: 1; }
+    .repeat-item.link-item .remove-button { grid-column: 7; grid-row: 1; justify-self: end; }
+    .repeat-item.link-item .url-field { grid-column: 2 / -1; grid-row: 2; }
+}
+
+/* Mid desktop: keep size readable when columns wrap */
+@media (min-width: 901px) and (max-width: 1099px) {
+    .repeat-item.link-item {
+        grid-template-columns: 40px repeat(2, minmax(0, 1fr));
+    }
+    .repeat-item.link-item .url-field { grid-column: 2 / -1; }
+    .repeat-item.link-item .link-size {
         grid-column: 2 / -1;
+        min-width: 0;
+        width: 100%;
     }
-
-    .repeat-item.link-item .link-size,
-    .repeat-item.link-item .link-extract-path {
-        grid-column: span 1;
-    }
+    .repeat-item.link-item .link-extract-path { grid-column: 2 / -1; }
 }
 
 @media (max-width: 900px) {
@@ -509,4 +531,10 @@
         max-width: 170px;
         height: 36px;
     }
+}
+
+#requirements {
+    min-height: 120px;
+    font-family: inherit;
+    white-space: pre-wrap;
 }
