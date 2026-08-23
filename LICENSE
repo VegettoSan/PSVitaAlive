@@ -1,59 +1,21 @@
-PS Vita Alive Store — Source Available License (No Copy)
+MIT License
 
 Copyright (c) 2026 VegettoSan / PS Vita Alive Store contributors as applicable.
-All rights reserved, except as expressly stated below.
 
-1. Public viewing
-   This repository is made publicly visible so that others may read the source
-   for learning, research, and inspiration.
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
 
-2. No license to copy the software
-   Except for the limited permissions in section 3, you may NOT:
-   - copy, fork for redistribution, mirror, or re-upload this source code;
-   - modify and distribute this source code;
-   - incorporate substantial portions of this source code into other software;
-   - sell, sublicense, or otherwise commercially exploit this source code.
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
 
-   Publishing a repository that is substantially derived from this codebase
-   (including lightly renamed copies) is not permitted.
-
-3. Inspiration and independent implementation
-   This repository and its README documentation are published so other developers
-   may use the project as inspiration for their own work.
-   You MAY:
-   - study the design, architecture, and behavior described by this project;
-   - implement your own software from scratch inspired by those ideas, without
-     copying this source code (including non-trivial structure, comments, or
-     distinctive implementation details).
-
-   Ideas and general techniques are not a grant of rights in this code.
-
-4. Official binaries and trademarks
-   Use of official release builds (for example VPK/assets published by the
-   project) is allowed for personal use on your own devices unless a specific
-   release states otherwise.
-   Project names, logos, and branding remain the project’s marks; do not
-   present third-party builds as official without permission.
-
-5. Catalog data (separate terms)
-   Homebrew catalog data may be licensed separately under Creative Commons
-   Attribution 4.0 International (CC BY 4.0). See CATALOG_LICENSE.md.
-   That file controls catalog JSON/metadata only — not the client or tooling
-   source code in this repository.
-
-6. Contributions
-   By submitting a contribution to this repository, you assign to the project
-   maintainer the right to use, modify, and license your contribution under
-   these terms (or under terms the maintainer later chooses for this project),
-   and you represent that you have the rights to do so.
-
-7. No warranty
-   THIS SOFTWARE AND REPOSITORY ARE PROVIDED "AS IS", WITHOUT WARRANTY OF ANY
-   KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-   MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, AND NONINFRINGEMENT.
-   IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
-   DAMAGES, OR OTHER LIABILITY ARISING FROM USE OF THE SOFTWARE OR REPOSITORY.
-
-8. Contact
-   For permission beyond this license (for example an exception to use code in
-   another project), contact the repository owner.
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
