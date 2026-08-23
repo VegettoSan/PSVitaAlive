@@ -148,7 +148,9 @@
         if (extractPath === undefined || extractPath === null) {
             extractPath = "ux0:data/";
         }
-        const recommended = value.recommended === true;
+        // First link defaults to recommended when not explicitly set.
+        const isFirst = list.querySelectorAll(".link-item").length === 0;
+        const recommended = value.recommended === true || (isFirst && value.recommended === undefined);
         row.innerHTML = `
             <span class="drag-handle" title="Drag to reorder" aria-label="Drag to reorder">⋮⋮</span>
             <select class="link-type">${DOWNLOAD_TYPES.map(item => `<option value="${escapeHtml(item)}" ${item === type ? "selected" : ""}>${escapeHtml(item)}</option>`).join("")}</select>
@@ -159,6 +161,17 @@
             <label class="checkbox-inline"><input class="link-recommended" type="checkbox" ${recommended ? "checked" : ""}> Recommended</label>
             <button type="button" class="remove-button">Remove</button>`;
         row.querySelectorAll("input,select").forEach(element => element.addEventListener("input", updatePreview));
+        const recInput = row.querySelector(".link-recommended");
+        if (recInput) {
+            recInput.addEventListener("change", () => {
+                if (recInput.checked) {
+                    document.querySelectorAll(".link-recommended").forEach(cb => {
+                        if (cb !== recInput) cb.checked = false;
+                    });
+                }
+                updatePreview();
+            });
+        }
         row.querySelector(".remove-button").addEventListener("click", () => { row.remove(); updatePreview(); });
         bindLinkDrag(row);
         list.appendChild(row);
