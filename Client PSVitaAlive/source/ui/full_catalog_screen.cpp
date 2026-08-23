@@ -2277,14 +2277,13 @@ if(installOutcome_==1){
     const int by2=y+300,bw2=280,bh2=40;
   vita2d_draw_rectangle(x+28,by2,bw2,bh2,GREEN);
   vita2d_pgf_draw_text(font_,x+100,by2+26,BLACK,.62f,"O  Continue");
-  // Auto-close countdown bar (success only)
+  // Auto-close countdown bar only (no text)
   {
     const int barX = x + 28;
     const int barW = w - 56;
-    const int barY = y + h - 28;
+    const int barY = y + h - 22;
     const int barH = 6;
     vita2d_draw_rectangle(barX, barY, barW, barH, BORDER);
-    // RESULT_AUTO_DISMISS_MS is 8000 in InstallController; remaining comes from status.
     const uint64_t totalMs = 8000;
     uint64_t rem = installResultAutoCloseMs_;
     if (rem > totalMs) rem = totalMs;
@@ -2292,10 +2291,6 @@ if(installOutcome_==1){
         ? (int)((barW * rem) / totalMs)
         : 0;
     if (fill > 0) vita2d_draw_rectangle(barX, barY, fill, barH, GREEN);
-    char tbuf[48];
-    const unsigned sec = (unsigned)((rem + 999) / 1000);
-    sceClibSnprintf(tbuf, sizeof(tbuf), "Closes in %us  ·  Circle: close now", sec);
-    vita2d_pgf_draw_text(font_, barX, barY - 6, DIM, .48f, tbuf);
   }
   return;
 }
@@ -2314,7 +2309,7 @@ if(installOutcome_==2){
   const int by2=y+300,bw2=280,bh2=40;
   vita2d_draw_rectangle(x+28,by2,bw2,bh2,RED);
   vita2d_pgf_draw_text(font_,x+110,by2+26,WHITE,.62f,"O  Close");
-  vita2d_pgf_draw_text(font_,x+28,y+h-16,DIM,.48f,"This message stays open until you close it");
+
   vita2d_pgf_draw_text(font_,x+28,y+h-16,DIM,.50f,"Circle: cerrar este mensaje");
   return;
 }
