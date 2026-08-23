@@ -1,0 +1,37 @@
+{
+  "id": "jet-set-knights",
+  "title_id": "PCSH10282",
+  "name": "Jet Set Knights",
+  "description": "Jet Set Knights is an old-school arcade action platformer inspired by classics from the golden age",
+  "long_description": "Jet Set Knights is an old-school arcade action platformer inspired by classics from the golden age such as Mario Bros, Snow Bros or newest Super Crate Box. If You love retro 2D platformers mixed with tower defense and RPG elements, Jet Set Knight is for You!",
+  "author_ids": [
+    "fobti-interactive"
+  ],
+  "category_id": "games",
+  "subcategory_ids": [
+    "adventure",
+    "arcade",
+    "platformer"
+  ],
+  "version": "1.00",
+  "version_date": "2026-08-23",
+  "requirements": "Ps Vita",
+  "size": 21100000,
+  "status": "Verified",
+  "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/jet-set-knights/Jet%20Set%20Knights.vpk",
+      "recommended": true
+    }
+  ],
+  "icon": "https://archive.org/download/jet-set-knights/icon0.png",
+  "screenshots": [
+    "https://archive.org/download/jet-set-knights/0.png",
+    "https://archive.org/download/jet-set-knights/1.png",
+    "https://archive.org/download/jet-set-knights/2.png",
+    "https://archive.org/download/jet-set-knights/3.png",
+    "https://archive.org/download/jet-set-knights/4.png"
+  ]
+}
