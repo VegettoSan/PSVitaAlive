@@ -35,14 +35,19 @@ struct InstallStatus {
     std::string titleId;
     /** True if the app tree / LiveArea entry was verified after promote. */
     bool liveAreaOk = false;
+    /**
+     * Milliseconds until the success panel auto-closes (0 = no auto-close).
+     * Errors never auto-close; only Completed uses this countdown.
+     */
+    uint64_t resultAutoCloseRemainingMs = 0;
 };
 
 /**
  * Orchestrates download -> format-specific install/extract -> cleanup.
  * The UI reads status only; it never performs filesystem/network work.
  *
- * Completed / Failed stay visible until acknowledgeResult() or a timeout,
- * so the user can read success/error feedback.
+ * Completed stays visible until acknowledgeResult() or a short timeout.
+ * Failed stays until the user acknowledges (no auto-dismiss).
  */
 class InstallController {
 public:
@@ -83,6 +88,11 @@ private:
     PluginStatus plugins_{};
 
     SceUID workerThread_ = -1;
+    /** When true, worker runs PKG BGDL enqueue instead of HTTP download. */
+    bool activeBgdlJob_ = false;
+    std::string activeBgdlUrl_;
+    std::string activeBgdlTitle_;
+    std::string activeBgdlLinkType_;
     std::string activeJobId_;
     std::string activeZipDestination_;
     std::string activeFileName_;
