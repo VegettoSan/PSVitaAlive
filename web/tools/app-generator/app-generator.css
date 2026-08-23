@@ -64,6 +64,7 @@
 .form-stack {
     display: grid;
     gap: 18px;
+    min-width: 0;
 }
 
 .form-card {
@@ -71,6 +72,8 @@
     border-radius: 14px;
     background: rgba(12, 12, 14, 0.92);
     padding: 22px 24px 24px;
+    min-width: 0;
+    overflow: hidden;
 }
 
 .form-card h2 {
@@ -162,12 +165,29 @@
 }
 
 .repeat-item.link-item {
-    grid-template-columns: 36px minmax(140px, 0.9fr) minmax(120px, 0.8fr) minmax(180px, 1.4fr);
+    /* Flexible wrap: never force one ultra-wide row that overflows the card */
+    grid-template-columns: 40px repeat(auto-fit, minmax(160px, 1fr));
     align-items: center;
+    min-width: 0;
+    overflow: hidden;
+}
+
+.repeat-item.link-item > * {
+    min-width: 0;
+    max-width: 100%;
+}
+
+.repeat-item.link-item .drag-handle {
+    grid-column: 1;
+    grid-row: 1;
+}
+
+.repeat-item.link-item .link-type {
+    grid-column: 2;
 }
 
 .repeat-item.link-item .url-field {
-    grid-column: 2 / -2;
+    grid-column: 1 / -1;
 }
 
 .repeat-item.link-item .link-size,
@@ -176,11 +196,10 @@
 }
 
 .repeat-item.link-item .checkbox-inline {
-    grid-column: 2 / 3;
+    justify-self: start;
 }
 
 .repeat-item.link-item .remove-button {
-    grid-column: -2 / -1;
     justify-self: end;
 }
 
@@ -419,19 +438,16 @@
     }
 
     .repeat-item.link-item {
-        grid-template-columns: 40px minmax(160px, 0.85fr) minmax(140px, 0.75fr) minmax(220px, 1.5fr) minmax(120px, 0.7fr) minmax(180px, 1fr) auto auto;
+        grid-template-columns: 40px repeat(3, minmax(0, 1fr));
     }
 
     .repeat-item.link-item .url-field {
-        grid-column: auto;
+        grid-column: 2 / -1;
     }
 
-    .repeat-item.link-item .checkbox-inline {
-        grid-column: auto;
-    }
-
-    .repeat-item.link-item .remove-button {
-        grid-column: auto;
+    .repeat-item.link-item .link-size,
+    .repeat-item.link-item .link-extract-path {
+        grid-column: span 1;
     }
 }
 
@@ -445,9 +461,11 @@
     }
 
     .repeat-item.link-item {
-        grid-template-columns: 36px 1fr 1fr;
+        grid-template-columns: 36px minmax(0, 1fr);
     }
 
+    .repeat-item.link-item .link-type,
+    .repeat-item.link-item .link-name,
     .repeat-item.link-item .url-field,
     .repeat-item.link-item .link-size,
     .repeat-item.link-item .link-extract-path,
