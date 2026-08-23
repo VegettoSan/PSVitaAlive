@@ -27,14 +27,12 @@
     {
       "type": "Download",
       "name": "VPK - Mediafire",
-      "url": "https://www.mediafire.com/file/4u8khqdm0shpfyd/Asphalt8Vita_v0.2.vpk/file",
-      "recommended": false
+      "url": "https://www.mediafire.com/file/4u8khqdm0shpfyd/Asphalt8Vita_v0.2.vpk/file"
     },
     {
       "type": "Game Files",
       "name": "Game Data Files ZIP",
       "url": "https://archive.org/download/asphalt-8-psvita/asphalt8%20game%20data.zip",
-      "recommended": false,
       "size": 1500000000,
       "extract_path": "ux0:data/"
     },
@@ -42,15 +40,13 @@
       "type": "Game Files",
       "name": "Game Data Files ZIP - Mediafire",
       "url": "https://www.mediafire.com/file/w1lqvp8lfxnk9q0/asphalt8_game_data.zip/file",
-      "recommended": false,
       "size": 1500000000,
       "extract_path": "ux0:data/"
     },
     {
       "type": "Download",
       "name": "GitLab VPK + Tools",
-      "url": "https://gitlab.com/sexcurrybeats/asphalt8-vita/-/releases/v0.2/downloads/Asphalt8Vita_v0.2.zip",
-      "recommended": false
+      "url": "https://gitlab.com/sexcurrybeats/asphalt8-vita/-/releases/v0.2/downloads/Asphalt8Vita_v0.2.zip"
     }
   ],
   "icon": "https://archive.org/download/asphalt-8-psvita/icon0.png",
