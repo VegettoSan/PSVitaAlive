@@ -98,6 +98,41 @@ std::string itemDisplaySize(const CatalogItem& it) {
     return std::string();
 }
 
+/** Normalize link.type for comparisons (lowercase, collapse spaces). */
+std::string normalizeLinkType(std::string t) {
+    for (char& c : t) {
+        if (c >= 'A' && c <= 'Z') c = static_cast<char>(c - 'A' + 'a');
+        if (c == '_' || c == '-') c = ' ';
+    }
+    std::string out;
+    out.reserve(t.size());
+    bool space = false;
+    for (char c : t) {
+        if (c == ' ') {
+            if (!space && !out.empty()) {
+                out.push_back(' ');
+                space = true;
+            }
+        } else {
+            out.push_back(c);
+            space = false;
+        }
+    }
+    while (!out.empty() && out.back() == ' ') out.pop_back();
+    return out;
+}
+
+bool itemHasLinkType(const CatalogItem& it, const char* needle) {
+    const std::string want = needle;
+    for (const auto& link : it.linkDetails) {
+        const std::string t = normalizeLinkType(link.type);
+        if (t == want) return true;
+        if (want == "data files" && (t == "data file" || t == "datafiles" || t == "data")) return true;
+        if (want == "game files" && (t == "game file" || t == "gamefiles")) return true;
+    }
+    return false;
+}
+
 
 
 // LiveArea brand palette (PSVitaAlive Store): neon lime on near-black honeycomb look
@@ -1935,16 +1970,23 @@ void FullCatalogScreen::drawCatalogCard(const CatalogItem&it,int idx,int x,int y
     if (!meta.empty())
         vita2d_pgf_draw_text(font_, x + 10 + ox, y + h - 10 + oy, DIM, 0.56f, ellipsize(meta, 22).c_str());
     {
-        const std::string sz = itemDisplaySize(it);
-        if (!sz.empty()) {
+        // Bottom-right chips: size + optional Data / Game Files tags (stacked upward)
+        {
+            int sy = y + h - 10 + oy;
+            const int right = x + ox + ww;
             const float sc = 0.54f;
-            const std::string label = ellipsize(sz, 14);
-            const int tw = vita2d_pgf_text_width(font_, sc, label.c_str());
-            const int sx = x + ox + ww - tw - 8;
-            const int sy = y + h - 10 + oy;
-            // Soft chip so size stays readable on busy cards
-            vita2d_draw_rectangle(sx - 4, sy - 12, tw + 8, 16, SURFACE2);
-            vita2d_pgf_draw_text(font_, sx, sy, TEXT, sc, label.c_str());
+            auto drawChip = [&](const std::string& label) {
+                if (label.empty()) return;
+                const int tw = vita2d_pgf_text_width(font_, sc, label.c_str());
+                const int sx = right - tw - 8;
+                vita2d_draw_rectangle(sx - 4, sy - 12, tw + 8, 16, SURFACE2);
+                vita2d_pgf_draw_text(font_, sx, sy, TEXT, sc, label.c_str());
+                sy -= 18;
+            };
+            const std::string sz = itemDisplaySize(it);
+            if (!sz.empty()) drawChip(ellipsize(sz, 14));
+            if (itemHasLinkType(it, "data files")) drawChip("Data");
+            if (itemHasLinkType(it, "game files")) drawChip("Game Files");
         }
     }
 
