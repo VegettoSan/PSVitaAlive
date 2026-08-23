@@ -25,7 +25,8 @@
         catalog: [],
         authors: [],
         categories: [],
-        ready: false
+        ready: false,
+        mode: "create"
     };
 
     const $ = (id) => document.getElementById(id);
@@ -138,24 +139,68 @@
         const list = $("links-list");
         const row = document.createElement("div");
         row.className = "repeat-item link-item";
+        row.draggable = true;
         const type = value.type || "Download";
         const name = value.name || "";
         const url = value.url || "";
         const size = value.size != null ? String(value.size) : "";
-        const extractPath = value.extract_path || value.extractPath || "";
+        let extractPath = value.extract_path || value.extractPath;
+        if (extractPath === undefined || extractPath === null) {
+            extractPath = "ux0:data/";
+        }
         const recommended = value.recommended === true;
         row.innerHTML = `
+            <span class="drag-handle" title="Drag to reorder" aria-label="Drag to reorder">⋮⋮</span>
             <select class="link-type">${DOWNLOAD_TYPES.map(item => `<option value="${escapeHtml(item)}" ${item === type ? "selected" : ""}>${escapeHtml(item)}</option>`).join("")}</select>
             <input class="link-name" type="text" placeholder="Name" value="${escapeHtml(name)}">
             <input class="link-url url-field" type="url" placeholder="https://example.org/download.vpk" value="${escapeHtml(url)}">
-            <input class="link-size" type="text" placeholder="Size (optional, e.g. 120 MB or bytes)" value="${escapeHtml(size)}">
-            <input class="link-extract-path" type="text" placeholder="extract_path (optional, e.g. ux0:data/MyApp/)" value="${escapeHtml(extractPath)}">
+            <input class="link-size" type="text" placeholder="Size (optional)" value="${escapeHtml(size)}">
+            <input class="link-extract-path" type="text" placeholder="extract_path (optional)" value="${escapeHtml(extractPath)}">
             <label class="checkbox-inline"><input class="link-recommended" type="checkbox" ${recommended ? "checked" : ""}> Recommended</label>
             <button type="button" class="remove-button">Remove</button>`;
         row.querySelectorAll("input,select").forEach(element => element.addEventListener("input", updatePreview));
         row.querySelector(".remove-button").addEventListener("click", () => { row.remove(); updatePreview(); });
+        bindLinkDrag(row);
         list.appendChild(row);
         updatePreview();
+    }
+
+    function bindLinkDrag(row) {
+        row.addEventListener("dragstart", event => {
+            const t = event.target;
+            if (t && (t.tagName === "INPUT" || t.tagName === "SELECT" || t.tagName === "TEXTAREA" || t.tagName === "BUTTON" || t.closest("label"))) {
+                event.preventDefault();
+                return;
+            }
+            row.classList.add("dragging");
+            event.dataTransfer.effectAllowed = "move";
+            try { event.dataTransfer.setData("text/plain", "link"); } catch (_) {}
+        });
+        row.addEventListener("dragend", () => {
+            row.classList.remove("dragging");
+            document.querySelectorAll(".link-item.drag-over").forEach(el => el.classList.remove("drag-over"));
+            updatePreview();
+        });
+        row.addEventListener("dragover", event => {
+            event.preventDefault();
+            event.dataTransfer.dropEffect = "move";
+            const dragging = document.querySelector(".link-item.dragging");
+            if (!dragging || dragging === row) return;
+            row.classList.add("drag-over");
+            const list = $("links-list");
+            const siblings = [...list.querySelectorAll(".link-item")];
+            const from = siblings.indexOf(dragging);
+            const to = siblings.indexOf(row);
+            if (from < 0 || to < 0 || from === to) return;
+            if (from < to) list.insertBefore(dragging, row.nextSibling);
+            else list.insertBefore(dragging, row);
+        });
+        row.addEventListener("dragleave", () => row.classList.remove("drag-over"));
+        row.addEventListener("drop", event => {
+            event.preventDefault();
+            row.classList.remove("drag-over");
+            updatePreview();
+        });
     }
 
     function getSelectedValues(select) {
@@ -265,8 +310,8 @@
         });
 
         if (app.id && !/^[a-z0-9_-]+$/.test(app.id)) errors.push("id may only contain lowercase letters, numbers, hyphens and underscores.");
-        if (app.id && state.catalog.some(item => item.id === app.id)) errors.push(`The ID '${app.id}' already exists in catalog.json.`);
-        if (app.title_id && state.catalog.some(item => item.title_id === app.title_id)) errors.push(`The Title ID '${app.title_id}' already exists in catalog.json.`);
+        if (app.id && state.mode === "create" && state.catalog.some(item => item.id === app.id)) errors.push(`The ID '${app.id}' already exists in catalog.json. Switch to Edit mode to update it.`);
+        if (app.title_id && state.mode === "create" && state.catalog.some(item => item.title_id === app.title_id)) errors.push(`The Title ID '${app.title_id}' already exists in catalog.json. Switch to Edit mode to update it.`);
         if (!Array.isArray(app.author_ids) || !app.author_ids.length) errors.push("Select at least one author.");
         if (state.ready) {
             const isLocalAuthor = (id) => typeof window.isCreatedAuthor === "function" && window.isCreatedAuthor(id);
@@ -310,7 +355,8 @@
         const button = $("download-json");
         if (!button) return;
         const count = getCreatedAuthors().length;
-        button.textContent = count ? `Download app.json + ${count} author JSON${count === 1 ? "" : "s"}` : "Download app.json";
+        const base = state.mode === "edit" ? "Download updated app.json" : "Download app.json";
+        button.textContent = count ? `${base} + ${count} author JSON${count === 1 ? "" : "s"}` : base;
     }
 
     function updateValidation(app) {
@@ -416,20 +462,46 @@
         }
     }
 
+
+    function setMode(mode) {
+        state.mode = mode === "edit" ? "edit" : "create";
+        const createBtn = $("mode-create");
+        const editBtn = $("mode-edit");
+        const hint = $("mode-hint");
+        if (createBtn) createBtn.classList.toggle("active", state.mode === "create");
+        if (editBtn) editBtn.classList.toggle("active", state.mode === "edit");
+        if (hint) {
+            if (state.mode === "edit") {
+                hint.className = "notice info";
+                hint.textContent = "Edit mode: import an existing app JSON, change fields, and download the updated file. Duplicate ID / Title ID checks are skipped so you can save over the same entry.";
+            } else {
+                hint.className = "notice info";
+                hint.textContent = "Create mode: the app ID and Title ID must be new in the catalog.";
+            }
+        }
+        updatePreview();
+    }
+
     function bind() {
         document.querySelectorAll("#app-form input, #app-form textarea, #app-form select").forEach(element => element.addEventListener("input", updatePreview));
         $("category").addEventListener("change", () => updateSubcategories());
         $("add-screenshot").addEventListener("click", () => addScreenshotRow());
         $("add-link").addEventListener("click", () => addLinkRow());
-        $("reset-form").addEventListener("click", resetForm);
+        $("reset-form").addEventListener("click", () => {
+            setMode("create");
+            resetForm();
+        });
         $("download-json").addEventListener("click", downloadJson);
         $("copy-json").addEventListener("click", copyJson);
+        if ($("mode-create")) $("mode-create").addEventListener("click", () => setMode("create"));
+        if ($("mode-edit")) $("mode-edit").addEventListener("click", () => setMode("edit"));
         $("import-json").addEventListener("change", async event => {
             const file = event.target.files?.[0];
             if (!file) return;
             try {
                 const object = JSON.parse(await file.text());
                 if (!object || typeof object !== "object" || Array.isArray(object)) throw new Error("Root value must be an object.");
+                setMode("edit");
                 populateFromObject(object);
             } catch (error) {
                 alert(`Could not import JSON: ${error.message}`);
@@ -439,5 +511,6 @@
     }
 
     bind();
+    setMode("create");
     loadData();
 })();
