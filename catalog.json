@@ -1,51 +1,5 @@
 [
   {
-    "id": "javita",
-    "title_id": "JAVITA001",
-    "name": "JAVITA",
-    "description": "Port of Star Wars Jedi Knight: Jedi Academy for PSVita.",
-    "long_description": "Port of Star Wars Jedi Knight: Jedi Academy for PSVita based on OpenJK.",
-    "author_ids": [
-      "ndrw"
-    ],
-    "category_id": "ports",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "v.1.0",
-    "version_date": "2028-08-22",
-    "requirements": "- Game Data Files: PC",
-    "size": 3819434,
-    "status": "Legacy",
-    "icon": "https://www.rinnegatamante.eu/vitadb/icons/1bb9917dfa6da37c1a4f8fabe93be3a03435e8231b1c3b3f88bfb2b192701acb.png",
-    "screenshots": [
-      "https://www.rinnegatamante.eu/vitadb/icons/1bb9917dfa6da37c1a4f8fabe93be3a03435e8231b1c3b3f88bfb2b192701acb.png"
-    ],
-    "links": [
-      {
-        "type": "Download",
-        "name": "VitaDB VPK",
-        "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1481",
-        "recommended": true
-      },
-      {
-        "type": "Official Website",
-        "name": "VitaDB Release Page",
-        "url": "https://github.com/NDRWhun/JAVITA/releases"
-      },
-      {
-        "type": "Repository",
-        "name": "Repositorio",
-        "url": "https://github.com/NDRWhun/JAVITA"
-      }
-    ],
-    "source_name": "VitaDB",
-    "source_id": "1481",
-    "source_url": "https://github.com/NDRWhun/JAVITA",
-    "release_page": "https://github.com/NDRWhun/JAVITA/releases",
-    "updated_at": "2026-08-22T15:39:32.749156+00:00"
-  },
-  {
     "id": "nazi-zombies-portable",
     "title_id": "NZZMBSPTB",
     "name": "Nazi Zombies Portable",
@@ -124,6 +78,95 @@
     "source_url": "https://github.com/nzp-team/nzportable",
     "release_page": "https://github.com/nzp-team/nzportable/releases",
     "updated_at": "2026-08-13T15:34:48.451358+00:00"
+  },
+  {
+    "id": "pocket-mortys-vita",
+    "title_id": "POMO00137",
+    "name": "Pocket Mortys Vita",
+    "description": "Native port of Pocket Mortys.",
+    "long_description": "Native port of Pocket Mortys,",
+    "author_ids": [
+      "celtic-gaming"
+    ],
+    "category_id": "ports",
+    "subcategory_ids": [
+      "other"
+    ],
+    "version": "v.0.9",
+    "version_date": "2026-08-22",
+    "requirements": "- Game Data Files: Android",
+    "size": 16814806,
+    "status": "Legacy",
+    "icon": "https://www.rinnegatamante.eu/vitadb/icons/03a7746d6a9e3ab53f6ecdc0cfd1eb7fa5f5d53cac00e7fbfc95089275b6527f.png",
+    "screenshots": [
+      "https://www.rinnegatamante.eu/vitadb/screenshots/d937ebb4dbec1d94919e9c22b6a2652679be2d39db32c9228904509175db0bde.png",
+      "https://www.rinnegatamante.eu/vitadb/screenshots/25dbcde1f5dc42fe88da1b490ceff50c0751707d4f9337fc67874f2849443b5d.png",
+      "https://www.rinnegatamante.eu/vitadb/screenshots/7376ebd15ac4867d27edec0f6c52a571d416611455428eddc3a328813715858f.png"
+    ],
+    "links": [
+      {
+        "type": "Download",
+        "name": "VitaDB VPK",
+        "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1482",
+        "recommended": true
+      },
+      {
+        "type": "Official Website",
+        "name": "VitaDB Release Page",
+        "url": "https://github.com/celticg/AS-Pocket-Mortys-vita"
+      }
+    ],
+    "source_name": "VitaDB",
+    "source_id": "1482",
+    "source_url": "https://github.com/celticg/AS-Pocket-Mortys-vita",
+    "release_page": "https://github.com/celticg/AS-Pocket-Mortys-vita",
+    "updated_at": "2026-08-23T09:47:03.656067+00:00"
+  },
+  {
+    "id": "javita",
+    "title_id": "JAVITA001",
+    "name": "JAVITA",
+    "description": "Port of Star Wars Jedi Knight: Jedi Academy for PSVita.",
+    "long_description": "Port of Star Wars Jedi Knight: Jedi Academy for PSVita based on OpenJK.",
+    "author_ids": [
+      "ndrw"
+    ],
+    "category_id": "ports",
+    "subcategory_ids": [
+      "other"
+    ],
+    "version": "v.1.0",
+    "version_date": "2026-08-22",
+    "requirements": "- Game Data Files: PC",
+    "size": 3819434,
+    "status": "Legacy",
+    "icon": "https://www.rinnegatamante.eu/vitadb/icons/1bb9917dfa6da37c1a4f8fabe93be3a03435e8231b1c3b3f88bfb2b192701acb.png",
+    "screenshots": [
+      "https://www.rinnegatamante.eu/vitadb/icons/1bb9917dfa6da37c1a4f8fabe93be3a03435e8231b1c3b3f88bfb2b192701acb.png"
+    ],
+    "links": [
+      {
+        "type": "Download",
+        "name": "VitaDB VPK",
+        "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1481",
+        "recommended": true
+      },
+      {
+        "type": "Official Website",
+        "name": "VitaDB Release Page",
+        "url": "https://github.com/NDRWhun/JAVITA/releases"
+      },
+      {
+        "type": "Repository",
+        "name": "Repositorio",
+        "url": "https://github.com/NDRWhun/JAVITA"
+      }
+    ],
+    "source_name": "VitaDB",
+    "source_id": "1481",
+    "source_url": "https://github.com/NDRWhun/JAVITA",
+    "release_page": "https://github.com/NDRWhun/JAVITA/releases",
+    "updated_at": "2026-08-22T15:39:32.749156+00:00"
   },
   {
     "id": "immortal-dusk-vita",
