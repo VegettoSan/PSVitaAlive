@@ -141,11 +141,15 @@
         const type = value.type || "Download";
         const name = value.name || "";
         const url = value.url || "";
+        const size = value.size != null ? String(value.size) : "";
+        const extractPath = value.extract_path || value.extractPath || "";
         const recommended = value.recommended === true;
         row.innerHTML = `
             <select class="link-type">${DOWNLOAD_TYPES.map(item => `<option value="${escapeHtml(item)}" ${item === type ? "selected" : ""}>${escapeHtml(item)}</option>`).join("")}</select>
             <input class="link-name" type="text" placeholder="Name" value="${escapeHtml(name)}">
             <input class="link-url url-field" type="url" placeholder="https://example.org/download.vpk" value="${escapeHtml(url)}">
+            <input class="link-size" type="text" placeholder="Size (optional, e.g. 120 MB or bytes)" value="${escapeHtml(size)}">
+            <input class="link-extract-path" type="text" placeholder="extract_path (optional, e.g. ux0:data/MyApp/)" value="${escapeHtml(extractPath)}">
             <label class="checkbox-inline"><input class="link-recommended" type="checkbox" ${recommended ? "checked" : ""}> Recommended</label>
             <button type="button" class="remove-button">Remove</button>`;
         row.querySelectorAll("input,select").forEach(element => element.addEventListener("input", updatePreview));
@@ -177,6 +181,16 @@
                 name: row.querySelector(".link-name").value.trim(),
                 url: row.querySelector(".link-url").value.trim()
             };
+            const sizeEl = row.querySelector(".link-size");
+            const sizeRaw = sizeEl ? sizeEl.value.trim() : "";
+            if (sizeRaw) {
+                // Prefer numeric bytes when the field is all digits; otherwise keep human text.
+                if (/^\d+$/.test(sizeRaw)) result.size = Number(sizeRaw);
+                else result.size = sizeRaw;
+            }
+            const pathEl = row.querySelector(".link-extract-path");
+            const extractPath = pathEl ? pathEl.value.trim() : "";
+            if (extractPath) result.extract_path = extractPath;
             if (row.querySelector(".link-recommended").checked) result.recommended = true;
             return result;
         });

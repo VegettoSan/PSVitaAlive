@@ -158,6 +158,17 @@ void parseLinks(const sce::Json::Value& application, ui::CatalogItem& item, SceU
                 if (!raw.empty()) detail.size = raw;
             }
         }
+        // Optional ZIP extract destination (skip path picker when set).
+        {
+            std::string ep = getString(link, "extract_path");
+            if (ep.empty()) ep = getString(link, "extractPath");
+            while (!ep.empty() && (ep.front() == ' ' || ep.front() == '	')) ep.erase(ep.begin());
+            while (!ep.empty() && (ep.back() == ' ' || ep.back() == '	')) ep.pop_back();
+            if (!ep.empty()) {
+                if (ep.back() != '/' && ep.back() != ':') ep.push_back('/');
+                detail.extractPath = ep;
+            }
+        }
         item.linkDetails.push_back(detail);
 
         std::string display = type;
