@@ -64,8 +64,16 @@
                             <div id="author-picker"></div>
                             <small>Type a name or ID to filter the official author list. Selected authors appear as chips and can be removed individually.</small>
                         </div>
-                        <div class="field"><label for="category">Category <span>*</span></label><select id="category" required><option value="">Loading...</option></select></div>
-                        <div class="field"><label for="subcategories">Subcategories <span>*</span></label><select id="subcategories" multiple size="6" required></select><small>Select only subcategories belonging to the selected category.</small></div>
+                        <div class="field full category-block">
+                            <label for="category">Category <span>*</span></label>
+                            <select id="category" required class="category-select"><option value="">Loading...</option></select>
+                        </div>
+                        <div class="field full subcategory-block">
+                            <label id="subcategories-label">Subcategories <span>*</span></label>
+                            <div id="subcategory-picker" class="subcategory-picker" role="group" aria-labelledby="subcategories-label"></div>
+                            <select id="subcategories" multiple hidden aria-hidden="true" tabindex="-1"></select>
+                            <p class="subcategory-help">Click to add or remove. No Ctrl needed. Only subcategories of the selected category are shown.</p>
+                        </div>
                     </div>
                 </section>
 
