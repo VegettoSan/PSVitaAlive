@@ -31,6 +31,13 @@
       "recommended": true
     },
     {
+      "type": "Game Files",
+      "name": "Game Data Files ZIP Mediafire",
+      "url": "https://www.mediafire.com/file/9be1no8he289e2c/BanjoKazooieVita.zip/file",
+      "recommended": false,
+      "size": 257980000
+    },
+    {
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/Rinnegatamante/Lighthouse"
