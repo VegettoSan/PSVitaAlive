@@ -1,8 +1,12 @@
 {
   "version": 2,
   "apps": {
-    "ids": [],
-    "title_ids": [],
+    "ids": [
+      "aleph-one-vita"
+    ],
+    "title_ids": [
+      "ALPH00001"
+    ],
     "restorable": []
   },
   "authors": {
