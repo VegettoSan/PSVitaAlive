@@ -129,7 +129,48 @@ def filter_remote_screenshots(urls):
 
 
 
-def ensure_single_recommended(app):
+
+def retype_companion_data_links(app):
+    """Promote VitaDB-style companion archives to type Data Files.
+
+    Older aggregates stored the VitaDB JSON "data" URL as type Download with
+    name "Data Files". Keep URL/name; fix type and clear recommended.
+    """
+    links = app.get("links")
+    if not isinstance(links, list):
+        return app
+
+    for link in links:
+        if not isinstance(link, dict):
+            continue
+        link_type = str(link.get("type") or "").strip()
+        name = str(link.get("name") or "").strip().lower()
+        url = str(link.get("url") or "").strip().lower()
+
+        looks_like_data_name = (
+            name == "data files"
+            or name.endswith(" data files")
+            or name == "data file"
+        )
+        # VitaDB hosted data zips under files/vitadb (not get_hb_url VPKs)
+        looks_like_vitadb_data_host = (
+            "rinnegatamante.eu/files/vitadb/" in url
+            and not url.endswith(".vpk")
+        )
+
+        if link_type == "Download" and (looks_like_data_name or looks_like_vitadb_data_host):
+            link["type"] = "Data Files"
+            link["recommended"] = False
+        elif link_type.lower() in {"data files", "data file", "datafiles"}:
+            link["type"] = "Data Files"
+            link["recommended"] = False
+
+    app["links"] = links
+    return app
+
+
+def retype_companion_data_links(app)
+        ensure_single_recommended(app):
     """At most one links[].recommended=true, preferring Download URLs.
 
     Manual edits and multi-source merges can leave more than one recommended
@@ -350,6 +391,7 @@ def generate():
             author["avatar"] = "icon/autoricon.png"
 
     for app in apps:
+        retype_companion_data_links(app)
         ensure_single_recommended(app)
 
     validate_final(apps, authors, categories)
