@@ -607,6 +607,26 @@ function renderGameLinks(game) {
             "game-downloads"
         );
 
+    const dataFilesSection =
+        document.getElementById(
+            "game-data-files-section"
+        );
+
+    const dataFilesContainer =
+        document.getElementById(
+            "game-data-files"
+        );
+
+    const gameFilesSection =
+        document.getElementById(
+            "game-game-files-section"
+        );
+
+    const gameFilesContainer =
+        document.getElementById(
+            "game-game-files"
+        );
+
     const dlcSection =
         document.getElementById(
             "game-dlc-section"
@@ -648,6 +668,12 @@ function renderGameLinks(game) {
         );
 
     downloadsContainer.innerHTML = "";
+    if (dataFilesContainer) {
+        dataFilesContainer.innerHTML = "";
+    }
+    if (gameFilesContainer) {
+        gameFilesContainer.innerHTML = "";
+    }
     dlcContainer.innerHTML = "";
     if (updatesContainer) {
         updatesContainer.innerHTML = "";
@@ -658,6 +684,12 @@ function renderGameLinks(game) {
     otherLinksContainer.innerHTML = "";
 
     downloadsSection.hidden = true;
+    if (dataFilesSection) {
+        dataFilesSection.hidden = true;
+    }
+    if (gameFilesSection) {
+        gameFilesSection.hidden = true;
+    }
     dlcSection.hidden = true;
     if (updatesSection) {
         updatesSection.hidden = true;
@@ -679,6 +711,8 @@ function renderGameLinks(game) {
     }
 
     const downloads = [];
+    const dataFiles = [];
+    const gameFiles = [];
     const dlcs = [];
     const updates = [];
     const mods = [];
@@ -694,10 +728,38 @@ function renderGameLinks(game) {
 
             if (
                 type === "download" ||
-                type === "downloads"
+                type === "downloads" ||
+                type === "pkg"
             ) {
 
                 downloads.push(
+                    link
+                );
+
+                return;
+            }
+
+            if (
+                type === "data files" ||
+                type === "data file" ||
+                type === "datafiles" ||
+                type === "data"
+            ) {
+
+                dataFiles.push(
+                    link
+                );
+
+                return;
+            }
+
+            if (
+                type === "game files" ||
+                type === "game file" ||
+                type === "gamefiles"
+            ) {
+
+                gameFiles.push(
                     link
                 );
 
@@ -814,6 +876,22 @@ function renderGameLinks(game) {
         "download"
     );
 
+    if (dataFilesContainer) {
+        renderGameLinkList(
+            dataFiles,
+            dataFilesContainer,
+            "download"
+        );
+    }
+
+    if (gameFilesContainer) {
+        renderGameLinkList(
+            gameFiles,
+            gameFilesContainer,
+            "download"
+        );
+    }
+
     renderGameLinkList(
         dlcs,
         dlcContainer,
@@ -844,6 +922,16 @@ function renderGameLinks(game) {
 
     downloadsSection.hidden =
         downloads.length === 0;
+
+    if (dataFilesSection) {
+        dataFilesSection.hidden =
+            dataFiles.length === 0;
+    }
+
+    if (gameFilesSection) {
+        gameFilesSection.hidden =
+            gameFiles.length === 0;
+    }
 
     dlcSection.hidden =
         dlcs.length === 0;
