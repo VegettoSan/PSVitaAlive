@@ -1,0 +1,48 @@
+name: One-time VitaHomebrewDB source-name migration
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+
+concurrency:
+  group: vitahub-catalog-publisher
+  cancel-in-progress: false
+
+jobs:
+  migrate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Sync with current main
+        run: |
+          git fetch origin main
+          git reset --hard origin/main
+
+      - name: Run source-name migration
+        run: python scripts/migrate_vitadbttoo_name.py
+
+      - name: Remove one-time migration files
+        run: |
+          rm -f scripts/migrate_vitadbttoo_name.py
+          rm -f .github/workflows/migrate_vitadbttoo_name.yml
+
+      - name: Commit migration
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          if git diff --cached --quiet; then
+            echo "No VitaHomebrewDB source-name migration changes detected."
+            exit 0
+          fi
+          git commit -m "Rename VitaHomebrewDB source references"
+          git push origin HEAD:main
