@@ -51,15 +51,6 @@ bool promptText(const std::string& initial, const std::string& title, std::strin
         imeModuleLoaded = true;
     }
 
-    // If a previous dialog was aborted mid-way, clean it up (prevents ALREADY_OPENED crashes).
-    {
-        const SceCommonDialogStatus st = sceImeDialogGetStatus();
-        if (st != SCE_COMMON_DIALOG_STATUS_NONE) {
-            sceClibPrintf("[UI] IME leftover status=%d — terminating\n", (int)st);
-            sceImeDialogTerm();
-        }
-    }
-
     // IMPORTANT: initialText and inputTextBuffer MUST be distinct (VitaShell / SDK sample).
     constexpr SceUInt32 kMaxLen = 128; // enough for search; avoids huge stack + dialog stress
     SceWChar16 inputBuf[kMaxLen + 1];
@@ -102,31 +93,45 @@ bool promptText(const std::string& initial, const std::string& title, std::strin
 
     // Cap wait so a stuck dialog cannot hang the process forever.
     int spin = 0;
-    while (sceImeDialogGetStatus() != SCE_COMMON_DIALOG_STATUS_FINISHED) {
+    bool aborted = false;
+    SceCommonDialogStatus status = SCE_COMMON_DIALOG_STATUS_NONE;
+    while ((status = sceImeDialogGetStatus()) != SCE_COMMON_DIALOG_STATUS_FINISHED) {
         vita2d_start_drawing();
         vita2d_clear_screen();
         vita2d_draw_rectangle(0, 0, 960, 544, RGBA8(0, 0, 0, 180));
         vita2d_end_drawing();
         vita2d_common_dialog_update();
         vita2d_swap_buffers();
-        sceKernelDelayThread(16 * 1000); // ~60 FPS pacing (more stable than 1ms busy loop)
-        if (++spin > 60 * 120) { // ~2 minutes safety
+        sceKernelDelayThread(16 * 1000); // ~60 FPS pacing
+        if (++spin > 60 * 120) {
             sceClibPrintf("[UI] IME wait timeout — aborting dialog\n");
             sceImeDialogAbort();
+            aborted = true;
             break;
         }
     }
 
-    SceImeDialogResult result;
-    sceClibMemset(&result, 0, sizeof(result));
+    // Abort is asynchronous: let the common dialog reach FINISHED before reading
+    // the result or terminating it. This avoids tearing down an active IME state.
+    if (aborted) {
+        for (int cleanupSpin = 0; cleanupSpin < 120; ++cleanupSpin) {
+            status = sceImeDialogGetStatus();
+            if (status == SCE_COMMON_DIALOG_STATUS_FINISHED) break;
+            vita2d_common_dialog_update();
+            sceKernelDelayThread(16 * 1000);
+        }
+    }
+
+    SceImeDialogResult result{};
     const int gr = sceImeDialogGetResult(&result);
     if (gr < 0) {
         sceClibPrintf("[UI] sceImeDialogGetResult failed: 0x%08X\n", gr);
     }
-    const bool ok = (result.button == SCE_IME_DIALOG_BUTTON_ENTER);
+    const bool ok = (gr >= 0 && result.button == SCE_IME_DIALOG_BUTTON_ENTER);
     if (ok) {
         out = wideToAscii(inputBuf);
     }
+
     sceImeDialogTerm();
     imeBusy = false;
     return ok;
