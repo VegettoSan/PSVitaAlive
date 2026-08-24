@@ -9,7 +9,7 @@ permissions:
 
 jobs:
   repair:
-    if: github.event.head_commit.message == 'chore: temporary repair PKG BGDL flow'
+    if: github.event.head_commit.message != 'fix(client): restore safe synchronous PKG BGDL flow'
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
