@@ -1,5 +1,51 @@
 [
   {
+    "id": "naoh-arcade-collection",
+    "title_id": "NAOH00001",
+    "name": "NAOH: Arcade Collection",
+    "description": "Arcade launcher for Marvel vs Capcom games.",
+    "long_description": "NAOH: Arcade Collection is a native PlayStation Vita arcade launcher written in C. It statically links the FB Alpha 2012 (CPS2) and MAME 2000 libretro cores behind a custom vita2d-rendered front end, so a set of classic Marvel vs Capcom arcade games can be launched and played.",
+    "author_ids": [
+      "kiddrwxssj"
+    ],
+    "category_id": "emulators",
+    "subcategory_ids": [
+      "other"
+    ],
+    "version": "v.2.0",
+    "version_date": "2026-08-24",
+    "requirements": "- Game Data Files: Different Systems",
+    "size": 34805154,
+    "status": "Legacy",
+    "icon": "https://www.rinnegatamante.eu/vitadb/icons/30ed058f56e2f90d58bf083f34bdbdec40ae0df71806975caeb25f55f090024f.png",
+    "screenshots": [
+      "https://www.rinnegatamante.eu/vitadb/screenshots/4defff0e49cf45041606352e6095776f36fca789e3dfa9f3c18f1e5f87c623e4.png"
+    ],
+    "links": [
+      {
+        "type": "Download",
+        "name": "VitaDB VPK",
+        "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1470",
+        "recommended": true
+      },
+      {
+        "type": "Official Website",
+        "name": "VitaDB Release Page",
+        "url": "https://github.com/KiddRwxSsj/naoh-ac/releases"
+      },
+      {
+        "type": "Repository",
+        "name": "Repositorio",
+        "url": "https://github.com/KiddRwxSsj/naoh-ac"
+      }
+    ],
+    "source_name": "VitaDB",
+    "source_id": "1470",
+    "source_url": "https://github.com/KiddRwxSsj/naoh-ac",
+    "release_page": "https://github.com/KiddRwxSsj/naoh-ac/releases",
+    "updated_at": "2026-08-17T21:42:40.081896+00:00"
+  },
+  {
     "id": "nazi-zombies-portable",
     "title_id": "NZZMBSPTB",
     "name": "Nazi Zombies Portable",
@@ -886,52 +932,6 @@
     "source_url": "https://github.com/withLogic/zenonia1-remaster-vita",
     "release_page": "https://github.com/withLogic/zenonia1-remaster-vita/releases",
     "updated_at": "2026-08-18T21:51:31.208188+00:00"
-  },
-  {
-    "id": "naoh-arcade-collection",
-    "title_id": "NAOH00001",
-    "name": "NAOH: Arcade Collection",
-    "description": "Arcade launcher for Marvel vs Capcom games.",
-    "long_description": "NAOH: Arcade Collection is a native PlayStation Vita arcade launcher written in C. It statically links the FB Alpha 2012 (CPS2) and MAME 2000 libretro cores behind a custom vita2d-rendered front end, so a set of classic Marvel vs Capcom arcade games can be launched and played.",
-    "author_ids": [
-      "kiddrwxssj"
-    ],
-    "category_id": "emulators",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "v.1.2",
-    "version_date": "2026-08-18",
-    "requirements": "- Game Data Files: Different Systems",
-    "size": 11989270,
-    "status": "Legacy",
-    "icon": "https://www.rinnegatamante.eu/vitadb/icons/30ed058f56e2f90d58bf083f34bdbdec40ae0df71806975caeb25f55f090024f.png",
-    "screenshots": [
-      "https://www.rinnegatamante.eu/vitadb/screenshots/4defff0e49cf45041606352e6095776f36fca789e3dfa9f3c18f1e5f87c623e4.png"
-    ],
-    "links": [
-      {
-        "type": "Download",
-        "name": "VitaDB VPK",
-        "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1470",
-        "recommended": true
-      },
-      {
-        "type": "Official Website",
-        "name": "VitaDB Release Page",
-        "url": "https://github.com/KiddRwxSsj/naoh-ac/releases"
-      },
-      {
-        "type": "Repository",
-        "name": "Repositorio",
-        "url": "https://github.com/KiddRwxSsj/naoh-ac"
-      }
-    ],
-    "source_name": "VitaDB",
-    "source_id": "1470",
-    "source_url": "https://github.com/KiddRwxSsj/naoh-ac",
-    "release_page": "https://github.com/KiddRwxSsj/naoh-ac/releases",
-    "updated_at": "2026-08-17T21:42:40.081896+00:00"
   },
   {
     "id": "vitabright-lut-editor",
