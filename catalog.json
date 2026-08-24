@@ -1,5 +1,61 @@
 [
   {
+    "id": "duskligth",
+    "title_id": "DUSKGXM01",
+    "name": "DuskLigth TLOZ:TLP",
+    "description": "Port The Legend of Zelda: Twilight Princess Ps Vita",
+    "long_description": "Port The Legend of Zelda: Twilight Princess Ps Vita",
+    "author_ids": [
+      "capitanbarbacoa"
+    ],
+    "category_id": "ports",
+    "subcategory_ids": [
+      "action",
+      "adventure",
+      "strategy"
+    ],
+    "version": "00.00",
+    "version_date": "2026-08-24",
+    "requirements": "- ISO The Legend of Zelda: Twilight Princess Region USA.",
+    "size": 14499996,
+    "status": "Verified",
+    "links": [
+      {
+        "type": "Download",
+        "name": "VPK",
+        "url": "https://archive.org/download/duskligth-ps-vita/DuskGXM-0-5-1.vpk",
+        "size": 14500000,
+        "recommended": true
+      },
+      {
+        "type": "Download",
+        "name": "VPK - MEDIAFIRE",
+        "url": "https://www.mediafire.com/file/3a012dwm6tcurwd/DuskGXM-0-5-1.vpk/file",
+        "size": 14500000,
+        "recommended": false
+      },
+      {
+        "type": "Game Files",
+        "name": "Game Files USA",
+        "url": "https://archive.org/download/duskligth-ps-vita/Game%20Files.zip",
+        "size": 1300000000,
+        "extract_path": "ux0:data/"
+      },
+      {
+        "type": "Game Files",
+        "name": "Game Files USA - Mediafire",
+        "url": "https://www.mediafire.com/file/3589zi9b58vli2v/Game+Files.zip/file",
+        "size": 1300000000,
+        "extract_path": "ux0:data/"
+      }
+    ],
+    "icon": "https://archive.org/download/duskligth-ps-vita/icon0.png",
+    "screenshots": [
+      "https://archive.org/download/duskligth-ps-vita/bg.png",
+      "https://archive.org/download/duskligth-ps-vita/0.jpg"
+    ]
+  },
+  {
     "id": "battleship-vita",
     "title_id": "SSB64VITA",
     "name": "Battleship Vita",
@@ -20,7 +76,8 @@
     "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/categories/icons/ports.png",
     "screenshots": [
       "https://www.rinnegatamante.eu/vitadb/screenshots/4c18ceedb403dfbc85434f27517081660aba9762172f2a038bcfe7559f43ad25.png",
-      "https://www.rinnegatamante.eu/vitadb/screenshots/f9180c25b3ddeb764a88fa6b54b794f747d6e167ea9c6413ddb36742c4df0b2d.png"
+      "https://www.rinnegatamante.eu/vitadb/screenshots/f9180c25b3ddeb764a88fa6b54b794f747d6e167ea9c6413ddb36742c4df0b2d.png",
+      "https://www.rinnegatamante.eu/vitadb/screenshots/34d3bbaaf6ef4a2b7e69bdf9b996f99f8bba4b29fe9c8c55c49e522472a4e7fe.png"
     ],
     "links": [
       {
@@ -315,8 +372,7 @@
     "status": "Legacy",
     "icon": "https://www.rinnegatamante.eu/vitadb/icons/1bb9917dfa6da37c1a4f8fabe93be3a03435e8231b1c3b3f88bfb2b192701acb.png",
     "screenshots": [
-      "https://www.rinnegatamante.eu/vitadb/icons/1bb9917dfa6da37c1a4f8fabe93be3a03435e8231b1c3b3f88bfb2b192701acb.png",
-      "https://archive.org/download/JK2VITA/bg.png"
+      "https://www.rinnegatamante.eu/vitadb/icons/1bb9917dfa6da37c1a4f8fabe93be3a03435e8231b1c3b3f88bfb2b192701acb.png"
     ],
     "links": [
       {
@@ -324,12 +380,19 @@
         "name": "VPK",
         "url": "https://archive.org/download/JK2VITA/JAVITA-1.0.vpk",
         "recommended": true,
-        "size": 3422087
+        "size": 3819434
       },
       {
         "type": "Download",
         "name": "VitaDB VPK",
         "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1481",
+        "recommended": false,
+        "size": 3819434
+      },
+      {
+        "type": "Download",
+        "name": "VPK Mediafire",
+        "url": "https://www.mediafire.com/file/0alnjuu3bskbi5h/JAVITA-1.0.vpk/file",
         "recommended": false,
         "size": 3819434
       },
@@ -2825,7 +2888,8 @@
     "status": "Legacy",
     "icon": "https://www.rinnegatamante.eu/vitadb/icons/7c73928974001e42e16d7629daaea63144b6a76b5b013d9ee47953ce6c204881.png",
     "screenshots": [
-      "https://www.rinnegatamante.eu/vitadb/icons/7c73928974001e42e16d7629daaea63144b6a76b5b013d9ee47953ce6c204881.png"
+      "https://www.rinnegatamante.eu/vitadb/icons/7c73928974001e42e16d7629daaea63144b6a76b5b013d9ee47953ce6c204881.png",
+      "https://archive.org/download/JK2VITA/bg.png"
     ],
     "links": [
       {

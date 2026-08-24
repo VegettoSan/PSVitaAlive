@@ -30,7 +30,8 @@
       "type": "Download",
       "name": "VPK - MEDIAFIRE",
       "url": "https://www.mediafire.com/file/3a012dwm6tcurwd/DuskGXM-0-5-1.vpk/file",
-      "size": 14500000
+      "size": 14500000,
+      "recommended": false
     },
     {
       "type": "Game Files",
