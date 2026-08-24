@@ -33,7 +33,7 @@
       "type": "Download",
       "name": "VitaDB VPK",
       "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1481",
-      "recommended": true,
+      "recommended": false,
       "size": 3819434
     },
     {
