@@ -1,0 +1,48 @@
+{
+  "id": "bounce-vita",
+  "title_id": "BZERO0001",
+  "name": "Bounce Vita",
+  "description": "Port of the Nokia Bounce game for PSVita.",
+  "long_description": "Bounce Vita is a native PlayStation Vita port of the classic Nokia Bounce game. It is based on the open-source C reimplementation from amdray/bounce_zero, adapted for VitaSDK with Vita2D rendering, Vita controls, audio, persistent progress, and refreshed presentation assets.",
+  "author_ids": [
+    "m-essa11"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "v.0.1.0",
+  "version_date": "2026-08-24",
+  "requirements": "Not specified",
+  "size": 525303,
+  "status": "Legacy",
+  "icon": "https://www.rinnegatamante.eu/vitadb/icons/2523138017ac889b3942e092b76780db9742397bd680b5a1ff6f3971916377f6.png",
+  "screenshots": [
+    "https://www.rinnegatamante.eu/vitadb/screenshots/5d69819a0c7047e0622ba281d590098c686f55dd5d768ff410c42f4616fd136d.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/c61add6b21282cf7583304c53d87e5111959f2f170f9957ae8dd1ebd38957a2a.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/7dd84acede5a73b68c6ce86318bf0828c5c6a3e5ce6adc63990f322c641db619.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1484",
+      "recommended": true
+    },
+    {
+      "type": "Official Website",
+      "name": "VitaDB Release Page",
+      "url": "https://github.com/M-Essa11/Bounce-Vita/releases"
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/M-Essa11/Bounce-Vita"
+    }
+  ],
+  "source_name": "VitaDB",
+  "source_id": "1484",
+  "source_url": "https://github.com/M-Essa11/Bounce-Vita",
+  "release_page": "https://github.com/M-Essa11/Bounce-Vita/releases",
+  "updated_at": "2026-08-24T21:47:26.671379+00:00"
+}
