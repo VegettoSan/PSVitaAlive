@@ -1,0 +1,123 @@
+name: PKG BGDL repair
+on:
+  push:
+    branches: [main]
+permissions:
+  contents: write
+jobs:
+  repair:
+    if: github.event.head_commit.message != 'fix(client): restore safe synchronous PKG BGDL flow'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with: {fetch-depth: 0}
+      - name: Patch
+        shell: python
+        run: |
+          from pathlib import Path
+          import re, sys
+          cpp = Path('Client PSVitaAlive/source/installer/install_controller.cpp')
+          hpp = Path('Client PSVitaAlive/include/installer/install_controller.hpp')
+          c = cpp.read_text(encoding='utf-8')
+          h = hpp.read_text(encoding='utf-8')
+
+          p = re.compile(r'''    // Licensed Vita PKG path \(NoPayStation\): system BGDL \+ RIF\.\n    // Completely separate from HomebrewInstaller VPK promote\.\n.*?    \} else if \(settings_\.installMethod == InstallMethod::Bgdl\) \{\n        diagnostics::log\("\[Installer\] BGDL selected but file is not PKG - using direct path"\);\n    \}\n''', re.S)
+          replacement = '''    // Licensed Vita PKG path (NoPayStation): system BGDL + RIF.\n    // Completely separate from HomebrewInstaller VPK promote.\n    const bool pkgInstall = BgdlClient::looksLikePkgUrl(url, fileName);\n\n    // Let the frame containing the preparation panel render first. BGDL itself\n    // remains on the main thread, preserving the previously working context.\n    const bool wantBgdl =\n        pkgInstall &&\n        (settings_.installMethod == InstallMethod::Bgdl ||\n         settings_.installMethod == InstallMethod::Auto ||\n         settings_.installMethod == InstallMethod::Direct);\n\n    if (wantBgdl && pkgInstall) {\n        setFileName(niceTitle.c_str());\n        setStage("BGDL");\n        setInstallPath("");\n        setTitleId("");\n        liveAreaOk_.store(false);\n        current_.store(0);\n        total_.store(0);\n        speed_.store(0);\n        resultShownAtMs_.store(0);\n        setState(InstallStatus::State::Downloading,\n                 "Preparing license and queuing system download...");\n\n        activeBgdlJob_ = true;\n        activeBgdlUrl_ = url;\n        activeBgdlTitle_ = niceTitle;\n        activeBgdlLinkType_ = linkType;\n        activeZrif_ = zrif;\n        activeContentId_ = contentId;\n        activeJobId_.clear();\n        activeZipDestination_.clear();\n        activeFileName_ = niceTitle;\n        diagnostics::log(std::string("[Installer] PKG BGDL deferred to next UI cycle title=") + niceTitle);\n        return true;\n    } else if (settings_.installMethod == InstallMethod::Bgdl) {\n        diagnostics::log("[Installer] BGDL selected but file is not PKG - using direct path");\n    }\n'''
+          c, n = p.subn(replacement, c, count=1)
+          if n != 1: print('requestInstall replacement failed', file=sys.stderr); sys.exit(1)
+
+          anchor = '''InstallStatus InstallController::status() const {\n    // Auto-dismiss long-lived result panels so the UI does not stick forever.\n    const_cast<InstallController*>(this)->maybeAutoAcknowledgeResult();\n'''
+          repl = '''InstallStatus InstallController::status() const {\n    if (activeBgdlJob_) {\n        const_cast<InstallController*>(this)->processPendingBgdl();\n    }\n\n    // Auto-dismiss long-lived result panels so the UI does not stick forever.\n    const_cast<InstallController*>(this)->maybeAutoAcknowledgeResult();\n'''
+          if anchor not in c: print('status anchor failed', file=sys.stderr); sys.exit(1)
+          c = c.replace(anchor, repl, 1)
+
+          fn = r'''void InstallController::processPendingBgdl() {
+    if (!activeBgdlJob_) return;
+    activeBgdlJob_ = false;
+    const std::string title = activeBgdlTitle_;
+    const std::string url = activeBgdlUrl_;
+    const std::string linkType = activeBgdlLinkType_;
+    const std::string zrif = activeZrif_;
+    const std::string contentId = activeContentId_;
+
+    setMessage("Preparing license...");
+    if (!BgdlClient::instance().available() && !BgdlClient::instance().init()) {
+        setState(InstallStatus::State::Failed,
+                 "BGDL unavailable on this device. Try again or check plugins.");
+        resultShownAtMs_.store(sceKernelGetSystemTimeWide() / 1000ULL);
+        diagnostics::log("[Installer] PKG BGDL failed: BGDL unavailable");
+        return;
+    }
+
+    setMessage("Queuing system download...");
+    PkgBgdlRequest preq;
+    preq.title = title;
+    preq.url = url;
+    preq.zrif = zrif;
+    preq.contentId = contentId;
+    preq.type = PkgBgdlInstaller::typeFromLinkType(linkType);
+    if (preq.zrif.empty() && !preq.contentId.empty() &&
+        (preq.type == BgdlTaskType::Game || preq.type == BgdlTaskType::Psp)) {
+        if (preq.contentId.find("-NPU") != std::string::npos ||
+            preq.contentId.find("-ULES") != std::string::npos ||
+            preq.contentId.find("-ULUS") != std::string::npos ||
+            preq.contentId.find("-UCUS") != std::string::npos ||
+            preq.contentId.find("-NPE") != std::string::npos ||
+            preq.contentId.find("-NPJ") != std::string::npos ||
+            preq.contentId.find("-NPH") != std::string::npos ||
+            linkType.find("PSP") != std::string::npos ||
+            linkType.find("PS1") != std::string::npos ||
+            linkType.find("PSX") != std::string::npos) {
+            preq.type = BgdlTaskType::Psp;
+        }
+    }
+    const PkgBgdlResult bg = PkgBgdlInstaller::enqueue(preq);
+    if (bg.ok) {
+        setFileName(title.c_str());
+        setStage("BGDL");
+        setInstallPath("");
+        setTitleId("");
+        liveAreaOk_.store(false);
+        char msg[384];
+        sceClibSnprintf(msg, sizeof(msg),
+            "Queued: %s — open LiveArea notifications to watch download/install.",
+            title.c_str());
+        setState(InstallStatus::State::Completed, msg);
+        resultShownAtMs_.store(sceKernelGetSystemTimeWide() / 1000ULL);
+        diagnostics::log(std::string("[Installer] PKG BGDL queued id=") + std::to_string(bg.bgdlId) +
+                         " title=" + title);
+    } else {
+        const char* failMsg = bg.message.empty()
+            ? "PKG license (zRIF) missing or BGDL queue failed"
+            : bg.message.c_str();
+        setState(InstallStatus::State::Failed, failMsg);
+        resultShownAtMs_.store(sceKernelGetSystemTimeWide() / 1000ULL);
+        diagnostics::log(std::string("[Installer] PKG BGDL failed: ") + failMsg);
+    }
+}
+
+'''
+          marker = 'void InstallController::maybeAutoAcknowledgeResult() {'
+          if marker not in c: print('method marker failed', file=sys.stderr); sys.exit(1)
+          c = c.replace(marker, fn + marker, 1)
+
+          h_anchor = '    std::string activeContentId_;\n'
+          if h_anchor not in h: print('header field failed', file=sys.stderr); sys.exit(1)
+          h = h.replace(h_anchor, h_anchor + '    // Pending PKG/BGDL request; processed on the main UI thread after one frame.\n', 1)
+          h_anchor2 = '    void maybeAutoAcknowledgeResult();\n'
+          if h_anchor2 not in h: print('header method failed', file=sys.stderr); sys.exit(1)
+          h = h.replace(h_anchor2, '    void processPendingBgdl();\n    void maybeAutoAcknowledgeResult();\n', 1)
+
+          cpp.write_text(c, encoding='utf-8')
+          hpp.write_text(h, encoding='utf-8')
+          print('patch ok')
+
+      - name: Commit and remove temporary workflows
+        run: |
+          rm -f .github/workflows/pkg_bgdl_repair.yml .github/workflows/_temporary_fix_pkg_bgdl.yml
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add 'Client PSVitaAlive/source/installer/install_controller.cpp' 'Client PSVitaAlive/include/installer/install_controller.hpp' .github/workflows/pkg_bgdl_repair.yml .github/workflows/_temporary_fix_pkg_bgdl.yml
+          git diff --cached --check
+          git commit -m 'fix(client): restore safe synchronous PKG BGDL flow'
+          git push origin main
