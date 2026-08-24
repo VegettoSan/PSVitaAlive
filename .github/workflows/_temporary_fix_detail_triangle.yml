@@ -1,0 +1,57 @@
+name: Temporary Detail Triangle Fix
+
+on:
+  push:
+    paths:
+      - '.github/workflows/_temporary_fix_detail_triangle.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  fix:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Patch detail Triangle behavior
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+
+          path = Path('Client PSVitaAlive/source/ui/full_catalog_screen.cpp')
+          text = path.read_text(encoding='utf-8')
+
+          old = 'if(state_.mode!=UiMode::SPLIT_DETAIL)return;}if(pressed&SCE_CTRL_TRIANGLE){if(searchRequest_)applySearch(searchRequest_(searchQuery_));return;}if(pressed&SCE_CTRL_CIRCLE){startClosingDetail();return;}'
+          new = 'if(state_.mode!=UiMode::SPLIT_DETAIL)return;}if(pressed&SCE_CTRL_CIRCLE){startClosingDetail();return;}'
+
+          if text.count(old) != 1:
+              raise SystemExit(f'Expected exactly one target block, found {text.count(old)}')
+
+          path.write_text(text.replace(old, new, 1), encoding='utf-8')
+          PY
+
+      - name: Verify patch
+        shell: bash
+        run: |
+          grep -F 'if(state_.mode==UiMode::FULL_CATALOG){if(pressed&SCE_CTRL_TRIANGLE)' 'Client PSVitaAlive/source/ui/full_catalog_screen.cpp'
+          if grep -F 'if(state_.mode!=UiMode::SPLIT_DETAIL)return;}if(pressed&SCE_CTRL_TRIANGLE)' 'Client PSVitaAlive/source/ui/full_catalog_screen.cpp'; then
+            echo 'ERROR: Detail Triangle still opens search.'
+            exit 1
+          fi
+          grep -F 'if(nav&SCE_CTRL_LEFT)state_.activePanel=UiPanel::Catalog;if(pressed&SCE_CTRL_TRIANGLE){if(state_.linkNavigation)exitLinkNavigation();else enterLinkNavigation();return;}' 'Client PSVitaAlive/source/ui/full_catalog_screen.cpp'
+
+      - name: Commit fix and remove temporary workflow
+        shell: bash
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          rm -f .github/workflows/_temporary_fix_detail_triangle.yml
+          git add 'Client PSVitaAlive/source/ui/full_catalog_screen.cpp' '.github/workflows/_temporary_fix_detail_triangle.yml'
+          git diff --cached --check
+          git commit -m 'Fix Triangle behavior in detail mode'
+          git push
