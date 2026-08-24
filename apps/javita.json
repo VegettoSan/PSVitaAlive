@@ -18,8 +18,7 @@
   "status": "Legacy",
   "icon": "https://www.rinnegatamante.eu/vitadb/icons/1bb9917dfa6da37c1a4f8fabe93be3a03435e8231b1c3b3f88bfb2b192701acb.png",
   "screenshots": [
-    "https://www.rinnegatamante.eu/vitadb/icons/1bb9917dfa6da37c1a4f8fabe93be3a03435e8231b1c3b3f88bfb2b192701acb.png",
-    "https://archive.org/download/JK2VITA/bg.png"
+    "https://www.rinnegatamante.eu/vitadb/icons/1bb9917dfa6da37c1a4f8fabe93be3a03435e8231b1c3b3f88bfb2b192701acb.png"
   ],
   "links": [
     {
@@ -27,12 +26,19 @@
       "name": "VPK",
       "url": "https://archive.org/download/JK2VITA/JAVITA-1.0.vpk",
       "recommended": true,
-      "size": 3422087
+      "size": 3819434
     },
     {
       "type": "Download",
       "name": "VitaDB VPK",
       "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1481",
+      "recommended": false,
+      "size": 3819434
+    },
+    {
+      "type": "Download",
+      "name": "VPK Mediafire",
+      "url": "https://www.mediafire.com/file/0alnjuu3bskbi5h/JAVITA-1.0.vpk/file",
       "recommended": false,
       "size": 3819434
     },
