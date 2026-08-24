@@ -16,7 +16,6 @@
 
 namespace psvitaalive {
 namespace {
-// Keep success/error panel visible long enough to read; user can dismiss earlier.
 constexpr uint64_t RESULT_AUTO_DISMISS_MS = 8000;
 }
 
@@ -32,18 +31,13 @@ InstallController::~InstallController() { shutdown(); }
 
 bool InstallController::init() {
     if (http_.isInitialized()) return true;
-
-    // Load config before optional startup probes so those probes can be disabled
-    // without executing any of their work. Missing/new config values default true.
     settings_ = AppSettings::load();
-
     const HttpResult result = http_.init();
     if (result != HttpResult::Ok) {
         setState(InstallStatus::State::Failed, http_.lastError().c_str());
         diagnostics::log(std::string("[Installer] HTTP init failed: ") + http_.lastError());
         return false;
     }
-
     downloads_.setProgressCallback([this](const DownloadProgressEvent& event) {
         current_.store(event.downloaded);
         total_.store(event.total);
@@ -53,7 +47,6 @@ bool InstallController::init() {
         state_.store(static_cast<int>(InstallStatus::State::Downloading));
         setMessage("Downloading...");
     });
-
     const int purged = downloads_.purgeIncompleteJobs();
     if (purged > 0) {
         char m[96];
@@ -62,7 +55,6 @@ bool InstallController::init() {
     }
     setStage("Idle");
     setState(InstallStatus::State::Idle, "Ready");
-
     if (settings_.startupPluginDetection) {
         plugins_ = PluginDetector::scan();
         diagnostics::log(std::string("[Installer] plugins: ") + plugins_.detail);
@@ -73,19 +65,9 @@ bool InstallController::init() {
     diagnostics::log(std::string("[Installer] settings method=") + AppSettings::toString(settings_.installMethod) +
         " psp=" + AppSettings::toString(settings_.pspTarget));
     if (settings_.startupPluginDetection) {
-        if (!plugins_.nonpdrm) {
-            diagnostics::log("[Installer] NoNpDrm not detected - licensed Vita PKG installs may fail");
-        }
-        if (!plugins_.nopspemudrmKern) {
-            diagnostics::log("[Installer] NoPspEmuDrm not detected - PSP LiveArea bubbles unavailable (Adrenaline ISO path still works)");
-        }
+        if (!plugins_.nonpdrm) diagnostics::log("[Installer] NoNpDrm not detected - licensed Vita PKG installs may fail");
+        if (!plugins_.nopspemudrmKern) diagnostics::log("[Installer] NoPspEmuDrm not detected - PSP LiveArea bubbles unavailable (Adrenaline ISO path still works)");
     }
-
-    // IMPORTANT: BGDL binds against internal SceShellSvc exports through taiHEN.
-    // Do not initialize that reverse-engineered path during application startup.
-    // It is now initialized lazily only when the user actually requests a PKG
-    // install through BGDL/Auto. This keeps normal startup independent of the
-    // optional system download manager and avoids real-hardware startup crashes.
     diagnostics::log("[Installer] BGDL deferred until first PKG install request");
     diagnostics::log("[Installer] initialized");
     return true;
@@ -109,8 +91,7 @@ void InstallController::shutdown() {
 void InstallController::setSettings(const AppSettingsData& s) {
     settings_ = s;
     AppSettings::save(settings_);
-    diagnostics::log(std::string("[Installer] settings saved method=") +
-        AppSettings::toString(settings_.installMethod));
+    diagnostics::log(std::string("[Installer] settings saved method=") + AppSettings::toString(settings_.installMethod));
 }
 
 void InstallController::cancel() {
@@ -150,10 +131,8 @@ bool InstallController::requestInstall(
 ) {
     if (url.empty() || fileName.empty() || busy()) return false;
 
-    // Human-readable name for UI + system BGDL notification (not the CDN hash filename).
     std::string niceTitle = displayTitle;
     if (niceTitle.empty()) niceTitle = fileName;
-    // Strip control chars / collapse whitespace; cap length for Shell notification.
     {
         std::string cleaned;
         cleaned.reserve(niceTitle.size());
@@ -172,37 +151,19 @@ bool InstallController::requestInstall(
         if (!cleaned.empty()) niceTitle = cleaned;
     }
 
-    // Carry license metadata for Direct PKG install (ignored by VPK/ZIP paths).
     activeZrif_ = zrif;
     activeContentId_ = contentId;
 
-    // Licensed Vita PKG path (NoPayStation): system BGDL + RIF.
-    // Completely separate from HomebrewInstaller VPK promote.
     const bool pkgInstall = BgdlClient::looksLikePkgUrl(url, fileName);
-    // PKG installs: prefer system BGDL (PKGj path). Always (re)try init with full logs.
-    if (pkgInstall &&
-        (settings_.installMethod == InstallMethod::Auto ||
-         settings_.installMethod == InstallMethod::Bgdl ||
-         settings_.installMethod == InstallMethod::Direct)) {
-        diagnostics::log(std::string("[Installer] PKG install method=") +
-                         AppSettings::toString(settings_.installMethod) +
-                         " — probing BGDL");
-        const bool bgdlReady = BgdlClient::instance().init();
-        diagnostics::log(std::string("[Installer] BGDL probe result=") +
-            (bgdlReady ? "available" : "unavailable"));
-    }
-
-    // Prefer BGDL for PKG whenever it is available (even if user selected Direct),
-    // because retail PKG cannot be promoted as a raw file.
     const bool wantBgdl =
-        pkgInstall && BgdlClient::instance().available() &&
+        pkgInstall &&
         (settings_.installMethod == InstallMethod::Bgdl ||
          settings_.installMethod == InstallMethod::Auto ||
          settings_.installMethod == InstallMethod::Direct);
 
     if (wantBgdl && pkgInstall) {
-        // Show progress UI immediately; do heavy work on the install worker so the
-        // main thread keeps rendering (zRIF index + ShellSvc can take seconds).
+        // Show the preparation state now; the next status poll performs the BGDL
+        // work on the main thread, preserving the previously working context.
         setFileName(niceTitle.c_str());
         setStage("BGDL");
         setInstallPath("");
@@ -211,6 +172,7 @@ bool InstallController::requestInstall(
         current_.store(0);
         total_.store(0);
         speed_.store(0);
+        resultShownAtMs_.store(0);
         setState(InstallStatus::State::Downloading,
                  "Preparing license and queuing system download...");
 
@@ -223,41 +185,14 @@ bool InstallController::requestInstall(
         activeJobId_.clear();
         activeZipDestination_.clear();
         activeFileName_ = niceTitle;
-        workerDone_.store(false);
-
-        workerThread_ = sceKernelCreateThread("PSVitaAliveInstall", &InstallController::workerEntry,
-            0x10000100, 64 * 1024, 0, 0, nullptr);
-        if (workerThread_ < 0) {
-            activeBgdlJob_ = false;
-            setState(InstallStatus::State::Failed, "Could not create worker thread");
-            resultShownAtMs_.store(sceKernelGetSystemTimeWide() / 1000ULL);
-            workerDone_.store(true);
-            return false;
-        }
-
-        InstallController* self = this;
-        const int result = sceKernelStartThread(workerThread_, sizeof(self), &self);
-        if (result < 0) {
-            activeBgdlJob_ = false;
-            sceKernelDeleteThread(workerThread_);
-            workerThread_ = -1;
-            setState(InstallStatus::State::Failed, "Could not start worker thread");
-            resultShownAtMs_.store(sceKernelGetSystemTimeWide() / 1000ULL);
-            workerDone_.store(true);
-            return false;
-        }
-        diagnostics::log(std::string("[Installer] PKG BGDL job started (async) title=") + niceTitle);
+        diagnostics::log(std::string("[Installer] PKG BGDL deferred one UI cycle title=") + niceTitle);
         return true;
     } else if (settings_.installMethod == InstallMethod::Bgdl) {
         diagnostics::log("[Installer] BGDL selected but file is not PKG - using direct path");
     }
 
-
-    // Allow starting a new job after a result panel is still showing.
     const auto s = static_cast<InstallStatus::State>(state_.load());
-    if (s == InstallStatus::State::Completed || s == InstallStatus::State::Failed) {
-        acknowledgeResult();
-    }
+    if (s == InstallStatus::State::Completed || s == InstallStatus::State::Failed) acknowledgeResult();
 
     if (workerThread_ >= 0 && workerDone_.load()) {
         sceKernelWaitThreadEnd(workerThread_, nullptr, nullptr);
@@ -316,7 +251,73 @@ bool InstallController::requestInstall(
 }
 
 InstallStatus InstallController::status() const {
-    // Auto-dismiss long-lived result panels so the UI does not stick forever.
+    if (activeBgdlJob_) {
+        // The UI has already submitted the preparation frame. Execute BGDL now,
+        // still on the main thread, without the new worker-thread path that caused
+        // the regression.
+        InstallController* self = const_cast<InstallController*>(this);
+        self->activeBgdlJob_ = false;
+        const std::string title = self->activeBgdlTitle_;
+        const std::string url = self->activeBgdlUrl_;
+        const std::string linkType = self->activeBgdlLinkType_;
+        const std::string zrif = self->activeZrif_;
+        const std::string contentId = self->activeContentId_;
+
+        self->setMessage("Preparing license...");
+        if (!BgdlClient::instance().available() && !BgdlClient::instance().init()) {
+            self->setState(InstallStatus::State::Failed,
+                           "BGDL unavailable on this device. Try again or check plugins.");
+            self->resultShownAtMs_.store(sceKernelGetSystemTimeWide() / 1000ULL);
+            diagnostics::log("[Installer] PKG BGDL failed: BGDL unavailable");
+        } else {
+            self->setMessage("Queuing system download...");
+            PkgBgdlRequest preq;
+            preq.title = title;
+            preq.url = url;
+            preq.zrif = zrif;
+            preq.contentId = contentId;
+            preq.type = PkgBgdlInstaller::typeFromLinkType(linkType);
+            if (preq.zrif.empty() && !preq.contentId.empty() &&
+                (preq.type == BgdlTaskType::Game || preq.type == BgdlTaskType::Psp)) {
+                if (preq.contentId.find("-NPU") != std::string::npos ||
+                    preq.contentId.find("-ULES") != std::string::npos ||
+                    preq.contentId.find("-ULUS") != std::string::npos ||
+                    preq.contentId.find("-UCUS") != std::string::npos ||
+                    preq.contentId.find("-NPE") != std::string::npos ||
+                    preq.contentId.find("-NPJ") != std::string::npos ||
+                    preq.contentId.find("-NPH") != std::string::npos ||
+                    linkType.find("PSP") != std::string::npos ||
+                    linkType.find("PS1") != std::string::npos ||
+                    linkType.find("PSX") != std::string::npos) {
+                    preq.type = BgdlTaskType::Psp;
+                }
+            }
+            const PkgBgdlResult bg = PkgBgdlInstaller::enqueue(preq);
+            if (bg.ok) {
+                self->setFileName(title.c_str());
+                self->setStage("BGDL");
+                self->setInstallPath("");
+                self->setTitleId("");
+                self->liveAreaOk_.store(false);
+                char msg[384];
+                sceClibSnprintf(msg, sizeof(msg),
+                    "Queued: %s — open LiveArea notifications to watch download/install.",
+                    title.c_str());
+                self->setState(InstallStatus::State::Completed, msg);
+                self->resultShownAtMs_.store(sceKernelGetSystemTimeWide() / 1000ULL);
+                diagnostics::log(std::string("[Installer] PKG BGDL queued id=") + std::to_string(bg.bgdlId) +
+                                 " title=" + title);
+            } else {
+                const char* failMsg = bg.message.empty()
+                    ? "PKG license (zRIF) missing or BGDL queue failed"
+                    : bg.message.c_str();
+                self->setState(InstallStatus::State::Failed, failMsg);
+                self->resultShownAtMs_.store(sceKernelGetSystemTimeWide() / 1000ULL);
+                diagnostics::log(std::string("[Installer] PKG BGDL failed: ") + failMsg);
+            }
+        }
+    }
+
     const_cast<InstallController*>(this)->maybeAutoAcknowledgeResult();
 
     InstallStatus result;
@@ -344,7 +345,6 @@ InstallStatus InstallController::status() const {
 }
 
 void InstallController::maybeAutoAcknowledgeResult() {
-    // Only successful results auto-dismiss. Errors stay until the user acknowledges.
     const auto s = static_cast<InstallStatus::State>(state_.load());
     if (s != InstallStatus::State::Completed) return;
     const uint64_t shown = resultShownAtMs_.load();
@@ -396,7 +396,6 @@ int InstallController::workerMain() {
         const std::string linkType = activeBgdlLinkType_;
         const std::string zrif = activeZrif_;
         const std::string contentId = activeContentId_;
-
         setMessage("Preparing license...");
         if (!BgdlClient::instance().available() && !BgdlClient::instance().init()) {
             setState(InstallStatus::State::Failed,
@@ -406,7 +405,6 @@ int InstallController::workerMain() {
             workerThread_ = -1;
             return 0;
         }
-
         setMessage("Queuing system download...");
         PkgBgdlRequest preq;
         preq.title = title;
@@ -429,11 +427,9 @@ int InstallController::workerMain() {
                 preq.type = BgdlTaskType::Psp;
             }
         }
-
         diagnostics::log(std::string("[Installer] PKG via PkgBgdlInstaller (worker) type=") +
                          std::to_string(static_cast<int>(preq.type)) +
                          " zrif=" + (zrif.empty() ? "no" : "yes"));
-
         const PkgBgdlResult bg = PkgBgdlInstaller::enqueue(preq);
         if (bg.ok) {
             setFileName(title.c_str());
@@ -464,7 +460,6 @@ int InstallController::workerMain() {
 
     const bool downloaded = downloads_.processQueue();
     DownloadJob* job = downloads_.findJob(activeJobId_);
-
     if (!downloaded || !job || job->state != DownloadState::Completed) {
         const bool cancelled = job && job->state == DownloadState::Cancelled;
         const std::string error = cancelled ? "Download cancelled"
@@ -482,7 +477,6 @@ int InstallController::workerMain() {
         workerDone_.store(true);
         return 0;
     }
-
     current_.store(job->downloadedSize);
     total_.store(job->expectedSize ? job->expectedSize : job->downloadedSize);
     speed_.store(0);
@@ -490,9 +484,6 @@ int InstallController::workerMain() {
     setState(InstallStatus::State::Installing, "Preparing installation...");
     diagnostics::log(std::string("[Installer] installing job=") + activeJobId_ + " file=" + job->finalPath);
 
-    // --- Direct PKG + zRIF (separate from VPK HomebrewInstaller path) ---
-    // If the downloaded file is a PKG, decode license and pass RIF into InstallDispatcher.
-    // VPK/ZIP/ISO keep rifPath empty so their existing paths are unchanged.
     std::string directRifPath;
     {
         FormatDetector det;
@@ -565,13 +556,10 @@ int InstallController::workerMain() {
             verifyMsg
         );
         (void)verified;
-                // LiveArea flag only from real promote/VPK path — never from "path exists" alone
-        // (ZIP extract would otherwise show a false LiveArea success).
         liveAreaOk_.store(dispatcher_.lastLiveAreaOk());
         if (!verifyMsg.empty()) {
             sceClibSnprintf(okMsg, sizeof(okMsg), "%s", verifyMsg.c_str());
         }
-        // Coherent ZIP message when we only extracted files
         {
             const std::string& p = dispatcher_.lastInstallPath();
             const bool zipLike = !dispatcher_.lastLiveAreaOk() && !p.empty() &&
@@ -582,7 +570,6 @@ int InstallController::workerMain() {
                 sceClibSnprintf(okMsg, sizeof(okMsg), "ZIP extracted to %s", p.c_str());
             }
         }
-        // VPK promote OK but LiveArea tree not confirmed
         if (!dispatcher_.lastLiveAreaOk() && !dispatcher_.lastTitleId().empty() &&
             dispatcher_.lastInstallPath().find("ux0:app/") != std::string::npos) {
             sceClibSnprintf(
