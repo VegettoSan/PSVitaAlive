@@ -13,7 +13,7 @@
     "other"
   ],
   "version": "Nightly",
-  "version_date": "2026-08-23",
+  "version_date": "2026-08-24",
   "requirements": "- libshacccg.suprx",
   "size": 2446141,
   "status": "Legacy",
