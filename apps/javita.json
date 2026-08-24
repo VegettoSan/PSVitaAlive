@@ -24,10 +24,33 @@
   "links": [
     {
       "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/JK2VITA/JAVITA-1.0.vpk",
+      "recommended": true,
+      "size": 3422087
+    },
+    {
+      "type": "Download",
       "name": "VitaDB VPK",
       "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1481",
       "recommended": true,
       "size": 3819434
+    },
+    {
+      "type": "Game Files",
+      "name": "Game Data Files ZIP",
+      "url": "https://archive.org/download/JK2VITA/Game%20Data%20Files.zip",
+      "recommended": false,
+      "size": 1100000000,
+      "extract_path": "ux0:data/"
+    },
+    {
+      "type": "Game Files",
+      "name": "Game Data Files ZIP Mediafire",
+      "url": "https://www.mediafire.com/file/wc8bo83559pasxd/Game_Data_Files.zip/file",
+      "recommended": false,
+      "size": 1100000000,
+      "extract_path": "ux0:data/"
     },
     {
       "type": "Official Website",
