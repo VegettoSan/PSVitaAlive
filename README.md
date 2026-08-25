@@ -133,7 +133,7 @@ See `Client PSVitaAlive/README.md` for build, self-update handoff and runtime de
 
 ## Data sources & credits
 
-This project **aggregates, normalizes, validates and curates** metadata from multiple public homebrew databases and community work. Automation does bulk import and cleanup; maintainers also apply **manual** fixes, categories, links and quality control.
+This project **collects, normalizes and validates** metadata from multiple public homebrew databases and community work. Automation does bulk import and cleanup; maintainers also apply **manual** fixes, categories, links and quality control.
 
 ### Upstream homebrew databases (acknowledged)
 
@@ -149,7 +149,7 @@ We gratefully acknowledge the communities and projects whose public data help se
 
 The fact that VitaDB or VitaHomebrewDB data appears in VitaHub does **not** mean PS Vita Alive Store owns that upstream data. Those databases and the individual works represented in them remain subject to their respective rights and licenses.
 
-VitaHub uses upstream information only to **discover, import, cross-check, enrich, normalize and preserve** its own public catalog. VitaHub's CC BY 4.0 catalog license applies only to the rights VitaHub actually holds in its own curation and derived catalog work; it does not relicense third-party material that VitaHub does not own.
+VitaHub uses upstream information only to **discover, import, cross-check, enrich, normalize and preserve** its own public catalog. VitaHub's CC0 1.0 catalog license applies only to the rights VitaHub actually holds in its own curation and derived catalog work; it does not relicense third-party material that VitaHub does not own.
 
 The project also does not claim ownership of third-party homebrew binaries, icons, screenshots, trademarks or release assets. Each homebrew should be used according to its original author's terms.
 
@@ -164,19 +164,34 @@ The project also does not claim ownership of third-party homebrew binaries, icon
 
 PS Vita / PSP / PS1 package listings and license sidecars may incorporate public metadata associated with communities such as **NoPayStation** and related tools. Those files are **not** the same as the homebrew CC BY catalog; respect third-party rights and do not treat zRIF or PKG links as redistributable “owned” content of this repo.
 
-## License
+## License and ownership
+
+### What this project is
+
+PS Vita Alive Store is a **discovery and download helper** for the PS Vita scene. It does **not** claim ownership of homebrew apps, plugins, ports, icons, screenshots, or other third-party works. Those belong to their **authors**. Each homebrew entry keeps author information (`author_ids` / author profiles) and, when available, links to the author’s repository or releases.
+
+### Software (client, scripts, tooling)
 
 | Part | Terms |
 |------|--------|
-| **Software** (client, scripts, tooling, build system) | **MIT License** — free to use, copy, modify, merge, publish, distribute, sublicense and sell, subject to the MIT notice and warranty terms. See root [`LICENSE`](LICENSE). |
-| **Homebrew catalog data** (`catalog.json`, `authors.json`, `categories.json`, `apps/`, …) | **CC BY 4.0** — reuse, adaptation and redistribution are allowed with attribution to **PS Vita Alive Store / PSVitaAlive**, while respecting upstream and third-party rights. See [`CATALOG_LICENSE.md`](CATALOG_LICENSE.md). |
+| **Software** (Vita client, updater, scripts, web tooling, build system) | **[MIT License](LICENSE)** — use, copy, modify, distribute, etc., with the MIT notice |
 
-### Using the homebrew catalog in your own project
+### Homebrew catalog data
 
-You may reuse, mirror, adapt or build your own application, website, API or catalog from the covered VitaHub homebrew data. Give clear credit to PS Vita Alive Store / PSVitaAlive, and preserve the upstream credits for information derived from VitaDB, VitaHomebrewDB, or individual authors when applicable.
+| Part | Terms |
+|------|--------|
+| **Homebrew catalog data** (`apps/`, `authors/`, `categories/`, generated `catalog.json`, `authors.json`, `categories.json`, and this project’s compilation/curation of that data) | **[CC0 1.0](CATALOG_LICENSE.md)** (public domain dedication) |
 
-Example:
+**Anyone may use the homebrew catalog data for any purpose**, including other stores, mirrors, apps, and commercial use. **Credit is not required.** A mention is welcome if you want to, but it is optional.
 
-> Homebrew catalog data from **PS Vita Alive Store / PSVitaAlive** — https://github.com/VegettoSan/PSVitaAlive (CC BY 4.0)
+Full text: [CATALOG_LICENSE.md](CATALOG_LICENSE.md).
 
-The detailed terms, attribution requirements, and third-party data disclaimer are documented in [`CATALOG_LICENSE.md`](CATALOG_LICENSE.md).
+### Third-party rights (unchanged)
+
+- Homebrew **binaries, source, icons, and screenshots** remain under each author’s rights and licenses.
+- This repository is not a claim of ownership over those works.
+- Commercial catalogs and zRIF/license sidecars are **not** covered by the CC0 catalog dedication; treat them as third-party reference data.
+
+### Upstream catalogs
+
+Public databases and community work (including projects associated with VitaDB, VitaHomebrewDB, and many individual authors) have helped with discovery and enrichment over time. Credit for that work stays with those projects and authors. This store’s goal is to facilitate finding and installing content, not to replace or claim the creators’ work.
