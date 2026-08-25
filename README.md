@@ -29,7 +29,7 @@ PS Vita Alive Store helps users discover, download and install content on PlaySt
 | `docs/` | Extra documentation |
 
 ```text
-apps/*.json  +  external sources (VitaDB, VitaHomebrewDB, …)
+apps/*.json  +  external sources (currently still includes VitaDB / VitaHomebrewDB during migration)
         │
         ▼
  normalize → merge → overrides → validate
@@ -133,25 +133,26 @@ See `Client PSVitaAlive/README.md` for build, self-update handoff and runtime de
 
 ## Data sources & credits
 
-This project **collects, normalizes and validates** metadata from multiple public homebrew databases and community work. Automation does bulk import and cleanup; maintainers also apply **manual** fixes, categories, links and quality control.
+### Current situation (transition in progress)
 
-### Upstream homebrew databases (acknowledged)
+**Right now**, parts of the homebrew catalog are still seeded or enriched from public data associated with:
 
-We gratefully acknowledge the communities and projects whose public data help seed or enrich parts of the homebrew catalog, including:
+| Project | Maintainer / community | Official pages |
+|---------|------------------------|----------------|
+| **[VitaDB](https://www.rinnegatamante.eu/vitadb/)** | [Rinnegatamante](https://github.com/Rinnegatamante) and contributors | Site: [rinnegatamante.eu/vitadb](https://www.rinnegatamante.eu/vitadb/) · Related work on [GitHub](https://github.com/Rinnegatamante) |
+| **[VitaHomebrewDB](https://drdecki.github.io/VitaHomebrewDB/)** | [DrDecki](https://github.com/DrDecki) and contributors | Site: [drdecki.github.io/VitaHomebrewDB](https://drdecki.github.io/VitaHomebrewDB/) · Data: [DrDecki/VitaDBtoo-db](https://github.com/DrDecki/VitaDBtoo-db) · Also [DrDecki/VitaHomebrewDB](https://github.com/DrDecki/VitaHomebrewDB) |
 
-| Source | Role (typical) |
-|--------|----------------|
-| **[VitaDB](https://www.rinnegatamante.eu/vitadb/)** (Rinnegatamante & contributors) | Long-standing Vita homebrew database / client ecosystem |
-| **VitaHomebrewDB** (DrDecki and contributors) | Community-preserved homebrew metadata, static resources, and continuity data |
-| Individual homebrew **authors** | Original apps, icons, screenshots and release pages |
+We **thank and credit** those projects and everyone who built the underlying homebrew ecosystem. PS Vita Alive Store is **not** a replacement for them and **does not own** their databases, branding, or hosting.
+
+**We are actively working** toward a **self-hosted / independently maintained** homebrew catalog (our own `apps/` records, mirrors, and author-linked releases) so that day-to-day operation does **not** depend on third-party APIs or hosting. Until that migration is complete, some entries may still reference or have been imported from the sources above.
+
+Individual **homebrew authors** remain the owners of their apps, icons, screenshots, and releases. Each catalog entry carries author information (`author_ids` / author profiles) and, when available, links to the author’s repository or release page.
 
 ### Important ownership clarification
 
-The fact that VitaDB or VitaHomebrewDB data appears in VitaHub does **not** mean PS Vita Alive Store owns that upstream data. Those databases and the individual works represented in them remain subject to their respective rights and licenses.
+Using VitaDB or VitaHomebrewDB data for discovery or enrichment does **not** mean PS Vita Alive Store owns that upstream data. Those databases and the works they describe remain under their respective rights and the terms of their maintainers.
 
-VitaHub uses upstream information only to **discover, import, cross-check, enrich, normalize and preserve** its own public catalog. VitaHub's CC0 1.0 catalog license applies only to the rights VitaHub actually holds in its own curation and derived catalog work; it does not relicense third-party material that VitaHub does not own.
-
-The project also does not claim ownership of third-party homebrew binaries, icons, screenshots, trademarks or release assets. Each homebrew should be used according to its original author's terms.
+This project uses public information to **discover, import, cross-check, normalize, and present** a unified catalog for easier installation on PS Vita. Our [CC0 1.0 catalog dedication](CATALOG_LICENSE.md) applies only to rights we can dedicate in our own compilation and curation—not to third-party binaries, artwork, or an upstream database as a whole.
 
 ### What this project adds
 
@@ -161,6 +162,7 @@ The project also does not claim ownership of third-party homebrew binaries, icon
 - Public clients and documentation so others can reuse the catalog and learn from the design
 
 ### Commercial catalogs
+
 
 PS Vita / PSP / PS1 package listings and license sidecars may incorporate public metadata associated with communities such as **NoPayStation** and related tools. Those files are **not** the same as the homebrew CC BY catalog; respect third-party rights and do not treat zRIF or PKG links as redistributable “owned” content of this repo.
 
