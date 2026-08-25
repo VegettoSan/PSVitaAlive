@@ -2,17 +2,6 @@
   "version": 1,
   "sources": [
     {
-      "id": "vitadb",
-      "name": "VitaDB",
-      "enabled": true,
-      "kind": "official_json_api",
-      "url": "https://rinnegatamante.eu/vitadb/list_hbs_json.php",
-      "method": "POST",
-      "priority": 110,
-      "platform": "vita",
-      "notes": "Official VitaDB homebrew JSON feed. Requires POST with an empty body (no parameters). HTTPS is preferred; HTTP is used as fallback. Primary external catalog for version and release-date data."
-    },
-    {
       "id": "vitadbtoo",
       "name": "VitaHomebrewDB",
       "enabled": true,
@@ -22,5 +11,6 @@
       "platform": "vita",
       "notes": "VitaHomebrewDB community-preserved catalog. Used as the secondary external source to fill gaps and cross-check VitaDB data. The repository URL is retained for compatibility with the current hosted source path."
     }
-  ]
+  ],
+  "notes": "VitaDB external feed removed (2026-08). Catalog is maintained via apps/ + optional VitaHomebrewDB. Migration toward fully independent catalog in progress."
 }
