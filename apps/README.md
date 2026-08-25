@@ -55,6 +55,14 @@ Commercial catalogs additionally use `DLC`, `Update`, and `Mod` (see root README
 
 Only **one** `recommended: true` download per app is preferred for validation/UX consistency.
 
+### VitaDB link migration
+
+The automatic **VitaDB** catalog feed is no longer used. This does **not** mean that all existing VitaDB URLs in `apps/` have already been removed.
+
+Existing application links may continue to be reviewed and removed or replaced **progressively**, app by app. This cleanup is separate from disabling the automatic feed and should not be done by rewriting generated catalogs.
+
+New automated external acquisition must follow the currently configured sources described in [`../sources/README.md`](../sources/README.md). Existing VitaDB-derived metadata or links may remain temporarily for compatibility, historical reference, preservation and ongoing migration.
+
 ## Authors
 
 Use individual IDs:
