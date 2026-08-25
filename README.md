@@ -29,7 +29,7 @@ PS Vita Alive Store helps users discover, download and install content on PlaySt
 | `docs/` | Extra documentation |
 
 ```text
-apps/*.json  +  external sources (currently still includes VitaDB / VitaHomebrewDB during migration)
+apps/*.json  +  configured external sources (currently VitaHomebrewDB during migration)
         │
         ▼
  normalize → merge → overrides → validate
@@ -135,22 +135,28 @@ See `Client PSVitaAlive/README.md` for build, self-update handoff and runtime de
 
 ### Current situation (transition in progress)
 
-**Right now**, parts of the homebrew catalog are still seeded or enriched from public data associated with:
+The automatic **VitaDB external feed is no longer used** for catalog acquisition. It was removed from the configured external sources in **August 2026**.
 
-| Project | Maintainer / community | Official pages |
-|---------|------------------------|----------------|
-| **[VitaDB](https://www.rinnegatamante.eu/vitadb/)** | [Rinnegatamante](https://github.com/Rinnegatamante) and contributors | Site: [rinnegatamante.eu/vitadb](https://www.rinnegatamante.eu/vitadb/) · Related work on [GitHub](https://github.com/Rinnegatamante) |
-| **[VitaHomebrewDB](https://drdecki.github.io/VitaHomebrewDB/)** | [DrDecki](https://github.com/DrDecki) and contributors | Site: [drdecki.github.io/VitaHomebrewDB](https://drdecki.github.io/VitaHomebrewDB/) · Data: [DrDecki/VitaDBtoo-db](https://github.com/DrDecki/VitaDBtoo-db) · Also [DrDecki/VitaHomebrewDB](https://github.com/DrDecki/VitaHomebrewDB) |
+The current migration keeps **VitaHomebrewDB** as an optional external source for discovery, cross-checking, enrichment and preservation while the catalog moves toward independent maintenance through VitaHub’s own `apps/`, `authors/` and `categories/` records.
+
+| Project | Current role | Maintainer / community | Official pages |
+|---------|--------------|------------------------|----------------|
+| **[VitaDB](https://www.rinnegatamante.eu/vitadb/)** | Historical source / legacy references only | [Rinnegatamante](https://github.com/Rinnegatamante) and contributors | Site: [rinnegatamante.eu/vitadb](https://www.rinnegatamante.eu/vitadb/) · Related work on [GitHub](https://github.com/Rinnegatamante) |
+| **[VitaHomebrewDB](https://drdecki.github.io/VitaHomebrewDB/)** | Current optional external source during migration | [DrDecki](https://github.com/DrDecki) and contributors | Site: [drdecki.github.io/VitaHomebrewDB](https://drdecki.github.io/VitaHomebrewDB/) · Data: [DrDecki/VitaDBtoo-db](https://github.com/DrDecki/VitaDBtoo-db) · Also [DrDecki/VitaHomebrewDB](https://github.com/DrDecki/VitaHomebrewDB) |
 
 We **thank and credit** those projects and everyone who built the underlying homebrew ecosystem. PS Vita Alive Store is **not** a replacement for them and **does not own** their databases, branding, or hosting.
 
-**We are actively working** toward a **self-hosted / independently maintained** homebrew catalog (our own `apps/` records, mirrors, and author-linked releases) so that day-to-day operation does **not** depend on third-party APIs or hosting. Until that migration is complete, some entries may still reference or have been imported from the sources above.
+### VitaDB migration note
+
+Removing the automatic VitaDB feed does **not** remove existing records or links immediately. Some current `apps/` entries may still contain historical VitaDB-derived metadata or links. Those records and external links will be reviewed and migrated/removed progressively as part of the catalog cleanup.
+
+This README describes the source policy; it does **not** change existing application records by itself.
 
 Individual **homebrew authors** remain the owners of their apps, icons, screenshots, and releases. Each catalog entry carries author information (`author_ids` / author profiles) and, when available, links to the author’s repository or release page.
 
 ### Important ownership clarification
 
-Using VitaDB or VitaHomebrewDB data for discovery or enrichment does **not** mean PS Vita Alive Store owns that upstream data. Those databases and the works they describe remain under their respective rights and the terms of their maintainers.
+Using VitaDB, VitaHomebrewDB or other public sources for discovery or enrichment does **not** mean PS Vita Alive Store owns that upstream data. Those databases and the works they describe remain under their respective rights and the terms of their maintainers.
 
 This project uses public information to **discover, import, cross-check, normalize, and present** a unified catalog for easier installation on PS Vita. Our [CC0 1.0 catalog dedication](CATALOG_LICENSE.md) applies only to rights we can dedicate in our own compilation and curation—not to third-party binaries, artwork, or an upstream database as a whole.
 
