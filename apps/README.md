@@ -67,9 +67,10 @@ Use individual IDs:
 
 Use absolute HTTP(S) URLs for external icons/screenshots. Relative paths only if the file is published inside this repository’s public tree.
 
-## License / attribution
+## License
 
-Homebrew entry data in this tree is part of the **PS Vita Alive Store** catalog and is
-offered under **CC BY 4.0**. Reuse is welcome if you **credit the project**.
+Homebrew **catalog metadata** in this folder is dedicated to the public domain under **CC0 1.0** (see [`CATALOG_LICENSE.md`](../CATALOG_LICENSE.md)).
 
-See [`../CATALOG_LICENSE.md`](../CATALOG_LICENSE.md).
+- You may reuse this data for any purpose **without attribution**.
+- This project **does not own** the homebrew apps themselves; credits belong to each entry’s authors (`author_ids` and author profiles).
+- Binaries, icons, and screenshots remain under their authors’ rights.
