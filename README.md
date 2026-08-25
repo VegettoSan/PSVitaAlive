@@ -137,7 +137,7 @@ See `Client PSVitaAlive/README.md` for build, self-update handoff and runtime de
 
 The automatic **VitaDB external feed is no longer used** for catalog acquisition. It was removed from the configured external sources in **August 2026**.
 
-The current migration keeps **VitaHomebrewDB** as an optional external source for discovery, cross-checking, enrichment and preservation while the catalog moves toward independent maintenance through VitaHub’s own `apps/`, `authors/` and `categories/` records.
+The current migration keeps **VitaHomebrewDB** as an optional external source for discovery, cross-checking, enrichment and preservation while the catalog moves toward independent maintenance through **PSVitaAlive’s own** `apps/`, `authors/` and `categories/` records.
 
 | Project | Current role | Maintainer / community | Official pages |
 |---------|--------------|------------------------|----------------|
@@ -168,7 +168,6 @@ This project uses public information to **discover, import, cross-check, normali
 - Public clients and documentation so others can reuse the catalog and learn from the design
 
 ### Commercial catalogs
-
 
 PS Vita / PSP / PS1 package listings and license sidecars may incorporate public metadata associated with communities such as **NoPayStation** and related tools. Those files are **not** the same as the homebrew CC BY catalog; respect third-party rights and do not treat zRIF or PKG links as redistributable “owned” content of this repo.
 
