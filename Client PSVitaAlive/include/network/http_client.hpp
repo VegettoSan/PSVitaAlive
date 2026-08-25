@@ -66,6 +66,17 @@ public:
         std::string& lastModified
     );
 
+    /**
+     * POST a JSON body (Content-Type: application/json).
+     * Used for Discord error reports. Does not affect file downloads.
+     * Treats HTTP 2xx (including 204) as success.
+     */
+    HttpResult postJson(
+        const std::string& url,
+        const std::string& jsonBody,
+        size_t maxResponseBytes = 4096
+    );
+
     int lastStatusCode() const { return lastStatus_; }
     const std::string& lastError() const { return lastError_; }
     bool lastRangeAccepted() const { return lastRangeAccepted_; }

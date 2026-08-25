@@ -353,6 +353,77 @@ HttpResult HttpClient::fetchToString(
     return HttpResult::Ok;
 }
 
+HttpResult HttpClient::postJson(
+    const std::string& url,
+    const std::string& jsonBody,
+    size_t maxResponseBytes
+) {
+    lastStatus_ = 0;
+    lastError_.clear();
+    if (!initialized_) {
+        setError("not initialized");
+        return HttpResult::NotInitialized;
+    }
+    if (url.empty() || jsonBody.empty()) {
+        setError("empty url or body");
+        return HttpResult::InvalidArgument;
+    }
+    if (maxResponseBytes < 256) maxResponseBytes = 256;
+
+    CURL* curl = curl_easy_init();
+    if (!curl) {
+        setError("curl_easy_init failed");
+        return HttpResult::NetworkError;
+    }
+
+    std::string response;
+    StringWriteCtx ctx;
+    ctx.body = &response;
+    ctx.maxBytes = maxResponseBytes;
+
+    curl_easy_setopt(curl, CURLOPT_URL, url.c_str());
+    curl_easy_setopt(curl, CURLOPT_POST, 1L);
+    curl_easy_setopt(curl, CURLOPT_POSTFIELDS, jsonBody.c_str());
+    curl_easy_setopt(curl, CURLOPT_POSTFIELDSIZE, static_cast<long>(jsonBody.size()));
+    curl_easy_setopt(curl, CURLOPT_FOLLOWLOCATION, 1L);
+    curl_easy_setopt(curl, CURLOPT_MAXREDIRS, 5L);
+    curl_easy_setopt(curl, CURLOPT_USERAGENT, "PSVitaAlive/ErrorReporter");
+    curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, stringWriteCb);
+    curl_easy_setopt(curl, CURLOPT_WRITEDATA, &ctx);
+    curl_easy_setopt(curl, CURLOPT_CONNECTTIMEOUT, 15L);
+    curl_easy_setopt(curl, CURLOPT_TIMEOUT, 25L);
+    curl_easy_setopt(curl, CURLOPT_SSL_VERIFYPEER, 0L);
+    curl_easy_setopt(curl, CURLOPT_SSL_VERIFYHOST, 0L);
+    curl_easy_setopt(curl, CURLOPT_HTTP_VERSION, CURL_HTTP_VERSION_1_1);
+
+    struct curl_slist* headers = nullptr;
+    headers = curl_slist_append(headers, "Content-Type: application/json");
+    headers = curl_slist_append(headers, "Accept: application/json");
+    curl_easy_setopt(curl, CURLOPT_HTTPHEADER, headers);
+
+    const CURLcode rc = curl_easy_perform(curl);
+    long status = 0;
+    curl_easy_getinfo(curl, CURLINFO_RESPONSE_CODE, &status);
+    lastStatus_ = static_cast<int>(status);
+    curl_slist_free_all(headers);
+    curl_easy_cleanup(curl);
+
+    if (rc != CURLE_OK) {
+        setError(std::string("curl: ") + curl_easy_strerror(rc));
+        if (rc == CURLE_SSL_CONNECT_ERROR || rc == CURLE_SSL_CERTPROBLEM)
+            return HttpResult::SslError;
+        return HttpResult::NetworkError;
+    }
+    // Discord webhooks often return 204 No Content
+    if (status >= 200 && status < 300) {
+        return HttpResult::Ok;
+    }
+    char m[96];
+    sceClibSnprintf(m, sizeof(m), "HTTP %ld", status);
+    setError(m);
+    return HttpResult::HttpError;
+}
+
 HttpResult HttpClient::fetchRemoteValidators(const std::string& url, std::string& etag, std::string& lastModified) {
     etag.clear();
     lastModified.clear();

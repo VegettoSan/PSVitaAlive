@@ -232,6 +232,13 @@ private:
     float settingsFocusY_ = 0.f;  // animated highlight Y
     float settingsScrollY_ = 0.f; // adaptive list scroll (px)
 
+    // Discord error report UI (webhook)
+    int reportUiState_ = 0;          // 0 idle, 1 sending, 2 sent, 3 failed
+    uint64_t reportUiUntilMs_ = 0;
+    char reportUiMsg_[48] = {};
+    void trySendErrorReport(const std::string& title, const std::string& context);
+    void drawReportChip();
+
     // Self-update (GitHub Releases → in-place extract to ux0:app/TITLEID)
     ::psvitaalive::UpdateChecker::Result selfUpdateInfo_{};
     bool selfUpdateChecked_ = false;
