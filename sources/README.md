@@ -1,5 +1,7 @@
 # `sources/` — External catalog sources
 
+> **Credits & migration:** External import may still use public data from **[VitaDB](https://www.rinnegatamante.eu/vitadb/)** ([Rinnegatamante](https://github.com/Rinnegatamante)) and **[VitaHomebrewDB](https://drdecki.github.io/VitaHomebrewDB/)** ([DrDecki](https://github.com/DrDecki) — [VitaDBtoo-db](https://github.com/DrDecki/VitaDBtoo-db)). We are working toward a catalog that does not depend on those services. See the root [README — Data sources & credits](../README.md#data-sources--credits).
+
 Configuration and notes for upstream homebrew databases used by the aggregation scripts.
 
 ## Primary sources (current)
