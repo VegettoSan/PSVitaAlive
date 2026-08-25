@@ -26,7 +26,7 @@ Configuration and notes for upstream homebrew databases used by the aggregation 
 
 ## External data policy
 
-VitaHomebrewDB and any other explicitly enabled external sources are inputs for discovery, import, cross-checking, enrichment, normalization and preservation. VitaHub does not claim ownership of upstream databases or of third-party homebrew works represented by them.
+VitaHomebrewDB and any other explicitly enabled external sources are inputs for discovery, import, cross-checking, enrichment, normalization and preservation. **PSVitaAlive does not claim ownership of upstream databases or of third-party homebrew works represented by them.**
 
 VitaDB is retained only as a historical/legacy reference at this stage. Removing its automatic feed does not automatically remove existing VitaDB-derived records or links from `apps/`.
 
