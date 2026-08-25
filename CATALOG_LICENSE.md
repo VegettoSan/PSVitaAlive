@@ -1,62 +1,47 @@
-# Homebrew catalog data license and attribution
+# Homebrew catalog data — public domain dedication (CC0 1.0)
 
-## VitaHub catalog data
+## Scope
 
-The homebrew catalog data created, normalized, validated, and curated by **PS Vita Alive Store (PSVitaAlive / VitaHub)** is published under the **Creative Commons Attribution 4.0 International (CC BY 4.0)** license.
+This document applies to the **homebrew catalog data** published by PS Vita Alive Store (PSVitaAlive), including where applicable:
 
-This includes, where applicable:
+- `apps/`, `authors/`, and `categories/` JSON records maintained in this repository
+- generated `catalog.json`, `authors.json`, and `categories.json`
+- normalization, deduplication, categorization, link selection, validation, and other compilation/curation work reflected in those files
 
-- VitaHub's canonical homebrew metadata and curation;
-- `apps/`, `authors/`, and `categories/` JSON records maintained by this project;
-- generated `catalog.json`, `authors.json`, and `categories.json` produced from those records;
-- VitaHub-added normalization, deduplication, categorization, link selection, validation, and other curation work.
+It does **not** apply to the store client software, scripts, or build system (those remain under the MIT License in `LICENSE`).
 
-You may copy, redistribute, adapt, transform, mirror, publish, or build new applications and services from VitaHub's covered catalog data, including for commercial purposes, provided that the required attribution is preserved.
+## No ownership claim over homebrew
 
-Full license: https://creativecommons.org/licenses/by/4.0/
+**PS Vita Alive Store does not own, and does not claim to own:**
 
-## Important third-party data notice
+- third-party homebrew applications, plugins, ports, or tools
+- their source code or binaries (VPK and related assets)
+- icons, screenshots, artwork, trademarks, or logos created by others
+- the original releases published by each homebrew author
 
-PS Vita Alive Store does **not** claim ownership of third-party data, binaries, icons, screenshots, trademarks, release assets, or other works created by their respective authors or source projects.
+Each catalog entry is intended to **credit the real authors** through fields such as `author_ids` / author profiles and, when available, repository or release links. Credits belong to those authors and projects.
 
-Parts of the VitaHub homebrew catalog are enriched from external public databases, including **VitaDB** and **VitaHomebrewDB**, as well as information supplied by individual homebrew authors. These sources are used for **discovery, import, cross-checking, enrichment, normalization, and preservation** of the VitaHub catalog.
+This project only aims to **make discovery and download easier** by gathering public metadata and links in one place.
 
-The CC BY 4.0 license above applies only to the rights VitaHub actually has in its own compilation, curation, and derived catalog work. It does **not** grant rights that VitaHub does not own in upstream or third-party material.
+## License for the catalog compilation
 
-When an entry originates from or incorporates information from an upstream source, users should also respect the source's own terms and the rights of the original authors.
+To the extent possible under law, the catalog compilation and curation work described under **Scope** is dedicated to the public domain under the
+[Creative Commons CC0 1.0 Universal](https://creativecommons.org/publicdomain/zero/1.0/) dedication.
 
-## Upstream credits
+**You may copy, modify, merge, publish, distribute, use commercially, or build any application or service from this catalog data, with or without credit.** Attribution is appreciated but **not required**.
 
-VitaHub acknowledges and credits the projects whose public data has helped enrich the catalog:
+Full legal text: https://creativecommons.org/publicdomain/zero/1.0/legalcode
 
-- **VitaDB** — originally created and maintained by Rinnegatamante and contributors.
-- **VitaHomebrewDB** — community-preserved homebrew catalog work associated with DrDecki and contributors.
-- **Individual homebrew authors** — the original creators of the applications and any associated assets.
+## Third-party material
 
-The presence of a homebrew in VitaHub does not mean VitaHub owns that homebrew or its original assets.
+Upstream databases, author repositories, and individual assets remain under their own terms. CC0 here only covers rights this project can dedicate in its own compilation and metadata arrangement. It does **not** relicense third-party binaries, artwork, or an upstream database as a whole.
 
-## Required attribution for VitaHub data
+Respect each homebrew’s own license and the rights of its author. If an author requests a correction or removal of their entry, open an issue on this repository.
 
-When redistributing or adapting covered VitaHub catalog data, provide clear attribution to:
+## Upstream databases (historical / enrichment)
 
-> Homebrew catalog data from **PS Vita Alive Store / PSVitaAlive**  
-> https://github.com/VegettoSan/PSVitaAlive  
-> Licensed under CC BY 4.0
+Public databases and community catalogs have been used over time for discovery and enrichment, including work associated with **VitaDB**, **VitaHomebrewDB**, and individual authors. Those projects and people keep credit for their own work. Listing a title here does not transfer ownership of that title to PS Vita Alive Store.
 
-A shorter attribution is acceptable when space is limited:
+## Commercial catalogs
 
-> Catalog: PS Vita Alive Store (CC BY 4.0) — https://github.com/VegettoSan/PSVitaAlive
-
-When practical, also preserve upstream credits for entries derived from VitaDB, VitaHomebrewDB, or individual authors.
-
-## Not covered by this document
-
-Unless a separate license explicitly states otherwise, this catalog-data license does not automatically relicense:
-
-- third-party homebrew source code or binaries;
-- icons, screenshots, artwork, trademarks, and logos owned by third parties;
-- commercial game catalogs or license sidecars;
-- external databases in their entirety;
-- the independent licenses of individual homebrew projects.
-
-Always respect the license and takedown requirements of the original author or source for third-party material.
+Commercial game catalogs (for example Vita/PSP/PS1 package lists) and any license sidecars (such as zRIF indexes) are **not** covered by this CC0 dedication. Treat them as third-party reference data and respect applicable rights and terms.
