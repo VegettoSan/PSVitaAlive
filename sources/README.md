@@ -23,7 +23,7 @@ Configuration and notes for upstream homebrew databases used by the aggregation 
 
 VitaDB and VitaHomebrewDB are external sources only. Their data is used for discovery, import, cross-checking, enrichment, normalization and preservation. VitaHub does not claim ownership of those upstream databases or of third-party homebrew works represented by them.
 
-VitaHub's own catalog curation is licensed under CC BY 4.0 as described in `../CATALOG_LICENSE.md`. Upstream and third-party rights remain separate and must be respected.
+This project's homebrew catalog compilation is under **CC0 1.0** as described in `../CATALOG_LICENSE.md` (free use, attribution optional). Upstream and third-party rights remain separate and must be respected.
 
 ## Commercial catalogs
 
