@@ -201,7 +201,131 @@ bool isDownloadLink(const CatalogLink&l){
     if(t=="pkg"||t=="pkgs")return true;
     return false;
 }
-std::vector<int> downloadLinkIndices(const CatalogItem&it){std::vector<int> out;for(size_t i=0;i<it.linkDetails.size();++i)if(isDownloadLink(it.linkDetails[i]))out.push_back((int)i);return out;}
+
+/** Section order for detail link list (△ navigation follows this order). */
+enum class LinkSection : int {
+    Downloads = 0,
+    DataFiles,
+    GameFiles,
+    Mods,
+    Dlc,
+    Updates,
+    Pkg,
+    Other,
+    Count
+};
+
+LinkSection classifyLinkSection(const CatalogLink& l) {
+    const std::string t = normalizeLinkType(l.type);
+    if (t == "download" || t == "downloads" || t == "mirror") return LinkSection::Downloads;
+    if (t == "data files" || t == "data file" || t == "datafiles" || t == "data") return LinkSection::DataFiles;
+    if (t == "game files" || t == "game file" || t == "gamefiles") return LinkSection::GameFiles;
+    if (t == "mod" || t == "mods") return LinkSection::Mods;
+    if (t == "dlc") return LinkSection::Dlc;
+    if (t == "update" || t == "updates") return LinkSection::Updates;
+    if (t == "pkg" || t == "pkgs") return LinkSection::Pkg;
+    return LinkSection::Other;
+}
+
+const char* linkSectionTitle(LinkSection s) {
+    switch (s) {
+        case LinkSection::Downloads: return "DOWNLOADS";
+        case LinkSection::DataFiles: return "DATA FILES";
+        case LinkSection::GameFiles: return "GAME FILES";
+        case LinkSection::Mods: return "MODS";
+        case LinkSection::Dlc: return "DLC";
+        case LinkSection::Updates: return "UPDATES";
+        case LinkSection::Pkg: return "PKG";
+        default: return "OTHER";
+    }
+}
+
+const char* linkSectionMetaLabel(LinkSection s) {
+    switch (s) {
+        case LinkSection::Downloads: return "Download";
+        case LinkSection::DataFiles: return "Data Files";
+        case LinkSection::GameFiles: return "Game Files";
+        case LinkSection::Mods: return "Mod";
+        case LinkSection::Dlc: return "DLC";
+        case LinkSection::Updates: return "Update";
+        case LinkSection::Pkg: return "PKG";
+        default: return "Download";
+    }
+}
+
+/** Downloadable links grouped by section (stable focus order for △). */
+std::vector<int> downloadLinkIndices(const CatalogItem& it) {
+    std::vector<int> buckets[static_cast<int>(LinkSection::Count)];
+    for (size_t i = 0; i < it.linkDetails.size(); ++i) {
+        if (!isDownloadLink(it.linkDetails[i])) continue;
+        const int b = static_cast<int>(classifyLinkSection(it.linkDetails[i]));
+        buckets[b].push_back(static_cast<int>(i));
+    }
+    std::vector<int> out;
+    for (int s = 0; s < static_cast<int>(LinkSection::Count); ++s) {
+        for (int idx : buckets[s]) out.push_back(idx);
+    }
+    return out;
+}
+
+/** One row in the visual list: section header or a focusable link. */
+struct LinkLayoutRow {
+    bool isSection = false;
+    LinkSection section = LinkSection::Other;
+    int focusIndex = -1;   // 0..n-1 for links; -1 for headers
+    int detailIndex = -1;  // index into CatalogItem::linkDetails
+    int y = 0;
+    int h = 0;
+};
+
+static const int LINK_SECTION_H = 20;
+
+std::vector<LinkLayoutRow> buildLinkLayout(const CatalogItem& it) {
+    std::vector<int> buckets[static_cast<int>(LinkSection::Count)];
+    for (size_t i = 0; i < it.linkDetails.size(); ++i) {
+        if (!isDownloadLink(it.linkDetails[i])) continue;
+        buckets[static_cast<int>(classifyLinkSection(it.linkDetails[i]))].push_back(static_cast<int>(i));
+    }
+    std::vector<LinkLayoutRow> rows;
+    int focus = 0;
+    int y = 10;
+    for (int s = 0; s < static_cast<int>(LinkSection::Count); ++s) {
+        if (buckets[s].empty()) continue;
+        LinkLayoutRow header;
+        header.isSection = true;
+        header.section = static_cast<LinkSection>(s);
+        header.y = y;
+        header.h = LINK_SECTION_H;
+        rows.push_back(header);
+        y += LINK_SECTION_H + 4;
+        for (int di : buckets[s]) {
+            LinkLayoutRow row;
+            row.isSection = false;
+            row.section = static_cast<LinkSection>(s);
+            row.focusIndex = focus++;
+            row.detailIndex = di;
+            row.y = y;
+            row.h = LINK_ROW_H;
+            rows.push_back(row);
+            y += LINK_ROW_H + LINK_GAP;
+        }
+    }
+    return rows;
+}
+
+int linkLayoutTotalHeight(const std::vector<LinkLayoutRow>& rows) {
+    if (rows.empty()) return 0;
+    const LinkLayoutRow& last = rows.back();
+    return last.y + last.h + 8;
+}
+
+int yOfLinkFocus(const std::vector<LinkLayoutRow>& rows, int focusIndex) {
+    for (const auto& row : rows) {
+        if (!row.isSection && row.focusIndex == focusIndex) return row.y;
+    }
+    return 10;
+}
+
 std::string formatLinkSizeLabel(const CatalogLink&l,const CatalogItem&it){if(!l.size.empty())return l.size;if(!it.size.empty())return it.size;return {};}
 }
 std::string formatEta(uint64_t seconds){if(seconds==0)return "--";uint64_t h=seconds/3600,m=(seconds%3600)/60,sec=seconds%60;char o[64];if(h)sceClibSnprintf(o,sizeof(o),"%llu:%02llu:%02llu",(unsigned long long)h,(unsigned long long)m,(unsigned long long)sec);else sceClibSnprintf(o,sizeof(o),"%02llu:%02llu",(unsigned long long)m,(unsigned long long)sec);return o;}
@@ -459,8 +583,32 @@ void FullCatalogScreen::sortItemsByDate(std::vector<CatalogItem>&v)const{std::st
     state_.focusIndex=0;state_.catalogScrollRow=0;state_.detailScroll=0;detailScrollBeforeLinkMode_=0;state_.linkFocus=-1;state_.linkNavigation=false;
     char m[256];sceClibSnprintf(m,sizeof(m),"[UI] search query='%s' results=%u",q.c_str(),(unsigned)catalogView().size());diagnostics::log(m);
 }
-int FullCatalogScreen::detailContentHeight(const CatalogItem&i,int w)const{int cw=std::max(1,w-36),mc=std::max(18,cw/7);std::vector<std::string>pre,post;auto add=[&](std::vector<std::string>&l,const char*t,const std::string&v){if(v.empty())return;l.push_back(t);std::vector<std::string>q;wrapText(v,mc,q);for(auto&s:q)l.push_back(s);l.push_back("");};add(pre,"Description",i.description);add(pre,"Long Description",i.longDescription);add(post,"Requirements",i.requirements);post.push_back("Information");post.push_back("Title ID: "+i.titleId);post.push_back("Version: "+i.version);post.push_back("Release date: "+i.versionDate);post.push_back("Category: "+i.category);post.push_back("Subcategory: "+i.subcategory);post.push_back("Size: "+i.size);post.push_back("Status: "+i.status);post.push_back("");add(post,"Changelog",i.changelog);int lh=i.linkDetails.empty()?0:10+(int)i.linkDetails.size()*(LINK_ROW_H+LINK_GAP),sc=std::min(5,(int)i.screenshots.size());return lh+((int)pre.size()+(int)post.size())*LINE_H+sc*SCREENSHOT_ROW_H+32;}int FullCatalogScreen::detailLinkScrollLimit(const CatalogItem&i,int w,int h)const{(void)w;const int n=(int)downloadLinkIndices(i).size();if(n<=0)return 0;int lh=10+n*(LINK_ROW_H+LINK_GAP),v=std::max(1,h-DETAIL_HEADER_H-18);return std::max(0,lh-v);}void FullCatalogScreen::clampDetailScroll(){int i=selectedIndex();if(i<0){state_.detailScroll=0;return;}int vh=std::max(1,SCREEN_H-HEADER_H-TABS_H-FOOTER_H-DETAIL_HEADER_H-18),total=detailContentHeight(catalogView()[i],SCREEN_W/2),mx=std::max(0,total-vh);state_.detailScroll=std::max(0,std::min(state_.detailScroll,mx));if(catalogView()[i].linkDetails.empty()){state_.linkFocus=-1;state_.linkNavigation=false;}else if(state_.linkFocus>=(int)catalogView()[i].linkDetails.size())state_.linkFocus=(int)catalogView()[i].linkDetails.size()-1;if(state_.linkNavigation){int lim=detailLinkScrollLimit(catalogView()[i],SCREEN_W/2,SCREEN_H-HEADER_H-TABS_H-FOOTER_H);state_.detailScroll=std::max(0,std::min(state_.detailScroll,lim));}}
-void FullCatalogScreen::moveCatalogFocus(int d){if(catalogView().empty())return;if(state_.mode!=UiMode::FULL_CATALOG)releaseScreenshotTextures();if(state_.mode==UiMode::FULL_CATALOG){if(d<0&&state_.focusIndex>=3)state_.focusIndex-=3;if(d>0&&state_.focusIndex+3<(int)catalogView().size())state_.focusIndex+=3;}else{if(d<0&&state_.focusIndex>0)--state_.focusIndex;if(d>0&&state_.focusIndex+1<(int)catalogView().size())++state_.focusIndex;}clampCatalogFocus();clampCatalogScroll();state_.detailScroll=0;detailScrollBeforeLinkMode_=0;state_.linkFocus=-1;state_.linkNavigation=false;}void FullCatalogScreen::moveDetailScroll(int d){state_.detailScroll+=d<0?-72:72;clampDetailScroll();}void FullCatalogScreen::enterLinkNavigation(){int i=selectedIndex();if(i<0)return;const auto idxs=downloadLinkIndices(catalogView()[i]);if(idxs.empty())return;detailScrollBeforeLinkMode_=state_.detailScroll;state_.linkNavigation=true;state_.linkFocus=0;state_.detailScroll=0;clampDetailScroll();diagnostics::log("[UI] link navigation enabled (downloads only)");}void FullCatalogScreen::exitLinkNavigation(){if(!state_.linkNavigation)return;state_.linkNavigation=false;state_.linkFocus=-1;state_.detailScroll=detailScrollBeforeLinkMode_;detailScrollBeforeLinkMode_=0;clampDetailScroll();diagnostics::log("[UI] link navigation disabled; detail scroll restored");}void FullCatalogScreen::moveLinkFocus(int dx,int dy){(void)dx;int i=selectedIndex();if(i<0)return;const auto idxs=downloadLinkIndices(catalogView()[i]);int c=(int)idxs.size();if(c<=0)return;if(state_.linkFocus<0)state_.linkFocus=0;else state_.linkFocus=std::max(0,std::min(c-1,state_.linkFocus+dy));state_.linkNavigation=true;int top=DETAIL_HEADER_H+10+state_.linkFocus*(LINK_ROW_H+LINK_GAP),vis=SCREEN_H-HEADER_H-TABS_H-FOOTER_H-DETAIL_HEADER_H-18,lim=detailLinkScrollLimit(catalogView()[i],SCREEN_W/2,SCREEN_H-HEADER_H-TABS_H-FOOTER_H);if(top<state_.detailScroll)state_.detailScroll=top;if(top+LINK_ROW_H>state_.detailScroll+vis)state_.detailScroll=top+LINK_ROW_H-vis;state_.detailScroll=std::max(0,std::min(state_.detailScroll,lim));}void FullCatalogScreen::activateFocusedLink(){int i=selectedIndex();if(i<0||state_.linkFocus<0)return;const auto idxs=downloadLinkIndices(catalogView()[i]);if(state_.linkFocus>=(int)idxs.size())return;const CatalogLink&l=catalogView()[i].linkDetails[idxs[state_.linkFocus]];if(!linkAction_||!actionableLink(l)){diagnostics::log(std::string("[UI] non-download link selected: ")+l.url);return;}if(linkAction_(catalogView()[i],l))exitLinkNavigation();}void FullCatalogScreen::changeCatalog(int d){
+int FullCatalogScreen::detailContentHeight(const CatalogItem&i,int w)const{int cw=std::max(1,w-36),mc=std::max(18,cw/7);std::vector<std::string>pre,post;auto add=[&](std::vector<std::string>&l,const char*t,const std::string&v){if(v.empty())return;l.push_back(t);std::vector<std::string>q;wrapText(v,mc,q);for(auto&s:q)l.push_back(s);l.push_back("");};add(pre,"Description",i.description);add(pre,"Long Description",i.longDescription);add(post,"Requirements",i.requirements);post.push_back("Information");post.push_back("Title ID: "+i.titleId);post.push_back("Version: "+i.version);post.push_back("Release date: "+i.versionDate);post.push_back("Category: "+i.category);post.push_back("Subcategory: "+i.subcategory);post.push_back("Size: "+i.size);post.push_back("Status: "+i.status);post.push_back("");add(post,"Changelog",i.changelog);int lh=i.linkDetails.empty()?0:10+(int)i.linkDetails.size()*(LINK_ROW_H+LINK_GAP),sc=std::min(5,(int)i.screenshots.size());return lh+((int)pre.size()+(int)post.size())*LINE_H+sc*SCREENSHOT_ROW_H+32;}int FullCatalogScreen::detailLinkScrollLimit(const CatalogItem&i,int w,int h)const{
+    (void)w;
+    const auto rows = buildLinkLayout(i);
+    if (rows.empty()) return 0;
+    const int lh = linkLayoutTotalHeight(rows);
+    const int v = std::max(1, h - DETAIL_HEADER_H - 18);
+    return std::max(0, lh - v);
+}void FullCatalogScreen::clampDetailScroll(){int i=selectedIndex();if(i<0){state_.detailScroll=0;return;}int vh=std::max(1,SCREEN_H-HEADER_H-TABS_H-FOOTER_H-DETAIL_HEADER_H-18),total=detailContentHeight(catalogView()[i],SCREEN_W/2),mx=std::max(0,total-vh);state_.detailScroll=std::max(0,std::min(state_.detailScroll,mx));if(catalogView()[i].linkDetails.empty()){state_.linkFocus=-1;state_.linkNavigation=false;}else if(state_.linkFocus>=(int)catalogView()[i].linkDetails.size())state_.linkFocus=(int)catalogView()[i].linkDetails.size()-1;if(state_.linkNavigation){int lim=detailLinkScrollLimit(catalogView()[i],SCREEN_W/2,SCREEN_H-HEADER_H-TABS_H-FOOTER_H);state_.detailScroll=std::max(0,std::min(state_.detailScroll,lim));}}
+void FullCatalogScreen::moveCatalogFocus(int d){if(catalogView().empty())return;if(state_.mode!=UiMode::FULL_CATALOG)releaseScreenshotTextures();if(state_.mode==UiMode::FULL_CATALOG){if(d<0&&state_.focusIndex>=3)state_.focusIndex-=3;if(d>0&&state_.focusIndex+3<(int)catalogView().size())state_.focusIndex+=3;}else{if(d<0&&state_.focusIndex>0)--state_.focusIndex;if(d>0&&state_.focusIndex+1<(int)catalogView().size())++state_.focusIndex;}clampCatalogFocus();clampCatalogScroll();state_.detailScroll=0;detailScrollBeforeLinkMode_=0;state_.linkFocus=-1;state_.linkNavigation=false;}void FullCatalogScreen::moveDetailScroll(int d){state_.detailScroll+=d<0?-72:72;clampDetailScroll();}void FullCatalogScreen::enterLinkNavigation(){int i=selectedIndex();if(i<0)return;const auto idxs=downloadLinkIndices(catalogView()[i]);if(idxs.empty())return;detailScrollBeforeLinkMode_=state_.detailScroll;state_.linkNavigation=true;state_.linkFocus=0;state_.detailScroll=0;clampDetailScroll();diagnostics::log("[UI] link navigation enabled (downloads only)");}void FullCatalogScreen::exitLinkNavigation(){if(!state_.linkNavigation)return;state_.linkNavigation=false;state_.linkFocus=-1;state_.detailScroll=detailScrollBeforeLinkMode_;detailScrollBeforeLinkMode_=0;clampDetailScroll();diagnostics::log("[UI] link navigation disabled; detail scroll restored");}void FullCatalogScreen::moveLinkFocus(int dx, int dy) {
+    (void)dx;
+    int i = selectedIndex();
+    if (i < 0) return;
+    const auto idxs = downloadLinkIndices(catalogView()[i]);
+    const int c = (int)idxs.size();
+    if (c <= 0) return;
+    if (state_.linkFocus < 0) state_.linkFocus = 0;
+    else state_.linkFocus = std::max(0, std::min(c - 1, state_.linkFocus + dy));
+    state_.linkNavigation = true;
+    const auto rows = buildLinkLayout(catalogView()[i]);
+    const int top = yOfLinkFocus(rows, state_.linkFocus);
+    const int vis = SCREEN_H - HEADER_H - TABS_H - FOOTER_H - DETAIL_HEADER_H - 18;
+    const int lim = detailLinkScrollLimit(catalogView()[i], SCREEN_W / 2, SCREEN_H - HEADER_H - TABS_H - FOOTER_H);
+    if (top < state_.detailScroll) state_.detailScroll = top;
+    if (top + LINK_ROW_H > state_.detailScroll + vis) state_.detailScroll = top + LINK_ROW_H - vis;
+    state_.detailScroll = std::max(0, std::min(state_.detailScroll, lim));
+}void FullCatalogScreen::activateFocusedLink(){int i=selectedIndex();if(i<0||state_.linkFocus<0)return;const auto idxs=downloadLinkIndices(catalogView()[i]);if(state_.linkFocus>=(int)idxs.size())return;const CatalogLink&l=catalogView()[i].linkDetails[idxs[state_.linkFocus]];if(!linkAction_||!actionableLink(l)){diagnostics::log(std::string("[UI] non-download link selected: ")+l.url);return;}if(linkAction_(catalogView()[i],l))exitLinkNavigation();}void FullCatalogScreen::changeCatalog(int d){
     if(catalogLoading_||installProgressActive_||isTransitioning())return;
     if(catalogSwitchCooldownFrames_>0)return;
 
@@ -828,13 +976,14 @@ void FullCatalogScreen::handleTouch() {
     {
         const int i = selectedIndex();
         if (i >= 0) {
-            const auto idxs = downloadLinkIndices(catalogView()[i]);
-            const int listTop = dy + DETAIL_HEADER_H + 10 - (int)visualDetailScroll_;
-            for (int row = 0; row < (int)idxs.size(); ++row) {
-                const int ry = listTop + row * (LINK_ROW_H + LINK_GAP);
+            const auto rows = buildLinkLayout(catalogView()[i]);
+            const int listTop = dy + DETAIL_HEADER_H - (int)visualDetailScroll_;
+            for (const auto& row : rows) {
+                if (row.isSection) continue;
+                const int ry = listTop + row.y;
                 if (hit(x, y, dx + 18, ry, dw - 36, LINK_ROW_H)) {
                     state_.linkNavigation = true;
-                    state_.linkFocus = row;
+                    state_.linkFocus = row.focusIndex;
                     activateFocusedLink();
                     return;
                 }
@@ -2107,14 +2256,18 @@ void FullCatalogScreen::drawCatalogPanel(int x,int y,int w,int h,bool split){
 void FullCatalogScreen::wrapText(const std::string&t,int max,std::vector<std::string>&out)const{out.clear();std::string cur;for(char c:t){if(c=='\n'){out.push_back(cur);cur.clear();continue;}if((int)cur.size()>=max&&c==' '){out.push_back(cur);cur.clear();continue;}cur.push_back(c);if((int)cur.size()>=max){out.push_back(cur);cur.clear();}}if(!cur.empty())out.push_back(cur);}void FullCatalogScreen::drawTextLines(const std::vector<std::string>&l,int x,int y,int lh,unsigned col,float sc,int start,int max,int top,int bottom){int first=std::max(0,start),last=std::min((int)l.size(),first+max),dy=y+first*lh;for(int i=first;i<last;++i){if(dy>=top&&dy<=bottom)vita2d_pgf_draw_text(font_,x,dy,col,sc,l[i].c_str());dy+=lh;}}
 void FullCatalogScreen::drawDetailLinks(const CatalogItem& it, int x, int y, int w, int& heightOut) {
     heightOut = 0;
-    const auto idxs = downloadLinkIndices(it);
-    if (idxs.empty()) return;
-    for (size_t row = 0; row < idxs.size(); ++row) {
-        const int li = idxs[row];
-        const CatalogLink& l = it.linkDetails[li];
-        const bool f = state_.linkNavigation && state_.linkFocus == (int)row;
+    const auto rows = buildLinkLayout(it);
+    if (rows.empty()) return;
+    for (const auto& row : rows) {
+        const int ry = y + row.y;
+        if (row.isSection) {
+            vita2d_draw_rectangle(x, ry + LINK_SECTION_H - 1, w, 1, BORDER);
+            vita2d_pgf_draw_text(font_, x + 4, ry + 14, ACCENT, 0.52f, linkSectionTitle(row.section));
+            continue;
+        }
+        const CatalogLink& l = it.linkDetails[row.detailIndex];
+        const bool f = state_.linkNavigation && state_.linkFocus == row.focusIndex;
         const bool can = actionableLink(l);
-        const int ry = y + (int)row * (LINK_ROW_H + LINK_GAP);
         vita2d_draw_rectangle(x, ry, w, LINK_ROW_H, f ? ACCENT : SURFACE2);
         vita2d_draw_rectangle(x, ry, w, 1, f ? ACCENT : BORDER);
         const unsigned mc = f ? BG : (can ? WHITE : TEXT);
@@ -2122,9 +2275,9 @@ void FullCatalogScreen::drawDetailLinks(const CatalogItem& it, int x, int y, int
         const std::string sizeLabel = formatLinkSizeLabel(l, it);
         const int badgeW = l.recommended ? 96 : 0;
         vita2d_pgf_draw_text(font_, x + 10, ry + 15, mc, 0.64f, ellipsize(title, badgeW ? 18 : 26).c_str());
-        std::string meta = "Download";
+        std::string meta = linkSectionMetaLabel(row.section);
         if (!sizeLabel.empty()) meta += "  •  " + sizeLabel;
-        if (can) meta += f ? "  •  X: instalar" : "  •  X";
+        if (can) meta += f ? "  •  X: install" : "  •  X";
         vita2d_pgf_draw_text(font_, x + 10, ry + 31, f ? BG : DIM, 0.50f, ellipsize(meta, badgeW ? 28 : 42).c_str());
         if (l.recommended) {
             const int bx = x + w - badgeW - 8, by = ry + 8;
@@ -2132,7 +2285,7 @@ void FullCatalogScreen::drawDetailLinks(const CatalogItem& it, int x, int y, int
             vita2d_pgf_draw_text(font_, bx + 6, by + 15, f ? ACCENT : BG, 0.50f, "Recommended");
         }
     }
-    heightOut = 10 + (int)idxs.size() * (LINK_ROW_H + LINK_GAP);
+    heightOut = linkLayoutTotalHeight(rows);
 }
 void FullCatalogScreen::drawDetailContent(const CatalogItem&it,int x,int y,int w,int h){
 if(detailCrossfade_<0.99f){vita2d_draw_rectangle(x,y,w,h,RGBA8(0,0,0,static_cast<unsigned>((1.f-detailCrossfade_)*140)));}
