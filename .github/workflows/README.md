@@ -30,4 +30,4 @@ The workflow layer must not modify source databases or manually edit generated c
 
 - `scripts/generate_catalog.py`
 - `scripts/validate_catalog_ci.py`
-- `../..//sources/README.md`
+- `../../sources/README.md`
