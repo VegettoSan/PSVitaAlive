@@ -7,6 +7,8 @@
 #include <cctype>
 #include <cstdint>
 #include <cstring>
+#include <cstdio>
+#include <cstdlib>
 #include <string>
 #include <utility>
 
@@ -229,6 +231,79 @@ std::string findDirectFromHtml(const std::string& html) {
 
 } // namespace
 
+
+uint64_t unitToBytes(double value, const std::string& unitRaw) {
+    std::string u = toLowerAscii(unitRaw);
+    while (!u.empty() && (u.back() == 's' || u.back() == ' ')) u.pop_back();
+    uint64_t mul = 1;
+    if (u == "b" || u == "byte" || u == "bytes") mul = 1;
+    else if (u == "k" || u == "kb" || u == "kib") mul = 1024ULL;
+    else if (u == "m" || u == "mb" || u == "mib") mul = 1024ULL * 1024ULL;
+    else if (u == "g" || u == "gb" || u == "gib") mul = 1024ULL * 1024ULL * 1024ULL;
+    else if (u == "t" || u == "tb" || u == "tib") mul = 1024ULL * 1024ULL * 1024ULL * 1024ULL;
+    else return 0;
+    if (value <= 0.0) return 0;
+    const double bytes = value * static_cast<double>(mul);
+    if (bytes < 1.0) return 0;
+    if (bytes > static_cast<double>(~0ULL)) return 0;
+    return static_cast<uint64_t>(bytes + 0.5);
+}
+
+/** Parse human sizes from MediaFire share HTML (Download (1.47GB), etc.). */
+uint64_t findSizeBytesFromHtml(const std::string& html) {
+    const std::string lower = toLowerAscii(html);
+    uint64_t best = 0;
+
+    auto consider = [&](double val, const std::string& unit) {
+        const uint64_t b = unitToBytes(val, unit);
+        if (b > best) best = b;
+    };
+
+    // Pattern: Download (1.47GB) / download (850.2 MB)
+    size_t p = 0;
+    while ((p = lower.find("download", p)) != std::string::npos) {
+        const size_t open = lower.find('(', p);
+        if (open != std::string::npos && open < p + 48) {
+            const size_t close = lower.find(')', open);
+            if (close != std::string::npos && close > open + 1 && close - open < 32) {
+                const std::string inside = lower.substr(open + 1, close - open - 1);
+                char unit[16] = {};
+                double val = 0.0;
+                if (std::sscanf(inside.c_str(), "%lf %15s", &val, unit) >= 1 ||
+                    std::sscanf(inside.c_str(), "%lf%15s", &val, unit) >= 1) {
+                    if (unit[0]) consider(val, unit);
+                }
+            }
+        }
+        p += 8;
+    }
+
+    // Generic: 1.47 GB / 850MB near file info
+    p = 0;
+    while (p < lower.size()) {
+        while (p < lower.size() && !std::isdigit(static_cast<unsigned char>(lower[p]))) ++p;
+        if (p >= lower.size()) break;
+        size_t start = p;
+        while (p < lower.size() && (std::isdigit(static_cast<unsigned char>(lower[p])) || lower[p] == '.')) ++p;
+        const std::string num = lower.substr(start, p - start);
+        while (p < lower.size() && (lower[p] == ' ' || lower[p] == '\t')) ++p;
+        size_t u0 = p;
+        while (p < lower.size() && std::isalpha(static_cast<unsigned char>(lower[p]))) ++p;
+        if (p > u0 && p - u0 <= 4) {
+            const std::string unit = lower.substr(u0, p - u0);
+            if (unit == "kb" || unit == "mb" || unit == "gb" || unit == "tb" ||
+                unit == "kib" || unit == "mib" || unit == "gib" || unit == "tib" ||
+                unit == "k" || unit == "m" || unit == "g") {
+                char* end = nullptr;
+                const double val = std::strtod(num.c_str(), &end);
+                if (end != num.c_str() && val > 0.0) consider(val, unit);
+            }
+        }
+    }
+
+    return best;
+}
+
 bool isMediaFireUrl(const std::string& url) {
     return toLowerAscii(url).find("mediafire.com") != std::string::npos;
 }
@@ -237,10 +312,12 @@ bool resolveMediaFireDirectUrl(
     HttpClient& http,
     const std::string& pageUrl,
     std::string& directOut,
-    std::string& errorOut
+    std::string& errorOut,
+    uint64_t* sizeBytesOut
 ) {
     directOut.clear();
     errorOut.clear();
+    if (sizeBytesOut) *sizeBytesOut = 0;
 
     if (!isMediaFireUrl(pageUrl)) {
         errorOut = "not a mediafire url";
@@ -296,6 +373,16 @@ bool resolveMediaFireDirectUrl(
         return false;
     }
 
+    const uint64_t htmlSize = findSizeBytesFromHtml(html);
+    if (sizeBytesOut) *sizeBytesOut = htmlSize;
+    if (htmlSize > 0) {
+        char sm[96];
+        sceClibSnprintf(sm, sizeof(sm), "[MediaFire] page size hint bytes=%llu",
+                        (unsigned long long)htmlSize);
+        diagnostics::log(sm);
+    } else {
+        diagnostics::log("[MediaFire] page size hint unavailable");
+    }
     diagnostics::log(std::string("[MediaFire] resolved direct url len=") + std::to_string(directOut.size()));
     return true;
 }

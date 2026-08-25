@@ -168,17 +168,41 @@ bool DownloadManager::runJob(DownloadJob& job) {
     saveMetadata(job);
     activeJobId_ = job.id;
 
+    // Soft size limit: catalog/HTML sizes are often approximate.
+    // Abort only well past the hint (35% + 64 MiB), not on a small overrun.
+    auto sizeHardLimit = [](uint64_t expected) -> uint64_t {
+        if (expected == 0) return 0;
+        const uint64_t pct = expected / 100ULL * 35ULL;
+        const uint64_t floor = 64ULL * 1024ULL * 1024ULL;
+        return expected + (pct > floor ? pct : floor);
+    };
+
+    bool sizeLimitHit = false;
     uint64_t lastSaved = offset;
     auto progress = [&](const HttpProgress& p) {
         job.downloadedSize = p.absoluteDownloaded;
         job.bytesPerSecond = p.bytesPerSecond;
+        // Prefer real Content-Length when the server sends it.
         if (p.total > 0) job.expectedSize = p.total;
+        const uint64_t limit = sizeHardLimit(job.expectedSize);
+        if (limit > 0 && job.downloadedSize > limit) {
+            sizeLimitHit = true;
+            job.cancelRequested = true;
+            char m[160];
+            sceClibSnprintf(m, sizeof(m),
+                "[DownloadManager] size limit hit downloaded=%llu expected=%llu limit=%llu",
+                (unsigned long long)job.downloadedSize,
+                (unsigned long long)job.expectedSize,
+                (unsigned long long)limit);
+            diagnostics::log(m);
+        }
         if (onProgress_) {
             DownloadProgressEvent ev;
             ev.jobId = job.id;
             ev.fileName = job.fileName;
             ev.downloaded = job.downloadedSize;
-            ev.total = job.expectedSize;
+            // UI %: use expected hint even when CDN omits Content-Length
+            ev.total = job.expectedSize ? job.expectedSize : job.downloadedSize;
             ev.bytesPerSecond = job.bytesPerSecond;
             ev.state = DownloadState::Downloading;
             onProgress_(ev);
@@ -191,11 +215,13 @@ bool DownloadManager::runJob(DownloadJob& job) {
     auto cancelFn = [&]() -> bool { return job.cancelRequested; };
 
     std::string effectiveUrl = job.url;
-    if (isMediaFireUrl(job.url)) {
+    const bool mediafire = isMediaFireUrl(job.url);
+    if (mediafire) {
         diagnostics::log("[DownloadManager] MediaFire URL detected - resolving direct link");
         std::string direct;
         std::string mfErr;
-        if (!resolveMediaFireDirectUrl(http_, job.url, direct, mfErr) || direct.empty()) {
+        uint64_t mfSize = 0;
+        if (!resolveMediaFireDirectUrl(http_, job.url, direct, mfErr, &mfSize) || direct.empty()) {
             job.state = DownloadState::Failed;
             job.lastError = mfErr.empty() ? "MediaFire resolve failed" : mfErr;
             saveMetadata(job);
@@ -204,16 +230,37 @@ bool DownloadManager::runJob(DownloadJob& job) {
             return false;
         }
         effectiveUrl = direct;
-        diagnostics::log("[DownloadManager] MediaFire direct link OK");
+        // Prefer page size when we do not yet have a better expected size.
+        if (mfSize > 0 && job.expectedSize == 0) {
+            job.expectedSize = mfSize;
+            saveMetadata(job);
+        }
+        diagnostics::log(std::string("[DownloadManager] MediaFire direct link OK expected=") +
+                         std::to_string(job.expectedSize));
     }
 
     HttpResult hr = http_.downloadToFile(effectiveUrl, job.temporaryPath, offset, progress, cancelFn);
-    if (hr != HttpResult::Ok && hr != HttpResult::Cancelled && !job.cancelRequested) {
+    if (hr != HttpResult::Ok && hr != HttpResult::Cancelled && !job.cancelRequested && !sizeLimitHit) {
         const std::string firstErr = http_.lastError();
         sceClibPrintf("[DownloadManager] first attempt failed: %s - retrying once\n", firstErr.c_str());
-        diagnostics::log(std::string("[DownloadManager] retrying effective URL: ") + effectiveUrl);
+        diagnostics::log(std::string("[DownloadManager] first attempt failed: ") + firstErr + " — retrying once");
         sceKernelDelayThread(800 * 1000);
-        if (job.downloadedSize == 0) {
+        // MediaFire CDN URLs expire: always re-resolve and restart clean on retry.
+        if (mediafire) {
+            st.removeFile(job.temporaryPath);
+            offset = 0;
+            job.downloadedSize = 0;
+            std::string direct;
+            std::string mfErr;
+            uint64_t mfSize = 0;
+            if (resolveMediaFireDirectUrl(http_, job.url, direct, mfErr, &mfSize) && !direct.empty()) {
+                effectiveUrl = direct;
+                if (mfSize > 0) job.expectedSize = mfSize;
+                diagnostics::log("[DownloadManager] MediaFire re-resolved for retry");
+            } else {
+                diagnostics::log(std::string("[DownloadManager] MediaFire re-resolve failed: ") + mfErr);
+            }
+        } else if (job.downloadedSize == 0) {
             st.removeFile(job.temporaryPath);
             offset = 0;
         } else {
@@ -221,11 +268,23 @@ bool DownloadManager::runJob(DownloadJob& job) {
             offset = sz > 0 ? static_cast<uint64_t>(sz) : 0;
             job.downloadedSize = offset;
         }
+        sizeLimitHit = false;
+        job.cancelRequested = false;
         hr = http_.downloadToFile(effectiveUrl, job.temporaryPath, offset, progress, cancelFn);
     }
     job.lastHttpStatus = http_.lastStatusCode();
     activeJobId_.clear();
 
+    if (sizeLimitHit) {
+        st.removeFile(job.temporaryPath);
+        job.downloadedSize = 0;
+        job.state = DownloadState::Failed;
+        job.lastError = "download exceeded expected size (possible MediaFire error page)";
+        saveMetadata(job);
+        st.removeFile(job.finalPath);
+        diagnostics::log("[DownloadManager] aborted: exceeded expected size with margin");
+        return false;
+    }
     if (hr == HttpResult::Cancelled || job.cancelRequested) {
         st.removeFile(job.temporaryPath);
         job.downloadedSize = 0;
