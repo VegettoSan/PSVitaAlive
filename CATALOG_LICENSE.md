@@ -38,9 +38,15 @@ Upstream databases, author repositories, and individual assets remain under thei
 
 Respect each homebrew’s own license and the rights of its author. If an author requests a correction or removal of their entry, open an issue on this repository.
 
-## Upstream databases (historical / enrichment)
+## Upstream databases (current use + migration)
 
-Public databases and community catalogs have been used over time for discovery and enrichment, including work associated with **VitaDB**, **VitaHomebrewDB**, and individual authors. Those projects and people keep credit for their own work. Listing a title here does not transfer ownership of that title to PS Vita Alive Store.
+While this project builds toward an **independent** homebrew catalog, some entries may still be seeded or enriched from public data associated with:
+
+- **[VitaDB](https://www.rinnegatamante.eu/vitadb/)** — [Rinnegatamante](https://github.com/Rinnegatamante) and contributors  
+- **[VitaHomebrewDB](https://drdecki.github.io/VitaHomebrewDB/)** — [DrDecki](https://github.com/DrDecki) and contributors ([VitaDBtoo-db](https://github.com/DrDecki/VitaDBtoo-db), [VitaHomebrewDB](https://github.com/DrDecki/VitaHomebrewDB))
+
+Those projects retain full credit for their own databases and hosting. PS Vita Alive Store does not claim ownership of them. Listing a title here does not transfer ownership of that title to this repository.
+
 
 ## Commercial catalogs
 
