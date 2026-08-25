@@ -1,0 +1,16 @@
+id: 2026-08-25-hello
+title: Welcome to PS Vita Alive
+enabled: true
+---
+Thanks for using PS Vita Alive Store.
+
+News and tips will appear here when we publish an update from GitHub.
+
+You can open this message again anytime with the News button in the footer.
+
+What's next:
+- Keep an eye on Releases for new client builds
+- Report issues with the Report button (includes logs + version)
+- Catalog content is improved over time on main
+
+Enjoy!

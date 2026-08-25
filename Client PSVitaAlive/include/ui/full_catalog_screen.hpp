@@ -67,6 +67,9 @@ public:
     void setSettingsSaveCallback(SettingsSaveFn callback);
     void openSettings();
     void closeSettings(bool save);
+    /** Fetch news.txt after startup (or reopen from footer). Non-blocking failure. */
+    void runNewsCheck(bool forceShow);
+    bool isNewsVisible() const { return newsVisible_; }
     // outcome: 0 = progress, 1 = success, 2 = error
     void setInstallProgress(bool active, uint64_t current, uint64_t total, uint64_t bytesPerSecond,
                             const std::string& stage, const std::string& fileName,

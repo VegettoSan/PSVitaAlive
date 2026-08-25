@@ -25,6 +25,7 @@ set(SOURCES
   source/network/download_manager.cpp
   source/network/mediafire_resolver.cpp
   source/network/error_reporter.cpp
+  source/network/news_manager.cpp
   source/archive/zip_extractor.cpp
   source/archive/format_detector.cpp
   source/installer/homebrew_installer.cpp
