@@ -53,6 +53,12 @@
       "name": "Data Files",
       "url": "https://www.rinnegatamante.eu/files/vitadb/CandyCrisisResources.zip",
       "recommended": false
+    },
+    {
+      "type": "Data Files",
+      "name": "VitaHomebrewDB Data Files",
+      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/1043-data-CandyCrisisResources.zip",
+      "recommended": false
     }
   ],
   "source_name": "VitaHomebrewDB",

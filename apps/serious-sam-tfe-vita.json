@@ -57,6 +57,12 @@
       "name": "Data Files",
       "url": "https://www.rinnegatamante.eu/files/vitadb/ssam_tfe.zip",
       "recommended": false
+    },
+    {
+      "type": "Data Files",
+      "name": "VitaHomebrewDB Data Files",
+      "url": "https://github.com/fgsfdsfgs/Serious-Engine/releases/download/psvita2/data_tfe_v2.zip",
+      "recommended": false
     }
   ],
   "source_name": "VitaHomebrewDB",

@@ -14,7 +14,7 @@
   "version": "v.01.15",
   "version_date": "2025-06-19",
   "requirements": "Not specified",
-  "size": 505035075,
+  "size": 447046987,
   "status": "Legacy",
   "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1829-katawa-shoujo-r7.png",
   "screenshots": [
@@ -57,6 +57,12 @@
       "type": "Download",
       "name": "Data Files",
       "url": "https://www.rinnegatamante.eu/files/vitadb/ks-video.zip",
+      "recommended": false
+    },
+    {
+      "type": "Data Files",
+      "name": "VitaHomebrewDB Data Files",
+      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/1086-data-ks-video.zip",
       "recommended": false
     }
   ],

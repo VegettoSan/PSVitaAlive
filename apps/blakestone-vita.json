@@ -48,6 +48,12 @@
       "name": "Data Files",
       "url": "https://www.rinnegatamante.eu/files/vitadb/bstone.zip",
       "recommended": false
+    },
+    {
+      "type": "Data Files",
+      "name": "VitaHomebrewDB Data Files",
+      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/393-data-bstone.zip",
+      "recommended": false
     }
   ],
   "source_name": "NeoVitaDB",

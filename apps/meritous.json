@@ -58,6 +58,12 @@
       "name": "Data Files",
       "url": "https://www.rinnegatamante.eu/files/vitadb/meritous.zip",
       "recommended": false
+    },
+    {
+      "type": "Data Files",
+      "name": "VitaHomebrewDB Data Files",
+      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/411-data-meritous.zip",
+      "recommended": false
     }
   ],
   "source_name": "VitaHomebrewDB",

@@ -57,6 +57,12 @@
       "name": "Data Files",
       "url": "https://www.rinnegatamante.eu/files/vitadb/7billion.zip",
       "recommended": false
+    },
+    {
+      "type": "Data Files",
+      "name": "VitaHomebrewDB Data Files",
+      "url": "https://github.com/Rinnegatamante/seven-vita/releases/download/v.1.1/datafiles.zip",
+      "recommended": false
     }
   ],
   "source_name": "VitaHomebrewDB",

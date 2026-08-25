@@ -57,6 +57,12 @@
       "name": "Data Files",
       "url": "https://www.rinnegatamante.eu/files/vitadb/SDL-Sopwith.zip",
       "recommended": false
+    },
+    {
+      "type": "Data Files",
+      "name": "VitaHomebrewDB Data Files",
+      "url": "https://github.com/withLogic/sdl-sopwith-vita/releases/download/1.0.0/data.zip",
+      "recommended": false
     }
   ],
   "source_name": "VitaHomebrewDB",

@@ -53,6 +53,12 @@
       "name": "Data Files",
       "url": "https://www.rinnegatamante.eu/files/vitadb/dhewm3.zip",
       "recommended": false
+    },
+    {
+      "type": "Data Files",
+      "name": "VitaHomebrewDB Data Files",
+      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/1052-data-dhewm3.zip",
+      "recommended": false
     }
   ],
   "source_name": "VitaHomebrewDB",

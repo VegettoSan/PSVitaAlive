@@ -59,6 +59,12 @@
       "name": "Data Files",
       "url": "https://www.rinnegatamante.eu/files/vitadb/canada.zip",
       "recommended": false
+    },
+    {
+      "type": "Data Files",
+      "name": "VitaHomebrewDB Data Files",
+      "url": "https://github.com/Rinnegatamante/Death-Road-to-Canada-Lite/releases/download/v.1.0/canada.zip",
+      "recommended": false
     }
   ],
   "source_name": "VitaHomebrewDB",

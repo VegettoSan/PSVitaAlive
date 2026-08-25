@@ -46,6 +46,11 @@
       "type": "Official Website",
       "name": "VitaDB Release Page",
       "url": "https://soykhaler.itch.io/parkour-labs-vita-port"
+    },
+    {
+      "type": "Official Website",
+      "name": "VitaHomebrewDB Release Page",
+      "url": "https://github.com/SonicMastr/godot/releases"
     }
   ],
   "source_name": "NeoVitaDB",

@@ -15,7 +15,7 @@
   "version": "v.0.8.1.1",
   "version_date": "2025-06-02",
   "requirements": "Not specified",
-  "size": 5297501,
+  "size": 4210037,
   "status": "Legacy",
   "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1462-easyrpg-player.png",
   "screenshots": [
@@ -61,6 +61,12 @@
       "type": "Download",
       "name": "Data Files",
       "url": "https://www.rinnegatamante.eu/files/vitadb/easyrpg.zip",
+      "recommended": false
+    },
+    {
+      "type": "Data Files",
+      "name": "VitaHomebrewDB Data Files",
+      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/5-data-easyrpg.zip",
       "recommended": false
     }
   ],

@@ -58,6 +58,12 @@
       "name": "Data Files",
       "url": "https://www.rinnegatamante.eu/files/vitadb/BillyFrontier.zip",
       "recommended": false
+    },
+    {
+      "type": "Data Files",
+      "name": "VitaHomebrewDB Data Files",
+      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/1001-data-BillyFrontier.zip",
+      "recommended": false
     }
   ],
   "source_name": "VitaHomebrewDB",

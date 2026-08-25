@@ -59,6 +59,12 @@
       "name": "Data Files",
       "url": "https://www.rinnegatamante.eu/files/vitadb/gtasa.zip",
       "recommended": false
+    },
+    {
+      "type": "Data Files",
+      "name": "VitaHomebrewDB Data Files",
+      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/618-data-gtasa.zip",
+      "recommended": false
     }
   ],
   "source_name": "VitaHomebrewDB",

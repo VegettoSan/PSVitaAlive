@@ -68,6 +68,12 @@
       "name": "Data Files",
       "url": "https://www.rinnegatamante.eu/files/vitadb/VitaDB.zip",
       "recommended": false
+    },
+    {
+      "type": "Data Files",
+      "name": "VitaHomebrewDB Data Files",
+      "url": "https://github.com/Rinnegatamante/VitaDB-Downloader/releases/download/v.1.8/VitaDB.zip",
+      "recommended": false
     }
   ],
   "source_name": "VitaHomebrewDB",

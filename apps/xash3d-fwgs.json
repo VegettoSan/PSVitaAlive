@@ -12,10 +12,10 @@
   "subcategory_ids": [
     "other"
   ],
-  "version": "Nightly",
+  "version": "v.continuous",
   "version_date": "2023-10-07",
   "requirements": "- libshacccg.suprx\n- kubridge.skprx\n- Game Data Files: PC",
-  "size": 19427375,
+  "size": 33443462,
   "status": "Legacy",
   "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1883-xash3d-fwgs.png",
   "screenshots": [

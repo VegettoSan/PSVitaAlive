@@ -59,6 +59,12 @@
       "name": "Data Files",
       "url": "https://www.rinnegatamante.eu/files/vitadb/Fahrenheit.zip",
       "recommended": false
+    },
+    {
+      "type": "Data Files",
+      "name": "VitaHomebrewDB Data Files",
+      "url": "https://github.com/Rinnegatamante/fahrenheit-vita/releases/download/v.0.9/datafiles.zip",
+      "recommended": false
     }
   ],
   "source_name": "VitaHomebrewDB",

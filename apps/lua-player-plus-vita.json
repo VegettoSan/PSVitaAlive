@@ -14,7 +14,7 @@
   "version": "r6",
   "version_date": "2017-07-31",
   "requirements": "Not specified",
-  "size": 2365705,
+  "size": 8950843,
   "status": "Legacy",
   "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/a2937a5c0366ee6f4f8521e7a6682b36751cd48ed27744f9bc96d455ddb532a6.png",
   "screenshots": [
@@ -56,6 +56,12 @@
       "type": "Download",
       "name": "Data Files",
       "url": "https://www.rinnegatamante.eu/files/vitadb/lpp-vita.zip",
+      "recommended": false
+    },
+    {
+      "type": "Data Files",
+      "name": "VitaHomebrewDB Data Files",
+      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/290-data-lpp-vita.zip",
       "recommended": false
     }
   ],

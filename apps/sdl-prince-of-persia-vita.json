@@ -55,6 +55,12 @@
       "name": "Data Files",
       "url": "https://www.rinnegatamante.eu/files/vitadb/prince.zip",
       "recommended": false
+    },
+    {
+      "type": "Data Files",
+      "name": "VitaHomebrewDB Data Files",
+      "url": "https://github.com/usineur/SDLPoP/releases/download/vita-1.6/prince.zip",
+      "recommended": false
     }
   ],
   "source_name": "VitaHomebrewDB",

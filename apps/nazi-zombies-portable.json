@@ -13,9 +13,9 @@
     "other"
   ],
   "version": "Nightly",
-  "version_date": "2026-08-24",
+  "version_date": "2024-02-05",
   "requirements": "- libshacccg.suprx",
-  "size": 2446141,
+  "size": 3612951,
   "status": "Legacy",
   "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1028-nazi-zombies-portable.png",
   "screenshots": [
@@ -69,6 +69,12 @@
       "type": "Download",
       "name": "Data Files",
       "url": "https://www.rinnegatamante.eu/files/vitadb/nzp_nightly.zip",
+      "recommended": false
+    },
+    {
+      "type": "Data Files",
+      "name": "VitaHomebrewDB Data Files",
+      "url": "https://files.coolatoms.org/nzp-data.zip",
       "recommended": false
     }
   ],

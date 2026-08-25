@@ -52,6 +52,12 @@
       "name": "Data Files",
       "url": "https://www.rinnegatamante.eu/files/vitadb/oxce-data.zip",
       "recommended": false
+    },
+    {
+      "type": "Data Files",
+      "name": "VitaHomebrewDB Data Files",
+      "url": "https://github.com/Northfear/OpenXcom-vita/releases/download/v.7.10.0-vita.1/oxce-data.zip",
+      "recommended": false
     }
   ],
   "source_name": "VitaHomebrewDB",

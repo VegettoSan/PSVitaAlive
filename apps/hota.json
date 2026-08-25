@@ -14,7 +14,7 @@
   "version": "v.1.0",
   "version_date": "2016-10-23",
   "requirements": "Not specified",
-  "size": 909434,
+  "size": 402380,
   "status": "Legacy",
   "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1508-hota.png",
   "screenshots": [
@@ -53,6 +53,12 @@
       "type": "Download",
       "name": "Data Files",
       "url": "https://www.rinnegatamante.eu/files/vitadb/Homebrews%20Data%20Files/HOTA_datas.zip",
+      "recommended": false
+    },
+    {
+      "type": "Data Files",
+      "name": "VitaHomebrewDB Data Files",
+      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/126-data-HOTA_datas.zip",
       "recommended": false
     }
   ],

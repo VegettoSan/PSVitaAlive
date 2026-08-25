@@ -51,6 +51,12 @@
       "name": "Data Files",
       "url": "https://www.rinnegatamante.eu/files/vitadb/rocksndiamonds.zip",
       "recommended": false
+    },
+    {
+      "type": "Data Files",
+      "name": "VitaHomebrewDB Data Files",
+      "url": "https://github.com/rsn8887/rocksndiamonds/releases/download/1.15/rocksndiamonds_data.zip",
+      "recommended": false
     }
   ],
   "source_name": "NeoVitaDB",

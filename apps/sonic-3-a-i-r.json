@@ -60,6 +60,12 @@
       "name": "Data Files",
       "url": "https://www.rinnegatamante.eu/files/vitadb/sonic3air.zip",
       "recommended": false
+    },
+    {
+      "type": "Data Files",
+      "name": "VitaHomebrewDB Data Files",
+      "url": "https://github.com/v-atamanenko/sonic3air/releases/download/beta-1/sonic3air.zip",
+      "recommended": false
     }
   ],
   "source_name": "VitaHomebrewDB",

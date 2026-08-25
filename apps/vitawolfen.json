@@ -14,7 +14,7 @@
   "version": "v.1.7",
   "version_date": "2020-11-30",
   "requirements": "Not specified",
-  "size": 8298018,
+  "size": 1115769,
   "status": "Legacy",
   "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/6f9a852ed2e15001bf96a8c8f142aeb59ecc51b56bcb233d96a3e9774fec2667.png",
   "screenshots": [
@@ -54,6 +54,12 @@
       "type": "Download",
       "name": "Data Files",
       "url": "https://www.rinnegatamante.eu/files/vitadb/vitaWolfen.zip",
+      "recommended": false
+    },
+    {
+      "type": "Data Files",
+      "name": "VitaHomebrewDB Data Files",
+      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/31-data-vitaWolfen.zip",
       "recommended": false
     }
   ],

@@ -56,6 +56,12 @@
       "name": "Data Files",
       "url": "https://www.rinnegatamante.eu/files/vitadb/wiiero.zip",
       "recommended": false
+    },
+    {
+      "type": "Data Files",
+      "name": "VitaHomebrewDB Data Files",
+      "url": "https://github.com/Grzybojad/wiiero-vita/releases/download/1.1/wiiero-data.zip",
+      "recommended": false
     }
   ],
   "source_name": "VitaHomebrewDB",

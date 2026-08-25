@@ -57,6 +57,12 @@
       "name": "Data Files",
       "url": "https://www.rinnegatamante.eu/files/vitadb/aerofoil.zip",
       "recommended": false
+    },
+    {
+      "type": "Data Files",
+      "name": "VitaHomebrewDB Data Files",
+      "url": "https://github.com/Rinnegatamante/Aerofoil-Vita/releases/download/v.1.0/aerofoil.zip",
+      "recommended": false
     }
   ],
   "source_name": "VitaHomebrewDB",

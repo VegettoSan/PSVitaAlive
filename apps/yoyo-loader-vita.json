@@ -11,10 +11,10 @@
   "subcategory_ids": [
     "other"
   ],
-  "version": "Nightly",
-  "version_date": "2026-08-14",
+  "version": "v.Nightly",
+  "version_date": "2022-04-10",
   "requirements": "- libshacccg.suprx\n- kubridge.skprx\n- fd_fix.skprx OR repatch_ex.skprx\n- Game Data Files: Android OR PC/Console Bytecode",
-  "size": 8229910,
+  "size": 8208053,
   "status": "Legacy",
   "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/31908a8a78d451a49d424b135c7e7ec72732102a6504574e41cca958f407b417.png",
   "screenshots": [

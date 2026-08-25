@@ -57,6 +57,12 @@
       "name": "Data Files",
       "url": "https://www.rinnegatamante.eu/files/vitadb/ut99.zip",
       "recommended": false
+    },
+    {
+      "type": "Data Files",
+      "name": "VitaHomebrewDB Data Files",
+      "url": "https://github.com/Rinnegatamante/UT99-Vita/releases/download/v.0.8/ut99.zip",
+      "recommended": false
     }
   ],
   "source_name": "VitaHomebrewDB",

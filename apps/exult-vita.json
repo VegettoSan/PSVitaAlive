@@ -53,6 +53,12 @@
       "name": "Data Files",
       "url": "https://www.rinnegatamante.eu/files/vitadb/exult.zip",
       "recommended": false
+    },
+    {
+      "type": "Data Files",
+      "name": "VitaHomebrewDB Data Files",
+      "url": "https://github.com/einmueller/exult-vita/releases/download/v1.9.vita.2/exult_data.zip",
+      "recommended": false
     }
   ],
   "source_name": "VitaHomebrewDB",

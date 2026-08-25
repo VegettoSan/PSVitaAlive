@@ -94,86 +94,6 @@
     "updated_at": "2026-08-17T21:42:40.081896+00:00"
   },
   {
-    "id": "nazi-zombies-portable",
-    "title_id": "NZZMBSPTB",
-    "name": "Nazi Zombies Portable",
-    "description": "Port of Nazi Zombies Portable for PSVITA.",
-    "long_description": "Call of Duty: Zombies \"de-make\" for PlayStation Portable & VITA, Nintendo Switch & 3DS, Windows, & Linux (ARM & x86). Powered by various Quake sourceports. Includes \"Nacht der Untoten\" and several community-made maps.",
-    "author_ids": [
-      "nzp-reboot-team",
-      "rinnegatamante"
-    ],
-    "category_id": "ports",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "Nightly",
-    "version_date": "2026-08-24",
-    "requirements": "- libshacccg.suprx",
-    "size": 2446141,
-    "status": "Legacy",
-    "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1028-nazi-zombies-portable.png",
-    "screenshots": [
-      "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/700a132501a00d7586707b33c0a4727c2b0664e3ec9c86996efebd810a6cdcc3.png",
-      "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/6e7ece334d0b8604df007a714e9d33abc092dc86af50d4545d6e9177d01f832b.png",
-      "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/140e581c7bbf245de22fd278ef49270d10d8539201b32e6c4b3db7f44f9c17f8.png",
-      "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/a79e4d2418e3aecf44aeab0aca053932e1fa639ce53fc6fe7c0def570fb1ba35.png",
-      "https://www.rinnegatamante.eu/vitadb/screenshots/700a132501a00d7586707b33c0a4727c2b0664e3ec9c86996efebd810a6cdcc3.png"
-    ],
-    "links": [
-      {
-        "type": "Download",
-        "name": "VitaHomebrewDB VPK",
-        "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1028-nzp.vpk",
-        "recommended": false
-      },
-      {
-        "type": "Download",
-        "name": "NeoVitaDB VPK",
-        "url": "https://github.com/nzp-team/nzportable/releases/download/nightly/nzportable-vita.zip",
-        "recommended": false
-      },
-      {
-        "type": "Official Website",
-        "name": "VitaHomebrewDB Release Page",
-        "url": "https://github.com/nzp-team/nzportable/releases"
-      },
-      {
-        "type": "Official Website",
-        "name": "NeoVitaDB Release Page",
-        "url": "https://github.com/nzp-team/nzportable/releases/tag/nightly"
-      },
-      {
-        "type": "Repository",
-        "name": "Repositorio",
-        "url": "https://github.com/nzp-team/nzportable"
-      },
-      {
-        "type": "Download",
-        "name": "VitaHomebrewDB VPK",
-        "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/1028-nzp.vpk",
-        "recommended": false
-      },
-      {
-        "type": "Download",
-        "name": "VitaDB VPK",
-        "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1028",
-        "recommended": true
-      },
-      {
-        "type": "Download",
-        "name": "Data Files",
-        "url": "https://www.rinnegatamante.eu/files/vitadb/nzp_nightly.zip",
-        "recommended": false
-      }
-    ],
-    "source_name": "VitaHomebrewDB",
-    "source_id": "1028",
-    "source_url": "https://github.com/nzp-team/nzportable",
-    "release_page": "https://github.com/nzp-team/nzportable/releases",
-    "updated_at": "2026-08-13T15:34:48.451358+00:00"
-  },
-  {
     "id": "duskligth",
     "title_id": "DUSKGXM01",
     "name": "DuskLigth TLOZ:TLP",
@@ -614,69 +534,6 @@
     "source_url": "https://github.com/MetalSyntax/Destinia-vita",
     "release_page": "https://github.com/MetalSyntax/Destinia-vita/releases",
     "updated_at": "2026-08-21T23:38:25.795507+00:00"
-  },
-  {
-    "id": "daedalus-x64",
-    "title_id": "DEDALOX64",
-    "name": "Daedalus X64",
-    "description": "N64 Emulator for PSVITA.",
-    "long_description": "This download is updated every night, at midnight, PDT, to the latest nightly release. Daedalus X64 is a Nintendo 64 emulator originally for Linux and PSP ported to PSVITA thanks to vitaGL usage.",
-    "author_ids": [
-      "rinnegatamante"
-    ],
-    "category_id": "emulators",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "Nightly",
-    "version_date": "2026-08-21",
-    "requirements": "Not specified",
-    "size": 2973584,
-    "status": "Legacy",
-    "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/932a2c421cd1217626c59ea726d5e6a16ba737f98ce86c193db75e9e633fcec9.png",
-    "screenshots": [
-      "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/932a2c421cd1217626c59ea726d5e6a16ba737f98ce86c193db75e9e633fcec9.png"
-    ],
-    "links": [
-      {
-        "type": "Download",
-        "name": "VitaHomebrewDB VPK",
-        "url": "https://github.com/Rinnegatamante/DaedalusX64-vitaGL/releases/download/Nightly/DaedalusX64.vpk",
-        "recommended": false
-      },
-      {
-        "type": "Official Website",
-        "name": "VitaHomebrewDB Release Page",
-        "url": "https://github.com/Rinnegatamante/DaedalusX64-vitaGL/releases"
-      },
-      {
-        "type": "Official Website",
-        "name": "NeoVitaDB Release Page",
-        "url": "https://github.com/Rinnegatamante/DaedalusX64-vitaGL/releases/tag/Nightly"
-      },
-      {
-        "type": "Repository",
-        "name": "Repositorio",
-        "url": "https://github.com/Rinnegatamante/DaedalusX64-vitaGL"
-      },
-      {
-        "type": "Download",
-        "name": "VitaDB VPK",
-        "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=553",
-        "recommended": true
-      },
-      {
-        "type": "Download",
-        "name": "Data Files",
-        "url": "https://www.rinnegatamante.eu/files/vitadb/DaedalusX64.zip",
-        "recommended": false
-      }
-    ],
-    "source_name": "VitaHomebrewDB",
-    "source_id": "553",
-    "source_url": "https://github.com/Rinnegatamante/DaedalusX64-vitaGL",
-    "release_page": "https://github.com/Rinnegatamante/DaedalusX64-vitaGL/releases",
-    "updated_at": "2026-08-13T15:34:48.619999+00:00"
   },
   {
     "id": "destinia-vita",
@@ -1458,6 +1315,12 @@
         "name": "Data Files",
         "url": "https://www.rinnegatamante.eu/files/vitadb/VitaDB.zip",
         "recommended": false
+      },
+      {
+        "type": "Data Files",
+        "name": "VitaHomebrewDB Data Files",
+        "url": "https://github.com/Rinnegatamante/VitaDB-Downloader/releases/download/v.1.8/VitaDB.zip",
+        "recommended": false
       }
     ],
     "source_name": "VitaHomebrewDB",
@@ -1465,73 +1328,6 @@
     "source_url": "https://github.com/Rinnegatamante/VitaDB-Downloader",
     "release_page": "https://github.com/Rinnegatamante/VitaDB-Downloader/releases",
     "updated_at": "2026-08-13T15:34:48.346042+00:00"
-  },
-  {
-    "id": "emu4vita",
-    "title_id": "EMU4VPLUS",
-    "name": "Emu4Vita++",
-    "description": "Libretro frontend for PSVITA.",
-    "long_description": "A frontend for libretro cores for PSVITA.",
-    "author_ids": [
-      "noword"
-    ],
-    "category_id": "emulators",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "v.0.79",
-    "version_date": "2026-08-15",
-    "requirements": "Not specified",
-    "size": 197348129,
-    "status": "Legacy",
-    "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1260-emu4vita.png",
-    "screenshots": [
-      "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/8790c75058b59ea3132a4a2859f3f632d603d0560d86fa0bfe70febd627e4074.png",
-      "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/e391459bbb223b475ec86248af0ffac4e8e16d290872e36021afea82e474969d.png",
-      "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/76a1caf60c53400c8aeb28dcb4d4adb9105fe573c020bb1f71a9c476e9dcadb6.png",
-      "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/5e0b319ebb55c9a86340aaa74efe25fe7d89d6d101527298a2c2a21ea710c071.png",
-      "https://www.rinnegatamante.eu/vitadb/screenshots/8790c75058b59ea3132a4a2859f3f632d603d0560d86fa0bfe70febd627e4074.png"
-    ],
-    "links": [
-      {
-        "type": "Download",
-        "name": "VitaHomebrewDB VPK",
-        "url": "https://github.com/noword/Emu4VitaPlus/releases/download/v0.78/Emu4VitaPlus_v0.78.vpk",
-        "recommended": false
-      },
-      {
-        "type": "Official Website",
-        "name": "VitaHomebrewDB Release Page",
-        "url": "https://github.com/noword/Emu4VitaPlus/releases"
-      },
-      {
-        "type": "Official Website",
-        "name": "NeoVitaDB Release Page",
-        "url": "https://github.com/noword/Emu4VitaPlus/releases/tag/v0.78"
-      },
-      {
-        "type": "Repository",
-        "name": "Repositorio",
-        "url": "https://github.com/noword/Emu4VitaPlus"
-      },
-      {
-        "type": "Download",
-        "name": "VitaDB VPK",
-        "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1260",
-        "recommended": true
-      },
-      {
-        "type": "Download",
-        "name": "VitaHomebrewDB VPK",
-        "url": "https://github.com/noword/Emu4VitaPlus/releases/download/v0.79/Emu4VitaPlus_v0.79.vpk",
-        "recommended": false
-      }
-    ],
-    "source_name": "VitaHomebrewDB",
-    "source_id": "1260",
-    "source_url": "https://github.com/noword/Emu4VitaPlus",
-    "release_page": "https://github.com/noword/Emu4VitaPlus/releases",
-    "updated_at": "2026-08-13T15:34:48.333586+00:00"
   },
   {
     "id": "red-ball-4",
@@ -1849,65 +1645,82 @@
     "updated_at": "2026-08-13T15:34:48.720960+00:00"
   },
   {
-    "id": "yoyo-loader-vita",
-    "title_id": "YYOLOADER",
-    "name": "YoYo Loader Vita",
-    "description": "Game Maker Studio games loader.",
-    "long_description": "YoYo Loader is a loader for libyoyo.so, the official GameMaker Studio Runner application for Android, for the PS Vita.\nYoYo Loader works by loading such ARMv7 executable in memory, resolving its imports with native functions and patching it in order to properly run.\nThis enables to run potentially any game made with GameMaker Studio.",
+    "id": "marmaladeboy_lcd",
+    "title_id": "BUNKAI007",
+    "name": "MarmaladeBoy_LCD",
+    "description": "Clone of MarmeladeBoy LCD console for PSVITA.",
+    "long_description": "The main game is a port of the LCD game where you have to go from one point to another without dying to increase your score. The idea is based on the MarmaladeBoy LCD game made by Bandai Namco.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
     "author_ids": [
-      "rinnegatamante"
+      "bunkai"
     ],
-    "category_id": "emulators",
+    "category_id": "ports",
     "subcategory_ids": [
       "other"
     ],
-    "version": "Nightly",
+    "version": "v.1.0",
     "version_date": "2026-08-14",
-    "requirements": "- libshacccg.suprx\n- kubridge.skprx\n- fd_fix.skprx OR repatch_ex.skprx\n- Game Data Files: Android OR PC/Console Bytecode",
-    "size": 8229910,
+    "requirements": "Not specified",
+    "size": 4054232,
     "status": "Legacy",
-    "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/31908a8a78d451a49d424b135c7e7ec72732102a6504574e41cca958f407b417.png",
+    "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1844-marmaladeboy-lcd.png",
     "screenshots": [
-      "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/a0426d6edeec817ac132d10f0e5c3e353d4089d16dc96b274e67d639a13ae3d5.png",
-      "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/00bb464250354037195259c145bb043d9ce3eea6308d85808bdf78cb8ba69677.png",
-      "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/b3e12bcc5907dbd10a85a73da689aa1a771a229251759a7ee08bcc01beccfa42.png",
-      "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/f0660f3a135769d826cced458c2bdb9382a6a751b95a87079f05bed466e181fc.png",
-      "https://www.rinnegatamante.eu/vitadb/screenshots/a0426d6edeec817ac132d10f0e5c3e353d4089d16dc96b274e67d639a13ae3d5.png"
+      "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/950e44af3798c9ceecfcd2aa4dac7f43c3b2449958749a857c72c2ccbd37218d.png",
+      "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/db0ebd7be04d4fe17425c85c06e8bcafb3eed6e278389d3a41f100cb6cebd22b.png",
+      "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/69ab255d5ef6d9c0af5bf45b3041573b8d7628486922fc7ce64570b5dc94b401.png",
+      "https://www.rinnegatamante.eu/vitadb/screenshots/950e44af3798c9ceecfcd2aa4dac7f43c3b2449958749a857c72c2ccbd37218d.png",
+      "https://www.rinnegatamante.eu/vitadb/screenshots/db0ebd7be04d4fe17425c85c06e8bcafb3eed6e278389d3a41f100cb6cebd22b.png"
     ],
     "links": [
       {
         "type": "Download",
         "name": "VitaHomebrewDB VPK",
-        "url": "https://github.com/Rinnegatamante/yoyoloader_vita/releases/download/Nightly/YoYoLoader.vpk",
+        "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1109-marmalade_bunkai.vpk",
         "recommended": false
       },
       {
         "type": "Official Website",
         "name": "VitaHomebrewDB Release Page",
-        "url": "https://github.com/Rinnegatamante/yoyoloader_vita/releases"
-      },
-      {
-        "type": "Official Website",
-        "name": "NeoVitaDB Release Page",
-        "url": "https://github.com/Rinnegatamante/yoyoloader_vita/releases/tag/Nightly"
+        "url": "https://fuhen.homebrew-contest.com/submissions/23/"
       },
       {
         "type": "Repository",
         "name": "Repositorio",
-        "url": "https://github.com/Rinnegatamante/yoyoloader_vita"
+        "url": "https://github.com"
+      },
+      {
+        "type": "Download",
+        "name": "VitaHomebrewDB VPK",
+        "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/MarmaladeBoy_LCD.vpk",
+        "recommended": true
+      },
+      {
+        "type": "Download",
+        "name": "VitaHomebrewDB VPK",
+        "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/1109-marmalade_bunkai.vpk",
+        "recommended": false
+      },
+      {
+        "type": "Official Website",
+        "name": "VitaHomebrewDB Release Page",
+        "url": "https://bunkai.itch.io/"
+      },
+      {
+        "type": "Repository",
+        "name": "Repositorio",
+        "url": "https://github.com/Bunkai9448/vita_gamemaker"
       },
       {
         "type": "Download",
         "name": "VitaDB VPK",
-        "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=815",
-        "recommended": true
+        "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1109",
+        "recommended": false
       }
     ],
     "source_name": "VitaHomebrewDB",
-    "source_id": "815",
-    "source_url": "https://github.com/Rinnegatamante/yoyoloader_vita",
-    "release_page": "https://github.com/Rinnegatamante/yoyoloader_vita/releases",
-    "updated_at": "2026-08-13T15:34:48.547614+00:00"
+    "source_id": "1109",
+    "source_url": "https://fuhen.homebrew-contest.com/submissions/23/",
+    "release_page": "https://fuhen.homebrew-contest.com/submissions/23/",
+    "updated_at": "2026-08-13T15:34:48.484525+00:00"
   },
   {
     "id": "save-sync",
@@ -3023,6 +2836,70 @@
     "updated_at": "2026-08-13T15:34:48.321091+00:00"
   },
   {
+    "id": "dinosaur-2d",
+    "title_id": "WLOGICCD2",
+    "name": "Dinosaur 2D",
+    "description": "The Chrome offline dinosaur game for PSVITA.",
+    "long_description": "The Chrome offline dinosaur game for PSVITA.",
+    "author_ids": [
+      "withlogic"
+    ],
+    "category_id": "games",
+    "subcategory_ids": [
+      "other"
+    ],
+    "version": "v.1.0",
+    "version_date": "2026-08-09",
+    "requirements": "Not specified",
+    "size": 2797744,
+    "status": "Legacy",
+    "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/0139b3eccd766557f4ec33f068150158c409000051135ed29adb53ef4af197ad.png",
+    "screenshots": [
+      "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/0139b3eccd766557f4ec33f068150158c409000051135ed29adb53ef4af197ad.png"
+    ],
+    "links": [
+      {
+        "type": "Download",
+        "name": "VitaHomebrewDB VPK",
+        "url": "https://github.com/withLogic/chrome-dinosaur-2d/releases/download/v1.0/chrome-dinosaur-2d.vpk",
+        "recommended": true
+      },
+      {
+        "type": "Official Website",
+        "name": "VitaHomebrewDB Release Page",
+        "url": "https://github.com/withLogic/chrome-dinosaur-2d/releases"
+      },
+      {
+        "type": "Repository",
+        "name": "Repositorio",
+        "url": "https://github.com/withLogic/chrome-dinosaur-2d"
+      },
+      {
+        "type": "Download",
+        "name": "VitaDB VPK",
+        "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1453",
+        "recommended": false
+      },
+      {
+        "type": "Download",
+        "name": "Data Files",
+        "url": "https://github.com/withLogic/chrome-dinosaur-2d/releases/download/v1.0/assets.zip",
+        "recommended": false
+      },
+      {
+        "type": "Download",
+        "name": "Data Files",
+        "url": "https://www.rinnegatamante.eu/files/vitadb/chrome-dinosaur-2d.zip",
+        "recommended": false
+      }
+    ],
+    "source_name": "VitaHomebrewDB",
+    "source_id": "1469",
+    "source_url": "https://github.com/withLogic/chrome-dinosaur-2d",
+    "release_page": "https://github.com/withLogic/chrome-dinosaur-2d/releases",
+    "updated_at": "2026-08-13T15:34:48.320466+00:00"
+  },
+  {
     "id": "trifle-psychotic",
     "title_id": "TRFL00001",
     "name": "Trifle Psychotic",
@@ -3641,70 +3518,6 @@
     "source_url": "https://github.com/noradninja/The-Four-of-Us-Are-Dying",
     "release_page": "https://github.com/noradninja/The-Four-of-Us-Are-Dying/tree/Current",
     "updated_at": "2026-08-13T15:34:48.322344+00:00"
-  },
-  {
-    "id": "dinosaur-2d",
-    "title_id": "WLOGICCD2",
-    "name": "Dinosaur 2D",
-    "description": "The Chrome offline dinosaur game for PSVITA.",
-    "long_description": "The Chrome offline dinosaur game for PSVITA.",
-    "author_ids": [
-      "withlogic"
-    ],
-    "category_id": "games",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "v.1.0",
-    "version_date": "2026-08-05",
-    "requirements": "Not specified",
-    "size": 2797744,
-    "status": "Legacy",
-    "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/0139b3eccd766557f4ec33f068150158c409000051135ed29adb53ef4af197ad.png",
-    "screenshots": [
-      "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/0139b3eccd766557f4ec33f068150158c409000051135ed29adb53ef4af197ad.png"
-    ],
-    "links": [
-      {
-        "type": "Download",
-        "name": "VitaHomebrewDB VPK",
-        "url": "https://github.com/withLogic/chrome-dinosaur-2d/releases/download/v1.0/chrome-dinosaur-2d.vpk",
-        "recommended": true
-      },
-      {
-        "type": "Official Website",
-        "name": "VitaHomebrewDB Release Page",
-        "url": "https://github.com/withLogic/chrome-dinosaur-2d/releases"
-      },
-      {
-        "type": "Repository",
-        "name": "Repositorio",
-        "url": "https://github.com/withLogic/chrome-dinosaur-2d"
-      },
-      {
-        "type": "Download",
-        "name": "VitaDB VPK",
-        "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1453",
-        "recommended": false
-      },
-      {
-        "type": "Download",
-        "name": "Data Files",
-        "url": "https://github.com/withLogic/chrome-dinosaur-2d/releases/download/v1.0/assets.zip",
-        "recommended": false
-      },
-      {
-        "type": "Download",
-        "name": "Data Files",
-        "url": "https://www.rinnegatamante.eu/files/vitadb/chrome-dinosaur-2d.zip",
-        "recommended": false
-      }
-    ],
-    "source_name": "VitaHomebrewDB",
-    "source_id": "1469",
-    "source_url": "https://github.com/withLogic/chrome-dinosaur-2d",
-    "release_page": "https://github.com/withLogic/chrome-dinosaur-2d/releases",
-    "updated_at": "2026-08-13T15:34:48.320466+00:00"
   },
   {
     "id": "cut-the-rope-magic",
@@ -4598,6 +4411,12 @@
         "name": "Data Files",
         "url": "https://www.rinnegatamante.eu/files/vitadb/ut99.zip",
         "recommended": false
+      },
+      {
+        "type": "Data Files",
+        "name": "VitaHomebrewDB Data Files",
+        "url": "https://github.com/Rinnegatamante/UT99-Vita/releases/download/v.0.8/ut99.zip",
+        "recommended": false
       }
     ],
     "source_name": "VitaHomebrewDB",
@@ -5256,7 +5075,7 @@
     "version": "psvita-r7",
     "version_date": "2026-07-13",
     "requirements": "- libshacccg.suprx\n- Game Data Files: PC",
-    "size": 2790525,
+    "size": 2181887,
     "status": "Legacy",
     "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/7b143be6a4b5b7e098744024a0eb2dbe2e9963ac33727bc6e221b303f66e5573.png",
     "screenshots": [
@@ -5299,6 +5118,12 @@
         "type": "Download",
         "name": "Data Files",
         "url": "https://www.rinnegatamante.eu/files/vitadb/unreal.zip",
+        "recommended": false
+      },
+      {
+        "type": "Data Files",
+        "name": "VitaHomebrewDB Data Files",
+        "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/1242-data-unreal.zip",
         "recommended": false
       }
     ],
@@ -5366,6 +5191,12 @@
         "type": "Download",
         "name": "Data Files",
         "url": "https://www.rinnegatamante.eu/files/vitadb/afterburner.zip",
+        "recommended": false
+      },
+      {
+        "type": "Data Files",
+        "name": "VitaHomebrewDB Data Files",
+        "url": "https://github.com/Rinnegatamante/afterburner-vita/releases/download/v.1.1/afterburner.zip",
         "recommended": false
       }
     ],
@@ -5540,6 +5371,12 @@
         "name": "Data Files",
         "url": "https://www.rinnegatamante.eu/files/vitadb/eq_speaker.zip",
         "recommended": false
+      },
+      {
+        "type": "Data Files",
+        "name": "VitaHomebrewDB Data Files",
+        "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/1353-data-eq_speaker.zip",
+        "recommended": false
       }
     ],
     "source_name": "NeoVitaDB",
@@ -5655,6 +5492,12 @@
         "name": "Data Files",
         "url": "https://www.rinnegatamante.eu/files/vitadb/fheroes2_data.zip",
         "recommended": false
+      },
+      {
+        "type": "Data Files",
+        "name": "VitaHomebrewDB Data Files",
+        "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/354-data-fheroes2_data.zip",
+        "recommended": false
       }
     ],
     "source_name": "NeoVitaDB",
@@ -5723,6 +5566,73 @@
     "source_url": "https://github.com/Rocroverss/Dark-Lands-psvita",
     "release_page": "https://github.com/Rocroverss/Dark-Lands-psvita/releases",
     "updated_at": "2026-08-13T15:34:48.334131+00:00"
+  },
+  {
+    "id": "emu4vita",
+    "title_id": "EMU4VPLUS",
+    "name": "Emu4Vita++",
+    "description": "Libretro frontend for PSVITA.",
+    "long_description": "A frontend for libretro cores for PSVITA.",
+    "author_ids": [
+      "noword"
+    ],
+    "category_id": "emulators",
+    "subcategory_ids": [
+      "other"
+    ],
+    "version": "v.0.79",
+    "version_date": "2026-06-26",
+    "requirements": "Not specified",
+    "size": 197348129,
+    "status": "Legacy",
+    "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1260-emu4vita.png",
+    "screenshots": [
+      "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/8790c75058b59ea3132a4a2859f3f632d603d0560d86fa0bfe70febd627e4074.png",
+      "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/e391459bbb223b475ec86248af0ffac4e8e16d290872e36021afea82e474969d.png",
+      "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/76a1caf60c53400c8aeb28dcb4d4adb9105fe573c020bb1f71a9c476e9dcadb6.png",
+      "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/5e0b319ebb55c9a86340aaa74efe25fe7d89d6d101527298a2c2a21ea710c071.png",
+      "https://www.rinnegatamante.eu/vitadb/screenshots/8790c75058b59ea3132a4a2859f3f632d603d0560d86fa0bfe70febd627e4074.png"
+    ],
+    "links": [
+      {
+        "type": "Download",
+        "name": "VitaHomebrewDB VPK",
+        "url": "https://github.com/noword/Emu4VitaPlus/releases/download/v0.78/Emu4VitaPlus_v0.78.vpk",
+        "recommended": false
+      },
+      {
+        "type": "Official Website",
+        "name": "VitaHomebrewDB Release Page",
+        "url": "https://github.com/noword/Emu4VitaPlus/releases"
+      },
+      {
+        "type": "Official Website",
+        "name": "NeoVitaDB Release Page",
+        "url": "https://github.com/noword/Emu4VitaPlus/releases/tag/v0.78"
+      },
+      {
+        "type": "Repository",
+        "name": "Repositorio",
+        "url": "https://github.com/noword/Emu4VitaPlus"
+      },
+      {
+        "type": "Download",
+        "name": "VitaDB VPK",
+        "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1260",
+        "recommended": true
+      },
+      {
+        "type": "Download",
+        "name": "VitaHomebrewDB VPK",
+        "url": "https://github.com/noword/Emu4VitaPlus/releases/download/v0.79/Emu4VitaPlus_v0.79.vpk",
+        "recommended": false
+      }
+    ],
+    "source_name": "VitaHomebrewDB",
+    "source_id": "1260",
+    "source_url": "https://github.com/noword/Emu4VitaPlus",
+    "release_page": "https://github.com/noword/Emu4VitaPlus/releases",
+    "updated_at": "2026-08-13T15:34:48.333586+00:00"
   },
   {
     "id": "goldenidol-vita",
@@ -5959,7 +5869,7 @@
     "version": "2026.3.0",
     "version_date": "2026-06-20",
     "requirements": "Not specified",
-    "size": 145275498,
+    "size": 129889683,
     "status": "Legacy",
     "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1693-scummvm.png",
     "screenshots": [
@@ -6135,7 +6045,7 @@
     "version": "v.1.1",
     "version_date": "2026-06-16",
     "requirements": "- libshacccg.suprx\n- kubridge.skprx\n- Game Data Files: Android",
-    "size": 2469806,
+    "size": 2467926,
     "status": "Legacy",
     "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/53fb4571d16f6e75ef298d18c4f41bab6c377fb953315c9f08eda8206507d61f.png",
     "screenshots": [
@@ -6289,6 +6199,12 @@
         "type": "Download",
         "name": "Data Files",
         "url": "https://www.rinnegatamante.eu/files/vitadb/mog.zip",
+        "recommended": false
+      },
+      {
+        "type": "Data Files",
+        "name": "VitaHomebrewDB Data Files",
+        "url": "https://github.com/withLogic/mog-vita/releases/download/v1.0/data.zip",
         "recommended": false
       }
     ],
@@ -6485,7 +6401,7 @@
     "version": "v.1.0",
     "version_date": "2026-06-07",
     "requirements": "- libshacccg.suprx\n- kubridge.skprx\n- Game Data Files: Android",
-    "size": 2199923,
+    "size": 1953422,
     "status": "Legacy",
     "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1964-pacman-ce-dx-vita.png",
     "screenshots": [
@@ -6538,7 +6454,7 @@
     "version": "v.1.0",
     "version_date": "2026-06-07",
     "requirements": "- libshacccg.suprx\n- kubridge.skprx\n- Game Data Files: Android",
-    "size": 1879964,
+    "size": 1910439,
     "status": "Legacy",
     "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1963-super-hexagon-vita.png",
     "screenshots": [
@@ -6860,6 +6776,12 @@
         "name": "Data Files",
         "url": "https://www.rinnegatamante.eu/files/vitadb/SDL-Sopwith.zip",
         "recommended": false
+      },
+      {
+        "type": "Data Files",
+        "name": "VitaHomebrewDB Data Files",
+        "url": "https://github.com/withLogic/sdl-sopwith-vita/releases/download/1.0.0/data.zip",
+        "recommended": false
       }
     ],
     "source_name": "VitaHomebrewDB",
@@ -6985,6 +6907,12 @@
         "name": "Data Files",
         "url": "https://www.rinnegatamante.eu/files/vitadb/ghostship.zip",
         "recommended": false
+      },
+      {
+        "type": "Data Files",
+        "name": "VitaHomebrewDB Data Files",
+        "url": "https://github.com/Rinnegatamante/Ghostship/releases/download/v.1.2/ghostship.zip",
+        "recommended": false
       }
     ],
     "source_name": "VitaHomebrewDB",
@@ -7102,7 +7030,7 @@
     "version": "v.2.4",
     "version_date": "2026-05-17",
     "requirements": "Not specified",
-    "size": 2830292,
+    "size": 10350041,
     "status": "Legacy",
     "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/e5c00ba529829c233586dee95b900814eebfccf53d24c097fb8f4ba77e46b404.png",
     "screenshots": [
@@ -7141,6 +7069,12 @@
         "type": "Download",
         "name": "Data Files",
         "url": "https://www.rinnegatamante.eu/files/vitadb/Trogdor-RB.zip",
+        "recommended": false
+      },
+      {
+        "type": "Data Files",
+        "name": "VitaHomebrewDB Data Files",
+        "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/1015-data-Trogdor-RB.zip",
         "recommended": false
       }
     ],
@@ -7210,6 +7144,12 @@
         "name": "Data Files",
         "url": "https://www.rinnegatamante.eu/files/vitadb/iortcw.zip",
         "recommended": false
+      },
+      {
+        "type": "Data Files",
+        "name": "VitaHomebrewDB Data Files",
+        "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/459-data-iortcw.zip",
+        "recommended": false
       }
     ],
     "source_name": "VitaHomebrewDB",
@@ -7273,6 +7213,12 @@
         "type": "Download",
         "name": "Data Files",
         "url": "https://www.rinnegatamante.eu/files/vitadb/openliero.zip",
+        "recommended": false
+      },
+      {
+        "type": "Data Files",
+        "name": "VitaHomebrewDB Data Files",
+        "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/1398-data-openliero.zip",
         "recommended": false
       }
     ],
@@ -7670,6 +7616,12 @@
         "name": "Data Files",
         "url": "https://www.rinnegatamante.eu/files/vitadb/2s2h.zip",
         "recommended": false
+      },
+      {
+        "type": "Data Files",
+        "name": "VitaHomebrewDB Data Files",
+        "url": "https://github.com/Rinnegatamante/2ship2harkinian/releases/download/v.1.2/2s2h.zip",
+        "recommended": false
       }
     ],
     "source_name": "VitaHomebrewDB",
@@ -7736,6 +7688,12 @@
         "type": "Download",
         "name": "Data Files",
         "url": "https://www.rinnegatamante.eu/files/vitadb/spaghetti.zip",
+        "recommended": false
+      },
+      {
+        "type": "Data Files",
+        "name": "VitaHomebrewDB Data Files",
+        "url": "https://github.com/Rinnegatamante/SpaghettiKart/releases/download/v.1.1/spaghetti.zip",
         "recommended": false
       }
     ],
@@ -7864,6 +7822,12 @@
         "type": "Download",
         "name": "Data Files",
         "url": "https://www.rinnegatamante.eu/files/vitadb/pd.zip",
+        "recommended": false
+      },
+      {
+        "type": "Data Files",
+        "name": "VitaHomebrewDB Data Files",
+        "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/1273-data-pd.zip",
         "recommended": false
       }
     ],
@@ -8059,7 +8023,7 @@
     "version": "v.0.9",
     "version_date": "2026-04-27",
     "requirements": "Not specified",
-    "size": 15858326,
+    "size": 15868658,
     "status": "Legacy",
     "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1958-quantimmum-chess.png",
     "screenshots": [
@@ -8336,6 +8300,12 @@
         "type": "Download",
         "name": "Data Files",
         "url": "https://www.rinnegatamante.eu/files/vitadb/starship.zip",
+        "recommended": false
+      },
+      {
+        "type": "Data Files",
+        "name": "VitaHomebrewDB Data Files",
+        "url": "https://github.com/Rinnegatamante/Starship/releases/download/v.1.0/starship.zip",
         "recommended": false
       }
     ],
@@ -8630,6 +8600,12 @@
         "name": "Data Files",
         "url": "https://www.rinnegatamante.eu/files/vitadb/dmc4.zip",
         "recommended": false
+      },
+      {
+        "type": "Data Files",
+        "name": "VitaHomebrewDB Data Files",
+        "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/1377-data-dmc4.zip",
+        "recommended": false
       }
     ],
     "source_name": "VitaHomebrewDB",
@@ -8822,6 +8798,12 @@
         "name": "Data Files",
         "url": "https://www.rinnegatamante.eu/files/vitadb/soh.zip",
         "recommended": false
+      },
+      {
+        "type": "Data Files",
+        "name": "VitaHomebrewDB Data Files",
+        "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/1276-data-soh.zip",
+        "recommended": false
       }
     ],
     "source_name": "VitaHomebrewDB",
@@ -8888,6 +8870,12 @@
         "type": "Download",
         "name": "Data Files",
         "url": "https://www.rinnegatamante.eu/files/vitadb/hex-a-hop.zip",
+        "recommended": false
+      },
+      {
+        "type": "Data Files",
+        "name": "VitaHomebrewDB Data Files",
+        "url": "https://github.com/withLogic/hexahop-vita/releases/download/v1.1.0-vita/data.zip",
         "recommended": false
       }
     ],
@@ -9333,7 +9321,7 @@
     "version": "v.1.0",
     "version_date": "2026-02-24",
     "requirements": "- Game Data Files: PC",
-    "size": 277555,
+    "size": 398000,
     "status": "Legacy",
     "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1954-chex-quest-vita.png",
     "screenshots": [
@@ -9715,6 +9703,12 @@
         "type": "Download",
         "name": "Data Files",
         "url": "https://www.rinnegatamante.eu/files/vitadb/postal.zip",
+        "recommended": false
+      },
+      {
+        "type": "Data Files",
+        "name": "VitaHomebrewDB Data Files",
+        "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/415-data-postal.zip",
         "recommended": false
       }
     ],
@@ -10539,6 +10533,12 @@
         "name": "Data Files",
         "url": "https://www.rinnegatamante.eu/files/vitadb/psnes.zip",
         "recommended": false
+      },
+      {
+        "type": "Data Files",
+        "name": "VitaHomebrewDB Data Files",
+        "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/546-data-psnes.zip",
+        "recommended": false
       }
     ],
     "source_name": "VitaHomebrewDB",
@@ -10666,6 +10666,12 @@
         "name": "Data Files",
         "url": "https://www.rinnegatamante.eu/files/vitadb/ssam_tse.zip",
         "recommended": false
+      },
+      {
+        "type": "Data Files",
+        "name": "VitaHomebrewDB Data Files",
+        "url": "https://github.com/fgsfdsfgs/Serious-Engine/releases/download/psvita2/data_tse_v2.zip",
+        "recommended": false
       }
     ],
     "source_name": "VitaHomebrewDB",
@@ -10732,6 +10738,12 @@
         "type": "Download",
         "name": "Data Files",
         "url": "https://www.rinnegatamante.eu/files/vitadb/ssam_tfe.zip",
+        "recommended": false
+      },
+      {
+        "type": "Data Files",
+        "name": "VitaHomebrewDB Data Files",
+        "url": "https://github.com/fgsfdsfgs/Serious-Engine/releases/download/psvita2/data_tfe_v2.zip",
         "recommended": false
       }
     ],
@@ -11519,7 +11531,7 @@
     "version": "v.1.2",
     "version_date": "2025-10-29",
     "requirements": "- libshacccg.suprx\n- Game Data Files: PC",
-    "size": 4428029,
+    "size": 4527067,
     "status": "Legacy",
     "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1838-eldritch-vita.png",
     "screenshots": [
@@ -11557,6 +11569,12 @@
         "type": "Download",
         "name": "Data Files",
         "url": "https://www.rinnegatamante.eu/files/vitadb/eldritch.zip",
+        "recommended": false
+      },
+      {
+        "type": "Data Files",
+        "name": "VitaHomebrewDB Data Files",
+        "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/1100-data-eldritch.zip",
         "recommended": false
       }
     ],
@@ -12996,6 +13014,12 @@
         "name": "Data Files",
         "url": "https://www.rinnegatamante.eu/files/vitadb/biplanes_revival_data.zip",
         "recommended": false
+      },
+      {
+        "type": "Data Files",
+        "name": "VitaHomebrewDB Data Files",
+        "url": "https://github.com/DvaMishkiLapa/biplanes-revival-vita/releases/download/v1.2.1/biplanes_revival_data.zip",
+        "recommended": false
       }
     ],
     "source_name": "VitaHomebrewDB",
@@ -13082,7 +13106,7 @@
     "version": "v.1.6",
     "version_date": "2025-08-22",
     "requirements": "Not specified",
-    "size": 114452200,
+    "size": 74123397,
     "status": "Legacy",
     "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1900-sonic-unleashed.png",
     "screenshots": [
@@ -14692,6 +14716,12 @@
         "name": "Data Files",
         "url": "https://www.rinnegatamante.eu/files/vitadb/smworld.zip",
         "recommended": false
+      },
+      {
+        "type": "Data Files",
+        "name": "VitaHomebrewDB Data Files",
+        "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/1215-data-smworld.zip",
+        "recommended": false
       }
     ],
     "source_name": "VitaHomebrewDB",
@@ -14759,6 +14789,12 @@
         "type": "Download",
         "name": "Data Files",
         "url": "https://www.rinnegatamante.eu/files/vitadb/zelda3_attp.zip",
+        "recommended": false
+      },
+      {
+        "type": "Data Files",
+        "name": "VitaHomebrewDB Data Files",
+        "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/993-data-zelda3_attp.zip",
         "recommended": false
       }
     ],
@@ -14840,7 +14876,7 @@
     "version": "v.1.0.0a",
     "version_date": "2025-06-24",
     "requirements": "Not specified",
-    "size": 113170179,
+    "size": 87645624,
     "status": "Legacy",
     "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1696-lost-on-island.png",
     "screenshots": [
@@ -14897,7 +14933,7 @@
     "version": "v.1.10",
     "version_date": "2025-06-19",
     "requirements": "Not specified",
-    "size": 637289911,
+    "size": 580635133,
     "status": "Legacy",
     "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1852-everlasting-summer-vita.png",
     "screenshots": [
@@ -14954,7 +14990,7 @@
     "version": "v.01.15",
     "version_date": "2025-06-19",
     "requirements": "Not specified",
-    "size": 505035075,
+    "size": 447046987,
     "status": "Legacy",
     "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1829-katawa-shoujo-r7.png",
     "screenshots": [
@@ -14997,6 +15033,12 @@
         "type": "Download",
         "name": "Data Files",
         "url": "https://www.rinnegatamante.eu/files/vitadb/ks-video.zip",
+        "recommended": false
+      },
+      {
+        "type": "Data Files",
+        "name": "VitaHomebrewDB Data Files",
+        "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/1086-data-ks-video.zip",
         "recommended": false
       }
     ],
@@ -15134,7 +15176,7 @@
     "version": "v.0.8.1.1",
     "version_date": "2025-06-02",
     "requirements": "Not specified",
-    "size": 5297501,
+    "size": 4210037,
     "status": "Legacy",
     "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1462-easyrpg-player.png",
     "screenshots": [
@@ -15180,6 +15222,12 @@
         "type": "Download",
         "name": "Data Files",
         "url": "https://www.rinnegatamante.eu/files/vitadb/easyrpg.zip",
+        "recommended": false
+      },
+      {
+        "type": "Data Files",
+        "name": "VitaHomebrewDB Data Files",
+        "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/5-data-easyrpg.zip",
         "recommended": false
       }
     ],
@@ -15557,6 +15605,12 @@
         "name": "Data Files",
         "url": "https://www.rinnegatamante.eu/files/vitadb/openrct2.zip",
         "recommended": false
+      },
+      {
+        "type": "Data Files",
+        "name": "VitaHomebrewDB Data Files",
+        "url": "https://github.com/technicaljicama/OpenRCT2-CE/releases/download/vita-1/data.zip",
+        "recommended": false
       }
     ],
     "source_name": "VitaHomebrewDB",
@@ -15681,6 +15735,12 @@
         "type": "Download",
         "name": "Data Files",
         "url": "https://www.rinnegatamante.eu/files/vitadb/wipeout.zip",
+        "recommended": false
+      },
+      {
+        "type": "Data Files",
+        "name": "VitaHomebrewDB Data Files",
+        "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/1116-data-wipeout.zip",
         "recommended": false
       }
     ],
@@ -16165,7 +16225,7 @@
     "version": "v.0.10.5",
     "version_date": "2025-03-08",
     "requirements": "Not specified",
-    "size": 784831,
+    "size": 852635,
     "status": "Legacy",
     "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1522-mgba.png",
     "screenshots": [
@@ -16406,7 +16466,7 @@
     "version": "v.2.3.2",
     "version_date": "2025-02-06",
     "requirements": "Not specified",
-    "size": 51863224,
+    "size": 51734795,
     "status": "Legacy",
     "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1789-how-to-rob-a-gas-station.png",
     "screenshots": [
@@ -16507,6 +16567,12 @@
         "type": "Download",
         "name": "Data Files",
         "url": "https://www.rinnegatamante.eu/files/vitadb/MightyMike.zip",
+        "recommended": false
+      },
+      {
+        "type": "Data Files",
+        "name": "VitaHomebrewDB Data Files",
+        "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/1254-data-MightyMike.zip",
         "recommended": false
       }
     ],
@@ -16679,6 +16745,12 @@
         "name": "Data Files",
         "url": "https://www.rinnegatamante.eu/files/vitadb/OttoMatic.zip",
         "recommended": false
+      },
+      {
+        "type": "Data Files",
+        "name": "VitaHomebrewDB Data Files",
+        "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/1253-data-OttoMatic.zip",
+        "recommended": false
       }
     ],
     "source_name": "VitaHomebrewDB",
@@ -16800,6 +16872,12 @@
         "type": "Download",
         "name": "Data Files",
         "url": "https://www.rinnegatamante.eu/files/vitadb/Bugdom2.zip",
+        "recommended": false
+      },
+      {
+        "type": "Data Files",
+        "name": "VitaHomebrewDB Data Files",
+        "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/1251-data-Bugdom2.zip",
         "recommended": false
       }
     ],
@@ -17040,6 +17118,12 @@
         "type": "Download",
         "name": "Data Files",
         "url": "https://www.rinnegatamante.eu/files/vitadb/Homebrews%20Data%20Files/vitaQuake.zip",
+        "recommended": false
+      },
+      {
+        "type": "Data Files",
+        "name": "VitaHomebrewDB Data Files",
+        "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/10-data-vitaQuake.zip",
         "recommended": false
       }
     ],
@@ -17335,6 +17419,12 @@
         "name": "Data Files",
         "url": "https://www.rinnegatamante.eu/files/vitadb/dethrace.zip",
         "recommended": false
+      },
+      {
+        "type": "Data Files",
+        "name": "VitaHomebrewDB Data Files",
+        "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/1244-data-dethrace.zip",
+        "recommended": false
       }
     ],
     "source_name": "VitaHomebrewDB",
@@ -17417,7 +17507,7 @@
     "version": "v.2.0",
     "version_date": "2024-12-20",
     "requirements": "Not specified",
-    "size": 28875218,
+    "size": 28872251,
     "status": "Legacy",
     "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/9ba15b44bba093fdbc6f0ad18fa33e957bac9c7714fb076e00d75bcf5e6888ef.png",
     "screenshots": [
@@ -17516,6 +17606,12 @@
         "type": "Download",
         "name": "Data Files",
         "url": "https://www.rinnegatamante.eu/files/vitadb/CSPSP.zip",
+        "recommended": false
+      },
+      {
+        "type": "Data Files",
+        "name": "VitaHomebrewDB Data Files",
+        "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/1243-data-CSPSP.zip",
         "recommended": false
       }
     ],
@@ -17646,6 +17742,12 @@
         "type": "Download",
         "name": "Data Files",
         "url": "https://www.rinnegatamante.eu/files/vitadb/Nanosaur2.zip",
+        "recommended": false
+      },
+      {
+        "type": "Data Files",
+        "name": "VitaHomebrewDB Data Files",
+        "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/1241-data-Nanosaur2.zip",
         "recommended": false
       }
     ],
@@ -17838,6 +17940,12 @@
         "name": "Data Files",
         "url": "https://www.rinnegatamante.eu/files/vitadb/vitavoyager_data.zip",
         "recommended": false
+      },
+      {
+        "type": "Data Files",
+        "name": "VitaHomebrewDB Data Files",
+        "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/491-data-vitavoyager_data.zip",
+        "recommended": false
       }
     ],
     "source_name": "VitaHomebrewDB",
@@ -17906,6 +18014,12 @@
         "name": "Data Files",
         "url": "https://www.rinnegatamante.eu/files/vitadb/BillyFrontier.zip",
         "recommended": false
+      },
+      {
+        "type": "Data Files",
+        "name": "VitaHomebrewDB Data Files",
+        "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/1001-data-BillyFrontier.zip",
+        "recommended": false
       }
     ],
     "source_name": "VitaHomebrewDB",
@@ -17973,6 +18087,12 @@
         "type": "Download",
         "name": "Data Files",
         "url": "https://www.rinnegatamante.eu/files/vitadb/CroMagRally.zip",
+        "recommended": false
+      },
+      {
+        "type": "Data Files",
+        "name": "VitaHomebrewDB Data Files",
+        "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/872-data-CroMagRally.zip",
         "recommended": false
       }
     ],
@@ -18213,6 +18333,12 @@
         "type": "Download",
         "name": "Data Files",
         "url": "https://www.rinnegatamante.eu/files/vitadb/rvgl_new.zip",
+        "recommended": false
+      },
+      {
+        "type": "Data Files",
+        "name": "VitaHomebrewDB Data Files",
+        "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/1217-data-rvgl_new.zip",
         "recommended": false
       }
     ],
@@ -19680,7 +19806,7 @@
     "version": "beta.1",
     "version_date": "2024-06-11",
     "requirements": "- Game Data Files: PC",
-    "size": 12982648,
+    "size": 429964328,
     "status": "Legacy",
     "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/b6e9557a980f307d3db93a6685e11fe56957b1ddf74ab8cda06330f618799725.png",
     "screenshots": [
@@ -20330,10 +20456,10 @@
     "subcategory_ids": [
       "other"
     ],
-    "version": "v.2.3b",
+    "version": "v.2.3",
     "version_date": "2024-05-02",
     "requirements": "Not specified",
-    "size": 7431932,
+    "size": 7431948,
     "status": "Legacy",
     "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/7851bbbaae48249806c811d896b91ce3f137f239613d6d6aa1a54a992e1f5cd4.png",
     "screenshots": [
@@ -20502,6 +20628,12 @@
         "type": "Download",
         "name": "Data Files",
         "url": "https://www.rinnegatamante.eu/files/vitadb/sonic3air.zip",
+        "recommended": false
+      },
+      {
+        "type": "Data Files",
+        "name": "VitaHomebrewDB Data Files",
+        "url": "https://github.com/v-atamanenko/sonic3air/releases/download/beta-1/sonic3air.zip",
         "recommended": false
       }
     ],
@@ -21480,6 +21612,12 @@
         "name": "Data Files",
         "url": "https://www.rinnegatamante.eu/files/vitadb/tombraider.zip",
         "recommended": false
+      },
+      {
+        "type": "Data Files",
+        "name": "VitaHomebrewDB Data Files",
+        "url": "https://github.com/Rinnegatamante/raider-vita/releases/download/v.1.2/datafiles.zip",
+        "recommended": false
       }
     ],
     "source_name": "VitaHomebrewDB",
@@ -21670,6 +21808,92 @@
     "source_url": "https://github.com/Rinnegatamante/rct-vita",
     "release_page": "https://github.com/Rinnegatamante/rct-vita/releases",
     "updated_at": "2026-08-13T15:34:48.450439+00:00"
+  },
+  {
+    "id": "nazi-zombies-portable",
+    "title_id": "NZZMBSPTB",
+    "name": "Nazi Zombies Portable",
+    "description": "Port of Nazi Zombies Portable for PSVITA.",
+    "long_description": "Call of Duty: Zombies \"de-make\" for PlayStation Portable & VITA, Nintendo Switch & 3DS, Windows, & Linux (ARM & x86). Powered by various Quake sourceports. Includes \"Nacht der Untoten\" and several community-made maps.",
+    "author_ids": [
+      "nzp-reboot-team",
+      "rinnegatamante"
+    ],
+    "category_id": "ports",
+    "subcategory_ids": [
+      "other"
+    ],
+    "version": "Nightly",
+    "version_date": "2024-02-05",
+    "requirements": "- libshacccg.suprx",
+    "size": 3612951,
+    "status": "Legacy",
+    "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1028-nazi-zombies-portable.png",
+    "screenshots": [
+      "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/700a132501a00d7586707b33c0a4727c2b0664e3ec9c86996efebd810a6cdcc3.png",
+      "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/6e7ece334d0b8604df007a714e9d33abc092dc86af50d4545d6e9177d01f832b.png",
+      "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/140e581c7bbf245de22fd278ef49270d10d8539201b32e6c4b3db7f44f9c17f8.png",
+      "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/a79e4d2418e3aecf44aeab0aca053932e1fa639ce53fc6fe7c0def570fb1ba35.png",
+      "https://www.rinnegatamante.eu/vitadb/screenshots/700a132501a00d7586707b33c0a4727c2b0664e3ec9c86996efebd810a6cdcc3.png"
+    ],
+    "links": [
+      {
+        "type": "Download",
+        "name": "VitaHomebrewDB VPK",
+        "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1028-nzp.vpk",
+        "recommended": false
+      },
+      {
+        "type": "Download",
+        "name": "NeoVitaDB VPK",
+        "url": "https://github.com/nzp-team/nzportable/releases/download/nightly/nzportable-vita.zip",
+        "recommended": false
+      },
+      {
+        "type": "Official Website",
+        "name": "VitaHomebrewDB Release Page",
+        "url": "https://github.com/nzp-team/nzportable/releases"
+      },
+      {
+        "type": "Official Website",
+        "name": "NeoVitaDB Release Page",
+        "url": "https://github.com/nzp-team/nzportable/releases/tag/nightly"
+      },
+      {
+        "type": "Repository",
+        "name": "Repositorio",
+        "url": "https://github.com/nzp-team/nzportable"
+      },
+      {
+        "type": "Download",
+        "name": "VitaHomebrewDB VPK",
+        "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/1028-nzp.vpk",
+        "recommended": false
+      },
+      {
+        "type": "Download",
+        "name": "VitaDB VPK",
+        "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1028",
+        "recommended": true
+      },
+      {
+        "type": "Download",
+        "name": "Data Files",
+        "url": "https://www.rinnegatamante.eu/files/vitadb/nzp_nightly.zip",
+        "recommended": false
+      },
+      {
+        "type": "Data Files",
+        "name": "VitaHomebrewDB Data Files",
+        "url": "https://files.coolatoms.org/nzp-data.zip",
+        "recommended": false
+      }
+    ],
+    "source_name": "VitaHomebrewDB",
+    "source_id": "1028",
+    "source_url": "https://github.com/nzp-team/nzportable",
+    "release_page": "https://github.com/nzp-team/nzportable/releases",
+    "updated_at": "2026-08-13T15:34:48.451358+00:00"
   },
   {
     "id": "desert-golfing-vita",
@@ -22191,6 +22415,12 @@
         "name": "Data Files",
         "url": "https://www.rinnegatamante.eu/files/vitadb/oxce-data.zip",
         "recommended": false
+      },
+      {
+        "type": "Data Files",
+        "name": "VitaHomebrewDB Data Files",
+        "url": "https://github.com/Northfear/OpenXcom-vita/releases/download/v.7.10.0-vita.1/oxce-data.zip",
+        "recommended": false
       }
     ],
     "source_name": "VitaHomebrewDB",
@@ -22488,6 +22718,12 @@
         "name": "Data Files",
         "url": "https://www.rinnegatamante.eu/files/vitadb/VanillaTD.zip",
         "recommended": false
+      },
+      {
+        "type": "Data Files",
+        "name": "VitaHomebrewDB Data Files",
+        "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/650-data-VanillaTD.zip",
+        "recommended": false
       }
     ],
     "source_name": "VitaHomebrewDB",
@@ -22554,6 +22790,12 @@
         "type": "Download",
         "name": "Data Files",
         "url": "https://www.rinnegatamante.eu/files/vitadb/VanillaRA.zip",
+        "recommended": false
+      },
+      {
+        "type": "Data Files",
+        "name": "VitaHomebrewDB Data Files",
+        "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/649-data-VanillaRA.zip",
         "recommended": false
       }
     ],
@@ -22663,6 +22905,12 @@
         "name": "Data Files",
         "url": "https://www.rinnegatamante.eu/files/vitadb/dunelegacy_data.zip",
         "recommended": false
+      },
+      {
+        "type": "Data Files",
+        "name": "VitaHomebrewDB Data Files",
+        "url": "https://github.com/Northfear/dunelegacy-vita/releases/download/0.97.02-vita.1/dunelegacy_data.zip",
+        "recommended": false
       }
     ],
     "source_name": "VitaHomebrewDB",
@@ -22724,6 +22972,12 @@
         "type": "Download",
         "name": "Data Files",
         "url": "https://www.rinnegatamante.eu/files/vitadb/openxcom-data.zip",
+        "recommended": false
+      },
+      {
+        "type": "Data Files",
+        "name": "VitaHomebrewDB Data Files",
+        "url": "https://github.com/Northfear/OpenXcom-vita/releases/download/v1.0-vita.6/openxcom-data.zip",
         "recommended": false
       }
     ],
@@ -23106,6 +23360,12 @@
         "name": "Data Files",
         "url": "https://www.rinnegatamante.eu/files/vitadb/flare.zip",
         "recommended": false
+      },
+      {
+        "type": "Data Files",
+        "name": "VitaHomebrewDB Data Files",
+        "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/1158-data-flare.zip",
+        "recommended": false
       }
     ],
     "source_name": "VitaHomebrewDB",
@@ -23190,10 +23450,10 @@
     "subcategory_ids": [
       "other"
     ],
-    "version": "Nightly",
+    "version": "v.continuous",
     "version_date": "2023-10-07",
     "requirements": "- libshacccg.suprx\n- kubridge.skprx\n- Game Data Files: PC",
-    "size": 19427375,
+    "size": 33443462,
     "status": "Legacy",
     "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1883-xash3d-fwgs.png",
     "screenshots": [
@@ -23290,6 +23550,12 @@
         "type": "Download",
         "name": "Data Files",
         "url": "https://www.rinnegatamante.eu/files/vitadb/zik-zak.zip",
+        "recommended": false
+      },
+      {
+        "type": "Data Files",
+        "name": "VitaHomebrewDB Data Files",
+        "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/1103-data-zik-zak.zip",
         "recommended": false
       }
     ],
@@ -23890,6 +24156,12 @@
         "name": "Data Files",
         "url": "https://www.rinnegatamante.eu/files/vitadb/freespace2_demo.zip",
         "recommended": false
+      },
+      {
+        "type": "Data Files",
+        "name": "VitaHomebrewDB Data Files",
+        "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/1110-data-freespace2_demo.zip",
+        "recommended": false
       }
     ],
     "source_name": "VitaHomebrewDB",
@@ -23952,6 +24224,12 @@
         "type": "Download",
         "name": "Data Files",
         "url": "https://www.rinnegatamante.eu/files/vitadb/beat2x.zip",
+        "recommended": false
+      },
+      {
+        "type": "Data Files",
+        "name": "VitaHomebrewDB Data Files",
+        "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/1101-data-beat2x.zip",
         "recommended": false
       }
     ],
@@ -25419,6 +25697,12 @@
         "name": "Data Files",
         "url": "https://www.rinnegatamante.eu/files/vitadb/hrm.zip",
         "recommended": false
+      },
+      {
+        "type": "Data Files",
+        "name": "VitaHomebrewDB Data Files",
+        "url": "https://github.com/Rinnegatamante/hrm-vita/releases/download/v.1.3.1/datafiles.zip",
+        "recommended": false
       }
     ],
     "source_name": "VitaHomebrewDB",
@@ -25549,6 +25833,12 @@
         "name": "Data Files",
         "url": "https://www.rinnegatamante.eu/files/vitadb/Mania.zip",
         "recommended": false
+      },
+      {
+        "type": "Data Files",
+        "name": "VitaHomebrewDB Data Files",
+        "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/858-data-Mania.zip",
+        "recommended": false
       }
     ],
     "source_name": "VitaHomebrewDB",
@@ -25617,6 +25907,12 @@
         "type": "Download",
         "name": "Data Files",
         "url": "https://www.rinnegatamante.eu/files/vitadb/Fahrenheit.zip",
+        "recommended": false
+      },
+      {
+        "type": "Data Files",
+        "name": "VitaHomebrewDB Data Files",
+        "url": "https://github.com/Rinnegatamante/fahrenheit-vita/releases/download/v.0.9/datafiles.zip",
         "recommended": false
       }
     ],
@@ -26179,84 +26475,6 @@
     "updated_at": "2026-08-13T15:34:48.484326+00:00"
   },
   {
-    "id": "marmaladeboy_lcd",
-    "title_id": "BUNKAI007",
-    "name": "MarmaladeBoy_LCD",
-    "description": "Clone of MarmeladeBoy LCD console for PSVITA.",
-    "long_description": "The main game is a port of the LCD game where you have to go from one point to another without dying to increase your score. The idea is based on the MarmaladeBoy LCD game made by Bandai Namco.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
-    "author_ids": [
-      "bunkai"
-    ],
-    "category_id": "ports",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "v.1.0",
-    "version_date": "2023-08-07",
-    "requirements": "Not specified",
-    "size": 4519532,
-    "status": "Legacy",
-    "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1844-marmaladeboy-lcd.png",
-    "screenshots": [
-      "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/950e44af3798c9ceecfcd2aa4dac7f43c3b2449958749a857c72c2ccbd37218d.png",
-      "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/db0ebd7be04d4fe17425c85c06e8bcafb3eed6e278389d3a41f100cb6cebd22b.png",
-      "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/69ab255d5ef6d9c0af5bf45b3041573b8d7628486922fc7ce64570b5dc94b401.png",
-      "https://www.rinnegatamante.eu/vitadb/screenshots/950e44af3798c9ceecfcd2aa4dac7f43c3b2449958749a857c72c2ccbd37218d.png",
-      "https://www.rinnegatamante.eu/vitadb/screenshots/db0ebd7be04d4fe17425c85c06e8bcafb3eed6e278389d3a41f100cb6cebd22b.png"
-    ],
-    "links": [
-      {
-        "type": "Download",
-        "name": "VitaHomebrewDB VPK",
-        "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1109-marmalade_bunkai.vpk",
-        "recommended": false
-      },
-      {
-        "type": "Official Website",
-        "name": "VitaHomebrewDB Release Page",
-        "url": "https://fuhen.homebrew-contest.com/submissions/23/"
-      },
-      {
-        "type": "Repository",
-        "name": "Repositorio",
-        "url": "https://github.com"
-      },
-      {
-        "type": "Download",
-        "name": "VitaHomebrewDB VPK",
-        "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/MarmaladeBoy_LCD.vpk",
-        "recommended": true
-      },
-      {
-        "type": "Download",
-        "name": "VitaHomebrewDB VPK",
-        "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/1109-marmalade_bunkai.vpk",
-        "recommended": false
-      },
-      {
-        "type": "Official Website",
-        "name": "VitaHomebrewDB Release Page",
-        "url": "https://bunkai.itch.io/"
-      },
-      {
-        "type": "Repository",
-        "name": "Repositorio",
-        "url": "https://github.com/Bunkai9448/vita_gamemaker"
-      },
-      {
-        "type": "Download",
-        "name": "VitaDB VPK",
-        "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1109",
-        "recommended": false
-      }
-    ],
-    "source_name": "VitaHomebrewDB",
-    "source_id": "1109",
-    "source_url": "https://fuhen.homebrew-contest.com/submissions/23/",
-    "release_page": "https://fuhen.homebrew-contest.com/submissions/23/",
-    "updated_at": "2026-08-13T15:34:48.484525+00:00"
-  },
-  {
     "id": "sonic-sms-3-timelines",
     "title_id": "SOSR00003",
     "name": "Sonic SMS 3 Timelines",
@@ -26315,6 +26533,12 @@
         "type": "Download",
         "name": "Data Files",
         "url": "https://www.rinnegatamante.eu/files/vitadb/sms3.zip",
+        "recommended": false
+      },
+      {
+        "type": "Data Files",
+        "name": "VitaHomebrewDB Data Files",
+        "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/1102-data-sms3.zip",
         "recommended": false
       }
     ],
@@ -26430,6 +26654,12 @@
         "name": "Data Files",
         "url": "https://www.rinnegatamante.eu/files/vitadb/jftekwar.zip",
         "recommended": false
+      },
+      {
+        "type": "Data Files",
+        "name": "VitaHomebrewDB Data Files",
+        "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/1098-data-jftekwar.zip",
+        "recommended": false
       }
     ],
     "source_name": "VitaHomebrewDB",
@@ -26492,6 +26722,12 @@
         "type": "Download",
         "name": "Data Files",
         "url": "https://www.rinnegatamante.eu/files/vitadb/prototype.zip",
+        "recommended": false
+      },
+      {
+        "type": "Data Files",
+        "name": "VitaHomebrewDB Data Files",
+        "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/1092-data-prototype.zip",
         "recommended": false
       }
     ],
@@ -26811,7 +27047,7 @@
     "version": "Nightly",
     "version_date": "2023-06-28",
     "requirements": "Not specified",
-    "size": 382671,
+    "size": 480453,
     "status": "Legacy",
     "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1093-noods.png",
     "screenshots": [
@@ -27640,6 +27876,12 @@
         "name": "Data Files",
         "url": "https://www.rinnegatamante.eu/files/vitadb/ufoai.zip",
         "recommended": false
+      },
+      {
+        "type": "Data Files",
+        "name": "VitaHomebrewDB Data Files",
+        "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/1069-data-ufoai.zip",
+        "recommended": false
       }
     ],
     "source_name": "VitaHomebrewDB",
@@ -28065,6 +28307,12 @@
         "name": "Data Files",
         "url": "https://www.rinnegatamante.eu/files/vitadb/Neverball-dev.zip",
         "recommended": false
+      },
+      {
+        "type": "Data Files",
+        "name": "VitaHomebrewDB Data Files",
+        "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/873-data-Neverball-dev.zip",
+        "recommended": false
       }
     ],
     "source_name": "VitaHomebrewDB",
@@ -28131,6 +28379,12 @@
         "type": "Download",
         "name": "Data Files",
         "url": "https://www.rinnegatamante.eu/files/vitadb/7billion.zip",
+        "recommended": false
+      },
+      {
+        "type": "Data Files",
+        "name": "VitaHomebrewDB Data Files",
+        "url": "https://github.com/Rinnegatamante/seven-vita/releases/download/v.1.1/datafiles.zip",
         "recommended": false
       }
     ],
@@ -28491,6 +28745,12 @@
         "type": "Download",
         "name": "Data Files",
         "url": "https://www.rinnegatamante.eu/files/vitadb/dhewm3.zip",
+        "recommended": false
+      },
+      {
+        "type": "Data Files",
+        "name": "VitaHomebrewDB Data Files",
+        "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/1052-data-dhewm3.zip",
         "recommended": false
       }
     ],
@@ -29076,6 +29336,12 @@
         "name": "Data Files",
         "url": "https://www.rinnegatamante.eu/files/vitadb/CandyCrisisResources.zip",
         "recommended": false
+      },
+      {
+        "type": "Data Files",
+        "name": "VitaHomebrewDB Data Files",
+        "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/1043-data-CandyCrisisResources.zip",
+        "recommended": false
       }
     ],
     "source_name": "VitaHomebrewDB",
@@ -29200,6 +29466,12 @@
         "type": "Download",
         "name": "Data Files",
         "url": "https://www.rinnegatamante.eu/files/vitadb/aerofoil.zip",
+        "recommended": false
+      },
+      {
+        "type": "Data Files",
+        "name": "VitaHomebrewDB Data Files",
+        "url": "https://github.com/Rinnegatamante/Aerofoil-Vita/releases/download/v.1.0/aerofoil.zip",
         "recommended": false
       }
     ],
@@ -30025,6 +30297,12 @@
         "name": "Data Files",
         "url": "https://www.rinnegatamante.eu/files/vitadb/Quakespasm.zip",
         "recommended": false
+      },
+      {
+        "type": "Data Files",
+        "name": "VitaHomebrewDB Data Files",
+        "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/716-data-Quakespasm.zip",
+        "recommended": false
       }
     ],
     "source_name": "VitaHomebrewDB",
@@ -30731,6 +31009,12 @@
         "name": "Data Files",
         "url": "https://www.rinnegatamante.eu/files/vitadb/CrossCraftST.zip",
         "recommended": false
+      },
+      {
+        "type": "Data Files",
+        "name": "VitaHomebrewDB Data Files",
+        "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/850-data-CrossCraftST.zip",
+        "recommended": false
       }
     ],
     "source_name": "NeoVitaDB",
@@ -31273,6 +31557,12 @@
         "type": "Download",
         "name": "Data Files",
         "url": "https://www.rinnegatamante.eu/files/vitadb/NBlood_new.zip",
+        "recommended": false
+      },
+      {
+        "type": "Data Files",
+        "name": "VitaHomebrewDB Data Files",
+        "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/1017-data-NBlood_new.zip",
         "recommended": false
       }
     ],
@@ -31922,6 +32212,12 @@
         "name": "Data Files",
         "url": "https://www.rinnegatamante.eu/files/vitadb/rigel.zip",
         "recommended": false
+      },
+      {
+        "type": "Data Files",
+        "name": "VitaHomebrewDB Data Files",
+        "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/988-data-rigel.zip",
+        "recommended": false
       }
     ],
     "source_name": "VitaHomebrewDB",
@@ -32110,6 +32406,12 @@
         "type": "Download",
         "name": "Data Files",
         "url": "https://www.rinnegatamante.eu/files/vitadb/Doom64EX.zip",
+        "recommended": false
+      },
+      {
+        "type": "Data Files",
+        "name": "VitaHomebrewDB Data Files",
+        "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/881-data-Doom64EX.zip",
         "recommended": false
       }
     ],
@@ -32599,6 +32901,12 @@
         "name": "Data Files",
         "url": "https://www.rinnegatamante.eu/files/vitadb/Neverputt-dev.zip",
         "recommended": false
+      },
+      {
+        "type": "Data Files",
+        "name": "VitaHomebrewDB Data Files",
+        "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/874-data-Neverputt-dev.zip",
+        "recommended": false
       }
     ],
     "source_name": "VitaHomebrewDB",
@@ -32976,6 +33284,12 @@
         "name": "Data Files",
         "url": "https://www.rinnegatamante.eu/files/vitadb/Nanosaur.zip",
         "recommended": false
+      },
+      {
+        "type": "Data Files",
+        "name": "VitaHomebrewDB Data Files",
+        "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/851-data-Nanosaur.zip",
+        "recommended": false
       }
     ],
     "source_name": "VitaHomebrewDB",
@@ -33042,6 +33356,12 @@
         "type": "Download",
         "name": "Data Files",
         "url": "https://www.rinnegatamante.eu/files/vitadb/stratagus_data.zip",
+        "recommended": false
+      },
+      {
+        "type": "Data Files",
+        "name": "VitaHomebrewDB Data Files",
+        "url": "https://github.com/Northfear/stratagus-vita/releases/download/v3.3.2-vita.3/stratagus_data.zip",
         "recommended": false
       }
     ],
@@ -33172,6 +33492,12 @@
         "name": "Data Files",
         "url": "https://www.rinnegatamante.eu/files/vitadb/rvgl.zip",
         "recommended": false
+      },
+      {
+        "type": "Data Files",
+        "name": "VitaHomebrewDB Data Files",
+        "url": "https://github.com/Rinnegatamante/rvgl-vita/releases/download/v.1.1/datafiles.zip",
+        "recommended": false
       }
     ],
     "source_name": "VitaHomebrewDB",
@@ -33293,6 +33619,12 @@
         "type": "Download",
         "name": "Data Files",
         "url": "https://www.rinnegatamante.eu/files/vitadb/canada.zip",
+        "recommended": false
+      },
+      {
+        "type": "Data Files",
+        "name": "VitaHomebrewDB Data Files",
+        "url": "https://github.com/Rinnegatamante/Death-Road-to-Canada-Lite/releases/download/v.1.0/canada.zip",
         "recommended": false
       }
     ],
@@ -33588,6 +33920,11 @@
         "type": "Official Website",
         "name": "VitaDB Release Page",
         "url": "https://soykhaler.itch.io/parkour-labs-vita-port"
+      },
+      {
+        "type": "Official Website",
+        "name": "VitaHomebrewDB Release Page",
+        "url": "https://github.com/SonicMastr/godot/releases"
       }
     ],
     "source_name": "NeoVitaDB",
@@ -33756,6 +34093,86 @@
     "updated_at": "2026-08-14T01:05:59.219827+00:00"
   },
   {
+    "id": "girls-are-weird",
+    "title_id": "CFFVNPGAW",
+    "name": "Girls Are Weird",
+    "description": "Remaster of Girls are Weird for PSVITA.",
+    "long_description": "Port of a visual novel called Girls are Weird for PSVITA/PSTV.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
+    "author_ids": [
+      "betterwinds",
+      "10tr-ll-on-percent"
+    ],
+    "category_id": "ports",
+    "subcategory_ids": [
+      "other"
+    ],
+    "version": "v.1.0",
+    "version_date": "2022-06-28",
+    "requirements": "Not specified",
+    "size": 950453,
+    "status": "Legacy",
+    "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1658-girls-are-weird.png",
+    "screenshots": [
+      "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/171a07e8d20b77ccfb38710f1fd6c9fdd047a5d31ec23f40da67693c4ccc26cb.png",
+      "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/227ac04c4e3fb73184ca0004869f33b8ba842ce608333c8c514afb8286ab4bb0.png",
+      "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/6404be365ec5ceae5bcade9d2389158c3f11b6e630c420b1ff3b89d55b6d181b.png",
+      "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/a551a290c0b2dff5a101b5c218390410fc306242b93790a0f436e04099378338.png",
+      "https://www.rinnegatamante.eu/vitadb/screenshots/a551a290c0b2dff5a101b5c218390410fc306242b93790a0f436e04099378338.png"
+    ],
+    "links": [
+      {
+        "type": "Download",
+        "name": "VitaHomebrewDB VPK",
+        "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/834-GirlsAreWeird.vpk",
+        "recommended": false
+      },
+      {
+        "type": "Download",
+        "name": "VitaHomebrewDB VPK",
+        "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/492-GirlsAreWeird.vpk",
+        "recommended": false
+      },
+      {
+        "type": "Official Website",
+        "name": "VitaHomebrewDB Release Page",
+        "url": "https://betterwinds.itch.io/girls-are-weird-plus"
+      },
+      {
+        "type": "Official Website",
+        "name": "VitaHomebrewDB Release Page",
+        "url": "https://siinclaiir.wordpress.com/2017/12/01/girls-are-weird-psvita-port/"
+      },
+      {
+        "type": "Repository",
+        "name": "Repositorio",
+        "url": "https://github.com"
+      },
+      {
+        "type": "Download",
+        "name": "VitaHomebrewDB VPK",
+        "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/834-GirlsAreWeird.vpk",
+        "recommended": true
+      },
+      {
+        "type": "Download",
+        "name": "VitaHomebrewDB VPK",
+        "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/492-GirlsAreWeird.vpk",
+        "recommended": false
+      },
+      {
+        "type": "Download",
+        "name": "VitaDB VPK",
+        "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=492",
+        "recommended": false
+      }
+    ],
+    "source_name": "VitaHomebrewDB",
+    "source_id": "834",
+    "source_url": "https://betterwinds.itch.io/girls-are-weird-plus",
+    "release_page": "https://betterwinds.itch.io/girls-are-weird-plus",
+    "updated_at": "2026-08-13T15:34:48.542639+00:00"
+  },
+  {
     "id": "exult-vita",
     "title_id": "EXULT0042",
     "name": "Exult Vita",
@@ -33809,6 +34226,12 @@
         "type": "Download",
         "name": "Data Files",
         "url": "https://www.rinnegatamante.eu/files/vitadb/exult.zip",
+        "recommended": false
+      },
+      {
+        "type": "Data Files",
+        "name": "VitaHomebrewDB Data Files",
+        "url": "https://github.com/einmueller/exult-vita/releases/download/v1.9.vita.2/exult_data.zip",
         "recommended": false
       }
     ],
@@ -34627,6 +35050,12 @@
         "name": "Data Files",
         "url": "https://www.rinnegatamante.eu/files/vitadb/data-maps.zip",
         "recommended": false
+      },
+      {
+        "type": "Data Files",
+        "name": "VitaHomebrewDB Data Files",
+        "url": "https://github.com/v-atamanenko/osu-octave/releases/download/1.20/data-maps.zip",
+        "recommended": false
       }
     ],
     "source_name": "VitaHomebrewDB",
@@ -34634,6 +35063,67 @@
     "source_url": "https://github.com/v-atamanenko/osu-octave",
     "release_page": "https://github.com/v-atamanenko/osu-octave/releases",
     "updated_at": "2026-08-13T15:34:48.547065+00:00"
+  },
+  {
+    "id": "yoyo-loader-vita",
+    "title_id": "YYOLOADER",
+    "name": "YoYo Loader Vita",
+    "description": "Game Maker Studio games loader.",
+    "long_description": "YoYo Loader is a loader for libyoyo.so, the official GameMaker Studio Runner application for Android, for the PS Vita.\nYoYo Loader works by loading such ARMv7 executable in memory, resolving its imports with native functions and patching it in order to properly run.\nThis enables to run potentially any game made with GameMaker Studio.",
+    "author_ids": [
+      "rinnegatamante"
+    ],
+    "category_id": "emulators",
+    "subcategory_ids": [
+      "other"
+    ],
+    "version": "v.Nightly",
+    "version_date": "2022-04-10",
+    "requirements": "- libshacccg.suprx\n- kubridge.skprx\n- fd_fix.skprx OR repatch_ex.skprx\n- Game Data Files: Android OR PC/Console Bytecode",
+    "size": 8208053,
+    "status": "Legacy",
+    "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/31908a8a78d451a49d424b135c7e7ec72732102a6504574e41cca958f407b417.png",
+    "screenshots": [
+      "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/a0426d6edeec817ac132d10f0e5c3e353d4089d16dc96b274e67d639a13ae3d5.png",
+      "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/00bb464250354037195259c145bb043d9ce3eea6308d85808bdf78cb8ba69677.png",
+      "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/b3e12bcc5907dbd10a85a73da689aa1a771a229251759a7ee08bcc01beccfa42.png",
+      "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/f0660f3a135769d826cced458c2bdb9382a6a751b95a87079f05bed466e181fc.png",
+      "https://www.rinnegatamante.eu/vitadb/screenshots/a0426d6edeec817ac132d10f0e5c3e353d4089d16dc96b274e67d639a13ae3d5.png"
+    ],
+    "links": [
+      {
+        "type": "Download",
+        "name": "VitaHomebrewDB VPK",
+        "url": "https://github.com/Rinnegatamante/yoyoloader_vita/releases/download/Nightly/YoYoLoader.vpk",
+        "recommended": false
+      },
+      {
+        "type": "Official Website",
+        "name": "VitaHomebrewDB Release Page",
+        "url": "https://github.com/Rinnegatamante/yoyoloader_vita/releases"
+      },
+      {
+        "type": "Official Website",
+        "name": "NeoVitaDB Release Page",
+        "url": "https://github.com/Rinnegatamante/yoyoloader_vita/releases/tag/Nightly"
+      },
+      {
+        "type": "Repository",
+        "name": "Repositorio",
+        "url": "https://github.com/Rinnegatamante/yoyoloader_vita"
+      },
+      {
+        "type": "Download",
+        "name": "VitaDB VPK",
+        "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=815",
+        "recommended": true
+      }
+    ],
+    "source_name": "VitaHomebrewDB",
+    "source_id": "815",
+    "source_url": "https://github.com/Rinnegatamante/yoyoloader_vita",
+    "release_page": "https://github.com/Rinnegatamante/yoyoloader_vita/releases",
+    "updated_at": "2026-08-13T15:34:48.547614+00:00"
   },
   {
     "id": "sakura-succubus-iv-vita",
@@ -35069,6 +35559,12 @@
         "type": "Download",
         "name": "Data Files",
         "url": "https://www.rinnegatamante.eu/files/vitadb/rottexpr_data.zip",
+        "recommended": false
+      },
+      {
+        "type": "Data Files",
+        "name": "VitaHomebrewDB Data Files",
+        "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/804-data-rottexpr_data.zip",
         "recommended": false
       }
     ],
@@ -35644,6 +36140,12 @@
         "type": "Download",
         "name": "Data Files",
         "url": "https://www.rinnegatamante.eu/files/vitadb/uqm-data-full.zip",
+        "recommended": false
+      },
+      {
+        "type": "Data Files",
+        "name": "VitaHomebrewDB Data Files",
+        "url": "https://github.com/argarak/uqm-vita/releases/download/rev1/uqm-data-full.zip",
         "recommended": false
       }
     ],
@@ -36758,6 +37260,12 @@
         "name": "Data Files",
         "url": "https://www.rinnegatamante.eu/files/vitadb/CommanderGenius_data.zip",
         "recommended": false
+      },
+      {
+        "type": "Data Files",
+        "name": "VitaHomebrewDB Data Files",
+        "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/610-data-CommanderGenius_data.zip",
+        "recommended": false
       }
     ],
     "source_name": "VitaHomebrewDB",
@@ -37169,6 +37677,12 @@
         "type": "Download",
         "name": "Data Files",
         "url": "https://www.rinnegatamante.eu/files/vitadb/jinyong-legend.zip",
+        "recommended": false
+      },
+      {
+        "type": "Data Files",
+        "name": "VitaHomebrewDB Data Files",
+        "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/838-data-jinyong-legend.zip",
         "recommended": false
       }
     ],
@@ -37864,6 +38378,12 @@
         "name": "Data Files",
         "url": "https://www.rinnegatamante.eu/files/vitadb/gemrb_data.zip",
         "recommended": false
+      },
+      {
+        "type": "Data Files",
+        "name": "VitaHomebrewDB Data Files",
+        "url": "https://github.com/Northfear/gemrb-vita/releases/download/v0.8.8-vita.7/gemrb_data.zip",
+        "recommended": false
       }
     ],
     "source_name": "VitaHomebrewDB",
@@ -38219,6 +38739,12 @@
         "type": "Download",
         "name": "Data Files",
         "url": "https://www.rinnegatamante.eu/files/vitadb/quicklaunch.zip",
+        "recommended": false
+      },
+      {
+        "type": "Data Files",
+        "name": "VitaHomebrewDB Data Files",
+        "url": "https://github.com/DRok17/QuickLaunch-Installer/releases/download/v1.4/data.zip",
         "recommended": false
       }
     ],
@@ -38628,6 +39154,12 @@
         "name": "Data Files",
         "url": "https://www.rinnegatamante.eu/files/vitadb/gtasa.zip",
         "recommended": false
+      },
+      {
+        "type": "Data Files",
+        "name": "VitaHomebrewDB Data Files",
+        "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/618-data-gtasa.zip",
+        "recommended": false
       }
     ],
     "source_name": "VitaHomebrewDB",
@@ -38751,6 +39283,12 @@
         "type": "Download",
         "name": "Data Files",
         "url": "https://www.rinnegatamante.eu/files/vitadb/jfsw.zip",
+        "recommended": false
+      },
+      {
+        "type": "Data Files",
+        "name": "VitaHomebrewDB Data Files",
+        "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/705-data-jfsw.zip",
         "recommended": false
       }
     ],
@@ -39455,6 +39993,12 @@
         "type": "Download",
         "name": "Data Files",
         "url": "https://www.rinnegatamante.eu/files/vitadb/jfduke3d.zip",
+        "recommended": false
+      },
+      {
+        "type": "Data Files",
+        "name": "VitaHomebrewDB Data Files",
+        "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/711-data-jfduke3d.zip",
         "recommended": false
       }
     ],
@@ -40605,6 +41149,12 @@
         "name": "Data Files",
         "url": "https://www.rinnegatamante.eu/files/vitadb/LOVE_PatchFiles.zip",
         "recommended": false
+      },
+      {
+        "type": "Data Files",
+        "name": "VitaHomebrewDB Data Files",
+        "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/683-data-LOVE_PatchFiles.zip",
+        "recommended": false
       }
     ],
     "source_name": "VitaHomebrewDB",
@@ -40922,6 +41472,12 @@
         "type": "Download",
         "name": "Data Files",
         "url": "https://www.rinnegatamante.eu/files/vitadb/bully.zip",
+        "recommended": false
+      },
+      {
+        "type": "Data Files",
+        "name": "VitaHomebrewDB Data Files",
+        "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/676-data-bully.zip",
         "recommended": false
       }
     ],
@@ -41274,6 +41830,12 @@
         "name": "Data Files",
         "url": "https://www.rinnegatamante.eu/files/vitadb/enigma.zip",
         "recommended": false
+      },
+      {
+        "type": "Data Files",
+        "name": "VitaHomebrewDB Data Files",
+        "url": "https://github.com/rsn8887/Enigma/releases/download/1.16/data.zip",
+        "recommended": false
       }
     ],
     "source_name": "NeoVitaDB",
@@ -41390,6 +41952,12 @@
         "name": "Data Files",
         "url": "https://www.rinnegatamante.eu/files/vitadb/cannonball.zip",
         "recommended": false
+      },
+      {
+        "type": "Data Files",
+        "name": "VitaHomebrewDB Data Files",
+        "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/366-data-cannonball.zip",
+        "recommended": false
       }
     ],
     "source_name": "NeoVitaDB",
@@ -41451,6 +42019,12 @@
         "name": "Data Files",
         "url": "https://www.rinnegatamante.eu/files/vitadb/rocksndiamonds.zip",
         "recommended": false
+      },
+      {
+        "type": "Data Files",
+        "name": "VitaHomebrewDB Data Files",
+        "url": "https://github.com/rsn8887/rocksndiamonds/releases/download/1.15/rocksndiamonds_data.zip",
+        "recommended": false
       }
     ],
     "source_name": "NeoVitaDB",
@@ -41511,6 +42085,12 @@
         "type": "Download",
         "name": "Data Files",
         "url": "https://www.rinnegatamante.eu/files/vitadb/mirrormagic.zip",
+        "recommended": false
+      },
+      {
+        "type": "Data Files",
+        "name": "VitaHomebrewDB Data Files",
+        "url": "https://github.com/rsn8887/rocksndiamonds/releases/download/1.15/mirrormagic_data.zip",
         "recommended": false
       }
     ],
@@ -41702,7 +42282,7 @@
     "version": "v.1.0",
     "version_date": "2021-05-08",
     "requirements": "Not specified",
-    "size": 872823,
+    "size": 29017876,
     "status": "Legacy",
     "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/204f7752e888cd9fff1d75ada3f6a229c57eb3d031e46c5781b4e682dcd07449.png",
     "screenshots": [
@@ -41744,6 +42324,12 @@
         "type": "Download",
         "name": "Data Files",
         "url": "https://www.rinnegatamante.eu/files/vitadb/worminator.zip",
+        "recommended": false
+      },
+      {
+        "type": "Data Files",
+        "name": "VitaHomebrewDB Data Files",
+        "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/664-data-worminator.zip",
         "recommended": false
       }
     ],
@@ -42063,7 +42649,7 @@
     "version": "v.1.1",
     "version_date": "2021-04-10",
     "requirements": "- Game Data Files: PC",
-    "size": 4116102,
+    "size": 2995304,
     "status": "Legacy",
     "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/80b198ce00212b44d0866a8a265d80e6ecb4f652cefa9d8cbdba19630af123f0.png",
     "screenshots": [
@@ -42510,6 +43096,12 @@
         "type": "Download",
         "name": "Data Files",
         "url": "https://www.rinnegatamante.eu/files/vitadb/13/BasiliskII.zip",
+        "recommended": false
+      },
+      {
+        "type": "Data Files",
+        "name": "VitaHomebrewDB Data Files",
+        "url": "https://github.com/rsn8887/basiliskii-vita/releases/download/0.33hgit-rsn8887/data.zip",
         "recommended": false
       }
     ],
@@ -43233,6 +43825,12 @@
         "name": "Data Files",
         "url": "https://www.rinnegatamante.eu/files/vitadb/max.zip",
         "recommended": false
+      },
+      {
+        "type": "Data Files",
+        "name": "VitaHomebrewDB Data Files",
+        "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/612-data-max.zip",
+        "recommended": false
       }
     ],
     "source_name": "VitaHomebrewDB",
@@ -43311,6 +43909,12 @@
         "type": "Download",
         "name": "Data Files",
         "url": "https://www.rinnegatamante.eu/files/vitadb/hurrican.zip",
+        "recommended": false
+      },
+      {
+        "type": "Data Files",
+        "name": "VitaHomebrewDB Data Files",
+        "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/617-data-hurrican.zip",
         "recommended": false
       }
     ],
@@ -43924,7 +44528,7 @@
     "version": "Nightly",
     "version_date": "2021-01-04",
     "requirements": "Not specified",
-    "size": 288812508,
+    "size": 487257047,
     "status": "Legacy",
     "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1534-retroarch.png",
     "screenshots": [
@@ -44443,6 +45047,12 @@
         "name": "Data Files",
         "url": "https://www.rinnegatamante.eu/files/vitadb/dstroydata.zip",
         "recommended": false
+      },
+      {
+        "type": "Data Files",
+        "name": "VitaHomebrewDB Data Files",
+        "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/383-data-dstroydata.zip",
+        "recommended": false
       }
     ],
     "source_name": "VitaHomebrewDB",
@@ -44510,6 +45120,12 @@
         "type": "Download",
         "name": "Data Files",
         "url": "https://www.rinnegatamante.eu/files/vitadb/meritous.zip",
+        "recommended": false
+      },
+      {
+        "type": "Data Files",
+        "name": "VitaHomebrewDB Data Files",
+        "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/411-data-meritous.zip",
         "recommended": false
       }
     ],
@@ -44579,6 +45195,12 @@
         "name": "Data Files",
         "url": "https://www.rinnegatamante.eu/files/vitadb/smw.zip",
         "recommended": false
+      },
+      {
+        "type": "Data Files",
+        "name": "VitaHomebrewDB Data Files",
+        "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/422-data-smw.zip",
+        "recommended": false
       }
     ],
     "source_name": "VitaHomebrewDB",
@@ -44603,7 +45225,7 @@
     "version": "v.1.7",
     "version_date": "2020-11-30",
     "requirements": "Not specified",
-    "size": 8298018,
+    "size": 1115769,
     "status": "Legacy",
     "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/6f9a852ed2e15001bf96a8c8f142aeb59ecc51b56bcb233d96a3e9774fec2667.png",
     "screenshots": [
@@ -44643,6 +45265,12 @@
         "type": "Download",
         "name": "Data Files",
         "url": "https://www.rinnegatamante.eu/files/vitadb/vitaWolfen.zip",
+        "recommended": false
+      },
+      {
+        "type": "Data Files",
+        "name": "VitaHomebrewDB Data Files",
+        "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/31-data-vitaWolfen.zip",
         "recommended": false
       }
     ],
@@ -44712,6 +45340,12 @@
         "name": "Data Files",
         "url": "https://www.rinnegatamante.eu/files/vitadb/13/quake2.zip",
         "recommended": false
+      },
+      {
+        "type": "Data Files",
+        "name": "VitaHomebrewDB Data Files",
+        "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/278-data-quake2.zip",
+        "recommended": false
       }
     ],
     "source_name": "VitaHomebrewDB",
@@ -44770,6 +45404,12 @@
         "type": "Download",
         "name": "Data Files",
         "url": "https://www.rinnegatamante.eu/files/vitadb/prboom.zip",
+        "recommended": false
+      },
+      {
+        "type": "Data Files",
+        "name": "VitaHomebrewDB Data Files",
+        "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/591-data-prboom.zip",
         "recommended": false
       }
     ],
@@ -44899,6 +45539,12 @@
         "type": "Download",
         "name": "Data Files",
         "url": "https://www.rinnegatamante.eu/files/vitadb/chocolate.zip",
+        "recommended": false
+      },
+      {
+        "type": "Data Files",
+        "name": "VitaHomebrewDB Data Files",
+        "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/377-data-chocolate.zip",
         "recommended": false
       }
     ],
@@ -45942,6 +46588,12 @@
         "name": "Data Files",
         "url": "https://www.rinnegatamante.eu/files/vitadb/AvP.zip",
         "recommended": false
+      },
+      {
+        "type": "Data Files",
+        "name": "VitaHomebrewDB Data Files",
+        "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/569-data-AvP.zip",
+        "recommended": false
       }
     ],
     "source_name": "VitaHomebrewDB",
@@ -46005,6 +46657,12 @@
         "type": "Download",
         "name": "Data Files",
         "url": "https://www.rinnegatamante.eu/files/vitadb/VitaPad.zip",
+        "recommended": false
+      },
+      {
+        "type": "Data Files",
+        "name": "VitaHomebrewDB Data Files",
+        "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/50-data-VitaPad.zip",
         "recommended": false
       }
     ],
@@ -46691,6 +47349,75 @@
     "updated_at": "2026-08-13T15:34:48.619468+00:00"
   },
   {
+    "id": "daedalus-x64",
+    "title_id": "DEDALOX64",
+    "name": "Daedalus X64",
+    "description": "N64 Emulator for PSVITA.",
+    "long_description": "This download is updated every night, at midnight, PDT, to the latest nightly release. Daedalus X64 is a Nintendo 64 emulator originally for Linux and PSP ported to PSVITA thanks to vitaGL usage.",
+    "author_ids": [
+      "rinnegatamante"
+    ],
+    "category_id": "emulators",
+    "subcategory_ids": [
+      "other"
+    ],
+    "version": "v.Nightly",
+    "version_date": "2020-05-29",
+    "requirements": "Not specified",
+    "size": 2823264,
+    "status": "Legacy",
+    "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/932a2c421cd1217626c59ea726d5e6a16ba737f98ce86c193db75e9e633fcec9.png",
+    "screenshots": [
+      "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/932a2c421cd1217626c59ea726d5e6a16ba737f98ce86c193db75e9e633fcec9.png"
+    ],
+    "links": [
+      {
+        "type": "Download",
+        "name": "VitaHomebrewDB VPK",
+        "url": "https://github.com/Rinnegatamante/DaedalusX64-vitaGL/releases/download/Nightly/DaedalusX64.vpk",
+        "recommended": false
+      },
+      {
+        "type": "Official Website",
+        "name": "VitaHomebrewDB Release Page",
+        "url": "https://github.com/Rinnegatamante/DaedalusX64-vitaGL/releases"
+      },
+      {
+        "type": "Official Website",
+        "name": "NeoVitaDB Release Page",
+        "url": "https://github.com/Rinnegatamante/DaedalusX64-vitaGL/releases/tag/Nightly"
+      },
+      {
+        "type": "Repository",
+        "name": "Repositorio",
+        "url": "https://github.com/Rinnegatamante/DaedalusX64-vitaGL"
+      },
+      {
+        "type": "Download",
+        "name": "VitaDB VPK",
+        "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=553",
+        "recommended": true
+      },
+      {
+        "type": "Download",
+        "name": "Data Files",
+        "url": "https://www.rinnegatamante.eu/files/vitadb/DaedalusX64.zip",
+        "recommended": false
+      },
+      {
+        "type": "Data Files",
+        "name": "VitaHomebrewDB Data Files",
+        "url": "https://github.com/Rinnegatamante/DaedalusX64-vitaGL/releases/download/Nightly/DaedalusX64.zip",
+        "recommended": false
+      }
+    ],
+    "source_name": "VitaHomebrewDB",
+    "source_id": "553",
+    "source_url": "https://github.com/Rinnegatamante/DaedalusX64-vitaGL",
+    "release_page": "https://github.com/Rinnegatamante/DaedalusX64-vitaGL/releases",
+    "updated_at": "2026-08-13T15:34:48.619999+00:00"
+  },
+  {
     "id": "bit-clicker",
     "title_id": "BCLK00001",
     "name": "Bit Clicker",
@@ -47331,6 +48058,12 @@
         "name": "Data Files",
         "url": "https://www.rinnegatamante.eu/files/vitadb/Homebrews%20Data%20Files/vitaHexenII_data.zip",
         "recommended": false
+      },
+      {
+        "type": "Data Files",
+        "name": "VitaHomebrewDB Data Files",
+        "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/196-data-vitaHexenII_data.zip",
+        "recommended": false
       }
     ],
     "source_name": "VitaHomebrewDB",
@@ -47802,6 +48535,12 @@
         "name": "Data Files",
         "url": "https://www.rinnegatamante.eu/files/vitadb/13/NRedneck.zip",
         "recommended": false
+      },
+      {
+        "type": "Data Files",
+        "name": "VitaHomebrewDB Data Files",
+        "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/436-data-NRedneck.zip",
+        "recommended": false
       }
     ],
     "source_name": "VitaHomebrewDB",
@@ -47945,7 +48684,7 @@
     "version": "v.3.0",
     "version_date": "2020-01-12",
     "requirements": "Not specified",
-    "size": 2450508,
+    "size": 2455900,
     "status": "Legacy",
     "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/ecf8f219d5b2d3cfa140039652b50dae22a8515220cf24f3dd123abc38e9d2a9.png",
     "screenshots": [
@@ -48462,6 +49201,12 @@
         "name": "Data Files",
         "url": "https://www.rinnegatamante.eu/files/vitadb/prince.zip",
         "recommended": false
+      },
+      {
+        "type": "Data Files",
+        "name": "VitaHomebrewDB Data Files",
+        "url": "https://github.com/usineur/SDLPoP/releases/download/vita-1.6/prince.zip",
+        "recommended": false
       }
     ],
     "source_name": "VitaHomebrewDB",
@@ -48586,6 +49331,12 @@
         "name": "Data Files",
         "url": "https://www.rinnegatamante.eu/files/vitadb/sdlpal.zip",
         "recommended": false
+      },
+      {
+        "type": "Data Files",
+        "name": "VitaHomebrewDB Data Files",
+        "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/352-data-sdlpal.zip",
+        "recommended": false
       }
     ],
     "source_name": "VitaHomebrewDB",
@@ -48707,6 +49458,12 @@
         "type": "Download",
         "name": "Data Files",
         "url": "https://www.rinnegatamante.eu/files/vitadb/EDuke32.zip",
+        "recommended": false
+      },
+      {
+        "type": "Data Files",
+        "name": "VitaHomebrewDB Data Files",
+        "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/397-data-EDuke32.zip",
         "recommended": false
       }
     ],
@@ -49159,6 +49916,12 @@
         "type": "Download",
         "name": "Data Files",
         "url": "https://www.rinnegatamante.eu/files/vitadb/bstone.zip",
+        "recommended": false
+      },
+      {
+        "type": "Data Files",
+        "name": "VitaHomebrewDB Data Files",
+        "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/393-data-bstone.zip",
         "recommended": false
       }
     ],
@@ -51697,6 +52460,12 @@
         "name": "Data Files",
         "url": "https://www.rinnegatamante.eu/files/vitadb/NumptyPhysics.zip",
         "recommended": false
+      },
+      {
+        "type": "Data Files",
+        "name": "VitaHomebrewDB Data Files",
+        "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/243-data-NumptyPhysics.zip",
+        "recommended": false
       }
     ],
     "source_name": "VitaHomebrewDB",
@@ -51821,6 +52590,12 @@
         "type": "Download",
         "name": "Data Files",
         "url": "https://www.rinnegatamante.eu/files/vitadb/openttd.zip",
+        "recommended": false
+      },
+      {
+        "type": "Data Files",
+        "name": "VitaHomebrewDB Data Files",
+        "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/299-data-openttd.zip",
         "recommended": false
       }
     ],
@@ -52058,6 +52833,11 @@
         "name": "VitaDB VPK",
         "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=414",
         "recommended": true
+      },
+      {
+        "type": "Official Website",
+        "name": "VitaHomebrewDB Release Page",
+        "url": "https://ronikgames.itch.io/ronister-adventure"
       }
     ],
     "source_name": "VitaHomebrewDB",
@@ -52417,6 +53197,12 @@
         "name": "Data Files",
         "url": "https://www.rinnegatamante.eu/files/vitadb/wiiero.zip",
         "recommended": false
+      },
+      {
+        "type": "Data Files",
+        "name": "VitaHomebrewDB Data Files",
+        "url": "https://github.com/Grzybojad/wiiero-vita/releases/download/1.1/wiiero-data.zip",
+        "recommended": false
       }
     ],
     "source_name": "VitaHomebrewDB",
@@ -52442,7 +53228,7 @@
     "version": "v.6.0",
     "version_date": "2019-01-06",
     "requirements": "Not specified",
-    "size": 336597,
+    "size": 353306,
     "status": "Legacy",
     "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1540-app-db-tool.png",
     "screenshots": [
@@ -52554,7 +53340,7 @@
     "version": "v.1.0",
     "version_date": "2019-01-03",
     "requirements": "Not specified",
-    "size": 46454320,
+    "size": 46454545,
     "status": "Legacy",
     "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1608-an-untitled-story.png",
     "screenshots": [
@@ -53258,6 +54044,12 @@
         "name": "Data Files",
         "url": "https://www.rinnegatamante.eu/files/vitadb/xash3d.zip",
         "recommended": false
+      },
+      {
+        "type": "Data Files",
+        "name": "VitaHomebrewDB Data Files",
+        "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/365-data-xash3d.zip",
+        "recommended": false
       }
     ],
     "source_name": "VitaHomebrewDB",
@@ -53282,7 +54074,7 @@
     "version": "v.0.6",
     "version_date": "2018-07-02",
     "requirements": "Not specified",
-    "size": 433461,
+    "size": 441484,
     "status": "Legacy",
     "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1570-adrbubblebooterinstaller.png",
     "screenshots": [
@@ -53689,6 +54481,12 @@
         "name": "Data Files",
         "url": "https://www.rinnegatamante.eu/files/vitadb/smb.zip",
         "recommended": false
+      },
+      {
+        "type": "Data Files",
+        "name": "VitaHomebrewDB Data Files",
+        "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/382-data-smb.zip",
+        "recommended": false
       }
     ],
     "source_name": "VitaHomebrewDB",
@@ -53806,6 +54604,12 @@
         "type": "Download",
         "name": "Data Files",
         "url": "https://www.rinnegatamante.eu/files/vitadb/jazz.zip",
+        "recommended": false
+      },
+      {
+        "type": "Data Files",
+        "name": "VitaHomebrewDB Data Files",
+        "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/378-data-jazz.zip",
         "recommended": false
       }
     ],
@@ -54271,6 +55075,12 @@
         "name": "Data Files",
         "url": "https://www.rinnegatamante.eu/files/vitadb/HCL.zip",
         "recommended": false
+      },
+      {
+        "type": "Data Files",
+        "name": "VitaHomebrewDB Data Files",
+        "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/347-data-HCL.zip",
+        "recommended": false
       }
     ],
     "source_name": "VitaHomebrewDB",
@@ -54292,7 +55102,7 @@
     "subcategory_ids": [
       "other"
     ],
-    "version": "v.1.0",
+    "version": "v.ita-1.0",
     "version_date": "2018-03-07",
     "requirements": "Not specified",
     "size": 731870,
@@ -54628,6 +55438,12 @@
         "name": "Data Files",
         "url": "https://www.rinnegatamante.eu/files/vitadb/Homebrews%20Data%20Files/bermuda.zip",
         "recommended": false
+      },
+      {
+        "type": "Data Files",
+        "name": "VitaHomebrewDB Data Files",
+        "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/115-data-bermuda.zip",
+        "recommended": false
       }
     ],
     "source_name": "VitaHomebrewDB",
@@ -54695,6 +55511,12 @@
         "type": "Download",
         "name": "Data Files",
         "url": "https://www.rinnegatamante.eu/files/vitadb/AbbayeDesMorts.zip",
+        "recommended": false
+      },
+      {
+        "type": "Data Files",
+        "name": "VitaHomebrewDB Data Files",
+        "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/359-data-AbbayeDesMorts.zip",
         "recommended": false
       }
     ],
@@ -54764,6 +55586,12 @@
         "name": "Data Files",
         "url": "https://www.rinnegatamante.eu/files/vitadb/KETM.zip",
         "recommended": false
+      },
+      {
+        "type": "Data Files",
+        "name": "VitaHomebrewDB Data Files",
+        "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/356-data-KETM.zip",
+        "recommended": false
       }
     ],
     "source_name": "VitaHomebrewDB",
@@ -54826,6 +55654,12 @@
         "type": "Download",
         "name": "Data Files",
         "url": "https://www.rinnegatamante.eu/files/vitadb/streamer.zip",
+        "recommended": false
+      },
+      {
+        "type": "Data Files",
+        "name": "VitaHomebrewDB Data Files",
+        "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/358-data-streamer.zip",
         "recommended": false
       }
     ],
@@ -54895,86 +55729,6 @@
     "source_url": "http://wololo.net/talk/viewtopic.php?f=116&t=46845",
     "release_page": "http://wololo.net/talk/viewtopic.php?f=116&t=46845",
     "updated_at": "2026-08-13T15:34:48.670908+00:00"
-  },
-  {
-    "id": "girls-are-weird",
-    "title_id": "CFFVNPGAW",
-    "name": "Girls Are Weird",
-    "description": "Remaster of Girls are Weird for PSVITA.",
-    "long_description": "Port of a visual novel called Girls are Weird for PSVITA/PSTV.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
-    "author_ids": [
-      "betterwinds",
-      "10tr-ll-on-percent"
-    ],
-    "category_id": "ports",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "v.1.0",
-    "version_date": "2017-12-01",
-    "requirements": "Not specified",
-    "size": 950453,
-    "status": "Legacy",
-    "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1658-girls-are-weird.png",
-    "screenshots": [
-      "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/171a07e8d20b77ccfb38710f1fd6c9fdd047a5d31ec23f40da67693c4ccc26cb.png",
-      "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/227ac04c4e3fb73184ca0004869f33b8ba842ce608333c8c514afb8286ab4bb0.png",
-      "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/6404be365ec5ceae5bcade9d2389158c3f11b6e630c420b1ff3b89d55b6d181b.png",
-      "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/a551a290c0b2dff5a101b5c218390410fc306242b93790a0f436e04099378338.png",
-      "https://www.rinnegatamante.eu/vitadb/screenshots/a551a290c0b2dff5a101b5c218390410fc306242b93790a0f436e04099378338.png"
-    ],
-    "links": [
-      {
-        "type": "Download",
-        "name": "VitaHomebrewDB VPK",
-        "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/834-GirlsAreWeird.vpk",
-        "recommended": false
-      },
-      {
-        "type": "Download",
-        "name": "VitaHomebrewDB VPK",
-        "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/492-GirlsAreWeird.vpk",
-        "recommended": false
-      },
-      {
-        "type": "Official Website",
-        "name": "VitaHomebrewDB Release Page",
-        "url": "https://betterwinds.itch.io/girls-are-weird-plus"
-      },
-      {
-        "type": "Official Website",
-        "name": "VitaHomebrewDB Release Page",
-        "url": "https://siinclaiir.wordpress.com/2017/12/01/girls-are-weird-psvita-port/"
-      },
-      {
-        "type": "Repository",
-        "name": "Repositorio",
-        "url": "https://github.com"
-      },
-      {
-        "type": "Download",
-        "name": "VitaHomebrewDB VPK",
-        "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/834-GirlsAreWeird.vpk",
-        "recommended": true
-      },
-      {
-        "type": "Download",
-        "name": "VitaHomebrewDB VPK",
-        "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/492-GirlsAreWeird.vpk",
-        "recommended": false
-      },
-      {
-        "type": "Download",
-        "name": "VitaDB VPK",
-        "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=492",
-        "recommended": false
-      }
-    ],
-    "source_name": "VitaHomebrewDB",
-    "source_id": "834",
-    "source_url": "https://betterwinds.itch.io/girls-are-weird-plus",
-    "release_page": "https://betterwinds.itch.io/girls-are-weird-plus",
-    "updated_at": "2026-08-13T15:34:48.542639+00:00"
   },
   {
     "id": "vitamon-go",
@@ -55231,7 +55985,7 @@
     "version": "v.1.0",
     "version_date": "2017-10-25",
     "requirements": "- Game Data Files: PC",
-    "size": 543212,
+    "size": 543246,
     "status": "Legacy",
     "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/0344-opentitus.png",
     "screenshots": [
@@ -55459,6 +56213,12 @@
         "name": "Data Files",
         "url": "https://www.rinnegatamante.eu/files/vitadb/MicroCHIP.zip",
         "recommended": false
+      },
+      {
+        "type": "Data Files",
+        "name": "VitaHomebrewDB Data Files",
+        "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/337-data-MicroCHIP.zip",
+        "recommended": false
       }
     ],
     "source_name": "VitaHomebrewDB",
@@ -55641,6 +56401,12 @@
         "type": "Download",
         "name": "Data Files",
         "url": "https://www.rinnegatamante.eu/files/vitadb/rinCheatSE.zip",
+        "recommended": false
+      },
+      {
+        "type": "Data Files",
+        "name": "VitaHomebrewDB Data Files",
+        "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/46-data-rinCheatSE.zip",
         "recommended": false
       }
     ],
@@ -56497,7 +57263,7 @@
     "version": "r6",
     "version_date": "2017-07-31",
     "requirements": "Not specified",
-    "size": 2365705,
+    "size": 8950843,
     "status": "Legacy",
     "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/a2937a5c0366ee6f4f8521e7a6682b36751cd48ed27744f9bc96d455ddb532a6.png",
     "screenshots": [
@@ -56539,6 +57305,12 @@
         "type": "Download",
         "name": "Data Files",
         "url": "https://www.rinnegatamante.eu/files/vitadb/lpp-vita.zip",
+        "recommended": false
+      },
+      {
+        "type": "Data Files",
+        "name": "VitaHomebrewDB Data Files",
+        "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/290-data-lpp-vita.zip",
         "recommended": false
       }
     ],
@@ -57020,6 +57792,12 @@
         "type": "Download",
         "name": "Data Files",
         "url": "https://www.rinnegatamante.eu/files/vitadb/EUCLIOD.zip",
+        "recommended": false
+      },
+      {
+        "type": "Data Files",
+        "name": "VitaHomebrewDB Data Files",
+        "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/263-data-EUCLIOD.zip",
         "recommended": false
       }
     ],
@@ -58010,7 +58788,7 @@
     "subcategory_ids": [
       "other"
     ],
-    "version": "v.0.68",
+    "version": "v.GNU_Robbo_0.68_PSVITA",
     "version_date": "2017-02-20",
     "requirements": "Not specified",
     "size": 3840296,
@@ -58070,7 +58848,7 @@
     "subcategory_ids": [
       "other"
     ],
-    "version": "v.2.5",
+    "version": "v.BlockOut_II_PSVITA_2.5",
     "version_date": "2017-02-20",
     "requirements": "Not specified",
     "size": 6133397,
@@ -58959,6 +59737,12 @@
         "name": "Data Files",
         "url": "https://www.rinnegatamante.eu/files/vitadb/Homebrews%20Data%20Files/Minicraft.zip",
         "recommended": false
+      },
+      {
+        "type": "Data Files",
+        "name": "VitaHomebrewDB Data Files",
+        "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/24-data-Minicraft.zip",
+        "recommended": false
       }
     ],
     "source_name": "VitaHomebrewDB",
@@ -59372,7 +60156,7 @@
     "version": "v.1.0",
     "version_date": "2016-10-23",
     "requirements": "Not specified",
-    "size": 909434,
+    "size": 402380,
     "status": "Legacy",
     "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1508-hota.png",
     "screenshots": [
@@ -59411,6 +60195,12 @@
         "type": "Download",
         "name": "Data Files",
         "url": "https://www.rinnegatamante.eu/files/vitadb/Homebrews%20Data%20Files/HOTA_datas.zip",
+        "recommended": false
+      },
+      {
+        "type": "Data Files",
+        "name": "VitaHomebrewDB Data Files",
+        "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/126-data-HOTA_datas.zip",
         "recommended": false
       }
     ],
@@ -60023,7 +60813,7 @@
     "version": "v.1.12",
     "version_date": "2016-09-26",
     "requirements": "Not specified",
-    "size": 6224036,
+    "size": 279342,
     "status": "Legacy",
     "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1523-prince-of-persia.png",
     "screenshots": [
@@ -60306,6 +61096,12 @@
         "type": "Download",
         "name": "Data Files",
         "url": "https://www.rinnegatamante.eu/files/vitadb/Homebrews%20Data%20Files/luaIrc.zip",
+        "recommended": false
+      },
+      {
+        "type": "Data Files",
+        "name": "VitaHomebrewDB Data Files",
+        "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/51-data-luaIrc.zip",
         "recommended": false
       }
     ],
@@ -60777,7 +61573,7 @@
     "version": "v.1.3",
     "version_date": "2016-08-29",
     "requirements": "Not specified",
-    "size": 651512,
+    "size": 828541,
     "status": "Legacy",
     "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/18746b487153dc1ca3d728ce57b841b6e8faeca65a0900aa46864f73d07642c8.png",
     "screenshots": [

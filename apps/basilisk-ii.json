@@ -52,6 +52,12 @@
       "name": "Data Files",
       "url": "https://www.rinnegatamante.eu/files/vitadb/13/BasiliskII.zip",
       "recommended": false
+    },
+    {
+      "type": "Data Files",
+      "name": "VitaHomebrewDB Data Files",
+      "url": "https://github.com/rsn8887/basiliskii-vita/releases/download/0.33hgit-rsn8887/data.zip",
+      "recommended": false
     }
   ],
   "source_name": "NeoVitaDB",

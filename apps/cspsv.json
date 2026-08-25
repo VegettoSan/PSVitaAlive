@@ -56,6 +56,12 @@
       "name": "Data Files",
       "url": "https://www.rinnegatamante.eu/files/vitadb/CSPSP.zip",
       "recommended": false
+    },
+    {
+      "type": "Data Files",
+      "name": "VitaHomebrewDB Data Files",
+      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/1243-data-CSPSP.zip",
+      "recommended": false
     }
   ],
   "source_name": "VitaHomebrewDB",

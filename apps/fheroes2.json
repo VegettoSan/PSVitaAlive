@@ -52,6 +52,12 @@
       "name": "Data Files",
       "url": "https://www.rinnegatamante.eu/files/vitadb/fheroes2_data.zip",
       "recommended": false
+    },
+    {
+      "type": "Data Files",
+      "name": "VitaHomebrewDB Data Files",
+      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/354-data-fheroes2_data.zip",
+      "recommended": false
     }
   ],
   "source_name": "NeoVitaDB",

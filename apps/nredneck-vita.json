@@ -58,6 +58,12 @@
       "name": "Data Files",
       "url": "https://www.rinnegatamante.eu/files/vitadb/13/NRedneck.zip",
       "recommended": false
+    },
+    {
+      "type": "Data Files",
+      "name": "VitaHomebrewDB Data Files",
+      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/436-data-NRedneck.zip",
+      "recommended": false
     }
   ],
   "source_name": "VitaHomebrewDB",

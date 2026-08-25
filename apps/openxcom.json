@@ -52,6 +52,12 @@
       "name": "Data Files",
       "url": "https://www.rinnegatamante.eu/files/vitadb/openxcom-data.zip",
       "recommended": false
+    },
+    {
+      "type": "Data Files",
+      "name": "VitaHomebrewDB Data Files",
+      "url": "https://github.com/Northfear/OpenXcom-vita/releases/download/v1.0-vita.6/openxcom-data.zip",
+      "recommended": false
     }
   ],
   "source_name": "VitaHomebrewDB",

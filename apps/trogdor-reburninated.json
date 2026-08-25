@@ -14,7 +14,7 @@
   "version": "v.2.4",
   "version_date": "2026-05-17",
   "requirements": "Not specified",
-  "size": 2830292,
+  "size": 10350041,
   "status": "Legacy",
   "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/e5c00ba529829c233586dee95b900814eebfccf53d24c097fb8f4ba77e46b404.png",
   "screenshots": [
@@ -53,6 +53,12 @@
       "type": "Download",
       "name": "Data Files",
       "url": "https://www.rinnegatamante.eu/files/vitadb/Trogdor-RB.zip",
+      "recommended": false
+    },
+    {
+      "type": "Data Files",
+      "name": "VitaHomebrewDB Data Files",
+      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/1015-data-Trogdor-RB.zip",
       "recommended": false
     }
   ],

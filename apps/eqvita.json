@@ -51,6 +51,12 @@
       "name": "Data Files",
       "url": "https://www.rinnegatamante.eu/files/vitadb/eq_speaker.zip",
       "recommended": false
+    },
+    {
+      "type": "Data Files",
+      "name": "VitaHomebrewDB Data Files",
+      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/1353-data-eq_speaker.zip",
+      "recommended": false
     }
   ],
   "source_name": "NeoVitaDB",

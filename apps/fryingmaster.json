@@ -58,6 +58,11 @@
       "name": "VitaDB VPK",
       "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=414",
       "recommended": true
+    },
+    {
+      "type": "Official Website",
+      "name": "VitaHomebrewDB Release Page",
+      "url": "https://ronikgames.itch.io/ronister-adventure"
     }
   ],
   "source_name": "VitaHomebrewDB",

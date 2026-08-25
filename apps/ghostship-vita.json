@@ -57,6 +57,12 @@
       "name": "Data Files",
       "url": "https://www.rinnegatamante.eu/files/vitadb/ghostship.zip",
       "recommended": false
+    },
+    {
+      "type": "Data Files",
+      "name": "VitaHomebrewDB Data Files",
+      "url": "https://github.com/Rinnegatamante/Ghostship/releases/download/v.1.2/ghostship.zip",
+      "recommended": false
     }
   ],
   "source_name": "VitaHomebrewDB",

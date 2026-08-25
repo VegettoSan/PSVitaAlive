@@ -54,6 +54,12 @@
       "name": "Data Files",
       "url": "https://www.rinnegatamante.eu/files/vitadb/gemrb_data.zip",
       "recommended": false
+    },
+    {
+      "type": "Data Files",
+      "name": "VitaHomebrewDB Data Files",
+      "url": "https://github.com/Northfear/gemrb-vita/releases/download/v0.8.8-vita.7/gemrb_data.zip",
+      "recommended": false
     }
   ],
   "source_name": "VitaHomebrewDB",
