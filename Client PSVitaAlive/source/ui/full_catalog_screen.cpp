@@ -129,6 +129,13 @@ bool itemHasLinkType(const CatalogItem& it, const char* needle) {
         if (t == want) return true;
         if (want == "data files" && (t == "data file" || t == "datafiles" || t == "data")) return true;
         if (want == "game files" && (t == "game file" || t == "gamefiles")) return true;
+        if (want == "mod" && (t == "mods")) return true;
+        if (want == "mods" && (t == "mod")) return true;
+        if (want == "update" && (t == "updates")) return true;
+        if (want == "updates" && (t == "update")) return true;
+        if (want == "pkg" && (t == "pkgs")) return true;
+        if (want == "download" && (t == "downloads" || t == "mirror")) return true;
+        if (want == "downloads" && (t == "download" || t == "mirror")) return true;
     }
     return false;
 }
@@ -168,8 +175,32 @@ constexpr size_t MAX_APP_TEXTURES=18,MAX_SCREENSHOT_TEXTURES=6;
 constexpr int CATALOG_SWITCH_COOLDOWN_FRAMES=50; // ~0.83s at 60fps
 constexpr uint64_t CATALOG_SWITCH_MIN_MS=900; // hard debounce against L/R spam
 constexpr size_t MAX_DEFERRED_FREES_PER_FRAME=8;constexpr uint64_t DIRECTION_REPEAT_DELAY_US=320000,DIRECTION_REPEAT_INTERVAL_US=420000;
-const char* extOf(const std::string&p){const size_t d=p.find_last_of('.');return d==std::string::npos?"":p.c_str()+d;}std::string formatBytes(uint64_t b){char o[64];double v=(double)b;if(b>=1024ULL*1024ULL*1024ULL)sceClibSnprintf(o,sizeof(o),"%.2f GB",v/(1024.0*1024.0*1024.0));else if(b>=1024ULL*1024ULL)sceClibSnprintf(o,sizeof(o),"%.2f MB",v/(1024.0*1024.0));else if(b>=1024ULL)sceClibSnprintf(o,sizeof(o),"%.2f KB",v/1024.0);else sceClibSnprintf(o,sizeof(o),"%llu B",(unsigned long long)b);return o;}std::string lowerAscii(std::string s){for(char&c:s)c=(char)std::tolower((unsigned char)c);return s;}std::string ellipsize(const std::string&s,size_t n){if(s.size()<=n)return s;if(n<=3)return s.substr(0,n);return s.substr(0,n-3)+"...";}bool actionableLink(const CatalogLink&l){std::string t=lowerAscii(l.type);if(t=="download"||t=="downloads"||t=="mirror"||t=="dlc")return true;std::string u=lowerAscii(l.url);return u.find(".vpk")!=std::string::npos||u.find(".pkg")!=std::string::npos||u.find(".zip")!=std::string::npos||u.find(".pbp")!=std::string::npos||u.find(".iso")!=std::string::npos||u.find(".cso")!=std::string::npos;}
-bool isDownloadLink(const CatalogLink&l){std::string t=lowerAscii(l.type);return t=="download"||t=="downloads"||t=="mirror"||t=="dlc"||t=="game files"||t=="game file"||t=="gamefiles"||t=="data files"||t=="data file"||t=="datafiles";}
+const char* extOf(const std::string&p){const size_t d=p.find_last_of('.');return d==std::string::npos?"":p.c_str()+d;}std::string formatBytes(uint64_t b){char o[64];double v=(double)b;if(b>=1024ULL*1024ULL*1024ULL)sceClibSnprintf(o,sizeof(o),"%.2f GB",v/(1024.0*1024.0*1024.0));else if(b>=1024ULL*1024ULL)sceClibSnprintf(o,sizeof(o),"%.2f MB",v/(1024.0*1024.0));else if(b>=1024ULL)sceClibSnprintf(o,sizeof(o),"%.2f KB",v/1024.0);else sceClibSnprintf(o,sizeof(o),"%llu B",(unsigned long long)b);return o;}std::string lowerAscii(std::string s){for(char&c:s)c=(char)std::tolower((unsigned char)c);return s;}std::string ellipsize(const std::string&s,size_t n){if(s.size()<=n)return s;if(n<=3)return s.substr(0,n);return s.substr(0,n-3)+"...";}bool actionableLink(const CatalogLink&l){
+    // Types shown as install/download buttons in detail view.
+    std::string t=normalizeLinkType(l.type);
+    if(t=="download"||t=="downloads"||t=="mirror")return true;
+    if(t=="data files"||t=="data file"||t=="datafiles"||t=="data")return true;
+    if(t=="game files"||t=="game file"||t=="gamefiles")return true;
+    if(t=="mod"||t=="mods")return true;
+    if(t=="dlc")return true;
+    if(t=="update"||t=="updates")return true;
+    if(t=="pkg"||t=="pkgs")return true;
+    // Fallback: actionable by file extension in URL.
+    std::string u=lowerAscii(l.url);
+    return u.find(".vpk")!=std::string::npos||u.find(".pkg")!=std::string::npos||u.find(".zip")!=std::string::npos||u.find(".pbp")!=std::string::npos||u.find(".iso")!=std::string::npos||u.find(".cso")!=std::string::npos;
+}
+bool isDownloadLink(const CatalogLink&l){
+    // Which links appear in the detail download button list.
+    std::string t=normalizeLinkType(l.type);
+    if(t=="download"||t=="downloads"||t=="mirror")return true;
+    if(t=="data files"||t=="data file"||t=="datafiles"||t=="data")return true;
+    if(t=="game files"||t=="game file"||t=="gamefiles")return true;
+    if(t=="mod"||t=="mods")return true;
+    if(t=="dlc")return true;
+    if(t=="update"||t=="updates")return true;
+    if(t=="pkg"||t=="pkgs")return true;
+    return false;
+}
 std::vector<int> downloadLinkIndices(const CatalogItem&it){std::vector<int> out;for(size_t i=0;i<it.linkDetails.size();++i)if(isDownloadLink(it.linkDetails[i]))out.push_back((int)i);return out;}
 std::string formatLinkSizeLabel(const CatalogLink&l,const CatalogItem&it){if(!l.size.empty())return l.size;if(!it.size.empty())return it.size;return {};}
 }
