@@ -134,6 +134,16 @@ private:
     // viewport is active.
     int detailScrollBeforeLinkMode_ = 0;
 
+    // News modal state.
+    bool newsVisible_ = false;
+    bool newsCheckedOnce_ = false;
+    bool newsMarkSeenOnClose_ = false;
+    std::string newsId_;
+    std::string newsTitle_;
+    std::string newsBody_;
+    std::vector<std::string> newsLines_;
+    int newsScrollLine_ = 0;
+
     std::unordered_map<std::string, vita2d_texture*> textures_;
     std::vector<std::string> textureOrder_;
     /** Freed one frame later so the GPU is done with the previous swap. */
@@ -185,6 +195,9 @@ private:
     void drawDetailContent(const CatalogItem& item, int x, int y, int width, int height);
     void drawDetailLinks(const CatalogItem& item, int x, int y, int width, int& heightOut);
     void drawLoadingOverlay();
+    void drawNewsChip();
+    void drawNewsOverlay();
+    void closeNewsModal(bool markSeen);
     void prepareImageTexture(const std::string& url, const std::string& namespaceName);
     void prepareVisibleTextures();
     void drawImage(const std::string& url, const std::string& namespaceName, int x, int y, int width, int height);
