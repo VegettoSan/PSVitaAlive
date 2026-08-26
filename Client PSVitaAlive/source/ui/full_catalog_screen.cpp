@@ -3167,9 +3167,9 @@ if(installOutcome_==2){
   const int by2=y+300,bh2=40;
   const int bwReport=200, bwClose=200;
   const int bxReport=x+28, bxClose=x+w-28-bwClose;
-  const unsigned reportCol = (reportUiState_==2) ? GREEN : ((reportUiState_==3) ? RED : ACCENT);
-  // Black on green/accent; white only on red
-  const unsigned reportText = (reportUiState_==3) ? WHITE : RGBA8(0,0,0,255);
+  // Idle/sending/fail = red; success only = green (matches footer Report chip)
+  const unsigned reportCol = (reportUiState_==2) ? GREEN : RED;
+  const unsigned reportText = (reportUiState_==2) ? RGBA8(0,0,0,255) : WHITE;
   vita2d_draw_rectangle(bxReport,by2,bwReport,bh2,reportCol);
   if (reportUiState_==1) {
     const int barX = bxReport + 16, barW = bwReport - 32, barH = 10;

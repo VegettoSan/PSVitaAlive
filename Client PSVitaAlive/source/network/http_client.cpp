@@ -18,7 +18,7 @@ namespace {
 constexpr size_t DOWNLOAD_BUFFER_SIZE = 512 * 1024;
 constexpr long CONNECT_TIMEOUT_SECONDS = 45;
 constexpr long LOW_SPEED_LIMIT = 1;
-constexpr long LOW_SPEED_TIME_SECONDS = 60;
+constexpr long LOW_SPEED_TIME_SECONDS = 120;
 constexpr const char* DIAG_LOG = "ux0:data/psvitaalive/logs/session.log";
 
 // libcurl global state belongs to the whole process, not to individual HttpClient objects.
@@ -567,7 +567,15 @@ HttpResult HttpClient::downloadToFile(
     curl_easy_setopt(curl, CURLOPT_NOPROGRESS, 1L);
     curl_easy_setopt(curl, CURLOPT_BUFFERSIZE, static_cast<long>(DOWNLOAD_BUFFER_SIZE));
 
-    if (resumeOffset > 0) curl_easy_setopt(curl, CURLOPT_RESUME_FROM, static_cast<long>(resumeOffset));
+    if (resumeOffset > 0) {
+        // CURLOPT_RESUME_FROM takes a long (32-bit on Vita) and breaks past ~2GB.
+        // Prefer the 64-bit LARGE variant for multi-GB downloads (Game Files, etc.).
+#if defined(CURLOPT_RESUME_FROM_LARGE)
+        curl_easy_setopt(curl, CURLOPT_RESUME_FROM_LARGE, static_cast<curl_off_t>(resumeOffset));
+#else
+        curl_easy_setopt(curl, CURLOPT_RESUME_FROM, static_cast<long>(resumeOffset > 0x7FFFFFFFULL ? 0x7FFFFFFFULL : resumeOffset));
+#endif
+    }
 
     curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, writeCallback);
     curl_easy_setopt(curl, CURLOPT_WRITEDATA, &ctx);
