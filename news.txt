@@ -1,4 +1,4 @@
-id: 2026-08-25-hello
+id: 2026-08-25-hello2
 title: Welcome to PS Vita Alive
 enabled: true
 ---
