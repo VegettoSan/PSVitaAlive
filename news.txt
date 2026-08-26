@@ -18,6 +18,6 @@ Not all Homebrew / Ports have Game Files yet, please be patient as I will gradua
 
 GAME FILES ADDED:
 
-- 2ship2harkinian (Zelda Majora's Mask).
+- 2ship2harkinian (Zelda Majora's Mask) Spanish.
 
 Enjoy!
