@@ -249,6 +249,7 @@ private:
     float settingsScrollY_ = 0.f; // adaptive list scroll (px)
 
     // Discord error report UI (webhook)
+    bool reportConfirmVisible_ = false;
     int reportUiState_ = 0;          // 0 idle, 1 sending, 2 sent, 3 failed
     uint64_t reportUiUntilMs_ = 0;
     char reportUiMsg_[48] = {};
@@ -263,6 +264,9 @@ private:
     void trySendErrorReport(const std::string& title, const std::string& context);
     void pollReportWorker();
     void drawReportChip();
+    void drawReportConfirmOverlay();
+    void openReportConfirm();
+    void closeReportConfirm();
 
     // Self-update (GitHub Releases → in-place extract to ux0:app/TITLEID)
     ::psvitaalive::UpdateChecker::Result selfUpdateInfo_{};
