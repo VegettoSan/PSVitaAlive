@@ -688,3 +688,35 @@
     gap: 12px;
     align-items: center;
 }
+
+
+/* Size value + unit selector (app form and link rows) */
+.size-unit-field {
+    display: flex;
+    gap: 8px;
+    align-items: stretch;
+    min-width: 0;
+}
+.size-unit-field input {
+    flex: 1 1 auto;
+    min-width: 0;
+}
+.size-unit-field select {
+    flex: 0 0 auto;
+    width: 5.2rem;
+    min-width: 4.8rem;
+}
+.repeat-item.link-item .link-size-field {
+    grid-column: span 1;
+    min-width: 0;
+}
+.repeat-item.link-item .link-extract-wrap {
+    grid-column: 1 / -1;
+    min-width: 0;
+}
+.repeat-item.link-item .link-extract-wrap input {
+    width: 100%;
+}
+.repeat-item.link-item .link-size-value {
+    width: 100%;
+}

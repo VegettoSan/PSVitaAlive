@@ -44,6 +44,102 @@
             .replaceAll("'", "&#039;");
     }
 
+    const EXTRACT_PATH_TYPES = new Set([
+        "Data Files",
+        "Game Files",
+        "Mod",
+        "Mod Pack",
+        "Patch"
+    ]);
+
+    const SIZE_UNITS = [
+        { id: "B", label: "B", mul: 1 },
+        { id: "KB", label: "KB", mul: 1024 },
+        { id: "MB", label: "MB", mul: 1024 * 1024 },
+        { id: "GB", label: "GB", mul: 1024 * 1024 * 1024 }
+    ];
+
+    function sizeUnitOptionsHtml(selected) {
+        const sel = selected || "MB";
+        return SIZE_UNITS.map(u =>
+            `<option value="${u.id}" ${u.id === sel ? "selected" : ""}>${u.label}</option>`
+        ).join("");
+    }
+
+    function parseSizeToBytes(value, unit) {
+        if (value === undefined || value === null || String(value).trim() === "") return null;
+        const n = Number(String(value).trim().replace(",", "."));
+        if (!Number.isFinite(n) || n < 0) return null;
+        const found = SIZE_UNITS.find(u => u.id === unit) || SIZE_UNITS[0];
+        return Math.round(n * found.mul);
+    }
+
+    /** Convert integer bytes to a friendly value + unit for the form. */
+    function bytesToValueUnit(bytes) {
+        const n = Number(bytes);
+        if (!Number.isFinite(n) || n < 0) return { value: "", unit: "MB" };
+        if (n === 0) return { value: "0", unit: "B" };
+        if (n >= 1024 * 1024 * 1024) {
+            const v = n / (1024 * 1024 * 1024);
+            return { value: String(Math.round(v * 1000) / 1000), unit: "GB" };
+        }
+        if (n >= 1024 * 1024) {
+            const v = n / (1024 * 1024);
+            return { value: String(Math.round(v * 1000) / 1000), unit: "MB" };
+        }
+        if (n >= 1024) {
+            const v = n / 1024;
+            return { value: String(Math.round(v * 1000) / 1000), unit: "KB" };
+        }
+        return { value: String(n), unit: "B" };
+    }
+
+    /** Accept legacy human strings like "1.5 GB" when importing JSON. */
+    function parseLegacySizeField(raw) {
+        if (raw === undefined || raw === null || raw === "") return { value: "", unit: "MB" };
+        if (typeof raw === "number" && Number.isFinite(raw)) return bytesToValueUnit(raw);
+        const s = String(raw).trim();
+        if (/^\d+$/.test(s)) return bytesToValueUnit(Number(s));
+        const m = s.match(/^([\d.,]+)\s*(b|bytes?|kb|kib|mb|mib|gb|gib)?$/i);
+        if (!m) return { value: s, unit: "MB" };
+        const num = m[1].replace(",", ".");
+        let unit = (m[2] || "B").toUpperCase();
+        if (unit === "BYTES" || unit === "BYTE") unit = "B";
+        if (unit === "KIB") unit = "KB";
+        if (unit === "MIB") unit = "MB";
+        if (unit === "GIB") unit = "GB";
+        if (!["B", "KB", "MB", "GB"].includes(unit)) unit = "MB";
+        return { value: num, unit };
+    }
+
+    function linkNeedsExtractPath(type) {
+        return EXTRACT_PATH_TYPES.has(String(type || ""));
+    }
+
+    function syncLinkExtractPathVisibility(row) {
+        if (!row) return;
+        const typeEl = row.querySelector(".link-type");
+        const wrap = row.querySelector(".link-extract-wrap");
+        if (!typeEl || !wrap) return;
+        const show = linkNeedsExtractPath(typeEl.value);
+        wrap.hidden = !show;
+        wrap.style.display = show ? "" : "none";
+        if (!show) {
+            const input = wrap.querySelector(".link-extract-path");
+            // Keep value in DOM only while relevant types are selected; clear when hidden
+            // so it is not exported for Download/PKG/etc.
+            if (input) input.dataset.savedValue = input.value;
+        } else {
+            const input = wrap.querySelector(".link-extract-path");
+            if (input && !input.value && input.dataset.savedValue) {
+                input.value = input.dataset.savedValue;
+            } else if (input && !input.value) {
+                input.value = "ux0:data/";
+            }
+        }
+    }
+
+
     async function loadJson(path) {
         const response = await fetch(`${RAW_BASE}/${path}`);
         if (!response.ok) {
@@ -169,11 +265,12 @@
         const type = value.type || "Download";
         const name = value.name || "";
         const url = value.url || "";
-        const size = value.size != null ? String(value.size) : "";
+        const sizeParts = parseLegacySizeField(value.size);
         let extractPath = value.extract_path || value.extractPath;
         if (extractPath === undefined || extractPath === null) {
             extractPath = "ux0:data/";
         }
+        const showExtract = linkNeedsExtractPath(type);
         // First link defaults to recommended when not explicitly set.
         const isFirst = list.querySelectorAll(".link-item").length === 0;
         const recommended = value.recommended === true || (isFirst && value.recommended === undefined);
@@ -182,11 +279,24 @@
             <select class="link-type">${DOWNLOAD_TYPES.map(item => `<option value="${escapeHtml(item)}" ${item === type ? "selected" : ""}>${escapeHtml(item)}</option>`).join("")}</select>
             <input class="link-name" type="text" placeholder="Name" value="${escapeHtml(name)}">
             <input class="link-url url-field" type="url" placeholder="https://example.org/download.vpk" value="${escapeHtml(url)}">
-            <input class="link-size" type="text" placeholder="Size (optional)" value="${escapeHtml(size)}">
-            <input class="link-extract-path" type="text" placeholder="extract_path (optional)" value="${escapeHtml(extractPath)}">
+            <div class="size-unit-field link-size-field">
+                <input class="link-size-value" type="number" min="0" step="any" placeholder="Size" value="${escapeHtml(sizeParts.value)}">
+                <select class="link-size-unit" aria-label="Size unit">${sizeUnitOptionsHtml(sizeParts.unit)}</select>
+            </div>
+            <div class="link-extract-wrap" ${showExtract ? "" : "hidden"} style="${showExtract ? "" : "display:none"}">
+                <input class="link-extract-path" type="text" placeholder="extract_path (e.g. ux0:data/)" value="${escapeHtml(extractPath)}">
+            </div>
             <label class="checkbox-inline"><input class="link-recommended" type="checkbox" ${recommended ? "checked" : ""}> Recommended</label>
             <button type="button" class="remove-button">Remove</button>`;
         row.querySelectorAll("input,select").forEach(element => element.addEventListener("input", updatePreview));
+        const typeSelect = row.querySelector(".link-type");
+        if (typeSelect) {
+            typeSelect.addEventListener("change", () => {
+                syncLinkExtractPathVisibility(row);
+                updatePreview();
+            });
+        }
+        syncLinkExtractPathVisibility(row);
         const recInput = row.querySelector(".link-recommended");
         if (recInput) {
             recInput.addEventListener("change", () => {
@@ -265,16 +375,18 @@
                 name: row.querySelector(".link-name").value.trim(),
                 url: row.querySelector(".link-url").value.trim()
             };
-            const sizeEl = row.querySelector(".link-size");
-            const sizeRaw = sizeEl ? sizeEl.value.trim() : "";
-            if (sizeRaw) {
-                // Prefer numeric bytes when the field is all digits; otherwise keep human text.
-                if (/^\d+$/.test(sizeRaw)) result.size = Number(sizeRaw);
-                else result.size = sizeRaw;
+            const sizeValEl = row.querySelector(".link-size-value");
+            const sizeUnitEl = row.querySelector(".link-size-unit");
+            const sizeBytes = parseSizeToBytes(
+                sizeValEl ? sizeValEl.value : "",
+                sizeUnitEl ? sizeUnitEl.value : "MB"
+            );
+            if (sizeBytes !== null && sizeBytes > 0) result.size = sizeBytes;
+            if (linkNeedsExtractPath(result.type)) {
+                const pathEl = row.querySelector(".link-extract-path");
+                const extractPath = pathEl ? pathEl.value.trim() : "";
+                if (extractPath) result.extract_path = extractPath;
             }
-            const pathEl = row.querySelector(".link-extract-path");
-            const extractPath = pathEl ? pathEl.value.trim() : "";
-            if (extractPath) result.extract_path = extractPath;
             if (row.querySelector(".link-recommended").checked) result.recommended = true;
             return result;
         });
@@ -293,7 +405,7 @@
             version: $("version").value.trim(),
             version_date: $("version_date").value,
             requirements: $("requirements").value.trim(),
-            size: Number($("size").value),
+            size: parseSizeToBytes($("size").value, $("size_unit").value) || 0,
             status: $("status").value,
             links: collectLinks()
         };
@@ -444,7 +556,11 @@
         $("version").value = app.version || "";
         $("version_date").value = app.version_date || "";
         $("requirements").value = app.requirements || "";
-        $("size").value = Number.isFinite(Number(app.size)) ? app.size : "";
+        {
+            const parts = parseLegacySizeField(app.size);
+            $("size").value = parts.value;
+            if ($("size_unit")) $("size_unit").value = parts.unit;
+        }
         $("status").value = app.status || "Verified";
         $("icon").value = app.icon || "";
         $("release_page").value = app.release_page || "";
@@ -522,7 +638,10 @@
     }
 
     function bind() {
-        document.querySelectorAll("#app-form input, #app-form textarea, #app-form select").forEach(element => element.addEventListener("input", updatePreview));
+        document.querySelectorAll("#app-form input, #app-form textarea, #app-form select").forEach(element => {
+            element.addEventListener("input", updatePreview);
+            element.addEventListener("change", updatePreview);
+        });
         $("category").addEventListener("change", () => updateSubcategories());
         $("add-screenshot").addEventListener("click", () => addScreenshotRow());
         $("add-link").addEventListener("click", () => addLinkRow());

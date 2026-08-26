@@ -83,7 +83,18 @@
                         <div class="field"><label for="version">Version <span>*</span></label><input id="version" name="version" required placeholder="1.0.0"></div>
                         <div class="field"><label for="version_date">Version date <span>*</span></label><input id="version_date" name="version_date" type="date" required></div>
                         <div class="field full"><label for="requirements">Requirements <span>*</span></label><textarea id="requirements" name="requirements" required rows="5" placeholder="Firmware, plugins, notes… (line breaks allowed)"></textarea></div>
-                        <div class="field"><label for="size">File size in bytes <span>*</span></label><input id="size" name="size" type="number" min="1" step="1" required placeholder="1048576"><small>The current validator expects a positive integer in bytes.</small></div>
+                        <div class="field"><label for="size">File size <span>*</span></label>
+                            <div class="size-unit-field app-size-field">
+                                <input id="size" name="size" type="number" min="0" step="any" required placeholder="16">
+                                <select id="size_unit" name="size_unit" aria-label="Size unit">
+                                    <option value="B">B</option>
+                                    <option value="KB">KB</option>
+                                    <option value="MB" selected>MB</option>
+                                    <option value="GB">GB</option>
+                                </select>
+                            </div>
+                            <small>Pick a unit (B / KB / MB / GB). The JSON will store the size in bytes automatically.</small>
+                        </div>
                         <div class="field"><label for="status">Status <span>*</span></label><select id="status" name="status" required><option value="Verified">Verified</option><option value="Legacy">Legacy</option><option value="Archive">Archive</option></select></div>
                     </div>
                 </section>
@@ -97,7 +108,7 @@
                 </section>
 
                 <section class="form-card">
-                    <div class="card-heading"><h2>5. Links</h2><p>Add all useful sources. Drag the ⋮⋮ handle to reorder. At most one link can be recommended. extract_path defaults to ux0:data/.</p></div>
+                    <div class="card-heading"><h2>5. Links</h2><p>Add all useful sources. Drag the ⋮⋮ handle to reorder. At most one link can be recommended. extract_path only appears for Data Files, Game Files, Mod, Mod Pack and Patch (default ux0:data/). Size uses B/KB/MB/GB and is stored as bytes.</p></div>
                     <div id="links-list" class="repeat-list"></div>
                     <button id="add-link" type="button" class="small-button">+ Add link</button>
                 </section>
