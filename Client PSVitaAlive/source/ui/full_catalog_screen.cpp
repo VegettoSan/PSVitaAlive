@@ -172,7 +172,7 @@ void drawNeonFrame(int x, int y, int w, int h, unsigned alphaOuter = 70, unsigne
     vita2d_draw_rectangle(x + w - 1, y, 1, h, inner);
 }
 
-constexpr int FULL_CARD_H=120,SPLIT_CARD_H=82,DETAIL_HEADER_H=92,LINE_H=18,TRANSITION_MS=340,LINK_ROW_H=38,LINK_GAP=6,SCREENSHOT_ROW_H=250;
+constexpr int FULL_CARD_H=120,SPLIT_CARD_H=82,DETAIL_HEADER_H=92,LINE_H=18,DETAIL_SECTION_H=26,DETAIL_META_H=22,DETAIL_SECTION_GAP=14,TRANSITION_MS=340,LINK_ROW_H=38,LINK_GAP=6,SCREENSHOT_ROW_H=250;
 constexpr size_t MAX_APP_TEXTURES=18,MAX_SCREENSHOT_TEXTURES=6;
 constexpr int CATALOG_SWITCH_COOLDOWN_FRAMES=50; // ~0.83s at 60fps
 constexpr uint64_t CATALOG_SWITCH_MIN_MS=900; // hard debounce against L/R spam
@@ -846,7 +846,60 @@ void FullCatalogScreen::sortItemsByDate(std::vector<CatalogItem>&v)const{std::st
     state_.focusIndex=0;state_.catalogScrollRow=0;state_.detailScroll=0;detailScrollBeforeLinkMode_=0;state_.linkFocus=-1;state_.linkNavigation=false;
     char m[256];sceClibSnprintf(m,sizeof(m),"[UI] search query='%s' results=%u",q.c_str(),(unsigned)catalogView().size());diagnostics::log(m);
 }
-int FullCatalogScreen::detailContentHeight(const CatalogItem&i,int w)const{int cw=std::max(1,w-36),mc=std::max(18,cw/7);std::vector<std::string>pre,post;auto add=[&](std::vector<std::string>&l,const char*t,const std::string&v){if(v.empty())return;l.push_back(t);std::vector<std::string>q;wrapText(v,mc,q);for(auto&s:q)l.push_back(s);l.push_back("");};add(pre,"Description",i.description);add(pre,"Long Description",i.longDescription);add(post,"Requirements",i.requirements);post.push_back("Information");post.push_back("Title ID: "+i.titleId);post.push_back("Version: "+i.version);post.push_back("Release date: "+i.versionDate);post.push_back("Category: "+i.category);post.push_back("Subcategory: "+i.subcategory);post.push_back("Size: "+i.size);post.push_back("Status: "+i.status);post.push_back("");add(post,"Changelog",i.changelog);int lh=i.linkDetails.empty()?0:10+(int)i.linkDetails.size()*(LINK_ROW_H+LINK_GAP),sc=std::min(5,(int)i.screenshots.size());return lh+((int)pre.size()+(int)post.size())*LINE_H+sc*SCREENSHOT_ROW_H+32;}int FullCatalogScreen::detailLinkScrollLimit(const CatalogItem&i,int w,int h)const{
+int FullCatalogScreen::detailContentHeight(const CatalogItem& i, int w) const {
+    const int cw = std::max(1, w - 36);
+    const int mc = std::max(16, cw / 7);
+    auto bodyLines = [&](const std::string& text) -> int {
+        if (text.empty()) return 0;
+        std::vector<std::string> lines;
+        wrapText(text, mc, lines);
+        return (int)lines.size();
+    };
+    auto reqLines = [&](const std::string& text) -> int {
+        if (text.empty()) return 0;
+        std::string normalized;
+        normalized.reserve(text.size() + 8);
+        for (size_t p = 0; p < text.size(); ++p) {
+            if (text[p] == '-' && (p == 0 || text[p - 1] == ' ') && p + 1 < text.size() && text[p + 1] == ' ') {
+                if (!normalized.empty() && normalized.back() != '\n') normalized.push_back('\n');
+            }
+            normalized.push_back(text[p]);
+        }
+        std::vector<std::string> lines;
+        wrapText(normalized, mc, lines);
+        return (int)lines.size();
+    };
+
+    int h = linkLayoutTotalHeight(buildLinkLayout(i));
+
+    auto addSection = [&](int body) {
+        if (body <= 0) return;
+        h += DETAIL_SECTION_H + body * LINE_H + DETAIL_SECTION_GAP;
+    };
+    addSection(bodyLines(i.description));
+    addSection(bodyLines(i.longDescription));
+
+    const int sc = std::min(5, (int)i.screenshots.size());
+    if (sc > 0) h += DETAIL_SECTION_H + sc * SCREENSHOT_ROW_H + DETAIL_SECTION_GAP;
+
+    addSection(reqLines(i.requirements));
+
+    int meta = 0;
+    if (!i.titleId.empty()) ++meta;
+    if (!i.version.empty()) ++meta;
+    if (!i.titleId.empty()) ++meta; // install row
+    if (!i.versionDate.empty()) ++meta;
+    if (!i.category.empty()) ++meta;
+    if (!i.subcategory.empty()) ++meta;
+    if (!i.size.empty()) ++meta;
+    if (!i.status.empty()) ++meta;
+    if (meta > 0) h += DETAIL_SECTION_H + 8 + meta * DETAIL_META_H + 12 + DETAIL_SECTION_GAP;
+
+    addSection(bodyLines(i.changelog));
+    return h + 24;
+}
+
+int FullCatalogScreen::detailLinkScrollLimit(const CatalogItem&i,int w,int h)const{
     (void)w;
     const auto rows = buildLinkLayout(i);
     if (rows.empty()) return 0;
@@ -2608,9 +2661,159 @@ void FullCatalogScreen::drawDetailLinks(const CatalogItem& it, int x, int y, int
     }
     heightOut = linkLayoutTotalHeight(rows);
 }
-void FullCatalogScreen::drawDetailContent(const CatalogItem&it,int x,int y,int w,int h){
-if(detailCrossfade_<0.99f){vita2d_draw_rectangle(x,y,w,h,RGBA8(0,0,0,static_cast<unsigned>((1.f-detailCrossfade_)*140)));}
-int cx=x+18,cw=w-36,mc=std::max(18,cw/7),top=y+DETAIL_HEADER_H+10,bottom=y+h-10;float scroll=std::max(0.f,visualDetailScroll_);std::vector<std::string>pre,post;auto add=[&](std::vector<std::string>&l,const char*t,const std::string&v){if(v.empty())return;l.push_back(t);std::vector<std::string>q;wrapText(v,mc,q);for(auto&s:q)l.push_back(s);l.push_back("");};add(pre,"Description",it.description);add(pre,"Long Description",it.longDescription);add(post,"Requirements",it.requirements);post.push_back("Information");post.push_back("Title ID: "+it.titleId);post.push_back("Version: "+it.version);{const LocalInstallInfo li=queryLocalInstall(it);if(li.state==LocalInstallState::Installed||li.state==LocalInstallState::UpdateAvailable){std::string line=li.state==LocalInstallState::UpdateAvailable?"Install: update available":"Install: installed";if(!li.installedVersion.empty())line+=" (local v"+li.installedVersion+")";post.push_back(line);}else if(!it.titleId.empty())post.push_back("Install: not installed");}post.push_back("Release date: "+it.versionDate);post.push_back("Category: "+it.category);post.push_back("Subcategory: "+it.subcategory);post.push_back("Size: "+it.size);post.push_back("Status: "+it.status);post.push_back("");add(post,"Changelog",it.changelog);int sc=std::min(5,(int)it.screenshots.size()),shotH=sc*SCREENSHOT_ROW_H,links=0;vita2d_enable_clipping();vita2d_set_clip_rectangle(x+2,top,x+w-18,bottom);drawDetailLinks(it,cx,top-scroll,cw,links);int preTop=top+links-scroll;drawTextLines(pre,cx,preTop,LINE_H,TEXT,.66f,0,(int)pre.size(),top,bottom);int shotTop=preTop+(int)pre.size()*LINE_H;for(int i=0;i<sc;++i)drawImage(it.screenshots[i],"shot",cx,shotTop+i*SCREENSHOT_ROW_H,cw,SCREENSHOT_ROW_H-18);int postTop=shotTop+shotH+8;drawTextLines(post,cx,postTop,LINE_H,TEXT,.66f,0,(int)post.size(),top,bottom);vita2d_disable_clipping();int total=detailContentHeight(it,w),vis=std::max(1,h-DETAIL_HEADER_H-18),mx=std::max(0,total-vis);if(mx>0){int tx=x+w-8,ty=y+DETAIL_HEADER_H+8,th=h-DETAIL_HEADER_H-18;vita2d_draw_rectangle(tx,ty,3,th,BORDER);int thumb=std::max(20,th*vis/std::max(1,total));int yy=ty+(int)((th-thumb)*(scroll/std::max(1.f,(float)mx)));vita2d_draw_rectangle(tx,yy,3,thumb,ACCENT);}}
+void FullCatalogScreen::drawDetailContent(const CatalogItem& it, int x, int y, int w, int h) {
+    if (detailCrossfade_ < 0.99f) {
+        vita2d_draw_rectangle(x, y, w, h, RGBA8(0, 0, 0, static_cast<unsigned>((1.f - detailCrossfade_) * 140)));
+    }
+
+    const int cx = x + 18;
+    const int cw = w - 36;
+    const int mc = std::max(16, cw / 7);
+    const int top = y + DETAIL_HEADER_H + 10;
+    const int bottom = y + h - 10;
+    const float scroll = std::max(0.f, visualDetailScroll_);
+
+    auto normalizeBullets = [](const std::string& text) {
+        std::string out;
+        out.reserve(text.size() + 8);
+        for (size_t p = 0; p < text.size(); ++p) {
+            if (text[p] == '-' && (p == 0 || text[p - 1] == ' ') && p + 1 < text.size() && text[p + 1] == ' ') {
+                if (!out.empty() && out.back() != '\n') out.push_back('\n');
+            }
+            out.push_back(text[p]);
+        }
+        return out;
+    };
+
+    auto drawSectionHeader = [&](int sx, int sy, const char* title) {
+        if (sy + DETAIL_SECTION_H < top || sy > bottom) return;
+        vita2d_pgf_draw_text(font_, sx, sy + 16, ACCENT, 0.56f, title);
+        vita2d_draw_rectangle(sx, sy + DETAIL_SECTION_H - 4, cw, 1, BORDER);
+        vita2d_draw_rectangle(sx, sy + DETAIL_SECTION_H - 4, 48, 1, ACCENT);
+    };
+
+    auto drawBody = [&](int sx, int sy, const std::vector<std::string>& lines) {
+        int dy = sy;
+        for (const auto& line : lines) {
+            if (dy >= top - LINE_H && dy <= bottom + LINE_H) {
+                vita2d_pgf_draw_text(font_, sx, dy + 14, TEXT, 0.58f, line.c_str());
+            }
+            dy += LINE_H;
+        }
+        return dy;
+    };
+
+    auto drawMetaRow = [&](int sx, int sy, int rowW, const char* label, const std::string& value) {
+        if (value.empty()) return sy;
+        if (sy >= top - DETAIL_META_H && sy <= bottom + DETAIL_META_H) {
+            vita2d_pgf_draw_text(font_, sx + 10, sy + 15, DIM, 0.50f, label);
+            const int lw = vita2d_pgf_text_width(font_, 0.50f, label);
+            const int vx = sx + std::max(108, lw + 18);
+            const int maxChars = std::max(8, (rowW - (vx - sx) - 12) / 7);
+            vita2d_pgf_draw_text(font_, vx, sy + 15, WHITE, 0.54f, ellipsize(value, maxChars).c_str());
+        }
+        return sy + DETAIL_META_H;
+    };
+
+    vita2d_enable_clipping();
+    vita2d_set_clip_rectangle(x + 2, top, x + w - 18, bottom);
+
+    int cursor = top - (int)scroll;
+    int linksH = 0;
+    drawDetailLinks(it, cx, cursor, cw, linksH);
+    cursor += linksH;
+
+    auto emitTextSection = [&](const char* title, const std::string& body, bool bullets) {
+        if (body.empty()) return;
+        std::vector<std::string> lines;
+        wrapText(bullets ? normalizeBullets(body) : body, mc, lines);
+        if (lines.empty()) return;
+        drawSectionHeader(cx, cursor, title);
+        cursor += DETAIL_SECTION_H;
+        cursor = drawBody(cx + 2, cursor, lines);
+        cursor += DETAIL_SECTION_GAP;
+    };
+
+    emitTextSection("DESCRIPTION", it.description, false);
+    emitTextSection("LONG DESCRIPTION", it.longDescription, false);
+
+    const int sc = std::min(5, (int)it.screenshots.size());
+    if (sc > 0) {
+        drawSectionHeader(cx, cursor, "SCREENSHOTS");
+        cursor += DETAIL_SECTION_H;
+        for (int i = 0; i < sc; ++i) {
+            drawImage(it.screenshots[i], "shot", cx, cursor + i * SCREENSHOT_ROW_H, cw, SCREENSHOT_ROW_H - 18);
+        }
+        cursor += sc * SCREENSHOT_ROW_H + DETAIL_SECTION_GAP;
+    }
+
+    emitTextSection("REQUIREMENTS", it.requirements, true);
+
+    std::string installLine;
+    {
+        const LocalInstallInfo li = queryLocalInstall(it);
+        if (li.state == LocalInstallState::Installed || li.state == LocalInstallState::UpdateAvailable) {
+            installLine = (li.state == LocalInstallState::UpdateAvailable) ? "Update available" : "Installed";
+            if (!li.installedVersion.empty()) installLine += " (v" + li.installedVersion + ")";
+        } else if (!it.titleId.empty()) {
+            installLine = "Not installed";
+        }
+    }
+
+    const bool hasInfo = !it.titleId.empty() || !it.version.empty() || !installLine.empty() ||
+                         !it.versionDate.empty() || !it.category.empty() || !it.subcategory.empty() ||
+                         !it.size.empty() || !it.status.empty();
+    if (hasInfo) {
+        const int cardTop = cursor;
+        int rows = 0;
+        if (!it.titleId.empty()) ++rows;
+        if (!it.version.empty()) ++rows;
+        if (!installLine.empty()) ++rows;
+        if (!it.versionDate.empty()) ++rows;
+        if (!it.category.empty()) ++rows;
+        if (!it.subcategory.empty()) ++rows;
+        if (!it.size.empty()) ++rows;
+        if (!it.status.empty()) ++rows;
+        const int cardH = DETAIL_SECTION_H + 6 + rows * DETAIL_META_H + 10;
+
+        if (cardTop + cardH >= top && cardTop <= bottom) {
+            vita2d_draw_rectangle(cx, cardTop, cw, cardH, SURFACE2);
+            vita2d_draw_rectangle(cx, cardTop, 3, cardH, ACCENT);
+            vita2d_draw_rectangle(cx, cardTop, cw, 1, BORDER);
+            vita2d_draw_rectangle(cx, cardTop + cardH - 1, cw, 1, BORDER);
+        }
+        drawSectionHeader(cx + 8, cardTop + 2, "INFORMATION");
+        int my = cardTop + DETAIL_SECTION_H + 4;
+        my = drawMetaRow(cx, my, cw, "Title ID", it.titleId);
+        my = drawMetaRow(cx, my, cw, "Version", it.version);
+        my = drawMetaRow(cx, my, cw, "Install", installLine);
+        my = drawMetaRow(cx, my, cw, "Released", it.versionDate);
+        my = drawMetaRow(cx, my, cw, "Category", it.category);
+        my = drawMetaRow(cx, my, cw, "Subcategory", it.subcategory);
+        my = drawMetaRow(cx, my, cw, "Size", it.size);
+        my = drawMetaRow(cx, my, cw, "Status", it.status);
+        cursor = cardTop + cardH + DETAIL_SECTION_GAP;
+    }
+
+    emitTextSection("CHANGELOG", it.changelog, false);
+
+    vita2d_disable_clipping();
+
+    const int total = detailContentHeight(it, w);
+    const int vis = std::max(1, h - DETAIL_HEADER_H - 18);
+    const int mx = std::max(0, total - vis);
+    if (mx > 0) {
+        const int tx = x + w - 8;
+        const int ty = y + DETAIL_HEADER_H + 8;
+        const int th = h - DETAIL_HEADER_H - 18;
+        vita2d_draw_rectangle(tx, ty, 3, th, BORDER);
+        const int thumb = std::max(20, th * vis / std::max(1, total));
+        const int yy = ty + (int)((th - thumb) * (scroll / std::max(1.f, (float)mx)));
+        vita2d_draw_rectangle(tx, yy, 3, thumb, ACCENT);
+    }
+}
+
+
 void FullCatalogScreen::drawDetailPanel(int x,int y,int w,int h){
     vita2d_draw_rectangle(x, y, w, h, PANEL);
     vita2d_draw_rectangle(x, y, 2, h, ACCENT_SOFT);
