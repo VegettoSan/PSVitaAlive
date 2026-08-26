@@ -173,7 +173,7 @@
         "url    url    url"
         "size   size   size"
         "path   path   path"
-        "rec    .      remove";
+        "rec    rec    remove";
     gap: 12px;
     align-items: center;
     min-width: 0;
@@ -204,21 +204,48 @@
     grid-area: url;
 }
 
-.repeat-item.link-item .link-size {
+/* Size value + unit (replaces old .link-size) */
+.repeat-item.link-item .link-size-field,
+.repeat-item.link-item .size-unit-field.link-size-field {
     grid-area: size;
     min-width: 0;
     width: 100%;
+    max-width: 100%;
+    display: flex;
+    gap: 10px;
+    align-items: stretch;
+}
+.repeat-item.link-item .link-size-field .link-size-value {
+    flex: 1 1 auto;
+    min-width: 8rem;
+    width: auto;
+}
+.repeat-item.link-item .link-size-field .link-size-unit {
+    flex: 0 0 5.5rem;
+    width: 5.5rem;
+    min-width: 5.5rem;
 }
 
-.repeat-item.link-item .link-extract-path {
+.repeat-item.link-item .link-extract-wrap {
     grid-area: path;
     min-width: 0;
     width: 100%;
 }
+.repeat-item.link-item .link-extract-wrap[hidden],
+.repeat-item.link-item .link-extract-wrap[style*="display: none"] {
+    display: none !important;
+}
+.repeat-item.link-item .link-extract-path {
+    min-width: 0;
+    width: 100%;
+}
 
-.repeat-item.link-item .repeat-item.link-item .checkbox-inline {
+.repeat-item.link-item > .checkbox-inline {
     grid-area: rec;
     justify-self: start;
+    align-self: center;
+    z-index: 1;
+    position: relative;
 }
 
 .repeat-item .remove-button {
@@ -690,33 +717,20 @@
 }
 
 
-/* Size value + unit selector (app form and link rows) */
+/* Size value + unit selector (app form; link rows use grid-area rules above) */
 .size-unit-field {
     display: flex;
-    gap: 8px;
+    gap: 10px;
     align-items: stretch;
     min-width: 0;
+    width: 100%;
 }
 .size-unit-field input {
     flex: 1 1 auto;
-    min-width: 0;
+    min-width: 6rem;
 }
 .size-unit-field select {
-    flex: 0 0 auto;
-    width: 5.2rem;
-    min-width: 4.8rem;
-}
-.repeat-item.link-item .link-size-field {
-    grid-column: span 1;
-    min-width: 0;
-}
-.repeat-item.link-item .link-extract-wrap {
-    grid-column: 1 / -1;
-    min-width: 0;
-}
-.repeat-item.link-item .link-extract-wrap input {
-    width: 100%;
-}
-.repeat-item.link-item .link-size-value {
-    width: 100%;
+    flex: 0 0 5.5rem;
+    width: 5.5rem;
+    min-width: 5.5rem;
 }
