@@ -142,7 +142,48 @@ bool itemHasLinkType(const CatalogItem& it, const char* needle) {
     return false;
 }
 
+/** Size from first Data Files / Game Files link (prefer Game Files). */
+std::string itemExtraDataGameSize(const CatalogItem& it) {
+    std::string dataSz;
+    for (const auto& link : it.linkDetails) {
+        if (link.size.empty()) continue;
+        const std::string typ = normalizeLinkType(link.type);
+        if (typ == "game files" || typ == "game file" || typ == "gamefiles")
+            return link.size;
+        if ((typ == "data files" || typ == "data file" || typ == "datafiles" || typ == "data")
+            && dataSz.empty())
+            dataSz = link.size;
+    }
+    return dataSz;
+}
 
+/**
+ * Card size label: app size, or "16 MB + 1.5 GB" when a Data/Game Files
+ * payload size is also known (and different from the main size).
+ */
+std::string itemCardSizeLabel(const CatalogItem& it) {
+    std::string base;
+    if (!it.size.empty()) {
+        base = it.size;
+    } else {
+        for (const auto& link : it.linkDetails) {
+            if (link.size.empty()) continue;
+            const std::string typ = normalizeLinkType(link.type);
+            if (typ == "data files" || typ == "data file" || typ == "datafiles" || typ == "data"
+                || typ == "game files" || typ == "game file" || typ == "gamefiles")
+                continue;
+            if (link.recommended) {
+                base = link.size;
+                break;
+            }
+            if (base.empty()) base = link.size;
+        }
+    }
+    const std::string extra = itemExtraDataGameSize(it);
+    if (base.empty()) return extra.empty() ? itemDisplaySize(it) : extra;
+    if (extra.empty() || extra == base) return base;
+    return base + " + " + extra;
+}
 
 // LiveArea brand palette (PSVitaAlive Store): neon lime on near-black honeycomb look
 constexpr unsigned BG=RGBA8(0x0A,0x0A,0x0A,255);
@@ -2680,19 +2721,44 @@ void FullCatalogScreen::drawCatalogCard(const CatalogItem&it,int idx,int x,int y
         {
             int sy = y + h - 10 + oy;
             const int right = x + ox + ww;
-            const float sc = 0.54f;
-            auto drawChip = [&](const std::string& label) {
+            // Neutral size chip
+            auto drawSizeChip = [&](const std::string& label) {
                 if (label.empty()) return;
+                const float sc = 0.56f;
                 const int tw = vita2d_pgf_text_width(font_, sc, label.c_str());
-                const int sx = right - tw - 8;
-                vita2d_draw_rectangle(sx - 4, sy - 12, tw + 8, 16, SURFACE2);
-                vita2d_pgf_draw_text(font_, sx, sy, TEXT, sc, label.c_str());
-                sy -= 18;
+                const int padX = 5;
+                const int cw = tw + padX * 2;
+                const int ch = 17;
+                const int sx = right - cw - 6;
+                const int cy = sy - ch + 3;
+                vita2d_draw_rectangle(sx, cy, cw, ch, SURFACE2);
+                vita2d_pgf_draw_text(font_, sx + padX, sy, TEXT, sc, label.c_str());
+                sy -= 19;
             };
-            const std::string sz = itemDisplaySize(it);
-            if (!sz.empty()) drawChip(ellipsize(sz, 14));
-            if (itemHasLinkType(it, "data files")) drawChip("Data");
-            if (itemHasLinkType(it, "game files")) drawChip("Game Files");
+            // Folder-style amber chips so Data / Game Files stand out
+            auto drawFolderChip = [&](const std::string& label) {
+                if (label.empty()) return;
+                const float sc = 0.60f;
+                const int tw = vita2d_pgf_text_width(font_, sc, label.c_str());
+                const int padX = 7;
+                const int cw = tw + padX * 2;
+                const int ch = 20;
+                const int sx = right - cw - 6;
+                const int cy = sy - ch + 4;
+                const unsigned folderBg = RGBA8(0x3A, 0x2C, 0x10, 255);
+                const unsigned folderEdge = RGBA8(0xE8, 0xB4, 0x3A, 255);
+                const unsigned folderText = RGBA8(0xFF, 0xD2, 0x6A, 255);
+                vita2d_draw_rectangle(sx, cy, cw, ch, folderBg);
+                vita2d_draw_rectangle(sx, cy, cw, 2, folderEdge); // top tab highlight
+                vita2d_draw_rectangle(sx, cy, 2, ch, folderEdge);
+                vita2d_pgf_draw_text(font_, sx + padX, sy + 1, folderText, sc, label.c_str());
+                sy -= 22;
+            };
+            const std::string sz = itemCardSizeLabel(it);
+            // Allow a bit more room for "16 MB + 1.5 GB"
+            if (!sz.empty()) drawSizeChip(ellipsize(sz, 22));
+            if (itemHasLinkType(it, "data files")) drawFolderChip("Data Files");
+            if (itemHasLinkType(it, "game files")) drawFolderChip("Game Files");
         }
     }
 
