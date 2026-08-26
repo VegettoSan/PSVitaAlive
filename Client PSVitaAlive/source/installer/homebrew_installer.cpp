@@ -29,6 +29,37 @@ bool isDotEntry(const char* name) {
     return name && (std::strcmp(name, ".") == 0 || std::strcmp(name, "..") == 0);
 }
 
+/** Search for a nested .vpk under dir (GitLab/GitHub release ZIPs that wrap a VPK). */
+bool findNestedVpkFile(const std::string& dir, std::string& outPath, int depth = 0) {
+    if (depth > 4) return false;
+    SceUID uid = sceIoDopen(dir.c_str());
+    if (uid < 0) return false;
+    SceIoDirent ent{};
+    bool found = false;
+    while (sceIoDread(uid, &ent) > 0) {
+        if (isDotEntry(ent.d_name)) continue;
+        const std::string full = dir + "/" + ent.d_name;
+        if (SCE_S_ISDIR(ent.d_stat.st_mode)) {
+            if (findNestedVpkFile(full, outPath, depth + 1)) {
+                found = true;
+                break;
+            }
+        } else {
+            std::string name = ent.d_name;
+            for (char& c : name) {
+                if (c >= 'A' && c <= 'Z') c = static_cast<char>(c - 'A' + 'a');
+            }
+            if (name.size() >= 4 && name.compare(name.size() - 4, 4, ".vpk") == 0) {
+                outPath = full;
+                found = true;
+                break;
+            }
+        }
+    }
+    sceIoDclose(uid);
+    return found;
+}
+
 bool copyFileBytes(const std::string& src, const std::string& dst) {
     SceUID in = sceIoOpen(src.c_str(), SCE_O_RDONLY, 0);
     if (in < 0) return false;
@@ -561,9 +592,79 @@ InstallResult HomebrewInstaller::installVpk(
         logLine("param.sfo TITLE_ID could not be read");
     }
 
+    // Release archives (GitLab/GitHub) often wrap the real package as Nested.vpk
+    // plus README/licenses. Detect that and extract the inner VPK into the promote dir.
+    if (!st.exists(ebootPath) || !st.exists(paramPath)) {
+        std::string nestedVpk;
+        if (findNestedVpkFile(tmpDir, nestedVpk)) {
+            logLine(std::string("nested VPK detected: ") + nestedVpk);
+            const std::string nestedStage = std::string(TMP_ROOT) + "/nested_vpk_stage";
+            if (st.exists(nestedStage)) removeTree(nestedStage);
+            if (!st.createDirectories(nestedStage)) {
+                removeTree(tmpDir);
+                setError("cannot stage nested VPK extract");
+                return InstallResult::IoError;
+            }
+            // Keep a copy path string; removeTree(tmpDir) would delete nestedVpk if it lives under tmpDir.
+            // Copy nested VPK out of promote dir first.
+            const std::string nestedCopy = std::string(TMP_ROOT) + "/nested_source.vpk";
+            st.removeFile(nestedCopy);
+            if (!copyFileBytes(nestedVpk, nestedCopy)) {
+                removeTree(tmpDir);
+                removeTree(nestedStage);
+                setError("cannot copy nested VPK for re-extract");
+                return InstallResult::IoError;
+            }
+            removeTree(tmpDir);
+            if (!st.createDirectories(tmpDir)) {
+                st.removeFile(nestedCopy);
+                removeTree(nestedStage);
+                setError("cannot recreate promote dir for nested VPK");
+                return InstallResult::IoError;
+            }
+            ZipExtractor zip2;
+            const ZipResult zr2 = zip2.extract(
+                nestedCopy,
+                tmpDir,
+                [&](const ZipProgress& zp) {
+                    if (!onProgress) return;
+                    InstallProgress p;
+                    p.stage = InstallProgress::Extracting;
+                    p.bytesWritten = zp.bytesWritten;
+                    p.bytesTotal = zp.bytesTotal;
+                    p.message = "extracting nested VPK";
+                    onProgress(p);
+                },
+                shouldCancel
+            );
+            st.removeFile(nestedCopy);
+            removeTree(nestedStage);
+            logLine(std::string("nested ZipExtractor result=") + std::to_string(static_cast<int>(zr2)) +
+                    " error=" + zip2.lastError());
+            if (zr2 == ZipResult::Cancelled) {
+                removeTree(tmpDir);
+                setError("nested extract cancelled");
+                return InstallResult::Cancelled;
+            }
+            if (zr2 != ZipResult::Ok) {
+                removeTree(tmpDir);
+                setError(std::string("nested VPK extract failed: ") + zip2.lastError());
+                return InstallResult::ExtractFailed;
+            }
+            logPathState("Nested extracted eboot.bin", ebootPath);
+            logPathState("Nested extracted param.sfo", paramPath);
+            titleId.clear();
+            if (readSfoTitleId(paramPath, titleId)) {
+                logLine(std::string("nested param.sfo TITLE_ID=") + titleId);
+                lastTitleId_ = titleId;
+                lastInstallPath_ = std::string("ux0:app/") + titleId;
+            }
+        }
+    }
+
     if (!st.exists(ebootPath) || !st.exists(paramPath)) {
         removeTree(tmpDir);
-        setError("invalid VPK layout: expected eboot.bin and sce_sys/param.sfo");
+        setError("invalid VPK layout: expected eboot.bin and sce_sys/param.sfo (not a VPK; release ZIP may need nested .vpk support or a direct .vpk link)");
         return InstallResult::ExtractFailed;
     }
     if (shouldCancel && shouldCancel()) {

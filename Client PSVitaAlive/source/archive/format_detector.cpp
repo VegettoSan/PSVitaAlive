@@ -152,24 +152,50 @@ ContentKind FormatDetector::guessKind(FileFormat fmt, const std::string& ext) {
 
 
 // Scan ZIP local-file headers / plain name bytes for Vita package markers.
-// VitaDB get_hb_url.php downloads are ZIP/VPK without a .vpk filename.
+// True only if THIS zip's top-level entries look like a VPK.
+// Do NOT substring-scan the whole buffer: release archives embed a nested
+// .vpk whose internal "eboot.bin" bytes would false-positive (Asphalt8, etc.).
 static bool zipLooksLikeVpk(const uint8_t* data, size_t size) {
-    if (!data || size < 8) return false;
-    auto has = [&](const char* s) -> bool {
-        const size_t n = std::strlen(s);
-        if (n == 0 || size < n) return false;
-        for (size_t i = 0; i + n <= size; ++i) {
-            if (std::memcmp(data + i, s, n) == 0) return true;
+    if (!data || size < 30) return false;
+    size_t off = 0;
+    for (int n = 0; n < 48 && off + 30 <= size; ++n) {
+        if (data[off] != 'P' || data[off + 1] != 'K') break;
+        const uint8_t b2 = data[off + 2], b3 = data[off + 3];
+        // Central directory / EOCD → stop
+        if (b2 == 1 && b3 == 2) break;
+        if (b2 == 5 && b3 == 6) break;
+        if (b2 == 6 && b3 == 6) break;
+        if (!(b2 == 3 && b3 == 4)) break; // local file header
+
+        const uint16_t flags = static_cast<uint16_t>(data[off + 6] | (data[off + 7] << 8));
+        const uint16_t nameLen = static_cast<uint16_t>(data[off + 26] | (data[off + 27] << 8));
+        const uint16_t extraLen = static_cast<uint16_t>(data[off + 28] | (data[off + 29] << 8));
+        const uint32_t compSize = static_cast<uint32_t>(
+            data[off + 18] | (data[off + 19] << 8) | (data[off + 20] << 16) | (data[off + 21] << 24));
+
+        if (off + 30 + nameLen > size) break;
+        std::string name(reinterpret_cast<const char*>(data + off + 30), nameLen);
+        for (char& c : name) {
+            if (c == '\\') c = '/';
+            if (c >= 'A' && c <= 'Z') c = static_cast<char>(c - 'A' + 'a');
         }
-        return false;
-    };
-    // Typical VPK entry names (stored uncompressed in local headers)
-    if (has("eboot.bin")) return true;
-    if (has("sce_sys/param.sfo") || has("sce_sys\\param.sfo")) return true;
-    if (has("SCE_SYS/PARAM.SFO")) return true;
-    if (has("sce_sys/package/head.bin")) return true;
+        while (!name.empty() && name[0] == '/') name.erase(name.begin());
+
+        if (name == "eboot.bin" || name.size() >= 10 && name.compare(name.size() - 10, 10, "/eboot.bin") == 0)
+            return true;
+        if (name == "sce_sys/param.sfo" || name.size() >= 19 && name.compare(name.size() - 19, 19, "/sce_sys/param.sfo") == 0)
+            return true;
+        if (name == "sce_sys/package/head.bin" ||
+            (name.size() >= 24 && name.compare(name.size() - 24, 24, "/sce_sys/package/head.bin") == 0))
+            return true;
+
+        // Data-descriptor bit: compressed size may be zero — cannot skip payload safely
+        if (flags & 0x8) break;
+        off += 30u + static_cast<size_t>(nameLen) + static_cast<size_t>(extraLen) + static_cast<size_t>(compSize);
+    }
     return false;
 }
+
 
 DetectResult FormatDetector::detectBuffer(
     const uint8_t* data,
