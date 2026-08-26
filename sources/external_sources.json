@@ -4,13 +4,13 @@
     {
       "id": "vitadbtoo",
       "name": "VitaHomebrewDB",
-      "enabled": true,
+      "enabled": false,
       "kind": "github_json",
       "url": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/apps.json",
       "priority": 90,
       "platform": "vita",
-      "notes": "VitaHomebrewDB community-preserved catalog. Used as the secondary external source to fill gaps and cross-check VitaDB data. The repository URL is retained for compatibility with the current hosted source path."
+      "notes": "DISABLED. Kept only as historical reference while Archive.org mirrors are finished. Do not re-enable until a deliberate migration decision is made."
     }
   ],
-  "notes": "VitaDB external feed removed (2026-08). Catalog is maintained via apps/ + optional VitaHomebrewDB. Migration toward fully independent catalog in progress."
+  "notes": "All external catalog feeds are disabled (2026-08-26). The workflow only validates and builds from local apps/, authors/, and categories/. VitaDB was removed earlier; VitaHomebrewDB (VitaDBtoo) is now disabled as well. Link cleanup for residual VitaDB/VitaHomebrewDB URLs will follow after Archive.org mirroring completes."
 }

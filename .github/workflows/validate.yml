@@ -1,4 +1,4 @@
-name: Validate and Generate VitaHub Catalog
+name: Validate and Generate Local Catalog
 
 on:
   push:
@@ -40,32 +40,27 @@ jobs:
             pip install -r requirements.txt
           fi
 
-      - name: Decide catalog mode
+      - name: Decide catalog mode (local only)
         id: mode
         shell: bash
         run: |
+          # External feeds (VitaDB / VitaHomebrewDB) are disabled in
+          # sources/external_sources.json. Always build from apps/authors/categories only.
           if [ -f sources/rebuild_once.json ]; then
-            echo "rebuild=true" >> "$GITHUB_OUTPUT"
-            echo "VITAHUB_REBUILD_FROM_EXTERNAL=true" >> "$GITHUB_ENV"
-            echo "External rebuild requested."
+            echo "Ignoring sources/rebuild_once.json (external rebuild disabled)."
             rm -f sources/rebuild_once.json
-          elif VITAHUB_SKIP_REMOTE_CHECKS=true python scripts/validate_catalog_ci.py; then
-            echo "rebuild=false" >> "$GITHUB_OUTPUT"
-            echo "VITAHUB_REBUILD_FROM_EXTERNAL=false" >> "$GITHUB_ENV"
-            echo "Existing source catalog is structurally valid; using incremental mode."
-          else
-            echo "rebuild=true" >> "$GITHUB_OUTPUT"
-            echo "VITAHUB_REBUILD_FROM_EXTERNAL=true" >> "$GITHUB_ENV"
-            echo "Existing source catalog is structurally invalid; falling back to external rebuild."
           fi
+          echo "rebuild=false" >> "$GITHUB_OUTPUT"
+          echo "VITAHUB_REBUILD_FROM_EXTERNAL=false" >> "$GITHUB_ENV"
+          echo "Local-only mode: no external catalog fetches."
 
-      - name: Run external aggregation smoke test
+      - name: Run aggregation unit smoke test (offline)
         run: python scripts/external_smoke_test.py
 
-      - name: Generate merged VitaHub catalogs and canonical source files
+      - name: Generate catalogs from local apps/authors/categories
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          VITAHUB_REBUILD_FROM_EXTERNAL: ${{ steps.mode.outputs.rebuild }}
+          VITAHUB_REBUILD_FROM_EXTERNAL: "false"
         run: python scripts/generate_catalog.py
 
       - name: Normalize persisted canonical source files
