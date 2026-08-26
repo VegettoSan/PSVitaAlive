@@ -391,18 +391,22 @@ void FullCatalogScreen::drawNewsChip() {
     // Left of Report chip (which is left of ux0 panel)
     const int panelW = 220;
     const int panelX = SCREEN_W - panelW - 6;
-    const int chipW = 72;
+    const int chipW = 92;
     const int chipH = FOOTER_H - 8;
-    const int reportW = 96;
+    const int reportW = 100;
     const int chipX = panelX - reportW - 8 - chipW - 8;
     const int chipY = SCREEN_H - FOOTER_H + 4;
     if (!font_) return;
-    unsigned col = newsVisible_ ? WHITE : ACCENT;
-    vita2d_draw_rectangle(chipX, chipY, chipW, chipH, SURFACE);
-    vita2d_draw_rectangle(chipX, chipY, 3, chipH, col);
+    const unsigned BLACK = RGBA8(0, 0, 0, 255);
+    // Primary solid green button style (same as other accent CTAs)
+    const unsigned fill = ACCENT;
+    const unsigned textCol = BLACK;
+    vita2d_draw_rectangle(chipX, chipY, chipW, chipH, fill);
     const char* lab = "News";
-    const int tw = vita2d_pgf_text_width(font_, 0.52f, lab);
-    vita2d_pgf_draw_text(font_, chipX + (chipW - tw) / 2, chipY + 18, col, 0.52f, lab);
+    const float scale = 0.70f;
+    const int tw = vita2d_pgf_text_width(font_, scale, lab);
+    const int th = 20;
+    vita2d_pgf_draw_text(font_, chipX + (chipW - tw) / 2, chipY + (chipH + th) / 2 - 2, textCol, scale, lab);
 }
 
 void FullCatalogScreen::drawNewsOverlay() {
@@ -451,7 +455,12 @@ void FullCatalogScreen::drawNewsOverlay() {
 
     const int by = y + h - 48, bw = 220, bh = 36;
     vita2d_draw_rectangle(x + (w - bw) / 2, by, bw, bh, ACCENT);
-    vita2d_pgf_draw_text(font_, x + (w - bw) / 2 + 58, by + 24, WHITE, 0.58f, "O  Close");
+    {
+        const char* clab = "O  Close";
+        const float sc = 0.68f;
+        const int tw = vita2d_pgf_text_width(font_, sc, clab);
+        vita2d_pgf_draw_text(font_, x + (w - bw) / 2 + (bw - tw) / 2, by + 25, BLACK, sc, clab);
+    }
     vita2d_pgf_draw_text(font_, x + 24, y + h - 14, DIM, 0.46f, "D-Pad: scroll   Circle: close");
 }
 
@@ -477,29 +486,24 @@ void FullCatalogScreen::drawReportChip() {
         }
     }
 
-    unsigned fill = SURFACE;
-    unsigned edge = ACCENT;
-    unsigned textCol = ACCENT;
+    unsigned fill = ACCENT;
+    unsigned textCol = BLACK;
     const char* lab = "Report";
     if (reportUiState_ == 1) {
         fill = SURFACE;
-        edge = ACCENT;
         textCol = WHITE;
         lab = ""; // progress bar instead
     } else if (reportUiState_ == 2) {
         fill = GREEN;
-        edge = GREEN;
         textCol = BLACK;
         lab = "Sent";
     } else if (reportUiState_ == 3) {
         fill = RED;
-        edge = RED;
         textCol = WHITE;
         lab = "Fail";
     }
 
     vita2d_draw_rectangle(chipX, chipY, chipW, chipH, fill);
-    vita2d_draw_rectangle(chipX, chipY, 3, chipH, edge);
 
     if (reportUiState_ == 1) {
         // Indeterminate bar (same idea as image loading placeholders)
@@ -513,9 +517,9 @@ void FullCatalogScreen::drawReportChip() {
         const int fillW = (int)(barW * (0.25f + 0.55f * phase));
         if (fillW > 0) vita2d_draw_rectangle(barX, barY, fillW, barH, ACCENT);
     } else {
-        const float scale = 0.62f;
+        const float scale = 0.70f;
         const int tw = vita2d_pgf_text_width(font_, scale, lab);
-        const int th = 18;
+        const int th = 20;
         vita2d_pgf_draw_text(font_, chipX + (chipW - tw) / 2, chipY + (chipH + th) / 2 - 2, textCol, scale, lab);
     }
 }
@@ -1170,7 +1174,7 @@ void FullCatalogScreen::handleTouch() {
         const int panelW = 220;
         const int panelX = SCREEN_W - panelW - 6;
         const int reportW = 100;
-        const int newsW = 80;
+        const int newsW = 92;
         const int chipH = FOOTER_H - 8;
         const int reportX = panelX - reportW - 8;
         const int newsX = reportX - newsW - 8;
@@ -2811,7 +2815,8 @@ if(installOutcome_==2){
   const int bwReport=200, bwClose=200;
   const int bxReport=x+28, bxClose=x+w-28-bwClose;
   const unsigned reportCol = (reportUiState_==2) ? GREEN : ((reportUiState_==3) ? RED : ACCENT);
-  const unsigned reportText = (reportUiState_==2) ? RGBA8(0,0,0,255) : WHITE;
+  // Black on green/accent; white only on red
+  const unsigned reportText = (reportUiState_==3) ? WHITE : RGBA8(0,0,0,255);
   vita2d_draw_rectangle(bxReport,by2,bwReport,bh2,reportCol);
   if (reportUiState_==1) {
     const int barX = bxReport + 16, barW = bwReport - 32, barH = 10;
