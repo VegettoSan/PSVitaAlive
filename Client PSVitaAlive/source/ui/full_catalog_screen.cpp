@@ -25,6 +25,7 @@
 #include <set>
 #include <unordered_set>
 #include <utility>
+#include <vector>
 namespace psvitaalive::ui { namespace {
 
 
@@ -218,7 +219,80 @@ constexpr size_t MAX_APP_TEXTURES=18,MAX_SCREENSHOT_TEXTURES=6;
 constexpr int CATALOG_SWITCH_COOLDOWN_FRAMES=50; // ~0.83s at 60fps
 constexpr uint64_t CATALOG_SWITCH_MIN_MS=900; // hard debounce against L/R spam
 constexpr size_t MAX_DEFERRED_FREES_PER_FRAME=8;constexpr uint64_t DIRECTION_REPEAT_DELAY_US=320000,DIRECTION_REPEAT_INTERVAL_US=420000;
-const char* extOf(const std::string&p){const size_t d=p.find_last_of('.');return d==std::string::npos?"":p.c_str()+d;}std::string formatBytes(uint64_t b){char o[64];double v=(double)b;if(b>=1024ULL*1024ULL*1024ULL)sceClibSnprintf(o,sizeof(o),"%.2f GB",v/(1024.0*1024.0*1024.0));else if(b>=1024ULL*1024ULL)sceClibSnprintf(o,sizeof(o),"%.2f MB",v/(1024.0*1024.0));else if(b>=1024ULL)sceClibSnprintf(o,sizeof(o),"%.2f KB",v/1024.0);else sceClibSnprintf(o,sizeof(o),"%llu B",(unsigned long long)b);return o;}std::string lowerAscii(std::string s){for(char&c:s)c=(char)std::tolower((unsigned char)c);return s;}std::string ellipsize(const std::string&s,size_t n){if(s.size()<=n)return s;if(n<=3)return s.substr(0,n);return s.substr(0,n-3)+"...";}bool actionableLink(const CatalogLink&l){
+const char* extOf(const std::string&p){const size_t d=p.find_last_of('.');return d==std::string::npos?"":p.c_str()+d;}std::string formatBytes(uint64_t b){char o[64];double v=(double)b;if(b>=1024ULL*1024ULL*1024ULL)sceClibSnprintf(o,sizeof(o),"%.2f GB",v/(1024.0*1024.0*1024.0));else if(b>=1024ULL*1024ULL)sceClibSnprintf(o,sizeof(o),"%.2f MB",v/(1024.0*1024.0));else if(b>=1024ULL)sceClibSnprintf(o,sizeof(o),"%.2f KB",v/1024.0);else sceClibSnprintf(o,sizeof(o),"%llu B",(unsigned long long)b);return o;}std::string lowerAscii(std::string s){for(char&c:s)c=(char)std::tolower((unsigned char)c);return s;}std::string ellipsize(const std::string&s,size_t n){if(s.size()<=n)return s;if(n<=3)return s.substr(0,n);return s.substr(0,n-3)+"...";}
+/** Word-wrap text to max pixel width (vita2d_pgf). Long tokens are hard-split. */
+std::vector<std::string> wrapTextToWidth(vita2d_pgf* font, float scale, const std::string& text, int maxW) {
+    std::vector<std::string> out;
+    if (!font || maxW < 8) {
+        out.push_back(text);
+        return out;
+    }
+    if (text.empty()) {
+        out.push_back("");
+        return out;
+    }
+    auto widthOf = [&](const std::string& s) -> int {
+        return vita2d_pgf_text_width(font, scale, s.c_str());
+    };
+    // Split into words keeping spaces attached to following word for simple rebuild
+    size_t i = 0;
+    std::string line;
+    while (i < text.size()) {
+        // Skip leading spaces on a new line only when line empty? keep single spaces between words
+        size_t start = i;
+        if (text[i] == ' ' || text[i] == '\t') {
+            while (i < text.size() && (text[i] == ' ' || text[i] == '\t')) ++i;
+            if (line.empty()) continue; // trim leading
+            // treat as space before next word
+            start = i;
+        }
+        while (i < text.size() && text[i] != ' ' && text[i] != '\t') ++i;
+        std::string word = text.substr(start, i - start);
+        if (word.empty()) continue;
+
+        std::string candidate = line.empty() ? word : (line + " " + word);
+        if (widthOf(candidate) <= maxW) {
+            line = std::move(candidate);
+            continue;
+        }
+        // word alone may exceed maxW
+        if (line.empty()) {
+            // hard-split word
+            std::string chunk;
+            for (char c : word) {
+                std::string tryChunk = chunk + c;
+                if (!chunk.empty() && widthOf(tryChunk) > maxW) {
+                    out.push_back(chunk);
+                    chunk = std::string(1, c);
+                } else {
+                    chunk = std::move(tryChunk);
+                }
+            }
+            if (!chunk.empty()) line = chunk;
+        } else {
+            out.push_back(line);
+            // place word on new line (hard-split if needed)
+            if (widthOf(word) <= maxW) {
+                line = word;
+            } else {
+                std::string chunk;
+                for (char c : word) {
+                    std::string tryChunk = chunk + c;
+                    if (!chunk.empty() && widthOf(tryChunk) > maxW) {
+                        out.push_back(chunk);
+                        chunk = std::string(1, c);
+                    } else {
+                        chunk = std::move(tryChunk);
+                    }
+                }
+                line = chunk;
+            }
+        }
+    }
+    if (!line.empty() || out.empty()) out.push_back(line);
+    return out;
+}
+bool actionableLink(const CatalogLink&l){
     // Types shown as install/download buttons in detail view.
     std::string t=normalizeLinkType(l.type);
     if(t=="download"||t=="downloads"||t=="mirror")return true;
@@ -416,16 +490,34 @@ void FullCatalogScreen::runNewsCheck(bool forceShow) {
     newsBody_ = item.body;
     newsLines_.clear();
     {
+        // Split on newlines first, then wrap each paragraph to the modal text width.
+        // Modal is 700px wide; text inset ~28 left + 28 right + scrollbar ≈ 644 usable.
+        const float bodyScale = 0.55f;
+        const int maxTextW = 620;
         size_t pos = 0;
         const std::string& b = newsBody_;
         while (pos <= b.size()) {
             size_t endLine = b.find('\n', pos);
+            std::string para;
             if (endLine == std::string::npos) {
-                newsLines_.push_back(b.substr(pos));
-                break;
+                para = b.substr(pos);
+                pos = b.size() + 1;
+            } else {
+                para = b.substr(pos, endLine - pos);
+                pos = endLine + 1;
             }
-            newsLines_.push_back(b.substr(pos, endLine - pos));
-            pos = endLine + 1;
+            // Keep blank lines as visual paragraph breaks
+            if (para.empty()) {
+                newsLines_.push_back("");
+                continue;
+            }
+            if (font_) {
+                auto wrapped = wrapTextToWidth(font_, bodyScale, para, maxTextW);
+                for (auto& wl : wrapped) newsLines_.push_back(std::move(wl));
+            } else {
+                newsLines_.push_back(std::move(para));
+            }
+            if (endLine == std::string::npos) break;
         }
         if (newsLines_.empty()) newsLines_.push_back("");
     }
@@ -479,7 +571,7 @@ void FullCatalogScreen::drawNewsOverlay() {
 
     vita2d_pgf_draw_text(font_, x + 24, y + 34, ACCENT, 0.62f, "NEWS");
     vita2d_pgf_draw_text(font_, x + 24, y + 64, WHITE, 0.78f,
-                         ellipsize(newsTitle_, 52).c_str());
+                         ellipsize(newsTitle_, 64).c_str());
 
     const int textTop = y + 88;
     const int textBottom = y + h - 56;
@@ -511,7 +603,7 @@ void FullCatalogScreen::drawNewsOverlay() {
         }
         const int ly = drawY + (i - start) * lineH;
         if (ly + lineH < textTop - lineH || ly > textBottom + lineH) continue;
-        vita2d_pgf_draw_text(font_, x + 28, ly + 16, col, scale, ellipsize(line, 72).c_str());
+        vita2d_pgf_draw_text(font_, x + 28, ly + 16, col, scale, line.c_str());
     }
     vita2d_disable_clipping();
 
