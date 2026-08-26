@@ -1,16 +1,13 @@
-id: 2026-08-25-0001
-title: Welcome to PS Vita Alive
+id: 2026-08-25-001
+title: PsVita Alive Store BETA 01.09
 enabled: true
 ---
 Thanks for using PS Vita Alive Store.
 
-News and tips will appear here when we publish an update from GitHub.
-
-You can open this message again anytime with the News button in the footer.
-
-What's next:
-- Keep an eye on Releases for new client builds
-- Report issues with the Report button (includes logs + version)
-- Catalog content is improved over time on main
+- The appearance of information in each application has been improved.
+- Support for submitting bug reports has been added.
+- A News section has been added to notify users of new releases and other updates.
+- Free space checks have been added before downloading to prevent installation errors.
+- The display of Mediafire download links has been improved.
 
 Enjoy!
