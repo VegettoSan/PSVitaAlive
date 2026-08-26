@@ -64,7 +64,8 @@ public:
         const std::string& zrif = std::string(),
         const std::string& linkType = std::string(),
         const std::string& contentId = std::string(),
-        const std::string& displayTitle = std::string()
+        const std::string& displayTitle = std::string(),
+        uint64_t expectedBytes = 0
     );
     void cancel();
     /** User dismissed the success/error result panel (or UI timeout). */

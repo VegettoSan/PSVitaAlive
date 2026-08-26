@@ -1,5 +1,6 @@
 #include "installer/install_controller.hpp"
 #include "diagnostic_logger.hpp"
+#include "storage/storage_manager.hpp"
 #include "installer/plugin_detector.hpp"
 #include "installer/app_settings.hpp"
 #include "installer/refresh_manager.hpp"
@@ -13,9 +14,63 @@
 #include <psp2/kernel/threadmgr.h>
 
 #include <cstring>
+#include <cstdlib>
 
 namespace psvitaalive {
 namespace {
+/** Parse catalog size strings ("6.0 GB", "512MB", "1234567") to bytes. */
+uint64_t parseHumanSizeBytes(const std::string& raw) {
+    if (raw.empty()) return 0;
+    std::string s;
+    s.reserve(raw.size());
+    for (unsigned char c : raw) {
+        if (c == ' ' || c == '\t') continue;
+        if (c >= 'A' && c <= 'Z') c = static_cast<unsigned char>(c - 'A' + 'a');
+        s.push_back(static_cast<char>(c));
+    }
+    if (s.empty()) return 0;
+    char* end = nullptr;
+    const double v = std::strtod(s.c_str(), &end);
+    if (end == s.c_str()) return 0;
+    std::string u = end ? std::string(end) : std::string();
+    uint64_t mul = 1;
+    if (u.empty() || u == "b" || u == "byte" || u == "bytes") {
+        if (v > 0 && u.empty() && s.find('.') == std::string::npos) {
+            // pure integer digit string
+            uint64_t n = 0;
+            for (char c : s) {
+                if (c < '0' || c > '9') return 0;
+                n = n * 10ULL + static_cast<uint64_t>(c - '0');
+            }
+            return n;
+        }
+        mul = 1;
+    } else if (u == "k" || u == "kb" || u == "kib") mul = 1024ULL;
+    else if (u == "m" || u == "mb" || u == "mib") mul = 1024ULL * 1024ULL;
+    else if (u == "g" || u == "gb" || u == "gib") mul = 1024ULL * 1024ULL * 1024ULL;
+    else if (u == "t" || u == "tb" || u == "tib") mul = 1024ULL * 1024ULL * 1024ULL * 1024ULL;
+    else return 0;
+    if (v <= 0.0) return 0;
+    const double bytes = v * static_cast<double>(mul);
+    if (bytes < 1.0) return 0;
+    return static_cast<uint64_t>(bytes + 0.5);
+}
+
+std::string formatBytesShort(uint64_t b) {
+    char o[48];
+    const double v = static_cast<double>(b);
+    if (b >= 1024ULL * 1024ULL * 1024ULL)
+        sceClibSnprintf(o, sizeof(o), "%.2f GB", v / (1024.0 * 1024.0 * 1024.0));
+    else if (b >= 1024ULL * 1024ULL)
+        sceClibSnprintf(o, sizeof(o), "%.2f MB", v / (1024.0 * 1024.0));
+    else if (b >= 1024ULL)
+        sceClibSnprintf(o, sizeof(o), "%.2f KB", v / 1024.0);
+    else
+        sceClibSnprintf(o, sizeof(o), "%llu B", (unsigned long long)b);
+    return o;
+}
+
+
 constexpr uint64_t RESULT_AUTO_DISMISS_MS = 8000;
 }
 
@@ -127,7 +182,8 @@ bool InstallController::requestInstall(
     const std::string& zrif,
     const std::string& linkType,
     const std::string& contentId,
-    const std::string& displayTitle
+    const std::string& displayTitle,
+    uint64_t expectedBytes
 ) {
     if (url.empty() || fileName.empty() || busy()) return false;
 
@@ -149,6 +205,48 @@ bool InstallController::requestInstall(
         while (!cleaned.empty() && cleaned.back() == ' ') cleaned.pop_back();
         if (cleaned.size() > 80) cleaned.resize(80);
         if (!cleaned.empty()) niceTitle = cleaned;
+    }
+
+    // Pre-flight: require ~2.1x payload size free on ux0 (2x + 5%) when size is known.
+    if (expectedBytes > 0) {
+        uint64_t freeB = 0, totalB = 0;
+        if (StorageManager::queryUx0Space(freeB, totalB)) {
+            const uint64_t need = (expectedBytes / 10ULL) * 21ULL; // 2.1x, avoid overflow a bit
+            // Prefer wider multiply when safe
+            const uint64_t needExact = (expectedBytes <= (~0ULL / 21ULL))
+                ? (expectedBytes * 21ULL) / 10ULL
+                : need;
+            if (freeB < needExact) {
+                const uint64_t missing = needExact - freeB;
+                char msg[320];
+                sceClibSnprintf(
+                    msg, sizeof(msg),
+                    "Not enough free space on ux0. Need ~%s free (have %s). Free about %s more to continue.",
+                    formatBytesShort(needExact).c_str(),
+                    formatBytesShort(freeB).c_str(),
+                    formatBytesShort(missing).c_str());
+                setFileName(niceTitle.empty() ? fileName.c_str() : niceTitle.c_str());
+                setStage("Space");
+                setInstallPath("");
+                setTitleId("");
+                liveAreaOk_.store(false);
+                current_.store(0);
+                total_.store(expectedBytes);
+                speed_.store(0);
+                resultShownAtMs_.store(0);
+                setState(InstallStatus::State::Failed, msg);
+                diagnostics::log(std::string("[Installer] blocked: insufficient space need=") +
+                                 formatBytesShort(needExact) + " free=" + formatBytesShort(freeB) +
+                                 " payload=" + formatBytesShort(expectedBytes));
+                return true;
+            }
+            diagnostics::log(std::string("[Installer] space check OK need=") +
+                             formatBytesShort(needExact) + " free=" + formatBytesShort(freeB));
+        } else {
+            diagnostics::log("[Installer] ux0 space probe failed; skipping pre-check");
+        }
+    } else {
+        diagnostics::log("[Installer] no expected size; space pre-check skipped");
     }
 
     activeZrif_ = zrif;

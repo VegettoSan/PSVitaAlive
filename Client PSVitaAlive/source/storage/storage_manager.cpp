@@ -3,6 +3,7 @@
 #include <psp2/io/fcntl.h>
 #include <psp2/io/dirent.h>
 #include <psp2/io/stat.h>
+#include <psp2/io/devctl.h>
 #include <psp2/kernel/clib.h>
 
 #include <cstring>
@@ -229,10 +230,26 @@ bool StorageManager::appendFile(const std::string& path, const void* data, size_
     return true;
 }
 
-bool StorageManager::hasFreeSpace(uint64_t /*requiredBytes*/) const {
-    // Phase 1: placeholder. Real free-space query can use sceIoDevctl later.
-    // For now always return true so higher layers can be developed.
+bool StorageManager::queryUx0Space(uint64_t& freeBytesOut, uint64_t& totalBytesOut) {
+    freeBytesOut = 0;
+    totalBytesOut = 0;
+    struct {
+        uint64_t max_size;
+        uint64_t free_size;
+        uint32_t cluster_size;
+        void* unk;
+    } info{};
+    const int ret = sceIoDevctl("ux0:", 0x3001, nullptr, 0, &info, sizeof(info));
+    if (ret < 0) return false;
+    freeBytesOut = info.free_size;
+    totalBytesOut = info.max_size > 0 ? info.max_size : info.free_size;
     return true;
+}
+
+bool StorageManager::hasFreeSpace(uint64_t requiredBytes) const {
+    uint64_t freeB = 0, totalB = 0;
+    if (!queryUx0Space(freeB, totalB)) return false;
+    return freeB >= requiredBytes;
 }
 
 } // namespace psvitaalive

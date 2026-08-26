@@ -12,6 +12,7 @@
 #include <vita2d.h>
 #include <algorithm>
 #include <cstring>
+#include <cstdlib>
 #include <string>
 #include <unordered_set>
 #include <vector>
@@ -446,6 +447,41 @@ bool promptDownloadAllImages(size_t totalImages){
 }
 
 
+
+uint64_t parseCatalogSizeBytes(const std::string& raw) {
+    if (raw.empty()) return 0;
+    std::string s;
+    s.reserve(raw.size());
+    for (unsigned char c : raw) {
+        if (c == ' ' || c == '\t') continue;
+        if (c >= 'A' && c <= 'Z') c = static_cast<unsigned char>(c - 'A' + 'a');
+        s.push_back(static_cast<char>(c));
+    }
+    if (s.empty()) return 0;
+    char* end = nullptr;
+    const double v = std::strtod(s.c_str(), &end);
+    if (end == s.c_str()) return 0;
+    std::string u = end ? std::string(end) : std::string();
+    uint64_t mul = 1;
+    if (u.empty() || u == "b") {
+        if (s.find('.') == std::string::npos) {
+            uint64_t n = 0;
+            for (char c : s) {
+                if (c < '0' || c > '9') break;
+                n = n * 10ULL + static_cast<uint64_t>(c - '0');
+            }
+            if (n > 0) return n;
+        }
+        mul = 1;
+    } else if (u == "k" || u == "kb" || u == "kib") mul = 1024ULL;
+    else if (u == "m" || u == "mb" || u == "mib") mul = 1024ULL * 1024ULL;
+    else if (u == "g" || u == "gb" || u == "gib") mul = 1024ULL * 1024ULL * 1024ULL;
+    else if (u == "t" || u == "tb" || u == "tib") mul = 1024ULL * 1024ULL * 1024ULL * 1024ULL;
+    else return 0;
+    if (v <= 0.0) return 0;
+    return static_cast<uint64_t>(v * static_cast<double>(mul) + 0.5);
+}
+
 std::string formatBytes(uint64_t b){char o[64];double v=(double)b;if(b>=1024ULL*1024ULL*1024ULL)sceClibSnprintf(o,sizeof(o),"%.2f GB",v/(1024.0*1024.0*1024.0));else if(b>=1024ULL*1024ULL)sceClibSnprintf(o,sizeof(o),"%.2f MB",v/(1024.0*1024.0));else if(b>=1024ULL)sceClibSnprintf(o,sizeof(o),"%.2f KB",v/1024.0);else sceClibSnprintf(o,sizeof(o),"%llu B",(unsigned long long)b);return o;}
 std::string twoLineFileName(const std::string&name){if(name.size()<=42)return name;if(name.size()<=84)return name.substr(0,42)+"\n"+name.substr(42);return name.substr(0,42)+"\n..."+name.substr(name.size()-38);}
 int hexValue(char c){if(c>='0'&&c<='9')return c-'0';if(c>='a'&&c<='f')return c-'a'+10;if(c>='A'&&c<='F')return c-'A'+10;return -1;}
@@ -543,7 +579,10 @@ int main(){
                 if(!promptZipDestination(zipDestination)){psvitaalive::diagnostics::log("[UI] ZIP destination cancelled");return false;}
             }
         }
-        return installer.requestInstall(item.downloadUrl,item.downloadFileName,zipDestination,zrif,ltype,cid,item.name);},[&installer](){return installStatusText(installer.status());});
+        {
+            uint64_t exp = parseCatalogSizeBytes(item.size);
+            return installer.requestInstall(item.downloadUrl,item.downloadFileName,zipDestination,zrif,ltype,cid,item.name,exp);
+        }},[&installer](){return installStatusText(installer.status());});
     screen.setLinkActionCallback([&installer](const psvitaalive::ui::CatalogItem&item,const psvitaalive::ui::CatalogLink&link){
         const std::string type=link.type;
         const bool actionable=(type=="Download"||type=="download"||type=="Downloads"||type=="Mirror"||type=="mirror"||type=="DLC"||type=="dlc"||link.url.find(".vpk")!=std::string::npos||link.url.find(".pkg")!=std::string::npos||link.url.find(".zip")!=std::string::npos||link.url.find(".pbp")!=std::string::npos||link.url.find(".iso")!=std::string::npos||link.url.find(".cso")!=std::string::npos);
@@ -564,7 +603,11 @@ int main(){
                 }
             }
         }
-        return installer.requestInstall(requestItem.downloadUrl,requestItem.downloadFileName,zipDestination,link.zrif,link.type,link.contentId,item.name);
+        {
+            uint64_t exp = parseCatalogSizeBytes(link.size);
+            if (exp == 0) exp = parseCatalogSizeBytes(item.size);
+            return installer.requestInstall(requestItem.downloadUrl,requestItem.downloadFileName,zipDestination,link.zrif,link.type,link.contentId,item.name,exp);
+        }
     });
 
     if(!screen.init()){psvitaalive::diagnostics::log("[System] UI initialization failed");installer.shutdown();catalogs.shutdown();images.shutdown();psvitaalive::diagnostics::shutdown();sceKernelExitProcess(1);return 1;}

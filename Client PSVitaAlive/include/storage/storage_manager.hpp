@@ -63,7 +63,13 @@ public:
     /** Append bytes to file (create if missing). */
     bool appendFile(const std::string& path, const void* data, size_t size);
 
-    /** Very basic free-space probe using a temp write test when needed later. */
+    /**
+     * Query ux0 free/total bytes via sceIoDevctl (same method as the UI footer).
+     * Returns false if the probe fails.
+     */
+    static bool queryUx0Space(uint64_t& freeBytesOut, uint64_t& totalBytesOut);
+
+    /** True if ux0 free space is at least requiredBytes (false if probe fails). */
     bool hasFreeSpace(uint64_t requiredBytes) const;
 };
 
