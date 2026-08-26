@@ -346,33 +346,45 @@ void FullCatalogScreen::closeNewsModal(bool markSeen) {
 void FullCatalogScreen::runNewsCheck(bool forceShow) {
     if (newsVisible_) return;
     if (!forceShow && newsCheckedOnce_) return;
-    newsCheckedOnce_ = true;
 
     ::psvitaalive::NewsItem item = ::psvitaalive::NewsManager::fetchRemote();
     if (!item.valid) {
         item = ::psvitaalive::NewsManager::loadCached();
     }
     if (!item.valid || !item.enabled) {
-        if (forceShow) showToast("No news available", 1600);
+        if (forceShow) {
+            newsCheckedOnce_ = true;
+            showToast("No news available", 1600);
+            diagnostics::log("[UI] news check: no valid item (force)");
+            return;
+        }
+        // Soft retry: network may not be ready right after catalog load
+        ++newsFetchAttempts_;
+        diagnostics::log(std::string("[UI] news check: no valid item yet attempts=") +
+                         std::to_string(newsFetchAttempts_));
+        if (newsFetchAttempts_ >= 5) {
+            newsCheckedOnce_ = true;
+            diagnostics::log("[UI] news check: giving up auto-show for this session");
+        }
         return;
     }
 
+    newsCheckedOnce_ = true;
     newsId_ = item.id;
     newsTitle_ = item.title.empty() ? "News" : item.title;
     newsBody_ = item.body;
     newsLines_.clear();
-    // Split body into lines for scroll drawing
     {
         size_t pos = 0;
         const std::string& b = newsBody_;
         while (pos <= b.size()) {
-            size_t end = b.find('\n', pos);
-            if (end == std::string::npos) {
+            size_t endLine = b.find('\n', pos);
+            if (endLine == std::string::npos) {
                 newsLines_.push_back(b.substr(pos));
                 break;
             }
-            newsLines_.push_back(b.substr(pos, end - pos));
-            pos = end + 1;
+            newsLines_.push_back(b.substr(pos, endLine - pos));
+            pos = endLine + 1;
         }
         if (newsLines_.empty()) newsLines_.push_back("");
     }
@@ -381,9 +393,11 @@ void FullCatalogScreen::runNewsCheck(bool forceShow) {
     const bool autoShow = ::psvitaalive::NewsManager::shouldAutoShow(item);
     if (forceShow || autoShow) {
         newsVisible_ = true;
-        newsMarkSeenOnClose_ = true; // mark seen when user closes (auto or manual)
+        newsMarkSeenOnClose_ = true;
         diagnostics::log(std::string("[UI] news modal show id=") + newsId_ +
                          (forceShow ? " (manual)" : " (auto)"));
+    } else {
+        diagnostics::log(std::string("[UI] news not shown (already seen) id=") + newsId_);
     }
 }
 

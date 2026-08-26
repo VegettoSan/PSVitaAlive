@@ -50,9 +50,18 @@ NewsItem NewsManager::parseText(const std::string& text) {
     NewsItem item;
     if (text.size() < 4) return item;
 
+    // Skip UTF-8 BOM if present
+    size_t pos0 = 0;
+    if (text.size() >= 3 &&
+        (unsigned char)text[0] == 0xEF &&
+        (unsigned char)text[1] == 0xBB &&
+        (unsigned char)text[2] == 0xBF) {
+        pos0 = 3;
+    }
+
     bool inBody = false;
     std::string body;
-    size_t pos = 0;
+    size_t pos = pos0;
     while (pos < text.size()) {
         size_t end = text.find('\n', pos);
         if (end == std::string::npos) end = text.size();
@@ -66,18 +75,37 @@ NewsItem NewsManager::parseText(const std::string& text) {
                 inBody = true;
                 continue;
             }
-            if (t.size() >= 3 && (t.compare(0, 3, "id:") == 0 || t.compare(0, 3, "ID:") == 0)) {
-                item.id = trim(t.substr(3));
-                continue;
+            auto headerVal = [&](const char* key) -> std::string {
+                const size_t klen = std::strlen(key);
+                if (t.size() < klen) return {};
+                // case-insensitive key match
+                for (size_t i = 0; i < klen; ++i) {
+                    char a = t[i], b = key[i];
+                    if (a >= 'A' && a <= 'Z') a = static_cast<char>(a - 'A' + 'a');
+                    if (b >= 'A' && b <= 'Z') b = static_cast<char>(b - 'A' + 'a');
+                    if (a != b) return {};
+                }
+                size_t v = klen;
+                while (v < t.size() && (t[v] == ' ' || t[v] == '	')) ++v;
+                if (v >= t.size() || t[v] != ':') return {};
+                ++v;
+                return trim(t.substr(v));
+            };
+            {
+                const std::string v = headerVal("id");
+                if (!v.empty()) { item.id = v; continue; }
             }
-            if (t.size() >= 6 && (t.compare(0, 6, "title:") == 0 || t.compare(0, 6, "Title:") == 0)) {
-                item.title = trim(t.substr(6));
-                continue;
+            {
+                const std::string v = headerVal("title");
+                if (!v.empty()) { item.title = v; continue; }
             }
-            if (t.size() >= 8 && (t.compare(0, 8, "enabled:") == 0 || t.compare(0, 8, "Enabled:") == 0)) {
-                const std::string v = trim(t.substr(8));
-                item.enabled = !(v == "false" || v == "0" || v == "no" || v == "off");
-                continue;
+            {
+                const std::string v = headerVal("enabled");
+                if (!v.empty()) {
+                    const std::string low = trim(v);
+                    item.enabled = !(low == "false" || low == "0" || low == "no" || low == "off");
+                    continue;
+                }
             }
             // Ignore unknown header lines
             continue;
@@ -146,9 +174,15 @@ void NewsManager::saveCache(const std::string& rawText) {
 }
 
 bool NewsManager::shouldAutoShow(const NewsItem& item) {
-    if (!item.valid || !item.enabled) return false;
+    if (!item.valid || !item.enabled) {
+        diagnostics::log("[News] shouldAutoShow=0 (invalid or disabled)");
+        return false;
+    }
     const std::string seen = loadSeenId();
-    return seen != item.id;
+    const bool show = seen != item.id;
+    diagnostics::log(std::string("[News] shouldAutoShow=") + (show ? "1" : "0") +
+                     " id=" + item.id + " seen=" + (seen.empty() ? "(none)" : seen));
+    return show;
 }
 
 } // namespace psvitaalive

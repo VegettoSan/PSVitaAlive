@@ -70,6 +70,7 @@ public:
     /** Fetch news.txt after startup (or reopen from footer). Non-blocking failure. */
     void runNewsCheck(bool forceShow);
     bool isNewsVisible() const { return newsVisible_; }
+    bool isNewsCheckDone() const { return newsCheckedOnce_; }
     // outcome: 0 = progress, 1 = success, 2 = error
     void setInstallProgress(bool active, uint64_t current, uint64_t total, uint64_t bytesPerSecond,
                             const std::string& stage, const std::string& fileName,
@@ -137,6 +138,7 @@ private:
     // News modal state.
     bool newsVisible_ = false;
     bool newsCheckedOnce_ = false;
+    int newsFetchAttempts_ = 0;
     bool newsMarkSeenOnClose_ = false;
     std::string newsId_;
     std::string newsTitle_;
