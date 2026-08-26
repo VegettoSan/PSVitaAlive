@@ -389,6 +389,7 @@ void FullCatalogScreen::runNewsCheck(bool forceShow) {
         if (newsLines_.empty()) newsLines_.push_back("");
     }
     newsScrollLine_ = 0;
+    visualNewsScroll_ = 0.f;
 
     const bool autoShow = ::psvitaalive::NewsManager::shouldAutoShow(item);
     if (forceShow || autoShow) {
@@ -442,15 +443,24 @@ void FullCatalogScreen::drawNewsOverlay() {
     const int textTop = y + 88;
     const int textBottom = y + h - 56;
     const int lineH = 22;
-    const int maxVisible = (textBottom - textTop) / lineH;
+    const int maxVisible = std::max(1, (textBottom - textTop) / lineH);
     int total = (int)newsLines_.size();
+    const int maxScroll = std::max(0, total - maxVisible);
     if (newsScrollLine_ < 0) newsScrollLine_ = 0;
-    if (newsScrollLine_ > total - 1) newsScrollLine_ = total > 0 ? total - 1 : 0;
-    const int start = newsScrollLine_;
-    int drawY = textTop;
-    for (int i = start; i < total && (i - start) < maxVisible; ++i) {
+    if (newsScrollLine_ > maxScroll) newsScrollLine_ = maxScroll;
+    if (visualNewsScroll_ < 0.f) visualNewsScroll_ = 0.f;
+    if (visualNewsScroll_ > (float)maxScroll) visualNewsScroll_ = (float)maxScroll;
+
+    const float vs = visualNewsScroll_;
+    const int start = (int)std::floor(vs);
+    const float frac = vs - (float)start;
+    int drawY = textTop - (int)(frac * (float)lineH);
+
+    vita2d_enable_clipping();
+    vita2d_set_clip_rectangle(x + 20, textTop, x + w - 22, textBottom);
+    // Draw one extra line above/below for smooth fractional scroll
+    for (int i = std::max(0, start - 1); i < total && i <= start + maxVisible; ++i) {
         std::string line = newsLines_[(size_t)i];
-        // Bullet lines slightly indented look
         float scale = 0.55f;
         unsigned col = TEXT;
         if (!line.empty() && (line[0] == '-' || line[0] == '*')) {
@@ -458,13 +468,25 @@ void FullCatalogScreen::drawNewsOverlay() {
             if (line.size() > 1 && line[1] == ' ')
                 line = std::string("  ") + line;
         }
-        vita2d_pgf_draw_text(font_, x + 28, drawY + 16, col, scale, ellipsize(line, 78).c_str());
-        drawY += lineH;
+        const int ly = drawY + (i - start) * lineH;
+        if (ly + lineH < textTop - lineH || ly > textBottom + lineH) continue;
+        vita2d_pgf_draw_text(font_, x + 28, ly + 16, col, scale, ellipsize(line, 72).c_str());
     }
+    vita2d_disable_clipping();
+
+    // Scrollbar (right side of text area)
     if (total > maxVisible) {
+        const int trackX = x + w - 16;
+        const int trackY = textTop;
+        const int trackH = textBottom - textTop;
+        vita2d_draw_rectangle(trackX, trackY, 4, trackH, BORDER);
+        const float thumbH = std::max(22.f, (float)trackH * ((float)maxVisible / (float)total));
+        const float thumbT = (maxScroll > 0) ? (vs / (float)maxScroll) : 0.f;
+        const int thumbY = trackY + (int)(thumbT * ((float)trackH - thumbH));
+        vita2d_draw_rectangle(trackX, thumbY, 4, (int)thumbH, ACCENT);
         char scr[32];
-        sceClibSnprintf(scr, sizeof(scr), "%d / %d", start + 1, total);
-        vita2d_pgf_draw_text(font_, x + w - 80, y + 34, DIM, 0.48f, scr);
+        sceClibSnprintf(scr, sizeof(scr), "%d/%d", std::min(total, start + 1), total);
+        vita2d_pgf_draw_text(font_, x + w - 90, y + 34, DIM, 0.48f, scr);
     }
 
     const int by = y + h - 48, bw = 220, bh = 36;
@@ -1094,24 +1116,56 @@ void FullCatalogScreen::handleTouch() {
         return x >= rx && x < rx + rw && y >= ry && y < ry + rh;
     };
 
-    // --- News modal: only Close is tappable ---
+    // --- News modal: drag to scroll + Close tap ---
     if (newsVisible_) {
+        const int ow = 700, oh = 420, ox = (SCREEN_W - ow) / 2, oy = (SCREEN_H - oh) / 2;
+        const int textTop = oy + 88;
+        const int textBottom = oy + oh - 56;
+        const int lineH = 22;
+        const int maxVisible = std::max(1, (textBottom - textTop) / lineH);
+        const int total = (int)newsLines_.size();
+        const int maxScroll = std::max(0, total - maxVisible);
+
         if (td.reportNum > 0) {
+            const int x = mapX(td.report[0].x);
+            const int yy = mapY(td.report[0].y);
             if (!touchDown_) {
                 touchDown_ = true;
-                touchStartX_ = mapX(td.report[0].x);
-                touchStartY_ = mapY(td.report[0].y);
+                touchStartX_ = x;
+                touchStartY_ = yy;
+                touchLastY_ = yy;
                 touchMoved_ = false;
+                touchAccumY_ = 0.f;
+            } else {
+                const int dy = yy - touchLastY_;
+                touchLastY_ = yy;
+                if (std::abs(x - touchStartX_) > 14 || std::abs(yy - touchStartY_) > 14)
+                    touchMoved_ = true;
+                // Finger up → content up (increase scroll). Soft sensitivity.
+                touchAccumY_ += static_cast<float>(-dy);
+                const float step = 18.f;
+                while (touchAccumY_ >= step) {
+                    if (newsScrollLine_ < maxScroll) ++newsScrollLine_;
+                    touchAccumY_ -= step;
+                }
+                while (touchAccumY_ <= -step) {
+                    if (newsScrollLine_ > 0) --newsScrollLine_;
+                    touchAccumY_ += step;
+                }
+                if (newsScrollLine_ < 0) newsScrollLine_ = 0;
+                if (newsScrollLine_ > maxScroll) newsScrollLine_ = maxScroll;
             }
         } else if (touchDown_) {
             const int x = touchStartX_, y = touchStartY_;
+            const bool wasMoved = touchMoved_;
             touchDown_ = false;
-            if (touchMoved_) return;
-            const int ow = 700, oh = 420, ox = (SCREEN_W - ow) / 2, oy = (SCREEN_H - oh) / 2;
-            const int by = oy + oh - 48, bw = 220, bh = 36;
-            const int bx = ox + (ow - bw) / 2;
-            if (hit(x, y, bx, by, bw, bh))
-                closeNewsModal(newsMarkSeenOnClose_);
+            touchAccumY_ = 0.f;
+            if (!wasMoved) {
+                const int by = oy + oh - 48, bw = 220, bh = 36;
+                const int bx = ox + (ow - bw) / 2;
+                if (hit(x, y, bx, by, bw, bh))
+                    closeNewsModal(newsMarkSeenOnClose_);
+            }
         }
         return;
     }
@@ -1901,7 +1955,7 @@ if(pressed&SCE_CTRL_START){
             showToast("Please wait...", 900);
         }
         return;
-    }if(reportConfirmVisible_){if(pressed&SCE_CTRL_CIRCLE){closeReportConfirm();return;}if(pressed&SCE_CTRL_CROSS){closeReportConfirm();trySendErrorReport("Manual report from UI","User confirmed report from footer");return;}return;}if(newsVisible_){if(pressed&SCE_CTRL_CIRCLE){closeNewsModal(newsMarkSeenOnClose_);return;}if(pressed&SCE_CTRL_UP||(nav&SCE_CTRL_UP)){if(newsScrollLine_>0)--newsScrollLine_;return;}if(pressed&SCE_CTRL_DOWN||(nav&SCE_CTRL_DOWN)){if(newsScrollLine_+1<(int)newsLines_.size())++newsScrollLine_;return;}return;}if(installProgressActive_&&(pressed&SCE_CTRL_SQUARE)&&(installOutcome_==2)){trySendErrorReport("Installation failed",installProgressMessage_+" | file="+installProgressFile_);return;}if(installProgressActive_&&(pressed&SCE_CTRL_CIRCLE)){if(installOutcome_==1||installOutcome_==2){if(installAcknowledge_)installAcknowledge_();reportUiState_=0;}else if(installCancel_)installCancel_();return;}if(catalogLoading_||installProgressActive_)return;if(pressed&SCE_CTRL_SQUARE){if(!searchQuery_.empty())applySearch("");return;}if(state_.mode==UiMode::FULL_CATALOG){if(pressed&SCE_CTRL_TRIANGLE){if(searchRequest_)applySearch(searchRequest_(searchQuery_));return;}if(nav&SCE_CTRL_LEFT&&state_.focusIndex%3>0)--state_.focusIndex;if(nav&SCE_CTRL_RIGHT&&state_.focusIndex%3<2&&state_.focusIndex+1<(int)catalogView().size())++state_.focusIndex;if(nav&SCE_CTRL_UP)moveCatalogFocus(-1);if(nav&SCE_CTRL_DOWN)moveCatalogFocus(1);clampCatalogScroll();if(pressed&SCE_CTRL_CROSS)startOpeningDetail();return;}if(state_.mode!=UiMode::SPLIT_DETAIL)return;if(pressed&SCE_CTRL_CIRCLE){startClosingDetail();return;}if(state_.activePanel==UiPanel::Catalog){if(pressed&SCE_CTRL_RIGHT)state_.activePanel=UiPanel::Detail;if(nav&SCE_CTRL_UP)moveCatalogFocus(-1);if(nav&SCE_CTRL_DOWN)moveCatalogFocus(1);return;}if(nav&SCE_CTRL_LEFT)state_.activePanel=UiPanel::Catalog;if(pressed&SCE_CTRL_TRIANGLE){if(state_.linkNavigation)exitLinkNavigation();else enterLinkNavigation();return;}if(state_.linkNavigation){if(nav&SCE_CTRL_UP)moveLinkFocus(0,-1);if(nav&SCE_CTRL_DOWN)moveLinkFocus(0,1);if(pressed&SCE_CTRL_CROSS)activateFocusedLink();return;}if(nav&SCE_CTRL_UP)moveDetailScroll(-1);if(nav&SCE_CTRL_DOWN)moveDetailScroll(1);}
+    }if(reportConfirmVisible_){if(pressed&SCE_CTRL_CIRCLE){closeReportConfirm();return;}if(pressed&SCE_CTRL_CROSS){closeReportConfirm();trySendErrorReport("Manual report from UI","User confirmed report from footer");return;}return;}if(newsVisible_){if(pressed&SCE_CTRL_CIRCLE){closeNewsModal(newsMarkSeenOnClose_);return;}if(pressed&SCE_CTRL_UP||(nav&SCE_CTRL_UP)){if(newsScrollLine_>0)--newsScrollLine_;return;}if(pressed&SCE_CTRL_DOWN||(nav&SCE_CTRL_DOWN)){const int mv=std::max(1,(420-56-88)/22);const int ms=std::max(0,(int)newsLines_.size()-mv);if(newsScrollLine_<ms)++newsScrollLine_;return;}return;}if(installProgressActive_&&(pressed&SCE_CTRL_SQUARE)&&(installOutcome_==2)){trySendErrorReport("Installation failed",installProgressMessage_+" | file="+installProgressFile_);return;}if(installProgressActive_&&(pressed&SCE_CTRL_CIRCLE)){if(installOutcome_==1||installOutcome_==2){if(installAcknowledge_)installAcknowledge_();reportUiState_=0;}else if(installCancel_)installCancel_();return;}if(catalogLoading_||installProgressActive_)return;if(pressed&SCE_CTRL_SQUARE){if(!searchQuery_.empty())applySearch("");return;}if(state_.mode==UiMode::FULL_CATALOG){if(pressed&SCE_CTRL_TRIANGLE){if(searchRequest_)applySearch(searchRequest_(searchQuery_));return;}if(nav&SCE_CTRL_LEFT&&state_.focusIndex%3>0)--state_.focusIndex;if(nav&SCE_CTRL_RIGHT&&state_.focusIndex%3<2&&state_.focusIndex+1<(int)catalogView().size())++state_.focusIndex;if(nav&SCE_CTRL_UP)moveCatalogFocus(-1);if(nav&SCE_CTRL_DOWN)moveCatalogFocus(1);clampCatalogScroll();if(pressed&SCE_CTRL_CROSS)startOpeningDetail();return;}if(state_.mode!=UiMode::SPLIT_DETAIL)return;if(pressed&SCE_CTRL_CIRCLE){startClosingDetail();return;}if(state_.activePanel==UiPanel::Catalog){if(pressed&SCE_CTRL_RIGHT)state_.activePanel=UiPanel::Detail;if(nav&SCE_CTRL_UP)moveCatalogFocus(-1);if(nav&SCE_CTRL_DOWN)moveCatalogFocus(1);return;}if(nav&SCE_CTRL_LEFT)state_.activePanel=UiPanel::Catalog;if(pressed&SCE_CTRL_TRIANGLE){if(state_.linkNavigation)exitLinkNavigation();else enterLinkNavigation();return;}if(state_.linkNavigation){if(nav&SCE_CTRL_UP)moveLinkFocus(0,-1);if(nav&SCE_CTRL_DOWN)moveLinkFocus(0,1);if(pressed&SCE_CTRL_CROSS)activateFocusedLink();return;}if(nav&SCE_CTRL_UP)moveDetailScroll(-1);if(nav&SCE_CTRL_DOWN)moveDetailScroll(1);}
 unsigned FullCatalogScreen::colorForStatus(const std::string&s)const{if(s=="Verified")return ACCENT;if(s=="Legacy")return TEXT;if(s=="Archive")return DIM;return TEXT;}void FullCatalogScreen::drawHeader(int w){
     // Near-black bar + dual neon edge (LiveArea brand)
     vita2d_draw_rectangle(0, 0, w, HEADER_H, SURFACE2);
@@ -2220,6 +2274,16 @@ void FullCatalogScreen::updateAnimations() {
     visualDetailScroll_ += (targetDet - visualDetailScroll_) * 0.18f;
     if (std::fabs(targetDet - visualDetailScroll_) < 0.02f)
         visualDetailScroll_ = targetDet;
+
+    // News modal scroll (line units)
+    if (newsVisible_) {
+        const float targetNews = static_cast<float>(newsScrollLine_);
+        visualNewsScroll_ += (targetNews - visualNewsScroll_) * 0.22f;
+        if (std::fabs(targetNews - visualNewsScroll_) < 0.02f)
+            visualNewsScroll_ = targetNews;
+    } else {
+        visualNewsScroll_ = static_cast<float>(newsScrollLine_);
+    }
 
     // Keep visual focus in sync with logical focus (no laggy card handoff).
     visualFocusIndex_ = static_cast<float>(state_.focusIndex);

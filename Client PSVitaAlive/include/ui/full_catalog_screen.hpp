@@ -145,6 +145,7 @@ private:
     std::string newsBody_;
     std::vector<std::string> newsLines_;
     int newsScrollLine_ = 0;
+    float visualNewsScroll_ = 0.f;
 
     std::unordered_map<std::string, vita2d_texture*> textures_;
     std::vector<std::string> textureOrder_;
