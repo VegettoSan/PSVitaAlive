@@ -252,7 +252,16 @@ private:
     int reportUiState_ = 0;          // 0 idle, 1 sending, 2 sent, 3 failed
     uint64_t reportUiUntilMs_ = 0;
     char reportUiMsg_[48] = {};
+    std::string reportTitle_;
+    std::string reportContext_;
+    std::atomic<bool> reportBusy_{false};
+    std::atomic<bool> reportDone_{false};
+    std::atomic<bool> reportOk_{false};
+    char reportResultMsg_[64] = {};
+    SceUID reportThread_ = -1;
+    static int reportWorkerEntry(SceSize args, void* argp);
     void trySendErrorReport(const std::string& title, const std::string& context);
+    void pollReportWorker();
     void drawReportChip();
 
     // Self-update (GitHub Releases → in-place extract to ux0:app/TITLEID)

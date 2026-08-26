@@ -249,60 +249,66 @@ uint64_t unitToBytes(double value, const std::string& unitRaw) {
     return static_cast<uint64_t>(bytes + 0.5);
 }
 
-/** Parse human sizes from MediaFire share HTML (Download (1.47GB), etc.). */
+/** Parse size only from downloadButton / "Download (16.04MB)" — never scan whole HTML
+ *  (CDN URLs contain hex that falsely matches sizes like "3g" / huge numbers). */
 uint64_t findSizeBytesFromHtml(const std::string& html) {
     const std::string lower = toLowerAscii(html);
     uint64_t best = 0;
 
-    auto consider = [&](double val, const std::string& unit) {
-        const uint64_t b = unitToBytes(val, unit);
+    auto parseInsideParen = [&](const std::string& inside) {
+        // e.g. "16.04mb" or "16.04 mb" or "1.47gb"
+        std::string s;
+        s.reserve(inside.size());
+        for (char c : inside) {
+            if (c == ' ' || c == '\t' || c == '\r' || c == '\n') continue;
+            s.push_back(static_cast<char>(std::tolower(static_cast<unsigned char>(c))));
+        }
+        if (s.empty()) return;
+        char unit[16] = {};
+        double val = 0.0;
+        if (std::sscanf(s.c_str(), "%lf%15s", &val, unit) < 1 || val <= 0.0 || !unit[0]) return;
+        // Require a real unit (reject bare numbers / single ambiguous letters from noise)
+        std::string u(unit);
+        if (!(u == "kb" || u == "mb" || u == "gb" || u == "tb" ||
+              u == "kib" || u == "mib" || u == "gib" || u == "tib")) {
+            return;
+        }
+        const uint64_t b = unitToBytes(val, u);
         if (b > best) best = b;
     };
 
-    // Pattern: Download (1.47GB) / download (850.2 MB)
-    size_t p = 0;
-    while ((p = lower.find("download", p)) != std::string::npos) {
-        const size_t open = lower.find('(', p);
-        if (open != std::string::npos && open < p + 48) {
-            const size_t close = lower.find(')', open);
-            if (close != std::string::npos && close > open + 1 && close - open < 32) {
-                const std::string inside = lower.substr(open + 1, close - open - 1);
-                char unit[16] = {};
-                double val = 0.0;
-                if (std::sscanf(inside.c_str(), "%lf %15s", &val, unit) >= 1 ||
-                    std::sscanf(inside.c_str(), "%lf%15s", &val, unit) >= 1) {
-                    if (unit[0]) consider(val, unit);
-                }
-            }
+    // 1) Prefer text inside id="downloadButton" ... > ... </a>
+    size_t btn = lower.find("id=\"downloadbutton\"");
+    if (btn == std::string::npos) btn = lower.find("id='downloadbutton'");
+    if (btn != std::string::npos) {
+        const size_t gt = lower.find('>', btn);
+        const size_t endA = lower.find("</a>", gt == std::string::npos ? btn : gt);
+        if (gt != std::string::npos && endA != std::string::npos && endA > gt) {
+            const std::string chunk = lower.substr(gt + 1, endA - (gt + 1));
+            const size_t open = chunk.find('(');
+            const size_t close = chunk.find(')', open == std::string::npos ? 0 : open);
+            if (open != std::string::npos && close != std::string::npos && close > open)
+                parseInsideParen(chunk.substr(open + 1, close - open - 1));
         }
-        p += 8;
     }
 
-    // Generic: 1.47 GB / 850MB near file info
-    p = 0;
-    while (p < lower.size()) {
-        while (p < lower.size() && !std::isdigit(static_cast<unsigned char>(lower[p]))) ++p;
-        if (p >= lower.size()) break;
-        size_t start = p;
-        while (p < lower.size() && (std::isdigit(static_cast<unsigned char>(lower[p])) || lower[p] == '.')) ++p;
-        const std::string num = lower.substr(start, p - start);
-        while (p < lower.size() && (lower[p] == ' ' || lower[p] == '\t')) ++p;
-        size_t u0 = p;
-        while (p < lower.size() && std::isalpha(static_cast<unsigned char>(lower[p]))) ++p;
-        if (p > u0 && p - u0 <= 4) {
-            const std::string unit = lower.substr(u0, p - u0);
-            if (unit == "kb" || unit == "mb" || unit == "gb" || unit == "tb" ||
-                unit == "kib" || unit == "mib" || unit == "gib" || unit == "tib" ||
-                unit == "k" || unit == "m" || unit == "g") {
-                char* end = nullptr;
-                const double val = std::strtod(num.c_str(), &end);
-                if (end != num.c_str() && val > 0.0) consider(val, unit);
+    // 2) Fallback: "download (16.04mb)" within ~40 chars of the word download
+    if (best == 0) {
+        size_t p = 0;
+        while ((p = lower.find("download", p)) != std::string::npos) {
+            const size_t open = lower.find('(', p);
+            if (open != std::string::npos && open < p + 40) {
+                const size_t close = lower.find(')', open);
+                if (close != std::string::npos && close > open + 1 && close - open < 24)
+                    parseInsideParen(lower.substr(open + 1, close - open - 1));
             }
+            p += 8;
         }
     }
 
     return best;
 }
+
 
 bool isMediaFireUrl(const std::string& url) {
     return toLowerAscii(url).find("mediafire.com") != std::string::npos;

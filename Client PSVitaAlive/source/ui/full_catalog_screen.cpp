@@ -458,43 +458,136 @@ void FullCatalogScreen::drawNewsOverlay() {
 void FullCatalogScreen::drawReportChip() {
     const int panelW = 220;
     const int panelX = SCREEN_W - panelW - 6;
-    const int chipW = 96;
+    const int chipW = 100;
     const int chipH = FOOTER_H - 8;
     const int chipX = panelX - chipW - 8;
     const int chipY = SCREEN_H - FOOTER_H + 4;
-    unsigned col = ACCENT;
-    const char* lab = "Report";
-    if (reportUiState_ == 1) { lab = "..."; col = TEXT; }
-    else if (reportUiState_ == 2) { lab = "Sent"; col = RGBA8(0x3B, 0xD9, 0x60, 255); }
-    else if (reportUiState_ == 3) { lab = "Fail"; col = RGBA8(0xE0, 0x32, 0x32, 255); }
+    if (!font_) return;
+
+    const unsigned BLACK = RGBA8(0, 0, 0, 255);
+    const unsigned GREEN = RGBA8(0x3B, 0xD9, 0x60, 255);
+    const unsigned RED = RGBA8(0xE0, 0x32, 0x32, 255);
+
+    // Expire transient Sent/Fail chip state
     if (reportUiState_ >= 2 && reportUiUntilMs_ > 0) {
         const uint64_t now = sceKernelGetProcessTimeWide() / 1000ULL;
         if (now >= reportUiUntilMs_) {
             reportUiState_ = 0;
             reportUiMsg_[0] = 0;
-            lab = "Report";
-            col = ACCENT;
         }
     }
-    if (!font_) return;
-    vita2d_draw_rectangle(chipX, chipY, chipW, chipH, SURFACE);
-    vita2d_draw_rectangle(chipX, chipY, 3, chipH, col);
-    const int tw = vita2d_pgf_text_width(font_, 0.52f, lab);
-    vita2d_pgf_draw_text(font_, chipX + (chipW - tw) / 2, chipY + 18, col, 0.52f, lab);
+
+    unsigned fill = SURFACE;
+    unsigned edge = ACCENT;
+    unsigned textCol = ACCENT;
+    const char* lab = "Report";
+    if (reportUiState_ == 1) {
+        fill = SURFACE;
+        edge = ACCENT;
+        textCol = WHITE;
+        lab = ""; // progress bar instead
+    } else if (reportUiState_ == 2) {
+        fill = GREEN;
+        edge = GREEN;
+        textCol = BLACK;
+        lab = "Sent";
+    } else if (reportUiState_ == 3) {
+        fill = RED;
+        edge = RED;
+        textCol = WHITE;
+        lab = "Fail";
+    }
+
+    vita2d_draw_rectangle(chipX, chipY, chipW, chipH, fill);
+    vita2d_draw_rectangle(chipX, chipY, 3, chipH, edge);
+
+    if (reportUiState_ == 1) {
+        // Indeterminate bar (same idea as image loading placeholders)
+        const int barX = chipX + 10;
+        const int barW = chipW - 16;
+        const int barH = 8;
+        const int barY = chipY + (chipH - barH) / 2;
+        vita2d_draw_rectangle(barX, barY, barW, barH, BORDER);
+        const float t = (float)(sceKernelGetProcessTimeWide() / 1000ULL % 1000) / 1000.f;
+        const float phase = t < 0.5f ? (t * 2.f) : (2.f - t * 2.f);
+        const int fillW = (int)(barW * (0.25f + 0.55f * phase));
+        if (fillW > 0) vita2d_draw_rectangle(barX, barY, fillW, barH, ACCENT);
+    } else {
+        const float scale = 0.62f;
+        const int tw = vita2d_pgf_text_width(font_, scale, lab);
+        const int th = 18;
+        vita2d_pgf_draw_text(font_, chipX + (chipW - tw) / 2, chipY + (chipH + th) / 2 - 2, textCol, scale, lab);
+    }
+}
+
+int FullCatalogScreen::reportWorkerEntry(SceSize args, void* argp) {
+    (void)args;
+    FullCatalogScreen* self = *reinterpret_cast<FullCatalogScreen**>(argp);
+    if (!self) return 0;
+    const auto res = ::psvitaalive::sendErrorReport(self->reportTitle_, self->reportContext_);
+    self->reportOk_.store(res.ok);
+    sceClibSnprintf(self->reportResultMsg_, sizeof(self->reportResultMsg_), "%s",
+                    res.message.empty() ? (res.ok ? "Report sent" : "Report failed") : res.message.c_str());
+    self->reportDone_.store(true);
+    self->reportBusy_.store(false);
+    return 0;
+}
+
+void FullCatalogScreen::pollReportWorker() {
+    if (!reportDone_.load()) return;
+    reportDone_.store(false);
+    if (reportThread_ >= 0) {
+        sceKernelWaitThreadEnd(reportThread_, nullptr, nullptr);
+        sceKernelDeleteThread(reportThread_);
+        reportThread_ = -1;
+    }
+    const bool ok = reportOk_.load();
+    reportUiState_ = ok ? 2 : 3;
+    sceClibSnprintf(reportUiMsg_, sizeof(reportUiMsg_), "%s", reportResultMsg_);
+    reportUiUntilMs_ = sceKernelGetProcessTimeWide() / 1000ULL + 3500ULL;
+    showToast(ok ? (reportResultMsg_[0] ? reportResultMsg_ : "Report sent")
+                 : (reportResultMsg_[0] ? reportResultMsg_ : "Report failed"),
+              2200);
+    diagnostics::log(std::string("[UI] error report finished ok=") + (ok ? "1" : "0") +
+                     " msg=" + reportResultMsg_);
 }
 
 void FullCatalogScreen::trySendErrorReport(const std::string& title, const std::string& context) {
-    if (reportUiState_ == 1) return;
+    if (reportUiState_ == 1 || reportBusy_.load()) return;
+    if (reportThread_ >= 0) return;
+
+    reportTitle_ = title;
+    reportContext_ = context;
     reportUiState_ = 1;
-    sceClibSnprintf(reportUiMsg_, sizeof(reportUiMsg_), "Sending...");
     reportUiUntilMs_ = 0;
+    reportDone_.store(false);
+    reportOk_.store(false);
+    reportResultMsg_[0] = 0;
+    sceClibSnprintf(reportUiMsg_, sizeof(reportUiMsg_), "Sending...");
     diagnostics::log("[UI] error report requested: " + title);
-    const auto res = ::psvitaalive::sendErrorReport(title, context);
-    reportUiState_ = res.ok ? 2 : 3;
-    sceClibSnprintf(reportUiMsg_, sizeof(reportUiMsg_), "%s",
-                    res.message.empty() ? (res.ok ? "Sent" : "Failed") : res.message.c_str());
-    reportUiUntilMs_ = sceKernelGetProcessTimeWide() / 1000ULL + 4000ULL;
+
+    reportBusy_.store(true);
+    reportThread_ = sceKernelCreateThread("PSVA_Report", reportWorkerEntry, 0x10000100, 0x10000, 0, 0, nullptr);
+    if (reportThread_ < 0) {
+        reportBusy_.store(false);
+        reportUiState_ = 0;
+        // Fallback: synchronous send
+        const auto res = ::psvitaalive::sendErrorReport(title, context);
+        reportUiState_ = res.ok ? 2 : 3;
+        reportUiUntilMs_ = sceKernelGetProcessTimeWide() / 1000ULL + 3500ULL;
+        showToast(res.ok ? "Report sent" : (res.message.empty() ? "Report failed" : res.message), 2200);
+        return;
+    }
+    FullCatalogScreen* self = this;
+    if (sceKernelStartThread(reportThread_, sizeof(self), &self) < 0) {
+        sceKernelDeleteThread(reportThread_);
+        reportThread_ = -1;
+        reportBusy_.store(false);
+        reportUiState_ = 0;
+        showToast("Report failed to start", 1800);
+    }
 }
+
 
 void FullCatalogScreen::setInstallCallbacks(InstallRequestFn r,InstallStatusFn s){installRequest_=std::move(r);installStatusText_=std::move(s);}void FullCatalogScreen::setInstallCancelCallback(InstallCancelFn c){installCancel_=std::move(c);}void FullCatalogScreen::setInstallAcknowledgeCallback(InstallAcknowledgeFn c){installAcknowledge_=std::move(c);}void FullCatalogScreen::setCatalogChangeCallback(CatalogChangeFn c){catalogChange_=std::move(c);}void FullCatalogScreen::setSearchCallback(SearchRequestFn c){searchRequest_=std::move(c);}void FullCatalogScreen::setLinkActionCallback(LinkActionFn c){linkAction_=std::move(c);}void FullCatalogScreen::setImageCache(ImageCache*c){imageCache_=c;}
 void FullCatalogScreen::setCatalogItems(std::vector<CatalogItem>items){
@@ -1076,8 +1169,8 @@ void FullCatalogScreen::handleTouch() {
     {
         const int panelW = 220;
         const int panelX = SCREEN_W - panelW - 6;
-        const int reportW = 96;
-        const int newsW = 72;
+        const int reportW = 100;
+        const int newsW = 80;
         const int chipH = FOOTER_H - 8;
         const int reportX = panelX - reportW - 8;
         const int newsX = reportX - newsW - 8;
@@ -2718,17 +2811,31 @@ if(installOutcome_==2){
   const int bwReport=200, bwClose=200;
   const int bxReport=x+28, bxClose=x+w-28-bwClose;
   const unsigned reportCol = (reportUiState_==2) ? GREEN : ((reportUiState_==3) ? RED : ACCENT);
+  const unsigned reportText = (reportUiState_==2) ? RGBA8(0,0,0,255) : WHITE;
   vita2d_draw_rectangle(bxReport,by2,bwReport,bh2,reportCol);
-  {
-    const char* lab = "[] Report";
-    if (reportUiState_==1) lab = "Sending...";
-    else if (reportUiState_==2) lab = "Sent";
+  if (reportUiState_==1) {
+    const int barX = bxReport + 16, barW = bwReport - 32, barH = 10;
+    const int barY = by2 + (bh2 - barH) / 2;
+    vita2d_draw_rectangle(barX, barY, barW, barH, BORDER);
+    const float tt = (float)(sceKernelGetProcessTimeWide() / 1000ULL % 1000) / 1000.f;
+    const float phase = tt < 0.5f ? (tt * 2.f) : (2.f - tt * 2.f);
+    const int fillW = (int)(barW * (0.25f + 0.55f * phase));
+    if (fillW > 0) vita2d_draw_rectangle(barX, barY, fillW, barH, RGBA8(0,0,0,255));
+  } else {
+    const char* lab = "Report";
+    if (reportUiState_==2) lab = "Sent";
     else if (reportUiState_==3) lab = reportUiMsg_[0] ? reportUiMsg_ : "Failed";
-    const int tw = vita2d_pgf_text_width(font_, 0.58f, lab);
-    vita2d_pgf_draw_text(font_, bxReport + (bwReport - tw) / 2, by2+26, WHITE, 0.58f, lab);
+    const float sc = 0.64f;
+    const int tw = vita2d_pgf_text_width(font_, sc, lab);
+    vita2d_pgf_draw_text(font_, bxReport + (bwReport - tw) / 2, by2 + 27, reportText, sc, lab);
   }
   vita2d_draw_rectangle(bxClose,by2,bwClose,bh2,RED);
-  vita2d_pgf_draw_text(font_, bxClose+48, by2+26, WHITE, 0.60f, "O  Close");
+  {
+    const char* clab = "O  Close";
+    const float sc = 0.64f;
+    const int tw = vita2d_pgf_text_width(font_, sc, clab);
+    vita2d_pgf_draw_text(font_, bxClose + (bwClose - tw) / 2, by2 + 27, WHITE, sc, clab);
+  }
   vita2d_pgf_draw_text(font_,x+28,y+h-16,DIM,.48f,"Square: report   Circle: close");
   return;
 }
@@ -2826,6 +2933,7 @@ void drawFooterBar(vita2d_pgf* font, const char* leftHints) {
 }
 void FullCatalogScreen::drawFullCatalog(){vita2d_start_drawing();vita2d_set_clear_color(BG);vita2d_clear_screen();drawHeader(SCREEN_W);drawTabs(SCREEN_W);drawCatalogPanel(0,HEADER_H+TABS_H,SCREEN_W,SCREEN_H-HEADER_H-TABS_H-FOOTER_H,false);drawFooterBar(font_, "D-Pad: Nav   X: Detail   △: Search   SELECT: Settings   L/R: Catalog   START: Exit");drawReportChip();drawNewsChip();if(catalogLoading_||installProgressActive_||catalogSplashAlpha_>0.01f)drawLoadingOverlay();if(newsVisible_)drawNewsOverlay();if(!catalogError_.empty())vita2d_pgf_draw_text(font_,18,HEADER_H+TABS_H+26,ACCENT,.66f,catalogError_.c_str());drawToast();vita2d_end_drawing();vita2d_swap_buffers();}void FullCatalogScreen::drawSplitDetail(){vita2d_start_drawing();vita2d_set_clear_color(BG);vita2d_clear_screen();drawHeader(SCREEN_W);drawTabs(SCREEN_W);int top=HEADER_H+TABS_H,hh=SCREEN_H-HEADER_H-TABS_H-FOOTER_H,lw=SCREEN_W/2;drawCatalogPanel(0,top,lw,hh,true);drawDetailPanel(lw,top,SCREEN_W-lw,hh);vita2d_draw_rectangle(lw-1,top,2,hh,BORDER);drawFooterBar(font_, state_.activePanel==UiPanel::Catalog?"PANEL: LIST  |  → Detail   D-Pad: Navigate   O: Back   L/R: Catalog":"PANEL: DETAIL  |  ← List   D-Pad: Scroll   △: Links   X: Action   O: Back");drawReportChip();drawNewsChip();if(catalogLoading_||installProgressActive_||catalogSplashAlpha_>0.01f)drawLoadingOverlay();if(newsVisible_)drawNewsOverlay();drawToast();vita2d_end_drawing();vita2d_swap_buffers();}void FullCatalogScreen::drawOpeningDetail(){float p=transitionProgress();int lw=SCREEN_W-(int)(SCREEN_W/2*p),rw=SCREEN_W-lw;vita2d_start_drawing();vita2d_set_clear_color(BG);vita2d_clear_screen();drawHeader(SCREEN_W);drawTabs(SCREEN_W);int top=HEADER_H+TABS_H,hh=SCREEN_H-HEADER_H-TABS_H-FOOTER_H;drawCatalogPanel(0,top,lw,hh,true);if(rw>0)drawDetailPanel(lw,top,rw,hh);vita2d_end_drawing();vita2d_swap_buffers();}void FullCatalogScreen::drawClosingDetail(){float p=1.0f-transitionProgress();int lw=SCREEN_W-(int)(SCREEN_W/2*p),rw=SCREEN_W-lw;vita2d_start_drawing();vita2d_set_clear_color(BG);vita2d_clear_screen();drawHeader(SCREEN_W);drawTabs(SCREEN_W);int top=HEADER_H+TABS_H,hh=SCREEN_H-HEADER_H-TABS_H-FOOTER_H;drawCatalogPanel(0,top,lw,hh,true);if(rw>0)drawDetailPanel(lw,top,SCREEN_W-lw,hh);vita2d_end_drawing();vita2d_swap_buffers();}void FullCatalogScreen::draw(){switch(state_.mode){case UiMode::FULL_CATALOG:drawFullCatalog();break;case UiMode::OPENING_DETAIL:drawOpeningDetail();break;case UiMode::SPLIT_DETAIL:drawSplitDetail();break;case UiMode::CLOSING_DETAIL:drawClosingDetail();break;case UiMode::SETTINGS:drawSettings();break;}}bool FullCatalogScreen::updateAndDraw(){
     if(!ready_)return false;
+    pollReportWorker();
     flushDeferredTextureFrees();
     if(catalogSwitchCooldownFrames_>0)--catalogSwitchCooldownFrames_;
     // Expire toast
