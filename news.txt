@@ -1,5 +1,5 @@
-id: 2026-08-25-hello3
-title: Welcome to PS Vita Alive
+id: 2026-08-25-DEMO
+title: Welcome to PS Vita Alive DEMO
 enabled: true
 ---
 Thanks for using PS Vita Alive Store.
