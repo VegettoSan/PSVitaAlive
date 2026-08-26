@@ -45,7 +45,7 @@
       "extract_path": "ux0:data/"
     },
     {
-      "type": "Download",
+      "type": "Repository",
       "name": "GitLab VPK + Tools",
       "url": "https://gitlab.com/sexcurrybeats/asphalt8-vita/-/releases/v0.2/downloads/Asphalt8Vita_v0.2.zip",
       "recommended": false
