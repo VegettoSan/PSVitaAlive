@@ -244,7 +244,7 @@
         "extract_path": "ux0:data/"
       },
       {
-        "type": "Download",
+        "type": "Repository",
         "name": "GitLab VPK + Tools",
         "url": "https://gitlab.com/sexcurrybeats/asphalt8-vita/-/releases/v0.2/downloads/Asphalt8Vita_v0.2.zip",
         "recommended": false
@@ -7573,20 +7573,21 @@
     "version": "v.1.2",
     "version_date": "2026-05-08",
     "requirements": "- libshacccg.suprx\n- Game Data Files: N64",
-    "size": 9069083,
+    "size": 9069134,
     "status": "Legacy",
     "links": [
       {
         "type": "Download",
         "name": "VPK",
         "url": "https://archive.org/download/psvitaalive-2ship2harkinian-vita/Zelda%20Majora%27s%20Mask%20v1.2.vpk",
-        "size": 9069083,
+        "size": 9069134,
         "recommended": true
       },
       {
         "type": "Game Files",
         "name": "Game Files Spanish ZIP",
         "url": "https://archive.org/download/psvitaalive-2ship2harkinian-vita/Game%20Files.zip",
+        "size": 112931635,
         "extract_path": "ux0:data/"
       },
       {
