@@ -160,7 +160,8 @@ void InstallController::cancel() {
 
 void InstallController::acknowledgeResult() {
     const auto s = static_cast<InstallStatus::State>(state_.load());
-    if (s != InstallStatus::State::Completed && s != InstallStatus::State::Failed) return;
+    if (s != InstallStatus::State::Completed && s != InstallStatus::State::Failed
+        && s != InstallStatus::State::Cancelled) return;
     diagnostics::log("[Installer] result acknowledged by UI");
     resultShownAtMs_.store(0);
     liveAreaOk_.store(false);
@@ -290,7 +291,8 @@ bool InstallController::requestInstall(
     }
 
     const auto s = static_cast<InstallStatus::State>(state_.load());
-    if (s == InstallStatus::State::Completed || s == InstallStatus::State::Failed) acknowledgeResult();
+    if (s == InstallStatus::State::Completed || s == InstallStatus::State::Failed
+        || s == InstallStatus::State::Cancelled) acknowledgeResult();
 
     if (workerThread_ >= 0 && workerDone_.load()) {
         sceKernelWaitThreadEnd(workerThread_, nullptr, nullptr);
@@ -563,7 +565,7 @@ int InstallController::workerMain() {
         const std::string error = cancelled ? "Download cancelled"
             : (job && !job->lastError.empty() ? job->lastError : "Download failed");
         setStage(cancelled ? "Cancelled" : "Error");
-        setState(InstallStatus::State::Failed, error.c_str());
+        setState(cancelled ? InstallStatus::State::Cancelled : InstallStatus::State::Failed, error.c_str());
         liveAreaOk_.store(false);
         setInstallPath("");
         diagnostics::log(std::string("[Installer] ") + (cancelled ? "download cancelled" : "download failed") + ": " + error);
@@ -625,13 +627,16 @@ int InstallController::workerMain() {
     );
 
     if (result != InstallDispatchResult::Ok) {
-        const std::string error = dispatcher_.lastError().empty() ? "Installation failed" : dispatcher_.lastError();
-        setStage("Error");
-        setState(InstallStatus::State::Failed, error.c_str());
+        const bool cancelled = (result == InstallDispatchResult::Cancelled);
+        const std::string error = cancelled
+            ? (dispatcher_.lastError().empty() ? "Installation cancelled" : dispatcher_.lastError())
+            : (dispatcher_.lastError().empty() ? "Installation failed" : dispatcher_.lastError());
+        setStage(cancelled ? "Cancelled" : "Error");
+        setState(cancelled ? InstallStatus::State::Cancelled : InstallStatus::State::Failed, error.c_str());
         liveAreaOk_.store(false);
         setInstallPath(dispatcher_.lastInstallPath().c_str());
         setTitleId(dispatcher_.lastTitleId().c_str());
-        diagnostics::log(std::string("[Installer] installation failed: ") + error);
+        diagnostics::log(std::string("[Installer] ") + (cancelled ? "installation cancelled: " : "installation failed: ") + error);
         downloads_.cleanupCompletedJob(activeJobId_);
         activeJobId_.clear();
         resultShownAtMs_.store(sceKernelGetSystemTimeWide() / 1000ULL);

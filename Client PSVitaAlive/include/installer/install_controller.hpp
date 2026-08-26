@@ -19,7 +19,9 @@ struct InstallStatus {
         Downloading,
         Installing,
         Completed,
-        Failed
+        Failed,
+        /** User cancelled download/install — not a real failure. */
+        Cancelled
     };
 
     State state = State::Idle;
@@ -47,7 +49,8 @@ struct InstallStatus {
  * The UI reads status only; it never performs filesystem/network work.
  *
  * Completed stays visible until acknowledgeResult() or a short timeout.
- * Failed stays until the user acknowledges (no auto-dismiss).
+ * Failed / Cancelled stay until the user acknowledges (no auto-dismiss).
+ * Cancelled is shown as "Download cancelled" without an error Report button.
  */
 class InstallController {
 public:
