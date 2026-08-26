@@ -734,3 +734,24 @@
     width: 5.5rem;
     min-width: 5.5rem;
 }
+
+
+/* Create mode: Internal ID locked (auto from name) */
+#id.id-locked,
+input.id-locked {
+    opacity: 0.85;
+    cursor: not-allowed;
+    background: rgba(255, 255, 255, 0.04);
+    color: var(--text-secondary, #aaa);
+}
+
+.field-help-box {
+    margin: 0 0 14px;
+}
+.field-help-box ul {
+    margin: 8px 0 0 1.1rem;
+    padding: 0;
+}
+.field-help-box li {
+    margin: 4px 0;
+}

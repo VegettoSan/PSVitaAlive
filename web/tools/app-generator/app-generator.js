@@ -116,6 +116,48 @@
         return EXTRACT_PATH_TYPES.has(String(type || ""));
     }
 
+    /** Build Internal ID from display name (create mode). */
+    function slugifyId(name) {
+        return String(name || "")
+            .normalize("NFKD")
+            .replace(/[\u0300-\u036f]/g, "")
+            .toLowerCase()
+            .replace(/[^a-z0-9]+/g, "-")
+            .replace(/^-+|-+$/g, "")
+            .replace(/-{2,}/g, "-");
+    }
+
+    function syncIdFromName() {
+        if (state.mode !== "create") return;
+        const idEl = $("id");
+        const nameEl = $("name");
+        if (!idEl || !nameEl) return;
+        idEl.value = slugifyId(nameEl.value);
+    }
+
+    function applyIdFieldMode() {
+        const idEl = $("id");
+        const hint = $("id-hint");
+        if (!idEl) return;
+        if (state.mode === "create") {
+            idEl.readOnly = true;
+            idEl.classList.add("id-locked");
+            idEl.title = "Auto-generated from Name in Create mode";
+            if (hint) {
+                hint.innerHTML = "Auto-filled from the name in Create mode (e.g. <code>my-cool-app</code> → file <code>my-cool-app.json</code>). Only lowercase, numbers, hyphens and underscores. Not editable in Create mode.";
+            }
+            syncIdFromName();
+        } else {
+            idEl.readOnly = false;
+            idEl.classList.remove("id-locked");
+            idEl.title = "";
+            if (hint) {
+                hint.innerHTML = "Edit mode: you may keep the existing ID. Changing it renames the JSON file — only do this if you know what you are doing.";
+            }
+        }
+    }
+
+
     function syncLinkExtractPathVisibility(row) {
         if (!row) return;
         const typeEl = row.querySelector(".link-type");
@@ -527,6 +569,7 @@
     }
 
     function updatePreview() {
+        syncIdFromName();
         const app = collectApp();
         $("json-preview").textContent = JSON.stringify(app, null, 2);
         updateValidation(app);
@@ -628,12 +671,13 @@
         if (hint) {
             if (state.mode === "edit") {
                 hint.className = "notice info";
-                hint.textContent = "Edit mode: import an existing app JSON, change fields, and download the updated file. Duplicate ID / Title ID checks are skipped so you can save over the same entry.";
+                hint.textContent = "Edit mode: import an existing app JSON, change fields, and download the updated file. Duplicate ID / Title ID checks are skipped so you can save over the same entry. Internal ID is editable.";
             } else {
                 hint.className = "notice info";
-                hint.textContent = "Create mode: the app ID and Title ID must be new in the catalog.";
+                hint.textContent = "Create mode: Internal ID is generated from the Name (not editable). Title ID must be new in the catalog.";
             }
         }
+        applyIdFieldMode();
         updatePreview();
     }
 

@@ -45,13 +45,13 @@
         <div class="generator-layout">
             <form id="app-form" novalidate>
                 <section class="form-card">
-                    <div class="card-heading"><h2>1. Identity</h2><p>These fields identify the Homebrew.</p></div>
+                    <div class="card-heading"><h2>1. Identity</h2><p>Basic identity of the homebrew entry. In <strong>Create</strong> mode the Internal ID is generated from the name and cannot be edited.</p></div>
                     <div class="field-grid">
-                        <div class="field"><label for="id">Internal ID <span>*</span></label><input id="id" name="id" required pattern="[a-z0-9_-]+"><small>Lowercase letters, numbers, hyphens and underscores. It must become the filename, for example <code>my-app.json</code>.</small></div>
-                        <div class="field"><label for="title_id">Title ID <span>*</span></label><input id="title_id" name="title_id" required><small>Unique PS Vita Title ID. The generator checks it against the current catalog.</small></div>
-                        <div class="field full"><label for="name">Name <span>*</span></label><input id="name" name="name" required></div>
-                        <div class="field full"><label for="description">Short description <span>*</span></label><textarea id="description" name="description" rows="3" required></textarea></div>
-                        <div class="field full"><label for="long_description">Long description <span>*</span></label><textarea id="long_description" name="long_description" rows="6" required></textarea></div>
+                        <div class="field full"><label for="name">Name <span>*</span></label><input id="name" name="name" required placeholder="My Cool App"><small>Display name shown in the store and website. Use the official title when possible.</small></div>
+                        <div class="field"><label for="id">Internal ID <span>*</span></label><input id="id" name="id" required pattern="[a-z0-9_-]+" readonly><small id="id-hint">Auto-filled from the name in Create mode (e.g. <code>my-cool-app</code> → file <code>my-cool-app.json</code>). Only lowercase, numbers, hyphens and underscores.</small></div>
+                        <div class="field"><label for="title_id">Title ID <span>*</span></label><input id="title_id" name="title_id" required placeholder="ABCD12345"><small>PS Vita <code>TITLE_ID</code> from <code>param.sfo</code> (9 characters, e.g. <code>VITASHELL</code>). Must be unique in the catalog.</small></div>
+                        <div class="field full"><label for="description">Short description <span>*</span></label><textarea id="description" name="description" rows="3" required placeholder="One or two sentences for the catalog card."></textarea><small>Short text for lists and cards. Keep it clear and under ~200 characters when possible.</small></div>
+                        <div class="field full"><label for="long_description">Long description <span>*</span></label><textarea id="long_description" name="long_description" rows="6" required placeholder="Full description for the detail page."></textarea><small>Full description for the detail page. You can use several paragraphs; line breaks are kept.</small></div>
                     </div>
                 </section>
 
@@ -80,9 +80,9 @@
                 <section class="form-card">
                     <div class="card-heading"><h2>3. Release</h2><p>Release information used by the catalog and update logic.</p></div>
                     <div class="field-grid">
-                        <div class="field"><label for="version">Version <span>*</span></label><input id="version" name="version" required placeholder="1.0.0"></div>
-                        <div class="field"><label for="version_date">Version date <span>*</span></label><input id="version_date" name="version_date" type="date" required></div>
-                        <div class="field full"><label for="requirements">Requirements <span>*</span></label><textarea id="requirements" name="requirements" required rows="5" placeholder="Firmware, plugins, notes… (line breaks allowed)"></textarea></div>
+                        <div class="field"><label for="version">Version <span>*</span></label><input id="version" name="version" required placeholder="1.0.0"><small>Version string of this release (e.g. <code>1.2.0</code> or <code>v3</code>), matching the download when possible.</small></div>
+                        <div class="field"><label for="version_date">Version date <span>*</span></label><input id="version_date" name="version_date" type="date" required><small>Release date of this version (YYYY-MM-DD).</small></div>
+                        <div class="field full"><label for="requirements">Requirements <span>*</span></label><textarea id="requirements" name="requirements" required rows="5" placeholder="Firmware, plugins, notes… (line breaks allowed)"></textarea><small>What the user needs: firmware, plugins (NoNpDrm, etc.), storage, or “None”. Line breaks are allowed.</small></div>
                         <div class="field"><label for="size">File size <span>*</span></label>
                             <div class="size-unit-field app-size-field">
                                 <input id="size" name="size" type="number" min="0" step="any" required placeholder="16">
@@ -95,20 +95,31 @@
                             </div>
                             <small>Pick a unit (B / KB / MB / GB). The JSON will store the size in bytes automatically.</small>
                         </div>
-                        <div class="field"><label for="status">Status <span>*</span></label><select id="status" name="status" required><option value="Verified">Verified</option><option value="Legacy">Legacy</option><option value="Archive">Archive</option></select></div>
+                        <div class="field"><label for="status">Status <span>*</span></label><select id="status" name="status" required><option value="Verified">Verified</option><option value="Legacy">Legacy</option><option value="Archive">Archive</option></select><small><strong>Verified</strong> = works as expected · <strong>Legacy</strong> = old but kept · <strong>Archive</strong> = historical only.</small></div>
                     </div>
                 </section>
 
                 <section class="form-card">
-                    <div class="card-heading"><h2>4. Media</h2><p>Use absolute public URLs or valid repository resources. Missing icon/screenshots can use the repository fallbacks during validation/generation.</p></div>
+                    <div class="card-heading"><h2>4. Media</h2><p>Public <strong>direct image URLs</strong> only (must open the image itself, not an HTML page). Preferred: PNG. Good hosts: GitHub raw, Archive.org, Imgur direct links.</p></div>
                     <div class="field-grid">
-                        <div class="field full"><label for="icon">Icon URL</label><input id="icon" name="icon" type="url" placeholder="https://example.org/icon.png"><small>Optional in the source JSON. Leave empty to allow the category icon fallback.</small></div>
-                        <div class="field full"><label>Screenshots</label><div id="screenshots-list" class="repeat-list"></div><button id="add-screenshot" type="button" class="small-button">+ Add screenshot</button><small>Optional. If provided, use 1–5 image URLs.</small></div>
+                        <div class="field full"><label for="icon">Icon URL</label><input id="icon" name="icon" type="url" placeholder="https://archive.org/download/.../icon0.png"><small>Optional. Direct link to the app icon (ideally <code>icon0.png</code>, ~128×128). Leave empty to use the category fallback. Do <strong>not</strong> use GitHub “blob” page links — use <code>raw.githubusercontent.com</code> or Archive.org file URLs.</small></div>
+                        <div class="field full"><label>Screenshots</label><div id="screenshots-list" class="repeat-list"></div><button id="add-screenshot" type="button" class="small-button">+ Add screenshot</button><small>Optional, 1–5 images. Each field must be a <strong>direct</strong> image URL (PNG/JPG). Prefer Vita resolution (~960×544). Same rule: no HTML gallery pages.</small></div>
                     </div>
                 </section>
 
                 <section class="form-card">
-                    <div class="card-heading"><h2>5. Links</h2><p>Add all useful sources. Drag the ⋮⋮ handle to reorder. At most one link can be recommended. extract_path only appears for Data Files, Game Files, Mod, Mod Pack and Patch (default ux0:data/). Size uses B/KB/MB/GB and is stored as bytes.</p></div>
+                    <div class="card-heading"><h2>5. Links</h2><p>Download and reference links. Drag ⋮⋮ to reorder. Mark <strong>one</strong> link as Recommended (main install button).</p></div>
+                    <div class="notice info field-help-box">
+                        <strong>Link types</strong>
+                        <ul>
+                            <li><strong>Download</strong> — main .vpk (or similar) install package.</li>
+                            <li><strong>Data Files / Game Files</strong> — extra .zip data extracted on the Vita. Set <code>extract_path</code> (usually <code>ux0:data/</code>).</li>
+                            <li><strong>Mod / Mod Pack / Patch</strong> — mods or patches; also use <code>extract_path</code> when they are zips.</li>
+                            <li><strong>PKG / DLC / Update</strong> — package content (games catalogs / updates).</li>
+                            <li><strong>Mirror / Repository / Official Website / Documentation / Issues / Community / Other</strong> — informational links (not installed by the client as the main payload).</li>
+                        </ul>
+                        <p style="margin:8px 0 0"><strong>Size:</strong> optional per link; pick B/KB/MB/GB — JSON stores bytes. <strong>URLs:</strong> must be public <code>http://</code> or <code>https://</code> direct file links when possible (GitHub Releases, Archive.org, MediaFire, etc.).</p>
+                    </div>
                     <div id="links-list" class="repeat-list"></div>
                     <button id="add-link" type="button" class="small-button">+ Add link</button>
                 </section>
@@ -116,16 +127,16 @@
                 <details class="form-card advanced-card">
                     <summary>6. Optional metadata</summary>
                     <div class="field-grid advanced-grid">
-                        <div class="field full"><label for="release_page">Release page</label><input id="release_page" type="url"></div>
-                        <div class="field full"><label for="source_url">Source URL</label><input id="source_url" type="url"></div>
-                        <div class="field"><label for="source_name">Source name</label><input id="source_name"></div>
-                        <div class="field"><label for="source_id">Source ID</label><input id="source_id"></div>
-                        <div class="field full"><label for="changelog">Changelog</label><textarea id="changelog" rows="5"></textarea></div>
-                        <div class="field"><label for="downloads">Downloads</label><input id="downloads" type="number" min="0" step="1"></div>
-                        <div class="field"><label for="data_size">Data size</label><input id="data_size" type="number" min="0" step="1"></div>
-                        <div class="field full"><label for="data_url">Data URL</label><input id="data_url" type="url"></div>
-                        <div class="field"><label for="score">Score</label><input id="score" type="number" step="any"></div>
-                        <div class="field"><label for="updated_at">Updated at</label><input id="updated_at" type="datetime-local"></div>
+                        <div class="field full"><label for="release_page">Release page</label><input id="release_page" type="url" placeholder="https://github.com/user/repo/releases"><small>Human-readable page for this version (GitHub Releases, blog post, etc.).</small></div>
+                        <div class="field full"><label for="source_url">Source URL</label><input id="source_url" type="url" placeholder="https://github.com/user/repo"><small>Project homepage or source repository.</small></div>
+                        <div class="field"><label for="source_name">Source name</label><input id="source_name" placeholder="GitHub"><small>Short label for the source (e.g. GitHub, GitLab).</small></div>
+                        <div class="field"><label for="source_id">Source ID</label><input id="source_id"><small>Optional external ID if you track one.</small></div>
+                        <div class="field full"><label for="changelog">Changelog</label><textarea id="changelog" rows="5" placeholder="- Fixed crash&#10;- Added feature"></textarea><small>What changed in this version.</small></div>
+                        <div class="field"><label for="downloads">Downloads</label><input id="downloads" type="number" min="0" step="1"><small>Optional counter; leave empty if unknown.</small></div>
+                        <div class="field"><label for="data_size">Data size</label><input id="data_size" type="number" min="0" step="1"><small>Legacy optional field (bytes). Prefer size on Data/Game Files links instead.</small></div>
+                        <div class="field full"><label for="data_url">Data URL</label><input id="data_url" type="url"><small>Legacy optional field. Prefer a <strong>Data Files</strong> link in section 5.</small></div>
+                        <div class="field"><label for="score">Score</label><input id="score" type="number" step="any"><small>Optional rating; leave empty if unused.</small></div>
+                        <div class="field"><label for="updated_at">Updated at</label><input id="updated_at" type="datetime-local"><small>Optional last-updated timestamp.</small></div>
                     </div>
                 </details>
 
