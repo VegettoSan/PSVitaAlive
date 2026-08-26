@@ -11,7 +11,7 @@ Native C++ sources for the PS Vita client.
 | `installer/` | Install controller, dispatcher, VPK/BGDL PKG/PSP helpers, plugins, LiveArea refresh |
 | `archive/` | Format detection, ZIP extract |
 | `ui/` | Full-catalog UI, image cache |
-| `update/` | GitHub Releases check, stage VPK, install **PSVAUPDT1**, main-thread handoff |
+| `update/` | GitHub Releases check, stage VPK, install **PSVAUPDT1**, main-thread handoff (user opens client → auto update when a new release exists) |
 | `storage/` | Storage paths and helpers |
 | `main.cpp` | Application entry, startup order, update handoff |
 | `diagnostic_logger.cpp` | Session logging |

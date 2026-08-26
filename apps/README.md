@@ -82,3 +82,23 @@ Homebrew **catalog metadata** in this folder is dedicated to the public domain u
 - You may reuse this data for any purpose **without attribution**.
 - This project **does not own** the homebrew apps themselves; credits belong to each entry’s authors (`author_ids` and author profiles).
 - Binaries, icons, and screenshots remain under their authors’ rights.
+
+## Link `type` values (homebrew)
+
+| type | Use for |
+|------|---------|
+| `Download` | Primary installable (usually `.vpk`) |
+| `Data Files` | Extra data ZIP → often `extract_path`: `ux0:data/` |
+| `Game Files` | Large game data ZIP |
+| `Mod` / `Mod Pack` / `Patch` | Mods / patches (ZIP + optional `extract_path`) |
+| `PKG` / `DLC` / `Update` | Package-style content when applicable |
+| `Mirror` | Alternate file URL |
+| `Repository` / `Official Website` / `Documentation` / `Issues` / `Community` / `Other` | Info only |
+
+### Optional per-link fields
+
+- `size` — integer **bytes**
+- `extract_path` — auto extract destination for ZIP types (omit to let the client ask)
+- `recommended` — at most one `true` per app
+
+Draft records with [`web/tools/app-generator/`](../web/tools/app-generator/) (Create mode auto-fills Internal ID from Name).

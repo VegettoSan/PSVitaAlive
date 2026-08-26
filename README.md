@@ -29,7 +29,7 @@ PS Vita Alive Store helps users discover, download and install content on PlaySt
 | `docs/` | Extra documentation |
 
 ```text
-apps/*.json  +  configured external sources (currently VitaHomebrewDB during migration)
+apps/*.json  (+ optional external sources if enabled)
         │
         ▼
  normalize → merge → overrides → validate
@@ -83,19 +83,33 @@ Any HTTP client can consume these JSON files without using this store’s UI.
 
 ---
 
-## Link types (website & data)
+## Link types (website, app JSON & client)
 
-On commercial game pages, links are grouped by `type`:
+Every installable or reference URL lives in `links[]` with a `type`. The **website** and the **PS Vita client** group them into sections so downloads are not mixed together.
 
-| `type` | Section |
-|--------|---------|
-| `Download` | Downloads (base PKG / VPK) |
-| `DLC` | DLC |
-| `Update` | Updates (patches) |
-| `Mod` | Mods (optional; shown when present) |
-| Other | Other Links |
+| `type` | Typical content | Website section | Client (detail) |
+|--------|-----------------|-----------------|-----------------|
+| `Download` | Main `.vpk` / primary payload | Downloads | Downloads |
+| `PKG` | Commercial base package | Downloads | PKG |
+| `DLC` | Downloadable content | DLC | DLC |
+| `Update` | Official / game updates | Updates | Updates |
+| `Patch` | Patches (often treated with Updates) | Updates | Updates |
+| `Data Files` | Extra data `.zip` (extract) | Data Files | Data Files |
+| `Game Files` | Large game data `.zip` (extract) | Game Files | Game Files |
+| `Mod` / `Mod Pack` | Mods / mod packs | Mods | Mods |
+| `Mirror` | Alternate download URL | Other Links | Other |
+| `Repository` / `Official Website` / `Documentation` / `Issues` / `Community` / `Other` | Informational | Other Links | Other |
 
-PS Vita game entries may include per-SKU language notes (No-Intro when available, region-typical fallback otherwise) and official update PKG links from NoPayStation `PSV_UPDATES.tsv`.
+**Optional link fields**
+
+| Field | Meaning |
+|-------|---------|
+| `size` | Integer **bytes** (app generator can enter B/KB/MB/GB and converts) |
+| `extract_path` | Where the client extracts a ZIP **without** asking (e.g. `ux0:data/`). Used for **Data Files**, **Game Files**, **Mod**, **Mod Pack**, **Patch**. If empty, the client shows the quick-path picker. |
+| `recommended` | At most **one** link per app may be `true` (primary install action). |
+| `content_id` | Preferred key for commercial PKG license lookup in `catalog_psvita_games.zrifidx`. |
+
+PS Vita commercial entries may include per-SKU language notes and update PKG links from NoPayStation-style data. Homebrew records live under `apps/*.json` (see [`apps/README.md`](apps/README.md)).
 
 ---
 
@@ -103,22 +117,43 @@ PS Vita game entries may include per-SKU language notes (No-Intro when available
 
 ### Website (`web/`)
 
-Static catalog browser: homebrew, authors, categories, and commercial game detail pages with separated download sections.
+Static catalog browser: homebrew, authors, categories, commercial game pages, **App JSON generator**, and news/content driven from the repo.
 
 ### PS Vita client (`Client PSVitaAlive/`)
 
-Native client (Title ID **PSVAS1178**) with:
+Native client (Title ID **PSVAS1178**). Users only need to **open the client**: if a newer **GitHub Release** exists, the app can **check, download and install the update automatically** (via helper bubble **PSVAUPDT1**). No PC required for routine updates.
 
-- Multi-catalog browsing (Homebrew, Vita Games, PSP, PS1)
-- Search, settings, touch + controls
-- Download (including MediaFire resolution where implemented)
-- Install paths for VPK / ZIP / PKG-related flows
-- Self-update via **GitHub Releases** using a helper bubble **PSVAUPDT1** (client cannot safely promote itself while running)
-- Plugin detection (AutoPlugin2-style `tai/config.txt` parse; prefer `ur0`)
-- Licensed **Vita / PSP / PS1 PKG** installs via system **BGDL** (verified on real hardware) when license data resolves
-- Session logs under `ux0:data/psvitaalive/logs/` (including `updater.log`)
+**Highlights**
 
-See `Client PSVitaAlive/README.md` for build, self-update handoff and runtime details.
+- Catalogs: Homebrew, Vita Games, PSP, PS1
+- Search, Settings, touch + controls; News modal (from `news.txt`); optional Discord error **Report**
+- Downloads (MediaFire CDN resolution, Archive.org, GitHub, …)
+- Install: **VPK** (including nested `.vpk` inside a release ZIP), **ZIP** extract (`extract_path` or quick paths), licensed **PKG** via system **BGDL**
+- Free-space check before large downloads (~2.1× payload)
+- Voluntary **Download cancelled** UI (no false “Installation failed” / no Report)
+- Self-update from [Releases](https://github.com/VegettoSan/PSVitaAlive/releases) (see below)
+- Plugin detection (prefer `ur0:tai`); session logs under `ux0:data/psvitaalive/logs/`
+
+#### Automatic client updates
+
+```text
+Open PS Vita Alive Store
+        │
+        ▼
+  Check GitHub Releases /latest  (if enabled in config/settings)
+        │
+        ├─ up to date → load catalogs as usual
+        └─ newer VPK → download → install updater PSVAUPDT1 →
+              updater promotes new client → relaunches store →
+              removes temporary updater bubble
+```
+
+- Toggleable (startup config / settings); safe path uses **PSVAUPDT1** because a Vita app cannot reliably promote **itself** while running.
+- Manual fallback VPK: `ux0:data/psvitaalive/update/PSVitaAlive.vpk`
+- Details: [`Client PSVitaAlive/README.md`](Client%20PSVitaAlive/README.md) and [`Client PSVitaAlive/source/update/README.md`](Client%20PSVitaAlive/source/update/README.md)
+
+**Releases:** https://github.com/VegettoSan/PSVitaAlive/releases  
+**Website:** https://vegettosan.github.io/PSVitaAlive/
 
 ---
 

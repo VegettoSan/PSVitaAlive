@@ -31,3 +31,7 @@ The workflow layer must not modify source databases or manually edit generated c
 - `scripts/generate_catalog.py`
 - `scripts/validate_catalog_ci.py`
 - `../../sources/README.md`
+
+## Catalog CI (current policy)
+
+Validation focuses on **repository-owned** `apps/` data and generated catalogs. External VitaDB acquisition is disabled. Prefer fixing local JSON over relying on remote import for new entries.

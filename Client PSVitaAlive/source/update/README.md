@@ -1,3 +1,22 @@
+# Client self-update (`source/update`)
+
+## For end users
+
+The PS Vita Alive Store client can **update itself** when a new version is published on GitHub Releases:
+
+1. Open the client on the Vita (or Vita3K).
+2. If update checking is enabled, the app queries `releases/latest`.
+3. When a newer `PSVitaAlive.vpk` is available, it is downloaded and installed automatically through a short-lived helper title **PSVAUPDT1**.
+4. The store restarts on the new version; the helper bubble is removed.
+
+No computer is required for a normal update cycle. If the automatic handoff fails, install:
+
+`ux0:data/psvitaalive/update/PSVitaAlive.vpk`
+
+Releases: https://github.com/VegettoSan/PSVitaAlive/releases
+
+---
+
 # `source/update/` — Self-update (GitHub Releases)
 
 ## Why a helper bubble?

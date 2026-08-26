@@ -14,13 +14,28 @@ Native catalog client for PlayStation Vita / PSTV (and Vita3K for testing).
 ## Features (high level)
 
 - Catalogs: **Homebrew**, **Vita Games**, **PSP**, **PS1** (all four can stay cached in RAM after first load)
-- Search, settings, touch + buttons
-- Image cache with on-demand loading
-- Downloads via libcurl (MediaFire resolution supported where implemented)
-- Install pipeline: VPK promote, ZIP extract, licensed commercial **PKG via system BGDL** (verified on real Vita)
-- Self-update against **GitHub Releases** via helper **PSVAUPDT1**
+- Search, Settings, touch + buttons; **News** from repo `news.txt`; optional **Report** on real errors
+- Image cache with on-demand loading; **Data Files / Game Files** indicators on app cards
+- Downloads via libcurl (MediaFire CDN/size resolution, Archive.org, GitHub, …)
+- Install pipeline:
+  - **VPK** promote (including a nested `.vpk` inside a release ZIP)
+  - **ZIP** extract (`extract_path` from catalog or quick-path UI)
+  - Licensed commercial **PKG via system BGDL** (verified on real Vita)
+- Free-space check before download (~2.1× expected size)
+- Voluntary cancel shows **Download cancelled** (not a false install failure)
+- **Automatic self-update** from [GitHub Releases](https://github.com/VegettoSan/PSVitaAlive/releases) via helper **PSVAUPDT1** — open the client; if a new version exists it can download and install without a PC
 - Plugin detection (AutoPlugin2-style parser; prefer **ur0:tai** over ux0)
 - Logs: `session.log`, `install.log`, `updater.log`
+
+## Link types in the client
+
+Detail view groups actionable links (△ / touch). Types include:
+
+`Download`, `Data Files`, `Game Files`, `Mod` / `Mod Pack`, `DLC`, `Update` / `Patch`, `PKG`, and informational types (`Mirror`, `Repository`, …).
+
+ZIP-oriented types may set `extract_path` in catalog JSON so extraction skips the path picker.
+
+See the root [README.md](../README.md) for the full link-type matrix.
 
 ## Install paths
 
@@ -43,6 +58,15 @@ On a real PS Vita with CFW + **NoNpDrm** (and **NoPspEmuDrm** when needed):
 Build the client eboot with the **UNSAFE** flag (required for ShellSvc exports, same class of requirement as PKGj). Full detail: [`source/installer/README.md`](source/installer/README.md).
 
 ## Self-update architecture
+
+### For users
+
+1. Open **PS Vita Alive Store** on the console.
+2. If update checking is enabled and a newer release exists, the client downloads `PSVitaAlive.vpk` from GitHub Releases.
+3. A temporary helper bubble (**PSVAUPDT1**) installs the new client, relaunches the store, and removes itself.
+4. If something fails, install manually from `ux0:data/psvitaalive/update/PSVitaAlive.vpk` or the [Releases page](https://github.com/VegettoSan/PSVitaAlive/releases).
+
+### For developers
 
 A running app **must not** promote itself. Flow:
 

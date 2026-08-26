@@ -42,3 +42,11 @@ Logos and backgrounds under `web/assets/`. Styling under `web/css/` (`game.css`,
 ## Tooling
 
 `web/tools/app-generator/` — helper UI to draft app JSON for contributors.
+
+## News
+
+Repo-root [`news.txt`](../news.txt) drives the in-client News modal (id / title / body). Bump the `id` when publishing a new announcement so users see it once.
+
+## App generator
+
+[`tools/app-generator/`](tools/app-generator/) — form UI for contributors: auto Internal ID, size units, link-type help, `extract_path` only for ZIP-oriented types.

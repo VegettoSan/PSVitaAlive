@@ -10,8 +10,9 @@ Rendered with **vita2d** (960×544). Accent color aligns with the store green (`
 - Split detail view
 - Catalog loading (including full-screen loading art when configured)
 - Settings
-- Download / install progress and result overlays
+- Download / install progress and result overlays (success, failure, **Download cancelled**)
 - Search and catalog switching
+- News modal (`news.txt`); Report confirm flow for real errors
 
 ## Supporting pieces
 
