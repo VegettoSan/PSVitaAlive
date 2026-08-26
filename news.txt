@@ -1,8 +1,10 @@
-id: 2026-08-25-001
+id: 2026-08-26-0001
 title: PsVita Alive Store BETA 01.10
 enabled: true
 ---
 Thanks for using PS Vita Alive Store.
+
+Not all Homebrew / Ports have Game Files yet, please be patient as I will gradually upload them so they can be downloaded.
 
 - The appearance of information in each application has been improved.
 - Support for submitting bug reports has been added.
