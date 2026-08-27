@@ -16,32 +16,21 @@
   "requirements": "Not specified",
   "size": 34083842,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1815-2playerspong.png",
+  "icon": "https://archive.org/download/psvitaalive-2playerspong/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/ce4fe7c38bb8883d041e25b87b0ee89ea3f86e0ab015a7b2d8b2b3002ad4b5e7.png"
+    "https://archive.org/download/psvitaalive-2playerspong/shot_01.png"
   ],
   "links": [
     {
       "type": "Download",
-      "name": "VitaHomebrewDB VPK",
-      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1049-2PlayersPong.vpk",
-      "recommended": false
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-2playerspong/1049-2PlayersPong.vpk",
+      "recommended": true
     },
     {
       "type": "Official Website",
-      "name": "VitaHomebrewDB Release Page",
+      "name": "Official Website",
       "url": "https://soykhaler.itch.io/2playerspong"
-    },
-    {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com"
-    },
-    {
-      "type": "Download",
-      "name": "VitaHomebrewDB VPK",
-      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/1049-2PlayersPong.vpk",
-      "recommended": true
     }
   ],
   "source_name": "VitaHomebrewDB",
