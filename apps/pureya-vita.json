@@ -14,43 +14,40 @@
   "version": "v.1.0",
   "version_date": "2024-09-19",
   "requirements": "- Game Data Files: PC",
-  "size": 16848282,
+  "size": 16882074,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/e7a4dc5bfdc8baa34e60d831afeb333edc533160a180a3bd0a5360876aaed697.png",
-  "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/e549360bde1994278baad37403f594b88bbe27e9f0d977bac0562b997de676e8.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/6626a533b523d8e3f44ac43af07c3296b9606467d5e1e6116cbb7b6a5fc5161f.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/5ff2125a4c970e4c797479d1746231556eeca5eaae90558e816c6d8f7a360dc2.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/e549360bde1994278baad37403f594b88bbe27e9f0d977bac0562b997de676e8.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/6626a533b523d8e3f44ac43af07c3296b9606467d5e1e6116cbb7b6a5fc5161f.png"
-  ],
   "links": [
     {
       "type": "Download",
-      "name": "VitaHomebrewDB VPK",
-      "url": "https://github.com/PatnosDD/Pureya-PS-VITA/releases/download/v1.0/pureya.vpk",
-      "recommended": false
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-pureya-vita/pureya-vita.vpk",
+      "size": 16882074,
+      "recommended": true
+    },
+    {
+      "type": "Game Files",
+      "name": "Game Files",
+      "url": "https://archive.org/download/psvitaalive-pureya-vita/Game%20Files.zip",
+      "size": 63229133,
+      "extract_path": "ux0:data/"
     },
     {
       "type": "Official Website",
       "name": "VitaHomebrewDB Release Page",
       "url": "https://github.com/PatnosDD/Pureya-PS-VITA"
-    },
-    {
-      "type": "Official Website",
-      "name": "NeoVitaDB Release Page",
-      "url": "https://github.com/PatnosDD/Pureya-PS-VITA/releases/tag/v1.0"
-    },
-    {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1234",
-      "recommended": true
     }
+  ],
+  "icon": "https://archive.org/download/psvitaalive-pureya-vita/icon0.png",
+  "screenshots": [
+    "https://archive.org/download/psvitaalive-pureya-vita/shot_01.png",
+    "https://archive.org/download/psvitaalive-pureya-vita/shot_02.png",
+    "https://archive.org/download/psvitaalive-pureya-vita/shot_03.png",
+    "https://archive.org/download/psvitaalive-pureya-vita/shot_04.png",
+    "https://archive.org/download/psvitaalive-pureya-vita/shot_05.png"
   ],
   "source_name": "VitaHomebrewDB",
   "source_id": "1234",
   "source_url": "https://github.com/PatnosDD/Pureya-PS-VITA",
   "release_page": "https://github.com/PatnosDD/Pureya-PS-VITA",
-  "updated_at": "2026-08-13T15:34:48.431064+00:00"
+  "updated_at": "2026-08-13T15:34"
 }
