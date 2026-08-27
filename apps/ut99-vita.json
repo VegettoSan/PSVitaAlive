@@ -14,8 +14,21 @@
   "version": "v.0.8",
   "version_date": "2026-07-22",
   "requirements": "- libshacccg.suprx\n- kubridge.skprx\n- Game Data Files: PC",
-  "size": 2970931,
+  "size": 2970616,
   "status": "Legacy",
+  "links": [
+    {
+      "type": "Download",
+      "name": "VitaDB VPK",
+      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1399",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/Rinnegatamante/UT99-Vita"
+    }
+  ],
   "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/bc2bc6a60f5f747b07e57b5fe3ac8f175dd47b6b8f83a8be9547e4f803773120.png",
   "screenshots": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/9369ed16298f2b82631a02e277660c172d49196c092162d75ce4323f93fb5c9f.png",
@@ -24,50 +37,9 @@
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/d42c8ed357d9cf45231866b94705da25e6f263327c924c0a960558b5b15295f5.png",
     "https://www.rinnegatamante.eu/vitadb/screenshots/9369ed16298f2b82631a02e277660c172d49196c092162d75ce4323f93fb5c9f.png"
   ],
-  "links": [
-    {
-      "type": "Download",
-      "name": "VitaHomebrewDB VPK",
-      "url": "https://github.com/Rinnegatamante/UT99-Vita/releases/download/v.0.8/ut99.vpk",
-      "recommended": false
-    },
-    {
-      "type": "Official Website",
-      "name": "VitaHomebrewDB Release Page",
-      "url": "https://github.com/Rinnegatamante/UT99-Vita/releases"
-    },
-    {
-      "type": "Official Website",
-      "name": "NeoVitaDB Release Page",
-      "url": "https://github.com/Rinnegatamante/UT99-Vita/releases/tag/v.0.8"
-    },
-    {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/Rinnegatamante/UT99-Vita"
-    },
-    {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1399",
-      "recommended": true
-    },
-    {
-      "type": "Download",
-      "name": "Data Files",
-      "url": "https://www.rinnegatamante.eu/files/vitadb/ut99.zip",
-      "recommended": false
-    },
-    {
-      "type": "Data Files",
-      "name": "VitaHomebrewDB Data Files",
-      "url": "https://github.com/Rinnegatamante/UT99-Vita/releases/download/v.0.8/ut99.zip",
-      "recommended": false
-    }
-  ],
   "source_name": "VitaHomebrewDB",
   "source_id": "1399",
   "source_url": "https://github.com/Rinnegatamante/UT99-Vita",
   "release_page": "https://github.com/Rinnegatamante/UT99-Vita/releases",
-  "updated_at": "2026-08-13T15:34:48.326847+00:00"
+  "updated_at": "2026-08-13T15:34"
 }

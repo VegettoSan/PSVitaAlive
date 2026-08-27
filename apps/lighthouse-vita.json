@@ -14,15 +14,8 @@
   "version": "v.1.0",
   "version_date": "2026-08-16",
   "requirements": "- libshacccg.suprx\n- Game Data Files: N64",
-  "size": 8477919,
+  "size": 8477737,
   "status": "Legacy",
-  "icon": "https://www.rinnegatamante.eu/vitadb/icons/4ce0f12e5cf8235b0e211cc3cef5b769b80640f8cf2141c03bedcbe8f3c3be6d.png",
-  "screenshots": [
-    "https://www.rinnegatamante.eu/vitadb/screenshots/96b5673518a27dabeca3f4406b2bb49545d9b917a8d77d490e84a27a415a1c12.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/aba5859dea847d6cadd139735613ddea6b3a6cf8a5124bdb2076f6d4495fdfa2.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/c77f8ec4f60a8632fb104cea5edbc616907cbcfd56d4b8a9fc81b49d95c39b2b.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/b6474497e49254419cc51446140e495abf79250135661a0b7acca384374ddba9.png"
-  ],
   "links": [
     {
       "type": "Download",
@@ -34,24 +27,24 @@
       "type": "Game Files",
       "name": "Game Data Files ZIP Mediafire",
       "url": "https://www.mediafire.com/file/9be1no8he289e2c/BanjoKazooieVita.zip/file",
-      "recommended": false,
-      "size": 257980000
+      "size": 257980105,
+      "extract_path": "ux0:data/"
     },
     {
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/Rinnegatamante/Lighthouse"
-    },
-    {
-      "type": "Download",
-      "name": "Data Files",
-      "url": "https://www.rinnegatamante.eu/files/vitadb/lighthouse.zip",
-      "recommended": false
     }
+  ],
+  "icon": "https://www.rinnegatamante.eu/vitadb/icons/4ce0f12e5cf8235b0e211cc3cef5b769b80640f8cf2141c03bedcbe8f3c3be6d.png",
+  "screenshots": [
+    "https://www.rinnegatamante.eu/vitadb/screenshots/96b5673518a27dabeca3f4406b2bb49545d9b917a8d77d490e84a27a415a1c12.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/aba5859dea847d6cadd139735613ddea6b3a6cf8a5124bdb2076f6d4495fdfa2.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/c77f8ec4f60a8632fb104cea5edbc616907cbcfd56d4b8a9fc81b49d95c39b2b.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/b6474497e49254419cc51446140e495abf79250135661a0b7acca384374ddba9.png"
   ],
   "source_name": "VitaDB",
   "source_id": "1468",
   "source_url": "https://github.com/Rinnegatamante/Lighthouse",
-  "release_page": "",
-  "updated_at": "2026-08-16T21:38:31.042549+00:00"
+  "updated_at": "2026-08-16T21:38"
 }

@@ -14,39 +14,9 @@
   "version": "psvita-r7",
   "version_date": "2026-07-13",
   "requirements": "- libshacccg.suprx\n- Game Data Files: PC",
-  "size": 2181887,
+  "size": 2182087,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/7b143be6a4b5b7e098744024a0eb2dbe2e9963ac33727bc6e221b303f66e5573.png",
-  "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/85f2986d1e39c800d5130dcfb687f9556e3c7c1576f38e6608a2922f6b6200e1.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/91a73add2fa9e179f17389918ec456b96628cd20ab727724b9fd8f460baf01c0.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/ebeb6b0897c78a5eafc797016259ea5e7e90d02b0b63ecec6d34b9ecd776ddbd.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/5cece8c834ed0aced66355ebd677cc1901bae35b9cbab19d3ba50bd6e2d3498d.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/85f2986d1e39c800d5130dcfb687f9556e3c7c1576f38e6608a2922f6b6200e1.png"
-  ],
   "links": [
-    {
-      "type": "Download",
-      "name": "VitaHomebrewDB VPK",
-      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1242-unreal.vpk",
-      "recommended": false
-    },
-    {
-      "type": "Official Website",
-      "name": "VitaHomebrewDB Release Page",
-      "url": "https://github.com/fgsfdsfgs/UE1/releases"
-    },
-    {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/fgsfdsfgs/UE1"
-    },
-    {
-      "type": "Download",
-      "name": "VitaHomebrewDB VPK",
-      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/1242-unreal.vpk",
-      "recommended": false
-    },
     {
       "type": "Download",
       "name": "VitaDB VPK",
@@ -55,20 +25,26 @@
     },
     {
       "type": "Download",
-      "name": "Data Files",
-      "url": "https://www.rinnegatamante.eu/files/vitadb/unreal.zip",
-      "recommended": false
+      "name": "VitaHomebrewDB VPK",
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1242-unreal.vpk"
     },
     {
-      "type": "Data Files",
-      "name": "VitaHomebrewDB Data Files",
-      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/1242-data-unreal.zip",
-      "recommended": false
+      "type": "Repository",
+      "name": "Repositorio",
+      "url": "https://github.com/fgsfdsfgs/UE1"
     }
+  ],
+  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/7b143be6a4b5b7e098744024a0eb2dbe2e9963ac33727bc6e221b303f66e5573.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/85f2986d1e39c800d5130dcfb687f9556e3c7c1576f38e6608a2922f6b6200e1.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/91a73add2fa9e179f17389918ec456b96628cd20ab727724b9fd8f460baf01c0.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/ebeb6b0897c78a5eafc797016259ea5e7e90d02b0b63ecec6d34b9ecd776ddbd.png",
+    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/5cece8c834ed0aced66355ebd677cc1901bae35b9cbab19d3ba50bd6e2d3498d.png",
+    "https://www.rinnegatamante.eu/vitadb/screenshots/85f2986d1e39c800d5130dcfb687f9556e3c7c1576f38e6608a2922f6b6200e1.png"
   ],
   "source_name": "VitaHomebrewDB",
   "source_id": "1242",
   "source_url": "https://github.com/fgsfdsfgs/UE1",
   "release_page": "https://github.com/fgsfdsfgs/UE1/releases",
-  "updated_at": "2026-08-13T15:34:48.328893+00:00"
+  "updated_at": "2026-08-13T15:34"
 }
