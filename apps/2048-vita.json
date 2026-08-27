@@ -8,7 +8,9 @@
     "fantahourglass"
   ],
   "category_id": "ports",
-  "subcategory_ids": [],
+  "subcategory_ids": [
+    "other"
+  ],
   "version": "1.0",
   "release_date": "2016-11-14",
   "updated_at": "2016-11-14",
@@ -40,5 +42,8 @@
       "last_seen": "2026-08-27T15:35:32.536991+00:00"
     }
   },
-  "type": "homebrew"
+  "type": "homebrew",
+  "version_date": "2016-11-14",
+  "requirements": "",
+  "status": "Legacy"
 }
