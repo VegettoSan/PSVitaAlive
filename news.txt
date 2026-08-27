@@ -1,4 +1,4 @@
-id: 2026-08-26-0003
+id: 2026-08-27-0001
 title: PsVita Alive Store BETA 01.12
 enabled: true
 ---
@@ -11,5 +11,16 @@ Not all Homebrew / Ports have Game Files yet, please be patient as I will gradua
 - Added internet connection checks to prevent download errors.
 - Removed the report button for insufficient storage warnings.
 
+NEW HOMEBREWS:
+
+- Batman: The Dark Knight Rises + Game Files.
+- Amnesia The Dark Descent + Game Files.
+- Samurai II: Vengeance.
+
+GAME FILES ADDED:
+
+- Pureya.
+- Dead Space.
+- Naoh Arcade Collection.
 
 Enjoy!
