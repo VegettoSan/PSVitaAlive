@@ -1,0 +1,33 @@
+name: Apply Archive.org catalog migration
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'scripts/migrate_apps_to_archive.py'
+      - 'scripts/archive_upload_log.csv'
+
+permissions:
+  contents: write
+
+jobs:
+  migrate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Run migration
+        run: python3 scripts/migrate_apps_to_archive.py
+      - name: Commit if changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add apps/*.json
+          if git diff --staged --quiet; then
+            echo "No changes"
+          else
+            git commit -m "catalog: migrate homebrew to Archive.org mirrors (VPK/icons/screenshots); remove VitaDB/NeoVitaDB/VitaHomebrewDB links; keep MediaFire and Game Files"
+            git push
+          fi
