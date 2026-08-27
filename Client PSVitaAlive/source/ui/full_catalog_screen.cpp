@@ -904,6 +904,7 @@ void FullCatalogScreen::setCatalogItems(std::vector<CatalogItem>items){
     state_.catalog=c;
     installStatusWarmupUntilMs_ = sceKernelGetProcessTimeWide() / 1000ULL + 1500ULL;
     searchQuery_.clear();
+    dataFilesFilter_ = false;
     items_.clear(); // browse via allItems_ (catalogView) — no duplicate
     state_.focusIndex=0;
     state_.catalogScrollRow=0;
@@ -1118,16 +1119,51 @@ void FullCatalogScreen::shutdown(){
     diagnostics::log("[UI] shutdown");
 }
 int FullCatalogScreen::totalRows()const{return catalogView().empty()?0:(int(catalogView().size())+2)/3;}int FullCatalogScreen::visibleRowsFull()const{return 3;}int FullCatalogScreen::visibleRowsSplit()const{return std::max(1,(SCREEN_H-HEADER_H-TABS_H-FOOTER_H-GRID_PAD*2)/(SPLIT_CARD_H+CARD_GAP));}int FullCatalogScreen::selectedIndex()const{return catalogView().empty()?-1:std::max(0,std::min(state_.focusIndex,(int)catalogView().size()-1));}void FullCatalogScreen::clampCatalogFocus(){if(catalogView().empty())state_.focusIndex=0;else state_.focusIndex=std::max(0,std::min(state_.focusIndex,(int)catalogView().size()-1));}void FullCatalogScreen::clampCatalogScroll(){if(catalogView().empty()){state_.catalogScrollRow=0;return;}int v=state_.mode==UiMode::FULL_CATALOG?visibleRowsFull():visibleRowsSplit();if(state_.mode==UiMode::FULL_CATALOG){int r=state_.focusIndex/3;if(r<state_.catalogScrollRow)state_.catalogScrollRow=r;if(r>=state_.catalogScrollRow+v)state_.catalogScrollRow=r-v+1;state_.catalogScrollRow=std::max(0,std::min(state_.catalogScrollRow,std::max(0,totalRows()-v)));}else{int m=std::max(0,(int)catalogView().size()-v);if(state_.focusIndex<state_.catalogScrollRow)state_.catalogScrollRow=state_.focusIndex;if(state_.focusIndex>=state_.catalogScrollRow+v)state_.catalogScrollRow=state_.focusIndex-v+1;state_.catalogScrollRow=std::max(0,std::min(state_.catalogScrollRow,m));}}
-void FullCatalogScreen::sortItemsByDate(std::vector<CatalogItem>&v)const{std::stable_sort(v.begin(),v.end(),[](const CatalogItem&a,const CatalogItem&b){if(a.versionDate!=b.versionDate)return a.versionDate>b.versionDate;return lowerAscii(a.name)<lowerAscii(b.name);});}bool FullCatalogScreen::matchesSearch(const CatalogItem&i,const std::string&q)const{if(q.empty())return true;std::string x=lowerAscii(q),h=lowerAscii(i.name+"\n"+i.titleId+"\n"+i.author+"\n"+i.description+"\n"+i.longDescription+"\n"+i.category+"\n"+i.subcategory);return h.find(x)!=std::string::npos;}void FullCatalogScreen::applySearch(const std::string&q){
-    searchQuery_=q;
+void FullCatalogScreen::sortItemsByDate(std::vector<CatalogItem>&v)const{std::stable_sort(v.begin(),v.end(),[](const CatalogItem&a,const CatalogItem&b){if(a.versionDate!=b.versionDate)return a.versionDate>b.versionDate;return lowerAscii(a.name)<lowerAscii(b.name);});}bool FullCatalogScreen::matchesSearch(const CatalogItem&i,const std::string&q)const{if(q.empty())return true;std::string x=lowerAscii(q),h=lowerAscii(i.name+"\n"+i.titleId+"\n"+i.author+"\n"+i.description+"\n"+i.longDescription+"\n"+i.category+"\n"+i.subcategory);return h.find(x)!=std::string::npos;}void FullCatalogScreen::rebuildFilteredItems() {
     items_.clear();
-    if(!q.empty()){
-        items_.reserve(allItems_.size()>256?256:allItems_.size());
-        for(const auto&i:allItems_)if(matchesSearch(i,q))items_.push_back(i);
+    if (searchQuery_.empty() && !dataFilesFilter_) {
+        // catalogView() uses allItems_ — no second full copy in RAM.
+        return;
     }
-    // When q empty, catalogView() uses allItems_ — no second full copy in RAM.
-    state_.focusIndex=0;state_.catalogScrollRow=0;state_.detailScroll=0;detailScrollBeforeLinkMode_=0;state_.linkFocus=-1;state_.linkNavigation=false;
-    char m[256];sceClibSnprintf(m,sizeof(m),"[UI] search query='%s' results=%u",q.c_str(),(unsigned)catalogView().size());diagnostics::log(m);
+    items_.reserve(allItems_.size() > 256 ? 256 : allItems_.size());
+    for (const auto& i : allItems_) {
+        if (dataFilesFilter_ && !itemHasDataOrGameFiles(i)) continue;
+        if (!matchesSearch(i, searchQuery_)) continue;
+        items_.push_back(i);
+    }
+}
+
+void FullCatalogScreen::setDataFilesFilter(bool enabled) {
+    if (dataFilesFilter_ == enabled) return;
+    dataFilesFilter_ = enabled;
+    rebuildFilteredItems();
+    state_.focusIndex = 0;
+    state_.catalogScrollRow = 0;
+    state_.detailScroll = 0;
+    detailScrollBeforeLinkMode_ = 0;
+    state_.linkFocus = -1;
+    state_.linkNavigation = false;
+    visualCatalogScroll_ = 0.f;
+    char m[160];
+    sceClibSnprintf(m, sizeof(m), "[UI] data-files filter=%d results=%u",
+                    dataFilesFilter_ ? 1 : 0, (unsigned)catalogView().size());
+    diagnostics::log(m);
+    showToast(dataFilesFilter_ ? "Filter: Game/Data Files only" : "Filter cleared", 1400);
+}
+
+void FullCatalogScreen::applySearch(const std::string& q) {
+    searchQuery_ = q;
+    rebuildFilteredItems();
+    state_.focusIndex = 0;
+    state_.catalogScrollRow = 0;
+    state_.detailScroll = 0;
+    detailScrollBeforeLinkMode_ = 0;
+    state_.linkFocus = -1;
+    state_.linkNavigation = false;
+    char m[256];
+    sceClibSnprintf(m, sizeof(m), "[UI] search query='%s' dataFilter=%d results=%u",
+                    q.c_str(), dataFilesFilter_ ? 1 : 0, (unsigned)catalogView().size());
+    diagnostics::log(m);
 }
 int FullCatalogScreen::detailContentHeight(const CatalogItem& i, int w) const {
     const int cw = std::max(1, w - 36);
@@ -1154,7 +1190,7 @@ int FullCatalogScreen::detailContentHeight(const CatalogItem& i, int w) const {
     };
 
     int h = linkLayoutTotalHeight(buildLinkLayout(i));
-    if (itemHasDataOrGameFiles(i)) h += INSTALL_ALL_BLOCK_H + 8;
+    if (itemHasDataOrGameFiles(i)) h += LINK_SECTION_H + 4 + INSTALL_ALL_BLOCK_H + 8;
 
     auto addSection = [&](int body) {
         if (body <= 0) return;
@@ -1188,7 +1224,7 @@ int FullCatalogScreen::detailLinkScrollLimit(const CatalogItem&i,int w,int h)con
     const auto rows = buildLinkLayout(i);
     if (rows.empty()) return 0;
     int lh = linkLayoutTotalHeight(rows);
-    if (itemHasDataOrGameFiles(i)) lh += INSTALL_ALL_BLOCK_H + 8;
+    if (itemHasDataOrGameFiles(i)) lh += LINK_SECTION_H + 4 + INSTALL_ALL_BLOCK_H + 8;
     const int v = std::max(1, h - DETAIL_HEADER_H - 18);
     return std::max(0, lh - v);
 }
@@ -1223,7 +1259,7 @@ void FullCatalogScreen::moveCatalogFocus(int d){if(catalogView().empty())return;
         top = 0;
     } else {
         const int linkFocus = state_.linkFocus - off;
-        top = yOfLinkFocus(rows, linkFocus) + (hasAll ? INSTALL_ALL_BLOCK_H + 8 : 0);
+        top = yOfLinkFocus(rows, linkFocus) + (hasAll ? (LINK_SECTION_H + 4 + INSTALL_ALL_BLOCK_H + 8) : 0);
     }
     const int vis = SCREEN_H - HEADER_H - TABS_H - FOOTER_H - DETAIL_HEADER_H - 18;
     const int lim = detailLinkScrollLimit(catalogView()[i], SCREEN_W / 2, SCREEN_H - HEADER_H - TABS_H - FOOTER_H);
@@ -1689,12 +1725,21 @@ void FullCatalogScreen::handleTouch() {
         }
     }
 
-// --- Header search bar ---
+// --- Header search bar + G/D Files filter ---
     if (y < HEADER_H) {
-        const int barX = 200, barY = 10, barH = 32;
-        const int barW = SCREEN_W - barX - 140;
+        const int barY = 10, barH = 32;
+        const int gdW = 92;
+        const int clockReserve = 92;
+        // Approximate logo width used in drawHeader (searchLeft often ~200)
+        const int barX = 200;
+        const int barW = std::max(120, SCREEN_W - barX - clockReserve - gdW - 10);
+        const int gdX = barX + barW + 6;
+        if (hit(x, y, gdX, barY, gdW, barH)) {
+            setDataFilesFilter(!dataFilesFilter_);
+            return;
+        }
         if (hit(x, y, barX, barY, barW, barH)) {
-            // Right edge of bar clears filter when active
+            // Right edge of bar clears text filter when active
             if (!searchQuery_.empty() && x > barX + barW - 56) {
                 applySearch("");
                 return;
@@ -1793,15 +1838,24 @@ void FullCatalogScreen::handleTouch() {
         return;
     }
 
-    // Install All + download link rows (even without link mode — tap installs)
+    // Install All + download link rows
+    // If not in link mode: enter mode and focus the tapped row (do not install yet).
+    // If already in link mode: activate the tapped control.
     {
         const int i = selectedIndex();
         if (i >= 0) {
             const CatalogItem& it = catalogView()[i];
             const bool hasAll = itemHasDataOrGameFiles(it);
-            const int yOff = hasAll ? INSTALL_ALL_BLOCK_H + 8 : 0;
+            const int yOff = hasAll ? (LINK_SECTION_H + 4 + INSTALL_ALL_BLOCK_H + 8) : 0;
             const int listTop = dy + DETAIL_HEADER_H - (int)visualDetailScroll_;
-            if (hasAll && hit(x, y, dx + 18, listTop, dw - 36, INSTALL_ALL_BLOCK_H)) {
+            const int allBtnY = listTop + (hasAll ? (LINK_SECTION_H + 4) : 0);
+            if (hasAll && hit(x, y, dx + 18, allBtnY, dw - 36, INSTALL_ALL_BLOCK_H)) {
+                if (!state_.linkNavigation) {
+                    state_.linkNavigation = true;
+                    state_.linkFocus = 0;
+                    diagnostics::log("[UI] link navigation enabled (touch Install All)");
+                    return;
+                }
                 openInstallAllWizard();
                 return;
             }
@@ -1811,8 +1865,14 @@ void FullCatalogScreen::handleTouch() {
                 if (row.isSection) continue;
                 const int ry = listTop + yOff + row.y;
                 if (hit(x, y, dx + 18, ry, dw - 36, LINK_ROW_H)) {
-                    state_.linkNavigation = true;
-                    state_.linkFocus = row.focusIndex + focusOff;
+                    const int focus = row.focusIndex + focusOff;
+                    if (!state_.linkNavigation) {
+                        state_.linkNavigation = true;
+                        state_.linkFocus = focus;
+                        diagnostics::log("[UI] link navigation enabled (touch link)");
+                        return;
+                    }
+                    state_.linkFocus = focus;
                     activateFocusedLink();
                     return;
                 }
@@ -2298,7 +2358,7 @@ if(pressed&SCE_CTRL_START){
             return;
         }
         return;
-    }if(reportConfirmVisible_){if(pressed&SCE_CTRL_CIRCLE){closeReportConfirm();return;}if(pressed&SCE_CTRL_CROSS){closeReportConfirm();trySendErrorReport("Manual report from UI","User confirmed report from footer");return;}return;}if(newsVisible_){if(pressed&SCE_CTRL_CIRCLE){closeNewsModal(newsMarkSeenOnClose_);return;}if(pressed&SCE_CTRL_UP||(nav&SCE_CTRL_UP)){if(newsScrollLine_>0)--newsScrollLine_;return;}if(pressed&SCE_CTRL_DOWN||(nav&SCE_CTRL_DOWN)){const int mv=std::max(1,(420-56-88)/22);const int ms=std::max(0,(int)newsLines_.size()-mv);if(newsScrollLine_<ms)++newsScrollLine_;return;}return;}if(installProgressActive_&&(pressed&SCE_CTRL_SQUARE)&&(installOutcome_==2)&&!isInsufficientSpaceError(installProgressMessage_)){trySendErrorReport("Installation failed",installProgressMessage_+" | file="+installProgressFile_);return;}if(installProgressActive_&&(pressed&SCE_CTRL_CIRCLE)){if(installOutcome_==1||installOutcome_==2||installOutcome_==3){if(installAcknowledge_)installAcknowledge_();if(installOutcome_==1&&installAllFinishedToast_){installAllFinishedToast_=false;showToast("All installed — ready to use",2800);}reportUiState_=0;}else if(installCancel_)installCancel_();return;}if(catalogLoading_||installProgressActive_)return;if(pressed&SCE_CTRL_SQUARE){if(!searchQuery_.empty())applySearch("");return;}if(state_.mode==UiMode::FULL_CATALOG){if(pressed&SCE_CTRL_TRIANGLE){if(searchRequest_)applySearch(searchRequest_(searchQuery_));return;}if(nav&SCE_CTRL_LEFT&&state_.focusIndex%3>0)--state_.focusIndex;if(nav&SCE_CTRL_RIGHT&&state_.focusIndex%3<2&&state_.focusIndex+1<(int)catalogView().size())++state_.focusIndex;if(nav&SCE_CTRL_UP)moveCatalogFocus(-1);if(nav&SCE_CTRL_DOWN)moveCatalogFocus(1);clampCatalogScroll();if(pressed&SCE_CTRL_CROSS)startOpeningDetail();return;}if(state_.mode!=UiMode::SPLIT_DETAIL)return;if(pressed&SCE_CTRL_CIRCLE){startClosingDetail();return;}if(state_.activePanel==UiPanel::Catalog){if(pressed&SCE_CTRL_RIGHT)state_.activePanel=UiPanel::Detail;if(nav&SCE_CTRL_UP)moveCatalogFocus(-1);if(nav&SCE_CTRL_DOWN)moveCatalogFocus(1);return;}if(nav&SCE_CTRL_LEFT)state_.activePanel=UiPanel::Catalog;if(pressed&SCE_CTRL_TRIANGLE){if(state_.linkNavigation)exitLinkNavigation();else enterLinkNavigation();return;}if(state_.linkNavigation){if(nav&SCE_CTRL_UP)moveLinkFocus(0,-1);if(nav&SCE_CTRL_DOWN)moveLinkFocus(0,1);if(pressed&SCE_CTRL_CROSS)activateFocusedLink();return;}if(nav&SCE_CTRL_UP)moveDetailScroll(-1);if(nav&SCE_CTRL_DOWN)moveDetailScroll(1);}
+    }if(reportConfirmVisible_){if(pressed&SCE_CTRL_CIRCLE){closeReportConfirm();return;}if(pressed&SCE_CTRL_CROSS){closeReportConfirm();trySendErrorReport("Manual report from UI","User confirmed report from footer");return;}return;}if(newsVisible_){if(pressed&SCE_CTRL_CIRCLE){closeNewsModal(newsMarkSeenOnClose_);return;}if(pressed&SCE_CTRL_UP||(nav&SCE_CTRL_UP)){if(newsScrollLine_>0)--newsScrollLine_;return;}if(pressed&SCE_CTRL_DOWN||(nav&SCE_CTRL_DOWN)){const int mv=std::max(1,(420-56-88)/22);const int ms=std::max(0,(int)newsLines_.size()-mv);if(newsScrollLine_<ms)++newsScrollLine_;return;}return;}if(installProgressActive_&&(pressed&SCE_CTRL_SQUARE)&&(installOutcome_==2)&&!isInsufficientSpaceError(installProgressMessage_)){trySendErrorReport("Installation failed",installProgressMessage_+" | file="+installProgressFile_);return;}if(installProgressActive_&&(pressed&SCE_CTRL_CIRCLE)){if(installOutcome_==1||installOutcome_==2||installOutcome_==3){if(installAcknowledge_)installAcknowledge_();if(installOutcome_==1&&installAllFinishedToast_){installAllFinishedToast_=false;showToast("All installed — ready to use",2800);}reportUiState_=0;}else if(installCancel_)installCancel_();return;}if(catalogLoading_||installProgressActive_)return;if(pressed&SCE_CTRL_SQUARE){if(!searchQuery_.empty()||dataFilesFilter_){dataFilesFilter_=false;applySearch("");showToast("Filters cleared",1200);}return;}if(state_.mode==UiMode::FULL_CATALOG){if(pressed&SCE_CTRL_TRIANGLE){if(searchRequest_)applySearch(searchRequest_(searchQuery_));return;}if(nav&SCE_CTRL_LEFT&&state_.focusIndex%3>0)--state_.focusIndex;if(nav&SCE_CTRL_RIGHT&&state_.focusIndex%3<2&&state_.focusIndex+1<(int)catalogView().size())++state_.focusIndex;if(nav&SCE_CTRL_UP)moveCatalogFocus(-1);if(nav&SCE_CTRL_DOWN)moveCatalogFocus(1);clampCatalogScroll();if(pressed&SCE_CTRL_CROSS)startOpeningDetail();return;}if(state_.mode!=UiMode::SPLIT_DETAIL)return;if(pressed&SCE_CTRL_CIRCLE){startClosingDetail();return;}if(state_.activePanel==UiPanel::Catalog){if(pressed&SCE_CTRL_RIGHT)state_.activePanel=UiPanel::Detail;if(nav&SCE_CTRL_UP)moveCatalogFocus(-1);if(nav&SCE_CTRL_DOWN)moveCatalogFocus(1);return;}if(nav&SCE_CTRL_LEFT)state_.activePanel=UiPanel::Catalog;if(pressed&SCE_CTRL_TRIANGLE){if(state_.linkNavigation)exitLinkNavigation();else enterLinkNavigation();return;}if(state_.linkNavigation){if(nav&SCE_CTRL_UP)moveLinkFocus(0,-1);if(nav&SCE_CTRL_DOWN)moveLinkFocus(0,1);if(pressed&SCE_CTRL_CROSS)activateFocusedLink();return;}if(nav&SCE_CTRL_UP)moveDetailScroll(-1);if(nav&SCE_CTRL_DOWN)moveDetailScroll(1);}
 unsigned FullCatalogScreen::colorForStatus(const std::string&s)const{if(s=="Verified")return ACCENT;if(s=="Legacy")return TEXT;if(s=="Archive")return DIM;return TEXT;}void FullCatalogScreen::drawHeader(int w){
     // Near-black bar + dual neon edge (LiveArea brand)
     vita2d_draw_rectangle(0, 0, w, HEADER_H, SURFACE2);
@@ -2324,9 +2384,13 @@ unsigned FullCatalogScreen::colorForStatus(const std::string&s)const{if(s=="Veri
         vita2d_pgf_draw_text(font_, 14, 28, ACCENT, 0.88f, "PSVitaAlive");
         searchLeft = 200;
     }
-    // Center search field with neon frame
-    const int barX = searchLeft, barY = 10, barH = 32;
-    const int barW = w - barX - 100;
+    // Search field + G/D Files filter chip + clock
+    const int barY = 10, barH = 32;
+    const int gdW = 92;
+    const int clockReserve = 92;
+    const int barX = searchLeft;
+    const int barW = std::max(120, w - barX - clockReserve - gdW - 10);
+    const int gdX = barX + barW + 6;
     vita2d_draw_rectangle(barX, barY, barW, barH, SURFACE);
     vita2d_draw_rectangle(barX - 1, barY - 1, barW + 2, 1, RGBA8(0x3B, 0xFF, 0x00, 50));
     vita2d_draw_rectangle(barX - 1, barY + barH, barW + 2, 1, RGBA8(0x3B, 0xFF, 0x00, 50));
@@ -2340,8 +2404,23 @@ unsigned FullCatalogScreen::colorForStatus(const std::string&s)const{if(s=="Veri
         vita2d_pgf_draw_text(font_, barX + 12, barY + 21, DIM, 0.58f, "Search...  (△)");
     } else {
         vita2d_pgf_draw_text(font_, barX + 12, barY + 21, ACCENT, 0.56f, "FILTER");
-        vita2d_pgf_draw_text(font_, barX + 70, barY + 21, WHITE, 0.58f, ellipsize(searchQuery_, 28).c_str());
+        vita2d_pgf_draw_text(font_, barX + 70, barY + 21, WHITE, 0.58f, ellipsize(searchQuery_, 22).c_str());
         vita2d_pgf_draw_text(font_, barX + barW - 52, barY + 21, DIM, 0.52f, "□ clear");
+    }
+    // G/D Files filter — folder amber palette (matches detail chips)
+    {
+        const unsigned amber = RGBA8(0xE6, 0x9A, 0x00, 255);
+        const unsigned amberDark = RGBA8(0x8A, 0x5A, 0x00, 255);
+        const unsigned fill = dataFilesFilter_ ? amber : SURFACE2;
+        const unsigned border = amber;
+        vita2d_draw_rectangle(gdX, barY, gdW, barH, border);
+        vita2d_draw_rectangle(gdX + 2, barY + 2, gdW - 4, barH - 4, fill);
+        const unsigned tc = dataFilesFilter_ ? RGBA8(0x1A, 0x12, 0x00, 255) : amber;
+        const char* lab = "G/D Files";
+        const float sc = 0.52f;
+        const int tw = vita2d_pgf_text_width(font_, sc, lab);
+        vita2d_pgf_draw_text(font_, gdX + (gdW - tw) / 2, barY + 21, tc, sc, lab);
+        (void)amberDark;
     }
     {
         const std::string clock = currentTimeLabel();
@@ -3154,24 +3233,26 @@ void FullCatalogScreen::drawDetailLinks(const CatalogItem& it, int x, int y, int
     int yOff = 0;
 
     if (showAll) {
+        // Own section header (same style as DOWNLOADS / GAME FILES)
+        vita2d_draw_rectangle(x, y + LINK_SECTION_H - 1, w, 1, BORDER);
+        vita2d_pgf_draw_text(font_, x + 4, y + 14, ACCENT, 0.52f, "INSTALL ALL");
+        const int by = y + LINK_SECTION_H + 4;
         const bool fAll = state_.linkNavigation && state_.linkFocus == 0;
-        // Same look as download rows (SURFACE2 / ACCENT focus), larger block + soft border pulse.
-        const float pulse = 0.40f + 0.60f * focusPulse(); // 0.40..1.0
+        // Same look as download rows (SURFACE2 / ACCENT focus) + soft border pulse
+        const float pulse = 0.40f + 0.60f * focusPulse();
         const unsigned borderA = (unsigned)(120.f + 135.f * pulse);
         const unsigned borderCol = RGBA8(0x3B, 0xFF, 0x00, borderA > 255 ? 255 : borderA);
         const unsigned fill = fAll ? ACCENT : SURFACE2;
         const int bwPulse = fAll ? 2 : (2 + (int)(1.5f * pulse));
-        // Outer pulse rim (keeps attention without leaving the palette)
-        vita2d_draw_rectangle(x, y, w, INSTALL_ALL_BLOCK_H, borderCol);
-        vita2d_draw_rectangle(x + bwPulse, y + bwPulse, w - bwPulse * 2, INSTALL_ALL_BLOCK_H - bwPulse * 2, fill);
-        // Top hairline like other link rows
-        vita2d_draw_rectangle(x + bwPulse, y + bwPulse, w - bwPulse * 2, 1, fAll ? ACCENT : BORDER);
+        vita2d_draw_rectangle(x, by, w, INSTALL_ALL_BLOCK_H, borderCol);
+        vita2d_draw_rectangle(x + bwPulse, by + bwPulse, w - bwPulse * 2, INSTALL_ALL_BLOCK_H - bwPulse * 2, fill);
+        vita2d_draw_rectangle(x + bwPulse, by + bwPulse, w - bwPulse * 2, 1, fAll ? ACCENT : BORDER);
         const unsigned tc = fAll ? BG : WHITE;
         const unsigned sub = fAll ? BG : TEXT;
-        vita2d_pgf_draw_text(font_, x + 12, y + 20, tc, 0.70f, "INSTALL ALL");
-        vita2d_pgf_draw_text(font_, x + 12, y + 42, sub, 0.56f,
+        vita2d_pgf_draw_text(font_, x + 12, by + 20, tc, 0.70f, "INSTALL ALL");
+        vita2d_pgf_draw_text(font_, x + 12, by + 42, sub, 0.56f,
             "Install app + Game/Data Files from scratch");
-        yOff = INSTALL_ALL_BLOCK_H + 8;
+        yOff = LINK_SECTION_H + 4 + INSTALL_ALL_BLOCK_H + 8;
     }
 
     if (rows.empty() && !showAll) return;
@@ -3691,7 +3772,7 @@ void FullCatalogScreen::drawInstallAllOverlay() {
     vita2d_pgf_draw_text(font_, ox + 22, oy + 62, DIM, 0.50f, "Same content — pick one mirror / source");
 
     const int listTop = oy + 86;
-    const int rowH = 40;
+    const int rowH = 44;
     const int maxVis = 5;
     int start = 0;
     if (installAllFocus_ >= maxVis) start = installAllFocus_ - maxVis + 1;
@@ -3702,13 +3783,22 @@ void FullCatalogScreen::drawInstallAllOverlay() {
         const CatalogLink& l = item.linkDetails[di];
         const int ry = listTop + n * (rowH + 6);
         const bool f = (idx == installAllFocus_);
+        // Same visual language as detail download rows
         vita2d_draw_rectangle(ox + 20, ry, ow - 40, rowH, f ? ACCENT : SURFACE2);
+        vita2d_draw_rectangle(ox + 20, ry, ow - 40, 1, f ? ACCENT : BORDER);
         std::string name = l.name.empty() ? l.type : l.name;
         std::string size = l.size.empty() ? "" : l.size;
-        std::string line = name;
-        if (!size.empty()) line += "  •  " + size;
-        if (l.recommended) line += "  [Recommended]";
-        vita2d_pgf_draw_text(font_, ox + 32, ry + 26, f ? BG : WHITE, 0.56f, ellipsize(line, 52).c_str());
+        const int badgeW = l.recommended ? 96 : 0;
+        const unsigned mc = f ? BG : WHITE;
+        vita2d_pgf_draw_text(font_, ox + 32, ry + 16, mc, 0.60f, ellipsize(name, badgeW ? 28 : 42).c_str());
+        std::string meta = size.empty() ? "Source" : size;
+        if (f) meta += "  •  X: select";
+        vita2d_pgf_draw_text(font_, ox + 32, ry + 32, f ? BG : DIM, 0.48f, ellipsize(meta, badgeW ? 30 : 48).c_str());
+        if (l.recommended) {
+            const int bx = ox + ow - 40 - badgeW - 8, by = ry + 9;
+            vita2d_draw_rectangle(bx, by, badgeW, 22, f ? BG : ACCENT);
+            vita2d_pgf_draw_text(font_, bx + 6, by + 15, f ? ACCENT : BG, 0.50f, "Recommended");
+        }
     }
     vita2d_pgf_draw_text(font_, ox + 22, oy + oh - 28, DIM, 0.48f, "D-Pad: move   X: select   O: cancel");
 }
