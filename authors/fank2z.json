@@ -1,0 +1,15 @@
+{
+  "id": "fank2z",
+  "name": "Fank2z",
+  "avatar": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png",
+  "bio": "Dev",
+  "links": [
+    {
+      "type": "Official Website",
+      "name": "Madfinger Games",
+      "url": "https://www.madfingergames.com/",
+      "recommended": true
+    }
+  ],
+  "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
+}
