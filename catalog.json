@@ -1,5 +1,131 @@
 [
   {
+    "id": "batman-the-dark-knight-rises",
+    "title_id": "KRAS00000",
+    "name": "Batman - The Dark Knight Rises",
+    "description": "Batman - The Dark Knight Rises Port Ps Vita",
+    "long_description": "Batman - The Dark Knight Rises Port Ps Vita",
+    "author_ids": [
+      "rinnegatamante",
+      "theflow"
+    ],
+    "category_id": "ports",
+    "subcategory_ids": [
+      "action",
+      "arcade"
+    ],
+    "version": "0.8",
+    "version_date": "2026-08-27",
+    "requirements": "Install Kubridge and FdFix by copying kubridge.skprx and fd_fix.skprx to your taiHEN plugins folder",
+    "size": 794112,
+    "status": "Verified",
+    "links": [
+      {
+        "type": "Download",
+        "name": "VPK",
+        "url": "https://archive.org/download/batman-the-dark-knight-rises/KRAS.vpk",
+        "size": 794112,
+        "recommended": true
+      },
+      {
+        "type": "Game Files",
+        "name": "Game Files ZIP",
+        "url": "https://archive.org/download/batman-the-dark-knight-rises/Game%20Files.zip",
+        "size": 1932735283,
+        "extract_path": "ux0:data/"
+      }
+    ],
+    "icon": "https://archive.org/download/batman-the-dark-knight-rises/icon0.png",
+    "screenshots": [
+      "https://archive.org/download/batman-the-dark-knight-rises/shot0.png",
+      "https://archive.org/download/batman-the-dark-knight-rises/shot1.png"
+    ]
+  },
+  {
+    "id": "samurai-ii-vengeance",
+    "title_id": "SV2ESPJCR",
+    "name": "Samurai II: Vengeance",
+    "description": "Samurai II Vengeance Ps Vita Port",
+    "long_description": "Samurai II Vengeance Ps Vita Port",
+    "author_ids": [
+      "fank2z"
+    ],
+    "category_id": "ports",
+    "subcategory_ids": [
+      "action",
+      "arcade"
+    ],
+    "version": "1.1",
+    "version_date": "2026-08-27",
+    "requirements": "No data",
+    "size": 94266982,
+    "status": "Verified",
+    "links": [
+      {
+        "type": "Download",
+        "name": "VPK Spanish",
+        "url": "https://archive.org/download/samurai-ii-v.-1.1/Samurai%20II%20v.1.1.vpk",
+        "size": 94266982,
+        "recommended": true
+      }
+    ],
+    "icon": "https://archive.org/download/samurai-ii-v.-1.1/icon0.png",
+    "screenshots": [
+      "https://archive.org/download/samurai-ii-v.-1.1/shot0.png",
+      "https://archive.org/download/samurai-ii-v.-1.1/shot1.png"
+    ]
+  },
+  {
+    "id": "naoh-arcade-collection",
+    "title_id": "NAOH00001",
+    "name": "NAOH: Arcade Collection",
+    "description": "Arcade launcher for Marvel vs Capcom games.",
+    "long_description": "NAOH: Arcade Collection is a native PlayStation Vita arcade launcher written in C. It statically links the FB Alpha 2012 (CPS2) and MAME 2000 libretro cores behind a custom vita2d-rendered front end, so a set of classic Marvel vs Capcom arcade games can be launched and played.",
+    "author_ids": [
+      "kiddrwxssj"
+    ],
+    "category_id": "emulators",
+    "subcategory_ids": [
+      "arcade",
+      "other"
+    ],
+    "version": "v.2.0.1",
+    "version_date": "2026-08-25",
+    "requirements": "- Game Data Files: Different Systems",
+    "size": 34812723,
+    "status": "Legacy",
+    "links": [
+      {
+        "type": "Download",
+        "name": "VitaDB VPK",
+        "url": "https://archive.org/download/psvitaalive-naoh-arcade-collection/naoh_arcade_collection2.0.1.vpk",
+        "size": 40055603,
+        "recommended": true
+      },
+      {
+        "type": "Game Files",
+        "name": "Game Files ZIP",
+        "url": "https://archive.org/download/psvitaalive-naoh-arcade-collection/Game%20Files.zip",
+        "size": 336278323,
+        "extract_path": "ux0:data/"
+      },
+      {
+        "type": "Repository",
+        "name": "Repositorio",
+        "url": "https://github.com/KiddRwxSsj/naoh-ac"
+      }
+    ],
+    "icon": "https://archive.org/download/psvitaalive-naoh-arcade-collection/icon0.png",
+    "screenshots": [
+      "https://archive.org/download/psvitaalive-naoh-arcade-collection/shot_01.png"
+    ],
+    "source_name": "VitaDB",
+    "source_id": "1470",
+    "source_url": "https://github.com/KiddRwxSsj/naoh-ac",
+    "release_page": "https://github.com/KiddRwxSsj/naoh-ac/releases",
+    "updated_at": "2026-08-17T21:42"
+  },
+  {
     "id": "bounce-vita",
     "title_id": "BZERO0001",
     "name": "Bounce Vita",
@@ -48,50 +174,45 @@
     "updated_at": "2026-08-24T21:47:26.671379+00:00"
   },
   {
-    "id": "naoh-arcade-collection",
-    "title_id": "NAOH00001",
-    "name": "NAOH: Arcade Collection",
-    "description": "Arcade launcher for Marvel vs Capcom games.",
-    "long_description": "NAOH: Arcade Collection is a native PlayStation Vita arcade launcher written in C. It statically links the FB Alpha 2012 (CPS2) and MAME 2000 libretro cores behind a custom vita2d-rendered front end, so a set of classic Marvel vs Capcom arcade games can be launched and played.",
+    "id": "amnesia-the-dark-descent",
+    "title_id": "AMNE00001",
+    "name": "Amnesia: The Dark Descent",
+    "description": "Amnesia: The Dark Descent Port Ps Vita",
+    "long_description": "Amnesia: The Dark Descent Port Ps Vita",
     "author_ids": [
-      "kiddrwxssj"
+      "fridinator1"
     ],
-    "category_id": "emulators",
+    "category_id": "ports",
     "subcategory_ids": [
-      "other"
+      "action",
+      "strategy"
     ],
-    "version": "v.2.0",
+    "version": "01.00",
     "version_date": "2026-08-24",
-    "requirements": "- Game Data Files: Different Systems",
-    "size": 34805154,
-    "status": "Legacy",
-    "icon": "https://www.rinnegatamante.eu/vitadb/icons/30ed058f56e2f90d58bf083f34bdbdec40ae0df71806975caeb25f55f090024f.png",
-    "screenshots": [
-      "https://www.rinnegatamante.eu/vitadb/screenshots/4defff0e49cf45041606352e6095776f36fca789e3dfa9f3c18f1e5f87c623e4.png"
-    ],
+    "requirements": "You must provide a legally owned copy of Amnesia: The Dark Descent; only the Steam release has been tested.",
+    "size": 5767168,
+    "status": "Verified",
     "links": [
       {
         "type": "Download",
-        "name": "VitaDB VPK",
-        "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1470",
+        "name": "VPK",
+        "url": "https://archive.org/download/amnesia-the-dark-descent_202608/Amnesia-Vita-01.00.vpk",
+        "size": 5767168,
         "recommended": true
       },
       {
-        "type": "Official Website",
-        "name": "VitaDB Release Page",
-        "url": "https://github.com/KiddRwxSsj/naoh-ac/releases"
-      },
-      {
-        "type": "Repository",
-        "name": "Repositorio",
-        "url": "https://github.com/KiddRwxSsj/naoh-ac"
+        "type": "Download",
+        "name": "Game Files ZIP",
+        "url": "https://archive.org/download/amnesia-the-dark-descent_202608/Game%20Files.zip",
+        "size": 2576980378,
+        "recommended": false
       }
     ],
-    "source_name": "VitaDB",
-    "source_id": "1470",
-    "source_url": "https://github.com/KiddRwxSsj/naoh-ac",
-    "release_page": "https://github.com/KiddRwxSsj/naoh-ac/releases",
-    "updated_at": "2026-08-17T21:42:40.081896+00:00"
+    "icon": "https://archive.org/download/amnesia-the-dark-descent_202608/icon0.png",
+    "screenshots": [
+      "https://archive.org/download/amnesia-the-dark-descent_202608/shot0.jpg",
+      "https://archive.org/download/amnesia-the-dark-descent_202608/shot1.jpg"
+    ]
   },
   {
     "id": "duskligth",
@@ -18127,45 +18248,42 @@
     "version": "v.1.0",
     "version_date": "2024-09-19",
     "requirements": "- Game Data Files: PC",
-    "size": 16848282,
+    "size": 16882074,
     "status": "Legacy",
-    "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/e7a4dc5bfdc8baa34e60d831afeb333edc533160a180a3bd0a5360876aaed697.png",
-    "screenshots": [
-      "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/e549360bde1994278baad37403f594b88bbe27e9f0d977bac0562b997de676e8.png",
-      "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/6626a533b523d8e3f44ac43af07c3296b9606467d5e1e6116cbb7b6a5fc5161f.png",
-      "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/5ff2125a4c970e4c797479d1746231556eeca5eaae90558e816c6d8f7a360dc2.png",
-      "https://www.rinnegatamante.eu/vitadb/screenshots/e549360bde1994278baad37403f594b88bbe27e9f0d977bac0562b997de676e8.png",
-      "https://www.rinnegatamante.eu/vitadb/screenshots/6626a533b523d8e3f44ac43af07c3296b9606467d5e1e6116cbb7b6a5fc5161f.png"
-    ],
     "links": [
       {
         "type": "Download",
-        "name": "VitaHomebrewDB VPK",
-        "url": "https://github.com/PatnosDD/Pureya-PS-VITA/releases/download/v1.0/pureya.vpk",
-        "recommended": false
+        "name": "VPK",
+        "url": "https://archive.org/download/psvitaalive-pureya-vita/pureya-vita.vpk",
+        "size": 16882074,
+        "recommended": true
+      },
+      {
+        "type": "Game Files",
+        "name": "Game Files",
+        "url": "https://archive.org/download/psvitaalive-pureya-vita/Game%20Files.zip",
+        "size": 63229133,
+        "extract_path": "ux0:data/"
       },
       {
         "type": "Official Website",
         "name": "VitaHomebrewDB Release Page",
         "url": "https://github.com/PatnosDD/Pureya-PS-VITA"
-      },
-      {
-        "type": "Official Website",
-        "name": "NeoVitaDB Release Page",
-        "url": "https://github.com/PatnosDD/Pureya-PS-VITA/releases/tag/v1.0"
-      },
-      {
-        "type": "Download",
-        "name": "VitaDB VPK",
-        "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1234",
-        "recommended": true
       }
+    ],
+    "icon": "https://archive.org/download/psvitaalive-pureya-vita/icon0.png",
+    "screenshots": [
+      "https://archive.org/download/psvitaalive-pureya-vita/shot_01.png",
+      "https://archive.org/download/psvitaalive-pureya-vita/shot_02.png",
+      "https://archive.org/download/psvitaalive-pureya-vita/shot_03.png",
+      "https://archive.org/download/psvitaalive-pureya-vita/shot_04.png",
+      "https://archive.org/download/psvitaalive-pureya-vita/shot_05.png"
     ],
     "source_name": "VitaHomebrewDB",
     "source_id": "1234",
     "source_url": "https://github.com/PatnosDD/Pureya-PS-VITA",
     "release_page": "https://github.com/PatnosDD/Pureya-PS-VITA",
-    "updated_at": "2026-08-13T15:34:48.431064+00:00"
+    "updated_at": "2026-08-13T15:34"
   },
   {
     "id": "lswtcs-vita",
@@ -29468,67 +29586,6 @@
     "updated_at": "2026-08-13T15:34:48.520517+00:00"
   },
   {
-    "id": "dead-space-vita",
-    "title_id": "DEADSPACE",
-    "name": "Dead Space Vita",
-    "description": "Port of Dead Space Mobile for PSVITA.",
-    "long_description": "Dead Space is a 2011 survival horror mobile game for iOS and Android devices. A spin-off within the Dead Space series, the game is set after the events of original Dead Space and prior to the events of Dead Space 2 and shows how the Necromorph outbreak began and spread through the Titan Sprawl.\nThis homebrew is a loader of the Xperia Play release of Dead Space, based on the Android SO Loader by TheFloW. The loader provides a tailored, minimalistic Android-like environment to run the official ARMv6 game executable on the PS Vita.\nPlease, read the installation instructions on GitHub.",
-    "author_ids": [
-      "gl33ntwine"
-    ],
-    "category_id": "ports",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "v.1.3",
-    "version_date": "2023-01-13",
-    "requirements": "- libshacccg.suprx\n- kubridge.skprx v.0.3 or higher\n- Game Data Files: Android",
-    "size": 1451351,
-    "status": "Legacy",
-    "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/ec0c9eaf7a7645a700f8b6937ade5b7199b263ff469f2ec1d565f00b2bb04b6d.png",
-    "screenshots": [
-      "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/b4dbbfafe8707a90a2d2a2f01f5fea4b16b1d39dabaf9575bae287020f86ee3e.png",
-      "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c2ce5d079bc68e7b0db5f7eb6fa8722f1921156cf73df7b62e0e52180e9889ea.png",
-      "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/2b9b21a0fad43137664fbbcbcb89a8d8b87ecb4fcd80afcb0142ce78795db702.png",
-      "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/4ffbe9c276c3482386434d2dc3c289b304458a577395f6058aa8ceb52b24c6ce.png",
-      "https://www.rinnegatamante.eu/vitadb/screenshots/b4dbbfafe8707a90a2d2a2f01f5fea4b16b1d39dabaf9575bae287020f86ee3e.png"
-    ],
-    "links": [
-      {
-        "type": "Download",
-        "name": "VitaHomebrewDB VPK",
-        "url": "https://github.com/v-atamanenko/deadspace-vita/releases/download/v1.3/Dead.Space.v1.3.vpk",
-        "recommended": false
-      },
-      {
-        "type": "Official Website",
-        "name": "VitaHomebrewDB Release Page",
-        "url": "https://github.com/v-atamanenko/deadspace-vita/releases"
-      },
-      {
-        "type": "Official Website",
-        "name": "NeoVitaDB Release Page",
-        "url": "https://github.com/v-atamanenko/deadspace-vita/releases/tag/v1.3"
-      },
-      {
-        "type": "Repository",
-        "name": "Repositorio",
-        "url": "https://github.com/v-atamanenko/deadspace-vita"
-      },
-      {
-        "type": "Download",
-        "name": "VitaDB VPK",
-        "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=999",
-        "recommended": true
-      }
-    ],
-    "source_name": "VitaHomebrewDB",
-    "source_id": "999",
-    "source_url": "https://github.com/v-atamanenko/deadspace-vita",
-    "release_page": "https://github.com/v-atamanenko/deadspace-vita/releases",
-    "updated_at": "2026-08-13T15:34:48.519919+00:00"
-  },
-  {
     "id": "vita-smb-client",
     "title_id": "SMBCLI001",
     "name": "vita-smb-client",
@@ -29585,6 +29642,62 @@
     "source_url": "https://github.com/cy33hc/vita-smb-client",
     "release_page": "https://github.com/cy33hc/vita-smb-client/releases",
     "updated_at": "2026-08-13T15:34:48.519799+00:00"
+  },
+  {
+    "id": "dead-space-vita",
+    "title_id": "DEADSPACE",
+    "name": "Dead Space Vita",
+    "description": "Port of Dead Space Mobile for PSVITA.",
+    "long_description": "Dead Space is a 2011 survival horror mobile game for iOS and Android devices. A spin-off within the Dead Space series, the game is set after the events of original Dead Space and prior to the events of Dead Space 2 and shows how the Necromorph outbreak began and spread through the Titan Sprawl.\nThis homebrew is a loader of the Xperia Play release of Dead Space, based on the Android SO Loader by TheFloW. The loader provides a tailored, minimalistic Android-like environment to run the official ARMv6 game executable on the PS Vita.\nPlease, read the installation instructions on GitHub.",
+    "author_ids": [
+      "gl33ntwine"
+    ],
+    "category_id": "ports",
+    "subcategory_ids": [
+      "action",
+      "shooter",
+      "strategy",
+      "other"
+    ],
+    "version": "v.1.3",
+    "version_date": "2023-01-13",
+    "requirements": "- libshacccg.suprx\n- kubridge.skprx v.0.3 or higher\n- Game Data Files: Android",
+    "size": 1468006,
+    "status": "Legacy",
+    "links": [
+      {
+        "type": "Download",
+        "name": "VPK",
+        "url": "https://archive.org/download/psvitaalive-dead-space-vita/dead-space-vita.vpk",
+        "size": 1468006,
+        "recommended": true
+      },
+      {
+        "type": "Game Files",
+        "name": "Game Files ZIP",
+        "url": "https://archive.org/download/psvitaalive-dead-space-vita/Game%20Files.zip",
+        "size": 318347674,
+        "extract_path": "ux0:data/"
+      },
+      {
+        "type": "Repository",
+        "name": "Repositorio",
+        "url": "https://github.com/v-atamanenko/deadspace-vita"
+      }
+    ],
+    "icon": "https://archive.org/download/psvitaalive-dead-space-vita/icon0.png",
+    "screenshots": [
+      "https://archive.org/download/psvitaalive-dead-space-vita/shot_01.png",
+      "https://archive.org/download/psvitaalive-dead-space-vita/shot_02.png",
+      "https://archive.org/download/psvitaalive-dead-space-vita/shot_03.png",
+      "https://archive.org/download/psvitaalive-dead-space-vita/shot_04.png",
+      "https://archive.org/download/psvitaalive-dead-space-vita/shot_05.png"
+    ],
+    "source_name": "VitaHomebrewDB",
+    "source_id": "999",
+    "source_url": "https://github.com/v-atamanenko/deadspace-vita",
+    "release_page": "https://github.com/v-atamanenko/deadspace-vita/releases",
+    "updated_at": "2026-08-13T15:34"
   },
   {
     "id": "psp2-batteryfixer",

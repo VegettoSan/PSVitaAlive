@@ -2090,6 +2090,21 @@
     "icon": "https://github.com/falkenhawk.png"
   },
   {
+    "id": "fank2z",
+    "name": "Fank2z",
+    "avatar": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png",
+    "bio": "Dev",
+    "links": [
+      {
+        "type": "Official Website",
+        "name": "Madfinger Games",
+        "url": "https://www.madfingergames.com/",
+        "recommended": true
+      }
+    ],
+    "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
+  },
+  {
     "id": "fantahourglass",
     "name": "FantaHourglass",
     "avatar": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png",
@@ -2253,6 +2268,21 @@
       }
     ],
     "icon": "https://github.com/Freakler.png"
+  },
+  {
+    "id": "fridinator1",
+    "name": "FridiNaTor1",
+    "avatar": "https://avatars.githubusercontent.com/u/32988388?v=4",
+    "bio": "Dev",
+    "links": [
+      {
+        "type": "Repository",
+        "name": "GitHub",
+        "url": "https://github.com/FridiNaTor1",
+        "recommended": true
+      }
+    ],
+    "icon": "https://avatars.githubusercontent.com/u/32988388?v=4"
   },
   {
     "id": "frozennoober",

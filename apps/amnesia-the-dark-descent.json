@@ -29,7 +29,8 @@
       "type": "Download",
       "name": "Game Files ZIP",
       "url": "https://archive.org/download/amnesia-the-dark-descent_202608/Game%20Files.zip",
-      "size": 2576980378
+      "size": 2576980378,
+      "recommended": false
     }
   ],
   "icon": "https://archive.org/download/amnesia-the-dark-descent_202608/icon0.png",
