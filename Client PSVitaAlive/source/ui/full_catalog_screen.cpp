@@ -443,6 +443,54 @@ int yOfLinkFocus(const std::vector<LinkLayoutRow>& rows, int focusIndex) {
     return 10;
 }
 
+
+bool itemHasDataOrGameFiles(const CatalogItem& it) {
+    return itemHasLinkType(it, "data files") || itemHasLinkType(it, "game files")
+        || itemHasLinkType(it, "data file") || itemHasLinkType(it, "game file");
+}
+
+bool isDownloadTypeLink(const CatalogLink& l) {
+    const std::string t = normalizeLinkType(l.type);
+    return t == "download" || t == "downloads";
+}
+
+bool isGameFilesTypeLink(const CatalogLink& l) {
+    const std::string t = normalizeLinkType(l.type);
+    return t == "game files" || t == "game file" || t == "gamefiles";
+}
+
+bool isDataFilesTypeLink(const CatalogLink& l) {
+    const std::string t = normalizeLinkType(l.type);
+    return t == "data files" || t == "data file" || t == "datafiles" || t == "data";
+}
+
+/** Extra height for Install All button block at top of links. */
+static const int INSTALL_ALL_BLOCK_H = 58;
+
+uint64_t parseUiSizeBytes(const std::string& raw) {
+    if (raw.empty()) return 0;
+    std::string s;
+    s.reserve(raw.size());
+    for (unsigned char c : raw) {
+        if (c == ' ' || c == '\t') continue;
+        if (c >= 'A' && c <= 'Z') c = static_cast<unsigned char>(c - 'A' + 'a');
+        s.push_back(static_cast<char>(c));
+    }
+    if (s.empty()) return 0;
+    char* end = nullptr;
+    const double v = std::strtod(s.c_str(), &end);
+    if (end == s.c_str()) return 0;
+    std::string u = end ? std::string(end) : std::string();
+    uint64_t mul = 1;
+    if (u.empty() || u == "b" || u == "byte" || u == "bytes") mul = 1;
+    else if (u == "k" || u == "kb" || u == "kib") mul = 1024ULL;
+    else if (u == "m" || u == "mb" || u == "mib") mul = 1024ULL * 1024ULL;
+    else if (u == "g" || u == "gb" || u == "gib") mul = 1024ULL * 1024ULL * 1024ULL;
+    else return 0;
+    if (v <= 0.0) return 0;
+    return static_cast<uint64_t>(v * static_cast<double>(mul) + 0.5);
+}
+
 std::string formatLinkSizeLabel(const CatalogLink&l,const CatalogItem&it){if(!l.size.empty())return l.size;if(!it.size.empty())return it.size;return {};}
 }
 std::string formatEta(uint64_t seconds){if(seconds==0)return "--";uint64_t h=seconds/3600,m=(seconds%3600)/60,sec=seconds%60;char o[64];if(h)sceClibSnprintf(o,sizeof(o),"%llu:%02llu:%02llu",(unsigned long long)h,(unsigned long long)m,(unsigned long long)sec);else sceClibSnprintf(o,sizeof(o),"%02llu:%02llu",(unsigned long long)m,(unsigned long long)sec);return o;}
@@ -902,6 +950,9 @@ void FullCatalogScreen::setCatalogItems(std::vector<CatalogItem>items){
     if (!titleId.empty() && (outcome == 1 || outcome == 2)) {
         invalidateInstallStatus(titleId);
     }
+
+    // Install All queue: advance on Completed, abort tracking on fail/cancel
+    installAllTryAdvanceFromProgress(outcome);
 }
 bool FullCatalogScreen::init(){
     vita2d_init();
@@ -1093,6 +1144,7 @@ int FullCatalogScreen::detailContentHeight(const CatalogItem& i, int w) const {
     };
 
     int h = linkLayoutTotalHeight(buildLinkLayout(i));
+    if (itemHasDataOrGameFiles(i)) h += INSTALL_ALL_BLOCK_H + 8;
 
     auto addSection = [&](int body) {
         if (body <= 0) return;
@@ -1125,28 +1177,66 @@ int FullCatalogScreen::detailLinkScrollLimit(const CatalogItem&i,int w,int h)con
     (void)w;
     const auto rows = buildLinkLayout(i);
     if (rows.empty()) return 0;
-    const int lh = linkLayoutTotalHeight(rows);
+    int lh = linkLayoutTotalHeight(rows);
+    if (itemHasDataOrGameFiles(i)) lh += INSTALL_ALL_BLOCK_H + 8;
     const int v = std::max(1, h - DETAIL_HEADER_H - 18);
     return std::max(0, lh - v);
-}void FullCatalogScreen::clampDetailScroll(){int i=selectedIndex();if(i<0){state_.detailScroll=0;return;}int vh=std::max(1,SCREEN_H-HEADER_H-TABS_H-FOOTER_H-DETAIL_HEADER_H-18),total=detailContentHeight(catalogView()[i],SCREEN_W/2),mx=std::max(0,total-vh);state_.detailScroll=std::max(0,std::min(state_.detailScroll,mx));if(catalogView()[i].linkDetails.empty()){state_.linkFocus=-1;state_.linkNavigation=false;}else if(state_.linkFocus>=(int)catalogView()[i].linkDetails.size())state_.linkFocus=(int)catalogView()[i].linkDetails.size()-1;if(state_.linkNavigation){int lim=detailLinkScrollLimit(catalogView()[i],SCREEN_W/2,SCREEN_H-HEADER_H-TABS_H-FOOTER_H);state_.detailScroll=std::max(0,std::min(state_.detailScroll,lim));}}
-void FullCatalogScreen::moveCatalogFocus(int d){if(catalogView().empty())return;if(state_.mode!=UiMode::FULL_CATALOG)releaseScreenshotTextures();if(state_.mode==UiMode::FULL_CATALOG){if(d<0&&state_.focusIndex>=3)state_.focusIndex-=3;if(d>0&&state_.focusIndex+3<(int)catalogView().size())state_.focusIndex+=3;}else{if(d<0&&state_.focusIndex>0)--state_.focusIndex;if(d>0&&state_.focusIndex+1<(int)catalogView().size())++state_.focusIndex;}clampCatalogFocus();clampCatalogScroll();state_.detailScroll=0;detailScrollBeforeLinkMode_=0;state_.linkFocus=-1;state_.linkNavigation=false;}void FullCatalogScreen::moveDetailScroll(int d){state_.detailScroll+=d<0?-72:72;clampDetailScroll();}void FullCatalogScreen::enterLinkNavigation(){int i=selectedIndex();if(i<0)return;const auto idxs=downloadLinkIndices(catalogView()[i]);if(idxs.empty())return;detailScrollBeforeLinkMode_=state_.detailScroll;state_.linkNavigation=true;state_.linkFocus=0;state_.detailScroll=0;clampDetailScroll();diagnostics::log("[UI] link navigation enabled (downloads only)");}void FullCatalogScreen::exitLinkNavigation(){if(!state_.linkNavigation)return;state_.linkNavigation=false;state_.linkFocus=-1;state_.detailScroll=detailScrollBeforeLinkMode_;detailScrollBeforeLinkMode_=0;clampDetailScroll();diagnostics::log("[UI] link navigation disabled; detail scroll restored");}void FullCatalogScreen::moveLinkFocus(int dx, int dy) {
+}
+void FullCatalogScreen::clampDetailScroll(){int i=selectedIndex();if(i<0){state_.detailScroll=0;return;}int vh=std::max(1,SCREEN_H-HEADER_H-TABS_H-FOOTER_H-DETAIL_HEADER_H-18),total=detailContentHeight(catalogView()[i],SCREEN_W/2),mx=std::max(0,total-vh);state_.detailScroll=std::max(0,std::min(state_.detailScroll,mx));if(catalogView()[i].linkDetails.empty()){state_.linkFocus=-1;state_.linkNavigation=false;}else if(state_.linkFocus>=(int)catalogView()[i].linkDetails.size())state_.linkFocus=(int)catalogView()[i].linkDetails.size()-1;if(state_.linkNavigation){int lim=detailLinkScrollLimit(catalogView()[i],SCREEN_W/2,SCREEN_H-HEADER_H-TABS_H-FOOTER_H);state_.detailScroll=std::max(0,std::min(state_.detailScroll,lim));}}
+void FullCatalogScreen::moveCatalogFocus(int d){if(catalogView().empty())return;if(state_.mode!=UiMode::FULL_CATALOG)releaseScreenshotTextures();if(state_.mode==UiMode::FULL_CATALOG){if(d<0&&state_.focusIndex>=3)state_.focusIndex-=3;if(d>0&&state_.focusIndex+3<(int)catalogView().size())state_.focusIndex+=3;}else{if(d<0&&state_.focusIndex>0)--state_.focusIndex;if(d>0&&state_.focusIndex+1<(int)catalogView().size())++state_.focusIndex;}clampCatalogFocus();clampCatalogScroll();state_.detailScroll=0;detailScrollBeforeLinkMode_=0;state_.linkFocus=-1;state_.linkNavigation=false;}void FullCatalogScreen::moveDetailScroll(int d){state_.detailScroll+=d<0?-72:72;clampDetailScroll();}void FullCatalogScreen::enterLinkNavigation(){
+    int i=selectedIndex();
+    if(i<0)return;
+    const auto idxs=downloadLinkIndices(catalogView()[i]);
+    const bool hasAll=itemHasDataOrGameFiles(catalogView()[i]);
+    if(idxs.empty()&&!hasAll)return;
+    detailScrollBeforeLinkMode_=state_.detailScroll;
+    state_.linkNavigation=true;
+    state_.linkFocus=0;
+    state_.detailScroll=0;
+    clampDetailScroll();
+    diagnostics::log("[UI] link navigation enabled (downloads only)");
+}void FullCatalogScreen::exitLinkNavigation(){if(!state_.linkNavigation)return;state_.linkNavigation=false;state_.linkFocus=-1;state_.detailScroll=detailScrollBeforeLinkMode_;detailScrollBeforeLinkMode_=0;clampDetailScroll();diagnostics::log("[UI] link navigation disabled; detail scroll restored");}void FullCatalogScreen::moveLinkFocus(int dx, int dy) {
     (void)dx;
     int i = selectedIndex();
     if (i < 0) return;
     const auto idxs = downloadLinkIndices(catalogView()[i]);
-    const int c = (int)idxs.size();
+    const bool hasAll = itemHasDataOrGameFiles(catalogView()[i]);
+    const int off = hasAll ? 1 : 0;
+    const int c = (int)idxs.size() + off;
     if (c <= 0) return;
     if (state_.linkFocus < 0) state_.linkFocus = 0;
     else state_.linkFocus = std::max(0, std::min(c - 1, state_.linkFocus + dy));
     state_.linkNavigation = true;
     const auto rows = buildLinkLayout(catalogView()[i]);
-    const int top = yOfLinkFocus(rows, state_.linkFocus);
+    int top = 0;
+    if (hasAll && state_.linkFocus == 0) {
+        top = 0;
+    } else {
+        const int linkFocus = state_.linkFocus - off;
+        top = yOfLinkFocus(rows, linkFocus) + (hasAll ? INSTALL_ALL_BLOCK_H + 8 : 0);
+    }
     const int vis = SCREEN_H - HEADER_H - TABS_H - FOOTER_H - DETAIL_HEADER_H - 18;
     const int lim = detailLinkScrollLimit(catalogView()[i], SCREEN_W / 2, SCREEN_H - HEADER_H - TABS_H - FOOTER_H);
     if (top < state_.detailScroll) state_.detailScroll = top;
     if (top + LINK_ROW_H > state_.detailScroll + vis) state_.detailScroll = top + LINK_ROW_H - vis;
     state_.detailScroll = std::max(0, std::min(state_.detailScroll, lim));
-}void FullCatalogScreen::activateFocusedLink(){int i=selectedIndex();if(i<0||state_.linkFocus<0)return;const auto idxs=downloadLinkIndices(catalogView()[i]);if(state_.linkFocus>=(int)idxs.size())return;const CatalogLink&l=catalogView()[i].linkDetails[idxs[state_.linkFocus]];if(!linkAction_||!actionableLink(l)){diagnostics::log(std::string("[UI] non-download link selected: ")+l.url);return;}if(linkAction_(catalogView()[i],l))exitLinkNavigation();}void FullCatalogScreen::changeCatalog(int d){
+}void FullCatalogScreen::activateFocusedLink(){
+    int i=selectedIndex();
+    if(i<0||state_.linkFocus<0)return;
+    const CatalogItem& item = catalogView()[i];
+    const bool hasAll = itemHasDataOrGameFiles(item);
+    if(hasAll && state_.linkFocus==0){
+        openInstallAllWizard();
+        return;
+    }
+    const auto idxs=downloadLinkIndices(item);
+    const int off = hasAll ? 1 : 0;
+    const int li = state_.linkFocus - off;
+    if(li<0||li>=(int)idxs.size())return;
+    const CatalogLink&l=item.linkDetails[idxs[li]];
+    if(!linkAction_||!actionableLink(l)){diagnostics::log(std::string("[UI] non-download link selected: ")+l.url);return;}
+    if(linkAction_(item,l))exitLinkNavigation();
+}void FullCatalogScreen::changeCatalog(int d){
     if(catalogLoading_||installProgressActive_||isTransitioning())return;
     if(catalogSwitchCooldownFrames_>0)return;
 
@@ -1303,6 +1393,56 @@ void FullCatalogScreen::handleTouch() {
         return;
     }
 
+
+    // --- Install All wizard overlay ---
+    if (installAllPhase_ != InstallAllPhase::Hidden && installAllPhase_ != InstallAllPhase::Running) {
+        if (td.reportNum > 0) {
+            if (!touchDown_) {
+                touchDown_ = true;
+                touchStartX_ = mapX(td.report[0].x);
+                touchStartY_ = mapY(td.report[0].y);
+                touchMoved_ = false;
+            }
+        } else if (touchDown_) {
+            const int x = touchStartX_, y = touchStartY_;
+            touchDown_ = false;
+            if (touchMoved_) return;
+            const int ow = 620, oh = 360;
+            const int ox = (SCREEN_W - ow) / 2, oy = (SCREEN_H - oh) / 2;
+            if (installAllPhase_ == InstallAllPhase::Confirm) {
+                const int bw = 200, bh = 40;
+                const int by = oy + oh - 56;
+                const int bxOk = ox + 28;
+                const int bxCancel = ox + ow - 28 - bw;
+                if (hit(x, y, bxOk, by, bw, bh)) { installAllFocus_ = 0; installAllAdvancePick(); return; }
+                if (hit(x, y, bxCancel, by, bw, bh)) { closeInstallAllWizard(true); return; }
+                return;
+            }
+            if (installAllItemIndex_ >= 0 && installAllItemIndex_ < (int)catalogView().size()) {
+                const int listTop = oy + 86;
+                const int rowH = 40;
+                const int maxVis = 5;
+                int start = 0;
+                if (installAllFocus_ >= maxVis) start = installAllFocus_ - maxVis + 1;
+                for (int n = 0; n < maxVis; ++n) {
+                    const int idx = start + n;
+                    if (idx >= (int)installAllOptions_.size()) break;
+                    const int ry = listTop + n * (rowH + 6);
+                    if (hit(x, y, ox + 20, ry, ow - 40, rowH)) {
+                        installAllFocus_ = idx;
+                        const int di = installAllOptions_[idx];
+                        if (installAllPhase_ == InstallAllPhase::PickDownload) installAllChosenDownload_ = di;
+                        else if (installAllPhase_ == InstallAllPhase::PickGameFiles) installAllChosenGameFiles_ = di;
+                        else if (installAllPhase_ == InstallAllPhase::PickDataFiles) installAllChosenDataFiles_ = di;
+                        installAllAdvancePick();
+                        return;
+                    }
+                }
+            }
+        }
+        return;
+    }
+
     // --- Install overlay: only the explicit button is tappable ---
     // (Tapping the whole card used to cancel mid-download → "Download cancelled".)
     if (installProgressActive_) {
@@ -1349,6 +1489,10 @@ void FullCatalogScreen::handleTouch() {
             if (!hit(x, y, ox + 28, by, bw, bh)) return;
             if (installOutcome_ == 1) {
                 if (installAcknowledge_) installAcknowledge_();
+                if (installAllFinishedToast_) {
+                    installAllFinishedToast_ = false;
+                    showToast("All installed — ready to use", 2800);
+                }
             } else if (installCancel_) {
                 installCancel_();
             }
@@ -1629,18 +1773,26 @@ void FullCatalogScreen::handleTouch() {
         return;
     }
 
-    // Download link rows (even without link mode — tap installs)
+    // Install All + download link rows (even without link mode — tap installs)
     {
         const int i = selectedIndex();
         if (i >= 0) {
-            const auto rows = buildLinkLayout(catalogView()[i]);
+            const CatalogItem& it = catalogView()[i];
+            const bool hasAll = itemHasDataOrGameFiles(it);
+            const int yOff = hasAll ? INSTALL_ALL_BLOCK_H + 8 : 0;
             const int listTop = dy + DETAIL_HEADER_H - (int)visualDetailScroll_;
+            if (hasAll && hit(x, y, dx + 18, listTop, dw - 36, INSTALL_ALL_BLOCK_H)) {
+                openInstallAllWizard();
+                return;
+            }
+            const auto rows = buildLinkLayout(it);
+            const int focusOff = hasAll ? 1 : 0;
             for (const auto& row : rows) {
                 if (row.isSection) continue;
-                const int ry = listTop + row.y;
+                const int ry = listTop + yOff + row.y;
                 if (hit(x, y, dx + 18, ry, dw - 36, LINK_ROW_H)) {
                     state_.linkNavigation = true;
-                    state_.linkFocus = row.focusIndex;
+                    state_.linkFocus = row.focusIndex + focusOff;
                     activateFocusedLink();
                     return;
                 }
@@ -2098,7 +2250,35 @@ if(pressed&SCE_CTRL_START){
             showToast("Please wait...", 900);
         }
         return;
-    }if(reportConfirmVisible_){if(pressed&SCE_CTRL_CIRCLE){closeReportConfirm();return;}if(pressed&SCE_CTRL_CROSS){closeReportConfirm();trySendErrorReport("Manual report from UI","User confirmed report from footer");return;}return;}if(newsVisible_){if(pressed&SCE_CTRL_CIRCLE){closeNewsModal(newsMarkSeenOnClose_);return;}if(pressed&SCE_CTRL_UP||(nav&SCE_CTRL_UP)){if(newsScrollLine_>0)--newsScrollLine_;return;}if(pressed&SCE_CTRL_DOWN||(nav&SCE_CTRL_DOWN)){const int mv=std::max(1,(420-56-88)/22);const int ms=std::max(0,(int)newsLines_.size()-mv);if(newsScrollLine_<ms)++newsScrollLine_;return;}return;}if(installProgressActive_&&(pressed&SCE_CTRL_SQUARE)&&(installOutcome_==2)){trySendErrorReport("Installation failed",installProgressMessage_+" | file="+installProgressFile_);return;}if(installProgressActive_&&(pressed&SCE_CTRL_CIRCLE)){if(installOutcome_==1||installOutcome_==2||installOutcome_==3){if(installAcknowledge_)installAcknowledge_();reportUiState_=0;}else if(installCancel_)installCancel_();return;}if(catalogLoading_||installProgressActive_)return;if(pressed&SCE_CTRL_SQUARE){if(!searchQuery_.empty())applySearch("");return;}if(state_.mode==UiMode::FULL_CATALOG){if(pressed&SCE_CTRL_TRIANGLE){if(searchRequest_)applySearch(searchRequest_(searchQuery_));return;}if(nav&SCE_CTRL_LEFT&&state_.focusIndex%3>0)--state_.focusIndex;if(nav&SCE_CTRL_RIGHT&&state_.focusIndex%3<2&&state_.focusIndex+1<(int)catalogView().size())++state_.focusIndex;if(nav&SCE_CTRL_UP)moveCatalogFocus(-1);if(nav&SCE_CTRL_DOWN)moveCatalogFocus(1);clampCatalogScroll();if(pressed&SCE_CTRL_CROSS)startOpeningDetail();return;}if(state_.mode!=UiMode::SPLIT_DETAIL)return;if(pressed&SCE_CTRL_CIRCLE){startClosingDetail();return;}if(state_.activePanel==UiPanel::Catalog){if(pressed&SCE_CTRL_RIGHT)state_.activePanel=UiPanel::Detail;if(nav&SCE_CTRL_UP)moveCatalogFocus(-1);if(nav&SCE_CTRL_DOWN)moveCatalogFocus(1);return;}if(nav&SCE_CTRL_LEFT)state_.activePanel=UiPanel::Catalog;if(pressed&SCE_CTRL_TRIANGLE){if(state_.linkNavigation)exitLinkNavigation();else enterLinkNavigation();return;}if(state_.linkNavigation){if(nav&SCE_CTRL_UP)moveLinkFocus(0,-1);if(nav&SCE_CTRL_DOWN)moveLinkFocus(0,1);if(pressed&SCE_CTRL_CROSS)activateFocusedLink();return;}if(nav&SCE_CTRL_UP)moveDetailScroll(-1);if(nav&SCE_CTRL_DOWN)moveDetailScroll(1);}
+    }if(installAllPhase_!=InstallAllPhase::Hidden&&installAllPhase_!=InstallAllPhase::Running){
+        if(pressed&SCE_CTRL_CIRCLE){closeInstallAllWizard(true);return;}
+        if(installAllPhase_==InstallAllPhase::Confirm){
+            if(nav&SCE_CTRL_LEFT||nav&SCE_CTRL_RIGHT||nav&SCE_CTRL_UP||nav&SCE_CTRL_DOWN){
+                installAllFocus_ = 1 - installAllFocus_;
+                return;
+            }
+            if(pressed&SCE_CTRL_CROSS){
+                if(installAllFocus_==1){closeInstallAllWizard(true);return;}
+                installAllAdvancePick();
+                return;
+            }
+            return;
+        }
+        // Pick lists
+        if(nav&SCE_CTRL_UP){if(installAllFocus_>0)--installAllFocus_;return;}
+        if(nav&SCE_CTRL_DOWN){if(installAllFocus_+1<(int)installAllOptions_.size())++installAllFocus_;return;}
+        if(pressed&SCE_CTRL_CROSS){
+            if(installAllFocus_>=0&&installAllFocus_<(int)installAllOptions_.size()){
+                const int di = installAllOptions_[installAllFocus_];
+                if(installAllPhase_==InstallAllPhase::PickDownload) installAllChosenDownload_ = di;
+                else if(installAllPhase_==InstallAllPhase::PickGameFiles) installAllChosenGameFiles_ = di;
+                else if(installAllPhase_==InstallAllPhase::PickDataFiles) installAllChosenDataFiles_ = di;
+                installAllAdvancePick();
+            }
+            return;
+        }
+        return;
+    }if(reportConfirmVisible_){if(pressed&SCE_CTRL_CIRCLE){closeReportConfirm();return;}if(pressed&SCE_CTRL_CROSS){closeReportConfirm();trySendErrorReport("Manual report from UI","User confirmed report from footer");return;}return;}if(newsVisible_){if(pressed&SCE_CTRL_CIRCLE){closeNewsModal(newsMarkSeenOnClose_);return;}if(pressed&SCE_CTRL_UP||(nav&SCE_CTRL_UP)){if(newsScrollLine_>0)--newsScrollLine_;return;}if(pressed&SCE_CTRL_DOWN||(nav&SCE_CTRL_DOWN)){const int mv=std::max(1,(420-56-88)/22);const int ms=std::max(0,(int)newsLines_.size()-mv);if(newsScrollLine_<ms)++newsScrollLine_;return;}return;}if(installProgressActive_&&(pressed&SCE_CTRL_SQUARE)&&(installOutcome_==2)){trySendErrorReport("Installation failed",installProgressMessage_+" | file="+installProgressFile_);return;}if(installProgressActive_&&(pressed&SCE_CTRL_CIRCLE)){if(installOutcome_==1||installOutcome_==2||installOutcome_==3){if(installAcknowledge_)installAcknowledge_();if(installOutcome_==1&&installAllFinishedToast_){installAllFinishedToast_=false;showToast("All installed — ready to use",2800);}reportUiState_=0;}else if(installCancel_)installCancel_();return;}if(catalogLoading_||installProgressActive_)return;if(pressed&SCE_CTRL_SQUARE){if(!searchQuery_.empty())applySearch("");return;}if(state_.mode==UiMode::FULL_CATALOG){if(pressed&SCE_CTRL_TRIANGLE){if(searchRequest_)applySearch(searchRequest_(searchQuery_));return;}if(nav&SCE_CTRL_LEFT&&state_.focusIndex%3>0)--state_.focusIndex;if(nav&SCE_CTRL_RIGHT&&state_.focusIndex%3<2&&state_.focusIndex+1<(int)catalogView().size())++state_.focusIndex;if(nav&SCE_CTRL_UP)moveCatalogFocus(-1);if(nav&SCE_CTRL_DOWN)moveCatalogFocus(1);clampCatalogScroll();if(pressed&SCE_CTRL_CROSS)startOpeningDetail();return;}if(state_.mode!=UiMode::SPLIT_DETAIL)return;if(pressed&SCE_CTRL_CIRCLE){startClosingDetail();return;}if(state_.activePanel==UiPanel::Catalog){if(pressed&SCE_CTRL_RIGHT)state_.activePanel=UiPanel::Detail;if(nav&SCE_CTRL_UP)moveCatalogFocus(-1);if(nav&SCE_CTRL_DOWN)moveCatalogFocus(1);return;}if(nav&SCE_CTRL_LEFT)state_.activePanel=UiPanel::Catalog;if(pressed&SCE_CTRL_TRIANGLE){if(state_.linkNavigation)exitLinkNavigation();else enterLinkNavigation();return;}if(state_.linkNavigation){if(nav&SCE_CTRL_UP)moveLinkFocus(0,-1);if(nav&SCE_CTRL_DOWN)moveLinkFocus(0,1);if(pressed&SCE_CTRL_CROSS)activateFocusedLink();return;}if(nav&SCE_CTRL_UP)moveDetailScroll(-1);if(nav&SCE_CTRL_DOWN)moveDetailScroll(1);}
 unsigned FullCatalogScreen::colorForStatus(const std::string&s)const{if(s=="Verified")return ACCENT;if(s=="Legacy")return TEXT;if(s=="Archive")return DIM;return TEXT;}void FullCatalogScreen::drawHeader(int w){
     // Near-black bar + dual neon edge (LiveArea brand)
     vita2d_draw_rectangle(0, 0, w, HEADER_H, SURFACE2);
@@ -2949,16 +3129,36 @@ void FullCatalogScreen::wrapText(const std::string&t,int max,std::vector<std::st
 void FullCatalogScreen::drawDetailLinks(const CatalogItem& it, int x, int y, int w, int& heightOut) {
     heightOut = 0;
     const auto rows = buildLinkLayout(it);
-    if (rows.empty()) return;
+    const bool showAll = itemHasDataOrGameFiles(it);
+    const int focusOff = showAll ? 1 : 0;
+    int yOff = 0;
+
+    if (showAll) {
+        const bool fAll = state_.linkNavigation && state_.linkFocus == 0;
+        // Prominent amber/folder style so users notice Install All
+        const unsigned fill = fAll ? ACCENT : RGBA8(0xE6, 0x9A, 0x00, 255);
+        const unsigned fill2 = fAll ? ACCENT_SOFT : RGBA8(0x8A, 0x5A, 0x00, 255);
+        vita2d_draw_rectangle(x, y, w, INSTALL_ALL_BLOCK_H, fill2);
+        vita2d_draw_rectangle(x + 2, y + 2, w - 4, INSTALL_ALL_BLOCK_H - 4, fill);
+        vita2d_draw_rectangle(x, y, 4, INSTALL_ALL_BLOCK_H, fAll ? BG : RGBA8(0xFF, 0xD0, 0x40, 255));
+        const unsigned tc = fAll ? BG : RGBA8(0x1A, 0x12, 0x00, 255);
+        vita2d_pgf_draw_text(font_, x + 12, y + 20, tc, 0.72f, "INSTALL ALL");
+        vita2d_pgf_draw_text(font_, x + 12, y + 40, tc, 0.48f,
+            "Install app + Game/Data Files from scratch (pick sources)");
+        yOff = INSTALL_ALL_BLOCK_H + 8;
+    }
+
+    if (rows.empty() && !showAll) return;
+
     for (const auto& row : rows) {
-        const int ry = y + row.y;
+        const int ry = y + yOff + row.y;
         if (row.isSection) {
             vita2d_draw_rectangle(x, ry + LINK_SECTION_H - 1, w, 1, BORDER);
             vita2d_pgf_draw_text(font_, x + 4, ry + 14, ACCENT, 0.52f, linkSectionTitle(row.section));
             continue;
         }
         const CatalogLink& l = it.linkDetails[row.detailIndex];
-        const bool f = state_.linkNavigation && state_.linkFocus == row.focusIndex;
+        const bool f = state_.linkNavigation && state_.linkFocus == (row.focusIndex + focusOff);
         const bool can = actionableLink(l);
         vita2d_draw_rectangle(x, ry, w, LINK_ROW_H, f ? ACCENT : SURFACE2);
         vita2d_draw_rectangle(x, ry, w, 1, f ? ACCENT : BORDER);
@@ -2977,8 +3177,10 @@ void FullCatalogScreen::drawDetailLinks(const CatalogItem& it, int x, int y, int
             vita2d_pgf_draw_text(font_, bx + 6, by + 15, f ? ACCENT : BG, 0.50f, "Recommended");
         }
     }
-    heightOut = linkLayoutTotalHeight(rows);
+    heightOut = linkLayoutTotalHeight(rows) + yOff;
 }
+
+
 void FullCatalogScreen::drawDetailContent(const CatalogItem& it, int x, int y, int w, int h) {
     if (detailCrossfade_ < 0.99f) {
         vita2d_draw_rectangle(x, y, w, h, RGBA8(0, 0, 0, static_cast<unsigned>((1.f - detailCrossfade_) * 140)));
@@ -3187,6 +3389,304 @@ void FullCatalogScreen::drawDetailPanel(int x,int y,int w,int h){
     if (active)
         drawActivePanelFrame(x + 2, y + 2, w - 4, h - 4, "DETAIL");
 }
+
+bool FullCatalogScreen::itemSupportsInstallAll(const CatalogItem& item) const {
+    return itemHasDataOrGameFiles(item);
+}
+
+void FullCatalogScreen::collectInstallAllOptions(const CatalogItem& item, const char* kind, std::vector<int>& out) const {
+    out.clear();
+    for (size_t i = 0; i < item.linkDetails.size(); ++i) {
+        const CatalogLink& l = item.linkDetails[i];
+        if (std::strcmp(kind, "download") == 0) {
+            if (isDownloadTypeLink(l)) out.push_back(static_cast<int>(i));
+        } else if (std::strcmp(kind, "game") == 0) {
+            if (isGameFilesTypeLink(l)) out.push_back(static_cast<int>(i));
+        } else if (std::strcmp(kind, "data") == 0) {
+            if (isDataFilesTypeLink(l)) out.push_back(static_cast<int>(i));
+        }
+    }
+}
+
+void FullCatalogScreen::openInstallAllWizard() {
+    if (installProgressActive_ || catalogLoading_) {
+        showToast("Wait for current operation to finish", 1600);
+        return;
+    }
+    const int i = selectedIndex();
+    if (i < 0) return;
+    const CatalogItem& item = catalogView()[i];
+    if (!itemSupportsInstallAll(item)) return;
+    installAllItemIndex_ = i;
+    installAllChosenDownload_ = -1;
+    installAllChosenGameFiles_ = -1;
+    installAllChosenDataFiles_ = -1;
+    installAllQueue_.clear();
+    installAllQueueLabels_.clear();
+    installAllQueueIndex_ = 0;
+    installAllLastOutcome_ = -1;
+    installAllFinishedToast_ = false;
+    installAllFocus_ = 0;
+    installAllPhase_ = InstallAllPhase::Confirm;
+    exitLinkNavigation();
+    diagnostics::log("[UI] Install All wizard opened for " + item.name);
+}
+
+void FullCatalogScreen::closeInstallAllWizard(bool cancel) {
+    if (installAllPhase_ == InstallAllPhase::Hidden) return;
+    if (cancel && installAllPhase_ == InstallAllPhase::Running) {
+        // Running installs are cancelled via installCancel_; just drop queue
+        installAllQueue_.clear();
+        installAllQueueLabels_.clear();
+    }
+    installAllPhase_ = InstallAllPhase::Hidden;
+    installAllOptions_.clear();
+    installAllItemIndex_ = -1;
+    if (cancel) diagnostics::log("[UI] Install All wizard cancelled");
+}
+
+void FullCatalogScreen::installAllAdvancePick() {
+    if (installAllItemIndex_ < 0 || installAllItemIndex_ >= (int)catalogView().size()) {
+        closeInstallAllWizard(true);
+        return;
+    }
+    const CatalogItem& item = catalogView()[installAllItemIndex_];
+
+    // After Confirm → resolve Download, then Game Files, then Data Files.
+    // After a Pick* selection, continue from the next category.
+    bool needDownload = (installAllChosenDownload_ < 0);
+    bool needGame = (installAllChosenGameFiles_ < 0);
+    bool needData = (installAllChosenDataFiles_ < 0);
+
+    // Mark resolved-empty categories so we don't re-prompt
+    // Use -2 as "none available / skipped"
+    auto autoOrPrompt = [&](bool& need, int& chosen, InstallAllPhase phase, const char* kind) -> bool {
+        if (!need) return false;
+        collectInstallAllOptions(item, kind, installAllOptions_);
+        if (installAllOptions_.empty()) {
+            chosen = -2; // skipped
+            need = false;
+            return false;
+        }
+        if (installAllOptions_.size() == 1) {
+            chosen = installAllOptions_[0];
+            need = false;
+            return false;
+        }
+        // Multiple: show picker (unless we already showed this phase and user selected)
+        if (installAllPhase_ == phase && chosen >= 0) {
+            need = false;
+            return false;
+        }
+        if (installAllPhase_ != phase) {
+            installAllPhase_ = phase;
+            installAllFocus_ = 0;
+            // Prefer recommended
+            for (size_t i = 0; i < installAllOptions_.size(); ++i) {
+                if (item.linkDetails[installAllOptions_[i]].recommended) {
+                    installAllFocus_ = (int)i;
+                    break;
+                }
+            }
+            return true; // wait for UI
+        }
+        return false;
+    };
+
+    // If coming from a pick phase with a selection already stored by input, clear need
+    if (installAllPhase_ == InstallAllPhase::PickDownload && installAllChosenDownload_ >= 0) needDownload = false;
+    if (installAllPhase_ == InstallAllPhase::PickGameFiles && installAllChosenGameFiles_ >= 0) needGame = false;
+    if (installAllPhase_ == InstallAllPhase::PickDataFiles && installAllChosenDataFiles_ >= 0) needData = false;
+
+    if (autoOrPrompt(needDownload, installAllChosenDownload_, InstallAllPhase::PickDownload, "download")) return;
+    if (autoOrPrompt(needGame, installAllChosenGameFiles_, InstallAllPhase::PickGameFiles, "game")) return;
+    if (autoOrPrompt(needData, installAllChosenDataFiles_, InstallAllPhase::PickDataFiles, "data")) return;
+
+    installAllStartQueue();
+}
+
+void FullCatalogScreen::installAllStartQueue() {
+    if (installAllItemIndex_ < 0 || installAllItemIndex_ >= (int)catalogView().size()) {
+        closeInstallAllWizard(true);
+        return;
+    }
+    const CatalogItem& item = catalogView()[installAllItemIndex_];
+    installAllQueue_.clear();
+    installAllQueueLabels_.clear();
+
+    auto pushIdx = [&](int di, const char* label) {
+        if (di < 0 || di >= (int)item.linkDetails.size()) return;
+        installAllQueue_.push_back(item.linkDetails[di]);
+        installAllQueueLabels_.push_back(label);
+    };
+    pushIdx(installAllChosenDownload_, "App (VPK)");
+    pushIdx(installAllChosenGameFiles_, "Game Files");
+    pushIdx(installAllChosenDataFiles_, "Data Files");
+
+    if (installAllQueue_.empty()) {
+        showToast("Nothing to install", 1600);
+        closeInstallAllWizard(true);
+        return;
+    }
+
+    // Pre-flight free-space estimate (2.1x sum of known sizes)
+    uint64_t needSum = 0;
+    for (const auto& l : installAllQueue_) {
+        uint64_t b = parseUiSizeBytes(l.size);
+        if (b == 0) b = parseUiSizeBytes(item.size);
+        needSum += b;
+    }
+    if (needSum > 0) {
+        // Soft check only in log; InstallController enforces hard check per job
+        diagnostics::log(std::string("[UI] Install All estimated payload bytes=") + std::to_string(needSum));
+    }
+
+    installAllQueueIndex_ = 0;
+    installAllLastOutcome_ = -1;
+    installAllPhase_ = InstallAllPhase::Running;
+    diagnostics::log(std::string("[UI] Install All start steps=") + std::to_string(installAllQueue_.size())
+                     + " app=" + item.name);
+
+    if (!linkAction_) {
+        showToast("Install unavailable", 1600);
+        closeInstallAllWizard(true);
+        return;
+    }
+    const CatalogLink& first = installAllQueue_[0];
+    diagnostics::log(std::string("[UI] Install All step 1/") + std::to_string(installAllQueue_.size())
+                     + " " + installAllQueueLabels_[0] + " url=" + first.url);
+    if (!linkAction_(item, first)) {
+        showToast("Could not start install", 1800);
+        closeInstallAllWizard(true);
+    }
+}
+
+void FullCatalogScreen::installAllTryAdvanceFromProgress(int outcome) {
+    if (installAllPhase_ != InstallAllPhase::Running) return;
+    if (outcome == installAllLastOutcome_) return;
+    const int prev = installAllLastOutcome_;
+    installAllLastOutcome_ = outcome;
+
+    if (outcome == 2 || outcome == 3) {
+        // Failed or cancelled — stop queue; keep result panel for user
+        diagnostics::log(std::string("[UI] Install All stopped at step ")
+                         + std::to_string(installAllQueueIndex_ + 1)
+                         + (outcome == 3 ? " (cancelled)" : " (failed)"));
+        installAllQueue_.clear();
+        installAllQueueLabels_.clear();
+        installAllPhase_ = InstallAllPhase::Hidden;
+        installAllItemIndex_ = -1;
+        return;
+    }
+
+    if (outcome != 1) return;
+    // Completed current step
+    if (installAllQueueIndex_ + 1 < installAllQueue_.size()) {
+        // Auto-ack success and start next (do not wait for user)
+        if (installAcknowledge_) installAcknowledge_();
+        ++installAllQueueIndex_;
+        installAllLastOutcome_ = -1;
+        if (installAllItemIndex_ < 0 || installAllItemIndex_ >= (int)catalogView().size()) {
+            closeInstallAllWizard(true);
+            return;
+        }
+        const CatalogItem& item = catalogView()[installAllItemIndex_];
+        const CatalogLink& next = installAllQueue_[installAllQueueIndex_];
+        diagnostics::log(std::string("[UI] Install All step ")
+                         + std::to_string(installAllQueueIndex_ + 1) + "/"
+                         + std::to_string(installAllQueue_.size()) + " "
+                         + installAllQueueLabels_[installAllQueueIndex_]
+                         + " url=" + next.url);
+        if (!linkAction_ || !linkAction_(item, next)) {
+            showToast("Install All stopped — next step failed to start", 2200);
+            closeInstallAllWizard(true);
+        }
+        return;
+    }
+
+    // Last step completed — keep success panel; toast when user dismisses
+    installAllFinishedToast_ = true;
+    diagnostics::log("[UI] Install All finished all steps");
+    // Clear running phase so further outcome updates don't re-enter
+    installAllPhase_ = InstallAllPhase::Hidden;
+    installAllQueue_.clear();
+    installAllItemIndex_ = -1;
+    (void)prev;
+}
+
+void FullCatalogScreen::drawInstallAllOverlay() {
+    if (installAllPhase_ == InstallAllPhase::Hidden || installAllPhase_ == InstallAllPhase::Running) return;
+    if (installAllItemIndex_ < 0 || installAllItemIndex_ >= (int)catalogView().size()) return;
+    const CatalogItem& item = catalogView()[installAllItemIndex_];
+
+    // Dim full screen
+    vita2d_draw_rectangle(0, 0, SCREEN_W, SCREEN_H, RGBA8(0, 0, 0, 180));
+
+    const int ow = 620, oh = 360;
+    const int ox = (SCREEN_W - ow) / 2, oy = (SCREEN_H - oh) / 2;
+    vita2d_draw_rectangle(ox, oy, ow, oh, SURFACE2);
+    vita2d_draw_rectangle(ox, oy, ow, 3, ACCENT);
+    vita2d_draw_rectangle(ox, oy + oh - 1, ow, 1, BORDER);
+    vita2d_draw_rectangle(ox, oy, 1, oh, BORDER);
+    vita2d_draw_rectangle(ox + ow - 1, oy, 1, oh, BORDER);
+
+    if (installAllPhase_ == InstallAllPhase::Confirm) {
+        vita2d_pgf_draw_text(font_, ox + 22, oy + 36, ACCENT, 0.78f, "Install All");
+        vita2d_pgf_draw_text(font_, ox + 22, oy + 68, WHITE, 0.58f, ellipsize(item.name, 48).c_str());
+        const char* lines[] = {
+            "This installs the homebrew from scratch:",
+            "1) App (VPK)  2) Game Files  3) Data Files",
+            "You will pick one download source per step when needed.",
+            "If you only want to update the app, use the VPK button instead.",
+        };
+        int ty = oy + 100;
+        for (const char* ln : lines) {
+            vita2d_pgf_draw_text(font_, ox + 22, ty, TEXT, 0.54f, ln);
+            ty += 24;
+        }
+        const int bw = 200, bh = 40;
+        const int by = oy + oh - 56;
+        const int bxOk = ox + 28;
+        const int bxCancel = ox + ow - 28 - bw;
+        const bool fOk = installAllFocus_ == 0;
+        const bool fCancel = installAllFocus_ == 1;
+        vita2d_draw_rectangle(bxOk, by, bw, bh, fOk ? ACCENT : SURFACE2);
+        vita2d_pgf_draw_text(font_, bxOk + 36, by + 26, fOk ? BG : WHITE, 0.62f, "Continue");
+        vita2d_draw_rectangle(bxCancel, by, bw, bh, fCancel ? ACCENT : SURFACE2);
+        vita2d_pgf_draw_text(font_, bxCancel + 48, by + 26, fCancel ? BG : WHITE, 0.62f, "Cancel");
+        vita2d_pgf_draw_text(font_, ox + 22, oy + oh - 78, DIM, 0.48f, "D-Pad: move   X: select   O: cancel");
+        return;
+    }
+
+    const char* title = "Choose download";
+    if (installAllPhase_ == InstallAllPhase::PickGameFiles) title = "Choose Game Files";
+    else if (installAllPhase_ == InstallAllPhase::PickDataFiles) title = "Choose Data Files";
+    vita2d_pgf_draw_text(font_, ox + 22, oy + 36, ACCENT, 0.78f, title);
+    vita2d_pgf_draw_text(font_, ox + 22, oy + 62, DIM, 0.50f, "Same content — pick one mirror / source");
+
+    const int listTop = oy + 86;
+    const int rowH = 40;
+    const int maxVis = 5;
+    int start = 0;
+    if (installAllFocus_ >= maxVis) start = installAllFocus_ - maxVis + 1;
+    for (int n = 0; n < maxVis; ++n) {
+        const int idx = start + n;
+        if (idx >= (int)installAllOptions_.size()) break;
+        const int di = installAllOptions_[idx];
+        const CatalogLink& l = item.linkDetails[di];
+        const int ry = listTop + n * (rowH + 6);
+        const bool f = (idx == installAllFocus_);
+        vita2d_draw_rectangle(ox + 20, ry, ow - 40, rowH, f ? ACCENT : SURFACE2);
+        std::string name = l.name.empty() ? l.type : l.name;
+        std::string size = l.size.empty() ? "" : l.size;
+        std::string line = name;
+        if (!size.empty()) line += "  •  " + size;
+        if (l.recommended) line += "  [Recommended]";
+        vita2d_pgf_draw_text(font_, ox + 32, ry + 26, f ? BG : WHITE, 0.56f, ellipsize(line, 52).c_str());
+    }
+    vita2d_pgf_draw_text(font_, ox + 22, oy + oh - 28, DIM, 0.48f, "D-Pad: move   X: select   O: cancel");
+}
+
 void FullCatalogScreen::drawLoadingOverlay(){
 // Catalog load/download at startup: full-screen brand image + progress (not used for installs).
 if (catalogSplashAlpha_ > 0.01f && !installProgressActive_) {
@@ -3483,7 +3983,7 @@ void drawFooterBar(vita2d_pgf* font, const char* leftHints) {
                         : (used > 0.75f ? RGBA8(0xFF, 0xB0, 0x20, 255) : ACCENT);
     vita2d_draw_rectangle(barX, barY, std::max(1, (int)(barW * used)), barH, fill);
 }
-void FullCatalogScreen::drawFullCatalog(){vita2d_start_drawing();vita2d_set_clear_color(BG);vita2d_clear_screen();drawHeader(SCREEN_W);drawTabs(SCREEN_W);drawCatalogPanel(0,HEADER_H+TABS_H,SCREEN_W,SCREEN_H-HEADER_H-TABS_H-FOOTER_H,false);drawFooterBar(font_, "D-Pad: Nav   X: Detail   △: Search   SELECT: Settings   L/R: Catalog   START: Exit");drawReportChip();drawNewsChip();if(catalogLoading_||installProgressActive_||catalogSplashAlpha_>0.01f)drawLoadingOverlay();if(newsVisible_)drawNewsOverlay();if(reportConfirmVisible_)drawReportConfirmOverlay();if(!catalogError_.empty())vita2d_pgf_draw_text(font_,18,HEADER_H+TABS_H+26,ACCENT,.66f,catalogError_.c_str());drawToast();vita2d_end_drawing();vita2d_swap_buffers();}void FullCatalogScreen::drawSplitDetail(){vita2d_start_drawing();vita2d_set_clear_color(BG);vita2d_clear_screen();drawHeader(SCREEN_W);drawTabs(SCREEN_W);int top=HEADER_H+TABS_H,hh=SCREEN_H-HEADER_H-TABS_H-FOOTER_H,lw=SCREEN_W/2;drawCatalogPanel(0,top,lw,hh,true);drawDetailPanel(lw,top,SCREEN_W-lw,hh);vita2d_draw_rectangle(lw-1,top,2,hh,BORDER);drawFooterBar(font_, state_.activePanel==UiPanel::Catalog?"PANEL: LIST  |  → Detail   D-Pad: Navigate   O: Back   L/R: Catalog":"PANEL: DETAIL  |  ← List   D-Pad: Scroll   △: Links   X: Action   O: Back");drawReportChip();drawNewsChip();if(catalogLoading_||installProgressActive_||catalogSplashAlpha_>0.01f)drawLoadingOverlay();if(newsVisible_)drawNewsOverlay();if(reportConfirmVisible_)drawReportConfirmOverlay();drawToast();vita2d_end_drawing();vita2d_swap_buffers();}void FullCatalogScreen::drawOpeningDetail(){float p=transitionProgress();int lw=SCREEN_W-(int)(SCREEN_W/2*p),rw=SCREEN_W-lw;vita2d_start_drawing();vita2d_set_clear_color(BG);vita2d_clear_screen();drawHeader(SCREEN_W);drawTabs(SCREEN_W);int top=HEADER_H+TABS_H,hh=SCREEN_H-HEADER_H-TABS_H-FOOTER_H;drawCatalogPanel(0,top,lw,hh,true);if(rw>0)drawDetailPanel(lw,top,rw,hh);vita2d_end_drawing();vita2d_swap_buffers();}void FullCatalogScreen::drawClosingDetail(){float p=1.0f-transitionProgress();int lw=SCREEN_W-(int)(SCREEN_W/2*p),rw=SCREEN_W-lw;vita2d_start_drawing();vita2d_set_clear_color(BG);vita2d_clear_screen();drawHeader(SCREEN_W);drawTabs(SCREEN_W);int top=HEADER_H+TABS_H,hh=SCREEN_H-HEADER_H-TABS_H-FOOTER_H;drawCatalogPanel(0,top,lw,hh,true);if(rw>0)drawDetailPanel(lw,top,SCREEN_W-lw,hh);vita2d_end_drawing();vita2d_swap_buffers();}void FullCatalogScreen::draw(){switch(state_.mode){case UiMode::FULL_CATALOG:drawFullCatalog();break;case UiMode::OPENING_DETAIL:drawOpeningDetail();break;case UiMode::SPLIT_DETAIL:drawSplitDetail();break;case UiMode::CLOSING_DETAIL:drawClosingDetail();break;case UiMode::SETTINGS:drawSettings();break;}}bool FullCatalogScreen::updateAndDraw(){
+void FullCatalogScreen::drawFullCatalog(){vita2d_start_drawing();vita2d_set_clear_color(BG);vita2d_clear_screen();drawHeader(SCREEN_W);drawTabs(SCREEN_W);drawCatalogPanel(0,HEADER_H+TABS_H,SCREEN_W,SCREEN_H-HEADER_H-TABS_H-FOOTER_H,false);drawFooterBar(font_, "D-Pad: Nav   X: Detail   △: Search   SELECT: Settings   L/R: Catalog   START: Exit");drawReportChip();drawNewsChip();if(catalogLoading_||installProgressActive_||catalogSplashAlpha_>0.01f)drawLoadingOverlay();if(newsVisible_)drawNewsOverlay();if(reportConfirmVisible_)drawReportConfirmOverlay();if(installAllPhase_!=InstallAllPhase::Hidden&&installAllPhase_!=InstallAllPhase::Running)drawInstallAllOverlay();if(!catalogError_.empty())vita2d_pgf_draw_text(font_,18,HEADER_H+TABS_H+26,ACCENT,.66f,catalogError_.c_str());drawToast();vita2d_end_drawing();vita2d_swap_buffers();}void FullCatalogScreen::drawSplitDetail(){vita2d_start_drawing();vita2d_set_clear_color(BG);vita2d_clear_screen();drawHeader(SCREEN_W);drawTabs(SCREEN_W);int top=HEADER_H+TABS_H,hh=SCREEN_H-HEADER_H-TABS_H-FOOTER_H,lw=SCREEN_W/2;drawCatalogPanel(0,top,lw,hh,true);drawDetailPanel(lw,top,SCREEN_W-lw,hh);vita2d_draw_rectangle(lw-1,top,2,hh,BORDER);drawFooterBar(font_, state_.activePanel==UiPanel::Catalog?"PANEL: LIST  |  → Detail   D-Pad: Navigate   O: Back   L/R: Catalog":"PANEL: DETAIL  |  ← List   D-Pad: Scroll   △: Links   X: Action   O: Back");drawReportChip();drawNewsChip();if(catalogLoading_||installProgressActive_||catalogSplashAlpha_>0.01f)drawLoadingOverlay();if(newsVisible_)drawNewsOverlay();if(reportConfirmVisible_)drawReportConfirmOverlay();if(installAllPhase_!=InstallAllPhase::Hidden&&installAllPhase_!=InstallAllPhase::Running)drawInstallAllOverlay();drawToast();vita2d_end_drawing();vita2d_swap_buffers();}void FullCatalogScreen::drawOpeningDetail(){float p=transitionProgress();int lw=SCREEN_W-(int)(SCREEN_W/2*p),rw=SCREEN_W-lw;vita2d_start_drawing();vita2d_set_clear_color(BG);vita2d_clear_screen();drawHeader(SCREEN_W);drawTabs(SCREEN_W);int top=HEADER_H+TABS_H,hh=SCREEN_H-HEADER_H-TABS_H-FOOTER_H;drawCatalogPanel(0,top,lw,hh,true);if(rw>0)drawDetailPanel(lw,top,rw,hh);vita2d_end_drawing();vita2d_swap_buffers();}void FullCatalogScreen::drawClosingDetail(){float p=1.0f-transitionProgress();int lw=SCREEN_W-(int)(SCREEN_W/2*p),rw=SCREEN_W-lw;vita2d_start_drawing();vita2d_set_clear_color(BG);vita2d_clear_screen();drawHeader(SCREEN_W);drawTabs(SCREEN_W);int top=HEADER_H+TABS_H,hh=SCREEN_H-HEADER_H-TABS_H-FOOTER_H;drawCatalogPanel(0,top,lw,hh,true);if(rw>0)drawDetailPanel(lw,top,SCREEN_W-lw,hh);vita2d_end_drawing();vita2d_swap_buffers();}void FullCatalogScreen::draw(){switch(state_.mode){case UiMode::FULL_CATALOG:drawFullCatalog();break;case UiMode::OPENING_DETAIL:drawOpeningDetail();break;case UiMode::SPLIT_DETAIL:drawSplitDetail();break;case UiMode::CLOSING_DETAIL:drawClosingDetail();break;case UiMode::SETTINGS:drawSettings();break;}}bool FullCatalogScreen::updateAndDraw(){
     if(!ready_)return false;
     pollReportWorker();
     flushDeferredTextureFrees();
