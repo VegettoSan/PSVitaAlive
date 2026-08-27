@@ -1,0 +1,40 @@
+{
+  "id": "amnesia-the-dark-descent",
+  "title_id": "AMNE00001",
+  "name": "Amnesia: The Dark Descent",
+  "description": "Amnesia: The Dark Descent Port Ps Vita",
+  "long_description": "Amnesia: The Dark Descent Port Ps Vita",
+  "author_ids": [
+    "fridinator1"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "action",
+    "strategy"
+  ],
+  "version": "01.00",
+  "version_date": "2026-08-24",
+  "requirements": "You must provide a legally owned copy of Amnesia: The Dark Descent; only the Steam release has been tested.",
+  "size": 5767168,
+  "status": "Verified",
+  "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/amnesia-the-dark-descent_202608/Amnesia-Vita-01.00.vpk",
+      "size": 5767168,
+      "recommended": true
+    },
+    {
+      "type": "Download",
+      "name": "Game Files ZIP",
+      "url": "https://archive.org/download/amnesia-the-dark-descent_202608/Game%20Files.zip",
+      "size": 2576980378
+    }
+  ],
+  "icon": "https://archive.org/download/amnesia-the-dark-descent_202608/icon0.png",
+  "screenshots": [
+    "https://archive.org/download/amnesia-the-dark-descent_202608/shot0.jpg",
+    "https://archive.org/download/amnesia-the-dark-descent_202608/shot1.jpg"
+  ]
+}

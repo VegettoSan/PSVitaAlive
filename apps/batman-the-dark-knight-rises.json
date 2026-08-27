@@ -1,0 +1,42 @@
+{
+  "id": "batman-the-dark-knight-rises",
+  "title_id": "KRAS00000",
+  "name": "Batman - The Dark Knight Rises",
+  "description": "Batman - The Dark Knight Rises Port Ps Vita",
+  "long_description": "Batman - The Dark Knight Rises Port Ps Vita",
+  "author_ids": [
+    "rinnegatamante",
+    "theflow"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "action",
+    "arcade"
+  ],
+  "version": "0.8",
+  "version_date": "2026-08-27",
+  "requirements": "Install Kubridge and FdFix by copying kubridge.skprx and fd_fix.skprx to your taiHEN plugins folder",
+  "size": 794112,
+  "status": "Verified",
+  "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/batman-the-dark-knight-rises/KRAS.vpk",
+      "size": 794112,
+      "recommended": true
+    },
+    {
+      "type": "Game Files",
+      "name": "Game Files ZIP",
+      "url": "https://archive.org/download/batman-the-dark-knight-rises/Game%20Files.zip",
+      "size": 1932735283,
+      "extract_path": "ux0:data/"
+    }
+  ],
+  "icon": "https://archive.org/download/batman-the-dark-knight-rises/icon0.png",
+  "screenshots": [
+    "https://archive.org/download/batman-the-dark-knight-rises/shot0.png",
+    "https://archive.org/download/batman-the-dark-knight-rises/shot1.png"
+  ]
+}
