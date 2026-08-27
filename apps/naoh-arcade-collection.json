@@ -9,28 +9,28 @@
   ],
   "category_id": "emulators",
   "subcategory_ids": [
+    "arcade",
     "other"
   ],
-  "version": "v.2.0",
-  "version_date": "2026-08-24",
+  "version": "v.2.0.1",
+  "version_date": "2026-08-25",
   "requirements": "- Game Data Files: Different Systems",
-  "size": 34805154,
+  "size": 34812723,
   "status": "Legacy",
-  "icon": "https://www.rinnegatamante.eu/vitadb/icons/30ed058f56e2f90d58bf083f34bdbdec40ae0df71806975caeb25f55f090024f.png",
-  "screenshots": [
-    "https://www.rinnegatamante.eu/vitadb/screenshots/4defff0e49cf45041606352e6095776f36fca789e3dfa9f3c18f1e5f87c623e4.png"
-  ],
   "links": [
     {
       "type": "Download",
       "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1470",
+      "url": "https://archive.org/download/psvitaalive-naoh-arcade-collection/naoh_arcade_collection2.0.1.vpk",
+      "size": 40055603,
       "recommended": true
     },
     {
-      "type": "Official Website",
-      "name": "VitaDB Release Page",
-      "url": "https://github.com/KiddRwxSsj/naoh-ac/releases"
+      "type": "Game Files",
+      "name": "Game Files ZIP",
+      "url": "https://archive.org/download/psvitaalive-naoh-arcade-collection/Game%20Files.zip",
+      "size": 336278323,
+      "extract_path": "ux0:data/"
     },
     {
       "type": "Repository",
@@ -38,9 +38,13 @@
       "url": "https://github.com/KiddRwxSsj/naoh-ac"
     }
   ],
+  "icon": "https://archive.org/download/psvitaalive-naoh-arcade-collection/icon0.png",
+  "screenshots": [
+    "https://archive.org/download/psvitaalive-naoh-arcade-collection/shot_01.png"
+  ],
   "source_name": "VitaDB",
   "source_id": "1470",
   "source_url": "https://github.com/KiddRwxSsj/naoh-ac",
   "release_page": "https://github.com/KiddRwxSsj/naoh-ac/releases",
-  "updated_at": "2026-08-17T21:42:40.081896+00:00"
+  "updated_at": "2026-08-17T21:42"
 }
