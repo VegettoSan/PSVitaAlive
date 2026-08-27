@@ -52,7 +52,11 @@ jobs:
           fi
           echo "rebuild=false" >> "$GITHUB_OUTPUT"
           echo "VITAHUB_REBUILD_FROM_EXTERNAL=false" >> "$GITHUB_ENV"
-          echo "Local-only mode: no external catalog fetches."
+          # Catalog is fully local (apps/ on GitHub + Archive.org mirrors).
+          # Skip remote HEAD/GET probes so CI finishes in minutes, not hours.
+          echo "VITAHUB_SKIP_REMOTE_CHECKS=true" >> "$GITHUB_ENV"
+          echo "VITAHUB_SKIP_REMOTE_MEDIA=true" >> "$GITHUB_ENV"
+          echo "Local-only mode: no external catalog fetches; remote media probes skipped."
 
       - name: Run aggregation unit smoke test (offline)
         run: python scripts/external_smoke_test.py
@@ -61,6 +65,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           VITAHUB_REBUILD_FROM_EXTERNAL: "false"
+          VITAHUB_SKIP_REMOTE_MEDIA: "true"
         run: python scripts/generate_catalog.py
 
       - name: Normalize persisted canonical source files
@@ -264,6 +269,8 @@ jobs:
           PY
 
       - name: Validate VitaHub source catalog
+        env:
+          VITAHUB_SKIP_REMOTE_CHECKS: "true"
         run: python scripts/validate_catalog_ci.py
 
       - name: Verify generated catalogs
