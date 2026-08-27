@@ -51,18 +51,6 @@
       "name": "VitaDB VPK",
       "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=804",
       "recommended": true
-    },
-    {
-      "type": "Download",
-      "name": "Data Files",
-      "url": "https://www.rinnegatamante.eu/files/vitadb/rottexpr_data.zip",
-      "recommended": false
-    },
-    {
-      "type": "Data Files",
-      "name": "VitaHomebrewDB Data Files",
-      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/804-data-rottexpr_data.zip",
-      "recommended": false
     }
   ],
   "source_name": "VitaHomebrewDB",

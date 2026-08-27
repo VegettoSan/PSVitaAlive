@@ -54,18 +54,6 @@
       "name": "VitaDB VPK",
       "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1273",
       "recommended": true
-    },
-    {
-      "type": "Download",
-      "name": "Data Files",
-      "url": "https://www.rinnegatamante.eu/files/vitadb/pd.zip",
-      "recommended": false
-    },
-    {
-      "type": "Data Files",
-      "name": "VitaHomebrewDB Data Files",
-      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/1273-data-pd.zip",
-      "recommended": false
     }
   ],
   "source_name": "VitaHomebrewDB",

@@ -51,18 +51,6 @@
       "name": "VitaDB VPK",
       "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=663",
       "recommended": true
-    },
-    {
-      "type": "Download",
-      "name": "Data Files",
-      "url": "https://www.rinnegatamante.eu/files/vitadb/quicklaunch.zip",
-      "recommended": false
-    },
-    {
-      "type": "Data Files",
-      "name": "VitaHomebrewDB Data Files",
-      "url": "https://github.com/DRok17/QuickLaunch-Installer/releases/download/v1.4/data.zip",
-      "recommended": false
     }
   ],
   "source_name": "VitaHomebrewDB",

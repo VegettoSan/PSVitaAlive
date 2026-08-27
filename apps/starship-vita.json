@@ -51,18 +51,6 @@
       "name": "VitaDB VPK",
       "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1388",
       "recommended": true
-    },
-    {
-      "type": "Download",
-      "name": "Data Files",
-      "url": "https://www.rinnegatamante.eu/files/vitadb/starship.zip",
-      "recommended": false
-    },
-    {
-      "type": "Data Files",
-      "name": "VitaHomebrewDB Data Files",
-      "url": "https://github.com/Rinnegatamante/Starship/releases/download/v.1.0/starship.zip",
-      "recommended": false
     }
   ],
   "source_name": "VitaHomebrewDB",

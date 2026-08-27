@@ -51,18 +51,6 @@
       "name": "VitaDB VPK",
       "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=717",
       "recommended": true
-    },
-    {
-      "type": "Download",
-      "name": "Data Files",
-      "url": "https://www.rinnegatamante.eu/files/vitadb/stratagus_data.zip",
-      "recommended": false
-    },
-    {
-      "type": "Data Files",
-      "name": "VitaHomebrewDB Data Files",
-      "url": "https://github.com/Northfear/stratagus-vita/releases/download/v3.3.2-vita.3/stratagus_data.zip",
-      "recommended": false
     }
   ],
   "source_name": "VitaHomebrewDB",

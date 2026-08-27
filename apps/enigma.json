@@ -45,18 +45,6 @@
       "type": "Official Website",
       "name": "VitaDB Release Page",
       "url": "https://github.com/rsn8887/Enigma/releases"
-    },
-    {
-      "type": "Download",
-      "name": "Data Files",
-      "url": "https://www.rinnegatamante.eu/files/vitadb/enigma.zip",
-      "recommended": false
-    },
-    {
-      "type": "Data Files",
-      "name": "VitaHomebrewDB Data Files",
-      "url": "https://github.com/rsn8887/Enigma/releases/download/1.16/data.zip",
-      "recommended": false
     }
   ],
   "source_name": "NeoVitaDB",

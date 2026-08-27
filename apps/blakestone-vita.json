@@ -42,18 +42,6 @@
       "type": "Official Website",
       "name": "VitaDB Release Page",
       "url": "http://wololo.net/talk/viewtopic.php?f=116&t=49428"
-    },
-    {
-      "type": "Download",
-      "name": "Data Files",
-      "url": "https://www.rinnegatamante.eu/files/vitadb/bstone.zip",
-      "recommended": false
-    },
-    {
-      "type": "Data Files",
-      "name": "VitaHomebrewDB Data Files",
-      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/393-data-bstone.zip",
-      "recommended": false
     }
   ],
   "source_name": "NeoVitaDB",

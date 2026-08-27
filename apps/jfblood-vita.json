@@ -52,18 +52,6 @@
       "name": "VitaDB VPK",
       "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1017",
       "recommended": true
-    },
-    {
-      "type": "Download",
-      "name": "Data Files",
-      "url": "https://www.rinnegatamante.eu/files/vitadb/NBlood_new.zip",
-      "recommended": false
-    },
-    {
-      "type": "Data Files",
-      "name": "VitaHomebrewDB Data Files",
-      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/1017-data-NBlood_new.zip",
-      "recommended": false
     }
   ],
   "source_name": "VitaHomebrewDB",

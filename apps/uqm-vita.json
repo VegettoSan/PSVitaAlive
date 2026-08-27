@@ -41,18 +41,6 @@
       "type": "Official Website",
       "name": "VitaDB Release Page",
       "url": "https://github.com/argarak/uqm-vita/releases"
-    },
-    {
-      "type": "Download",
-      "name": "Data Files",
-      "url": "https://www.rinnegatamante.eu/files/vitadb/uqm-data-full.zip",
-      "recommended": false
-    },
-    {
-      "type": "Data Files",
-      "name": "VitaHomebrewDB Data Files",
-      "url": "https://github.com/argarak/uqm-vita/releases/download/rev1/uqm-data-full.zip",
-      "recommended": false
     }
   ],
   "source_name": "NeoVitaDB",

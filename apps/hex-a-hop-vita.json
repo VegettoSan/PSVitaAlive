@@ -51,18 +51,6 @@
       "name": "VitaDB VPK",
       "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1374",
       "recommended": true
-    },
-    {
-      "type": "Download",
-      "name": "Data Files",
-      "url": "https://www.rinnegatamante.eu/files/vitadb/hex-a-hop.zip",
-      "recommended": false
-    },
-    {
-      "type": "Data Files",
-      "name": "VitaHomebrewDB Data Files",
-      "url": "https://github.com/withLogic/hexahop-vita/releases/download/v1.1.0-vita/data.zip",
-      "recommended": false
     }
   ],
   "source_name": "VitaHomebrewDB",
