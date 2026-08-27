@@ -1,1 +1,44 @@
-PLACEHOLDER
+{
+  "id": "2048-vita",
+  "title_id": "DEFD20485",
+  "name": "2048-Vita",
+  "description": "2048 port for PSVITA.",
+  "long_description": "A simple port of 2048 for PSVITA/PSTV.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
+  "author_ids": [
+    "fantahourglass"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [],
+  "version": "1.0",
+  "release_date": "2016-11-14",
+  "updated_at": "2016-11-14",
+  "size": 156240,
+  "icon": "https://archive.org/download/psvitaalive-2048-vita/icon0.png",
+  "screenshots": [
+    "https://archive.org/download/psvitaalive-2048-vita/shot_01.png",
+    "https://archive.org/download/psvitaalive-2048-vita/shot_02.png"
+  ],
+  "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-2048-vita/2048-vita.vpk",
+      "recommended": true
+    }
+  ],
+  "sources": {
+    "vitahomebrewdb": {
+      "id": "424",
+      "last_seen": "2026-08-27T15:35:32.536991+00:00"
+    },
+    "neovitadb": {
+      "id": "1615",
+      "last_seen": "2026-08-27T15:35:32.536991+00:00"
+    },
+    "vitadb": {
+      "id": "424",
+      "last_seen": "2026-08-27T15:35:32.536991+00:00"
+    }
+  },
+  "type": "homebrew"
+}
