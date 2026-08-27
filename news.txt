@@ -1,23 +1,15 @@
-id: 2026-08-26-0002
-title: PsVita Alive Store BETA 01.11
+id: 2026-08-26-0003
+title: PsVita Alive Store BETA 01.12
 enabled: true
 ---
 Thanks for using PS Vita Alive Store.
 
 Not all Homebrew / Ports have Game Files yet, please be patient as I will gradually upload them so they can be downloaded.
 
-- The appearance of information in each application has been improved.
-- Support for submitting bug reports has been added.
-- A News section has been added to notify users of new releases and other updates.
-- Free space checks have been added before downloading to prevent installation errors.
-- The display of Mediafire download links has been improved.
-- Homebrew applications that include Data Files or Game Files are now more clearly indicated.
-- Error reporting for user-canceled downloads and installations has been removed.
-- The log system has been improved for better review of submitted reports.
-- Several broken links have been fixed.
+- Added a button to filter homebrews containing Game Files and Data Files.
+- Added a new "Install All" download and installation mode, allowing you to install VPK files, Game Files, and Data Files in a single step.
+- Added internet connection checks to prevent download errors.
+- Removed the report button for insufficient storage warnings.
 
-GAME FILES ADDED:
-
-- 2ship2harkinian (Zelda Majora's Mask) Spanish.
 
 Enjoy!
