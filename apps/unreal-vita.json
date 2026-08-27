@@ -26,7 +26,8 @@
     {
       "type": "Download",
       "name": "VitaHomebrewDB VPK",
-      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1242-unreal.vpk"
+      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1242-unreal.vpk",
+      "recommended": false
     },
     {
       "type": "Repository",
