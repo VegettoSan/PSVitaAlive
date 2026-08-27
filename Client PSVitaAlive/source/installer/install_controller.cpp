@@ -1,5 +1,6 @@
 #include "installer/install_controller.hpp"
 #include "diagnostic_logger.hpp"
+#include <psp2/net/netctl.h>
 #include "storage/storage_manager.hpp"
 #include "installer/plugin_detector.hpp"
 #include "installer/app_settings.hpp"
@@ -73,6 +74,27 @@ std::string formatBytesShort(uint64_t b) {
 
 constexpr uint64_t RESULT_AUTO_DISMISS_MS = 8000;
 }
+
+
+namespace {
+
+/** True when Wi-Fi/Ethernet is fully connected. Fail-open if NetCtl unavailable. */
+bool networkIsConnected() {
+    int state = 0;
+    int r = sceNetCtlGetState(&state);
+    if (r < 0) {
+        // Not initialized yet — try init once (safe if already inited elsewhere).
+        sceNetCtlInit();
+        r = sceNetCtlGetState(&state);
+    }
+    if (r < 0) {
+        // Unknown: do not block downloads on emulator/edge cases.
+        return true;
+    }
+    return state == SCE_NET_CTL_STATE_CONNECTED;
+}
+
+} // namespace
 
 InstallController::InstallController() : downloads_(http_) {
     std::memset(message_, 0, sizeof(message_));
@@ -187,6 +209,25 @@ bool InstallController::requestInstall(
     uint64_t expectedBytes
 ) {
     if (url.empty() || fileName.empty() || busy()) return false;
+
+    // Downloads need network; extraction/install of an already-downloaded file does not.
+    if (!networkIsConnected()) {
+        setFileName(fileName.c_str());
+        setStage("Network");
+        setInstallPath("");
+        setTitleId("");
+        liveAreaOk_.store(false);
+        current_.store(0);
+        total_.store(expectedBytes);
+        speed_.store(0);
+        resultShownAtMs_.store(0);
+        setState(InstallStatus::State::Failed,
+            "No internet connection. Connect to Wi-Fi and try the download again. "
+            "Extraction and install work offline once the file is fully downloaded.");
+        diagnostics::log("[Installer] blocked: no network connection before download");
+        resultShownAtMs_.store(sceKernelGetSystemTimeWide() / 1000ULL);
+        return true; // accepted as a finished failed request so UI shows the modal
+    }
 
     std::string niceTitle = displayTitle;
     if (niceTitle.empty()) niceTitle = fileName;
@@ -580,6 +621,35 @@ int InstallController::workerMain() {
     current_.store(job->downloadedSize);
     total_.store(job->expectedSize ? job->expectedSize : job->downloadedSize);
     speed_.store(0);
+
+    // Guard incomplete downloads: extract/install must not run on a truncated file.
+    // (Losing Wi-Fi mid-transfer can leave a partial payload that looks "done" in the UI.)
+    if (job->expectedSize > 0) {
+        const uint64_t got = job->downloadedSize;
+        const uint64_t exp = job->expectedSize;
+        const bool tooSmall = (got + 4096ULL < exp) && (got * 100ULL < exp * 98ULL);
+        if (tooSmall) {
+            char msg[320];
+            sceClibSnprintf(
+                msg, sizeof(msg),
+                "Download incomplete (%llu / %llu bytes). Stay online until the download finishes. "
+                "Extraction does not need internet once the file is complete.",
+                (unsigned long long)got, (unsigned long long)exp);
+            setStage("Error");
+            setState(InstallStatus::State::Failed, msg);
+            liveAreaOk_.store(false);
+            setInstallPath("");
+            diagnostics::log(std::string("[Installer] incomplete download blocked before extract: ") + msg);
+            if (!activeJobId_.empty()) downloads_.cleanupCompletedJob(activeJobId_);
+            activeJobId_.clear();
+            activeZrif_.clear();
+            activeContentId_.clear();
+            resultShownAtMs_.store(sceKernelGetSystemTimeWide() / 1000ULL);
+            workerDone_.store(true);
+            return 0;
+        }
+    }
+
     setStage("Installing");
     setState(InstallStatus::State::Installing, "Preparing installation...");
     diagnostics::log(std::string("[Installer] installing job=") + activeJobId_ + " file=" + job->finalPath);

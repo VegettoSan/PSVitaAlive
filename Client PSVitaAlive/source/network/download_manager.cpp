@@ -311,9 +311,22 @@ bool DownloadManager::runJob(DownloadJob& job) {
         return false;
     }
 
-    job.state = DownloadState::Completed;
     const int64_t fs = st.fileSize(job.finalPath);
     job.downloadedSize = static_cast<uint64_t>(fs > 0 ? fs : 0);
+    // Do not mark complete if we know the expected size and the file is clearly short.
+    if (job.expectedSize > 0) {
+        const uint64_t got = job.downloadedSize;
+        const uint64_t exp = job.expectedSize;
+        if ((got + 4096ULL < exp) && (got * 100ULL < exp * 98ULL)) {
+            st.removeFile(job.finalPath);
+            job.state = DownloadState::Failed;
+            job.lastError = "download incomplete (connection lost before finish)";
+            saveMetadata(job);
+            diagnostics::log("[DownloadManager] incomplete file after HTTP OK — not marking Completed");
+            return false;
+        }
+    }
+    job.state = DownloadState::Completed;
     saveMetadata(job);
 
     if (onProgress_) {
