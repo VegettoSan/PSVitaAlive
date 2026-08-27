@@ -1466,7 +1466,7 @@ void FullCatalogScreen::handleTouch() {
             }
             if (installAllItemIndex_ >= 0 && installAllItemIndex_ < (int)catalogView().size()) {
                 const int listTop = oy + 86;
-                const int rowH = 40;
+                const int rowH = LINK_ROW_H + 6;
                 const int maxVis = 5;
                 int start = 0;
                 if (installAllFocus_ >= maxVis) start = installAllFocus_ - maxVis + 1;
@@ -1725,16 +1725,17 @@ void FullCatalogScreen::handleTouch() {
         }
     }
 
-// --- Header search bar + G/D Files filter ---
+// --- Header search bar + G/D Files filter (Homebrew only) ---
     if (y < HEADER_H) {
         const int barY = 10, barH = 32;
         const int gdW = 92;
         const int clockReserve = 92;
         // Approximate logo width used in drawHeader (searchLeft often ~200)
         const int barX = 200;
-        const int barW = std::max(120, SCREEN_W - barX - clockReserve - gdW - 10);
+        const bool showGd = (state_.catalog == CatalogType::Homebrew);
+        const int barW = std::max(120, SCREEN_W - barX - clockReserve - (showGd ? (gdW + 10) : 0));
         const int gdX = barX + barW + 6;
-        if (hit(x, y, gdX, barY, gdW, barH)) {
+        if (showGd && hit(x, y, gdX, barY, gdW, barH)) {
             setDataFilesFilter(!dataFilesFilter_);
             return;
         }
@@ -1762,10 +1763,7 @@ void FullCatalogScreen::handleTouch() {
     const int panelTop = HEADER_H + TABS_H;
     const int panelBottom = SCREEN_H - FOOTER_H;
     if (y < panelTop || y >= panelBottom) {
-        // Footer: in full catalog, left area can open search
-        if (y >= panelBottom && state_.mode == UiMode::FULL_CATALOG && x < SCREEN_W / 2) {
-            if (searchRequest_) applySearch(searchRequest_(searchQuery_));
-        }
+        // Header/footer chrome only — do not open search from footer taps.
         return;
     }
 
@@ -2384,12 +2382,13 @@ unsigned FullCatalogScreen::colorForStatus(const std::string&s)const{if(s=="Veri
         vita2d_pgf_draw_text(font_, 14, 28, ACCENT, 0.88f, "PSVitaAlive");
         searchLeft = 200;
     }
-    // Search field + G/D Files filter chip + clock
+    // Search field + optional G/D Files filter chip (Homebrew only) + clock
     const int barY = 10, barH = 32;
     const int gdW = 92;
     const int clockReserve = 92;
     const int barX = searchLeft;
-    const int barW = std::max(120, w - barX - clockReserve - gdW - 10);
+    const bool showGd = (state_.catalog == CatalogType::Homebrew);
+    const int barW = std::max(120, w - barX - clockReserve - (showGd ? (gdW + 10) : 0));
     const int gdX = barX + barW + 6;
     vita2d_draw_rectangle(barX, barY, barW, barH, SURFACE);
     vita2d_draw_rectangle(barX - 1, barY - 1, barW + 2, 1, RGBA8(0x3B, 0xFF, 0x00, 50));
@@ -2407,20 +2406,24 @@ unsigned FullCatalogScreen::colorForStatus(const std::string&s)const{if(s=="Veri
         vita2d_pgf_draw_text(font_, barX + 70, barY + 21, WHITE, 0.58f, ellipsize(searchQuery_, 22).c_str());
         vita2d_pgf_draw_text(font_, barX + barW - 52, barY + 21, DIM, 0.52f, "□ clear");
     }
-    // G/D Files filter — folder amber palette (matches detail chips)
-    {
-        const unsigned amber = RGBA8(0xE6, 0x9A, 0x00, 255);
-        const unsigned amberDark = RGBA8(0x8A, 0x5A, 0x00, 255);
-        const unsigned fill = dataFilesFilter_ ? amber : SURFACE2;
-        const unsigned border = amber;
-        vita2d_draw_rectangle(gdX, barY, gdW, barH, border);
-        vita2d_draw_rectangle(gdX + 2, barY + 2, gdW - 4, barH - 4, fill);
-        const unsigned tc = dataFilesFilter_ ? RGBA8(0x1A, 0x12, 0x00, 255) : amber;
+    // G/D Files filter — only on Homebrew; same folder-chip style as card tags
+    if (state_.catalog == CatalogType::Homebrew) {
+        const unsigned folderBg = dataFilesFilter_ ? RGBA8(0x5A, 0x42, 0x12, 255) : RGBA8(0x3A, 0x2C, 0x10, 255);
+        const unsigned folderEdge = RGBA8(0xE8, 0xB4, 0x3A, 255);
+        const unsigned folderText = RGBA8(0xFF, 0xD2, 0x6A, 255);
+        vita2d_draw_rectangle(gdX, barY, gdW, barH, folderBg);
+        vita2d_draw_rectangle(gdX, barY, gdW, 3, folderEdge); // top tab
+        vita2d_draw_rectangle(gdX, barY, 3, barH, folderEdge);
+        vita2d_draw_rectangle(gdX + gdW - 1, barY, 1, barH, folderEdge);
+        vita2d_draw_rectangle(gdX, barY + barH - 1, gdW, 1, folderEdge);
+        if (dataFilesFilter_) {
+            // Active: brighter top edge
+            vita2d_draw_rectangle(gdX, barY, gdW, 3, RGBA8(0xFF, 0xD2, 0x6A, 255));
+        }
         const char* lab = "G/D Files";
         const float sc = 0.52f;
         const int tw = vita2d_pgf_text_width(font_, sc, lab);
-        vita2d_pgf_draw_text(font_, gdX + (gdW - tw) / 2, barY + 21, tc, sc, lab);
-        (void)amberDark;
+        vita2d_pgf_draw_text(font_, gdX + (gdW - tw) / 2, barY + 21, folderText, sc, lab);
     }
     {
         const std::string clock = currentTimeLabel();
@@ -3772,7 +3775,7 @@ void FullCatalogScreen::drawInstallAllOverlay() {
     vita2d_pgf_draw_text(font_, ox + 22, oy + 62, DIM, 0.50f, "Same content — pick one mirror / source");
 
     const int listTop = oy + 86;
-    const int rowH = 44;
+    const int rowH = LINK_ROW_H + 6;
     const int maxVis = 5;
     int start = 0;
     if (installAllFocus_ >= maxVis) start = installAllFocus_ - maxVis + 1;
@@ -3783,21 +3786,29 @@ void FullCatalogScreen::drawInstallAllOverlay() {
         const CatalogLink& l = item.linkDetails[di];
         const int ry = listTop + n * (rowH + 6);
         const bool f = (idx == installAllFocus_);
-        // Same visual language as detail download rows
-        vita2d_draw_rectangle(ox + 20, ry, ow - 40, rowH, f ? ACCENT : SURFACE2);
-        vita2d_draw_rectangle(ox + 20, ry, ow - 40, 1, f ? ACCENT : BORDER);
+        const int rx = ox + 20, rw = ow - 40;
+        // Match detail download rows: dark SURFACE2 body (not full green fill)
+        vita2d_draw_rectangle(rx, ry, rw, rowH, SURFACE2);
+        vita2d_draw_rectangle(rx, ry, rw, 1, f ? ACCENT : BORDER);
+        if (f) {
+            // Focus indicator: left neon strip + soft top/bottom edge
+            vita2d_draw_rectangle(rx, ry, 3, rowH, ACCENT);
+            vita2d_draw_rectangle(rx, ry + rowH - 1, rw, 1, ACCENT);
+        }
         std::string name = l.name.empty() ? l.type : l.name;
-        std::string size = l.size.empty() ? "" : l.size;
+        const std::string sizeLabel = l.size.empty() ? "" : l.size;
         const int badgeW = l.recommended ? 96 : 0;
-        const unsigned mc = f ? BG : WHITE;
-        vita2d_pgf_draw_text(font_, ox + 32, ry + 16, mc, 0.60f, ellipsize(name, badgeW ? 28 : 42).c_str());
-        std::string meta = size.empty() ? "Source" : size;
+        const unsigned mc = WHITE;
+        vita2d_pgf_draw_text(font_, rx + 12, ry + 16, mc, 0.64f, ellipsize(name, badgeW ? 28 : 42).c_str());
+        std::string meta = l.type.empty() ? "Download" : l.type;
+        if (!sizeLabel.empty()) meta += "  •  " + sizeLabel;
         if (f) meta += "  •  X: select";
-        vita2d_pgf_draw_text(font_, ox + 32, ry + 32, f ? BG : DIM, 0.48f, ellipsize(meta, badgeW ? 30 : 48).c_str());
+        else meta += "  •  X";
+        vita2d_pgf_draw_text(font_, rx + 12, ry + 32, DIM, 0.50f, ellipsize(meta, badgeW ? 30 : 48).c_str());
         if (l.recommended) {
-            const int bx = ox + ow - 40 - badgeW - 8, by = ry + 9;
-            vita2d_draw_rectangle(bx, by, badgeW, 22, f ? BG : ACCENT);
-            vita2d_pgf_draw_text(font_, bx + 6, by + 15, f ? ACCENT : BG, 0.50f, "Recommended");
+            const int bx = rx + rw - badgeW - 8, by = ry + 9;
+            vita2d_draw_rectangle(bx, by, badgeW, 22, ACCENT);
+            vita2d_pgf_draw_text(font_, bx + 6, by + 15, BG, 0.50f, "Recommended");
         }
     }
     vita2d_pgf_draw_text(font_, ox + 22, oy + oh - 28, DIM, 0.48f, "D-Pad: move   X: select   O: cancel");
