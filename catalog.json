@@ -201,11 +201,11 @@
         "recommended": true
       },
       {
-        "type": "Download",
+        "type": "Game Files",
         "name": "Game Files ZIP",
         "url": "https://archive.org/download/amnesia-the-dark-descent_202608/Game%20Files.zip",
         "size": 2576980378,
-        "recommended": false
+        "extract_path": "ux0:data/"
       }
     ],
     "icon": "https://archive.org/download/amnesia-the-dark-descent_202608/icon0.png",
@@ -8583,67 +8583,50 @@
     ],
     "category_id": "ports",
     "subcategory_ids": [
+      "adventure",
+      "platformer",
+      "puzzle",
       "other"
     ],
     "version": "v.1.2",
     "version_date": "2026-03-27",
     "requirements": "- libshacccg.suprx\n- Game Data Files: N64",
-    "size": 12732891,
+    "size": 12732858,
     "status": "Legacy",
-    "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1276-ship-of-harkinian-vita.png",
-    "screenshots": [
-      "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/526687eaf955ad3a2271012393cabaca116e92a9e570ea99152c43b9bbeff384.png",
-      "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/e6dead696ccf36d1fc0dbf87aae684d7b3c3fd399cc625c60e842cb015fd4f53.png",
-      "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/a8fe9dc4430db5bb40e8af665738c3612ca2c746cbb909f7a39a47141060eb2c.png",
-      "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/af0942a09411f880a3000b2a22e29d0e05d6b5344e9faeb8958c6c2e70e3f34f.png",
-      "https://www.rinnegatamante.eu/vitadb/screenshots/526687eaf955ad3a2271012393cabaca116e92a9e570ea99152c43b9bbeff384.png"
-    ],
     "links": [
       {
         "type": "Download",
-        "name": "VitaHomebrewDB VPK",
-        "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1276-soh.vpk",
-        "recommended": false
+        "name": "VPK",
+        "url": "https://archive.org/download/psvitaalive-ship-of-harkinian-vita/ship-of-harkinian-vita.vpk",
+        "size": 12687770,
+        "recommended": true
       },
       {
-        "type": "Download",
-        "name": "NeoVitaDB VPK",
-        "url": "https://github.com/Rinnegatamante/Shipwright/releases/download/v.1.2/soh.vpk",
-        "recommended": false
-      },
-      {
-        "type": "Official Website",
-        "name": "VitaHomebrewDB Release Page",
-        "url": "https://www.psx-place.com/threads/release-ship-of-harkinian-vita.47750/"
-      },
-      {
-        "type": "Official Website",
-        "name": "NeoVitaDB Release Page",
-        "url": "https://github.com/Rinnegatamante/Shipwright/releases/tag/v.1.2"
+        "type": "Game Files",
+        "name": "Game Files ZIP",
+        "url": "https://archive.org/download/psvitaalive-ship-of-harkinian-vita/Game%20Files.zip",
+        "size": 27158118,
+        "extract_path": "ux0:data/"
       },
       {
         "type": "Repository",
         "name": "Repositorio",
         "url": "https://github.com/Rinnegatamante/Shipwright"
-      },
-      {
-        "type": "Download",
-        "name": "VitaHomebrewDB VPK",
-        "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/1276-soh.vpk",
-        "recommended": false
-      },
-      {
-        "type": "Download",
-        "name": "VitaDB VPK",
-        "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1276",
-        "recommended": true
       }
+    ],
+    "icon": "https://archive.org/download/psvitaalive-ship-of-harkinian-vita/icon0.png",
+    "screenshots": [
+      "https://archive.org/download/psvitaalive-ship-of-harkinian-vita/shot_01.png",
+      "https://archive.org/download/psvitaalive-ship-of-harkinian-vita/shot_02.png",
+      "https://archive.org/download/psvitaalive-ship-of-harkinian-vita/shot_03.png",
+      "https://archive.org/download/psvitaalive-ship-of-harkinian-vita/shot_04.png",
+      "https://archive.org/download/psvitaalive-ship-of-harkinian-vita/shot_05.png"
     ],
     "source_name": "VitaHomebrewDB",
     "source_id": "1276",
     "source_url": "https://github.com/Rinnegatamante/Shipwright",
     "release_page": "https://www.psx-place.com/threads/release-ship-of-harkinian-vita.47750/",
-    "updated_at": "2026-08-13T15:34:48.358339+00:00"
+    "updated_at": "2026-08-13T15:34"
   },
   {
     "id": "hex-a-hop-vita",
