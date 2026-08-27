@@ -271,13 +271,24 @@ private:
     char reportUiMsg_[48] = {};
     std::string reportTitle_;
     std::string reportContext_;
+    std::string reportAppName_;
+    std::string reportAppTitleId_;
+    std::string reportAppVersion_;
+    std::string reportFileName_;
+    int reportKind_ = 0; // maps to ErrorReportKind
     std::atomic<bool> reportBusy_{false};
     std::atomic<bool> reportDone_{false};
     std::atomic<bool> reportOk_{false};
     char reportResultMsg_[64] = {};
     SceUID reportThread_ = -1;
     static int reportWorkerEntry(SceSize args, void* argp);
-    void trySendErrorReport(const std::string& title, const std::string& context);
+    /** kind: 0 Manual, 1 InstallFailed, 2 DownloadFailed, 3 Catalog, 4 SelfUpdate, 5 Other */
+    void trySendErrorReport(const std::string& title, const std::string& context,
+                            int kind = 0,
+                            const std::string& appName = std::string(),
+                            const std::string& appTitleId = std::string(),
+                            const std::string& appVersion = std::string(),
+                            const std::string& fileName = std::string());
     void pollReportWorker();
     void drawReportChip();
     void drawReportConfirmOverlay();
