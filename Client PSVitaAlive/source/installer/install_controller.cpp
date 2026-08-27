@@ -81,17 +81,18 @@ namespace {
 /** True when Wi-Fi/Ethernet is fully connected. Fail-open if NetCtl unavailable. */
 bool networkIsConnected() {
     int state = 0;
-    int r = sceNetCtlGetState(&state);
+    // VitaSDK: sceNetCtlInetGetState + SCE_NETCTL_STATE_*
+    int r = sceNetCtlInetGetState(&state);
     if (r < 0) {
         // Not initialized yet — try init once (safe if already inited elsewhere).
         sceNetCtlInit();
-        r = sceNetCtlGetState(&state);
+        r = sceNetCtlInetGetState(&state);
     }
     if (r < 0) {
         // Unknown: do not block downloads on emulator/edge cases.
         return true;
     }
-    return state == SCE_NET_CTL_STATE_CONNECTED;
+    return state == SCE_NETCTL_STATE_CONNECTED;
 }
 
 } // namespace
