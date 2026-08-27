@@ -3155,26 +3155,22 @@ void FullCatalogScreen::drawDetailLinks(const CatalogItem& it, int x, int y, int
 
     if (showAll) {
         const bool fAll = state_.linkNavigation && state_.linkFocus == 0;
-        // Black body + green border (palette). Soft border pulse so it stands out.
-        const float pulse = 0.45f + 0.55f * focusPulse(); // 0.45..1.0
-        const unsigned borderA = (unsigned)(140.f + 115.f * pulse);
+        // Same look as download rows (SURFACE2 / ACCENT focus), larger block + soft border pulse.
+        const float pulse = 0.40f + 0.60f * focusPulse(); // 0.40..1.0
+        const unsigned borderA = (unsigned)(120.f + 135.f * pulse);
         const unsigned borderCol = RGBA8(0x3B, 0xFF, 0x00, borderA > 255 ? 255 : borderA);
-        const unsigned fill = fAll ? RGBA8(0x14, 0x14, 0x14, 255) : RGBA8(0, 0, 0, 255);
-        const int bwPulse = 2 + (int)(1.5f * pulse); // 2..3 px soft "breathing"
+        const unsigned fill = fAll ? ACCENT : SURFACE2;
+        const int bwPulse = fAll ? 2 : (2 + (int)(1.5f * pulse));
+        // Outer pulse rim (keeps attention without leaving the palette)
         vita2d_draw_rectangle(x, y, w, INSTALL_ALL_BLOCK_H, borderCol);
         vita2d_draw_rectangle(x + bwPulse, y + bwPulse, w - bwPulse * 2, INSTALL_ALL_BLOCK_H - bwPulse * 2, fill);
-        if (fAll) {
-            // Focused: solid bright green rim
-            vita2d_draw_rectangle(x, y, w, 2, ACCENT);
-            vita2d_draw_rectangle(x, y + INSTALL_ALL_BLOCK_H - 2, w, 2, ACCENT);
-            vita2d_draw_rectangle(x, y, 2, INSTALL_ALL_BLOCK_H, ACCENT);
-            vita2d_draw_rectangle(x + w - 2, y, 2, INSTALL_ALL_BLOCK_H, ACCENT);
-        }
-        const unsigned tc = fAll ? ACCENT : WHITE;
-        const unsigned sub = fAll ? ACCENT : DIM;
-        vita2d_pgf_draw_text(font_, x + 12, y + 20, tc, 0.72f, "INSTALL ALL");
-        vita2d_pgf_draw_text(font_, x + 12, y + 40, sub, 0.48f,
-            "Install app + Game/Data Files from scratch (pick sources)");
+        // Top hairline like other link rows
+        vita2d_draw_rectangle(x + bwPulse, y + bwPulse, w - bwPulse * 2, 1, fAll ? ACCENT : BORDER);
+        const unsigned tc = fAll ? BG : WHITE;
+        const unsigned sub = fAll ? BG : TEXT;
+        vita2d_pgf_draw_text(font_, x + 12, y + 20, tc, 0.70f, "INSTALL ALL");
+        vita2d_pgf_draw_text(font_, x + 12, y + 42, sub, 0.56f,
+            "Install app + Game/Data Files from scratch");
         yOff = INSTALL_ALL_BLOCK_H + 8;
     }
 
