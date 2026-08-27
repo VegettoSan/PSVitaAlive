@@ -110,6 +110,8 @@ private:
     bool ready_ = false;
 
     std::string searchQuery_;
+    /** When true, catalogView only includes apps with Game Files and/or Data Files. */
+    bool dataFilesFilter_ = false;
 
     bool catalogLoading_ = false;
     std::unordered_map<std::string, LocalInstallInfo> installStatusCache_;
