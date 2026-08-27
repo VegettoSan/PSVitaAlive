@@ -113,19 +113,54 @@ def remote_image_is_valid(url):
         return True
 
 
+def _is_trusted_media_host(url: str) -> bool:
+    try:
+        host = (urlparse(url).hostname or "").lower()
+    except Exception:
+        return False
+    if not host:
+        return False
+    if host.endswith(".archive.org") or host == "archive.org":
+        return True
+    if host.endswith(".githubusercontent.com") or host == "raw.githubusercontent.com":
+        return True
+    if host in {"github.com", "gitlab.com"}:
+        return True
+    return False
+
+
 def filter_remote_screenshots(urls):
+    """Keep remote screenshots without probing trusted hosts.
+
+    Local-only catalogs (Archive.org + GitHub) used to spend ~20 minutes probing
+    every screenshot. Trusted hosts are accepted as-is; only unknown hosts are
+    checked, and only when VITAHUB_SKIP_REMOTE_MEDIA is not set.
+    """
     if not urls:
         return []
+
+    import os
+    if os.environ.get("VITAHUB_SKIP_REMOTE_MEDIA", "").lower() in {"1", "true", "yes"}:
+        return list(urls)
+
+    trusted = [url for url in urls if _is_trusted_media_host(url)]
+    unknown = [url for url in urls if not _is_trusted_media_host(url)]
+    if not unknown:
+        return list(urls)
+
     results = {}
-    with ThreadPoolExecutor(max_workers=min(16, len(urls))) as executor:
-        futures = {executor.submit(remote_image_is_valid, url): url for url in urls}
+    with ThreadPoolExecutor(max_workers=min(16, len(unknown))) as executor:
+        futures = {executor.submit(remote_image_is_valid, url): url for url in unknown}
         for future in as_completed(futures):
             url = futures[future]
             try:
                 results[url] = future.result()
             except Exception:
                 results[url] = True
-    return [url for url in urls if results.get(url, True)]
+    kept_unknown = [url for url in unknown if results.get(url, True)]
+    # Preserve original order
+    kept = set(trusted) | set(kept_unknown)
+    return [url for url in urls if url in kept]
 
 
 
