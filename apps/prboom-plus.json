@@ -43,18 +43,6 @@
       "name": "VitaDB VPK",
       "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=591",
       "recommended": true
-    },
-    {
-      "type": "Download",
-      "name": "Data Files",
-      "url": "https://www.rinnegatamante.eu/files/vitadb/prboom.zip",
-      "recommended": false
-    },
-    {
-      "type": "Data Files",
-      "name": "VitaHomebrewDB Data Files",
-      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/591-data-prboom.zip",
-      "recommended": false
     }
   ],
   "source_name": "VitaHomebrewDB",

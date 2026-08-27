@@ -47,18 +47,6 @@
       "name": "VitaDB VPK",
       "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1269",
       "recommended": true
-    },
-    {
-      "type": "Download",
-      "name": "Data Files",
-      "url": "https://www.rinnegatamante.eu/files/vitadb/openrct2.zip",
-      "recommended": false
-    },
-    {
-      "type": "Data Files",
-      "name": "VitaHomebrewDB Data Files",
-      "url": "https://github.com/technicaljicama/OpenRCT2-CE/releases/download/vita-1/data.zip",
-      "recommended": false
     }
   ],
   "source_name": "VitaHomebrewDB",

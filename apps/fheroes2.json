@@ -46,18 +46,6 @@
       "type": "Official Website",
       "name": "VitaDB Release Page",
       "url": "http://wololo.net/talk/viewtopic.php?f=116&t=48768"
-    },
-    {
-      "type": "Download",
-      "name": "Data Files",
-      "url": "https://www.rinnegatamante.eu/files/vitadb/fheroes2_data.zip",
-      "recommended": false
-    },
-    {
-      "type": "Data Files",
-      "name": "VitaHomebrewDB Data Files",
-      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/354-data-fheroes2_data.zip",
-      "recommended": false
     }
   ],
   "source_name": "NeoVitaDB",

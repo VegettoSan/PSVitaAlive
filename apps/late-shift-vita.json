@@ -45,12 +45,6 @@
       "name": "VitaHomebrewDB VPK",
       "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/1121-lateshift.vpk",
       "recommended": true
-    },
-    {
-      "type": "Download",
-      "name": "Data Files",
-      "url": "https://github.com/Rinnegatamante/OpenFMV/releases/download/v.1.0-ls/tools.zip",
-      "recommended": false
     }
   ],
   "source_name": "VitaHomebrewDB",
