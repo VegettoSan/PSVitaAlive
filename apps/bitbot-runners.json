@@ -16,12 +16,19 @@
   "requirements": "Not specified",
   "size": 42867164,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1670-bitbot-runners.png",
+  "icon": "https://archive.org/download/psvitaalive-bitbot-runners/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/1ef18f6f06fdf5c05cb8a6ba26a086785748698ed5e1959eb08c499ba1e6467e.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/1ef18f6f06fdf5c05cb8a6ba26a086785748698ed5e1959eb08c499ba1e6467e.png"
+    "https://archive.org/download/psvitaalive-bitbot-runners/shot_01.png",
+    "https://archive.org/download/psvitaalive-bitbot-runners/shot_02.png"
   ],
-  "links": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-bitbot-runners/bitbot-runners.vpk",
+      "recommended": true
+    }
+  ],
   "source_name": "VitaHomebrewDB",
   "source_id": "519",
   "source_url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/519-BitBot-Runners.vpk",

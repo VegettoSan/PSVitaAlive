@@ -16,11 +16,17 @@
   "requirements": "Not specified",
   "size": 205639,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/a10e06d7f0b09586eba1f62e913acc2e40ee93969a51fa4dd24336111bf0a5b4.png",
+  "icon": "https://archive.org/download/psvitaalive-vita-account-manager/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/a10e06d7f0b09586eba1f62e913acc2e40ee93969a51fa4dd24336111bf0a5b4.png"
+    "https://archive.org/download/psvitaalive-vita-account-manager/shot_01.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-vita-account-manager/vita-account-manager.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Release Page",

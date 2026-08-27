@@ -17,11 +17,17 @@
   "requirements": "Not specified",
   "size": 456420,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1567-mltactivator.png",
+  "icon": "https://archive.org/download/psvitaalive-mltactivator/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1567-mltactivator.png"
+    "https://archive.org/download/psvitaalive-mltactivator/shot_01.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-mltactivator/mltactivator.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Official Website",

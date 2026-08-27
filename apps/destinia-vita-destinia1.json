@@ -16,11 +16,17 @@
   "requirements": "- libshacccg.suprx\n- kubridge.skprx\n- Game Data Files: Android",
   "size": 1206375,
   "status": "Legacy",
-  "icon": "https://www.rinnegatamante.eu/vitadb/icons/94b26caaf8991a4c4efe74af98a7303312d7f8bb6574645274c0792baf9ab046.png",
+  "icon": "https://archive.org/download/psvitaalive-destinia-vita-destinia1/icon0.png",
   "screenshots": [
-    "https://www.rinnegatamante.eu/vitadb/icons/94b26caaf8991a4c4efe74af98a7303312d7f8bb6574645274c0792baf9ab046.png"
+    "https://archive.org/download/psvitaalive-destinia-vita-destinia1/shot_01.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-destinia-vita-destinia1/destinia-vita-destinia1.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Release Page",

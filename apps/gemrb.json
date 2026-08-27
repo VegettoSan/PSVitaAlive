@@ -16,12 +16,18 @@
   "requirements": "- Game Data Files: PC",
   "size": 4949129,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/b3264249dee3a7d84cd6def058f82022de8f2ef7ad6562bd14ef11f7e701bae3.png",
+  "icon": "https://archive.org/download/psvitaalive-gemrb/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/f747895d3bb3c0b29ceb71cec5a893c862b3398d1da66eece98404d1e537dad0.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/f747895d3bb3c0b29ceb71cec5a893c862b3398d1da66eece98404d1e537dad0.png"
+    "https://archive.org/download/psvitaalive-gemrb/shot_01.png",
+    "https://archive.org/download/psvitaalive-gemrb/shot_02.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-gemrb/gemrb.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Release Page",

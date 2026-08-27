@@ -16,14 +16,20 @@
   "requirements": "Not specified",
   "size": 18680010,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1974-dj-escher.png",
+  "icon": "https://archive.org/download/psvitaalive-dj-escher/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/3ddc6928df848634abd64a99c83fee4dd56f6c70e5fd8eed4896e004eea3c719.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/1f6c889c9e3ebb1d19f9b8a20c973578cb1e71393978add0efa54a31e52962d2.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/3ddc6928df848634abd64a99c83fee4dd56f6c70e5fd8eed4896e004eea3c719.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/1f6c889c9e3ebb1d19f9b8a20c973578cb1e71393978add0efa54a31e52962d2.png"
+    "https://archive.org/download/psvitaalive-dj-escher/shot_01.png",
+    "https://archive.org/download/psvitaalive-dj-escher/shot_02.png",
+    "https://archive.org/download/psvitaalive-dj-escher/shot_03.png",
+    "https://archive.org/download/psvitaalive-dj-escher/shot_04.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-dj-escher/dj-escher.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Official Website",

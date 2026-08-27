@@ -16,11 +16,18 @@
   "requirements": "Not specified",
   "size": 26950205,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1824-jailbreaker-vita.png",
+  "icon": "https://archive.org/download/psvitaalive-jailbreaker-vita/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1824-jailbreaker-vita.png"
+    "https://archive.org/download/psvitaalive-jailbreaker-vita/shot_01.png"
   ],
-  "links": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-jailbreaker-vita/jailbreaker-vita.vpk",
+      "recommended": true
+    }
+  ],
   "source_name": "VitaHomebrewDB",
   "source_id": "1075",
   "source_url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1075-Jailbreaker.vpk",

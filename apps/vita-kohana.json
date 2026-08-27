@@ -16,11 +16,17 @@
   "requirements": "Not specified",
   "size": 14785560,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1773-vita-kohana.png",
+  "icon": "https://archive.org/download/psvitaalive-vita-kohana/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1773-vita-kohana.png"
+    "https://archive.org/download/psvitaalive-vita-kohana/shot_01.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-vita-kohana/vita-kohana.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Repository",

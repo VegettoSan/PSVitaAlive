@@ -18,11 +18,18 @@
   "status": "Legacy",
   "links": [
     {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-lighthouse-vita/lighthouse-vita.vpk",
+      "recommended": true
+    },
+    {
       "type": "Game Files",
       "name": "Game Data Files ZIP Mediafire",
       "url": "https://www.mediafire.com/file/9be1no8he289e2c/BanjoKazooieVita.zip/file",
       "size": 257980105,
-      "extract_path": "ux0:data/"
+      "extract_path": "ux0:data/",
+      "recommended": false
     },
     {
       "type": "Repository",
@@ -30,12 +37,12 @@
       "url": "https://github.com/Rinnegatamante/Lighthouse"
     }
   ],
-  "icon": "https://www.rinnegatamante.eu/vitadb/icons/4ce0f12e5cf8235b0e211cc3cef5b769b80640f8cf2141c03bedcbe8f3c3be6d.png",
+  "icon": "https://archive.org/download/psvitaalive-lighthouse-vita/icon0.png",
   "screenshots": [
-    "https://www.rinnegatamante.eu/vitadb/screenshots/96b5673518a27dabeca3f4406b2bb49545d9b917a8d77d490e84a27a415a1c12.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/aba5859dea847d6cadd139735613ddea6b3a6cf8a5124bdb2076f6d4495fdfa2.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/c77f8ec4f60a8632fb104cea5edbc616907cbcfd56d4b8a9fc81b49d95c39b2b.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/b6474497e49254419cc51446140e495abf79250135661a0b7acca384374ddba9.png"
+    "https://archive.org/download/psvitaalive-lighthouse-vita/shot_01.png",
+    "https://archive.org/download/psvitaalive-lighthouse-vita/shot_02.png",
+    "https://archive.org/download/psvitaalive-lighthouse-vita/shot_03.png",
+    "https://archive.org/download/psvitaalive-lighthouse-vita/shot_04.png"
   ],
   "source_name": "VitaDB",
   "source_id": "1468",

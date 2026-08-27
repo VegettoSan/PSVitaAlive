@@ -16,15 +16,21 @@
   "requirements": "- libshacccg.suprx\n- kubridge.skprx\n- fd_fix.skprx OR repatch_ex.skprx\n- Game Data Files: Android",
   "size": 9305524,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/dbc976259e956549770155efbe47790b3b51afc6c9a06a324c88cbe18671aa5d.png",
+  "icon": "https://archive.org/download/psvitaalive-tomb-raider-1-2-classic-collection/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/8eddc0584a9a8549d0e88b74c196f88c0413fff2f07b160ca10b97d009a05948.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/0e432489073265c2dacd984f39b71bc3147dbe6196f0aa885794b8faac12408e.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/053cf3a983c869995665fd20dd4592e1ec213653029dfb88887ae212cb730a9c.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/2a439a98150d424a97e0b4cb738bc44c095a28af1a493352e7468e7e4cf9447c.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/8eddc0584a9a8549d0e88b74c196f88c0413fff2f07b160ca10b97d009a05948.png"
+    "https://archive.org/download/psvitaalive-tomb-raider-1-2-classic-collection/shot_01.png",
+    "https://archive.org/download/psvitaalive-tomb-raider-1-2-classic-collection/shot_02.png",
+    "https://archive.org/download/psvitaalive-tomb-raider-1-2-classic-collection/shot_03.png",
+    "https://archive.org/download/psvitaalive-tomb-raider-1-2-classic-collection/shot_04.png",
+    "https://archive.org/download/psvitaalive-tomb-raider-1-2-classic-collection/shot_05.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-tomb-raider-1-2-classic-collection/tomb-raider-1-2-classic-collection.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Release Page",

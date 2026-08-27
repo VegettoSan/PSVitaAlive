@@ -16,11 +16,17 @@
   "requirements": "Not specified",
   "size": 114083447,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/958c082926913d9e92c7b1b57739024983c755376e3c255b42cd80402b10523b.png",
+  "icon": "https://archive.org/download/psvitaalive-red-space-vita/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/958c082926913d9e92c7b1b57739024983c755376e3c255b42cd80402b10523b.png"
+    "https://archive.org/download/psvitaalive-red-space-vita/shot_01.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-red-space-vita/red-space-vita.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Repository",

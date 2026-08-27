@@ -16,12 +16,18 @@
   "requirements": "Not specified",
   "size": 1628464,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/c8050f859fc6af4172e08fc80fd2e4e9c59ef806e7a6961fad9f877ff6097593.png",
+  "icon": "https://archive.org/download/psvitaalive-moon-whitelister/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/c8050f859fc6af4172e08fc80fd2e4e9c59ef806e7a6961fad9f877ff6097593.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/moonwhite.jpg"
+    "https://archive.org/download/psvitaalive-moon-whitelister/shot_01.png",
+    "https://archive.org/download/psvitaalive-moon-whitelister/shot_02.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-moon-whitelister/moon-whitelister.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Official Website",

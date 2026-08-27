@@ -16,15 +16,22 @@
   "requirements": "Not specified",
   "size": 1316328,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1649-zxvita.png",
+  "icon": "https://archive.org/download/psvitaalive-zxvita/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/ff8683e2107c3a1dfd9a1b9e1c701f1fb97b3dc700eac838ad6d48a804065788.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/a98c9eb37f0d8dfa327fa766ed9c940ec372b9d8a97a9f9784bf6474f0e36685.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/897630633538264463f06419ab82c81685b6c5b30164572ffeda3e6f1f1bf964.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/8845c158b96841986064c7a5b9314232bf68c261ddf74a9f4779a2ba8b4867d1.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/ff8683e2107c3a1dfd9a1b9e1c701f1fb97b3dc700eac838ad6d48a804065788.png"
+    "https://archive.org/download/psvitaalive-zxvita/shot_01.png",
+    "https://archive.org/download/psvitaalive-zxvita/shot_02.png",
+    "https://archive.org/download/psvitaalive-zxvita/shot_03.png",
+    "https://archive.org/download/psvitaalive-zxvita/shot_04.png",
+    "https://archive.org/download/psvitaalive-zxvita/shot_05.png"
   ],
-  "links": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-zxvita/zxvita.vpk",
+      "recommended": true
+    }
+  ],
   "source_name": "VitaHomebrewDB",
   "source_id": "478",
   "source_url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/478-zxvita.vpk",

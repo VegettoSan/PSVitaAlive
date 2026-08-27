@@ -16,15 +16,21 @@
   "requirements": "- libshacccg.suprx\n- Game Data Files: Android\n- kubridge.skprx",
   "size": 4270900,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/1ccb156d169db996b728009c78137fb45f6ec1cc1d57c59c7337f4c5abb9d408.png",
+  "icon": "https://archive.org/download/psvitaalive-homm3hd-vita/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/0117a99a1979ae9b0c1f44edf87aa92ce0a9d401c38d4216fd7ee8c101dd0f1f.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/cb93ed9ac362500e4fb04c3ccb28a67480eef3c369e89921d8a703c6e3c92277.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/90755a2e555a697ab711597092deb4436beb17482ca3eecdb3d6a3f4b1da7949.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/be046a34054d86532497da0709f1d4a209182f13e828e5349a286d34e6d7b2f3.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/0117a99a1979ae9b0c1f44edf87aa92ce0a9d401c38d4216fd7ee8c101dd0f1f.png"
+    "https://archive.org/download/psvitaalive-homm3hd-vita/shot_01.png",
+    "https://archive.org/download/psvitaalive-homm3hd-vita/shot_02.png",
+    "https://archive.org/download/psvitaalive-homm3hd-vita/shot_03.png",
+    "https://archive.org/download/psvitaalive-homm3hd-vita/shot_04.png",
+    "https://archive.org/download/psvitaalive-homm3hd-vita/shot_05.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-homm3hd-vita/homm3hd-vita.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Release Page",

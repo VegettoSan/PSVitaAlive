@@ -16,11 +16,17 @@
   "requirements": "Not specified",
   "size": 43069923,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1776-boris-and-the-dark-survival.png",
+  "icon": "https://archive.org/download/psvitaalive-boris-and-the-dark-survival/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1776-boris-and-the-dark-survival.png"
+    "https://archive.org/download/psvitaalive-boris-and-the-dark-survival/shot_01.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-boris-and-the-dark-survival/boris-and-the-dark-survival.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Official Website",

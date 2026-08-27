@@ -16,14 +16,20 @@
   "requirements": "- libshacccg.suprx\n- kubridge.skprx\n- Game Data Files: Android",
   "size": 1999461,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1340-hill-climb-racing-vita.png",
+  "icon": "https://archive.org/download/psvitaalive-hill-climb-racing-vita/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/e14ebb345949c4ae87cc5ed1cea5de91585bf4a40486053f601cb263b585f644.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/1522ca97eb40b8d28401af361657486e86afaa3db1bbc315a587bed3b8d398b0.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/e14ebb345949c4ae87cc5ed1cea5de91585bf4a40486053f601cb263b585f644.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/1522ca97eb40b8d28401af361657486e86afaa3db1bbc315a587bed3b8d398b0.png"
+    "https://archive.org/download/psvitaalive-hill-climb-racing-vita/shot_01.png",
+    "https://archive.org/download/psvitaalive-hill-climb-racing-vita/shot_02.png",
+    "https://archive.org/download/psvitaalive-hill-climb-racing-vita/shot_03.png",
+    "https://archive.org/download/psvitaalive-hill-climb-racing-vita/shot_04.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-hill-climb-racing-vita/hill-climb-racing-vita.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Release Page",

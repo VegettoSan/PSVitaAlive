@@ -16,15 +16,21 @@
   "requirements": "Not specified",
   "size": 32334215,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1659-g-w-octopus.png",
+  "icon": "https://archive.org/download/psvitaalive-g-w-octopus/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/3eebca4e0d8b7191b271a6337fdfdd0b497ca521d602ac10541345f1896116fc.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/f343f28e7609deadf22207b100d41d7ee47d1fc02be31396848f02185acc2972.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/294464b8cf7f9d550ed533128ffaa2f548c3d8810ef21f74a790b49a4775dbee.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/3eebca4e0d8b7191b271a6337fdfdd0b497ca521d602ac10541345f1896116fc.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/f343f28e7609deadf22207b100d41d7ee47d1fc02be31396848f02185acc2972.png"
+    "https://archive.org/download/psvitaalive-g-w-octopus/shot_01.png",
+    "https://archive.org/download/psvitaalive-g-w-octopus/shot_02.png",
+    "https://archive.org/download/psvitaalive-g-w-octopus/shot_03.png",
+    "https://archive.org/download/psvitaalive-g-w-octopus/shot_04.png",
+    "https://archive.org/download/psvitaalive-g-w-octopus/shot_05.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-g-w-octopus/g-w-octopus.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Official Website",

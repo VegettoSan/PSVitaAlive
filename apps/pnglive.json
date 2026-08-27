@@ -16,14 +16,21 @@
   "requirements": "Not specified",
   "size": 5234780,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1848-pnglive.png",
+  "icon": "https://archive.org/download/psvitaalive-pnglive/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/314c3fa272e02a2fafdce191ef2746ab6611fe4a81b8b5332e94129bd7b73be5.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/9390e705ace863448c4fb18dab4dc142d56a2582b8151ebbffe0f9fc799c0523.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/314c3fa272e02a2fafdce191ef2746ab6611fe4a81b8b5332e94129bd7b73be5.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/9390e705ace863448c4fb18dab4dc142d56a2582b8151ebbffe0f9fc799c0523.png"
+    "https://archive.org/download/psvitaalive-pnglive/shot_01.png",
+    "https://archive.org/download/psvitaalive-pnglive/shot_02.png",
+    "https://archive.org/download/psvitaalive-pnglive/shot_03.png",
+    "https://archive.org/download/psvitaalive-pnglive/shot_04.png"
   ],
-  "links": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-pnglive/pnglive.vpk",
+      "recommended": true
+    }
+  ],
   "source_name": "VitaHomebrewDB",
   "source_id": "1113",
   "source_url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1113-pnglive.vpk",

@@ -16,12 +16,18 @@
   "requirements": "Not specified",
   "size": 303520,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/814d5a4ffd13bbba7db886bc18f5ffb80f48e00fa172025acfbdb0f18fc9bcf4.png",
+  "icon": "https://archive.org/download/psvitaalive-pickr-vita/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/a048dfcae7548219d5f0f50217f78b156dfe20786d798c2b7a1de72659875fb8.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/a048dfcae7548219d5f0f50217f78b156dfe20786d798c2b7a1de72659875fb8.png"
+    "https://archive.org/download/psvitaalive-pickr-vita/shot_01.png",
+    "https://archive.org/download/psvitaalive-pickr-vita/shot_02.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-pickr-vita/pickr-vita.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Official Website",

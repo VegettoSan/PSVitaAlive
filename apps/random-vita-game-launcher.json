@@ -16,12 +16,18 @@
   "requirements": "Not specified",
   "size": 4707494,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/48a4552d002414f9288fc3da1a477a4a04448e255634a25b266d4aa0c4f37ece.png",
+  "icon": "https://archive.org/download/psvitaalive-random-vita-game-launcher/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/3407f4ff72ef98e1ffe6a7a08e99088f91e965729b425f41800ffd7969ff424a.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/3407f4ff72ef98e1ffe6a7a08e99088f91e965729b425f41800ffd7969ff424a.png"
+    "https://archive.org/download/psvitaalive-random-vita-game-launcher/shot_01.png",
+    "https://archive.org/download/psvitaalive-random-vita-game-launcher/shot_02.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-random-vita-game-launcher/random-vita-game-launcher.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Release Page",

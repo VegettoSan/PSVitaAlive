@@ -16,13 +16,19 @@
   "requirements": "Not specified",
   "size": 956066,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1500-happy-land.png",
+  "icon": "https://archive.org/download/psvitaalive-happy-land/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1500-happy-land.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/potato.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/potato2.jpg"
+    "https://archive.org/download/psvitaalive-happy-land/shot_01.png",
+    "https://archive.org/download/psvitaalive-happy-land/shot_02.png",
+    "https://archive.org/download/psvitaalive-happy-land/shot_03.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-happy-land/happy-land.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Official Website",

@@ -16,15 +16,21 @@
   "requirements": "- libshacccg.suprx\n- kubridge.skprx\n- Game Data Files: Android",
   "size": 2467926,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/53fb4571d16f6e75ef298d18c4f41bab6c377fb953315c9f08eda8206507d61f.png",
+  "icon": "https://archive.org/download/psvitaalive-dariusburst-sp-vita/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/df4dab81ad4ebe2a63231bac61900e9901a01f18b42b5ba6228f70832ceff866.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/bec267169a191830e09308d3413f1bb12957d90d14a2f54576731dc0798b7683.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/63d3abcdc9a5caf63765d3f9114689a69f81c79669b27d2775d672da6c40c271.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/8a2755dc742e5837b5b59993ea1bbd625d7842b0b978a4e16f5481a818cb5f50.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/df4dab81ad4ebe2a63231bac61900e9901a01f18b42b5ba6228f70832ceff866.png"
+    "https://archive.org/download/psvitaalive-dariusburst-sp-vita/shot_01.png",
+    "https://archive.org/download/psvitaalive-dariusburst-sp-vita/shot_02.png",
+    "https://archive.org/download/psvitaalive-dariusburst-sp-vita/shot_03.png",
+    "https://archive.org/download/psvitaalive-dariusburst-sp-vita/shot_04.png",
+    "https://archive.org/download/psvitaalive-dariusburst-sp-vita/shot_05.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-dariusburst-sp-vita/dariusburst-sp-vita.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Release Page",

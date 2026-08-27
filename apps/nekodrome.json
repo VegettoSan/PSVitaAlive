@@ -16,15 +16,21 @@
   "requirements": "Not specified",
   "size": 5923761,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1359-nekodrome.png",
+  "icon": "https://archive.org/download/psvitaalive-nekodrome/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/8468c1b6304dcc58011a03b63083682961d80c283b5721c8bc5c2af2f6bba93d.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/0e2af928d7dbc0257a33adac0c9eacb076bcaf1e61b2222b96f34278f38e9d4b.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/63a08ced5c4b67d9a1303ffafbeca6176b29eb0a52e7efd70167c3626666df2b.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/0f35e308e8da79347ccdaba8477e7016a42c3d556f1fc86782d66414fff31243.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/8468c1b6304dcc58011a03b63083682961d80c283b5721c8bc5c2af2f6bba93d.png"
+    "https://archive.org/download/psvitaalive-nekodrome/shot_01.png",
+    "https://archive.org/download/psvitaalive-nekodrome/shot_02.png",
+    "https://archive.org/download/psvitaalive-nekodrome/shot_03.png",
+    "https://archive.org/download/psvitaalive-nekodrome/shot_04.png",
+    "https://archive.org/download/psvitaalive-nekodrome/shot_05.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-nekodrome/nekodrome.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Release Page",

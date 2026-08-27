@@ -16,12 +16,18 @@
   "requirements": "Not specified",
   "size": 1755689,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1464-flppy-bird.png",
+  "icon": "https://archive.org/download/psvitaalive-flppy-bird/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1464-flppy-bird.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/fllpy.jpg"
+    "https://archive.org/download/psvitaalive-flppy-bird/shot_01.png",
+    "https://archive.org/download/psvitaalive-flppy-bird/shot_02.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-flppy-bird/flppy-bird.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Official Website",

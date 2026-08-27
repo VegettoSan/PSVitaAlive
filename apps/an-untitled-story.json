@@ -16,15 +16,21 @@
   "requirements": "Not specified",
   "size": 46454545,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1608-an-untitled-story.png",
+  "icon": "https://archive.org/download/psvitaalive-an-untitled-story/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c003a50fa705ca5258ecbe844f9a43fd5fdc72c02f095335c3647e1f418b22d8.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/4cb735d599e9059eb50159f4439c522547db5024a50355ae3434314a56b6b487.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/6197199ff58e77794bb2cc783de9f0edc6833a0d9b1485c645d0dc217971afa5.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/2544f2585319024e4e47718092510bf8cb2b891de84ac36eeccfb4d141cdb30d.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/c003a50fa705ca5258ecbe844f9a43fd5fdc72c02f095335c3647e1f418b22d8.png"
+    "https://archive.org/download/psvitaalive-an-untitled-story/shot_01.png",
+    "https://archive.org/download/psvitaalive-an-untitled-story/shot_02.png",
+    "https://archive.org/download/psvitaalive-an-untitled-story/shot_03.png",
+    "https://archive.org/download/psvitaalive-an-untitled-story/shot_04.png",
+    "https://archive.org/download/psvitaalive-an-untitled-story/shot_05.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-an-untitled-story/an-untitled-story.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Official Website",

@@ -16,14 +16,21 @@
   "requirements": "Not specified",
   "size": 36278242,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1621-el-pollo.png",
+  "icon": "https://archive.org/download/psvitaalive-el-pollo/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/54d080e0a7ae289e967e0b14134dbf6175c17fa59b78f6e9c6d7624f74d05a7c.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c4e91a8eafce08de3ff3c9f48580be0353e878c29e89053b899bc0a844c77672.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/54d080e0a7ae289e967e0b14134dbf6175c17fa59b78f6e9c6d7624f74d05a7c.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/c4e91a8eafce08de3ff3c9f48580be0353e878c29e89053b899bc0a844c77672.png"
+    "https://archive.org/download/psvitaalive-el-pollo/shot_01.png",
+    "https://archive.org/download/psvitaalive-el-pollo/shot_02.png",
+    "https://archive.org/download/psvitaalive-el-pollo/shot_03.png",
+    "https://archive.org/download/psvitaalive-el-pollo/shot_04.png"
   ],
-  "links": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-el-pollo/el-pollo.vpk",
+      "recommended": true
+    }
+  ],
   "source_name": "VitaHomebrewDB",
   "source_id": "443",
   "source_url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/443-El_20Pollo.vpk",

@@ -16,15 +16,21 @@
   "requirements": "Not specified",
   "size": 2311152,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1546-vita-object-loader.png",
+  "icon": "https://archive.org/download/psvitaalive-vita-object-loader/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/4fbe4446142e1301e95e47d2740a7d46cc146058a79dc892846c963164e77c2b.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/94bc5e45f21b7cc5995173e095d60bdb8a20e3739ac1fdb53572c4996f934169.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c3ec1f47098063f56ff6a3f82dc01e199689c301806271e5993860b5ecc36d3b.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/4fbe4446142e1301e95e47d2740a7d46cc146058a79dc892846c963164e77c2b.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/94bc5e45f21b7cc5995173e095d60bdb8a20e3739ac1fdb53572c4996f934169.png"
+    "https://archive.org/download/psvitaalive-vita-object-loader/shot_01.png",
+    "https://archive.org/download/psvitaalive-vita-object-loader/shot_02.png",
+    "https://archive.org/download/psvitaalive-vita-object-loader/shot_03.png",
+    "https://archive.org/download/psvitaalive-vita-object-loader/shot_04.png",
+    "https://archive.org/download/psvitaalive-vita-object-loader/shot_05.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-vita-object-loader/vita-object-loader.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Official Website",

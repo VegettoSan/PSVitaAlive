@@ -16,11 +16,17 @@
   "requirements": "Not specified",
   "size": 125403,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/0425-modoru.png",
+  "icon": "https://archive.org/download/psvitaalive-modoru/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/0425-modoru.png"
+    "https://archive.org/download/psvitaalive-modoru/shot_01.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-modoru/modoru.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Release Page",

@@ -16,12 +16,19 @@
   "requirements": "Not specified",
   "size": 38583611,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1628-erre.png",
+  "icon": "https://archive.org/download/psvitaalive-erre/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/2d4119396648544bee1f03215b90b8675d9ddd4bd7cd68928a4af8563448aa37.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/2d4119396648544bee1f03215b90b8675d9ddd4bd7cd68928a4af8563448aa37.png"
+    "https://archive.org/download/psvitaalive-erre/shot_01.png",
+    "https://archive.org/download/psvitaalive-erre/shot_02.png"
   ],
-  "links": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-erre/erre.vpk",
+      "recommended": true
+    }
+  ],
   "source_name": "VitaHomebrewDB",
   "source_id": "451",
   "source_url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/451-ERRE.vpk",

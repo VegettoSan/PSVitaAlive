@@ -16,11 +16,18 @@
   "requirements": "Not specified",
   "size": 530232,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1514-better-browser-downloader.png",
+  "icon": "https://archive.org/download/psvitaalive-better-browser-downloader/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1514-better-browser-downloader.png"
+    "https://archive.org/download/psvitaalive-better-browser-downloader/shot_01.png"
   ],
-  "links": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-better-browser-downloader/better-browser-downloader.vpk",
+      "recommended": true
+    }
+  ],
   "source_name": "VitaHomebrewDB",
   "source_id": "138",
   "source_url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/138-BetterBrowserDowloader.vpk",

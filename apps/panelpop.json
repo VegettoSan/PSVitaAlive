@@ -16,15 +16,21 @@
   "requirements": "Not specified",
   "size": 9182952,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/024c067c0f2f36ca5d7315c668f9caa97d51581b5891f00bcbbc1a14055b5635.png",
+  "icon": "https://archive.org/download/psvitaalive-panelpop/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/378a653a5af93b0737d1428014a283168cfe0a265018969bbdd8f38dbc41bbeb.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/fd3df3c0cdd85c5cb7a463c64c192911fe677aa27e285488eaf42e6c164c5811.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/1512a6f2eac9b3dc9bbf1eaf28620ae9d353decc46b119f427048fe31a286ad2.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/378a653a5af93b0737d1428014a283168cfe0a265018969bbdd8f38dbc41bbeb.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/fd3df3c0cdd85c5cb7a463c64c192911fe677aa27e285488eaf42e6c164c5811.png"
+    "https://archive.org/download/psvitaalive-panelpop/shot_01.png",
+    "https://archive.org/download/psvitaalive-panelpop/shot_02.png",
+    "https://archive.org/download/psvitaalive-panelpop/shot_03.png",
+    "https://archive.org/download/psvitaalive-panelpop/shot_04.png",
+    "https://archive.org/download/psvitaalive-panelpop/shot_05.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-panelpop/panelpop.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Release Page",

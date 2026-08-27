@@ -16,11 +16,17 @@
   "requirements": "- Game Data Files: PC",
   "size": 15042197,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1937-sort-the-court-vita.png",
+  "icon": "https://archive.org/download/psvitaalive-sort-the-court-vita/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1937-sort-the-court-vita.png"
+    "https://archive.org/download/psvitaalive-sort-the-court-vita/shot_01.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-sort-the-court-vita/sort-the-court-vita.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Official Website",

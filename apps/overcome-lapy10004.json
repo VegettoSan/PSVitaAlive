@@ -16,11 +16,18 @@
   "requirements": "Not specified",
   "size": 40020711,
   "status": "Legacy",
-  "icon": "https://www.rinnegatamante.eu/vitadb/icons/66e893f97cd4c1ae567ddf610a8410e872f8d6e253293f6ebe14469ed7555812.png",
+  "icon": "https://archive.org/download/psvitaalive-overcome-lapy10004/icon0.png",
   "screenshots": [
-    "https://www.rinnegatamante.eu/vitadb/screenshots/99750ca2f1e09e33bf227e9b774bfa66fc5c0b9b1d9017341eb8c13c8514c708.png"
+    "https://archive.org/download/psvitaalive-overcome-lapy10004/shot_01.png"
   ],
-  "links": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-overcome-lapy10004/overcome-lapy10004.vpk",
+      "recommended": true
+    }
+  ],
   "source_name": "VitaDB",
   "source_id": "458",
   "source_url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=458",

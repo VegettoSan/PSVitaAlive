@@ -17,15 +17,21 @@
   "requirements": "Not specified",
   "size": 59085720,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1728-have-a-good-one.png",
+  "icon": "https://archive.org/download/psvitaalive-have-a-good-one/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/f0fdeba9e0c5fd2afdbb90c4d7bf4f8e7ed3b6179387ca885e9dc2ac957e033d.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/ebbcf647d64dc320b93b20e5189a34d3bd7d8ffb6aeb50e25c74d1c1926ea0cf.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/230250f89487e4cc2fa05d399eaf5787cf191bdf6604b270fa798b8ca6a52bb3.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/f0fdeba9e0c5fd2afdbb90c4d7bf4f8e7ed3b6179387ca885e9dc2ac957e033d.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/ebbcf647d64dc320b93b20e5189a34d3bd7d8ffb6aeb50e25c74d1c1926ea0cf.png"
+    "https://archive.org/download/psvitaalive-have-a-good-one/shot_01.png",
+    "https://archive.org/download/psvitaalive-have-a-good-one/shot_02.png",
+    "https://archive.org/download/psvitaalive-have-a-good-one/shot_03.png",
+    "https://archive.org/download/psvitaalive-have-a-good-one/shot_04.png",
+    "https://archive.org/download/psvitaalive-have-a-good-one/shot_05.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-have-a-good-one/have-a-good-one.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Official Website",

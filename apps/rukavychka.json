@@ -17,14 +17,20 @@
   "requirements": "Not specified",
   "size": 26869727,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1975-rukavychka.png",
+  "icon": "https://archive.org/download/psvitaalive-rukavychka/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/cb5150f96ef61bd8bbf5139a3d8a03aa39513929e3c21e26f57af5791e2c9064.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c6089fee4805026bd05f4e86e0cb6a897fb2d3a7b0b1a5b7abf135729d8dd3fa.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/cb5150f96ef61bd8bbf5139a3d8a03aa39513929e3c21e26f57af5791e2c9064.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/c6089fee4805026bd05f4e86e0cb6a897fb2d3a7b0b1a5b7abf135729d8dd3fa.png"
+    "https://archive.org/download/psvitaalive-rukavychka/shot_01.png",
+    "https://archive.org/download/psvitaalive-rukavychka/shot_02.png",
+    "https://archive.org/download/psvitaalive-rukavychka/shot_03.png",
+    "https://archive.org/download/psvitaalive-rukavychka/shot_04.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-rukavychka/rukavychka.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Official Website",

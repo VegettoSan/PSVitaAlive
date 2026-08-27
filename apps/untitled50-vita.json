@@ -16,15 +16,21 @@
   "requirements": "- libshacccg.suprx\n- kubridge.skprx\n- Game Data Files: Android",
   "size": 2016256,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/154d8e6856b66533f1bba0fcd62ee22467bfa5cd72103626f2566aa2a509dccb.png",
+  "icon": "https://archive.org/download/psvitaalive-untitled50-vita/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/d9a42e981b22ecef38220fd23ee8e8a6ba6d28d23ba02ca5eb55054d302f1641.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/1226bd327f3b0202cc0509cc96b3afcb50b6d71f48170ea4c29f35c841938402.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/e1d9560ca24710b6144aa4c72dda4106f491169440e6514acbf292b826cf9531.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/ffced4236e21a7b8a7a5f6bb6840b47cb689dae90b3d03332aa051486339b04a.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/d9a42e981b22ecef38220fd23ee8e8a6ba6d28d23ba02ca5eb55054d302f1641.png"
+    "https://archive.org/download/psvitaalive-untitled50-vita/shot_01.png",
+    "https://archive.org/download/psvitaalive-untitled50-vita/shot_02.png",
+    "https://archive.org/download/psvitaalive-untitled50-vita/shot_03.png",
+    "https://archive.org/download/psvitaalive-untitled50-vita/shot_04.png",
+    "https://archive.org/download/psvitaalive-untitled50-vita/shot_05.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-untitled50-vita/untitled50-vita.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Release Page",

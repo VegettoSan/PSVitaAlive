@@ -16,11 +16,17 @@
   "requirements": "Not specified",
   "size": 177514,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1473-vitaairhockey.png",
+  "icon": "https://archive.org/download/psvitaalive-vitaairhockey/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1473-vitaairhockey.png"
+    "https://archive.org/download/psvitaalive-vitaairhockey/shot_01.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-vitaairhockey/vitaairhockey.vpk",
+      "recommended": true
+    },
     {
       "type": "Repository",
       "name": "Repositorio",

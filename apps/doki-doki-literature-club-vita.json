@@ -16,14 +16,20 @@
   "requirements": "- Game Data Files: PC Steam",
   "size": 17191800,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/0860-doki-doki-literature-club-vita.png",
+  "icon": "https://archive.org/download/psvitaalive-doki-doki-literature-club-vita/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/94722686a9c5b07332d1103afa87542d4cef94c4a2f704165ab21bca72df66af.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/ef322976fb8677b167150ef64b98c7f3f71a1a5b632dc13a46cb193f4883f3f0.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/94722686a9c5b07332d1103afa87542d4cef94c4a2f704165ab21bca72df66af.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/ef322976fb8677b167150ef64b98c7f3f71a1a5b632dc13a46cb193f4883f3f0.png"
+    "https://archive.org/download/psvitaalive-doki-doki-literature-club-vita/shot_01.png",
+    "https://archive.org/download/psvitaalive-doki-doki-literature-club-vita/shot_02.png",
+    "https://archive.org/download/psvitaalive-doki-doki-literature-club-vita/shot_03.png",
+    "https://archive.org/download/psvitaalive-doki-doki-literature-club-vita/shot_04.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-doki-doki-literature-club-vita/Doki.Doki.Literature.Club-01.01.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Release Page",

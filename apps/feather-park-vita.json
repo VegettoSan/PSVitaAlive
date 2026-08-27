@@ -16,15 +16,22 @@
   "requirements": "Not specified",
   "size": 34181808,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1826-feather-park-vita.png",
+  "icon": "https://archive.org/download/psvitaalive-feather-park-vita/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/5f161c49b4b1abb4e21b04a72e6eb169a3af8c0200bb9194d63611f212d608dd.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/13bcf776a4dd7de13eafde91fb4dbcdfee469836888e971b34bd0811077097f0.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/9c83bd148c86010656770209cdf8bc48c9583304ed24247794c7ca30846338ce.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/1173e6a17e2caf731a1894fe842672490c49d97d20513047a1b3d4c83afc8ad8.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/5f161c49b4b1abb4e21b04a72e6eb169a3af8c0200bb9194d63611f212d608dd.png"
+    "https://archive.org/download/psvitaalive-feather-park-vita/shot_01.png",
+    "https://archive.org/download/psvitaalive-feather-park-vita/shot_02.png",
+    "https://archive.org/download/psvitaalive-feather-park-vita/shot_03.png",
+    "https://archive.org/download/psvitaalive-feather-park-vita/shot_04.png",
+    "https://archive.org/download/psvitaalive-feather-park-vita/shot_05.png"
   ],
-  "links": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-feather-park-vita/feather-park-vita.vpk",
+      "recommended": true
+    }
+  ],
   "source_name": "VitaHomebrewDB",
   "source_id": "1077",
   "source_url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1077-FeatherPark.vpk",

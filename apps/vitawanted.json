@@ -16,12 +16,18 @@
   "requirements": "Not specified",
   "size": 2116839,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1468-vitawanted.png",
+  "icon": "https://archive.org/download/psvitaalive-vitawanted/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1468-vitawanted.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/wanted.jpg"
+    "https://archive.org/download/psvitaalive-vitawanted/shot_01.png",
+    "https://archive.org/download/psvitaalive-vitawanted/shot_02.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-vitawanted/vitawanted.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Official Website",

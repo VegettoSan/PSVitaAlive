@@ -17,15 +17,21 @@
   "requirements": "Not specified",
   "size": 25660147,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1875-tinycraft.png",
+  "icon": "https://archive.org/download/psvitaalive-tinycraft/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/7c77411c0b406b8ef921289df075fb12ea85fa38160fc2d9f03a827e3bb87277.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/cc235546f843a40cf878c5b4292fd610a8c6628b527a69dc27096847f1050c51.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/ebe50f03688ff85b655dbc97487fb78a2a28faf89b98e276e77cb02a4779c8c1.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/7c77411c0b406b8ef921289df075fb12ea85fa38160fc2d9f03a827e3bb87277.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/cc235546f843a40cf878c5b4292fd610a8c6628b527a69dc27096847f1050c51.png"
+    "https://archive.org/download/psvitaalive-tinycraft/shot_01.png",
+    "https://archive.org/download/psvitaalive-tinycraft/shot_02.png",
+    "https://archive.org/download/psvitaalive-tinycraft/shot_03.png",
+    "https://archive.org/download/psvitaalive-tinycraft/shot_04.png",
+    "https://archive.org/download/psvitaalive-tinycraft/shot_05.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-tinycraft/tinycraft.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Official Website",

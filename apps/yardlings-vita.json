@@ -16,15 +16,21 @@
   "requirements": "- Game Data Files: PC",
   "size": 3653391,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1936-yardlings-vita.png",
+  "icon": "https://archive.org/download/psvitaalive-yardlings-vita/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/b016ddea0814dc24d080814a7136af667da68eba93655f228f3f1aaa4acba008.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/f82b6740c178e7500198bd8276ed0988f2caa6144262c0989f5acbcb494910ec.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/65b9213797884bbcd4f27abec4b8802ab71bff98b0a83c923b57fb2dcdeb8e25.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c0793c0460b720040037be7a32145f73edc422f084dbc218bf692454f545ffe0.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/b016ddea0814dc24d080814a7136af667da68eba93655f228f3f1aaa4acba008.png"
+    "https://archive.org/download/psvitaalive-yardlings-vita/shot_01.png",
+    "https://archive.org/download/psvitaalive-yardlings-vita/shot_02.png",
+    "https://archive.org/download/psvitaalive-yardlings-vita/shot_03.png",
+    "https://archive.org/download/psvitaalive-yardlings-vita/shot_04.png",
+    "https://archive.org/download/psvitaalive-yardlings-vita/shot_05.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-yardlings-vita/yardlings-vita.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Official Website",

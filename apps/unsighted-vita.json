@@ -16,11 +16,17 @@
   "requirements": "- Game Data Files: PC",
   "size": 16124488,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/1ee1ca16096bbb1d85d0ae498a5d54428d8eddacbb4aaacb54cc345673baddc7.png",
+  "icon": "https://archive.org/download/psvitaalive-unsighted-vita/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/1ee1ca16096bbb1d85d0ae498a5d54428d8eddacbb4aaacb54cc345673baddc7.png"
+    "https://archive.org/download/psvitaalive-unsighted-vita/shot_01.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-unsighted-vita/unsighted-vita.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Repository",

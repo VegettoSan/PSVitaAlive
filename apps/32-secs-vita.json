@@ -16,15 +16,21 @@
   "requirements": "- libshacccg.suprx\n- kubridge.skprx\n- Game Data Files: Android",
   "size": 2740028,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/735ba372f3f326dcff602819fe2f1efcd686d0af34549770997b54a764af367a.png",
+  "icon": "https://archive.org/download/psvitaalive-32-secs-vita/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/752bf8396d69ebe8c4a11ffb1a383c5eda6d48e70545ed3421680b26ac3d689d.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/95deeb83f60d8cbd03751ee37ad16252b9eb01bc3df3ac7659ba24a768ab31fd.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/abb96716624aa89d58b021b42800337224b426d467d9081d0c023175d4071e55.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/b949d875c554df38a621be34b3131ac3dec6cf71f8b943214366bd8d15d1cd94.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/752bf8396d69ebe8c4a11ffb1a383c5eda6d48e70545ed3421680b26ac3d689d.png"
+    "https://archive.org/download/psvitaalive-32-secs-vita/shot_01.png",
+    "https://archive.org/download/psvitaalive-32-secs-vita/shot_02.png",
+    "https://archive.org/download/psvitaalive-32-secs-vita/shot_03.png",
+    "https://archive.org/download/psvitaalive-32-secs-vita/shot_04.png",
+    "https://archive.org/download/psvitaalive-32-secs-vita/shot_05.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-32-secs-vita/32-secs-vita.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Release Page",

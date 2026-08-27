@@ -17,12 +17,18 @@
   "requirements": "Not specified",
   "size": 4210037,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1462-easyrpg-player.png",
+  "icon": "https://archive.org/download/psvitaalive-easyrpg-player/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1462-easyrpg-player.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/easyrpg.jpg"
+    "https://archive.org/download/psvitaalive-easyrpg-player/shot_01.png",
+    "https://archive.org/download/psvitaalive-easyrpg-player/shot_02.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-easyrpg-player/easyrpg-player.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Official Website",

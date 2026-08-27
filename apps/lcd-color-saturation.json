@@ -16,14 +16,20 @@
   "requirements": "Not specified",
   "size": 203913,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/0561-lcd-color-saturation.png",
+  "icon": "https://archive.org/download/psvitaalive-lcd-color-saturation/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/0fb73c3fffaed5c1e0ba7d91387fc789d910c2a680b7d2b734b88413774be847.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c5d9a04e8aa95d987fd1edd98a589ada85157f5a77b4a214c4bb22782279f1d5.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/0fb73c3fffaed5c1e0ba7d91387fc789d910c2a680b7d2b734b88413774be847.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/c5d9a04e8aa95d987fd1edd98a589ada85157f5a77b4a214c4bb22782279f1d5.png"
+    "https://archive.org/download/psvitaalive-lcd-color-saturation/shot_01.png",
+    "https://archive.org/download/psvitaalive-lcd-color-saturation/shot_02.png",
+    "https://archive.org/download/psvitaalive-lcd-color-saturation/shot_03.png",
+    "https://archive.org/download/psvitaalive-lcd-color-saturation/shot_04.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-lcd-color-saturation/lcdsat.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Release Page",

@@ -16,15 +16,21 @@
   "requirements": "Not specified",
   "size": 2590046,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1735-real-waiting-simulator.png",
+  "icon": "https://archive.org/download/psvitaalive-real-waiting-simulator/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/eae3a49ff49bf6faa841bed869f5a1ba19bb8463542888e26132ca7a72884655.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/5006f637f51de2fefa795b8ae7b745f9e30bd635fc7e12c1fd955165cdace5f8.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/5ee9a0bebe6a96db95f2b45b76f831b40382d647736210e3bfe6bcdd766969b4.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c869198b7366d6fe8da2225b32ba208056249e83fac06d68b68c9637fe0f969f.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/eae3a49ff49bf6faa841bed869f5a1ba19bb8463542888e26132ca7a72884655.png"
+    "https://archive.org/download/psvitaalive-real-waiting-simulator/shot_01.png",
+    "https://archive.org/download/psvitaalive-real-waiting-simulator/shot_02.png",
+    "https://archive.org/download/psvitaalive-real-waiting-simulator/shot_03.png",
+    "https://archive.org/download/psvitaalive-real-waiting-simulator/shot_04.png",
+    "https://archive.org/download/psvitaalive-real-waiting-simulator/shot_05.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-real-waiting-simulator/real-waiting-simulator.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Official Website",

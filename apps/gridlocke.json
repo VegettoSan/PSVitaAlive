@@ -16,11 +16,18 @@
   "requirements": "Not specified",
   "size": 44312979,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1827-gridlocke.png",
+  "icon": "https://archive.org/download/psvitaalive-gridlocke/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1827-gridlocke.png"
+    "https://archive.org/download/psvitaalive-gridlocke/shot_01.png"
   ],
-  "links": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-gridlocke/gridlocke.vpk",
+      "recommended": true
+    }
+  ],
   "source_name": "VitaHomebrewDB",
   "source_id": "1080",
   "source_url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1080-GRIDLOCKE.vpk",

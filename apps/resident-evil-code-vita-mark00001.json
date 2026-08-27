@@ -16,12 +16,19 @@
   "requirements": "Not specified",
   "size": 65464001,
   "status": "Legacy",
-  "icon": "https://www.rinnegatamante.eu/vitadb/icons/9da02720d453af3eb0c327342eac42852395ad1b4d7ad0d7bcddafeb0b03bb08.png",
+  "icon": "https://archive.org/download/psvitaalive-resident-evil-code-vita-mark00001/icon0.png",
   "screenshots": [
-    "https://www.rinnegatamante.eu/vitadb/screenshots/recode.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/recode2.png"
+    "https://archive.org/download/psvitaalive-resident-evil-code-vita-mark00001/shot_01.png",
+    "https://archive.org/download/psvitaalive-resident-evil-code-vita-mark00001/shot_02.png"
   ],
-  "links": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-resident-evil-code-vita-mark00001/resident-evil-code-vita-mark00001.vpk",
+      "recommended": true
+    }
+  ],
   "source_name": "VitaDB",
   "source_id": "83",
   "source_url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=83",

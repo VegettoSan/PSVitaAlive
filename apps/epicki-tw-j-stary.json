@@ -16,12 +16,19 @@
   "requirements": "Not specified",
   "size": 4479405,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1886-epicki-twoj-stary.png",
+  "icon": "https://archive.org/download/psvitaalive-epicki-tw-j-stary/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/fbfaa52939a66b303c78288263ebb78e14157ebbfd63ba045ff39fdf6d6a45a6.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/fbfaa52939a66b303c78288263ebb78e14157ebbfd63ba045ff39fdf6d6a45a6.png"
+    "https://archive.org/download/psvitaalive-epicki-tw-j-stary/shot_01.png",
+    "https://archive.org/download/psvitaalive-epicki-tw-j-stary/shot_02.png"
   ],
-  "links": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-epicki-tw-j-stary/epicki-tw-j-stary.vpk",
+      "recommended": true
+    }
+  ],
   "source_name": "VitaHomebrewDB",
   "source_id": "1160",
   "source_url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1160-ets.vpk",

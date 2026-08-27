@@ -16,11 +16,17 @@
   "requirements": "Not specified",
   "size": 53605566,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1758-very-obscure-souls.png",
+  "icon": "https://archive.org/download/psvitaalive-very-obscure-souls/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1758-very-obscure-souls.png"
+    "https://archive.org/download/psvitaalive-very-obscure-souls/shot_01.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-very-obscure-souls/very-obscure-souls.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Official Website",

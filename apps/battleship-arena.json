@@ -16,12 +16,18 @@
   "requirements": "Not specified",
   "size": 365423,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1512-battleship-arena.png",
+  "icon": "https://archive.org/download/psvitaalive-battleship-arena/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1512-battleship-arena.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/ship.jpg"
+    "https://archive.org/download/psvitaalive-battleship-arena/shot_01.png",
+    "https://archive.org/download/psvitaalive-battleship-arena/shot_02.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-battleship-arena/battleship-arena.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Official Website",

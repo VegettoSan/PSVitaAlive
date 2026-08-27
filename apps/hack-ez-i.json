@@ -16,15 +16,22 @@
   "requirements": "- libshacccg.suprx",
   "size": 915662,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1952-hack-ez-i.png",
+  "icon": "https://archive.org/download/psvitaalive-hack-ez-i/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/38466fed3affa3e0ad8a3c75458b8fb6de990ee6c5e067c36418adbf64224e24.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c6b01c74536c473d65277f4e17e2fde3b44e47a1b87ca059e04449ce69e2ae95.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/a3ebc5d4cd884c6d651051a4663085cfde3532722450e427b1e8ca2fe42247e5.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/ac648fc5aa766bb445495b67086b562047e37b683dfd03de0bcb91ba21ce5c5e.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/38466fed3affa3e0ad8a3c75458b8fb6de990ee6c5e067c36418adbf64224e24.png"
+    "https://archive.org/download/psvitaalive-hack-ez-i/shot_01.png",
+    "https://archive.org/download/psvitaalive-hack-ez-i/shot_02.png",
+    "https://archive.org/download/psvitaalive-hack-ez-i/shot_03.png",
+    "https://archive.org/download/psvitaalive-hack-ez-i/shot_04.png",
+    "https://archive.org/download/psvitaalive-hack-ez-i/shot_05.png"
   ],
-  "links": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-hack-ez-i/hack-ez-i.vpk",
+      "recommended": true
+    }
+  ],
   "source_name": "VitaHomebrewDB",
   "source_id": "1339",
   "source_url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1339-hack-ez-i.vpk",

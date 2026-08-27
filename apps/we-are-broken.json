@@ -16,14 +16,20 @@
   "requirements": "Not specified",
   "size": 215970370,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1712-we-are-broken.png",
+  "icon": "https://archive.org/download/psvitaalive-we-are-broken/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/eb7503dbcc6ecec87b87ef11efea23c096ae7c375babeb329a375e44c05bd73b.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/6fe716ca95f6f45cd85bc0f67dbd7ff043a0cffcdb60bf76106ce394e29a9bfa.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/eb7503dbcc6ecec87b87ef11efea23c096ae7c375babeb329a375e44c05bd73b.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/6fe716ca95f6f45cd85bc0f67dbd7ff043a0cffcdb60bf76106ce394e29a9bfa.png"
+    "https://archive.org/download/psvitaalive-we-are-broken/shot_01.png",
+    "https://archive.org/download/psvitaalive-we-are-broken/shot_02.png",
+    "https://archive.org/download/psvitaalive-we-are-broken/shot_03.png",
+    "https://archive.org/download/psvitaalive-we-are-broken/shot_04.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-we-are-broken/we-are-broken.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Official Website",

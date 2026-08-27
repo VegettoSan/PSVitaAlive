@@ -16,14 +16,20 @@
   "requirements": "Not specified",
   "size": 2231742,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1579-switchview-ui.png",
+  "icon": "https://archive.org/download/psvitaalive-switchview-ui/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/0dcb687910c7cd2a9f04aab40a951c8c650e0ec32a16963a7fe5d5d9f5c3d89f.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/02a14a2a86ca0262a0a23ef9259206ceb89a61f7360219575b3e8f296fc09b94.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/0dcb687910c7cd2a9f04aab40a951c8c650e0ec32a16963a7fe5d5d9f5c3d89f.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/02a14a2a86ca0262a0a23ef9259206ceb89a61f7360219575b3e8f296fc09b94.png"
+    "https://archive.org/download/psvitaalive-switchview-ui/shot_01.png",
+    "https://archive.org/download/psvitaalive-switchview-ui/shot_02.png",
+    "https://archive.org/download/psvitaalive-switchview-ui/shot_03.png",
+    "https://archive.org/download/psvitaalive-switchview-ui/shot_04.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-switchview-ui/switchview-ui.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Official Website",

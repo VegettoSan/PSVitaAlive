@@ -16,14 +16,21 @@
   "requirements": "Not specified",
   "size": 16634623,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1896-de-shinde.png",
+  "icon": "https://archive.org/download/psvitaalive-de-shinde/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/8e939a3ffc23dfea43a241bb603213d5034dcfe9c91081c97db093de82e90439.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/ef8c027971c6062247011edfa7f4c5158ecc04f86a4b0148d575aa7d49603004.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/8e939a3ffc23dfea43a241bb603213d5034dcfe9c91081c97db093de82e90439.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/ef8c027971c6062247011edfa7f4c5158ecc04f86a4b0148d575aa7d49603004.png"
+    "https://archive.org/download/psvitaalive-de-shinde/shot_01.png",
+    "https://archive.org/download/psvitaalive-de-shinde/shot_02.png",
+    "https://archive.org/download/psvitaalive-de-shinde/shot_03.png",
+    "https://archive.org/download/psvitaalive-de-shinde/shot_04.png"
   ],
-  "links": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-de-shinde/de-shinde.vpk",
+      "recommended": true
+    }
+  ],
   "source_name": "VitaHomebrewDB",
   "source_id": "1198",
   "source_url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1198-deshinde.vpk",

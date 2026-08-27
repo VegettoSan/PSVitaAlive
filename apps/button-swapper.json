@@ -16,11 +16,17 @@
   "requirements": "Not specified",
   "size": 52118,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/18746b487153dc1ca3d728ce57b841b6e8faeca65a0900aa46864f73d07642c8.png",
+  "icon": "https://archive.org/download/psvitaalive-button-swapper/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/18746b487153dc1ca3d728ce57b841b6e8faeca65a0900aa46864f73d07642c8.png"
+    "https://archive.org/download/psvitaalive-button-swapper/shot_01.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-button-swapper/button-swapper.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Official Website",

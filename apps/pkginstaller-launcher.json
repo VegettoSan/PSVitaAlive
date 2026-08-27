@@ -16,11 +16,17 @@
   "requirements": "Not specified",
   "size": 2571959,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1597-pkginstaller-launcher.png",
+  "icon": "https://archive.org/download/psvitaalive-pkginstaller-launcher/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1597-pkginstaller-launcher.png"
+    "https://archive.org/download/psvitaalive-pkginstaller-launcher/shot_01.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-pkginstaller-launcher/pkginstaller-launcher.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Official Website",

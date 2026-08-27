@@ -16,15 +16,21 @@
   "requirements": "- libshacccg.suprx\n- kubridge.skprx\n- Game Data Files: Android",
   "size": 2216617,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/628e52706c324531f5382295481d773baa3215f255d4dd82953f434eed9743bb.png",
+  "icon": "https://archive.org/download/psvitaalive-superfluous-returnz-vita/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/5cfb648ddbcbdeea50510a3ac1f5f90a44eccbe2d15412c3941b5d0b6bea7cb2.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/ed9e6df000520c4f57b8c903e47e28255c29a10795e100e1c54435c149a316f8.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/e8ff4712eccebe12e586a8a65a72b95175f2a18cac6990ccf73e049459927009.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/e487dcd75c8526c35a666b5839c111599c446496617b473e6940c2de350961e4.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/5cfb648ddbcbdeea50510a3ac1f5f90a44eccbe2d15412c3941b5d0b6bea7cb2.png"
+    "https://archive.org/download/psvitaalive-superfluous-returnz-vita/shot_01.png",
+    "https://archive.org/download/psvitaalive-superfluous-returnz-vita/shot_02.png",
+    "https://archive.org/download/psvitaalive-superfluous-returnz-vita/shot_03.png",
+    "https://archive.org/download/psvitaalive-superfluous-returnz-vita/shot_04.png",
+    "https://archive.org/download/psvitaalive-superfluous-returnz-vita/shot_05.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-superfluous-returnz-vita/superfluous-returnz-vita.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Release Page",

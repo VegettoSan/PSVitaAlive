@@ -16,15 +16,21 @@
   "requirements": "- libshacccg.suprx\n- kubridge.skprx\n- Game Data Files: Android",
   "size": 1815090,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/ffc0c9ed3f8069af9f3a1d8b36d9e03061d0fb8df56b2ac3c3720324a78f014d.png",
+  "icon": "https://archive.org/download/psvitaalive-naught-2-vita/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/89d37569bb8a37fe26b0804c9e6ac034f22ac7daeae6c23b30a54eee8d21fa5a.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/d085796a2548a560b9296645c196c7af3f3f6805ec5f13820915365e0984afaf.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c53e853a67ab75a7501389089fb476b90010ef63c41e20c7bc78ccaa655635f9.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/ac79a1ce10afc93d79131b6fbc01e7dfc07ea8a0d54eb53e56886f4bc758b639.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/89d37569bb8a37fe26b0804c9e6ac034f22ac7daeae6c23b30a54eee8d21fa5a.png"
+    "https://archive.org/download/psvitaalive-naught-2-vita/shot_01.png",
+    "https://archive.org/download/psvitaalive-naught-2-vita/shot_02.png",
+    "https://archive.org/download/psvitaalive-naught-2-vita/shot_03.png",
+    "https://archive.org/download/psvitaalive-naught-2-vita/shot_04.png",
+    "https://archive.org/download/psvitaalive-naught-2-vita/shot_05.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-naught-2-vita/naught-2-vita.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Release Page",

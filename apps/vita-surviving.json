@@ -16,15 +16,21 @@
   "requirements": "Not specified",
   "size": 50327636,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/e877187d505b50c084e7917b4013979d0ba770accdb6b798515022b70aff4639.png",
+  "icon": "https://archive.org/download/psvitaalive-vita-surviving/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/0c5e3c169f246eb939719eac2582db7bfaa39cf04f429061ca8f436cfc5e83f5.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/73e857a7a523d8e45e64126ae3e98bbbd68061f4ea2648a65d231bc9f0a3f9e3.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/b25b5e01817eb6e13e2a57f5fced32473176f0e2dc42ae4f8138dddae1ae3444.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/7f008edb6f730d4f6988e94eb625c33f39eaf2646f08852efaf13934c51938f4.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/0c5e3c169f246eb939719eac2582db7bfaa39cf04f429061ca8f436cfc5e83f5.png"
+    "https://archive.org/download/psvitaalive-vita-surviving/shot_01.png",
+    "https://archive.org/download/psvitaalive-vita-surviving/shot_02.png",
+    "https://archive.org/download/psvitaalive-vita-surviving/shot_03.png",
+    "https://archive.org/download/psvitaalive-vita-surviving/shot_04.png",
+    "https://archive.org/download/psvitaalive-vita-surviving/shot_05.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-vita-surviving/vita-surviving.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Release Page",

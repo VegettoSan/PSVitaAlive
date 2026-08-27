@@ -16,13 +16,20 @@
   "requirements": "Not specified",
   "size": 26285287,
   "status": "Legacy",
-  "icon": "https://www.rinnegatamante.eu/vitadb/icons/529ca6b03fa348a1a43c837055c155f1944ddd9fcb6ca3c378ae8e185f1bd544.png",
+  "icon": "https://archive.org/download/psvitaalive-vita-pong/icon0.png",
   "screenshots": [
-    "https://www.rinnegatamante.eu/vitadb/screenshots/e584600fb03783c97e8ee8f9d76d184a9389f7803292f24eb195ccd10c22f118.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/20e98595988bcdaf020bcbf721c4d3efea5795d8a67de20ea85676103cbcea62.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/52ebb0669998eb48b19266f7b0af24df5413bcb1a0030803c29b2c5159320227.png"
+    "https://archive.org/download/psvitaalive-vita-pong/shot_01.png",
+    "https://archive.org/download/psvitaalive-vita-pong/shot_02.png",
+    "https://archive.org/download/psvitaalive-vita-pong/shot_03.png"
   ],
-  "links": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-vita-pong/vita-pong.vpk",
+      "recommended": true
+    }
+  ],
   "source_name": "VitaDB",
   "source_id": "1397",
   "source_url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1397",

@@ -16,14 +16,20 @@
   "requirements": "Not specified",
   "size": 895987,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1539-vitaforecast.png",
+  "icon": "https://archive.org/download/psvitaalive-vitaforecast/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1539-vitaforecast.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/fore1.jpg",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/fore2.jpg",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/fore3.jpg"
+    "https://archive.org/download/psvitaalive-vitaforecast/shot_01.png",
+    "https://archive.org/download/psvitaalive-vitaforecast/shot_02.png",
+    "https://archive.org/download/psvitaalive-vitaforecast/shot_03.png",
+    "https://archive.org/download/psvitaalive-vitaforecast/shot_04.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-vitaforecast/vitaforecast.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Official Website",

@@ -16,15 +16,21 @@
   "requirements": "Not specified",
   "size": 34519153,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/aac16ae00587d26f5f0633def3e3fb658754afd99418fb9224fc6b8b24ebdb0b.png",
+  "icon": "https://archive.org/download/psvitaalive-jellycar/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/aac16ae00587d26f5f0633def3e3fb658754afd99418fb9224fc6b8b24ebdb0b.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/jelly1.jpg",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/jelly2.jpg",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/jelly3.jpg",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/jelly4.jpg"
+    "https://archive.org/download/psvitaalive-jellycar/shot_01.png",
+    "https://archive.org/download/psvitaalive-jellycar/shot_02.png",
+    "https://archive.org/download/psvitaalive-jellycar/shot_03.png",
+    "https://archive.org/download/psvitaalive-jellycar/shot_04.png",
+    "https://archive.org/download/psvitaalive-jellycar/shot_05.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-jellycar/jellycar.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Release Page",

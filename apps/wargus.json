@@ -16,15 +16,21 @@
   "requirements": "- Game Data Files: PC",
   "size": 3907642,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/f142e51c36b0a55a43c8dd6c97649e9f7d9c2a36188899fb108b460688ab5d98.png",
+  "icon": "https://archive.org/download/psvitaalive-wargus/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/bc74b3bf3647a85ba10d30f35c68029006f9c776a030092e25715231fb279af8.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/057736aaaba52f174698d41e09107a731f7dd82e43458b7e2bbfef506341862e.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/d39b1a7ded03d9582aed6f694b30c5fe64eefdf3944efc87cb5745194ac04620.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/5b6ef116cb571e4f28c5530fe37c1fae9645f8a1dda55e197839f6576b7f25f1.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/bc74b3bf3647a85ba10d30f35c68029006f9c776a030092e25715231fb279af8.png"
+    "https://archive.org/download/psvitaalive-wargus/shot_01.png",
+    "https://archive.org/download/psvitaalive-wargus/shot_02.png",
+    "https://archive.org/download/psvitaalive-wargus/shot_03.png",
+    "https://archive.org/download/psvitaalive-wargus/shot_04.png",
+    "https://archive.org/download/psvitaalive-wargus/shot_05.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-wargus/wargus.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Release Page",

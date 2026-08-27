@@ -16,15 +16,21 @@
   "requirements": "Not specified",
   "size": 197348129,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1260-emu4vita.png",
+  "icon": "https://archive.org/download/psvitaalive-emu4vita/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/8790c75058b59ea3132a4a2859f3f632d603d0560d86fa0bfe70febd627e4074.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/e391459bbb223b475ec86248af0ffac4e8e16d290872e36021afea82e474969d.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/76a1caf60c53400c8aeb28dcb4d4adb9105fe573c020bb1f71a9c476e9dcadb6.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/5e0b319ebb55c9a86340aaa74efe25fe7d89d6d101527298a2c2a21ea710c071.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/8790c75058b59ea3132a4a2859f3f632d603d0560d86fa0bfe70febd627e4074.png"
+    "https://archive.org/download/psvitaalive-emu4vita/shot_01.png",
+    "https://archive.org/download/psvitaalive-emu4vita/shot_02.png",
+    "https://archive.org/download/psvitaalive-emu4vita/shot_03.png",
+    "https://archive.org/download/psvitaalive-emu4vita/shot_04.png",
+    "https://archive.org/download/psvitaalive-emu4vita/shot_05.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-emu4vita/emu4vita.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Release Page",

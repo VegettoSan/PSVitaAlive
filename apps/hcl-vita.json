@@ -16,15 +16,21 @@
   "requirements": "Not specified",
   "size": 1152400,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1581-hcl-vita.png",
+  "icon": "https://archive.org/download/psvitaalive-hcl-vita/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/9d06da24552f4392af8e12122fdae57f06009259fde0cd4fedccf624c9c8c93f.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/88894610c024753c9cf118f611203db6c25034232d47bb3a31cdf9cfdbadb7e1.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/7f2f625f2855174da8b2f3ad00273b226e1d50188550fcbb950d5b3a92f84f63.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/9d06da24552f4392af8e12122fdae57f06009259fde0cd4fedccf624c9c8c93f.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/88894610c024753c9cf118f611203db6c25034232d47bb3a31cdf9cfdbadb7e1.png"
+    "https://archive.org/download/psvitaalive-hcl-vita/shot_01.png",
+    "https://archive.org/download/psvitaalive-hcl-vita/shot_02.png",
+    "https://archive.org/download/psvitaalive-hcl-vita/shot_03.png",
+    "https://archive.org/download/psvitaalive-hcl-vita/shot_04.png",
+    "https://archive.org/download/psvitaalive-hcl-vita/shot_05.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-hcl-vita/hcl-vita.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Official Website",

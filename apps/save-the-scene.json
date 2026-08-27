@@ -16,12 +16,18 @@
   "requirements": "Not specified",
   "size": 51416047,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1623-save-the-scene.png",
+  "icon": "https://archive.org/download/psvitaalive-save-the-scene/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/52de9176beeac78dd6bfa07b7afe10f2fb516ce4a3cd88ec8fd0ef0ea2744f74.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/52de9176beeac78dd6bfa07b7afe10f2fb516ce4a3cd88ec8fd0ef0ea2744f74.png"
+    "https://archive.org/download/psvitaalive-save-the-scene/shot_01.png",
+    "https://archive.org/download/psvitaalive-save-the-scene/shot_02.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-save-the-scene/save-the-scene.vpk",
+      "recommended": true
+    },
     {
       "type": "Repository",
       "name": "Repositorio",

@@ -16,14 +16,20 @@
   "requirements": "Not specified",
   "size": 62286885,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/c5c12e129060f8a0bcb3e82138a7c5f266149f3344d094605bed4829d250a969.png",
+  "icon": "https://archive.org/download/psvitaalive-solstice/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/1c720834fee36730bb606b2afa697e8db407924e8f941049b6a3a870514b767c.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/1fd6a57926b3e8035d16afbe630268841cfc0aef1c99b44a942c5e75fadf0e1c.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/1c720834fee36730bb606b2afa697e8db407924e8f941049b6a3a870514b767c.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/1fd6a57926b3e8035d16afbe630268841cfc0aef1c99b44a942c5e75fadf0e1c.png"
+    "https://archive.org/download/psvitaalive-solstice/shot_01.png",
+    "https://archive.org/download/psvitaalive-solstice/shot_02.png",
+    "https://archive.org/download/psvitaalive-solstice/shot_03.png",
+    "https://archive.org/download/psvitaalive-solstice/shot_04.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-solstice/solstice.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Release Page",

@@ -16,11 +16,17 @@
   "requirements": "Not specified",
   "size": 1722901,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/9a5f110d854baf1660be24a1e920a4ad6487e3609581627a2e7b4b2712e49b17.png",
+  "icon": "https://archive.org/download/psvitaalive-milkytracker-vita/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/9a5f110d854baf1660be24a1e920a4ad6487e3609581627a2e7b4b2712e49b17.png"
+    "https://archive.org/download/psvitaalive-milkytracker-vita/shot_01.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-milkytracker-vita/milkytracker-vita.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Release Page",

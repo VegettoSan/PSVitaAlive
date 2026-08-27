@@ -16,14 +16,21 @@
   "requirements": "Not specified",
   "size": 3486345,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1501-starkiller-2d.png",
+  "icon": "https://archive.org/download/psvitaalive-starkiller-2d/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1501-starkiller-2d.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/starkill1.jpg",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/starkill2.jpg",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/starkill3.jpg"
+    "https://archive.org/download/psvitaalive-starkiller-2d/shot_01.png",
+    "https://archive.org/download/psvitaalive-starkiller-2d/shot_02.png",
+    "https://archive.org/download/psvitaalive-starkiller-2d/shot_03.png",
+    "https://archive.org/download/psvitaalive-starkiller-2d/shot_04.png"
   ],
-  "links": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-starkiller-2d/starkiller-2d.vpk",
+      "recommended": true
+    }
+  ],
   "source_name": "VitaHomebrewDB",
   "source_id": "101",
   "source_url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/101-StarKiller2D.vpk",

@@ -17,13 +17,19 @@
   "requirements": "Not specified",
   "size": 1934139,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1488-tema.png",
+  "icon": "https://archive.org/download/psvitaalive-tema/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1488-tema.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/tema1.jpg",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/tema2.jpg"
+    "https://archive.org/download/psvitaalive-tema/shot_01.png",
+    "https://archive.org/download/psvitaalive-tema/shot_02.png",
+    "https://archive.org/download/psvitaalive-tema/shot_03.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-tema/tema.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Official Website",

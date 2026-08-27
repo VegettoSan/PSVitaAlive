@@ -16,12 +16,19 @@
   "requirements": "Not specified",
   "size": 46072244,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1662-dungeon-survivor.png",
+  "icon": "https://archive.org/download/psvitaalive-dungeon-survivor/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/bae03af66975ceb92b1abef2230349cd3b157c5800c131a28708de0f3fa9585b.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/bae03af66975ceb92b1abef2230349cd3b157c5800c131a28708de0f3fa9585b.png"
+    "https://archive.org/download/psvitaalive-dungeon-survivor/shot_01.png",
+    "https://archive.org/download/psvitaalive-dungeon-survivor/shot_02.png"
   ],
-  "links": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-dungeon-survivor/dungeon-survivor.vpk",
+      "recommended": true
+    }
+  ],
   "source_name": "VitaHomebrewDB",
   "source_id": "501",
   "source_url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/501-Dungeon_Survivor.vpk",

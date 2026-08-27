@@ -16,14 +16,20 @@
   "requirements": "Not specified",
   "size": 35394644,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/0be05b1cd0d2dbd777e794ef476a690cf0aa66591883195daca73ef0e51bb8d1.png",
+  "icon": "https://archive.org/download/psvitaalive-slendrina-free/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/f246c562756bdb43cf242f79865000f71f447b45a0f7c2c6629e175a76411234.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/e96b1b6cea37f3617cc33f6aa289fc6a6a5a0dee71e1fb9884a1451d07a5c7e7.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/f246c562756bdb43cf242f79865000f71f447b45a0f7c2c6629e175a76411234.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/e96b1b6cea37f3617cc33f6aa289fc6a6a5a0dee71e1fb9884a1451d07a5c7e7.png"
+    "https://archive.org/download/psvitaalive-slendrina-free/shot_01.png",
+    "https://archive.org/download/psvitaalive-slendrina-free/shot_02.png",
+    "https://archive.org/download/psvitaalive-slendrina-free/shot_03.png",
+    "https://archive.org/download/psvitaalive-slendrina-free/shot_04.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-slendrina-free/slendrina-free.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Repository",

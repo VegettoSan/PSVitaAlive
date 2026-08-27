@@ -16,12 +16,18 @@
   "requirements": "Not specified",
   "size": 38554505,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1609-fryingmaster.png",
+  "icon": "https://archive.org/download/psvitaalive-fryingmaster-frym12345/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1609-fryingmaster.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/fa05a7d03d42c4be8cd8f1e55b18b955dd7052ce67e99b1f149230da8477bd4b.png"
+    "https://archive.org/download/psvitaalive-fryingmaster-frym12345/shot_01.png",
+    "https://archive.org/download/psvitaalive-fryingmaster-frym12345/shot_02.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-fryingmaster-frym12345/414-FryingMaster.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Official Website",

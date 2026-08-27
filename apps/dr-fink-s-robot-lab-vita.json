@@ -16,15 +16,21 @@
   "requirements": "- libshacccg.suprx\n- kubridge.skprx\n- Game Data Files: Android",
   "size": 2309698,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/3d7d45bc8dbd66bd779c72dd070c2cfdb0ed372aa9724468d8ec1b0b5afc5b5d.png",
+  "icon": "https://archive.org/download/psvitaalive-dr-fink-s-robot-lab-vita/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/b15a0c4fb4d3da6b882bf2da85b44fdc02770d98f2765fc599eb94f1ce401413.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/ef753bc086ae89c7b7b8ff9172c837ec0e3eec178ae4d7805ae179ceae88af7a.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/0a1fa660918b28e0eb623d3b1b3781ba12de5c54f6a7dcd959003d03f449e0cb.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/b15a0c4fb4d3da6b882bf2da85b44fdc02770d98f2765fc599eb94f1ce401413.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/ef753bc086ae89c7b7b8ff9172c837ec0e3eec178ae4d7805ae179ceae88af7a.png"
+    "https://archive.org/download/psvitaalive-dr-fink-s-robot-lab-vita/shot_01.png",
+    "https://archive.org/download/psvitaalive-dr-fink-s-robot-lab-vita/shot_02.png",
+    "https://archive.org/download/psvitaalive-dr-fink-s-robot-lab-vita/shot_03.png",
+    "https://archive.org/download/psvitaalive-dr-fink-s-robot-lab-vita/shot_04.png",
+    "https://archive.org/download/psvitaalive-dr-fink-s-robot-lab-vita/shot_05.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-dr-fink-s-robot-lab-vita/dr-fink-s-robot-lab-vita.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Release Page",

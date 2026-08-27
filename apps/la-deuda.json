@@ -16,12 +16,19 @@
   "requirements": "Not specified",
   "size": 40490913,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1917-la-deuda.png",
+  "icon": "https://archive.org/download/psvitaalive-la-deuda/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/9b1cdc787b719b9cbdf081cf54196e17606cbcb3bd64fa571352487fc22dca41.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/9b1cdc787b719b9cbdf081cf54196e17606cbcb3bd64fa571352487fc22dca41.png"
+    "https://archive.org/download/psvitaalive-la-deuda/shot_01.png",
+    "https://archive.org/download/psvitaalive-la-deuda/shot_02.png"
   ],
-  "links": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-la-deuda/la-deuda.vpk",
+      "recommended": true
+    }
+  ],
   "source_name": "VitaHomebrewDB",
   "source_id": "1252",
   "source_url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1252-LaDeuda.vpk",

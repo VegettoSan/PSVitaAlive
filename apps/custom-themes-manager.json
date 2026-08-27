@@ -16,14 +16,20 @@
   "requirements": "Not specified",
   "size": 3114645,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1499-custom-themes-manager.png",
+  "icon": "https://archive.org/download/psvitaalive-custom-themes-manager/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1499-custom-themes-manager.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/ctm1.jpg",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/ctm2.jpg",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/ctm3.jpg"
+    "https://archive.org/download/psvitaalive-custom-themes-manager/shot_01.png",
+    "https://archive.org/download/psvitaalive-custom-themes-manager/shot_02.png",
+    "https://archive.org/download/psvitaalive-custom-themes-manager/shot_03.png",
+    "https://archive.org/download/psvitaalive-custom-themes-manager/shot_04.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-custom-themes-manager/custom-themes-manager.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Official Website",

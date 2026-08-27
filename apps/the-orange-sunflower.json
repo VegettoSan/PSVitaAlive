@@ -16,12 +16,19 @@
   "requirements": "Not specified",
   "size": 45872461,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1631-the-orange-sunflower.png",
+  "icon": "https://archive.org/download/psvitaalive-the-orange-sunflower/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/b2fa9279c905d6bc94472cc49ebf311c52cdb11834f2823ae919b6e3b3053fb4.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/b2fa9279c905d6bc94472cc49ebf311c52cdb11834f2823ae919b6e3b3053fb4.png"
+    "https://archive.org/download/psvitaalive-the-orange-sunflower/shot_01.png",
+    "https://archive.org/download/psvitaalive-the-orange-sunflower/shot_02.png"
   ],
-  "links": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-the-orange-sunflower/the-orange-sunflower.vpk",
+      "recommended": true
+    }
+  ],
   "source_name": "VitaHomebrewDB",
   "source_id": "455",
   "source_url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/455-OrangeSunflower.vpk",

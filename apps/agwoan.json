@@ -16,15 +16,21 @@
   "requirements": "Not specified",
   "size": 3247855,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1633-agwoan.png",
+  "icon": "https://archive.org/download/psvitaalive-agwoan/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/f0a94b8847951fb800fb2d2ba277857350ec31d6f4e85ae53cbd0a5a1558f4e9.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/1c9fd98477ce6d5a5b1173f2b80dc2807d1076ef489adc3521900a0bd6886d5a.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/b504289a7cd7583513e62b518b4d5f7befbe380ebba2abc81d52b4e5bfbc6d0e.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/f0a94b8847951fb800fb2d2ba277857350ec31d6f4e85ae53cbd0a5a1558f4e9.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/1c9fd98477ce6d5a5b1173f2b80dc2807d1076ef489adc3521900a0bd6886d5a.png"
+    "https://archive.org/download/psvitaalive-agwoan/shot_01.png",
+    "https://archive.org/download/psvitaalive-agwoan/shot_02.png",
+    "https://archive.org/download/psvitaalive-agwoan/shot_03.png",
+    "https://archive.org/download/psvitaalive-agwoan/shot_04.png",
+    "https://archive.org/download/psvitaalive-agwoan/shot_05.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-agwoan/agwoan.vpk",
+      "recommended": true
+    },
     {
       "type": "Repository",
       "name": "Repositorio",

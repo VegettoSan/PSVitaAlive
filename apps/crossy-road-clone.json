@@ -16,15 +16,22 @@
   "requirements": "Not specified",
   "size": 32541087,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1905-crossy-road-clone.png",
+  "icon": "https://archive.org/download/psvitaalive-crossy-road-clone/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/e8b7437992c5c9f77eebb0d66ad5c59ab0db5a311c5281b0c6a7427ca7e55801.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/65c1ae89e1364af4e41fc31404a3842d8a1b4289a7ee5c546994b31af64a47e5.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/119aeac0fe62921a453bdadae17273b818f2562ee8f56f850219f6c20d43a48d.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/e8b7437992c5c9f77eebb0d66ad5c59ab0db5a311c5281b0c6a7427ca7e55801.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/65c1ae89e1364af4e41fc31404a3842d8a1b4289a7ee5c546994b31af64a47e5.png"
+    "https://archive.org/download/psvitaalive-crossy-road-clone/shot_01.png",
+    "https://archive.org/download/psvitaalive-crossy-road-clone/shot_02.png",
+    "https://archive.org/download/psvitaalive-crossy-road-clone/shot_03.png",
+    "https://archive.org/download/psvitaalive-crossy-road-clone/shot_04.png",
+    "https://archive.org/download/psvitaalive-crossy-road-clone/shot_05.png"
   ],
-  "links": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-crossy-road-clone/crossy-road-clone.vpk",
+      "recommended": true
+    }
+  ],
   "source_name": "VitaHomebrewDB",
   "source_id": "1221",
   "source_url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1221-CrossyRoadsClone.vpk",

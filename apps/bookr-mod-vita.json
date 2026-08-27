@@ -16,14 +16,20 @@
   "requirements": "Not specified",
   "size": 29049449,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/e92afcf9b0bdd1358c290c3b94685dc37d10c16f0aa0ba5ce8af7a565384eb82.png",
+  "icon": "https://archive.org/download/psvitaalive-bookr-mod-vita/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/e92afcf9b0bdd1358c290c3b94685dc37d10c16f0aa0ba5ce8af7a565384eb82.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/bookr1.jpg",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/bookr2.jpg",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/bookr3.jpg"
+    "https://archive.org/download/psvitaalive-bookr-mod-vita/shot_01.png",
+    "https://archive.org/download/psvitaalive-bookr-mod-vita/shot_02.png",
+    "https://archive.org/download/psvitaalive-bookr-mod-vita/shot_03.png",
+    "https://archive.org/download/psvitaalive-bookr-mod-vita/shot_04.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-bookr-mod-vita/bookr-mod-vita.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Official Website",

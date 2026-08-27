@@ -16,15 +16,21 @@
   "requirements": "- libshacccg.suprx\n- kubridge.skprx\n- Game Data Files: Android",
   "size": 2574892,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/2455fc20c2b6f7f20d91ea5e3523978758ff840c491e6babf3917341493f49b1.png",
+  "icon": "https://archive.org/download/psvitaalive-flappy-nyan-vita/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/70b323d3aaf92a6569b051e9459b89a6403df1878f99f4f0948ce23340988d6b.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/d33a5597a7cb663df71362378e5659c459c352f0fb6072e82fd833acb9c91cda.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/4422fd13f1a9df0ab50edef03395e2190c0d6d39ed7e8bc1609ac84dc7ddb01e.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/70b323d3aaf92a6569b051e9459b89a6403df1878f99f4f0948ce23340988d6b.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/d33a5597a7cb663df71362378e5659c459c352f0fb6072e82fd833acb9c91cda.png"
+    "https://archive.org/download/psvitaalive-flappy-nyan-vita/shot_01.png",
+    "https://archive.org/download/psvitaalive-flappy-nyan-vita/shot_02.png",
+    "https://archive.org/download/psvitaalive-flappy-nyan-vita/shot_03.png",
+    "https://archive.org/download/psvitaalive-flappy-nyan-vita/shot_04.png",
+    "https://archive.org/download/psvitaalive-flappy-nyan-vita/shot_05.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-flappy-nyan-vita/flappy-nyan-vita.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Release Page",

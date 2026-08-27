@@ -16,15 +16,21 @@
   "requirements": "- libshacccg.suprx\n- Game Data Files: PC",
   "size": 9793795,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/d6ee76423c2e081a8470e02079842c33745807e15008068555ae61bce3121ac0.png",
+  "icon": "https://archive.org/download/psvitaalive-barony-vita/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/b56f33e891a9fb4f57eb31f19114eb98b6c91bb95039a2d7ede29d5f965886d5.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/341a26218b87ad5b805d8c1fc993c437a2c3ac4f1553382619569c2a428451ab.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/b8fc6a22e224f93f741349119cfe4dce404e403f6a079aaf8eb4ae81ece32e61.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/538d64a750527d58fd929c826513321e4dc30d18b3f87f94b57cdc9b963c2fd3.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/b56f33e891a9fb4f57eb31f19114eb98b6c91bb95039a2d7ede29d5f965886d5.png"
+    "https://archive.org/download/psvitaalive-barony-vita/shot_01.png",
+    "https://archive.org/download/psvitaalive-barony-vita/shot_02.png",
+    "https://archive.org/download/psvitaalive-barony-vita/shot_03.png",
+    "https://archive.org/download/psvitaalive-barony-vita/shot_04.png",
+    "https://archive.org/download/psvitaalive-barony-vita/shot_05.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-barony-vita/barony-vita.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Release Page",

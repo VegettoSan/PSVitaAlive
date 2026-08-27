@@ -16,15 +16,21 @@
   "requirements": "Not specified",
   "size": 1153793,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/a31d0cc3f10336debdb03557e6bb002c11ed81d33071fe1bd0e0326a445f6b73.png",
+  "icon": "https://archive.org/download/psvitaalive-methane/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/24d727d4f83e12b49e5a0c3fb3dad99bcf7d94ac5f75f89623d949ee030a54d4.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/405a55a51226fd837e334f8b7ee25753bbc3efe1122240e04db2186df909962d.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c6ffac8677d1d4c39d19cb1b3160d08c8d39a036dbb959d3d66607e8798f353c.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/24d727d4f83e12b49e5a0c3fb3dad99bcf7d94ac5f75f89623d949ee030a54d4.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/405a55a51226fd837e334f8b7ee25753bbc3efe1122240e04db2186df909962d.png"
+    "https://archive.org/download/psvitaalive-methane/shot_01.png",
+    "https://archive.org/download/psvitaalive-methane/shot_02.png",
+    "https://archive.org/download/psvitaalive-methane/shot_03.png",
+    "https://archive.org/download/psvitaalive-methane/shot_04.png",
+    "https://archive.org/download/psvitaalive-methane/shot_05.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-methane/methane.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Release Page",

@@ -16,17 +16,24 @@
   "requirements": "Not specified",
   "size": 2010692,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1510-hendoku.png",
+  "icon": "https://archive.org/download/psvitaalive-hendoku/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1510-hendoku.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/hendo.jpg",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/hendo2.jpg"
+    "https://archive.org/download/psvitaalive-hendoku/shot_01.png",
+    "https://archive.org/download/psvitaalive-hendoku/shot_02.png",
+    "https://archive.org/download/psvitaalive-hendoku/shot_03.png"
   ],
   "links": [
     {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-hendoku/hendoku.vpk",
+      "recommended": true
+    },
+    {
       "type": "Repository",
       "name": "Repositorio",
-      "url": "http://www.mediafire.com/file/wu7ptl6t57wo5tl/SudokuCPP.rar"
+      "url": "http://www.mediafire.com/file/wu7ptl6t57wo5tl/SudokuCPP.rar",
+      "recommended": false
     },
     {
       "type": "Official Website",

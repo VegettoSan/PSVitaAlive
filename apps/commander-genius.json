@@ -16,15 +16,21 @@
   "requirements": "Not specified",
   "size": 3865398,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/c502e83960469c4d2e40d36d7c20981a435b26ef686b9596a9acb7f72d95faf5.png",
+  "icon": "https://archive.org/download/psvitaalive-commander-genius/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/65c05119a092d1a79f691a3ad07f77d5efe2d811f240bba91f165cd7150e09ce.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/d232c427d22c67e8ebc81e2c8e362586d0bda8b88dd8c1916cfcb3245a132d39.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/0ce0e757b72120409598c78d35488ece6dca1615b6d65000d77ca75a75e30415.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/3964346b2e156a3b8ec08681b19fa33f1b1c214bcb64070a8539955cce868390.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/65c05119a092d1a79f691a3ad07f77d5efe2d811f240bba91f165cd7150e09ce.png"
+    "https://archive.org/download/psvitaalive-commander-genius/shot_01.png",
+    "https://archive.org/download/psvitaalive-commander-genius/shot_02.png",
+    "https://archive.org/download/psvitaalive-commander-genius/shot_03.png",
+    "https://archive.org/download/psvitaalive-commander-genius/shot_04.png",
+    "https://archive.org/download/psvitaalive-commander-genius/shot_05.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-commander-genius/commander-genius.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Release Page",

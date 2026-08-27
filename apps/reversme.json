@@ -16,13 +16,19 @@
   "requirements": "Not specified",
   "size": 1674628,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1532-reversme.png",
+  "icon": "https://archive.org/download/psvitaalive-reversme/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1532-reversme.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/reverse1.jpg",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/reverse2.jpg"
+    "https://archive.org/download/psvitaalive-reversme/shot_01.png",
+    "https://archive.org/download/psvitaalive-reversme/shot_02.png",
+    "https://archive.org/download/psvitaalive-reversme/shot_03.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-reversme/reversme.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Official Website",

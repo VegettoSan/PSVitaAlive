@@ -16,14 +16,21 @@
   "requirements": "Not specified",
   "size": 87409296,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1655-ps-scene-quiz.png",
+  "icon": "https://archive.org/download/psvitaalive-ps-scene-quiz/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c7879c0670fff802fe961ff623521da46376e73a2368816e8318086616169fff.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/07fa33a1960d9fb9cc9af03a530e54a1881c5411deaff4b3f47a9fb6da7f159b.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/c7879c0670fff802fe961ff623521da46376e73a2368816e8318086616169fff.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/07fa33a1960d9fb9cc9af03a530e54a1881c5411deaff4b3f47a9fb6da7f159b.png"
+    "https://archive.org/download/psvitaalive-ps-scene-quiz/shot_01.png",
+    "https://archive.org/download/psvitaalive-ps-scene-quiz/shot_02.png",
+    "https://archive.org/download/psvitaalive-ps-scene-quiz/shot_03.png",
+    "https://archive.org/download/psvitaalive-ps-scene-quiz/shot_04.png"
   ],
-  "links": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-ps-scene-quiz/ps-scene-quiz.vpk",
+      "recommended": true
+    }
+  ],
   "source_name": "VitaHomebrewDB",
   "source_id": "489",
   "source_url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/489-quiz.vpk",

@@ -16,12 +16,19 @@
   "requirements": "Not specified",
   "size": 471103,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1517-minesweeper.png",
+  "icon": "https://archive.org/download/psvitaalive-minesweeper/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1517-minesweeper.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/mine.jpg"
+    "https://archive.org/download/psvitaalive-minesweeper/shot_01.png",
+    "https://archive.org/download/psvitaalive-minesweeper/shot_02.png"
   ],
-  "links": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-minesweeper/minesweeper.vpk",
+      "recommended": true
+    }
+  ],
   "source_name": "VitaHomebrewDB",
   "source_id": "141",
   "source_url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/141-Minesweeper.vpk",

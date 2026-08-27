@@ -16,11 +16,17 @@
   "requirements": "Not specified",
   "size": 330074,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1549-relink.png",
+  "icon": "https://archive.org/download/psvitaalive-relink/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1549-relink.png"
+    "https://archive.org/download/psvitaalive-relink/shot_01.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-relink/relink.vpk",
+      "recommended": true
+    },
     {
       "type": "Repository",
       "name": "Repositorio",

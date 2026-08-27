@@ -16,14 +16,20 @@
   "requirements": "- libshacccg.suprx",
   "size": 1347641,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1935-vita-webradios.png",
+  "icon": "https://archive.org/download/psvitaalive-vita-webradios/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/99d8afc024668e5f466eda61c85283e998fe0fa5e630fbb411574520f3760312.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/538f02aa80c8f1446129aeb2350f8a0758f76e6e33eae5658a671edb0eb6267f.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/99d8afc024668e5f466eda61c85283e998fe0fa5e630fbb411574520f3760312.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/538f02aa80c8f1446129aeb2350f8a0758f76e6e33eae5658a671edb0eb6267f.png"
+    "https://archive.org/download/psvitaalive-vita-webradios/shot_01.png",
+    "https://archive.org/download/psvitaalive-vita-webradios/shot_02.png",
+    "https://archive.org/download/psvitaalive-vita-webradios/shot_03.png",
+    "https://archive.org/download/psvitaalive-vita-webradios/shot_04.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-vita-webradios/vita-webradios.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Release Page",

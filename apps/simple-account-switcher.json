@@ -17,11 +17,17 @@
   "requirements": "Not specified",
   "size": 24944,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1456-simple-account-switcher.png",
+  "icon": "https://archive.org/download/psvitaalive-simple-account-switcher/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1456-simple-account-switcher.png"
+    "https://archive.org/download/psvitaalive-simple-account-switcher/shot_01.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-simple-account-switcher/SimpleAccountSwitcher.vpk",
+      "recommended": true
+    },
     {
       "type": "Repository",
       "name": "Repositorio",

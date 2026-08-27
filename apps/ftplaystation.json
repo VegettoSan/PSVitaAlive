@@ -16,11 +16,17 @@
   "requirements": "Not specified",
   "size": 1966117,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/05c9310cd580e6b3c56ff086817aa8bc605c8bdf6ef18d5a9f3ed02172ac688c.png",
+  "icon": "https://archive.org/download/psvitaalive-ftplaystation/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/05c9310cd580e6b3c56ff086817aa8bc605c8bdf6ef18d5a9f3ed02172ac688c.png"
+    "https://archive.org/download/psvitaalive-ftplaystation/shot_01.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-ftplaystation/ftplaystation.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Release Page",

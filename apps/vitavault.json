@@ -16,12 +16,18 @@
   "requirements": "Not specified",
   "size": 2882669,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1406-vitavault.png",
+  "icon": "https://archive.org/download/psvitaalive-vitavault/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/418246f70b033756d8a1a91f0d4c149ab885a9676680c6ecab8173a4f7f18f3d.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/418246f70b033756d8a1a91f0d4c149ab885a9676680c6ecab8173a4f7f18f3d.png"
+    "https://archive.org/download/psvitaalive-vitavault/shot_01.png",
+    "https://archive.org/download/psvitaalive-vitavault/shot_02.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-vitavault/vitavault.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Release Page",

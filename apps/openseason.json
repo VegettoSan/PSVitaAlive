@@ -16,12 +16,18 @@
   "requirements": "Not specified",
   "size": 31490419,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1640-openseason.png",
+  "icon": "https://archive.org/download/psvitaalive-openseason/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/87cbd39aaf821aa54b55fd7b783720f8adb9f39919295abc62e32b23d272bc11.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/87cbd39aaf821aa54b55fd7b783720f8adb9f39919295abc62e32b23d272bc11.png"
+    "https://archive.org/download/psvitaalive-openseason/shot_01.png",
+    "https://archive.org/download/psvitaalive-openseason/shot_02.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-openseason/openseason.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Official Website",

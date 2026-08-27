@@ -16,15 +16,21 @@
   "requirements": "Not specified",
   "size": 2806372,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1865-onslaught-arena.png",
+  "icon": "https://archive.org/download/psvitaalive-onslaught-arena/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/8e77dc2e6790a0f026ea612d8abf39c336b910161cfac04c1b6aa25f9662933b.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/d4bfc2ab516fb1fa74a4b91e081123e4c8e6e9950b2834039660d324f1a3dffa.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/b41e6446f1296e5b536c24a323f6f2882f9e61a6f4ee56b79fd23b31a8c07558.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/8e77dc2e6790a0f026ea612d8abf39c336b910161cfac04c1b6aa25f9662933b.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/d4bfc2ab516fb1fa74a4b91e081123e4c8e6e9950b2834039660d324f1a3dffa.png"
+    "https://archive.org/download/psvitaalive-onslaught-arena/shot_01.png",
+    "https://archive.org/download/psvitaalive-onslaught-arena/shot_02.png",
+    "https://archive.org/download/psvitaalive-onslaught-arena/shot_03.png",
+    "https://archive.org/download/psvitaalive-onslaught-arena/shot_04.png",
+    "https://archive.org/download/psvitaalive-onslaught-arena/shot_05.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-onslaught-arena/onslaught-arena.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Official Website",

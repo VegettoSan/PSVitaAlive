@@ -16,15 +16,21 @@
   "requirements": "- Game Data Files: PC",
   "size": 13200187,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/083905305dd33fed5cca25dcf7dd3bc5aa962796729987d6fd1bcee373c29086.png",
+  "icon": "https://archive.org/download/psvitaalive-golfing-over-it-with-alva-majo/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/8309a9c5cb58aef2ae75aef386860fe17ce02635c3ce09148699cdc10d79aa1c.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c95c9580b5127a915b6d92bc8b73a7b29f242157521de8dd5132edc5076fd2bb.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/baaebc8ba75eadc93b8005653a3e9d311d9abe179615fefe05ce5e5c7335c014.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/8309a9c5cb58aef2ae75aef386860fe17ce02635c3ce09148699cdc10d79aa1c.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/c95c9580b5127a915b6d92bc8b73a7b29f242157521de8dd5132edc5076fd2bb.png"
+    "https://archive.org/download/psvitaalive-golfing-over-it-with-alva-majo/shot_01.png",
+    "https://archive.org/download/psvitaalive-golfing-over-it-with-alva-majo/shot_02.png",
+    "https://archive.org/download/psvitaalive-golfing-over-it-with-alva-majo/shot_03.png",
+    "https://archive.org/download/psvitaalive-golfing-over-it-with-alva-majo/shot_04.png",
+    "https://archive.org/download/psvitaalive-golfing-over-it-with-alva-majo/shot_05.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-golfing-over-it-with-alva-majo/golfing-over-it-with-alva-majo.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Repository",

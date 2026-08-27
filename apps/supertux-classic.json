@@ -16,11 +16,17 @@
   "requirements": "Not specified",
   "size": 10481119,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/9fc9a61bd49329caa59b03c0f0256bfabe8fa995f36e9b75d7d9f5c923659088.png",
+  "icon": "https://archive.org/download/psvitaalive-supertux-classic/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/9fc9a61bd49329caa59b03c0f0256bfabe8fa995f36e9b75d7d9f5c923659088.png"
+    "https://archive.org/download/psvitaalive-supertux-classic/shot_01.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-supertux-classic/SuperTux-PSVITA.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Release Page",

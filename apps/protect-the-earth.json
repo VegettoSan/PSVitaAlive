@@ -16,15 +16,21 @@
   "requirements": "Not specified",
   "size": 26070989,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1766-protect-the-earth.png",
+  "icon": "https://archive.org/download/psvitaalive-protect-the-earth/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/e5eb8b6385b874b36a2101e089d1bc0df2418628daf9956c371beb97e92eeacf.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/0fc9567f9bbf4bbdf913f2b5ba72d343398bef9075e27a6ffc4763a1b7b75bd7.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/4bdf4b01f80f19c1b25650adbc318a18d7d36250ba8f536eb1906283a5831128.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/e5eb8b6385b874b36a2101e089d1bc0df2418628daf9956c371beb97e92eeacf.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/0fc9567f9bbf4bbdf913f2b5ba72d343398bef9075e27a6ffc4763a1b7b75bd7.png"
+    "https://archive.org/download/psvitaalive-protect-the-earth/shot_01.png",
+    "https://archive.org/download/psvitaalive-protect-the-earth/shot_02.png",
+    "https://archive.org/download/psvitaalive-protect-the-earth/shot_03.png",
+    "https://archive.org/download/psvitaalive-protect-the-earth/shot_04.png",
+    "https://archive.org/download/psvitaalive-protect-the-earth/shot_05.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-protect-the-earth/protect-the-earth.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Official Website",

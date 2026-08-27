@@ -16,15 +16,22 @@
   "requirements": "Not specified",
   "size": 3594347,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1756-atlantis.png",
+  "icon": "https://archive.org/download/psvitaalive-atlantis/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c1614ecd6e2c39e90e5d8f8f5b7c2a61220ad4afe0df50327d50af0ff21b68b1.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c14c39b2cb817855c07c7e95d7bea5e4c05f73fc4694be3c82822b14a2ebd8b0.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/be05a5f2d39fcb0d0de5f14af10d0c2f45fbc7cd88fac022f933c094788abce9.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/5cb46aca798c7153e973f07ffd9f1874a2b532b780380cbb7e795940fbb28ce2.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/c1614ecd6e2c39e90e5d8f8f5b7c2a61220ad4afe0df50327d50af0ff21b68b1.png"
+    "https://archive.org/download/psvitaalive-atlantis/shot_01.png",
+    "https://archive.org/download/psvitaalive-atlantis/shot_02.png",
+    "https://archive.org/download/psvitaalive-atlantis/shot_03.png",
+    "https://archive.org/download/psvitaalive-atlantis/shot_04.png",
+    "https://archive.org/download/psvitaalive-atlantis/shot_05.png"
   ],
-  "links": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-atlantis/atlantis.vpk",
+      "recommended": true
+    }
+  ],
   "source_name": "VitaHomebrewDB",
   "source_id": "753",
   "source_url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/753-Atlantis.vpk",

@@ -16,12 +16,18 @@
   "requirements": "Not specified",
   "size": 2519289,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/b9855466923c344fc9699ad82b57098a0201a09b4a18f084cd61ce2f47959e7e.png",
+  "icon": "https://archive.org/download/psvitaalive-vita-sokoban/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/be8944ca904e980e4727e5355ac111eb42e68c83adb2be1c1456fce8d325ac6b.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/be8944ca904e980e4727e5355ac111eb42e68c83adb2be1c1456fce8d325ac6b.png"
+    "https://archive.org/download/psvitaalive-vita-sokoban/shot_01.png",
+    "https://archive.org/download/psvitaalive-vita-sokoban/shot_02.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-vita-sokoban/vita-sokoban.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Release Page",

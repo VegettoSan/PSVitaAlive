@@ -16,15 +16,21 @@
   "requirements": "- libshacccg.suprx",
   "size": 3410768,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1803-rigelengine-vita.png",
+  "icon": "https://archive.org/download/psvitaalive-rigelengine-vita/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/8a923b8c623b96c0e38f3b33d965e1961e28ba9f2fcb406daacf575609f04f90.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/00ad60c31b5fb73c34d62ddbce9a13278aa143e5d680bc7dd763f96776205353.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/da746e9a3305838bed273b3686511ebcc989310c01927d1b4dc2f7e7ab3308f2.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/b83293ddd12ca0d75275bdc93bc29eda7a61dff5b681aa0f9e55a30b1ac31fd3.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/8a923b8c623b96c0e38f3b33d965e1961e28ba9f2fcb406daacf575609f04f90.png"
+    "https://archive.org/download/psvitaalive-rigelengine-vita/shot_01.png",
+    "https://archive.org/download/psvitaalive-rigelengine-vita/shot_02.png",
+    "https://archive.org/download/psvitaalive-rigelengine-vita/shot_03.png",
+    "https://archive.org/download/psvitaalive-rigelengine-vita/shot_04.png",
+    "https://archive.org/download/psvitaalive-rigelengine-vita/shot_05.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-rigelengine-vita/rigelengine-vita.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Official Website",

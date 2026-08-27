@@ -17,11 +17,17 @@
   "requirements": "Not specified",
   "size": 459389,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/4a80e0db0b97165d2894141efbe79ae3761981788cb5abd62ced0218071100e2.png",
+  "icon": "https://archive.org/download/psvitaalive-vitabright-lut-editor/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/4a80e0db0b97165d2894141efbe79ae3761981788cb5abd62ced0218071100e2.png"
+    "https://archive.org/download/psvitaalive-vitabright-lut-editor/shot_01.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-vitabright-lut-editor/vitabright-lut-editor.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Release Page",

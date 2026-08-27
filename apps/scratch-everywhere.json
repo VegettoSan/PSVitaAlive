@@ -17,15 +17,21 @@
   "requirements": "Not specified",
   "size": 4188074,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/03e18747e33716a15a7d48b0412cfec9b74592f00c065388cf0ec709278ef79e.png",
+  "icon": "https://archive.org/download/psvitaalive-scratch-everywhere/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/8d131a1e8d3bdf89f9d40000c60235adbf204efa3cfec15aedf0a9e645f6c27a.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/e88571d36aeb78a9596345fb98dcaff69af25a869e4b2f12a1e44c0f28d68f44.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/a975253adb6dd49725048130475fc1d5917657eca11a046c5c383085c9eb9652.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/8d131a1e8d3bdf89f9d40000c60235adbf204efa3cfec15aedf0a9e645f6c27a.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/e88571d36aeb78a9596345fb98dcaff69af25a869e4b2f12a1e44c0f28d68f44.png"
+    "https://archive.org/download/psvitaalive-scratch-everywhere/shot_01.png",
+    "https://archive.org/download/psvitaalive-scratch-everywhere/shot_02.png",
+    "https://archive.org/download/psvitaalive-scratch-everywhere/shot_03.png",
+    "https://archive.org/download/psvitaalive-scratch-everywhere/shot_04.png",
+    "https://archive.org/download/psvitaalive-scratch-everywhere/shot_05.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-scratch-everywhere/scratch-everywhere.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Release Page",

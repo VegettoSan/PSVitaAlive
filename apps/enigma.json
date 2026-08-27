@@ -16,15 +16,21 @@
   "requirements": "Not specified",
   "size": 5209786,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/0369-enigma.png",
+  "icon": "https://archive.org/download/psvitaalive-enigma/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/89a04cdf6759a2c258f60e0d55b09184d44d6ca3f4eee7d626c9f0d9f7beb786.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/223070d1b3fe4ed7d0e1240a0c412da5aa30c1f8f8d2fe4e12d370b1504540e3.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/298347c5576487d7968bd82fb3aab6d2dfe68f5657aa66a6fded97bed6f6f4c3.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/8f2dd775dc298553fd7da1d781a5a6ea97bd30a4afd50759cf8df0fd329e1152.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/89a04cdf6759a2c258f60e0d55b09184d44d6ca3f4eee7d626c9f0d9f7beb786.png"
+    "https://archive.org/download/psvitaalive-enigma/shot_01.png",
+    "https://archive.org/download/psvitaalive-enigma/shot_02.png",
+    "https://archive.org/download/psvitaalive-enigma/shot_03.png",
+    "https://archive.org/download/psvitaalive-enigma/shot_04.png",
+    "https://archive.org/download/psvitaalive-enigma/shot_05.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-enigma/enigma_1.11.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Release Page",

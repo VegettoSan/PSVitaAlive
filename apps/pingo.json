@@ -16,15 +16,21 @@
   "requirements": "Not specified",
   "size": 8404175,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/67036f0ecf23fe129d1ee9cc3c05f18859116ec28a4ce0f4421cd5cadd701076.png",
+  "icon": "https://archive.org/download/psvitaalive-pingo/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/7e4573afd391a9a1682251e98e999ca71bf178c1ed95cab9ce69bc4f83d5ee35.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/f49c3ec0c1da725b49de4158a8e673afdbf39a8ad2876d1009598ae849b0d609.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/04ea0adb9bcc574f1cf3309a400fb5cfc2eb84d74103dfe79819e6775aabc0d6.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/ac6f49112157bf7679f81b42ba1304f58c528fb3a99336e413e38b68b8ad2c29.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/7e4573afd391a9a1682251e98e999ca71bf178c1ed95cab9ce69bc4f83d5ee35.png"
+    "https://archive.org/download/psvitaalive-pingo/shot_01.png",
+    "https://archive.org/download/psvitaalive-pingo/shot_02.png",
+    "https://archive.org/download/psvitaalive-pingo/shot_03.png",
+    "https://archive.org/download/psvitaalive-pingo/shot_04.png",
+    "https://archive.org/download/psvitaalive-pingo/shot_05.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-pingo/pingo.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Release Page",

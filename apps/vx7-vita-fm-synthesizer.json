@@ -16,11 +16,17 @@
   "requirements": "Not specified",
   "size": 1311247,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1942-vx7-vita-fm-synthesizer.png",
+  "icon": "https://archive.org/download/psvitaalive-vx7-vita-fm-synthesizer/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1942-vx7-vita-fm-synthesizer.png"
+    "https://archive.org/download/psvitaalive-vx7-vita-fm-synthesizer/shot_01.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-vx7-vita-fm-synthesizer/vx7-vita-fm-synthesizer.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Official Website",

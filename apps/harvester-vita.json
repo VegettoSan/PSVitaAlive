@@ -16,11 +16,17 @@
   "requirements": "Not specified",
   "size": 21986257,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/c533b65ec53065e1f163a1cbd6e2e5e8ceacfd19161a7b4559bd691669491feb.png",
+  "icon": "https://archive.org/download/psvitaalive-harvester-vita/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/c533b65ec53065e1f163a1cbd6e2e5e8ceacfd19161a7b4559bd691669491feb.png"
+    "https://archive.org/download/psvitaalive-harvester-vita/shot_01.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-harvester-vita/harvester-vita.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Release Page",

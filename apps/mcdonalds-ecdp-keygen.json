@@ -16,11 +16,17 @@
   "requirements": "Not specified",
   "size": 1247791,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1989-ecdp-keygen.png",
+  "icon": "https://archive.org/download/psvitaalive-mcdonalds-ecdp-keygen/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1989-ecdp-keygen.png"
+    "https://archive.org/download/psvitaalive-mcdonalds-ecdp-keygen/shot_01.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-mcdonalds-ecdp-keygen/eCDPKeyGen.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Release Page",

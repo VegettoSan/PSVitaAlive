@@ -16,15 +16,21 @@
   "requirements": "- Game Data Files: PC",
   "size": 22126274,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/46c1acc7e0c8131c291d6930ca7c7fa9bd7ec9ab2afe26da1fc4a3dd1b727d55.png",
+  "icon": "https://archive.org/download/psvitaalive-hollow-knight-vita/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/1b4d82ce4970e9c3ff0e76c409855e126b9acbffb98d3b56c490dbc28d114686.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/07a6ed0ff71a49c302fae7c37355ffb999e4df091a1b79a681703e0703e75d39.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/e21a024d762c40c20bda362286591c3e5d5c7ed9a70ab3b4bb587dcbd13e34f5.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/1b4d82ce4970e9c3ff0e76c409855e126b9acbffb98d3b56c490dbc28d114686.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/07a6ed0ff71a49c302fae7c37355ffb999e4df091a1b79a681703e0703e75d39.png"
+    "https://archive.org/download/psvitaalive-hollow-knight-vita/shot_01.png",
+    "https://archive.org/download/psvitaalive-hollow-knight-vita/shot_02.png",
+    "https://archive.org/download/psvitaalive-hollow-knight-vita/shot_03.png",
+    "https://archive.org/download/psvitaalive-hollow-knight-vita/shot_04.png",
+    "https://archive.org/download/psvitaalive-hollow-knight-vita/shot_05.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-hollow-knight-vita/hollow-knight-vita.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Repository",

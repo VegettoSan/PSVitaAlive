@@ -16,12 +16,19 @@
   "requirements": "Not specified",
   "size": 73768102,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1571-another-metroid-2-remake.png",
+  "icon": "https://archive.org/download/psvitaalive-another-metroid-2-remake/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/60db97a2cbe037b7cf3378ecd52b5fcd3b118f0a86187432913eda10492cfed8.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/60db97a2cbe037b7cf3378ecd52b5fcd3b118f0a86187432913eda10492cfed8.png"
+    "https://archive.org/download/psvitaalive-another-metroid-2-remake/shot_01.png",
+    "https://archive.org/download/psvitaalive-another-metroid-2-remake/shot_02.png"
   ],
-  "links": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-another-metroid-2-remake/another-metroid-2-remake.vpk",
+      "recommended": true
+    }
+  ],
   "source_name": "VitaHomebrewDB",
   "source_id": "308",
   "source_url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/308-AMTR01693.vpk",

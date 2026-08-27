@@ -16,15 +16,21 @@
   "requirements": "- libshacccg.suprx\n- kubridge.skprx\n- fd_fix.skprx OR repatch_ex.skprx\n- Game Data Files: Android",
   "size": 11636659,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/82ce805315dc85d255a4c436cb953893ade062fe0f1dfa2ab73bc0465c4f7732.png",
+  "icon": "https://archive.org/download/psvitaalive-anomaly-defenders-vita/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/427a497917fbfc28f6da96ad3f84dbf3edd01438a2ba547e102ec87f167efc4c.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/786437205956b4da3f2f37196d1b5b4287ca99e2144e8dd2f1b25e4e58ee4f47.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/09a55b4c778578b1cefc675bb85f725e4e8c323d8a55ef12de338a96957cf891.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/dea95bf376f0cb7973f8a8096d8318089fe41a0f4e59efe5027ee667f333c28a.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/427a497917fbfc28f6da96ad3f84dbf3edd01438a2ba547e102ec87f167efc4c.png"
+    "https://archive.org/download/psvitaalive-anomaly-defenders-vita/shot_01.png",
+    "https://archive.org/download/psvitaalive-anomaly-defenders-vita/shot_02.png",
+    "https://archive.org/download/psvitaalive-anomaly-defenders-vita/shot_03.png",
+    "https://archive.org/download/psvitaalive-anomaly-defenders-vita/shot_04.png",
+    "https://archive.org/download/psvitaalive-anomaly-defenders-vita/shot_05.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-anomaly-defenders-vita/anomaly-defenders-vita.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Release Page",

@@ -16,15 +16,21 @@
   "requirements": "Not specified",
   "size": 952796,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1684-terri-fried.png",
+  "icon": "https://archive.org/download/psvitaalive-terri-fried/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/f5318351722fb0e392f22fb9c89204bba6a14a5ea30b8cef76726a53fe08f08b.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/e93b16329a0f172116a2f72a323ebd6d089c601a45e4a3bc026be8805281d311.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/6bf2e41640853d9207b9739783bcb33fd18c7525976baf8e3ea8f80d162a0135.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/6274c3d9629855f2a4bbc05a5d03a48b89d7a5d038c790f183cdf8f078e315ba.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/f5318351722fb0e392f22fb9c89204bba6a14a5ea30b8cef76726a53fe08f08b.png"
+    "https://archive.org/download/psvitaalive-terri-fried/shot_01.png",
+    "https://archive.org/download/psvitaalive-terri-fried/shot_02.png",
+    "https://archive.org/download/psvitaalive-terri-fried/shot_03.png",
+    "https://archive.org/download/psvitaalive-terri-fried/shot_04.png",
+    "https://archive.org/download/psvitaalive-terri-fried/shot_05.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-terri-fried/terri-fried.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Official Website",

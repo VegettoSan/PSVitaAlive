@@ -16,11 +16,17 @@
   "requirements": "Not specified",
   "size": 491527,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1745-vita-bootanim.png",
+  "icon": "https://archive.org/download/psvitaalive-vita-bootanim/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1745-vita-bootanim.png"
+    "https://archive.org/download/psvitaalive-vita-bootanim/shot_01.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-vita-bootanim/vita-bootanim.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Repository",

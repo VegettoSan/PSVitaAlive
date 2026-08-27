@@ -16,15 +16,21 @@
   "requirements": "Not specified",
   "size": 73075945,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1877-bonkbots.png",
+  "icon": "https://archive.org/download/psvitaalive-bonkbots/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/159e29b61f55efa23ea10753e5ed07fa27856c5453d79956ad1c8e1cd7f349bb.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/ebed10a0da6bd1e086d39779fe704b5ae424cc29c61ede5763d33b40ba49066a.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/63cc93880eb04c082f3ecb9ce7d0d4a74ef74d1e2329b4b66a1f08972faa1f14.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/159e29b61f55efa23ea10753e5ed07fa27856c5453d79956ad1c8e1cd7f349bb.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/ebed10a0da6bd1e086d39779fe704b5ae424cc29c61ede5763d33b40ba49066a.png"
+    "https://archive.org/download/psvitaalive-bonkbots/shot_01.png",
+    "https://archive.org/download/psvitaalive-bonkbots/shot_02.png",
+    "https://archive.org/download/psvitaalive-bonkbots/shot_03.png",
+    "https://archive.org/download/psvitaalive-bonkbots/shot_04.png",
+    "https://archive.org/download/psvitaalive-bonkbots/shot_05.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-bonkbots/bonkbots.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Official Website",

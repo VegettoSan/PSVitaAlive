@@ -16,15 +16,21 @@
   "requirements": "- libshacccg.suprx",
   "size": 7223492,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1858-openmrac-vita.png",
+  "icon": "https://archive.org/download/psvitaalive-openmrac-vita/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/b93465fea3f96ea30307604aa7f7fe3cba79d6e06d195a5c0c933641aa9cb826.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/1c963f24bef823da7481bd01ed01aa457c2429ac383aa633990a84a5147a59cd.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/3dbda2499f206543b195d600664d5d450b769853d8addeae735ae4d384f31010.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/b93465fea3f96ea30307604aa7f7fe3cba79d6e06d195a5c0c933641aa9cb826.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/1c963f24bef823da7481bd01ed01aa457c2429ac383aa633990a84a5147a59cd.png"
+    "https://archive.org/download/psvitaalive-openmrac-vita/shot_01.png",
+    "https://archive.org/download/psvitaalive-openmrac-vita/shot_02.png",
+    "https://archive.org/download/psvitaalive-openmrac-vita/shot_03.png",
+    "https://archive.org/download/psvitaalive-openmrac-vita/shot_04.png",
+    "https://archive.org/download/psvitaalive-openmrac-vita/shot_05.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-openmrac-vita/openmrac-vita.vpk",
+      "recommended": true
+    },
     {
       "type": "Repository",
       "name": "Repositorio",

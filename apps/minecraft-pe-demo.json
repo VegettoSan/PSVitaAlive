@@ -16,11 +16,17 @@
   "requirements": "Not specified",
   "size": 8663311,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1446-minecraftpe-demo.png",
+  "icon": "https://archive.org/download/psvitaalive-minecraft-pe-demo/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1446-minecraftpe-demo.png"
+    "https://archive.org/download/psvitaalive-minecraft-pe-demo/shot_01.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-minecraft-pe-demo/minecraftpe_demo.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Release Page",

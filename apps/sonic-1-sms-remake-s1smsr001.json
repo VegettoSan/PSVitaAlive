@@ -17,15 +17,21 @@
   "requirements": "Not specified",
   "size": 31781081,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/0737-sonic-1-sms-remake.png",
+  "icon": "https://archive.org/download/psvitaalive-sonic-1-sms-remake-s1smsr001/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/0737-sonic-1-sms-remake.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/6b0b880f75b4c6b7258712d6906584f5c4f517edc1209582145935f61c8e909f.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/e4184702c5a1b008e7d925547b27c872c6b3bcaaa1e663d166fa3815bb5d3777.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/05d371a0ecadf95c05adc2988e654c67e9dbf40545a6fbe300ebbb80541294df.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/50d20e6000f58f13791bc5232c4c765e8f5cb2955fca953f5062b6a1a06d486c.png"
+    "https://archive.org/download/psvitaalive-sonic-1-sms-remake-s1smsr001/shot_01.png",
+    "https://archive.org/download/psvitaalive-sonic-1-sms-remake-s1smsr001/shot_02.png",
+    "https://archive.org/download/psvitaalive-sonic-1-sms-remake-s1smsr001/shot_03.png",
+    "https://archive.org/download/psvitaalive-sonic-1-sms-remake-s1smsr001/shot_04.png",
+    "https://archive.org/download/psvitaalive-sonic-1-sms-remake-s1smsr001/shot_05.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-sonic-1-sms-remake-s1smsr001/sonic-1-sms-remake-s1smsr001.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Release Page",

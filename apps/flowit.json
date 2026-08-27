@@ -16,15 +16,21 @@
   "requirements": "Not specified",
   "size": 22927916,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/0771-flowit.png",
+  "icon": "https://archive.org/download/psvitaalive-flowit/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/7d2a6fdea4047bc93a414c28f0d35a61b5944dea2b3b85210989c4ee7a0fd31c.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/7a491bc6b2ea22a5f7d84025f4442c3f5259b25f254bf740d63c5beeafbca6e6.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/f67c50e30decada1abd63055645ad58d880e11f3c7874c04e731e66a63d9b267.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/6eabc17fce40c434a21a97d922629c3134a2c0995136b455a8c32d706dac1331.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/7d2a6fdea4047bc93a414c28f0d35a61b5944dea2b3b85210989c4ee7a0fd31c.png"
+    "https://archive.org/download/psvitaalive-flowit/shot_01.png",
+    "https://archive.org/download/psvitaalive-flowit/shot_02.png",
+    "https://archive.org/download/psvitaalive-flowit/shot_03.png",
+    "https://archive.org/download/psvitaalive-flowit/shot_04.png",
+    "https://archive.org/download/psvitaalive-flowit/shot_05.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-flowit/Flowit_v1.03.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Release Page",

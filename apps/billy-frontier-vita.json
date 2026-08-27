@@ -16,15 +16,21 @@
   "requirements": "- libshacccg.suprx",
   "size": 1858496,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1808-billy-frontier-vita.png",
+  "icon": "https://archive.org/download/psvitaalive-billy-frontier-vita/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/ddc24671f3464164a049b65734e432daefdfae1ec8ae764642f6bc27d262a223.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c649bf8211ab85b40bc7b6a9a514d478df64b410a24755bf576366b5c3c93aa8.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/a418e55843ed9bf18cd0a2b58ea9bcf875bcb5420e42185d16e37922d1066656.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/d75ea9b3b43ca6030c94815f2afe3c6bef2284ee0520852d96cb3137c0b3b9c0.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/ddc24671f3464164a049b65734e432daefdfae1ec8ae764642f6bc27d262a223.png"
+    "https://archive.org/download/psvitaalive-billy-frontier-vita/shot_01.png",
+    "https://archive.org/download/psvitaalive-billy-frontier-vita/shot_02.png",
+    "https://archive.org/download/psvitaalive-billy-frontier-vita/shot_03.png",
+    "https://archive.org/download/psvitaalive-billy-frontier-vita/shot_04.png",
+    "https://archive.org/download/psvitaalive-billy-frontier-vita/shot_05.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-billy-frontier-vita/billy-frontier-vita.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Official Website",

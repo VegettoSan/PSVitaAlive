@@ -16,15 +16,21 @@
   "requirements": "- Game Data Files: PC",
   "size": 3188441,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1930-guardener-vita.png",
+  "icon": "https://archive.org/download/psvitaalive-guardener-vita/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/d7723a8402461e7557a6e1ef2227f8c13bd15fa804952a5a66770cfc19bd041e.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/55d58c113cfe24a7600a8884f221503cfcc4f06bea54419268cad8f1d73688ec.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/0dbc91b538819cd281922993e4495cbe12985ddbe3bf37511e40de194b4aa791.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/d7723a8402461e7557a6e1ef2227f8c13bd15fa804952a5a66770cfc19bd041e.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/55d58c113cfe24a7600a8884f221503cfcc4f06bea54419268cad8f1d73688ec.png"
+    "https://archive.org/download/psvitaalive-guardener-vita/shot_01.png",
+    "https://archive.org/download/psvitaalive-guardener-vita/shot_02.png",
+    "https://archive.org/download/psvitaalive-guardener-vita/shot_03.png",
+    "https://archive.org/download/psvitaalive-guardener-vita/shot_04.png",
+    "https://archive.org/download/psvitaalive-guardener-vita/shot_05.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-guardener-vita/guardener-vita.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Official Website",

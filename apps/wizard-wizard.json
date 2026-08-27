@@ -17,12 +17,19 @@
   "requirements": "Not specified",
   "size": 11060853,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1605-wizard-wizard.png",
+  "icon": "https://archive.org/download/psvitaalive-wizard-wizard/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/fa3a6488da9172deb5e76f0547a4d673fc7e05bb86252dadd8cb451ce11df638.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/fa3a6488da9172deb5e76f0547a4d673fc7e05bb86252dadd8cb451ce11df638.png"
+    "https://archive.org/download/psvitaalive-wizard-wizard/shot_01.png",
+    "https://archive.org/download/psvitaalive-wizard-wizard/shot_02.png"
   ],
-  "links": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-wizard-wizard/wizard-wizard.vpk",
+      "recommended": true
+    }
+  ],
   "source_name": "VitaHomebrewDB",
   "source_id": "408",
   "source_url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/408-WizardWizard.vpk",

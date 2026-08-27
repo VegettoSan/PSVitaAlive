@@ -16,11 +16,17 @@
   "requirements": "- fd_fix.skprx OR repatch_ex.skprx.\n- Game Data Files: PC",
   "size": 3121871,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1801-fate-stay-night-realta-nua-ultimate-edition.png",
+  "icon": "https://archive.org/download/psvitaalive-fate-stay-night-realta-nua---ultimate-edition/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1801-fate-stay-night-realta-nua-ultimate-edition.png"
+    "https://archive.org/download/psvitaalive-fate-stay-night-realta-nua---ultimate-edition/shot_01.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-fate-stay-night-realta-nua---ultimate-edition/fate-stay-night-realta-nua---ultimate-edition.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Official Website",

@@ -16,11 +16,17 @@
   "requirements": "Not specified",
   "size": 114337376,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1981-the-four-of-us-are-dying.png",
+  "icon": "https://archive.org/download/psvitaalive-the-four-of-us-are-dying/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1981-the-four-of-us-are-dying.png"
+    "https://archive.org/download/psvitaalive-the-four-of-us-are-dying/shot_01.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-the-four-of-us-are-dying/TFoUAD.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Repository",

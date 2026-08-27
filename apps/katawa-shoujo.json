@@ -16,12 +16,18 @@
   "requirements": "Not specified",
   "size": 227303932,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1490-katawa-shoujo.png",
+  "icon": "https://archive.org/download/psvitaalive-katawa-shoujo/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1490-katawa-shoujo.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/kata1.jpg"
+    "https://archive.org/download/psvitaalive-katawa-shoujo/shot_01.png",
+    "https://archive.org/download/psvitaalive-katawa-shoujo/shot_02.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-katawa-shoujo/katawa-shoujo.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Official Website",

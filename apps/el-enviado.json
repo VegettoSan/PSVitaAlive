@@ -16,12 +16,18 @@
   "requirements": "Not specified",
   "size": 85097271,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1940-el-enviado.png",
+  "icon": "https://archive.org/download/psvitaalive-el-enviado/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/10e578a89b23a10b39e202906dd4a2172ca2b4fe45978b8ab82f535f12e3b932.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/10e578a89b23a10b39e202906dd4a2172ca2b4fe45978b8ab82f535f12e3b932.png"
+    "https://archive.org/download/psvitaalive-el-enviado/shot_01.png",
+    "https://archive.org/download/psvitaalive-el-enviado/shot_02.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-el-enviado/el-enviado.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Official Website",

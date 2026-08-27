@@ -18,14 +18,20 @@
   "requirements": "Not specified",
   "size": 1206605,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1550-numpty-physics.png",
+  "icon": "https://archive.org/download/psvitaalive-numpty-physics/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/272a8b67fb393d6725b52d1948ec95ff49ab43c0f6e577765d85bdf61bc18c27.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/874081e6c76c7d6ea38272b9447c80977dc909cd56b1780d3d86c232c7d3960f.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/272a8b67fb393d6725b52d1948ec95ff49ab43c0f6e577765d85bdf61bc18c27.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/874081e6c76c7d6ea38272b9447c80977dc909cd56b1780d3d86c232c7d3960f.png"
+    "https://archive.org/download/psvitaalive-numpty-physics/shot_01.png",
+    "https://archive.org/download/psvitaalive-numpty-physics/shot_02.png",
+    "https://archive.org/download/psvitaalive-numpty-physics/shot_03.png",
+    "https://archive.org/download/psvitaalive-numpty-physics/shot_04.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-numpty-physics/numpty-physics.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Official Website",

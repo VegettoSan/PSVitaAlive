@@ -16,11 +16,17 @@
   "requirements": "- Game Data Files: PC",
   "size": 14380556,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/2ad346392e41ea9a2c1c91ab7712629147c91e0b76bb22c80e669bc128703436.png",
+  "icon": "https://archive.org/download/psvitaalive-kare-wa-kanojo-vita/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/2ad346392e41ea9a2c1c91ab7712629147c91e0b76bb22c80e669bc128703436.png"
+    "https://archive.org/download/psvitaalive-kare-wa-kanojo-vita/shot_01.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-kare-wa-kanojo-vita/kare-wa-kanojo-vita.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Repository",

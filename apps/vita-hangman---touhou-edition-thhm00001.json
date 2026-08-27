@@ -18,12 +18,18 @@
   "requirements": "Not specified",
   "size": 6749665,
   "status": "Legacy",
-  "icon": "https://www.rinnegatamante.eu/vitadb/icons/4ebc4a03b6f53b7495bce69843216b4f13050085df604e45c0a5bd9b982a442a.png",
+  "icon": "https://archive.org/download/psvitaalive-vita-hangman---touhou-edition-thhm00001/icon0.png",
   "screenshots": [
-    "https://www.rinnegatamante.eu/vitadb/screenshots/2afd4598148cdc5523c1cc50c855948801eac09fd522ebef63b3a76abbb136fe.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/60705ab699d8435613e30ef2d64c54c7ff3d8f42cb29e016d008923e3dde7df1.png"
+    "https://archive.org/download/psvitaalive-vita-hangman---touhou-edition-thhm00001/shot_01.png",
+    "https://archive.org/download/psvitaalive-vita-hangman---touhou-edition-thhm00001/shot_02.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-vita-hangman---touhou-edition-thhm00001/vita-hangman---touhou-edition-thhm00001.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Official Website",

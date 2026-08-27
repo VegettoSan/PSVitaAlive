@@ -16,13 +16,20 @@
   "requirements": "Not specified",
   "size": 1837913,
   "status": "Legacy",
-  "icon": "https://www.rinnegatamante.eu/vitadb/icons/b2994a379600a1e0df845f872f8fbc8fa1340281351e5175d9029434f609eddd.png",
+  "icon": "https://archive.org/download/psvitaalive-systemcheckenabled-actpsvita/icon0.png",
   "screenshots": [
-    "https://www.rinnegatamante.eu/vitadb/screenshots/check1.jpg",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/check2.jpg",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/check3.jpg"
+    "https://archive.org/download/psvitaalive-systemcheckenabled-actpsvita/shot_01.png",
+    "https://archive.org/download/psvitaalive-systemcheckenabled-actpsvita/shot_02.png",
+    "https://archive.org/download/psvitaalive-systemcheckenabled-actpsvita/shot_03.png"
   ],
-  "links": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-systemcheckenabled-actpsvita/systemcheckenabled-actpsvita.vpk",
+      "recommended": true
+    }
+  ],
   "source_name": "VitaDB",
   "source_id": "17",
   "source_url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=17",

@@ -16,15 +16,21 @@
   "requirements": "- Game Data Files: Android\n- kubridge.skprx",
   "size": 1728466,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/2fb5da42c44671cdb320b76ad5062dd669c6281034a3e0ca7be7ea6cc3f5777a.png",
+  "icon": "https://archive.org/download/psvitaalive-nfshp-vita/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/010a287d9ac9915c6762a775b94d0c00b5e3f932e5a4401f18d16ed9ec869188.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/cdd524c5dd14d5a30dbfe46315a3a9d10dd9f912de94f053925c3ad817036c38.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/147ab1b362c5cfc8e0c1f734a626e486cd5fa14100f2f9cf23190c4bde4500b1.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/cbedcfedf53207db4f614aea1d80fce4ff515d58d06ad273138a3ecf46c7c627.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/010a287d9ac9915c6762a775b94d0c00b5e3f932e5a4401f18d16ed9ec869188.png"
+    "https://archive.org/download/psvitaalive-nfshp-vita/shot_01.png",
+    "https://archive.org/download/psvitaalive-nfshp-vita/shot_02.png",
+    "https://archive.org/download/psvitaalive-nfshp-vita/shot_03.png",
+    "https://archive.org/download/psvitaalive-nfshp-vita/shot_04.png",
+    "https://archive.org/download/psvitaalive-nfshp-vita/shot_05.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-nfshp-vita/nfshp-vita.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Release Page",

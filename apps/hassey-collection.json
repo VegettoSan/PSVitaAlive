@@ -16,15 +16,21 @@
   "requirements": "- libshacccg.suprx\n- kubridge.skprx\n- fd_fix.skprx OR repatch_ex.skprx\n- Game Data Files: Android",
   "size": 4914316,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/8621b9f76b42109fbaff86397bd823a79a6fe0b33c3fdd9c9a32686ce2740371.png",
+  "icon": "https://archive.org/download/psvitaalive-hassey-collection/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/6ca5444179d927323635548a46a47ab4860fd801b1d48b3d237c0cc0ddf5a8a4.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/145324f7112b0f26014d7cab122541c78794bde66912f8776b3a27ddcc5240b1.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/904d5f4a06af4fdfc0a6375319f925513f1fe90a43a5a0a4e9f526cacc653a0c.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/32902e64c9ee6b6e643a27438ae46856f7f7ca8685f63ad8157b8373e74f1af0.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/6ca5444179d927323635548a46a47ab4860fd801b1d48b3d237c0cc0ddf5a8a4.png"
+    "https://archive.org/download/psvitaalive-hassey-collection/shot_01.png",
+    "https://archive.org/download/psvitaalive-hassey-collection/shot_02.png",
+    "https://archive.org/download/psvitaalive-hassey-collection/shot_03.png",
+    "https://archive.org/download/psvitaalive-hassey-collection/shot_04.png",
+    "https://archive.org/download/psvitaalive-hassey-collection/shot_05.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-hassey-collection/hassey-collection.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Release Page",

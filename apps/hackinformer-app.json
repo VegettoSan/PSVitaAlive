@@ -16,13 +16,20 @@
   "requirements": "Not specified",
   "size": 150516,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1548-hackinformer-app.png",
+  "icon": "https://archive.org/download/psvitaalive-hackinformer-app/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1548-hackinformer-app.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/hackinf1.jpg",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/hackinf2.jpg"
+    "https://archive.org/download/psvitaalive-hackinformer-app/shot_01.png",
+    "https://archive.org/download/psvitaalive-hackinformer-app/shot_02.png",
+    "https://archive.org/download/psvitaalive-hackinformer-app/shot_03.png"
   ],
-  "links": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-hackinformer-app/hackinformer-app.vpk",
+      "recommended": true
+    }
+  ],
   "source_name": "VitaHomebrewDB",
   "source_id": "227",
   "source_url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/227-HackInformer.vpk",

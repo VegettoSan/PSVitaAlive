@@ -18,15 +18,21 @@
   "requirements": "Not specified",
   "size": 4264123,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/0189-uae4all.png",
+  "icon": "https://archive.org/download/psvitaalive-uae4all/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/d28f27fef9024c59631b9d9fefc53dc89eafd78a9a62079882a158834491748b.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/941c6a542452b6ae9510dfa4dd4ddb69be1216c84ac2931c38e9e6ad83e0decb.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/2152139627af174e794b1d5db9a6ee3fede7dd7908821724a0bd0d51c608cc7e.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/09914806f3976ad30b9f081fd7bae4c8dda3486e204c30ea78aed70fb686d70a.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/d28f27fef9024c59631b9d9fefc53dc89eafd78a9a62079882a158834491748b.png"
+    "https://archive.org/download/psvitaalive-uae4all/shot_01.png",
+    "https://archive.org/download/psvitaalive-uae4all/shot_02.png",
+    "https://archive.org/download/psvitaalive-uae4all/shot_03.png",
+    "https://archive.org/download/psvitaalive-uae4all/shot_04.png",
+    "https://archive.org/download/psvitaalive-uae4all/shot_05.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-uae4all/uae4all_2.10.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Release Page",

@@ -17,12 +17,18 @@
   "requirements": "Not specified",
   "size": 22941783,
   "status": "Legacy",
-  "icon": "https://www.rinnegatamante.eu/vitadb/icons/5edf9882698d2be5bd4b6f505e58aa5783b9f1068898880cac8d6e3ab149bb70.png",
+  "icon": "https://archive.org/download/psvitaalive-non-competitive-singing-potatoes/icon0.png",
   "screenshots": [
-    "https://www.rinnegatamante.eu/vitadb/screenshots/da0ae2f0755e437a824286de6da881668aafc1f56863da3b2f118d19de5753b1.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/9cbde0e279515245e6ad43633f79b67fa728e28629e2524953fb7635dd373ddc.png"
+    "https://archive.org/download/psvitaalive-non-competitive-singing-potatoes/shot_01.png",
+    "https://archive.org/download/psvitaalive-non-competitive-singing-potatoes/shot_02.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-non-competitive-singing-potatoes/non-competitive-singing-potatoes.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Official Website",

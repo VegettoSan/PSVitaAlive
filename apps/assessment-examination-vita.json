@@ -16,14 +16,20 @@
   "requirements": "Not specified",
   "size": 107502048,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1933-assessment-examination-vita.png",
+  "icon": "https://archive.org/download/psvitaalive-assessment-examination-vita/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/ea5c7bb80772e227b7b18edaca84fd4ae0de1e03f96d484167062805960f927f.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/47e04758ff18fe1b186be5c4d26a21df341ec554eb9fa172fdec2e63b9ebc18c.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/ea5c7bb80772e227b7b18edaca84fd4ae0de1e03f96d484167062805960f927f.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/47e04758ff18fe1b186be5c4d26a21df341ec554eb9fa172fdec2e63b9ebc18c.png"
+    "https://archive.org/download/psvitaalive-assessment-examination-vita/shot_01.png",
+    "https://archive.org/download/psvitaalive-assessment-examination-vita/shot_02.png",
+    "https://archive.org/download/psvitaalive-assessment-examination-vita/shot_03.png",
+    "https://archive.org/download/psvitaalive-assessment-examination-vita/shot_04.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-assessment-examination-vita/assessment-examination-vita.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Official Website",

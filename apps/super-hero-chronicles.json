@@ -16,15 +16,21 @@
   "requirements": "Not specified",
   "size": 6289721,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1475-super-hero-chronicles.png",
+  "icon": "https://archive.org/download/psvitaalive-super-hero-chronicles/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1475-super-hero-chronicles.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/shc.jpg",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/shc2.jpg",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/shc3.jpg",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/shc4.jpg"
+    "https://archive.org/download/psvitaalive-super-hero-chronicles/shot_01.png",
+    "https://archive.org/download/psvitaalive-super-hero-chronicles/shot_02.png",
+    "https://archive.org/download/psvitaalive-super-hero-chronicles/shot_03.png",
+    "https://archive.org/download/psvitaalive-super-hero-chronicles/shot_04.png",
+    "https://archive.org/download/psvitaalive-super-hero-chronicles/shot_05.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-super-hero-chronicles/super-hero-chronicles.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Official Website",

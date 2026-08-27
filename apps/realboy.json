@@ -16,12 +16,18 @@
   "requirements": "Not specified",
   "size": 140607,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/c2fcf6bdbf17422e2c851334c7274c01e83f6d87bda5eca1e8c5c81c2aa1daae.png",
+  "icon": "https://archive.org/download/psvitaalive-realboy/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/c2fcf6bdbf17422e2c851334c7274c01e83f6d87bda5eca1e8c5c81c2aa1daae.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/realboy.jpg"
+    "https://archive.org/download/psvitaalive-realboy/shot_01.png",
+    "https://archive.org/download/psvitaalive-realboy/shot_02.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-realboy/realboy.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Official Website",

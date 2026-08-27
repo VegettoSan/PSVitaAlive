@@ -16,12 +16,18 @@
   "requirements": "Not specified",
   "size": 26000212,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1671-hyper-princess-pitch-vita.png",
+  "icon": "https://archive.org/download/psvitaalive-hyper-princess-pitch-vita/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/e658dc220ca7194fd8a5a40719241af54add2887b843a397a6003827f808215f.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/e658dc220ca7194fd8a5a40719241af54add2887b843a397a6003827f808215f.png"
+    "https://archive.org/download/psvitaalive-hyper-princess-pitch-vita/shot_01.png",
+    "https://archive.org/download/psvitaalive-hyper-princess-pitch-vita/shot_02.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-hyper-princess-pitch-vita/hyper-princess-pitch-vita.vpk",
+      "recommended": true
+    },
     {
       "type": "Repository",
       "name": "Repositorio",

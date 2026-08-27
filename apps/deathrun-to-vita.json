@@ -16,12 +16,18 @@
   "requirements": "Not specified",
   "size": 2023040,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1553-deathrun-to-vita.png",
+  "icon": "https://archive.org/download/psvitaalive-deathrun-to-vita/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/65b763a01249810c96c07a735c1aee649dccfbb0f02a2698feb308934e8883e7.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/65b763a01249810c96c07a735c1aee649dccfbb0f02a2698feb308934e8883e7.png"
+    "https://archive.org/download/psvitaalive-deathrun-to-vita/shot_01.png",
+    "https://archive.org/download/psvitaalive-deathrun-to-vita/shot_02.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-deathrun-to-vita/deathrun-to-vita.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Official Website",

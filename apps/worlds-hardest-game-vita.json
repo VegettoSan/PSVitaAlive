@@ -16,11 +16,17 @@
   "requirements": "Not specified",
   "size": 43666423,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1807-worlds-hardest-game-vita.png",
+  "icon": "https://archive.org/download/psvitaalive-worlds-hardest-game-vita/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1807-worlds-hardest-game-vita.png"
+    "https://archive.org/download/psvitaalive-worlds-hardest-game-vita/shot_01.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-worlds-hardest-game-vita/worlds-hardest-game-vita.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Release Page",

@@ -17,13 +17,19 @@
   "requirements": "Not specified",
   "size": 4280113,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1482-maidumptool.png",
+  "icon": "https://archive.org/download/psvitaalive-maidumptool/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1482-maidumptool.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/maidump_eng.jpg",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/maidump.jpg"
+    "https://archive.org/download/psvitaalive-maidumptool/shot_01.png",
+    "https://archive.org/download/psvitaalive-maidumptool/shot_02.png",
+    "https://archive.org/download/psvitaalive-maidumptool/shot_03.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-maidumptool/maidumptool.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Release Page",

@@ -16,14 +16,20 @@
   "requirements": "Not specified",
   "size": 5017198,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/801ac33b636198067ac9d02e28d3c7b6c6d8e92b16751ec05b06b0aa928255c3.png",
+  "icon": "https://archive.org/download/psvitaalive-custom-livearea/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/3b217579f3687e2b70b955bfcc40d75c81f9c2c72c7e62202ca90bfb95d1c768.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/b25a488b31a1982b09d882f66985bea7616b2a68e48dafc94ea13c2192b76160.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/3b217579f3687e2b70b955bfcc40d75c81f9c2c72c7e62202ca90bfb95d1c768.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/b25a488b31a1982b09d882f66985bea7616b2a68e48dafc94ea13c2192b76160.png"
+    "https://archive.org/download/psvitaalive-custom-livearea/shot_01.png",
+    "https://archive.org/download/psvitaalive-custom-livearea/shot_02.png",
+    "https://archive.org/download/psvitaalive-custom-livearea/shot_03.png",
+    "https://archive.org/download/psvitaalive-custom-livearea/shot_04.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-custom-livearea/custom-livearea.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Release Page",

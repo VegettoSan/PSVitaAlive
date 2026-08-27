@@ -16,11 +16,17 @@
   "requirements": "Not specified",
   "size": 15734635,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1772-vita-milk.png",
+  "icon": "https://archive.org/download/psvitaalive-vita-milk/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1772-vita-milk.png"
+    "https://archive.org/download/psvitaalive-vita-milk/shot_01.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-vita-milk/vita-milk.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Repository",

@@ -16,15 +16,21 @@
   "requirements": "Not specified",
   "size": 7221728,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1594-chocolate-doom.png",
+  "icon": "https://archive.org/download/psvitaalive-chocolate-doom/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/9ed872445e03815d933d2cf28d3a5d2fb006a7f3f3dacc89c1f0d977c336356b.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/d53e78a3645638d4d0b0695b476404571868c4cf49ee03260f38c0b332558077.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c8de8b15a5270bf14d288f22f402f4f6f6b0605fc2a5826d098c0037065c6f3e.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/6ca30c962882e97f3e91571faacf08c6442811f9a2c23485c779688e16b615cc.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/9ed872445e03815d933d2cf28d3a5d2fb006a7f3f3dacc89c1f0d977c336356b.png"
+    "https://archive.org/download/psvitaalive-chocolate-doom/shot_01.png",
+    "https://archive.org/download/psvitaalive-chocolate-doom/shot_02.png",
+    "https://archive.org/download/psvitaalive-chocolate-doom/shot_03.png",
+    "https://archive.org/download/psvitaalive-chocolate-doom/shot_04.png",
+    "https://archive.org/download/psvitaalive-chocolate-doom/shot_05.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-chocolate-doom/chocolate-doom.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Official Website",

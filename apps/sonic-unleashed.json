@@ -16,15 +16,22 @@
   "requirements": "Not specified",
   "size": 74123397,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1900-sonic-unleashed.png",
+  "icon": "https://archive.org/download/psvitaalive-sonic-unleashed/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/ae2dfeb4e8d75511b6f6015ca59cd639b9e60de0f67a550c3cdeef9bb51da3e5.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/020c51f291c16e99b4b0c50aa1ad87fc4ff846ad5f8bb6b24483a4cb8600d255.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/68a284ab6859fe18ce5a3e9789128536f35af94b9fdd30dad33f4a0c69f06864.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/805604ab3b8d8f9b442b433789fbbf77f0cd106d5171ca37d10812ceec4ed181.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/ae2dfeb4e8d75511b6f6015ca59cd639b9e60de0f67a550c3cdeef9bb51da3e5.png"
+    "https://archive.org/download/psvitaalive-sonic-unleashed/shot_01.png",
+    "https://archive.org/download/psvitaalive-sonic-unleashed/shot_02.png",
+    "https://archive.org/download/psvitaalive-sonic-unleashed/shot_03.png",
+    "https://archive.org/download/psvitaalive-sonic-unleashed/shot_04.png",
+    "https://archive.org/download/psvitaalive-sonic-unleashed/shot_05.png"
   ],
-  "links": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-sonic-unleashed/sonic-unleashed.vpk",
+      "recommended": true
+    }
+  ],
   "source_name": "VitaHomebrewDB",
   "source_id": "1212",
   "source_url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1212-sonic_unleashed.vpk",

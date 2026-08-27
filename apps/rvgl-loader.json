@@ -16,15 +16,21 @@
   "requirements": "- libshacccg.suprx\n- kubridge.skprx\n- Game Data Files: Android",
   "size": 3118197,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/80975f3c0ab33555cd7de9a9d983ae14d4d08ade47a1eff5e0a88ce79fb085c6.png",
+  "icon": "https://archive.org/download/psvitaalive-rvgl-loader/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/1659bc74376356b3c21a9a263f8d90c477c9fcc57738f695dc92e22974f0d6c2.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/f2c926108d4d214354d04f1b533ffe8ae49fd9514af326017d01677fe20500d3.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/a83b2459ed44932db23bc099e3529316144df04c94478a86485fe022973b9655.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/5b9e0e308d340992199584fefe052edabbe3455014952a22b6d2a5284f0e6313.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/1659bc74376356b3c21a9a263f8d90c477c9fcc57738f695dc92e22974f0d6c2.png"
+    "https://archive.org/download/psvitaalive-rvgl-loader/shot_01.png",
+    "https://archive.org/download/psvitaalive-rvgl-loader/shot_02.png",
+    "https://archive.org/download/psvitaalive-rvgl-loader/shot_03.png",
+    "https://archive.org/download/psvitaalive-rvgl-loader/shot_04.png",
+    "https://archive.org/download/psvitaalive-rvgl-loader/shot_05.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-rvgl-loader/rvgl-loader.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Release Page",

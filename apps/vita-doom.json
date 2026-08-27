@@ -17,12 +17,18 @@
   "requirements": "- Game Data Files: PC",
   "size": 648251,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/7efea6eae7184a48b41067fe4e194b89baab583afe5f0273e0eddb417096afb2.png",
+  "icon": "https://archive.org/download/psvitaalive-vita-doom/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/7efea6eae7184a48b41067fe4e194b89baab583afe5f0273e0eddb417096afb2.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/vitadoom.jpg"
+    "https://archive.org/download/psvitaalive-vita-doom/shot_01.png",
+    "https://archive.org/download/psvitaalive-vita-doom/shot_02.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-vita-doom/vita-doom.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Release Page",

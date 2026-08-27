@@ -16,14 +16,20 @@
   "requirements": "Not specified",
   "size": 2455900,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/ecf8f219d5b2d3cfa140039652b50dae22a8515220cf24f3dd123abc38e9d2a9.png",
+  "icon": "https://archive.org/download/psvitaalive-vitagrafix-configurator/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c8c3b30acfa102408c5ad5eb56b1e85fa1513bc6d2729fc17f20ea8bc794a73a.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/edf6992403ae10fb29a5426d6682353113d4477d798e55542745532976e5ce40.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/c8c3b30acfa102408c5ad5eb56b1e85fa1513bc6d2729fc17f20ea8bc794a73a.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/edf6992403ae10fb29a5426d6682353113d4477d798e55542745532976e5ce40.png"
+    "https://archive.org/download/psvitaalive-vitagrafix-configurator/shot_01.png",
+    "https://archive.org/download/psvitaalive-vitagrafix-configurator/shot_02.png",
+    "https://archive.org/download/psvitaalive-vitagrafix-configurator/shot_03.png",
+    "https://archive.org/download/psvitaalive-vitagrafix-configurator/shot_04.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-vitagrafix-configurator/vitagrafix-configurator.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Release Page",

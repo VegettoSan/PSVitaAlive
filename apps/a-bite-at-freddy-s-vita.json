@@ -16,15 +16,21 @@
   "requirements": "- Game Data Files: PC",
   "size": 15656987,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/5dce95c17dc62653f81adba1e3b2eaac81b8e86eeaf82fc30e05831800534b0e.png",
+  "icon": "https://archive.org/download/psvitaalive-a-bite-at-freddy-s-vita/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c270e5aa18107b2f9d21961df25b9bae38cc4d429149e278c7b6c9a6909967b5.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/4328116359bc7a1e03fb737fc66bdae2112203149e69cab849a1b04a8501c2fe.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/afa951741aa2cf70e6019dceb9b8149c25d50adbae216273d62bcfb346582ac6.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/9071c58272fd20628e49dd9f9c2eaec9a7298ec837d82ef8745873b5eb185d2a.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/c270e5aa18107b2f9d21961df25b9bae38cc4d429149e278c7b6c9a6909967b5.png"
+    "https://archive.org/download/psvitaalive-a-bite-at-freddy-s-vita/shot_01.png",
+    "https://archive.org/download/psvitaalive-a-bite-at-freddy-s-vita/shot_02.png",
+    "https://archive.org/download/psvitaalive-a-bite-at-freddy-s-vita/shot_03.png",
+    "https://archive.org/download/psvitaalive-a-bite-at-freddy-s-vita/shot_04.png",
+    "https://archive.org/download/psvitaalive-a-bite-at-freddy-s-vita/shot_05.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-a-bite-at-freddy-s-vita/a-bite-at-freddy-s-vita.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Repository",

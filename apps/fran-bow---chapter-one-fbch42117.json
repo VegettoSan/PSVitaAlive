@@ -16,11 +16,17 @@
   "requirements": "- Game Data Files: Android OR PC",
   "size": 2854178,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/0639-fran-bow-chapter-one.png",
+  "icon": "https://archive.org/download/psvitaalive-fran-bow---chapter-one-fbch42117/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/0639-fran-bow-chapter-one.png"
+    "https://archive.org/download/psvitaalive-fran-bow---chapter-one-fbch42117/shot_01.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-fran-bow---chapter-one-fbch42117/FBCH4.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Release Page",

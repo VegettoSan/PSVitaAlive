@@ -16,11 +16,17 @@
   "requirements": "Not specified",
   "size": 2010352,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/2bfc5f0b82a1fcefa645bacfd97e1df37a7ed68d4c4789ffc51d58442e4eef9f.png",
+  "icon": "https://archive.org/download/psvitaalive-hbinjector/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/2bfc5f0b82a1fcefa645bacfd97e1df37a7ed68d4c4789ffc51d58442e4eef9f.png"
+    "https://archive.org/download/psvitaalive-hbinjector/shot_01.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-hbinjector/hbinjector.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Release Page",

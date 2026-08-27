@@ -16,11 +16,17 @@
   "requirements": "Not specified",
   "size": 1041927,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/3db28820b219cc9982dacfabe9521cbfbd967bec259b2b87f13bedda3848aff9.png",
+  "icon": "https://archive.org/download/psvitaalive-ps-vita-sync/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/3db28820b219cc9982dacfabe9521cbfbd967bec259b2b87f13bedda3848aff9.png"
+    "https://archive.org/download/psvitaalive-ps-vita-sync/shot_01.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-ps-vita-sync/ps-vita-sync.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Release Page",

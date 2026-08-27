@@ -16,15 +16,21 @@
   "requirements": "Not specified",
   "size": 33402092,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1938-snowball-fight.png",
+  "icon": "https://archive.org/download/psvitaalive-snowball-fight/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/d54dc00426b27134fa38a335857cd3e006842b248f424952ab5895789267c349.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/57476afda09735f2d307b6d803abfbfe5a1ce5524862fcfab3b78f2e90c024df.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/37fe80679d4a7c70253631d53e6b919d7a9824e9279de08ca4162c36064d7258.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/75876328825041890558c4ce88fb61896ea452fdb8a302c5029e291aadc72aaf.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/d54dc00426b27134fa38a335857cd3e006842b248f424952ab5895789267c349.png"
+    "https://archive.org/download/psvitaalive-snowball-fight/shot_01.png",
+    "https://archive.org/download/psvitaalive-snowball-fight/shot_02.png",
+    "https://archive.org/download/psvitaalive-snowball-fight/shot_03.png",
+    "https://archive.org/download/psvitaalive-snowball-fight/shot_04.png",
+    "https://archive.org/download/psvitaalive-snowball-fight/shot_05.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-snowball-fight/snowball-fight.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Official Website",

@@ -16,14 +16,20 @@
   "requirements": "Not specified",
   "size": 244004,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1521-milietetris.png",
+  "icon": "https://archive.org/download/psvitaalive-milietetris/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1521-milietetris.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/milie1.jpg",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/milie2.jpg",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/milie3.jpg"
+    "https://archive.org/download/psvitaalive-milietetris/shot_01.png",
+    "https://archive.org/download/psvitaalive-milietetris/shot_02.png",
+    "https://archive.org/download/psvitaalive-milietetris/shot_03.png",
+    "https://archive.org/download/psvitaalive-milietetris/shot_04.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-milietetris/milietetris.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Official Website",

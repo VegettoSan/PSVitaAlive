@@ -16,14 +16,20 @@
   "requirements": "Not specified",
   "size": 40013315,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1846-left-4-dead-2d.png",
+  "icon": "https://archive.org/download/psvitaalive-left-4-dead-2d/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/3f6f5b4405bf769ec62c810c7badcb9935292b7978d74b3114ec8811ab3211c1.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/d54977af42fac3e25b5e329faea27b5d6869f068ed1921fc258eacb77821a76b.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/3f6f5b4405bf769ec62c810c7badcb9935292b7978d74b3114ec8811ab3211c1.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/d54977af42fac3e25b5e329faea27b5d6869f068ed1921fc258eacb77821a76b.png"
+    "https://archive.org/download/psvitaalive-left-4-dead-2d/shot_01.png",
+    "https://archive.org/download/psvitaalive-left-4-dead-2d/shot_02.png",
+    "https://archive.org/download/psvitaalive-left-4-dead-2d/shot_03.png",
+    "https://archive.org/download/psvitaalive-left-4-dead-2d/shot_04.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-left-4-dead-2d/left-4-dead-2d.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Official Website",

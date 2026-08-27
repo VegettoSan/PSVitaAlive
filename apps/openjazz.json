@@ -16,12 +16,18 @@
   "requirements": "- Game Data Files: PC",
   "size": 752944,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/159f6765a36e2307c1f371987b42061e98418e27f862b9fa77130a90dd1c2029.png",
+  "icon": "https://archive.org/download/psvitaalive-openjazz/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/30652f4732a3025eccb49d3a3734b4787332911d2a7a6a7c5631cc575a64d845.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/30652f4732a3025eccb49d3a3734b4787332911d2a7a6a7c5631cc575a64d845.png"
+    "https://archive.org/download/psvitaalive-openjazz/shot_01.png",
+    "https://archive.org/download/psvitaalive-openjazz/shot_02.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-openjazz/openjazz.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Release Page",

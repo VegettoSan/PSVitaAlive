@@ -16,15 +16,21 @@
   "requirements": "- libshacccg.suprx\n- kubridge.skprx\n- Game Data Files: Android",
   "size": 2701590,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/cac1c284009a8f177ed928d00f47a22b6ca6db193958dee755bff80f258f6d90.png",
+  "icon": "https://archive.org/download/psvitaalive-rocky-castle-vita/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/02b4fce32fa5841d0dca9c3681a508d8e3f7eb20274e5d76fd4b2f0dc241a1b9.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/e3871cc41e63995161acf856f4a4727899849d1125be18d813c6ed26d24b34ea.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/bad1a3d4d458f711fdc6bdb56fdb8696ce372d250d9c719d2c217f7f5ed3f03e.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/02b4fce32fa5841d0dca9c3681a508d8e3f7eb20274e5d76fd4b2f0dc241a1b9.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/e3871cc41e63995161acf856f4a4727899849d1125be18d813c6ed26d24b34ea.png"
+    "https://archive.org/download/psvitaalive-rocky-castle-vita/shot_01.png",
+    "https://archive.org/download/psvitaalive-rocky-castle-vita/shot_02.png",
+    "https://archive.org/download/psvitaalive-rocky-castle-vita/shot_03.png",
+    "https://archive.org/download/psvitaalive-rocky-castle-vita/shot_04.png",
+    "https://archive.org/download/psvitaalive-rocky-castle-vita/shot_05.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-rocky-castle-vita/rocky-castle-vita.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Release Page",

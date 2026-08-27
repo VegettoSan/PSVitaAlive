@@ -18,12 +18,18 @@
   "requirements": "- libshacccg.suprx\n- kubridge.skprx\n- Game Data Files: Android",
   "size": 2356853,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/533992aa6835e15635c208a9467aa6818ab7f778d52b1592847a7673e2740c0f.png",
+  "icon": "https://archive.org/download/psvitaalive-the-conduit-hd-vita/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/dd5d0f7cbb824421378221d23d4eb321dbfa9dc6183367f4e1ae6649fc756e82.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/dd5d0f7cbb824421378221d23d4eb321dbfa9dc6183367f4e1ae6649fc756e82.png"
+    "https://archive.org/download/psvitaalive-the-conduit-hd-vita/shot_01.png",
+    "https://archive.org/download/psvitaalive-the-conduit-hd-vita/shot_02.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-the-conduit-hd-vita/the-conduit-hd-vita.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Release Page",

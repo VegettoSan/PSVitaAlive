@@ -16,12 +16,18 @@
   "requirements": "Not specified",
   "size": 704087,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/0740-crystal-psm.png",
+  "icon": "https://archive.org/download/psvitaalive-crystal-psm/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/2a697cbeb1e21d9b0f134e23e34ceb3e4c3416d18aea7cd1939a639e64d3b8a4.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/2a697cbeb1e21d9b0f134e23e34ceb3e4c3416d18aea7cd1939a639e64d3b8a4.png"
+    "https://archive.org/download/psvitaalive-crystal-psm/shot_01.png",
+    "https://archive.org/download/psvitaalive-crystal-psm/shot_02.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-crystal-psm/CrystalPSM.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Release Page",

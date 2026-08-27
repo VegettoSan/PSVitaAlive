@@ -16,11 +16,17 @@
   "requirements": "- libshacccg.suprx",
   "size": 31680433,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1394-wagic-the-homebrew-vita.png",
+  "icon": "https://archive.org/download/psvitaalive-wagic-the-homebrew-vita/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1394-wagic-the-homebrew-vita.png"
+    "https://archive.org/download/psvitaalive-wagic-the-homebrew-vita/shot_01.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-wagic-the-homebrew-vita/wagic.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Release Page",

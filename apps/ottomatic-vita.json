@@ -16,15 +16,21 @@
   "requirements": "- libshacccg.suprx",
   "size": 1816103,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1918-ottomatic-vita.png",
+  "icon": "https://archive.org/download/psvitaalive-ottomatic-vita/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/ac6180c9ea8c9afe64349f1d3ba7a77248a3ca5d799d030aa49635ae7bb48628.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/8f6f80cdb94c32f8e377663ffce217062124575e46d7f628a78dbf8ec235b9fe.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/46d7b5b49679926153b1cee63b8a099945847c4f857a87ddc8c6be9d1929f849.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/9355c26373bdbe5d96a5ca41cb52101bdb5ecf1be834cb5560cf9d998ce3ef17.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/ac6180c9ea8c9afe64349f1d3ba7a77248a3ca5d799d030aa49635ae7bb48628.png"
+    "https://archive.org/download/psvitaalive-ottomatic-vita/shot_01.png",
+    "https://archive.org/download/psvitaalive-ottomatic-vita/shot_02.png",
+    "https://archive.org/download/psvitaalive-ottomatic-vita/shot_03.png",
+    "https://archive.org/download/psvitaalive-ottomatic-vita/shot_04.png",
+    "https://archive.org/download/psvitaalive-ottomatic-vita/shot_05.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-ottomatic-vita/ottomatic-vita.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Official Website",

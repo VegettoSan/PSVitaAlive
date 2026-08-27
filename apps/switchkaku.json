@@ -17,12 +17,19 @@
   "requirements": "Not specified",
   "size": 635294,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1542-switchkaku.png",
+  "icon": "https://archive.org/download/psvitaalive-switchkaku/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1542-switchkaku.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/switchkaku.jpg"
+    "https://archive.org/download/psvitaalive-switchkaku/shot_01.png",
+    "https://archive.org/download/psvitaalive-switchkaku/shot_02.png"
   ],
-  "links": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-switchkaku/switchkaku.vpk",
+      "recommended": true
+    }
+  ],
   "source_name": "VitaHomebrewDB",
   "source_id": "207",
   "source_url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/207-SwitchKaKu.vpk",

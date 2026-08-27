@@ -16,11 +16,17 @@
   "requirements": "Not specified",
   "size": 72545,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/df76fad01302bb4f49b44264c2de09dd75cfc850765fc3743a6a63bc922b393b.png",
+  "icon": "https://archive.org/download/psvitaalive-vita-screen-test/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/df76fad01302bb4f49b44264c2de09dd75cfc850765fc3743a6a63bc922b393b.png"
+    "https://archive.org/download/psvitaalive-vita-screen-test/shot_01.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-vita-screen-test/vita-screen-test.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Release Page",

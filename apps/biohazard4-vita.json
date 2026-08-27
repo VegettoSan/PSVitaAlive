@@ -18,15 +18,21 @@
   "requirements": "- libshacccg.suprx\n- kubridge.skprx\n- Game Data Files: Android",
   "size": 3233206,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1960-biohazard4-vita.png",
+  "icon": "https://archive.org/download/psvitaalive-biohazard4-vita/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/aadf1d8be7154fa819b638e0e8e03e0acaa1ab7689c4b644ac1bbb77c9ccea1b.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/1a81c7d56913bdd356eba2643e38f3fa992c7c7914862d1d674e905174d03529.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c18a17b03daab55db2b9d5f8556d34ecbf32334e2552a09320bbdc1895be7a4a.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/817b0d0ecb8c192986bfef473931ebdefc1d93479122cfe1c94a39fc4ca598ef.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/aadf1d8be7154fa819b638e0e8e03e0acaa1ab7689c4b644ac1bbb77c9ccea1b.png"
+    "https://archive.org/download/psvitaalive-biohazard4-vita/shot_01.png",
+    "https://archive.org/download/psvitaalive-biohazard4-vita/shot_02.png",
+    "https://archive.org/download/psvitaalive-biohazard4-vita/shot_03.png",
+    "https://archive.org/download/psvitaalive-biohazard4-vita/shot_04.png",
+    "https://archive.org/download/psvitaalive-biohazard4-vita/shot_05.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-biohazard4-vita/biohazard4-vita.vpk",
+      "recommended": true
+    },
     {
       "type": "Repository",
       "name": "Repositorio",

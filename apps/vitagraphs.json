@@ -16,14 +16,20 @@
   "requirements": "Not specified",
   "size": 2143646,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/580a65c8aea5b23b2f1858ddcf775a7bee0ac7bcccdacd41b2198d68bfda46a2.png",
+  "icon": "https://archive.org/download/psvitaalive-vitagraphs/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/cdcf21a0e4b65725b7be7bc392b2c2ee652c6071bb358822f6d62322b8286054.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/1366e5db83109aaad5e65b49346c4110eae4616c2891b0b6e56aa6882ffd3b6d.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/cdcf21a0e4b65725b7be7bc392b2c2ee652c6071bb358822f6d62322b8286054.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/1366e5db83109aaad5e65b49346c4110eae4616c2891b0b6e56aa6882ffd3b6d.png"
+    "https://archive.org/download/psvitaalive-vitagraphs/shot_01.png",
+    "https://archive.org/download/psvitaalive-vitagraphs/shot_02.png",
+    "https://archive.org/download/psvitaalive-vitagraphs/shot_03.png",
+    "https://archive.org/download/psvitaalive-vitagraphs/shot_04.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-vitagraphs/vitagraphs.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Official Website",

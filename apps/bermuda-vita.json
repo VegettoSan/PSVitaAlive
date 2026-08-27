@@ -16,13 +16,19 @@
   "requirements": "- Game Data Files: PC",
   "size": 1015517,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/84235dee32a942d678a6547e4e2dbac3cd63480d1a42d911bdc4cf4cb7d7a7cf.png",
+  "icon": "https://archive.org/download/psvitaalive-bermuda-vita/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/84235dee32a942d678a6547e4e2dbac3cd63480d1a42d911bdc4cf4cb7d7a7cf.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/bermuda1.jpg",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/bermuda2.jpg"
+    "https://archive.org/download/psvitaalive-bermuda-vita/shot_01.png",
+    "https://archive.org/download/psvitaalive-bermuda-vita/shot_02.png",
+    "https://archive.org/download/psvitaalive-bermuda-vita/shot_03.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-bermuda-vita/bermuda-vita.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Official Website",

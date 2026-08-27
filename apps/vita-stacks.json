@@ -16,15 +16,21 @@
   "requirements": "Not specified",
   "size": 30303195,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1689-vita-stacks.png",
+  "icon": "https://archive.org/download/psvitaalive-vita-stacks/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/8fb7a898eda3f71398e56c8f1661646d38ef8350bffe769f1dd80a267cde5914.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/f1f1d1c2f2a8ec32521c90c94b5612a17dddee073b5268f4bd413ea1827f44ff.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/712e77114beaaba2e33e6e710247a424e15b203390795f8e664ef8356baf69eb.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/8fb7a898eda3f71398e56c8f1661646d38ef8350bffe769f1dd80a267cde5914.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/f1f1d1c2f2a8ec32521c90c94b5612a17dddee073b5268f4bd413ea1827f44ff.png"
+    "https://archive.org/download/psvitaalive-vita-stacks/shot_01.png",
+    "https://archive.org/download/psvitaalive-vita-stacks/shot_02.png",
+    "https://archive.org/download/psvitaalive-vita-stacks/shot_03.png",
+    "https://archive.org/download/psvitaalive-vita-stacks/shot_04.png",
+    "https://archive.org/download/psvitaalive-vita-stacks/shot_05.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-vita-stacks/vita-stacks.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Official Website",

@@ -16,11 +16,18 @@
   "requirements": "Not specified",
   "size": 11295740,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1752-resurgent.png",
+  "icon": "https://archive.org/download/psvitaalive-resurgent/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1752-resurgent.png"
+    "https://archive.org/download/psvitaalive-resurgent/shot_01.png"
   ],
-  "links": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-resurgent/resurgent.vpk",
+      "recommended": true
+    }
+  ],
   "source_name": "VitaHomebrewDB",
   "source_id": "723",
   "source_url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/723-Resurgent_fr.vpk",

@@ -16,15 +16,21 @@
   "requirements": "- libshacccg.suprx\n- Game Data Files: PC",
   "size": 10676566,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1904-will-you-snail-vita.png",
+  "icon": "https://archive.org/download/psvitaalive-will-you-snail-vita/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/a67e2f3c7405c99ed87289a8a366cee82434c26edee6bc09c7454e04d870873f.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/1826d334bc300486e5ae4d6cc00d42c664a1ec4d26bee81b37c7e8aadd4221b7.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/75e596744c5382fc6f242a699770210be4b1f4c5e136f50774b3c98347245847.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/9fe5d7356d8aa21642d4da068646b1ae09398b6cc350f39cbbc419c0d36012db.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/a67e2f3c7405c99ed87289a8a366cee82434c26edee6bc09c7454e04d870873f.png"
+    "https://archive.org/download/psvitaalive-will-you-snail-vita/shot_01.png",
+    "https://archive.org/download/psvitaalive-will-you-snail-vita/shot_02.png",
+    "https://archive.org/download/psvitaalive-will-you-snail-vita/shot_03.png",
+    "https://archive.org/download/psvitaalive-will-you-snail-vita/shot_04.png",
+    "https://archive.org/download/psvitaalive-will-you-snail-vita/shot_05.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-will-you-snail-vita/will-you-snail-vita.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Official Website",

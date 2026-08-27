@@ -16,15 +16,21 @@
   "requirements": "- Game Data Files: Steam",
   "size": 17054914,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/e2a8f91086eb42b61b2b2efc9c945676427bdd710a7a9d18c562c04efbbb1aa1.png",
+  "icon": "https://archive.org/download/psvitaalive-punch-club-vita/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/80470d8b98cfc8a516fb963cc687b2e43ac9fb60b2ae67b47617f15482dffe24.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/ab20d67a035a14ea36a47ccbc8a4d62f38048fe2dceb01025851ea5d1b923567.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/d9a94215d09d672af0c33573af14160b737f43b2438e9022959583f698a09259.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/80470d8b98cfc8a516fb963cc687b2e43ac9fb60b2ae67b47617f15482dffe24.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/ab20d67a035a14ea36a47ccbc8a4d62f38048fe2dceb01025851ea5d1b923567.png"
+    "https://archive.org/download/psvitaalive-punch-club-vita/shot_01.png",
+    "https://archive.org/download/psvitaalive-punch-club-vita/shot_02.png",
+    "https://archive.org/download/psvitaalive-punch-club-vita/shot_03.png",
+    "https://archive.org/download/psvitaalive-punch-club-vita/shot_04.png",
+    "https://archive.org/download/psvitaalive-punch-club-vita/shot_05.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-punch-club-vita/punch-club-vita.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Repository",

@@ -16,11 +16,17 @@
   "requirements": "Not specified",
   "size": 55897615,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1705-torn.png",
+  "icon": "https://archive.org/download/psvitaalive-torn/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1705-torn.png"
+    "https://archive.org/download/psvitaalive-torn/shot_01.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-torn/torn.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Official Website",

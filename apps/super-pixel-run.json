@@ -16,12 +16,18 @@
   "requirements": "Not specified",
   "size": 29143204,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/29b31348d30e290f9120d972ad194c1505d713f4eabed93c072024ee9159f5cc.png",
+  "icon": "https://archive.org/download/psvitaalive-super-pixel-run/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/0fe4223b425e1cd9474f0ae40f98d3169975f2e18b1301d6430031257128611f.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/0fe4223b425e1cd9474f0ae40f98d3169975f2e18b1301d6430031257128611f.png"
+    "https://archive.org/download/psvitaalive-super-pixel-run/shot_01.png",
+    "https://archive.org/download/psvitaalive-super-pixel-run/shot_02.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-super-pixel-run/super-pixel-run.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Release Page",

@@ -16,15 +16,22 @@
   "requirements": "Not specified",
   "size": 7929431,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1556-psp-homebrew-browser.png",
+  "icon": "https://archive.org/download/psvitaalive-psp-homebrew-browser/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/d41e93936050bf1b9d08556288976edc3968aa0effccb8bf23440488dc5ff9ec.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/71dd36b7581f3801038fc13f5b4d2896a8706d5b178ca4696424b83b409237d0.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/b23563a21070b2a375b6d4b5aa094ee1a6a5b5f6af023e12bb2bb5506e1a2035.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/cb2f5f8bf90888c4d514c6a5903a4eec9b95905b8f4e25ee9527907e96df46f6.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/d41e93936050bf1b9d08556288976edc3968aa0effccb8bf23440488dc5ff9ec.png"
+    "https://archive.org/download/psvitaalive-psp-homebrew-browser/shot_01.png",
+    "https://archive.org/download/psvitaalive-psp-homebrew-browser/shot_02.png",
+    "https://archive.org/download/psvitaalive-psp-homebrew-browser/shot_03.png",
+    "https://archive.org/download/psvitaalive-psp-homebrew-browser/shot_04.png",
+    "https://archive.org/download/psvitaalive-psp-homebrew-browser/shot_05.png"
   ],
-  "links": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-psp-homebrew-browser/psp-homebrew-browser.vpk",
+      "recommended": true
+    }
+  ],
   "source_name": "VitaHomebrewDB",
   "source_id": "264",
   "source_url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/264-PSPhbb.vpk",

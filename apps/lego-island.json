@@ -16,11 +16,17 @@
   "requirements": "- Game Data Files: LEGO Island (1997)",
   "size": 7110327,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/a5edfa713bb4f1d94f187d100cec06109cc39ed55faa6ca23048fde5483ec51e.png",
+  "icon": "https://archive.org/download/psvitaalive-lego-island/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/a5edfa713bb4f1d94f187d100cec06109cc39ed55faa6ca23048fde5483ec51e.png"
+    "https://archive.org/download/psvitaalive-lego-island/shot_01.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-lego-island/isle.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Release Page",

@@ -16,11 +16,17 @@
   "requirements": "Not specified",
   "size": 3855448,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/d04197433bfa60887ca91c758d1f8aef7705f7156f497a183d34a947c95c018e.png",
+  "icon": "https://archive.org/download/psvitaalive-i-am-not-a-murderer/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/d04197433bfa60887ca91c758d1f8aef7705f7156f497a183d34a947c95c018e.png"
+    "https://archive.org/download/psvitaalive-i-am-not-a-murderer/shot_01.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-i-am-not-a-murderer/Iamnotamurderer.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Official Website",

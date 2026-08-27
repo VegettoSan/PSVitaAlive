@@ -16,15 +16,21 @@
   "requirements": "- libshacccg.suprx\n- kubridge.skprx\n- Game Data Files: Android",
   "size": 1839822,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/108df3a745278ac47c362facf0147f22cb94a86a41686832932d61b846033280.png",
+  "icon": "https://archive.org/download/psvitaalive-gunman-clive/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/7372d46e3245432fade7c96ddd6fa0a10e0b66b7f2e713dd1b823853126f33b1.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/090828d7be031358498e62074d3a8c3e6069126de0165dd108db0141595fe7a6.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/49bdb3a698266c55f5f04785c164a104e4384876c8fbc845b58eaaf6e9e80c29.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/4c2bdfdc15381895973aa31ae9663797cf0ca3f45b4530175cefd56ac2bf1192.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/7372d46e3245432fade7c96ddd6fa0a10e0b66b7f2e713dd1b823853126f33b1.png"
+    "https://archive.org/download/psvitaalive-gunman-clive/shot_01.png",
+    "https://archive.org/download/psvitaalive-gunman-clive/shot_02.png",
+    "https://archive.org/download/psvitaalive-gunman-clive/shot_03.png",
+    "https://archive.org/download/psvitaalive-gunman-clive/shot_04.png",
+    "https://archive.org/download/psvitaalive-gunman-clive/shot_05.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-gunman-clive/gunman-clive.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Release Page",

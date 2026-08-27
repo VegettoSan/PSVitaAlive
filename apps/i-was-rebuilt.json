@@ -16,15 +16,21 @@
   "requirements": "Not specified",
   "size": 141645560,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1719-i-was-rebuilt.png",
+  "icon": "https://archive.org/download/psvitaalive-i-was-rebuilt/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/99f713523ab1f88ddddd97121034f4b0020cd85f52cfaff3aca8f55a41ef4412.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/e249f1842ef901271160d5011c25c533327f5a9b311bbd279d2eb99d32ff5c6a.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/633d2c450947ed947c52b4601da30eefc486cefb8b770bb94d87aad93a8a0e7e.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/99f713523ab1f88ddddd97121034f4b0020cd85f52cfaff3aca8f55a41ef4412.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/e249f1842ef901271160d5011c25c533327f5a9b311bbd279d2eb99d32ff5c6a.png"
+    "https://archive.org/download/psvitaalive-i-was-rebuilt/shot_01.png",
+    "https://archive.org/download/psvitaalive-i-was-rebuilt/shot_02.png",
+    "https://archive.org/download/psvitaalive-i-was-rebuilt/shot_03.png",
+    "https://archive.org/download/psvitaalive-i-was-rebuilt/shot_04.png",
+    "https://archive.org/download/psvitaalive-i-was-rebuilt/shot_05.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-i-was-rebuilt/i-was-rebuilt.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Official Website",

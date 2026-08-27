@@ -16,11 +16,17 @@
   "requirements": "Not specified",
   "size": 19596302,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/c31f14b27689cae2c6876cfbc07c981e1f026ed8fcaea53d68cf5bcacd6ce36f.png",
+  "icon": "https://archive.org/download/psvitaalive-stacker-for-vita/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/c31f14b27689cae2c6876cfbc07c981e1f026ed8fcaea53d68cf5bcacd6ce36f.png"
+    "https://archive.org/download/psvitaalive-stacker-for-vita/shot_01.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-stacker-for-vita/stacker-for-vita.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Release Page",

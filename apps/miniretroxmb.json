@@ -16,11 +16,17 @@
   "requirements": "Not specified",
   "size": 407701,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/7ff7fbd9df4ac2041c1392493aedcbcf8b3c71ce2930dfc20b18addd3974c54f.png",
+  "icon": "https://archive.org/download/psvitaalive-miniretroxmb/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/7ff7fbd9df4ac2041c1392493aedcbcf8b3c71ce2930dfc20b18addd3974c54f.png"
+    "https://archive.org/download/psvitaalive-miniretroxmb/shot_01.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-miniretroxmb/miniretroxmb.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Release Page",

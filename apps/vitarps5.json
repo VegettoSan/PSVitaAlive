@@ -18,15 +18,21 @@
   "requirements": "Not specified",
   "size": 4108047,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1356-vitarps5.png",
+  "icon": "https://archive.org/download/psvitaalive-vitarps5/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/32f3598e76f93a3e47a91fc5f2c2c3e1862fff2fb394f49db21a8e9263182e50.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c01c528224979a84bcfe74c31c0ea2540a41c17bb410e0b7b16970a46f392f8e.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/a491285887c31ff360fa303a56a75305e2e148ff33bda2f5e80459b72559992d.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/87f3d0db56be332b48828aaffcb856f95c3ff51e215f27901ff76c36a24bea71.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/32f3598e76f93a3e47a91fc5f2c2c3e1862fff2fb394f49db21a8e9263182e50.png"
+    "https://archive.org/download/psvitaalive-vitarps5/shot_01.png",
+    "https://archive.org/download/psvitaalive-vitarps5/shot_02.png",
+    "https://archive.org/download/psvitaalive-vitarps5/shot_03.png",
+    "https://archive.org/download/psvitaalive-vitarps5/shot_04.png",
+    "https://archive.org/download/psvitaalive-vitarps5/shot_05.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-vitarps5/VitakiFork-v3.0.3.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Release Page",

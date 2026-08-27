@@ -16,14 +16,20 @@
   "requirements": "Not specified",
   "size": 6133397,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/cfcd39dca798b5462938a9288699256991790f928f6f356510798963323ebc9c.png",
+  "icon": "https://archive.org/download/psvitaalive-blockout-ii/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/cfcd39dca798b5462938a9288699256991790f928f6f356510798963323ebc9c.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/blockout1.jpg",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/blockout2.jpg",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/blockout3.jpg"
+    "https://archive.org/download/psvitaalive-blockout-ii/shot_01.png",
+    "https://archive.org/download/psvitaalive-blockout-ii/shot_02.png",
+    "https://archive.org/download/psvitaalive-blockout-ii/shot_03.png",
+    "https://archive.org/download/psvitaalive-blockout-ii/shot_04.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-blockout-ii/blockout-ii.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Official Website",

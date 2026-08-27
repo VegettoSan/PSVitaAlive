@@ -16,11 +16,17 @@
   "requirements": "Not specified",
   "size": 77837069,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/6b7119f71709a9905f37c44ce7c2fee5884e9805f59dcd2684d93e2812cae019.png",
+  "icon": "https://archive.org/download/psvitaalive-bad-piggies/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/6b7119f71709a9905f37c44ce7c2fee5884e9805f59dcd2684d93e2812cae019.png"
+    "https://archive.org/download/psvitaalive-bad-piggies/shot_01.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-bad-piggies/bad-piggies.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Release Page",

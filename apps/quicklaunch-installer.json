@@ -16,15 +16,21 @@
   "requirements": "Not specified",
   "size": 4161531,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/97cb59d94257013b456840a13461eda8a33a8b2c10135dd2da0aef9f04542746.png",
+  "icon": "https://archive.org/download/psvitaalive-quicklaunch-installer/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/43e42d7c226675c0aa141988250a0caa42d83304201271f6f7cfb2f2b3792e52.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/8eb602943f9044494d6e5cc3683b2ea818a9d89a9c64a52e8c7f483aac773bb8.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/ebdc7627a90c086ecda4b9a723dd37279b8df8bb69f59270cbe03ccb5b705303.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/64adec499201dd70bd95c0b86b839164caaae029b9d37ddbf712338fa44f64ac.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/43e42d7c226675c0aa141988250a0caa42d83304201271f6f7cfb2f2b3792e52.png"
+    "https://archive.org/download/psvitaalive-quicklaunch-installer/shot_01.png",
+    "https://archive.org/download/psvitaalive-quicklaunch-installer/shot_02.png",
+    "https://archive.org/download/psvitaalive-quicklaunch-installer/shot_03.png",
+    "https://archive.org/download/psvitaalive-quicklaunch-installer/shot_04.png",
+    "https://archive.org/download/psvitaalive-quicklaunch-installer/shot_05.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-quicklaunch-installer/quicklaunch-installer.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Release Page",

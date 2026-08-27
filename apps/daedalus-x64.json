@@ -16,11 +16,17 @@
   "requirements": "Not specified",
   "size": 2823264,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/932a2c421cd1217626c59ea726d5e6a16ba737f98ce86c193db75e9e633fcec9.png",
+  "icon": "https://archive.org/download/psvitaalive-daedalus-x64/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/932a2c421cd1217626c59ea726d5e6a16ba737f98ce86c193db75e9e633fcec9.png"
+    "https://archive.org/download/psvitaalive-daedalus-x64/shot_01.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-daedalus-x64/daedalus-x64.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Release Page",

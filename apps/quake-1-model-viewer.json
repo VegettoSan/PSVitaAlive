@@ -16,11 +16,17 @@
   "requirements": "- libshacccg.suprx",
   "size": 12075762,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/614a6b2b2a7224e835b1019abe2d57a5191ea139feaddb5f41941b047b9be301.png",
+  "icon": "https://archive.org/download/psvitaalive-quake-1-model-viewer/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/614a6b2b2a7224e835b1019abe2d57a5191ea139feaddb5f41941b047b9be301.png"
+    "https://archive.org/download/psvitaalive-quake-1-model-viewer/shot_01.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-quake-1-model-viewer/quake-1-model-viewer.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Release Page",

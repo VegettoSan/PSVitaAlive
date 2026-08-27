@@ -16,15 +16,21 @@
   "requirements": "- Game Data Files: Android OR PC",
   "size": 2921361,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/95009282dd3c87a9c5afab514c768f0b08e6ee1227e911d7f46ab4019bb2f876.png",
+  "icon": "https://archive.org/download/psvitaalive-fran-bow---chapter-two/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/bf2c758c38943bc0ac7dd314bcad52862f48134a046664b272f121909b289b34.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/6751e4edc35272bd8b6abf751a4524dd95cf8557d3b1ddf89b59093d13dcfb81.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/5976824e7986f80af5db67e98acf44ce2624943c641187503ea84378c8e92179.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/bf2c758c38943bc0ac7dd314bcad52862f48134a046664b272f121909b289b34.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/6751e4edc35272bd8b6abf751a4524dd95cf8557d3b1ddf89b59093d13dcfb81.png"
+    "https://archive.org/download/psvitaalive-fran-bow---chapter-two/shot_01.png",
+    "https://archive.org/download/psvitaalive-fran-bow---chapter-two/shot_02.png",
+    "https://archive.org/download/psvitaalive-fran-bow---chapter-two/shot_03.png",
+    "https://archive.org/download/psvitaalive-fran-bow---chapter-two/shot_04.png",
+    "https://archive.org/download/psvitaalive-fran-bow---chapter-two/shot_05.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-fran-bow---chapter-two/fran-bow---chapter-two.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Repository",

@@ -16,11 +16,17 @@
   "requirements": "Not specified",
   "size": 22021106,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/3359530f0c5ab7f2cf410f514d98dc02df4614e84bf7d5a79577304407a4cf75.png",
+  "icon": "https://archive.org/download/psvitaalive-candy-wrapper-vita/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/3359530f0c5ab7f2cf410f514d98dc02df4614e84bf7d5a79577304407a4cf75.png"
+    "https://archive.org/download/psvitaalive-candy-wrapper-vita/shot_01.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-candy-wrapper-vita/candy-wrapper-vita.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Release Page",

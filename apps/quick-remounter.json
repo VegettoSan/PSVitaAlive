@@ -16,12 +16,18 @@
   "requirements": "Not specified",
   "size": 4799848,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/ed5ebd1267831443961b6ce54a6a021aa80a1cd90e2d93b689a8653a623537f7.png",
+  "icon": "https://archive.org/download/psvitaalive-quick-remounter/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/4cd6126722db33d45cee6d8017d08aeaddd3c61f18bda9d9f010040148de3dd0.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/4cd6126722db33d45cee6d8017d08aeaddd3c61f18bda9d9f010040148de3dd0.png"
+    "https://archive.org/download/psvitaalive-quick-remounter/shot_01.png",
+    "https://archive.org/download/psvitaalive-quick-remounter/shot_02.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-quick-remounter/quick-remounter.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Release Page",

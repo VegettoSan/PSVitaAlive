@@ -16,11 +16,17 @@
   "requirements": "PC Files from the itch.io version of the game",
   "size": 25877410,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1990-renpy-myshutindemon.png",
+  "icon": "https://archive.org/download/psvitaalive-my-shut-in-demon-port/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1990-renpy-myshutindemon.png"
+    "https://archive.org/download/psvitaalive-my-shut-in-demon-port/shot_01.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-my-shut-in-demon-port/my.shut-in.demon.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Release Page",

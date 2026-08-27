@@ -16,12 +16,18 @@
   "requirements": "Not specified",
   "size": 477308,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1566-plugins-manager.png",
+  "icon": "https://archive.org/download/psvitaalive-plugins-manager/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/4a25841ccec7b9eb864d33466eb6a8c216f2dabffb88e1ddd8b252b32221ba7a.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/4a25841ccec7b9eb864d33466eb6a8c216f2dabffb88e1ddd8b252b32221ba7a.png"
+    "https://archive.org/download/psvitaalive-plugins-manager/shot_01.png",
+    "https://archive.org/download/psvitaalive-plugins-manager/shot_02.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-plugins-manager/plugins-manager.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Official Website",

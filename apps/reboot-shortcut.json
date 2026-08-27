@@ -16,11 +16,18 @@
   "requirements": "Not specified",
   "size": 24338,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1487-reboot-shortcut.png",
+  "icon": "https://archive.org/download/psvitaalive-reboot-shortcut/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1487-reboot-shortcut.png"
+    "https://archive.org/download/psvitaalive-reboot-shortcut/shot_01.png"
   ],
-  "links": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-reboot-shortcut/reboot-shortcut.vpk",
+      "recommended": true
+    }
+  ],
   "source_name": "VitaHomebrewDB",
   "source_id": "71",
   "source_url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/71-Reboot.vpk",

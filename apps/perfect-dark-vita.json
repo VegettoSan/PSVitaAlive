@@ -18,15 +18,21 @@
   "requirements": "- libshacccg.suprx\n- Game Data Files: N64",
   "size": 12938012,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1924-perfect-dark-vita.png",
+  "icon": "https://archive.org/download/psvitaalive-perfect-dark-vita/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/85604375a945c5fd236cd7d78f07c8b520576c74011affe5850bb734d845fd8f.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/edcf49e0d8dfd3f695217192bcaa223bf2cbf138e17133d2274f1e64817751d3.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/2aea91d404ddec60b486c3dfe7788a357ec733efc78a9c68f235f30e85beb00d.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/1ab4fb2aac4cdd718f3730c04d4108252e7d73c125cc1316b5178b75e973ad8e.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/85604375a945c5fd236cd7d78f07c8b520576c74011affe5850bb734d845fd8f.png"
+    "https://archive.org/download/psvitaalive-perfect-dark-vita/shot_01.png",
+    "https://archive.org/download/psvitaalive-perfect-dark-vita/shot_02.png",
+    "https://archive.org/download/psvitaalive-perfect-dark-vita/shot_03.png",
+    "https://archive.org/download/psvitaalive-perfect-dark-vita/shot_04.png",
+    "https://archive.org/download/psvitaalive-perfect-dark-vita/shot_05.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-perfect-dark-vita/perfect-dark-vita.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Official Website",

@@ -16,11 +16,17 @@
   "requirements": "Not specified",
   "size": 5581607,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/f8b3284f79c32a85ff0c47c3d9253109aaf137f20400d0a2c10aa812ad75f28c.png",
+  "icon": "https://archive.org/download/psvitaalive-opentyrian2000/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/f8b3284f79c32a85ff0c47c3d9253109aaf137f20400d0a2c10aa812ad75f28c.png"
+    "https://archive.org/download/psvitaalive-opentyrian2000/shot_01.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-opentyrian2000/OpenTyrian2000-PSVita.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Release Page",

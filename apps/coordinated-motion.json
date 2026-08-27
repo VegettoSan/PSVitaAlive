@@ -16,11 +16,17 @@
   "requirements": "Not specified",
   "size": 3339737,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/c1d06836def7b7ac07a915dd8e4735b59526be5c5aeaa1b180e08c1694c46f09.png",
+  "icon": "https://archive.org/download/psvitaalive-coordinated-motion/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/c1d06836def7b7ac07a915dd8e4735b59526be5c5aeaa1b180e08c1694c46f09.png"
+    "https://archive.org/download/psvitaalive-coordinated-motion/shot_01.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-coordinated-motion/CoordinatedMotion.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Official Website",

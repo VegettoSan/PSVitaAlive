@@ -16,15 +16,21 @@
   "requirements": "Not specified",
   "size": 1136523,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1589-abbaye-des-morts-vita.png",
+  "icon": "https://archive.org/download/psvitaalive-abbaye-des-morts-vita/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/9d971a82f83408d04fee36d4cefbd0dec23a681fb1197f25c0e52ac65ece5618.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/670acfd4065d791b0dcc319fedfa70dae17a926c1c40ad3e319d2d09b3772e9e.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/af7ee7f95595af164b9a23161a718d4e75d9b6ea32e0cb9917bcf070ffa80d39.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/9d971a82f83408d04fee36d4cefbd0dec23a681fb1197f25c0e52ac65ece5618.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/670acfd4065d791b0dcc319fedfa70dae17a926c1c40ad3e319d2d09b3772e9e.png"
+    "https://archive.org/download/psvitaalive-abbaye-des-morts-vita/shot_01.png",
+    "https://archive.org/download/psvitaalive-abbaye-des-morts-vita/shot_02.png",
+    "https://archive.org/download/psvitaalive-abbaye-des-morts-vita/shot_03.png",
+    "https://archive.org/download/psvitaalive-abbaye-des-morts-vita/shot_04.png",
+    "https://archive.org/download/psvitaalive-abbaye-des-morts-vita/shot_05.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-abbaye-des-morts-vita/abbaye-des-morts-vita.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Official Website",

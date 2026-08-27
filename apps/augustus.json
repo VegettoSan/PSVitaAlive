@@ -18,11 +18,17 @@
   "requirements": "- Game Data Files: PC",
   "size": 15627999,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/6bc065a4a24f51e73cddb37cd3f3ef3b134c96af8cf1191c4c937265a5d006d4.png",
+  "icon": "https://archive.org/download/psvitaalive-augustus/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/6bc065a4a24f51e73cddb37cd3f3ef3b134c96af8cf1191c4c937265a5d006d4.png"
+    "https://archive.org/download/psvitaalive-augustus/shot_01.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-augustus/augustus.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Release Page",

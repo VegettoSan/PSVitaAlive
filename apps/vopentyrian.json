@@ -16,12 +16,18 @@
   "requirements": "Not specified",
   "size": 5806780,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/0013-vopentyrian.png",
+  "icon": "https://archive.org/download/psvitaalive-vopentyrian/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/0013-vopentyrian.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/vtyr.jpg"
+    "https://archive.org/download/psvitaalive-vopentyrian/shot_01.png",
+    "https://archive.org/download/psvitaalive-vopentyrian/shot_02.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-vopentyrian/vopentyrian.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Official Website",

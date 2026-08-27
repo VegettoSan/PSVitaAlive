@@ -16,15 +16,22 @@
   "requirements": "Not specified",
   "size": 38962353,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1682-nanospeed-gamer.png",
+  "icon": "https://archive.org/download/psvitaalive-nanospeed-gamer/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/2b0d4d74e8adf83bb280bf537258a8e26a77ad236197cd646621205ca0524ae2.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/824d5e4295117305b6dcdcad946b56dd28b9500694fc82b8e360315e0d3afc5d.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/78415d1dd9afe2c0817884e47ad9a9e15e0973aa9e898ec4ec23c572c891db70.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/a448d6d0319ede630614360c4d93f050316b5808324835aac759cc116aaf9ba0.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/2b0d4d74e8adf83bb280bf537258a8e26a77ad236197cd646621205ca0524ae2.png"
+    "https://archive.org/download/psvitaalive-nanospeed-gamer/shot_01.png",
+    "https://archive.org/download/psvitaalive-nanospeed-gamer/shot_02.png",
+    "https://archive.org/download/psvitaalive-nanospeed-gamer/shot_03.png",
+    "https://archive.org/download/psvitaalive-nanospeed-gamer/shot_04.png",
+    "https://archive.org/download/psvitaalive-nanospeed-gamer/shot_05.png"
   ],
-  "links": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-nanospeed-gamer/nanospeed-gamer.vpk",
+      "recommended": true
+    }
+  ],
   "source_name": "VitaHomebrewDB",
   "source_id": "556",
   "source_url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/556-NanospeedGamer.vpk",

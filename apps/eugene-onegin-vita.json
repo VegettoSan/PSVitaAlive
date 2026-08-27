@@ -16,11 +16,17 @@
   "requirements": "Not specified",
   "size": 195885335,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/0e9ca3f056a49a816b035cea5ce825facf3589cb7bcd7ab315a062e86f34188c.png",
+  "icon": "https://archive.org/download/psvitaalive-eugene-onegin-vita/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/0e9ca3f056a49a816b035cea5ce825facf3589cb7bcd7ab315a062e86f34188c.png"
+    "https://archive.org/download/psvitaalive-eugene-onegin-vita/shot_01.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-eugene-onegin-vita/eugene-onegin-vita.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Repository",

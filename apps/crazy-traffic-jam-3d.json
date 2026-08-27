@@ -16,14 +16,20 @@
   "requirements": "Not specified",
   "size": 3118547,
   "status": "Legacy",
-  "icon": "https://www.rinnegatamante.eu/vitadb/icons/7c036a38589673e1439a493a5da5d2162802bb9ad8bcfd5a499fdb9b5824a0b9.png",
+  "icon": "https://archive.org/download/psvitaalive-crazy-traffic-jam-3d/icon0.png",
   "screenshots": [
-    "https://www.rinnegatamante.eu/vitadb/screenshots/c5b3ed06ea096669daf2fa1c55d39d8dc068a71e7c2ecfcb0d42c41ddb7f7f9d.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/b948d5b4c46b6d215cecfc824395fd859da528ee41da01e7015597105199bbe8.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/d0d3ccecab14138d3f196352022f136ca1503389fd9ff81dea9a3cae26e5c789.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/ff39755e5e8df1ea021ee9978c6ebabea4a689db06707a2111d24778babab226.png"
+    "https://archive.org/download/psvitaalive-crazy-traffic-jam-3d/shot_01.png",
+    "https://archive.org/download/psvitaalive-crazy-traffic-jam-3d/shot_02.png",
+    "https://archive.org/download/psvitaalive-crazy-traffic-jam-3d/shot_03.png",
+    "https://archive.org/download/psvitaalive-crazy-traffic-jam-3d/shot_04.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-crazy-traffic-jam-3d/crazy-traffic-jam-3d.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Official Website",

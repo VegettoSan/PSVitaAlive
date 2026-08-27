@@ -16,15 +16,21 @@
   "requirements": "- libshacccg.suprx",
   "size": 1054448,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1864-vitetris.png",
+  "icon": "https://archive.org/download/psvitaalive-vitetris/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/78720fe3a0c1b57118b90355a77a3f3d8332d82bfc7f1e38b5fe0e37e5122c83.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/76c9a0ca27def3f2e3764c7fb4e676f6fae441538e7807a950b9131f58061218.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/6519bfdbe6f767720d6015fe94b2a9158239346ef5fcf51086c8abde71138105.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/78720fe3a0c1b57118b90355a77a3f3d8332d82bfc7f1e38b5fe0e37e5122c83.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/76c9a0ca27def3f2e3764c7fb4e676f6fae441538e7807a950b9131f58061218.png"
+    "https://archive.org/download/psvitaalive-vitetris/shot_01.png",
+    "https://archive.org/download/psvitaalive-vitetris/shot_02.png",
+    "https://archive.org/download/psvitaalive-vitetris/shot_03.png",
+    "https://archive.org/download/psvitaalive-vitetris/shot_04.png",
+    "https://archive.org/download/psvitaalive-vitetris/shot_05.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-vitetris/vitetris.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Official Website",

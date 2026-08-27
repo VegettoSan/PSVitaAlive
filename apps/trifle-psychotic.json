@@ -16,11 +16,17 @@
   "requirements": "Not specified",
   "size": 22709547,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/06c2e06af2aa49a9ff89a20bf5512d8ca3702b273af32a6156a62bfafa008ddb.png",
+  "icon": "https://archive.org/download/psvitaalive-trifle-psychotic/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/06c2e06af2aa49a9ff89a20bf5512d8ca3702b273af32a6156a62bfafa008ddb.png"
+    "https://archive.org/download/psvitaalive-trifle-psychotic/shot_01.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-trifle-psychotic/trifle-psychotic.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Release Page",

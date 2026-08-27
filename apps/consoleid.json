@@ -16,12 +16,18 @@
   "requirements": "Not specified",
   "size": 187573,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/ae3d5aa9e219d81a96a931b4b93847c1773096bcfdaf692d91877e239b5d34a5.png",
+  "icon": "https://archive.org/download/psvitaalive-consoleid/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/07aec9266204ddb0ce96d4429deed18136ebe87ca4b4cfdf4c01789dbd0ebbbf.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/07aec9266204ddb0ce96d4429deed18136ebe87ca4b4cfdf4c01789dbd0ebbbf.png"
+    "https://archive.org/download/psvitaalive-consoleid/shot_01.png",
+    "https://archive.org/download/psvitaalive-consoleid/shot_02.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-consoleid/consoleid.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Release Page",

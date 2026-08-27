@@ -16,15 +16,21 @@
   "requirements": "Not specified",
   "size": 17215212,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/8b362535a34713d3872c16e0fcaa72b2decfb746b3115541d2bb7f3b02cf5d87.png",
+  "icon": "https://archive.org/download/psvitaalive-cat-quest-vita/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/3f54ad6d1d6bc9d6cd6dfd085271dda74e7eac487f92066d0ec44105dea9d6f4.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/500281d9051cee6de763c153c627c0ce2ba706275f96b35e4974a64c71ad2e7c.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/4d0545f815ac52200b1707d465833f50482853d0dfd69078ab76e404927f6616.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/3f54ad6d1d6bc9d6cd6dfd085271dda74e7eac487f92066d0ec44105dea9d6f4.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/500281d9051cee6de763c153c627c0ce2ba706275f96b35e4974a64c71ad2e7c.png"
+    "https://archive.org/download/psvitaalive-cat-quest-vita/shot_01.png",
+    "https://archive.org/download/psvitaalive-cat-quest-vita/shot_02.png",
+    "https://archive.org/download/psvitaalive-cat-quest-vita/shot_03.png",
+    "https://archive.org/download/psvitaalive-cat-quest-vita/shot_04.png",
+    "https://archive.org/download/psvitaalive-cat-quest-vita/shot_05.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-cat-quest-vita/cat-quest-vita.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Repository",

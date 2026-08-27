@@ -17,15 +17,21 @@
   "requirements": "- libshacccg.suprx",
   "size": 4649087,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1592-vitaquakeiii.png",
+  "icon": "https://archive.org/download/psvitaalive-vitaquakeiii/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/ae5d69d9852e0a9574a8e7bcdabc60fde2c7ebf71f54e7f6be43947e6beb131e.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/cea44d0370d8cd3dabe2ffb33093d0545ce0361478cd32ef89ddd0513a669bcc.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/1df52b47db67a0b4d9f946144726c9d44e810bb4fa53fa84071a6a10ba80ef51.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/a4a72a86acbc35882c17e0e0568e97e48c6ce9bff4d1692f0a88e1f78338c8f1.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/ae5d69d9852e0a9574a8e7bcdabc60fde2c7ebf71f54e7f6be43947e6beb131e.png"
+    "https://archive.org/download/psvitaalive-vitaquakeiii/shot_01.png",
+    "https://archive.org/download/psvitaalive-vitaquakeiii/shot_02.png",
+    "https://archive.org/download/psvitaalive-vitaquakeiii/shot_03.png",
+    "https://archive.org/download/psvitaalive-vitaquakeiii/shot_04.png",
+    "https://archive.org/download/psvitaalive-vitaquakeiii/shot_05.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-vitaquakeiii/vitaquakeiii.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Official Website",

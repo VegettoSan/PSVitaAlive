@@ -18,15 +18,21 @@
   "requirements": "- libshacccg.suprx\n- kubridge.skprx\n- fd_fix.skprx OR repatch_ex.skprx\n- Game Data Files: Android",
   "size": 896490,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/37ac44d302c68eeb7d35147b2cb43947eb6ad2492465da59776f86106aa02ba1.png",
+  "icon": "https://archive.org/download/psvitaalive-bully-vita/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c9687144d41d1629f35ac3cfb26c677cdfc18ce2d915569df5a971eeab974f69.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/b89782b4546c9812b3818019cdd5b3cabcf6bb0ecc95327cb7b5237e6ef1f71f.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/b3778e3f004ea11bad1a0a19c3b96db75be32ce9d26accb985ae8a7c25fea605.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/12ee95fcf06f612f634c3522e374e4c6b9b9641bb08fad3f0f7a16d44be8d888.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/c9687144d41d1629f35ac3cfb26c677cdfc18ce2d915569df5a971eeab974f69.png"
+    "https://archive.org/download/psvitaalive-bully-vita/shot_01.png",
+    "https://archive.org/download/psvitaalive-bully-vita/shot_02.png",
+    "https://archive.org/download/psvitaalive-bully-vita/shot_03.png",
+    "https://archive.org/download/psvitaalive-bully-vita/shot_04.png",
+    "https://archive.org/download/psvitaalive-bully-vita/shot_05.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-bully-vita/bully-vita.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Release Page",

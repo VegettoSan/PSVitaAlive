@@ -17,15 +17,21 @@
   "requirements": "Not specified",
   "size": 64122004,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1768-simple-fps-platformer.png",
+  "icon": "https://archive.org/download/psvitaalive-simple-fps-platformer/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/6d7b82aeb7c4631adf210070a776752910dffc4053265441faf96339c5d2f218.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/1e14b4b11f38defe86b71824e43df629310ad1c9c85ac449c68be4ea93998a59.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/60ea1ec4c61c5aae3d8e9c27893ccfe8d5150b3956d2aa058cfe9666e6503b6f.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/f1bbce207e4042796e3b3b7d93452af209c7f0fe68dc2a027736ec06e4fe12e9.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/6d7b82aeb7c4631adf210070a776752910dffc4053265441faf96339c5d2f218.png"
+    "https://archive.org/download/psvitaalive-simple-fps-platformer/shot_01.png",
+    "https://archive.org/download/psvitaalive-simple-fps-platformer/shot_02.png",
+    "https://archive.org/download/psvitaalive-simple-fps-platformer/shot_03.png",
+    "https://archive.org/download/psvitaalive-simple-fps-platformer/shot_04.png",
+    "https://archive.org/download/psvitaalive-simple-fps-platformer/shot_05.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-simple-fps-platformer/simple-fps-platformer.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Official Website",

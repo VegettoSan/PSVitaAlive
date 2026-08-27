@@ -16,15 +16,21 @@
   "requirements": "Not specified",
   "size": 125810977,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1695-dark-paradigm.png",
+  "icon": "https://archive.org/download/psvitaalive-dark-paradigm/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/b774809e38e19614fa6b66b757a2aefc10119ac08c7192ab9678a91de297f96e.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/04afc4b29a8702b5dd5fe320b65c9bb0f0f9a88447b2bf60aca91c2fc164e598.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/1c5483de7f417451e626d5d78062b1eb13f8f3e6611e5cb8aadbf5d34fa98b6b.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/b774809e38e19614fa6b66b757a2aefc10119ac08c7192ab9678a91de297f96e.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/04afc4b29a8702b5dd5fe320b65c9bb0f0f9a88447b2bf60aca91c2fc164e598.png"
+    "https://archive.org/download/psvitaalive-dark-paradigm/shot_01.png",
+    "https://archive.org/download/psvitaalive-dark-paradigm/shot_02.png",
+    "https://archive.org/download/psvitaalive-dark-paradigm/shot_03.png",
+    "https://archive.org/download/psvitaalive-dark-paradigm/shot_04.png",
+    "https://archive.org/download/psvitaalive-dark-paradigm/shot_05.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-dark-paradigm/dark-paradigm.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Official Website",

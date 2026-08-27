@@ -16,15 +16,21 @@
   "requirements": "- Game Data Files: PC Steam",
   "size": 2947781,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/12a1935cf2a53feb310f13ce4e0a57fbe565f7a511ad5596eb59bfe04b27c743.png",
+  "icon": "https://archive.org/download/psvitaalive-ink/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/2204e2a882d11fbcda5c4d637a3f8d06f370f5c9f525a0eff35a97d6d6d18b48.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/3c2542e7684c3f16434e6390649568cf5e0a10d01a6492216e0485da1288aa75.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/8a233fc11d1f9e3f659267b6ecabb75be3eeeb40655529ea4eb6dd8ec5cdd7ef.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/2204e2a882d11fbcda5c4d637a3f8d06f370f5c9f525a0eff35a97d6d6d18b48.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/3c2542e7684c3f16434e6390649568cf5e0a10d01a6492216e0485da1288aa75.png"
+    "https://archive.org/download/psvitaalive-ink/shot_01.png",
+    "https://archive.org/download/psvitaalive-ink/shot_02.png",
+    "https://archive.org/download/psvitaalive-ink/shot_03.png",
+    "https://archive.org/download/psvitaalive-ink/shot_04.png",
+    "https://archive.org/download/psvitaalive-ink/shot_05.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-ink/ink.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Repository",

@@ -16,15 +16,22 @@
   "requirements": "Not specified",
   "size": 68177828,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1914-road-of-mailhem.png",
+  "icon": "https://archive.org/download/psvitaalive-road-of-mailhem/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/64081a597463acbd4410dd48c26928a271bddd243c1f863e64f388f7a211956b.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/d1425d1d08db90895aad8c697ef8c617555e431f148b6bee0c779df59600dca7.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/9152de919cf0ab55697b19113a0ec7ed4cc8c68a2e5525358069bda16de43803.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/845430f79fa9915d016f10836777c7605e30b7ffd139f0752228bb48b33ac0e4.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/64081a597463acbd4410dd48c26928a271bddd243c1f863e64f388f7a211956b.png"
+    "https://archive.org/download/psvitaalive-road-of-mailhem/shot_01.png",
+    "https://archive.org/download/psvitaalive-road-of-mailhem/shot_02.png",
+    "https://archive.org/download/psvitaalive-road-of-mailhem/shot_03.png",
+    "https://archive.org/download/psvitaalive-road-of-mailhem/shot_04.png",
+    "https://archive.org/download/psvitaalive-road-of-mailhem/shot_05.png"
   ],
-  "links": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-road-of-mailhem/road-of-mailhem.vpk",
+      "recommended": true
+    }
+  ],
   "source_name": "VitaHomebrewDB",
   "source_id": "1249",
   "source_url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1249-RoadOfMailhem.vpk",

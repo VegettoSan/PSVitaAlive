@@ -16,11 +16,17 @@
   "requirements": "Not specified",
   "size": 2460647,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1832-dolmexica-infinite.png",
+  "icon": "https://archive.org/download/psvitaalive-dolmexica-infinite/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1832-dolmexica-infinite.png"
+    "https://archive.org/download/psvitaalive-dolmexica-infinite/shot_01.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-dolmexica-infinite/dolmexica-infinite.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Official Website",

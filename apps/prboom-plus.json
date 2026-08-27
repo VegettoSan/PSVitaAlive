@@ -16,12 +16,18 @@
   "requirements": "Not specified",
   "size": 2311271,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1694-prboom-plus.png",
+  "icon": "https://archive.org/download/psvitaalive-prboom-plus/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c466ff03ee2e7324b95154b30f413c558e4d3275b276a8332b1d21a62feca66d.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/c466ff03ee2e7324b95154b30f413c558e4d3275b276a8332b1d21a62feca66d.png"
+    "https://archive.org/download/psvitaalive-prboom-plus/shot_01.png",
+    "https://archive.org/download/psvitaalive-prboom-plus/shot_02.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-prboom-plus/prboom-plus.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Release Page",

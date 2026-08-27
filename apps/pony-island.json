@@ -16,15 +16,21 @@
   "requirements": "- Game Data Files: PC Steam",
   "size": 32772175,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/ab1eeefd5399ed1a25db0882a9161c9ae2662b8b87af1cf2871f1a43a0cce3a2.png",
+  "icon": "https://archive.org/download/psvitaalive-pony-island/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/8245cdca1747ae2c30e96978b986249cb2d0540d2384a159b925bf7d897bf2f7.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/da370f0131de1622244fd4298a8b89943727b812913558e4480a109775b8b6bb.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/4027d5b1a0ea28f96e3c53847c97013c9f57a390e59ec7622fcfb0fb73d4d2b0.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/8245cdca1747ae2c30e96978b986249cb2d0540d2384a159b925bf7d897bf2f7.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/da370f0131de1622244fd4298a8b89943727b812913558e4480a109775b8b6bb.png"
+    "https://archive.org/download/psvitaalive-pony-island/shot_01.png",
+    "https://archive.org/download/psvitaalive-pony-island/shot_02.png",
+    "https://archive.org/download/psvitaalive-pony-island/shot_03.png",
+    "https://archive.org/download/psvitaalive-pony-island/shot_04.png",
+    "https://archive.org/download/psvitaalive-pony-island/shot_05.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-pony-island/pony-island.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Repository",

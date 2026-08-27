@@ -16,11 +16,17 @@
   "requirements": "Not specified",
   "size": 7655427,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/1c04121db30ad367e035063b8b44dc19dd963da970904b139393be907d41e7a2.png",
+  "icon": "https://archive.org/download/psvitaalive-car-crossing/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/1c04121db30ad367e035063b8b44dc19dd963da970904b139393be907d41e7a2.png"
+    "https://archive.org/download/psvitaalive-car-crossing/shot_01.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-car-crossing/car-crossing.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Release Page",

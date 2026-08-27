@@ -16,15 +16,22 @@
   "requirements": "Not specified",
   "size": 36068997,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1629-cup-critters.png",
+  "icon": "https://archive.org/download/psvitaalive-cup-critters/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/1aba5fcafb0106ea2043806f5ad28c16959142da91330453b9ff195f10c63952.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/ad3e5d45d7f35e7465399256ce658285f409523a29e23bcd8eaf48c3766467a8.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/e3a30ade9323f31bd3ebe22e9069b30984a748afd264156c8ea1cf366107f85a.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/1aba5fcafb0106ea2043806f5ad28c16959142da91330453b9ff195f10c63952.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/ad3e5d45d7f35e7465399256ce658285f409523a29e23bcd8eaf48c3766467a8.png"
+    "https://archive.org/download/psvitaalive-cup-critters/shot_01.png",
+    "https://archive.org/download/psvitaalive-cup-critters/shot_02.png",
+    "https://archive.org/download/psvitaalive-cup-critters/shot_03.png",
+    "https://archive.org/download/psvitaalive-cup-critters/shot_04.png",
+    "https://archive.org/download/psvitaalive-cup-critters/shot_05.png"
   ],
-  "links": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-cup-critters/cup-critters.vpk",
+      "recommended": true
+    }
+  ],
   "source_name": "VitaHomebrewDB",
   "source_id": "452",
   "source_url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/452-Cup_20Critters.vpk",

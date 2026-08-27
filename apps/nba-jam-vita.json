@@ -16,14 +16,20 @@
   "requirements": "- libshacccg.suprx\n- kubridge.skprx\n- Game Data Files: Android",
   "size": 2376120,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/1f04c641e86b72d0ff92927e5e83241137941c3ea782a11bf83d893320735108.png",
+  "icon": "https://archive.org/download/psvitaalive-nba-jam-vita/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/12f0d0d707f9f84540b092171978a55f803e3abea6cb1e7278aea75879caf61e.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/9c9bff5a414c0e5dd24f4ac49449e7a791c5f118dda3f94876d4c0cfb09757bd.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/12f0d0d707f9f84540b092171978a55f803e3abea6cb1e7278aea75879caf61e.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/9c9bff5a414c0e5dd24f4ac49449e7a791c5f118dda3f94876d4c0cfb09757bd.png"
+    "https://archive.org/download/psvitaalive-nba-jam-vita/shot_01.png",
+    "https://archive.org/download/psvitaalive-nba-jam-vita/shot_02.png",
+    "https://archive.org/download/psvitaalive-nba-jam-vita/shot_03.png",
+    "https://archive.org/download/psvitaalive-nba-jam-vita/shot_04.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-nba-jam-vita/nba-jam-vita.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Release Page",

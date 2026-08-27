@@ -16,15 +16,21 @@
   "requirements": "Not specified",
   "size": 1436725,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/b4a8c7733594791ebca7bfe39ca516e6682c87768927eb807a7868b5f35cd8ec.png",
+  "icon": "https://archive.org/download/psvitaalive-vita-timer-vitatimer/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/8741530244273f2ba302ea6152dd32abe7a3ca6fadc9eaa157f9c4fa066a91e3.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/106f8aced74be1dd513323cddbb54bb93ffacdaa98b9a62e59061c29f39030c8.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/86d86f97643a067ad939ada2d41e710887fe36601ef9bcd918711235849f4883.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/8741530244273f2ba302ea6152dd32abe7a3ca6fadc9eaa157f9c4fa066a91e3.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/106f8aced74be1dd513323cddbb54bb93ffacdaa98b9a62e59061c29f39030c8.png"
+    "https://archive.org/download/psvitaalive-vita-timer-vitatimer/shot_01.png",
+    "https://archive.org/download/psvitaalive-vita-timer-vitatimer/shot_02.png",
+    "https://archive.org/download/psvitaalive-vita-timer-vitatimer/shot_03.png",
+    "https://archive.org/download/psvitaalive-vita-timer-vitatimer/shot_04.png",
+    "https://archive.org/download/psvitaalive-vita-timer-vitatimer/shot_05.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-vita-timer-vitatimer/vita-timer-vitatimer.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Release Page",

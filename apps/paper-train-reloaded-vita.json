@@ -16,15 +16,21 @@
   "requirements": "- libshacccg.suprx\n- kubridge.skprx\n- Game Data Files: Android",
   "size": 2874768,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/efbdc52ff8d3ed1e76b6726769f13fbaaab15752817f3e094e35db8c43c173e7.png",
+  "icon": "https://archive.org/download/psvitaalive-paper-train-reloaded-vita/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/107ba1210e6342296a0afd72bb2cc6e61dd765dfb6712279d81e27a7f185ad95.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c822dc226f3bee7976e426a78d72b1bb207329d44c102f1eb9a2241f33629c26.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/ae376998c9e08ab2a01396f2bbc60c5387d6359d0669f6dbc09a9eee5965d55d.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/107ba1210e6342296a0afd72bb2cc6e61dd765dfb6712279d81e27a7f185ad95.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/c822dc226f3bee7976e426a78d72b1bb207329d44c102f1eb9a2241f33629c26.png"
+    "https://archive.org/download/psvitaalive-paper-train-reloaded-vita/shot_01.png",
+    "https://archive.org/download/psvitaalive-paper-train-reloaded-vita/shot_02.png",
+    "https://archive.org/download/psvitaalive-paper-train-reloaded-vita/shot_03.png",
+    "https://archive.org/download/psvitaalive-paper-train-reloaded-vita/shot_04.png",
+    "https://archive.org/download/psvitaalive-paper-train-reloaded-vita/shot_05.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-paper-train-reloaded-vita/paper-train-reloaded-vita.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Release Page",

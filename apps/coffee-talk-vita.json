@@ -16,15 +16,21 @@
   "requirements": "- Game Data Files: PC",
   "size": 15037090,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/74b634760cf29c428489ff3ef0bbbb80bce50ee9ee7542d8649c2a155d261ab0.png",
+  "icon": "https://archive.org/download/psvitaalive-coffee-talk-vita/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/9a0539fc31e81f5c6b3b62205148ebeb563d2b3eaf0a5f9ad316029d40392f1a.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/98e644fff1e9fd844cfa1a0d11cd67706721ff8a5dcf099fd5b70d80843d120d.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/7c59e3c31a736e28e8305c8031b4ed8b8a1b0e3985d1554cf2e7634519dc0d8b.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/9a0539fc31e81f5c6b3b62205148ebeb563d2b3eaf0a5f9ad316029d40392f1a.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/98e644fff1e9fd844cfa1a0d11cd67706721ff8a5dcf099fd5b70d80843d120d.png"
+    "https://archive.org/download/psvitaalive-coffee-talk-vita/shot_01.png",
+    "https://archive.org/download/psvitaalive-coffee-talk-vita/shot_02.png",
+    "https://archive.org/download/psvitaalive-coffee-talk-vita/shot_03.png",
+    "https://archive.org/download/psvitaalive-coffee-talk-vita/shot_04.png",
+    "https://archive.org/download/psvitaalive-coffee-talk-vita/shot_05.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-coffee-talk-vita/coffee-talk-vita.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Repository",

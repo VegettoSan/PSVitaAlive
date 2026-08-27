@@ -16,15 +16,21 @@
   "requirements": "Not specified",
   "size": 28980993,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1577-zelda3t.png",
+  "icon": "https://archive.org/download/psvitaalive-zelda3t/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/52f746d6e063b2b8360e8224692e83f33bce1a7d3a7a17dd55af420894c8c106.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/32c2eb62b912058cc3fd8d93e0ff755b239e4446e72e6702e86cf02f1d0c377a.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/dbb56b468c38bc02101c011b6ac91a46154914736f73fe399b5876806cb8a7cf.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/52f746d6e063b2b8360e8224692e83f33bce1a7d3a7a17dd55af420894c8c106.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/32c2eb62b912058cc3fd8d93e0ff755b239e4446e72e6702e86cf02f1d0c377a.png"
+    "https://archive.org/download/psvitaalive-zelda3t/shot_01.png",
+    "https://archive.org/download/psvitaalive-zelda3t/shot_02.png",
+    "https://archive.org/download/psvitaalive-zelda3t/shot_03.png",
+    "https://archive.org/download/psvitaalive-zelda3t/shot_04.png",
+    "https://archive.org/download/psvitaalive-zelda3t/shot_05.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-zelda3t/zelda3t.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Official Website",

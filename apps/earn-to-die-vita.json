@@ -16,11 +16,17 @@
   "requirements": "- libshacccg.suprx\n- kubridge.skprx\n- Game Data Files: Android",
   "size": 3125070,
   "status": "Legacy",
-  "icon": "https://www.rinnegatamante.eu/vitadb/icons/37726d0cf3483c5a7b30a6a4a8e7e576d2600061d9504ea39fbca5d8296e262a.png",
+  "icon": "https://archive.org/download/psvitaalive-earn-to-die-vita/icon0.png",
   "screenshots": [
-    "https://www.rinnegatamante.eu/vitadb/icons/37726d0cf3483c5a7b30a6a4a8e7e576d2600061d9504ea39fbca5d8296e262a.png"
+    "https://archive.org/download/psvitaalive-earn-to-die-vita/shot_01.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-earn-to-die-vita/earn-to-die-vita.vpk",
+      "recommended": true
+    },
     {
       "type": "Repository",
       "name": "Repositorio",

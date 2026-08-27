@@ -16,12 +16,18 @@
   "requirements": "Not specified",
   "size": 198429,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/0b7c46756dc882611f0575cf3e4100cf3b7876884c2c7dcf89defca241fd343f.png",
+  "icon": "https://archive.org/download/psvitaalive-uricaller/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/0b7c46756dc882611f0575cf3e4100cf3b7876884c2c7dcf89defca241fd343f.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/uricall.jpg"
+    "https://archive.org/download/psvitaalive-uricaller/shot_01.png",
+    "https://archive.org/download/psvitaalive-uricaller/shot_02.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-uricaller/uricaller.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Release Page",

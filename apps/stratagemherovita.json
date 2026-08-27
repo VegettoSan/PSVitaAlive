@@ -16,14 +16,21 @@
   "requirements": "Not specified",
   "size": 48613218,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1898-stratagemherovita.png",
+  "icon": "https://archive.org/download/psvitaalive-stratagemherovita/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/ff8f06b3f35697ae7f69381d3c5dcdf12dc6b6af9b42d42d69d7ccb1a87471c4.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/963828594842798e1f6155dd83c48647f1b534922b844b0499670a4d0a2639f3.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/ff8f06b3f35697ae7f69381d3c5dcdf12dc6b6af9b42d42d69d7ccb1a87471c4.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/963828594842798e1f6155dd83c48647f1b534922b844b0499670a4d0a2639f3.png"
+    "https://archive.org/download/psvitaalive-stratagemherovita/shot_01.png",
+    "https://archive.org/download/psvitaalive-stratagemherovita/shot_02.png",
+    "https://archive.org/download/psvitaalive-stratagemherovita/shot_03.png",
+    "https://archive.org/download/psvitaalive-stratagemherovita/shot_04.png"
   ],
-  "links": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-stratagemherovita/stratagemherovita.vpk",
+      "recommended": true
+    }
+  ],
   "source_name": "VitaHomebrewDB",
   "source_id": "1205",
   "source_url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1205-StratagemHeroVita.vpk",

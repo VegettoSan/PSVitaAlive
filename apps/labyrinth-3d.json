@@ -16,14 +16,20 @@
   "requirements": "Not specified",
   "size": 9083464,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1537-labyrinth-3d.png",
+  "icon": "https://archive.org/download/psvitaalive-labyrinth-3d/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1537-labyrinth-3d.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/lvita1.jpg",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/lvita2.jpg",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/lvita3.jpg"
+    "https://archive.org/download/psvitaalive-labyrinth-3d/shot_01.png",
+    "https://archive.org/download/psvitaalive-labyrinth-3d/shot_02.png",
+    "https://archive.org/download/psvitaalive-labyrinth-3d/shot_03.png",
+    "https://archive.org/download/psvitaalive-labyrinth-3d/shot_04.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-labyrinth-3d/labyrinth-3d.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Official Website",

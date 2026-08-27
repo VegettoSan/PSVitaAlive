@@ -16,11 +16,17 @@
   "requirements": "Not specified",
   "size": 2119638,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1647-switch-to-pstv.png",
+  "icon": "https://archive.org/download/psvitaalive-switch-to-pstv/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1647-switch-to-pstv.png"
+    "https://archive.org/download/psvitaalive-switch-to-pstv/shot_01.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-switch-to-pstv/switch-to-pstv.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Release Page",

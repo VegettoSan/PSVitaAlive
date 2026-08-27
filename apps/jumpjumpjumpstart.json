@@ -16,14 +16,21 @@
   "requirements": "Not specified",
   "size": 28510095,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1851-jumpjumpjumpstart.png",
+  "icon": "https://archive.org/download/psvitaalive-jumpjumpjumpstart/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/7a71f0730314d8f87d8f587a53b8c84d2a5f622561d437dd41735e5df4924ab3.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/9ebc09e20cdac3cd214f5e4502b428547733096d8f09511397a37f35984982de.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/7a71f0730314d8f87d8f587a53b8c84d2a5f622561d437dd41735e5df4924ab3.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/9ebc09e20cdac3cd214f5e4502b428547733096d8f09511397a37f35984982de.png"
+    "https://archive.org/download/psvitaalive-jumpjumpjumpstart/shot_01.png",
+    "https://archive.org/download/psvitaalive-jumpjumpjumpstart/shot_02.png",
+    "https://archive.org/download/psvitaalive-jumpjumpjumpstart/shot_03.png",
+    "https://archive.org/download/psvitaalive-jumpjumpjumpstart/shot_04.png"
   ],
-  "links": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-jumpjumpjumpstart/jumpjumpjumpstart.vpk",
+      "recommended": true
+    }
+  ],
   "source_name": "VitaHomebrewDB",
   "source_id": "1117",
   "source_url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1117-jjjs.vpk",

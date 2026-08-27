@@ -17,15 +17,21 @@
   "requirements": "Not specified",
   "size": 55543575,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1925-fnaf-world-psvita-demake.png",
+  "icon": "https://archive.org/download/psvitaalive-fnaf-world-psvita-demake/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/51f00186542a1cbe482938e6c1956db4ebdf616f5be727fd9970dbf84d29a775.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c1b96646e18f8c178e01ad850d3d65f189c80b7eb8d600c27ebe4da7470f583f.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/4b4bce6e6d5fdcf4de4a39b128aa977cff273cf6fb848debffe0cdab3f114fb0.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/71e5af3a077f76d71f175f6706b94386eb71170e7482b93bb8eebbcfad715241.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/7d735d31c36a24b46b492a14e194d778ed5584a28142699cefe5dec6d7b5dcd7.png"
+    "https://archive.org/download/psvitaalive-fnaf-world-psvita-demake/shot_01.png",
+    "https://archive.org/download/psvitaalive-fnaf-world-psvita-demake/shot_02.png",
+    "https://archive.org/download/psvitaalive-fnaf-world-psvita-demake/shot_03.png",
+    "https://archive.org/download/psvitaalive-fnaf-world-psvita-demake/shot_04.png",
+    "https://archive.org/download/psvitaalive-fnaf-world-psvita-demake/shot_05.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-fnaf-world-psvita-demake/1274-fnaf-world.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Official Website",

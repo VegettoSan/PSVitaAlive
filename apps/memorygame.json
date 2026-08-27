@@ -16,15 +16,21 @@
   "requirements": "Not specified",
   "size": 685212,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/f161fb3365146f2ddf7243b7569ec7c083ba8e54d80986dfb25e857b4176a045.png",
+  "icon": "https://archive.org/download/psvitaalive-memorygame/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/b397ce6b2f8e6b1d5d653bb0054b7f948f8b553d3baba02c7350642764305624.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/3b96d11c2ee97264cf4fa909718864563ad43637efa31805c4044f6cb8492ee1.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/588369e4270fb5d0d8f933c24e4a558cad09f89035bdd29813346d12fbfe7014.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/b397ce6b2f8e6b1d5d653bb0054b7f948f8b553d3baba02c7350642764305624.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/3b96d11c2ee97264cf4fa909718864563ad43637efa31805c4044f6cb8492ee1.png"
+    "https://archive.org/download/psvitaalive-memorygame/shot_01.png",
+    "https://archive.org/download/psvitaalive-memorygame/shot_02.png",
+    "https://archive.org/download/psvitaalive-memorygame/shot_03.png",
+    "https://archive.org/download/psvitaalive-memorygame/shot_04.png",
+    "https://archive.org/download/psvitaalive-memorygame/shot_05.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-memorygame/memorygame.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Release Page",

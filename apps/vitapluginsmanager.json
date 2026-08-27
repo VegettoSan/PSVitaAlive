@@ -16,11 +16,17 @@
   "requirements": "Not specified",
   "size": 69673,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/35be653a38137b2e5f60845fe06ba539cbf6fb4909fe0d55401aeeecaccfb43c.png",
+  "icon": "https://archive.org/download/psvitaalive-vitapluginsmanager/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/35be653a38137b2e5f60845fe06ba539cbf6fb4909fe0d55401aeeecaccfb43c.png"
+    "https://archive.org/download/psvitaalive-vitapluginsmanager/shot_01.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-vitapluginsmanager/vitapluginsmanager.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Release Page",

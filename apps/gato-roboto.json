@@ -16,14 +16,20 @@
   "requirements": "- Game Data Files: PC",
   "size": 2859705,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/0779-gato-roboto.png",
+  "icon": "https://archive.org/download/psvitaalive-gato-roboto/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/392f853f030606bf0644f45491474a6461d06f86b0fdc802ac3164c7347f0ceb.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c4da18fd37dd9a1553c4795d29cceebdc58c91548f1f61936c2f28d60b159693.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/392f853f030606bf0644f45491474a6461d06f86b0fdc802ac3164c7347f0ceb.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/c4da18fd37dd9a1553c4795d29cceebdc58c91548f1f61936c2f28d60b159693.png"
+    "https://archive.org/download/psvitaalive-gato-roboto/shot_01.png",
+    "https://archive.org/download/psvitaalive-gato-roboto/shot_02.png",
+    "https://archive.org/download/psvitaalive-gato-roboto/shot_03.png",
+    "https://archive.org/download/psvitaalive-gato-roboto/shot_04.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-gato-roboto/Gato_Roboto_v1.0.0.VPK",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Release Page",

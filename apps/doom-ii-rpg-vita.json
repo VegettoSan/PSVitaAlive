@@ -16,15 +16,21 @@
   "requirements": "- libshacccg.suprx\n- Game Data Files: Mobile",
   "size": 2040195,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1912-doom-ii-rpg-vita.png",
+  "icon": "https://archive.org/download/psvitaalive-doom-ii-rpg-vita/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/2026f4d1e675b5d3ef508955914028c2312965f6a3f434301ee684613b2af35a.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/3675632048f8bf0a997030694ca18480c7b62de58eee0b9936c555410b1ea6a7.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/82af0a3b195162466415bc2b3cd4890ba1229325304b0ac3ab129b4837f0b692.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/5b146e1b8ff6b03d1b5cbc425fe1993dc4afcc16a25e56da55eea7035d53d0eb.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/2026f4d1e675b5d3ef508955914028c2312965f6a3f434301ee684613b2af35a.png"
+    "https://archive.org/download/psvitaalive-doom-ii-rpg-vita/shot_01.png",
+    "https://archive.org/download/psvitaalive-doom-ii-rpg-vita/shot_02.png",
+    "https://archive.org/download/psvitaalive-doom-ii-rpg-vita/shot_03.png",
+    "https://archive.org/download/psvitaalive-doom-ii-rpg-vita/shot_04.png",
+    "https://archive.org/download/psvitaalive-doom-ii-rpg-vita/shot_05.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-doom-ii-rpg-vita/doom-ii-rpg-vita.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Official Website",

@@ -16,15 +16,22 @@
   "requirements": "Not specified",
   "size": 58460781,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1620-mkmayhem.png",
+  "icon": "https://archive.org/download/psvitaalive-mkmayhem/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/3d0fad9bb19116ce44a1ba8fa860bce28823fe9a43b846c9efeb6a3c3e9a6d33.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/a9acd9c199c974ad7e9f4944597a4f9b463f4fd21cbe260a4ba005d6e6494d78.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/97e36dee98e6d34bd4c1a6e25dbab81664f436a33f6c86006e96156e9b40cb2a.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/774a882b98fe25fc1b48ebad7fe2ad37bd24cb0852b1e680b27cae247d6af15b.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/3d0fad9bb19116ce44a1ba8fa860bce28823fe9a43b846c9efeb6a3c3e9a6d33.png"
+    "https://archive.org/download/psvitaalive-mkmayhem/shot_01.png",
+    "https://archive.org/download/psvitaalive-mkmayhem/shot_02.png",
+    "https://archive.org/download/psvitaalive-mkmayhem/shot_03.png",
+    "https://archive.org/download/psvitaalive-mkmayhem/shot_04.png",
+    "https://archive.org/download/psvitaalive-mkmayhem/shot_05.png"
   ],
-  "links": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-mkmayhem/mkmayhem.vpk",
+      "recommended": true
+    }
+  ],
   "source_name": "VitaHomebrewDB",
   "source_id": "442",
   "source_url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/442-MKMayhem.vpk",

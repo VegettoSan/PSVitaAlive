@@ -17,11 +17,17 @@
   "requirements": "- libshacccg.suprx\n- Game Data Files: Android/Windows/Mac/iOS",
   "size": 2830265,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/f5eafeee779fcff58a758318517664480fea1de1f8affc430d3b36b08e9aafc9.png",
+  "icon": "https://archive.org/download/psvitaalive-rtdink/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/f5eafeee779fcff58a758318517664480fea1de1f8affc430d3b36b08e9aafc9.png"
+    "https://archive.org/download/psvitaalive-rtdink/shot_01.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-rtdink/rtdink.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Official Website",

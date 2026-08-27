@@ -16,15 +16,21 @@
   "requirements": "- libshacccg.suprx\n- kubridge.skprx\n- Game Data Files: Android",
   "size": 1828459,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/c87cee010571d705ec8b500a62c7b8927dce5448931cb970400fa7b5f0ba036c.png",
+  "icon": "https://archive.org/download/psvitaalive-dark-lands-vita/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/17db7bdfde59a3f19ffd5c387d8862db908ec76ab814801a728bde95a15d6e63.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/2da24dd537f1650518fb914d0d3ec581406f3634be8a5686fa2311e47ba3414c.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c4370e89dc433e8fe220226ad4dcea72b1805871ba97cffa01d1f9315c40372f.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/ec329430f46dd994b96f8a8f931ee0030f23dd85ffc417e14e5b12639f2b3c65.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/17db7bdfde59a3f19ffd5c387d8862db908ec76ab814801a728bde95a15d6e63.png"
+    "https://archive.org/download/psvitaalive-dark-lands-vita/shot_01.png",
+    "https://archive.org/download/psvitaalive-dark-lands-vita/shot_02.png",
+    "https://archive.org/download/psvitaalive-dark-lands-vita/shot_03.png",
+    "https://archive.org/download/psvitaalive-dark-lands-vita/shot_04.png",
+    "https://archive.org/download/psvitaalive-dark-lands-vita/shot_05.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-dark-lands-vita/dark-lands-vita.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Release Page",

@@ -16,15 +16,21 @@
   "requirements": "Not specified",
   "size": 71660453,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1796-five-night-at-freddy-s-4-lite.png",
+  "icon": "https://archive.org/download/psvitaalive-five-night-at-freddy-s-4-lite/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/db4ea37921d93b070ff5f4cb6b69b180a066daf88e02620cad42de04e45204b6.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/f6c7dc02bdb97fd4991f1d9a9816ed1d54c3ddf548c8123a772da2e9247e44f0.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/163eb18bc0ede5ca9b85a2d81b956ebf81ebc99026685a6f7f55c8da59d2efff.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/8bd8ac6dc8c24f7e0e00e5b455807a6cf887bca2a701f8ec772e1b5c9aa08380.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/db4ea37921d93b070ff5f4cb6b69b180a066daf88e02620cad42de04e45204b6.png"
+    "https://archive.org/download/psvitaalive-five-night-at-freddy-s-4-lite/shot_01.png",
+    "https://archive.org/download/psvitaalive-five-night-at-freddy-s-4-lite/shot_02.png",
+    "https://archive.org/download/psvitaalive-five-night-at-freddy-s-4-lite/shot_03.png",
+    "https://archive.org/download/psvitaalive-five-night-at-freddy-s-4-lite/shot_04.png",
+    "https://archive.org/download/psvitaalive-five-night-at-freddy-s-4-lite/shot_05.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-five-night-at-freddy-s-4-lite/five-night-at-freddy-s-4-lite.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Official Website",

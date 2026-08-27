@@ -16,14 +16,20 @@
   "requirements": "Not specified",
   "size": 2602326,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1477-rincheat-se.png",
+  "icon": "https://archive.org/download/psvitaalive-rincheat-se/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1477-rincheat-se.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/cheatse.jpg",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/cheatse2.jpg",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/cheatse3.jpg"
+    "https://archive.org/download/psvitaalive-rincheat-se/shot_01.png",
+    "https://archive.org/download/psvitaalive-rincheat-se/shot_02.png",
+    "https://archive.org/download/psvitaalive-rincheat-se/shot_03.png",
+    "https://archive.org/download/psvitaalive-rincheat-se/shot_04.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-rincheat-se/rincheat-se.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Official Website",

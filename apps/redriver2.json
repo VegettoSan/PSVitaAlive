@@ -16,15 +16,21 @@
   "requirements": "- Game Data Files: PSX",
   "size": 5413624,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1874-redriver2.png",
+  "icon": "https://archive.org/download/psvitaalive-redriver2/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/1607495b13b2f6ea6bb09065042b6df1acb8862c21059fb49664bf04756d6a4b.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/44a33e724589e7f56af4e749f7614f9b3360496626519b690136fc3013330a33.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/8ce0899f65b4a57c2662337afd301028a43c49691c0de09c81b9b39d89a8d390.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/1607495b13b2f6ea6bb09065042b6df1acb8862c21059fb49664bf04756d6a4b.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/44a33e724589e7f56af4e749f7614f9b3360496626519b690136fc3013330a33.png"
+    "https://archive.org/download/psvitaalive-redriver2/shot_01.png",
+    "https://archive.org/download/psvitaalive-redriver2/shot_02.png",
+    "https://archive.org/download/psvitaalive-redriver2/shot_03.png",
+    "https://archive.org/download/psvitaalive-redriver2/shot_04.png",
+    "https://archive.org/download/psvitaalive-redriver2/shot_05.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-redriver2/redriver2.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Official Website",

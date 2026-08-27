@@ -16,14 +16,20 @@
   "requirements": "Not specified",
   "size": 5516346,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/84cb4eb71998c3b235483491b3f688746925230c6cb8f68fb13655ea43f9e753.png",
+  "icon": "https://archive.org/download/psvitaalive-freegemas/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/934eb37ba2c3cd67ca81477ad9ef6db15b13fe43dc70cabfcb250e75bfd90f82.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/1851400e9504c907600962d8ee9e4818db1840b3eb2fa04a766091b633d6de65.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/934eb37ba2c3cd67ca81477ad9ef6db15b13fe43dc70cabfcb250e75bfd90f82.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/1851400e9504c907600962d8ee9e4818db1840b3eb2fa04a766091b633d6de65.png"
+    "https://archive.org/download/psvitaalive-freegemas/shot_01.png",
+    "https://archive.org/download/psvitaalive-freegemas/shot_02.png",
+    "https://archive.org/download/psvitaalive-freegemas/shot_03.png",
+    "https://archive.org/download/psvitaalive-freegemas/shot_04.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-freegemas/freegemas.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Release Page",

@@ -18,15 +18,21 @@
   "requirements": "Not specified",
   "size": 152381609,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1855-gnomopolis.png",
+  "icon": "https://archive.org/download/psvitaalive-gnomopolis/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/6f114ebd131f464dacd81fb29d00a0dbddadff79d5aa5ab4f30faacaefd1b921.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/2e253f07566c0aec04eb0464a22989ff78226ebb5f8e75d549e4b671c7d7a45c.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/bd6e0319a7bcf3df6f46d03b429e1f42899de3de98caf92c717a52caba8bba7c.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/6f114ebd131f464dacd81fb29d00a0dbddadff79d5aa5ab4f30faacaefd1b921.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/2e253f07566c0aec04eb0464a22989ff78226ebb5f8e75d549e4b671c7d7a45c.png"
+    "https://archive.org/download/psvitaalive-gnomopolis/shot_01.png",
+    "https://archive.org/download/psvitaalive-gnomopolis/shot_02.png",
+    "https://archive.org/download/psvitaalive-gnomopolis/shot_03.png",
+    "https://archive.org/download/psvitaalive-gnomopolis/shot_04.png",
+    "https://archive.org/download/psvitaalive-gnomopolis/shot_05.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-gnomopolis/gnomopolis.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Official Website",

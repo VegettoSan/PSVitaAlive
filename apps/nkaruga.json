@@ -16,15 +16,21 @@
   "requirements": "Not specified",
   "size": 8285707,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1771-nkaruga.png",
+  "icon": "https://archive.org/download/psvitaalive-nkaruga/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/b24a75b9792aea1cf3fddff1dbf91419403a859c49b5d3af7591b28c7bce8b81.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/96d9f4aef9e6b5b1875d1e7de318f6b47c20a7d00bb1ffd0862af610f3cabf71.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/19a59e786924d9ab8f97e9c702eda4590cedb205e47917c4db49e9266248e174.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/5927340b69f57d63932b1520454dcefb920ed00bf648ad09d413af055ddee8b8.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/b24a75b9792aea1cf3fddff1dbf91419403a859c49b5d3af7591b28c7bce8b81.png"
+    "https://archive.org/download/psvitaalive-nkaruga/shot_01.png",
+    "https://archive.org/download/psvitaalive-nkaruga/shot_02.png",
+    "https://archive.org/download/psvitaalive-nkaruga/shot_03.png",
+    "https://archive.org/download/psvitaalive-nkaruga/shot_04.png",
+    "https://archive.org/download/psvitaalive-nkaruga/shot_05.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-nkaruga/nkaruga.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Official Website",

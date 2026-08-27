@@ -16,15 +16,21 @@
   "requirements": "Not specified",
   "size": 28319506,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/f07fea2284a8239f01af495520e7da75453858adb7f04f89f105ec0c7ae9e2a5.png",
+  "icon": "https://archive.org/download/psvitaalive-squid-game/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/e0eea6141a508f6251dc870062716bf75806c5e05afe0a1843234ffb64524bcd.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/48cae90894c85d45c867a312e69d17907d07f004f2d981a3b1757e959936dbc5.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c387948293026d985da8bf8a511c855013e319d08106c1adb9c1050bfa29e6af.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/f8297eb63873e8d00ba8bdd825032cb92662a97b455326d92efc5d4d585a0ad3.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/e0eea6141a508f6251dc870062716bf75806c5e05afe0a1843234ffb64524bcd.png"
+    "https://archive.org/download/psvitaalive-squid-game/shot_01.png",
+    "https://archive.org/download/psvitaalive-squid-game/shot_02.png",
+    "https://archive.org/download/psvitaalive-squid-game/shot_03.png",
+    "https://archive.org/download/psvitaalive-squid-game/shot_04.png",
+    "https://archive.org/download/psvitaalive-squid-game/shot_05.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-squid-game/squid-game.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Repository",

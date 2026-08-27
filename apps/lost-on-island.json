@@ -16,15 +16,22 @@
   "requirements": "Not specified",
   "size": 87645624,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1696-lost-on-island.png",
+  "icon": "https://archive.org/download/psvitaalive-lost-on-island/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/2159b04064fe7a5ce48f375b70061512f59be42ee37edc47fd877711e6b201b7.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/a11446763e2032edf073bc7ff1910c81bb220ed0c9a661dedd22b35ea0daae02.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/b78d724dc89d1a3056c5a54bf13fd08a5bd45e16d6dc06bf2f3d057ccb2d3022.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/2159b04064fe7a5ce48f375b70061512f59be42ee37edc47fd877711e6b201b7.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/a11446763e2032edf073bc7ff1910c81bb220ed0c9a661dedd22b35ea0daae02.png"
+    "https://archive.org/download/psvitaalive-lost-on-island/shot_01.png",
+    "https://archive.org/download/psvitaalive-lost-on-island/shot_02.png",
+    "https://archive.org/download/psvitaalive-lost-on-island/shot_03.png",
+    "https://archive.org/download/psvitaalive-lost-on-island/shot_04.png",
+    "https://archive.org/download/psvitaalive-lost-on-island/shot_05.png"
   ],
-  "links": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-lost-on-island/lost-on-island.vpk",
+      "recommended": true
+    }
+  ],
   "source_name": "VitaHomebrewDB",
   "source_id": "595",
   "source_url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/595-LostOnIsland.vpk",

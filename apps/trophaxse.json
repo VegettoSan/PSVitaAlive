@@ -17,11 +17,17 @@
   "requirements": "Not specified",
   "size": 235804,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1455-trophaxse.png",
+  "icon": "https://archive.org/download/psvitaalive-trophaxse/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1455-trophaxse.png"
+    "https://archive.org/download/psvitaalive-trophaxse/shot_01.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-trophaxse/TrophaxSE.vpk",
+      "recommended": true
+    },
     {
       "type": "Repository",
       "name": "Repositorio",

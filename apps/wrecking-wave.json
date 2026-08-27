@@ -16,15 +16,21 @@
   "requirements": "Not specified",
   "size": 28534836,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1966-wrecking-wave.png",
+  "icon": "https://archive.org/download/psvitaalive-wrecking-wave/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/083c1ac7ea91e29d942cd1a663b911524e665f88315ad0974aa6d45613efde84.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/3d727f0e6d76c27cf60c5bc6ab9c67c9ca6714b64fa0e5b544af52708e370ea1.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/35b2a25d115dff7a8917865955fe3713af1222ef198d2447d49c9dcf33eda238.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/3101d42506635a54d5ff31e23c625f8338e26fe57676432ab588f975451d2a18.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/083c1ac7ea91e29d942cd1a663b911524e665f88315ad0974aa6d45613efde84.png"
+    "https://archive.org/download/psvitaalive-wrecking-wave/shot_01.png",
+    "https://archive.org/download/psvitaalive-wrecking-wave/shot_02.png",
+    "https://archive.org/download/psvitaalive-wrecking-wave/shot_03.png",
+    "https://archive.org/download/psvitaalive-wrecking-wave/shot_04.png",
+    "https://archive.org/download/psvitaalive-wrecking-wave/shot_05.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-wrecking-wave/wrecking-wave.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Official Website",

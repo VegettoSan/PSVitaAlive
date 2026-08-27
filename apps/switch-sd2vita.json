@@ -17,11 +17,17 @@
   "requirements": "Not specified",
   "size": 250120,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/9e2fa1f38568c41f2c015ef509da37b35cfa809d4234500300823c220524a6cf.png",
+  "icon": "https://archive.org/download/psvitaalive-switch-sd2vita/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/9e2fa1f38568c41f2c015ef509da37b35cfa809d4234500300823c220524a6cf.png"
+    "https://archive.org/download/psvitaalive-switch-sd2vita/shot_01.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-switch-sd2vita/switch-sd2vita.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Official Website",

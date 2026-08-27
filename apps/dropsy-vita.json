@@ -16,15 +16,21 @@
   "requirements": "- Game Data Files: PC",
   "size": 15101246,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1929-dropsy-vita.png",
+  "icon": "https://archive.org/download/psvitaalive-dropsy-vita/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/7ebe8ecb3e3a640cb2177571886354ea33fdcc4cde3cf134468ce322edc64aa9.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/895a8a78eec290970f6389cdf5c11a1912cb7937fb3e72df306bbfa3018b830a.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/8f867e1d76a065946fa1f370d9ef1bff226c5f0355370f22836022eecfd821ab.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/7ebe8ecb3e3a640cb2177571886354ea33fdcc4cde3cf134468ce322edc64aa9.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/895a8a78eec290970f6389cdf5c11a1912cb7937fb3e72df306bbfa3018b830a.png"
+    "https://archive.org/download/psvitaalive-dropsy-vita/shot_01.png",
+    "https://archive.org/download/psvitaalive-dropsy-vita/shot_02.png",
+    "https://archive.org/download/psvitaalive-dropsy-vita/shot_03.png",
+    "https://archive.org/download/psvitaalive-dropsy-vita/shot_04.png",
+    "https://archive.org/download/psvitaalive-dropsy-vita/shot_05.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-dropsy-vita/dropsy-vita.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Official Website",

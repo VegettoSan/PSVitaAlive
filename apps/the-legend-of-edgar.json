@@ -16,15 +16,21 @@
   "requirements": "Not specified",
   "size": 95830168,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1870-the-legend-of-edgar.png",
+  "icon": "https://archive.org/download/psvitaalive-the-legend-of-edgar/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/085ba9b211ed88eed82e26539c25272f05d76229fac6fa8151c33f98fea6ea2b.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/bf1f34faf700ec70a943c7b6f78d0635a4c0e32ebcd76c869d3d32825be4345a.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/4ca668fba920bfb840ad8e2d67d55a3bf30b1e2d6cf3e6610fd61e1b19f5a4e1.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/085ba9b211ed88eed82e26539c25272f05d76229fac6fa8151c33f98fea6ea2b.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/bf1f34faf700ec70a943c7b6f78d0635a4c0e32ebcd76c869d3d32825be4345a.png"
+    "https://archive.org/download/psvitaalive-the-legend-of-edgar/shot_01.png",
+    "https://archive.org/download/psvitaalive-the-legend-of-edgar/shot_02.png",
+    "https://archive.org/download/psvitaalive-the-legend-of-edgar/shot_03.png",
+    "https://archive.org/download/psvitaalive-the-legend-of-edgar/shot_04.png",
+    "https://archive.org/download/psvitaalive-the-legend-of-edgar/shot_05.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-the-legend-of-edgar/the-legend-of-edgar.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Official Website",

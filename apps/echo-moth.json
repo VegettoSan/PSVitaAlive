@@ -16,14 +16,21 @@
   "requirements": "Not specified",
   "size": 34575104,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1630-echo-moth.png",
+  "icon": "https://archive.org/download/psvitaalive-echo-moth/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/92c6b4496c18f02305eac0174ef0efcec55180a03f5ceca3dd5f53474004bf3f.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/ea33d67afc7e501dc74ecf708bcc469c0690598617cea7b486561845895a2260.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/92c6b4496c18f02305eac0174ef0efcec55180a03f5ceca3dd5f53474004bf3f.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/ea33d67afc7e501dc74ecf708bcc469c0690598617cea7b486561845895a2260.png"
+    "https://archive.org/download/psvitaalive-echo-moth/shot_01.png",
+    "https://archive.org/download/psvitaalive-echo-moth/shot_02.png",
+    "https://archive.org/download/psvitaalive-echo-moth/shot_03.png",
+    "https://archive.org/download/psvitaalive-echo-moth/shot_04.png"
   ],
-  "links": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-echo-moth/echo-moth.vpk",
+      "recommended": true
+    }
+  ],
   "source_name": "VitaHomebrewDB",
   "source_id": "453",
   "source_url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/453-Echo_20Moth.vpk",

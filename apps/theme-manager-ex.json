@@ -16,11 +16,17 @@
   "requirements": "Not specified",
   "size": 1169632,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1493-theme-manager-ex.png",
+  "icon": "https://archive.org/download/psvitaalive-theme-manager-ex/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1493-theme-manager-ex.png"
+    "https://archive.org/download/psvitaalive-theme-manager-ex/shot_01.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-theme-manager-ex/theme-manager-ex.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Official Website",

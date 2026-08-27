@@ -16,11 +16,17 @@
   "requirements": "Not specified",
   "size": 813069,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1703-sqrxz-4.png",
+  "icon": "https://archive.org/download/psvitaalive-sqrxz-4/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1703-sqrxz-4.png"
+    "https://archive.org/download/psvitaalive-sqrxz-4/shot_01.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-sqrxz-4/sqrxz-4.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Official Website",

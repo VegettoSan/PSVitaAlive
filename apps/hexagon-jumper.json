@@ -16,12 +16,18 @@
   "requirements": "Not specified",
   "size": 80076273,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1761-hexagon-jumper.png",
+  "icon": "https://archive.org/download/psvitaalive-hexagon-jumper/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/820e27a581b29dac7ad4345816c899745c7c12e605e2333827e142543c95ce26.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/820e27a581b29dac7ad4345816c899745c7c12e605e2333827e142543c95ce26.png"
+    "https://archive.org/download/psvitaalive-hexagon-jumper/shot_01.png",
+    "https://archive.org/download/psvitaalive-hexagon-jumper/shot_02.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-hexagon-jumper/hexagon-jumper.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Official Website",

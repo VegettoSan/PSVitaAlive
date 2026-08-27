@@ -16,11 +16,18 @@
   "requirements": "Not specified",
   "size": 38191562,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1790-pako-forever.png",
+  "icon": "https://archive.org/download/psvitaalive-pako-forever/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1790-pako-forever.png"
+    "https://archive.org/download/psvitaalive-pako-forever/shot_01.png"
   ],
-  "links": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-pako-forever/pako-forever.vpk",
+      "recommended": true
+    }
+  ],
   "source_name": "VitaHomebrewDB",
   "source_id": "844",
   "source_url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/844-pako.vpk",

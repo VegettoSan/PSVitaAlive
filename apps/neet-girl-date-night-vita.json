@@ -16,11 +16,17 @@
   "requirements": "Not specified",
   "size": 14511015,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/34b18ae7e7c20707af7d20e4974b716894410de69f531abf6f2d0ed77ec9195c.png",
+  "icon": "https://archive.org/download/psvitaalive-neet-girl-date-night-vita/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/34b18ae7e7c20707af7d20e4974b716894410de69f531abf6f2d0ed77ec9195c.png"
+    "https://archive.org/download/psvitaalive-neet-girl-date-night-vita/shot_01.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-neet-girl-date-night-vita/neet-girl-date-night-vita.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Repository",

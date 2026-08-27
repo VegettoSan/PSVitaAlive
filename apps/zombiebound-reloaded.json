@@ -16,15 +16,21 @@
   "requirements": "Not specified",
   "size": 165900291,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1613-zombiebound-reloaded.png",
+  "icon": "https://archive.org/download/psvitaalive-zombiebound-reloaded/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/ca773cfaacde7cc840ffe662e66f7055db5be937cca485c4f5a33c705282114c.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/4d9ee3a4b07f1459bad2692c71da948e746e93f05aab17e324661b32357b7092.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/35ec3b420c5a12b4a868891ff7797155e02eef4766361864319abdae9025d9de.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/ca773cfaacde7cc840ffe662e66f7055db5be937cca485c4f5a33c705282114c.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/4d9ee3a4b07f1459bad2692c71da948e746e93f05aab17e324661b32357b7092.png"
+    "https://archive.org/download/psvitaalive-zombiebound-reloaded/shot_01.png",
+    "https://archive.org/download/psvitaalive-zombiebound-reloaded/shot_02.png",
+    "https://archive.org/download/psvitaalive-zombiebound-reloaded/shot_03.png",
+    "https://archive.org/download/psvitaalive-zombiebound-reloaded/shot_04.png",
+    "https://archive.org/download/psvitaalive-zombiebound-reloaded/shot_05.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-zombiebound-reloaded/zombiebound-reloaded.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Official Website",

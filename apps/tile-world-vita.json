@@ -16,11 +16,17 @@
   "requirements": "Not specified",
   "size": 1598510,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1132-tile-world-vita.png",
+  "icon": "https://archive.org/download/psvitaalive-tile-world-vita/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1132-tile-world-vita.png"
+    "https://archive.org/download/psvitaalive-tile-world-vita/shot_01.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-tile-world-vita/tworld-vita.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Release Page",

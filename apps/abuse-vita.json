@@ -16,15 +16,21 @@
   "requirements": "Not specified",
   "size": 7588899,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1718-abuse-vita.png",
+  "icon": "https://archive.org/download/psvitaalive-abuse-vita/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/d7e3b0ff4a84c9abccb2ac09848573a5fb8d690f4b2179ed02f2f325f705669e.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/513bae396a26983c9865f46d4203e17c9e8a3cdeb561797b7d2c2fc53b4b4db9.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/eaa7b3acc7414c3929eb7535523689ec754ef97ec24859e279c952d3f0477943.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/d7e3b0ff4a84c9abccb2ac09848573a5fb8d690f4b2179ed02f2f325f705669e.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/513bae396a26983c9865f46d4203e17c9e8a3cdeb561797b7d2c2fc53b4b4db9.png"
+    "https://archive.org/download/psvitaalive-abuse-vita/shot_01.png",
+    "https://archive.org/download/psvitaalive-abuse-vita/shot_02.png",
+    "https://archive.org/download/psvitaalive-abuse-vita/shot_03.png",
+    "https://archive.org/download/psvitaalive-abuse-vita/shot_04.png",
+    "https://archive.org/download/psvitaalive-abuse-vita/shot_05.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-abuse-vita/abuse-vita.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Official Website",

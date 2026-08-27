@@ -16,11 +16,17 @@
   "requirements": "Not specified",
   "size": 2144931,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/90ef286f1d18909e0d57b3147fb7ec8753e90b65f634cc9423485c5cde6b6e85.png",
+  "icon": "https://archive.org/download/psvitaalive-vitadeploy/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/90ef286f1d18909e0d57b3147fb7ec8753e90b65f634cc9423485c5cde6b6e85.png"
+    "https://archive.org/download/psvitaalive-vitadeploy/shot_01.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-vitadeploy/VitaDeploy.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Release Page",

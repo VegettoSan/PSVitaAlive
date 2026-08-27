@@ -16,12 +16,18 @@
   "requirements": "Not specified",
   "size": 259995,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/383fbb647a5015e4a55fe3d2f795ab12a7807c068176a781c46710353ca3a030.png",
+  "icon": "https://archive.org/download/psvitaalive-vitarebootshutdown/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/d23a675fc71243464b25bb88b1955fc70640739a83e6406f370ba5d74c2097e7.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/d23a675fc71243464b25bb88b1955fc70640739a83e6406f370ba5d74c2097e7.png"
+    "https://archive.org/download/psvitaalive-vitarebootshutdown/shot_01.png",
+    "https://archive.org/download/psvitaalive-vitarebootshutdown/shot_02.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-vitarebootshutdown/vitarebootshutdown.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Release Page",

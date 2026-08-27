@@ -16,11 +16,17 @@
   "requirements": "Not specified",
   "size": 3167033,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/10d6ad3cb6129fedf1ea2264896595dce73b12c73e00f23f2abd2ad9a258fa40.png",
+  "icon": "https://archive.org/download/psvitaalive-omega-strike-vita/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/10d6ad3cb6129fedf1ea2264896595dce73b12c73e00f23f2abd2ad9a258fa40.png"
+    "https://archive.org/download/psvitaalive-omega-strike-vita/shot_01.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-omega-strike-vita/omega-strike-vita.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Repository",

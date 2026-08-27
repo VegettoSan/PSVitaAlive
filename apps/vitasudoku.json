@@ -16,12 +16,18 @@
   "requirements": "Not specified",
   "size": 1654538,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1509-vitasudoku.png",
+  "icon": "https://archive.org/download/psvitaalive-vitasudoku/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1509-vitasudoku.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/sudovita.jpg"
+    "https://archive.org/download/psvitaalive-vitasudoku/shot_01.png",
+    "https://archive.org/download/psvitaalive-vitasudoku/shot_02.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-vitasudoku/vitasudoku.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Official Website",

@@ -16,12 +16,18 @@
   "requirements": "- Game Data Files: PC",
   "size": 572647,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/31777816305972eaceee85b3ec07fb58e530ec2fbe2db730442136e529730e2f.png",
+  "icon": "https://archive.org/download/psvitaalive-catacomb-vita/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/08e9642465e5db7a801563a5806e01ce05cca135ad48e725a227ecc29a389337.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/08e9642465e5db7a801563a5806e01ce05cca135ad48e725a227ecc29a389337.png"
+    "https://archive.org/download/psvitaalive-catacomb-vita/shot_01.png",
+    "https://archive.org/download/psvitaalive-catacomb-vita/shot_02.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-catacomb-vita/catacomb-vita.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Release Page",

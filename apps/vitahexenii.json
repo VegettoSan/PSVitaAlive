@@ -16,15 +16,21 @@
   "requirements": "- Game Data Files: PC",
   "size": 3189188,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1536-vitahexenii.png",
+  "icon": "https://archive.org/download/psvitaalive-vitahexenii/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/35ce1aa6df430a249a72b4c9ab2523c97173bab96b499ea5137658d99ba9b771.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/8b16399c241ddf247ac2babed8f1efa03a9617b4b4b2830e6b0f0ab26d28ae11.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/49193effba5d26f289b5d8369ffb57df0be46eb9bb5731ae35797aeca228c15b.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/35ce1aa6df430a249a72b4c9ab2523c97173bab96b499ea5137658d99ba9b771.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/8b16399c241ddf247ac2babed8f1efa03a9617b4b4b2830e6b0f0ab26d28ae11.png"
+    "https://archive.org/download/psvitaalive-vitahexenii/shot_01.png",
+    "https://archive.org/download/psvitaalive-vitahexenii/shot_02.png",
+    "https://archive.org/download/psvitaalive-vitahexenii/shot_03.png",
+    "https://archive.org/download/psvitaalive-vitahexenii/shot_04.png",
+    "https://archive.org/download/psvitaalive-vitahexenii/shot_05.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-vitahexenii/vitahexenii.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Official Website",

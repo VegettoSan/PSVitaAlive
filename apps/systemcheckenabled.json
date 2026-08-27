@@ -17,15 +17,21 @@
   "requirements": "- Game Data Files: PC GoG",
   "size": 2376428,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1467-systemcheckenabled.png",
+  "icon": "https://archive.org/download/psvitaalive-systemcheckenabled/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/02a34ef4afc56b8e1ed3b436b1b64f26f3f4bf029ef7184d3dec0f30d61eb1e8.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/751aa2af5e8a556fa53985068c2cb99afa390f41b0ce6bb86fa37657fec26017.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/eb22bdb660491c5ca2d7afe3eda661801d94806e033a6be81eac5d62fadb0e60.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/14a5ea6b5b8bc2558f6f7a50852f5622283fe15832a3f0f7893ed5da5333bc92.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/02a34ef4afc56b8e1ed3b436b1b64f26f3f4bf029ef7184d3dec0f30d61eb1e8.png"
+    "https://archive.org/download/psvitaalive-systemcheckenabled/shot_01.png",
+    "https://archive.org/download/psvitaalive-systemcheckenabled/shot_02.png",
+    "https://archive.org/download/psvitaalive-systemcheckenabled/shot_03.png",
+    "https://archive.org/download/psvitaalive-systemcheckenabled/shot_04.png",
+    "https://archive.org/download/psvitaalive-systemcheckenabled/shot_05.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-systemcheckenabled/17-systemshock.vpk",
+      "recommended": true
+    },
     {
       "type": "Repository",
       "name": "Repositorio",

@@ -16,11 +16,17 @@
   "requirements": "Not specified",
   "size": 49070621,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/193adad742dcc2151cfcbe394cb9e9d4840976b01384cf0d40d867bbfef26173.png",
+  "icon": "https://archive.org/download/psvitaalive-age-of-war-vita/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/193adad742dcc2151cfcbe394cb9e9d4840976b01384cf0d40d867bbfef26173.png"
+    "https://archive.org/download/psvitaalive-age-of-war-vita/shot_01.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-age-of-war-vita/age-of-war-vita.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Release Page",

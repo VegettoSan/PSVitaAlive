@@ -16,12 +16,18 @@
   "requirements": "Not specified",
   "size": 43566,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/f74326575de03fca664bb29fea56b1872eac87023c37bb160858b3b38f0edc49.png",
+  "icon": "https://archive.org/download/psvitaalive-psp2-batteryfixer/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/8f0d625a378b55f86460d1478b790a0ad8b04a56c6c09a336c063954ed4df33e.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/8f0d625a378b55f86460d1478b790a0ad8b04a56c6c09a336c063954ed4df33e.png"
+    "https://archive.org/download/psvitaalive-psp2-batteryfixer/shot_01.png",
+    "https://archive.org/download/psvitaalive-psp2-batteryfixer/shot_02.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-psp2-batteryfixer/psp2-batteryfixer.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Release Page",

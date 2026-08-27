@@ -16,15 +16,21 @@
   "requirements": "- Game Data Files: PC",
   "size": 14910713,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/ea5ec76a6f36fa98af6537da8cbc9e825e5451dc1b0d26f69a0f31a80dc7cfb1.png",
+  "icon": "https://archive.org/download/psvitaalive-night-in-the-woods/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/a3b5b8962f8c8c6523ac55e502a2cc3d206f7b1a1e8cfc4773817bcdb5749fd9.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/991d1a3f95f2c839dc714331c18bbe583b5470c0ce127bd751a3c725ed43c842.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/e74a0785975a55a524f3f5c4ecfbdcdf7ecacf015c41d54b69c971dccd0a9f91.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/a3b5b8962f8c8c6523ac55e502a2cc3d206f7b1a1e8cfc4773817bcdb5749fd9.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/991d1a3f95f2c839dc714331c18bbe583b5470c0ce127bd751a3c725ed43c842.png"
+    "https://archive.org/download/psvitaalive-night-in-the-woods/shot_01.png",
+    "https://archive.org/download/psvitaalive-night-in-the-woods/shot_02.png",
+    "https://archive.org/download/psvitaalive-night-in-the-woods/shot_03.png",
+    "https://archive.org/download/psvitaalive-night-in-the-woods/shot_04.png",
+    "https://archive.org/download/psvitaalive-night-in-the-woods/shot_05.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-night-in-the-woods/night-in-the-woods.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Repository",

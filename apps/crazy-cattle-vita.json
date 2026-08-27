@@ -18,11 +18,17 @@
   "requirements": "Not specified",
   "size": 44323467,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/2defa82ded4846e47231af54aff59a3a53c153898d4002a09634b48b4cfe1648.png",
+  "icon": "https://archive.org/download/psvitaalive-crazy-cattle-vita/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/2defa82ded4846e47231af54aff59a3a53c153898d4002a09634b48b4cfe1648.png"
+    "https://archive.org/download/psvitaalive-crazy-cattle-vita/shot_01.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-crazy-cattle-vita/crazy-cattle-vita.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Repository",

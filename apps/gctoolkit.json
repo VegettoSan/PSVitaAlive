@@ -17,11 +17,17 @@
   "requirements": "Not specified",
   "size": 2136641,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/89d0760967d238eb61d8530828605057c57d895e74f3be845690ac2fabf62674.png",
+  "icon": "https://archive.org/download/psvitaalive-gctoolkit/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/89d0760967d238eb61d8530828605057c57d895e74f3be845690ac2fabf62674.png"
+    "https://archive.org/download/psvitaalive-gctoolkit/shot_01.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-gctoolkit/GcToolKit.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Release Page",

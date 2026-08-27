@@ -16,15 +16,21 @@
   "requirements": "Not specified",
   "size": 56032306,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1724-rollypoly.png",
+  "icon": "https://archive.org/download/psvitaalive-rollypoly/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/0f9dc28b2c69be2789185345278dd129c848c5910767639bd554fb1b2be224b2.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/ad04293f7054355c2e42c074a7393cdaa1222571c2ac87c547e529c6f0123094.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/ee14ab7d25dcae069a170622a938e2ec066f29821a6dc28a6b9ca9c07361f0cc.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/37f765d50b6b7211f1dc8d35ca3f6c017004a91c2ddd51351876b5402ce014af.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/0f9dc28b2c69be2789185345278dd129c848c5910767639bd554fb1b2be224b2.png"
+    "https://archive.org/download/psvitaalive-rollypoly/shot_01.png",
+    "https://archive.org/download/psvitaalive-rollypoly/shot_02.png",
+    "https://archive.org/download/psvitaalive-rollypoly/shot_03.png",
+    "https://archive.org/download/psvitaalive-rollypoly/shot_04.png",
+    "https://archive.org/download/psvitaalive-rollypoly/shot_05.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-rollypoly/rollypoly.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Official Website",

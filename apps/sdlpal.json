@@ -16,15 +16,21 @@
   "requirements": "- Game Data Files: PC",
   "size": 2157092,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/4ddd4c0329e774d0425dd41a69c252ff83c68f974c803b3f8da6f02eeeba9530.png",
+  "icon": "https://archive.org/download/psvitaalive-sdlpal/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/93b97c795b878c14a43b3f28e2a556ea3994c22aca4736dbd1f6b1c1981cecc9.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/8924d8f87d22d8d0a7fbd92bb90d64f8452df318013de1297e8a9fdf7f71eda7.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/4d115229843f1126a1d83760ec9bb45e8b64701a28f8282dca02d09b04da425e.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/ba3ccefb87b9b8e22b8e86f6512894e837d993c2c7bc851e944d8b25e516e4f3.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/93b97c795b878c14a43b3f28e2a556ea3994c22aca4736dbd1f6b1c1981cecc9.png"
+    "https://archive.org/download/psvitaalive-sdlpal/shot_01.png",
+    "https://archive.org/download/psvitaalive-sdlpal/shot_02.png",
+    "https://archive.org/download/psvitaalive-sdlpal/shot_03.png",
+    "https://archive.org/download/psvitaalive-sdlpal/shot_04.png",
+    "https://archive.org/download/psvitaalive-sdlpal/shot_05.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-sdlpal/sdlpal.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Official Website",

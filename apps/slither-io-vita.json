@@ -16,15 +16,21 @@
   "requirements": "Not specified",
   "size": 40716230,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1820-slither-io-vita.png",
+  "icon": "https://archive.org/download/psvitaalive-slither-io-vita/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/5ceb6db0c13cc343f514212f40bc1e78ff5340c967afe028261e954ef81de42f.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/9e634d7752a18c7c8648aff6afdceb3650535c735baf8e39bed70ad159f9986b.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/4e2d9c1c5f0037d9cf1c7af068190d2adacfd59d6cb2d111f8466f964cbd8158.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/5ceb6db0c13cc343f514212f40bc1e78ff5340c967afe028261e954ef81de42f.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/9e634d7752a18c7c8648aff6afdceb3650535c735baf8e39bed70ad159f9986b.png"
+    "https://archive.org/download/psvitaalive-slither-io-vita/shot_01.png",
+    "https://archive.org/download/psvitaalive-slither-io-vita/shot_02.png",
+    "https://archive.org/download/psvitaalive-slither-io-vita/shot_03.png",
+    "https://archive.org/download/psvitaalive-slither-io-vita/shot_04.png",
+    "https://archive.org/download/psvitaalive-slither-io-vita/shot_05.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-slither-io-vita/slither-io-vita.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Repository",

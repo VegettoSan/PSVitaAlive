@@ -16,15 +16,21 @@
   "requirements": "- libshacccg.suprx",
   "size": 1493107,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1800-neverputt-vita.png",
+  "icon": "https://archive.org/download/psvitaalive-neverputt-vita/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/3e1b10cb50c41778589f1644edd0784e9b136a786ff708554fc620045868e0b8.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/3582507c01bdad5c3067b2b0da8920092ef76b03676b2c03eb9fd7d31d940e82.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/8b5d3f99a67a8a95a864f980eec0fb3a1ad9a26cf06817ff9d9b38970c9748c1.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/ee6329f00b11741538366633521249fda7428f6b888d9a0f84d62196c358f673.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/3e1b10cb50c41778589f1644edd0784e9b136a786ff708554fc620045868e0b8.png"
+    "https://archive.org/download/psvitaalive-neverputt-vita/shot_01.png",
+    "https://archive.org/download/psvitaalive-neverputt-vita/shot_02.png",
+    "https://archive.org/download/psvitaalive-neverputt-vita/shot_03.png",
+    "https://archive.org/download/psvitaalive-neverputt-vita/shot_04.png",
+    "https://archive.org/download/psvitaalive-neverputt-vita/shot_05.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-neverputt-vita/neverputt-vita.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Official Website",

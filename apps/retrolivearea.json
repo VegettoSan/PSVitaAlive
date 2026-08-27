@@ -16,12 +16,18 @@
   "requirements": "Not specified",
   "size": 685517,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1596-retrolivearea.png",
+  "icon": "https://archive.org/download/psvitaalive-retrolivearea/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/94a131c7f14be7ad162d615c41321c2d51e9ed8335c26348a8cc93de78859fb5.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/94a131c7f14be7ad162d615c41321c2d51e9ed8335c26348a8cc93de78859fb5.png"
+    "https://archive.org/download/psvitaalive-retrolivearea/shot_01.png",
+    "https://archive.org/download/psvitaalive-retrolivearea/shot_02.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-retrolivearea/retrolivearea.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Official Website",

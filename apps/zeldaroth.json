@@ -16,14 +16,20 @@
   "requirements": "Not specified",
   "size": 25768389,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1502-zeldaroth.png",
+  "icon": "https://archive.org/download/psvitaalive-zeldaroth/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1502-zeldaroth.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/zelda1.jpg",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/zelda2.jpg",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/zelda3.jpg"
+    "https://archive.org/download/psvitaalive-zeldaroth/shot_01.png",
+    "https://archive.org/download/psvitaalive-zeldaroth/shot_02.png",
+    "https://archive.org/download/psvitaalive-zeldaroth/shot_03.png",
+    "https://archive.org/download/psvitaalive-zeldaroth/shot_04.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-zeldaroth/zeldaroth.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Official Website",

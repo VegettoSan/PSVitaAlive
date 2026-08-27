@@ -16,15 +16,21 @@
   "requirements": "Not specified",
   "size": 1413294,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/88497a050137dded2ed27631630d978f9800e3b46bf2a82ed4bf4294ca035600.png",
+  "icon": "https://archive.org/download/psvitaalive-smsplusvita/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/5d3c9084f4c77ca1c3f6a0da34370fd5883d2e19033970b02a464d37ef1c6e29.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/2ca6b3251c449b966af366a6f5b446753bd0f34916edb4d301af76f8e80fbb8a.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c122aa4718acd91771318fca80a5c227dd00a3e6666fd03395c54dbd6f117aee.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/a9f9eb9b62b2285f28004f61b1444a909acfb3f0aa60fced9693278c4621c56e.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/5d3c9084f4c77ca1c3f6a0da34370fd5883d2e19033970b02a464d37ef1c6e29.png"
+    "https://archive.org/download/psvitaalive-smsplusvita/shot_01.png",
+    "https://archive.org/download/psvitaalive-smsplusvita/shot_02.png",
+    "https://archive.org/download/psvitaalive-smsplusvita/shot_03.png",
+    "https://archive.org/download/psvitaalive-smsplusvita/shot_04.png",
+    "https://archive.org/download/psvitaalive-smsplusvita/shot_05.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-smsplusvita/smsplusvita.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Release Page",

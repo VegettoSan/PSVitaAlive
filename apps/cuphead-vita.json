@@ -16,15 +16,21 @@
   "requirements": "- Game Data Files: PC",
   "size": 17382192,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/7511397a1dc1fcea1399450f08082ac64e420ab8116c15f261ea1947a925f032.png",
+  "icon": "https://archive.org/download/psvitaalive-cuphead-vita/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/f84ad7da2c22947eeaf67581ebac93bf0acf7fb0ce5994332f5ad131874631a0.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/22fa8c591fd9611cb177ad301bb065f8b507e0d8c4796c4f8099d12bd94ce851.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/393def075d9c7dcf2f2587ddc36a4480de96f2763eca116d8b6c1063e688fa2e.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/f84ad7da2c22947eeaf67581ebac93bf0acf7fb0ce5994332f5ad131874631a0.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/22fa8c591fd9611cb177ad301bb065f8b507e0d8c4796c4f8099d12bd94ce851.png"
+    "https://archive.org/download/psvitaalive-cuphead-vita/shot_01.png",
+    "https://archive.org/download/psvitaalive-cuphead-vita/shot_02.png",
+    "https://archive.org/download/psvitaalive-cuphead-vita/shot_03.png",
+    "https://archive.org/download/psvitaalive-cuphead-vita/shot_04.png",
+    "https://archive.org/download/psvitaalive-cuphead-vita/shot_05.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-cuphead-vita/cuphead-vita.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Repository",

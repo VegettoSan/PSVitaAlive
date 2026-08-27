@@ -16,11 +16,17 @@
   "requirements": "Not specified",
   "size": 114465,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1454-psvcleaner.png",
+  "icon": "https://archive.org/download/psvitaalive-psv-cleaner/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1454-psvcleaner.png"
+    "https://archive.org/download/psvitaalive-psv-cleaner/shot_01.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-psv-cleaner/PSV_Cleaner.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Release Page",

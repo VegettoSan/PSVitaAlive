@@ -16,11 +16,18 @@
   "requirements": "Not specified",
   "size": 384298,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1552-gohan-parallel.png",
+  "icon": "https://archive.org/download/psvitaalive-gohan-parallel/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1552-gohan-parallel.png"
+    "https://archive.org/download/psvitaalive-gohan-parallel/shot_01.png"
   ],
-  "links": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-gohan-parallel/gohan-parallel.vpk",
+      "recommended": true
+    }
+  ],
   "source_name": "VitaHomebrewDB",
   "source_id": "251",
   "source_url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/251-GoHAN_Parallel.vpk",

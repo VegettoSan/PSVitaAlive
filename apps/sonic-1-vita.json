@@ -16,15 +16,21 @@
   "requirements": "- Game Data Files: Android",
   "size": 936835,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/d35300e6d8e9a10edccde214c04890626fe646c158410a82e8ff99131b6d956c.png",
+  "icon": "https://archive.org/download/psvitaalive-sonic-1-vita/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/ad645c88560c0dd8ced76b675285b79de54c3dc7f0e70d2e674870c6170b517f.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/e7ce3ea294b4c50f38012494780d6b172d9cb34d0d3f9fe339e476ed61a17c24.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/627397c97a39dcbf9fda3668940003f1cbfcc85ba68eeedd17f19cda57d12e29.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/ad645c88560c0dd8ced76b675285b79de54c3dc7f0e70d2e674870c6170b517f.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/e7ce3ea294b4c50f38012494780d6b172d9cb34d0d3f9fe339e476ed61a17c24.png"
+    "https://archive.org/download/psvitaalive-sonic-1-vita/shot_01.png",
+    "https://archive.org/download/psvitaalive-sonic-1-vita/shot_02.png",
+    "https://archive.org/download/psvitaalive-sonic-1-vita/shot_03.png",
+    "https://archive.org/download/psvitaalive-sonic-1-vita/shot_04.png",
+    "https://archive.org/download/psvitaalive-sonic-1-vita/shot_05.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-sonic-1-vita/sonic-1-vita.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Release Page",

@@ -16,12 +16,19 @@
   "requirements": "Not specified",
   "size": 36596959,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1660-runfromreality.png",
+  "icon": "https://archive.org/download/psvitaalive-runfromreality/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/41e58ff3d2ca664b5cb0a17729aa2a64364596425c06e2ef113b09336648a68c.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/41e58ff3d2ca664b5cb0a17729aa2a64364596425c06e2ef113b09336648a68c.png"
+    "https://archive.org/download/psvitaalive-runfromreality/shot_01.png",
+    "https://archive.org/download/psvitaalive-runfromreality/shot_02.png"
   ],
-  "links": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-runfromreality/runfromreality.vpk",
+      "recommended": true
+    }
+  ],
   "source_name": "VitaHomebrewDB",
   "source_id": "498",
   "source_url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/498-RFLM.vpk",

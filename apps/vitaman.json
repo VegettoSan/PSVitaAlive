@@ -16,12 +16,18 @@
   "requirements": "Not specified",
   "size": 1243358,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1740-vitaman.png",
+  "icon": "https://archive.org/download/psvitaalive-vitaman/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/f47091a12fd1d257451249b23ff7738a667bfb2d525725df8c0c512fb0fb7cc2.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/f47091a12fd1d257451249b23ff7738a667bfb2d525725df8c0c512fb0fb7cc2.png"
+    "https://archive.org/download/psvitaalive-vitaman/shot_01.png",
+    "https://archive.org/download/psvitaalive-vitaman/shot_02.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-vitaman/vitaman.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Official Website",

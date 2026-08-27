@@ -16,11 +16,17 @@
   "requirements": "- Game Data Files: Minecraft Pocket Edition Alpha 0.6.1",
   "size": 8670937,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/baa45e6664c15c57c484ad9d6cd34898c27b8c2771b17c136e3b4956e79ee3c5.png",
+  "icon": "https://archive.org/download/psvitaalive-minecraft-pe/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/baa45e6664c15c57c484ad9d6cd34898c27b8c2771b17c136e3b4956e79ee3c5.png"
+    "https://archive.org/download/psvitaalive-minecraft-pe/shot_01.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-minecraft-pe/minecraftpe.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Release Page",

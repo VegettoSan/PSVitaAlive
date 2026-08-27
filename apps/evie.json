@@ -16,14 +16,20 @@
   "requirements": "Not specified",
   "size": 20554862,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/0fd605fa91ad0c88648eb01085bc4f73854a949f17e31d1c1712ab5f501ba160.png",
+  "icon": "https://archive.org/download/psvitaalive-evie/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/a1e2f48a9242bcade701732b0da36134d94adf4d2d269e2d1cb229d17baead05.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/08e0247567e3821276aeb238aa13cda7ad26c3f7f47c0f4cc833ae8344a208da.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/a1e2f48a9242bcade701732b0da36134d94adf4d2d269e2d1cb229d17baead05.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/08e0247567e3821276aeb238aa13cda7ad26c3f7f47c0f4cc833ae8344a208da.png"
+    "https://archive.org/download/psvitaalive-evie/shot_01.png",
+    "https://archive.org/download/psvitaalive-evie/shot_02.png",
+    "https://archive.org/download/psvitaalive-evie/shot_03.png",
+    "https://archive.org/download/psvitaalive-evie/shot_04.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-evie/evie.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Release Page",

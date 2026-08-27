@@ -16,15 +16,21 @@
   "requirements": "- libshacccg.suprx\n- kubridge.skprx\n- Game Data Files: Android",
   "size": 663632,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/e8bcbd0e844a591defb2dd72330db3036e3bf31641b0f7a3b50882caff481ce0.png",
+  "icon": "https://archive.org/download/psvitaalive-world-of-goo-vita/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/4fad7996753d858c710fe9fbac89f683ec03a13b226f0d0bf14c44a9ea7139c5.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c925067f72da5f066715cc525e0f70cbc7f77ca954100c05a3f28196712bc8b0.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/7c04e2bc98cc12a2679195c611c9e2998ed3a2a39b3d6cff5a20bf59c27cb4a2.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/f192d542ee2bcc41de446bb9e9acb685e7633487d2af07cfef9326121b4fc084.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/4fad7996753d858c710fe9fbac89f683ec03a13b226f0d0bf14c44a9ea7139c5.png"
+    "https://archive.org/download/psvitaalive-world-of-goo-vita/shot_01.png",
+    "https://archive.org/download/psvitaalive-world-of-goo-vita/shot_02.png",
+    "https://archive.org/download/psvitaalive-world-of-goo-vita/shot_03.png",
+    "https://archive.org/download/psvitaalive-world-of-goo-vita/shot_04.png",
+    "https://archive.org/download/psvitaalive-world-of-goo-vita/shot_05.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-world-of-goo-vita/world-of-goo-vita.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Release Page",

@@ -18,15 +18,21 @@
   "requirements": "Not specified",
   "size": 828541,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/18746b487153dc1ca3d728ce57b841b6e8faeca65a0900aa46864f73d07642c8.png",
+  "icon": "https://archive.org/download/psvitaalive-vitatester/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/d0ad649800ab1a4e42dbacb05f0442308eabe98dda8397ea7eec2502be7d4ad7.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/f589309d2ab448197b38f770e1c5cfb822a39e6b7c33308c2231acfe02c6d0b8.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/tester.jpg",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/d0ad649800ab1a4e42dbacb05f0442308eabe98dda8397ea7eec2502be7d4ad7.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/f589309d2ab448197b38f770e1c5cfb822a39e6b7c33308c2231acfe02c6d0b8.png"
+    "https://archive.org/download/psvitaalive-vitatester/shot_01.png",
+    "https://archive.org/download/psvitaalive-vitatester/shot_02.png",
+    "https://archive.org/download/psvitaalive-vitatester/shot_03.png",
+    "https://archive.org/download/psvitaalive-vitatester/shot_04.png",
+    "https://archive.org/download/psvitaalive-vitatester/shot_05.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-vitatester/vitatester.vpk",
+      "recommended": true
+    },
     {
       "type": "Repository",
       "name": "Repositorio",

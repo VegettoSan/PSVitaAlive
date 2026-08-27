@@ -16,14 +16,20 @@
   "requirements": "Not specified",
   "size": 7584796,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1541-galactic-federation.png",
+  "icon": "https://archive.org/download/psvitaalive-galactic-federation/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1541-galactic-federation.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/gala1.jpg",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/gala2.jpg",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/gala3.jpg"
+    "https://archive.org/download/psvitaalive-galactic-federation/shot_01.png",
+    "https://archive.org/download/psvitaalive-galactic-federation/shot_02.png",
+    "https://archive.org/download/psvitaalive-galactic-federation/shot_03.png",
+    "https://archive.org/download/psvitaalive-galactic-federation/shot_04.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-galactic-federation/galactic-federation.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Release Page",

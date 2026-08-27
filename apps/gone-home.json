@@ -16,15 +16,21 @@
   "requirements": "- Game Data Files: PC",
   "size": 532864284,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1876-gone-home.png",
+  "icon": "https://archive.org/download/psvitaalive-gone-home/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/79d998009fa20d4bc265f1223b64a3fd6f506083e64d09302b7e283408368d62.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/7944f45996a3f52fdbdb6c87bc768dce4e89c92b0529de81a4fdb37dad2b7cae.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c2dfaaf23470f4b5aec355f81dcd73c942731fce6708dc6e062bda856fe1a526.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/79d998009fa20d4bc265f1223b64a3fd6f506083e64d09302b7e283408368d62.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/7944f45996a3f52fdbdb6c87bc768dce4e89c92b0529de81a4fdb37dad2b7cae.png"
+    "https://archive.org/download/psvitaalive-gone-home/shot_01.png",
+    "https://archive.org/download/psvitaalive-gone-home/shot_02.png",
+    "https://archive.org/download/psvitaalive-gone-home/shot_03.png",
+    "https://archive.org/download/psvitaalive-gone-home/shot_04.png",
+    "https://archive.org/download/psvitaalive-gone-home/shot_05.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-gone-home/gone-home.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Official Website",

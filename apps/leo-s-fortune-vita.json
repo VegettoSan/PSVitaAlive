@@ -17,11 +17,17 @@
   "requirements": "- libshacccg.suprx\n- kubridge.skprx\n- Game Data Files: Android",
   "size": 2236369,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/03c8278a6838ed6588475a2b95696a443db2aea2c3e381714f7a7c591461a3dd.png",
+  "icon": "https://archive.org/download/psvitaalive-leo-s-fortune-vita/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/03c8278a6838ed6588475a2b95696a443db2aea2c3e381714f7a7c591461a3dd.png"
+    "https://archive.org/download/psvitaalive-leo-s-fortune-vita/shot_01.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-leo-s-fortune-vita/leo-s-fortune-vita.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Release Page",

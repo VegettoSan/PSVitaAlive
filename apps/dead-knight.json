@@ -16,11 +16,17 @@
   "requirements": "- Game Data Files: PC",
   "size": 2870412,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/91bc9ded318ca831b4a7686bb6daad955b547dd2b4de56e0eedcb77eb32cc551.png",
+  "icon": "https://archive.org/download/psvitaalive-dead-knight/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/91bc9ded318ca831b4a7686bb6daad955b547dd2b4de56e0eedcb77eb32cc551.png"
+    "https://archive.org/download/psvitaalive-dead-knight/shot_01.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-dead-knight/dead-knight.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Repository",

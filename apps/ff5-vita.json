@@ -18,15 +18,21 @@
   "requirements": "- libshacccg.suprx\n- kubridge.skprx\n- fd_fix.skprx OR repatch_ex.skprx\n- Game Data Files: Android",
   "size": 16548837,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/189b9bf884cf04a7da60ec628029bf444a8ddb577e20052f24b5e4e5b04948bc.png",
+  "icon": "https://archive.org/download/psvitaalive-ff5-vita/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/b16ee50cc3f2b302561ec6ece541a703c3089c2eae8fcaf8948a12fcff4a5793.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/a4347444d2c4b21c827c190433a291ffaedca0e1ad4e41ed13753a44a49c8650.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/68b459235f7f52c7a15971abcab77caeeac06e79440436f789b14591868b38ba.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/b16ee50cc3f2b302561ec6ece541a703c3089c2eae8fcaf8948a12fcff4a5793.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/a4347444d2c4b21c827c190433a291ffaedca0e1ad4e41ed13753a44a49c8650.png"
+    "https://archive.org/download/psvitaalive-ff5-vita/shot_01.png",
+    "https://archive.org/download/psvitaalive-ff5-vita/shot_02.png",
+    "https://archive.org/download/psvitaalive-ff5-vita/shot_03.png",
+    "https://archive.org/download/psvitaalive-ff5-vita/shot_04.png",
+    "https://archive.org/download/psvitaalive-ff5-vita/shot_05.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-ff5-vita/ff5-vita.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Release Page",

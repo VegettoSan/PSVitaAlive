@@ -16,15 +16,21 @@
   "requirements": "- Game Data Files: PC",
   "size": 1460374,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1607-meritous.png",
+  "icon": "https://archive.org/download/psvitaalive-meritous/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/70afdb4657a0bcb22feae4748491939915f3002a31a58c31eb97413266317888.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/f16ecfdeeb922a5c1324c3a7a7f783e225235c7e6c8888b358fb01947158ff78.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/5db8a552526d48434c288325d87b660217c60675c7b135fcb0360e7dc50acb12.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/59e33a54ed01c5d5d2e1922d2c921958d11818c945ca957b68834b2974b62e8e.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/70afdb4657a0bcb22feae4748491939915f3002a31a58c31eb97413266317888.png"
+    "https://archive.org/download/psvitaalive-meritous/shot_01.png",
+    "https://archive.org/download/psvitaalive-meritous/shot_02.png",
+    "https://archive.org/download/psvitaalive-meritous/shot_03.png",
+    "https://archive.org/download/psvitaalive-meritous/shot_04.png",
+    "https://archive.org/download/psvitaalive-meritous/shot_05.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-meritous/meritous.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Official Website",

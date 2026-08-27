@@ -16,15 +16,21 @@
   "requirements": "Not specified",
   "size": 5594486,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/dc62ec985956339a67101185855f1a8061f3b71f803046722733e6515e2270c9.png",
+  "icon": "https://archive.org/download/psvitaalive-is-it-fake/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/758cb6912729f50ae63ec267241670dd1efafd64382b179a44875e7d58fa2571.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c3f05b2d1e2fad958136104e23da1653f20a82ed8c4d2f39069642d93d441112.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/80ee90c531949a087c7dbfc84ac0d974a186ec08bfd9a43a17871b52823a9396.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/1ecd2583eb86819a19910a2257ff5d1bac6a3aafd94205a8c2f3ab2a4aea0935.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/758cb6912729f50ae63ec267241670dd1efafd64382b179a44875e7d58fa2571.png"
+    "https://archive.org/download/psvitaalive-is-it-fake/shot_01.png",
+    "https://archive.org/download/psvitaalive-is-it-fake/shot_02.png",
+    "https://archive.org/download/psvitaalive-is-it-fake/shot_03.png",
+    "https://archive.org/download/psvitaalive-is-it-fake/shot_04.png",
+    "https://archive.org/download/psvitaalive-is-it-fake/shot_05.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-is-it-fake/is-it-fake.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Release Page",

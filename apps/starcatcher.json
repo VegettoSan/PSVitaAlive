@@ -16,15 +16,21 @@
   "requirements": "Not specified",
   "size": 20053215,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1873-starcatcher.png",
+  "icon": "https://archive.org/download/psvitaalive-starcatcher/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/b2fb50b2fa40232a3a579574a10cf5940d668f5e8c14d1c3a6adbed5268c7b55.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/fc4f0cbabc9827008cd568af215c9775244d4854e63e59864c310bc41f42a37b.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/436220b55c013ad9a2deb5d656e31647aefcb650070bb39288987bcf615a7f43.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/b2fb50b2fa40232a3a579574a10cf5940d668f5e8c14d1c3a6adbed5268c7b55.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/fc4f0cbabc9827008cd568af215c9775244d4854e63e59864c310bc41f42a37b.png"
+    "https://archive.org/download/psvitaalive-starcatcher/shot_01.png",
+    "https://archive.org/download/psvitaalive-starcatcher/shot_02.png",
+    "https://archive.org/download/psvitaalive-starcatcher/shot_03.png",
+    "https://archive.org/download/psvitaalive-starcatcher/shot_04.png",
+    "https://archive.org/download/psvitaalive-starcatcher/shot_05.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-starcatcher/starcatcher.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Official Website",

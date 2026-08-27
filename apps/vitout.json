@@ -16,14 +16,20 @@
   "requirements": "Not specified",
   "size": 42630,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/c799e0f2d405114bbdc5de82ba0c04f1ae467f1177b788ee74403918ed25442b.png",
+  "icon": "https://archive.org/download/psvitaalive-vitout/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/4da3c31efb121a8b0c210ff631803ee774c41f43807a3736ed5b99db1b7e0d84.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/aac4856d3fb2f319eaf5fb8627978b425bf6ba0e41a71dc2376c46b76d582578.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/4da3c31efb121a8b0c210ff631803ee774c41f43807a3736ed5b99db1b7e0d84.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/aac4856d3fb2f319eaf5fb8627978b425bf6ba0e41a71dc2376c46b76d582578.png"
+    "https://archive.org/download/psvitaalive-vitout/shot_01.png",
+    "https://archive.org/download/psvitaalive-vitout/shot_02.png",
+    "https://archive.org/download/psvitaalive-vitout/shot_03.png",
+    "https://archive.org/download/psvitaalive-vitout/shot_04.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-vitout/vitout.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Release Page",

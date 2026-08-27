@@ -16,12 +16,18 @@
   "requirements": "Not specified",
   "size": 4621733,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/9e4e4249b4b33ed15858726d62fb79dbb6f06d32b90a9a064fe43080a2a02e34.png",
+  "icon": "https://archive.org/download/psvitaalive-stock-app-remover/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/21be1b88c0be049b793be8435f8d0c18ca398815a38861bf7fd17a49912d9a39.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/21be1b88c0be049b793be8435f8d0c18ca398815a38861bf7fd17a49912d9a39.png"
+    "https://archive.org/download/psvitaalive-stock-app-remover/shot_01.png",
+    "https://archive.org/download/psvitaalive-stock-app-remover/shot_02.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-stock-app-remover/stock-app-remover.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Release Page",

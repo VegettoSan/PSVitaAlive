@@ -16,15 +16,21 @@
   "requirements": "- libshacccg.suprx\n- kubridge.skprx\n- Game Data Files: Android",
   "size": 1907242,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1070-smb2se-vita.png",
+  "icon": "https://archive.org/download/psvitaalive-smb2se-vita/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/2f243fbe97026db802b59a752b7fb6fc600fe94d719be23a451ecbb52e5ab22c.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/0af5bf0ef4564b36b45cd351db7f78343451ad9a4127a21813826848a13ea6b5.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/fe32e1aeacb27e89e7651704682e19db347974d63036596e36d622cd9115f558.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/ef229f4cc084e73e2600eb487b06a512f4067bdfc92cde667ae512e2debfcdfd.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/2f243fbe97026db802b59a752b7fb6fc600fe94d719be23a451ecbb52e5ab22c.png"
+    "https://archive.org/download/psvitaalive-smb2se-vita/shot_01.png",
+    "https://archive.org/download/psvitaalive-smb2se-vita/shot_02.png",
+    "https://archive.org/download/psvitaalive-smb2se-vita/shot_03.png",
+    "https://archive.org/download/psvitaalive-smb2se-vita/shot_04.png",
+    "https://archive.org/download/psvitaalive-smb2se-vita/shot_05.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-smb2se-vita/smb2se.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Release Page",

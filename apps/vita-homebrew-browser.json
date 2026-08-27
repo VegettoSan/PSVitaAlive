@@ -16,15 +16,21 @@
   "requirements": "Not specified",
   "size": 9256314,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/4cacbd1baf8eadfe528da03bc0807df98277737ce6eb4af5b3aafb7001a26f72.png",
+  "icon": "https://archive.org/download/psvitaalive-vita-homebrew-browser/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/28d6e2c69030f5ca531013ba5834a0153e5c2c01c6c1506b5e3e37aa7a33784f.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/9e0fbebb2078abec29aed0f9c461c7938a597cfa27588ff6f95564ae0d18b49c.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/e3412b12258fb50c27a0c8e28d147eb8af3eaf028af74ee09bdf3a47abe01ba3.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/28d6e2c69030f5ca531013ba5834a0153e5c2c01c6c1506b5e3e37aa7a33784f.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/9e0fbebb2078abec29aed0f9c461c7938a597cfa27588ff6f95564ae0d18b49c.png"
+    "https://archive.org/download/psvitaalive-vita-homebrew-browser/shot_01.png",
+    "https://archive.org/download/psvitaalive-vita-homebrew-browser/shot_02.png",
+    "https://archive.org/download/psvitaalive-vita-homebrew-browser/shot_03.png",
+    "https://archive.org/download/psvitaalive-vita-homebrew-browser/shot_04.png",
+    "https://archive.org/download/psvitaalive-vita-homebrew-browser/shot_05.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-vita-homebrew-browser/vita-homebrew-browser.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Release Page",

@@ -16,15 +16,21 @@
   "requirements": "Not specified",
   "size": 6046423,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1739-crab-island.png",
+  "icon": "https://archive.org/download/psvitaalive-crab-island/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c9b8ebff7cb2aa45121b3256878789de715d447c56b54c2e1a9cd45bdc9c4edd.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/f02ce496d81ba265241a3cc2678a0f384f66e6dde8b6ca8e9f91e2d199557664.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/f7df3e5bd09ccda1e302adea352c784551e64be8331c77770883febcda53dee3.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/c9b8ebff7cb2aa45121b3256878789de715d447c56b54c2e1a9cd45bdc9c4edd.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/f02ce496d81ba265241a3cc2678a0f384f66e6dde8b6ca8e9f91e2d199557664.png"
+    "https://archive.org/download/psvitaalive-crab-island/shot_01.png",
+    "https://archive.org/download/psvitaalive-crab-island/shot_02.png",
+    "https://archive.org/download/psvitaalive-crab-island/shot_03.png",
+    "https://archive.org/download/psvitaalive-crab-island/shot_04.png",
+    "https://archive.org/download/psvitaalive-crab-island/shot_05.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-crab-island/crab-island.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Official Website",

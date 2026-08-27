@@ -16,11 +16,17 @@
   "requirements": "Not specified",
   "size": 5222174,
   "status": "Legacy",
-  "icon": "https://www.rinnegatamante.eu/vitadb/icons/7827babdb63354a77ce42b8637a1a22b95297434bd363a3630a73175e215450c.png",
+  "icon": "https://archive.org/download/psvitaalive-boiled-corn/icon0.png",
   "screenshots": [
-    "https://www.rinnegatamante.eu/vitadb/icons/7827babdb63354a77ce42b8637a1a22b95297434bd363a3630a73175e215450c.png"
+    "https://archive.org/download/psvitaalive-boiled-corn/shot_01.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-boiled-corn/boiled-corn.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Official Website",

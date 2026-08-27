@@ -16,11 +16,17 @@
   "requirements": "Not specified",
   "size": 6826055,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/859f7b23d9e05b3226de4a9d92c0caced0b1d4e7276eefaf47d98dd52b940a0e.png",
+  "icon": "https://archive.org/download/psvitaalive-picoloop/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/859f7b23d9e05b3226de4a9d92c0caced0b1d4e7276eefaf47d98dd52b940a0e.png"
+    "https://archive.org/download/psvitaalive-picoloop/shot_01.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-picoloop/picoloop.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Release Page",

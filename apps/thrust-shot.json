@@ -16,15 +16,21 @@
   "requirements": "Not specified",
   "size": 69380267,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1722-thrust-shot.png",
+  "icon": "https://archive.org/download/psvitaalive-thrust-shot/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/e286cecb4b0d9b68a5111319d57201d098319d11a1fa4746477afe4ff5db0ee4.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/70e6244eb3a4e4bc1b8a80d7f6f2de7168570ef8dc451838a4bbc473486e1c2c.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/269ad5e02e8d1bf47a74ebabb6b477fdcccac49f1a7d769c54fa6dfe7d23d95b.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/e286cecb4b0d9b68a5111319d57201d098319d11a1fa4746477afe4ff5db0ee4.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/70e6244eb3a4e4bc1b8a80d7f6f2de7168570ef8dc451838a4bbc473486e1c2c.png"
+    "https://archive.org/download/psvitaalive-thrust-shot/shot_01.png",
+    "https://archive.org/download/psvitaalive-thrust-shot/shot_02.png",
+    "https://archive.org/download/psvitaalive-thrust-shot/shot_03.png",
+    "https://archive.org/download/psvitaalive-thrust-shot/shot_04.png",
+    "https://archive.org/download/psvitaalive-thrust-shot/shot_05.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-thrust-shot/thrust-shot.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Official Website",

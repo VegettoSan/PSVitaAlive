@@ -16,12 +16,18 @@
   "requirements": "Not specified",
   "size": 82065242,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/0670-ddlc-love.png",
+  "icon": "https://archive.org/download/psvitaalive-ddlc-love/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/1ef4746b0c552ff4d4e3eff1cf98b2231e7dd191d3d2dd0b8565de4a51adb5dd.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/1ef4746b0c552ff4d4e3eff1cf98b2231e7dd191d3d2dd0b8565de4a51adb5dd.png"
+    "https://archive.org/download/psvitaalive-ddlc-love/shot_01.png",
+    "https://archive.org/download/psvitaalive-ddlc-love/shot_02.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-ddlc-love/DDLC-LOVE.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Release Page",

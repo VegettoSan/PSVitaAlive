@@ -16,15 +16,21 @@
   "requirements": "Not specified",
   "size": 2000690,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1839-beat2x-vita.png",
+  "icon": "https://archive.org/download/psvitaalive-beat2x-vita/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/7589b4da9b9d85f23ed0c1764510016e72c0e9863c31c3c6afb67b877ab59fcd.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/0b93aa6e5390602d33a967cbecce5a448b8c13d2d4953e5798ca0a0088649cdf.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/8f3fe8f490f8b6bbde6437c51e93e503917dba815bca02d16a3578633e10066e.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/86c541962b2f950e5211ecb62f370a2f4025220a90f0b330250cf5b055fce7ac.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/7589b4da9b9d85f23ed0c1764510016e72c0e9863c31c3c6afb67b877ab59fcd.png"
+    "https://archive.org/download/psvitaalive-beat2x-vita/shot_01.png",
+    "https://archive.org/download/psvitaalive-beat2x-vita/shot_02.png",
+    "https://archive.org/download/psvitaalive-beat2x-vita/shot_03.png",
+    "https://archive.org/download/psvitaalive-beat2x-vita/shot_04.png",
+    "https://archive.org/download/psvitaalive-beat2x-vita/shot_05.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-beat2x-vita/beat2x-vita.vpk",
+      "recommended": true
+    },
     {
       "type": "Repository",
       "name": "Repositorio",

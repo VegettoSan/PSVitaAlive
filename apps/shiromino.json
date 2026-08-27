@@ -16,14 +16,20 @@
   "requirements": "Not specified",
   "size": 20951200,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1603-shiromino.png",
+  "icon": "https://archive.org/download/psvitaalive-shiromino/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/dc026cf4c4e4cb434ece1f75f126d54f5ec9e6138fe74f68474bb84bbf3856b3.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/fd1166376b107871e56774cc676f3655a834a087208f1fe23d15044fc99f27f9.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/dc026cf4c4e4cb434ece1f75f126d54f5ec9e6138fe74f68474bb84bbf3856b3.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/fd1166376b107871e56774cc676f3655a834a087208f1fe23d15044fc99f27f9.png"
+    "https://archive.org/download/psvitaalive-shiromino/shot_01.png",
+    "https://archive.org/download/psvitaalive-shiromino/shot_02.png",
+    "https://archive.org/download/psvitaalive-shiromino/shot_03.png",
+    "https://archive.org/download/psvitaalive-shiromino/shot_04.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-shiromino/shiromino.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Official Website",

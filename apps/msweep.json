@@ -16,15 +16,21 @@
   "requirements": "Not specified",
   "size": 686731,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/73e91749a4e4631ef80ad2d58927735d066f7e2af738835a4ac659952148ec79.png",
+  "icon": "https://archive.org/download/psvitaalive-msweep/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/9fdf7dc05943e262a96cf6493baba700efc699c3cbd800d64063dd3127287edb.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/14b14cb083a703ceebf765bc61528010035b6d83633c2664466b118c8fd05166.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/1a67183431eb36aa023abe3522af6828274a5e16e58002bc1bc5ab9ae918676d.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/9b2a5fee03282b65b861703ea17303c66f9f987b5f9224963332de90214f4871.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/9fdf7dc05943e262a96cf6493baba700efc699c3cbd800d64063dd3127287edb.png"
+    "https://archive.org/download/psvitaalive-msweep/shot_01.png",
+    "https://archive.org/download/psvitaalive-msweep/shot_02.png",
+    "https://archive.org/download/psvitaalive-msweep/shot_03.png",
+    "https://archive.org/download/psvitaalive-msweep/shot_04.png",
+    "https://archive.org/download/psvitaalive-msweep/shot_05.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-msweep/msweep.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Official Website",

@@ -16,15 +16,21 @@
   "requirements": "Not specified",
   "size": 48276346,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1872-pause.png",
+  "icon": "https://archive.org/download/psvitaalive-pause/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/68f57f87be2718873bc1641b3f54f5e9374120708b478555228befea1e2a1683.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/a61e21dfe6590ec143a4fc443af956ee0898f4fa442645d7ba8dd9cd59c54067.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/30f674fcf24c6c74ba9a9d231c9aba37d79e1643e33bb4f65bd967c2f80a3b6b.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/68f57f87be2718873bc1641b3f54f5e9374120708b478555228befea1e2a1683.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/a61e21dfe6590ec143a4fc443af956ee0898f4fa442645d7ba8dd9cd59c54067.png"
+    "https://archive.org/download/psvitaalive-pause/shot_01.png",
+    "https://archive.org/download/psvitaalive-pause/shot_02.png",
+    "https://archive.org/download/psvitaalive-pause/shot_03.png",
+    "https://archive.org/download/psvitaalive-pause/shot_04.png",
+    "https://archive.org/download/psvitaalive-pause/shot_05.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-pause/pause.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Official Website",

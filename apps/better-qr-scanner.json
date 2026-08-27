@@ -16,14 +16,20 @@
   "requirements": "Not specified",
   "size": 1501459,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/e845c7cee9483b977c1066a26a35ede02fc027264e53158ab05a104e121b3352.png",
+  "icon": "https://archive.org/download/psvitaalive-better-qr-scanner/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/e662cbc00e5274814c232541c9059bb632ee28b6e4a6887ad2af7503820c41c9.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/b98b4998d29ff21707a21433e33e49e7c46ac201458531c913791b6eeb45d75a.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/e662cbc00e5274814c232541c9059bb632ee28b6e4a6887ad2af7503820c41c9.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/b98b4998d29ff21707a21433e33e49e7c46ac201458531c913791b6eeb45d75a.png"
+    "https://archive.org/download/psvitaalive-better-qr-scanner/shot_01.png",
+    "https://archive.org/download/psvitaalive-better-qr-scanner/shot_02.png",
+    "https://archive.org/download/psvitaalive-better-qr-scanner/shot_03.png",
+    "https://archive.org/download/psvitaalive-better-qr-scanner/shot_04.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-better-qr-scanner/better-qr-scanner.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Release Page",

@@ -16,11 +16,17 @@
   "requirements": "Not specified",
   "size": 12385826,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1448-autoplugin2.png",
+  "icon": "https://archive.org/download/psvitaalive-autoplugin-2/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1448-autoplugin2.png"
+    "https://archive.org/download/psvitaalive-autoplugin-2/shot_01.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-autoplugin-2/AutoPlugin2.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Release Page",

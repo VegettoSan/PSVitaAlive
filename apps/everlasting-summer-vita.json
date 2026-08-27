@@ -16,15 +16,22 @@
   "requirements": "Not specified",
   "size": 580635133,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1852-everlasting-summer-vita.png",
+  "icon": "https://archive.org/download/psvitaalive-everlasting-summer-vita/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/396b762607afa735abf8bd94d7f8a78a1f395b452f6d57e41dcb19413b00bee1.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/0f2516c113ab94339856fb466c796d6d2c5ad44efd1e03310820e484a032e95a.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/138ccac4047dffff21c8e7350bc26a3da0ec6ec6973112fb80cefbc6d0118719.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/59fbbe0baed7e8757f4e725410e5a90d7c27b8bb273e6c756eb1b8f09e08f549.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/396b762607afa735abf8bd94d7f8a78a1f395b452f6d57e41dcb19413b00bee1.png"
+    "https://archive.org/download/psvitaalive-everlasting-summer-vita/shot_01.png",
+    "https://archive.org/download/psvitaalive-everlasting-summer-vita/shot_02.png",
+    "https://archive.org/download/psvitaalive-everlasting-summer-vita/shot_03.png",
+    "https://archive.org/download/psvitaalive-everlasting-summer-vita/shot_04.png",
+    "https://archive.org/download/psvitaalive-everlasting-summer-vita/shot_05.png"
   ],
-  "links": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-everlasting-summer-vita/everlasting-summer-vita.vpk",
+      "recommended": true
+    }
+  ],
   "source_name": "VitaHomebrewDB",
   "source_id": "1118",
   "source_url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1118-everlasting_summer.vpk",

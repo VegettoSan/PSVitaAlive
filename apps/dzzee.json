@@ -16,12 +16,18 @@
   "requirements": "Not specified",
   "size": 94239,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1754-dzzee.png",
+  "icon": "https://archive.org/download/psvitaalive-dzzee/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/cac7e2cd27b4f0eb298b1fce682b99812a2a4f7cf540e1ec9816380a18a02d06.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/cac7e2cd27b4f0eb298b1fce682b99812a2a4f7cf540e1ec9816380a18a02d06.png"
+    "https://archive.org/download/psvitaalive-dzzee/shot_01.png",
+    "https://archive.org/download/psvitaalive-dzzee/shot_02.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-dzzee/dzzee.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Official Website",

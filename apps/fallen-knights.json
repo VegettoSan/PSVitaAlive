@@ -16,15 +16,21 @@
   "requirements": "Not specified",
   "size": 90545320,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1625-fallen-knights.png",
+  "icon": "https://archive.org/download/psvitaalive-fallen-knights/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/49201910c5b990eb710b054fb4300842f8fd2d0b055dd6ab0d7f45e0091e5614.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/76c3370d254249f46afe5fea0c873d8d19dd6d4ef93f58270f896f3bbc389cd3.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/a50795fa57ec94d9fea0113d18baace3e5469f19d68b1934afa1942f1ef761a4.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/da8f7a8b5ee01231bcb36e2cc165986edc5b5191826a966ac232dd3bfbedb259.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/49201910c5b990eb710b054fb4300842f8fd2d0b055dd6ab0d7f45e0091e5614.png"
+    "https://archive.org/download/psvitaalive-fallen-knights/shot_01.png",
+    "https://archive.org/download/psvitaalive-fallen-knights/shot_02.png",
+    "https://archive.org/download/psvitaalive-fallen-knights/shot_03.png",
+    "https://archive.org/download/psvitaalive-fallen-knights/shot_04.png",
+    "https://archive.org/download/psvitaalive-fallen-knights/shot_05.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-fallen-knights/fallen-knights.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Official Website",

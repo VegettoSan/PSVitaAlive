@@ -16,15 +16,21 @@
   "requirements": "- libshacccg.suprx\n- kubridge.skprx\n- Game Data Files: Android",
   "size": 2728807,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/cba2cd9779cd60aa0e4d28b4a587942d212b214b24f2cfeab0d5b9774879b691.png",
+  "icon": "https://archive.org/download/psvitaalive-nyan-cat-lost-in-space-vita/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/6ce17ff74ff6197fbf30133f04d3330e24996182b22ca4c2098ec10bbad3c1ad.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/4e98db472475c248f31a766df31a31cf73ca3a2c219a11a3d533786582ffdd64.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/b62a8759e4a12f5497e8b5d873d30d1678c0cf7d54f7fd7ab9823921aab51ac5.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/d9f85209219f84dc670e7cb3a530c1361e8ef173a8317093b189cd7b45e2f6b2.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/6ce17ff74ff6197fbf30133f04d3330e24996182b22ca4c2098ec10bbad3c1ad.png"
+    "https://archive.org/download/psvitaalive-nyan-cat-lost-in-space-vita/shot_01.png",
+    "https://archive.org/download/psvitaalive-nyan-cat-lost-in-space-vita/shot_02.png",
+    "https://archive.org/download/psvitaalive-nyan-cat-lost-in-space-vita/shot_03.png",
+    "https://archive.org/download/psvitaalive-nyan-cat-lost-in-space-vita/shot_04.png",
+    "https://archive.org/download/psvitaalive-nyan-cat-lost-in-space-vita/shot_05.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-nyan-cat-lost-in-space-vita/nyan-cat-lost-in-space-vita.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Release Page",

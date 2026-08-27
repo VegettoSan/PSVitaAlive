@@ -16,14 +16,20 @@
   "requirements": "- Game Data Files: DOS",
   "size": 1118947,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/3bf3eff7d883e34a9c76eff0fdd62b4a7d8215977713b363257d40e5a3122fa5.png",
+  "icon": "https://archive.org/download/psvitaalive-prehistorik-2/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c0d871016a11db9c82573215e6b703928d131a3c88b487783b85c4b46330600d.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/a8863a5a19ccb2a96f8c32c50ee31c21344b218c2e4925ed124edc1f5958a7df.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/c0d871016a11db9c82573215e6b703928d131a3c88b487783b85c4b46330600d.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/a8863a5a19ccb2a96f8c32c50ee31c21344b218c2e4925ed124edc1f5958a7df.png"
+    "https://archive.org/download/psvitaalive-prehistorik-2/shot_01.png",
+    "https://archive.org/download/psvitaalive-prehistorik-2/shot_02.png",
+    "https://archive.org/download/psvitaalive-prehistorik-2/shot_03.png",
+    "https://archive.org/download/psvitaalive-prehistorik-2/shot_04.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-prehistorik-2/prehistorik-2.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Release Page",

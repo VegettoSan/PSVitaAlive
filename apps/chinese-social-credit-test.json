@@ -16,12 +16,18 @@
   "requirements": "Not specified",
   "size": 38841883,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1973-chinese-social-credit-test.png",
+  "icon": "https://archive.org/download/psvitaalive-chinese-social-credit-test/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/2e376a6d78b5978bc10142973fb3512872b201720289934f2f2843687dd5484c.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/2e376a6d78b5978bc10142973fb3512872b201720289934f2f2843687dd5484c.png"
+    "https://archive.org/download/psvitaalive-chinese-social-credit-test/shot_01.png",
+    "https://archive.org/download/psvitaalive-chinese-social-credit-test/shot_02.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-chinese-social-credit-test/chinese-social-credit-test.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Official Website",

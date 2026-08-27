@@ -16,14 +16,21 @@
   "requirements": "Not specified",
   "size": 26542250,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1644-cubik-adventure.png",
+  "icon": "https://archive.org/download/psvitaalive-cubik-adventure/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/0c708b9fc94e6c57d14d960cbc1fb75a9b7de2a66d27891b3a1c972d81b05796.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/7ac30a595e9210079f5d1b14cdbacfea0ee175639a3cd7ad3af23f3f524d8ed8.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/0c708b9fc94e6c57d14d960cbc1fb75a9b7de2a66d27891b3a1c972d81b05796.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/7ac30a595e9210079f5d1b14cdbacfea0ee175639a3cd7ad3af23f3f524d8ed8.png"
+    "https://archive.org/download/psvitaalive-cubik-adventure/shot_01.png",
+    "https://archive.org/download/psvitaalive-cubik-adventure/shot_02.png",
+    "https://archive.org/download/psvitaalive-cubik-adventure/shot_03.png",
+    "https://archive.org/download/psvitaalive-cubik-adventure/shot_04.png"
   ],
-  "links": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-cubik-adventure/cubik-adventure.vpk",
+      "recommended": true
+    }
+  ],
   "source_name": "VitaHomebrewDB",
   "source_id": "471",
   "source_url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/471-Cubik_20Adventure.vpk",

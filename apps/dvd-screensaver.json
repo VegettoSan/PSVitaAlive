@@ -16,11 +16,17 @@
   "requirements": "Not specified",
   "size": 308470,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/858b74a7fc9ea1af76e13561f57a8a4b7446881234cc2164de5d340d829d32c6.png",
+  "icon": "https://archive.org/download/psvitaalive-dvd-screensaver/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/858b74a7fc9ea1af76e13561f57a8a4b7446881234cc2164de5d340d829d32c6.png"
+    "https://archive.org/download/psvitaalive-dvd-screensaver/shot_01.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-dvd-screensaver/dvd-screensaver.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Release Page",

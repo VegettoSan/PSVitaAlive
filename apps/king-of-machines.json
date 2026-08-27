@@ -16,15 +16,21 @@
   "requirements": "Not specified",
   "size": 6263290,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1710-king-of-machines.png",
+  "icon": "https://archive.org/download/psvitaalive-king-of-machines/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/748f4b67033b272ae5fc71308e2b6960b096e36390cae3e391da4fc7650c43bc.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/ac695e56eb34d356a71da0f53f58c063c30283c7657e9ffc4a562ee37e79a144.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/14566691de629ec244deea878860187d2e62ebebede02e26f7ef433fb3461d19.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/748f4b67033b272ae5fc71308e2b6960b096e36390cae3e391da4fc7650c43bc.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/ac695e56eb34d356a71da0f53f58c063c30283c7657e9ffc4a562ee37e79a144.png"
+    "https://archive.org/download/psvitaalive-king-of-machines/shot_01.png",
+    "https://archive.org/download/psvitaalive-king-of-machines/shot_02.png",
+    "https://archive.org/download/psvitaalive-king-of-machines/shot_03.png",
+    "https://archive.org/download/psvitaalive-king-of-machines/shot_04.png",
+    "https://archive.org/download/psvitaalive-king-of-machines/shot_05.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-king-of-machines/king-of-machines.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Official Website",

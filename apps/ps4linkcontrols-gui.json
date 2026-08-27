@@ -16,12 +16,18 @@
   "requirements": "Not specified",
   "size": 338830,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/ca1547ed559c1d393301cc41a1203fbdfaac76949d7cadf5c4a6655b2d5e0fa4.png",
+  "icon": "https://archive.org/download/psvitaalive-ps4linkcontrols-gui/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/3f02d6b6bb378c513fc37f7b7c7e736f0965e46c2990edf07c1059fd3360efb1.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/3f02d6b6bb378c513fc37f7b7c7e736f0965e46c2990edf07c1059fd3360efb1.png"
+    "https://archive.org/download/psvitaalive-ps4linkcontrols-gui/shot_01.png",
+    "https://archive.org/download/psvitaalive-ps4linkcontrols-gui/shot_02.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-ps4linkcontrols-gui/ps4linkcontrols-gui.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Release Page",

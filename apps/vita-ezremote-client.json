@@ -16,12 +16,18 @@
   "requirements": "- libshacccg.suprx",
   "size": 17773809,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/9b94160dff730fc8226d381238b88e9800831b335323300d880989a9baea08a2.png",
+  "icon": "https://archive.org/download/psvitaalive-vita-ezremote-client/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/6a54e69ed6b2e6008e4ea77fa47c3a4a583b59fe4616741bbc8e06795179ed0a.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/6a54e69ed6b2e6008e4ea77fa47c3a4a583b59fe4616741bbc8e06795179ed0a.png"
+    "https://archive.org/download/psvitaalive-vita-ezremote-client/shot_01.png",
+    "https://archive.org/download/psvitaalive-vita-ezremote-client/shot_02.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-vita-ezremote-client/vita-ezremote-client.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Release Page",

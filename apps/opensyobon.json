@@ -16,14 +16,20 @@
   "requirements": "Not specified",
   "size": 4185116,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1538-opensyobon.png",
+  "icon": "https://archive.org/download/psvitaalive-opensyobon/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1538-opensyobon.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/syobon1.jpg",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/syobon2.jpg",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/syobon3.jpg"
+    "https://archive.org/download/psvitaalive-opensyobon/shot_01.png",
+    "https://archive.org/download/psvitaalive-opensyobon/shot_02.png",
+    "https://archive.org/download/psvitaalive-opensyobon/shot_03.png",
+    "https://archive.org/download/psvitaalive-opensyobon/shot_04.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-opensyobon/opensyobon.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Official Website",

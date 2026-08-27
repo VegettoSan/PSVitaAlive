@@ -16,12 +16,18 @@
   "requirements": "Not specified",
   "size": 3504034,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/0924962e68e0f4f7f831839ce018cff8d9f21e1b11acf425a88a39d0f44e1e74.png",
+  "icon": "https://archive.org/download/psvitaalive-sudokul/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/85fb904acf5a3650ccffdfb0e29047bcaf6d318532a1027ef20104d22dbcbdbf.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/85fb904acf5a3650ccffdfb0e29047bcaf6d318532a1027ef20104d22dbcbdbf.png"
+    "https://archive.org/download/psvitaalive-sudokul/shot_01.png",
+    "https://archive.org/download/psvitaalive-sudokul/shot_02.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-sudokul/sudokul.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Release Page",

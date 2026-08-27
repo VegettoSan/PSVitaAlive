@@ -18,15 +18,21 @@
   "requirements": "- libshacccg.suprx\n- kubridge.skprx\n- fd_fix.skprx OR repatch_ex.skprx\n- Game Data Files: Android",
   "size": 1110257,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/df3725f0c2db5e2396c74d1c458fcb05d5830e1fdd88960261e825990aee269e.png",
+  "icon": "https://archive.org/download/psvitaalive-twom-vita/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/2e6210d3370e490e36f6982fb4ed7da4b01582b5609ed41078c56a924f1799a0.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/551d7dee5d5503be49b73840c4c0f30e1fd0e02b686603569ee2149cf9d0885b.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/cc94d60094dc411b521524b01d3b9f9370e69136e3c751bfc0488f1145bb1a9b.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/00bf0536e6a34ef7bf1231dafa103bd6260b96b22c3e606f13f992073112374c.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/2e6210d3370e490e36f6982fb4ed7da4b01582b5609ed41078c56a924f1799a0.png"
+    "https://archive.org/download/psvitaalive-twom-vita/shot_01.png",
+    "https://archive.org/download/psvitaalive-twom-vita/shot_02.png",
+    "https://archive.org/download/psvitaalive-twom-vita/shot_03.png",
+    "https://archive.org/download/psvitaalive-twom-vita/shot_04.png",
+    "https://archive.org/download/psvitaalive-twom-vita/shot_05.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-twom-vita/twom-vita.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Release Page",

@@ -16,11 +16,17 @@
   "requirements": "Not specified",
   "size": 3464525,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1156-chimerasnes.png",
+  "icon": "https://archive.org/download/psvitaalive-chimerasnes/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1156-chimerasnes.png"
+    "https://archive.org/download/psvitaalive-chimerasnes/shot_01.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-chimerasnes/ChimeraSNES_v1.01.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Release Page",

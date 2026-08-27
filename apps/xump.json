@@ -16,15 +16,21 @@
   "requirements": "Not specified",
   "size": 997182,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1731-xump.png",
+  "icon": "https://archive.org/download/psvitaalive-xump/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/8654570180fcdef00b64d5dcab3290a268d878ea8f5ea47bba912312e5b4c627.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/f779027956f26315cfed185834b9b0c47c7306756334958785d05d779fc1f33f.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/11274ee880a57c23a85cc41809cf71c84e5c6d5ed4386bcb797c13f9c3ab4adc.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/8654570180fcdef00b64d5dcab3290a268d878ea8f5ea47bba912312e5b4c627.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/f779027956f26315cfed185834b9b0c47c7306756334958785d05d779fc1f33f.png"
+    "https://archive.org/download/psvitaalive-xump/shot_01.png",
+    "https://archive.org/download/psvitaalive-xump/shot_02.png",
+    "https://archive.org/download/psvitaalive-xump/shot_03.png",
+    "https://archive.org/download/psvitaalive-xump/shot_04.png",
+    "https://archive.org/download/psvitaalive-xump/shot_05.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-xump/xump.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Official Website",

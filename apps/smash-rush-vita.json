@@ -16,15 +16,21 @@
   "requirements": "- libshacccg.suprx\n- kubridge.skprx\n- Game Data Files: Android",
   "size": 2495334,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/448e677a88a805e43fd4006a246dca90f1471b2ee1f2c2470a9805e68ab64a7e.png",
+  "icon": "https://archive.org/download/psvitaalive-smash-rush-vita/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/a3ceda1eb96c04ed09a3c4ed253a1160ed14684ff8443a5b462a17a1bbf5a2cc.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/bc74f14b291cddba82d2e14d7c53221da06d902d0e3a49526f9413c68b92bcec.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/b2f62a76cb207a31fae80014b6b9e4e4d4ec5b838b0499aa9aee8432bb0c6f4f.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/24fa4f16a2f326a64cd456e42f170f39438519b8b527c5a02808ff5a19de409f.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/a3ceda1eb96c04ed09a3c4ed253a1160ed14684ff8443a5b462a17a1bbf5a2cc.png"
+    "https://archive.org/download/psvitaalive-smash-rush-vita/shot_01.png",
+    "https://archive.org/download/psvitaalive-smash-rush-vita/shot_02.png",
+    "https://archive.org/download/psvitaalive-smash-rush-vita/shot_03.png",
+    "https://archive.org/download/psvitaalive-smash-rush-vita/shot_04.png",
+    "https://archive.org/download/psvitaalive-smash-rush-vita/shot_05.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-smash-rush-vita/smash-rush-vita.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Release Page",

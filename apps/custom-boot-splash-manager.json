@@ -16,12 +16,18 @@
   "requirements": "Not specified",
   "size": 895862,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/18746b487153dc1ca3d728ce57b841b6e8faeca65a0900aa46864f73d07642c8.png",
+  "icon": "https://archive.org/download/psvitaalive-custom-boot-splash-manager/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/1d7ae12e1f513abcbba0b6f3eeef04c03f9ae25a0acaa90a5673644fbae8f599.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/1d7ae12e1f513abcbba0b6f3eeef04c03f9ae25a0acaa90a5673644fbae8f599.png"
+    "https://archive.org/download/psvitaalive-custom-boot-splash-manager/shot_01.png",
+    "https://archive.org/download/psvitaalive-custom-boot-splash-manager/shot_02.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-custom-boot-splash-manager/custom-boot-splash-manager.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Release Page",

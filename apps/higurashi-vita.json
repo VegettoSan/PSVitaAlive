@@ -16,11 +16,17 @@
   "requirements": "- Game Data Files: PC",
   "size": 5145119,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1558-higurashi-vita.png",
+  "icon": "https://archive.org/download/psvitaalive-higurashi-vita/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1558-higurashi-vita.png"
+    "https://archive.org/download/psvitaalive-higurashi-vita/shot_01.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-higurashi-vita/higurashi-vita.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Official Website",

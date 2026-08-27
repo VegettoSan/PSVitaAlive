@@ -16,15 +16,21 @@
   "requirements": "Not specified",
   "size": 36494661,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/6f9a927be825f3dee19ce7665802cf5e42af5e3366ade2fa32a0ede2b69c5330.png",
+  "icon": "https://archive.org/download/psvitaalive-fast-areas-neon/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/1be879220ea746c1a47dcbcfee940029c46e0a1fa23d88a4bfea79180e46ff08.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/d3a14ce716c94e35ee0cfbf452e33b426cc4defc6455c684f7064d9771f57d1e.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/8cb83caa2d630ee3031eb8ca9155eb796853429fc5cdbc73ad9fcc631d298704.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/7dd5aba0da48f0a050677fb0100c0eaa379a421fb60aa4f27fb94ed03432d5a2.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/1be879220ea746c1a47dcbcfee940029c46e0a1fa23d88a4bfea79180e46ff08.png"
+    "https://archive.org/download/psvitaalive-fast-areas-neon/shot_01.png",
+    "https://archive.org/download/psvitaalive-fast-areas-neon/shot_02.png",
+    "https://archive.org/download/psvitaalive-fast-areas-neon/shot_03.png",
+    "https://archive.org/download/psvitaalive-fast-areas-neon/shot_04.png",
+    "https://archive.org/download/psvitaalive-fast-areas-neon/shot_05.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-fast-areas-neon/fast-areas-neon.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Release Page",

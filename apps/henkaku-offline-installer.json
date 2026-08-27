@@ -16,11 +16,17 @@
   "requirements": "Not specified",
   "size": 409671,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/44db4893ef2d70a3c71cc199e6e90357fba4336bebe17dc4a467a5ba8bd945c7.png",
+  "icon": "https://archive.org/download/psvitaalive-henkaku-offline-installer/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/44db4893ef2d70a3c71cc199e6e90357fba4336bebe17dc4a467a5ba8bd945c7.png"
+    "https://archive.org/download/psvitaalive-henkaku-offline-installer/shot_01.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-henkaku-offline-installer/henkaku-offline-installer.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Official Website",

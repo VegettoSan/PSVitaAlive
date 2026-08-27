@@ -16,12 +16,18 @@
   "requirements": "Not specified",
   "size": 52457,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1463-vita-flappy-bird.png",
+  "icon": "https://archive.org/download/psvitaalive-vita-flappy-bird/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1463-vita-flappy-bird.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/flappy.jpg"
+    "https://archive.org/download/psvitaalive-vita-flappy-bird/shot_01.png",
+    "https://archive.org/download/psvitaalive-vita-flappy-bird/shot_02.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-vita-flappy-bird/vita-flappy-bird.vpk",
+      "recommended": true
+    },
     {
       "type": "Repository",
       "name": "Repositorio",

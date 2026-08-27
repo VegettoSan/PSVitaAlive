@@ -16,12 +16,19 @@
   "requirements": "Not specified",
   "size": 30758975,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1646-sword-journey.png",
+  "icon": "https://archive.org/download/psvitaalive-sword-journey/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/626d853133f3a7133ecd93c73ea4ad320e1481413a3a8576492f0eaa16cb62c0.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/626d853133f3a7133ecd93c73ea4ad320e1481413a3a8576492f0eaa16cb62c0.png"
+    "https://archive.org/download/psvitaalive-sword-journey/shot_01.png",
+    "https://archive.org/download/psvitaalive-sword-journey/shot_02.png"
   ],
-  "links": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-sword-journey/sword-journey.vpk",
+      "recommended": true
+    }
+  ],
   "source_name": "VitaHomebrewDB",
   "source_id": "473",
   "source_url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/473-SJ0018.vpk",

@@ -16,15 +16,21 @@
   "requirements": "- libshacccg.suprx\n- kubridge.skprx\n- Game Data Files: Android",
   "size": 3112383,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/e3dc9d474ff68ca8a09739aa584ae57b72d134638d81ea8a657056a119cf4238.png",
+  "icon": "https://archive.org/download/psvitaalive-human-resource-machine-vita/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/008dec2cf943f5b061b5ff5a91cc5c12f1f15a38b909f528a47deb261dabc32b.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/f58858798758dc53acaf56496c70c31c5b352e1a3ede59c5df5be5b6d1f488e8.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/a8d8fc2aed88bb3bd73ab7f69cf5d0b223dcbf3e76110f56aa641b1a791b9de9.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/66668c5f7df4d3b73b15d69f49d1f0278cf046611e105f49826f3bc244f16a32.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/008dec2cf943f5b061b5ff5a91cc5c12f1f15a38b909f528a47deb261dabc32b.png"
+    "https://archive.org/download/psvitaalive-human-resource-machine-vita/shot_01.png",
+    "https://archive.org/download/psvitaalive-human-resource-machine-vita/shot_02.png",
+    "https://archive.org/download/psvitaalive-human-resource-machine-vita/shot_03.png",
+    "https://archive.org/download/psvitaalive-human-resource-machine-vita/shot_04.png",
+    "https://archive.org/download/psvitaalive-human-resource-machine-vita/shot_05.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-human-resource-machine-vita/human-resource-machine-vita.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Release Page",

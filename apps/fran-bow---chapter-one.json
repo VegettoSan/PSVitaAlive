@@ -16,14 +16,20 @@
   "requirements": "- Game Data Files: Android OR PC",
   "size": 2949071,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/76e9b46e71f7b6b2b0039a3ad18599dec6967bb7c8fa3eeb0eda9e9ff39dbee7.png",
+  "icon": "https://archive.org/download/psvitaalive-fran-bow---chapter-one/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/76e9b46e71f7b6b2b0039a3ad18599dec6967bb7c8fa3eeb0eda9e9ff39dbee7.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/hato1.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/hato2.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/hato3.png"
+    "https://archive.org/download/psvitaalive-fran-bow---chapter-one/shot_01.png",
+    "https://archive.org/download/psvitaalive-fran-bow---chapter-one/shot_02.png",
+    "https://archive.org/download/psvitaalive-fran-bow---chapter-one/shot_03.png",
+    "https://archive.org/download/psvitaalive-fran-bow---chapter-one/shot_04.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-fran-bow---chapter-one/fran-bow---chapter-one.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Repository",

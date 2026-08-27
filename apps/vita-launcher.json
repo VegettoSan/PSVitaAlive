@@ -16,12 +16,18 @@
   "requirements": "Not specified",
   "size": 5286589,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/d9b02819daa3bcf8b65a7087c0274550511b5547a25fb820e2074a2f29eacf77.png",
+  "icon": "https://archive.org/download/psvitaalive-vita-launcher/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/4bc1367196ce9cdd22f298b086100c6985cbc6390f385378f11a8a98c0bcc283.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/4bc1367196ce9cdd22f298b086100c6985cbc6390f385378f11a8a98c0bcc283.png"
+    "https://archive.org/download/psvitaalive-vita-launcher/shot_01.png",
+    "https://archive.org/download/psvitaalive-vita-launcher/shot_02.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-vita-launcher/vita-launcher.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Official Website",

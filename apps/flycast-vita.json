@@ -17,15 +17,21 @@
   "requirements": "- libshacccg.suprx\n- kubridge.skprx",
   "size": 4873249,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/4bc6dee03540ede916ab5cb42d49c1fee0e3e6f600779402ee9beed60cbc77df.png",
+  "icon": "https://archive.org/download/psvitaalive-flycast-vita/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/be0b4290c4874681b65366407ef28f3f931927c4120f8af9ba9691875cf15ba9.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/fb7363b461d5ec0d0fc089659d9533be5b0f3bb95d0f97898462826e93154bf4.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/08aeba93c76c76e14d7bfb057d7282d52b6f43fef3885908c3480f458c53e5d7.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/be0b4290c4874681b65366407ef28f3f931927c4120f8af9ba9691875cf15ba9.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/fb7363b461d5ec0d0fc089659d9533be5b0f3bb95d0f97898462826e93154bf4.png"
+    "https://archive.org/download/psvitaalive-flycast-vita/shot_01.png",
+    "https://archive.org/download/psvitaalive-flycast-vita/shot_02.png",
+    "https://archive.org/download/psvitaalive-flycast-vita/shot_03.png",
+    "https://archive.org/download/psvitaalive-flycast-vita/shot_04.png",
+    "https://archive.org/download/psvitaalive-flycast-vita/shot_05.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-flycast-vita/flycast-vita.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Official Website",

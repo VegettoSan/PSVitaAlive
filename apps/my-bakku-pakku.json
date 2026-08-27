@@ -16,15 +16,21 @@
   "requirements": "Not specified",
   "size": 53564747,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1637-my-bakku-pakku.png",
+  "icon": "https://archive.org/download/psvitaalive-my-bakku-pakku/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/0263d0833532465dbaccd8d0c61f9c121fa55d100e185cc4c33c296878d73e96.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/3f40616d8e97699d02b35f70139cc21db0279b10069e1ba46f982a7f493b1ed5.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/e57df8fae548860a93e508967c2d0befbd3ba0058e734d7ffe62e4bd0074ddf4.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/0263d0833532465dbaccd8d0c61f9c121fa55d100e185cc4c33c296878d73e96.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/3f40616d8e97699d02b35f70139cc21db0279b10069e1ba46f982a7f493b1ed5.png"
+    "https://archive.org/download/psvitaalive-my-bakku-pakku/shot_01.png",
+    "https://archive.org/download/psvitaalive-my-bakku-pakku/shot_02.png",
+    "https://archive.org/download/psvitaalive-my-bakku-pakku/shot_03.png",
+    "https://archive.org/download/psvitaalive-my-bakku-pakku/shot_04.png",
+    "https://archive.org/download/psvitaalive-my-bakku-pakku/shot_05.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-my-bakku-pakku/my-bakku-pakku.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Official Website",

@@ -16,15 +16,22 @@
   "requirements": "Not specified",
   "size": 44141255,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1901-ancient-villa.png",
+  "icon": "https://archive.org/download/psvitaalive-ancient-villa/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/2039858f34641d98de831e34ee8e3df902699838f97a5a002cad2d313b74b849.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/b5fd7f9f59148487f0ec83cb8a4174a4b77fe4f86b987ae3aae663874db16b25.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/9adaf8099eca21d3f6896a9dac82d9ca64ee18f3a84ee8c35db6ae0940acf461.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/2039858f34641d98de831e34ee8e3df902699838f97a5a002cad2d313b74b849.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/b5fd7f9f59148487f0ec83cb8a4174a4b77fe4f86b987ae3aae663874db16b25.png"
+    "https://archive.org/download/psvitaalive-ancient-villa/shot_01.png",
+    "https://archive.org/download/psvitaalive-ancient-villa/shot_02.png",
+    "https://archive.org/download/psvitaalive-ancient-villa/shot_03.png",
+    "https://archive.org/download/psvitaalive-ancient-villa/shot_04.png",
+    "https://archive.org/download/psvitaalive-ancient-villa/shot_05.png"
   ],
-  "links": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-ancient-villa/ancient-villa.vpk",
+      "recommended": true
+    }
+  ],
   "source_name": "VitaHomebrewDB",
   "source_id": "1213",
   "source_url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1213-ancient_villa.vpk",

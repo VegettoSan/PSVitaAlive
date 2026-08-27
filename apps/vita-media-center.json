@@ -16,14 +16,20 @@
   "requirements": "Not specified",
   "size": 2389079,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1590-vita-media-center.png",
+  "icon": "https://archive.org/download/psvitaalive-vita-media-center/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/502b60d0a052082debb63f6f5d49ad8e27be3630a04761dbfffe5f7fa7088976.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/5d0443dca88bc835a3174120662e7d2a772b27761e3adf15fa8502caf895c5fc.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/502b60d0a052082debb63f6f5d49ad8e27be3630a04761dbfffe5f7fa7088976.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/5d0443dca88bc835a3174120662e7d2a772b27761e3adf15fa8502caf895c5fc.png"
+    "https://archive.org/download/psvitaalive-vita-media-center/shot_01.png",
+    "https://archive.org/download/psvitaalive-vita-media-center/shot_02.png",
+    "https://archive.org/download/psvitaalive-vita-media-center/shot_03.png",
+    "https://archive.org/download/psvitaalive-vita-media-center/shot_04.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-vita-media-center/vita-media-center.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Official Website",

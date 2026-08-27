@@ -16,15 +16,21 @@
   "requirements": "Not specified",
   "size": 21263914,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1859-fire-and-fondness-enhanced-edition.png",
+  "icon": "https://archive.org/download/psvitaalive-fire-and-fondness---enhanced-edition/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/a1d051f75fa8d3a1820d03bdeccf9e46bfef62af117c3cacca2e979130ac3b42.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/dae3565bae61298de65563c0c9e57f97f6ecbcba54e66b809f76706cbf83e5d9.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/fdd3f7318a7b425122879544a03fdeadcfe7e7104f6120ef0cdfffd700264574.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/a1d051f75fa8d3a1820d03bdeccf9e46bfef62af117c3cacca2e979130ac3b42.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/dae3565bae61298de65563c0c9e57f97f6ecbcba54e66b809f76706cbf83e5d9.png"
+    "https://archive.org/download/psvitaalive-fire-and-fondness---enhanced-edition/shot_01.png",
+    "https://archive.org/download/psvitaalive-fire-and-fondness---enhanced-edition/shot_02.png",
+    "https://archive.org/download/psvitaalive-fire-and-fondness---enhanced-edition/shot_03.png",
+    "https://archive.org/download/psvitaalive-fire-and-fondness---enhanced-edition/shot_04.png",
+    "https://archive.org/download/psvitaalive-fire-and-fondness---enhanced-edition/shot_05.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-fire-and-fondness---enhanced-edition/fire-and-fondness---enhanced-edition.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Official Website",

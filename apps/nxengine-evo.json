@@ -16,11 +16,17 @@
   "requirements": "- Game Data Files: Cave Story",
   "size": 10484800,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/4d46f97253653049864fac2ad3a43c9a6a25c4de65bf256fab9d26643793ac38.png",
+  "icon": "https://archive.org/download/psvitaalive-nxengine-evo/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/4d46f97253653049864fac2ad3a43c9a6a25c4de65bf256fab9d26643793ac38.png"
+    "https://archive.org/download/psvitaalive-nxengine-evo/shot_01.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-nxengine-evo/NXEngine-Evo-v2.6.5-Vita.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Release Page",

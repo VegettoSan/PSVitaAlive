@@ -16,14 +16,20 @@
   "requirements": "- libshacccg.suprx\n- libfmodstudio.suprx\n- kubridge.skprx\n- Game Data Files: Android",
   "size": 1125000,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/e7c861029b4702135b010ab07db1cb2d201e872b6891dde294405b796fe3dd51.png",
+  "icon": "https://archive.org/download/psvitaalive-geometry-dash-vita/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/8f4546d2c9d633aade378e534004a2c1d3bcc4f6172736d39a939b659c2f3bd6.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/7a61a28923d99599adde7f1f654bae2002402a3cd3a23ff89dad457dbdd040e9.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/8f4546d2c9d633aade378e534004a2c1d3bcc4f6172736d39a939b659c2f3bd6.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/7a61a28923d99599adde7f1f654bae2002402a3cd3a23ff89dad457dbdd040e9.png"
+    "https://archive.org/download/psvitaalive-geometry-dash-vita/shot_01.png",
+    "https://archive.org/download/psvitaalive-geometry-dash-vita/shot_02.png",
+    "https://archive.org/download/psvitaalive-geometry-dash-vita/shot_03.png",
+    "https://archive.org/download/psvitaalive-geometry-dash-vita/shot_04.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-geometry-dash-vita/geometry-dash-vita.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Release Page",

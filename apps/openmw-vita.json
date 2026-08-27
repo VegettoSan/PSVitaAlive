@@ -16,15 +16,21 @@
   "requirements": "- libshacccg.suprx\n- Game Data Files: PC",
   "size": 168380572,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1390-openmw-vita.png",
+  "icon": "https://archive.org/download/psvitaalive-openmw-vita/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/7ee6fd95e0000c823930ff8cd0b566818833d78a8d360682e9d0d45bf39109f2.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/da9449df2bb712c5e1b6081925b259811ce36bd78d6f5dabbb5f40ef5a4cef86.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/814f32e8bec19e5f0b16e168353d1bd843328ede5d12d3d0ec3b6975f30266db.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/7ee6fd95e0000c823930ff8cd0b566818833d78a8d360682e9d0d45bf39109f2.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/da9449df2bb712c5e1b6081925b259811ce36bd78d6f5dabbb5f40ef5a4cef86.png"
+    "https://archive.org/download/psvitaalive-openmw-vita/shot_01.png",
+    "https://archive.org/download/psvitaalive-openmw-vita/shot_02.png",
+    "https://archive.org/download/psvitaalive-openmw-vita/shot_03.png",
+    "https://archive.org/download/psvitaalive-openmw-vita/shot_04.png",
+    "https://archive.org/download/psvitaalive-openmw-vita/shot_05.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-openmw-vita/openmw-vita.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Release Page",

@@ -17,15 +17,22 @@
   "requirements": "Not specified",
   "size": 73237056,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1704-five-nights-at-freddy-s.png",
+  "icon": "https://archive.org/download/psvitaalive-five-nights-at-freddy-s/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/03d6126f3ef400f1ae994edd9348102d876bfd67bfdd97064a43c8920c093c6c.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/a7287c378d4d162fb662fbe597631b02a78f53bada920b40c3954fae92c18a91.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/d17e83302b0a88cc2e5995e77abbd2ede2e965cccad460afb653c67e92deebe1.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/03d6126f3ef400f1ae994edd9348102d876bfd67bfdd97064a43c8920c093c6c.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/a7287c378d4d162fb662fbe597631b02a78f53bada920b40c3954fae92c18a91.png"
+    "https://archive.org/download/psvitaalive-five-nights-at-freddy-s/shot_01.png",
+    "https://archive.org/download/psvitaalive-five-nights-at-freddy-s/shot_02.png",
+    "https://archive.org/download/psvitaalive-five-nights-at-freddy-s/shot_03.png",
+    "https://archive.org/download/psvitaalive-five-nights-at-freddy-s/shot_04.png",
+    "https://archive.org/download/psvitaalive-five-nights-at-freddy-s/shot_05.png"
   ],
-  "links": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-five-nights-at-freddy-s/five-nights-at-freddy-s.vpk",
+      "recommended": true
+    }
+  ],
   "source_name": "VitaHomebrewDB",
   "source_id": "620",
   "source_url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/620-FNaFVita.vpk",

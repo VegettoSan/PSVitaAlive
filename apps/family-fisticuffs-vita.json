@@ -16,11 +16,17 @@
   "requirements": "Not specified",
   "size": 24806566,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/2479a3a12a929c86007e4fe191a2ad8225dd1a4b8fb080689b568874c625515b.png",
+  "icon": "https://archive.org/download/psvitaalive-family-fisticuffs-vita/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/2479a3a12a929c86007e4fe191a2ad8225dd1a4b8fb080689b568874c625515b.png"
+    "https://archive.org/download/psvitaalive-family-fisticuffs-vita/shot_01.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-family-fisticuffs-vita/family-fisticuffs-vita.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Release Page",

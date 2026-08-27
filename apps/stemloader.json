@@ -16,15 +16,21 @@
   "requirements": "Not specified",
   "size": 1774769,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1561-stemloader.png",
+  "icon": "https://archive.org/download/psvitaalive-stemloader/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/3d49d53416cdb90ec9eee294ed34d9b13dff25a1544097302cf859c9a1ed788a.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/0f205005194bdda1e0f4ffebf27e414698d4b7a32ee750ea990beed9ab2b3a43.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/968b1e6805639ba8a40f563899c96588015f6f2f6a9c34d6eb2f2ab02d6a9540.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/3d49d53416cdb90ec9eee294ed34d9b13dff25a1544097302cf859c9a1ed788a.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/0f205005194bdda1e0f4ffebf27e414698d4b7a32ee750ea990beed9ab2b3a43.png"
+    "https://archive.org/download/psvitaalive-stemloader/shot_01.png",
+    "https://archive.org/download/psvitaalive-stemloader/shot_02.png",
+    "https://archive.org/download/psvitaalive-stemloader/shot_03.png",
+    "https://archive.org/download/psvitaalive-stemloader/shot_04.png",
+    "https://archive.org/download/psvitaalive-stemloader/shot_05.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-stemloader/stemloader.vpk",
+      "recommended": true
+    },
     {
       "type": "Repository",
       "name": "Repositorio",

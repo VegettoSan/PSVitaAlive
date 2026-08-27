@@ -16,11 +16,18 @@
   "requirements": "Not specified",
   "size": 478817,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1491-vpkmirror.png",
+  "icon": "https://archive.org/download/psvitaalive-vpkmirror/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1491-vpkmirror.png"
+    "https://archive.org/download/psvitaalive-vpkmirror/shot_01.png"
   ],
-  "links": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-vpkmirror/vpkmirror.vpk",
+      "recommended": true
+    }
+  ],
   "source_name": "VitaHomebrewDB",
   "source_id": "82",
   "source_url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/82-VPKMirror.vpk",

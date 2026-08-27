@@ -16,12 +16,18 @@
   "requirements": "Not specified",
   "size": 4528105,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/0796-mvplayer.png",
+  "icon": "https://archive.org/download/psvitaalive-mvplayer/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/4da0f23fc62808aeaa2a040c393d520c5a2b6a9c5d18909609a854043c274439.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/4da0f23fc62808aeaa2a040c393d520c5a2b6a9c5d18909609a854043c274439.png"
+    "https://archive.org/download/psvitaalive-mvplayer/shot_01.png",
+    "https://archive.org/download/psvitaalive-mvplayer/shot_02.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-mvplayer/MVPLAYER0.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Release Page",

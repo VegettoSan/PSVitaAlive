@@ -16,15 +16,21 @@
   "requirements": "- Game Data Files: PC",
   "size": 429964328,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/b6e9557a980f307d3db93a6685e11fe56957b1ddf74ab8cda06330f618799725.png",
+  "icon": "https://archive.org/download/psvitaalive-blasphemous-vita/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/3d31bf76ce6ec87ce038ed297205287ad52e3facc828b39c07419307ee444738.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/11b81378510366a256dabecaa740812d2baf1af2eaa56170e017feb62511c815.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/da6e90977b99f020c404f1ae921cb8b5490d6cecbaaf16925d366498e7eb4f13.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/12a4745d9e728ca757b5d1b3fe1d1145880f3913f9180b9b4b59b45c0839ac5b.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/3d31bf76ce6ec87ce038ed297205287ad52e3facc828b39c07419307ee444738.png"
+    "https://archive.org/download/psvitaalive-blasphemous-vita/shot_01.png",
+    "https://archive.org/download/psvitaalive-blasphemous-vita/shot_02.png",
+    "https://archive.org/download/psvitaalive-blasphemous-vita/shot_03.png",
+    "https://archive.org/download/psvitaalive-blasphemous-vita/shot_04.png",
+    "https://archive.org/download/psvitaalive-blasphemous-vita/shot_05.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-blasphemous-vita/blasphemous-vita.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Repository",

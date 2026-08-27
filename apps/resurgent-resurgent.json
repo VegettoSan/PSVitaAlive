@@ -16,15 +16,21 @@
   "requirements": "Not specified",
   "size": 11664999,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1749-resurgent.png",
+  "icon": "https://archive.org/download/psvitaalive-resurgent-resurgent/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/4347318049a096f3d0efd8507cbb7dc84ac8672539b61d53aa2fc306b5f6e862.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/2ec1a29351ba05bf655d5efbdf4b5b921ef0c8fb285ad97a131de83d9dbed545.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/ca2e96eb368bd311924c3f62a64c9e00c466ec5adbf712523db55eef717f77d2.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/4347318049a096f3d0efd8507cbb7dc84ac8672539b61d53aa2fc306b5f6e862.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/2ec1a29351ba05bf655d5efbdf4b5b921ef0c8fb285ad97a131de83d9dbed545.png"
+    "https://archive.org/download/psvitaalive-resurgent-resurgent/shot_01.png",
+    "https://archive.org/download/psvitaalive-resurgent-resurgent/shot_02.png",
+    "https://archive.org/download/psvitaalive-resurgent-resurgent/shot_03.png",
+    "https://archive.org/download/psvitaalive-resurgent-resurgent/shot_04.png",
+    "https://archive.org/download/psvitaalive-resurgent-resurgent/shot_05.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-resurgent-resurgent/resurgent-resurgent.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Official Website",

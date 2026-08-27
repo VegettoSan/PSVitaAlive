@@ -16,15 +16,21 @@
   "requirements": "- Game Data Files: PC",
   "size": 4531124,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/60bab248731fdcaff4b65cc21f7528ec033c018b28255bce9b96abd866608ac8.png",
+  "icon": "https://archive.org/download/psvitaalive-dune-legacy/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/5ed46ab5eb11cdb6e74dbed56e3a70c026a881003df3848c779475dbf5eadadc.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/2e99473b7e5358127cadddc891d3ca30c62bb579b1d2562d5984bc7612e00772.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/9a8342e82afae336cbcd710f1a71e5c4c24d1d716d16500ec343a5e79646025f.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/ab02e73294aa7734272dbf94fd2c4e48609ccf71fa1309d172b1451a8c2f4153.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/5ed46ab5eb11cdb6e74dbed56e3a70c026a881003df3848c779475dbf5eadadc.png"
+    "https://archive.org/download/psvitaalive-dune-legacy/shot_01.png",
+    "https://archive.org/download/psvitaalive-dune-legacy/shot_02.png",
+    "https://archive.org/download/psvitaalive-dune-legacy/shot_03.png",
+    "https://archive.org/download/psvitaalive-dune-legacy/shot_04.png",
+    "https://archive.org/download/psvitaalive-dune-legacy/shot_05.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-dune-legacy/dune-legacy.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Release Page",

@@ -16,15 +16,21 @@
   "requirements": "Not specified",
   "size": 398871,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/0508-flappybird-classic.png",
+  "icon": "https://archive.org/download/psvitaalive-flappybird-classic/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c6963320e985fc14018a54ff8bf615746e5536f4fd8a42bf7aa7ea814653da6e.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/f1974070d838062a0203abc42d3bc88579627a6f13341ffa550fa58a32879fe8.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/44d95e8b35e1dfe5b977933833f3ae2b8fcd24d20f7effd2e0cdd3201538095a.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/78bc4bc28ba73c7ac86df0200101e351b277a778af99cd5a94c89021a66c6cdb.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/c6963320e985fc14018a54ff8bf615746e5536f4fd8a42bf7aa7ea814653da6e.png"
+    "https://archive.org/download/psvitaalive-flappybird-classic/shot_01.png",
+    "https://archive.org/download/psvitaalive-flappybird-classic/shot_02.png",
+    "https://archive.org/download/psvitaalive-flappybird-classic/shot_03.png",
+    "https://archive.org/download/psvitaalive-flappybird-classic/shot_04.png",
+    "https://archive.org/download/psvitaalive-flappybird-classic/shot_05.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-flappybird-classic/FBClassic.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Release Page",

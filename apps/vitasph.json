@@ -16,14 +16,20 @@
   "requirements": "- libshacccg.suprx",
   "size": 742391,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1318-vitasph.png",
+  "icon": "https://archive.org/download/psvitaalive-vitasph/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/f68c16613f602dca38dda5b5e6984c316ef88362f429af914057dc25e8f05163.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/29336d6980d327e6a94254dfee99f1f41f03efc0802efd19a3d7ab9645a19dcf.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/f68c16613f602dca38dda5b5e6984c316ef88362f429af914057dc25e8f05163.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/29336d6980d327e6a94254dfee99f1f41f03efc0802efd19a3d7ab9645a19dcf.png"
+    "https://archive.org/download/psvitaalive-vitasph/shot_01.png",
+    "https://archive.org/download/psvitaalive-vitasph/shot_02.png",
+    "https://archive.org/download/psvitaalive-vitasph/shot_03.png",
+    "https://archive.org/download/psvitaalive-vitasph/shot_04.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-vitasph/vitasph.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Official Website",

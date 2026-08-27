@@ -17,15 +17,21 @@
   "requirements": "Not specified",
   "size": 25421547,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/4edc69d6da2af1913008e8c9927869fad804b177643d9ddc517e114d75cdb062.png",
+  "icon": "https://archive.org/download/psvitaalive-jump-king-vita/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/765e7e3465db3c6d54cf748df88501ff13b9cbd1482c22a638caa84f1afd0e7b.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/485c34b58e349f5ddc06012794566b2e36c06ecbe0933fe3d38499a9c7fb492e.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/a33857b95ae86f2411abebaa011e6d230c727a0400017d47a650f3ffd487b0db.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/9e67c1fecb2c2ff8e9fa67867dc07742bb2481fb6c46baa74a742fdda9a0aab0.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/765e7e3465db3c6d54cf748df88501ff13b9cbd1482c22a638caa84f1afd0e7b.png"
+    "https://archive.org/download/psvitaalive-jump-king-vita/shot_01.png",
+    "https://archive.org/download/psvitaalive-jump-king-vita/shot_02.png",
+    "https://archive.org/download/psvitaalive-jump-king-vita/shot_03.png",
+    "https://archive.org/download/psvitaalive-jump-king-vita/shot_04.png",
+    "https://archive.org/download/psvitaalive-jump-king-vita/shot_05.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-jump-king-vita/jump-king-vita.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Release Page",

@@ -16,11 +16,17 @@
   "requirements": "Not specified",
   "size": 14558256,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1411-gmca.png",
+  "icon": "https://archive.org/download/psvitaalive-gmca/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1411-gmca.png"
+    "https://archive.org/download/psvitaalive-gmca/shot_01.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-gmca/GMCA.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Release Page",

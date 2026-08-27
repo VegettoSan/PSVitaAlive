@@ -16,15 +16,22 @@
   "requirements": "Not specified",
   "size": 44676137,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1663-brickrace-1990.png",
+  "icon": "https://archive.org/download/psvitaalive-brickrace-1990/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/ee2c0077dcfc26e72547fbf1eb3cfbdc942c2d54f42857f7b43592526feb36ad.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/b92a047023028e1b0fb47f28de9aaa69ec75f4eb2f7b2392105af3bf8f74b5d3.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/e0edb8645eee3c981cf0d24f3f0ad7d34bb679e7677bd5b6c3236ea99742b401.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/0c5adff03435782df9c1dc167e29b53b74bbbe83d352d8117a41dbe8cb92ba6c.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/ee2c0077dcfc26e72547fbf1eb3cfbdc942c2d54f42857f7b43592526feb36ad.png"
+    "https://archive.org/download/psvitaalive-brickrace-1990/shot_01.png",
+    "https://archive.org/download/psvitaalive-brickrace-1990/shot_02.png",
+    "https://archive.org/download/psvitaalive-brickrace-1990/shot_03.png",
+    "https://archive.org/download/psvitaalive-brickrace-1990/shot_04.png",
+    "https://archive.org/download/psvitaalive-brickrace-1990/shot_05.png"
   ],
-  "links": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-brickrace-1990/brickrace-1990.vpk",
+      "recommended": true
+    }
+  ],
   "source_name": "VitaHomebrewDB",
   "source_id": "503",
   "source_url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/503-BrickRace.vpk",

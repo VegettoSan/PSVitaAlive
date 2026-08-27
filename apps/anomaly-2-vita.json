@@ -16,15 +16,21 @@
   "requirements": "- libshacccg.suprx\n- kubridge.skprx\n- fd_fix.skprx OR repatch_ex.skprx\n- Game Data Files: Android",
   "size": 14225527,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/e47835a951dccc4d2bd3dd697fdf5c186edb526b75aab8265ffa6a76aa87b7c5.png",
+  "icon": "https://archive.org/download/psvitaalive-anomaly-2-vita/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/1c0831c73d49f12438b7c2a0ef27e84b02040d48e42f0fe790aec8a5157bc8fa.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/b5e43d70795c345e6894df6f95f743617c1c8f75ef0a37d549f329e9bbbb5cdf.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/4839a25ca1bf62b2caee5996f1f62eea143b2a8aa3f48747c64e450093ac55ab.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/7dfd1c9189041e783a31fe0ad80ac8cdf9ab7a71036639f6f5dd0284ef3fa244.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/1c0831c73d49f12438b7c2a0ef27e84b02040d48e42f0fe790aec8a5157bc8fa.png"
+    "https://archive.org/download/psvitaalive-anomaly-2-vita/shot_01.png",
+    "https://archive.org/download/psvitaalive-anomaly-2-vita/shot_02.png",
+    "https://archive.org/download/psvitaalive-anomaly-2-vita/shot_03.png",
+    "https://archive.org/download/psvitaalive-anomaly-2-vita/shot_04.png",
+    "https://archive.org/download/psvitaalive-anomaly-2-vita/shot_05.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-anomaly-2-vita/anomaly-2-vita.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Release Page",

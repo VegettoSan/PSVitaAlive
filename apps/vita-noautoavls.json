@@ -16,11 +16,17 @@
   "requirements": "Not specified",
   "size": 32445,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/b20fa9f823124c22732567e7b9125b1f010b491dd652baa0dd99430ae33ef1d1.png",
+  "icon": "https://archive.org/download/psvitaalive-vita-noautoavls/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/b20fa9f823124c22732567e7b9125b1f010b491dd652baa0dd99430ae33ef1d1.png"
+    "https://archive.org/download/psvitaalive-vita-noautoavls/shot_01.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-vita-noautoavls/vita-noautoavls.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Release Page",

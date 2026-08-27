@@ -17,11 +17,17 @@
   "requirements": "Not specified",
   "size": 1715588,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1293-vitaki.png",
+  "icon": "https://archive.org/download/psvitaalive-vitaki/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1293-vitaki.png"
+    "https://archive.org/download/psvitaalive-vitaki/shot_01.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-vitaki/vitaki.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Release Page",

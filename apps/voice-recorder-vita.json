@@ -16,12 +16,18 @@
   "requirements": "Not specified",
   "size": 2278268,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1568-voice-recorder-vita.png",
+  "icon": "https://archive.org/download/psvitaalive-voice-recorder-vita/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/aeae80e6526ea861d486399c005544de9b94b1dd0818b070ad1d50dd9f0b22b7.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/aeae80e6526ea861d486399c005544de9b94b1dd0818b070ad1d50dd9f0b22b7.png"
+    "https://archive.org/download/psvitaalive-voice-recorder-vita/shot_01.png",
+    "https://archive.org/download/psvitaalive-voice-recorder-vita/shot_02.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-voice-recorder-vita/voice-recorder-vita.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Official Website",

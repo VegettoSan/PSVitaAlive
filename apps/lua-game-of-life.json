@@ -16,12 +16,18 @@
   "requirements": "Not specified",
   "size": 1799538,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1533-lua-game-of-life.png",
+  "icon": "https://archive.org/download/psvitaalive-lua-game-of-life/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1533-lua-game-of-life.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/gol_lua.jpg"
+    "https://archive.org/download/psvitaalive-lua-game-of-life/shot_01.png",
+    "https://archive.org/download/psvitaalive-lua-game-of-life/shot_02.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-lua-game-of-life/lua-game-of-life.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Official Website",

@@ -16,12 +16,18 @@
   "requirements": "Not specified",
   "size": 2440427,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/c1a248da9dc437b51a8e5da47217070ff011c0849156ed6ce8e0bb7af0b6fadd.png",
+  "icon": "https://archive.org/download/psvitaalive-elevenmpv/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/27c05ba80244d6fc309924bc0362145747783f8e363e9a72971e0e1f6fff45ce.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/27c05ba80244d6fc309924bc0362145747783f8e363e9a72971e0e1f6fff45ce.png"
+    "https://archive.org/download/psvitaalive-elevenmpv/shot_01.png",
+    "https://archive.org/download/psvitaalive-elevenmpv/shot_02.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-elevenmpv/elevenmpv.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Official Website",

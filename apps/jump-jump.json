@@ -16,12 +16,19 @@
   "requirements": "Not specified",
   "size": 34515681,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1661-jump-jump.png",
+  "icon": "https://archive.org/download/psvitaalive-jump-jump/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/4422e7fafb5da787ebee17be5ac23edf40fbdc65c0530819de5a4917eff56347.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/4422e7fafb5da787ebee17be5ac23edf40fbdc65c0530819de5a4917eff56347.png"
+    "https://archive.org/download/psvitaalive-jump-jump/shot_01.png",
+    "https://archive.org/download/psvitaalive-jump-jump/shot_02.png"
   ],
-  "links": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-jump-jump/jump-jump.vpk",
+      "recommended": true
+    }
+  ],
   "source_name": "VitaHomebrewDB",
   "source_id": "499",
   "source_url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/499-Jump_20Jump.vpk",

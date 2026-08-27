@@ -16,14 +16,20 @@
   "requirements": "Not specified",
   "size": 40753318,
   "status": "Legacy",
-  "icon": "https://www.rinnegatamante.eu/vitadb/icons/bb9887bf203bda48b62602763f4986bc18a616d0b8f1217c0464f8093d7365a3.png",
+  "icon": "https://archive.org/download/psvitaalive-fnaf-world-psvita-demake-gdot00083/icon0.png",
   "screenshots": [
-    "https://www.rinnegatamante.eu/vitadb/screenshots/51f00186542a1cbe482938e6c1956db4ebdf616f5be727fd9970dbf84d29a775.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/c1b96646e18f8c178e01ad850d3d65f189c80b7eb8d600c27ebe4da7470f583f.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/4b4bce6e6d5fdcf4de4a39b128aa977cff273cf6fb848debffe0cdab3f114fb0.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/71e5af3a077f76d71f175f6706b94386eb71170e7482b93bb8eebbcfad715241.png"
+    "https://archive.org/download/psvitaalive-fnaf-world-psvita-demake-gdot00083/shot_01.png",
+    "https://archive.org/download/psvitaalive-fnaf-world-psvita-demake-gdot00083/shot_02.png",
+    "https://archive.org/download/psvitaalive-fnaf-world-psvita-demake-gdot00083/shot_03.png",
+    "https://archive.org/download/psvitaalive-fnaf-world-psvita-demake-gdot00083/shot_04.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-fnaf-world-psvita-demake-gdot00083/fnaf-world-psvita-demake-gdot00083.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Official Website",

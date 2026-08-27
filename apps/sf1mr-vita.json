@@ -16,15 +16,21 @@
   "requirements": "Not specified",
   "size": 33517678,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/9ea1d1144e135e435e1183ec80dd69761eb60b5caa78dbb088868fc4ab9b5506.png",
+  "icon": "https://archive.org/download/psvitaalive-sf1mr-vita/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/af32844ecb1025e4de2f91975032ea92cabfa3ce95c7a12ce693ad06321e938f.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/9e380e1a4e089a2035aa683c3e0237da583a1e6e608d1f3938c1dfa9d87ad827.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/5e9becd8b04a8dacd525ae75f635e79935429ed585345bfd15f6689e380ad5aa.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/932ccacb8546021a9e35481a7c88a1d95056868c5019776cb08b749c02aafe79.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/af32844ecb1025e4de2f91975032ea92cabfa3ce95c7a12ce693ad06321e938f.png"
+    "https://archive.org/download/psvitaalive-sf1mr-vita/shot_01.png",
+    "https://archive.org/download/psvitaalive-sf1mr-vita/shot_02.png",
+    "https://archive.org/download/psvitaalive-sf1mr-vita/shot_03.png",
+    "https://archive.org/download/psvitaalive-sf1mr-vita/shot_04.png",
+    "https://archive.org/download/psvitaalive-sf1mr-vita/shot_05.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-sf1mr-vita/sf1mr-vita.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Repository",

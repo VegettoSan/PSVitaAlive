@@ -16,12 +16,18 @@
   "requirements": "Not specified",
   "size": 2378727,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/0635-abbey-of-crime.png",
+  "icon": "https://archive.org/download/psvitaalive-abbey-of-crime/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/b67bd7f09b5830d3e7d3936531ad76962c92e71b89935b0d844372e97fccd2a7.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/b67bd7f09b5830d3e7d3936531ad76962c92e71b89935b0d844372e97fccd2a7.png"
+    "https://archive.org/download/psvitaalive-abbey-of-crime/shot_01.png",
+    "https://archive.org/download/psvitaalive-abbey-of-crime/shot_02.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-abbey-of-crime/abbey-of-crime.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Release Page",

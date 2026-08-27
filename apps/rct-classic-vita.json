@@ -16,15 +16,21 @@
   "requirements": "- libshacccg.suprx\n- libfmodstudio.suprx\n- kubridge.skprx\n- Game Data Files: Android",
   "size": 3765763,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/ffdb62f4e2e11a3aef9ecfae0fe7ea9ff8bd85cc11327edda66b264f85474094.png",
+  "icon": "https://archive.org/download/psvitaalive-rct-classic-vita/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/777596a33ac47236d9c193550248da38be46ce348b50bca623d07e4a471764be.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c3fb98e47a592897a0609fb0e25997893d927fc83c36ad987c47b0a14184a377.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/07a9f7c139212699290ecef949146f6fea23065b7cabc41ba72c124ba6b9191c.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/140f49ca87e3dc5f62d940297ef43ede650883add3d97b395ef1577814ea0fee.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/777596a33ac47236d9c193550248da38be46ce348b50bca623d07e4a471764be.png"
+    "https://archive.org/download/psvitaalive-rct-classic-vita/shot_01.png",
+    "https://archive.org/download/psvitaalive-rct-classic-vita/shot_02.png",
+    "https://archive.org/download/psvitaalive-rct-classic-vita/shot_03.png",
+    "https://archive.org/download/psvitaalive-rct-classic-vita/shot_04.png",
+    "https://archive.org/download/psvitaalive-rct-classic-vita/shot_05.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-rct-classic-vita/rct-classic-vita.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Release Page",

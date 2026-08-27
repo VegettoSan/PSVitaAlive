@@ -16,11 +16,17 @@
   "requirements": "Not specified",
   "size": 37256,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1599-crash-dump-delete.png",
+  "icon": "https://archive.org/download/psvitaalive-crash-dump-delete/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1599-crash-dump-delete.png"
+    "https://archive.org/download/psvitaalive-crash-dump-delete/shot_01.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-crash-dump-delete/crash-dump-delete.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Release Page",

@@ -17,14 +17,20 @@
   "requirements": "Not specified",
   "size": 2450570,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1555-eucliod.png",
+  "icon": "https://archive.org/download/psvitaalive-eucliod/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/93bded92b1ca5648619f8d38f039f0fe0a9c3c7456f97782bc0c59452f4a36e7.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/914b602e657a370f7675935a9ec97f91f9a51227ca65a43c7204d33c836deeb4.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/93bded92b1ca5648619f8d38f039f0fe0a9c3c7456f97782bc0c59452f4a36e7.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/914b602e657a370f7675935a9ec97f91f9a51227ca65a43c7204d33c836deeb4.png"
+    "https://archive.org/download/psvitaalive-eucliod/shot_01.png",
+    "https://archive.org/download/psvitaalive-eucliod/shot_02.png",
+    "https://archive.org/download/psvitaalive-eucliod/shot_03.png",
+    "https://archive.org/download/psvitaalive-eucliod/shot_04.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-eucliod/eucliod.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Official Website",

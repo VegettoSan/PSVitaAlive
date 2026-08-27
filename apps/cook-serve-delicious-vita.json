@@ -16,15 +16,21 @@
   "requirements": "- Game Data Files: PC Steam",
   "size": 3189944,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/c4bd98c0d4f2389981f01cc84ab5a7c233abcb706ab297b89cb9c9481edda52a.png",
+  "icon": "https://archive.org/download/psvitaalive-cook-serve-delicious-vita/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/0a5b6f3c5cc44d2775e3224d7f7caf291659a80697b94cfb61c5796c03c5bd97.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/074eefbbcec3f194c28d4280fc1ba3617682bb45c21832be57c29408ba6d6641.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/1cd44f33b7e53b5c45a10ce692de7a5cfb6e49b8c3ed36577ad40d628a43e908.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/40881d6570e49eb529c0dd377d74ecac1bcfea47e91054e08d8ca7ab16cfc849.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/0a5b6f3c5cc44d2775e3224d7f7caf291659a80697b94cfb61c5796c03c5bd97.png"
+    "https://archive.org/download/psvitaalive-cook-serve-delicious-vita/shot_01.png",
+    "https://archive.org/download/psvitaalive-cook-serve-delicious-vita/shot_02.png",
+    "https://archive.org/download/psvitaalive-cook-serve-delicious-vita/shot_03.png",
+    "https://archive.org/download/psvitaalive-cook-serve-delicious-vita/shot_04.png",
+    "https://archive.org/download/psvitaalive-cook-serve-delicious-vita/shot_05.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-cook-serve-delicious-vita/cook-serve-delicious-vita.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Repository",

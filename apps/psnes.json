@@ -16,12 +16,18 @@
   "requirements": "Not specified",
   "size": 3887269,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/a1226bc8803ada665073b9164c69cb7f85985e0de8e929689e74a485851f479e.png",
+  "icon": "https://archive.org/download/psvitaalive-psnes/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/60bd5d1cd16336e80491f7324963910d38759780be5815f626d8a652cc29f1fd.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/60bd5d1cd16336e80491f7324963910d38759780be5815f626d8a652cc29f1fd.png"
+    "https://archive.org/download/psvitaalive-psnes/shot_01.png",
+    "https://archive.org/download/psvitaalive-psnes/shot_02.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-psnes/psnes.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Official Website",

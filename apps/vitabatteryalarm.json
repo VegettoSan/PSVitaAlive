@@ -16,11 +16,17 @@
   "requirements": "Not specified",
   "size": 451697,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1741-vitabatteryalarm.png",
+  "icon": "https://archive.org/download/psvitaalive-vitabatteryalarm/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1741-vitabatteryalarm.png"
+    "https://archive.org/download/psvitaalive-vitabatteryalarm/shot_01.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-vitabatteryalarm/vitabatteryalarm.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Release Page",

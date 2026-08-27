@@ -16,11 +16,17 @@
   "requirements": "Not specified",
   "size": 4541035,
   "status": "Legacy",
-  "icon": "https://www.rinnegatamante.eu/vitadb/icons/86f9eecaf4378984b0ff26bf9e550aa48948d17c5d43d91338d73f9e71b678c1.png",
+  "icon": "https://archive.org/download/psvitaalive-notepad-vita-note00001/icon0.png",
   "screenshots": [
-    "https://www.rinnegatamante.eu/vitadb/screenshots/92c82a02928ebff0b718d473bbf6ef309f004eab349acd46e3f4097c2b327c6a.png"
+    "https://archive.org/download/psvitaalive-notepad-vita-note00001/shot_01.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-notepad-vita-note00001/notepad-vita-note00001.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Official Website",

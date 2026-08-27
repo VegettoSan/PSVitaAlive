@@ -16,15 +16,22 @@
   "requirements": "Not specified",
   "size": 44567212,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1913-black-sails-curse-of-the-deep.png",
+  "icon": "https://archive.org/download/psvitaalive-black-sails-curse-of-the-deep/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/4a056b5b651931fe5bfe71dd10e74f28a20576b5db26736bb5e7847a97e6cacd.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/dc596137c46046af76f54f40f3bdc8bf570ea828b8eb40b50b1a91fb67599de3.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/485d4c621edf2ed6d734e186b12973205d131e61a5342b71233e65fdd02e3c43.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/2c19138bdc70e1da28a497e6f6decd9039251b44370aa6f37845e458df0be8b4.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/4a056b5b651931fe5bfe71dd10e74f28a20576b5db26736bb5e7847a97e6cacd.png"
+    "https://archive.org/download/psvitaalive-black-sails-curse-of-the-deep/shot_01.png",
+    "https://archive.org/download/psvitaalive-black-sails-curse-of-the-deep/shot_02.png",
+    "https://archive.org/download/psvitaalive-black-sails-curse-of-the-deep/shot_03.png",
+    "https://archive.org/download/psvitaalive-black-sails-curse-of-the-deep/shot_04.png",
+    "https://archive.org/download/psvitaalive-black-sails-curse-of-the-deep/shot_05.png"
   ],
-  "links": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-black-sails-curse-of-the-deep/black-sails-curse-of-the-deep.vpk",
+      "recommended": true
+    }
+  ],
   "source_name": "VitaHomebrewDB",
   "source_id": "1248",
   "source_url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1248-BlackSailsCurseOfTheDeep.vpk",

@@ -16,11 +16,17 @@
   "requirements": "- Game Data Files: PC",
   "size": 1463772,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1702-sqrxz-3.png",
+  "icon": "https://archive.org/download/psvitaalive-sqrxz-3/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1702-sqrxz-3.png"
+    "https://archive.org/download/psvitaalive-sqrxz-3/shot_01.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-sqrxz-3/sqrxz-3.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Official Website",

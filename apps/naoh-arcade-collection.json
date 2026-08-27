@@ -19,6 +19,12 @@
   "status": "Legacy",
   "links": [
     {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-naoh-arcade-collection/naoh-arcade-collection.vpk",
+      "recommended": true
+    },
+    {
       "type": "Game Files",
       "name": "Game Files ZIP",
       "url": "https://archive.org/download/psvitaalive-naoh-arcade-collection/Game%20Files.zip",

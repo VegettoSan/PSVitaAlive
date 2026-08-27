@@ -17,11 +17,17 @@
   "requirements": "Not specified",
   "size": 2644676,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/87725f6dcf099f42b28d4295366c9b4fe4b63139643db73af542cea6dfd96303.png",
+  "icon": "https://archive.org/download/psvitaalive-realpackage-installer/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/87725f6dcf099f42b28d4295366c9b4fe4b63139643db73af542cea6dfd96303.png"
+    "https://archive.org/download/psvitaalive-realpackage-installer/shot_01.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-realpackage-installer/real_package_installer.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Release Page",

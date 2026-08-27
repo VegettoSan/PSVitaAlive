@@ -16,11 +16,17 @@
   "requirements": "A PS Vita or PS TV with homebrew enabled (Enso, HENkaku or h-encore). Install the VPK with VitaShell. Saves live in ux0:data/VitaSnake/ and are preserved across upgrades.",
   "size": 1683846,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/e53dd9e8c029e8bf0a26ef28565a0cbd055b1a57759db167ccd44a05e6e4121e.png",
+  "icon": "https://archive.org/download/psvitaalive-javitascript-snake/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/e53dd9e8c029e8bf0a26ef28565a0cbd055b1a57759db167ccd44a05e6e4121e.png"
+    "https://archive.org/download/psvitaalive-javitascript-snake/shot_01.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-javitascript-snake/snake.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Release Page",

@@ -17,11 +17,17 @@
   "requirements": "Not specified",
   "size": 84055,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1987-trophy-dumper.png",
+  "icon": "https://archive.org/download/psvitaalive-trophy-dumper/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1987-trophy-dumper.png"
+    "https://archive.org/download/psvitaalive-trophy-dumper/shot_01.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-trophy-dumper/TrophyDumper.vpk",
+      "recommended": true
+    },
     {
       "type": "Repository",
       "name": "Repositorio",

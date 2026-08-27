@@ -17,14 +17,20 @@
   "requirements": "Not specified",
   "size": 47985755,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/979ff09163ed9e623a9acad536051d6d7b3c229caa5e90d50a89b1947d1ea9ed.png",
+  "icon": "https://archive.org/download/psvitaalive-sonic-2-sms-remake/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/cccba2b4bb39c25797249b8054fddd972a7b2e548001033d1cc828170fd6b13d.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/f526a13a4125ff3cd70f32766970f5673c3f9edfd2c1d257035f4083aeb11ce3.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/81362e28d480eaff8d083bfae52550930da0ea7ce9d3b4a2a7f9c47ab25761f2.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/37967bb335733b372384e7fb628f519481dbabbb1aff553fd72f56cf86921ec9.png"
+    "https://archive.org/download/psvitaalive-sonic-2-sms-remake/shot_01.png",
+    "https://archive.org/download/psvitaalive-sonic-2-sms-remake/shot_02.png",
+    "https://archive.org/download/psvitaalive-sonic-2-sms-remake/shot_03.png",
+    "https://archive.org/download/psvitaalive-sonic-2-sms-remake/shot_04.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-sonic-2-sms-remake/SOSR00002.VPK",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Repository",

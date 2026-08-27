@@ -16,14 +16,20 @@
   "requirements": "Not specified",
   "size": 4268638,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/8bf7dc37549cfeb7510094dc32ae107e56c65332988aba668cdbf97b39710dda.png",
+  "icon": "https://archive.org/download/psvitaalive-reaction-station/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/0cd7ce6a4684e01e531301260a9ce2d2eee815c6930f843cdb2fd071f8346b48.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/0671db571411ea88e93328c19bc87604064e3e902d342bebf9b0c0e6af12b06d.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/0cd7ce6a4684e01e531301260a9ce2d2eee815c6930f843cdb2fd071f8346b48.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/0671db571411ea88e93328c19bc87604064e3e902d342bebf9b0c0e6af12b06d.png"
+    "https://archive.org/download/psvitaalive-reaction-station/shot_01.png",
+    "https://archive.org/download/psvitaalive-reaction-station/shot_02.png",
+    "https://archive.org/download/psvitaalive-reaction-station/shot_03.png",
+    "https://archive.org/download/psvitaalive-reaction-station/shot_04.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-reaction-station/reaction-station.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Official Website",

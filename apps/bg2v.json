@@ -16,15 +16,21 @@
   "requirements": "- libshacccg.suprx\n- kubridge.skprx\n- Game Data Files: Android",
   "size": 3195276,
   "status": "Legacy",
-  "icon": "https://www.rinnegatamante.eu/vitadb/icons/630f5cb42bc1111b3026adc9e7acd61ad55b95da073a90bcc27f72bf37dad19f.png",
+  "icon": "https://archive.org/download/psvitaalive-bg2v/icon0.png",
   "screenshots": [
-    "https://www.rinnegatamante.eu/vitadb/icons/630f5cb42bc1111b3026adc9e7acd61ad55b95da073a90bcc27f72bf37dad19f.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/128fc3e4d8fa7c7bd6e45c9e64d66b4090bb4f0b4e38c0c04caf3115aa106586.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/e6113d7c0672f0335ee61b55426ac3bdea96017ca97ea69c5111ca34c908df15.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/20b0a6b9bd3515fd9f07f85f3425783dcb421717b1a51e88294a04a97763da2f.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/50a267e1f027679fc0bffbad3a2a39fd2b807b234b1fd60c2d5637571953e168.png"
+    "https://archive.org/download/psvitaalive-bg2v/shot_01.png",
+    "https://archive.org/download/psvitaalive-bg2v/shot_02.png",
+    "https://archive.org/download/psvitaalive-bg2v/shot_03.png",
+    "https://archive.org/download/psvitaalive-bg2v/shot_04.png",
+    "https://archive.org/download/psvitaalive-bg2v/shot_05.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-bg2v/bg2v.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Release Page",

@@ -16,11 +16,18 @@
   "requirements": "Not specified",
   "size": 123098,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1562-flash-light.png",
+  "icon": "https://archive.org/download/psvitaalive-flash-light/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1562-flash-light.png"
+    "https://archive.org/download/psvitaalive-flash-light/shot_01.png"
   ],
-  "links": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-flash-light/flash-light.vpk",
+      "recommended": true
+    }
+  ],
   "source_name": "VitaHomebrewDB",
   "source_id": "284",
   "source_url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/284-flashlight.vpk",

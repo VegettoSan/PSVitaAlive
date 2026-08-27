@@ -16,11 +16,17 @@
   "requirements": "Not specified",
   "size": 1830404,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/4d8d7ae9a6f120003e7fb2fa2ef62f1cfc3c7966b07c617503768bbe6799de88.png",
+  "icon": "https://archive.org/download/psvitaalive-drally-vita/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/4d8d7ae9a6f120003e7fb2fa2ef62f1cfc3c7966b07c617503768bbe6799de88.png"
+    "https://archive.org/download/psvitaalive-drally-vita/shot_01.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-drally-vita/drally-vita.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Release Page",

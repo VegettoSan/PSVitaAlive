@@ -16,15 +16,21 @@
   "requirements": "- Game Data Files: PC",
   "size": 2701813,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1610-postal-vita.png",
+  "icon": "https://archive.org/download/psvitaalive-postal-vita/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/05fe3d2bf74b98f76e7f559d112008007fdfc1d630d535f5826e0335dd9e12f6.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/42240a913fcf92c6841966d461019892dd6e3dd5761e58fe3d8fe52e216a1e78.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/9c64174d98b9e3ffb064482241b192fdcd297835b36c95253b549cfef74e8d39.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/05fe3d2bf74b98f76e7f559d112008007fdfc1d630d535f5826e0335dd9e12f6.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/42240a913fcf92c6841966d461019892dd6e3dd5761e58fe3d8fe52e216a1e78.png"
+    "https://archive.org/download/psvitaalive-postal-vita/shot_01.png",
+    "https://archive.org/download/psvitaalive-postal-vita/shot_02.png",
+    "https://archive.org/download/psvitaalive-postal-vita/shot_03.png",
+    "https://archive.org/download/psvitaalive-postal-vita/shot_04.png",
+    "https://archive.org/download/psvitaalive-postal-vita/shot_05.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-postal-vita/postal-vita.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Official Website",

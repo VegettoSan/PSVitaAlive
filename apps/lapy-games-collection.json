@@ -16,12 +16,19 @@
   "requirements": "Not specified",
   "size": 155765604,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1701-lapy-games-collection.png",
+  "icon": "https://archive.org/download/psvitaalive-lapy-games-collection/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/5477cbcb035ecc5fcf4485d1a185e16f18b94b34036de57f605f542987022d61.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/5477cbcb035ecc5fcf4485d1a185e16f18b94b34036de57f605f542987022d61.png"
+    "https://archive.org/download/psvitaalive-lapy-games-collection/shot_01.png",
+    "https://archive.org/download/psvitaalive-lapy-games-collection/shot_02.png"
   ],
-  "links": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-lapy-games-collection/lapy-games-collection.vpk",
+      "recommended": true
+    }
+  ],
   "source_name": "VitaHomebrewDB",
   "source_id": "613",
   "source_url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/613-LapyGC.vpk",

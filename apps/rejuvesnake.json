@@ -16,14 +16,20 @@
   "requirements": "Not specified",
   "size": 1350174,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1527-rejuvesnake.png",
+  "icon": "https://archive.org/download/psvitaalive-rejuvesnake/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1527-rejuvesnake.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/rejuvesnake01.jpg",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/rejuvesnake02.jpg",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/rejuvesnake03.jpg"
+    "https://archive.org/download/psvitaalive-rejuvesnake/shot_01.png",
+    "https://archive.org/download/psvitaalive-rejuvesnake/shot_02.png",
+    "https://archive.org/download/psvitaalive-rejuvesnake/shot_03.png",
+    "https://archive.org/download/psvitaalive-rejuvesnake/shot_04.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-rejuvesnake/rejuvesnake.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Official Website",

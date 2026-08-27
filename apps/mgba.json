@@ -16,15 +16,21 @@
   "requirements": "Not specified",
   "size": 852635,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1522-mgba.png",
+  "icon": "https://archive.org/download/psvitaalive-mgba/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/b640b24f08ccc34af58874afe84f57e505d6b4da43102ff3c1b9c325b5a9ee18.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/d8b92d6ba71df9f2fcbd8999dc30d1dbc50b291bc928a539c5ec756ad1027e37.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/7f9fea83c716eb35ddaa0538a8d53fdfff6c4719dcef98ff968651ea56e3a62b.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/e6ee279562e85f03723605c298e29236eb72b06db78e8ce3622da681b4ed8239.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/b640b24f08ccc34af58874afe84f57e505d6b4da43102ff3c1b9c325b5a9ee18.png"
+    "https://archive.org/download/psvitaalive-mgba/shot_01.png",
+    "https://archive.org/download/psvitaalive-mgba/shot_02.png",
+    "https://archive.org/download/psvitaalive-mgba/shot_03.png",
+    "https://archive.org/download/psvitaalive-mgba/shot_04.png",
+    "https://archive.org/download/psvitaalive-mgba/shot_05.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-mgba/mgba.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Official Website",

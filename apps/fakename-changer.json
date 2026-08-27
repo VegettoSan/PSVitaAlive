@@ -16,11 +16,17 @@
   "requirements": "Not specified",
   "size": 4532316,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1392-fakename-changer.png",
+  "icon": "https://archive.org/download/psvitaalive-fakename-changer/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1392-fakename-changer.png"
+    "https://archive.org/download/psvitaalive-fakename-changer/shot_01.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-fakename-changer/FakeNameChanger_v2.1.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Release Page",

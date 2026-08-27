@@ -16,11 +16,17 @@
   "requirements": "Not specified",
   "size": 3202992,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/5e0d0eb2a8f3388002ab296bc55896d1fc203a6c0714d0bde74ece22ad233179.png",
+  "icon": "https://archive.org/download/psvitaalive-pgba/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/5e0d0eb2a8f3388002ab296bc55896d1fc203a6c0714d0bde74ece22ad233179.png"
+    "https://archive.org/download/psvitaalive-pgba/shot_01.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-pgba/pgba.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Release Page",

@@ -16,15 +16,21 @@
   "requirements": "Not specified",
   "size": 23805944,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1813-cut-the-rope-vita.png",
+  "icon": "https://archive.org/download/psvitaalive-cut-the-rope-vita/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/04353ca871ca75cadc5071e74134b4159d726005b9dfe579c63ef1d71ecb1cd7.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/8f3edeecbcdb281914df884fefe8c911b11d4723c21c1313222588026c8d6623.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/258d3c975f33bb2c14ffeaf617602fd978b2132b3f924b8422ece6cf0603a6c5.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/04353ca871ca75cadc5071e74134b4159d726005b9dfe579c63ef1d71ecb1cd7.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/8f3edeecbcdb281914df884fefe8c911b11d4723c21c1313222588026c8d6623.png"
+    "https://archive.org/download/psvitaalive-cut-the-rope-vita/shot_01.png",
+    "https://archive.org/download/psvitaalive-cut-the-rope-vita/shot_02.png",
+    "https://archive.org/download/psvitaalive-cut-the-rope-vita/shot_03.png",
+    "https://archive.org/download/psvitaalive-cut-the-rope-vita/shot_04.png",
+    "https://archive.org/download/psvitaalive-cut-the-rope-vita/shot_05.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-cut-the-rope-vita/cut-the-rope-vita.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Repository",

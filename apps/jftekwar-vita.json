@@ -16,15 +16,21 @@
   "requirements": "- libshacccg.suprx\n- Game Data Files: PC",
   "size": 1611484,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1836-jftekwar-vita.png",
+  "icon": "https://archive.org/download/psvitaalive-jftekwar-vita/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/210b5b81e1453c57a6b57c1f251a50fcf6145cef177d5b8bd2c40c0fff94b7d6.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/27d8d0bf5a88d055656c801f375c59c2c3cde2f2376dd9a5a51cb46cb9be905f.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/5b0cc820f32ba756eae547bca0fb9152867a61cb6226596e696db9a18809b4f2.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/5f57da0bc5e41aac93630008adde031625d6af812ad0e99a30574031e0f19f1e.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/210b5b81e1453c57a6b57c1f251a50fcf6145cef177d5b8bd2c40c0fff94b7d6.png"
+    "https://archive.org/download/psvitaalive-jftekwar-vita/shot_01.png",
+    "https://archive.org/download/psvitaalive-jftekwar-vita/shot_02.png",
+    "https://archive.org/download/psvitaalive-jftekwar-vita/shot_03.png",
+    "https://archive.org/download/psvitaalive-jftekwar-vita/shot_04.png",
+    "https://archive.org/download/psvitaalive-jftekwar-vita/shot_05.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-jftekwar-vita/jftekwar-vita.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Official Website",

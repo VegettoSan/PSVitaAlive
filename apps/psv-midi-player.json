@@ -16,11 +16,17 @@
   "requirements": "Not specified",
   "size": 225795,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1957-psv-midi-player.png",
+  "icon": "https://archive.org/download/psvitaalive-psv-midi-player/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1957-psv-midi-player.png"
+    "https://archive.org/download/psvitaalive-psv-midi-player/shot_01.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-psv-midi-player/psv-midi-player.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Official Website",

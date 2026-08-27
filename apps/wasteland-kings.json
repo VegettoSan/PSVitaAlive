@@ -17,12 +17,19 @@
   "requirements": "Not specified",
   "size": 8858946,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1606-wasteland-kings.png",
+  "icon": "https://archive.org/download/psvitaalive-wasteland-kings/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/788bc9baea3c53cc1c0050dc5c32782b5faec8736e5a0b54e0dca19cfc086ef3.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/788bc9baea3c53cc1c0050dc5c32782b5faec8736e5a0b54e0dca19cfc086ef3.png"
+    "https://archive.org/download/psvitaalive-wasteland-kings/shot_01.png",
+    "https://archive.org/download/psvitaalive-wasteland-kings/shot_02.png"
   ],
-  "links": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-wasteland-kings/wasteland-kings.vpk",
+      "recommended": true
+    }
+  ],
   "source_name": "VitaHomebrewDB",
   "source_id": "409",
   "source_url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/409-WastelandKings.vpk",

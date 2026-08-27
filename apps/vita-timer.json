@@ -16,11 +16,18 @@
   "requirements": "Not specified",
   "size": 30456797,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1675-vita-timer.png",
+  "icon": "https://archive.org/download/psvitaalive-vita-timer/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1675-vita-timer.png"
+    "https://archive.org/download/psvitaalive-vita-timer/shot_01.png"
   ],
-  "links": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-vita-timer/vita-timer.vpk",
+      "recommended": true
+    }
+  ],
   "source_name": "VitaHomebrewDB",
   "source_id": "535",
   "source_url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/535-Vita_20Timer.vpk",

@@ -16,15 +16,22 @@
   "requirements": "Not specified",
   "size": 36298935,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1777-supra-mayro-kratt.png",
+  "icon": "https://archive.org/download/psvitaalive-supra-mayro-kratt/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/586eed71a07822678de08950e4c260efdbeb90453edceedaf35cc5c9e3743347.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/3ddf47bfd80011e8ab339596bd5d5fc1cfa63f20a62afb2fee1433e8bd37bd03.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/1968953bc3c79a9ef48ff71be928b5063f805eaa3e18506b27098715e8f3d41f.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/586eed71a07822678de08950e4c260efdbeb90453edceedaf35cc5c9e3743347.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/3ddf47bfd80011e8ab339596bd5d5fc1cfa63f20a62afb2fee1433e8bd37bd03.png"
+    "https://archive.org/download/psvitaalive-supra-mayro-kratt/shot_01.png",
+    "https://archive.org/download/psvitaalive-supra-mayro-kratt/shot_02.png",
+    "https://archive.org/download/psvitaalive-supra-mayro-kratt/shot_03.png",
+    "https://archive.org/download/psvitaalive-supra-mayro-kratt/shot_04.png",
+    "https://archive.org/download/psvitaalive-supra-mayro-kratt/shot_05.png"
   ],
-  "links": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-supra-mayro-kratt/supra-mayro-kratt.vpk",
+      "recommended": true
+    }
+  ],
   "source_name": "VitaHomebrewDB",
   "source_id": "803",
   "source_url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/803-supra.vpk",

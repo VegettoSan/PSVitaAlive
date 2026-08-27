@@ -16,15 +16,21 @@
   "requirements": "- libshacccg.suprx\n- Game Data Files: PC",
   "size": 4225479,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/866a4fcad6baf45cba26a3378390523858dd8a49ee170e6541dacb71f907e114.png",
+  "icon": "https://archive.org/download/psvitaalive-serious-sam-tse-vita/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/60ab9e0a27ea3baa8de7026d40a00b052ad02fdb7d93be1579c051abdb0e3073.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/424f391fdc9f8b520c180b3fa0a602be44a28efbafc77fb07ddc60d975dbd373.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/b3daa676ea220d8c061720715bc874ba6f536fa183855e2103179b485bd23b8c.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/60ab9e0a27ea3baa8de7026d40a00b052ad02fdb7d93be1579c051abdb0e3073.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/424f391fdc9f8b520c180b3fa0a602be44a28efbafc77fb07ddc60d975dbd373.png"
+    "https://archive.org/download/psvitaalive-serious-sam-tse-vita/shot_01.png",
+    "https://archive.org/download/psvitaalive-serious-sam-tse-vita/shot_02.png",
+    "https://archive.org/download/psvitaalive-serious-sam-tse-vita/shot_03.png",
+    "https://archive.org/download/psvitaalive-serious-sam-tse-vita/shot_04.png",
+    "https://archive.org/download/psvitaalive-serious-sam-tse-vita/shot_05.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-serious-sam-tse-vita/serious-sam-tse-vita.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Release Page",

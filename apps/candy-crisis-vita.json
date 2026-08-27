@@ -16,15 +16,21 @@
   "requirements": "Not specified",
   "size": 717046,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1814-candy-crisis-vita.png",
+  "icon": "https://archive.org/download/psvitaalive-candy-crisis-vita/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c2fe3114de8eb24c08825d7aa3ff4fc89b14d09ad711c30cfa9a362469e9f9cd.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/aa7e6f00a665e2c66e8bd7217dee968b8a55e1c88520061d0418441366399bcf.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/a56e97e20ca1aa1f6f77f3c31b6ea7ee3d22a326b890dee0245ba0d5e3500a8d.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c765a619b3c78ea857286d57e14c3123258da13989dd743221e71b687549daa5.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/c2fe3114de8eb24c08825d7aa3ff4fc89b14d09ad711c30cfa9a362469e9f9cd.png"
+    "https://archive.org/download/psvitaalive-candy-crisis-vita/shot_01.png",
+    "https://archive.org/download/psvitaalive-candy-crisis-vita/shot_02.png",
+    "https://archive.org/download/psvitaalive-candy-crisis-vita/shot_03.png",
+    "https://archive.org/download/psvitaalive-candy-crisis-vita/shot_04.png",
+    "https://archive.org/download/psvitaalive-candy-crisis-vita/shot_05.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-candy-crisis-vita/candy-crisis-vita.vpk",
+      "recommended": true
+    },
     {
       "type": "Repository",
       "name": "Repositorio",

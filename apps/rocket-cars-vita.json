@@ -16,15 +16,22 @@
   "requirements": "Not specified",
   "size": 91911109,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1753-rocket-cars-vita.png",
+  "icon": "https://archive.org/download/psvitaalive-rocket-cars-vita/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/bce7d7cea44746ca8dd5ea28d44732e88d78c0db4dc12bea4d727e784c73373f.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/b8824b7635ac459d0a42c0c3ca5fcd97f5f894cc02b5eb31adc73b1dca52fc5a.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/74593117c9bdbcb71d577fbed19a12459d76d25d0cd910e2e2c5281a9ceff9e3.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/bce7d7cea44746ca8dd5ea28d44732e88d78c0db4dc12bea4d727e784c73373f.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/b8824b7635ac459d0a42c0c3ca5fcd97f5f894cc02b5eb31adc73b1dca52fc5a.png"
+    "https://archive.org/download/psvitaalive-rocket-cars-vita/shot_01.png",
+    "https://archive.org/download/psvitaalive-rocket-cars-vita/shot_02.png",
+    "https://archive.org/download/psvitaalive-rocket-cars-vita/shot_03.png",
+    "https://archive.org/download/psvitaalive-rocket-cars-vita/shot_04.png",
+    "https://archive.org/download/psvitaalive-rocket-cars-vita/shot_05.png"
   ],
-  "links": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-rocket-cars-vita/rocket-cars-vita.vpk",
+      "recommended": true
+    }
+  ],
   "source_name": "VitaHomebrewDB",
   "source_id": "729",
   "source_url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/729-rocket_league.vpk",

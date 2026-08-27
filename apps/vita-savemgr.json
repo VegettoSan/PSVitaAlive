@@ -16,13 +16,19 @@
   "requirements": "Not specified",
   "size": 490724,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/6623e30364290bbb3b166046ce26b6a2f769bbedf63b15c02d51575fc5d87b3c.png",
+  "icon": "https://archive.org/download/psvitaalive-vita-savemgr/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/6623e30364290bbb3b166046ce26b6a2f769bbedf63b15c02d51575fc5d87b3c.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/savemgr1.jpg",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/savemgr2.jpg"
+    "https://archive.org/download/psvitaalive-vita-savemgr/shot_01.png",
+    "https://archive.org/download/psvitaalive-vita-savemgr/shot_02.png",
+    "https://archive.org/download/psvitaalive-vita-savemgr/shot_03.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-vita-savemgr/vita-savemgr.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Release Page",

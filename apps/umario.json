@@ -16,11 +16,17 @@
   "requirements": "Not specified",
   "size": 18786585,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/7cb7efe2afb694e6c8d8a124450865cd2edf2c851fffacf90d7b51db496c541a.png",
+  "icon": "https://archive.org/download/psvitaalive-umario/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/7cb7efe2afb694e6c8d8a124450865cd2edf2c851fffacf90d7b51db496c541a.png"
+    "https://archive.org/download/psvitaalive-umario/shot_01.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-umario/umario.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Release Page",

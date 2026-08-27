@@ -16,12 +16,18 @@
   "requirements": "Not specified",
   "size": 415129,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1513-chicken-launcher.png",
+  "icon": "https://archive.org/download/psvitaalive-chicken-launcher/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1513-chicken-launcher.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/chicken.png"
+    "https://archive.org/download/psvitaalive-chicken-launcher/shot_01.png",
+    "https://archive.org/download/psvitaalive-chicken-launcher/shot_02.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-chicken-launcher/chicken-launcher.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Official Website",

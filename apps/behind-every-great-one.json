@@ -16,15 +16,21 @@
   "requirements": "Not specified",
   "size": 25901373,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1707-behind-every-great-one.png",
+  "icon": "https://archive.org/download/psvitaalive-behind-every-great-one/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/e96382eea7017c4ea422ef58a622dc0b58a55baabaaf5f7e5360e96d5f9194eb.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/cf95f617e8c2eec36e282ef79029b80aaa5305ec1278be380b1ef25ccdec9a9a.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/4b840cdcad77b331c0a5aa52124a48b01ecbc89e4e610d4844affe1ee8751c33.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/e96382eea7017c4ea422ef58a622dc0b58a55baabaaf5f7e5360e96d5f9194eb.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/cf95f617e8c2eec36e282ef79029b80aaa5305ec1278be380b1ef25ccdec9a9a.png"
+    "https://archive.org/download/psvitaalive-behind-every-great-one/shot_01.png",
+    "https://archive.org/download/psvitaalive-behind-every-great-one/shot_02.png",
+    "https://archive.org/download/psvitaalive-behind-every-great-one/shot_03.png",
+    "https://archive.org/download/psvitaalive-behind-every-great-one/shot_04.png",
+    "https://archive.org/download/psvitaalive-behind-every-great-one/shot_05.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-behind-every-great-one/behind-every-great-one.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Official Website",

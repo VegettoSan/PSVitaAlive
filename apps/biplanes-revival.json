@@ -16,15 +16,21 @@
   "requirements": "Not specified",
   "size": 2279182,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/940f66dd4c944dcbb1678646d294654bcc379659b8d9ee0aac0c2320ed5e6984.png",
+  "icon": "https://archive.org/download/psvitaalive-biplanes-revival/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/47e10458d54eeaf86699755e00487d1021a27d349f01b0c74b176b9ff1777296.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/4d7252213c16be4f00c171e20f8a9ab320f3247e01f8beb4c0c56e00acc9949f.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/f732a57ca4a83344dd349a63cdfa0feec5125421f0f7392cf9fb2dbd8ec679fc.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/ab1694e557983eb650ef3a4e34fa5013eb06948352b40392eee0fd2e147ef55c.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/47e10458d54eeaf86699755e00487d1021a27d349f01b0c74b176b9ff1777296.png"
+    "https://archive.org/download/psvitaalive-biplanes-revival/shot_01.png",
+    "https://archive.org/download/psvitaalive-biplanes-revival/shot_02.png",
+    "https://archive.org/download/psvitaalive-biplanes-revival/shot_03.png",
+    "https://archive.org/download/psvitaalive-biplanes-revival/shot_04.png",
+    "https://archive.org/download/psvitaalive-biplanes-revival/shot_05.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-biplanes-revival/biplanes-revival.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Release Page",

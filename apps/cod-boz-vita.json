@@ -16,12 +16,18 @@
   "requirements": "- libshacccg.suprx\n- kubridge.skprx\n- Game Data Files: Android",
   "size": 1936614,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1965-cod-boz-vita.png",
+  "icon": "https://archive.org/download/psvitaalive-cod-boz-vita/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/9d8e0a062a7cc8f387ea784a4a41390e9e17e01cecce45463812353f127c84fb.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/9d8e0a062a7cc8f387ea784a4a41390e9e17e01cecce45463812353f127c84fb.png"
+    "https://archive.org/download/psvitaalive-cod-boz-vita/shot_01.png",
+    "https://archive.org/download/psvitaalive-cod-boz-vita/shot_02.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-cod-boz-vita/cod-boz-vita.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Official Website",

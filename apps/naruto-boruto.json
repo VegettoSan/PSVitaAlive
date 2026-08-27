@@ -16,15 +16,22 @@
   "requirements": "Not specified",
   "size": 48899900,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1667-naruto-boruto.png",
+  "icon": "https://archive.org/download/psvitaalive-naruto-boruto/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/2b3477242133cb750b298a6b7cae1493beed14fa9c2db590ca2904ef0a3d235e.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/b345dabb4cd0e7c25afe0ad7955730340c8d38dd4ef92d1c189b9dd82782a3ed.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/a076c9b7b886a971fbe8f64afba08dfb540c510dc9ce15ad8e132d762dc1cae5.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/2b3477242133cb750b298a6b7cae1493beed14fa9c2db590ca2904ef0a3d235e.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/b345dabb4cd0e7c25afe0ad7955730340c8d38dd4ef92d1c189b9dd82782a3ed.png"
+    "https://archive.org/download/psvitaalive-naruto-boruto/shot_01.png",
+    "https://archive.org/download/psvitaalive-naruto-boruto/shot_02.png",
+    "https://archive.org/download/psvitaalive-naruto-boruto/shot_03.png",
+    "https://archive.org/download/psvitaalive-naruto-boruto/shot_04.png",
+    "https://archive.org/download/psvitaalive-naruto-boruto/shot_05.png"
   ],
-  "links": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-naruto-boruto/naruto-boruto.vpk",
+      "recommended": true
+    }
+  ],
   "source_name": "VitaHomebrewDB",
   "source_id": "510",
   "source_url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/510-NarutoBoruto.vpk",

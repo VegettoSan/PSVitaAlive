@@ -16,15 +16,22 @@
   "requirements": "Not specified",
   "size": 59456074,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1802-slender-the-eight-pages.png",
+  "icon": "https://archive.org/download/psvitaalive-slender---the-eight-pages/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/4b94693f3b383cbb7281016de4c10a75e8e66899e638dd62d72d57f3c831e41a.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/34949c8d4a3174eac7242585c04337d9e7da0b61d50e4d9fd211888a20834930.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/36a51db17b842024f21a39dac2a520a0303b916cae94f8db869c698b4d941886.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/b2d465e9ca569529353826fe7da9e76e917cfe63fce59ba9efb81be57ab31d33.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/4b94693f3b383cbb7281016de4c10a75e8e66899e638dd62d72d57f3c831e41a.png"
+    "https://archive.org/download/psvitaalive-slender---the-eight-pages/shot_01.png",
+    "https://archive.org/download/psvitaalive-slender---the-eight-pages/shot_02.png",
+    "https://archive.org/download/psvitaalive-slender---the-eight-pages/shot_03.png",
+    "https://archive.org/download/psvitaalive-slender---the-eight-pages/shot_04.png",
+    "https://archive.org/download/psvitaalive-slender---the-eight-pages/shot_05.png"
   ],
-  "links": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-slender---the-eight-pages/slender---the-eight-pages.vpk",
+      "recommended": true
+    }
+  ],
   "source_name": "VitaHomebrewDB",
   "source_id": "880",
   "source_url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/880-slender8.vpk",

@@ -16,15 +16,21 @@
   "requirements": "- libshacccg.suprx\n- kubridge.skprx\n- Game Data Files: Android",
   "size": 2908182,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/43360c85ed599f0eccb34fc105beec9a34f5e7890b5c9b7ab242f486ca2646e7.png",
+  "icon": "https://archive.org/download/psvitaalive-beat-hazard-2-vita/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/b15ec731e179d5f570f1c9105434799c7974273cc8ab2d06fddab11dbf34a0a9.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/70ec3e225753e728d922289091553221560baf09327738e666d1dff271dc9034.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/364a3f7038ee22f3051bed20fa74d2d87b2a6020fa548f43615799ce293774bd.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/57e40aedd54be77025adacac7aa533076f7e3f6a95b742042f701bea4599f3d3.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/b15ec731e179d5f570f1c9105434799c7974273cc8ab2d06fddab11dbf34a0a9.png"
+    "https://archive.org/download/psvitaalive-beat-hazard-2-vita/shot_01.png",
+    "https://archive.org/download/psvitaalive-beat-hazard-2-vita/shot_02.png",
+    "https://archive.org/download/psvitaalive-beat-hazard-2-vita/shot_03.png",
+    "https://archive.org/download/psvitaalive-beat-hazard-2-vita/shot_04.png",
+    "https://archive.org/download/psvitaalive-beat-hazard-2-vita/shot_05.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-beat-hazard-2-vita/beat-hazard-2-vita.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Release Page",

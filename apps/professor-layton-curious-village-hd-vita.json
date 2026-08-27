@@ -16,15 +16,21 @@
   "requirements": "- libshacccg.suprx\n- kubridge.skprx\n- Game Data Files: Android",
   "size": 1580065,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/3950d1d321780574e87c341c6c4efd42388c98ed1d107a38113f819d120de8e1.png",
+  "icon": "https://archive.org/download/psvitaalive-professor-layton-curious-village-hd-vita/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/25c5cad6e2bdbd313af8b87f295cb842e8d86fe6ace63c30b0e872946fa2fce9.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/9886f160734c5c627e4cdeef4b5434f7c44647b2b7287b3c7defd9be115da2d8.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/ed2fb3d99d316959d5421712b3e0cfd3411e9e676185bcf454715dbc1b36a0b4.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/25c5cad6e2bdbd313af8b87f295cb842e8d86fe6ace63c30b0e872946fa2fce9.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/9886f160734c5c627e4cdeef4b5434f7c44647b2b7287b3c7defd9be115da2d8.png"
+    "https://archive.org/download/psvitaalive-professor-layton-curious-village-hd-vita/shot_01.png",
+    "https://archive.org/download/psvitaalive-professor-layton-curious-village-hd-vita/shot_02.png",
+    "https://archive.org/download/psvitaalive-professor-layton-curious-village-hd-vita/shot_03.png",
+    "https://archive.org/download/psvitaalive-professor-layton-curious-village-hd-vita/shot_04.png",
+    "https://archive.org/download/psvitaalive-professor-layton-curious-village-hd-vita/shot_05.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-professor-layton-curious-village-hd-vita/professor-layton-curious-village-hd-vita.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Release Page",

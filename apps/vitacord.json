@@ -16,15 +16,21 @@
   "requirements": "Not specified",
   "size": 2765534,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/bbc3a8adf4cd784926266d78db903ef2175408130a4cf4103da33eab5d1512d5.png",
+  "icon": "https://archive.org/download/psvitaalive-vitacord/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/cd5f4c2e2c198fe9e571f51afdcd4ec7811d5245a933a376cbfc53f5ab7e1890.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/bdff9a3b03e3bdd1b11e8b14bcc33d9f12d29e35e0b7c2fe8fbcfc322c1f0393.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/15c0858a98bde44497e5a9dd6ad95229a2640e38220f713b76c1df8bf686423e.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/53d0fda535e48c49a5f955deb2292fc6f4332c2eded1aa79f4eb108b19bccc12.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/cd5f4c2e2c198fe9e571f51afdcd4ec7811d5245a933a376cbfc53f5ab7e1890.png"
+    "https://archive.org/download/psvitaalive-vitacord/shot_01.png",
+    "https://archive.org/download/psvitaalive-vitacord/shot_02.png",
+    "https://archive.org/download/psvitaalive-vitacord/shot_03.png",
+    "https://archive.org/download/psvitaalive-vitacord/shot_04.png",
+    "https://archive.org/download/psvitaalive-vitacord/shot_05.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-vitacord/vitacord.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Official Website",

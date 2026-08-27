@@ -16,14 +16,20 @@
   "requirements": "Not specified",
   "size": 43552816,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1767-red-moon-of-april.png",
+  "icon": "https://archive.org/download/psvitaalive-red-moon-of-april/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/9a9ffe1813f8b2d6b091c6dad0dfb14b4c434b115fc927a1ff9faa1438ec9a3c.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/8d4cab66e0510d204199fd593abffe302a76a59a42d3335ad4703283d2245c55.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/81b0e0a1a12e363c26d3cdb23dda7b528c27dc124faf4d6c43afa66868f21e18.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/f7b9018005621bea7a1c51ed04fe0ff47232aa620c5ff173f97ef619a0d4d42e.png"
+    "https://archive.org/download/psvitaalive-red-moon-of-april/shot_01.png",
+    "https://archive.org/download/psvitaalive-red-moon-of-april/shot_02.png",
+    "https://archive.org/download/psvitaalive-red-moon-of-april/shot_03.png",
+    "https://archive.org/download/psvitaalive-red-moon-of-april/shot_04.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-red-moon-of-april/782-RedMoon.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Official Website",

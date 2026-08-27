@@ -16,15 +16,21 @@
   "requirements": "- libshacccg.suprx\n- kubridge.skprx\n- Game Data Files: Android",
   "size": 1281852,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/62019490d2626f825092d6338b89a20a7d165d0deb9ee68eaf4118e00515bab8.png",
+  "icon": "https://archive.org/download/psvitaalive-jet-car-stunts-2-vita/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/31d2a883089af75348faa977603056346c0ff2c212d0c838192e1f001933df15.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/73f91044b709f35acdfadc742c7b78819355fd2dce14ce52ee78ee3e7b920cba.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/1fd994662676015b29e59abbe41f9022106f416e7c865074171b4c2bb45108ce.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/1859b1935c4980d3f6d77ca963c3ce6ed24d72629552aa23316097d30832f59f.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/31d2a883089af75348faa977603056346c0ff2c212d0c838192e1f001933df15.png"
+    "https://archive.org/download/psvitaalive-jet-car-stunts-2-vita/shot_01.png",
+    "https://archive.org/download/psvitaalive-jet-car-stunts-2-vita/shot_02.png",
+    "https://archive.org/download/psvitaalive-jet-car-stunts-2-vita/shot_03.png",
+    "https://archive.org/download/psvitaalive-jet-car-stunts-2-vita/shot_04.png",
+    "https://archive.org/download/psvitaalive-jet-car-stunts-2-vita/shot_05.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-jet-car-stunts-2-vita/jet-car-stunts-2-vita.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Release Page",

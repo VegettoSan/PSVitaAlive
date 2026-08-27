@@ -19,11 +19,17 @@
   "requirements": "Not specified",
   "size": 2788529,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/b85bb6cb216c87c28693179ac17ddfd1c2c9570d9ef295d48ae6c0dde79a5a16.png",
+  "icon": "https://archive.org/download/psvitaalive-vita-moonlight/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/b85bb6cb216c87c28693179ac17ddfd1c2c9570d9ef295d48ae6c0dde79a5a16.png"
+    "https://archive.org/download/psvitaalive-vita-moonlight/shot_01.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-vita-moonlight/vita-moonlight.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Release Page",

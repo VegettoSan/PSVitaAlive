@@ -16,14 +16,20 @@
   "requirements": "Not specified",
   "size": 2773484,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/13f8299758c95fa1af66aa10e383a3440dfbfbbb6a65549217c21f11b877a9a0.png",
+  "icon": "https://archive.org/download/psvitaalive-space-cadet-pinball-vita/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/eb20cb5c87c078e4149e5d0edc10b644880966cec2b315842b8427e641a7b3f0.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/696de20ee051f8e72d6d710a96cd1f9b945ef9637dbbb8b96dab818174a0909e.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/eb20cb5c87c078e4149e5d0edc10b644880966cec2b315842b8427e641a7b3f0.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/696de20ee051f8e72d6d710a96cd1f9b945ef9637dbbb8b96dab818174a0909e.png"
+    "https://archive.org/download/psvitaalive-space-cadet-pinball-vita/shot_01.png",
+    "https://archive.org/download/psvitaalive-space-cadet-pinball-vita/shot_02.png",
+    "https://archive.org/download/psvitaalive-space-cadet-pinball-vita/shot_03.png",
+    "https://archive.org/download/psvitaalive-space-cadet-pinball-vita/shot_04.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-space-cadet-pinball-vita/space-cadet-pinball-vita.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Release Page",

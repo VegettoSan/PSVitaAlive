@@ -18,15 +18,21 @@
   "requirements": "- Game Data Files: PC",
   "size": 5856035,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/546d6118591bf845dce75b09d82f7a21269e2db9742c2c2aa07d67f800189318.png",
+  "icon": "https://archive.org/download/psvitaalive-balatro-vita/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/dfe38e52878bf4444e80a8b25c48867a5b2b39fae57d06c1e74097ac27a0a819.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/68919b634a2c663f6f29638170e5208da41a92638171cf07372f35e3049cfe4b.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/07ee80fea02ae611bdd482792f82098d9e1967e4b4648a0b4ea0b9437c890d27.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/dfe38e52878bf4444e80a8b25c48867a5b2b39fae57d06c1e74097ac27a0a819.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/68919b634a2c663f6f29638170e5208da41a92638171cf07372f35e3049cfe4b.png"
+    "https://archive.org/download/psvitaalive-balatro-vita/shot_01.png",
+    "https://archive.org/download/psvitaalive-balatro-vita/shot_02.png",
+    "https://archive.org/download/psvitaalive-balatro-vita/shot_03.png",
+    "https://archive.org/download/psvitaalive-balatro-vita/shot_04.png",
+    "https://archive.org/download/psvitaalive-balatro-vita/shot_05.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-balatro-vita/balatro-vita.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Repository",

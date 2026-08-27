@@ -16,15 +16,22 @@
   "requirements": "Not specified",
   "size": 21463355,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1857-diver-down-vita.png",
+  "icon": "https://archive.org/download/psvitaalive-diver-down-vita/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/ecc547aee5d46fede67dbf3b39a270a535c02dea56bafdbbf8a0965e707b2759.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/4525dd554e18db4a52bc4a48034fa8c4ee1f33da6e955aa043224da542835aa7.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/f675101e2ebddd109c1259df953c7de6e90c1110ce42afd3d053485eb20ec7c4.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/25174abb4868c86dce60ae601c982d67e042d6af15b92d003f26f038bcd7ad93.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/ecc547aee5d46fede67dbf3b39a270a535c02dea56bafdbbf8a0965e707b2759.png"
+    "https://archive.org/download/psvitaalive-diver-down-vita/shot_01.png",
+    "https://archive.org/download/psvitaalive-diver-down-vita/shot_02.png",
+    "https://archive.org/download/psvitaalive-diver-down-vita/shot_03.png",
+    "https://archive.org/download/psvitaalive-diver-down-vita/shot_04.png",
+    "https://archive.org/download/psvitaalive-diver-down-vita/shot_05.png"
   ],
-  "links": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-diver-down-vita/diver-down-vita.vpk",
+      "recommended": true
+    }
+  ],
   "source_name": "VitaHomebrewDB",
   "source_id": "1126",
   "source_url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1126-DIVER_DOWN.vpk",

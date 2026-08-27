@@ -16,11 +16,18 @@
   "requirements": "Not specified",
   "size": 65284172,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1823-sorcerer-s-job-vita.png",
+  "icon": "https://archive.org/download/psvitaalive-sorcerer-s-job-vita/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1823-sorcerer-s-job-vita.png"
+    "https://archive.org/download/psvitaalive-sorcerer-s-job-vita/shot_01.png"
   ],
-  "links": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-sorcerer-s-job-vita/sorcerer-s-job-vita.vpk",
+      "recommended": true
+    }
+  ],
   "source_name": "VitaHomebrewDB",
   "source_id": "1074",
   "source_url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1074-sorcerer.vpk",

@@ -16,13 +16,19 @@
   "requirements": "Not specified",
   "size": 74437,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1531-vitadl.png",
+  "icon": "https://archive.org/download/psvitaalive-vitadl/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1531-vitadl.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/vitadl1.jpg",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/vitadl2.jpg"
+    "https://archive.org/download/psvitaalive-vitadl/shot_01.png",
+    "https://archive.org/download/psvitaalive-vitadl/shot_02.png",
+    "https://archive.org/download/psvitaalive-vitadl/shot_03.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-vitadl/vitadl.vpk",
+      "recommended": true
+    },
     {
       "type": "Repository",
       "name": "Repositorio",

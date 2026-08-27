@@ -16,14 +16,20 @@
   "requirements": "Not specified",
   "size": 675033,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/5c7dd08fb76244bca65fcfb6a684c58bf6d960f7319d499aef0cf8df48b36d22.png",
+  "icon": "https://archive.org/download/psvitaalive-connect-four/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/a50137af215ce240bd7c4379a79ffa27e0f86fa35c12e8e19d84684221b47963.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/12c770b4c9de362d1c729fe763e327c7caf75fe63f15bb1ff91edc1fb0e76ecc.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/a50137af215ce240bd7c4379a79ffa27e0f86fa35c12e8e19d84684221b47963.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/12c770b4c9de362d1c729fe763e327c7caf75fe63f15bb1ff91edc1fb0e76ecc.png"
+    "https://archive.org/download/psvitaalive-connect-four/shot_01.png",
+    "https://archive.org/download/psvitaalive-connect-four/shot_02.png",
+    "https://archive.org/download/psvitaalive-connect-four/shot_03.png",
+    "https://archive.org/download/psvitaalive-connect-four/shot_04.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-connect-four/connect-four.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Release Page",

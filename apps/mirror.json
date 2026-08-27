@@ -17,14 +17,20 @@
   "requirements": "Not specified",
   "size": 26339192,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1730-mirror.png",
+  "icon": "https://archive.org/download/psvitaalive-mirror/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/75fb472fbc155c51c32741e2efb8205de3313ffb21ff81285b37ad59470696f5.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/badbb8183259b6c2458a9ae2dfc638219c45742f88bcb53b34b41a23f5d399de.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/75fb472fbc155c51c32741e2efb8205de3313ffb21ff81285b37ad59470696f5.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/badbb8183259b6c2458a9ae2dfc638219c45742f88bcb53b34b41a23f5d399de.png"
+    "https://archive.org/download/psvitaalive-mirror/shot_01.png",
+    "https://archive.org/download/psvitaalive-mirror/shot_02.png",
+    "https://archive.org/download/psvitaalive-mirror/shot_03.png",
+    "https://archive.org/download/psvitaalive-mirror/shot_04.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-mirror/mirror.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Official Website",

@@ -16,11 +16,17 @@
   "requirements": "Not specified",
   "size": 483197,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/c8fc842da5dba70896539d01c215c7691896d91bd898b6d2cf26eba179ba2cdc.png",
+  "icon": "https://archive.org/download/psvitaalive-fontinstaller/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/c8fc842da5dba70896539d01c215c7691896d91bd898b6d2cf26eba179ba2cdc.png"
+    "https://archive.org/download/psvitaalive-fontinstaller/shot_01.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-fontinstaller/fontinstaller.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Release Page",

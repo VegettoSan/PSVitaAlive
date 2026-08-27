@@ -16,11 +16,18 @@
   "requirements": "Not specified",
   "size": 36807482,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1676-rubik-s-cube-solver.png",
+  "icon": "https://archive.org/download/psvitaalive-rubik-s-cube-solver/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1676-rubik-s-cube-solver.png"
+    "https://archive.org/download/psvitaalive-rubik-s-cube-solver/shot_01.png"
   ],
-  "links": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-rubik-s-cube-solver/rubik-s-cube-solver.vpk",
+      "recommended": true
+    }
+  ],
   "source_name": "VitaHomebrewDB",
   "source_id": "539",
   "source_url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/539-Rubiks_20cube_20solver.vpk",

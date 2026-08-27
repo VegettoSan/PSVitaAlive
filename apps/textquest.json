@@ -16,12 +16,18 @@
   "requirements": "Not specified",
   "size": 291942,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1524-textquest.png",
+  "icon": "https://archive.org/download/psvitaalive-textquest/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1524-textquest.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/textquest.jpg"
+    "https://archive.org/download/psvitaalive-textquest/shot_01.png",
+    "https://archive.org/download/psvitaalive-textquest/shot_02.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-textquest/textquest.vpk",
+      "recommended": true
+    },
     {
       "type": "Repository",
       "name": "Repositorio",

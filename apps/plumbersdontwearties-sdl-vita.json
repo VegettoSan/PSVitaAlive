@@ -16,15 +16,21 @@
   "requirements": "- Game Data Files: PC",
   "size": 1252752,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1763-plumbersdontwearties-sdl-vita.png",
+  "icon": "https://archive.org/download/psvitaalive-plumbersdontwearties-sdl-vita/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c03b68008c7b4a28ee47ec6105861951dd57f1b629a5e768c477eb122c620a27.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/5d21b3fbb08f7595b5ee12a6f2bb38b7dd7455200992dbd634a10e4eabe4b3a0.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/a9bcdf0ec36b980b5cf2096ac53103f439da51e211dc203262b7cd072697797d.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/c03b68008c7b4a28ee47ec6105861951dd57f1b629a5e768c477eb122c620a27.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/5d21b3fbb08f7595b5ee12a6f2bb38b7dd7455200992dbd634a10e4eabe4b3a0.png"
+    "https://archive.org/download/psvitaalive-plumbersdontwearties-sdl-vita/shot_01.png",
+    "https://archive.org/download/psvitaalive-plumbersdontwearties-sdl-vita/shot_02.png",
+    "https://archive.org/download/psvitaalive-plumbersdontwearties-sdl-vita/shot_03.png",
+    "https://archive.org/download/psvitaalive-plumbersdontwearties-sdl-vita/shot_04.png",
+    "https://archive.org/download/psvitaalive-plumbersdontwearties-sdl-vita/shot_05.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-plumbersdontwearties-sdl-vita/plumbersdontwearties-sdl-vita.vpk",
+      "recommended": true
+    },
     {
       "type": "Repository",
       "name": "Repositorio",

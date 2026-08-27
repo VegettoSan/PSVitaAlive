@@ -16,11 +16,17 @@
   "requirements": "Not specified",
   "size": 3980825,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/f6e23d355a33615497491dff94effd91b4e563c75c98c2c8eb7b066b14a70105.png",
+  "icon": "https://archive.org/download/psvitaalive-exult-vita/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/f6e23d355a33615497491dff94effd91b4e563c75c98c2c8eb7b066b14a70105.png"
+    "https://archive.org/download/psvitaalive-exult-vita/shot_01.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-exult-vita/exult-vita.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Release Page",

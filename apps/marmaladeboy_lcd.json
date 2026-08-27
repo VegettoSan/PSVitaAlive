@@ -16,15 +16,21 @@
   "requirements": "Not specified",
   "size": 4054232,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1844-marmaladeboy-lcd.png",
+  "icon": "https://archive.org/download/psvitaalive-marmaladeboy_lcd/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/950e44af3798c9ceecfcd2aa4dac7f43c3b2449958749a857c72c2ccbd37218d.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/db0ebd7be04d4fe17425c85c06e8bcafb3eed6e278389d3a41f100cb6cebd22b.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/69ab255d5ef6d9c0af5bf45b3041573b8d7628486922fc7ce64570b5dc94b401.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/950e44af3798c9ceecfcd2aa4dac7f43c3b2449958749a857c72c2ccbd37218d.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/db0ebd7be04d4fe17425c85c06e8bcafb3eed6e278389d3a41f100cb6cebd22b.png"
+    "https://archive.org/download/psvitaalive-marmaladeboy_lcd/shot_01.png",
+    "https://archive.org/download/psvitaalive-marmaladeboy_lcd/shot_02.png",
+    "https://archive.org/download/psvitaalive-marmaladeboy_lcd/shot_03.png",
+    "https://archive.org/download/psvitaalive-marmaladeboy_lcd/shot_04.png",
+    "https://archive.org/download/psvitaalive-marmaladeboy_lcd/shot_05.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-marmaladeboy_lcd/MarmaladeBoy_LCD.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Official Website",

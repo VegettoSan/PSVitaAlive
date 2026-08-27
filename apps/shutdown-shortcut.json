@@ -16,11 +16,18 @@
   "requirements": "Not specified",
   "size": 24345,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1486-shutdown-shortcut.png",
+  "icon": "https://archive.org/download/psvitaalive-shutdown-shortcut/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1486-shutdown-shortcut.png"
+    "https://archive.org/download/psvitaalive-shutdown-shortcut/shot_01.png"
   ],
-  "links": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-shutdown-shortcut/shutdown-shortcut.vpk",
+      "recommended": true
+    }
+  ],
   "source_name": "VitaHomebrewDB",
   "source_id": "69",
   "source_url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/69-Shutdown.vpk",

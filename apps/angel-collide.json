@@ -16,15 +16,21 @@
   "requirements": "Not specified",
   "size": 66228307,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1723-angel-collide.png",
+  "icon": "https://archive.org/download/psvitaalive-angel-collide/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/414848085e8544b906a703387ac5738bccb1eaafc6df3426ede0c3e2cf5d767d.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/37b79fbbf6ae547666bfc3ba898fb4b14a566f338939dd52e265f672504bb52d.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/d0248b26a9dcae8b257f014b251e7b30e3e6dc9dbe25281a212fca0a8fe57b48.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/414848085e8544b906a703387ac5738bccb1eaafc6df3426ede0c3e2cf5d767d.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/37b79fbbf6ae547666bfc3ba898fb4b14a566f338939dd52e265f672504bb52d.png"
+    "https://archive.org/download/psvitaalive-angel-collide/shot_01.png",
+    "https://archive.org/download/psvitaalive-angel-collide/shot_02.png",
+    "https://archive.org/download/psvitaalive-angel-collide/shot_03.png",
+    "https://archive.org/download/psvitaalive-angel-collide/shot_04.png",
+    "https://archive.org/download/psvitaalive-angel-collide/shot_05.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-angel-collide/angel-collide.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Official Website",

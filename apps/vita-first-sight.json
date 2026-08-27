@@ -16,11 +16,17 @@
   "requirements": "Not specified",
   "size": 14664602,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1784-vita-first-sight.png",
+  "icon": "https://archive.org/download/psvitaalive-vita-first-sight/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1784-vita-first-sight.png"
+    "https://archive.org/download/psvitaalive-vita-first-sight/shot_01.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-vita-first-sight/vita-first-sight.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Repository",

@@ -16,14 +16,21 @@
   "requirements": "Not specified",
   "size": 49348665,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1627-let-me-sleep.png",
+  "icon": "https://archive.org/download/psvitaalive-let-me-sleep/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/2d304833a417475205d7e601ded774666bf9a704b5d3e37e087af82a29028523.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/b87fbd8fcd8468f990363aa0cc5692f1449cc04dc20fb505cae8d85c7c53f3b4.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/2d304833a417475205d7e601ded774666bf9a704b5d3e37e087af82a29028523.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/b87fbd8fcd8468f990363aa0cc5692f1449cc04dc20fb505cae8d85c7c53f3b4.png"
+    "https://archive.org/download/psvitaalive-let-me-sleep/shot_01.png",
+    "https://archive.org/download/psvitaalive-let-me-sleep/shot_02.png",
+    "https://archive.org/download/psvitaalive-let-me-sleep/shot_03.png",
+    "https://archive.org/download/psvitaalive-let-me-sleep/shot_04.png"
   ],
-  "links": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-let-me-sleep/let-me-sleep.vpk",
+      "recommended": true
+    }
+  ],
   "source_name": "VitaHomebrewDB",
   "source_id": "450",
   "source_url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/450-Let_20Me_20Sleep.vpk",

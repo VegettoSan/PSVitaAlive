@@ -16,14 +16,20 @@
   "requirements": "Not specified",
   "size": 3840296,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/3c141bbfc70f8d29f2901938aefe7beff5d7f6847920a44e9ad5100ccd2cc0a2.png",
+  "icon": "https://archive.org/download/psvitaalive-gnu-robbo/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/3c141bbfc70f8d29f2901938aefe7beff5d7f6847920a44e9ad5100ccd2cc0a2.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/robbo1.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/robbo2.jpg",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/robbo3.jpg"
+    "https://archive.org/download/psvitaalive-gnu-robbo/shot_01.png",
+    "https://archive.org/download/psvitaalive-gnu-robbo/shot_02.png",
+    "https://archive.org/download/psvitaalive-gnu-robbo/shot_03.png",
+    "https://archive.org/download/psvitaalive-gnu-robbo/shot_04.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-gnu-robbo/gnu-robbo.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Official Website",

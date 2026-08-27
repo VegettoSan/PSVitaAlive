@@ -16,11 +16,17 @@
   "requirements": "Not specified",
   "size": 212089,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/8af1d7bea8029968167f12fc6c1007846ab5c3df42aa9ebbf03dd6adff6855ac.png",
+  "icon": "https://archive.org/download/psvitaalive-sharkf00d/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/8af1d7bea8029968167f12fc6c1007846ab5c3df42aa9ebbf03dd6adff6855ac.png"
+    "https://archive.org/download/psvitaalive-sharkf00d/shot_01.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-sharkf00d/sharkf00d.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Release Page",

@@ -16,12 +16,18 @@
   "requirements": "Not specified",
   "size": 10180722,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/ec20e805491ec680cb8fdb6c766724a7d4790ae686c031218ef0951474037348.png",
+  "icon": "https://archive.org/download/psvitaalive-water-closet/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/0849e462468b07f61857f982f3149bb652869414b023f9913abeda827d9a3d88.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/0849e462468b07f61857f982f3149bb652869414b023f9913abeda827d9a3d88.png"
+    "https://archive.org/download/psvitaalive-water-closet/shot_01.png",
+    "https://archive.org/download/psvitaalive-water-closet/shot_02.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-water-closet/water-closet.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Release Page",

@@ -21,6 +21,12 @@
   "status": "Verified",
   "links": [
     {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-inotia-3-children-of-carnia/inotia-3-children-of-carnia.vpk",
+      "recommended": true
+    },
+    {
       "type": "Official Website",
       "name": "Release Page",
       "url": "https://github.com/MetalSyntax/Inotia3-vita/releases"
@@ -31,9 +37,9 @@
       "url": "https://github.com/MetalSyntax/Inotia3-vita"
     }
   ],
-  "icon": "https://raw.githubusercontent.com/MetalSyntax/Inotia3-vita/refs/heads/master/extras/livearea/icon0.png",
+  "icon": "https://archive.org/download/psvitaalive-inotia-3-children-of-carnia/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/MetalSyntax/Inotia3-vita/refs/heads/master/extras/livearea/bg0.png",
-    "https://raw.githubusercontent.com/MetalSyntax/Inotia3-vita/refs/heads/master/extras/livearea/pic0.png"
+    "https://archive.org/download/psvitaalive-inotia-3-children-of-carnia/shot_01.png",
+    "https://archive.org/download/psvitaalive-inotia-3-children-of-carnia/shot_02.png"
   ]
 }

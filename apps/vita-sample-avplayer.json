@@ -16,14 +16,20 @@
   "requirements": "Not specified",
   "size": 2934998,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1818-vita-sample-avplayer.png",
+  "icon": "https://archive.org/download/psvitaalive-vita-sample-avplayer/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/9707c8734c645d427a9c539a5c55d6ef4269f2648f0117abde8ce9d7d3a57cf6.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/1f39c81142aea9edf3fb334397591b19f76a9153326f257f1f44300bb19bb813.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/9707c8734c645d427a9c539a5c55d6ef4269f2648f0117abde8ce9d7d3a57cf6.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/1f39c81142aea9edf3fb334397591b19f76a9153326f257f1f44300bb19bb813.png"
+    "https://archive.org/download/psvitaalive-vita-sample-avplayer/shot_01.png",
+    "https://archive.org/download/psvitaalive-vita-sample-avplayer/shot_02.png",
+    "https://archive.org/download/psvitaalive-vita-sample-avplayer/shot_03.png",
+    "https://archive.org/download/psvitaalive-vita-sample-avplayer/shot_04.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-vita-sample-avplayer/vita-sample-avplayer.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Official Website",

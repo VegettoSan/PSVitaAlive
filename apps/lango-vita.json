@@ -16,11 +16,17 @@
   "requirements": "Not specified",
   "size": 27567790,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/fb1940e14dbf33d573460405c868a48cf7932906b97150f2eafcfb5a34254605.png",
+  "icon": "https://archive.org/download/psvitaalive-lango-vita/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/fb1940e14dbf33d573460405c868a48cf7932906b97150f2eafcfb5a34254605.png"
+    "https://archive.org/download/psvitaalive-lango-vita/shot_01.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-lango-vita/lango-vita.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Release Page",

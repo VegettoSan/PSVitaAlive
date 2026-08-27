@@ -16,14 +16,21 @@
   "requirements": "Not specified",
   "size": 71288738,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1698-tropical-zone.png",
+  "icon": "https://archive.org/download/psvitaalive-tropical-zone/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/f300b924bbba612505fd556dc4581a30cb34a7a979b76828ca3c740f36ecf90a.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/2b547577bd52a18e75979bab16c825283a4ffada192056e103a7d505fb3c9de9.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/f300b924bbba612505fd556dc4581a30cb34a7a979b76828ca3c740f36ecf90a.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/2b547577bd52a18e75979bab16c825283a4ffada192056e103a7d505fb3c9de9.png"
+    "https://archive.org/download/psvitaalive-tropical-zone/shot_01.png",
+    "https://archive.org/download/psvitaalive-tropical-zone/shot_02.png",
+    "https://archive.org/download/psvitaalive-tropical-zone/shot_03.png",
+    "https://archive.org/download/psvitaalive-tropical-zone/shot_04.png"
   ],
-  "links": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-tropical-zone/tropical-zone.vpk",
+      "recommended": true
+    }
+  ],
   "source_name": "VitaHomebrewDB",
   "source_id": "602",
   "source_url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/602-Tropical_Zone.vpk",

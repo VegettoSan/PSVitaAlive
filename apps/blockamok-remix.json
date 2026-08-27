@@ -16,12 +16,18 @@
   "requirements": "Not specified",
   "size": 2655081,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1281-blockamok-remix.png",
+  "icon": "https://archive.org/download/psvitaalive-blockamok-remix/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/39c768558473b29be19e5f10a615bde099e8498681317be71a25869d40c4ed0c.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/39c768558473b29be19e5f10a615bde099e8498681317be71a25869d40c4ed0c.png"
+    "https://archive.org/download/psvitaalive-blockamok-remix/shot_01.png",
+    "https://archive.org/download/psvitaalive-blockamok-remix/shot_02.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-blockamok-remix/BlockamokRemix-v1.2-vita.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Release Page",

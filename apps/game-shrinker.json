@@ -16,14 +16,21 @@
   "requirements": "Not specified",
   "size": 380747,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1498-game-shrinker.png",
+  "icon": "https://archive.org/download/psvitaalive-game-shrinker/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1498-game-shrinker.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/shrink1.jpg",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/shrink2.jpg",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/shrink3.jpg"
+    "https://archive.org/download/psvitaalive-game-shrinker/shot_01.png",
+    "https://archive.org/download/psvitaalive-game-shrinker/shot_02.png",
+    "https://archive.org/download/psvitaalive-game-shrinker/shot_03.png",
+    "https://archive.org/download/psvitaalive-game-shrinker/shot_04.png"
   ],
-  "links": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-game-shrinker/game-shrinker.vpk",
+      "recommended": true
+    }
+  ],
   "source_name": "VitaHomebrewDB",
   "source_id": "97",
   "source_url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/97-game_shrinker.vpk",

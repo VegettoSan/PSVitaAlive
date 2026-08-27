@@ -16,15 +16,21 @@
   "requirements": "- Game Data Files: Android",
   "size": 2847533,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1729-love.png",
+  "icon": "https://archive.org/download/psvitaalive-love/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/5e46157e03b8ed74a4068ffbc7de6a32cf0574dfeba1c076d1432077790208c8.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/4dd25d7679e79b5bdc71b650f9f19be8ae2359799a773a0e879d9d0752d59e9f.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/7bcde9a4f420cf83bb12702406596d95d111f8bcfe98850be88bcc6f1b1e8cf6.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/5e46157e03b8ed74a4068ffbc7de6a32cf0574dfeba1c076d1432077790208c8.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/4dd25d7679e79b5bdc71b650f9f19be8ae2359799a773a0e879d9d0752d59e9f.png"
+    "https://archive.org/download/psvitaalive-love/shot_01.png",
+    "https://archive.org/download/psvitaalive-love/shot_02.png",
+    "https://archive.org/download/psvitaalive-love/shot_03.png",
+    "https://archive.org/download/psvitaalive-love/shot_04.png",
+    "https://archive.org/download/psvitaalive-love/shot_05.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-love/love.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Official Website",

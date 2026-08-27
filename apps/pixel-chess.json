@@ -16,12 +16,18 @@
   "requirements": "Not specified",
   "size": 290363,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/264e7f0ede85ecea902076722d8f9c63710a8bb876ab7088d1df7b2dee89ab5c.png",
+  "icon": "https://archive.org/download/psvitaalive-pixel-chess/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/7442d3c37bcca5bc7144d2ed447b137b48f52488c8960c95beee2ed22ec0ad11.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/7442d3c37bcca5bc7144d2ed447b137b48f52488c8960c95beee2ed22ec0ad11.png"
+    "https://archive.org/download/psvitaalive-pixel-chess/shot_01.png",
+    "https://archive.org/download/psvitaalive-pixel-chess/shot_02.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-pixel-chess/pixel-chess.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Release Page",

@@ -16,15 +16,21 @@
   "requirements": "- Game Data Files: NDS/Android",
   "size": 36773104,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/5f3686ff46eff7c016081fc9dc657e8af155170f008c09be49b35460bf493fad.png",
+  "icon": "https://archive.org/download/psvitaalive-the-world-ends-with-you-vita/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/b66e3591f66e68ab0089cd74fd70de9adcebbe787a86dbad96f843322d611c21.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/18aed8cb6db1232696c549fec0f5f963f80676e29222e905a261c686933de674.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/4713cd50a760dfc4b7b639cfe78fbf4e956120febdf51f040a510ad352c02938.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/b66e3591f66e68ab0089cd74fd70de9adcebbe787a86dbad96f843322d611c21.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/18aed8cb6db1232696c549fec0f5f963f80676e29222e905a261c686933de674.png"
+    "https://archive.org/download/psvitaalive-the-world-ends-with-you-vita/shot_01.png",
+    "https://archive.org/download/psvitaalive-the-world-ends-with-you-vita/shot_02.png",
+    "https://archive.org/download/psvitaalive-the-world-ends-with-you-vita/shot_03.png",
+    "https://archive.org/download/psvitaalive-the-world-ends-with-you-vita/shot_04.png",
+    "https://archive.org/download/psvitaalive-the-world-ends-with-you-vita/shot_05.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-the-world-ends-with-you-vita/the-world-ends-with-you-vita.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Official Website",

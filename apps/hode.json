@@ -16,11 +16,17 @@
   "requirements": "- Game Data Files: PC",
   "size": 690248,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/0512-hode.png",
+  "icon": "https://archive.org/download/psvitaalive-hode/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/0512-hode.png"
+    "https://archive.org/download/psvitaalive-hode/shot_01.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-hode/hode.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Release Page",

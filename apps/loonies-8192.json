@@ -16,14 +16,20 @@
   "requirements": "Not specified",
   "size": 12651987,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1743-loonies-8192.png",
+  "icon": "https://archive.org/download/psvitaalive-loonies-8192/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/f2235585d395007b786f82cd74cbeffd310a40616238b1add7145dfdaf7e0890.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/db24b17233c93404b0fa0ccc28fe95b562a38d6156ff398960f235a694138478.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/f2235585d395007b786f82cd74cbeffd310a40616238b1add7145dfdaf7e0890.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/db24b17233c93404b0fa0ccc28fe95b562a38d6156ff398960f235a694138478.png"
+    "https://archive.org/download/psvitaalive-loonies-8192/shot_01.png",
+    "https://archive.org/download/psvitaalive-loonies-8192/shot_02.png",
+    "https://archive.org/download/psvitaalive-loonies-8192/shot_03.png",
+    "https://archive.org/download/psvitaalive-loonies-8192/shot_04.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-loonies-8192/loonies-8192.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Official Website",

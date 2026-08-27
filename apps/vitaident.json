@@ -16,13 +16,19 @@
   "requirements": "Not specified",
   "size": 63832,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/8f39546ca79f8f0a48f4867089b946bcb13af615f7a72faa08f1ac72737a7145.png",
+  "icon": "https://archive.org/download/psvitaalive-vitaident/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/8f39546ca79f8f0a48f4867089b946bcb13af615f7a72faa08f1ac72737a7145.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/vitaident.jpg",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/vitaident_gui.jpg"
+    "https://archive.org/download/psvitaalive-vitaident/shot_01.png",
+    "https://archive.org/download/psvitaalive-vitaident/shot_02.png",
+    "https://archive.org/download/psvitaalive-vitaident/shot_03.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-vitaident/vitaident.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Official Website",

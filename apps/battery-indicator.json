@@ -16,13 +16,19 @@
   "requirements": "Not specified",
   "size": 906275,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1489-battery-indicator.png",
+  "icon": "https://archive.org/download/psvitaalive-battery-indicator/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1489-battery-indicator.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/battery1.jpg",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/battery2.jpg"
+    "https://archive.org/download/psvitaalive-battery-indicator/shot_01.png",
+    "https://archive.org/download/psvitaalive-battery-indicator/shot_02.png",
+    "https://archive.org/download/psvitaalive-battery-indicator/shot_03.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-battery-indicator/battery-indicator.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Official Website",

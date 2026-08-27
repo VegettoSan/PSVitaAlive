@@ -16,15 +16,21 @@
   "requirements": "Not specified",
   "size": 10066973,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/4f8d2d970d9eaefb04cc3640daf638701590d1a76420f7f7ddfdb50a1984572a.png",
+  "icon": "https://archive.org/download/psvitaalive-noboru/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/6f3b0fe715f8a46f6381d2f0ced7a016a727270cbe5318b2116948e75ececd5a.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/ed0c9c5f5a8f9c95184994b6f4dd22875c783ec78e8e58c400533e89d70da454.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/49c8ef573942aadb24c3c04aeb04f234b32844b05bb77f3b498831ea9c9a471f.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/0c8207107ec30cdf19520d2c09b786242143c8127bdd658271571b7cc3c3b71b.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/6f3b0fe715f8a46f6381d2f0ced7a016a727270cbe5318b2116948e75ececd5a.png"
+    "https://archive.org/download/psvitaalive-noboru/shot_01.png",
+    "https://archive.org/download/psvitaalive-noboru/shot_02.png",
+    "https://archive.org/download/psvitaalive-noboru/shot_03.png",
+    "https://archive.org/download/psvitaalive-noboru/shot_04.png",
+    "https://archive.org/download/psvitaalive-noboru/shot_05.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-noboru/noboru.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Release Page",

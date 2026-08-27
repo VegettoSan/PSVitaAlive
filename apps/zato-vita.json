@@ -16,12 +16,18 @@
   "requirements": "- Game Data Files: Steam",
   "size": 21298478,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/da7da22248abfeca2796221f7f28db2d4ae1521186382ad4a0fb562e4d76bf01.png",
+  "icon": "https://archive.org/download/psvitaalive-zato-vita/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/9320de0550e24f5cfba781872705d26f2e75973dc5a507c26a893193aadb8a90.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/9320de0550e24f5cfba781872705d26f2e75973dc5a507c26a893193aadb8a90.png"
+    "https://archive.org/download/psvitaalive-zato-vita/shot_01.png",
+    "https://archive.org/download/psvitaalive-zato-vita/shot_02.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-zato-vita/zato-vita.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Repository",

@@ -16,11 +16,17 @@
   "requirements": "Not specified",
   "size": 4567773,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1787-onscripter-vita.png",
+  "icon": "https://archive.org/download/psvitaalive-onscripter-vita/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1787-onscripter-vita.png"
+    "https://archive.org/download/psvitaalive-onscripter-vita/shot_01.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-onscripter-vita/onscripter-vita.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Official Website",

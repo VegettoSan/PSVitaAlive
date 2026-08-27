@@ -16,11 +16,17 @@
   "requirements": "- libshacccg.suprx\n- Game Data Files: PC",
   "size": 2679945,
   "status": "Legacy",
-  "icon": "https://www.rinnegatamante.eu/vitadb/icons/da957e006ab02e2d8dedb2bb56542122cd45412745ff299774003f39f3f9ffe6.png",
+  "icon": "https://archive.org/download/psvitaalive-touhou-6-vita/icon0.png",
   "screenshots": [
-    "https://www.rinnegatamante.eu/vitadb/icons/da957e006ab02e2d8dedb2bb56542122cd45412745ff299774003f39f3f9ffe6.png"
+    "https://archive.org/download/psvitaalive-touhou-6-vita/shot_01.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-touhou-6-vita/touhou-6-vita.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Official Website",

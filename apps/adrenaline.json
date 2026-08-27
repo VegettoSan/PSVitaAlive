@@ -16,12 +16,18 @@
   "requirements": "Not specified",
   "size": 417931,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/3749871fea3a04e0f82c968d9748c7ef327f3325eda0d7a9c8ce940ea35e77e6.png",
+  "icon": "https://archive.org/download/psvitaalive-adrenaline/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/cca7ded074a714bdacbd21aabd1de9e561d5922a66ece9bd60fa56d273385ee7.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/cca7ded074a714bdacbd21aabd1de9e561d5922a66ece9bd60fa56d273385ee7.png"
+    "https://archive.org/download/psvitaalive-adrenaline/shot_01.png",
+    "https://archive.org/download/psvitaalive-adrenaline/shot_02.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-adrenaline/adrenaline.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Release Page",

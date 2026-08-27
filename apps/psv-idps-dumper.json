@@ -16,11 +16,17 @@
   "requirements": "Not specified",
   "size": 275754,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/0619-psv-idps-dumper.png",
+  "icon": "https://archive.org/download/psvitaalive-psv-idps-dumper/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/0619-psv-idps-dumper.png"
+    "https://archive.org/download/psvitaalive-psv-idps-dumper/shot_01.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-psv-idps-dumper/PSV_IDPS_Dumper_v1.1.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Release Page",

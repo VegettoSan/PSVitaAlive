@@ -16,11 +16,17 @@
   "requirements": "- Game Data Files: PC",
   "size": 14641731,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/ef7e50723a028f1c826a6277527a11779e66949320b3283190013f585e95eb54.png",
+  "icon": "https://archive.org/download/psvitaalive-sakura-succubus-iii-vita/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/ef7e50723a028f1c826a6277527a11779e66949320b3283190013f585e95eb54.png"
+    "https://archive.org/download/psvitaalive-sakura-succubus-iii-vita/shot_01.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-sakura-succubus-iii-vita/sakura-succubus-iii-vita.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Repository",

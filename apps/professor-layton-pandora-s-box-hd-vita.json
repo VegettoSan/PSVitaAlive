@@ -16,15 +16,21 @@
   "requirements": "- libshacccg.suprx\n- kubridge.skprx\n- Game Data Files: Android",
   "size": 1548874,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1880-professor-layton-pandora-s-box-hd-vita.png",
+  "icon": "https://archive.org/download/psvitaalive-professor-layton-pandora-s-box-hd-vita/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/3b1daf45dd7701990d086487d7d8ea9a71ba8a75e395c219dae0fe2655b43fd0.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/a32c6c955c02b0259724d24b5128b604a156936c9ba883c2c64f2bab0bf32698.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/aab2b0326dd5ca0414d89ffa91c73c33b6aa644ce53c52d5cd9a992f695041bf.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/86e85f5a5d05074fadca4f73ca5b6b597cecb02a3f6788708341d861421474f6.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/3b1daf45dd7701990d086487d7d8ea9a71ba8a75e395c219dae0fe2655b43fd0.png"
+    "https://archive.org/download/psvitaalive-professor-layton-pandora-s-box-hd-vita/shot_01.png",
+    "https://archive.org/download/psvitaalive-professor-layton-pandora-s-box-hd-vita/shot_02.png",
+    "https://archive.org/download/psvitaalive-professor-layton-pandora-s-box-hd-vita/shot_03.png",
+    "https://archive.org/download/psvitaalive-professor-layton-pandora-s-box-hd-vita/shot_04.png",
+    "https://archive.org/download/psvitaalive-professor-layton-pandora-s-box-hd-vita/shot_05.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-professor-layton-pandora-s-box-hd-vita/professor-layton-pandora-s-box-hd-vita.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Release Page",

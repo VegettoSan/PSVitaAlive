@@ -16,15 +16,21 @@
   "requirements": "Not specified",
   "size": 37188910,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1878-feline-future.png",
+  "icon": "https://archive.org/download/psvitaalive-feline-future/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/4284b396600995accc5da8566e967ad24a79d7c068b0ba6f8d26cde60e982eb5.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/677cd53a44191c6fff7e23cd4e3bfd225fc463be4886d2b23bdb859dd8f4fa42.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/ac7b0877e720ca5de4d413c99ae3cdb580670102138a39b0d70a6c436be05352.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/4284b396600995accc5da8566e967ad24a79d7c068b0ba6f8d26cde60e982eb5.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/677cd53a44191c6fff7e23cd4e3bfd225fc463be4886d2b23bdb859dd8f4fa42.png"
+    "https://archive.org/download/psvitaalive-feline-future/shot_01.png",
+    "https://archive.org/download/psvitaalive-feline-future/shot_02.png",
+    "https://archive.org/download/psvitaalive-feline-future/shot_03.png",
+    "https://archive.org/download/psvitaalive-feline-future/shot_04.png",
+    "https://archive.org/download/psvitaalive-feline-future/shot_05.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-feline-future/feline-future.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Official Website",

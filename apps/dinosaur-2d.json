@@ -16,11 +16,17 @@
   "requirements": "Not specified",
   "size": 2797744,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/0139b3eccd766557f4ec33f068150158c409000051135ed29adb53ef4af197ad.png",
+  "icon": "https://archive.org/download/psvitaalive-dinosaur-2d/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/0139b3eccd766557f4ec33f068150158c409000051135ed29adb53ef4af197ad.png"
+    "https://archive.org/download/psvitaalive-dinosaur-2d/shot_01.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-dinosaur-2d/chrome-dinosaur-2d.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Release Page",

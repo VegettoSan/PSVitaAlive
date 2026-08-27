@@ -16,15 +16,21 @@
   "requirements": "Not specified",
   "size": 233504,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/f5a28a91017c0ad6d3145d5de71eef8ac18260cb7b96d8fd7ca2e288be1d1fad.png",
+  "icon": "https://archive.org/download/psvitaalive-handyvita/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/273b5c51fe87c4906272d7af314346833eb288d8bfa461ec74f04e3fa3fcc456.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/902b8fa1b662e3592cab949791f72144b82989c0559fb91baf412f6285e90f43.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/5a0b895051e3783690143d6cfa1f586b92e5f3f69863bc9aa20f755844de2a34.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/adf9c3ec512cc52429ea1e8d06e73cbd881f884bf16166d4920def383a3fa120.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/273b5c51fe87c4906272d7af314346833eb288d8bfa461ec74f04e3fa3fcc456.png"
+    "https://archive.org/download/psvitaalive-handyvita/shot_01.png",
+    "https://archive.org/download/psvitaalive-handyvita/shot_02.png",
+    "https://archive.org/download/psvitaalive-handyvita/shot_03.png",
+    "https://archive.org/download/psvitaalive-handyvita/shot_04.png",
+    "https://archive.org/download/psvitaalive-handyvita/shot_05.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-handyvita/handyvita.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Release Page",

@@ -16,15 +16,21 @@
   "requirements": "Not specified",
   "size": 37274249,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/7c705a87815452b8b8802a107e4cd62626bcaaa61b697d798da14f0434aca0fa.png",
+  "icon": "https://archive.org/download/psvitaalive-silly-tower/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/4dc0aefb51f7747b1076fa8d78414494d217effe34abb2e15b03aaa23ee10a4c.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/10632c798635439701cd976796aa8682b43da1e23e61a414f990860bf3339cfc.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/5b318652ee497cf50ff184f8fc2ffc55261d71058da0aab65fdf7719a59682dc.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/4dc0aefb51f7747b1076fa8d78414494d217effe34abb2e15b03aaa23ee10a4c.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/10632c798635439701cd976796aa8682b43da1e23e61a414f990860bf3339cfc.png"
+    "https://archive.org/download/psvitaalive-silly-tower/shot_01.png",
+    "https://archive.org/download/psvitaalive-silly-tower/shot_02.png",
+    "https://archive.org/download/psvitaalive-silly-tower/shot_03.png",
+    "https://archive.org/download/psvitaalive-silly-tower/shot_04.png",
+    "https://archive.org/download/psvitaalive-silly-tower/shot_05.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-silly-tower/silly-tower.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Official Website",

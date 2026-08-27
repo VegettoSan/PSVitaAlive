@@ -16,15 +16,21 @@
   "requirements": "- Game Data Files: PC",
   "size": 12914551,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1840-sonic-sms-3-timelines.png",
+  "icon": "https://archive.org/download/psvitaalive-sonic-sms-3-timelines/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/525aef27f7a513fc2a2b35a107c6fb0c6cbce8074c2d48dcbcf76d1e90d472ce.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/1a37c62c0c567e1607171d9c19ab768756862c68305176a2b7f7f9a31e07e0ef.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/e280ada716c7b6a793f3cf4eb58232784e8173bc9c5e8f03365d253f80dbb711.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/525aef27f7a513fc2a2b35a107c6fb0c6cbce8074c2d48dcbcf76d1e90d472ce.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/1a37c62c0c567e1607171d9c19ab768756862c68305176a2b7f7f9a31e07e0ef.png"
+    "https://archive.org/download/psvitaalive-sonic-sms-3-timelines/shot_01.png",
+    "https://archive.org/download/psvitaalive-sonic-sms-3-timelines/shot_02.png",
+    "https://archive.org/download/psvitaalive-sonic-sms-3-timelines/shot_03.png",
+    "https://archive.org/download/psvitaalive-sonic-sms-3-timelines/shot_04.png",
+    "https://archive.org/download/psvitaalive-sonic-sms-3-timelines/shot_05.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-sonic-sms-3-timelines/sonic-sms-3-timelines.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Official Website",

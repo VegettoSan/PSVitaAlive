@@ -16,15 +16,17 @@
   "requirements": "- Game Data Files: PC",
   "size": 543246,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/0344-opentitus.png",
+  "icon": "https://archive.org/download/psvitaalive-opentitus/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/7bdf4419b414a50c6605881d11f7cbe2b25c710322ed805353d3179315a0ef4f.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/b0c906a6350d0567b7142fed235935d98a3037ccd7ff3bbca98e087f18b07a60.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/1540204e202cd12740841b0973799115da79636134348e3488062e150c256629.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/7bdf4419b414a50c6605881d11f7cbe2b25c710322ed805353d3179315a0ef4f.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/b0c906a6350d0567b7142fed235935d98a3037ccd7ff3bbca98e087f18b07a60.png"
+    "https://archive.org/download/psvitaalive-opentitus/shot_01.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-opentitus/opentitus.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Official Website",

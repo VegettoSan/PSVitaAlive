@@ -16,14 +16,20 @@
   "requirements": "Not specified",
   "size": 1788120,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1775-unipcemu.png",
+  "icon": "https://archive.org/download/psvitaalive-unipcemu/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/ea4101650f1f11df02faf41e94c196e266029d2a2bb8ef37c45ce0908ee44edd.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/171db04edc9716a18649c4442c99f44e94fb5e9ac3fe2252192c79cbe3974de9.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/ea4101650f1f11df02faf41e94c196e266029d2a2bb8ef37c45ce0908ee44edd.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/171db04edc9716a18649c4442c99f44e94fb5e9ac3fe2252192c79cbe3974de9.png"
+    "https://archive.org/download/psvitaalive-unipcemu/shot_01.png",
+    "https://archive.org/download/psvitaalive-unipcemu/shot_02.png",
+    "https://archive.org/download/psvitaalive-unipcemu/shot_03.png",
+    "https://archive.org/download/psvitaalive-unipcemu/shot_04.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-unipcemu/unipcemu.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Official Website",

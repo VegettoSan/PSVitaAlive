@@ -16,11 +16,17 @@
   "requirements": "Not specified",
   "size": 1407707,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1651-hermes.png",
+  "icon": "https://archive.org/download/psvitaalive-hermes/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1651-hermes.png"
+    "https://archive.org/download/psvitaalive-hermes/shot_01.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-hermes/hermes.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Official Website",

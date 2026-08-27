@@ -16,11 +16,17 @@
   "requirements": "- libshacccg.suprx\n- iTLS-Enso or latest firmware",
   "size": 2663165,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1018-cspot-vita.png",
+  "icon": "https://archive.org/download/psvitaalive-cspot_vita/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1018-cspot-vita.png"
+    "https://archive.org/download/psvitaalive-cspot_vita/shot_01.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-cspot_vita/cspot_vita.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Release Page",

@@ -16,12 +16,18 @@
   "requirements": "Not specified",
   "size": 4303132,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1943-gravity-hunters.png",
+  "icon": "https://archive.org/download/psvitaalive-gravity-hunters/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/28f83d47e996a1cc0653cf857a24c62e9931e4f49f5b3b30e5b02bf075362441.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/28f83d47e996a1cc0653cf857a24c62e9931e4f49f5b3b30e5b02bf075362441.png"
+    "https://archive.org/download/psvitaalive-gravity-hunters/shot_01.png",
+    "https://archive.org/download/psvitaalive-gravity-hunters/shot_02.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-gravity-hunters/gravity-hunters.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Official Website",

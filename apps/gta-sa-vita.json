@@ -18,15 +18,21 @@
   "requirements": "- libshacccg.suprx\n- kubridge.skprx\n- Game Data Files: Android",
   "size": 1455563,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/58cfaa639b114893d1a1ab4f5bf19920559242b4543b92cee8808b06af3cb721.png",
+  "icon": "https://archive.org/download/psvitaalive-gta-sa-vita/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/79a416b81efbfd5ddfde015a46e6b817e4f841706626691a5bf201cdd6a11d3c.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/330c7808df3fd0d8c7abc18bed6c479c64b13adf3b96ce06f9510b8feedc16a0.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/f127bb3a2ea9d01627e62e3941ba42271e71bf8d138b8a5914405ddf45820722.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/02c8aa3521e4e738cd2b6c2a1ae38c0a6ac5559ca908d74220a25822ccb9dbf2.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/79a416b81efbfd5ddfde015a46e6b817e4f841706626691a5bf201cdd6a11d3c.png"
+    "https://archive.org/download/psvitaalive-gta-sa-vita/shot_01.png",
+    "https://archive.org/download/psvitaalive-gta-sa-vita/shot_02.png",
+    "https://archive.org/download/psvitaalive-gta-sa-vita/shot_03.png",
+    "https://archive.org/download/psvitaalive-gta-sa-vita/shot_04.png",
+    "https://archive.org/download/psvitaalive-gta-sa-vita/shot_05.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-gta-sa-vita/gta-sa-vita.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Release Page",

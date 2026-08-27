@@ -16,15 +16,21 @@
   "requirements": "Not specified",
   "size": 61468773,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/61267364f4d0060e403f0d86a737163fe39c9a8270943562bdfd58810a467327.png",
+  "icon": "https://archive.org/download/psvitaalive-slendrina-2d/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/51dde40c0c2bfe97d76a3810310aad0f339f45255feaf855a2ed77e66d2c541f.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/375aef8885e624026b9d8b01579f05a99ac48b8f93806210d430bd5b1916ea78.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/2e9392d2cc19e4b1df25d5e0599af05fcce066f813026d30810bbfbf851d693a.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/51dde40c0c2bfe97d76a3810310aad0f339f45255feaf855a2ed77e66d2c541f.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/375aef8885e624026b9d8b01579f05a99ac48b8f93806210d430bd5b1916ea78.png"
+    "https://archive.org/download/psvitaalive-slendrina-2d/shot_01.png",
+    "https://archive.org/download/psvitaalive-slendrina-2d/shot_02.png",
+    "https://archive.org/download/psvitaalive-slendrina-2d/shot_03.png",
+    "https://archive.org/download/psvitaalive-slendrina-2d/shot_04.png",
+    "https://archive.org/download/psvitaalive-slendrina-2d/shot_05.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-slendrina-2d/slendrina-2d.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Repository",

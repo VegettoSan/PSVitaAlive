@@ -16,12 +16,18 @@
   "requirements": "Not specified",
   "size": 2300177,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1580-vita-chain.png",
+  "icon": "https://archive.org/download/psvitaalive-vita-chain/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/746e1da37b5c60efbd46e8346c6dfdeecc755209ca36f5fdd9697434f82e84a9.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/746e1da37b5c60efbd46e8346c6dfdeecc755209ca36f5fdd9697434f82e84a9.png"
+    "https://archive.org/download/psvitaalive-vita-chain/shot_01.png",
+    "https://archive.org/download/psvitaalive-vita-chain/shot_02.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-vita-chain/vita-chain.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Official Website",

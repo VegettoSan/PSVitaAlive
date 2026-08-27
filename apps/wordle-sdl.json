@@ -16,15 +16,21 @@
   "requirements": "Not specified",
   "size": 551666,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1794-wordle-sdl.png",
+  "icon": "https://archive.org/download/psvitaalive-wordle-sdl/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/939b5926cdb22f3373c96130aacf71f2abeaf4dd1acf27cbc60207147c31f176.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/cde08c6d58355d7de395fe52312c1ffb6e991d7ef0c934f90db4399c2c364fbb.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/323e20d9956a8fbea6e7de07f6fa523a44c69f557f08abf4ba9307a5fe0d6865.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/939b5926cdb22f3373c96130aacf71f2abeaf4dd1acf27cbc60207147c31f176.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/cde08c6d58355d7de395fe52312c1ffb6e991d7ef0c934f90db4399c2c364fbb.png"
+    "https://archive.org/download/psvitaalive-wordle-sdl/shot_01.png",
+    "https://archive.org/download/psvitaalive-wordle-sdl/shot_02.png",
+    "https://archive.org/download/psvitaalive-wordle-sdl/shot_03.png",
+    "https://archive.org/download/psvitaalive-wordle-sdl/shot_04.png",
+    "https://archive.org/download/psvitaalive-wordle-sdl/shot_05.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-wordle-sdl/wordle-sdl.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Official Website",

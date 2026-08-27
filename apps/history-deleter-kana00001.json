@@ -16,11 +16,18 @@
   "requirements": "Not specified",
   "size": 131633,
   "status": "Legacy",
-  "icon": "https://www.rinnegatamante.eu/vitadb/icons/088cc808e555db29c63f47307da0a7d1f5e38cb5eb62d96d64e9b5eec9587982.png",
+  "icon": "https://archive.org/download/psvitaalive-history-deleter-kana00001/icon0.png",
   "screenshots": [
-    "https://www.rinnegatamante.eu/vitadb/icons/088cc808e555db29c63f47307da0a7d1f5e38cb5eb62d96d64e9b5eec9587982.png"
+    "https://archive.org/download/psvitaalive-history-deleter-kana00001/shot_01.png"
   ],
-  "links": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-history-deleter-kana00001/history-deleter-kana00001.vpk",
+      "recommended": true
+    }
+  ],
   "source_name": "VitaDB",
   "source_id": "162",
   "source_url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=162",

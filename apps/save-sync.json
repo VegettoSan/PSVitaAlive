@@ -17,14 +17,20 @@
   "requirements": "Not specified",
   "size": 8120593,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/83c69b7a7af19414b9ef23122b3eef46cb87e27b72c95e3689f3708595ba7fd4.png",
+  "icon": "https://archive.org/download/psvitaalive-save-sync/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/5a2d0b34f3e30446bc21588eebe454af5e38a31468db34804c12f13bdc0903cd.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/2331d985b815c82cba96947a84ac940f387b081189ff91eeab03c904928f84fd.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/5a2d0b34f3e30446bc21588eebe454af5e38a31468db34804c12f13bdc0903cd.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/2331d985b815c82cba96947a84ac940f387b081189ff91eeab03c904928f84fd.png"
+    "https://archive.org/download/psvitaalive-save-sync/shot_01.png",
+    "https://archive.org/download/psvitaalive-save-sync/shot_02.png",
+    "https://archive.org/download/psvitaalive-save-sync/shot_03.png",
+    "https://archive.org/download/psvitaalive-save-sync/shot_04.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-save-sync/vita-save-cloud.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Release Page",

@@ -16,11 +16,17 @@
   "requirements": "Not specified",
   "size": 13369282,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/65d8a1fe7ffce1174d8f5d7d1b6c84fa4146cd8ef1370984099149a168d5c2d7.png",
+  "icon": "https://archive.org/download/psvitaalive-heboris-vita/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/65d8a1fe7ffce1174d8f5d7d1b6c84fa4146cd8ef1370984099149a168d5c2d7.png"
+    "https://archive.org/download/psvitaalive-heboris-vita/shot_01.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-heboris-vita/heboris-vita.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Release Page",

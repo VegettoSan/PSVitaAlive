@@ -16,15 +16,21 @@
   "requirements": "- Game Data Files: PC",
   "size": 1657588,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1674-vitaexhumed.png",
+  "icon": "https://archive.org/download/psvitaalive-vitaexhumed/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/25cc4d808fe1473bfd6f4abaebc11bf96515d3e6d30381ad530930139f5afdcf.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/745c0ce38de8bca8e8553872ff6882b045a70921cc26dfa430465771c2247f81.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/925cb7e1a5a25b67fb799a229d185ef068128eb0ac2636c325e41e1783c71376.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/25cc4d808fe1473bfd6f4abaebc11bf96515d3e6d30381ad530930139f5afdcf.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/745c0ce38de8bca8e8553872ff6882b045a70921cc26dfa430465771c2247f81.png"
+    "https://archive.org/download/psvitaalive-vitaexhumed/shot_01.png",
+    "https://archive.org/download/psvitaalive-vitaexhumed/shot_02.png",
+    "https://archive.org/download/psvitaalive-vitaexhumed/shot_03.png",
+    "https://archive.org/download/psvitaalive-vitaexhumed/shot_04.png",
+    "https://archive.org/download/psvitaalive-vitaexhumed/shot_05.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-vitaexhumed/vitaexhumed.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Official Website",

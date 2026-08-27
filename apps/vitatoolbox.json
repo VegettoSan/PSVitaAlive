@@ -16,12 +16,18 @@
   "requirements": "Not specified",
   "size": 933546,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1480-vitatoolbox.png",
+  "icon": "https://archive.org/download/psvitaalive-vitatoolbox/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1480-vitatoolbox.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/toolbox.jpg"
+    "https://archive.org/download/psvitaalive-vitatoolbox/shot_01.png",
+    "https://archive.org/download/psvitaalive-vitatoolbox/shot_02.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-vitatoolbox/vitatoolbox.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Official Website",

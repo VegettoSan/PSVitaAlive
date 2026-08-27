@@ -17,11 +17,17 @@
   "requirements": "Not specified",
   "size": 29068,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1457-parental-control-bypass.png",
+  "icon": "https://archive.org/download/psvitaalive-parental-control-bypass/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1457-parental-control-bypass.png"
+    "https://archive.org/download/psvitaalive-parental-control-bypass/shot_01.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-parental-control-bypass/Parental_Control_Bypass.vpk",
+      "recommended": true
+    },
     {
       "type": "Repository",
       "name": "Repositorio",

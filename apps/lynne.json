@@ -16,15 +16,21 @@
   "requirements": "Not specified",
   "size": 14384313,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1797-lynne.png",
+  "icon": "https://archive.org/download/psvitaalive-lynne/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/2d1538d197f113a90ab4a600bc2f8c9d8d0ea853d510c0beefb450a0667e6a21.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/26f5f3cf78cbbfd5c6b4e14309105bdcaf102a886920c18d7698446a597904bf.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/33deb7ffefd26185a58a4d8cb0761f478baadca97411951b1d263a3b1695b636.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/2d1538d197f113a90ab4a600bc2f8c9d8d0ea853d510c0beefb450a0667e6a21.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/26f5f3cf78cbbfd5c6b4e14309105bdcaf102a886920c18d7698446a597904bf.png"
+    "https://archive.org/download/psvitaalive-lynne/shot_01.png",
+    "https://archive.org/download/psvitaalive-lynne/shot_02.png",
+    "https://archive.org/download/psvitaalive-lynne/shot_03.png",
+    "https://archive.org/download/psvitaalive-lynne/shot_04.png",
+    "https://archive.org/download/psvitaalive-lynne/shot_05.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-lynne/lynne.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Repository",

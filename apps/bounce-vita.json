@@ -16,13 +16,19 @@
   "requirements": "Not specified",
   "size": 525303,
   "status": "Legacy",
-  "icon": "https://www.rinnegatamante.eu/vitadb/icons/2523138017ac889b3942e092b76780db9742397bd680b5a1ff6f3971916377f6.png",
+  "icon": "https://archive.org/download/psvitaalive-bounce-vita/icon0.png",
   "screenshots": [
-    "https://www.rinnegatamante.eu/vitadb/screenshots/5d69819a0c7047e0622ba281d590098c686f55dd5d768ff410c42f4616fd136d.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/c61add6b21282cf7583304c53d87e5111959f2f170f9957ae8dd1ebd38957a2a.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/7dd84acede5a73b68c6ce86318bf0828c5c6a3e5ce6adc63990f322c641db619.png"
+    "https://archive.org/download/psvitaalive-bounce-vita/shot_01.png",
+    "https://archive.org/download/psvitaalive-bounce-vita/shot_02.png",
+    "https://archive.org/download/psvitaalive-bounce-vita/shot_03.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-bounce-vita/bounce-vita.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Release Page",

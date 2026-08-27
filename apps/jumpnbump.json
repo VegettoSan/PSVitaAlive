@@ -16,15 +16,21 @@
   "requirements": "Not specified",
   "size": 1286536,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/0426-jumpnbump.png",
+  "icon": "https://archive.org/download/psvitaalive-jumpnbump/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/0e325d8de71def5135da675cb7b2424a98a299f835deb7b8652bd501599de59a.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/21e43df81fdfffa46e06d93477ffcaa9de3f00b5759334c0cac68b9a0718a4e8.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/cfaff5c058642256eff39bc24cf2ed4f8645f69e5555b7ba49badf5d537cbaa4.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/0e325d8de71def5135da675cb7b2424a98a299f835deb7b8652bd501599de59a.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/21e43df81fdfffa46e06d93477ffcaa9de3f00b5759334c0cac68b9a0718a4e8.png"
+    "https://archive.org/download/psvitaalive-jumpnbump/shot_01.png",
+    "https://archive.org/download/psvitaalive-jumpnbump/shot_02.png",
+    "https://archive.org/download/psvitaalive-jumpnbump/shot_03.png",
+    "https://archive.org/download/psvitaalive-jumpnbump/shot_04.png",
+    "https://archive.org/download/psvitaalive-jumpnbump/shot_05.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-jumpnbump/jumpnbump_1.00.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Release Page",

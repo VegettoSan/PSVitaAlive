@@ -16,15 +16,21 @@
   "requirements": "- libshacccg.suprx",
   "size": 1698368,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1792-nanosaur-vita.png",
+  "icon": "https://archive.org/download/psvitaalive-nanosaur-vita/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/7b9bf1eb89b50ad952ec83185534971fa257339abb4c5b7bd2973f32dd6924e6.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/41e6643b85125f7fc22e22907df355119253e47c559d80a5a9982f0c501f6c18.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/8ebf5eaeb939487ccbf12bbe1ec86cc9a242bd3b5a618a4a135ca37898676ce6.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/36d0495ec73feeec8c87fcbe09191df95da533ed16284ebf8baf9d6f93a22027.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/7b9bf1eb89b50ad952ec83185534971fa257339abb4c5b7bd2973f32dd6924e6.png"
+    "https://archive.org/download/psvitaalive-nanosaur-vita/shot_01.png",
+    "https://archive.org/download/psvitaalive-nanosaur-vita/shot_02.png",
+    "https://archive.org/download/psvitaalive-nanosaur-vita/shot_03.png",
+    "https://archive.org/download/psvitaalive-nanosaur-vita/shot_04.png",
+    "https://archive.org/download/psvitaalive-nanosaur-vita/shot_05.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-nanosaur-vita/nanosaur-vita.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Official Website",

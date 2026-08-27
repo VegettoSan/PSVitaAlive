@@ -16,15 +16,22 @@
   "requirements": "Not specified",
   "size": 54291648,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1641-vita-fighters.png",
+  "icon": "https://archive.org/download/psvitaalive-vita-fighters/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/bfb0bbc5f09252591ccbb7e136e11afa2ae27b4e4fa3e178e3716ab402b2e7de.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/73d6bf2f21903b1ccbd6c0197fc62aa18fb1ec03e2df92e2ae10da84cba746e7.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/9e1b768474ec804ce381721ea75ca1f159f65200348690cf18312bf1f30fd02a.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/4a6b0b72e528c8568859ce52476dab87363a951d365d264f129479140ed1dd98.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/bfb0bbc5f09252591ccbb7e136e11afa2ae27b4e4fa3e178e3716ab402b2e7de.png"
+    "https://archive.org/download/psvitaalive-vita-fighters/shot_01.png",
+    "https://archive.org/download/psvitaalive-vita-fighters/shot_02.png",
+    "https://archive.org/download/psvitaalive-vita-fighters/shot_03.png",
+    "https://archive.org/download/psvitaalive-vita-fighters/shot_04.png",
+    "https://archive.org/download/psvitaalive-vita-fighters/shot_05.png"
   ],
-  "links": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-vita-fighters/vita-fighters.vpk",
+      "recommended": true
+    }
+  ],
   "source_name": "VitaHomebrewDB",
   "source_id": "468",
   "source_url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/468-VitaFighters.vpk",

@@ -16,15 +16,21 @@
   "requirements": "Not specified",
   "size": 2363770,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/1cebf0af0185110bbde0b7d42257a12ccf61b5ff852e4c5b6a64c0abc2f4fbf1.png",
+  "icon": "https://archive.org/download/psvitaalive-mog-vita/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/3805ed75aeeab2a15b40a967cbd1690c5ef031f6741711bf7b71acb36b8cc575.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/16238c0c34013f36e9a8a306d786ba583edb02fae8ac982fec02b68e4a8b7a06.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/4a3cadf1bd293a93e0644e8c7b9e3b00b7b66542ce06c4210192b70a6fe679e3.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/3805ed75aeeab2a15b40a967cbd1690c5ef031f6741711bf7b71acb36b8cc575.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/16238c0c34013f36e9a8a306d786ba583edb02fae8ac982fec02b68e4a8b7a06.png"
+    "https://archive.org/download/psvitaalive-mog-vita/shot_01.png",
+    "https://archive.org/download/psvitaalive-mog-vita/shot_02.png",
+    "https://archive.org/download/psvitaalive-mog-vita/shot_03.png",
+    "https://archive.org/download/psvitaalive-mog-vita/shot_04.png",
+    "https://archive.org/download/psvitaalive-mog-vita/shot_05.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-mog-vita/mog-vita.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Release Page",

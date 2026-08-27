@@ -16,13 +16,19 @@
   "requirements": "Not specified",
   "size": 1706079,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1518-spidervita.png",
+  "icon": "https://archive.org/download/psvitaalive-spidervita/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1518-spidervita.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/spider1.jpg",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/spider2.jpg"
+    "https://archive.org/download/psvitaalive-spidervita/shot_01.png",
+    "https://archive.org/download/psvitaalive-spidervita/shot_02.png",
+    "https://archive.org/download/psvitaalive-spidervita/shot_03.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-spidervita/spidervita.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Official Website",

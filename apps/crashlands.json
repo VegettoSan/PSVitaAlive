@@ -16,15 +16,21 @@
   "requirements": "- Game Data Files: PC",
   "size": 3002252,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/e17dae38908067bd153b42da79b9f69ccf7e12f11d8c572f95f55d23e35f8eb9.png",
+  "icon": "https://archive.org/download/psvitaalive-crashlands/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/10eacb504fe755ac364f5ef5b72d941e9bed753e281ef556a05b764c317ccbbb.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/9e3a2871b829fdc96980af30b49624569ba683945786105919ddea78a073a2b0.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/d96ac6de547a5cba77468b97a99ab60ffa4e37bd34386733a2ee371fadea1fc8.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/10eacb504fe755ac364f5ef5b72d941e9bed753e281ef556a05b764c317ccbbb.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/9e3a2871b829fdc96980af30b49624569ba683945786105919ddea78a073a2b0.png"
+    "https://archive.org/download/psvitaalive-crashlands/shot_01.png",
+    "https://archive.org/download/psvitaalive-crashlands/shot_02.png",
+    "https://archive.org/download/psvitaalive-crashlands/shot_03.png",
+    "https://archive.org/download/psvitaalive-crashlands/shot_04.png",
+    "https://archive.org/download/psvitaalive-crashlands/shot_05.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-crashlands/crashlands.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Repository",

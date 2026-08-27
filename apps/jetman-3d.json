@@ -16,11 +16,17 @@
   "requirements": "Not specified",
   "size": 1333060,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/d5515dc3a7808701fb7a98cf09d779981aa70b06848370712e5e6fc8545fa1f0.png",
+  "icon": "https://archive.org/download/psvitaalive-jetman-3d/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/d5515dc3a7808701fb7a98cf09d779981aa70b06848370712e5e6fc8545fa1f0.png"
+    "https://archive.org/download/psvitaalive-jetman-3d/shot_01.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-jetman-3d/jetman-3d.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Official Website",

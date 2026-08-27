@@ -16,15 +16,21 @@
   "requirements": "Not specified",
   "size": 33848976,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1890-psee-demo.png",
+  "icon": "https://archive.org/download/psvitaalive-psee-demo/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/b465709f7b5df313035ad031b1a1bc1fb784dd8fb76be7c1ab4fdcc5bb341f69.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/d37a2af4a927fdcf1f46e01891583f4aecfac0b0b139772bf3ea20937eaac5b6.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/24d82b2f0a567c7ce1e15305cc7b04ec5aca90e70725fab685c58e4d64aad0f5.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/069e359f95665ac865b9bc049b09e1aae387af00cc96e505fed511ebae460e47.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/b465709f7b5df313035ad031b1a1bc1fb784dd8fb76be7c1ab4fdcc5bb341f69.png"
+    "https://archive.org/download/psvitaalive-psee-demo/shot_01.png",
+    "https://archive.org/download/psvitaalive-psee-demo/shot_02.png",
+    "https://archive.org/download/psvitaalive-psee-demo/shot_03.png",
+    "https://archive.org/download/psvitaalive-psee-demo/shot_04.png",
+    "https://archive.org/download/psvitaalive-psee-demo/shot_05.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-psee-demo/psee-demo.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Official Website",

@@ -17,11 +17,17 @@
   "requirements": "Not specified",
   "size": 2302266,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1547-database-updater.png",
+  "icon": "https://archive.org/download/psvitaalive-database-updater/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1547-database-updater.png"
+    "https://archive.org/download/psvitaalive-database-updater/shot_01.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-database-updater/224-Database.Manager.vpk",
+      "recommended": true
+    },
     {
       "type": "Repository",
       "name": "Repositorio",

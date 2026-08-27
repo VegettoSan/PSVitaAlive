@@ -16,11 +16,17 @@
   "requirements": "Not specified",
   "size": 26937762,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/85fd4d9868380ea0f85fd97d889441e21c6f48e94be954bbd631f863ae2aa8a7.png",
+  "icon": "https://archive.org/download/psvitaalive-super-dungeon-delta/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/85fd4d9868380ea0f85fd97d889441e21c6f48e94be954bbd631f863ae2aa8a7.png"
+    "https://archive.org/download/psvitaalive-super-dungeon-delta/shot_01.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-super-dungeon-delta/super-dungeon-delta.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Release Page",

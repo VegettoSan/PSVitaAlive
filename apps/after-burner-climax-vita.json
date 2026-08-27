@@ -16,15 +16,21 @@
   "requirements": "- libshacccg.suprx\n- kubridge.skprx\n- Game Data Files: Android",
   "size": 1698161,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/a80557f85ae62671edb03a856019dfa73e49d0da0295dddc9bc25eb52093249d.png",
+  "icon": "https://archive.org/download/psvitaalive-after-burner-climax-vita/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/bcae6b7f4d71057b78e9193b63d947b25dcb34c0363eb93356f6ad8f1bbcb695.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/457805e778850afd976f20b9ce5c96b11403a3933044d1ed76fd0442f7ba6a0d.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/ef5f5fa2a02e45e25110d61b643ca26b41965f316f190ef63656bcc5ffc124e9.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/aebaf603adc55f8a72aa48adeb7059e5418631e4692d7c94006274b9d74e04ec.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/bcae6b7f4d71057b78e9193b63d947b25dcb34c0363eb93356f6ad8f1bbcb695.png"
+    "https://archive.org/download/psvitaalive-after-burner-climax-vita/shot_01.png",
+    "https://archive.org/download/psvitaalive-after-burner-climax-vita/shot_02.png",
+    "https://archive.org/download/psvitaalive-after-burner-climax-vita/shot_03.png",
+    "https://archive.org/download/psvitaalive-after-burner-climax-vita/shot_04.png",
+    "https://archive.org/download/psvitaalive-after-burner-climax-vita/shot_05.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-after-burner-climax-vita/after-burner-climax-vita.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Release Page",

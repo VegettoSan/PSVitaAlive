@@ -16,11 +16,17 @@
   "requirements": "Real testing kit (PTEL) or devlopment kit (PDEL) hardware, running 3.60 henkaku",
   "size": 68260,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1985-activate-vpk.png",
+  "icon": "https://archive.org/download/psvitaalive-activate-vpk/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1985-activate-vpk.png"
+    "https://archive.org/download/psvitaalive-activate-vpk/shot_01.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-activate-vpk/activate.vpk",
+      "recommended": true
+    },
     {
       "type": "Repository",
       "name": "Repositorio",

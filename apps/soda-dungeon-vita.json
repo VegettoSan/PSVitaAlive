@@ -17,11 +17,17 @@
   "requirements": "- libshacccg.suprx\n- kubridge.skprx\n- Game Data Files: Android",
   "size": 707296,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/be2ef7999659294969c37cf3f58a61dd736d2ff20d3afab88acf76b81efdb221.png",
+  "icon": "https://archive.org/download/psvitaalive-soda-dungeon-vita/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/be2ef7999659294969c37cf3f58a61dd736d2ff20d3afab88acf76b81efdb221.png"
+    "https://archive.org/download/psvitaalive-soda-dungeon-vita/shot_01.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-soda-dungeon-vita/soda-dungeon-vita.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Release Page",

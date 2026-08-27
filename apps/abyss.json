@@ -16,15 +16,21 @@
   "requirements": "Not specified",
   "size": 170851730,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1949-abyss.png",
+  "icon": "https://archive.org/download/psvitaalive-abyss/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/1f50ac1c39685271825ed7120317ebfc8c16f703161a10f56e881fa2bbab793b.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/5d4278167d6601b4180325da8428d3112edbdc93714e439e4439b3b811d7a691.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/a367fa534c6178c9e53efdd84366bf7360bacb3e9282195266e584921dd208cf.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/d5c0e53a066e1d16914eeffd875c09334f70dffb65863701e74be854dec8a571.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/1f50ac1c39685271825ed7120317ebfc8c16f703161a10f56e881fa2bbab793b.png"
+    "https://archive.org/download/psvitaalive-abyss/shot_01.png",
+    "https://archive.org/download/psvitaalive-abyss/shot_02.png",
+    "https://archive.org/download/psvitaalive-abyss/shot_03.png",
+    "https://archive.org/download/psvitaalive-abyss/shot_04.png",
+    "https://archive.org/download/psvitaalive-abyss/shot_05.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-abyss/abyss.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Official Website",

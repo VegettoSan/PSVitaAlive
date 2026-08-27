@@ -16,12 +16,18 @@
   "requirements": "Not specified",
   "size": 6026573,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1511-bernard-chronicles.png",
+  "icon": "https://archive.org/download/psvitaalive-bernard-chronicles/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1511-bernard-chronicles.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/bernard.png"
+    "https://archive.org/download/psvitaalive-bernard-chronicles/shot_01.png",
+    "https://archive.org/download/psvitaalive-bernard-chronicles/shot_02.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-bernard-chronicles/bernard-chronicles.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Official Website",

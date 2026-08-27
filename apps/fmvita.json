@@ -17,14 +17,20 @@
   "requirements": "Not specified",
   "size": 2625944,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1401-fmvita.png",
+  "icon": "https://archive.org/download/psvitaalive-fmvita/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/73e553292c53a26594b952a5dcc89b72b81fd2da12ce329bb50edb730ad2adf6.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/43b44c2504fbe224bc80600e8f7c82307157012d1c1c3d5c540a8ea5d8e02030.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/d19ec03230ec71f5b2a941d210f545eeab88d7d08d897e7fd5943f110e53267c.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/7d0f570b39e0e52b8aa352dee6078f318a7f04451e84e2a54074dd04b7f23285.png"
+    "https://archive.org/download/psvitaalive-fmvita/shot_01.png",
+    "https://archive.org/download/psvitaalive-fmvita/shot_02.png",
+    "https://archive.org/download/psvitaalive-fmvita/shot_03.png",
+    "https://archive.org/download/psvitaalive-fmvita/shot_04.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-fmvita/FileManager_v0.6.1.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Release Page",

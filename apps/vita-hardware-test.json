@@ -16,11 +16,17 @@
   "requirements": "Not specified",
   "size": 1821008,
   "status": "Legacy",
-  "icon": "https://www.rinnegatamante.eu/vitadb/icons/603b3bb3f040333bd85f317d4a0f646cae584938d256e940ec629f2daace3f2c.png",
+  "icon": "https://archive.org/download/psvitaalive-vita-hardware-test/icon0.png",
   "screenshots": [
-    "https://www.rinnegatamante.eu/vitadb/screenshots/hwtest.jpg"
+    "https://archive.org/download/psvitaalive-vita-hardware-test/shot_01.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-vita-hardware-test/vita-hardware-test.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Official Website",

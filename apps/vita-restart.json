@@ -16,11 +16,17 @@
   "requirements": "Not specified",
   "size": 24314,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/d05c8c84246800a8f636af29d12a714db9a04b546f62587c0ffca820df60f527.png",
+  "icon": "https://archive.org/download/psvitaalive-vita-restart/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/d05c8c84246800a8f636af29d12a714db9a04b546f62587c0ffca820df60f527.png"
+    "https://archive.org/download/psvitaalive-vita-restart/shot_01.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-vita-restart/vita-restart.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Official Website",

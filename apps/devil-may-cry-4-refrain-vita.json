@@ -18,15 +18,21 @@
   "requirements": "- libshacccg.suprx\n- kubridge.skprx\n- Game Data Files: Android",
   "size": 1258697,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1956-devil-may-cry-4-refrain-vita.png",
+  "icon": "https://archive.org/download/psvitaalive-devil-may-cry-4-refrain-vita/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/7ea8dc859502657562f93e7633da47dd5af89d603179bb1cddc88d2a96c5158b.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/da37405927a648d59b6facbfed9d1ce7fd903ee12d26052649b4356f881bd19e.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/f021b67c4c79bfa0a8f6918d6e590aa5b1a2e1fdcf7e917a623b6ec89e073cdd.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/d763be62846730f7ca6ac06a0f2705fcaa4bd5706a1fafe0a3aab5c3a353af75.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/7ea8dc859502657562f93e7633da47dd5af89d603179bb1cddc88d2a96c5158b.png"
+    "https://archive.org/download/psvitaalive-devil-may-cry-4-refrain-vita/shot_01.png",
+    "https://archive.org/download/psvitaalive-devil-may-cry-4-refrain-vita/shot_02.png",
+    "https://archive.org/download/psvitaalive-devil-may-cry-4-refrain-vita/shot_03.png",
+    "https://archive.org/download/psvitaalive-devil-may-cry-4-refrain-vita/shot_04.png",
+    "https://archive.org/download/psvitaalive-devil-may-cry-4-refrain-vita/shot_05.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-devil-may-cry-4-refrain-vita/devil-may-cry-4-refrain-vita.vpk",
+      "recommended": true
+    },
     {
       "type": "Repository",
       "name": "Repositorio",

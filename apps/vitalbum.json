@@ -16,12 +16,18 @@
   "requirements": "Not specified",
   "size": 1524725,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/39e13379d4af6efccb00c7380b148d7356010208224046d4552c329bb3f8fbbc.png",
+  "icon": "https://archive.org/download/psvitaalive-vitalbum/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c1130ded31f24b0c7a7d45f3b5b825a452a1b025638d016963c9896edc7f136f.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/c1130ded31f24b0c7a7d45f3b5b825a452a1b025638d016963c9896edc7f136f.png"
+    "https://archive.org/download/psvitaalive-vitalbum/shot_01.png",
+    "https://archive.org/download/psvitaalive-vitalbum/shot_02.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-vitalbum/vitalbum.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Release Page",

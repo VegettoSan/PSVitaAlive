@@ -19,15 +19,21 @@
   "requirements": "- libshacccg.suprx\n- kubridge.skprx\n- fd_fix.skprx OR repatch_ex.skprx\n- Game Data Files: Android",
   "size": 23492097,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/ca8052a02233879870cc07a4a92c1d236f000f83e69d0212fde3c8291c2faeb1.png",
+  "icon": "https://archive.org/download/psvitaalive-ff4-vita/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/994784dccb24bd8e4c8c06192fcc7d143d7b024d9dbdea2068683a2eb03e9226.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/b06799c8e6a19fad33ca9c2ba0415862d5777aeb385095c3c709ef4da50af07a.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/a4d2167ed5efd73b3993e191a5ab9aa74e038e5b5a8be84ec2aab645f121bd42.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/a49914f656d542bfe9a9c0ed950efd2fa73d44149f9a356d7f326d699d5d4a06.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/994784dccb24bd8e4c8c06192fcc7d143d7b024d9dbdea2068683a2eb03e9226.png"
+    "https://archive.org/download/psvitaalive-ff4-vita/shot_01.png",
+    "https://archive.org/download/psvitaalive-ff4-vita/shot_02.png",
+    "https://archive.org/download/psvitaalive-ff4-vita/shot_03.png",
+    "https://archive.org/download/psvitaalive-ff4-vita/shot_04.png",
+    "https://archive.org/download/psvitaalive-ff4-vita/shot_05.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-ff4-vita/ff4-vita.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Release Page",

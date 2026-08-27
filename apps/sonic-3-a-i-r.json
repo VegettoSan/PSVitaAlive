@@ -19,15 +19,21 @@
   "requirements": "- libshacccg.suprx\n- Game Data Files: PC/Genesis/MegaDrive",
   "size": 4015203,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/5a69cedcb9274a128f800733c5d8e85d789d9b3358d879e2fec749656551938f.png",
+  "icon": "https://archive.org/download/psvitaalive-sonic-3-a-i-r/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/eda3ee6f62a3b35b8152d557b2420fdbcb9ec72fe2afe6b9e18794f1a260688e.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/7cd011031994080932c84b3610370b42b542b14cf78971ac630f476081b4f17d.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/8c81a50f26bf3e49c6c781c94f24c543f320b58f350d0cb39afa4adde137fc6d.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/eda3ee6f62a3b35b8152d557b2420fdbcb9ec72fe2afe6b9e18794f1a260688e.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/7cd011031994080932c84b3610370b42b542b14cf78971ac630f476081b4f17d.png"
+    "https://archive.org/download/psvitaalive-sonic-3-a-i-r/shot_01.png",
+    "https://archive.org/download/psvitaalive-sonic-3-a-i-r/shot_02.png",
+    "https://archive.org/download/psvitaalive-sonic-3-a-i-r/shot_03.png",
+    "https://archive.org/download/psvitaalive-sonic-3-a-i-r/shot_04.png",
+    "https://archive.org/download/psvitaalive-sonic-3-a-i-r/shot_05.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-sonic-3-a-i-r/sonic-3-a-i-r.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Release Page",

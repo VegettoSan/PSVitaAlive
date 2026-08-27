@@ -16,15 +16,21 @@
   "requirements": "Not specified",
   "size": 952006,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1515-game-of-life.png",
+  "icon": "https://archive.org/download/psvitaalive-game-of-life/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/08a2f439931bb8672835a782257309feb4bae6908301a6c25a11105821b3b2df.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/98bfc8ab476bb9357d013e1632d4bd888d0fc59b1ec0cdbe165beca82f78c3c9.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/cbee73c7f94ea591dd7da12022e089f5afb9c5dfb13b0b8932cdd45786064dd9.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/dac0d4d811b886f24bb041ca2f78f3b8cee8dae71cce5a263a6bd3e33380afe1.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/08a2f439931bb8672835a782257309feb4bae6908301a6c25a11105821b3b2df.png"
+    "https://archive.org/download/psvitaalive-game-of-life/shot_01.png",
+    "https://archive.org/download/psvitaalive-game-of-life/shot_02.png",
+    "https://archive.org/download/psvitaalive-game-of-life/shot_03.png",
+    "https://archive.org/download/psvitaalive-game-of-life/shot_04.png",
+    "https://archive.org/download/psvitaalive-game-of-life/shot_05.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-game-of-life/game-of-life.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Official Website",

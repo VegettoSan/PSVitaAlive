@@ -16,15 +16,21 @@
   "requirements": "Not specified",
   "size": 4209007,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/96718996626f2616dc3256f0b6884b9055b757c54243339ef237f0c9c287758f.png",
+  "icon": "https://archive.org/download/psvitaalive-vita-sketch/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/826da958d6d57be938795743f2d7080ef517119f2e1db65c6583a3be0a13b7ea.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/43d86f8601fe692bd8405cf1d12bea1911072513de4a35044572a287d4ae9efe.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/aa9277437ee1c5124a51bd28172f354bac228816d4e8fc0c4fb89fcbb55f8dc5.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/826da958d6d57be938795743f2d7080ef517119f2e1db65c6583a3be0a13b7ea.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/43d86f8601fe692bd8405cf1d12bea1911072513de4a35044572a287d4ae9efe.png"
+    "https://archive.org/download/psvitaalive-vita-sketch/shot_01.png",
+    "https://archive.org/download/psvitaalive-vita-sketch/shot_02.png",
+    "https://archive.org/download/psvitaalive-vita-sketch/shot_03.png",
+    "https://archive.org/download/psvitaalive-vita-sketch/shot_04.png",
+    "https://archive.org/download/psvitaalive-vita-sketch/shot_05.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-vita-sketch/vita-sketch.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Official Website",

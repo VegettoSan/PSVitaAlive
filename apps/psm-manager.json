@@ -16,11 +16,17 @@
   "requirements": "Not specified",
   "size": 261619,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/0500-psm-manager.png",
+  "icon": "https://archive.org/download/psvitaalive-psm-manager/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/0500-psm-manager.png"
+    "https://archive.org/download/psvitaalive-psm-manager/shot_01.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-psm-manager/PSM_Manager.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Release Page",

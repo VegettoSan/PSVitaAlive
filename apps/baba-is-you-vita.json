@@ -16,15 +16,21 @@
   "requirements": "- kubridge.skprx\n- fd_fix.skprx OR repatch_ex.skprx\n- Game Data Files: Android",
   "size": 1576928,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/081bbddb49010095b45568c128dc3e2144efc2ca9672315ac57101d2563e1e1d.png",
+  "icon": "https://archive.org/download/psvitaalive-baba-is-you-vita/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/99a81e1aa02890eec585bc0eee411d17ff8a10ab5113ad7609125f32d779ae58.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/935e7d3c1edca66f72475a33418cb22ca70c32c2c4888ae305a8a9e2616589b9.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/de5882c9a5d5a4967cc0eb07b4bd4ce8311da736b887c71661b2e0cf546313e3.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/99a81e1aa02890eec585bc0eee411d17ff8a10ab5113ad7609125f32d779ae58.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/935e7d3c1edca66f72475a33418cb22ca70c32c2c4888ae305a8a9e2616589b9.png"
+    "https://archive.org/download/psvitaalive-baba-is-you-vita/shot_01.png",
+    "https://archive.org/download/psvitaalive-baba-is-you-vita/shot_02.png",
+    "https://archive.org/download/psvitaalive-baba-is-you-vita/shot_03.png",
+    "https://archive.org/download/psvitaalive-baba-is-you-vita/shot_04.png",
+    "https://archive.org/download/psvitaalive-baba-is-you-vita/shot_05.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-baba-is-you-vita/baba-is-you-vita.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Release Page",

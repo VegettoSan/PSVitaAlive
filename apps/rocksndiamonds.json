@@ -16,15 +16,21 @@
   "requirements": "- Game Data Files: PC",
   "size": 2814410,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/0386-rocksndiamonds.png",
+  "icon": "https://archive.org/download/psvitaalive-rocksndiamonds/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c434d831c57918e52eb063095767024720fc2535be5184e1f9abafefbfa86738.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/71ccb8851b3841c5e6afbf32224be940512c3f6065daa0552f89e7c2a4a263cb.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/defb8fcb86b8d27b7b860ed8ca0cf73c19644fe372a63d79688da7f0ea7aa677.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/da23bda938831ab03053ff7d5b11fd28158d3ca434617ee903168215925f738b.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/c434d831c57918e52eb063095767024720fc2535be5184e1f9abafefbfa86738.png"
+    "https://archive.org/download/psvitaalive-rocksndiamonds/shot_01.png",
+    "https://archive.org/download/psvitaalive-rocksndiamonds/shot_02.png",
+    "https://archive.org/download/psvitaalive-rocksndiamonds/shot_03.png",
+    "https://archive.org/download/psvitaalive-rocksndiamonds/shot_04.png",
+    "https://archive.org/download/psvitaalive-rocksndiamonds/shot_05.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-rocksndiamonds/rocksndiamonds_vita_1.12.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Release Page",

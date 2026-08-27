@@ -16,15 +16,21 @@
   "requirements": "Not specified",
   "size": 2408396,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/3d9072f5475203ee1026e0b1286d7bf9791de01e46c1350c7fcba853083a9f0d.png",
+  "icon": "https://archive.org/download/psvitaalive-ccleste-vita/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/8724a27d1d9c4b7713ab72a1c3d200434de3c524aea8c013f804c3e05ead1f93.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/343a315cc4a015c9659aca954ed0319a06de57a1bcd1c45f6d60645098b54e66.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/2bb61b064d434d6ab6757d6dd8b8b409c1355382d137e13c8996f9fd97f009b6.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/885df543234596a753c2606ae2f115c4d66b3c9dcd0ccd777bd438a9905546ab.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/8724a27d1d9c4b7713ab72a1c3d200434de3c524aea8c013f804c3e05ead1f93.png"
+    "https://archive.org/download/psvitaalive-ccleste-vita/shot_01.png",
+    "https://archive.org/download/psvitaalive-ccleste-vita/shot_02.png",
+    "https://archive.org/download/psvitaalive-ccleste-vita/shot_03.png",
+    "https://archive.org/download/psvitaalive-ccleste-vita/shot_04.png",
+    "https://archive.org/download/psvitaalive-ccleste-vita/shot_05.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-ccleste-vita/ccleste-vita.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Release Page",

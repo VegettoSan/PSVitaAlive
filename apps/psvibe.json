@@ -16,12 +16,18 @@
   "requirements": "Not specified",
   "size": 159008,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/2451064b14e12d2b4eb2d912f42470ac1ffdd8f282e8a50051286381dbc64b7c.png",
+  "icon": "https://archive.org/download/psvitaalive-psvibe/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/2451064b14e12d2b4eb2d912f42470ac1ffdd8f282e8a50051286381dbc64b7c.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/vibe.jpg"
+    "https://archive.org/download/psvitaalive-psvibe/shot_01.png",
+    "https://archive.org/download/psvitaalive-psvibe/shot_02.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-psvibe/psvibe.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Official Website",

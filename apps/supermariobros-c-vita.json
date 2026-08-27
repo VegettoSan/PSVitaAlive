@@ -16,11 +16,17 @@
   "requirements": "- Game Data Files: NES",
   "size": 1125976,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/72c194f6105329923bd0ff350bba675bee25696477980568e7cf394c60a56645.png",
+  "icon": "https://archive.org/download/psvitaalive-supermariobros-c-vita/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/72c194f6105329923bd0ff350bba675bee25696477980568e7cf394c60a56645.png"
+    "https://archive.org/download/psvitaalive-supermariobros-c-vita/shot_01.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-supermariobros-c-vita/supermariobros-c-vita.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Release Page",

@@ -16,11 +16,18 @@
   "requirements": "Not specified",
   "size": 16584847,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1757-beginning-of-the-end.png",
+  "icon": "https://archive.org/download/psvitaalive-beginning-of-the-end/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1757-beginning-of-the-end.png"
+    "https://archive.org/download/psvitaalive-beginning-of-the-end/shot_01.png"
   ],
-  "links": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-beginning-of-the-end/beginning-of-the-end.vpk",
+      "recommended": true
+    }
+  ],
   "source_name": "VitaHomebrewDB",
   "source_id": "755",
   "source_url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/755-Beginning_of_the_end.vpk",

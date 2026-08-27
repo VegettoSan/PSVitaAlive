@@ -16,15 +16,21 @@
   "requirements": "Not specified",
   "size": 36021422,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1862-vita-reckoning.png",
+  "icon": "https://archive.org/download/psvitaalive-vita-reckoning/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/7bc209c74ac90c8f0241fc5394a0fdb26cc7798edc1332b2e96743263206976b.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/8ac08ecb3b1b5230c1525297dacb8ede3d35877877f5c69ce1172e4d78535af2.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/1bf64213c3c6004938238520e16fedfebd621c3483b256c9bf7e915c96749378.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/7bc209c74ac90c8f0241fc5394a0fdb26cc7798edc1332b2e96743263206976b.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/8ac08ecb3b1b5230c1525297dacb8ede3d35877877f5c69ce1172e4d78535af2.png"
+    "https://archive.org/download/psvitaalive-vita-reckoning/shot_01.png",
+    "https://archive.org/download/psvitaalive-vita-reckoning/shot_02.png",
+    "https://archive.org/download/psvitaalive-vita-reckoning/shot_03.png",
+    "https://archive.org/download/psvitaalive-vita-reckoning/shot_04.png",
+    "https://archive.org/download/psvitaalive-vita-reckoning/shot_05.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-vita-reckoning/vita-reckoning.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Official Website",

@@ -16,12 +16,18 @@
   "requirements": "Not specified",
   "size": 2598037,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1495-tactic-miner.png",
+  "icon": "https://archive.org/download/psvitaalive-tactic-miner/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1495-tactic-miner.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/tactic.png"
+    "https://archive.org/download/psvitaalive-tactic-miner/shot_01.png",
+    "https://archive.org/download/psvitaalive-tactic-miner/shot_02.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-tactic-miner/tactic-miner.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Official Website",

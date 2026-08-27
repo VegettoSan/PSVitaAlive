@@ -17,11 +17,17 @@
   "requirements": "Not specified",
   "size": 121209,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/63af1b0fe121e2e9de3fe8e9b8668aec095bb44b5c1697be40f10b59df133e6f.png",
+  "icon": "https://archive.org/download/psvitaalive-registryeditor-mod/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/63af1b0fe121e2e9de3fe8e9b8668aec095bb44b5c1697be40f10b59df133e6f.png"
+    "https://archive.org/download/psvitaalive-registryeditor-mod/shot_01.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-registryeditor-mod/registryeditor-mod.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Release Page",

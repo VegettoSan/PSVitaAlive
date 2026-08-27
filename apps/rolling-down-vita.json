@@ -16,15 +16,21 @@
   "requirements": "- libshacccg.suprx\n- kubridge.skprx\n- Game Data Files: Android",
   "size": 2769091,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/be64a79ab26ad4454fccc314fa56f124593886aa007c40ad1f3e73173a48e90b.png",
+  "icon": "https://archive.org/download/psvitaalive-rolling-down-vita/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/1dbccd39cd20d0bd467fddd46408a29680812a34f8dfd9ea21ffc00b40fb19d2.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/3a2585899b81eb83d7f6d85d0a28dfa64c9c20011baebccd1649173195b47fab.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/a925575875539e9499831e674301bd875ec1f822765802cbc098e3d547d3abc0.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/1dbccd39cd20d0bd467fddd46408a29680812a34f8dfd9ea21ffc00b40fb19d2.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/3a2585899b81eb83d7f6d85d0a28dfa64c9c20011baebccd1649173195b47fab.png"
+    "https://archive.org/download/psvitaalive-rolling-down-vita/shot_01.png",
+    "https://archive.org/download/psvitaalive-rolling-down-vita/shot_02.png",
+    "https://archive.org/download/psvitaalive-rolling-down-vita/shot_03.png",
+    "https://archive.org/download/psvitaalive-rolling-down-vita/shot_04.png",
+    "https://archive.org/download/psvitaalive-rolling-down-vita/shot_05.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-rolling-down-vita/rolling-down-vita.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Release Page",

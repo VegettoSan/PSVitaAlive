@@ -16,15 +16,21 @@
   "requirements": "Not specified",
   "size": 130049007,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1811-sanicball-psvita.png",
+  "icon": "https://archive.org/download/psvitaalive-sanicball-psvita/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/97a9cab85de03b111ddda6cc95fddfa3e7c2ea01f920629db654cfe6c53c86f8.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/ec9cd080b67e72f8d8a743f98acc65a0c1fb9b829369845ea5a7b3539b1c3946.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/ef5a2ddef15410e294175fc4a79be0e8cb3289fa26c4c3374fbf582bcad5108c.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/97a9cab85de03b111ddda6cc95fddfa3e7c2ea01f920629db654cfe6c53c86f8.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/ec9cd080b67e72f8d8a743f98acc65a0c1fb9b829369845ea5a7b3539b1c3946.png"
+    "https://archive.org/download/psvitaalive-sanicball-psvita/shot_01.png",
+    "https://archive.org/download/psvitaalive-sanicball-psvita/shot_02.png",
+    "https://archive.org/download/psvitaalive-sanicball-psvita/shot_03.png",
+    "https://archive.org/download/psvitaalive-sanicball-psvita/shot_04.png",
+    "https://archive.org/download/psvitaalive-sanicball-psvita/shot_05.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-sanicball-psvita/sanicball-psvita.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Repository",

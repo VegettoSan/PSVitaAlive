@@ -16,12 +16,19 @@
   "requirements": "Not specified",
   "size": 48778063,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1679-river-raid.png",
+  "icon": "https://archive.org/download/psvitaalive-river-raid/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/eb3ebc2e60e7f91f8058a105063edd68750caf4c823fc35d51aaa90d4ee55b6b.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/eb3ebc2e60e7f91f8058a105063edd68750caf4c823fc35d51aaa90d4ee55b6b.png"
+    "https://archive.org/download/psvitaalive-river-raid/shot_01.png",
+    "https://archive.org/download/psvitaalive-river-raid/shot_02.png"
   ],
-  "links": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-river-raid/river-raid.vpk",
+      "recommended": true
+    }
+  ],
   "source_name": "VitaHomebrewDB",
   "source_id": "548",
   "source_url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/548-RiverRaid.vpk",

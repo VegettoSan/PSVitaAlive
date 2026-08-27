@@ -16,15 +16,21 @@
   "requirements": "- fd_fix.skprx OR repatch_ex.skprx\n- Game Data Files: PC",
   "size": 1883480,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/8efdf42416bd888df3c04c22db50aaec3289f14aeee67d1222a2d44901b98b2c.png",
+  "icon": "https://archive.org/download/psvitaalive-vanillatd/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/02ad7e60dc55b724908cb5123b7aaed570e9a0bf145bbc7802b379814481104d.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/5efc563fef6d8d54dfef7673e54fcf68ca64cdcff2590866367aa522ac0c41bf.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/e1d36f54cf3974ccdc85ddb66a8a0c67243760c33f75a521cff545ecfdbd60fd.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/02ad7e60dc55b724908cb5123b7aaed570e9a0bf145bbc7802b379814481104d.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/5efc563fef6d8d54dfef7673e54fcf68ca64cdcff2590866367aa522ac0c41bf.png"
+    "https://archive.org/download/psvitaalive-vanillatd/shot_01.png",
+    "https://archive.org/download/psvitaalive-vanillatd/shot_02.png",
+    "https://archive.org/download/psvitaalive-vanillatd/shot_03.png",
+    "https://archive.org/download/psvitaalive-vanillatd/shot_04.png",
+    "https://archive.org/download/psvitaalive-vanillatd/shot_05.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-vanillatd/vanillatd.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Official Website",

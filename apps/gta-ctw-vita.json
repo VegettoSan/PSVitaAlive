@@ -18,12 +18,18 @@
   "requirements": "- libshacccg.suprx\n- kubridge.skprx\n- fd_fix.skprx OR repatch_ex.skprx\n- Game Data Files: Android",
   "size": 977940,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/e62e6e8906a7a54edba2fa22b75271eb115e81e4425269a2dd3a607a41aaf382.png",
+  "icon": "https://archive.org/download/psvitaalive-gta-ctw-vita/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c73ed974e57ff2df20dcbbaf9903199099a130ac123b9a244fc7dbc072c97433.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/c73ed974e57ff2df20dcbbaf9903199099a130ac123b9a244fc7dbc072c97433.png"
+    "https://archive.org/download/psvitaalive-gta-ctw-vita/shot_01.png",
+    "https://archive.org/download/psvitaalive-gta-ctw-vita/shot_02.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-gta-ctw-vita/gta-ctw-vita.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Release Page",

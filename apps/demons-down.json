@@ -16,15 +16,21 @@
   "requirements": "Not specified",
   "size": 47759818,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1726-demons-down.png",
+  "icon": "https://archive.org/download/psvitaalive-demons-down/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/225e767b2458d3538190900f569afa4e493a7217590c058208ceb6892f295d89.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/ed0ea46e7d7994e9f6bd4f110577486b5666e35e78e0b14ba40826ab84182ba4.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/5c0325e96fcd885cc9a8354029af1ab75b9fb82f5c2ace8e01717fda0827e45d.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/47b8ee81156dc39a0a6403d9d2e60f0bd53a2e0f8ccf421730445ab0260a537b.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/225e767b2458d3538190900f569afa4e493a7217590c058208ceb6892f295d89.png"
+    "https://archive.org/download/psvitaalive-demons-down/shot_01.png",
+    "https://archive.org/download/psvitaalive-demons-down/shot_02.png",
+    "https://archive.org/download/psvitaalive-demons-down/shot_03.png",
+    "https://archive.org/download/psvitaalive-demons-down/shot_04.png",
+    "https://archive.org/download/psvitaalive-demons-down/shot_05.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-demons-down/demons-down.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Official Website",

@@ -16,14 +16,20 @@
   "requirements": "Not specified",
   "size": 5491546,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1507-epsp-bubble-installer.png",
+  "icon": "https://archive.org/download/psvitaalive-epsp-bubble-installer/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1507-epsp-bubble-installer.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/epsp1.jpg",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/epsp2.jpg",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/epsp3.jpg"
+    "https://archive.org/download/psvitaalive-epsp-bubble-installer/shot_01.png",
+    "https://archive.org/download/psvitaalive-epsp-bubble-installer/shot_02.png",
+    "https://archive.org/download/psvitaalive-epsp-bubble-installer/shot_03.png",
+    "https://archive.org/download/psvitaalive-epsp-bubble-installer/shot_04.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-epsp-bubble-installer/epsp-bubble-installer.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Official Website",

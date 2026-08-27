@@ -16,15 +16,22 @@
   "requirements": "Not specified",
   "size": 62388542,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1804-ghost-of-tsushima-mini-games.png",
+  "icon": "https://archive.org/download/psvitaalive-ghost-of-tsushima-mini-games/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/037886e835ef06b5b84f8da878e3e40ec927d8174653b1a6f6bbc18d840ff1f8.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/a7b9a0b2df46ea04922aeffb39aa3ced2b5121722c30531d412e41fb52f7a33e.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c47ff007f1e9282ff86080c48bd10639cb90fbc085643a828cf2b4fce719ab8c.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/0d2c7aa6a1ada83bdf53dc8f133277056116253a8b1f07361e21e1a526cef672.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/037886e835ef06b5b84f8da878e3e40ec927d8174653b1a6f6bbc18d840ff1f8.png"
+    "https://archive.org/download/psvitaalive-ghost-of-tsushima-mini-games/shot_01.png",
+    "https://archive.org/download/psvitaalive-ghost-of-tsushima-mini-games/shot_02.png",
+    "https://archive.org/download/psvitaalive-ghost-of-tsushima-mini-games/shot_03.png",
+    "https://archive.org/download/psvitaalive-ghost-of-tsushima-mini-games/shot_04.png",
+    "https://archive.org/download/psvitaalive-ghost-of-tsushima-mini-games/shot_05.png"
   ],
-  "links": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-ghost-of-tsushima-mini-games/ghost-of-tsushima-mini-games.vpk",
+      "recommended": true
+    }
+  ],
   "source_name": "VitaHomebrewDB",
   "source_id": "991",
   "source_url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/991-got.vpk",

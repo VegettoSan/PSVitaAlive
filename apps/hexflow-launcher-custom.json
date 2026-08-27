@@ -17,15 +17,21 @@
   "requirements": "Not specified",
   "size": 19836866,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/0587-hexflow-launcher-custom.png",
+  "icon": "https://archive.org/download/psvitaalive-hexflow-launcher-custom/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/edd4216527e5af85e9c106fe03cdd609398e9dabca3816c72e2a026d67168229.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/a9a7b093764c11e929b086600253266b535af11f0a3ef1e0d2d617d7ba03543a.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/ca34a0f6d47307690fc299f3ffc6b2b4e8aa9c87e9d7f3f82511979d0ab4a0a2.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/f34ea7aa98fb0ccee0e56f4dae72c711ed6ba436900a4e0d5bbfa17ef3317d3b.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/edd4216527e5af85e9c106fe03cdd609398e9dabca3816c72e2a026d67168229.png"
+    "https://archive.org/download/psvitaalive-hexflow-launcher-custom/shot_01.png",
+    "https://archive.org/download/psvitaalive-hexflow-launcher-custom/shot_02.png",
+    "https://archive.org/download/psvitaalive-hexflow-launcher-custom/shot_03.png",
+    "https://archive.org/download/psvitaalive-hexflow-launcher-custom/shot_04.png",
+    "https://archive.org/download/psvitaalive-hexflow-launcher-custom/shot_05.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-hexflow-launcher-custom/HexFlow.Custom.2.9.1.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Release Page",

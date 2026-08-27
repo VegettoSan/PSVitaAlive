@@ -16,15 +16,21 @@
   "requirements": "Not specified",
   "size": 2619404,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1576-luavitaseccy.png",
+  "icon": "https://archive.org/download/psvitaalive-luavitaseccy/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/327422e70d168c01082cee7ac08083c9b1e56f2b4331566114ed1c332420d7b3.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/e0f2240c6c115845019d237fd838b96f9bd208c85566b57e5e1b4f7cd06b4cf2.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/58923b3e63962ebb1c15eff3519ad31be09781463a6125b253a1d02e6fdf9716.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/327422e70d168c01082cee7ac08083c9b1e56f2b4331566114ed1c332420d7b3.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/e0f2240c6c115845019d237fd838b96f9bd208c85566b57e5e1b4f7cd06b4cf2.png"
+    "https://archive.org/download/psvitaalive-luavitaseccy/shot_01.png",
+    "https://archive.org/download/psvitaalive-luavitaseccy/shot_02.png",
+    "https://archive.org/download/psvitaalive-luavitaseccy/shot_03.png",
+    "https://archive.org/download/psvitaalive-luavitaseccy/shot_04.png",
+    "https://archive.org/download/psvitaalive-luavitaseccy/shot_05.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-luavitaseccy/luavitaseccy.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Official Website",

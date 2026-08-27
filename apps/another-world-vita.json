@@ -16,12 +16,18 @@
   "requirements": "- Game Data Files: PC",
   "size": 778772,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/cf83893eff0c6f59b638fc6087b0d806d64eeae4faf0a771ab54e6b61cf394e5.png",
+  "icon": "https://archive.org/download/psvitaalive-another-world-vita/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/cf83893eff0c6f59b638fc6087b0d806d64eeae4faf0a771ab54e6b61cf394e5.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/another.png"
+    "https://archive.org/download/psvitaalive-another-world-vita/shot_01.png",
+    "https://archive.org/download/psvitaalive-another-world-vita/shot_02.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-another-world-vita/another-world-vita.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Official Website",

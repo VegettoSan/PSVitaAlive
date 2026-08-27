@@ -16,11 +16,17 @@
   "requirements": "Not specified",
   "size": 68132,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/4d1454e393cae91484c9a2b8203c741062ebda999d0082fcb863ad5df649ed6f.png",
+  "icon": "https://archive.org/download/psvitaalive-copyicons/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/4d1454e393cae91484c9a2b8203c741062ebda999d0082fcb863ad5df649ed6f.png"
+    "https://archive.org/download/psvitaalive-copyicons/shot_01.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-copyicons/copyicons.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Repository",

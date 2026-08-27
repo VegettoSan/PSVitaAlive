@@ -16,15 +16,22 @@
   "requirements": "Not specified",
   "size": 51910042,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1688-baldi-s-basics-classic.png",
+  "icon": "https://archive.org/download/psvitaalive-baldi-s-basics-classic/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/b2e25540b7bcfd71a830f191c44be2901ef6bc96378c88b9744406239ea2b646.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/657aa53d18ebaf27c20f09169503705a38dbfb1198c8628dcf69d48cf9aba033.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/bc7b005cd45d89d90ec4327579b9d633b3a777ee6b75c9159a7f9ab0f7c44284.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/b2e25540b7bcfd71a830f191c44be2901ef6bc96378c88b9744406239ea2b646.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/657aa53d18ebaf27c20f09169503705a38dbfb1198c8628dcf69d48cf9aba033.png"
+    "https://archive.org/download/psvitaalive-baldi-s-basics-classic/shot_01.png",
+    "https://archive.org/download/psvitaalive-baldi-s-basics-classic/shot_02.png",
+    "https://archive.org/download/psvitaalive-baldi-s-basics-classic/shot_03.png",
+    "https://archive.org/download/psvitaalive-baldi-s-basics-classic/shot_04.png",
+    "https://archive.org/download/psvitaalive-baldi-s-basics-classic/shot_05.png"
   ],
-  "links": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-baldi-s-basics-classic/baldi-s-basics-classic.vpk",
+      "recommended": true
+    }
+  ],
   "source_name": "VitaHomebrewDB",
   "source_id": "573",
   "source_url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/573-BaldisBasics.vpk",

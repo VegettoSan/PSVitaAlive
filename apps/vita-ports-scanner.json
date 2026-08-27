@@ -16,11 +16,17 @@
   "requirements": "Not specified",
   "size": 2995698,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/5e90e9b965562d06ce6fe7c8eed3f2f4017165df6a01d49406281e5030b30d6b.png",
+  "icon": "https://archive.org/download/psvitaalive-vita-ports-scanner/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/5e90e9b965562d06ce6fe7c8eed3f2f4017165df6a01d49406281e5030b30d6b.png"
+    "https://archive.org/download/psvitaalive-vita-ports-scanner/shot_01.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-vita-ports-scanner/vita-ports-scanner.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Release Page",

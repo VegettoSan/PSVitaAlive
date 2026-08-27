@@ -16,11 +16,17 @@
   "requirements": "Not specified",
   "size": 312844,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1506-vitascreenflasher.png",
+  "icon": "https://archive.org/download/psvitaalive-vitascreenflasher/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1506-vitascreenflasher.png"
+    "https://archive.org/download/psvitaalive-vitascreenflasher/shot_01.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-vitascreenflasher/vitascreenflasher.vpk",
+      "recommended": true
+    },
     {
       "type": "Repository",
       "name": "Repositorio",

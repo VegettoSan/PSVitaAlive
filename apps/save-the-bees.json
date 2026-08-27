@@ -16,14 +16,20 @@
   "requirements": "Not specified",
   "size": 18663017,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/6336fccc68c899396a20f0187bc0977df30b02010cef127597614127c69db0c8.png",
+  "icon": "https://archive.org/download/psvitaalive-save-the-bees/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/3f81f2f61a670a9fcce77e0a1b6f39be3d531bae27195e45627f686281fcca4e.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/5d22d478eff4518d92a2d840b76af8833d9957fc7e3887c12f88a2a06c3202f9.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/3f81f2f61a670a9fcce77e0a1b6f39be3d531bae27195e45627f686281fcca4e.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/5d22d478eff4518d92a2d840b76af8833d9957fc7e3887c12f88a2a06c3202f9.png"
+    "https://archive.org/download/psvitaalive-save-the-bees/shot_01.png",
+    "https://archive.org/download/psvitaalive-save-the-bees/shot_02.png",
+    "https://archive.org/download/psvitaalive-save-the-bees/shot_03.png",
+    "https://archive.org/download/psvitaalive-save-the-bees/shot_04.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-save-the-bees/save-the-bees.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Release Page",

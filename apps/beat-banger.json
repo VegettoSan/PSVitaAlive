@@ -16,15 +16,21 @@
   "requirements": "- Game Data Files: Steam",
   "size": 17276241,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/3db2bd2e604a08a39e8f2fcc197c6e02658c9817e8019b6500fdfe4cc4199465.png",
+  "icon": "https://archive.org/download/psvitaalive-beat-banger/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/f8844179fd9272cfe94e969f6a2ed63d24cc7f125f21e9b0e38568fa96506bfe.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/3ab9d650d2aa1ca864f74c0079fcb27277ab8eaa0d6a4086ffc2d24ca545b50b.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/d996dfab7c3845fc0c572dd1a961b60a219b630cc513531a54f90da071cc71e2.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/f8844179fd9272cfe94e969f6a2ed63d24cc7f125f21e9b0e38568fa96506bfe.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/3ab9d650d2aa1ca864f74c0079fcb27277ab8eaa0d6a4086ffc2d24ca545b50b.png"
+    "https://archive.org/download/psvitaalive-beat-banger/shot_01.png",
+    "https://archive.org/download/psvitaalive-beat-banger/shot_02.png",
+    "https://archive.org/download/psvitaalive-beat-banger/shot_03.png",
+    "https://archive.org/download/psvitaalive-beat-banger/shot_04.png",
+    "https://archive.org/download/psvitaalive-beat-banger/shot_05.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-beat-banger/beat-banger.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Repository",

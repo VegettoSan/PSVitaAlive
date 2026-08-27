@@ -16,15 +16,21 @@
   "requirements": "Not specified",
   "size": 4635077,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/0552-opensupaplex.png",
+  "icon": "https://archive.org/download/psvitaalive-opensupaplex/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/182f3f72612fd93b5296cdfb16cb90dc71f7cc1537b0d5fb0161f22656a380cb.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/80be146ef52ef3379568abd078a8333cdd5ba946f8e2262ee58107acc9c4d9ad.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/0bf409d3456339d9817fb36b9ddd16347fdb661d6f67189deb1c113ed8dc569f.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/a9e838cba857280ff85ad6489b121af558876e4514fa7d33f15b8ece2d2bf74d.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/182f3f72612fd93b5296cdfb16cb90dc71f7cc1537b0d5fb0161f22656a380cb.png"
+    "https://archive.org/download/psvitaalive-opensupaplex/shot_01.png",
+    "https://archive.org/download/psvitaalive-opensupaplex/shot_02.png",
+    "https://archive.org/download/psvitaalive-opensupaplex/shot_03.png",
+    "https://archive.org/download/psvitaalive-opensupaplex/shot_04.png",
+    "https://archive.org/download/psvitaalive-opensupaplex/shot_05.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-opensupaplex/OpenSupaplex.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Release Page",

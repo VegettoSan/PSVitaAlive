@@ -16,12 +16,18 @@
   "requirements": "- libshacccg.suprx",
   "size": 2394073,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1025-vita-webdav-client.png",
+  "icon": "https://archive.org/download/psvitaalive-vita-webdav-client/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/237aca5b0e0f39824dcc9e988998b0270e5f8c51a97b6248d0d10260182fc275.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/237aca5b0e0f39824dcc9e988998b0270e5f8c51a97b6248d0d10260182fc275.png"
+    "https://archive.org/download/psvitaalive-vita-webdav-client/shot_01.png",
+    "https://archive.org/download/psvitaalive-vita-webdav-client/shot_02.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-vita-webdav-client/vita-webdav-client.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Release Page",

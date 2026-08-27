@@ -17,15 +17,21 @@
   "requirements": "Not specified",
   "size": 46264686,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1920-bigboyboxing-vita.png",
+  "icon": "https://archive.org/download/psvitaalive-bigboyboxing-vita/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/847e6f93aa86b744fdbec421c2a30ef01e0ce41826c6a9d59001daab25444668.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/2b409b88a58561e30f83f743947d2616e3b64ba2b23f7f4653c31293611523ad.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/38e1de7ace60022b46cc48d220e8ee60884f44e53c13bfb7fce6ecdcfa5c585b.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/847e6f93aa86b744fdbec421c2a30ef01e0ce41826c6a9d59001daab25444668.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/2b409b88a58561e30f83f743947d2616e3b64ba2b23f7f4653c31293611523ad.png"
+    "https://archive.org/download/psvitaalive-bigboyboxing-vita/shot_01.png",
+    "https://archive.org/download/psvitaalive-bigboyboxing-vita/shot_02.png",
+    "https://archive.org/download/psvitaalive-bigboyboxing-vita/shot_03.png",
+    "https://archive.org/download/psvitaalive-bigboyboxing-vita/shot_04.png",
+    "https://archive.org/download/psvitaalive-bigboyboxing-vita/shot_05.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-bigboyboxing-vita/bigboyboxing-vita.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Official Website",

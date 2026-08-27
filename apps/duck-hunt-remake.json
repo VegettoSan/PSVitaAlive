@@ -16,12 +16,19 @@
   "requirements": "Not specified",
   "size": 32453176,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1652-duck-hunt-remake.png",
+  "icon": "https://archive.org/download/psvitaalive-duck-hunt-remake/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/f2390c1c06e1a44611bf0febf59bec37b7d7f6f3e434d6066d3705e3ece30c08.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/f2390c1c06e1a44611bf0febf59bec37b7d7f6f3e434d6066d3705e3ece30c08.png"
+    "https://archive.org/download/psvitaalive-duck-hunt-remake/shot_01.png",
+    "https://archive.org/download/psvitaalive-duck-hunt-remake/shot_02.png"
   ],
-  "links": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-duck-hunt-remake/duck-hunt-remake.vpk",
+      "recommended": true
+    }
+  ],
   "source_name": "VitaHomebrewDB",
   "source_id": "483",
   "source_url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/483-Duck_20Hunt_20Remake.vpk",

@@ -16,13 +16,19 @@
   "requirements": "- libshacccg.suprx\n- kubridge.skprx\n- Game Data Files: Android",
   "size": 2567578,
   "status": "Legacy",
-  "icon": "https://www.rinnegatamante.eu/vitadb/icons/a3e2c3b210c6c1b938b0a840009078e78c501f16a2ed78e233958183322d9382.png",
+  "icon": "https://archive.org/download/psvitaalive-zenonia-1-remastered-vita/icon0.png",
   "screenshots": [
-    "https://www.rinnegatamante.eu/vitadb/screenshots/e00365962f9913b36fba1c6c26af81a0086cd73a2ad955f87f6966e21a4d977c.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/994323a3c403a2ca1e37150ecdd7c8dfef1e42b281516942eec37cc7c7243630.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/bd23510e5b75c91160dcc905a776092d1b21bf64b69f5961965b367190f3dcfe.png"
+    "https://archive.org/download/psvitaalive-zenonia-1-remastered-vita/shot_01.png",
+    "https://archive.org/download/psvitaalive-zenonia-1-remastered-vita/shot_02.png",
+    "https://archive.org/download/psvitaalive-zenonia-1-remastered-vita/shot_03.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-zenonia-1-remastered-vita/zenonia-1-remastered-vita.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Release Page",

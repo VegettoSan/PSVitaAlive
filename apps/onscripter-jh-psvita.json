@@ -16,14 +16,20 @@
   "requirements": "Not specified",
   "size": 10676517,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/98f789e5c84ab6c2b475c2220b5163ded98222a6e4cef110a4702d7d9a519726.png",
+  "icon": "https://archive.org/download/psvitaalive-onscripter-jh-psvita/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/fbbc3de0bc219bc8b211aa13b2293b0bfd7ca57fa8d41a2a58e383cb1b642aa5.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/f2c01ecd60af8613ecaf056a70174789cf500b4e424a713ffaa830f46e2f6c22.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/fbbc3de0bc219bc8b211aa13b2293b0bfd7ca57fa8d41a2a58e383cb1b642aa5.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/f2c01ecd60af8613ecaf056a70174789cf500b4e424a713ffaa830f46e2f6c22.png"
+    "https://archive.org/download/psvitaalive-onscripter-jh-psvita/shot_01.png",
+    "https://archive.org/download/psvitaalive-onscripter-jh-psvita/shot_02.png",
+    "https://archive.org/download/psvitaalive-onscripter-jh-psvita/shot_03.png",
+    "https://archive.org/download/psvitaalive-onscripter-jh-psvita/shot_04.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-onscripter-jh-psvita/onscripter-jh-psvita.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Release Page",

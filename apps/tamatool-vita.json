@@ -16,14 +16,20 @@
   "requirements": "- Game Data Files: Tamagotchi",
   "size": 3748503,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/aaee2c6e873f3eef8026e6b8ff6366f6c38d7f71043d7ae46d58cb2a5cdbe213.png",
+  "icon": "https://archive.org/download/psvitaalive-tamatool-vita/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/727607add71b2efb029dac8f309f3569283626708ef1267acb762b7ac2d236f7.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/32594b0beed6187d3323eeca2046de9ab30dc1a7a9ccc09867a8fe41d97a2da0.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/727607add71b2efb029dac8f309f3569283626708ef1267acb762b7ac2d236f7.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/32594b0beed6187d3323eeca2046de9ab30dc1a7a9ccc09867a8fe41d97a2da0.png"
+    "https://archive.org/download/psvitaalive-tamatool-vita/shot_01.png",
+    "https://archive.org/download/psvitaalive-tamatool-vita/shot_02.png",
+    "https://archive.org/download/psvitaalive-tamatool-vita/shot_03.png",
+    "https://archive.org/download/psvitaalive-tamatool-vita/shot_04.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-tamatool-vita/tamatool-vita.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Release Page",

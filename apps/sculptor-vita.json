@@ -16,11 +16,17 @@
   "requirements": "Not specified",
   "size": 43577856,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/299f913c1e6bdea4ec60fc4e227fb6f9c620256214d1f9a844ad92501707de25.png",
+  "icon": "https://archive.org/download/psvitaalive-sculptor-vita/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/299f913c1e6bdea4ec60fc4e227fb6f9c620256214d1f9a844ad92501707de25.png"
+    "https://archive.org/download/psvitaalive-sculptor-vita/shot_01.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-sculptor-vita/sculptor-vita.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Repository",

@@ -18,15 +18,21 @@
   "requirements": "- libshacccg.suprx\n- kubridge.skprx\n- Game Data Files: Android",
   "size": 3264037,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/b759f6ff9116321a5a7b4d6f27106ffee0ab2d8978715bbabc99d128649664fc.png",
+  "icon": "https://archive.org/download/psvitaalive-fahrenheit-vita/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c395b1068c74f953f59b93e6ce27b955ce4c9079fe0283e96dbe9c20b430981c.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/225a569b46d5ee07720eb2a87254cf611f4b8b2f6722cfdfbccdc27eab363f9e.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/d1bb9e75a63cfc6cfc8e1b36c4e98e8c696dac5dce8453fcbad30cb3ebe82c5a.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/adc196fda85b6640f45fe7aecc0c4aef801f40732240d646c69d95d3adc1a880.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/c395b1068c74f953f59b93e6ce27b955ce4c9079fe0283e96dbe9c20b430981c.png"
+    "https://archive.org/download/psvitaalive-fahrenheit-vita/shot_01.png",
+    "https://archive.org/download/psvitaalive-fahrenheit-vita/shot_02.png",
+    "https://archive.org/download/psvitaalive-fahrenheit-vita/shot_03.png",
+    "https://archive.org/download/psvitaalive-fahrenheit-vita/shot_04.png",
+    "https://archive.org/download/psvitaalive-fahrenheit-vita/shot_05.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-fahrenheit-vita/fahrenheit-vita.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Release Page",

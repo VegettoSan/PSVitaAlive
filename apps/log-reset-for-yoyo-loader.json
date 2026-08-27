@@ -16,11 +16,17 @@
   "requirements": "Not specified",
   "size": 3484788,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/86deafcafad926fa981d13dced1a8eeb9be2a7e9637e8696782f46be31d54e23.png",
+  "icon": "https://archive.org/download/psvitaalive-log-reset-for-yoyo-loader/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/86deafcafad926fa981d13dced1a8eeb9be2a7e9637e8696782f46be31d54e23.png"
+    "https://archive.org/download/psvitaalive-log-reset-for-yoyo-loader/shot_01.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-log-reset-for-yoyo-loader/log-reset-for-yoyo-loader.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Release Page",

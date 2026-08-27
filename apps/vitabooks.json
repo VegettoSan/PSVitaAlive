@@ -16,12 +16,19 @@
   "requirements": "Not specified",
   "size": 2140210,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1559-vitabooks.png",
+  "icon": "https://archive.org/download/psvitaalive-vitabooks/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/f29fa64782a1968fec90de5fac4ba4824f97b543ad0bb41d8e72927d167a9c34.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/f29fa64782a1968fec90de5fac4ba4824f97b543ad0bb41d8e72927d167a9c34.png"
+    "https://archive.org/download/psvitaalive-vitabooks/shot_01.png",
+    "https://archive.org/download/psvitaalive-vitabooks/shot_02.png"
   ],
-  "links": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-vitabooks/vitabooks.vpk",
+      "recommended": true
+    }
+  ],
   "source_name": "VitaHomebrewDB",
   "source_id": "274",
   "source_url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/274-VitaBooks.vpk",

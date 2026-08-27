@@ -16,15 +16,21 @@
   "requirements": "Not specified",
   "size": 5595880,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1648-chro-mono-2.png",
+  "icon": "https://archive.org/download/psvitaalive-chro-mono-2/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/466bcc292e32a12c0d300a5bdb8d91b367ed6ab60ec3c1372d732c5c7447cd1f.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/41eec3b8925a53fd6d7139e48b4a5731bb769de73cd4e2a146d7f7b5c76f27b1.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/ef8476aaaf6543906144986361d67c4984bcea1c0d6b71cf50bbea0a1268fde4.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/47d07ebdb7cae669c824d495ac5a1e51d8ec9f648365e82862198e627d1080c5.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/466bcc292e32a12c0d300a5bdb8d91b367ed6ab60ec3c1372d732c5c7447cd1f.png"
+    "https://archive.org/download/psvitaalive-chro-mono-2/shot_01.png",
+    "https://archive.org/download/psvitaalive-chro-mono-2/shot_02.png",
+    "https://archive.org/download/psvitaalive-chro-mono-2/shot_03.png",
+    "https://archive.org/download/psvitaalive-chro-mono-2/shot_04.png",
+    "https://archive.org/download/psvitaalive-chro-mono-2/shot_05.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-chro-mono-2/chro-mono-2.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Official Website",

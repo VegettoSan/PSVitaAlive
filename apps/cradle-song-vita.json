@@ -16,11 +16,17 @@
   "requirements": "Not specified",
   "size": 127068435,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/14bc0ac1b9ea8badf7a15c81a252ff958a81a86db0df5ef2d6bd237f1e6e91c9.png",
+  "icon": "https://archive.org/download/psvitaalive-cradle-song-vita/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/14bc0ac1b9ea8badf7a15c81a252ff958a81a86db0df5ef2d6bd237f1e6e91c9.png"
+    "https://archive.org/download/psvitaalive-cradle-song-vita/shot_01.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-cradle-song-vita/cradle-song-vita.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Repository",

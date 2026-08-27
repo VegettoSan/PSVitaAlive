@@ -16,12 +16,18 @@
   "requirements": "Not specified",
   "size": 1115769,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/6f9a852ed2e15001bf96a8c8f142aeb59ecc51b56bcb233d96a3e9774fec2667.png",
+  "icon": "https://archive.org/download/psvitaalive-vitawolfen/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/6f9a852ed2e15001bf96a8c8f142aeb59ecc51b56bcb233d96a3e9774fec2667.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/wolf3d.jpeg"
+    "https://archive.org/download/psvitaalive-vitawolfen/shot_01.png",
+    "https://archive.org/download/psvitaalive-vitawolfen/shot_02.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-vitawolfen/vitawolfen.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Official Website",

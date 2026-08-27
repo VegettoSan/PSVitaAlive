@@ -16,14 +16,20 @@
   "requirements": "Not specified",
   "size": 3918135,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/e190633339b2a98f6aac63d5012c7ff4d23fc912650ede28ec25e31fe6dcc567.png",
+  "icon": "https://archive.org/download/psvitaalive-vita-deck/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/3db6df03c8e2e19609f98c9f135c7546ba63a454f3b4993c1fe3922b377966b9.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/45b1901cb7aed793d7fd343bbcfd9c3b342bab275115650a03960c3e5e11d3c2.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/3db6df03c8e2e19609f98c9f135c7546ba63a454f3b4993c1fe3922b377966b9.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/45b1901cb7aed793d7fd343bbcfd9c3b342bab275115650a03960c3e5e11d3c2.png"
+    "https://archive.org/download/psvitaalive-vita-deck/shot_01.png",
+    "https://archive.org/download/psvitaalive-vita-deck/shot_02.png",
+    "https://archive.org/download/psvitaalive-vita-deck/shot_03.png",
+    "https://archive.org/download/psvitaalive-vita-deck/shot_04.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-vita-deck/vita-deck.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Official Website",

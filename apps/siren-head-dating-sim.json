@@ -16,15 +16,21 @@
   "requirements": "Not specified",
   "size": 31793401,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1868-siren-head-dating-sim.png",
+  "icon": "https://archive.org/download/psvitaalive-siren-head-dating-sim/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/925bf61b0f81562a8a67936e77911c9f99b1dad0daf79ebb2e070c0d7715b687.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/98016e55c33334770c4a9f4a5ed92eee19d3fdfb56277f1cecd966ec88bb34cb.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/94ee9ddbda5226296041d073d6cecdea7926032958a1f4b359cab1b013449c86.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/925bf61b0f81562a8a67936e77911c9f99b1dad0daf79ebb2e070c0d7715b687.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/98016e55c33334770c4a9f4a5ed92eee19d3fdfb56277f1cecd966ec88bb34cb.png"
+    "https://archive.org/download/psvitaalive-siren-head-dating-sim/shot_01.png",
+    "https://archive.org/download/psvitaalive-siren-head-dating-sim/shot_02.png",
+    "https://archive.org/download/psvitaalive-siren-head-dating-sim/shot_03.png",
+    "https://archive.org/download/psvitaalive-siren-head-dating-sim/shot_04.png",
+    "https://archive.org/download/psvitaalive-siren-head-dating-sim/shot_05.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-siren-head-dating-sim/siren-head-dating-sim.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Official Website",

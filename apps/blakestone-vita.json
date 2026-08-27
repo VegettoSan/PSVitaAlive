@@ -17,11 +17,17 @@
   "requirements": "Not specified",
   "size": 1661963,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/0393-bstone-vita.png",
+  "icon": "https://archive.org/download/psvitaalive-blakestone-vita/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/0393-bstone-vita.png"
+    "https://archive.org/download/psvitaalive-blakestone-vita/shot_01.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-blakestone-vita/BlakeStone.0.5.1.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Release Page",

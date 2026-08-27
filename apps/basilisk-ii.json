@@ -17,15 +17,21 @@
   "requirements": "Not specified",
   "size": 1416438,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/0200-basilisk-ii.png",
+  "icon": "https://archive.org/download/psvitaalive-basilisk-ii/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/2e4d7060b1216b4d92d6eb9e78e108d09de7d64a6f94bce47e7cbfb30c790e15.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/5b0ac1b74dc8bed852fb7bf865d0275ee6d1617110acdb248bb0c018d1b81569.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/fbcb38e146eca817a68ef96edd1de4dc3b8f1eb92fa54643f01c67b2ff6d41bb.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/basilisk.jpg",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/2e4d7060b1216b4d92d6eb9e78e108d09de7d64a6f94bce47e7cbfb30c790e15.png"
+    "https://archive.org/download/psvitaalive-basilisk-ii/shot_01.png",
+    "https://archive.org/download/psvitaalive-basilisk-ii/shot_02.png",
+    "https://archive.org/download/psvitaalive-basilisk-ii/shot_03.png",
+    "https://archive.org/download/psvitaalive-basilisk-ii/shot_04.png",
+    "https://archive.org/download/psvitaalive-basilisk-ii/shot_05.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-basilisk-ii/BasiliskII_Vita_v0.33h.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Release Page",

@@ -16,15 +16,21 @@
   "requirements": "- libshacccg.suprx\n- kubridge.skprx\n- Game Data Files: Android",
   "size": 2840775,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/5c2b7378b0d6602cf58012560ba39ae61f2ce25de272a91642381c36ea590f1b.png",
+  "icon": "https://archive.org/download/psvitaalive-mad-bullets-vita/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/47cc37cf64deb38449691f0774c3815a6135cd5701bb8cc1ad949dea86f53d2d.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/d1f4f10c1d841ec417c8fe9721002136e122e6f98938597737f65896e0bfa600.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/44526100fcae22117d675e97098a0c20b490dd592106fe3cca2dff0c8f2b2c7f.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/d2b9542b8a4466ebe356fdcb7b5c3040343b7e9ddf3ef02303a41077262ed662.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/47cc37cf64deb38449691f0774c3815a6135cd5701bb8cc1ad949dea86f53d2d.png"
+    "https://archive.org/download/psvitaalive-mad-bullets-vita/shot_01.png",
+    "https://archive.org/download/psvitaalive-mad-bullets-vita/shot_02.png",
+    "https://archive.org/download/psvitaalive-mad-bullets-vita/shot_03.png",
+    "https://archive.org/download/psvitaalive-mad-bullets-vita/shot_04.png",
+    "https://archive.org/download/psvitaalive-mad-bullets-vita/shot_05.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-mad-bullets-vita/mad-bullets-vita.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Release Page",

@@ -16,15 +16,22 @@
   "requirements": "Not specified",
   "size": 104058997,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1638-speedrun-vita.png",
+  "icon": "https://archive.org/download/psvitaalive-speedrun-vita/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/d894c9fb7b0293b8e8999a760af00636f07c7b5ffb5a05b4f98bc248f3beaca0.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/35988eef6541623db004d2eef07dd64bce1a779ede80f0b26cdaedd8784f040f.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/4256188c3dd4f7fd82438096c9f0479ab6e345c6c9a8424fe4d973a5ae9e87d2.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/9a9c1cb05f8d8b87d4f2dbfa9068e04603381cd3211025346ee5db3298e04041.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/d894c9fb7b0293b8e8999a760af00636f07c7b5ffb5a05b4f98bc248f3beaca0.png"
+    "https://archive.org/download/psvitaalive-speedrun-vita/shot_01.png",
+    "https://archive.org/download/psvitaalive-speedrun-vita/shot_02.png",
+    "https://archive.org/download/psvitaalive-speedrun-vita/shot_03.png",
+    "https://archive.org/download/psvitaalive-speedrun-vita/shot_04.png",
+    "https://archive.org/download/psvitaalive-speedrun-vita/shot_05.png"
   ],
-  "links": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-speedrun-vita/speedrun-vita.vpk",
+      "recommended": true
+    }
+  ],
   "source_name": "VitaHomebrewDB",
   "source_id": "464",
   "source_url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/464-Speedrun_Vita.vpk",

@@ -16,11 +16,17 @@
   "requirements": "- YoYo Loader\n- Game Data Files: PC Steam",
   "size": 5131431,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/4503316b47e7c3cf86c1185d500cd22461370d9f58da8c8bc8447ba1b3c9b77d.png",
+  "icon": "https://archive.org/download/psvitaalive-csd2vita/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/4503316b47e7c3cf86c1185d500cd22461370d9f58da8c8bc8447ba1b3c9b77d.png"
+    "https://archive.org/download/psvitaalive-csd2vita/shot_01.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-csd2vita/csd2vita.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Repository",

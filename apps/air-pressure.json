@@ -16,12 +16,18 @@
   "requirements": "Not specified",
   "size": 26852528,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/3feef43e4c8f91e0a52d0b0b0b25e7d22027b747ac07b78198d1589dd7af2e4f.png",
+  "icon": "https://archive.org/download/psvitaalive-air-pressure/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/956311db4fbb821921a3a0e53cec7950d9df3252d809b7a48c242efe1f28fbae.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/956311db4fbb821921a3a0e53cec7950d9df3252d809b7a48c242efe1f28fbae.png"
+    "https://archive.org/download/psvitaalive-air-pressure/shot_01.png",
+    "https://archive.org/download/psvitaalive-air-pressure/shot_02.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-air-pressure/air-pressure.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Release Page",

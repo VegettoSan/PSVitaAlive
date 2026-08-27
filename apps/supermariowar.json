@@ -16,15 +16,21 @@
   "requirements": "Not specified",
   "size": 2346872,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1614-supermariowar.png",
+  "icon": "https://archive.org/download/psvitaalive-supermariowar/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/56738538c2977007535a9075adf60d8a98011b63d5fd9edd32b82220fed5c8c8.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/dd4d771f9e72a4662de4b32579077e1511841ba53b4f064b272757f43d458732.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/ba6e3f33f0a4a8bc04b043e20183aef38f9a78f32644ae0818d3b4fbcf6fc0b8.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/0e5cb067a9c788d2a518d995b4de72f757babdc939fa5d9e11555788bd0faf2c.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/56738538c2977007535a9075adf60d8a98011b63d5fd9edd32b82220fed5c8c8.png"
+    "https://archive.org/download/psvitaalive-supermariowar/shot_01.png",
+    "https://archive.org/download/psvitaalive-supermariowar/shot_02.png",
+    "https://archive.org/download/psvitaalive-supermariowar/shot_03.png",
+    "https://archive.org/download/psvitaalive-supermariowar/shot_04.png",
+    "https://archive.org/download/psvitaalive-supermariowar/shot_05.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-supermariowar/supermariowar.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Official Website",

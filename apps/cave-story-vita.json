@@ -16,14 +16,20 @@
   "requirements": "Not specified",
   "size": 2366335,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1897-cave-story-vita.png",
+  "icon": "https://archive.org/download/psvitaalive-cave-story-vita/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/e2882f7c3fa78035f704c73f19c7f4d9f449da28540c3a26c3eb19792d3cd409.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/305b28ab81747656847aba6fdb557c129a1a49239f0c447aa40ed3afd78c2b76.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/e2882f7c3fa78035f704c73f19c7f4d9f449da28540c3a26c3eb19792d3cd409.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/305b28ab81747656847aba6fdb557c129a1a49239f0c447aa40ed3afd78c2b76.png"
+    "https://archive.org/download/psvitaalive-cave-story-vita/shot_01.png",
+    "https://archive.org/download/psvitaalive-cave-story-vita/shot_02.png",
+    "https://archive.org/download/psvitaalive-cave-story-vita/shot_03.png",
+    "https://archive.org/download/psvitaalive-cave-story-vita/shot_04.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-cave-story-vita/cave-story-vita.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Official Website",

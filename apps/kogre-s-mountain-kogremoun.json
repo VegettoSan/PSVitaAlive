@@ -16,11 +16,17 @@
   "requirements": "Not specified",
   "size": 48613219,
   "status": "Legacy",
-  "icon": "https://www.rinnegatamante.eu/vitadb/icons/e98c35f71fcbad3ee5b36b20f93e480c0a94462a78a3a1004c45847fc738fb17.png",
+  "icon": "https://archive.org/download/psvitaalive-kogre-s-mountain-kogremoun/icon0.png",
   "screenshots": [
-    "https://www.rinnegatamante.eu/vitadb/screenshots/9c0e1c954aea67be22c6dfd28f6acf139f8200d0069474d3b4bbde3307481bfc.png"
+    "https://archive.org/download/psvitaalive-kogre-s-mountain-kogremoun/shot_01.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-kogre-s-mountain-kogremoun/kogre-s-mountain-kogremoun.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Official Website",

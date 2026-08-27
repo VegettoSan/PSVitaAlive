@@ -16,13 +16,19 @@
   "requirements": "Not specified",
   "size": 826346,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/987247d98ae1b48517443c239e9a7bb0c08bc0a5433faa0183378fc3c1395125.png",
+  "icon": "https://archive.org/download/psvitaalive-woozyllm/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/987247d98ae1b48517443c239e9a7bb0c08bc0a5433faa0183378fc3c1395125.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/aae458fb8b406fa61b61565b82b5a07058dd3fed0445ed650a03b82758b50b69.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/5b358fe22df802e97e224ce5528993add26be51e4a86517ed9de95e6230b04c6.png"
+    "https://archive.org/download/psvitaalive-woozyllm/shot_01.png",
+    "https://archive.org/download/psvitaalive-woozyllm/shot_02.png",
+    "https://archive.org/download/psvitaalive-woozyllm/shot_03.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-woozyllm/woozyllm.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Release Page",

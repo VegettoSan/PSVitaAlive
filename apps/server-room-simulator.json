@@ -17,11 +17,17 @@
   "requirements": "Not specified",
   "size": 39072326,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1460-server-room-simulator.png",
+  "icon": "https://archive.org/download/psvitaalive-server-room-simulator/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1460-server-room-simulator.png"
+    "https://archive.org/download/psvitaalive-server-room-simulator/shot_01.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-server-room-simulator/server_room_simulator.vpk",
+      "recommended": true
+    },
     {
       "type": "Repository",
       "name": "Repositorio",

@@ -16,13 +16,19 @@
   "requirements": "- libshacccg.suprx\n- kubridge.skprx\n- Game Data Files: Android",
   "size": 2395770,
   "status": "Legacy",
-  "icon": "https://www.rinnegatamante.eu/vitadb/icons/3a3ced390d383e119905079fc2cd5ac520414ab8b1022760183aa1840423b49c.png",
+  "icon": "https://archive.org/download/psvitaalive-destinia-vita/icon0.png",
   "screenshots": [
-    "https://www.rinnegatamante.eu/vitadb/screenshots/4167f58761c6b098bb5607e531ffd553b3067ad3c97fea836bdee366167dc5a8.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/26dc9b10c2c17159501897755a30b9d30212dd00a7c31c7de04a42849aa2bf2c.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/bceeea14cfc64dda471dde0537657083acdc7346634c66c00a6c5fd902588cf6.png"
+    "https://archive.org/download/psvitaalive-destinia-vita/shot_01.png",
+    "https://archive.org/download/psvitaalive-destinia-vita/shot_02.png",
+    "https://archive.org/download/psvitaalive-destinia-vita/shot_03.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-destinia-vita/destinia-vita.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Release Page",

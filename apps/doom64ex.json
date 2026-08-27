@@ -16,15 +16,21 @@
   "requirements": "- libshacccg.suprx.\n- Game Data Files: PC Steam or N64.",
   "size": 1955832,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/f67ac4bb0c999845ef651fafca2a5f37528aef7d9c34975b2395585d05692b02.png",
+  "icon": "https://archive.org/download/psvitaalive-doom64ex/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/9a65d0b245c5d91b800074020bb86aa8cd34279fca95d68e4a74b7ba3a857911.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c841d6d4845b73b2dcb0538488ba43c361efdc2edef4e347d70f7c2b75d6f389.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c0e60cee39fce71017c5552221e817d6108f1caff00af1d8d2800839ade39c74.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/bcb86869de31db57abf50c3b7a9ab77d1b30d50cc143d2918714c8893b2e7a46.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/9a65d0b245c5d91b800074020bb86aa8cd34279fca95d68e4a74b7ba3a857911.png"
+    "https://archive.org/download/psvitaalive-doom64ex/shot_01.png",
+    "https://archive.org/download/psvitaalive-doom64ex/shot_02.png",
+    "https://archive.org/download/psvitaalive-doom64ex/shot_03.png",
+    "https://archive.org/download/psvitaalive-doom64ex/shot_04.png",
+    "https://archive.org/download/psvitaalive-doom64ex/shot_05.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-doom64ex/doom64ex.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Official Website",

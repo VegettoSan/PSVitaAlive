@@ -17,11 +17,17 @@
   "requirements": "Not specified",
   "size": 627079,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/0015-breakveetout.png",
+  "icon": "https://archive.org/download/psvitaalive-breakveetout-bvo000001/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/0015-breakveetout.png"
+    "https://archive.org/download/psvitaalive-breakveetout-bvo000001/shot_01.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-breakveetout-bvo000001/BreakVeetOut_v0.3.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Release Page",

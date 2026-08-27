@@ -16,15 +16,22 @@
   "requirements": "Not specified",
   "size": 22092658,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1906-sonic-vita.png",
+  "icon": "https://archive.org/download/psvitaalive-sonic-vita/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/f2f333398b51dd3f50a15f1d38ff56d4efa4baf3860e028a7d4c3801f4ac21cd.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/923d4a141fcbcd7003e7c1a18a01a5cec35fc9cf1f2a59dc33aa231b509afcc1.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/67bc7be16efc8a324e1c3c26f573b1bd29b1df7c515ad363011ad053e46a4f85.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/39589ee43210c9f2a8afc234126c45ca502b365eda9b2d48990180029cb6d629.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/f2f333398b51dd3f50a15f1d38ff56d4efa4baf3860e028a7d4c3801f4ac21cd.png"
+    "https://archive.org/download/psvitaalive-sonic-vita/shot_01.png",
+    "https://archive.org/download/psvitaalive-sonic-vita/shot_02.png",
+    "https://archive.org/download/psvitaalive-sonic-vita/shot_03.png",
+    "https://archive.org/download/psvitaalive-sonic-vita/shot_04.png",
+    "https://archive.org/download/psvitaalive-sonic-vita/shot_05.png"
   ],
-  "links": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-sonic-vita/sonic-vita.vpk",
+      "recommended": true
+    }
+  ],
   "source_name": "VitaHomebrewDB",
   "source_id": "1229",
   "source_url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1229-111.vpk",

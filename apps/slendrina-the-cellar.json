@@ -16,15 +16,21 @@
   "requirements": "Not specified",
   "size": 34303006,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1928-slendrina-the-cellar.png",
+  "icon": "https://archive.org/download/psvitaalive-slendrina-the-cellar/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/8515cc8ee42485fb61d88fa30a015787e6dee453506b8ab205bc30b1e408bb05.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/d6124a54a89dd0ae23a68360fde522f2a69b6c3f84e01b46ada7ee9dfaa327e9.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/6bbb90ea253d1dc9a28acf783b1027692e024466b8710f204dab99e5f4c14474.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/8515cc8ee42485fb61d88fa30a015787e6dee453506b8ab205bc30b1e408bb05.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/d6124a54a89dd0ae23a68360fde522f2a69b6c3f84e01b46ada7ee9dfaa327e9.png"
+    "https://archive.org/download/psvitaalive-slendrina-the-cellar/shot_01.png",
+    "https://archive.org/download/psvitaalive-slendrina-the-cellar/shot_02.png",
+    "https://archive.org/download/psvitaalive-slendrina-the-cellar/shot_03.png",
+    "https://archive.org/download/psvitaalive-slendrina-the-cellar/shot_04.png",
+    "https://archive.org/download/psvitaalive-slendrina-the-cellar/shot_05.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-slendrina-the-cellar/slendrina-the-cellar.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Official Website",

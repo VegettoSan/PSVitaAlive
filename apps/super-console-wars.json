@@ -18,11 +18,17 @@
   "requirements": "Not specified",
   "size": 52121578,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1681-super-console-wars.png",
+  "icon": "https://archive.org/download/psvitaalive-super-console-wars/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1681-super-console-wars.png"
+    "https://archive.org/download/psvitaalive-super-console-wars/shot_01.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-super-console-wars/super-console-wars.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Official Website",

@@ -17,12 +17,18 @@
   "requirements": "Not specified",
   "size": 1520655,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/70b7c6eb0f45f93164252107a5b54b0a05df99c7bdca18437f6e80fdd56045c4.png",
+  "icon": "https://archive.org/download/psvitaalive-breakveetout/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/70b7c6eb0f45f93164252107a5b54b0a05df99c7bdca18437f6e80fdd56045c4.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/veet.jpg"
+    "https://archive.org/download/psvitaalive-breakveetout/shot_01.png",
+    "https://archive.org/download/psvitaalive-breakveetout/shot_02.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-breakveetout/breakveetout.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Official Website",

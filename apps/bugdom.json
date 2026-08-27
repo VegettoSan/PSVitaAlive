@@ -16,12 +16,18 @@
   "requirements": "- libshacccg.suprx",
   "size": 50453337,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/d76e4a860cc703f6af5b67dca5325c98756c96edf16c6d3ee5a16c5e7d8076ed.png",
+  "icon": "https://archive.org/download/psvitaalive-bugdom/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/fb369ce96d23b4b0eb72630be625c0c26b851cace6e64342f04be37447c00c1f.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/fb369ce96d23b4b0eb72630be625c0c26b851cace6e64342f04be37447c00c1f.png"
+    "https://archive.org/download/psvitaalive-bugdom/shot_01.png",
+    "https://archive.org/download/psvitaalive-bugdom/shot_02.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-bugdom/bugdom.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Release Page",

@@ -16,11 +16,17 @@
   "requirements": "Not specified",
   "size": 6027607,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/b4e60ee146b3784774457c8f1d2a7e0c88bf53b9baa90b2f9e740dabdf681b9b.png",
+  "icon": "https://archive.org/download/psvitaalive-save-cloud-vita/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/b4e60ee146b3784774457c8f1d2a7e0c88bf53b9baa90b2f9e740dabdf681b9b.png"
+    "https://archive.org/download/psvitaalive-save-cloud-vita/shot_01.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-save-cloud-vita/save-cloud-vita.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Release Page",

@@ -16,11 +16,17 @@
   "requirements": "Not specified",
   "size": 34924073,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1747-astro-rush.png",
+  "icon": "https://archive.org/download/psvitaalive-astro-rush/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1747-astro-rush.png"
+    "https://archive.org/download/psvitaalive-astro-rush/shot_01.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-astro-rush/astro-rush.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Official Website",

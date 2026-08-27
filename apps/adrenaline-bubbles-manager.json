@@ -16,11 +16,17 @@
   "requirements": "Not specified",
   "size": 9728063,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1453-adrenalinebubblemanager.png",
+  "icon": "https://archive.org/download/psvitaalive-adrenaline-bubbles-manager/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1453-adrenalinebubblemanager.png"
+    "https://archive.org/download/psvitaalive-adrenaline-bubbles-manager/shot_01.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-adrenaline-bubbles-manager/AdrenalineBubbleManager.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Release Page",

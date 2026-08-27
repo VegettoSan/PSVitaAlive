@@ -16,15 +16,21 @@
   "requirements": "Not specified",
   "size": 2601376,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1586-vitamon-go.png",
+  "icon": "https://archive.org/download/psvitaalive-vitamon-go/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/107c3ee8dc7d5cf924c0fdd0a680263a4448657ca7fc648994706493331cbf43.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c0d5e7e3576160f5ead75c3796efeedcd1b6f63ee3043dfad0b10f9380eee1d0.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/991447e0443b97a3ea432fe612f41ca29260c47ad097db4854924243c7447fb7.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/107c3ee8dc7d5cf924c0fdd0a680263a4448657ca7fc648994706493331cbf43.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/c0d5e7e3576160f5ead75c3796efeedcd1b6f63ee3043dfad0b10f9380eee1d0.png"
+    "https://archive.org/download/psvitaalive-vitamon-go/shot_01.png",
+    "https://archive.org/download/psvitaalive-vitamon-go/shot_02.png",
+    "https://archive.org/download/psvitaalive-vitamon-go/shot_03.png",
+    "https://archive.org/download/psvitaalive-vitamon-go/shot_04.png",
+    "https://archive.org/download/psvitaalive-vitamon-go/shot_05.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-vitamon-go/vitamon-go.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Official Website",

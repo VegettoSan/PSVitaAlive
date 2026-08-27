@@ -16,11 +16,17 @@
   "requirements": "Not specified",
   "size": 792049,
   "status": "Legacy",
-  "icon": "https://www.rinnegatamante.eu/vitadb/icons/d545734f1f773460151287490f2de15bfa6ea675e58b43baeb1d3fcc1d52bf89.png",
+  "icon": "https://archive.org/download/psvitaalive-gbvitaex/icon0.png",
   "screenshots": [
-    "https://www.rinnegatamante.eu/vitadb/icons/d545734f1f773460151287490f2de15bfa6ea675e58b43baeb1d3fcc1d52bf89.png"
+    "https://archive.org/download/psvitaalive-gbvitaex/shot_01.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-gbvitaex/gbvitaex.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Release Page",

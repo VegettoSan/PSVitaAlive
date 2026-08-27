@@ -16,11 +16,17 @@
   "requirements": "Not specified",
   "size": 9388768,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/69e33139a940d6a1948b92a913a2d8d26e91b6dc3dd9a56ea599515830695d9b.png",
+  "icon": "https://archive.org/download/psvitaalive-fishpod/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/69e33139a940d6a1948b92a913a2d8d26e91b6dc3dd9a56ea599515830695d9b.png"
+    "https://archive.org/download/psvitaalive-fishpod/shot_01.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-fishpod/fishpod.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Release Page",

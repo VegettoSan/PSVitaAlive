@@ -16,11 +16,17 @@
   "requirements": "Not specified",
   "size": 3795012,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1971-imango.png",
+  "icon": "https://archive.org/download/psvitaalive-imango/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1971-imango.png"
+    "https://archive.org/download/psvitaalive-imango/shot_01.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-imango/imango.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Official Website",

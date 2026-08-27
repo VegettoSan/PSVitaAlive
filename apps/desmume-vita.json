@@ -16,11 +16,17 @@
   "requirements": "Not specified",
   "size": 1911737,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1470-desmume-vita.png",
+  "icon": "https://archive.org/download/psvitaalive-desmume-vita/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1470-desmume-vita.png"
+    "https://archive.org/download/psvitaalive-desmume-vita/shot_01.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-desmume-vita/desmume-vita.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Official Website",

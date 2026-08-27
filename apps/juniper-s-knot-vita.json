@@ -16,11 +16,17 @@
   "requirements": "Not specified",
   "size": 165025013,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/f0bd5089374613bd95b7bd8e01199619158215e6057e726744ce8a301ca6bd79.png",
+  "icon": "https://archive.org/download/psvitaalive-juniper-s-knot-vita/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/f0bd5089374613bd95b7bd8e01199619158215e6057e726744ce8a301ca6bd79.png"
+    "https://archive.org/download/psvitaalive-juniper-s-knot-vita/shot_01.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-juniper-s-knot-vita/juniper-s-knot-vita.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Repository",

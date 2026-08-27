@@ -16,12 +16,18 @@
   "requirements": "Not specified",
   "size": 23405926,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1669-super-crate-mod.png",
+  "icon": "https://archive.org/download/psvitaalive-super-crate-mod/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/51953d009837689a5f06dbc518b487d7b38d4150fd5804b468ba2fb573a7072a.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/51953d009837689a5f06dbc518b487d7b38d4150fd5804b468ba2fb573a7072a.png"
+    "https://archive.org/download/psvitaalive-super-crate-mod/shot_01.png",
+    "https://archive.org/download/psvitaalive-super-crate-mod/shot_02.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-super-crate-mod/super-crate-mod.vpk",
+      "recommended": true
+    },
     {
       "type": "Repository",
       "name": "Repositorio",

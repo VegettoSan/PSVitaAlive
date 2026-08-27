@@ -16,12 +16,18 @@
   "requirements": "Not specified",
   "size": 1482666,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1497-vita-calculator.png",
+  "icon": "https://archive.org/download/psvitaalive-vita-calculator/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1497-vita-calculator.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/calc.jpg"
+    "https://archive.org/download/psvitaalive-vita-calculator/shot_01.png",
+    "https://archive.org/download/psvitaalive-vita-calculator/shot_02.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-vita-calculator/vita-calculator.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Official Website",

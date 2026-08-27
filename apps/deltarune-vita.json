@@ -16,14 +16,20 @@
   "requirements": "- libshacccg.suprx\n- Game Data Files: Steam",
   "size": 2359680,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/fc2c4f161294c75bcb5dd74cfca553c70a6b01704a3e201c4192e1b62d4ae36d.png",
+  "icon": "https://archive.org/download/psvitaalive-deltarune-vita/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/6333435bee98a287710e5f3ed29607af044080492acaa2c141b4dc0ea7b6b201.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/2039a12dcb869a437aa887c3e30949b3e03046acb0ecd8afa61df7a5f432e8d5.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/d24a8c09709adc444f539f2f05629166ac614dcd52bd068d401b66b9d5ea3cb0.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/297ebe0c50af0460c9c75b4ab7f2afb95746a85a3019659f4f0810205a8bfec0.png"
+    "https://archive.org/download/psvitaalive-deltarune-vita/shot_01.png",
+    "https://archive.org/download/psvitaalive-deltarune-vita/shot_02.png",
+    "https://archive.org/download/psvitaalive-deltarune-vita/shot_03.png",
+    "https://archive.org/download/psvitaalive-deltarune-vita/shot_04.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-deltarune-vita/Deltarune-v0.69.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Release Page",

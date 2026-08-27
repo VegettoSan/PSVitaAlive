@@ -16,11 +16,17 @@
   "requirements": "Not specified",
   "size": 441484,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1570-adrbubblebooterinstaller.png",
+  "icon": "https://archive.org/download/psvitaalive-adrbubblebooterinstaller/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1570-adrbubblebooterinstaller.png"
+    "https://archive.org/download/psvitaalive-adrbubblebooterinstaller/shot_01.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-adrbubblebooterinstaller/adrbubblebooterinstaller.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Official Website",

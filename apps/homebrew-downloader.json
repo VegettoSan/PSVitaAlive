@@ -16,15 +16,21 @@
   "requirements": "Not specified",
   "size": 485014,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1530-homebrew-downloader.png",
+  "icon": "https://archive.org/download/psvitaalive-homebrew-downloader/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1530-homebrew-downloader.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/hbb1.jpg",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/hbb2.jpg",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/hbb3.jpg",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/hbb4.jpg"
+    "https://archive.org/download/psvitaalive-homebrew-downloader/shot_01.png",
+    "https://archive.org/download/psvitaalive-homebrew-downloader/shot_02.png",
+    "https://archive.org/download/psvitaalive-homebrew-downloader/shot_03.png",
+    "https://archive.org/download/psvitaalive-homebrew-downloader/shot_04.png",
+    "https://archive.org/download/psvitaalive-homebrew-downloader/shot_05.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-homebrew-downloader/homebrew-downloader.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Official Website",

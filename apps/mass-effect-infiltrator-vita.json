@@ -16,15 +16,21 @@
   "requirements": "- libshacccg.suprx\n- kubridge.skprx\n- Game Data Files: Android",
   "size": 2085575,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/a96b321240b70b4ad29f1ce8915833878be4623d8cb75c0b72428dc63703106e.png",
+  "icon": "https://archive.org/download/psvitaalive-mass-effect-infiltrator-vita/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/5efa0cabf21d96fdb52d22d59375b628a13a02e14e096ef550155872f71b4388.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/d0bf2d5f7879283aeae0e9d5e213b8de77c23f17302ed4f7ee172cfd12439508.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/5496a6cc99ca591276a0a559f0898caa84ebe0013e0c1ddbb42f7bda0845009b.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/5d1923e4b29ba8e590e9f90aad1ef2a95687192daf8061f4dfce45bf67b88e07.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/5efa0cabf21d96fdb52d22d59375b628a13a02e14e096ef550155872f71b4388.png"
+    "https://archive.org/download/psvitaalive-mass-effect-infiltrator-vita/shot_01.png",
+    "https://archive.org/download/psvitaalive-mass-effect-infiltrator-vita/shot_02.png",
+    "https://archive.org/download/psvitaalive-mass-effect-infiltrator-vita/shot_03.png",
+    "https://archive.org/download/psvitaalive-mass-effect-infiltrator-vita/shot_04.png",
+    "https://archive.org/download/psvitaalive-mass-effect-infiltrator-vita/shot_05.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-mass-effect-infiltrator-vita/mass-effect-infiltrator-vita.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Release Page",

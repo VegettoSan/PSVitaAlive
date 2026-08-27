@@ -16,15 +16,21 @@
   "requirements": "Not specified",
   "size": 319320,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/182f23bfbdfab54601c6221e196e9038649236ad25f3ae47475360a2f6081ac9.png",
+  "icon": "https://archive.org/download/psvitaalive-vita-media-player-psv/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/e494911e065c94cb3fa499267db49d8be76f328defb93ac6deeacb405291c074.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/9e77d67aedba5dd1ba058f48886bd535150414f27c9f044b3d0b344de5981ff7.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/2ec9cc8359f8cfab9f7066e742457ff0146efc4f50696788c898585656dc9c65.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/e494911e065c94cb3fa499267db49d8be76f328defb93ac6deeacb405291c074.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/9e77d67aedba5dd1ba058f48886bd535150414f27c9f044b3d0b344de5981ff7.png"
+    "https://archive.org/download/psvitaalive-vita-media-player-psv/shot_01.png",
+    "https://archive.org/download/psvitaalive-vita-media-player-psv/shot_02.png",
+    "https://archive.org/download/psvitaalive-vita-media-player-psv/shot_03.png",
+    "https://archive.org/download/psvitaalive-vita-media-player-psv/shot_04.png",
+    "https://archive.org/download/psvitaalive-vita-media-player-psv/shot_05.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-vita-media-player-psv/vita-media-player-psv.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Release Page",

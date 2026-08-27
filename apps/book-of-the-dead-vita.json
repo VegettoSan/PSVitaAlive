@@ -16,11 +16,17 @@
   "requirements": "Not specified",
   "size": 86355323,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/459f71024fd78039ef2b20852141f49aa95f7a16e9c495a7a7eb4f8a5e096f28.png",
+  "icon": "https://archive.org/download/psvitaalive-book-of-the-dead-vita/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/459f71024fd78039ef2b20852141f49aa95f7a16e9c495a7a7eb4f8a5e096f28.png"
+    "https://archive.org/download/psvitaalive-book-of-the-dead-vita/shot_01.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-book-of-the-dead-vita/book-of-the-dead-vita.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Repository",

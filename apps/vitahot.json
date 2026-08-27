@@ -17,15 +17,21 @@
   "requirements": "Not specified",
   "size": 223750866,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1854-vitahot.png",
+  "icon": "https://archive.org/download/psvitaalive-vitahot/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/300aacfe60a7b85891db1e0adba73f9c069e0208635335676c786ff5934e4006.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/96c47db6bcb9bb93309bf49b6642f38441be1e91abcac57ed6a25a55535b5849.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/93e892cfca87a94f44b4e1f041bb2430e685249ef7ae3a5c8da627930da1cc9b.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/300aacfe60a7b85891db1e0adba73f9c069e0208635335676c786ff5934e4006.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/96c47db6bcb9bb93309bf49b6642f38441be1e91abcac57ed6a25a55535b5849.png"
+    "https://archive.org/download/psvitaalive-vitahot/shot_01.png",
+    "https://archive.org/download/psvitaalive-vitahot/shot_02.png",
+    "https://archive.org/download/psvitaalive-vitahot/shot_03.png",
+    "https://archive.org/download/psvitaalive-vitahot/shot_04.png",
+    "https://archive.org/download/psvitaalive-vitahot/shot_05.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-vitahot/vitahot.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Official Website",

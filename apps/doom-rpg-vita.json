@@ -16,15 +16,21 @@
   "requirements": "- Game Data Files: Mobile",
   "size": 3954027,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/90b13c65904d9b6eb716f3a4e2fc048cee46d284c8bc229d38068d51dc02b060.png",
+  "icon": "https://archive.org/download/psvitaalive-doom-rpg-vita/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/8a71637533f2f84878258ea97523bd328084248944633b2915c0acc2bf6f0c70.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c0040711aaf0d500372f56f0e7e0fd5f11acea194d1e56614907ed96087d487b.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/4130a339566cb71ef089fbf1dc1f705fa5bd3e6561df5790010b003a08917be5.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/bdcdb0aae8542b55b079f6c60ca8d3711ba57054da6127968a596dcfa44efa5f.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/8a71637533f2f84878258ea97523bd328084248944633b2915c0acc2bf6f0c70.png"
+    "https://archive.org/download/psvitaalive-doom-rpg-vita/shot_01.png",
+    "https://archive.org/download/psvitaalive-doom-rpg-vita/shot_02.png",
+    "https://archive.org/download/psvitaalive-doom-rpg-vita/shot_03.png",
+    "https://archive.org/download/psvitaalive-doom-rpg-vita/shot_04.png",
+    "https://archive.org/download/psvitaalive-doom-rpg-vita/shot_05.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-doom-rpg-vita/doom-rpg-vita.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Release Page",

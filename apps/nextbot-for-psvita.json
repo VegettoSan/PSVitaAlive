@@ -16,13 +16,19 @@
   "requirements": "Not specified",
   "size": 34083842,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1882-nextbot-for-psvita.png",
+  "icon": "https://archive.org/download/psvitaalive-nextbot-for-psvita/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/dfef123230ac528ece0ce9d6a107f64ac09dce6c2b0f85b7ab8ed79d50deb178.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/ce4fe7c38bb8883d041e25b87b0ee89ea3f86e0ab015a7b2d8b2b3002ad4b5e7.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/dfef123230ac528ece0ce9d6a107f64ac09dce6c2b0f85b7ab8ed79d50deb178.png"
+    "https://archive.org/download/psvitaalive-nextbot-for-psvita/shot_01.png",
+    "https://archive.org/download/psvitaalive-nextbot-for-psvita/shot_02.png",
+    "https://archive.org/download/psvitaalive-nextbot-for-psvita/shot_03.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-nextbot-for-psvita/nextbot-for-psvita.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Official Website",

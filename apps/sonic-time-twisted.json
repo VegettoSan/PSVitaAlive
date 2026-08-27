@@ -17,15 +17,21 @@
   "requirements": "Not specified",
   "size": 102118727,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1786-sonic-time-twisted.png",
+  "icon": "https://archive.org/download/psvitaalive-sonic-time-twisted/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c0e9f5417c182c5d3907122a0ab85cbd35d8e6fe1b5b862c59adf27216f78570.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/3bac8cadfdd6a6db6fae609d0434e3e4e1f88a19d2306c950048ea72e4e55549.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/f022ecaf931055ca28ad91b6cc8fec2292244fe264895005a01451547f1252e3.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/6486535b0081258cea08ac64bae1c3edb6cacba9dfd26997fbd3f49afaf4cd40.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/c0e9f5417c182c5d3907122a0ab85cbd35d8e6fe1b5b862c59adf27216f78570.png"
+    "https://archive.org/download/psvitaalive-sonic-time-twisted/shot_01.png",
+    "https://archive.org/download/psvitaalive-sonic-time-twisted/shot_02.png",
+    "https://archive.org/download/psvitaalive-sonic-time-twisted/shot_03.png",
+    "https://archive.org/download/psvitaalive-sonic-time-twisted/shot_04.png",
+    "https://archive.org/download/psvitaalive-sonic-time-twisted/shot_05.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-sonic-time-twisted/sonic-time-twisted.vpk",
+      "recommended": true
+    },
     {
       "type": "Repository",
       "name": "Repositorio",

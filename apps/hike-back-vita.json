@@ -16,11 +16,17 @@
   "requirements": "- Game Data Files: PC",
   "size": 14441674,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/90f9ffb800946ab2ccb9a2ab3a02f44b609461119a6b34edc1bc23acdcab2bf4.png",
+  "icon": "https://archive.org/download/psvitaalive-hike-back-vita/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/90f9ffb800946ab2ccb9a2ab3a02f44b609461119a6b34edc1bc23acdcab2bf4.png"
+    "https://archive.org/download/psvitaalive-hike-back-vita/shot_01.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-hike-back-vita/hike-back-vita.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Repository",

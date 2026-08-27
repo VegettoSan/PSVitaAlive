@@ -16,11 +16,17 @@
   "requirements": "- Game Data Files: PC",
   "size": 26243091,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1779-don-t-open-your-eyes.png",
+  "icon": "https://archive.org/download/psvitaalive-don-t-open-your-eyes/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1779-don-t-open-your-eyes.png"
+    "https://archive.org/download/psvitaalive-don-t-open-your-eyes/shot_01.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-don-t-open-your-eyes/don-t-open-your-eyes.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Official Website",

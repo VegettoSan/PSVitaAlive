@@ -16,15 +16,21 @@
   "requirements": "Not specified",
   "size": 42266649,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1496-project-void.png",
+  "icon": "https://archive.org/download/psvitaalive-project-void/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1496-project-void.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/void1.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/void2.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/void3.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/void.png"
+    "https://archive.org/download/psvitaalive-project-void/shot_01.png",
+    "https://archive.org/download/psvitaalive-project-void/shot_02.png",
+    "https://archive.org/download/psvitaalive-project-void/shot_03.png",
+    "https://archive.org/download/psvitaalive-project-void/shot_04.png",
+    "https://archive.org/download/psvitaalive-project-void/shot_05.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-project-void/project-void.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Official Website",

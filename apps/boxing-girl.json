@@ -16,15 +16,21 @@
   "requirements": "Not specified",
   "size": 36748619,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1738-boxing-girl.png",
+  "icon": "https://archive.org/download/psvitaalive-boxing-girl/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/49cff08b8dc6d6427cffed6dbd62465835029022e4202685314aefeef618dc68.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/1bb975e6cad4593c3f452d593deda0a50d551ceec7508fa6a9e0c2c90e772afd.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/cc4cdf507a386954775c3ea61bd677dfcfb79935685341aaed6db27e71ce1eb6.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/0096f98249eec7a83dd3282ff82a10e8b07c1f08edf35577f5d3f6e97a1366c8.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/49cff08b8dc6d6427cffed6dbd62465835029022e4202685314aefeef618dc68.png"
+    "https://archive.org/download/psvitaalive-boxing-girl/shot_01.png",
+    "https://archive.org/download/psvitaalive-boxing-girl/shot_02.png",
+    "https://archive.org/download/psvitaalive-boxing-girl/shot_03.png",
+    "https://archive.org/download/psvitaalive-boxing-girl/shot_04.png",
+    "https://archive.org/download/psvitaalive-boxing-girl/shot_05.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-boxing-girl/boxing-girl.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Official Website",

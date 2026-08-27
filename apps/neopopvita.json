@@ -16,15 +16,21 @@
   "requirements": "Not specified",
   "size": 1557875,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/5c92eca322982194dcf925c344f81c7407442a8fee38ec4e16925913d267acbc.png",
+  "icon": "https://archive.org/download/psvitaalive-neopopvita/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/e90cfb2feede05ae2a5a1c907e2d344e176ff22965556252f9700490ccea252b.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/8bb8853d0852a6dbcf4f2b1e239a14912023ac7eab5bd7ffa8b40c06530dbf8b.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/790ac5aadf73cd01243dd04c9f41ae0422c961a006a241799db0499392a397f8.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/fcbd622a27e57380049b7d0fad90fbedafde1fba4164f4da3c1287e42a55bc79.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/e90cfb2feede05ae2a5a1c907e2d344e176ff22965556252f9700490ccea252b.png"
+    "https://archive.org/download/psvitaalive-neopopvita/shot_01.png",
+    "https://archive.org/download/psvitaalive-neopopvita/shot_02.png",
+    "https://archive.org/download/psvitaalive-neopopvita/shot_03.png",
+    "https://archive.org/download/psvitaalive-neopopvita/shot_04.png",
+    "https://archive.org/download/psvitaalive-neopopvita/shot_05.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-neopopvita/neopopvita.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Release Page",

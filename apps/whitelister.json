@@ -16,11 +16,17 @@
   "requirements": "Not specified",
   "size": 104562,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1529-whitelister.png",
+  "icon": "https://archive.org/download/psvitaalive-whitelister/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1529-whitelister.png"
+    "https://archive.org/download/psvitaalive-whitelister/shot_01.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-whitelister/whitelister.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Official Website",

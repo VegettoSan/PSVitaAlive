@@ -16,11 +16,17 @@
   "requirements": "Not specified",
   "size": 48613219,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1683-kogre-s-mountain.png",
+  "icon": "https://archive.org/download/psvitaalive-kogre-s-mountain/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/9c0e1c954aea67be22c6dfd28f6acf139f8200d0069474d3b4bbde3307481bfc.png"
+    "https://archive.org/download/psvitaalive-kogre-s-mountain/shot_01.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-kogre-s-mountain/557-KogresMountain.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Official Website",

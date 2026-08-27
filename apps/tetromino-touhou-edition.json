@@ -17,14 +17,20 @@
   "requirements": "Not specified",
   "size": 31349146,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1593-tetromino-touhou-edition.png",
+  "icon": "https://archive.org/download/psvitaalive-tetromino-touhou-edition/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/7e99c1814e047f0145d27847b8aab1e1e4b6c7f67e6100c9562880665055c8a5.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/3c4ac35ff107682fb51da0eb9a31fe9dd555de8f3b0b49918b40e3899d076c2e.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/7e99c1814e047f0145d27847b8aab1e1e4b6c7f67e6100c9562880665055c8a5.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/3c4ac35ff107682fb51da0eb9a31fe9dd555de8f3b0b49918b40e3899d076c2e.png"
+    "https://archive.org/download/psvitaalive-tetromino-touhou-edition/shot_01.png",
+    "https://archive.org/download/psvitaalive-tetromino-touhou-edition/shot_02.png",
+    "https://archive.org/download/psvitaalive-tetromino-touhou-edition/shot_03.png",
+    "https://archive.org/download/psvitaalive-tetromino-touhou-edition/shot_04.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-tetromino-touhou-edition/tetromino-touhou-edition.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Official Website",

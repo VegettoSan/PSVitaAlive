@@ -16,15 +16,21 @@
   "requirements": "- Game Data Files: PC",
   "size": 14300706,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/fccdba5478216671eb8073deac523d9a3e4649ab67eca2258bccfc1c61c0b7e2.png",
+  "icon": "https://archive.org/download/psvitaalive-contract-demon-vita/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/852c379fa14fed95b866f8e8a8844803ac0f8b0f327fc47f783512810ccd57ac.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/6f1a56b70bc3d26ffa0a0491cf6fd5dba7437d711abcc19ecd5e41b288e50d80.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/22170ba070580c3c0bec466e55ab5eb77257a3bd6cd974ebfa8f75c107e84abf.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/8257dfbcb2099923f8651c64cf32fcdf29812e896c7f87b941f24a24b52196a6.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/852c379fa14fed95b866f8e8a8844803ac0f8b0f327fc47f783512810ccd57ac.png"
+    "https://archive.org/download/psvitaalive-contract-demon-vita/shot_01.png",
+    "https://archive.org/download/psvitaalive-contract-demon-vita/shot_02.png",
+    "https://archive.org/download/psvitaalive-contract-demon-vita/shot_03.png",
+    "https://archive.org/download/psvitaalive-contract-demon-vita/shot_04.png",
+    "https://archive.org/download/psvitaalive-contract-demon-vita/shot_05.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-contract-demon-vita/contract-demon-vita.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Repository",

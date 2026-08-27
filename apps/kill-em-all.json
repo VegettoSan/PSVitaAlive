@@ -16,15 +16,21 @@
   "requirements": "Not specified",
   "size": 507006412,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1642-kill-em-all.png",
+  "icon": "https://archive.org/download/psvitaalive-kill-em-all/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/e04f46076fc673df163a84552cdbe546ca418641918eedbb6ff0b9710a7c0608.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/24171e13b98abf31adc5f42c8e69637ccb4114898be9ea0176e6e4e6b139c71c.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/ef693e5527750e3aa862168aa4f20d6c64e39419fb0cf4ca3345669ff87aff19.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/e04f46076fc673df163a84552cdbe546ca418641918eedbb6ff0b9710a7c0608.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/24171e13b98abf31adc5f42c8e69637ccb4114898be9ea0176e6e4e6b139c71c.png"
+    "https://archive.org/download/psvitaalive-kill-em-all/shot_01.png",
+    "https://archive.org/download/psvitaalive-kill-em-all/shot_02.png",
+    "https://archive.org/download/psvitaalive-kill-em-all/shot_03.png",
+    "https://archive.org/download/psvitaalive-kill-em-all/shot_04.png",
+    "https://archive.org/download/psvitaalive-kill-em-all/shot_05.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-kill-em-all/kill-em-all.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Release Page",

@@ -16,14 +16,20 @@
   "requirements": "Not specified",
   "size": 114002075,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1616-the-hallway.png",
+  "icon": "https://archive.org/download/psvitaalive-the-hallway/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/cc9cd2df072fac9bb6a5ba09b0e9382ed76a4ac41789c408812a79555c68c718.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/757bf4e40600c996e3b896180f4d409be822a800f99132124a50ddd86d77581c.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/cc9cd2df072fac9bb6a5ba09b0e9382ed76a4ac41789c408812a79555c68c718.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/757bf4e40600c996e3b896180f4d409be822a800f99132124a50ddd86d77581c.png"
+    "https://archive.org/download/psvitaalive-the-hallway/shot_01.png",
+    "https://archive.org/download/psvitaalive-the-hallway/shot_02.png",
+    "https://archive.org/download/psvitaalive-the-hallway/shot_03.png",
+    "https://archive.org/download/psvitaalive-the-hallway/shot_04.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-the-hallway/the-hallway.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Official Website",

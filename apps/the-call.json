@@ -16,14 +16,21 @@
   "requirements": "Not specified",
   "size": 43013021,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1624-the-call.png",
+  "icon": "https://archive.org/download/psvitaalive-the-call/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/b7d9da6ff290c61993a9384b64c14e66b4f981bc215c19745adf8351fd69538c.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/699fcf7bfe0bc86e05e645f1995bdfef26942317d07f1508280c68556a1649db.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/b7d9da6ff290c61993a9384b64c14e66b4f981bc215c19745adf8351fd69538c.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/699fcf7bfe0bc86e05e645f1995bdfef26942317d07f1508280c68556a1649db.png"
+    "https://archive.org/download/psvitaalive-the-call/shot_01.png",
+    "https://archive.org/download/psvitaalive-the-call/shot_02.png",
+    "https://archive.org/download/psvitaalive-the-call/shot_03.png",
+    "https://archive.org/download/psvitaalive-the-call/shot_04.png"
   ],
-  "links": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-the-call/the-call.vpk",
+      "recommended": true
+    }
+  ],
   "source_name": "VitaHomebrewDB",
   "source_id": "446",
   "source_url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/446-The_20Call.vpk",

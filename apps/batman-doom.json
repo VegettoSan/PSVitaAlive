@@ -16,11 +16,18 @@
   "requirements": "- Game Data Files: doom2.wad, batman.wad and batman.deh in ux0:data/batmandoom/",
   "size": 592662,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1984-batman-doom.png",
+  "icon": "https://archive.org/download/psvitaalive-batman-doom/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1984-batman-doom.png"
+    "https://archive.org/download/psvitaalive-batman-doom/shot_01.png"
   ],
-  "links": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-batman-doom/BatmanDoom.vpk",
+      "recommended": true
+    }
+  ],
   "source_name": "VitaHomebrewDB",
   "source_id": "1467",
   "source_url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/BatmanDoom.vpk",

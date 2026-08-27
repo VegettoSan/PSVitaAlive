@@ -17,15 +17,21 @@
   "requirements": "- libshacccg.suprx\n- kubridge.skprx\n- Game Data Files: Android",
   "size": 993040,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/96376bcd9b6289389f20a3380bb5483e9ec44fcdfa8b6d9b1cfb89a73a031294.png",
+  "icon": "https://archive.org/download/psvitaalive-max-payne/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/f1bad53b5f3b9aa9e2098b1dcf687f1ac0b8ce544a06c4bcbff7c38fcb488371.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/951520721641d9459887404b7c161f3e29cbb1abc659c610b61adc94fdc8564f.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/f8b9a05847d77af2a3c3cdaa13b331857765f86f3ff0988c9a8e60f67739b112.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/f1bad53b5f3b9aa9e2098b1dcf687f1ac0b8ce544a06c4bcbff7c38fcb488371.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/951520721641d9459887404b7c161f3e29cbb1abc659c610b61adc94fdc8564f.png"
+    "https://archive.org/download/psvitaalive-max-payne/shot_01.png",
+    "https://archive.org/download/psvitaalive-max-payne/shot_02.png",
+    "https://archive.org/download/psvitaalive-max-payne/shot_03.png",
+    "https://archive.org/download/psvitaalive-max-payne/shot_04.png",
+    "https://archive.org/download/psvitaalive-max-payne/shot_05.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-max-payne/max-payne.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Release Page",

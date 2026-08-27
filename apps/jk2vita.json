@@ -16,12 +16,18 @@
   "requirements": "- Game Data Files: PC",
   "size": 3422087,
   "status": "Legacy",
-  "icon": "https://www.rinnegatamante.eu/vitadb/icons/7c73928974001e42e16d7629daaea63144b6a76b5b013d9ee47953ce6c204881.png",
+  "icon": "https://archive.org/download/psvitaalive-jk2vita/icon0.png",
   "screenshots": [
-    "https://www.rinnegatamante.eu/vitadb/icons/7c73928974001e42e16d7629daaea63144b6a76b5b013d9ee47953ce6c204881.png",
-    "https://archive.org/download/JK2VITA/bg.png"
+    "https://archive.org/download/psvitaalive-jk2vita/shot_01.png",
+    "https://archive.org/download/psvitaalive-jk2vita/shot_02.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-jk2vita/jk2vita.vpk",
+      "recommended": true
+    },
     {
       "type": "Download",
       "name": "VPK Mediafire",

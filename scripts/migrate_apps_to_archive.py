@@ -1,12 +1,16 @@
 #!/usr/bin/env python3
 """One-shot migration: point homebrew apps at Archive.org mirrors; strip VitaDB/Neo/Too links."""
-import csv, json, re, urllib.parse, sys
+import csv, json, re, urllib.parse, sys, gzip, base64, io
 from pathlib import Path
-from collections import defaultdict
 
 ROOT = Path(__file__).resolve().parents[1]
 LOG = Path(__file__).resolve().parent / "archive_upload_log.csv"
+LOG_B64 = Path(__file__).resolve().parent / "archive_upload_log.csv.gz.b64"
 APPS = ROOT / "apps"
+
+MIRROR_ALIASES = {
+    "vitawolfen-vitawolfe": "vitawolfen",
+}
 
 def norm(s):
     return (s or "").lower()
@@ -105,7 +109,16 @@ def rename_repo(name, url):
         return "Repository"
     return "Official Website"
 
+def ensure_log():
+    if LOG.exists() and LOG.stat().st_size > 1000:
+        return
+    if LOG_B64.exists():
+        LOG.write_bytes(gzip.decompress(base64.b64decode(LOG_B64.read_text().strip())))
+        return
+    raise SystemExit(f"Missing upload log: {LOG} or {LOG_B64}")
+
 def load_mirrors():
+    ensure_log()
     mirrors = {}
     with LOG.open(encoding="utf-8", errors="replace") as f:
         for row in csv.DictReader(f):
@@ -118,11 +131,6 @@ def load_mirrors():
                     "files": files,
                 }
     return mirrors
-
-# App id aliases -> mirror id when folder names differ
-MIRROR_ALIASES = {
-    "vitawolfen-vitawolfe": "vitawolfen",
-}
 
 def migrate():
     mirrors = load_mirrors()
@@ -164,8 +172,6 @@ def migrate():
                 kept_other.append(dict(L))
                 continue
             if is_download_type(typ):
-                # Keep Archive.org VPKs; also keep non-CDN hosts (GitHub/GitLab releases)
-                # when not named after VitaDB/Neo/Too (those names already filtered above).
                 if "archive.org" in norm(url) and url.lower().endswith(".vpk"):
                     kept_other.append(dict(L))
                 elif any(h in norm(url) for h in ("github.com/", "gitlab.com/")) and (

@@ -16,11 +16,17 @@
   "requirements": "Not specified",
   "size": 36411307,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1774-everybody-s-bubbles.png",
+  "icon": "https://archive.org/download/psvitaalive-everybody-s-bubbles/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1774-everybody-s-bubbles.png"
+    "https://archive.org/download/psvitaalive-everybody-s-bubbles/shot_01.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-everybody-s-bubbles/everybody-s-bubbles.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Official Website",

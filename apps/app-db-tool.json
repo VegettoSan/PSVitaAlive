@@ -17,12 +17,18 @@
   "requirements": "Not specified",
   "size": 353306,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1540-app-db-tool.png",
+  "icon": "https://archive.org/download/psvitaalive-app-db-tool/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1540-app-db-tool.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/appdb.jpg"
+    "https://archive.org/download/psvitaalive-app-db-tool/shot_01.png",
+    "https://archive.org/download/psvitaalive-app-db-tool/shot_02.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-app-db-tool/app-db-tool.vpk",
+      "recommended": true
+    },
     {
       "type": "Repository",
       "name": "Repositorio",

@@ -18,15 +18,21 @@
   "requirements": "Not specified",
   "size": 129889683,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1693-scummvm.png",
+  "icon": "https://archive.org/download/psvitaalive-scummvm/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c56fec33982eaac100a19beb726f006ffa06fd50fd5365f9ef69ef8ce3c0b2dd.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/aca64d751e2b8e7082ccb34ba5f19f4c5b0fe732807a709532023ec6621c2392.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/18e219936b47071dcdcabd6c8de6492cb0f323e9ef10286c06b3cf8ddcf2d34c.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/f40ab5e649c96bb55823cc8dc7bb683f5c2c6397e648bcca50f1b5da525b5f97.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/70c639f7c94a7807c7571d62c9c23821521420f88b8bbf403f3f9cda0be0c81c.png"
+    "https://archive.org/download/psvitaalive-scummvm/shot_01.png",
+    "https://archive.org/download/psvitaalive-scummvm/shot_02.png",
+    "https://archive.org/download/psvitaalive-scummvm/shot_03.png",
+    "https://archive.org/download/psvitaalive-scummvm/shot_04.png",
+    "https://archive.org/download/psvitaalive-scummvm/shot_05.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-scummvm/scummvm.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Official Website",

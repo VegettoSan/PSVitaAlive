@@ -16,15 +16,21 @@
   "requirements": "- libshacccg.suprx\n- kubridge.skprx\n- Game Data Files: Android",
   "size": 1674862,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/923c5ca4f84a13bc5d7f1989e5f162b95221569a316b4db4d289493054cf0320.png",
+  "icon": "https://archive.org/download/psvitaalive-professor-layton-lost-future-hd-vita/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c87ce6e5c07244df2e9353d8e2817cad3318baecced16e7e97bc8fd066ac22be.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/ee405e78910f2b4eedf6a5c8d20eb03df6b45b756863dc2ac15d62e7dd2a53b0.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/29edc0ddff3cb406d8fe26ea74d6b949e296a542645e566a0f2522bf5283e65d.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/077f9978e6f964469f248ec06f9b7cb9c02e6c97ce4ea81c27827ffcf5afaf40.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/c87ce6e5c07244df2e9353d8e2817cad3318baecced16e7e97bc8fd066ac22be.png"
+    "https://archive.org/download/psvitaalive-professor-layton-lost-future-hd-vita/shot_01.png",
+    "https://archive.org/download/psvitaalive-professor-layton-lost-future-hd-vita/shot_02.png",
+    "https://archive.org/download/psvitaalive-professor-layton-lost-future-hd-vita/shot_03.png",
+    "https://archive.org/download/psvitaalive-professor-layton-lost-future-hd-vita/shot_04.png",
+    "https://archive.org/download/psvitaalive-professor-layton-lost-future-hd-vita/shot_05.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-professor-layton-lost-future-hd-vita/professor-layton-lost-future-hd-vita.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Release Page",

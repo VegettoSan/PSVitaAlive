@@ -16,11 +16,18 @@
   "requirements": "Not specified",
   "size": 4390507,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1700-grave.png",
+  "icon": "https://archive.org/download/psvitaalive-grave/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1700-grave.png"
+    "https://archive.org/download/psvitaalive-grave/shot_01.png"
   ],
-  "links": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-grave/grave.vpk",
+      "recommended": true
+    }
+  ],
   "source_name": "VitaHomebrewDB",
   "source_id": "606",
   "source_url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/606-Grave.vpk",

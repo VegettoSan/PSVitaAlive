@@ -16,11 +16,17 @@
   "requirements": "Not specified",
   "size": 3496823,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/c83b4e4686a58c1a06934a1d07eac69c7c16d61e67dae4d430ee8b8145cab641.png",
+  "icon": "https://archive.org/download/psvitaalive-bogglevita/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/c83b4e4686a58c1a06934a1d07eac69c7c16d61e67dae4d430ee8b8145cab641.png"
+    "https://archive.org/download/psvitaalive-bogglevita/shot_01.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-bogglevita/boggle_v2.0.VPK",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Repository",

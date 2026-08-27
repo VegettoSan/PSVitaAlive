@@ -16,12 +16,19 @@
   "requirements": "Not specified",
   "size": 70547593,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1664-beat-master.png",
+  "icon": "https://archive.org/download/psvitaalive-beat-master/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/716eda534b7a8d5615de8d027da65c4de2bbbecbd9862730092834d50ce66c78.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/716eda534b7a8d5615de8d027da65c4de2bbbecbd9862730092834d50ce66c78.png"
+    "https://archive.org/download/psvitaalive-beat-master/shot_01.png",
+    "https://archive.org/download/psvitaalive-beat-master/shot_02.png"
   ],
-  "links": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-beat-master/beat-master.vpk",
+      "recommended": true
+    }
+  ],
   "source_name": "VitaHomebrewDB",
   "source_id": "505",
   "source_url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/505-Beat_20Master.vpk",

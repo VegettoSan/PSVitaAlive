@@ -16,15 +16,22 @@
   "requirements": "Not specified",
   "size": 41746686,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1822-heart-potato.png",
+  "icon": "https://archive.org/download/psvitaalive-heart-potato/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/6b068ef77154158d8b7dceb3c662764cefa2db0b983c93dbd2136f19aa0cf5b1.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/62a8b1644c7dc495d6dc348846b3c1c9f2d95b82c71dd4b82108bd5a1185dcfa.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/55ad56366e6a86b98437de50e66d06fcb6c0508829c04fea8918b0a59e5eb077.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/6b068ef77154158d8b7dceb3c662764cefa2db0b983c93dbd2136f19aa0cf5b1.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/62a8b1644c7dc495d6dc348846b3c1c9f2d95b82c71dd4b82108bd5a1185dcfa.png"
+    "https://archive.org/download/psvitaalive-heart-potato/shot_01.png",
+    "https://archive.org/download/psvitaalive-heart-potato/shot_02.png",
+    "https://archive.org/download/psvitaalive-heart-potato/shot_03.png",
+    "https://archive.org/download/psvitaalive-heart-potato/shot_04.png",
+    "https://archive.org/download/psvitaalive-heart-potato/shot_05.png"
   ],
-  "links": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-heart-potato/heart-potato.vpk",
+      "recommended": true
+    }
+  ],
   "source_name": "VitaHomebrewDB",
   "source_id": "1071",
   "source_url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1071-HeartPotato.vpk",

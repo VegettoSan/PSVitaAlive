@@ -17,12 +17,19 @@
   "requirements": "Not specified",
   "size": 19951038,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1604-cubic-conundrum.png",
+  "icon": "https://archive.org/download/psvitaalive-cubic-conundrum/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/ee2038a1f28a9786c0ecdc7ff36a0b13870873e62bfa58246be9ead91ced2fe4.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/ee2038a1f28a9786c0ecdc7ff36a0b13870873e62bfa58246be9ead91ced2fe4.png"
+    "https://archive.org/download/psvitaalive-cubic-conundrum/shot_01.png",
+    "https://archive.org/download/psvitaalive-cubic-conundrum/shot_02.png"
   ],
-  "links": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-cubic-conundrum/cubic-conundrum.vpk",
+      "recommended": true
+    }
+  ],
   "source_name": "VitaHomebrewDB",
   "source_id": "407",
   "source_url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/407-CubicConundrum.vpk",

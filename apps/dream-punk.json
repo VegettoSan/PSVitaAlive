@@ -16,15 +16,21 @@
   "requirements": "Not specified",
   "size": 80438565,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1879-dream-punk.png",
+  "icon": "https://archive.org/download/psvitaalive-dream-punk/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/0649fde51cce503f9795aa91b9698ff6b81202a18bdf6ab6a6d47f4b2e057990.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/f4b6436fe513fbb2edd4486b1b5a0ae2e270393a3b93a6a270c6a18180fda0e1.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/d7bb36e9e82c3dd78c153c9031617a47719e659433f2b61895d43aad4501f93b.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/0649fde51cce503f9795aa91b9698ff6b81202a18bdf6ab6a6d47f4b2e057990.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/f4b6436fe513fbb2edd4486b1b5a0ae2e270393a3b93a6a270c6a18180fda0e1.png"
+    "https://archive.org/download/psvitaalive-dream-punk/shot_01.png",
+    "https://archive.org/download/psvitaalive-dream-punk/shot_02.png",
+    "https://archive.org/download/psvitaalive-dream-punk/shot_03.png",
+    "https://archive.org/download/psvitaalive-dream-punk/shot_04.png",
+    "https://archive.org/download/psvitaalive-dream-punk/shot_05.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-dream-punk/dream-punk.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Official Website",

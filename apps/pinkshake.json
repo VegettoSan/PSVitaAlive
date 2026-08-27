@@ -16,15 +16,21 @@
   "requirements": "Not specified",
   "size": 98293326,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1881-pinkshake.png",
+  "icon": "https://archive.org/download/psvitaalive-pinkshake/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/dfcb493f24d427a99af577832121c9942d64c23d908a83441bd26bbaa8135274.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/5bfc143e8d05738f2c30d2c88004ffd64e08f38f9104b5d51df33770cadfd466.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/197008c610a43e13fa2bc5199fa492d012ecd09496f83951efedf9e785b322ca.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/d7f4a4a0ffdf46a19ea6d8c25657d1cbcaf39b76f7ca2af154165e9d6b0cfbcc.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/dfcb493f24d427a99af577832121c9942d64c23d908a83441bd26bbaa8135274.png"
+    "https://archive.org/download/psvitaalive-pinkshake/shot_01.png",
+    "https://archive.org/download/psvitaalive-pinkshake/shot_02.png",
+    "https://archive.org/download/psvitaalive-pinkshake/shot_03.png",
+    "https://archive.org/download/psvitaalive-pinkshake/shot_04.png",
+    "https://archive.org/download/psvitaalive-pinkshake/shot_05.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-pinkshake/pinkshake.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Official Website",

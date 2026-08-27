@@ -16,11 +16,17 @@
   "requirements": "Not specified",
   "size": 439117,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1554-media-importer.png",
+  "icon": "https://archive.org/download/psvitaalive-media-importer/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1554-media-importer.png"
+    "https://archive.org/download/psvitaalive-media-importer/shot_01.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-media-importer/media-importer.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Official Website",

@@ -16,12 +16,18 @@
   "requirements": "Not specified",
   "size": 402380,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1508-hota.png",
+  "icon": "https://archive.org/download/psvitaalive-hota/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1508-hota.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/hota.jpg"
+    "https://archive.org/download/psvitaalive-hota/shot_01.png",
+    "https://archive.org/download/psvitaalive-hota/shot_02.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-hota/hota.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Official Website",

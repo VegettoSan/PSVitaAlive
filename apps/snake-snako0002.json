@@ -16,11 +16,17 @@
   "requirements": "Not specified",
   "size": 5956779,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1715-snake.png",
+  "icon": "https://archive.org/download/psvitaalive-snake-snako0002/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1715-snake.png"
+    "https://archive.org/download/psvitaalive-snake-snako0002/shot_01.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-snake-snako0002/snake-snako0002.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Repository",

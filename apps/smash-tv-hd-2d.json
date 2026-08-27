@@ -16,15 +16,21 @@
   "requirements": "Not specified",
   "size": 23896518,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1891-smash-tv-hd-2d.png",
+  "icon": "https://archive.org/download/psvitaalive-smash-tv-hd-2d/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/2c27cd95816ff7b66a38aeaf4b48d88ecd32f4070a98585eaa6b69297d16c38a.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/08084297ec56d01a3c8319c1b9e3333e909fd506e70b9dad63f1d757167df8d2.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/065e91600ec4239eebb9fbd785f264124ad7a04d04cdbd85bc1a878a3ec5d9d2.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/2c27cd95816ff7b66a38aeaf4b48d88ecd32f4070a98585eaa6b69297d16c38a.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/08084297ec56d01a3c8319c1b9e3333e909fd506e70b9dad63f1d757167df8d2.png"
+    "https://archive.org/download/psvitaalive-smash-tv-hd-2d/shot_01.png",
+    "https://archive.org/download/psvitaalive-smash-tv-hd-2d/shot_02.png",
+    "https://archive.org/download/psvitaalive-smash-tv-hd-2d/shot_03.png",
+    "https://archive.org/download/psvitaalive-smash-tv-hd-2d/shot_04.png",
+    "https://archive.org/download/psvitaalive-smash-tv-hd-2d/shot_05.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-smash-tv-hd-2d/smash-tv-hd-2d.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Official Website",

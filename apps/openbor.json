@@ -19,15 +19,21 @@
   "requirements": "Not specified",
   "size": 1026839,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/53278376c8056b6609f80851e8e4af90e4b07a0a0cae1181faa317544a66fb15.png",
+  "icon": "https://archive.org/download/psvitaalive-openbor/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/b486e2bcf7658a7e5e45f302f97a82a7d8c5132fc4ca96c0100c741dcd2d5506.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/94cdc3d2728600bfdc9a3c4b0dc66f32af707e24b4700cae0200b02006f5caca.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/cc6e71cadf6da80575d9f9e68b56d2c91fb6afbc0899bf653b3dd95bcef7005f.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/504b83c1352cd97df07e4803f84e19c8df74c2b765f506c8688766b17b5997cd.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/b486e2bcf7658a7e5e45f302f97a82a7d8c5132fc4ca96c0100c741dcd2d5506.png"
+    "https://archive.org/download/psvitaalive-openbor/shot_01.png",
+    "https://archive.org/download/psvitaalive-openbor/shot_02.png",
+    "https://archive.org/download/psvitaalive-openbor/shot_03.png",
+    "https://archive.org/download/psvitaalive-openbor/shot_04.png",
+    "https://archive.org/download/psvitaalive-openbor/shot_05.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-openbor/OpenBOR.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Official Website",

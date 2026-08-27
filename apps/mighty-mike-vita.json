@@ -16,15 +16,21 @@
   "requirements": "- libshacccg.suprx",
   "size": 1564753,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1919-mighty-mike-vita.png",
+  "icon": "https://archive.org/download/psvitaalive-mighty-mike-vita/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/541baafc5717119016d192bd3bec271425e2fc82a61e03084091ac299cb2277d.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/99b7ff8f25927dfe5b345c846679c10d8f95dc6d0cfc7ed25f15e5cbdf7a0a07.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/9632007c92c85eb019b64efa8547b14d7b26caca7e0e67e20acf1339a7ed2a4c.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/97e1af29d3ff7fe3ec5520d8be4c6551471c8c7c3b987fc16894aac0021c8ae2.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/541baafc5717119016d192bd3bec271425e2fc82a61e03084091ac299cb2277d.png"
+    "https://archive.org/download/psvitaalive-mighty-mike-vita/shot_01.png",
+    "https://archive.org/download/psvitaalive-mighty-mike-vita/shot_02.png",
+    "https://archive.org/download/psvitaalive-mighty-mike-vita/shot_03.png",
+    "https://archive.org/download/psvitaalive-mighty-mike-vita/shot_04.png",
+    "https://archive.org/download/psvitaalive-mighty-mike-vita/shot_05.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-mighty-mike-vita/mighty-mike-vita.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Official Website",

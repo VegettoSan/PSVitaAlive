@@ -16,15 +16,21 @@
   "requirements": "Not specified",
   "size": 22282549,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/7d5c3daff8c235de31ab306cb72dc14c233b09b9fffcb8304f34df9d23369780.png",
+  "icon": "https://archive.org/download/psvitaalive-zelda-picross-vita/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/686a058f18e544eb55bed4b39685f1f318bbd31102d1e81da3da0cff123460d3.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/7a0af1a7fc6e6fd7a97545d5e6847ef030ff4614afaba3e227ffd62986d8fd65.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/5731156ea88373ebbfc4e6e6224bb3bae7c3c23be5479133e9d30e51a901346e.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/74f99012cbf4898a066acab1d465cb77347d60190efb4d7e22cf701fd6566398.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/686a058f18e544eb55bed4b39685f1f318bbd31102d1e81da3da0cff123460d3.png"
+    "https://archive.org/download/psvitaalive-zelda-picross-vita/shot_01.png",
+    "https://archive.org/download/psvitaalive-zelda-picross-vita/shot_02.png",
+    "https://archive.org/download/psvitaalive-zelda-picross-vita/shot_03.png",
+    "https://archive.org/download/psvitaalive-zelda-picross-vita/shot_04.png",
+    "https://archive.org/download/psvitaalive-zelda-picross-vita/shot_05.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-zelda-picross-vita/zelda-picross-vita.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Release Page",

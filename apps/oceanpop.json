@@ -16,12 +16,18 @@
   "requirements": "Not specified",
   "size": 28872251,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/9ba15b44bba093fdbc6f0ad18fa33e957bac9c7714fb076e00d75bcf5e6888ef.png",
+  "icon": "https://archive.org/download/psvitaalive-oceanpop/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/fc5936a5787d94d71ebbccf50df00c9afb663ae111fd5c6e2ab823bd64343b71.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/fc5936a5787d94d71ebbccf50df00c9afb663ae111fd5c6e2ab823bd64343b71.png"
+    "https://archive.org/download/psvitaalive-oceanpop/shot_01.png",
+    "https://archive.org/download/psvitaalive-oceanpop/shot_02.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-oceanpop/oceanpop.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Official Website",

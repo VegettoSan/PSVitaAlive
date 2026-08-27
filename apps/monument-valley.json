@@ -16,15 +16,21 @@
   "requirements": "- Game Data Files: PC Steam/Android",
   "size": 34515748,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/f20c2a069133b7833721711a2c8c3dbe7a3538061023cb978ae79f8630c379a1.png",
+  "icon": "https://archive.org/download/psvitaalive-monument-valley/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/cd65c91af83926a178213d916d1504ea507be56564c95a3d6f515928f149c7b6.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/75ba11d03a2d56ecec25f807c30af9d1012f9072780c09a8c1a714e4d313b2a6.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/20613613bc423dc4e82b8f17513b14d433fc0a71b56bf7cb753a5be478036758.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/cd65c91af83926a178213d916d1504ea507be56564c95a3d6f515928f149c7b6.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/75ba11d03a2d56ecec25f807c30af9d1012f9072780c09a8c1a714e4d313b2a6.png"
+    "https://archive.org/download/psvitaalive-monument-valley/shot_01.png",
+    "https://archive.org/download/psvitaalive-monument-valley/shot_02.png",
+    "https://archive.org/download/psvitaalive-monument-valley/shot_03.png",
+    "https://archive.org/download/psvitaalive-monument-valley/shot_04.png",
+    "https://archive.org/download/psvitaalive-monument-valley/shot_05.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-monument-valley/monument-valley.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Repository",

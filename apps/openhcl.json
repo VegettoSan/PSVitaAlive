@@ -16,11 +16,17 @@
   "requirements": "Not specified",
   "size": 10454487,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/05838eaeca345502ab02278d87b1bb6b8e5126837030644dc33db0f50316e64f.png",
+  "icon": "https://archive.org/download/psvitaalive-openhcl/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/05838eaeca345502ab02278d87b1bb6b8e5126837030644dc33db0f50316e64f.png"
+    "https://archive.org/download/psvitaalive-openhcl/shot_01.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-openhcl/openhcl.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Release Page",

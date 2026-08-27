@@ -16,12 +16,18 @@
   "requirements": "Not specified",
   "size": 43264784,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1837-parkour-labs.png",
+  "icon": "https://archive.org/download/psvitaalive-parkour-labs/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1837-parkour-labs.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c99306cc2d72e01dadf45de697e94b422dd33ddfdf2a5ef5cff1e5a0c1ec8503.png"
+    "https://archive.org/download/psvitaalive-parkour-labs/shot_01.png",
+    "https://archive.org/download/psvitaalive-parkour-labs/shot_02.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-parkour-labs/1099-Parkour_Labs.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Official Website",

@@ -16,15 +16,21 @@
   "requirements": "- Game Data Files: PC",
   "size": 14984183,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1939-tie-vita.png",
+  "icon": "https://archive.org/download/psvitaalive-tie-vita/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/145593725a44d7b1c6234b45ed4f6185225af5b17713d29be763eeae8c601151.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/016e4a3eb3e90e295932421b1732dc9025414bbb44dab11a1209bf1888dd0f99.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/15714aba92321fd0c083bea356a864b9300df76d5266a2abb36cf748d2dd29b6.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/145593725a44d7b1c6234b45ed4f6185225af5b17713d29be763eeae8c601151.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/016e4a3eb3e90e295932421b1732dc9025414bbb44dab11a1209bf1888dd0f99.png"
+    "https://archive.org/download/psvitaalive-tie-vita/shot_01.png",
+    "https://archive.org/download/psvitaalive-tie-vita/shot_02.png",
+    "https://archive.org/download/psvitaalive-tie-vita/shot_03.png",
+    "https://archive.org/download/psvitaalive-tie-vita/shot_04.png",
+    "https://archive.org/download/psvitaalive-tie-vita/shot_05.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-tie-vita/tie-vita.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Official Website",

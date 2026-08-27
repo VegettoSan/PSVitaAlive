@@ -16,14 +16,21 @@
   "requirements": "Not specified",
   "size": 1635419,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1697-trainslive-london.png",
+  "icon": "https://archive.org/download/psvitaalive-trainslive---london/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/601a8ff5e672038c78ffe918841cec6b7155c5bd9cdc0ba3e1c3ff74366e946b.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/e96619211f1595d9cdd915f021f607768fc62d3f043c2efd072fc1f2394765e4.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/601a8ff5e672038c78ffe918841cec6b7155c5bd9cdc0ba3e1c3ff74366e946b.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/e96619211f1595d9cdd915f021f607768fc62d3f043c2efd072fc1f2394765e4.png"
+    "https://archive.org/download/psvitaalive-trainslive---london/shot_01.png",
+    "https://archive.org/download/psvitaalive-trainslive---london/shot_02.png",
+    "https://archive.org/download/psvitaalive-trainslive---london/shot_03.png",
+    "https://archive.org/download/psvitaalive-trainslive---london/shot_04.png"
   ],
-  "links": [],
+  "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-trainslive---london/trainslive---london.vpk",
+      "recommended": true
+    }
+  ],
   "source_name": "VitaHomebrewDB",
   "source_id": "598",
   "source_url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/598-trainsliveldn.vpk",

@@ -18,15 +18,21 @@
   "requirements": "Not specified",
   "size": 4024378,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/163743e59ed1fd108a3212e64411714b3f7e300eb44721f1f852593e80acdec1.png",
+  "icon": "https://archive.org/download/psvitaalive-miku-vu/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/78500277b3c3ccdd2096a479af38a71d1a94b704ad4436df1f74b8c197324c70.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/e043ef8e8bdfb8858f89b19f9bc6a5abca86039ed25fe663cee986c3aeb0d3a7.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c7b7a0b30302b4a570aeee83873eac47de0e270c9e7c410d676385e7328741a9.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/f967effde566784ed5a07f2b220b463abd0c3a1d21ec0a70c94c5875da88479f.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/7a9570c365cc2f8077e9710a459f26ee96a43313c0540221766e8d9152e03023.png"
+    "https://archive.org/download/psvitaalive-miku-vu/shot_01.png",
+    "https://archive.org/download/psvitaalive-miku-vu/shot_02.png",
+    "https://archive.org/download/psvitaalive-miku-vu/shot_03.png",
+    "https://archive.org/download/psvitaalive-miku-vu/shot_04.png",
+    "https://archive.org/download/psvitaalive-miku-vu/shot_05.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-miku-vu/miku-vu.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Release Page",

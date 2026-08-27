@@ -16,15 +16,21 @@
   "requirements": "- libshacccg.suprx\n- kubridge.skprx\n- Game Data Files: Android",
   "size": 1744758,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/0bb98bb63ba62ad1bed756b37d32c5b52c8d123dc9a57b1cc941e86422af6845.png",
+  "icon": "https://archive.org/download/psvitaalive-babel-rising-3d-vita/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/8d8e7380182024d8ff67024a59ab5558cce80b205ab327982e37e9bbf2394873.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/6b13181acfb2837e5315f70a03a0e9405977d96a49585e15c8b4984023885f77.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/b0e6aec60f41ee5cbda84291ba9a539de7383fad36c000ff3cd0f3b9d8dddfa2.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/3ad0fb89b5887458d97b454eaa2e3e92f37ae010eb388493a7e2b68740bd57e7.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/8d8e7380182024d8ff67024a59ab5558cce80b205ab327982e37e9bbf2394873.png"
+    "https://archive.org/download/psvitaalive-babel-rising-3d-vita/shot_01.png",
+    "https://archive.org/download/psvitaalive-babel-rising-3d-vita/shot_02.png",
+    "https://archive.org/download/psvitaalive-babel-rising-3d-vita/shot_03.png",
+    "https://archive.org/download/psvitaalive-babel-rising-3d-vita/shot_04.png",
+    "https://archive.org/download/psvitaalive-babel-rising-3d-vita/shot_05.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-babel-rising-3d-vita/babel-rising-3d-vita.vpk",
+      "recommended": true
+    },
     {
       "type": "Official Website",
       "name": "Release Page",

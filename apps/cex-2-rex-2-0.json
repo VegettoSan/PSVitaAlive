@@ -17,11 +17,17 @@
   "requirements": "Henkaku Enso, reF00D and a Testing Kit firmware PUP",
   "size": 194270,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1986-CEX2REX.png",
+  "icon": "https://archive.org/download/psvitaalive-cex-2-rex-2-0/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1986-CEX2REX.png"
+    "https://archive.org/download/psvitaalive-cex-2-rex-2-0/shot_01.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-cex-2-rex-2-0/CEX2REX.vpk",
+      "recommended": true
+    },
     {
       "type": "Repository",
       "name": "Repositorio",

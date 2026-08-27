@@ -16,15 +16,21 @@
   "requirements": "- libshacccg.suprx",
   "size": 1245430,
   "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1841-zik-zak-vita.png",
+  "icon": "https://archive.org/download/psvitaalive-zik-zak-vita/icon0.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/7ef32bbbeea93ce4032505272d202540333a312fbee5a79ed31e7c53059236a0.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/754ace2c22ae71082dfde4f6fffb1b6798343dfa7f4e4536d3819402ec90b5be.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/8a5e6a0ebe205326dc7ae0aec5672b331d2e685b46735848cff170bc332c47f6.png",
-    "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/d1e16b67d187b9d926a2dea1c301b2e788a9d33cd16f716cd34f7037efbdf9ff.png",
-    "https://www.rinnegatamante.eu/vitadb/screenshots/7ef32bbbeea93ce4032505272d202540333a312fbee5a79ed31e7c53059236a0.png"
+    "https://archive.org/download/psvitaalive-zik-zak-vita/shot_01.png",
+    "https://archive.org/download/psvitaalive-zik-zak-vita/shot_02.png",
+    "https://archive.org/download/psvitaalive-zik-zak-vita/shot_03.png",
+    "https://archive.org/download/psvitaalive-zik-zak-vita/shot_04.png",
+    "https://archive.org/download/psvitaalive-zik-zak-vita/shot_05.png"
   ],
   "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/psvitaalive-zik-zak-vita/zik-zak-vita.vpk",
+      "recommended": true
+    },
     {
       "type": "Repository",
       "name": "Repositorio",
