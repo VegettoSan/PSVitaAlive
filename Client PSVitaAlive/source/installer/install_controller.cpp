@@ -621,35 +621,6 @@ int InstallController::workerMain() {
     current_.store(job->downloadedSize);
     total_.store(job->expectedSize ? job->expectedSize : job->downloadedSize);
     speed_.store(0);
-
-    // Guard incomplete downloads: extract/install must not run on a truncated file.
-    // (Losing Wi-Fi mid-transfer can leave a partial payload that looks "done" in the UI.)
-    if (job->expectedSize > 0) {
-        const uint64_t got = job->downloadedSize;
-        const uint64_t exp = job->expectedSize;
-        const bool tooSmall = (got + 4096ULL < exp) && (got * 100ULL < exp * 98ULL);
-        if (tooSmall) {
-            char msg[320];
-            sceClibSnprintf(
-                msg, sizeof(msg),
-                "Download incomplete (%llu / %llu bytes). Stay online until the download finishes. "
-                "Extraction does not need internet once the file is complete.",
-                (unsigned long long)got, (unsigned long long)exp);
-            setStage("Error");
-            setState(InstallStatus::State::Failed, msg);
-            liveAreaOk_.store(false);
-            setInstallPath("");
-            diagnostics::log(std::string("[Installer] incomplete download blocked before extract: ") + msg);
-            if (!activeJobId_.empty()) downloads_.cleanupCompletedJob(activeJobId_);
-            activeJobId_.clear();
-            activeZrif_.clear();
-            activeContentId_.clear();
-            resultShownAtMs_.store(sceKernelGetSystemTimeWide() / 1000ULL);
-            workerDone_.store(true);
-            return 0;
-        }
-    }
-
     setStage("Installing");
     setState(InstallStatus::State::Installing, "Preparing installation...");
     diagnostics::log(std::string("[Installer] installing job=") + activeJobId_ + " file=" + job->finalPath);
