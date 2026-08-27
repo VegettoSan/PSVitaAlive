@@ -23,31 +23,19 @@
   ],
   "links": [
     {
-      "type": "Download",
-      "name": "VitaHomebrewDB VPK",
-      "url": "https://github.com/McCallum99/PSVitaRebootShutdown/releases/download/v1.08/VitaRebootShutdown.vpk",
-      "recommended": false
-    },
-    {
       "type": "Official Website",
-      "name": "VitaHomebrewDB Release Page",
+      "name": "Release Page",
       "url": "https://github.com/McCallum99/PSVitaRebootShutdown/releases"
     },
     {
       "type": "Official Website",
-      "name": "NeoVitaDB Release Page",
+      "name": "Release Page",
       "url": "https://github.com/McCallum99/PSVitaRebootShutdown/releases/tag/v1.08"
     },
     {
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/McCallum99/PSVitaRebootShutdown"
-    },
-    {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=431",
-      "recommended": true
     }
   ],
   "source_name": "VitaHomebrewDB",

@@ -26,26 +26,14 @@
   ],
   "links": [
     {
-      "type": "Download",
-      "name": "VitaHomebrewDB VPK",
-      "url": "https://github.com/SemvdH/cybershot-PSVita/releases/download/v0.1/cybershot.vpk",
-      "recommended": false
-    },
-    {
       "type": "Official Website",
-      "name": "VitaHomebrewDB Release Page",
+      "name": "Release Page",
       "url": "https://github.com/SemvdH/cybershot-PSVita/releases"
     },
     {
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/SemvdH/cybershot-PSVita"
-    },
-    {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1108",
-      "recommended": true
     }
   ],
   "source_name": "VitaHomebrewDB",

@@ -24,31 +24,7 @@
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/119b7f11adc9b164bd8d72c81112aad764ccedc90319d70551fc3f97b5945c74.png",
     "https://www.rinnegatamante.eu/vitadb/screenshots/5578c7df64d70cab8a7f700c93ddc5776467b39f14c4b9d541bbf7c17f904727.png"
   ],
-  "links": [
-    {
-      "type": "Download",
-      "name": "VitaHomebrewDB VPK",
-      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/992-call_of_vita.vpk",
-      "recommended": false
-    },
-    {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com"
-    },
-    {
-      "type": "Download",
-      "name": "VitaHomebrewDB VPK",
-      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/992-call_of_vita.vpk",
-      "recommended": false
-    },
-    {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=992",
-      "recommended": true
-    }
-  ],
+  "links": [],
   "source_name": "VitaHomebrewDB",
   "source_id": "992",
   "source_url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/992-call_of_vita.vpk",

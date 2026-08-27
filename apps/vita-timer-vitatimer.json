@@ -26,31 +26,19 @@
   ],
   "links": [
     {
-      "type": "Download",
-      "name": "VitaHomebrewDB VPK",
-      "url": "https://github.com/sinusinu/vita-timer/releases/download/1.03/vita-timer.vpk",
-      "recommended": false
-    },
-    {
       "type": "Official Website",
-      "name": "VitaHomebrewDB Release Page",
+      "name": "Release Page",
       "url": "https://github.com/sinusinu/vita-timer/releases"
     },
     {
       "type": "Official Website",
-      "name": "NeoVitaDB Release Page",
+      "name": "Release Page",
       "url": "https://github.com/sinusinu/vita-timer/releases/tag/1.03"
     },
     {
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/sinusinu/vita-timer"
-    },
-    {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=698",
-      "recommended": true
     }
   ],
   "source_name": "VitaHomebrewDB",

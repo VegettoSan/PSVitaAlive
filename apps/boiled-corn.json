@@ -22,14 +22,8 @@
   ],
   "links": [
     {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1451",
-      "recommended": true
-    },
-    {
       "type": "Official Website",
-      "name": "VitaDB Release Page",
+      "name": "Official Website",
       "url": "https://dos.itch.io/boiledcorn"
     }
   ],

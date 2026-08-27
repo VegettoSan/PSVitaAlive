@@ -40,14 +40,6 @@
     },
     {
       "type": "Game Files",
-      "name": "Game Data Files ZIP",
-      "url": "https://archive.org/download/zombie-tsunami-psvita/Game%20Files.zip",
-      "recommended": false,
-      "size": 42100000,
-      "extract_path": "ux0:data/"
-    },
-    {
-      "type": "Game Files",
       "name": "Game Data Files ZIP - MediaFire",
       "url": "https://www.mediafire.com/file/resfszr3lfgxfo7/Game_Files.zip/file",
       "recommended": false,
@@ -55,16 +47,12 @@
       "extract_path": "ux0:data/"
     },
     {
-      "type": "Download",
-      "name": "GitHub VPK",
-      "url": "https://github.com/WolffsRoom/ZombieTsunami-Vita/releases/download/v1.0/ZombieTsunami-v1.0.vpk",
-      "recommended": false
-    },
-    {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1436",
-      "recommended": false
+      "type": "Game Files",
+      "name": "Game Data Files ZIP",
+      "url": "https://archive.org/download/zombie-tsunami-psvita/Game%20Files.zip",
+      "recommended": false,
+      "size": 42100000,
+      "extract_path": "ux0:data/"
     },
     {
       "type": "Repository",
@@ -73,7 +61,7 @@
     },
     {
       "type": "Official Website",
-      "name": "VitaDB Release Page",
+      "name": "Release Page",
       "url": "https://github.com/WolffsRoom/ZombieTsunami-Vita/releases"
     }
   ],

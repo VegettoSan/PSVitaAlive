@@ -25,26 +25,14 @@
   ],
   "links": [
     {
-      "type": "Download",
-      "name": "VitaHomebrewDB VPK",
-      "url": "https://github.com/HarommelRabbid/BetterQRScanner/releases/download/24-07-25/Better.QR.Scanner.vpk",
-      "recommended": false
-    },
-    {
       "type": "Official Website",
-      "name": "VitaHomebrewDB Release Page",
+      "name": "Release Page",
       "url": "https://github.com/HarommelRabbid/BetterQRScanner/releases"
     },
     {
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/HarommelRabbid/BetterQRScanner"
-    },
-    {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1286",
-      "recommended": true
     }
   ],
   "source_name": "VitaHomebrewDB",

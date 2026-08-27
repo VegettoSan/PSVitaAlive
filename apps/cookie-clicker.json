@@ -25,26 +25,14 @@
   ],
   "links": [
     {
-      "type": "Download",
-      "name": "VitaHomebrewDB VPK",
-      "url": "https://github.com/Creckeryop/CookieClicker-Vita/releases/download/0.2/Cookie.Clicker.vpk",
-      "recommended": false
-    },
-    {
       "type": "Official Website",
-      "name": "VitaHomebrewDB Release Page",
+      "name": "Official Website",
       "url": "http://gbatemp.net/threads/wip-cookie-clicker-vita.489060/"
     },
     {
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/Creckeryop/CookieClicker-Vita"
-    },
-    {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=351",
-      "recommended": true
     }
   ],
   "source_name": "VitaHomebrewDB",

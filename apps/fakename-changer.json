@@ -22,19 +22,13 @@
   ],
   "links": [
     {
-      "type": "Download",
-      "name": "VitaHomebrewDB VPK",
-      "url": "https://github.com/Eywa186/FakeName-Changer-For-PSVita/releases/download/v2.1/FakeNameChanger_v2.1.vpk",
-      "recommended": true
-    },
-    {
       "type": "Official Website",
-      "name": "VitaHomebrewDB Release Page",
+      "name": "Release Page",
       "url": "https://github.com/Eywa186/FakeName-Changer-For-PSVita/releases"
     },
     {
       "type": "Official Website",
-      "name": "NeoVitaDB Release Page",
+      "name": "Release Page",
       "url": "https://github.com/Eywa186/FakeName-Changer-For-PSVita/releases/tag/v2.1"
     },
     {

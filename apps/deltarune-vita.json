@@ -25,14 +25,8 @@
   ],
   "links": [
     {
-      "type": "Download",
-      "name": "VitaHomebrewDB VPK",
-      "url": "https://github.com/WolffsRoom/DeltaruneVita/releases/download/v0.68/Deltarune-v0.68.vpk",
-      "recommended": false
-    },
-    {
       "type": "Official Website",
-      "name": "VitaHomebrewDB Release Page",
+      "name": "Release Page",
       "url": "https://github.com/WolffsRoom/DeltaruneVita/releases"
     },
     {
@@ -41,14 +35,8 @@
       "url": "https://github.com/WolffsRoom/DeltaruneVita"
     },
     {
-      "type": "Download",
-      "name": "VitaHomebrewDB VPK",
-      "url": "https://github.com/WolffsRoom/DeltaruneVita/releases/download/v0.69/Deltarune-v0.69.vpk",
-      "recommended": true
-    },
-    {
       "type": "Official Website",
-      "name": "NeoVitaDB Release Page",
+      "name": "Release Page",
       "url": "https://github.com/WolffsRoom/DeltaruneVita/releases/tag/v0.69"
     }
   ],

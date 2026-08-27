@@ -22,19 +22,13 @@
   ],
   "links": [
     {
-      "type": "Download",
-      "name": "VitaHomebrewDB VPK",
-      "url": "https://github.com/minecraftpe-vita/minecraftpe-vita/releases/download/v1.0.7/minecraftpe.vpk",
-      "recommended": true
-    },
-    {
       "type": "Official Website",
-      "name": "VitaHomebrewDB Release Page",
+      "name": "Release Page",
       "url": "https://github.com/minecraftpe-vita/minecraftpe-vita/releases"
     },
     {
       "type": "Official Website",
-      "name": "NeoVitaDB Release Page",
+      "name": "Release Page",
       "url": "https://github.com/minecraftpe-vita/minecraftpe-vita/releases/tag/v1.0.7"
     },
     {

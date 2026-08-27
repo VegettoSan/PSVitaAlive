@@ -26,32 +26,9 @@
   ],
   "links": [
     {
-      "type": "Download",
-      "name": "VitaHomebrewDB VPK",
-      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1216-WSNL00001.vpk",
-      "recommended": false
-    },
-    {
       "type": "Official Website",
-      "name": "VitaHomebrewDB Release Page",
+      "name": "Official Website",
       "url": "https://avdr.duckdns.org:886/s/ZWxTAP9pwL4wffJ"
-    },
-    {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com"
-    },
-    {
-      "type": "Download",
-      "name": "VitaHomebrewDB VPK",
-      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/1216-WSNL00001.vpk",
-      "recommended": false
-    },
-    {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1216",
-      "recommended": true
     }
   ],
   "source_name": "VitaHomebrewDB",

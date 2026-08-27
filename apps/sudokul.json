@@ -23,31 +23,19 @@
   ],
   "links": [
     {
-      "type": "Download",
-      "name": "VitaHomebrewDB VPK",
-      "url": "https://github.com/Mode8fx/SuDokuL/releases/download/v1.5/SuDokuL-v1.5-vita.vpk",
-      "recommended": false
-    },
-    {
       "type": "Official Website",
-      "name": "VitaHomebrewDB Release Page",
+      "name": "Release Page",
       "url": "https://github.com/Mode8fx/SuDokuL/releases"
     },
     {
       "type": "Official Website",
-      "name": "NeoVitaDB Release Page",
+      "name": "Release Page",
       "url": "https://github.com/Mode8fx/SuDokuL/releases/tag/v1.5"
     },
     {
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/Mode8fx/SuDokuL"
-    },
-    {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=736",
-      "recommended": true
     }
   ],
   "source_name": "VitaHomebrewDB",

@@ -27,31 +27,19 @@
   ],
   "links": [
     {
-      "type": "Download",
-      "name": "VitaHomebrewDB VPK",
-      "url": "https://github.com/MuukalainenPuhuu/Vita-MH-DH/releases/download/1.1/MHDH.vpk",
-      "recommended": false
-    },
-    {
       "type": "Official Website",
-      "name": "VitaHomebrewDB Release Page",
+      "name": "Release Page",
       "url": "https://github.com/MuukalainenPuhuu/Vita-MH-DH/releases"
     },
     {
       "type": "Official Website",
-      "name": "NeoVitaDB Release Page",
+      "name": "Release Page",
       "url": "https://github.com/MuukalainenPuhuu/Vita-MH-DH/releases/tag/1.1"
     },
     {
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/MuukalainenPuhuu/Vita-MH-DH"
-    },
-    {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1420",
-      "recommended": true
     }
   ],
   "source_name": "VitaHomebrewDB",

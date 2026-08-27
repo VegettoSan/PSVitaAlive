@@ -28,36 +28,18 @@
   ],
   "links": [
     {
-      "type": "Download",
-      "name": "VitaHomebrewDB VPK",
-      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/121-VitaTester-mod.vpk",
-      "recommended": false
-    },
-    {
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/Avellea/VitaTester"
     },
     {
-      "type": "Download",
-      "name": "VitaHomebrewDB VPK",
-      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/121-VitaTester-mod.vpk",
-      "recommended": false
-    },
-    {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=121",
-      "recommended": true
-    },
-    {
       "type": "Official Website",
-      "name": "VitaDB Release Page",
+      "name": "Release Page",
       "url": "https://github.com/Avellea/VitaTester/releases"
     },
     {
       "type": "Official Website",
-      "name": "NeoVitaDB Release Page",
+      "name": "Release Page",
       "url": "https://github.com/Avellea/VitaTester/releases/tag/1.0"
     }
   ],

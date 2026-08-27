@@ -22,31 +22,19 @@
   ],
   "links": [
     {
-      "type": "Download",
-      "name": "VitaHomebrewDB VPK",
-      "url": "https://github.com/WeegeeDEVELOPER/uMario-PSVita-Port/releases/download/1.2.7/uMario.vpk",
-      "recommended": false
-    },
-    {
       "type": "Official Website",
-      "name": "VitaHomebrewDB Release Page",
+      "name": "Release Page",
       "url": "https://github.com/WeegeeDEVELOPER/uMario-PSVita-Port/releases"
     },
     {
       "type": "Official Website",
-      "name": "NeoVitaDB Release Page",
+      "name": "Release Page",
       "url": "https://github.com/WeegeeDEVELOPER/uMario-PSVita-Port/releases/tag/1.2.7"
     },
     {
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/WeegeeDEVELOPER/uMario-PSVita-Port"
-    },
-    {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=748",
-      "recommended": true
     }
   ],
   "source_name": "VitaHomebrewDB",

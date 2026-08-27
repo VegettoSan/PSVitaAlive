@@ -22,14 +22,8 @@
   ],
   "links": [
     {
-      "type": "Download",
-      "name": "NeoVitaDB VPK",
-      "url": "https://github.com/theheroGAC/Digital-Clock-Vita/releases/download/1.00/DigitalClockVita.vpk",
-      "recommended": false
-    },
-    {
       "type": "Official Website",
-      "name": "NeoVitaDB Release Page",
+      "name": "Release Page",
       "url": "https://github.com/theheroGAC/Digital-Clock-Vita/releases/tag/1.00"
     },
     {
@@ -38,14 +32,8 @@
       "url": "https://github.com/theheroGAC/Digital-Clock-Vita"
     },
     {
-      "type": "Download",
-      "name": "NeoVitaDB VPK",
-      "url": "https://github.com/theheroGAC/Digital-Clock-Vita/releases/download/1.01/DigitalClockVita.vpk",
-      "recommended": true
-    },
-    {
       "type": "Official Website",
-      "name": "NeoVitaDB Release Page",
+      "name": "Release Page",
       "url": "https://github.com/theheroGAC/Digital-Clock-Vita/releases/tag/1.01"
     }
   ],

@@ -26,48 +26,19 @@
   ],
   "links": [
     {
-      "type": "Download",
-      "name": "VitaHomebrewDB VPK",
-      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1109-marmalade_bunkai.vpk",
-      "recommended": false
-    },
-    {
       "type": "Official Website",
-      "name": "VitaHomebrewDB Release Page",
+      "name": "Official Website",
       "url": "https://fuhen.homebrew-contest.com/submissions/23/"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com"
-    },
-    {
-      "type": "Download",
-      "name": "VitaHomebrewDB VPK",
-      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/MarmaladeBoy_LCD.vpk",
-      "recommended": true
-    },
-    {
-      "type": "Download",
-      "name": "VitaHomebrewDB VPK",
-      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/1109-marmalade_bunkai.vpk",
-      "recommended": false
-    },
-    {
       "type": "Official Website",
-      "name": "VitaHomebrewDB Release Page",
+      "name": "Official Website",
       "url": "https://bunkai.itch.io/"
     },
     {
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/Bunkai9448/vita_gamemaker"
-    },
-    {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1109",
-      "recommended": false
     }
   ],
   "source_name": "VitaHomebrewDB",

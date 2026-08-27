@@ -23,25 +23,13 @@
   ],
   "links": [
     {
-      "type": "Download",
-      "name": "NeoVitaDB VPK",
-      "url": "https://git.silica.codes/Li/Server_Room_Simulator/releases/download/latest/server_room_simulator.vpk",
-      "recommended": false
-    },
-    {
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://git.silica.codes"
     },
     {
-      "type": "Download",
-      "name": "VitaHomebrewDB VPK",
-      "url": "https://git.silica.codes/Li/Server_Room_Simulator/releases/download/v1.0/server_room_simulator.vpk",
-      "recommended": true
-    },
-    {
       "type": "Official Website",
-      "name": "VitaHomebrewDB Release Page",
+      "name": "Official Website",
       "url": "https://git.silica.codes/Li/Server_Room_Simulator/releases"
     },
     {

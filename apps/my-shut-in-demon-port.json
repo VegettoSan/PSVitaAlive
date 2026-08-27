@@ -22,14 +22,8 @@
   ],
   "links": [
     {
-      "type": "Download",
-      "name": "NeoVitaDB VPK",
-      "url": "https://github.com/OmegaStator/msid-vita/releases/download/2.0/My.shut-in.demon.vpk",
-      "recommended": false
-    },
-    {
       "type": "Official Website",
-      "name": "NeoVitaDB Release Page",
+      "name": "Release Page",
       "url": "https://github.com/OmegaStator/msid-vita/releases/tag/2.0"
     },
     {
@@ -38,14 +32,8 @@
       "url": "https://github.com/OmegaStator/msid-vita"
     },
     {
-      "type": "Download",
-      "name": "NeoVitaDB VPK",
-      "url": "https://github.com/OmegaStator/msid-vita/releases/download/2.01/my.shut-in.demon.vpk",
-      "recommended": true
-    },
-    {
       "type": "Official Website",
-      "name": "NeoVitaDB Release Page",
+      "name": "Release Page",
       "url": "https://github.com/OmegaStator/msid-vita/releases/tag/2.01"
     }
   ],

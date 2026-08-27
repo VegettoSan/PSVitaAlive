@@ -21,31 +21,7 @@
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/716eda534b7a8d5615de8d027da65c4de2bbbecbd9862730092834d50ce66c78.png",
     "https://www.rinnegatamante.eu/vitadb/screenshots/716eda534b7a8d5615de8d027da65c4de2bbbecbd9862730092834d50ce66c78.png"
   ],
-  "links": [
-    {
-      "type": "Download",
-      "name": "VitaHomebrewDB VPK",
-      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/505-Beat_20Master.vpk",
-      "recommended": false
-    },
-    {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com"
-    },
-    {
-      "type": "Download",
-      "name": "VitaHomebrewDB VPK",
-      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/505-Beat_20Master.vpk",
-      "recommended": false
-    },
-    {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=505",
-      "recommended": true
-    }
-  ],
+  "links": [],
   "source_name": "VitaHomebrewDB",
   "source_id": "505",
   "source_url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/505-Beat_20Master.vpk",

@@ -27,14 +27,8 @@
   ],
   "links": [
     {
-      "type": "Download",
-      "name": "NeoVitaDB VPK",
-      "url": "https://github.com/rsn8887/basiliskii-vita/releases/download/0.33hgit-rsn8887/BasiliskII_Vita_v0.33h.vpk",
-      "recommended": true
-    },
-    {
       "type": "Official Website",
-      "name": "NeoVitaDB Release Page",
+      "name": "Release Page",
       "url": "https://github.com/rsn8887/basiliskii-vita/releases/tag/0.33hgit-rsn8887"
     },
     {
@@ -44,7 +38,7 @@
     },
     {
       "type": "Official Website",
-      "name": "VitaDB Release Page",
+      "name": "Release Page",
       "url": "https://github.com/rsn8887/basiliskii-vita/releases"
     }
   ],

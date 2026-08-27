@@ -25,32 +25,14 @@
   ],
   "links": [
     {
-      "type": "Download",
-      "name": "VitaHomebrewDB VPK",
-      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/798-UniPCemu.vpk",
-      "recommended": false
-    },
-    {
       "type": "Official Website",
-      "name": "VitaHomebrewDB Release Page",
+      "name": "Official Website",
       "url": "https://superfury.itch.io/unipcemu"
     },
     {
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://bitbucket.org/superfury/unipcemu/src/default/"
-    },
-    {
-      "type": "Download",
-      "name": "VitaHomebrewDB VPK",
-      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/798-UniPCemu.vpk",
-      "recommended": false
-    },
-    {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=798",
-      "recommended": true
     }
   ],
   "source_name": "VitaHomebrewDB",

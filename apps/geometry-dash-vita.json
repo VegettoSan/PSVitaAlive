@@ -25,31 +25,19 @@
   ],
   "links": [
     {
-      "type": "Download",
-      "name": "VitaHomebrewDB VPK",
-      "url": "https://github.com/hatoving/gdash-vita/releases/download/v1.02/gdash.vpk",
-      "recommended": false
-    },
-    {
       "type": "Official Website",
-      "name": "VitaHomebrewDB Release Page",
+      "name": "Release Page",
       "url": "https://github.com/hatoving/gdash-vita/releases"
     },
     {
       "type": "Official Website",
-      "name": "NeoVitaDB Release Page",
+      "name": "Release Page",
       "url": "https://github.com/hatoving/gdash-vita/releases/tag/v1.02"
     },
     {
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/hatoving/gdash-vita"
-    },
-    {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1177",
-      "recommended": true
     }
   ],
   "source_name": "VitaHomebrewDB",

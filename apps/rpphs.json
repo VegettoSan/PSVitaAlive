@@ -27,31 +27,19 @@
   ],
   "links": [
     {
-      "type": "Download",
-      "name": "VitaHomebrewDB VPK",
-      "url": "https://github.com/G333333/RPPHS/releases/download/v1.2/RPPHS.vpk",
-      "recommended": false
-    },
-    {
       "type": "Official Website",
-      "name": "VitaHomebrewDB Release Page",
+      "name": "Official Website",
       "url": "http://wololo.net/talk/viewtopic.php?f=116&p=423389#p423389"
     },
     {
       "type": "Official Website",
-      "name": "NeoVitaDB Release Page",
+      "name": "Release Page",
       "url": "https://github.com/G333333/RPPHS/releases/tag/v1.2"
     },
     {
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/G333333/RPPHS"
-    },
-    {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=399",
-      "recommended": true
     }
   ],
   "source_name": "VitaHomebrewDB",

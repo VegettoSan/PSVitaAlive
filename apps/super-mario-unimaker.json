@@ -26,31 +26,19 @@
   ],
   "links": [
     {
-      "type": "Download",
-      "name": "VitaHomebrewDB VPK",
-      "url": "https://github.com/MEGAgameBoy/Super-Mario-UniMaker-PS-Vita-Port/releases/download/1.2.3.4/unimaker.vpk",
-      "recommended": false
-    },
-    {
       "type": "Official Website",
-      "name": "VitaHomebrewDB Release Page",
+      "name": "Release Page",
       "url": "https://github.com/MEGAgameBoy/Super-Mario-UniMaker-PS-Vita-Port/releases"
     },
     {
       "type": "Official Website",
-      "name": "NeoVitaDB Release Page",
+      "name": "Release Page",
       "url": "https://github.com/MEGAgameBoy/Super-Mario-UniMaker-PS-Vita-Port/releases/tag/1.2.3.4"
     },
     {
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/MEGAgameBoy/Super-Mario-UniMaker-PS-Vita-Port"
-    },
-    {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=832",
-      "recommended": true
     }
   ],
   "source_name": "VitaHomebrewDB",

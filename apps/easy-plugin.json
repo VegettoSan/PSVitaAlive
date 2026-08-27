@@ -26,31 +26,19 @@
   ],
   "links": [
     {
-      "type": "Download",
-      "name": "VitaHomebrewDB VPK",
-      "url": "https://github.com/THEN00P/EasyPlugin/releases/download/1.1.1/easyplugin.vpk",
-      "recommended": false
-    },
-    {
       "type": "Official Website",
-      "name": "VitaHomebrewDB Release Page",
+      "name": "Official Website",
       "url": "https://gbatemp.net/threads/release-easy-plugin-vitadb-plugin-installer.532956/"
     },
     {
       "type": "Official Website",
-      "name": "NeoVitaDB Release Page",
+      "name": "Release Page",
       "url": "https://github.com/THEN00P/EasyPlugin/releases/tag/1.1.1"
     },
     {
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/THEN00P/EasyPlugin"
-    },
-    {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=440",
-      "recommended": true
     }
   ],
   "source_name": "VitaHomebrewDB",

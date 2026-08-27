@@ -24,31 +24,7 @@
     "https://www.rinnegatamante.eu/vitadb/screenshots/586eed71a07822678de08950e4c260efdbeb90453edceedaf35cc5c9e3743347.png",
     "https://www.rinnegatamante.eu/vitadb/screenshots/3ddf47bfd80011e8ab339596bd5d5fc1cfa63f20a62afb2fee1433e8bd37bd03.png"
   ],
-  "links": [
-    {
-      "type": "Download",
-      "name": "VitaHomebrewDB VPK",
-      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/803-supra.vpk",
-      "recommended": false
-    },
-    {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com"
-    },
-    {
-      "type": "Download",
-      "name": "VitaHomebrewDB VPK",
-      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/803-supra.vpk",
-      "recommended": false
-    },
-    {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=803",
-      "recommended": true
-    }
-  ],
+  "links": [],
   "source_name": "VitaHomebrewDB",
   "source_id": "803",
   "source_url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/803-supra.vpk",

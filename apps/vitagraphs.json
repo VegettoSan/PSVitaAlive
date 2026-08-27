@@ -25,31 +25,19 @@
   ],
   "links": [
     {
-      "type": "Download",
-      "name": "VitaHomebrewDB VPK",
-      "url": "https://github.com/Creckeryop/VitaGraphs/releases/download/0010/VitaGraphs.vpk",
-      "recommended": false
-    },
-    {
       "type": "Official Website",
-      "name": "VitaHomebrewDB Release Page",
+      "name": "Official Website",
       "url": "http://gbatemp.net/threads/release-vitagraphs-simple-graphing-calculator-for-ps-vita.496111/"
     },
     {
       "type": "Official Website",
-      "name": "NeoVitaDB Release Page",
+      "name": "Release Page",
       "url": "https://github.com/Creckeryop/VitaGraphs/releases/tag/0010"
     },
     {
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/Creckeryop/VitaGraphs"
-    },
-    {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=363",
-      "recommended": true
     }
   ],
   "source_name": "VitaHomebrewDB",

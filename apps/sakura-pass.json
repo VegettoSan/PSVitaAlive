@@ -26,14 +26,8 @@
   ],
   "links": [
     {
-      "type": "Download",
-      "name": "NeoVitaDB VPK",
-      "url": "https://github.com/Digital33Studios/sakurapass/releases/download/v.075/SakuraPass.VPK",
-      "recommended": true
-    },
-    {
       "type": "Official Website",
-      "name": "NeoVitaDB Release Page",
+      "name": "Release Page",
       "url": "https://github.com/Digital33Studios/sakurapass/releases/tag/v.075"
     },
     {

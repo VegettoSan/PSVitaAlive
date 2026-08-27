@@ -26,26 +26,14 @@
   ],
   "links": [
     {
-      "type": "Download",
-      "name": "VitaHomebrewDB VPK",
-      "url": "https://github.com/c0nduitra1n/QuantimmumChess/releases/download/Beta/quantimmum_chess.vpk",
-      "recommended": false
-    },
-    {
       "type": "Official Website",
-      "name": "VitaHomebrewDB Release Page",
+      "name": "Release Page",
       "url": "https://github.com/c0nduitra1n/QuantimmumChess/releases"
     },
     {
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/c0nduitra1n/QuantimmumChess"
-    },
-    {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1391",
-      "recommended": true
     }
   ],
   "source_name": "VitaHomebrewDB",

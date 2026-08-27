@@ -24,32 +24,14 @@
   ],
   "links": [
     {
-      "type": "Download",
-      "name": "VitaHomebrewDB VPK",
-      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/15-breakveetout.vpk",
-      "recommended": false
-    },
-    {
       "type": "Official Website",
-      "name": "VitaHomebrewDB Release Page",
+      "name": "Official Website",
       "url": "https://wololo.net/talk/viewtopic.php?f=116&t=46215"
     },
     {
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/InvalidExcepti0n/BreakVeetOut"
-    },
-    {
-      "type": "Download",
-      "name": "VitaHomebrewDB VPK",
-      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/15-breakveetout.vpk",
-      "recommended": false
-    },
-    {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=15",
-      "recommended": true
     }
   ],
   "source_name": "VitaHomebrewDB",

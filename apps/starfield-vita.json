@@ -23,31 +23,19 @@
   ],
   "links": [
     {
-      "type": "Download",
-      "name": "VitaHomebrewDB VPK",
-      "url": "https://github.com/gnmmarechal/starfield-vita/releases/download/v0.2/Starfield-Vita-v0.2.vpk",
-      "recommended": false
-    },
-    {
       "type": "Official Website",
-      "name": "VitaHomebrewDB Release Page",
+      "name": "Official Website",
       "url": "http://gekihen.customprotocol.com/en/project/Starfield-Vita"
     },
     {
       "type": "Official Website",
-      "name": "NeoVitaDB Release Page",
+      "name": "Release Page",
       "url": "https://github.com/gnmmarechal/starfield-vita/releases/tag/v0.2"
     },
     {
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/gnmmarechal/starfield-vita"
-    },
-    {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=128",
-      "recommended": true
     }
   ],
   "source_name": "VitaHomebrewDB",

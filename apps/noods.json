@@ -22,31 +22,19 @@
   ],
   "links": [
     {
-      "type": "Download",
-      "name": "VitaHomebrewDB VPK",
-      "url": "https://github.com/Hydr8gon/NooDS/releases/download/release/noods-vita.zip",
-      "recommended": false
-    },
-    {
       "type": "Official Website",
-      "name": "VitaHomebrewDB Release Page",
+      "name": "Release Page",
       "url": "https://github.com/Hydr8gon/NooDS/releases"
     },
     {
       "type": "Official Website",
-      "name": "NeoVitaDB Release Page",
+      "name": "Release Page",
       "url": "https://github.com/Hydr8gon/NooDS/releases/tag/release"
     },
     {
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/Hydr8gon/NooDS"
-    },
-    {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1093",
-      "recommended": true
     }
   ],
   "source_name": "VitaHomebrewDB",

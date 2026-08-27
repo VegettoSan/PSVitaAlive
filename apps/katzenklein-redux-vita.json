@@ -26,31 +26,19 @@
   ],
   "links": [
     {
-      "type": "Download",
-      "name": "VitaHomebrewDB VPK",
-      "url": "https://github.com/Rocroverss/katzenklein-redux-psvita-port/releases/download/v1.0.reihen/kkr.vpk",
-      "recommended": false
-    },
-    {
       "type": "Official Website",
-      "name": "VitaHomebrewDB Release Page",
+      "name": "Release Page",
       "url": "https://github.com/Rocroverss/katzenklein-redux-psvita-port/releases"
     },
     {
       "type": "Official Website",
-      "name": "NeoVitaDB Release Page",
+      "name": "Release Page",
       "url": "https://github.com/Rocroverss/katzenklein-redux-psvita-port/releases/tag/v1.0.reihen"
     },
     {
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/Rocroverss/katzenklein-redux-psvita-port"
-    },
-    {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1308",
-      "recommended": true
     }
   ],
   "source_name": "VitaHomebrewDB",

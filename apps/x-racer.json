@@ -24,31 +24,7 @@
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/0f0c920fc5151c7fdd8f653a6f544069999c9f727410e17c8b4f3388f57ba76b.png",
     "https://www.rinnegatamante.eu/vitadb/screenshots/761856b4399faa789ef259ca98c043970d0ab6ae75e1391a5f12470191166cde.png"
   ],
-  "links": [
-    {
-      "type": "Download",
-      "name": "VitaHomebrewDB VPK",
-      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/581-X-Racer.vpk",
-      "recommended": false
-    },
-    {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com"
-    },
-    {
-      "type": "Download",
-      "name": "VitaHomebrewDB VPK",
-      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/581-X-Racer.vpk",
-      "recommended": false
-    },
-    {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=581",
-      "recommended": true
-    }
-  ],
+  "links": [],
   "source_name": "VitaHomebrewDB",
   "source_id": "581",
   "source_url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/581-X-Racer.vpk",

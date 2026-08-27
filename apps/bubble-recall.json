@@ -23,31 +23,19 @@
   ],
   "links": [
     {
-      "type": "Download",
-      "name": "VitaHomebrewDB VPK",
-      "url": "https://github.com/AntHJ/Bubble-Recall/releases/download/v1.0/Bubble.Recall.vpk",
-      "recommended": false
-    },
-    {
       "type": "Official Website",
-      "name": "VitaHomebrewDB Release Page",
+      "name": "Release Page",
       "url": "https://github.com/AntHJ/Bubble-Recall/releases"
     },
     {
       "type": "Official Website",
-      "name": "NeoVitaDB Release Page",
+      "name": "Release Page",
       "url": "https://github.com/AntHJ/Bubble-Recall/releases/tag/v1.0"
     },
     {
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/AntHJ/Bubble-Recall"
-    },
-    {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=763",
-      "recommended": true
     }
   ],
   "source_name": "VitaHomebrewDB",

@@ -23,31 +23,19 @@
   ],
   "links": [
     {
-      "type": "Download",
-      "name": "VitaHomebrewDB VPK",
-      "url": "https://github.com/Freakler/vita-PSVident/releases/download/0.43/PSVident_v043.vpk",
-      "recommended": false
-    },
-    {
       "type": "Official Website",
-      "name": "VitaHomebrewDB Release Page",
+      "name": "Release Page",
       "url": "https://github.com/Freakler/vita-PSVident/releases"
     },
     {
       "type": "Official Website",
-      "name": "NeoVitaDB Release Page",
+      "name": "Release Page",
       "url": "https://github.com/Freakler/vita-PSVident/releases/tag/0.43"
     },
     {
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/Freakler/vita-PSVident"
-    },
-    {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=108",
-      "recommended": true
     }
   ],
   "source_name": "VitaHomebrewDB",

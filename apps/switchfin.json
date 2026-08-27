@@ -26,14 +26,8 @@
   ],
   "links": [
     {
-      "type": "Download",
-      "name": "NeoVitaDB VPK",
-      "url": "https://github.com/dragonflylee/switchfin/releases/download/0.9.3/Switchfin.vpk",
-      "recommended": true
-    },
-    {
       "type": "Official Website",
-      "name": "NeoVitaDB Release Page",
+      "name": "Release Page",
       "url": "https://github.com/dragonflylee/switchfin/releases/tag/0.9.3"
     },
     {
@@ -43,14 +37,8 @@
     },
     {
       "type": "Official Website",
-      "name": "VitaDB Release Page",
+      "name": "Release Page",
       "url": "https://github.com/dragonflylee/switchfin/releases"
-    },
-    {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1258",
-      "recommended": false
     }
   ],
   "source_name": "NeoVitaDB",

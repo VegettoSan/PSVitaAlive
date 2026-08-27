@@ -25,26 +25,14 @@
   ],
   "links": [
     {
-      "type": "Download",
-      "name": "VitaHomebrewDB VPK",
-      "url": "https://github.com/pathway27/bookr-mod-vita/releases/download/v0.4.0a/bookr-mod-vita-v0.4.0a.vpk",
-      "recommended": false
-    },
-    {
       "type": "Official Website",
-      "name": "VitaHomebrewDB Release Page",
+      "name": "Official Website",
       "url": "https://gbatemp.net/threads/release-bookr-mod-vita-0-2-0.496911/"
     },
     {
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/pathway27/bookr-mod-vita"
-    },
-    {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=203",
-      "recommended": true
     }
   ],
   "source_name": "VitaHomebrewDB",

@@ -26,31 +26,19 @@
   ],
   "links": [
     {
-      "type": "Download",
-      "name": "VitaHomebrewDB VPK",
-      "url": "https://github.com/TheOfficialFloW/VitaShell/releases/download/v2.02/VitaShell.vpk",
-      "recommended": false
-    },
-    {
       "type": "Official Website",
-      "name": "VitaHomebrewDB Release Page",
+      "name": "Release Page",
       "url": "https://github.com/TheOfficialFloW/VitaShell/releases"
     },
     {
       "type": "Official Website",
-      "name": "NeoVitaDB Release Page",
+      "name": "Release Page",
       "url": "https://github.com/TheOfficialFloW/VitaShell/releases/tag/v2.02"
     },
     {
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/TheOfficialFloW/VitaShell"
-    },
-    {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=21",
-      "recommended": true
     }
   ],
   "source_name": "VitaHomebrewDB",

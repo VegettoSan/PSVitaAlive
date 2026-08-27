@@ -26,14 +26,8 @@
   ],
   "links": [
     {
-      "type": "Download",
-      "name": "NeoVitaDB VPK",
-      "url": "https://github.com/Rinnegatamante/smb2se-vita/releases/download/v.122/smb2se.vpk",
-      "recommended": true
-    },
-    {
       "type": "Official Website",
-      "name": "NeoVitaDB Release Page",
+      "name": "Release Page",
       "url": "https://github.com/Rinnegatamante/smb2se-vita/releases/tag/v.122"
     },
     {
@@ -43,7 +37,7 @@
     },
     {
       "type": "Official Website",
-      "name": "VitaDB Release Page",
+      "name": "Release Page",
       "url": "https://github.com/Rinnegatamante/smb2se-vita/releases"
     }
   ],

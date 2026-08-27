@@ -23,31 +23,19 @@
   ],
   "links": [
     {
-      "type": "Download",
-      "name": "VitaHomebrewDB VPK",
-      "url": "https://github.com/usineur/openjazz/releases/download/1.1/OpenJazz.vpk",
-      "recommended": false
-    },
-    {
       "type": "Official Website",
-      "name": "VitaHomebrewDB Release Page",
+      "name": "Release Page",
       "url": "https://github.com/usineur/openjazz/releases/latest"
     },
     {
       "type": "Official Website",
-      "name": "NeoVitaDB Release Page",
+      "name": "Release Page",
       "url": "https://github.com/usineur/openjazz/releases/tag/1.1"
     },
     {
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/usineur/openjazz"
-    },
-    {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=378",
-      "recommended": true
     }
   ],
   "source_name": "VitaHomebrewDB",

@@ -26,32 +26,14 @@
   ],
   "links": [
     {
-      "type": "Download",
-      "name": "VitaHomebrewDB VPK",
-      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1119-Techmaniac-THPG.vpk",
-      "recommended": false
-    },
-    {
       "type": "Official Website",
-      "name": "VitaHomebrewDB Release Page",
+      "name": "Official Website",
       "url": "https://fuhen.homebrew-contest.com/submissions/26/"
     },
     {
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://fuhen.homebrew-contest.com/dl/source%20code%20TECHMANIAC%20VS-MOD.zip"
-    },
-    {
-      "type": "Download",
-      "name": "VitaHomebrewDB VPK",
-      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/1119-Techmaniac-THPG.vpk",
-      "recommended": false
-    },
-    {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1119",
-      "recommended": true
     }
   ],
   "source_name": "VitaHomebrewDB",

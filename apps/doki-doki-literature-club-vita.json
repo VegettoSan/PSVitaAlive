@@ -25,14 +25,8 @@
   ],
   "links": [
     {
-      "type": "Download",
-      "name": "NeoVitaDB VPK",
-      "url": "https://github.com/SonicMastr/Doki-Doki-Literature-Club-Vita/releases/download/v1.01/Doki.Doki.Literature.Club-01.01.vpk",
-      "recommended": true
-    },
-    {
       "type": "Official Website",
-      "name": "NeoVitaDB Release Page",
+      "name": "Release Page",
       "url": "https://github.com/SonicMastr/Doki-Doki-Literature-Club-Vita/releases/tag/v1.01"
     },
     {

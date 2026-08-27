@@ -24,31 +24,7 @@
     "https://www.rinnegatamante.eu/vitadb/screenshots/078ccb0f81c1c0a577550436a0c852dbf7987c054e398296af60ab94e57d2fc6.png",
     "https://www.rinnegatamante.eu/vitadb/screenshots/f4076caa2a49818ae0d7c63a903334800f39d1b60f7b1e9cf760b3a414e6dae9.png"
   ],
-  "links": [
-    {
-      "type": "Download",
-      "name": "VitaHomebrewDB VPK",
-      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/562-NedoKun.vpk",
-      "recommended": false
-    },
-    {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com"
-    },
-    {
-      "type": "Download",
-      "name": "VitaHomebrewDB VPK",
-      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/562-NedoKun.vpk",
-      "recommended": false
-    },
-    {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=562",
-      "recommended": true
-    }
-  ],
+  "links": [],
   "source_name": "VitaHomebrewDB",
   "source_id": "562",
   "source_url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/562-NedoKun.vpk",

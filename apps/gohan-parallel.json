@@ -20,31 +20,7 @@
   "screenshots": [
     "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1552-gohan-parallel.png"
   ],
-  "links": [
-    {
-      "type": "Download",
-      "name": "VitaHomebrewDB VPK",
-      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/251-GoHAN_Parallel.vpk",
-      "recommended": false
-    },
-    {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com"
-    },
-    {
-      "type": "Download",
-      "name": "VitaHomebrewDB VPK",
-      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/251-GoHAN_Parallel.vpk",
-      "recommended": false
-    },
-    {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=251",
-      "recommended": true
-    }
-  ],
+  "links": [],
   "source_name": "VitaHomebrewDB",
   "source_id": "251",
   "source_url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/251-GoHAN_Parallel.vpk",

@@ -24,31 +24,19 @@
   ],
   "links": [
     {
-      "type": "Download",
-      "name": "VitaHomebrewDB VPK",
-      "url": "https://github.com/Electric1447/EasyVPK/releases/download/v2.1.0/easyvpk.vpk",
-      "recommended": false
-    },
-    {
       "type": "Official Website",
-      "name": "VitaHomebrewDB Release Page",
+      "name": "Release Page",
       "url": "https://github.com/Electric1447/EasyVPK/releases"
     },
     {
       "type": "Official Website",
-      "name": "NeoVitaDB Release Page",
+      "name": "Release Page",
       "url": "https://github.com/Electric1447/EasyVPK/releases/tag/v2.1.0"
     },
     {
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/Electric1447/EasyVPK"
-    },
-    {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=558",
-      "recommended": true
     }
   ],
   "source_name": "VitaHomebrewDB",

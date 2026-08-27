@@ -26,26 +26,14 @@
   ],
   "links": [
     {
-      "type": "Download",
-      "name": "VitaHomebrewDB VPK",
-      "url": "https://github.com/PatnosDD/Cuphead-PS-VITA/releases/download/V0.82/Cuphead.vpk",
-      "recommended": false
-    },
-    {
       "type": "Official Website",
-      "name": "VitaHomebrewDB Release Page",
+      "name": "Repository",
       "url": "https://github.com/PatnosDD/Cuphead-PS-VITA"
     },
     {
       "type": "Official Website",
-      "name": "NeoVitaDB Release Page",
+      "name": "Release Page",
       "url": "https://github.com/PatnosDD/Cuphead-PS-VITA/releases/tag/V0.82"
-    },
-    {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1202",
-      "recommended": true
     }
   ],
   "source_name": "VitaHomebrewDB",

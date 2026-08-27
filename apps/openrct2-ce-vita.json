@@ -22,31 +22,19 @@
   ],
   "links": [
     {
-      "type": "Download",
-      "name": "VitaHomebrewDB VPK",
-      "url": "https://github.com/technicaljicama/OpenRCT2-CE/releases/download/vita-1/openrct2.vpk",
-      "recommended": false
-    },
-    {
       "type": "Official Website",
-      "name": "VitaHomebrewDB Release Page",
+      "name": "Release Page",
       "url": "https://github.com/technicaljicama/OpenRCT2-CE/releases"
     },
     {
       "type": "Official Website",
-      "name": "NeoVitaDB Release Page",
+      "name": "Release Page",
       "url": "https://github.com/technicaljicama/OpenRCT2-CE/releases/tag/vita-1"
     },
     {
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/technicaljicama/OpenRCT2-CE"
-    },
-    {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1269",
-      "recommended": true
     }
   ],
   "source_name": "VitaHomebrewDB",

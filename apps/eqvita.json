@@ -26,14 +26,8 @@
   ],
   "links": [
     {
-      "type": "Download",
-      "name": "NeoVitaDB VPK",
-      "url": "https://github.com/shev0k/EQVita/releases/download/v1.14.0/EQVita.vpk",
-      "recommended": true
-    },
-    {
       "type": "Official Website",
-      "name": "NeoVitaDB Release Page",
+      "name": "Release Page",
       "url": "https://github.com/shev0k/EQVita/releases/tag/v1.14.0"
     },
     {
@@ -43,7 +37,7 @@
     },
     {
       "type": "Official Website",
-      "name": "VitaDB Release Page",
+      "name": "Release Page",
       "url": "https://github.com/shev0k/EQVita/releases"
     }
   ],

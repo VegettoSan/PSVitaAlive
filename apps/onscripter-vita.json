@@ -22,32 +22,14 @@
   ],
   "links": [
     {
-      "type": "Download",
-      "name": "VitaHomebrewDB VPK",
-      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/837-ONScripter-Vita.vpk",
-      "recommended": false
-    },
-    {
       "type": "Official Website",
-      "name": "VitaHomebrewDB Release Page",
+      "name": "Official Website",
       "url": "https://gitee.com/yizhigai/onscripter-vita/releases/"
     },
     {
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://gitee.com/yizhigai/onscripter-vita"
-    },
-    {
-      "type": "Download",
-      "name": "VitaHomebrewDB VPK",
-      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/837-ONScripter-Vita.vpk",
-      "recommended": false
-    },
-    {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=837",
-      "recommended": true
     }
   ],
   "source_name": "VitaHomebrewDB",

@@ -22,31 +22,19 @@
   ],
   "links": [
     {
-      "type": "Download",
-      "name": "VitaHomebrewDB VPK",
-      "url": "https://github.com/largepelotas/JaVitaScript-Snake/releases/download/v1.2.0/snake.vpk",
-      "recommended": true
-    },
-    {
       "type": "Official Website",
-      "name": "VitaHomebrewDB Release Page",
+      "name": "Release Page",
       "url": "https://github.com/largepelotas/JaVitaScript-Snake/releases"
     },
     {
       "type": "Official Website",
-      "name": "NeoVitaDB Release Page",
+      "name": "Release Page",
       "url": "https://github.com/largepelotas/JaVitaScript-Snake/releases/tag/v1.2.0"
     },
     {
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/largepelotas/JaVitaScript-Snake"
-    },
-    {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1479",
-      "recommended": false
     }
   ],
   "source_name": "VitaHomebrewDB",

@@ -22,32 +22,14 @@
   ],
   "links": [
     {
-      "type": "Download",
-      "name": "VitaHomebrewDB VPK",
-      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1091-dolmexica_infinite.vpk",
-      "recommended": false
-    },
-    {
       "type": "Official Website",
-      "name": "VitaHomebrewDB Release Page",
+      "name": "Official Website",
       "url": "https://captaindreamcast.itch.io/dolmexica-infinite"
     },
     {
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/CaptainDreamcast/DolmexicaInfinite/"
-    },
-    {
-      "type": "Download",
-      "name": "VitaHomebrewDB VPK",
-      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/1091-dolmexica_infinite.vpk",
-      "recommended": false
-    },
-    {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1091",
-      "recommended": true
     }
   ],
   "source_name": "VitaHomebrewDB",

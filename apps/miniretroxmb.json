@@ -22,26 +22,14 @@
   ],
   "links": [
     {
-      "type": "Download",
-      "name": "VitaHomebrewDB VPK",
-      "url": "https://github.com/goobercx/MiniRetroXMB-v1.0/releases/download/RELEASE/MiniRetroXMB.vpk",
-      "recommended": false
-    },
-    {
       "type": "Official Website",
-      "name": "VitaHomebrewDB Release Page",
+      "name": "Release Page",
       "url": "https://github.com/goobercx/MiniRetroXMB-v1.0/releases"
     },
     {
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/goobercx/MiniRetroXMB-v1.0"
-    },
-    {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1385",
-      "recommended": true
     }
   ],
   "source_name": "VitaHomebrewDB",

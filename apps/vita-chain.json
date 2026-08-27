@@ -23,26 +23,14 @@
   ],
   "links": [
     {
-      "type": "Download",
-      "name": "VitaHomebrewDB VPK",
-      "url": "https://github.com/svennd/vita-chain/releases/download/0.2/chain.vpk",
-      "recommended": false
-    },
-    {
       "type": "Official Website",
-      "name": "VitaHomebrewDB Release Page",
+      "name": "Official Website",
       "url": "http://wololo.net/talk/viewtopic.php?f=116&t=48660"
     },
     {
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/svennd/vita-chain"
-    },
-    {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=339",
-      "recommended": true
     }
   ],
   "source_name": "VitaHomebrewDB",

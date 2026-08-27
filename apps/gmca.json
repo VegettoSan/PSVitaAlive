@@ -22,14 +22,8 @@
   ],
   "links": [
     {
-      "type": "Download",
-      "name": "NeoVitaDB VPK",
-      "url": "https://github.com/thcolin/gamepad-media-center-aggregator/releases/download/v1.1.0/GMCA.vpk",
-      "recommended": true
-    },
-    {
       "type": "Official Website",
-      "name": "NeoVitaDB Release Page",
+      "name": "Release Page",
       "url": "https://github.com/thcolin/gamepad-media-center-aggregator/releases/tag/v1.1.0"
     },
     {
@@ -39,7 +33,7 @@
     },
     {
       "type": "Official Website",
-      "name": "VitaDB Release Page",
+      "name": "Release Page",
       "url": "https://github.com/thcolin/gamepad-media-center-aggregator/releases"
     }
   ],

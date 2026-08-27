@@ -28,14 +28,8 @@
   ],
   "links": [
     {
-      "type": "Download",
-      "name": "NeoVitaDB VPK",
-      "url": "https://github.com/mauricio-gg/vitaki-vitarps5/releases/download/v3.0.3/VitakiFork-v3.0.3.vpk",
-      "recommended": true
-    },
-    {
       "type": "Official Website",
-      "name": "NeoVitaDB Release Page",
+      "name": "Release Page",
       "url": "https://github.com/mauricio-gg/vitaki-vitarps5/releases/tag/v3.0.3"
     },
     {
@@ -45,14 +39,8 @@
     },
     {
       "type": "Official Website",
-      "name": "VitaHomebrewDB Release Page",
+      "name": "Release Page",
       "url": "https://github.com/mauricio-gg/vitaki-vitarps5/releases"
-    },
-    {
-      "type": "Download",
-      "name": "VitaHomebrewDB VPK",
-      "url": "https://github.com/mauricio-gg/vitaki-vitarps5/releases/download/v3.1.0/VitakiFork-v3.1.0.vpk",
-      "recommended": false
     }
   ],
   "source_name": "NeoVitaDB",

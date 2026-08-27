@@ -23,37 +23,19 @@
   ],
   "links": [
     {
-      "type": "Download",
-      "name": "VitaHomebrewDB VPK",
-      "url": "https://github.com/ywnico/vitaki-fork/releases/download/v0.06c/Vitaki.vpk",
-      "recommended": false
-    },
-    {
-      "type": "Download",
-      "name": "NeoVitaDB VPK",
-      "url": "https://github.com/ywnico/vitaki-fork/releases/download/v0.06d/Vitaki.vpk",
-      "recommended": false
-    },
-    {
       "type": "Official Website",
-      "name": "VitaHomebrewDB Release Page",
+      "name": "Release Page",
       "url": "https://github.com/ywnico/vitaki-fork/releases"
     },
     {
       "type": "Official Website",
-      "name": "NeoVitaDB Release Page",
+      "name": "Release Page",
       "url": "https://github.com/ywnico/vitaki-fork/releases/tag/v0.06d"
     },
     {
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/ywnico/vitaki-fork"
-    },
-    {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1293",
-      "recommended": true
     }
   ],
   "source_name": "VitaHomebrewDB",

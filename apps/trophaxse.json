@@ -23,25 +23,13 @@
   ],
   "links": [
     {
-      "type": "Download",
-      "name": "NeoVitaDB VPK",
-      "url": "https://git.silica.codes/Li/trophaxse/releases/download/latest/TrophaxSE.vpk",
-      "recommended": false
-    },
-    {
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://git.silica.codes"
     },
     {
-      "type": "Download",
-      "name": "VitaHomebrewDB VPK",
-      "url": "https://git.silica.codes/Li/trophaxse/releases/download/v1.5/TrophaxSE.vpk",
-      "recommended": true
-    },
-    {
       "type": "Official Website",
-      "name": "VitaHomebrewDB Release Page",
+      "name": "Official Website",
       "url": "https://git.silica.codes/Li/trophaxse/releases"
     },
     {

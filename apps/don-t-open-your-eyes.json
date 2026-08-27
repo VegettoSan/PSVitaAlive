@@ -22,43 +22,19 @@
   ],
   "links": [
     {
-      "type": "Download",
-      "name": "VitaHomebrewDB VPK",
-      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/807-dontopen.vpk",
-      "recommended": false
-    },
-    {
-      "type": "Download",
-      "name": "NeoVitaDB VPK",
-      "url": "https://github.com/SilverCrow2323/Don-t-OpenYourVita/releases/download/v.1.11/dontopen-v.1.11.vpk",
-      "recommended": false
-    },
-    {
       "type": "Official Website",
-      "name": "VitaHomebrewDB Release Page",
+      "name": "Official Website",
       "url": "https://via01.itch.io/dont-open-your-eyes"
     },
     {
       "type": "Official Website",
-      "name": "NeoVitaDB Release Page",
+      "name": "Release Page",
       "url": "https://github.com/SilverCrow2323/Don-t-OpenYourVita/releases/tag/v.1.11"
     },
     {
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/SilverCrow2323/Don-t-OpenYourVita"
-    },
-    {
-      "type": "Download",
-      "name": "VitaHomebrewDB VPK",
-      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/807-dontopen.vpk",
-      "recommended": false
-    },
-    {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=807",
-      "recommended": true
     }
   ],
   "source_name": "VitaHomebrewDB",

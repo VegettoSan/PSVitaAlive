@@ -22,14 +22,8 @@
   ],
   "links": [
     {
-      "type": "Download",
-      "name": "NeoVitaDB VPK",
-      "url": "https://github.com/LiEnby/WheelOfTheYearGM/releases/download/v1.1/WOTY.vpk",
-      "recommended": true
-    },
-    {
       "type": "Official Website",
-      "name": "NeoVitaDB Release Page",
+      "name": "Release Page",
       "url": "https://github.com/LiEnby/WheelOfTheYearGM/releases/tag/v1.1"
     },
     {

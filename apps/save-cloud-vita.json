@@ -22,26 +22,14 @@
   ],
   "links": [
     {
-      "type": "Download",
-      "name": "VitaHomebrewDB VPK",
-      "url": "https://github.com/save-cloud/save-cloud-vita/releases/download/v2024.02.28/save-cloud-2026-04-06.vpk",
-      "recommended": false
-    },
-    {
       "type": "Official Website",
-      "name": "VitaHomebrewDB Release Page",
+      "name": "Release Page",
       "url": "https://github.com/save-cloud/save-cloud-vita/releases"
     },
     {
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/save-cloud/save-cloud-vita/"
-    },
-    {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1419",
-      "recommended": true
     }
   ],
   "source_name": "VitaHomebrewDB",

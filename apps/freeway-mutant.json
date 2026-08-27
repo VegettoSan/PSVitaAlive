@@ -27,32 +27,14 @@
   ],
   "links": [
     {
-      "type": "Download",
-      "name": "VitaHomebrewDB VPK",
-      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/416-Freeway_Mutant.vpk",
-      "recommended": false
-    },
-    {
       "type": "Official Website",
-      "name": "VitaHomebrewDB Release Page",
+      "name": "Official Website",
       "url": "https://gbatemp.net/threads/release-freeway-mutant-gamemaker-1-4-port-gaymaker.527870/"
     },
     {
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/KimsoftStudio/asteroidsvh"
-    },
-    {
-      "type": "Download",
-      "name": "VitaHomebrewDB VPK",
-      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/416-Freeway_Mutant.vpk",
-      "recommended": false
-    },
-    {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=416",
-      "recommended": true
     }
   ],
   "source_name": "VitaHomebrewDB",

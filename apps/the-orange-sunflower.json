@@ -21,31 +21,7 @@
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/b2fa9279c905d6bc94472cc49ebf311c52cdb11834f2823ae919b6e3b3053fb4.png",
     "https://www.rinnegatamante.eu/vitadb/screenshots/b2fa9279c905d6bc94472cc49ebf311c52cdb11834f2823ae919b6e3b3053fb4.png"
   ],
-  "links": [
-    {
-      "type": "Download",
-      "name": "VitaHomebrewDB VPK",
-      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/455-OrangeSunflower.vpk",
-      "recommended": false
-    },
-    {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com"
-    },
-    {
-      "type": "Download",
-      "name": "VitaHomebrewDB VPK",
-      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/455-OrangeSunflower.vpk",
-      "recommended": false
-    },
-    {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=455",
-      "recommended": true
-    }
-  ],
+  "links": [],
   "source_name": "VitaHomebrewDB",
   "source_id": "455",
   "source_url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/455-OrangeSunflower.vpk",

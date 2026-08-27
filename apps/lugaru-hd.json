@@ -26,32 +26,14 @@
   ],
   "links": [
     {
-      "type": "Download",
-      "name": "VitaHomebrewDB VPK",
-      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/853-Lugaru-release-beta-1.vpk",
-      "recommended": false
-    },
-    {
       "type": "Official Website",
-      "name": "VitaHomebrewDB Release Page",
+      "name": "Official Website",
       "url": "https://aramallo.itch.io/lugaru-vita-port"
     },
     {
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://gitlab.com/alexramallo/lugaruvita"
-    },
-    {
-      "type": "Download",
-      "name": "VitaHomebrewDB VPK",
-      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/853-Lugaru-release-beta-1.vpk",
-      "recommended": false
-    },
-    {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=853",
-      "recommended": true
     }
   ],
   "source_name": "VitaHomebrewDB",

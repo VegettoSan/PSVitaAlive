@@ -25,31 +25,19 @@
   ],
   "links": [
     {
-      "type": "Download",
-      "name": "VitaHomebrewDB VPK",
-      "url": "https://github.com/bomblik/GNU_Robbo_PSVITA_PSP/releases/download/GNU_Robbo_0.68_PSVITA/gnurobbo_0.68.vpk",
-      "recommended": false
-    },
-    {
       "type": "Official Website",
-      "name": "VitaHomebrewDB Release Page",
+      "name": "Official Website",
       "url": "http://gekihen.customprotocol.com/en/project/GNU-Robbo"
     },
     {
       "type": "Official Website",
-      "name": "NeoVitaDB Release Page",
+      "name": "Release Page",
       "url": "https://github.com/bomblik/GNU_Robbo_PSVITA_PSP/releases/tag/GNU_Robbo_0.68_PSVITA"
     },
     {
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/bomblik/GNU_Robbo_PSVITA_PSP"
-    },
-    {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=114",
-      "recommended": true
     }
   ],
   "source_name": "VitaHomebrewDB",

@@ -23,32 +23,14 @@
   ],
   "links": [
     {
-      "type": "Download",
-      "name": "VitaHomebrewDB VPK",
-      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/300-plgmn.vpk",
-      "recommended": false
-    },
-    {
       "type": "Official Website",
-      "name": "VitaHomebrewDB Release Page",
+      "name": "Official Website",
       "url": "https://forum.hackinformer.com/viewtopic.php?f=111&t=1203"
     },
     {
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://bitbucket.org/kylon/plugins-manager-vita/overview"
-    },
-    {
-      "type": "Download",
-      "name": "VitaHomebrewDB VPK",
-      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/300-plgmn.vpk",
-      "recommended": false
-    },
-    {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=300",
-      "recommended": true
     }
   ],
   "source_name": "VitaHomebrewDB",

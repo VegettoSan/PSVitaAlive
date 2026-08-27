@@ -26,19 +26,13 @@
   ],
   "links": [
     {
-      "type": "Download",
-      "name": "VitaHomebrewDB VPK",
-      "url": "https://github.com/sergiou87/open-supaplex/releases/download/v7.2.2/OpenSupaplex.vpk",
-      "recommended": true
-    },
-    {
       "type": "Official Website",
-      "name": "VitaHomebrewDB Release Page",
+      "name": "Release Page",
       "url": "https://github.com/sergiou87/open-supaplex/releases"
     },
     {
       "type": "Official Website",
-      "name": "NeoVitaDB Release Page",
+      "name": "Release Page",
       "url": "https://github.com/sergiou87/open-supaplex/releases/tag/v7.2.2"
     },
     {

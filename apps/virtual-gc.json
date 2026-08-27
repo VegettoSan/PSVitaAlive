@@ -22,31 +22,19 @@
   ],
   "links": [
     {
-      "type": "Download",
-      "name": "VitaHomebrewDB VPK",
-      "url": "https://github.com/motoharu-gosuto/psvgamesd/releases/download/v2.0/psvgc.vpk",
-      "recommended": false
-    },
-    {
       "type": "Official Website",
-      "name": "VitaHomebrewDB Release Page",
+      "name": "Release Page",
       "url": "https://github.com/motoharu-gosuto/psvgamesd/releases"
     },
     {
       "type": "Official Website",
-      "name": "NeoVitaDB Release Page",
+      "name": "Release Page",
       "url": "https://github.com/motoharu-gosuto/psvgamesd/releases/tag/v2.0"
     },
     {
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/motoharu-gosuto/psvgamesd"
-    },
-    {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=312",
-      "recommended": true
     }
   ],
   "source_name": "VitaHomebrewDB",

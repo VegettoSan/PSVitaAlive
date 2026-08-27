@@ -26,31 +26,19 @@
   ],
   "links": [
     {
-      "type": "Download",
-      "name": "VitaHomebrewDB VPK",
-      "url": "https://github.com/angguss/OpenTTD/releases/download/0.3-vita/openttd.vpk",
-      "recommended": false
-    },
-    {
       "type": "Official Website",
-      "name": "VitaHomebrewDB Release Page",
+      "name": "Release Page",
       "url": "https://github.com/angguss/OpenTTD/releases"
     },
     {
       "type": "Official Website",
-      "name": "NeoVitaDB Release Page",
+      "name": "Release Page",
       "url": "https://github.com/angguss/OpenTTD/releases/tag/0.3-vita"
     },
     {
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/angguss/OpenTTD/"
-    },
-    {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=299",
-      "recommended": true
     }
   ],
   "source_name": "VitaHomebrewDB",

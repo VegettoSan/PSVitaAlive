@@ -22,19 +22,13 @@
   ],
   "links": [
     {
-      "type": "Download",
-      "name": "VitaHomebrewDB VPK",
-      "url": "https://github.com/Yoti/psv_idpsdump/releases/download/v1.1/PSV_IDPS_Dumper_v1.1.vpk",
-      "recommended": true
-    },
-    {
       "type": "Official Website",
-      "name": "VitaHomebrewDB Release Page",
+      "name": "Release Page",
       "url": "https://github.com/Yoti/psv_idpsdump/releases"
     },
     {
       "type": "Official Website",
-      "name": "NeoVitaDB Release Page",
+      "name": "Release Page",
       "url": "https://github.com/Yoti/psv_idpsdump/releases/tag/v1.1"
     },
     {

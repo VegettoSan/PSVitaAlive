@@ -26,31 +26,19 @@
   ],
   "links": [
     {
-      "type": "Download",
-      "name": "VitaHomebrewDB VPK",
-      "url": "https://github.com/Northfear/Commander-Genius/releases/download/v3.0.9-vita.2/CommanderGenius.vpk",
-      "recommended": false
-    },
-    {
       "type": "Official Website",
-      "name": "VitaHomebrewDB Release Page",
+      "name": "Release Page",
       "url": "https://github.com/Northfear/Commander-Genius/releases"
     },
     {
       "type": "Official Website",
-      "name": "NeoVitaDB Release Page",
+      "name": "Release Page",
       "url": "https://github.com/Northfear/Commander-Genius/releases/tag/v3.0.9-vita.2"
     },
     {
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/Northfear/Commander-Genius"
-    },
-    {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=610",
-      "recommended": true
     }
   ],
   "source_name": "VitaHomebrewDB",

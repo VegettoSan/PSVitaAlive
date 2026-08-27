@@ -26,31 +26,19 @@
   ],
   "links": [
     {
-      "type": "Download",
-      "name": "VitaHomebrewDB VPK",
-      "url": "https://github.com/Creckeryop/PiCrest/releases/download/1.15/PiCrest.vpk",
-      "recommended": false
-    },
-    {
       "type": "Official Website",
-      "name": "VitaHomebrewDB Release Page",
+      "name": "Official Website",
       "url": "https://gbatemp.net/threads/release-picrest-picross-for-ps-vita.513063/#post-8182254"
     },
     {
       "type": "Official Website",
-      "name": "NeoVitaDB Release Page",
+      "name": "Release Page",
       "url": "https://github.com/Creckeryop/PiCrest/releases/tag/1.15"
     },
     {
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/Creckeryop/PiCrest"
-    },
-    {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=392",
-      "recommended": true
     }
   ],
   "source_name": "VitaHomebrewDB",

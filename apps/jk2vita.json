@@ -24,13 +24,6 @@
   "links": [
     {
       "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1480",
-      "recommended": true,
-      "size": 3422087
-    },
-    {
-      "type": "Download",
       "name": "VPK Mediafire",
       "url": "https://www.mediafire.com/file/0alnjuu3bskbi5h/JAVITA-1.0.vpk/file",
       "recommended": false,
@@ -38,7 +31,7 @@
     },
     {
       "type": "Official Website",
-      "name": "VitaDB Release Page",
+      "name": "Release Page",
       "url": "https://github.com/NDRWhun/JK2VITA/releases"
     },
     {

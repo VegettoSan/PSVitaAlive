@@ -27,43 +27,19 @@
   ],
   "links": [
     {
-      "type": "Download",
-      "name": "VitaHomebrewDB VPK",
-      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1028-nzp.vpk",
-      "recommended": false
-    },
-    {
-      "type": "Download",
-      "name": "NeoVitaDB VPK",
-      "url": "https://github.com/nzp-team/nzportable/releases/download/nightly/nzportable-vita.zip",
-      "recommended": false
-    },
-    {
       "type": "Official Website",
-      "name": "VitaHomebrewDB Release Page",
+      "name": "Release Page",
       "url": "https://github.com/nzp-team/nzportable/releases"
     },
     {
       "type": "Official Website",
-      "name": "NeoVitaDB Release Page",
+      "name": "Release Page",
       "url": "https://github.com/nzp-team/nzportable/releases/tag/nightly"
     },
     {
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/nzp-team/nzportable"
-    },
-    {
-      "type": "Download",
-      "name": "VitaHomebrewDB VPK",
-      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/1028-nzp.vpk",
-      "recommended": false
-    },
-    {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1028",
-      "recommended": true
     }
   ],
   "source_name": "VitaHomebrewDB",

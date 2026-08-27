@@ -32,14 +32,6 @@
     },
     {
       "type": "Game Files",
-      "name": "Game Data Files ZIP",
-      "url": "https://archive.org/download/ctrm-psvita/Game%20Files.zip",
-      "recommended": false,
-      "size": 58700000,
-      "extract_path": "ux0:data/"
-    },
-    {
-      "type": "Game Files",
       "name": "Game Data Files ZIP - MediaFire",
       "url": "https://www.mediafire.com/file/5fpkqn43vlonozy/Game_Files.zip/file",
       "recommended": false,
@@ -47,10 +39,12 @@
       "extract_path": "ux0:data/"
     },
     {
-      "type": "Download",
-      "name": "GitHub VPK",
-      "url": "https://github.com/Clyppe/cut-the-rope-magic-vita/releases/download/v0.10-BETA/CutTheRopeMagic.vpk",
-      "recommended": false
+      "type": "Game Files",
+      "name": "Game Data Files ZIP",
+      "url": "https://archive.org/download/ctrm-psvita/Game%20Files.zip",
+      "recommended": false,
+      "size": 58700000,
+      "extract_path": "ux0:data/"
     }
   ],
   "icon": "https://archive.org/download/ctrm-psvita/icon0.png",

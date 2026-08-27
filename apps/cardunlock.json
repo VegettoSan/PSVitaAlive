@@ -22,31 +22,19 @@
   ],
   "links": [
     {
-      "type": "Download",
-      "name": "VitaHomebrewDB VPK",
-      "url": "https://github.com/cnsldv/CardUnlock/releases/download/v1.0/CardUnlock.vpk",
-      "recommended": false
-    },
-    {
       "type": "Official Website",
-      "name": "VitaHomebrewDB Release Page",
+      "name": "Official Website",
       "url": "https://wololo.net/talk/viewtopic.php?f=116&t=48104"
     },
     {
       "type": "Official Website",
-      "name": "NeoVitaDB Release Page",
+      "name": "Release Page",
       "url": "https://github.com/cnsldv/CardUnlock/releases/tag/v1.0"
     },
     {
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/cnsldv/CardUnlock"
-    },
-    {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=249",
-      "recommended": true
     }
   ],
   "source_name": "VitaHomebrewDB",

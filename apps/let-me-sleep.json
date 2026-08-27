@@ -23,31 +23,7 @@
     "https://www.rinnegatamante.eu/vitadb/screenshots/2d304833a417475205d7e601ded774666bf9a704b5d3e37e087af82a29028523.png",
     "https://www.rinnegatamante.eu/vitadb/screenshots/b87fbd8fcd8468f990363aa0cc5692f1449cc04dc20fb505cae8d85c7c53f3b4.png"
   ],
-  "links": [
-    {
-      "type": "Download",
-      "name": "VitaHomebrewDB VPK",
-      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/450-Let_20Me_20Sleep.vpk",
-      "recommended": false
-    },
-    {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com"
-    },
-    {
-      "type": "Download",
-      "name": "VitaHomebrewDB VPK",
-      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/450-Let_20Me_20Sleep.vpk",
-      "recommended": false
-    },
-    {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=450",
-      "recommended": true
-    }
-  ],
+  "links": [],
   "source_name": "VitaHomebrewDB",
   "source_id": "450",
   "source_url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/450-Let_20Me_20Sleep.vpk",

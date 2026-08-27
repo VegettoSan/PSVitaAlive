@@ -26,21 +26,9 @@
   ],
   "links": [
     {
-      "type": "Download",
-      "name": "VitaHomebrewDB VPK",
-      "url": "https://github.com/anas-halid/SF1MR-VITA/releases/download/release/SF1MR.vpk",
-      "recommended": false
-    },
-    {
       "type": "Official Website",
-      "name": "VitaHomebrewDB Release Page",
+      "name": "Repository",
       "url": "https://github.com/anas-halid/SF1MR-VITA"
-    },
-    {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1245",
-      "recommended": true
     }
   ],
   "source_name": "VitaHomebrewDB",

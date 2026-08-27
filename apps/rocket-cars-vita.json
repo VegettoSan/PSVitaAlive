@@ -24,31 +24,7 @@
     "https://www.rinnegatamante.eu/vitadb/screenshots/bce7d7cea44746ca8dd5ea28d44732e88d78c0db4dc12bea4d727e784c73373f.png",
     "https://www.rinnegatamante.eu/vitadb/screenshots/b8824b7635ac459d0a42c0c3ca5fcd97f5f894cc02b5eb31adc73b1dca52fc5a.png"
   ],
-  "links": [
-    {
-      "type": "Download",
-      "name": "VitaHomebrewDB VPK",
-      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/729-rocket_league.vpk",
-      "recommended": false
-    },
-    {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com"
-    },
-    {
-      "type": "Download",
-      "name": "VitaHomebrewDB VPK",
-      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/729-rocket_league.vpk",
-      "recommended": false
-    },
-    {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=729",
-      "recommended": true
-    }
-  ],
+  "links": [],
   "source_name": "VitaHomebrewDB",
   "source_id": "729",
   "source_url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/729-rocket_league.vpk",

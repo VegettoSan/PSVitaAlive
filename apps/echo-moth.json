@@ -23,31 +23,7 @@
     "https://www.rinnegatamante.eu/vitadb/screenshots/92c6b4496c18f02305eac0174ef0efcec55180a03f5ceca3dd5f53474004bf3f.png",
     "https://www.rinnegatamante.eu/vitadb/screenshots/ea33d67afc7e501dc74ecf708bcc469c0690598617cea7b486561845895a2260.png"
   ],
-  "links": [
-    {
-      "type": "Download",
-      "name": "VitaHomebrewDB VPK",
-      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/453-Echo_20Moth.vpk",
-      "recommended": false
-    },
-    {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com"
-    },
-    {
-      "type": "Download",
-      "name": "VitaHomebrewDB VPK",
-      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/453-Echo_20Moth.vpk",
-      "recommended": false
-    },
-    {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=453",
-      "recommended": true
-    }
-  ],
+  "links": [],
   "source_name": "VitaHomebrewDB",
   "source_id": "453",
   "source_url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/453-Echo_20Moth.vpk",

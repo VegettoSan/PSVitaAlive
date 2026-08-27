@@ -22,26 +22,14 @@
   ],
   "links": [
     {
-      "type": "Download",
-      "name": "VitaHomebrewDB VPK",
-      "url": "https://github.com/cnsldv/MediaImporter/releases/download/v0.91/MediaImporter.vpk",
-      "recommended": false
-    },
-    {
       "type": "Official Website",
-      "name": "VitaHomebrewDB Release Page",
+      "name": "Official Website",
       "url": "http://wololo.net/talk/viewtopic.php?p=418293"
     },
     {
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/cnsldv/MediaImporter"
-    },
-    {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=259",
-      "recommended": true
     }
   ],
   "source_name": "VitaHomebrewDB",

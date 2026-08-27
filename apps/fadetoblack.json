@@ -26,26 +26,14 @@
   ],
   "links": [
     {
-      "type": "Download",
-      "name": "VitaHomebrewDB VPK",
-      "url": "https://github.com/usineur/f2bgl/releases/download/vita-1.0/FadeToBlack.vpk",
-      "recommended": false
-    },
-    {
       "type": "Official Website",
-      "name": "VitaHomebrewDB Release Page",
+      "name": "Official Website",
       "url": "http://wololo.net/talk/viewtopic.php?f=116&p=421770#p421770"
     },
     {
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/usineur/f2bgl"
-    },
-    {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=367",
-      "recommended": true
     }
   ],
   "source_name": "VitaHomebrewDB",

@@ -22,31 +22,19 @@
   ],
   "links": [
     {
-      "type": "Download",
-      "name": "VitaHomebrewDB VPK",
-      "url": "https://github.com/KiddRwxSsj/trifle-psychotic-vita/releases/download/1.0.0/TriflePsychotic.vpk",
-      "recommended": false
-    },
-    {
       "type": "Official Website",
-      "name": "VitaHomebrewDB Release Page",
+      "name": "Release Page",
       "url": "https://github.com/KiddRwxSsj/trifle-psychotic-vita/releases"
     },
     {
       "type": "Official Website",
-      "name": "NeoVitaDB Release Page",
+      "name": "Release Page",
       "url": "https://github.com/KiddRwxSsj/trifle-psychotic-vita/releases/tag/1.0.0"
     },
     {
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/KiddRwxSsj/trifle-psychotic-vita"
-    },
-    {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1461",
-      "recommended": true
     }
   ],
   "source_name": "VitaHomebrewDB",

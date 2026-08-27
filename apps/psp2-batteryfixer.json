@@ -23,31 +23,19 @@
   ],
   "links": [
     {
-      "type": "Download",
-      "name": "VitaHomebrewDB VPK",
-      "url": "https://github.com/SKGleba/PSP2-batteryFixer/releases/download/v3.0.1/batteryFixer.vpk",
-      "recommended": false
-    },
-    {
       "type": "Official Website",
-      "name": "VitaHomebrewDB Release Page",
+      "name": "Release Page",
       "url": "https://github.com/SKGleba/PSP2-batteryFixer/releases"
     },
     {
       "type": "Official Website",
-      "name": "NeoVitaDB Release Page",
+      "name": "Release Page",
       "url": "https://github.com/SKGleba/PSP2-batteryFixer/releases/tag/v3.0.1"
     },
     {
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/SKGleba/PSP2-batteryFixer"
-    },
-    {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=479",
-      "recommended": true
     }
   ],
   "source_name": "VitaHomebrewDB",

@@ -26,32 +26,14 @@
   ],
   "links": [
     {
-      "type": "Download",
-      "name": "VitaHomebrewDB VPK",
-      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/333-luaVitaSeccy.vpk",
-      "recommended": false
-    },
-    {
       "type": "Official Website",
-      "name": "VitaHomebrewDB Release Page",
+      "name": "Official Website",
       "url": "http://wololo.net/2017/10/08/release-luavitaseccy-seesion-id-calculator-phantasy-star-online-games/"
     },
     {
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/eleriaqueen/luaVitaSeccy"
-    },
-    {
-      "type": "Download",
-      "name": "VitaHomebrewDB VPK",
-      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/333-luaVitaSeccy.vpk",
-      "recommended": false
-    },
-    {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=333",
-      "recommended": true
     }
   ],
   "source_name": "VitaHomebrewDB",

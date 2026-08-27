@@ -23,31 +23,7 @@
     "https://www.rinnegatamante.eu/vitadb/screenshots/bac794103e9a8700b5569af8e03e7cb270a0162da3663d5160cd0fa541d6310b.png",
     "https://www.rinnegatamante.eu/vitadb/screenshots/535ecc5b944597b854606a3216cef010fab3d5fd6c16005d323259ace9526de8.png"
   ],
-  "links": [
-    {
-      "type": "Download",
-      "name": "VitaHomebrewDB VPK",
-      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/449-Get_20the_20F_20off_20my_20lawn.vpk",
-      "recommended": false
-    },
-    {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com"
-    },
-    {
-      "type": "Download",
-      "name": "VitaHomebrewDB VPK",
-      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/449-Get_20the_20F_20off_20my_20lawn.vpk",
-      "recommended": false
-    },
-    {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=449",
-      "recommended": true
-    }
-  ],
+  "links": [],
   "source_name": "VitaHomebrewDB",
   "source_id": "449",
   "source_url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/449-Get_20the_20F_20off_20my_20lawn.vpk",

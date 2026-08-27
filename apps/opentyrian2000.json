@@ -22,14 +22,8 @@
   ],
   "links": [
     {
-      "type": "Download",
-      "name": "VitaHomebrewDB VPK",
-      "url": "https://github.com/andyvand/opentyrian2000/releases/download/3.0.0-SDL3/OpenTyrian2000-PSVita.vpk",
-      "recommended": true
-    },
-    {
       "type": "Official Website",
-      "name": "VitaHomebrewDB Release Page",
+      "name": "Release Page",
       "url": "https://github.com/andyvand/opentyrian2000/releases"
     },
     {

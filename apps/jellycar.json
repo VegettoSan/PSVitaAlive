@@ -26,31 +26,19 @@
   ],
   "links": [
     {
-      "type": "Download",
-      "name": "VitaHomebrewDB VPK",
-      "url": "https://github.com/DrakonPL/JellyCar/releases/download/1.1/JellyCarVita.vpk",
-      "recommended": false
-    },
-    {
       "type": "Official Website",
-      "name": "VitaHomebrewDB Release Page",
+      "name": "Release Page",
       "url": "https://github.com/DrakonPL/JellyCar/releases"
     },
     {
       "type": "Official Website",
-      "name": "NeoVitaDB Release Page",
+      "name": "Release Page",
       "url": "https://github.com/DrakonPL/JellyCar/releases/tag/1.1"
     },
     {
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/DrakonPL/JellyCar"
-    },
-    {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=27",
-      "recommended": true
     }
   ],
   "source_name": "VitaHomebrewDB",

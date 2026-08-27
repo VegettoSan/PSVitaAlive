@@ -26,43 +26,19 @@
   ],
   "links": [
     {
-      "type": "Download",
-      "name": "VitaHomebrewDB VPK",
-      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1112-TWEWY.vpk",
-      "recommended": false
-    },
-    {
-      "type": "Download",
-      "name": "NeoVitaDB VPK",
-      "url": "https://github.com/hatoving/twewy-old-vita/releases/download/v1.1/TWEWY.vpk",
-      "recommended": false
-    },
-    {
       "type": "Official Website",
-      "name": "VitaHomebrewDB Release Page",
+      "name": "Official Website",
       "url": "https://fuhen.homebrew-contest.com/submissions/28/"
     },
     {
       "type": "Official Website",
-      "name": "NeoVitaDB Release Page",
+      "name": "Release Page",
       "url": "https://github.com/hatoving/twewy-old-vita/releases/tag/v1.1"
     },
     {
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/hatoving/twewy-old-vita"
-    },
-    {
-      "type": "Download",
-      "name": "VitaHomebrewDB VPK",
-      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/1112-TWEWY.vpk",
-      "recommended": false
-    },
-    {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1112",
-      "recommended": true
     }
   ],
   "source_name": "VitaHomebrewDB",

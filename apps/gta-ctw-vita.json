@@ -25,31 +25,19 @@
   ],
   "links": [
     {
-      "type": "Download",
-      "name": "VitaHomebrewDB VPK",
-      "url": "https://github.com/TheOfficialFloW/gtactw_vita/releases/download/v1.2/GTACTW.vpk",
-      "recommended": false
-    },
-    {
       "type": "Official Website",
-      "name": "VitaHomebrewDB Release Page",
+      "name": "Release Page",
       "url": "https://github.com/TheOfficialFloW/gtactw_vita/releases"
     },
     {
       "type": "Official Website",
-      "name": "NeoVitaDB Release Page",
+      "name": "Release Page",
       "url": "https://github.com/TheOfficialFloW/gtactw_vita/releases/tag/v1.2"
     },
     {
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/TheOfficialFloW/gtactw_vita"
-    },
-    {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=625",
-      "recommended": true
     }
   ],
   "source_name": "VitaHomebrewDB",

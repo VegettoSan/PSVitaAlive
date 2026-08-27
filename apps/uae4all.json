@@ -28,14 +28,8 @@
   ],
   "links": [
     {
-      "type": "Download",
-      "name": "NeoVitaDB VPK",
-      "url": "https://github.com/rsn8887/uae4all2/releases/download/2.12/uae4all_2.10.vpk",
-      "recommended": true
-    },
-    {
       "type": "Official Website",
-      "name": "NeoVitaDB Release Page",
+      "name": "Release Page",
       "url": "https://github.com/rsn8887/uae4all2/releases/tag/2.12"
     },
     {
@@ -45,7 +39,7 @@
     },
     {
       "type": "Official Website",
-      "name": "VitaDB Release Page",
+      "name": "Release Page",
       "url": "https://github.com/rsn8887/uae4all2/releases/latest"
     }
   ],

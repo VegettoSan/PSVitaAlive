@@ -22,32 +22,14 @@
   ],
   "links": [
     {
-      "type": "Download",
-      "name": "VitaHomebrewDB VPK",
-      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/838-jinyong-legend.vpk",
-      "recommended": false
-    },
-    {
       "type": "Official Website",
-      "name": "VitaHomebrewDB Release Page",
+      "name": "Official Website",
       "url": "https://gitee.com/yizhigai/jinyong-legend-vita/releases"
     },
     {
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://gitee.com/yizhigai/jinyong-legend-vita"
-    },
-    {
-      "type": "Download",
-      "name": "VitaHomebrewDB VPK",
-      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/838-jinyong-legend.vpk",
-      "recommended": false
-    },
-    {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=838",
-      "recommended": true
     }
   ],
   "source_name": "VitaHomebrewDB",

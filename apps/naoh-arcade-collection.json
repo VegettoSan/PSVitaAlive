@@ -19,13 +19,6 @@
   "status": "Legacy",
   "links": [
     {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://archive.org/download/psvitaalive-naoh-arcade-collection/naoh_arcade_collection2.0.1.vpk",
-      "size": 40055603,
-      "recommended": true
-    },
-    {
       "type": "Game Files",
       "name": "Game Files ZIP",
       "url": "https://archive.org/download/psvitaalive-naoh-arcade-collection/Game%20Files.zip",

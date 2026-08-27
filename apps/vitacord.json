@@ -26,31 +26,19 @@
   ],
   "links": [
     {
-      "type": "Download",
-      "name": "VitaHomebrewDB VPK",
-      "url": "https://github.com/devingDev/VitaCord/releases/download/1.5fix1/vita_cord.vpk",
-      "recommended": false
-    },
-    {
       "type": "Official Website",
-      "name": "VitaHomebrewDB Release Page",
+      "name": "Official Website",
       "url": "http://wololo.net/2017/06/05/vitacord-psvita-client-discord-released/"
     },
     {
       "type": "Official Website",
-      "name": "NeoVitaDB Release Page",
+      "name": "Release Page",
       "url": "https://github.com/devingDev/VitaCord/releases/tag/1.5fix1"
     },
     {
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/devingDev/VitaCord"
-    },
-    {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=266",
-      "recommended": true
     }
   ],
   "source_name": "VitaHomebrewDB",

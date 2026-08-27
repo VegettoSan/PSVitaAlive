@@ -23,27 +23,9 @@
   ],
   "links": [
     {
-      "type": "Download",
-      "name": "VitaHomebrewDB VPK",
-      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/445-Save_20the_20Scene.vpk",
-      "recommended": false
-    },
-    {
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/Lapy055/Save_the_Scene"
-    },
-    {
-      "type": "Download",
-      "name": "VitaHomebrewDB VPK",
-      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/445-Save_20the_20Scene.vpk",
-      "recommended": false
-    },
-    {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=445",
-      "recommended": true
     }
   ],
   "source_name": "VitaHomebrewDB",

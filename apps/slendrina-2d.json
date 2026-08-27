@@ -26,26 +26,14 @@
   ],
   "links": [
     {
-      "type": "Download",
-      "name": "VitaHomebrewDB VPK",
-      "url": "https://github.com/MaloneCZSD/Slendrina2DVita/releases/download/Slendrina/Slendrina2D.vpk",
-      "recommended": false
-    },
-    {
       "type": "Official Website",
-      "name": "VitaHomebrewDB Release Page",
+      "name": "Repository",
       "url": "https://github.com/malone46/Slendrina2DVita"
     },
     {
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/MaloneCZSD/Slendrina2DVita"
-    },
-    {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1237",
-      "recommended": true
     }
   ],
   "source_name": "VitaHomebrewDB",

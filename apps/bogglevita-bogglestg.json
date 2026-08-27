@@ -22,26 +22,14 @@
   ],
   "links": [
     {
-      "type": "Download",
-      "name": "NeoVitaDB VPK",
-      "url": "https://github.com/SoulTieGames/BoggleVita/releases/download/Vita/boggle_v2.0.VPK",
-      "recommended": false
-    },
-    {
       "type": "Official Website",
-      "name": "NeoVitaDB Release Page",
+      "name": "Release Page",
       "url": "https://github.com/SoulTieGames/BoggleVita/releases/tag/Vita"
     },
     {
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/SoulTieGames/BoggleVita"
-    },
-    {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1169",
-      "recommended": true
     }
   ],
   "source_name": "NeoVitaDB",

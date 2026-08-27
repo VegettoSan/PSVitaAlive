@@ -29,30 +29,13 @@
   ],
   "links": [
     {
-      "type": "Download",
-      "name": "VitaHomebrewDB VPK",
-      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/379-VitaHangman.vpk",
-      "recommended": false
-    },
-    {
       "type": "Official Website",
-      "name": "VitaHomebrewDB Release Page",
+      "name": "Official Website",
       "url": "http://wololo.net/talk/viewtopic.php?f=116&t=48977"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com"
-    },
-    {
-      "type": "Download",
-      "name": "VitaHomebrewDB VPK",
-      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/379-VitaHangman.vpk",
-      "recommended": true
-    },
-    {
       "type": "Official Website",
-      "name": "VitaDB Release Page",
+      "name": "Official Website",
       "url": "http://wololo.net/2017/09/08/vita-hangman-released-vita-guess-away-stick-figures-life/"
     }
   ],

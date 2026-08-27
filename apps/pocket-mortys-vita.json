@@ -16,7 +16,7 @@
   "requirements": "- Game Data Files: Android",
   "size": 16814806,
   "status": "Legacy",
-  "icon": "https://www.rinnegatamante.eu/vitadb/icons/03a7746d6a9e3ab53f6ecdc0cfd1eb7fa5f5d53cac00e7fbfc95089275b6527f.png",
+  "icon": "https://archive.org/download/pocket-mortys-psvita/icon0.png",
   "screenshots": [
     "https://www.rinnegatamante.eu/vitadb/screenshots/d937ebb4dbec1d94919e9c22b6a2652679be2d39db32c9228904509175db0bde.png",
     "https://www.rinnegatamante.eu/vitadb/screenshots/25dbcde1f5dc42fe88da1b490ceff50c0751707d4f9337fc67874f2849443b5d.png",
@@ -32,25 +32,10 @@
     },
     {
       "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1482",
-      "recommended": false,
-      "size": 16814806
-    },
-    {
-      "type": "Download",
       "name": "VPK Mediafire",
       "url": "https://www.mediafire.com/file/vc202q0xpsqjhgq/PocketMortys_Stub.vpk/file",
       "recommended": false,
       "size": 16814806
-    },
-    {
-      "type": "Game Files",
-      "name": "Game Data Files ZIP",
-      "url": "https://archive.org/download/pocket-mortys-psvita/Data%20Files.zip",
-      "recommended": false,
-      "size": 73900000,
-      "extract_path": "ux0:app/POMO00137/"
     },
     {
       "type": "Game Files",
@@ -61,8 +46,16 @@
       "extract_path": "ux0:app/POMO00137/"
     },
     {
+      "type": "Game Files",
+      "name": "Game Data Files ZIP",
+      "url": "https://archive.org/download/pocket-mortys-psvita/Data%20Files.zip",
+      "recommended": false,
+      "size": 73900000,
+      "extract_path": "ux0:app/POMO00137/"
+    },
+    {
       "type": "Official Website",
-      "name": "VitaDB Release Page",
+      "name": "Repository",
       "url": "https://github.com/celticg/AS-Pocket-Mortys-vita"
     }
   ],

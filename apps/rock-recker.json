@@ -24,31 +24,7 @@
     "https://www.rinnegatamante.eu/vitadb/screenshots/915b143b04cf6ab34a01cb09b8bb9ba8b7cc6689817fd06dbf34d2e321f39120.png",
     "https://www.rinnegatamante.eu/vitadb/screenshots/35c254ed9946b9af5f2f5ead7afa8de3dbf3ba857942dce9c2a1b24ef49adc1c.png"
   ],
-  "links": [
-    {
-      "type": "Download",
-      "name": "VitaHomebrewDB VPK",
-      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/744-RockRecker.vpk",
-      "recommended": false
-    },
-    {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com"
-    },
-    {
-      "type": "Download",
-      "name": "VitaHomebrewDB VPK",
-      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/744-RockRecker.vpk",
-      "recommended": false
-    },
-    {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=744",
-      "recommended": true
-    }
-  ],
+  "links": [],
   "source_name": "VitaHomebrewDB",
   "source_id": "744",
   "source_url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/744-RockRecker.vpk",

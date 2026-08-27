@@ -26,19 +26,13 @@
   ],
   "links": [
     {
-      "type": "Download",
-      "name": "VitaHomebrewDB VPK",
-      "url": "https://github.com/unveroleone/save-sync/releases/download/v0.1.4/vita-save-cloud.vpk",
-      "recommended": false
-    },
-    {
       "type": "Official Website",
-      "name": "VitaHomebrewDB Release Page",
+      "name": "Release Page",
       "url": "https://github.com/unveroleone/vita-save-sync/releases"
     },
     {
       "type": "Official Website",
-      "name": "NeoVitaDB Release Page",
+      "name": "Release Page",
       "url": "https://github.com/unveroleone/save-sync/releases/tag/v0.1.4"
     },
     {
@@ -47,20 +41,8 @@
       "url": "https://github.com/unveroleone/vita-save-sync"
     },
     {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1418",
-      "recommended": false
-    },
-    {
-      "type": "Download",
-      "name": "NeoVitaDB VPK",
-      "url": "https://github.com/unveroleone/save-sync/releases/download/v0.1.5/vita-save-cloud.vpk",
-      "recommended": true
-    },
-    {
       "type": "Official Website",
-      "name": "NeoVitaDB Release Page",
+      "name": "Release Page",
       "url": "https://github.com/unveroleone/save-sync/releases/tag/v0.1.5"
     }
   ],

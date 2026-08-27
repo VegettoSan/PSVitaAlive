@@ -26,37 +26,19 @@
   ],
   "links": [
     {
-      "type": "Download",
-      "name": "VitaHomebrewDB VPK",
-      "url": "https://github.com/noword/Emu4VitaPlus/releases/download/v0.78/Emu4VitaPlus_v0.78.vpk",
-      "recommended": false
-    },
-    {
       "type": "Official Website",
-      "name": "VitaHomebrewDB Release Page",
+      "name": "Release Page",
       "url": "https://github.com/noword/Emu4VitaPlus/releases"
     },
     {
       "type": "Official Website",
-      "name": "NeoVitaDB Release Page",
+      "name": "Release Page",
       "url": "https://github.com/noword/Emu4VitaPlus/releases/tag/v0.78"
     },
     {
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/noword/Emu4VitaPlus"
-    },
-    {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1260",
-      "recommended": true
-    },
-    {
-      "type": "Download",
-      "name": "VitaHomebrewDB VPK",
-      "url": "https://github.com/noword/Emu4VitaPlus/releases/download/v0.79/Emu4VitaPlus_v0.79.vpk",
-      "recommended": false
     }
   ],
   "source_name": "VitaHomebrewDB",

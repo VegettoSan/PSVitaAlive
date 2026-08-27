@@ -26,31 +26,19 @@
   ],
   "links": [
     {
-      "type": "Download",
-      "name": "VitaHomebrewDB VPK",
-      "url": "https://github.com/joel16/vitaPDF/releases/download/v1.03/vitaPDF.vpk",
-      "recommended": false
-    },
-    {
       "type": "Official Website",
-      "name": "VitaHomebrewDB Release Page",
+      "name": "Official Website",
       "url": "https://joel16dev.itch.io/vitapdf"
     },
     {
       "type": "Official Website",
-      "name": "NeoVitaDB Release Page",
+      "name": "Release Page",
       "url": "https://github.com/joel16/vitaPDF/releases/tag/v1.03"
     },
     {
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/joel16/vitaPDF"
-    },
-    {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1290",
-      "recommended": true
     }
   ],
   "source_name": "VitaHomebrewDB",

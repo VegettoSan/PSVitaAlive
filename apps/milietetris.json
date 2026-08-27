@@ -25,32 +25,14 @@
   ],
   "links": [
     {
-      "type": "Download",
-      "name": "VitaHomebrewDB VPK",
-      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/163-milieTetris.vpk",
-      "recommended": false
-    },
-    {
       "type": "Official Website",
-      "name": "VitaHomebrewDB Release Page",
+      "name": "Official Website",
       "url": "http://wololo.net/2016/08/04/release-milietetris-ps-vita-just-tetris-henkaku/"
     },
     {
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/GUIDOBOT/milieTetris"
-    },
-    {
-      "type": "Download",
-      "name": "VitaHomebrewDB VPK",
-      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/163-milieTetris.vpk",
-      "recommended": false
-    },
-    {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=163",
-      "recommended": true
     }
   ],
   "source_name": "VitaHomebrewDB",

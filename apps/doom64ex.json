@@ -26,31 +26,19 @@
   ],
   "links": [
     {
-      "type": "Download",
-      "name": "VitaHomebrewDB VPK",
-      "url": "https://github.com/Rinnegatamante/Doom64EX/releases/download/v.1.0.1/Doom64EX.vpk",
-      "recommended": false
-    },
-    {
       "type": "Official Website",
-      "name": "VitaHomebrewDB Release Page",
+      "name": "Official Website",
       "url": "https://www.psx-place.com/threads/release-doom64ex-reverse-engineered-and-enhanced-source-port-of-doom-64.38361/"
     },
     {
       "type": "Official Website",
-      "name": "NeoVitaDB Release Page",
+      "name": "Release Page",
       "url": "https://github.com/Rinnegatamante/Doom64EX/releases/tag/v.1.0.1"
     },
     {
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/Rinnegatamante/Doom64EX"
-    },
-    {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=881",
-      "recommended": true
     }
   ],
   "source_name": "VitaHomebrewDB",

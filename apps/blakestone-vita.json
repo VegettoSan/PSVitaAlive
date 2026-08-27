@@ -23,14 +23,8 @@
   ],
   "links": [
     {
-      "type": "Download",
-      "name": "NeoVitaDB VPK",
-      "url": "https://github.com/Andiweli/BlakeStone-Vita/releases/download/v0.5.1/BlakeStone.0.5.1.vpk",
-      "recommended": true
-    },
-    {
       "type": "Official Website",
-      "name": "NeoVitaDB Release Page",
+      "name": "Release Page",
       "url": "https://github.com/Andiweli/BlakeStone-Vita/releases/tag/v0.5.1"
     },
     {
@@ -40,7 +34,7 @@
     },
     {
       "type": "Official Website",
-      "name": "VitaDB Release Page",
+      "name": "Official Website",
       "url": "http://wololo.net/talk/viewtopic.php?f=116&t=49428"
     }
   ],

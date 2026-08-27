@@ -23,26 +23,14 @@
   ],
   "links": [
     {
-      "type": "Download",
-      "name": "VitaHomebrewDB VPK",
-      "url": "https://github.com/ZFhuang/ZATO-vita/releases/download/v01_00/Z.A.T.O.I.Love.the.World.and.Everything.In.It-01.00.vpk",
-      "recommended": false
-    },
-    {
       "type": "Official Website",
-      "name": "VitaHomebrewDB Release Page",
+      "name": "Repository",
       "url": "https://github.com/ZFhuang/ZATO-vita"
     },
     {
       "type": "Official Website",
-      "name": "NeoVitaDB Release Page",
+      "name": "Release Page",
       "url": "https://github.com/ZFhuang/ZATO-vita/releases/tag/v01_00"
-    },
-    {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1366",
-      "recommended": true
     }
   ],
   "source_name": "VitaHomebrewDB",

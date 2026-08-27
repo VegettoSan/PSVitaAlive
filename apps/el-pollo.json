@@ -23,31 +23,7 @@
     "https://www.rinnegatamante.eu/vitadb/screenshots/54d080e0a7ae289e967e0b14134dbf6175c17fa59b78f6e9c6d7624f74d05a7c.png",
     "https://www.rinnegatamante.eu/vitadb/screenshots/c4e91a8eafce08de3ff3c9f48580be0353e878c29e89053b899bc0a844c77672.png"
   ],
-  "links": [
-    {
-      "type": "Download",
-      "name": "VitaHomebrewDB VPK",
-      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/443-El_20Pollo.vpk",
-      "recommended": false
-    },
-    {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com"
-    },
-    {
-      "type": "Download",
-      "name": "VitaHomebrewDB VPK",
-      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/443-El_20Pollo.vpk",
-      "recommended": false
-    },
-    {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=443",
-      "recommended": true
-    }
-  ],
+  "links": [],
   "source_name": "VitaHomebrewDB",
   "source_id": "443",
   "source_url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/443-El_20Pollo.vpk",

@@ -22,31 +22,19 @@
   ],
   "links": [
     {
-      "type": "Download",
-      "name": "VitaHomebrewDB VPK",
-      "url": "https://github.com/ParallelProductions/FarawaySpace/releases/download/Vita-v0.1b/Faraway.Space.vpk",
-      "recommended": false
-    },
-    {
       "type": "Official Website",
-      "name": "VitaHomebrewDB Release Page",
+      "name": "Release Page",
       "url": "https://github.com/ParallelProductions/FarawaySpace/releases"
     },
     {
       "type": "Official Website",
-      "name": "NeoVitaDB Release Page",
+      "name": "Release Page",
       "url": "https://github.com/ParallelProductions/FarawaySpace/releases/tag/Vita-v0.1b"
     },
     {
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/ParallelProductions/FarawaySpace"
-    },
-    {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1039",
-      "recommended": true
     }
   ],
   "source_name": "VitaHomebrewDB",

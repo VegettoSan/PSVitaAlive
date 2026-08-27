@@ -23,31 +23,19 @@
   ],
   "links": [
     {
-      "type": "Download",
-      "name": "VitaHomebrewDB VPK",
-      "url": "https://github.com/SonicMastr/Mad-Bomber-Vita/releases/download/1.0/Mad_Bomber_Vita.vpk",
-      "recommended": false
-    },
-    {
       "type": "Official Website",
-      "name": "VitaHomebrewDB Release Page",
+      "name": "Release Page",
       "url": "https://github.com/SonicMastr/Mad-Bomber-Vita/releases"
     },
     {
       "type": "Official Website",
-      "name": "NeoVitaDB Release Page",
+      "name": "Release Page",
       "url": "https://github.com/SonicMastr/Mad-Bomber-Vita/releases/tag/1.0"
     },
     {
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/SonicMastr/Mad-Bomber-Vita"
-    },
-    {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=867",
-      "recommended": true
     }
   ],
   "source_name": "VitaHomebrewDB",

@@ -22,26 +22,14 @@
   ],
   "links": [
     {
-      "type": "Download",
-      "name": "VitaHomebrewDB VPK",
-      "url": "https://github.com/softwaregremlin2/Quake1ModelViewer/releases/download/Homebrew/mdlviewer.vpk",
-      "recommended": false
-    },
-    {
       "type": "Official Website",
-      "name": "VitaHomebrewDB Release Page",
+      "name": "Release Page",
       "url": "https://github.com/softwaregremlin2/Quake1ModelViewer/releases"
     },
     {
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/softwaregremlin2/Quake1ModelViewer"
-    },
-    {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1416",
-      "recommended": true
     }
   ],
   "source_name": "VitaHomebrewDB",

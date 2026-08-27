@@ -26,31 +26,19 @@
   ],
   "links": [
     {
-      "type": "Download",
-      "name": "VitaHomebrewDB VPK",
-      "url": "https://github.com/frangarcj/HandyVITA/releases/download/1.4-Henkaku/HandyVITA.vpk",
-      "recommended": false
-    },
-    {
       "type": "Official Website",
-      "name": "VitaHomebrewDB Release Page",
+      "name": "Release Page",
       "url": "https://github.com/frangarcj/HandyVITA/releases"
     },
     {
       "type": "Official Website",
-      "name": "NeoVitaDB Release Page",
+      "name": "Release Page",
       "url": "https://github.com/frangarcj/HandyVITA/releases/tag/1.4-Henkaku"
     },
     {
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/frangarcj/HandyVITA"
-    },
-    {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=174",
-      "recommended": true
     }
   ],
   "source_name": "VitaHomebrewDB",

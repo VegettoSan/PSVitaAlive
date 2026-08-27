@@ -24,26 +24,14 @@
   ],
   "links": [
     {
-      "type": "Download",
-      "name": "VitaHomebrewDB VPK",
-      "url": "https://github.com/FWGS/xash3d-fwgs/releases/download/continuous/xash3d-fwgs-psvita.7z",
-      "recommended": false
-    },
-    {
       "type": "Official Website",
-      "name": "VitaHomebrewDB Release Page",
+      "name": "Repository",
       "url": "https://github.com/FWGS/xash3d-fwgs/release"
     },
     {
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/FWGS/xash3d-fwgs"
-    },
-    {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1157",
-      "recommended": true
     }
   ],
   "source_name": "VitaHomebrewDB",

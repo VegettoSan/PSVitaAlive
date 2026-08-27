@@ -23,14 +23,8 @@
   ],
   "links": [
     {
-      "type": "Download",
-      "name": "NeoVitaDB VPK",
-      "url": "https://github.com/ddB0515/BreakVeetOut/releases/download/v0.3/BreakVeetOut_v0.3.vpk",
-      "recommended": true
-    },
-    {
       "type": "Official Website",
-      "name": "NeoVitaDB Release Page",
+      "name": "Release Page",
       "url": "https://github.com/ddB0515/BreakVeetOut/releases/tag/v0.3"
     },
     {

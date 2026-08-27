@@ -26,31 +26,19 @@
   ],
   "links": [
     {
-      "type": "Download",
-      "name": "VitaHomebrewDB VPK",
-      "url": "https://github.com/Northfear/fallout2-ce-vita/releases/download/v1.3.0-vita.8/fallout2-ce.vpk",
-      "recommended": false
-    },
-    {
       "type": "Official Website",
-      "name": "VitaHomebrewDB Release Page",
+      "name": "Release Page",
       "url": "https://github.com/Northfear/fallout2-ce-vita/releases"
     },
     {
       "type": "Official Website",
-      "name": "NeoVitaDB Release Page",
+      "name": "Release Page",
       "url": "https://github.com/Northfear/fallout2-ce-vita/releases/tag/v1.3.0-vita.8"
     },
     {
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/Northfear/fallout2-ce-vita"
-    },
-    {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=842",
-      "recommended": true
     }
   ],
   "source_name": "VitaHomebrewDB",

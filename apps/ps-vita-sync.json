@@ -22,31 +22,19 @@
   ],
   "links": [
     {
-      "type": "Download",
-      "name": "VitaHomebrewDB VPK",
-      "url": "https://github.com/add-le/ps-vita-sync/releases/download/v0.01/ps_vita_sync.vpk",
-      "recommended": false
-    },
-    {
       "type": "Official Website",
-      "name": "VitaHomebrewDB Release Page",
+      "name": "Release Page",
       "url": "https://github.com/add-le/ps-vita-sync/releases"
     },
     {
       "type": "Official Website",
-      "name": "NeoVitaDB Release Page",
+      "name": "Release Page",
       "url": "https://github.com/add-le/ps-vita-sync/releases/tag/v0.01"
     },
     {
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/add-le/ps-vita-sync"
-    },
-    {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1166",
-      "recommended": true
     }
   ],
   "source_name": "VitaHomebrewDB",

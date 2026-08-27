@@ -27,31 +27,19 @@
   ],
   "links": [
     {
-      "type": "Download",
-      "name": "VitaHomebrewDB VPK",
-      "url": "https://github.com/frangarcj/Snes9xVITA/releases/download/1.1-Henkaku/Snes9xVITA.vpk",
-      "recommended": false
-    },
-    {
       "type": "Official Website",
-      "name": "VitaHomebrewDB Release Page",
+      "name": "Release Page",
       "url": "https://github.com/frangarcj/Snes9xVITA/releases"
     },
     {
       "type": "Official Website",
-      "name": "NeoVitaDB Release Page",
+      "name": "Release Page",
       "url": "https://github.com/frangarcj/Snes9xVITA/releases/tag/1.1-Henkaku"
     },
     {
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/frangarcj/Snes9xVITA"
-    },
-    {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=194",
-      "recommended": true
     }
   ],
   "source_name": "VitaHomebrewDB",

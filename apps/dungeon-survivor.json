@@ -21,31 +21,7 @@
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/bae03af66975ceb92b1abef2230349cd3b157c5800c131a28708de0f3fa9585b.png",
     "https://www.rinnegatamante.eu/vitadb/screenshots/bae03af66975ceb92b1abef2230349cd3b157c5800c131a28708de0f3fa9585b.png"
   ],
-  "links": [
-    {
-      "type": "Download",
-      "name": "VitaHomebrewDB VPK",
-      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/501-Dungeon_Survivor.vpk",
-      "recommended": false
-    },
-    {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com"
-    },
-    {
-      "type": "Download",
-      "name": "VitaHomebrewDB VPK",
-      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/501-Dungeon_Survivor.vpk",
-      "recommended": false
-    },
-    {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=501",
-      "recommended": true
-    }
-  ],
+  "links": [],
   "source_name": "VitaHomebrewDB",
   "source_id": "501",
   "source_url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/501-Dungeon_Survivor.vpk",

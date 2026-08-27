@@ -26,31 +26,19 @@
   ],
   "links": [
     {
-      "type": "Download",
-      "name": "VitaHomebrewDB VPK",
-      "url": "https://github.com/rompelhd/VitaSSH/releases/download/v.1.0.0/VitaSSH-1.0.0.vpk",
-      "recommended": false
-    },
-    {
       "type": "Official Website",
-      "name": "VitaHomebrewDB Release Page",
+      "name": "Release Page",
       "url": "https://github.com/rompelhd/VitaSSH/releases"
     },
     {
       "type": "Official Website",
-      "name": "NeoVitaDB Release Page",
+      "name": "Release Page",
       "url": "https://github.com/rompelhd/VitaSSH/releases/tag/v.1.0.0"
     },
     {
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/rompelhd/VitaSSH"
-    },
-    {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1373",
-      "recommended": true
     }
   ],
   "source_name": "VitaHomebrewDB",

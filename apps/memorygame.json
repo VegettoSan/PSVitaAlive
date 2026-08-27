@@ -26,31 +26,19 @@
   ],
   "links": [
     {
-      "type": "Download",
-      "name": "VitaHomebrewDB VPK",
-      "url": "https://github.com/JJH47E/MemoryGame/releases/download/1.0/MemoryGame1.0.vpk",
-      "recommended": false
-    },
-    {
       "type": "Official Website",
-      "name": "VitaHomebrewDB Release Page",
+      "name": "Release Page",
       "url": "https://github.com/JJH47E/MemoryGame/releases"
     },
     {
       "type": "Official Website",
-      "name": "NeoVitaDB Release Page",
+      "name": "Release Page",
       "url": "https://github.com/JJH47E/MemoryGame/releases/tag/1.0"
     },
     {
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/JJH47E/MemoryGame"
-    },
-    {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=574",
-      "recommended": true
     }
   ],
   "source_name": "VitaHomebrewDB",

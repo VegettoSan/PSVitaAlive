@@ -26,14 +26,8 @@
   ],
   "links": [
     {
-      "type": "Download",
-      "name": "NeoVitaDB VPK",
-      "url": "https://github.com/Ibrahim778/BetterHomebrewBrowser/releases/download/V1.45/BetterHomebrewBrowser.vpk",
-      "recommended": true
-    },
-    {
       "type": "Official Website",
-      "name": "NeoVitaDB Release Page",
+      "name": "Release Page",
       "url": "https://github.com/Ibrahim778/BetterHomebrewBrowser/releases/tag/V1.45"
     },
     {
@@ -43,7 +37,7 @@
     },
     {
       "type": "Official Website",
-      "name": "VitaDB Release Page",
+      "name": "Release Page",
       "url": "https://github.com/Ibrahim778/BetterHomebrewBrowser/releases"
     }
   ],

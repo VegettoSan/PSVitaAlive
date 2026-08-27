@@ -24,31 +24,7 @@
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/1173e6a17e2caf731a1894fe842672490c49d97d20513047a1b3d4c83afc8ad8.png",
     "https://www.rinnegatamante.eu/vitadb/screenshots/5f161c49b4b1abb4e21b04a72e6eb169a3af8c0200bb9194d63611f212d608dd.png"
   ],
-  "links": [
-    {
-      "type": "Download",
-      "name": "VitaHomebrewDB VPK",
-      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1077-FeatherPark.vpk",
-      "recommended": false
-    },
-    {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com"
-    },
-    {
-      "type": "Download",
-      "name": "VitaHomebrewDB VPK",
-      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/1077-FeatherPark.vpk",
-      "recommended": false
-    },
-    {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1077",
-      "recommended": true
-    }
-  ],
+  "links": [],
   "source_name": "VitaHomebrewDB",
   "source_id": "1077",
   "source_url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1077-FeatherPark.vpk",

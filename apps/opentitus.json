@@ -26,43 +26,19 @@
   ],
   "links": [
     {
-      "type": "Download",
-      "name": "VitaHomebrewDB VPK",
-      "url": "https://github.com/usineur/opentitus/releases/download/1.0/Titus.vpk",
-      "recommended": false
-    },
-    {
-      "type": "Download",
-      "name": "VitaHomebrewDB VPK",
-      "url": "https://github.com/usineur/opentitus/releases/download/1.0/Moktar.vpk",
-      "recommended": false
-    },
-    {
       "type": "Official Website",
-      "name": "VitaHomebrewDB Release Page",
+      "name": "Official Website",
       "url": "http://wololo.net/talk/viewtopic.php?f=116&t=48673"
     },
     {
       "type": "Official Website",
-      "name": "NeoVitaDB Release Page",
+      "name": "Release Page",
       "url": "https://github.com/usineur/opentitus/releases/tag/1.0"
     },
     {
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/usineur/opentitus"
-    },
-    {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=344",
-      "recommended": true
-    },
-    {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=345",
-      "recommended": false
     }
   ],
   "source_name": "VitaHomebrewDB",

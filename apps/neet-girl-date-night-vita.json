@@ -22,21 +22,9 @@
   ],
   "links": [
     {
-      "type": "Download",
-      "name": "VitaHomebrewDB VPK",
-      "url": "https://github.com/raidengugga/Neet-Girl-Date-Night-PSVITA/releases/download/Latest/NGDN-01.00.vpk",
-      "recommended": false
-    },
-    {
       "type": "Official Website",
-      "name": "VitaHomebrewDB Release Page",
+      "name": "Repository",
       "url": "https://github.com/raidengugga/Neet-Girl-Date-Night-PSVITA"
-    },
-    {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1228",
-      "recommended": true
     }
   ],
   "source_name": "VitaHomebrewDB",

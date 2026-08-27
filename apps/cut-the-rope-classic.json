@@ -32,14 +32,6 @@
     },
     {
       "type": "Game Files",
-      "name": "Game Data Files ZIP",
-      "url": "https://archive.org/download/ctrc-psvita/Game%20Data.zip",
-      "recommended": false,
-      "size": 11100000,
-      "extract_path": "ux0:data/"
-    },
-    {
-      "type": "Game Files",
       "name": "Game Data Files ZIP - Mediafire",
       "url": "https://www.mediafire.com/file/76qw8cqvq46lyjb/Game_Data.zip/file",
       "recommended": false,
@@ -47,10 +39,12 @@
       "extract_path": "ux0:data/"
     },
     {
-      "type": "Download",
-      "name": "Github VPK",
-      "url": "https://github.com/Clyppe/cut-the-rope-vita/releases/download/v0.2.0/CutTheRope.vpk",
-      "recommended": false
+      "type": "Game Files",
+      "name": "Game Data Files ZIP",
+      "url": "https://archive.org/download/ctrc-psvita/Game%20Data.zip",
+      "recommended": false,
+      "size": 11100000,
+      "extract_path": "ux0:data/"
     }
   ],
   "icon": "https://archive.org/download/ctrc-psvita/icon0.png",

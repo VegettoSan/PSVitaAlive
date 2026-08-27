@@ -22,31 +22,19 @@
   ],
   "links": [
     {
-      "type": "Download",
-      "name": "VitaHomebrewDB VPK",
-      "url": "https://github.com/MajorTomSec/VitaCID/releases/download/1.0/VitaCID.vpk",
-      "recommended": false
-    },
-    {
       "type": "Official Website",
-      "name": "VitaHomebrewDB Release Page",
+      "name": "Official Website",
       "url": "http://wololo.net/2016/08/18/release-vitacid-get-ps-vita-console-id/"
     },
     {
       "type": "Official Website",
-      "name": "NeoVitaDB Release Page",
+      "name": "Release Page",
       "url": "https://github.com/MajorTomSec/VitaCID/releases/tag/1.0"
     },
     {
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/tomtomdu80/VitaCID"
-    },
-    {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=148",
-      "recommended": true
     }
   ],
   "source_name": "VitaHomebrewDB",

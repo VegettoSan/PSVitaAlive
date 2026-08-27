@@ -22,31 +22,19 @@
   ],
   "links": [
     {
-      "type": "Download",
-      "name": "VitaHomebrewDB VPK",
-      "url": "https://github.com/Cpasjuste/pemu/releases/download/v7.1/pgba.vpk",
-      "recommended": false
-    },
-    {
       "type": "Official Website",
-      "name": "VitaHomebrewDB Release Page",
+      "name": "Release Page",
       "url": "https://github.com/Cpasjuste/pemu/releases"
     },
     {
       "type": "Official Website",
-      "name": "NeoVitaDB Release Page",
+      "name": "Release Page",
       "url": "https://github.com/Cpasjuste/pemu/releases/tag/v7.1"
     },
     {
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/Cpasjuste/pemu"
-    },
-    {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1358",
-      "recommended": true
     }
   ],
   "source_name": "VitaHomebrewDB",

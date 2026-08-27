@@ -26,31 +26,19 @@
   ],
   "links": [
     {
-      "type": "Download",
-      "name": "VitaHomebrewDB VPK",
-      "url": "https://github.com/joel16/VITA-Homebrew-Sorter/releases/download/v1.27/VITA-Homebrew-Sorter.vpk",
-      "recommended": false
-    },
-    {
       "type": "Official Website",
-      "name": "VitaHomebrewDB Release Page",
+      "name": "Release Page",
       "url": "https://github.com/joel16/VITA-Homebrew-Sorter/releases"
     },
     {
       "type": "Official Website",
-      "name": "NeoVitaDB Release Page",
+      "name": "Release Page",
       "url": "https://github.com/joel16/VITA-Homebrew-Sorter/releases/tag/v1.27"
     },
     {
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/joel16/VITA-Homebrew-Sorter"
-    },
-    {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=655",
-      "recommended": true
     }
   ],
   "source_name": "VitaHomebrewDB",

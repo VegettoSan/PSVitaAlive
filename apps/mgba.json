@@ -26,31 +26,19 @@
   ],
   "links": [
     {
-      "type": "Download",
-      "name": "VitaHomebrewDB VPK",
-      "url": "https://github.com/mgba-emu/mgba/releases/download/0.10.5/mGBA-0.10.5-vita.7z",
-      "recommended": false
-    },
-    {
       "type": "Official Website",
-      "name": "VitaHomebrewDB Release Page",
+      "name": "Official Website",
       "url": "https://mgba.io/"
     },
     {
       "type": "Official Website",
-      "name": "NeoVitaDB Release Page",
+      "name": "Release Page",
       "url": "https://github.com/mgba-emu/mgba/releases/tag/0.10.5"
     },
     {
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/mgba-emu/mgba/"
-    },
-    {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=164",
-      "recommended": true
     }
   ],
   "source_name": "VitaHomebrewDB",

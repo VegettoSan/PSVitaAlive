@@ -24,31 +24,7 @@
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/25174abb4868c86dce60ae601c982d67e042d6af15b92d003f26f038bcd7ad93.png",
     "https://www.rinnegatamante.eu/vitadb/screenshots/ecc547aee5d46fede67dbf3b39a270a535c02dea56bafdbbf8a0965e707b2759.png"
   ],
-  "links": [
-    {
-      "type": "Download",
-      "name": "VitaHomebrewDB VPK",
-      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1126-DIVER_DOWN.vpk",
-      "recommended": false
-    },
-    {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com"
-    },
-    {
-      "type": "Download",
-      "name": "VitaHomebrewDB VPK",
-      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/1126-DIVER_DOWN.vpk",
-      "recommended": false
-    },
-    {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1126",
-      "recommended": true
-    }
-  ],
+  "links": [],
   "source_name": "VitaHomebrewDB",
   "source_id": "1126",
   "source_url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1126-DIVER_DOWN.vpk",

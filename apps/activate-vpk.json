@@ -22,12 +22,6 @@
   ],
   "links": [
     {
-      "type": "Download",
-      "name": "NeoVitaDB VPK",
-      "url": "https://git.silica.codes/Li/activate.vpk/releases/download/latest/activate.vpk",
-      "recommended": true
-    },
-    {
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://git.silica.codes"

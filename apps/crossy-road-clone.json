@@ -24,31 +24,7 @@
     "https://www.rinnegatamante.eu/vitadb/screenshots/e8b7437992c5c9f77eebb0d66ad5c59ab0db5a311c5281b0c6a7427ca7e55801.png",
     "https://www.rinnegatamante.eu/vitadb/screenshots/65c1ae89e1364af4e41fc31404a3842d8a1b4289a7ee5c546994b31af64a47e5.png"
   ],
-  "links": [
-    {
-      "type": "Download",
-      "name": "VitaHomebrewDB VPK",
-      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1221-CrossyRoadsClone.vpk",
-      "recommended": false
-    },
-    {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com"
-    },
-    {
-      "type": "Download",
-      "name": "VitaHomebrewDB VPK",
-      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/1221-CrossyRoadsClone.vpk",
-      "recommended": false
-    },
-    {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1221",
-      "recommended": true
-    }
-  ],
+  "links": [],
   "source_name": "VitaHomebrewDB",
   "source_id": "1221",
   "source_url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1221-CrossyRoadsClone.vpk",

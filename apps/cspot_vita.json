@@ -22,14 +22,8 @@
   ],
   "links": [
     {
-      "type": "Download",
-      "name": "NeoVitaDB VPK",
-      "url": "https://github.com/michal4132/cspot_vita/releases/download/v0.2.9/cspot_vita.vpk",
-      "recommended": true
-    },
-    {
       "type": "Official Website",
-      "name": "NeoVitaDB Release Page",
+      "name": "Release Page",
       "url": "https://github.com/michal4132/cspot_vita/releases/tag/v0.2.9"
     },
     {
@@ -39,7 +33,7 @@
     },
     {
       "type": "Official Website",
-      "name": "VitaDB Release Page",
+      "name": "Release Page",
       "url": "https://github.com/michal4132/cspot_vita/releases"
     }
   ],

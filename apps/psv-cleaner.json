@@ -22,14 +22,8 @@
   ],
   "links": [
     {
-      "type": "Download",
-      "name": "NeoVitaDB VPK",
-      "url": "https://github.com/theheroGAC/PSV-Cleaner/releases/download/1.15/PSV_Cleaner.vpk",
-      "recommended": false
-    },
-    {
       "type": "Official Website",
-      "name": "NeoVitaDB Release Page",
+      "name": "Release Page",
       "url": "https://github.com/theheroGAC/PSV-Cleaner/releases/tag/1.15"
     },
     {
@@ -38,14 +32,8 @@
       "url": "https://github.com/theheroGAC/PSV-Cleaner"
     },
     {
-      "type": "Download",
-      "name": "NeoVitaDB VPK",
-      "url": "https://github.com/theheroGAC/PSV-Cleaner/releases/download/1.16/PSV_Cleaner.vpk",
-      "recommended": true
-    },
-    {
       "type": "Official Website",
-      "name": "NeoVitaDB Release Page",
+      "name": "Release Page",
       "url": "https://github.com/theheroGAC/PSV-Cleaner/releases/tag/1.16"
     }
   ],

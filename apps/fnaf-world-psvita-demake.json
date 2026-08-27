@@ -27,30 +27,13 @@
   ],
   "links": [
     {
-      "type": "Download",
-      "name": "VitaHomebrewDB VPK",
-      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1274-fnaf-world.vpk",
-      "recommended": false
-    },
-    {
       "type": "Official Website",
-      "name": "VitaHomebrewDB Release Page",
+      "name": "Official Website",
       "url": "https://gamejolt.com/games/FWpsVita/996208"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com"
-    },
-    {
-      "type": "Download",
-      "name": "VitaHomebrewDB VPK",
-      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/1274-fnaf-world.vpk",
-      "recommended": true
-    },
-    {
       "type": "Official Website",
-      "name": "VitaDB Release Page",
+      "name": "Official Website",
       "url": "https://gamejolt.com/games/FNAFW0RL/1080565"
     }
   ],

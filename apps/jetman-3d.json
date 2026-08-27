@@ -22,31 +22,19 @@
   ],
   "links": [
     {
-      "type": "Download",
-      "name": "VitaHomebrewDB VPK",
-      "url": "https://github.com/softwaregremlin/Jetman3D/releases/download/Main/JetMan-3D.vpk",
-      "recommended": false
-    },
-    {
       "type": "Official Website",
-      "name": "VitaHomebrewDB Release Page",
+      "name": "Official Website",
       "url": "http://www.gremlinsoftware.co.nz/jetman3D.html"
     },
     {
       "type": "Official Website",
-      "name": "NeoVitaDB Release Page",
+      "name": "Release Page",
       "url": "https://github.com/softwaregremlin/Jetman3D/releases/tag/Main"
     },
     {
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/softwaregremlin/Jetman3D/"
-    },
-    {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=719",
-      "recommended": true
     }
   ],
   "source_name": "VitaHomebrewDB",

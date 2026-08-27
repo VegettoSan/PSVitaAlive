@@ -24,31 +24,7 @@
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/845430f79fa9915d016f10836777c7605e30b7ffd139f0752228bb48b33ac0e4.png",
     "https://www.rinnegatamante.eu/vitadb/screenshots/64081a597463acbd4410dd48c26928a271bddd243c1f863e64f388f7a211956b.png"
   ],
-  "links": [
-    {
-      "type": "Download",
-      "name": "VitaHomebrewDB VPK",
-      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1249-RoadOfMailhem.vpk",
-      "recommended": false
-    },
-    {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com"
-    },
-    {
-      "type": "Download",
-      "name": "VitaHomebrewDB VPK",
-      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/1249-RoadOfMailhem.vpk",
-      "recommended": false
-    },
-    {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1249",
-      "recommended": true
-    }
-  ],
+  "links": [],
   "source_name": "VitaHomebrewDB",
   "source_id": "1249",
   "source_url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1249-RoadOfMailhem.vpk",

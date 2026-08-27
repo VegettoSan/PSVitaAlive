@@ -22,14 +22,8 @@
   ],
   "links": [
     {
-      "type": "Download",
-      "name": "NeoVitaDB VPK",
-      "url": "https://github.com/hatoving/gms-vita-old-instructions/releases/download/5_FranBowCH4/FBCH4.vpk",
-      "recommended": true
-    },
-    {
       "type": "Official Website",
-      "name": "NeoVitaDB Release Page",
+      "name": "Release Page",
       "url": "https://github.com/hatoving/gms-vita-old-instructions/releases/tag/5_FranBowCH4"
     },
     {

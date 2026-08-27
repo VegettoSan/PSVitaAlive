@@ -23,14 +23,8 @@
   ],
   "links": [
     {
-      "type": "Download",
-      "name": "NeoVitaDB VPK",
-      "url": "https://github.com/EliCrystal2001/CrystalPSM/releases/download/v2/CrystalPSM.vpk",
-      "recommended": true
-    },
-    {
       "type": "Official Website",
-      "name": "NeoVitaDB Release Page",
+      "name": "Release Page",
       "url": "https://github.com/EliCrystal2001/CrystalPSM/releases/tag/v2"
     },
     {
@@ -40,7 +34,7 @@
     },
     {
       "type": "Official Website",
-      "name": "VitaDB Release Page",
+      "name": "Release Page",
       "url": "https://github.com/EliCrystal2001/CrystalPSM/releases"
     }
   ],

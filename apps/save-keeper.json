@@ -24,14 +24,8 @@
   ],
   "links": [
     {
-      "type": "Download",
-      "name": "NeoVitaDB VPK",
-      "url": "https://github.com/falkenhawk/vita-save-keeper/releases/download/v1.3.0/save-keeper.vpk",
-      "recommended": false
-    },
-    {
       "type": "Official Website",
-      "name": "NeoVitaDB Release Page",
+      "name": "Release Page",
       "url": "https://github.com/falkenhawk/vita-save-keeper/releases/tag/v1.3.0"
     },
     {
@@ -40,14 +34,8 @@
       "url": "https://github.com/falkenhawk/vita-save-keeper"
     },
     {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1430",
-      "recommended": true
-    },
-    {
       "type": "Official Website",
-      "name": "VitaDB Release Page",
+      "name": "Release Page",
       "url": "https://github.com/falkenhawk/vita-save-keeper/releases"
     }
   ],

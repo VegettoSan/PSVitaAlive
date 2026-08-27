@@ -24,31 +24,7 @@
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/0c5adff03435782df9c1dc167e29b53b74bbbe83d352d8117a41dbe8cb92ba6c.png",
     "https://www.rinnegatamante.eu/vitadb/screenshots/ee2c0077dcfc26e72547fbf1eb3cfbdc942c2d54f42857f7b43592526feb36ad.png"
   ],
-  "links": [
-    {
-      "type": "Download",
-      "name": "VitaHomebrewDB VPK",
-      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/503-BrickRace.vpk",
-      "recommended": false
-    },
-    {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com"
-    },
-    {
-      "type": "Download",
-      "name": "VitaHomebrewDB VPK",
-      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/503-BrickRace.vpk",
-      "recommended": false
-    },
-    {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=503",
-      "recommended": true
-    }
-  ],
+  "links": [],
   "source_name": "VitaHomebrewDB",
   "source_id": "503",
   "source_url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/503-BrickRace.vpk",

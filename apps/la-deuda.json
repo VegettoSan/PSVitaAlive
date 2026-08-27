@@ -21,31 +21,7 @@
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/9b1cdc787b719b9cbdf081cf54196e17606cbcb3bd64fa571352487fc22dca41.png",
     "https://www.rinnegatamante.eu/vitadb/screenshots/9b1cdc787b719b9cbdf081cf54196e17606cbcb3bd64fa571352487fc22dca41.png"
   ],
-  "links": [
-    {
-      "type": "Download",
-      "name": "VitaHomebrewDB VPK",
-      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1252-LaDeuda.vpk",
-      "recommended": false
-    },
-    {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com"
-    },
-    {
-      "type": "Download",
-      "name": "VitaHomebrewDB VPK",
-      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/1252-LaDeuda.vpk",
-      "recommended": false
-    },
-    {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1252",
-      "recommended": true
-    }
-  ],
+  "links": [],
   "source_name": "VitaHomebrewDB",
   "source_id": "1252",
   "source_url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1252-LaDeuda.vpk",

@@ -22,31 +22,19 @@
   ],
   "links": [
     {
-      "type": "Download",
-      "name": "VitaHomebrewDB VPK",
-      "url": "https://github.com/cy33hc/copyicons/releases/download/1.01/CopyIcons.vpk",
-      "recommended": false
-    },
-    {
       "type": "Official Website",
-      "name": "VitaHomebrewDB Release Page",
+      "name": "Repository",
       "url": "https://github.com/cy33hc/copyicons/release"
     },
     {
       "type": "Official Website",
-      "name": "NeoVitaDB Release Page",
+      "name": "Release Page",
       "url": "https://github.com/cy33hc/copyicons/releases/tag/1.01"
     },
     {
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/cy33hc/copyicons"
-    },
-    {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=584",
-      "recommended": true
     }
   ],
   "source_name": "VitaHomebrewDB",

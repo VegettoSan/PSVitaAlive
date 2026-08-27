@@ -27,13 +27,6 @@
   "links": [
     {
       "type": "Download",
-      "name": "VPK + Game Data Files",
-      "url": "https://archive.org/download/card-wars-vita-v-2/CardWarsVitaV2.vpk",
-      "recommended": true,
-      "size": 145700000
-    },
-    {
-      "type": "Download",
       "name": "VPK + Game Data Files - MediaFire",
       "url": "https://www.mediafire.com/file/7de1ux7ccmo6exi/CardWarsVitaV2.vpk/file",
       "recommended": false,
@@ -41,20 +34,15 @@
     },
     {
       "type": "Download",
-      "name": "GitHub VPK",
-      "url": "https://github.com/parindraaa867/AT-CardWars-Vita/releases/download/v5/CardWars_Stub.vpk",
-      "recommended": false
+      "name": "VPK + Game Data Files",
+      "url": "https://archive.org/download/card-wars-vita-v-2/CardWarsVitaV2.vpk",
+      "recommended": true,
+      "size": 145700000
     },
     {
       "type": "Official Website",
-      "name": "VitaHomebrewDB Release Page",
+      "name": "Repository",
       "url": "https://github.com/parindraaa867/AT-CardWars-Vita"
-    },
-    {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1428",
-      "recommended": false
     }
   ],
   "source_name": "VitaHomebrewDB",

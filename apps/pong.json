@@ -28,26 +28,14 @@
   ],
   "links": [
     {
-      "type": "Download",
-      "name": "VitaHomebrewDB VPK",
-      "url": "https://github.com/NamelessGhoul0/VitaPong/releases/download/v1.10/Pong.vpk",
-      "recommended": false
-    },
-    {
       "type": "Official Website",
-      "name": "VitaHomebrewDB Release Page",
+      "name": "Official Website",
       "url": "http://gekihen.customprotocol.com/en/project/Pong"
     },
     {
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/NamelessGhoul0/VitaPong"
-    },
-    {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=102",
-      "recommended": true
     }
   ],
   "source_name": "VitaHomebrewDB",

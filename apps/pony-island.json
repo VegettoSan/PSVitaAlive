@@ -26,31 +26,19 @@
   ],
   "links": [
     {
-      "type": "Download",
-      "name": "VitaHomebrewDB VPK",
-      "url": "https://github.com/hatoving/ponyisland-old-vita/releases/download/1.2-vita/PonyIsland.vpk",
-      "recommended": false
-    },
-    {
       "type": "Official Website",
-      "name": "VitaHomebrewDB Release Page",
+      "name": "Repository",
       "url": "https://github.com/hatoving/PonyIsland"
     },
     {
       "type": "Official Website",
-      "name": "NeoVitaDB Release Page",
+      "name": "Release Page",
       "url": "https://github.com/hatoving/ponyisland-old-vita/releases/tag/1.2-vita"
     },
     {
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/hatoving/ponyisland-old-vita"
-    },
-    {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1021",
-      "recommended": true
     }
   ],
   "source_name": "VitaHomebrewDB",

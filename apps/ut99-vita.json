@@ -18,12 +18,6 @@
   "status": "Legacy",
   "links": [
     {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1399",
-      "recommended": true
-    },
-    {
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/Rinnegatamante/UT99-Vita"

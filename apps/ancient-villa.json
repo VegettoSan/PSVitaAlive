@@ -24,31 +24,7 @@
     "https://www.rinnegatamante.eu/vitadb/screenshots/2039858f34641d98de831e34ee8e3df902699838f97a5a002cad2d313b74b849.png",
     "https://www.rinnegatamante.eu/vitadb/screenshots/b5fd7f9f59148487f0ec83cb8a4174a4b77fe4f86b987ae3aae663874db16b25.png"
   ],
-  "links": [
-    {
-      "type": "Download",
-      "name": "VitaHomebrewDB VPK",
-      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1213-ancient_villa.vpk",
-      "recommended": false
-    },
-    {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com"
-    },
-    {
-      "type": "Download",
-      "name": "VitaHomebrewDB VPK",
-      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/1213-ancient_villa.vpk",
-      "recommended": false
-    },
-    {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1213",
-      "recommended": true
-    }
-  ],
+  "links": [],
   "source_name": "VitaHomebrewDB",
   "source_id": "1213",
   "source_url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1213-ancient_villa.vpk",

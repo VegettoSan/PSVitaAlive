@@ -22,14 +22,8 @@
   ],
   "links": [
     {
-      "type": "Download",
-      "name": "NeoVitaDB VPK",
-      "url": "https://github.com/TheOfficialFloW/modoru/releases/download/v2.3/modoru.vpk",
-      "recommended": true
-    },
-    {
       "type": "Official Website",
-      "name": "NeoVitaDB Release Page",
+      "name": "Release Page",
       "url": "https://github.com/TheOfficialFloW/modoru/releases/tag/v2.3"
     },
     {
@@ -39,7 +33,7 @@
     },
     {
       "type": "Official Website",
-      "name": "VitaDB Release Page",
+      "name": "Release Page",
       "url": "https://github.com/TheOfficialFloW/modoru/releases"
     }
   ],

@@ -26,14 +26,8 @@
   ],
   "links": [
     {
-      "type": "Download",
-      "name": "NeoVitaDB VPK",
-      "url": "https://github.com/Creckeryop/Flappy-Bird-Classic-vita/releases/download/v1.21/FBClassic.vpk",
-      "recommended": true
-    },
-    {
       "type": "Official Website",
-      "name": "NeoVitaDB Release Page",
+      "name": "Release Page",
       "url": "https://github.com/Creckeryop/Flappy-Bird-Classic-vita/releases/tag/v1.21"
     },
     {
@@ -43,7 +37,7 @@
     },
     {
       "type": "Official Website",
-      "name": "VitaDB Release Page",
+      "name": "Release Page",
       "url": "https://github.com/Creckeryop/Flappy-Bird-Classic-vita/releases"
     }
   ],

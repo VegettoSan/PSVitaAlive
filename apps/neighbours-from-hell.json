@@ -25,31 +25,19 @@
   ],
   "links": [
     {
-      "type": "Download",
-      "name": "VitaHomebrewDB VPK",
-      "url": "https://github.com/MaloneCZSD/NFH-PS-VITA/releases/download/V1.0/NFHV1.0.vpk",
-      "recommended": false
-    },
-    {
       "type": "Official Website",
-      "name": "VitaHomebrewDB Release Page",
+      "name": "Repository",
       "url": "https://github.com/malone46/NFH-PS-VITA/"
     },
     {
       "type": "Official Website",
-      "name": "NeoVitaDB Release Page",
+      "name": "Release Page",
       "url": "https://github.com/MaloneCZSD/NFH-PS-VITA/releases/tag/V1.0"
     },
     {
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/MaloneCZSD/NFH-PS-VITA"
-    },
-    {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1354",
-      "recommended": true
     }
   ],
   "source_name": "VitaHomebrewDB",

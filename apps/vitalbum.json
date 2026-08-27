@@ -23,31 +23,19 @@
   ],
   "links": [
     {
-      "type": "Download",
-      "name": "VitaHomebrewDB VPK",
-      "url": "https://github.com/joel16/VITAlbum/releases/download/v1.40/VITAlbum.vpk",
-      "recommended": false
-    },
-    {
       "type": "Official Website",
-      "name": "VitaHomebrewDB Release Page",
+      "name": "Release Page",
       "url": "https://github.com/joel16/VITAlbum/releases"
     },
     {
       "type": "Official Website",
-      "name": "NeoVitaDB Release Page",
+      "name": "Release Page",
       "url": "https://github.com/joel16/VITAlbum/releases/tag/v1.40"
     },
     {
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/joel16/VITAlbum"
-    },
-    {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=566",
-      "recommended": true
     }
   ],
   "source_name": "VitaHomebrewDB",

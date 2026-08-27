@@ -26,19 +26,13 @@
   ],
   "links": [
     {
-      "type": "Download",
-      "name": "VitaHomebrewDB VPK",
-      "url": "https://github.com/Rinnegatamante/VitaDB-Downloader/releases/download/v.2.5/VitaDB.vpk",
-      "recommended": false
-    },
-    {
       "type": "Official Website",
-      "name": "VitaHomebrewDB Release Page",
+      "name": "Release Page",
       "url": "https://github.com/Rinnegatamante/VitaDB-Downloader/releases"
     },
     {
       "type": "Official Website",
-      "name": "NeoVitaDB Release Page",
+      "name": "Release Page",
       "url": "https://github.com/Rinnegatamante/VitaDB-Downloader/releases/tag/v.2.5"
     },
     {
@@ -47,20 +41,8 @@
       "url": "https://github.com/Rinnegatamante/VitaDB-Downloader"
     },
     {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=877",
-      "recommended": true
-    },
-    {
-      "type": "Download",
-      "name": "NeoVitaDB VPK",
-      "url": "https://github.com/Rinnegatamante/VitaDB-Downloader/releases/download/v.2.6/VitaDB.vpk",
-      "recommended": false
-    },
-    {
       "type": "Official Website",
-      "name": "NeoVitaDB Release Page",
+      "name": "Release Page",
       "url": "https://github.com/Rinnegatamante/VitaDB-Downloader/releases/tag/v.2.6"
     }
   ],

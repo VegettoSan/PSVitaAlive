@@ -33,14 +33,6 @@
     },
     {
       "type": "Game Files",
-      "name": "Game Data Files ZIP",
-      "url": "https://archive.org/download/zenonia-3-psvita/Game%20Files.zip",
-      "recommended": false,
-      "size": 12200000,
-      "extract_path": "ux0:data/"
-    },
-    {
-      "type": "Game Files",
       "name": "Game Data Files ZIP - MediaFire",
       "url": "https://www.mediafire.com/file/3uxmygtsbymkhqc/Game_Files.zip/file",
       "recommended": false,
@@ -48,20 +40,16 @@
       "extract_path": "ux0:data/"
     },
     {
-      "type": "Download",
-      "name": "GitHub VPK",
-      "url": "https://github.com/MetalSyntax/zenonia3-psvita-port/releases/download/v01.30/zenonia_3.vpk",
-      "recommended": false
-    },
-    {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1459",
-      "recommended": false
+      "type": "Game Files",
+      "name": "Game Data Files ZIP",
+      "url": "https://archive.org/download/zenonia-3-psvita/Game%20Files.zip",
+      "recommended": false,
+      "size": 12200000,
+      "extract_path": "ux0:data/"
     },
     {
       "type": "Official Website",
-      "name": "VitaDB Release Page",
+      "name": "Release Page",
       "url": "https://github.com/MetalSyntax/zenonia3-psvita-port/releases"
     },
     {

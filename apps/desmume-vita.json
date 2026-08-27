@@ -22,26 +22,14 @@
   ],
   "links": [
     {
-      "type": "Download",
-      "name": "VitaHomebrewDB VPK",
-      "url": "https://github.com/masterfeizz/DeSmuME-Vita/releases/download/v0.2/desmume.vpk",
-      "recommended": false
-    },
-    {
       "type": "Official Website",
-      "name": "VitaHomebrewDB Release Page",
+      "name": "Official Website",
       "url": "https://gbatemp.net/threads/release-desmume-ds-emulator.436418/"
     },
     {
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/masterfeizz/DeSmuME-Vita"
-    },
-    {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=23",
-      "recommended": true
     }
   ],
   "source_name": "VitaHomebrewDB",

@@ -23,31 +23,19 @@
   ],
   "links": [
     {
-      "type": "Download",
-      "name": "VitaHomebrewDB VPK",
-      "url": "https://github.com/Samuel85/Abbey/releases/download/Vita_v1.0/abbey_v1.0.vpk",
-      "recommended": false
-    },
-    {
       "type": "Official Website",
-      "name": "VitaHomebrewDB Release Page",
+      "name": "Release Page",
       "url": "https://github.com/Samuel85/Abbey/releases"
     },
     {
       "type": "Official Website",
-      "name": "NeoVitaDB Release Page",
+      "name": "Release Page",
       "url": "https://github.com/Samuel85/Abbey/releases/tag/Vita_v1.0"
     },
     {
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/Samuel85/Abbey"
-    },
-    {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=635",
-      "recommended": true
     }
   ],
   "source_name": "VitaHomebrewDB",

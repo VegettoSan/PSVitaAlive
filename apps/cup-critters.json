@@ -24,31 +24,7 @@
     "https://www.rinnegatamante.eu/vitadb/screenshots/1aba5fcafb0106ea2043806f5ad28c16959142da91330453b9ff195f10c63952.png",
     "https://www.rinnegatamante.eu/vitadb/screenshots/ad3e5d45d7f35e7465399256ce658285f409523a29e23bcd8eaf48c3766467a8.png"
   ],
-  "links": [
-    {
-      "type": "Download",
-      "name": "VitaHomebrewDB VPK",
-      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/452-Cup_20Critters.vpk",
-      "recommended": false
-    },
-    {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com"
-    },
-    {
-      "type": "Download",
-      "name": "VitaHomebrewDB VPK",
-      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/452-Cup_20Critters.vpk",
-      "recommended": false
-    },
-    {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=452",
-      "recommended": true
-    }
-  ],
+  "links": [],
   "source_name": "VitaHomebrewDB",
   "source_id": "452",
   "source_url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/452-Cup_20Critters.vpk",

@@ -25,31 +25,19 @@
   ],
   "links": [
     {
-      "type": "Download",
-      "name": "VitaHomebrewDB VPK",
-      "url": "https://github.com/suicvne/SpaceCadetPinball_Vita/releases/download/Release_1.1.1_VitaBuild_2/SpaceCadetPinballVita_VB2.vpk",
-      "recommended": false
-    },
-    {
       "type": "Official Website",
-      "name": "VitaHomebrewDB Release Page",
+      "name": "Release Page",
       "url": "https://github.com/suicvne/SpaceCadetPinball_Vita/releases"
     },
     {
       "type": "Official Website",
-      "name": "NeoVitaDB Release Page",
+      "name": "Release Page",
       "url": "https://github.com/suicvne/SpaceCadetPinball_Vita/releases/tag/Release_1.1.1_VitaBuild_2"
     },
     {
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/suicvne/SpaceCadetPinball_Vita"
-    },
-    {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=730",
-      "recommended": true
     }
   ],
   "source_name": "VitaHomebrewDB",

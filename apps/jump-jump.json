@@ -21,31 +21,7 @@
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/4422e7fafb5da787ebee17be5ac23edf40fbdc65c0530819de5a4917eff56347.png",
     "https://www.rinnegatamante.eu/vitadb/screenshots/4422e7fafb5da787ebee17be5ac23edf40fbdc65c0530819de5a4917eff56347.png"
   ],
-  "links": [
-    {
-      "type": "Download",
-      "name": "VitaHomebrewDB VPK",
-      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/499-Jump_20Jump.vpk",
-      "recommended": false
-    },
-    {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com"
-    },
-    {
-      "type": "Download",
-      "name": "VitaHomebrewDB VPK",
-      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/499-Jump_20Jump.vpk",
-      "recommended": false
-    },
-    {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=499",
-      "recommended": true
-    }
-  ],
+  "links": [],
   "source_name": "VitaHomebrewDB",
   "source_id": "499",
   "source_url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/499-Jump_20Jump.vpk",

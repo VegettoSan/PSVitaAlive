@@ -22,37 +22,19 @@
   ],
   "links": [
     {
-      "type": "Download",
-      "name": "VitaHomebrewDB VPK",
-      "url": "https://github.com/usineur/hode/releases/download/0.2.9/hode.vpk",
-      "recommended": false
-    },
-    {
-      "type": "Download",
-      "name": "NeoVitaDB VPK",
-      "url": "https://github.com/usineur/hode/releases/download/0.2.9d/hode.vpk",
-      "recommended": false
-    },
-    {
       "type": "Official Website",
-      "name": "VitaHomebrewDB Release Page",
+      "name": "Release Page",
       "url": "https://github.com/usineur/hode/releases"
     },
     {
       "type": "Official Website",
-      "name": "NeoVitaDB Release Page",
+      "name": "Release Page",
       "url": "https://github.com/usineur/hode/releases/tag/0.2.9d"
     },
     {
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/usineur/hode"
-    },
-    {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=512",
-      "recommended": true
     }
   ],
   "source_name": "VitaHomebrewDB",

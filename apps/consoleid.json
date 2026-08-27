@@ -23,31 +23,19 @@
   ],
   "links": [
     {
-      "type": "Download",
-      "name": "VitaHomebrewDB VPK",
-      "url": "https://github.com/Freakler/vita-ConsoleID/releases/download/1.00/ConsoleID_v100.vpk",
-      "recommended": false
-    },
-    {
       "type": "Official Website",
-      "name": "VitaHomebrewDB Release Page",
+      "name": "Release Page",
       "url": "https://github.com/Freakler/vita-ConsoleID/releases"
     },
     {
       "type": "Official Website",
-      "name": "NeoVitaDB Release Page",
+      "name": "Release Page",
       "url": "https://github.com/Freakler/vita-ConsoleID/releases/tag/1.00"
     },
     {
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/Freakler/vita-ConsoleID"
-    },
-    {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=544",
-      "recommended": true
     }
   ],
   "source_name": "VitaHomebrewDB",

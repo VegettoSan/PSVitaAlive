@@ -22,31 +22,7 @@
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/788bc9baea3c53cc1c0050dc5c32782b5faec8736e5a0b54e0dca19cfc086ef3.png",
     "https://www.rinnegatamante.eu/vitadb/screenshots/788bc9baea3c53cc1c0050dc5c32782b5faec8736e5a0b54e0dca19cfc086ef3.png"
   ],
-  "links": [
-    {
-      "type": "Download",
-      "name": "VitaHomebrewDB VPK",
-      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/409-WastelandKings.vpk",
-      "recommended": false
-    },
-    {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com"
-    },
-    {
-      "type": "Download",
-      "name": "VitaHomebrewDB VPK",
-      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/409-WastelandKings.vpk",
-      "recommended": false
-    },
-    {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=409",
-      "recommended": true
-    }
-  ],
+  "links": [],
   "source_name": "VitaHomebrewDB",
   "source_id": "409",
   "source_url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/409-WastelandKings.vpk",

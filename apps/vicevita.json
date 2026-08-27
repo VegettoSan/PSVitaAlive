@@ -26,31 +26,19 @@
   ],
   "links": [
     {
-      "type": "Download",
-      "name": "VitaHomebrewDB VPK",
-      "url": "https://github.com/ammeir/vicevita/releases/download/v1.2/vicevita.vpk",
-      "recommended": false
-    },
-    {
       "type": "Official Website",
-      "name": "VitaHomebrewDB Release Page",
+      "name": "Release Page",
       "url": "https://github.com/ammeir/vicevita/releases"
     },
     {
       "type": "Official Website",
-      "name": "NeoVitaDB Release Page",
+      "name": "Release Page",
       "url": "https://github.com/ammeir/vicevita/releases/tag/v1.2"
     },
     {
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/ammeir/vicevita"
-    },
-    {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=541",
-      "recommended": true
     }
   ],
   "source_name": "VitaHomebrewDB",

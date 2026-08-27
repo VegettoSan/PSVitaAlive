@@ -23,14 +23,7 @@
     "https://www.rinnegatamante.eu/vitadb/screenshots/6a75d3201ee1a12dbfe2c21b24af0017e9dab6a107501156aa9d5f72ef4611f0.png",
     "https://www.rinnegatamante.eu/vitadb/screenshots/528c931df6640b07bbaff6b6947dedbde94e71bd9bd4ded2a37c6f66a72690b2.png"
   ],
-  "links": [
-    {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1159",
-      "recommended": true
-    }
-  ],
+  "links": [],
   "source_name": "VitaDB",
   "source_id": "1159",
   "source_url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1159",

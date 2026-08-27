@@ -24,38 +24,14 @@
   ],
   "links": [
     {
-      "type": "Download",
-      "name": "VitaHomebrewDB VPK",
-      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/5-EasyRPG_Player.vpk",
-      "recommended": false
-    },
-    {
-      "type": "Download",
-      "name": "NeoVitaDB VPK",
-      "url": "https://ci.easyrpg.org/view/Player/job/player-vita/lastSuccessfulBuild/artifact/easyrpg-player-psvita.zip",
-      "recommended": false
-    },
-    {
       "type": "Official Website",
-      "name": "VitaHomebrewDB Release Page",
+      "name": "Official Website",
       "url": "https://blog.easyrpg.org/"
     },
     {
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/EasyRPG/Player"
-    },
-    {
-      "type": "Download",
-      "name": "VitaHomebrewDB VPK",
-      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/5-EasyRPG_Player.vpk",
-      "recommended": false
-    },
-    {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=5",
-      "recommended": true
     }
   ],
   "source_name": "VitaHomebrewDB",

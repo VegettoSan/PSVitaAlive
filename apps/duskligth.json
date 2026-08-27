@@ -35,15 +35,15 @@
     },
     {
       "type": "Game Files",
-      "name": "Game Files USA",
-      "url": "https://archive.org/download/duskligth-ps-vita/Game%20Files.zip",
+      "name": "Game Files USA - Mediafire",
+      "url": "https://www.mediafire.com/file/3589zi9b58vli2v/Game+Files.zip/file",
       "size": 1300000000,
       "extract_path": "ux0:data/"
     },
     {
       "type": "Game Files",
-      "name": "Game Files USA - Mediafire",
-      "url": "https://www.mediafire.com/file/3589zi9b58vli2v/Game+Files.zip/file",
+      "name": "Game Files USA",
+      "url": "https://archive.org/download/duskligth-ps-vita/Game%20Files.zip",
       "size": 1300000000,
       "extract_path": "ux0:data/"
     }

@@ -21,20 +21,8 @@
   "status": "Verified",
   "links": [
     {
-      "type": "Download",
-      "name": "Official VPK",
-      "url": "https://github.com/MetalSyntax/Inotia3-vita/releases/download/1.0.0/inotia3-release.vpk",
-      "recommended": false
-    },
-    {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1462",
-      "recommended": true
-    },
-    {
       "type": "Official Website",
-      "name": "VitaDB Release Page",
+      "name": "Release Page",
       "url": "https://github.com/MetalSyntax/Inotia3-vita/releases"
     },
     {

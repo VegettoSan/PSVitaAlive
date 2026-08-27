@@ -26,26 +26,14 @@
   ],
   "links": [
     {
-      "type": "Download",
-      "name": "VitaHomebrewDB VPK",
-      "url": "https://github.com/frangarcj/geometrizer/releases/download/vita-20260711/geometrizer.vpk",
-      "recommended": false
-    },
-    {
       "type": "Official Website",
-      "name": "VitaHomebrewDB Release Page",
+      "name": "Release Page",
       "url": "https://github.com/frangarcj/geometrizer/releases"
     },
     {
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/frangarcj/geometrizer"
-    },
-    {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1432",
-      "recommended": true
     }
   ],
   "source_name": "VitaHomebrewDB",

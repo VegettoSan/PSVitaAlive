@@ -23,31 +23,19 @@
   ],
   "links": [
     {
-      "type": "Download",
-      "name": "VitaHomebrewDB VPK",
-      "url": "https://github.com/Day-OS/green-vita/releases/download/v0.1.8/green-vita.vpk",
-      "recommended": false
-    },
-    {
       "type": "Official Website",
-      "name": "VitaHomebrewDB Release Page",
+      "name": "Release Page",
       "url": "https://github.com/Day-OS/green-vita/releases"
     },
     {
       "type": "Official Website",
-      "name": "NeoVitaDB Release Page",
+      "name": "Release Page",
       "url": "https://github.com/Day-OS/green-vita/releases/tag/v0.1.8"
     },
     {
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/Day-OS/green-vita"
-    },
-    {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1438",
-      "recommended": true
     }
   ],
   "source_name": "VitaHomebrewDB",

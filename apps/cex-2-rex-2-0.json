@@ -23,25 +23,13 @@
   ],
   "links": [
     {
-      "type": "Download",
-      "name": "NeoVitaDB VPK",
-      "url": "https://git.silica.codes/Li/cex-2-rex/releases/download/latest/CEX2REX.vpk",
-      "recommended": false
-    },
-    {
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://git.silica.codes"
     },
     {
-      "type": "Download",
-      "name": "VitaHomebrewDB VPK",
-      "url": "https://git.silica.codes/Li/cex-2-rex/releases/download/2.0.1/CEX2REX.vpk",
-      "recommended": true
-    },
-    {
       "type": "Official Website",
-      "name": "VitaHomebrewDB Release Page",
+      "name": "Official Website",
       "url": "https://git.silica.codes/Li/cex-2-rex/releases"
     },
     {

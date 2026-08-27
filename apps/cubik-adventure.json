@@ -23,31 +23,7 @@
     "https://www.rinnegatamante.eu/vitadb/screenshots/0c708b9fc94e6c57d14d960cbc1fb75a9b7de2a66d27891b3a1c972d81b05796.png",
     "https://www.rinnegatamante.eu/vitadb/screenshots/7ac30a595e9210079f5d1b14cdbacfea0ee175639a3cd7ad3af23f3f524d8ed8.png"
   ],
-  "links": [
-    {
-      "type": "Download",
-      "name": "VitaHomebrewDB VPK",
-      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/471-Cubik_20Adventure.vpk",
-      "recommended": false
-    },
-    {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com"
-    },
-    {
-      "type": "Download",
-      "name": "VitaHomebrewDB VPK",
-      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/471-Cubik_20Adventure.vpk",
-      "recommended": false
-    },
-    {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=471",
-      "recommended": true
-    }
-  ],
+  "links": [],
   "source_name": "VitaHomebrewDB",
   "source_id": "471",
   "source_url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/471-Cubik_20Adventure.vpk",

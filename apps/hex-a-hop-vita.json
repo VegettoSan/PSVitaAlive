@@ -26,31 +26,19 @@
   ],
   "links": [
     {
-      "type": "Download",
-      "name": "VitaHomebrewDB VPK",
-      "url": "https://github.com/withLogic/hexahop-vita/releases/download/v1.1.0-vita/Hex-A-Hop.vpk",
-      "recommended": false
-    },
-    {
       "type": "Official Website",
-      "name": "VitaHomebrewDB Release Page",
+      "name": "Release Page",
       "url": "https://github.com/withLogic/hexahop-vita/releases"
     },
     {
       "type": "Official Website",
-      "name": "NeoVitaDB Release Page",
+      "name": "Release Page",
       "url": "https://github.com/withLogic/hexahop-vita/releases/tag/v1.1.0-vita"
     },
     {
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/withLogic/hexahop-vita"
-    },
-    {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1374",
-      "recommended": true
     }
   ],
   "source_name": "VitaHomebrewDB",

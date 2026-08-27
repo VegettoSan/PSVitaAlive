@@ -23,14 +23,8 @@
   ],
   "links": [
     {
-      "type": "Download",
-      "name": "NeoVitaDB VPK",
-      "url": "https://github.com/OpenCloudGaming/OpenNOW-vita/releases/download/v0.3.1/opennow-vita.vpk",
-      "recommended": false
-    },
-    {
       "type": "Official Website",
-      "name": "NeoVitaDB Release Page",
+      "name": "Release Page",
       "url": "https://github.com/OpenCloudGaming/OpenNOW-vita/releases/tag/v0.3.1"
     },
     {
@@ -39,14 +33,8 @@
       "url": "https://github.com/OpenCloudGaming/OpenNOW-vita"
     },
     {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1449",
-      "recommended": true
-    },
-    {
       "type": "Official Website",
-      "name": "VitaDB Release Page",
+      "name": "Release Page",
       "url": "https://github.com/OpenCloudGaming/OpenNOW-vita/releases"
     }
   ],

@@ -24,31 +24,19 @@
   ],
   "links": [
     {
-      "type": "Download",
-      "name": "VitaHomebrewDB VPK",
-      "url": "https://github.com/Lordchickenblaster/Crazy-Cattle-Vita/releases/download/1.4/CC3DV1.4.vpk",
-      "recommended": false
-    },
-    {
       "type": "Official Website",
-      "name": "VitaHomebrewDB Release Page",
+      "name": "Repository",
       "url": "https://github.com/Lordchickenblaster/Crazy-Cattle-Vita"
     },
     {
       "type": "Official Website",
-      "name": "NeoVitaDB Release Page",
+      "name": "Release Page",
       "url": "https://github.com/Lordchickenblaster/Crazy-Cattle-Vita/releases/tag/1.4"
     },
     {
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/Lordchickenblaster/Crazy-Cattle-Vita/releases"
-    },
-    {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1270",
-      "recommended": true
     }
   ],
   "source_name": "VitaHomebrewDB",

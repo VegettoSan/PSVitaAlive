@@ -22,14 +22,8 @@
   ],
   "links": [
     {
-      "type": "Download",
-      "name": "NeoVitaDB VPK",
-      "url": "https://github.com/Brendonm17/wagic-vita/releases/download/v0.1.1/wagic.vpk",
-      "recommended": true
-    },
-    {
       "type": "Official Website",
-      "name": "NeoVitaDB Release Page",
+      "name": "Release Page",
       "url": "https://github.com/Brendonm17/wagic-vita/releases/tag/v0.1.1"
     },
     {
@@ -39,7 +33,7 @@
     },
     {
       "type": "Official Website",
-      "name": "VitaDB Release Page",
+      "name": "Release Page",
       "url": "https://github.com/Brendonm17/wagic-vita/releases"
     }
   ],

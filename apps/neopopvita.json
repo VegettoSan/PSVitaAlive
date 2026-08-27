@@ -26,31 +26,19 @@
   ],
   "links": [
     {
-      "type": "Download",
-      "name": "VitaHomebrewDB VPK",
-      "url": "https://github.com/frangarcj/NeopopVITA/releases/download/0.71.15-Henkaku/NeopopVITA.vpk",
-      "recommended": false
-    },
-    {
       "type": "Official Website",
-      "name": "VitaHomebrewDB Release Page",
+      "name": "Release Page",
       "url": "https://github.com/frangarcj/NeopopVITA/releases"
     },
     {
       "type": "Official Website",
-      "name": "NeoVitaDB Release Page",
+      "name": "Release Page",
       "url": "https://github.com/frangarcj/NeopopVITA/releases/tag/0.71.15-Henkaku"
     },
     {
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/frangarcj/NeopopVITA"
-    },
-    {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=165",
-      "recommended": true
     }
   ],
   "source_name": "VitaHomebrewDB",

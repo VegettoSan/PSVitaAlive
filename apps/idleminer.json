@@ -24,31 +24,7 @@
     "https://www.rinnegatamante.eu/vitadb/screenshots/71036f6aa608352fc7a08071f867abc36ea89631de2d02e2f60c09cede04b4fa.png",
     "https://www.rinnegatamante.eu/vitadb/screenshots/458fc7d1eb1c9dbbb3fb721ce77f11e42b5df911152440dfd709f0a7d501aa26.png"
   ],
-  "links": [
-    {
-      "type": "Download",
-      "name": "VitaHomebrewDB VPK",
-      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1231-IdleMiner.vpk",
-      "recommended": false
-    },
-    {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com"
-    },
-    {
-      "type": "Download",
-      "name": "VitaHomebrewDB VPK",
-      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/1231-IdleMiner.vpk",
-      "recommended": false
-    },
-    {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1231",
-      "recommended": true
-    }
-  ],
+  "links": [],
   "source_name": "VitaHomebrewDB",
   "source_id": "1231",
   "source_url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1231-IdleMiner.vpk",

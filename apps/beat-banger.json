@@ -26,26 +26,14 @@
   ],
   "links": [
     {
-      "type": "Download",
-      "name": "VitaHomebrewDB VPK",
-      "url": "https://github.com/masteroga101/Beat-Banger-PsVita-/releases/download/v0.99/Beat.Banger.vpk",
-      "recommended": false
-    },
-    {
       "type": "Official Website",
-      "name": "VitaHomebrewDB Release Page",
+      "name": "Repository",
       "url": "https://github.com/masteroga101/Beat-Banger-PsVita-"
     },
     {
       "type": "Official Website",
-      "name": "NeoVitaDB Release Page",
+      "name": "Release Page",
       "url": "https://github.com/masteroga101/Beat-Banger-PsVita-/releases/tag/v0.99"
-    },
-    {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1329",
-      "recommended": true
     }
   ],
   "source_name": "VitaHomebrewDB",

@@ -27,19 +27,13 @@
   ],
   "links": [
     {
-      "type": "Download",
-      "name": "VitaHomebrewDB VPK",
-      "url": "https://github.com/BlackSheepBoy69/HexFlow-Launcher-Unofficial-Custom/releases/download/v2.9.1/HexFlow.Custom.2.9.1.vpk",
-      "recommended": true
-    },
-    {
       "type": "Official Website",
-      "name": "VitaHomebrewDB Release Page",
+      "name": "Release Page",
       "url": "https://github.com/BlackSheepBoy69/HexFlow-Launcher-Unofficial-Custom/releases"
     },
     {
       "type": "Official Website",
-      "name": "NeoVitaDB Release Page",
+      "name": "Release Page",
       "url": "https://github.com/BlackSheepBoy69/HexFlow-Launcher-Unofficial-Custom/releases/tag/v2.9.1"
     },
     {

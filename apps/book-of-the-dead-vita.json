@@ -22,21 +22,9 @@
   ],
   "links": [
     {
-      "type": "Download",
-      "name": "VitaHomebrewDB VPK",
-      "url": "https://github.com/rerulon/dushi4kDX/releases/download/%23deadsouls/Book.of.the.Dead-01.00.vpk",
-      "recommended": false
-    },
-    {
       "type": "Official Website",
-      "name": "VitaHomebrewDB Release Page",
+      "name": "Repository",
       "url": "https://github.com/rerulon/dushi4kDX"
-    },
-    {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1424",
-      "recommended": true
     }
   ],
   "source_name": "VitaHomebrewDB",

@@ -18,12 +18,6 @@
   "status": "Legacy",
   "links": [
     {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1468",
-      "recommended": true
-    },
-    {
       "type": "Game Files",
       "name": "Game Data Files ZIP Mediafire",
       "url": "https://www.mediafire.com/file/9be1no8he289e2c/BanjoKazooieVita.zip/file",

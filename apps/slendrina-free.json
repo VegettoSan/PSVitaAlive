@@ -25,31 +25,19 @@
   ],
   "links": [
     {
-      "type": "Download",
-      "name": "VitaHomebrewDB VPK",
-      "url": "https://github.com/MaloneCZSD/SlendrinaFree/releases/download/v1.0/SlendrinaFree.vpk",
-      "recommended": false
-    },
-    {
       "type": "Official Website",
-      "name": "VitaHomebrewDB Release Page",
+      "name": "Repository",
       "url": "https://github.com/malone46/SlendrinaFree"
     },
     {
       "type": "Official Website",
-      "name": "NeoVitaDB Release Page",
+      "name": "Release Page",
       "url": "https://github.com/MaloneCZSD/SlendrinaFree/releases/tag/v1.0"
     },
     {
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/MaloneCZSD/SlendrinaFree"
-    },
-    {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1266",
-      "recommended": true
     }
   ],
   "source_name": "VitaHomebrewDB",

@@ -26,31 +26,19 @@
   ],
   "links": [
     {
-      "type": "Download",
-      "name": "VitaHomebrewDB VPK",
-      "url": "https://github.com/island-games/A-Super-Small-Shmup/releases/download/v1.02/ASUPERSMALLSHMUP.vpk",
-      "recommended": false
-    },
-    {
       "type": "Official Website",
-      "name": "VitaHomebrewDB Release Page",
+      "name": "Release Page",
       "url": "https://github.com/island-games/A-Super-Small-Shmup/releases"
     },
     {
       "type": "Official Website",
-      "name": "NeoVitaDB Release Page",
+      "name": "Release Page",
       "url": "https://github.com/island-games/A-Super-Small-Shmup/releases/tag/v1.02"
     },
     {
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/island-games/A-Super-Small-Shmup"
-    },
-    {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=752",
-      "recommended": true
     }
   ],
   "source_name": "VitaHomebrewDB",

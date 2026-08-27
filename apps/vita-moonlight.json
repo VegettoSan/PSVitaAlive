@@ -25,31 +25,19 @@
   ],
   "links": [
     {
-      "type": "Download",
-      "name": "VitaHomebrewDB VPK",
-      "url": "https://github.com/xyzz/vita-moonlight/releases/download/0.13.2/moonlight.vpk",
-      "recommended": false
-    },
-    {
       "type": "Official Website",
-      "name": "VitaHomebrewDB Release Page",
+      "name": "Release Page",
       "url": "https://github.com/xyzz/vita-moonlight/releases"
     },
     {
       "type": "Official Website",
-      "name": "NeoVitaDB Release Page",
+      "name": "Release Page",
       "url": "https://github.com/xyzz/vita-moonlight/releases/tag/0.13.2"
     },
     {
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/xyzz/vita-moonlight"
-    },
-    {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=76",
-      "recommended": true
     }
   ],
   "source_name": "VitaHomebrewDB",

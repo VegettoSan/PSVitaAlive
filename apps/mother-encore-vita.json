@@ -26,26 +26,14 @@
   ],
   "links": [
     {
-      "type": "Download",
-      "name": "VitaHomebrewDB VPK",
-      "url": "https://github.com/WolffsRoom/MotherEncore-PSVita/releases/download/v0.2b/MotherEncore-Vita-v0.2b.vpk",
-      "recommended": true
-    },
-    {
       "type": "Official Website",
-      "name": "VitaHomebrewDB Release Page",
+      "name": "Repository",
       "url": "https://github.com/WolffsRoom/MotherEncore-PSVita"
     },
     {
       "type": "Official Website",
-      "name": "NeoVitaDB Release Page",
+      "name": "Release Page",
       "url": "https://github.com/WolffsRoom/MotherEncore-PSVita/releases/tag/v0.2b"
-    },
-    {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1431",
-      "recommended": false
     }
   ],
   "source_name": "VitaHomebrewDB",

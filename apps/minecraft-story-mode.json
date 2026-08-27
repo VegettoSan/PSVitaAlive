@@ -26,37 +26,19 @@
   ],
   "links": [
     {
-      "type": "Download",
-      "name": "VitaHomebrewDB VPK",
-      "url": "https://github.com/LeZergan/mcsm-vita/releases/download/v1.10/MCSM-1.10.vpk",
-      "recommended": false
-    },
-    {
-      "type": "Download",
-      "name": "NeoVitaDB VPK",
-      "url": "https://github.com/LeZergan/mcsm-vita/releases/download/v1.10/MCSM-1.10-logging.vpk",
-      "recommended": false
-    },
-    {
       "type": "Official Website",
-      "name": "VitaHomebrewDB Release Page",
+      "name": "Release Page",
       "url": "https://github.com/LeZergan/mcsm-vita/releases"
     },
     {
       "type": "Official Website",
-      "name": "NeoVitaDB Release Page",
+      "name": "Release Page",
       "url": "https://github.com/LeZergan/mcsm-vita/releases/tag/v1.10"
     },
     {
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/LeZergan/mcsm-vita"
-    },
-    {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1442",
-      "recommended": true
     }
   ],
   "source_name": "VitaHomebrewDB",

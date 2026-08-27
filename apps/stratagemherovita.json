@@ -23,31 +23,7 @@
     "https://www.rinnegatamante.eu/vitadb/screenshots/ff8f06b3f35697ae7f69381d3c5dcdf12dc6b6af9b42d42d69d7ccb1a87471c4.png",
     "https://www.rinnegatamante.eu/vitadb/screenshots/963828594842798e1f6155dd83c48647f1b534922b844b0499670a4d0a2639f3.png"
   ],
-  "links": [
-    {
-      "type": "Download",
-      "name": "VitaHomebrewDB VPK",
-      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1205-StratagemHeroVita.vpk",
-      "recommended": false
-    },
-    {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com"
-    },
-    {
-      "type": "Download",
-      "name": "VitaHomebrewDB VPK",
-      "url": "https://github.com/DrDecki/VitaHomebrewDB/releases/download/mirror/1205-StratagemHeroVita.vpk",
-      "recommended": false
-    },
-    {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1205",
-      "recommended": true
-    }
-  ],
+  "links": [],
   "source_name": "VitaHomebrewDB",
   "source_id": "1205",
   "source_url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1205-StratagemHeroVita.vpk",

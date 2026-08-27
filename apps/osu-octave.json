@@ -26,31 +26,19 @@
   ],
   "links": [
     {
-      "type": "Download",
-      "name": "VitaHomebrewDB VPK",
-      "url": "https://github.com/v-atamanenko/osu-octave/releases/download/1.20/osu-octave.vpk",
-      "recommended": false
-    },
-    {
       "type": "Official Website",
-      "name": "VitaHomebrewDB Release Page",
+      "name": "Release Page",
       "url": "https://github.com/v-atamanenko/osu-octave/releases"
     },
     {
       "type": "Official Website",
-      "name": "NeoVitaDB Release Page",
+      "name": "Release Page",
       "url": "https://github.com/v-atamanenko/osu-octave/releases/tag/1.20"
     },
     {
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/v-atamanenko/osu-octave"
-    },
-    {
-      "type": "Download",
-      "name": "VitaDB VPK",
-      "url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=814",
-      "recommended": true
     }
   ],
   "source_name": "VitaHomebrewDB",

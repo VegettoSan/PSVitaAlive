@@ -27,14 +27,8 @@
   ],
   "links": [
     {
-      "type": "Download",
-      "name": "NeoVitaDB VPK",
-      "url": "https://github.com/SonicMastr/godot-vita/releases/download/3.5-rc5-vita1/maximilien-adventure-godot-demo.vpk",
-      "recommended": true
-    },
-    {
       "type": "Official Website",
-      "name": "NeoVitaDB Release Page",
+      "name": "Release Page",
       "url": "https://github.com/SonicMastr/godot-vita/releases/tag/3.5-rc5-vita1"
     },
     {
@@ -44,12 +38,12 @@
     },
     {
       "type": "Official Website",
-      "name": "VitaDB Release Page",
+      "name": "Official Website",
       "url": "https://soykhaler.itch.io/parkour-labs-vita-port"
     },
     {
       "type": "Official Website",
-      "name": "VitaHomebrewDB Release Page",
+      "name": "Release Page",
       "url": "https://github.com/SonicMastr/godot/releases"
     }
   ],
