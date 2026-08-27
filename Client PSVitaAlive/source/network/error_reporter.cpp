@@ -144,19 +144,17 @@ const char* kindLabel(ErrorReportKind k) {
     }
 }
 
-/** Discord embed color (decimal). */
 int kindColor(ErrorReportKind k) {
     switch (k) {
-    case ErrorReportKind::Manual:          return 0x5865F2; // blurple
-    case ErrorReportKind::InstallFailed:   return 0xE03232; // red
-    case ErrorReportKind::DownloadFailed:  return 0xE08A10; // amber
-    case ErrorReportKind::Catalog:         return 0x3BD960; // green
-    case ErrorReportKind::SelfUpdate:      return 0x9B59B6; // purple
-    default:                               return 0x95A5A6; // grey
+    case ErrorReportKind::Manual:          return 0x5865F2;
+    case ErrorReportKind::InstallFailed:   return 0xE03232;
+    case ErrorReportKind::DownloadFailed:  return 0xE08A10;
+    case ErrorReportKind::Catalog:         return 0x3BD960;
+    case ErrorReportKind::SelfUpdate:      return 0x9B59B6;
+    default:                               return 0x95A5A6;
     }
 }
 
-/** Sanitize TitleID for hashtag (alphanumeric only). */
 std::string titleIdTag(const std::string& tid) {
     std::string out;
     out.reserve(tid.size() + 4);
@@ -200,7 +198,20 @@ ErrorReportResult sendErrorReport(const std::string& title, const std::string& c
     ErrorReportRequest req;
     req.title = title;
     req.context = context;
-    req.kind = ErrorReportKind::Other;
+    std::string low = title;
+    for (char& c : low) if (c >= 'A' && c <= 'Z') c = static_cast<char>(c - 'A' + 'a');
+    if (low.find("manual") != std::string::npos)
+        req.kind = ErrorReportKind::Manual;
+    else if (low.find("install") != std::string::npos)
+        req.kind = ErrorReportKind::InstallFailed;
+    else if (low.find("download") != std::string::npos)
+        req.kind = ErrorReportKind::DownloadFailed;
+    else if (low.find("catalog") != std::string::npos)
+        req.kind = ErrorReportKind::Catalog;
+    else if (low.find("self-update") != std::string::npos || low.find("self update") != std::string::npos)
+        req.kind = ErrorReportKind::SelfUpdate;
+    else
+        req.kind = ErrorReportKind::Other;
     return sendErrorReport(req);
 }
 
@@ -221,8 +232,6 @@ ErrorReportResult sendErrorReport(const ErrorReportRequest& req) {
     std::string safeTitle = req.title.empty() ? kindLabel(req.kind) : req.title;
     if (safeTitle.size() > 200) safeTitle.resize(200);
 
-    // --- Searchable content line (Discord search finds this) ---
-    // Example:  #install_failed #app_PCSG00001  Pocket Mortys
     std::string content;
     content += kindTag(req.kind);
     content += " ";
@@ -231,16 +240,14 @@ ErrorReportResult sendErrorReport(const ErrorReportRequest& req) {
         content += appTag;
         content += " ";
     }
-    if (!req.app.name.empty()) {
+    if (!req.app.name.empty())
         content += truncate(req.app.name, 80);
-    } else if (!req.app.titleId.empty()) {
+    else if (!req.app.titleId.empty())
         content += req.app.titleId;
-    } else {
+    else
         content += "(no app)";
-    }
     if (content.size() > 1800) content.resize(1800);
 
-    // --- Embed description: summary only (logs in a field below) ---
     std::string desc;
     desc.reserve(512);
     desc += "**Type:** ";
@@ -260,27 +267,22 @@ ErrorReportResult sendErrorReport(const ErrorReportRequest& req) {
     }
     desc += "_Filter in Discord search with the `#` tags above._";
 
-    // --- Embed fields ---
     std::string fields;
     fields.reserve(512);
-    appendEmbedField(fields, "📱 App", req.app.name.empty() ? "—" : req.app.name, true);
+    appendEmbedField(fields, "App", req.app.name.empty() ? "—" : req.app.name, true);
     appendEmbedField(fields, "Title ID", req.app.titleId.empty() ? "—" : req.app.titleId, true);
     if (!req.app.version.empty())
         appendEmbedField(fields, "App version", req.app.version, true);
     appendEmbedField(fields, "Client", std::string("v") + ver, true);
     appendEmbedField(fields, "Store TitleID", "PSVAS1178", true);
-    // Logs as non-inline field (code block)
     {
         std::string logVal = "```\n";
         logVal += logs;
         logVal += "\n```";
-        if (logVal.size() > 1000) {
-            // Discord field value max 1024
+        if (logVal.size() > 1000)
             logVal = "```\n" + logs.substr(logs.size() > 980 ? logs.size() - 980 : 0) + "\n```";
-        }
-        appendEmbedField(fields, "📋 Logs (tail)", logVal, false);
+        appendEmbedField(fields, "Logs (tail)", logVal, false);
     }
-    // strip trailing comma
     if (!fields.empty() && fields.back() == ',') fields.pop_back();
 
     std::string body;
