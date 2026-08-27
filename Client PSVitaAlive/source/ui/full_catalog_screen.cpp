@@ -493,6 +493,16 @@ uint64_t parseUiSizeBytes(const std::string& raw) {
 
 std::string formatLinkSizeLabel(const CatalogLink&l,const CatalogItem&it){if(!l.size.empty())return l.size;if(!it.size.empty())return it.size;return {};}
 }
+bool isInsufficientSpaceError(const std::string& msg) {
+    // Match InstallController pre-flight and any similar free-space failures.
+    std::string m = msg;
+    for (char& c : m) if (c >= 'A' && c <= 'Z') c = static_cast<char>(c - 'A' + 'a');
+    return m.find("not enough free space") != std::string::npos
+        || m.find("insufficient space") != std::string::npos
+        || m.find("no space left") != std::string::npos
+        || m.find("disk full") != std::string::npos;
+}
+
 std::string formatEta(uint64_t seconds){if(seconds==0)return "--";uint64_t h=seconds/3600,m=(seconds%3600)/60,sec=seconds%60;char o[64];if(h)sceClibSnprintf(o,sizeof(o),"%llu:%02llu:%02llu",(unsigned long long)h,(unsigned long long)m,(unsigned long long)sec);else sceClibSnprintf(o,sizeof(o),"%02llu:%02llu",(unsigned long long)m,(unsigned long long)sec);return o;}
 FullCatalogScreen::FullCatalogScreen()=default;FullCatalogScreen::~FullCatalogScreen(){shutdown();}
 
@@ -1470,6 +1480,16 @@ void FullCatalogScreen::handleTouch() {
                 return;
             }
             if (installOutcome_ == 2) {
+                const bool spaceErr = isInsufficientSpaceError(installProgressMessage_);
+                if (spaceErr) {
+                    const int bwClose = 280;
+                    const int bxClose = ox + (ow - bwClose) / 2;
+                    if (hit(x, y, bxClose, by, bwClose, bh)) {
+                        if (installAcknowledge_) installAcknowledge_();
+                        reportUiState_ = 0;
+                    }
+                    return;
+                }
                 const int bwReport = 200, bwClose = 200;
                 const int bxReport = ox + 28, bxClose = ox + ow - 28 - bwClose;
                 if (hit(x, y, bxReport, by, bwReport, bh)) {
@@ -2278,7 +2298,7 @@ if(pressed&SCE_CTRL_START){
             return;
         }
         return;
-    }if(reportConfirmVisible_){if(pressed&SCE_CTRL_CIRCLE){closeReportConfirm();return;}if(pressed&SCE_CTRL_CROSS){closeReportConfirm();trySendErrorReport("Manual report from UI","User confirmed report from footer");return;}return;}if(newsVisible_){if(pressed&SCE_CTRL_CIRCLE){closeNewsModal(newsMarkSeenOnClose_);return;}if(pressed&SCE_CTRL_UP||(nav&SCE_CTRL_UP)){if(newsScrollLine_>0)--newsScrollLine_;return;}if(pressed&SCE_CTRL_DOWN||(nav&SCE_CTRL_DOWN)){const int mv=std::max(1,(420-56-88)/22);const int ms=std::max(0,(int)newsLines_.size()-mv);if(newsScrollLine_<ms)++newsScrollLine_;return;}return;}if(installProgressActive_&&(pressed&SCE_CTRL_SQUARE)&&(installOutcome_==2)){trySendErrorReport("Installation failed",installProgressMessage_+" | file="+installProgressFile_);return;}if(installProgressActive_&&(pressed&SCE_CTRL_CIRCLE)){if(installOutcome_==1||installOutcome_==2||installOutcome_==3){if(installAcknowledge_)installAcknowledge_();if(installOutcome_==1&&installAllFinishedToast_){installAllFinishedToast_=false;showToast("All installed — ready to use",2800);}reportUiState_=0;}else if(installCancel_)installCancel_();return;}if(catalogLoading_||installProgressActive_)return;if(pressed&SCE_CTRL_SQUARE){if(!searchQuery_.empty())applySearch("");return;}if(state_.mode==UiMode::FULL_CATALOG){if(pressed&SCE_CTRL_TRIANGLE){if(searchRequest_)applySearch(searchRequest_(searchQuery_));return;}if(nav&SCE_CTRL_LEFT&&state_.focusIndex%3>0)--state_.focusIndex;if(nav&SCE_CTRL_RIGHT&&state_.focusIndex%3<2&&state_.focusIndex+1<(int)catalogView().size())++state_.focusIndex;if(nav&SCE_CTRL_UP)moveCatalogFocus(-1);if(nav&SCE_CTRL_DOWN)moveCatalogFocus(1);clampCatalogScroll();if(pressed&SCE_CTRL_CROSS)startOpeningDetail();return;}if(state_.mode!=UiMode::SPLIT_DETAIL)return;if(pressed&SCE_CTRL_CIRCLE){startClosingDetail();return;}if(state_.activePanel==UiPanel::Catalog){if(pressed&SCE_CTRL_RIGHT)state_.activePanel=UiPanel::Detail;if(nav&SCE_CTRL_UP)moveCatalogFocus(-1);if(nav&SCE_CTRL_DOWN)moveCatalogFocus(1);return;}if(nav&SCE_CTRL_LEFT)state_.activePanel=UiPanel::Catalog;if(pressed&SCE_CTRL_TRIANGLE){if(state_.linkNavigation)exitLinkNavigation();else enterLinkNavigation();return;}if(state_.linkNavigation){if(nav&SCE_CTRL_UP)moveLinkFocus(0,-1);if(nav&SCE_CTRL_DOWN)moveLinkFocus(0,1);if(pressed&SCE_CTRL_CROSS)activateFocusedLink();return;}if(nav&SCE_CTRL_UP)moveDetailScroll(-1);if(nav&SCE_CTRL_DOWN)moveDetailScroll(1);}
+    }if(reportConfirmVisible_){if(pressed&SCE_CTRL_CIRCLE){closeReportConfirm();return;}if(pressed&SCE_CTRL_CROSS){closeReportConfirm();trySendErrorReport("Manual report from UI","User confirmed report from footer");return;}return;}if(newsVisible_){if(pressed&SCE_CTRL_CIRCLE){closeNewsModal(newsMarkSeenOnClose_);return;}if(pressed&SCE_CTRL_UP||(nav&SCE_CTRL_UP)){if(newsScrollLine_>0)--newsScrollLine_;return;}if(pressed&SCE_CTRL_DOWN||(nav&SCE_CTRL_DOWN)){const int mv=std::max(1,(420-56-88)/22);const int ms=std::max(0,(int)newsLines_.size()-mv);if(newsScrollLine_<ms)++newsScrollLine_;return;}return;}if(installProgressActive_&&(pressed&SCE_CTRL_SQUARE)&&(installOutcome_==2)&&!isInsufficientSpaceError(installProgressMessage_)){trySendErrorReport("Installation failed",installProgressMessage_+" | file="+installProgressFile_);return;}if(installProgressActive_&&(pressed&SCE_CTRL_CIRCLE)){if(installOutcome_==1||installOutcome_==2||installOutcome_==3){if(installAcknowledge_)installAcknowledge_();if(installOutcome_==1&&installAllFinishedToast_){installAllFinishedToast_=false;showToast("All installed — ready to use",2800);}reportUiState_=0;}else if(installCancel_)installCancel_();return;}if(catalogLoading_||installProgressActive_)return;if(pressed&SCE_CTRL_SQUARE){if(!searchQuery_.empty())applySearch("");return;}if(state_.mode==UiMode::FULL_CATALOG){if(pressed&SCE_CTRL_TRIANGLE){if(searchRequest_)applySearch(searchRequest_(searchQuery_));return;}if(nav&SCE_CTRL_LEFT&&state_.focusIndex%3>0)--state_.focusIndex;if(nav&SCE_CTRL_RIGHT&&state_.focusIndex%3<2&&state_.focusIndex+1<(int)catalogView().size())++state_.focusIndex;if(nav&SCE_CTRL_UP)moveCatalogFocus(-1);if(nav&SCE_CTRL_DOWN)moveCatalogFocus(1);clampCatalogScroll();if(pressed&SCE_CTRL_CROSS)startOpeningDetail();return;}if(state_.mode!=UiMode::SPLIT_DETAIL)return;if(pressed&SCE_CTRL_CIRCLE){startClosingDetail();return;}if(state_.activePanel==UiPanel::Catalog){if(pressed&SCE_CTRL_RIGHT)state_.activePanel=UiPanel::Detail;if(nav&SCE_CTRL_UP)moveCatalogFocus(-1);if(nav&SCE_CTRL_DOWN)moveCatalogFocus(1);return;}if(nav&SCE_CTRL_LEFT)state_.activePanel=UiPanel::Catalog;if(pressed&SCE_CTRL_TRIANGLE){if(state_.linkNavigation)exitLinkNavigation();else enterLinkNavigation();return;}if(state_.linkNavigation){if(nav&SCE_CTRL_UP)moveLinkFocus(0,-1);if(nav&SCE_CTRL_DOWN)moveLinkFocus(0,1);if(pressed&SCE_CTRL_CROSS)activateFocusedLink();return;}if(nav&SCE_CTRL_UP)moveDetailScroll(-1);if(nav&SCE_CTRL_DOWN)moveDetailScroll(1);}
 unsigned FullCatalogScreen::colorForStatus(const std::string&s)const{if(s=="Verified")return ACCENT;if(s=="Legacy")return TEXT;if(s=="Archive")return DIM;return TEXT;}void FullCatalogScreen::drawHeader(int w){
     // Near-black bar + dual neon edge (LiveArea brand)
     vita2d_draw_rectangle(0, 0, w, HEADER_H, SURFACE2);
@@ -3135,15 +3155,25 @@ void FullCatalogScreen::drawDetailLinks(const CatalogItem& it, int x, int y, int
 
     if (showAll) {
         const bool fAll = state_.linkNavigation && state_.linkFocus == 0;
-        // Prominent amber/folder style so users notice Install All
-        const unsigned fill = fAll ? ACCENT : RGBA8(0xE6, 0x9A, 0x00, 255);
-        const unsigned fill2 = fAll ? ACCENT_SOFT : RGBA8(0x8A, 0x5A, 0x00, 255);
-        vita2d_draw_rectangle(x, y, w, INSTALL_ALL_BLOCK_H, fill2);
-        vita2d_draw_rectangle(x + 2, y + 2, w - 4, INSTALL_ALL_BLOCK_H - 4, fill);
-        vita2d_draw_rectangle(x, y, 4, INSTALL_ALL_BLOCK_H, fAll ? BG : RGBA8(0xFF, 0xD0, 0x40, 255));
-        const unsigned tc = fAll ? BG : RGBA8(0x1A, 0x12, 0x00, 255);
+        // Black body + green border (palette). Soft border pulse so it stands out.
+        const float pulse = 0.45f + 0.55f * focusPulse(); // 0.45..1.0
+        const unsigned borderA = (unsigned)(140.f + 115.f * pulse);
+        const unsigned borderCol = RGBA8(0x3B, 0xFF, 0x00, borderA > 255 ? 255 : borderA);
+        const unsigned fill = fAll ? RGBA8(0x14, 0x14, 0x14, 255) : RGBA8(0, 0, 0, 255);
+        const int bwPulse = 2 + (int)(1.5f * pulse); // 2..3 px soft "breathing"
+        vita2d_draw_rectangle(x, y, w, INSTALL_ALL_BLOCK_H, borderCol);
+        vita2d_draw_rectangle(x + bwPulse, y + bwPulse, w - bwPulse * 2, INSTALL_ALL_BLOCK_H - bwPulse * 2, fill);
+        if (fAll) {
+            // Focused: solid bright green rim
+            vita2d_draw_rectangle(x, y, w, 2, ACCENT);
+            vita2d_draw_rectangle(x, y + INSTALL_ALL_BLOCK_H - 2, w, 2, ACCENT);
+            vita2d_draw_rectangle(x, y, 2, INSTALL_ALL_BLOCK_H, ACCENT);
+            vita2d_draw_rectangle(x + w - 2, y, 2, INSTALL_ALL_BLOCK_H, ACCENT);
+        }
+        const unsigned tc = fAll ? ACCENT : WHITE;
+        const unsigned sub = fAll ? ACCENT : DIM;
         vita2d_pgf_draw_text(font_, x + 12, y + 20, tc, 0.72f, "INSTALL ALL");
-        vita2d_pgf_draw_text(font_, x + 12, y + 40, tc, 0.48f,
+        vita2d_pgf_draw_text(font_, x + 12, y + 40, sub, 0.48f,
             "Install app + Game/Data Files from scratch (pick sources)");
         yOff = INSTALL_ALL_BLOCK_H + 8;
     }
@@ -3853,42 +3883,63 @@ if(installOutcome_==2){
   vita2d_pgf_draw_text(font_,x+28,y+118,WHITE,.66f,("File: "+file).c_str());
   vita2d_pgf_draw_text(font_,x+28,y+152,RED,.68f,"Reason:");
   std::string err=installProgressMessage_.empty()?"Unknown error":installProgressMessage_;
+  const bool spaceErr = isInsufficientSpaceError(err);
   vita2d_pgf_draw_text(font_,x+28,y+180,TEXT,.60f,ellipsize(err,78).c_str());
   if(err.size()>78)
     vita2d_pgf_draw_text(font_,x+28,y+202,TEXT,.58f,ellipsize(err.substr(70),78).c_str());
-  vita2d_pgf_draw_text(font_,x+28,y+236,DIM,.54f,"Check free space, format, and session.log");
-  vita2d_pgf_draw_text(font_,x+28,y+258,DIM,.52f,"ux0:data/psvitaalive/logs/session.log");
-  const int by2=y+300,bh2=40;
-  const int bwReport=200, bwClose=200;
-  const int bxReport=x+28, bxClose=x+w-28-bwClose;
-  // Idle/sending/fail = red; success only = green (matches footer Report chip)
-  const unsigned reportCol = (reportUiState_==2) ? GREEN : RED;
-  const unsigned reportText = (reportUiState_==2) ? RGBA8(0,0,0,255) : WHITE;
-  vita2d_draw_rectangle(bxReport,by2,bwReport,bh2,reportCol);
-  if (reportUiState_==1) {
-    const int barX = bxReport + 16, barW = bwReport - 32, barH = 10;
-    const int barY = by2 + (bh2 - barH) / 2;
-    vita2d_draw_rectangle(barX, barY, barW, barH, BORDER);
-    const float tt = (float)(sceKernelGetProcessTimeWide() / 1000ULL % 1000) / 1000.f;
-    const float phase = tt < 0.5f ? (tt * 2.f) : (2.f - tt * 2.f);
-    const int fillW = (int)(barW * (0.25f + 0.55f * phase));
-    if (fillW > 0) vita2d_draw_rectangle(barX, barY, fillW, barH, RGBA8(0,0,0,255));
+  if (spaceErr) {
+    vita2d_pgf_draw_text(font_,x+28,y+236,DIM,.54f,"Free up space on ux0 and try again.");
+    vita2d_pgf_draw_text(font_,x+28,y+258,DIM,.52f,"This is not a bug — Report is disabled for space errors.");
   } else {
-    const char* lab = "Report";
-    if (reportUiState_==2) lab = "Sent";
-    else if (reportUiState_==3) lab = reportUiMsg_[0] ? reportUiMsg_ : "Failed";
-    const float sc = 0.64f;
-    const int tw = vita2d_pgf_text_width(font_, sc, lab);
-    vita2d_pgf_draw_text(font_, bxReport + (bwReport - tw) / 2, by2 + 27, reportText, sc, lab);
+    vita2d_pgf_draw_text(font_,x+28,y+236,DIM,.54f,"Check free space, format, and session.log");
+    vita2d_pgf_draw_text(font_,x+28,y+258,DIM,.52f,"ux0:data/psvitaalive/logs/session.log");
   }
-  vita2d_draw_rectangle(bxClose,by2,bwClose,bh2,RED);
-  {
-    const char* clab = "O  Close";
-    const float sc = 0.64f;
-    const int tw = vita2d_pgf_text_width(font_, sc, clab);
-    vita2d_pgf_draw_text(font_, bxClose + (bwClose - tw) / 2, by2 + 27, WHITE, sc, clab);
+  const int by2=y+300,bh2=40;
+  if (spaceErr) {
+    // Only Close — space issues are expected user-side, not bug reports
+    const int bwClose=280;
+    const int bxClose=x+(w-bwClose)/2;
+    vita2d_draw_rectangle(bxClose,by2,bwClose,bh2,SURFACE2);
+    vita2d_draw_rectangle(bxClose,by2,bwClose,1,BORDER);
+    {
+      const char* clab = "O  Close";
+      const float sc = 0.64f;
+      const int tw = vita2d_pgf_text_width(font_, sc, clab);
+      vita2d_pgf_draw_text(font_, bxClose + (bwClose - tw) / 2, by2 + 27, WHITE, sc, clab);
+    }
+    vita2d_pgf_draw_text(font_,x+28,y+h-16,DIM,.48f,"Circle: close");
+  } else {
+    const int bwReport=200, bwClose=200;
+    const int bxReport=x+28, bxClose=x+w-28-bwClose;
+    // Idle/sending/fail = red; success only = green (matches footer Report chip)
+    const unsigned reportCol = (reportUiState_==2) ? GREEN : RED;
+    const unsigned reportText = (reportUiState_==2) ? RGBA8(0,0,0,255) : WHITE;
+    vita2d_draw_rectangle(bxReport,by2,bwReport,bh2,reportCol);
+    if (reportUiState_==1) {
+      const int barX = bxReport + 16, barW = bwReport - 32, barH = 10;
+      const int barY = by2 + (bh2 - barH) / 2;
+      vita2d_draw_rectangle(barX, barY, barW, barH, BORDER);
+      const float tt = (float)(sceKernelGetProcessTimeWide() / 1000ULL % 1000) / 1000.f;
+      const float phase = tt < 0.5f ? (tt * 2.f) : (2.f - tt * 2.f);
+      const int fillW = (int)(barW * (0.25f + 0.55f * phase));
+      if (fillW > 0) vita2d_draw_rectangle(barX, barY, fillW, barH, RGBA8(0,0,0,255));
+    } else {
+      const char* lab = "Report";
+      if (reportUiState_==2) lab = "Sent";
+      else if (reportUiState_==3) lab = reportUiMsg_[0] ? reportUiMsg_ : "Failed";
+      const float sc = 0.64f;
+      const int tw = vita2d_pgf_text_width(font_, sc, lab);
+      vita2d_pgf_draw_text(font_, bxReport + (bwReport - tw) / 2, by2 + 27, reportText, sc, lab);
+    }
+    vita2d_draw_rectangle(bxClose,by2,bwClose,bh2,RED);
+    {
+      const char* clab = "O  Close";
+      const float sc = 0.64f;
+      const int tw = vita2d_pgf_text_width(font_, sc, clab);
+      vita2d_pgf_draw_text(font_, bxClose + (bwClose - tw) / 2, by2 + 27, WHITE, sc, clab);
+    }
+    vita2d_pgf_draw_text(font_,x+28,y+h-16,DIM,.48f,"Square: report   Circle: close");
   }
-  vita2d_pgf_draw_text(font_,x+28,y+h-16,DIM,.48f,"Square: report   Circle: close");
   return;
 }
 
@@ -3936,7 +3987,9 @@ uint64_t eta=0;if(installProgressSpeed_>0&&total>current)eta=(total-current)/ins
 char info[180];
 sceClibSnprintf(info,sizeof(info),"File: 1 / 1   ETA: %s",formatEta(eta).c_str());
 vita2d_pgf_draw_text(font_,x+28,y+194,ACCENT,.62f,info);
-if(!installProgressMessage_.empty())vita2d_pgf_draw_text(font_,x+28,y+222,DIM,.54f,ellipsize(installProgressMessage_,82).c_str());
+if(!installProgressMessage_.empty())vita2d_pgf_draw_text(font_,x+28,y+218,DIM,.54f,ellipsize(installProgressMessage_,82).c_str());
+// Soft reminder — speed depends on the user's connection
+vita2d_pgf_draw_text(font_,x+28,y+242,DIM,.50f,"Speed depends on your internet connection — please be patient.");
 const int by2=y+268,bw2=330,bh2=40;
 vita2d_draw_rectangle(x+28,by2,bw2,bh2,SURFACE2);
 vita2d_draw_rectangle(x+28,by2,bw2,1,BORDER);
