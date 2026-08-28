@@ -140,6 +140,18 @@ private:
     // viewport is active.
     int detailScrollBeforeLinkMode_ = 0;
 
+    /** One rendered line of the News modal (Markdown-lite). */
+    struct NewsDrawLine {
+        std::string text;
+        float scale = 0.55f;
+        unsigned color = 0;
+        int indentPx = 0;
+        int heightPx = 22;
+        bool isHr = false;
+        bool isBlank = false;
+        bool emphasize = false;
+    };
+
     // News modal state.
     bool newsVisible_ = false;
     bool newsCheckedOnce_ = false;
@@ -148,7 +160,7 @@ private:
     std::string newsId_;
     std::string newsTitle_;
     std::string newsBody_;
-    std::vector<std::string> newsLines_;
+    std::vector<NewsDrawLine> newsLines_;
     int newsScrollLine_ = 0;
     float visualNewsScroll_ = 0.f;
 

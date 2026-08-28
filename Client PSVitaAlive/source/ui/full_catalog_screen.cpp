@@ -1,4 +1,5 @@
 #include "ui/full_catalog_screen.hpp"
+#include "ui/news_markdown.hpp"
 #include "installer/app_settings.hpp"
 #include "installer/plugin_detector.hpp"
 #include "update/update_checker.hpp"
@@ -562,36 +563,99 @@ void FullCatalogScreen::runNewsCheck(bool forceShow) {
     newsBody_ = item.body;
     newsLines_.clear();
     {
-        // Split on newlines first, then wrap each paragraph to the modal text width.
-        // Modal is 700px wide; text inset ~28 left + 28 right + scrollbar ≈ 644 usable.
-        const float bodyScale = 0.55f;
-        const int maxTextW = 620;
+        // Markdown-lite: headings, lists, HR, **bold**, *italic*, `code`.
+        const int maxTextW = 600;
         size_t pos = 0;
         const std::string& b = newsBody_;
         while (pos <= b.size()) {
             size_t endLine = b.find('\n', pos);
-            std::string para;
+            std::string raw;
             if (endLine == std::string::npos) {
-                para = b.substr(pos);
+                raw = b.substr(pos);
                 pos = b.size() + 1;
             } else {
-                para = b.substr(pos, endLine - pos);
+                raw = b.substr(pos, endLine - pos);
                 pos = endLine + 1;
             }
-            // Keep blank lines as visual paragraph breaks
-            if (para.empty()) {
-                newsLines_.push_back("");
+
+            news_md::ParsedLine pl = news_md::classifyRawLine(raw);
+
+            NewsDrawLine base;
+            base.color = 0;
+            if (pl.kind == news_md::Kind::Blank) {
+                base.isBlank = true;
+                base.heightPx = 12;
+                base.text.clear();
+                newsLines_.push_back(base);
+                if (endLine == std::string::npos) break;
                 continue;
             }
+            if (pl.kind == news_md::Kind::Hr) {
+                base.isHr = true;
+                base.heightPx = 16;
+                base.text.clear();
+                newsLines_.push_back(base);
+                if (endLine == std::string::npos) break;
+                continue;
+            }
+
+            float scale = 0.55f;
+            int height = 22;
+            int indent = 0;
+            bool emphasize = false;
+            if (pl.kind == news_md::Kind::H1) {
+                scale = 0.88f; height = 32; emphasize = true;
+            } else if (pl.kind == news_md::Kind::H2) {
+                scale = 0.74f; height = 28; emphasize = true;
+            } else if (pl.kind == news_md::Kind::H3) {
+                scale = 0.64f; height = 24; emphasize = true;
+            } else if (pl.kind == news_md::Kind::List) {
+                scale = 0.55f; height = 22; indent = 12; emphasize = true;
+            }
+
+            std::string content = pl.text;
+            if (pl.kind == news_md::Kind::List)
+                content = std::string("• ") + content;
+
             if (font_) {
-                auto wrapped = wrapTextToWidth(font_, bodyScale, para, maxTextW);
-                for (auto& wl : wrapped) newsLines_.push_back(std::move(wl));
+                const std::string measure = news_md::plainForWidth(content);
+                auto wrapped = wrapTextToWidth(font_, scale, measure, maxTextW - indent);
+                if (wrapped.size() <= 1) {
+                    NewsDrawLine dl = base;
+                    dl.text = content;
+                    dl.scale = scale;
+                    dl.heightPx = height;
+                    dl.indentPx = indent;
+                    dl.emphasize = emphasize;
+                    newsLines_.push_back(std::move(dl));
+                } else {
+                    for (size_t wi = 0; wi < wrapped.size(); ++wi) {
+                        NewsDrawLine dl = base;
+                        dl.text = wrapped[wi];
+                        dl.scale = scale;
+                        dl.heightPx = (wi == 0 ? height : 22);
+                        dl.indentPx = indent + (wi > 0 && pl.kind == news_md::Kind::List ? 14 : 0);
+                        dl.emphasize = emphasize;
+                        newsLines_.push_back(std::move(dl));
+                    }
+                }
             } else {
-                newsLines_.push_back(std::move(para));
+                NewsDrawLine dl = base;
+                dl.text = content;
+                dl.scale = scale;
+                dl.heightPx = height;
+                dl.indentPx = indent;
+                dl.emphasize = emphasize;
+                newsLines_.push_back(std::move(dl));
             }
             if (endLine == std::string::npos) break;
         }
-        if (newsLines_.empty()) newsLines_.push_back("");
+        if (newsLines_.empty()) {
+            NewsDrawLine dl;
+            dl.isBlank = true;
+            dl.heightPx = 12;
+            newsLines_.push_back(dl);
+        }
     }
     newsScrollLine_ = 0;
     visualNewsScroll_ = 0.f;
@@ -632,6 +696,7 @@ void FullCatalogScreen::drawNewsChip() {
 void FullCatalogScreen::drawNewsOverlay() {
     if (!newsVisible_ || !font_) return;
     const unsigned BLACK = RGBA8(0, 0, 0, 255);
+    const unsigned CODE_COL = RGBA8(0x7E, 0xC8, 0xFF, 255);
     const int w = 700, h = 420;
     const int x = (SCREEN_W - w) / 2, y = (SCREEN_H - h) / 2;
     vita2d_draw_rectangle(0, 0, SCREEN_W, SCREEN_H, RGBA8(0, 0, 0, 140));
@@ -659,27 +724,42 @@ void FullCatalogScreen::drawNewsOverlay() {
     const float vs = visualNewsScroll_;
     const int start = (int)std::floor(vs);
     const float frac = vs - (float)start;
-    int drawY = textTop - (int)(frac * (float)lineH);
+
+    auto heightAt = [&](int idx) -> int {
+        if (idx < 0 || idx >= total) return lineH;
+        int hp = newsLines_[(size_t)idx].heightPx;
+        return hp > 0 ? hp : lineH;
+    };
 
     vita2d_enable_clipping();
     vita2d_set_clip_rectangle(x + 20, textTop, x + w - 22, textBottom);
-    // Draw one extra line above/below for smooth fractional scroll
-    for (int i = std::max(0, start - 1); i < total && i <= start + maxVisible; ++i) {
-        std::string line = newsLines_[(size_t)i];
-        float scale = 0.55f;
-        unsigned col = TEXT;
-        if (!line.empty() && (line[0] == '-' || line[0] == '*')) {
-            col = WHITE;
-            if (line.size() > 1 && line[1] == ' ')
-                line = std::string("  ") + line;
+    int cursorY = textTop - (int)(frac * (float)heightAt(start));
+    if (start > 0) cursorY -= heightAt(start - 1);
+    for (int i = std::max(0, start - 1); i < total; ++i) {
+        const NewsDrawLine& nl = newsLines_[(size_t)i];
+        const int hp = heightAt(i);
+        if (cursorY > textBottom + hp) break;
+        if (cursorY + hp >= textTop - hp) {
+            if (nl.isHr) {
+                const int hy = cursorY + hp / 2;
+                vita2d_draw_rectangle(x + 28, hy, w - 56, 2, BORDER);
+            } else if (!nl.isBlank && !nl.text.empty()) {
+                float scale = nl.scale > 0.01f ? nl.scale : 0.55f;
+                unsigned baseCol = TEXT;
+                unsigned boldCol = WHITE;
+                if (nl.emphasize) baseCol = WHITE;
+                if (scale >= 0.80f) baseCol = ACCENT;
+                else if (scale >= 0.68f) baseCol = WHITE;
+                const int tx = x + 28 + nl.indentPx;
+                const int baseY = cursorY + std::min(hp - 4, (int)(scale * 18.f) + 4);
+                news_md::drawInlineMarkdown(font_, tx, baseY, scale, baseCol, boldCol, CODE_COL, nl.text);
+            }
         }
-        const int ly = drawY + (i - start) * lineH;
-        if (ly + lineH < textTop - lineH || ly > textBottom + lineH) continue;
-        vita2d_pgf_draw_text(font_, x + 28, ly + 16, col, scale, line.c_str());
+        cursorY += hp;
+        if (i >= start + maxVisible + 3) break;
     }
     vita2d_disable_clipping();
 
-    // Scrollbar (right side of text area)
     if (total > maxVisible) {
         const int trackX = x + w - 16;
         const int trackY = textTop;

@@ -176,7 +176,7 @@ def patch_cpp() -> None:
 
     cpp2, n = re.subn(
         r"newsCheckedOnce_ = true;\n    newsId_ = item\.id;.*?visualNewsScroll_ = 0\.f;",
-        new_build,
+        lambda _m: new_build,
         cpp,
         count=1,
         flags=re.S,
@@ -282,7 +282,7 @@ void FullCatalogScreen::drawReportChip()"""
 
     cpp3, n2 = re.subn(
         r"void FullCatalogScreen::drawNewsOverlay\(\) \{.*?void FullCatalogScreen::drawReportChip\(\)",
-        new_draw,
+        lambda _m: new_draw,
         cpp,
         count=1,
         flags=re.S,
