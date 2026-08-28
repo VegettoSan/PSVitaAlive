@@ -9,19 +9,17 @@
   ],
   "category_id": "ports",
   "subcategory_ids": [
+    "adventure",
+    "arcade",
+    "rpg",
+    "strategy",
     "other"
   ],
   "version": "v.0.1",
   "version_date": "2026-08-15",
   "requirements": "- libshacccg.suprx\n- kubridge.skprx\n- Game Data Files: Android",
-  "size": 2493572,
+  "size": 2493514,
   "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-zenonia-2-remaster-vita/icon0.png",
-  "screenshots": [
-    "https://archive.org/download/psvitaalive-zenonia-2-remaster-vita/shot_01.png",
-    "https://archive.org/download/psvitaalive-zenonia-2-remaster-vita/shot_02.png",
-    "https://archive.org/download/psvitaalive-zenonia-2-remaster-vita/shot_03.png"
-  ],
   "links": [
     {
       "type": "Download",
@@ -30,9 +28,11 @@
       "recommended": true
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/withLogic/zenonia2-remaster-vita/releases"
+      "type": "Game Files",
+      "name": "Game Files",
+      "url": "https://archive.org/download/psvitaalive-zenonia-2-remaster-vita/Game%20Files.zip",
+      "size": 22334669,
+      "extract_path": "ux0:data/"
     },
     {
       "type": "Repository",
@@ -40,9 +40,15 @@
       "url": "https://github.com/withLogic/zenonia2-remaster-vita"
     }
   ],
+  "icon": "https://archive.org/download/psvitaalive-zenonia-2-remaster-vita/icon0.png",
+  "screenshots": [
+    "https://archive.org/download/psvitaalive-zenonia-2-remaster-vita/shot_01.png",
+    "https://archive.org/download/psvitaalive-zenonia-2-remaster-vita/shot_02.png",
+    "https://archive.org/download/psvitaalive-zenonia-2-remaster-vita/shot_03.png"
+  ],
   "source_name": "VitaDB",
   "source_id": "1466",
   "source_url": "https://github.com/withLogic/zenonia2-remaster-vita",
   "release_page": "https://github.com/withLogic/zenonia2-remaster-vita/releases",
-  "updated_at": "2026-08-15T22:14:33.426884+00:00"
+  "updated_at": "2026-08-15T22:14"
 }
