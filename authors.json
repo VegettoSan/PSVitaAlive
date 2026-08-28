@@ -6488,6 +6488,21 @@
     "icon": "https://github.com/usineur.png"
   },
   {
+    "id": "v-atamanenko",
+    "name": "v-atamanenko",
+    "avatar": "https://avatars.githubusercontent.com/u/11796486?v=4",
+    "bio": "👾",
+    "links": [
+      {
+        "type": "Repository",
+        "name": "GitHub",
+        "url": "https://github.com/v-atamanenko",
+        "recommended": true
+      }
+    ],
+    "icon": "https://avatars.githubusercontent.com/u/11796486?v=4"
+  },
+  {
     "id": "vegettosandev",
     "name": "VegettoSanDev",
     "avatar": "https://github.com/VegettoSan.png?size=256",
