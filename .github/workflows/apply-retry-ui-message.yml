@@ -1,0 +1,22 @@
+name: Apply retry UI message
+on:
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  apply:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Apply UI message patch
+        run: python3 scripts/apply_retry_ui_message.py
+      - name: Commit and push
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add \
+            "Client PSVitaAlive/source/network/download_manager.cpp" \
+            "Client PSVitaAlive/source/installer/install_controller.cpp"
+          git status
+          git commit -m "ui: show retrying download (N/M) during download retries" || echo nochange
+          git push
