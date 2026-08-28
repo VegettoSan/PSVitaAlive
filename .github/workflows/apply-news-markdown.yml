@@ -11,47 +11,27 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Ensure news_markdown.hpp exists
+      - name: Apply Markdown-lite patch
         run: |
           test -f "Client PSVitaAlive/include/ui/news_markdown.hpp"
+          test -f scripts/apply_news_md.py
+          python3 scripts/apply_news_md.py
+          grep -q news_md::drawInlineMarkdown "Client PSVitaAlive/source/ui/full_catalog_screen.cpp"
+          grep -q NewsDrawLine "Client PSVitaAlive/include/ui/full_catalog_screen.hpp"
+          test $(wc -c < "Client PSVitaAlive/source/ui/full_catalog_screen.cpp") -gt 100000
 
-      - name: Patch header for NewsDrawLine
-        run: |
-          python3 <<'PY'
-          from pathlib import Path
-          hpp = Path("Client PSVitaAlive/include/ui/full_catalog_screen.hpp")
-          text = hpp.read_text(encoding="utf-8")
-          if "struct NewsDrawLine" in text:
-              print("header already patched")
-          else:
-              old = """    // News modal state.\n    bool newsVisible_ = false;\n    bool newsCheckedOnce_ = false;\n    int newsFetchAttempts_ = 0;\n    bool newsMarkSeenOnClose_ = false;\n    std::string newsId_;\n    std::string newsTitle_;\n    std::string newsBody_;\n    std::vector<std::string> newsLines_;\n    int newsScrollLine_ = 0;\n    float visualNewsScroll_ = 0.f;"""
-              new = """    /** One rendered line of the News modal (Markdown-lite). */\n    struct NewsDrawLine {\n        std::string text;\n        float scale = 0.55f;\n        unsigned color = 0;\n        int indentPx = 0;\n        int heightPx = 22;\n        bool isHr = false;\n        bool isBlank = false;\n        bool emphasize = false;\n    };\n\n    // News modal state.\n    bool newsVisible_ = false;\n    bool newsCheckedOnce_ = false;\n    int newsFetchAttempts_ = 0;\n    bool newsMarkSeenOnClose_ = false;\n    std::string newsId_;\n    std::string newsTitle_;\n    std::string newsBody_;\n    std::vector<NewsDrawLine> newsLines_;\n    int newsScrollLine_ = 0;\n    float visualNewsScroll_ = 0.f;"""
-              if old not in text:
-                  raise SystemExit("header pattern not found")
-              hpp.write_text(text.replace(old, new), encoding="utf-8")
-              print("header patched")
-          PY
-
-      - name: Patch cpp include + news builders (download prebuilt from commit artifact path)
+      - name: Commit and push
         run: |
           set -euo pipefail
-          # Pull the already-validated markdown cpp from the agent-hosted raw is not available.
-          # Instead: minimal inline enablement - include header and keep plain-text path working
-          # if NewsDrawLine build fails. Full markdown body parsing is applied via scripts/apply_news_md.py
-          if [ -f scripts/apply_news_md.py ]; then
-            python3 scripts/apply_news_md.py
-          else
-            echo "scripts/apply_news_md.py missing - only header was updated"
-          fi
-
-      - name: Commit
-        run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add -A
+          git add \
+            "Client PSVitaAlive/include/ui/full_catalog_screen.hpp" \
+            "Client PSVitaAlive/source/ui/full_catalog_screen.cpp" \
+            scripts/apply_news_md.py
           if git diff --cached --quiet; then
             echo "No changes"
             exit 0
           fi
-          git commit -m "news: enable Markdown-lite types in News modal header"
+          git commit -m "news: Markdown-lite in News modal (headings, bold, lists, HR, code)"
           git push origin HEAD:main
