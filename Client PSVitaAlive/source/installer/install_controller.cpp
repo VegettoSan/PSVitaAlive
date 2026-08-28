@@ -123,7 +123,11 @@ bool InstallController::init() {
         setFileName(event.fileName.c_str());
         setStage("Downloading");
         state_.store(static_cast<int>(InstallStatus::State::Downloading));
-        setMessage("Downloading...");
+        // Prefer explicit status from DownloadManager (retries); else generic line.
+        if (!event.message.empty())
+            setMessage(event.message.c_str());
+        else
+            setMessage("Downloading...");
     });
     const int purged = downloads_.purgeIncompleteJobs();
     if (purged > 0) {

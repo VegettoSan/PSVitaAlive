@@ -255,6 +255,21 @@ bool DownloadManager::runJob(DownloadJob& job) {
                 outer, outerAttempts, prevErr.c_str());
             sceClibPrintf("%s\n", msg);
             diagnostics::log(msg);
+            // Let the install UI show a clear retry line (e.g. "retrying download (2/3)...").
+            if (onProgress_) {
+                DownloadProgressEvent ev;
+                ev.jobId = job.id;
+                ev.fileName = job.fileName;
+                ev.downloaded = job.downloadedSize;
+                ev.total = job.expectedSize;
+                ev.bytesPerSecond = 0;
+                ev.state = DownloadState::Downloading;
+                char uiMsg[48];
+                sceClibSnprintf(uiMsg, sizeof(uiMsg), "retrying download (%d/%d)...",
+                    outer + 1, outerAttempts);
+                ev.message = uiMsg;
+                onProgress_(ev);
+            }
             const int delayMs = isArchiveUrl ? (2000 * outer) : 800;
             sceKernelDelayThread(delayMs * 1000);
             if (mediafire) {
