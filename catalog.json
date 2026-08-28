@@ -118,11 +118,11 @@
         "recommended": true
       },
       {
-        "type": "Download",
+        "type": "Game Files",
         "name": "Game Files",
         "url": "https://archive.org/download/modern-combat-sandstorm-ps-vita/Game%20Files.zip",
         "size": 168820736,
-        "recommended": false
+        "extract_path": "ux0:data/"
       }
     ],
     "icon": "https://archive.org/download/modern-combat-sandstorm-ps-vita/icon0.png",
