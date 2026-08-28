@@ -7518,13 +7518,30 @@
     ],
     "category_id": "ports",
     "subcategory_ids": [
+      "action",
+      "arcade",
+      "shooter",
       "other"
     ],
     "version": "v.0.9-hotfix.0",
     "version_date": "2026-04-17",
     "requirements": "- Game Data Files: Android",
-    "size": 15121987,
-    "status": "Legacy",
+    "size": 158334976,
+    "status": "Verified",
+    "links": [
+      {
+        "type": "Download",
+        "name": "VPK with Game Files",
+        "url": "https://archive.org/download/psvitaalive-star-warfare-alien-invasion/StarWarfarev0.9Fix.vpk",
+        "size": 158334976,
+        "recommended": true
+      },
+      {
+        "type": "Official Website",
+        "name": "Repository",
+        "url": "https://github.com/hatoving/starwarfare-vita"
+      }
+    ],
     "icon": "https://archive.org/download/psvitaalive-star-warfare-alien-invasion/icon0.png",
     "screenshots": [
       "https://archive.org/download/psvitaalive-star-warfare-alien-invasion/shot_01.png",
@@ -7533,29 +7550,11 @@
       "https://archive.org/download/psvitaalive-star-warfare-alien-invasion/shot_04.png",
       "https://archive.org/download/psvitaalive-star-warfare-alien-invasion/shot_05.png"
     ],
-    "links": [
-      {
-        "type": "Download",
-        "name": "VPK",
-        "url": "https://archive.org/download/psvitaalive-star-warfare-alien-invasion/star-warfare-alien-invasion.vpk",
-        "recommended": true
-      },
-      {
-        "type": "Official Website",
-        "name": "Repository",
-        "url": "https://github.com/hatoving/starwarfare-vita"
-      },
-      {
-        "type": "Official Website",
-        "name": "Release Page",
-        "url": "https://github.com/hatoving/starwarfare-vita/releases/tag/0.9-hotfix.0"
-      }
-    ],
     "source_name": "VitaHomebrewDB",
     "source_id": "1386",
     "source_url": "https://github.com/hatoving/starwarfare-vita",
     "release_page": "https://github.com/hatoving/starwarfare-vita",
-    "updated_at": "2026-08-13T15:34:48.354494+00:00"
+    "updated_at": "2026-08-13T15:34"
   },
   {
     "id": "miniretroxmb",
