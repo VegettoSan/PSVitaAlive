@@ -11,14 +11,25 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Apply Markdown-lite patch
+      - name: Fix re.sub lambda + apply Markdown-lite
         run: |
+          set -euo pipefail
           test -f "Client PSVitaAlive/include/ui/news_markdown.hpp"
           test -f scripts/apply_news_md.py
+          python3 scripts/fix_apply_news_md_lambda.py
           python3 scripts/apply_news_md.py
           grep -q news_md::drawInlineMarkdown "Client PSVitaAlive/source/ui/full_catalog_screen.cpp"
           grep -q NewsDrawLine "Client PSVitaAlive/include/ui/full_catalog_screen.hpp"
-          test $(wc -c < "Client PSVitaAlive/source/ui/full_catalog_screen.cpp") -gt 100000
+          python3 - <<'PY'
+          from pathlib import Path
+          t = Path("Client PSVitaAlive/source/ui/full_catalog_screen.cpp").read_text(encoding="utf-8")
+          i = t.find("endLine = b.find")
+          assert i > 0, "endLine not found"
+          assert t[i+18] == "\\", f"expected backslash, got {t[i+17:i+25]!r}"
+          assert t.count("{") == t.count("}")
+          assert len(t) > 100000
+          print("cpp sanity OK", len(t))
+          PY
 
       - name: Commit and push
         run: |
@@ -28,7 +39,8 @@ jobs:
           git add \
             "Client PSVitaAlive/include/ui/full_catalog_screen.hpp" \
             "Client PSVitaAlive/source/ui/full_catalog_screen.cpp" \
-            scripts/apply_news_md.py
+            scripts/apply_news_md.py \
+            scripts/fix_apply_news_md_lambda.py
           if git diff --cached --quiet; then
             echo "No changes"
             exit 0
