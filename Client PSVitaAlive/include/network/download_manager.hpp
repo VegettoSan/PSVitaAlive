@@ -50,6 +50,8 @@ struct DownloadProgressEvent {
     uint64_t total = 0;
     uint64_t bytesPerSecond = 0;
     DownloadState state = DownloadState::Downloading;
+    /** Optional UI status line (e.g. "retrying download (2/3)..."). */
+    std::string message;
 };
 
 using DownloadProgressFn = std::function<void(const DownloadProgressEvent&)>;
