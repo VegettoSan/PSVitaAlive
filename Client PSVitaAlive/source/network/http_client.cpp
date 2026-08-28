@@ -17,8 +17,10 @@ namespace psvitaalive {
 namespace {
 constexpr size_t DOWNLOAD_BUFFER_SIZE = 512 * 1024;
 constexpr long CONNECT_TIMEOUT_SECONDS = 45;
+constexpr long CONNECT_TIMEOUT_ARCHIVE_SECONDS = 90; // archive.org often slow to accept
 constexpr long LOW_SPEED_LIMIT = 1;
 constexpr long LOW_SPEED_TIME_SECONDS = 120;
+constexpr long LOW_SPEED_TIME_ARCHIVE_SECONDS = 180; // allow longer stalls on IA
 constexpr const char* DIAG_LOG = "ux0:data/psvitaalive/logs/session.log";
 
 // libcurl global state belongs to the whole process, not to individual HttpClient objects.
@@ -586,6 +588,10 @@ HttpResult HttpClient::downloadToFile(
     headers = curl_slist_append(headers, "Accept: */*");
     headers = curl_slist_append(headers, "Accept-Encoding: identity");
     headers = curl_slist_append(headers, "Connection: close");
+    // Mildly improves first-byte reliability on some Internet Archive edges.
+    if (url.find("archive.org") != std::string::npos) {
+        headers = curl_slist_append(headers, "Referer: https://archive.org/");
+    }
     curl_easy_setopt(curl, CURLOPT_HTTPHEADER, headers);
 
     curl_easy_setopt(curl, CURLOPT_MAXREDIRS, 12L);
@@ -598,6 +604,12 @@ HttpResult HttpClient::downloadToFile(
     const bool isGithub = url.find("github.com") != std::string::npos
         || url.find("githubusercontent.com") != std::string::npos;
 
+    // archive.org: slower connect, more patience on stalls, more attempts.
+    if (isArchive) {
+        curl_easy_setopt(curl, CURLOPT_CONNECTTIMEOUT, CONNECT_TIMEOUT_ARCHIVE_SECONDS);
+        curl_easy_setopt(curl, CURLOPT_LOW_SPEED_TIME, LOW_SPEED_TIME_ARCHIVE_SECONDS);
+    }
+
     // Host-aware TLS order + generic network retries (fresh connection each try).
     const long sslAttempts[] = {
         isGitlab ? CURL_SSLVERSION_TLSv1_2 : CURL_SSLVERSION_DEFAULT,
@@ -605,18 +617,23 @@ HttpResult HttpClient::downloadToFile(
         CURL_SSLVERSION_DEFAULT,
         CURL_SSLVERSION_TLSv1_1,
     };
-    constexpr int kMaxAttempts = 4;
+    const int kMaxAttempts = isArchive ? 6 : 4;
+    long responseCode = 0;
     for (int attempt = 0; attempt < kMaxAttempts; ++attempt) {
-        curl_easy_setopt(curl, CURLOPT_SSLVERSION, sslAttempts[attempt]);
+        const int sslIdx = attempt < 4 ? attempt : (attempt % 4);
+        curl_easy_setopt(curl, CURLOPT_SSLVERSION, sslAttempts[sslIdx]);
         curl_easy_setopt(curl, CURLOPT_FRESH_CONNECT, attempt > 0 ? 1L : 0L);
         curl_easy_setopt(curl, CURLOPT_FORBID_REUSE, attempt > 0 ? 1L : 0L);
         if (attempt > 0) {
-            char retryMsg[140];
-            sceClibSnprintf(retryMsg, sizeof(retryMsg), "download retry %d/%d hostHints=gitlab:%d archive:%d github:%d",
+            char retryMsg[160];
+            sceClibSnprintf(retryMsg, sizeof(retryMsg),
+                "download retry %d/%d hostHints=gitlab:%d archive:%d github:%d",
                 attempt + 1, kMaxAttempts, isGitlab ? 1 : 0, isArchive ? 1 : 0, isGithub ? 1 : 0);
             httpDiagnostic(retryMsg);
-            // Brief pause before retry (network / TLS recovery)
-            sceKernelDelayThread(400 * 1000);
+            int delayMs = 500 * (attempt <= 4 ? attempt : 4);
+            if (isArchive) delayMs = 1000 * (attempt <= 5 ? attempt : 5);
+            if (delayMs < 400) delayMs = 400;
+            sceKernelDelayThread(delayMs * 1000);
             ctx.cancelled = false;
             if (ctx.downloaded == 0 && resumeOffset == 0 && ctx.fd >= 0) {
                 sceIoLseek(ctx.fd, 0, SCE_SEEK_SET);
@@ -624,9 +641,27 @@ HttpResult HttpClient::downloadToFile(
         }
 
         result = curl_easy_perform(curl);
+        responseCode = 0;
+        curl_easy_getinfo(curl, CURLINFO_RESPONSE_CODE, &responseCode);
 
         if (ctx.cancelled) break;
-        if (result == CURLE_OK) break;
+        if (result == CURLE_OK) {
+            const bool transientHttp =
+                responseCode == 429 || responseCode == 502 || responseCode == 503 ||
+                responseCode == 504 || responseCode == 520 || responseCode == 522 ||
+                responseCode == 524;
+            if (!transientHttp) break;
+            char httpRetry[120];
+            sceClibSnprintf(httpRetry, sizeof(httpRetry),
+                "attempt %d HTTP %ld transient — will retry", attempt + 1, responseCode);
+            httpDiagnostic(httpRetry);
+            if (resumeOffset == 0 && ctx.fd >= 0 && ctx.downloaded > 0) {
+                sceIoClose(ctx.fd);
+                ctx.fd = sceIoOpen(destinationPath.c_str(), SCE_O_WRONLY | SCE_O_CREAT | SCE_O_TRUNC, 0777);
+                ctx.downloaded = 0;
+            }
+            continue;
+        }
 
         const bool retryable =
             result == CURLE_SSL_CONNECT_ERROR ||
@@ -637,15 +672,14 @@ HttpResult HttpClient::downloadToFile(
             result == CURLE_RECV_ERROR ||
             result == CURLE_SEND_ERROR ||
             result == CURLE_GOT_NOTHING ||
-            result == CURLE_PARTIAL_FILE;
+            result == CURLE_PARTIAL_FILE ||
+            result == CURLE_HTTP_RETURNED_ERROR;
         char failMsg[160];
         sceClibSnprintf(failMsg, sizeof(failMsg), "attempt %d failed curl=%d %s retryable=%d",
             attempt + 1, static_cast<int>(result), curl_easy_strerror(result), retryable ? 1 : 0);
         httpDiagnostic(failMsg);
         if (!retryable) break;
     }
-    long responseCode = 0;
-    curl_easy_getinfo(curl, CURLINFO_RESPONSE_CODE, &responseCode);
     lastStatus_ = static_cast<int>(responseCode);
     if (resumeOffset > 0 && responseCode == 206) lastRangeAccepted_ = true;
 

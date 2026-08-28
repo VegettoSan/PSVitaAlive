@@ -239,38 +239,52 @@ bool DownloadManager::runJob(DownloadJob& job) {
                          std::to_string(job.expectedSize));
     }
 
-    HttpResult hr = http_.downloadToFile(effectiveUrl, job.temporaryPath, offset, progress, cancelFn);
-    if (hr != HttpResult::Ok && hr != HttpResult::Cancelled && !job.cancelRequested && !sizeLimitHit) {
-        const std::string firstErr = http_.lastError();
-        sceClibPrintf("[DownloadManager] first attempt failed: %s - retrying once\n", firstErr.c_str());
-        diagnostics::log(std::string("[DownloadManager] first attempt failed: ") + firstErr + " — retrying once");
-        sceKernelDelayThread(800 * 1000);
-        // MediaFire CDN URLs expire: always re-resolve and restart clean on retry.
-        if (mediafire) {
-            st.removeFile(job.temporaryPath);
-            offset = 0;
-            job.downloadedSize = 0;
-            std::string direct;
-            std::string mfErr;
-            uint64_t mfSize = 0;
-            if (resolveMediaFireDirectUrl(http_, job.url, direct, mfErr, &mfSize) && !direct.empty()) {
-                effectiveUrl = direct;
-                if (mfSize > 0) job.expectedSize = mfSize;
-                diagnostics::log("[DownloadManager] MediaFire re-resolved for retry");
+    const bool isArchiveUrl =
+        job.url.find("archive.org") != std::string::npos ||
+        effectiveUrl.find("archive.org") != std::string::npos;
+    // Outer attempts on top of HttpClient's internal retries.
+    // archive.org is flaky under load — allow a couple of full restarts.
+    const int outerAttempts = isArchiveUrl ? 3 : 2;
+    HttpResult hr = HttpResult::NetworkError;
+    for (int outer = 0; outer < outerAttempts; ++outer) {
+        if (outer > 0) {
+            const std::string prevErr = http_.lastError();
+            char msg[160];
+            sceClibSnprintf(msg, sizeof(msg),
+                "[DownloadManager] attempt %d/%d failed: %s — retrying",
+                outer, outerAttempts, prevErr.c_str());
+            sceClibPrintf("%s\n", msg);
+            diagnostics::log(msg);
+            const int delayMs = isArchiveUrl ? (2000 * outer) : 800;
+            sceKernelDelayThread(delayMs * 1000);
+            if (mediafire) {
+                st.removeFile(job.temporaryPath);
+                offset = 0;
+                job.downloadedSize = 0;
+                std::string direct;
+                std::string mfErr;
+                uint64_t mfSize = 0;
+                if (resolveMediaFireDirectUrl(http_, job.url, direct, mfErr, &mfSize) && !direct.empty()) {
+                    effectiveUrl = direct;
+                    if (mfSize > 0) job.expectedSize = mfSize;
+                    diagnostics::log("[DownloadManager] MediaFire re-resolved for retry");
+                } else {
+                    diagnostics::log(std::string("[DownloadManager] MediaFire re-resolve failed: ") + mfErr);
+                }
+            } else if (job.downloadedSize == 0) {
+                st.removeFile(job.temporaryPath);
+                offset = 0;
             } else {
-                diagnostics::log(std::string("[DownloadManager] MediaFire re-resolve failed: ") + mfErr);
+                const int64_t sz = st.fileSize(job.temporaryPath);
+                offset = sz > 0 ? static_cast<uint64_t>(sz) : 0;
+                job.downloadedSize = offset;
             }
-        } else if (job.downloadedSize == 0) {
-            st.removeFile(job.temporaryPath);
-            offset = 0;
-        } else {
-            const int64_t sz = st.fileSize(job.temporaryPath);
-            offset = sz > 0 ? static_cast<uint64_t>(sz) : 0;
-            job.downloadedSize = offset;
+            sizeLimitHit = false;
+            job.cancelRequested = false;
         }
-        sizeLimitHit = false;
-        job.cancelRequested = false;
         hr = http_.downloadToFile(effectiveUrl, job.temporaryPath, offset, progress, cancelFn);
+        if (hr == HttpResult::Ok || hr == HttpResult::Cancelled || job.cancelRequested || sizeLimitHit)
+            break;
     }
     job.lastHttpStatus = http_.lastStatusCode();
     activeJobId_.clear();

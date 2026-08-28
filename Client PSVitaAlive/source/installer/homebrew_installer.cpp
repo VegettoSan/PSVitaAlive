@@ -548,25 +548,53 @@ InstallResult HomebrewInstaller::installVpk(
         onProgress(p);
     }
 
-    ZipExtractor zip;
-    const ZipResult zr = zip.extract(
-        vpkPath,
-        tmpDir,
-        [&](const ZipProgress& zp) {
-            if (!onProgress) return;
-            InstallProgress p;
-            p.stage = InstallProgress::Extracting;
-            p.entriesDone = zp.entriesDone;
-            p.entriesTotal = zp.entriesTotal;
-            p.bytesWritten = zp.bytesWritten;
-            p.bytesTotal = zp.bytesTotal;
-            p.message = zp.currentEntry;
-            onProgress(p);
-        },
-        shouldCancel
-    );
+    // Extract with one automatic retry: transient RAM pressure / flaky deflate
+    // on Vita sometimes fails the first pass; a clean second try often works.
+    ZipResult zr = ZipResult::IoError;
+    std::string zipErr;
+    for (int extractAttempt = 0; extractAttempt < 2; ++extractAttempt) {
+        if (extractAttempt > 0) {
+            logLine(std::string("ZipExtractor retry after: ") + zipErr);
+            removeTree(tmpDir);
+            if (!st.createDirectories(tmpDir)) {
+                setError("cannot recreate VPK promote directory for extract retry");
+                return InstallResult::IoError;
+            }
+            sceKernelDelayThread(500 * 1000);
+            if (onProgress) {
+                InstallProgress p;
+                p.stage = InstallProgress::Extracting;
+                p.message = "retrying extract";
+                onProgress(p);
+            }
+        }
 
-    logLine(std::string("ZipExtractor result=") + std::to_string(static_cast<int>(zr)) + " error=" + zip.lastError());
+        ZipExtractor zip;
+        zr = zip.extract(
+            vpkPath,
+            tmpDir,
+            [&](const ZipProgress& zp) {
+                if (!onProgress) return;
+                InstallProgress p;
+                p.stage = InstallProgress::Extracting;
+                p.entriesDone = zp.entriesDone;
+                p.entriesTotal = zp.entriesTotal;
+                p.bytesWritten = zp.bytesWritten;
+                p.bytesTotal = zp.bytesTotal;
+                p.message = zp.currentEntry;
+                onProgress(p);
+            },
+            shouldCancel
+        );
+        zipErr = zip.lastError();
+        logLine(std::string("ZipExtractor result=") + std::to_string(static_cast<int>(zr)) +
+                " attempt=" + std::to_string(extractAttempt + 1) + " error=" + zipErr);
+        if (zr == ZipResult::Ok || zr == ZipResult::Cancelled)
+            break;
+        if (zr == ZipResult::UnsafePath)
+            break;
+    }
+
     if (zr == ZipResult::Cancelled) {
         removeTree(tmpDir);
         setError("extract cancelled");
@@ -574,7 +602,7 @@ InstallResult HomebrewInstaller::installVpk(
     }
     if (zr != ZipResult::Ok) {
         removeTree(tmpDir);
-        setError(std::string("extract failed: ") + zip.lastError());
+        setError(std::string("extract failed: ") + zipErr);
         return InstallResult::ExtractFailed;
     }
 
