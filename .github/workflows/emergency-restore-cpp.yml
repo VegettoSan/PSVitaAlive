@@ -1,0 +1,41 @@
+name: Emergency restore full_catalog_screen.cpp
+
+on:
+  workflow_dispatch:
+
+jobs:
+  restore:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout full history
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Restore cpp + hpp from last good commit
+        run: |
+          set -euo pipefail
+          GOOD=1abd1b8186471ffbb3c011e59fe7ee25556fff4e
+          git checkout "$GOOD" -- \
+            "Client PSVitaAlive/source/ui/full_catalog_screen.cpp" \
+            "Client PSVitaAlive/include/ui/full_catalog_screen.hpp"
+          wc -c "Client PSVitaAlive/source/ui/full_catalog_screen.cpp"
+          test "$(wc -c < "Client PSVitaAlive/source/ui/full_catalog_screen.cpp")" -gt 100000
+          head -n 3 "Client PSVitaAlive/source/ui/full_catalog_screen.cpp"
+
+      - name: Commit and push restore
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add \
+            "Client PSVitaAlive/source/ui/full_catalog_screen.cpp" \
+            "Client PSVitaAlive/include/ui/full_catalog_screen.hpp"
+          if git diff --cached --quiet; then
+            echo "Already restored"
+            exit 0
+          fi
+          git commit -m "fix: emergency restore full_catalog_screen.cpp/hpp from 1abd1b8"
+          git push origin HEAD:main
