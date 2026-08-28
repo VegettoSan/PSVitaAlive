@@ -1,0 +1,40 @@
+{
+  "id": "modern-combat-sandstorm",
+  "title_id": "MCSS00001",
+  "name": "Modern Combat: Sandstorm",
+  "description": "Modern Combat: Sandstorm Ps Vita Port",
+  "long_description": "Modern Combat: Sandstorm Ps Vita Port",
+  "author_ids": [
+    "rinnegatamante"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "action",
+    "fps",
+    "shooter"
+  ],
+  "version": "1.1",
+  "version_date": "2026-08-28",
+  "requirements": "No Data",
+  "size": 838861,
+  "status": "Verified",
+  "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/modern-combat-sandstorm-ps-vita/mc1.vpk",
+      "size": 5033165,
+      "recommended": true
+    },
+    {
+      "type": "Download",
+      "name": "Game Files",
+      "url": "https://archive.org/download/modern-combat-sandstorm-ps-vita/Game%20Files.zip",
+      "size": 168820736
+    }
+  ],
+  "icon": "https://archive.org/download/modern-combat-sandstorm-ps-vita/icon0.png",
+  "screenshots": [
+    "https://archive.org/download/modern-combat-sandstorm-ps-vita/Shot0.png"
+  ]
+}
