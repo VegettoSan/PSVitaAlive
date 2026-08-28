@@ -9,21 +9,16 @@
   ],
   "category_id": "ports",
   "subcategory_ids": [
+    "platformer",
+    "puzzle",
+    "source-port",
     "other"
   ],
   "version": "v.1.1",
   "version_date": "2023-09-05",
   "requirements": "- Game Data Files: PC Steam OR PS4 OR Switch",
-  "size": 2111629,
+  "size": 2111832,
   "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-sonic-mania-vita/icon0.png",
-  "screenshots": [
-    "https://archive.org/download/psvitaalive-sonic-mania-vita/shot_01.png",
-    "https://archive.org/download/psvitaalive-sonic-mania-vita/shot_02.png",
-    "https://archive.org/download/psvitaalive-sonic-mania-vita/shot_03.png",
-    "https://archive.org/download/psvitaalive-sonic-mania-vita/shot_04.png",
-    "https://archive.org/download/psvitaalive-sonic-mania-vita/shot_05.png"
-  ],
   "links": [
     {
       "type": "Download",
@@ -32,14 +27,11 @@
       "recommended": true
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/SonicMastr/Sonic-Mania-Vita/releases"
-    },
-    {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/SonicMastr/Sonic-Mania-Vita/releases/tag/1.1"
+      "type": "Game Files",
+      "name": "Game Files ZIP",
+      "url": "https://archive.org/download/psvitaalive-sonic-mania-vita/GameFiles.zip",
+      "size": 210554061,
+      "extract_path": "ux0:data/"
     },
     {
       "type": "Repository",
@@ -47,9 +39,17 @@
       "url": "https://github.com/SonicMastr/Sonic-Mania-Vita"
     }
   ],
+  "icon": "https://archive.org/download/psvitaalive-sonic-mania-vita/icon0.png",
+  "screenshots": [
+    "https://archive.org/download/psvitaalive-sonic-mania-vita/shot_01.png",
+    "https://archive.org/download/psvitaalive-sonic-mania-vita/shot_02.png",
+    "https://archive.org/download/psvitaalive-sonic-mania-vita/shot_03.png",
+    "https://archive.org/download/psvitaalive-sonic-mania-vita/shot_04.png",
+    "https://archive.org/download/psvitaalive-sonic-mania-vita/shot_05.png"
+  ],
   "source_name": "VitaHomebrewDB",
   "source_id": "858",
   "source_url": "https://github.com/SonicMastr/Sonic-Mania-Vita",
   "release_page": "https://github.com/SonicMastr/Sonic-Mania-Vita/releases",
-  "updated_at": "2026-08-13T15:34:48.479863+00:00"
+  "updated_at": "2026-08-13T15:34"
 }
