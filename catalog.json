@@ -1,5 +1,49 @@
 [
   {
+    "id": "modern-combat-3-fallen-nation",
+    "title_id": "MOCO30000",
+    "name": "Modern Combat 3: Fallen Nation",
+    "description": "Modern Combat 3 PSVita Port",
+    "long_description": "Modern Combat 3: Fallen Nation is a 2011 first-person shooter developed and published by Gameloft Montreal for a number of mobile platforms. The game is set in 2028 where North Korea, Russia and Pakistan join forces to invade USA, thus causing a global war. Modern Combat 3 features an intense 13-mission campaign with impressive cinematics and memorable moments.",
+    "author_ids": [
+      "rinnegatamante",
+      "v-atamanenko"
+    ],
+    "category_id": "ports",
+    "subcategory_ids": [
+      "action",
+      "fps",
+      "shooter",
+      "strategy"
+    ],
+    "version": "1.1",
+    "version_date": "2026-08-28",
+    "requirements": "- Install or update kubridge and FdFix\n- Make sure you have libshacccg.suprx in the ur0:/data/ folder on your console. If you don't, use ShaRKBR33D to get it quickly and easily.",
+    "size": 3869245,
+    "status": "Verified",
+    "links": [
+      {
+        "type": "Download",
+        "name": "VPK",
+        "url": "https://archive.org/download/modern-combat-3-psvita-port/ModernCombat3-v1.1.vpk",
+        "size": 3869245,
+        "recommended": true
+      },
+      {
+        "type": "Game Files",
+        "name": "Game Files ZIP",
+        "url": "https://archive.org/download/modern-combat-3-psvita-port/GameFiles.zip",
+        "size": 1513975972,
+        "extract_path": "ux0:data/"
+      }
+    ],
+    "icon": "https://archive.org/download/modern-combat-3-psvita-port/icon0.png",
+    "screenshots": [
+      "https://archive.org/download/modern-combat-3-psvita-port/Shot0.png",
+      "https://archive.org/download/modern-combat-3-psvita-port/Shot1.png"
+    ]
+  },
+  {
     "id": "batman-the-dark-knight-rises",
     "title_id": "KRAS00000",
     "name": "Batman - The Dark Knight Rises",
@@ -21604,61 +21648,6 @@
     "updated_at": "2026-08-13T15:34:48.480606+00:00"
   },
   {
-    "id": "sonic-mania-vita",
-    "title_id": "MANIA0001",
-    "name": "Sonic Mania Vita",
-    "description": "Port of Sonic Mania for PSVITA.",
-    "long_description": "Port of Sonic Mania for PSVITA based on a decompilation project of the game and its engine.",
-    "author_ids": [
-      "sonicmastr"
-    ],
-    "category_id": "ports",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "v.1.1",
-    "version_date": "2023-09-05",
-    "requirements": "- Game Data Files: PC Steam OR PS4 OR Switch",
-    "size": 2111629,
-    "status": "Legacy",
-    "icon": "https://archive.org/download/psvitaalive-sonic-mania-vita/icon0.png",
-    "screenshots": [
-      "https://archive.org/download/psvitaalive-sonic-mania-vita/shot_01.png",
-      "https://archive.org/download/psvitaalive-sonic-mania-vita/shot_02.png",
-      "https://archive.org/download/psvitaalive-sonic-mania-vita/shot_03.png",
-      "https://archive.org/download/psvitaalive-sonic-mania-vita/shot_04.png",
-      "https://archive.org/download/psvitaalive-sonic-mania-vita/shot_05.png"
-    ],
-    "links": [
-      {
-        "type": "Download",
-        "name": "VPK",
-        "url": "https://archive.org/download/psvitaalive-sonic-mania-vita/sonic-mania-vita.vpk",
-        "recommended": true
-      },
-      {
-        "type": "Official Website",
-        "name": "Release Page",
-        "url": "https://github.com/SonicMastr/Sonic-Mania-Vita/releases"
-      },
-      {
-        "type": "Official Website",
-        "name": "Release Page",
-        "url": "https://github.com/SonicMastr/Sonic-Mania-Vita/releases/tag/1.1"
-      },
-      {
-        "type": "Repository",
-        "name": "Repositorio",
-        "url": "https://github.com/SonicMastr/Sonic-Mania-Vita"
-      }
-    ],
-    "source_name": "VitaHomebrewDB",
-    "source_id": "858",
-    "source_url": "https://github.com/SonicMastr/Sonic-Mania-Vita",
-    "release_page": "https://github.com/SonicMastr/Sonic-Mania-Vita/releases",
-    "updated_at": "2026-08-13T15:34:48.479863+00:00"
-  },
-  {
     "id": "fahrenheit-vita",
     "title_id": "FAHRENEIT",
     "name": "Fahrenheit Vita",
@@ -21827,6 +21816,61 @@
     "source_url": "https://github.com/Rinnegatamante/ff4_vita",
     "release_page": "https://github.com/Rinnegatamante/ff4_vita/releases",
     "updated_at": "2026-08-13T15:34:48.477990+00:00"
+  },
+  {
+    "id": "sonic-mania-vita",
+    "title_id": "MANIA0001",
+    "name": "Sonic Mania Vita",
+    "description": "Port of Sonic Mania for PSVITA.",
+    "long_description": "Port of Sonic Mania for PSVITA based on a decompilation project of the game and its engine.",
+    "author_ids": [
+      "sonicmastr"
+    ],
+    "category_id": "ports",
+    "subcategory_ids": [
+      "platformer",
+      "puzzle",
+      "source-port",
+      "other"
+    ],
+    "version": "v.1.1",
+    "version_date": "2023-09-05",
+    "requirements": "- Game Data Files: PC Steam OR PS4 OR Switch",
+    "size": 2111832,
+    "status": "Legacy",
+    "links": [
+      {
+        "type": "Download",
+        "name": "VPK",
+        "url": "https://archive.org/download/psvitaalive-sonic-mania-vita/sonic-mania-vita.vpk",
+        "recommended": true
+      },
+      {
+        "type": "Game Files",
+        "name": "Game Files ZIP",
+        "url": "https://archive.org/download/psvitaalive-sonic-mania-vita/GameFiles.zip",
+        "size": 210554061,
+        "extract_path": "ux0:data/"
+      },
+      {
+        "type": "Repository",
+        "name": "Repositorio",
+        "url": "https://github.com/SonicMastr/Sonic-Mania-Vita"
+      }
+    ],
+    "icon": "https://archive.org/download/psvitaalive-sonic-mania-vita/icon0.png",
+    "screenshots": [
+      "https://archive.org/download/psvitaalive-sonic-mania-vita/shot_01.png",
+      "https://archive.org/download/psvitaalive-sonic-mania-vita/shot_02.png",
+      "https://archive.org/download/psvitaalive-sonic-mania-vita/shot_03.png",
+      "https://archive.org/download/psvitaalive-sonic-mania-vita/shot_04.png",
+      "https://archive.org/download/psvitaalive-sonic-mania-vita/shot_05.png"
+    ],
+    "source_name": "VitaHomebrewDB",
+    "source_id": "858",
+    "source_url": "https://github.com/SonicMastr/Sonic-Mania-Vita",
+    "release_page": "https://github.com/SonicMastr/Sonic-Mania-Vita/releases",
+    "updated_at": "2026-08-13T15:34"
   },
   {
     "id": "jumpjumpjumpstart",
