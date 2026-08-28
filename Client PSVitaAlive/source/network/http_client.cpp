@@ -1,1 +1,1 @@
-PLACEHOLDER
+{{FILE:/tmp/hc.cpp}}
