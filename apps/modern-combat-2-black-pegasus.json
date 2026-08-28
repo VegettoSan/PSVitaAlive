@@ -1,0 +1,46 @@
+{
+  "id": "modern-combat-2-black-pegasus",
+  "title_id": "MC2V00001",
+  "name": "Modern Combat 2: Black Pegasus",
+  "description": "Modern Combat 2 Black Pegasus Ps Vita Port",
+  "long_description": "Unofficial wrapper/port of Modern Combat 2: Black Pegasus for PlayStation Vita.\n\nThe port operates by loading the official Android ARMv7 executable directly into memory, linking its dependencies to native functions, providing the JNI environment expected by the game, and translating OpenGL ES calls through vitaGL. In practice, this creates a lightweight Android-like environment where the original executable can run natively on the PS Vita.",
+  "author_ids": [
+    "wolff"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "action",
+    "fps",
+    "shooter",
+    "strategy"
+  ],
+  "version": "1.0",
+  "version_date": "2026-08-28",
+  "requirements": "- Install kubridge and FdFix.\n- Optional: Install PSVshell if you want to monitor performance.\n- Install libshacccg.suprx.\n- Do not combine libsandstorm2.so and data files from different releases.",
+  "size": 1992294,
+  "status": "Verified",
+  "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/modern-combat-2-black-pegasus-ps-vita-port/modern_combat_2.vpk",
+      "size": 1992294,
+      "recommended": true
+    },
+    {
+      "type": "Game Files",
+      "name": "Game Files ZIP",
+      "url": "https://archive.org/download/modern-combat-2-black-pegasus-ps-vita-port/Game%20Files.zip",
+      "size": 345610650,
+      "extract_path": "ux0:data/"
+    }
+  ],
+  "icon": "https://archive.org/download/modern-combat-2-black-pegasus-ps-vita-port/icon0.png",
+  "screenshots": [
+    "https://archive.org/download/modern-combat-2-black-pegasus-ps-vita-port/1.png",
+    "https://archive.org/download/modern-combat-2-black-pegasus-ps-vita-port/2.png",
+    "https://archive.org/download/modern-combat-2-black-pegasus-ps-vita-port/3-FPS.png",
+    "https://archive.org/download/modern-combat-2-black-pegasus-ps-vita-port/3.png",
+    "https://archive.org/download/modern-combat-2-black-pegasus-ps-vita-port/4.png"
+  ]
+}
