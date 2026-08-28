@@ -131,6 +131,48 @@
     ]
   },
   {
+    "id": "soul-knight",
+    "title_id": "SOUL12345",
+    "name": "Soul Knight",
+    "description": "A port of the popular fast-paced roguelike shooter Soul Knight for PlayStation Vita.",
+    "long_description": "Explore randomly generated dungeons, fight hordes of enemies, discover new weapons and upgrades, unlock different characters, and try to make it as far as possible. Every run is different thanks to randomly generated rooms, enemies, and items.",
+    "author_ids": [
+      "xqspx"
+    ],
+    "category_id": "ports",
+    "subcategory_ids": [
+      "arcade",
+      "platformer",
+      "strategy"
+    ],
+    "version": "1.0",
+    "version_date": "2026-08-28",
+    "requirements": "- No Data",
+    "size": 57252250,
+    "status": "Verified",
+    "links": [
+      {
+        "type": "Download",
+        "name": "VPK",
+        "url": "https://archive.org/download/soul-knight-psvita/SoulKnight.vpk",
+        "size": 57252250,
+        "recommended": true
+      },
+      {
+        "type": "Data Files",
+        "name": "Data Files",
+        "url": "https://archive.org/download/soul-knight-psvita/Game%20Files.zip",
+        "size": 445,
+        "extract_path": "ux0:data/"
+      }
+    ],
+    "icon": "https://archive.org/download/soul-knight-psvita/icon0.png",
+    "screenshots": [
+      "https://archive.org/download/soul-knight-psvita/shot0.png",
+      "https://archive.org/download/soul-knight-psvita/shot1.png"
+    ]
+  },
+  {
     "id": "batman-the-dark-knight-rises",
     "title_id": "KRAS00000",
     "name": "Batman - The Dark Knight Rises",
