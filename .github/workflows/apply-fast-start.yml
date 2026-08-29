@@ -1,0 +1,22 @@
+name: Apply fast download start
+on:
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  apply:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Apply patch
+        run: python3 scripts/apply_fast_start.py
+      - name: Commit and push
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add \
+            "Client PSVitaAlive/source/network/http_client.cpp" \
+            "Client PSVitaAlive/source/network/download_manager.cpp"
+          git status
+          git commit -m "perf: fail-fast download start (TLS1.2 first, shorter waits)" || echo nochange
+          git push
