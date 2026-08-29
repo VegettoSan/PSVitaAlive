@@ -587,7 +587,7 @@ HttpResult HttpClient::downloadToFile(
     struct curl_slist* headers = nullptr;
     headers = curl_slist_append(headers, "Accept: */*");
     headers = curl_slist_append(headers, "Accept-Encoding: identity");
-    headers = curl_slist_append(headers, "Connection: close");
+    headers = curl_slist_append(headers, "Connection: keep-alive");
     // Mildly improves first-byte reliability on some Internet Archive edges.
     if (url.find("archive.org") != std::string::npos) {
         headers = curl_slist_append(headers, "Referer: https://archive.org/");

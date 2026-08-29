@@ -52,6 +52,10 @@ public:
     void cancelAll();
     void cancelQueuedRequests();
 
+    /** Pause background image downloads so install/VPK bandwidth is not shared. */
+    void setNetworkPaused(bool paused);
+    bool networkPaused() const { return networkPaused_; }
+
 private:
     struct Job {
         std::string url;
@@ -63,6 +67,7 @@ private:
     SceUID workerThread_ = -1;
     volatile bool stopping_ = false;
     volatile bool cancelRequested_ = false;
+    volatile bool networkPaused_ = false;
     std::vector<Job> queue_;
     std::vector<std::string> pending_;
     std::vector<std::string> ready_;
