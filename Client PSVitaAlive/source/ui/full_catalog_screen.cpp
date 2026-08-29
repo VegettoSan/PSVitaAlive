@@ -731,16 +731,20 @@ void FullCatalogScreen::drawNewsChip() {
     const int chipX = panelX - reportW - 8 - chipW - 8;
     const int chipY = SCREEN_H - FOOTER_H + 4;
     if (!font_) return;
-    const unsigned BLACK = RGBA8(0, 0, 0, 255);
-    // Primary solid green button style (same as other accent CTAs)
-    const unsigned fill = ACCENT;
-    const unsigned textCol = BLACK;
-    vita2d_draw_rectangle(chipX, chipY, chipW, chipH, fill);
+    // Match Install All CTA: SURFACE2 fill + soft green border pulse
+    const float pulse = 0.40f + 0.60f * focusPulse();
+    const unsigned borderA = (unsigned)(120.f + 135.f * pulse);
+    const unsigned borderCol = RGBA8(0x3B, 0xFF, 0x00, borderA > 255 ? 255 : borderA);
+    const unsigned fill = SURFACE2;
+    const int bwPulse = 2 + (int)(1.5f * pulse);
+    vita2d_draw_rectangle(chipX, chipY, chipW, chipH, borderCol);
+    vita2d_draw_rectangle(chipX + bwPulse, chipY + bwPulse,
+                          chipW - bwPulse * 2, chipH - bwPulse * 2, fill);
     const char* lab = "News";
     const float scale = 0.70f;
     const int tw = vita2d_pgf_text_width(font_, scale, lab);
     const int th = 20;
-    vita2d_pgf_draw_text(font_, chipX + (chipW - tw) / 2, chipY + (chipH + th) / 2 - 2, textCol, scale, lab);
+    vita2d_pgf_draw_text(font_, chipX + (chipW - tw) / 2, chipY + (chipH + th) / 2 - 2, ACCENT, scale, lab);
 }
 
 void FullCatalogScreen::drawNewsOverlay() {
@@ -4283,14 +4287,21 @@ const bool msgRetry =
 const bool stageExtract =
     installProgressStage_.find("Extract") != std::string::npos ||
     installProgressStage_.find("extract") != std::string::npos ||
-    installProgressStage_.find("ZIP") != std::string::npos;
-const bool stageInstall = (installProgressStage_ == "Installing");
+    installProgressStage_.find("ZIP") != std::string::npos ||
+    installProgressStage_.find("Unzip") != std::string::npos;
+const bool stageInstall =
+    installProgressStage_ == "Installing" ||
+    installProgressStage_.find("Install") != std::string::npos ||
+    installProgressStage_.find("Promote") != std::string::npos ||
+    installProgressStage_.find("promote") != std::string::npos;
 const bool stageDownload =
+    !stageExtract && !stageInstall && (
     installProgressStage_ == "Downloading" ||
     installProgressStage_ == "BGDL" ||
     installProgressStage_ == "Cancelling" ||
-    installProgressStage_.empty();
-// Sliding bar while connecting, retrying, or when we still have no size/bytes yet.
+    installProgressStage_.empty());
+// Sliding bar while connecting/retrying (download) or waiting with no bytes yet.
+// Install/extract use the bar too when progress is unknown, but never the "server" copy.
 const bool indeterminate =
     msgRetry ||
     total == 0 ||
@@ -4323,22 +4334,25 @@ else
   sceClibSnprintf(info,sizeof(info),"File: 1 / 1   ETA: %s",formatEta(eta).c_str());
 vita2d_pgf_draw_text(font_,x+28,y+194,ACCENT,.62f,info);
 if(!installProgressMessage_.empty())vita2d_pgf_draw_text(font_,x+28,y+218,DIM,.54f,ellipsize(installProgressMessage_,82).c_str());
-// Context hint so users don't think the app froze while connecting/retrying.
+// Footer must match the real phase — never "Connecting..." during install/extract.
 const char* waitHint = nullptr;
-if (indeterminate) {
-  if (msgRetry)
-    waitHint = "Retrying connection — please wait. This is not an error.";
-  else if (stageExtract)
-    waitHint = "Extracting — large files can take a while. This is not an error.";
-  else if (stageInstall)
-    waitHint = "Installing — please wait. This is not frozen.";
-  else
-    waitHint = "Connecting to the server — may take a moment. This is not an error.";
-}
-if (waitHint)
-  vita2d_pgf_draw_text(font_,x+28,y+242,ACCENT,.52f,waitHint);
+if (msgRetry && stageDownload)
+  waitHint = "Retrying connection — please wait. This is not an error.";
+else if (msgRetry && (stageInstall || stageExtract))
+  waitHint = "Retrying this step — please wait. This is not an error.";
+else if (stageExtract)
+  waitHint = "Extracting files — large archives can take a while. This is not an error.";
+else if (stageInstall)
+  waitHint = "Installing on the console — please wait. This is not frozen.";
+else if (indeterminate && stageDownload)
+  waitHint = "Connecting to the server — may take a moment. This is not an error.";
+else if (stageDownload)
+  waitHint = "Speed depends on your internet connection — please be patient.";
 else
-  vita2d_pgf_draw_text(font_,x+28,y+242,DIM,.50f,"Speed depends on your internet connection — please be patient.");
+  waitHint = "Please wait — this step can take a moment.";
+vita2d_pgf_draw_text(font_,x+28,y+242,
+    (stageDownload && !indeterminate && !msgRetry) ? DIM : ACCENT,
+    .52f, waitHint);
 const int by2=y+268,bw2=330,bh2=40;
 vita2d_draw_rectangle(x+28,by2,bw2,bh2,SURFACE2);
 vita2d_draw_rectangle(x+28,by2,bw2,1,BORDER);
