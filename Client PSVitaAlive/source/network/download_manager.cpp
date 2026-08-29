@@ -308,7 +308,10 @@ bool DownloadManager::runJob(DownloadJob& job) {
         st.removeFile(job.temporaryPath);
         job.downloadedSize = 0;
         job.state = DownloadState::Failed;
-        job.lastError = "download exceeded expected size (possible MediaFire error page)";
+        // Usually a bad mid-retry append or a wrong Content-Length; MediaFire is only one cause.
+        job.lastError = mediafire
+            ? "download exceeded expected size (possible MediaFire error page)"
+            : "download exceeded expected size (interrupted transfer; please retry)";
         saveMetadata(job);
         st.removeFile(job.finalPath);
         diagnostics::log("[DownloadManager] aborted: exceeded expected size with margin");

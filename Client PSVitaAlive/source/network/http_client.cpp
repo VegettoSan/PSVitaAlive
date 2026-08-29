@@ -635,7 +635,30 @@ HttpResult HttpClient::downloadToFile(
             if (delayMs < 400) delayMs = 400;
             sceKernelDelayThread(delayMs * 1000);
             ctx.cancelled = false;
-            if (ctx.downloaded == 0 && resumeOffset == 0 && ctx.fd >= 0) {
+            // CRITICAL: after a mid-transfer drop (e.g. curl 56), the FD is at EOF and
+            // CURLOPT_RESUME_FROM is still 0. A plain re-perform would GET from byte 0
+            // while writing at EOF → file grows past Content-Length → size-limit abort.
+            // Resume from the absolute bytes already on disk instead.
+            if (ctx.downloaded > 0) {
+                const uint64_t absPos = ctx.resumeOffset + ctx.downloaded;
+                ctx.resumeOffset = absPos;
+                ctx.downloaded = 0;
+                ctx.lastProgressBytes = 0;
+                ctx.firstWrite = true;
+                ctx.restartedFromZero = false;
+#if defined(CURLOPT_RESUME_FROM_LARGE)
+                curl_easy_setopt(curl, CURLOPT_RESUME_FROM_LARGE, static_cast<curl_off_t>(absPos));
+#else
+                curl_easy_setopt(curl, CURLOPT_RESUME_FROM,
+                    static_cast<long>(absPos > 0x7FFFFFFFULL ? 0x7FFFFFFFULL : absPos));
+#endif
+                if (ctx.fd >= 0)
+                    sceIoLseek(ctx.fd, 0, SCE_SEEK_END);
+                char resumeMsg[140];
+                sceClibSnprintf(resumeMsg, sizeof(resumeMsg),
+                    "retry resume from absolute=%llu", (unsigned long long)absPos);
+                httpDiagnostic(resumeMsg);
+            } else if (resumeOffset == 0 && ctx.fd >= 0) {
                 sceIoLseek(ctx.fd, 0, SCE_SEEK_SET);
             }
         }
