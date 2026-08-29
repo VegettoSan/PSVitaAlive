@@ -1,0 +1,22 @@
+name: Apply SSL retries
+on:
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  apply:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Apply patch
+        run: python3 scripts/apply_ssl_retries.py
+      - name: Commit and push
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add \
+            "Client PSVitaAlive/source/network/http_client.cpp" \
+            "Client PSVitaAlive/source/network/download_manager.cpp"
+          git status
+          git commit -m "fix: more archive.org SSL retries and backoff (curl 35)" || echo nochange
+          git push
