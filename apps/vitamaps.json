@@ -1,0 +1,39 @@
+{
+  "id": "vitamaps",
+  "title_id": "VMAP00001",
+  "name": "VitaMaps",
+  "description": "Native GPU-rendered map viewer and 3D cache atlas for PlayStation Vita, built with VitaSDK, vita2d, and vita-http",
+  "long_description": "VitaMaps is a native, GPU-rendered map viewer and cache explorer for PlayStation Vita homebrew. It uses VitaSDK and vita2d directly—there is no WebView, embedded browser, HTML, or JavaScript map engine.",
+  "author_ids": [
+    "spyro-98"
+  ],
+  "category_id": "utilities",
+  "subcategory_ids": [
+    "other"
+  ],
+  "version": "01.00",
+  "version_date": "2026-08-29",
+  "requirements": "- No Data",
+  "size": 419430,
+  "status": "Verified",
+  "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/vita-maps/VitaMaps%20v1.0.0.vpk",
+      "size": 2516582,
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "GitHub",
+      "url": "https://github.com/spyro-98/VitaMaps"
+    }
+  ],
+  "icon": "https://archive.org/download/vita-maps/icon0.png",
+  "screenshots": [
+    "https://archive.org/download/vita-maps/shot0.jpeg",
+    "https://archive.org/download/vita-maps/shot1.jpeg",
+    "https://archive.org/download/vita-maps/shot2.jpeg"
+  ]
+}
