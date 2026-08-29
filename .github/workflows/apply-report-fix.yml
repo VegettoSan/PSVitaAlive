@@ -1,0 +1,23 @@
+name: Apply report fixes
+on:
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  apply:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Apply report patches
+        run: python3 scripts/apply_report_fix.py
+      - name: Commit and push
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add \
+            "Client PSVitaAlive/source/network/error_reporter.cpp" \
+            "Client PSVitaAlive/source/ui/full_catalog_screen.cpp" \
+            "Client PSVitaAlive/include/ui/full_catalog_screen.hpp"
+          git status
+          git commit -m "fix: Discord reports — App/TitleID, longer logs, searchable tags" || echo nochange
+          git push
