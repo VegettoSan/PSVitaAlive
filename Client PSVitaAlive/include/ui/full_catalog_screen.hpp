@@ -283,6 +283,10 @@ private:
     char reportUiMsg_[48] = {};
     std::string reportTitle_;
     std::string reportContext_;
+    std::string reportAppName_;
+    std::string reportAppTitleId_;
+    std::string reportAppVersion_;
+    std::string reportFileName_;
     std::atomic<bool> reportBusy_{false};
     std::atomic<bool> reportDone_{false};
     std::atomic<bool> reportOk_{false};

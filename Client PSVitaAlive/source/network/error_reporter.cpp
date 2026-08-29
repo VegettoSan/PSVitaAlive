@@ -9,6 +9,7 @@
 
 #include <cstdio>
 #include <cstring>
+#include <algorithm>
 #include <string>
 
 namespace psvitaalive {
@@ -20,7 +21,7 @@ constexpr const char* kDiscordWebhookUrl =
     "XPinil0HHmwzje7MOMXjXi0iQEHf7lHQtmZZILre3AbXMTxRLnObpYwX5yGhqzrdROWr";
 
 constexpr uint64_t kCooldownMs = 45000ULL;
-constexpr size_t kMaxLogTailBytes = 10000;
+constexpr size_t kMaxLogTailBytes = 12000;
 constexpr size_t kMaxEmbedDesc = 3200;
 
 uint64_t g_lastReportMs = 0;
@@ -232,12 +233,23 @@ ErrorReportResult sendErrorReport(const ErrorReportRequest& req) {
     std::string safeTitle = req.title.empty() ? kindLabel(req.kind) : req.title;
     if (safeTitle.size() > 200) safeTitle.resize(200);
 
+    // Discord search: plain tokens work; leading "#" often does not (channel syntax).
+    // Put both: "install_failed" for search and "#install_failed" for readability.
     std::string content;
-    content += kindTag(req.kind);
+    {
+        const char* kt = kindTag(req.kind); // e.g. #install_failed
+        content += kt;
+        content += " ";
+        // Plain token without hash for Discord search (search: install_failed)
+        if (kt[0] == '#') content += (kt + 1);
+        else content += kt;
+    }
     content += " ";
     const std::string appTag = titleIdTag(req.app.titleId);
     if (!appTag.empty()) {
         content += appTag;
+        content += " ";
+        if (appTag.size() > 1 && appTag[0] == '#') content += appTag.substr(1);
         content += " ";
     }
     if (!req.app.name.empty())
@@ -265,7 +277,7 @@ ErrorReportResult sendErrorReport(const ErrorReportRequest& req) {
         desc += truncate(req.fileName, 120);
         desc += "`\n";
     }
-    desc += "_Filter in Discord search with the `#` tags above._";
+    desc += "_Discord search: type the tag **without** # (e.g. `install_failed` or `app_PCSG00000`)._";
 
     std::string fields;
     fields.reserve(512);
@@ -276,12 +288,44 @@ ErrorReportResult sendErrorReport(const ErrorReportRequest& req) {
     appendEmbedField(fields, "Client", std::string("v") + ver, true);
     appendEmbedField(fields, "Store TitleID", "PSVAS1178", true);
     {
-        std::string logVal = "```\n";
-        logVal += logs;
-        logVal += "\n```";
-        if (logVal.size() > 1000)
-            logVal = "```\n" + logs.substr(logs.size() > 980 ? logs.size() - 980 : 0) + "\n```";
-        appendEmbedField(fields, "Logs (tail)", logVal, false);
+        // Discord embed field values max ~1024. Split tail into up to 3 fields.
+        const size_t chunk = 900;
+        std::string tail = logs;
+        if (tail.size() > chunk * 3)
+            tail = tail.substr(tail.size() - chunk * 3);
+        // Prefer starting on a line boundary
+        if (tail.size() < logs.size()) {
+            const size_t nl = tail.find('\n');
+            if (nl != std::string::npos && nl + 1 < tail.size())
+                tail.erase(0, nl + 1);
+        }
+        int part = 1;
+        size_t off = 0;
+        const int totalParts = (int)((tail.size() + chunk - 1) / chunk);
+        while (off < tail.size() && part <= 3) {
+            size_t n = std::min(chunk, tail.size() - off);
+            // try not to cut mid-line for middle chunks
+            if (off + n < tail.size()) {
+                const size_t cut = tail.rfind('\n', off + n);
+                if (cut != std::string::npos && cut > off + chunk / 2)
+                    n = cut - off + 1;
+            }
+            std::string piece = tail.substr(off, n);
+            off += n;
+            std::string logVal = "```\n";
+            logVal += piece;
+            if (logVal.size() > 1000) logVal.resize(1000);
+            logVal += "\n```";
+            char fname[32];
+            if (totalParts <= 1)
+                sceClibSnprintf(fname, sizeof(fname), "Logs (tail)");
+            else
+                sceClibSnprintf(fname, sizeof(fname), "Logs (%d/%d)", part, totalParts);
+            appendEmbedField(fields, fname, logVal, false);
+            ++part;
+        }
+        if (tail.empty())
+            appendEmbedField(fields, "Logs (tail)", "_(no session log)_", false);
     }
     if (!fields.empty() && fields.back() == ',') fields.pop_back();
 

@@ -952,7 +952,30 @@ int FullCatalogScreen::reportWorkerEntry(SceSize args, void* argp) {
     (void)args;
     FullCatalogScreen* self = *reinterpret_cast<FullCatalogScreen**>(argp);
     if (!self) return 0;
-    const auto res = ::psvitaalive::sendErrorReport(self->reportTitle_, self->reportContext_);
+    ::psvitaalive::ErrorReportRequest req;
+    req.title = self->reportTitle_;
+    req.context = self->reportContext_;
+    req.app.name = self->reportAppName_;
+    req.app.titleId = self->reportAppTitleId_;
+    req.app.version = self->reportAppVersion_;
+    req.fileName = self->reportFileName_;
+    {
+        std::string low = req.title;
+        for (char& c : low) if (c >= 'A' && c <= 'Z') c = static_cast<char>(c - 'A' + 'a');
+        if (low.find("manual") != std::string::npos)
+            req.kind = ::psvitaalive::ErrorReportKind::Manual;
+        else if (low.find("install") != std::string::npos)
+            req.kind = ::psvitaalive::ErrorReportKind::InstallFailed;
+        else if (low.find("download") != std::string::npos)
+            req.kind = ::psvitaalive::ErrorReportKind::DownloadFailed;
+        else if (low.find("catalog") != std::string::npos)
+            req.kind = ::psvitaalive::ErrorReportKind::Catalog;
+        else if (low.find("self-update") != std::string::npos || low.find("self update") != std::string::npos)
+            req.kind = ::psvitaalive::ErrorReportKind::SelfUpdate;
+        else
+            req.kind = ::psvitaalive::ErrorReportKind::Other;
+    }
+    const auto res = ::psvitaalive::sendErrorReport(req);
     self->reportOk_.store(res.ok);
     sceClibSnprintf(self->reportResultMsg_, sizeof(self->reportResultMsg_), "%s",
                     res.message.empty() ? (res.ok ? "Report sent" : "Report failed") : res.message.c_str());
@@ -986,6 +1009,24 @@ void FullCatalogScreen::trySendErrorReport(const std::string& title, const std::
 
     reportTitle_ = title;
     reportContext_ = context;
+    reportAppName_.clear();
+    reportAppTitleId_.clear();
+    reportAppVersion_.clear();
+    reportFileName_.clear();
+    // Prefer current catalog selection + any install result titleId.
+    {
+        const int si = selectedIndex();
+        if (si >= 0 && si < (int)catalogView().size()) {
+            const CatalogItem& it = catalogView()[si];
+            reportAppName_ = it.name;
+            reportAppTitleId_ = it.titleId;
+            reportAppVersion_ = it.version;
+        }
+        if (reportAppTitleId_.empty() && !installResultTitleId_.empty())
+            reportAppTitleId_ = installResultTitleId_;
+        if (!installProgressFile_.empty())
+            reportFileName_ = installProgressFile_;
+    }
     reportUiState_ = 1;
     reportUiUntilMs_ = 0;
     reportDone_.store(false);
@@ -1000,7 +1041,30 @@ void FullCatalogScreen::trySendErrorReport(const std::string& title, const std::
         reportBusy_.store(false);
         reportUiState_ = 0;
         // Fallback: synchronous send
-        const auto res = ::psvitaalive::sendErrorReport(title, context);
+        ::psvitaalive::ErrorReportRequest req;
+        req.title = reportTitle_;
+        req.context = reportContext_;
+        req.app.name = reportAppName_;
+        req.app.titleId = reportAppTitleId_;
+        req.app.version = reportAppVersion_;
+        req.fileName = reportFileName_;
+        {
+            std::string low = req.title;
+            for (char& c : low) if (c >= 'A' && c <= 'Z') c = static_cast<char>(c - 'A' + 'a');
+            if (low.find("manual") != std::string::npos)
+                req.kind = ::psvitaalive::ErrorReportKind::Manual;
+            else if (low.find("install") != std::string::npos)
+                req.kind = ::psvitaalive::ErrorReportKind::InstallFailed;
+            else if (low.find("download") != std::string::npos)
+                req.kind = ::psvitaalive::ErrorReportKind::DownloadFailed;
+            else if (low.find("catalog") != std::string::npos)
+                req.kind = ::psvitaalive::ErrorReportKind::Catalog;
+            else if (low.find("self-update") != std::string::npos || low.find("self update") != std::string::npos)
+                req.kind = ::psvitaalive::ErrorReportKind::SelfUpdate;
+            else
+                req.kind = ::psvitaalive::ErrorReportKind::Other;
+        }
+        const auto res = ::psvitaalive::sendErrorReport(req);
         reportUiState_ = res.ok ? 2 : 3;
         reportUiUntilMs_ = sceKernelGetProcessTimeWide() / 1000ULL + 3500ULL;
         showToast(res.ok ? "Report sent" : (res.message.empty() ? "Report failed" : res.message), 2200);
