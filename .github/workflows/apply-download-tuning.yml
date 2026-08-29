@@ -1,0 +1,24 @@
+name: Apply download tuning
+on:
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  apply:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Apply patch
+        run: python3 scripts/apply_download_tuning.py
+      - name: Commit and push
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add \
+            "Client PSVitaAlive/source/network/http_client.cpp" \
+            "Client PSVitaAlive/include/ui/image_cache.hpp" \
+            "Client PSVitaAlive/source/ui/image_cache.cpp" \
+            "Client PSVitaAlive/source/main.cpp"
+          git status
+          git commit -m "perf: keep-alive downloads + pause image cache during install" || echo nochange
+          git push
