@@ -5983,6 +5983,21 @@
     "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
   },
   {
+    "id": "spyro-98",
+    "name": "spyro-98",
+    "avatar": "https://avatars.githubusercontent.com/u/31597742?v=4",
+    "bio": "🐉 Dev",
+    "links": [
+      {
+        "type": "Repository",
+        "name": "GitHub",
+        "url": "https://github.com/spyro-98",
+        "recommended": true
+      }
+    ],
+    "icon": "https://avatars.githubusercontent.com/u/31597742?v=4"
+  },
+  {
     "id": "stacksta",
     "name": "stacksta",
     "avatar": "https://github.com/stacksta.png",
