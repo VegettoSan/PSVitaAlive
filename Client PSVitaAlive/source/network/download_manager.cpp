@@ -270,7 +270,8 @@ bool DownloadManager::runJob(DownloadJob& job) {
                 ev.message = uiMsg;
                 onProgress_(ev);
             }
-            const int delayMs = isArchiveUrl ? (3000 * outer) : 800;
+            // Outer gap kept small — inner loop already retried with fail-fast.
+            const int delayMs = isArchiveUrl ? (1000 * outer) : 500;
             sceKernelDelayThread(delayMs * 1000);
             if (mediafire) {
                 st.removeFile(job.temporaryPath);

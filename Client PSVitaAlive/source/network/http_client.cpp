@@ -16,11 +16,14 @@ namespace psvitaalive {
 
 namespace {
 constexpr size_t DOWNLOAD_BUFFER_SIZE = 512 * 1024;
-constexpr long CONNECT_TIMEOUT_SECONDS = 45;
-constexpr long CONNECT_TIMEOUT_ARCHIVE_SECONDS = 90; // archive.org often slow to accept
+constexpr long CONNECT_TIMEOUT_SECONDS = 25;
+// archive.org: fail-fast on early attempts so users are not stuck minutes on a dead edge;
+// later attempts get a bit more patience without the old 90s hang.
+constexpr long CONNECT_TIMEOUT_ARCHIVE_FAST = 18;
+constexpr long CONNECT_TIMEOUT_ARCHIVE_SLOW = 40;
 constexpr long LOW_SPEED_LIMIT = 1;
 constexpr long LOW_SPEED_TIME_SECONDS = 120;
-constexpr long LOW_SPEED_TIME_ARCHIVE_SECONDS = 180; // allow longer stalls on IA
+constexpr long LOW_SPEED_TIME_ARCHIVE_SECONDS = 150;
 constexpr const char* DIAG_LOG = "ux0:data/psvitaalive/logs/session.log";
 
 // libcurl global state belongs to the whole process, not to individual HttpClient objects.
@@ -448,7 +451,9 @@ HttpResult HttpClient::fetchRemoteValidators(const std::string& url, std::string
     ctx.curl = curl;
     curl_easy_setopt(curl, CURLOPT_URL, url.c_str());
     curl_easy_setopt(curl, CURLOPT_NOBODY, 1L);
-    curl_easy_setopt(curl, CURLOPT_USERAGENT, "Mozilla/5.0 (PlayStation Vita) PSVitaAlive/1.0");
+    // Prefer a mainstream browser UA — some CDNs (incl. IA) treat Vita UA poorly.
+    curl_easy_setopt(curl, CURLOPT_USERAGENT,
+        "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36");
     curl_easy_setopt(curl, CURLOPT_IPRESOLVE, CURL_IPRESOLVE_V4);
     curl_easy_setopt(curl, CURLOPT_HTTP_VERSION, CURL_HTTP_VERSION_1_1);
     curl_easy_setopt(curl, CURLOPT_SSL_VERIFYHOST, 0L);
@@ -548,7 +553,9 @@ HttpResult HttpClient::downloadToFile(
     curl_easy_setopt(curl, CURLOPT_URL, url.c_str());
     curl_easy_setopt(curl, CURLOPT_HTTPGET, 1L);
     // Browser-like UA helps some CDNs (GitLab package registry, etc.)
-    curl_easy_setopt(curl, CURLOPT_USERAGENT, "Mozilla/5.0 (PlayStation Vita) PSVitaAlive/1.0");
+    // Prefer a mainstream browser UA — some CDNs (incl. IA) treat Vita UA poorly.
+    curl_easy_setopt(curl, CURLOPT_USERAGENT,
+        "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36");
     curl_easy_setopt(curl, CURLOPT_SSL_VERIFYHOST, 0L);
     curl_easy_setopt(curl, CURLOPT_SSL_VERIFYPEER, 0L);
     curl_easy_setopt(curl, CURLOPT_SSLVERSION, CURL_SSLVERSION_DEFAULT);
@@ -604,26 +611,32 @@ HttpResult HttpClient::downloadToFile(
     const bool isGithub = url.find("github.com") != std::string::npos
         || url.find("githubusercontent.com") != std::string::npos;
 
-    // archive.org: slower connect, more patience on stalls, more attempts.
+    // archive.org: mid-transfer stalls still need patience; connect uses fail-fast below.
     if (isArchive) {
-        curl_easy_setopt(curl, CURLOPT_CONNECTTIMEOUT, CONNECT_TIMEOUT_ARCHIVE_SECONDS);
         curl_easy_setopt(curl, CURLOPT_LOW_SPEED_TIME, LOW_SPEED_TIME_ARCHIVE_SECONDS);
     }
 
-    // Host-aware TLS order + generic network retries (fresh connection each try).
+    // TLS 1.2 first (archive.org + most CDNs). Avoid burning early attempts on TLS 1.1.
     const long sslAttempts[] = {
-        isGitlab ? CURL_SSLVERSION_TLSv1_2 : CURL_SSLVERSION_DEFAULT,
         CURL_SSLVERSION_TLSv1_2,
         CURL_SSLVERSION_DEFAULT,
-        CURL_SSLVERSION_TLSv1_1,
+        CURL_SSLVERSION_TLSv1_2,
+        CURL_SSLVERSION_DEFAULT,
     };
-    // archive.org SSL handshakes fail often on Vita (curl 35) — more attempts + backoff.
+    // Keep retries, but make early attempts cheap (fail-fast) so start is seconds not minutes.
     const int kMaxAttempts = isArchive ? 10 : 5;
     long responseCode = 0;
     CURLcode lastFail = CURLE_OK;
     for (int attempt = 0; attempt < kMaxAttempts; ++attempt) {
         const int sslIdx = attempt < 4 ? attempt : (attempt % 4);
         curl_easy_setopt(curl, CURLOPT_SSLVERSION, sslAttempts[sslIdx]);
+        // Fail-fast connect: short on first tries, slightly longer later.
+        if (isArchive) {
+            const long ct = (attempt < 3) ? CONNECT_TIMEOUT_ARCHIVE_FAST : CONNECT_TIMEOUT_ARCHIVE_SLOW;
+            curl_easy_setopt(curl, CURLOPT_CONNECTTIMEOUT, ct);
+        } else if (attempt > 0) {
+            curl_easy_setopt(curl, CURLOPT_CONNECTTIMEOUT, CONNECT_TIMEOUT_SECONDS);
+        }
         curl_easy_setopt(curl, CURLOPT_FRESH_CONNECT, attempt > 0 ? 1L : 0L);
         curl_easy_setopt(curl, CURLOPT_FORBID_REUSE, attempt > 0 ? 1L : 0L);
         // Drop TLS session reuse after SSL failures (stale sessions can stick on Vita).
@@ -639,17 +652,17 @@ HttpResult HttpClient::downloadToFile(
                 attempt + 1, kMaxAttempts, isGitlab ? 1 : 0, isArchive ? 1 : 0, isGithub ? 1 : 0,
                 static_cast<int>(lastFail));
             httpDiagnostic(retryMsg);
-            int delayMs = 500 * (attempt <= 4 ? attempt : 4);
-            if (isArchive) delayMs = 1200 * (attempt <= 6 ? attempt : 6);
-            // Extra wait after SSL connect errors — IA edges often need a breath.
+            // Short early backoff; grow only after several failures.
+            int delayMs = 250 * (attempt <= 3 ? attempt : 3);
+            if (isArchive) delayMs = 350 * (attempt <= 4 ? attempt : 4);
             if (lastFail == CURLE_SSL_CONNECT_ERROR ||
                 lastFail == CURLE_PEER_FAILED_VERIFICATION ||
                 lastFail == CURLE_SSL_CERTPROBLEM) {
-                const int sslExtra = isArchive ? (2500 * (attempt <= 4 ? attempt : 4)) : (1500 * attempt);
+                const int sslExtra = isArchive ? (600 * (attempt <= 5 ? attempt : 5)) : (500 * attempt);
                 if (sslExtra > delayMs) delayMs = sslExtra;
-                if (delayMs > 12000) delayMs = 12000;
+                if (delayMs > 4000) delayMs = 4000;
             }
-            if (delayMs < 400) delayMs = 400;
+            if (delayMs < 200) delayMs = 200;
             sceKernelDelayThread(delayMs * 1000);
             ctx.cancelled = false;
             // CRITICAL: after a mid-transfer drop (e.g. curl 56), the FD is at EOF and
