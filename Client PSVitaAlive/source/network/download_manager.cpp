@@ -244,7 +244,7 @@ bool DownloadManager::runJob(DownloadJob& job) {
         effectiveUrl.find("archive.org") != std::string::npos;
     // Outer attempts on top of HttpClient's internal retries.
     // archive.org is flaky under load — allow a couple of full restarts.
-    const int outerAttempts = isArchiveUrl ? 3 : 2;
+    const int outerAttempts = isArchiveUrl ? 4 : 2;
     HttpResult hr = HttpResult::NetworkError;
     for (int outer = 0; outer < outerAttempts; ++outer) {
         if (outer > 0) {
@@ -270,7 +270,7 @@ bool DownloadManager::runJob(DownloadJob& job) {
                 ev.message = uiMsg;
                 onProgress_(ev);
             }
-            const int delayMs = isArchiveUrl ? (2000 * outer) : 800;
+            const int delayMs = isArchiveUrl ? (3000 * outer) : 800;
             sceKernelDelayThread(delayMs * 1000);
             if (mediafire) {
                 st.removeFile(job.temporaryPath);

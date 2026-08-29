@@ -617,21 +617,38 @@ HttpResult HttpClient::downloadToFile(
         CURL_SSLVERSION_DEFAULT,
         CURL_SSLVERSION_TLSv1_1,
     };
-    const int kMaxAttempts = isArchive ? 6 : 4;
+    // archive.org SSL handshakes fail often on Vita (curl 35) — more attempts + backoff.
+    const int kMaxAttempts = isArchive ? 10 : 5;
     long responseCode = 0;
+    CURLcode lastFail = CURLE_OK;
     for (int attempt = 0; attempt < kMaxAttempts; ++attempt) {
         const int sslIdx = attempt < 4 ? attempt : (attempt % 4);
         curl_easy_setopt(curl, CURLOPT_SSLVERSION, sslAttempts[sslIdx]);
         curl_easy_setopt(curl, CURLOPT_FRESH_CONNECT, attempt > 0 ? 1L : 0L);
         curl_easy_setopt(curl, CURLOPT_FORBID_REUSE, attempt > 0 ? 1L : 0L);
+        // Drop TLS session reuse after SSL failures (stale sessions can stick on Vita).
+        if (attempt > 0 && (lastFail == CURLE_SSL_CONNECT_ERROR ||
+                            lastFail == CURLE_PEER_FAILED_VERIFICATION ||
+                            lastFail == CURLE_SSL_CERTPROBLEM)) {
+            curl_easy_setopt(curl, CURLOPT_SSL_SESSIONID_CACHE, 0L);
+        }
         if (attempt > 0) {
             char retryMsg[160];
             sceClibSnprintf(retryMsg, sizeof(retryMsg),
-                "download retry %d/%d hostHints=gitlab:%d archive:%d github:%d",
-                attempt + 1, kMaxAttempts, isGitlab ? 1 : 0, isArchive ? 1 : 0, isGithub ? 1 : 0);
+                "download retry %d/%d hostHints=gitlab:%d archive:%d github:%d lastCurl=%d",
+                attempt + 1, kMaxAttempts, isGitlab ? 1 : 0, isArchive ? 1 : 0, isGithub ? 1 : 0,
+                static_cast<int>(lastFail));
             httpDiagnostic(retryMsg);
             int delayMs = 500 * (attempt <= 4 ? attempt : 4);
-            if (isArchive) delayMs = 1000 * (attempt <= 5 ? attempt : 5);
+            if (isArchive) delayMs = 1200 * (attempt <= 6 ? attempt : 6);
+            // Extra wait after SSL connect errors — IA edges often need a breath.
+            if (lastFail == CURLE_SSL_CONNECT_ERROR ||
+                lastFail == CURLE_PEER_FAILED_VERIFICATION ||
+                lastFail == CURLE_SSL_CERTPROBLEM) {
+                const int sslExtra = isArchive ? (2500 * (attempt <= 4 ? attempt : 4)) : (1500 * attempt);
+                if (sslExtra > delayMs) delayMs = sslExtra;
+                if (delayMs > 12000) delayMs = 12000;
+            }
             if (delayMs < 400) delayMs = 400;
             sceKernelDelayThread(delayMs * 1000);
             ctx.cancelled = false;
@@ -689,6 +706,10 @@ HttpResult HttpClient::downloadToFile(
         const bool retryable =
             result == CURLE_SSL_CONNECT_ERROR ||
             result == CURLE_PEER_FAILED_VERIFICATION ||
+            result == CURLE_SSL_CERTPROBLEM ||
+#ifdef CURLE_SSL_CIPHER
+            result == CURLE_SSL_CIPHER ||
+#endif
             result == CURLE_COULDNT_CONNECT ||
             result == CURLE_COULDNT_RESOLVE_HOST ||
             result == CURLE_OPERATION_TIMEDOUT ||
@@ -701,6 +722,7 @@ HttpResult HttpClient::downloadToFile(
         sceClibSnprintf(failMsg, sizeof(failMsg), "attempt %d failed curl=%d %s retryable=%d",
             attempt + 1, static_cast<int>(result), curl_easy_strerror(result), retryable ? 1 : 0);
         httpDiagnostic(failMsg);
+        lastFail = result;
         if (!retryable) break;
     }
     lastStatus_ = static_cast<int>(responseCode);
