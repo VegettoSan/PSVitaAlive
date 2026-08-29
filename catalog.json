@@ -1,5 +1,85 @@
 [
   {
+    "id": "vitadeck",
+    "title_id": "VITADECK1",
+    "name": "VitaDeck",
+    "description": "VitaDeck is a fast, modern game library and store interface for PlayStation Vita",
+    "long_description": "VitaDeck is a high-performance game launcher and media library manager built natively for the PlayStation Vita in Rust using vita2d and vitasdk. It delivers a smooth, 60 FPS user experience modeled after the Steam Deck interface, automatically discovering installed titles, downloading high-resolution box art, and allowing custom game organization into playlists.",
+    "author_ids": [
+      "josephinoo"
+    ],
+    "category_id": "utilities",
+    "subcategory_ids": [
+      "system-information",
+      "installer",
+      "downloader",
+      "updater",
+      "launcher"
+    ],
+    "version": "00.00",
+    "version_date": "2026-08-29",
+    "requirements": "- No Data",
+    "size": 7654605,
+    "status": "Verified",
+    "links": [
+      {
+        "type": "Download",
+        "name": "VPK",
+        "url": "https://archive.org/download/vita-deck/vita_deck%20v0.0.1.vpk",
+        "size": 7654605,
+        "recommended": true
+      },
+      {
+        "type": "Repository",
+        "name": "Github",
+        "url": "https://github.com/josephinoo/vitaDeck"
+      }
+    ],
+    "icon": "https://archive.org/download/vita-deck/icon0.png",
+    "screenshots": [
+      "https://archive.org/download/vita-deck/Shot0.png"
+    ]
+  },
+  {
+    "id": "vitamaps",
+    "title_id": "VMAP00001",
+    "name": "VitaMaps",
+    "description": "Native GPU-rendered map viewer and 3D cache atlas for PlayStation Vita, built with VitaSDK, vita2d, and vita-http",
+    "long_description": "VitaMaps is a native, GPU-rendered map viewer and cache explorer for PlayStation Vita homebrew. It uses VitaSDK and vita2d directly—there is no WebView, embedded browser, HTML, or JavaScript map engine.",
+    "author_ids": [
+      "spyro-98"
+    ],
+    "category_id": "utilities",
+    "subcategory_ids": [
+      "other"
+    ],
+    "version": "01.00",
+    "version_date": "2026-08-29",
+    "requirements": "- No Data",
+    "size": 419430,
+    "status": "Verified",
+    "links": [
+      {
+        "type": "Download",
+        "name": "VPK",
+        "url": "https://archive.org/download/vita-maps/VitaMaps%20v1.0.0.vpk",
+        "size": 2516582,
+        "recommended": true
+      },
+      {
+        "type": "Repository",
+        "name": "GitHub",
+        "url": "https://github.com/spyro-98/VitaMaps"
+      }
+    ],
+    "icon": "https://archive.org/download/vita-maps/icon0.png",
+    "screenshots": [
+      "https://archive.org/download/vita-maps/shot0.jpeg",
+      "https://archive.org/download/vita-maps/shot1.jpeg",
+      "https://archive.org/download/vita-maps/shot2.jpeg"
+    ]
+  },
+  {
     "id": "vitamediadeck",
     "title_id": "VMDK00001",
     "name": "VitaMediaDeck",
@@ -40,6 +120,46 @@
       "https://archive.org/download/vita-media-deck/shot0.jpeg",
       "https://archive.org/download/vita-media-deck/shot1.jpeg",
       "https://archive.org/download/vita-media-deck/shot2.jpeg"
+    ]
+  },
+  {
+    "id": "vitausbstream",
+    "title_id": "VUSC00001",
+    "name": "VitaUSBStream",
+    "description": "VitaUSBStream Audio & Video over USB allows you to stream both the video and audio from a PS Vita to a computer using a single USB cable.",
+    "long_description": "VitaUSBStream Audio & Video over USB allows you to stream both the video and audio from a PS Vita to a computer using a single USB cable.\n\nThe project is based on the original UDCD-UVC plugin, which streamed video only. This version adds USB Audio Class support so the console audio can be captured directly in OBS without using a 3.5 mm audio cable",
+    "author_ids": [
+      "bmk-studio"
+    ],
+    "category_id": "plugins",
+    "subcategory_ids": [
+      "system",
+      "audio",
+      "display",
+      "other"
+    ],
+    "version": "01.30",
+    "version_date": "2026-08-29",
+    "requirements": "- Remove any old configuration lines loading a previous UDCD-UVC audio plugin or audio bridge.",
+    "size": 678298,
+    "status": "Verified",
+    "links": [
+      {
+        "type": "Download",
+        "name": "VPK",
+        "url": "https://archive.org/download/vita-usbstream/01.30-VitaUSBStream.vpk",
+        "size": 678298,
+        "recommended": true
+      },
+      {
+        "type": "Repository",
+        "name": "GitHub",
+        "url": "https://github.com/BMK-Studio/VitaUSBStream"
+      }
+    ],
+    "icon": "https://archive.org/download/vita-usbstream/icon0.png",
+    "screenshots": [
+      "https://archive.org/download/vita-usbstream/Shot0.png"
     ]
   },
   {
