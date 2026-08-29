@@ -1,0 +1,45 @@
+{
+  "id": "vitatweakbox",
+  "title_id": "VTBX00001",
+  "name": "VitaTweakBox",
+  "description": "Some Tweak in one app for PSVita/TV",
+  "long_description": "VitaTweakBox is an all-in-one PSVita toolbox featuring system tweaks, theme, plugin management, backups, file transfers, multimedia tools, weather information, and more all through a modern, unified interface.",
+  "author_ids": [
+    "bmk-studio"
+  ],
+  "category_id": "utilities",
+  "subcategory_ids": [
+    "file-manager",
+    "ftp",
+    "archive",
+    "device-information",
+    "process-manager",
+    "installer",
+    "other"
+  ],
+  "version": "03.10",
+  "version_date": "2026-08-29",
+  "requirements": "- No Data",
+  "size": 44879053,
+  "status": "Verified",
+  "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/vita-tweak-box/03.10-VitaTweakBox.vpk",
+      "size": 44879053,
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "GitHub",
+      "url": "https://github.com/BMK-Studio/VitaTweakBox"
+    }
+  ],
+  "icon": "https://archive.org/download/vita-tweak-box/icon0.png",
+  "screenshots": [
+    "https://archive.org/download/vita-tweak-box/shot0.png",
+    "https://archive.org/download/vita-tweak-box/pic0.png",
+    "https://archive.org/download/vita-tweak-box/LiveArea_BG.png"
+  ]
+}
