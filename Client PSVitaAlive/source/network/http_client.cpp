@@ -25,6 +25,12 @@ constexpr long LOW_SPEED_LIMIT = 1;
 constexpr long LOW_SPEED_TIME_SECONDS = 120;
 constexpr long LOW_SPEED_TIME_ARCHIVE_SECONDS = 150;
 constexpr const char* DIAG_LOG = "ux0:data/psvitaalive/logs/session.log";
+// Primary UA identifies the app (IA bot guidelines). CDN fallback is a mainstream browser UA.
+constexpr const char* UA_APP =
+    "PSVitaAlive/1.14 (PlayStation Vita; +https://github.com/VegettoSan/PSVitaAlive)";
+constexpr const char* UA_CDN_FALLBACK =
+    "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36";
+
 
 // libcurl global state belongs to the whole process, not to individual HttpClient objects.
 // Multiple PSVitaAlive workers can own HttpClient instances at the same time.
@@ -56,6 +62,7 @@ struct TransferContext {
     bool cancelled = false;
     bool ioError = false;
     bool restartedFromZero = false;
+    int retryAfterSeconds = 0; // from Retry-After header (429/503)
     std::string etag;
     std::string lastModified;
     HttpProgressFn onProgress;
@@ -124,6 +131,15 @@ static size_t headerCallback(char* buffer, size_t size, size_t nitems, void* use
     if (!etag.empty()) ctx->etag = etag;
     const std::string modified = headerValue(buffer, "Last-Modified:");
     if (!modified.empty()) ctx->lastModified = modified;
+    // RFC 7231 Retry-After: delta-seconds (HTTP-date rarely used by IA; ignore date form).
+    const std::string retryAfter = headerValue(buffer, "Retry-After:");
+    if (!retryAfter.empty()) {
+        int sec = 0;
+        if (std::sscanf(retryAfter.c_str(), "%d", &sec) == 1 && sec > 0) {
+            if (sec > 30) sec = 30; // hard cap so a bad header cannot freeze the UI for minutes
+            ctx->retryAfterSeconds = sec;
+        }
+    }
     return bytes;
 }
 
@@ -451,9 +467,7 @@ HttpResult HttpClient::fetchRemoteValidators(const std::string& url, std::string
     ctx.curl = curl;
     curl_easy_setopt(curl, CURLOPT_URL, url.c_str());
     curl_easy_setopt(curl, CURLOPT_NOBODY, 1L);
-    // Prefer a mainstream browser UA — some CDNs (incl. IA) treat Vita UA poorly.
-    curl_easy_setopt(curl, CURLOPT_USERAGENT,
-        "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36");
+    curl_easy_setopt(curl, CURLOPT_USERAGENT, UA_APP);
     curl_easy_setopt(curl, CURLOPT_IPRESOLVE, CURL_IPRESOLVE_V4);
     curl_easy_setopt(curl, CURLOPT_HTTP_VERSION, CURL_HTTP_VERSION_1_1);
     curl_easy_setopt(curl, CURLOPT_SSL_VERIFYHOST, 0L);
@@ -553,9 +567,7 @@ HttpResult HttpClient::downloadToFile(
     curl_easy_setopt(curl, CURLOPT_URL, url.c_str());
     curl_easy_setopt(curl, CURLOPT_HTTPGET, 1L);
     // Browser-like UA helps some CDNs (GitLab package registry, etc.)
-    // Prefer a mainstream browser UA — some CDNs (incl. IA) treat Vita UA poorly.
-    curl_easy_setopt(curl, CURLOPT_USERAGENT,
-        "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36");
+    curl_easy_setopt(curl, CURLOPT_USERAGENT, UA_APP);
     curl_easy_setopt(curl, CURLOPT_SSL_VERIFYHOST, 0L);
     curl_easy_setopt(curl, CURLOPT_SSL_VERIFYPEER, 0L);
     curl_easy_setopt(curl, CURLOPT_SSLVERSION, CURL_SSLVERSION_DEFAULT);
@@ -637,20 +649,38 @@ HttpResult HttpClient::downloadToFile(
         } else if (attempt > 0) {
             curl_easy_setopt(curl, CURLOPT_CONNECTTIMEOUT, CONNECT_TIMEOUT_SECONDS);
         }
-        curl_easy_setopt(curl, CURLOPT_FRESH_CONNECT, attempt > 0 ? 1L : 0L);
-        curl_easy_setopt(curl, CURLOPT_FORBID_REUSE, attempt > 0 ? 1L : 0L);
+        // Only force a brand-new TCP/TLS after serious failures (not every retry).
+        const bool seriousFail =
+            lastFail == CURLE_SSL_CONNECT_ERROR ||
+            lastFail == CURLE_PEER_FAILED_VERIFICATION ||
+            lastFail == CURLE_SSL_CERTPROBLEM ||
+            lastFail == CURLE_COULDNT_CONNECT ||
+            lastFail == CURLE_COULDNT_RESOLVE_HOST ||
+            lastFail == CURLE_OPERATION_TIMEDOUT ||
+            lastFail == CURLE_RECV_ERROR ||
+            lastFail == CURLE_GOT_NOTHING ||
+            lastFail == CURLE_SEND_ERROR;
+        const bool needFresh = (attempt > 0 && seriousFail);
+        curl_easy_setopt(curl, CURLOPT_FRESH_CONNECT, needFresh ? 1L : 0L);
+        curl_easy_setopt(curl, CURLOPT_FORBID_REUSE, needFresh ? 1L : 0L);
         // Drop TLS session reuse after SSL failures (stale sessions can stick on Vita).
         if (attempt > 0 && (lastFail == CURLE_SSL_CONNECT_ERROR ||
                             lastFail == CURLE_PEER_FAILED_VERIFICATION ||
                             lastFail == CURLE_SSL_CERTPROBLEM)) {
             curl_easy_setopt(curl, CURLOPT_SSL_SESSIONID_CACHE, 0L);
         }
+        // UA: app identity first; after connect/SSL trouble try CDN-friendly browser UA.
+        if (attempt > 0 && seriousFail) {
+            curl_easy_setopt(curl, CURLOPT_USERAGENT, UA_CDN_FALLBACK);
+        } else {
+            curl_easy_setopt(curl, CURLOPT_USERAGENT, UA_APP);
+        }
         if (attempt > 0) {
             char retryMsg[160];
             sceClibSnprintf(retryMsg, sizeof(retryMsg),
-                "download retry %d/%d hostHints=gitlab:%d archive:%d github:%d lastCurl=%d",
+                "download retry %d/%d hostHints=gitlab:%d archive:%d github:%d lastCurl=%d fresh=%d",
                 attempt + 1, kMaxAttempts, isGitlab ? 1 : 0, isArchive ? 1 : 0, isGithub ? 1 : 0,
-                static_cast<int>(lastFail));
+                static_cast<int>(lastFail), needFresh ? 1 : 0);
             httpDiagnostic(retryMsg);
             // Short early backoff; grow only after several failures.
             int delayMs = 250 * (attempt <= 3 ? attempt : 3);
@@ -662,7 +692,14 @@ HttpResult HttpClient::downloadToFile(
                 if (sslExtra > delayMs) delayMs = sslExtra;
                 if (delayMs > 4000) delayMs = 4000;
             }
+            // Honor Retry-After from previous 429/503 when present.
+            if (ctx.retryAfterSeconds > 0) {
+                const int raMs = ctx.retryAfterSeconds * 1000;
+                if (raMs > delayMs) delayMs = raMs;
+                ctx.retryAfterSeconds = 0;
+            }
             if (delayMs < 200) delayMs = 200;
+            if (delayMs > 30000) delayMs = 30000;
             sceKernelDelayThread(delayMs * 1000);
             ctx.cancelled = false;
             // CRITICAL: after a mid-transfer drop (e.g. curl 56), the FD is at EOF and
@@ -706,8 +743,10 @@ HttpResult HttpClient::downloadToFile(
             if (!transientHttp) break;
             char httpRetry[120];
             sceClibSnprintf(httpRetry, sizeof(httpRetry),
-                "attempt %d HTTP %ld transient — will retry", attempt + 1, responseCode);
+                "attempt %d HTTP %ld transient — will retry (Retry-After=%d)",
+                attempt + 1, responseCode, ctx.retryAfterSeconds);
             httpDiagnostic(httpRetry);
+            lastFail = CURLE_HTTP_RETURNED_ERROR;
             if (resumeOffset == 0 && ctx.fd >= 0 && ctx.downloaded > 0) {
                 sceIoClose(ctx.fd);
                 ctx.fd = sceIoOpen(destinationPath.c_str(), SCE_O_WRONLY | SCE_O_CREAT | SCE_O_TRUNC, 0777);
