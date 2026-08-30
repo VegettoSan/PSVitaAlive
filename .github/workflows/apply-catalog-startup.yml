@@ -1,0 +1,20 @@
+name: Apply catalog startup fix
+on:
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  apply:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: python3 scripts/apply_catalog_startup.py
+      - run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add \
+            "Client PSVitaAlive/source/network/http_client.cpp" \
+            "Client PSVitaAlive/source/catalog/catalog_manager.cpp" \
+            "Client PSVitaAlive/source/main.cpp"
+          git commit -m "fix(startup): short catalog validators + cache fallback (PS1 hang)" || echo nochange
+          git push
