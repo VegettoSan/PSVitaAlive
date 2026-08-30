@@ -28,8 +28,6 @@ constexpr long LOW_SPEED_TIME_ARCHIVE_SECONDS = 150;
 // Catalog etag checks are HEAD-only — never wait minutes on a stuck GitHub edge.
 constexpr long VALIDATOR_CONNECT_TIMEOUT_SECONDS = 12;
 constexpr long VALIDATOR_TOTAL_TIMEOUT_SECONDS = 20;
-constexpr long GITHUB_TOTAL_TIMEOUT_SECONDS = 60; // catalogs/JSON must not hang splash
-
 constexpr const char* DIAG_LOG = "ux0:data/psvitaalive/logs/session.log";
 // Primary UA identifies the app (IA bot guidelines). CDN fallback is a mainstream browser UA.
 constexpr const char* UA_APP =
@@ -658,10 +656,6 @@ HttpResult HttpClient::downloadToFile(
             curl_easy_setopt(curl, CURLOPT_CONNECTTIMEOUT, ct);
         } else if (attempt > 0) {
             curl_easy_setopt(curl, CURLOPT_CONNECTTIMEOUT, CONNECT_TIMEOUT_SECONDS);
-
-        if (isGithub) {
-            curl_easy_setopt(curl, CURLOPT_TIMEOUT, GITHUB_TOTAL_TIMEOUT_SECONDS);
-        }
         }
         // Only force a brand-new TCP/TLS after serious failures (not every retry).
         const bool seriousFail =
