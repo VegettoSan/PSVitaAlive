@@ -18,8 +18,8 @@ constexpr int WORKER_PRIORITY=0x10000100,WORKER_STACK=128*1024,MAX_RETRIES=3;
 // Fewer SSL rounds per image — UI should not burn 10× curl-35 on a missing icon.
 constexpr int IMAGE_HTTP_ATTEMPTS = 4;
 
-// archive.org/services/img/<id> serves the item thumbnail without a 302 to a datanode
-// (web preview path). Much friendlier for Vita SSL than /download/<id>/icon0.png.
+// archive.org/services/img/<id> is the item *page* thumb (often a screenshot, not icon0).
+// Only used as fallback when the real icon URL fails — never as primary for catalog cards.
 static std::string archiveOrgServicesImgUrl(const std::string& url) {
     const char* marker = "archive.org/download/";
     const size_t pos = url.find(marker);
@@ -131,21 +131,5 @@ void ImageCache::setNetworkPaused(bool paused){if(mutex_>=0)sceKernelLockMutex(m
             servicesUrl=archiveOrgServicesImgUrl(job.url);
         }
         HttpResult r=HttpResult::NetworkError;
-        if(!servicesUrl.empty()){
-            diagnostics::log(std::string("[ImageCache] try services/img url=")+servicesUrl);
-            r=http.downloadToFile(servicesUrl,job.path,0,onProgress,shouldCancel,IMAGE_HTTP_ATTEMPTS);
-            bool okImg=false;
-            if(r==HttpResult::Ok){
-                SceIoStat st={};
-                okImg=sceIoGetstat(job.path.c_str(),&st)>=0&&st.st_size>64;
-            }
-            if(!okImg){
-                sceIoRemove(job.path.c_str());
-                diagnostics::log(std::string("[ImageCache] services/img miss, fallback download url=")+job.url);
-                r=http.downloadToFile(job.url,job.path,0,onProgress,shouldCancel,IMAGE_HTTP_ATTEMPTS);
-            }
-        }else{
-            r=http.downloadToFile(job.url,job.path,0,onProgress,shouldCancel,IMAGE_HTTP_ATTEMPTS);
-        }
-        if(job.url.find("archive.org")!=std::string::npos){/* archive.org image spacing */sceKernelDelayThread(150*1000);}sceKernelLockMutex(mutex_,1,nullptr);const bool cancelled=cancelRequested_||r==HttpResult::Cancelled;const uint64_t doneBytes=currentDownloaded_,doneTotal=currentTotal_;if(!cancelled&&r==HttpResult::Ok){completedBytes_+=doneBytes;if(doneTotal>0)completedTotalBytes_+=doneTotal;}currentFile_.clear();currentPath_.clear();currentDownloaded_=0;currentTotal_=0;currentSpeed_=0;cancelRequested_=false;sceKernelUnlockMutex(mutex_,1);if(cancelled){sceIoRemove(job.path.c_str());sceKernelLockMutex(mutex_,1,nullptr);pending_.erase(std::remove(pending_.begin(),pending_.end(),job.path),pending_.end());sceKernelUnlockMutex(mutex_,1);diagnostics::log(std::string("[ImageCache] cancelled url=")+job.url+" path="+job.path);continue;}bool valid=false;if(r==HttpResult::Ok){SceIoStat st={};valid=sceIoGetstat(job.path.c_str(),&st)>=0&&st.st_size>0;}if(valid)valid=normalizeImageForVita(job.path,job.path.find("/app_")!=std::string::npos?256u:512u);if(valid){markReady(job.path);char m[900];sceClibSnprintf(m,sizeof(m),"[ImageCache] ready url=%s path=%s attempt=%d",job.url.c_str(),job.path.c_str(),job.attempt+1);diagnostics::log(m);}else{sceIoRemove(job.path.c_str());char m[1000];sceClibSnprintf(m,sizeof(m),"[ImageCache] failed url=%s path=%s attempt=%d http=%d error=%s",job.url.c_str(),job.path.c_str(),job.attempt+1,http.lastStatusCode(),http.lastError().c_str());diagnostics::log(m);if(job.attempt+1<MAX_RETRIES&&!stopping_){sceKernelDelayThread((job.attempt+1)*250*1000);job.attempt++;sceKernelLockMutex(mutex_,1,nullptr);queue_.push_back(job);sceKernelUnlockMutex(mutex_,1);}else markFailed(job.path);}}http.shutdown();return 0;}
+        /* icon URL first — services/img is last resort (IA thumb is often a screenshot) */r=http.downloadToFile(job.url,job.path,0,onProgress,shouldCancel,IMAGE_HTTP_ATTEMPTS);bool okImg=false;if(r==HttpResult::Ok){SceIoStat st={};okImg=sceIoGetstat(job.path.c_str(),&st)>=0&&st.st_size>64;}if(!okImg&&!servicesUrl.empty()){sceIoRemove(job.path.c_str());diagnostics::log(std::string("[ImageCache] icon miss, fallback services/img url=")+servicesUrl);r=http.downloadToFile(servicesUrl,job.path,0,onProgress,shouldCancel,IMAGE_HTTP_ATTEMPTS);}if(job.url.find("archive.org")!=std::string::npos){/* archive.org image spacing */sceKernelDelayThread(150*1000);}sceKernelLockMutex(mutex_,1,nullptr);const bool cancelled=cancelRequested_||r==HttpResult::Cancelled;const uint64_t doneBytes=currentDownloaded_,doneTotal=currentTotal_;if(!cancelled&&r==HttpResult::Ok){completedBytes_+=doneBytes;if(doneTotal>0)completedTotalBytes_+=doneTotal;}currentFile_.clear();currentPath_.clear();currentDownloaded_=0;currentTotal_=0;currentSpeed_=0;cancelRequested_=false;sceKernelUnlockMutex(mutex_,1);if(cancelled){sceIoRemove(job.path.c_str());sceKernelLockMutex(mutex_,1,nullptr);pending_.erase(std::remove(pending_.begin(),pending_.end(),job.path),pending_.end());sceKernelUnlockMutex(mutex_,1);diagnostics::log(std::string("[ImageCache] cancelled url=")+job.url+" path="+job.path);continue;}bool valid=false;if(r==HttpResult::Ok){SceIoStat st={};valid=sceIoGetstat(job.path.c_str(),&st)>=0&&st.st_size>0;}if(valid)valid=normalizeImageForVita(job.path,job.path.find("/app_")!=std::string::npos?256u:512u);if(valid){markReady(job.path);char m[900];sceClibSnprintf(m,sizeof(m),"[ImageCache] ready url=%s path=%s attempt=%d",job.url.c_str(),job.path.c_str(),job.attempt+1);diagnostics::log(m);}else{sceIoRemove(job.path.c_str());char m[1000];sceClibSnprintf(m,sizeof(m),"[ImageCache] failed url=%s path=%s attempt=%d http=%d error=%s",job.url.c_str(),job.path.c_str(),job.attempt+1,http.lastStatusCode(),http.lastError().c_str());diagnostics::log(m);if(job.attempt+1<MAX_RETRIES&&!stopping_){sceKernelDelayThread((job.attempt+1)*250*1000);job.attempt++;sceKernelLockMutex(mutex_,1,nullptr);queue_.push_back(job);sceKernelUnlockMutex(mutex_,1);}else markFailed(job.path);}}http.shutdown();return 0;}
 } // namespace psvitaalive::ui
