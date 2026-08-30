@@ -24,6 +24,10 @@ constexpr long CONNECT_TIMEOUT_ARCHIVE_SLOW = 40;
 constexpr long LOW_SPEED_LIMIT = 1;
 constexpr long LOW_SPEED_TIME_SECONDS = 120;
 constexpr long LOW_SPEED_TIME_ARCHIVE_SECONDS = 150;
+
+// Catalog etag checks are HEAD-only — never wait minutes on a stuck GitHub edge.
+constexpr long VALIDATOR_CONNECT_TIMEOUT_SECONDS = 12;
+constexpr long VALIDATOR_TOTAL_TIMEOUT_SECONDS = 20;
 constexpr const char* DIAG_LOG = "ux0:data/psvitaalive/logs/session.log";
 // Primary UA identifies the app (IA bot guidelines). CDN fallback is a mainstream browser UA.
 constexpr const char* UA_APP =
@@ -478,9 +482,10 @@ HttpResult HttpClient::fetchRemoteValidators(const std::string& url, std::string
     curl_easy_setopt(curl, CURLOPT_SSL_OPTIONS, (long)CURLSSLOPT_NO_REVOKE);
 #endif
     curl_easy_setopt(curl, CURLOPT_SSL_SESSIONID_CACHE, 1L);
-    curl_easy_setopt(curl, CURLOPT_CONNECTTIMEOUT, CONNECT_TIMEOUT_SECONDS);
-    curl_easy_setopt(curl, CURLOPT_LOW_SPEED_LIMIT, LOW_SPEED_LIMIT);
-    curl_easy_setopt(curl, CURLOPT_LOW_SPEED_TIME, LOW_SPEED_TIME_SECONDS);
+    // Hard ceiling: catalog checks must not hang the splash on PS1/PSP/Vita Games.
+    curl_easy_setopt(curl, CURLOPT_CONNECTTIMEOUT, VALIDATOR_CONNECT_TIMEOUT_SECONDS);
+    curl_easy_setopt(curl, CURLOPT_TIMEOUT, VALIDATOR_TOTAL_TIMEOUT_SECONDS);
+    curl_easy_setopt(curl, CURLOPT_LOW_SPEED_LIMIT, 0L); // disable low-speed abort for tiny HEAD
     curl_easy_setopt(curl, CURLOPT_FOLLOWLOCATION, 1L);
     curl_easy_setopt(curl, CURLOPT_HEADERFUNCTION, headerCallback);
     curl_easy_setopt(curl, CURLOPT_HEADERDATA, &ctx);
