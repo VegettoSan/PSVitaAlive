@@ -15,6 +15,34 @@
 namespace psvitaalive::ui { namespace {
 constexpr const char* IMAGE_ROOT="ux0:data/psvitaalive/cache/images/v2";
 constexpr int WORKER_PRIORITY=0x10000100,WORKER_STACK=128*1024,MAX_RETRIES=3;
+// Fewer SSL rounds per image — UI should not burn 10× curl-35 on a missing icon.
+constexpr int IMAGE_HTTP_ATTEMPTS = 4;
+
+// archive.org/services/img/<id> serves the item thumbnail without a 302 to a datanode
+// (web preview path). Much friendlier for Vita SSL than /download/<id>/icon0.png.
+static std::string archiveOrgServicesImgUrl(const std::string& url) {
+    const char* marker = "archive.org/download/";
+    const size_t pos = url.find(marker);
+    if (pos == std::string::npos) return {};
+    size_t idStart = pos + std::strlen(marker);
+    const size_t idEnd = url.find('/', idStart);
+    if (idEnd == std::string::npos || idEnd <= idStart) return {};
+    const std::string id = url.substr(idStart, idEnd - idStart);
+    if (id.empty() || id.find("..") != std::string::npos) return {};
+    return std::string("https://archive.org/services/img/") + id;
+}
+
+static bool urlLooksLikeCatalogIcon(const std::string& url, const std::string& path) {
+    // Catalog app icons land in .../app_<hash>.png; screenshots use shot_ / other prefixes.
+    if (path.find("/app_") != std::string::npos) return true;
+    const size_t slash = url.find_last_of('/');
+    const std::string file = (slash == std::string::npos) ? url : url.substr(slash + 1);
+    // common homebrew icon filenames
+    if (file == "icon0.png" || file == "icon.png" || file == "icon0.jpg" || file == "icon.jpg")
+        return true;
+    return false;
+}
+
 constexpr uint64_t RETRY_COOLDOWN_US=3000000ULL;
 constexpr size_t MAX_INTERACTIVE_QUEUE=12;
 uint32_t fnv1a(const std::string&v){uint32_t h=2166136261u;for(unsigned char c:v){h^=c;h*=16777619u;}return h;}
@@ -97,5 +125,27 @@ void ImageCache::cancelQueuedRequests(){if(mutex_<0)return;sceKernelLockMutex(mu
 void ImageCache::markReady(const std::string&p){sceKernelLockMutex(mutex_,1,nullptr);if(!contains(ready_,p))ready_.push_back(p);pending_.erase(std::remove(pending_.begin(),pending_.end(),p),pending_.end());failed_.erase(std::remove(failed_.begin(),failed_.end(),p),failed_.end());retryAfter_.erase(p);sceKernelUnlockMutex(mutex_,1);}
 void ImageCache::markFailed(const std::string&p){sceKernelLockMutex(mutex_,1,nullptr);pending_.erase(std::remove(pending_.begin(),pending_.end(),p),pending_.end());if(!contains(failed_,p))failed_.push_back(p);retryAfter_[p]=sceKernelGetSystemTimeWide()+RETRY_COOLDOWN_US;sceKernelUnlockMutex(mutex_,1);}
 int ImageCache::workerEntry(SceSize a,void*arg){(void)a;ImageCache*self=nullptr;if(arg)std::memcpy(&self,arg,sizeof(self));return self?self->workerMain():-1;}
-void ImageCache::setNetworkPaused(bool paused){if(mutex_>=0)sceKernelLockMutex(mutex_,1,nullptr);const bool changed=(networkPaused_!=paused);networkPaused_=paused;if(mutex_>=0)sceKernelUnlockMutex(mutex_,1);if(changed){if(paused)diagnostics::log("[ImageCache] network paused (install/download active)");else diagnostics::log("[ImageCache] network resumed");}}int ImageCache::workerMain(){HttpClient http;if(http.init()!=HttpResult::Ok){diagnostics::log("[ImageCache] HTTP initialization failed");return-1;}while(!stopping_){bool paused=false;if(mutex_>=0){sceKernelLockMutex(mutex_,1,nullptr);paused=networkPaused_;sceKernelUnlockMutex(mutex_,1);}if(paused){sceKernelDelayThread(100*1000);continue;}Job job;bool have=false;sceKernelLockMutex(mutex_,1,nullptr);if(!queue_.empty()){job=queue_.front();queue_.erase(queue_.begin());have=true;const size_t slash=job.url.find_last_of('/');currentFile_=(slash==std::string::npos?job.url:job.url.substr(slash+1));currentPath_=job.path;currentDownloaded_=0;currentTotal_=0;currentSpeed_=0;}sceKernelUnlockMutex(mutex_,1);if(!have){sceKernelDelayThread(50*1000);continue;}HttpProgressFn onProgress=[this](const HttpProgress&p){if(mutex_<0)return;sceKernelLockMutex(mutex_,1,nullptr);currentDownloaded_=p.downloaded;currentTotal_=p.total;currentSpeed_=p.bytesPerSecond;sceKernelUnlockMutex(mutex_,1);};HttpCancelFn shouldCancel=[this](){if(mutex_<0)return true;sceKernelLockMutex(mutex_,1,nullptr);const bool c=cancelRequested_||stopping_;sceKernelUnlockMutex(mutex_,1);return c;};HttpResult r=http.downloadToFile(job.url,job.path,0,onProgress,shouldCancel);if(job.url.find("archive.org")!=std::string::npos){/* archive.org image spacing */sceKernelDelayThread(150*1000);}sceKernelLockMutex(mutex_,1,nullptr);const bool cancelled=cancelRequested_||r==HttpResult::Cancelled;const uint64_t doneBytes=currentDownloaded_,doneTotal=currentTotal_;if(!cancelled&&r==HttpResult::Ok){completedBytes_+=doneBytes;if(doneTotal>0)completedTotalBytes_+=doneTotal;}currentFile_.clear();currentPath_.clear();currentDownloaded_=0;currentTotal_=0;currentSpeed_=0;cancelRequested_=false;sceKernelUnlockMutex(mutex_,1);if(cancelled){sceIoRemove(job.path.c_str());sceKernelLockMutex(mutex_,1,nullptr);pending_.erase(std::remove(pending_.begin(),pending_.end(),job.path),pending_.end());sceKernelUnlockMutex(mutex_,1);diagnostics::log(std::string("[ImageCache] cancelled url=")+job.url+" path="+job.path);continue;}bool valid=false;if(r==HttpResult::Ok){SceIoStat st={};valid=sceIoGetstat(job.path.c_str(),&st)>=0&&st.st_size>0;}if(valid)valid=normalizeImageForVita(job.path,job.path.find("/app_")!=std::string::npos?256u:512u);if(valid){markReady(job.path);char m[900];sceClibSnprintf(m,sizeof(m),"[ImageCache] ready url=%s path=%s attempt=%d",job.url.c_str(),job.path.c_str(),job.attempt+1);diagnostics::log(m);}else{sceIoRemove(job.path.c_str());char m[1000];sceClibSnprintf(m,sizeof(m),"[ImageCache] failed url=%s path=%s attempt=%d http=%d error=%s",job.url.c_str(),job.path.c_str(),job.attempt+1,http.lastStatusCode(),http.lastError().c_str());diagnostics::log(m);if(job.attempt+1<MAX_RETRIES&&!stopping_){sceKernelDelayThread((job.attempt+1)*250*1000);job.attempt++;sceKernelLockMutex(mutex_,1,nullptr);queue_.push_back(job);sceKernelUnlockMutex(mutex_,1);}else markFailed(job.path);}}http.shutdown();return 0;}
+void ImageCache::setNetworkPaused(bool paused){if(mutex_>=0)sceKernelLockMutex(mutex_,1,nullptr);const bool changed=(networkPaused_!=paused);networkPaused_=paused;if(mutex_>=0)sceKernelUnlockMutex(mutex_,1);if(changed){if(paused)diagnostics::log("[ImageCache] network paused (install/download active)");else diagnostics::log("[ImageCache] network resumed");}}int ImageCache::workerMain(){HttpClient http;if(http.init()!=HttpResult::Ok){diagnostics::log("[ImageCache] HTTP initialization failed");return-1;}while(!stopping_){bool paused=false;if(mutex_>=0){sceKernelLockMutex(mutex_,1,nullptr);paused=networkPaused_;sceKernelUnlockMutex(mutex_,1);}if(paused){sceKernelDelayThread(100*1000);continue;}Job job;bool have=false;sceKernelLockMutex(mutex_,1,nullptr);if(!queue_.empty()){job=queue_.front();queue_.erase(queue_.begin());have=true;const size_t slash=job.url.find_last_of('/');currentFile_=(slash==std::string::npos?job.url:job.url.substr(slash+1));currentPath_=job.path;currentDownloaded_=0;currentTotal_=0;currentSpeed_=0;}sceKernelUnlockMutex(mutex_,1);if(!have){sceKernelDelayThread(50*1000);continue;}HttpProgressFn onProgress=[this](const HttpProgress&p){if(mutex_<0)return;sceKernelLockMutex(mutex_,1,nullptr);currentDownloaded_=p.downloaded;currentTotal_=p.total;currentSpeed_=p.bytesPerSecond;sceKernelUnlockMutex(mutex_,1);};HttpCancelFn shouldCancel=[this](){if(mutex_<0)return true;sceKernelLockMutex(mutex_,1,nullptr);const bool c=cancelRequested_||stopping_;sceKernelUnlockMutex(mutex_,1);return c;};std::string fetchUrl=job.url;
+        std::string servicesUrl;
+        if(urlLooksLikeCatalogIcon(job.url,job.path)){
+            servicesUrl=archiveOrgServicesImgUrl(job.url);
+        }
+        HttpResult r=HttpResult::NetworkError;
+        if(!servicesUrl.empty()){
+            diagnostics::log(std::string("[ImageCache] try services/img url=")+servicesUrl);
+            r=http.downloadToFile(servicesUrl,job.path,0,onProgress,shouldCancel,IMAGE_HTTP_ATTEMPTS);
+            bool okImg=false;
+            if(r==HttpResult::Ok){
+                SceIoStat st={};
+                okImg=sceIoGetstat(job.path.c_str(),&st)>=0&&st.st_size>64;
+            }
+            if(!okImg){
+                sceIoRemove(job.path.c_str());
+                diagnostics::log(std::string("[ImageCache] services/img miss, fallback download url=")+job.url);
+                r=http.downloadToFile(job.url,job.path,0,onProgress,shouldCancel,IMAGE_HTTP_ATTEMPTS);
+            }
+        }else{
+            r=http.downloadToFile(job.url,job.path,0,onProgress,shouldCancel,IMAGE_HTTP_ATTEMPTS);
+        }
+        if(job.url.find("archive.org")!=std::string::npos){/* archive.org image spacing */sceKernelDelayThread(150*1000);}sceKernelLockMutex(mutex_,1,nullptr);const bool cancelled=cancelRequested_||r==HttpResult::Cancelled;const uint64_t doneBytes=currentDownloaded_,doneTotal=currentTotal_;if(!cancelled&&r==HttpResult::Ok){completedBytes_+=doneBytes;if(doneTotal>0)completedTotalBytes_+=doneTotal;}currentFile_.clear();currentPath_.clear();currentDownloaded_=0;currentTotal_=0;currentSpeed_=0;cancelRequested_=false;sceKernelUnlockMutex(mutex_,1);if(cancelled){sceIoRemove(job.path.c_str());sceKernelLockMutex(mutex_,1,nullptr);pending_.erase(std::remove(pending_.begin(),pending_.end(),job.path),pending_.end());sceKernelUnlockMutex(mutex_,1);diagnostics::log(std::string("[ImageCache] cancelled url=")+job.url+" path="+job.path);continue;}bool valid=false;if(r==HttpResult::Ok){SceIoStat st={};valid=sceIoGetstat(job.path.c_str(),&st)>=0&&st.st_size>0;}if(valid)valid=normalizeImageForVita(job.path,job.path.find("/app_")!=std::string::npos?256u:512u);if(valid){markReady(job.path);char m[900];sceClibSnprintf(m,sizeof(m),"[ImageCache] ready url=%s path=%s attempt=%d",job.url.c_str(),job.path.c_str(),job.attempt+1);diagnostics::log(m);}else{sceIoRemove(job.path.c_str());char m[1000];sceClibSnprintf(m,sizeof(m),"[ImageCache] failed url=%s path=%s attempt=%d http=%d error=%s",job.url.c_str(),job.path.c_str(),job.attempt+1,http.lastStatusCode(),http.lastError().c_str());diagnostics::log(m);if(job.attempt+1<MAX_RETRIES&&!stopping_){sceKernelDelayThread((job.attempt+1)*250*1000);job.attempt++;sceKernelLockMutex(mutex_,1,nullptr);queue_.push_back(job);sceKernelUnlockMutex(mutex_,1);}else markFailed(job.path);}}http.shutdown();return 0;}
 } // namespace psvitaalive::ui

@@ -518,7 +518,8 @@ HttpResult HttpClient::downloadToFile(
     const std::string& destinationPath,
     uint64_t resumeOffset,
     HttpProgressFn onProgress,
-    HttpCancelFn shouldCancel
+    HttpCancelFn shouldCancel,
+    int maxAttemptsOverride
 ) {
     lastStatus_ = 0;
     lastRangeAccepted_ = false;
@@ -636,7 +637,9 @@ HttpResult HttpClient::downloadToFile(
         CURL_SSLVERSION_DEFAULT,
     };
     // Keep retries, but make early attempts cheap (fail-fast) so start is seconds not minutes.
-    const int kMaxAttempts = isArchive ? 10 : 5;
+    const int kMaxAttempts = (maxAttemptsOverride > 0)
+        ? maxAttemptsOverride
+        : (isArchive ? 10 : 5);
     long responseCode = 0;
     CURLcode lastFail = CURLE_OK;
     for (int attempt = 0; attempt < kMaxAttempts; ++attempt) {

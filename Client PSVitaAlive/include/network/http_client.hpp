@@ -44,7 +44,8 @@ public:
         const std::string& destinationPath,
         uint64_t resumeOffset = 0,
         HttpProgressFn onProgress = nullptr,
-        HttpCancelFn shouldCancel = nullptr
+        HttpCancelFn shouldCancel = nullptr,
+        int maxAttemptsOverride = 0 // 0 = default (archive 10 / other 5); images can pass 4
     );
 
     /**
