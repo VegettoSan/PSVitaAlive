@@ -1,0 +1,17 @@
+name: Apply zip stat include
+on:
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  apply:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: python3 scripts/apply_zip_stat_include.py
+      - run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add "Client PSVitaAlive/source/archive/zip_extractor.cpp"
+          git commit -m "fix(build): include psp2/io/stat.h for sceIoGetstat" || echo nochange
+          git push
