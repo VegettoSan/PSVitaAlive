@@ -1,0 +1,17 @@
+name: Apply large ZIP Vita open
+on:
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  apply:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: python3 scripts/apply_zip_largefile_vita.py
+      - run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add "Client PSVitaAlive/source/archive/zip_extractor.cpp"
+          git commit -m "fix(extract): open ZIPs >2GB via sceIo source (zip_open err=18)" || echo nochange
+          git push
