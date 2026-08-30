@@ -12,7 +12,7 @@ We use Archive.org as our Homebrew database, which may cause downloads to take a
 
 ## Improvements
 
-### The problem of extracting Game Files larger than 2GB has been fixed.
+- ### The problem of extracting Game Files larger than 2GB has been fixed.
 
 - Interface notifications were added to prevent **confusion** during **downloads and installations**.
 - The way the system handles downloads and retries for slow networks or connection failures during downloads has been improved.
