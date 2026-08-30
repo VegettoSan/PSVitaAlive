@@ -9,21 +9,14 @@
   ],
   "category_id": "ports",
   "subcategory_ids": [
+    "adventure",
     "other"
   ],
   "version": "v.0.0.1-5.0.2",
   "version_date": "2026-07-28",
   "requirements": "- libshacccg.suprx\n- Game Data Files: PC",
-  "size": 9793795,
+  "size": 9793700,
   "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-barony-vita/icon0.png",
-  "screenshots": [
-    "https://archive.org/download/psvitaalive-barony-vita/shot_01.png",
-    "https://archive.org/download/psvitaalive-barony-vita/shot_02.png",
-    "https://archive.org/download/psvitaalive-barony-vita/shot_03.png",
-    "https://archive.org/download/psvitaalive-barony-vita/shot_04.png",
-    "https://archive.org/download/psvitaalive-barony-vita/shot_05.png"
-  ],
   "links": [
     {
       "type": "Download",
@@ -32,14 +25,11 @@
       "recommended": true
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/Brendonm17/Barony-Vita/releases"
-    },
-    {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/Brendonm17/Barony-Vita/releases/tag/v0.0.1-5.0.2"
+      "type": "Game Files",
+      "name": "Game Files ZIP",
+      "url": "https://archive.org/download/psvitaalive-barony-vita/Game%20Files.zip",
+      "size": 732954624,
+      "extract_path": "ux0:data/"
     },
     {
       "type": "Repository",
@@ -47,9 +37,17 @@
       "url": "https://github.com/Brendonm17/Barony-Vita"
     }
   ],
+  "icon": "https://archive.org/download/psvitaalive-barony-vita/icon0.png",
+  "screenshots": [
+    "https://archive.org/download/psvitaalive-barony-vita/shot_01.png",
+    "https://archive.org/download/psvitaalive-barony-vita/shot_02.png",
+    "https://archive.org/download/psvitaalive-barony-vita/shot_03.png",
+    "https://archive.org/download/psvitaalive-barony-vita/shot_04.png",
+    "https://archive.org/download/psvitaalive-barony-vita/shot_05.png"
+  ],
   "source_name": "VitaHomebrewDB",
   "source_id": "1444",
   "source_url": "https://github.com/Brendonm17/Barony-Vita",
   "release_page": "https://github.com/Brendonm17/Barony-Vita/releases",
-  "updated_at": "2026-08-13T15:34:48.324920+00:00"
+  "updated_at": "2026-08-13T15:34"
 }
