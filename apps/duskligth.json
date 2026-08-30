@@ -16,35 +16,41 @@
   "version": "00.00",
   "version_date": "2026-08-24",
   "requirements": "- ISO The Legend of Zelda: Twilight Princess Region USA.",
-  "size": 14499996,
+  "size": 14499709,
   "status": "Verified",
   "links": [
     {
       "type": "Download",
       "name": "VPK",
       "url": "https://archive.org/download/duskligth-ps-vita/DuskGXM-0-5-1.vpk",
-      "size": 14500000,
+      "size": 14499709,
       "recommended": true
     },
     {
       "type": "Download",
       "name": "VPK - MEDIAFIRE",
       "url": "https://www.mediafire.com/file/3a012dwm6tcurwd/DuskGXM-0-5-1.vpk/file",
-      "size": 14500000,
-      "recommended": false
+      "size": 14499709
     },
     {
       "type": "Game Files",
       "name": "Game Files USA - Mediafire",
       "url": "https://www.mediafire.com/file/3589zi9b58vli2v/Game+Files.zip/file",
-      "size": 1300000000,
+      "size": 1300301349,
       "extract_path": "ux0:data/"
     },
     {
       "type": "Game Files",
       "name": "Game Files USA",
       "url": "https://archive.org/download/duskligth-ps-vita/Game%20Files.zip",
-      "size": 1300000000,
+      "size": 1300301349,
+      "extract_path": "ux0:data/"
+    },
+    {
+      "type": "Game Files",
+      "name": "Game Files Spanish",
+      "url": "https://archive.org/download/duskligth-ps-vita/Game%20Files%20ES.zip",
+      "size": 1050148864,
       "extract_path": "ux0:data/"
     }
   ],
