@@ -1,5 +1,5 @@
-id: 2026-08-29-0001
-title: PsVita Alive Store 01.14
+id: 2026-08-30-0001
+title: PsVita Alive Store 01.15
 enabled: true
 ---
 # Thanks for using PS Vita Alive Store.
@@ -13,7 +13,8 @@ We use Archive.org as our Homebrew database, which may cause downloads to take a
 ## Improvements
 
 - Interface notifications were added to prevent **confusion** during **downloads and installations**.
-- The download system was improved to handle slow downloads and prevent **errors**.
+- The way the system handles downloads and retries for slow networks or connection failures during downloads has been improved.
+- A patch has been implemented to fix the issue where the app would get stuck loading the PS1 catalog when launching.
 
 ---
 
