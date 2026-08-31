@@ -44,3 +44,4 @@ bool categoryWantsDataFiles(const std::string& category) {
         || c.find("emulator") != std::string::npos;
 }
 """
+
