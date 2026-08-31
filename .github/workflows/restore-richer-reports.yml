@@ -1,0 +1,24 @@
+name: Restore richer reports
+on:
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  apply:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Restore and improve error reports
+        run: |
+          set -e
+          curl -sL "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/e36422b7b67e92d5195a3ee9513de60eca0ebbb0/Client%20PSVitaAlive/source/network/error_reporter.cpp" -o "Client PSVitaAlive/source/network/error_reporter.cpp"
+          python3 scripts/patch_reports_inline.py
+          grep -q "kMaxParts = 5" "Client PSVitaAlive/source/network/error_reporter.cpp"
+          grep -q "truncate(req.context, 1800)" "Client PSVitaAlive/source/network/error_reporter.cpp"
+      - name: Commit
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add "Client PSVitaAlive/source/network/error_reporter.cpp"
+          git commit -m "fix(reports): richer Discord reports (reason, tokens, more log parts)" || echo nochange
+          git push
