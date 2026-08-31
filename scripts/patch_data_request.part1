@@ -1,0 +1,46 @@
+#!/usr/bin/env python3
+"""Request Data/Game Files button + Discord webhook (FullCatalogScreen)."""
+from __future__ import annotations
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parents[1]
+HPP = ROOT / "Client PSVitaAlive/include/ui/full_catalog_screen.hpp"
+CPP = ROOT / "Client PSVitaAlive/source/ui/full_catalog_screen.cpp"
+
+HPP_NEEDLE = """    void openReportConfirm();
+    void closeReportConfirm();
+
+    // Install All (VPK + Game Files + Data Files) wizard + sequential queue"""
+
+HPP_INSERT = """    void openReportConfirm();
+    void closeReportConfirm();
+
+    bool dataRequestConfirmVisible_ = false;
+    std::atomic<bool> dataRequestBusy_{false};
+    std::atomic<bool> dataRequestDone_{false};
+    std::atomic<bool> dataRequestOk_{false};
+    char dataRequestResultMsg_[64] = {};
+    SceUID dataRequestThread_ = -1;
+    std::string dataReqName_;
+    std::string dataReqTitleId_;
+    std::string dataReqVersion_;
+    std::string dataReqDate_;
+    static int dataRequestWorkerEntry(SceSize args, void* argp);
+    void openDataRequestConfirm();
+    void closeDataRequestConfirm();
+    void drawDataRequestConfirmOverlay();
+    void trySendDataRequest();
+    void pollDataRequestWorker();
+    bool itemEligibleForDataRequest(const CatalogItem& item) const;
+
+    // Install All (VPK + Game Files + Data Files) wizard + sequential queue"""
+
+HELPER = r"""
+bool categoryWantsDataFiles(const std::string& category) {
+    std::string c = lowerAscii(category);
+    return c == "ports" || c == "games" || c == "emulators" || c == "media"
+        || c.find("port") != std::string::npos
+        || c.find("game") != std::string::npos
+        || c.find("emulator") != std::string::npos;
+}
+"""
