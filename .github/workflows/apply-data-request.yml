@@ -8,19 +8,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Decompress patch and apply
+      - name: Apply patch
         run: |
           set -e
-          python3 - <<'PY'
-          import base64, zlib, pathlib
-          b64 = pathlib.Path('scripts/patch_data_request.zlib.b64').read_text().strip()
-          data = zlib.decompress(base64.b64decode(b64))
-          pathlib.Path('scripts/patch_data_request.py').write_bytes(data)
-          print('wrote patch', len(data))
-          PY
           python3 scripts/patch_data_request.py
           grep -q 'Request data' "Client PSVitaAlive/source/ui/full_catalog_screen.cpp"
           grep -q 'pollDataRequestWorker();' "Client PSVitaAlive/source/ui/full_catalog_screen.cpp"
+          grep -q 'itemEligibleForDataRequest' "Client PSVitaAlive/include/ui/full_catalog_screen.hpp"
+          grep -q 'closeDataRequestConfirm();trySendDataRequest' "Client PSVitaAlive/source/ui/full_catalog_screen.cpp"
       - name: Commit
         run: |
           git config user.name "github-actions[bot]"
