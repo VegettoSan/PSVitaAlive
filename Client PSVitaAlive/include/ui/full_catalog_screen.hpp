@@ -300,6 +300,25 @@ private:
     void openReportConfirm();
     void closeReportConfirm();
 
+    // Request Data/Game Files (Discord webhook, detail panel)
+    bool dataRequestConfirmVisible_ = false;
+    std::atomic<bool> dataRequestBusy_{false};
+    std::atomic<bool> dataRequestDone_{false};
+    std::atomic<bool> dataRequestOk_{false};
+    char dataRequestResultMsg_[64] = {};
+    SceUID dataRequestThread_ = -1;
+    std::string dataReqName_;
+    std::string dataReqTitleId_;
+    std::string dataReqVersion_;
+    std::string dataReqDate_;
+    static int dataRequestWorkerEntry(SceSize args, void* argp);
+    void openDataRequestConfirm();
+    void closeDataRequestConfirm();
+    void drawDataRequestConfirmOverlay();
+    void trySendDataRequest();
+    void pollDataRequestWorker();
+    bool itemEligibleForDataRequest(const CatalogItem& item) const;
+
     // Install All (VPK + Game Files + Data Files) wizard + sequential queue
     enum class InstallAllPhase {
         Hidden = 0,

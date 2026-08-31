@@ -9,6 +9,7 @@
 #endif
 #include "diagnostic_logger.hpp"
 #include "network/error_reporter.hpp"
+#include "network/http_client.hpp"
 #include "network/news_manager.hpp"
 #include <psp2/ctrl.h>
 #include <psp2/touch.h>
@@ -493,6 +494,17 @@ bool itemHasDataOrGameFiles(const CatalogItem& it) {
         || itemHasLinkType(it, "data file") || itemHasLinkType(it, "game file");
 }
 
+/** Categories where Data/Game Files requests make sense (catalog category_id). */
+bool categoryWantsDataFiles(const std::string& category) {
+    std::string c = lowerAscii(category);
+    // ports / games / emulators (+ media). Skip utilities & plugins.
+    return c == "ports" || c == "games" || c == "emulators" || c == "media"
+        || c.find("port") != std::string::npos
+        || c.find("game") != std::string::npos
+        || c.find("emulator") != std::string::npos;
+}
+
+
 bool isDownloadTypeLink(const CatalogLink& l) {
     const std::string t = normalizeLinkType(l.type);
     if (!(t == "download" || t == "downloads")) return false;
@@ -909,6 +921,182 @@ void FullCatalogScreen::openReportConfirm() {
 void FullCatalogScreen::closeReportConfirm() {
     reportConfirmVisible_ = false;
 }
+
+
+bool FullCatalogScreen::itemEligibleForDataRequest(const CatalogItem& item) const {
+    if (itemHasDataOrGameFiles(item)) return false;
+    if (state_.catalog == CatalogType::VitaGames || state_.catalog == CatalogType::PspGames
+        || state_.catalog == CatalogType::Ps1Games) return true;
+    return categoryWantsDataFiles(item.category);
+}
+
+void FullCatalogScreen::openDataRequestConfirm() {
+    if (dataRequestBusy_.load() || reportConfirmVisible_ || newsVisible_) return;
+    if (installAllPhase_ != InstallAllPhase::Hidden) return;
+    const int i = selectedIndex();
+    if (i < 0) return;
+    const CatalogItem& it = catalogView()[i];
+    if (!itemEligibleForDataRequest(it)) return;
+    dataReqName_ = it.name;
+    dataReqTitleId_ = it.titleId;
+    dataReqVersion_ = it.version;
+    dataReqDate_ = it.versionDate;
+    dataRequestConfirmVisible_ = true;
+}
+
+void FullCatalogScreen::closeDataRequestConfirm() {
+    dataRequestConfirmVisible_ = false;
+}
+
+void FullCatalogScreen::drawDataRequestConfirmOverlay() {
+    if (!dataRequestConfirmVisible_ || !font_) return;
+    const unsigned ACC = ACCENT;
+    const int w = 560, h = 280;
+    const int x = (SCREEN_W - w) / 2, y = (SCREEN_H - h) / 2;
+    vita2d_draw_rectangle(0, 0, SCREEN_W, SCREEN_H, RGBA8(0, 0, 0, 160));
+    vita2d_draw_rectangle(x, y, w, h, PANEL);
+    vita2d_draw_rectangle(x, y, w, 3, ACC);
+    vita2d_draw_rectangle(x, y + 3, 3, h - 6, ACC);
+    vita2d_draw_rectangle(x + w - 3, y + 3, 3, h - 6, BORDER);
+    vita2d_draw_rectangle(x, y + h - 3, w, 3, BORDER);
+
+    vita2d_pgf_draw_text(font_, x + 24, y + 36, ACC, 0.62f, "REQUEST DATA / GAME FILES");
+    vita2d_pgf_draw_text(font_, x + 24, y + 72, WHITE, 0.60f, "This app has no Data/Game Files links.");
+    vita2d_pgf_draw_text(font_, x + 24, y + 100, TEXT, 0.54f, "Send a request so we can look for them.");
+    vita2d_pgf_draw_text(font_, x + 24, y + 122, TEXT, 0.54f, "It may take several days — we will add them");
+    vita2d_pgf_draw_text(font_, x + 24, y + 144, TEXT, 0.54f, "when available. Thank you for your patience.");
+
+    const int by = y + h - 56, bh = 40, bw = 180, gap = 24;
+    const int bxCancel = x + (w - (bw * 2 + gap)) / 2;
+    const int bxSend = bxCancel + bw + gap;
+
+    vita2d_draw_rectangle(bxCancel, by, bw, bh, SURFACE2);
+    vita2d_draw_rectangle(bxCancel, by, bw, 1, BORDER);
+    vita2d_draw_rectangle(bxCancel, by + bh - 1, bw, 1, BORDER);
+    {
+        const char* lab = "O  Cancel";
+        const float sc = 0.62f;
+        const int tw = vita2d_pgf_text_width(font_, sc, lab);
+        vita2d_pgf_draw_text(font_, bxCancel + (bw - tw) / 2, by + 27, WHITE, sc, lab);
+    }
+    vita2d_draw_rectangle(bxSend, by, bw, bh, ACC);
+    {
+        const char* lab = "X  Send";
+        const float sc = 0.62f;
+        const int tw = vita2d_pgf_text_width(font_, sc, lab);
+        vita2d_pgf_draw_text(font_, bxSend + (bw - tw) / 2, by + 27, BG, sc, lab);
+    }
+}
+
+namespace {
+// Same Discord webhook as error reports (rotate if abused).
+constexpr const char* kDataRequestWebhookUrl =
+    "https://discord.com/api/webhooks/1540832184774959268/"
+    "XPinil0HHmwzje7MOMXjXi0iQEHf7lHQtmZZILre3AbXMTxRLnObpYwX5yGhqzrdROWr";
+
+std::string dataReqJsonEscape(const std::string& in) {
+    std::string out;
+    out.reserve(in.size() + 8);
+    for (unsigned char c : in) {
+        switch (c) {
+        case '\\': out += "\\\\"; break;
+        case '"':  out += "\\\""; break;
+        case '\n': out += "\\n"; break;
+        case '\r': out += "\\r"; break;
+        case '\t': out += "\\t"; break;
+        default:
+            if (c < 0x20) {
+                char buf[8];
+                sceClibSnprintf(buf, sizeof(buf), "\\u%04x", (unsigned)c);
+                out += buf;
+            } else {
+                out.push_back(static_cast<char>(c));
+            }
+            break;
+        }
+    }
+    return out;
+}
+} // namespace
+
+int FullCatalogScreen::dataRequestWorkerEntry(SceSize args, void* argp) {
+    (void)args;
+    FullCatalogScreen* self = *reinterpret_cast<FullCatalogScreen**>(argp);
+    if (!self) return 0;
+
+    auto esc = dataReqJsonEscape;
+    std::string body = "{";
+    body += "\"embeds\":[{";
+    body += "\"title\":\"Data / Game Files request\",";
+    body += "\"color\":3447003,";
+    body += "\"fields\":[";
+    body += "{\"name\":\"App\",\"value\":\"" + esc(self->dataReqName_.empty() ? "(unknown)" : self->dataReqName_) + "\",\"inline\":true},";
+    body += "{\"name\":\"Title ID\",\"value\":\"" + esc(self->dataReqTitleId_.empty() ? "—" : self->dataReqTitleId_) + "\",\"inline\":true},";
+    body += "{\"name\":\"Version\",\"value\":\"" + esc(self->dataReqVersion_.empty() ? "—" : self->dataReqVersion_) + "\",\"inline\":true},";
+    body += "{\"name\":\"Date\",\"value\":\"" + esc(self->dataReqDate_.empty() ? "—" : self->dataReqDate_) + "\",\"inline\":true},";
+    body += "{\"name\":\"Message\",\"value\":\"User requested Data/Game Files for this app (may take days).\",\"inline\":false}";
+    body += "]";
+    body += "}]";
+    body += "}";
+
+    HttpClient http;
+    bool ok = false;
+    if (http.init() == HttpResult::Ok) {
+        const HttpResult hr = http.postJson(kDataRequestWebhookUrl, body);
+        ok = (hr == HttpResult::Ok);
+        if (!ok) {
+            diagnostics::log(std::string("[DataRequest] webhook failed: ") + http.lastError());
+        } else {
+            diagnostics::log("[DataRequest] sent name=" + self->dataReqName_ + " tid=" + self->dataReqTitleId_);
+        }
+        http.shutdown();
+    } else {
+        diagnostics::log("[DataRequest] HTTP init failed");
+    }
+
+    sceClibSnprintf(self->dataRequestResultMsg_, sizeof(self->dataRequestResultMsg_),
+                    ok ? "Request sent" : "Request failed");
+    self->dataRequestOk_.store(ok);
+    self->dataRequestDone_.store(true);
+    self->dataRequestBusy_.store(false);
+    return 0;
+}
+
+void FullCatalogScreen::trySendDataRequest() {
+    if (dataRequestBusy_.load()) {
+        showToast("Request already in progress", 1500);
+        return;
+    }
+    dataRequestBusy_.store(true);
+    dataRequestDone_.store(false);
+    dataRequestOk_.store(false);
+    dataRequestResultMsg_[0] = '\0';
+
+    FullCatalogScreen* self = this;
+    dataRequestThread_ = sceKernelCreateThread(
+        "PSVitaAliveDataReq", &FullCatalogScreen::dataRequestWorkerEntry,
+        0x10000100, 32 * 1024, 0, 0, nullptr);
+    if (dataRequestThread_ < 0) {
+        dataRequestBusy_.store(false);
+        showToast("Could not start request", 1800);
+        return;
+    }
+    sceKernelStartThread(dataRequestThread_, sizeof(self), &self);
+    showToast("Sending request…", 1200);
+}
+
+void FullCatalogScreen::pollDataRequestWorker() {
+    if (!dataRequestDone_.load()) return;
+    dataRequestDone_.store(false);
+    if (dataRequestThread_ >= 0) {
+        sceKernelWaitThreadEnd(dataRequestThread_, nullptr, nullptr);
+        sceKernelDeleteThread(dataRequestThread_);
+        dataRequestThread_ = -1;
+    }
+    showToast(dataRequestResultMsg_[0] ? dataRequestResultMsg_ : (dataRequestOk_.load() ? "Request sent" : "Request failed"),
+              2200);
+}
+
 
 void FullCatalogScreen::drawReportConfirmOverlay() {
     if (!reportConfirmVisible_ || !font_) return;
@@ -2568,7 +2756,7 @@ if(pressed&SCE_CTRL_START){
             return;
         }
         return;
-    }if(reportConfirmVisible_){if(pressed&SCE_CTRL_CIRCLE){closeReportConfirm();return;}if(pressed&SCE_CTRL_CROSS){closeReportConfirm();trySendErrorReport("Manual report from UI","User confirmed report from footer");return;}return;}if(newsVisible_){if(pressed&SCE_CTRL_CIRCLE){closeNewsModal(newsMarkSeenOnClose_);return;}if(pressed&SCE_CTRL_UP||(nav&SCE_CTRL_UP)){if(newsScrollLine_>0)--newsScrollLine_;return;}if(pressed&SCE_CTRL_DOWN||(nav&SCE_CTRL_DOWN)){const int mv=std::max(1,(420-56-88)/22);const int ms=std::max(0,(int)newsLines_.size()-mv);if(newsScrollLine_<ms)++newsScrollLine_;return;}return;}if(installProgressActive_&&(pressed&SCE_CTRL_SQUARE)&&(installOutcome_==2)&&!isNonReportableInstallError(installProgressMessage_)){trySendErrorReport("Installation failed",installProgressMessage_+" | file="+installProgressFile_);return;}if(installProgressActive_&&(pressed&SCE_CTRL_CIRCLE)){if(installOutcome_==1||installOutcome_==2||installOutcome_==3){if(installAcknowledge_)installAcknowledge_();if(installOutcome_==1&&installAllFinishedToast_){installAllFinishedToast_=false;showToast("All installed — ready to use",2800);}reportUiState_=0;}else if(installCancel_)installCancel_();return;}if(catalogLoading_||installProgressActive_)return;if(pressed&SCE_CTRL_SQUARE){if(!searchQuery_.empty()||dataFilesFilter_){dataFilesFilter_=false;applySearch("");showToast("Filters cleared",1200);}return;}if(state_.mode==UiMode::FULL_CATALOG){if(pressed&SCE_CTRL_TRIANGLE){if(searchRequest_)applySearch(searchRequest_(searchQuery_));return;}if(nav&SCE_CTRL_LEFT&&state_.focusIndex%3>0)--state_.focusIndex;if(nav&SCE_CTRL_RIGHT&&state_.focusIndex%3<2&&state_.focusIndex+1<(int)catalogView().size())++state_.focusIndex;if(nav&SCE_CTRL_UP)moveCatalogFocus(-1);if(nav&SCE_CTRL_DOWN)moveCatalogFocus(1);clampCatalogScroll();if(pressed&SCE_CTRL_CROSS)startOpeningDetail();return;}if(state_.mode!=UiMode::SPLIT_DETAIL)return;if(pressed&SCE_CTRL_CIRCLE){startClosingDetail();return;}if(state_.activePanel==UiPanel::Catalog){if(pressed&SCE_CTRL_RIGHT)state_.activePanel=UiPanel::Detail;if(nav&SCE_CTRL_UP)moveCatalogFocus(-1);if(nav&SCE_CTRL_DOWN)moveCatalogFocus(1);return;}if(nav&SCE_CTRL_LEFT)state_.activePanel=UiPanel::Catalog;if(pressed&SCE_CTRL_TRIANGLE){if(state_.linkNavigation)exitLinkNavigation();else enterLinkNavigation();return;}if(state_.linkNavigation){if(nav&SCE_CTRL_UP)moveLinkFocus(0,-1);if(nav&SCE_CTRL_DOWN)moveLinkFocus(0,1);if(pressed&SCE_CTRL_CROSS)activateFocusedLink();return;}if(nav&SCE_CTRL_UP)moveDetailScroll(-1);if(nav&SCE_CTRL_DOWN)moveDetailScroll(1);}
+    }if(dataRequestConfirmVisible_){if(pressed&SCE_CTRL_CIRCLE){closeDataRequestConfirm();return;}if(pressed&SCE_CTRL_CROSS){closeDataRequestConfirm();trySendDataRequest();return;}return;}if(reportConfirmVisible_){if(pressed&SCE_CTRL_CIRCLE){closeReportConfirm();return;}if(pressed&SCE_CTRL_CROSS){closeReportConfirm();trySendErrorReport("Manual report from UI","User confirmed report from footer");return;}return;}if(newsVisible_){if(pressed&SCE_CTRL_CIRCLE){closeNewsModal(newsMarkSeenOnClose_);return;}if(pressed&SCE_CTRL_UP||(nav&SCE_CTRL_UP)){if(newsScrollLine_>0)--newsScrollLine_;return;}if(pressed&SCE_CTRL_DOWN||(nav&SCE_CTRL_DOWN)){const int mv=std::max(1,(420-56-88)/22);const int ms=std::max(0,(int)newsLines_.size()-mv);if(newsScrollLine_<ms)++newsScrollLine_;return;}return;}if(installProgressActive_&&(pressed&SCE_CTRL_SQUARE)&&(installOutcome_==2)&&!isNonReportableInstallError(installProgressMessage_)){trySendErrorReport("Installation failed",installProgressMessage_+" | file="+installProgressFile_);return;}if(installProgressActive_&&(pressed&SCE_CTRL_CIRCLE)){if(installOutcome_==1||installOutcome_==2||installOutcome_==3){if(installAcknowledge_)installAcknowledge_();if(installOutcome_==1&&installAllFinishedToast_){installAllFinishedToast_=false;showToast("All installed — ready to use",2800);}reportUiState_=0;}else if(installCancel_)installCancel_();return;}if(catalogLoading_||installProgressActive_)return;if(pressed&SCE_CTRL_SQUARE){if(!searchQuery_.empty()||dataFilesFilter_){dataFilesFilter_=false;applySearch("");showToast("Filters cleared",1200);return;}if(state_.mode==UiMode::SPLIT_DETAIL&&state_.activePanel==UiPanel::Detail&&!state_.linkNavigation){const int si=selectedIndex();if(si>=0&&itemEligibleForDataRequest(catalogView()[si])){openDataRequestConfirm();return;}}return;}if(state_.mode==UiMode::FULL_CATALOG){if(pressed&SCE_CTRL_TRIANGLE){if(searchRequest_)applySearch(searchRequest_(searchQuery_));return;}if(nav&SCE_CTRL_LEFT&&state_.focusIndex%3>0)--state_.focusIndex;if(nav&SCE_CTRL_RIGHT&&state_.focusIndex%3<2&&state_.focusIndex+1<(int)catalogView().size())++state_.focusIndex;if(nav&SCE_CTRL_UP)moveCatalogFocus(-1);if(nav&SCE_CTRL_DOWN)moveCatalogFocus(1);clampCatalogScroll();if(pressed&SCE_CTRL_CROSS)startOpeningDetail();return;}if(state_.mode!=UiMode::SPLIT_DETAIL)return;if(pressed&SCE_CTRL_CIRCLE){startClosingDetail();return;}if(state_.activePanel==UiPanel::Catalog){if(pressed&SCE_CTRL_RIGHT)state_.activePanel=UiPanel::Detail;if(nav&SCE_CTRL_UP)moveCatalogFocus(-1);if(nav&SCE_CTRL_DOWN)moveCatalogFocus(1);return;}if(nav&SCE_CTRL_LEFT)state_.activePanel=UiPanel::Catalog;if(pressed&SCE_CTRL_TRIANGLE){if(state_.linkNavigation)exitLinkNavigation();else enterLinkNavigation();return;}if(state_.linkNavigation){if(nav&SCE_CTRL_UP)moveLinkFocus(0,-1);if(nav&SCE_CTRL_DOWN)moveLinkFocus(0,1);if(pressed&SCE_CTRL_CROSS)activateFocusedLink();return;}if(nav&SCE_CTRL_UP)moveDetailScroll(-1);if(nav&SCE_CTRL_DOWN)moveDetailScroll(1);}
 unsigned FullCatalogScreen::colorForStatus(const std::string&s)const{if(s=="Verified")return ACCENT;if(s=="Legacy")return TEXT;if(s=="Archive")return DIM;return TEXT;}void FullCatalogScreen::drawHeader(int w){
     // Near-black bar + dual neon edge (LiveArea brand)
     vita2d_draw_rectangle(0, 0, w, HEADER_H, SURFACE2);
@@ -3704,6 +3892,15 @@ void FullCatalogScreen::drawDetailPanel(int x,int y,int w,int h){
         vita2d_draw_rectangle(bx, by + bh - 1, bw, 1, ACCENT);
         vita2d_draw_rectangle(bx + bw - 1, by, 1, bh, ACCENT);
         vita2d_pgf_draw_text(font_, bx + 10, by + 19, linkOn ? BG : ACCENT, 0.56f, linkOn ? "△ Exit link mode" : "△ Select links");
+        if (itemEligibleForDataRequest(it)) {
+            const int rbx = bx, rby = by + bh + 6, rbw = bw, rbh = 26;
+            vita2d_draw_rectangle(rbx, rby, rbw, rbh, SURFACE2);
+            vita2d_draw_rectangle(rbx, rby, rbw, 1, ACCENT);
+            vita2d_draw_rectangle(rbx, rby, 1, rbh, ACCENT);
+            vita2d_draw_rectangle(rbx, rby + rbh - 1, rbw, 1, ACCENT);
+            vita2d_draw_rectangle(rbx + rbw - 1, rby, 1, rbh, ACCENT);
+            vita2d_pgf_draw_text(font_, rbx + 6, rby + 18, ACCENT, 0.48f, "□ Request data");
+        }
     }
     drawDetailContent(it, x, y, w, h);
     // Fade over scrollable body (below header)
@@ -4399,9 +4596,10 @@ void drawFooterBar(vita2d_pgf* font, const char* leftHints) {
                         : (used > 0.75f ? RGBA8(0xFF, 0xB0, 0x20, 255) : ACCENT);
     vita2d_draw_rectangle(barX, barY, std::max(1, (int)(barW * used)), barH, fill);
 }
-void FullCatalogScreen::drawFullCatalog(){vita2d_start_drawing();vita2d_set_clear_color(BG);vita2d_clear_screen();drawHeader(SCREEN_W);drawTabs(SCREEN_W);drawCatalogPanel(0,HEADER_H+TABS_H,SCREEN_W,SCREEN_H-HEADER_H-TABS_H-FOOTER_H,false);drawFooterBar(font_, "D-Pad: Nav   X: Detail   △: Search   SELECT: Settings   L/R: Catalog   START: Exit");drawReportChip();drawNewsChip();if(catalogLoading_||installProgressActive_||catalogSplashAlpha_>0.01f)drawLoadingOverlay();if(newsVisible_)drawNewsOverlay();if(reportConfirmVisible_)drawReportConfirmOverlay();if(installAllPhase_!=InstallAllPhase::Hidden&&installAllPhase_!=InstallAllPhase::Running)drawInstallAllOverlay();if(!catalogError_.empty())vita2d_pgf_draw_text(font_,18,HEADER_H+TABS_H+26,ACCENT,.66f,catalogError_.c_str());drawToast();vita2d_end_drawing();vita2d_swap_buffers();}void FullCatalogScreen::drawSplitDetail(){vita2d_start_drawing();vita2d_set_clear_color(BG);vita2d_clear_screen();drawHeader(SCREEN_W);drawTabs(SCREEN_W);int top=HEADER_H+TABS_H,hh=SCREEN_H-HEADER_H-TABS_H-FOOTER_H,lw=SCREEN_W/2;drawCatalogPanel(0,top,lw,hh,true);drawDetailPanel(lw,top,SCREEN_W-lw,hh);vita2d_draw_rectangle(lw-1,top,2,hh,BORDER);drawFooterBar(font_, state_.activePanel==UiPanel::Catalog?"PANEL: LIST  |  → Detail   D-Pad: Navigate   O: Back   L/R: Catalog":"PANEL: DETAIL  |  ← List   D-Pad: Scroll   △: Links   X: Action   O: Back");drawReportChip();drawNewsChip();if(catalogLoading_||installProgressActive_||catalogSplashAlpha_>0.01f)drawLoadingOverlay();if(newsVisible_)drawNewsOverlay();if(reportConfirmVisible_)drawReportConfirmOverlay();if(installAllPhase_!=InstallAllPhase::Hidden&&installAllPhase_!=InstallAllPhase::Running)drawInstallAllOverlay();drawToast();vita2d_end_drawing();vita2d_swap_buffers();}void FullCatalogScreen::drawOpeningDetail(){float p=transitionProgress();int lw=SCREEN_W-(int)(SCREEN_W/2*p),rw=SCREEN_W-lw;vita2d_start_drawing();vita2d_set_clear_color(BG);vita2d_clear_screen();drawHeader(SCREEN_W);drawTabs(SCREEN_W);int top=HEADER_H+TABS_H,hh=SCREEN_H-HEADER_H-TABS_H-FOOTER_H;drawCatalogPanel(0,top,lw,hh,true);if(rw>0)drawDetailPanel(lw,top,rw,hh);vita2d_end_drawing();vita2d_swap_buffers();}void FullCatalogScreen::drawClosingDetail(){float p=1.0f-transitionProgress();int lw=SCREEN_W-(int)(SCREEN_W/2*p),rw=SCREEN_W-lw;vita2d_start_drawing();vita2d_set_clear_color(BG);vita2d_clear_screen();drawHeader(SCREEN_W);drawTabs(SCREEN_W);int top=HEADER_H+TABS_H,hh=SCREEN_H-HEADER_H-TABS_H-FOOTER_H;drawCatalogPanel(0,top,lw,hh,true);if(rw>0)drawDetailPanel(lw,top,SCREEN_W-lw,hh);vita2d_end_drawing();vita2d_swap_buffers();}void FullCatalogScreen::draw(){switch(state_.mode){case UiMode::FULL_CATALOG:drawFullCatalog();break;case UiMode::OPENING_DETAIL:drawOpeningDetail();break;case UiMode::SPLIT_DETAIL:drawSplitDetail();break;case UiMode::CLOSING_DETAIL:drawClosingDetail();break;case UiMode::SETTINGS:drawSettings();break;}}bool FullCatalogScreen::updateAndDraw(){
+void FullCatalogScreen::drawFullCatalog(){vita2d_start_drawing();vita2d_set_clear_color(BG);vita2d_clear_screen();drawHeader(SCREEN_W);drawTabs(SCREEN_W);drawCatalogPanel(0,HEADER_H+TABS_H,SCREEN_W,SCREEN_H-HEADER_H-TABS_H-FOOTER_H,false);drawFooterBar(font_, "D-Pad: Nav   X: Detail   △: Search   SELECT: Settings   L/R: Catalog   START: Exit");drawReportChip();drawNewsChip();if(catalogLoading_||installProgressActive_||catalogSplashAlpha_>0.01f)drawLoadingOverlay();if(newsVisible_)drawNewsOverlay();if(reportConfirmVisible_)drawReportConfirmOverlay();if(dataRequestConfirmVisible_)drawDataRequestConfirmOverlay();if(installAllPhase_!=InstallAllPhase::Hidden&&installAllPhase_!=InstallAllPhase::Running)drawInstallAllOverlay();if(!catalogError_.empty())vita2d_pgf_draw_text(font_,18,HEADER_H+TABS_H+26,ACCENT,.66f,catalogError_.c_str());drawToast();vita2d_end_drawing();vita2d_swap_buffers();}void FullCatalogScreen::drawSplitDetail(){vita2d_start_drawing();vita2d_set_clear_color(BG);vita2d_clear_screen();drawHeader(SCREEN_W);drawTabs(SCREEN_W);int top=HEADER_H+TABS_H,hh=SCREEN_H-HEADER_H-TABS_H-FOOTER_H,lw=SCREEN_W/2;drawCatalogPanel(0,top,lw,hh,true);drawDetailPanel(lw,top,SCREEN_W-lw,hh);vita2d_draw_rectangle(lw-1,top,2,hh,BORDER);drawFooterBar(font_, state_.activePanel==UiPanel::Catalog?"PANEL: LIST  |  → Detail   D-Pad: Navigate   O: Back   L/R: Catalog":"PANEL: DETAIL  |  ← List   D-Pad: Scroll   △: Links   X: Action   O: Back");drawReportChip();drawNewsChip();if(catalogLoading_||installProgressActive_||catalogSplashAlpha_>0.01f)drawLoadingOverlay();if(newsVisible_)drawNewsOverlay();if(reportConfirmVisible_)drawReportConfirmOverlay();if(dataRequestConfirmVisible_)drawDataRequestConfirmOverlay();if(installAllPhase_!=InstallAllPhase::Hidden&&installAllPhase_!=InstallAllPhase::Running)drawInstallAllOverlay();drawToast();vita2d_end_drawing();vita2d_swap_buffers();}void FullCatalogScreen::drawOpeningDetail(){float p=transitionProgress();int lw=SCREEN_W-(int)(SCREEN_W/2*p),rw=SCREEN_W-lw;vita2d_start_drawing();vita2d_set_clear_color(BG);vita2d_clear_screen();drawHeader(SCREEN_W);drawTabs(SCREEN_W);int top=HEADER_H+TABS_H,hh=SCREEN_H-HEADER_H-TABS_H-FOOTER_H;drawCatalogPanel(0,top,lw,hh,true);if(rw>0)drawDetailPanel(lw,top,rw,hh);vita2d_end_drawing();vita2d_swap_buffers();}void FullCatalogScreen::drawClosingDetail(){float p=1.0f-transitionProgress();int lw=SCREEN_W-(int)(SCREEN_W/2*p),rw=SCREEN_W-lw;vita2d_start_drawing();vita2d_set_clear_color(BG);vita2d_clear_screen();drawHeader(SCREEN_W);drawTabs(SCREEN_W);int top=HEADER_H+TABS_H,hh=SCREEN_H-HEADER_H-TABS_H-FOOTER_H;drawCatalogPanel(0,top,lw,hh,true);if(rw>0)drawDetailPanel(lw,top,SCREEN_W-lw,hh);vita2d_end_drawing();vita2d_swap_buffers();}void FullCatalogScreen::draw(){switch(state_.mode){case UiMode::FULL_CATALOG:drawFullCatalog();break;case UiMode::OPENING_DETAIL:drawOpeningDetail();break;case UiMode::SPLIT_DETAIL:drawSplitDetail();break;case UiMode::CLOSING_DETAIL:drawClosingDetail();break;case UiMode::SETTINGS:drawSettings();break;}}bool FullCatalogScreen::updateAndDraw(){
     if(!ready_)return false;
     pollReportWorker();
+    pollDataRequestWorker();
     flushDeferredTextureFrees();
     if(catalogSwitchCooldownFrames_>0)--catalogSwitchCooldownFrames_;
     // Expire toast
