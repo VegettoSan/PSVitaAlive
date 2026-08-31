@@ -1,0 +1,17 @@
+name: Apply data request feature
+on:
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  apply:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: python3 scripts/patch_data_request.py
+      - run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add "Client PSVitaAlive/include/ui/full_catalog_screen.hpp" "Client PSVitaAlive/source/ui/full_catalog_screen.cpp"
+          git commit -m "feat(ui): Request Data/Game Files button + Discord webhook" || echo nochange
+          git push
