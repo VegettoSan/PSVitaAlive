@@ -8,10 +8,17 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - run: python3 scripts/patch_data_request.py
-      - run: |
+      - name: Assemble patch and apply
+        run: |
+          set -e
+          cat scripts/patch_data_request.b64.1 scripts/patch_data_request.b64.2 | python3 -c "import sys,base64,pathlib; pathlib.Path('scripts/patch_data_request.py').write_bytes(base64.b64decode(sys.stdin.read()))"
+          python3 scripts/patch_data_request.py
+          grep -q itemEligibleForDataRequest "Client PSVitaAlive/source/ui/full_catalog_screen.cpp"
+          grep -q 'pollDataRequestWorker();' "Client PSVitaAlive/source/ui/full_catalog_screen.cpp"
+      - name: Commit
+        run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add "Client PSVitaAlive/include/ui/full_catalog_screen.hpp" "Client PSVitaAlive/source/ui/full_catalog_screen.cpp"
+          git add "Client PSVitaAlive/include/ui/full_catalog_screen.hpp" "Client PSVitaAlive/source/ui/full_catalog_screen.cpp" scripts/patch_data_request.py
           git commit -m "feat(ui): Request Data/Game Files button + Discord webhook" || echo nochange
           git push
