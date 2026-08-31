@@ -1,0 +1,17 @@
+name: Apply report log coherence
+on:
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  apply:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: python3 scripts/apply_report_log_coherence.py
+      - run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add "Client PSVitaAlive/source/network/error_reporter.cpp"
+          git commit -m "fix(reports): attach logs for the failing file/job only" || echo nochange
+          git push
