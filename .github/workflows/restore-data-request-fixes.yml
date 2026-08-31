@@ -1,0 +1,31 @@
+name: Restore data-request UI fixes
+on:
+  workflow_dispatch:
+jobs:
+  restore:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Restore base + apply fixes
+        run: |
+          set -euo pipefail
+          FILE="Client PSVitaAlive/source/ui/full_catalog_screen.cpp"
+          git show 3885b4067c:"$FILE" > "$FILE"
+          python3 scripts/apply_data_request_ui_fixes.py
+          grep -q 'state_.catalog != CatalogType::Homebrew' "$FILE"
+          grep -q 'Data/Game Files request confirmation modal touch' "$FILE"
+          grep -q 'Links + Request data buttons' "$FILE"
+          ! grep -q PLACEHOLDER "$FILE"
+          wc -c "$FILE"
+      - name: Commit
+        run: |
+          set -euo pipefail
+          git config user.name "VegettoSanDev"
+          git config user.email "72358120+VegettoSan@users.noreply.github.com"
+          git add "Client PSVitaAlive/source/ui/full_catalog_screen.cpp"
+          git commit -m "UI: Data request only Homebrew; Square filter-clear only in full catalog; touch for Request data + modal"
+          git push origin HEAD:main
