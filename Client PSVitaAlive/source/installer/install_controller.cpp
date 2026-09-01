@@ -13,6 +13,7 @@
 #include <psp2/kernel/clib.h>
 #include <psp2/kernel/processmgr.h>
 #include <psp2/kernel/threadmgr.h>
+#include <psp2/shellutil.h>
 
 #include <cstring>
 #include <cstdlib>
@@ -151,12 +152,20 @@ bool InstallController::init() {
         if (!plugins_.nopspemudrmKern) diagnostics::log("[Installer] NoPspEmuDrm not detected - PSP LiveArea bubbles unavailable (Adrenaline ISO path still works)");
     }
     diagnostics::log("[Installer] BGDL deferred until first PKG install request");
+    if (sceShellUtilInitEvents(0) >= 0) {
+        shellUtilReady_ = true;
+        diagnostics::log("[Installer] sceShellUtilInitEvents ok");
+    } else {
+        shellUtilReady_ = false;
+        diagnostics::log("[Installer] sceShellUtilInitEvents failed (PS lock unavailable)");
+    }
     startKeepAwakeThread();
     diagnostics::log("[Installer] initialized");
     return true;
 }
 
 void InstallController::shutdown() {
+    unlockShellDuringJob();
     stopKeepAwakeThread();
     if (workerThread_ >= 0) {
         sceKernelWaitThreadEnd(workerThread_, nullptr, nullptr);
@@ -527,6 +536,10 @@ void InstallController::setTitleId(const char* text) {
 void InstallController::setState(InstallStatus::State state, const char* message) {
     setMessage(message);
     state_.store(static_cast<int>(state));
+    const bool jobActive = (state == InstallStatus::State::Downloading ||
+                            state == InstallStatus::State::Installing);
+    if (jobActive) lockShellDuringJob();
+    else unlockShellDuringJob();
 }
 
 void InstallController::startKeepAwakeThread() {
@@ -565,6 +578,27 @@ void InstallController::stopKeepAwakeThread() {
     sceKernelDeleteThread(keepAwakeThread_);
     keepAwakeThread_ = -1;
 }
+
+
+void InstallController::lockShellDuringJob() {
+    if (shellLocked_) return;
+    if (!shellUtilReady_) return;
+    sceShellUtilLock(SCE_SHELL_UTIL_LOCK_TYPE_PS_BTN);
+    sceShellUtilLock(SCE_SHELL_UTIL_LOCK_TYPE_POWEROFF_MENU);
+    shellLocked_ = true;
+    diagnostics::log("[Installer] shell locked (PS + power-off menu) during job");
+}
+
+void InstallController::unlockShellDuringJob() {
+    if (!shellLocked_) return;
+    if (shellUtilReady_) {
+        sceShellUtilUnlock(SCE_SHELL_UTIL_LOCK_TYPE_PS_BTN);
+        sceShellUtilUnlock(SCE_SHELL_UTIL_LOCK_TYPE_POWEROFF_MENU);
+    }
+    shellLocked_ = false;
+    diagnostics::log("[Installer] shell unlocked");
+}
+
 
 int InstallController::keepAwakeEntry(SceSize args, void* argp) {
     (void)args;
