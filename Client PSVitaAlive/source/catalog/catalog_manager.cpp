@@ -55,7 +55,9 @@ void CatalogManager::setStatus(State state,ui::CatalogType catalog,const char* m
 bool CatalogManager::isBusy() const {
     if (mutex_ < 0) return false;
     sceKernelLockMutex(mutex_, 1, nullptr);
-    const bool busy = (status_.state == State::Loading) || requestPending_;
+    // Soft refresh after cache-first show must not hard-lock L/R tab switches.
+    const bool busy = requestPending_ ||
+        (status_.state == State::Loading && !status_.softRefresh);
     sceKernelUnlockMutex(mutex_, 1);
     return busy;
 }
@@ -78,6 +80,7 @@ bool CatalogManager::request(ui::CatalogType catalog) {
         status_.label = label(catalog);
         status_.message = "Switching catalog...";
         status_.error.clear();
+        status_.softRefresh = false;
         sceKernelUnlockMutex(mutex_, 1);
         diagnostics::log(std::string("[CatalogManager] supersede in-flight load -> ") + label(catalog));
         return true;
@@ -96,6 +99,7 @@ bool CatalogManager::request(ui::CatalogType catalog) {
         status_.label = label(catalog);
         status_.message = "Ready (memory cache)";
         status_.error.clear();
+        status_.softRefresh = false;
         requestedCatalog_ = catalog;
         requestPending_ = false;
         sceKernelUnlockMutex(mutex_, 1);
@@ -165,14 +169,224 @@ void ensureZrifIndexDownloaded(ui::CatalogType catalog, HttpClient& http) {
     }
 }
 
-bool CatalogManager::loadCatalog(ui::CatalogType catalog,std::vector<ui::CatalogItem>&outItems){
-    const int idx=(int)catalog;const std::string path=cachePath(catalog),meta=metadataPath(catalog),temp=path+".new",url=std::string(RAW_BASE)+fileName(catalog);const bool haveCache=fileExists(path);HttpClient http;if(http.init()!=HttpResult::Ok)return false;ensureZrifIndexDownloaded(catalog,http);
-    if(haveCache){std::vector<ui::CatalogItem>cached;if(CatalogParser::parseFile(path,cached)&&!cached.empty()){std::string storedText,storedEtag,storedModified;parseValidators(readTextFile(meta,storedText)?storedText:std::string(),storedEtag,storedModified);std::string remoteEtag,remoteModified;setStatus(State::Loading,catalog,"Checking remote catalog (quick)...");const HttpResult validatorResult=http.fetchRemoteValidators(url,remoteEtag,remoteModified);if(validatorResult==HttpResult::Ok&&validatorsMatch(storedEtag,storedModified,remoteEtag,remoteModified)){outItems=std::move(cached);setStatus(State::Ready,catalog,"Using cached catalog");diagnostics::log(std::string("[CatalogManager] cache valid: ")+label(catalog));http.shutdown();return true;}if(validatorResult!=HttpResult::Ok){/* prefer local cache after validator timeout/network error — don't block startup */outItems=std::move(cached);setStatus(State::Ready,catalog,"Using cached catalog (offline)");diagnostics::log(std::string("[CatalogManager] offline/cache fallback: ")+label(catalog)+" validatorErr="+http.lastError());http.shutdown();return true;}}}
-    setStatus(State::Loading,catalog,"Downloading catalog...");diagnostics::log(std::string("[CatalogManager] downloading: ")+label(catalog));const HttpResult result=http.downloadToFile(url,temp,0,[this,catalog](const HttpProgress&progress){sceKernelLockMutex(mutex_,1,nullptr);status_.current=progress.downloaded;status_.total=progress.total;status_.message="Downloading catalog...";sceKernelUnlockMutex(mutex_,1);(void)catalog;});
-    if(result==HttpResult::Ok){std::vector<ui::CatalogItem>fresh;if(CatalogParser::parseFile(temp,fresh)&&!fresh.empty()){sceIoRemove(path.c_str());if(sceIoRename(temp.c_str(),path.c_str())>=0){std::string etag,modified;http.fetchRemoteValidators(url,etag,modified);std::string metadata="etag="+etag+"\nlast_modified="+modified+"\n";writeTextFile(meta,metadata);outItems=std::move(fresh);diagnostics::log(std::string("[CatalogManager] downloaded and cached: ")+label(catalog));http.shutdown();return true;}}}
-    sceIoRemove(temp.c_str());if(haveCache&&CatalogParser::parseFile(path,outItems)&&!outItems.empty()){diagnostics::log(std::string("[CatalogManager] refresh failed; retained valid cache: ")+label(catalog));http.shutdown();return true;}diagnostics::log(std::string("[CatalogManager] catalog unavailable: ")+label(catalog)+" error="+http.lastError());http.shutdown();return false;}
 
-int CatalogManager::workerEntry(SceSize args,void*argp){(void)args;CatalogManager*self=nullptr;if(argp)std::memcpy(&self,argp,sizeof(self));return self?self->workerMain():-1;}
+// ---------------------------------------------------------------------------
+// Feature flags — set to 0 to restore previous blocking load behaviour.
+// ---------------------------------------------------------------------------
+#ifndef PSVITAALIVE_CACHE_FIRST_REFRESH
+#define PSVITAALIVE_CACHE_FIRST_REFRESH 1
+#endif
+
+bool CatalogManager::tryLoadDiskCache(ui::CatalogType catalog, std::vector<ui::CatalogItem>& outItems) {
+    outItems.clear();
+    const std::string path = cachePath(catalog);
+    if (!fileExists(path)) return false;
+    std::vector<ui::CatalogItem> cached;
+    if (!CatalogParser::parseFile(path, cached) || cached.empty()) return false;
+    outItems = std::move(cached);
+    return true;
+}
+
+bool CatalogManager::trySoftNetworkRefresh(ui::CatalogType catalog,
+                                           std::vector<ui::CatalogItem>& outItems) {
+    outItems.clear();
+    const std::string path = cachePath(catalog);
+    const std::string meta = metadataPath(catalog);
+    const std::string temp = path + ".new";
+    const std::string url = std::string(RAW_BASE) + fileName(catalog);
+
+    HttpClient http;
+    if (http.init() != HttpResult::Ok) {
+        diagnostics::log("[CatalogManager] soft refresh: HTTP init failed (keep cache)");
+        return false;
+    }
+    ensureZrifIndexDownloaded(catalog, http);
+
+    std::string storedText, storedEtag, storedModified;
+    parseValidators(readTextFile(meta, storedText) ? storedText : std::string(),
+                    storedEtag, storedModified);
+    std::string remoteEtag, remoteModified;
+
+    sceKernelLockMutex(mutex_, 1, nullptr);
+    status_.softRefresh = true;
+    status_.state = State::Ready;
+    status_.message = "Checking for updates...";
+    sceKernelUnlockMutex(mutex_, 1);
+
+    const HttpResult validatorResult = http.fetchRemoteValidators(url, remoteEtag, remoteModified);
+    if (validatorResult == HttpResult::Ok &&
+        validatorsMatch(storedEtag, storedModified, remoteEtag, remoteModified)) {
+        diagnostics::log(std::string("[CatalogManager] soft refresh: unchanged ") + label(catalog));
+        http.shutdown();
+        sceKernelLockMutex(mutex_, 1, nullptr);
+        status_.softRefresh = false;
+        status_.message = "Catalog ready";
+        sceKernelUnlockMutex(mutex_, 1);
+        return false;
+    }
+    if (validatorResult != HttpResult::Ok) {
+        diagnostics::log(std::string("[CatalogManager] soft refresh: validator skip ") +
+                         label(catalog) + " err=" + http.lastError());
+        http.shutdown();
+        sceKernelLockMutex(mutex_, 1, nullptr);
+        status_.softRefresh = false;
+        status_.message = "Catalog ready";
+        sceKernelUnlockMutex(mutex_, 1);
+        return false;
+    }
+
+    diagnostics::log(std::string("[CatalogManager] soft refresh: downloading ") + label(catalog));
+    sceKernelLockMutex(mutex_, 1, nullptr);
+    status_.softRefresh = true;
+    status_.state = State::Ready;
+    status_.message = "Updating catalog...";
+    status_.current = 0;
+    status_.total = 0;
+    sceKernelUnlockMutex(mutex_, 1);
+
+    const HttpResult result = http.downloadToFile(
+        url, temp, 0,
+        [this](const HttpProgress& progress) {
+            sceKernelLockMutex(mutex_, 1, nullptr);
+            status_.current = progress.downloaded;
+            status_.total = progress.total;
+            status_.message = "Updating catalog...";
+            status_.softRefresh = true;
+            status_.state = State::Ready;
+            sceKernelUnlockMutex(mutex_, 1);
+        });
+
+    if (result == HttpResult::Ok) {
+        std::vector<ui::CatalogItem> fresh;
+        if (CatalogParser::parseFile(temp, fresh) && !fresh.empty()) {
+            sceIoRemove(path.c_str());
+            if (sceIoRename(temp.c_str(), path.c_str()) >= 0) {
+                std::string etag, modified;
+                http.fetchRemoteValidators(url, etag, modified);
+                writeTextFile(meta, "etag=" + etag + "\nlast_modified=" + modified + "\n");
+                outItems = std::move(fresh);
+                diagnostics::log(std::string("[CatalogManager] soft refresh: updated ") + label(catalog));
+                http.shutdown();
+                return true;
+            }
+        }
+    }
+    sceIoRemove(temp.c_str());
+    diagnostics::log(std::string("[CatalogManager] soft refresh: failed, keep cache ") +
+                     label(catalog) + " err=" + http.lastError());
+    http.shutdown();
+    sceKernelLockMutex(mutex_, 1, nullptr);
+    status_.softRefresh = false;
+    status_.message = "Catalog ready";
+    sceKernelUnlockMutex(mutex_, 1);
+    return false;
+}
+
+bool CatalogManager::loadCatalog(ui::CatalogType catalog, std::vector<ui::CatalogItem>& outItems) {
+    const std::string path = cachePath(catalog);
+    const std::string meta = metadataPath(catalog);
+    const std::string temp = path + ".new";
+    const std::string url = std::string(RAW_BASE) + fileName(catalog);
+    const bool haveCache = fileExists(path);
+
+    HttpClient http;
+    if (http.init() != HttpResult::Ok) return false;
+    ensureZrifIndexDownloaded(catalog, http);
+
+    if (haveCache) {
+        std::vector<ui::CatalogItem> cached;
+        if (CatalogParser::parseFile(path, cached) && !cached.empty()) {
+            std::string storedText, storedEtag, storedModified;
+            parseValidators(readTextFile(meta, storedText) ? storedText : std::string(),
+                            storedEtag, storedModified);
+            std::string remoteEtag, remoteModified;
+            setStatus(State::Loading, catalog, "Checking remote catalog (quick)...");
+            const HttpResult validatorResult =
+                http.fetchRemoteValidators(url, remoteEtag, remoteModified);
+            if (validatorResult == HttpResult::Ok &&
+                validatorsMatch(storedEtag, storedModified, remoteEtag, remoteModified)) {
+                outItems = std::move(cached);
+                setStatus(State::Ready, catalog, "Using cached catalog");
+                diagnostics::log(std::string("[CatalogManager] cache valid: ") + label(catalog));
+                http.shutdown();
+                return true;
+            }
+            if (validatorResult != HttpResult::Ok) {
+                outItems = std::move(cached);
+                setStatus(State::Ready, catalog, "Using cached catalog (offline)");
+                diagnostics::log(std::string("[CatalogManager] offline/cache fallback: ") +
+                                 label(catalog) + " validatorErr=" + http.lastError());
+                http.shutdown();
+                return true;
+            }
+        }
+    }
+
+    setStatus(State::Loading, catalog, "Downloading catalog...");
+    diagnostics::log(std::string("[CatalogManager] downloading: ") + label(catalog));
+    const HttpResult result = http.downloadToFile(
+        url, temp, 0,
+        [this](const HttpProgress& progress) {
+            sceKernelLockMutex(mutex_, 1, nullptr);
+            status_.current = progress.downloaded;
+            status_.total = progress.total;
+            status_.message = "Downloading catalog...";
+            sceKernelUnlockMutex(mutex_, 1);
+        });
+
+    if (result == HttpResult::Ok) {
+        std::vector<ui::CatalogItem> fresh;
+        if (CatalogParser::parseFile(temp, fresh) && !fresh.empty()) {
+            sceIoRemove(path.c_str());
+            if (sceIoRename(temp.c_str(), path.c_str()) >= 0) {
+                std::string etag, modified;
+                http.fetchRemoteValidators(url, etag, modified);
+                writeTextFile(meta, "etag=" + etag + "\nlast_modified=" + modified + "\n");
+                outItems = std::move(fresh);
+                diagnostics::log(std::string("[CatalogManager] downloaded and cached: ") + label(catalog));
+                http.shutdown();
+                return true;
+            }
+        }
+    }
+    sceIoRemove(temp.c_str());
+    if (haveCache && CatalogParser::parseFile(path, outItems) && !outItems.empty()) {
+        diagnostics::log(std::string("[CatalogManager] refresh failed; retained valid cache: ") +
+                         label(catalog));
+        http.shutdown();
+        return true;
+    }
+    diagnostics::log(std::string("[CatalogManager] catalog unavailable: ") + label(catalog) +
+                     " error=" + http.lastError());
+    http.shutdown();
+    return false;
+}
+
+void CatalogManager::publishReady(ui::CatalogType catalog, std::vector<ui::CatalogItem>& items,
+                                  const char* message, bool softRefresh) {
+    const int cidx = static_cast<int>(catalog);
+    if (cidx >= 0 && cidx < static_cast<int>(ui::CatalogType::Count)) {
+        cachedItems_[cidx] = items;
+        cachedValid_[cidx] = true;
+    }
+    readyItems_ = items;
+    readyCatalog_ = catalog;
+    readyPending_ = true;
+    status_.state = State::Ready;
+    status_.catalog = catalog;
+    status_.current = status_.total > 0 ? status_.total : 1;
+    status_.message = message ? message : "Catalog ready";
+    status_.error.clear();
+    status_.softRefresh = softRefresh;
+}
+
+int CatalogManager::workerEntry(SceSize args, void* argp) {
+    (void)args;
+    CatalogManager* self = nullptr;
+    if (argp) std::memcpy(&self, argp, sizeof(self));
+    return self ? self->workerMain() : -1;
+}
+
 int CatalogManager::workerMain() {
     while (!stopping_) {
         ui::CatalogType catalog = ui::CatalogType::Homebrew;
@@ -191,6 +405,9 @@ int CatalogManager::workerMain() {
             status_.label = label(catalog);
             status_.message = "Checking catalog cache...";
             status_.error.clear();
+            status_.softRefresh = false;
+            status_.current = 0;
+            status_.total = 0;
         }
         sceKernelUnlockMutex(mutex_, 1);
 
@@ -198,6 +415,56 @@ int CatalogManager::workerMain() {
             sceKernelDelayThread(50 * 1000);
             continue;
         }
+
+        auto isStale = [&]() -> bool {
+            sceKernelLockMutex(mutex_, 1, nullptr);
+            const bool stale =
+                requestPending_ || catalog != requestedCatalog_ || gen != requestGeneration_;
+            if (stale) {
+                status_.state = State::Loading;
+                status_.catalog = requestedCatalog_;
+                status_.label = label(requestedCatalog_);
+                status_.message = "Switching catalog...";
+                status_.softRefresh = false;
+            }
+            sceKernelUnlockMutex(mutex_, 1);
+            return stale;
+        };
+
+#if PSVITAALIVE_CACHE_FIRST_REFRESH
+        std::vector<ui::CatalogItem> diskItems;
+        if (tryLoadDiskCache(catalog, diskItems)) {
+            diagnostics::log(std::string("[CatalogManager] cache-first show: ") + label(catalog) +
+                             " items=" + std::to_string(diskItems.size()));
+            sceKernelLockMutex(mutex_, 1, nullptr);
+            if (!(requestPending_ || catalog != requestedCatalog_ || gen != requestGeneration_)) {
+                publishReady(catalog, diskItems, "Using cached catalog", true);
+            }
+            sceKernelUnlockMutex(mutex_, 1);
+
+            if (isStale()) continue;
+
+            std::vector<ui::CatalogItem> fresh;
+            if (trySoftNetworkRefresh(catalog, fresh) && !fresh.empty()) {
+                if (isStale()) continue;
+                sceKernelLockMutex(mutex_, 1, nullptr);
+                if (!(requestPending_ || catalog != requestedCatalog_ || gen != requestGeneration_)) {
+                    publishReady(catalog, fresh, "Catalog updated", false);
+                    diagnostics::log(std::string("[CatalogManager] hot-swap after soft refresh: ") +
+                                     label(catalog));
+                }
+                sceKernelUnlockMutex(mutex_, 1);
+            } else {
+                sceKernelLockMutex(mutex_, 1, nullptr);
+                status_.softRefresh = false;
+                if (status_.state == State::Ready)
+                    status_.message = "Catalog ready";
+                sceKernelUnlockMutex(mutex_, 1);
+            }
+            continue;
+        }
+        diagnostics::log(std::string("[CatalogManager] no disk cache, hard load: ") + label(catalog));
+#endif
 
         std::vector<ui::CatalogItem> loaded;
         const bool ok = loadCatalog(catalog, loaded) && !loaded.empty();
@@ -209,29 +476,19 @@ int CatalogManager::workerMain() {
             status_.catalog = requestedCatalog_;
             status_.label = label(requestedCatalog_);
             status_.message = "Switching catalog...";
+            status_.softRefresh = false;
             sceKernelUnlockMutex(mutex_, 1);
             continue;
         }
 
         if (ok) {
-            const int cidx = static_cast<int>(catalog);
-            if (cidx >= 0 && cidx < static_cast<int>(ui::CatalogType::Count)) {
-                cachedItems_[cidx] = loaded;
-                cachedValid_[cidx] = true;
-            }
-            readyItems_ = std::move(loaded);
-            readyCatalog_ = catalog;
-            readyPending_ = true;
-            status_.state = State::Ready;
-            status_.catalog = catalog;
-            status_.current = status_.total > 0 ? status_.total : 1;
-            status_.message = "Catalog ready";
-            status_.error.clear();
+            publishReady(catalog, loaded, "Catalog ready", false);
         } else {
             status_.state = State::Failed;
             status_.catalog = catalog;
             status_.message = "Unable to load catalog";
             status_.error = "Remote catalog and cache unavailable";
+            status_.softRefresh = false;
         }
         sceKernelUnlockMutex(mutex_, 1);
     }

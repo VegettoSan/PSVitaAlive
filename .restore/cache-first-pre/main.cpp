@@ -661,11 +661,6 @@ int main(){
 
     psvitaalive::diagnostics::log("[Startup] update phase finished — starting catalogs");
 
-
-#ifndef PSVITAALIVE_STARTUP_HOMEBREW_ONLY
-#define PSVITAALIVE_STARTUP_HOMEBREW_ONLY 1
-#endif
-
     // Catalog and image workers do not exist until the startup update phase is finished.
     if(!catalogs.init())psvitaalive::diagnostics::log("[System] CatalogManager init failed");
     if(!images.init())psvitaalive::diagnostics::log("[System] ImageCache init failed");
@@ -704,27 +699,11 @@ while(screen.updateAndDraw()){
         if(startupCatalogs&&cs.state==psvitaalive::CatalogManager::State::Loading){screen.setCatalogLoading(true,cs.label,cs.current,cs.total,progressMessage(cs.current,cs.total,cs.message,""));}
         else if(startupCatalogs&&cs.state==psvitaalive::CatalogManager::State::Failed){
             psvitaalive::diagnostics::log(std::string("[Startup] catalog failed: ")+cs.label+" error="+cs.error);
-#if PSVITAALIVE_STARTUP_HOMEBREW_ONLY
-            startupCatalogs=false;
-            startupImageChoicePending=true;
-            startupImagesJobs.clear();
-            startupImageSeen.clear();
-            if(homebrewReady){
-                for(const auto&items:startupCatalogItems)
-                    collectCatalogImages(startupImagesJobs,startupImageSeen,images,items,false);
-            }
-            screen.setCatalogLoading(false,"",0,(uint64_t)startupImagesJobs.size(),
-                homebrewReady?"Catalog ready":"Catalog unavailable");
-            if(!homebrewReady)
-                screen.setCatalogError(cs.error.empty()?"Unable to load catalog":cs.error);
-            psvitaalive::diagnostics::log("[Startup] homebrew-only startup finished (failed path)");
-#else
             ++preloadIndex;
             if(preloadIndex<catalogCount){const auto next=(psvitaalive::ui::CatalogType)preloadIndex;screen.setCatalogLoading(true,psvitaalive::ui::catalogName(next),0,0,"Checking catalog (cache ok if offline)...");catalogs.request(next);}
             else{
                 startupCatalogs=false;startupImageChoicePending=true;startupImagesJobs.clear();startupImageSeen.clear();for(const auto&items:startupCatalogItems)collectCatalogImages(startupImagesJobs,startupImageSeen,images,items,false);screen.setCatalogLoading(false,"",0,(uint64_t)startupImagesJobs.size(),"Catalogs ready");psvitaalive::diagnostics::log("[Startup] all catalogs processed; waiting for image warmup choice");
             }
-#endif
         }
 
         std::vector<psvitaalive::ui::CatalogItem> ready;psvitaalive::ui::CatalogType readyCatalog;
@@ -737,34 +716,20 @@ while(screen.updateAndDraw()){
                     screen.setActiveCatalog(psvitaalive::ui::CatalogType::Homebrew);
                     homebrewReady=true;
                 }
-#if PSVITAALIVE_STARTUP_HOMEBREW_ONLY
-                if(readyCatalog==psvitaalive::ui::CatalogType::Homebrew){
-                    startupCatalogs=false;
-                    startupImageChoicePending=true;
-                    startupImagesJobs.clear();
-                    startupImageSeen.clear();
-                    collectCatalogImages(startupImagesJobs,startupImageSeen,images,ready,false);
-                    screen.setCatalogLoading(false,"",0,(uint64_t)startupImagesJobs.size(),"Catalog ready");
-                    psvitaalive::diagnostics::log("[Startup] homebrew ready (no multi-catalog preload)");
-                }
-#else
                 ++preloadIndex;
                 if(preloadIndex<catalogCount){const auto next=(psvitaalive::ui::CatalogType)preloadIndex;screen.setCatalogLoading(true,psvitaalive::ui::catalogName(next),0,0,"Checking catalog (cache ok if offline)...");catalogs.request(next);}
                 else{startupCatalogs=false;startupImageChoicePending=true;startupImagesJobs.clear();startupImageSeen.clear();for(const auto&items:startupCatalogItems)collectCatalogImages(startupImagesJobs,startupImageSeen,images,items,false);screen.setCatalogLoading(false,"",0,(uint64_t)startupImagesJobs.size(),"Catalogs ready");psvitaalive::diagnostics::log("[Startup] all catalogs ready; waiting for image warmup choice");}
-#endif
             }else{
-                // Runtime tab load or soft-refresh hot-swap.
+                // Only clear loading if nothing else is still in flight (e.g. user
+                // already requested another tab before this result was published).
                 screen.setCatalogItems(std::move(ready));
                 screen.setActiveCatalog(readyCatalog);
                 if(catalogs.isBusy()){
                     screen.setCatalogLoading(true,psvitaalive::ui::catalogName(readyCatalog),0,0,"Loading next catalog...");
                 }else{
                     screen.setCatalogLoading(false,psvitaalive::ui::catalogName(readyCatalog),1,1,"Ready");
-                    const auto st = catalogs.status();
-                    if(st.message == "Catalog updated")
-                        screen.showToast("Catalog updated", 1800);
                 }
-            }            }
+            }
         }
 
         if(startupImageChoicePending){
