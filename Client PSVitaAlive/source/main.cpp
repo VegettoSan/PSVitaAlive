@@ -797,14 +797,19 @@ while(screen.updateAndDraw()){
         }
 
         
-        // Keep L/R locked for the whole CatalogManager busy window (not only startup).
         if(!startupCatalogs){
             const auto csBusy=catalogs.status();
             if(catalogs.isBusy()||csBusy.state==psvitaalive::CatalogManager::State::Loading){
+                const char* fallback =
+                    csBusy.softRefresh
+                        ? "Updating catalog in background (cache already shown)..."
+                        : "Loading this catalog — please wait (not preloaded at startup)...";
                 screen.setCatalogLoading(true,
                     csBusy.label.empty()?psvitaalive::ui::catalogName(csBusy.catalog):csBusy.label,
                     csBusy.current,csBusy.total,
-                    csBusy.message.empty()?"Loading this catalog — please wait (not preloaded at startup)...":csBusy.message);
+                    csBusy.message.empty()?fallback:csBusy.message);
+            } else {
+                screen.setCatalogLoading(false, "", 0, 0, "");
             }
         }
 

@@ -239,7 +239,7 @@ bool CatalogManager::trySoftNetworkRefresh(ui::CatalogType catalog,
     sceKernelLockMutex(mutex_, 1, nullptr);
     status_.softRefresh = true;
     status_.state = State::Ready;
-    status_.message = "Updating catalog...";
+    status_.message = "Updating catalog from network — please wait...";
     status_.current = 0;
     status_.total = 0;
     sceKernelUnlockMutex(mutex_, 1);
@@ -250,7 +250,7 @@ bool CatalogManager::trySoftNetworkRefresh(ui::CatalogType catalog,
             sceKernelLockMutex(mutex_, 1, nullptr);
             status_.current = progress.downloaded;
             status_.total = progress.total;
-            status_.message = "Updating catalog...";
+            status_.message = "Updating catalog from network — please wait...";
             status_.softRefresh = true;
             status_.state = State::Ready;
             sceKernelUnlockMutex(mutex_, 1);
@@ -330,7 +330,7 @@ bool CatalogManager::loadCatalog(ui::CatalogType catalog, std::vector<ui::Catalo
             sceKernelLockMutex(mutex_, 1, nullptr);
             status_.current = progress.downloaded;
             status_.total = progress.total;
-            status_.message = "Downloading catalog...";
+            status_.message = "Downloading catalog from network — please wait...";
             sceKernelUnlockMutex(mutex_, 1);
         });
 
@@ -403,7 +403,7 @@ int CatalogManager::workerMain() {
             status_.state = State::Loading;
             status_.catalog = catalog;
             status_.label = label(catalog);
-            status_.message = "Checking catalog cache...";
+            status_.message = "Loading catalog (local cache, then network)...";
             status_.error.clear();
             status_.softRefresh = false;
             status_.current = 0;
@@ -424,7 +424,7 @@ int CatalogManager::workerMain() {
                 status_.state = State::Loading;
                 status_.catalog = requestedCatalog_;
                 status_.label = label(requestedCatalog_);
-                status_.message = "Switching catalog...";
+                status_.message = "Switching catalog — please wait...";
                 status_.softRefresh = false;
             }
             sceKernelUnlockMutex(mutex_, 1);
@@ -475,7 +475,7 @@ int CatalogManager::workerMain() {
             status_.state = State::Loading;
             status_.catalog = requestedCatalog_;
             status_.label = label(requestedCatalog_);
-            status_.message = "Switching catalog...";
+            status_.message = "Switching catalog — please wait...";
             status_.softRefresh = false;
             sceKernelUnlockMutex(mutex_, 1);
             continue;

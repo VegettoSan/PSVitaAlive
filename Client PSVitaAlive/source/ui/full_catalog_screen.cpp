@@ -266,8 +266,11 @@ void drawMarqueeText(vita2d_pgf* font, int x, int y, int maxW, unsigned color, f
                      const std::string& text, bool animate) {
     if (!font || text.empty() || maxW <= 8) return;
     const int tw = vita2d_pgf_text_width(font, scale, text.c_str());
+    vita2d_enable_clipping();
+    vita2d_set_clip_rectangle(x, y - 22, x + maxW, y + 8);
     if (!animate || tw <= maxW) {
         vita2d_pgf_draw_text(font, x, y, color, scale, text.c_str());
+        vita2d_disable_clipping();
         return;
     }
     const int gap = 48;
@@ -876,7 +879,7 @@ void FullCatalogScreen::drawNewsOverlay() {
         const int tw = vita2d_pgf_text_width(font_, sc, clab);
         vita2d_pgf_draw_text(font_, x + (w - bw) / 2 + (bw - tw) / 2, by + 25, BLACK, sc, clab);
     }
-    vita2d_pgf_draw_text(font_, x + 24, y + h - 14, DIM, 0.54f, "D-Pad: scroll   Circle: close");
+    vita2d_pgf_draw_text(font_, x + 24, y + h - 14, DIM, 0.60f, "D-Pad: scroll   Circle: close");
 }
 
 void FullCatalogScreen::drawReportChip() {
@@ -3551,16 +3554,16 @@ void FullCatalogScreen::drawCatalogCard(const CatalogItem&it,int idx,int x,int y
     drawImage(!it.icon.empty() ? it.icon : it.cover, "app", x + 10 + ox, y + 9 + oy, is, is);
     int tx = x + is + 20 + ox;
     {
-        const float nameSc = focus ? 0.84f : 0.78f;
+        const float nameSc = focus ? 0.90f : 0.84f;
         const int nameMaxW = std::max(40, (x + ox + ww) - tx - 10);
         drawMarqueeText(font_, tx, y + 25 + oy, nameMaxW, WHITE, nameSc, it.name, focus);
     }
-    vita2d_pgf_draw_text(font_, tx, y + 45 + oy, TEXT, 0.68f, ellipsize(it.author.empty() ? "Unknown author" : it.author, 20).c_str());
-    vita2d_pgf_draw_text(font_, tx, y + 64 + oy, colorForStatus(it.status), 0.66f, ellipsize(it.status, 16).c_str());
+    vita2d_pgf_draw_text(font_, tx, y + 45 + oy, TEXT, 0.74f, ellipsize(it.author.empty() ? "Unknown author" : it.author, 20).c_str());
+    vita2d_pgf_draw_text(font_, tx, y + 64 + oy, colorForStatus(it.status), 0.72f, ellipsize(it.status, 16).c_str());
     // Version / date bottom-left; size always bottom-right when known (all catalogs).
     std::string meta = (it.version.empty() ? "" : "v" + it.version) + (it.versionDate.empty() ? "" : "  " + it.versionDate);
     if (!meta.empty())
-        vita2d_pgf_draw_text(font_, x + 10 + ox, y + h - 10 + oy, DIM, 0.60f, ellipsize(meta, 22).c_str());
+        vita2d_pgf_draw_text(font_, x + 10 + ox, y + h - 10 + oy, DIM, 0.66f, ellipsize(meta, 20).c_str());
     {
         // Bottom-right chips: size + optional Data / Game Files tags (stacked upward)
         {
@@ -3569,7 +3572,7 @@ void FullCatalogScreen::drawCatalogCard(const CatalogItem&it,int idx,int x,int y
             // Neutral size chip
             auto drawSizeChip = [&](const std::string& label) {
                 if (label.empty()) return;
-                const float sc = 0.60f;
+                const float sc = 0.66f;
                 const int tw = vita2d_pgf_text_width(font_, sc, label.c_str());
                 const int padX = 5;
                 const int cw = tw + padX * 2;
@@ -3583,7 +3586,7 @@ void FullCatalogScreen::drawCatalogCard(const CatalogItem&it,int idx,int x,int y
             // Folder-style amber chips so Data / Game Files stand out
             auto drawFolderChip = [&](const std::string& label) {
                 if (label.empty()) return;
-                const float sc = 0.60f;
+                const float sc = 0.66f;
                 const int tw = vita2d_pgf_text_width(font_, sc, label.c_str());
                 const int padX = 7;
                 const int cw = tw + padX * 2;
@@ -3699,7 +3702,7 @@ void FullCatalogScreen::drawDetailLinks(const CatalogItem& it, int x, int y, int
     if (showAll) {
         // Own section header (same style as DOWNLOADS / GAME FILES)
         vita2d_draw_rectangle(x, y + LINK_SECTION_H - 1, w, 1, BORDER);
-        vita2d_pgf_draw_text(font_, x + 4, y + 14, ACCENT, 0.58f, "INSTALL ALL");
+        vita2d_pgf_draw_text(font_, x + 4, y + 14, ACCENT, 0.64f, "INSTALL ALL");
         const int by = y + LINK_SECTION_H + 4;
         const bool fAll = state_.linkNavigation && state_.linkFocus == 0;
         // Same look as download rows (SURFACE2 / ACCENT focus) + soft border pulse
@@ -3725,7 +3728,7 @@ void FullCatalogScreen::drawDetailLinks(const CatalogItem& it, int x, int y, int
         const int ry = y + yOff + row.y;
         if (row.isSection) {
             vita2d_draw_rectangle(x, ry + LINK_SECTION_H - 1, w, 1, BORDER);
-            vita2d_pgf_draw_text(font_, x + 4, ry + 14, ACCENT, 0.58f, linkSectionTitle(row.section));
+            vita2d_pgf_draw_text(font_, x + 4, ry + 14, ACCENT, 0.64f, linkSectionTitle(row.section));
             continue;
         }
         const CatalogLink& l = it.linkDetails[row.detailIndex];
@@ -3737,15 +3740,14 @@ void FullCatalogScreen::drawDetailLinks(const CatalogItem& it, int x, int y, int
         std::string title = l.name.empty() ? l.type : l.name;
         const std::string sizeLabel = formatLinkSizeLabel(l, it);
         const int badgeW = l.recommended ? 96 : 0;
-        vita2d_pgf_draw_text(font_, x + 10, ry + 15, mc, 0.64f, ellipsize(title, badgeW ? 18 : 26).c_str());
+        { const int titleMaxW = std::max(40, w - 20 - badgeW - 8); drawMarqueeText(font_, x + 10, ry + 15, titleMaxW, mc, 0.72f, title, f); }
         std::string meta = linkSectionMetaLabel(row.section);
         if (!sizeLabel.empty()) meta += "  •  " + sizeLabel;
         if (can) meta += f ? "  •  X: install" : "  •  X";
-        vita2d_pgf_draw_text(font_, x + 10, ry + 31, f ? BG : DIM, 0.58f, ellipsize(meta, badgeW ? 28 : 42).c_str());
+        vita2d_pgf_draw_text(font_, x + 10, ry + 31, f ? BG : DIM, 0.64f, ellipsize(meta, badgeW ? 28 : 42).c_str());
         if (l.recommended) {
             const int bx = x + w - badgeW - 8, by = ry + 8;
-            vita2d_draw_rectangle(bx, by, badgeW, 22, f ? BG : ACCENT);
-            vita2d_pgf_draw_text(font_, bx + 6, by + 15, f ? ACCENT : BG, 0.50f, "Recommended");
+            vita2d_pgf_draw_text(font_, bx, ry + 16, f ? BG : ACCENT, 0.58f, "Recommended");
         }
     }
     heightOut = linkLayoutTotalHeight(rows) + yOff;
@@ -3920,9 +3922,9 @@ void FullCatalogScreen::drawDetailPanel(int x,int y,int w,int h){
     {
         // Leave room for Select-links / Request-data buttons on the right.
         const int titleMaxW = std::max(60, (x + w - 150) - titleX);
-        drawMarqueeText(font_, titleX, y + 29, titleMaxW, WHITE, 0.86f, it.name, active);
+        drawMarqueeText(font_, titleX, y + 29, titleMaxW, WHITE, 0.92f, it.name, active);
     }
-    vita2d_pgf_draw_text(font_, titleX, y + 50, TEXT, 0.68f, ellipsize(it.author, 20).c_str());
+    vita2d_pgf_draw_text(font_, titleX, y + 50, TEXT, 0.74f, ellipsize(it.author, 20).c_str());
     std::string meta = (it.version.empty() ? "" : "v" + it.version) + (it.versionDate.empty() ? "" : "  " + it.versionDate);
     vita2d_pgf_draw_text(font_, titleX, y + 70, colorForStatus(it.status), 0.60f, ellipsize(meta.empty() ? it.status : meta, 22).c_str());
 
@@ -3957,7 +3959,7 @@ void FullCatalogScreen::drawDetailPanel(int x,int y,int w,int h){
             vita2d_draw_rectangle(bx, by, 1, bh, ACCENT);
             vita2d_draw_rectangle(bx, by + bh - 1, bw, 1, ACCENT);
             vita2d_draw_rectangle(bx + bw - 1, by, 1, bh, ACCENT);
-            vita2d_pgf_draw_text(font_, bx + 10, by + 19, linkOn ? BG : ACCENT, 0.58f, linkOn ? "△ Exit link mode" : "△ Select links");
+            vita2d_pgf_draw_text(font_, bx + 10, by + 19, linkOn ? BG : ACCENT, 0.64f, linkOn ? "△ Exit link mode" : "△ Select links");
         }
         if (itemEligibleForDataRequest(it)) {
             // Below Select links when present; same header column when no links.
@@ -3971,7 +3973,7 @@ void FullCatalogScreen::drawDetailPanel(int x,int y,int w,int h){
             vita2d_draw_rectangle(rbx, rby, 2, rbh, REQ);
             vita2d_draw_rectangle(rbx, rby + rbh - 2, rbw, 2, REQ);
             vita2d_draw_rectangle(rbx + rbw - 2, rby, 2, rbh, REQ);
-            vita2d_pgf_draw_text(font_, rbx + 6, rby + 20, REQ, 0.58f, "□ Request data");
+            vita2d_pgf_draw_text(font_, rbx + 6, rby + 20, REQ, 0.64f, "□ Request data");
         }
     }
     drawDetailContent(it, x, y, w, h);
@@ -4280,16 +4282,15 @@ void FullCatalogScreen::drawInstallAllOverlay() {
         const std::string sizeLabel = l.size.empty() ? "" : l.size;
         const int badgeW = l.recommended ? 96 : 0;
         const unsigned mc = WHITE;
-        vita2d_pgf_draw_text(font_, rx + 12, ry + 16, mc, 0.64f, ellipsize(name, badgeW ? 28 : 42).c_str());
+        { const int titleMaxW = std::max(40, rw - 24 - badgeW - 8); drawMarqueeText(font_, rx + 12, ry + 16, titleMaxW, mc, 0.72f, name, f); }
         std::string meta = l.type.empty() ? "Download" : l.type;
         if (!sizeLabel.empty()) meta += "  •  " + sizeLabel;
         if (f) meta += "  •  X: select";
         else meta += "  •  X";
-        vita2d_pgf_draw_text(font_, rx + 12, ry + 32, DIM, 0.50f, ellipsize(meta, badgeW ? 30 : 48).c_str());
+        vita2d_pgf_draw_text(font_, rx + 12, ry + 32, DIM, 0.58f, ellipsize(meta, badgeW ? 30 : 48).c_str());
         if (l.recommended) {
             const int bx = rx + rw - badgeW - 8, by = ry + 9;
-            vita2d_draw_rectangle(bx, by, badgeW, 22, ACCENT);
-            vita2d_pgf_draw_text(font_, bx + 6, by + 15, BG, 0.50f, "Recommended");
+            vita2d_pgf_draw_text(font_, bx, ry + 17, f ? BG : ACCENT, 0.58f, "Recommended");
         }
     }
     vita2d_pgf_draw_text(font_, ox + 22, oy + oh - 28, DIM, 0.48f, "D-Pad: move   X: select   O: cancel");
@@ -4321,10 +4322,10 @@ if (catalogSplashAlpha_ > 0.01f && !installProgressActive_) {
     vita2d_draw_rectangle(0, stripY, SCREEN_W, 3, RGBA8(0x3B, 0xFF, 0x00, ta > 255 ? 255 : ta));
 
     std::string phase = catalogLoadingLabel_.empty() ? "Startup" : catalogLoadingLabel_;
-    vita2d_pgf_draw_text(font_, barX, stripY + 28, ACCENT, 0.84f, ellipsize(phase, 40).c_str());
+    vita2d_pgf_draw_text(font_, barX, stripY + 28, ACCENT, 0.90f, ellipsize(phase, 40).c_str());
 
     std::string detail = catalogLoadingMessage_.empty() ? "Please wait..." : catalogLoadingMessage_;
-    vita2d_pgf_draw_text(font_, barX, stripY + 52, WHITE, 0.66f, ellipsize(detail, 78).c_str());
+    vita2d_pgf_draw_text(font_, barX, stripY + 52, WHITE, 0.74f, ellipsize(detail, 78).c_str());
 
     if (catalogLoadingTotal_ > 0) {
         char sizeLine[96];
@@ -4634,7 +4635,7 @@ void drawFooterBar(vita2d_pgf* font, const char* leftHints) {
     vita2d_draw_rectangle(0, SCREEN_H - FOOTER_H, SCREEN_W, 2, ACCENT);
     vita2d_draw_rectangle(0, SCREEN_H - FOOTER_H + 2, SCREEN_W, 1, ACCENT_SOFT);
     if (leftHints && font)
-        vita2d_pgf_draw_text(font, 12, SCREEN_H - 14, TEXT, 0.50f, leftHints);
+        vita2d_pgf_draw_text(font, 12, SCREEN_H - 14, TEXT, 0.58f, leftHints);
     if (!font) return;
 
     const Ux0SpaceInfo sp = queryUx0Space();
