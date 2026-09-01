@@ -11,7 +11,8 @@ jobs:
       - name: Apply fixes
         run: |
           set -euo pipefail
-          python3 scripts/fix_card_webhook.py
+          if [ -f scripts/fix_card_webhook.py ]; then python3 scripts/fix_card_webhook.py || true; fi
+          python3 scripts/fix_rightpad.py
       - name: Commit
         run: |
           set -euo pipefail
@@ -20,6 +21,6 @@ jobs:
           git add "Client PSVitaAlive/source/ui/full_catalog_screen.cpp"
           git status
           if git diff --staged --quiet; then echo "No changes"; else
-            git commit -m "ui: clip long card titles with ellipsis; data-request webhook channel"
+            git commit -m "ui: more space for card titles (rightPad 64)"
             git push origin HEAD:main
           fi
