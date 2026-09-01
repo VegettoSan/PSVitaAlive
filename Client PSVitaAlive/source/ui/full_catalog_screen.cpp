@@ -3570,11 +3570,12 @@ void FullCatalogScreen::drawCatalogCard(const CatalogItem&it,int idx,int x,int y
     int tx = x + is + 20 + ox;
     {
         const float nameSc = focus ? 0.90f : 0.84f;
-        // Leave room on the right for Game Files / Data Files chips so the title never overlaps them.
+        // Leave a modest right margin so long titles stay readable but do not spill
+        // under the Game Files / Data Files chips (chips sit mid/lower-right).
         int rightPad = 12;
         if (itemHasLinkType(it, "game files") || itemHasLinkType(it, "data files")
             || itemHasLinkType(it, "game file") || itemHasLinkType(it, "data file")) {
-            rightPad = 118; // ~"Game Files" chip width + margin
+            rightPad = 64; // enough clearance; title keeps most of the row
         }
         const int nameMaxW = std::max(40, (x + ox + ww) - tx - rightPad);
         drawMarqueeText(font_, tx, y + 25 + oy, nameMaxW, WHITE, nameSc, it.name, focus);
