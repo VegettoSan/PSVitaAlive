@@ -67,8 +67,6 @@ https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/catalog_ps1_games.
 https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/catalog_psvita_games.zrifidx
 ```
 
-The **zRIF index** (`catalog_psvita_games.zrifidx`) is a separate license sidecar for commercial Vita PKGs (NoPayStation-style). Format: one line per entry, `content_id<TAB>zrif`. It is **not** embedded in the main Vita catalog JSON so the client can keep four catalogs in RAM without saturating memory. The client downloads this file on demand when loading Vita Games and looks up licenses only at PKG install time (`content_id` first, Title ID fallback if the link omits `content_id`).
-
 ### Native client — commercial PKG install (verified)
 
 The **PS Vita client** installs commercial packages from **Vita Games**, **PSP**, and **PS1** catalogs through the console’s system download manager (**BGDL**), not by promoting a raw `.pkg` file:
@@ -126,10 +124,11 @@ Native client (Title ID **PSVAS1178**). Users only need to **open the client**: 
 **Highlights**
 
 - Catalogs: Homebrew, Vita Games, PSP, PS1
-- Search, Settings, touch + controls; News modal (from `news.txt`); optional Discord error **Report**
-- Downloads (MediaFire CDN resolution, Archive.org, GitHub, …)
-- Install: **VPK** (including nested `.vpk` inside a release ZIP), **ZIP** extract (`extract_path` or quick paths), licensed **PKG** via system **BGDL**
+- Search, Settings (including **color theme** palettes), touch + controls; News modal (from `news.txt`); optional Discord error **Report**
+- Downloads (MediaFire CDN resolution, Archive.org, GitHub, …) with retries on slow networks
+- Install: **VPK** (including nested `.vpk` inside a release ZIP), **ZIP** extract (`extract_path` or quick paths; large / >2 GB archives), licensed **PKG** via system **BGDL**
 - Free-space check before large downloads (~2.1× payload)
+- During download/install/extract: **screen forced on**, **PS button locked**, soft power-off menu locked (see [Downloads & installations](#downloads--installations-ps-vita-client))
 - Voluntary **Download cancelled** UI (no false “Installation failed” / no Report)
 - Self-update from [Releases](https://github.com/VegettoSan/PSVitaAlive/releases) (see below)
 - Plugin detection (prefer `ur0:tai`); session logs under `ux0:data/psvitaalive/logs/`
@@ -157,12 +156,113 @@ Open PS Vita Alive Store
 
 ---
 
+## Recommended setup (real PS Vita)
+
+For **stable downloads and HTTPS** on real hardware, configure the console as follows.
+
+### CFW / plugins
+
+| Recommendation | Why |
+|----------------|-----|
+| **HENkaku / h-encore / Enso** (as appropriate for your firmware) | Required to run homebrew and taiHEN plugins |
+| **[iTLS-Enso](https://github.com/SKGleba/iTLS-Enso) — full version** | Replaces the system TLS stack so modern HTTPS (GitHub, MediaFire, Archive.org, many CDNs) works. The **full** package is preferred over minimal installs when you rely on the store client for large HTTPS transfers |
+| **NoNpDrm** | Licensed Vita PKG / DLC / updates (BGDL path) |
+| **NoPspEmuDrm** (kernel + user as required) | PSP / PS1 LiveArea bubbles and related content |
+| Prefer **`ur0:tai`** over `ux0:tai` | Survives memory-card changes; client plugin detection prefers ur0 |
+
+iTLS-Enso repository and releases:
+
+- Project: [https://github.com/SKGleba/iTLS-Enso](https://github.com/SKGleba/iTLS-Enso)
+- Releases: [https://github.com/SKGleba/iTLS-Enso/releases](https://github.com/SKGleba/iTLS-Enso/releases)
+
+Install the **full** build when possible, reboot, then test HTTPS (open the client and load a catalog).
+
+### DNS (Wi‑Fi)
+
+Use reliable public DNS on the Vita’s Wi‑Fi connection so hostnames used by the client resolve consistently:
+
+| Role | Address |
+|------|---------|
+| **Primary** | `8.8.8.8` |
+| **Secondary** | `8.8.4.4` |
+
+Path on the system UI (typical): **Settings → Network → Wi‑Fi → [your network] → Advanced settings → DNS** → set primary/secondary as above (disable “Automatic” DNS if present).
+
+These are [Google Public DNS](https://developers.google.com/speed/public-dns). Other stable resolvers (e.g. `1.1.1.1` / `1.0.0.1`) are acceptable; the important part is **not** leaving a broken ISP DNS that fails intermittent lookups during multi‑GB transfers.
+
+### Storage and power
+
+- Prefer a healthy **SD2Vita / USB** setup with enough free space. The client checks free space at about **~2.1×** the expected download size before starting large jobs.
+- Keep the Vita **plugged in** for multi‑GB **Game Files** / VPK installs when possible.
+- Do **not** force power-off (hold power 10–30s) during an active download or extract — that truncates files and produces incomplete ZIPs.
+
+---
+
+## Downloads & installations (PS Vita client)
+
+Technical overview of how the native client moves bytes and installs content. Details live under [`Client PSVitaAlive/source/installer/README.md`](Client%20PSVitaAlive/source/installer/README.md).
+
+### Content paths
+
+| Content | Mechanism | Notes |
+|---------|-----------|--------|
+| Homebrew **VPK** (or ZIP containing a `.vpk`) | HTTP download → extract if needed → `scePromoterUtility` (async promote + poll) | Work dir `ux0:data/psva_vpk` |
+| **Data Files / Game Files** (ZIP) | HTTP download → integrity pre-check → extract | `extract_path` from catalog or quick-path picker; large archives supported (including **>2 GB** via libzip + custom `sceIo` source) |
+| Commercial **PKG** (Vita / PSP / PS1) | License resolve → **BGDL** system queue | Progress in LiveArea notifications; not a silent “promote raw PKG” path |
+
+### Why the client locks the shell and keeps the screen on
+
+HTTP downloads and ZIP extraction run **inside the client process** (libcurl + worker threads). Unlike system BGDL for commercial PKG, if the process is suspended or killed mid-transfer:
+
+- TCP streams stop and file handles can become invalid
+- Partial ZIP files often lack a valid **EOCD / ZIP64** end-of-central-directory marker
+- The next install attempt fails with **`zip_open` / incomplete archive** errors (download must be redone)
+
+To reduce that class of failure, while a job is in **Downloading** or **Installing** state the client:
+
+| Protection | API / behaviour | What the user sees |
+|------------|-----------------|---------------------|
+| **Anti auto-suspend** | `sceKernelPowerTick(SCE_KERNEL_POWER_TICK_DISABLE_AUTO_SUSPEND)` on a keep-awake thread while `busy()` | Console does not idle-suspend during the job |
+| **Screen stays on** | Also `DISABLE_OLED_OFF` + `DISABLE_OLED_DIMMING` while busy | Panel does not dim/blank mid-progress |
+| **PS button blocked** | `sceShellUtilLock(SCE_SHELL_UTIL_LOCK_TYPE_PS_BTN)` | Cannot exit to LiveArea until the job ends |
+| **Soft power-off menu blocked** | `sceShellUtilLock(SCE_SHELL_UTIL_LOCK_TYPE_POWEROFF_MENU)` | Short power-hold “Power Off” menu suppressed |
+| **Locks released** | `sceShellUtilUnlock` on Completed / Failed / Cancelled / shutdown | Normal PS / power behaviour returns |
+
+**Hard force power-off** (long hold) cannot be blocked in userland — it is a system/hardware path. The UI shows a high-visibility **LOCKED** banner and toasts if the user presses START, SELECT, L/R, or other keys during a job.
+
+### Incomplete ZIP detection
+
+Before opening a downloaded archive, the installer can reject files that do not look complete on disk (missing EOCD / ZIP64 marker near the end of the file). That fails early with a clear error instead of a cryptic extract crash — typical after suspend, kill, or network cut mid-download.
+
+### User-facing progress UI
+
+During an active job the progress overlay states explicitly that:
+
+- The **screen stays on**
+- **PS button and power menu are disabled**
+- Only **CIRCLE** (cancel) is expected until the job finishes
+
+Toasts reinforce the same message if Settings, exit, or catalog switch are attempted.
+
+### Practical recommendations during large installs
+
+1. Start the download and **leave the client in the foreground** until it finishes or you cancel with CIRCLE.
+2. Do not rely on turning the screen off to “save battery” during Game Files — the client keeps the screen on on purpose.
+3. Prefer a stable Wi‑Fi link and the DNS settings above; flaky DNS is a common cause of stalled HTTPS.
+4. Ensure **iTLS-Enso (full)** is installed if catalogs or CDNs fail TLS handshake.
+5. After a failure mentioning incomplete ZIP / `zip_open`, **delete the partial file** (cancel already tries to clean the job) and retry on a better connection.
+6. For commercial PKG, after “Queued…”, finish the install from **LiveArea notifications** — that path is system BGDL and can continue differently from in-app HTTP ZIP downloads.
+
+
 ## Contributing data
 
-1. Add or edit JSON under `apps/` (and `authors/` when needed).
-2. Prefer `catalog_overrides/` for enrichment that must survive external re-imports.
-3. Run validation workflows; fix reported issues.
-4. Do not commit broken relative media paths for external icons/screenshots—use absolute public URLs.
+Prefer pull requests that edit **source** data (`apps/`, overrides, scripts) rather than generated catalogs.
+
+1. Add or edit `apps/*.json` (and authors/categories when needed).
+2. Run validation / generation scripts (or rely on CI).
+3. Confirm website and client still load the public JSON endpoints.
+
+See module READMEs under `apps/`, `scripts/`, and `docs/`.
 
 ---
 
@@ -170,35 +270,19 @@ Open PS Vita Alive Store
 
 ### Current situation (transition in progress)
 
-The automatic **VitaDB external feed is no longer used** for catalog acquisition. It was removed from the configured external sources in **August 2026**.
-
-The current migration keeps **VitaHomebrewDB** as an optional external source for discovery, cross-checking, enrichment and preservation while the catalog moves toward independent maintenance through **PSVitaAlive’s own** `apps/`, `authors/` and `categories/` records.
-
-| Project | Current role | Maintainer / community | Official pages |
-|---------|--------------|------------------------|----------------|
-| **[VitaDB](https://www.rinnegatamante.eu/vitadb/)** | Historical source / legacy references only | [Rinnegatamante](https://github.com/Rinnegatamante) and contributors | Site: [rinnegatamante.eu/vitadb](https://www.rinnegatamante.eu/vitadb/) · Related work on [GitHub](https://github.com/Rinnegatamante) |
-| **[VitaHomebrewDB](https://drdecki.github.io/VitaHomebrewDB/)** | Current optional external source during migration | [DrDecki](https://github.com/DrDecki) and contributors | Site: [drdecki.github.io/VitaHomebrewDB](https://drdecki.github.io/VitaHomebrewDB/) · Data: [DrDecki/VitaDBtoo-db](https://github.com/DrDecki/VitaDBtoo-db) · Also [DrDecki/VitaHomebrewDB](https://github.com/DrDecki/VitaHomebrewDB) |
-
-We **thank and credit** those projects and everyone who built the underlying homebrew ecosystem. PS Vita Alive Store is **not** a replacement for them and **does not own** their databases, branding, or hosting.
+The automatic **VitaDB** feed was removed from the default pipeline. External acquisition may still use **VitaHomebrewDB** and manual curation while the catalog moves toward independent maintenance.
 
 ### VitaDB migration note
 
-Removing the automatic VitaDB feed does **not** remove existing records or links immediately. Some current `apps/` entries may still contain historical VitaDB-derived metadata or links. Those records and external links will be reviewed and migrated/removed progressively as part of the catalog cleanup.
-
-This README describes the source policy; it does **not** change existing application records by itself.
-
-Individual **homebrew authors** remain the owners of their apps, icons, screenshots, and releases. Each catalog entry carries author information (`author_ids` / author profiles) and, when available, links to the author’s repository or release page.
+Historical enrichment may still reflect data that originally came from public VitaDB-era indexes. Credit remains with upstream authors and catalog maintainers.
 
 ### Important ownership clarification
 
-Using VitaDB, VitaHomebrewDB or other public sources for discovery or enrichment does **not** mean PS Vita Alive Store owns that upstream data. Those databases and the works they describe remain under their respective rights and the terms of their maintainers.
-
-This project uses public information to **discover, import, cross-check, normalize, and present** a unified catalog for easier installation on PS Vita. Our [CC0 1.0 catalog dedication](CATALOG_LICENSE.md) applies only to rights we can dedicate in our own compilation and curation—not to third-party binaries, artwork, or an upstream database as a whole.
+This store does **not** own third-party homebrew binaries, art, or trademarks. Catalog entries are discovery metadata plus links.
 
 ### What this project adds
 
-- Unified JSON contracts (`catalog.json`, `authors.json`, `categories.json`)
-- Validation, deduplication and category/subcategory consistency
+- Aggregation, normalization, validation and category/subcategory consistency
 - Manual curation and ongoing maintenance
 - Public clients and documentation so others can reuse the catalog and learn from the design
 
