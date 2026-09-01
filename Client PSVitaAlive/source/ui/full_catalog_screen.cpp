@@ -2415,7 +2415,7 @@ void FullCatalogScreen::setSettingsSaveCallback(SettingsSaveFn callback) {
 
 void FullCatalogScreen::openSettings() {
     if (installProgressActive_ || catalogLoading_ || selfUpdateBusy_.load()) {
-        showToast("Wait until loading/install finishes", 1800);
+        showToast("Wait — download/install in progress (screen on, PS locked)", 2200);
         return;
     }
     if (state_.mode == UiMode::SETTINGS) return;
@@ -2507,7 +2507,7 @@ int FullCatalogScreen::selfUpdateWorkerEntry(SceSize args, void* argp) {
 
 void FullCatalogScreen::triggerSelfUpdateAction() {
     if (selfUpdateBusy_.load() || installProgressActive_) {
-        showToast("Wait until the current operation finishes", 1800);
+        showToast("Wait — an install is still running (do not power off)", 2200);
         return;
     }
 
@@ -4724,11 +4724,15 @@ else
 vita2d_pgf_draw_text(font_,x+28,y+242,
     (stageDownload && !indeterminate && !msgRetry) ? DIM : ACCENT,
     .52f, waitHint);
-const int by2=y+268,bw2=330,bh2=40;
+// Always-visible safety note while a job runs (screen on + PS locked).
+vita2d_pgf_draw_text(font_,x+28,y+260,ACCENT,.48f,
+    "Screen stays on. PS button locked — do not force power-off.");
+const int by2=y+278,bw2=330,bh2=40;
 vita2d_draw_rectangle(x+28,by2,bw2,bh2,SURFACE2);
 vita2d_draw_rectangle(x+28,by2,bw2,1,BORDER);
 vita2d_pgf_draw_text(font_,x+92,by2+26,WHITE,.62f,"CIRCLE  CANCEL DOWNLOAD");
-vita2d_pgf_draw_text(font_,x+28,y+h-14,DIM,.50f,"Circle: Cancel download and remove incomplete file");
+vita2d_pgf_draw_text(font_,x+28,y+h-14,DIM,.48f,
+    "Circle: Cancel  |  Screen on  |  PS locked until finished");
 }
 
 void drawFooterBar(vita2d_pgf* font, const char* leftHints) {

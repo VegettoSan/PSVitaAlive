@@ -567,7 +567,7 @@ void InstallController::startKeepAwakeThread() {
         diagnostics::log("[Installer] keep-awake thread start failed");
         return;
     }
-    diagnostics::log("[Installer] keep-awake thread started (anti auto-suspend while busy)");
+    diagnostics::log("[Installer] keep-awake thread started (anti-suspend + screen on while busy)");
 }
 
 void InstallController::stopKeepAwakeThread() {
@@ -586,7 +586,7 @@ void InstallController::lockShellDuringJob() {
     sceShellUtilLock(SCE_SHELL_UTIL_LOCK_TYPE_PS_BTN);
     sceShellUtilLock(SCE_SHELL_UTIL_LOCK_TYPE_POWEROFF_MENU);
     shellLocked_ = true;
-    diagnostics::log("[Installer] shell locked (PS + power-off menu) during job");
+    diagnostics::log("[Installer] shell locked: PS blocked, soft power-off menu blocked, screen forced on");
 }
 
 void InstallController::unlockShellDuringJob() {
@@ -605,10 +605,12 @@ int InstallController::keepAwakeEntry(SceSize args, void* argp) {
     InstallController* self = nullptr;
     if (argp) std::memcpy(&self, argp, sizeof(self));
     if (!self) return -1;
-    // Only DISABLE_AUTO_SUSPEND: screen may dim/off; console stays awake for network I/O.
+    // While a job runs: no auto-suspend AND keep the screen fully on (no dim / no OLED off).
     while (!self->keepAwakeStop_.load()) {
         if (self->busy()) {
             sceKernelPowerTick(SCE_KERNEL_POWER_TICK_DISABLE_AUTO_SUSPEND);
+            sceKernelPowerTick(SCE_KERNEL_POWER_TICK_DISABLE_OLED_OFF);
+            sceKernelPowerTick(SCE_KERNEL_POWER_TICK_DISABLE_OLED_DIMMING);
         }
         // 5s is enough; PowerTick effect lasts until the idle timer would fire again.
         sceKernelDelayThread(5 * 1000 * 1000);
