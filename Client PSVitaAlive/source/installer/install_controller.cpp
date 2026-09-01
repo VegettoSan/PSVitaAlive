@@ -151,11 +151,13 @@ bool InstallController::init() {
         if (!plugins_.nopspemudrmKern) diagnostics::log("[Installer] NoPspEmuDrm not detected - PSP LiveArea bubbles unavailable (Adrenaline ISO path still works)");
     }
     diagnostics::log("[Installer] BGDL deferred until first PKG install request");
+    startKeepAwakeThread();
     diagnostics::log("[Installer] initialized");
     return true;
 }
 
 void InstallController::shutdown() {
+    stopKeepAwakeThread();
     if (workerThread_ >= 0) {
         sceKernelWaitThreadEnd(workerThread_, nullptr, nullptr);
         sceKernelDeleteThread(workerThread_);
@@ -525,6 +527,59 @@ void InstallController::setTitleId(const char* text) {
 void InstallController::setState(InstallStatus::State state, const char* message) {
     setMessage(message);
     state_.store(static_cast<int>(state));
+}
+
+void InstallController::startKeepAwakeThread() {
+    if (keepAwakeThread_ >= 0) return;
+    keepAwakeStop_.store(false);
+    InstallController* self = this;
+    keepAwakeThread_ = sceKernelCreateThread(
+        "PSVitaAliveKeepAwake",
+        &InstallController::keepAwakeEntry,
+        0x10000100,
+        0x1000,
+        0,
+        0,
+        nullptr);
+    if (keepAwakeThread_ < 0) {
+        keepAwakeStop_.store(true);
+        diagnostics::log("[Installer] keep-awake thread create failed");
+        return;
+    }
+    const int st = sceKernelStartThread(keepAwakeThread_, sizeof(self), &self);
+    if (st < 0) {
+        sceKernelDeleteThread(keepAwakeThread_);
+        keepAwakeThread_ = -1;
+        keepAwakeStop_.store(true);
+        diagnostics::log("[Installer] keep-awake thread start failed");
+        return;
+    }
+    diagnostics::log("[Installer] keep-awake thread started (anti auto-suspend while busy)");
+}
+
+void InstallController::stopKeepAwakeThread() {
+    if (keepAwakeThread_ < 0) return;
+    keepAwakeStop_.store(true);
+    // Wake quickly: thread sleeps 5s max
+    sceKernelWaitThreadEnd(keepAwakeThread_, nullptr, nullptr);
+    sceKernelDeleteThread(keepAwakeThread_);
+    keepAwakeThread_ = -1;
+}
+
+int InstallController::keepAwakeEntry(SceSize args, void* argp) {
+    (void)args;
+    InstallController* self = nullptr;
+    if (argp) std::memcpy(&self, argp, sizeof(self));
+    if (!self) return -1;
+    // Only DISABLE_AUTO_SUSPEND: screen may dim/off; console stays awake for network I/O.
+    while (!self->keepAwakeStop_.load()) {
+        if (self->busy()) {
+            sceKernelPowerTick(SCE_KERNEL_POWER_TICK_DISABLE_AUTO_SUSPEND);
+        }
+        // 5s is enough; PowerTick effect lasts until the idle timer would fire again.
+        sceKernelDelayThread(5 * 1000 * 1000);
+    }
+    return 0;
 }
 
 int InstallController::workerEntry(SceSize args, void* argp) {

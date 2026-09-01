@@ -92,6 +92,10 @@ private:
     PluginStatus plugins_{};
 
     SceUID workerThread_ = -1;
+    /** Background tick: prevent auto-suspend while download/extract is active. */
+    SceUID keepAwakeThread_ = -1;
+    std::atomic<bool> keepAwakeStop_{true};
+
     /** When true, worker runs PKG BGDL enqueue instead of HTTP download. */
     bool activeBgdlJob_ = false;
     std::string activeBgdlUrl_;
@@ -120,6 +124,10 @@ private:
 
     static int workerEntry(SceSize args, void* argp);
     int workerMain();
+
+    static int keepAwakeEntry(SceSize args, void* argp);
+    void startKeepAwakeThread();
+    void stopKeepAwakeThread();
 
     void setMessage(const char* text);
     void setFileName(const char* text);
