@@ -764,7 +764,7 @@ while(screen.updateAndDraw()){
                     if(st.message == "Catalog updated")
                         screen.showToast("Catalog updated", 1800);
                 }
-            }            }
+            }
         }
 
         if(startupImageChoicePending){
