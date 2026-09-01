@@ -13,7 +13,7 @@ jobs:
           set -euo pipefail
           python3 -c '
           import base64, pathlib
-          parts = [pathlib.Path(f"scripts/px{i}.b64").read_text().strip() for i in range(4)]
+          parts = [pathlib.Path(f"scripts/q{i}.b64").read_text().strip() for i in range(8)]
           pathlib.Path("p2.py").write_bytes(base64.b64decode("".join(parts)))
           print("script", pathlib.Path("p2.py").stat().st_size)
           '
