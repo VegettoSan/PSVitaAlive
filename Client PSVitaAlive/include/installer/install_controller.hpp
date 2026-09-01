@@ -1,14 +1,12 @@
 #pragma once
 
+#include "network/http_client.hpp"
 #include "network/download_manager.hpp"
 #include "installer/install_dispatcher.hpp"
 #include "installer/app_settings.hpp"
 #include "installer/plugin_detector.hpp"
 
-#include <psp2/kernel/threadmgr.h>
-
 #include <atomic>
-#include <cstdint>
 #include <string>
 
 namespace psvitaalive {
@@ -20,33 +18,24 @@ struct InstallStatus {
         Installing,
         Completed,
         Failed,
-        /** User cancelled download/install — not a real failure. */
         Cancelled
     };
-
     State state = State::Idle;
     uint64_t current = 0;
     uint64_t total = 0;
     uint64_t bytesPerSecond = 0;
+    std::string message;
     std::string fileName;
     std::string stage;
-    std::string message;
-    /** Final install location when known (e.g. ux0:app/TITLEID or ZIP path). */
     std::string installPath;
-    /** TITLE_ID when known. */
     std::string titleId;
-    /** True if the app tree / LiveArea entry was verified after promote. */
     bool liveAreaOk = false;
-    /**
-     * Milliseconds until the success panel auto-closes (0 = no auto-close).
-     * Errors never auto-close; only Completed uses this countdown.
-     */
+    /** Remaining ms before Completed auto-dismisses (0 = no auto-dismiss). */
     uint64_t resultAutoCloseRemainingMs = 0;
 };
 
 /**
- * Orchestrates download -> format-specific install/extract -> cleanup.
- * The UI reads status only; it never performs filesystem/network work.
+ * Coordinates download + install on a worker thread so the UI thread never performs filesystem/network work.
  *
  * Completed stays visible until acknowledgeResult() or a short timeout.
  * Failed / Cancelled stay until the user acknowledges (no auto-dismiss).
@@ -95,6 +84,8 @@ private:
     /** Background tick: prevent auto-suspend while download/extract is active. */
     SceUID keepAwakeThread_ = -1;
     std::atomic<bool> keepAwakeStop_{true};
+    bool shellUtilReady_ = false;
+    bool shellLocked_ = false;
 
     /** When true, worker runs PKG BGDL enqueue instead of HTTP download. */
     bool activeBgdlJob_ = false;
@@ -128,6 +119,11 @@ private:
     static int keepAwakeEntry(SceSize args, void* argp);
     void startKeepAwakeThread();
     void stopKeepAwakeThread();
+
+    /** Block PS button (+ soft power-off menu) while a job is running so the user
+     *  cannot exit to LiveArea mid-download/extract. Always unlocked on finish. */
+    void lockShellDuringJob();
+    void unlockShellDuringJob();
 
     void setMessage(const char* text);
     void setFileName(const char* text);
