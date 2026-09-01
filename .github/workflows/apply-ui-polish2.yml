@@ -8,17 +8,145 @@ jobs:
       contents: write
     steps:
       - uses: actions/checkout@v4
-      - name: Assemble script and run
+      - name: Apply tiny critical fixes
         run: |
           set -euo pipefail
-          python3 -c '
-          import base64, pathlib
-          parts = [pathlib.Path(f"scripts/m{i}.b64").read_text().strip() for i in range(4)]
-          data = base64.b64decode("".join(parts))
-          pathlib.Path("scripts/p2_mini.py").write_bytes(data)
-          print("script", len(data))
-          '
-          python3 scripts/p2_mini.py
+          python3 << 'PY'
+          from pathlib import Path
+          import sys, re
+          CPP = Path("Client PSVitaAlive/source/ui/full_catalog_screen.cpp")
+          MAIN = Path("Client PSVitaAlive/source/main.cpp")
+          CM = Path("Client PSVitaAlive/source/catalog/catalog_manager.cpp")
+          t = CPP.read_text(encoding="utf-8")
+
+          old = """    if (!animate || tw <= maxW) {
+        vita2d_pgf_draw_text(font, x, y, color, scale, text.c_str());
+        return;
+    }"""
+          new = """    vita2d_enable_clipping();
+    vita2d_set_clip_rectangle(x, y - 22, x + maxW, y + 8);
+    if (!animate || tw <= maxW) {
+        vita2d_pgf_draw_text(font, x, y, color, scale, text.c_str());
+        vita2d_disable_clipping();
+        return;
+    }"""
+          if old not in t:
+              print("FAIL marquee"); sys.exit(1)
+          t = t.replace(old, new, 1)
+          print("ok marquee clip")
+
+          reps = [
+            ("focus ? 0.84f : 0.78f", "focus ? 0.90f : 0.84f"),
+            ("TEXT, 0.68f, ellipsize(it.author.empty()", "TEXT, 0.74f, ellipsize(it.author.empty()"),
+            ("colorForStatus(it.status), 0.66f,", "colorForStatus(it.status), 0.72f,"),
+            ("DIM, 0.60f, ellipsize(meta, 22)", "DIM, 0.66f, ellipsize(meta, 20)"),
+            ("WHITE, 0.86f, it.name, active", "WHITE, 0.92f, it.name, active"),
+            ("TEXT, 0.68f, ellipsize(it.author", "TEXT, 0.74f, ellipsize(it.author"),
+            ("mc, 0.64f, ellipsize(title", "mc, 0.72f, ellipsize(title"),
+            ("mc, 0.64f, ellipsize(name", "mc, 0.72f, ellipsize(name"),
+            ("f ? BG : DIM, 0.58f, ellipsize(meta", "f ? BG : DIM, 0.64f, ellipsize(meta"),
+            ("DIM, 0.50f, ellipsize(meta, badgeW", "DIM, 0.58f, ellipsize(meta, badgeW"),
+            ("0.58f, linkSectionTitle", "0.64f, linkSectionTitle"),
+            ('0.58f, "INSTALL ALL"', '0.64f, "INSTALL ALL"'),
+            ('0.58f, linkOn ? "', '0.64f, linkOn ? "'),
+            ('REQ, 0.58f, "', 'REQ, 0.64f, "'),
+            ("ACCENT, 0.84f, ellipsize(phase", "ACCENT, 0.90f, ellipsize(phase"),
+            ("WHITE, 0.66f, ellipsize(detail", "WHITE, 0.74f, ellipsize(detail"),
+            ('DIM, 0.54f, "D-Pad: scroll', 'DIM, 0.60f, "D-Pad: scroll'),
+            ("const float sc = 0.60f;", "const float sc = 0.66f;"),
+            ("TEXT, 0.50f, leftHints", "TEXT, 0.58f, leftHints"),
+            ('0.50f, "Recommended"', '0.58f, "Recommended"'),
+          ]
+          for a,b in reps:
+              c = t.count(a)
+              if c:
+                  t = t.replace(a, b)
+                  print(f"ok scale x{c}")
+
+          pat = re.compile(
+              r'(\s*)if \(l\.recommended\) \{\n'
+              r'(\s*)const int bx = ([^;]+);\n'
+              r'(?:\s*vita2d_draw_rectangle\(bx, by, badgeW, 22,[^;]+;\n)?'
+              r'\s*vita2d_pgf_draw_text\(font_, bx \+ 6, by \+ \d+, [^,]+, 0\.\d+f, "Recommended"\);\n'
+              r'\s*\}',
+              re.M)
+          def repl(m):
+              ind, ind2, bxexpr = m.group(1), m.group(2), m.group(3)
+              if "rx" in bxexpr or "rw" in bxexpr:
+                  return (f"{ind}if (l.recommended) {{\n"
+                          f"{ind2}const int bx = rx + rw - badgeW - 4;\n"
+                          f"{ind2}vita2d_pgf_draw_text(font_, bx, ry + 17, f ? BG : ACCENT, 0.58f, \"Recommended\");\n"
+                          f"{ind}}}")
+              return (f"{ind}if (l.recommended) {{\n"
+                      f"{ind2}// Text-only: green idle, black when focused (no box).\n"
+                      f"{ind2}const int bx = x + w - badgeW - 4;\n"
+                      f"{ind2}vita2d_pgf_draw_text(font_, bx, ry + 16, f ? BG : ACCENT, 0.58f, \"Recommended\");\n"
+                      f"{ind}}}")
+          t2, n = pat.subn(repl, t)
+          print(f"ok recommended x{n}")
+          if n < 2:
+              print("FAIL recommended count", n); sys.exit(1)
+          t = t2
+
+          old_lt = "vita2d_pgf_draw_text(font_, x + 10, ry + 15, mc, 0.72f, ellipsize(title, badgeW ? 18 : 26).c_str());"
+          new_lt = "{ const int titleMaxW = std::max(40, w - 20 - badgeW - 8); drawMarqueeText(font_, x + 10, ry + 15, titleMaxW, mc, 0.72f, title, f); }"
+          if old_lt in t:
+              t = t.replace(old_lt, new_lt, 1); print("ok link marquee")
+          else:
+              print("skip link marquee")
+
+          old_ln = "vita2d_pgf_draw_text(font_, rx + 12, ry + 16, mc, 0.72f, ellipsize(name, badgeW ? 28 : 42).c_str());"
+          new_ln = "{ const int titleMaxW = std::max(40, rw - 24 - badgeW - 8); drawMarqueeText(font_, rx + 12, ry + 16, titleMaxW, mc, 0.72f, name, f); }"
+          if old_ln in t:
+              t = t.replace(old_ln, new_ln, 1); print("ok ia marquee")
+          else:
+              print("skip ia marquee")
+
+          CPP.write_text(t, encoding="utf-8")
+
+          m = MAIN.read_text(encoding="utf-8")
+          needle = "Keep L/R locked for the whole CatalogManager busy window"
+          idx = m.find(needle)
+          if idx < 0:
+              print("FAIL loading needle"); sys.exit(1)
+          line_start = m.rfind("\n", 0, idx) + 1
+          end = m.find("csBusy.message.empty()?", idx)
+          end = m.find("}\n", end)
+          end = m.find("}\n", end+1) + 2
+          new_b = """        if(!startupCatalogs){
+            const auto csBusy=catalogs.status();
+            if(catalogs.isBusy()||csBusy.state==psvitaalive::CatalogManager::State::Loading){
+                const char* fallback =
+                    csBusy.softRefresh
+                        ? "Updating catalog in background (cache already shown)..."
+                        : "Loading this catalog — please wait (not preloaded at startup)...";
+                screen.setCatalogLoading(true,
+                    csBusy.label.empty()?psvitaalive::ui::catalogName(csBusy.catalog):csBusy.label,
+                    csBusy.current,csBusy.total,
+                    csBusy.message.empty()?fallback:csBusy.message);
+            } else {
+                screen.setCatalogLoading(false, "", 0, 0, "");
+            }
+        }
+"""
+          MAIN.write_text(m[:line_start] + new_b + m[end:], encoding="utf-8")
+          print("ok loading clear")
+
+          if CM.exists():
+              c = CM.read_text(encoding="utf-8")
+              for o,nstr in [
+                ('status_.message = "Checking catalog cache...";','status_.message = "Loading catalog (local cache, then network)...";'),
+                ('status_.message = "Switching catalog...";','status_.message = "Switching catalog — please wait...";'),
+                ('status_.message = "Downloading catalog...";','status_.message = "Downloading catalog from network — please wait...";'),
+                ('status_.message = "Updating catalog...";','status_.message = "Updating catalog from network — please wait...";'),
+              ]:
+                  ncount = c.count(o)
+                  if ncount:
+                      c = c.replace(o, nstr)
+                      print(f"ok cm x{ncount}")
+              CM.write_text(c, encoding="utf-8")
+          print("ALL TINY OK")
+          PY
       - name: Commit
         run: |
           set -euo pipefail
