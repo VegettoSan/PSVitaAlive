@@ -266,16 +266,14 @@ void drawMarqueeText(vita2d_pgf* font, int x, int y, int maxW, unsigned color, f
                      const std::string& text, bool animate) {
     if (!font || text.empty() || maxW <= 8) return;
     const int tw = vita2d_pgf_text_width(font, scale, text.c_str());
-    // Always clip so glyphs never bleed past the card/panel edge.
-    vita2d_enable_clipping();
-    vita2d_set_clip_rectangle(x, y - 22, x + maxW, y + 8);
+    // IMPORTANT: do not disable global clipping on the static path — parent panels
+    // (catalog grid / detail body) rely on their scissor staying active.
     if (tw <= maxW) {
         vita2d_pgf_draw_text(font, x, y, color, scale, text.c_str());
-        vita2d_disable_clipping();
         return;
     }
     if (!animate) {
-        // Static: shrink with "..." so long names never overflow the card.
+        // Static: pixel-accurate ellipsis so long names never spill past maxW.
         std::string s = text;
         const char* dots = "...";
         const int dotsW = vita2d_pgf_text_width(font, scale, dots);
@@ -285,9 +283,10 @@ void drawMarqueeText(vita2d_pgf* font, int x, int y, int maxW, unsigned color, f
             s.pop_back();
         s += dots;
         vita2d_pgf_draw_text(font, x, y, color, scale, s.c_str());
-        vita2d_disable_clipping();
         return;
     }
+    // Animated marquee needs a tight scissor for the scrolling glyphs.
+    // Callers that own a wider panel clip must re-assert it after this returns.
     const int gap = 48;
     const int cycle = tw + gap;
     const uint64_t ms = sceKernelGetProcessTimeWide() / 1000ULL;
@@ -3669,6 +3668,9 @@ void FullCatalogScreen::drawCatalogPanel(int x,int y,int w,int h,bool split){
                 const float fy = static_cast<float>(y + GRID_PAD) + (static_cast<float>(baseRow + r) - visualCatalogScroll_) * rowH;
                 if (fy + FULL_CARD_H < y || fy > y + h) continue;
                 drawCatalogCard(catalogView()[i], i, x + GRID_PAD + c * (cw + CARD_GAP), static_cast<int>(fy), cw, FULL_CARD_H, i == state_.focusIndex);
+                // Re-assert panel clip: focused card marquee disables global scissor.
+                vita2d_enable_clipping();
+                vita2d_set_clip_rectangle(x + 1, y + 1, x + w - 1, y + h - 1);
             }
         }
         vita2d_disable_clipping();
@@ -3692,6 +3694,9 @@ void FullCatalogScreen::drawCatalogPanel(int x,int y,int w,int h,bool split){
             const float fy = static_cast<float>(y + GRID_PAD) + (static_cast<float>(i) - visualCatalogScroll_) * rowH;
             if (fy + SPLIT_CARD_H < y || fy > y + h) continue;
             drawCatalogCard(catalogView()[i], i, x + GRID_PAD, static_cast<int>(fy), w - GRID_PAD * 2 - 4, SPLIT_CARD_H, i == state_.focusIndex);
+            // Re-assert panel clip: focused card marquee disables global scissor.
+            vita2d_enable_clipping();
+            vita2d_set_clip_rectangle(x + 1, y + 1, x + w - 1, y + h - 1);
         }
         vita2d_disable_clipping();
         const int total = (int)catalogView().size();
@@ -3836,6 +3841,9 @@ void FullCatalogScreen::drawDetailContent(const CatalogItem& it, int x, int y, i
     int cursor = top - (int)scroll;
     int linksH = 0;
     drawDetailLinks(it, cx, cursor, cw, linksH);
+    // Link-row marquee can clear scissor; restore detail body clip.
+    vita2d_enable_clipping();
+    vita2d_set_clip_rectangle(x + 2, top, x + w - 18, bottom);
     cursor += linksH;
 
     auto emitTextSection = [&](const char* title, const std::string& body, bool bullets) {
