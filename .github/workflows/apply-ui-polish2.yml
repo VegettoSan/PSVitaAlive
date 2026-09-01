@@ -8,7 +8,7 @@ jobs:
       contents: write
     steps:
       - uses: actions/checkout@v4
-      - name: Run polish v2
+      - name: Assemble and run polish v2
         run: |
           set -euo pipefail
           python3 scripts/apply_ui_polish2.py
