@@ -677,7 +677,7 @@ int main(){
     std::vector<StartupImageJob> startupImagesJobs;std::unordered_set<std::string> startupImageSeen;
 
     screen.setActiveCatalog(psvitaalive::ui::CatalogType::Homebrew);
-    screen.setCatalogLoading(true,psvitaalive::ui::catalogName(psvitaalive::ui::CatalogType::Homebrew),0,0,"Checking catalog cache...");
+    screen.setCatalogLoading(true,psvitaalive::ui::catalogName(psvitaalive::ui::CatalogType::Homebrew),0,0,"Loading Homebrew catalog (cache first, then update)...");
     if(!catalogs.request(psvitaalive::ui::CatalogType::Homebrew)){startupCatalogs=false;screen.setCatalogError("Unable to start catalog check");}
 
         
@@ -757,7 +757,7 @@ while(screen.updateAndDraw()){
                 screen.setCatalogItems(std::move(ready));
                 screen.setActiveCatalog(readyCatalog);
                 if(catalogs.isBusy()){
-                    screen.setCatalogLoading(true,psvitaalive::ui::catalogName(readyCatalog),0,0,"Loading next catalog...");
+                    screen.setCatalogLoading(true,psvitaalive::ui::catalogName(readyCatalog),0,0,"Loading next catalog — please wait...");
                 }else{
                     screen.setCatalogLoading(false,psvitaalive::ui::catalogName(readyCatalog),1,1,"Ready");
                     const auto st = catalogs.status();
@@ -804,7 +804,7 @@ while(screen.updateAndDraw()){
                 screen.setCatalogLoading(true,
                     csBusy.label.empty()?psvitaalive::ui::catalogName(csBusy.catalog):csBusy.label,
                     csBusy.current,csBusy.total,
-                    csBusy.message.empty()?"Loading catalog...":csBusy.message);
+                    csBusy.message.empty()?"Loading this catalog — please wait (not preloaded at startup)...":csBusy.message);
             }
         }
 

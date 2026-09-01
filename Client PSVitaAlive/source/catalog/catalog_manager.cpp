@@ -78,7 +78,7 @@ bool CatalogManager::request(ui::CatalogType catalog) {
         requestPending_ = true;
         status_.catalog = catalog;
         status_.label = label(catalog);
-        status_.message = "Switching catalog...";
+        status_.message = "Switching catalog — please wait...";
         status_.error.clear();
         status_.softRefresh = false;
         sceKernelUnlockMutex(mutex_, 1);
@@ -113,7 +113,7 @@ bool CatalogManager::request(ui::CatalogType catalog) {
     status_.current = 0;
     status_.total = 0;
     status_.label = label(catalog);
-    status_.message = "Checking catalog cache...";
+    status_.message = "Loading catalog (local cache, then network)...";
     status_.error.clear();
     requestPending_ = true;
     requestedCatalog_ = catalog;
