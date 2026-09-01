@@ -1,0 +1,17 @@
+name: Apply UI polish v2
+on:
+  workflow_dispatch:
+jobs:
+  apply:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - name: Decode and run polish v2
+        run: |
+          set -euo pipefail
+          python3 << 'PY'
+          import base64, pathlib
+          b64 = open('/dev/null')  # placeholder replaced below
+          PY
