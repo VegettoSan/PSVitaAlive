@@ -12,15 +12,16 @@ Supplementary documentation for architecture, pipelines and client behaviour.
 
 | Location | Topic |
 |----------|--------|
-| Root `README.md` | Project overview, public JSON API, multi-catalog |
+| Root `README.md` | Project overview, public JSON API, multi-catalog, **recommended Vita setup** (iTLS-Enso, DNS), **download/install locks** |
 | `apps/`, `authors/`, `categories/` | Data contracts |
 | `scripts/` | Generation and validation |
 | `sources/` | External feeds |
 | `web/` | Website |
-| `Client PSVitaAlive/` | Native client build and modules |
+| `Client PSVitaAlive/` | Native client build and modules; job safety overview |
 | `Client PSVitaAlive/source/update/README.md` | Self-update (PSVAUPDT1) handoff rules |
 | `Client PSVitaAlive/source/catalog/README.md` | Multi-catalog cache + zRIF sidecar |
-| `Client PSVitaAlive/source/installer/README.md` | VPK / **BGDL PKG (verified)** / plugins / zRIF lookup |
+| `Client PSVitaAlive/source/installer/README.md` | VPK / **BGDL PKG**, ZIP integrity, **keep-awake + shell locks** |
+| `Client PSVitaAlive/source/ui/README.md` | Progress **LOCKED** UI, color themes, catalog cards |
 | `.github/workflows/` | CI / Pages |
 
 ## Change classification

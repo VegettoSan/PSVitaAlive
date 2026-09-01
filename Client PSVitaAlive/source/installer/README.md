@@ -15,14 +15,15 @@ Homebrew **VPK** promote and **ZIP** extract remain separate paths and are uncha
 - **ZIP data**: extract to user-chosen path (quick paths include `ux0:data/`, `ux0:app/`, `ux0:repatch/`, PSP/PS1 folders)
 - **Licensed commercial PKG** (Vita / PSP / PS1): system **BGDL** + RIF, separate from homebrew promote
 - Plugin detection (AutoPlugin2-style `tai/config.txt` parse; prefer **ur0** then ux0)
-- Settings persistence for install method / PSP path preferences
+- Settings persistence for install method / PSP path preferences / **color theme**
 - Optional LiveArea refresh helpers for edge cases where promote succeeds but the bubble is not visible
+- **Keep-awake + shell locks** while in-app jobs run (see below)
 
 ## Main components
 
 | File | Role |
 |------|------|
-| `install_controller.cpp` | Public API used by UI; prefers BGDL for any `.pkg` when available |
+| `install_controller.cpp` | Public API used by UI; prefers BGDL for any `.pkg` when available; owns keep-awake thread and shell locks |
 | `install_dispatcher.cpp` | Format routing (VPK / ZIP / PKG direct — direct retail PKG is not used when license is required) |
 | `homebrew_installer.cpp` | VPK promote path |
 | `pkg_bgdl_installer.cpp` | BGDL package + license enqueue |
@@ -32,7 +33,7 @@ Homebrew **VPK** promote and **ZIP** extract remain separate paths and are uncha
 | `vita_installer.cpp` / `psp_installer.cpp` | Platform-specific helpers |
 | `fake_package_builder.cpp` | head.bin / package scaffolding |
 | `refresh_manager.cpp` | LiveArea refresh helpers |
-| `app_settings.cpp` | Client settings (including feature toggles) |
+| `app_settings.cpp` | Client settings (including feature toggles and color theme) |
 
 ## Commercial PKG flow (BGDL)
 
@@ -47,33 +48,13 @@ PkgBgdlInstaller
         │  resolve license (see below)
         │  write RIF → ux0:bgdl/temp.dat
         ▼
-BgdlClient::enqueue(title=app name, url, rif, type)
-        │
-        ▼
-System download manager (LiveArea notifications)
-        │  downloads + installs with NoNpDrm / NoPspEmuDrm as configured
-        ▼
-Game / content appears on LiveArea when finished
+BGDL system queue → LiveArea notifications
 ```
 
-### Requirements on device
+### License resolution order (typical)
 
-| Requirement | Why |
-|-------------|-----|
-| Real PS Vita (or compatible CFW stack) | BGDL uses SceShellSvc via **taiHEN** |
-| Client eboot built with **UNSAFE** | Same as PKGj — required to resolve ShellSvc IPMI exports |
-| **NoNpDrm** (and **NoPspEmuDrm** for PSP LiveArea bubbles) | Listed + file present under `ur0:tai` (preferred) or `ux0:tai` |
-| Network | PKG URLs are official CDN / NPS-style hosts |
-
-`LoadStartModule(libshellsvc)` may return `0x8002D013` (already loaded); that is normal if SceShellSvc is already resident.
-
-### License (zRIF) resolution order
-
-Licenses are **not** kept in catalog RAM. At install time only:
-
-1. **Link `zrif` field** (legacy / rare)
-2. **`content_id` on the link** → exact match in `catalog_psvita_games.zrifidx`  
-   (`content_id<TAB>zrif` per line)
+1. Explicit zRIF on the link (rare)
+2. **`content_id`** → line in `catalog_psvita_games.zrifidx` (`content_id<TAB>zrif` per line)
 3. **Fallback:** Title ID derived from URL / path (e.g. `PCSB00040` from `…/PCSB00040_00/…`) → first index key containing `-TITLEID_`
 4. **PSP/PS1:** synthetic RIF from content ID when applicable (PKGj-style), not the Vita zRIF dictionary
 
@@ -112,6 +93,49 @@ EP0001-PCSB00040_00-ASPHALTINJECTION	KO5ifR1dQ+e7BsBMdQI7Amx/cICHo0+Ip5+Xq3OIp78
 - Clean residual job/pkg directories after success or failure when possible
 - Success and bubble visibility can diverge; fallback copy + optional refresh paths exist for recovery
 
+## Keep-awake & shell locks (process-bound jobs)
+
+`InstallController` owns the lifecycle of in-app download/extract jobs. Commercial **BGDL** PKG enqueue is different (system download manager); the locks below primarily protect **HTTP + ZIP/VPK** work inside the client.
+
+### Keep-awake thread
+
+- Thread name: `PSVitaAliveKeepAwake`
+- Started in `init()`, stopped in `shutdown()`
+- Every ~5s while `busy()`:
+  - `sceKernelPowerTick(SCE_KERNEL_POWER_TICK_DISABLE_AUTO_SUSPEND)`
+  - `sceKernelPowerTick(SCE_KERNEL_POWER_TICK_DISABLE_OLED_OFF)`
+  - `sceKernelPowerTick(SCE_KERNEL_POWER_TICK_DISABLE_OLED_DIMMING)`
+
+Rationale: auto-suspend invalidates network/file progress; screen-off confuses users and still risks idle policies depending on firmware settings.
+
+### Shell util locks
+
+Requires `#include <psp2/shellutil.h>` and `SceShellSvc_stub` (already linked for BGDL).
+
+```text
+init → sceShellUtilInitEvents(0)
+setState(Downloading|Installing) → lock PS_BTN + POWEROFF_MENU
+setState(Completed|Failed|Cancelled|Idle) → unlock both
+shutdown → unlock (idempotent)
+```
+
+`shellLocked_` / `shellUtilReady_` avoid double-lock and no-op when init failed.
+
+### ZIP completeness pre-check
+
+Before `zip_open`, archives may be rejected if the on-disk image has no EOCD / ZIP64 end marker near EOF (`zipLooksCompleteOnDisk`). Typical user-visible failure after a killed transfer:
+
+```text
+zip_open failed err=35
+no EOCD/ZIP64 marker near end (download may be incomplete)
+```
+
+Mitigation is prevention (locks + keep-awake + screen on) plus early fail + cancel cleanup of partial job files.
+
+### Color theme settings
+
+`app_settings` persists `color_theme` (enum). Themes are applied at runtime to accent/surface colors used by neon frames and UI chrome. Changing theme does not affect install correctness.
+
 ## Logs
 
 ```text
@@ -133,4 +157,5 @@ Must not:
 
 - `source/catalog/README.md` — multi-catalog cache + zRIF sidecar
 - Root `catalog_psvita_games.zrifidx` — license index on GitHub
+- Root [README — Downloads & installations](../../../README.md#downloads--installations-ps-vita-client) — user-facing rationale
 - PKGj / FAPS bgdl research lineage for ShellSvc IPMI constants (implementation is original to this client)

@@ -14,18 +14,58 @@ Native catalog client for PlayStation Vita / PSTV (and Vita3K for testing).
 ## Features (high level)
 
 - Catalogs: **Homebrew**, **Vita Games**, **PSP**, **PS1** (all four can stay cached in RAM after first load)
-- Search, Settings, touch + buttons; **News** from repo `news.txt`; optional **Report** on real errors
+- Search, Settings (install method, PSP target, **color theme** palettes with live preview), touch + buttons
+- **News** from repo `news.txt`; optional Discord **Report** on real errors (and dedicated data-request webhook path)
 - Image cache with on-demand loading; **Data Files / Game Files** indicators on app cards
-- Downloads via libcurl (MediaFire CDN/size resolution, Archive.org, GitHub, …)
+- Downloads via libcurl (MediaFire CDN/size resolution, Archive.org, GitHub, …) with retry behaviour on slow links
 - Install pipeline:
   - **VPK** promote (including a nested `.vpk` inside a release ZIP)
-  - **ZIP** extract (`extract_path` from catalog or quick-path UI)
+  - **ZIP** extract (`extract_path` from catalog or quick-path UI), including **large / >2 GB** archives (libzip + custom `sceIo` source)
+  - Pre-open ZIP integrity check (EOCD / ZIP64 marker) to fail incomplete downloads early
   - Licensed commercial **PKG via system BGDL** (verified on real Vita)
 - Free-space check before download (~2.1× expected size)
+- **Job safety (Downloading / Installing):**
+  - Keep-awake thread: `sceKernelPowerTick` — disable auto-suspend **and** keep OLED on (no dim / no off)
+  - `sceShellUtilLock(PS_BTN)` + `POWEROFF_MENU` so the user cannot leave to LiveArea or open the soft power-off menu mid-job
+  - Locks released on Completed / Failed / Cancelled / shutdown
+  - Progress UI shows a **LOCKED** banner; toasts if START / SELECT / L-R / other keys are pressed
 - Voluntary cancel shows **Download cancelled** (not a false install failure)
 - **Automatic self-update** from [GitHub Releases](https://github.com/VegettoSan/PSVitaAlive/releases) via helper **PSVAUPDT1** — open the client; if a new version exists it can download and install without a PC
 - Plugin detection (AutoPlugin2-style parser; prefer **ur0:tai** over ux0)
 - Logs: `session.log`, `install.log`, `updater.log`
+
+## Job safety during download / install / extract
+
+In-app HTTP downloads and ZIP extraction are **process-bound**. If the Vita suspends or the user exits to LiveArea mid-transfer, partial files are common (especially multi‑GB Game Files). Incomplete ZIPs typically fail later with missing EOCD / `zip_open` errors.
+
+### Runtime behaviour
+
+Implemented in `InstallController` (`install_controller.cpp`):
+
+1. **`sceShellUtilInitEvents`** once at installer init.
+2. On `setState(Downloading|Installing)` → `lockShellDuringJob()`:
+   - `SCE_SHELL_UTIL_LOCK_TYPE_PS_BTN`
+   - `SCE_SHELL_UTIL_LOCK_TYPE_POWEROFF_MENU`
+3. Keep-awake thread (started at init) while `busy()`:
+   - `SCE_KERNEL_POWER_TICK_DISABLE_AUTO_SUSPEND`
+   - `SCE_KERNEL_POWER_TICK_DISABLE_OLED_OFF`
+   - `SCE_KERNEL_POWER_TICK_DISABLE_OLED_DIMMING`
+4. On terminal states / `shutdown()` → `unlockShellDuringJob()`.
+
+**Not blocked:** long hardware force power-off. Users must not use it during jobs.
+
+### UI messaging
+
+`FullCatalogScreen` progress overlay shows a red **LOCKED** strip:
+
+- PS button and power menu disabled  
+- Screen stays ON — do not force power-off  
+
+Toasts fire for START, SELECT (Settings), L/R catalog switch, and other face/D-Pad buttons while a job is active (only CIRCLE cancel remains intentional).
+
+### Recommendations (device)
+
+See the root [README — Recommended setup](../README.md#recommended-setup-real-ps-vita) for **iTLS-Enso (full)**, DNS `8.8.8.8` / `8.8.4.4`, plugins, and storage notes.
 
 ## Link types in the client
 
@@ -50,57 +90,23 @@ See the root [README.md](../README.md) for the full link-type matrix.
 On a real PS Vita with CFW + **NoNpDrm** (and **NoPspEmuDrm** when needed):
 
 1. User selects a Download / DLC / Update link that points to a `.pkg`
-2. Client resolves license from `catalog_psvita_games.zrifidx` using link **`content_id`** (preferred) or Title ID fallback
-3. Client enqueues the job in the system download manager (PKGj-style ShellSvc / BGDL)
-4. UI shows **Queued: &lt;game name&gt;**; the user watches progress under LiveArea notifications
-5. Install completes in the background; the title appears when the system finishes
+2. Client resolves license from `catalog_psvita_games.zrifidx` using link **`content_id`** (preferred) or title-id fallback
+3. Writes RIF and enqueues BGDL; UI shows **Queued: &lt;app name&gt;**
+4. User completes install from LiveArea system notifications
 
-Build the client eboot with the **UNSAFE** flag (required for ShellSvc exports, same class of requirement as PKGj). Full detail: [`source/installer/README.md`](source/installer/README.md).
+Do not promote a raw retail `.pkg` without a matching license — that path fails and only wastes bandwidth.
 
-## Self-update architecture
+## Self-update
 
-### For users
+Automatic path uses helper Title ID **PSVAUPDT1**:
 
-1. Open **PS Vita Alive Store** on the console.
-2. If update checking is enabled and a newer release exists, the client downloads `PSVitaAlive.vpk` from GitHub Releases.
-3. A temporary helper bubble (**PSVAUPDT1**) installs the new client, relaunches the store, and removes itself.
-4. If something fails, install manually from `ux0:data/psvitaalive/update/PSVitaAlive.vpk` or the [Releases page](https://github.com/VegettoSan/PSVitaAlive/releases).
+- Client downloads the new VPK to `ux0:data/psvitaalive/update/`
+- Installs the updater bubble, launches it, exits
+- Updater promotes the new client, relaunches the store, removes itself
 
-### For developers
+Rules of thumb (see `source/update/README.md`):
 
-A running app **must not** promote itself. Flow:
-
-```text
-PSVAS1178 (client)
-  │  check GitHub Releases /latest
-  │  download PSVitaAlive.vpk → ux0:data/psvitaalive/update/
-  │  extract staged package → ux0:data/psva_vpk (homebrew-aligned path)
-  │  install helper bubble PSVAUPDT1 from app0:updater/
-  │  hand off (see below)
-  ▼
-PSVAUPDT1 (updater)
-  │  PromotePkg async on staged client package
-  │  launch client
-  ▼
-PSVAS1178 (updated)
-  │  optional: delete PSVAUPDT1 bubble
-```
-
-### Critical handoff rule (client → updater)
-
-**Updater → client works** with a minimal sequence. **Client → updater** must use the **same** pattern:
-
-```text
-sceAppMgrLaunchAppByUri(0xFFFFF, "psgm:play?titleid=PSVAUPDT1");
-sceKernelExitProcess(0);
-```
-
-Do **not** call `sceAppMgrDestroyOtherApp()` before launching the updater from the client — that path was associated with freezes/crashes on real hardware. `DestroyOtherApp` remains appropriate **inside the updater** before promoting packages, not before launching the other title.
-
-Also:
-
-- Run version check / handoff launch on the **main thread** (not a worker).
-- Stop catalog/image workers before handoff.
+- Tear down catalog/image workers before handoff.
 - Prefer **async** `PromotePkg(sync=0)` + `GetState` poll for PSVAUPDT1; sync promote was observed to hang after returning success on device.
 - After promote, prefer soft `scePromoterUtilityExit()`; aggressive PAF unload after promote was linked to hangs.
 
@@ -140,9 +146,9 @@ Requires a working VitaSDK toolchain (`arm-vita-eabi-gcc`, etc.). The build also
 | `source/main.cpp` | Entry, lifecycle, update handoff |
 | `source/catalog/` | Catalog download/parse/cache + zRIF index download |
 | `source/network/` | HTTP, downloads, MediaFire |
-| `source/installer/` | Install/dispatch/promote, BGDL PKG, plugins |
+| `source/installer/` | Install/dispatch/promote, BGDL PKG, plugins, keep-awake / shell locks |
 | `source/archive/` | ZIP / format detection |
-| `source/ui/` | Full catalog UI, image cache |
+| `source/ui/` | Full catalog UI, image cache, lock messaging, themes |
 | `source/update/` | GitHub release check, applyUpdate, launch helper |
 | `source/storage/` | Paths and storage helpers |
 | `updater/` | Standalone PSVAUPDT1 sources |

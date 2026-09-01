@@ -8,9 +8,9 @@ Native C++ sources for the PS Vita client.
 |-----------|----------------|
 | `catalog/` | Fetch, parse, cache multi-catalog JSON; download Vita **zRIF** sidecar |
 | `network/` | libcurl HTTP, download manager, MediaFire resolver, curl lifecycle |
-| `installer/` | Install controller, dispatcher, VPK/BGDL PKG/PSP helpers, plugins, LiveArea refresh |
+| `installer/` | Install controller, dispatcher, VPK/BGDL PKG/PSP helpers, plugins, LiveArea refresh, **keep-awake + shell locks** during jobs |
 | `archive/` | Format detection, ZIP extract |
-| `ui/` | Full-catalog UI, image cache |
+| `ui/` | Full-catalog UI, image cache, progress **LOCKED** banner / toasts, color themes |
 | `update/` | GitHub Releases check, stage VPK, install **PSVAUPDT1**, main-thread handoff (user opens client → auto update when a new release exists) |
 | `storage/` | Storage paths and helpers |
 | `main.cpp` | Application entry, startup order, update handoff |
@@ -20,7 +20,7 @@ Native C++ sources for the PS Vita client.
 
 1. Init diagnostics, AppUtil/IME, libcurl process-global
 2. Optional **plugin detection** (config flag)
-3. Installer init
+3. Installer init (`sceShellUtilInitEvents`, start keep-awake thread)
 4. UI init
 5. Optional **update check** on main thread (config flag)
    - If update applied: install helper → **updater-style** `LaunchAppByUri` + `ExitProcess`
@@ -33,3 +33,4 @@ Native C++ sources for the PS Vita client.
 - Network code must init/cleanup libcurl carefully (avoid double global cleanup crashes).
 - Optional features (plugin scan, update check) respect settings / config flags when present.
 - Self-update handoff must mirror `updater/main.c` `launchClientAndExit` (no `DestroyOtherApp` before launch from the client).
+- In-app download/extract jobs must unlock shell locks on every terminal path (success, fail, cancel, shutdown).
