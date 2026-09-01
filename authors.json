@@ -735,6 +735,21 @@
     "icon": "https://avatars.githubusercontent.com/u/318947551?s=200&v=4"
   },
   {
+    "id": "boazbee",
+    "name": "boazbee",
+    "avatar": "https://avatars.githubusercontent.com/u/32636738?v=4",
+    "bio": "nobody",
+    "links": [
+      {
+        "type": "Repository",
+        "name": "GitHub",
+        "url": "https://github.com/boazbee",
+        "recommended": true
+      }
+    ],
+    "icon": "https://avatars.githubusercontent.com/u/32636738?v=4"
+  },
+  {
     "id": "bokoyoss",
     "name": "bokoyoss",
     "avatar": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png",
