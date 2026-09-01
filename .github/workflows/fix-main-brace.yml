@@ -1,0 +1,46 @@
+name: Fix main.cpp extra brace
+on:
+  workflow_dispatch:
+jobs:
+  fix:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - name: Remove extra closing brace
+        run: |
+          set -euo pipefail
+          python3 << 'PY'
+          from pathlib import Path
+          path = Path("Client PSVitaAlive/source/main.cpp")
+          text = path.read_text(encoding="utf-8")
+          old = "            }            }\n        }"
+          new = "            }\n        }"
+          if old not in text:
+              if "}            }" not in text:
+                  print("already fixed")
+                  raise SystemExit(0)
+              raise SystemExit("needle not found")
+          text = text.replace(old, new, 1)
+          depth = 0
+          for line in text.splitlines():
+              code = line.split("//")[0]
+              for ch in code:
+                  if ch == "{": depth += 1
+                  elif ch == "}": depth -= 1
+          assert depth == 0, f"brace depth={depth}"
+          assert "PSVITAALIVE_STARTUP_HOMEBREW_ONLY" in text
+          path.write_text(text, encoding="utf-8")
+          print("fixed ok, len", len(text))
+          PY
+      - name: Commit
+        run: |
+          set -euo pipefail
+          git config user.name "VegettoSanDev"
+          git config user.email "72358120+VegettoSan@users.noreply.github.com"
+          git add "Client PSVitaAlive/source/main.cpp"
+          git status
+          git diff --cached --stat
+          git commit -m "fix(main): remove extra brace breaking main() scope (cache-first)"
+          git push origin HEAD:main
