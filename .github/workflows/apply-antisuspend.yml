@@ -1,0 +1,25 @@
+name: Apply anti-suspend during download
+on:
+  workflow_dispatch:
+jobs:
+  apply:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - name: Apply patch
+        run: |
+          set -euo pipefail
+          python3 scripts/fix_antisuspend.py
+      - name: Commit
+        run: |
+          set -euo pipefail
+          git config user.name "VegettoSanDev"
+          git config user.email "72358120+VegettoSan@users.noreply.github.com"
+          git add "Client PSVitaAlive/include/installer/install_controller.hpp" "Client PSVitaAlive/source/installer/install_controller.cpp"
+          git status
+          if git diff --staged --quiet; then echo "No changes"; else
+            git commit -m "installer: anti auto-suspend while downloading/extracting (PowerTick)"
+            git push origin HEAD:main
+          fi
