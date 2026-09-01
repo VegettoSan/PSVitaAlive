@@ -92,6 +92,54 @@
     ]
   },
   {
+    "id": "ctr-high-octane",
+    "title_id": "CTR000004",
+    "name": "CTR: High Octane",
+    "description": "is a sourceport for PSVita of Crash Team Racing based on the ctr-native project.",
+    "long_description": "Crash Team Racing: High Octane is a sourceport for PSVita of Crash Team Racing based on the ctr-native project. It focuses on new features, enhancements and optimization.",
+    "author_ids": [
+      "rinnegatamante"
+    ],
+    "category_id": "ports",
+    "subcategory_ids": [
+      "arcade",
+      "racing"
+    ],
+    "version": "1.1",
+    "version_date": "2026-08-29",
+    "requirements": "- libshacccg.suprx\n- Game Data Files: PS1",
+    "size": 2306867,
+    "status": "Verified",
+    "links": [
+      {
+        "type": "Download",
+        "name": "VPK",
+        "url": "https://archive.org/download/crash-team-racing-high-optane/ctr%20v1.1.vpk",
+        "size": 2306867,
+        "recommended": true
+      },
+      {
+        "type": "Game Files",
+        "name": "Game Files",
+        "url": "https://archive.org/download/crash-team-racing-high-optane/Game%20Files.zip",
+        "size": 605657498,
+        "extract_path": "ux0:data/"
+      },
+      {
+        "type": "Repository",
+        "name": "GitHub",
+        "url": "https://github.com/Rinnegatamante/Crash-Team-Racing-High-Octane"
+      }
+    ],
+    "icon": "https://archive.org/download/crash-team-racing-high-optane/icon0.png",
+    "screenshots": [
+      "https://archive.org/download/crash-team-racing-high-optane/shot0.jpg",
+      "https://archive.org/download/crash-team-racing-high-optane/shot1.jpg",
+      "https://archive.org/download/crash-team-racing-high-optane/shot2.jpg",
+      "https://archive.org/download/crash-team-racing-high-optane/shot3.jpg"
+    ]
+  },
+  {
     "id": "vitadeck",
     "title_id": "VITADECK1",
     "name": "VitaDeck",
