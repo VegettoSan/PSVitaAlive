@@ -1,4 +1,4 @@
-id: 2026-08-30-0031
+id: 2026-08-31-0001
 title: PsVita Alive Store 01.16
 enabled: true
 ---
@@ -20,13 +20,9 @@ We use Archive.org as our Homebrew database, which may cause downloads to take a
 
 ---
 
-## Apps Added
+## Game Files Added
 
-- VitaDeck
-- VitaMaps
-- VitaMediaDeck
-- VitaTweakBox
-- VitaUSBStream
+- Battleship
 
 ---
 
