@@ -266,10 +266,25 @@ void drawMarqueeText(vita2d_pgf* font, int x, int y, int maxW, unsigned color, f
                      const std::string& text, bool animate) {
     if (!font || text.empty() || maxW <= 8) return;
     const int tw = vita2d_pgf_text_width(font, scale, text.c_str());
+    // Always clip so glyphs never bleed past the card/panel edge.
     vita2d_enable_clipping();
     vita2d_set_clip_rectangle(x, y - 22, x + maxW, y + 8);
-    if (!animate || tw <= maxW) {
+    if (tw <= maxW) {
         vita2d_pgf_draw_text(font, x, y, color, scale, text.c_str());
+        vita2d_disable_clipping();
+        return;
+    }
+    if (!animate) {
+        // Static: shrink with "..." so long names never overflow the card.
+        std::string s = text;
+        const char* dots = "...";
+        const int dotsW = vita2d_pgf_text_width(font, scale, dots);
+        while (s.size() > 1 && vita2d_pgf_text_width(font, scale, s.c_str()) + dotsW > maxW)
+            s.pop_back();
+        while (!s.empty() && (unsigned char)s.back() < 0x80 && (s.back() == ' ' || s.back() == '.'))
+            s.pop_back();
+        s += dots;
+        vita2d_pgf_draw_text(font, x, y, color, scale, s.c_str());
         vita2d_disable_clipping();
         return;
     }
@@ -1022,8 +1037,8 @@ void FullCatalogScreen::drawDataRequestConfirmOverlay() {
 namespace {
 // Same Discord webhook as error reports (rotate if abused).
 constexpr const char* kDataRequestWebhookUrl =
-    "https://discord.com/api/webhooks/1540832184774959268/"
-    "XPinil0HHmwzje7MOMXjXi0iQEHf7lHQtmZZILre3AbXMTxRLnObpYwX5yGhqzrdROWr";
+    "https://discord.com/api/webhooks/1544111419895840772/"
+    "hoqpAh5rNz_lt6-T7UroKCwPBRTRZ1RtXlGlsruyO3T--7yIk3jgx_ml0y2OuC9Bgqef";
 
 std::string dataReqJsonEscape(const std::string& in) {
     std::string out;
@@ -3555,7 +3570,13 @@ void FullCatalogScreen::drawCatalogCard(const CatalogItem&it,int idx,int x,int y
     int tx = x + is + 20 + ox;
     {
         const float nameSc = focus ? 0.90f : 0.84f;
-        const int nameMaxW = std::max(40, (x + ox + ww) - tx - 10);
+        // Leave room on the right for Game Files / Data Files chips so the title never overlaps them.
+        int rightPad = 12;
+        if (itemHasLinkType(it, "game files") || itemHasLinkType(it, "data files")
+            || itemHasLinkType(it, "game file") || itemHasLinkType(it, "data file")) {
+            rightPad = 118; // ~"Game Files" chip width + margin
+        }
+        const int nameMaxW = std::max(40, (x + ox + ww) - tx - rightPad);
         drawMarqueeText(font_, tx, y + 25 + oy, nameMaxW, WHITE, nameSc, it.name, focus);
     }
     vita2d_pgf_draw_text(font_, tx, y + 45 + oy, TEXT, 0.74f, ellipsize(it.author.empty() ? "Unknown author" : it.author, 20).c_str());
