@@ -226,24 +226,68 @@ std::string itemCardSizeLabel(const CatalogItem& it) {
     return base + " + " + extra;
 }
 
-// LiveArea brand palette (PSVitaAlive Store): neon lime on near-black honeycomb look
-constexpr unsigned BG=RGBA8(0x0A,0x0A,0x0A,255);
-constexpr unsigned SURFACE=RGBA8(0x1A,0x1A,0x1A,255);
-constexpr unsigned SURFACE2=RGBA8(0x12,0x12,0x14,255);
-constexpr unsigned PANEL=RGBA8(0x0E,0x0E,0x10,255);
-constexpr unsigned BORDER=RGBA8(0x2A,0x2A,0x2E,255);
-constexpr unsigned TEXT=RGBA8(0xAA,0xAA,0xAA,255);
-constexpr unsigned DIM=RGBA8(0x66,0x66,0x6A,255);
-constexpr unsigned ACCENT=RGBA8(0x3B,0xFF,0x00,255);       // #3BFF00
-constexpr unsigned ACCENT_DIM=RGBA8(0x3B,0xFF,0x00,90);
-constexpr unsigned ACCENT_SOFT=RGBA8(0x3B,0xFF,0x00,40);
-constexpr unsigned WHITE=RGBA8(0xF0,0xF0,0xF0,255);
-constexpr unsigned SILVER=RGBA8(0xC8,0xC8,0xCC,255);
+// LiveArea brand palette (mutable - ColorTheme swaps accent/surfaces at runtime)
+unsigned BG=RGBA8(0x0A,0x0A,0x0A,255);
+unsigned SURFACE=RGBA8(0x1A,0x1A,0x1A,255);
+unsigned SURFACE2=RGBA8(0x12,0x12,0x14,255);
+unsigned PANEL=RGBA8(0x0E,0x0E,0x10,255);
+unsigned BORDER=RGBA8(0x2A,0x2A,0x2E,255);
+unsigned TEXT=RGBA8(0xAA,0xAA,0xAA,255);
+unsigned DIM=RGBA8(0x66,0x66,0x6A,255);
+unsigned ACCENT=RGBA8(0x3B,0xFF,0x00,255);       // #3BFF00 default
+unsigned ACCENT_DIM=RGBA8(0x3B,0xFF,0x00,90);
+unsigned ACCENT_SOFT=RGBA8(0x3B,0xFF,0x00,40);
+unsigned WHITE=RGBA8(0xF0,0xF0,0xF0,255);
+unsigned SILVER=RGBA8(0xC8,0xC8,0xCC,255);
 
-/** Thin neon frame used across cards, panels, and modals (LiveArea brand). */
+/** Rebuild RGBA with a new alpha; keeps RGB from c (vita2d RGBA8 = A<<24 | B<<16 | G<<8 | R). */
+unsigned withAlpha(unsigned c, unsigned a) {
+    return (c & 0x00FFFFFFu) | ((a & 0xFFu) << 24);
+}
+
+void applyColorTheme(::psvitaalive::ColorTheme t) {
+    BG = RGBA8(0x0A,0x0A,0x0A,255);
+    SURFACE = RGBA8(0x1A,0x1A,0x1A,255);
+    SURFACE2 = RGBA8(0x12,0x12,0x14,255);
+    PANEL = RGBA8(0x0E,0x0E,0x10,255);
+    BORDER = RGBA8(0x2A,0x2A,0x2E,255);
+    TEXT = RGBA8(0xAA,0xAA,0xAA,255);
+    DIM = RGBA8(0x66,0x66,0x6A,255);
+    WHITE = RGBA8(0xF0,0xF0,0xF0,255);
+    SILVER = RGBA8(0xC8,0xC8,0xCC,255);
+
+    unsigned ar=0x3B, ag=0xFF, ab=0x00;
+    switch (t) {
+        case ::psvitaalive::ColorTheme::Cyan:
+            ar=0x00; ag=0xE5; ab=0xFF; break;
+        case ::psvitaalive::ColorTheme::Rose:
+            ar=0xFF; ag=0x5C; ab=0xA8; break;
+        case ::psvitaalive::ColorTheme::Amber:
+            ar=0xFF; ag=0xB0; ab=0x20; break;
+        case ::psvitaalive::ColorTheme::Violet:
+            ar=0xB2; ag=0x4D; ab=0xFF; break;
+        case ::psvitaalive::ColorTheme::Mono:
+            ar=0xC8; ag=0xC8; ab=0xCC; break;
+        case ::psvitaalive::ColorTheme::Oled:
+            ar=0x5C; ag=0xFF; ab=0x9A;
+            BG = RGBA8(0x00,0x00,0x00,255);
+            SURFACE = RGBA8(0x0C,0x0C,0x0C,255);
+            SURFACE2 = RGBA8(0x08,0x08,0x08,255);
+            PANEL = RGBA8(0x05,0x05,0x05,255);
+            break;
+        case ::psvitaalive::ColorTheme::NeonLime:
+        default:
+            ar=0x3B; ag=0xFF; ab=0x00; break;
+    }
+    ACCENT = RGBA8(ar, ag, ab, 255);
+    ACCENT_DIM = RGBA8(ar, ag, ab, 90);
+    ACCENT_SOFT = RGBA8(ar, ag, ab, 40);
+}
+
+/** Thin neon frame used across cards, panels, and modals (uses current ACCENT). */
 void drawNeonFrame(int x, int y, int w, int h, unsigned alphaOuter = 70, unsigned alphaInner = 180) {
-    const unsigned outer = RGBA8(0x3B, 0xFF, 0x00, alphaOuter);
-    const unsigned inner = RGBA8(0x3B, 0xFF, 0x00, alphaInner);
+    const unsigned outer = withAlpha(ACCENT, alphaOuter);
+    const unsigned inner = withAlpha(ACCENT, alphaInner);
     vita2d_draw_rectangle(x - 1, y - 1, w + 2, 1, outer);
     vita2d_draw_rectangle(x - 1, y + h, w + 2, 1, outer);
     vita2d_draw_rectangle(x - 1, y - 1, 1, h + 2, outer);
@@ -253,6 +297,7 @@ void drawNeonFrame(int x, int y, int w, int h, unsigned alphaOuter = 70, unsigne
     vita2d_draw_rectangle(x, y, 1, h, inner);
     vita2d_draw_rectangle(x + w - 1, y, 1, h, inner);
 }
+
 
 constexpr int FULL_CARD_H=120,SPLIT_CARD_H=82,DETAIL_HEADER_H=92,LINE_H=18,DETAIL_SECTION_H=26,DETAIL_META_H=22,DETAIL_SECTION_GAP=14,TRANSITION_MS=340,LINK_ROW_H=38,LINK_GAP=6,SCREENSHOT_ROW_H=250;
 constexpr size_t MAX_APP_TEXTURES=18,MAX_SCREENSHOT_TEXTURES=6;
@@ -791,7 +836,7 @@ void FullCatalogScreen::drawNewsChip() {
     // Match Install All CTA: SURFACE2 fill + soft green border pulse
     const float pulse = 0.40f + 0.60f * focusPulse();
     const unsigned borderA = (unsigned)(120.f + 135.f * pulse);
-    const unsigned borderCol = RGBA8(0x3B, 0xFF, 0x00, borderA > 255 ? 255 : borderA);
+    const unsigned borderCol = withAlpha(ACCENT, borderA > 255 ? 255 : borderA);
     const unsigned fill = SURFACE2;
     const int bwPulse = 2 + (int)(1.5f * pulse);
     vita2d_draw_rectangle(chipX, chipY, chipW, chipH, borderCol);
@@ -2011,18 +2056,18 @@ void FullCatalogScreen::handleTouch() {
         const int listX = margin;
         const int listW = (colW * 58) / 100;
         struct Meta { bool sectionStart; const char* section; };
-        Meta meta[5] = {
-            {true, "INSTALL"}, {false, ""}, {true, "INTERFACE"}, {true, "CATALOG"}, {true, "UPDATES"}
+        Meta meta[6] = {
+            {true, "INSTALL"}, {false, ""}, {true, "INTERFACE"}, {false, ""}, {true, "CATALOG"}, {true, "UPDATES"}
         };
-        int rowY[5];
+        int rowY[6];
         int y = contentTop - static_cast<int>(settingsScrollY_);
-        for (int i = 0; i < 5; ++i) {
+        for (int i = 0; i < 6; ++i) {
             if (meta[i].sectionStart && meta[i].section[0]) y += 22;
             rowY[i] = y;
             y += 52 + 8;
         }
         const int rowH = 52;
-        const int measured = 5 * (52 + 8) + 4 * 22;
+        const int measured = 6 * (52 + 8) + 4 * 22;
         const int listViewH = SCREEN_H - contentTop - FOOTER_H - 8;
         const float maxScroll = static_cast<float>(std::max(0, measured - listViewH));
 
@@ -2052,7 +2097,7 @@ void FullCatalogScreen::handleTouch() {
             const int x = touchStartX_, yy = touchStartY_;
             touchDown_ = false;
             // Allow slight finger jitter — still treat as tap if not a long drag
-            for (int i = 0; i < 5; ++i) {
+            for (int i = 0; i < 6; ++i) {
                 if (hit(x, yy, listX, rowY[i], listW, rowH)) {
                     if (settingsFocus_ == i) cycleSettingsOption(i, +1);
                     else settingsFocus_ = i;
@@ -2357,6 +2402,7 @@ void FullCatalogScreen::handleTouch() {
 
 void FullCatalogScreen::setAppSettings(const ::psvitaalive::AppSettingsData& settings) {
     settingsEdit_ = settings;
+    applyColorTheme(settingsEdit_.colorTheme);
 }
 
 void FullCatalogScreen::setPluginStatus(const ::psvitaalive::PluginStatus& plugins) {
@@ -2532,16 +2578,23 @@ void FullCatalogScreen::cycleSettingsOption(int row, int delta) {
         settingsEdit_.pspTarget = (settingsEdit_.pspTarget == ::psvitaalive::PspTarget::Adrenaline)
             ? ::psvitaalive::PspTarget::LiveArea : ::psvitaalive::PspTarget::Adrenaline;
     } else if (row == 2) {
-        settingsEdit_.warnMissingPlugins = !settingsEdit_.warnMissingPlugins;
+        const int n = static_cast<int>(::psvitaalive::ColorTheme::Count);
+        int v = static_cast<int>(settingsEdit_.colorTheme);
+        v = (v + delta) % n;
+        if (v < 0) v += n;
+        settingsEdit_.colorTheme = static_cast<::psvitaalive::ColorTheme>(v);
+        applyColorTheme(settingsEdit_.colorTheme); // live preview
     } else if (row == 3) {
-        settingsEdit_.promptImageWarmup = !settingsEdit_.promptImageWarmup;
+        settingsEdit_.warnMissingPlugins = !settingsEdit_.warnMissingPlugins;
     } else if (row == 4) {
+        settingsEdit_.promptImageWarmup = !settingsEdit_.promptImageWarmup;
+    } else if (row == 5) {
         triggerSelfUpdateAction();
     }
 }
 
 void FullCatalogScreen::handleSettingsInput(uint32_t pressed, uint32_t nav) {
-    constexpr int kRows = 5;
+    constexpr int kRows = 6;
     if (nav & SCE_CTRL_UP) {
         settingsFocus_ = (settingsFocus_ + kRows - 1) % kRows;
     }
@@ -2613,12 +2666,25 @@ void FullCatalogScreen::drawSettings() {
         const char* hint;
         bool sectionStart;
     };
-    Opt opts[5] = {
+        auto themeLabel = [&]() -> std::string {
+        switch (settingsEdit_.colorTheme) {
+            case ::psvitaalive::ColorTheme::Cyan: return "Cyan";
+            case ::psvitaalive::ColorTheme::Rose: return "Rose";
+            case ::psvitaalive::ColorTheme::Amber: return "Amber";
+            case ::psvitaalive::ColorTheme::Violet: return "Violet";
+            case ::psvitaalive::ColorTheme::Mono: return "Mono";
+            case ::psvitaalive::ColorTheme::Oled: return "OLED";
+            case ::psvitaalive::ColorTheme::NeonLime:
+            default: return "Neon Lime";
+        }
+    };
+    Opt opts[6] = {
         {"INSTALL", "Install method", methodLabel(), "Auto: BGDL for PKG when available", true},
         {"", "PSP / PS1 target", pspLabel(), "ISO/CSO/PBP under ux0:pspemu", false},
-        {"INTERFACE", "Warn missing plugins", settingsEdit_.warnMissingPlugins ? "Yes" : "No", "Startup toast if NoNpDrm is missing", true},
+        {"INTERFACE", "Color theme", themeLabel(), "Accent color - changes live", true},
+        {"", "Warn missing plugins", settingsEdit_.warnMissingPlugins ? "Yes" : "No", "Startup toast if NoNpDrm is missing", false},
         {"CATALOG", "Prompt image download", settingsEdit_.promptImageWarmup ? "Yes" : "No", "If you choose No once, it will not ask again", true},
-        {"UPDATES", "App updates", updateLabel(), "GitHub Releases — X to check / install", true},
+        {"UPDATES", "App updates", updateLabel(), "GitHub Releases - X to check / install", true},
     };
 
     // List (left) + contextual help panel (right)
@@ -2632,7 +2698,7 @@ void FullCatalogScreen::drawSettings() {
     const int rowGap = 8;
 
     int measured = 0;
-    for (int i = 0; i < 5; ++i) {
+    for (int i = 0; i < 6; ++i) {
         if (opts[i].sectionStart && opts[i].section[0]) measured += sectionH;
         measured += rowH + rowGap;
     }
@@ -2643,7 +2709,7 @@ void FullCatalogScreen::drawSettings() {
 
     {
         int fy = 0;
-        for (int i = 0; i <= settingsFocus_ && i < 5; ++i) {
+        for (int i = 0; i <= settingsFocus_ && i < 6; ++i) {
             if (opts[i].sectionStart && opts[i].section[0]) fy += sectionH;
             if (i < settingsFocus_) fy += rowH + rowGap;
         }
@@ -2658,7 +2724,7 @@ void FullCatalogScreen::drawSettings() {
 
     int rowY[5] = {};
     int y = contentTop - static_cast<int>(settingsScrollY_);
-    for (int i = 0; i < 5; ++i) {
+    for (int i = 0; i < 6; ++i) {
         if (opts[i].sectionStart && opts[i].section[0]) {
             if (y + 16 >= contentTop && y + 4 <= listClipBottom)
                 vita2d_pgf_draw_text(font_, listX + 6, y + 16, DIM, 0.56f, opts[i].section);
@@ -2709,16 +2775,21 @@ void FullCatalogScreen::drawSettings() {
             body3 = "ux0:pspemu. LiveArea needs plugins.";
             break;
         case 2:
+            body1 = "UI accent palette. Neon is the";
+            body2 = "brand default; Cyan / Rose are";
+            body3 = "popular. Report stays red.";
+            break;
+        case 3:
             body1 = "Show a toast at startup when";
             body2 = "NoNpDrm / NoPspEmuDrm are";
             body3 = "missing from taiHEN config.";
             break;
-        case 3:
+        case 4:
             body1 = "Ask once whether to download";
             body2 = "all catalog images at startup.";
             body3 = "Off = load images on demand.";
             break;
-        case 4:
+        case 5:
             body1 = "Checks GitHub Releases for a";
             body2 = "newer PSVitaAlive.vpk and can";
             body3 = "install it in-place (VitaDB style).";
@@ -2740,7 +2811,7 @@ void FullCatalogScreen::drawSettings() {
             vita2d_pgf_draw_text(font_, sideX + 14, contentTop + 214, DIM, 0.46f,
                                  ellipsize(pluginsStatus_.configPathUsed, 28).c_str());
         }
-        if (settingsFocus_ == 4) {
+        if (settingsFocus_ == 5) {
             char ver[64];
             sceClibSnprintf(ver, sizeof(ver), "Local: v%s", PSVITAALIVE_VERSION);
             vita2d_pgf_draw_text(font_, sideX + 14, contentTop + 240, ACCENT, 0.52f, ver);
@@ -3735,7 +3806,7 @@ void FullCatalogScreen::drawDetailLinks(const CatalogItem& it, int x, int y, int
         // Same look as download rows (SURFACE2 / ACCENT focus) + soft border pulse
         const float pulse = 0.40f + 0.60f * focusPulse();
         const unsigned borderA = (unsigned)(120.f + 135.f * pulse);
-        const unsigned borderCol = RGBA8(0x3B, 0xFF, 0x00, borderA > 255 ? 255 : borderA);
+        const unsigned borderCol = withAlpha(ACCENT, borderA > 255 ? 255 : borderA);
         const unsigned fill = fAll ? ACCENT : SURFACE2;
         const int bwPulse = fAll ? 2 : (2 + (int)(1.5f * pulse));
         vita2d_draw_rectangle(x, by, w, INSTALL_ALL_BLOCK_H, borderCol);

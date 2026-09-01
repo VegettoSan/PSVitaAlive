@@ -68,6 +68,29 @@ PspTarget AppSettings::parsePspTarget(const std::string& s) {
     return PspTarget::Adrenaline;
 }
 
+const char* AppSettings::toString(ColorTheme t) {
+    switch (t) {
+        case ColorTheme::Cyan: return "cyan";
+        case ColorTheme::Rose: return "rose";
+        case ColorTheme::Amber: return "amber";
+        case ColorTheme::Violet: return "violet";
+        case ColorTheme::Mono: return "mono";
+        case ColorTheme::Oled: return "oled";
+        case ColorTheme::NeonLime:
+        default: return "neon";
+    }
+}
+
+ColorTheme AppSettings::parseColorTheme(const std::string& s) {
+    if (s == "cyan" || s == "blue") return ColorTheme::Cyan;
+    if (s == "rose" || s == "pink" || s == "rosal") return ColorTheme::Rose;
+    if (s == "amber" || s == "orange") return ColorTheme::Amber;
+    if (s == "violet" || s == "purple") return ColorTheme::Violet;
+    if (s == "mono" || s == "gray" || s == "grey") return ColorTheme::Mono;
+    if (s == "oled" || s == "black") return ColorTheme::Oled;
+    return ColorTheme::NeonLime;
+}
+
 AppSettingsData AppSettings::load() {
     AppSettingsData data;
     StorageManager st;
@@ -89,6 +112,7 @@ AppSettingsData AppSettings::load() {
     std::string v;
     if (containsKey(json, "install_method", v)) data.installMethod = parseInstallMethod(v);
     if (containsKey(json, "psp_target", v)) data.pspTarget = parsePspTarget(v);
+    if (containsKey(json, "color_theme", v)) data.colorTheme = parseColorTheme(v);
     bool b = true;
     const bool hasWarnMissingPlugins = containsBool(json, "warn_missing_plugins", b);
     if (hasWarnMissingPlugins) data.warnMissingPlugins = b;
@@ -105,8 +129,8 @@ AppSettingsData AppSettings::load() {
         save(data);
     }
 
-    sceClibPrintf("[AppSettings] loaded method=%s psp=%s warn=%d imagesPrompt=%d pluginDetect=%d updateCheck=%d\n",
-                  toString(data.installMethod), toString(data.pspTarget),
+    sceClibPrintf("[AppSettings] loaded method=%s psp=%s theme=%s warn=%d imagesPrompt=%d pluginDetect=%d updateCheck=%d\n",
+                  toString(data.installMethod), toString(data.pspTarget), toString(data.colorTheme),
                   data.warnMissingPlugins ? 1 : 0, data.promptImageWarmup ? 1 : 0,
                   data.startupPluginDetection ? 1 : 0, data.startupUpdateCheck ? 1 : 0);
     return data;
@@ -115,12 +139,13 @@ AppSettingsData AppSettings::load() {
 bool AppSettings::save(const AppSettingsData& data) {
     StorageManager st;
     st.createDirectories(StorageManager::BASE_DIR);
-    char json[512];
+    char json[640];
     sceClibSnprintf(
         json, sizeof(json),
         "{\n"
         "  \"install_method\": \"%s\",\n"
         "  \"psp_target\": \"%s\",\n"
+        "  \"color_theme\": \"%s\",\n"
         "  \"warn_missing_plugins\": %s,\n"
         "  \"prompt_image_warmup\": %s,\n"
         "  \"startup_plugin_detection\": %s,\n"
@@ -128,6 +153,7 @@ bool AppSettings::save(const AppSettingsData& data) {
         "}\n",
         toString(data.installMethod),
         toString(data.pspTarget),
+        toString(data.colorTheme),
         data.warnMissingPlugins ? "true" : "false",
         data.promptImageWarmup ? "true" : "false",
         data.startupPluginDetection ? "true" : "false",
