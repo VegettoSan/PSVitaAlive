@@ -1,4 +1,4 @@
-id: 2026-08-31-0002
+id: 2026-08-31-0003
 title: PsVita Alive Store 01.17
 enabled: true
 ---
@@ -13,11 +13,11 @@ We use Archive.org as our Homebrew database, which may cause downloads to take a
 ## Improvements
 
 ### The problem of extracting Game Files larger than 2GB has been fixed.
+## App startup times have been improved.
 
-- Interface notifications were added to prevent **confusion** during **downloads and installations**.
-- The way the system handles downloads and retries for slow networks or connection failures during downloads has been improved.
-- A patch has been implemented to fix the issue where the app would get stuck loading the PS1 catalog when launching.
-
+- Catalogs are now loaded only on demand, optimizing RAM usage and improving app startup speed.
+- A button has been added to request Data/Game Files from homebrews that don't yet have them.
+- Log collection in reports has been improved.
 ---
 
 ## Game + Game Files Added
