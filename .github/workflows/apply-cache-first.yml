@@ -8,14 +8,17 @@ jobs:
       contents: write
     steps:
       - uses: actions/checkout@v4
-      - name: Decode bundle and write client sources
+      - name: Backup + decode + write
         run: |
           set -euo pipefail
           python3 << 'PY'
-          import base64, struct
+          import base64, zlib, struct, hashlib
           from pathlib import Path
-          b64 = "".join(Path(f"scripts/cf_bundle.part{i}.b64").read_text() for i in range(5))
-          blob = base64.b64decode(b64)
+          parts = sorted(Path("scripts").glob("cf_c*.txt"))
+          assert parts, "no chunks"
+          b64 = "".join(p.read_text().strip() for p in parts)
+          print("b64 len", len(b64), "md5", hashlib.md5(b64.encode()).hexdigest())
+          blob = zlib.decompress(base64.b64decode(b64))
           off = 0
           def read_block():
               global off
@@ -29,19 +32,23 @@ jobs:
           assert b"tryLoadDiskCache" in cpp
           assert b"PSVITAALIVE_STARTUP_HOMEBREW_ONLY" in main
           assert b"PLACEHOLDER" not in cpp and b"PLACEHOLDER" not in main
-          Path("Client PSVitaAlive/source/catalog/catalog_manager.cpp").write_bytes(cpp)
-          Path("Client PSVitaAlive/source/main.cpp").write_bytes(main)
+          Path(".restore/cache-first-pre").mkdir(parents=True, exist_ok=True)
+          live_cpp = Path("Client PSVitaAlive/source/catalog/catalog_manager.cpp")
+          live_main = Path("Client PSVitaAlive/source/main.cpp")
+          Path(".restore/cache-first-pre/catalog_manager.cpp").write_bytes(live_cpp.read_bytes())
+          Path(".restore/cache-first-pre/main.cpp").write_bytes(live_main.read_bytes())
+          live_cpp.write_bytes(cpp)
+          live_main.write_bytes(main)
           print("wrote cpp", len(cpp), "main", len(main))
+          assert "softRefresh" in Path("Client PSVitaAlive/include/catalog/catalog_manager.hpp").read_text()
           PY
-          grep -q softRefresh "Client PSVitaAlive/include/catalog/catalog_manager.hpp"
       - name: Commit
         run: |
           set -euo pipefail
           git config user.name "VegettoSanDev"
           git config user.email "72358120+VegettoSan@users.noreply.github.com"
-          git add \
-            "Client PSVitaAlive/source/catalog/catalog_manager.cpp" \
-            "Client PSVitaAlive/source/main.cpp"
+          git add ".restore/cache-first-pre/catalog_manager.cpp" ".restore/cache-first-pre/main.cpp" \
+            "Client PSVitaAlive/source/catalog/catalog_manager.cpp" "Client PSVitaAlive/source/main.cpp"
           git status
           git commit -m "perf(catalog): cache-first load + soft background refresh; startup Homebrew only"
           git push origin HEAD:main

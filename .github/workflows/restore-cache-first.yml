@@ -8,29 +8,15 @@ jobs:
       contents: write
     steps:
       - uses: actions/checkout@v4
-      - name: Restore from .restore/cache-first-pre
+      - name: Restore from backup
         run: |
           set -euo pipefail
           test -f .restore/cache-first-pre/catalog_manager.cpp
           test -f .restore/cache-first-pre/main.cpp
           cp .restore/cache-first-pre/catalog_manager.cpp "Client PSVitaAlive/source/catalog/catalog_manager.cpp"
           cp .restore/cache-first-pre/main.cpp "Client PSVitaAlive/source/main.cpp"
-          if grep -q tryLoadDiskCache "Client PSVitaAlive/source/catalog/catalog_manager.cpp"; then
-            echo "WARNING: restored file still has tryLoadDiskCache"
-            exit 1
-          fi
-          echo "restored pre-change sources"
-      - name: Commit restore
-        run: |
-          set -euo pipefail
           git config user.name "VegettoSanDev"
           git config user.email "72358120+VegettoSan@users.noreply.github.com"
-          git add \
-            "Client PSVitaAlive/source/catalog/catalog_manager.cpp" \
-            "Client PSVitaAlive/source/main.cpp"
-          if git diff --cached --quiet; then
-            echo "nothing to commit"
-          else
-            git commit -m "revert: restore pre cache-first catalog_manager.cpp + main.cpp"
-            git push origin HEAD:main
-          fi
+          git add "Client PSVitaAlive/source/catalog/catalog_manager.cpp" "Client PSVitaAlive/source/main.cpp"
+          git commit -m "revert: restore catalog sources pre cache-first"
+          git push origin HEAD:main
