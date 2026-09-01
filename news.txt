@@ -1,5 +1,5 @@
-id: 2026-08-31-0003
-title: PsVita Alive Store 01.17
+id: 2026-08-31-0004
+title: PsVita Alive Store 01.18
 enabled: true
 ---
 # Thanks for using PS Vita Alive Store.
@@ -18,6 +18,7 @@ We use Archive.org as our Homebrew database, which may cause downloads to take a
 - Catalogs are now loaded only on demand, optimizing RAM usage and improving app startup speed.
 - A button has been added to request Data/Game Files from homebrews that don't yet have them.
 - Log collection in reports has been improved.
+- Downloads are not paused or canceled if the console automatically turns off the screen.
 ---
 
 ## Game + Game Files Added
