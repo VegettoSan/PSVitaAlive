@@ -1,5 +1,55 @@
 [
   {
+    "id": "battleship-vita",
+    "title_id": "SSB64VITA",
+    "name": "Battleship Vita",
+    "description": "Port of Battleship for PSVita.",
+    "long_description": "Port of Battleship for PSVita. Battleship is a port of Super Smash Bros based on the decompilation efforts of the game.",
+    "author_ids": [
+      "robin994"
+    ],
+    "category_id": "ports",
+    "subcategory_ids": [
+      "other"
+    ],
+    "version": "v.1.0",
+    "version_date": "2026-08-31",
+    "requirements": "- libshacccg.suprx\n- Game Data Files: N64",
+    "size": 7201620,
+    "status": "Legacy",
+    "links": [
+      {
+        "type": "Download",
+        "name": "VPK",
+        "url": "https://archive.org/download/psvitaalive-battleship-vita/battleship%20v1.4.vpk",
+        "recommended": true
+      },
+      {
+        "type": "Game Files",
+        "name": "Game Files",
+        "url": "https://archive.org/download/psvitaalive-battleship-vita/Game%20Files.zip",
+        "size": 12163482,
+        "extract_path": "ux0:data/"
+      },
+      {
+        "type": "Repository",
+        "name": "Repositorio",
+        "url": "https://github.com/robin994/battleship-vita"
+      }
+    ],
+    "icon": "https://archive.org/download/psvitaalive-battleship-vita/icon0.png",
+    "screenshots": [
+      "https://archive.org/download/psvitaalive-battleship-vita/shot_01.png",
+      "https://archive.org/download/psvitaalive-battleship-vita/shot_02.png",
+      "https://archive.org/download/psvitaalive-battleship-vita/shot_03.png"
+    ],
+    "source_name": "VitaDB",
+    "source_id": "1483",
+    "source_url": "https://github.com/robin994/battleship-vita",
+    "release_page": "https://github.com/robin994/battleship-vita/releases",
+    "updated_at": "2026-08-23T23:03"
+  },
+  {
     "id": "vitadeck",
     "title_id": "VITADECK1",
     "name": "VitaDeck",
@@ -658,54 +708,6 @@
       "https://archive.org/download/duskligth-ps-vita/bg.png",
       "https://archive.org/download/duskligth-ps-vita/0.jpg"
     ]
-  },
-  {
-    "id": "battleship-vita",
-    "title_id": "SSB64VITA",
-    "name": "Battleship Vita",
-    "description": "Port of Battleship for PSVita.",
-    "long_description": "Port of Battleship for PSVita. Battleship is a port of Super Smash Bros based on the decompilation efforts of the game.",
-    "author_ids": [
-      "robin994"
-    ],
-    "category_id": "ports",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "v.1.0",
-    "version_date": "2026-08-23",
-    "requirements": "- libshacccg.suprx\n- Game Data Files: N64",
-    "size": 7201907,
-    "status": "Legacy",
-    "icon": "https://archive.org/download/psvitaalive-battleship-vita/icon0.png",
-    "screenshots": [
-      "https://archive.org/download/psvitaalive-battleship-vita/shot_01.png",
-      "https://archive.org/download/psvitaalive-battleship-vita/shot_02.png",
-      "https://archive.org/download/psvitaalive-battleship-vita/shot_03.png"
-    ],
-    "links": [
-      {
-        "type": "Download",
-        "name": "VPK",
-        "url": "https://archive.org/download/psvitaalive-battleship-vita/battleship-vita.vpk",
-        "recommended": true
-      },
-      {
-        "type": "Official Website",
-        "name": "Release Page",
-        "url": "https://github.com/robin994/battleship-vita/releases"
-      },
-      {
-        "type": "Repository",
-        "name": "Repositorio",
-        "url": "https://github.com/robin994/battleship-vita"
-      }
-    ],
-    "source_name": "VitaDB",
-    "source_id": "1483",
-    "source_url": "https://github.com/robin994/battleship-vita",
-    "release_page": "https://github.com/robin994/battleship-vita/releases",
-    "updated_at": "2026-08-23T23:03:44.658071+00:00"
   },
   {
     "id": "asphalt-8",
