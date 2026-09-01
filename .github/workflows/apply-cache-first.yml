@@ -1,0 +1,47 @@
+name: Apply cache-first catalog load
+on:
+  workflow_dispatch:
+jobs:
+  apply:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - name: Decode bundle and write client sources
+        run: |
+          set -euo pipefail
+          python3 << 'PY'
+          import base64, struct
+          from pathlib import Path
+          b64 = "".join(Path(f"scripts/cf_bundle.part{i}.b64").read_text() for i in range(5))
+          blob = base64.b64decode(b64)
+          off = 0
+          def read_block():
+              global off
+              n = struct.unpack_from(">Q", blob, off)[0]
+              off += 8
+              data = blob[off:off+n]
+              off += n
+              return data
+          cpp = read_block()
+          main = read_block()
+          assert b"tryLoadDiskCache" in cpp
+          assert b"PSVITAALIVE_STARTUP_HOMEBREW_ONLY" in main
+          assert b"PLACEHOLDER" not in cpp and b"PLACEHOLDER" not in main
+          Path("Client PSVitaAlive/source/catalog/catalog_manager.cpp").write_bytes(cpp)
+          Path("Client PSVitaAlive/source/main.cpp").write_bytes(main)
+          print("wrote cpp", len(cpp), "main", len(main))
+          PY
+          grep -q softRefresh "Client PSVitaAlive/include/catalog/catalog_manager.hpp"
+      - name: Commit
+        run: |
+          set -euo pipefail
+          git config user.name "VegettoSanDev"
+          git config user.email "72358120+VegettoSan@users.noreply.github.com"
+          git add \
+            "Client PSVitaAlive/source/catalog/catalog_manager.cpp" \
+            "Client PSVitaAlive/source/main.cpp"
+          git status
+          git commit -m "perf(catalog): cache-first load + soft background refresh; startup Homebrew only"
+          git push origin HEAD:main
