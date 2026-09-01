@@ -2415,7 +2415,7 @@ void FullCatalogScreen::setSettingsSaveCallback(SettingsSaveFn callback) {
 
 void FullCatalogScreen::openSettings() {
     if (installProgressActive_ || catalogLoading_ || selfUpdateBusy_.load()) {
-        showToast("Wait — download/install in progress (screen on, PS locked)", 2200);
+        showToast("LOCKED: finish download/install first. PS & power menu disabled.", 2800);
         return;
     }
     if (state_.mode == UiMode::SETTINGS) return;
@@ -2507,7 +2507,7 @@ int FullCatalogScreen::selfUpdateWorkerEntry(SceSize args, void* argp) {
 
 void FullCatalogScreen::triggerSelfUpdateAction() {
     if (selfUpdateBusy_.load() || installProgressActive_) {
-        showToast("Wait — an install is still running (do not power off)", 2200);
+        showToast("LOCKED: install still running. Screen on — do not power off.", 2800);
         return;
     }
 
@@ -2851,7 +2851,7 @@ void FullCatalogScreen::handleInput(){if(isTransitioning())return;SceCtrlData p{
 if(pressed&SCE_CTRL_SELECT){openSettings();return;}
 if(pressed&SCE_CTRL_START){
         if(installProgressActive_ && installOutcome_==0){
-            showToast("A download/install is in progress",1800);
+            showToast("LOCKED: cannot exit yet. Wait until download/install finishes.", 2800);
             return;
         }
         // After a successful self-update the running binary is stale — force exit.
@@ -2867,6 +2867,8 @@ if(pressed&SCE_CTRL_START){
             &&catalogSwitchCooldownFrames_<=0&&deferredFreeTextures_.empty();
         if(canSwitch){
             if(pressed&SCE_CTRL_LTRIGGER)changeCatalog(-1);else changeCatalog(1);
+        }else if(installProgressActive_){
+            showToast("LOCKED: cannot change catalog during download/install.", 2600);
         }else if(catalogLoading_){
             showToast("Cambiando catalogo...", 1000);
         }else if(catalogSwitchCooldownFrames_>0||!deferredFreeTextures_.empty()){
@@ -2901,7 +2903,7 @@ if(pressed&SCE_CTRL_START){
             return;
         }
         return;
-    }if(dataRequestConfirmVisible_){if(pressed&SCE_CTRL_CIRCLE){closeDataRequestConfirm();return;}if(pressed&SCE_CTRL_CROSS){closeDataRequestConfirm();trySendDataRequest();return;}return;}if(reportConfirmVisible_){if(pressed&SCE_CTRL_CIRCLE){closeReportConfirm();return;}if(pressed&SCE_CTRL_CROSS){closeReportConfirm();trySendErrorReport("Manual report from UI","User confirmed report from footer");return;}return;}if(newsVisible_){if(pressed&SCE_CTRL_CIRCLE){closeNewsModal(newsMarkSeenOnClose_);return;}if(pressed&SCE_CTRL_UP||(nav&SCE_CTRL_UP)){if(newsScrollLine_>0)--newsScrollLine_;return;}if(pressed&SCE_CTRL_DOWN||(nav&SCE_CTRL_DOWN)){const int mv=std::max(1,(420-56-88)/22);const int ms=std::max(0,(int)newsLines_.size()-mv);if(newsScrollLine_<ms)++newsScrollLine_;return;}return;}if(installProgressActive_&&(pressed&SCE_CTRL_SQUARE)&&(installOutcome_==2)&&!isNonReportableInstallError(installProgressMessage_)){trySendErrorReport("Installation failed",installProgressMessage_+" | file="+installProgressFile_);return;}if(installProgressActive_&&(pressed&SCE_CTRL_CIRCLE)){if(installOutcome_==1||installOutcome_==2||installOutcome_==3){if(installAcknowledge_)installAcknowledge_();if(installOutcome_==1&&installAllFinishedToast_){installAllFinishedToast_=false;showToast("All installed — ready to use",2800);}reportUiState_=0;}else if(installCancel_)installCancel_();return;}if(catalogLoading_||installProgressActive_)return;if(pressed&SCE_CTRL_SQUARE){if(state_.mode==UiMode::FULL_CATALOG){if(!searchQuery_.empty()||dataFilesFilter_){dataFilesFilter_=false;applySearch("");showToast("Filters cleared",1200);}return;}if(state_.mode==UiMode::SPLIT_DETAIL&&state_.activePanel==UiPanel::Detail&&!state_.linkNavigation){const int si=selectedIndex();if(si>=0&&itemEligibleForDataRequest(catalogView()[si])){openDataRequestConfirm();return;}}return;}if(state_.mode==UiMode::FULL_CATALOG){if(pressed&SCE_CTRL_TRIANGLE){if(searchRequest_)applySearch(searchRequest_(searchQuery_));return;}if(nav&SCE_CTRL_LEFT&&state_.focusIndex%3>0)--state_.focusIndex;if(nav&SCE_CTRL_RIGHT&&state_.focusIndex%3<2&&state_.focusIndex+1<(int)catalogView().size())++state_.focusIndex;if(nav&SCE_CTRL_UP)moveCatalogFocus(-1);if(nav&SCE_CTRL_DOWN)moveCatalogFocus(1);clampCatalogScroll();if(pressed&SCE_CTRL_CROSS)startOpeningDetail();return;}if(state_.mode!=UiMode::SPLIT_DETAIL)return;if(pressed&SCE_CTRL_CIRCLE){startClosingDetail();return;}if(state_.activePanel==UiPanel::Catalog){if(pressed&SCE_CTRL_RIGHT)state_.activePanel=UiPanel::Detail;if(nav&SCE_CTRL_UP)moveCatalogFocus(-1);if(nav&SCE_CTRL_DOWN)moveCatalogFocus(1);return;}if(nav&SCE_CTRL_LEFT)state_.activePanel=UiPanel::Catalog;if(pressed&SCE_CTRL_TRIANGLE){if(state_.linkNavigation)exitLinkNavigation();else enterLinkNavigation();return;}if(state_.linkNavigation){if(nav&SCE_CTRL_UP)moveLinkFocus(0,-1);if(nav&SCE_CTRL_DOWN)moveLinkFocus(0,1);if(pressed&SCE_CTRL_CROSS)activateFocusedLink();return;}if(nav&SCE_CTRL_UP)moveDetailScroll(-1);if(nav&SCE_CTRL_DOWN)moveDetailScroll(1);}
+    }if(dataRequestConfirmVisible_){if(pressed&SCE_CTRL_CIRCLE){closeDataRequestConfirm();return;}if(pressed&SCE_CTRL_CROSS){closeDataRequestConfirm();trySendDataRequest();return;}return;}if(reportConfirmVisible_){if(pressed&SCE_CTRL_CIRCLE){closeReportConfirm();return;}if(pressed&SCE_CTRL_CROSS){closeReportConfirm();trySendErrorReport("Manual report from UI","User confirmed report from footer");return;}return;}if(newsVisible_){if(pressed&SCE_CTRL_CIRCLE){closeNewsModal(newsMarkSeenOnClose_);return;}if(pressed&SCE_CTRL_UP||(nav&SCE_CTRL_UP)){if(newsScrollLine_>0)--newsScrollLine_;return;}if(pressed&SCE_CTRL_DOWN||(nav&SCE_CTRL_DOWN)){const int mv=std::max(1,(420-56-88)/22);const int ms=std::max(0,(int)newsLines_.size()-mv);if(newsScrollLine_<ms)++newsScrollLine_;return;}return;}if(installProgressActive_&&(pressed&SCE_CTRL_SQUARE)&&(installOutcome_==2)&&!isNonReportableInstallError(installProgressMessage_)){trySendErrorReport("Installation failed",installProgressMessage_+" | file="+installProgressFile_);return;}if(installProgressActive_&&(pressed&SCE_CTRL_CIRCLE)){if(installOutcome_==1||installOutcome_==2||installOutcome_==3){if(installAcknowledge_)installAcknowledge_();if(installOutcome_==1&&installAllFinishedToast_){installAllFinishedToast_=false;showToast("All installed — ready to use",2800);}reportUiState_=0;}else if(installCancel_)installCancel_();return;}if(installProgressActive_){if(pressed&(SCE_CTRL_CROSS|SCE_CTRL_TRIANGLE|SCE_CTRL_SQUARE|SCE_CTRL_UP|SCE_CTRL_DOWN|SCE_CTRL_LEFT|SCE_CTRL_RIGHT)){if(installOutcome_==0)showToast("LOCKED: only CIRCLE (cancel) works until finished.",2400);}return;}if(catalogLoading_)return;if(pressed&SCE_CTRL_SQUARE){if(state_.mode==UiMode::FULL_CATALOG){if(!searchQuery_.empty()||dataFilesFilter_){dataFilesFilter_=false;applySearch("");showToast("Filters cleared",1200);}return;}if(state_.mode==UiMode::SPLIT_DETAIL&&state_.activePanel==UiPanel::Detail&&!state_.linkNavigation){const int si=selectedIndex();if(si>=0&&itemEligibleForDataRequest(catalogView()[si])){openDataRequestConfirm();return;}}return;}if(state_.mode==UiMode::FULL_CATALOG){if(pressed&SCE_CTRL_TRIANGLE){if(searchRequest_)applySearch(searchRequest_(searchQuery_));return;}if(nav&SCE_CTRL_LEFT&&state_.focusIndex%3>0)--state_.focusIndex;if(nav&SCE_CTRL_RIGHT&&state_.focusIndex%3<2&&state_.focusIndex+1<(int)catalogView().size())++state_.focusIndex;if(nav&SCE_CTRL_UP)moveCatalogFocus(-1);if(nav&SCE_CTRL_DOWN)moveCatalogFocus(1);clampCatalogScroll();if(pressed&SCE_CTRL_CROSS)startOpeningDetail();return;}if(state_.mode!=UiMode::SPLIT_DETAIL)return;if(pressed&SCE_CTRL_CIRCLE){startClosingDetail();return;}if(state_.activePanel==UiPanel::Catalog){if(pressed&SCE_CTRL_RIGHT)state_.activePanel=UiPanel::Detail;if(nav&SCE_CTRL_UP)moveCatalogFocus(-1);if(nav&SCE_CTRL_DOWN)moveCatalogFocus(1);return;}if(nav&SCE_CTRL_LEFT)state_.activePanel=UiPanel::Catalog;if(pressed&SCE_CTRL_TRIANGLE){if(state_.linkNavigation)exitLinkNavigation();else enterLinkNavigation();return;}if(state_.linkNavigation){if(nav&SCE_CTRL_UP)moveLinkFocus(0,-1);if(nav&SCE_CTRL_DOWN)moveLinkFocus(0,1);if(pressed&SCE_CTRL_CROSS)activateFocusedLink();return;}if(nav&SCE_CTRL_UP)moveDetailScroll(-1);if(nav&SCE_CTRL_DOWN)moveDetailScroll(1);}
 unsigned FullCatalogScreen::colorForStatus(const std::string&s)const{if(s=="Verified")return ACCENT;if(s=="Legacy")return TEXT;if(s=="Archive")return DIM;return TEXT;}void FullCatalogScreen::drawHeader(int w){
     // Near-black bar + dual neon edge (LiveArea brand)
     vita2d_draw_rectangle(0, 0, w, HEADER_H, SURFACE2);
@@ -4468,7 +4470,7 @@ if (catalogSplashAlpha_ > 0.01f && !installProgressActive_) {
 
 
 const unsigned RED=RGBA8(0xE0,0x32,0x32,255), GREEN=RGBA8(0x3B,0xD9,0x60,255), BLACK=RGBA8(0,0,0,255);
-const int w=640,h=380,x=(SCREEN_W-w)/2,y=(SCREEN_H-h)/2;
+const int w=640,h=400,x=(SCREEN_W-w)/2,y=(SCREEN_H-h)/2;
 vita2d_draw_rectangle(0,0,SCREEN_W,SCREEN_H,RGBA8(0,0,0,120));
 vita2d_draw_rectangle(x,y,w,h,PANEL);
 const unsigned edge=(installOutcome_==2)?RED:((installOutcome_==1)?GREEN:ACCENT);
@@ -4721,18 +4723,28 @@ else if (stageDownload)
   waitHint = "Speed depends on your internet connection — please be patient.";
 else
   waitHint = "Please wait — this step can take a moment.";
-vita2d_pgf_draw_text(font_,x+28,y+242,
+vita2d_pgf_draw_text(font_,x+28,y+230,
     (stageDownload && !indeterminate && !msgRetry) ? DIM : ACCENT,
-    .52f, waitHint);
-// Always-visible safety note while a job runs (screen on + PS locked).
-vita2d_pgf_draw_text(font_,x+28,y+260,ACCENT,.48f,
-    "Screen stays on. PS button locked — do not force power-off.");
-const int by2=y+278,bw2=330,bh2=40;
+    .50f, waitHint);
+// High-visibility lock banner — must be obvious on device.
+{
+  const int bx = x + 12, by = y + 248, bw = w - 24, bh = 36;
+  vita2d_draw_rectangle(bx, by, bw, bh, RGBA8(0x40, 0x10, 0x10, 255));
+  vita2d_draw_rectangle(bx, by, bw, 2, RED);
+  vita2d_draw_rectangle(bx, by + bh - 2, bw, 2, RED);
+  vita2d_draw_rectangle(bx, by, 4, bh, RED);
+  vita2d_draw_rectangle(bx + bw - 4, by, 4, bh, RED);
+  vita2d_pgf_draw_text(font_, bx + 12, by + 15, RED, .52f,
+      "LOCKED: PS button and power menu disabled");
+  vita2d_pgf_draw_text(font_, bx + 12, by + 30, WHITE, .48f,
+      "Screen stays ON. Do NOT force power-off until finished.");
+}
+const int by2=y+292,bw2=330,bh2=38;
 vita2d_draw_rectangle(x+28,by2,bw2,bh2,SURFACE2);
 vita2d_draw_rectangle(x+28,by2,bw2,1,BORDER);
-vita2d_pgf_draw_text(font_,x+92,by2+26,WHITE,.62f,"CIRCLE  CANCEL DOWNLOAD");
-vita2d_pgf_draw_text(font_,x+28,y+h-14,DIM,.48f,
-    "Circle: Cancel  |  Screen on  |  PS locked until finished");
+vita2d_pgf_draw_text(font_,x+92,by2+25,WHITE,.60f,"CIRCLE  CANCEL DOWNLOAD");
+vita2d_pgf_draw_text(font_,x+28,y+h-12,DIM,.46f,
+    "Only CIRCLE works now  |  PS / power menu blocked  |  Screen forced on");
 }
 
 void drawFooterBar(vita2d_pgf* font, const char* leftHints) {
