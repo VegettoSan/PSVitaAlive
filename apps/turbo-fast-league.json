@@ -1,0 +1,42 @@
+{
+  "id": "turbo-fast-league",
+  "title_id": "TRBO00001",
+  "name": "Turbo Fast League",
+  "description": "Turbo Fast Vita Port is BountyBoy's community test port of Turbo Fast League for PlayStation Vita.",
+  "long_description": "Turbo Fast Vita Port is BountyBoy's community test port of Turbo Fast League for PlayStation Vita.",
+  "author_ids": [
+    "boazbee"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "arcade",
+    "racing"
+  ],
+  "version": "v1.02",
+  "version_date": "2026-08-31",
+  "requirements": "-kubridge - kernel plugin required for RWX memory; must be installed on the target Vita.\n- The target game's .so extracted from its APK.",
+  "size": 1572864,
+  "status": "Verified",
+  "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/turbo-fast-psvita/turbo-vita-v1.02.Beta.vpk",
+      "size": 1572864,
+      "recommended": true
+    },
+    {
+      "type": "Game Files",
+      "name": "Game Files",
+      "url": "https://archive.org/download/turbo-fast-psvita/Game%20Files.zip",
+      "size": 97517568,
+      "extract_path": "ux0:data/"
+    }
+  ],
+  "icon": "https://archive.org/download/turbo-fast-psvita/icon0.png",
+  "screenshots": [
+    "https://archive.org/download/turbo-fast-psvita/Shot0.png",
+    "https://archive.org/download/turbo-fast-psvita/shot1.png",
+    "https://archive.org/download/turbo-fast-psvita/shot2.png"
+  ]
+}
