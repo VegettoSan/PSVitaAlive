@@ -1,0 +1,20 @@
+name: Apply range fallback
+on:
+  workflow_dispatch:
+jobs:
+  apply:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - run: python3 scripts/apply_range_fallback.py
+      - name: Commit
+        run: |
+          set -euo pipefail
+          git config user.name "VegettoSanDev"
+          git config user.email "72358120+VegettoSan@users.noreply.github.com"
+          git add "Client PSVitaAlive/source/network/http_client.cpp"
+          if git diff --staged --quiet; then echo "No changes"; exit 1; fi
+          git commit -m "net: on CURLE_RANGE_ERROR truncate partial and retry full GET once"
+          git push origin HEAD:main
