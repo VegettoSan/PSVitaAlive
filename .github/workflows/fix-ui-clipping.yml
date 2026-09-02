@@ -1,0 +1,54 @@
+name: Fix UI clipping rectangle arguments
+
+on:
+  push:
+    branches:
+      - fix/ui-clipping
+
+permissions:
+  contents: write
+
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Patch clipping arguments
+        run: |
+          set -euo pipefail
+          python3 << 'PY'
+          from pathlib import Path
+          p=Path('Client PSVitaAlive/source/ui/full_catalog_screen.cpp')
+          s=p.read_text(encoding='utf-8')
+          orig=s
+          reps=[
+            ('vita2d_set_clip_rectangle(x, y, x + w, y + h);','vita2d_set_clip_rectangle(x, y, w, h);'),
+            ('vita2d_set_clip_rectangle(x + ox, y + oy, x + ox + ww, y + oy + hh);','vita2d_set_clip_rectangle(x + ox, y + oy, ww, hh);'),
+            ('vita2d_set_clip_rectangle(x + 1, y + 1, x + w - 1, y + h - 1);','vita2d_set_clip_rectangle(x + 1, y + 1, w - 2, h - 2);'),
+          ]
+          for a,b in reps:
+              n=s.count(a)
+              if n:
+                  s=s.replace(a,b)
+                  print('patched',n,a)
+          if s==orig:
+              raise SystemExit('no clipping matches')
+          p.write_text(s,encoding='utf-8')
+          PY
+      - name: Commit patch
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add "Client PSVitaAlive/source/ui/full_catalog_screen.cpp"
+          git commit -m "fix: correct vita2d clipping rectangle arguments"
+          git push origin HEAD:fix/ui-clipping
+      - name: Remove workflow
+        if: ${{ success() }}
+        run: |
+          set -euo pipefail
+          git rm .github/workflows/fix-ui-clipping.yml
+          git commit -m "chore: remove temporary clipping workflow"
+          git push origin HEAD:fix/ui-clipping
