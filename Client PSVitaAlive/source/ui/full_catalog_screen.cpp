@@ -1948,11 +1948,11 @@ void FullCatalogScreen::handleTouch() {
             const int x = touchStartX_, y = touchStartY_;
             touchDown_ = false;
             if (touchMoved_) return;
-            const int ow = 620, oh = 360;
+            const int ow = 680, oh = 400;
             const int ox = (SCREEN_W - ow) / 2, oy = (SCREEN_H - oh) / 2;
             if (installAllPhase_ == InstallAllPhase::Confirm) {
-                const int bw = 200, bh = 40;
-                const int by = oy + oh - 56;
+                const int bw = 220, bh = 44;
+                const int by = oy + oh - 60;
                 const int bxOk = ox + 28;
                 const int bxCancel = ox + ow - 28 - bw;
                 if (hit(x, y, bxOk - 12, by - 12, bw + 24, bh + 24)) { installAllFocus_ = 0; installAllAdvancePick(); return; }
@@ -1998,13 +1998,13 @@ void FullCatalogScreen::handleTouch() {
             const int x = touchStartX_, y = touchStartY_;
             touchDown_ = false;
             if (touchMoved_) return;
-            const int ow = 640, oh = 380, ox = (SCREEN_W - ow) / 2, oy = (SCREEN_H - oh) / 2;
-            const int by = oy + 300, bh = 44;
+            const int ow = 700, oh = 440, ox = (SCREEN_W - ow) / 2, oy = (SCREEN_H - oh) / 2;
+            const int resultBy = oy + 300, runningBy = oy + 332, bh = 42;
             if (installOutcome_ == 3) {
                 // Cancelled: only Close (centered), no Report
                 const int bwClose = 280;
                 const int bxClose = ox + (ow - bwClose) / 2;
-                if (hit(x, y, bxClose, by, bwClose, bh)) {
+                if (hit(x, y, bxClose - 8, resultBy - 8, bwClose + 16, 40 + 16)) {
                     if (installAcknowledge_) installAcknowledge_();
                     reportUiState_ = 0;
                 }
@@ -2023,13 +2023,13 @@ void FullCatalogScreen::handleTouch() {
                 }
                 const int bwReport = 200, bwClose = 200;
                 const int bxReport = ox + 28, bxClose = ox + ow - 28 - bwClose;
-                if (hit(x, y, bxReport, by, bwReport, bh)) {
+                if (hit(x, y, bxReport - 8, resultBy - 8, bwReport + 16, 40 + 16)) {
                     trySendErrorReport(
                         "Installation failed",
                         installProgressMessage_ + " | file=" + installProgressFile_);
                     return;
                 }
-                if (hit(x, y, bxClose, by, bwClose, bh)) {
+                if (hit(x, y, bxClose - 8, resultBy - 8, bwClose + 16, 40 + 16)) {
                     if (installAcknowledge_) installAcknowledge_();
                     reportUiState_ = 0;
                     return;
@@ -2037,7 +2037,7 @@ void FullCatalogScreen::handleTouch() {
                 return;
             }
             const int bw = 280;
-            if (!hit(x, y, ox + 28, by, bw, bh)) return;
+            if (!hit(x, y, ox + 20, runningBy - 8, bw + 16, 42 + 16)) return;
             if (installOutcome_ == 1) {
                 if (installAcknowledge_) installAcknowledge_();
                 if (installAllFinishedToast_) {
@@ -2223,12 +2223,12 @@ void FullCatalogScreen::handleTouch() {
     {
         const int panelW = 220;
         const int panelX = SCREEN_W - panelW - 6;
-        const int reportW = 108;
+        const int reportW = 100;
         const int newsW = 100;
-        const int chipH = FOOTER_H - 6;
+        const int chipH = FOOTER_H - 8;
         const int reportX = panelX - reportW - 8;
         const int newsX = reportX - newsW - 8;
-        const int chipY = SCREEN_H - FOOTER_H + 3;
+        const int chipY = SCREEN_H - FOOTER_H + 4;
         if (hit(x, y, newsX, chipY, newsW, chipH)) {
             runNewsCheck(true);
             return;
@@ -3615,9 +3615,11 @@ void FullCatalogScreen::drawInstallBadge(int x, int y, const LocalInstallInfo& i
     vita2d_pgf_draw_text(font_, x + padX, y + (compact ? 12 : 13), fg, scale, label);
 }
 
-void FullCatalogScreen::drawCatalogCard(const CatalogItem&it,int idx,int x,int y,int w,int h,bool focus){
+void FullCatalogScreen::drawCatalogCard(const CatalogItem&it,int idx,int x,int y,int w,int h,bool focus,int clipL,int clipT,int clipR,int clipB){
+    const int cardL = std::max(x, clipL), cardT = std::max(y, clipT);
+    const int cardR = std::min(x + w, clipR), cardB = std::min(y + h, clipB);
     vita2d_enable_clipping();
-    vita2d_set_clip_rectangle(x, y, x + w, y + h);
+    vita2d_set_clip_rectangle(cardL, cardT, cardR, cardB);
     const float pulse = focus ? focusPulse() : 0.f;
     // Subtle lift / scale for focused card
     // Keep focus chrome inside the card/panel (no outward expand while scrolling).
@@ -3660,7 +3662,8 @@ void FullCatalogScreen::drawCatalogCard(const CatalogItem&it,int idx,int x,int y
     }
     // Keep remaining card chrome inside the card box (marquee temporarily tightens scissor).
     vita2d_enable_clipping();
-    vita2d_set_clip_rectangle(x + ox, y + oy, x + ox + ww, y + oy + hh);
+    vita2d_set_clip_rectangle(std::max(x + ox, clipL), std::max(y + oy, clipT),
+                              std::min(x + ox + ww, clipR), std::min(y + oy + hh, clipB));
     vita2d_pgf_draw_text(font_, tx, y + (compact ? 44 : 50) + oy, TEXT, compact ? 0.74f : 0.82f,
         ellipsize(it.author.empty() ? "Unknown author" : it.author, compact ? 16 : 18).c_str());
     vita2d_pgf_draw_text(font_, tx, y + (compact ? 64 : 72) + oy, colorForStatus(it.status), compact ? 0.72f : 0.80f,
@@ -3751,7 +3754,8 @@ void FullCatalogScreen::drawCatalogPanel(int x,int y,int w,int h,bool split){
                 if (i < 0 || i >= (int)catalogView().size()) continue;
                 const float fy = static_cast<float>(y + GRID_PAD) + (static_cast<float>(baseRow + r) - visualCatalogScroll_) * rowH;
                 if (fy + FULL_CARD_H < y || fy > y + h) continue;
-                drawCatalogCard(catalogView()[i], i, x + GRID_PAD + c * (cw + CARD_GAP), static_cast<int>(fy), cw, FULL_CARD_H, i == state_.focusIndex);
+                drawCatalogCard(catalogView()[i], i, x + GRID_PAD + c * (cw + CARD_GAP), static_cast<int>(fy), cw, FULL_CARD_H, i == state_.focusIndex,
+                                x + 1, y + 1, x + w - 1, y + h - 1);
                 // Re-assert panel clip: focused card marquee disables global scissor.
                 vita2d_enable_clipping();
                 vita2d_set_clip_rectangle(x + 1, y + 1, x + w - 1, y + h - 1);
@@ -3777,7 +3781,8 @@ void FullCatalogScreen::drawCatalogPanel(int x,int y,int w,int h,bool split){
             if (i < 0 || i >= (int)catalogView().size()) continue;
             const float fy = static_cast<float>(y + GRID_PAD) + (static_cast<float>(i) - visualCatalogScroll_) * rowH;
             if (fy + SPLIT_CARD_H < y || fy > y + h) continue;
-            drawCatalogCard(catalogView()[i], i, x + GRID_PAD, static_cast<int>(fy), w - GRID_PAD * 2 - 4, SPLIT_CARD_H, i == state_.focusIndex);
+            drawCatalogCard(catalogView()[i], i, x + GRID_PAD, static_cast<int>(fy), w - GRID_PAD * 2 - 4, SPLIT_CARD_H, i == state_.focusIndex,
+                            x + 1, y + 1, x + w - 1, y + h - 1);
             // Re-assert panel clip: focused card marquee disables global scissor.
             vita2d_enable_clipping();
             vita2d_set_clip_rectangle(x + 1, y + 1, x + w - 1, y + h - 1);
