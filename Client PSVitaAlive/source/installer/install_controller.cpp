@@ -723,7 +723,7 @@ int InstallController::workerMain() {
     setStage("Installing");
     setState(InstallStatus::State::Installing, "Finalizing file on storage...");
     diagnostics::log(std::string("[Installer] post-download storage settle before extract path=") + job->finalPath);
-    sceKernelDelayThread(1500 * 1000); // 1.5s settle
+    sceKernelDelayThread(3000 * 1000); // 3s settle — margin for slower SD2Vita/USB
     {
         // Touch the file end so the FS materializes size/metadata before zip_open.
         const SceUID fd = sceIoOpen(job->finalPath.c_str(), SCE_O_RDONLY, 0);
