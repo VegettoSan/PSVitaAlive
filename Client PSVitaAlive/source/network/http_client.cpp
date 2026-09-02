@@ -66,6 +66,7 @@ struct TransferContext {
     bool cancelled = false;
     bool ioError = false;
     bool restartedFromZero = false;
+    bool totalFromContentRange = false;
     int retryAfterSeconds = 0; // from Retry-After header (429/503)
     std::string etag;
     std::string lastModified;
@@ -121,6 +122,20 @@ static void updateSpeed(TransferContext* ctx) {
     }
 }
 
+static bool parseContentRangeTotal(const std::string& value, uint64_t& startOut, uint64_t& endOut, uint64_t& totalOut) {
+    unsigned long long start = 0;
+    unsigned long long end = 0;
+    unsigned long long total = 0;
+    if (std::sscanf(value.c_str(), "bytes %llu-%llu/%llu", &start, &end, &total) != 3)
+        return false;
+    if (end < start || total == 0 || end >= total)
+        return false;
+    startOut = static_cast<uint64_t>(start);
+    endOut = static_cast<uint64_t>(end);
+    totalOut = static_cast<uint64_t>(total);
+    return true;
+}
+
 static size_t headerCallback(char* buffer, size_t size, size_t nitems, void* userdata) {
     TransferContext* ctx = static_cast<TransferContext*>(userdata);
     const size_t bytes = size * nitems;
@@ -130,6 +145,36 @@ static size_t headerCallback(char* buffer, size_t size, size_t nitems, void* use
     if (contentLength) {
         unsigned long long value = 0;
         if (std::sscanf(contentLength, "Content-Length: %llu", &value) == 1) ctx->total = static_cast<uint64_t>(value);
+    }
+    const std::string contentRange = headerValue(buffer, "Content-Range:");
+    if (!contentRange.empty()) {
+        uint64_t rangeStart = 0;
+        uint64_t rangeEnd = 0;
+        uint64_t rangeTotal = 0;
+        if (parseContentRangeTotal(contentRange, rangeStart, rangeEnd, rangeTotal)) {
+            ctx->total = rangeTotal;
+            ctx->totalFromContentRange = true;
+            char rangeMsg[220];
+            sceClibSnprintf(rangeMsg, sizeof(rangeMsg),
+                "content-range start=%llu end=%llu total=%llu",
+                (unsigned long long)rangeStart,
+                (unsigned long long)rangeEnd,
+                (unsigned long long)rangeTotal);
+            httpDiagnostic(rangeMsg);
+        } else {
+            // HTTP 416 commonly uses: Content-Range: bytes */TOTAL
+            unsigned long long rangeTotal416 = 0;
+            if (std::sscanf(contentRange.c_str(), "bytes */%llu", &rangeTotal416) == 1 &&
+                rangeTotal416 > 0) {
+                ctx->total = static_cast<uint64_t>(rangeTotal416);
+                ctx->totalFromContentRange = true;
+                char rangeMsg[180];
+                sceClibSnprintf(rangeMsg, sizeof(rangeMsg),
+                    "content-range unsatisfied total=%llu",
+                    (unsigned long long)rangeTotal416);
+                httpDiagnostic(rangeMsg);
+            }
+        }
     }
     const std::string etag = headerValue(buffer, "ETag:");
     if (!etag.empty()) ctx->etag = etag;
@@ -196,7 +241,12 @@ static size_t writeCallback(void* ptr, size_t size, size_t nmemb, void* userdata
         progress.absoluteDownloaded = ctx->resumeOffset + ctx->downloaded;
         progress.total = ctx->total;
         progress.bytesPerSecond = ctx->bytesPerSecond;
-        if (progress.total > 0 && ctx->resumeOffset > 0 && !ctx->restartedFromZero) progress.total += ctx->resumeOffset;
+        if (progress.total > 0 &&
+            ctx->resumeOffset > 0 &&
+            !ctx->restartedFromZero &&
+            !ctx->totalFromContentRange) {
+            progress.total += ctx->resumeOffset;
+        }
         ctx->onProgress(progress);
     }
     return bytes;
@@ -745,14 +795,74 @@ HttpResult HttpClient::downloadToFile(
             }
         }
 
-        // libcurl does not reset CURLOPT_ERRORBUFFER between transfers.
-        // Clear it so every retry reports only the current attempt.
+        // Response headers belong to this attempt. Clear range-derived state so a
+        // previous retry/redirect cannot leak an old total into the next response.
+        ctx.total = 0;
+        ctx.totalFromContentRange = false;
         curlError[0] = '\0';
         result = curl_easy_perform(curl);
         responseCode = 0;
         curl_easy_getinfo(curl, CURLINFO_RESPONSE_CODE, &responseCode);
 
         if (ctx.cancelled) break;
+
+        // A 416 can mean the partial file is already exactly complete. HTTP servers
+        // commonly report the resource size as "Content-Range: bytes */TOTAL".
+        if (result == CURLE_OK &&
+            responseCode == 416 &&
+            ctx.resumeOffset > 0 &&
+            ctx.downloaded == 0 &&
+            ctx.totalFromContentRange &&
+            ctx.resumeOffset == ctx.total) {
+            httpDiagnostic("HTTP 416 but local partial matches remote total; treating as complete");
+            break;
+        }
+
+        // An invalid/stale resume offset should not permanently fail the job. Restart
+        // once from zero, just like the curl 33 Range fallback.
+        if (result == CURLE_OK &&
+            responseCode == 416 &&
+            ctx.resumeOffset > 0 &&
+            ctx.totalFromContentRange &&
+            !rangeFallbackUsed) {
+            rangeFallbackUsed = true;
+            char rangeMsg[220];
+            sceClibSnprintf(rangeMsg, sizeof(rangeMsg),
+                "HTTP 416 range fallback offset=%llu remote_total=%llu (full GET next)",
+                (unsigned long long)ctx.resumeOffset,
+                (unsigned long long)ctx.total);
+            httpDiagnostic(rangeMsg);
+
+            if (ctx.fd >= 0) {
+                sceIoClose(ctx.fd);
+                ctx.fd = -1;
+            }
+            ctx.fd = sceIoOpen(
+                destinationPath.c_str(),
+                SCE_O_WRONLY | SCE_O_CREAT | SCE_O_TRUNC,
+                0777);
+            if (ctx.fd < 0) {
+                ctx.ioError = true;
+                break;
+            }
+
+            ctx.resumeOffset = 0;
+            ctx.downloaded = 0;
+            ctx.total = 0;
+            ctx.totalFromContentRange = false;
+            ctx.lastProgressTick = 0;
+            ctx.lastProgressBytes = 0;
+            ctx.bytesPerSecond = 0;
+            ctx.firstWrite = true;
+            ctx.restartedFromZero = true;
+#if defined(CURLOPT_RESUME_FROM_LARGE)
+            curl_easy_setopt(curl, CURLOPT_RESUME_FROM_LARGE, static_cast<curl_off_t>(0));
+#else
+            curl_easy_setopt(curl, CURLOPT_RESUME_FROM, 0L);
+#endif
+            continue;
+        }
+
         if (result == CURLE_OK) {
             const bool transientHttp =
                 responseCode == 429 || responseCode == 502 || responseCode == 503 ||
@@ -913,11 +1023,21 @@ HttpResult HttpClient::downloadToFile(
         setError(message);
         return (result == CURLE_SSL_CONNECT_ERROR || result == CURLE_PEER_FAILED_VERIFICATION) ? HttpResult::SslError : HttpResult::NetworkError;
     }
-    if (responseCode != 200 && responseCode != 206) {
+    const bool rangeAlreadyComplete =
+        responseCode == 416 &&
+        ctx.resumeOffset > 0 &&
+        ctx.downloaded == 0 &&
+        ctx.totalFromContentRange &&
+        ctx.resumeOffset == ctx.total;
+    if (!rangeAlreadyComplete && responseCode != 200 && responseCode != 206) {
         char message[96];
         sceClibSnprintf(message, sizeof(message), "HTTP status %ld", responseCode);
         setError(message);
         return HttpResult::HttpError;
+    }
+
+    if (rangeAlreadyComplete) {
+        httpDiagnostic("download already complete according to HTTP 416 Content-Range");
     }
 
     sceClibPrintf("[HttpClient] done status=%ld downloaded=%llu absolute=%llu range=%d speed=%llu B/s redirects=%ld effective=%s\n",
