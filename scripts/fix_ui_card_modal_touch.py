@@ -44,6 +44,13 @@ s = s.replace('scale = 0.84f; height = 32;', 'scale = 0.90f; height = 34;', 1)
 s = s.replace('scale = 0.74f; height = 28;', 'scale = 0.80f; height = 30;', 1)
 s = s.replace('scale = 0.64f; height = 26; indent = 12;', 'scale = 0.70f; height = 28; indent = 12;', 1)
 
+# Make the visible button labels in the small confirmation modals readable too.
+for old, new in [
+    ('const float sc = 0.62f;\n        const int tw = vita2d_pgf_text_width(font_, sc, lab);',
+     'const float sc = 0.74f;\n        const int tw = vita2d_pgf_text_width(font_, sc, lab);'),
+]:
+    s = s.replace(old, new, 2)
+
 repls = [
     ('if (hit(x, y, bxCancel, by, bw, bh)) {\n            closeDataRequestConfirm();',
      'if (hit(x, y, bxCancel - 12, by - 12, bw + 24, bh + 24)) {\n            closeDataRequestConfirm();'),
@@ -64,9 +71,6 @@ for old, new in repls:
     if old not in s:
         raise SystemExit(f"modal touch pattern not found: {old[:70]}")
     s = s.replace(old, new, 1)
-
-# Install-outcome modal button hits vary by outcome; widen only the explicit close/report/cancel geometry when present.
-s = s.replace('if (hit(x, y, bxClose, by, bw, bh)) {', 'if (hit(x, y, bxClose - 12, by - 12, bw + 24, bh + 24)) {', 1)
 
 if s == orig:
     raise SystemExit("no changes applied")
