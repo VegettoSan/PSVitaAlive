@@ -570,6 +570,11 @@ HttpResult HttpClient::downloadToFile(
         return HttpResult::IoError;
     }
 
+    // Keep libcurl's detailed per-transfer error text for diagnostics and final errors.
+    char curlError[CURL_ERROR_SIZE];
+    std::memset(curlError, 0, sizeof(curlError));
+    curl_easy_setopt(curl, CURLOPT_ERRORBUFFER, curlError);
+
     curl_easy_setopt(curl, CURLOPT_URL, url.c_str());
     curl_easy_setopt(curl, CURLOPT_HTTPGET, 1L);
     // Browser-like UA helps some CDNs (GitLab package registry, etc.)
@@ -740,6 +745,9 @@ HttpResult HttpClient::downloadToFile(
             }
         }
 
+        // libcurl does not reset CURLOPT_ERRORBUFFER between transfers.
+        // Clear it so every retry reports only the current attempt.
+        curlError[0] = '\0';
         result = curl_easy_perform(curl);
         responseCode = 0;
         curl_easy_getinfo(curl, CURLINFO_RESPONSE_CODE, &responseCode);
@@ -830,13 +838,29 @@ HttpResult HttpClient::downloadToFile(
             result == CURLE_GOT_NOTHING ||
             result == CURLE_PARTIAL_FILE ||
             result == CURLE_HTTP_RETURNED_ERROR;
-        char failMsg[160];
-        sceClibSnprintf(failMsg, sizeof(failMsg), "attempt %d failed curl=%d %s retryable=%d",
-            attempt + 1, static_cast<int>(result), curl_easy_strerror(result), retryable ? 1 : 0);
+        char failMsg[420];
+        sceClibSnprintf(failMsg, sizeof(failMsg),
+            "attempt %d failed curl=%d %s retryable=%d detail=%s",
+            attempt + 1,
+            static_cast<int>(result),
+            curl_easy_strerror(result),
+            retryable ? 1 : 0,
+            curlError[0] ? curlError : "-");
         httpDiagnostic(failMsg);
         lastFail = result;
         if (!retryable) break;
     }
+    const char* effectiveUrl = nullptr;
+    long redirectCount = 0;
+    curl_easy_getinfo(curl, CURLINFO_EFFECTIVE_URL, &effectiveUrl);
+    curl_easy_getinfo(curl, CURLINFO_REDIRECT_COUNT, &redirectCount);
+
+    char effectiveUrlCopy[900];
+    effectiveUrlCopy[0] = '\0';
+    if (effectiveUrl && *effectiveUrl) {
+        sceClibSnprintf(effectiveUrlCopy, sizeof(effectiveUrlCopy), "%s", effectiveUrl);
+    }
+
     lastStatus_ = static_cast<int>(responseCode);
     if (ctx.resumeOffset > 0 && responseCode == 206) lastRangeAccepted_ = true;
 
@@ -845,8 +869,22 @@ HttpResult HttpClient::downloadToFile(
     ctx.fd = -1;
     curl_easy_cleanup(curl);
 
-    char resultMsg[320];
-    sceClibSnprintf(resultMsg, sizeof(resultMsg), "RESULT curl=%d status=%ld bytes=%llu absolute=%llu total=%llu speed=%llu range=%d restarted=%d", static_cast<int>(result), responseCode, (unsigned long long)ctx.downloaded, (unsigned long long)(ctx.resumeOffset + ctx.downloaded), (unsigned long long)ctx.total, (unsigned long long)ctx.bytesPerSecond, lastRangeAccepted_ ? 1 : 0, ctx.restartedFromZero ? 1 : 0);
+    char resultMsg[1200];
+    sceClibSnprintf(
+        resultMsg,
+        sizeof(resultMsg),
+        "RESULT curl=%d status=%ld bytes=%llu absolute=%llu total=%llu speed=%llu range=%d restarted=%d redirects=%ld effective_url=%s curl_detail=%s",
+        static_cast<int>(result),
+        responseCode,
+        (unsigned long long)ctx.downloaded,
+        (unsigned long long)(ctx.resumeOffset + ctx.downloaded),
+        (unsigned long long)ctx.total,
+        (unsigned long long)ctx.bytesPerSecond,
+        lastRangeAccepted_ ? 1 : 0,
+        ctx.restartedFromZero ? 1 : 0,
+        redirectCount,
+        effectiveUrlCopy[0] ? effectiveUrlCopy : "-",
+        curlError[0] ? curlError : "-");
     httpDiagnostic(resultMsg);
 
     if (ctx.cancelled) {
@@ -863,8 +901,15 @@ HttpResult HttpClient::downloadToFile(
         return HttpResult::IoError;
     }
     if (result != CURLE_OK) {
-        char message[160];
-        sceClibSnprintf(message, sizeof(message), "curl error %d: %s", static_cast<int>(result), curl_easy_strerror(result));
+        char message[420];
+        sceClibSnprintf(
+            message,
+            sizeof(message),
+            "curl error %d: %s%s%s",
+            static_cast<int>(result),
+            curl_easy_strerror(result),
+            curlError[0] ? " | " : "",
+            curlError[0] ? curlError : "");
         setError(message);
         return (result == CURLE_SSL_CONNECT_ERROR || result == CURLE_PEER_FAILED_VERIFICATION) ? HttpResult::SslError : HttpResult::NetworkError;
     }
@@ -875,7 +920,14 @@ HttpResult HttpClient::downloadToFile(
         return HttpResult::HttpError;
     }
 
-    sceClibPrintf("[HttpClient] done status=%ld downloaded=%llu absolute=%llu range=%d speed=%llu B/s\n", responseCode, (unsigned long long)ctx.downloaded, (unsigned long long)(ctx.resumeOffset + ctx.downloaded), lastRangeAccepted_ ? 1 : 0, (unsigned long long)ctx.bytesPerSecond);
+    sceClibPrintf("[HttpClient] done status=%ld downloaded=%llu absolute=%llu range=%d speed=%llu B/s redirects=%ld effective=%s\n",
+        responseCode,
+        (unsigned long long)ctx.downloaded,
+        (unsigned long long)(ctx.resumeOffset + ctx.downloaded),
+        lastRangeAccepted_ ? 1 : 0,
+        (unsigned long long)ctx.bytesPerSecond,
+        redirectCount,
+        effectiveUrlCopy[0] ? effectiveUrlCopy : "-");
     return HttpResult::Ok;
 }
 
