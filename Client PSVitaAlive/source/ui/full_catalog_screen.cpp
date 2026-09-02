@@ -343,6 +343,8 @@ void drawMarqueeText(vita2d_pgf* font, int x, int y, int maxW, unsigned color, f
     if (offset > cycle) offset = cycle;
     const int clipTop = y - 20;
     const int clipBottom = y + 6;
+    // Keep the marquee scissor tight to the actual text strip so glyphs can
+    // never spill into author/status rows while scrolling.
     vita2d_enable_clipping();
     vita2d_set_clip_rectangle(x, clipTop, x + maxW, clipBottom);
     vita2d_pgf_draw_text(font, x - offset, y, color, scale, text.c_str());
@@ -3663,11 +3665,10 @@ void FullCatalogScreen::drawCatalogCard(const CatalogItem&it,int idx,int x,int y
     {
         const float nameSc = compact ? (focus ? 0.90f : 0.84f) : (focus ? 0.98f : 0.92f);
         // Reserve right side for Game/Data Files chips + size so title never underlaps.
-        int rightPad = 16;
-        if (itemHasLinkType(it, "game files") || itemHasLinkType(it, "data files")
-            || itemHasLinkType(it, "game file") || itemHasLinkType(it, "data file")) {
-            rightPad = compact ? 100 : 110;
-        }
+        // Let the title use the full right side unless an actual badge occupies it.
+        // The file badges are drawn lower in the card, so reserving 100+ px here
+        // unnecessarily made titles look cramped.
+        const int rightPad = compact ? 10 : 14;
         const int nameMaxW = std::max(40, (x + ox + ww) - tx - rightPad);
         drawMarqueeText(font_, tx, y + (compact ? 24 : 28) + oy, nameMaxW, WHITE, nameSc, it.name, focus);
     }
