@@ -101,7 +101,7 @@ constexpr int SCREEN_H = 544;
 constexpr int GRID_COLS = 3;
 constexpr int HEADER_H = 52;
 constexpr int TABS_H = 36;
-constexpr int FOOTER_H = 48;
+constexpr int FOOTER_H = 54;
 constexpr int GRID_PAD = 12;
 constexpr int CARD_GAP = 10;
 
