@@ -299,7 +299,7 @@ void drawNeonFrame(int x, int y, int w, int h, unsigned alphaOuter = 70, unsigne
 }
 
 
-constexpr int FULL_CARD_H=136,SPLIT_CARD_H=118,DETAIL_HEADER_H=108,LINE_H=24,DETAIL_SECTION_H=30,DETAIL_META_H=28,DETAIL_SECTION_GAP=16,TRANSITION_MS=340,LINK_ROW_H=46,LINK_GAP=6,SCREENSHOT_ROW_H=250;
+constexpr int FULL_CARD_H=136,SPLIT_CARD_H=108,DETAIL_HEADER_H=108,LINE_H=24,DETAIL_SECTION_H=30,DETAIL_META_H=28,DETAIL_SECTION_GAP=16,TRANSITION_MS=340,LINK_ROW_H=46,LINK_GAP=6,SCREENSHOT_ROW_H=250;
 constexpr size_t MAX_APP_TEXTURES=18,MAX_SCREENSHOT_TEXTURES=6;
 constexpr int CATALOG_SWITCH_COOLDOWN_FRAMES=50; // ~0.83s at 60fps
 constexpr uint64_t CATALOG_SWITCH_MIN_MS=900; // hard debounce against L/R spam
@@ -347,7 +347,10 @@ void drawMarqueeText(vita2d_pgf* font, int x, int y, int maxW, unsigned color, f
     vita2d_set_clip_rectangle(x, clipTop, x + maxW, clipBottom);
     vita2d_pgf_draw_text(font, x - offset, y, color, scale, text.c_str());
     vita2d_pgf_draw_text(font, x - offset + cycle, y, color, scale, text.c_str());
-    vita2d_disable_clipping();
+    // Do not leave scissor disabled: rest of the card (badges, chips) would spill
+    // outside the panel while scrolling. Expand to full screen; caller re-asserts
+    // the panel clip right after drawCatalogCard returns.
+    vita2d_set_clip_rectangle(0, 0, SCREEN_W, SCREEN_H);
 }
 
 /** Word-wrap text to max pixel width (vita2d_pgf). Long tokens are hard-split. */
@@ -827,7 +830,7 @@ void FullCatalogScreen::drawNewsChip() {
     // Left of Report chip (which is left of ux0 panel)
     const int panelW = 220;
     const int panelX = SCREEN_W - panelW - 6;
-    const int chipW = 92;
+    const int chipW = 100;
     const int chipH = FOOTER_H - 8;
     const int reportW = 100;
     const int chipX = panelX - reportW - 8 - chipW - 8;
@@ -2220,12 +2223,12 @@ void FullCatalogScreen::handleTouch() {
     {
         const int panelW = 220;
         const int panelX = SCREEN_W - panelW - 6;
-        const int reportW = 100;
-        const int newsW = 92;
-        const int chipH = FOOTER_H - 8;
+        const int reportW = 108;
+        const int newsW = 100;
+        const int chipH = FOOTER_H - 6;
         const int reportX = panelX - reportW - 8;
         const int newsX = reportX - newsW - 8;
-        const int chipY = SCREEN_H - FOOTER_H + 4;
+        const int chipY = SCREEN_H - FOOTER_H + 3;
         if (hit(x, y, newsX, chipY, newsW, chipH)) {
             runNewsCheck(true);
             return;
@@ -2239,7 +2242,7 @@ void FullCatalogScreen::handleTouch() {
 // --- Header search bar + G/D Files filter (Homebrew only) ---
     if (y < HEADER_H) {
         const int barY = 10, barH = 32;
-        const int gdW = 92;
+        const int gdW = 118;
         const int clockReserve = 92;
         // Approximate logo width used in drawHeader (searchLeft often ~200)
         const int barX = 200;
@@ -2333,7 +2336,7 @@ void FullCatalogScreen::handleTouch() {
         const int i = selectedIndex();
         if (i >= 0) {
             const CatalogItem& tapItem = catalogView()[i];
-            const int bx = dx + dw - 142, by = dy + 12, bw = 128, bh = 28;
+            const int bx = dx + dw - 156, by = dy + 12, bw = 142, bh = 32;
             if (!tapItem.linkDetails.empty() && hit(x, y, bx, by, bw, bh)) {
                 if (state_.linkNavigation) exitLinkNavigation();
                 else enterLinkNavigation();
@@ -2341,7 +2344,7 @@ void FullCatalogScreen::handleTouch() {
             }
             if (itemEligibleForDataRequest(tapItem)) {
                 const int rby = !tapItem.linkDetails.empty() ? (by + bh + 6) : by;
-                if (hit(x, y, bx, rby, bw, 26)) {
+                if (hit(x, y, bx, rby, bw, 32)) {
                     openDataRequestConfirm();
                     return;
                 }
@@ -3615,10 +3618,11 @@ void FullCatalogScreen::drawInstallBadge(int x, int y, const LocalInstallInfo& i
 void FullCatalogScreen::drawCatalogCard(const CatalogItem&it,int idx,int x,int y,int w,int h,bool focus){
     const float pulse = focus ? focusPulse() : 0.f;
     // Subtle lift / scale for focused card
-    int ox = focus ? -1 : 0;
-    int oy = focus ? -1 : 0;
-    int ww = focus ? w + 2 : w;
-    int hh = focus ? h + 2 : h;
+    // Keep focus chrome inside the card/panel (no outward expand while scrolling).
+    int ox = 0;
+    int oy = 0;
+    int ww = w;
+    int hh = h;
     const unsigned bg = focus ? SURFACE2 : SURFACE;
     vita2d_draw_rectangle(x + ox, y + oy, ww, hh, bg);
     // Brand accent rail on every card (stronger when focused)
@@ -3652,6 +3656,9 @@ void FullCatalogScreen::drawCatalogCard(const CatalogItem&it,int idx,int x,int y
         const int nameMaxW = std::max(40, (x + ox + ww) - tx - rightPad);
         drawMarqueeText(font_, tx, y + (compact ? 24 : 28) + oy, nameMaxW, WHITE, nameSc, it.name, focus);
     }
+    // Keep remaining card chrome inside the card box (marquee temporarily tightens scissor).
+    vita2d_enable_clipping();
+    vita2d_set_clip_rectangle(x + ox, y + oy, x + ox + ww, y + oy + hh);
     vita2d_pgf_draw_text(font_, tx, y + (compact ? 44 : 50) + oy, TEXT, compact ? 0.74f : 0.82f,
         ellipsize(it.author.empty() ? "Unknown author" : it.author, compact ? 16 : 18).c_str());
     vita2d_pgf_draw_text(font_, tx, y + (compact ? 64 : 72) + oy, colorForStatus(it.status), compact ? 0.72f : 0.80f,
@@ -3736,7 +3743,7 @@ void FullCatalogScreen::drawCatalogPanel(int x,int y,int w,int h,bool split){
         const int cw = (w - GRID_PAD * 2 - CARD_GAP * 2) / 3;
         const float rowH = static_cast<float>(FULL_CARD_H + CARD_GAP);
         const int baseRow = std::max(0, static_cast<int>(std::floor(visualCatalogScroll_)) - 0);
-        for (int r = -1; r <= vis; ++r) {
+        for (int r = -1; r <= vis + 1; ++r) {
             for (int c = 0; c < 3; ++c) {
                 const int i = (baseRow + r) * 3 + c;
                 if (i < 0 || i >= (int)catalogView().size()) continue;
@@ -3763,7 +3770,7 @@ void FullCatalogScreen::drawCatalogPanel(int x,int y,int w,int h,bool split){
         const int vis = visibleRowsSplit();
         const float rowH = static_cast<float>(SPLIT_CARD_H + CARD_GAP);
         const int baseRow = std::max(0, static_cast<int>(std::floor(visualCatalogScroll_)));
-        for (int r = -1; r <= vis; ++r) {
+        for (int r = -1; r <= vis + 1; ++r) {
             const int i = baseRow + r;
             if (i < 0 || i >= (int)catalogView().size()) continue;
             const float fy = static_cast<float>(y + GRID_PAD) + (static_cast<float>(i) - visualCatalogScroll_) * rowH;
@@ -4774,9 +4781,9 @@ void drawFooterBar(vita2d_pgf* font, const char* leftHints) {
 
     const Ux0SpaceInfo sp = queryUx0Space();
     // Wider panel + larger type for readability on real Vita screens.
-    const int panelW = 250;
+    const int panelW = 220;
     const int panelH = FOOTER_H - 4;
-    const int panelX = SCREEN_W - panelW - 4;
+    const int panelX = SCREEN_W - panelW - 6;
     const int panelY = SCREEN_H - FOOTER_H + 2;
     vita2d_draw_rectangle(panelX, panelY, panelW, panelH, SURFACE);
     vita2d_draw_rectangle(panelX, panelY, 3, panelH, ACCENT);
