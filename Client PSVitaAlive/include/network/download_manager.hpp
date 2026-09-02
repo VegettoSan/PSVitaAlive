@@ -30,6 +30,9 @@ struct DownloadJob {
     std::string temporaryPath; // *.part
     std::string metadataPath;
     std::string fileName;
+    std::string etag;
+    std::string lastModified;
+    std::string validatorUrl;
 
     uint64_t expectedSize = 0;
     uint64_t downloadedSize = 0;
