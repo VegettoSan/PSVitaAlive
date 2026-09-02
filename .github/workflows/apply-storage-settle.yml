@@ -1,0 +1,21 @@
+name: Apply storage settle
+on:
+  workflow_dispatch:
+jobs:
+  apply:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - run: python3 scripts/apply_storage_settle.py
+      - name: Commit
+        run: |
+          set -euo pipefail
+          git config user.name "VegettoSanDev"
+          git config user.email "72358120+VegettoSan@users.noreply.github.com"
+          git add "Client PSVitaAlive/source/installer/install_controller.cpp"
+          if git diff --staged --quiet; then echo "No changes"; else
+            git commit -m "installer: settle storage after download before ZIP/VPK extract"
+            git push origin HEAD:main
+          fi
