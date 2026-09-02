@@ -3617,7 +3617,7 @@ void FullCatalogScreen::drawInstallBadge(int x, int y, const LocalInstallInfo& i
 
 void FullCatalogScreen::drawCatalogCard(const CatalogItem&it,int idx,int x,int y,int w,int h,bool focus){
     vita2d_enable_clipping();
-    vita2d_set_clip_rectangle(x, y, w, h);
+    vita2d_set_clip_rectangle(x, y, x + w, y + h);
     const float pulse = focus ? focusPulse() : 0.f;
     // Subtle lift / scale for focused card
     // Keep focus chrome inside the card/panel (no outward expand while scrolling).
@@ -3660,7 +3660,7 @@ void FullCatalogScreen::drawCatalogCard(const CatalogItem&it,int idx,int x,int y
     }
     // Keep remaining card chrome inside the card box (marquee temporarily tightens scissor).
     vita2d_enable_clipping();
-    vita2d_set_clip_rectangle(x + ox, y + oy, ww, hh);
+    vita2d_set_clip_rectangle(x + ox, y + oy, x + ox + ww, y + oy + hh);
     vita2d_pgf_draw_text(font_, tx, y + (compact ? 44 : 50) + oy, TEXT, compact ? 0.74f : 0.82f,
         ellipsize(it.author.empty() ? "Unknown author" : it.author, compact ? 16 : 18).c_str());
     vita2d_pgf_draw_text(font_, tx, y + (compact ? 64 : 72) + oy, colorForStatus(it.status), compact ? 0.72f : 0.80f,
@@ -3737,7 +3737,7 @@ void FullCatalogScreen::drawCatalogPanel(int x,int y,int w,int h,bool split){
 
     // Clip cards to the panel so smooth scroll never spills outside the frame
     vita2d_enable_clipping();
-    vita2d_set_clip_rectangle(x + 1, y + 1, w - 2, h - 2);
+    vita2d_set_clip_rectangle(x + 1, y + 1, x + w - 1, y + h - 1);
 
     if (!split) {
         const int vis = visibleRowsFull();
@@ -3754,7 +3754,7 @@ void FullCatalogScreen::drawCatalogPanel(int x,int y,int w,int h,bool split){
                 drawCatalogCard(catalogView()[i], i, x + GRID_PAD + c * (cw + CARD_GAP), static_cast<int>(fy), cw, FULL_CARD_H, i == state_.focusIndex);
                 // Re-assert panel clip: focused card marquee disables global scissor.
                 vita2d_enable_clipping();
-                vita2d_set_clip_rectangle(x + 1, y + 1, w - 2, h - 2);
+                vita2d_set_clip_rectangle(x + 1, y + 1, x + w - 1, y + h - 1);
             }
         }
         vita2d_disable_clipping();
@@ -3780,7 +3780,7 @@ void FullCatalogScreen::drawCatalogPanel(int x,int y,int w,int h,bool split){
             drawCatalogCard(catalogView()[i], i, x + GRID_PAD, static_cast<int>(fy), w - GRID_PAD * 2 - 4, SPLIT_CARD_H, i == state_.focusIndex);
             // Re-assert panel clip: focused card marquee disables global scissor.
             vita2d_enable_clipping();
-            vita2d_set_clip_rectangle(x + 1, y + 1, w - 2, h - 2);
+            vita2d_set_clip_rectangle(x + 1, y + 1, x + w - 1, y + h - 1);
         }
         vita2d_disable_clipping();
         const int total = (int)catalogView().size();
@@ -4023,7 +4023,7 @@ void FullCatalogScreen::drawDetailContent(const CatalogItem& it, int x, int y, i
 
 void FullCatalogScreen::drawDetailPanel(int x,int y,int w,int h){
     vita2d_enable_clipping();
-    vita2d_set_clip_rectangle(x, y, w, h);
+    vita2d_set_clip_rectangle(x, y, x + w, y + h);
     vita2d_draw_rectangle(x, y, w, h, PANEL);
     vita2d_draw_rectangle(x, y, 2, h, ACCENT_SOFT);
     vita2d_draw_rectangle(x, y, w, 1, ACCENT_SOFT);
