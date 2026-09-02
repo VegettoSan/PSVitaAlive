@@ -5,33 +5,52 @@
 namespace psvitaalive {
 
 enum class InstallMethod {
-    Auto = 0,   // direct for now; BGDL when available
+    Auto = 0,
     Direct,
     Bgdl
 };
 
 enum class PspTarget {
-    Adrenaline = 0, // ux0:pspemu/ISO or GAME
-    LiveArea        // requires NoPspEmuDrm (same paths; bubble depends on plugin)
+    Adrenaline = 0,
+    LiveArea
 };
 
-/** UI accent / surface palette (Settings -> Color theme). Default keeps current Neon Lime. */
+/** UI accent / surface palette (Settings -> Color theme). */
 enum class ColorTheme {
-    NeonLime = 0, // brand default #3BFF00
-    Cyan,         // blue / cyan
-    Rose,         // pink / rose
-    Amber,        // warm orange
-    Violet,       // purple
-    Mono,         // silver / grayscale
-    Oled,         // pure black + soft mint
-    PsVita,       // classic PlayStation Vita UI blue
-    Crimson,      // strong red
-    Coffee,       // warm brown
-    Gold,         // rich gold
-    Emerald,      // deep emerald green
-    Coral,        // soft coral
-    Teal,         // calm teal
-    Indigo,       // deep indigo
+    NeonLime = 0,
+    Cyan,
+    Rose,
+    Amber,
+    Violet,
+    Mono,
+    Oled,
+    PsVita,
+    Crimson,
+    Coffee,
+    Gold,
+    Emerald,
+    Coral,
+    Teal,
+    Indigo,
+    // Expanded variety
+    Sky,
+    Magenta,
+    Mint,
+    Sunset,
+    Ocean,
+    Lavender,
+    Cherry,
+    Sand,
+    Forest,
+    Ice,
+    Grape,
+    Peach,
+    Azure,
+    Steel,
+    Honey,
+    Midnight,
+    Sakura,
+    Matrix,
     Count
 };
 
@@ -40,18 +59,12 @@ struct AppSettingsData {
     PspTarget pspTarget = PspTarget::Adrenaline;
     ColorTheme colorTheme = ColorTheme::NeonLime;
     bool warnMissingPlugins = true;
-    /** If false, skip the startup "download all images?" dialog (on-demand only). */
     bool promptImageWarmup = false;
-    /** First-run color theme picker shown once after catalog load (before News). */
     bool themeSetupDone = false;
-    // Internal startup diagnostics; intentionally hidden from the UI.
     bool startupPluginDetection = true;
     bool startupUpdateCheck = true;
 };
 
-/**
- * Persist user installer preferences under ux0:data/psvitaalive/config.json
- */
 class AppSettings {
 public:
     static AppSettingsData load();

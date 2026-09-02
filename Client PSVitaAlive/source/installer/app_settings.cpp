@@ -85,6 +85,24 @@ const char* AppSettings::toString(ColorTheme t) {
         case ColorTheme::Coral: return "coral";
         case ColorTheme::Teal: return "teal";
         case ColorTheme::Indigo: return "indigo";
+        case ColorTheme::Sky: return "sky";
+        case ColorTheme::Magenta: return "magenta";
+        case ColorTheme::Mint: return "mint";
+        case ColorTheme::Sunset: return "sunset";
+        case ColorTheme::Ocean: return "ocean";
+        case ColorTheme::Lavender: return "lavender";
+        case ColorTheme::Cherry: return "cherry";
+        case ColorTheme::Sand: return "sand";
+        case ColorTheme::Forest: return "forest";
+        case ColorTheme::Ice: return "ice";
+        case ColorTheme::Grape: return "grape";
+        case ColorTheme::Peach: return "peach";
+        case ColorTheme::Azure: return "azure";
+        case ColorTheme::Steel: return "steel";
+        case ColorTheme::Honey: return "honey";
+        case ColorTheme::Midnight: return "midnight";
+        case ColorTheme::Sakura: return "sakura";
+        case ColorTheme::Matrix: return "matrix";
         case ColorTheme::NeonLime:
         default: return "neon";
     }
@@ -105,13 +123,31 @@ ColorTheme AppSettings::parseColorTheme(const std::string& s) {
     if (s == "coral") return ColorTheme::Coral;
     if (s == "teal") return ColorTheme::Teal;
     if (s == "indigo") return ColorTheme::Indigo;
+    if (s == "sky") return ColorTheme::Sky;
+    if (s == "magenta" || s == "fuchsia") return ColorTheme::Magenta;
+    if (s == "mint") return ColorTheme::Mint;
+    if (s == "sunset") return ColorTheme::Sunset;
+    if (s == "ocean") return ColorTheme::Ocean;
+    if (s == "lavender") return ColorTheme::Lavender;
+    if (s == "cherry") return ColorTheme::Cherry;
+    if (s == "sand" || s == "beige") return ColorTheme::Sand;
+    if (s == "forest") return ColorTheme::Forest;
+    if (s == "ice") return ColorTheme::Ice;
+    if (s == "grape") return ColorTheme::Grape;
+    if (s == "peach") return ColorTheme::Peach;
+    if (s == "azure") return ColorTheme::Azure;
+    if (s == "steel") return ColorTheme::Steel;
+    if (s == "honey") return ColorTheme::Honey;
+    if (s == "midnight") return ColorTheme::Midnight;
+    if (s == "sakura") return ColorTheme::Sakura;
+    if (s == "matrix") return ColorTheme::Matrix;
     return ColorTheme::NeonLime;
 }
 
 AppSettingsData AppSettings::load() {
     AppSettingsData data;
     SceUID fd = sceIoOpen(kConfigPath, SCE_O_RDONLY, 0);
-    if (fd < 0) return data; // brand-new install → themeSetupDone stays false
+    if (fd < 0) return data;
     char buf[1024];
     const int n = sceIoRead(fd, buf, sizeof(buf) - 1);
     sceIoClose(fd);
@@ -124,17 +160,11 @@ AppSettingsData AppSettings::load() {
     if (containsKey(json, "psp_target", v)) data.pspTarget = parsePspTarget(v);
     if (containsKey(json, "color_theme", v)) data.colorTheme = parseColorTheme(v);
     bool b = true;
-    const bool hasWarnMissingPlugins = containsBool(json, "warn_missing_plugins", b);
-    if (hasWarnMissingPlugins) data.warnMissingPlugins = b;
-    const bool hasPromptImageWarmup = containsBool(json, "prompt_image_warmup", b);
-    if (hasPromptImageWarmup) data.promptImageWarmup = b;
+    if (containsBool(json, "warn_missing_plugins", b)) data.warnMissingPlugins = b;
+    if (containsBool(json, "prompt_image_warmup", b)) data.promptImageWarmup = b;
     const bool hasThemeSetupDone = containsBool(json, "theme_setup_done", b);
-    if (hasThemeSetupDone) {
-        data.themeSetupDone = b;
-    } else {
-        // Legacy config.json without the key: user already configured the app — skip picker.
-        data.themeSetupDone = true;
-    }
+    if (hasThemeSetupDone) data.themeSetupDone = b;
+    else data.themeSetupDone = true;
     const bool hasStartupPluginDetection = containsBool(json, "startup_plugin_detection", b);
     if (hasStartupPluginDetection) data.startupPluginDetection = b;
     const bool hasStartupUpdateCheck = containsBool(json, "startup_update_check", b);
@@ -144,11 +174,10 @@ AppSettingsData AppSettings::load() {
         save(data);
     }
 
-    sceClibPrintf("[AppSettings] loaded method=%s psp=%s theme=%s warn=%d imagesPrompt=%d themeSetup=%d pluginDetect=%d updateCheck=%d\n",
+    sceClibPrintf("[AppSettings] loaded method=%s psp=%s theme=%s warn=%d imagesPrompt=%d themeSetup=%d\n",
                   toString(data.installMethod), toString(data.pspTarget), toString(data.colorTheme),
                   data.warnMissingPlugins ? 1 : 0, data.promptImageWarmup ? 1 : 0,
-                  data.themeSetupDone ? 1 : 0,
-                  data.startupPluginDetection ? 1 : 0, data.startupUpdateCheck ? 1 : 0);
+                  data.themeSetupDone ? 1 : 0);
     return data;
 }
 
