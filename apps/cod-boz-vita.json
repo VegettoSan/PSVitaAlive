@@ -14,19 +14,22 @@
   "version": "v.2.02",
   "version_date": "2026-08-17",
   "requirements": "- libshacccg.suprx\n- kubridge.skprx\n- Game Data Files: Android",
-  "size": 1936614,
+  "size": 2516582,
   "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-cod-boz-vita/icon0.png",
-  "screenshots": [
-    "https://archive.org/download/psvitaalive-cod-boz-vita/shot_01.png",
-    "https://archive.org/download/psvitaalive-cod-boz-vita/shot_02.png"
-  ],
   "links": [
     {
       "type": "Download",
       "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-cod-boz-vita/cod-boz-vita.vpk",
+      "url": "https://archive.org/download/psvitaalive-cod-boz-vita/BOZ%20v2.02.vpk",
+      "size": 2516582,
       "recommended": true
+    },
+    {
+      "type": "Game Files",
+      "name": "Game Files",
+      "url": "https://archive.org/download/psvitaalive-cod-boz-vita/Game%20Files.zip",
+      "size": 493145293,
+      "extract_path": "ux0:data/"
     },
     {
       "type": "Official Website",
@@ -34,9 +37,15 @@
       "url": "https://x.com/devnoname120"
     }
   ],
+  "icon": "https://archive.org/download/psvitaalive-cod-boz-vita/icon0.png",
+  "screenshots": [
+    "https://archive.org/download/psvitaalive-cod-boz-vita/shot_01.png",
+    "https://archive.org/download/psvitaalive-cod-boz-vita/shot_02.png",
+    "https://archive.org/download/psvitaalive-cod-boz-vita/pic0.png"
+  ],
   "source_name": "VitaHomebrewDB",
   "source_id": "1410",
   "source_url": "https://x.com/devnoname120",
   "release_page": "https://x.com/devnoname120",
-  "updated_at": "2026-08-13T15:34:48.327200+00:00"
+  "updated_at": "2026-08-13T15:34"
 }
