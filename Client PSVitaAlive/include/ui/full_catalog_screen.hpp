@@ -73,6 +73,7 @@ public:
     bool isNewsCheckDone() const { return newsCheckedOnce_; }
     /** First-run color theme picker (before News). */
     void openThemeSetupIfNeeded();
+    void openThemePicker();
     bool isThemeSetupVisible() const { return themeSetupVisible_; }
     // outcome: 0 = progress, 1 = success, 2 = error
     void setInstallProgress(bool active, uint64_t current, uint64_t total, uint64_t bytesPerSecond,
