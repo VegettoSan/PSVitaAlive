@@ -42,6 +42,8 @@ struct AppSettingsData {
     bool warnMissingPlugins = true;
     /** If false, skip the startup "download all images?" dialog (on-demand only). */
     bool promptImageWarmup = false;
+    /** First-run color theme picker shown once after catalog load (before News). */
+    bool themeSetupDone = false;
     // Internal startup diagnostics; intentionally hidden from the UI.
     bool startupPluginDetection = true;
     bool startupUpdateCheck = true;

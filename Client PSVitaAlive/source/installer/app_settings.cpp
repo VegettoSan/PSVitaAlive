@@ -13,7 +13,6 @@ namespace {
 constexpr const char* kConfigPath = "ux0:data/psvitaalive/config.json";
 
 bool containsKey(const std::string& json, const char* key, std::string& valueOut) {
-    // Minimal JSON string value extractor: "key" : "value"
     const std::string pattern = std::string("\"") + key + "\"";
     size_t p = json.find(pattern);
     if (p == std::string::npos) return false;
@@ -129,20 +128,26 @@ AppSettingsData AppSettings::load() {
     if (hasWarnMissingPlugins) data.warnMissingPlugins = b;
     const bool hasPromptImageWarmup = containsBool(json, "prompt_image_warmup", b);
     if (hasPromptImageWarmup) data.promptImageWarmup = b;
+    const bool hasThemeSetupDone = containsBool(json, "theme_setup_done", b);
+    if (hasThemeSetupDone) data.themeSetupDone = b;
+    // Existing installs already have config: do not force the first-run picker again.
+    // Only brand-new installs (no theme_setup_done key) see the picker once.
+    if (!hasThemeSetupDone) {
+        // keep default false → picker will show once
+    }
     const bool hasStartupPluginDetection = containsBool(json, "startup_plugin_detection", b);
     if (hasStartupPluginDetection) data.startupPluginDetection = b;
     const bool hasStartupUpdateCheck = containsBool(json, "startup_update_check", b);
     if (hasStartupUpdateCheck) data.startupUpdateCheck = b;
 
-    // Older config.json files do not contain the internal startup switches.
-    // Persist the default=true values once so the user can toggle them manually.
     if (!hasStartupPluginDetection || !hasStartupUpdateCheck) {
         save(data);
     }
 
-    sceClibPrintf("[AppSettings] loaded method=%s psp=%s theme=%s warn=%d imagesPrompt=%d pluginDetect=%d updateCheck=%d\n",
+    sceClibPrintf("[AppSettings] loaded method=%s psp=%s theme=%s warn=%d imagesPrompt=%d themeSetup=%d pluginDetect=%d updateCheck=%d\n",
                   toString(data.installMethod), toString(data.pspTarget), toString(data.colorTheme),
                   data.warnMissingPlugins ? 1 : 0, data.promptImageWarmup ? 1 : 0,
+                  data.themeSetupDone ? 1 : 0,
                   data.startupPluginDetection ? 1 : 0, data.startupUpdateCheck ? 1 : 0);
     return data;
 }
@@ -150,7 +155,7 @@ AppSettingsData AppSettings::load() {
 bool AppSettings::save(const AppSettingsData& data) {
     StorageManager st;
     st.createDirectories(StorageManager::BASE_DIR);
-    char json[640];
+    char json[768];
     sceClibSnprintf(
         json, sizeof(json),
         "{\n"
@@ -159,6 +164,7 @@ bool AppSettings::save(const AppSettingsData& data) {
         "  \"color_theme\": \"%s\",\n"
         "  \"warn_missing_plugins\": %s,\n"
         "  \"prompt_image_warmup\": %s,\n"
+        "  \"theme_setup_done\": %s,\n"
         "  \"startup_plugin_detection\": %s,\n"
         "  \"startup_update_check\": %s\n"
         "}\n",
@@ -167,6 +173,7 @@ bool AppSettings::save(const AppSettingsData& data) {
         toString(data.colorTheme),
         data.warnMissingPlugins ? "true" : "false",
         data.promptImageWarmup ? "true" : "false",
+        data.themeSetupDone ? "true" : "false",
         data.startupPluginDetection ? "true" : "false",
         data.startupUpdateCheck ? "true" : "false"
     );
