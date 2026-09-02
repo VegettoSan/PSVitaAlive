@@ -45,7 +45,8 @@ public:
         uint64_t resumeOffset = 0,
         HttpProgressFn onProgress = nullptr,
         HttpCancelFn shouldCancel = nullptr,
-        int maxAttemptsOverride = 0 // 0 = default (archive 10 / other 5); images can pass 4
+        int maxAttemptsOverride = 0, // 0 = default (archive 10 / other 5); images can pass 4
+        const std::string& ifRangeValidator = {} // persisted ETag or Last-Modified for safe resume
     );
 
     /**
@@ -81,12 +82,16 @@ public:
     int lastStatusCode() const { return lastStatus_; }
     const std::string& lastError() const { return lastError_; }
     bool lastRangeAccepted() const { return lastRangeAccepted_; }
+    const std::string& lastEtag() const { return lastEtag_; }
+    const std::string& lastModified() const { return lastModified_; }
 
 private:
     bool initialized_ = false;
     int lastStatus_ = 0;
     bool lastRangeAccepted_ = false;
     std::string lastError_;
+    std::string lastEtag_;
+    std::string lastModified_;
 
     int tplHttp_ = -1;
     int tplSsl_ = -1;
