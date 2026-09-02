@@ -71,6 +71,9 @@ public:
     void runNewsCheck(bool forceShow);
     bool isNewsVisible() const { return newsVisible_; }
     bool isNewsCheckDone() const { return newsCheckedOnce_; }
+    /** First-run color theme picker (before News). */
+    void openThemeSetupIfNeeded();
+    bool isThemeSetupVisible() const { return themeSetupVisible_; }
     // outcome: 0 = progress, 1 = success, 2 = error
     void setInstallProgress(bool active, uint64_t current, uint64_t total, uint64_t bytesPerSecond,
                             const std::string& stage, const std::string& fileName,
@@ -164,6 +167,13 @@ private:
     int newsScrollLine_ = 0;
     float visualNewsScroll_ = 0.f;
 
+    // First-run theme setup modal (once, before News).
+    bool themeSetupVisible_ = false;
+    bool themeSetupChecked_ = false;
+    int themeSetupFocus_ = 0;          // 0..Count-1 themes, Count = Save
+    int themeSetupScrollRow_ = 0;
+    float visualThemeSetupScroll_ = 0.f;
+
     std::unordered_map<std::string, vita2d_texture*> textures_;
     std::vector<std::string> textureOrder_;
     /** Freed one frame later so the GPU is done with the previous swap. */
@@ -226,6 +236,9 @@ private:
     void drawNewsChip();
     void drawNewsOverlay();
     void closeNewsModal(bool markSeen);
+    void drawThemeSetupOverlay();
+    void closeThemeSetup(bool save);
+    void applyThemeSetupFocus();
     void prepareImageTexture(const std::string& url, const std::string& namespaceName);
     void prepareVisibleTextures();
     void drawImage(const std::string& url, const std::string& namespaceName, int x, int y, int width, int height);
