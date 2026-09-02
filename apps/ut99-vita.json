@@ -9,6 +9,9 @@
   ],
   "category_id": "ports",
   "subcategory_ids": [
+    "action",
+    "fps",
+    "shooter",
     "other"
   ],
   "version": "v.0.8",
@@ -22,6 +25,13 @@
       "name": "VPK",
       "url": "https://archive.org/download/psvitaalive-ut99-vita/ut99-vita.vpk",
       "recommended": true
+    },
+    {
+      "type": "Game Files",
+      "name": "Game Files",
+      "url": "https://archive.org/download/psvitaalive-ut99-vita/Game%20Files.zip",
+      "size": 627992166,
+      "extract_path": "ux0:data/"
     },
     {
       "type": "Repository",
