@@ -1052,6 +1052,21 @@ void FullCatalogScreen::closeNewsModal(bool markSeen) {
 }
 
 
+
+/** Keep theme picker focus row inside the visible window (like clampCatalogScroll). */
+static void clampThemePickerScroll(int focus, int& scrollRow, int themeCount, int cols, int visibleRows) {
+    if (themeCount <= 0) { scrollRow = 0; return; }
+    const int rows = (themeCount + cols - 1) / cols;
+    const int maxScroll = std::max(0, rows - visibleRows);
+    if (focus >= 0 && focus < themeCount) {
+        const int fr = focus / cols;
+        if (fr < scrollRow) scrollRow = fr;
+        if (fr >= scrollRow + visibleRows) scrollRow = fr - visibleRows + 1;
+    }
+    if (scrollRow < 0) scrollRow = 0;
+    if (scrollRow > maxScroll) scrollRow = maxScroll;
+}
+
 void FullCatalogScreen::openThemePicker() {
     themeSetupVisible_ = true;
     const int n = static_cast<int>(::psvitaalive::ColorTheme::Count);
@@ -1217,7 +1232,7 @@ void FullCatalogScreen::drawThemeSetupOverlay() {
                          saveFocus ? RGBA8(0,0,0,255) : WHITE, ssc, saveLab);
 
     vita2d_pgf_draw_text(font_, x + 22, y + h - 14, DIM, 0.52f,
-        "D-Pad: move   X: apply theme / Save   Touch: tap theme or Save");
+        "D-Pad: move / scroll   X: apply / Save   Touch: drag scroll, tap theme");
 }
 
 void FullCatalogScreen::runNewsCheck(bool forceShow) {
@@ -2449,8 +2464,9 @@ void FullCatalogScreen::handleTouch() {
                 touchLastY_ = py;
                 if (std::abs(px - touchStartX_) > 14 || std::abs(py - touchStartY_) > 14)
                     touchMoved_ = true;
+                // Catalog-like drag: ~half a row of finger travel per list step
                 touchAccumY_ += static_cast<float>(-dy);
-                const float step = 22.f;
+                const float step = std::max(12.f, static_cast<float>(rowH) * 0.45f);
                 while (touchAccumY_ >= step) {
                     if (themeSetupScrollRow_ < maxScroll) ++themeSetupScrollRow_;
                     touchAccumY_ -= step;
@@ -3459,7 +3475,7 @@ void FullCatalogScreen::drawSettings() {
     (void)rowY;
 }
 
-void FullCatalogScreen::handleInput(){if(isTransitioning())return;SceCtrlData p{};sceCtrlPeekBufferPositive(0,&p,1);static uint32_t prev=0;static uint64_t repeatAt=0;uint32_t mask=SCE_CTRL_UP|SCE_CTRL_DOWN|SCE_CTRL_LEFT|SCE_CTRL_RIGHT,pressed=p.buttons&~prev,direct=pressed&mask;uint64_t now=sceKernelGetProcessTimeWide(),repeat=0;if((p.buttons&mask)==0)repeatAt=0;else if(direct)repeatAt=now+DIRECTION_REPEAT_DELAY_US;else if(repeatAt&&now>=repeatAt){repeat=p.buttons&mask;repeatAt=now+DIRECTION_REPEAT_INTERVAL_US;}prev=p.buttons;uint32_t nav=direct|repeat;if(themeSetupVisible_){const int themeCount=static_cast<int>(::psvitaalive::ColorTheme::Count);const int cols=3;if(nav&SCE_CTRL_LEFT){if(themeSetupFocus_<themeCount){int c=themeSetupFocus_%cols;if(c>0)--themeSetupFocus_;}return;}if(nav&SCE_CTRL_RIGHT){if(themeSetupFocus_<themeCount){int c=themeSetupFocus_%cols;if(c<cols-1&&themeSetupFocus_+1<themeCount)++themeSetupFocus_;}return;}if(nav&SCE_CTRL_UP||(pressed&SCE_CTRL_UP)){if(themeSetupFocus_==themeCount){themeSetupFocus_=std::max(0,themeCount-cols);}else if(themeSetupFocus_>=cols)themeSetupFocus_-=cols;return;}if(nav&SCE_CTRL_DOWN||(pressed&SCE_CTRL_DOWN)){if(themeSetupFocus_<themeCount){int n=themeSetupFocus_+cols;if(n<themeCount)themeSetupFocus_=n;else themeSetupFocus_=themeCount;}return;}if(pressed&SCE_CTRL_CROSS){if(themeSetupFocus_==themeCount)closeThemeSetup(true);else applyThemeSetupFocus();return;}return;}if(state_.mode==UiMode::SETTINGS){handleSettingsInput(pressed,nav);return;}
+void FullCatalogScreen::handleInput(){if(isTransitioning())return;SceCtrlData p{};sceCtrlPeekBufferPositive(0,&p,1);static uint32_t prev=0;static uint64_t repeatAt=0;uint32_t mask=SCE_CTRL_UP|SCE_CTRL_DOWN|SCE_CTRL_LEFT|SCE_CTRL_RIGHT,pressed=p.buttons&~prev,direct=pressed&mask;uint64_t now=sceKernelGetProcessTimeWide(),repeat=0;if((p.buttons&mask)==0)repeatAt=0;else if(direct)repeatAt=now+DIRECTION_REPEAT_DELAY_US;else if(repeatAt&&now>=repeatAt){repeat=p.buttons&mask;repeatAt=now+DIRECTION_REPEAT_INTERVAL_US;}prev=p.buttons;uint32_t nav=direct|repeat;if(themeSetupVisible_){const int themeCount=static_cast<int>(::psvitaalive::ColorTheme::Count);const int cols=3;const int visibleRows=5;auto afterMove=[&](){clampThemePickerScroll(themeSetupFocus_,themeSetupScrollRow_,themeCount,cols,visibleRows);};if(nav&SCE_CTRL_LEFT){if(themeSetupFocus_<themeCount){int c=themeSetupFocus_%cols;if(c>0){--themeSetupFocus_;afterMove();}}return;}if(nav&SCE_CTRL_RIGHT){if(themeSetupFocus_<themeCount){int c=themeSetupFocus_%cols;if(c<cols-1&&themeSetupFocus_+1<themeCount){++themeSetupFocus_;afterMove();}}return;}if(nav&SCE_CTRL_UP){  if(themeSetupFocus_==themeCount){themeSetupFocus_=std::max(0,themeCount-1);}  else if(themeSetupFocus_>=cols)themeSetupFocus_-=cols;  else if(themeSetupScrollRow_>0)--themeSetupScrollRow_;  afterMove();return;}if(nav&SCE_CTRL_DOWN){  if(themeSetupFocus_<themeCount){int n=themeSetupFocus_+cols;if(n<themeCount)themeSetupFocus_=n;else themeSetupFocus_=themeCount;}  afterMove();return;}if(pressed&SCE_CTRL_CROSS){if(themeSetupFocus_==themeCount)closeThemeSetup(true);else applyThemeSetupFocus();return;}return;}if(state_.mode==UiMode::SETTINGS){handleSettingsInput(pressed,nav);return;}
 if(pressed&SCE_CTRL_SELECT){openSettings();return;}
 if(pressed&SCE_CTRL_START){
         if(installProgressActive_ && installOutcome_==0){
@@ -3867,7 +3883,14 @@ void FullCatalogScreen::updateAnimations() {
             visualNewsScroll_ = targetNews;
     } else {
         visualNewsScroll_ = static_cast<float>(newsScrollLine_);
-    visualThemeSetupScroll_ += (static_cast<float>(themeSetupScrollRow_) - visualThemeSetupScroll_) * 0.28f;
+    }
+
+    // Theme picker grid scroll (row units) — same smoothing as catalog cards
+    if (themeSetupVisible_) {
+        const float targetTheme = static_cast<float>(themeSetupScrollRow_);
+        visualThemeSetupScroll_ += (targetTheme - visualThemeSetupScroll_) * 0.18f;
+        if (std::fabs(targetTheme - visualThemeSetupScroll_) < 0.008f)
+            visualThemeSetupScroll_ = targetTheme;
     }
 
     // Keep visual focus in sync with logical focus (no laggy card handoff).
