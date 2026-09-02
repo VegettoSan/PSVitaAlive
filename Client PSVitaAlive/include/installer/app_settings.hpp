@@ -24,6 +24,14 @@ enum class ColorTheme {
     Violet,       // purple
     Mono,         // silver / grayscale
     Oled,         // pure black + soft mint
+    PsVita,       // classic PlayStation Vita UI blue
+    Crimson,      // strong red
+    Coffee,       // warm brown
+    Gold,         // rich gold
+    Emerald,      // deep emerald green
+    Coral,        // soft coral
+    Teal,         // calm teal
+    Indigo,       // deep indigo
     Count
 };
 
@@ -44,14 +52,13 @@ struct AppSettingsData {
  */
 class AppSettings {
 public:
-    static constexpr const char* kConfigPath = "ux0:data/psvitaalive/config.json";
-
     static AppSettingsData load();
     static bool save(const AppSettingsData& data);
 
     static const char* toString(InstallMethod m);
     static const char* toString(PspTarget t);
     static const char* toString(ColorTheme t);
+
     static InstallMethod parseInstallMethod(const std::string& s);
     static PspTarget parsePspTarget(const std::string& s);
     static ColorTheme parseColorTheme(const std::string& s);
