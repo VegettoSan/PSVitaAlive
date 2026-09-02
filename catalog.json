@@ -50,6 +50,55 @@
     "updated_at": "2026-08-23T23:03"
   },
   {
+    "id": "illusia",
+    "title_id": "ILLU00001",
+    "name": "Illusia",
+    "description": "This is a wrapper/port of Illusia for the PS Vita.",
+    "long_description": "The port works by loading the Android ARMv6 executables from the Android release in memory, resolving their imports with native functions and patching it in order to properly run. By doing so, it's basically as if we emulate a minimalist Android environment in which we run natively the executables as they are.",
+    "author_ids": [
+      "withlogic"
+    ],
+    "category_id": "ports",
+    "subcategory_ids": [
+      "adventure",
+      "arcade",
+      "platformer",
+      "rpg"
+    ],
+    "version": "1.0",
+    "version_date": "2026-08-31",
+    "requirements": "Install kubridge and FdFix by copying kubridge.skprx and fd_fix.skprx to your taiHEN plugins folder (usually ux0:tai) and adding two entries to your config.txt under *KERNEL",
+    "size": 2768241,
+    "status": "Verified",
+    "links": [
+      {
+        "type": "Download",
+        "name": "VPK",
+        "url": "https://archive.org/download/illusia-psvita/Illusia%201.0.vpk",
+        "size": 2768241,
+        "recommended": true
+      },
+      {
+        "type": "Game Files",
+        "name": "Game Files",
+        "url": "https://archive.org/download/illusia-psvita/Game%20Files.zip",
+        "size": 23592960,
+        "extract_path": "ux0:data/"
+      },
+      {
+        "type": "Repository",
+        "name": "GitHub",
+        "url": "https://github.com/withLogic/illusia-vita"
+      }
+    ],
+    "icon": "https://archive.org/download/illusia-psvita/icon0.png",
+    "screenshots": [
+      "https://archive.org/download/illusia-psvita/shot0.jpg",
+      "https://archive.org/download/illusia-psvita/shot1.jpg",
+      "https://archive.org/download/illusia-psvita/shot2.jpg"
+    ]
+  },
+  {
     "id": "turbo-fast-league",
     "title_id": "TRBO00001",
     "name": "Turbo Fast League",
@@ -4598,6 +4647,9 @@
     ],
     "category_id": "ports",
     "subcategory_ids": [
+      "action",
+      "fps",
+      "shooter",
       "other"
     ],
     "version": "v.0.8",
@@ -4611,6 +4663,13 @@
         "name": "VPK",
         "url": "https://archive.org/download/psvitaalive-ut99-vita/ut99-vita.vpk",
         "recommended": true
+      },
+      {
+        "type": "Game Files",
+        "name": "Game Files",
+        "url": "https://archive.org/download/psvitaalive-ut99-vita/Game%20Files.zip",
+        "size": 627992166,
+        "extract_path": "ux0:data/"
       },
       {
         "type": "Repository",
