@@ -1,0 +1,21 @@
+name: Apply settle 3s
+on:
+  workflow_dispatch:
+jobs:
+  apply:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - run: python3 scripts/apply_settle_3s.py
+      - name: Commit
+        run: |
+          set -euo pipefail
+          git config user.name "VegettoSanDev"
+          git config user.email "72358120+VegettoSan@users.noreply.github.com"
+          git add "Client PSVitaAlive/source/installer/install_controller.cpp"
+          if git diff --staged --quiet; then echo "No changes"; else
+            git commit -m "installer: post-download storage settle 1.5s -> 3s"
+            git push origin HEAD:main
+          fi
