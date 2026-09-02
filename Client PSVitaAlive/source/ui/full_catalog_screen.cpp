@@ -2015,7 +2015,7 @@ void FullCatalogScreen::handleTouch() {
                 if (spaceErr) {
                     const int bwClose = 280;
                     const int bxClose = ox + (ow - bwClose) / 2;
-                    if (hit(x, y, bxClose, by, bwClose, bh)) {
+                    if (hit(x, y, bxClose - 8, resultBy - 8, bwClose + 16, 40 + 16)) {
                         if (installAcknowledge_) installAcknowledge_();
                         reportUiState_ = 0;
                     }
@@ -2037,15 +2037,16 @@ void FullCatalogScreen::handleTouch() {
                 return;
             }
             const int bw = 280;
-            if (!hit(x, y, ox + 20, runningBy - 8, bw + 16, 42 + 16)) return;
             if (installOutcome_ == 1) {
+                if (!hit(x, y, ox + 20, resultBy - 8, bw + 16, 40 + 16)) return;
                 if (installAcknowledge_) installAcknowledge_();
                 if (installAllFinishedToast_) {
                     installAllFinishedToast_ = false;
                     showToast("All installed — ready to use", 2800);
                 }
-            } else if (installCancel_) {
-                installCancel_();
+            } else {
+                if (!hit(x, y, ox + 20, runningBy - 8, bw + 16, 42 + 16)) return;
+                if (installCancel_) installCancel_();
             }
         }
         return;
@@ -2244,8 +2245,18 @@ void FullCatalogScreen::handleTouch() {
         const int barY = 10, barH = 32;
         const int gdW = 118;
         const int clockReserve = 92;
-        // Approximate logo width used in drawHeader (searchLeft often ~200)
-        const int barX = 200;
+        // Match drawHeader exactly so the visual search box and touch hitbox stay aligned.
+        int barX = 200;
+        if (headerLogoTex_) {
+            const float lw = (float)vita2d_texture_get_width(headerLogoTex_);
+            const float lh = (float)vita2d_texture_get_height(headerLogoTex_);
+            const float maxH = (float)(HEADER_H - 10);
+            const float maxW = 190.f;
+            float sc = maxH / (lh > 1.f ? lh : 1.f);
+            if (lw * sc > maxW) sc = maxW / (lw > 1.f ? lw : 1.f);
+            barX = (int)(10.f + lw * sc + 12.f);
+            if (barX < 160) barX = 160;
+        }
         const bool showGd = (state_.catalog == CatalogType::Homebrew);
         const int barW = std::max(120, SCREEN_W - barX - clockReserve - (showGd ? (gdW + 10) : 0));
         const int gdX = barX + barW + 6;
