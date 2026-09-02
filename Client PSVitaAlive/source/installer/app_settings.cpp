@@ -10,6 +10,8 @@
 namespace psvitaalive {
 namespace {
 
+constexpr const char* kConfigPath = "ux0:data/psvitaalive/config.json";
+
 bool containsKey(const std::string& json, const char* key, std::string& valueOut) {
     // Minimal JSON string value extractor: "key" : "value"
     const std::string pattern = std::string("\"") + key + "\"";
@@ -76,6 +78,14 @@ const char* AppSettings::toString(ColorTheme t) {
         case ColorTheme::Violet: return "violet";
         case ColorTheme::Mono: return "mono";
         case ColorTheme::Oled: return "oled";
+        case ColorTheme::PsVita: return "psvita";
+        case ColorTheme::Crimson: return "crimson";
+        case ColorTheme::Coffee: return "coffee";
+        case ColorTheme::Gold: return "gold";
+        case ColorTheme::Emerald: return "emerald";
+        case ColorTheme::Coral: return "coral";
+        case ColorTheme::Teal: return "teal";
+        case ColorTheme::Indigo: return "indigo";
         case ColorTheme::NeonLime:
         default: return "neon";
     }
@@ -88,25 +98,26 @@ ColorTheme AppSettings::parseColorTheme(const std::string& s) {
     if (s == "violet" || s == "purple") return ColorTheme::Violet;
     if (s == "mono" || s == "gray" || s == "grey") return ColorTheme::Mono;
     if (s == "oled" || s == "black") return ColorTheme::Oled;
+    if (s == "psvita" || s == "vita" || s == "playstation") return ColorTheme::PsVita;
+    if (s == "crimson" || s == "red") return ColorTheme::Crimson;
+    if (s == "coffee" || s == "brown" || s == "cafe") return ColorTheme::Coffee;
+    if (s == "gold" || s == "yellow") return ColorTheme::Gold;
+    if (s == "emerald" || s == "green") return ColorTheme::Emerald;
+    if (s == "coral") return ColorTheme::Coral;
+    if (s == "teal") return ColorTheme::Teal;
+    if (s == "indigo") return ColorTheme::Indigo;
     return ColorTheme::NeonLime;
 }
 
 AppSettingsData AppSettings::load() {
     AppSettingsData data;
-    StorageManager st;
-    st.createDirectories(StorageManager::BASE_DIR);
-
     SceUID fd = sceIoOpen(kConfigPath, SCE_O_RDONLY, 0);
-    if (fd < 0) {
-        // Write defaults on first run.
-        save(data);
-        return data;
-    }
+    if (fd < 0) return data;
     char buf[1024];
     const int n = sceIoRead(fd, buf, sizeof(buf) - 1);
     sceIoClose(fd);
     if (n <= 0) return data;
-    buf[n] = 0;
+    buf[n] = '\0';
     const std::string json(buf);
 
     std::string v;
