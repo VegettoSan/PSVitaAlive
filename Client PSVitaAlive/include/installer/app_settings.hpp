@@ -15,7 +15,7 @@ enum class PspTarget {
     LiveArea
 };
 
-/** UI accent / surface palette (Settings -> Color theme). */
+/** UI accent / surface palette. Each value must stay visually distinct. */
 enum class ColorTheme {
     NeonLime = 0,
     Cyan,
@@ -32,7 +32,6 @@ enum class ColorTheme {
     Coral,
     Teal,
     Indigo,
-    // Expanded variety
     Sky,
     Magenta,
     Mint,
@@ -51,6 +50,25 @@ enum class ColorTheme {
     Midnight,
     Sakura,
     Matrix,
+    // Distinct additions
+    Scarlet,      // pure vivid red
+    Orange,       // pure orange
+    White,        // bright white chrome
+    Snow,         // cool pure white
+    Ivory,        // warm off-white
+    Khaki,        // military khaki
+    Terracotta,   // clay / terracotta
+    Ruby,         // deep gem red
+    Copper,       // metallic copper
+    Olive,        // olive drab
+    Maroon,       // dark maroon
+    Turquoise,    // bright turquoise
+    Lemon,        // citrus yellow
+    Plum,         // warm plum
+    Navy,         // deep navy blue
+    Rust,         // oxidized rust
+    Champagne,    // pale gold champagne
+    Graphite,     // dark graphite gray
     Count
 };
 

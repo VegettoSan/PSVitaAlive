@@ -45,7 +45,6 @@ const char* AppSettings::toString(InstallMethod m) {
     switch (m) {
         case InstallMethod::Direct: return "direct";
         case InstallMethod::Bgdl: return "bgdl";
-        case InstallMethod::Auto:
         default: return "auto";
     }
 }
@@ -53,7 +52,6 @@ const char* AppSettings::toString(InstallMethod m) {
 const char* AppSettings::toString(PspTarget t) {
     switch (t) {
         case PspTarget::LiveArea: return "livearea";
-        case PspTarget::Adrenaline:
         default: return "adrenaline";
     }
 }
@@ -103,6 +101,24 @@ const char* AppSettings::toString(ColorTheme t) {
         case ColorTheme::Midnight: return "midnight";
         case ColorTheme::Sakura: return "sakura";
         case ColorTheme::Matrix: return "matrix";
+        case ColorTheme::Scarlet: return "scarlet";
+        case ColorTheme::Orange: return "orange";
+        case ColorTheme::White: return "white";
+        case ColorTheme::Snow: return "snow";
+        case ColorTheme::Ivory: return "ivory";
+        case ColorTheme::Khaki: return "khaki";
+        case ColorTheme::Terracotta: return "terracotta";
+        case ColorTheme::Ruby: return "ruby";
+        case ColorTheme::Copper: return "copper";
+        case ColorTheme::Olive: return "olive";
+        case ColorTheme::Maroon: return "maroon";
+        case ColorTheme::Turquoise: return "turquoise";
+        case ColorTheme::Lemon: return "lemon";
+        case ColorTheme::Plum: return "plum";
+        case ColorTheme::Navy: return "navy";
+        case ColorTheme::Rust: return "rust";
+        case ColorTheme::Champagne: return "champagne";
+        case ColorTheme::Graphite: return "graphite";
         case ColorTheme::NeonLime:
         default: return "neon";
     }
@@ -111,15 +127,15 @@ const char* AppSettings::toString(ColorTheme t) {
 ColorTheme AppSettings::parseColorTheme(const std::string& s) {
     if (s == "cyan" || s == "blue") return ColorTheme::Cyan;
     if (s == "rose" || s == "pink" || s == "rosal") return ColorTheme::Rose;
-    if (s == "amber" || s == "orange") return ColorTheme::Amber;
+    if (s == "amber") return ColorTheme::Amber;
     if (s == "violet" || s == "purple") return ColorTheme::Violet;
     if (s == "mono" || s == "gray" || s == "grey") return ColorTheme::Mono;
     if (s == "oled" || s == "black") return ColorTheme::Oled;
     if (s == "psvita" || s == "vita" || s == "playstation") return ColorTheme::PsVita;
-    if (s == "crimson" || s == "red") return ColorTheme::Crimson;
+    if (s == "crimson") return ColorTheme::Crimson;
     if (s == "coffee" || s == "brown" || s == "cafe") return ColorTheme::Coffee;
-    if (s == "gold" || s == "yellow") return ColorTheme::Gold;
-    if (s == "emerald" || s == "green") return ColorTheme::Emerald;
+    if (s == "gold") return ColorTheme::Gold;
+    if (s == "emerald") return ColorTheme::Emerald;
     if (s == "coral") return ColorTheme::Coral;
     if (s == "teal") return ColorTheme::Teal;
     if (s == "indigo") return ColorTheme::Indigo;
@@ -141,6 +157,24 @@ ColorTheme AppSettings::parseColorTheme(const std::string& s) {
     if (s == "midnight") return ColorTheme::Midnight;
     if (s == "sakura") return ColorTheme::Sakura;
     if (s == "matrix") return ColorTheme::Matrix;
+    if (s == "scarlet" || s == "red") return ColorTheme::Scarlet;
+    if (s == "orange") return ColorTheme::Orange;
+    if (s == "white") return ColorTheme::White;
+    if (s == "snow") return ColorTheme::Snow;
+    if (s == "ivory") return ColorTheme::Ivory;
+    if (s == "khaki") return ColorTheme::Khaki;
+    if (s == "terracotta") return ColorTheme::Terracotta;
+    if (s == "ruby") return ColorTheme::Ruby;
+    if (s == "copper") return ColorTheme::Copper;
+    if (s == "olive") return ColorTheme::Olive;
+    if (s == "maroon") return ColorTheme::Maroon;
+    if (s == "turquoise") return ColorTheme::Turquoise;
+    if (s == "lemon" || s == "yellow") return ColorTheme::Lemon;
+    if (s == "plum") return ColorTheme::Plum;
+    if (s == "navy") return ColorTheme::Navy;
+    if (s == "rust") return ColorTheme::Rust;
+    if (s == "champagne") return ColorTheme::Champagne;
+    if (s == "graphite") return ColorTheme::Graphite;
     return ColorTheme::NeonLime;
 }
 
@@ -170,14 +204,10 @@ AppSettingsData AppSettings::load() {
     const bool hasStartupUpdateCheck = containsBool(json, "startup_update_check", b);
     if (hasStartupUpdateCheck) data.startupUpdateCheck = b;
 
-    if (!hasStartupPluginDetection || !hasStartupUpdateCheck || !hasThemeSetupDone) {
+    if (!hasStartupPluginDetection || !hasStartupUpdateCheck || !hasThemeSetupDone)
         save(data);
-    }
 
-    sceClibPrintf("[AppSettings] loaded method=%s psp=%s theme=%s warn=%d imagesPrompt=%d themeSetup=%d\n",
-                  toString(data.installMethod), toString(data.pspTarget), toString(data.colorTheme),
-                  data.warnMissingPlugins ? 1 : 0, data.promptImageWarmup ? 1 : 0,
-                  data.themeSetupDone ? 1 : 0);
+    sceClibPrintf("[AppSettings] loaded theme=%s\n", toString(data.colorTheme));
     return data;
 }
 
@@ -204,8 +234,7 @@ bool AppSettings::save(const AppSettingsData& data) {
         data.promptImageWarmup ? "true" : "false",
         data.themeSetupDone ? "true" : "false",
         data.startupPluginDetection ? "true" : "false",
-        data.startupUpdateCheck ? "true" : "false"
-    );
+        data.startupUpdateCheck ? "true" : "false");
     SceUID fd = sceIoOpen(kConfigPath, SCE_O_WRONLY | SCE_O_CREAT | SCE_O_TRUNC, 0666);
     if (fd < 0) return false;
     const int wr = sceIoWrite(fd, json, std::strlen(json));
