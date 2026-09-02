@@ -299,7 +299,7 @@ void drawNeonFrame(int x, int y, int w, int h, unsigned alphaOuter = 70, unsigne
 }
 
 
-constexpr int FULL_CARD_H=136,SPLIT_CARD_H=108,DETAIL_HEADER_H=108,LINE_H=24,DETAIL_SECTION_H=30,DETAIL_META_H=28,DETAIL_SECTION_GAP=16,TRANSITION_MS=340,LINK_ROW_H=46,LINK_GAP=6,SCREENSHOT_ROW_H=250;
+constexpr int FULL_CARD_H=136,SPLIT_CARD_H=118,DETAIL_HEADER_H=108,LINE_H=24,DETAIL_SECTION_H=30,DETAIL_META_H=28,DETAIL_SECTION_GAP=16,TRANSITION_MS=340,LINK_ROW_H=46,LINK_GAP=6,SCREENSHOT_ROW_H=250;
 constexpr size_t MAX_APP_TEXTURES=18,MAX_SCREENSHOT_TEXTURES=6;
 constexpr int CATALOG_SWITCH_COOLDOWN_FRAMES=50; // ~0.83s at 60fps
 constexpr uint64_t CATALOG_SWITCH_MIN_MS=900; // hard debounce against L/R spam
@@ -754,18 +754,18 @@ void FullCatalogScreen::runNewsCheck(bool forceShow) {
                 continue;
             }
 
-            float scale = 0.64f;
-            int height = 26;
+            float scale = 0.70f;
+            int height = 28;
             int indent = 0;
             bool emphasize = false;
             if (pl.kind == news_md::Kind::H1) {
-                scale = 0.98f; height = 36; emphasize = true;
+                scale = 1.04f; height = 38; emphasize = true;
             } else if (pl.kind == news_md::Kind::H2) {
-                scale = 0.84f; height = 32; emphasize = true;
+                scale = 0.90f; height = 34; emphasize = true;
             } else if (pl.kind == news_md::Kind::H3) {
-                scale = 0.74f; height = 28; emphasize = true;
+                scale = 0.80f; height = 30; emphasize = true;
             } else if (pl.kind == news_md::Kind::List) {
-                scale = 0.64f; height = 26; indent = 12; emphasize = true;
+                scale = 0.70f; height = 28; indent = 12; emphasize = true;
             }
 
             std::string content = pl.text;
@@ -865,8 +865,8 @@ void FullCatalogScreen::drawNewsOverlay() {
     vita2d_draw_rectangle(x + w - 3, y + 3, 3, h - 6, BORDER);
     vita2d_draw_rectangle(x, y + h - 3, w, 3, BORDER);
 
-    vita2d_pgf_draw_text(font_, x + 24, y + 36, ACCENT, 0.74f, "NEWS");
-    vita2d_pgf_draw_text(font_, x + 24, y + 68, WHITE, 0.92f,
+    vita2d_pgf_draw_text(font_, x + 24, y + 36, ACCENT, 0.82f, "NEWS");
+    vita2d_pgf_draw_text(font_, x + 24, y + 68, WHITE, 1.00f,
                          ellipsize(newsTitle_, 52).c_str());
 
     const int textTop = y + 96;
@@ -941,7 +941,7 @@ void FullCatalogScreen::drawNewsOverlay() {
         const int tw = vita2d_pgf_text_width(font_, sc, clab);
         vita2d_pgf_draw_text(font_, x + (w - bw) / 2 + (bw - tw) / 2, by + 25, BLACK, sc, clab);
     }
-    vita2d_pgf_draw_text(font_, x + 24, y + h - 14, DIM, 0.66f, "D-Pad: scroll   Circle: close");
+    vita2d_pgf_draw_text(font_, x + 24, y + h - 14, DIM, 0.72f, "D-Pad: scroll   Circle: close");
 }
 
 void FullCatalogScreen::drawReportChip() {
@@ -1053,11 +1053,11 @@ void FullCatalogScreen::drawDataRequestConfirmOverlay() {
     vita2d_draw_rectangle(x + w - 3, y + 3, 3, h - 6, BORDER);
     vita2d_draw_rectangle(x, y + h - 3, w, 3, BORDER);
 
-    vita2d_pgf_draw_text(font_, x + 24, y + 40, ACC, 0.78f, "REQUEST DATA / GAME FILES");
-    vita2d_pgf_draw_text(font_, x + 24, y + 78, WHITE, 0.72f, "This app has no Data/Game Files links.");
-    vita2d_pgf_draw_text(font_, x + 24, y + 110, TEXT, 0.66f, "Send a request so we can look for them.");
-    vita2d_pgf_draw_text(font_, x + 24, y + 136, TEXT, 0.66f, "It may take several days — we will add them");
-    vita2d_pgf_draw_text(font_, x + 24, y + 162, TEXT, 0.66f, "when available. Thank you for your patience.");
+    vita2d_pgf_draw_text(font_, x + 24, y + 40, ACC, 0.86f, "REQUEST DATA / GAME FILES");
+    vita2d_pgf_draw_text(font_, x + 24, y + 78, WHITE, 0.78f, "This app has no Data/Game Files links.");
+    vita2d_pgf_draw_text(font_, x + 24, y + 110, TEXT, 0.72f, "Send a request so we can look for them.");
+    vita2d_pgf_draw_text(font_, x + 24, y + 136, TEXT, 0.72f, "It may take several days — we will add them");
+    vita2d_pgf_draw_text(font_, x + 24, y + 162, TEXT, 0.72f, "when available. Thank you for your patience.");
 
     const int by = y + h - 56, bh = 40, bw = 180, gap = 24;
     const int bxCancel = x + (w - (bw * 2 + gap)) / 2;
@@ -1068,14 +1068,14 @@ void FullCatalogScreen::drawDataRequestConfirmOverlay() {
     vita2d_draw_rectangle(bxCancel, by + bh - 1, bw, 1, BORDER);
     {
         const char* lab = "O  Cancel";
-        const float sc = 0.62f;
+        const float sc = 0.74f;
         const int tw = vita2d_pgf_text_width(font_, sc, lab);
         vita2d_pgf_draw_text(font_, bxCancel + (bw - tw) / 2, by + 27, WHITE, sc, lab);
     }
     vita2d_draw_rectangle(bxSend, by, bw, bh, ACC);
     {
         const char* lab = "X  Send";
-        const float sc = 0.62f;
+        const float sc = 0.74f;
         const int tw = vita2d_pgf_text_width(font_, sc, lab);
         vita2d_pgf_draw_text(font_, bxSend + (bw - tw) / 2, by + 27, BG, sc, lab);
     }
@@ -1204,10 +1204,10 @@ void FullCatalogScreen::drawReportConfirmOverlay() {
     vita2d_draw_rectangle(x + w - 3, y + 3, 3, h - 6, BORDER);
     vita2d_draw_rectangle(x, y + h - 3, w, 3, BORDER);
 
-    vita2d_pgf_draw_text(font_, x + 24, y + 40, RED, 0.78f, "REPORT AN ISSUE");
-    vita2d_pgf_draw_text(font_, x + 24, y + 78, WHITE, 0.76f, "Did something go wrong?");
-    vita2d_pgf_draw_text(font_, x + 24, y + 112, TEXT, 0.66f, "Send a report with the recent logs so we can");
-    vita2d_pgf_draw_text(font_, x + 24, y + 138, TEXT, 0.66f, "review it and fix the problem as soon as possible.");
+    vita2d_pgf_draw_text(font_, x + 24, y + 40, RED, 0.86f, "REPORT AN ISSUE");
+    vita2d_pgf_draw_text(font_, x + 24, y + 78, WHITE, 0.80f, "Did something go wrong?");
+    vita2d_pgf_draw_text(font_, x + 24, y + 112, TEXT, 0.72f, "Send a report with the recent logs so we can");
+    vita2d_pgf_draw_text(font_, x + 24, y + 138, TEXT, 0.72f, "review it and fix the problem as soon as possible.");
 
     const int by = y + h - 56, bh = 40, bw = 180, gap = 24;
     const int bxCancel = x + (w - (bw * 2 + gap)) / 2;
@@ -1227,7 +1227,7 @@ void FullCatalogScreen::drawReportConfirmOverlay() {
     vita2d_draw_rectangle(bxReport, by, bw, bh, RED);
     {
         const char* lab = "X  Report";
-        const float sc = 0.62f;
+        const float sc = 0.74f;
         const int tw = vita2d_pgf_text_width(font_, sc, lab);
         vita2d_pgf_draw_text(font_, bxReport + (bw - tw) / 2, by + 27, WHITE, sc, lab);
     }
@@ -1927,7 +1927,7 @@ void FullCatalogScreen::handleTouch() {
             if (!wasMoved) {
                 const int by = oy + oh - 48, bw = 220, bh = 36;
                 const int bx = ox + (ow - bw) / 2;
-                if (hit(x, y, bx, by, bw, bh))
+                if (hit(x, y, bx - 12, by - 12, bw + 24, bh + 24))
                     closeNewsModal(newsMarkSeenOnClose_);
             }
         }
@@ -1955,8 +1955,8 @@ void FullCatalogScreen::handleTouch() {
                 const int by = oy + oh - 56;
                 const int bxOk = ox + 28;
                 const int bxCancel = ox + ow - 28 - bw;
-                if (hit(x, y, bxOk, by, bw, bh)) { installAllFocus_ = 0; installAllAdvancePick(); return; }
-                if (hit(x, y, bxCancel, by, bw, bh)) { closeInstallAllWizard(true); return; }
+                if (hit(x, y, bxOk - 12, by - 12, bw + 24, bh + 24)) { installAllFocus_ = 0; installAllAdvancePick(); return; }
+                if (hit(x, y, bxCancel - 12, by - 12, bw + 24, bh + 24)) { closeInstallAllWizard(true); return; }
                 return;
             }
             if (installAllItemIndex_ >= 0 && installAllItemIndex_ < (int)catalogView().size()) {
@@ -2188,11 +2188,11 @@ void FullCatalogScreen::handleTouch() {
         const int by = my + mh - 56, bh = 40, bw = 180, gap = 24;
         const int bxCancel = mx + (mw - (bw * 2 + gap)) / 2;
         const int bxSend = bxCancel + bw + gap;
-        if (hit(x, y, bxCancel, by, bw, bh)) {
+        if (hit(x, y, bxCancel - 12, by - 12, bw + 24, bh + 24)) {
             closeDataRequestConfirm();
             return;
         }
-        if (hit(x, y, bxSend, by, bw, bh)) {
+        if (hit(x, y, bxSend - 12, by - 12, bw + 24, bh + 24)) {
             closeDataRequestConfirm();
             trySendDataRequest();
             return;
@@ -2207,11 +2207,11 @@ void FullCatalogScreen::handleTouch() {
         const int by = my + mh - 56, bh = 40, bw = 180, gap = 24;
         const int bxCancel = mx + (mw - (bw * 2 + gap)) / 2;
         const int bxReport = bxCancel + bw + gap;
-        if (hit(x, y, bxCancel, by, bw, bh)) {
+        if (hit(x, y, bxCancel - 12, by - 12, bw + 24, bh + 24)) {
             closeReportConfirm();
             return;
         }
-        if (hit(x, y, bxReport, by, bw, bh)) {
+        if (hit(x, y, bxReport - 12, by - 12, bw + 24, bh + 24)) {
             closeReportConfirm();
             trySendErrorReport("Manual report from UI", "User confirmed report from footer");
             return;
@@ -3616,6 +3616,8 @@ void FullCatalogScreen::drawInstallBadge(int x, int y, const LocalInstallInfo& i
 }
 
 void FullCatalogScreen::drawCatalogCard(const CatalogItem&it,int idx,int x,int y,int w,int h,bool focus){
+    vita2d_enable_clipping();
+    vita2d_set_clip_rectangle(x, y, x + w, y + h);
     const float pulse = focus ? focusPulse() : 0.f;
     // Subtle lift / scale for focused card
     // Keep focus chrome inside the card/panel (no outward expand while scrolling).
@@ -4020,6 +4022,8 @@ void FullCatalogScreen::drawDetailContent(const CatalogItem& it, int x, int y, i
 
 
 void FullCatalogScreen::drawDetailPanel(int x,int y,int w,int h){
+    vita2d_enable_clipping();
+    vita2d_set_clip_rectangle(x, y, x + w, y + h);
     vita2d_draw_rectangle(x, y, w, h, PANEL);
     vita2d_draw_rectangle(x, y, 2, h, ACCENT_SOFT);
     vita2d_draw_rectangle(x, y, w, 1, ACCENT_SOFT);
