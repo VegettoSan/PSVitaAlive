@@ -6,6 +6,8 @@
 #include "installer/app_settings.hpp"
 #include "installer/plugin_detector.hpp"
 
+#include <psp2/types.h>
+
 #include <atomic>
 #include <string>
 
