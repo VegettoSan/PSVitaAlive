@@ -1,0 +1,33 @@
+name: Apply UI card and modal fixes
+
+on:
+  push:
+    branches:
+      - fix/ui-card-modal-touch
+
+permissions:
+  contents: write
+
+jobs:
+  patch-ui:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Apply UI patch
+        run: python3 scripts/fix_ui_card_modal_touch.py
+
+      - name: Commit UI patch
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          if git diff --quiet; then
+            echo "No changes to commit"
+            exit 0
+          fi
+          git add "Client PSVitaAlive/source/ui/full_catalog_screen.cpp"
+          git commit -m "fix: card clipping and modal touch readability"
+          git push origin HEAD:fix/ui-card-modal-touch
