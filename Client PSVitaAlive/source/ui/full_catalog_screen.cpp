@@ -246,6 +246,12 @@ unsigned withAlpha(unsigned c, unsigned a) {
 }
 
 
+
+/** Brand art (full-color logo/splash) only for the original PSVitaAlive theme. */
+bool isBrandColorTheme(::psvitaalive::ColorTheme t) {
+    return t == ::psvitaalive::ColorTheme::NeonLime;
+}
+
 const char* colorThemeDisplayName(::psvitaalive::ColorTheme t) {
     switch (t) {
         case ::psvitaalive::ColorTheme::Cyan: return "Cyan";
@@ -2024,6 +2030,12 @@ bool FullCatalogScreen::init(){
     } else {
         diagnostics::log("[UI] catalog_loading.png not found (fallback overlay)");
     }
+    catalogLoadingMonoTex_ = vita2d_load_PNG_file("app0:ui/catalog_loading_mono.png");
+    if (catalogLoadingMonoTex_) {
+        diagnostics::log("[UI] catalog_loading_mono.png loaded");
+    } else {
+        diagnostics::log("[UI] catalog_loading_mono.png not found (tint fallback to color art)");
+    }
     headerLogoTex_ = vita2d_load_PNG_file("app0:ui/PSVitaAlive_Store_logo_text.png");
     if (!headerLogoTex_) {
         headerLogoTex_ = vita2d_load_PNG_file("app0:ui/logo.png");
@@ -2032,6 +2044,12 @@ bool FullCatalogScreen::init(){
         diagnostics::log("[UI] header logo loaded");
     } else {
         diagnostics::log("[UI] header logo not found (text fallback)");
+    }
+    headerLogoMonoTex_ = vita2d_load_PNG_file("app0:ui/PSVitaAlive_Store_logo_text_mono.png");
+    if (headerLogoMonoTex_) {
+        diagnostics::log("[UI] header logo mono loaded");
+    } else {
+        diagnostics::log("[UI] header logo mono not found (tint fallback to color art)");
     }
     state_=UiState{};
     ready_=true;
@@ -2152,9 +2170,17 @@ void FullCatalogScreen::shutdown(){
         vita2d_free_texture(catalogLoadingTex_);
         catalogLoadingTex_ = nullptr;
     }
+    if (catalogLoadingMonoTex_) {
+        vita2d_free_texture(catalogLoadingMonoTex_);
+        catalogLoadingMonoTex_ = nullptr;
+    }
     if (headerLogoTex_) {
         vita2d_free_texture(headerLogoTex_);
         headerLogoTex_ = nullptr;
+    }
+    if (headerLogoMonoTex_) {
+        vita2d_free_texture(headerLogoMonoTex_);
+        headerLogoMonoTex_ = nullptr;
     }
     if(font_){vita2d_free_pgf(font_);font_=nullptr;}
     if(ready_){vita2d_fini();ready_=false;}
@@ -3539,9 +3565,12 @@ unsigned FullCatalogScreen::colorForStatus(const std::string&s)const{if(s=="Veri
     vita2d_draw_rectangle(0, HEADER_H - 1, w, 1, ACCENT_SOFT);
     // Brand: logo image (preferred) or compact text fallback
     int searchLeft = 200;
-    if (headerLogoTex_) {
-        const float lw = (float)vita2d_texture_get_width(headerLogoTex_);
-        const float lh = (float)vita2d_texture_get_height(headerLogoTex_);
+    {
+        const bool brand = isBrandColorTheme(settingsEdit_.colorTheme);
+        vita2d_texture* logoTex = (brand || !headerLogoMonoTex_) ? headerLogoTex_ : headerLogoMonoTex_;
+        if (logoTex) {
+        const float lw = (float)vita2d_texture_get_width(logoTex);
+        const float lh = (float)vita2d_texture_get_height(logoTex);
         const float maxH = (float)(HEADER_H - 10);
         const float maxW = 190.f;
         float sc = maxH / (lh > 1.f ? lh : 1.f);
@@ -3550,12 +3579,16 @@ unsigned FullCatalogScreen::colorForStatus(const std::string&s)const{if(s=="Veri
         const float dh = lh * sc;
         const float dx = 10.f;
         const float dy = ((float)HEADER_H - dh) * 0.5f;
-        vita2d_draw_texture_scale(headerLogoTex_, dx, dy, sc, sc);
+        if (brand || !headerLogoMonoTex_)
+            vita2d_draw_texture_scale(logoTex, dx, dy, sc, sc);
+        else
+            vita2d_draw_texture_tint_scale(logoTex, dx, dy, sc, sc, ACCENT);
         searchLeft = (int)(dx + dw + 12.f);
         if (searchLeft < 160) searchLeft = 160;
-    } else {
+        } else {
         vita2d_pgf_draw_text(font_, 14, 30, ACCENT, 0.98f, "PSVitaAlive");
         searchLeft = 200;
+        }
     }
     // Search field + optional G/D Files filter chip (Homebrew only) + clock
     const int barY = 10, barH = 32;
@@ -5065,15 +5098,22 @@ void FullCatalogScreen::drawLoadingOverlay(){
 if (catalogSplashAlpha_ > 0.01f && !installProgressActive_) {
     const unsigned a = (unsigned)(catalogSplashAlpha_ * 255.f);
     if (a > 255) { /* clamp */ }
-    const unsigned tint = RGBA8(255, 255, 255, a > 255 ? 255 : a);
-    if (catalogLoadingTex_) {
-        const float tw = (float)vita2d_texture_get_width(catalogLoadingTex_);
-        const float th = (float)vita2d_texture_get_height(catalogLoadingTex_);
-        const float sx = (tw > 1.f) ? (SCREEN_W / tw) : 1.f;
-        const float sy = (th > 1.f) ? (SCREEN_H / th) : 1.f;
-        vita2d_draw_texture_tint_scale(catalogLoadingTex_, 0.f, 0.f, sx, sy, tint);
-    } else {
-        vita2d_draw_rectangle(0, 0, SCREEN_W, SCREEN_H, RGBA8(0x0A, 0x0A, 0x0A, a > 255 ? 255 : a));
+    {
+        const bool brand = isBrandColorTheme(settingsEdit_.colorTheme);
+        vita2d_texture* splash = (brand || !catalogLoadingMonoTex_) ? catalogLoadingTex_ : catalogLoadingMonoTex_;
+        const unsigned aa = a > 255 ? 255u : a;
+        const unsigned tint = (brand || !catalogLoadingMonoTex_)
+            ? RGBA8(255, 255, 255, aa)
+            : withAlpha(ACCENT, aa);
+        if (splash) {
+            const float tw = (float)vita2d_texture_get_width(splash);
+            const float th = (float)vita2d_texture_get_height(splash);
+            const float sx = (tw > 1.f) ? (SCREEN_W / tw) : 1.f;
+            const float sy = (th > 1.f) ? (SCREEN_H / th) : 1.f;
+            vita2d_draw_texture_tint_scale(splash, 0.f, 0.f, sx, sy, tint);
+        } else {
+            vita2d_draw_rectangle(0, 0, SCREEN_W, SCREEN_H, RGBA8(0x0A, 0x0A, 0x0A, aa));
+        }
     }
     // Bottom progress panel — clear hierarchy for startup / self-update / catalogs
     const int stripH = 148;
