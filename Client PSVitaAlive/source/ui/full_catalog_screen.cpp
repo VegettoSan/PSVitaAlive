@@ -306,9 +306,13 @@ constexpr uint64_t CATALOG_SWITCH_MIN_MS=900; // hard debounce against L/R spam
 constexpr size_t MAX_DEFERRED_FREES_PER_FRAME=8;constexpr uint64_t DIRECTION_REPEAT_DELAY_US=320000,DIRECTION_REPEAT_INTERVAL_US=420000;
 const char* extOf(const std::string&p){const size_t d=p.find_last_of('.');return d==std::string::npos?"":p.c_str()+d;}std::string formatBytes(uint64_t b){char o[64];double v=(double)b;if(b>=1024ULL*1024ULL*1024ULL)sceClibSnprintf(o,sizeof(o),"%.2f GB",v/(1024.0*1024.0*1024.0));else if(b>=1024ULL*1024ULL)sceClibSnprintf(o,sizeof(o),"%.2f MB",v/(1024.0*1024.0));else if(b>=1024ULL)sceClibSnprintf(o,sizeof(o),"%.2f KB",v/1024.0);else sceClibSnprintf(o,sizeof(o),"%llu B",(unsigned long long)b);return o;}std::string lowerAscii(std::string s){for(char&c:s)c=(char)std::tolower((unsigned char)c);return s;}std::string ellipsize(const std::string&s,size_t n){if(s.size()<=n)return s;if(n<=3)return s.substr(0,n);return s.substr(0,n-3)+"...";}
 
-/** Soft horizontal marquee for long titles when focused (list card + detail header). */
+/** Soft horizontal marquee for long titles when focused (list card + detail header).
+ *  parentClip* = outer panel/card scissor; animated path intersects name strip with it
+ *  so glyphs never paint outside the catalog panel while scrolling. */
 void drawMarqueeText(vita2d_pgf* font, int x, int y, int maxW, unsigned color, float scale,
-                     const std::string& text, bool animate) {
+                     const std::string& text, bool animate,
+                     int parentClipL = 0, int parentClipT = 0,
+                     int parentClipR = SCREEN_W, int parentClipB = SCREEN_H) {
     if (!font || text.empty() || maxW <= 8) return;
     const int tw = vita2d_pgf_text_width(font, scale, text.c_str());
     // IMPORTANT: do not disable global clipping on the static path — parent panels
@@ -330,29 +334,35 @@ void drawMarqueeText(vita2d_pgf* font, int x, int y, int maxW, unsigned color, f
         vita2d_pgf_draw_text(font, x, y, color, scale, s.c_str());
         return;
     }
-    // Animated marquee needs a tight scissor for the scrolling glyphs.
-    // Callers that own a wider panel clip must re-assert it after this returns.
+    // Animated marquee: scissor = name strip ∩ parent panel (never leave panel).
     const int gap = 48;
     const int cycle = tw + gap;
     const uint64_t ms = sceKernelGetProcessTimeWide() / 1000ULL;
-    // Pause ~1.2s at the start, then scroll ~35 px/s, loop seamlessly.
     const uint64_t period = static_cast<uint64_t>(cycle) * 28ULL + 1200ULL;
     const uint64_t t = ms % period;
     int offset = 0;
     if (t > 1200ULL) offset = static_cast<int>((t - 1200ULL) / 28ULL);
     if (offset > cycle) offset = cycle;
-    const int clipTop = y - 20;
-    const int clipBottom = y + 6;
-    // Keep the marquee scissor tight to the actual text strip so glyphs can
-    // never spill into author/status rows while scrolling.
+    int x0 = x;
+    int y0 = y - 20;
+    int x1 = x + maxW;
+    int y1 = y + 6;
+    if (x0 < parentClipL) x0 = parentClipL;
+    if (y0 < parentClipT) y0 = parentClipT;
+    if (x1 > parentClipR) x1 = parentClipR;
+    if (y1 > parentClipB) y1 = parentClipB;
+    if (x1 <= x0 || y1 <= y0) {
+        // Fully outside parent panel — restore parent scissor and skip draw.
+        vita2d_enable_clipping();
+        vita2d_set_clip_rectangle(parentClipL, parentClipT, parentClipR, parentClipB);
+        return;
+    }
     vita2d_enable_clipping();
-    vita2d_set_clip_rectangle(x, clipTop, x + maxW, clipBottom);
+    vita2d_set_clip_rectangle(x0, y0, x1, y1);
     vita2d_pgf_draw_text(font, x - offset, y, color, scale, text.c_str());
     vita2d_pgf_draw_text(font, x - offset + cycle, y, color, scale, text.c_str());
-    // Do not leave scissor disabled: rest of the card (badges, chips) would spill
-    // outside the panel while scrolling. Expand to full screen; caller re-asserts
-    // the panel clip right after drawCatalogCard returns.
-    vita2d_set_clip_rectangle(0, 0, SCREEN_W, SCREEN_H);
+    // Restore parent panel/card scissor (never full-screen).
+    vita2d_set_clip_rectangle(parentClipL, parentClipT, parentClipR, parentClipB);
 }
 
 /** Word-wrap text to max pixel width (vita2d_pgf). Long tokens are hard-split. */
@@ -3670,7 +3680,8 @@ void FullCatalogScreen::drawCatalogCard(const CatalogItem&it,int idx,int x,int y
         // unnecessarily made titles look cramped.
         const int rightPad = compact ? 10 : 14;
         const int nameMaxW = std::max(40, (x + ox + ww) - tx - rightPad);
-        drawMarqueeText(font_, tx, y + (compact ? 24 : 28) + oy, nameMaxW, WHITE, nameSc, it.name, focus);
+        drawMarqueeText(font_, tx, y + (compact ? 24 : 28) + oy, nameMaxW, WHITE, nameSc, it.name, focus,
+                         clipL, clipT, clipR, clipB);
     }
     // Keep remaining card chrome inside the card box (marquee temporarily tightens scissor).
     vita2d_enable_clipping();
