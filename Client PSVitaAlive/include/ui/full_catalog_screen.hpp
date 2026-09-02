@@ -202,7 +202,7 @@ private:
     void drawTabs(int width);
     void drawCatalogPanel(int x, int y, int width, int height, bool splitMode);
     void drawDetailPanel(int x, int y, int width, int height);
-    void drawCatalogCard(const CatalogItem& item, int index, int x, int y, int width, int height, bool focused);
+    void drawCatalogCard(const CatalogItem& item, int index, int x, int y, int width, int height, bool focused, int clipLeft, int clipTop, int clipRight, int clipBottom);
     LocalInstallInfo queryLocalInstall(const CatalogItem& item);
     void invalidateInstallStatus(const std::string& titleId = {});
     void drawInstallBadge(int x, int y, const LocalInstallInfo& info, bool compact);
