@@ -111,7 +111,7 @@ ColorTheme AppSettings::parseColorTheme(const std::string& s) {
 AppSettingsData AppSettings::load() {
     AppSettingsData data;
     SceUID fd = sceIoOpen(kConfigPath, SCE_O_RDONLY, 0);
-    if (fd < 0) return data;
+    if (fd < 0) return data; // brand-new install → themeSetupDone stays false
     char buf[1024];
     const int n = sceIoRead(fd, buf, sizeof(buf) - 1);
     sceIoClose(fd);
@@ -129,18 +129,18 @@ AppSettingsData AppSettings::load() {
     const bool hasPromptImageWarmup = containsBool(json, "prompt_image_warmup", b);
     if (hasPromptImageWarmup) data.promptImageWarmup = b;
     const bool hasThemeSetupDone = containsBool(json, "theme_setup_done", b);
-    if (hasThemeSetupDone) data.themeSetupDone = b;
-    // Existing installs already have config: do not force the first-run picker again.
-    // Only brand-new installs (no theme_setup_done key) see the picker once.
-    if (!hasThemeSetupDone) {
-        // keep default false → picker will show once
+    if (hasThemeSetupDone) {
+        data.themeSetupDone = b;
+    } else {
+        // Legacy config.json without the key: user already configured the app — skip picker.
+        data.themeSetupDone = true;
     }
     const bool hasStartupPluginDetection = containsBool(json, "startup_plugin_detection", b);
     if (hasStartupPluginDetection) data.startupPluginDetection = b;
     const bool hasStartupUpdateCheck = containsBool(json, "startup_update_check", b);
     if (hasStartupUpdateCheck) data.startupUpdateCheck = b;
 
-    if (!hasStartupPluginDetection || !hasStartupUpdateCheck) {
+    if (!hasStartupPluginDetection || !hasStartupUpdateCheck || !hasThemeSetupDone) {
         save(data);
     }
 
