@@ -1,0 +1,57 @@
+name: Restore vita2d clipping bounds
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/_restore_vita2d_clip.yml'
+      - 'Client PSVitaAlive/source/ui/full_catalog_screen.cpp'
+
+permissions:
+  contents: write
+
+jobs:
+  restore:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+      - name: Restore original vita2d x_max/y_max arguments
+        shell: python
+        run: |
+          from pathlib import Path
+          p = Path('Client PSVitaAlive/source/ui/full_catalog_screen.cpp')
+          s = p.read_text(encoding='utf-8')
+          replacements = {
+              'vita2d_set_clip_rectangle(x, y, w, h);': 'vita2d_set_clip_rectangle(x, y, x + w, y + h);',
+              'vita2d_set_clip_rectangle(x + ox, y + oy, ww, hh);': 'vita2d_set_clip_rectangle(x + ox, y + oy, x + ox + ww, y + oy + hh);',
+              'vita2d_set_clip_rectangle(x + 1, y + 1, w - 2, h - 2);': 'vita2d_set_clip_rectangle(x + 1, y + 1, x + w - 1, y + h - 1);',
+          }
+          changed = False
+          for old, new in replacements.items():
+              count = s.count(old)
+              if count:
+                  s = s.replace(old, new)
+                  changed = True
+                  print(f'{count} replacement(s): {old} -> {new}')
+          if not changed:
+              print('No incorrect clipping bounds found; nothing to do.')
+          p.write_text(s, encoding='utf-8')
+      - name: Commit restore and remove helper workflow
+        shell: bash
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add 'Client PSVitaAlive/source/ui/full_catalog_screen.cpp'
+          if git diff --cached --quiet; then
+            git rm '.github/workflows/_restore_vita2d_clip.yml'
+          else
+            git rm '.github/workflows/_restore_vita2d_clip.yml'
+            git commit -m 'fix: restore vita2d clip rectangle bounds'
+            git push
+            exit 0
+          fi
+          git commit -m 'chore: remove temporary clipping restore workflow'
+          git push
