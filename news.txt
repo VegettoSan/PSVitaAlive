@@ -1,12 +1,14 @@
-id: 2026-08-31-0004
+id: 2026-09-02-0001
 title: PsVita Alive Store 01.18
 enabled: true
 ---
 # Thanks for using PS Vita Alive Store.
 
-Not all Homebrew / Ports have Game Files yet, please be patient as I will gradually upload them so they can be downloaded.
+## Not all Homebrew / Ports have Game Files yet, please be patient as I will gradually upload them so they can be downloaded.
 
-We use Archive.org as our Homebrew database, which may cause downloads to take a little while to start, please be patient.
+## We use Archive.org as our Homebrew database, which may cause downloads to take a little while to start, please be patient.
+
+## It is recommended that when downloading very heavy Homebrews/Ports, do not go out to the LiveArea, do not suspend the PS Vita with the power button, as this prevents downloads or installations from being damaged.
 
 # What's New
 
@@ -21,8 +23,14 @@ We use Archive.org as our Homebrew database, which may cause downloads to take a
 - Downloads are not paused or canceled if the console automatically turns off the screen.
 ---
 
+## Game Files Added
+
+- BOZ Vita (Call Of Duty Black Ops Zombies)
+- UT99 (Unreal Tournament 99)
+
 ## Game + Game Files Added
 
+- Illusia
 - Battleship
 - Turbo Fast League
 
