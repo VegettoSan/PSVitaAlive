@@ -580,6 +580,8 @@ HttpResult HttpClient::downloadToFile(
     lastStatus_ = 0;
     lastRangeAccepted_ = false;
     lastError_.clear();
+    lastEtag_.clear();
+    lastModified_.clear();
     if (!initialized_) {
         setError("not initialized");
         return HttpResult::NotInitialized;
