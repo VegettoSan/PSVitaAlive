@@ -82,6 +82,7 @@ bool DownloadManager::saveMetadata(const DownloadJob& job) const {
         (unsigned long long)job.expectedSize,
         (unsigned long long)job.downloadedSize,
         (unsigned long long)job.bytesPerSecond,
+        job.etag.c_str(), job.lastModified.c_str(), job.validatorUrl.c_str(),
         toString(job.state), job.lastHttpStatus
     );
     StorageManager st;
@@ -118,6 +119,9 @@ bool DownloadManager::loadMetadata(DownloadJob& job) const {
     job.expectedSize = findNum("expected_size");
     job.downloadedSize = findNum("downloaded_size");
     job.bytesPerSecond = findNum("bytes_per_second");
+    job.etag = findStr("etag");
+    job.lastModified = findStr("last_modified");
+    job.validatorUrl = findStr("validator_url");
     const std::string state = findStr("state");
     if (state == "Completed") job.state = DownloadState::Completed;
     else if (state == "Failed") job.state = DownloadState::Failed;
@@ -298,7 +302,25 @@ bool DownloadManager::runJob(DownloadJob& job) {
             sizeLimitHit = false;
             job.cancelRequested = false;
         }
-        hr = http_.downloadToFile(effectiveUrl, job.temporaryPath, offset, progress, cancelFn);
+        // Validators are only meaningful for the same resolved resource. MediaFire
+        // direct links are short-lived, so do not reuse a validator across a new URL.
+        std::string ifRangeValidator;
+        if (offset > 0 && job.validatorUrl == effectiveUrl) {
+            ifRangeValidator = !job.etag.empty() ? job.etag : job.lastModified;
+        }
+        hr = http_.downloadToFile(
+            effectiveUrl,
+            job.temporaryPath,
+            offset,
+            progress,
+            cancelFn,
+            0,
+            ifRangeValidator
+        );
+        if (!http_.lastEtag().empty()) job.etag = http_.lastEtag();
+        if (!http_.lastModified().empty()) job.lastModified = http_.lastModified();
+        job.validatorUrl = effectiveUrl;
+        saveMetadata(job);
         if (hr == HttpResult::Ok || hr == HttpResult::Cancelled || job.cancelRequested || sizeLimitHit)
             break;
     }
