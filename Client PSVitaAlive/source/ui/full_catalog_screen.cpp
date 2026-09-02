@@ -245,6 +245,51 @@ unsigned withAlpha(unsigned c, unsigned a) {
     return (c & 0x00FFFFFFu) | ((a & 0xFFu) << 24);
 }
 
+
+const char* colorThemeDisplayName(::psvitaalive::ColorTheme t) {
+    switch (t) {
+        case ::psvitaalive::ColorTheme::Cyan: return "Cyan";
+        case ::psvitaalive::ColorTheme::Rose: return "Rose";
+        case ::psvitaalive::ColorTheme::Amber: return "Amber";
+        case ::psvitaalive::ColorTheme::Violet: return "Violet";
+        case ::psvitaalive::ColorTheme::Mono: return "Mono";
+        case ::psvitaalive::ColorTheme::Oled: return "OLED";
+        case ::psvitaalive::ColorTheme::PsVita: return "PS Vita";
+        case ::psvitaalive::ColorTheme::Crimson: return "Crimson";
+        case ::psvitaalive::ColorTheme::Coffee: return "Coffee";
+        case ::psvitaalive::ColorTheme::Gold: return "Gold";
+        case ::psvitaalive::ColorTheme::Emerald: return "Emerald";
+        case ::psvitaalive::ColorTheme::Coral: return "Coral";
+        case ::psvitaalive::ColorTheme::Teal: return "Teal";
+        case ::psvitaalive::ColorTheme::Indigo: return "Indigo";
+        case ::psvitaalive::ColorTheme::NeonLime:
+        default: return "Neon Lime";
+    }
+}
+
+/** Accent RGB for a theme (does not mutate global palette). */
+void colorThemeAccentRgb(::psvitaalive::ColorTheme t, unsigned& ar, unsigned& ag, unsigned& ab) {
+    ar = 0x3B; ag = 0xFF; ab = 0x00;
+    switch (t) {
+        case ::psvitaalive::ColorTheme::Cyan: ar=0x00; ag=0xE5; ab=0xFF; break;
+        case ::psvitaalive::ColorTheme::Rose: ar=0xFF; ag=0x5C; ab=0xA8; break;
+        case ::psvitaalive::ColorTheme::Amber: ar=0xFF; ag=0xB0; ab=0x20; break;
+        case ::psvitaalive::ColorTheme::Violet: ar=0xB2; ag=0x4D; ab=0xFF; break;
+        case ::psvitaalive::ColorTheme::Mono: ar=0xC8; ag=0xC8; ab=0xCC; break;
+        case ::psvitaalive::ColorTheme::Oled: ar=0x5C; ag=0xFF; ab=0x9A; break;
+        case ::psvitaalive::ColorTheme::PsVita: ar=0x00; ag=0x9A; ab=0xDE; break;
+        case ::psvitaalive::ColorTheme::Crimson: ar=0xFF; ag=0x2D; ab=0x4A; break;
+        case ::psvitaalive::ColorTheme::Coffee: ar=0xD4; ag=0xA5; ab=0x5E; break;
+        case ::psvitaalive::ColorTheme::Gold: ar=0xFF; ag=0xC8; ab=0x2E; break;
+        case ::psvitaalive::ColorTheme::Emerald: ar=0x00; ag=0xD4; ab=0x7A; break;
+        case ::psvitaalive::ColorTheme::Coral: ar=0xFF; ag=0x7A; ab=0x66; break;
+        case ::psvitaalive::ColorTheme::Teal: ar=0x2E; ag=0xD4; ab=0xC0; break;
+        case ::psvitaalive::ColorTheme::Indigo: ar=0x7A; ag=0x6C; ab=0xFF; break;
+        case ::psvitaalive::ColorTheme::NeonLime:
+        default: ar=0x3B; ag=0xFF; ab=0x00; break;
+    }
+}
+
 void applyColorTheme(::psvitaalive::ColorTheme t) {
     BG = RGBA8(0x0A,0x0A,0x0A,255);
     SURFACE = RGBA8(0x1A,0x1A,0x1A,255);
@@ -760,8 +805,169 @@ void FullCatalogScreen::closeNewsModal(bool markSeen) {
     newsMarkSeenOnClose_ = false;
 }
 
+
+void FullCatalogScreen::openThemeSetupIfNeeded() {
+    if (themeSetupChecked_) return;
+    themeSetupChecked_ = true;
+    if (settingsEdit_.themeSetupDone) {
+        diagnostics::log("[UI] theme setup skipped (already done)");
+        return;
+    }
+    themeSetupVisible_ = true;
+    const int n = static_cast<int>(::psvitaalive::ColorTheme::Count);
+    themeSetupFocus_ = static_cast<int>(settingsEdit_.colorTheme);
+    if (themeSetupFocus_ < 0 || themeSetupFocus_ >= n) themeSetupFocus_ = 0;
+    themeSetupScrollRow_ = 0;
+    visualThemeSetupScroll_ = 0.f;
+    applyColorTheme(settingsEdit_.colorTheme);
+    diagnostics::log("[UI] theme setup modal shown (first run)");
+}
+
+void FullCatalogScreen::applyThemeSetupFocus() {
+    const int n = static_cast<int>(::psvitaalive::ColorTheme::Count);
+    if (themeSetupFocus_ < 0 || themeSetupFocus_ >= n) return;
+    const auto t = static_cast<::psvitaalive::ColorTheme>(themeSetupFocus_);
+    settingsEdit_.colorTheme = t;
+    applyColorTheme(t);
+    showToast(std::string("Theme: ") + colorThemeDisplayName(t), 1200);
+}
+
+void FullCatalogScreen::closeThemeSetup(bool save) {
+    if (!themeSetupVisible_) return;
+    if (save) {
+        settingsEdit_.themeSetupDone = true;
+        applyColorTheme(settingsEdit_.colorTheme);
+        if (settingsSave_) settingsSave_(settingsEdit_);
+        diagnostics::log(std::string("[UI] theme setup saved theme=") +
+                         ::psvitaalive::AppSettings::toString(settingsEdit_.colorTheme));
+        showToast("Theme saved — you can change it later in Settings", 2200);
+    }
+    themeSetupVisible_ = false;
+}
+
+void FullCatalogScreen::drawThemeSetupOverlay() {
+    if (!themeSetupVisible_ || !font_) return;
+
+    const int themeCount = static_cast<int>(::psvitaalive::ColorTheme::Count);
+    const int cols = 3;
+    const int rows = (themeCount + cols - 1) / cols;
+    const int btnW = 220;
+    const int btnH = 44;
+    const int gapX = 12;
+    const int gapY = 10;
+    const int gridW = cols * btnW + (cols - 1) * gapX;
+
+    const int w = 760, h = 460;
+    const int x = (SCREEN_W - w) / 2, y = (SCREEN_H - h) / 2;
+
+    vita2d_draw_rectangle(0, 0, SCREEN_W, SCREEN_H, RGBA8(0, 0, 0, 160));
+    vita2d_draw_rectangle(x, y, w, h, PANEL);
+    vita2d_draw_rectangle(x, y, w, 3, ACCENT);
+    vita2d_draw_rectangle(x, y + 3, 3, h - 6, ACCENT);
+    vita2d_draw_rectangle(x + w - 3, y + 3, 3, h - 6, BORDER);
+    vita2d_draw_rectangle(x, y + h - 3, w, 3, BORDER);
+
+    vita2d_pgf_draw_text(font_, x + 22, y + 34, ACCENT, 0.90f, "Welcome — choose your color theme");
+    vita2d_pgf_draw_text(font_, x + 22, y + 58, TEXT, 0.62f,
+        "Pick the look you prefer. Each button shows that theme's accent color.");
+    vita2d_pgf_draw_text(font_, x + 22, y + 78, DIM, 0.58f,
+        "Press X on a theme to apply it. Then press Save. You can change this later in Settings.");
+
+    const int gridTop = y + 100;
+    const int gridBottom = y + h - 78;
+    const int gridH = gridBottom - gridTop;
+    const int rowH = btnH + gapY;
+    const int visibleRows = std::max(1, gridH / rowH);
+    const int maxScroll = std::max(0, rows - visibleRows);
+    if (themeSetupScrollRow_ < 0) themeSetupScrollRow_ = 0;
+    if (themeSetupScrollRow_ > maxScroll) themeSetupScrollRow_ = maxScroll;
+    if (visualThemeSetupScroll_ < 0.f) visualThemeSetupScroll_ = 0.f;
+    if (visualThemeSetupScroll_ > (float)maxScroll) visualThemeSetupScroll_ = (float)maxScroll;
+
+    // Keep focused theme row in view
+    if (themeSetupFocus_ < themeCount) {
+        const int fr = themeSetupFocus_ / cols;
+        if (fr < themeSetupScrollRow_) themeSetupScrollRow_ = fr;
+        if (fr >= themeSetupScrollRow_ + visibleRows)
+            themeSetupScrollRow_ = fr - visibleRows + 1;
+    }
+
+    const float vs = visualThemeSetupScroll_;
+    const int startRow = (int)std::floor(vs);
+    const float frac = vs - (float)startRow;
+    const int gridX = x + (w - gridW) / 2;
+
+    vita2d_enable_clipping();
+    vita2d_set_clip_rectangle(x + 12, gridTop, x + w - 12, gridBottom);
+
+    for (int r = startRow - 1; r <= startRow + visibleRows + 1; ++r) {
+        if (r < 0 || r >= rows) continue;
+        const int ry = gridTop + (int)(((float)r - vs) * (float)rowH);
+        for (int c = 0; c < cols; ++c) {
+            const int idx = r * cols + c;
+            if (idx < 0 || idx >= themeCount) continue;
+            const auto th = static_cast<::psvitaalive::ColorTheme>(idx);
+            unsigned ar, ag, ab;
+            colorThemeAccentRgb(th, ar, ag, ab);
+            const unsigned accent = RGBA8(ar, ag, ab, 255);
+            const unsigned soft = RGBA8(ar, ag, ab, 55);
+            const int bx = gridX + c * (btnW + gapX);
+            const int by = ry;
+            const bool focused = (themeSetupFocus_ == idx);
+            const bool selected = (settingsEdit_.colorTheme == th);
+
+            vita2d_draw_rectangle(bx, by, btnW, btnH, SURFACE);
+            vita2d_draw_rectangle(bx, by, 5, btnH, accent);
+            if (focused) {
+                vita2d_draw_rectangle(bx, by, btnW, 2, accent);
+                vita2d_draw_rectangle(bx, by + btnH - 2, btnW, 2, accent);
+                vita2d_draw_rectangle(bx, by, 2, btnH, accent);
+                vita2d_draw_rectangle(bx + btnW - 2, by, 2, btnH, accent);
+            } else {
+                vita2d_draw_rectangle(bx, by, btnW, 1, BORDER);
+            }
+            if (selected) {
+                vita2d_draw_rectangle(bx + 8, by + 6, btnW - 16, btnH - 12, soft);
+            }
+            const char* name = colorThemeDisplayName(th);
+            const float sc = 0.72f;
+            const int tw = vita2d_pgf_text_width(font_, sc, name);
+            vita2d_pgf_draw_text(font_, bx + (btnW - tw) / 2 + 4, by + 30, focused ? WHITE : TEXT, sc, name);
+        }
+    }
+    vita2d_disable_clipping();
+
+    if (maxScroll > 0) {
+        const int tx = x + w - 14, ty = gridTop, th = gridH;
+        vita2d_draw_rectangle(tx, ty, 4, th, BORDER);
+        const int thumb = std::max(20, th * visibleRows / std::max(1, rows));
+        const float scrollT = std::min(1.f, visualThemeSetupScroll_ / (float)std::max(1, maxScroll));
+        const int yy = ty + (int)((th - thumb) * scrollT);
+        vita2d_draw_rectangle(tx, yy, 4, thumb, ACCENT);
+    }
+
+    // Save button
+    const int saveW = 200, saveH = 40;
+    const int saveX = x + (w - saveW) / 2;
+    const int saveY = y + h - 58;
+    const bool saveFocus = (themeSetupFocus_ == themeCount);
+    vita2d_draw_rectangle(saveX, saveY, saveW, saveH, saveFocus ? ACCENT : SURFACE2);
+    if (saveFocus) {
+        vita2d_draw_rectangle(saveX, saveY, saveW, 2, WHITE);
+        vita2d_draw_rectangle(saveX, saveY + saveH - 2, saveW, 2, WHITE);
+    }
+    const char* saveLab = "Save";
+    const float ssc = 0.80f;
+    const int stw = vita2d_pgf_text_width(font_, ssc, saveLab);
+    vita2d_pgf_draw_text(font_, saveX + (saveW - stw) / 2, saveY + 28,
+                         saveFocus ? RGBA8(0,0,0,255) : WHITE, ssc, saveLab);
+
+    vita2d_pgf_draw_text(font_, x + 22, y + h - 14, DIM, 0.52f,
+        "D-Pad: move   X: apply theme / Save   Touch: tap theme or Save");
+}
+
 void FullCatalogScreen::runNewsCheck(bool forceShow) {
-    if (newsVisible_) return;
+    if (newsVisible_ || themeSetupVisible_) return;
     if (!forceShow && newsCheckedOnce_) return;
 
     ::psvitaalive::NewsItem item = ::psvitaalive::NewsManager::fetchRemote();
@@ -1081,7 +1287,7 @@ void FullCatalogScreen::drawReportChip() {
 
 void FullCatalogScreen::openReportConfirm() {
     if (reportUiState_ == 1 || reportBusy_.load()) return;
-    if (newsVisible_) return;
+    if (newsVisible_ || themeSetupVisible_) return;
     reportConfirmVisible_ = true;
 }
 
@@ -1953,6 +2159,82 @@ void FullCatalogScreen::handleTouch() {
     auto hit = [](int x, int y, int rx, int ry, int rw, int rh) {
         return x >= rx && x < rx + rw && y >= ry && y < ry + rh;
     };
+
+    // --- First-run theme setup: scroll grid + tap theme / Save ---
+    if (themeSetupVisible_) {
+        const int themeCount = static_cast<int>(::psvitaalive::ColorTheme::Count);
+        const int cols = 3;
+        const int rows = (themeCount + cols - 1) / cols;
+        const int btnW = 220, btnH = 44, gapX = 12, gapY = 10;
+        const int gridW = cols * btnW + (cols - 1) * gapX;
+        const int ow = 760, oh = 460;
+        const int ox = (SCREEN_W - ow) / 2, oy = (SCREEN_H - oh) / 2;
+        const int gridTop = oy + 100;
+        const int gridBottom = oy + oh - 78;
+        const int gridH = gridBottom - gridTop;
+        const int rowH = btnH + gapY;
+        const int visibleRows = std::max(1, gridH / rowH);
+        const int maxScroll = std::max(0, rows - visibleRows);
+        const int gridX = ox + (ow - gridW) / 2;
+        const int saveW = 200, saveH = 40;
+        const int saveX = ox + (ow - saveW) / 2;
+        const int saveY = oy + oh - 58;
+
+        if (td.reportNum > 0) {
+            const int px = mapX(td.report[0].x);
+            const int py = mapY(td.report[0].y);
+            if (!touchDown_) {
+                touchDown_ = true;
+                touchStartX_ = px;
+                touchStartY_ = py;
+                touchLastY_ = py;
+                touchMoved_ = false;
+                touchAccumY_ = 0.f;
+            } else {
+                const int dy = py - touchLastY_;
+                touchLastY_ = py;
+                if (std::abs(px - touchStartX_) > 14 || std::abs(py - touchStartY_) > 14)
+                    touchMoved_ = true;
+                touchAccumY_ += static_cast<float>(-dy);
+                const float step = 22.f;
+                while (touchAccumY_ >= step) {
+                    if (themeSetupScrollRow_ < maxScroll) ++themeSetupScrollRow_;
+                    touchAccumY_ -= step;
+                }
+                while (touchAccumY_ <= -step) {
+                    if (themeSetupScrollRow_ > 0) --themeSetupScrollRow_;
+                    touchAccumY_ += step;
+                }
+                if (themeSetupScrollRow_ < 0) themeSetupScrollRow_ = 0;
+                if (themeSetupScrollRow_ > maxScroll) themeSetupScrollRow_ = maxScroll;
+            }
+        } else if (touchDown_) {
+            const int px = touchStartX_, py = touchStartY_;
+            const bool wasMoved = touchMoved_;
+            touchDown_ = false;
+            touchAccumY_ = 0.f;
+            if (!wasMoved) {
+                if (hit(px, py, saveX - 8, saveY - 8, saveW + 16, saveH + 16)) {
+                    closeThemeSetup(true);
+                } else {
+                    for (int r = 0; r < rows; ++r) {
+                        for (int c = 0; c < cols; ++c) {
+                            const int idx = r * cols + c;
+                            if (idx >= themeCount) continue;
+                            const int bx = gridX + c * (btnW + gapX);
+                            const int by = gridTop + (int)(((float)r - visualThemeSetupScroll_) * (float)rowH);
+                            if (hit(px, py, bx, by, btnW, btnH)) {
+                                themeSetupFocus_ = idx;
+                                applyThemeSetupFocus();
+                                break;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        return;
+    }
 
     // --- News modal: drag to scroll + Close tap ---
     if (newsVisible_) {
@@ -2999,7 +3281,7 @@ if(pressed&SCE_CTRL_START){
             return;
         }
         return;
-    }if(dataRequestConfirmVisible_){if(pressed&SCE_CTRL_CIRCLE){closeDataRequestConfirm();return;}if(pressed&SCE_CTRL_CROSS){closeDataRequestConfirm();trySendDataRequest();return;}return;}if(reportConfirmVisible_){if(pressed&SCE_CTRL_CIRCLE){closeReportConfirm();return;}if(pressed&SCE_CTRL_CROSS){closeReportConfirm();trySendErrorReport("Manual report from UI","User confirmed report from footer");return;}return;}if(newsVisible_){if(pressed&SCE_CTRL_CIRCLE){closeNewsModal(newsMarkSeenOnClose_);return;}if(pressed&SCE_CTRL_UP||(nav&SCE_CTRL_UP)){if(newsScrollLine_>0)--newsScrollLine_;return;}if(pressed&SCE_CTRL_DOWN||(nav&SCE_CTRL_DOWN)){const int mv=std::max(1,(420-56-88)/22);const int ms=std::max(0,(int)newsLines_.size()-mv);if(newsScrollLine_<ms)++newsScrollLine_;return;}return;}if(installProgressActive_&&(pressed&SCE_CTRL_SQUARE)&&(installOutcome_==2)&&!isNonReportableInstallError(installProgressMessage_)){trySendErrorReport("Installation failed",installProgressMessage_+" | file="+installProgressFile_);return;}if(installProgressActive_&&(pressed&SCE_CTRL_CIRCLE)){if(installOutcome_==1||installOutcome_==2||installOutcome_==3){if(installAcknowledge_)installAcknowledge_();if(installOutcome_==1&&installAllFinishedToast_){installAllFinishedToast_=false;showToast("All installed — ready to use",2800);}reportUiState_=0;}else if(installCancel_)installCancel_();return;}if(installProgressActive_){if(pressed&(SCE_CTRL_CROSS|SCE_CTRL_TRIANGLE|SCE_CTRL_SQUARE|SCE_CTRL_UP|SCE_CTRL_DOWN|SCE_CTRL_LEFT|SCE_CTRL_RIGHT)){if(installOutcome_==0)showToast("LOCKED: only CIRCLE (cancel) works until finished.",2400);}return;}if(catalogLoading_)return;if(pressed&SCE_CTRL_SQUARE){if(state_.mode==UiMode::FULL_CATALOG){if(!searchQuery_.empty()||dataFilesFilter_){dataFilesFilter_=false;applySearch("");showToast("Filters cleared",1200);}return;}if(state_.mode==UiMode::SPLIT_DETAIL&&state_.activePanel==UiPanel::Detail&&!state_.linkNavigation){const int si=selectedIndex();if(si>=0&&itemEligibleForDataRequest(catalogView()[si])){openDataRequestConfirm();return;}}return;}if(state_.mode==UiMode::FULL_CATALOG){if(pressed&SCE_CTRL_TRIANGLE){if(searchRequest_)applySearch(searchRequest_(searchQuery_));return;}if(nav&SCE_CTRL_LEFT&&state_.focusIndex%3>0)--state_.focusIndex;if(nav&SCE_CTRL_RIGHT&&state_.focusIndex%3<2&&state_.focusIndex+1<(int)catalogView().size())++state_.focusIndex;if(nav&SCE_CTRL_UP)moveCatalogFocus(-1);if(nav&SCE_CTRL_DOWN)moveCatalogFocus(1);clampCatalogScroll();if(pressed&SCE_CTRL_CROSS)startOpeningDetail();return;}if(state_.mode!=UiMode::SPLIT_DETAIL)return;if(pressed&SCE_CTRL_CIRCLE){startClosingDetail();return;}if(state_.activePanel==UiPanel::Catalog){if(pressed&SCE_CTRL_RIGHT)state_.activePanel=UiPanel::Detail;if(nav&SCE_CTRL_UP)moveCatalogFocus(-1);if(nav&SCE_CTRL_DOWN)moveCatalogFocus(1);return;}if(nav&SCE_CTRL_LEFT)state_.activePanel=UiPanel::Catalog;if(pressed&SCE_CTRL_TRIANGLE){if(state_.linkNavigation)exitLinkNavigation();else enterLinkNavigation();return;}if(state_.linkNavigation){if(nav&SCE_CTRL_UP)moveLinkFocus(0,-1);if(nav&SCE_CTRL_DOWN)moveLinkFocus(0,1);if(pressed&SCE_CTRL_CROSS)activateFocusedLink();return;}if(nav&SCE_CTRL_UP)moveDetailScroll(-1);if(nav&SCE_CTRL_DOWN)moveDetailScroll(1);}
+    }if(dataRequestConfirmVisible_){if(pressed&SCE_CTRL_CIRCLE){closeDataRequestConfirm();return;}if(pressed&SCE_CTRL_CROSS){closeDataRequestConfirm();trySendDataRequest();return;}return;}if(reportConfirmVisible_){if(pressed&SCE_CTRL_CIRCLE){closeReportConfirm();return;}if(pressed&SCE_CTRL_CROSS){closeReportConfirm();trySendErrorReport("Manual report from UI","User confirmed report from footer");return;}return;}if(themeSetupVisible_){const int themeCount=static_cast<int>(::psvitaalive::ColorTheme::Count);const int cols=3;const int totalFocus=themeCount+1;if(nav&SCE_CTRL_LEFT){if(themeSetupFocus_<themeCount){int c=themeSetupFocus_%cols;if(c>0)--themeSetupFocus_;}return;}if(nav&SCE_CTRL_RIGHT){if(themeSetupFocus_<themeCount){int c=themeSetupFocus_%cols;if(c<cols-1&&themeSetupFocus_+1<themeCount)++themeSetupFocus_;}return;}if(nav&SCE_CTRL_UP||(pressed&SCE_CTRL_UP)){  if(themeSetupFocus_==themeCount){themeSetupFocus_=std::max(0,themeCount-cols);}  else if(themeSetupFocus_>=cols)themeSetupFocus_-=cols;  return;}if(nav&SCE_CTRL_DOWN||(pressed&SCE_CTRL_DOWN)){  if(themeSetupFocus_<themeCount){int n=themeSetupFocus_+cols;if(n<themeCount)themeSetupFocus_=n;else themeSetupFocus_=themeCount;}  return;}if(pressed&SCE_CTRL_CROSS){  if(themeSetupFocus_==themeCount)closeThemeSetup(true);  else applyThemeSetupFocus();  return;}return;}if(newsVisible_){if(pressed&SCE_CTRL_CIRCLE){closeNewsModal(newsMarkSeenOnClose_);return;}if(pressed&SCE_CTRL_UP||(nav&SCE_CTRL_UP)){if(newsScrollLine_>0)--newsScrollLine_;return;}if(pressed&SCE_CTRL_DOWN||(nav&SCE_CTRL_DOWN)){const int mv=std::max(1,(420-56-88)/22);const int ms=std::max(0,(int)newsLines_.size()-mv);if(newsScrollLine_<ms)++newsScrollLine_;return;}return;}if(installProgressActive_&&(pressed&SCE_CTRL_SQUARE)&&(installOutcome_==2)&&!isNonReportableInstallError(installProgressMessage_)){trySendErrorReport("Installation failed",installProgressMessage_+" | file="+installProgressFile_);return;}if(installProgressActive_&&(pressed&SCE_CTRL_CIRCLE)){if(installOutcome_==1||installOutcome_==2||installOutcome_==3){if(installAcknowledge_)installAcknowledge_();if(installOutcome_==1&&installAllFinishedToast_){installAllFinishedToast_=false;showToast("All installed — ready to use",2800);}reportUiState_=0;}else if(installCancel_)installCancel_();return;}if(installProgressActive_){if(pressed&(SCE_CTRL_CROSS|SCE_CTRL_TRIANGLE|SCE_CTRL_SQUARE|SCE_CTRL_UP|SCE_CTRL_DOWN|SCE_CTRL_LEFT|SCE_CTRL_RIGHT)){if(installOutcome_==0)showToast("LOCKED: only CIRCLE (cancel) works until finished.",2400);}return;}if(catalogLoading_)return;if(pressed&SCE_CTRL_SQUARE){if(state_.mode==UiMode::FULL_CATALOG){if(!searchQuery_.empty()||dataFilesFilter_){dataFilesFilter_=false;applySearch("");showToast("Filters cleared",1200);}return;}if(state_.mode==UiMode::SPLIT_DETAIL&&state_.activePanel==UiPanel::Detail&&!state_.linkNavigation){const int si=selectedIndex();if(si>=0&&itemEligibleForDataRequest(catalogView()[si])){openDataRequestConfirm();return;}}return;}if(state_.mode==UiMode::FULL_CATALOG){if(pressed&SCE_CTRL_TRIANGLE){if(searchRequest_)applySearch(searchRequest_(searchQuery_));return;}if(nav&SCE_CTRL_LEFT&&state_.focusIndex%3>0)--state_.focusIndex;if(nav&SCE_CTRL_RIGHT&&state_.focusIndex%3<2&&state_.focusIndex+1<(int)catalogView().size())++state_.focusIndex;if(nav&SCE_CTRL_UP)moveCatalogFocus(-1);if(nav&SCE_CTRL_DOWN)moveCatalogFocus(1);clampCatalogScroll();if(pressed&SCE_CTRL_CROSS)startOpeningDetail();return;}if(state_.mode!=UiMode::SPLIT_DETAIL)return;if(pressed&SCE_CTRL_CIRCLE){startClosingDetail();return;}if(state_.activePanel==UiPanel::Catalog){if(pressed&SCE_CTRL_RIGHT)state_.activePanel=UiPanel::Detail;if(nav&SCE_CTRL_UP)moveCatalogFocus(-1);if(nav&SCE_CTRL_DOWN)moveCatalogFocus(1);return;}if(nav&SCE_CTRL_LEFT)state_.activePanel=UiPanel::Catalog;if(pressed&SCE_CTRL_TRIANGLE){if(state_.linkNavigation)exitLinkNavigation();else enterLinkNavigation();return;}if(state_.linkNavigation){if(nav&SCE_CTRL_UP)moveLinkFocus(0,-1);if(nav&SCE_CTRL_DOWN)moveLinkFocus(0,1);if(pressed&SCE_CTRL_CROSS)activateFocusedLink();return;}if(nav&SCE_CTRL_UP)moveDetailScroll(-1);if(nav&SCE_CTRL_DOWN)moveDetailScroll(1);}
 unsigned FullCatalogScreen::colorForStatus(const std::string&s)const{if(s=="Verified")return ACCENT;if(s=="Legacy")return TEXT;if(s=="Archive")return DIM;return TEXT;}void FullCatalogScreen::drawHeader(int w){
     // Near-black bar + dual neon edge (LiveArea brand)
     vita2d_draw_rectangle(0, 0, w, HEADER_H, SURFACE2);
@@ -3351,6 +3633,7 @@ void FullCatalogScreen::updateAnimations() {
             visualNewsScroll_ = targetNews;
     } else {
         visualNewsScroll_ = static_cast<float>(newsScrollLine_);
+    visualThemeSetupScroll_ += (static_cast<float>(themeSetupScrollRow_) - visualThemeSetupScroll_) * 0.28f;
     }
 
     // Keep visual focus in sync with logical focus (no laggy card handoff).
@@ -4914,7 +5197,7 @@ void drawFooterBar(vita2d_pgf* font, const char* leftHints) {
                         : (used > 0.75f ? RGBA8(0xFF, 0xB0, 0x20, 255) : ACCENT);
     vita2d_draw_rectangle(barX, barY, std::max(1, (int)(barW * used)), barH, fill);
 }
-void FullCatalogScreen::drawFullCatalog(){vita2d_start_drawing();vita2d_set_clear_color(BG);vita2d_clear_screen();drawHeader(SCREEN_W);drawTabs(SCREEN_W);drawCatalogPanel(0,HEADER_H+TABS_H,SCREEN_W,SCREEN_H-HEADER_H-TABS_H-FOOTER_H,false);drawFooterBar(font_, "D-Pad: Nav   X: Detail   △: Search   SELECT: Settings   L/R: Catalog   START: Exit");drawReportChip();drawNewsChip();if(catalogLoading_||installProgressActive_||catalogSplashAlpha_>0.01f)drawLoadingOverlay();if(newsVisible_)drawNewsOverlay();if(reportConfirmVisible_)drawReportConfirmOverlay();if(dataRequestConfirmVisible_)drawDataRequestConfirmOverlay();if(installAllPhase_!=InstallAllPhase::Hidden&&installAllPhase_!=InstallAllPhase::Running)drawInstallAllOverlay();if(!catalogError_.empty())vita2d_pgf_draw_text(font_,18,HEADER_H+TABS_H+26,ACCENT,.66f,catalogError_.c_str());drawToast();vita2d_end_drawing();vita2d_swap_buffers();}void FullCatalogScreen::drawSplitDetail(){vita2d_start_drawing();vita2d_set_clear_color(BG);vita2d_clear_screen();drawHeader(SCREEN_W);drawTabs(SCREEN_W);int top=HEADER_H+TABS_H,hh=SCREEN_H-HEADER_H-TABS_H-FOOTER_H,lw=SCREEN_W/2;drawCatalogPanel(0,top,lw,hh,true);drawDetailPanel(lw,top,SCREEN_W-lw,hh);vita2d_draw_rectangle(lw-1,top,2,hh,BORDER);drawFooterBar(font_, state_.activePanel==UiPanel::Catalog?"PANEL: LIST  |  → Detail   D-Pad: Navigate   O: Back   L/R: Catalog":"PANEL: DETAIL  |  ← List   D-Pad: Scroll   △: Links   X: Action   O: Back");drawReportChip();drawNewsChip();if(catalogLoading_||installProgressActive_||catalogSplashAlpha_>0.01f)drawLoadingOverlay();if(newsVisible_)drawNewsOverlay();if(reportConfirmVisible_)drawReportConfirmOverlay();if(dataRequestConfirmVisible_)drawDataRequestConfirmOverlay();if(installAllPhase_!=InstallAllPhase::Hidden&&installAllPhase_!=InstallAllPhase::Running)drawInstallAllOverlay();drawToast();vita2d_end_drawing();vita2d_swap_buffers();}void FullCatalogScreen::drawOpeningDetail(){float p=transitionProgress();int lw=SCREEN_W-(int)(SCREEN_W/2*p),rw=SCREEN_W-lw;vita2d_start_drawing();vita2d_set_clear_color(BG);vita2d_clear_screen();drawHeader(SCREEN_W);drawTabs(SCREEN_W);int top=HEADER_H+TABS_H,hh=SCREEN_H-HEADER_H-TABS_H-FOOTER_H;drawCatalogPanel(0,top,lw,hh,true);if(rw>0)drawDetailPanel(lw,top,rw,hh);vita2d_end_drawing();vita2d_swap_buffers();}void FullCatalogScreen::drawClosingDetail(){float p=1.0f-transitionProgress();int lw=SCREEN_W-(int)(SCREEN_W/2*p),rw=SCREEN_W-lw;vita2d_start_drawing();vita2d_set_clear_color(BG);vita2d_clear_screen();drawHeader(SCREEN_W);drawTabs(SCREEN_W);int top=HEADER_H+TABS_H,hh=SCREEN_H-HEADER_H-TABS_H-FOOTER_H;drawCatalogPanel(0,top,lw,hh,true);if(rw>0)drawDetailPanel(lw,top,SCREEN_W-lw,hh);vita2d_end_drawing();vita2d_swap_buffers();}void FullCatalogScreen::draw(){switch(state_.mode){case UiMode::FULL_CATALOG:drawFullCatalog();break;case UiMode::OPENING_DETAIL:drawOpeningDetail();break;case UiMode::SPLIT_DETAIL:drawSplitDetail();break;case UiMode::CLOSING_DETAIL:drawClosingDetail();break;case UiMode::SETTINGS:drawSettings();break;}}bool FullCatalogScreen::updateAndDraw(){
+void FullCatalogScreen::drawFullCatalog(){vita2d_start_drawing();vita2d_set_clear_color(BG);vita2d_clear_screen();drawHeader(SCREEN_W);drawTabs(SCREEN_W);drawCatalogPanel(0,HEADER_H+TABS_H,SCREEN_W,SCREEN_H-HEADER_H-TABS_H-FOOTER_H,false);drawFooterBar(font_, "D-Pad: Nav   X: Detail   △: Search   SELECT: Settings   L/R: Catalog   START: Exit");drawReportChip();drawNewsChip();if(catalogLoading_||installProgressActive_||catalogSplashAlpha_>0.01f)drawLoadingOverlay();if(newsVisible_)drawNewsOverlay();if(themeSetupVisible_)drawThemeSetupOverlay();if(reportConfirmVisible_)drawReportConfirmOverlay();if(dataRequestConfirmVisible_)drawDataRequestConfirmOverlay();if(installAllPhase_!=InstallAllPhase::Hidden&&installAllPhase_!=InstallAllPhase::Running)drawInstallAllOverlay();if(!catalogError_.empty())vita2d_pgf_draw_text(font_,18,HEADER_H+TABS_H+26,ACCENT,.66f,catalogError_.c_str());drawToast();vita2d_end_drawing();vita2d_swap_buffers();}void FullCatalogScreen::drawSplitDetail(){vita2d_start_drawing();vita2d_set_clear_color(BG);vita2d_clear_screen();drawHeader(SCREEN_W);drawTabs(SCREEN_W);int top=HEADER_H+TABS_H,hh=SCREEN_H-HEADER_H-TABS_H-FOOTER_H,lw=SCREEN_W/2;drawCatalogPanel(0,top,lw,hh,true);drawDetailPanel(lw,top,SCREEN_W-lw,hh);vita2d_draw_rectangle(lw-1,top,2,hh,BORDER);drawFooterBar(font_, state_.activePanel==UiPanel::Catalog?"PANEL: LIST  |  → Detail   D-Pad: Navigate   O: Back   L/R: Catalog":"PANEL: DETAIL  |  ← List   D-Pad: Scroll   △: Links   X: Action   O: Back");drawReportChip();drawNewsChip();if(catalogLoading_||installProgressActive_||catalogSplashAlpha_>0.01f)drawLoadingOverlay();if(newsVisible_)drawNewsOverlay();if(themeSetupVisible_)drawThemeSetupOverlay();if(reportConfirmVisible_)drawReportConfirmOverlay();if(dataRequestConfirmVisible_)drawDataRequestConfirmOverlay();if(installAllPhase_!=InstallAllPhase::Hidden&&installAllPhase_!=InstallAllPhase::Running)drawInstallAllOverlay();drawToast();vita2d_end_drawing();vita2d_swap_buffers();}void FullCatalogScreen::drawOpeningDetail(){float p=transitionProgress();int lw=SCREEN_W-(int)(SCREEN_W/2*p),rw=SCREEN_W-lw;vita2d_start_drawing();vita2d_set_clear_color(BG);vita2d_clear_screen();drawHeader(SCREEN_W);drawTabs(SCREEN_W);int top=HEADER_H+TABS_H,hh=SCREEN_H-HEADER_H-TABS_H-FOOTER_H;drawCatalogPanel(0,top,lw,hh,true);if(rw>0)drawDetailPanel(lw,top,rw,hh);vita2d_end_drawing();vita2d_swap_buffers();}void FullCatalogScreen::drawClosingDetail(){float p=1.0f-transitionProgress();int lw=SCREEN_W-(int)(SCREEN_W/2*p),rw=SCREEN_W-lw;vita2d_start_drawing();vita2d_set_clear_color(BG);vita2d_clear_screen();drawHeader(SCREEN_W);drawTabs(SCREEN_W);int top=HEADER_H+TABS_H,hh=SCREEN_H-HEADER_H-TABS_H-FOOTER_H;drawCatalogPanel(0,top,lw,hh,true);if(rw>0)drawDetailPanel(lw,top,SCREEN_W-lw,hh);vita2d_end_drawing();vita2d_swap_buffers();}void FullCatalogScreen::draw(){switch(state_.mode){case UiMode::FULL_CATALOG:drawFullCatalog();break;case UiMode::OPENING_DETAIL:drawOpeningDetail();break;case UiMode::SPLIT_DETAIL:drawSplitDetail();break;case UiMode::CLOSING_DETAIL:drawClosingDetail();break;case UiMode::SETTINGS:drawSettings();break;}}bool FullCatalogScreen::updateAndDraw(){
     if(!ready_)return false;
     pollReportWorker();
     pollDataRequestWorker();
