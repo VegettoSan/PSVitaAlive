@@ -574,7 +574,8 @@ HttpResult HttpClient::downloadToFile(
     uint64_t resumeOffset,
     HttpProgressFn onProgress,
     HttpCancelFn shouldCancel,
-    int maxAttemptsOverride
+    int maxAttemptsOverride,
+    const std::string& ifRangeValidator
 ) {
     lastStatus_ = 0;
     lastRangeAccepted_ = false;
@@ -668,6 +669,13 @@ HttpResult HttpClient::downloadToFile(
     headers = curl_slist_append(headers, "Accept: */*");
     headers = curl_slist_append(headers, "Accept-Encoding: identity");
     headers = curl_slist_append(headers, "Connection: keep-alive");
+    // If-Range makes persisted partial files safe across sessions: a validator
+    // match permits 206 resume; a changed resource is sent as a full 200 body.
+    if (resumeOffset > 0 && !ifRangeValidator.empty()) {
+        const std::string ifRangeHeader = std::string("If-Range: ") + ifRangeValidator;
+        headers = curl_slist_append(headers, ifRangeHeader.c_str());
+        httpDiagnostic("resume validator attached via If-Range");
+    }
     // Mildly improves first-byte reliability on some Internet Archive edges.
     if (url.find("archive.org") != std::string::npos) {
         headers = curl_slist_append(headers, "Referer: https://archive.org/");
@@ -972,6 +980,8 @@ HttpResult HttpClient::downloadToFile(
     }
 
     lastStatus_ = static_cast<int>(responseCode);
+    lastEtag_ = ctx.etag;
+    lastModified_ = ctx.lastModified;
     if (ctx.resumeOffset > 0 && responseCode == 206) lastRangeAccepted_ = true;
 
     curl_slist_free_all(headers);
