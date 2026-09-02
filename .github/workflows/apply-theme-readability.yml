@@ -1,0 +1,21 @@
+name: Apply theme readability
+on:
+  workflow_dispatch:
+jobs:
+  apply:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - run: python3 scripts/apply_theme_readability.py
+      - name: Commit
+        run: |
+          set -euo pipefail
+          git config user.name "VegettoSanDev"
+          git config user.email "72358120+VegettoSan@users.noreply.github.com"
+          git add "Client PSVitaAlive/source/ui/full_catalog_screen.cpp"
+          if git diff --staged --quiet; then echo "No changes"; else
+            git commit -m "ui: theme-aware accents on cards/search/toasts + larger install overlay text"
+            git push origin HEAD:main
+          fi
