@@ -2938,14 +2938,14 @@ unsigned FullCatalogScreen::colorForStatus(const std::string&s)const{if(s=="Veri
     const int barW = std::max(120, w - barX - clockReserve - (showGd ? (gdW + 10) : 0));
     const int gdX = barX + barW + 6;
     vita2d_draw_rectangle(barX, barY, barW, barH, SURFACE);
-    vita2d_draw_rectangle(barX - 1, barY - 1, barW + 2, 1, RGBA8(0x3B, 0xFF, 0x00, 50));
-    vita2d_draw_rectangle(barX - 1, barY + barH, barW + 2, 1, RGBA8(0x3B, 0xFF, 0x00, 50));
-    vita2d_draw_rectangle(barX - 1, barY - 1, 1, barH + 2, RGBA8(0x3B, 0xFF, 0x00, 50));
-    vita2d_draw_rectangle(barX + barW, barY - 1, 1, barH + 2, RGBA8(0x3B, 0xFF, 0x00, 50));
-    vita2d_draw_rectangle(barX, barY, barW, 1, RGBA8(0x3B, 0xFF, 0x00, 140));
-    vita2d_draw_rectangle(barX, barY + barH - 1, barW, 1, RGBA8(0x3B, 0xFF, 0x00, 140));
-    vita2d_draw_rectangle(barX, barY, 1, barH, RGBA8(0x3B, 0xFF, 0x00, 140));
-    vita2d_draw_rectangle(barX + barW - 1, barY, 1, barH, RGBA8(0x3B, 0xFF, 0x00, 140));
+    vita2d_draw_rectangle(barX - 1, barY - 1, barW + 2, 1, withAlpha(ACCENT, 50));
+    vita2d_draw_rectangle(barX - 1, barY + barH, barW + 2, 1, withAlpha(ACCENT, 50));
+    vita2d_draw_rectangle(barX - 1, barY - 1, 1, barH + 2, withAlpha(ACCENT, 50));
+    vita2d_draw_rectangle(barX + barW, barY - 1, 1, barH + 2, withAlpha(ACCENT, 50));
+    vita2d_draw_rectangle(barX, barY, barW, 1, withAlpha(ACCENT, 140));
+    vita2d_draw_rectangle(barX, barY + barH - 1, barW, 1, withAlpha(ACCENT, 140));
+    vita2d_draw_rectangle(barX, barY, 1, barH, withAlpha(ACCENT, 140));
+    vita2d_draw_rectangle(barX + barW - 1, barY, 1, barH, withAlpha(ACCENT, 140));
     if (searchQuery_.empty()) {
         vita2d_pgf_draw_text(font_, barX + 12, barY + 21, DIM, 0.58f, "Search...  (△)");
     } else {
@@ -3333,10 +3333,10 @@ void FullCatalogScreen::drawToast() const {
     const int x = (SCREEN_W - tw) / 2;
     const int y = SCREEN_H - FOOTER_H - th - 16;
     vita2d_draw_rectangle(x, y, tw, th, RGBA8(0x18, 0x18, 0x18, alpha));
-    vita2d_draw_rectangle(x, y, tw, 2, RGBA8(0x3B, 0xFF, 0x00, alpha));
-    vita2d_draw_rectangle(x, y + th - 1, tw, 1, RGBA8(0x3B, 0xFF, 0x00, static_cast<unsigned>(alpha * 0.5f)));
+    vita2d_draw_rectangle(x, y, tw, 2, withAlpha(ACCENT, alpha));
+    vita2d_draw_rectangle(x, y + th - 1, tw, 1, withAlpha(ACCENT, static_cast<unsigned>(alpha * 0.5f)));
     if (font_)
-        vita2d_pgf_draw_text(font_, x + 16, y + 26, RGBA8(255, 255, 255, alpha), 0.64f, toastMessage_.c_str());
+        vita2d_pgf_draw_text(font_, x + 16, y + 26, RGBA8(255, 255, 255, alpha), 0.70f, toastMessage_.c_str());
 }
 
 void FullCatalogScreen::drawScrollFades(int x, int y, int width, int height) const {
@@ -3352,7 +3352,7 @@ void FullCatalogScreen::drawScrollFades(int x, int y, int width, int height) con
 
 void FullCatalogScreen::drawActivePanelFrame(int x, int y, int width, int height, const char* label) const {
     const float pulse = focusPulse();
-    const unsigned glow = RGBA8(0x3B, 0xFF, 0x00, static_cast<unsigned>(40 + pulse * 70));
+    const unsigned glow = withAlpha(ACCENT, static_cast<unsigned>(40 + pulse * 70));
     const unsigned solid = ACCENT;
     // Outer soft glow
     vita2d_draw_rectangle(x - 2, y - 2, width + 4, 2, glow);
@@ -3624,7 +3624,7 @@ void FullCatalogScreen::drawCatalogCard(const CatalogItem&it,int idx,int x,int y
     // Brand accent rail on every card (stronger when focused)
     vita2d_draw_rectangle(x + ox, y + oy, focus ? 3 : 2, hh, focus ? ACCENT : ACCENT_SOFT);
     if (focus) {
-        const unsigned glow = RGBA8(0x3B, 0xFF, 0x00, static_cast<unsigned>(55 + pulse * 100));
+        const unsigned glow = withAlpha(ACCENT, static_cast<unsigned>(55 + pulse * 100));
         vita2d_draw_rectangle(x + ox - 2, y + oy - 2, ww + 4, 2, glow);
         vita2d_draw_rectangle(x + ox - 2, y + oy + hh, ww + 4, 2, glow);
         vita2d_draw_rectangle(x + ox - 2, y + oy, 2, hh, glow);
@@ -4054,7 +4054,7 @@ void FullCatalogScreen::drawDetailPanel(int x,int y,int w,int h){
             const float pulse = linkOn ? focusPulse() : 0.f;
             vita2d_draw_rectangle(bx, by, bw, bh, linkOn ? ACCENT : SURFACE2);
             if (linkOn) {
-                const unsigned glow = RGBA8(0x3B, 0xFF, 0x00, static_cast<unsigned>(40 + pulse * 80));
+                const unsigned glow = withAlpha(ACCENT, static_cast<unsigned>(40 + pulse * 80));
                 vita2d_draw_rectangle(bx - 2, by - 2, bw + 4, bh + 4, glow);
                 vita2d_draw_rectangle(bx, by, bw, bh, ACCENT);
             }
@@ -4422,7 +4422,7 @@ if (catalogSplashAlpha_ > 0.01f && !installProgressActive_) {
     const unsigned panelA = (unsigned)(catalogSplashAlpha_ * 230.f);
     const unsigned ta = (unsigned)(catalogSplashAlpha_ * 255.f);
     vita2d_draw_rectangle(0, stripY, SCREEN_W, stripH, RGBA8(0x08, 0x08, 0x0A, panelA > 255 ? 255 : panelA));
-    vita2d_draw_rectangle(0, stripY, SCREEN_W, 3, RGBA8(0x3B, 0xFF, 0x00, ta > 255 ? 255 : ta));
+    vita2d_draw_rectangle(0, stripY, SCREEN_W, 3, withAlpha(ACCENT, ta > 255 ? 255 : ta));
 
     std::string phase = catalogLoadingLabel_.empty() ? "Startup" : catalogLoadingLabel_;
     vita2d_pgf_draw_text(font_, barX, stripY + 28, ACCENT, 0.90f, ellipsize(phase, 40).c_str());
@@ -4470,7 +4470,7 @@ if (catalogSplashAlpha_ > 0.01f && !installProgressActive_) {
 
 
 const unsigned RED=RGBA8(0xE0,0x32,0x32,255), GREEN=RGBA8(0x3B,0xD9,0x60,255), BLACK=RGBA8(0,0,0,255);
-const int w=640,h=400,x=(SCREEN_W-w)/2,y=(SCREEN_H-h)/2;
+const int w=700,h=440,x=(SCREEN_W-w)/2,y=(SCREEN_H-h)/2;
 vita2d_draw_rectangle(0,0,SCREEN_W,SCREEN_H,RGBA8(0,0,0,120));
 vita2d_draw_rectangle(x,y,w,h,PANEL);
 const unsigned edge=(installOutcome_==2)?RED:((installOutcome_==1)?GREEN:ACCENT);
@@ -4645,13 +4645,13 @@ if(catalogLoading_){
     title = "Downloading";
   else if (installProgressStage_ == "Installing") title = "Installing";
   else if (!installProgressStage_.empty()) title = installProgressStage_.c_str();
-  vita2d_pgf_draw_text(font_,x+28,y+76,WHITE,1.00f,title);
+  vita2d_pgf_draw_text(font_,x+28,y+72,WHITE,1.12f,title);
 }
-std::string file=installProgressFile_.empty()?"Preparing...":ellipsize(installProgressFile_,72);
-vita2d_pgf_draw_text(font_,x+28,y+108,TEXT,.62f,file.c_str());
+std::string file=installProgressFile_.empty()?"Preparing...":ellipsize(installProgressFile_,68);
+vita2d_pgf_draw_text(font_,x+28,y+106,TEXT,.72f,file.c_str());
 const uint64_t total=installProgressTotal_,current=std::min<uint64_t>(installProgressCurrent_,total?total:installProgressCurrent_);
 const uint64_t pct=total?std::min<uint64_t>(100,(current*100)/total):0;
-int bx=x+28,by=y+140,bw=w-56,bh=12;
+int bx=x+28,by=y+138,bw=w-56,bh=14;
 vita2d_draw_rectangle(bx,by,bw,bh,BORDER);
 const bool msgRetry =
     installProgressMessage_.find("retrying") != std::string::npos ||
@@ -4698,15 +4698,15 @@ if (indeterminate) {
 } else {
   sceClibSnprintf(stats,sizeof(stats),"%llu%%  %s / %s  •  %s/s",(unsigned long long)pct,formatBytes(current).c_str(),total?formatBytes(total).c_str():"?",formatBytes(installProgressSpeed_).c_str());
 }
-vita2d_pgf_draw_text(font_,x+28,y+168,TEXT,.58f,stats);
+vita2d_pgf_draw_text(font_,x+28,y+172,TEXT,.66f,stats);
 uint64_t eta=0;if(installProgressSpeed_>0&&total>current)eta=(total-current)/installProgressSpeed_;
 char info[180];
 if (indeterminate)
   sceClibSnprintf(info,sizeof(info),"File: 1 / 1   ETA: —");
 else
   sceClibSnprintf(info,sizeof(info),"File: 1 / 1   ETA: %s",formatEta(eta).c_str());
-vita2d_pgf_draw_text(font_,x+28,y+194,ACCENT,.62f,info);
-if(!installProgressMessage_.empty())vita2d_pgf_draw_text(font_,x+28,y+218,DIM,.54f,ellipsize(installProgressMessage_,82).c_str());
+vita2d_pgf_draw_text(font_,x+28,y+198,ACCENT,.70f,info);
+if(!installProgressMessage_.empty())vita2d_pgf_draw_text(font_,x+28,y+224,DIM,.60f,ellipsize(installProgressMessage_,78).c_str());
 // Footer must match the real phase — never "Connecting..." during install/extract.
 const char* waitHint = nullptr;
 if (msgRetry && stageDownload)
@@ -4723,28 +4723,33 @@ else if (stageDownload)
   waitHint = "Speed depends on your internet connection — please be patient.";
 else
   waitHint = "Please wait — this step can take a moment.";
-vita2d_pgf_draw_text(font_,x+28,y+230,
+vita2d_pgf_draw_text(font_,x+28,y+248,
     (stageDownload && !indeterminate && !msgRetry) ? DIM : ACCENT,
-    .50f, waitHint);
-// High-visibility lock banner — must be obvious on device.
+    .58f, waitHint);
+// High-visibility lock banner — larger type for Vita screen readability.
 {
-  const int bx = x + 12, by = y + 248, bw = w - 24, bh = 36;
+  const int bx = x + 16, by = y + 268, bw = w - 32, bh = 52;
   vita2d_draw_rectangle(bx, by, bw, bh, RGBA8(0x40, 0x10, 0x10, 255));
   vita2d_draw_rectangle(bx, by, bw, 2, RED);
   vita2d_draw_rectangle(bx, by + bh - 2, bw, 2, RED);
   vita2d_draw_rectangle(bx, by, 4, bh, RED);
   vita2d_draw_rectangle(bx + bw - 4, by, 4, bh, RED);
-  vita2d_pgf_draw_text(font_, bx + 12, by + 15, RED, .52f,
+  vita2d_pgf_draw_text(font_, bx + 14, by + 20, RED, .64f,
       "LOCKED: PS button and power menu disabled");
-  vita2d_pgf_draw_text(font_, bx + 12, by + 30, WHITE, .48f,
+  vita2d_pgf_draw_text(font_, bx + 14, by + 40, WHITE, .58f,
       "Screen stays ON. Do NOT force power-off until finished.");
 }
-const int by2=y+292,bw2=330,bh2=38;
+const int by2=y+332,bw2=380,bh2=42;
 vita2d_draw_rectangle(x+28,by2,bw2,bh2,SURFACE2);
 vita2d_draw_rectangle(x+28,by2,bw2,1,BORDER);
-vita2d_pgf_draw_text(font_,x+92,by2+25,WHITE,.60f,"CIRCLE  CANCEL DOWNLOAD");
-vita2d_pgf_draw_text(font_,x+28,y+h-12,DIM,.46f,
-    "Only CIRCLE works now  |  PS / power menu blocked  |  Screen forced on");
+{
+  const char* clab = "CIRCLE  CANCEL DOWNLOAD";
+  const float csc = 0.68f;
+  const int ctw = vita2d_pgf_text_width(font_, csc, clab);
+  vita2d_pgf_draw_text(font_, x + 28 + (bw2 - ctw) / 2, by2 + 28, WHITE, csc, clab);
+}
+vita2d_pgf_draw_text(font_,x+28,y+h-14,DIM,.52f,
+    "Only CIRCLE works  |  PS / power menu blocked  |  Screen forced on");
 }
 
 void drawFooterBar(vita2d_pgf* font, const char* leftHints) {
