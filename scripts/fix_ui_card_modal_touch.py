@@ -5,22 +5,33 @@ CPP = Path("Client PSVitaAlive/source/ui/full_catalog_screen.cpp")
 s = CPP.read_text(encoding="utf-8")
 orig = s
 
-if "SPLIT_CARD_H=108" not in s:
-    raise SystemExit("expected SPLIT_CARD_H=108")
-s = s.replace("SPLIT_CARD_H=108", "SPLIT_CARD_H=118", 1)
+# Split cards: accept either the original 108 value or an already-restored 118 value.
+if "SPLIT_CARD_H=108" in s:
+    s = s.replace("SPLIT_CARD_H=108", "SPLIT_CARD_H=118", 1)
+elif "SPLIT_CARD_H=118" not in s:
+    raise SystemExit("unexpected SPLIT_CARD_H value")
 
-old = "void FullCatalogScreen::drawCatalogCard(const CatalogItem&it,int idx,int x,int y,int w,int h,bool focus){\n    const float pulse = focus ? focusPulse() : 0.f;"
-new = "void FullCatalogScreen::drawCatalogCard(const CatalogItem&it,int idx,int x,int y,int w,int h,bool focus){\n    vita2d_enable_clipping();\n    vita2d_set_clip_rectangle(x, y, x + w, y + h);\n    const float pulse = focus ? focusPulse() : 0.f;"
-if old not in s:
-    raise SystemExit("drawCatalogCard anchor not found")
-s = s.replace(old, new, 1)
+# Clip card content to its own rectangle if not already patched.
+card_fn = s.find("void FullCatalogScreen::drawCatalogCard")
+card_head = s[card_fn:card_fn + 700] if card_fn >= 0 else ""
+if "vita2d_set_clip_rectangle(x, y, x + w, y + h);" not in card_head:
+    old = "void FullCatalogScreen::drawCatalogCard(const CatalogItem&it,int idx,int x,int y,int w,int h,bool focus){\n    const float pulse = focus ? focusPulse() : 0.f;"
+    new = "void FullCatalogScreen::drawCatalogCard(const CatalogItem&it,int idx,int x,int y,int w,int h,bool focus){\n    vita2d_enable_clipping();\n    vita2d_set_clip_rectangle(x, y, x + w, y + h);\n    const float pulse = focus ? focusPulse() : 0.f;"
+    if old not in s:
+        raise SystemExit("drawCatalogCard anchor not found")
+    s = s.replace(old, new, 1)
 
-old = "void FullCatalogScreen::drawDetailPanel(int x,int y,int w,int h){\n    vita2d_draw_rectangle(x, y, w, h, PANEL);"
-new = "void FullCatalogScreen::drawDetailPanel(int x,int y,int w,int h){\n    vita2d_enable_clipping();\n    vita2d_set_clip_rectangle(x, y, x + w, y + h);\n    vita2d_draw_rectangle(x, y, w, h, PANEL);"
-if old not in s:
-    raise SystemExit("drawDetailPanel anchor not found")
-s = s.replace(old, new, 1)
+# Clip Detail to its visible panel if not already patched.
+detail_fn = s.find("void FullCatalogScreen::drawDetailPanel")
+detail_head = s[detail_fn:detail_fn + 500] if detail_fn >= 0 else ""
+if "vita2d_set_clip_rectangle(x, y, x + w, y + h);" not in detail_head:
+    old = "void FullCatalogScreen::drawDetailPanel(int x,int y,int w,int h){\n    vita2d_draw_rectangle(x, y, w, h, PANEL);"
+    new = "void FullCatalogScreen::drawDetailPanel(int x,int y,int w,int h){\n    vita2d_enable_clipping();\n    vita2d_set_clip_rectangle(x, y, x + w, y + h);\n    vita2d_draw_rectangle(x, y, w, h, PANEL);"
+    if old not in s:
+        raise SystemExit("drawDetailPanel anchor not found")
+    s = s.replace(old, new, 1)
 
+# Modal text readability.
 for old, new in [
     ('0.78f, "REQUEST DATA / GAME FILES"', '0.86f, "REQUEST DATA / GAME FILES"'),
     ('WHITE, 0.72f, "This app has no Data/Game Files links."', 'WHITE, 0.78f, "This app has no Data/Game Files links."'),
@@ -38,20 +49,25 @@ for old, new in [
     if old in s:
         s = s.replace(old, new, 1)
 
-s = s.replace('scale = 0.64f;\n            int height = 26;', 'scale = 0.70f;\n            int height = 28;', 1)
-s = s.replace('scale = 0.98f; height = 36;', 'scale = 1.04f; height = 38;', 1)
-s = s.replace('scale = 0.84f; height = 32;', 'scale = 0.90f; height = 34;', 1)
-s = s.replace('scale = 0.74f; height = 28;', 'scale = 0.80f; height = 30;', 1)
-s = s.replace('scale = 0.64f; height = 26; indent = 12;', 'scale = 0.70f; height = 28; indent = 12;', 1)
-
-# Make the visible button labels in the small confirmation modals readable too.
 for old, new in [
-    ('const float sc = 0.62f;\n        const int tw = vita2d_pgf_text_width(font_, sc, lab);',
-     'const float sc = 0.74f;\n        const int tw = vita2d_pgf_text_width(font_, sc, lab);'),
+    ('scale = 0.64f;\n            int height = 26;', 'scale = 0.70f;\n            int height = 28;'),
+    ('scale = 0.98f; height = 36;', 'scale = 1.04f; height = 38;'),
+    ('scale = 0.84f; height = 32;', 'scale = 0.90f; height = 34;'),
+    ('scale = 0.74f; height = 28;', 'scale = 0.80f; height = 30;'),
+    ('scale = 0.64f; height = 26; indent = 12;', 'scale = 0.70f; height = 28; indent = 12;'),
 ]:
-    s = s.replace(old, new, 2)
+    if old in s:
+        s = s.replace(old, new, 1)
 
-repls = [
+# Make buttons in confirmation modals readable. Scope by label, so unrelated controls stay untouched.
+for label in ['O  Cancel', 'X  Send', 'X  Report']:
+    needle = f'const char* lab = "{label}";\n        const float sc = 0.62f;'
+    repl = f'const char* lab = "{label}";\n        const float sc = 0.74f;'
+    if needle in s:
+        s = s.replace(needle, repl, 1)
+
+# Expand touch targets of modal buttons only; keep their visible geometry unchanged.
+for old, new in [
     ('if (hit(x, y, bxCancel, by, bw, bh)) {\n            closeDataRequestConfirm();',
      'if (hit(x, y, bxCancel - 12, by - 12, bw + 24, bh + 24)) {\n            closeDataRequestConfirm();'),
     ('if (hit(x, y, bxSend, by, bw, bh)) {\n            closeDataRequestConfirm();',
@@ -60,19 +76,17 @@ repls = [
      'if (hit(x, y, bxCancel - 12, by - 12, bw + 24, bh + 24)) {\n            closeReportConfirm();'),
     ('if (hit(x, y, bxReport, by, bw, bh)) {\n            closeReportConfirm();',
      'if (hit(x, y, bxReport - 12, by - 12, bw + 24, bh + 24)) {\n            closeReportConfirm();'),
+    ('if (hit(x, y, bx, by, bw, bh))\n                    closeNewsModal(newsMarkSeenOnClose_);',
+     'if (hit(x, y, bx - 12, by - 12, bw + 24, bh + 24))\n                    closeNewsModal(newsMarkSeenOnClose_);'),
     ('if (hit(x, y, bxOk, by, bw, bh)) { installAllFocus_ = 0;',
      'if (hit(x, y, bxOk - 12, by - 12, bw + 24, bh + 24)) { installAllFocus_ = 0;'),
     ('if (hit(x, y, bxCancel, by, bw, bh)) { closeInstallAllWizard(true); return; }',
      'if (hit(x, y, bxCancel - 12, by - 12, bw + 24, bh + 24)) { closeInstallAllWizard(true); return; }'),
-    ('if (hit(x, y, bx, by, bw, bh))\n                    closeNewsModal(newsMarkSeenOnClose_);',
-     'if (hit(x, y, bx - 12, by - 12, bw + 24, bh + 24))\n                    closeNewsModal(newsMarkSeenOnClose_);'),
-]
-for old, new in repls:
-    if old not in s:
-        raise SystemExit(f"modal touch pattern not found: {old[:70]}")
-    s = s.replace(old, new, 1)
+]:
+    if old in s:
+        s = s.replace(old, new, 1)
 
 if s == orig:
     raise SystemExit("no changes applied")
 CPP.write_text(s, encoding="utf-8")
-print("UI patch applied successfully")
+print("UI patch complete")
