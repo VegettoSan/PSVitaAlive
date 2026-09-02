@@ -647,6 +647,8 @@ HttpResult HttpClient::downloadToFile(
         : (isArchive ? 10 : 5);
     long responseCode = 0;
     CURLcode lastFail = CURLE_OK;
+    // One-shot guard: if a Range request fails (curl 33), truncate and retry as full GET.
+    bool rangeFallbackUsed = false;
     for (int attempt = 0; attempt < kMaxAttempts; ++attempt) {
         const int sslIdx = attempt < 4 ? attempt : (attempt % 4);
         curl_easy_setopt(curl, CURLOPT_SSLVERSION, sslAttempts[sslIdx]);
@@ -763,6 +765,56 @@ HttpResult HttpClient::downloadToFile(
             continue;
         }
 
+        // CDN/host rejected HTTP Range (common on MediaFire and some mirrors).
+        // Truncate the partial, clear CURLOPT resume, and retry once as a full GET.
+        // Use ctx.resumeOffset (not the original parameter) so internal mid-transfer
+        // retries that promoted an absolute offset are also covered.
+        if (result == CURLE_RANGE_ERROR &&
+            ctx.resumeOffset > 0 &&
+            !rangeFallbackUsed) {
+            rangeFallbackUsed = true;
+            char rangeMsg[180];
+            sceClibSnprintf(
+                rangeMsg, sizeof(rangeMsg),
+                "range fallback curl=%d offset=%llu restarted=0 (full GET next)",
+                static_cast<int>(result),
+                (unsigned long long)ctx.resumeOffset);
+            httpDiagnostic(rangeMsg);
+
+            if (ctx.fd >= 0) {
+                sceIoClose(ctx.fd);
+                ctx.fd = -1;
+            }
+            ctx.fd = sceIoOpen(
+                destinationPath.c_str(),
+                SCE_O_WRONLY | SCE_O_CREAT | SCE_O_TRUNC,
+                0777);
+            if (ctx.fd < 0) {
+                ctx.ioError = true;
+                break;
+            }
+
+            ctx.resumeOffset = 0;
+            ctx.downloaded = 0;
+            ctx.total = 0;
+            ctx.lastProgressTick = 0;
+            ctx.lastProgressBytes = 0;
+            ctx.bytesPerSecond = 0;
+            ctx.firstWrite = true;
+            ctx.restartedFromZero = true;
+
+#if defined(CURLOPT_RESUME_FROM_LARGE)
+            curl_easy_setopt(
+                curl,
+                CURLOPT_RESUME_FROM_LARGE,
+                static_cast<curl_off_t>(0));
+#else
+            curl_easy_setopt(curl, CURLOPT_RESUME_FROM, 0L);
+#endif
+            lastFail = result;
+            continue;
+        }
+
         const bool retryable =
             result == CURLE_SSL_CONNECT_ERROR ||
             result == CURLE_PEER_FAILED_VERIFICATION ||
@@ -786,7 +838,7 @@ HttpResult HttpClient::downloadToFile(
         if (!retryable) break;
     }
     lastStatus_ = static_cast<int>(responseCode);
-    if (resumeOffset > 0 && responseCode == 206) lastRangeAccepted_ = true;
+    if (ctx.resumeOffset > 0 && responseCode == 206) lastRangeAccepted_ = true;
 
     curl_slist_free_all(headers);
     sceIoClose(ctx.fd);
