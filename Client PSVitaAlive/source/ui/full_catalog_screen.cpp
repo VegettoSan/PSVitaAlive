@@ -1068,14 +1068,14 @@ void FullCatalogScreen::drawDataRequestConfirmOverlay() {
     vita2d_draw_rectangle(bxCancel, by + bh - 1, bw, 1, BORDER);
     {
         const char* lab = "O  Cancel";
-        const float sc = 0.62f;
+        const float sc = 0.74f;
         const int tw = vita2d_pgf_text_width(font_, sc, lab);
         vita2d_pgf_draw_text(font_, bxCancel + (bw - tw) / 2, by + 27, WHITE, sc, lab);
     }
     vita2d_draw_rectangle(bxSend, by, bw, bh, ACC);
     {
         const char* lab = "X  Send";
-        const float sc = 0.62f;
+        const float sc = 0.74f;
         const int tw = vita2d_pgf_text_width(font_, sc, lab);
         vita2d_pgf_draw_text(font_, bxSend + (bw - tw) / 2, by + 27, BG, sc, lab);
     }
@@ -1227,7 +1227,7 @@ void FullCatalogScreen::drawReportConfirmOverlay() {
     vita2d_draw_rectangle(bxReport, by, bw, bh, RED);
     {
         const char* lab = "X  Report";
-        const float sc = 0.62f;
+        const float sc = 0.74f;
         const int tw = vita2d_pgf_text_width(font_, sc, lab);
         vita2d_pgf_draw_text(font_, bxReport + (bw - tw) / 2, by + 27, WHITE, sc, lab);
     }
