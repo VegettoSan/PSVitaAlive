@@ -11,6 +11,7 @@
 #include <strings.h>
 #include <utility>
 #include <atomic>
+#include <vector>
 
 namespace psvitaalive {
 
@@ -52,6 +53,185 @@ void httpDiagnostic(const char* message) {
     sceIoWrite(fd, line, std::strlen(line));
     sceIoClose(fd);
 }
+
+
+// VitaSDK ships OpenSSL 1.0.2-era TLS. Re-assert insecure-verify defaults every
+// attempt so a sticky handle never silently re-enables peer verification, and
+// clear build-time CA paths that do not exist on device.
+static void applyVitaSslDefaults(CURL* curl) {
+    if (!curl) return;
+    curl_easy_setopt(curl, CURLOPT_SSL_VERIFYHOST, 0L);
+    curl_easy_setopt(curl, CURLOPT_SSL_VERIFYPEER, 0L);
+    curl_easy_setopt(curl, CURLOPT_CAINFO, nullptr);
+    curl_easy_setopt(curl, CURLOPT_CAPATH, nullptr);
+#if defined(CURLSSLOPT_NO_REVOKE)
+    curl_easy_setopt(curl, CURLOPT_SSL_OPTIONS, (long)CURLSSLOPT_NO_REVOKE);
+#endif
+}
+
+static bool hostLooksLikeBadArchiveEdge(const char* url) {
+    if (!url || !url[0]) return false;
+    // Canadian / dn* storage nodes frequently fail TLS with OpenSSL 1.0.2 on Vita.
+    if (std::strstr(url, ".ca.archive.org") != nullptr) return true;
+    if (std::strstr(url, "://dn") != nullptr && std::strstr(url, "archive.org") != nullptr) return true;
+    return false;
+}
+
+static bool parseArchiveDownloadParts(const std::string& url, std::string& identifier, std::string& fileName) {
+    identifier.clear();
+    fileName.clear();
+    const char* marker = "/download/";
+    const char* p = std::strstr(url.c_str(), marker);
+    if (!p) return false;
+    p += std::strlen(marker);
+    const char* slash = std::strchr(p, '/');
+    if (!slash || slash == p) return false;
+    identifier.assign(p, slash - p);
+    const char* rest = slash + 1;
+    const char* q = std::strchr(rest, '?');
+    fileName.assign(rest, q ? (q - rest) : std::strlen(rest));
+    // Strip trailing slash noise.
+    while (!fileName.empty() && (fileName.back() == '/' || fileName.back() == ' ')) fileName.pop_back();
+    return !identifier.empty() && !fileName.empty();
+}
+
+static bool extractJsonStringField(const std::string& json, const char* key, std::string& out) {
+    out.clear();
+    if (!key || !*key) return false;
+    std::string pat = std::string("\"") + key + "\"";
+    size_t pos = 0;
+    while ((pos = json.find(pat, pos)) != std::string::npos) {
+        size_t colon = json.find(':', pos + pat.size());
+        if (colon == std::string::npos) return false;
+        size_t i = colon + 1;
+        while (i < json.size() && (json[i] == ' ' || json[i] == '\t' || json[i] == '\n' || json[i] == '\r')) ++i;
+        if (i >= json.size() || json[i] != '"') {
+            pos += pat.size();
+            continue;
+        }
+        ++i;
+        std::string value;
+        while (i < json.size() && json[i] != '"') {
+            if (json[i] == '\\' && i + 1 < json.size()) {
+                value.push_back(json[i + 1]);
+                i += 2;
+                continue;
+            }
+            value.push_back(json[i]);
+            ++i;
+        }
+        out = value;
+        return !out.empty();
+    }
+    return false;
+}
+
+// Lightweight metadata fetch (separate easy handle) to locate alternate IA storage hosts.
+static bool fetchArchiveMetadataJson(const std::string& identifier, std::string& jsonOut) {
+    jsonOut.clear();
+    if (identifier.empty()) return false;
+    const std::string metaUrl = "https://archive.org/metadata/" + identifier;
+    CURL* m = curl_easy_init();
+    if (!m) return false;
+    std::string body;
+    body.reserve(64 * 1024);
+    auto writeMeta = [](char* ptr, size_t size, size_t nmemb, void* userdata) -> size_t {
+        std::string* out = static_cast<std::string*>(userdata);
+        const size_t n = size * nmemb;
+        if (out->size() + n > 512 * 1024) return 0;
+        out->append(ptr, n);
+        return n;
+    };
+    char err[CURL_ERROR_SIZE];
+    std::memset(err, 0, sizeof(err));
+    curl_easy_setopt(m, CURLOPT_URL, metaUrl.c_str());
+    curl_easy_setopt(m, CURLOPT_HTTPGET, 1L);
+    curl_easy_setopt(m, CURLOPT_USERAGENT, UA_APP);
+    applyVitaSslDefaults(m);
+    curl_easy_setopt(m, CURLOPT_SSLVERSION, CURL_SSLVERSION_TLSv1_2);
+    curl_easy_setopt(m, CURLOPT_IPRESOLVE, CURL_IPRESOLVE_V4);
+    curl_easy_setopt(m, CURLOPT_HTTP_VERSION, CURL_HTTP_VERSION_1_1);
+    curl_easy_setopt(m, CURLOPT_CONNECTTIMEOUT, 15L);
+    curl_easy_setopt(m, CURLOPT_TIMEOUT, 25L);
+    curl_easy_setopt(m, CURLOPT_FOLLOWLOCATION, 1L);
+    curl_easy_setopt(m, CURLOPT_MAXREDIRS, 5L);
+    curl_easy_setopt(m, CURLOPT_ERRORBUFFER, err);
+    curl_easy_setopt(m, CURLOPT_WRITEFUNCTION, +writeMeta);
+    curl_easy_setopt(m, CURLOPT_WRITEDATA, &body);
+    curl_easy_setopt(m, CURLOPT_NOSIGNAL, 1L);
+    const CURLcode rc = curl_easy_perform(m);
+    long status = 0;
+    curl_easy_getinfo(m, CURLINFO_RESPONSE_CODE, &status);
+    curl_easy_cleanup(m);
+    if (rc != CURLE_OK || status != 200 || body.empty()) {
+        char msg[240];
+        sceClibSnprintf(msg, sizeof(msg), "archive metadata failed id=%s curl=%d status=%ld",
+            identifier.c_str(), static_cast<int>(rc), status);
+        httpDiagnostic(msg);
+        return false;
+    }
+    jsonOut.swap(body);
+    return true;
+}
+
+static void pushUniqueHost(std::vector<std::string>& hosts, const std::string& host) {
+    if (host.empty()) return;
+    for (const auto& h : hosts) if (h == host) return;
+    hosts.push_back(host);
+}
+
+// Prefer us.archive.org / ia* nodes over dn*/ca edges for Vita OpenSSL 1.0.2.
+static bool buildArchiveAlternateUrls(const std::string& originalUrl, std::vector<std::string>& outUrls) {
+    outUrls.clear();
+    std::string id, file;
+    if (!parseArchiveDownloadParts(originalUrl, id, file)) return false;
+    std::string meta;
+    if (!fetchArchiveMetadataJson(id, meta)) return false;
+    std::string server, d1, d2, dir;
+    extractJsonStringField(meta, "server", server);
+    extractJsonStringField(meta, "d1", d1);
+    extractJsonStringField(meta, "d2", d2);
+    extractJsonStringField(meta, "dir", dir);
+    if (dir.empty()) {
+        // Fallback path used by many IA items when dir is absent from the top-level object.
+        dir = std::string("/0/items/") + id;
+    }
+    if (!dir.empty() && dir[0] != '/') dir.insert(dir.begin(), '/');
+
+    std::vector<std::string> hosts;
+    // Prioritize non-dn / non-ca hosts first.
+    auto prefer = [&](const std::string& h) {
+        if (h.empty()) return;
+        if (hostLooksLikeBadArchiveEdge(h.c_str())) return;
+        pushUniqueHost(hosts, h);
+    };
+    auto defer = [&](const std::string& h) {
+        if (h.empty()) return;
+        pushUniqueHost(hosts, h);
+    };
+    prefer(server);
+    prefer(d1);
+    prefer(d2);
+    defer(server);
+    defer(d1);
+    defer(d2);
+
+    for (const auto& host : hosts) {
+        if (hostLooksLikeBadArchiveEdge(host.c_str())) continue;
+        std::string u = "https://" + host + dir + "/" + file;
+        outUrls.push_back(u);
+    }
+    if (outUrls.empty()) {
+        httpDiagnostic("archive failover: no usable alternate hosts in metadata");
+        return false;
+    }
+    char msg[280];
+    sceClibSnprintf(msg, sizeof(msg), "archive failover built %d alternate URL(s) for id=%s",
+        (int)outUrls.size(), id.c_str());
+    httpDiagnostic(msg);
+    return true;
+}
+
 
 struct TransferContext {
     CURL* curl = nullptr;
@@ -383,8 +563,7 @@ HttpResult HttpClient::fetchToString(
     curl_easy_setopt(curl, CURLOPT_WRITEDATA, &ctx);
     curl_easy_setopt(curl, CURLOPT_CONNECTTIMEOUT, 20L);
     curl_easy_setopt(curl, CURLOPT_TIMEOUT, 45L);
-    curl_easy_setopt(curl, CURLOPT_SSL_VERIFYPEER, 0L);
-    curl_easy_setopt(curl, CURLOPT_SSL_VERIFYHOST, 0L);
+    applyVitaSslDefaults(curl);
     curl_easy_setopt(curl, CURLOPT_ACCEPT_ENCODING, "");
     curl_easy_setopt(curl, CURLOPT_HTTP_VERSION, CURL_HTTP_VERSION_1_1);
 
@@ -467,8 +646,7 @@ HttpResult HttpClient::postJson(
     curl_easy_setopt(curl, CURLOPT_WRITEDATA, &ctx);
     curl_easy_setopt(curl, CURLOPT_CONNECTTIMEOUT, 15L);
     curl_easy_setopt(curl, CURLOPT_TIMEOUT, 25L);
-    curl_easy_setopt(curl, CURLOPT_SSL_VERIFYPEER, 0L);
-    curl_easy_setopt(curl, CURLOPT_SSL_VERIFYHOST, 0L);
+    applyVitaSslDefaults(curl);
     curl_easy_setopt(curl, CURLOPT_HTTP_VERSION, CURL_HTTP_VERSION_1_1);
 
     struct curl_slist* headers = nullptr;
@@ -524,8 +702,7 @@ HttpResult HttpClient::fetchRemoteValidators(const std::string& url, std::string
     curl_easy_setopt(curl, CURLOPT_USERAGENT, UA_APP);
     curl_easy_setopt(curl, CURLOPT_IPRESOLVE, CURL_IPRESOLVE_V4);
     curl_easy_setopt(curl, CURLOPT_HTTP_VERSION, CURL_HTTP_VERSION_1_1);
-    curl_easy_setopt(curl, CURLOPT_SSL_VERIFYHOST, 0L);
-    curl_easy_setopt(curl, CURLOPT_SSL_VERIFYPEER, 0L);
+    applyVitaSslDefaults(curl);
     // DEFAULT negotiates best TLS; forcing 1.2 alone fails on some hosts (Vita3K/GitHub).
     curl_easy_setopt(curl, CURLOPT_SSLVERSION, CURL_SSLVERSION_DEFAULT);
 #if defined(CURLSSLOPT_NO_REVOKE)
@@ -632,12 +809,8 @@ HttpResult HttpClient::downloadToFile(
     curl_easy_setopt(curl, CURLOPT_HTTPGET, 1L);
     // Browser-like UA helps some CDNs (GitLab package registry, etc.)
     curl_easy_setopt(curl, CURLOPT_USERAGENT, UA_APP);
-    curl_easy_setopt(curl, CURLOPT_SSL_VERIFYHOST, 0L);
-    curl_easy_setopt(curl, CURLOPT_SSL_VERIFYPEER, 0L);
+    applyVitaSslDefaults(curl);
     curl_easy_setopt(curl, CURLOPT_SSLVERSION, CURL_SSLVERSION_DEFAULT);
-#if defined(CURLSSLOPT_NO_REVOKE)
-    curl_easy_setopt(curl, CURLOPT_SSL_OPTIONS, (long)CURLSSLOPT_NO_REVOKE);
-#endif
     curl_easy_setopt(curl, CURLOPT_SSL_SESSIONID_CACHE, 1L);
     // Prefer IPv4 — dual-stack SSL handshakes often fail on Vita/Vita3K.
     curl_easy_setopt(curl, CURLOPT_IPRESOLVE, CURL_IPRESOLVE_V4);
@@ -714,9 +887,17 @@ HttpResult HttpClient::downloadToFile(
     CURLcode lastFail = CURLE_OK;
     // One-shot guard: if a Range request fails (curl 33), truncate and retry as full GET.
     bool rangeFallbackUsed = false;
+    // archive.org: when a 302 lands on dn*/ca edges, OpenSSL 1.0.2 often fails TLS.
+    // Build alternate item URLs from metadata once and rotate through them.
+    std::vector<std::string> archiveAltUrls;
+    size_t archiveAltIndex = 0;
+    bool archiveMetaTried = false;
+    std::string activeUrl = url;
     for (int attempt = 0; attempt < kMaxAttempts; ++attempt) {
+        applyVitaSslDefaults(curl);
         const int sslIdx = attempt < 4 ? attempt : (attempt % 4);
         curl_easy_setopt(curl, CURLOPT_SSLVERSION, sslAttempts[sslIdx]);
+        curl_easy_setopt(curl, CURLOPT_URL, activeUrl.c_str());
         // Fail-fast connect: short on first tries, slightly longer later.
         if (isArchive) {
             const long ct = (attempt < 3) ? CONNECT_TIMEOUT_ARCHIVE_FAST : CONNECT_TIMEOUT_ARCHIVE_SLOW;
@@ -968,6 +1149,36 @@ HttpResult HttpClient::downloadToFile(
             curlError[0] ? curlError : "-");
         httpDiagnostic(failMsg);
         lastFail = result;
+
+        // archive.org edge failover: after SSL failure, switch to metadata-derived hosts.
+        if (isArchive &&
+            (result == CURLE_SSL_CONNECT_ERROR ||
+             result == CURLE_PEER_FAILED_VERIFICATION ||
+             result == CURLE_SSL_CERTPROBLEM)) {
+            const char* eff = nullptr;
+            curl_easy_getinfo(curl, CURLINFO_EFFECTIVE_URL, &eff);
+            const bool badEdge = hostLooksLikeBadArchiveEdge(eff) || hostLooksLikeBadArchiveEdge(activeUrl.c_str());
+            if (badEdge || !archiveMetaTried) {
+                if (!archiveMetaTried) {
+                    archiveMetaTried = true;
+                    buildArchiveAlternateUrls(url, archiveAltUrls);
+                    archiveAltIndex = 0;
+                }
+                if (archiveAltIndex < archiveAltUrls.size()) {
+                    activeUrl = archiveAltUrls[archiveAltIndex++];
+                    char sw[320];
+                    sceClibSnprintf(sw, sizeof(sw), "archive failover switch -> %s", activeUrl.c_str());
+                    httpDiagnostic(sw);
+                    curl_easy_setopt(curl, CURLOPT_URL, activeUrl.c_str());
+                    curl_easy_setopt(curl, CURLOPT_FRESH_CONNECT, 1L);
+                    curl_easy_setopt(curl, CURLOPT_FORBID_REUSE, 1L);
+                    curl_easy_setopt(curl, CURLOPT_SSL_SESSIONID_CACHE, 0L);
+                    // Keep going even if this result was going to break non-retryable.
+                    continue;
+                }
+            }
+        }
+
         if (!retryable) break;
     }
     const char* effectiveUrl = nullptr;

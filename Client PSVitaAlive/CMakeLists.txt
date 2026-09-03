@@ -75,6 +75,13 @@ target_compile_definitions(${PROJECT_NAME} PRIVATE
   PSVITAALIVE_VERSION="${VITA_VERSION}"
 )
 
+# Optional TLS backend switch (default OFF = stock VitaSDK OpenSSL 1.0.2 + curl).
+# Enable only after: vdpm mbedtls && vdpm curl-mbedtls (or equivalent), then rebuild clean.
+#   cmake .. -DPSVITAALIVE_USE_MBEDTLS_CURL=ON
+option(PSVITAALIVE_USE_MBEDTLS_CURL
+  "Link curl against mbedTLS instead of OpenSSL 1.0.2 (requires curl-mbedtls package)"
+  OFF)
+
 target_link_libraries(${PROJECT_NAME}
   vita2d
   vita2d
@@ -106,11 +113,18 @@ target_link_libraries(${PROJECT_NAME}
   bz2
   z
   curl
-  ssl
-  crypto
   pthread
   m
 )
+
+if(PSVITAALIVE_USE_MBEDTLS_CURL)
+  message(STATUS "PSVitaAlive TLS: mbedTLS-backed curl (PSVITAALIVE_USE_MBEDTLS_CURL=ON)")
+  target_link_libraries(${PROJECT_NAME} mbedtls mbedx509 mbedcrypto)
+  target_compile_definitions(${PROJECT_NAME} PRIVATE PSVITAALIVE_CURL_MBEDTLS=1)
+else()
+  message(STATUS "PSVitaAlive TLS: OpenSSL (stock VitaSDK)")
+  target_link_libraries(${PROJECT_NAME} ssl crypto)
+endif()
 
 # ---------------------------------------------------------------------------
 # PSVitaAlive Updater (TITLE_ID PSVAUPDT1)
