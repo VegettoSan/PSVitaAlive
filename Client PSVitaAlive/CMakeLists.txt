@@ -22,6 +22,13 @@ set(SOURCES
   source/storage/storage_manager.cpp
   source/network/http_client.cpp
   source/network/curl_lifecycle.cpp
+  third_party/pkg2zip/pkg2zip_aes.c
+  third_party/pkg2zip/pkg2zip_crc32.c
+  third_party/pkg2zip/pkg2zip_out.c
+  third_party/pkg2zip/pkg2zip_psp.c
+  third_party/pkg2zip/pkg2zip_sys_vita.c
+  third_party/pkg2zip/miniz_tdef.c
+  third_party/pkg2zip/psp_pkg_unpack.c
   source/network/download_manager.cpp
   source/network/mediafire_resolver.cpp
   source/network/error_reporter.cpp
@@ -62,9 +69,22 @@ set_source_files_properties(source/network/curl_lifecycle.cpp PROPERTIES
   COMPILE_DEFINITIONS "PSVITAALIVE_CURL_LIFECYCLE_IMPL"
 )
 
+# pkg2zip is C; allow compiling without C++ name mangling issues
+set_source_files_properties(
+  third_party/pkg2zip/pkg2zip_aes.c
+  third_party/pkg2zip/pkg2zip_crc32.c
+  third_party/pkg2zip/pkg2zip_out.c
+  third_party/pkg2zip/pkg2zip_psp.c
+  third_party/pkg2zip/pkg2zip_sys_vita.c
+  third_party/pkg2zip/miniz_tdef.c
+  third_party/pkg2zip/psp_pkg_unpack.c
+  PROPERTIES LANGUAGE C
+)
+
 target_include_directories(${PROJECT_NAME} PRIVATE
   ${CMAKE_SOURCE_DIR}/include
   ${CMAKE_SOURCE_DIR}/source
+  ${CMAKE_CURRENT_SOURCE_DIR}/third_party/pkg2zip
 )
 
 target_compile_options(${PROJECT_NAME} PRIVATE

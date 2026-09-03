@@ -168,6 +168,6 @@ Must not:
 | Target | Vita VPK | PSP/PS1 PKG | ISO/CSO/PBP |
 |--------|----------|-------------|-------------|
 | **LiveArea** | Promote (unchanged) | BGDL → LiveArea bubble | `ux0:pspemu` |
-| **Adrenaline** | Promote (unchanged — VPK is Vita-only) | **No BGDL** (no LiveArea bubble). PKG→pspemu unpack = follow-up (PKGj-style) | `ux0:pspemu` |
+| **Adrenaline** | Promote (unchanged — VPK is Vita-only) | **No BGDL**; pkg2zip-based unpack to `ux0:pspemu` (ISO for PSP, EBOOT for PSX) | `ux0:pspemu` |
 
 Do **not** route Vita VPK through Adrenaline-only logic.

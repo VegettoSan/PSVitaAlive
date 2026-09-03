@@ -116,7 +116,7 @@ See the root [README.md](../README.md) for the full link-type matrix.
 | Data **ZIP** | ZipExtractor | Catalog `extract_path` or user path |
 | **Vita PKG** | BGDL | LiveArea / system install |
 | **PSP / PS1 official PKG** + Settings **LiveArea** | BGDL + synthetic RIF (PKGj-style) | LiveArea bubble (NoPspEmuDrm recommended) |
-| **PSP / PS1 official PKG** + Settings **Adrenaline** | Direct download; **no BGDL / no LiveArea bubble** | Intended: unpack to `ux0:pspemu` like PKGj. Full PKG→PBP/ISO unpack is the next implementation step; until then install reports a clear error instead of creating a LiveArea entry. |
+| **PSP / PS1 official PKG** + Settings **Adrenaline** | Direct download + **pkg2zip unpack** | `ux0:pspemu/ISO/*.iso` (PSP) or `ux0:pspemu/PSP/GAME/<ID>/` (PSX) — **no** LiveArea bubble |
 
 ### Settings → PSP / PS1 target
 
