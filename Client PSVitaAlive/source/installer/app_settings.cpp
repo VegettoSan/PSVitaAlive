@@ -227,12 +227,13 @@ AppSettingsData AppSettings::load() {
 bool AppSettings::save(const AppSettingsData& data) {
     StorageManager st;
     st.createDirectories(StorageManager::BASE_DIR);
-    char json[768];
+    char json[896];
     sceClibSnprintf(
         json, sizeof(json),
         "{\n"
         "  \"install_method\": \"%s\",\n"
         "  \"psp_target\": \"%s\",\n"
+        "  \"psp_media_format\": \"%s\",\n"
         "  \"color_theme\": \"%s\",\n"
         "  \"warn_missing_plugins\": %s,\n"
         "  \"prompt_image_warmup\": %s,\n"
@@ -242,6 +243,7 @@ bool AppSettings::save(const AppSettingsData& data) {
         "}\n",
         toString(data.installMethod),
         toString(data.pspTarget),
+        toString(data.pspMediaFormat),
         toString(data.colorTheme),
         data.warnMissingPlugins ? "true" : "false",
         data.promptImageWarmup ? "true" : "false",
