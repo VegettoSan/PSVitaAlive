@@ -3382,17 +3382,20 @@ void FullCatalogScreen::drawSettings() {
         if (settingsScrollY_ > maxScroll) settingsScrollY_ = maxScroll;
     }
 
+    /* Clip list so scrolled rows never paint over the Settings title bar or footer. */
+    vita2d_enable_clipping();
+    vita2d_set_clip_rectangle(listX, contentTop, listX + listW, listClipBottom);
+
     int rowY[7] = {};
     int y = contentTop - static_cast<int>(settingsScrollY_);
     for (int i = 0; i < 7; ++i) {
         if (opts[i].sectionStart && opts[i].section[0]) {
-            if (y + 16 >= contentTop && y + 4 <= listClipBottom)
-                vita2d_pgf_draw_text(font_, listX + 6, y + 16, DIM, 0.56f, opts[i].section);
+            vita2d_pgf_draw_text(font_, listX + 6, y + 16, DIM, 0.56f, opts[i].section);
             y += sectionH;
         }
         rowY[i] = y;
         const bool focus = (settingsFocus_ == i);
-        if (y + rowH >= contentTop && y <= listClipBottom) {
+        {
             vita2d_draw_rectangle(listX, y, listW, rowH, focus ? SURFACE : SURFACE2);
             if (focus) {
                 vita2d_draw_rectangle(listX, y, 4, rowH, ACCENT);
@@ -3401,17 +3404,29 @@ void FullCatalogScreen::drawSettings() {
             } else {
                 vita2d_draw_rectangle(listX, y + rowH - 1, listW, 1, BORDER);
             }
-            vita2d_pgf_draw_text(font_, listX + 14, y + 22, focus ? WHITE : TEXT, 0.76f, opts[i].label);
+            /* Keep label/value inside the row card; ellipsize long values. */
             const int chipW = 110;
             const int chipX = listX + listW - chipW - 10;
             const int chipY = y + 12;
+            const int labelMaxW = chipX - (listX + 14) - 8;
+            (void)labelMaxW;
+            vita2d_pgf_draw_text(font_, listX + 14, y + 22, focus ? WHITE : TEXT, 0.76f, opts[i].label);
             vita2d_draw_rectangle(chipX, chipY, chipW, 24, focus ? ACCENT : SURFACE);
-            vita2d_pgf_draw_text(font_, chipX + 8, chipY + 17, focus ? BG : ACCENT, 0.54f, opts[i].value.c_str());
-            vita2d_pgf_draw_text(font_, listX + 14, y + 42, DIM, 0.48f, opts[i].hint);
+            vita2d_pgf_draw_text(font_, chipX + 8, chipY + 17, focus ? BG : ACCENT, 0.54f,
+                                 ellipsize(opts[i].value, 14).c_str());
+            vita2d_pgf_draw_text(font_, listX + 14, y + 42, DIM, 0.48f,
+                                 ellipsize(std::string(opts[i].hint), 42).c_str());
             if (focus) vita2d_pgf_draw_text(font_, chipX - 32, chipY + 17, ACCENT, 0.52f, "<>");
         }
         y += rowH + rowGap;
     }
+    vita2d_disable_clipping();
+
+    /* Repaint Settings title strip so nothing from the list can sit on top of it. */
+    vita2d_draw_rectangle(0, HEADER_H + slide, SCREEN_W, 44, SURFACE2);
+    vita2d_draw_rectangle(0, HEADER_H + slide, SCREEN_W, 3, ACCENT);
+    vita2d_pgf_draw_text(font_, 20, HEADER_H + 30 + slide, ACCENT, 1.00f, "Settings");
+    vita2d_pgf_draw_text(font_, SCREEN_W - 300, HEADER_H + 28 + slide, DIM, 0.56f, "O / SELECT: Save & back");
 
     {
         const int panelH = listClipBottom - contentTop;
