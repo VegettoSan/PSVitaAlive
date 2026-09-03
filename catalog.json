@@ -1,5 +1,196 @@
 [
   {
+    "id": "ctr-high-octane",
+    "title_id": "CTR000004",
+    "name": "CTR: High Octane",
+    "description": "is a sourceport for PSVita of Crash Team Racing based on the ctr-native project.",
+    "long_description": "Crash Team Racing: High Octane is a sourceport for PSVita of Crash Team Racing based on the ctr-native project. It focuses on new features, enhancements and optimization.",
+    "author_ids": [
+      "rinnegatamante"
+    ],
+    "category_id": "ports",
+    "subcategory_ids": [
+      "arcade",
+      "racing"
+    ],
+    "version": "1.2",
+    "version_date": "2026-09-02",
+    "requirements": "- libshacccg.suprx\n- Game Data Files: PS1",
+    "size": 3460301,
+    "status": "Verified",
+    "links": [
+      {
+        "type": "Download",
+        "name": "VPK",
+        "url": "https://archive.org/download/crash-team-racing-high-optane/ctr%20v1.2.vpk",
+        "size": 3460301,
+        "recommended": true
+      },
+      {
+        "type": "Game Files",
+        "name": "Game Files",
+        "url": "https://archive.org/download/crash-team-racing-high-optane/Game%20Files.zip",
+        "size": 605657498,
+        "extract_path": "ux0:data/"
+      },
+      {
+        "type": "Repository",
+        "name": "GitHub",
+        "url": "https://github.com/Rinnegatamante/Crash-Team-Racing-High-Octane"
+      }
+    ],
+    "icon": "https://archive.org/download/crash-team-racing-high-optane/icon0.png",
+    "screenshots": [
+      "https://archive.org/download/crash-team-racing-high-optane/shot0.jpg",
+      "https://archive.org/download/crash-team-racing-high-optane/shot1.jpg",
+      "https://archive.org/download/crash-team-racing-high-optane/shot2.jpg",
+      "https://archive.org/download/crash-team-racing-high-optane/shot3.jpg"
+    ]
+  },
+  {
+    "id": "vitamediadeck",
+    "title_id": "VMDK00001",
+    "name": "VitaMediaDeck",
+    "description": "Private PS Vita media library and playback application",
+    "long_description": "VitaMediaDeck plays video and music already owned and stored by the user. Media can come from the Vita memory card or from an authenticated WebDAV, SFTP, or SMB server. Browsing, demuxing, hardware decoding, audio/video synchronization, and rendering all run on the console; no companion service is required.",
+    "author_ids": [
+      "spyro-98"
+    ],
+    "category_id": "media",
+    "subcategory_ids": [
+      "audio",
+      "music-player",
+      "video",
+      "video-player",
+      "streaming"
+    ],
+    "version": "01.01",
+    "version_date": "2026-09-02",
+    "requirements": "- No Data",
+    "size": 5033165,
+    "status": "Verified",
+    "links": [
+      {
+        "type": "Download",
+        "name": "VPK",
+        "url": "https://archive.org/download/vita-media-deck/VitaMediaDeck%20v1.2.0.vpk",
+        "size": 5033165,
+        "recommended": true
+      },
+      {
+        "type": "Repository",
+        "name": "GitHub",
+        "url": "https://github.com/spyro-98/VitaMediaDeck"
+      }
+    ],
+    "icon": "https://archive.org/download/vita-media-deck/icon0.png",
+    "screenshots": [
+      "https://archive.org/download/vita-media-deck/shot0.jpeg",
+      "https://archive.org/download/vita-media-deck/shot1.jpeg",
+      "https://archive.org/download/vita-media-deck/shot2.jpeg"
+    ]
+  },
+  {
+    "id": "lighthouse-vita",
+    "title_id": "BANJO0064",
+    "name": "Lighthouse Vita",
+    "description": "Port of Lighthouse for PSVita.",
+    "long_description": "Lighthouse Vita is a native port of Banjo Kazooie for PSVita based on Lighthouse, the PC port of the decompilation of Banjo Kazooie. It features several enhancements, new features, romhacks support, mods support, built-in randomizer, and much much more.",
+    "author_ids": [
+      "rinnegatamante"
+    ],
+    "category_id": "ports",
+    "subcategory_ids": [
+      "adventure",
+      "platformer",
+      "puzzle",
+      "other"
+    ],
+    "version": "v.1.0.1",
+    "version_date": "2026-09-01",
+    "requirements": "- libshacccg.suprx\n- Game Data Files: N64",
+    "size": 8493466,
+    "status": "Verified",
+    "links": [
+      {
+        "type": "Download",
+        "name": "VPK",
+        "url": "https://archive.org/download/psvitaalive-lighthouse-vita/Lighthouse%201.0.1.vpk",
+        "size": 8493466,
+        "recommended": true
+      },
+      {
+        "type": "Game Files",
+        "name": "Game Data Files ZIP Mediafire",
+        "url": "https://www.mediafire.com/file/9be1no8he289e2c/BanjoKazooieVita.zip/file",
+        "size": 257980105,
+        "extract_path": "ux0:data/"
+      },
+      {
+        "type": "Repository",
+        "name": "Repositorio",
+        "url": "https://github.com/Rinnegatamante/Lighthouse"
+      }
+    ],
+    "icon": "https://archive.org/download/psvitaalive-lighthouse-vita/icon0.png",
+    "screenshots": [
+      "https://archive.org/download/psvitaalive-lighthouse-vita/shot_01.png",
+      "https://archive.org/download/psvitaalive-lighthouse-vita/shot_02.png",
+      "https://archive.org/download/psvitaalive-lighthouse-vita/shot_03.png",
+      "https://archive.org/download/psvitaalive-lighthouse-vita/shot_04.png"
+    ],
+    "source_name": "VitaDB",
+    "source_id": "1468",
+    "source_url": "https://github.com/Rinnegatamante/Lighthouse",
+    "updated_at": "2026-08-16T21:38"
+  },
+  {
+    "id": "amnesia-the-dark-descent",
+    "title_id": "AMNE00001",
+    "name": "Amnesia: The Dark Descent",
+    "description": "Amnesia: The Dark Descent Port Ps Vita",
+    "long_description": "Amnesia: The Dark Descent Port Ps Vita",
+    "author_ids": [
+      "fridinator1"
+    ],
+    "category_id": "ports",
+    "subcategory_ids": [
+      "action",
+      "strategy"
+    ],
+    "version": "01.50",
+    "version_date": "2026-09-01",
+    "requirements": "You must provide a legally owned copy of Amnesia: The Dark Descent; only the Steam release has been tested.",
+    "size": 5976883,
+    "status": "Verified",
+    "links": [
+      {
+        "type": "Download",
+        "name": "VPK",
+        "url": "https://archive.org/download/amnesia-the-dark-descent_202608/Amnesia-Vita-01.50.vpk",
+        "size": 5976883,
+        "recommended": true
+      },
+      {
+        "type": "Game Files",
+        "name": "Game Files ZIP",
+        "url": "https://archive.org/download/amnesia-the-dark-descent_202608/Game%20Files.zip",
+        "size": 2576980378,
+        "extract_path": "ux0:data/"
+      },
+      {
+        "type": "Repository",
+        "name": "GitHub",
+        "url": "https://github.com/FridiNaTor1/HPL2-handyman"
+      }
+    ],
+    "icon": "https://archive.org/download/amnesia-the-dark-descent_202608/icon0.png",
+    "screenshots": [
+      "https://archive.org/download/amnesia-the-dark-descent_202608/shot0.jpg",
+      "https://archive.org/download/amnesia-the-dark-descent_202608/shot1.jpg"
+    ]
+  },
+  {
     "id": "battleship-vita",
     "title_id": "SSB64VITA",
     "name": "Battleship Vita",
@@ -141,54 +332,6 @@
     ]
   },
   {
-    "id": "ctr-high-octane",
-    "title_id": "CTR000004",
-    "name": "CTR: High Octane",
-    "description": "is a sourceport for PSVita of Crash Team Racing based on the ctr-native project.",
-    "long_description": "Crash Team Racing: High Octane is a sourceport for PSVita of Crash Team Racing based on the ctr-native project. It focuses on new features, enhancements and optimization.",
-    "author_ids": [
-      "rinnegatamante"
-    ],
-    "category_id": "ports",
-    "subcategory_ids": [
-      "arcade",
-      "racing"
-    ],
-    "version": "1.1",
-    "version_date": "2026-08-29",
-    "requirements": "- libshacccg.suprx\n- Game Data Files: PS1",
-    "size": 2306867,
-    "status": "Verified",
-    "links": [
-      {
-        "type": "Download",
-        "name": "VPK",
-        "url": "https://archive.org/download/crash-team-racing-high-optane/ctr%20v1.1.vpk",
-        "size": 2306867,
-        "recommended": true
-      },
-      {
-        "type": "Game Files",
-        "name": "Game Files",
-        "url": "https://archive.org/download/crash-team-racing-high-optane/Game%20Files.zip",
-        "size": 605657498,
-        "extract_path": "ux0:data/"
-      },
-      {
-        "type": "Repository",
-        "name": "GitHub",
-        "url": "https://github.com/Rinnegatamante/Crash-Team-Racing-High-Octane"
-      }
-    ],
-    "icon": "https://archive.org/download/crash-team-racing-high-optane/icon0.png",
-    "screenshots": [
-      "https://archive.org/download/crash-team-racing-high-optane/shot0.jpg",
-      "https://archive.org/download/crash-team-racing-high-optane/shot1.jpg",
-      "https://archive.org/download/crash-team-racing-high-optane/shot2.jpg",
-      "https://archive.org/download/crash-team-racing-high-optane/shot3.jpg"
-    ]
-  },
-  {
     "id": "vitadeck",
     "title_id": "VITADECK1",
     "name": "VitaDeck",
@@ -267,49 +410,6 @@
       "https://archive.org/download/vita-maps/shot0.jpeg",
       "https://archive.org/download/vita-maps/shot1.jpeg",
       "https://archive.org/download/vita-maps/shot2.jpeg"
-    ]
-  },
-  {
-    "id": "vitamediadeck",
-    "title_id": "VMDK00001",
-    "name": "VitaMediaDeck",
-    "description": "Private PS Vita media library and playback application",
-    "long_description": "VitaMediaDeck plays video and music already owned and stored by the user. Media can come from the Vita memory card or from an authenticated WebDAV, SFTP, or SMB server. Browsing, demuxing, hardware decoding, audio/video synchronization, and rendering all run on the console; no companion service is required.",
-    "author_ids": [
-      "spyro-98"
-    ],
-    "category_id": "media",
-    "subcategory_ids": [
-      "audio",
-      "music-player",
-      "video",
-      "video-player",
-      "streaming"
-    ],
-    "version": "01.01",
-    "version_date": "2026-08-29",
-    "requirements": "- No Data",
-    "size": 2411725,
-    "status": "Verified",
-    "links": [
-      {
-        "type": "Download",
-        "name": "VPK",
-        "url": "https://archive.org/download/vita-media-deck/VitaMediaDeck%20v1.0.1.vpk",
-        "size": 4508877,
-        "recommended": true
-      },
-      {
-        "type": "Repository",
-        "name": "GitHub",
-        "url": "https://github.com/spyro-98/VitaMediaDeck"
-      }
-    ],
-    "icon": "https://archive.org/download/vita-media-deck/icon0.png",
-    "screenshots": [
-      "https://archive.org/download/vita-media-deck/shot0.jpeg",
-      "https://archive.org/download/vita-media-deck/shot1.jpeg",
-      "https://archive.org/download/vita-media-deck/shot2.jpeg"
     ]
   },
   {
@@ -743,47 +843,6 @@
     "source_url": "https://github.com/M-Essa11/Bounce-Vita",
     "release_page": "https://github.com/M-Essa11/Bounce-Vita/releases",
     "updated_at": "2026-08-24T21:47:26.671379+00:00"
-  },
-  {
-    "id": "amnesia-the-dark-descent",
-    "title_id": "AMNE00001",
-    "name": "Amnesia: The Dark Descent",
-    "description": "Amnesia: The Dark Descent Port Ps Vita",
-    "long_description": "Amnesia: The Dark Descent Port Ps Vita",
-    "author_ids": [
-      "fridinator1"
-    ],
-    "category_id": "ports",
-    "subcategory_ids": [
-      "action",
-      "strategy"
-    ],
-    "version": "01.00",
-    "version_date": "2026-08-24",
-    "requirements": "You must provide a legally owned copy of Amnesia: The Dark Descent; only the Steam release has been tested.",
-    "size": 5767168,
-    "status": "Verified",
-    "links": [
-      {
-        "type": "Download",
-        "name": "VPK",
-        "url": "https://archive.org/download/amnesia-the-dark-descent_202608/Amnesia-Vita-01.00.vpk",
-        "size": 5767168,
-        "recommended": true
-      },
-      {
-        "type": "Game Files",
-        "name": "Game Files ZIP",
-        "url": "https://archive.org/download/amnesia-the-dark-descent_202608/Game%20Files.zip",
-        "size": 2576980378,
-        "extract_path": "ux0:data/"
-      }
-    ],
-    "icon": "https://archive.org/download/amnesia-the-dark-descent_202608/icon0.png",
-    "screenshots": [
-      "https://archive.org/download/amnesia-the-dark-descent_202608/shot0.jpg",
-      "https://archive.org/download/amnesia-the-dark-descent_202608/shot1.jpg"
-    ]
   },
   {
     "id": "duskligth",
@@ -1581,57 +1640,6 @@
     "source_url": "https://x.com/devnoname120",
     "release_page": "https://x.com/devnoname120",
     "updated_at": "2026-08-13T15:34"
-  },
-  {
-    "id": "lighthouse-vita",
-    "title_id": "BANJO0064",
-    "name": "Lighthouse Vita",
-    "description": "Port of Lighthouse for PSVita.",
-    "long_description": "Lighthouse Vita is a native port of Banjo Kazooie for PSVita based on Lighthouse, the PC port of the decompilation of Banjo Kazooie. It features several enhancements, new features, romhacks support, mods support, built-in randomizer, and much much more.",
-    "author_ids": [
-      "rinnegatamante"
-    ],
-    "category_id": "ports",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "v.1.0",
-    "version_date": "2026-08-16",
-    "requirements": "- libshacccg.suprx\n- Game Data Files: N64",
-    "size": 8477737,
-    "status": "Legacy",
-    "links": [
-      {
-        "type": "Download",
-        "name": "VPK",
-        "url": "https://archive.org/download/psvitaalive-lighthouse-vita/lighthouse-vita.vpk",
-        "recommended": true
-      },
-      {
-        "type": "Game Files",
-        "name": "Game Data Files ZIP Mediafire",
-        "url": "https://www.mediafire.com/file/9be1no8he289e2c/BanjoKazooieVita.zip/file",
-        "size": 257980105,
-        "extract_path": "ux0:data/",
-        "recommended": false
-      },
-      {
-        "type": "Repository",
-        "name": "Repositorio",
-        "url": "https://github.com/Rinnegatamante/Lighthouse"
-      }
-    ],
-    "icon": "https://archive.org/download/psvitaalive-lighthouse-vita/icon0.png",
-    "screenshots": [
-      "https://archive.org/download/psvitaalive-lighthouse-vita/shot_01.png",
-      "https://archive.org/download/psvitaalive-lighthouse-vita/shot_02.png",
-      "https://archive.org/download/psvitaalive-lighthouse-vita/shot_03.png",
-      "https://archive.org/download/psvitaalive-lighthouse-vita/shot_04.png"
-    ],
-    "source_name": "VitaDB",
-    "source_id": "1468",
-    "source_url": "https://github.com/Rinnegatamante/Lighthouse",
-    "updated_at": "2026-08-16T21:38"
   },
   {
     "id": "opennow-vita",
