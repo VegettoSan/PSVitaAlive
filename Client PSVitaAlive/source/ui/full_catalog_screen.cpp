@@ -2712,18 +2712,18 @@ void FullCatalogScreen::handleTouch() {
         const int listX = margin;
         const int listW = (colW * 58) / 100;
         struct Meta { bool sectionStart; const char* section; };
-        Meta meta[6] = {
-            {true, "INSTALL"}, {false, ""}, {true, "INTERFACE"}, {false, ""}, {true, "CATALOG"}, {true, "UPDATES"}
+        Meta meta[7] = {
+            {true, "INSTALL"}, {false, ""}, {false, ""}, {true, "INTERFACE"}, {false, ""}, {true, "CATALOG"}, {true, "UPDATES"}
         };
-        int rowY[6];
+        int rowY[7];
         int y = contentTop - static_cast<int>(settingsScrollY_);
-        for (int i = 0; i < 6; ++i) {
+        for (int i = 0; i < 7; ++i) {
             if (meta[i].sectionStart && meta[i].section[0]) y += 22;
             rowY[i] = y;
             y += 52 + 8;
         }
         const int rowH = 52;
-        const int measured = 6 * (52 + 8) + 4 * 22;
+        const int measured = 7 * (52 + 8) + 4 * 22;
         const int listViewH = SCREEN_H - contentTop - FOOTER_H - 8;
         const float maxScroll = static_cast<float>(std::max(0, measured - listViewH));
 
@@ -2753,7 +2753,7 @@ void FullCatalogScreen::handleTouch() {
             const int x = touchStartX_, yy = touchStartY_;
             touchDown_ = false;
             // Allow slight finger jitter — still treat as tap if not a long drag
-            for (int i = 0; i < 6; ++i) {
+            for (int i = 0; i < 7; ++i) {
                 if (hit(x, yy, listX, rowY[i], listW, rowH)) {
                     if (settingsFocus_ == i) cycleSettingsOption(i, +1);
                     else settingsFocus_ = i;
@@ -3244,19 +3244,22 @@ void FullCatalogScreen::cycleSettingsOption(int row, int delta) {
         settingsEdit_.pspTarget = (settingsEdit_.pspTarget == ::psvitaalive::PspTarget::Adrenaline)
             ? ::psvitaalive::PspTarget::LiveArea : ::psvitaalive::PspTarget::Adrenaline;
     } else if (row == 2) {
+        settingsEdit_.pspMediaFormat = (settingsEdit_.pspMediaFormat == ::psvitaalive::PspMediaFormat::Folder)
+            ? ::psvitaalive::PspMediaFormat::Iso : ::psvitaalive::PspMediaFormat::Folder;
+    } else if (row == 3) {
         (void)delta;
         openThemePicker(); // same palette window as first-run setup
-    } else if (row == 3) {
-        settingsEdit_.warnMissingPlugins = !settingsEdit_.warnMissingPlugins;
     } else if (row == 4) {
-        settingsEdit_.promptImageWarmup = !settingsEdit_.promptImageWarmup;
+        settingsEdit_.warnMissingPlugins = !settingsEdit_.warnMissingPlugins;
     } else if (row == 5) {
+        settingsEdit_.promptImageWarmup = !settingsEdit_.promptImageWarmup;
+    } else if (row == 6) {
         triggerSelfUpdateAction();
     }
 }
 
 void FullCatalogScreen::handleSettingsInput(uint32_t pressed, uint32_t nav) {
-    constexpr int kRows = 6;
+    constexpr int kRows = 7;
     if (nav & SCE_CTRL_UP) {
         settingsFocus_ = (settingsFocus_ + kRows - 1) % kRows;
     }
@@ -3334,7 +3337,7 @@ void FullCatalogScreen::drawSettings() {
         auto themeLabel = [&]() -> std::string {
         return std::string(colorThemeDisplayName(settingsEdit_.colorTheme));
     };
-    Opt opts[6] = {
+    Opt opts[7] = {
         {"INSTALL", "Install method", methodLabel(), "Auto: BGDL for PKG when available", true},
         {"", "PSP / PS1 target", pspLabel(), "LiveArea=PKG bubble; Adrenaline=pspemu (no bubble)", false},
         {"", "PSP media (Adrenaline)", mediaFormatLabel(), "Folder=EBOOT in GAME; ISO=pspemu/ISO", false},
@@ -3355,7 +3358,7 @@ void FullCatalogScreen::drawSettings() {
     const int rowGap = 8;
 
     int measured = 0;
-    for (int i = 0; i < 6; ++i) {
+    for (int i = 0; i < 7; ++i) {
         if (opts[i].sectionStart && opts[i].section[0]) measured += sectionH;
         measured += rowH + rowGap;
     }
@@ -3366,7 +3369,7 @@ void FullCatalogScreen::drawSettings() {
 
     {
         int fy = 0;
-        for (int i = 0; i <= settingsFocus_ && i < 6; ++i) {
+        for (int i = 0; i <= settingsFocus_ && i < 7; ++i) {
             if (opts[i].sectionStart && opts[i].section[0]) fy += sectionH;
             if (i < settingsFocus_) fy += rowH + rowGap;
         }
@@ -3381,7 +3384,7 @@ void FullCatalogScreen::drawSettings() {
 
     int rowY[5] = {};
     int y = contentTop - static_cast<int>(settingsScrollY_);
-    for (int i = 0; i < 6; ++i) {
+    for (int i = 0; i < 7; ++i) {
         if (opts[i].sectionStart && opts[i].section[0]) {
             if (y + 16 >= contentTop && y + 4 <= listClipBottom)
                 vita2d_pgf_draw_text(font_, listX + 6, y + 16, DIM, 0.56f, opts[i].section);
@@ -3429,24 +3432,29 @@ void FullCatalogScreen::drawSettings() {
         case 1:
             body1 = "LiveArea: PSP/PS1 PKG via system BGDL";
             body2 = "(bubble). Adrenaline: no LiveArea bubble;";
-            body3 = "ISO/CSO/PBP or PKG→pspemu (PKGj-style).";
+            body3 = "PKG unpacks to ux0:pspemu.";
             break;
         case 2:
+            body1 = "Adrenaline PSP layout only.";
+            body2 = "Folder = EBOOT.PBP in GAME (default).";
+            body3 = "ISO = convert to pspemu/ISO.";
+            break;
+        case 3:
             body1 = "UI accent palette. Neon is the";
             body2 = "brand default; Cyan / Rose are";
             body3 = "popular. Report stays red.";
             break;
-        case 3:
+        case 4:
             body1 = "Show a toast at startup when";
             body2 = "NoNpDrm / NoPspEmuDrm are";
             body3 = "missing from taiHEN config.";
             break;
-        case 4:
+        case 5:
             body1 = "Ask once whether to download";
             body2 = "all catalog images at startup.";
             body3 = "Off = load images on demand.";
             break;
-        case 5:
+        case 6:
             body1 = "Checks GitHub Releases for a";
             body2 = "newer PSVitaAlive.vpk and can";
             body3 = "install it in-place (VitaDB style).";
@@ -3468,7 +3476,7 @@ void FullCatalogScreen::drawSettings() {
             vita2d_pgf_draw_text(font_, sideX + 14, contentTop + 214, DIM, 0.46f,
                                  ellipsize(pluginsStatus_.configPathUsed, 28).c_str());
         }
-        if (settingsFocus_ == 5) {
+        if (settingsFocus_ == 6) {
             char ver[64];
             sceClibSnprintf(ver, sizeof(ver), "Local: v%s", PSVITAALIVE_VERSION);
             vita2d_pgf_draw_text(font_, sideX + 14, contentTop + 240, ACCENT, 0.52f, ver);
