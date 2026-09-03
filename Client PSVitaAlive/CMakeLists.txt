@@ -88,7 +88,7 @@ target_include_directories(${PROJECT_NAME} PRIVATE
 )
 
 target_compile_options(${PROJECT_NAME} PRIVATE
-  -fno-rtti
+  $<$<COMPILE_LANGUAGE:CXX>:-fno-rtti>
 )
 
 target_compile_definitions(${PROJECT_NAME} PRIVATE
