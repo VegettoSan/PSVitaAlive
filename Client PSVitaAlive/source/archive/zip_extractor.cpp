@@ -532,8 +532,24 @@ ZipResult ZipExtractor::extract(
             break;
         }
 
+        const unsigned method = (zs.valid & ZIP_STAT_COMP_METHOD) ? static_cast<unsigned>(zs.comp_method) : 0u;
+        const uint64_t archiveDiskSize = diskFileSize64(zipPath);
         bool fileOk = true;
         uint64_t writtenTotal = 0;
+        {
+            char diag[512];
+            sceClibSnprintf(
+                diag, sizeof(diag),
+                "[ZipDiag] entry_begin index=%llu name=%s method=%u method_name=%s comp=%llu uncomp=%llu archive_size=%llu",
+                (unsigned long long)i,
+                name,
+                method,
+                compressionMethodName(static_cast<zip_uint16_t>(method)),
+                (unsigned long long)zs.comp_size,
+                (unsigned long long)zs.size,
+                (unsigned long long)archiveDiskSize);
+            diagnostics::log(diag);
+        }
         while (true) {
             if (shouldCancel && shouldCancel()) {
                 setError("cancelled");
@@ -548,13 +564,16 @@ ZipResult ZipExtractor::extract(
                 char detail[360];
                 sceClibSnprintf(
                     detail, sizeof(detail),
-                    "zip_fread failed entry=%s method=%u (%s) uncomp=%llu written=%llu libzip=%s — archive may be corrupt, use STORE for huge files, or free RAM and retry",
+                    "[ZipDiag] entry_read_failed entry=%s method=%u (%s) comp=%llu uncomp=%llu written=%llu libzip_code=%d libzip=%s archive_size=%llu",
                     name,
                     method,
                     compressionMethodName(static_cast<zip_uint16_t>(method)),
+                    (unsigned long long)zs.comp_size,
                     (unsigned long long)zs.size,
                     (unsigned long long)writtenTotal,
-                    zipFileError(zf).c_str());
+                    zip_file_get_error(zf) ? zip_error_code_zip(zip_file_get_error(zf)) : -1,
+                    zipFileError(zf).c_str(),
+                    (unsigned long long)archiveDiskSize);
                 setError(detail);
                 outcome = ZipResult::IoError;
                 fileOk = false;
@@ -581,6 +600,18 @@ ZipResult ZipExtractor::extract(
 
         sceIoClose(fd);
         zip_fclose(zf);
+
+        if (fileOk) {
+            char diag[384];
+            sceClibSnprintf(
+                diag, sizeof(diag),
+                "[ZipDiag] entry_read_complete entry=%s method=%u expected=%llu written=%llu",
+                name,
+                method,
+                (unsigned long long)zs.size,
+                (unsigned long long)writtenTotal);
+            diagnostics::log(diag);
+        }
 
         if (!fileOk) {
             // Best-effort cleanup of partial output

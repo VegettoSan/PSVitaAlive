@@ -120,11 +120,24 @@ std::string relevantLogWindow(const std::string& text, const std::string& fileNa
         }
     }
 
+    const bool zipFailure =
+        context.find("zip") != std::string::npos ||
+        context.find("ZIP") != std::string::npos ||
+        context.find(".zip") != std::string::npos ||
+        context.find("ZipExtractor") != std::string::npos;
+
     size_t hit = std::string::npos;
-    if (!needle.empty())
+    if (zipFailure) {
+        hit = text.rfind("[ZipDiag]");
+        if (hit == std::string::npos)
+            hit = text.rfind("zip_fread failed");
+    } else if (!needle.empty()) {
         hit = text.rfind(needle);
+    }
     if (hit == std::string::npos) {
         static const char* kToks[] = {
+            "[ZipDiag] entry_read_failed", "[ZipDiag] entry_begin",
+            "[ZipDiag] entry_read_complete",
             "zip_open failed", "zip_open_from_source failed", "EOCD pre-check failed",
             "ZipExtractor", "zip_fread failed", "Zlib error",
             "download exceeded", "size limit hit", "HTTP ERROR", "curl error",
@@ -142,6 +155,7 @@ std::string relevantLogWindow(const std::string& text, const std::string& fileNa
         return text;
 
     static const char* kStarts[] = {
+        "[ZipDiag]",
         "LINK INSTALL",
         "[UI] Install All step",
         "[Installer] request job=",
@@ -190,8 +204,23 @@ std::string buildLogBlock(const ErrorReportRequest& req) {
     std::string session = readFileTail("ux0:data/psvitaalive/logs/session.log", kMaxLogTailBytes + 8000);
     std::string install = readFileTail("ux0:data/psvitaalive/logs/install.log", 5000);
 
+    const bool zipFailure =
+        req.context.find("zip") != std::string::npos ||
+        req.context.find("ZIP") != std::string::npos ||
+        req.context.find(".zip") != std::string::npos ||
+        req.context.find("ZipExtractor") != std::string::npos;
+
     session = relevantLogWindow(session, req.fileName, req.context);
     install = relevantLogWindow(install, req.fileName, req.context);
+
+    if (zipFailure) {
+        if (session.find("[ZipDiag]") == std::string::npos &&
+            session.find("zip_fread failed") == std::string::npos)
+            session.clear();
+        if (install.find("[ZipDiag]") == std::string::npos &&
+            install.find("zip_fread failed") == std::string::npos)
+            install.clear();
+    }
 
     std::string block;
     if (!session.empty()) {
