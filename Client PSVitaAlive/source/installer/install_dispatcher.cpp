@@ -136,6 +136,7 @@ InstallDispatchResult InstallDispatcher::installFile(
         // Adrenaline unpack ONLY for PSP/PS1 PKG content types.
         // Vita Games PKG must keep LiveArea / BGDL / promoter path regardless of pspTarget.
         if (pspTarget_ == PspTarget::Adrenaline) {
+            diagnostics::log(std::string("[InstallDispatcher] probing PKG type path=") + path);
             const int isPspPsx = psp_pkg_probe_is_psp_psx(path.c_str());
             diagnostics::log(std::string("[InstallDispatcher] PKG probe is_psp_psx=") +
                 std::to_string(isPspPsx) + " path=" + path);
@@ -152,7 +153,9 @@ InstallDispatchResult InstallDispatcher::installFile(
                 const int asIso = (pspMediaFormat_ == PspMediaFormat::Iso) ? 1 : 0;
                 diagnostics::log(std::string("[InstallDispatcher] Adrenaline media format=") +
                     AppSettings::toString(pspMediaFormat_));
+                diagnostics::log("[InstallDispatcher] calling psp_pkg_unpack_to_pspemu");
                 const int ur = psp_pkg_unpack_to_pspemu(path.c_str(), "ux0:", asIso, installed, sizeof(installed));
+                diagnostics::log(std::string("[InstallDispatcher] unpack returned ") + std::to_string(ur));
                 if (ur != 0) {
                     const char* err = pkg2zip_last_error();
                     setError(err && err[0] ? err : "PSP/PS1 PKG unpack to pspemu failed");

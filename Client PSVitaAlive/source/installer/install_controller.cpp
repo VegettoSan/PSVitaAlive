@@ -422,7 +422,7 @@ bool InstallController::requestInstall(
     diagnostics::log(std::string("[Installer] request job=") + jobId + " file=" + fileName);
 
     workerThread_ = sceKernelCreateThread("PSVitaAliveInstall", &InstallController::workerEntry,
-        0x10000100, 64 * 1024, 0, 0, nullptr);
+        0x10000100, 512 * 1024, 0, 0, nullptr); /* pkg2zip unpack needs large stack */
     if (workerThread_ < 0) {
         setState(InstallStatus::State::Failed, "Could not create worker thread");
         workerDone_.store(true);

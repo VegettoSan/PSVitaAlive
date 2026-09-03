@@ -75,6 +75,7 @@ static void find_psp_sfo(const aes128_key* key, const aes128_key* ps3_key, const
         if (pkg_size < enc_offset + name_offset + name_size || pkg_size < enc_offset + data_offset + data_size)
             sys_error("ERROR: pkg file is too short\n");
         const aes128_key* item_key = psp_type == 0x90 ? key : ps3_key;
+        if (name_size == 0 || name_size >= ZIP_MAX_FILENAME) continue;
         char name[ZIP_MAX_FILENAME];
         sys_read(pkg, enc_offset + name_offset, name, name_size);
         aes128_ctr_xor(item_key, iv, name_offset / 16, (uint8_t*)name, name_size);
@@ -163,6 +164,7 @@ static int do_unpack(const char* pkg_arg, int as_iso, char* out_path, unsigned o
         uint8_t psp_type = item[24];
         uint8_t flags = item[27];
 
+        if (name_size == 0 || name_size >= ZIP_MAX_FILENAME) continue;
         if (pkg_size < enc_offset + name_offset + name_size ||
             pkg_size < enc_offset + data_offset + data_size)
             sys_error("ERROR: pkg file is too short\n");
@@ -221,7 +223,7 @@ static int do_unpack(const char* pkg_arg, int as_iso, char* out_path, unsigned o
         uint64_t offset = data_offset;
         out_begin_file(path, 0);
         while (data_size != 0) {
-            uint8_t PKG_ALIGN(16) buffer[1 << 16];
+            uint8_t PKG_ALIGN(16) buffer[16 * 1024]; /* keep stack small for Vita worker thread */
             uint32_t size = (uint32_t)min64(data_size, sizeof(buffer));
             sys_output_progress(enc_offset + offset);
             sys_read(pkg, enc_offset + offset, buffer, size);
