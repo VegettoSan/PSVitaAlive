@@ -9,18 +9,22 @@
   ],
   "category_id": "ports",
   "subcategory_ids": [
+    "adventure",
+    "platformer",
+    "puzzle",
     "other"
   ],
-  "version": "v.1.0",
-  "version_date": "2026-08-16",
+  "version": "v.1.0.1",
+  "version_date": "2026-09-01",
   "requirements": "- libshacccg.suprx\n- Game Data Files: N64",
-  "size": 8477737,
-  "status": "Legacy",
+  "size": 8493466,
+  "status": "Verified",
   "links": [
     {
       "type": "Download",
       "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-lighthouse-vita/lighthouse-vita.vpk",
+      "url": "https://archive.org/download/psvitaalive-lighthouse-vita/Lighthouse%201.0.1.vpk",
+      "size": 8493466,
       "recommended": true
     },
     {
@@ -28,8 +32,7 @@
       "name": "Game Data Files ZIP Mediafire",
       "url": "https://www.mediafire.com/file/9be1no8he289e2c/BanjoKazooieVita.zip/file",
       "size": 257980105,
-      "extract_path": "ux0:data/",
-      "recommended": false
+      "extract_path": "ux0:data/"
     },
     {
       "type": "Repository",

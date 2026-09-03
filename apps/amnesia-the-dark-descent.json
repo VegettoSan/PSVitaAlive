@@ -12,17 +12,17 @@
     "action",
     "strategy"
   ],
-  "version": "01.00",
-  "version_date": "2026-08-24",
+  "version": "01.50",
+  "version_date": "2026-09-01",
   "requirements": "You must provide a legally owned copy of Amnesia: The Dark Descent; only the Steam release has been tested.",
-  "size": 5767168,
+  "size": 5976883,
   "status": "Verified",
   "links": [
     {
       "type": "Download",
       "name": "VPK",
-      "url": "https://archive.org/download/amnesia-the-dark-descent_202608/Amnesia-Vita-01.00.vpk",
-      "size": 5767168,
+      "url": "https://archive.org/download/amnesia-the-dark-descent_202608/Amnesia-Vita-01.50.vpk",
+      "size": 5976883,
       "recommended": true
     },
     {
@@ -31,6 +31,11 @@
       "url": "https://archive.org/download/amnesia-the-dark-descent_202608/Game%20Files.zip",
       "size": 2576980378,
       "extract_path": "ux0:data/"
+    },
+    {
+      "type": "Repository",
+      "name": "GitHub",
+      "url": "https://github.com/FridiNaTor1/HPL2-handyman"
     }
   ],
   "icon": "https://archive.org/download/amnesia-the-dark-descent_202608/icon0.png",

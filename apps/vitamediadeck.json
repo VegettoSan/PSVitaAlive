@@ -16,16 +16,16 @@
     "streaming"
   ],
   "version": "01.01",
-  "version_date": "2026-08-29",
+  "version_date": "2026-09-02",
   "requirements": "- No Data",
-  "size": 2411725,
+  "size": 5033165,
   "status": "Verified",
   "links": [
     {
       "type": "Download",
       "name": "VPK",
-      "url": "https://archive.org/download/vita-media-deck/VitaMediaDeck%20v1.0.1.vpk",
-      "size": 4508877,
+      "url": "https://archive.org/download/vita-media-deck/VitaMediaDeck%20v1.2.0.vpk",
+      "size": 5033165,
       "recommended": true
     },
     {
