@@ -17,6 +17,9 @@ extern "C" {
 int psp_pkg_unpack_to_pspemu(const char* pkg_path, const char* partition,
                              char* out_path, unsigned out_path_sz);
 
+/** Last error string from unpack (valid after a failed call). */
+const char* pkg2zip_last_error(void);
+
 #ifdef __cplusplus
 }
 #endif
