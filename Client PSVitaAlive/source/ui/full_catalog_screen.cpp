@@ -3382,7 +3382,7 @@ void FullCatalogScreen::drawSettings() {
         if (settingsScrollY_ > maxScroll) settingsScrollY_ = maxScroll;
     }
 
-    int rowY[5] = {};
+    int rowY[7] = {};
     int y = contentTop - static_cast<int>(settingsScrollY_);
     for (int i = 0; i < 7; ++i) {
         if (opts[i].sectionStart && opts[i].section[0]) {
