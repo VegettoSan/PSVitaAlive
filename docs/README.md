@@ -12,7 +12,9 @@ Supplementary documentation for architecture, pipelines and client behaviour.
 
 | Location | Topic |
 |----------|--------|
-| Root `README.md` | Project overview, public JSON API, multi-catalog, **recommended Vita setup** (iTLS-Enso, DNS), **download/install locks** |
+| Root `README.md` | Project overview, public JSON API, multi-catalog, **recommended Vita setup** (iTLS-Enso, DNS), **download/install locks**, commercial PKG routing |
+| `Client PSVitaAlive/source/installer/README.md` | BGDL, VPK, **PSP/PS1 Adrenaline unpack** (Folder/ISO), keep-awake, shell locks |
+| `docs/NETWORK_TLS.md` | libcurl / TLS notes for downloads |
 | `apps/`, `authors/`, `categories/` | Data contracts |
 | `scripts/` | Generation and validation |
 | `sources/` | External feeds |

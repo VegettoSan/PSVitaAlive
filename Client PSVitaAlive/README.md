@@ -14,7 +14,7 @@ Native catalog client for PlayStation Vita / PSTV (and Vita3K for testing).
 ## Features (high level)
 
 - Catalogs: **Homebrew**, **Vita Games**, **PSP**, **PS1** (all four can stay cached in RAM after first load)
-- Search, Settings (install method, PSP target, **color theme** palettes with live preview), touch + buttons
+- Search, Settings (install method, **PSP/PS1 target**, **PSP media** Folder/ISO, **color theme** palettes with live preview), touch + buttons
 - **News** from repo `news.txt`; optional Discord **Report** on real errors (and dedicated data-request webhook path)
 - Image cache with on-demand loading; **Data Files / Game Files** indicators on app cards
 - Downloads via libcurl (MediaFire CDN/size resolution, Archive.org, GitHub, …) with retry behaviour on slow links
@@ -114,15 +114,27 @@ See the root [README.md](../README.md) for the full link-type matrix.
 | **VPK** (Vita only) | HomebrewInstaller + Promoter | LiveArea bubble (`ux0:app/<TITLEID>`) — **unchanged** |
 | **ISO / CSO / PBP** | PspInstaller | `ux0:pspemu/...` (Adrenaline) |
 | Data **ZIP** | ZipExtractor | Catalog `extract_path` or user path |
-| **Vita PKG** | BGDL | LiveArea / system install |
+| **Vita PKG** | BGDL / VitaInstaller (promoter) | LiveArea / system install — **never** Adrenaline unpack |
 | **PSP / PS1 official PKG** + Settings **LiveArea** | BGDL + synthetic RIF (PKGj-style) | LiveArea bubble (NoPspEmuDrm recommended) |
-| **PSP / PS1 official PKG** + Settings **Adrenaline** | Direct download + **pkg2zip unpack** | `ux0:pspemu/ISO/*.iso` (PSP) or `ux0:pspemu/PSP/GAME/<ID>/` (PSX) — **no** LiveArea bubble |
+| **PSP / PS1 official PKG** + Settings **Adrenaline** | Direct download + **pkg2zip unpack** (`third_party/pkg2zip`) | See **PSP media** below — **no** LiveArea bubble |
 
 ### Settings → PSP / PS1 target
 
 - **LiveArea**: PSP/PS1 `.pkg` → system BGDL (bubble on LiveArea), same idea as PKGj when installing to LiveArea.
-- **Adrenaline**: PSP/PS1 `.pkg` → **must not** create a LiveArea bubble. Client skips BGDL; ISO/CSO/PBP install to `ux0:pspemu` as usual. PKG→pspemu unpack (full PKGj parity) is tracked as follow-up work.
+- **Adrenaline**: PSP/PS1 `.pkg` only → skip BGDL; download file and unpack into `ux0:pspemu` (no LiveArea bubble).
+- **Vita Game PKGs** always use the LiveArea/BGDL path, even if Adrenaline is selected. The client probes PKG `content_type` (`psp_pkg_probe_is_psp_psx`) so non-PSP/PSX packages are never sent to pkg2zip unpack.
 - **VPK is only for Vita** homebrew/games and always uses the promoter path.
+
+### Settings → PSP media (Adrenaline)
+
+Only applies when **PSP / PS1 target = Adrenaline** and the PKG content type is PSP/PSX.
+
+| Value | Default | Layout |
+|-------|---------|--------|
+| **Folder** | yes | PSP → `ux0:pspemu/PSP/GAME/<ID>/EBOOT.PBP` (+ KEYS/DOCUMENT when present). PS1 → `ux0:pspemu/PSP/GAME/<ID>/` |
+| **ISO** | | PSP → `ux0:pspemu/ISO/<title> [<ID>].iso` (EBOOT→ISO). PS1 still uses GAME folder |
+
+Persisted in `ux0:data/psvitaalive/config.json` as `psp_media_format` (`folder` | `iso`). Folder mode matches PKGj `install_psp_as_pbp`. Some PSP EBOOT.PBP titles need **npdrm_free** inside Adrenaline; ISO mode avoids that for many retail packages.
 
 ## Self-update
 

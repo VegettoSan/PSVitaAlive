@@ -87,6 +87,60 @@ EP0001-PCSB00040_00-ASPHALTINJECTION	KO5ifR1dQ+e7BsBMdQI7Amx/cICHo0+Ip5+Xq3OIp78
 | Update / patch | Game |
 | PSP / PS1 related | Psp |
 
+## PSP / PS1 PKG → Adrenaline (pkg2zip)
+
+When **Settings → PSP / PS1 target = Adrenaline** and the payload is an official **PSP or PS1** `.pkg`, the client does **not** use BGDL.
+
+### Flow
+
+1. `InstallController` detects PSP/PS1 via catalog `linkType` / `content_id` / filename (`looksLikePspPs1Pkg`) and skips BGDL.
+2. HTTP download completes to a local `.pkg`.
+3. `InstallDispatcher::installFile`:
+   - Calls `psp_pkg_probe_is_psp_psx(path)` (reads PKG meta `content_type` without full decrypt).
+   - **Return 1** (PSX=6, PSP=7/0xE/0xF/0x10) → `psp_pkg_unpack_to_pspemu(...)`.
+   - **Return 0** (Vita or other) → fall through to **VitaInstaller / promoter / LiveArea** path.
+4. Unpack implementation: `third_party/pkg2zip/` + `psp_pkg_unpack.c` / `pkg2zip_sys_vita.c` (sceIo, setjmp error path).
+
+### Media format (`psp_media_format`)
+
+| Setting | `as_iso` | PSP output | PS1 output |
+|---------|----------|------------|------------|
+| Folder (default) | 0 | `pspemu/PSP/GAME/<ID>/EBOOT.PBP` | `pspemu/PSP/GAME/<ID>/EBOOT.PBP` |
+| ISO | 1 | `pspemu/ISO/<title> [<ID>].iso` via `unpack_psp_eboot` | GAME folder (unchanged) |
+
+API:
+
+```c
+int psp_pkg_probe_is_psp_psx(const char* pkg_path);
+int psp_pkg_unpack_to_pspemu(const char* pkg_path, const char* partition,
+                             int as_iso, char* out_path, unsigned out_path_sz);
+const char* pkg2zip_last_error(void);
+```
+
+### Hard rules
+
+- **Never** run Adrenaline unpack for Vita Game PKGs (probe must be 0 → LiveArea path).
+- **Never** treat Vita **VPK** as PSP media (VPK → HomebrewInstaller only).
+- LiveArea target for PSP/PS1 keeps the existing BGDL + RIF behaviour.
+
+### Settings keys (`config.json`)
+
+| Key | Values | Default |
+|-----|--------|---------|
+| `psp_target` | `adrenaline` \| `livearea` | `adrenaline` |
+| `psp_media_format` | `folder` \| `iso` | `folder` |
+
+### Logs
+
+Useful lines in `install.log` / `session.log`:
+
+```text
+[Installer] PSP/PS1 PKG + Adrenaline target — skipping BGDL/LiveArea
+[InstallDispatcher] PKG probe is_psp_psx=0|1
+[InstallDispatcher] Vita (or non-PSP) PKG — ignoring Adrenaline target
+[InstallDispatcher] Adrenaline PKG unpack OK path=...
+```
+
 ## Homebrew VPK notes
 
 - Prefer the same shallow promote directory used by successful device tests (`ux0:data/psva_vpk`)

@@ -69,7 +69,24 @@ https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/catalog_psvita_gam
 
 ### Native client — commercial PKG install (verified)
 
-The **PS Vita client** installs commercial packages from **Vita Games**, **PSP**, and **PS1** catalogs through the console’s system download manager (**BGDL**), not by promoting a raw `.pkg` file:
+Commercial packages are routed by **platform** and **Settings → PSP / PS1 target**:
+
+| Catalog / content | Settings target | Path |
+|-------------------|-----------------|------|
+| **Vita Games** PKG | *(any)* | System **BGDL** + zRIF/RIF → LiveArea (unchanged) |
+| **PSP / PS1** PKG | **LiveArea** | System **BGDL** → LiveArea bubble (NoPspEmuDrm recommended) |
+| **PSP / PS1** PKG | **Adrenaline** | Direct download + **pkg2zip-style unpack** → `ux0:pspemu` (**no** LiveArea bubble) |
+
+**Adrenaline media format** (Settings → **PSP media**):
+
+| Value | Default | Result |
+|-------|---------|--------|
+| **Folder** | yes | PSP → `ux0:pspemu/PSP/GAME/<ID>/EBOOT.PBP`; PS1 → same GAME layout |
+| **ISO** | | PSP → `ux0:pspemu/ISO/<title> [<ID>].iso` (EBOOT→ISO conversion) |
+
+The client **probes PKG `content_type`** before unpacking: only PSP/PSX packages use the Adrenaline path. **Vita Game PKGs never go through pspemu unpack**, even if Adrenaline is selected.
+
+Vita BGDL flow (when used):
 
 1. Resolve zRIF / RIF for the **selected link** (per-region / per-DLC `content_id`)
 2. Enqueue URL + license with the system UI (notification title = **game name**)
@@ -124,9 +141,9 @@ Native client (Title ID **PSVAS1178**). Users only need to **open the client**: 
 **Highlights**
 
 - Catalogs: Homebrew, Vita Games, PSP, PS1
-- Search, Settings (including **color theme** palettes), touch + controls; News modal (from `news.txt`); optional Discord error **Report**
+- Search, Settings (**PSP/PS1 target**, **PSP media** Folder/ISO, **color theme** palettes), touch + controls; News modal (from `news.txt`); optional Discord error **Report**
 - Downloads (MediaFire CDN resolution, Archive.org, GitHub, …) with retries on slow networks
-- Install: **VPK** (including nested `.vpk` inside a release ZIP), **ZIP** extract (`extract_path` or quick paths; large / >2 GB archives), licensed **PKG** via system **BGDL**
+- Install: **VPK** (including nested `.vpk` inside a release ZIP), **ZIP** extract (`extract_path` or quick paths; large / >2 GB archives), licensed **Vita PKG** via system **BGDL**, **PSP/PS1 PKG** via BGDL (LiveArea) or **Adrenaline unpack** (Folder/ISO)
 - Free-space check before large downloads (~2.1× payload)
 - During download/install/extract: **screen forced on**, **PS button locked**, soft power-off menu locked (see [Downloads & installations](#downloads--installations-ps-vita-client))
 - Voluntary **Download cancelled** UI (no false “Installation failed” / no Report)
