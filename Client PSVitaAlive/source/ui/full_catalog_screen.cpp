@@ -2490,19 +2490,36 @@ void FullCatalogScreen::handleTouch() {
                 touchLastY_ = py;
                 if (std::abs(px - touchStartX_) > 14 || std::abs(py - touchStartY_) > 14)
                     touchMoved_ = true;
-                // Catalog-like drag: ~half a row of finger travel per list step
-                touchAccumY_ += static_cast<float>(-dy);
-                const float step = std::max(12.f, static_cast<float>(rowH) * 0.45f);
-                while (touchAccumY_ >= step) {
-                    if (themeSetupScrollRow_ < maxScroll) ++themeSetupScrollRow_;
-                    touchAccumY_ -= step;
+                // Same as main catalog / D-Pad: drag steps move focus (grid rows + Save)
+                if (touchMoved_) {
+                    constexpr float kScrollPx = 48.f;
+                    touchAccumY_ += static_cast<float>(dy);
+                    auto afterMove = [&]() {
+                        clampThemePickerScroll(themeSetupFocus_, themeSetupScrollRow_, themeCount, cols, visibleRows);
+                    };
+                    while (touchAccumY_ <= -kScrollPx) {
+                        touchAccumY_ += kScrollPx;
+                        // finger up → next row (like D-Pad DOWN)
+                        if (themeSetupFocus_ < themeCount) {
+                            const int n = themeSetupFocus_ + cols;
+                            if (n < themeCount) themeSetupFocus_ = n;
+                            else themeSetupFocus_ = themeCount; // Save button
+                        }
+                        afterMove();
+                    }
+                    while (touchAccumY_ >= kScrollPx) {
+                        touchAccumY_ -= kScrollPx;
+                        // finger down → previous row (like D-Pad UP)
+                        if (themeSetupFocus_ == themeCount) {
+                            themeSetupFocus_ = std::max(0, themeCount - 1);
+                        } else if (themeSetupFocus_ >= cols) {
+                            themeSetupFocus_ -= cols;
+                        }
+                        afterMove();
+                    }
                 }
-                while (touchAccumY_ <= -step) {
-                    if (themeSetupScrollRow_ > 0) --themeSetupScrollRow_;
-                    touchAccumY_ += step;
-                }
-                if (themeSetupScrollRow_ < 0) themeSetupScrollRow_ = 0;
-                if (themeSetupScrollRow_ > maxScroll) themeSetupScrollRow_ = maxScroll;
+                (void)maxScroll;
+                (void)rowH;
             }
         } else if (touchDown_) {
             const int px = touchStartX_, py = touchStartY_;
@@ -2742,11 +2759,20 @@ void FullCatalogScreen::handleTouch() {
                 touchLastY_ = yy;
                 if (std::abs(x - touchStartX_) > 20 || std::abs(yy - touchStartY_) > 20)
                     touchMoved_ = true;
-                // Vertical drag scrolls the settings list (finger up → content up)
+                // Same as main catalog: drag steps move focus like D-Pad up/down
                 if (touchMoved_) {
-                    settingsScrollY_ -= static_cast<float>(dy);
-                    if (settingsScrollY_ < 0.f) settingsScrollY_ = 0.f;
-                    if (settingsScrollY_ > maxScroll) settingsScrollY_ = maxScroll;
+                    constexpr float kScrollPx = 48.f;
+                    constexpr int kRows = 7;
+                    touchAccumY_ += static_cast<float>(dy);
+                    while (touchAccumY_ <= -kScrollPx) {
+                        touchAccumY_ += kScrollPx;
+                        settingsFocus_ = (settingsFocus_ + 1) % kRows;
+                    }
+                    while (touchAccumY_ >= kScrollPx) {
+                        touchAccumY_ -= kScrollPx;
+                        settingsFocus_ = (settingsFocus_ + kRows - 1) % kRows;
+                    }
+                    (void)maxScroll; // auto-scroll in drawSettings follows focus
                 }
             }
         } else if (touchDown_) {
