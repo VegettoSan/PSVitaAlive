@@ -144,7 +144,10 @@ InstallDispatchResult InstallDispatcher::installFile(
             char installed[512];
             installed[0] = 0;
             diagnostics::log(std::string("[InstallDispatcher] Adrenaline PKG unpack begin path=") + path);
-            const int ur = psp_pkg_unpack_to_pspemu(path.c_str(), "ux0:", installed, sizeof(installed));
+            const int asIso = (pspMediaFormat_ == PspMediaFormat::Iso) ? 1 : 0;
+            diagnostics::log(std::string("[InstallDispatcher] Adrenaline media format=") +
+                AppSettings::toString(pspMediaFormat_));
+            const int ur = psp_pkg_unpack_to_pspemu(path.c_str(), "ux0:", asIso, installed, sizeof(installed));
             if (ur != 0) {
                 const char* err = pkg2zip_last_error();
                 setError(err && err[0] ? err : "PSP/PS1 PKG unpack to pspemu failed");

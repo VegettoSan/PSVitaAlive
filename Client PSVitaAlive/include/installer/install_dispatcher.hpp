@@ -69,6 +69,8 @@ public:
     /** Where PSP/PS1 media should land: Adrenaline (pspemu only) vs LiveArea (VPK/PKG bubbles). */
     void setPspTarget(PspTarget t) { pspTarget_ = t; }
     PspTarget pspTarget() const { return pspTarget_; }
+    void setPspMediaFormat(PspMediaFormat f) { pspMediaFormat_ = f; }
+    PspMediaFormat pspMediaFormat() const { return pspMediaFormat_; }
 
 private:
     std::string lastError_;
@@ -76,6 +78,7 @@ private:
     std::string lastInstallPath_;
     bool lastLiveAreaOk_ = false;
     PspTarget pspTarget_ = PspTarget::Adrenaline;
+    PspMediaFormat pspMediaFormat_ = PspMediaFormat::Folder;
 
     void setError(const std::string& message);
     void clearResultMeta();

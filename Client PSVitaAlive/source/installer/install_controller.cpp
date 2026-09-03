@@ -176,7 +176,8 @@ bool InstallController::init() {
         diagnostics::log("[Startup] plugin detection disabled by config");
     }
     diagnostics::log(std::string("[Installer] settings method=") + AppSettings::toString(settings_.installMethod) +
-        " psp=" + AppSettings::toString(settings_.pspTarget));
+        " psp=" + AppSettings::toString(settings_.pspTarget) +
+        " media=" + AppSettings::toString(settings_.pspMediaFormat));
     if (settings_.startupPluginDetection) {
         if (!plugins_.nonpdrm) diagnostics::log("[Installer] NoNpDrm not detected - licensed Vita PKG installs may fail");
         if (!plugins_.nopspemudrmKern) diagnostics::log("[Installer] NoPspEmuDrm not detected - PSP LiveArea bubbles unavailable (Adrenaline ISO path still works)");
@@ -215,7 +216,8 @@ void InstallController::setSettings(const AppSettingsData& s) {
     settings_ = s;
     AppSettings::save(settings_);
     diagnostics::log(std::string("[Installer] settings saved method=") + AppSettings::toString(settings_.installMethod) +
-        " psp=" + AppSettings::toString(settings_.pspTarget));
+        " psp=" + AppSettings::toString(settings_.pspTarget) +
+        " media=" + AppSettings::toString(settings_.pspMediaFormat));
 }
 
 void InstallController::cancel() {
@@ -845,6 +847,7 @@ int InstallController::workerMain() {
         }
 
         dispatcher_.setPspTarget(settings_.pspTarget);
+        dispatcher_.setPspMediaFormat(settings_.pspMediaFormat);
         result = dispatcher_.installFile(
             job->finalPath,
             [&](const InstallDispatchProgress& progress) {

@@ -67,6 +67,18 @@ PspTarget AppSettings::parsePspTarget(const std::string& s) {
     return PspTarget::Adrenaline;
 }
 
+const char* AppSettings::toString(PspMediaFormat f) {
+    switch (f) {
+        case PspMediaFormat::Iso: return "iso";
+        default: return "folder";
+    }
+}
+
+PspMediaFormat AppSettings::parsePspMediaFormat(const std::string& s) {
+    if (s == "iso") return PspMediaFormat::Iso;
+    return PspMediaFormat::Folder;
+}
+
 const char* AppSettings::toString(ColorTheme t) {
     switch (t) {
         case ColorTheme::Cyan: return "cyan";
@@ -192,6 +204,7 @@ AppSettingsData AppSettings::load() {
     std::string v;
     if (containsKey(json, "install_method", v)) data.installMethod = parseInstallMethod(v);
     if (containsKey(json, "psp_target", v)) data.pspTarget = parsePspTarget(v);
+    if (containsKey(json, "psp_media_format", v)) data.pspMediaFormat = parsePspMediaFormat(v);
     if (containsKey(json, "color_theme", v)) data.colorTheme = parseColorTheme(v);
     bool b = true;
     if (containsBool(json, "warn_missing_plugins", b)) data.warnMissingPlugins = b;

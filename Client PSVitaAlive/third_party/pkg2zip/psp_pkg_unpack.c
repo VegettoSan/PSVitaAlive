@@ -90,7 +90,7 @@ static void find_psp_sfo(const aes128_key* key, const aes128_key* ps3_key, const
     }
 }
 
-static int do_unpack(const char* pkg_arg, char* out_path, unsigned out_path_sz)
+static int do_unpack(const char* pkg_arg, int as_iso, char* out_path, unsigned out_path_sz)
 {
     uint64_t pkg_size;
     sys_file pkg = sys_open(pkg_arg, &pkg_size);
@@ -195,11 +195,16 @@ static int do_unpack(const char* pkg_arg, char* out_path, unsigned out_path_sz)
             }
         } else { /* PSP */
             if (strcmp("USRDIR/CONTENT/EBOOT.PBP", name) == 0) {
-                /* Default Adrenaline path: ISO (cso=0) under pspemu/ISO */
-                snprintf(path, sizeof(path), "pspemu/ISO/%s [%.9s].iso", title, id);
-                if (!primary[0]) snprintf(primary, sizeof(primary), "%s", path);
-                unpack_psp_eboot(path, item_key, iv, pkg, enc_offset, data_offset, data_size, 0);
-                continue;
+                if (as_iso) {
+                    /* ISO under pspemu/ISO (pkg2zip eboot→iso) */
+                    snprintf(path, sizeof(path), "pspemu/ISO/%s [%.9s].iso", title, id);
+                    if (!primary[0]) snprintf(primary, sizeof(primary), "%s", path);
+                    unpack_psp_eboot(path, item_key, iv, pkg, enc_offset, data_offset, data_size, 0);
+                    continue;
+                }
+                /* Default: folder / EBOOT.PBP (PKGj install_psp_as_pbp) */
+                snprintf(path, sizeof(path), "pspemu/PSP/GAME/%.9s/EBOOT.PBP", id);
+                if (!primary[0]) snprintf(primary, sizeof(primary), "pspemu/PSP/GAME/%.9s", id);
             } else if (strcmp("USRDIR/CONTENT/PSP-KEY.EDAT", name) == 0) {
                 snprintf(path, sizeof(path), "pspemu/PSP/GAME/%.9s/PSP-KEY.EDAT", id);
                 unpack_psp_key(path, item_key, iv, pkg, enc_offset, data_offset, data_size);
@@ -240,7 +245,7 @@ static int do_unpack(const char* pkg_arg, char* out_path, unsigned out_path_sz)
     return 0;
 }
 
-int psp_pkg_unpack_to_pspemu(const char* pkg_path, const char* partition,
+int psp_pkg_unpack_to_pspemu(const char* pkg_path, const char* partition, int as_iso,
                              char* out_path, unsigned out_path_sz)
 {
     if (!pkg_path || !pkg_path[0]) return -1;
@@ -251,7 +256,7 @@ int psp_pkg_unpack_to_pspemu(const char* pkg_path, const char* partition,
         sys_output_done();
         return -1;
     }
-    do_unpack(pkg_path, out_path, out_path_sz);
+    do_unpack(pkg_path, as_iso ? 1 : 0, out_path, out_path_sz);
     pkg2zip_setjmp_end();
     sys_output_done();
     return 0;

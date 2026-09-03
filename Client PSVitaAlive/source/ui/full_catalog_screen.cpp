@@ -3307,6 +3307,9 @@ void FullCatalogScreen::drawSettings() {
     auto pspLabel = [&]() -> std::string {
         return settingsEdit_.pspTarget == ::psvitaalive::PspTarget::Adrenaline ? "Adrenaline" : "LiveArea";
     };
+    auto mediaFormatLabel = [&]() -> std::string {
+        return settingsEdit_.pspMediaFormat == ::psvitaalive::PspMediaFormat::Iso ? "ISO" : "Folder";
+    };
     auto updateLabel = [&]() -> std::string {
         if (selfUpdateBusy_.load()) return "Working...";
         if (selfUpdateChecked_ && selfUpdateInfo_.state == ::psvitaalive::UpdateChecker::State::UpdateAvailable) {
@@ -3334,6 +3337,7 @@ void FullCatalogScreen::drawSettings() {
     Opt opts[6] = {
         {"INSTALL", "Install method", methodLabel(), "Auto: BGDL for PKG when available", true},
         {"", "PSP / PS1 target", pspLabel(), "LiveArea=PKG bubble; Adrenaline=pspemu (no bubble)", false},
+        {"", "PSP media (Adrenaline)", mediaFormatLabel(), "Folder=EBOOT in GAME; ISO=pspemu/ISO", false},
         {"INTERFACE", "Color theme", themeLabel() + "  >", "X / tap: open color palette picker", true},
         {"", "Warn missing plugins", settingsEdit_.warnMissingPlugins ? "Yes" : "No", "Startup toast if NoNpDrm is missing", false},
         {"CATALOG", "Prompt image download", settingsEdit_.promptImageWarmup ? "Yes" : "No", "If you choose No once, it will not ask again", true},

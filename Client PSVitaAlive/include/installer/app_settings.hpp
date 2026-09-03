@@ -15,6 +15,12 @@ enum class PspTarget {
     LiveArea
 };
 
+/** Adrenaline PSP PKG layout (PKGj-style). Folder = EBOOT.PBP under GAME; Iso = converted ISO. */
+enum class PspMediaFormat {
+    Folder = 0,  // default — pspemu/PSP/GAME/<ID>/EBOOT.PBP
+    Iso          // pspemu/ISO/*.iso
+};
+
 /** UI accent / surface palette. Each value must stay visually distinct. */
 enum class ColorTheme {
     NeonLime = 0,
@@ -75,6 +81,7 @@ enum class ColorTheme {
 struct AppSettingsData {
     InstallMethod installMethod = InstallMethod::Auto;
     PspTarget pspTarget = PspTarget::Adrenaline;
+    PspMediaFormat pspMediaFormat = PspMediaFormat::Folder;
     ColorTheme colorTheme = ColorTheme::NeonLime;
     bool warnMissingPlugins = true;
     bool promptImageWarmup = false;
@@ -90,10 +97,12 @@ public:
 
     static const char* toString(InstallMethod m);
     static const char* toString(PspTarget t);
+    static const char* toString(PspMediaFormat f);
     static const char* toString(ColorTheme t);
 
     static InstallMethod parseInstallMethod(const std::string& s);
     static PspTarget parsePspTarget(const std::string& s);
+    static PspMediaFormat parsePspMediaFormat(const std::string& s);
     static ColorTheme parseColorTheme(const std::string& s);
 };
 
