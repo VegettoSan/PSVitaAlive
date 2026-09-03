@@ -3333,7 +3333,7 @@ void FullCatalogScreen::drawSettings() {
     };
     Opt opts[6] = {
         {"INSTALL", "Install method", methodLabel(), "Auto: BGDL for PKG when available", true},
-        {"", "PSP / PS1 target", pspLabel(), "Adrenaline=pspemu only; LiveArea=VPK/PKG bubbles", false},
+        {"", "PSP / PS1 target", pspLabel(), "LiveArea=PKG bubble; Adrenaline=pspemu (no bubble)", false},
         {"INTERFACE", "Color theme", themeLabel() + "  >", "X / tap: open color palette picker", true},
         {"", "Warn missing plugins", settingsEdit_.warnMissingPlugins ? "Yes" : "No", "Startup toast if NoNpDrm is missing", false},
         {"CATALOG", "Prompt image download", settingsEdit_.promptImageWarmup ? "Yes" : "No", "If you choose No once, it will not ask again", true},
@@ -3423,9 +3423,9 @@ void FullCatalogScreen::drawSettings() {
             body3 = "Shell supports it, else Direct.";
             break;
         case 1:
-            body1 = "Adrenaline: ISO/CSO/PBP (and VPK that";
-            body2 = "contains them) -> ux0:pspemu, no bubble.";
-            body3 = "LiveArea: VPK promote / PKG BGDL bubbles.";
+            body1 = "LiveArea: PSP/PS1 PKG via system BGDL";
+            body2 = "(bubble). Adrenaline: no LiveArea bubble;";
+            body3 = "ISO/CSO/PBP or PKG→pspemu (PKGj-style).";
             break;
         case 2:
             body1 = "UI accent palette. Neon is the";

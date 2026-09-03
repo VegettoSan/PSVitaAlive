@@ -19,6 +19,35 @@
 #include <cstring>
 #include <cstdlib>
 
+
+namespace {
+// Official PSP/PS1 PKG detection (PKGj-style): not Vita VPK.
+bool looksLikePspPs1Pkg(const std::string& linkType, const std::string& contentId, const std::string& fileName) {
+    auto lower = [](std::string s) {
+        for (char& c : s) c = static_cast<char>(std::tolower(static_cast<unsigned char>(c)));
+        return s;
+    };
+    const std::string lt = lower(linkType);
+    if (lt.find("psp") != std::string::npos || lt.find("ps1") != std::string::npos ||
+        lt.find("psx") != std::string::npos) {
+        return true;
+    }
+    const std::string cid = contentId; // keep case for ID tokens
+    const char* tags[] = {
+        "-NPU", "-NPE", "-NPJ", "-NPH", "-NPG",
+        "-ULES", "-ULUS", "-ULJS", "-UCUS", "-UCES", "-UCJS",
+        "-NPEZ", "-NPUZ", "-NPJH", "-NPHG", "-NPJG",
+        "-PCSS", "-PCSC", "-PCSF", "-PCSD", "-PCSE", // PS1 Classics title ids often in content path
+    };
+    for (const char* tag : tags) {
+        if (cid.find(tag) != std::string::npos) return true;
+    }
+    const std::string fn = lower(fileName);
+    if (fn.find("psp") != std::string::npos || fn.find("ps1") != std::string::npos) return true;
+    return false;
+}
+} // namespace
+
 namespace psvitaalive {
 namespace {
 /** Parse catalog size strings ("6.0 GB", "512MB", "1234567") to bytes. */
@@ -313,11 +342,18 @@ bool InstallController::requestInstall(
     activeContentId_ = contentId;
 
     const bool pkgInstall = BgdlClient::looksLikePkgUrl(url, fileName);
+    const bool pspPs1Pkg = pkgInstall && looksLikePspPs1Pkg(linkType, contentId, fileName);
+    // PKGj-style: LiveArea → system BGDL (bubble). Adrenaline → direct download + pspemu install (no LiveArea).
     const bool wantBgdl =
         pkgInstall &&
+        !(pspPs1Pkg && settings_.pspTarget == PspTarget::Adrenaline) &&
         (settings_.installMethod == InstallMethod::Bgdl ||
          settings_.installMethod == InstallMethod::Auto ||
          settings_.installMethod == InstallMethod::Direct);
+
+    if (pspPs1Pkg && settings_.pspTarget == PspTarget::Adrenaline) {
+        diagnostics::log("[Installer] PSP/PS1 PKG + Adrenaline target — skipping BGDL/LiveArea; direct download for pspemu path");
+    }
 
     if (wantBgdl && pkgInstall) {
         // Show the preparation state now; the next status poll performs the BGDL
@@ -344,10 +380,6 @@ bool InstallController::requestInstall(
         activeZipDestination_.clear();
         activeFileName_ = niceTitle;
         diagnostics::log(std::string("[Installer] PKG BGDL deferred one UI cycle title=") + niceTitle);
-        if (settings_.pspTarget == PspTarget::Adrenaline) {
-            diagnostics::log("[Installer] NOTE: PSP target is Adrenaline but file is official PKG — "
-                "system BGDL always creates a LiveArea entry. Use ISO/CSO/PBP (or a VPK that contains them) for Adrenaline-only.");
-        }
         return true;
     } else if (settings_.installMethod == InstallMethod::Bgdl) {
         diagnostics::log("[Installer] BGDL selected but file is not PKG - using direct path");

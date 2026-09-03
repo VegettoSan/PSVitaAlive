@@ -111,17 +111,18 @@ See the root [README.md](../README.md) for the full link-type matrix.
 
 | Payload | Handler | Destination |
 |---------|---------|-------------|
-| **VPK** (default / LiveArea target) | HomebrewInstaller + Promoter | LiveArea bubble (`ux0:app/<TITLEID>`) |
-| **VPK** with ISO/CSO/PBP inside + **Adrenaline** target | Extract → PspInstaller | `ux0:pspemu/ISO` or `ux0:pspemu/PSP/GAME` — **no** LiveArea bubble |
+| **VPK** (Vita only) | HomebrewInstaller + Promoter | LiveArea bubble (`ux0:app/<TITLEID>`) — **unchanged** |
 | **ISO / CSO / PBP** | PspInstaller | `ux0:pspemu/...` (Adrenaline) |
 | Data **ZIP** | ZipExtractor | Catalog `extract_path` or user path |
-| **Vita PKG** | BGDL (system queue) | LiveArea / system install |
-| **PSP / PS1 official PKG** | BGDL | Always a **LiveArea** system entry (not Adrenaline-only). Prefer ISO/CSO/PBP or a VPK that embeds them when Settings → PSP target is **Adrenaline**. |
+| **Vita PKG** | BGDL | LiveArea / system install |
+| **PSP / PS1 official PKG** + Settings **LiveArea** | BGDL + synthetic RIF (PKGj-style) | LiveArea bubble (NoPspEmuDrm recommended) |
+| **PSP / PS1 official PKG** + Settings **Adrenaline** | Direct download; **no BGDL / no LiveArea bubble** | Intended: unpack to `ux0:pspemu` like PKGj. Full PKG→PBP/ISO unpack is the next implementation step; until then install reports a clear error instead of creating a LiveArea entry. |
 
 ### Settings → PSP / PS1 target
 
-- **Adrenaline** (default): media goes to `ux0:pspemu` only. VPK packages that embed ISO/CSO/PBP are installed that way and **do not** create a LiveArea bubble. Official `.pkg` links still use BGDL (system limitation).
-- **LiveArea**: VPK promote and PKG BGDL as before (bubbles; NoPspEmuDrm recommended for PSP bubbles).
+- **LiveArea**: PSP/PS1 `.pkg` → system BGDL (bubble on LiveArea), same idea as PKGj when installing to LiveArea.
+- **Adrenaline**: PSP/PS1 `.pkg` → **must not** create a LiveArea bubble. Client skips BGDL; ISO/CSO/PBP install to `ux0:pspemu` as usual. PKG→pspemu unpack (full PKGj parity) is tracked as follow-up work.
+- **VPK is only for Vita** homebrew/games and always uses the promoter path.
 
 ## Self-update
 

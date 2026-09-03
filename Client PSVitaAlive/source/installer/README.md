@@ -163,11 +163,11 @@ Must not:
 
 ## PSP / PS1 target (`AppSettings::pspTarget`)
 
-`InstallController` passes `settings_.pspTarget` into `InstallDispatcher::setPspTarget` before every `installFile`.
+`InstallController` applies `settings_.pspTarget` on each install:
 
-| Target | Behaviour |
-|--------|-----------|
-| `Adrenaline` | ISO/CSO/PBP → `ux0:pspemu`. VPK containing those files → extract + pspemu, **no** `PromotePkg`. |
-| `LiveArea` | VPK → normal promote to LiveArea. PKG → BGDL. |
+| Target | Vita VPK | PSP/PS1 PKG | ISO/CSO/PBP |
+|--------|----------|-------------|-------------|
+| **LiveArea** | Promote (unchanged) | BGDL → LiveArea bubble | `ux0:pspemu` |
+| **Adrenaline** | Promote (unchanged — VPK is Vita-only) | **No BGDL** (no LiveArea bubble). PKG→pspemu unpack = follow-up (PKGj-style) | `ux0:pspemu` |
 
-Official commercial PSP/PS1 **PKG** entries always install via BGDL (LiveArea). Adrenaline-only play needs ISO/CSO/PBP (or a VPK that wraps them).
+Do **not** route Vita VPK through Adrenaline-only logic.
