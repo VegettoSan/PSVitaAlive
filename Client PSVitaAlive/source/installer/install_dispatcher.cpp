@@ -133,40 +133,51 @@ InstallDispatchResult InstallDispatcher::installFile(
     }
 
     if (detected.format == FileFormat::Pkg || ext == "pkg") {
-        // Adrenaline: PKGj-style unpack to ux0:pspemu (ISO / EBOOT) — no LiveArea bubble.
+        // Adrenaline unpack ONLY for PSP/PS1 PKG content types.
+        // Vita Games PKG must keep LiveArea / BGDL / promoter path regardless of pspTarget.
         if (pspTarget_ == PspTarget::Adrenaline) {
-            if (onProgress) {
-                InstallDispatchProgress p;
-                p.stage = InstallDispatchProgress::Installing;
-                p.message = "Unpacking PSP/PS1 PKG to Adrenaline (pspemu)...";
-                onProgress(p);
+            const int isPspPsx = psp_pkg_probe_is_psp_psx(path.c_str());
+            diagnostics::log(std::string("[InstallDispatcher] PKG probe is_psp_psx=") +
+                std::to_string(isPspPsx) + " path=" + path);
+            if (isPspPsx == 1) {
+                if (onProgress) {
+                    InstallDispatchProgress p;
+                    p.stage = InstallDispatchProgress::Installing;
+                    p.message = "Unpacking PSP/PS1 PKG to Adrenaline (pspemu)...";
+                    onProgress(p);
+                }
+                char installed[512];
+                installed[0] = 0;
+                diagnostics::log(std::string("[InstallDispatcher] Adrenaline PKG unpack begin path=") + path);
+                const int asIso = (pspMediaFormat_ == PspMediaFormat::Iso) ? 1 : 0;
+                diagnostics::log(std::string("[InstallDispatcher] Adrenaline media format=") +
+                    AppSettings::toString(pspMediaFormat_));
+                const int ur = psp_pkg_unpack_to_pspemu(path.c_str(), "ux0:", asIso, installed, sizeof(installed));
+                if (ur != 0) {
+                    const char* err = pkg2zip_last_error();
+                    setError(err && err[0] ? err : "PSP/PS1 PKG unpack to pspemu failed");
+                    diagnostics::log(std::string("[InstallDispatcher] Adrenaline PKG unpack failed: ") + lastError_);
+                    return InstallDispatchResult::InstallFailed;
+                }
+                lastLiveAreaOk_ = false;
+                lastTitleId_.clear();
+                lastInstallPath_ = installed[0] ? installed : "ux0:pspemu";
+                if (onProgress) {
+                    InstallDispatchProgress p;
+                    p.stage = InstallDispatchProgress::Completed;
+                    p.current = 1;
+                    p.total = 1;
+                    p.message = "Installed to Adrenaline (pspemu)";
+                    onProgress(p);
+                }
+                diagnostics::log(std::string("[InstallDispatcher] Adrenaline PKG unpack OK path=") + lastInstallPath_);
+                return InstallDispatchResult::Ok;
             }
-            char installed[512];
-            installed[0] = 0;
-            diagnostics::log(std::string("[InstallDispatcher] Adrenaline PKG unpack begin path=") + path);
-            const int asIso = (pspMediaFormat_ == PspMediaFormat::Iso) ? 1 : 0;
-            diagnostics::log(std::string("[InstallDispatcher] Adrenaline media format=") +
-                AppSettings::toString(pspMediaFormat_));
-            const int ur = psp_pkg_unpack_to_pspemu(path.c_str(), "ux0:", asIso, installed, sizeof(installed));
-            if (ur != 0) {
-                const char* err = pkg2zip_last_error();
-                setError(err && err[0] ? err : "PSP/PS1 PKG unpack to pspemu failed");
-                diagnostics::log(std::string("[InstallDispatcher] Adrenaline PKG unpack failed: ") + lastError_);
-                return InstallDispatchResult::InstallFailed;
+            if (isPspPsx == 0) {
+                diagnostics::log("[InstallDispatcher] Vita (or non-PSP) PKG — ignoring Adrenaline target, using LiveArea/promoter");
+            } else {
+                diagnostics::log("[InstallDispatcher] PKG probe failed — falling back to LiveArea/promoter path");
             }
-            lastLiveAreaOk_ = false;
-            lastTitleId_.clear();
-            lastInstallPath_ = installed[0] ? installed : "ux0:pspemu";
-            if (onProgress) {
-                InstallDispatchProgress p;
-                p.stage = InstallDispatchProgress::Completed;
-                p.current = 1;
-                p.total = 1;
-                p.message = "Installed to Adrenaline (pspemu)";
-                onProgress(p);
-            }
-            diagnostics::log(std::string("[InstallDispatcher] Adrenaline PKG unpack OK path=") + lastInstallPath_);
-            return InstallDispatchResult::Ok;
         }
         VitaInstaller installer;
         auto progressBridge = [&](const VitaInstallProgress& ip) {

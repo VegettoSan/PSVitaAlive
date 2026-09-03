@@ -5,6 +5,12 @@ extern "C" {
 #endif
 
 /**
+ * Probe PKG content type without unpacking.
+ * @return 1 if PSP/PSX (Adrenaline path), 0 if Vita or other, -1 on I/O/parse error
+ */
+int psp_pkg_probe_is_psp_psx(const char* pkg_path);
+
+/**
  * Unpack a PSP or PSX retail PKG into Adrenaline layout under partition root.
  *
  * @param pkg_path   Full path to .pkg on device

@@ -245,6 +245,39 @@ static int do_unpack(const char* pkg_arg, int as_iso, char* out_path, unsigned o
     return 0;
 }
 
+
+
+int psp_pkg_probe_is_psp_psx(const char* pkg_path)
+{
+    if (!pkg_path || !pkg_path[0]) return -1;
+    /* Full paths (ux0:...) — no prefix rewrite needed for probe. */
+    uint64_t pkg_size = 0;
+    sys_file pkg = sys_open(pkg_path, &pkg_size);
+    if (!pkg) return -1;
+    uint8_t pkg_header[PKG_HEADER_SIZE + PKG_HEADER_EXT_SIZE];
+    sys_read(pkg, 0, pkg_header, sizeof(pkg_header));
+    if (get32be(pkg_header) != 0x7f504b47) {
+        sys_close(pkg);
+        return -1;
+    }
+    uint64_t meta_offset = get32be(pkg_header + 8);
+    uint32_t meta_count = get32be(pkg_header + 12);
+    uint32_t content_type = 0;
+    for (uint32_t i = 0; i < meta_count; i++) {
+        uint8_t block[16];
+        sys_read(pkg, meta_offset, block, sizeof(block));
+        uint32_t type = get32be(block + 0);
+        uint32_t size = get32be(block + 4);
+        if (type == 2) content_type = get32be(block + 8);
+        meta_offset += 2 * sizeof(uint32_t) + size;
+    }
+    sys_close(pkg);
+    if (content_type == 6) return 1; /* PSX */
+    if (content_type == 7 || content_type == 0xe || content_type == 0xf || content_type == 0x10)
+        return 1; /* PSP */
+    return 0; /* Vita / other — use LiveArea/BGDL path */
+}
+
 int psp_pkg_unpack_to_pspemu(const char* pkg_path, const char* partition, int as_iso,
                              char* out_path, unsigned out_path_sz)
 {
