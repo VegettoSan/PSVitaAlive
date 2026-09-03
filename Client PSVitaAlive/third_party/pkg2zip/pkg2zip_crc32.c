@@ -282,7 +282,7 @@ static void crc32_gfsq(const uint32_t* m, uint32_t* r)
     }
 }
 
-uint32_t crc32_combine(uint32_t a, uint32_t b, uint32_t blen)
+uint32_t pkg2zip_crc32_combine(uint32_t a, uint32_t b, uint32_t blen)
 {
     uint32_t m1[32];
     uint32_t m2[32];

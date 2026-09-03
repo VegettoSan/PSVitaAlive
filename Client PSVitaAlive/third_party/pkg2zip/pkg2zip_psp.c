@@ -529,7 +529,7 @@ void unpack_psp_eboot(const char* path, const aes128_key* pkg_key, const uint8_t
         uint32_t data_crc32 = out_zip_get_crc32();
         uint32_t data_len = (uint32_t)(cso_offset - initial_size);
 
-        uint32_t crc32 = crc32_combine(header_crc32, data_crc32, data_len);
+        uint32_t crc32 = pkg2zip_crc32_combine(header_crc32, data_crc32, data_len);
         out_zip_set_crc32(crc32);
 
         sys_realloc(cso_block, 0);
