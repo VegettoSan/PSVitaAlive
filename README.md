@@ -321,3 +321,11 @@ Full text: [CATALOG_LICENSE.md](CATALOG_LICENSE.md).
 ### Upstream catalogs
 
 Public databases and community work (including projects associated with VitaDB, VitaHomebrewDB, and many individual authors) have helped with discovery and enrichment over time. Credit for that work stays with those projects and authors. This store’s goal is to facilitate finding and installing content, not to replace or claim the creators’ work.
+
+
+## Client networking notes (v01.18+)
+
+- Downloads use libcurl; Vita OpenSSL is **1.0.2**-class. Peer verify is off by design on device.
+- **Internet Archive**: automatic **edge failover** via item metadata when TLS fails on `dn*` / `.ca.archive.org` nodes (see client logs and `docs/NETWORK_TLS.md`).
+- **PSP / PS1 target** in Settings: **Adrenaline** installs ISO/CSO/PBP (and VPKs that contain them) only under `ux0:pspemu` without a LiveArea bubble; **LiveArea** keeps VPK/PKG bubble installs. Official `.pkg` catalog links always use the system BGDL path (LiveArea).
+

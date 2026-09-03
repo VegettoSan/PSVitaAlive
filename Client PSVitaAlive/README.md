@@ -67,6 +67,36 @@ Toasts fire for START, SELECT (Settings), L/R catalog switch, and other face/D-P
 
 See the root [README — Recommended setup](../README.md#recommended-setup-real-ps-vita) for **iTLS-Enso (full)**, DNS `8.8.8.8` / `8.8.4.4`, plugins, and storage notes.
 
+
+## Network / TLS (libcurl)
+
+Default stack: **VitaSDK libcurl + OpenSSL 1.0.2** (EOL). Certificate verification is disabled on device (no usable system CA store).
+
+### Archive.org resilience
+
+Many storage edges (`dn*.ca.archive.org`) fail TLS handshakes on this stack. On `CURLE_SSL_CONNECT_ERROR` for `archive.org/download/...` URLs the client:
+
+1. Fetches `https://archive.org/metadata/<identifier>`
+2. Retries on alternate hosts from metadata (`server` / `d1` / `d2`), preferring non-`dn` / non-`.ca` nodes (`ia*.us.archive.org`, etc.)
+
+Logs: `archive failover built N alternate URL(s)` and `archive failover switch -> https://...`.
+
+SSL defaults (`VERIFYPEER/HOST=0`, clear `CAINFO`/`CAPATH`) are re-applied every attempt.
+
+### Optional mbedTLS build
+
+```bash
+cmake .. -DPSVITAALIVE_USE_MBEDTLS_CURL=ON   # requires vdpm mbedtls + curl-mbedtls
+```
+
+Default remains OpenSSL. See [docs/NETWORK_TLS.md](../docs/NETWORK_TLS.md).
+
+### Resume / partial downloads
+
+- `CURLOPT_RESUME_FROM_LARGE`, `Content-Range` totals, HTTP 416 “already complete”
+- One-shot fallback on `CURLE_RANGE_ERROR` (truncate + full GET)
+- Optional `If-Range` when job metadata has a matching validator URL
+
 ## Link types in the client
 
 Detail view groups actionable links (△ / touch). Types include:
@@ -79,22 +109,19 @@ See the root [README.md](../README.md) for the full link-type matrix.
 
 ## Install paths
 
-| Content | Path | Notes |
-|---------|------|--------|
-| Homebrew **VPK** | Extract + `scePromoterUtility` | Shallow dir `ux0:data/psva_vpk` |
-| Data **ZIP** | ZipExtractor | User picks folder (quick paths for data/app/repatch/PSP) |
-| **Vita / PSP / PS1 PKG** | **BGDL** (system queue) | Needs zRIF or synthetic RIF; progress in **LiveArea notifications** |
+| Payload | Handler | Destination |
+|---------|---------|-------------|
+| **VPK** (default / LiveArea target) | HomebrewInstaller + Promoter | LiveArea bubble (`ux0:app/<TITLEID>`) |
+| **VPK** with ISO/CSO/PBP inside + **Adrenaline** target | Extract → PspInstaller | `ux0:pspemu/ISO` or `ux0:pspemu/PSP/GAME` — **no** LiveArea bubble |
+| **ISO / CSO / PBP** | PspInstaller | `ux0:pspemu/...` (Adrenaline) |
+| Data **ZIP** | ZipExtractor | Catalog `extract_path` or user path |
+| **Vita PKG** | BGDL (system queue) | LiveArea / system install |
+| **PSP / PS1 official PKG** | BGDL | Always a **LiveArea** system entry (not Adrenaline-only). Prefer ISO/CSO/PBP or a VPK that embeds them when Settings → PSP target is **Adrenaline**. |
 
-### Commercial PKG (verified)
+### Settings → PSP / PS1 target
 
-On a real PS Vita with CFW + **NoNpDrm** (and **NoPspEmuDrm** when needed):
-
-1. User selects a Download / DLC / Update link that points to a `.pkg`
-2. Client resolves license from `catalog_psvita_games.zrifidx` using link **`content_id`** (preferred) or title-id fallback
-3. Writes RIF and enqueues BGDL; UI shows **Queued: &lt;app name&gt;**
-4. User completes install from LiveArea system notifications
-
-Do not promote a raw retail `.pkg` without a matching license — that path fails and only wastes bandwidth.
+- **Adrenaline** (default): media goes to `ux0:pspemu` only. VPK packages that embed ISO/CSO/PBP are installed that way and **do not** create a LiveArea bubble. Official `.pkg` links still use BGDL (system limitation).
+- **LiveArea**: VPK promote and PKG BGDL as before (bubbles; NoPspEmuDrm recommended for PSP bubbles).
 
 ## Self-update
 

@@ -185,7 +185,8 @@ void InstallController::shutdown() {
 void InstallController::setSettings(const AppSettingsData& s) {
     settings_ = s;
     AppSettings::save(settings_);
-    diagnostics::log(std::string("[Installer] settings saved method=") + AppSettings::toString(settings_.installMethod));
+    diagnostics::log(std::string("[Installer] settings saved method=") + AppSettings::toString(settings_.installMethod) +
+        " psp=" + AppSettings::toString(settings_.pspTarget));
 }
 
 void InstallController::cancel() {
@@ -343,6 +344,10 @@ bool InstallController::requestInstall(
         activeZipDestination_.clear();
         activeFileName_ = niceTitle;
         diagnostics::log(std::string("[Installer] PKG BGDL deferred one UI cycle title=") + niceTitle);
+        if (settings_.pspTarget == PspTarget::Adrenaline) {
+            diagnostics::log("[Installer] NOTE: PSP target is Adrenaline but file is official PKG — "
+                "system BGDL always creates a LiveArea entry. Use ISO/CSO/PBP (or a VPK that contains them) for Adrenaline-only.");
+        }
         return true;
     } else if (settings_.installMethod == InstallMethod::Bgdl) {
         diagnostics::log("[Installer] BGDL selected but file is not PKG - using direct path");
@@ -807,6 +812,7 @@ int InstallController::workerMain() {
             sceKernelDelayThread((integrityHint ? 4 : 2) * 1000 * 1000);
         }
 
+        dispatcher_.setPspTarget(settings_.pspTarget);
         result = dispatcher_.installFile(
             job->finalPath,
             [&](const InstallDispatchProgress& progress) {

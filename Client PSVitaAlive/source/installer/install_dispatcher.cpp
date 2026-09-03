@@ -4,15 +4,22 @@
 #include "installer/homebrew_installer.hpp"
 #include "installer/vita_installer.hpp"
 #include "installer/psp_installer.hpp"
+#include "installer/app_settings.hpp"
 #include "storage/storage_manager.hpp"
 #include "diagnostic_logger.hpp"
 
 #include <psp2/kernel/clib.h>
+#include <psp2/io/fcntl.h>
+#include <psp2/io/dirent.h>
+#include <psp2/io/stat.h>
 #include <algorithm>
+#include <vector>
+#include <cstring>
 #include <cctype>
 
 namespace psvitaalive {
 namespace {
+
 std::string lowerExtension(const std::string& path) {
     std::string out = FormatDetector::extensionOf(path);
     std::transform(out.begin(), out.end(), out.begin(), [](unsigned char c) {
@@ -20,7 +27,61 @@ std::string lowerExtension(const std::string& path) {
     });
     return out;
 }
+
+// Collect ISO/CSO/PBP under a tree (for Adrenaline-only VPK installs).
+void collectPspMediaFiles(const std::string& dir, std::vector<std::string>& out, int depth = 0) {
+    if (depth > 6 || dir.empty()) return;
+    SceUID d = sceIoDopen(dir.c_str());
+    if (d < 0) return;
+    SceIoDirent ent;
+    while (sceIoDread(d, &ent) > 0) {
+        const char* name = ent.d_name;
+        if (!name || name[0] == '\0') continue;
+        if (name[0] == '.' && (name[1] == '\0' || (name[1] == '.' && name[2] == '\0'))) continue;
+        std::string full = dir;
+        if (!full.empty() && full.back() != '/') full.push_back('/');
+        full += name;
+        if (SCE_S_ISDIR(ent.d_stat.st_mode)) {
+            collectPspMediaFiles(full, out, depth + 1);
+        } else {
+            std::string lower = name;
+            std::transform(lower.begin(), lower.end(), lower.begin(),
+                [](unsigned char c) { return static_cast<char>(std::tolower(c)); });
+            auto hasExt = [&](const char* e) {
+                const size_t n = std::strlen(e);
+                return lower.size() >= n && lower.compare(lower.size() - n, n, e) == 0;
+            };
+            if (hasExt(".iso") || hasExt(".cso") || hasExt(".pbp")) {
+                out.push_back(full);
+            }
+        }
+    }
+    sceIoDclose(d);
 }
+
+void removeTreeBestEffort(const std::string& path) {
+    if (path.empty()) return;
+    SceUID d = sceIoDopen(path.c_str());
+    if (d >= 0) {
+        SceIoDirent ent;
+        while (sceIoDread(d, &ent) > 0) {
+            const char* name = ent.d_name;
+            if (!name || name[0] == '\0') continue;
+            if (name[0] == '.' && (name[1] == '\0' || (name[1] == '.' && name[2] == '\0'))) continue;
+            std::string full = path;
+            if (!full.empty() && full.back() != '/') full.push_back('/');
+            full += name;
+            if (SCE_S_ISDIR(ent.d_stat.st_mode)) removeTreeBestEffort(full);
+            else sceIoRemove(full.c_str());
+        }
+        sceIoDclose(d);
+        sceIoRmdir(path.c_str());
+    } else {
+        sceIoRemove(path.c_str());
+    }
+}
+
+} // namespace
 
 const char* toString(InstallDispatchResult result) {
     switch (result) {
@@ -73,9 +134,88 @@ InstallDispatchResult InstallDispatcher::installFile(
     FormatDetector detector;
     const DetectResult detected = detector.detectFile(path);
     const std::string ext = lowerExtension(path);
-    diagnostics::log(std::string("[InstallDispatcher] detect format=") + toString(detected.format) + " ext=" + ext);
+    diagnostics::log(std::string("[InstallDispatcher] detect format=") + toString(detected.format) + " ext=" + ext +
+        " pspTarget=" + AppSettings::toString(pspTarget_));
 
     if (detected.format == FileFormat::Vpk || ext == "vpk") {
+        // Settings: Adrenaline → prefer ISO/CSO/PBP inside the VPK under ux0:pspemu (no LiveArea bubble).
+        // LiveArea (or VPK without PSP media) → existing promote path.
+        if (pspTarget_ == PspTarget::Adrenaline) {
+            const std::string scanRoot = "ux0:data/psva_psp_scan";
+            removeTreeBestEffort(scanRoot);
+            st.createDirectories(scanRoot);
+            ZipExtractor zx;
+            const ZipResult zr = zx.extract(
+                path, scanRoot,
+                [&](const ZipProgress& zp) {
+                    if (!onProgress) return;
+                    InstallDispatchProgress p;
+                    p.stage = InstallDispatchProgress::Extracting;
+                    p.current = zp.bytesWritten;
+                    p.total = zp.bytesTotal;
+                    p.message = zp.currentEntry.empty() ? "Scanning VPK for PSP media" : zp.currentEntry;
+                    onProgress(p);
+                },
+                shouldCancel
+            );
+            if (zr == ZipResult::Cancelled) {
+                removeTreeBestEffort(scanRoot);
+                setError("VPK scan cancelled");
+                return InstallDispatchResult::Cancelled;
+            }
+            if (zr == ZipResult::Ok) {
+                std::vector<std::string> media;
+                collectPspMediaFiles(scanRoot, media);
+                if (!media.empty()) {
+                    diagnostics::log(std::string("[InstallDispatcher] Adrenaline target: ") +
+                        std::to_string(media.size()) + " PSP media file(s) in VPK — installing to pspemu (no LiveArea)");
+                    PspInstaller psp;
+                    for (const auto& mediaPath : media) {
+                        if (shouldCancel && shouldCancel()) {
+                            removeTreeBestEffort(scanRoot);
+                            setError("PSP media install cancelled");
+                            return InstallDispatchResult::Cancelled;
+                        }
+                        const std::string mext = lowerExtension(mediaPath);
+                        PspInstallResult pr = PspInstallResult::IoError;
+                        if (mext == "pbp") {
+                            pr = psp.installPbp(mediaPath, nullptr, shouldCancel);
+                        } else {
+                            pr = psp.installIsoCso(mediaPath, nullptr, shouldCancel);
+                        }
+                        if (pr == PspInstallResult::Cancelled) {
+                            removeTreeBestEffort(scanRoot);
+                            setError("PSP media install cancelled");
+                            return InstallDispatchResult::Cancelled;
+                        }
+                        if (pr != PspInstallResult::Ok) {
+                            removeTreeBestEffort(scanRoot);
+                            setError(psp.lastError().empty() ? "PSP media install failed" : psp.lastError());
+                            return InstallDispatchResult::InstallFailed;
+                        }
+                        lastInstallPath_ = psp.lastInstallPath();
+                    }
+                    removeTreeBestEffort(scanRoot);
+                    lastLiveAreaOk_ = false;
+                    lastTitleId_.clear();
+                    if (onProgress) {
+                        InstallDispatchProgress p;
+                        p.stage = InstallDispatchProgress::Completed;
+                        p.current = 1;
+                        p.total = 1;
+                        p.message = "Installed to Adrenaline (pspemu) — no LiveArea bubble";
+                        onProgress(p);
+                    }
+                    diagnostics::log(std::string("[InstallDispatcher] Adrenaline VPK->pspemu OK path=") + lastInstallPath_);
+                    return InstallDispatchResult::Ok;
+                }
+                diagnostics::log("[InstallDispatcher] Adrenaline target but no ISO/CSO/PBP in VPK — falling back to LiveArea promote");
+            } else {
+                diagnostics::log(std::string("[InstallDispatcher] Adrenaline VPK scan extract failed: ") + zx.lastError() + " — promote fallback");
+            }
+            removeTreeBestEffort(scanRoot);
+        }
+
         HomebrewInstaller installer;
         const InstallResult result = installer.installVpk(
             path,

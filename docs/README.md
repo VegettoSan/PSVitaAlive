@@ -36,3 +36,5 @@ When fixing a bug, identify the layer:
 6. PS Vita client (network, install, UI, update)
 
 Patch the responsible layer—not a generated catalog—whenever possible.
+
+- [NETWORK_TLS.md](NETWORK_TLS.md) — libcurl / OpenSSL / archive.org failover / optional mbedTLS

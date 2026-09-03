@@ -159,3 +159,15 @@ Must not:
 - Root `catalog_psvita_games.zrifidx` — license index on GitHub
 - Root [README — Downloads & installations](../../../README.md#downloads--installations-ps-vita-client) — user-facing rationale
 - PKGj / FAPS bgdl research lineage for ShellSvc IPMI constants (implementation is original to this client)
+
+
+## PSP / PS1 target (`AppSettings::pspTarget`)
+
+`InstallController` passes `settings_.pspTarget` into `InstallDispatcher::setPspTarget` before every `installFile`.
+
+| Target | Behaviour |
+|--------|-----------|
+| `Adrenaline` | ISO/CSO/PBP → `ux0:pspemu`. VPK containing those files → extract + pspemu, **no** `PromotePkg`. |
+| `LiveArea` | VPK → normal promote to LiveArea. PKG → BGDL. |
+
+Official commercial PSP/PS1 **PKG** entries always install via BGDL (LiveArea). Adrenaline-only play needs ISO/CSO/PBP (or a VPK that wraps them).

@@ -2,6 +2,7 @@
 
 #include <functional>
 #include <string>
+#include "installer/app_settings.hpp"
 
 namespace psvitaalive {
 
@@ -65,11 +66,16 @@ public:
     const std::string& lastInstallPath() const { return lastInstallPath_; }
     bool lastLiveAreaOk() const { return lastLiveAreaOk_; }
 
+    /** Where PSP/PS1 media should land: Adrenaline (pspemu only) vs LiveArea (VPK/PKG bubbles). */
+    void setPspTarget(PspTarget t) { pspTarget_ = t; }
+    PspTarget pspTarget() const { return pspTarget_; }
+
 private:
     std::string lastError_;
     std::string lastTitleId_;
     std::string lastInstallPath_;
     bool lastLiveAreaOk_ = false;
+    PspTarget pspTarget_ = PspTarget::Adrenaline;
 
     void setError(const std::string& message);
     void clearResultMeta();
