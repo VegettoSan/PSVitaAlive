@@ -14,15 +14,18 @@ Native catalog client for PlayStation Vita / PSTV (and Vita3K for testing).
 ## Features (high level)
 
 - Catalogs: **Homebrew**, **Vita Games**, **PSP**, **PS1** (all four can stay cached in RAM after first load)
-- Search, Settings (install method, **PSP/PS1 target**, **PSP media** Folder/ISO, **color theme** palettes with live preview), touch + buttons
+- Search, Settings (install method, **PSP/PS1 target**, **PSP media** Folder/ISO, **color theme** with many coherent palettes + first-run picker), touch + buttons
 - **News** from repo `news.txt`; optional Discord **Report** on real errors (and dedicated data-request webhook path)
 - Image cache with on-demand loading; **Data Files / Game Files** indicators on app cards
-- Downloads via libcurl (MediaFire CDN/size resolution, Archive.org, GitHub, …) with retry behaviour on slow links
+- Downloads via libcurl (MediaFire CDN/size resolution, **Archive.org edge failover**, GitHub, …) with retry behaviour on slow links and SSL connect errors
 - Install pipeline:
   - **VPK** promote (including a nested `.vpk` inside a release ZIP)
-  - **ZIP** extract (`extract_path` from catalog or quick-path UI), including **large / >2 GB** archives (libzip + custom `sceIo` source)
+  - **ZIP** extract (`extract_path` from catalog or quick-path UI), including **large / >2 GB** archives (libzip + custom `sceIo` source); EOCD/ZIP64 incomplete retries with delay
   - Pre-open ZIP integrity check (EOCD / ZIP64 marker) to fail incomplete downloads early
-  - Licensed commercial **PKG via system BGDL** (verified on real Vita)
+  - Licensed commercial **Vita PKG via system BGDL**
+  - **PSP/PS1 PKG**: LiveArea BGDL **or** Adrenaline unpack (pkg2zip-style → `ux0:pspemu`, Folder or ISO from Settings)
+  - **Plugin** links: download → copy to `extract_path` → append `line` to taiHEN `config.txt` under `section` (or skip config if `none`)
+- **Essential plugins** (kubridge, fd_fix, libshacccg) checked after theme setup + News; install queue + reboot modal
 - Free-space check before download (~2.1× expected size)
 - **Job safety (Downloading / Installing):**
   - Keep-awake thread: `sceKernelPowerTick` — disable auto-suspend **and** keep OLED on (no dim / no off)
@@ -30,8 +33,9 @@ Native catalog client for PlayStation Vita / PSTV (and Vita3K for testing).
   - Locks released on Completed / Failed / Cancelled / shutdown
   - Progress UI shows a **LOCKED** banner; toasts if START / SELECT / L-R / other keys are pressed
 - Voluntary cancel shows **Download cancelled** (not a false install failure)
-- **Automatic self-update** from [GitHub Releases](https://github.com/VegettoSan/PSVitaAlive/releases) via helper **PSVAUPDT1** — open the client; if a new version exists it can download and install without a PC
-- Plugin detection (AutoPlugin2-style parser; prefer **ur0:tai** over ux0)
+- **Automatic self-update** from [GitHub Releases](https://github.com/VegettoSan/PSVitaAlive/releases) via helper **PSVAUPDT1**
+- Plugin detection (AutoPlugin2-style parser; prefer **ur0:tai** over ux0); Settings **INFO → SYSTEM** shows NoNpDrm, NoPspEmuDrm, kubridge, fd_fix, libshacccg
+- Brand logo / loading splash can use monochrome assets tinted by the active theme
 - Logs: `session.log`, `install.log`, `updater.log`
 
 ## Job safety during download / install / extract
@@ -213,3 +217,63 @@ ux0:data/psva_vpk/   shallow promote path (homebrew + self-update)
 - Licensed PKG install uses system BGDL + zRIF/RIF helpers; it does not invent DRM bypasses beyond NoPayStation-style license data the user already needs for NPS content.
 - LiveArea registration relies on promoter utilities; hardware and Vita3K may differ.
 - Prefer reading current code when docs and behaviour diverge.
+
+
+## Plugin links
+
+Catalog entries may declare:
+
+```json
+{
+  "type": "Plugin",
+  "name": "Example plugin",
+  "url": "https://example.org/plugin.skprx",
+  "size": 12345,
+  "extract_path": "ur0:tai/",
+  "section": "*KERNEL",
+  "line": "ur0:tai/plugin.skprx",
+  "recommended": false
+}
+```
+
+| Field | Behaviour |
+|-------|-----------|
+| `extract_path` | Directory where the binary is written (created if needed) |
+| `section` | `*KERNEL` / `*main` / `*ALL` / custom header, or `none` to skip config |
+| `line` | Exact text appended at the end of that section (duplicate lines are not re-added) |
+
+**Install All** installs Plugin links **after** VPK / Game Files / Data Files. Plugins already present on disk (and, for taiHEN plugins, already listed in `config.txt`) are skipped; the UI shows an **Installed** badge and a toast if the user presses the link again.
+
+After plugin install(s), a full-screen **Restart required** modal blocks LiveArea exit and underlying touch until the user confirms soft reset (`scePowerRequestColdReset`). Message includes the **hold L at boot** recovery hint.
+
+### Essential plugins prompt
+
+After the first-run color-theme picker and the News modal, the client checks:
+
+| Plugin | Installed when |
+|--------|----------------|
+| `kubridge.skprx` | File under `ur0:tai/` or `ux0:tai/` **and** line in active `config.txt` |
+| `fd_fix.skprx` | Same |
+| `libshacccg.suprx` | File under `ur0:data/` only (never written to config) |
+
+Missing items open a large-type modal (**Install plugins** with pulsing border, or **Remind me later**). Install uses Archive.org mirrors configured in the client and the standard Plugin path.
+
+## PSP / PS1 Adrenaline unpack
+
+When Settings → **PSP / PS1 target** is **Adrenaline**:
+
+- PSP/PS1 **PKG** downloads are **not** queued to system BGDL.
+- Content is unpacked with an embedded **pkg2zip-style** pipeline (`third_party/pkg2zip/`) into `ux0:pspemu`.
+- **PSP media**: **Folder** (default, EBOOT.PBP under GAME) or **ISO**.
+- Only packages whose probed content type is PSP/PSX use this path; **Vita game PKGs always use BGDL/promote**, never pspemu unpack.
+
+## Networking / TLS
+
+- libcurl on VitaSDK; OpenSSL 1.0.2-class backend.
+- SSL peer verification disabled on device by design.
+- Archive.org: metadata-driven edge failover when `dn*` / regional edges fail TLS.
+- Recommended: **[iTLS-Enso](https://github.com/SKGleba/iTLS-Enso)** full + DNS **8.8.8.8** / **8.8.4.4**.
+
+## Color themes
+
+Many named palettes (including a brand **PsVitaAlive** lime theme and a **PS Vita** system-inspired palette). First launch can show a scrollable theme grid before News. Settings → Color theme opens the same picker. Logo and catalog-loading splash use color assets for the brand theme and monochrome + tint for others.

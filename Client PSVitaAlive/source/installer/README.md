@@ -225,3 +225,34 @@ Must not:
 | **Adrenaline** | Promote (unchanged — VPK is Vita-only) | **No BGDL**; pkg2zip-based unpack to `ux0:pspemu` (ISO for PSP, EBOOT for PSX) | `ux0:pspemu` |
 
 Do **not** route Vita VPK through Adrenaline-only logic.
+
+
+## Plugin install (`type: Plugin`)
+
+Handled inside `InstallController` worker (not VPK promote, not BGDL):
+
+1. Download URL to a temp path under the download manager.
+2. Ensure `extract_path` exists (`StorageManager::createDirectories`).
+3. Copy binary to `extract_path` + basename (from `line` or URL).
+4. `TaiConfigEditor::appendLineToSection(section, line)`:
+   - Resolves active config (`ux0:tai/config.txt` preferred, else `ur0`).
+   - `section == none` / empty → skip config (success).
+   - Exact line already present → no-op success.
+   - Section missing → create header at EOF, then append line.
+5. Set `needsReboot`; UI shows reboot modal (no auto-dismiss).
+
+Files:
+
+| File | Role |
+|------|------|
+| `tai_config_editor.cpp` | Append-only config.txt editor; `configContainsLine` for detection |
+| `plugin_detector.cpp` | Startup scan for NoNpDrm / NoPspEmuDrm |
+| `install_controller.cpp` | Plugin branch + sequential jobs from UI |
+
+## PSP/PS1 Adrenaline (`psp_pkg_unpack`)
+
+`InstallDispatcher` probes PKG content type. PSP/PSX + Adrenaline target → `psp_pkg_unpack_to_pspemu` (AES, EBOOT/ISO). Worker stack is enlarged for unpack buffers. CRC helpers in third_party are renamed to avoid clashing with libz.
+
+## PSM Runtime driver (optional build artifact)
+
+`psm_runtime_driver/` builds a kernel helper `.skprx` packed into the VPK. CMake stages the ELF under a **space-free** path (`~/.cache/psvitaalive_build/...`) because `vita-elf-create` breaks when the tree lives under `Client PSVitaAlive` (space in path).

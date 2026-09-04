@@ -52,3 +52,54 @@ Catalog loading splash remains separate from install progress; install locks app
 ## Catalog card text
 
 Long titles use ellipsis / marquee helpers with clipping so names do not spill outside card bounds. Right padding leaves room for badges (e.g. Game/Data Files chips).
+
+
+## Color themes
+
+`ColorTheme` enum + `applyColorTheme` map ACCENT / SURFACE / TEXT tokens used by all panels. Brand theme keeps full-color logo and loading splash; other themes tint monochrome assets.
+
+- **First-run** modal: grid of theme buttons (each painted with its palette), adaptive scroll, Save persists `themeSetupDone`.
+- **Settings**: Color theme row opens the same picker (no longer D-pad cycle only).
+
+## Essential plugins modal
+
+`tryShowEssentialPluginsPrompt()` runs after theme setup + News (see `main.cpp` `startupEssentialPending`).
+
+- Large type for 960×544 readability.
+- Lists only **missing** plugins (kubridge / fd_fix require file **and** config line; libshacccg file only).
+- **Install plugins** uses pulsing border (same language as Install All) and drives `linkAction_` with synthetic Plugin links.
+- **Remind me later** dismisses without installing.
+- Sequential install; reboot modal only after the last success (or if a mid-queue failure happened after at least one success).
+
+## Plugin link UI
+
+Detail link rows:
+
+- Badge **Installed** when the plugin file (and config line when applicable) is present.
+- Toast **Already installed** if activated again.
+- Install All skips installed plugins when enqueueing.
+
+## Reboot modal
+
+Full-screen dim + **Restart PS Vita**. `handleTouch` returns early so taps cannot hit catalog/settings behind the dialog. Soft reset: `scePowerRequestColdReset`.
+
+## Settings INFO panel
+
+Right-hand **SYSTEM** block lists:
+
+- NoNpDrm / NoPspEmuDrm (from `PluginDetector`)
+- kubridge / fd_fix / libshacccg (same rules as the essential prompt)
+- Active `config.txt` path
+- Larger type scales for real-hardware legibility
+
+## Progress overlay & lock messaging
+
+While `installProgressActive_` and the job has not finished:
+
+- Phase-specific wait hints (connecting, downloading, extracting, installing, retries).
+- **LOCKED** banner: PS button and soft power menu disabled; screen stays on.
+- CIRCLE cancels (in progress) or acknowledges (result); other keys toast LOCKED.
+
+## Catalog card text
+
+Long titles use ellipsis / marquee with clipping so names do not spill outside card bounds.

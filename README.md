@@ -113,6 +113,7 @@ Every installable or reference URL lives in `links[]` with a `type`. The **websi
 | `Game Files` | Large game data `.zip` (extract) | Game Files | Game Files |
 | `Mod` / `Mod Pack` | Mods / mod packs | Mods | Mods |
 | `Mirror` | Alternate download URL | Other Links | Other |
+| `Plugin` | taiHEN plugin binary | Plugins | Plugin (install + config.txt) |
 | `Repository` / `Official Website` / `Documentation` / `Issues` / `Community` / `Other` | Informational | Other Links | Other |
 
 **Optional link fields**
@@ -141,14 +142,17 @@ Native client (Title ID **PSVAS1178**). Users only need to **open the client**: 
 **Highlights**
 
 - Catalogs: Homebrew, Vita Games, PSP, PS1
-- Search, Settings (**PSP/PS1 target**, **PSP media** Folder/ISO, **color theme** palettes), touch + controls; News modal (from `news.txt`); optional Discord error **Report**
-- Downloads (MediaFire CDN resolution, Archive.org, GitHub, …) with retries on slow networks
-- Install: **VPK** (including nested `.vpk` inside a release ZIP), **ZIP** extract (`extract_path` or quick paths; large / >2 GB archives), licensed **Vita PKG** via system **BGDL**, **PSP/PS1 PKG** via BGDL (LiveArea) or **Adrenaline unpack** (Folder/ISO)
+- Search, Settings (**PSP/PS1 target**, **PSP media** Folder/ISO, **color theme** palettes with first-run picker), touch + controls; News modal (from `news.txt`); optional Discord error **Report**
+- Downloads (MediaFire CDN resolution, Archive.org edge failover, GitHub, …) with retries on slow networks and SSL connect errors
+- Install: **VPK** (including nested `.vpk` inside a release ZIP), **ZIP** extract (`extract_path` or quick paths; large / >2 GB archives; EOCD/ZIP64 retries), licensed **Vita PKG** via system **BGDL**, **PSP/PS1 PKG** via BGDL (LiveArea) or **Adrenaline unpack** (Folder/ISO via pkg2zip-style pipeline)
+- **Plugin** catalog links: download to `extract_path`, append line to taiHEN `config.txt` (section-aware, append-only), reboot prompt
+- **Essential plugins** prompt after theme + News: detects missing **kubridge**, **fd_fix** (file + config line) and **libshacccg** (file only); one-tap install + reboot
 - Free-space check before large downloads (~2.1× payload)
 - During download/install/extract: **screen forced on**, **PS button locked**, soft power-off menu locked (see [Downloads & installations](#downloads--installations-ps-vita-client))
 - Voluntary **Download cancelled** UI (no false “Installation failed” / no Report)
 - Self-update from [Releases](https://github.com/VegettoSan/PSVitaAlive/releases) (see below)
-- Plugin detection (prefer `ur0:tai`); session logs under `ux0:data/psvitaalive/logs/`
+- Plugin detection (prefer `ur0:tai`); Settings INFO shows NoNpDrm / NoPspEmuDrm / kubridge / fd_fix / libshacccg status
+- Session logs under `ux0:data/psvitaalive/logs/`
 
 #### Automatic client updates
 
@@ -342,7 +346,41 @@ Public databases and community work (including projects associated with VitaDB, 
 
 ## Client networking notes (v01.18+)
 
-- Downloads use libcurl; Vita OpenSSL is **1.0.2**-class. Peer verify is off by design on device.
-- **Internet Archive**: automatic **edge failover** via item metadata when TLS fails on `dn*` / `.ca.archive.org` nodes (see client logs and `docs/NETWORK_TLS.md`).
-- **PSP / PS1 target** in Settings: **LiveArea** = PKG via system BGDL (bubble). **Adrenaline** = no LiveArea bubble for PSP/PS1 PKG (BGDL skipped); ISO/CSO/PBP go to `ux0:pspemu`. Vita **VPK** install path is unchanged (always promoter).
+- Downloads use libcurl **8.x** on VitaSDK; stock OpenSSL is **1.0.2**-class. Peer verify is off by design on device (CA store limitations).
+- **Internet Archive**: automatic **edge failover** via item metadata when TLS fails on `dn*` / `.ca.archive.org` nodes (prefer `ia*` / `.us.archive.org` edges). See client logs and optional `docs/NETWORK_TLS.md`.
+- Retries on `CURLE_SSL_CONNECT_ERROR` (35) and related connect failures; host hints for GitLab / Archive / GitHub.
+- **PSP / PS1 target** in Settings: **LiveArea** = PKG via system BGDL (bubble). **Adrenaline** = pkg2zip-style unpack to `ux0:pspemu` (**no** LiveArea bubble). Vita **VPK** / Vita **PKG** paths are unchanged.
+
+## Plugin links & essential plugins
+
+Catalog `links[]` may include `type: "Plugin"`:
+
+| Field | Meaning |
+|-------|---------|
+| `url` | Direct download of `.skprx` / `.suprx` / binary |
+| `extract_path` | Destination directory (default `ur0:tai/`) |
+| `section` | taiHEN section: `*KERNEL`, `*main`, `*ALL`, custom, or `none` (skip config) |
+| `line` | Exact line appended under that section (e.g. `ur0:tai/foo.skprx`) |
+
+Install is **append-only** to `config.txt` (never deletes existing lines). After one or more plugin installs the client shows a **Restart required** modal (soft reset via `scePowerRequestColdReset`); LiveArea exit is blocked until restart. Hold **L** at boot to disable taiHEN plugins if something goes wrong.
+
+**Essential plugins** (checked after first-run theme picker + News):
+
+| Plugin | Path | config.txt |
+|--------|------|------------|
+| kubridge.skprx | `ur0:tai/` (also checks `ux0:tai/`) | required under `*KERNEL` |
+| fd_fix.skprx | same | required under `*KERNEL` |
+| libshacccg.suprx | `ur0:data/` | **not** listed in config (file presence only) |
+
+If any are missing, a modal offers **Install plugins** or **Remind me later**. Install uses the same Plugin pipeline and sequential queue.
+
+## Recommended device setup
+
+| Recommendation | Why |
+|----------------|-----|
+| **[iTLS-Enso](https://github.com/SKGleba/iTLS-Enso)** full | Modern TLS for many HTTPS hosts on real hardware |
+| DNS primary **8.8.8.8**, secondary **8.8.4.4** | Stable resolution for Archive.org / GitHub / CDNs |
+| **NoNpDrm** + **NoPspEmuDrm** | Licensed Vita PKG and PSP LiveArea bubbles |
+| **kubridge** + **fd_fix** + **libshacccg** | Many ports / advanced homebrew |
+| Prefer **ur0:tai** for plugins | Survives memory card swaps better than ux0-only setups |
 

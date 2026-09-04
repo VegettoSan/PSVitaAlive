@@ -22,8 +22,8 @@ Supplementary documentation for architecture, pipelines and client behaviour.
 | `Client PSVitaAlive/` | Native client build and modules; job safety overview |
 | `Client PSVitaAlive/source/update/README.md` | Self-update (PSVAUPDT1) handoff rules |
 | `Client PSVitaAlive/source/catalog/README.md` | Multi-catalog cache + zRIF sidecar |
-| `Client PSVitaAlive/source/installer/README.md` | VPK / **BGDL PKG**, ZIP integrity, **keep-awake + shell locks** |
-| `Client PSVitaAlive/source/ui/README.md` | Progress **LOCKED** UI, color themes, catalog cards |
+| `Client PSVitaAlive/source/installer/README.md` | VPK / **BGDL PKG**, **Plugin + tai config**, Adrenaline unpack, ZIP integrity, **keep-awake + shell locks** |
+| `Client PSVitaAlive/source/ui/README.md` | Progress **LOCKED** UI, color themes, essential plugins modal, Plugin badges |
 | `.github/workflows/` | CI / Pages |
 
 ## Change classification

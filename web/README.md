@@ -49,4 +49,4 @@ Repo-root [`news.txt`](../news.txt) drives the in-client News modal (id / title 
 
 ## App generator
 
-[`tools/app-generator/`](tools/app-generator/) — form UI for contributors: auto Internal ID, size units, link-type help, `extract_path` only for ZIP-oriented types.
+[`tools/app-generator/`](tools/app-generator/) — form UI for contributors: auto Internal ID, size units, link types including **Plugin** (`section` / `line` / `extract_path`), `extract_path` for ZIP-oriented types.
