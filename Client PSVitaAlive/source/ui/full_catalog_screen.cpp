@@ -3621,7 +3621,7 @@ void FullCatalogScreen::drawSettings() {
         const int panelH = listClipBottom - contentTop;
         vita2d_draw_rectangle(sideX, contentTop, sideW, panelH, SURFACE2);
         vita2d_draw_rectangle(sideX, contentTop, 3, panelH, ACCENT);
-        vita2d_pgf_draw_text(font_, sideX + 14, contentTop + 22, ACCENT, 0.62f, "INFO");
+        vita2d_pgf_draw_text(font_, sideX + 14, contentTop + 24, ACCENT, 0.90f, "INFO");
 
         const char* title = opts[settingsFocus_].label;
         const char* body1 = "";
@@ -3665,25 +3665,48 @@ void FullCatalogScreen::drawSettings() {
             break;
         default: break;
         }
-        vita2d_pgf_draw_text(font_, sideX + 14, contentTop + 48, WHITE, 0.64f, title);
-        vita2d_pgf_draw_text(font_, sideX + 14, contentTop + 74, TEXT, 0.52f, body1);
-        vita2d_pgf_draw_text(font_, sideX + 14, contentTop + 94, TEXT, 0.52f, body2);
-        vita2d_pgf_draw_text(font_, sideX + 14, contentTop + 114, TEXT, 0.52f, body3);
+        vita2d_pgf_draw_text(font_, sideX + 14, contentTop + 52, WHITE, 0.88f, title);
+        vita2d_pgf_draw_text(font_, sideX + 14, contentTop + 80, TEXT, 0.72f, body1);
+        vita2d_pgf_draw_text(font_, sideX + 14, contentTop + 102, TEXT, 0.72f, body2);
+        vita2d_pgf_draw_text(font_, sideX + 14, contentTop + 124, TEXT, 0.72f, body3);
 
-        vita2d_pgf_draw_text(font_, sideX + 14, contentTop + 150, DIM, 0.52f, "SYSTEM");
+        // SYSTEM: DRM plugins + essential homebrew plugins (file + config when required)
+        int sy = contentTop + 158;
+        vita2d_pgf_draw_text(font_, sideX + 14, sy, DIM, 0.78f, "SYSTEM");
+        sy += 24;
         char plug[96];
-        sceClibSnprintf(plug, sizeof(plug), "NoNpDrm: %s", pluginsStatus_.nonpdrm ? "OK" : "missing");
-        vita2d_pgf_draw_text(font_, sideX + 14, contentTop + 172, TEXT, 0.52f, plug);
-        sceClibSnprintf(plug, sizeof(plug), "NoPspEmuDrm: %s", pluginsStatus_.nopspemudrmKern ? "OK" : "missing");
-        vita2d_pgf_draw_text(font_, sideX + 14, contentTop + 192, TEXT, 0.52f, plug);
+        auto drawPlugLine = [&](const char* label, bool ok) {
+            sceClibSnprintf(plug, sizeof(plug), "%s: %s", label, ok ? "OK" : "missing");
+            const unsigned col = ok ? TEXT : ACCENT;
+            vita2d_pgf_draw_text(font_, sideX + 14, sy, col, 0.72f, plug);
+            sy += 22;
+        };
+        drawPlugLine("NoNpDrm", pluginsStatus_.nonpdrm);
+        drawPlugLine("NoPspEmuDrm", pluginsStatus_.nopspemudrmKern);
+        {
+            const bool kub = essentialPluginFullyInstalled(
+                "*KERNEL", "ur0:tai/kubridge.skprx",
+                {"ur0:tai/kubridge.skprx", "ux0:tai/kubridge.skprx"});
+            const bool fdf = essentialPluginFullyInstalled(
+                "*KERNEL", "ur0:tai/fd_fix.skprx",
+                {"ur0:tai/fd_fix.skprx", "ux0:tai/fd_fix.skprx"});
+            const bool sha = essentialPluginFullyInstalled(
+                "none", "ur0:data/libshacccg.suprx",
+                {"ur0:data/libshacccg.suprx", "ur0:/data/libshacccg.suprx"});
+            drawPlugLine("kubridge", kub);
+            drawPlugLine("fd_fix", fdf);
+            drawPlugLine("libshacccg", sha);
+        }
         if (!pluginsStatus_.configPathUsed.empty()) {
-            vita2d_pgf_draw_text(font_, sideX + 14, contentTop + 214, DIM, 0.46f,
-                                 ellipsize(pluginsStatus_.configPathUsed, 28).c_str());
+            vita2d_pgf_draw_text(font_, sideX + 14, sy, DIM, 0.64f,
+                                 ellipsize(pluginsStatus_.configPathUsed, 26).c_str());
+            sy += 20;
         }
         if (settingsFocus_ == 6) {
             char ver[64];
             sceClibSnprintf(ver, sizeof(ver), "Local: v%s", PSVITAALIVE_VERSION);
-            vita2d_pgf_draw_text(font_, sideX + 14, contentTop + 240, ACCENT, 0.52f, ver);
+            vita2d_pgf_draw_text(font_, sideX + 14, sy, ACCENT, 0.72f, ver);
+            sy += 22;
             if (selfUpdateChecked_) {
                 if (selfUpdateInfo_.state == ::psvitaalive::UpdateChecker::State::UpdateAvailable)
                     sceClibSnprintf(ver, sizeof(ver), "Remote: v%s", selfUpdateInfo_.remoteVersion.c_str());
@@ -3691,7 +3714,7 @@ void FullCatalogScreen::drawSettings() {
                     sceClibSnprintf(ver, sizeof(ver), "Remote: up to date");
                 else
                     sceClibSnprintf(ver, sizeof(ver), "Remote: check failed");
-                vita2d_pgf_draw_text(font_, sideX + 14, contentTop + 260, TEXT, 0.50f, ver);
+                vita2d_pgf_draw_text(font_, sideX + 14, sy, TEXT, 0.70f, ver);
             }
         }
     }
