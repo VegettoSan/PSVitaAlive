@@ -2,6 +2,7 @@
 #include "ui/news_markdown.hpp"
 #include "installer/app_settings.hpp"
 #include "installer/plugin_detector.hpp"
+#include "installer/tai_config_editor.hpp"
 #include "update/update_checker.hpp"
 
 #ifndef PSVITAALIVE_VERSION
@@ -1057,6 +1058,21 @@ bool essentialFilePresent(const std::vector<std::string>& paths) {
         if (sceIoGetstat(path.c_str(), &st) >= 0 && st.st_size > 0) return true;
     }
     return false;
+}
+
+/** File on disk, and for taiHEN plugins also the config.txt line must exist. */
+bool essentialPluginFullyInstalled(const std::string& section,
+                                   const std::string& line,
+                                   const std::vector<std::string>& paths) {
+    if (!essentialFilePresent(paths)) return false;
+    // libshacccg and anything with section=none: file presence only
+    std::string sec = section;
+    for (char& c : sec) {
+        if (c >= 'A' && c <= 'Z') c = static_cast<char>(c - 'A' + 'a');
+    }
+    if (sec.empty() || sec == "none") return true;
+    if (line.empty()) return true;
+    return ::psvitaalive::TaiConfigEditor::configContainsLine(line);
 }
 
 
@@ -5801,7 +5817,7 @@ void FullCatalogScreen::tryShowEssentialPluginsPrompt() {
         std::vector<std::string> paths;
         if (d.pathA) paths.emplace_back(d.pathA);
         if (d.pathB) paths.emplace_back(d.pathB);
-        if (essentialFilePresent(paths)) continue;
+        if (essentialPluginFullyInstalled(d.section, d.line, paths)) continue;
         EssentialPluginSpec s;
         s.name = d.name;
         s.desc = d.desc;
@@ -5859,7 +5875,7 @@ void FullCatalogScreen::kickNextEssentialPluginInstall() {
     }
     const EssentialPluginSpec& s = essentialInstallQueue_[essentialInstallIndex_];
     // Skip if it appeared on disk since the prompt (e.g. user installed elsewhere)
-    if (essentialFilePresent(s.checkPaths)) {
+    if (essentialPluginFullyInstalled(s.section, s.line, s.checkPaths)) {
         diagnostics::log(std::string("[UI] essential plugins skip already present: ") + s.name);
         ++essentialInstallIndex_;
         kickNextEssentialPluginInstall();

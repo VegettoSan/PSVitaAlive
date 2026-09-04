@@ -105,6 +105,16 @@ std::string TaiConfigEditor::resolveActiveConfigPath() {
     return {};
 }
 
+bool TaiConfigEditor::configContainsLine(const std::string& lineIn) {
+    const std::string line = trimCopy(lineIn);
+    if (line.empty()) return false;
+    const std::string path = resolveActiveConfigPath();
+    if (path.empty()) return false;
+    std::string content;
+    if (!readAll(path, content)) return false;
+    return lineExistsExact(content, line);
+}
+
 bool TaiConfigEditor::appendLineToSection(
     const std::string& sectionIn,
     const std::string& lineIn,

@@ -26,6 +26,12 @@ public:
         const std::string& line,
         std::string* errorOut = nullptr
     );
+
+    /**
+     * True if the exact plugin line already appears in the active config.txt
+     * (trimmed match). False if no config is found or the line is missing.
+     */
+    static bool configContainsLine(const std::string& line);
 };
 
 } // namespace psvitaalive
