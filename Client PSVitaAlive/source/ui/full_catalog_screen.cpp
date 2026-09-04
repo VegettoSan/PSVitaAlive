@@ -12,6 +12,7 @@
 #include "network/http_client.hpp"
 #include "network/news_manager.hpp"
 #include <psp2/ctrl.h>
+#include <psp2/power.h>
 #include <psp2/touch.h>
 #include <psp2/kernel/clib.h>
 #include <psp2/kernel/processmgr.h>
@@ -806,9 +807,10 @@ bool actionableLink(const CatalogLink&l){
     if(t=="dlc")return true;
     if(t=="update"||t=="updates")return true;
     if(t=="pkg"||t=="pkgs")return true;
+    if(t=="plugin"||t=="plugins")return true;
     // Fallback: actionable by file extension in URL.
     std::string u=lowerAscii(l.url);
-    return u.find(".vpk")!=std::string::npos||u.find(".pkg")!=std::string::npos||u.find(".zip")!=std::string::npos||u.find(".pbp")!=std::string::npos||u.find(".iso")!=std::string::npos||u.find(".cso")!=std::string::npos;
+    return u.find(".vpk")!=std::string::npos||u.find(".pkg")!=std::string::npos||u.find(".zip")!=std::string::npos||u.find(".pbp")!=std::string::npos||u.find(".iso")!=std::string::npos||u.find(".cso")!=std::string::npos||u.find(".suprx")!=std::string::npos||u.find(".skprx")!=std::string::npos;
 }
 bool isDownloadLink(const CatalogLink&l){
     // Which links appear in the detail download button list.
@@ -820,6 +822,7 @@ bool isDownloadLink(const CatalogLink&l){
     if(t=="dlc")return true;
     if(t=="update"||t=="updates")return true;
     if(t=="pkg"||t=="pkgs")return true;
+    if(t=="plugin"||t=="plugins")return true;
     return false;
 }
 
@@ -832,6 +835,7 @@ enum class LinkSection : int {
     Dlc,
     Updates,
     Pkg,
+    Plugins,
     Other,
     Count
 };
@@ -850,6 +854,7 @@ LinkSection classifyLinkSection(const CatalogLink& l) {
     if (t == "dlc") return LinkSection::Dlc;
     if (t == "update" || t == "updates") return LinkSection::Updates;
     if (t == "pkg" || t == "pkgs") return LinkSection::Pkg;
+    if (t == "plugin" || t == "plugins") return LinkSection::Plugins;
     return LinkSection::Other;
 }
 
@@ -862,6 +867,7 @@ const char* linkSectionTitle(LinkSection s) {
         case LinkSection::Dlc: return "DLC";
         case LinkSection::Updates: return "UPDATES";
         case LinkSection::Pkg: return "PKG";
+        case LinkSection::Plugins: return "PLUGINS";
         default: return "OTHER";
     }
 }
@@ -875,6 +881,7 @@ const char* linkSectionMetaLabel(LinkSection s) {
         case LinkSection::Dlc: return "DLC";
         case LinkSection::Updates: return "Update";
         case LinkSection::Pkg: return "PKG";
+        case LinkSection::Plugins: return "Plugin";
         default: return "Download";
     }
 }
@@ -988,6 +995,18 @@ bool isDataFilesTypeLink(const CatalogLink& l) {
     const std::string t = normalizeLinkType(l.type);
     if (t == "data files" || t == "data file" || t == "datafiles" || t == "data") return true;
     if (isDownloadLikeType(t) && linkNameSuggestsDataFiles(l)) return true;
+    return false;
+}
+
+bool isPluginTypeLink(const CatalogLink& l) {
+    const std::string t = normalizeLinkType(l.type);
+    return t == "plugin" || t == "plugins";
+}
+
+bool itemHasPluginLinks(const CatalogItem& it) {
+    for (const auto& l : it.linkDetails) {
+        if (isPluginTypeLink(l) && !l.url.empty()) return true;
+    }
     return false;
 }
 
@@ -1989,9 +2008,13 @@ void FullCatalogScreen::setCatalogItems(std::vector<CatalogItem>items){
     bool liveAreaOk,
     const std::string& installPath,
     const std::string& titleId,
-    uint64_t resultAutoCloseRemainingMs)
+    uint64_t resultAutoCloseRemainingMs,
+    bool needsReboot)
 {
     installProgressActive_ = active;
+    if (needsReboot && outcome == 1) {
+        pluginRebootModal_ = true;
+    }
     installProgressCurrent_ = current;
     installProgressTotal_ = total;
     installProgressSpeed_ = bytesPerSecond;
@@ -3554,7 +3577,36 @@ void FullCatalogScreen::drawSettings() {
     (void)rowY;
 }
 
-void FullCatalogScreen::handleInput(){if(isTransitioning())return;SceCtrlData p{};sceCtrlPeekBufferPositive(0,&p,1);static uint32_t prev=0;static uint64_t repeatAt=0;uint32_t mask=SCE_CTRL_UP|SCE_CTRL_DOWN|SCE_CTRL_LEFT|SCE_CTRL_RIGHT,pressed=p.buttons&~prev,direct=pressed&mask;uint64_t now=sceKernelGetProcessTimeWide(),repeat=0;if((p.buttons&mask)==0)repeatAt=0;else if(direct)repeatAt=now+DIRECTION_REPEAT_DELAY_US;else if(repeatAt&&now>=repeatAt){repeat=p.buttons&mask;repeatAt=now+DIRECTION_REPEAT_INTERVAL_US;}prev=p.buttons;uint32_t nav=direct|repeat;if(themeSetupVisible_){const int themeCount=static_cast<int>(::psvitaalive::ColorTheme::Count);const int cols=3;const int visibleRows=5;auto afterMove=[&](){clampThemePickerScroll(themeSetupFocus_,themeSetupScrollRow_,themeCount,cols,visibleRows);};if(nav&SCE_CTRL_LEFT){if(themeSetupFocus_<themeCount){int c=themeSetupFocus_%cols;if(c>0){--themeSetupFocus_;afterMove();}}return;}if(nav&SCE_CTRL_RIGHT){if(themeSetupFocus_<themeCount){int c=themeSetupFocus_%cols;if(c<cols-1&&themeSetupFocus_+1<themeCount){++themeSetupFocus_;afterMove();}}return;}if(nav&SCE_CTRL_UP){  if(themeSetupFocus_==themeCount){themeSetupFocus_=std::max(0,themeCount-1);}  else if(themeSetupFocus_>=cols)themeSetupFocus_-=cols;  else if(themeSetupScrollRow_>0)--themeSetupScrollRow_;  afterMove();return;}if(nav&SCE_CTRL_DOWN){  if(themeSetupFocus_<themeCount){int n=themeSetupFocus_+cols;if(n<themeCount)themeSetupFocus_=n;else themeSetupFocus_=themeCount;}  afterMove();return;}if(pressed&SCE_CTRL_CROSS){if(themeSetupFocus_==themeCount)closeThemeSetup(true);else applyThemeSetupFocus();return;}return;}if(state_.mode==UiMode::SETTINGS){handleSettingsInput(pressed,nav);return;}
+void FullCatalogScreen::handleInput(){
+    if (pluginRebootModal_) {
+        // Soft restart only — do not allow LiveArea exit.
+        SceCtrlData pad{};
+        sceCtrlPeekBufferPositive(0, &pad, 1);
+        static uint32_t prevButtons = 0;
+        const uint32_t pressed = pad.buttons & ~prevButtons;
+        prevButtons = pad.buttons;
+        if (pressed & SCE_CTRL_CROSS) {
+            diagnostics::log("[UI] Plugin reboot modal: soft reset requested");
+            scePowerRequestSoftReset();
+            return;
+        }
+        // Touch on big button region
+        SceTouchData touch{};
+        if (sceTouchPeek(SCE_TOUCH_PORT_FRONT, &touch, 1) >= 0 && touch.reportNum > 0) {
+            const int tx = touch.report[0].x / 2;
+            const int ty = touch.report[0].y / 2;
+            const int w = 720, h = 320;
+            const int x = (SCREEN_W - w) / 2, y = (SCREEN_H - h) / 2;
+            const int bx = x + 28, by = y + h - 72, bw = w - 56, bh = 56;
+            if (tx >= bx && tx < bx + bw && ty >= by && ty < by + bh) {
+                diagnostics::log("[UI] Plugin reboot modal: soft reset (touch)");
+                scePowerRequestSoftReset();
+                return;
+            }
+        }
+        return;
+    }
+if(isTransitioning())return;SceCtrlData p{};sceCtrlPeekBufferPositive(0,&p,1);static uint32_t prev=0;static uint64_t repeatAt=0;uint32_t mask=SCE_CTRL_UP|SCE_CTRL_DOWN|SCE_CTRL_LEFT|SCE_CTRL_RIGHT,pressed=p.buttons&~prev,direct=pressed&mask;uint64_t now=sceKernelGetProcessTimeWide(),repeat=0;if((p.buttons&mask)==0)repeatAt=0;else if(direct)repeatAt=now+DIRECTION_REPEAT_DELAY_US;else if(repeatAt&&now>=repeatAt){repeat=p.buttons&mask;repeatAt=now+DIRECTION_REPEAT_INTERVAL_US;}prev=p.buttons;uint32_t nav=direct|repeat;if(themeSetupVisible_){const int themeCount=static_cast<int>(::psvitaalive::ColorTheme::Count);const int cols=3;const int visibleRows=5;auto afterMove=[&](){clampThemePickerScroll(themeSetupFocus_,themeSetupScrollRow_,themeCount,cols,visibleRows);};if(nav&SCE_CTRL_LEFT){if(themeSetupFocus_<themeCount){int c=themeSetupFocus_%cols;if(c>0){--themeSetupFocus_;afterMove();}}return;}if(nav&SCE_CTRL_RIGHT){if(themeSetupFocus_<themeCount){int c=themeSetupFocus_%cols;if(c<cols-1&&themeSetupFocus_+1<themeCount){++themeSetupFocus_;afterMove();}}return;}if(nav&SCE_CTRL_UP){  if(themeSetupFocus_==themeCount){themeSetupFocus_=std::max(0,themeCount-1);}  else if(themeSetupFocus_>=cols)themeSetupFocus_-=cols;  else if(themeSetupScrollRow_>0)--themeSetupScrollRow_;  afterMove();return;}if(nav&SCE_CTRL_DOWN){  if(themeSetupFocus_<themeCount){int n=themeSetupFocus_+cols;if(n<themeCount)themeSetupFocus_=n;else themeSetupFocus_=themeCount;}  afterMove();return;}if(pressed&SCE_CTRL_CROSS){if(themeSetupFocus_==themeCount)closeThemeSetup(true);else applyThemeSetupFocus();return;}return;}if(state_.mode==UiMode::SETTINGS){handleSettingsInput(pressed,nav);return;}
 if(pressed&SCE_CTRL_SELECT){openSettings();return;}
 if(pressed&SCE_CTRL_START){
         if(installProgressActive_ && installOutcome_==0){
@@ -4824,7 +4876,7 @@ void FullCatalogScreen::drawDetailPanel(int x,int y,int w,int h){
 }
 
 bool FullCatalogScreen::itemSupportsInstallAll(const CatalogItem& item) const {
-    return itemHasDataOrGameFiles(item);
+    return itemHasDataOrGameFiles(item) || itemHasPluginLinks(item);
 }
 
 void FullCatalogScreen::collectInstallAllOptions(const CatalogItem& item, const char* kind, std::vector<int>& out) const {
@@ -4955,6 +5007,14 @@ void FullCatalogScreen::installAllStartQueue() {
     pushIdx(installAllChosenDownload_, "App (VPK)");
     pushIdx(installAllChosenGameFiles_, "Game Files");
     pushIdx(installAllChosenDataFiles_, "Data Files");
+    installAllHadPlugin_ = false;
+    for (size_t i = 0; i < item.linkDetails.size(); ++i) {
+        if (!isPluginTypeLink(item.linkDetails[i])) continue;
+        if (item.linkDetails[i].url.empty()) continue;
+        installAllQueue_.push_back(item.linkDetails[i]);
+        installAllQueueLabels_.push_back(item.linkDetails[i].name.empty() ? "Plugin" : item.linkDetails[i].name);
+        installAllHadPlugin_ = true;
+    }
 
     if (installAllQueue_.empty()) {
         showToast("Nothing to install", 1600);
@@ -5040,6 +5100,10 @@ void FullCatalogScreen::installAllTryAdvanceFromProgress(int outcome) {
     // Last step completed — keep success panel; toast when user dismisses
     installAllFinishedToast_ = true;
     diagnostics::log("[UI] Install All finished all steps");
+    if (installAllHadPlugin_) {
+        pluginRebootModal_ = true;
+        diagnostics::log("[UI] Install All included plugins — show reboot modal");
+    }
     // Clear running phase so further outcome updates don't re-enter
     installAllPhase_ = InstallAllPhase::Hidden;
     installAllQueue_.clear();
@@ -5547,7 +5611,42 @@ void drawFooterBar(vita2d_pgf* font, const char* leftHints) {
                         : (used > 0.75f ? RGBA8(0xFF, 0xB0, 0x20, 255) : ACCENT);
     vita2d_draw_rectangle(barX, barY, std::max(1, (int)(barW * used)), barH, fill);
 }
-void FullCatalogScreen::drawFullCatalog(){vita2d_start_drawing();vita2d_set_clear_color(BG);vita2d_clear_screen();drawHeader(SCREEN_W);drawTabs(SCREEN_W);drawCatalogPanel(0,HEADER_H+TABS_H,SCREEN_W,SCREEN_H-HEADER_H-TABS_H-FOOTER_H,false);drawFooterBar(font_, "D-Pad: Nav   X: Detail   △: Search   SELECT: Settings   L/R: Catalog   START: Exit");drawReportChip();drawNewsChip();if(catalogLoading_||installProgressActive_||catalogSplashAlpha_>0.01f)drawLoadingOverlay();if(newsVisible_)drawNewsOverlay();if(themeSetupVisible_)drawThemeSetupOverlay();if(reportConfirmVisible_)drawReportConfirmOverlay();if(dataRequestConfirmVisible_)drawDataRequestConfirmOverlay();if(installAllPhase_!=InstallAllPhase::Hidden&&installAllPhase_!=InstallAllPhase::Running)drawInstallAllOverlay();if(!catalogError_.empty())vita2d_pgf_draw_text(font_,18,HEADER_H+TABS_H+26,ACCENT,.66f,catalogError_.c_str());drawToast();vita2d_end_drawing();vita2d_swap_buffers();}void FullCatalogScreen::drawSplitDetail(){vita2d_start_drawing();vita2d_set_clear_color(BG);vita2d_clear_screen();drawHeader(SCREEN_W);drawTabs(SCREEN_W);int top=HEADER_H+TABS_H,hh=SCREEN_H-HEADER_H-TABS_H-FOOTER_H,lw=SCREEN_W/2;drawCatalogPanel(0,top,lw,hh,true);drawDetailPanel(lw,top,SCREEN_W-lw,hh);vita2d_draw_rectangle(lw-1,top,2,hh,BORDER);drawFooterBar(font_, state_.activePanel==UiPanel::Catalog?"PANEL: LIST  |  → Detail   D-Pad: Navigate   O: Back   L/R: Catalog":"PANEL: DETAIL  |  ← List   D-Pad: Scroll   △: Links   X: Action   O: Back");drawReportChip();drawNewsChip();if(catalogLoading_||installProgressActive_||catalogSplashAlpha_>0.01f)drawLoadingOverlay();if(newsVisible_)drawNewsOverlay();if(themeSetupVisible_)drawThemeSetupOverlay();if(reportConfirmVisible_)drawReportConfirmOverlay();if(dataRequestConfirmVisible_)drawDataRequestConfirmOverlay();if(installAllPhase_!=InstallAllPhase::Hidden&&installAllPhase_!=InstallAllPhase::Running)drawInstallAllOverlay();drawToast();vita2d_end_drawing();vita2d_swap_buffers();}void FullCatalogScreen::drawOpeningDetail(){float p=transitionProgress();int lw=SCREEN_W-(int)(SCREEN_W/2*p),rw=SCREEN_W-lw;vita2d_start_drawing();vita2d_set_clear_color(BG);vita2d_clear_screen();drawHeader(SCREEN_W);drawTabs(SCREEN_W);int top=HEADER_H+TABS_H,hh=SCREEN_H-HEADER_H-TABS_H-FOOTER_H;drawCatalogPanel(0,top,lw,hh,true);if(rw>0)drawDetailPanel(lw,top,rw,hh);vita2d_end_drawing();vita2d_swap_buffers();}void FullCatalogScreen::drawClosingDetail(){float p=1.0f-transitionProgress();int lw=SCREEN_W-(int)(SCREEN_W/2*p),rw=SCREEN_W-lw;vita2d_start_drawing();vita2d_set_clear_color(BG);vita2d_clear_screen();drawHeader(SCREEN_W);drawTabs(SCREEN_W);int top=HEADER_H+TABS_H,hh=SCREEN_H-HEADER_H-TABS_H-FOOTER_H;drawCatalogPanel(0,top,lw,hh,true);if(rw>0)drawDetailPanel(lw,top,SCREEN_W-lw,hh);vita2d_end_drawing();vita2d_swap_buffers();}void FullCatalogScreen::draw(){switch(state_.mode){case UiMode::FULL_CATALOG:drawFullCatalog();break;case UiMode::OPENING_DETAIL:drawOpeningDetail();break;case UiMode::SPLIT_DETAIL:drawSplitDetail();break;case UiMode::CLOSING_DETAIL:drawClosingDetail();break;case UiMode::SETTINGS:drawSettings();break;}}bool FullCatalogScreen::updateAndDraw(){
+
+void FullCatalogScreen::drawPluginRebootOverlay() {
+    if (!pluginRebootModal_) return;
+    // Dim full screen
+    vita2d_draw_rectangle(0, 0, SCREEN_W, SCREEN_H, RGBA8(0, 0, 0, 200));
+    const int w = 720, h = 320;
+    const int x = (SCREEN_W - w) / 2, y = (SCREEN_H - h) / 2;
+    vita2d_draw_rectangle(x, y, w, h, SURFACE);
+    vita2d_draw_rectangle(x, y, w, 4, ACCENT);
+    vita2d_draw_rectangle(x, y, 4, h, ACCENT);
+    vita2d_draw_rectangle(x + w - 4, y, 4, h, ACCENT);
+    vita2d_draw_rectangle(x, y + h - 4, w, 4, ACCENT);
+    vita2d_pgf_draw_text(font_, x + 28, y + 42, WHITE, 0.92f, "Restart required");
+    const char* lines[] = {
+        "Plugins were installed and added to taiHEN config.txt.",
+        "Restart your PS Vita so the plugins load correctly.",
+        "",
+        "If the console fails to boot or loops, hold L while",
+        "powering on to temporarily disable taiHEN plugins.",
+    };
+    int ty = y + 78;
+    for (const char* ln : lines) {
+        vita2d_pgf_draw_text(font_, x + 28, ty, TEXT, 0.68f, ln);
+        ty += 26;
+    }
+    const int bw = w - 56, bh = 56;
+    const int bx = x + 28, by = y + h - 72;
+    vita2d_draw_rectangle(bx, by, bw, bh, ACCENT);
+    const char* lab = "Restart PS Vita";
+    const float sc = 0.88f;
+    const int tw = vita2d_pgf_text_width(font_, sc, lab);
+    vita2d_pgf_draw_text(font_, bx + (bw - tw) / 2, by + 38, BG, sc, lab);
+    vita2d_pgf_draw_text(font_, x + 28, y + h - 18, DIM, 0.55f, "X or touch  ·  LiveArea exit blocked until restart");
+}
+
+void FullCatalogScreen::drawFullCatalog(){vita2d_start_drawing();vita2d_set_clear_color(BG);vita2d_clear_screen();drawHeader(SCREEN_W);drawTabs(SCREEN_W);drawCatalogPanel(0,HEADER_H+TABS_H,SCREEN_W,SCREEN_H-HEADER_H-TABS_H-FOOTER_H,false);drawFooterBar(font_, "D-Pad: Nav   X: Detail   △: Search   SELECT: Settings   L/R: Catalog   START: Exit");drawReportChip();drawNewsChip();if(catalogLoading_||installProgressActive_||catalogSplashAlpha_>0.01f)drawLoadingOverlay();if(newsVisible_)drawNewsOverlay();if(themeSetupVisible_)drawThemeSetupOverlay();if(reportConfirmVisible_)drawReportConfirmOverlay();if(dataRequestConfirmVisible_)drawDataRequestConfirmOverlay();if(installAllPhase_!=InstallAllPhase::Hidden&&installAllPhase_!=InstallAllPhase::Running)drawInstallAllOverlay();if(pluginRebootModal_)drawPluginRebootOverlay();if(!catalogError_.empty())vita2d_pgf_draw_text(font_,18,HEADER_H+TABS_H+26,ACCENT,.66f,catalogError_.c_str());drawToast();vita2d_end_drawing();vita2d_swap_buffers();}void FullCatalogScreen::drawSplitDetail(){vita2d_start_drawing();vita2d_set_clear_color(BG);vita2d_clear_screen();drawHeader(SCREEN_W);drawTabs(SCREEN_W);int top=HEADER_H+TABS_H,hh=SCREEN_H-HEADER_H-TABS_H-FOOTER_H,lw=SCREEN_W/2;drawCatalogPanel(0,top,lw,hh,true);drawDetailPanel(lw,top,SCREEN_W-lw,hh);vita2d_draw_rectangle(lw-1,top,2,hh,BORDER);drawFooterBar(font_, state_.activePanel==UiPanel::Catalog?"PANEL: LIST  |  → Detail   D-Pad: Navigate   O: Back   L/R: Catalog":"PANEL: DETAIL  |  ← List   D-Pad: Scroll   △: Links   X: Action   O: Back");drawReportChip();drawNewsChip();if(catalogLoading_||installProgressActive_||catalogSplashAlpha_>0.01f)drawLoadingOverlay();if(newsVisible_)drawNewsOverlay();if(themeSetupVisible_)drawThemeSetupOverlay();if(reportConfirmVisible_)drawReportConfirmOverlay();if(dataRequestConfirmVisible_)drawDataRequestConfirmOverlay();if(installAllPhase_!=InstallAllPhase::Hidden&&installAllPhase_!=InstallAllPhase::Running)drawInstallAllOverlay();if(pluginRebootModal_)drawPluginRebootOverlay();drawToast();vita2d_end_drawing();vita2d_swap_buffers();}void FullCatalogScreen::drawOpeningDetail(){float p=transitionProgress();int lw=SCREEN_W-(int)(SCREEN_W/2*p),rw=SCREEN_W-lw;vita2d_start_drawing();vita2d_set_clear_color(BG);vita2d_clear_screen();drawHeader(SCREEN_W);drawTabs(SCREEN_W);int top=HEADER_H+TABS_H,hh=SCREEN_H-HEADER_H-TABS_H-FOOTER_H;drawCatalogPanel(0,top,lw,hh,true);if(rw>0)drawDetailPanel(lw,top,rw,hh);vita2d_end_drawing();vita2d_swap_buffers();}void FullCatalogScreen::drawClosingDetail(){float p=1.0f-transitionProgress();int lw=SCREEN_W-(int)(SCREEN_W/2*p),rw=SCREEN_W-lw;vita2d_start_drawing();vita2d_set_clear_color(BG);vita2d_clear_screen();drawHeader(SCREEN_W);drawTabs(SCREEN_W);int top=HEADER_H+TABS_H,hh=SCREEN_H-HEADER_H-TABS_H-FOOTER_H;drawCatalogPanel(0,top,lw,hh,true);if(rw>0)drawDetailPanel(lw,top,SCREEN_W-lw,hh);vita2d_end_drawing();vita2d_swap_buffers();}void FullCatalogScreen::draw(){switch(state_.mode){case UiMode::FULL_CATALOG:drawFullCatalog();break;case UiMode::OPENING_DETAIL:drawOpeningDetail();break;case UiMode::SPLIT_DETAIL:drawSplitDetail();break;case UiMode::CLOSING_DETAIL:drawClosingDetail();break;case UiMode::SETTINGS:drawSettings();break;}}bool FullCatalogScreen::updateAndDraw(){
     if(!ready_)return false;
     pollReportWorker();
     pollDataRequestWorker();

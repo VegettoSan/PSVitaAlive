@@ -18,6 +18,7 @@
         "Documentation",
         "Issues",
         "Community",
+        "Plugin",
         "Other"
     ];
 
@@ -49,8 +50,17 @@
         "Game Files",
         "Mod",
         "Mod Pack",
-        "Patch"
+        "Patch",
+        "Plugin"
     ]);
+
+    const PLUGIN_SECTIONS = [
+        { id: "*main", label: "*main" },
+        { id: "*KERNEL", label: "*KERNEL" },
+        { id: "*ALL", label: "*ALL" },
+        { id: "custom", label: "Custom…" },
+        { id: "none", label: "none (file only)" }
+    ];
 
     const SIZE_UNITS = [
         { id: "B", label: "B", mul: 1 },
@@ -166,18 +176,28 @@
         const show = linkNeedsExtractPath(typeEl.value);
         wrap.hidden = !show;
         wrap.style.display = show ? "" : "none";
+        const isPlugin = typeEl.value === "Plugin";
         if (!show) {
             const input = wrap.querySelector(".link-extract-path");
-            // Keep value in DOM only while relevant types are selected; clear when hidden
-            // so it is not exported for Download/PKG/etc.
             if (input) input.dataset.savedValue = input.value;
         } else {
             const input = wrap.querySelector(".link-extract-path");
             if (input && !input.value && input.dataset.savedValue) {
                 input.value = input.dataset.savedValue;
             } else if (input && !input.value) {
-                input.value = "ux0:data/";
+                input.value = isPlugin ? "ur0:tai/" : "ux0:data/";
+            } else if (input && isPlugin && (input.value === "ux0:data/" || !input.value)) {
+                input.value = "ur0:tai/";
             }
+        }
+        const pluginFields = row.querySelector(".link-plugin-fields");
+        if (pluginFields) {
+            pluginFields.style.display = isPlugin ? "" : "none";
+        }
+        const secSel = row.querySelector(".link-plugin-section");
+        const secCustom = row.querySelector(".link-plugin-section-custom");
+        if (secSel && secCustom) {
+            secCustom.style.display = secSel.value === "custom" ? "" : "none";
         }
     }
 
@@ -310,9 +330,17 @@
         const sizeParts = parseLegacySizeField(value.size);
         let extractPath = value.extract_path || value.extractPath;
         if (extractPath === undefined || extractPath === null) {
-            extractPath = "ux0:data/";
+            extractPath = (type === "Plugin") ? "ur0:tai/" : "ux0:data/";
         }
         const showExtract = linkNeedsExtractPath(type);
+        const isPlugin = type === "Plugin";
+        let pluginSection = value.section || "*KERNEL";
+        let pluginSectionCustom = "";
+        if (pluginSection !== "*main" && pluginSection !== "*KERNEL" && pluginSection !== "*ALL" && pluginSection !== "none") {
+            pluginSectionCustom = pluginSection;
+            pluginSection = "custom";
+        }
+        const pluginLine = value.line || "";
         // First link defaults to recommended when not explicitly set.
         const isFirst = list.querySelectorAll(".link-item").length === 0;
         const recommended = value.recommended === true || (isFirst && value.recommended === undefined);
@@ -328,12 +356,28 @@
             <div class="link-extract-wrap" ${showExtract ? "" : "hidden"} style="${showExtract ? "" : "display:none"}">
                 <input class="link-extract-path" type="text" placeholder="extract_path (e.g. ux0:data/)" value="${escapeHtml(extractPath)}">
             </div>
+            <div class="link-plugin-fields" style="${isPlugin ? "" : "display:none;"}">
+                <label>config section
+                    <select class="link-plugin-section">
+                        ${PLUGIN_SECTIONS.map(s => `<option value="${s.id}" ${s.id === pluginSection ? "selected" : ""}>${s.label}</option>`).join("")}
+                    </select>
+                </label>
+                <input class="link-plugin-section-custom" type="text" placeholder="*CUSTOM" value="${escapeHtml(pluginSectionCustom)}" style="${pluginSection === "custom" ? "" : "display:none;"}">
+                <input class="link-plugin-line" type="text" placeholder="line e.g. ur0:tai/plugin.suprx" value="${escapeHtml(pluginLine)}">
+            </div>
             <label class="checkbox-inline"><input class="link-recommended" type="checkbox" ${recommended ? "checked" : ""}> Recommended</label>
             <button type="button" class="remove-button">Remove</button>`;
         row.querySelectorAll("input,select").forEach(element => element.addEventListener("input", updatePreview));
         const typeSelect = row.querySelector(".link-type");
         if (typeSelect) {
             typeSelect.addEventListener("change", () => {
+                syncLinkExtractPathVisibility(row);
+                updatePreview();
+            });
+        }
+        const secSel = row.querySelector(".link-plugin-section");
+        if (secSel) {
+            secSel.addEventListener("change", () => {
                 syncLinkExtractPathVisibility(row);
                 updatePreview();
             });
@@ -428,6 +472,19 @@
                 const pathEl = row.querySelector(".link-extract-path");
                 const extractPath = pathEl ? pathEl.value.trim() : "";
                 if (extractPath) result.extract_path = extractPath;
+            }
+            if (result.type === "Plugin") {
+                if (!result.extract_path) result.extract_path = "ur0:tai/";
+                const secSel = row.querySelector(".link-plugin-section");
+                const secCustom = row.querySelector(".link-plugin-section-custom");
+                let section = secSel ? secSel.value : "none";
+                if (section === "custom") {
+                    section = secCustom ? secCustom.value.trim() : "";
+                }
+                if (section) result.section = section;
+                const lineEl = row.querySelector(".link-plugin-line");
+                const line = lineEl ? lineEl.value.trim() : "";
+                if (line) result.line = line;
             }
             if (row.querySelector(".link-recommended").checked) result.recommended = true;
             return result;

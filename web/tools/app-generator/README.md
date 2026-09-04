@@ -18,7 +18,8 @@ Open [`index.html`](index.html) (GitHub Pages or local). Choose **Create** or **
 
 ## Links
 
-- **Types:** Download, PKG, DLC, Update, Patch, Mod, Mod Pack, Data Files, Game Files, Mirror, Repository, Official Website, Documentation, Issues, Community, Other.
+- **Types:** Download, PKG, DLC, Update, Patch, Mod, Mod Pack, Data Files, Game Files, Mirror, Repository, Official Website, Documentation, Issues, Community, **Plugin**, Other.
+- **Plugin** links: `extract_path` (default `ur0:tai/`), `section` (`*main` / `*KERNEL` / `*ALL` / custom / `none`), and `line` (exact config.txt entry to append).
 - **`extract_path`** is shown only for Data Files, Game Files, Mod, Mod Pack, Patch (default `ux0:data/`).
 - **Size:** enter a number + unit (B / KB / MB / GB); JSON stores **integer bytes**.
 - At most one link may be **Recommended**.

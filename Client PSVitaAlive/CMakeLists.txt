@@ -44,6 +44,7 @@ set(SOURCES
   source/installer/psp_installer.cpp
   source/installer/license_helper.cpp
   source/installer/plugin_detector.cpp
+  source/installer/tai_config_editor.cpp
   source/installer/refresh_manager.cpp
   source/installer/bgdl_client.cpp
   source/installer/pkg_bgdl_installer.cpp

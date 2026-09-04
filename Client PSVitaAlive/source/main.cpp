@@ -585,12 +585,16 @@ int main(){
         }},[&installer](){return installStatusText(installer.status());});
     screen.setLinkActionCallback([&installer](const psvitaalive::ui::CatalogItem&item,const psvitaalive::ui::CatalogLink&link){
         const std::string type=link.type;
-        const bool actionable=(type=="Download"||type=="download"||type=="Downloads"||type=="Mirror"||type=="mirror"||type=="DLC"||type=="dlc"||link.url.find(".vpk")!=std::string::npos||link.url.find(".pkg")!=std::string::npos||link.url.find(".zip")!=std::string::npos||link.url.find(".pbp")!=std::string::npos||link.url.find(".iso")!=std::string::npos||link.url.find(".cso")!=std::string::npos);
+        const bool isPlugin=(type=="Plugin"||type=="plugin"||type=="Plugins"||type=="plugins");
+        const bool actionable=isPlugin||(type=="Download"||type=="download"||type=="Downloads"||type=="Mirror"||type=="mirror"||type=="DLC"||type=="dlc"||type=="Data Files"||type=="Game Files"||link.url.find(".vpk")!=std::string::npos||link.url.find(".pkg")!=std::string::npos||link.url.find(".zip")!=std::string::npos||link.url.find(".pbp")!=std::string::npos||link.url.find(".iso")!=std::string::npos||link.url.find(".cso")!=std::string::npos||link.url.find(".suprx")!=std::string::npos||link.url.find(".skprx")!=std::string::npos);
         if(!actionable){psvitaalive::diagnostics::log(std::string("[UI] link is informational only: ")+link.url);return false;}
         psvitaalive::ui::CatalogItem requestItem=item;requestItem.downloadUrl=link.url;requestItem.downloadFileName=fileNameFromUrl(link.url,item.id);
         psvitaalive::diagnostics::log(std::string("[UI] LINK INSTALL name=")+item.name+" type="+link.type+" url="+link.url);
         std::string zipDestination;
-        if(isZipName(requestItem.downloadFileName)){
+        if(isPlugin){
+            zipDestination = link.extractPath.empty() ? "ur0:tai/" : link.extractPath;
+            psvitaalive::diagnostics::log(std::string("[UI] Plugin extract_path: ")+zipDestination+" section="+link.section+" line="+link.line);
+        } else if(isZipName(requestItem.downloadFileName)){
             // Prefer per-link extract_path when present; otherwise ask the user.
             if(!link.extractPath.empty()){
                 zipDestination=link.extractPath;
@@ -606,7 +610,7 @@ int main(){
         {
             uint64_t exp = parseCatalogSizeBytes(link.size);
             if (exp == 0) exp = parseCatalogSizeBytes(item.size);
-            return installer.requestInstall(requestItem.downloadUrl,requestItem.downloadFileName,zipDestination,link.zrif,link.type,link.contentId,item.name,exp);
+            return installer.requestInstall(requestItem.downloadUrl,requestItem.downloadFileName,zipDestination,link.zrif,link.type,link.contentId,item.name,exp,link.section,link.line);
         }
     });
 
@@ -813,7 +817,7 @@ while(screen.updateAndDraw()){
             }
         }
 
-const psvitaalive::InstallStatus cur=installer.status();using InstallState=psvitaalive::InstallStatus::State;images.setNetworkPaused(cur.state==InstallState::Downloading||cur.state==InstallState::Installing);const bool active=cur.state==InstallState::Downloading||cur.state==InstallState::Installing||cur.state==InstallState::Completed||cur.state==InstallState::Failed||cur.state==InstallState::Cancelled;int outcome=0;if(cur.state==InstallState::Completed)outcome=1;else if(cur.state==InstallState::Cancelled)outcome=3;else if(cur.state==InstallState::Failed)outcome=2;screen.setInstallProgress(active,cur.current,cur.total,cur.bytesPerSecond,cur.stage,cur.fileName,cur.message,outcome,cur.liveAreaOk,cur.installPath,cur.titleId,cur.resultAutoCloseRemainingMs);
+const psvitaalive::InstallStatus cur=installer.status();using InstallState=psvitaalive::InstallStatus::State;images.setNetworkPaused(cur.state==InstallState::Downloading||cur.state==InstallState::Installing);const bool active=cur.state==InstallState::Downloading||cur.state==InstallState::Installing||cur.state==InstallState::Completed||cur.state==InstallState::Failed||cur.state==InstallState::Cancelled;int outcome=0;if(cur.state==InstallState::Completed)outcome=1;else if(cur.state==InstallState::Cancelled)outcome=3;else if(cur.state==InstallState::Failed)outcome=2;screen.setInstallProgress(active,cur.current,cur.total,cur.bytesPerSecond,cur.stage,cur.fileName,cur.message,outcome,cur.liveAreaOk,cur.installPath,cur.titleId,cur.resultAutoCloseRemainingMs,cur.needsReboot);
         if(startupThemePending && !active && !screen.isThemeSetupVisible()){
             screen.openThemeSetupIfNeeded();
             if(!screen.isThemeSetupVisible()){
