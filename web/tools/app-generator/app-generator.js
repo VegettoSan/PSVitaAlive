@@ -357,14 +357,19 @@
                 <input class="link-extract-path" type="text" placeholder="extract_path (e.g. ux0:data/)" value="${escapeHtml(extractPath)}">
             </div>
             <div class="link-plugin-fields" style="${isPlugin ? "" : "display:none;"}">
-                <label>config section
+                <div class="plugin-field">
+                    <span class="plugin-field-label">Config section</span>
                     <select class="link-plugin-section">
                         ${PLUGIN_SECTIONS.map(s => `<option value="${s.id}" ${s.id === pluginSection ? "selected" : ""}>${s.label}</option>`).join("")}
                     </select>
-                </label>
-                <input class="link-plugin-section-custom" type="text" placeholder="*CUSTOM" value="${escapeHtml(pluginSectionCustom)}" style="${pluginSection === "custom" ? "" : "display:none;"}">
-                <input class="link-plugin-line" type="text" placeholder="line e.g. ur0:tai/plugin.suprx" value="${escapeHtml(pluginLine)}">
+                </div>
+                <div class="plugin-field plugin-field-line">
+                    <span class="plugin-field-label">Config line (appended to section)</span>
+                    <input class="link-plugin-line" type="text" placeholder="ur0:tai/plugin.suprx" value="${escapeHtml(pluginLine)}">
+                </div>
+                <input class="link-plugin-section-custom" type="text" placeholder="Custom section e.g. *NPXS10015" value="${escapeHtml(pluginSectionCustom)}" style="${pluginSection === "custom" ? "" : "display:none;"}">
             </div>
+
             <label class="checkbox-inline"><input class="link-recommended" type="checkbox" ${recommended ? "checked" : ""}> Recommended</label>
             <button type="button" class="remove-button">Remove</button>`;
         row.querySelectorAll("input,select").forEach(element => element.addEventListener("input", updatePreview));
