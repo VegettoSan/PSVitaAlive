@@ -998,9 +998,49 @@ bool isDataFilesTypeLink(const CatalogLink& l) {
     return false;
 }
 
+
 bool isPluginTypeLink(const CatalogLink& l) {
     const std::string t = normalizeLinkType(l.type);
     return t == "plugin" || t == "plugins";
+}
+
+/** Resolved on-disk path for a Plugin link (line path preferred, else extract_path + basename). */
+std::string pluginInstallFilePath(const CatalogLink& l) {
+    auto trim = [](std::string s) {
+        while (!s.empty() && (s.front() == ' ' || s.front() == '\t')) s.erase(s.begin());
+        while (!s.empty() && (s.back() == ' ' || s.back() == '\t' || s.back() == '\r')) s.pop_back();
+        return s;
+    };
+    const std::string line = trim(l.line);
+    if (line.find(':') != std::string::npos) return line;
+
+    std::string dir = trim(l.extractPath);
+    if (dir.empty()) dir = "ur0:tai/";
+    if (!dir.empty() && dir.back() != '/' && dir.back() != ':') dir.push_back('/');
+
+    std::string name;
+    if (!line.empty()) {
+        const size_t slash = line.find_last_of("/\\");
+        name = (slash == std::string::npos) ? line : line.substr(slash + 1);
+    }
+    if (name.empty() && !l.url.empty()) {
+        std::string u = l.url;
+        const size_t q = u.find('?');
+        if (q != std::string::npos) u.resize(q);
+        const size_t slash = u.find_last_of('/');
+        name = (slash == std::string::npos) ? u : u.substr(slash + 1);
+    }
+    if (name.empty()) return {};
+    return dir + name;
+}
+
+bool isPluginAlreadyInstalled(const CatalogLink& l) {
+    if (!isPluginTypeLink(l)) return false;
+    const std::string path = pluginInstallFilePath(l);
+    if (path.empty()) return false;
+    SceIoStat st{};
+    if (sceIoGetstat(path.c_str(), &st) < 0) return false;
+    return st.st_size > 0;
 }
 
 bool itemHasPluginLinks(const CatalogItem& it) {
@@ -2372,6 +2412,11 @@ void FullCatalogScreen::moveCatalogFocus(int d){if(catalogView().empty())return;
     if(li<0||li>=(int)idxs.size())return;
     const CatalogLink&l=item.linkDetails[idxs[li]];
     if(!linkAction_||!actionableLink(l)){diagnostics::log(std::string("[UI] non-download link selected: ")+l.url);return;}
+    if(isPluginTypeLink(l) && isPluginAlreadyInstalled(l)){
+        showToast("Already installed", 2000);
+        diagnostics::log(std::string("[UI] plugin already installed: ")+pluginInstallFilePath(l));
+        return;
+    }
     if(linkAction_(item,l))exitLinkNavigation();
 }void FullCatalogScreen::changeCatalog(int d){
     if(catalogLoading_||installProgressActive_||isTransitioning())return;
@@ -4621,19 +4666,25 @@ void FullCatalogScreen::drawDetailLinks(const CatalogItem& it, int x, int y, int
         const CatalogLink& l = it.linkDetails[row.detailIndex];
         const bool f = state_.linkNavigation && state_.linkFocus == (row.focusIndex + focusOff);
         const bool can = actionableLink(l);
+        const bool pluginDone = isPluginTypeLink(l) && isPluginAlreadyInstalled(l);
         vita2d_draw_rectangle(x, ry, w, LINK_ROW_H, f ? ACCENT : SURFACE2);
         vita2d_draw_rectangle(x, ry, w, 1, f ? ACCENT : BORDER);
         const unsigned mc = f ? BG : (can ? WHITE : TEXT);
         std::string title = l.name.empty() ? l.type : l.name;
         const std::string sizeLabel = formatLinkSizeLabel(l, it);
-        const int badgeW = l.recommended ? 96 : 0;
+        // Prefer "Installed" over "Recommended" for plugins already on disk
+        const int badgeW = pluginDone ? 72 : (l.recommended ? 96 : 0);
         { const int titleMaxW = std::max(40, w - 20 - badgeW - 8); drawMarqueeText(font_, x + 10, ry + 17, titleMaxW, mc, 0.80f, title, f); }
         std::string meta = linkSectionMetaLabel(row.section);
         if (!sizeLabel.empty()) meta += "  •  " + sizeLabel;
-        if (can) meta += f ? "  •  X: install" : "  •  X";
+        if (pluginDone) meta += f ? "  •  already installed" : "  •  installed";
+        else if (can) meta += f ? "  •  X: install" : "  •  X";
         vita2d_pgf_draw_text(font_, x + 10, ry + 35, f ? BG : DIM, 0.70f, ellipsize(meta, badgeW ? 26 : 40).c_str());
-        if (l.recommended) {
-            const int bx = x + w - badgeW - 8, by = ry + 8;
+        if (pluginDone) {
+            const int bx = x + w - badgeW - 8;
+            vita2d_pgf_draw_text(font_, bx, ry + 18, f ? BG : ACCENT, 0.66f, "Installed");
+        } else if (l.recommended) {
+            const int bx = x + w - badgeW - 8;
             vita2d_pgf_draw_text(font_, bx, ry + 18, f ? BG : ACCENT, 0.66f, "Recommended");
         }
     }
@@ -5011,6 +5062,11 @@ void FullCatalogScreen::installAllStartQueue() {
     for (size_t i = 0; i < item.linkDetails.size(); ++i) {
         if (!isPluginTypeLink(item.linkDetails[i])) continue;
         if (item.linkDetails[i].url.empty()) continue;
+        if (isPluginAlreadyInstalled(item.linkDetails[i])) {
+            diagnostics::log(std::string("[UI] Install All skip installed plugin: ")
+                             + pluginInstallFilePath(item.linkDetails[i]));
+            continue;
+        }
         installAllQueue_.push_back(item.linkDetails[i]);
         installAllQueueLabels_.push_back(item.linkDetails[i].name.empty() ? "Plugin" : item.linkDetails[i].name);
         installAllHadPlugin_ = true;
