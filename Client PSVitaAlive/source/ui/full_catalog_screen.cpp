@@ -1050,6 +1050,16 @@ bool itemHasPluginLinks(const CatalogItem& it) {
     return false;
 }
 
+bool essentialFilePresent(const std::vector<std::string>& paths) {
+    SceIoStat st{};
+    for (const auto& path : paths) {
+        if (path.empty()) continue;
+        if (sceIoGetstat(path.c_str(), &st) >= 0 && st.st_size > 0) return true;
+    }
+    return false;
+}
+
+
 /** Extra height for Install All button block at top of links. */
 static const int INSTALL_ALL_BLOCK_H = 68;
 
@@ -2053,7 +2063,12 @@ void FullCatalogScreen::setCatalogItems(std::vector<CatalogItem>items){
 {
     installProgressActive_ = active;
     if (needsReboot && outcome == 1) {
-        pluginRebootModal_ = true;
+        if (essentialInstallRunning_) {
+            // Sequential essential-plugin installs: reboot only after the last one.
+            essentialPluginsTryAdvanceFromProgress(outcome);
+        } else {
+            pluginRebootModal_ = true;
+        }
     }
     installProgressCurrent_ = current;
     installProgressTotal_ = total;
@@ -2075,6 +2090,9 @@ void FullCatalogScreen::setCatalogItems(std::vector<CatalogItem>items){
 
     // Install All queue: advance on Completed, abort tracking on fail/cancel
     installAllTryAdvanceFromProgress(outcome);
+    if (essentialInstallRunning_ && outcome != 1) {
+        essentialPluginsTryAdvanceFromProgress(outcome);
+    }
 }
 bool FullCatalogScreen::init(){
     vita2d_init();
@@ -2522,6 +2540,67 @@ void FullCatalogScreen::handleTouch() {
     auto hit = [](int x, int y, int rx, int ry, int rw, int rh) {
         return x >= rx && x < rx + rw && y >= ry && y < ry + rh;
     };
+
+    // Block all underlying UI while reboot modal is up (only Restart button is live).
+    if (pluginRebootModal_) {
+        if (td.reportNum <= 0) {
+            if (touchDown_ && !touchMoved_) {
+                const int w = 720, h = 320;
+                const int ox = (SCREEN_W - w) / 2, oy = (SCREEN_H - h) / 2;
+                const int bx = ox + 28, by = oy + h - 72, bw = w - 56, bh = 56;
+                if (hit(touchStartX_, touchStartY_, bx, by, bw, bh)) {
+                    diagnostics::log("[UI] Plugin reboot modal: soft reset (touch release)");
+                    scePowerRequestColdReset();
+                }
+            }
+            touchDown_ = false;
+            return;
+        }
+        const int x = mapX(td.report[0].x);
+        const int y = mapY(td.report[0].y);
+        if (!touchDown_) {
+            touchDown_ = true;
+            touchStartX_ = x;
+            touchStartY_ = y;
+            touchMoved_ = false;
+        } else {
+            if (std::abs(x - touchStartX_) > 18 || std::abs(y - touchStartY_) > 18) touchMoved_ = true;
+        }
+        return;
+    }
+
+    // Essential plugins prompt
+    if (essentialPluginsModal_) {
+        if (td.reportNum <= 0) {
+            if (touchDown_ && !touchMoved_) {
+                const int w = 780, h = 420;
+                const int ox = (SCREEN_W - w) / 2, oy = (SCREEN_H - h) / 2;
+                const int btnH = 52, gap = 12;
+                const int btnY = oy + h - 72;
+                const int btnW = (w - 56 - gap) / 2;
+                const int x0 = ox + 28;
+                const int x1 = x0 + btnW + gap;
+                if (hit(touchStartX_, touchStartY_, x0, btnY, btnW, btnH)) {
+                    closeEssentialPluginsPrompt(true);
+                } else if (hit(touchStartX_, touchStartY_, x1, btnY, btnW, btnH)) {
+                    closeEssentialPluginsPrompt(false);
+                }
+            }
+            touchDown_ = false;
+            return;
+        }
+        const int x = mapX(td.report[0].x);
+        const int y = mapY(td.report[0].y);
+        if (!touchDown_) {
+            touchDown_ = true;
+            touchStartX_ = x;
+            touchStartY_ = y;
+            touchMoved_ = false;
+        } else {
+            if (std::abs(x - touchStartX_) > 18 || std::abs(y - touchStartY_) > 18) touchMoved_ = true;
+        }
+        return;
+    }
 
     // --- First-run theme setup: scroll grid + tap theme / Save ---
     if (themeSetupVisible_) {
@@ -3614,6 +3693,8 @@ void FullCatalogScreen::drawSettings() {
     vita2d_pgf_draw_text(font_, 12, SCREEN_H - 14, TEXT, 0.56f, "D-Pad: move   X / <>: change   O: save & back");
     drawToast();
     if (themeSetupVisible_) drawThemeSetupOverlay();
+    if (essentialPluginsModal_) drawEssentialPluginsOverlay();
+    if (pluginRebootModal_) drawPluginRebootOverlay();
     vita2d_end_drawing();
     vita2d_swap_buffers();
 
@@ -3624,31 +3705,29 @@ void FullCatalogScreen::drawSettings() {
 
 void FullCatalogScreen::handleInput(){
     if (pluginRebootModal_) {
-        // Soft restart only — do not allow LiveArea exit.
+        // Soft restart only — do not allow LiveArea exit or underlying UI.
+        // Touch is handled exclusively in handleTouch() so it cannot leak through.
         SceCtrlData pad{};
         sceCtrlPeekBufferPositive(0, &pad, 1);
-        static uint32_t prevButtons = 0;
-        const uint32_t pressed = pad.buttons & ~prevButtons;
-        prevButtons = pad.buttons;
+        static uint32_t prevButtonsReboot = 0;
+        const uint32_t pressed = pad.buttons & ~prevButtonsReboot;
+        prevButtonsReboot = pad.buttons;
         if (pressed & SCE_CTRL_CROSS) {
             diagnostics::log("[UI] Plugin reboot modal: soft reset requested");
             scePowerRequestColdReset();
-            return;
         }
-        // Touch on big button region
-        SceTouchData touch{};
-        if (sceTouchPeek(SCE_TOUCH_PORT_FRONT, &touch, 1) >= 0 && touch.reportNum > 0) {
-            const int tx = touch.report[0].x / 2;
-            const int ty = touch.report[0].y / 2;
-            const int w = 720, h = 320;
-            const int x = (SCREEN_W - w) / 2, y = (SCREEN_H - h) / 2;
-            const int bx = x + 28, by = y + h - 72, bw = w - 56, bh = 56;
-            if (tx >= bx && tx < bx + bw && ty >= by && ty < by + bh) {
-                diagnostics::log("[UI] Plugin reboot modal: soft reset (touch)");
-                scePowerRequestColdReset();
-                return;
-            }
-        }
+        return;
+    }
+    if (essentialPluginsModal_) {
+        SceCtrlData pad{};
+        sceCtrlPeekBufferPositive(0, &pad, 1);
+        static uint32_t prevButtonsEss = 0;
+        const uint32_t pressed = pad.buttons & ~prevButtonsEss;
+        prevButtonsEss = pad.buttons;
+        if (pressed & SCE_CTRL_LEFT) essentialPluginsFocus_ = 0;
+        if (pressed & SCE_CTRL_RIGHT) essentialPluginsFocus_ = 1;
+        if (pressed & SCE_CTRL_CROSS) closeEssentialPluginsPrompt(essentialPluginsFocus_ == 0);
+        if (pressed & SCE_CTRL_CIRCLE) closeEssentialPluginsPrompt(false);
         return;
     }
 if(isTransitioning())return;SceCtrlData p{};sceCtrlPeekBufferPositive(0,&p,1);static uint32_t prev=0;static uint64_t repeatAt=0;uint32_t mask=SCE_CTRL_UP|SCE_CTRL_DOWN|SCE_CTRL_LEFT|SCE_CTRL_RIGHT,pressed=p.buttons&~prev,direct=pressed&mask;uint64_t now=sceKernelGetProcessTimeWide(),repeat=0;if((p.buttons&mask)==0)repeatAt=0;else if(direct)repeatAt=now+DIRECTION_REPEAT_DELAY_US;else if(repeatAt&&now>=repeatAt){repeat=p.buttons&mask;repeatAt=now+DIRECTION_REPEAT_INTERVAL_US;}prev=p.buttons;uint32_t nav=direct|repeat;if(themeSetupVisible_){const int themeCount=static_cast<int>(::psvitaalive::ColorTheme::Count);const int cols=3;const int visibleRows=5;auto afterMove=[&](){clampThemePickerScroll(themeSetupFocus_,themeSetupScrollRow_,themeCount,cols,visibleRows);};if(nav&SCE_CTRL_LEFT){if(themeSetupFocus_<themeCount){int c=themeSetupFocus_%cols;if(c>0){--themeSetupFocus_;afterMove();}}return;}if(nav&SCE_CTRL_RIGHT){if(themeSetupFocus_<themeCount){int c=themeSetupFocus_%cols;if(c<cols-1&&themeSetupFocus_+1<themeCount){++themeSetupFocus_;afterMove();}}return;}if(nav&SCE_CTRL_UP){  if(themeSetupFocus_==themeCount){themeSetupFocus_=std::max(0,themeCount-1);}  else if(themeSetupFocus_>=cols)themeSetupFocus_-=cols;  else if(themeSetupScrollRow_>0)--themeSetupScrollRow_;  afterMove();return;}if(nav&SCE_CTRL_DOWN){  if(themeSetupFocus_<themeCount){int n=themeSetupFocus_+cols;if(n<themeCount)themeSetupFocus_=n;else themeSetupFocus_=themeCount;}  afterMove();return;}if(pressed&SCE_CTRL_CROSS){if(themeSetupFocus_==themeCount)closeThemeSetup(true);else applyThemeSetupFocus();return;}return;}if(state_.mode==UiMode::SETTINGS){handleSettingsInput(pressed,nav);return;}
@@ -5668,6 +5747,232 @@ void drawFooterBar(vita2d_pgf* font, const char* leftHints) {
     vita2d_draw_rectangle(barX, barY, std::max(1, (int)(barW * used)), barH, fill);
 }
 
+
+void FullCatalogScreen::tryShowEssentialPluginsPrompt() {
+    if (essentialPluginsPromptDone_) return;
+    if (themeSetupVisible_ || newsVisible_) return;
+    if (catalogLoading_ || installProgressActive_ || pluginRebootModal_) return;
+    if (essentialInstallRunning_) return;
+
+    essentialMissing_.clear();
+    struct Def {
+        const char* name;
+        const char* desc;
+        const char* url;
+        const char* extractPath;
+        const char* section;
+        const char* line;
+        const char* pathA;
+        const char* pathB;
+    };
+    static const Def kDefs[] = {
+        {
+            "kubridge.skprx",
+            "Kernel bridge used by many ports and advanced homebrew.",
+            "https://archive.org/download/plugins-ps-vita/kubridge.skprx",
+            "ur0:tai/",
+            "*KERNEL",
+            "ur0:tai/kubridge.skprx",
+            "ur0:tai/kubridge.skprx",
+            "ux0:tai/kubridge.skprx"
+        },
+        {
+            "fd_fix.skprx",
+            "File-descriptor fix that improves stability of some homebrew.",
+            "https://archive.org/download/plugins-ps-vita/fd_fix.skprx",
+            "ur0:tai/",
+            "*KERNEL",
+            "ur0:tai/fd_fix.skprx",
+            "ur0:tai/fd_fix.skprx",
+            "ux0:tai/fd_fix.skprx"
+        },
+        {
+            "libshacccg.suprx",
+            "Offline shader compiler required by some OpenGL ES ports (not listed in config.txt).",
+            "https://archive.org/download/plugins-ps-vita/libshacccg.suprx",
+            "ur0:data/",
+            "none",
+            "ur0:data/libshacccg.suprx",
+            "ur0:data/libshacccg.suprx",
+            "ur0:/data/libshacccg.suprx"
+        },
+    };
+    for (const Def& d : kDefs) {
+        std::vector<std::string> paths;
+        if (d.pathA) paths.emplace_back(d.pathA);
+        if (d.pathB) paths.emplace_back(d.pathB);
+        if (essentialFilePresent(paths)) continue;
+        EssentialPluginSpec s;
+        s.name = d.name;
+        s.desc = d.desc;
+        s.url = d.url;
+        s.extractPath = d.extractPath;
+        s.section = d.section;
+        s.line = d.line;
+        s.checkPaths = std::move(paths);
+        essentialMissing_.push_back(std::move(s));
+    }
+
+    essentialPluginsPromptDone_ = true;
+    if (essentialMissing_.empty()) {
+        diagnostics::log("[UI] essential plugins: all present");
+        return;
+    }
+    essentialPluginsModal_ = true;
+    essentialPluginsFocus_ = 0;
+    diagnostics::log(std::string("[UI] essential plugins missing count=") + std::to_string(essentialMissing_.size()));
+}
+
+void FullCatalogScreen::closeEssentialPluginsPrompt(bool install) {
+    if (!essentialPluginsModal_) return;
+    essentialPluginsModal_ = false;
+    if (!install) {
+        diagnostics::log("[UI] essential plugins: remind later");
+        showToast("You can install plugins later from the catalog", 2200);
+        return;
+    }
+    if (!linkAction_) {
+        showToast("Installer not ready", 1800);
+        return;
+    }
+    essentialInstallQueue_ = essentialMissing_;
+    essentialInstallIndex_ = 0;
+    essentialInstallRunning_ = true;
+    essentialInstallLastOutcome_ = -1;
+    diagnostics::log(std::string("[UI] essential plugins: installing ") + std::to_string(essentialInstallQueue_.size()));
+    kickNextEssentialPluginInstall();
+}
+
+void FullCatalogScreen::kickNextEssentialPluginInstall() {
+    if (!essentialInstallRunning_) return;
+    if (essentialInstallIndex_ >= essentialInstallQueue_.size()) {
+        essentialInstallRunning_ = false;
+        essentialInstallQueue_.clear();
+        pluginRebootModal_ = true;
+        diagnostics::log("[UI] essential plugins: all done — reboot modal");
+        return;
+    }
+    if (!linkAction_) {
+        essentialInstallRunning_ = false;
+        showToast("Installer not ready", 1800);
+        return;
+    }
+    const EssentialPluginSpec& s = essentialInstallQueue_[essentialInstallIndex_];
+    // Skip if it appeared on disk since the prompt (e.g. user installed elsewhere)
+    if (essentialFilePresent(s.checkPaths)) {
+        diagnostics::log(std::string("[UI] essential plugins skip already present: ") + s.name);
+        ++essentialInstallIndex_;
+        kickNextEssentialPluginInstall();
+        return;
+    }
+    CatalogItem dummy;
+    dummy.name = s.name;
+    CatalogLink link;
+    link.type = "Plugin";
+    link.name = s.name;
+    link.url = s.url;
+    link.extractPath = s.extractPath;
+    link.section = s.section;
+    link.line = s.line;
+    link.recommended = true;
+    diagnostics::log(std::string("[UI] essential plugins install ")
+                     + std::to_string(essentialInstallIndex_ + 1) + "/"
+                     + std::to_string(essentialInstallQueue_.size()) + " " + s.name);
+    essentialInstallLastOutcome_ = 0;
+    if (!linkAction_(dummy, link)) {
+        showToast(std::string("Could not start ") + s.name, 2000);
+        essentialInstallRunning_ = false;
+        essentialInstallQueue_.clear();
+    }
+}
+
+void FullCatalogScreen::essentialPluginsTryAdvanceFromProgress(int outcome) {
+    if (!essentialInstallRunning_) return;
+    if (outcome == essentialInstallLastOutcome_) return;
+    essentialInstallLastOutcome_ = outcome;
+
+    if (outcome == 2 || outcome == 3) {
+        diagnostics::log(std::string("[UI] essential plugins stopped at ")
+                         + std::to_string(essentialInstallIndex_ + 1)
+                         + (outcome == 3 ? " (cancelled)" : " (failed)"));
+        essentialInstallRunning_ = false;
+        essentialInstallQueue_.clear();
+        // If at least one plugin may have been installed earlier in the queue, still offer reboot.
+        if (essentialInstallIndex_ > 0) {
+            pluginRebootModal_ = true;
+        }
+        return;
+    }
+    if (outcome != 1) return;
+
+    // Acknowledge completed result so the controller returns to Idle before next job.
+    if (installAcknowledge_) installAcknowledge_();
+    ++essentialInstallIndex_;
+    // Small deferral: kick next on next progress tick path — call immediately.
+    kickNextEssentialPluginInstall();
+}
+
+void FullCatalogScreen::drawEssentialPluginsOverlay() {
+    if (!essentialPluginsModal_ || !font_) return;
+    vita2d_draw_rectangle(0, 0, SCREEN_W, SCREEN_H, RGBA8(0, 0, 0, 200));
+    const int w = 780, h = 420;
+    const int x = (SCREEN_W - w) / 2, y = (SCREEN_H - h) / 2;
+    vita2d_draw_rectangle(x, y, w, h, SURFACE);
+    vita2d_draw_rectangle(x, y, w, 4, ACCENT);
+    vita2d_draw_rectangle(x, y, 4, h, ACCENT);
+    vita2d_draw_rectangle(x + w - 4, y, 4, h, ACCENT);
+    vita2d_draw_rectangle(x, y + h - 4, w, 4, ACCENT);
+
+    vita2d_pgf_draw_text(font_, x + 24, y + 36, WHITE, 0.88f, "Recommended plugins missing");
+    vita2d_pgf_draw_text(font_, x + 24, y + 62, TEXT, 0.62f,
+        "These plugins help many homebrew and ports run correctly.");
+
+    int ty = y + 92;
+    for (const auto& s : essentialMissing_) {
+        vita2d_pgf_draw_text(font_, x + 24, ty, ACCENT, 0.72f, s.name.c_str());
+        ty += 22;
+        // wrap-ish short desc
+        vita2d_pgf_draw_text(font_, x + 32, ty, DIM, 0.58f, s.desc.c_str());
+        ty += 28;
+        if (ty > y + h - 100) break;
+    }
+
+    const int btnH = 52, gap = 12;
+    const int btnY = y + h - 72;
+    const int btnW = (w - 56 - gap) / 2;
+    const int x0 = x + 28;
+    const int x1 = x0 + btnW + gap;
+
+    // Install button — same pulse border as Install All
+    {
+        const float pulse = 0.40f + 0.60f * focusPulse();
+        const unsigned borderA = (unsigned)(120.f + 135.f * pulse);
+        const unsigned borderCol = (essentialPluginsFocus_ == 0)
+            ? withAlpha(ACCENT, borderA)
+            : BORDER;
+        const int bwPulse = (essentialPluginsFocus_ == 0) ? (2 + (int)(1.5f * pulse)) : 2;
+        vita2d_draw_rectangle(x0, btnY, btnW, btnH, borderCol);
+        vita2d_draw_rectangle(x0 + bwPulse, btnY + bwPulse, btnW - bwPulse * 2, btnH - bwPulse * 2,
+                              essentialPluginsFocus_ == 0 ? ACCENT : SURFACE2);
+        const char* lab = "Install plugins";
+        const float sc = 0.78f;
+        const int tw = vita2d_pgf_text_width(font_, sc, lab);
+        vita2d_pgf_draw_text(font_, x0 + (btnW - tw) / 2, btnY + 34,
+                             essentialPluginsFocus_ == 0 ? BG : WHITE, sc, lab);
+    }
+    // Remind later
+    {
+        vita2d_draw_rectangle(x1, btnY, btnW, btnH, essentialPluginsFocus_ == 1 ? ACCENT : SURFACE2);
+        vita2d_draw_rectangle(x1, btnY, btnW, 1, essentialPluginsFocus_ == 1 ? ACCENT : BORDER);
+        const char* lab = "Remind me later";
+        const float sc = 0.78f;
+        const int tw = vita2d_pgf_text_width(font_, sc, lab);
+        vita2d_pgf_draw_text(font_, x1 + (btnW - tw) / 2, btnY + 34,
+                             essentialPluginsFocus_ == 1 ? BG : WHITE, sc, lab);
+    }
+    vita2d_pgf_draw_text(font_, x + 24, y + h - 14, DIM, 0.52f, "←/→ select   X confirm   O later");
+}
+
 void FullCatalogScreen::drawPluginRebootOverlay() {
     if (!pluginRebootModal_) return;
     // Dim full screen
@@ -5702,7 +6007,7 @@ void FullCatalogScreen::drawPluginRebootOverlay() {
     vita2d_pgf_draw_text(font_, x + 28, y + h - 18, DIM, 0.55f, "X or touch  ·  LiveArea exit blocked until restart");
 }
 
-void FullCatalogScreen::drawFullCatalog(){vita2d_start_drawing();vita2d_set_clear_color(BG);vita2d_clear_screen();drawHeader(SCREEN_W);drawTabs(SCREEN_W);drawCatalogPanel(0,HEADER_H+TABS_H,SCREEN_W,SCREEN_H-HEADER_H-TABS_H-FOOTER_H,false);drawFooterBar(font_, "D-Pad: Nav   X: Detail   △: Search   SELECT: Settings   L/R: Catalog   START: Exit");drawReportChip();drawNewsChip();if(catalogLoading_||installProgressActive_||catalogSplashAlpha_>0.01f)drawLoadingOverlay();if(newsVisible_)drawNewsOverlay();if(themeSetupVisible_)drawThemeSetupOverlay();if(reportConfirmVisible_)drawReportConfirmOverlay();if(dataRequestConfirmVisible_)drawDataRequestConfirmOverlay();if(installAllPhase_!=InstallAllPhase::Hidden&&installAllPhase_!=InstallAllPhase::Running)drawInstallAllOverlay();if(pluginRebootModal_)drawPluginRebootOverlay();if(!catalogError_.empty())vita2d_pgf_draw_text(font_,18,HEADER_H+TABS_H+26,ACCENT,.66f,catalogError_.c_str());drawToast();vita2d_end_drawing();vita2d_swap_buffers();}void FullCatalogScreen::drawSplitDetail(){vita2d_start_drawing();vita2d_set_clear_color(BG);vita2d_clear_screen();drawHeader(SCREEN_W);drawTabs(SCREEN_W);int top=HEADER_H+TABS_H,hh=SCREEN_H-HEADER_H-TABS_H-FOOTER_H,lw=SCREEN_W/2;drawCatalogPanel(0,top,lw,hh,true);drawDetailPanel(lw,top,SCREEN_W-lw,hh);vita2d_draw_rectangle(lw-1,top,2,hh,BORDER);drawFooterBar(font_, state_.activePanel==UiPanel::Catalog?"PANEL: LIST  |  → Detail   D-Pad: Navigate   O: Back   L/R: Catalog":"PANEL: DETAIL  |  ← List   D-Pad: Scroll   △: Links   X: Action   O: Back");drawReportChip();drawNewsChip();if(catalogLoading_||installProgressActive_||catalogSplashAlpha_>0.01f)drawLoadingOverlay();if(newsVisible_)drawNewsOverlay();if(themeSetupVisible_)drawThemeSetupOverlay();if(reportConfirmVisible_)drawReportConfirmOverlay();if(dataRequestConfirmVisible_)drawDataRequestConfirmOverlay();if(installAllPhase_!=InstallAllPhase::Hidden&&installAllPhase_!=InstallAllPhase::Running)drawInstallAllOverlay();if(pluginRebootModal_)drawPluginRebootOverlay();drawToast();vita2d_end_drawing();vita2d_swap_buffers();}void FullCatalogScreen::drawOpeningDetail(){float p=transitionProgress();int lw=SCREEN_W-(int)(SCREEN_W/2*p),rw=SCREEN_W-lw;vita2d_start_drawing();vita2d_set_clear_color(BG);vita2d_clear_screen();drawHeader(SCREEN_W);drawTabs(SCREEN_W);int top=HEADER_H+TABS_H,hh=SCREEN_H-HEADER_H-TABS_H-FOOTER_H;drawCatalogPanel(0,top,lw,hh,true);if(rw>0)drawDetailPanel(lw,top,rw,hh);vita2d_end_drawing();vita2d_swap_buffers();}void FullCatalogScreen::drawClosingDetail(){float p=1.0f-transitionProgress();int lw=SCREEN_W-(int)(SCREEN_W/2*p),rw=SCREEN_W-lw;vita2d_start_drawing();vita2d_set_clear_color(BG);vita2d_clear_screen();drawHeader(SCREEN_W);drawTabs(SCREEN_W);int top=HEADER_H+TABS_H,hh=SCREEN_H-HEADER_H-TABS_H-FOOTER_H;drawCatalogPanel(0,top,lw,hh,true);if(rw>0)drawDetailPanel(lw,top,SCREEN_W-lw,hh);vita2d_end_drawing();vita2d_swap_buffers();}void FullCatalogScreen::draw(){switch(state_.mode){case UiMode::FULL_CATALOG:drawFullCatalog();break;case UiMode::OPENING_DETAIL:drawOpeningDetail();break;case UiMode::SPLIT_DETAIL:drawSplitDetail();break;case UiMode::CLOSING_DETAIL:drawClosingDetail();break;case UiMode::SETTINGS:drawSettings();break;}}bool FullCatalogScreen::updateAndDraw(){
+void FullCatalogScreen::drawFullCatalog(){vita2d_start_drawing();vita2d_set_clear_color(BG);vita2d_clear_screen();drawHeader(SCREEN_W);drawTabs(SCREEN_W);drawCatalogPanel(0,HEADER_H+TABS_H,SCREEN_W,SCREEN_H-HEADER_H-TABS_H-FOOTER_H,false);drawFooterBar(font_, "D-Pad: Nav   X: Detail   △: Search   SELECT: Settings   L/R: Catalog   START: Exit");drawReportChip();drawNewsChip();if(catalogLoading_||installProgressActive_||catalogSplashAlpha_>0.01f)drawLoadingOverlay();if(newsVisible_)drawNewsOverlay();if(themeSetupVisible_)drawThemeSetupOverlay();if(reportConfirmVisible_)drawReportConfirmOverlay();if(dataRequestConfirmVisible_)drawDataRequestConfirmOverlay();if(installAllPhase_!=InstallAllPhase::Hidden&&installAllPhase_!=InstallAllPhase::Running)drawInstallAllOverlay();if(essentialPluginsModal_)drawEssentialPluginsOverlay();if(pluginRebootModal_)drawPluginRebootOverlay();if(!catalogError_.empty())vita2d_pgf_draw_text(font_,18,HEADER_H+TABS_H+26,ACCENT,.66f,catalogError_.c_str());drawToast();vita2d_end_drawing();vita2d_swap_buffers();}void FullCatalogScreen::drawSplitDetail(){vita2d_start_drawing();vita2d_set_clear_color(BG);vita2d_clear_screen();drawHeader(SCREEN_W);drawTabs(SCREEN_W);int top=HEADER_H+TABS_H,hh=SCREEN_H-HEADER_H-TABS_H-FOOTER_H,lw=SCREEN_W/2;drawCatalogPanel(0,top,lw,hh,true);drawDetailPanel(lw,top,SCREEN_W-lw,hh);vita2d_draw_rectangle(lw-1,top,2,hh,BORDER);drawFooterBar(font_, state_.activePanel==UiPanel::Catalog?"PANEL: LIST  |  → Detail   D-Pad: Navigate   O: Back   L/R: Catalog":"PANEL: DETAIL  |  ← List   D-Pad: Scroll   △: Links   X: Action   O: Back");drawReportChip();drawNewsChip();if(catalogLoading_||installProgressActive_||catalogSplashAlpha_>0.01f)drawLoadingOverlay();if(newsVisible_)drawNewsOverlay();if(themeSetupVisible_)drawThemeSetupOverlay();if(reportConfirmVisible_)drawReportConfirmOverlay();if(dataRequestConfirmVisible_)drawDataRequestConfirmOverlay();if(installAllPhase_!=InstallAllPhase::Hidden&&installAllPhase_!=InstallAllPhase::Running)drawInstallAllOverlay();if(essentialPluginsModal_)drawEssentialPluginsOverlay();if(pluginRebootModal_)drawPluginRebootOverlay();drawToast();vita2d_end_drawing();vita2d_swap_buffers();}void FullCatalogScreen::drawOpeningDetail(){float p=transitionProgress();int lw=SCREEN_W-(int)(SCREEN_W/2*p),rw=SCREEN_W-lw;vita2d_start_drawing();vita2d_set_clear_color(BG);vita2d_clear_screen();drawHeader(SCREEN_W);drawTabs(SCREEN_W);int top=HEADER_H+TABS_H,hh=SCREEN_H-HEADER_H-TABS_H-FOOTER_H;drawCatalogPanel(0,top,lw,hh,true);if(rw>0)drawDetailPanel(lw,top,rw,hh);vita2d_end_drawing();vita2d_swap_buffers();}void FullCatalogScreen::drawClosingDetail(){float p=1.0f-transitionProgress();int lw=SCREEN_W-(int)(SCREEN_W/2*p),rw=SCREEN_W-lw;vita2d_start_drawing();vita2d_set_clear_color(BG);vita2d_clear_screen();drawHeader(SCREEN_W);drawTabs(SCREEN_W);int top=HEADER_H+TABS_H,hh=SCREEN_H-HEADER_H-TABS_H-FOOTER_H;drawCatalogPanel(0,top,lw,hh,true);if(rw>0)drawDetailPanel(lw,top,SCREEN_W-lw,hh);vita2d_end_drawing();vita2d_swap_buffers();}void FullCatalogScreen::draw(){switch(state_.mode){case UiMode::FULL_CATALOG:drawFullCatalog();break;case UiMode::OPENING_DETAIL:drawOpeningDetail();break;case UiMode::SPLIT_DETAIL:drawSplitDetail();break;case UiMode::CLOSING_DETAIL:drawClosingDetail();break;case UiMode::SETTINGS:drawSettings();break;}}bool FullCatalogScreen::updateAndDraw(){
     if(!ready_)return false;
     pollReportWorker();
     pollDataRequestWorker();

@@ -676,7 +676,7 @@ int main(){
     screen.setImageCache(&images);
 
     const int catalogCount=(int)psvitaalive::ui::CatalogType::Count;
-    int preloadIndex=0;bool startupCatalogs=true;bool homebrewReady=false;bool startupImageChoicePending=false;bool startupThemePending=false;bool startupNewsPending=false;
+    int preloadIndex=0;bool startupCatalogs=true;bool homebrewReady=false;bool startupImageChoicePending=false;bool startupThemePending=false;bool startupNewsPending=false;bool startupEssentialPending=false;
     std::vector<std::vector<psvitaalive::ui::CatalogItem>> startupCatalogItems((size_t)catalogCount);
     std::vector<StartupImageJob> startupImagesJobs;std::unordered_set<std::string> startupImageSeen;
 
@@ -837,6 +837,21 @@ const psvitaalive::InstallStatus cur=installer.status();using InstallState=psvit
             screen.runNewsCheck(false);
             if(screen.isNewsCheckDone() || screen.isNewsVisible()){
                 startupNewsPending=false;
+                startupEssentialPending=true;
+            }
+        }
+        // After theme + news: recommend kubridge / fd_fix / libshacccg if missing
+        if(startupEssentialPending && !active
+           && !screen.isNewsVisible() && !screen.isThemeSetupVisible()
+           && !screen.isEssentialPluginsVisible() && !screen.isEssentialPluginsInstalling()
+           && !screen.isPluginRebootModal()){
+            if(!screen.essentialPluginsPromptDone()){
+                screen.tryShowEssentialPluginsPrompt();
+            }
+            if(screen.essentialPluginsPromptDone()
+               && !screen.isEssentialPluginsVisible()
+               && !screen.isEssentialPluginsInstalling()){
+                startupEssentialPending=false;
             }
         }
     }

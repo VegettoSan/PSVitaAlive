@@ -75,6 +75,12 @@ public:
     void openThemeSetupIfNeeded();
     void openThemePicker();
     bool isThemeSetupVisible() const { return themeSetupVisible_; }
+    bool isEssentialPluginsVisible() const { return essentialPluginsModal_; }
+    bool isEssentialPluginsInstalling() const { return essentialInstallRunning_; }
+    bool essentialPluginsPromptDone() const { return essentialPluginsPromptDone_; }
+    bool isPluginRebootModal() const { return pluginRebootModal_; }
+    /** After theme + news: offer missing kubridge / fd_fix / libshacccg if needed. */
+    void tryShowEssentialPluginsPrompt();
     // outcome: 0 = progress, 1 = success, 2 = error
     void setInstallProgress(bool active, uint64_t current, uint64_t total, uint64_t bytesPerSecond,
                             const std::string& stage, const std::string& fileName,
@@ -136,6 +142,25 @@ private:
     /** After Plugin install(s): force reboot dialog (blocks LiveArea exit). */
     bool pluginRebootModal_ = false;
     bool installAllHadPlugin_ = false;
+
+    // Startup: recommend missing critical plugins (kubridge, fd_fix, libshacccg)
+    bool essentialPluginsModal_ = false;
+    bool essentialPluginsPromptDone_ = false;
+    int essentialPluginsFocus_ = 0; // 0 = Install, 1 = Remind later
+    struct EssentialPluginSpec {
+        std::string name;
+        std::string desc;
+        std::string url;
+        std::string extractPath;
+        std::string section; // "*KERNEL" or "none"
+        std::string line;    // config line / dest basename hint
+        std::vector<std::string> checkPaths;
+    };
+    std::vector<EssentialPluginSpec> essentialMissing_;
+    std::vector<EssentialPluginSpec> essentialInstallQueue_;
+    size_t essentialInstallIndex_ = 0;
+    bool essentialInstallRunning_ = false;
+    int essentialInstallLastOutcome_ = -1;
 
     uint64_t installProgressCurrent_ = 0;
     uint64_t installProgressTotal_ = 0;
@@ -236,6 +261,11 @@ private:
     void drawDetailLinks(const CatalogItem& item, int x, int y, int width, int& heightOut);
     void drawInstallAllOverlay();
     void drawPluginRebootOverlay();
+    void drawEssentialPluginsOverlay();
+    void closeEssentialPluginsPrompt(bool install);
+    void kickNextEssentialPluginInstall();
+    void essentialPluginsTryAdvanceFromProgress(int outcome);
+
     void openInstallAllWizard();
     void closeInstallAllWizard(bool cancel);
     void installAllAdvancePick();
