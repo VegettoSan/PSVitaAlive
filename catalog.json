@@ -15341,6 +15341,13 @@
         "recommended": true
       },
       {
+        "type": "Game Files",
+        "name": "Game Files",
+        "url": "https://archive.org/download/psvitaalive-hollow-knight-vita/Game%20Files.zip",
+        "size": 1288490189,
+        "extract_path": "ux0:app/HKVT12222/"
+      },
+      {
         "type": "Plugin",
         "name": "ioPlus-0.2 Plugin (Required)",
         "url": "https://archive.org/download/plugins-ps-vita/ioplus.skprx",
@@ -15353,11 +15360,6 @@
         "type": "Official Website",
         "name": "Repository",
         "url": "https://github.com/PatnosDD/Hollow-Knight-PsVita"
-      },
-      {
-        "type": "Official Website",
-        "name": "Release Page",
-        "url": "https://github.com/PatnosDD/Hollow-Knight-PsVita/releases/tag/0.81"
       }
     ],
     "icon": "https://archive.org/download/psvitaalive-hollow-knight-vita/icon0.png",
