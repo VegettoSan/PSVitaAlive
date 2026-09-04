@@ -16,6 +16,9 @@ set(VITA_TITLEID  "PSVAS1178")
 set(VITA_VERSION "01.18")
 set(VITA_MKSFOEX_FLAGS "${VITA_MKSFOEX_FLAGS} -d PARENTAL_LEVEL=1")
 
+# PSM Runtime helper: separate kernel target, loaded only on demand.
+add_subdirectory(psm_runtime_driver)
+
 set(SOURCES
   source/main.cpp
   source/diagnostic_logger.cpp
@@ -47,6 +50,7 @@ set(SOURCES
   source/installer/app_settings.cpp
   source/installer/install_dispatcher.cpp
   source/installer/install_controller.cpp
+  source/installer/psm_runtime_installer.cpp
   source/catalog/catalog_parser.cpp
   source/catalog/catalog_manager.cpp
   source/update/update_checker.cpp
@@ -58,18 +62,13 @@ set(SOURCES
 
 add_executable(${PROJECT_NAME} ${SOURCES})
 
-# Redirect only HttpClient's curl_global_init() call to the process-wide,
-# one-shot lifecycle proxy. There is deliberately no cleanup proxy: libcurl
-# global state remains alive for the complete Vita process lifetime.
 set_source_files_properties(source/network/http_client.cpp PROPERTIES
   COMPILE_DEFINITIONS "PSVITAALIVE_CURL_LIFECYCLE_PROXY"
 )
-
 set_source_files_properties(source/network/curl_lifecycle.cpp PROPERTIES
   COMPILE_DEFINITIONS "PSVITAALIVE_CURL_LIFECYCLE_IMPL"
 )
 
-# pkg2zip is C; allow compiling without C++ name mangling issues
 set_source_files_properties(
   third_party/pkg2zip/pkg2zip_aes.c
   third_party/pkg2zip/pkg2zip_crc32.c
@@ -95,9 +94,6 @@ target_compile_definitions(${PROJECT_NAME} PRIVATE
   PSVITAALIVE_VERSION="${VITA_VERSION}"
 )
 
-# Optional TLS backend switch (default OFF = stock VitaSDK OpenSSL 1.0.2 + curl).
-# Enable only after: vdpm mbedtls && vdpm curl-mbedtls (or equivalent), then rebuild clean.
-#   cmake .. -DPSVITAALIVE_USE_MBEDTLS_CURL=ON
 option(PSVITAALIVE_USE_MBEDTLS_CURL
   "Link curl against mbedTLS instead of OpenSSL 1.0.2 (requires curl-mbedtls package)"
   OFF)
@@ -148,8 +144,6 @@ endif()
 
 # ---------------------------------------------------------------------------
 # PSVitaAlive Updater (TITLE_ID PSVAUPDT1)
-# Separate process used for self-update (VitaShell pattern). Built first and
-# packed into the main VPK under updater/ so the client can promote it.
 # ---------------------------------------------------------------------------
 set(UPDATER_TITLEID "PSVAUPDT1")
 set(UPDATER_APP_NAME "PSVitaAlive Updater")
@@ -189,16 +183,8 @@ add_custom_command(
 )
 add_custom_target(PSVitaAliveUpdaterSfo ALL DEPENDS "${UPDATER_PARAM_SFO}")
 
-# The self-update uses the system Promoter APIs to replace the running app.
-# These private Vita APIs require an UNSAFE SELF.
 vita_create_self(eboot.bin ${PROJECT_NAME} UNSAFE)
 
-# Build the VPK explicitly instead of using vita_create_vpk().
-# VitaSDK's vita_create_vpk() converts FILE paths to absolute paths and its
-# vita-pack-vpk custom command does not use VERBATIM. That is unsafe when the
-# project path contains spaces (for example: "Client PSVitaAlive").
-# We therefore invoke vita-mksfoex and vita-pack-vpk with relative arguments
-# from the build directory, so the source path never contains a space.
 set(VPK_PARAM_SFO "${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}.vpk_param.sfo")
 set(VPK_OUT "${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}.vpk.out")
 set(VPK_FILE "${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}.vpk")
@@ -216,6 +202,7 @@ add_custom_command(
     -a "../assets/ui=ui"
     -a "updater_eboot.bin=updater/eboot.bin"
     -a "updater_param.sfo=updater/param.sfo"
+    -a "psm_runtime_driver.skprx=psm_runtime_driver.skprx"
     -s "${PROJECT_NAME}.vpk_param.sfo"
     -b "eboot.bin"
     "${PROJECT_NAME}.vpk.out"
@@ -223,6 +210,7 @@ add_custom_command(
   DEPENDS
     eboot.bin-self
     updater_eboot.bin-self
+    psm_runtime_driver.skprx-self
     PSVitaAliveUpdaterSfo
     "${CMAKE_SOURCE_DIR}/assets/sce_sys"
     "${CMAKE_SOURCE_DIR}/assets/ui"
@@ -239,6 +227,9 @@ add_custom_target(${PROJECT_NAME}-vpk
 
 if(TARGET eboot.bin-self)
   add_dependencies(${PROJECT_NAME}-vpk eboot.bin-self)
+endif()
+if(TARGET psm_runtime_driver.skprx-self)
+  add_dependencies(${PROJECT_NAME}-vpk psm_runtime_driver.skprx-self)
 endif()
 
 message(STATUS "PSVitaAlive configured. TitleID=${VITA_TITLEID}")
