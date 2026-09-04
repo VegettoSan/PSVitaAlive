@@ -4,6 +4,7 @@
 
 #include <psp2/appmgr.h>
 #include <psp2/io/fcntl.h>
+#include <psp2/io/stat.h>
 #include <psp2/kernel/clib.h>
 #include <taihen.h>
 

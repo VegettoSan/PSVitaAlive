@@ -3587,7 +3587,7 @@ void FullCatalogScreen::handleInput(){
         prevButtons = pad.buttons;
         if (pressed & SCE_CTRL_CROSS) {
             diagnostics::log("[UI] Plugin reboot modal: soft reset requested");
-            scePowerRequestSoftReset();
+            scePowerRequestColdReset();
             return;
         }
         // Touch on big button region
@@ -3600,7 +3600,7 @@ void FullCatalogScreen::handleInput(){
             const int bx = x + 28, by = y + h - 72, bw = w - 56, bh = 56;
             if (tx >= bx && tx < bx + bw && ty >= by && ty < by + bh) {
                 diagnostics::log("[UI] Plugin reboot modal: soft reset (touch)");
-                scePowerRequestSoftReset();
+                scePowerRequestColdReset();
                 return;
             }
         }
