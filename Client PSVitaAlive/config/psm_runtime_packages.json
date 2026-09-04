@@ -1,0 +1,27 @@
+{
+  "version": 1,
+  "description": "PSM Runtime installation packages. Keep this order: 1.00 -> 2.00 -> 2.01.",
+  "packages": [
+    {
+      "order": 1,
+      "runtime_version": "1.00",
+      "file_name": "IP9100-PCSI00011_00-PSMRUNTIME000000.pkg",
+      "url": "",
+      "required": true
+    },
+    {
+      "order": 2,
+      "runtime_version": "2.00",
+      "file_name": "IP9100-PCSI00011_00-PSMRUNTIME000000-A0200-V0100-0c5cb04d07c9d9e135249594631feab513322db9-PE.pkg",
+      "url": "",
+      "required": true
+    },
+    {
+      "order": 3,
+      "runtime_version": "2.01",
+      "file_name": "IP9100-PCSI00011_00-PSMRUNTIME000000-A0201-V0100-e4708b1c1c71116c29632c23df590f68edbfc341-PE.pkg",
+      "url": "",
+      "required": true
+    }
+  ]
+}
