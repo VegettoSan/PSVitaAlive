@@ -1,0 +1,10 @@
+{
+  "version": 1,
+  "feature": "psm_runtime",
+  "display_name": "PSM Runtime",
+  "description": "Installs the required PSM Runtime packages in order.",
+  "packages_config": "psm_runtime_packages.json",
+  "installation_order": ["1.00", "2.00", "2.01"],
+  "allow_install_from_settings": true,
+  "validate_before_install": true
+}
