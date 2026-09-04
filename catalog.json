@@ -15331,22 +15331,23 @@
     "version": "v.0.81",
     "version_date": "2025-01-19",
     "requirements": "- Game Data Files: PC",
-    "size": 22126274,
+    "size": 22126002,
     "status": "Legacy",
-    "icon": "https://archive.org/download/psvitaalive-hollow-knight-vita/icon0.png",
-    "screenshots": [
-      "https://archive.org/download/psvitaalive-hollow-knight-vita/shot_01.png",
-      "https://archive.org/download/psvitaalive-hollow-knight-vita/shot_02.png",
-      "https://archive.org/download/psvitaalive-hollow-knight-vita/shot_03.png",
-      "https://archive.org/download/psvitaalive-hollow-knight-vita/shot_04.png",
-      "https://archive.org/download/psvitaalive-hollow-knight-vita/shot_05.png"
-    ],
     "links": [
       {
         "type": "Download",
         "name": "VPK",
         "url": "https://archive.org/download/psvitaalive-hollow-knight-vita/hollow-knight-vita.vpk",
         "recommended": true
+      },
+      {
+        "type": "Plugin",
+        "name": "ioPlus-0.2 Plugin (Required)",
+        "url": "https://archive.org/download/plugins-ps-vita/ioplus.skprx",
+        "size": 3379,
+        "extract_path": "ur0:tai/",
+        "section": "*KERNEL",
+        "line": "ur0:tai/ioplus.skprx"
       },
       {
         "type": "Official Website",
@@ -15359,11 +15360,19 @@
         "url": "https://github.com/PatnosDD/Hollow-Knight-PsVita/releases/tag/0.81"
       }
     ],
+    "icon": "https://archive.org/download/psvitaalive-hollow-knight-vita/icon0.png",
+    "screenshots": [
+      "https://archive.org/download/psvitaalive-hollow-knight-vita/shot_01.png",
+      "https://archive.org/download/psvitaalive-hollow-knight-vita/shot_02.png",
+      "https://archive.org/download/psvitaalive-hollow-knight-vita/shot_03.png",
+      "https://archive.org/download/psvitaalive-hollow-knight-vita/shot_04.png",
+      "https://archive.org/download/psvitaalive-hollow-knight-vita/shot_05.png"
+    ],
     "source_name": "VitaHomebrewDB",
     "source_id": "1168",
     "source_url": "https://github.com/PatnosDD/Hollow-Knight-PsVita",
     "release_page": "https://github.com/PatnosDD/Hollow-Knight-PsVita",
-    "updated_at": "2026-08-13T15:34:48.420005+00:00"
+    "updated_at": "2026-08-13T15:34"
   },
   {
     "id": "vita-ports-scanner",
