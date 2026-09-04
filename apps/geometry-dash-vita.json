@@ -14,15 +14,8 @@
   "version": "v.1.02",
   "version_date": "2024-01-25",
   "requirements": "- libshacccg.suprx\n- libfmodstudio.suprx\n- kubridge.skprx\n- Game Data Files: Android",
-  "size": 1125000,
+  "size": 1125122,
   "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-geometry-dash-vita/icon0.png",
-  "screenshots": [
-    "https://archive.org/download/psvitaalive-geometry-dash-vita/shot_01.png",
-    "https://archive.org/download/psvitaalive-geometry-dash-vita/shot_02.png",
-    "https://archive.org/download/psvitaalive-geometry-dash-vita/shot_03.png",
-    "https://archive.org/download/psvitaalive-geometry-dash-vita/shot_04.png"
-  ],
   "links": [
     {
       "type": "Download",
@@ -31,14 +24,18 @@
       "recommended": true
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/hatoving/gdash-vita/releases"
+      "type": "Data Files",
+      "name": "FMOD Libs",
+      "url": "https://archive.org/download/psvitaalive-geometry-dash-vita/Data%20Files.zip",
+      "size": 1468006,
+      "extract_path": "ur0:data/"
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/hatoving/gdash-vita/releases/tag/v1.02"
+      "type": "Game Files",
+      "name": "Game Files",
+      "url": "https://archive.org/download/psvitaalive-geometry-dash-vita/Game%20Files.rar",
+      "size": 246729933,
+      "extract_path": "ux0:data/"
     },
     {
       "type": "Repository",
@@ -46,9 +43,16 @@
       "url": "https://github.com/hatoving/gdash-vita"
     }
   ],
+  "icon": "https://archive.org/download/psvitaalive-geometry-dash-vita/icon0.png",
+  "screenshots": [
+    "https://archive.org/download/psvitaalive-geometry-dash-vita/shot_01.png",
+    "https://archive.org/download/psvitaalive-geometry-dash-vita/shot_02.png",
+    "https://archive.org/download/psvitaalive-geometry-dash-vita/shot_03.png",
+    "https://archive.org/download/psvitaalive-geometry-dash-vita/shot_04.png"
+  ],
   "source_name": "VitaHomebrewDB",
   "source_id": "1177",
   "source_url": "https://github.com/hatoving/gdash-vita",
   "release_page": "https://github.com/hatoving/gdash-vita/releases",
-  "updated_at": "2026-08-13T15:34:48.453056+00:00"
+  "updated_at": "2026-08-13T15:34"
 }
