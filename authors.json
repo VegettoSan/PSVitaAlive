@@ -2435,6 +2435,21 @@
     "icon": "https://github.com/gm666q.png"
   },
   {
+    "id": "gmorb",
+    "name": "gmorb",
+    "avatar": "https://avatars.githubusercontent.com/u/85683495?v=4",
+    "bio": "Dev",
+    "links": [
+      {
+        "type": "Repository",
+        "name": "GitHub",
+        "url": "https://github.com/gmorb",
+        "recommended": true
+      }
+    ],
+    "icon": "https://avatars.githubusercontent.com/u/85683495?v=4"
+  },
+  {
     "id": "gnmmarechal",
     "name": "gnmmarechal",
     "avatar": "https://github.com/gnmmarechal.png",

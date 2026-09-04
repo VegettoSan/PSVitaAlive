@@ -459,6 +459,45 @@
     ]
   },
   {
+    "id": "vitastremio",
+    "title_id": "VSTR00001",
+    "name": "Vitastremio",
+    "description": "Native Stremio App for PSVita",
+    "long_description": "Browse your Stremio catalogs — movies and TV series — search, filter by genre, pick an episode and a source, and watch: on a handheld from 2011, with hardware-decoded video, working audio, subtitles, audio track selection and touch controls.",
+    "author_ids": [
+      "gmorb"
+    ],
+    "category_id": "media",
+    "subcategory_ids": [
+      "video",
+      "video-player",
+      "streaming"
+    ],
+    "version": "1.3",
+    "version_date": "2026-08-29",
+    "requirements": "- PC with Python and ffmpeg (Windows, macOS or Linux).\n- Connected to the same home network as the Vita",
+    "size": 407859,
+    "status": "Verified",
+    "links": [
+      {
+        "type": "Download",
+        "name": "VPK",
+        "url": "https://archive.org/download/vitastremio/vitastremio%20v1.3.vpk",
+        "size": 407859,
+        "recommended": true
+      },
+      {
+        "type": "Repository",
+        "name": "GitHub",
+        "url": "https://github.com/gmorb/vitastremio"
+      }
+    ],
+    "icon": "https://archive.org/download/vitastremio/icon0.png",
+    "screenshots": [
+      "https://archive.org/download/vitastremio/Shot0.png"
+    ]
+  },
+  {
     "id": "vitatweakbox",
     "title_id": "VTBX00001",
     "name": "VitaTweakBox",
