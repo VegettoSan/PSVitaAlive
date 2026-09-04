@@ -3,6 +3,8 @@
 #include <psp2/net/netctl.h>
 #include "storage/storage_manager.hpp"
 #include "installer/plugin_detector.hpp"
+#include "installer/tai_config_editor.hpp"
+#include "storage/storage_manager.hpp"
 #include "installer/app_settings.hpp"
 #include "installer/refresh_manager.hpp"
 #include "installer/bgdl_client.hpp"
@@ -128,6 +130,24 @@ bool networkIsConnected() {
 
 } // namespace
 
+
+bool isPluginLinkType(const std::string& linkType) {
+    std::string lt;
+    lt.reserve(linkType.size());
+    for (unsigned char c : linkType) lt.push_back(static_cast<char>(std::tolower(c)));
+    return lt == "plugin" || lt == "plugins";
+}
+
+std::string basenameFromPathOrUrl(const std::string& s) {
+    if (s.empty()) return "plugin.bin";
+    size_t q = s.find('?');
+    std::string u = (q == std::string::npos) ? s : s.substr(0, q);
+    size_t slash = u.find_last_of("/\\");
+    std::string name = (slash == std::string::npos) ? u : u.substr(slash + 1);
+    if (name.empty()) name = "plugin.bin";
+    return name;
+}
+
 InstallController::InstallController() : downloads_(http_) {
     std::memset(message_, 0, sizeof(message_));
     std::memset(fileName_, 0, sizeof(fileName_));
@@ -236,6 +256,7 @@ void InstallController::acknowledgeResult() {
     diagnostics::log("[Installer] result acknowledged by UI");
     resultShownAtMs_.store(0);
     liveAreaOk_.store(false);
+    needsReboot_.store(false);
     setInstallPath("");
     setTitleId("");
     setStage("Idle");
@@ -255,7 +276,9 @@ bool InstallController::requestInstall(
     const std::string& linkType,
     const std::string& contentId,
     const std::string& displayTitle,
-    uint64_t expectedBytes
+    uint64_t expectedBytes,
+    const std::string& pluginSection,
+    const std::string& pluginLine
 ) {
     if (url.empty() || fileName.empty() || busy()) return false;
 
@@ -408,6 +431,10 @@ bool InstallController::requestInstall(
     activeJobId_ = jobId;
     activeZipDestination_ = zipDestination;
     activeFileName_ = fileName;
+    activeLinkType_ = linkType;
+    activePluginSection_ = pluginSection;
+    activePluginLine_ = pluginLine;
+    needsReboot_.store(false);
     current_.store(0);
     total_.store(0);
     speed_.store(0);
@@ -419,7 +446,8 @@ bool InstallController::requestInstall(
     setStage("Downloading");
     workerDone_.store(false);
     setState(InstallStatus::State::Downloading, "Starting download...");
-    diagnostics::log(std::string("[Installer] request job=") + jobId + " file=" + fileName);
+    diagnostics::log(std::string("[Installer] request job=") + jobId + " file=" + fileName +
+        (isPluginLinkType(linkType) ? " type=Plugin" : ""));
 
     workerThread_ = sceKernelCreateThread("PSVitaAliveInstall", &InstallController::workerEntry,
         0x10000100, 512 * 1024, 0, 0, nullptr); /* pkg2zip unpack needs large stack */
@@ -528,6 +556,7 @@ InstallStatus InstallController::status() const {
     result.installPath = installPath_;
     result.titleId = titleId_;
     result.liveAreaOk = liveAreaOk_.load();
+    result.needsReboot = needsReboot_.load();
     result.resultAutoCloseRemainingMs = 0;
     if (result.state == InstallStatus::State::Completed) {
         const uint64_t shown = resultShownAtMs_.load();
@@ -544,6 +573,7 @@ InstallStatus InstallController::status() const {
 void InstallController::maybeAutoAcknowledgeResult() {
     const auto s = static_cast<InstallStatus::State>(state_.load());
     if (s != InstallStatus::State::Completed) return;
+    if (needsReboot_.load()) return; // wait for reboot modal
     const uint64_t shown = resultShownAtMs_.load();
     if (shown == 0) return;
     const uint64_t now = sceKernelGetSystemTimeWide() / 1000ULL;
@@ -777,6 +807,87 @@ int InstallController::workerMain() {
     }
     setState(InstallStatus::State::Installing, "Preparing installation...");
     diagnostics::log(std::string("[Installer] installing job=") + activeJobId_ + " file=" + job->finalPath);
+
+    // --- Plugin link: copy binary to extract_path + append config.txt line (no VPK/ZIP path) ---
+    if (isPluginLinkType(activeLinkType_)) {
+        setStage("Plugin");
+        setState(InstallStatus::State::Installing, "Installing plugin...");
+        std::string destDir = activeZipDestination_;
+        if (destDir.empty()) destDir = "ur0:tai/";
+        if (!destDir.empty() && destDir.back() != '/' && destDir.back() != ':') destDir.push_back('/');
+
+        std::string destName = basenameFromPathOrUrl(activePluginLine_.empty() ? activeFileName_ : activePluginLine_);
+        if (destName.find('.') == std::string::npos) {
+            destName = basenameFromPathOrUrl(activeFileName_);
+        }
+        const std::string destPath = destDir + destName;
+
+        StorageManager st;
+        if (!st.createDirectories(destDir)) {
+            setStage("Error");
+            setState(InstallStatus::State::Failed, "Cannot create plugin directory");
+            diagnostics::log(std::string("[Installer] plugin mkdir failed: ") + destDir);
+            resultShownAtMs_.store(sceKernelGetSystemTimeWide() / 1000ULL);
+            workerDone_.store(true);
+            return 0;
+        }
+
+        // Copy downloaded file → final plugin path (overwrite if present).
+        {
+            sceIoRemove(destPath.c_str());
+            const SceUID in = sceIoOpen(job->finalPath.c_str(), SCE_O_RDONLY, 0);
+            if (in < 0) {
+                setStage("Error");
+                setState(InstallStatus::State::Failed, "Cannot open downloaded plugin");
+                workerDone_.store(true);
+                return 0;
+            }
+            const SceUID out = sceIoOpen(destPath.c_str(), SCE_O_WRONLY | SCE_O_CREAT | SCE_O_TRUNC, 0666);
+            if (out < 0) {
+                sceIoClose(in);
+                setStage("Error");
+                setState(InstallStatus::State::Failed, "Cannot write plugin file");
+                workerDone_.store(true);
+                return 0;
+            }
+            char buf[8 * 1024];
+            for (;;) {
+                const int n = sceIoRead(in, buf, sizeof(buf));
+                if (n < 0) { sceIoClose(in); sceIoClose(out); setState(InstallStatus::State::Failed, "Plugin copy read error"); workerDone_.store(true); return 0; }
+                if (n == 0) break;
+                const int w = sceIoWrite(out, buf, n);
+                if (w != n) { sceIoClose(in); sceIoClose(out); setState(InstallStatus::State::Failed, "Plugin copy write error"); workerDone_.store(true); return 0; }
+            }
+            sceIoClose(in);
+            sceIoClose(out);
+        }
+        diagnostics::log(std::string("[Installer] plugin file installed: ") + destPath);
+        setInstallPath(destPath.c_str());
+
+        std::string cfgErr;
+        if (!TaiConfigEditor::appendLineToSection(activePluginSection_, activePluginLine_, &cfgErr)) {
+            setStage("Error");
+            const std::string msg = cfgErr.empty() ? "Failed to update tai config.txt" : cfgErr;
+            setState(InstallStatus::State::Failed, msg.c_str());
+            diagnostics::log(std::string("[Installer] plugin config edit failed: ") + msg);
+            resultShownAtMs_.store(sceKernelGetSystemTimeWide() / 1000ULL);
+            workerDone_.store(true);
+            return 0;
+        }
+
+        needsReboot_.store(true);
+        liveAreaOk_.store(false);
+        setStage("Done");
+        setState(InstallStatus::State::Completed,
+            "Plugin installed. Restart the PS Vita to load it. Hold L at boot to disable plugins if something goes wrong.");
+        resultShownAtMs_.store(0); // no auto-dismiss — UI shows reboot modal
+        diagnostics::log("[Installer] plugin install completed — reboot required");
+        downloads_.cleanupCompletedJob(activeJobId_);
+        activeJobId_.clear();
+        workerDone_.store(true);
+        return 0;
+    }
+
 
     std::string directRifPath;
     {

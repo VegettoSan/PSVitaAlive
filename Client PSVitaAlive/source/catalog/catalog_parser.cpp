@@ -6,6 +6,7 @@
 #include <psp2/io/fcntl.h>
 
 #include <cstdlib>
+#include <cctype>
 #include <string>
 
 namespace psvitaalive {
@@ -167,6 +168,31 @@ void parseLinks(const sce::Json::Value& application, ui::CatalogItem& item, SceU
             if (!ep.empty()) {
                 if (ep.back() != '/' && ep.back() != ':') ep.push_back('/');
                 detail.extractPath = ep;
+            }
+        }
+        // Plugin link metadata (taiHEN config append).
+        {
+            detail.section = getString(link, "section");
+            detail.line = getString(link, "line");
+            while (!detail.section.empty() && (detail.section.front() == ' ' || detail.section.front() == '	'))
+                detail.section.erase(detail.section.begin());
+            while (!detail.section.empty() && (detail.section.back() == ' ' || detail.section.back() == '	'))
+                detail.section.pop_back();
+            while (!detail.line.empty() && (detail.line.front() == ' ' || detail.line.front() == '	'))
+                detail.line.erase(detail.line.begin());
+            while (!detail.line.empty() && (detail.line.back() == ' ' || detail.line.back() == '	'))
+                detail.line.pop_back();
+            // Default extract_path for plugins when omitted.
+            const std::string typLower = type;
+            // type is original case; compare loosely
+            auto isPlugin = false;
+            {
+                std::string tl;
+                for (char c : type) tl.push_back(static_cast<char>(std::tolower(static_cast<unsigned char>(c))));
+                isPlugin = (tl == "plugin" || tl == "plugins");
+            }
+            if (isPlugin && detail.extractPath.empty()) {
+                detail.extractPath = "ur0:tai/";
             }
         }
         item.linkDetails.push_back(detail);

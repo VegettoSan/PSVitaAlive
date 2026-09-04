@@ -83,7 +83,8 @@ public:
                             bool liveAreaOk = false,
                             const std::string& installPath = std::string(),
                             const std::string& titleId = std::string(),
-                            uint64_t resultAutoCloseRemainingMs = 0);
+                            uint64_t resultAutoCloseRemainingMs = 0,
+                            bool needsReboot = false);
 
 private:
     UiState state_;
@@ -132,6 +133,10 @@ private:
     std::string catalogError_;
 
     bool installProgressActive_ = false;
+    /** After Plugin install(s): force reboot dialog (blocks LiveArea exit). */
+    bool pluginRebootModal_ = false;
+    bool installAllHadPlugin_ = false;
+
     uint64_t installProgressCurrent_ = 0;
     uint64_t installProgressTotal_ = 0;
     uint64_t installProgressSpeed_ = 0;
@@ -230,6 +235,7 @@ private:
     void drawDetailContent(const CatalogItem& item, int x, int y, int width, int height);
     void drawDetailLinks(const CatalogItem& item, int x, int y, int width, int& heightOut);
     void drawInstallAllOverlay();
+    void drawPluginRebootOverlay();
     void openInstallAllWizard();
     void closeInstallAllWizard(bool cancel);
     void installAllAdvancePick();

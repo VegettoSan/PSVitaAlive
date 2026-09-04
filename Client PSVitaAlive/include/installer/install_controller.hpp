@@ -34,6 +34,8 @@ struct InstallStatus {
     bool liveAreaOk = false;
     /** Remaining ms before Completed auto-dismisses (0 = no auto-dismiss). */
     uint64_t resultAutoCloseRemainingMs = 0;
+    /** True when a Plugin link finished and the user must reboot for taiHEN. */
+    bool needsReboot = false;
 };
 
 /**
@@ -59,7 +61,9 @@ public:
         const std::string& linkType = std::string(),
         const std::string& contentId = std::string(),
         const std::string& displayTitle = std::string(),
-        uint64_t expectedBytes = 0
+        uint64_t expectedBytes = 0,
+        const std::string& pluginSection = std::string(),
+        const std::string& pluginLine = std::string()
     );
     void cancel();
     /** User dismissed the success/error result panel (or UI timeout). */
@@ -100,6 +104,10 @@ private:
     /** Direct PKG path only: zRIF / content_id carried from requestInstall (VPK ignores these). */
     std::string activeZrif_;
     std::string activeContentId_;
+    std::string activeLinkType_;
+    std::string activePluginSection_;
+    std::string activePluginLine_;
+    std::atomic<bool> needsReboot_{false};
 
     std::atomic<int> state_{static_cast<int>(InstallStatus::State::Idle)};
     std::atomic<uint64_t> current_{0};
