@@ -4,7 +4,7 @@
 
 #include <psp2/appmgr.h>
 #include <psp2/io/fcntl.h>
-#include <psp2/kernel/threadmgr.h>
+#include <psp2/kernel/clib.h>
 #include <taihen.h>
 
 #include <vector>
@@ -65,9 +65,9 @@ bool PsmRuntimeInstaller::launchPackageInstaller(std::string& error) {
         return false;
     }
 
-    // The helper is bundled with PSVitaAlive and only lives for this operation.
-    // It redirects host0:/package to our private runtime staging directory and
-    // enables NPXS10031 on retail firmware, matching the CrystalPSM mechanism.
+    // The helper is bundled with PSVitaAlive. It redirects host0:/package to
+    // our private runtime staging directory and enables NPXS10031 on retail
+    // firmware, matching the proven CrystalPSM mechanism.
     const SceUID module = taiLoadStartKernelModule(
         "app0:/psm_runtime_driver.skprx", 0, nullptr, 0);
     if (module < 0) {
