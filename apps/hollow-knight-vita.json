@@ -15,12 +15,13 @@
   "version_date": "2025-01-19",
   "requirements": "- Game Data Files: PC",
   "size": 22126002,
-  "status": "Legacy",
+  "status": "Verified",
   "links": [
     {
       "type": "Download",
       "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-hollow-knight-vita/hollow-knight-vita.vpk",
+      "url": "https://archive.org/download/psvitaalive-hollow-knight-vita/HollowKnight%20v0.81%20Hotfix.vpk",
+      "size": 22124954,
       "recommended": true
     },
     {
