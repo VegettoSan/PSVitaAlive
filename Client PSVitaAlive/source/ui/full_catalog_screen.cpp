@@ -2589,10 +2589,10 @@ void FullCatalogScreen::handleTouch() {
     if (essentialPluginsModal_) {
         if (td.reportNum <= 0) {
             if (touchDown_ && !touchMoved_) {
-                const int w = 780, h = 420;
+                const int w = 820, h = 460;
                 const int ox = (SCREEN_W - w) / 2, oy = (SCREEN_H - h) / 2;
-                const int btnH = 52, gap = 12;
-                const int btnY = oy + h - 72;
+                const int btnH = 58, gap = 14;
+                const int btnY = oy + h - 82;
                 const int btnW = (w - 56 - gap) / 2;
                 const int x0 = ox + 28;
                 const int x1 = x0 + btnW + gap;
@@ -5931,7 +5931,8 @@ void FullCatalogScreen::essentialPluginsTryAdvanceFromProgress(int outcome) {
 void FullCatalogScreen::drawEssentialPluginsOverlay() {
     if (!essentialPluginsModal_ || !font_) return;
     vita2d_draw_rectangle(0, 0, SCREEN_W, SCREEN_H, RGBA8(0, 0, 0, 200));
-    const int w = 780, h = 420;
+    // Large type for real Vita (960x544) — avoid the tiny scales that look fine on desktop.
+    const int w = 820, h = 460;
     const int x = (SCREEN_W - w) / 2, y = (SCREEN_H - h) / 2;
     vita2d_draw_rectangle(x, y, w, h, SURFACE);
     vita2d_draw_rectangle(x, y, w, 4, ACCENT);
@@ -5939,22 +5940,21 @@ void FullCatalogScreen::drawEssentialPluginsOverlay() {
     vita2d_draw_rectangle(x + w - 4, y, 4, h, ACCENT);
     vita2d_draw_rectangle(x, y + h - 4, w, 4, ACCENT);
 
-    vita2d_pgf_draw_text(font_, x + 24, y + 36, WHITE, 0.88f, "Recommended plugins missing");
-    vita2d_pgf_draw_text(font_, x + 24, y + 62, TEXT, 0.62f,
+    vita2d_pgf_draw_text(font_, x + 28, y + 44, WHITE, 1.18f, "Recommended plugins missing");
+    vita2d_pgf_draw_text(font_, x + 28, y + 78, TEXT, 0.88f,
         "These plugins help many homebrew and ports run correctly.");
 
-    int ty = y + 92;
+    int ty = y + 118;
     for (const auto& s : essentialMissing_) {
-        vita2d_pgf_draw_text(font_, x + 24, ty, ACCENT, 0.72f, s.name.c_str());
-        ty += 22;
-        // wrap-ish short desc
-        vita2d_pgf_draw_text(font_, x + 32, ty, DIM, 0.58f, s.desc.c_str());
-        ty += 28;
-        if (ty > y + h - 100) break;
+        vita2d_pgf_draw_text(font_, x + 28, ty, ACCENT, 1.02f, s.name.c_str());
+        ty += 30;
+        vita2d_pgf_draw_text(font_, x + 36, ty, DIM, 0.84f, s.desc.c_str());
+        ty += 36;
+        if (ty > y + h - 110) break;
     }
 
-    const int btnH = 52, gap = 12;
-    const int btnY = y + h - 72;
+    const int btnH = 58, gap = 14;
+    const int btnY = y + h - 82;
     const int btnW = (w - 56 - gap) / 2;
     const int x0 = x + 28;
     const int x1 = x0 + btnW + gap;
@@ -5971,9 +5971,9 @@ void FullCatalogScreen::drawEssentialPluginsOverlay() {
         vita2d_draw_rectangle(x0 + bwPulse, btnY + bwPulse, btnW - bwPulse * 2, btnH - bwPulse * 2,
                               essentialPluginsFocus_ == 0 ? ACCENT : SURFACE2);
         const char* lab = "Install plugins";
-        const float sc = 0.78f;
+        const float sc = 0.98f;
         const int tw = vita2d_pgf_text_width(font_, sc, lab);
-        vita2d_pgf_draw_text(font_, x0 + (btnW - tw) / 2, btnY + 34,
+        vita2d_pgf_draw_text(font_, x0 + (btnW - tw) / 2, btnY + 38,
                              essentialPluginsFocus_ == 0 ? BG : WHITE, sc, lab);
     }
     // Remind later
@@ -5981,12 +5981,12 @@ void FullCatalogScreen::drawEssentialPluginsOverlay() {
         vita2d_draw_rectangle(x1, btnY, btnW, btnH, essentialPluginsFocus_ == 1 ? ACCENT : SURFACE2);
         vita2d_draw_rectangle(x1, btnY, btnW, 1, essentialPluginsFocus_ == 1 ? ACCENT : BORDER);
         const char* lab = "Remind me later";
-        const float sc = 0.78f;
+        const float sc = 0.98f;
         const int tw = vita2d_pgf_text_width(font_, sc, lab);
-        vita2d_pgf_draw_text(font_, x1 + (btnW - tw) / 2, btnY + 34,
+        vita2d_pgf_draw_text(font_, x1 + (btnW - tw) / 2, btnY + 38,
                              essentialPluginsFocus_ == 1 ? BG : WHITE, sc, lab);
     }
-    vita2d_pgf_draw_text(font_, x + 24, y + h - 14, DIM, 0.52f, "←/→ select   X confirm   O later");
+    vita2d_pgf_draw_text(font_, x + 28, y + h - 16, DIM, 0.72f, "←/→ select   X confirm   O later");
 }
 
 void FullCatalogScreen::drawPluginRebootOverlay() {
