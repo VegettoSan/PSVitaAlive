@@ -212,6 +212,14 @@ enum class TextId {
     InfoFont2,
     InfoFont3,
     FontFallbackToast,
+    ThemeSetupTitle,
+    ThemeSetupBody1,
+    ThemeSetupBody2,
+    ThemeSetupNavHint,
+    ThemeSavedToast,
+    ThemePreviewToast,
+    ThemeAppliedPrefix,
+    BtnSave,
     Count
 };
 

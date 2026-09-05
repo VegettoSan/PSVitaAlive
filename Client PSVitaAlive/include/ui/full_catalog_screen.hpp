@@ -207,6 +207,7 @@ private:
     bool themeSetupChecked_ = false;
     int themeSetupFocus_ = 0;          // 0..Count-1 themes, Count = Save
     int themeSetupScrollRow_ = 0;
+    int themeSetupAppliedFocus_ = -1; // last previewed theme index (-1 = none)
     float visualThemeSetupScroll_ = 0.f;
 
     std::unordered_map<std::string, vita2d_texture*> textures_;

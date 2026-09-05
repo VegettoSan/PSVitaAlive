@@ -368,6 +368,14 @@ const char* LocalizationManager::keyFor(TextId id) {
         case TextId::InfoFont2: return "INFO_FONT_2";
         case TextId::InfoFont3: return "INFO_FONT_3";
         case TextId::FontFallbackToast: return "FONT_FALLBACK_TOAST";
+        case TextId::ThemeSetupTitle: return "THEME_SETUP_TITLE";
+        case TextId::ThemeSetupBody1: return "THEME_SETUP_BODY_1";
+        case TextId::ThemeSetupBody2: return "THEME_SETUP_BODY_2";
+        case TextId::ThemeSetupNavHint: return "THEME_SETUP_NAV_HINT";
+        case TextId::ThemeSavedToast: return "THEME_SAVED_TOAST";
+        case TextId::ThemePreviewToast: return "THEME_PREVIEW_TOAST";
+        case TextId::ThemeAppliedPrefix: return "THEME_APPLIED_PREFIX";
+        case TextId::BtnSave: return "BTN_SAVE";
         default: return "";
     }
 }
