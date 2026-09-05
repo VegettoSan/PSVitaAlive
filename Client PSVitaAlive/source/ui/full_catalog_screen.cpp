@@ -861,30 +861,32 @@ LinkSection classifyLinkSection(const CatalogLink& l) {
 }
 
 const char* linkSectionTitle(LinkSection s) {
+    using TID = ::psvitaalive::TextId;
     switch (s) {
-        case LinkSection::Downloads: return "DOWNLOADS";
-        case LinkSection::DataFiles: return "DATA FILES";
-        case LinkSection::GameFiles: return "GAME FILES";
-        case LinkSection::Mods: return "MODS";
-        case LinkSection::Dlc: return "DLC";
-        case LinkSection::Updates: return "UPDATES";
-        case LinkSection::Pkg: return "PKG";
-        case LinkSection::Plugins: return "PLUGINS";
-        default: return "OTHER";
+        case LinkSection::Downloads: return ::psvitaalive::L(TID::SectionDownloads);
+        case LinkSection::DataFiles: return ::psvitaalive::L(TID::SectionDataFiles);
+        case LinkSection::GameFiles: return ::psvitaalive::L(TID::SectionGameFiles);
+        case LinkSection::Mods: return ::psvitaalive::L(TID::SectionMods);
+        case LinkSection::Dlc: return ::psvitaalive::L(TID::SectionDlc);
+        case LinkSection::Updates: return ::psvitaalive::L(TID::SectionUpdatesLinks);
+        case LinkSection::Pkg: return ::psvitaalive::L(TID::SectionPkg);
+        case LinkSection::Plugins: return ::psvitaalive::L(TID::SectionPlugins);
+        default: return ::psvitaalive::L(TID::SectionOther);
     }
 }
 
 const char* linkSectionMetaLabel(LinkSection s) {
+    using TID = ::psvitaalive::TextId;
     switch (s) {
-        case LinkSection::Downloads: return "Download";
-        case LinkSection::DataFiles: return "Data Files";
-        case LinkSection::GameFiles: return "Game Files";
-        case LinkSection::Mods: return "Mod";
-        case LinkSection::Dlc: return "DLC";
-        case LinkSection::Updates: return "Update";
-        case LinkSection::Pkg: return "PKG";
-        case LinkSection::Plugins: return "Plugin";
-        default: return "Download";
+        case LinkSection::Downloads: return ::psvitaalive::L(TID::MetaDownload);
+        case LinkSection::DataFiles: return ::psvitaalive::L(TID::MetaDataFiles);
+        case LinkSection::GameFiles: return ::psvitaalive::L(TID::MetaGameFiles);
+        case LinkSection::Mods: return ::psvitaalive::L(TID::MetaMod);
+        case LinkSection::Dlc: return ::psvitaalive::L(TID::MetaDlc);
+        case LinkSection::Updates: return ::psvitaalive::L(TID::MetaUpdate);
+        case LinkSection::Pkg: return ::psvitaalive::L(TID::MetaPkg);
+        case LinkSection::Plugins: return ::psvitaalive::L(TID::MetaPlugin);
+        default: return ::psvitaalive::L(TID::MetaDownload);
     }
 }
 
@@ -2453,7 +2455,7 @@ void FullCatalogScreen::moveCatalogFocus(int d){if(catalogView().empty())return;
     const CatalogLink&l=item.linkDetails[idxs[li]];
     if(!linkAction_||!actionableLink(l)){diagnostics::log(std::string("[UI] non-download link selected: ")+l.url);return;}
     if(isPluginTypeLink(l) && isPluginAlreadyInstalled(l)){
-        showToast("Already installed", 2800);
+        showToast(::psvitaalive::L(::psvitaalive::TextId::AlreadyInstalled), 2800);
         diagnostics::log(std::string("[UI] plugin already installed: ")+pluginInstallFilePath(l));
         return;
     }
@@ -2461,7 +2463,7 @@ void FullCatalogScreen::moveCatalogFocus(int d){if(catalogView().empty())return;
     if (state_.catalog == CatalogType::PspGames && isDlcTypeLink(l)
         && settingsEdit_.pspTarget == ::psvitaalive::PspTarget::Adrenaline
         && settingsEdit_.pspMediaFormat == ::psvitaalive::PspMediaFormat::Iso) {
-        showToast("PSP DLC needs LiveArea or Adrenaline Folder (Settings)", 3600);
+        showToast(::psvitaalive::L(::psvitaalive::TextId::PspDlcBlocked), 3600);
         diagnostics::log("[UI] blocked PSP DLC install: Adrenaline + ISO mode");
         return;
     }
@@ -3560,15 +3562,15 @@ void FullCatalogScreen::drawSettings() {
         return ::psvitaalive::L(TID::English);
     };
     auto updateLabel = [&]() -> std::string {
-        if (selfUpdateBusy_.load()) return "Working...";
+        if (selfUpdateBusy_.load()) return ::psvitaalive::L(TID::UpdateWorking);
         if (selfUpdateChecked_ && selfUpdateInfo_.state == ::psvitaalive::UpdateChecker::State::UpdateAvailable) {
-            return std::string("Install ") + selfUpdateInfo_.remoteVersion;
+            return std::string(::psvitaalive::L(TID::UpdateInstallPrefix)) + " " + selfUpdateInfo_.remoteVersion;
         }
         if (selfUpdateChecked_ && selfUpdateInfo_.state == ::psvitaalive::UpdateChecker::State::UpToDate) {
-            return "Up to date";
+            return ::psvitaalive::L(TID::UpdateUpToDate);
         }
         if (selfUpdateChecked_ && selfUpdateInfo_.state == ::psvitaalive::UpdateChecker::State::Failed) {
-            return "Check failed";
+            return ::psvitaalive::L(TID::UpdateCheckFailed);
         }
         return std::string("v") + PSVITAALIVE_VERSION;
     };
@@ -3690,44 +3692,44 @@ void FullCatalogScreen::drawSettings() {
         const char* body3 = "";
         switch (settingsFocus_) {
         case 0:
-            body1 = "How packages are installed.";
-            body2 = "Auto uses BGDL for PKG when";
-            body3 = "Shell supports it, else Direct.";
+            body1 = ::psvitaalive::L(TID::InfoInstallMethod1);
+            body2 = ::psvitaalive::L(TID::InfoInstallMethod2);
+            body3 = ::psvitaalive::L(TID::InfoInstallMethod3);
             break;
         case 1:
-            body1 = "LiveArea: PSP/PS1 PKG via system BGDL";
-            body2 = "(bubble). Adrenaline: no LiveArea bubble;";
-            body3 = "PKG unpacks to ux0:pspemu.";
+            body1 = ::psvitaalive::L(TID::InfoPspTarget1);
+            body2 = ::psvitaalive::L(TID::InfoPspTarget2);
+            body3 = ::psvitaalive::L(TID::InfoPspTarget3);
             break;
         case 2:
-            body1 = "Adrenaline PSP layout only.";
-            body2 = "Folder = EBOOT.PBP in GAME (default).";
-            body3 = "ISO = convert to pspemu/ISO.";
+            body1 = ::psvitaalive::L(TID::InfoPspMedia1);
+            body2 = ::psvitaalive::L(TID::InfoPspMedia2);
+            body3 = ::psvitaalive::L(TID::InfoPspMedia3);
             break;
         case 3:
-            body1 = "System follows the Vita language";
-            body2 = "when a translation is available.";
-            body3 = "Manual locks English or Spanish.";
+            body1 = ::psvitaalive::L(TID::InfoLanguage1);
+            body2 = ::psvitaalive::L(TID::InfoLanguage2);
+            body3 = ::psvitaalive::L(TID::InfoLanguage3);
             break;
         case 4:
-            body1 = "UI accent palette. Neon is the";
-            body2 = "brand default; Cyan / Rose are";
-            body3 = "popular. Report stays red.";
+            body1 = ::psvitaalive::L(TID::InfoColorTheme1);
+            body2 = ::psvitaalive::L(TID::InfoColorTheme2);
+            body3 = ::psvitaalive::L(TID::InfoColorTheme3);
             break;
         case 5:
-            body1 = "Show a toast at startup when";
-            body2 = "NoNpDrm / NoPspEmuDrm are";
-            body3 = "missing from taiHEN config.";
+            body1 = ::psvitaalive::L(TID::InfoWarnPlugins1);
+            body2 = ::psvitaalive::L(TID::InfoWarnPlugins2);
+            body3 = ::psvitaalive::L(TID::InfoWarnPlugins3);
             break;
         case 6:
-            body1 = "Ask once whether to download";
-            body2 = "all catalog images at startup.";
-            body3 = "Off = load images on demand.";
+            body1 = ::psvitaalive::L(TID::InfoImageWarmup1);
+            body2 = ::psvitaalive::L(TID::InfoImageWarmup2);
+            body3 = ::psvitaalive::L(TID::InfoImageWarmup3);
             break;
         case 7:
-            body1 = "Checks GitHub Releases for a";
-            body2 = "newer PSVitaAlive.vpk and can";
-            body3 = "install it in-place (VitaDB style).";
+            body1 = ::psvitaalive::L(TID::InfoSelfUpdate1);
+            body2 = ::psvitaalive::L(TID::InfoSelfUpdate2);
+            body3 = ::psvitaalive::L(TID::InfoSelfUpdate3);
             break;
         default: break;
         }
@@ -3742,7 +3744,8 @@ void FullCatalogScreen::drawSettings() {
         sy += 24;
         char plug[96];
         auto drawPlugLine = [&](const char* label, bool ok) {
-            sceClibSnprintf(plug, sizeof(plug), "%s: %s", label, ok ? "OK" : "missing");
+            sceClibSnprintf(plug, sizeof(plug), "%s: %s", label,
+                            ok ? ::psvitaalive::L(TID::StatusOk) : ::psvitaalive::L(TID::StatusMissing));
             const unsigned col = ok ? TEXT : ACCENT;
             vita2d_pgf_draw_text(font_, sideX + 14, sy, col, 0.72f, plug);
             sy += 22;
@@ -3770,16 +3773,19 @@ void FullCatalogScreen::drawSettings() {
         }
         if (settingsFocus_ == 7) {
             char ver[64];
-            sceClibSnprintf(ver, sizeof(ver), "Local: v%s", PSVITAALIVE_VERSION);
+            sceClibSnprintf(ver, sizeof(ver), "%s: v%s", ::psvitaalive::L(TID::LocalVersion), PSVITAALIVE_VERSION);
             vita2d_pgf_draw_text(font_, sideX + 14, sy, ACCENT, 0.72f, ver);
             sy += 22;
             if (selfUpdateChecked_) {
                 if (selfUpdateInfo_.state == ::psvitaalive::UpdateChecker::State::UpdateAvailable)
-                    sceClibSnprintf(ver, sizeof(ver), "Remote: v%s", selfUpdateInfo_.remoteVersion.c_str());
+                    sceClibSnprintf(ver, sizeof(ver), "%s: v%s", ::psvitaalive::L(TID::RemoteVersion),
+                                    selfUpdateInfo_.remoteVersion.c_str());
                 else if (selfUpdateInfo_.state == ::psvitaalive::UpdateChecker::State::UpToDate)
-                    sceClibSnprintf(ver, sizeof(ver), "Remote: up to date");
+                    sceClibSnprintf(ver, sizeof(ver), "%s: %s", ::psvitaalive::L(TID::RemoteVersion),
+                                    ::psvitaalive::L(TID::RemoteUpToDate));
                 else
-                    sceClibSnprintf(ver, sizeof(ver), "Remote: check failed");
+                    sceClibSnprintf(ver, sizeof(ver), "%s: %s", ::psvitaalive::L(TID::RemoteVersion),
+                                    ::psvitaalive::L(TID::RemoteCheckFailed));
                 vita2d_pgf_draw_text(font_, sideX + 14, sy, TEXT, 0.70f, ver);
             }
         }
@@ -5002,7 +5008,7 @@ void FullCatalogScreen::drawDetailContent(const CatalogItem& it, int x, int y, i
             vita2d_draw_rectangle(cx, cardTop, cw, 1, BORDER);
             vita2d_draw_rectangle(cx, cardTop + cardH - 1, cw, 1, BORDER);
         }
-        drawSectionHeader(cx + 8, cardTop + 2, "INFORMATION");
+        drawSectionHeader(cx + 8, cardTop + 2, ::psvitaalive::L(::psvitaalive::TextId::DetailInformation));
         int my = cardTop + DETAIL_SECTION_H + 4;
         my = drawMetaRow(cx, my, cw, "Title ID", it.titleId);
         my = drawMetaRow(cx, my, cw, "Version", it.version);
@@ -5370,7 +5376,7 @@ void FullCatalogScreen::drawInstallAllOverlay() {
     vita2d_draw_rectangle(ox + ow - 1, oy, 1, oh, BORDER);
 
     if (installAllPhase_ == InstallAllPhase::Confirm) {
-        vita2d_pgf_draw_text(font_, ox + 24, oy + 40, ACCENT, 0.96f, "Install All");
+        vita2d_pgf_draw_text(font_, ox + 24, oy + 40, ACCENT, 0.96f, ::psvitaalive::L(::psvitaalive::TextId::InstallAll));
         vita2d_pgf_draw_text(font_, ox + 24, oy + 76, WHITE, 0.72f, ellipsize(item.name, 42).c_str());
         const char* lines[] = {
             "This installs the homebrew from scratch:",
