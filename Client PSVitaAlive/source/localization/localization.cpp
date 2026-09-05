@@ -323,6 +323,23 @@ const char* LocalizationManager::keyFor(TextId id) {
         case TextId::ZipExtractComplete: return "ZIP_EXTRACT_COMPLETE";
         case TextId::ExtractedTo: return "EXTRACTED_TO";
         case TextId::OContinue: return "O_CONTINUE";
+        case TextId::StageDownloading: return "STAGE_DOWNLOADING";
+        case TextId::StageInstalling: return "STAGE_INSTALLING";
+        case TextId::StagePreparingDownload: return "STAGE_PREPARING_DOWNLOAD";
+        case TextId::StagePreparing: return "STAGE_PREPARING";
+        case TextId::LabelFile: return "LABEL_FILE";
+        case TextId::LabelEta: return "LABEL_ETA";
+        case TextId::HintRetryConnection: return "HINT_RETRY_CONNECTION";
+        case TextId::HintRetryStep: return "HINT_RETRY_STEP";
+        case TextId::HintExtracting: return "HINT_EXTRACTING";
+        case TextId::HintInstalling: return "HINT_INSTALLING";
+        case TextId::HintConnecting: return "HINT_CONNECTING";
+        case TextId::HintDownloadSpeed: return "HINT_DOWNLOAD_SPEED";
+        case TextId::HintPleaseWait: return "HINT_PLEASE_WAIT";
+        case TextId::LockedBanner1: return "LOCKED_BANNER_1";
+        case TextId::LockedBanner2: return "LOCKED_BANNER_2";
+        case TextId::CircleCancelDownload: return "CIRCLE_CANCEL_DOWNLOAD";
+        case TextId::ProgressFooterHint: return "PROGRESS_FOOTER_HINT";
         default: return "";
     }
 }

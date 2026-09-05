@@ -167,6 +167,23 @@ enum class TextId {
     ZipExtractComplete,
     ExtractedTo,
     OContinue,
+    StageDownloading,
+    StageInstalling,
+    StagePreparingDownload,
+    StagePreparing,
+    LabelFile,
+    LabelEta,
+    HintRetryConnection,
+    HintRetryStep,
+    HintExtracting,
+    HintInstalling,
+    HintConnecting,
+    HintDownloadSpeed,
+    HintPleaseWait,
+    LockedBanner1,
+    LockedBanner2,
+    CircleCancelDownload,
+    ProgressFooterHint,
     Count
 };
 

@@ -2846,8 +2846,8 @@ void FullCatalogScreen::handleTouch() {
             const int x = touchStartX_, y = touchStartY_;
             touchDown_ = false;
             if (touchMoved_) return;
-            const int ow = 700, oh = 440, ox = (SCREEN_W - ow) / 2, oy = (SCREEN_H - oh) / 2;
-            const int resultBy = oy + 300, runningBy = oy + 332, bh = 42;
+            const int ow = 900, oh = 508, ox = (SCREEN_W - ow) / 2, oy = (SCREEN_H - oh) / 2;
+            const int resultBy = oy + 360, runningBy = oy + 410, bh = 50;
             if (installOutcome_ == 3) {
                 // Cancelled: only Close (centered), no Report
                 const int bwClose = 280;
@@ -2893,7 +2893,9 @@ void FullCatalogScreen::handleTouch() {
                     showToast("All installed — ready to use", 2800);
                 }
             } else {
-                if (!hit(x, y, ox + 20, runningBy - 8, bw + 16, 42 + 16)) return;
+                const int cancelW = 520;
+                const int cancelX = ox + (ow - cancelW) / 2;
+                if (!hit(x, y, cancelX - 12, runningBy - 12, cancelW + 24, 50 + 24)) return;
                 if (installCancel_) installCancel_();
             }
         }
@@ -5544,7 +5546,7 @@ if (catalogSplashAlpha_ > 0.01f && !installProgressActive_) {
 
 
 const unsigned RED=RGBA8(0xE0,0x32,0x32,255), GREEN=RGBA8(0x3B,0xD9,0x60,255), BLACK=RGBA8(0,0,0,255);
-const int w=700,h=440,x=(SCREEN_W-w)/2,y=(SCREEN_H-h)/2;
+const int w=900,h=508,x=(SCREEN_W-w)/2,y=(SCREEN_H-h)/2;
 vita2d_draw_rectangle(0,0,SCREEN_W,SCREEN_H,RGBA8(0,0,0,120));
 vita2d_draw_rectangle(x,y,w,h,PANEL);
 const unsigned edge=(installOutcome_==2)?RED:((installOutcome_==1)?GREEN:ACCENT);
@@ -5552,7 +5554,7 @@ vita2d_draw_rectangle(x,y,w,3,edge);
 vita2d_draw_rectangle(x,y+3,3,h-6,edge);
 vita2d_draw_rectangle(x+w-3,y+3,3,h-6,BORDER);
 vita2d_draw_rectangle(x,y+h-3,w,3,BORDER);
-vita2d_pgf_draw_text(font_,x+28,y+36,edge,.68f,"PSVitaAlive");
+vita2d_pgf_draw_text(font_,x+28,y+34,edge,0.92f,"PSVitaAlive");
 
 if(installOutcome_==1){
   const bool zipExtract =
@@ -5586,7 +5588,7 @@ if(installOutcome_==1){
       vita2d_pgf_draw_text(font_,x+28,y+232,DIM,.54f,ellipsize(installProgressMessage_,78).c_str());
   }
 
-    const int by2=y+300,bw2=280,bh2=40;
+    const int by2=y+360,bw2=280,bh2=44;
   vita2d_draw_rectangle(x+28,by2,bw2,bh2,GREEN);
   vita2d_pgf_draw_text(font_,x+100,by2+26,BLACK,.62f,::psvitaalive::L(::psvitaalive::TextId::OContinue));
   // Auto-close countdown bar only (no text)
@@ -5618,7 +5620,7 @@ if(installOutcome_==3){
     msg="You cancelled this download. Incomplete files were removed.";
   vita2d_pgf_draw_text(font_,x+28,y+160,TEXT,.60f,ellipsize(msg,78).c_str());
   vita2d_pgf_draw_text(font_,x+28,y+200,DIM,.54f,"No error was reported. You can try again anytime.");
-  const int by2=y+300,bh2=40;
+  const int by2=y+360,bh2=44;
   const int bwClose=280;
   const int bxClose=x+(w-bwClose)/2;
   vita2d_draw_rectangle(bxClose,by2,bwClose,bh2,SURFACE2);
@@ -5650,7 +5652,7 @@ if(installOutcome_==2){
     vita2d_pgf_draw_text(font_,x+28,y+236,DIM,.54f,"Check free space, format, and session.log");
     vita2d_pgf_draw_text(font_,x+28,y+258,DIM,.52f,"ux0:data/psvitaalive/logs/session.log");
   }
-  const int by2=y+300,bh2=40;
+  const int by2=y+360,bh2=44;
   if (spaceErr) {
     // Only Close — space issues are expected user-side, not bug reports
     const int bwClose=280;
@@ -5713,20 +5715,25 @@ if(catalogLoading_){
 }
 
 {
-  const char* title = "Installing";
-  if (installProgressStage_ == "BGDL") title = "Preparing download";
+  using TID = ::psvitaalive::TextId;
+  const char* title = ::psvitaalive::L(TID::StageInstalling);
+  if (installProgressStage_ == "BGDL") title = ::psvitaalive::L(TID::StagePreparingDownload);
   else if (installProgressStage_ == "Downloading" || installProgressStage_ == "Cancelling" || installProgressStage_.empty())
-    title = "Downloading";
-  else if (installProgressStage_ == "Installing") title = "Installing";
+    title = ::psvitaalive::L(TID::StageDownloading);
+  else if (installProgressStage_ == "Installing") title = ::psvitaalive::L(TID::StageInstalling);
   else if (!installProgressStage_.empty()) title = installProgressStage_.c_str();
-  vita2d_pgf_draw_text(font_,x+28,y+72,WHITE,1.12f,title);
+  // Large type for Vita readability (similar hierarchy to essential-plugins modal).
+  vita2d_pgf_draw_text(font_, x + 28, y + 68, WHITE, 1.28f, title);
 }
-std::string file=installProgressFile_.empty()?"Preparing...":ellipsize(installProgressFile_,68);
-vita2d_pgf_draw_text(font_,x+28,y+106,TEXT,.72f,file.c_str());
-const uint64_t total=installProgressTotal_,current=std::min<uint64_t>(installProgressCurrent_,total?total:installProgressCurrent_);
-const uint64_t pct=total?std::min<uint64_t>(100,(current*100)/total):0;
-int bx=x+28,by=y+138,bw=w-56,bh=14;
-vita2d_draw_rectangle(bx,by,bw,bh,BORDER);
+std::string file = installProgressFile_.empty()
+    ? ::psvitaalive::L(::psvitaalive::TextId::StagePreparing)
+    : ellipsize(installProgressFile_, 52);
+vita2d_pgf_draw_text(font_, x + 28, y + 106, TEXT, 0.90f, file.c_str());
+const uint64_t total = installProgressTotal_,
+               current = std::min<uint64_t>(installProgressCurrent_, total ? total : installProgressCurrent_);
+const uint64_t pct = total ? std::min<uint64_t>(100, (current * 100) / total) : 0;
+int bx = x + 28, by = y + 138, bw = w - 56, bh = 22;
+vita2d_draw_rectangle(bx, by, bw, bh, BORDER);
 const bool msgRetry =
     installProgressMessage_.find("retrying") != std::string::npos ||
     installProgressMessage_.find("Retry") != std::string::npos ||
@@ -5747,83 +5754,92 @@ const bool stageDownload =
     installProgressStage_ == "BGDL" ||
     installProgressStage_ == "Cancelling" ||
     installProgressStage_.empty());
-// Sliding bar while connecting/retrying (download) or waiting with no bytes yet.
-// Install/extract use the bar too when progress is unknown, but never the "server" copy.
 const bool indeterminate =
     msgRetry ||
     total == 0 ||
     (current == 0 && installProgressSpeed_ == 0 && (stageDownload || stageInstall || stageExtract));
 if (indeterminate) {
-  // Bounce a segment left↔right (same idea as catalog loading strip).
   const float t = (float)(sceKernelGetProcessTimeWide() / 1000ULL % 1400) / 1400.f;
-  const float u = (t < 0.5f) ? (t * 2.f) : (2.f - t * 2.f);
-  const int pulse = std::max(28, (int)(bw * 0.28f));
-  const int off = (int)((bw - pulse) * u);
+  const float uu = (t < 0.5f) ? (t * 2.f) : (2.f - t * 2.f);
+  const int pulse = std::max(36, (int)(bw * 0.28f));
+  const int off = (int)((bw - pulse) * uu);
   if (pulse > 0) vita2d_draw_rectangle(bx + off, by, pulse, bh, ACCENT);
 } else {
-  vita2d_draw_rectangle(bx,by,bw*(int)pct/100,bh,ACCENT);
+  vita2d_draw_rectangle(bx, by, bw * (int)pct / 100, bh, ACCENT);
 }
 char stats[220];
 if (indeterminate) {
-  sceClibSnprintf(stats,sizeof(stats),"…  %s / %s  •  %s/s",
+  sceClibSnprintf(stats, sizeof(stats), "…  %s / %s  •  %s/s",
       formatBytes(current).c_str(),
-      total?formatBytes(total).c_str():"?",
+      total ? formatBytes(total).c_str() : "?",
       formatBytes(installProgressSpeed_).c_str());
 } else {
-  sceClibSnprintf(stats,sizeof(stats),"%llu%%  %s / %s  •  %s/s",(unsigned long long)pct,formatBytes(current).c_str(),total?formatBytes(total).c_str():"?",formatBytes(installProgressSpeed_).c_str());
+  sceClibSnprintf(stats, sizeof(stats), "%llu%%  %s / %s  •  %s/s",
+      (unsigned long long)pct, formatBytes(current).c_str(),
+      total ? formatBytes(total).c_str() : "?",
+      formatBytes(installProgressSpeed_).c_str());
 }
-vita2d_pgf_draw_text(font_,x+28,y+172,TEXT,.66f,stats);
-uint64_t eta=0;if(installProgressSpeed_>0&&total>current)eta=(total-current)/installProgressSpeed_;
+vita2d_pgf_draw_text(font_, x + 28, y + 180, TEXT, 0.88f, stats);
+uint64_t eta = 0;
+if (installProgressSpeed_ > 0 && total > current) eta = (total - current) / installProgressSpeed_;
 char info[180];
 if (indeterminate)
-  sceClibSnprintf(info,sizeof(info),"File: 1 / 1   ETA: —");
+  sceClibSnprintf(info, sizeof(info), "%s: 1 / 1   %s: —",
+      ::psvitaalive::L(::psvitaalive::TextId::LabelFile),
+      ::psvitaalive::L(::psvitaalive::TextId::LabelEta));
 else
-  sceClibSnprintf(info,sizeof(info),"File: 1 / 1   ETA: %s",formatEta(eta).c_str());
-vita2d_pgf_draw_text(font_,x+28,y+198,ACCENT,.70f,info);
-if(!installProgressMessage_.empty())vita2d_pgf_draw_text(font_,x+28,y+224,DIM,.60f,ellipsize(installProgressMessage_,78).c_str());
-// Footer must match the real phase — never "Connecting..." during install/extract.
+  sceClibSnprintf(info, sizeof(info), "%s: 1 / 1   %s: %s",
+      ::psvitaalive::L(::psvitaalive::TextId::LabelFile),
+      ::psvitaalive::L(::psvitaalive::TextId::LabelEta),
+      formatEta(eta).c_str());
+vita2d_pgf_draw_text(font_, x + 28, y + 212, ACCENT, 0.86f, info);
+if (!installProgressMessage_.empty())
+  vita2d_pgf_draw_text(font_, x + 28, y + 244, DIM, 0.78f, ellipsize(installProgressMessage_, 58).c_str());
 const char* waitHint = nullptr;
 if (msgRetry && stageDownload)
-  waitHint = "Retrying connection — please wait. This is not an error.";
+  waitHint = ::psvitaalive::L(::psvitaalive::TextId::HintRetryConnection);
 else if (msgRetry && (stageInstall || stageExtract))
-  waitHint = "Retrying this step — please wait. This is not an error.";
+  waitHint = ::psvitaalive::L(::psvitaalive::TextId::HintRetryStep);
 else if (stageExtract)
-  waitHint = "Extracting files — large archives can take a while. This is not an error.";
+  waitHint = ::psvitaalive::L(::psvitaalive::TextId::HintExtracting);
 else if (stageInstall)
-  waitHint = "Installing on the console — please wait. This is not frozen.";
+  waitHint = ::psvitaalive::L(::psvitaalive::TextId::HintInstalling);
 else if (indeterminate && stageDownload)
-  waitHint = "Connecting to the server — may take a moment. This is not an error.";
+  waitHint = ::psvitaalive::L(::psvitaalive::TextId::HintConnecting);
 else if (stageDownload)
-  waitHint = "Speed depends on your internet connection — please be patient.";
+  waitHint = ::psvitaalive::L(::psvitaalive::TextId::HintDownloadSpeed);
 else
-  waitHint = "Please wait — this step can take a moment.";
-vita2d_pgf_draw_text(font_,x+28,y+248,
+  waitHint = ::psvitaalive::L(::psvitaalive::TextId::HintPleaseWait);
+vita2d_pgf_draw_text(font_, x + 28, y + 276,
     (stageDownload && !indeterminate && !msgRetry) ? DIM : ACCENT,
-    .58f, waitHint);
-// High-visibility lock banner — larger type for Vita screen readability.
+    0.80f, waitHint);
+// LOCKED banner — tall + large type, no overlap with button below.
 {
-  const int bx = x + 16, by = y + 268, bw = w - 32, bh = 52;
-  vita2d_draw_rectangle(bx, by, bw, bh, RGBA8(0x40, 0x10, 0x10, 255));
-  vita2d_draw_rectangle(bx, by, bw, 2, RED);
-  vita2d_draw_rectangle(bx, by + bh - 2, bw, 2, RED);
-  vita2d_draw_rectangle(bx, by, 4, bh, RED);
-  vita2d_draw_rectangle(bx + bw - 4, by, 4, bh, RED);
-  vita2d_pgf_draw_text(font_, bx + 14, by + 20, RED, .64f,
-      "LOCKED: PS button and power menu disabled");
-  vita2d_pgf_draw_text(font_, bx + 14, by + 40, WHITE, .58f,
-      "Screen stays ON. Do NOT force power-off until finished.");
+  const int lbX = x + 20, lbY = y + 308, lbW = w - 40, lbH = 78;
+  vita2d_draw_rectangle(lbX, lbY, lbW, lbH, RGBA8(0x40, 0x10, 0x10, 255));
+  vita2d_draw_rectangle(lbX, lbY, lbW, 3, RED);
+  vita2d_draw_rectangle(lbX, lbY + lbH - 3, lbW, 3, RED);
+  vita2d_draw_rectangle(lbX, lbY, 5, lbH, RED);
+  vita2d_draw_rectangle(lbX + lbW - 5, lbY, 5, lbH, RED);
+  vita2d_pgf_draw_text(font_, lbX + 16, lbY + 28, RED, 0.92f,
+      ::psvitaalive::L(::psvitaalive::TextId::LockedBanner1));
+  vita2d_pgf_draw_text(font_, lbX + 16, lbY + 56, WHITE, 0.84f,
+      ::psvitaalive::L(::psvitaalive::TextId::LockedBanner2));
 }
-const int by2=y+332,bw2=380,bh2=42;
-vita2d_draw_rectangle(x+28,by2,bw2,bh2,SURFACE2);
-vita2d_draw_rectangle(x+28,by2,bw2,1,BORDER);
+const int cancelW = 520, cancelH = 50;
+const int cancelX = x + (w - cancelW) / 2;
+const int cancelY = y + 410;
+vita2d_draw_rectangle(cancelX, cancelY, cancelW, cancelH, SURFACE2);
+vita2d_draw_rectangle(cancelX, cancelY, cancelW, 2, BORDER);
+vita2d_draw_rectangle(cancelX, cancelY + cancelH - 2, cancelW, 2, BORDER);
 {
-  const char* clab = "CIRCLE  CANCEL DOWNLOAD";
-  const float csc = 0.68f;
+  const char* clab = ::psvitaalive::L(::psvitaalive::TextId::CircleCancelDownload);
+  const float csc = 0.88f;
   const int ctw = vita2d_pgf_text_width(font_, csc, clab);
-  vita2d_pgf_draw_text(font_, x + 28 + (bw2 - ctw) / 2, by2 + 28, WHITE, csc, clab);
+  vita2d_pgf_draw_text(font_, cancelX + (cancelW - ctw) / 2, cancelY + 34, WHITE, csc, clab);
 }
-vita2d_pgf_draw_text(font_,x+28,y+h-14,DIM,.52f,
-    "Only CIRCLE works  |  PS / power menu blocked  |  Screen forced on");
+vita2d_pgf_draw_text(font_, x + 28, y + h - 18, DIM, 0.70f,
+    ::psvitaalive::L(::psvitaalive::TextId::ProgressFooterHint));
 }
 
 void drawFooterBar(vita2d_pgf* font, const char* leftHints) {
