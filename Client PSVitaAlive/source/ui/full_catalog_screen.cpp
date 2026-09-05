@@ -6217,7 +6217,15 @@ void FullCatalogScreen::tryShowEssentialPluginsPrompt() {
         if (essentialPluginFullyInstalled(d.section, d.line, paths)) continue;
         EssentialPluginSpec s;
         s.name = d.name;
-        s.desc = d.desc;
+        // Localized description (names stay as filenames)
+        if (std::strstr(d.name, "kubridge"))
+            s.desc = ::psvitaalive::L(::psvitaalive::TextId::EssentialPluginKubridgeDesc);
+        else if (std::strstr(d.name, "fd_fix"))
+            s.desc = ::psvitaalive::L(::psvitaalive::TextId::EssentialPluginFdFixDesc);
+        else if (std::strstr(d.name, "libshacccg") || std::strstr(d.name, "shacccg"))
+            s.desc = ::psvitaalive::L(::psvitaalive::TextId::EssentialPluginShacccgDesc);
+        else
+            s.desc = d.desc ? d.desc : "";
         s.url = d.url;
         s.extractPath = d.extractPath;
         s.section = d.section;
@@ -6241,11 +6249,11 @@ void FullCatalogScreen::closeEssentialPluginsPrompt(bool install) {
     essentialPluginsModal_ = false;
     if (!install) {
         diagnostics::log("[UI] essential plugins: remind later");
-        showToast("You can install plugins later from the catalog", 2200);
+        showToast(::psvitaalive::L(::psvitaalive::TextId::EssentialRemindToast), 2200);
         return;
     }
     if (!linkAction_) {
-        showToast("Installer not ready", 1800);
+        showToast(::psvitaalive::L(::psvitaalive::TextId::InstallerNotReady), 1800);
         return;
     }
     essentialInstallQueue_ = essentialMissing_;
@@ -6267,7 +6275,7 @@ void FullCatalogScreen::kickNextEssentialPluginInstall() {
     }
     if (!linkAction_) {
         essentialInstallRunning_ = false;
-        showToast("Installer not ready", 1800);
+        showToast(::psvitaalive::L(::psvitaalive::TextId::InstallerNotReady), 1800);
         return;
     }
     const EssentialPluginSpec& s = essentialInstallQueue_[essentialInstallIndex_];
@@ -6308,7 +6316,7 @@ void FullCatalogScreen::kickNextEssentialPluginInstall() {
                      + std::to_string(essentialInstallQueue_.size()) + " " + s.name);
     essentialInstallLastOutcome_ = 0;
     if (!linkAction_(dummy, link)) {
-        showToast(std::string("Could not start ") + s.name, 2000);
+        showToast(std::string(::psvitaalive::L(::psvitaalive::TextId::CouldNotStartPrefix)) + " " + s.name, 2000);
         essentialInstallRunning_ = false;
         essentialInstallQueue_.clear();
     }
@@ -6352,9 +6360,9 @@ void FullCatalogScreen::drawEssentialPluginsOverlay() {
     vita2d_draw_rectangle(x + w - 4, y, 4, h, ACCENT);
     vita2d_draw_rectangle(x, y + h - 4, w, 4, ACCENT);
 
-    vita2d_pgf_draw_text(font_, x + 28, y + 44, WHITE, 1.18f, "Recommended plugins missing");
+    vita2d_pgf_draw_text(font_, x + 28, y + 44, WHITE, 1.18f, ::psvitaalive::L(::psvitaalive::TextId::EssentialPluginsTitle));
     vita2d_pgf_draw_text(font_, x + 28, y + 78, TEXT, 0.88f,
-        "These plugins help many homebrew and ports run correctly.");
+        ::psvitaalive::L(::psvitaalive::TextId::EssentialPluginsSubtitle));
 
     int ty = y + 118;
     for (const auto& s : essentialMissing_) {
@@ -6382,7 +6390,7 @@ void FullCatalogScreen::drawEssentialPluginsOverlay() {
         vita2d_draw_rectangle(x0, btnY, btnW, btnH, borderCol);
         vita2d_draw_rectangle(x0 + bwPulse, btnY + bwPulse, btnW - bwPulse * 2, btnH - bwPulse * 2,
                               essentialPluginsFocus_ == 0 ? ACCENT : SURFACE2);
-        const char* lab = "Install plugins";
+        const char* lab = ::psvitaalive::L(::psvitaalive::TextId::EssentialInstallPlugins);
         const float sc = 0.98f;
         const int tw = vita2d_pgf_text_width(font_, sc, lab);
         vita2d_pgf_draw_text(font_, x0 + (btnW - tw) / 2, btnY + 38,
@@ -6392,13 +6400,13 @@ void FullCatalogScreen::drawEssentialPluginsOverlay() {
     {
         vita2d_draw_rectangle(x1, btnY, btnW, btnH, essentialPluginsFocus_ == 1 ? ACCENT : SURFACE2);
         vita2d_draw_rectangle(x1, btnY, btnW, 1, essentialPluginsFocus_ == 1 ? ACCENT : BORDER);
-        const char* lab = "Remind me later";
+        const char* lab = ::psvitaalive::L(::psvitaalive::TextId::EssentialRemindLater);
         const float sc = 0.98f;
         const int tw = vita2d_pgf_text_width(font_, sc, lab);
         vita2d_pgf_draw_text(font_, x1 + (btnW - tw) / 2, btnY + 38,
                              essentialPluginsFocus_ == 1 ? BG : WHITE, sc, lab);
     }
-    vita2d_pgf_draw_text(font_, x + 28, y + h - 16, DIM, 0.72f, "←/→ select   X confirm   O later");
+    vita2d_pgf_draw_text(font_, x + 28, y + h - 16, DIM, 0.72f, ::psvitaalive::L(::psvitaalive::TextId::EssentialNavHint));
 }
 
 void FullCatalogScreen::drawPluginRebootOverlay() {
@@ -6412,13 +6420,14 @@ void FullCatalogScreen::drawPluginRebootOverlay() {
     vita2d_draw_rectangle(x, y, 4, h, ACCENT);
     vita2d_draw_rectangle(x + w - 4, y, 4, h, ACCENT);
     vita2d_draw_rectangle(x, y + h - 4, w, 4, ACCENT);
-    vita2d_pgf_draw_text(font_, x + 28, y + 42, WHITE, 0.92f, "Restart required");
+    vita2d_pgf_draw_text(font_, x + 28, y + 42, WHITE, 0.92f,
+        ::psvitaalive::L(::psvitaalive::TextId::PluginRebootTitle));
     const char* lines[] = {
-        "Plugins were installed and added to taiHEN config.txt.",
-        "Restart your PS Vita so the plugins load correctly.",
+        ::psvitaalive::L(::psvitaalive::TextId::PluginRebootLine1),
+        ::psvitaalive::L(::psvitaalive::TextId::PluginRebootLine2),
         "",
-        "If the console fails to boot or loops, hold L while",
-        "powering on to temporarily disable taiHEN plugins.",
+        ::psvitaalive::L(::psvitaalive::TextId::PluginRebootLine3),
+        ::psvitaalive::L(::psvitaalive::TextId::PluginRebootLine4),
     };
     int ty = y + 78;
     for (const char* ln : lines) {
@@ -6428,11 +6437,12 @@ void FullCatalogScreen::drawPluginRebootOverlay() {
     const int bw = w - 56, bh = 56;
     const int bx = x + 28, by = y + h - 72;
     vita2d_draw_rectangle(bx, by, bw, bh, ACCENT);
-    const char* lab = "Restart PS Vita";
+    const char* lab = ::psvitaalive::L(::psvitaalive::TextId::PluginRebootButton);
     const float sc = 0.88f;
     const int tw = vita2d_pgf_text_width(font_, sc, lab);
     vita2d_pgf_draw_text(font_, bx + (bw - tw) / 2, by + 38, BG, sc, lab);
-    vita2d_pgf_draw_text(font_, x + 28, y + h - 18, DIM, 0.55f, "X or touch  ·  LiveArea exit blocked until restart");
+    vita2d_pgf_draw_text(font_, x + 28, y + h - 18, DIM, 0.55f,
+        ::psvitaalive::L(::psvitaalive::TextId::PluginRebootFooter));
 }
 
 void FullCatalogScreen::drawFullCatalog(){vita2d_start_drawing();vita2d_set_clear_color(BG);vita2d_clear_screen();drawHeader(SCREEN_W);drawTabs(SCREEN_W);drawCatalogPanel(0,HEADER_H+TABS_H,SCREEN_W,SCREEN_H-HEADER_H-TABS_H-FOOTER_H,false);drawFooterBar(font_, ::psvitaalive::L(::psvitaalive::TextId::FooterCatalog));drawReportChip();drawNewsChip();if(catalogLoading_||installProgressActive_||catalogSplashAlpha_>0.01f)drawLoadingOverlay();if(newsVisible_)drawNewsOverlay();if(themeSetupVisible_)drawThemeSetupOverlay();if(reportConfirmVisible_)drawReportConfirmOverlay();if(dataRequestConfirmVisible_)drawDataRequestConfirmOverlay();if(installAllPhase_!=InstallAllPhase::Hidden&&installAllPhase_!=InstallAllPhase::Running)drawInstallAllOverlay();if(essentialPluginsModal_)drawEssentialPluginsOverlay();if(pluginRebootModal_)drawPluginRebootOverlay();if(!catalogError_.empty())vita2d_pgf_draw_text(font_,18,HEADER_H+TABS_H+26,ACCENT,.66f,catalogError_.c_str());drawToast();vita2d_end_drawing();vita2d_swap_buffers();}void FullCatalogScreen::drawSplitDetail(){vita2d_start_drawing();vita2d_set_clear_color(BG);vita2d_clear_screen();drawHeader(SCREEN_W);drawTabs(SCREEN_W);int top=HEADER_H+TABS_H,hh=SCREEN_H-HEADER_H-TABS_H-FOOTER_H,lw=SCREEN_W/2;drawCatalogPanel(0,top,lw,hh,true);drawDetailPanel(lw,top,SCREEN_W-lw,hh);vita2d_draw_rectangle(lw-1,top,2,hh,BORDER);drawFooterBar(font_, state_.activePanel==UiPanel::Catalog ? ::psvitaalive::L(::psvitaalive::TextId::FooterDetailList) : ::psvitaalive::L(::psvitaalive::TextId::FooterDetailPanel));drawReportChip();drawNewsChip();if(catalogLoading_||installProgressActive_||catalogSplashAlpha_>0.01f)drawLoadingOverlay();if(newsVisible_)drawNewsOverlay();if(themeSetupVisible_)drawThemeSetupOverlay();if(reportConfirmVisible_)drawReportConfirmOverlay();if(dataRequestConfirmVisible_)drawDataRequestConfirmOverlay();if(installAllPhase_!=InstallAllPhase::Hidden&&installAllPhase_!=InstallAllPhase::Running)drawInstallAllOverlay();if(essentialPluginsModal_)drawEssentialPluginsOverlay();if(pluginRebootModal_)drawPluginRebootOverlay();drawToast();vita2d_end_drawing();vita2d_swap_buffers();}void FullCatalogScreen::drawOpeningDetail(){float p=transitionProgress();int lw=SCREEN_W-(int)(SCREEN_W/2*p),rw=SCREEN_W-lw;vita2d_start_drawing();vita2d_set_clear_color(BG);vita2d_clear_screen();drawHeader(SCREEN_W);drawTabs(SCREEN_W);int top=HEADER_H+TABS_H,hh=SCREEN_H-HEADER_H-TABS_H-FOOTER_H;drawCatalogPanel(0,top,lw,hh,true);if(rw>0)drawDetailPanel(lw,top,rw,hh);vita2d_end_drawing();vita2d_swap_buffers();}void FullCatalogScreen::drawClosingDetail(){float p=1.0f-transitionProgress();int lw=SCREEN_W-(int)(SCREEN_W/2*p),rw=SCREEN_W-lw;vita2d_start_drawing();vita2d_set_clear_color(BG);vita2d_clear_screen();drawHeader(SCREEN_W);drawTabs(SCREEN_W);int top=HEADER_H+TABS_H,hh=SCREEN_H-HEADER_H-TABS_H-FOOTER_H;drawCatalogPanel(0,top,lw,hh,true);if(rw>0)drawDetailPanel(lw,top,SCREEN_W-lw,hh);vita2d_end_drawing();vita2d_swap_buffers();}void FullCatalogScreen::draw(){switch(state_.mode){case UiMode::FULL_CATALOG:drawFullCatalog();break;case UiMode::OPENING_DETAIL:drawOpeningDetail();break;case UiMode::SPLIT_DETAIL:drawSplitDetail();break;case UiMode::CLOSING_DETAIL:drawClosingDetail();break;case UiMode::SETTINGS:drawSettings();break;}}bool FullCatalogScreen::updateAndDraw(){

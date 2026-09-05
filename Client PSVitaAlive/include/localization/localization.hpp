@@ -221,6 +221,25 @@ enum class TextId {
     ThemePreviewToast,
     ThemeAppliedPrefix,
     BtnSave,
+    // Essential plugins + reboot after plugin install
+    EssentialPluginsTitle,
+    EssentialPluginsSubtitle,
+    EssentialInstallPlugins,
+    EssentialRemindLater,
+    EssentialNavHint,
+    EssentialPluginKubridgeDesc,
+    EssentialPluginFdFixDesc,
+    EssentialPluginShacccgDesc,
+    EssentialRemindToast,
+    InstallerNotReady,
+    CouldNotStartPrefix,
+    PluginRebootTitle,
+    PluginRebootLine1,
+    PluginRebootLine2,
+    PluginRebootLine3,
+    PluginRebootLine4,
+    PluginRebootButton,
+    PluginRebootFooter,
     Count
 };
 

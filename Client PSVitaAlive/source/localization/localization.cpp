@@ -377,6 +377,24 @@ const char* LocalizationManager::keyFor(TextId id) {
         case TextId::ThemePreviewToast: return "THEME_PREVIEW_TOAST";
         case TextId::ThemeAppliedPrefix: return "THEME_APPLIED_PREFIX";
         case TextId::BtnSave: return "BTN_SAVE";
+        case TextId::EssentialPluginsTitle: return "ESSENTIAL_PLUGINS_TITLE";
+        case TextId::EssentialPluginsSubtitle: return "ESSENTIAL_PLUGINS_SUBTITLE";
+        case TextId::EssentialInstallPlugins: return "ESSENTIAL_INSTALL_PLUGINS";
+        case TextId::EssentialRemindLater: return "ESSENTIAL_REMIND_LATER";
+        case TextId::EssentialNavHint: return "ESSENTIAL_NAV_HINT";
+        case TextId::EssentialPluginKubridgeDesc: return "ESSENTIAL_PLUGIN_KUBRIDGE_DESC";
+        case TextId::EssentialPluginFdFixDesc: return "ESSENTIAL_PLUGIN_FDFIX_DESC";
+        case TextId::EssentialPluginShacccgDesc: return "ESSENTIAL_PLUGIN_SHACCCG_DESC";
+        case TextId::EssentialRemindToast: return "ESSENTIAL_REMIND_TOAST";
+        case TextId::InstallerNotReady: return "INSTALLER_NOT_READY";
+        case TextId::CouldNotStartPrefix: return "COULD_NOT_START_PREFIX";
+        case TextId::PluginRebootTitle: return "PLUGIN_REBOOT_TITLE";
+        case TextId::PluginRebootLine1: return "PLUGIN_REBOOT_LINE1";
+        case TextId::PluginRebootLine2: return "PLUGIN_REBOOT_LINE2";
+        case TextId::PluginRebootLine3: return "PLUGIN_REBOOT_LINE3";
+        case TextId::PluginRebootLine4: return "PLUGIN_REBOOT_LINE4";
+        case TextId::PluginRebootButton: return "PLUGIN_REBOOT_BUTTON";
+        case TextId::PluginRebootFooter: return "PLUGIN_REBOOT_FOOTER";
         default: return "";
     }
 }

@@ -224,3 +224,23 @@ THEME_SAVED_TOAST=Theme saved — change it later in Settings
 THEME_PREVIEW_TOAST=Preview applied — press X again or Save to confirm
 THEME_APPLIED_PREFIX=Theme
 BTN_SAVE=Save
+
+# Essential plugins prompt + reboot
+ESSENTIAL_PLUGINS_TITLE=Recommended plugins missing
+ESSENTIAL_PLUGINS_SUBTITLE=These plugins help many homebrew and ports run correctly.
+ESSENTIAL_INSTALL_PLUGINS=Install plugins
+ESSENTIAL_REMIND_LATER=Remind me later
+ESSENTIAL_NAV_HINT=←/→ select   X confirm   O later
+ESSENTIAL_PLUGIN_KUBRIDGE_DESC=Kernel bridge used by many ports and advanced homebrew.
+ESSENTIAL_PLUGIN_FDFIX_DESC=File-descriptor fix that improves stability of some homebrew.
+ESSENTIAL_PLUGIN_SHACCCG_DESC=Offline shader compiler required by some OpenGL ES ports (not listed in config.txt).
+ESSENTIAL_REMIND_TOAST=You can install plugins later from the catalog
+INSTALLER_NOT_READY=Installer not ready
+COULD_NOT_START_PREFIX=Could not start
+PLUGIN_REBOOT_TITLE=Restart required
+PLUGIN_REBOOT_LINE1=Plugins were installed and added to taiHEN config.txt.
+PLUGIN_REBOOT_LINE2=Restart your PS Vita so the plugins load correctly.
+PLUGIN_REBOOT_LINE3=If the console fails to boot or loops, hold L while
+PLUGIN_REBOOT_LINE4=powering on to temporarily disable taiHEN plugins.
+PLUGIN_REBOOT_BUTTON=Restart PS Vita
+PLUGIN_REBOOT_FOOTER=X or touch  ·  LiveArea exit blocked until restart
