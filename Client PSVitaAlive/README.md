@@ -15,6 +15,7 @@ Native catalog client for PlayStation Vita / PSTV (and Vita3K for testing).
 
 - Catalogs: **Homebrew**, **Vita Games**, **PSP**, **PS1** (all four can stay cached in RAM after first load)
 - Search, Settings (install method, **PSP/PS1 target**, **PSP media** Folder/ISO, **color theme**, **UI font**, **language** System/EN/ES), touch + buttons
+- Header **content filters**: Homebrew **G/D Files**; Vita Games & PSP **DLC** (same toggle chip behaviour)
 - **Multilanguage UI** (`app0:lang/en.lang`, `es.lang`): Settings, catalog/nav, detail, download/install overlays, theme picker, many dialogs — catalog content stays original language
 - **News** from repo `news.txt`; optional Discord **Report** on real errors (and dedicated data-request webhook path)
 - Image cache with on-demand loading; **Data Files / Game Files** indicators on app cards

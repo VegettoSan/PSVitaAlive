@@ -51,6 +51,7 @@ FOOTER_DETAIL_LIST=PANEL: LISTA  |  → Detalle   D-Pad: Navegar   O: Atrás   L
 FOOTER_DETAIL_PANEL=PANEL: DETALLE  |  ← Lista   D-Pad: Scroll   △: Enlaces   X: Acción   O: Atrás
 SEARCH_PLACEHOLDER=Buscar...  (△)
 FILTER_GD_ONLY=Filtro: solo Game/Data Files
+FILTER_DLC_ONLY=Filtro: solo DLC
 FILTER_CLEARED=Filtro quitado
 LOADING_CATALOG=Cargando
 CHANGING_CATALOG=Cambiando catálogo...

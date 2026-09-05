@@ -204,6 +204,7 @@ const char* LocalizationManager::keyFor(TextId id) {
         case TextId::FooterDetailPanel: return "FOOTER_DETAIL_PANEL";
         case TextId::SearchPlaceholder: return "SEARCH_PLACEHOLDER";
         case TextId::FilterGdOnly: return "FILTER_GD_ONLY";
+        case TextId::FilterDlcOnly: return "FILTER_DLC_ONLY";
         case TextId::FilterCleared: return "FILTER_CLEARED";
         case TextId::LoadingCatalog: return "LOADING_CATALOG";
         case TextId::ChangingCatalog: return "CHANGING_CATALOG";

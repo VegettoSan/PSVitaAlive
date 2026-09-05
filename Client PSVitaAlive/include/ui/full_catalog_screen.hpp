@@ -125,7 +125,7 @@ private:
     bool ready_ = false;
 
     std::string searchQuery_;
-    /** When true, catalogView only includes apps with Game Files and/or Data Files. */
+    /** When true, catalogView only includes apps with G/D Files (Homebrew) or DLC (Vita/PSP). */
     bool dataFilesFilter_ = false;
 
     bool catalogLoading_ = false;

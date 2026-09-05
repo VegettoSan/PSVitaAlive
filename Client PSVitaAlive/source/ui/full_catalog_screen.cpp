@@ -171,6 +171,7 @@ bool itemHasLinkType(const CatalogItem& it, const char* needle) {
             if (isDownloadLikeType(t) && linkNameSuggestsGameFiles(link)) return true;
             continue;
         }
+        if (want == "dlc" && (t == "dlcs" || t == "downloadable content")) return true;
         if (want == "mod" && (t == "mods")) return true;
         if (want == "mods" && (t == "mod")) return true;
         if (want == "update" && (t == "updates")) return true;
@@ -1054,6 +1055,23 @@ int yOfLinkFocus(const std::vector<LinkLayoutRow>& rows, int focusIndex) {
 bool itemHasDataOrGameFiles(const CatalogItem& it) {
     return itemHasLinkType(it, "data files") || itemHasLinkType(it, "game files")
         || itemHasLinkType(it, "data file") || itemHasLinkType(it, "game file");
+}
+
+bool itemHasDlc(const CatalogItem& it) {
+    return itemHasLinkType(it, "dlc");
+}
+
+/** Homebrew: G/D Files chip. Vita Games + PSP: DLC chip. */
+bool catalogSupportsContentFilter(CatalogType cat) {
+    return cat == CatalogType::Homebrew
+        || cat == CatalogType::VitaGames
+        || cat == CatalogType::PspGames;
+}
+
+bool itemMatchesContentFilter(const CatalogItem& it, CatalogType cat) {
+    if (cat == CatalogType::Homebrew) return itemHasDataOrGameFiles(it);
+    if (cat == CatalogType::VitaGames || cat == CatalogType::PspGames) return itemHasDlc(it);
+    return false;
 }
 
 /** Categories where Data/Game Files requests make sense (catalog category_id). */
@@ -2393,7 +2411,7 @@ void FullCatalogScreen::sortItemsByDate(std::vector<CatalogItem>&v)const{std::st
     }
     items_.reserve(allItems_.size() > 256 ? 256 : allItems_.size());
     for (const auto& i : allItems_) {
-        if (dataFilesFilter_ && !itemHasDataOrGameFiles(i)) continue;
+        if (dataFilesFilter_ && !itemMatchesContentFilter(i, state_.catalog)) continue;
         if (!matchesSearch(i, searchQuery_)) continue;
         items_.push_back(i);
     }
@@ -2411,10 +2429,16 @@ void FullCatalogScreen::setDataFilesFilter(bool enabled) {
     state_.linkNavigation = false;
     visualCatalogScroll_ = 0.f;
     char m[160];
-    sceClibSnprintf(m, sizeof(m), "[UI] data-files filter=%d results=%u",
-                    dataFilesFilter_ ? 1 : 0, (unsigned)catalogView().size());
+    sceClibSnprintf(m, sizeof(m), "[UI] content filter=%d catalog=%d results=%u",
+                    dataFilesFilter_ ? 1 : 0, (int)state_.catalog, (unsigned)catalogView().size());
     diagnostics::log(m);
-    showToast(dataFilesFilter_ ? ::psvitaalive::L(::psvitaalive::TextId::FilterGdOnly) : ::psvitaalive::L(::psvitaalive::TextId::FilterCleared), 2600);
+    if (!dataFilesFilter_) {
+        showToast(::psvitaalive::L(::psvitaalive::TextId::FilterCleared), 2600);
+    } else if (state_.catalog == CatalogType::Homebrew) {
+        showToast(::psvitaalive::L(::psvitaalive::TextId::FilterGdOnly), 2600);
+    } else {
+        showToast(::psvitaalive::L(::psvitaalive::TextId::FilterDlcOnly), 2600);
+    }
 }
 
 void FullCatalogScreen::applySearch(const std::string& q) {
@@ -3217,10 +3241,10 @@ void FullCatalogScreen::handleTouch() {
             barX = (int)(10.f + lw * sc + 12.f);
             if (barX < 160) barX = 160;
         }
-        const bool showGd = (state_.catalog == CatalogType::Homebrew);
-        const int barW = std::max(120, SCREEN_W - barX - clockReserve - (showGd ? (gdW + 10) : 0));
+        const bool showContentFilter = catalogSupportsContentFilter(state_.catalog);
+        const int barW = std::max(120, SCREEN_W - barX - clockReserve - (showContentFilter ? (gdW + 10) : 0));
         const int gdX = barX + barW + 6;
-        if (showGd && hit(x, y, gdX, barY, gdW, barH)) {
+        if (showContentFilter && hit(x, y, gdX, barY, gdW, barH)) {
             setDataFilesFilter(!dataFilesFilter_);
             return;
         }
@@ -4071,13 +4095,13 @@ unsigned FullCatalogScreen::colorForStatus(const std::string&s)const{if(s=="Veri
         searchLeft = 200;
         }
     }
-    // Search field + optional G/D Files filter chip (Homebrew only) + clock
+    // Search field + optional content filter chip (G/D Files or DLC) + clock
     const int barY = 10, barH = 32;
     const int gdW = 118;
     const int clockReserve = 92;
     const int barX = searchLeft;
-    const bool showGd = (state_.catalog == CatalogType::Homebrew);
-    const int barW = std::max(120, w - barX - clockReserve - (showGd ? (gdW + 10) : 0));
+    const bool showContentFilter = catalogSupportsContentFilter(state_.catalog);
+    const int barW = std::max(120, w - barX - clockReserve - (showContentFilter ? (gdW + 10) : 0));
     const int gdX = barX + barW + 6;
     vita2d_draw_rectangle(barX, barY, barW, barH, SURFACE);
     vita2d_draw_rectangle(barX - 1, barY - 1, barW + 2, 1, withAlpha(ACCENT, 50));
@@ -4095,8 +4119,8 @@ unsigned FullCatalogScreen::colorForStatus(const std::string&s)const{if(s=="Veri
         vita2d_pgf_draw_text(font_, barX + 78, barY + 22, WHITE, 0.66f, ellipsize(searchQuery_, 20).c_str());
         vita2d_pgf_draw_text(font_, barX + barW - 52, barY + 21, DIM, 0.52f, "□ clear");
     }
-    // G/D Files filter — only on Homebrew; same folder-chip style as card tags
-    if (state_.catalog == CatalogType::Homebrew) {
+    // Content filter chip: G/D Files (Homebrew) or DLC (Vita Games / PSP)
+    if (catalogSupportsContentFilter(state_.catalog)) {
         const unsigned folderBg = dataFilesFilter_ ? RGBA8(0x5A, 0x42, 0x12, 255) : RGBA8(0x3A, 0x2C, 0x10, 255);
         const unsigned folderEdge = RGBA8(0xE8, 0xB4, 0x3A, 255);
         const unsigned folderText = RGBA8(0xFF, 0xD2, 0x6A, 255);
@@ -4106,10 +4130,9 @@ unsigned FullCatalogScreen::colorForStatus(const std::string&s)const{if(s=="Veri
         vita2d_draw_rectangle(gdX + gdW - 1, barY, 1, barH, folderEdge);
         vita2d_draw_rectangle(gdX, barY + barH - 1, gdW, 1, folderEdge);
         if (dataFilesFilter_) {
-            // Active: brighter top edge
             vita2d_draw_rectangle(gdX, barY, gdW, 3, RGBA8(0xFF, 0xD2, 0x6A, 255));
         }
-        const char* lab = "G/D Files";
+        const char* lab = (state_.catalog == CatalogType::Homebrew) ? "G/D Files" : "DLC";
         const float sc = 0.70f;
         const int tw = vita2d_pgf_text_width(font_, sc, lab);
         vita2d_pgf_draw_text(font_, gdX + (gdW - tw) / 2, barY + 22, folderText, sc, lab);
@@ -4867,6 +4890,7 @@ void FullCatalogScreen::drawCatalogCard(const CatalogItem&it,int idx,int x,int y
             if (!sz.empty()) drawSizeChip(ellipsize(sz, 22));
             if (itemHasLinkType(it, "data files")) drawFolderChip(::psvitaalive::L(::psvitaalive::TextId::MetaDataFiles));
             if (itemHasLinkType(it, "game files")) drawFolderChip(::psvitaalive::L(::psvitaalive::TextId::MetaGameFiles));
+            if (itemHasDlc(it)) drawFolderChip(::psvitaalive::L(::psvitaalive::TextId::MetaDlc));
         }
     }
 

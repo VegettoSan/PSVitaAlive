@@ -62,6 +62,7 @@ enum class TextId {
     FooterDetailPanel,
     SearchPlaceholder,
     FilterGdOnly,
+    FilterDlcOnly,
     FilterCleared,
     LoadingCatalog,
     ChangingCatalog,
