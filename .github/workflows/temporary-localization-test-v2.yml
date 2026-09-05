@@ -20,36 +20,24 @@ jobs:
         run: |
           from pathlib import Path
           import re
-
           root = Path('Client PSVitaAlive')
           ui = root / 'source/ui/full_catalog_screen.cpp'
           en = root / 'assets/lang/en.lang'
           es = root / 'assets/lang/es.lang'
           s = ui.read_text(encoding='utf-8')
-
           def once(text, old, new, label):
               n = text.count(old)
-              if n != 1:
-                  raise SystemExit(f'{label}: expected 1 match, got {n}')
+              if n != 1: raise SystemExit(f'{label}: expected 1 match, got {n}')
               return text.replace(old, new, 1)
-
-          s = once(s,
-              '#include "installer/app_settings.hpp"\n',
-              '#include "installer/app_settings.hpp"\n#include "localization/localization.hpp"\n',
-              'localization include')
-
-          # Both Settings input paths must know about the new row.
+          s = once(s, '#include "installer/app_settings.hpp"\n', '#include "installer/app_settings.hpp"\n#include "localization/localization.hpp"\n', 'localization include')
           settings_touch = s.find('// --- Settings: must run before generic drag/scroll handling ---')
-          if settings_touch < 0:
-              raise SystemExit('Settings touch marker missing')
+          if settings_touch < 0: raise SystemExit('Settings touch marker missing')
           settings_touch_end = s.find('\n    if (catalogLoading_) return;', settings_touch)
-          if settings_touch_end < 0:
-              raise SystemExit('Settings touch block end missing')
+          if settings_touch_end < 0: raise SystemExit('Settings touch block end missing')
           block = s[settings_touch:settings_touch_end]
           block = once(block, 'constexpr int kRows = 7;', 'constexpr int kRows = 8;', 'touch Settings kRows')
           block = block.replace('for (int i = 0; i < 7; ++i)', 'for (int i = 0; i < 8; ++i)')
           s = s[:settings_touch] + block + s[settings_touch_end:]
-
           h0 = s.find('void FullCatalogScreen::handleSettingsInput(uint32_t pressed, uint32_t nav) {')
           if h0 < 0: raise SystemExit('handleSettingsInput missing')
           h1 = s.find('\nvoid FullCatalogScreen::', h0 + 10)
@@ -57,8 +45,6 @@ jobs:
           block = s[h0:h1]
           block = once(block, 'constexpr int kRows = 7;', 'constexpr int kRows = 8;', 'button Settings kRows')
           s = s[:h0] + block + s[h1:]
-
-          # cycleSettingsOption: row 5 becomes Language, old rows shift down.
           c0 = s.find('void FullCatalogScreen::cycleSettingsOption(int row, int delta) {')
           if c0 < 0: raise SystemExit('cycleSettingsOption missing')
           c1 = s.find('\nvoid FullCatalogScreen::', c0 + 10)
@@ -68,59 +54,38 @@ jobs:
           new = '''    } else if (row == 4) {\n        settingsEdit_.warnMissingPlugins = !settingsEdit_.warnMissingPlugins;\n    } else if (row == 5) {\n        auto& loc = ::psvitaalive::LocalizationManager::instance();\n        const auto available = loc.availableLanguages();\n        if (!available.empty()) {\n            if (settingsEdit_.languageMode == ::psvitaalive::LanguageMode::System) {\n                settingsEdit_.languageMode = ::psvitaalive::LanguageMode::Manual;\n                settingsEdit_.language = ::psvitaalive::languageCode(available.front());\n            } else {\n                ::psvitaalive::Language current = ::psvitaalive::Language::English;\n                if (!::psvitaalive::languageFromCode(settingsEdit_.language, current)) current = available.front();\n                size_t pos = 0;\n                for (size_t i = 0; i < available.size(); ++i) {\n                    if (available[i] == current) { pos = i; break; }\n                }\n                if (pos + 1 < available.size())\n                    settingsEdit_.language = ::psvitaalive::languageCode(available[pos + 1]);\n                else\n                    settingsEdit_.languageMode = ::psvitaalive::LanguageMode::System;\n            }\n            loc.setMode(settingsEdit_.languageMode, settingsEdit_.language);\n        }\n    } else if (row == 6) {\n        settingsEdit_.promptImageWarmup = !settingsEdit_.promptImageWarmup;\n    } else if (row == 7) {\n        triggerSelfUpdateAction();\n    }\n'''
           cycle = once(cycle, old, new, 'Language cycle')
           s = s[:c0] + cycle + s[c1:]
-
-          # drawSettings: expand arrays and use localized labels.
           d0 = s.find('void FullCatalogScreen::drawSettings() {')
           if d0 < 0: raise SystemExit('drawSettings missing')
           d1 = s.find('\nvoid FullCatalogScreen::', d0 + 10)
           if d1 < 0: raise SystemExit('drawSettings end missing')
           draw = s[d0:d1]
-
-          draw = once(draw, 'vita2d_pgf_draw_text(font_, 20, HEADER_H + 30 + slide, ACCENT, 1.00f, "Settings");',
-                      'vita2d_pgf_draw_text(font_, 20, HEADER_H + 30 + slide, ACCENT, 1.00f, L("SETTINGS"));', 'Settings title')
-          draw = once(draw, 'vita2d_pgf_draw_text(font_, SCREEN_W - 300, HEADER_H + 28 + slide, DIM, 0.56f, "O / SELECT: Save & back");',
-                      'vita2d_pgf_draw_text(font_, SCREEN_W - 300, HEADER_H + 28 + slide, DIM, 0.56f, L("SAVE_BACK"));', 'Settings save')
-          draw = once(draw, 'vita2d_pgf_draw_text(font_, 12, SCREEN_H - 14, TEXT, 0.56f, "D-Pad: move   X / <>: change   O: save & back");',
-                      'vita2d_pgf_draw_text(font_, 12, SCREEN_H - 14, TEXT, 0.56f, L("SETTINGS_FOOTER"));', 'Settings footer')
+          title = 'vita2d_pgf_draw_text(font_, 20, HEADER_H + 30 + slide, ACCENT, 1.00f, "Settings");'
+          draw = draw.replace(title, 'vita2d_pgf_draw_text(font_, 20, HEADER_H + 30 + slide, ACCENT, 1.00f, L("SETTINGS"));')
+          save = 'vita2d_pgf_draw_text(font_, SCREEN_W - 300, HEADER_H + 28 + slide, DIM, 0.56f, "O / SELECT: Save & back");'
+          draw = once(draw, save, 'vita2d_pgf_draw_text(font_, SCREEN_W - 300, HEADER_H + 28 + slide, DIM, 0.56f, L("SAVE_BACK"));', 'Settings save')
+          footer = 'vita2d_pgf_draw_text(font_, 12, SCREEN_H - 14, TEXT, 0.56f, "D-Pad: move   X / <>: change   O: save & back");'
+          draw = once(draw, footer, 'vita2d_pgf_draw_text(font_, 12, SCREEN_H - 14, TEXT, 0.56f, L("SETTINGS_FOOTER"));', 'Settings footer')
           draw = once(draw, 'Opt opts[7] = {', 'Opt opts[8] = {', 'Options size')
-          draw = once(draw,
-              '''    Opt opts[8] = {\n        {"INSTALL", "Install method", methodLabel(), "Auto: BGDL for PKG when available", true},\n        {"", "PSP / PS1 target", pspLabel(), "LiveArea=PKG bubble; Adrenaline=pspemu (no bubble)", false},\n        {"", "PSP media (Adrenaline)", mediaFormatLabel(), "Folder=EBOOT in GAME; ISO=pspemu/ISO", false},\n        {"INTERFACE", "Color theme", themeLabel() + "  >", "X / tap: open color palette picker", true},\n        {"", "Warn missing plugins", settingsEdit_.warnMissingPlugins ? "Yes" : "No", "Startup toast if NoNpDrm is missing", false},\n        {"CATALOG", "Prompt image download", settingsEdit_.promptImageWarmup ? "Yes" : "No", "If you choose No once, it will not ask again", true},\n        {"UPDATES", "App updates", updateLabel(), "GitHub Releases - X to check / install", true},\n    };\n''',
-              '''    auto languageLabel = [&]() -> std::string {\n        auto& loc = ::psvitaalive::LocalizationManager::instance();\n        if (settingsEdit_.languageMode == ::psvitaalive::LanguageMode::System)\n            return std::string("System (") + loc.currentLanguageName() + ")";\n        ::psvitaalive::Language lang = ::psvitaalive::Language::English;\n        if (::psvitaalive::languageFromCode(settingsEdit_.language, lang) && loc.isLanguageAvailable(lang))\n            return std::string(::psvitaalive::languageName(lang));\n        return std::string(::psvitaalive::languageName(::psvitaalive::Language::English));\n    };\n    Opt opts[8] = {\n        {"INSTALL", L("INSTALL_METHOD"), methodLabel(), "Auto: BGDL for PKG when available", true},\n        {"", L("PSP_PS1_TARGET"), pspLabel(), "LiveArea=PKG bubble; Adrenaline=pspemu (no bubble)", false},\n        {"", L("PSP_MEDIA_ADRENALINE"), mediaFormatLabel(), "Folder=EBOOT in GAME; ISO=pspemu/ISO", false},\n        {"INTERFACE", L("COLOR_THEME"), themeLabel() + "  >", "X / tap: open color palette picker", true},\n        {"", L("WARN_MISSING_PLUGINS"), settingsEdit_.warnMissingPlugins ? "Yes" : "No", "Startup toast if NoNpDrm is missing", false},\n        {"", L("LANGUAGE"), languageLabel(), "System = Vita language; manual selection overrides it", false},\n        {"CATALOG", L("PROMPT_IMAGE_DOWNLOAD"), settingsEdit_.promptImageWarmup ? "Yes" : "No", "If you choose No once, it will not ask again", true},\n        {"UPDATES", L("APP_UPDATES"), updateLabel(), "GitHub Releases - X to check / install", true},\n    };\n''', 'Options block')
+          old_options = '''    Opt opts[8] = {\n        {"INSTALL", "Install method", methodLabel(), "Auto: BGDL for PKG when available", true},\n        {"", "PSP / PS1 target", pspLabel(), "LiveArea=PKG bubble; Adrenaline=pspemu (no bubble)", false},\n        {"", "PSP media (Adrenaline)", mediaFormatLabel(), "Folder=EBOOT in GAME; ISO=pspemu/ISO", false},\n        {"INTERFACE", "Color theme", themeLabel() + "  >", "X / tap: open color palette picker", true},\n        {"", "Warn missing plugins", settingsEdit_.warnMissingPlugins ? "Yes" : "No", "Startup toast if NoNpDrm is missing", false},\n        {"CATALOG", "Prompt image download", settingsEdit_.promptImageWarmup ? "Yes" : "No", "If you choose No once, it will not ask again", true},\n        {"UPDATES", "App updates", updateLabel(), "GitHub Releases - X to check / install", true},\n    };\n'''
+          new_options = '''    auto languageLabel = [&]() -> std::string {\n        auto& loc = ::psvitaalive::LocalizationManager::instance();\n        if (settingsEdit_.languageMode == ::psvitaalive::LanguageMode::System)\n            return std::string("System (") + loc.currentLanguageName() + ")";\n        ::psvitaalive::Language lang = ::psvitaalive::Language::English;\n        if (::psvitaalive::languageFromCode(settingsEdit_.language, lang) && loc.isLanguageAvailable(lang))\n            return std::string(::psvitaalive::languageName(lang));\n        return std::string(::psvitaalive::languageName(::psvitaalive::Language::English));\n    };\n    Opt opts[8] = {\n        {"INSTALL", L("INSTALL_METHOD"), methodLabel(), "Auto: BGDL for PKG when available", true},\n        {"", L("PSP_PS1_TARGET"), pspLabel(), "LiveArea=PKG bubble; Adrenaline=pspemu (no bubble)", false},\n        {"", L("PSP_MEDIA_ADRENALINE"), mediaFormatLabel(), "Folder=EBOOT in GAME; ISO=pspemu/ISO", false},\n        {"INTERFACE", L("COLOR_THEME"), themeLabel() + "  >", "X / tap: open color palette picker", true},\n        {"", L("WARN_MISSING_PLUGINS"), settingsEdit_.warnMissingPlugins ? "Yes" : "No", "Startup toast if NoNpDrm is missing", false},\n        {"", L("LANGUAGE"), languageLabel(), "System = Vita language; manual selection overrides it", false},\n        {"CATALOG", L("PROMPT_IMAGE_DOWNLOAD"), settingsEdit_.promptImageWarmup ? "Yes" : "No", "If you choose No once, it will not ask again", true},\n        {"UPDATES", L("APP_UPDATES"), updateLabel(), "GitHub Releases - X to check / install", true},\n    };\n'''
+          draw = once(draw, old_options, new_options, 'Options block')
           draw = draw.replace('Meta meta[7] = {', 'Meta meta[8] = {', 1)
-          draw = draw.replace('{true, "INSTALL"}, {false, ""}, {false, ""}, {true, "INTERFACE"}, {false, ""}, {true, "CATALOG"}, {true, "UPDATES"}',
-                              '{true, "INSTALL"}, {false, ""}, {false, ""}, {true, "INTERFACE"}, {false, ""}, {false, ""}, {true, "CATALOG"}, {true, "UPDATES"}', 1)
+          draw = draw.replace('{true, "INSTALL"}, {false, ""}, {false, ""}, {true, "INTERFACE"}, {false, ""}, {true, "CATALOG"}, {true, "UPDATES"}', '{true, "INSTALL"}, {false, ""}, {false, ""}, {true, "INTERFACE"}, {false, ""}, {false, ""}, {true, "CATALOG"}, {true, "UPDATES"}', 1)
           draw = draw.replace('int rowY[7] = {};', 'int rowY[8] = {};', 1)
           draw = draw.replace('int i = 0; i < 7; ++i', 'int i = 0; i < 8; ++i')
           draw = draw.replace('int i <= settingsFocus_ && i < 7', 'int i <= settingsFocus_ && i < 8')
-          # Shift contextual help: Language row 5, prompt row 6, updates row 7.
           old_help = '''        case 5:\n            body1 = "Ask once whether to download";\n            body2 = "all catalog images at startup.";\n            body3 = "Off = load images on demand.";\n            break;\n        case 6:\n            body1 = "Checks GitHub for a";\n            body2 = "newer PSVitaAlive.vpk and can";\n            body3 = "install it in-place (VitaDB style).";\n            break;\n'''
           new_help = '''        case 5:\n            body1 = "Choose the interface language.";\n            body2 = "System follows the Vita language.";\n            body3 = "Manual selection overrides it.";\n            break;\n        case 6:\n            body1 = "Ask once whether to download";\n            body2 = "all catalog images at startup.";\n            body3 = "Off = load images on demand.";\n            break;\n        case 7:\n            body1 = "Checks GitHub for a";\n            body2 = "newer PSVitaAlive.vpk and can";\n            body3 = "install it in-place (VitaDB style).";\n            break;\n'''
           draw = once(draw, old_help, new_help, 'contextual help shift')
-
           s = s[:d0] + draw + s[d1:]
-
           def add_keys(path, pairs):
               x = path.read_text(encoding='utf-8')
               if not x.endswith('\n'): x += '\n'
               for k,v in pairs.items():
                   if not re.search(r'^' + re.escape(k) + r'=', x, re.M): x += k + '=' + v + '\n'
               path.write_text(x, encoding='utf-8')
-
-          add_keys(en, {
-            'SETTINGS':'Settings', 'SAVE_BACK':'O / SELECT: Save & back',
-            'SETTINGS_FOOTER':'D-Pad: move   X / <>: change   O: save & back',
-            'INSTALL_METHOD':'Install method', 'PSP_PS1_TARGET':'PSP / PS1 target',
-            'PSP_MEDIA_ADRENALINE':'PSP media (Adrenaline)', 'COLOR_THEME':'Color theme',
-            'WARN_MISSING_PLUGINS':'Warn missing plugins', 'LANGUAGE':'Language',
-            'PROMPT_IMAGE_DOWNLOAD':'Prompt image download', 'APP_UPDATES':'App updates'})
-          add_keys(es, {
-            'SETTINGS':'Ajustes', 'SAVE_BACK':'O / SELECT: Guardar y volver',
-            'SETTINGS_FOOTER':'D-Pad: mover   X / <>: cambiar   O: guardar y volver',
-            'INSTALL_METHOD':'Método de instalación', 'PSP_PS1_TARGET':'Destino PSP / PS1',
-            'PSP_MEDIA_ADRENALINE':'Medio PSP (Adrenaline)', 'COLOR_THEME':'Tema de color',
-            'WARN_MISSING_PLUGINS':'Avisar sobre plugins faltantes', 'LANGUAGE':'Idioma',
-            'PROMPT_IMAGE_DOWNLOAD':'Preguntar por descarga de imágenes', 'APP_UPDATES':'Actualizaciones de la app'})
-
+          add_keys(en, {'SETTINGS':'Settings','SAVE_BACK':'O / SELECT: Save & back','SETTINGS_FOOTER':'D-Pad: move   X / <>: change   O: save & back','INSTALL_METHOD':'Install method','PSP_PS1_TARGET':'PSP / PS1 target','PSP_MEDIA_ADRENALINE':'PSP media (Adrenaline)','COLOR_THEME':'Color theme','WARN_MISSING_PLUGINS':'Warn missing plugins','LANGUAGE':'Language','PROMPT_IMAGE_DOWNLOAD':'Prompt image download','APP_UPDATES':'App updates'})
+          add_keys(es, {'SETTINGS':'Ajustes','SAVE_BACK':'O / SELECT: Guardar y volver','SETTINGS_FOOTER':'D-Pad: mover   X / <>: cambiar   O: guardar y volver','INSTALL_METHOD':'Método de instalación','PSP_PS1_TARGET':'Destino PSP / PS1','PSP_MEDIA_ADRENALINE':'Medio PSP (Adrenaline)','COLOR_THEME':'Tema de color','WARN_MISSING_PLUGINS':'Avisar sobre plugins faltantes','LANGUAGE':'Idioma','PROMPT_IMAGE_DOWNLOAD':'Preguntar por descarga de imágenes','APP_UPDATES':'Actualizaciones de la app'})
           ui.write_text(s, encoding='utf-8')
       - name: Validate
         shell: bash
@@ -132,6 +97,7 @@ jobs:
           grep -q 'L("LANGUAGE")' 'Client PSVitaAlive/source/ui/full_catalog_screen.cpp'
           grep -q '^LANGUAGE=Language$' 'Client PSVitaAlive/assets/lang/en.lang'
           grep -q '^LANGUAGE=Idioma$' 'Client PSVitaAlive/assets/lang/es.lang'
+          grep -q 'case 7:' 'Client PSVitaAlive/source/ui/full_catalog_screen.cpp'
           git diff --check
       - name: Commit and clean temporary workflow
         shell: bash
