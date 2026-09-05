@@ -142,7 +142,8 @@ Native client (Title ID **PSVAS1178**). Users only need to **open the client**: 
 **Highlights**
 
 - Catalogs: Homebrew, Vita Games, PSP, PS1
-- Search, Settings (**PSP/PS1 target**, **PSP media** Folder/ISO, **color theme** palettes with first-run picker), touch + controls; News modal (from `news.txt`); optional Discord error **Report**
+- Search, Settings (**PSP/PS1 target**, **PSP media** Folder/ISO, **color theme** + first-run picker with preview/confirm and **smooth palette cross-fade**, **UI font** styles, **language** System/EN/ES), touch + controls; News modal (from `news.txt`); optional Discord error **Report**
+- **Multilanguage UI** (English / Spanish chrome; catalog text unchanged) — see [docs/MULTILANGUAGE.md](docs/MULTILANGUAGE.md)
 - Downloads (MediaFire CDN resolution, Archive.org edge failover, GitHub, …) with retries on slow networks and SSL connect errors
 - Install: **VPK** (including nested `.vpk` inside a release ZIP), **ZIP** extract (`extract_path` or quick paths; large / >2 GB archives; EOCD/ZIP64 retries), licensed **Vita PKG** via system **BGDL**, **PSP/PS1 PKG** via BGDL (LiveArea) or **Adrenaline unpack** (Folder/ISO via pkg2zip-style pipeline)
 - **Plugin** catalog links: download to `extract_path`, append line to taiHEN `config.txt` (section-aware, append-only), reboot prompt
@@ -264,6 +265,10 @@ During an active job the progress overlay states explicitly that:
 - Only **CIRCLE** (cancel) is expected until the job finishes
 
 Toasts reinforce the same message if Settings, exit, or catalog switch are attempted.
+
+### PSP DLC and Adrenaline media
+
+PSP **DLC** installs from the client require **LiveArea** target **or** Adrenaline **Folder** mode. Adrenaline **ISO** mode shows a toast and blocks the DLC action (DLC is not recognised correctly as ISO).
 
 ### Practical recommendations during large installs
 

@@ -37,3 +37,10 @@ Native C++ sources for the PS Vita client.
 - Optional features (plugin scan, update check) respect settings / config flags when present.
 - Self-update handoff must mirror `updater/main.c` `launchClientAndExit` (no `DestroyOtherApp` before launch from the client).
 - In-app download/extract jobs must unlock shell locks on every terminal path (success, fail, cancel, shutdown).
+
+
+## Localization
+
+`localization/` — `LocalizationManager`, `TextId`, loads `app0:lang/*.lang`.  
+`ui/ui_font.cpp` — system PGF font styles.  
+See [docs/MULTILANGUAGE.md](../../docs/MULTILANGUAGE.md).

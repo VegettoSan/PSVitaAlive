@@ -1,105 +1,72 @@
 # `source/ui/` — Native UI
 
-Rendered with **vita2d** (960×544). Default accent aligns with the store green (`#3BFF00`); users can switch **color themes** in Settings.
+Rendered with **vita2d** (960×544). Default accent is the store green (`#3BFF00`); users switch **color themes**, **UI fonts**, and **language** in Settings.
 
 ## Main surface
 
 `FullCatalogScreen` covers:
 
-- Full catalog grid
-- Split detail view
-- Catalog loading (including full-screen loading art when configured)
-- Settings (install method, PSP target, color theme, plugin warnings, …)
-- Download / install progress and result overlays (success, failure, **Download cancelled**)
+- Full catalog grid and split detail view
+- Catalog loading (splash art when configured)
+- Settings (install method, PSP/PS1 target, PSP media, **language**, **UI font**, **color theme**, plugin warnings, image warmup, self-update)
+- Download / install progress and result overlays (success, failure, **Download cancelled**, ZIP complete)
+- Install All wizard and mirror/link pickers
 - Search and catalog switching
-- News modal (`news.txt`); Report confirm flow for real errors
-
-## Supporting pieces
-
-| File | Role |
-|------|------|
-| `image_cache.cpp` | Async icon/screenshot cache; release textures when leaving views |
-| `ui_types.cpp` | Shared UI types |
-
-## Rules
-
-- UI requests actions (install, cancel, acknowledge); it does not promote packages itself.
-- Touch and controls should share the same actions where implemented.
-- Heavy textures should not stay resident when the user leaves a catalog/detail context.
-
-## Catalog list memory
-
-For large catalogs (Vita Games), browsing with an empty search should use `catalogView()` backed by `allItems_` so the filtered `items_` vector is not a full second copy of the catalog in RAM.
+- News modal (`news.txt`)
+- First-run / Settings **theme picker**
+- Essential plugins modal and plugin **reboot** modal
+- Report / data-request confirms
 
 ## Color themes
 
-Settings can cycle predefined **color palettes** (e.g. default neon lime, cyan, rose, amber, violet, mono, OLED-oriented). Selection is stored in `AppSettingsData` / `config.json` and applied via `applyColorTheme` so accent, soft accent, and related chrome update without restarting the process. The **Report** control stays red for visibility regardless of palette.
+- Many distinct named palettes (`ColorTheme` in `app_settings.hpp`).
+- First launch: theme grid before News (`theme_setup_done`).
+- Settings opens the same grid (not a simple Left/Right cycle).
+- **Preview then confirm:** first X/tap previews; second activation on the same theme **or** **Save** commits.
+- **Cross-fade (~420 ms):** `applyColorTheme(..., animate)` interpolates BG, SURFACE*, PANEL, BORDER, TEXT, DIM, ACCENT* with smoothstep (`tickThemeBlend` in `updateAnimations`).
+- Startup / config load uses `animate=false` (instant).
+- Brand full-colour logo/splash only for **NeonLime / PsVitaAlive**; other themes use monochrome assets + accent tint.
+
+## UI fonts
+
+`ui_font.cpp` / `ui_font.hpp`:
+
+| Style | Load path |
+|-------|-----------|
+| Default | `vita2d_load_default_pgf()` |
+| Serif / Sans / bold variants | `sa0:data/font/ltn{0,2,4,6}.pgf` |
+
+Config: `ui_font_style`. Missing system files fall back to Default.
+
+## Multilanguage
+
+Strings go through `LocalizationManager` + `TextId` + `app0:lang/*.lang`.  
+UI chrome is translated (EN/ES); catalog JSON is not. See [docs/MULTILANGUAGE.md](../../../docs/MULTILANGUAGE.md).
 
 ## Progress overlay & lock messaging
 
-While `installProgressActive_` and the job has not finished:
+While a download/install job is active:
 
-- Panel shows phase-specific wait hints (connecting, downloading, extracting, installing, retries).
-- A high-visibility **LOCKED** banner states that the PS button and soft power menu are disabled and the screen stays on.
-- Footer text: only CIRCLE (cancel) is expected until completion.
-- Input layer:
-  - CIRCLE → cancel (in progress) or acknowledge (result)
-  - START / SELECT / L / R / face buttons → **LOCKED** toasts explaining why the action is refused
-  - After result (success/fail/cancel), normal navigation returns when the user closes the panel
+- Phase hints (connecting, downloading, extracting, installing, retries)
+- Large-type **LOCKED** banner: PS button and soft power menu disabled; screen stays on
+- CIRCLE cancels (in progress) or acknowledges (result); other keys toast LOCKED
+- Touch must match resized panels (do not leave hitboxes on old coordinates)
 
-Catalog loading splash remains separate from install progress; install locks apply only to install-controller busy states.
+## Theme / News / Settings scroll
 
-## Catalog card text
-
-Long titles use ellipsis / marquee helpers with clipping so names do not spill outside card bounds. Right padding leaves room for badges (e.g. Game/Data Files chips).
-
-
-## Color themes
-
-`ColorTheme` enum + `applyColorTheme` map ACCENT / SURFACE / TEXT tokens used by all panels. Brand theme keeps full-color logo and loading splash; other themes tint monochrome assets.
-
-- **First-run** modal: grid of theme buttons (each painted with its palette), adaptive scroll, Save persists `themeSetupDone`.
-- **Settings**: Color theme row opens the same picker (no longer D-pad cycle only).
-
-## Essential plugins modal
-
-`tryShowEssentialPluginsPrompt()` runs after theme setup + News (see `main.cpp` `startupEssentialPending`).
-
-- Large type for 960×544 readability.
-- Lists only **missing** plugins (kubridge / fd_fix require file **and** config line; libshacccg file only).
-- **Install plugins** uses pulsing border (same language as Install All) and drives `linkAction_` with synthetic Plugin links.
-- **Remind me later** dismisses without installing.
-- Sequential install; reboot modal only after the last success (or if a mid-queue failure happened after at least one success).
-
-## Plugin link UI
-
-Detail link rows:
-
-- Badge **Installed** when the plugin file (and config line when applicable) is present.
-- Toast **Already installed** if activated again.
-- Install All skips installed plugins when enqueueing.
-
-## Reboot modal
-
-Full-screen dim + **Restart PS Vita**. `handleTouch` returns early so taps cannot hit catalog/settings behind the dialog. Soft reset: `scePowerRequestColdReset`.
-
-## Settings INFO panel
-
-Right-hand **SYSTEM** block lists:
-
-- NoNpDrm / NoPspEmuDrm (from `PluginDetector`)
-- kubridge / fd_fix / libshacccg (same rules as the essential prompt)
-- Active `config.txt` path
-- Larger type scales for real-hardware legibility
-
-## Progress overlay & lock messaging
-
-While `installProgressActive_` and the job has not finished:
-
-- Phase-specific wait hints (connecting, downloading, extracting, installing, retries).
-- **LOCKED** banner: PS button and soft power menu disabled; screen stays on.
-- CIRCLE cancels (in progress) or acknowledges (result); other keys toast LOCKED.
+Theme picker and Settings list use the same **stepped touch scroll** model as the main catalog (drag moves focus like D-Pad). News uses its own line scroll.
 
 ## Catalog card text
 
-Long titles use ellipsis / marquee with clipping so names do not spill outside card bounds.
+Long titles use ellipsis / marquee with **parent clipping** so names do not spill outside card bounds while scrolling.
+
+## Plugin UI
+
+- Link row: **Installed** badge when file (+ config line when required) already present; press → toast, no re-download
+- Install All skips already-installed plugins
+- Post-install **Restart required** modal blocks background touch until soft reset
+- Essential plugins modal: large type, pulsing **Install plugins** border
+
+## Settings INFO
+
+INFO panel documents each focused option (install method, PSP target/media, language, font, theme, plugins, images, updates). SYSTEM block lists plugin detection status with larger type.

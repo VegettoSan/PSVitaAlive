@@ -256,3 +256,21 @@ Files:
 ## PSM Runtime driver (optional build artifact)
 
 `psm_runtime_driver/` builds a kernel helper `.skprx` packed into the VPK. CMake stages the ELF under a **space-free** path (`~/.cache/psvitaalive_build/...`) because `vita-elf-create` breaks when the tree lives under `Client PSVitaAlive` (space in path).
+
+
+## App settings (`config.json`)
+
+Path: `ux0:data/psvitaalive/config.json` (see `app_settings.cpp`).
+
+Relevant keys for UI personalisation:
+
+| Key | Values | Notes |
+|-----|--------|-------|
+| `color_theme` | theme id string | Many palettes; first-run picker sets `theme_setup_done` |
+| `ui_font_style` | `default`, `serif`, `sans`, `serif_bold`, `sans_bold` | System PGF faces |
+| `language_mode` | `system`, `manual` | |
+| `language` | `en`, `es` | Used when mode is manual |
+| `psp_target` | `adrenaline`, `livearea` | PSP/PS1 PKG routing |
+| `psp_media_format` | `folder`, `iso` | Adrenaline layout only |
+
+Installer behaviour is driven by install method, PSP target/media, and catalog link types — not by theme/font.

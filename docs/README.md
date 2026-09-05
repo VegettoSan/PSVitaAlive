@@ -12,9 +12,10 @@ Supplementary documentation for architecture, pipelines and client behaviour.
 
 | Location | Topic |
 |----------|--------|
-| Root `README.md` | Project overview, public JSON API, multi-catalog, **recommended Vita setup** (iTLS-Enso, DNS), **download/install locks**, commercial PKG routing |
+| Root `README.md` | Project overview, public JSON API, multi-catalog, **recommended Vita setup** (iTLS-Enso, DNS), **download/install locks**, commercial PKG routing, client feature summary |
+| `docs/MULTILANGUAGE.md` | UI localization architecture (EN/ES), phases, TextId / `.lang` files |
+| `docs/NETWORK_TLS.md` | libcurl / OpenSSL / archive.org failover / optional mbedTLS |
 | `Client PSVitaAlive/source/installer/README.md` | BGDL, VPK, **PSP/PS1 Adrenaline unpack** (Folder/ISO), keep-awake, shell locks |
-| `docs/NETWORK_TLS.md` | libcurl / TLS notes for downloads |
 | `apps/`, `authors/`, `categories/` | Data contracts |
 | `scripts/` | Generation and validation |
 | `sources/` | External feeds |
@@ -23,7 +24,7 @@ Supplementary documentation for architecture, pipelines and client behaviour.
 | `Client PSVitaAlive/source/update/README.md` | Self-update (PSVAUPDT1) handoff rules |
 | `Client PSVitaAlive/source/catalog/README.md` | Multi-catalog cache + zRIF sidecar |
 | `Client PSVitaAlive/source/installer/README.md` | VPK / **BGDL PKG**, **Plugin + tai config**, Adrenaline unpack, ZIP integrity, **keep-awake + shell locks** |
-| `Client PSVitaAlive/source/ui/README.md` | Progress **LOCKED** UI, color themes, essential plugins modal, Plugin badges |
+| `Client PSVitaAlive/source/ui/README.md` | **LOCKED** UI, color themes + cross-fade, UI fonts, i18n hooks, essential plugins modal |
 | `.github/workflows/` | CI / Pages |
 
 ## Change classification

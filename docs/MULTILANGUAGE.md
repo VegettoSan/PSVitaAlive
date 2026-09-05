@@ -1,6 +1,6 @@
 # PSVitaAlive — Multi-language support
 
-> **Status:** Phases 1–5 in progress: Settings (incl. INFO panel), catalog/nav, detail link sections.  
+> **Status:** Phases 1–4 complete. Phase 5 largely done for Settings, catalog/nav, detail, download/install overlays, theme picker, and many dialogs/toasts (EN + ES). Residual chrome may still appear in English until remaining strings are keyed.  
 > **Scope:** Native PS Vita client UI strings only. Catalog / external data is **not** translated.  
 > **Branch policy:** Changes for this feature go directly to `main`; do not create feature branches for the implementation.
 
@@ -440,25 +440,23 @@ Migrate a small, low-risk portion of Settings first:
 - Manual override cycles System / English / Español in Settings.
 - Missing keys fall back to English; persistence via `language_mode` / `language`.
 
-### Phase 5 — Progressive UI migration (in progress)
-
-Migrate screen-by-screen, validating each stage:
+### Phase 5 — Progressive UI migration (mostly complete)
 
 ```text
 Settings ✅ (labels + INFO panel bodies + SYSTEM status)
 ↓
 Catalog/navigation ✅ (tabs, footers, search, filter/loading toasts)
 ↓
-App detail ✅ (Install All block, badges, meta rows, DESCRIPTION/REQUIREMENTS/…, install state)
+App detail ✅ (Install All, badges, meta, section headers, install state)
 ↓
-Download/install
+Download/install ✅ (progress overlay, LOCKED banner, outcomes, Install All wizard, mirror picker, completion toasts)
 ↓
-Dialogs
+Theme picker ✅ (title, body, Save, nav hint, preview/saved toasts)
 ↓
-News/plugin/update UI
-↓
-remaining visible strings
+Dialogs / plugins / News / update strings — continue as residual English is found
 ```
+
+When adding UI text, always add `TextId` + `en.lang` + `es.lang` in the same change.
 
 ### Phase 6 — Additional languages
 

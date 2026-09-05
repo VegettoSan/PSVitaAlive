@@ -14,7 +14,8 @@ Native catalog client for PlayStation Vita / PSTV (and Vita3K for testing).
 ## Features (high level)
 
 - Catalogs: **Homebrew**, **Vita Games**, **PSP**, **PS1** (all four can stay cached in RAM after first load)
-- Search, Settings (install method, **PSP/PS1 target**, **PSP media** Folder/ISO, **color theme** with many coherent palettes + first-run picker), touch + buttons
+- Search, Settings (install method, **PSP/PS1 target**, **PSP media** Folder/ISO, **color theme**, **UI font**, **language** System/EN/ES), touch + buttons
+- **Multilanguage UI** (`app0:lang/en.lang`, `es.lang`): Settings, catalog/nav, detail, download/install overlays, theme picker, many dialogs — catalog content stays original language
 - **News** from repo `news.txt`; optional Discord **Report** on real errors (and dedicated data-request webhook path)
 - Image cache with on-demand loading; **Data Files / Game Files** indicators on app cards
 - Downloads via libcurl (MediaFire CDN/size resolution, **Archive.org edge failover**, GitHub, …) with retry behaviour on slow links and SSL connect errors
@@ -276,13 +277,56 @@ When Settings → **PSP / PS1 target** is **Adrenaline**:
 
 ## Color themes
 
-Many named palettes (including a brand **PsVitaAlive** lime theme and a **PS Vita** system-inspired palette). First launch can show a scrollable theme grid before News. Settings → Color theme opens the same picker. Logo and catalog-loading splash use color assets for the brand theme and monochrome + tint for others.
+Many named palettes (brand **PsVitaAlive** / Neon Lime, **PS Vita**, OLED, Matrix, and dozens of distinct accents).
 
+| Behaviour | Detail |
+|-----------|--------|
+| First run | Full-screen theme grid **before** News (once; `theme_setup_done` in config) |
+| Settings | **Color theme** opens the **same** picker (not a D-pad only cycle) |
+| Preview | First **X** / tap applies a **live preview**; second press on the same theme **or** **Save** commits |
+| Transition | ~420 ms **cross-fade** of BG, surfaces, borders, text and accent (smoothstep). Startup load is instant |
+| Brand art | Full-colour logo / catalog splash only on the original theme; other themes use **monochrome** assets tinted with the accent |
+
+Persisted as `color_theme` in `ux0:data/psvitaalive/config.json`.
 
 ## UI font styles
 
-Settings → **UI font** cycles system PGF typefaces (Default, Serif, Sans, Serif Bold, Sans Bold).
+Settings → **UI font** (Left/Right):
 
-- Stored in `config.json` as `ui_font_style`.
-- Loaded via `vita2d_load_custom_pgf` from `sa0:data/font/ltn*.pgf` when present.
-- If a file is missing (some emulators/firmware), the app falls back to the default PGF without crashing.
+| Style | System source (when present) |
+|-------|------------------------------|
+| Default | `vita2d_load_default_pgf()` |
+| Serif | `sa0:data/font/ltn0.pgf` |
+| Sans | `sa0:data/font/ltn2.pgf` |
+| Serif Bold | `sa0:data/font/ltn4.pgf` |
+| Sans Bold | `sa0:data/font/ltn6.pgf` |
+
+- `config.json` key: `ui_font_style` (`default` / `serif` / `sans` / `serif_bold` / `sans_bold`)
+- Live preview on change; missing files fall back to Default without crashing
+- Loader: `source/ui/ui_font.cpp` (`loadUiFont`)
+
+## Multilanguage (UI)
+
+| Item | Detail |
+|------|--------|
+| Files | `assets/lang/en.lang`, `es.lang` → `app0:lang/` in the VPK |
+| Settings | **Language**: System (Vita locale) / English / Español |
+| Config | `language_mode` (`system`\|`manual`), `language` (`en`\|`es`) |
+| Scope | Chrome only (buttons, Settings INFO, overlays, toasts, theme modal). **Catalog JSON text is not translated** |
+| Fallback | Missing key → English string |
+
+Design and phases: [docs/MULTILANGUAGE.md](../docs/MULTILANGUAGE.md).
+
+## PSP DLC (Adrenaline ISO)
+
+PSP **DLC** link buttons require **LiveArea** install target **or** Adrenaline **Folder** media. If the user is on Adrenaline **ISO**, the client shows a toast asking to switch to Folder or LiveArea (ISO DLC is not recognised correctly by Adrenaline).
+
+## Related docs
+
+| Doc | Topic |
+|-----|--------|
+| [source/ui/README.md](source/ui/README.md) | Themes, fonts, LOCKED UI, modals |
+| [source/installer/README.md](source/installer/README.md) | Install paths, plugins, shell locks |
+| [docs/NETWORK_TLS.md](../docs/NETWORK_TLS.md) | libcurl / archive.org failover |
+| [docs/MULTILANGUAGE.md](../docs/MULTILANGUAGE.md) | Localization architecture |
+| Root [README.md](../README.md) | Catalogs, device recommendations |
