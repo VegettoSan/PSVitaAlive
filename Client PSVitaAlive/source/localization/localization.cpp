@@ -194,6 +194,19 @@ const char* LocalizationManager::keyFor(TextId id) {
         case TextId::HintWarnPlugins: return "HINT_WARN_PLUGINS";
         case TextId::HintImageWarmup: return "HINT_IMAGE_WARMUP";
         case TextId::HintSelfUpdate: return "HINT_SELF_UPDATE";
+        case TextId::CatalogHomebrew: return "CATALOG_HOMEBREW";
+        case TextId::CatalogVitaGames: return "CATALOG_VITA_GAMES";
+        case TextId::CatalogPsp: return "CATALOG_PSP";
+        case TextId::CatalogPs1: return "CATALOG_PS1";
+        case TextId::CatalogUnknown: return "CATALOG_UNKNOWN";
+        case TextId::FooterCatalog: return "FOOTER_CATALOG";
+        case TextId::FooterDetailList: return "FOOTER_DETAIL_LIST";
+        case TextId::FooterDetailPanel: return "FOOTER_DETAIL_PANEL";
+        case TextId::SearchPlaceholder: return "SEARCH_PLACEHOLDER";
+        case TextId::FilterGdOnly: return "FILTER_GD_ONLY";
+        case TextId::FilterCleared: return "FILTER_CLEARED";
+        case TextId::LoadingCatalog: return "LOADING_CATALOG";
+        case TextId::ChangingCatalog: return "CHANGING_CATALOG";
         default: return "";
     }
 }

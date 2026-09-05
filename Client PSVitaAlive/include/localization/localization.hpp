@@ -52,6 +52,19 @@ enum class TextId {
     HintWarnPlugins,
     HintImageWarmup,
     HintSelfUpdate,
+    CatalogHomebrew,
+    CatalogVitaGames,
+    CatalogPsp,
+    CatalogPs1,
+    CatalogUnknown,
+    FooterCatalog,
+    FooterDetailList,
+    FooterDetailPanel,
+    SearchPlaceholder,
+    FilterGdOnly,
+    FilterCleared,
+    LoadingCatalog,
+    ChangingCatalog,
     Count
 };
 

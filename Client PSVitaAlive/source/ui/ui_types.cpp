@@ -1,4 +1,5 @@
 #include "ui/ui_types.hpp"
+#include "localization/localization.hpp"
 
 namespace psvitaalive {
 namespace ui {
@@ -6,19 +7,15 @@ namespace ui {
 const char* catalogName(CatalogType t) {
     switch (t) {
         case CatalogType::Homebrew:
-            return "Homebrew";
-
+            return L(TextId::CatalogHomebrew);
         case CatalogType::VitaGames:
-            return "Vita Games";
-
+            return L(TextId::CatalogVitaGames);
         case CatalogType::PspGames:
-            return "PSP";
-
+            return L(TextId::CatalogPsp);
         case CatalogType::Ps1Games:
-            return "PS1";
-
+            return L(TextId::CatalogPs1);
         default:
-            return "Unknown";
+            return L(TextId::CatalogUnknown);
     }
 }
 
