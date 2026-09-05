@@ -1,3 +1,4 @@
+#include "localization/localization.hpp"
 #include "network/download_manager.hpp"
 #include "network/mediafire_resolver.hpp"
 #include "storage/storage_manager.hpp"
@@ -269,7 +270,7 @@ bool DownloadManager::runJob(DownloadJob& job) {
                 ev.bytesPerSecond = 0;
                 ev.state = DownloadState::Downloading;
                 char uiMsg[48];
-                sceClibSnprintf(uiMsg, sizeof(uiMsg), "retrying download (%d/%d)...",
+                sceClibSnprintf(uiMsg, sizeof(uiMsg), ::psvitaalive::L(::psvitaalive::TextId::InstMsgRetryDownload),
                     outer + 1, outerAttempts);
                 ev.message = uiMsg;
                 onProgress_(ev);

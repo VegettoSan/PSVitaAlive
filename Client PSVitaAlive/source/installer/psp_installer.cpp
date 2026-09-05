@@ -1,4 +1,5 @@
 #include "installer/psp_installer.hpp"
+#include "localization/localization.hpp"
 #include "archive/format_detector.hpp"
 #include "storage/storage_manager.hpp"
 
@@ -65,14 +66,14 @@ PspInstallResult PspInstaller::copyFile(
     StorageManager st;
     SceUID in = sceIoOpen(src.c_str(), SCE_O_RDONLY, 0);
     if (in < 0) {
-        setError("cannot open source");
+        setError(::psvitaalive::L(::psvitaalive::TextId::InstMsgCannotOpenSource));
         return PspInstallResult::IoError;
     }
     const int64_t total = st.fileSize(src);
     SceUID out = sceIoOpen(dst.c_str(), SCE_O_WRONLY | SCE_O_CREAT | SCE_O_TRUNC, 0777);
     if (out < 0) {
         sceIoClose(in);
-        setError("cannot open destination");
+        setError(::psvitaalive::L(::psvitaalive::TextId::InstMsgCannotOpenDest));
         return PspInstallResult::IoError;
     }
 
@@ -83,21 +84,21 @@ PspInstallResult PspInstaller::copyFile(
             sceIoClose(in);
             sceIoClose(out);
             st.removeFile(dst);
-            setError("cancelled");
+            setError(::psvitaalive::L(::psvitaalive::TextId::InstMsgCancelled));
             return PspInstallResult::Cancelled;
         }
         const int rd = sceIoRead(in, buf.data(), buf.size());
         if (rd < 0) {
             sceIoClose(in);
             sceIoClose(out);
-            setError("read failed");
+            setError(::psvitaalive::L(::psvitaalive::TextId::InstMsgReadFailed));
             return PspInstallResult::IoError;
         }
         if (rd == 0) break;
         if (sceIoWrite(out, buf.data(), rd) != rd) {
             sceIoClose(in);
             sceIoClose(out);
-            setError("write failed");
+            setError(::psvitaalive::L(::psvitaalive::TextId::InstMsgWriteFailed));
             return PspInstallResult::IoError;
         }
         copied += static_cast<uint64_t>(rd);
@@ -123,12 +124,12 @@ PspInstallResult PspInstaller::installIsoCso(
     lastError_.clear();
     lastInstallPath_.clear();
     if (path.empty()) {
-        setError("empty path");
+        setError(::psvitaalive::L(::psvitaalive::TextId::InstMsgEmptyPath));
         return PspInstallResult::InvalidArgument;
     }
     StorageManager st;
     if (!st.exists(path)) {
-        setError("file not found");
+        setError(::psvitaalive::L(::psvitaalive::TextId::InstMsgFileNotFound));
         return PspInstallResult::IoError;
     }
 
@@ -137,12 +138,12 @@ PspInstallResult PspInstaller::installIsoCso(
     const std::string ext = FormatDetector::extensionOf(path);
     if (d.format != FileFormat::Iso && d.format != FileFormat::Cso &&
         ext != "iso" && ext != "cso") {
-        setError("not ISO/CSO");
+        setError(::psvitaalive::L(::psvitaalive::TextId::InstMsgNotIsoCso));
         return PspInstallResult::Unsupported;
     }
 
     if (!st.createDirectories(ISO_DIR)) {
-        setError("cannot create ISO dir");
+        setError(::psvitaalive::L(::psvitaalive::TextId::InstMsgCannotCreateDir));
         return PspInstallResult::IoError;
     }
 
@@ -177,12 +178,12 @@ PspInstallResult PspInstaller::installPbp(
     lastError_.clear();
     lastInstallPath_.clear();
     if (path.empty()) {
-        setError("empty path");
+        setError(::psvitaalive::L(::psvitaalive::TextId::InstMsgEmptyPath));
         return PspInstallResult::InvalidArgument;
     }
     StorageManager st;
     if (!st.exists(path)) {
-        setError("file not found");
+        setError(::psvitaalive::L(::psvitaalive::TextId::InstMsgFileNotFound));
         return PspInstallResult::IoError;
     }
 
@@ -190,14 +191,14 @@ PspInstallResult PspInstaller::installPbp(
     const DetectResult d = det.detectFile(path);
     const std::string ext = FormatDetector::extensionOf(path);
     if (d.format != FileFormat::Pbp && ext != "pbp") {
-        setError("not a PBP");
+        setError(::psvitaalive::L(::psvitaalive::TextId::InstMsgNotPbp));
         return PspInstallResult::Unsupported;
     }
 
     const std::string id = sanitizeId(stripExt(baseName(path)));
     const std::string gameDir = std::string(GAME_DIR) + "/" + id;
     if (!st.createDirectories(gameDir)) {
-        setError("cannot create GAME dir");
+        setError(::psvitaalive::L(::psvitaalive::TextId::InstMsgCannotCreateDir));
         return PspInstallResult::IoError;
     }
     const std::string dest = gameDir + "/EBOOT.PBP";

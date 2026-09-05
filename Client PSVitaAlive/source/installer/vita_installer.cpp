@@ -1,4 +1,5 @@
 #include "installer/vita_installer.hpp"
+#include "localization/localization.hpp"
 #include "archive/format_detector.hpp"
 #include "storage/storage_manager.hpp"
 #include "installer/license_helper.hpp"
@@ -155,13 +156,13 @@ VitaInstallResult VitaInstaller::installPkg(
     lastPromoteResult_ = 0;
 
     if (pkgPath.empty()) {
-        setError("empty pkg path");
+        setError(::psvitaalive::L(::psvitaalive::TextId::InstMsgEmptyPath));
         return VitaInstallResult::InvalidArgument;
     }
 
     StorageManager st;
     if (!st.exists(pkgPath)) {
-        setError("pkg not found");
+        setError(::psvitaalive::L(::psvitaalive::TextId::InstMsgPkgNotFound));
         return VitaInstallResult::IoError;
     }
 
@@ -177,12 +178,12 @@ VitaInstallResult VitaInstaller::installPkg(
     const std::string ext = FormatDetector::extensionOf(pkgPath);
     const bool looksPkg = (det.format == FileFormat::Pkg) || (ext == "pkg");
     if (!looksPkg) {
-        setError(std::string("not a pkg: format=") + toString(det.format) + " ext=" + ext);
+        setError(std::string(::psvitaalive::L(::psvitaalive::TextId::InstMsgNotPkg)) + ": " + toString(det.format) + " ext=" + ext);
         return VitaInstallResult::NotPkg;
     }
 
     if (shouldCancel && shouldCancel()) {
-        setError("cancelled");
+        setError(::psvitaalive::L(::psvitaalive::TextId::InstMsgCancelled));
         return VitaInstallResult::Cancelled;
     }
 
@@ -196,7 +197,7 @@ VitaInstallResult VitaInstaller::installPkg(
     } promoterScope{this};
 
     if (!st.createDirectories(TMP_ROOT)) {
-        setError("cannot create tmp");
+        setError(::psvitaalive::L(::psvitaalive::TextId::InstMsgCannotCreateDir));
         return VitaInstallResult::IoError;
     }
 
@@ -209,7 +210,7 @@ VitaInstallResult VitaInstaller::installPkg(
 
     SceUID in = sceIoOpen(pkgPath.c_str(), SCE_O_RDONLY, 0);
     if (in < 0) {
-        setError("open source pkg failed");
+        setError(::psvitaalive::L(::psvitaalive::TextId::InstMsgCannotOpenSource));
         return VitaInstallResult::IoError;
     }
 
@@ -219,7 +220,7 @@ VitaInstallResult VitaInstaller::installPkg(
     SceUID out = sceIoOpen(stagedPath.c_str(), SCE_O_WRONLY | SCE_O_CREAT | SCE_O_TRUNC, 0777);
     if (out < 0) {
         sceIoClose(in);
-        setError("open staged pkg failed");
+        setError(::psvitaalive::L(::psvitaalive::TextId::InstMsgCannotOpenDest));
         return VitaInstallResult::IoError;
     }
 
@@ -230,7 +231,7 @@ VitaInstallResult VitaInstaller::installPkg(
             sceIoClose(in);
             sceIoClose(out);
             st.removeFile(stagedPath);
-            setError("cancelled during stage");
+            setError(::psvitaalive::L(::psvitaalive::TextId::InstMsgCancelled));
             return VitaInstallResult::Cancelled;
         }
 
@@ -239,7 +240,7 @@ VitaInstallResult VitaInstaller::installPkg(
             sceIoClose(in);
             sceIoClose(out);
             st.removeFile(stagedPath);
-            setError("read pkg failed");
+            setError(::psvitaalive::L(::psvitaalive::TextId::InstMsgReadFailed));
             return VitaInstallResult::IoError;
         }
         if (n == 0) break;
@@ -251,7 +252,7 @@ VitaInstallResult VitaInstaller::installPkg(
                 sceIoClose(in);
                 sceIoClose(out);
                 st.removeFile(stagedPath);
-                setError("write staged pkg failed");
+                setError(::psvitaalive::L(::psvitaalive::TextId::InstMsgWriteFailed));
                 return VitaInstallResult::IoError;
             }
             off += w;
@@ -312,10 +313,10 @@ VitaInstallResult VitaInstaller::installPkgWithRif(
     }
     lastError_.clear();
     lastPromoteResult_ = 0;
-    if (pkgPath.empty()) { setError("empty pkg path"); return VitaInstallResult::InvalidArgument; }
+    if (pkgPath.empty()) { setError(::psvitaalive::L(::psvitaalive::TextId::InstMsgEmptyPath)); return VitaInstallResult::InvalidArgument; }
     StorageManager st;
-    if (!st.exists(pkgPath)) { setError("pkg not found"); return VitaInstallResult::IoError; }
-    if (!st.exists(rifPath)) { setError("rif not found"); return VitaInstallResult::IoError; }
+    if (!st.exists(pkgPath)) { setError(::psvitaalive::L(::psvitaalive::TextId::InstMsgPkgNotFound)); return VitaInstallResult::IoError; }
+    if (!st.exists(rifPath)) { setError(::psvitaalive::L(::psvitaalive::TextId::InstMsgRifNotFound)); return VitaInstallResult::IoError; }
     if (onProgress) {
         VitaInstallProgress p; p.stage = VitaInstallProgress::Preparing; p.message = "validating PKG + RIF"; onProgress(p);
     }
@@ -323,35 +324,35 @@ VitaInstallResult VitaInstaller::installPkgWithRif(
     DetectResult det = detector.detectFile(pkgPath);
     const std::string ext = FormatDetector::extensionOf(pkgPath);
     if (!(det.format == FileFormat::Pkg || ext == "pkg")) {
-        setError("not a pkg"); return VitaInstallResult::NotPkg;
+        setError(::psvitaalive::L(::psvitaalive::TextId::InstMsgNotPkg)); return VitaInstallResult::NotPkg;
     }
-    if (shouldCancel && shouldCancel()) { setError("cancelled"); return VitaInstallResult::Cancelled; }
+    if (shouldCancel && shouldCancel()) { setError(::psvitaalive::L(::psvitaalive::TextId::InstMsgCancelled)); return VitaInstallResult::Cancelled; }
     if (!loadPromoterModule()) return VitaInstallResult::ModuleFailed;
     struct PromoterScope {
         VitaInstaller* self;
         ~PromoterScope() { if (self) self->unloadPromoterModules(); }
     } promoterScope{this};
-    if (!st.createDirectories(TMP_ROOT)) { setError("cannot create tmp"); return VitaInstallResult::IoError; }
+    if (!st.createDirectories(TMP_ROOT)) { setError(::psvitaalive::L(::psvitaalive::TextId::InstMsgCannotCreateDir)); return VitaInstallResult::IoError; }
 
     char staged[256];
     sceClibSnprintf(staged, sizeof(staged), "%s/pkg_%u.pkg", TMP_ROOT, (unsigned)sceKernelGetProcessTimeLow());
     const std::string stagedPath = staged;
 
     SceUID in = sceIoOpen(pkgPath.c_str(), SCE_O_RDONLY, 0);
-    if (in < 0) { setError("open source pkg failed"); return VitaInstallResult::IoError; }
+    if (in < 0) { setError(::psvitaalive::L(::psvitaalive::TextId::InstMsgCannotOpenSource)); return VitaInstallResult::IoError; }
     SceUID out = sceIoOpen(stagedPath.c_str(), SCE_O_WRONLY | SCE_O_CREAT | SCE_O_TRUNC, 0777);
-    if (out < 0) { sceIoClose(in); setError("open staged pkg failed"); return VitaInstallResult::IoError; }
+    if (out < 0) { sceIoClose(in); setError(::psvitaalive::L(::psvitaalive::TextId::InstMsgCannotOpenDest)); return VitaInstallResult::IoError; }
     std::vector<char> buf(64 * 1024);
     while (true) {
         if (shouldCancel && shouldCancel()) {
             sceIoClose(in); sceIoClose(out); st.removeFile(stagedPath);
-            setError("cancelled during stage"); return VitaInstallResult::Cancelled;
+            setError(::psvitaalive::L(::psvitaalive::TextId::InstMsgCancelled)); return VitaInstallResult::Cancelled;
         }
         const int rd = sceIoRead(in, buf.data(), buf.size());
-        if (rd < 0) { sceIoClose(in); sceIoClose(out); setError("pkg read failed"); return VitaInstallResult::IoError; }
+        if (rd < 0) { sceIoClose(in); sceIoClose(out); setError(::psvitaalive::L(::psvitaalive::TextId::InstMsgReadFailed)); return VitaInstallResult::IoError; }
         if (rd == 0) break;
         if (sceIoWrite(out, buf.data(), rd) != rd) {
-            sceIoClose(in); sceIoClose(out); setError("pkg write failed"); return VitaInstallResult::IoError;
+            sceIoClose(in); sceIoClose(out); setError(::psvitaalive::L(::psvitaalive::TextId::InstMsgWriteFailed)); return VitaInstallResult::IoError;
         }
     }
     sceIoClose(in); sceIoClose(out);
@@ -359,7 +360,7 @@ VitaInstallResult VitaInstaller::installPkgWithRif(
     const std::string stagedRif = std::string(TMP_ROOT) + "/work.bin";
     std::string err;
     if (!LicenseHelper::copyRifFile(rifPath, stagedRif, err)) {
-        setError(std::string("rif stage failed: ") + err);
+        setError(std::string(::psvitaalive::L(::psvitaalive::TextId::InstMsgInstallationFailed)) + ": " + err);
         st.removeFile(stagedPath);
         return VitaInstallResult::IoError;
     }

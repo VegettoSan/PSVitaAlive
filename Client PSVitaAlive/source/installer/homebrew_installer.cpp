@@ -1,4 +1,5 @@
 #include "installer/homebrew_installer.hpp"
+#include "localization/localization.hpp"
 #include "installer/refresh_manager.hpp"
 #include "installer/fake_package_builder.hpp"
 #include "archive/format_detector.hpp"
@@ -362,7 +363,7 @@ InstallResult HomebrewInstaller::promoteExtractedDir(const std::string& dir) {
             sceClibSnprintf(buf, sizeof(buf), "sceIoRename failed: 0x%08X - recursive copy", ren);
             logLine(buf);
             if (!st.createDirectories(promoteDir) || !copyTreeRecursive(dir, promoteDir)) {
-                setError("cannot stage package into ux0:data/psva_vpk");
+                setError(::psvitaalive::L(::psvitaalive::TextId::InstMsgCannotCreateDir));
                 return InstallResult::IoError;
             }
             removeTree(dir);
@@ -378,11 +379,11 @@ InstallResult HomebrewInstaller::promoteExtractedDir(const std::string& dir) {
     logPathState("Promote head.bin", promoteDir + "/sce_sys/package/head.bin");
 
     if (!st.exists(promoteDir + "/eboot.bin") || !st.exists(promoteDir + "/sce_sys/param.sfo")) {
-        setError("invalid package layout before promote");
+        setError(::psvitaalive::L(::psvitaalive::TextId::InstMsgInvalidVpkLayout));
         return InstallResult::ExtractFailed;
     }
     if (!st.exists(promoteDir + "/sce_sys/package/head.bin")) {
-        setError("missing sce_sys/package/head.bin before promote");
+        setError(::psvitaalive::L(::psvitaalive::TextId::InstMsgInvalidVpkLayout));
         return InstallResult::PromoteFailed;
     }
 
@@ -461,12 +462,12 @@ InstallResult HomebrewInstaller::promoteExtractedDir(const std::string& dir) {
         : "promote dir still present after PromotePkg");
 
     if (promoteResult < 0) {
-        setError("PromotePkg failed");
+        setError(::psvitaalive::L(::psvitaalive::TextId::InstMsgPromoteFailed));
         return InstallResult::PromoteFailed;
     }
 
     if (!promoteDirGone && state != 0) {
-        setError("promoter did not finish (timeout)");
+        setError(::psvitaalive::L(::psvitaalive::TextId::InstMsgPromoterTimeout));
         lastPromoteResult_ = -1;
         return InstallResult::PromoteFailed;
     }
@@ -500,9 +501,9 @@ InstallResult HomebrewInstaller::installVpk(
     logLine("============================================================");
     logLine(std::string("installVpk BEGIN path=") + vpkPath);
 
-    if (vpkPath.empty()) { setError("empty vpk path"); return InstallResult::InvalidArgument; }
+    if (vpkPath.empty()) { setError(::psvitaalive::L(::psvitaalive::TextId::InstMsgEmptyPath)); return InstallResult::InvalidArgument; }
     StorageManager st;
-    if (!st.exists(vpkPath)) { setError("vpk not found"); return InstallResult::IoError; }
+    if (!st.exists(vpkPath)) { setError(::psvitaalive::L(::psvitaalive::TextId::InstMsgVpkNotFound)); return InstallResult::IoError; }
     logPathState("VPK source", vpkPath);
 
     if (onProgress) {
@@ -523,11 +524,11 @@ InstallResult HomebrewInstaller::installVpk(
         det.format == FileFormat::Zip ||
         ext == "vpk";
     if (!looksLikeVpk) {
-        setError(std::string("invalid VPK: format=") + toString(det.format) + " ext=" + ext);
+        setError(std::string(::psvitaalive::L(::psvitaalive::TextId::InstMsgUnsupportedFormat)) + ": " + toString(det.format) + " ext=" + ext);
         return InstallResult::NotVpk;
     }
-    if (shouldCancel && shouldCancel()) { setError("cancelled"); return InstallResult::Cancelled; }
-    if (!st.createDirectories(TMP_ROOT)) { setError("cannot create tmp root"); return InstallResult::IoError; }
+    if (shouldCancel && shouldCancel()) { setError(::psvitaalive::L(::psvitaalive::TextId::InstMsgCancelled)); return InstallResult::Cancelled; }
+    if (!st.createDirectories(TMP_ROOT)) { setError(::psvitaalive::L(::psvitaalive::TextId::InstMsgCannotCreateDir)); return InstallResult::IoError; }
 
     // Extract straight into the shallow promote root (VitaDB: ux0:/data/vdb_vpk).
     const std::string tmpDir = kVpkPromoteDir;
@@ -536,7 +537,7 @@ InstallResult HomebrewInstaller::installVpk(
         logLine(std::string("cleared previous promote dir: ") + tmpDir);
     }
     if (!st.createDirectories(tmpDir)) {
-        setError("cannot create VPK promote directory (ux0:data/psva_vpk)");
+        setError(::psvitaalive::L(::psvitaalive::TextId::InstMsgCannotCreateDir));
         return InstallResult::IoError;
     }
     logLine(std::string("VPK extract/promote directory: ") + tmpDir);
@@ -557,7 +558,7 @@ InstallResult HomebrewInstaller::installVpk(
             logLine(std::string("ZipExtractor retry after: ") + zipErr);
             removeTree(tmpDir);
             if (!st.createDirectories(tmpDir)) {
-                setError("cannot recreate VPK promote directory for extract retry");
+                setError(::psvitaalive::L(::psvitaalive::TextId::InstMsgCannotCreateDir));
                 return InstallResult::IoError;
             }
             sceKernelDelayThread(500 * 1000);
@@ -597,12 +598,12 @@ InstallResult HomebrewInstaller::installVpk(
 
     if (zr == ZipResult::Cancelled) {
         removeTree(tmpDir);
-        setError("extract cancelled");
+        setError(::psvitaalive::L(::psvitaalive::TextId::InstMsgExtractCancelled));
         return InstallResult::Cancelled;
     }
     if (zr != ZipResult::Ok) {
         removeTree(tmpDir);
-        setError(std::string("extract failed: ") + zipErr);
+        setError(std::string(::psvitaalive::L(::psvitaalive::TextId::InstMsgExtractFailed)) + ": " + zipErr);
         return InstallResult::ExtractFailed;
     }
 
@@ -630,7 +631,7 @@ InstallResult HomebrewInstaller::installVpk(
             if (st.exists(nestedStage)) removeTree(nestedStage);
             if (!st.createDirectories(nestedStage)) {
                 removeTree(tmpDir);
-                setError("cannot stage nested VPK extract");
+                setError(::psvitaalive::L(::psvitaalive::TextId::InstMsgCannotCreateDir));
                 return InstallResult::IoError;
             }
             // Keep a copy path string; removeTree(tmpDir) would delete nestedVpk if it lives under tmpDir.
@@ -640,14 +641,14 @@ InstallResult HomebrewInstaller::installVpk(
             if (!copyFileBytes(nestedVpk, nestedCopy)) {
                 removeTree(tmpDir);
                 removeTree(nestedStage);
-                setError("cannot copy nested VPK for re-extract");
+                setError(::psvitaalive::L(::psvitaalive::TextId::InstMsgWriteFailed));
                 return InstallResult::IoError;
             }
             removeTree(tmpDir);
             if (!st.createDirectories(tmpDir)) {
                 st.removeFile(nestedCopy);
                 removeTree(nestedStage);
-                setError("cannot recreate promote dir for nested VPK");
+                setError(::psvitaalive::L(::psvitaalive::TextId::InstMsgCannotCreateDir));
                 return InstallResult::IoError;
             }
             ZipExtractor zip2;
@@ -671,12 +672,12 @@ InstallResult HomebrewInstaller::installVpk(
                     " error=" + zip2.lastError());
             if (zr2 == ZipResult::Cancelled) {
                 removeTree(tmpDir);
-                setError("nested extract cancelled");
+                setError(::psvitaalive::L(::psvitaalive::TextId::InstMsgExtractCancelled));
                 return InstallResult::Cancelled;
             }
             if (zr2 != ZipResult::Ok) {
                 removeTree(tmpDir);
-                setError(std::string("nested VPK extract failed: ") + zip2.lastError());
+                setError(std::string(::psvitaalive::L(::psvitaalive::TextId::InstMsgExtractFailed)) + ": " + zip2.lastError());
                 return InstallResult::ExtractFailed;
             }
             logPathState("Nested extracted eboot.bin", ebootPath);
@@ -692,12 +693,12 @@ InstallResult HomebrewInstaller::installVpk(
 
     if (!st.exists(ebootPath) || !st.exists(paramPath)) {
         removeTree(tmpDir);
-        setError("invalid VPK layout: expected eboot.bin and sce_sys/param.sfo (not a VPK; release ZIP may need nested .vpk support or a direct .vpk link)");
+        setError(::psvitaalive::L(::psvitaalive::TextId::InstMsgInvalidVpkLayout));
         return InstallResult::ExtractFailed;
     }
     if (shouldCancel && shouldCancel()) {
         removeTree(tmpDir);
-        setError("cancelled before package preparation");
+        setError(::psvitaalive::L(::psvitaalive::TextId::InstMsgCancelled));
         return InstallResult::Cancelled;
     }
 
@@ -712,7 +713,7 @@ InstallResult HomebrewInstaller::installVpk(
     if (!packageBuilder.build(tmpDir)) {
         logLine(std::string("FakePackageBuilder FAILED: ") + packageBuilder.lastError());
         removeTree(tmpDir);
-        setError(std::string("package preparation failed: ") + packageBuilder.lastError());
+        setError(std::string(::psvitaalive::L(::psvitaalive::TextId::InstMsgPackagePrepFailed)) + ": " + packageBuilder.lastError());
         return InstallResult::PromoteFailed;
     }
     logLine("FakePackageBuilder: success");
@@ -720,7 +721,7 @@ InstallResult HomebrewInstaller::installVpk(
 
     if (shouldCancel && shouldCancel()) {
         removeTree(tmpDir);
-        setError("cancelled before promote");
+        setError(::psvitaalive::L(::psvitaalive::TextId::InstMsgCancelled));
         return InstallResult::Cancelled;
     }
 

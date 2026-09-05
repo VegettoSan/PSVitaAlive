@@ -1,4 +1,5 @@
 #include "installer/install_controller.hpp"
+#include "localization/localization.hpp"
 #include "diagnostic_logger.hpp"
 #include <psp2/net/netctl.h>
 #include "storage/storage_manager.hpp"
@@ -178,7 +179,7 @@ bool InstallController::init() {
         if (!event.message.empty())
             setMessage(event.message.c_str());
         else
-            setMessage("Downloading...");
+            setMessage(::psvitaalive::L(::psvitaalive::TextId::InstMsgDownloading));
     });
     const int purged = downloads_.purgeIncompleteJobs();
     if (purged > 0) {
@@ -187,7 +188,7 @@ bool InstallController::init() {
         diagnostics::log(m);
     }
     setStage("Idle");
-    setState(InstallStatus::State::Idle, "Ready");
+    setState(InstallStatus::State::Idle, ::psvitaalive::L(::psvitaalive::TextId::InstMsgReady));
     if (settings_.startupPluginDetection) {
         plugins_ = PluginDetector::scan();
         diagnostics::log(std::string("[Installer] plugins: ") + plugins_.detail);
@@ -228,7 +229,7 @@ void InstallController::shutdown() {
     activeZipDestination_.clear();
     activeFileName_.clear();
     workerDone_.store(true);
-    setState(InstallStatus::State::Idle, "Stopped");
+    setState(InstallStatus::State::Idle, ::psvitaalive::L(::psvitaalive::TextId::InstMsgStopped));
     diagnostics::log("[Installer] shutdown");
 }
 
@@ -245,7 +246,7 @@ void InstallController::cancel() {
     if (currentState != InstallStatus::State::Downloading || activeJobId_.empty()) return;
     downloads_.cancel(activeJobId_);
     setStage("Cancelling");
-    setState(InstallStatus::State::Downloading, "Cancelling download...");
+    setState(InstallStatus::State::Downloading, ::psvitaalive::L(::psvitaalive::TextId::InstMsgCancellingDownload));
     diagnostics::log(std::string("[Installer] cancel requested job=") + activeJobId_);
 }
 
@@ -260,7 +261,7 @@ void InstallController::acknowledgeResult() {
     setInstallPath("");
     setTitleId("");
     setStage("Idle");
-    setState(InstallStatus::State::Idle, "Ready");
+    setState(InstallStatus::State::Idle, ::psvitaalive::L(::psvitaalive::TextId::InstMsgReady));
 }
 
 bool InstallController::busy() const {
@@ -293,9 +294,7 @@ bool InstallController::requestInstall(
         total_.store(expectedBytes);
         speed_.store(0);
         resultShownAtMs_.store(0);
-        setState(InstallStatus::State::Failed,
-            "No internet connection. Connect to Wi-Fi and try the download again. "
-            "Extraction and install work offline once the file is fully downloaded.");
+        setState(InstallStatus::State::Failed, ::psvitaalive::L(::psvitaalive::TextId::InstMsgNoInternet));
         diagnostics::log("[Installer] blocked: no network connection before download");
         resultShownAtMs_.store(sceKernelGetSystemTimeWide() / 1000ULL);
         return true; // accepted as a finished failed request so UI shows the modal
@@ -335,7 +334,7 @@ bool InstallController::requestInstall(
                 char msg[320];
                 sceClibSnprintf(
                     msg, sizeof(msg),
-                    "Not enough free space on ux0. Need ~%s free (have %s). Free about %s more to continue.",
+                    ::psvitaalive::L(::psvitaalive::TextId::InstMsgNotEnoughSpace),
                     formatBytesShort(needExact).c_str(),
                     formatBytesShort(freeB).c_str(),
                     formatBytesShort(missing).c_str());
@@ -423,7 +422,7 @@ bool InstallController::requestInstall(
 
     const std::string jobId = downloads_.enqueue(url, fileName);
     if (jobId.empty()) {
-        setState(InstallStatus::State::Failed, "Could not create download job");
+        setState(InstallStatus::State::Failed, ::psvitaalive::L(::psvitaalive::TextId::InstMsgCouldNotCreateJob));
         diagnostics::log("[Installer] could not create download job");
         return false;
     }
@@ -445,14 +444,14 @@ bool InstallController::requestInstall(
     setFileName(fileName.c_str());
     setStage("Downloading");
     workerDone_.store(false);
-    setState(InstallStatus::State::Downloading, "Starting download...");
+    setState(InstallStatus::State::Downloading, ::psvitaalive::L(::psvitaalive::TextId::InstMsgStartingDownload));
     diagnostics::log(std::string("[Installer] request job=") + jobId + " file=" + fileName +
         (isPluginLinkType(linkType) ? " type=Plugin" : ""));
 
     workerThread_ = sceKernelCreateThread("PSVitaAliveInstall", &InstallController::workerEntry,
         0x10000100, 512 * 1024, 0, 0, nullptr); /* pkg2zip unpack needs large stack */
     if (workerThread_ < 0) {
-        setState(InstallStatus::State::Failed, "Could not create worker thread");
+        setState(InstallStatus::State::Failed, ::psvitaalive::L(::psvitaalive::TextId::InstMsgCouldNotCreateThread));
         workerDone_.store(true);
         downloads_.cleanupCompletedJob(activeJobId_);
         activeJobId_.clear();
@@ -466,7 +465,7 @@ bool InstallController::requestInstall(
         sceKernelDeleteThread(workerThread_);
         workerThread_ = -1;
         workerDone_.store(true);
-        setState(InstallStatus::State::Failed, "Could not start worker thread");
+        setState(InstallStatus::State::Failed, ::psvitaalive::L(::psvitaalive::TextId::InstMsgCouldNotStartThread));
         downloads_.cleanupCompletedJob(activeJobId_);
         activeJobId_.clear();
         diagnostics::log("[Installer] worker start failed; job cleaned");
@@ -488,14 +487,14 @@ InstallStatus InstallController::status() const {
         const std::string zrif = self->activeZrif_;
         const std::string contentId = self->activeContentId_;
 
-        self->setMessage("Preparing license...");
+        self->setMessage(::psvitaalive::L(::psvitaalive::TextId::InstMsgPreparingLicense));
         if (!BgdlClient::instance().available() && !BgdlClient::instance().init()) {
             self->setState(InstallStatus::State::Failed,
                            "BGDL unavailable on this device. Try again or check plugins.");
             self->resultShownAtMs_.store(sceKernelGetSystemTimeWide() / 1000ULL);
             diagnostics::log("[Installer] PKG BGDL failed: BGDL unavailable");
         } else {
-            self->setMessage("Queuing system download...");
+            self->setMessage(::psvitaalive::L(::psvitaalive::TextId::InstMsgQueuingBgdl));
             PkgBgdlRequest preq;
             preq.title = title;
             preq.url = url;
@@ -526,7 +525,7 @@ InstallStatus InstallController::status() const {
                 self->liveAreaOk_.store(false);
                 char msg[384];
                 sceClibSnprintf(msg, sizeof(msg),
-                    "Queued: %s — open LiveArea notifications to watch download/install.",
+                    ::psvitaalive::L(::psvitaalive::TextId::InstMsgQueuedBgdl),
                     title.c_str());
                 self->setState(InstallStatus::State::Completed, msg);
                 self->resultShownAtMs_.store(sceKernelGetSystemTimeWide() / 1000ULL);
@@ -534,7 +533,7 @@ InstallStatus InstallController::status() const {
                                  " title=" + title);
             } else {
                 const char* failMsg = bg.message.empty()
-                    ? "PKG license (zRIF) missing or BGDL queue failed"
+                    ? ::psvitaalive::L(::psvitaalive::TextId::InstMsgBgdlLicenseFailed)
                     : bg.message.c_str();
                 self->setState(InstallStatus::State::Failed, failMsg);
                 self->resultShownAtMs_.store(sceKernelGetSystemTimeWide() / 1000ULL);
@@ -703,7 +702,7 @@ int InstallController::workerMain() {
         const std::string linkType = activeBgdlLinkType_;
         const std::string zrif = activeZrif_;
         const std::string contentId = activeContentId_;
-        setMessage("Preparing license...");
+        setMessage(::psvitaalive::L(::psvitaalive::TextId::InstMsgPreparingLicense));
         if (!BgdlClient::instance().available() && !BgdlClient::instance().init()) {
             setState(InstallStatus::State::Failed,
                      "BGDL unavailable on this device. Try again or check plugins.");
@@ -712,7 +711,7 @@ int InstallController::workerMain() {
             workerThread_ = -1;
             return 0;
         }
-        setMessage("Queuing system download...");
+        setMessage(::psvitaalive::L(::psvitaalive::TextId::InstMsgQueuingBgdl));
         PkgBgdlRequest preq;
         preq.title = title;
         preq.url = url;
@@ -746,7 +745,7 @@ int InstallController::workerMain() {
             liveAreaOk_.store(false);
             char msg[384];
             sceClibSnprintf(msg, sizeof(msg),
-                "Queued: %s — open LiveArea notifications to watch download/install.",
+                ::psvitaalive::L(::psvitaalive::TextId::InstMsgQueuedBgdl),
                 title.c_str());
             setState(InstallStatus::State::Completed, msg);
             resultShownAtMs_.store(sceKernelGetSystemTimeWide() / 1000ULL);
@@ -754,7 +753,7 @@ int InstallController::workerMain() {
                              " title=" + title);
         } else {
             const char* failMsg = bg.message.empty()
-                ? "PKG license (zRIF) missing or BGDL queue failed"
+                ? ::psvitaalive::L(::psvitaalive::TextId::InstMsgBgdlLicenseFailed)
                 : bg.message.c_str();
             setState(InstallStatus::State::Failed, failMsg);
             resultShownAtMs_.store(sceKernelGetSystemTimeWide() / 1000ULL);
@@ -769,8 +768,8 @@ int InstallController::workerMain() {
     DownloadJob* job = downloads_.findJob(activeJobId_);
     if (!downloaded || !job || job->state != DownloadState::Completed) {
         const bool cancelled = job && job->state == DownloadState::Cancelled;
-        const std::string error = cancelled ? "Download cancelled"
-            : (job && !job->lastError.empty() ? job->lastError : "Download failed");
+        const std::string error = cancelled ? ::psvitaalive::L(::psvitaalive::TextId::InstMsgDownloadCancelled)
+            : (job && !job->lastError.empty() ? job->lastError : ::psvitaalive::L(::psvitaalive::TextId::InstMsgDownloadFailed));
         setStage(cancelled ? "Cancelled" : "Error");
         setState(cancelled ? InstallStatus::State::Cancelled : InstallStatus::State::Failed, error.c_str());
         liveAreaOk_.store(false);
@@ -790,7 +789,7 @@ int InstallController::workerMain() {
     // Slower SD2Vita / USB media may still be flushing the last blocks after rename.
     // ZIP EOCD / ZIP64 locators live at EOF — reading too early can look "incomplete".
     setStage("Installing");
-    setState(InstallStatus::State::Installing, "Finalizing file on storage...");
+    setState(InstallStatus::State::Installing, ::psvitaalive::L(::psvitaalive::TextId::InstMsgFinalizingStorage));
     diagnostics::log(std::string("[Installer] post-download storage settle before extract path=") + job->finalPath);
     sceKernelDelayThread(3000 * 1000); // 3s settle — margin for slower SD2Vita/USB
     {
@@ -805,13 +804,13 @@ int InstallController::workerMain() {
             diagnostics::log("[Installer] storage settle: open failed (continuing)");
         }
     }
-    setState(InstallStatus::State::Installing, "Preparing installation...");
+    setState(InstallStatus::State::Installing, ::psvitaalive::L(::psvitaalive::TextId::InstMsgPreparingInstall));
     diagnostics::log(std::string("[Installer] installing job=") + activeJobId_ + " file=" + job->finalPath);
 
     // --- Plugin link: copy binary to extract_path + append config.txt line (no VPK/ZIP path) ---
     if (isPluginLinkType(activeLinkType_)) {
         setStage("Plugin");
-        setState(InstallStatus::State::Installing, "Installing plugin...");
+        setState(InstallStatus::State::Installing, ::psvitaalive::L(::psvitaalive::TextId::InstMsgInstallingPlugin));
         std::string destDir = activeZipDestination_;
         if (destDir.empty()) destDir = "ur0:tai/";
         if (!destDir.empty() && destDir.back() != '/' && destDir.back() != ':') destDir.push_back('/');
@@ -825,7 +824,7 @@ int InstallController::workerMain() {
         StorageManager st;
         if (!st.createDirectories(destDir)) {
             setStage("Error");
-            setState(InstallStatus::State::Failed, "Cannot create plugin directory");
+            setState(InstallStatus::State::Failed, ::psvitaalive::L(::psvitaalive::TextId::InstMsgCannotCreatePluginDir));
             diagnostics::log(std::string("[Installer] plugin mkdir failed: ") + destDir);
             resultShownAtMs_.store(sceKernelGetSystemTimeWide() / 1000ULL);
             workerDone_.store(true);
@@ -838,7 +837,7 @@ int InstallController::workerMain() {
             const SceUID in = sceIoOpen(job->finalPath.c_str(), SCE_O_RDONLY, 0);
             if (in < 0) {
                 setStage("Error");
-                setState(InstallStatus::State::Failed, "Cannot open downloaded plugin");
+                setState(InstallStatus::State::Failed, ::psvitaalive::L(::psvitaalive::TextId::InstMsgCannotOpenPlugin));
                 workerDone_.store(true);
                 return 0;
             }
@@ -846,17 +845,17 @@ int InstallController::workerMain() {
             if (out < 0) {
                 sceIoClose(in);
                 setStage("Error");
-                setState(InstallStatus::State::Failed, "Cannot write plugin file");
+                setState(InstallStatus::State::Failed, ::psvitaalive::L(::psvitaalive::TextId::InstMsgCannotWritePlugin));
                 workerDone_.store(true);
                 return 0;
             }
             char buf[8 * 1024];
             for (;;) {
                 const int n = sceIoRead(in, buf, sizeof(buf));
-                if (n < 0) { sceIoClose(in); sceIoClose(out); setState(InstallStatus::State::Failed, "Plugin copy read error"); workerDone_.store(true); return 0; }
+                if (n < 0) { sceIoClose(in); sceIoClose(out); setState(InstallStatus::State::Failed, ::psvitaalive::L(::psvitaalive::TextId::InstMsgPluginCopyRead)); workerDone_.store(true); return 0; }
                 if (n == 0) break;
                 const int w = sceIoWrite(out, buf, n);
-                if (w != n) { sceIoClose(in); sceIoClose(out); setState(InstallStatus::State::Failed, "Plugin copy write error"); workerDone_.store(true); return 0; }
+                if (w != n) { sceIoClose(in); sceIoClose(out); setState(InstallStatus::State::Failed, ::psvitaalive::L(::psvitaalive::TextId::InstMsgPluginCopyWrite)); workerDone_.store(true); return 0; }
             }
             sceIoClose(in);
             sceIoClose(out);
@@ -879,7 +878,7 @@ int InstallController::workerMain() {
         liveAreaOk_.store(false);
         setStage("Done");
         setState(InstallStatus::State::Completed,
-            "Plugin installed. Restart the PS Vita to load it. Hold L at boot to disable plugins if something goes wrong.");
+            ::psvitaalive::L(::psvitaalive::TextId::InstMsgPluginInstalled));
         resultShownAtMs_.store(0); // no auto-dismiss — UI shows reboot modal
         diagnostics::log("[Installer] plugin install completed — reboot required");
         downloads_.cleanupCompletedJob(activeJobId_);
@@ -937,12 +936,12 @@ int InstallController::workerMain() {
             if (integrityHint) {
                 sceClibSnprintf(
                     retryMsg, sizeof(retryMsg),
-                    "Archive looked incomplete — waiting and retrying (%d/%d)...",
+                    ::psvitaalive::L(::psvitaalive::TextId::InstMsgRetryIncomplete),
                     attempt, kMaxIntegrityAttempts);
             } else {
                 sceClibSnprintf(
                     retryMsg, sizeof(retryMsg),
-                    "Something went wrong — retrying extract/install (%d/%d)...",
+                    ::psvitaalive::L(::psvitaalive::TextId::InstMsgRetryGeneric),
                     attempt, kMaxInstallAttempts);
             }
             setStage("Retrying");
@@ -1039,9 +1038,9 @@ int InstallController::workerMain() {
 
         char okMsg[320];
         if (!dispatcher_.lastInstallPath().empty()) {
-            sceClibSnprintf(okMsg, sizeof(okMsg), "Installed at %s", dispatcher_.lastInstallPath().c_str());
+            sceClibSnprintf(okMsg, sizeof(okMsg), ::psvitaalive::L(::psvitaalive::TextId::InstMsgInstalledAt), dispatcher_.lastInstallPath().c_str());
         } else {
-            sceClibSnprintf(okMsg, sizeof(okMsg), "Installation completed");
+            sceClibSnprintf(okMsg, sizeof(okMsg), "%s", ::psvitaalive::L(::psvitaalive::TextId::InstMsgInstallComplete));
         }
         std::string verifyMsg;
         const bool verified = RefreshManager::verifyAfterInstall(
@@ -1062,14 +1061,14 @@ int InstallController::workerMain() {
                  p.find("ux0:repatch") != std::string::npos ||
                  p.find("ux0:app/") == std::string::npos);
             if (zipLike && dispatcher_.lastTitleId().empty()) {
-                sceClibSnprintf(okMsg, sizeof(okMsg), "ZIP extracted to %s", p.c_str());
+                sceClibSnprintf(okMsg, sizeof(okMsg), ::psvitaalive::L(::psvitaalive::TextId::InstMsgZipExtractedTo), p.c_str());
             }
         }
         if (!dispatcher_.lastLiveAreaOk() && !dispatcher_.lastTitleId().empty() &&
             dispatcher_.lastInstallPath().find("ux0:app/") != std::string::npos) {
             sceClibSnprintf(
                 okMsg, sizeof(okMsg),
-                "Installed %s — if bubble missing: VitaShell Refresh LiveArea or reboot",
+                ::psvitaalive::L(::psvitaalive::TextId::InstMsgInstalledRefreshHint),
                 dispatcher_.lastTitleId().c_str()
             );
         }

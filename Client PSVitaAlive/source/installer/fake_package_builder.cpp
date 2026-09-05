@@ -1,3 +1,4 @@
+#include "localization/localization.hpp"
 #include "installer/fake_package_builder.hpp"
 #include "installer/head_template.hpp"
 
@@ -214,7 +215,7 @@ bool FakePackageBuilder::build(const std::string& packageDir) {
 
     std::string titleId;
     if (!readSfoString(sfo, "TITLE_ID", titleId) || !isValidTitleId(titleId)) {
-        setError("invalid or missing TITLE_ID in param.sfo");
+        setError(::psvitaalive::L(::psvitaalive::TextId::InstMsgInvalidVpkLayout));
         return false;
     }
 
@@ -226,7 +227,7 @@ bool FakePackageBuilder::build(const std::string& packageDir) {
     std::vector<uint8_t> head(head_template::data, head_template::data + head_template::size);
 
     if (head.size() < 0x100) {
-        setError("head.bin template is too small");
+        setError(::psvitaalive::L(::psvitaalive::TextId::InstMsgInvalidVpkLayout));
         return false;
     }
 
@@ -235,7 +236,7 @@ bool FakePackageBuilder::build(const std::string& packageDir) {
     sceClibSnprintf(fullTitleId, sizeof(fullTitleId), "EP9000-%s_00-0000000000000000", titleId.c_str());
     const std::string effectiveContentId = contentId.empty() ? std::string(fullTitleId) : contentId;
     if (effectiveContentId.size() > 47) {
-        setError("CONTENT_ID is too long");
+        setError(::psvitaalive::L(::psvitaalive::TextId::InstMsgInvalidVpkLayout));
         return false;
     }
 
@@ -244,7 +245,7 @@ bool FakePackageBuilder::build(const std::string& packageDir) {
 
     const uint32_t headerLen = readBE32(&head[0xD0]);
     if (headerLen < 0xD0 || static_cast<size_t>(headerLen) + 16 > head.size()) {
-        setError("invalid head.bin header length");
+        setError(::psvitaalive::L(::psvitaalive::TextId::InstMsgInvalidVpkLayout));
         return false;
     }
 
@@ -259,7 +260,7 @@ bool FakePackageBuilder::build(const std::string& packageDir) {
         infoLen < 64 ||
         static_cast<size_t>(infoHmacOffset) + 16 > head.size() ||
         static_cast<size_t>(infoOffset) + (infoLen - 64) > head.size()) {
-        setError("invalid head.bin package-info offsets");
+        setError(::psvitaalive::L(::psvitaalive::TextId::InstMsgInvalidVpkLayout));
         return false;
     }
 
@@ -268,7 +269,7 @@ bool FakePackageBuilder::build(const std::string& packageDir) {
 
     const uint32_t wholeLen = readBE32(&head[0xE8]);
     if (static_cast<size_t>(wholeLen) + 16 > head.size()) {
-        setError("invalid head.bin final length");
+        setError(::psvitaalive::L(::psvitaalive::TextId::InstMsgInvalidVpkLayout));
         return false;
     }
 
@@ -279,7 +280,7 @@ bool FakePackageBuilder::build(const std::string& packageDir) {
         SceIoStat st;
         std::memset(&st, 0, sizeof(st));
         if (sceIoGetstat(packagePath.c_str(), &st) < 0 || (st.st_mode & SCE_S_IFDIR) == 0) {
-            setError("cannot create sce_sys/package");
+            setError(::psvitaalive::L(::psvitaalive::TextId::InstMsgCannotCreateDir));
             return false;
         }
     }

@@ -1,4 +1,5 @@
 #include "installer/install_dispatcher.hpp"
+#include "localization/localization.hpp"
 #include "archive/format_detector.hpp"
 #include "archive/zip_extractor.hpp"
 #include "installer/homebrew_installer.hpp"
@@ -67,10 +68,10 @@ InstallDispatchResult InstallDispatcher::installFile(
 ) {
     lastError_.clear();
     clearResultMeta();
-    if (path.empty()) { setError("empty installation path"); return InstallDispatchResult::InvalidArgument; }
+    if (path.empty()) { setError(::psvitaalive::L(::psvitaalive::TextId::InstMsgEmptyPath)); return InstallDispatchResult::InvalidArgument; }
     StorageManager st;
-    if (!st.exists(path)) { setError("installation file not found"); return InstallDispatchResult::IoError; }
-    if (shouldCancel && shouldCancel()) { setError("cancelled"); return InstallDispatchResult::Cancelled; }
+    if (!st.exists(path)) { setError(::psvitaalive::L(::psvitaalive::TextId::InstMsgFileNotFound)); return InstallDispatchResult::IoError; }
+    if (shouldCancel && shouldCancel()) { setError(::psvitaalive::L(::psvitaalive::TextId::InstMsgCancelled)); return InstallDispatchResult::Cancelled; }
 
     if (onProgress) {
         InstallDispatchProgress p;
@@ -158,7 +159,7 @@ InstallDispatchResult InstallDispatcher::installFile(
                 diagnostics::log(std::string("[InstallDispatcher] unpack returned ") + std::to_string(ur));
                 if (ur != 0) {
                     const char* err = pkg2zip_last_error();
-                    setError(err && err[0] ? err : "PSP/PS1 PKG unpack to pspemu failed");
+                    setError(err && err[0] ? err : ::psvitaalive::L(::psvitaalive::TextId::InstMsgInstallationFailed));
                     diagnostics::log(std::string("[InstallDispatcher] Adrenaline PKG unpack failed: ") + lastError_);
                     return InstallDispatchResult::InstallFailed;
                 }
@@ -295,7 +296,7 @@ InstallDispatchResult InstallDispatcher::installFile(
         );
         lastInstallPath_ = zipDestination;
         lastLiveAreaOk_ = false; // ZIP extract is not a LiveArea promote
-        if (result == ZipResult::Cancelled) { setError("ZIP extraction cancelled"); return InstallDispatchResult::Cancelled; }
+        if (result == ZipResult::Cancelled) { setError(::psvitaalive::L(::psvitaalive::TextId::InstMsgExtractCancelled)); return InstallDispatchResult::Cancelled; }
         if (result != ZipResult::Ok) { setError(extractor.lastError()); return InstallDispatchResult::InstallFailed; }
         diagnostics::log(std::string("[InstallDispatcher] ZIP extracted to ") + zipDestination);
         if (onProgress) {
@@ -321,7 +322,7 @@ InstallDispatchResult InstallDispatcher::installFile(
                 onProgress(p);
             }, shouldCancel);
         lastInstallPath_ = psp.lastInstallPath(); lastLiveAreaOk_ = false;
-        if (pr == PspInstallResult::Cancelled) { setError("PBP install cancelled"); return InstallDispatchResult::Cancelled; }
+        if (pr == PspInstallResult::Cancelled) { setError(::psvitaalive::L(::psvitaalive::TextId::InstMsgExtractCancelled)); return InstallDispatchResult::Cancelled; }
         if (pr != PspInstallResult::Ok) { setError(psp.lastError()); return InstallDispatchResult::InstallFailed; }
         if (onProgress) {
             InstallDispatchProgress p; p.stage = InstallDispatchProgress::Completed; p.current=1; p.total=1;
@@ -341,7 +342,7 @@ InstallDispatchResult InstallDispatcher::installFile(
                 onProgress(p);
             }, shouldCancel);
         lastInstallPath_ = psp.lastInstallPath(); lastLiveAreaOk_ = false;
-        if (pr == PspInstallResult::Cancelled) { setError("ISO/CSO install cancelled"); return InstallDispatchResult::Cancelled; }
+        if (pr == PspInstallResult::Cancelled) { setError(::psvitaalive::L(::psvitaalive::TextId::InstMsgExtractCancelled)); return InstallDispatchResult::Cancelled; }
         if (pr != PspInstallResult::Ok) { setError(psp.lastError()); return InstallDispatchResult::InstallFailed; }
         if (onProgress) {
             InstallDispatchProgress p; p.stage = InstallDispatchProgress::Completed; p.current=1; p.total=1;
@@ -349,7 +350,7 @@ InstallDispatchResult InstallDispatcher::installFile(
         }
         return InstallDispatchResult::Ok;
     }
-    setError(std::string("unsupported format: ") + toString(detected.format));
+    setError(std::string(::psvitaalive::L(::psvitaalive::TextId::InstMsgUnsupportedFormat)) + ": " + toString(detected.format));
     return InstallDispatchResult::UnsupportedFormat;
 }
 
