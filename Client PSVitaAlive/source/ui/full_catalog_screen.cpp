@@ -3227,8 +3227,8 @@ void FullCatalogScreen::handleTouch() {
 // --- Header search bar + G/D Files filter (Homebrew only) ---
     if (y < HEADER_H) {
         const int barY = 10, barH = 32;
-        const int gdW = 118;
-        const int clockReserve = 92;
+        const int clockReserve = 100;
+        const int filterGap = 8;
         // Match drawHeader exactly so the visual search box and touch hitbox stay aligned.
         int barX = 200;
         if (headerLogoTex_) {
@@ -3242,8 +3242,20 @@ void FullCatalogScreen::handleTouch() {
             if (barX < 160) barX = 160;
         }
         const bool showContentFilter = catalogSupportsContentFilter(state_.catalog);
-        const int barW = std::max(120, SCREEN_W - barX - clockReserve - (showContentFilter ? (gdW + 10) : 0));
-        const int gdX = barX + barW + 6;
+        const char* filterLab = (state_.catalog == CatalogType::Homebrew) ? "G/D Files" : "DLC";
+        int gdW = 118;
+        if (showContentFilter && font_) {
+            gdW = vita2d_pgf_text_width(font_, 0.70f, filterLab) + 28;
+            if (gdW < 72) gdW = 72;
+            if (gdW > 128) gdW = 128;
+        }
+        int barW = std::max(100, SCREEN_W - barX - clockReserve - (showContentFilter ? (gdW + filterGap) : 0));
+        if (showContentFilter) {
+            const int chipEnd = barX + barW + filterGap + gdW;
+            if (chipEnd > SCREEN_W - clockReserve + 4)
+                barW = std::max(80, SCREEN_W - barX - clockReserve - gdW - filterGap);
+        }
+        const int gdX = barX + barW + filterGap;
         if (showContentFilter && hit(x, y, gdX, barY, gdW, barH)) {
             setDataFilesFilter(!dataFilesFilter_);
             return;
@@ -4095,14 +4107,28 @@ unsigned FullCatalogScreen::colorForStatus(const std::string&s)const{if(s=="Veri
         searchLeft = 200;
         }
     }
-    // Search field + optional content filter chip (G/D Files or DLC) + clock
+    // Search + content filter to the RIGHT of the bar (same as Homebrew), then clock.
+    // [logo][ search ][ gap ][ G/D Files | DLC ][ clock ] — chip never overlaps search.
     const int barY = 10, barH = 32;
-    const int gdW = 118;
-    const int clockReserve = 92;
     const int barX = searchLeft;
     const bool showContentFilter = catalogSupportsContentFilter(state_.catalog);
-    const int barW = std::max(120, w - barX - clockReserve - (showContentFilter ? (gdW + 10) : 0));
-    const int gdX = barX + barW + 6;
+    const char* filterLab = (state_.catalog == CatalogType::Homebrew) ? "G/D Files" : "DLC";
+    const float filterSc = 0.70f;
+    int gdW = 118;
+    if (showContentFilter && font_) {
+        gdW = vita2d_pgf_text_width(font_, filterSc, filterLab) + 28;
+        if (gdW < 72) gdW = 72;
+        if (gdW > 128) gdW = 128;
+    }
+    const int filterGap = 8;
+    const int clockReserve = 100;
+    int barW = std::max(100, w - barX - clockReserve - (showContentFilter ? (gdW + filterGap) : 0));
+    if (showContentFilter) {
+        const int chipEnd = barX + barW + filterGap + gdW;
+        if (chipEnd > w - clockReserve + 4)
+            barW = std::max(80, w - barX - clockReserve - gdW - filterGap);
+    }
+    const int gdX = barX + barW + filterGap;
     vita2d_draw_rectangle(barX, barY, barW, barH, SURFACE);
     vita2d_draw_rectangle(barX - 1, barY - 1, barW + 2, 1, withAlpha(ACCENT, 50));
     vita2d_draw_rectangle(barX - 1, barY + barH, barW + 2, 1, withAlpha(ACCENT, 50));
@@ -4119,23 +4145,21 @@ unsigned FullCatalogScreen::colorForStatus(const std::string&s)const{if(s=="Veri
         vita2d_pgf_draw_text(font_, barX + 78, barY + 22, WHITE, 0.66f, ellipsize(searchQuery_, 20).c_str());
         vita2d_pgf_draw_text(font_, barX + barW - 52, barY + 21, DIM, 0.52f, "□ clear");
     }
-    // Content filter chip: G/D Files (Homebrew) or DLC (Vita Games / PSP)
-    if (catalogSupportsContentFilter(state_.catalog)) {
+    // Content filter chip immediately right of search (never drawn on top of the bar)
+    if (showContentFilter) {
         const unsigned folderBg = dataFilesFilter_ ? RGBA8(0x5A, 0x42, 0x12, 255) : RGBA8(0x3A, 0x2C, 0x10, 255);
         const unsigned folderEdge = RGBA8(0xE8, 0xB4, 0x3A, 255);
         const unsigned folderText = RGBA8(0xFF, 0xD2, 0x6A, 255);
         vita2d_draw_rectangle(gdX, barY, gdW, barH, folderBg);
-        vita2d_draw_rectangle(gdX, barY, gdW, 3, folderEdge); // top tab
+        vita2d_draw_rectangle(gdX, barY, gdW, 3, folderEdge);
         vita2d_draw_rectangle(gdX, barY, 3, barH, folderEdge);
         vita2d_draw_rectangle(gdX + gdW - 1, barY, 1, barH, folderEdge);
         vita2d_draw_rectangle(gdX, barY + barH - 1, gdW, 1, folderEdge);
         if (dataFilesFilter_) {
             vita2d_draw_rectangle(gdX, barY, gdW, 3, RGBA8(0xFF, 0xD2, 0x6A, 255));
         }
-        const char* lab = (state_.catalog == CatalogType::Homebrew) ? "G/D Files" : "DLC";
-        const float sc = 0.70f;
-        const int tw = vita2d_pgf_text_width(font_, sc, lab);
-        vita2d_pgf_draw_text(font_, gdX + (gdW - tw) / 2, barY + 22, folderText, sc, lab);
+        const int tw = vita2d_pgf_text_width(font_, filterSc, filterLab);
+        vita2d_pgf_draw_text(font_, gdX + (gdW - tw) / 2, barY + 22, folderText, filterSc, filterLab);
     }
     {
         const std::string clock = currentTimeLabel();
@@ -4888,10 +4912,26 @@ void FullCatalogScreen::drawCatalogCard(const CatalogItem&it,int idx,int x,int y
             const std::string sz = itemCardSizeLabel(it);
             // Allow a bit more room for "16 MB + 1.5 GB"
             if (!sz.empty()) drawSizeChip(ellipsize(sz, 22));
+            // Amber folder-style marks (same visual language as Homebrew G/D Files)
             if (itemHasLinkType(it, "data files")) drawFolderChip(::psvitaalive::L(::psvitaalive::TextId::MetaDataFiles));
             if (itemHasLinkType(it, "game files")) drawFolderChip(::psvitaalive::L(::psvitaalive::TextId::MetaGameFiles));
             if (itemHasDlc(it)) drawFolderChip(::psvitaalive::L(::psvitaalive::TextId::MetaDlc));
         }
+    }
+
+    // Top-right DLC pill (always visible, same folder style as Homebrew marks)
+    if (itemHasDlc(it)) {
+        const char* dlcLab = ::psvitaalive::L(::psvitaalive::TextId::MetaDlc);
+        const float dsc = 0.60f;
+        const int dtw = vita2d_pgf_text_width(font_, dsc, dlcLab);
+        const int dpad = 6, dch = 18;
+        const int dcw = dtw + dpad * 2;
+        const int dsx = x + ox + ww - dcw - 8;
+        const int dsy = y + oy + 8;
+        vita2d_draw_rectangle(dsx, dsy, dcw, dch, RGBA8(0x3A, 0x2C, 0x10, 255));
+        vita2d_draw_rectangle(dsx, dsy, dcw, 2, RGBA8(0xE8, 0xB4, 0x3A, 255));
+        vita2d_draw_rectangle(dsx, dsy, 2, dch, RGBA8(0xE8, 0xB4, 0x3A, 255));
+        vita2d_pgf_draw_text(font_, dsx + dpad, dsy + 13, RGBA8(0xFF, 0xD2, 0x6A, 255), dsc, dlcLab);
     }
 
     // Installed / update badge: bottom-left on icon + top-right of card
@@ -4904,7 +4944,13 @@ void FullCatalogScreen::drawCatalogCard(const CatalogItem&it,int idx,int x,int y
             const float sc = 0.56f;
             const int tw = vita2d_pgf_text_width(font_, sc, lab);
             const int bw = tw + 10;
-            drawInstallBadge(x + ox + ww - bw - 6, y + oy + 6, li, true);
+            // Leave room for the top-right DLC pill when both are present
+            int dlcShift = 0;
+            if (itemHasDlc(it)) {
+                const char* dlcLab = ::psvitaalive::L(::psvitaalive::TextId::MetaDlc);
+                dlcShift = vita2d_pgf_text_width(font_, 0.60f, dlcLab) + 12 + 8;
+            }
+            drawInstallBadge(x + ox + ww - bw - 6 - dlcShift, y + oy + 6, li, true);
         }
     }
     (void)idx;
