@@ -340,6 +340,16 @@ const char* LocalizationManager::keyFor(TextId id) {
         case TextId::LockedBanner2: return "LOCKED_BANNER_2";
         case TextId::CircleCancelDownload: return "CIRCLE_CANCEL_DOWNLOAD";
         case TextId::ProgressFooterHint: return "PROGRESS_FOOTER_HINT";
+        case TextId::LabelReason: return "LABEL_REASON";
+        case TextId::UnknownError: return "UNKNOWN_ERROR";
+        case TextId::FreeSpaceHint1: return "FREE_SPACE_HINT_1";
+        case TextId::FreeSpaceHint2: return "FREE_SPACE_HINT_2";
+        case TextId::CheckLogsHint1: return "CHECK_LOGS_HINT_1";
+        case TextId::CheckLogsHint2: return "CHECK_LOGS_HINT_2";
+        case TextId::CancelledNoError: return "CANCELLED_NO_ERROR";
+        case TextId::CancelledFriendlyMsg: return "CANCELLED_FRIENDLY_MSG";
+        case TextId::SquareReportHint: return "SQUARE_REPORT_HINT";
+        case TextId::CircleCloseHint: return "CIRCLE_CLOSE_HINT";
         default: return "";
     }
 }

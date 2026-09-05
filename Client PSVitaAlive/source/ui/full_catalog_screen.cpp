@@ -2796,11 +2796,11 @@ void FullCatalogScreen::handleTouch() {
             const int x = touchStartX_, y = touchStartY_;
             touchDown_ = false;
             if (touchMoved_) return;
-            const int ow = 680, oh = 400;
+            const int ow = 820, oh = 460;
             const int ox = (SCREEN_W - ow) / 2, oy = (SCREEN_H - oh) / 2;
             if (installAllPhase_ == InstallAllPhase::Confirm) {
-                const int bw = 220, bh = 44;
-                const int by = oy + oh - 60;
+                const int bw = 240, bh = 50;
+                const int by = oy + oh - 68;
                 const int bxOk = ox + 28;
                 const int bxCancel = ox + ow - 28 - bw;
                 if (hit(x, y, bxOk - 12, by - 12, bw + 24, bh + 24)) { installAllFocus_ = 0; installAllAdvancePick(); return; }
@@ -2808,7 +2808,7 @@ void FullCatalogScreen::handleTouch() {
                 return;
             }
             if (installAllItemIndex_ >= 0 && installAllItemIndex_ < (int)catalogView().size()) {
-                const int listTop = oy + 86;
+                const int listTop = oy + 98;
                 const int rowH = LINK_ROW_H + 6;
                 const int maxVis = 5;
                 int start = 0;
@@ -5104,7 +5104,13 @@ void FullCatalogScreen::drawDetailPanel(int x,int y,int w,int h){
             vita2d_draw_rectangle(bx, by, 1, bh, ACCENT);
             vita2d_draw_rectangle(bx, by + bh - 1, bw, 1, ACCENT);
             vita2d_draw_rectangle(bx + bw - 1, by, 1, bh, ACCENT);
-            vita2d_pgf_draw_text(font_, bx + 8, by + 22, linkOn ? BG : ACCENT, 0.72f, linkOn ? ::psvitaalive::L(::psvitaalive::TextId::ExitLinkMode) : ::psvitaalive::L(::psvitaalive::TextId::SelectLinks));
+            {
+                const char* linkLab = linkOn
+                    ? ::psvitaalive::L(::psvitaalive::TextId::ExitLinkMode)
+                    : ::psvitaalive::L(::psvitaalive::TextId::SelectLinks);
+                drawMarqueeText(font_, bx + 8, by + 22, bw - 16, linkOn ? BG : ACCENT, 0.70f,
+                                linkLab, true, bx + 4, by, bx + bw - 4, by + bh);
+            }
         }
         if (itemEligibleForDataRequest(it)) {
             // Below Select links when present; same header column when no links.
@@ -5118,7 +5124,9 @@ void FullCatalogScreen::drawDetailPanel(int x,int y,int w,int h){
             vita2d_draw_rectangle(rbx, rby, 2, rbh, REQ);
             vita2d_draw_rectangle(rbx, rby + rbh - 2, rbw, 2, REQ);
             vita2d_draw_rectangle(rbx + rbw - 2, rby, 2, rbh, REQ);
-            vita2d_pgf_draw_text(font_, rbx + 8, rby + 22, REQ, 0.72f, ::psvitaalive::L(::psvitaalive::TextId::RequestData));
+            drawMarqueeText(font_, rbx + 8, rby + 22, rbw - 16, REQ, 0.70f,
+                            ::psvitaalive::L(::psvitaalive::TextId::RequestData), true,
+                            rbx + 4, rby, rbx + rbw - 4, rby + rbh);
         }
     }
     drawDetailContent(it, x, y, w, h);
@@ -5377,7 +5385,7 @@ void FullCatalogScreen::drawInstallAllOverlay() {
     // Dim full screen
     vita2d_draw_rectangle(0, 0, SCREEN_W, SCREEN_H, RGBA8(0, 0, 0, 180));
 
-    const int ow = 680, oh = 400;
+    const int ow = 820, oh = 460;
     const int ox = (SCREEN_W - ow) / 2, oy = (SCREEN_H - oh) / 2;
     vita2d_draw_rectangle(ox, oy, ow, oh, SURFACE2);
     vita2d_draw_rectangle(ox, oy, ow, 3, ACCENT);
@@ -5386,21 +5394,21 @@ void FullCatalogScreen::drawInstallAllOverlay() {
     vita2d_draw_rectangle(ox + ow - 1, oy, 1, oh, BORDER);
 
     if (installAllPhase_ == InstallAllPhase::Confirm) {
-        vita2d_pgf_draw_text(font_, ox + 24, oy + 40, ACCENT, 0.96f, ::psvitaalive::L(::psvitaalive::TextId::InstallAll));
-        vita2d_pgf_draw_text(font_, ox + 24, oy + 76, WHITE, 0.72f, ellipsize(item.name, 42).c_str());
+        vita2d_pgf_draw_text(font_, ox + 28, oy + 42, ACCENT, 1.22f, ::psvitaalive::L(::psvitaalive::TextId::InstallAll));
+        vita2d_pgf_draw_text(font_, ox + 28, oy + 82, WHITE, 0.96f, ellipsize(item.name, 36).c_str());
         const char* lines[] = {
             ::psvitaalive::L(::psvitaalive::TextId::InstallAllConfirm1),
             ::psvitaalive::L(::psvitaalive::TextId::InstallAllConfirm2),
             ::psvitaalive::L(::psvitaalive::TextId::InstallAllConfirm3),
             ::psvitaalive::L(::psvitaalive::TextId::InstallAllConfirm4),
         };
-        int ty = oy + 112;
+        int ty = oy + 124;
         for (const char* ln : lines) {
-            vita2d_pgf_draw_text(font_, ox + 24, ty, TEXT, 0.66f, ln);
-            ty += 28;
+            vita2d_pgf_draw_text(font_, ox + 28, ty, TEXT, 0.86f, ln);
+            ty += 34;
         }
-        const int bw = 220, bh = 44;
-        const int by = oy + oh - 60;
+        const int bw = 240, bh = 50;
+        const int by = oy + oh - 68;
         const int bxOk = ox + 28;
         const int bxCancel = ox + ow - 28 - bw;
         const bool fOk = installAllFocus_ == 0;
@@ -5408,28 +5416,28 @@ void FullCatalogScreen::drawInstallAllOverlay() {
         vita2d_draw_rectangle(bxOk, by, bw, bh, fOk ? ACCENT : SURFACE2);
         {
             const char* lab = ::psvitaalive::L(::psvitaalive::TextId::BtnContinue);
-            const float sc = 0.72f;
+            const float sc = 0.90f;
             const int tw = vita2d_pgf_text_width(font_, sc, lab);
-            vita2d_pgf_draw_text(font_, bxOk + (bw - tw) / 2, by + 30, fOk ? BG : WHITE, sc, lab);
+            vita2d_pgf_draw_text(font_, bxOk + (bw - tw) / 2, by + 34, fOk ? BG : WHITE, sc, lab);
         }
         vita2d_draw_rectangle(bxCancel, by, bw, bh, fCancel ? ACCENT : SURFACE2);
         {
             const char* lab = ::psvitaalive::L(::psvitaalive::TextId::BtnCancel);
-            const float sc = 0.72f;
+            const float sc = 0.90f;
             const int tw = vita2d_pgf_text_width(font_, sc, lab);
             vita2d_pgf_draw_text(font_, bxCancel + (bw - tw) / 2, by + 30, fCancel ? BG : WHITE, sc, lab);
         }
-        vita2d_pgf_draw_text(font_, ox + 24, oy + oh - 84, DIM, 0.58f, ::psvitaalive::L(::psvitaalive::TextId::InstallAllNavHint));
+        vita2d_pgf_draw_text(font_, ox + 28, oy + oh - 92, DIM, 0.74f, ::psvitaalive::L(::psvitaalive::TextId::InstallAllNavHint));
         return;
     }
 
     const char* title = ::psvitaalive::L(::psvitaalive::TextId::ChooseDownload);
     if (installAllPhase_ == InstallAllPhase::PickGameFiles) title = ::psvitaalive::L(::psvitaalive::TextId::ChooseGameFiles);
     else if (installAllPhase_ == InstallAllPhase::PickDataFiles) title = ::psvitaalive::L(::psvitaalive::TextId::ChooseDataFiles);
-    vita2d_pgf_draw_text(font_, ox + 24, oy + 40, ACCENT, 0.96f, title);
-    vita2d_pgf_draw_text(font_, ox + 24, oy + 70, DIM, 0.60f, ::psvitaalive::L(::psvitaalive::TextId::ChooseMirrorHint));
+    vita2d_pgf_draw_text(font_, ox + 28, oy + 42, ACCENT, 1.18f, title);
+    vita2d_pgf_draw_text(font_, ox + 28, oy + 78, DIM, 0.82f, ::psvitaalive::L(::psvitaalive::TextId::ChooseMirrorHint));
 
-    const int listTop = oy + 86;
+    const int listTop = oy + 98;
     const int rowH = LINK_ROW_H + 6;
     const int maxVis = 5;
     int start = 0;
@@ -5465,7 +5473,7 @@ void FullCatalogScreen::drawInstallAllOverlay() {
             vita2d_pgf_draw_text(font_, bx, ry + 17, f ? BG : ACCENT, 0.58f, ::psvitaalive::L(::psvitaalive::TextId::BadgeRecommended));
         }
     }
-    vita2d_pgf_draw_text(font_, ox + 24, oy + oh - 28, DIM, 0.58f, ::psvitaalive::L(::psvitaalive::TextId::InstallAllNavHint));
+    vita2d_pgf_draw_text(font_, ox + 28, oy + oh - 28, DIM, 0.74f, ::psvitaalive::L(::psvitaalive::TextId::InstallAllNavHint));
 }
 
 void FullCatalogScreen::drawLoadingOverlay(){
@@ -5563,7 +5571,7 @@ if(installOutcome_==1){
       !installResultPath_.empty() &&
       (installResultPath_.find("ux0:app/") != 0);
   if (zipExtract) {
-    vita2d_pgf_draw_text(font_,x+28,y+80,GREEN,1.05f,::psvitaalive::L(::psvitaalive::TextId::ZipExtractComplete));
+    vita2d_pgf_draw_text(font_,x+28,y+72,GREEN,1.28f,::psvitaalive::L(::psvitaalive::TextId::ZipExtractComplete));
     std::string file=installProgressFile_.empty()?"(archive)":ellipsize(installProgressFile_,70);
     vita2d_pgf_draw_text(font_,x+28,y+118,WHITE,.66f,("File: "+file).c_str());
     vita2d_pgf_draw_text(font_,x+28,y+150,TEXT,.62f,(std::string(::psvitaalive::L(::psvitaalive::TextId::ExtractedTo))+": "+ellipsize(installResultPath_,58)).c_str());
@@ -5571,7 +5579,7 @@ if(installOutcome_==1){
     if(!installProgressMessage_.empty())
       vita2d_pgf_draw_text(font_,x+28,y+214,DIM,.54f,ellipsize(installProgressMessage_,78).c_str());
   } else {
-    vita2d_pgf_draw_text(font_,x+28,y+80,GREEN,1.05f,::psvitaalive::L(::psvitaalive::TextId::InstallComplete));
+    vita2d_pgf_draw_text(font_,x+28,y+72,GREEN,1.28f,::psvitaalive::L(::psvitaalive::TextId::InstallComplete));
     std::string file=installProgressFile_.empty()?"(file)":ellipsize(installProgressFile_,70);
     vita2d_pgf_draw_text(font_,x+28,y+118,WHITE,.66f,("File: "+file).c_str());
     if(!installResultTitleId_.empty())
@@ -5610,49 +5618,59 @@ if(installOutcome_==1){
 }
 
 if(installOutcome_==3){
+  using TID = ::psvitaalive::TextId;
   const unsigned amber = RGBA8(0xE0,0xA0,0x30,255);
-  vita2d_pgf_draw_text(font_,x+28,y+80,amber,1.05f,::psvitaalive::L(::psvitaalive::TextId::DownloadCancelled));
-  std::string file=installProgressFile_.empty()?"(file)":ellipsize(installProgressFile_,70);
-  vita2d_pgf_draw_text(font_,x+28,y+118,WHITE,.66f,("File: "+file).c_str());
+  vita2d_pgf_draw_text(font_,x+28,y+72,amber,1.28f,::psvitaalive::L(TID::DownloadCancelled));
+  std::string file=installProgressFile_.empty()?"(file)":ellipsize(installProgressFile_,48);
+  {
+    char fl[160];
+    sceClibSnprintf(fl,sizeof(fl),"%s: %s",::psvitaalive::L(TID::LabelFile),file.c_str());
+    vita2d_pgf_draw_text(font_,x+28,y+116,WHITE,0.92f,fl);
+  }
   std::string msg=installProgressMessage_.empty()?"Download cancelled":installProgressMessage_;
-  // Prefer a friendly title-aligned message
   if(msg=="Download cancelled"||msg=="Installation cancelled"||msg=="Cancelling download...")
-    msg="You cancelled this download. Incomplete files were removed.";
-  vita2d_pgf_draw_text(font_,x+28,y+160,TEXT,.60f,ellipsize(msg,78).c_str());
-  vita2d_pgf_draw_text(font_,x+28,y+200,DIM,.54f,"No error was reported. You can try again anytime.");
-  const int by2=y+360,bh2=44;
+    msg=::psvitaalive::L(TID::CancelledFriendlyMsg);
+  vita2d_pgf_draw_text(font_,x+28,y+160,TEXT,0.86f,ellipsize(msg,52).c_str());
+  vita2d_pgf_draw_text(font_,x+28,y+200,DIM,0.80f,::psvitaalive::L(TID::CancelledNoError));
+  const int by2=y+370,bh2=50;
   const int bwClose=280;
   const int bxClose=x+(w-bwClose)/2;
   vita2d_draw_rectangle(bxClose,by2,bwClose,bh2,SURFACE2);
   vita2d_draw_rectangle(bxClose,by2,bwClose,1,BORDER);
   {
-    const char* clab = "O  Close";
+    const char* clab = ::psvitaalive::L(::psvitaalive::TextId::BtnOClose);
     const float sc = 0.64f;
     const int tw = vita2d_pgf_text_width(font_, sc, clab);
     vita2d_pgf_draw_text(font_, bxClose + (bwClose - tw) / 2, by2 + 27, WHITE, sc, clab);
   }
-  vita2d_pgf_draw_text(font_,x+28,y+h-16,DIM,.48f,"Circle: close");
+  vita2d_pgf_draw_text(font_,x+28,y+h-18,DIM,0.70f,::psvitaalive::L(::psvitaalive::TextId::CircleCloseHint));
   return;
 }
 
 if(installOutcome_==2){
-  vita2d_pgf_draw_text(font_,x+28,y+80,RED,1.05f,::psvitaalive::L(::psvitaalive::TextId::InstallFailed));
-  std::string file=installProgressFile_.empty()?"(file)":ellipsize(installProgressFile_,70);
-  vita2d_pgf_draw_text(font_,x+28,y+118,WHITE,.66f,("File: "+file).c_str());
-  vita2d_pgf_draw_text(font_,x+28,y+152,RED,.68f,"Reason:");
-  std::string err=installProgressMessage_.empty()?"Unknown error":installProgressMessage_;
-  const bool spaceErr = isNonReportableInstallError(err);
-  vita2d_pgf_draw_text(font_,x+28,y+180,TEXT,.60f,ellipsize(err,78).c_str());
-  if(err.size()>78)
-    vita2d_pgf_draw_text(font_,x+28,y+202,TEXT,.58f,ellipsize(err.substr(70),78).c_str());
-  if (spaceErr) {
-    vita2d_pgf_draw_text(font_,x+28,y+236,DIM,.54f,"Free up space on ux0 and try again.");
-    vita2d_pgf_draw_text(font_,x+28,y+258,DIM,.52f,"This is not a bug — Report is disabled for space errors.");
-  } else {
-    vita2d_pgf_draw_text(font_,x+28,y+236,DIM,.54f,"Check free space, format, and session.log");
-    vita2d_pgf_draw_text(font_,x+28,y+258,DIM,.52f,"ux0:data/psvitaalive/logs/session.log");
+  using TID = ::psvitaalive::TextId;
+  vita2d_pgf_draw_text(font_,x+28,y+72,RED,1.28f,::psvitaalive::L(TID::InstallFailed));
+  std::string file=installProgressFile_.empty()?"(file)":ellipsize(installProgressFile_,48);
+  {
+    char fl[160];
+    sceClibSnprintf(fl,sizeof(fl),"%s: %s",::psvitaalive::L(TID::LabelFile),file.c_str());
+    vita2d_pgf_draw_text(font_,x+28,y+116,WHITE,0.92f,fl);
   }
-  const int by2=y+360,bh2=44;
+  vita2d_pgf_draw_text(font_,x+28,y+156,RED,0.90f,::psvitaalive::L(TID::LabelReason));
+  std::string err=installProgressMessage_.empty()?::psvitaalive::L(TID::UnknownError):installProgressMessage_;
+  const bool spaceErr = isNonReportableInstallError(err);
+  vita2d_pgf_draw_text(font_,x+28,y+192,TEXT,0.84f,ellipsize(err,52).c_str());
+  if(err.size()>52)
+    vita2d_pgf_draw_text(font_,x+28,y+222,TEXT,0.82f,ellipsize(err.substr(48),52).c_str());
+  const int hintY = (err.size()>52) ? 260 : 236;
+  if (spaceErr) {
+    vita2d_pgf_draw_text(font_,x+28,y+hintY,DIM,0.78f,::psvitaalive::L(TID::FreeSpaceHint1));
+    vita2d_pgf_draw_text(font_,x+28,y+hintY+30,DIM,0.76f,::psvitaalive::L(TID::FreeSpaceHint2));
+  } else {
+    vita2d_pgf_draw_text(font_,x+28,y+hintY,DIM,0.78f,::psvitaalive::L(TID::CheckLogsHint1));
+    vita2d_pgf_draw_text(font_,x+28,y+hintY+30,DIM,0.76f,::psvitaalive::L(TID::CheckLogsHint2));
+  }
+  const int by2=y+370,bh2=50;
   if (spaceErr) {
     // Only Close — space issues are expected user-side, not bug reports
     const int bwClose=280;
@@ -5660,14 +5678,14 @@ if(installOutcome_==2){
     vita2d_draw_rectangle(bxClose,by2,bwClose,bh2,SURFACE2);
     vita2d_draw_rectangle(bxClose,by2,bwClose,1,BORDER);
     {
-      const char* clab = "O  Close";
-      const float sc = 0.64f;
+      const char* clab = ::psvitaalive::L(::psvitaalive::TextId::BtnOClose);
+      const float sc = 0.86f;
       const int tw = vita2d_pgf_text_width(font_, sc, clab);
-      vita2d_pgf_draw_text(font_, bxClose + (bwClose - tw) / 2, by2 + 27, WHITE, sc, clab);
+      vita2d_pgf_draw_text(font_, bxClose + (bwClose - tw) / 2, by2 + 34, WHITE, sc, clab);
     }
-    vita2d_pgf_draw_text(font_,x+28,y+h-16,DIM,.48f,"Circle: close");
+    vita2d_pgf_draw_text(font_,x+28,y+h-18,DIM,0.70f,::psvitaalive::L(::psvitaalive::TextId::CircleCloseHint));
   } else {
-    const int bwReport=200, bwClose=200;
+    const int bwReport=240, bwClose=240;
     const int bxReport=x+28, bxClose=x+w-28-bwClose;
     // Idle/sending/fail = red; success only = green (matches footer Report chip)
     const unsigned reportCol = (reportUiState_==2) ? GREEN : RED;
@@ -5683,20 +5701,20 @@ if(installOutcome_==2){
       if (fillW > 0) vita2d_draw_rectangle(barX, barY, fillW, barH, RGBA8(0,0,0,255));
     } else {
       const char* lab = ::psvitaalive::L(::psvitaalive::TextId::ChipReport);
-      if (reportUiState_==2) lab = "Sent";
-      else if (reportUiState_==3) lab = reportUiMsg_[0] ? reportUiMsg_ : "Failed";
-      const float sc = 0.64f;
+      if (reportUiState_==2) lab = ::psvitaalive::L(::psvitaalive::TextId::ChipSent);
+      else if (reportUiState_==3) lab = reportUiMsg_[0] ? reportUiMsg_ : ::psvitaalive::L(::psvitaalive::TextId::ChipFail);
+      const float sc = 0.86f;
       const int tw = vita2d_pgf_text_width(font_, sc, lab);
-      vita2d_pgf_draw_text(font_, bxReport + (bwReport - tw) / 2, by2 + 27, reportText, sc, lab);
+      vita2d_pgf_draw_text(font_, bxReport + (bwReport - tw) / 2, by2 + 34, reportText, sc, lab);
     }
     vita2d_draw_rectangle(bxClose,by2,bwClose,bh2,RED);
     {
-      const char* clab = "O  Close";
-      const float sc = 0.64f;
+      const char* clab = ::psvitaalive::L(::psvitaalive::TextId::BtnOClose);
+      const float sc = 0.86f;
       const int tw = vita2d_pgf_text_width(font_, sc, clab);
-      vita2d_pgf_draw_text(font_, bxClose + (bwClose - tw) / 2, by2 + 27, WHITE, sc, clab);
+      vita2d_pgf_draw_text(font_, bxClose + (bwClose - tw) / 2, by2 + 34, WHITE, sc, clab);
     }
-    vita2d_pgf_draw_text(font_,x+28,y+h-16,DIM,.48f,"Square: report   Circle: close");
+    vita2d_pgf_draw_text(font_,x+28,y+h-18,DIM,0.70f,::psvitaalive::L(::psvitaalive::TextId::SquareReportHint));
   }
   return;
 }

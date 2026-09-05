@@ -184,6 +184,16 @@ enum class TextId {
     LockedBanner2,
     CircleCancelDownload,
     ProgressFooterHint,
+    LabelReason,
+    UnknownError,
+    FreeSpaceHint1,
+    FreeSpaceHint2,
+    CheckLogsHint1,
+    CheckLogsHint2,
+    CancelledNoError,
+    CancelledFriendlyMsg,
+    SquareReportHint,
+    CircleCloseHint,
     Count
 };
 
