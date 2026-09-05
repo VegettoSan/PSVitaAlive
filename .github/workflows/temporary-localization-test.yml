@@ -27,92 +27,72 @@ jobs:
           ES = ROOT / 'assets/lang/es.lang'
           text = UI.read_text(encoding='utf-8')
 
-          def require_once(s, old, new, label):
-              count = s.count(old)
-              if count != 1:
-                  raise SystemExit(f'{label}: expected 1 match, found {count}')
+          def once(s, old, new, label):
+              n = s.count(old)
+              if n != 1:
+                  raise SystemExit(f'{label}: expected 1 match, found {n}')
               return s.replace(old, new, 1)
 
-          text = require_once(
-              text,
+          text = once(text,
               '#include "installer/app_settings.hpp"\n',
               '#include "installer/app_settings.hpp"\n#include "localization/localization.hpp"\n',
               'localization include')
 
-          # Expand the Settings input rows from 7 to 8.
-          text = require_once(
-              text,
-              'void FullCatalogScreen::handleSettingsInput(uint32_t pressed, uint32_t nav) {',
-              'void FullCatalogScreen::handleSettingsInput(uint32_t pressed, uint32_t nav) {',
-              'handleSettingsInput signature')
-          h0 = text.index('void FullCatalogScreen::handleSettingsInput(uint32_t pressed, uint32_t nav) {')
-          h1 = text.index('\nvoid FullCatalogScreen::', h0 + 10)
-          handle = text[h0:h1]
-          handle = require_once(handle, 'constexpr int kRows = 7;', 'constexpr int kRows = 8;', 'settings row count')
-          text = text[:h0] + handle + text[h1:]
+          # Settings input: 7 -> 8 rows.
+          text = once(text, 'constexpr int kRows = 7;', 'constexpr int kRows = 8;', 'kRows')
 
-          # Add Language between Warn missing plugins and Prompt image download.
-          c0 = text.index('void FullCatalogScreen::cycleSettingsOption(int row, int delta) {')
-          c1 = text.index('\nvoid FullCatalogScreen::', c0 + 10)
-          cycle = text[c0:c1]
+          # Settings selection: insert Language as row 5 and shift the existing tail down.
           old_cycle = '''    } else if (row == 4) {\n        settingsEdit_.warnMissingPlugins = !settingsEdit_.warnMissingPlugins;\n    } else if (row == 5) {\n        settingsEdit_.promptImageWarmup = !settingsEdit_.promptImageWarmup;\n    } else if (row == 6) {\n        triggerSelfUpdateAction();\n    }\n'''
           new_cycle = '''    } else if (row == 4) {\n        settingsEdit_.warnMissingPlugins = !settingsEdit_.warnMissingPlugins;\n    } else if (row == 5) {\n        auto& loc = ::psvitaalive::LocalizationManager::instance();\n        const auto available = loc.availableLanguages();\n        if (!available.empty()) {\n            if (settingsEdit_.languageMode == ::psvitaalive::LanguageMode::System) {\n                settingsEdit_.languageMode = ::psvitaalive::LanguageMode::Manual;\n                settingsEdit_.language = ::psvitaalive::languageCode(available.front());\n            } else {\n                ::psvitaalive::Language current = ::psvitaalive::Language::English;\n                if (!::psvitaalive::languageFromCode(settingsEdit_.language, current)) current = available.front();\n                size_t pos = 0;\n                for (size_t i = 0; i < available.size(); ++i) {\n                    if (available[i] == current) { pos = i; break; }\n                }\n                if (pos + 1 < available.size()) {\n                    settingsEdit_.language = ::psvitaalive::languageCode(available[pos + 1]);\n                } else {\n                    settingsEdit_.languageMode = ::psvitaalive::LanguageMode::System;\n                }\n            }\n            loc.setMode(settingsEdit_.languageMode, settingsEdit_.language);\n        }\n    } else if (row == 6) {\n        settingsEdit_.promptImageWarmup = !settingsEdit_.promptImageWarmup;\n    } else if (row == 7) {\n        triggerSelfUpdateAction();\n    }\n'''
-          cycle = require_once(cycle, old_cycle, new_cycle, 'language cycle')
-          text = text[:c0] + cycle + text[c1:]
+          text = once(text, old_cycle, new_cycle, 'language cycle')
 
-          # Update drawSettings only, using structural regexes rather than exact whitespace assumptions.
-          d0 = text.index('void FullCatalogScreen::drawSettings() {')
-          d1 = text.index('\nvoid FullCatalogScreen::', d0 + 10)
-          draw = text[d0:d1]
-
-          draw = require_once(draw, 'Meta meta[7] = {', 'Meta meta[8] = {', 'meta size')
-          draw = require_once(
-              draw,
+          # drawSettings layout arrays: expand by one row, globally but each token is unique in this file.
+          text = once(text, 'Meta meta[7] = {', 'Meta meta[8] = {', 'meta size')
+          text = once(text,
               '{true, "INSTALL"}, {false, ""}, {false, ""}, {true, "INTERFACE"}, {false, ""}, {true, "CATALOG"}, {true, "UPDATES"}',
               '{true, "INSTALL"}, {false, ""}, {false, ""}, {true, "INTERFACE"}, {false, ""}, {false, ""}, {true, "CATALOG"}, {true, "UPDATES"}',
-              'meta row entries')
-          draw = require_once(draw, 'int rowY[7];', 'int rowY[8];', 'rowY declaration')
-          draw = require_once(draw, 'int rowY[7] = {};', 'int rowY[8] = {};', 'rowY array')
-          draw = require_once(draw, 'for (int i = 0; i < 7; ++i) {', 'for (int i = 0; i < 8; ++i) {', 'row loop 1')
-          draw = require_once(draw, 'for (int i = 0; i < 7; ++i) {', 'for (int i = 0; i < 8; ++i) {', 'row loop 2')
-          draw = require_once(draw, 'for (int i = 0; i <= settingsFocus_ && i < 7; ++i) {', 'for (int i = 0; i <= settingsFocus_ && i < 8; ++i) {', 'focus loop')
+              'meta entries')
+          text = once(text, 'int rowY[7];', 'int rowY[8];', 'rowY declaration')
+          text = once(text, 'int rowY[7] = {};', 'int rowY[8] = {};', 'rowY array')
+          text = once(text, 'for (int i = 0; i < 7; ++i) {', 'for (int i = 0; i < 8; ++i) {', 'row loop 1')
+          text = once(text, 'for (int i = 0; i < 7; ++i) {', 'for (int i = 0; i < 8; ++i) {', 'row loop 2')
+          text = once(text, 'for (int i = 0; i <= settingsFocus_ && i < 7; ++i) {', 'for (int i = 0; i <= settingsFocus_ && i < 8; ++i) {', 'focus loop')
 
-          # Replace the complete options block while preserving the existing surrounding layout code.
-          pattern = re.compile(r'    auto themeLabel = \[&\]\(\) -> std::string \{.*?    Opt opts\[7\] = \{.*?\n    \};\n', re.S)
+          # Replace only the Settings options block using its stable semantic marker.
+          start = text.find('    auto themeLabel = [&]() -> std::string {')
+          if start < 0:
+              raise SystemExit('themeLabel start missing')
+          opts = text.find('    Opt opts[7] = {', start)
+          if opts < 0:
+              raise SystemExit('Opt opts[7] missing')
+          end = text.find('    };\n', opts)
+          if end < 0:
+              raise SystemExit('Opt opts closing missing')
+          end += len('    };\n')
           replacement = '''    auto themeLabel = [&]() -> std::string {\n        return std::string(colorThemeDisplayName(settingsEdit_.colorTheme));\n    };\n    auto languageLabel = [&]() -> std::string {\n        auto& loc = ::psvitaalive::LocalizationManager::instance();\n        if (settingsEdit_.languageMode == ::psvitaalive::LanguageMode::System)\n            return std::string("System (") + loc.currentLanguageName() + ")";\n        ::psvitaalive::Language lang = ::psvitaalive::Language::English;\n        if (::psvitaalive::languageFromCode(settingsEdit_.language, lang) && loc.isLanguageAvailable(lang))\n            return std::string(::psvitaalive::languageName(lang));\n        return std::string(::psvitaalive::languageName(::psvitaalive::Language::English));\n    };\n    Opt opts[8] = {\n        {"INSTALL", L("INSTALL_METHOD"), methodLabel(), "Auto: BGDL for PKG when available", true},\n        {"", L("PSP_PS1_TARGET"), pspLabel(), "LiveArea=PKG bubble; Adrenaline=pspemu (no bubble)", false},\n        {"", L("PSP_MEDIA_ADRENALINE"), mediaFormatLabel(), "Folder=EBOOT in GAME; ISO=pspemu/ISO", false},\n        {"INTERFACE", L("COLOR_THEME"), themeLabel() + "  >", "X / tap: open color palette picker", true},\n        {"", L("WARN_MISSING_PLUGINS"), settingsEdit_.warnMissingPlugins ? "Yes" : "No", "Startup toast if NoNpDrm is missing", false},\n        {"", L("LANGUAGE"), languageLabel(), "System = Vita language; manual selection overrides it", false},\n        {"CATALOG", L("PROMPT_IMAGE_DOWNLOAD"), settingsEdit_.promptImageWarmup ? "Yes" : "No", "If you choose No once, it will not ask again", true},\n        {"UPDATES", L("APP_UPDATES"), updateLabel(), "GitHub Releases - X to check / install", true},\n    };\n'''
-          if len(pattern.findall(draw)) != 1:
-              raise SystemExit('options block: expected exactly 1 match')
-          draw = pattern.sub(replacement, draw, count=1)
+          text = text[:start] + replacement + text[end:]
 
-          draw = require_once(
-              draw,
+          text = once(text,
               'vita2d_pgf_draw_text(font_, 20, HEADER_H + 30 + slide, ACCENT, 1.00f, "Settings");',
               'vita2d_pgf_draw_text(font_, 20, HEADER_H + 30 + slide, ACCENT, 1.00f, L("SETTINGS"));',
-              'localized settings title')
-          draw = require_once(
-              draw,
+              'settings title')
+          text = once(text,
               'vita2d_pgf_draw_text(font_, SCREEN_W - 300, HEADER_H + 28 + slide, DIM, 0.56f, "O / SELECT: Save & back");',
               'vita2d_pgf_draw_text(font_, SCREEN_W - 300, HEADER_H + 28 + slide, DIM, 0.56f, L("SAVE_BACK"));',
-              'localized save text')
-          draw = require_once(
-              draw,
+              'save text')
+          text = once(text,
               'vita2d_pgf_draw_text(font_, 12, SCREEN_H - 14, TEXT, 0.56f, "D-Pad: move   X / <>: change   O: save & back");',
               'vita2d_pgf_draw_text(font_, 12, SCREEN_H - 14, TEXT, 0.56f, L("SETTINGS_FOOTER"));',
-              'localized footer')
-
-          text = text[:d0] + draw + text[d1:]
+              'footer text')
 
           def add_keys(path, pairs):
               s = path.read_text(encoding='utf-8')
               if not s.endswith('\n'):
                   s += '\n'
-              changed = False
               for key, value in pairs.items():
                   if not re.search(r'^' + re.escape(key) + r'=', s, re.M):
                       s += key + '=' + value + '\n'
-                      changed = True
-              if changed:
-                  path.write_text(s, encoding='utf-8')
+              path.write_text(s, encoding='utf-8')
 
           add_keys(EN, {
               'SETTINGS': 'Settings',
