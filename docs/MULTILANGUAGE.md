@@ -449,7 +449,7 @@ Settings ✅ (labels + INFO panel bodies + SYSTEM status)
 ↓
 Catalog/navigation ✅ (tabs, footers, search, filter/loading toasts)
 ↓
-App detail ✅ (link section titles/meta, INFORMATION, Install All, key toasts)
+App detail ✅ (Install All block, badges, meta rows, DESCRIPTION/REQUIREMENTS/…, install state)
 ↓
 Download/install
 ↓

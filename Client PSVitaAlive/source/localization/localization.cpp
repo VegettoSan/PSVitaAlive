@@ -262,6 +262,30 @@ const char* LocalizationManager::keyFor(TextId id) {
         case TextId::InstallAll: return "INSTALL_ALL";
         case TextId::AlreadyInstalled: return "ALREADY_INSTALLED";
         case TextId::PspDlcBlocked: return "PSP_DLC_BLOCKED";
+        case TextId::InstallAllHeader: return "INSTALL_ALL_HEADER";
+        case TextId::InstallAllSubtitle: return "INSTALL_ALL_SUBTITLE";
+        case TextId::BadgeRecommended: return "BADGE_RECOMMENDED";
+        case TextId::BadgeInstalled: return "BADGE_INSTALLED";
+        case TextId::MetaAlreadyInstalled: return "META_ALREADY_INSTALLED";
+        case TextId::MetaInstalled: return "META_INSTALLED";
+        case TextId::MetaXInstall: return "META_X_INSTALL";
+        case TextId::MetaX: return "META_X";
+        case TextId::SectionDescription: return "SECTION_DESCRIPTION";
+        case TextId::SectionLongDescription: return "SECTION_LONG_DESCRIPTION";
+        case TextId::SectionScreenshots: return "SECTION_SCREENSHOTS";
+        case TextId::SectionRequirements: return "SECTION_REQUIREMENTS";
+        case TextId::SectionChangelog: return "SECTION_CHANGELOG";
+        case TextId::MetaTitleId: return "META_TITLE_ID";
+        case TextId::MetaVersion: return "META_VERSION";
+        case TextId::MetaInstall: return "META_INSTALL";
+        case TextId::MetaReleased: return "META_RELEASED";
+        case TextId::MetaCategory: return "META_CATEGORY";
+        case TextId::MetaSubcategory: return "META_SUBCATEGORY";
+        case TextId::MetaSize: return "META_SIZE";
+        case TextId::MetaStatus: return "META_STATUS";
+        case TextId::InstallStateInstalled: return "INSTALL_STATE_INSTALLED";
+        case TextId::InstallStateUpdateAvailable: return "INSTALL_STATE_UPDATE_AVAILABLE";
+        case TextId::InstallStateNotInstalled: return "INSTALL_STATE_NOT_INSTALLED";
         default: return "";
     }
 }

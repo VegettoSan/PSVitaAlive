@@ -4721,8 +4721,8 @@ void FullCatalogScreen::drawCatalogCard(const CatalogItem&it,int idx,int x,int y
             const std::string sz = itemCardSizeLabel(it);
             // Allow a bit more room for "16 MB + 1.5 GB"
             if (!sz.empty()) drawSizeChip(ellipsize(sz, 22));
-            if (itemHasLinkType(it, "data files")) drawFolderChip("Data Files");
-            if (itemHasLinkType(it, "game files")) drawFolderChip("Game Files");
+            if (itemHasLinkType(it, "data files")) drawFolderChip(::psvitaalive::L(::psvitaalive::TextId::MetaDataFiles));
+            if (itemHasLinkType(it, "game files")) drawFolderChip(::psvitaalive::L(::psvitaalive::TextId::MetaGameFiles));
         }
     }
 
@@ -4826,7 +4826,7 @@ void FullCatalogScreen::drawDetailLinks(const CatalogItem& it, int x, int y, int
     if (showAll) {
         // Own section header (same style as DOWNLOADS / GAME FILES)
         vita2d_draw_rectangle(x, y + LINK_SECTION_H - 1, w, 1, BORDER);
-        vita2d_pgf_draw_text(font_, x + 4, y + 18, ACCENT, 0.76f, "INSTALL ALL");
+        vita2d_pgf_draw_text(font_, x + 4, y + 18, ACCENT, 0.76f, ::psvitaalive::L(::psvitaalive::TextId::InstallAllHeader));
         const int by = y + LINK_SECTION_H + 4;
         const bool fAll = state_.linkNavigation && state_.linkFocus == 0;
         // Same look as download rows (SURFACE2 / ACCENT focus) + soft border pulse
@@ -4840,9 +4840,9 @@ void FullCatalogScreen::drawDetailLinks(const CatalogItem& it, int x, int y, int
         vita2d_draw_rectangle(x + bwPulse, by + bwPulse, w - bwPulse * 2, 1, fAll ? ACCENT : BORDER);
         const unsigned tc = fAll ? BG : WHITE;
         const unsigned sub = fAll ? BG : TEXT;
-        vita2d_pgf_draw_text(font_, x + 12, by + 24, tc, 0.84f, "INSTALL ALL");
+        vita2d_pgf_draw_text(font_, x + 12, by + 24, tc, 0.84f, ::psvitaalive::L(::psvitaalive::TextId::InstallAllHeader));
         vita2d_pgf_draw_text(font_, x + 12, by + 48, sub, 0.66f,
-            "Install app + Game/Data Files from scratch");
+            ::psvitaalive::L(::psvitaalive::TextId::InstallAllSubtitle));
         yOff = LINK_SECTION_H + 4 + INSTALL_ALL_BLOCK_H + 8;
     }
 
@@ -4869,15 +4869,21 @@ void FullCatalogScreen::drawDetailLinks(const CatalogItem& it, int x, int y, int
         { const int titleMaxW = std::max(40, w - 20 - badgeW - 8); drawMarqueeText(font_, x + 10, ry + 17, titleMaxW, mc, 0.80f, title, f); }
         std::string meta = linkSectionMetaLabel(row.section);
         if (!sizeLabel.empty()) meta += "  •  " + sizeLabel;
-        if (pluginDone) meta += f ? "  •  already installed" : "  •  installed";
-        else if (can) meta += f ? "  •  X: install" : "  •  X";
+        if (pluginDone)
+            meta += std::string("  •  ") + (f ? ::psvitaalive::L(::psvitaalive::TextId::MetaAlreadyInstalled)
+                                              : ::psvitaalive::L(::psvitaalive::TextId::MetaInstalled));
+        else if (can)
+            meta += std::string("  •  ") + (f ? ::psvitaalive::L(::psvitaalive::TextId::MetaXInstall)
+                                              : ::psvitaalive::L(::psvitaalive::TextId::MetaX));
         vita2d_pgf_draw_text(font_, x + 10, ry + 35, f ? BG : DIM, 0.70f, ellipsize(meta, badgeW ? 26 : 40).c_str());
         if (pluginDone) {
             const int bx = x + w - badgeW - 8;
-            vita2d_pgf_draw_text(font_, bx, ry + 18, f ? BG : ACCENT, 0.66f, "Installed");
+            vita2d_pgf_draw_text(font_, bx, ry + 18, f ? BG : ACCENT, 0.66f,
+                                 ::psvitaalive::L(::psvitaalive::TextId::BadgeInstalled));
         } else if (l.recommended) {
             const int bx = x + w - badgeW - 8;
-            vita2d_pgf_draw_text(font_, bx, ry + 18, f ? BG : ACCENT, 0.66f, "Recommended");
+            vita2d_pgf_draw_text(font_, bx, ry + 18, f ? BG : ACCENT, 0.66f,
+                                 ::psvitaalive::L(::psvitaalive::TextId::BadgeRecommended));
         }
     }
     heightOut = linkLayoutTotalHeight(rows) + yOff;
@@ -4960,12 +4966,12 @@ void FullCatalogScreen::drawDetailContent(const CatalogItem& it, int x, int y, i
         cursor += DETAIL_SECTION_GAP;
     };
 
-    emitTextSection("DESCRIPTION", it.description, false);
-    emitTextSection("LONG DESCRIPTION", it.longDescription, false);
+    emitTextSection(::psvitaalive::L(::psvitaalive::TextId::SectionDescription), it.description, false);
+    emitTextSection(::psvitaalive::L(::psvitaalive::TextId::SectionLongDescription), it.longDescription, false);
 
     const int sc = std::min(5, (int)it.screenshots.size());
     if (sc > 0) {
-        drawSectionHeader(cx, cursor, "SCREENSHOTS");
+        drawSectionHeader(cx, cursor, ::psvitaalive::L(::psvitaalive::TextId::SectionScreenshots));
         cursor += DETAIL_SECTION_H;
         for (int i = 0; i < sc; ++i) {
             drawImage(it.screenshots[i], "shot", cx, cursor + i * SCREENSHOT_ROW_H, cw, SCREENSHOT_ROW_H - 18);
@@ -4973,16 +4979,18 @@ void FullCatalogScreen::drawDetailContent(const CatalogItem& it, int x, int y, i
         cursor += sc * SCREENSHOT_ROW_H + DETAIL_SECTION_GAP;
     }
 
-    emitTextSection("REQUIREMENTS", it.requirements, true);
+    emitTextSection(::psvitaalive::L(::psvitaalive::TextId::SectionRequirements), it.requirements, true);
 
     std::string installLine;
     {
         const LocalInstallInfo li = queryLocalInstall(it);
         if (li.state == LocalInstallState::Installed || li.state == LocalInstallState::UpdateAvailable) {
-            installLine = (li.state == LocalInstallState::UpdateAvailable) ? "Update available" : "Installed";
+            installLine = (li.state == LocalInstallState::UpdateAvailable)
+                ? ::psvitaalive::L(::psvitaalive::TextId::InstallStateUpdateAvailable)
+                : ::psvitaalive::L(::psvitaalive::TextId::InstallStateInstalled);
             if (!li.installedVersion.empty()) installLine += " (v" + li.installedVersion + ")";
         } else if (!it.titleId.empty()) {
-            installLine = "Not installed";
+            installLine = ::psvitaalive::L(::psvitaalive::TextId::InstallStateNotInstalled);
         }
     }
 
@@ -5010,18 +5018,18 @@ void FullCatalogScreen::drawDetailContent(const CatalogItem& it, int x, int y, i
         }
         drawSectionHeader(cx + 8, cardTop + 2, ::psvitaalive::L(::psvitaalive::TextId::DetailInformation));
         int my = cardTop + DETAIL_SECTION_H + 4;
-        my = drawMetaRow(cx, my, cw, "Title ID", it.titleId);
-        my = drawMetaRow(cx, my, cw, "Version", it.version);
-        my = drawMetaRow(cx, my, cw, "Install", installLine);
-        my = drawMetaRow(cx, my, cw, "Released", it.versionDate);
-        my = drawMetaRow(cx, my, cw, "Category", it.category);
-        my = drawMetaRow(cx, my, cw, "Subcategory", it.subcategory);
-        my = drawMetaRow(cx, my, cw, "Size", it.size);
-        my = drawMetaRow(cx, my, cw, "Status", it.status);
+        my = drawMetaRow(cx, my, cw, ::psvitaalive::L(::psvitaalive::TextId::MetaTitleId), it.titleId);
+        my = drawMetaRow(cx, my, cw, ::psvitaalive::L(::psvitaalive::TextId::MetaVersion), it.version);
+        my = drawMetaRow(cx, my, cw, ::psvitaalive::L(::psvitaalive::TextId::MetaInstall), installLine);
+        my = drawMetaRow(cx, my, cw, ::psvitaalive::L(::psvitaalive::TextId::MetaReleased), it.versionDate);
+        my = drawMetaRow(cx, my, cw, ::psvitaalive::L(::psvitaalive::TextId::MetaCategory), it.category);
+        my = drawMetaRow(cx, my, cw, ::psvitaalive::L(::psvitaalive::TextId::MetaSubcategory), it.subcategory);
+        my = drawMetaRow(cx, my, cw, ::psvitaalive::L(::psvitaalive::TextId::MetaSize), it.size);
+        my = drawMetaRow(cx, my, cw, ::psvitaalive::L(::psvitaalive::TextId::MetaStatus), it.status);
         cursor = cardTop + cardH + DETAIL_SECTION_GAP;
     }
 
-    emitTextSection("CHANGELOG", it.changelog, false);
+    emitTextSection(::psvitaalive::L(::psvitaalive::TextId::SectionChangelog), it.changelog, false);
 
     vita2d_disable_clipping();
 
