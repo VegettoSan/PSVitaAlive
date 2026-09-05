@@ -60,7 +60,7 @@ public:
     void setActiveCatalog(CatalogType catalog);
     void setCatalogLoading(bool loading, const std::string& label, uint64_t current, uint64_t total, const std::string& message);
     void setCatalogError(const std::string& error);
-    void showToast(const std::string& message, uint64_t durationMs = 1400);
+    void showToast(const std::string& message, uint64_t durationMs = 2600);
     void setAppSettings(const ::psvitaalive::AppSettingsData& settings);
     void setPluginStatus(const ::psvitaalive::PluginStatus& plugins);
     using SettingsSaveFn = std::function<void(const ::psvitaalive::AppSettingsData&)>;

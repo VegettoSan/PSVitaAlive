@@ -2448,8 +2448,16 @@ void FullCatalogScreen::moveCatalogFocus(int d){if(catalogView().empty())return;
     const CatalogLink&l=item.linkDetails[idxs[li]];
     if(!linkAction_||!actionableLink(l)){diagnostics::log(std::string("[UI] non-download link selected: ")+l.url);return;}
     if(isPluginTypeLink(l) && isPluginAlreadyInstalled(l)){
-        showToast("Already installed", 2000);
+        showToast("Already installed", 2800);
         diagnostics::log(std::string("[UI] plugin already installed: ")+pluginInstallFilePath(l));
+        return;
+    }
+    // PSP DLC only works with LiveArea BGDL or Adrenaline Folder — not Adrenaline ISO.
+    if (state_.catalog == CatalogType::PspGames && isDlcTypeLink(l)
+        && settingsEdit_.pspTarget == ::psvitaalive::PspTarget::Adrenaline
+        && settingsEdit_.pspMediaFormat == ::psvitaalive::PspMediaFormat::Iso) {
+        showToast("PSP DLC needs LiveArea or Adrenaline Folder (Settings)", 3600);
+        diagnostics::log("[UI] blocked PSP DLC install: Adrenaline + ISO mode");
         return;
     }
     if(linkAction_(item,l))exitLinkNavigation();
@@ -4211,6 +4219,8 @@ float FullCatalogScreen::easeInOut(float t) const {
 }
 
 void FullCatalogScreen::showToast(const std::string& message, uint64_t durationMs) {
+    // Floor short toasts so important hints remain readable on real hardware.
+    if (durationMs < 2200ULL) durationMs = 2200ULL;
     toastMessage_ = message;
     toastShownMs_ = sceKernelGetProcessTimeWide() / 1000ULL;
     toastExpiresMs_ = toastShownMs_ + durationMs;
