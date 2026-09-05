@@ -1,6 +1,6 @@
 # PSVitaAlive — Multi-language support
 
-> **Status:** Phases 1–5 (partial): Settings + catalog/navigation strings via TextId; es.lang available.  
+> **Status:** Phases 1–5 in progress: Settings (incl. INFO panel), catalog/nav, detail link sections.  
 > **Scope:** Native PS Vita client UI strings only. Catalog / external data is **not** translated.  
 > **Branch policy:** Changes for this feature go directly to `main`; do not create feature branches for the implementation.
 
@@ -445,11 +445,11 @@ Migrate a small, low-risk portion of Settings first:
 Migrate screen-by-screen, validating each stage:
 
 ```text
-Settings ✅
+Settings ✅ (labels + INFO panel bodies + SYSTEM status)
 ↓
-Catalog/navigation ✅ (tabs, footers, search placeholder, filter/loading toasts)
+Catalog/navigation ✅ (tabs, footers, search, filter/loading toasts)
 ↓
-App detail
+App detail ✅ (link section titles/meta, INFORMATION, Install All, key toasts)
 ↓
 Download/install
 ↓
