@@ -274,3 +274,10 @@ Relevant keys for UI personalisation:
 | `psp_media_format` | `folder`, `iso` | Adrenaline layout only |
 
 Installer behaviour is driven by install method, PSP target/media, and catalog link types — not by theme/font.
+
+
+## RePatch vs FdFix
+
+`PluginDetector` reports both `repatch` (any of `repatch.skprx` / `repatch_4.skprx` / `repatch_ex.skprx` listed in config **and** file present) and `fdFix`.
+
+The essential-plugins prompt and Settings SYSTEM treat **RePatch as satisfying the FdFix requirement**: if RePatch is active, **fd_fix is not proposed for install** (avoids the known RePatch + FdFix conflict). kubridge and libshacccg are unchanged.

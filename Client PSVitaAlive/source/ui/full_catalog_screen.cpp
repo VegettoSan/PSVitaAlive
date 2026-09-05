@@ -3933,13 +3933,16 @@ void FullCatalogScreen::drawSettings() {
             const bool kub = essentialPluginFullyInstalled(
                 "*KERNEL", "ur0:tai/kubridge.skprx",
                 {"ur0:tai/kubridge.skprx", "ux0:tai/kubridge.skprx"});
-            const bool fdf = essentialPluginFullyInstalled(
+            // FdFix requirement is satisfied by FdFix itself OR by RePatch (compatibility).
+            const bool fdfFile = essentialPluginFullyInstalled(
                 "*KERNEL", "ur0:tai/fd_fix.skprx",
                 {"ur0:tai/fd_fix.skprx", "ux0:tai/fd_fix.skprx"});
+            const bool fdf = fdfFile || pluginsStatus_.fdFix || pluginsStatus_.repatch;
             const bool sha = essentialPluginFullyInstalled(
                 "none", "ur0:data/libshacccg.suprx",
                 {"ur0:data/libshacccg.suprx", "ur0:/data/libshacccg.suprx"});
             drawPlugLine("kubridge", kub);
+            drawPlugLine("RePatch", pluginsStatus_.repatch);
             drawPlugLine("fd_fix", fdf);
             drawPlugLine("libshacccg", sha);
         }
@@ -6193,10 +6196,24 @@ void FullCatalogScreen::tryShowEssentialPluginsPrompt() {
             "ur0:/data/libshacccg.suprx"
         },
     };
+    // Refresh detector so RePatch / FdFix flags match current taiHEN state.
+    pluginsStatus_ = ::psvitaalive::PluginDetector::scan();
+
     for (const Def& d : kDefs) {
         std::vector<std::string> paths;
         if (d.pathA) paths.emplace_back(d.pathA);
         if (d.pathB) paths.emplace_back(d.pathB);
+
+        // FdFix is not needed when RePatch is active (same IO redirect role).
+        // Prefer never proposing both; RePatch satisfies the FdFix requirement.
+        const bool isFdFix = (d.name && std::strstr(d.name, "fd_fix") != nullptr);
+        if (isFdFix && (pluginsStatus_.repatch || pluginsStatus_.fdFix)) {
+            diagnostics::log(pluginsStatus_.repatch
+                ? "[UI] essential plugins: skip fd_fix (RePatch active)"
+                : "[UI] essential plugins: skip fd_fix (FdFix already installed)");
+            continue;
+        }
+
         if (essentialPluginFullyInstalled(d.section, d.line, paths)) continue;
         EssentialPluginSpec s;
         s.name = d.name;
@@ -6254,6 +6271,21 @@ void FullCatalogScreen::kickNextEssentialPluginInstall() {
         return;
     }
     const EssentialPluginSpec& s = essentialInstallQueue_[essentialInstallIndex_];
+    // Re-scan: skip fd_fix if RePatch appeared, or any plugin now fully present.
+    pluginsStatus_ = ::psvitaalive::PluginDetector::scan();
+    const bool isFdFix = (s.name.find("fd_fix") != std::string::npos);
+    if (isFdFix && pluginsStatus_.repatch) {
+        diagnostics::log("[UI] essential plugins skip fd_fix (RePatch active)");
+        ++essentialInstallIndex_;
+        kickNextEssentialPluginInstall();
+        return;
+    }
+    if (isFdFix && pluginsStatus_.fdFix) {
+        diagnostics::log("[UI] essential plugins skip fd_fix (already installed)");
+        ++essentialInstallIndex_;
+        kickNextEssentialPluginInstall();
+        return;
+    }
     // Skip if it appeared on disk since the prompt (e.g. user installed elsewhere)
     if (essentialPluginFullyInstalled(s.section, s.line, s.checkPaths)) {
         diagnostics::log(std::string("[UI] essential plugins skip already present: ") + s.name);

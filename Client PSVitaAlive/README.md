@@ -255,7 +255,8 @@ After the first-run color-theme picker and the News modal, the client checks:
 | Plugin | Installed when |
 |--------|----------------|
 | `kubridge.skprx` | File under `ur0:tai/` or `ux0:tai/` **and** line in active `config.txt` |
-| `fd_fix.skprx` | Same |
+| `fd_fix.skprx` | File + config line — **skipped if RePatch is active** (RePatch satisfies this need) |
+| `repatch*.skprx` | Detected only (not auto-installed); blocks FdFix recommendation when present |
 | `libshacccg.suprx` | File under `ur0:data/` only (never written to config) |
 
 Missing items open a large-type modal (**Install plugins** with pulsing border, or **Remind me later**). Install uses Archive.org mirrors configured in the client and the standard Plugin path.
