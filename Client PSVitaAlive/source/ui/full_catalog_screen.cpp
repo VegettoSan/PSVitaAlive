@@ -5387,10 +5387,10 @@ void FullCatalogScreen::drawInstallAllOverlay() {
         vita2d_pgf_draw_text(font_, ox + 24, oy + 40, ACCENT, 0.96f, ::psvitaalive::L(::psvitaalive::TextId::InstallAll));
         vita2d_pgf_draw_text(font_, ox + 24, oy + 76, WHITE, 0.72f, ellipsize(item.name, 42).c_str());
         const char* lines[] = {
-            "This installs the homebrew from scratch:",
-            "1) App (VPK)  2) Game Files  3) Data Files",
-            "You will pick one download source per step when needed.",
-            "If you only want to update the app, use the VPK button instead.",
+            ::psvitaalive::L(::psvitaalive::TextId::InstallAllConfirm1),
+            ::psvitaalive::L(::psvitaalive::TextId::InstallAllConfirm2),
+            ::psvitaalive::L(::psvitaalive::TextId::InstallAllConfirm3),
+            ::psvitaalive::L(::psvitaalive::TextId::InstallAllConfirm4),
         };
         int ty = oy + 112;
         for (const char* ln : lines) {
@@ -5405,27 +5405,27 @@ void FullCatalogScreen::drawInstallAllOverlay() {
         const bool fCancel = installAllFocus_ == 1;
         vita2d_draw_rectangle(bxOk, by, bw, bh, fOk ? ACCENT : SURFACE2);
         {
-            const char* lab = "Continue";
+            const char* lab = ::psvitaalive::L(::psvitaalive::TextId::BtnContinue);
             const float sc = 0.72f;
             const int tw = vita2d_pgf_text_width(font_, sc, lab);
             vita2d_pgf_draw_text(font_, bxOk + (bw - tw) / 2, by + 30, fOk ? BG : WHITE, sc, lab);
         }
         vita2d_draw_rectangle(bxCancel, by, bw, bh, fCancel ? ACCENT : SURFACE2);
         {
-            const char* lab = "Cancel";
+            const char* lab = ::psvitaalive::L(::psvitaalive::TextId::BtnCancel);
             const float sc = 0.72f;
             const int tw = vita2d_pgf_text_width(font_, sc, lab);
             vita2d_pgf_draw_text(font_, bxCancel + (bw - tw) / 2, by + 30, fCancel ? BG : WHITE, sc, lab);
         }
-        vita2d_pgf_draw_text(font_, ox + 24, oy + oh - 84, DIM, 0.58f, "D-Pad: move   X: select   O: cancel");
+        vita2d_pgf_draw_text(font_, ox + 24, oy + oh - 84, DIM, 0.58f, ::psvitaalive::L(::psvitaalive::TextId::InstallAllNavHint));
         return;
     }
 
-    const char* title = "Choose download";
-    if (installAllPhase_ == InstallAllPhase::PickGameFiles) title = "Choose Game Files";
-    else if (installAllPhase_ == InstallAllPhase::PickDataFiles) title = "Choose Data Files";
+    const char* title = ::psvitaalive::L(::psvitaalive::TextId::ChooseDownload);
+    if (installAllPhase_ == InstallAllPhase::PickGameFiles) title = ::psvitaalive::L(::psvitaalive::TextId::ChooseGameFiles);
+    else if (installAllPhase_ == InstallAllPhase::PickDataFiles) title = ::psvitaalive::L(::psvitaalive::TextId::ChooseDataFiles);
     vita2d_pgf_draw_text(font_, ox + 24, oy + 40, ACCENT, 0.96f, title);
-    vita2d_pgf_draw_text(font_, ox + 24, oy + 70, DIM, 0.60f, "Same content — pick one mirror / source");
+    vita2d_pgf_draw_text(font_, ox + 24, oy + 70, DIM, 0.60f, ::psvitaalive::L(::psvitaalive::TextId::ChooseMirrorHint));
 
     const int listTop = oy + 86;
     const int rowH = LINK_ROW_H + 6;
@@ -5460,10 +5460,10 @@ void FullCatalogScreen::drawInstallAllOverlay() {
         vita2d_pgf_draw_text(font_, rx + 12, ry + 36, DIM, 0.66f, ellipsize(meta, badgeW ? 28 : 44).c_str());
         if (l.recommended) {
             const int bx = rx + rw - badgeW - 8, by = ry + 9;
-            vita2d_pgf_draw_text(font_, bx, ry + 17, f ? BG : ACCENT, 0.58f, "Recommended");
+            vita2d_pgf_draw_text(font_, bx, ry + 17, f ? BG : ACCENT, 0.58f, ::psvitaalive::L(::psvitaalive::TextId::BadgeRecommended));
         }
     }
-    vita2d_pgf_draw_text(font_, ox + 24, oy + oh - 28, DIM, 0.58f, "D-Pad: move   X: select   O: cancel");
+    vita2d_pgf_draw_text(font_, ox + 24, oy + oh - 28, DIM, 0.58f, ::psvitaalive::L(::psvitaalive::TextId::InstallAllNavHint));
 }
 
 void FullCatalogScreen::drawLoadingOverlay(){
@@ -5569,7 +5569,7 @@ if(installOutcome_==1){
     if(!installProgressMessage_.empty())
       vita2d_pgf_draw_text(font_,x+28,y+214,DIM,.54f,ellipsize(installProgressMessage_,78).c_str());
   } else {
-    vita2d_pgf_draw_text(font_,x+28,y+80,GREEN,1.05f,"Installation complete");
+    vita2d_pgf_draw_text(font_,x+28,y+80,GREEN,1.05f,::psvitaalive::L(::psvitaalive::TextId::InstallComplete));
     std::string file=installProgressFile_.empty()?"(file)":ellipsize(installProgressFile_,70);
     vita2d_pgf_draw_text(font_,x+28,y+118,WHITE,.66f,("File: "+file).c_str());
     if(!installResultTitleId_.empty())
@@ -5609,7 +5609,7 @@ if(installOutcome_==1){
 
 if(installOutcome_==3){
   const unsigned amber = RGBA8(0xE0,0xA0,0x30,255);
-  vita2d_pgf_draw_text(font_,x+28,y+80,amber,1.05f,"Download cancelled");
+  vita2d_pgf_draw_text(font_,x+28,y+80,amber,1.05f,::psvitaalive::L(::psvitaalive::TextId::DownloadCancelled));
   std::string file=installProgressFile_.empty()?"(file)":ellipsize(installProgressFile_,70);
   vita2d_pgf_draw_text(font_,x+28,y+118,WHITE,.66f,("File: "+file).c_str());
   std::string msg=installProgressMessage_.empty()?"Download cancelled":installProgressMessage_;
@@ -5634,7 +5634,7 @@ if(installOutcome_==3){
 }
 
 if(installOutcome_==2){
-  vita2d_pgf_draw_text(font_,x+28,y+80,RED,1.05f,"Installation failed");
+  vita2d_pgf_draw_text(font_,x+28,y+80,RED,1.05f,::psvitaalive::L(::psvitaalive::TextId::InstallFailed));
   std::string file=installProgressFile_.empty()?"(file)":ellipsize(installProgressFile_,70);
   vita2d_pgf_draw_text(font_,x+28,y+118,WHITE,.66f,("File: "+file).c_str());
   vita2d_pgf_draw_text(font_,x+28,y+152,RED,.68f,"Reason:");

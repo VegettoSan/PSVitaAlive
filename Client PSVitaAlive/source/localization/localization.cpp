@@ -286,6 +286,20 @@ const char* LocalizationManager::keyFor(TextId id) {
         case TextId::InstallStateInstalled: return "INSTALL_STATE_INSTALLED";
         case TextId::InstallStateUpdateAvailable: return "INSTALL_STATE_UPDATE_AVAILABLE";
         case TextId::InstallStateNotInstalled: return "INSTALL_STATE_NOT_INSTALLED";
+        case TextId::BtnContinue: return "BTN_CONTINUE";
+        case TextId::BtnCancel: return "BTN_CANCEL";
+        case TextId::InstallAllConfirm1: return "INSTALL_ALL_CONFIRM_1";
+        case TextId::InstallAllConfirm2: return "INSTALL_ALL_CONFIRM_2";
+        case TextId::InstallAllConfirm3: return "INSTALL_ALL_CONFIRM_3";
+        case TextId::InstallAllConfirm4: return "INSTALL_ALL_CONFIRM_4";
+        case TextId::InstallAllNavHint: return "INSTALL_ALL_NAV_HINT";
+        case TextId::ChooseDownload: return "CHOOSE_DOWNLOAD";
+        case TextId::ChooseGameFiles: return "CHOOSE_GAME_FILES";
+        case TextId::ChooseDataFiles: return "CHOOSE_DATA_FILES";
+        case TextId::ChooseMirrorHint: return "CHOOSE_MIRROR_HINT";
+        case TextId::InstallComplete: return "INSTALL_COMPLETE";
+        case TextId::DownloadCancelled: return "DOWNLOAD_CANCELLED";
+        case TextId::InstallFailed: return "INSTALL_FAILED";
         default: return "";
     }
 }

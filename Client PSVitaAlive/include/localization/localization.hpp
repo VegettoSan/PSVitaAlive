@@ -130,6 +130,20 @@ enum class TextId {
     InstallStateInstalled,
     InstallStateUpdateAvailable,
     InstallStateNotInstalled,
+    BtnContinue,
+    BtnCancel,
+    InstallAllConfirm1,
+    InstallAllConfirm2,
+    InstallAllConfirm3,
+    InstallAllConfirm4,
+    InstallAllNavHint,
+    ChooseDownload,
+    ChooseGameFiles,
+    ChooseDataFiles,
+    ChooseMirrorHint,
+    InstallComplete,
+    DownloadCancelled,
+    InstallFailed,
     Count
 };
 
