@@ -38,15 +38,22 @@ jobs:
               '#include "installer/app_settings.hpp"\n#include "localization/localization.hpp"\n',
               'localization include')
 
-          # Settings input: 7 -> 8 rows.
-          text = once(text, 'constexpr int kRows = 7;', 'constexpr int kRows = 8;', 'kRows')
+          # Only the Settings input handler gets the extra row. Another kRows constant
+          # belongs to touch scrolling and must stay unchanged.
+          h0 = text.find('void FullCatalogScreen::handleSettingsInput(uint32_t pressed, uint32_t nav) {')
+          if h0 < 0:
+              raise SystemExit('handleSettingsInput not found')
+          h1 = text.find('\nvoid FullCatalogScreen::', h0 + 10)
+          if h1 < 0:
+              raise SystemExit('handleSettingsInput end not found')
+          handle = text[h0:h1]
+          handle = once(handle, 'constexpr int kRows = 7;', 'constexpr int kRows = 8;', 'Settings kRows')
+          text = text[:h0] + handle + text[h1:]
 
-          # Settings selection: insert Language as row 5 and shift the existing tail down.
           old_cycle = '''    } else if (row == 4) {\n        settingsEdit_.warnMissingPlugins = !settingsEdit_.warnMissingPlugins;\n    } else if (row == 5) {\n        settingsEdit_.promptImageWarmup = !settingsEdit_.promptImageWarmup;\n    } else if (row == 6) {\n        triggerSelfUpdateAction();\n    }\n'''
           new_cycle = '''    } else if (row == 4) {\n        settingsEdit_.warnMissingPlugins = !settingsEdit_.warnMissingPlugins;\n    } else if (row == 5) {\n        auto& loc = ::psvitaalive::LocalizationManager::instance();\n        const auto available = loc.availableLanguages();\n        if (!available.empty()) {\n            if (settingsEdit_.languageMode == ::psvitaalive::LanguageMode::System) {\n                settingsEdit_.languageMode = ::psvitaalive::LanguageMode::Manual;\n                settingsEdit_.language = ::psvitaalive::languageCode(available.front());\n            } else {\n                ::psvitaalive::Language current = ::psvitaalive::Language::English;\n                if (!::psvitaalive::languageFromCode(settingsEdit_.language, current)) current = available.front();\n                size_t pos = 0;\n                for (size_t i = 0; i < available.size(); ++i) {\n                    if (available[i] == current) { pos = i; break; }\n                }\n                if (pos + 1 < available.size()) {\n                    settingsEdit_.language = ::psvitaalive::languageCode(available[pos + 1]);\n                } else {\n                    settingsEdit_.languageMode = ::psvitaalive::LanguageMode::System;\n                }\n            }\n            loc.setMode(settingsEdit_.languageMode, settingsEdit_.language);\n        }\n    } else if (row == 6) {\n        settingsEdit_.promptImageWarmup = !settingsEdit_.promptImageWarmup;\n    } else if (row == 7) {\n        triggerSelfUpdateAction();\n    }\n'''
           text = once(text, old_cycle, new_cycle, 'language cycle')
 
-          # drawSettings layout arrays: expand by one row, globally but each token is unique in this file.
           text = once(text, 'Meta meta[7] = {', 'Meta meta[8] = {', 'meta size')
           text = once(text,
               '{true, "INSTALL"}, {false, ""}, {false, ""}, {true, "INTERFACE"}, {false, ""}, {true, "CATALOG"}, {true, "UPDATES"}',
@@ -58,7 +65,6 @@ jobs:
           text = once(text, 'for (int i = 0; i < 7; ++i) {', 'for (int i = 0; i < 8; ++i) {', 'row loop 2')
           text = once(text, 'for (int i = 0; i <= settingsFocus_ && i < 7; ++i) {', 'for (int i = 0; i <= settingsFocus_ && i < 8; ++i) {', 'focus loop')
 
-          # Replace only the Settings options block using its stable semantic marker.
           start = text.find('    auto themeLabel = [&]() -> std::string {')
           if start < 0:
               raise SystemExit('themeLabel start missing')
@@ -120,7 +126,6 @@ jobs:
               'PROMPT_IMAGE_DOWNLOAD': 'Preguntar por descarga de imágenes',
               'APP_UPDATES': 'Actualizaciones de la app',
           })
-
           UI.write_text(text, encoding='utf-8')
       - name: Validate patch
         shell: bash
@@ -129,6 +134,7 @@ jobs:
           grep -q 'localization/localization.hpp' 'Client PSVitaAlive/source/ui/full_catalog_screen.cpp'
           grep -q 'Opt opts\[8\]' 'Client PSVitaAlive/source/ui/full_catalog_screen.cpp'
           grep -q 'constexpr int kRows = 8;' 'Client PSVitaAlive/source/ui/full_catalog_screen.cpp'
+          test "$(grep -c 'constexpr int kRows = 7;' 'Client PSVitaAlive/source/ui/full_catalog_screen.cpp')" -eq 1
           grep -q 'LANGUAGE' 'Client PSVitaAlive/source/ui/full_catalog_screen.cpp'
           grep -q '^LANGUAGE=Language$' 'Client PSVitaAlive/assets/lang/en.lang'
           grep -q '^LANGUAGE=Idioma$' 'Client PSVitaAlive/assets/lang/es.lang'
