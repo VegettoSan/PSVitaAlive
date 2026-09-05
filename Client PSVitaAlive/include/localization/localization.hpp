@@ -201,6 +201,17 @@ enum class TextId {
     LabelPath,
     MetaXSelect,
     ToastAllInstalled,
+    UiFont,
+    FontDefault,
+    FontSerif,
+    FontSans,
+    FontSerifBold,
+    FontSansBold,
+    HintUiFont,
+    InfoFont1,
+    InfoFont2,
+    InfoFont3,
+    FontFallbackToast,
     Count
 };
 

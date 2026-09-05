@@ -277,3 +277,12 @@ When Settings → **PSP / PS1 target** is **Adrenaline**:
 ## Color themes
 
 Many named palettes (including a brand **PsVitaAlive** lime theme and a **PS Vita** system-inspired palette). First launch can show a scrollable theme grid before News. Settings → Color theme opens the same picker. Logo and catalog-loading splash use color assets for the brand theme and monochrome + tint for others.
+
+
+## UI font styles
+
+Settings → **UI font** cycles system PGF typefaces (Default, Serif, Sans, Serif Bold, Sans Bold).
+
+- Stored in `config.json` as `ui_font_style`.
+- Loaded via `vita2d_load_custom_pgf` from `sa0:data/font/ltn*.pgf` when present.
+- If a file is missing (some emulators/firmware), the app falls back to the default PGF without crashing.

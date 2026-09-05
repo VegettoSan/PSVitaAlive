@@ -58,6 +58,7 @@ set(SOURCES
   source/update/startup_update_manager.cpp
   source/ui/ui_types.cpp
   source/ui/image_cache.cpp
+  source/ui/ui_font.cpp
   source/ui/full_catalog_screen.cpp
   source/localization/language.cpp
   source/localization/localization.cpp

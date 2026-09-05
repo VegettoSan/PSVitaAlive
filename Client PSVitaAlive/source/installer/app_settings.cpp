@@ -82,11 +82,28 @@ ColorTheme AppSettings::parseColorTheme(const std::string& s) {
 const char* AppSettings::toString(LanguageMode m) { return m == LanguageMode::Manual ? "manual" : "system"; }
 LanguageMode AppSettings::parseLanguageMode(const std::string& s) { return s == "manual" ? LanguageMode::Manual : LanguageMode::System; }
 
+const char* AppSettings::toString(UiFontStyle f) {
+    switch (f) {
+        case UiFontStyle::Serif: return "serif";
+        case UiFontStyle::Sans: return "sans";
+        case UiFontStyle::SerifBold: return "serif_bold";
+        case UiFontStyle::SansBold: return "sans_bold";
+        default: return "default";
+    }
+}
+UiFontStyle AppSettings::parseUiFontStyle(const std::string& s) {
+    if (s == "serif") return UiFontStyle::Serif;
+    if (s == "sans") return UiFontStyle::Sans;
+    if (s == "serif_bold") return UiFontStyle::SerifBold;
+    if (s == "sans_bold") return UiFontStyle::SansBold;
+    return UiFontStyle::Default;
+}
+
 AppSettingsData AppSettings::load() {
     AppSettingsData data;
     SceUID fd = sceIoOpen(kConfigPath, SCE_O_RDONLY, 0);
     if (fd < 0) { LocalizationManager::instance().initialize(data); return data; }
-    char buf[1024]; const int n = sceIoRead(fd, buf, sizeof(buf) - 1); sceIoClose(fd);
+    char buf[1280]; const int n = sceIoRead(fd, buf, sizeof(buf) - 1); sceIoClose(fd);
     if (n <= 0) { LocalizationManager::instance().initialize(data); return data; }
     buf[n] = '\0'; const std::string json(buf); std::string v;
     if (containsKey(json, "install_method", v)) data.installMethod = parseInstallMethod(v);
@@ -95,6 +112,7 @@ AppSettingsData AppSettings::load() {
     if (containsKey(json, "color_theme", v)) data.colorTheme = parseColorTheme(v);
     if (containsKey(json, "language_mode", v)) data.languageMode = parseLanguageMode(v);
     if (containsKey(json, "language", v) && !v.empty()) data.language = v;
+    if (containsKey(json, "ui_font_style", v)) data.uiFontStyle = parseUiFontStyle(v);
     bool b = true;
     if (containsBool(json, "warn_missing_plugins", b)) data.warnMissingPlugins = b;
     if (containsBool(json, "prompt_image_warmup", b)) data.promptImageWarmup = b;
@@ -109,12 +127,13 @@ AppSettingsData AppSettings::load() {
 
 bool AppSettings::save(const AppSettingsData& data) {
     StorageManager st; st.createDirectories(StorageManager::BASE_DIR);
-    char json[1024];
+    char json[1280];
     sceClibSnprintf(json, sizeof(json),
-        "{\n  \"install_method\": \"%s\",\n  \"psp_target\": \"%s\",\n  \"psp_media_format\": \"%s\",\n  \"color_theme\": \"%s\",\n  \"warn_missing_plugins\": %s,\n  \"prompt_image_warmup\": %s,\n  \"theme_setup_done\": %s,\n  \"startup_plugin_detection\": %s,\n  \"startup_update_check\": %s,\n  \"language_mode\": \"%s\",\n  \"language\": \"%s\"\n}\n",
+        "{\n  \"install_method\": \"%s\",\n  \"psp_target\": \"%s\",\n  \"psp_media_format\": \"%s\",\n  \"color_theme\": \"%s\",\n  \"warn_missing_plugins\": %s,\n  \"prompt_image_warmup\": %s,\n  \"theme_setup_done\": %s,\n  \"startup_plugin_detection\": %s,\n  \"startup_update_check\": %s,\n  \"language_mode\": \"%s\",\n  \"language\": \"%s\",\n  \"ui_font_style\": \"%s\"\n}\n",
         toString(data.installMethod), toString(data.pspTarget), toString(data.pspMediaFormat), toString(data.colorTheme),
         data.warnMissingPlugins ? "true" : "false", data.promptImageWarmup ? "true" : "false", data.themeSetupDone ? "true" : "false",
-        data.startupPluginDetection ? "true" : "false", data.startupUpdateCheck ? "true" : "false", toString(data.languageMode), data.language.c_str());
+        data.startupPluginDetection ? "true" : "false", data.startupUpdateCheck ? "true" : "false", toString(data.languageMode), data.language.c_str(),
+        toString(data.uiFontStyle));
     SceUID fd = sceIoOpen(kConfigPath, SCE_O_WRONLY | SCE_O_CREAT | SCE_O_TRUNC, 0666); if (fd < 0) return false;
     const int wr = sceIoWrite(fd, json, std::strlen(json)); sceIoClose(fd); return wr > 0;
 }

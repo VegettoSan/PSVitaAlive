@@ -4,6 +4,7 @@
 #include "installer/plugin_detector.hpp"
 #include "installer/tai_config_editor.hpp"
 #include "localization/localization.hpp"
+#include "ui/ui_font.hpp"
 #include "update/update_checker.hpp"
 
 #ifndef PSVITAALIVE_VERSION
@@ -2121,7 +2122,8 @@ void FullCatalogScreen::setCatalogItems(std::vector<CatalogItem>items){
 bool FullCatalogScreen::init(){
     vita2d_init();
     vita2d_set_clear_color(BG);
-    font_=vita2d_load_default_pgf();
+    font_=::psvitaalive::ui::loadUiFont(settingsEdit_.uiFontStyle);
+    if(!font_) font_=vita2d_load_default_pgf();
     if(!font_)return false;
     sceCtrlSetSamplingMode(SCE_CTRL_MODE_ANALOG);
     sceTouchSetSamplingState(SCE_TOUCH_PORT_FRONT, SCE_TOUCH_SAMPLING_STATE_START);
@@ -2910,20 +2912,20 @@ void FullCatalogScreen::handleTouch() {
         const int listX = margin;
         const int listW = (colW * 58) / 100;
         struct Meta { bool sectionStart; const char* section; };
-        Meta meta[8] = {
+        Meta meta[9] = {
             {true, "INSTALL"}, {false, ""}, {false, ""},
-            {true, "INTERFACE"}, {false, ""}, {false, ""},
+            {true, "INTERFACE"}, {false, ""}, {false, ""}, {false, ""},
             {true, "CATALOG"}, {true, "UPDATES"}
         };
         int rowY[8];
         int y = contentTop - static_cast<int>(settingsScrollY_);
-        for (int i = 0; i < 8; ++i) {
+        for (int i = 0; i < 9; ++i) {
             if (meta[i].sectionStart && meta[i].section[0]) y += 22;
             rowY[i] = y;
             y += 52 + 8;
         }
         const int rowH = 52;
-        const int measured = 8 * (52 + 8) + 4 * 22;
+        const int measured = 9 * (52 + 8) + 4 * 22;
         const int listViewH = SCREEN_H - contentTop - FOOTER_H - 8;
         const float maxScroll = static_cast<float>(std::max(0, measured - listViewH));
 
@@ -2945,7 +2947,7 @@ void FullCatalogScreen::handleTouch() {
                 // Same as main catalog: drag steps move focus like D-Pad up/down
                 if (touchMoved_) {
                     constexpr float kScrollPx = 48.f;
-                    constexpr int kRows = 8;
+                    constexpr int kRows = 9;
                     touchAccumY_ += static_cast<float>(dy);
                     while (touchAccumY_ <= -kScrollPx) {
                         touchAccumY_ += kScrollPx;
@@ -2962,7 +2964,7 @@ void FullCatalogScreen::handleTouch() {
             const int x = touchStartX_, yy = touchStartY_;
             touchDown_ = false;
             // Allow slight finger jitter — still treat as tap if not a long drag
-            for (int i = 0; i < 8; ++i) {
+            for (int i = 0; i < 9; ++i) {
                 if (hit(x, yy, listX, rowY[i], listW, rowH)) {
                     if (settingsFocus_ == i) cycleSettingsOption(i, +1);
                     else settingsFocus_ = i;
@@ -3278,6 +3280,12 @@ void FullCatalogScreen::handleTouch() {
 void FullCatalogScreen::setAppSettings(const ::psvitaalive::AppSettingsData& settings) {
     settingsEdit_ = settings;
     applyColorTheme(settingsEdit_.colorTheme);
+    // Apply saved typeface (init may have run with defaults before settings were injected).
+    vita2d_wait_rendering_done();
+    if (vita2d_pgf* nf = ::psvitaalive::ui::loadUiFont(settingsEdit_.uiFontStyle)) {
+        if (font_) vita2d_free_pgf(font_);
+        font_ = nf;
+    }
 }
 
 void FullCatalogScreen::setPluginStatus(const ::psvitaalive::PluginStatus& plugins) {
@@ -3485,19 +3493,38 @@ void FullCatalogScreen::cycleSettingsOption(int row, int delta) {
                          ::psvitaalive::AppSettings::toString(settingsEdit_.languageMode) +
                          " code=" + settingsEdit_.language);
     } else if (row == 4) {
+        int v = static_cast<int>(settingsEdit_.uiFontStyle);
+        const int n = static_cast<int>(::psvitaalive::UiFontStyle::Count);
+        v = (v + delta) % n;
+        if (v < 0) v += n;
+        settingsEdit_.uiFontStyle = static_cast<::psvitaalive::UiFontStyle>(v);
+        // Live preview: swap PGF after GPU idle so mid-frame draws stay safe.
+        vita2d_wait_rendering_done();
+        vita2d_pgf* nf = ::psvitaalive::ui::loadUiFont(settingsEdit_.uiFontStyle);
+        if (nf) {
+            if (font_) vita2d_free_pgf(font_);
+            font_ = nf;
+            // If requested style missing, loader already fell back to default.
+            if (settingsEdit_.uiFontStyle != ::psvitaalive::UiFontStyle::Default) {
+                // Heuristic toast only when still default path? Skip — silent fallback is OK.
+            }
+            diagnostics::log(std::string("[UI] font style=") +
+                             ::psvitaalive::AppSettings::toString(settingsEdit_.uiFontStyle));
+        }
+    } else if (row == 5) {
         (void)delta;
         openThemePicker(); // same palette window as first-run setup
-    } else if (row == 5) {
-        settingsEdit_.warnMissingPlugins = !settingsEdit_.warnMissingPlugins;
     } else if (row == 6) {
-        settingsEdit_.promptImageWarmup = !settingsEdit_.promptImageWarmup;
+        settingsEdit_.warnMissingPlugins = !settingsEdit_.warnMissingPlugins;
     } else if (row == 7) {
+        settingsEdit_.promptImageWarmup = !settingsEdit_.promptImageWarmup;
+    } else if (row == 8) {
         triggerSelfUpdateAction();
     }
 }
 
 void FullCatalogScreen::handleSettingsInput(uint32_t pressed, uint32_t nav) {
-    constexpr int kRows = 8;
+    constexpr int kRows = 9;
     if (nav & SCE_CTRL_UP) {
         settingsFocus_ = (settingsFocus_ + kRows - 1) % kRows;
     }
@@ -3590,11 +3617,21 @@ void FullCatalogScreen::drawSettings() {
         const char* hint;
         bool sectionStart;
     };
-    Opt opts[8] = {
+    auto fontLabel = [&]() -> std::string {
+        switch (settingsEdit_.uiFontStyle) {
+            case ::psvitaalive::UiFontStyle::Serif: return ::psvitaalive::L(TID::FontSerif);
+            case ::psvitaalive::UiFontStyle::Sans: return ::psvitaalive::L(TID::FontSans);
+            case ::psvitaalive::UiFontStyle::SerifBold: return ::psvitaalive::L(TID::FontSerifBold);
+            case ::psvitaalive::UiFontStyle::SansBold: return ::psvitaalive::L(TID::FontSansBold);
+            default: return ::psvitaalive::L(TID::FontDefault);
+        }
+    };
+    Opt opts[9] = {
         {::psvitaalive::L(TID::SectionInstall), ::psvitaalive::L(TID::InstallMethod), methodLabel(), ::psvitaalive::L(TID::HintInstallMethod), true},
         {"", ::psvitaalive::L(TID::PspPs1Target), pspLabel(), ::psvitaalive::L(TID::HintPspTarget), false},
         {"", ::psvitaalive::L(TID::PspMediaAdrenaline), mediaFormatLabel(), ::psvitaalive::L(TID::HintPspMedia), false},
         {::psvitaalive::L(TID::SectionInterface), ::psvitaalive::L(TID::Language), languageLabel(), ::psvitaalive::L(TID::HintLanguage), true},
+        {"", ::psvitaalive::L(TID::UiFont), fontLabel(), ::psvitaalive::L(TID::HintUiFont), false},
         {"", ::psvitaalive::L(TID::ColorTheme), themeLabel() + "  >", ::psvitaalive::L(TID::HintColorTheme), false},
         {"", ::psvitaalive::L(TID::WarnMissingPlugins), yesNo(settingsEdit_.warnMissingPlugins), ::psvitaalive::L(TID::HintWarnPlugins), false},
         {::psvitaalive::L(TID::SectionCatalog), ::psvitaalive::L(TID::PromptImageDownload), yesNo(settingsEdit_.promptImageWarmup), ::psvitaalive::L(TID::HintImageWarmup), true},
@@ -3612,7 +3649,7 @@ void FullCatalogScreen::drawSettings() {
     const int rowGap = 8;
 
     int measured = 0;
-    for (int i = 0; i < 8; ++i) {
+    for (int i = 0; i < 9; ++i) {
         if (opts[i].sectionStart && opts[i].section[0]) measured += sectionH;
         measured += rowH + rowGap;
     }
@@ -3623,7 +3660,7 @@ void FullCatalogScreen::drawSettings() {
 
     {
         int fy = 0;
-        for (int i = 0; i <= settingsFocus_ && i < 8; ++i) {
+        for (int i = 0; i <= settingsFocus_ && i < 9; ++i) {
             if (opts[i].sectionStart && opts[i].section[0]) fy += sectionH;
             if (i < settingsFocus_) fy += rowH + rowGap;
         }
@@ -3642,7 +3679,7 @@ void FullCatalogScreen::drawSettings() {
 
     int rowY[8] = {};
     int y = contentTop - static_cast<int>(settingsScrollY_);
-    for (int i = 0; i < 8; ++i) {
+    for (int i = 0; i < 9; ++i) {
         if (opts[i].sectionStart && opts[i].section[0]) {
             vita2d_pgf_draw_text(font_, listX + 6, y + 16, DIM, 0.56f, opts[i].section);
             y += sectionH;
@@ -3714,21 +3751,26 @@ void FullCatalogScreen::drawSettings() {
             body3 = ::psvitaalive::L(TID::InfoLanguage3);
             break;
         case 4:
+            body1 = ::psvitaalive::L(TID::InfoFont1);
+            body2 = ::psvitaalive::L(TID::InfoFont2);
+            body3 = ::psvitaalive::L(TID::InfoFont3);
+            break;
+        case 5:
             body1 = ::psvitaalive::L(TID::InfoColorTheme1);
             body2 = ::psvitaalive::L(TID::InfoColorTheme2);
             body3 = ::psvitaalive::L(TID::InfoColorTheme3);
             break;
-        case 5:
+        case 6:
             body1 = ::psvitaalive::L(TID::InfoWarnPlugins1);
             body2 = ::psvitaalive::L(TID::InfoWarnPlugins2);
             body3 = ::psvitaalive::L(TID::InfoWarnPlugins3);
             break;
-        case 6:
+        case 7:
             body1 = ::psvitaalive::L(TID::InfoImageWarmup1);
             body2 = ::psvitaalive::L(TID::InfoImageWarmup2);
             body3 = ::psvitaalive::L(TID::InfoImageWarmup3);
             break;
-        case 7:
+        case 8:
             body1 = ::psvitaalive::L(TID::InfoSelfUpdate1);
             body2 = ::psvitaalive::L(TID::InfoSelfUpdate2);
             body3 = ::psvitaalive::L(TID::InfoSelfUpdate3);
@@ -3773,7 +3815,7 @@ void FullCatalogScreen::drawSettings() {
                                  ellipsize(pluginsStatus_.configPathUsed, 26).c_str());
             sy += 20;
         }
-        if (settingsFocus_ == 7) {
+        if (settingsFocus_ == 8) {
             char ver[64];
             sceClibSnprintf(ver, sizeof(ver), "%s: v%s", ::psvitaalive::L(TID::LocalVersion), PSVITAALIVE_VERSION);
             vita2d_pgf_draw_text(font_, sideX + 14, sy, ACCENT, 0.72f, ver);

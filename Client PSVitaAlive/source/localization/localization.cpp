@@ -357,6 +357,17 @@ const char* LocalizationManager::keyFor(TextId id) {
         case TextId::LabelPath: return "LABEL_PATH";
         case TextId::MetaXSelect: return "META_X_SELECT";
         case TextId::ToastAllInstalled: return "TOAST_ALL_INSTALLED";
+        case TextId::UiFont: return "UI_FONT";
+        case TextId::FontDefault: return "FONT_DEFAULT";
+        case TextId::FontSerif: return "FONT_SERIF";
+        case TextId::FontSans: return "FONT_SANS";
+        case TextId::FontSerifBold: return "FONT_SERIF_BOLD";
+        case TextId::FontSansBold: return "FONT_SANS_BOLD";
+        case TextId::HintUiFont: return "HINT_UI_FONT";
+        case TextId::InfoFont1: return "INFO_FONT_1";
+        case TextId::InfoFont2: return "INFO_FONT_2";
+        case TextId::InfoFont3: return "INFO_FONT_3";
+        case TextId::FontFallbackToast: return "FONT_FALLBACK_TOAST";
         default: return "";
     }
 }

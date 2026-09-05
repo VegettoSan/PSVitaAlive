@@ -82,6 +82,16 @@ enum class LanguageMode {
     Manual
 };
 
+/** UI typeface. Uses system PGF fonts on the console when available. */
+enum class UiFontStyle {
+    Default = 0,   // vita2d_load_default_pgf
+    Serif,         // sa0 ltn0
+    Sans,          // sa0 ltn2
+    SerifBold,     // sa0 ltn4
+    SansBold,      // sa0 ltn6
+    Count
+};
+
 struct AppSettingsData {
     InstallMethod installMethod = InstallMethod::Auto;
     PspTarget pspTarget = PspTarget::Adrenaline;
@@ -94,6 +104,7 @@ struct AppSettingsData {
     bool startupUpdateCheck = true;
     LanguageMode languageMode = LanguageMode::System;
     std::string language = "en";
+    UiFontStyle uiFontStyle = UiFontStyle::Default;
 };
 
 class AppSettings {
@@ -106,12 +117,14 @@ public:
     static const char* toString(PspMediaFormat f);
     static const char* toString(ColorTheme t);
     static const char* toString(LanguageMode m);
+    static const char* toString(UiFontStyle f);
 
     static InstallMethod parseInstallMethod(const std::string& s);
     static PspTarget parsePspTarget(const std::string& s);
     static PspMediaFormat parsePspMediaFormat(const std::string& s);
     static ColorTheme parseColorTheme(const std::string& s);
     static LanguageMode parseLanguageMode(const std::string& s);
+    static UiFontStyle parseUiFontStyle(const std::string& s);
 };
 
 } // namespace psvitaalive
