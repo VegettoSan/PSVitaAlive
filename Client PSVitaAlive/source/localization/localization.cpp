@@ -3,6 +3,7 @@
 #include <psp2/io/fcntl.h>
 #include <psp2/kernel/clib.h>
 #include <psp2/apputil.h>
+#include <psp2/system_param.h>
 
 #include <cstdio>
 #include <cstring>

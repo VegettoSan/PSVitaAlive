@@ -1006,6 +1006,11 @@ bool isPluginTypeLink(const CatalogLink& l) {
     return t == "plugin" || t == "plugins";
 }
 
+bool isDlcTypeLink(const CatalogLink& l) {
+    const std::string t = normalizeLinkType(l.type);
+    return t == "dlc";
+}
+
 /** Resolved on-disk path for a Plugin link (line path preferred, else extract_path + basename). */
 std::string pluginInstallFilePath(const CatalogLink& l) {
     auto trim = [](std::string s) {
