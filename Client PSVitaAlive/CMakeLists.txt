@@ -59,6 +59,8 @@ set(SOURCES
   source/ui/ui_types.cpp
   source/ui/image_cache.cpp
   source/ui/full_catalog_screen.cpp
+  source/localization/language.cpp
+  source/localization/localization.cpp
 )
 
 add_executable(${PROJECT_NAME} ${SOURCES})
@@ -201,6 +203,7 @@ add_custom_command(
   COMMAND ${VITA_PACK_VPK}
     -a "../assets/sce_sys=sce_sys"
     -a "../assets/ui=ui"
+    -a "../assets/lang=lang"
     -a "updater_eboot.bin=updater/eboot.bin"
     -a "updater_param.sfo=updater/param.sfo"
     -a "psm_runtime_driver.skprx=psm_runtime_driver.skprx"
@@ -215,6 +218,7 @@ add_custom_command(
     PSVitaAliveUpdaterSfo
     "${CMAKE_SOURCE_DIR}/assets/sce_sys"
     "${CMAKE_SOURCE_DIR}/assets/ui"
+    "${CMAKE_SOURCE_DIR}/assets/lang"
   COMMENT "Building vpk ${PROJECT_NAME}"
   VERBATIM
 )
