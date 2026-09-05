@@ -1,6 +1,6 @@
 # PSVitaAlive — Multi-language support
 
-> **Status:** Architecture approved; implementation not started yet.  
+> **Status:** Phases 1–3 done: localization core + Settings UI migration (Language row, labels via TextId).  
 > **Scope:** Native PS Vita client UI strings only. Catalog / external data is **not** translated.  
 > **Branch policy:** Changes for this feature go directly to `main`; do not create feature branches for the implementation.
 
@@ -423,15 +423,15 @@ If a language file is removed from a future build while a user had manually sele
 - Add config persistence.
 - No broad UI migration yet.
 
-### Phase 3 — Controlled UI test
+### Phase 3 — Controlled UI test ✅
 
 Migrate a small, low-risk portion of Settings first:
 
-- Language;
+- Language (System / Automatic + manual cycle of available languages);
 - Color theme;
-- existing Settings labels/options.
+- existing Settings labels/options (via `TextId` + `L()`).
 
-Validate on Vita3K and real hardware before continuing.
+**Implemented:** Settings screen strings load from `app0:lang/*.lang`. Changing Language applies immediately and persists with Save. Validate on Vita3K and real hardware before Phase 5 broad migration.
 
 ### Phase 4 — Spanish
 

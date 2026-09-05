@@ -1,4 +1,5 @@
 /* PSVitaAlive - native client entry point. */
+#include "localization/localization.hpp"
 #include <psp2/kernel/processmgr.h>
 #include <psp2/kernel/clib.h>
 #include <psp2/kernel/threadmgr.h>
@@ -687,9 +688,16 @@ int main(){
         
     screen.setAppSettings(installer.settings());
     screen.setPluginStatus(installer.plugins());
+    if (!psvitaalive::LocalizationManager::instance().initialize(installer.settings())) {
+        psvitaalive::diagnostics::log("[System] LocalizationManager initialize failed — English fallback");
+    } else {
+        psvitaalive::diagnostics::log(std::string("[System] UI language=") +
+            psvitaalive::LocalizationManager::instance().currentLanguageName());
+    }
     screen.setSettingsSaveCallback([&installer, &screen](const psvitaalive::AppSettingsData& s) {
         installer.setSettings(s);
         screen.setAppSettings(s);
+        psvitaalive::LocalizationManager::instance().setMode(s.languageMode, s.language);
     });
 
     // Plugin warnings (settings.warn_missing_plugins)

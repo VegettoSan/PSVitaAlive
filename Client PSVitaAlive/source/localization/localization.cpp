@@ -161,6 +161,38 @@ const char* LocalizationManager::keyFor(TextId id) {
         case TextId::SystemAutomatic: return "SYSTEM_AUTOMATIC";
         case TextId::English: return "ENGLISH";
         case TextId::Spanish: return "SPANISH";
+        case TextId::ColorTheme: return "COLOR_THEME";
+        case TextId::InstallMethod: return "INSTALL_METHOD";
+        case TextId::PspPs1Target: return "PSP_PS1_TARGET";
+        case TextId::PspMediaAdrenaline: return "PSP_MEDIA_ADRENALINE";
+        case TextId::WarnMissingPlugins: return "WARN_MISSING_PLUGINS";
+        case TextId::PromptImageDownload: return "PROMPT_IMAGE_DOWNLOAD";
+        case TextId::CheckForUpdates: return "CHECK_FOR_UPDATES";
+        case TextId::Auto: return "AUTO";
+        case TextId::Direct: return "DIRECT";
+        case TextId::Adrenaline: return "ADRENALINE";
+        case TextId::LiveArea: return "LIVEAREA";
+        case TextId::Folder: return "FOLDER";
+        case TextId::Iso: return "ISO";
+        case TextId::Yes: return "YES";
+        case TextId::No: return "NO";
+        case TextId::SectionInstall: return "SECTION_INSTALL";
+        case TextId::SectionInterface: return "SECTION_INTERFACE";
+        case TextId::SectionCatalog: return "SECTION_CATALOG";
+        case TextId::SectionUpdates: return "SECTION_UPDATES";
+        case TextId::Info: return "INFO";
+        case TextId::System: return "SYSTEM";
+        case TextId::SettingsSaved: return "SETTINGS_SAVED";
+        case TextId::SettingsFooter: return "SETTINGS_FOOTER";
+        case TextId::SettingsSaveBack: return "SETTINGS_SAVE_BACK";
+        case TextId::HintInstallMethod: return "HINT_INSTALL_METHOD";
+        case TextId::HintPspTarget: return "HINT_PSP_TARGET";
+        case TextId::HintPspMedia: return "HINT_PSP_MEDIA";
+        case TextId::HintLanguage: return "HINT_LANGUAGE";
+        case TextId::HintColorTheme: return "HINT_COLOR_THEME";
+        case TextId::HintWarnPlugins: return "HINT_WARN_PLUGINS";
+        case TextId::HintImageWarmup: return "HINT_IMAGE_WARMUP";
+        case TextId::HintSelfUpdate: return "HINT_SELF_UPDATE";
         default: return "";
     }
 }
