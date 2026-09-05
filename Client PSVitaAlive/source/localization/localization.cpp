@@ -350,6 +350,13 @@ const char* LocalizationManager::keyFor(TextId id) {
         case TextId::CancelledFriendlyMsg: return "CANCELLED_FRIENDLY_MSG";
         case TextId::SquareReportHint: return "SQUARE_REPORT_HINT";
         case TextId::CircleCloseHint: return "CIRCLE_CLOSE_HINT";
+        case TextId::NoLiveAreaFilesOnly: return "NO_LIVEAREA_FILES_ONLY";
+        case TextId::LiveAreaOk: return "LIVEAREA_OK";
+        case TextId::LiveAreaNotConfirmed: return "LIVEAREA_NOT_CONFIRMED";
+        case TextId::LiveAreaNa: return "LIVEAREA_NA";
+        case TextId::LabelPath: return "LABEL_PATH";
+        case TextId::MetaXSelect: return "META_X_SELECT";
+        case TextId::ToastAllInstalled: return "TOAST_ALL_INSTALLED";
         default: return "";
     }
 }

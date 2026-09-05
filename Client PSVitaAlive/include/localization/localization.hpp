@@ -194,6 +194,13 @@ enum class TextId {
     CancelledFriendlyMsg,
     SquareReportHint,
     CircleCloseHint,
+    NoLiveAreaFilesOnly,
+    LiveAreaOk,
+    LiveAreaNotConfirmed,
+    LiveAreaNa,
+    LabelPath,
+    MetaXSelect,
+    ToastAllInstalled,
     Count
 };
 
