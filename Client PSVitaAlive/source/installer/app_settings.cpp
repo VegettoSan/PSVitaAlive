@@ -81,114 +81,51 @@ PspMediaFormat AppSettings::parsePspMediaFormat(const std::string& s) {
 
 const char* AppSettings::toString(ColorTheme t) {
     switch (t) {
-        case ColorTheme::Cyan: return "cyan";
-        case ColorTheme::Rose: return "rose";
-        case ColorTheme::Amber: return "amber";
-        case ColorTheme::Violet: return "violet";
-        case ColorTheme::Mono: return "mono";
-        case ColorTheme::Oled: return "oled";
-        case ColorTheme::PsVita: return "psvita";
-        case ColorTheme::Crimson: return "crimson";
-        case ColorTheme::Coffee: return "coffee";
-        case ColorTheme::Gold: return "gold";
-        case ColorTheme::Emerald: return "emerald";
-        case ColorTheme::Coral: return "coral";
-        case ColorTheme::Teal: return "teal";
-        case ColorTheme::Indigo: return "indigo";
-        case ColorTheme::Sky: return "sky";
-        case ColorTheme::Magenta: return "magenta";
-        case ColorTheme::Mint: return "mint";
-        case ColorTheme::Sunset: return "sunset";
-        case ColorTheme::Ocean: return "ocean";
-        case ColorTheme::Lavender: return "lavender";
-        case ColorTheme::Cherry: return "cherry";
-        case ColorTheme::Sand: return "sand";
-        case ColorTheme::Forest: return "forest";
-        case ColorTheme::Ice: return "ice";
-        case ColorTheme::Grape: return "grape";
-        case ColorTheme::Peach: return "peach";
-        case ColorTheme::Azure: return "azure";
-        case ColorTheme::Steel: return "steel";
-        case ColorTheme::Honey: return "honey";
-        case ColorTheme::Midnight: return "midnight";
-        case ColorTheme::Sakura: return "sakura";
-        case ColorTheme::Matrix: return "matrix";
-        case ColorTheme::Scarlet: return "scarlet";
-        case ColorTheme::Orange: return "orange";
-        case ColorTheme::White: return "white";
-        case ColorTheme::Snow: return "snow";
-        case ColorTheme::Ivory: return "ivory";
-        case ColorTheme::Khaki: return "khaki";
-        case ColorTheme::Terracotta: return "terracotta";
-        case ColorTheme::Ruby: return "ruby";
-        case ColorTheme::Copper: return "copper";
-        case ColorTheme::Olive: return "olive";
-        case ColorTheme::Maroon: return "maroon";
-        case ColorTheme::Turquoise: return "turquoise";
-        case ColorTheme::Lemon: return "lemon";
-        case ColorTheme::Plum: return "plum";
-        case ColorTheme::Navy: return "navy";
-        case ColorTheme::Rust: return "rust";
-        case ColorTheme::Champagne: return "champagne";
-        case ColorTheme::Graphite: return "graphite";
-        case ColorTheme::NeonLime:
-        default: return "neon";
+        case ColorTheme::Cyan: return "cyan"; case ColorTheme::Rose: return "rose"; case ColorTheme::Amber: return "amber";
+        case ColorTheme::Violet: return "violet"; case ColorTheme::Mono: return "mono"; case ColorTheme::Oled: return "oled";
+        case ColorTheme::PsVita: return "psvita"; case ColorTheme::Crimson: return "crimson"; case ColorTheme::Coffee: return "coffee";
+        case ColorTheme::Gold: return "gold"; case ColorTheme::Emerald: return "emerald"; case ColorTheme::Coral: return "coral";
+        case ColorTheme::Teal: return "teal"; case ColorTheme::Indigo: return "indigo"; case ColorTheme::Sky: return "sky";
+        case ColorTheme::Magenta: return "magenta"; case ColorTheme::Mint: return "mint"; case ColorTheme::Sunset: return "sunset";
+        case ColorTheme::Ocean: return "ocean"; case ColorTheme::Lavender: return "lavender"; case ColorTheme::Cherry: return "cherry";
+        case ColorTheme::Sand: return "sand"; case ColorTheme::Forest: return "forest"; case ColorTheme::Ice: return "ice";
+        case ColorTheme::Grape: return "grape"; case ColorTheme::Peach: return "peach"; case ColorTheme::Azure: return "azure";
+        case ColorTheme::Steel: return "steel"; case ColorTheme::Honey: return "honey"; case ColorTheme::Midnight: return "midnight";
+        case ColorTheme::Sakura: return "sakura"; case ColorTheme::Matrix: return "matrix"; case ColorTheme::Scarlet: return "scarlet";
+        case ColorTheme::Orange: return "orange"; case ColorTheme::White: return "white"; case ColorTheme::Snow: return "snow";
+        case ColorTheme::Ivory: return "ivory"; case ColorTheme::Khaki: return "khaki"; case ColorTheme::Terracotta: return "terracotta";
+        case ColorTheme::Ruby: return "ruby"; case ColorTheme::Copper: return "copper"; case ColorTheme::Olive: return "olive";
+        case ColorTheme::Maroon: return "maroon"; case ColorTheme::Turquoise: return "turquoise"; case ColorTheme::Lemon: return "lemon";
+        case ColorTheme::Plum: return "plum"; case ColorTheme::Navy: return "navy"; case ColorTheme::Rust: return "rust";
+        case ColorTheme::Champagne: return "champagne"; case ColorTheme::Graphite: return "graphite";
+        case ColorTheme::NeonLime: default: return "neon";
     }
 }
 
 ColorTheme AppSettings::parseColorTheme(const std::string& s) {
-    if (s == "cyan" || s == "blue") return ColorTheme::Cyan;
-    if (s == "rose" || s == "pink" || s == "rosal") return ColorTheme::Rose;
-    if (s == "amber") return ColorTheme::Amber;
-    if (s == "violet" || s == "purple") return ColorTheme::Violet;
-    if (s == "mono" || s == "gray" || s == "grey") return ColorTheme::Mono;
-    if (s == "oled" || s == "black") return ColorTheme::Oled;
-    if (s == "psvita" || s == "vita" || s == "playstation") return ColorTheme::PsVita;
-    if (s == "crimson") return ColorTheme::Crimson;
-    if (s == "coffee" || s == "brown" || s == "cafe") return ColorTheme::Coffee;
-    if (s == "gold") return ColorTheme::Gold;
-    if (s == "emerald") return ColorTheme::Emerald;
-    if (s == "coral") return ColorTheme::Coral;
-    if (s == "teal") return ColorTheme::Teal;
-    if (s == "indigo") return ColorTheme::Indigo;
-    if (s == "sky") return ColorTheme::Sky;
-    if (s == "magenta" || s == "fuchsia") return ColorTheme::Magenta;
-    if (s == "mint") return ColorTheme::Mint;
-    if (s == "sunset") return ColorTheme::Sunset;
-    if (s == "ocean") return ColorTheme::Ocean;
-    if (s == "lavender") return ColorTheme::Lavender;
-    if (s == "cherry") return ColorTheme::Cherry;
-    if (s == "sand" || s == "beige") return ColorTheme::Sand;
-    if (s == "forest") return ColorTheme::Forest;
-    if (s == "ice") return ColorTheme::Ice;
-    if (s == "grape") return ColorTheme::Grape;
-    if (s == "peach") return ColorTheme::Peach;
-    if (s == "azure") return ColorTheme::Azure;
-    if (s == "steel") return ColorTheme::Steel;
-    if (s == "honey") return ColorTheme::Honey;
-    if (s == "midnight") return ColorTheme::Midnight;
-    if (s == "sakura") return ColorTheme::Sakura;
-    if (s == "matrix") return ColorTheme::Matrix;
-    if (s == "scarlet" || s == "red") return ColorTheme::Scarlet;
-    if (s == "orange") return ColorTheme::Orange;
-    if (s == "white") return ColorTheme::White;
-    if (s == "snow") return ColorTheme::Snow;
-    if (s == "ivory") return ColorTheme::Ivory;
-    if (s == "khaki") return ColorTheme::Khaki;
-    if (s == "terracotta") return ColorTheme::Terracotta;
-    if (s == "ruby") return ColorTheme::Ruby;
-    if (s == "copper") return ColorTheme::Copper;
-    if (s == "olive") return ColorTheme::Olive;
-    if (s == "maroon") return ColorTheme::Maroon;
-    if (s == "turquoise") return ColorTheme::Turquoise;
-    if (s == "lemon" || s == "yellow") return ColorTheme::Lemon;
-    if (s == "plum") return ColorTheme::Plum;
-    if (s == "navy") return ColorTheme::Navy;
-    if (s == "rust") return ColorTheme::Rust;
-    if (s == "champagne") return ColorTheme::Champagne;
-    if (s == "graphite") return ColorTheme::Graphite;
-    return ColorTheme::NeonLime;
+    if (s == "cyan" || s == "blue") return ColorTheme::Cyan; if (s == "rose" || s == "pink" || s == "rosal") return ColorTheme::Rose;
+    if (s == "amber") return ColorTheme::Amber; if (s == "violet" || s == "purple") return ColorTheme::Violet;
+    if (s == "mono" || s == "gray" || s == "grey") return ColorTheme::Mono; if (s == "oled" || s == "black") return ColorTheme::Oled;
+    if (s == "psvita" || s == "vita" || s == "playstation") return ColorTheme::PsVita; if (s == "crimson") return ColorTheme::Crimson;
+    if (s == "coffee" || s == "brown" || s == "cafe") return ColorTheme::Coffee; if (s == "gold") return ColorTheme::Gold;
+    if (s == "emerald") return ColorTheme::Emerald; if (s == "coral") return ColorTheme::Coral; if (s == "teal") return ColorTheme::Teal;
+    if (s == "indigo") return ColorTheme::Indigo; if (s == "sky") return ColorTheme::Sky; if (s == "magenta" || s == "fuchsia") return ColorTheme::Magenta;
+    if (s == "mint") return ColorTheme::Mint; if (s == "sunset") return ColorTheme::Sunset; if (s == "ocean") return ColorTheme::Ocean;
+    if (s == "lavender") return ColorTheme::Lavender; if (s == "cherry") return ColorTheme::Cherry; if (s == "sand" || s == "beige") return ColorTheme::Sand;
+    if (s == "forest") return ColorTheme::Forest; if (s == "ice") return ColorTheme::Ice; if (s == "grape") return ColorTheme::Grape;
+    if (s == "peach") return ColorTheme::Peach; if (s == "azure") return ColorTheme::Azure; if (s == "steel") return ColorTheme::Steel;
+    if (s == "honey") return ColorTheme::Honey; if (s == "midnight") return ColorTheme::Midnight; if (s == "sakura") return ColorTheme::Sakura;
+    if (s == "matrix") return ColorTheme::Matrix; if (s == "scarlet" || s == "red") return ColorTheme::Scarlet; if (s == "orange") return ColorTheme::Orange;
+    if (s == "white") return ColorTheme::White; if (s == "snow") return ColorTheme::Snow; if (s == "ivory") return ColorTheme::Ivory;
+    if (s == "khaki") return ColorTheme::Khaki; if (s == "terracotta") return ColorTheme::Terracotta; if (s == "ruby") return ColorTheme::Ruby;
+    if (s == "copper") return ColorTheme::Copper; if (s == "olive") return ColorTheme::Olive; if (s == "maroon") return ColorTheme::Maroon;
+    if (s == "turquoise") return ColorTheme::Turquoise; if (s == "lemon" || s == "yellow") return ColorTheme::Lemon; if (s == "plum") return ColorTheme::Plum;
+    if (s == "navy") return ColorTheme::Navy; if (s == "rust") return ColorTheme::Rust; if (s == "champagne") return ColorTheme::Champagne;
+    if (s == "graphite") return ColorTheme::Graphite; return ColorTheme::NeonLime;
 }
+
+const char* AppSettings::toString(LanguageMode m) { return m == LanguageMode::Manual ? "manual" : "system"; }
+LanguageMode AppSettings::parseLanguageMode(const std::string& s) { return s == "manual" ? LanguageMode::Manual : LanguageMode::System; }
 
 AppSettingsData AppSettings::load() {
     AppSettingsData data;
@@ -206,30 +143,25 @@ AppSettingsData AppSettings::load() {
     if (containsKey(json, "psp_target", v)) data.pspTarget = parsePspTarget(v);
     if (containsKey(json, "psp_media_format", v)) data.pspMediaFormat = parsePspMediaFormat(v);
     if (containsKey(json, "color_theme", v)) data.colorTheme = parseColorTheme(v);
+    if (containsKey(json, "language_mode", v)) data.languageMode = parseLanguageMode(v);
+    if (containsKey(json, "language", v) && !v.empty()) data.language = v;
     bool b = true;
     if (containsBool(json, "warn_missing_plugins", b)) data.warnMissingPlugins = b;
     if (containsBool(json, "prompt_image_warmup", b)) data.promptImageWarmup = b;
-    const bool hasThemeSetupDone = containsBool(json, "theme_setup_done", b);
-    if (hasThemeSetupDone) data.themeSetupDone = b;
-    else data.themeSetupDone = true;
-    const bool hasStartupPluginDetection = containsBool(json, "startup_plugin_detection", b);
-    if (hasStartupPluginDetection) data.startupPluginDetection = b;
-    const bool hasStartupUpdateCheck = containsBool(json, "startup_update_check", b);
-    if (hasStartupUpdateCheck) data.startupUpdateCheck = b;
+    const bool hasThemeSetupDone = containsBool(json, "theme_setup_done", b); if (hasThemeSetupDone) data.themeSetupDone = b; else data.themeSetupDone = true;
+    const bool hasStartupPluginDetection = containsBool(json, "startup_plugin_detection", b); if (hasStartupPluginDetection) data.startupPluginDetection = b;
+    const bool hasStartupUpdateCheck = containsBool(json, "startup_update_check", b); if (hasStartupUpdateCheck) data.startupUpdateCheck = b;
 
-    if (!hasStartupPluginDetection || !hasStartupUpdateCheck || !hasThemeSetupDone)
-        save(data);
-
-    sceClibPrintf("[AppSettings] loaded theme=%s\n", toString(data.colorTheme));
+    if (!hasStartupPluginDetection || !hasStartupUpdateCheck || !hasThemeSetupDone) save(data);
+    sceClibPrintf("[AppSettings] loaded theme=%s language_mode=%s language=%s\n", toString(data.colorTheme), toString(data.languageMode), data.language.c_str());
     return data;
 }
 
 bool AppSettings::save(const AppSettingsData& data) {
     StorageManager st;
     st.createDirectories(StorageManager::BASE_DIR);
-    char json[896];
-    sceClibSnprintf(
-        json, sizeof(json),
+    char json[1024];
+    sceClibSnprintf(json, sizeof(json),
         "{\n"
         "  \"install_method\": \"%s\",\n"
         "  \"psp_target\": \"%s\",\n"
@@ -239,22 +171,16 @@ bool AppSettings::save(const AppSettingsData& data) {
         "  \"prompt_image_warmup\": %s,\n"
         "  \"theme_setup_done\": %s,\n"
         "  \"startup_plugin_detection\": %s,\n"
-        "  \"startup_update_check\": %s\n"
+        "  \"startup_update_check\": %s,\n"
+        "  \"language_mode\": \"%s\",\n"
+        "  \"language\": \"%s\"\n"
         "}\n",
-        toString(data.installMethod),
-        toString(data.pspTarget),
-        toString(data.pspMediaFormat),
-        toString(data.colorTheme),
-        data.warnMissingPlugins ? "true" : "false",
-        data.promptImageWarmup ? "true" : "false",
-        data.themeSetupDone ? "true" : "false",
-        data.startupPluginDetection ? "true" : "false",
-        data.startupUpdateCheck ? "true" : "false");
+        toString(data.installMethod), toString(data.pspTarget), toString(data.pspMediaFormat), toString(data.colorTheme),
+        data.warnMissingPlugins ? "true" : "false", data.promptImageWarmup ? "true" : "false", data.themeSetupDone ? "true" : "false",
+        data.startupPluginDetection ? "true" : "false", data.startupUpdateCheck ? "true" : "false", toString(data.languageMode), data.language.c_str());
     SceUID fd = sceIoOpen(kConfigPath, SCE_O_WRONLY | SCE_O_CREAT | SCE_O_TRUNC, 0666);
     if (fd < 0) return false;
-    const int wr = sceIoWrite(fd, json, std::strlen(json));
-    sceIoClose(fd);
-    return wr > 0;
+    const int wr = sceIoWrite(fd, json, std::strlen(json)); sceIoClose(fd); return wr > 0;
 }
 
 } // namespace psvitaalive
