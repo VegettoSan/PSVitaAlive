@@ -1455,7 +1455,7 @@ void FullCatalogScreen::runNewsCheck(bool forceShow) {
     if (!item.valid || !item.enabled) {
         if (forceShow) {
             newsCheckedOnce_ = true;
-            showToast("No news available", 1600);
+            showToast(::psvitaalive::L(::psvitaalive::TextId::ToastNoNews), 1600);
             diagnostics::log("[UI] news check: no valid item (force)");
             return;
         }
@@ -1623,7 +1623,7 @@ void FullCatalogScreen::drawNewsOverlay() {
     vita2d_draw_rectangle(x + w - 3, y + 3, 3, h - 6, BORDER);
     vita2d_draw_rectangle(x, y + h - 3, w, 3, BORDER);
 
-    vita2d_pgf_draw_text(font_, x + 24, y + 36, ACCENT, 0.82f, "NEWS");
+    vita2d_pgf_draw_text(font_, x + 24, y + 36, ACCENT, 0.82f, ::psvitaalive::L(::psvitaalive::TextId::NewsTitle));
     vita2d_pgf_draw_text(font_, x + 24, y + 68, WHITE, 1.00f,
                          ellipsize(newsTitle_, 52).c_str());
 
@@ -1811,11 +1811,11 @@ void FullCatalogScreen::drawDataRequestConfirmOverlay() {
     vita2d_draw_rectangle(x + w - 3, y + 3, 3, h - 6, BORDER);
     vita2d_draw_rectangle(x, y + h - 3, w, 3, BORDER);
 
-    vita2d_pgf_draw_text(font_, x + 24, y + 40, ACC, 0.86f, "REQUEST DATA / GAME FILES");
-    vita2d_pgf_draw_text(font_, x + 24, y + 78, WHITE, 0.78f, "This app has no Data/Game Files links.");
-    vita2d_pgf_draw_text(font_, x + 24, y + 110, TEXT, 0.72f, "Send a request so we can look for them.");
-    vita2d_pgf_draw_text(font_, x + 24, y + 136, TEXT, 0.72f, "It may take several days — we will add them");
-    vita2d_pgf_draw_text(font_, x + 24, y + 162, TEXT, 0.72f, "when available. Thank you for your patience.");
+    vita2d_pgf_draw_text(font_, x + 24, y + 40, ACC, 0.86f, ::psvitaalive::L(::psvitaalive::TextId::DataRequestTitle));
+    vita2d_pgf_draw_text(font_, x + 24, y + 78, WHITE, 0.78f, ::psvitaalive::L(::psvitaalive::TextId::DataRequestBody1));
+    vita2d_pgf_draw_text(font_, x + 24, y + 110, TEXT, 0.72f, ::psvitaalive::L(::psvitaalive::TextId::DataRequestBody2));
+    vita2d_pgf_draw_text(font_, x + 24, y + 136, TEXT, 0.72f, ::psvitaalive::L(::psvitaalive::TextId::DataRequestBody3));
+    vita2d_pgf_draw_text(font_, x + 24, y + 162, TEXT, 0.72f, ::psvitaalive::L(::psvitaalive::TextId::DataRequestBody4));
 
     const int by = y + h - 56, bh = 40, bw = 180, gap = 24;
     const int bxCancel = x + (w - (bw * 2 + gap)) / 2;
@@ -1832,7 +1832,7 @@ void FullCatalogScreen::drawDataRequestConfirmOverlay() {
     }
     vita2d_draw_rectangle(bxSend, by, bw, bh, ACC);
     {
-        const char* lab = "X  Send";
+        const char* lab = ::psvitaalive::L(::psvitaalive::TextId::DataRequestSend);
         const float sc = 0.74f;
         const int tw = vita2d_pgf_text_width(font_, sc, lab);
         vita2d_pgf_draw_text(font_, bxSend + (bw - tw) / 2, by + 27, BG, sc, lab);
@@ -1915,7 +1915,7 @@ int FullCatalogScreen::dataRequestWorkerEntry(SceSize args, void* argp) {
 
 void FullCatalogScreen::trySendDataRequest() {
     if (dataRequestBusy_.load()) {
-        showToast("Request already in progress", 1500);
+        showToast(::psvitaalive::L(::psvitaalive::TextId::ToastRequestInProgress), 1500);
         return;
     }
     dataRequestBusy_.store(true);
@@ -1929,11 +1929,11 @@ void FullCatalogScreen::trySendDataRequest() {
         0x10000100, 32 * 1024, 0, 0, nullptr);
     if (dataRequestThread_ < 0) {
         dataRequestBusy_.store(false);
-        showToast("Could not start request", 1800);
+        showToast(::psvitaalive::L(::psvitaalive::TextId::ToastCouldNotStartRequest), 1800);
         return;
     }
     sceKernelStartThread(dataRequestThread_, sizeof(self), &self);
-    showToast("Sending request…", 1200);
+    showToast(::psvitaalive::L(::psvitaalive::TextId::ToastSendingRequest), 1200);
 }
 
 void FullCatalogScreen::pollDataRequestWorker() {
@@ -1944,7 +1944,7 @@ void FullCatalogScreen::pollDataRequestWorker() {
         sceKernelDeleteThread(dataRequestThread_);
         dataRequestThread_ = -1;
     }
-    showToast(dataRequestResultMsg_[0] ? dataRequestResultMsg_ : (dataRequestOk_.load() ? "Request sent" : "Request failed"),
+    showToast(dataRequestResultMsg_[0] ? dataRequestResultMsg_ : (dataRequestOk_.load() ? ::psvitaalive::L(::psvitaalive::TextId::ToastRequestSent) : ::psvitaalive::L(::psvitaalive::TextId::ToastRequestFailed)),
               2200);
 }
 
@@ -2021,7 +2021,7 @@ int FullCatalogScreen::reportWorkerEntry(SceSize args, void* argp) {
     const auto res = ::psvitaalive::sendErrorReport(req);
     self->reportOk_.store(res.ok);
     sceClibSnprintf(self->reportResultMsg_, sizeof(self->reportResultMsg_), "%s",
-                    res.message.empty() ? (res.ok ? "Report sent" : "Report failed") : res.message.c_str());
+                    res.message.empty() ? (res.ok ? ::psvitaalive::L(::psvitaalive::TextId::ToastReportSent) : ::psvitaalive::L(::psvitaalive::TextId::ToastReportFailed)) : res.message.c_str());
     self->reportDone_.store(true);
     self->reportBusy_.store(false);
     return 0;
@@ -2039,8 +2039,8 @@ void FullCatalogScreen::pollReportWorker() {
     reportUiState_ = ok ? 2 : 3;
     sceClibSnprintf(reportUiMsg_, sizeof(reportUiMsg_), "%s", reportResultMsg_);
     reportUiUntilMs_ = sceKernelGetProcessTimeWide() / 1000ULL + 3500ULL;
-    showToast(ok ? (reportResultMsg_[0] ? reportResultMsg_ : "Report sent")
-                 : (reportResultMsg_[0] ? reportResultMsg_ : "Report failed"),
+    showToast(ok ? (reportResultMsg_[0] ? reportResultMsg_ : ::psvitaalive::L(::psvitaalive::TextId::ToastReportSent))
+                 : (reportResultMsg_[0] ? reportResultMsg_ : ::psvitaalive::L(::psvitaalive::TextId::ToastReportFailed)),
               2200);
     diagnostics::log(std::string("[UI] error report finished ok=") + (ok ? "1" : "0") +
                      " msg=" + reportResultMsg_);
@@ -2110,7 +2110,7 @@ void FullCatalogScreen::trySendErrorReport(const std::string& title, const std::
         const auto res = ::psvitaalive::sendErrorReport(req);
         reportUiState_ = res.ok ? 2 : 3;
         reportUiUntilMs_ = sceKernelGetProcessTimeWide() / 1000ULL + 3500ULL;
-        showToast(res.ok ? "Report sent" : (res.message.empty() ? "Report failed" : res.message), 2200);
+        showToast(res.ok ? ::psvitaalive::L(::psvitaalive::TextId::ToastReportSent) : (res.message.empty() ? ::psvitaalive::L(::psvitaalive::TextId::ToastReportFailed) : res.message), 2200);
         return;
     }
     FullCatalogScreen* self = this;
@@ -2119,7 +2119,7 @@ void FullCatalogScreen::trySendErrorReport(const std::string& title, const std::
         reportThread_ = -1;
         reportBusy_.store(false);
         reportUiState_ = 0;
-        showToast("Report failed to start", 1800);
+        showToast(::psvitaalive::L(::psvitaalive::TextId::ToastReportFailedStart), 1800);
     }
 }
 
@@ -3466,7 +3466,7 @@ void FullCatalogScreen::pollSelfUpdateProgress() {
             cur,
             tot,
             0,
-            "Self-update",
+            ::psvitaalive::L(::psvitaalive::TextId::SelfUpdateStage),
             "PSVitaAlive.vpk",
             selfUpdateMsg_[0] ? selfUpdateMsg_ : "Updating...",
             0,
@@ -3482,7 +3482,7 @@ void FullCatalogScreen::pollSelfUpdateProgress() {
             1,
             1,
             0,
-            "Self-update",
+            ::psvitaalive::L(::psvitaalive::TextId::SelfUpdateStage),
             "PSVitaAlive.vpk",
             selfUpdateMsg_[0] ? selfUpdateMsg_ : (ok ? "Update installed — press START to exit, then reopen" : "Update failed"),
             ok ? 1 : 2,
@@ -3536,10 +3536,10 @@ void FullCatalogScreen::triggerSelfUpdateAction() {
         selfUpdateOk_.store(false);
         selfUpdateCur_.store(0);
         selfUpdateTot_.store(selfUpdateInfo_.assetSize);
-        sceClibSnprintf(selfUpdateMsg_, sizeof(selfUpdateMsg_), "Starting update...");
+        sceClibSnprintf(selfUpdateMsg_, sizeof(selfUpdateMsg_), "%s", ::psvitaalive::L(::psvitaalive::TextId::SelfUpdateStarting));
         closeSettings(true);
-        setInstallProgress(true, 0, selfUpdateInfo_.assetSize, 0, "Self-update", "PSVitaAlive.vpk",
-                           "Starting update...", 0, false);
+        setInstallProgress(true, 0, selfUpdateInfo_.assetSize, 0, ::psvitaalive::L(::psvitaalive::TextId::SelfUpdateStage), "PSVitaAlive.vpk",
+                           ::psvitaalive::L(::psvitaalive::TextId::SelfUpdateStarting), 0, false);
 
         FullCatalogScreen* self = this;
         selfUpdateThread_ = sceKernelCreateThread(
@@ -3553,9 +3553,9 @@ void FullCatalogScreen::triggerSelfUpdateAction() {
         );
         if (selfUpdateThread_ < 0) {
             selfUpdateBusy_.store(false);
-            setInstallProgress(true, 0, 0, 0, "Self-update", "PSVitaAlive.vpk",
-                               "Could not start update thread", 2, false);
-            showToast("Update thread failed", 2000);
+            setInstallProgress(true, 0, 0, 0, ::psvitaalive::L(::psvitaalive::TextId::SelfUpdateStage), "PSVitaAlive.vpk",
+                               ::psvitaalive::L(::psvitaalive::TextId::SelfUpdateThreadFailed), 2, false);
+            showToast(::psvitaalive::L(::psvitaalive::TextId::ToastUpdateThreadFailed), 2000);
             return;
         }
         const int st = sceKernelStartThread(selfUpdateThread_, sizeof(self), &self);
@@ -3563,23 +3563,23 @@ void FullCatalogScreen::triggerSelfUpdateAction() {
             sceKernelDeleteThread(selfUpdateThread_);
             selfUpdateThread_ = -1;
             selfUpdateBusy_.store(false);
-            setInstallProgress(true, 0, 0, 0, "Self-update", "PSVitaAlive.vpk",
-                               "Could not start update thread", 2, false);
+            setInstallProgress(true, 0, 0, 0, ::psvitaalive::L(::psvitaalive::TextId::SelfUpdateStage), "PSVitaAlive.vpk",
+                               ::psvitaalive::L(::psvitaalive::TextId::SelfUpdateThreadFailed), 2, false);
             return;
         }
         diagnostics::log("[UI] self-update apply started");
         return;
     }
 
-    showToast("Checking GitHub for updates...", 1200);
+    showToast(::psvitaalive::L(::psvitaalive::TextId::ToastCheckingUpdates), 1200);
     selfUpdateInfo_ = ::psvitaalive::UpdateChecker::checkLatest(PSVITAALIVE_VERSION);
     selfUpdateChecked_ = true;
     if (selfUpdateInfo_.state == ::psvitaalive::UpdateChecker::State::UpdateAvailable) {
-        showToast(std::string("Update ") + selfUpdateInfo_.remoteVersion + " available — press X to install", 2800);
+        showToast(std::string(::psvitaalive::L(::psvitaalive::TextId::ToastUpdateAvailablePrefix)) + selfUpdateInfo_.remoteVersion + ::psvitaalive::L(::psvitaalive::TextId::ToastUpdateAvailableSuffix), 2800);
     } else if (selfUpdateInfo_.state == ::psvitaalive::UpdateChecker::State::UpToDate) {
-        showToast(std::string("Already up to date (v") + selfUpdateInfo_.localVersion + ")", 2200);
+        showToast(std::string(::psvitaalive::L(::psvitaalive::TextId::ToastUpToDatePrefix)) + selfUpdateInfo_.localVersion + ::psvitaalive::L(::psvitaalive::TextId::ToastUpToDateSuffix), 2200);
     } else {
-        showToast(selfUpdateInfo_.error.empty() ? "Update check failed" : selfUpdateInfo_.error, 2600);
+        showToast(selfUpdateInfo_.error.empty() ? ::psvitaalive::L(::psvitaalive::TextId::UpdateCheckFailed) : selfUpdateInfo_.error, 2600);
     }
 }
 
@@ -4030,7 +4030,7 @@ if(pressed&SCE_CTRL_START){
         }
         // After a successful self-update the running binary is stale — force exit.
         if(installProgressActive_ && installOutcome_==1 &&
-           installProgressStage_.find("Self-update")!=std::string::npos){
+           installProgressStage_.find(::psvitaalive::L(::psvitaalive::TextId::SelfUpdateStage))!=std::string::npos){
             sceKernelExitProcess(0);
             return;
         }
@@ -4046,7 +4046,7 @@ if(pressed&SCE_CTRL_START){
         }else if(catalogLoading_){
             showToast(::psvitaalive::L(::psvitaalive::TextId::ChangingCatalog), 2200);
         }else if(catalogSwitchCooldownFrames_>0||!deferredFreeTextures_.empty()){
-            showToast("Please wait...", 900);
+            showToast(::psvitaalive::L(::psvitaalive::TextId::ToastPleaseWait), 900);
         }
         return;
     }if(installAllPhase_!=InstallAllPhase::Hidden&&installAllPhase_!=InstallAllPhase::Running){
@@ -4144,9 +4144,9 @@ unsigned FullCatalogScreen::colorForStatus(const std::string&s)const{if(s=="Veri
     if (searchQuery_.empty()) {
         vita2d_pgf_draw_text(font_, barX + 12, barY + 22, DIM, 0.66f, ::psvitaalive::L(::psvitaalive::TextId::SearchPlaceholder));
     } else {
-        vita2d_pgf_draw_text(font_, barX + 12, barY + 22, ACCENT, 0.64f, "FILTER");
+        vita2d_pgf_draw_text(font_, barX + 12, barY + 22, ACCENT, 0.64f, ::psvitaalive::L(::psvitaalive::TextId::FilterActiveLabel));
         vita2d_pgf_draw_text(font_, barX + 78, barY + 22, WHITE, 0.66f, ellipsize(searchQuery_, 20).c_str());
-        vita2d_pgf_draw_text(font_, barX + barW - 52, barY + 21, DIM, 0.52f, "□ clear");
+        vita2d_pgf_draw_text(font_, barX + barW - 52, barY + 21, DIM, 0.52f, ::psvitaalive::L(::psvitaalive::TextId::FilterClearHint));
     }
     // Content filter chip immediately right of search (never drawn on top of the bar)
     if (showContentFilter) {
@@ -4867,7 +4867,7 @@ void FullCatalogScreen::drawCatalogCard(const CatalogItem&it,int idx,int x,int y
     vita2d_set_clip_rectangle(std::max(x + ox, clipL), std::max(y + oy, clipT),
                               std::min(x + ox + ww, clipR), std::min(y + oy + hh, clipB));
     vita2d_pgf_draw_text(font_, tx, y + (compact ? 44 : 50) + oy, TEXT, compact ? 0.74f : 0.82f,
-        ellipsize(it.author.empty() ? "Unknown author" : it.author, compact ? 16 : 18).c_str());
+        ellipsize(it.author.empty() ? ::psvitaalive::L(::psvitaalive::TextId::UnknownAuthor) : it.author, compact ? 16 : 18).c_str());
     vita2d_pgf_draw_text(font_, tx, y + (compact ? 64 : 72) + oy, colorForStatus(it.status), compact ? 0.72f : 0.80f,
         ellipsize(it.status, 14).c_str());
     // Version / date bottom-left; size always bottom-right when known (all catalogs).
@@ -5371,7 +5371,7 @@ void FullCatalogScreen::collectInstallAllOptions(const CatalogItem& item, const 
 
 void FullCatalogScreen::openInstallAllWizard() {
     if (installProgressActive_ || catalogLoading_) {
-        showToast("Wait for current operation to finish", 1600);
+        showToast(::psvitaalive::L(::psvitaalive::TextId::ToastWaitOperation), 1600);
         return;
     }
     const int i = selectedIndex();
@@ -5480,9 +5480,9 @@ void FullCatalogScreen::installAllStartQueue() {
         installAllQueue_.push_back(item.linkDetails[di]);
         installAllQueueLabels_.push_back(label);
     };
-    pushIdx(installAllChosenDownload_, "App (VPK)");
-    pushIdx(installAllChosenGameFiles_, "Game Files");
-    pushIdx(installAllChosenDataFiles_, "Data Files");
+    pushIdx(installAllChosenDownload_, ::psvitaalive::L(::psvitaalive::TextId::LabelAppVpk));
+    pushIdx(installAllChosenGameFiles_, ::psvitaalive::L(::psvitaalive::TextId::MetaGameFiles));
+    pushIdx(installAllChosenDataFiles_, ::psvitaalive::L(::psvitaalive::TextId::MetaDataFiles));
     installAllHadPlugin_ = false;
     for (size_t i = 0; i < item.linkDetails.size(); ++i) {
         if (!isPluginTypeLink(item.linkDetails[i])) continue;
@@ -5493,12 +5493,12 @@ void FullCatalogScreen::installAllStartQueue() {
             continue;
         }
         installAllQueue_.push_back(item.linkDetails[i]);
-        installAllQueueLabels_.push_back(item.linkDetails[i].name.empty() ? "Plugin" : item.linkDetails[i].name);
+        installAllQueueLabels_.push_back(item.linkDetails[i].name.empty() ? ::psvitaalive::L(::psvitaalive::TextId::MetaPlugin) : item.linkDetails[i].name);
         installAllHadPlugin_ = true;
     }
 
     if (installAllQueue_.empty()) {
-        showToast("Nothing to install", 1600);
+        showToast(::psvitaalive::L(::psvitaalive::TextId::ToastNothingToInstall), 1600);
         closeInstallAllWizard(true);
         return;
     }
@@ -5522,7 +5522,7 @@ void FullCatalogScreen::installAllStartQueue() {
                      + " app=" + item.name);
 
     if (!linkAction_) {
-        showToast("Install unavailable", 1600);
+        showToast(::psvitaalive::L(::psvitaalive::TextId::ToastInstallUnavailable), 1600);
         closeInstallAllWizard(true);
         return;
     }
@@ -5530,7 +5530,7 @@ void FullCatalogScreen::installAllStartQueue() {
     diagnostics::log(std::string("[UI] Install All step 1/") + std::to_string(installAllQueue_.size())
                      + " " + installAllQueueLabels_[0] + " url=" + first.url);
     if (!linkAction_(item, first)) {
-        showToast("Could not start install", 1800);
+        showToast(::psvitaalive::L(::psvitaalive::TextId::ToastCouldNotStartInstall), 1800);
         closeInstallAllWizard(true);
     }
 }
@@ -5572,7 +5572,7 @@ void FullCatalogScreen::installAllTryAdvanceFromProgress(int outcome) {
                          + installAllQueueLabels_[installAllQueueIndex_]
                          + " url=" + next.url);
         if (!linkAction_ || !linkAction_(item, next)) {
-            showToast("Install All stopped — next step failed to start", 2200);
+            showToast(::psvitaalive::L(::psvitaalive::TextId::ToastInstallAllStopped), 2200);
             closeInstallAllWizard(true);
         }
         return;
@@ -5729,7 +5729,7 @@ if (catalogSplashAlpha_ > 0.01f && !installProgressActive_) {
     std::string phase = catalogLoadingLabel_.empty() ? "Startup" : catalogLoadingLabel_;
     vita2d_pgf_draw_text(font_, barX, stripY + 28, ACCENT, 0.90f, ellipsize(phase, 40).c_str());
 
-    std::string detail = catalogLoadingMessage_.empty() ? "Please wait..." : catalogLoadingMessage_;
+    std::string detail = catalogLoadingMessage_.empty() ? ::psvitaalive::L(::psvitaalive::TextId::PleaseWaitFallback) : catalogLoadingMessage_;
     vita2d_pgf_draw_text(font_, barX, stripY + 52, WHITE, 0.74f, ellipsize(detail, 78).c_str());
 
     if (catalogLoadingTotal_ > 0) {
@@ -5871,7 +5871,7 @@ if(installOutcome_==3){
     sceClibSnprintf(fl,sizeof(fl),"%s: %s",::psvitaalive::L(TID::LabelFile),file.c_str());
     vita2d_pgf_draw_text(font_,x+28,y+116,WHITE,0.92f,fl);
   }
-  std::string msg=installProgressMessage_.empty()?"Download cancelled":installProgressMessage_;
+  std::string msg=installProgressMessage_.empty()?::psvitaalive::L(::psvitaalive::TextId::DownloadCancelled):installProgressMessage_;
   if(msg=="Download cancelled"||msg=="Installation cancelled"||msg=="Cancelling download...")
     msg=::psvitaalive::L(TID::CancelledFriendlyMsg);
   vita2d_pgf_draw_text(font_,x+28,y+160,TEXT,0.86f,ellipsize(msg,52).c_str());
@@ -5964,8 +5964,8 @@ if(installOutcome_==2){
 }
 
 if(catalogLoading_){
-  vita2d_pgf_draw_text(font_,x+28,y+76,WHITE,1.00f,catalogLoadingLabel_.empty()?"Loading catalog":catalogLoadingLabel_.c_str());
-  vita2d_pgf_draw_text(font_,x+28,y+108,TEXT,.60f,catalogLoadingMessage_.empty()?"Preparing...":catalogLoadingMessage_.c_str());
+  vita2d_pgf_draw_text(font_,x+28,y+76,WHITE,1.00f,catalogLoadingLabel_.empty()?::psvitaalive::L(::psvitaalive::TextId::LoadingCatalogFallback):catalogLoadingLabel_.c_str());
+  vita2d_pgf_draw_text(font_,x+28,y+108,TEXT,.60f,catalogLoadingMessage_.empty()?::psvitaalive::L(::psvitaalive::TextId::PreparingFallback):catalogLoadingMessage_.c_str());
   uint64_t pct=catalogLoadingTotal_?std::min<uint64_t>(100,(catalogLoadingCurrent_*100)/catalogLoadingTotal_):0;
   int bx=x+28,by=y+140,bw=w-56,bh=12;
   vita2d_draw_rectangle(bx,by,bw,bh,BORDER);
