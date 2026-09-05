@@ -304,30 +304,46 @@ PluginStatus PluginDetector::scan() {
         "nopspemudrm_user.suprx",
         nullptr
     };
+    static const char* kRepatchNames[] = {
+        "repatch.skprx",
+        "repatch_4.skprx",
+        "repatch_ex.skprx",
+        nullptr
+    };
+    static const char* kFdFixNames[] = {
+        "fd_fix.skprx",
+        nullptr
+    };
 
     const Hit nonpdrm = findPlugin(entries, kNoNpDrmNames);
     const Hit nopspK = findPlugin(entries, kNoPspKernNames);
     const Hit nopspU = findPlugin(entries, kNoPspUserNames);
+    const Hit repatch = findPlugin(entries, kRepatchNames);
+    const Hit fdFix = findPlugin(entries, kFdFixNames);
 
     logHit("NoNpDrm", nonpdrm);
     logHit("NoPspEmuDrm_kern", nopspK);
     logHit("NoPspEmuDrm_user", nopspU);
+    logHit("RePatch", repatch);
+    logHit("FdFix", fdFix);
 
     // Present for install warnings: listed in active config AND file on disk.
     st.nonpdrm = nonpdrm.listed && nonpdrm.fileOk;
     st.nopspemudrmKern = nopspK.listed && nopspK.fileOk;
     st.nopspemudrmUser = nopspU.listed && nopspU.fileOk;
+    st.repatch = repatch.listed && repatch.fileOk;
+    st.fdFix = fdFix.listed && fdFix.fileOk;
 
-    // Soft signal: listed but missing file still reports in detail
-    char summary[384];
+    char summary[512];
     sceClibSnprintf(
         summary, sizeof(summary),
-        "config=%s nonpdrm=%d (listed=%d file=%d) nopsp_kern=%d (listed=%d file=%d) nopsp_user=%d (listed=%d file=%d) entries=%u",
+        "config=%s nonpdrm=%d (listed=%d file=%d) nopsp_kern=%d (listed=%d file=%d) nopsp_user=%d (listed=%d file=%d) repatch=%d (listed=%d file=%d) fd_fix=%d (listed=%d file=%d)",
         st.configPathUsed.c_str(),
         st.nonpdrm ? 1 : 0, nonpdrm.listed ? 1 : 0, nonpdrm.fileOk ? 1 : 0,
         st.nopspemudrmKern ? 1 : 0, nopspK.listed ? 1 : 0, nopspK.fileOk ? 1 : 0,
         st.nopspemudrmUser ? 1 : 0, nopspU.listed ? 1 : 0, nopspU.fileOk ? 1 : 0,
-        (unsigned)entries.size()
+        st.repatch ? 1 : 0, repatch.listed ? 1 : 0, repatch.fileOk ? 1 : 0,
+        st.fdFix ? 1 : 0, fdFix.listed ? 1 : 0, fdFix.fileOk ? 1 : 0
     );
     st.detail = summary;
 
@@ -342,6 +358,15 @@ PluginStatus PluginDetector::scan() {
     }
     if (nopspU.listed && !nopspU.fileOk) {
         st.detail += " | NoPspEmuDrm_user listed but file missing";
+    }
+    if (repatch.listed && !repatch.fileOk) {
+        st.detail += " | RePatch listed but plugin file missing";
+    }
+    if (fdFix.listed && !fdFix.fileOk) {
+        st.detail += " | FdFix listed but plugin file missing";
+    }
+    if (st.repatch && st.fdFix) {
+        st.detail += " | RePatch+FdFix conflict detected";
     }
 
     diagnostics::log(std::string("[PluginDetector] ") + st.detail);
