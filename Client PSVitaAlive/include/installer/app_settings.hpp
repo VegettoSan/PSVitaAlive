@@ -56,26 +56,30 @@ enum class ColorTheme {
     Midnight,
     Sakura,
     Matrix,
-    // Distinct additions
-    Scarlet,      // pure vivid red
-    Orange,       // pure orange
-    White,        // bright white chrome
-    Snow,         // cool pure white
-    Ivory,        // warm off-white
-    Khaki,        // military khaki
-    Terracotta,   // clay / terracotta
-    Ruby,         // deep gem red
-    Copper,       // metallic copper
-    Olive,        // olive drab
-    Maroon,       // dark maroon
-    Turquoise,    // bright turquoise
-    Lemon,        // citrus yellow
-    Plum,         // warm plum
-    Navy,         // deep navy blue
-    Rust,         // oxidized rust
-    Champagne,    // pale gold champagne
-    Graphite,     // dark graphite gray
+    Scarlet,
+    Orange,
+    White,
+    Snow,
+    Ivory,
+    Khaki,
+    Terracotta,
+    Ruby,
+    Copper,
+    Olive,
+    Maroon,
+    Turquoise,
+    Lemon,
+    Plum,
+    Navy,
+    Rust,
+    Champagne,
+    Graphite,
     Count
+};
+
+enum class LanguageMode {
+    System = 0,
+    Manual
 };
 
 struct AppSettingsData {
@@ -88,6 +92,8 @@ struct AppSettingsData {
     bool themeSetupDone = false;
     bool startupPluginDetection = true;
     bool startupUpdateCheck = true;
+    LanguageMode languageMode = LanguageMode::System;
+    std::string language = "en";
 };
 
 class AppSettings {
@@ -99,11 +105,13 @@ public:
     static const char* toString(PspTarget t);
     static const char* toString(PspMediaFormat f);
     static const char* toString(ColorTheme t);
+    static const char* toString(LanguageMode m);
 
     static InstallMethod parseInstallMethod(const std::string& s);
     static PspTarget parsePspTarget(const std::string& s);
     static PspMediaFormat parsePspMediaFormat(const std::string& s);
     static ColorTheme parseColorTheme(const std::string& s);
+    static LanguageMode parseLanguageMode(const std::string& s);
 };
 
 } // namespace psvitaalive
