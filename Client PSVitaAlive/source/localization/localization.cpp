@@ -2,7 +2,7 @@
 
 #include <psp2/io/fcntl.h>
 #include <psp2/kernel/clib.h>
-#include <psp2/appmgr.h>
+#include <psp2/apputil.h>
 
 #include <cstdio>
 #include <cstring>
@@ -48,8 +48,7 @@ bool parseTable(const std::string& content, std::unordered_map<std::string, std:
             if (eq != std::string::npos && eq > 0) {
                 std::string key = line.substr(0, eq);
                 std::string value = line.substr(eq + 1);
-                trim(key);
-                trim(value);
+                trim(key); trim(value);
                 if (!key.empty()) table[key] = value;
             }
         }
@@ -88,13 +87,14 @@ void LocalizationManager::selectLanguage(Language language) {
 bool LocalizationManager::initialize(const AppSettingsData& settings) {
     english_.clear();
     if (!loadTable(Language::English, english_)) {
-        sceClibPrintf("[Localization] English table missing: using built-in key fallback\n");
+        sceClibPrintf("[Localization] English table missing: using key fallback\n");
     }
 
     mode_ = settings.languageMode;
     Language requested = Language::English;
     if (mode_ == LanguageMode::Manual) {
-        if (!languageFromCode(settings.language, requested)) requested = Language::English;
+        if (!languageFromCode(settings.language, requested) || !isLanguageAvailable(requested))
+            requested = Language::English;
     } else {
         int systemLanguage = 1;
         if (sceAppUtilSystemParamGetInt(SCE_SYSTEM_PARAM_ID_LANG, &systemLanguage) < 0)
@@ -102,7 +102,7 @@ bool LocalizationManager::initialize(const AppSettingsData& settings) {
         requested = languageFromSystemValue(systemLanguage);
     }
     selectLanguage(requested);
-    sceClibPrintf("[Localization] mode=%s language=%s available=%d\n", AppSettings::toString(mode_), languageCode(currentLanguage_), isLanguageAvailable(currentLanguage_) ? 1 : 0);
+    sceClibPrintf("[Localization] mode=%s language=%s\n", AppSettings::toString(mode_), languageCode(currentLanguage_));
     return !english_.empty();
 }
 
@@ -110,14 +110,12 @@ bool LocalizationManager::setMode(LanguageMode mode, const std::string& language
     mode_ = mode;
     if (mode_ == LanguageMode::Manual) {
         Language requested;
-        if (!languageFromCode(languageCodeValue, requested) || !isLanguageAvailable(requested)) {
-            mode_ = LanguageMode::System;
-        } else {
+        if (languageFromCode(languageCodeValue, requested) && isLanguageAvailable(requested)) {
             selectLanguage(requested);
             return true;
         }
+        mode_ = LanguageMode::System;
     }
-
     int systemLanguage = 1;
     if (sceAppUtilSystemParamGetInt(SCE_SYSTEM_PARAM_ID_LANG, &systemLanguage) < 0)
         systemLanguage = 1;
