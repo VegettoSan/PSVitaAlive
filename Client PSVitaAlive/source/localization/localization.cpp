@@ -300,6 +300,29 @@ const char* LocalizationManager::keyFor(TextId id) {
         case TextId::InstallComplete: return "INSTALL_COMPLETE";
         case TextId::DownloadCancelled: return "DOWNLOAD_CANCELLED";
         case TextId::InstallFailed: return "INSTALL_FAILED";
+        case TextId::PanelDetail: return "PANEL_DETAIL";
+        case TextId::SelectLinks: return "SELECT_LINKS";
+        case TextId::ExitLinkMode: return "EXIT_LINK_MODE";
+        case TextId::RequestData: return "REQUEST_DATA";
+        case TextId::ChipNews: return "CHIP_NEWS";
+        case TextId::ChipReport: return "CHIP_REPORT";
+        case TextId::ChipSent: return "CHIP_SENT";
+        case TextId::ChipFail: return "CHIP_FAIL";
+        case TextId::ReportTitle: return "REPORT_TITLE";
+        case TextId::ReportSubtitle: return "REPORT_SUBTITLE";
+        case TextId::ReportBody1: return "REPORT_BODY_1";
+        case TextId::ReportBody2: return "REPORT_BODY_2";
+        case TextId::BtnOCancel: return "BTN_O_CANCEL";
+        case TextId::BtnXReport: return "BTN_X_REPORT";
+        case TextId::BtnOClose: return "BTN_O_CLOSE";
+        case TextId::NewsNavHint: return "NEWS_NAV_HINT";
+        case TextId::LockedFinishJob: return "LOCKED_FINISH_JOB";
+        case TextId::LockedStillRunning: return "LOCKED_STILL_RUNNING";
+        case TextId::LockedCannotExit: return "LOCKED_CANNOT_EXIT";
+        case TextId::LockedCannotSwitchCatalog: return "LOCKED_CANNOT_SWITCH_CATALOG";
+        case TextId::ZipExtractComplete: return "ZIP_EXTRACT_COMPLETE";
+        case TextId::ExtractedTo: return "EXTRACTED_TO";
+        case TextId::OContinue: return "O_CONTINUE";
         default: return "";
     }
 }

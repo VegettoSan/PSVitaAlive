@@ -1362,7 +1362,7 @@ void FullCatalogScreen::runNewsCheck(bool forceShow) {
 
     newsCheckedOnce_ = true;
     newsId_ = item.id;
-    newsTitle_ = item.title.empty() ? "News" : item.title;
+    newsTitle_ = item.title.empty() ? ::psvitaalive::L(::psvitaalive::TextId::ChipNews) : item.title;
     newsBody_ = item.body;
     newsLines_.clear();
     {
@@ -1493,7 +1493,7 @@ void FullCatalogScreen::drawNewsChip() {
     vita2d_draw_rectangle(chipX, chipY, chipW, chipH, borderCol);
     vita2d_draw_rectangle(chipX + bwPulse, chipY + bwPulse,
                           chipW - bwPulse * 2, chipH - bwPulse * 2, fill);
-    const char* lab = "News";
+    const char* lab = ::psvitaalive::L(::psvitaalive::TextId::ChipNews);
     const float scale = 0.70f;
     const int tw = vita2d_pgf_text_width(font_, scale, lab);
     const int th = 20;
@@ -1584,12 +1584,12 @@ void FullCatalogScreen::drawNewsOverlay() {
     const int by = y + h - 48, bw = 220, bh = 36;
     vita2d_draw_rectangle(x + (w - bw) / 2, by, bw, bh, ACCENT);
     {
-        const char* clab = "O  Close";
+        const char* clab = ::psvitaalive::L(::psvitaalive::TextId::BtnOClose);
         const float sc = 0.68f;
         const int tw = vita2d_pgf_text_width(font_, sc, clab);
         vita2d_pgf_draw_text(font_, x + (w - bw) / 2 + (bw - tw) / 2, by + 25, BLACK, sc, clab);
     }
-    vita2d_pgf_draw_text(font_, x + 24, y + h - 14, DIM, 0.72f, "D-Pad: scroll   Circle: close");
+    vita2d_pgf_draw_text(font_, x + 24, y + h - 14, DIM, 0.72f, ::psvitaalive::L(::psvitaalive::TextId::NewsNavHint));
 }
 
 void FullCatalogScreen::drawReportChip() {
@@ -1616,7 +1616,7 @@ void FullCatalogScreen::drawReportChip() {
 
     unsigned fill = RED;
     unsigned textCol = WHITE;
-    const char* lab = "Report";
+    const char* lab = ::psvitaalive::L(::psvitaalive::TextId::ChipReport);
     if (reportUiState_ == 1) {
         fill = SURFACE;
         textCol = WHITE;
@@ -1624,11 +1624,11 @@ void FullCatalogScreen::drawReportChip() {
     } else if (reportUiState_ == 2) {
         fill = GREEN;
         textCol = BLACK;
-        lab = "Sent";
+        lab = ::psvitaalive::L(::psvitaalive::TextId::ChipSent);
     } else if (reportUiState_ == 3) {
         fill = RED;
         textCol = WHITE;
-        lab = "Fail";
+        lab = ::psvitaalive::L(::psvitaalive::TextId::ChipFail);
     }
 
     vita2d_draw_rectangle(chipX, chipY, chipW, chipH, fill);
@@ -1715,7 +1715,7 @@ void FullCatalogScreen::drawDataRequestConfirmOverlay() {
     vita2d_draw_rectangle(bxCancel, by, bw, 1, BORDER);
     vita2d_draw_rectangle(bxCancel, by + bh - 1, bw, 1, BORDER);
     {
-        const char* lab = "O  Cancel";
+        const char* lab = ::psvitaalive::L(::psvitaalive::TextId::BtnOCancel);
         const float sc = 0.74f;
         const int tw = vita2d_pgf_text_width(font_, sc, lab);
         vita2d_pgf_draw_text(font_, bxCancel + (bw - tw) / 2, by + 27, WHITE, sc, lab);
@@ -1852,10 +1852,10 @@ void FullCatalogScreen::drawReportConfirmOverlay() {
     vita2d_draw_rectangle(x + w - 3, y + 3, 3, h - 6, BORDER);
     vita2d_draw_rectangle(x, y + h - 3, w, 3, BORDER);
 
-    vita2d_pgf_draw_text(font_, x + 24, y + 40, RED, 0.86f, "REPORT AN ISSUE");
-    vita2d_pgf_draw_text(font_, x + 24, y + 78, WHITE, 0.80f, "Did something go wrong?");
-    vita2d_pgf_draw_text(font_, x + 24, y + 112, TEXT, 0.72f, "Send a report with the recent logs so we can");
-    vita2d_pgf_draw_text(font_, x + 24, y + 138, TEXT, 0.72f, "review it and fix the problem as soon as possible.");
+    vita2d_pgf_draw_text(font_, x + 24, y + 40, RED, 0.86f, ::psvitaalive::L(::psvitaalive::TextId::ReportTitle));
+    vita2d_pgf_draw_text(font_, x + 24, y + 78, WHITE, 0.80f, ::psvitaalive::L(::psvitaalive::TextId::ReportSubtitle));
+    vita2d_pgf_draw_text(font_, x + 24, y + 112, TEXT, 0.72f, ::psvitaalive::L(::psvitaalive::TextId::ReportBody1));
+    vita2d_pgf_draw_text(font_, x + 24, y + 138, TEXT, 0.72f, ::psvitaalive::L(::psvitaalive::TextId::ReportBody2));
 
     const int by = y + h - 56, bh = 40, bw = 180, gap = 24;
     const int bxCancel = x + (w - (bw * 2 + gap)) / 2;
@@ -1874,7 +1874,7 @@ void FullCatalogScreen::drawReportConfirmOverlay() {
     // Report (red CTA)
     vita2d_draw_rectangle(bxReport, by, bw, bh, RED);
     {
-        const char* lab = "X  Report";
+        const char* lab = ::psvitaalive::L(::psvitaalive::TextId::BtnXReport);
         const float sc = 0.74f;
         const int tw = vita2d_pgf_text_width(font_, sc, lab);
         vita2d_pgf_draw_text(font_, bxReport + (bw - tw) / 2, by + 27, WHITE, sc, lab);
@@ -3288,7 +3288,7 @@ void FullCatalogScreen::setSettingsSaveCallback(SettingsSaveFn callback) {
 
 void FullCatalogScreen::openSettings() {
     if (installProgressActive_ || catalogLoading_ || selfUpdateBusy_.load()) {
-        showToast("LOCKED: finish download/install first. PS & power menu disabled.", 2800);
+        showToast(::psvitaalive::L(::psvitaalive::TextId::LockedFinishJob), 2800);
         return;
     }
     if (state_.mode == UiMode::SETTINGS) return;
@@ -3380,7 +3380,7 @@ int FullCatalogScreen::selfUpdateWorkerEntry(SceSize args, void* argp) {
 
 void FullCatalogScreen::triggerSelfUpdateAction() {
     if (selfUpdateBusy_.load() || installProgressActive_) {
-        showToast("LOCKED: install still running. Screen on — do not power off.", 2800);
+        showToast(::psvitaalive::L(::psvitaalive::TextId::LockedStillRunning), 2800);
         return;
     }
 
@@ -3845,7 +3845,7 @@ if(isTransitioning())return;SceCtrlData p{};sceCtrlPeekBufferPositive(0,&p,1);st
 if(pressed&SCE_CTRL_SELECT){openSettings();return;}
 if(pressed&SCE_CTRL_START){
         if(installProgressActive_ && installOutcome_==0){
-            showToast("LOCKED: cannot exit yet. Wait until download/install finishes.", 2800);
+            showToast(::psvitaalive::L(::psvitaalive::TextId::LockedCannotExit), 2800);
             return;
         }
         // After a successful self-update the running binary is stale — force exit.
@@ -3862,7 +3862,7 @@ if(pressed&SCE_CTRL_START){
         if(canSwitch){
             if(pressed&SCE_CTRL_LTRIGGER)changeCatalog(-1);else changeCatalog(1);
         }else if(installProgressActive_){
-            showToast("LOCKED: cannot change catalog during download/install.", 2600);
+            showToast(::psvitaalive::L(::psvitaalive::TextId::LockedCannotSwitchCatalog), 2600);
         }else if(catalogLoading_){
             showToast(::psvitaalive::L(::psvitaalive::TextId::ChangingCatalog), 2200);
         }else if(catalogSwitchCooldownFrames_>0||!deferredFreeTextures_.empty()){
@@ -5102,7 +5102,7 @@ void FullCatalogScreen::drawDetailPanel(int x,int y,int w,int h){
             vita2d_draw_rectangle(bx, by, 1, bh, ACCENT);
             vita2d_draw_rectangle(bx, by + bh - 1, bw, 1, ACCENT);
             vita2d_draw_rectangle(bx + bw - 1, by, 1, bh, ACCENT);
-            vita2d_pgf_draw_text(font_, bx + 8, by + 22, linkOn ? BG : ACCENT, 0.72f, linkOn ? "△ Exit link mode" : "△ Select links");
+            vita2d_pgf_draw_text(font_, bx + 8, by + 22, linkOn ? BG : ACCENT, 0.72f, linkOn ? ::psvitaalive::L(::psvitaalive::TextId::ExitLinkMode) : ::psvitaalive::L(::psvitaalive::TextId::SelectLinks));
         }
         if (itemEligibleForDataRequest(it)) {
             // Below Select links when present; same header column when no links.
@@ -5116,14 +5116,14 @@ void FullCatalogScreen::drawDetailPanel(int x,int y,int w,int h){
             vita2d_draw_rectangle(rbx, rby, 2, rbh, REQ);
             vita2d_draw_rectangle(rbx, rby + rbh - 2, rbw, 2, REQ);
             vita2d_draw_rectangle(rbx + rbw - 2, rby, 2, rbh, REQ);
-            vita2d_pgf_draw_text(font_, rbx + 8, rby + 22, REQ, 0.72f, "□ Request data");
+            vita2d_pgf_draw_text(font_, rbx + 8, rby + 22, REQ, 0.72f, ::psvitaalive::L(::psvitaalive::TextId::RequestData));
         }
     }
     drawDetailContent(it, x, y, w, h);
     // Fade over scrollable body (below header)
     drawScrollFades(x, y + DETAIL_HEADER_H, w, std::max(1, h - DETAIL_HEADER_H));
     if (active)
-        drawActivePanelFrame(x + 2, y + 2, w - 4, h - 4, "DETAIL");
+        drawActivePanelFrame(x + 2, y + 2, w - 4, h - 4, ::psvitaalive::L(::psvitaalive::TextId::PanelDetail));
 }
 
 bool FullCatalogScreen::itemSupportsInstallAll(const CatalogItem& item) const {
@@ -5561,10 +5561,10 @@ if(installOutcome_==1){
       !installResultPath_.empty() &&
       (installResultPath_.find("ux0:app/") != 0);
   if (zipExtract) {
-    vita2d_pgf_draw_text(font_,x+28,y+80,GREEN,1.05f,"ZIP extraction complete");
+    vita2d_pgf_draw_text(font_,x+28,y+80,GREEN,1.05f,::psvitaalive::L(::psvitaalive::TextId::ZipExtractComplete));
     std::string file=installProgressFile_.empty()?"(archive)":ellipsize(installProgressFile_,70);
     vita2d_pgf_draw_text(font_,x+28,y+118,WHITE,.66f,("File: "+file).c_str());
-    vita2d_pgf_draw_text(font_,x+28,y+150,TEXT,.62f,("Extracted to: "+ellipsize(installResultPath_,58)).c_str());
+    vita2d_pgf_draw_text(font_,x+28,y+150,TEXT,.62f,(std::string(::psvitaalive::L(::psvitaalive::TextId::ExtractedTo))+": "+ellipsize(installResultPath_,58)).c_str());
     vita2d_pgf_draw_text(font_,x+28,y+182,DIM,.56f,"No LiveArea bubble — files only");
     if(!installProgressMessage_.empty())
       vita2d_pgf_draw_text(font_,x+28,y+214,DIM,.54f,ellipsize(installProgressMessage_,78).c_str());
@@ -5588,7 +5588,7 @@ if(installOutcome_==1){
 
     const int by2=y+300,bw2=280,bh2=40;
   vita2d_draw_rectangle(x+28,by2,bw2,bh2,GREEN);
-  vita2d_pgf_draw_text(font_,x+100,by2+26,BLACK,.62f,"O  Continue");
+  vita2d_pgf_draw_text(font_,x+100,by2+26,BLACK,.62f,::psvitaalive::L(::psvitaalive::TextId::OContinue));
   // Auto-close countdown bar only (no text)
   {
     const int barX = x + 28;
@@ -5680,7 +5680,7 @@ if(installOutcome_==2){
       const int fillW = (int)(barW * (0.25f + 0.55f * phase));
       if (fillW > 0) vita2d_draw_rectangle(barX, barY, fillW, barH, RGBA8(0,0,0,255));
     } else {
-      const char* lab = "Report";
+      const char* lab = ::psvitaalive::L(::psvitaalive::TextId::ChipReport);
       if (reportUiState_==2) lab = "Sent";
       else if (reportUiState_==3) lab = reportUiMsg_[0] ? reportUiMsg_ : "Failed";
       const float sc = 0.64f;
