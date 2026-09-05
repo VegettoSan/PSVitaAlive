@@ -4,11 +4,6 @@
 
 namespace psvitaalive {
 
-enum class LanguageMode {
-    System = 0,
-    Manual
-};
-
 enum class Language {
     English = 0,
     Spanish,
