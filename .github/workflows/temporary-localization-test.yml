@@ -20,59 +20,128 @@ jobs:
         run: |
           from pathlib import Path
           import re
+
           ROOT = Path('Client PSVitaAlive')
           UI = ROOT / 'source/ui/full_catalog_screen.cpp'
           EN = ROOT / 'assets/lang/en.lang'
           ES = ROOT / 'assets/lang/es.lang'
           text = UI.read_text(encoding='utf-8')
-          def fn(s, sig):
-              a=s.find(sig)
-              if a<0: raise SystemExit('missing '+sig)
-              b=s.find('\nvoid FullCatalogScreen::',a+len(sig))
-              if b<0: raise SystemExit('end missing '+sig)
-              return a,b+1,s[a:b+1]
-          def one(s,a,b,label):
-              c=s.count(a)
-              if c!=1: raise SystemExit(f'{label}: expected 1, found {c}')
-              return s.replace(a,b,1)
-          text=one(text,'#include "installer/app_settings.hpp"\n','#include "installer/app_settings.hpp"\n#include "localization/localization.hpp"\n','include')
-          a,b,h=fn(text,'void FullCatalogScreen::handleSettingsInput(uint32_t pressed, uint32_t nav) {')
-          h=one(h,'constexpr int kRows = 7;','constexpr int kRows = 8;','rows')
-          text=text[:a]+h+text[b:]
-          a,b,h=fn(text,'void FullCatalogScreen::cycleSettingsOption(int row, int delta) {')
-          old='''    } else if (row == 4) {\n        settingsEdit_.warnMissingPlugins = !settingsEdit_.warnMissingPlugins;\n    } else if (row == 5) {\n        settingsEdit_.promptImageWarmup = !settingsEdit_.promptImageWarmup;\n    } else if (row == 6) {\n        triggerSelfUpdateAction();\n    }\n'''
-          new='''    } else if (row == 4) {\n        settingsEdit_.warnMissingPlugins = !settingsEdit_.warnMissingPlugins;\n    } else if (row == 5) {\n        auto& loc = ::psvitaalive::LocalizationManager::instance();\n        const auto available = loc.availableLanguages();\n        if (!available.empty()) {\n            if (settingsEdit_.languageMode == ::psvitaalive::LanguageMode::System) {\n                settingsEdit_.languageMode = ::psvitaalive::LanguageMode::Manual;\n                settingsEdit_.language = ::psvitaalive::languageCode(available.front());\n            } else {\n                ::psvitaalive::Language current = ::psvitaalive::Language::English;\n                if (!::psvitaalive::languageFromCode(settingsEdit_.language, current)) current = available.front();\n                size_t pos = 0;\n                for (size_t i=0; i<available.size(); ++i) if (available[i]==current) { pos=i; break; }\n                if (pos+1<available.size()) settingsEdit_.language=::psvitaalive::languageCode(available[pos+1]);\n                else settingsEdit_.languageMode=::psvitaalive::LanguageMode::System;\n            }\n            loc.setMode(settingsEdit_.languageMode, settingsEdit_.language);\n        }\n    } else if (row == 6) {\n        settingsEdit_.promptImageWarmup = !settingsEdit_.promptImageWarmup;\n    } else if (row == 7) {\n        triggerSelfUpdateAction();\n    }\n'''
-          h=one(h,old,new,'cycle')
-          text=text[:a]+h+text[b:]
-          a,b,h=fn(text,'void FullCatalogScreen::drawSettings() {')
-          h=one(h,'Meta meta[7] = {','Meta meta[8] = {','meta size')
-          h=one(h,'{true, "INSTALL"}, {false, ""}, {false, ""}, {true, "INTERFACE"}, {false, ""}, {true, "CATALOG"}, {true, "UPDATES"}','{true, "INSTALL"}, {false, ""}, {false, ""}, {true, "INTERFACE"}, {false, ""}, {false, ""}, {true, "CATALOG"}, {true, "UPDATES"}','meta rows')
-          h=one(h,'int rowY[7];','int rowY[8];','rowY decl')
-          h=one(h,'for (int i = 0; i < 7; ++i) {','for (int i = 0; i < 8; ++i) {','row loop 1')
-          h=one(h,'int rowY[7] = {};','int rowY[8] = {};','rowY array')
-          h=one(h,'for (int i = 0; i < 7; ++i) {','for (int i = 0; i < 8; ++i) {','row loop 2')
-          h=one(h,'for (int i = 0; i <= settingsFocus_ && i < 7; ++i) {','for (int i = 0; i <= settingsFocus_ && i < 8; ++i) {','focus loop')
-          h=one(h,'Opt opts[7] = {','Opt opts[8] = {','opts size')
-          start=h.find('    auto themeLabel = [&]() -> std::string {')
-          if start<0: raise SystemExit('themeLabel missing')
-          os=h.find('Opt opts[8] = {',start)
-          oe=h.find('    };\n',os)
-          if os<0 or oe<0: raise SystemExit('opts block missing')
-          oe+=len('    };\n')
-          replacement='''    auto themeLabel = [&]() -> std::string {\n        return std::string(colorThemeDisplayName(settingsEdit_.colorTheme));\n    };\n    auto languageLabel = [&]() -> std::string {\n        auto& loc = ::psvitaalive::LocalizationManager::instance();\n        if (settingsEdit_.languageMode == ::psvitaalive::LanguageMode::System)\n            return std::string("System (") + loc.currentLanguageName() + ")";\n        ::psvitaalive::Language lang = ::psvitaalive::Language::English;\n        if (::psvitaalive::languageFromCode(settingsEdit_.language, lang) && loc.isLanguageAvailable(lang))\n            return std::string(::psvitaalive::languageName(lang));\n        return std::string(::psvitaalive::languageName(::psvitaalive::Language::English));\n    };\n    Opt opts[8] = {\n        {"INSTALL", L("INSTALL_METHOD"), methodLabel(), "Auto: BGDL for PKG when available", true},\n        {"", L("PSP_PS1_TARGET"), pspLabel(), "LiveArea=PKG bubble; Adrenaline=pspemu (no bubble)", false},\n        {"", L("PSP_MEDIA_ADRENALINE"), mediaFormatLabel(), "Folder=EBOOT in GAME; ISO=pspemu/ISO", false},\n        {"INTERFACE", L("COLOR_THEME"), themeLabel() + "  >", "X / tap: open color palette picker", true},\n        {"", L("WARN_MISSING_PLUGINS"), settingsEdit_.warnMissingPlugins ? "Yes" : "No", "Startup toast if NoNpDrm is missing", false},\n        {"", L("LANGUAGE"), languageLabel(), "System = Vita language; manual selection overrides it", false},\n        {"CATALOG", L("PROMPT_IMAGE_DOWNLOAD"), settingsEdit_.promptImageWarmup ? "Yes" : "No", "If you choose No once, it will not ask again", true},\n        {"UPDATES", L("APP_UPDATES"), updateLabel(), "GitHub Releases - X to check / install", true},\n    };\n'''
-          h=h[:start]+replacement+h[oe:]
-          h=one(h,'vita2d_pgf_draw_text(font_, 20, HEADER_H + 30 + slide, ACCENT, 1.00f, "Settings");','vita2d_pgf_draw_text(font_, 20, HEADER_H + 30 + slide, ACCENT, 1.00f, L("SETTINGS"));','title')
-          h=one(h,'vita2d_pgf_draw_text(font_, SCREEN_W - 300, HEADER_H + 28 + slide, DIM, 0.56f, "O / SELECT: Save & back");','vita2d_pgf_draw_text(font_, SCREEN_W - 300, HEADER_H + 28 + slide, DIM, 0.56f, L("SAVE_BACK"));','save back')
-          h=one(h,'vita2d_pgf_draw_text(font_, 12, SCREEN_H - 14, TEXT, 0.56f, "D-Pad: move   X / <>: change   O: save & back");','vita2d_pgf_draw_text(font_, 12, SCREEN_H - 14, TEXT, 0.56f, L("SETTINGS_FOOTER"));','footer')
-          text=text[:a]+h+text[b:]
-          def add(path, pairs):
-              s=path.read_text(encoding='utf-8')
-              for k,v in pairs.items():
-                  if not re.search(r'^'+re.escape(k)+r'=',s,re.M): s += ('' if not s.endswith('\n') else '')+k+'='+v+'\n'
-              path.write_text(s,encoding='utf-8')
-          add(EN,{'SETTINGS':'Settings','SAVE_BACK':'O / SELECT: Save & back','SETTINGS_FOOTER':'D-Pad: move   X / <>: change   O: save & back','INSTALL_METHOD':'Install method','PSP_PS1_TARGET':'PSP / PS1 target','PSP_MEDIA_ADRENALINE':'PSP media (Adrenaline)','COLOR_THEME':'Color theme','WARN_MISSING_PLUGINS':'Warn missing plugins','LANGUAGE':'Language','PROMPT_IMAGE_DOWNLOAD':'Prompt image download','APP_UPDATES':'App updates'})
-          add(ES,{'SETTINGS':'Ajustes','SAVE_BACK':'O / SELECT: Guardar y volver','SETTINGS_FOOTER':'D-Pad: mover   X / <>: cambiar   O: guardar y volver','INSTALL_METHOD':'Método de instalación','PSP_PS1_TARGET':'Destino PSP / PS1','PSP_MEDIA_ADRENALINE':'Medio PSP (Adrenaline)','COLOR_THEME':'Tema de color','WARN_MISSING_PLUGINS':'Avisar sobre plugins faltantes','LANGUAGE':'Idioma','PROMPT_IMAGE_DOWNLOAD':'Preguntar por descarga de imágenes','APP_UPDATES':'Actualizaciones de la app'})
-          UI.write_text(text,encoding='utf-8')
+
+          def require_once(s, old, new, label):
+              count = s.count(old)
+              if count != 1:
+                  raise SystemExit(f'{label}: expected 1 match, found {count}')
+              return s.replace(old, new, 1)
+
+          text = require_once(
+              text,
+              '#include "installer/app_settings.hpp"\n',
+              '#include "installer/app_settings.hpp"\n#include "localization/localization.hpp"\n',
+              'localization include')
+
+          # Expand the Settings input rows from 7 to 8.
+          text = require_once(
+              text,
+              'void FullCatalogScreen::handleSettingsInput(uint32_t pressed, uint32_t nav) {',
+              'void FullCatalogScreen::handleSettingsInput(uint32_t pressed, uint32_t nav) {',
+              'handleSettingsInput signature')
+          h0 = text.index('void FullCatalogScreen::handleSettingsInput(uint32_t pressed, uint32_t nav) {')
+          h1 = text.index('\nvoid FullCatalogScreen::', h0 + 10)
+          handle = text[h0:h1]
+          handle = require_once(handle, 'constexpr int kRows = 7;', 'constexpr int kRows = 8;', 'settings row count')
+          text = text[:h0] + handle + text[h1:]
+
+          # Add Language between Warn missing plugins and Prompt image download.
+          c0 = text.index('void FullCatalogScreen::cycleSettingsOption(int row, int delta) {')
+          c1 = text.index('\nvoid FullCatalogScreen::', c0 + 10)
+          cycle = text[c0:c1]
+          old_cycle = '''    } else if (row == 4) {\n        settingsEdit_.warnMissingPlugins = !settingsEdit_.warnMissingPlugins;\n    } else if (row == 5) {\n        settingsEdit_.promptImageWarmup = !settingsEdit_.promptImageWarmup;\n    } else if (row == 6) {\n        triggerSelfUpdateAction();\n    }\n'''
+          new_cycle = '''    } else if (row == 4) {\n        settingsEdit_.warnMissingPlugins = !settingsEdit_.warnMissingPlugins;\n    } else if (row == 5) {\n        auto& loc = ::psvitaalive::LocalizationManager::instance();\n        const auto available = loc.availableLanguages();\n        if (!available.empty()) {\n            if (settingsEdit_.languageMode == ::psvitaalive::LanguageMode::System) {\n                settingsEdit_.languageMode = ::psvitaalive::LanguageMode::Manual;\n                settingsEdit_.language = ::psvitaalive::languageCode(available.front());\n            } else {\n                ::psvitaalive::Language current = ::psvitaalive::Language::English;\n                if (!::psvitaalive::languageFromCode(settingsEdit_.language, current)) current = available.front();\n                size_t pos = 0;\n                for (size_t i = 0; i < available.size(); ++i) {\n                    if (available[i] == current) { pos = i; break; }\n                }\n                if (pos + 1 < available.size()) {\n                    settingsEdit_.language = ::psvitaalive::languageCode(available[pos + 1]);\n                } else {\n                    settingsEdit_.languageMode = ::psvitaalive::LanguageMode::System;\n                }\n            }\n            loc.setMode(settingsEdit_.languageMode, settingsEdit_.language);\n        }\n    } else if (row == 6) {\n        settingsEdit_.promptImageWarmup = !settingsEdit_.promptImageWarmup;\n    } else if (row == 7) {\n        triggerSelfUpdateAction();\n    }\n'''
+          cycle = require_once(cycle, old_cycle, new_cycle, 'language cycle')
+          text = text[:c0] + cycle + text[c1:]
+
+          # Update drawSettings only, using structural regexes rather than exact whitespace assumptions.
+          d0 = text.index('void FullCatalogScreen::drawSettings() {')
+          d1 = text.index('\nvoid FullCatalogScreen::', d0 + 10)
+          draw = text[d0:d1]
+
+          draw = require_once(draw, 'Meta meta[7] = {', 'Meta meta[8] = {', 'meta size')
+          draw = require_once(
+              draw,
+              '{true, "INSTALL"}, {false, ""}, {false, ""}, {true, "INTERFACE"}, {false, ""}, {true, "CATALOG"}, {true, "UPDATES"}',
+              '{true, "INSTALL"}, {false, ""}, {false, ""}, {true, "INTERFACE"}, {false, ""}, {false, ""}, {true, "CATALOG"}, {true, "UPDATES"}',
+              'meta row entries')
+          draw = require_once(draw, 'int rowY[7];', 'int rowY[8];', 'rowY declaration')
+          draw = require_once(draw, 'int rowY[7] = {};', 'int rowY[8] = {};', 'rowY array')
+          draw = require_once(draw, 'for (int i = 0; i < 7; ++i) {', 'for (int i = 0; i < 8; ++i) {', 'row loop 1')
+          draw = require_once(draw, 'for (int i = 0; i < 7; ++i) {', 'for (int i = 0; i < 8; ++i) {', 'row loop 2')
+          draw = require_once(draw, 'for (int i = 0; i <= settingsFocus_ && i < 7; ++i) {', 'for (int i = 0; i <= settingsFocus_ && i < 8; ++i) {', 'focus loop')
+
+          # Replace the complete options block while preserving the existing surrounding layout code.
+          pattern = re.compile(r'    auto themeLabel = \[&\]\(\) -> std::string \{.*?    Opt opts\[7\] = \{.*?\n    \};\n', re.S)
+          replacement = '''    auto themeLabel = [&]() -> std::string {\n        return std::string(colorThemeDisplayName(settingsEdit_.colorTheme));\n    };\n    auto languageLabel = [&]() -> std::string {\n        auto& loc = ::psvitaalive::LocalizationManager::instance();\n        if (settingsEdit_.languageMode == ::psvitaalive::LanguageMode::System)\n            return std::string("System (") + loc.currentLanguageName() + ")";\n        ::psvitaalive::Language lang = ::psvitaalive::Language::English;\n        if (::psvitaalive::languageFromCode(settingsEdit_.language, lang) && loc.isLanguageAvailable(lang))\n            return std::string(::psvitaalive::languageName(lang));\n        return std::string(::psvitaalive::languageName(::psvitaalive::Language::English));\n    };\n    Opt opts[8] = {\n        {"INSTALL", L("INSTALL_METHOD"), methodLabel(), "Auto: BGDL for PKG when available", true},\n        {"", L("PSP_PS1_TARGET"), pspLabel(), "LiveArea=PKG bubble; Adrenaline=pspemu (no bubble)", false},\n        {"", L("PSP_MEDIA_ADRENALINE"), mediaFormatLabel(), "Folder=EBOOT in GAME; ISO=pspemu/ISO", false},\n        {"INTERFACE", L("COLOR_THEME"), themeLabel() + "  >", "X / tap: open color palette picker", true},\n        {"", L("WARN_MISSING_PLUGINS"), settingsEdit_.warnMissingPlugins ? "Yes" : "No", "Startup toast if NoNpDrm is missing", false},\n        {"", L("LANGUAGE"), languageLabel(), "System = Vita language; manual selection overrides it", false},\n        {"CATALOG", L("PROMPT_IMAGE_DOWNLOAD"), settingsEdit_.promptImageWarmup ? "Yes" : "No", "If you choose No once, it will not ask again", true},\n        {"UPDATES", L("APP_UPDATES"), updateLabel(), "GitHub Releases - X to check / install", true},\n    };\n'''
+          if len(pattern.findall(draw)) != 1:
+              raise SystemExit('options block: expected exactly 1 match')
+          draw = pattern.sub(replacement, draw, count=1)
+
+          draw = require_once(
+              draw,
+              'vita2d_pgf_draw_text(font_, 20, HEADER_H + 30 + slide, ACCENT, 1.00f, "Settings");',
+              'vita2d_pgf_draw_text(font_, 20, HEADER_H + 30 + slide, ACCENT, 1.00f, L("SETTINGS"));',
+              'localized settings title')
+          draw = require_once(
+              draw,
+              'vita2d_pgf_draw_text(font_, SCREEN_W - 300, HEADER_H + 28 + slide, DIM, 0.56f, "O / SELECT: Save & back");',
+              'vita2d_pgf_draw_text(font_, SCREEN_W - 300, HEADER_H + 28 + slide, DIM, 0.56f, L("SAVE_BACK"));',
+              'localized save text')
+          draw = require_once(
+              draw,
+              'vita2d_pgf_draw_text(font_, 12, SCREEN_H - 14, TEXT, 0.56f, "D-Pad: move   X / <>: change   O: save & back");',
+              'vita2d_pgf_draw_text(font_, 12, SCREEN_H - 14, TEXT, 0.56f, L("SETTINGS_FOOTER"));',
+              'localized footer')
+
+          text = text[:d0] + draw + text[d1:]
+
+          def add_keys(path, pairs):
+              s = path.read_text(encoding='utf-8')
+              if not s.endswith('\n'):
+                  s += '\n'
+              changed = False
+              for key, value in pairs.items():
+                  if not re.search(r'^' + re.escape(key) + r'=', s, re.M):
+                      s += key + '=' + value + '\n'
+                      changed = True
+              if changed:
+                  path.write_text(s, encoding='utf-8')
+
+          add_keys(EN, {
+              'SETTINGS': 'Settings',
+              'SAVE_BACK': 'O / SELECT: Save & back',
+              'SETTINGS_FOOTER': 'D-Pad: move   X / <>: change   O: save & back',
+              'INSTALL_METHOD': 'Install method',
+              'PSP_PS1_TARGET': 'PSP / PS1 target',
+              'PSP_MEDIA_ADRENALINE': 'PSP media (Adrenaline)',
+              'COLOR_THEME': 'Color theme',
+              'WARN_MISSING_PLUGINS': 'Warn missing plugins',
+              'LANGUAGE': 'Language',
+              'PROMPT_IMAGE_DOWNLOAD': 'Prompt image download',
+              'APP_UPDATES': 'App updates',
+          })
+          add_keys(ES, {
+              'SETTINGS': 'Ajustes',
+              'SAVE_BACK': 'O / SELECT: Guardar y volver',
+              'SETTINGS_FOOTER': 'D-Pad: mover   X / <>: cambiar   O: guardar y volver',
+              'INSTALL_METHOD': 'Método de instalación',
+              'PSP_PS1_TARGET': 'Destino PSP / PS1',
+              'PSP_MEDIA_ADRENALINE': 'Medio PSP (Adrenaline)',
+              'COLOR_THEME': 'Tema de color',
+              'WARN_MISSING_PLUGINS': 'Avisar sobre plugins faltantes',
+              'LANGUAGE': 'Idioma',
+              'PROMPT_IMAGE_DOWNLOAD': 'Preguntar por descarga de imágenes',
+              'APP_UPDATES': 'Actualizaciones de la app',
+          })
+
+          UI.write_text(text, encoding='utf-8')
       - name: Validate patch
         shell: bash
         run: |
