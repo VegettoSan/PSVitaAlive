@@ -249,7 +249,77 @@ unsigned withAlpha(unsigned c, unsigned a) {
     return (c & 0x00FFFFFFu) | ((a & 0xFFu) << 24);
 }
 
+/** Full UI palette snapshot for smooth theme cross-fades. */
+struct ThemePalette {
+    unsigned bg = 0, surface = 0, surface2 = 0, panel = 0, border = 0;
+    unsigned text = 0, dim = 0, white = 0, silver = 0;
+    unsigned accent = 0, accentDim = 0, accentSoft = 0;
+};
 
+ThemePalette g_themeFrom{};
+ThemePalette g_themeTo{};
+bool g_themeBlending = false;
+uint64_t g_themeBlendStartMs = 0;
+constexpr float kThemeBlendMs = 420.f; // ~0.42s ease
+
+ThemePalette captureThemePalette() {
+    ThemePalette p;
+    p.bg = BG; p.surface = SURFACE; p.surface2 = SURFACE2; p.panel = PANEL;
+    p.border = BORDER; p.text = TEXT; p.dim = DIM; p.white = WHITE; p.silver = SILVER;
+    p.accent = ACCENT; p.accentDim = ACCENT_DIM; p.accentSoft = ACCENT_SOFT;
+    return p;
+}
+
+void applyThemePalette(const ThemePalette& p) {
+    BG = p.bg; SURFACE = p.surface; SURFACE2 = p.surface2; PANEL = p.panel;
+    BORDER = p.border; TEXT = p.text; DIM = p.dim; WHITE = p.white; SILVER = p.silver;
+    ACCENT = p.accent; ACCENT_DIM = p.accentDim; ACCENT_SOFT = p.accentSoft;
+}
+
+unsigned lerpColorU(unsigned a, unsigned b, float t) {
+    if (t <= 0.f) return a;
+    if (t >= 1.f) return b;
+    // vita2d RGBA8 layout: A<<24 | B<<16 | G<<8 | R
+    const int ar = (int)(a & 0xFFu), ag = (int)((a >> 8) & 0xFFu), ab = (int)((a >> 16) & 0xFFu), aa = (int)((a >> 24) & 0xFFu);
+    const int br = (int)(b & 0xFFu), bg = (int)((b >> 8) & 0xFFu), bb = (int)((b >> 16) & 0xFFu), ba = (int)((b >> 24) & 0xFFu);
+    const int r = ar + (int)((br - ar) * t + 0.5f);
+    const int g = ag + (int)((bg - ag) * t + 0.5f);
+    const int bl = ab + (int)((bb - ab) * t + 0.5f);
+    const int al = aa + (int)((ba - aa) * t + 0.5f);
+    return RGBA8((unsigned)r, (unsigned)g, (unsigned)bl, (unsigned)al);
+}
+
+ThemePalette lerpThemePalette(const ThemePalette& a, const ThemePalette& b, float t) {
+    ThemePalette o;
+    o.bg = lerpColorU(a.bg, b.bg, t);
+    o.surface = lerpColorU(a.surface, b.surface, t);
+    o.surface2 = lerpColorU(a.surface2, b.surface2, t);
+    o.panel = lerpColorU(a.panel, b.panel, t);
+    o.border = lerpColorU(a.border, b.border, t);
+    o.text = lerpColorU(a.text, b.text, t);
+    o.dim = lerpColorU(a.dim, b.dim, t);
+    o.white = lerpColorU(a.white, b.white, t);
+    o.silver = lerpColorU(a.silver, b.silver, t);
+    o.accent = lerpColorU(a.accent, b.accent, t);
+    o.accentDim = lerpColorU(a.accentDim, b.accentDim, t);
+    o.accentSoft = lerpColorU(a.accentSoft, b.accentSoft, t);
+    return o;
+}
+
+void tickThemeBlend() {
+    if (!g_themeBlending) return;
+    const uint64_t now = sceKernelGetProcessTimeWide() / 1000ULL;
+    float t = (float)(now - g_themeBlendStartMs) / kThemeBlendMs;
+    if (t >= 1.f) {
+        applyThemePalette(g_themeTo);
+        g_themeBlending = false;
+        return;
+    }
+    if (t < 0.f) t = 0.f;
+    // Smoothstep ease-in-out
+    t = t * t * (3.f - 2.f * t);
+    applyThemePalette(lerpThemePalette(g_themeFrom, g_themeTo, t));
+}
 
 /** Brand art (full-color logo/splash) only for the original PSVitaAlive theme. */
 bool isBrandColorTheme(::psvitaalive::ColorTheme t) {
@@ -372,7 +442,10 @@ void colorThemeAccentRgb(::psvitaalive::ColorTheme t, unsigned& ar, unsigned& ag
     }
 }
 
-void applyColorTheme(::psvitaalive::ColorTheme t) {
+void applyColorTheme(::psvitaalive::ColorTheme t, bool animate = true) {
+    // Snapshot current on-screen colors as blend source (supports interrupting mid-fade).
+    const ThemePalette fromPal = captureThemePalette();
+
     // Neutral baseline (overridden per theme for stronger identity).
     BG = RGBA8(0x0A,0x0A,0x0A,255);
     SURFACE = RGBA8(0x1A,0x1A,0x1A,255);
@@ -645,6 +718,19 @@ void applyColorTheme(::psvitaalive::ColorTheme t) {
     ACCENT = RGBA8(ar, ag, ab, 255);
     ACCENT_DIM = RGBA8(ar, ag, ab, 90);
     ACCENT_SOFT = RGBA8(ar, ag, ab, 40);
+
+    const ThemePalette toPal = captureThemePalette();
+    if (!animate) {
+        g_themeBlending = false;
+        applyThemePalette(toPal);
+        return;
+    }
+    // Cross-fade: restore "from", then tickThemeBlend interpolates each frame.
+    g_themeFrom = fromPal;
+    g_themeTo = toPal;
+    g_themeBlendStartMs = sceKernelGetProcessTimeWide() / 1000ULL;
+    g_themeBlending = true;
+    applyThemePalette(fromPal);
 }
 
 /** Thin neon frame used across cards, panels, and modals (uses current ACCENT). */
@@ -1178,7 +1264,7 @@ void FullCatalogScreen::openThemePicker() {
     // Keep focused row roughly in view
     const int cols = 3;
     themeSetupScrollRow_ = std::max(0, themeSetupFocus_ / cols - 1);
-    applyColorTheme(settingsEdit_.colorTheme);
+    applyColorTheme(settingsEdit_.colorTheme, false);
     diagnostics::log("[UI] theme picker opened");
 }
 
@@ -1207,7 +1293,7 @@ void FullCatalogScreen::closeThemeSetup(bool save) {
     if (!themeSetupVisible_) return;
     if (save) {
         settingsEdit_.themeSetupDone = true;
-        applyColorTheme(settingsEdit_.colorTheme);
+        applyColorTheme(settingsEdit_.colorTheme, false);
         if (settingsSave_) settingsSave_(settingsEdit_);
         diagnostics::log(std::string("[UI] theme setup saved theme=") +
                          ::psvitaalive::AppSettings::toString(settingsEdit_.colorTheme));
@@ -3290,7 +3376,7 @@ void FullCatalogScreen::handleTouch() {
 
 void FullCatalogScreen::setAppSettings(const ::psvitaalive::AppSettingsData& settings) {
     settingsEdit_ = settings;
-    applyColorTheme(settingsEdit_.colorTheme);
+    applyColorTheme(settingsEdit_.colorTheme, false);
     // Apply saved typeface (init may have run with defaults before settings were injected).
     vita2d_wait_rendering_done();
     if (vita2d_pgf* nf = ::psvitaalive::ui::loadUiFont(settingsEdit_.uiFontStyle)) {
@@ -4293,6 +4379,9 @@ void FullCatalogScreen::showToast(const std::string& message, uint64_t durationM
 }
 
 void FullCatalogScreen::updateAnimations() {
+    // Theme palette cross-fade (BG / surfaces / accent)
+    tickThemeBlend();
+
     // Catalog list scroll (row units)
     const float targetCat = static_cast<float>(state_.catalogScrollRow);
     visualCatalogScroll_ += (targetCat - visualCatalogScroll_) * 0.18f;
