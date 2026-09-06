@@ -205,6 +205,7 @@ add_custom_command(
     -a "../assets/sce_sys=sce_sys"
     -a "../assets/ui=ui"
     -a "../assets/lang=lang"
+    -a "../assets/font=font"
     -a "updater_eboot.bin=updater/eboot.bin"
     -a "updater_param.sfo=updater/param.sfo"
     -a "psm_runtime_driver.skprx=psm_runtime_driver.skprx"
@@ -220,6 +221,7 @@ add_custom_command(
     "${CMAKE_SOURCE_DIR}/assets/sce_sys"
     "${CMAKE_SOURCE_DIR}/assets/ui"
     "${CMAKE_SOURCE_DIR}/assets/lang"
+    "${CMAKE_SOURCE_DIR}/assets/font"
   COMMENT "Building vpk ${PROJECT_NAME}"
   VERBATIM
 )

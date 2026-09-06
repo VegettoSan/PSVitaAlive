@@ -12,8 +12,15 @@ const char* uiFontStyleKey(UiFontStyle style);
 
 /**
  * Load a vita2d PGF for the given style.
- * Uses console system fonts under sa0:data/font/ when available.
- * Always falls back to vita2d_load_default_pgf() if a custom file is missing.
+ *
+ * Search order:
+ *   1. ux0:data/psvitaalive/fonts/<style>.pgf   (user override, no rebuild)
+ *   2. app0:font/<style>.pgf                    (bundled in VPK)
+ *   3. vita2d_load_default_pgf()
+ *
+ * Style file names:
+ *   serif.pgf | sans.pgf | serif_bold.pgf | sans_bold.pgf
+ *
  * Caller owns the pointer (vita2d_free_pgf).
  */
 vita2d_pgf* loadUiFont(UiFontStyle style);

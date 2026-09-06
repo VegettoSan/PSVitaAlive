@@ -23,6 +23,17 @@ vita2d_pgf* tryLoad(const char* path) {
     return f;
 }
 
+/** Style → file base name under app0:font/ or ux0:data/psvitaalive/fonts/ */
+const char* styleFileName(UiFontStyle style) {
+    switch (style) {
+        case UiFontStyle::Serif:     return "serif.pgf";
+        case UiFontStyle::Sans:      return "sans.pgf";
+        case UiFontStyle::SerifBold: return "serif_bold.pgf";
+        case UiFontStyle::SansBold:  return "sans_bold.pgf";
+        default:                     return nullptr;
+    }
+}
+
 } // namespace
 
 const char* uiFontStyleKey(UiFontStyle style) {
@@ -36,37 +47,25 @@ const char* uiFontStyleKey(UiFontStyle style) {
 }
 
 vita2d_pgf* loadUiFont(UiFontStyle style) {
-    // System Latin PGF set (same family as classic PSP/Vita Latin faces).
-    // Paths verified on retail firmware + Vita3K when fonts are present.
-    const char* primary = nullptr;
-    const char* secondary = nullptr;
-    switch (style) {
-        case UiFontStyle::Serif:
-            primary = "sa0:data/font/ltn0.pgf";
-            secondary = "sa0:/data/font/ltn0.pgf";
-            break;
-        case UiFontStyle::Sans:
-            primary = "sa0:data/font/ltn2.pgf";
-            secondary = "sa0:/data/font/ltn2.pgf";
-            break;
-        case UiFontStyle::SerifBold:
-            primary = "sa0:data/font/ltn4.pgf";
-            secondary = "sa0:/data/font/ltn4.pgf";
-            break;
-        case UiFontStyle::SansBold:
-            primary = "sa0:data/font/ltn6.pgf";
-            secondary = "sa0:/data/font/ltn6.pgf";
-            break;
-        default:
-            break;
-    }
+    // Priority:
+    //   1) User override on memory card (no rebuild needed)
+    //   2) Fonts bundled in the VPK under app0:font/
+    //   3) vita2d default PGF
+    //
+    // System sa0: fonts are intentionally NOT used: they are missing or
+    // unreliable on many real units and on Vita3K, so the old Sans/Serif
+    // selector appeared to do nothing.
+    const char* file = styleFileName(style);
+    if (file) {
+        char path[256];
 
-    if (primary) {
-        if (vita2d_pgf* f = tryLoad(primary)) return f;
-        if (secondary) {
-            if (vita2d_pgf* f = tryLoad(secondary)) return f;
-        }
-        sceClibPrintf("[UiFont] missing %s — fallback default\n", primary);
+        sceClibSnprintf(path, sizeof(path), "ux0:data/psvitaalive/fonts/%s", file);
+        if (vita2d_pgf* f = tryLoad(path)) return f;
+
+        sceClibSnprintf(path, sizeof(path), "app0:font/%s", file);
+        if (vita2d_pgf* f = tryLoad(path)) return f;
+
+        sceClibPrintf("[UiFont] missing custom font %s (checked ux0 + app0) — fallback default\n", file);
     }
 
     vita2d_pgf* def = vita2d_load_default_pgf();
