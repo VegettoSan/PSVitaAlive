@@ -14,7 +14,7 @@
     "strategy"
   ],
   "version": "0.8",
-  "version_date": "2026-09-30",
+  "version_date": "2026-08-30",
   "requirements": "- kubridge.skprx installed\n- libshacccg.suprx at ur0:data/libshacccg.suprx or ur0:data/external/libshacccg.suprx\n-About 170 MB of free space on ux0",
   "size": 2411725,
   "status": "Verified",
