@@ -82,13 +82,13 @@ enum class LanguageMode {
     Manual
 };
 
-/** UI typeface. Uses system PGF fonts on the console when available. */
+/** Legacy fixed slots (still used if uiFontFile is empty and matching .pgf exists). */
 enum class UiFontStyle {
     Default = 0,   // vita2d_load_default_pgf
-    Serif,         // sa0 ltn0
-    Sans,          // sa0 ltn2
-    SerifBold,     // sa0 ltn4
-    SansBold,      // sa0 ltn6
+    Serif,         // serif.pgf
+    Sans,          // sans.pgf
+    SerifBold,     // serif_bold.pgf
+    SansBold,      // sans_bold.pgf
     Count
 };
 

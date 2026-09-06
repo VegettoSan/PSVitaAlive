@@ -117,6 +117,14 @@ bool filePresentForEntry(const ConfigEntry& e) {
             const std::string a = std::string(kRoots[i]) + "NoPspEmuDrm_user.suprx";
             if (pathExists(a.c_str())) return true;
         }
+        if (e.basename == "nopspemudrm_kern_mod.skprx") {
+            const std::string a = std::string(kRoots[i]) + "NoPspEmuDrm_kern_mod.skprx";
+            if (pathExists(a.c_str())) return true;
+        }
+        if (e.basename == "nopspemudrm_user_mod.suprx") {
+            const std::string a = std::string(kRoots[i]) + "NoPspEmuDrm_user_mod.suprx";
+            if (pathExists(a.c_str())) return true;
+        }
         if (e.basename == "nonpdrm.skprx") {
             const std::string a = std::string(kRoots[i]) + "NoNpDrm.skprx";
             if (pathExists(a.c_str())) return true;
@@ -348,13 +356,23 @@ PluginStatus PluginDetector::scan() {
         "nonpdrm_en.skprx",
         nullptr
     };
-    static const char* kNoPspKernNames[] = {
+    // Stock NoPspEmuDrm pair (do not mix with mod)
+    static const char* kNoPspKernStockNames[] = {
         "nopspemudrm_kern.skprx",
         "nopspemudrm.skprx",
         nullptr
     };
-    static const char* kNoPspUserNames[] = {
+    static const char* kNoPspUserStockNames[] = {
         "nopspemudrm_user.suprx",
+        nullptr
+    };
+    // ARK / Mod variant pair (complete alternative; never mix with stock)
+    static const char* kNoPspKernModNames[] = {
+        "nopspemudrm_kern_mod.skprx",
+        nullptr
+    };
+    static const char* kNoPspUserModNames[] = {
+        "nopspemudrm_user_mod.suprx",
         nullptr
     };
     static const char* kRepatchNames[] = {
@@ -369,34 +387,53 @@ PluginStatus PluginDetector::scan() {
     };
 
     const Hit nonpdrm = findPlugin(entries, kNoNpDrmNames);
-    const Hit nopspK = findPlugin(entries, kNoPspKernNames);
-    const Hit nopspU = findPlugin(entries, kNoPspUserNames);
+    const Hit nopspKStock = findPlugin(entries, kNoPspKernStockNames);
+    const Hit nopspUStock = findPlugin(entries, kNoPspUserStockNames);
+    const Hit nopspKMod = findPlugin(entries, kNoPspKernModNames);
+    const Hit nopspUMod = findPlugin(entries, kNoPspUserModNames);
     const Hit repatch = findPlugin(entries, kRepatchNames);
     const Hit fdFix = findPlugin(entries, kFdFixNames);
 
+    // Complete pairs only — never mix stock kern with mod user (or vice versa).
+    const bool stockPair =
+        (nopspKStock.listed && nopspKStock.fileOk) &&
+        (nopspUStock.listed && nopspUStock.fileOk);
+    const bool modPair =
+        (nopspKMod.listed && nopspKMod.fileOk) &&
+        (nopspUMod.listed && nopspUMod.fileOk);
+    const bool nopspComplete = stockPair || modPair;
+
     logHit("NoNpDrm", nonpdrm);
-    logHit("NoPspEmuDrm_kern", nopspK);
-    logHit("NoPspEmuDrm_user", nopspU);
+    logHit("NoPspEmuDrm_kern", nopspKStock);
+    logHit("NoPspEmuDrm_user", nopspUStock);
+    logHit("NoPspEmuDrm_kern_mod", nopspKMod);
+    logHit("NoPspEmuDrm_user_mod", nopspUMod);
     logHit("RePatch", repatch);
     logHit("FdFix", fdFix);
 
     // Present for install warnings: listed in active (non-comment) config AND file on disk.
     st.nonpdrm = nonpdrm.listed && nonpdrm.fileOk;
-    st.nopspemudrmKern = nopspK.listed && nopspK.fileOk;
-    st.nopspemudrmUser = nopspU.listed && nopspU.fileOk;
+    // Both flags true only when a full stock OR full mod pair is present.
+    st.nopspemudrmKern = nopspComplete;
+    st.nopspemudrmUser = nopspComplete;
     st.repatch = repatch.listed && repatch.fileOk;
     st.fdFix = fdFix.listed && fdFix.fileOk;
 
-    char summary[512];
+    char summary[640];
     sceClibSnprintf(
         summary, sizeof(summary),
-        "config=%s nonpdrm=%d (listed=%d file=%d) nopsp_kern=%d (listed=%d file=%d) nopsp_user=%d (listed=%d file=%d) repatch=%d (listed=%d file=%d) fd_fix=%d (listed=%d file=%d)",
+        "config=%s nonpdrm=%d nopsp_complete=%d stock=%d (k=%d/%d u=%d/%d) mod=%d (k=%d/%d u=%d/%d) repatch=%d fd_fix=%d",
         st.configPathUsed.c_str(),
-        st.nonpdrm ? 1 : 0, nonpdrm.listed ? 1 : 0, nonpdrm.fileOk ? 1 : 0,
-        st.nopspemudrmKern ? 1 : 0, nopspK.listed ? 1 : 0, nopspK.fileOk ? 1 : 0,
-        st.nopspemudrmUser ? 1 : 0, nopspU.listed ? 1 : 0, nopspU.fileOk ? 1 : 0,
-        st.repatch ? 1 : 0, repatch.listed ? 1 : 0, repatch.fileOk ? 1 : 0,
-        st.fdFix ? 1 : 0, fdFix.listed ? 1 : 0, fdFix.fileOk ? 1 : 0
+        st.nonpdrm ? 1 : 0,
+        nopspComplete ? 1 : 0,
+        stockPair ? 1 : 0,
+        nopspKStock.listed ? 1 : 0, nopspKStock.fileOk ? 1 : 0,
+        nopspUStock.listed ? 1 : 0, nopspUStock.fileOk ? 1 : 0,
+        modPair ? 1 : 0,
+        nopspKMod.listed ? 1 : 0, nopspKMod.fileOk ? 1 : 0,
+        nopspUMod.listed ? 1 : 0, nopspUMod.fileOk ? 1 : 0,
+        st.repatch ? 1 : 0,
+        st.fdFix ? 1 : 0
     );
     st.detail = summary;
 
@@ -406,11 +443,22 @@ PluginStatus PluginDetector::scan() {
     if (nonpdrm.listed && !nonpdrm.fileOk) {
         st.detail += " | NoNpDrm listed but .skprx missing";
     }
-    if (nopspK.listed && !nopspK.fileOk) {
+    if (nopspKStock.listed && !nopspKStock.fileOk) {
         st.detail += " | NoPspEmuDrm_kern listed but file missing";
     }
-    if (nopspU.listed && !nopspU.fileOk) {
+    if (nopspUStock.listed && !nopspUStock.fileOk) {
         st.detail += " | NoPspEmuDrm_user listed but file missing";
+    }
+    if (nopspKMod.listed && !nopspKMod.fileOk) {
+        st.detail += " | NoPspEmuDrm_kern_mod listed but file missing";
+    }
+    if (nopspUMod.listed && !nopspUMod.fileOk) {
+        st.detail += " | NoPspEmuDrm_user_mod listed but file missing";
+    }
+    if (stockPair) {
+        st.detail += " | NoPspEmuDrm stock pair OK";
+    } else if (modPair) {
+        st.detail += " | NoPspEmuDrm mod/ARK pair OK";
     }
     if (repatch.listed && !repatch.fileOk) {
         st.detail += " | RePatch listed but plugin file missing";
@@ -421,7 +469,7 @@ PluginStatus PluginDetector::scan() {
     if (st.repatch && st.fdFix) {
         st.detail += " | RePatch+FdFix conflict detected";
     }
-    if (!nopspK.listed && !nopspU.listed) {
+    if (!stockPair && !modPair) {
         st.detail += " | NoPspEmuDrm absent";
     }
 

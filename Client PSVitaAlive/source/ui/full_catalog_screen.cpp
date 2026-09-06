@@ -2231,7 +2231,7 @@ void FullCatalogScreen::setCatalogItems(std::vector<CatalogItem>items){
 bool FullCatalogScreen::init(){
     vita2d_init();
     vita2d_set_clear_color(BG);
-    font_=::psvitaalive::ui::loadUiFont(settingsEdit_.uiFontStyle);
+    font_=::psvitaalive::ui::loadUiFont(settingsEdit_.uiFontStyle, settingsEdit_.uiFontFile);
     if(!font_) font_=vita2d_load_default_pgf();
     if(!font_)return false;
     sceCtrlSetSamplingMode(SCE_CTRL_MODE_ANALOG);
@@ -3428,7 +3428,7 @@ void FullCatalogScreen::setAppSettings(const ::psvitaalive::AppSettingsData& set
     applyColorTheme(settingsEdit_.colorTheme, false);
     // Apply saved typeface (init may have run with defaults before settings were injected).
     vita2d_wait_rendering_done();
-    if (vita2d_pgf* nf = ::psvitaalive::ui::loadUiFont(settingsEdit_.uiFontStyle)) {
+    if (vita2d_pgf* nf = ::psvitaalive::ui::loadUiFont(settingsEdit_.uiFontStyle, settingsEdit_.uiFontFile)) {
         if (font_) vita2d_free_pgf(font_);
         font_ = nf;
     }
@@ -3639,23 +3639,39 @@ void FullCatalogScreen::cycleSettingsOption(int row, int delta) {
                          ::psvitaalive::AppSettings::toString(settingsEdit_.languageMode) +
                          " code=" + settingsEdit_.language);
     } else if (row == 4) {
-        int v = static_cast<int>(settingsEdit_.uiFontStyle);
-        const int n = static_cast<int>(::psvitaalive::UiFontStyle::Count);
-        v = (v + delta) % n;
-        if (v < 0) v += n;
-        settingsEdit_.uiFontStyle = static_cast<::psvitaalive::UiFontStyle>(v);
-        // Live preview: swap PGF after GPU idle so mid-frame draws stay safe.
+        // Dynamic list: Default + every *.pgf found in app0:font/ and ux0:.../fonts/
+        std::vector<std::string> fonts = ::psvitaalive::ui::listAvailableUiFonts();
+        // entries: index 0 = Default (empty file), then each basename
+        const int n = 1 + static_cast<int>(fonts.size());
+        int idx = 0;
+        if (!settingsEdit_.uiFontFile.empty()) {
+            for (size_t i = 0; i < fonts.size(); ++i) {
+                if (fonts[i] == settingsEdit_.uiFontFile) {
+                    idx = 1 + static_cast<int>(i);
+                    break;
+                }
+            }
+        }
+        idx = (idx + delta) % n;
+        if (idx < 0) idx += n;
+        if (idx == 0) {
+            settingsEdit_.uiFontFile.clear();
+            settingsEdit_.uiFontStyle = ::psvitaalive::UiFontStyle::Default;
+        } else {
+            settingsEdit_.uiFontFile = fonts[static_cast<size_t>(idx - 1)];
+            // Map known preferred names to legacy style; others stay Default+file
+            settingsEdit_.uiFontStyle = ::psvitaalive::AppSettings::parseUiFontStyle(
+                settingsEdit_.uiFontFile.size() > 4
+                    ? settingsEdit_.uiFontFile.substr(0, settingsEdit_.uiFontFile.size() - 4)
+                    : settingsEdit_.uiFontFile);
+        }
         vita2d_wait_rendering_done();
-        vita2d_pgf* nf = ::psvitaalive::ui::loadUiFont(settingsEdit_.uiFontStyle);
+        vita2d_pgf* nf = ::psvitaalive::ui::loadUiFont(settingsEdit_.uiFontStyle, settingsEdit_.uiFontFile);
         if (nf) {
             if (font_) vita2d_free_pgf(font_);
             font_ = nf;
-            // If requested style missing, loader already fell back to default.
-            if (settingsEdit_.uiFontStyle != ::psvitaalive::UiFontStyle::Default) {
-                // Heuristic toast only when still default path? Skip — silent fallback is OK.
-            }
-            diagnostics::log(std::string("[UI] font style=") +
-                             ::psvitaalive::AppSettings::toString(settingsEdit_.uiFontStyle));
+            diagnostics::log(std::string("[UI] font file=") +
+                             (settingsEdit_.uiFontFile.empty() ? "(default)" : settingsEdit_.uiFontFile));
         }
     } else if (row == 5) {
         (void)delta;
@@ -3766,6 +3782,14 @@ void FullCatalogScreen::drawSettings() {
         bool sectionStart;
     };
     auto fontLabel = [&]() -> std::string {
+        if (!settingsEdit_.uiFontFile.empty()) {
+            // Show basename without .pgf for a cleaner button
+            const std::string& f = settingsEdit_.uiFontFile;
+            if (f.size() > 4 && (f.compare(f.size() - 4, 4, ".pgf") == 0 ||
+                                 f.compare(f.size() - 4, 4, ".PGF") == 0))
+                return f.substr(0, f.size() - 4);
+            return f;
+        }
         switch (settingsEdit_.uiFontStyle) {
             case ::psvitaalive::UiFontStyle::Serif: return ::psvitaalive::L(TID::FontSerif);
             case ::psvitaalive::UiFontStyle::Sans: return ::psvitaalive::L(TID::FontSans);

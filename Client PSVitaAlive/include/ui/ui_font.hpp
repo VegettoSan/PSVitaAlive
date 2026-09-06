@@ -2,28 +2,25 @@
 
 #include "installer/app_settings.hpp"
 
+#include <string>
+#include <vector>
 #include <vita2d.h>
 
 namespace psvitaalive {
 namespace ui {
 
-/** Human-readable name for Settings (English key resolved via L() in UI). */
 const char* uiFontStyleKey(UiFontStyle style);
 
+/** Scan app0:font/ and ux0:data/psvitaalive/fonts/ for *.pgf basenames. */
+std::vector<std::string> listAvailableUiFonts();
+
 /**
- * Load a vita2d PGF for the given style.
- *
- * Search order:
- *   1. ux0:data/psvitaalive/fonts/<style>.pgf   (user override, no rebuild)
- *   2. app0:font/<style>.pgf                    (bundled in VPK)
- *   3. vita2d_load_default_pgf()
- *
- * Style file names:
- *   serif.pgf | sans.pgf | serif_bold.pgf | sans_bold.pgf
- *
- * Caller owns the pointer (vita2d_free_pgf).
+ * Load UI PGF.
+ * @param style  Legacy preferred file (serif.pgf / sans.pgf / …) when customFile empty
+ * @param customFile  Basename of any .pgf you placed in the font folders
  */
-vita2d_pgf* loadUiFont(UiFontStyle style);
+vita2d_pgf* loadUiFont(UiFontStyle style, const std::string& customFile);
+vita2d_pgf* loadUiFont(UiFontStyle style); // customFile empty
 
 } // namespace ui
 } // namespace psvitaalive

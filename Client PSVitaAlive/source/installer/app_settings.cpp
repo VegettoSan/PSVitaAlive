@@ -113,6 +113,7 @@ AppSettingsData AppSettings::load() {
     if (containsKey(json, "language_mode", v)) data.languageMode = parseLanguageMode(v);
     if (containsKey(json, "language", v) && !v.empty()) data.language = v;
     if (containsKey(json, "ui_font_style", v)) data.uiFontStyle = parseUiFontStyle(v);
+    if (containsKey(json, "ui_font_file", v)) data.uiFontFile = v;
     bool b = true;
     if (containsBool(json, "warn_missing_plugins", b)) data.warnMissingPlugins = b;
     if (containsBool(json, "prompt_image_warmup", b)) data.promptImageWarmup = b;
@@ -127,13 +128,13 @@ AppSettingsData AppSettings::load() {
 
 bool AppSettings::save(const AppSettingsData& data) {
     StorageManager st; st.createDirectories(StorageManager::BASE_DIR);
-    char json[1280];
+    char json[1536];
     sceClibSnprintf(json, sizeof(json),
-        "{\n  \"install_method\": \"%s\",\n  \"psp_target\": \"%s\",\n  \"psp_media_format\": \"%s\",\n  \"color_theme\": \"%s\",\n  \"warn_missing_plugins\": %s,\n  \"prompt_image_warmup\": %s,\n  \"theme_setup_done\": %s,\n  \"startup_plugin_detection\": %s,\n  \"startup_update_check\": %s,\n  \"language_mode\": \"%s\",\n  \"language\": \"%s\",\n  \"ui_font_style\": \"%s\"\n}\n",
+        "{\n  \"install_method\": \"%s\",\n  \"psp_target\": \"%s\",\n  \"psp_media_format\": \"%s\",\n  \"color_theme\": \"%s\",\n  \"warn_missing_plugins\": %s,\n  \"prompt_image_warmup\": %s,\n  \"theme_setup_done\": %s,\n  \"startup_plugin_detection\": %s,\n  \"startup_update_check\": %s,\n  \"language_mode\": \"%s\",\n  \"language\": \"%s\",\n  \"ui_font_style\": \"%s\",\n  \"ui_font_file\": \"%s\"\n}\n",
         toString(data.installMethod), toString(data.pspTarget), toString(data.pspMediaFormat), toString(data.colorTheme),
         data.warnMissingPlugins ? "true" : "false", data.promptImageWarmup ? "true" : "false", data.themeSetupDone ? "true" : "false",
         data.startupPluginDetection ? "true" : "false", data.startupUpdateCheck ? "true" : "false", toString(data.languageMode), data.language.c_str(),
-        toString(data.uiFontStyle));
+        toString(data.uiFontStyle), data.uiFontFile.c_str());
     SceUID fd = sceIoOpen(kConfigPath, SCE_O_WRONLY | SCE_O_CREAT | SCE_O_TRUNC, 0666); if (fd < 0) return false;
     const int wr = sceIoWrite(fd, json, std::strlen(json)); sceIoClose(fd); return wr > 0;
 }
