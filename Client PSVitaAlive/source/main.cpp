@@ -722,9 +722,11 @@ while(screen.updateAndDraw()){
                     " nopspK=" + (pl.nopspemudrmKern ? "1" : "0") +
                     " nopspU=" + (pl.nopspemudrmUser ? "1" : "0"));
                 if (!pl.nonpdrm) {
-                    screen.showToast("NoNpDrm not found: licensed Vita PKGs may fail", 3500);
+                    screen.showToast("NoNpDrm not found: licensed Vita PKGs may fail", 4500);
                 } else if (!pl.nopspemudrmKern || !pl.nopspemudrmUser) {
-                    screen.showToast("NoPspEmuDrm not found: PSP via Adrenaline only", 3200);
+                    screen.showToast(
+                        ::psvitaalive::L(::psvitaalive::TextId::NoPspEmuDrmMissingToast),
+                        6500);
                 }
             }
         }

@@ -498,6 +498,7 @@ const char* LocalizationManager::keyFor(TextId id) {
         case TextId::StageError: return "STAGE_ERROR";
         case TextId::StageExtracting: return "STAGE_EXTRACTING";
         case TextId::PspLiveAreaNeedsNoPspEmuDrm: return "PSP_LIVEAREA_NEEDS_NOPSPEMUDRM";
+        case TextId::NoPspEmuDrmMissingToast: return "NOPSPEMUDRM_MISSING_TOAST";
         default: return "";
     }
 }

@@ -345,6 +345,7 @@ enum class TextId {
     StageError,
     StageExtracting,
     PspLiveAreaNeedsNoPspEmuDrm,
+    NoPspEmuDrmMissingToast,
     Count
 };
 

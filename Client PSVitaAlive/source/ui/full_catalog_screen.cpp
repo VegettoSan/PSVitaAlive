@@ -2590,7 +2590,7 @@ void FullCatalogScreen::moveCatalogFocus(int d){if(catalogView().empty())return;
         const bool noPspEmuDrmReady =
             pluginsStatus_.nopspemudrmKern && pluginsStatus_.nopspemudrmUser;
         if (!noPspEmuDrmReady) {
-            showToast(::psvitaalive::L(::psvitaalive::TextId::PspLiveAreaNeedsNoPspEmuDrm), 3600);
+            showToast(::psvitaalive::L(::psvitaalive::TextId::PspLiveAreaNeedsNoPspEmuDrm), 6500);
             diagnostics::log(std::string("[UI] blocked PSP/PS1 LiveArea download: NoPspEmuDrm incomplete")
                              + " kern=" + std::to_string(pluginsStatus_.nopspemudrmKern ? 1 : 0)
                              + " user=" + std::to_string(pluginsStatus_.nopspemudrmUser ? 1 : 0));
@@ -4435,7 +4435,7 @@ float FullCatalogScreen::easeInOut(float t) const {
 
 void FullCatalogScreen::showToast(const std::string& message, uint64_t durationMs) {
     // Floor short toasts so important hints remain readable on real hardware.
-    if (durationMs < 2200ULL) durationMs = 2200ULL;
+    if (durationMs < 2400ULL) durationMs = 2400ULL;
     toastMessage_ = message;
     toastShownMs_ = sceKernelGetProcessTimeWide() / 1000ULL;
     toastExpiresMs_ = toastShownMs_ + durationMs;
@@ -4539,22 +4539,103 @@ void FullCatalogScreen::drawToast() const {
     if (toastMessage_.empty() || toastExpiresMs_ == 0) return;
     const uint64_t now = sceKernelGetProcessTimeWide() / 1000ULL;
     if (now >= toastExpiresMs_) return;
-    const uint64_t life = toastExpiresMs_ - toastShownMs_;
     const uint64_t age = now - toastShownMs_;
     float a = 1.f;
     if (age < 120) a = static_cast<float>(age) / 120.f;
-    else if (toastExpiresMs_ - now < 200)
-        a = static_cast<float>(toastExpiresMs_ - now) / 200.f;
-    const unsigned alpha = static_cast<unsigned>(std::max(0.f, std::min(1.f, a)) * 230.f);
-    const int tw = std::min(520, 40 + static_cast<int>(toastMessage_.size()) * 8);
-    const int th = 46;
+    else if (toastExpiresMs_ - now < 280)
+        a = static_cast<float>(toastExpiresMs_ - now) / 280.f;
+    const unsigned alpha = static_cast<unsigned>(std::max(0.f, std::min(1.f, a)) * 235.f);
+
+    // Multi-line layout: keep inside screen (margins), wrap long messages.
+    const float sc = 0.74f;
+    const int maxBoxW = SCREEN_W - 48;
+    const int padX = 16, padY = 12;
+    const int lineH = 22;
+    const int innerMaxW = maxBoxW - padX * 2;
+
+    std::vector<std::string> lines;
+    if (font_) {
+        auto pushWrapped = [&](const std::string& paragraph) {
+            if (paragraph.empty()) {
+                lines.push_back({});
+                return;
+            }
+            std::string cur;
+            size_t i = 0;
+            while (i < paragraph.size()) {
+                // Prefer explicit newlines already split by caller
+                size_t sp = paragraph.find(' ', i);
+                if (sp == std::string::npos) sp = paragraph.size();
+                std::string word = paragraph.substr(i, sp - i);
+                std::string trial = cur.empty() ? word : (cur + " " + word);
+                const int tw = vita2d_pgf_text_width(font_, sc, trial.c_str());
+                if (tw <= innerMaxW || cur.empty()) {
+                    cur = trial;
+                } else {
+                    lines.push_back(cur);
+                    cur = word;
+                    // Hard-break extremely long tokens
+                    while (vita2d_pgf_text_width(font_, sc, cur.c_str()) > innerMaxW && cur.size() > 4) {
+                        // binary-ish trim
+                        size_t lo = 1, hi = cur.size();
+                        while (lo + 1 < hi) {
+                            size_t mid = (lo + hi) / 2;
+                            std::string part = cur.substr(0, mid);
+                            if (vita2d_pgf_text_width(font_, sc, part.c_str()) <= innerMaxW) lo = mid;
+                            else hi = mid;
+                        }
+                        lines.push_back(cur.substr(0, lo));
+                        cur = cur.substr(lo);
+                    }
+                }
+                i = (sp < paragraph.size()) ? sp + 1 : sp;
+            }
+            if (!cur.empty()) lines.push_back(cur);
+        };
+        size_t start = 0;
+        while (start <= toastMessage_.size()) {
+            size_t nl = toastMessage_.find('
+', start);
+            if (nl == std::string::npos) {
+                pushWrapped(toastMessage_.substr(start));
+                break;
+            }
+            pushWrapped(toastMessage_.substr(start, nl - start));
+            start = nl + 1;
+        }
+    } else {
+        lines.push_back(toastMessage_);
+    }
+    if (lines.empty()) lines.push_back(toastMessage_);
+    // Cap height so toast never covers the whole screen
+    constexpr int kMaxLines = 5;
+    if ((int)lines.size() > kMaxLines) {
+        lines.resize(kMaxLines);
+        if (!lines.back().empty()) lines.back() += "…";
+    }
+
+    int contentW = 0;
+    if (font_) {
+        for (const auto& ln : lines) {
+            contentW = std::max(contentW, vita2d_pgf_text_width(font_, sc, ln.c_str()));
+        }
+    } else {
+        contentW = std::min(innerMaxW, 40 + (int)toastMessage_.size() * 8);
+    }
+    const int tw = std::min(maxBoxW, std::max(200, contentW + padX * 2));
+    const int th = padY * 2 + (int)lines.size() * lineH;
     const int x = (SCREEN_W - tw) / 2;
-    const int y = SCREEN_H - FOOTER_H - th - 16;
+    const int y = SCREEN_H - FOOTER_H - th - 12;
     vita2d_draw_rectangle(x, y, tw, th, RGBA8(0x18, 0x18, 0x18, alpha));
     vita2d_draw_rectangle(x, y, tw, 2, withAlpha(ACCENT, alpha));
     vita2d_draw_rectangle(x, y + th - 1, tw, 1, withAlpha(ACCENT, static_cast<unsigned>(alpha * 0.5f)));
-    if (font_)
-        vita2d_pgf_draw_text(font_, x + 16, y + 30, RGBA8(255, 255, 255, alpha), 0.76f, toastMessage_.c_str());
+    if (font_) {
+        int ty = y + padY + 16;
+        for (const auto& ln : lines) {
+            vita2d_pgf_draw_text(font_, x + padX, ty, RGBA8(255, 255, 255, alpha), sc, ln.c_str());
+            ty += lineH;
+        }
+    }
 }
 
 void FullCatalogScreen::drawScrollFades(int x, int y, int width, int height) const {
@@ -4935,20 +5016,8 @@ void FullCatalogScreen::drawCatalogCard(const CatalogItem&it,int idx,int x,int y
         }
     }
 
-    // Top-right DLC pill (always visible, same folder style as Homebrew marks)
-    if (itemHasDlc(it)) {
-        const char* dlcLab = ::psvitaalive::L(::psvitaalive::TextId::MetaDlc);
-        const float dsc = 0.60f;
-        const int dtw = vita2d_pgf_text_width(font_, dsc, dlcLab);
-        const int dpad = 6, dch = 18;
-        const int dcw = dtw + dpad * 2;
-        const int dsx = x + ox + ww - dcw - 8;
-        const int dsy = y + oy + 8;
-        vita2d_draw_rectangle(dsx, dsy, dcw, dch, RGBA8(0x3A, 0x2C, 0x10, 255));
-        vita2d_draw_rectangle(dsx, dsy, dcw, 2, RGBA8(0xE8, 0xB4, 0x3A, 255));
-        vita2d_draw_rectangle(dsx, dsy, 2, dch, RGBA8(0xE8, 0xB4, 0x3A, 255));
-        vita2d_pgf_draw_text(font_, dsx + dpad, dsy + 13, RGBA8(0xFF, 0xD2, 0x6A, 255), dsc, dlcLab);
-    }
+    // DLC is shown only as the bottom-right folder chip (same as Data/Game Files).
+    // Top-right DLC pill removed — it was redundant with the bottom chip.
 
     // Installed / update badge: bottom-left on icon + top-right of card
     {
@@ -4960,13 +5029,7 @@ void FullCatalogScreen::drawCatalogCard(const CatalogItem&it,int idx,int x,int y
             const float sc = 0.56f;
             const int tw = vita2d_pgf_text_width(font_, sc, lab);
             const int bw = tw + 10;
-            // Leave room for the top-right DLC pill when both are present
-            int dlcShift = 0;
-            if (itemHasDlc(it)) {
-                const char* dlcLab = ::psvitaalive::L(::psvitaalive::TextId::MetaDlc);
-                dlcShift = vita2d_pgf_text_width(font_, 0.60f, dlcLab) + 12 + 8;
-            }
-            drawInstallBadge(x + ox + ww - bw - 6 - dlcShift, y + oy + 6, li, true);
+            drawInstallBadge(x + ox + ww - bw - 6, y + oy + 6, li, true);
         }
     }
     (void)idx;
