@@ -105,6 +105,8 @@ struct AppSettingsData {
     LanguageMode languageMode = LanguageMode::System;
     std::string language = "en";
     UiFontStyle uiFontStyle = UiFontStyle::Default;
+    /** Basename of any .pgf under app0:font/ or ux0:.../fonts/ (empty = default). */
+    std::string uiFontFile;
 };
 
 class AppSettings {
