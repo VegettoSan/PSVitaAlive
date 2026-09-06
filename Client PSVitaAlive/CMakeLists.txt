@@ -13,7 +13,7 @@ include("$ENV{VITASDK}/share/vita.cmake" REQUIRED)
 
 set(VITA_APP_NAME "PSVitaAlive")
 set(VITA_TITLEID  "PSVAS1178")
-set(VITA_VERSION "01.18")
+set(VITA_VERSION "02.00")
 set(VITA_MKSFOEX_FLAGS "${VITA_MKSFOEX_FLAGS} -d PARENTAL_LEVEL=1")
 
 # PSM Runtime helper: separate kernel target, loaded only on demand.
