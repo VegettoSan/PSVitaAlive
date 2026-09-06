@@ -742,7 +742,7 @@ while(screen.updateAndDraw()){
                     collectCatalogImages(startupImagesJobs,startupImageSeen,images,items,false);
             }
             screen.setCatalogLoading(false,"",0,(uint64_t)startupImagesJobs.size(),
-                homebrewReady?::psvitaalive::L(::psvitaalive::TextId::CatalogReadyMsg):::psvitaalive::L(::psvitaalive::TextId::CatalogUnavailableMsg));
+                homebrewReady?(::psvitaalive::L(::psvitaalive::TextId::CatalogReadyMsg)):(::psvitaalive::L(::psvitaalive::TextId::CatalogUnavailableMsg)));
             if(!homebrewReady)
                 screen.setCatalogError(cs.error.empty()?::psvitaalive::L(::psvitaalive::TextId::UnableToLoadCatalog):cs.error);
             psvitaalive::diagnostics::log("[Startup] homebrew-only startup finished (failed path)");
