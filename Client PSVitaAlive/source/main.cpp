@@ -705,7 +705,8 @@ int main(){
         const auto& pl = installer.plugins();
         if (!pl.nonpdrm) {
             screen.showToast("NoNpDrm not found: licensed Vita PKGs may fail", 3500);
-        } else if (!pl.nopspemudrmKern) {
+        } else if (!pl.nopspemudrmKern || !pl.nopspemudrmUser) {
+            // Missing or #-commented in config.txt is normal — toast only, never fatal.
             screen.showToast("NoPspEmuDrm not found: PSP via Adrenaline only", 3200);
         }
     }

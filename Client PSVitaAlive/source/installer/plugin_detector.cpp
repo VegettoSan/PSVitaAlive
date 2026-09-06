@@ -45,20 +45,31 @@ std::string basenameOf(const std::string& path) {
 
 bool pathExists(const char* path) {
     if (!path || !path[0]) return false;
-    SceIoStat st{};
+    size_t len = 0;
+    while (path[len] != '\0') {
+        if (++len > 255) return false;
+    }
+    SceIoStat st;
+    std::memset(&st, 0, sizeof(st));
     return sceIoGetstat(path, &st) >= 0;
 }
 
 bool readWholeFile(const char* path, std::string& out) {
+    out.clear();
     SceUID fd = sceIoOpen(path, SCE_O_RDONLY, 0);
     if (fd < 0) return false;
-    SceIoStat st{};
+    SceIoStat st;
+    std::memset(&st, 0, sizeof(st));
     if (sceIoGetstatByFd(fd, &st) < 0) {
         sceIoClose(fd);
         return false;
     }
+    if (st.st_size <= 0) {
+        sceIoClose(fd);
+        return false;
+    }
     const size_t n = static_cast<size_t>(st.st_size);
-    if (n == 0 || n > 512 * 1024) {
+    if (n > 512 * 1024) {
         sceIoClose(fd);
         return false;
     }
@@ -75,8 +86,8 @@ bool readWholeFile(const char* path, std::string& out) {
     return true;
 }
 
-// AutoPlugin2 tai.find: match by basename, case-insensitive, plain substring on path.
 bool basenameMatches(const std::string& entryBase, const char* const* names) {
+    if (!names) return false;
     for (int i = 0; names[i] != nullptr; ++i) {
         if (entryBase == names[i]) return true;
     }
@@ -84,8 +95,8 @@ bool basenameMatches(const std::string& entryBase, const char* const* names) {
 }
 
 bool filePresentForEntry(const ConfigEntry& e) {
-    if (!e.path.empty() && pathExists(e.path.c_str())) return true;
-    // Common AutoPlugin2 / manual install locations
+    if (e.basename.empty()) return false;
+    if (!e.path.empty() && e.path.size() < 256 && pathExists(e.path.c_str())) return true;
     static const char* kRoots[] = {
         "ur0:tai/",
         "ux0:tai/",
@@ -98,7 +109,6 @@ bool filePresentForEntry(const ConfigEntry& e) {
     for (int i = 0; kRoots[i] != nullptr; ++i) {
         const std::string candidate = std::string(kRoots[i]) + e.basename;
         if (pathExists(candidate.c_str())) return true;
-        // Also try original casing variants for known plugins
         if (e.basename == "nopspemudrm_kern.skprx") {
             const std::string a = std::string(kRoots[i]) + "NoPspEmuDrm_kern.skprx";
             if (pathExists(a.c_str())) return true;
@@ -120,35 +130,60 @@ void parseConfigText(const std::string& text, std::vector<ConfigEntry>& out) {
     int lineNo = 0;
     size_t i = 0;
     const size_t n = text.size();
-    while (i <= n) {
+    constexpr size_t kMaxEntries = 2048;
+    while (i <= n && out.size() < kMaxEntries) {
         size_t j = i;
-        while (j < n && text[j] != '\n') ++j;
+        while (j < n && text[j] != '\n' && text[j] != '\0') ++j;
         std::string line = text.substr(i, j - i);
         if (!line.empty() && line.back() == '\r') line.pop_back();
         trimInPlace(line);
         ++lineNo;
 
+        // UTF-8 BOM on first line
+        if (lineNo == 1 && line.size() >= 3 &&
+            static_cast<unsigned char>(line[0]) == 0xEF &&
+            static_cast<unsigned char>(line[1]) == 0xBB &&
+            static_cast<unsigned char>(line[2]) == 0xBF) {
+            line.erase(0, 3);
+            trimInPlace(line);
+        }
+
         if (line.empty()) {
             // skip
-        } else if (line[0] == '#') {
-            // commented plugin / note - not active
+        } else if (line[0] == '#' || line[0] == ';' ||
+                   (line.size() >= 2 && line[0] == '/' && line[1] == '/')) {
+            // Commented / inactive — never counts as installed
         } else if (line[0] == '*') {
             section = line.substr(1);
             trimInPlace(section);
-            // Normalize like AutoPlugin2 tai.parse
+            const size_t hash = section.find('#');
+            if (hash != std::string::npos) {
+                section.resize(hash);
+                trimInPlace(section);
+            }
+            if (section.size() > 64) section.resize(64);
             const std::string low = toLowerCopy(section);
             if (low == "kernel") section = "KERNEL";
             else if (low == "main") section = "main";
             else if (low == "all") section = "ALL";
         } else {
-            // Plugin path line
-            ConfigEntry e;
-            e.section = section;
-            e.path = line;
-            e.basename = basenameOf(line);
-            e.line = lineNo;
-            if (!e.basename.empty()) {
-                out.push_back(e);
+            std::string pathLine = line;
+            const size_t hash = pathLine.find('#');
+            if (hash != std::string::npos) {
+                pathLine.resize(hash);
+                trimInPlace(pathLine);
+            }
+            if (pathLine.empty() || pathLine[0] == '#' || pathLine[0] == ';') {
+                // became comment
+            } else if (pathLine.size() > 256) {
+                // reject
+            } else {
+                ConfigEntry e;
+                e.section = section;
+                e.path = pathLine;
+                e.basename = basenameOf(pathLine);
+                e.line = lineNo;
+                if (!e.basename.empty()) out.push_back(e);
             }
         }
 
@@ -165,15 +200,11 @@ struct Hit {
     int line = 0;
 };
 
-Hit findPlugin(
-    const std::vector<ConfigEntry>& entries,
-    const char* const* names
-) {
+Hit findPlugin(const std::vector<ConfigEntry>& entries, const char* const* names) {
     Hit hit;
     for (const ConfigEntry& e : entries) {
         if (!basenameMatches(e.basename, names)) continue;
         const bool ok = filePresentForEntry(e);
-        // Prefer a match whose file exists on disk.
         if (!hit.listed || (ok && !hit.fileOk)) {
             hit.listed = true;
             hit.section = e.section;
@@ -186,19 +217,41 @@ Hit findPlugin(
     return hit;
 }
 
+void safeCopyAscii(char* dst, size_t dstSz, const std::string& src) {
+    if (!dst || dstSz == 0) return;
+    const size_t maxCopy = dstSz > 1 ? dstSz - 1 : 0;
+    size_t n = src.size() < maxCopy ? src.size() : maxCopy;
+    for (size_t k = 0; k < n; ++k) {
+        const unsigned char c = static_cast<unsigned char>(src[k]);
+        dst[k] = (c >= 32 && c < 127) ? static_cast<char>(c) : '?';
+    }
+    dst[n] = '\0';
+    if (src.size() > maxCopy && maxCopy >= 3) {
+        dst[maxCopy - 3] = '.';
+        dst[maxCopy - 2] = '.';
+        dst[maxCopy - 1] = '.';
+        dst[maxCopy] = '\0';
+    }
+}
+
 void logHit(const char* label, const Hit& h) {
     char buf[320];
     if (!h.listed) {
-        sceClibSnprintf(buf, sizeof(buf), "[PluginDetector] %s: not listed in config", label);
+        sceClibSnprintf(buf, sizeof(buf), "[PluginDetector] %s: not listed in config",
+                        label ? label : "?");
     } else {
+        char pathShort[96];
+        char secShort[48];
+        safeCopyAscii(pathShort, sizeof(pathShort), h.path);
+        safeCopyAscii(secShort, sizeof(secShort), h.section);
         sceClibSnprintf(
             buf, sizeof(buf),
             "[PluginDetector] %s: listed section=%s line=%d file=%s path=%s",
-            label,
-            h.section.c_str(),
+            label ? label : "?",
+            secShort,
             h.line,
             h.fileOk ? "OK" : "MISSING",
-            h.path.c_str()
+            pathShort
         );
     }
     diagnostics::log(buf);
@@ -211,8 +264,6 @@ PluginStatus PluginDetector::scan() {
     PluginStatus st;
     diagnostics::log("[PluginDetector] scan begin (AutoPlugin2-style parser)");
 
-    // taiHEN: if ux0:tai/config.txt exists it is the active config.
-    // ur0:tai/config.txt is the usual AutoPlugin2 / SD2Vita location and fallback.
     static const char* kUx0 = "ux0:tai/config.txt";
     static const char* kUr0 = "ur0:tai/config.txt";
     static const char* kUx0Alt = "ux0:/tai/config.txt";
@@ -246,6 +297,8 @@ PluginStatus PluginDetector::scan() {
         st.detail = "tai config.txt not found on ux0 or ur0";
         diagnostics::log(std::string("[PluginDetector] ") + st.detail);
         sceClibPrintf("[PluginDetector] %s\n", st.detail.c_str());
+        // Missing config is not fatal — all plugin flags stay false.
+        diagnostics::log("[PluginDetector] scan end (no config)");
         return st;
     }
 
@@ -253,6 +306,7 @@ PluginStatus PluginDetector::scan() {
     if (!readWholeFile(primary, text)) {
         st.detail = std::string("failed to read ") + primary;
         diagnostics::log(std::string("[PluginDetector] ") + st.detail);
+        diagnostics::log("[PluginDetector] scan end (read fail)");
         return st;
     }
     st.configPathUsed = primary;
@@ -271,7 +325,6 @@ PluginStatus PluginDetector::scan() {
         diagnostics::log(buf);
     }
 
-    // Secondary config: merge entries (some installs split plugins)
     if (secondary) {
         std::string text2;
         if (readWholeFile(secondary, text2)) {
@@ -327,7 +380,7 @@ PluginStatus PluginDetector::scan() {
     logHit("RePatch", repatch);
     logHit("FdFix", fdFix);
 
-    // Present for install warnings: listed in active config AND file on disk.
+    // Present for install warnings: listed in active (non-comment) config AND file on disk.
     st.nonpdrm = nonpdrm.listed && nonpdrm.fileOk;
     st.nopspemudrmKern = nopspK.listed && nopspK.fileOk;
     st.nopspemudrmUser = nopspU.listed && nopspU.fileOk;
@@ -367,6 +420,9 @@ PluginStatus PluginDetector::scan() {
     }
     if (st.repatch && st.fdFix) {
         st.detail += " | RePatch+FdFix conflict detected";
+    }
+    if (!nopspK.listed && !nopspU.listed) {
+        st.detail += " | NoPspEmuDrm not in config (commented or absent) — OK, LiveArea PSP/PS1 blocked";
     }
 
     diagnostics::log(std::string("[PluginDetector] ") + st.detail);

@@ -201,7 +201,8 @@ bool InstallController::init() {
         " media=" + AppSettings::toString(settings_.pspMediaFormat));
     if (settings_.startupPluginDetection) {
         if (!plugins_.nonpdrm) diagnostics::log("[Installer] NoNpDrm not detected - licensed Vita PKG installs may fail");
-        if (!plugins_.nopspemudrmKern) diagnostics::log("[Installer] NoPspEmuDrm not detected - PSP LiveArea bubbles unavailable (Adrenaline ISO path still works)");
+        if (!plugins_.nopspemudrmKern || !plugins_.nopspemudrmUser)
+            diagnostics::log("[Installer] NoPspEmuDrm incomplete (missing/commented in config or file absent) - PSP LiveArea blocked; Adrenaline path still works");
     }
     diagnostics::log("[Installer] BGDL deferred until first PKG install request");
     if (sceShellUtilInitEvents(0) >= 0) {
