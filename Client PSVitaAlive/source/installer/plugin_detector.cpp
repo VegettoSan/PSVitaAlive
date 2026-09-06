@@ -422,7 +422,7 @@ PluginStatus PluginDetector::scan() {
         st.detail += " | RePatch+FdFix conflict detected";
     }
     if (!nopspK.listed && !nopspU.listed) {
-        st.detail += " | NoPspEmuDrm not in config (commented or absent) — OK, LiveArea PSP/PS1 blocked";
+        st.detail += " | NoPspEmuDrm absent";
     }
 
     diagnostics::log(std::string("[PluginDetector] ") + st.detail);

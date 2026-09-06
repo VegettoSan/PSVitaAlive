@@ -700,18 +700,34 @@ int main(){
         psvitaalive::LocalizationManager::instance().setMode(s.languageMode, s.language);
     });
 
-    // Plugin warnings (settings.warn_missing_plugins)
-    if (installer.settings().startupPluginDetection && installer.settings().warnMissingPlugins) {
-        const auto& pl = installer.plugins();
-        if (!pl.nonpdrm) {
-            screen.showToast("NoNpDrm not found: licensed Vita PKGs may fail", 3500);
-        } else if (!pl.nopspemudrmKern || !pl.nopspemudrmUser) {
-            // Missing or #-commented in config.txt is normal — toast only, never fatal.
-            screen.showToast("NoPspEmuDrm not found: PSP via Adrenaline only", 3200);
-        }
-    }
+    // Defer plugin warning toasts until the UI has drawn at least once.
+    // Showing toasts before the main loop has crashed on some Vita3K setups when
+    // NoPspEmuDrm is missing (detection itself is fine — see PluginDetector logs).
+    bool pluginWarnPending =
+        installer.settings().startupPluginDetection && installer.settings().warnMissingPlugins;
+    int pluginWarnFrames = 0;
+    psvitaalive::diagnostics::log("[Startup] entering main loop (pluginWarnPending=" +
+        std::string(pluginWarnPending ? "1" : "0") + ")");
 
 while(screen.updateAndDraw()){
+        // After a few frames, surface plugin warnings safely.
+        if (pluginWarnPending) {
+            ++pluginWarnFrames;
+            if (pluginWarnFrames >= 3) {
+                pluginWarnPending = false;
+                const auto& pl = installer.plugins();
+                psvitaalive::diagnostics::log(
+                    std::string("[Startup] plugin warn toast nonpdrm=") +
+                    (pl.nonpdrm ? "1" : "0") +
+                    " nopspK=" + (pl.nopspemudrmKern ? "1" : "0") +
+                    " nopspU=" + (pl.nopspemudrmUser ? "1" : "0"));
+                if (!pl.nonpdrm) {
+                    screen.showToast("NoNpDrm not found: licensed Vita PKGs may fail", 3500);
+                } else if (!pl.nopspemudrmKern || !pl.nopspemudrmUser) {
+                    screen.showToast("NoPspEmuDrm not found: PSP via Adrenaline only", 3200);
+                }
+            }
+        }
         const uint64_t now=sceKernelGetSystemTimeWide();
         psvitaalive::CatalogManager::Status cs=catalogs.status();
         if(startupCatalogs&&cs.state==psvitaalive::CatalogManager::State::Loading){screen.setCatalogLoading(true,cs.label,cs.current,cs.total,progressMessage(cs.current,cs.total,cs.message,""));}
