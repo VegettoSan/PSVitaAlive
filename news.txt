@@ -1,6 +1,6 @@
-id: 2026-09-06-0001
-title: PSVitaAlive 02.00 is here!
-enabled: false
+id: 2026-09-06-00022
+title: PSVitaAlive 02.01 is here!
+enabled: true
 ---
 # Thanks for using PS Vita Alive Store.
 
