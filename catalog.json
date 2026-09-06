@@ -46,6 +46,46 @@
     ]
   },
   {
+    "id": "gravity-guy",
+    "title_id": "GRVG00001",
+    "name": "Gravity Guy",
+    "description": "Gravity Guy Ps Vita Port",
+    "long_description": "Gravity Guy Ps Vita Port",
+    "author_ids": [
+      "elpinguinoxd"
+    ],
+    "category_id": "ports",
+    "subcategory_ids": [
+      "arcade",
+      "platformer"
+    ],
+    "version": "1.0",
+    "version_date": "2026-09-06",
+    "requirements": "- no data",
+    "size": 4194304,
+    "status": "Verified",
+    "links": [
+      {
+        "type": "Download",
+        "name": "VPK",
+        "url": "https://archive.org/download/gravity-guy-ps-vita/gravityguy.vpk",
+        "size": 4194304,
+        "recommended": true
+      },
+      {
+        "type": "Game Files",
+        "name": "Game Files",
+        "url": "https://archive.org/download/gravity-guy-ps-vita/Game%20Files.zip",
+        "size": 46242202,
+        "extract_path": "ux0:data/"
+      }
+    ],
+    "icon": "https://archive.org/download/gravity-guy-ps-vita/icon0.png",
+    "screenshots": [
+      "https://archive.org/download/gravity-guy-ps-vita/Shot0.png"
+    ]
+  },
+  {
     "id": "vagachatvita",
     "title_id": "VAGROUTE1",
     "name": "VagaChatVITA",
