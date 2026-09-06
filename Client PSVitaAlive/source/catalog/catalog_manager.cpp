@@ -2,6 +2,7 @@
 
 #include "catalog/catalog_parser.hpp"
 #include "diagnostic_logger.hpp"
+#include "localization/localization.hpp"
 #include "network/http_client.hpp"
 #include "storage/storage_manager.hpp"
 
@@ -113,7 +114,7 @@ bool CatalogManager::request(ui::CatalogType catalog) {
     status_.current = 0;
     status_.total = 0;
     status_.label = label(catalog);
-    status_.message = "Loading catalog (local cache, then network)...";
+    status_.message = ::psvitaalive::L(::psvitaalive::TextId::LoadingCatalogLocalCache);
     status_.error.clear();
     requestPending_ = true;
     requestedCatalog_ = catalog;
@@ -210,7 +211,7 @@ bool CatalogManager::trySoftNetworkRefresh(ui::CatalogType catalog,
     sceKernelLockMutex(mutex_, 1, nullptr);
     status_.softRefresh = true;
     status_.state = State::Ready;
-    status_.message = "Checking for updates...";
+    status_.message = ::psvitaalive::L(::psvitaalive::TextId::CheckingForAppUpdates);
     sceKernelUnlockMutex(mutex_, 1);
 
     const HttpResult validatorResult = http.fetchRemoteValidators(url, remoteEtag, remoteModified);
@@ -220,7 +221,7 @@ bool CatalogManager::trySoftNetworkRefresh(ui::CatalogType catalog,
         http.shutdown();
         sceKernelLockMutex(mutex_, 1, nullptr);
         status_.softRefresh = false;
-        status_.message = "Catalog ready";
+        status_.message = ::psvitaalive::L(::psvitaalive::TextId::CatalogReadyMsg);
         sceKernelUnlockMutex(mutex_, 1);
         return false;
     }
@@ -230,7 +231,7 @@ bool CatalogManager::trySoftNetworkRefresh(ui::CatalogType catalog,
         http.shutdown();
         sceKernelLockMutex(mutex_, 1, nullptr);
         status_.softRefresh = false;
-        status_.message = "Catalog ready";
+        status_.message = ::psvitaalive::L(::psvitaalive::TextId::CatalogReadyMsg);
         sceKernelUnlockMutex(mutex_, 1);
         return false;
     }
@@ -277,7 +278,7 @@ bool CatalogManager::trySoftNetworkRefresh(ui::CatalogType catalog,
     http.shutdown();
     sceKernelLockMutex(mutex_, 1, nullptr);
     status_.softRefresh = false;
-    status_.message = "Catalog ready";
+    status_.message = ::psvitaalive::L(::psvitaalive::TextId::CatalogReadyMsg);
     sceKernelUnlockMutex(mutex_, 1);
     return false;
 }
@@ -375,7 +376,7 @@ void CatalogManager::publishReady(ui::CatalogType catalog, std::vector<ui::Catal
     status_.state = State::Ready;
     status_.catalog = catalog;
     status_.current = status_.total > 0 ? status_.total : 1;
-    status_.message = message ? message : "Catalog ready";
+    status_.message = message ? message : ::psvitaalive::L(::psvitaalive::TextId::CatalogReadyMsg);
     status_.error.clear();
     status_.softRefresh = softRefresh;
 }
@@ -403,7 +404,7 @@ int CatalogManager::workerMain() {
             status_.state = State::Loading;
             status_.catalog = catalog;
             status_.label = label(catalog);
-            status_.message = "Loading catalog (local cache, then network)...";
+            status_.message = ::psvitaalive::L(::psvitaalive::TextId::LoadingCatalogLocalCache);
             status_.error.clear();
             status_.softRefresh = false;
             status_.current = 0;
@@ -458,7 +459,7 @@ int CatalogManager::workerMain() {
                 sceKernelLockMutex(mutex_, 1, nullptr);
                 status_.softRefresh = false;
                 if (status_.state == State::Ready)
-                    status_.message = "Catalog ready";
+                    status_.message = ::psvitaalive::L(::psvitaalive::TextId::CatalogReadyMsg);
                 sceKernelUnlockMutex(mutex_, 1);
             }
             continue;
@@ -482,7 +483,7 @@ int CatalogManager::workerMain() {
         }
 
         if (ok) {
-            publishReady(catalog, loaded, "Catalog ready", false);
+            publishReady(catalog, loaded, ::psvitaalive::L(::psvitaalive::TextId::CatalogReadyMsg), false);
         } else {
             status_.state = State::Failed;
             status_.catalog = catalog;

@@ -2636,7 +2636,7 @@ void FullCatalogScreen::moveCatalogFocus(int d){if(catalogView().empty())return;
     catalogLoadingLabel_=catalogName(n);
     catalogLoadingCurrent_=0;
     catalogLoadingTotal_=0;
-    catalogLoadingMessage_="Checking catalog cache...";
+    catalogLoadingMessage_=::psvitaalive::L(::psvitaalive::TextId::CheckingCatalogCache);
     catalogError_.clear();
     showToast(std::string(::psvitaalive::L(::psvitaalive::TextId::LoadingCatalog)) + " " + catalogName(n) + "...", 2200);
     state_.catalog=n;
@@ -5814,7 +5814,7 @@ if (catalogSplashAlpha_ > 0.01f && !installProgressActive_) {
     vita2d_draw_rectangle(0, stripY, SCREEN_W, stripH, RGBA8(0x08, 0x08, 0x0A, panelA > 255 ? 255 : panelA));
     vita2d_draw_rectangle(0, stripY, SCREEN_W, 3, withAlpha(ACCENT, ta > 255 ? 255 : ta));
 
-    std::string phase = catalogLoadingLabel_.empty() ? "Startup" : catalogLoadingLabel_;
+    std::string phase = catalogLoadingLabel_.empty() ? ::psvitaalive::L(::psvitaalive::TextId::StartupPhaseLabel) : catalogLoadingLabel_;
     vita2d_pgf_draw_text(font_, barX, stripY + 28, ACCENT, 0.90f, ellipsize(phase, 40).c_str());
 
     std::string detail = catalogLoadingMessage_.empty() ? ::psvitaalive::L(::psvitaalive::TextId::PleaseWaitFallback) : catalogLoadingMessage_;
