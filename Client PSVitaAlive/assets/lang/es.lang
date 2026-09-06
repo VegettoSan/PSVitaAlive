@@ -350,7 +350,5 @@ STAGE_COMPLETED=Completado
 STAGE_CANCELLED=Cancelado
 STAGE_ERROR=Error
 STAGE_EXTRACTING=Extrayendo
-PSP_LIVEAREA_NEEDS_NOPSPEMUDRM=NoPspEmuDrm es necesario para PSP/PS1 en LiveArea.
-Instálalo con AutoPlugin II, o cambia el destino a Adrenaline en Ajustes.
-NOPSPEMUDRM_MISSING_TOAST=NoPspEmuDrm no encontrado: LiveArea PSP bloqueado.
-Instálalo con AutoPlugin II, o pon destino Adrenaline en Ajustes.
+PSP_LIVEAREA_NEEDS_NOPSPEMUDRM=NoPspEmuDrm es necesario para PSP/PS1 en LiveArea. Instalalo con AutoPlugin II, o cambia el destino a Adrenaline en Ajustes.
+NOPSPEMUDRM_MISSING_TOAST=NoPspEmuDrm no encontrado: LiveArea PSP bloqueado. Instalalo con AutoPlugin II, o pon destino Adrenaline en Ajustes.

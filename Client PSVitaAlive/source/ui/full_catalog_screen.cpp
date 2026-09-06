@@ -4594,8 +4594,7 @@ void FullCatalogScreen::drawToast() const {
         };
         size_t start = 0;
         while (start <= toastMessage_.size()) {
-            size_t nl = toastMessage_.find('
-', start);
+            size_t nl = toastMessage_.find('\n', start);
             if (nl == std::string::npos) {
                 pushWrapped(toastMessage_.substr(start));
                 break;
