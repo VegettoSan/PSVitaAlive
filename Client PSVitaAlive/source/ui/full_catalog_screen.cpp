@@ -3732,9 +3732,11 @@ void FullCatalogScreen::drawSettings() {
     auto languageLabel = [&]() -> std::string {
         if (settingsEdit_.languageMode == ::psvitaalive::LanguageMode::System)
             return ::psvitaalive::L(TID::SystemAutomatic);
-        if (settingsEdit_.language == "es")
-            return ::psvitaalive::L(TID::Spanish);
-        return ::psvitaalive::L(TID::English);
+        // Show native name for any installed pack (fr, de, it, pt-BR, ru, …).
+        ::psvitaalive::Language lang = ::psvitaalive::Language::English;
+        if (::psvitaalive::languageFromCode(settingsEdit_.language, lang))
+            return ::psvitaalive::languageName(lang);
+        return settingsEdit_.language.empty() ? ::psvitaalive::L(TID::English) : settingsEdit_.language;
     };
     auto updateLabel = [&]() -> std::string {
         if (selfUpdateBusy_.load()) return ::psvitaalive::L(TID::UpdateWorking);
