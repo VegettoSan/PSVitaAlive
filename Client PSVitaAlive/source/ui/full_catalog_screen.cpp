@@ -4559,11 +4559,11 @@ void FullCatalogScreen::drawToast() const {
         a = static_cast<float>(toastExpiresMs_ - now) / 280.f;
     const unsigned alpha = static_cast<unsigned>(std::max(0.f, std::min(1.f, a)) * 235.f);
 
-    // Multi-line layout: keep inside screen (margins), wrap long messages.
-    const float sc = 0.74f;
-    const int maxBoxW = SCREEN_W - 48;
-    const int padX = 16, padY = 12;
-    const int lineH = 22;
+    // Multi-line layout: large type for 960x544 readability; keep inside screen.
+    const float sc = 0.98f;
+    const int maxBoxW = SCREEN_W - 32;
+    const int padX = 18, padY = 14;
+    const int lineH = 30;
     const int innerMaxW = maxBoxW - padX * 2;
 
     std::vector<std::string> lines;
@@ -4619,8 +4619,8 @@ void FullCatalogScreen::drawToast() const {
         lines.push_back(toastMessage_);
     }
     if (lines.empty()) lines.push_back(toastMessage_);
-    // Cap height so toast never covers the whole screen
-    constexpr int kMaxLines = 5;
+    // Cap height so toast never covers the whole screen (taller lines → fewer lines)
+    constexpr int kMaxLines = 4;
     if ((int)lines.size() > kMaxLines) {
         lines.resize(kMaxLines);
         if (!lines.back().empty()) lines.back() += "…";
@@ -4642,7 +4642,7 @@ void FullCatalogScreen::drawToast() const {
     vita2d_draw_rectangle(x, y, tw, 2, withAlpha(ACCENT, alpha));
     vita2d_draw_rectangle(x, y + th - 1, tw, 1, withAlpha(ACCENT, static_cast<unsigned>(alpha * 0.5f)));
     if (font_) {
-        int ty = y + padY + 16;
+        int ty = y + padY + 22;
         for (const auto& ln : lines) {
             vita2d_pgf_draw_text(font_, x + padX, ty, RGBA8(255, 255, 255, alpha), sc, ln.c_str());
             ty += lineH;
