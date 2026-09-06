@@ -497,6 +497,7 @@ const char* LocalizationManager::keyFor(TextId id) {
         case TextId::StageCancelled: return "STAGE_CANCELLED";
         case TextId::StageError: return "STAGE_ERROR";
         case TextId::StageExtracting: return "STAGE_EXTRACTING";
+        case TextId::PspLiveAreaNeedsNoPspEmuDrm: return "PSP_LIVEAREA_NEEDS_NOPSPEMUDRM";
         default: return "";
     }
 }

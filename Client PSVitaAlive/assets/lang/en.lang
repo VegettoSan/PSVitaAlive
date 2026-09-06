@@ -350,3 +350,4 @@ STAGE_COMPLETED=Completed
 STAGE_CANCELLED=Cancelled
 STAGE_ERROR=Error
 STAGE_EXTRACTING=Extracting
+PSP_LIVEAREA_NEEDS_NOPSPEMUDRM=NoPspEmuDrm is required to install PSP/PS1 games in LiveArea.

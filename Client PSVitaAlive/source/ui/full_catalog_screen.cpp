@@ -2584,6 +2584,19 @@ void FullCatalogScreen::moveCatalogFocus(int d){if(catalogView().empty())return;
         diagnostics::log("[UI] blocked PSP DLC install: Adrenaline + ISO mode");
         return;
     }
+    // PSP/PS1 LiveArea requires NoPspEmuDrm (kern + user). Adrenaline path is unchanged.
+    if ((state_.catalog == CatalogType::PspGames || state_.catalog == CatalogType::Ps1Games)
+        && settingsEdit_.pspTarget == ::psvitaalive::PspTarget::LiveArea) {
+        const bool noPspEmuDrmReady =
+            pluginsStatus_.nopspemudrmKern && pluginsStatus_.nopspemudrmUser;
+        if (!noPspEmuDrmReady) {
+            showToast(::psvitaalive::L(::psvitaalive::TextId::PspLiveAreaNeedsNoPspEmuDrm), 3600);
+            diagnostics::log(std::string("[UI] blocked PSP/PS1 LiveArea download: NoPspEmuDrm incomplete")
+                             + " kern=" + std::to_string(pluginsStatus_.nopspemudrmKern ? 1 : 0)
+                             + " user=" + std::to_string(pluginsStatus_.nopspemudrmUser ? 1 : 0));
+            return;
+        }
+    }
     if(linkAction_(item,l))exitLinkNavigation();
 }void FullCatalogScreen::changeCatalog(int d){
     if(catalogLoading_||installProgressActive_||isTransitioning())return;

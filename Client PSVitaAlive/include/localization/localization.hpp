@@ -344,6 +344,7 @@ enum class TextId {
     StageCancelled,
     StageError,
     StageExtracting,
+    PspLiveAreaNeedsNoPspEmuDrm,
     Count
 };
 
