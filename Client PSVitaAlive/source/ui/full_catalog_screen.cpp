@@ -4197,8 +4197,21 @@ void FullCatalogScreen::drawTabs(int w){
         if (a) {
             vita2d_draw_rectangle(x + 4, HEADER_H + 4, (int)tw - 8, TABS_H - 8, SURFACE);
         }
-        vita2d_pgf_draw_text(font_, x + 12, HEADER_H + 24, a ? ACCENT : TEXT, a ? 0.86f : 0.76f,
-                             catalogName((CatalogType)i));
+        const char* name = catalogName((CatalogType)i);
+        // Count only on the active catalog tab (total apps currently loaded for it).
+        if (a && !catalogLoading_) {
+            char label[96];
+            // Prefer filtered view size when a search/filter is active so the number matches the list.
+            const unsigned count = (unsigned)catalogView().size();
+            sceClibSnprintf(label, sizeof(label), "%s (%u)", name, count);
+            float sc = 0.84f;
+            const int maxW = (int)tw - 20;
+            while (sc > 0.60f && vita2d_pgf_text_width(font_, sc, label) > maxW)
+                sc -= 0.04f;
+            vita2d_pgf_draw_text(font_, x + 12, HEADER_H + 24, ACCENT, sc, label);
+        } else {
+            vita2d_pgf_draw_text(font_, x + 12, HEADER_H + 24, a ? ACCENT : TEXT, a ? 0.86f : 0.76f, name);
+        }
     }
 }
 void FullCatalogScreen::prepareImageTexture(const std::string&url,const std::string&ns){
