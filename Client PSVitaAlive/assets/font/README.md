@@ -1,30 +1,33 @@
-# Custom UI fonts (dynamic)
+# Custom UI fonts (PGF + TTF/OTF)
 
-Any **.pgf** file in these folders appears in Settings -> UI Font:
+PSVitaAlive loads fonts from:
 
-| Path | When |
-|------|------|
-| Client PSVitaAlive/assets/font/ | Packed into the VPK as app0:font/ |
-| ux0:data/psvitaalive/fonts/ | On the memory card (no rebuild) |
+| Path | Notes |
+|------|--------|
+| `Client PSVitaAlive/assets/font/` | Packed as `app0:font/` in the VPK |
+| `ux0:data/psvitaalive/fonts/` | On device, no rebuild |
 
-## Names
+Supported extensions:
 
-Use any filename, e.g. MyCoolFont.pgf, arcade.pgf, sans.pgf
+- **`.pgf`** — classic vita2d PGF (`vita2d_load_custom_pgf`)
+- **`.ttf` / `.otf`** — FreeType via vita2d (`vita2d_load_font_file`)
 
-The selector lists Default plus every .pgf found (both folders).
+Any of these files appear in **Settings → UI Font**.
 
-## Bundle with the VPK
+## TTF/OTF (recommended if you already have TrueType)
 
-1. Convert TTF/OTF to PGF.
-2. Copy into Client PSVitaAlive/assets/font/
-3. Rebuild the VPK (CMake packs assets/font -> app0:font/).
+Just copy the file, e.g.:
 
-## Convert TTF/OTF to PGF (not TIFF)
+```
+assets/font/MinSans.ttf
+```
 
-Fonts are TrueType (.ttf) / OpenType (.otf), not TIFF images.
+No conversion needed when FreeType is available in the VitaSDK vita2d build.
 
-Tool: https://github.com/PSP-Archive/ttf2pgf
+## PGF
 
-    ./ttf2pgf MiFuente.ttf MiFuente.pgf 20
+Still supported. Convert with ttf2pgf if you prefer:
 
-Then place MiFuente.pgf in assets/font/ or ux0:data/psvitaalive/fonts/
+```
+./ttf2pgf MiFuente.ttf MiFuente.pgf 20
+```

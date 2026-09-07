@@ -1,6 +1,7 @@
 #pragma once
 // Markdown-lite helpers for the News modal only (does not affect other UI).
 #include <vita2d.h>
+#include "ui/ui_font.hpp"
 #include <string>
 #include <cctype>
 
@@ -96,7 +97,7 @@ inline std::string plainForWidth(const std::string& in) {
     return out;
 }
 
-inline void drawInlineMarkdown(vita2d_pgf* font, int x, int baselineY, float scale,
+inline void drawInlineMarkdown(const ::psvitaalive::ui::UiFont* font, int x, int baselineY, float scale,
                                unsigned baseCol, unsigned boldCol, unsigned codeCol,
                                const std::string& text) {
     if (!font) return;
@@ -104,8 +105,8 @@ inline void drawInlineMarkdown(vita2d_pgf* font, int x, int baselineY, float sca
     size_t i = 0;
     auto drawSeg = [&](const std::string& seg, unsigned col, float sc) {
         if (seg.empty()) return;
-        vita2d_pgf_draw_text(font, cx, baselineY, col, sc, seg.c_str());
-        cx += vita2d_pgf_text_width(font, sc, seg.c_str());
+        ::psvitaalive::ui::uiDrawText(font, cx, baselineY, col, sc, seg.c_str());
+        cx += ::psvitaalive::ui::uiTextWidth(font, sc, seg.c_str());
     };
     while (i < text.size()) {
         if (i + 1 < text.size() && text[i] == '*' && text[i + 1] == '*') {

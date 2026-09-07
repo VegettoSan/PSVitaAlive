@@ -20,32 +20,35 @@ bool fileReadable(const char* path) {
     return true;
 }
 
-vita2d_pgf* tryLoad(const char* path) {
-    if (!path || !path[0]) return nullptr;
-    if (!fileReadable(path)) return nullptr;
-    vita2d_pgf* f = vita2d_load_custom_pgf(path);
-    if (f)
-        sceClibPrintf("[UiFont] loaded %s\n", path);
-    return f;
+bool endsWithIgnoreCase(const char* name, size_t n, const char* ext4) {
+    // ext4 like ".pgf" / ".ttf" / ".otf" (4 chars)
+    if (n < 4) return false;
+    for (int i = 0; i < 4; ++i) {
+        char a = name[n - 4 + i];
+        char b = ext4[i];
+        if (a >= 'A' && a <= 'Z') a = static_cast<char>(a - 'A' + 'a');
+        if (b >= 'A' && b <= 'Z') b = static_cast<char>(b - 'A' + 'a');
+        if (a != b) return false;
+    }
+    return true;
 }
 
-void scanDirForPgf(const char* dir, std::vector<std::string>& out) {
+bool isFontFileName(const char* name) {
+    if (!name || !name[0] || name[0] == '.') return false;
+    const size_t n = std::strlen(name);
+    return endsWithIgnoreCase(name, n, ".pgf")
+        || endsWithIgnoreCase(name, n, ".ttf")
+        || endsWithIgnoreCase(name, n, ".otf");
+}
+
+void scanDirForFonts(const char* dir, std::vector<std::string>& out) {
     SceUID dfd = sceIoDopen(dir);
     if (dfd < 0) return;
     SceIoDirent de{};
     while (sceIoDread(dfd, &de) > 0) {
         if (SCE_S_ISDIR(de.d_stat.st_mode)) continue;
-        const char* name = de.d_name;
-        if (!name || !name[0] || name[0] == '.') continue;
-        const size_t n = std::strlen(name);
-        if (n < 5) continue;
-        // case-insensitive .pgf
-        if ((name[n - 4] == '.' || name[n - 4] == '.') &&
-            (name[n - 3] == 'p' || name[n - 3] == 'P') &&
-            (name[n - 2] == 'g' || name[n - 2] == 'G') &&
-            (name[n - 1] == 'f' || name[n - 1] == 'F')) {
-            out.emplace_back(name);
-        }
+        if (isFontFileName(de.d_name))
+            out.emplace_back(de.d_name);
     }
     sceIoDclose(dfd);
 }
@@ -60,17 +63,71 @@ const char* stylePreferredFile(UiFontStyle style) {
     }
 }
 
-vita2d_pgf* loadByBasename(const char* file) {
-    if (!file || !file[0]) return nullptr;
+bool isFreeTypeName(const char* file) {
+    if (!file) return false;
+    const size_t n = std::strlen(file);
+    return endsWithIgnoreCase(file, n, ".ttf") || endsWithIgnoreCase(file, n, ".otf");
+}
+
+UiFont tryLoadPath(const char* path, bool preferFt) {
+    UiFont out;
+    if (!path || !path[0] || !fileReadable(path)) return out;
+
+    if (preferFt) {
+        vita2d_font* ft = vita2d_load_font_file(path);
+        if (ft) {
+            out.kind = UiFont::Kind::FreeType;
+            out.ft = ft;
+            sceClibPrintf("[UiFont] FreeType loaded %s\n", path);
+            return out;
+        }
+        sceClibPrintf("[UiFont] FreeType load failed %s\n", path);
+        return out;
+    }
+
+    vita2d_pgf* pgf = vita2d_load_custom_pgf(path);
+    if (pgf) {
+        out.kind = UiFont::Kind::Pgf;
+        out.pgf = pgf;
+        sceClibPrintf("[UiFont] PGF loaded %s\n", path);
+        return out;
+    }
+    sceClibPrintf("[UiFont] PGF load failed %s\n", path);
+    return out;
+}
+
+UiFont loadByBasename(const char* file) {
+    UiFont out;
+    if (!file || !file[0]) return out;
+    const bool ft = isFreeTypeName(file);
     char path[256];
     sceClibSnprintf(path, sizeof(path), "ux0:data/psvitaalive/fonts/%s", file);
-    if (vita2d_pgf* f = tryLoad(path)) return f;
+    out = tryLoadPath(path, ft);
+    if (out) return out;
     sceClibSnprintf(path, sizeof(path), "app0:font/%s", file);
-    if (vita2d_pgf* f = tryLoad(path)) return f;
-    return nullptr;
+    return tryLoadPath(path, ft);
+}
+
+/** Map legacy PGF float scale → FreeType pixel size (tuned for 960x544 UI). */
+unsigned scaleToPx(float scale) {
+    int px = static_cast<int>(scale * 26.f + 0.5f);
+    if (px < 10) px = 10;
+    if (px > 48) px = 48;
+    return static_cast<unsigned>(px);
 }
 
 } // namespace
+
+void UiFont::reset() {
+    if (kind == Kind::Pgf && pgf) {
+        vita2d_free_pgf(pgf);
+        pgf = nullptr;
+    } else if (kind == Kind::FreeType && ft) {
+        vita2d_free_font(ft);
+        ft = nullptr;
+    }
+    kind = Kind::None;
+}
 
 const char* uiFontStyleKey(UiFontStyle style) {
     switch (style) {
@@ -84,35 +141,66 @@ const char* uiFontStyleKey(UiFontStyle style) {
 
 std::vector<std::string> listAvailableUiFonts() {
     std::vector<std::string> files;
-    scanDirForPgf("ux0:data/psvitaalive/fonts", files);
-    scanDirForPgf("app0:font", files);
+    scanDirForFonts("ux0:data/psvitaalive/fonts", files);
+    scanDirForFonts("app0:font", files);
     std::sort(files.begin(), files.end());
     files.erase(std::unique(files.begin(), files.end()), files.end());
     return files;
 }
 
-vita2d_pgf* loadUiFont(UiFontStyle style, const std::string& customFile) {
-    // 1) Explicit custom basename from Settings (any .pgf you added)
-    if (!customFile.empty()) {
-        if (vita2d_pgf* f = loadByBasename(customFile.c_str())) return f;
-        sceClibPrintf("[UiFont] custom file missing %s — try style / default\n", customFile.c_str());
-    }
-
-    // 2) Preferred name for legacy style slots (serif.pgf, sans.pgf, …)
-    if (const char* pref = stylePreferredFile(style)) {
-        if (vita2d_pgf* f = loadByBasename(pref)) return f;
-        sceClibPrintf("[UiFont] preferred %s missing\n", pref);
-    }
-
-    // 3) Default
+UiFont loadDefaultUiFont() {
+    UiFont out;
     vita2d_pgf* def = vita2d_load_default_pgf();
-    if (!def)
+    if (def) {
+        out.kind = UiFont::Kind::Pgf;
+        out.pgf = def;
+    } else {
         sceClibPrintf("[UiFont] default PGF load failed\n");
-    return def;
+    }
+    return out;
 }
 
-vita2d_pgf* loadUiFont(UiFontStyle style) {
+UiFont loadUiFont(UiFontStyle style, const std::string& customFile) {
+    if (!customFile.empty()) {
+        UiFont f = loadByBasename(customFile.c_str());
+        if (f) return f;
+        sceClibPrintf("[UiFont] custom missing %s — fallback\n", customFile.c_str());
+    }
+    if (const char* pref = stylePreferredFile(style)) {
+        UiFont f = loadByBasename(pref);
+        if (f) return f;
+        sceClibPrintf("[UiFont] preferred %s missing\n", pref);
+    }
+    return loadDefaultUiFont();
+}
+
+UiFont loadUiFont(UiFontStyle style) {
     return loadUiFont(style, std::string());
+}
+
+void uiDrawText(const UiFont* font, int x, int y, unsigned color, float scale, const char* text) {
+    if (!font || !text) return;
+    if (font->kind == UiFont::Kind::Pgf && font->pgf) {
+        vita2d_pgf_draw_text(font->pgf, x, y, color, scale, text);
+        return;
+    }
+    if (font->kind == UiFont::Kind::FreeType && font->ft) {
+        vita2d_font_draw_text(font->ft, x, y, color, scaleToPx(scale), text);
+        return;
+    }
+}
+
+int uiTextWidth(const UiFont* font, float scale, const char* text) {
+    if (!font || !text) return 0;
+    if (font->kind == UiFont::Kind::Pgf && font->pgf) {
+        return vita2d_pgf_text_width(font->pgf, scale, text);
+    }
+    if (font->kind == UiFont::Kind::FreeType && font->ft) {
+        int w = 0, h = 0;
+        vita2d_font_text_dimensions(font->ft, scaleToPx(scale), text, &w, &h);
+        return w;
+    }
+    return 0;
 }
 
 } // namespace ui

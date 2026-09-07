@@ -20,6 +20,7 @@
 #include "diagnostic_logger.hpp"
 #include "storage/storage_manager.hpp"
 #include "installer/install_controller.hpp"
+#include "ui/ui_font.hpp"
 #include "ui/full_catalog_screen.hpp"
 #include "ui/image_cache.hpp"
 #include "catalog/catalog_manager.hpp"
@@ -197,7 +198,7 @@ ZipDestChoice promptZipDestinationChoice() {
     };
     constexpr int kCount = 6;
 
-    vita2d_pgf* font = vita2d_load_default_pgf();
+    ::psvitaalive::ui::UiFont font = ::psvitaalive::ui::loadDefaultUiFont();
     if (!font) return ZipDestChoice::Cancel;
 
     sceCtrlSetSamplingMode(SCE_CTRL_MODE_ANALOG);
@@ -291,9 +292,9 @@ ZipDestChoice promptZipDestinationChoice() {
         vita2d_draw_rectangle(boxX, boxY, 2, boxH, ACCENT);
         vita2d_draw_rectangle(boxX + boxW - 2, boxY, 2, boxH, ACCENT_SOFT);
 
-        vita2d_pgf_draw_text(font, boxX + 28, boxY + 32, ACCENT, 0.62f, "PSVitaAlive");
-        vita2d_pgf_draw_text(font, boxX + 28, boxY + 58, WHITE, 1.00f, "ZIP file detected");
-        vita2d_pgf_draw_text(font, boxX + 28, boxY + 80, TEXT, 0.58f,
+        ::psvitaalive::ui::uiDrawText(&font, boxX + 28, boxY + 32, ACCENT, 0.62f, "PSVitaAlive");
+        ::psvitaalive::ui::uiDrawText(&font, boxX + 28, boxY + 58, WHITE, 1.00f, "ZIP file detected");
+        ::psvitaalive::ui::uiDrawText(&font, boxX + 28, boxY + 80, TEXT, 0.58f,
             "Choose where to extract the archive contents:");
 
         for (int i = 0; i < kCount; ++i) {
@@ -307,12 +308,12 @@ ZipDestChoice promptZipDestinationChoice() {
             }
             const unsigned pathCol = on ? ACCENT : WHITE;
             const unsigned descCol = on ? TEXT : DIM;
-            vita2d_pgf_draw_text(font, listLeft + 16, ry + 18, pathCol, 0.72f, kOptions[i].path);
-            vita2d_pgf_draw_text(font, listLeft + 16, ry + 38, descCol, 0.52f, kOptions[i].desc);
+            ::psvitaalive::ui::uiDrawText(&font, listLeft + 16, ry + 18, pathCol, 0.72f, kOptions[i].path);
+            ::psvitaalive::ui::uiDrawText(&font, listLeft + 16, ry + 38, descCol, 0.52f, kOptions[i].desc);
         }
 
         vita2d_draw_rectangle(boxX + 1, boxY + boxH - 36, boxW - 2, 35, SURFACE2);
-        vita2d_pgf_draw_text(font, boxX + 28, boxY + boxH - 14, DIM, 0.52f,
+        ::psvitaalive::ui::uiDrawText(&font, boxX + 28, boxY + boxH - 14, DIM, 0.52f,
             "D-Pad / Touch: select    Cross: confirm    Circle: cancel");
 
         vita2d_end_drawing();
@@ -322,7 +323,7 @@ ZipDestChoice promptZipDestinationChoice() {
 
     touchWasDown = false;
     vita2d_wait_rendering_done();
-    vita2d_free_pgf(font);
+    font.reset();
     return result;
 }
 
@@ -374,7 +375,7 @@ bool promptZipDestination(std::string& dst) {
 std::string formatEta(uint64_t seconds){if(seconds==0)return "--";uint64_t h=seconds/3600,m=(seconds%3600)/60,sec=seconds%60;char o[64];if(h)sceClibSnprintf(o,sizeof(o),"%llu:%02llu:%02llu",(unsigned long long)h,(unsigned long long)m,(unsigned long long)sec);else sceClibSnprintf(o,sizeof(o),"%02llu:%02llu",(unsigned long long)m,(unsigned long long)sec);return o;}
 bool promptDownloadAllImages(size_t totalImages){
     vita2d_wait_rendering_done();
-    vita2d_pgf* font=vita2d_load_default_pgf();
+    ::psvitaalive::ui::UiFont font=::psvitaalive::ui::loadDefaultUiFont();
     if(!font) return false;
     bool yes=false, done=false;
     int selected=0;
@@ -419,31 +420,31 @@ bool promptDownloadAllImages(size_t totalImages){
         vita2d_draw_rectangle(x,y+2,2,h-4,ACCENT);
         vita2d_draw_rectangle(x+w-2,y+2,2,h-4,BORDER);
         vita2d_draw_rectangle(x,y+h-2,w,2,BORDER);
-        vita2d_pgf_draw_text(font,x+28,y+36,ACCENT,.68f,"PSVitaAlive");
-        vita2d_pgf_draw_text(font,x+28,y+78,WHITE,1.02f,"Download catalog images?");
-        vita2d_pgf_draw_text(font,x+28,y+108,TEXT,.58f,"Images are downloaded once and kept in the local cache.");
-        vita2d_pgf_draw_text(font,x+28,y+118,DIM,.54f,"This can take a very long time and use network data.");
+        ::psvitaalive::ui::uiDrawText(&font,x+28,y+36,ACCENT,.68f,"PSVitaAlive");
+        ::psvitaalive::ui::uiDrawText(&font,x+28,y+78,WHITE,1.02f,"Download catalog images?");
+        ::psvitaalive::ui::uiDrawText(&font,x+28,y+108,TEXT,.58f,"Images are downloaded once and kept in the local cache.");
+        ::psvitaalive::ui::uiDrawText(&font,x+28,y+118,DIM,.54f,"This can take a very long time and use network data.");
         const unsigned WARN=RGBA8(0xFF,0xB0,0x20,255);
         vita2d_draw_rectangle(x+24,y+136,w-48,36,RGBA8(0x3A,0x2A,0x10,255));
         vita2d_draw_rectangle(x+24,y+136,3,36,WARN);
-        vita2d_pgf_draw_text(font,x+36,y+150,WARN,.56f,"Warning: total may exceed 2 GB");
-        vita2d_pgf_draw_text(font,x+36,y+166,WARN,.50f,"of data. Use Wi-Fi and check free space.");
+        ::psvitaalive::ui::uiDrawText(&font,x+36,y+150,WARN,.56f,"Warning: total may exceed 2 GB");
+        ::psvitaalive::ui::uiDrawText(&font,x+36,y+166,WARN,.50f,"of data. Use Wi-Fi and check free space.");
         char count[96];
         sceClibSnprintf(count,sizeof(count),"Pending images: %u",(unsigned)totalImages);
-        vita2d_pgf_draw_text(font,x+28,y+188,ACCENT,.68f,count);
-        vita2d_pgf_draw_text(font,x+28,y+210,TEXT,.52f,"Already cached images are excluded from this count.");
-        vita2d_pgf_draw_text(font,x+28,y+228,TEXT,.52f,"Speed, ETA and progress appear in the next panel.");
+        ::psvitaalive::ui::uiDrawText(&font,x+28,y+188,ACCENT,.68f,count);
+        ::psvitaalive::ui::uiDrawText(&font,x+28,y+210,TEXT,.52f,"Already cached images are excluded from this count.");
+        ::psvitaalive::ui::uiDrawText(&font,x+28,y+228,TEXT,.52f,"Speed, ETA and progress appear in the next panel.");
         vita2d_draw_rectangle(btn0x,by,bw,bh,selected==0?ACCENT:SURFACE);
         vita2d_draw_rectangle(btn1x,by,bw,bh,selected==1?ACCENT:SURFACE);
-        vita2d_pgf_draw_text(font,x+125,by+25,selected==0?BLACK:WHITE,.62f,"DOWNLOAD ALL");
-        vita2d_pgf_draw_text(font,x+425,by+25,selected==1?BLACK:WHITE,.62f,"LATER");
-        vita2d_pgf_draw_text(font,x+28,y+h-14,DIM,.52f,"Touch buttons or  Left/Right + Cross / Circle");
+        ::psvitaalive::ui::uiDrawText(&font,x+125,by+25,selected==0?BLACK:WHITE,.62f,"DOWNLOAD ALL");
+        ::psvitaalive::ui::uiDrawText(&font,x+425,by+25,selected==1?BLACK:WHITE,.62f,"LATER");
+        ::psvitaalive::ui::uiDrawText(&font,x+28,y+h-14,DIM,.52f,"Touch buttons or  Left/Right + Cross / Circle");
         vita2d_end_drawing();
         vita2d_swap_buffers();
         sceKernelDelayThread(16*1000);
     }
     vita2d_wait_rendering_done();
-    vita2d_free_pgf(font);
+    font.reset();
     return yes;
 }
 
@@ -504,9 +505,9 @@ bool runImageWarmup(std::vector<StartupImageJob>&jobs,psvitaalive::ui::ImageCach
     if(jobs.empty())return true;
     images.cancelAll();
     while(images.progress().active)sceKernelDelayThread(10*1000);
-    images.resetProgress();vita2d_pgf*prepFont=vita2d_load_default_pgf();if(prepFont){vita2d_start_drawing();vita2d_draw_rectangle(0,0,960,544,RGBA8(0,0,0,96));const int pw=620,ph=280,px=(960-pw)/2,py=(544-ph)/2;vita2d_draw_rectangle(px,py,pw,ph,RGBA8(0x20,0x20,0x20,255));vita2d_draw_rectangle(px,py,pw,2,RGBA8(0x3B,0xFF,0,255));vita2d_pgf_draw_text(prepFont,px+28,py+44,RGBA8(0x3B,0xFF,0,255),.68f,"PSVitaAlive");vita2d_pgf_draw_text(prepFont,px+28,py+86,RGBA8(255,255,255,255),1.0f,"Preparing image downloads");vita2d_pgf_draw_text(prepFont,px+28,py+122,RGBA8(0xAA,0xAA,0xAA,255),.58f,"Building the download queue...");vita2d_pgf_draw_text(prepFont,px+28,py+160,RGBA8(0x3B,0xFF,0,255),.62f,"Please wait");vita2d_end_drawing();vita2d_swap_buffers();sceKernelDelayThread(16*1000);vita2d_free_pgf(prepFont);}
+    images.resetProgress();::psvitaalive::ui::UiFont prepFont=::psvitaalive::ui::loadDefaultUiFont();if(prepFont){vita2d_start_drawing();vita2d_draw_rectangle(0,0,960,544,RGBA8(0,0,0,96));const int pw=620,ph=280,px=(960-pw)/2,py=(544-ph)/2;vita2d_draw_rectangle(px,py,pw,ph,RGBA8(0x20,0x20,0x20,255));vita2d_draw_rectangle(px,py,pw,2,RGBA8(0x3B,0xFF,0,255));::psvitaalive::ui::uiDrawText(&prepFont,px+28,py+44,RGBA8(0x3B,0xFF,0,255),.68f,"PSVitaAlive");::psvitaalive::ui::uiDrawText(&prepFont,px+28,py+86,RGBA8(255,255,255,255),1.0f,"Preparing image downloads");::psvitaalive::ui::uiDrawText(&prepFont,px+28,py+122,RGBA8(0xAA,0xAA,0xAA,255),.58f,"Building the download queue...");::psvitaalive::ui::uiDrawText(&prepFont,px+28,py+160,RGBA8(0x3B,0xFF,0,255),.62f,"Please wait");vita2d_end_drawing();vita2d_swap_buffers();sceKernelDelayThread(16*1000);prepFont.reset();}
     queueStartupImages(jobs,images);
-    vita2d_pgf* font=vita2d_load_default_pgf();
+    ::psvitaalive::ui::UiFont font=::psvitaalive::ui::loadDefaultUiFont();
     if(!font){images.cancelAll();return false;}
     const uint64_t started=sceKernelGetSystemTimeWide();uint64_t lastPoll=0;bool cancelled=false;
     while(true){
@@ -514,20 +515,20 @@ bool runImageWarmup(std::vector<StartupImageJob>&jobs,psvitaalive::ui::ImageCach
         uint64_t completed=0;std::string currentFile;bool failedCurrent=false;imageWarmupProgress(jobs,images,completed,currentFile,failedCurrent);
         const auto p=images.progress();
         if(completed>=(uint64_t)jobs.size()&&!p.active)break;
-        SceCtrlData pad={};sceCtrlPeekBufferPositive(0,&pad,1);if(pad.buttons&SCE_CTRL_CIRCLE&&!cancelled){images.cancelAll();cancelled=true;}if(cancelled){vita2d_start_drawing();vita2d_draw_rectangle(0,0,960,544,RGBA8(0,0,0,96));vita2d_draw_rectangle(170,142,620,260,RGBA8(0x20,0x20,0x20,255));vita2d_draw_rectangle(170,142,620,2,RGBA8(0x3B,0xFF,0,255));vita2d_pgf_draw_text(font,198,184,RGBA8(0x3B,0xFF,0,255),.68f,"PSVitaAlive");vita2d_pgf_draw_text(font,198,226,RGBA8(255,255,255,255),1.0f,"Cancelling image downloads");vita2d_pgf_draw_text(font,198,262,RGBA8(0xAA,0xAA,0xAA,255),.58f,"Stopping transfer and removing incomplete file...");vita2d_end_drawing();vita2d_swap_buffers();if(!images.progress().active)break;sceKernelDelayThread(16*1000);continue;}
+        SceCtrlData pad={};sceCtrlPeekBufferPositive(0,&pad,1);if(pad.buttons&SCE_CTRL_CIRCLE&&!cancelled){images.cancelAll();cancelled=true;}if(cancelled){vita2d_start_drawing();vita2d_draw_rectangle(0,0,960,544,RGBA8(0,0,0,96));vita2d_draw_rectangle(170,142,620,260,RGBA8(0x20,0x20,0x20,255));vita2d_draw_rectangle(170,142,620,2,RGBA8(0x3B,0xFF,0,255));::psvitaalive::ui::uiDrawText(&font,198,184,RGBA8(0x3B,0xFF,0,255),.68f,"PSVitaAlive");::psvitaalive::ui::uiDrawText(&font,198,226,RGBA8(255,255,255,255),1.0f,"Cancelling image downloads");::psvitaalive::ui::uiDrawText(&font,198,262,RGBA8(0xAA,0xAA,0xAA,255),.58f,"Stopping transfer and removing incomplete file...");vita2d_end_drawing();vita2d_swap_buffers();if(!images.progress().active)break;sceKernelDelayThread(16*1000);continue;}
         if(now<lastPoll){sceKernelDelayThread(16*1000);continue;}lastPoll=now+100000;
         const unsigned SURFACE=RGBA8(0x37,0x37,0x37,255),BORDER=RGBA8(0x6E,0x6E,0x6E,255),TEXT=RGBA8(0xAA,0xAA,0xAA,255),DIM=RGBA8(0x6E,0x6E,0x6E,255),ACCENT=RGBA8(0x3B,0xFF,0,255),WHITE=RGBA8(255,255,255,255),BLACK=RGBA8(0,0,0,255),PANEL=RGBA8(0x20,0x20,0x20,255);
         const int w=620,h=320,x=(960-w)/2,y=(544-h)/2;
         vita2d_start_drawing();vita2d_draw_rectangle(0,0,960,544,RGBA8(0,0,0,96));vita2d_draw_rectangle(x,y,w,h,PANEL);vita2d_draw_rectangle(x,y,w,2,ACCENT);vita2d_draw_rectangle(x,y+2,2,h-2,ACCENT);
-        vita2d_pgf_draw_text(font,x+28,y+32,ACCENT,.68f,"PSVitaAlive");vita2d_pgf_draw_text(font,x+28,y+68,WHITE,1.02f,"Downloading Images");
-        std::string fn=twoLineFileName(p.fileName.empty()?currentFile:p.fileName);const size_t nl=fn.find('\n');if(nl==std::string::npos)vita2d_pgf_draw_text(font,x+28,y+98,TEXT,.62f,fn.c_str());else{vita2d_pgf_draw_text(font,x+28,y+98,TEXT,.62f,fn.substr(0,nl).c_str());vita2d_pgf_draw_text(font,x+28,y+120,TEXT,.62f,fn.substr(nl+1).c_str());}
-        const uint64_t current=p.downloaded,total=p.total;const uint64_t filePct=total?std::min<uint64_t>(100,(current*100)/total):0;const uint64_t overallPct=jobs.empty()?100:std::min<uint64_t>(100,((completed*10000)+(filePct*100))/jobs.size()/100);int bx=x+28,by=y+140,bw=w-56,bh=12;vita2d_draw_rectangle(bx,by,bw,bh,BORDER);vita2d_draw_rectangle(bx,by,bw*(int)overallPct/100,bh,ACCENT);char stats[220]={};sceClibSnprintf(stats,sizeof(stats),"%llu%%  Files: %llu / %u  •  %s/s",(unsigned long long)overallPct,(unsigned long long)completed,(unsigned)jobs.size(),formatBytes(p.speed).c_str());vita2d_pgf_draw_text(font,x+28,y+168,TEXT,.58f,stats);uint64_t eta=0;if(p.speed>0){uint64_t avg=completed?p.completedBytes/completed:(p.total?p.total:0);uint64_t futureFiles=jobs.size()>completed+(p.active?1:0)?jobs.size()-completed-(p.active?1:0):0;uint64_t remaining=(p.total>p.downloaded?p.total-p.downloaded:0)+avg*futureFiles;eta=remaining/p.speed;}char etaText[96];sceClibSnprintf(etaText,sizeof(etaText),"ETA: %s",formatEta(eta).c_str());vita2d_pgf_draw_text(font,x+28,y+194,ACCENT,.62f,etaText);
-        char known[220]={};sceClibSnprintf(known,sizeof(known),"Known size: %s",formatBytes(p.knownTotalBytes).c_str());vita2d_pgf_draw_text(font,x+28,y+218,TEXT,.56f,known);
-        vita2d_draw_rectangle(x+w-190,y+h-52,162,38,cancelled?ACCENT:SURFACE);vita2d_draw_rectangle(x+w-190,y+h-52,162,1,ACCENT);vita2d_pgf_draw_text(font,x+w-176,y+h-27,cancelled?BLACK:WHITE,.54f,"CIRCLE  CANCEL DOWNLOAD");
+        ::psvitaalive::ui::uiDrawText(&font,x+28,y+32,ACCENT,.68f,"PSVitaAlive");::psvitaalive::ui::uiDrawText(&font,x+28,y+68,WHITE,1.02f,"Downloading Images");
+        std::string fn=twoLineFileName(p.fileName.empty()?currentFile:p.fileName);const size_t nl=fn.find('\n');if(nl==std::string::npos)::psvitaalive::ui::uiDrawText(&font,x+28,y+98,TEXT,.62f,fn.c_str());else{::psvitaalive::ui::uiDrawText(&font,x+28,y+98,TEXT,.62f,fn.substr(0,nl).c_str());::psvitaalive::ui::uiDrawText(&font,x+28,y+120,TEXT,.62f,fn.substr(nl+1).c_str());}
+        const uint64_t current=p.downloaded,total=p.total;const uint64_t filePct=total?std::min<uint64_t>(100,(current*100)/total):0;const uint64_t overallPct=jobs.empty()?100:std::min<uint64_t>(100,((completed*10000)+(filePct*100))/jobs.size()/100);int bx=x+28,by=y+140,bw=w-56,bh=12;vita2d_draw_rectangle(bx,by,bw,bh,BORDER);vita2d_draw_rectangle(bx,by,bw*(int)overallPct/100,bh,ACCENT);char stats[220]={};sceClibSnprintf(stats,sizeof(stats),"%llu%%  Files: %llu / %u  •  %s/s",(unsigned long long)overallPct,(unsigned long long)completed,(unsigned)jobs.size(),formatBytes(p.speed).c_str());::psvitaalive::ui::uiDrawText(&font,x+28,y+168,TEXT,.58f,stats);uint64_t eta=0;if(p.speed>0){uint64_t avg=completed?p.completedBytes/completed:(p.total?p.total:0);uint64_t futureFiles=jobs.size()>completed+(p.active?1:0)?jobs.size()-completed-(p.active?1:0):0;uint64_t remaining=(p.total>p.downloaded?p.total-p.downloaded:0)+avg*futureFiles;eta=remaining/p.speed;}char etaText[96];sceClibSnprintf(etaText,sizeof(etaText),"ETA: %s",formatEta(eta).c_str());::psvitaalive::ui::uiDrawText(&font,x+28,y+194,ACCENT,.62f,etaText);
+        char known[220]={};sceClibSnprintf(known,sizeof(known),"Known size: %s",formatBytes(p.knownTotalBytes).c_str());::psvitaalive::ui::uiDrawText(&font,x+28,y+218,TEXT,.56f,known);
+        vita2d_draw_rectangle(x+w-190,y+h-52,162,38,cancelled?ACCENT:SURFACE);vita2d_draw_rectangle(x+w-190,y+h-52,162,1,ACCENT);::psvitaalive::ui::uiDrawText(&font,x+w-176,y+h-27,cancelled?BLACK:WHITE,.54f,"CIRCLE  CANCEL DOWNLOAD");
         vita2d_end_drawing();vita2d_swap_buffers();sceKernelDelayThread(16*1000);
         if(cancelled&&!images.progress().active)break;
     }
-    vita2d_wait_rendering_done();vita2d_free_pgf(font);return !cancelled;
+    vita2d_wait_rendering_done();font.reset();return !cancelled;
 }
 std::string progressMessage(uint64_t current,uint64_t total,const std::string&prefix,const std::string&file){char b[320];const uint64_t pct=total?std::min<uint64_t>(100,(current*100)/total):0;sceClibSnprintf(b,sizeof(b),"%s | %llu%% | %llu / %llu%s%s",prefix.c_str(),(unsigned long long)pct,(unsigned long long)current,(unsigned long long)total,file.empty()?"":" | ",file.c_str());return b;}
 }

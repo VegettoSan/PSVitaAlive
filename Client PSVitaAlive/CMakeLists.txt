@@ -128,6 +128,7 @@ target_link_libraries(${PROJECT_NAME}
   taihen_stub
   SceGxm_stub
   ScePgf_stub
+  freetype
   zstd
   lzma
   bz2

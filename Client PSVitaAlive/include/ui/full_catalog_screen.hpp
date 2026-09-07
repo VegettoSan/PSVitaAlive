@@ -7,6 +7,7 @@
 #include "update/update_checker.hpp"
 
 #include <vita2d.h>
+#include "ui/ui_font.hpp"
 #include <psp2/io/stat.h>
 #include <psp2/kernel/threadmgr.h>
 
@@ -111,7 +112,7 @@ private:
     SearchRequestFn searchRequest_;
     LinkActionFn linkAction_;
     ImageCache* imageCache_ = nullptr;
-    vita2d_pgf* font_ = nullptr;
+    ::psvitaalive::ui::UiFont font_;
     /** Full-screen splash while catalogs download/load at startup (app0:ui/catalog_loading.png). */
     vita2d_texture* catalogLoadingTex_ = nullptr;
     /** Monochrome splash for non-brand theme tinting. */
