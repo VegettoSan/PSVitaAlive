@@ -11,6 +11,9 @@
 
 namespace psvitaalive {
 namespace ui {
+
+static int g_userFontScalePct = 100;
+
 namespace {
 
 bool fileReadable(const char* path) {
@@ -187,16 +190,32 @@ UiFont loadUiFont(UiFontStyle style) {
     return loadUiFont(style, std::string());
 }
 
+void setUiFontScalePercent(int percent) {
+    if (percent < 70) percent = 70;
+    if (percent > 150) percent = 150;
+    g_userFontScalePct = percent;
+}
+
+int getUiFontScalePercent() {
+    return g_userFontScalePct;
+}
+
+static float effectiveScale(float scale) {
+    float s = scale * (static_cast<float>(g_userFontScalePct) / 100.f);
+    if (s < 0.35f) s = 0.35f;
+    if (s > 2.0f) s = 2.0f;
+    return s;
+}
+
 void uiDrawText(const UiFont* font, int x, int y, unsigned color, float scale, const char* text) {
     if (!font || !text) return;
+    const float s = effectiveScale(scale);
     if (font->kind == UiFont::Kind::Pgf && font->pgf) {
-        vita2d_pgf_draw_text(font->pgf, x, y, color, scale, text);
+        vita2d_pgf_draw_text(font->pgf, x, y, color, s, text);
         return;
     }
     if (font->kind == UiFont::Kind::FreeType && font->ft) {
-        // Match PGF baseline used across layouts (y is baseline for both APIs).
-        const unsigned px = scaleToPx(scale);
-        // Half-pixel optical align: smaller sizes need +1, large titles +2.
+        const unsigned px = scaleToPx(s);
         const int yFt = y + (px >= 24 ? 2 : 1);
         vita2d_font_draw_text(font->ft, x, yFt, color, px, text);
         return;
@@ -205,12 +224,13 @@ void uiDrawText(const UiFont* font, int x, int y, unsigned color, float scale, c
 
 int uiTextWidth(const UiFont* font, float scale, const char* text) {
     if (!font || !text) return 0;
+    const float s = effectiveScale(scale);
     if (font->kind == UiFont::Kind::Pgf && font->pgf) {
-        return vita2d_pgf_text_width(font->pgf, scale, text);
+        return vita2d_pgf_text_width(font->pgf, s, text);
     }
     if (font->kind == UiFont::Kind::FreeType && font->ft) {
         int w = 0, h = 0;
-        vita2d_font_text_dimensions(font->ft, scaleToPx(scale), text, &w, &h);
+        vita2d_font_text_dimensions(font->ft, scaleToPx(s), text, &w, &h);
         return w;
     }
     return 0;

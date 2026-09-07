@@ -368,6 +368,11 @@ const char* LocalizationManager::keyFor(TextId id) {
         case TextId::InfoFont1: return "INFO_FONT_1";
         case TextId::InfoFont2: return "INFO_FONT_2";
         case TextId::InfoFont3: return "INFO_FONT_3";
+        case TextId::UiFontSize: return "UI_FONT_SIZE";
+        case TextId::HintUiFontSize: return "HINT_UI_FONT_SIZE";
+        case TextId::InfoFontSize1: return "INFO_FONT_SIZE_1";
+        case TextId::InfoFontSize2: return "INFO_FONT_SIZE_2";
+        case TextId::InfoFontSize3: return "INFO_FONT_SIZE_3";
         case TextId::FontFallbackToast: return "FONT_FALLBACK_TOAST";
         case TextId::ThemeSetupTitle: return "THEME_SETUP_TITLE";
         case TextId::ThemeSetupBody1: return "THEME_SETUP_BODY_1";
