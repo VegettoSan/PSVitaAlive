@@ -1,0 +1,48 @@
+{
+  "id": "sonic-robo-blast-2-kart",
+  "title_id": "SRB2KART0",
+  "name": "Sonic Robo Blast 2 Kart",
+  "description": "port of SRB2Kart (Kart Krew), built on Rinnegatamante's vitaGL. Hardware OpenGL, ~60 FPS, online multiplayer.",
+  "long_description": "Hardware-accelerated OpenGL renderer, full online multiplayer (including the official Kart Krew master server), on-screen keyboard, LiveArea assets, and a Performance mode that targets 60 FPS.",
+  "author_ids": [
+    "esodland"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "arcade",
+    "racing"
+  ],
+  "version": "2.1",
+  "version_date": "2026-07-14",
+  "requirements": "- A PS Vita or PS TV with HENkaku / Enso (custom firmware).\n- ~600 MB free on ux0: (the game assets are large).\n- The SRB2Kart v1.6 game data. This port ships no game assets — you must supply them from the official SRB2Kart release.\n- libshacccg.suprx in ur0:data/ — the runtime shader compiler modern vitaGL needs. This is only required by this vitagl-modern build; the master build does not need it. A legal, hash‑verified way to install it is AnimMouse/SceShaccCg. Without it, the game shows a black screen.",
+  "size": 5557453,
+  "status": "Verified",
+  "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/sonic-robo-blast-2-kart-psvita/srb2kart-modern-vitagl.vpk",
+      "size": 5872026,
+      "recommended": true
+    },
+    {
+      "type": "Game Files",
+      "name": "Game Files",
+      "url": "https://archive.org/download/sonic-robo-blast-2-kart-psvita/Game%20Files.zip",
+      "size": 532571750,
+      "extract_path": "ux0:data/"
+    },
+    {
+      "type": "Repository",
+      "name": "GitHub",
+      "url": "https://github.com/Esodland/SRB2Kart-PSVita-PSTV"
+    }
+  ],
+  "icon": "https://archive.org/download/sonic-robo-blast-2-kart-psvita/icon0.png",
+  "screenshots": [
+    "https://archive.org/download/sonic-robo-blast-2-kart-psvita/Shot0.png",
+    "https://archive.org/download/sonic-robo-blast-2-kart-psvita/Shot1.png",
+    "https://archive.org/download/sonic-robo-blast-2-kart-psvita/shot2.png",
+    "https://archive.org/download/sonic-robo-blast-2-kart-psvita/shot3.jpg"
+  ]
+}
