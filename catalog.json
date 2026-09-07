@@ -1,5 +1,53 @@
 [
   {
+    "id": "ctr-high-octane",
+    "title_id": "CTR000004",
+    "name": "CTR: High Octane",
+    "description": "is a sourceport for PSVita of Crash Team Racing based on the ctr-native project.",
+    "long_description": "Crash Team Racing: High Octane is a sourceport for PSVita of Crash Team Racing based on the ctr-native project. It focuses on new features, enhancements and optimization.",
+    "author_ids": [
+      "rinnegatamante"
+    ],
+    "category_id": "ports",
+    "subcategory_ids": [
+      "arcade",
+      "racing"
+    ],
+    "version": "1.3.1",
+    "version_date": "2026-09-06",
+    "requirements": "- libshacccg.suprx\n- Game Data Files: PS1",
+    "size": 3565158,
+    "status": "Verified",
+    "links": [
+      {
+        "type": "Download",
+        "name": "VPK",
+        "url": "https://archive.org/download/crash-team-racing-high-optane/ctr%20v1.3.1.vpk",
+        "size": 4613734,
+        "recommended": true
+      },
+      {
+        "type": "Game Files",
+        "name": "Game Files",
+        "url": "https://archive.org/download/crash-team-racing-high-optane/Game%20Files.zip",
+        "size": 605657498,
+        "extract_path": "ux0:data/"
+      },
+      {
+        "type": "Repository",
+        "name": "GitHub",
+        "url": "https://github.com/Rinnegatamante/Crash-Team-Racing-High-Octane"
+      }
+    ],
+    "icon": "https://archive.org/download/crash-team-racing-high-optane/icon0.png",
+    "screenshots": [
+      "https://archive.org/download/crash-team-racing-high-optane/shot0.jpg",
+      "https://archive.org/download/crash-team-racing-high-optane/shot1.jpg",
+      "https://archive.org/download/crash-team-racing-high-optane/shot2.jpg",
+      "https://archive.org/download/crash-team-racing-high-optane/shot3.jpg"
+    ]
+  },
+  {
     "id": "gravity-guy",
     "title_id": "GRVG00001",
     "name": "Gravity Guy",
@@ -74,52 +122,137 @@
     ]
   },
   {
-    "id": "ctr-high-octane",
-    "title_id": "CTR000004",
-    "name": "CTR: High Octane",
-    "description": "is a sourceport for PSVita of Crash Team Racing based on the ctr-native project.",
-    "long_description": "Crash Team Racing: High Octane is a sourceport for PSVita of Crash Team Racing based on the ctr-native project. It focuses on new features, enhancements and optimization.",
+    "id": "vita-romm",
+    "title_id": "ROMM00001",
+    "name": "Vita RomM",
+    "description": "Vita RomM is a PS Vita homebrew client for browsing a self-hosted RomM library and downloading your own backed-up games directly on the Vita.",
+    "long_description": "Vita RomM is a PS Vita homebrew client for browsing a self-hosted RomM library and downloading your own backed-up games directly on the Vita.\n\nIt is made for a simple handheld workflow: open the app, pick a platform, browse games with cover art, download or install a title, and keep your Vita/Adrenaline/RetroArch folders organized through one configurable client.",
     "author_ids": [
-      "rinnegatamante"
+      "denkacn"
     ],
-    "category_id": "ports",
+    "category_id": "utilities",
     "subcategory_ids": [
-      "arcade",
-      "racing"
+      "installer",
+      "downloader",
+      "updater"
     ],
-    "version": "1.2",
-    "version_date": "2026-09-02",
-    "requirements": "- libshacccg.suprx\n- Game Data Files: PS1",
-    "size": 3460301,
+    "version": "0.8.0",
+    "version_date": "2026-09-06",
+    "requirements": "- A homebrew-enabled PS Vita or PSTV.\n- VitaShell.\n- Network access from the Vita to your RomM server.\n- A RomM API token.\n- Enough free space on ux0:.\n- Adrenaline for PSP and PSX EBOOT.PBP games.\n- RetroArch or another emulator for retro ROM folders.",
+    "size": 2411725,
     "status": "Verified",
     "links": [
       {
         "type": "Download",
         "name": "VPK",
-        "url": "https://archive.org/download/crash-team-racing-high-optane/ctr%20v1.2.vpk",
-        "size": 3460301,
+        "url": "https://archive.org/download/vita-romm-psvita/vita_romm%20v0.8.0.s.vpk",
+        "size": 2411725,
         "recommended": true
-      },
-      {
-        "type": "Game Files",
-        "name": "Game Files",
-        "url": "https://archive.org/download/crash-team-racing-high-optane/Game%20Files.zip",
-        "size": 605657498,
-        "extract_path": "ux0:data/"
       },
       {
         "type": "Repository",
         "name": "GitHub",
-        "url": "https://github.com/Rinnegatamante/Crash-Team-Racing-High-Octane"
+        "url": "https://github.com/denkacn/vita-romm"
       }
     ],
-    "icon": "https://archive.org/download/crash-team-racing-high-optane/icon0.png",
+    "icon": "https://archive.org/download/vita-romm-psvita/icon0.png",
     "screenshots": [
-      "https://archive.org/download/crash-team-racing-high-optane/shot0.jpg",
-      "https://archive.org/download/crash-team-racing-high-optane/shot1.jpg",
-      "https://archive.org/download/crash-team-racing-high-optane/shot2.jpg",
-      "https://archive.org/download/crash-team-racing-high-optane/shot3.jpg"
+      "https://archive.org/download/vita-romm-psvita/shot0.png"
     ]
+  },
+  {
+    "id": "vitube",
+    "title_id": "VTUB00001",
+    "name": "ViTube",
+    "description": "Native YouTube client for the PlayStation Vita",
+    "long_description": "Native YouTube client for the PlayStation Vita. Talks directly to YouTube's internal API — no companion server, no account requirement, no browser.",
+    "author_ids": [
+      "shorelight82"
+    ],
+    "category_id": "media",
+    "subcategory_ids": [
+      "video",
+      "video-player",
+      "streaming"
+    ],
+    "version": "1.0",
+    "version_date": "2026-09-06",
+    "requirements": "- requires HENkaku/Ensō",
+    "size": 4194304,
+    "status": "Verified",
+    "links": [
+      {
+        "type": "Download",
+        "name": "VPK",
+        "url": "https://archive.org/download/vi-tube-psvita/ViTube%201.0.vpk",
+        "size": 4194304,
+        "recommended": true
+      },
+      {
+        "type": "Repository",
+        "name": "GitHub",
+        "url": "https://github.com/shorelight82/vitube-vpk"
+      }
+    ],
+    "icon": "https://archive.org/download/vi-tube-psvita/icon0.png",
+    "screenshots": [
+      "https://archive.org/download/vi-tube-psvita/shot0.png",
+      "https://archive.org/download/vi-tube-psvita/shot1.png"
+    ]
+  },
+  {
+    "id": "barony-vita",
+    "title_id": "BARO00001",
+    "name": "Barony Vita",
+    "description": "Port of Barony for PSVita.",
+    "long_description": "Port of Barony by Turning Wheel for Playstation Vita.",
+    "author_ids": [
+      "bren"
+    ],
+    "category_id": "ports",
+    "subcategory_ids": [
+      "adventure",
+      "other"
+    ],
+    "version": "v.0.0.2-5.0.2",
+    "version_date": "2026-09-05",
+    "requirements": "- libshacccg.suprx\n- Game Data Files: PC",
+    "size": 9961472,
+    "status": "Legacy",
+    "links": [
+      {
+        "type": "Download",
+        "name": "VPK",
+        "url": "https://archive.org/download/psvitaalive-barony-vita/barony%20v0.0.2-5.0.2.vpk",
+        "size": 9961472,
+        "recommended": true
+      },
+      {
+        "type": "Game Files",
+        "name": "Game Files ZIP",
+        "url": "https://archive.org/download/psvitaalive-barony-vita/Game%20Files.zip",
+        "size": 732954624,
+        "extract_path": "ux0:data/"
+      },
+      {
+        "type": "Repository",
+        "name": "Repositorio",
+        "url": "https://github.com/Brendonm17/Barony-Vita"
+      }
+    ],
+    "icon": "https://archive.org/download/psvitaalive-barony-vita/icon0.png",
+    "screenshots": [
+      "https://archive.org/download/psvitaalive-barony-vita/shot_01.png",
+      "https://archive.org/download/psvitaalive-barony-vita/shot_02.png",
+      "https://archive.org/download/psvitaalive-barony-vita/shot_03.png",
+      "https://archive.org/download/psvitaalive-barony-vita/shot_04.png",
+      "https://archive.org/download/psvitaalive-barony-vita/shot_05.png"
+    ],
+    "source_name": "VitaHomebrewDB",
+    "source_id": "1444",
+    "source_url": "https://github.com/Brendonm17/Barony-Vita",
+    "release_page": "https://github.com/Brendonm17/Barony-Vita/releases",
+    "updated_at": "2026-08-13T15:34"
   },
   {
     "id": "vitamediadeck",
@@ -1238,47 +1371,22 @@
     "version": "v.1.0",
     "version_date": "2026-08-22",
     "requirements": "- Game Data Files: PC",
-    "size": 3819434,
+    "size": 3818914,
     "status": "Legacy",
-    "icon": "https://archive.org/download/JK2VITA/icon0.png",
-    "screenshots": [
-      "https://archive.org/download/JK2VITA/shot_01.png"
-    ],
     "links": [
       {
         "type": "Download",
         "name": "VPK",
         "url": "https://archive.org/download/JK2VITA/JAVITA-1.0.vpk",
-        "recommended": true,
-        "size": 3819434
+        "size": 3818914,
+        "recommended": true
       },
       {
         "type": "Download",
         "name": "VPK Mediafire",
         "url": "https://www.mediafire.com/file/0alnjuu3bskbi5h/JAVITA-1.0.vpk/file",
-        "recommended": false,
-        "size": 3819434
-      },
-      {
-        "type": "Game Files",
-        "name": "Game Data Files ZIP Mediafire",
-        "url": "https://www.mediafire.com/file/wc8bo83559pasxd/Game_Data_Files.zip/file",
-        "recommended": false,
-        "size": 1100000000,
-        "extract_path": "ux0:data/"
-      },
-      {
-        "type": "Game Files",
-        "name": "Game Data Files ZIP",
-        "url": "https://archive.org/download/JK2VITA/Game%20Data%20Files.zip",
-        "recommended": false,
-        "size": 1100000000,
-        "extract_path": "ux0:data/"
-      },
-      {
-        "type": "Official Website",
-        "name": "Release Page",
-        "url": "https://github.com/NDRWhun/JAVITA/releases"
+        "size": 3818914,
+        "recommended": false
       },
       {
         "type": "Repository",
@@ -1286,11 +1394,15 @@
         "url": "https://github.com/NDRWhun/JAVITA"
       }
     ],
+    "icon": "https://archive.org/download/JK2VITA/icon0.png",
+    "screenshots": [
+      "https://archive.org/download/JK2VITA/shot_01.png"
+    ],
     "source_name": "VitaDB",
     "source_id": "1481",
     "source_url": "https://github.com/NDRWhun/JAVITA",
     "release_page": "https://github.com/NDRWhun/JAVITA/releases",
-    "updated_at": "2026-08-22T15:39:32.749156+00:00"
+    "updated_at": "2026-08-22T15:39"
   },
   {
     "id": "immortal-dusk-vita",
@@ -4364,59 +4476,6 @@
     "updated_at": "2026-08-13T15:34:48.324788+00:00"
   },
   {
-    "id": "barony-vita",
-    "title_id": "BARO00001",
-    "name": "Barony Vita",
-    "description": "Port of Barony for PSVita.",
-    "long_description": "Port of Barony by Turning Wheel for Playstation Vita.",
-    "author_ids": [
-      "bren"
-    ],
-    "category_id": "ports",
-    "subcategory_ids": [
-      "adventure",
-      "other"
-    ],
-    "version": "v.0.0.1-5.0.2",
-    "version_date": "2026-07-28",
-    "requirements": "- libshacccg.suprx\n- Game Data Files: PC",
-    "size": 9793700,
-    "status": "Legacy",
-    "links": [
-      {
-        "type": "Download",
-        "name": "VPK",
-        "url": "https://archive.org/download/psvitaalive-barony-vita/barony-vita.vpk",
-        "recommended": true
-      },
-      {
-        "type": "Game Files",
-        "name": "Game Files ZIP",
-        "url": "https://archive.org/download/psvitaalive-barony-vita/Game%20Files.zip",
-        "size": 732954624,
-        "extract_path": "ux0:data/"
-      },
-      {
-        "type": "Repository",
-        "name": "Repositorio",
-        "url": "https://github.com/Brendonm17/Barony-Vita"
-      }
-    ],
-    "icon": "https://archive.org/download/psvitaalive-barony-vita/icon0.png",
-    "screenshots": [
-      "https://archive.org/download/psvitaalive-barony-vita/shot_01.png",
-      "https://archive.org/download/psvitaalive-barony-vita/shot_02.png",
-      "https://archive.org/download/psvitaalive-barony-vita/shot_03.png",
-      "https://archive.org/download/psvitaalive-barony-vita/shot_04.png",
-      "https://archive.org/download/psvitaalive-barony-vita/shot_05.png"
-    ],
-    "source_name": "VitaHomebrewDB",
-    "source_id": "1444",
-    "source_url": "https://github.com/Brendonm17/Barony-Vita",
-    "release_page": "https://github.com/Brendonm17/Barony-Vita/releases",
-    "updated_at": "2026-08-13T15:34"
-  },
-  {
     "id": "prince-of-persia-classic",
     "title_id": "POPC00001",
     "name": "Prince of Persia Classic",
@@ -5668,6 +5727,46 @@
     "source_url": "https://github.com/4brm01/Picture-Poker",
     "release_page": "",
     "updated_at": "2026-08-13T15:34:48.331425+00:00"
+  },
+  {
+    "id": "vitamania",
+    "title_id": "VTMN00002",
+    "name": "vitaMania!",
+    "description": "PS Vita osu!mania-style 4K rhythm game",
+    "long_description": "vitaMania! is an unofficial PS Vita homebrew rhythm game for 4k osu!mania beatmaps.",
+    "author_ids": [
+      "lolhop"
+    ],
+    "category_id": "games",
+    "subcategory_ids": [
+      "casual",
+      "music",
+      "rhythm"
+    ],
+    "version": "0.1.0",
+    "version_date": "2026-07-02",
+    "requirements": "- No Data",
+    "size": 1887437,
+    "status": "Verified",
+    "links": [
+      {
+        "type": "Download",
+        "name": "VPK",
+        "url": "https://archive.org/download/vita-mania-psvita/VitaMania%20v0.1.0a.vpk",
+        "size": 1887437,
+        "recommended": true
+      },
+      {
+        "type": "Repository",
+        "name": "GitHub",
+        "url": "https://github.com/lolhop/vitaMania"
+      }
+    ],
+    "icon": "https://archive.org/download/vita-mania-psvita/icon0.png",
+    "screenshots": [
+      "https://archive.org/download/vita-mania-psvita/shot0.png",
+      "https://archive.org/download/vita-mania-psvita/shot1.png"
+    ]
   },
   {
     "id": "fheroes2",

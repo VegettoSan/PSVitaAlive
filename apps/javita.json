@@ -28,7 +28,8 @@
       "type": "Download",
       "name": "VPK Mediafire",
       "url": "https://www.mediafire.com/file/0alnjuu3bskbi5h/JAVITA-1.0.vpk/file",
-      "size": 3818914
+      "size": 3818914,
+      "recommended": false
     },
     {
       "type": "Repository",

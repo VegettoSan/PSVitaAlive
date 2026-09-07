@@ -1575,6 +1575,21 @@
     "icon": "https://github.com/deltaclock.png"
   },
   {
+    "id": "denkacn",
+    "name": "Denis Puzik",
+    "avatar": "https://avatars.githubusercontent.com/u/13575066?v=4",
+    "bio": "Dev",
+    "links": [
+      {
+        "type": "Repository",
+        "name": "GitHub",
+        "url": "https://github.com/denkacn",
+        "recommended": true
+      }
+    ],
+    "icon": "https://avatars.githubusercontent.com/u/13575066?v=4"
+  },
+  {
     "id": "desired",
     "name": "DesiRED",
     "avatar": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png",
@@ -3845,6 +3860,21 @@
     "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
   },
   {
+    "id": "lolhop",
+    "name": "lolhop",
+    "avatar": "https://avatars.githubusercontent.com/u/185359541?v=4",
+    "bio": "Dev",
+    "links": [
+      {
+        "type": "Repository",
+        "name": "GitHub",
+        "url": "https://github.com/lolhop",
+        "recommended": true
+      }
+    ],
+    "icon": "https://avatars.githubusercontent.com/u/185359541?v=4"
+  },
+  {
     "id": "lonelypie-studio",
     "name": "LonelyPie Studio",
     "avatar": "https://github.com/LnlyPie.png",
@@ -5735,6 +5765,21 @@
       }
     ],
     "icon": "https://github.com/shev0k.png"
+  },
+  {
+    "id": "shorelight82",
+    "name": "shorelight82",
+    "avatar": "https://avatars.githubusercontent.com/u/295845165?v=4",
+    "bio": "Dev",
+    "links": [
+      {
+        "type": "Repository",
+        "name": "GitHub",
+        "url": "https://github.com/shorelight82",
+        "recommended": true
+      }
+    ],
+    "icon": "https://avatars.githubusercontent.com/u/295845165?v=4"
   },
   {
     "id": "silvercrow",
