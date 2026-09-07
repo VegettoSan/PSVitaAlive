@@ -14,16 +14,8 @@
   "version": "v.0.82",
   "version_date": "2024-10-10",
   "requirements": "- Game Data Files: PC",
-  "size": 17382192,
+  "size": 17382244,
   "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-cuphead-vita/icon0.png",
-  "screenshots": [
-    "https://archive.org/download/psvitaalive-cuphead-vita/shot_01.png",
-    "https://archive.org/download/psvitaalive-cuphead-vita/shot_02.png",
-    "https://archive.org/download/psvitaalive-cuphead-vita/shot_03.png",
-    "https://archive.org/download/psvitaalive-cuphead-vita/shot_04.png",
-    "https://archive.org/download/psvitaalive-cuphead-vita/shot_05.png"
-  ],
   "links": [
     {
       "type": "Download",
@@ -32,19 +24,29 @@
       "recommended": true
     },
     {
-      "type": "Official Website",
-      "name": "Repository",
-      "url": "https://github.com/PatnosDD/Cuphead-PS-VITA"
+      "type": "Game Files",
+      "name": "Game Files",
+      "url": "https://archive.org/download/psvitaalive-cuphead-vita/Game%20Files.zip",
+      "size": 1181116006,
+      "extract_path": "ux0:app/CPHD23233/"
     },
     {
       "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/PatnosDD/Cuphead-PS-VITA/releases/tag/V0.82"
+      "name": "Repository",
+      "url": "https://github.com/PatnosDD/Cuphead-PS-VITA"
     }
+  ],
+  "icon": "https://archive.org/download/psvitaalive-cuphead-vita/icon0.png",
+  "screenshots": [
+    "https://archive.org/download/psvitaalive-cuphead-vita/shot_01.png",
+    "https://archive.org/download/psvitaalive-cuphead-vita/shot_02.png",
+    "https://archive.org/download/psvitaalive-cuphead-vita/shot_03.png",
+    "https://archive.org/download/psvitaalive-cuphead-vita/shot_04.png",
+    "https://archive.org/download/psvitaalive-cuphead-vita/shot_05.png"
   ],
   "source_name": "VitaHomebrewDB",
   "source_id": "1202",
   "source_url": "https://github.com/PatnosDD/Cuphead-PS-VITA",
   "release_page": "https://github.com/PatnosDD/Cuphead-PS-VITA",
-  "updated_at": "2026-08-13T15:34:48.429643+00:00"
+  "updated_at": "2026-08-13T15:34"
 }
