@@ -2090,6 +2090,21 @@
     "icon": "https://github.com/enriquesomolinos.png"
   },
   {
+    "id": "esodland",
+    "name": "Esodland",
+    "avatar": "https://avatars.githubusercontent.com/u/268847111?v=4",
+    "bio": "Dev",
+    "links": [
+      {
+        "type": "Repository",
+        "name": "GitHub",
+        "url": "https://github.com/Esodland",
+        "recommended": true
+      }
+    ],
+    "icon": "https://avatars.githubusercontent.com/u/268847111?v=4"
+  },
+  {
     "id": "eva-vital",
     "name": "Eva Vital",
     "avatar": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png",
