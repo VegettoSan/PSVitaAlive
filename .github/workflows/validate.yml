@@ -146,7 +146,9 @@ jobs:
                   names = split_names(display_name)
 
                   if len(names) <= 1:
-                      aid = names[0][0] if names else raw_id
+                      # Keep the app's author id stable. Do NOT remap denkacn →
+                      # denis-puzik just because the display name is "Denis Puzik".
+                      aid = raw_id
                       if aid not in new_ids:
                           new_ids.append(aid)
                       continue
@@ -159,7 +161,14 @@ jobs:
                               'name': name,
                               'avatar': '',
                               'bio': '',
-                              'links': [],
+                              'links': [
+                                  {
+                                      'type': 'Other',
+                                      'name': 'Buscar autor',
+                                      'url': f'https://github.com/search?q={aid}&type=users',
+                                      'recommended': True,
+                                  }
+                              ],
                               'icon': fallback,
                           }
                           created_authors += 1
@@ -241,7 +250,14 @@ jobs:
                   'name': display,
                   'avatar': fallback,
                   'bio': '',
-                  'links': [],
+                  'links': [
+                      {
+                          'type': 'Other',
+                          'name': 'Buscar autor',
+                          'url': f'https://github.com/search?q={aid}&type=users',
+                          'recommended': True,
+                      }
+                  ],
                   'icon': fallback,
               }
               path = authors_dir / f'{aid}.json'
