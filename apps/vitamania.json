@@ -1,0 +1,40 @@
+{
+  "id": "vitamania",
+  "title_id": "VTMN00002",
+  "name": "vitaMania!",
+  "description": "PS Vita osu!mania-style 4K rhythm game",
+  "long_description": "vitaMania! is an unofficial PS Vita homebrew rhythm game for 4k osu!mania beatmaps.",
+  "author_ids": [
+    "lolhop"
+  ],
+  "category_id": "games",
+  "subcategory_ids": [
+    "casual",
+    "music",
+    "rhythm"
+  ],
+  "version": "0.1.0",
+  "version_date": "2026-07-02",
+  "requirements": "- No Data",
+  "size": 1887437,
+  "status": "Verified",
+  "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/vita-mania-psvita/VitaMania%20v0.1.0a.vpk",
+      "size": 1887437,
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "GitHub",
+      "url": "https://github.com/lolhop/vitaMania"
+    }
+  ],
+  "icon": "https://archive.org/download/vita-mania-psvita/icon0.png",
+  "screenshots": [
+    "https://archive.org/download/vita-mania-psvita/shot0.png",
+    "https://archive.org/download/vita-mania-psvita/shot1.png"
+  ]
+}

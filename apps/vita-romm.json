@@ -1,0 +1,39 @@
+{
+  "id": "vita-romm",
+  "title_id": "ROMM00001",
+  "name": "Vita RomM",
+  "description": "Vita RomM is a PS Vita homebrew client for browsing a self-hosted RomM library and downloading your own backed-up games directly on the Vita.",
+  "long_description": "Vita RomM is a PS Vita homebrew client for browsing a self-hosted RomM library and downloading your own backed-up games directly on the Vita.\n\nIt is made for a simple handheld workflow: open the app, pick a platform, browse games with cover art, download or install a title, and keep your Vita/Adrenaline/RetroArch folders organized through one configurable client.",
+  "author_ids": [
+    "denkacn"
+  ],
+  "category_id": "utilities",
+  "subcategory_ids": [
+    "installer",
+    "downloader",
+    "updater"
+  ],
+  "version": "0.8.0",
+  "version_date": "2026-09-06",
+  "requirements": "- A homebrew-enabled PS Vita or PSTV.\n- VitaShell.\n- Network access from the Vita to your RomM server.\n- A RomM API token.\n- Enough free space on ux0:.\n- Adrenaline for PSP and PSX EBOOT.PBP games.\n- RetroArch or another emulator for retro ROM folders.",
+  "size": 2411725,
+  "status": "Verified",
+  "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/vita-romm-psvita/vita_romm%20v0.8.0.s.vpk",
+      "size": 2411725,
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "GitHub",
+      "url": "https://github.com/denkacn/vita-romm"
+    }
+  ],
+  "icon": "https://archive.org/download/vita-romm-psvita/icon0.png",
+  "screenshots": [
+    "https://archive.org/download/vita-romm-psvita/shot0.png"
+  ]
+}
