@@ -22,6 +22,21 @@
 namespace psvitaalive {
 namespace {
 
+// pkg2zip runs on the installer worker thread; forward % to InstallController via onProgress.
+InstallDispatchProgressFn g_pkg2zipProgressFn;
+
+extern "C" void psvitaalive_pkg2zip_progress(int percent, const char* phase) {
+    if (!g_pkg2zipProgressFn) return;
+    if (percent < 0) percent = 0;
+    if (percent > 100) percent = 100;
+    InstallDispatchProgress p;
+    p.stage = InstallDispatchProgress::Installing;
+    p.current = static_cast<uint64_t>(percent);
+    p.total = 100;
+    p.message = (phase && phase[0]) ? phase : "Unpacking PKG";
+    g_pkg2zipProgressFn(p);
+}
+
 std::string lowerExtension(const std::string& path) {
     std::string out = FormatDetector::extensionOf(path);
     std::transform(out.begin(), out.end(), out.begin(), [](unsigned char c) {
@@ -155,7 +170,19 @@ InstallDispatchResult InstallDispatcher::installFile(
                 diagnostics::log(std::string("[InstallDispatcher] Adrenaline media format=") +
                     AppSettings::toString(pspMediaFormat_));
                 diagnostics::log("[InstallDispatcher] calling psp_pkg_unpack_to_pspemu");
+                g_pkg2zipProgressFn = onProgress;
+                pkg2zip_set_progress_callback(psvitaalive_pkg2zip_progress);
+                if (onProgress) {
+                    InstallDispatchProgress p;
+                    p.stage = InstallDispatchProgress::Installing;
+                    p.current = 0;
+                    p.total = 100;
+                    p.message = asIso ? "Unpacking PKG (ISO mode)" : "Unpacking PKG (folder mode)";
+                    onProgress(p);
+                }
                 const int ur = psp_pkg_unpack_to_pspemu(path.c_str(), "ux0:", asIso, installed, sizeof(installed));
+                pkg2zip_set_progress_callback(nullptr);
+                g_pkg2zipProgressFn = InstallDispatchProgressFn();
                 diagnostics::log(std::string("[InstallDispatcher] unpack returned ") + std::to_string(ur));
                 if (ur != 0) {
                     const char* err = pkg2zip_last_error();

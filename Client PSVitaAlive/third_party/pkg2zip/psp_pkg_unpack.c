@@ -147,6 +147,7 @@ static int do_unpack(const char* pkg_arg, int as_iso, char* out_path, unsigned o
 
     sys_output("[*] %s [%.9s] type=%s\n", title, id, type == PKG_TYPE_PSX ? "PSX" : "PSP");
     out_begin(NULL, 0);
+    sys_output_progress_set_phase("Unpacking PSP/PS1 PKG");
     sys_output_progress_init(pkg_size);
 
     char primary[512] = {0};
@@ -198,10 +199,12 @@ static int do_unpack(const char* pkg_arg, int as_iso, char* out_path, unsigned o
         } else { /* PSP */
             if (strcmp("USRDIR/CONTENT/EBOOT.PBP", name) == 0) {
                 if (as_iso) {
-                    /* ISO under pspemu/ISO (pkg2zip eboot→iso) */
+                    /* ISO under pspemu/ISO (pkg2zip eboot→iso) — long step */
+                    sys_output_progress_set_phase("Converting to ISO");
                     snprintf(path, sizeof(path), "pspemu/ISO/%s [%.9s].iso", title, id);
                     if (!primary[0]) snprintf(primary, sizeof(primary), "%s", path);
                     unpack_psp_eboot(path, item_key, iv, pkg, enc_offset, data_offset, data_size, 0);
+                    sys_output_progress_set_phase("Finishing install");
                     continue;
                 }
                 /* Default: folder / EBOOT.PBP (PKGj install_psp_as_pbp) */

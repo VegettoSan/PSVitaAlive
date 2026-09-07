@@ -18,6 +18,8 @@ static jmp_buf g_jmp;
 static int g_jmp_ready = 0;
 static uint64_t g_progress_size;
 static uint32_t g_progress_next;
+static pkg2zip_progress_cb g_progress_cb = NULL;
+static char g_progress_phase[96] = "Unpacking PKG";
 
 void pkg2zip_set_root_prefix(const char* prefix)
 {
@@ -207,17 +209,37 @@ void sys_vstrncat(char* dst, size_t n, const char* format, ...)
     strncat(dst, temp, n - strlen(dst) - 1);
 }
 
+void pkg2zip_set_progress_callback(pkg2zip_progress_cb cb)
+{
+    g_progress_cb = cb;
+}
+
+void sys_output_progress_set_phase(const char* phase)
+{
+    if (!phase || !phase[0])
+        phase = "Unpacking PKG";
+    snprintf(g_progress_phase, sizeof(g_progress_phase), "%s", phase);
+}
+
 void sys_output_progress_init(uint64_t size)
 {
     g_progress_size = size ? size : 1;
     g_progress_next = 0;
+    if (g_progress_cb)
+        g_progress_cb(0, g_progress_phase);
 }
 
 void sys_output_progress(uint64_t progress)
 {
     uint32_t now = (uint32_t)(progress * 100 / g_progress_size);
-    if (now >= g_progress_next) {
-        sceClibPrintf("[pkg2zip] unpacking... %u%%\n", now);
-        g_progress_next = now + 5;
+    if (now > 100) now = 100;
+    /* Report every 1% to the UI; keep log spam at ~5%. */
+    if (now >= g_progress_next || now >= 100) {
+        if (now >= g_progress_next)
+            g_progress_next = now + 1;
+        if ((now % 5) == 0 || now >= 100)
+            sceClibPrintf("[pkg2zip] %s... %u%%\n", g_progress_phase, now);
+        if (g_progress_cb)
+            g_progress_cb((int)now, g_progress_phase);
     }
 }

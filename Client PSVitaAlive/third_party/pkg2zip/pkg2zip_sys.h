@@ -16,6 +16,11 @@ void NORETURN sys_error(const char* msg, ...);
 void sys_output_progress_init(uint64_t size);
 void sys_output_progress(uint64_t progress);
 
+/** Optional UI progress: percent 0–100, phase is a short status string (may be NULL). */
+typedef void (*pkg2zip_progress_cb)(int percent, const char* phase);
+void pkg2zip_set_progress_callback(pkg2zip_progress_cb cb);
+void sys_output_progress_set_phase(const char* phase);
+
 typedef void* sys_file;
 
 void sys_mkdir(const char* path);
