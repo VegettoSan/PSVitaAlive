@@ -2232,7 +2232,7 @@ bool FullCatalogScreen::init(){
     vita2d_init();
     vita2d_set_clear_color(BG);
     font_ = ::psvitaalive::ui::loadUiFont(settingsEdit_.uiFontStyle, settingsEdit_.uiFontFile);
-    if(!font_) font_=vita2d_load_default_pgf();
+    if(!font_) font_=::psvitaalive::ui::loadDefaultUiFont();
     if(!font_)return false;
     sceCtrlSetSamplingMode(SCE_CTRL_MODE_ANALOG);
     sceTouchSetSamplingState(SCE_TOUCH_PORT_FRONT, SCE_TOUCH_SAMPLING_STATE_START);
