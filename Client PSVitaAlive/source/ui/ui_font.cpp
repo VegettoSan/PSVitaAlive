@@ -108,11 +108,15 @@ UiFont loadByBasename(const char* file) {
     return tryLoadPath(path, ft);
 }
 
-/** Map legacy PGF float scale → FreeType pixel size (tuned for 960x544 UI). */
+/**
+ * Map legacy PGF float scale → FreeType pixel size.
+ * Calibrated so scale 1.0 ≈ default PGF body size on 960×544
+ * (previous *26 looked oversized / loosely spaced on many TTFs).
+ */
 unsigned scaleToPx(float scale) {
-    int px = static_cast<int>(scale * 26.f + 0.5f);
-    if (px < 10) px = 10;
-    if (px > 48) px = 48;
+    int px = static_cast<int>(scale * 22.f + 0.5f);
+    if (px < 11) px = 11;
+    if (px > 40) px = 40;
     return static_cast<unsigned>(px);
 }
 
@@ -185,7 +189,9 @@ void uiDrawText(const UiFont* font, int x, int y, unsigned color, float scale, c
         return;
     }
     if (font->kind == UiFont::Kind::FreeType && font->ft) {
-        vita2d_font_draw_text(font->ft, x, y, color, scaleToPx(scale), text);
+        // FreeType baseline sits ~1px higher than PGF at the same visual size.
+        const int yFt = y + 1;
+        vita2d_font_draw_text(font->ft, x, yFt, color, scaleToPx(scale), text);
         return;
     }
 }
