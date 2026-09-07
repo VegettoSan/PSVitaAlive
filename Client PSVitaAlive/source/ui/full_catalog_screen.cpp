@@ -3677,7 +3677,7 @@ void FullCatalogScreen::cycleSettingsOption(int row, int delta) {
         }
     } else if (row == 5) {
         int pct = settingsEdit_.uiFontScalePct + (delta > 0 ? 5 : -5);
-        if (pct < 70) pct = 70;
+        if (pct < 50) pct = 50;
         if (pct > 150) pct = 150;
         settingsEdit_.uiFontScalePct = pct;
         ::psvitaalive::ui::setUiFontScalePercent(pct);

@@ -51,7 +51,7 @@ UiFont loadUiFont(UiFontStyle style);
 /** Default system PGF (startup / one-off dialogs). */
 UiFont loadDefaultUiFont();
 
-/** User size multiplier (70–150%). Applied on top of each draw scale. */
+/** User size multiplier (50–150%). Applied on top of each draw scale. */
 void setUiFontScalePercent(int percent);
 int  getUiFontScalePercent();
 

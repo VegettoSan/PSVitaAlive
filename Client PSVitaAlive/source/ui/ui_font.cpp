@@ -191,7 +191,7 @@ UiFont loadUiFont(UiFontStyle style) {
 }
 
 void setUiFontScalePercent(int percent) {
-    if (percent < 70) percent = 70;
+    if (percent < 50) percent = 50;
     if (percent > 150) percent = 150;
     g_userFontScalePct = percent;
 }
