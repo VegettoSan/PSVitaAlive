@@ -1216,7 +1216,7 @@
     "version": "0.2",
     "version_date": "2026-08-23",
     "requirements": "- Homebrew enabled PS Vita with VitaShell - kubridge.skprx installed - libshacccg.suprx at ur0:/data/libshacccg.suprx or ur0:/data/external/libshacccg.suprx - Your own Asphalt 8 v2.0.0e APK and OBB",
-    "size": 2058721,
+    "size": 2058355,
     "status": "Verified",
     "links": [
       {
@@ -1229,21 +1229,27 @@
         "type": "Game Files",
         "name": "Game Data Files ZIP - Mediafire",
         "url": "https://www.mediafire.com/file/w1lqvp8lfxnk9q0/asphalt8_game_data.zip/file",
-        "size": 1500000000,
+        "size": 1500017328,
         "extract_path": "ux0:data/"
       },
       {
         "type": "Game Files",
         "name": "Game Data Files ZIP",
         "url": "https://archive.org/download/asphalt-8-psvita/asphalt8%20game%20data.zip",
-        "size": 1500000000,
+        "size": 1500017328,
         "extract_path": "ux0:data/"
+      },
+      {
+        "type": "Mod",
+        "name": "All Cars MAX/PRO FIXED",
+        "url": "https://archive.org/download/asphalt-8-psvita/Mod%20-%20All%20Cars%20MAX%20-%20PRO%20FIXED.zip",
+        "size": 78950,
+        "extract_path": "ux0:data/asphalt8/internal/"
       },
       {
         "type": "Repository",
         "name": "GitLab VPK + Tools",
-        "url": "https://gitlab.com/sexcurrybeats/asphalt8-vita/-/releases/v0.2/downloads/Asphalt8Vita_v0.2.zip",
-        "recommended": false
+        "url": "https://gitlab.com/sexcurrybeats/asphalt8-vita/-/releases/v0.2/downloads/Asphalt8Vita_v0.2.zip"
       }
     ],
     "icon": "https://archive.org/download/asphalt-8-psvita/icon0.png",
