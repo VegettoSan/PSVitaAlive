@@ -3677,7 +3677,7 @@ void FullCatalogScreen::cycleSettingsOption(int row, int delta) {
         }
     } else if (row == 5) {
         int pct = settingsEdit_.uiFontScalePct + (delta > 0 ? 5 : -5);
-        if (pct < 70) pct = 70;
+        if (pct < 50) pct = 50;
         if (pct > 150) pct = 150;
         settingsEdit_.uiFontScalePct = pct;
         ::psvitaalive::ui::setUiFontScalePercent(pct);
@@ -6120,6 +6120,12 @@ if(catalogLoading_){
   else if (installProgressStage_ == "Error") title = ::psvitaalive::L(TID::StageError);
   else if (installProgressStage_.find("Extract") != std::string::npos || installProgressStage_.find("Unzip") != std::string::npos)
     title = ::psvitaalive::L(TID::StageExtracting);
+  else if (installProgressStage_.find("Unpack") != std::string::npos ||
+           installProgressStage_.find("Converting") != std::string::npos ||
+           installProgressStage_.find("Convert") != std::string::npos ||
+           installProgressStage_.find("Finishing") != std::string::npos ||
+           installProgressStage_.find("ISO") != std::string::npos)
+    title = ::psvitaalive::L(TID::StageInstalling);
   else if (!installProgressStage_.empty()) title = installProgressStage_.c_str();
   // Large type for Vita readability (similar hierarchy to essential-plugins modal).
   ::psvitaalive::ui::uiDrawText(&font_, x + 28, y + 68, WHITE, 1.28f, title);
@@ -6143,12 +6149,17 @@ const bool stageExtract =
     installProgressStage_.find("Extract") != std::string::npos ||
     installProgressStage_.find("extract") != std::string::npos ||
     installProgressStage_.find("ZIP") != std::string::npos ||
-    installProgressStage_.find("Unzip") != std::string::npos;
+    installProgressStage_.find("Unzip") != std::string::npos ||
+    installProgressStage_.find("Unpack") != std::string::npos;
 const bool stageInstall =
     installProgressStage_ == "Installing" ||
     installProgressStage_.find("Install") != std::string::npos ||
     installProgressStage_.find("Promote") != std::string::npos ||
-    installProgressStage_.find("promote") != std::string::npos;
+    installProgressStage_.find("promote") != std::string::npos ||
+    installProgressStage_.find("Converting") != std::string::npos ||
+    installProgressStage_.find("Convert") != std::string::npos ||
+    installProgressStage_.find("ISO") != std::string::npos ||
+    installProgressStage_.find("Finishing") != std::string::npos;
 const bool stageDownload =
     !stageExtract && !stageInstall && (
     installProgressStage_ == "Downloading" ||

@@ -27,6 +27,9 @@ int psp_pkg_unpack_to_pspemu(const char* pkg_path, const char* partition, int as
 
 const char* pkg2zip_last_error(void);
 
+typedef void (*pkg2zip_progress_cb)(int percent, const char* phase);
+void pkg2zip_set_progress_callback(pkg2zip_progress_cb cb);
+
 #ifdef __cplusplus
 }
 #endif

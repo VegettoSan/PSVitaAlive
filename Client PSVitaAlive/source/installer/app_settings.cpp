@@ -127,7 +127,7 @@ AppSettingsData AppSettings::load() {
                     pct = pct * 10 + (json[p] - '0');
                     ++p;
                 }
-                if (pct < 70) pct = 70;
+                if (pct < 50) pct = 50;
                 if (pct > 150) pct = 150;
                 if (pct > 0) data.uiFontScalePct = pct;
             }
