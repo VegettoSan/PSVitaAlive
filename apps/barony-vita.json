@@ -12,16 +12,17 @@
     "adventure",
     "other"
   ],
-  "version": "v.0.0.1-5.0.2",
-  "version_date": "2026-07-28",
+  "version": "v.0.0.2-5.0.2",
+  "version_date": "2026-09-05",
   "requirements": "- libshacccg.suprx\n- Game Data Files: PC",
-  "size": 9793700,
+  "size": 9961472,
   "status": "Legacy",
   "links": [
     {
       "type": "Download",
       "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-barony-vita/barony-vita.vpk",
+      "url": "https://archive.org/download/psvitaalive-barony-vita/barony%20v0.0.2-5.0.2.vpk",
+      "size": 9961472,
       "recommended": true
     },
     {

@@ -14,47 +14,21 @@
   "version": "v.1.0",
   "version_date": "2026-08-22",
   "requirements": "- Game Data Files: PC",
-  "size": 3819434,
+  "size": 3818914,
   "status": "Legacy",
-  "icon": "https://archive.org/download/JK2VITA/icon0.png",
-  "screenshots": [
-    "https://archive.org/download/JK2VITA/shot_01.png"
-  ],
   "links": [
     {
       "type": "Download",
       "name": "VPK",
       "url": "https://archive.org/download/JK2VITA/JAVITA-1.0.vpk",
-      "recommended": true,
-      "size": 3819434
+      "size": 3818914,
+      "recommended": true
     },
     {
       "type": "Download",
       "name": "VPK Mediafire",
       "url": "https://www.mediafire.com/file/0alnjuu3bskbi5h/JAVITA-1.0.vpk/file",
-      "recommended": false,
-      "size": 3819434
-    },
-    {
-      "type": "Game Files",
-      "name": "Game Data Files ZIP Mediafire",
-      "url": "https://www.mediafire.com/file/wc8bo83559pasxd/Game_Data_Files.zip/file",
-      "recommended": false,
-      "size": 1100000000,
-      "extract_path": "ux0:data/"
-    },
-    {
-      "type": "Game Files",
-      "name": "Game Data Files ZIP",
-      "url": "https://archive.org/download/JK2VITA/Game%20Data%20Files.zip",
-      "recommended": false,
-      "size": 1100000000,
-      "extract_path": "ux0:data/"
-    },
-    {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/NDRWhun/JAVITA/releases"
+      "size": 3818914
     },
     {
       "type": "Repository",
@@ -62,9 +36,13 @@
       "url": "https://github.com/NDRWhun/JAVITA"
     }
   ],
+  "icon": "https://archive.org/download/JK2VITA/icon0.png",
+  "screenshots": [
+    "https://archive.org/download/JK2VITA/shot_01.png"
+  ],
   "source_name": "VitaDB",
   "source_id": "1481",
   "source_url": "https://github.com/NDRWhun/JAVITA",
   "release_page": "https://github.com/NDRWhun/JAVITA/releases",
-  "updated_at": "2026-08-22T15:39:32.749156+00:00"
+  "updated_at": "2026-08-22T15:39"
 }
