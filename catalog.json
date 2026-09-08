@@ -60,8 +60,8 @@
       "video-player",
       "streaming"
     ],
-    "version": "1.0",
-    "version_date": "2026-09-07",
+    "version": "1.2",
+    "version_date": "2026-09-08",
     "requirements": "- requires HENkaku/Ensō",
     "size": 4194304,
     "status": "Verified",
