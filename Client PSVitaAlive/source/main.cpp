@@ -591,6 +591,25 @@ int main(){
         const bool actionable=isPlugin||(type=="Download"||type=="download"||type=="Downloads"||type=="Mirror"||type=="mirror"||type=="DLC"||type=="dlc"||type=="Data Files"||type=="Game Files"||link.url.find(".vpk")!=std::string::npos||link.url.find(".pkg")!=std::string::npos||link.url.find(".zip")!=std::string::npos||link.url.find(".pbp")!=std::string::npos||link.url.find(".iso")!=std::string::npos||link.url.find(".cso")!=std::string::npos||link.url.find(".suprx")!=std::string::npos||link.url.find(".skprx")!=std::string::npos);
         if(!actionable){psvitaalive::diagnostics::log(std::string("[UI] link is informational only: ")+link.url);return false;}
         psvitaalive::ui::CatalogItem requestItem=item;requestItem.downloadUrl=link.url;requestItem.downloadFileName=fileNameFromUrl(link.url,item.id);
+        // Plugin: keep a stable on-device name (e.g. kubridge.skprx) even if the remote
+        // URL uses a versioned filename like "kubridge v0.3.1 hotfix.skprx".
+        if(isPlugin){
+            auto baseFrom = [](const std::string& s)->std::string{
+                if(s.empty()) return {};
+                std::string u=s;
+                const size_t q=u.find('?'); if(q!=std::string::npos) u.resize(q);
+                const size_t slash=u.find_last_of("/\\");
+                std::string n=(slash==std::string::npos)?u:u.substr(slash+1);
+                // decode minimal %20 for readability in job paths only when still needed
+                return n;
+            };
+            if(!link.line.empty()){
+                const std::string n=baseFrom(link.line);
+                if(!n.empty()) requestItem.downloadFileName=n;
+            }else if(!link.name.empty() && (link.name.find(".skprx")!=std::string::npos || link.name.find(".suprx")!=std::string::npos || link.name.find(".skprx")!=std::string::npos)){
+                requestItem.downloadFileName=link.name;
+            }
+        }
         psvitaalive::diagnostics::log(std::string("[UI] LINK INSTALL name=")+item.name+" type="+link.type+" url="+link.url);
         std::string zipDestination;
         if(isPlugin){

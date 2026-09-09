@@ -6455,7 +6455,7 @@ void FullCatalogScreen::tryShowEssentialPluginsPrompt() {
         {
             "kubridge.skprx",
             "Kernel bridge (bythos14 v0.3.1 Hotfix) required by many Android ports.",
-            "https://github.com/bythos14/kubridge/releases/download/v0.3.1_hotfix/kubridge.skprx",
+            "https://archive.org/download/plugins-ps-vita/kubridge%20v0.3.1%20hotfix.skprx",
             "ur0:tai/",
             "*KERNEL",
             "ur0:tai/kubridge.skprx",
