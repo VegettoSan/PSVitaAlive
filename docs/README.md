@@ -15,6 +15,7 @@ Supplementary documentation for architecture, pipelines and client behaviour.
 | Root `README.md` | Project overview, public JSON API, multi-catalog, **recommended Vita setup** (iTLS-Enso, DNS), **download/install locks**, commercial PKG routing, client feature summary |
 | `docs/MULTILANGUAGE.md` | UI localization architecture (EN/ES), phases, TextId / `.lang` files |
 | `docs/NETWORK_TLS.md` | libcurl / OpenSSL / archive.org failover / optional mbedTLS |
+| `docs/PLUGIN_UPDATES.md` | **Planned** remote plugin update system (manifest / versioned Plugin links) — deferred |
 | `Client PSVitaAlive/source/installer/README.md` | BGDL, VPK, **PSP/PS1 Adrenaline unpack** (Folder/ISO), keep-awake, shell locks |
 | `apps/`, `authors/`, `categories/` | Data contracts |
 | `scripts/` | Generation and validation |
