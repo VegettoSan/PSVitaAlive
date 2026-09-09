@@ -197,7 +197,10 @@ jobs:
           apps.sort(key=lambda a: (str(a.get('version_date') or ''), str(a.get('updated_at') or '')), reverse=True)
 
           referenced = {aid for app in apps for aid in app.get('author_ids', []) if isinstance(aid, str)}
-          published = [authors[aid] for aid in sorted(referenced) if aid in authors]
+          # Publish ALL author profiles (including orphans without apps yet) so the
+          # web author search / JSON generator can find pre-created authors and
+          # avoid duplicate profiles when someone later adds their first app.
+          published = list(authors.values())
           published.sort(key=lambda a: str(a.get('name', a.get('id', ''))).lower())
 
           save(root / 'catalog.json', apps)
@@ -206,10 +209,10 @@ jobs:
           print(f'Compound author groups split: {split_groups}')
           print(f'Application JSON files changed: {changed_apps}')
           print(f'Individual author profiles created: {created_authors}')
-          print(f'Authors published after split: {len(published)}')
+          print(f'Authors published after split: {len(published)} (referenced by apps: {len(referenced)})')
           PY
 
-      - name: Ensure missing author profiles and remove orphans from registry
+      - name: Ensure missing author profiles and publish all author profiles
         shell: bash
         run: |
           python - <<'PY'
@@ -268,7 +271,9 @@ jobs:
               authors_by_id[aid] = profile
               created += 1
 
-          authors = [authors_by_id[aid] for aid in sorted(referenced) if aid in authors_by_id]
+          # Include every authors/*.json profile so pre-created authors appear on the web
+          # and in the app JSON generator before their first app is uploaded.
+          authors = list(authors_by_id.values())
           authors.sort(key=lambda a: str(a.get('name', a.get('id', ''))).lower())
           (root / 'authors.json').write_text(
               json.dumps(authors, ensure_ascii=False, indent=2) + '\n',
@@ -276,12 +281,12 @@ jobs:
           )
 
           total_profiles = len(list(authors_dir.glob('*.json')))
+          orphan_count = max(0, total_profiles - len(referenced))
           print(f'Referenced authors: {len(referenced)}')
           print(f'Missing author profiles ensured (auto-created): {created}')
           if created:
               print('Auto-created missing author profiles: ' + ', '.join(missing))
-          print(f'Authors published: {len(authors)}')
-          print(f'Orphan profiles excluded from authors.json: {max(0, total_profiles - len(authors))}')
+          print(f'Authors published: {len(authors)} (orphans included: {orphan_count})')
           PY
 
       - name: Validate VitaHub source catalog
