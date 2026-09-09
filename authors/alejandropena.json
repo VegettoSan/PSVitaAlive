@@ -1,0 +1,15 @@
+{
+  "id": "alejandropena",
+  "name": "AlejandroPeña",
+  "avatar": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png",
+  "bio": "¡Hola! Soy Alejandro Peña Vargas, un apasionado de la analítica de datos y la ciencia de datos. Mi enfoque se centra en áreas como Data Analysis, SQL, Python, Machine Learning y Business Intelligence (BI). En este repositorio, encontrarás proyectos y código relacionados con estos campos, demostrando mi habilidad para extraer conocimientos valiosos a partir de datos y aplicar técnicas de machine learning.",
+  "links": [
+    {
+      "type": "Official Website",
+      "name": "Alejandro.dev",
+      "url": "https://alejandroportfoliopv.vercel.app/",
+      "recommended": false
+    }
+  ],
+  "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
+}
