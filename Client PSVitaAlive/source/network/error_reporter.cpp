@@ -124,13 +124,24 @@ std::string relevantLogWindow(const std::string& text, const std::string& fileNa
         context.find("zip") != std::string::npos ||
         context.find("ZIP") != std::string::npos ||
         context.find(".zip") != std::string::npos ||
-        context.find("ZipExtractor") != std::string::npos;
+        context.find("ZipExtractor") != std::string::npos ||
+        context.find("local header") != std::string::npos ||
+        context.find("EOCD") != std::string::npos;
 
     size_t hit = std::string::npos;
     if (zipFailure) {
-        hit = text.rfind("[ZipDiag]");
-        if (hit == std::string::npos)
-            hit = text.rfind("zip_fread failed");
+        static const char* kZipHits[] = {
+            "zip_open failed", "zip_open_from_source failed",
+            "missing local header", "local header magic",
+            "[ZipExtractor]", "[ZipDiag]",
+            "zip_fread failed", "EOCD pre-check failed",
+            "Failed after", nullptr
+        };
+        for (int i = 0; kZipHits[i]; ++i) {
+            const size_t p = text.rfind(kZipHits[i]);
+            if (p != std::string::npos && (hit == std::string::npos || p > hit))
+                hit = p;
+        }
     } else if (!needle.empty()) {
         hit = text.rfind(needle);
     }
@@ -139,11 +150,13 @@ std::string relevantLogWindow(const std::string& text, const std::string& fileNa
             "[ZipDiag] entry_read_failed", "[ZipDiag] entry_begin",
             "[ZipDiag] entry_read_complete",
             "zip_open failed", "zip_open_from_source failed", "EOCD pre-check failed",
-            "ZipExtractor", "zip_fread failed", "Zlib error",
+            "missing local header", "local header magic",
+            "[ZipExtractor]", "ZipExtractor", "zip_fread failed", "Zlib error",
             "download exceeded", "size limit hit", "HTTP ERROR", "curl error",
             "Install All step", "Install All stopped",
             "installation failed", "download failed", "PromotePkg failed",
-            "SSL connect error", "MediaFire", "OpenFailed", nullptr
+            "SSL connect error", "MediaFire", "OpenFailed",
+            "HTTP attempt", "HTTP download retry", nullptr
         };
         for (int i = 0; kToks[i]; ++i) {
             const size_t p = text.rfind(kToks[i]);
