@@ -331,6 +331,8 @@ private:
     float settingsEnter_ = 1.f;   // 0..1 open transition
     float settingsFocusY_ = 0.f;  // animated highlight Y
     float settingsScrollY_ = 0.f; // adaptive list scroll (px)
+    float settingsInfoScrollY_ = 0.f; // INFO panel text scroll (px)
+    float settingsInfoMaxScroll_ = 0.f;
 
     // Discord error report UI (webhook)
     bool reportConfirmVisible_ = false;

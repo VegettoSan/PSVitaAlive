@@ -3047,13 +3047,15 @@ void FullCatalogScreen::handleTouch() {
         const int colW = SCREEN_W - margin * 2;
         const int listX = margin;
         const int listW = (colW * 58) / 100;
+        const int sideX = listX + listW + 12;
         struct Meta { bool sectionStart; const char* section; };
-        Meta meta[9] = {
+        // Must match opts[10] section breaks in drawSettings
+        Meta meta[10] = {
             {true, "INSTALL"}, {false, ""}, {false, ""},
-            {true, "INTERFACE"}, {false, ""}, {false, ""}, {false, ""},
+            {true, "INTERFACE"}, {false, ""}, {false, ""}, {false, ""}, {false, ""},
             {true, "CATALOG"}, {true, "UPDATES"}
         };
-        int rowY[8];
+        int rowY[10];
         int y = contentTop - static_cast<int>(settingsScrollY_);
         for (int i = 0; i < 10; ++i) {
             if (meta[i].sectionStart && meta[i].section[0]) y += 22;
@@ -3453,6 +3455,8 @@ void FullCatalogScreen::openSettings() {
     if (state_.mode == UiMode::SETTINGS) return;
     settingsReturnMode_ = (state_.mode == UiMode::SPLIT_DETAIL) ? UiMode::SPLIT_DETAIL : UiMode::FULL_CATALOG;
     settingsFocus_ = 0;
+    settingsInfoScrollY_ = 0.f;
+    settingsInfoScrollY_ = 0.f;
     settingsEnter_ = 0.f;
     settingsFocusY_ = 0.f;
     settingsScrollY_ = 0.f;
@@ -3697,9 +3701,11 @@ void FullCatalogScreen::handleSettingsInput(uint32_t pressed, uint32_t nav) {
     constexpr int kRows = 10;
     if (nav & SCE_CTRL_UP) {
         settingsFocus_ = (settingsFocus_ + kRows - 1) % kRows;
+        settingsInfoScrollY_ = 0.f;
     }
     if (nav & SCE_CTRL_DOWN) {
         settingsFocus_ = (settingsFocus_ + 1) % kRows;
+        settingsInfoScrollY_ = 0.f;
     }
     if ((nav & SCE_CTRL_LEFT) || (pressed & SCE_CTRL_SQUARE)) {
         cycleSettingsOption(settingsFocus_, -1);
@@ -3963,63 +3969,118 @@ void FullCatalogScreen::drawSettings() {
             break;
         default: break;
         }
-        ::psvitaalive::ui::uiDrawText(&font_, sideX + 14, contentTop + 52, WHITE, 0.88f, title);
-        ::psvitaalive::ui::uiDrawText(&font_, sideX + 14, contentTop + 80, TEXT, 0.72f, body1);
-        ::psvitaalive::ui::uiDrawText(&font_, sideX + 14, contentTop + 102, TEXT, 0.72f, body2);
-        ::psvitaalive::ui::uiDrawText(&font_, sideX + 14, contentTop + 124, TEXT, 0.72f, body3);
-
-        // SYSTEM: DRM plugins + essential homebrew plugins (file + config when required)
-        int sy = contentTop + 158;
-        ::psvitaalive::ui::uiDrawText(&font_, sideX + 14, sy, DIM, 0.78f, ::psvitaalive::L(TID::System));
-        sy += 24;
-        char plug[96];
-        auto drawPlugLine = [&](const char* label, bool ok) {
-            sceClibSnprintf(plug, sizeof(plug), "%s: %s", label,
-                            ok ? ::psvitaalive::L(TID::StatusOk) : ::psvitaalive::L(TID::StatusMissing));
-            const unsigned col = ok ? TEXT : ACCENT;
-            ::psvitaalive::ui::uiDrawText(&font_, sideX + 14, sy, col, 0.72f, plug);
-            sy += 22;
-        };
-        drawPlugLine("NoNpDrm", pluginsStatus_.nonpdrm);
-        drawPlugLine("NoPspEmuDrm", pluginsStatus_.nopspemudrmKern);
+        // INFO body: wrap long lines + vertical scroll (touch / fits large fonts)
         {
-            const bool kub = essentialPluginFullyInstalled(
-                "*KERNEL", "ur0:tai/kubridge.skprx",
-                {"ur0:tai/kubridge.skprx", "ux0:tai/kubridge.skprx"});
-            // FdFix requirement is satisfied by FdFix itself OR by RePatch (compatibility).
-            const bool fdfFile = essentialPluginFullyInstalled(
-                "*KERNEL", "ur0:tai/fd_fix.skprx",
-                {"ur0:tai/fd_fix.skprx", "ux0:tai/fd_fix.skprx"});
-            const bool fdf = fdfFile || pluginsStatus_.fdFix || pluginsStatus_.repatch;
-            const bool sha = essentialPluginFullyInstalled(
-                "none", "ur0:data/libshacccg.suprx",
-                {"ur0:data/libshacccg.suprx", "ur0:/data/libshacccg.suprx"});
-            drawPlugLine("kubridge", kub);
-            drawPlugLine("RePatch", pluginsStatus_.repatch);
-            drawPlugLine("fd_fix", fdf);
-            drawPlugLine("libshacccg", sha);
-        }
-        if (!pluginsStatus_.configPathUsed.empty()) {
-            ::psvitaalive::ui::uiDrawText(&font_, sideX + 14, sy, DIM, 0.64f,
-                                 ellipsize(pluginsStatus_.configPathUsed, 26).c_str());
-            sy += 20;
-        }
-        if (settingsFocus_ == 9) {
-            char ver[64];
-            sceClibSnprintf(ver, sizeof(ver), "%s: v%s", ::psvitaalive::L(TID::LocalVersion), PSVITAALIVE_VERSION);
-            ::psvitaalive::ui::uiDrawText(&font_, sideX + 14, sy, ACCENT, 0.72f, ver);
-            sy += 22;
-            if (selfUpdateChecked_) {
-                if (selfUpdateInfo_.state == ::psvitaalive::UpdateChecker::State::UpdateAvailable)
-                    sceClibSnprintf(ver, sizeof(ver), "%s: v%s", ::psvitaalive::L(TID::RemoteVersion),
-                                    selfUpdateInfo_.remoteVersion.c_str());
-                else if (selfUpdateInfo_.state == ::psvitaalive::UpdateChecker::State::UpToDate)
-                    sceClibSnprintf(ver, sizeof(ver), "%s: %s", ::psvitaalive::L(TID::RemoteVersion),
-                                    ::psvitaalive::L(TID::RemoteUpToDate));
-                else
-                    sceClibSnprintf(ver, sizeof(ver), "%s: %s", ::psvitaalive::L(TID::RemoteVersion),
-                                    ::psvitaalive::L(TID::RemoteCheckFailed));
-                ::psvitaalive::ui::uiDrawText(&font_, sideX + 14, sy, TEXT, 0.70f, ver);
+            const int infoPadX = 12;
+            const int infoTextW = std::max(40, sideW - infoPadX * 2);
+            const float titleSc = 0.84f;
+            const float bodySc = 0.68f;
+            const float plugSc = 0.66f;
+            const int titleLH = 24;
+            const int bodyLH = 20;
+            const int plugLH = 20;
+
+            struct InfoLine {
+                std::string text;
+                unsigned color;
+                float scale;
+                int lineH;
+            };
+            std::vector<InfoLine> lines;
+            auto pushWrapped = [&](const char* s, unsigned col, float sc, int lh) {
+                if (!s || !s[0]) return;
+                auto wrapped = wrapTextToWidth(&font_, sc, s, infoTextW);
+                for (const auto& w : wrapped) {
+                    if (w.empty()) continue;
+                    lines.push_back({w, col, sc, lh});
+                }
+            };
+            pushWrapped(title, WHITE, titleSc, titleLH);
+            lines.push_back({"", TEXT, bodySc, 6}); // small gap
+            pushWrapped(body1, TEXT, bodySc, bodyLH);
+            pushWrapped(body2, TEXT, bodySc, bodyLH);
+            pushWrapped(body3, TEXT, bodySc, bodyLH);
+            lines.push_back({"", TEXT, bodySc, 10});
+            pushWrapped(::psvitaalive::L(TID::System), DIM, 0.74f, 22);
+
+            auto pushPlug = [&](const char* label, bool ok) {
+                char plug[96];
+                sceClibSnprintf(plug, sizeof(plug), "%s: %s", label,
+                                ok ? ::psvitaalive::L(TID::StatusOk) : ::psvitaalive::L(TID::StatusMissing));
+                pushWrapped(plug, ok ? TEXT : ACCENT, plugSc, plugLH);
+            };
+            pushPlug("NoNpDrm", pluginsStatus_.nonpdrm);
+            pushPlug("NoPspEmuDrm", pluginsStatus_.nopspemudrmKern);
+            {
+                const bool kub = essentialPluginFullyInstalled(
+                    "*KERNEL", "ur0:tai/kubridge.skprx",
+                    {"ur0:tai/kubridge.skprx", "ux0:tai/kubridge.skprx"});
+                const bool fdfFile = essentialPluginFullyInstalled(
+                    "*KERNEL", "ur0:tai/fd_fix.skprx",
+                    {"ur0:tai/fd_fix.skprx", "ux0:tai/fd_fix.skprx"});
+                const bool rep = essentialPluginFullyInstalled(
+                    "*KERNEL", "ur0:tai/repatch.skprx",
+                    {"ur0:tai/repatch.skprx", "ux0:tai/repatch.skprx",
+                     "ur0:tai/repatch_ex.skprx", "ux0:tai/repatch_ex.skprx"});
+                const bool fdf = fdfFile || rep || pluginsStatus_.fdFix;
+                const bool sha =
+                    essentialPluginFilePresent({"ur0:/data/libshacccg.suprx", "ur0:data/libshacccg.suprx",
+                                                "ux0:data/libshacccg.suprx"});
+                pushPlug("kubridge", kub);
+                pushPlug("RePatch", rep);
+                pushPlug("fd_fix", fdf);
+                pushPlug("libshacccg", sha);
+            }
+            if (!pluginsStatus_.configPathUsed.empty()) {
+                pushWrapped(pluginsStatus_.configPathUsed.c_str(), DIM, 0.60f, 18);
+            }
+            if (settingsFocus_ == 9) {
+                char ver[96];
+                sceClibSnprintf(ver, sizeof(ver), "%s: v%s",
+                                ::psvitaalive::L(TID::LocalVersion), PSVITAALIVE_VERSION);
+                pushWrapped(ver, ACCENT, plugSc, plugLH);
+                if (selfUpdateChecked_) {
+                    if (selfUpdateInfo_.state == ::psvitaalive::UpdateChecker::State::UpdateAvailable)
+                        sceClibSnprintf(ver, sizeof(ver), "%s: v%s", ::psvitaalive::L(TID::RemoteVersion),
+                                        selfUpdateInfo_.remoteVersion.c_str());
+                    else if (selfUpdateInfo_.state == ::psvitaalive::UpdateChecker::State::UpToDate)
+                        sceClibSnprintf(ver, sizeof(ver), "%s: %s", ::psvitaalive::L(TID::RemoteVersion),
+                                        ::psvitaalive::L(TID::RemoteUpToDate));
+                    else
+                        sceClibSnprintf(ver, sizeof(ver), "%s: %s", ::psvitaalive::L(TID::RemoteVersion),
+                                        ::psvitaalive::L(TID::RemoteCheckFailed));
+                    pushWrapped(ver, TEXT, plugSc, plugLH);
+                }
+            }
+
+            int contentH = 0;
+            for (const auto& ln : lines) contentH += ln.lineH;
+            const int viewTop = contentTop + 36;
+            const int viewBot = listClipBottom - 4;
+            const int viewH = std::max(1, viewBot - viewTop);
+            settingsInfoMaxScroll_ = static_cast<float>(std::max(0, contentH - viewH));
+            if (settingsInfoScrollY_ < 0.f) settingsInfoScrollY_ = 0.f;
+            if (settingsInfoScrollY_ > settingsInfoMaxScroll_) settingsInfoScrollY_ = settingsInfoMaxScroll_;
+
+            vita2d_enable_clipping();
+            vita2d_set_clip_rectangle(sideX + 2, viewTop, sideX + sideW - 2, viewBot);
+            int iy = viewTop - static_cast<int>(settingsInfoScrollY_);
+            for (const auto& ln : lines) {
+                if (!ln.text.empty()) {
+                    ::psvitaalive::ui::uiDrawText(&font_, sideX + infoPadX, iy + ln.lineH - 4,
+                                                  ln.color, ln.scale, ln.text.c_str());
+                }
+                iy += ln.lineH;
+            }
+            vita2d_disable_clipping();
+
+            if (settingsInfoMaxScroll_ > 1.f) {
+                const float ratio = settingsInfoScrollY_ / settingsInfoMaxScroll_;
+                const int trackH = viewH - 8;
+                const int thumbH = std::max(20, trackH / 5);
+                const int thumbY = viewTop + 4 + static_cast<int>(ratio * (trackH - thumbH));
+                vita2d_draw_rectangle(sideX + sideW - 5, viewTop + 4, 3, trackH, BORDER);
+                vita2d_draw_rectangle(sideX + sideW - 5, thumbY, 3, thumbH, ACCENT);
             }
         }
     }
@@ -4034,7 +4095,19 @@ void FullCatalogScreen::drawSettings() {
     }
 
     vita2d_draw_rectangle(0, SCREEN_H - FOOTER_H, SCREEN_W, FOOTER_H, SURFACE2);
-    ::psvitaalive::ui::uiDrawText(&font_, 12, SCREEN_H - 14, TEXT, 0.56f, ::psvitaalive::L(TID::SettingsFooter));
+    {
+        const char* sf = ::psvitaalive::L(TID::SettingsFooter);
+        // Keep clear of any right-side chrome (match catalog footer reserve)
+        const int maxW = SCREEN_W - 40;
+        auto hlines = wrapTextToWidth(&font_, 0.56f, sf, maxW);
+        if (hlines.size() > 2) hlines.resize(2);
+        if (hlines.size() == 1)
+            ::psvitaalive::ui::uiDrawText(&font_, 12, SCREEN_H - 16, TEXT, 0.56f, hlines[0].c_str());
+        else if (hlines.size() >= 2) {
+            ::psvitaalive::ui::uiDrawText(&font_, 12, SCREEN_H - FOOTER_H + 18, TEXT, 0.52f, hlines[0].c_str());
+            ::psvitaalive::ui::uiDrawText(&font_, 12, SCREEN_H - FOOTER_H + 36, TEXT, 0.52f, hlines[1].c_str());
+        }
+    }
     drawToast();
     if (themeSetupVisible_) drawThemeSetupOverlay();
     if (essentialPluginsModal_) drawEssentialPluginsOverlay();
@@ -6258,8 +6331,6 @@ void drawFooterBar(const ::psvitaalive::ui::UiFont* font, const char* leftHints)
     vita2d_draw_rectangle(0, SCREEN_H - FOOTER_H, SCREEN_W, FOOTER_H, SURFACE2);
     vita2d_draw_rectangle(0, SCREEN_H - FOOTER_H, SCREEN_W, 2, ACCENT);
     vita2d_draw_rectangle(0, SCREEN_H - FOOTER_H + 2, SCREEN_W, 1, ACCENT_SOFT);
-    if (leftHints && font)
-        ::psvitaalive::ui::uiDrawText(font, 12, SCREEN_H - 14, TEXT, 0.64f, leftHints);
     if (!font) return;
 
     const Ux0SpaceInfo sp = queryUx0Space();
@@ -6268,6 +6339,20 @@ void drawFooterBar(const ::psvitaalive::ui::UiFont* font, const char* leftHints)
     const int panelH = FOOTER_H - 4;
     const int panelX = SCREEN_W - panelW - 6;
     const int panelY = SCREEN_H - FOOTER_H + 2;
+    // Reserve space for News + Report chips so hints never sit under them
+    const int chipW = 100;
+    const int hintsRight = panelX - chipW - 8 - chipW - 8 - 8;
+    const int hintsMaxW = std::max(48, hintsRight - 12);
+    if (leftHints) {
+        auto hlines = wrapTextToWidth(font, 0.56f, leftHints, hintsMaxW);
+        if (hlines.size() > 2) hlines.resize(2);
+        if (hlines.size() == 1) {
+            ::psvitaalive::ui::uiDrawText(font, 12, SCREEN_H - 16, TEXT, 0.56f, hlines[0].c_str());
+        } else if (hlines.size() >= 2) {
+            ::psvitaalive::ui::uiDrawText(font, 12, SCREEN_H - FOOTER_H + 18, TEXT, 0.52f, hlines[0].c_str());
+            ::psvitaalive::ui::uiDrawText(font, 12, SCREEN_H - FOOTER_H + 36, TEXT, 0.52f, hlines[1].c_str());
+        }
+    }
     vita2d_draw_rectangle(panelX, panelY, panelW, panelH, SURFACE);
     vita2d_draw_rectangle(panelX, panelY, 3, panelH, ACCENT);
 
