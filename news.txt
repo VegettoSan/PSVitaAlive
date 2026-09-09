@@ -1,4 +1,4 @@
-id: 2026-09-09-0001
+id: 2026-09-09-0002
 title: PSVitaAlive 02.01 is here!
 enabled: true
 ---
@@ -16,7 +16,7 @@ We are experiencing some issues with the Archive.org server, so downloads may no
 
 ---
 
-## Major update since 01.18 — themes, fonts, plugins, installs, UI readability, multilanguage, and stability.
+## Major update since 01.18  themes, fonts, plugins, installs, UI readability, multilanguage, and stability.
 
 ---
 
@@ -24,19 +24,9 @@ We are experiencing some issues with the Archive.org server, so downloads may no
 
 ## Improvements
 
-Full multilanguage UI (EN, ES, FR, DE, IT, PT-BR, PT-PT, RU) — System or Manual in Settings
-- More color themes + first-run picker, preview & confirm, smooth cross-fade
-- Custom UI fonts (.pgf): add any font under assets/font or ux0:data/psvitaalive/fonts
-- Plugin catalog links + essential plugins check (kubridge, fd_fix, libshacccg)
-- NoPspEmuDrm stock OR Mod/ARK pair supported for PSP/PS1 LiveArea (complete pairs only)
-- Safer plugin detection (commented lines ≠ installed)
-- Larger text, multi-line toasts, catalog tab counts, readability fixes
-- Download/install improvements: anti-suspend, ZIP retries, clearer lock messages
-- PSP/PS1: LiveArea vs Adrenaline (Folder/ISO), DLC rules for Folder/LiveArea only
-
 ### Tips:
 - iTLS-ENSO (full) recommended for HTTPS
 - DNS: 8 8 8 8 / 8 8 4 4
 - Keep NoNpDrm (and NoPspEmuDrm if you use LiveArea PSP/PS1)
 
-**Enjoy — and report issues with session.log when possible. Thank you!**
+**Enjoy and report issues with session.log when possible. Thank you!**
