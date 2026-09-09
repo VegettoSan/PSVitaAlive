@@ -1,0 +1,29 @@
+{
+  "id": "PeelGallery",
+  "title_id": "peelgallery",
+  "name": "PeelGallery",
+  "description": "PeelGallery is a simple Homebrew application for the PS Vita; it acts as an intuitive visual frontend (gallery) for easily managing and swapping the lock screen wallpapers handled by the Fruitpeel plugin.",
+  "long_description": "The application reads compatible images on your console and lets you browse them in a grid view. Selecting an image automatically replaces the Fruitpeel system file and restarts the console to apply the change.\n\nFeatures:\nPreview Grid: Optimized (2x2) caching system ensures you never run out of RAM, regardless of how many backgrounds you have.\nDedicated LiveArea button: Clean installation with a custom LiveArea.\nQuick installation: Install and apply in seconds.\nHow to use it on PS Vita?\nDownload the PeelGallery.vpk file and install it on your console using VitaShell.\nPlace your compatible images in the following path: ux0:/data/PeelGallery/\nOpen the application and navigate using the D-Pad, or use the L/R triggers to skip pages.\nPress X to apply the background. The console will restart automatically, and your lock screen wallpaper will be updated.",
+  "author_ids": ["alejandropena"],
+  "category_id": "customization",
+  "subcategory_ids": [
+    "wallpapers"
+  ],
+  "version": "1.0",
+  "version_date": "2026-09-08",
+  "requirements": "-fruitpeel plugin",
+  "size": 4404019,
+  "status": "Verified",
+  "links": [
+    {
+      "type": "Download",
+      "name": "PeelGallery",
+      "url": "https://github.com/AlecksPV1/PeelGallery/releases/download/v1.0/PeelGallery.vpk",
+      "size": 4404019
+    }
+  ],
+  "icon": "https://github.com/AlecksPV1/PeelGallery/blob/main/LogoApp.png?raw=true",
+  "screenshots": [
+    "https://github.com/AlecksPV1/PeelGallery/blob/main/FondoApp.png?raw=true"
+  ]
+}
