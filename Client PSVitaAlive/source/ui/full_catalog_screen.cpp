@@ -1174,11 +1174,63 @@ bool essentialFilePresent(const std::vector<std::string>& paths) {
     return false;
 }
 
+// Known kubridge.skprx builds (file size fingerprint — skprx has no public version API):
+// - TheOfficialFloW v0.1 (outdated): 5075 bytes  (was on archive.org /plugins-ps-vita)
+// - bythos14 v0.3.1 Hotfix (recommended): 11630 bytes
+constexpr long long kKubridgeOutdatedTheFlowSize = 5075LL;
+constexpr long long kKubridgeBythos031HotfixSize = 11630LL;
+
+/** True when an on-disk kubridge is the recommended bythos14 build (or a larger modern fork). */
+bool isKubridgeFileCurrent(const std::vector<std::string>& paths) {
+    SceIoStat st{};
+    for (const auto& path : paths) {
+        if (path.empty()) continue;
+        if (sceIoGetstat(path.c_str(), &st) < 0 || st.st_size <= 0) continue;
+        const long long sz = static_cast<long long>(st.st_size);
+        if (sz == kKubridgeBythos031HotfixSize) {
+            diagnostics::log(std::string("[UI] kubridge OK (bythos14 v0.3.1 Hotfix) path=") + path +
+                             " size=" + std::to_string(sz));
+            return true;
+        }
+        if (sz == kKubridgeOutdatedTheFlowSize) {
+            diagnostics::log(std::string("[UI] kubridge OUTDATED (TheFlow v0.1) path=") + path +
+                             " size=" + std::to_string(sz) + " — will offer reinstall");
+            return false;
+        }
+        // Larger than TheFlow baseline: accept as a modern fork/build.
+        if (sz > kKubridgeOutdatedTheFlowSize + 1024LL) {
+            diagnostics::log(std::string("[UI] kubridge OK (unknown modern build) path=") + path +
+                             " size=" + std::to_string(sz));
+            return true;
+        }
+        diagnostics::log(std::string("[UI] kubridge unexpected size path=") + path +
+                         " size=" + std::to_string(sz) + " — treat as missing");
+        return false;
+    }
+    return false;
+}
+
+bool pathsLookLikeKubridge(const std::string& line, const std::vector<std::string>& paths) {
+    auto hasKub = [](const std::string& s) {
+        std::string low = s;
+        for (char& c : low) if (c >= 'A' && c <= 'Z') c = static_cast<char>(c - 'A' + 'a');
+        return low.find("kubridge") != std::string::npos;
+    };
+    if (hasKub(line)) return true;
+    for (const auto& pth : paths) if (hasKub(pth)) return true;
+    return false;
+}
+
 /** File on disk, and for taiHEN plugins also the config.txt line must exist. */
 bool essentialPluginFullyInstalled(const std::string& section,
                                    const std::string& line,
                                    const std::vector<std::string>& paths) {
-    if (!essentialFilePresent(paths)) return false;
+    // kubridge: presence alone is not enough — reject known outdated TheFlow v0.1.
+    if (pathsLookLikeKubridge(line, paths)) {
+        if (!isKubridgeFileCurrent(paths)) return false;
+    } else {
+        if (!essentialFilePresent(paths)) return false;
+    }
     // libshacccg and anything with section=none: file presence only
     std::string sec = section;
     for (char& c : sec) {
@@ -6402,8 +6454,8 @@ void FullCatalogScreen::tryShowEssentialPluginsPrompt() {
     static const Def kDefs[] = {
         {
             "kubridge.skprx",
-            "Kernel bridge used by many ports and advanced homebrew.",
-            "https://archive.org/download/plugins-ps-vita/kubridge.skprx",
+            "Kernel bridge (bythos14 v0.3.1 Hotfix) required by many Android ports.",
+            "https://github.com/bythos14/kubridge/releases/download/v0.3.1_hotfix/kubridge.skprx",
             "ur0:tai/",
             "*KERNEL",
             "ur0:tai/kubridge.skprx",
