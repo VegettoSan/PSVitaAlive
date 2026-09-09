@@ -1,4 +1,4 @@
-id: 2026-09-09-0002
+id: 2026-09-09-0003
 title: PSVitaAlive 02.01 is here!
 enabled: true
 ---
