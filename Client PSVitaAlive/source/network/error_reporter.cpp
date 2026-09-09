@@ -156,14 +156,17 @@ std::string relevantLogWindow(const std::string& text, const std::string& fileNa
 
     static const char* kStarts[] = {
         "[ZipDiag]",
+        "[ZipExtractor]",
+        "zip_open failed",
         "LINK INSTALL",
         "[UI] Install All step",
         "[Installer] request job=",
         "[Installer] installing job=",
+        "[Installer] extract/install retry",
         "HTTP BEGIN url=",
         "[DownloadManager] attempt",
         "[InstallDispatcher] detect format=",
-        "[ZipExtractor]",
+        "HTTP attempt",
         nullptr
     };
     const size_t searchFloor = (hit > 120000) ? (hit - 120000) : 0;
@@ -201,26 +204,36 @@ std::string relevantLogWindow(const std::string& text, const std::string& fileNa
 }
 
 std::string buildLogBlock(const ErrorReportRequest& req) {
-    std::string session = readFileTail("ux0:data/psvitaalive/logs/session.log", kMaxLogTailBytes + 8000);
-    std::string install = readFileTail("ux0:data/psvitaalive/logs/install.log", 5000);
+    // Prefer a large tail so late install/ZIP failures are still present.
+    const std::string sessionRaw = readFileTail("ux0:data/psvitaalive/logs/session.log", kMaxLogTailBytes + 8000);
+    const std::string installRaw = readFileTail("ux0:data/psvitaalive/logs/install.log", 8000);
 
-    const bool zipFailure =
-        req.context.find("zip") != std::string::npos ||
-        req.context.find("ZIP") != std::string::npos ||
-        req.context.find(".zip") != std::string::npos ||
-        req.context.find("ZipExtractor") != std::string::npos;
+    std::string session = relevantLogWindow(sessionRaw, req.fileName, req.context);
+    std::string install = relevantLogWindow(installRaw, req.fileName, req.context);
 
-    session = relevantLogWindow(session, req.fileName, req.context);
-    install = relevantLogWindow(install, req.fileName, req.context);
-
-    if (zipFailure) {
-        if (session.find("[ZipDiag]") == std::string::npos &&
-            session.find("zip_fread failed") == std::string::npos)
-            session.clear();
-        if (install.find("[ZipDiag]") == std::string::npos &&
-            install.find("zip_fread failed") == std::string::npos)
-            install.clear();
-    }
+    // Never drop logs just because the failure is ZIP-related but uses a
+    // different marker (zip_open / local header magic / EOCD). Older logic
+    // required [ZipDiag] and wiped valid tails → Discord showed
+    // "(no log files found on device)" even when session.log existed.
+    auto hasUsefulZipTrace = [](const std::string& s) -> bool {
+        if (s.empty()) return false;
+        return s.find("[ZipDiag]") != std::string::npos
+            || s.find("zip_fread") != std::string::npos
+            || s.find("zip_open") != std::string::npos
+            || s.find("ZipExtractor") != std::string::npos
+            || s.find("local header") != std::string::npos
+            || s.find("EOCD") != std::string::npos
+            || s.find("Failed after") != std::string::npos;
+    };
+    if (session.empty() && !sessionRaw.empty())
+        session = sessionRaw;
+    if (install.empty() && !installRaw.empty())
+        install = installRaw;
+    // If filtered window lost the failure line, prefer the full tail.
+    if (!sessionRaw.empty() && !hasUsefulZipTrace(session) && hasUsefulZipTrace(sessionRaw))
+        session = sessionRaw;
+    if (!installRaw.empty() && !hasUsefulZipTrace(install) && hasUsefulZipTrace(installRaw))
+        install = installRaw;
 
     std::string block;
     if (!session.empty()) {
@@ -232,8 +245,18 @@ std::string buildLogBlock(const ErrorReportRequest& req) {
         block += "=== install.log (relevant) ===\n";
         block += install;
     }
-    if (block.empty())
-        block = "(no log files found on device)";
+    if (block.empty()) {
+        // Still attach the reason so Discord is useful even without a log tail.
+        block = "(no usable log content — expected ux0:data/psvitaalive/logs/session.log)";
+        if (!req.context.empty()) {
+            block += "\nReason: ";
+            block += req.context.size() > 400 ? req.context.substr(0, 400) : req.context;
+        }
+        if (!req.fileName.empty()) {
+            block += "\nFile: ";
+            block += req.fileName;
+        }
+    }
     if (block.size() > kMaxEmbedDesc) {
         block = std::string("…[truncated]\n") + block.substr(block.size() - (kMaxEmbedDesc - 16));
     }
@@ -375,6 +398,12 @@ ErrorReportResult sendErrorReport(const ErrorReportRequest& req) {
         content += req.app.titleId;
     else
         content += "(no app)";
+    // Put a short reason in message content so the failure is visible even if
+    // embed log fields are collapsed in Discord mobile.
+    if (!req.context.empty()) {
+        content += "\n";
+        content += truncate(req.context, 220);
+    }
     if (content.size() > 1800) content.resize(1800);
 
     std::string desc;
