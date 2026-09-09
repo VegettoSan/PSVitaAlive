@@ -4024,7 +4024,7 @@ void FullCatalogScreen::drawSettings() {
                      "ur0:tai/repatch_ex.skprx", "ux0:tai/repatch_ex.skprx"});
                 const bool fdf = fdfFile || rep || pluginsStatus_.fdFix;
                 const bool sha =
-                    essentialPluginFilePresent({"ur0:/data/libshacccg.suprx", "ur0:data/libshacccg.suprx",
+                    essentialFilePresent({"ur0:/data/libshacccg.suprx", "ur0:data/libshacccg.suprx",
                                                 "ux0:data/libshacccg.suprx"});
                 pushPlug("kubridge", kub);
                 pushPlug("RePatch", rep);
