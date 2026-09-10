@@ -383,6 +383,7 @@ enum class TextId {
     PspSetupConfirm,
     PspSetupCancel,
     PspSetupNavHint,
+    PspSetupLiveAreaBlocked,
     Count
 };
 

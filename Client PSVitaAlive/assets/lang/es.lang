@@ -390,3 +390,4 @@ PSP_SETUP_SETTINGS_HINT=Consejo: pulsa SELECT en cualquier momento para abrir Aj
 PSP_SETUP_CONFIRM=Guardar y continuar
 PSP_SETUP_CANCEL=Cancelar
 PSP_SETUP_NAV_HINT=I/D elegir  X confirmar  O cancelar
+PSP_SETUP_LIVEAREA_BLOCKED=LiveArea necesita NoPspEmuDrm (kern + user). Instálalo con AutoPlugin II, o elige Adrenaline.

@@ -535,6 +535,7 @@ const char* LocalizationManager::keyFor(TextId id) {
         case TextId::PspSetupConfirm: return "PSP_SETUP_CONFIRM";
         case TextId::PspSetupCancel: return "PSP_SETUP_CANCEL";
         case TextId::PspSetupNavHint: return "PSP_SETUP_NAV_HINT";
+        case TextId::PspSetupLiveAreaBlocked: return "PSP_SETUP_LIVEAREA_BLOCKED";
         default: return "";
     }
 }

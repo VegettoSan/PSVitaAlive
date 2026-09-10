@@ -390,3 +390,4 @@ PSP_SETUP_SETTINGS_HINT=Tip: press SELECT anytime to open Settings and change PS
 PSP_SETUP_CONFIRM=Save and continue
 PSP_SETUP_CANCEL=Cancel
 PSP_SETUP_NAV_HINT=L/R choose  X confirm  O cancel
+PSP_SETUP_LIVEAREA_BLOCKED=LiveArea needs NoPspEmuDrm (kern + user). Install it with AutoPlugin II, or choose Adrenaline instead.
