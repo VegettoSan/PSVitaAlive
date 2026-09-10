@@ -368,6 +368,21 @@ enum class TextId {
     StageExtracting,
     PspLiveAreaNeedsNoPspEmuDrm,
     NoPspEmuDrmMissingToast,
+    // First-time PSP/PS1 install method wizard
+    PspSetupTitle,
+    PspSetupIntro,
+    PspSetupLiveAreaTitle,
+    PspSetupLiveAreaDesc,
+    PspSetupAdrenalineTitle,
+    PspSetupAdrenalineDesc,
+    PspSetupFolderTitle,
+    PspSetupFolderDesc,
+    PspSetupIsoTitle,
+    PspSetupIsoDesc,
+    PspSetupSettingsHint,
+    PspSetupConfirm,
+    PspSetupCancel,
+    PspSetupNavHint,
     Count
 };
 

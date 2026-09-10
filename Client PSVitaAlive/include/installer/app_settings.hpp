@@ -100,6 +100,8 @@ struct AppSettingsData {
     bool warnMissingPlugins = true;
     bool promptImageWarmup = false;
     bool themeSetupDone = false;
+    /** First-time PSP/PS1 install method wizard completed. */
+    bool pspSetupDone = false;
     bool startupPluginDetection = true;
     bool startupUpdateCheck = true;
     LanguageMode languageMode = LanguageMode::System;

@@ -2623,14 +2623,53 @@ void FullCatalogScreen::moveCatalogFocus(int d){if(catalogView().empty())return;
     const int off = hasAll ? 1 : 0;
     const int li = state_.linkFocus - off;
     if(li<0||li>=(int)idxs.size())return;
-    const CatalogLink&l=item.linkDetails[idxs[li]];
+    const int linkDetailIndex = idxs[li];
+    const CatalogLink&l=item.linkDetails[linkDetailIndex];
     if(!linkAction_||!actionableLink(l)){diagnostics::log(std::string("[UI] non-download link selected: ")+l.url);return;}
     if(isPluginTypeLink(l) && isPluginAlreadyInstalled(l)){
         showToast(::psvitaalive::L(::psvitaalive::TextId::AlreadyInstalled), 2800);
         diagnostics::log(std::string("[UI] plugin already installed: ")+pluginInstallFilePath(l));
         return;
     }
-    // PSP DLC only works with LiveArea BGDL or Adrenaline Folder — not Adrenaline ISO.
+    if ((state_.catalog == CatalogType::PspGames || state_.catalog == CatalogType::Ps1Games)
+        && !settingsEdit_.pspSetupDone) {
+        openPspSetupWizard(false, i, linkDetailIndex);
+        return;
+    }
+    applyPspLiveAreaPluginGateOrRun(false, i, linkDetailIndex);
+}
+
+bool FullCatalogScreen::guardPspPs1SetupOrProceed(bool forInstallAll, int itemIndex, int linkDetailIndex) {
+    if ((state_.catalog != CatalogType::PspGames && state_.catalog != CatalogType::Ps1Games))
+        return true;
+    if (settingsEdit_.pspSetupDone) return true;
+    openPspSetupWizard(forInstallAll, itemIndex, linkDetailIndex);
+    return false;
+}
+
+void FullCatalogScreen::openPspSetupWizard(bool forInstallAll, int itemIndex, int linkDetailIndex) {
+    pspSetupModal_ = true;
+    pspSetupPendingInstallAll_ = forInstallAll;
+    pspSetupPendingItemIndex_ = itemIndex;
+    pspSetupPendingLinkIndex_ = linkDetailIndex;
+    pspSetupTarget_ = settingsEdit_.pspTarget;
+    pspSetupMedia_ = settingsEdit_.pspMediaFormat;
+    pspSetupFocus_ = (pspSetupTarget_ == ::psvitaalive::PspTarget::LiveArea) ? 0 : 1;
+    diagnostics::log("[UI] PSP/PS1 setup wizard opened");
+}
+
+void FullCatalogScreen::applyPspLiveAreaPluginGateOrRun(bool forInstallAll, int itemIndex, int linkDetailIndex) {
+    if (itemIndex < 0 || itemIndex >= (int)catalogView().size()) return;
+    const CatalogItem& item = catalogView()[itemIndex];
+
+    if (forInstallAll) {
+        openInstallAllWizard();
+        return;
+    }
+    if (linkDetailIndex < 0 || linkDetailIndex >= (int)item.linkDetails.size()) return;
+    const CatalogLink& l = item.linkDetails[linkDetailIndex];
+    if (!linkAction_ || !actionableLink(l)) return;
+
     if (state_.catalog == CatalogType::PspGames && isDlcTypeLink(l)
         && settingsEdit_.pspTarget == ::psvitaalive::PspTarget::Adrenaline
         && settingsEdit_.pspMediaFormat == ::psvitaalive::PspMediaFormat::Iso) {
@@ -2638,7 +2677,6 @@ void FullCatalogScreen::moveCatalogFocus(int d){if(catalogView().empty())return;
         diagnostics::log("[UI] blocked PSP DLC install: Adrenaline + ISO mode");
         return;
     }
-    // PSP/PS1 LiveArea requires NoPspEmuDrm (kern + user). Adrenaline path is unchanged.
     if ((state_.catalog == CatalogType::PspGames || state_.catalog == CatalogType::Ps1Games)
         && settingsEdit_.pspTarget == ::psvitaalive::PspTarget::LiveArea) {
         const bool noPspEmuDrmReady =
@@ -2651,8 +2689,46 @@ void FullCatalogScreen::moveCatalogFocus(int d){if(catalogView().empty())return;
             return;
         }
     }
-    if(linkAction_(item,l))exitLinkNavigation();
-}void FullCatalogScreen::changeCatalog(int d){
+    if (linkAction_(item, l)) exitLinkNavigation();
+}
+
+void FullCatalogScreen::closePspSetupWizard(bool confirm) {
+    if (!pspSetupModal_) return;
+    pspSetupModal_ = false;
+    if (!confirm) {
+        diagnostics::log("[UI] PSP/PS1 setup wizard cancelled");
+        pspSetupPendingInstallAll_ = false;
+        pspSetupPendingItemIndex_ = -1;
+        pspSetupPendingLinkIndex_ = -1;
+        return;
+    }
+    settingsEdit_.pspTarget = pspSetupTarget_;
+    settingsEdit_.pspMediaFormat = pspSetupMedia_;
+    settingsEdit_.pspSetupDone = true;
+    if (settingsSave_) settingsSave_(settingsEdit_);
+    diagnostics::log(std::string("[UI] PSP/PS1 setup saved target=")
+                     + ::psvitaalive::AppSettings::toString(settingsEdit_.pspTarget)
+                     + " media=" + ::psvitaalive::AppSettings::toString(settingsEdit_.pspMediaFormat));
+
+    const bool forAll = pspSetupPendingInstallAll_;
+    const int itemIndex = pspSetupPendingItemIndex_;
+    const int linkIndex = pspSetupPendingLinkIndex_;
+    pspSetupPendingInstallAll_ = false;
+    pspSetupPendingItemIndex_ = -1;
+    pspSetupPendingLinkIndex_ = -1;
+
+    if (settingsEdit_.pspTarget == ::psvitaalive::PspTarget::LiveArea) {
+        pluginsStatus_ = ::psvitaalive::PluginDetector::scan();
+        if (!(pluginsStatus_.nopspemudrmKern && pluginsStatus_.nopspemudrmUser)) {
+            showToast(::psvitaalive::L(::psvitaalive::TextId::PspLiveAreaNeedsNoPspEmuDrm), 6500);
+            diagnostics::log("[UI] PSP setup confirmed LiveArea but NoPspEmuDrm missing — blocked");
+            return;
+        }
+    }
+    applyPspLiveAreaPluginGateOrRun(forAll, itemIndex, linkIndex);
+}
+
+void FullCatalogScreen::changeCatalog(int d){
     if(catalogLoading_||installProgressActive_||isTransitioning())return;
     if(catalogSwitchCooldownFrames_>0)return;
 
@@ -2800,6 +2876,60 @@ void FullCatalogScreen::handleTouch() {
                     closeEssentialPluginsPrompt(true);
                 } else if (hit(touchStartX_, touchStartY_, x1, btnY, btnW, btnH)) {
                     closeEssentialPluginsPrompt(false);
+                }
+            }
+            touchDown_ = false;
+            return;
+        }
+        const int x = mapX(td.report[0].x);
+        const int y = mapY(td.report[0].y);
+        if (!touchDown_) {
+            touchDown_ = true;
+            touchStartX_ = x;
+            touchStartY_ = y;
+            touchMoved_ = false;
+        } else {
+            if (std::abs(x - touchStartX_) > 18 || std::abs(y - touchStartY_) > 18) touchMoved_ = true;
+        }
+        return;
+    }
+
+    // First-time PSP/PS1 install method wizard
+    if (pspSetupModal_) {
+        if (td.reportNum <= 0) {
+            if (touchDown_ && !touchMoved_) {
+                const int w = 860, h = 500;
+                const int ox = (SCREEN_W - w) / 2, oy = (SCREEN_H - h) / 2;
+                const int gap = 12;
+                const int boxW = (w - 48 - gap) / 2;
+                // Approximate Y of target row (title+intro ~ 36+34+3*24+6)
+                const int rowY = oy + 120;
+                const int boxH = 108;
+                if (hit(touchStartX_, touchStartY_, ox + 24, rowY, boxW, boxH)) {
+                    pspSetupTarget_ = ::psvitaalive::PspTarget::LiveArea;
+                    pspSetupFocus_ = 0;
+                } else if (hit(touchStartX_, touchStartY_, ox + 24 + boxW + gap, rowY, boxW, boxH)) {
+                    pspSetupTarget_ = ::psvitaalive::PspTarget::Adrenaline;
+                    pspSetupFocus_ = 1;
+                } else if (pspSetupTarget_ == ::psvitaalive::PspTarget::Adrenaline) {
+                    const int mediaY = rowY + boxH + 10;
+                    const int mh = 86;
+                    if (hit(touchStartX_, touchStartY_, ox + 24, mediaY, boxW, mh)) {
+                        pspSetupMedia_ = ::psvitaalive::PspMediaFormat::Folder;
+                        pspSetupFocus_ = 2;
+                    } else if (hit(touchStartX_, touchStartY_, ox + 24 + boxW + gap, mediaY, boxW, mh)) {
+                        pspSetupMedia_ = ::psvitaalive::PspMediaFormat::Iso;
+                        pspSetupFocus_ = 3;
+                    }
+                }
+                const int btnH = 50, btnGap = 12;
+                const int btnY = oy + h - 68;
+                const int btnW = (w - 48 - btnGap) / 2;
+                const int x0 = ox + 24, x1 = x0 + btnW + btnGap;
+                if (hit(touchStartX_, touchStartY_, x0, btnY, btnW, btnH)) {
+                    closePspSetupWizard(true);
+                } else if (hit(touchStartX_, touchStartY_, x1, btnY, btnW, btnH)) {
+                    closePspSetupWizard(false);
                 }
             }
             touchDown_ = false;
@@ -5629,6 +5759,11 @@ void FullCatalogScreen::openInstallAllWizard() {
     const int i = selectedIndex();
     if (i < 0) return;
     const CatalogItem& item = catalogView()[i];
+    if ((state_.catalog == CatalogType::PspGames || state_.catalog == CatalogType::Ps1Games)
+        && !settingsEdit_.pspSetupDone) {
+        openPspSetupWizard(true, i, -1);
+        return;
+    }
     if (!itemSupportsInstallAll(item)) return;
     installAllItemIndex_ = i;
     installAllChosenDownload_ = -1;
@@ -6756,7 +6891,7 @@ void FullCatalogScreen::drawPluginRebootOverlay() {
         ::psvitaalive::L(::psvitaalive::TextId::PluginRebootFooter));
 }
 
-void FullCatalogScreen::drawFullCatalog(){vita2d_start_drawing();vita2d_set_clear_color(BG);vita2d_clear_screen();drawHeader(SCREEN_W);drawTabs(SCREEN_W);drawCatalogPanel(0,HEADER_H+TABS_H,SCREEN_W,SCREEN_H-HEADER_H-TABS_H-FOOTER_H,false);drawFooterBar(&font_, ::psvitaalive::L(::psvitaalive::TextId::FooterCatalog));drawReportChip();drawNewsChip();if(catalogLoading_||installProgressActive_||catalogSplashAlpha_>0.01f)drawLoadingOverlay();if(newsVisible_)drawNewsOverlay();if(themeSetupVisible_)drawThemeSetupOverlay();if(reportConfirmVisible_)drawReportConfirmOverlay();if(dataRequestConfirmVisible_)drawDataRequestConfirmOverlay();if(installAllPhase_!=InstallAllPhase::Hidden&&installAllPhase_!=InstallAllPhase::Running)drawInstallAllOverlay();if(essentialPluginsModal_)drawEssentialPluginsOverlay();if(pluginRebootModal_)drawPluginRebootOverlay();if(!catalogError_.empty())::psvitaalive::ui::uiDrawText(&font_,18,HEADER_H+TABS_H+26,ACCENT,.66f,catalogError_.c_str());drawToast();vita2d_end_drawing();vita2d_swap_buffers();}void FullCatalogScreen::drawSplitDetail(){vita2d_start_drawing();vita2d_set_clear_color(BG);vita2d_clear_screen();drawHeader(SCREEN_W);drawTabs(SCREEN_W);int top=HEADER_H+TABS_H,hh=SCREEN_H-HEADER_H-TABS_H-FOOTER_H,lw=SCREEN_W/2;drawCatalogPanel(0,top,lw,hh,true);drawDetailPanel(lw,top,SCREEN_W-lw,hh);vita2d_draw_rectangle(lw-1,top,2,hh,BORDER);drawFooterBar(&font_, state_.activePanel==UiPanel::Catalog ? ::psvitaalive::L(::psvitaalive::TextId::FooterDetailList) : ::psvitaalive::L(::psvitaalive::TextId::FooterDetailPanel));drawReportChip();drawNewsChip();if(catalogLoading_||installProgressActive_||catalogSplashAlpha_>0.01f)drawLoadingOverlay();if(newsVisible_)drawNewsOverlay();if(themeSetupVisible_)drawThemeSetupOverlay();if(reportConfirmVisible_)drawReportConfirmOverlay();if(dataRequestConfirmVisible_)drawDataRequestConfirmOverlay();if(installAllPhase_!=InstallAllPhase::Hidden&&installAllPhase_!=InstallAllPhase::Running)drawInstallAllOverlay();if(essentialPluginsModal_)drawEssentialPluginsOverlay();if(pluginRebootModal_)drawPluginRebootOverlay();drawToast();vita2d_end_drawing();vita2d_swap_buffers();}void FullCatalogScreen::drawOpeningDetail(){float p=transitionProgress();int lw=SCREEN_W-(int)(SCREEN_W/2*p),rw=SCREEN_W-lw;vita2d_start_drawing();vita2d_set_clear_color(BG);vita2d_clear_screen();drawHeader(SCREEN_W);drawTabs(SCREEN_W);int top=HEADER_H+TABS_H,hh=SCREEN_H-HEADER_H-TABS_H-FOOTER_H;drawCatalogPanel(0,top,lw,hh,true);if(rw>0)drawDetailPanel(lw,top,rw,hh);vita2d_end_drawing();vita2d_swap_buffers();}void FullCatalogScreen::drawClosingDetail(){float p=1.0f-transitionProgress();int lw=SCREEN_W-(int)(SCREEN_W/2*p),rw=SCREEN_W-lw;vita2d_start_drawing();vita2d_set_clear_color(BG);vita2d_clear_screen();drawHeader(SCREEN_W);drawTabs(SCREEN_W);int top=HEADER_H+TABS_H,hh=SCREEN_H-HEADER_H-TABS_H-FOOTER_H;drawCatalogPanel(0,top,lw,hh,true);if(rw>0)drawDetailPanel(lw,top,SCREEN_W-lw,hh);vita2d_end_drawing();vita2d_swap_buffers();}void FullCatalogScreen::draw(){switch(state_.mode){case UiMode::FULL_CATALOG:drawFullCatalog();break;case UiMode::OPENING_DETAIL:drawOpeningDetail();break;case UiMode::SPLIT_DETAIL:drawSplitDetail();break;case UiMode::CLOSING_DETAIL:drawClosingDetail();break;case UiMode::SETTINGS:drawSettings();break;}}bool FullCatalogScreen::updateAndDraw(){
+void FullCatalogScreen::drawFullCatalog(){vita2d_start_drawing();vita2d_set_clear_color(BG);vita2d_clear_screen();drawHeader(SCREEN_W);drawTabs(SCREEN_W);drawCatalogPanel(0,HEADER_H+TABS_H,SCREEN_W,SCREEN_H-HEADER_H-TABS_H-FOOTER_H,false);drawFooterBar(&font_, ::psvitaalive::L(::psvitaalive::TextId::FooterCatalog));drawReportChip();drawNewsChip();if(catalogLoading_||installProgressActive_||catalogSplashAlpha_>0.01f)drawLoadingOverlay();if(newsVisible_)drawNewsOverlay();if(themeSetupVisible_)drawThemeSetupOverlay();if(reportConfirmVisible_)drawReportConfirmOverlay();if(dataRequestConfirmVisible_)drawDataRequestConfirmOverlay();if(installAllPhase_!=InstallAllPhase::Hidden&&installAllPhase_!=InstallAllPhase::Running)drawInstallAllOverlay();if(essentialPluginsModal_)drawEssentialPluginsOverlay();if(pspSetupModal_)drawPspSetupOverlay();if(pluginRebootModal_)drawPluginRebootOverlay();if(!catalogError_.empty())::psvitaalive::ui::uiDrawText(&font_,18,HEADER_H+TABS_H+26,ACCENT,.66f,catalogError_.c_str());drawToast();vita2d_end_drawing();vita2d_swap_buffers();}void FullCatalogScreen::drawSplitDetail(){vita2d_start_drawing();vita2d_set_clear_color(BG);vita2d_clear_screen();drawHeader(SCREEN_W);drawTabs(SCREEN_W);int top=HEADER_H+TABS_H,hh=SCREEN_H-HEADER_H-TABS_H-FOOTER_H,lw=SCREEN_W/2;drawCatalogPanel(0,top,lw,hh,true);drawDetailPanel(lw,top,SCREEN_W-lw,hh);vita2d_draw_rectangle(lw-1,top,2,hh,BORDER);drawFooterBar(&font_, state_.activePanel==UiPanel::Catalog ? ::psvitaalive::L(::psvitaalive::TextId::FooterDetailList) : ::psvitaalive::L(::psvitaalive::TextId::FooterDetailPanel));drawReportChip();drawNewsChip();if(catalogLoading_||installProgressActive_||catalogSplashAlpha_>0.01f)drawLoadingOverlay();if(newsVisible_)drawNewsOverlay();if(themeSetupVisible_)drawThemeSetupOverlay();if(reportConfirmVisible_)drawReportConfirmOverlay();if(dataRequestConfirmVisible_)drawDataRequestConfirmOverlay();if(installAllPhase_!=InstallAllPhase::Hidden&&installAllPhase_!=InstallAllPhase::Running)drawInstallAllOverlay();if(essentialPluginsModal_)drawEssentialPluginsOverlay();if(pspSetupModal_)drawPspSetupOverlay();if(pluginRebootModal_)drawPluginRebootOverlay();drawToast();vita2d_end_drawing();vita2d_swap_buffers();}void FullCatalogScreen::drawOpeningDetail(){float p=transitionProgress();int lw=SCREEN_W-(int)(SCREEN_W/2*p),rw=SCREEN_W-lw;vita2d_start_drawing();vita2d_set_clear_color(BG);vita2d_clear_screen();drawHeader(SCREEN_W);drawTabs(SCREEN_W);int top=HEADER_H+TABS_H,hh=SCREEN_H-HEADER_H-TABS_H-FOOTER_H;drawCatalogPanel(0,top,lw,hh,true);if(rw>0)drawDetailPanel(lw,top,rw,hh);vita2d_end_drawing();vita2d_swap_buffers();}void FullCatalogScreen::drawClosingDetail(){float p=1.0f-transitionProgress();int lw=SCREEN_W-(int)(SCREEN_W/2*p),rw=SCREEN_W-lw;vita2d_start_drawing();vita2d_set_clear_color(BG);vita2d_clear_screen();drawHeader(SCREEN_W);drawTabs(SCREEN_W);int top=HEADER_H+TABS_H,hh=SCREEN_H-HEADER_H-TABS_H-FOOTER_H;drawCatalogPanel(0,top,lw,hh,true);if(rw>0)drawDetailPanel(lw,top,SCREEN_W-lw,hh);vita2d_end_drawing();vita2d_swap_buffers();}void FullCatalogScreen::draw(){switch(state_.mode){case UiMode::FULL_CATALOG:drawFullCatalog();break;case UiMode::OPENING_DETAIL:drawOpeningDetail();break;case UiMode::SPLIT_DETAIL:drawSplitDetail();break;case UiMode::CLOSING_DETAIL:drawClosingDetail();break;case UiMode::SETTINGS:drawSettings();break;}}bool FullCatalogScreen::updateAndDraw(){
     if(!ready_)return false;
     {
         static bool once = false;
@@ -6783,4 +6918,100 @@ void FullCatalogScreen::drawFullCatalog(){vita2d_start_drawing();vita2d_set_clea
     draw();
     return !state_.requestExit;
 }
+
+void FullCatalogScreen::drawPspSetupOverlay() {
+    if (!pspSetupModal_ || !font_) return;
+    using TID = ::psvitaalive::TextId;
+    vita2d_draw_rectangle(0, 0, SCREEN_W, SCREEN_H, RGBA8(0, 0, 0, 210));
+    const int w = 860, h = 500;
+    const int x = (SCREEN_W - w) / 2, y = (SCREEN_H - h) / 2;
+    vita2d_draw_rectangle(x, y, w, h, SURFACE);
+    vita2d_draw_rectangle(x, y, w, 4, ACCENT);
+    vita2d_draw_rectangle(x, y, 4, h, ACCENT);
+    vita2d_draw_rectangle(x + w - 4, y, 4, h, ACCENT);
+    vita2d_draw_rectangle(x, y + h - 4, w, 4, ACCENT);
+
+    const int textMaxW = w - 48;
+    int ty = y + 36;
+    ::psvitaalive::ui::uiDrawText(&font_, x + 24, ty, WHITE, 1.12f, ::psvitaalive::L(TID::PspSetupTitle));
+    ty += 34;
+    {
+        auto lines = wrapTextToWidth(&font_, 0.82f, ::psvitaalive::L(TID::PspSetupIntro), textMaxW);
+        for (const auto& ln : lines) {
+            ::psvitaalive::ui::uiDrawText(&font_, x + 24, ty, TEXT, 0.82f, ln.c_str());
+            ty += 24;
+        }
+        ty += 6;
+    }
+
+    auto drawChoice = [&](int fx, int fy, int fw, int fh, bool selected, bool focused, const char* title, const char* desc) {
+        const unsigned border = focused ? ACCENT : (selected ? withAlpha(ACCENT, 180) : BORDER);
+        vita2d_draw_rectangle(fx, fy, fw, fh, border);
+        vita2d_draw_rectangle(fx + 2, fy + 2, fw - 4, fh - 4, selected ? SURFACE2 : SURFACE);
+        ::psvitaalive::ui::uiDrawText(&font_, fx + 12, fy + 24, selected ? ACCENT : WHITE, 0.95f, title);
+        auto dl = wrapTextToWidth(&font_, 0.70f, desc ? desc : "", fw - 24);
+        int dy = fy + 46;
+        for (size_t i = 0; i < dl.size() && i < 3; ++i) {
+            ::psvitaalive::ui::uiDrawText(&font_, fx + 12, dy, DIM, 0.70f, dl[i].c_str());
+            dy += 18;
+        }
+    };
+
+    const int gap = 12;
+    const int boxW = (w - 48 - gap) / 2;
+    const int boxH = 108;
+    const int rowY = ty;
+    const bool liveOn = (pspSetupTarget_ == ::psvitaalive::PspTarget::LiveArea);
+    const bool adrOn = !liveOn;
+    drawChoice(x + 24, rowY, boxW, boxH, liveOn, pspSetupFocus_ == 0,
+               ::psvitaalive::L(TID::PspSetupLiveAreaTitle), ::psvitaalive::L(TID::PspSetupLiveAreaDesc));
+    drawChoice(x + 24 + boxW + gap, rowY, boxW, boxH, adrOn, pspSetupFocus_ == 1,
+               ::psvitaalive::L(TID::PspSetupAdrenalineTitle), ::psvitaalive::L(TID::PspSetupAdrenalineDesc));
+    ty = rowY + boxH + 10;
+
+    if (adrOn) {
+        const int mh = 86;
+        const bool foldOn = (pspSetupMedia_ == ::psvitaalive::PspMediaFormat::Folder);
+        const bool isoOn = !foldOn;
+        drawChoice(x + 24, ty, boxW, mh, foldOn, pspSetupFocus_ == 2,
+                   ::psvitaalive::L(TID::PspSetupFolderTitle), ::psvitaalive::L(TID::PspSetupFolderDesc));
+        drawChoice(x + 24 + boxW + gap, ty, boxW, mh, isoOn, pspSetupFocus_ == 3,
+                   ::psvitaalive::L(TID::PspSetupIsoTitle), ::psvitaalive::L(TID::PspSetupIsoDesc));
+        ty += mh + 8;
+    }
+
+    {
+        auto lines = wrapTextToWidth(&font_, 0.76f, ::psvitaalive::L(TID::PspSetupSettingsHint), textMaxW);
+        for (const auto& ln : lines) {
+            if (ty > y + h - 90) break;
+            ::psvitaalive::ui::uiDrawText(&font_, x + 24, ty, TEXT, 0.76f, ln.c_str());
+            ty += 20;
+        }
+    }
+
+    const int btnH = 50, btnGap = 12;
+    const int btnY = y + h - 68;
+    const int btnW = (w - 48 - btnGap) / 2;
+    const int x0 = x + 24, x1 = x0 + btnW + btnGap;
+    const bool confOn = (pspSetupFocus_ == 4);
+    const bool canOn = (pspSetupFocus_ == 5);
+    vita2d_draw_rectangle(x0, btnY, btnW, btnH, confOn ? ACCENT : BORDER);
+    vita2d_draw_rectangle(x0 + 2, btnY + 2, btnW - 4, btnH - 4, confOn ? ACCENT : SURFACE2);
+    {
+        const char* lab = ::psvitaalive::L(TID::PspSetupConfirm);
+        const float sc = 0.90f;
+        const int tw = ::psvitaalive::ui::uiTextWidth(&font_, sc, lab);
+        ::psvitaalive::ui::uiDrawText(&font_, x0 + (btnW - tw) / 2, btnY + 32, confOn ? BG : WHITE, sc, lab);
+    }
+    vita2d_draw_rectangle(x1, btnY, btnW, btnH, canOn ? ACCENT : BORDER);
+    vita2d_draw_rectangle(x1 + 2, btnY + 2, btnW - 4, btnH - 4, SURFACE2);
+    {
+        const char* lab = ::psvitaalive::L(TID::PspSetupCancel);
+        const float sc = 0.90f;
+        const int tw = ::psvitaalive::ui::uiTextWidth(&font_, sc, lab);
+        ::psvitaalive::ui::uiDrawText(&font_, x1 + (btnW - tw) / 2, btnY + 32, WHITE, sc, lab);
+    }
+    ::psvitaalive::ui::uiDrawText(&font_, x + 24, y + h - 16, DIM, 0.68f, ::psvitaalive::L(TID::PspSetupNavHint));
+}
+
 } // namespace psvitaalive::ui

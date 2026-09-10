@@ -137,6 +137,8 @@ AppSettingsData AppSettings::load() {
     if (containsBool(json, "warn_missing_plugins", b)) data.warnMissingPlugins = b;
     if (containsBool(json, "prompt_image_warmup", b)) data.promptImageWarmup = b;
     const bool hasThemeSetupDone = containsBool(json, "theme_setup_done", b); if (hasThemeSetupDone) data.themeSetupDone = b; else data.themeSetupDone = true;
+    // Missing key => not done: show wizard once on first PSP/PS1 download.
+    if (containsBool(json, "psp_setup_done", b)) data.pspSetupDone = b; else data.pspSetupDone = false;
     const bool hasStartupPluginDetection = containsBool(json, "startup_plugin_detection", b); if (hasStartupPluginDetection) data.startupPluginDetection = b;
     const bool hasStartupUpdateCheck = containsBool(json, "startup_update_check", b); if (hasStartupUpdateCheck) data.startupUpdateCheck = b;
     if (!hasStartupPluginDetection || !hasStartupUpdateCheck || !hasThemeSetupDone) save(data);

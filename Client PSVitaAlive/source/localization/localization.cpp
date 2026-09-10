@@ -521,6 +521,20 @@ const char* LocalizationManager::keyFor(TextId id) {
         case TextId::StageExtracting: return "STAGE_EXTRACTING";
         case TextId::PspLiveAreaNeedsNoPspEmuDrm: return "PSP_LIVEAREA_NEEDS_NOPSPEMUDRM";
         case TextId::NoPspEmuDrmMissingToast: return "NOPSPEMUDRM_MISSING_TOAST";
+        case TextId::PspSetupTitle: return "PSP_SETUP_TITLE";
+        case TextId::PspSetupIntro: return "PSP_SETUP_INTRO";
+        case TextId::PspSetupLiveAreaTitle: return "PSP_SETUP_LIVEAREA_TITLE";
+        case TextId::PspSetupLiveAreaDesc: return "PSP_SETUP_LIVEAREA_DESC";
+        case TextId::PspSetupAdrenalineTitle: return "PSP_SETUP_ADRENALINE_TITLE";
+        case TextId::PspSetupAdrenalineDesc: return "PSP_SETUP_ADRENALINE_DESC";
+        case TextId::PspSetupFolderTitle: return "PSP_SETUP_FOLDER_TITLE";
+        case TextId::PspSetupFolderDesc: return "PSP_SETUP_FOLDER_DESC";
+        case TextId::PspSetupIsoTitle: return "PSP_SETUP_ISO_TITLE";
+        case TextId::PspSetupIsoDesc: return "PSP_SETUP_ISO_DESC";
+        case TextId::PspSetupSettingsHint: return "PSP_SETUP_SETTINGS_HINT";
+        case TextId::PspSetupConfirm: return "PSP_SETUP_CONFIRM";
+        case TextId::PspSetupCancel: return "PSP_SETUP_CANCEL";
+        case TextId::PspSetupNavHint: return "PSP_SETUP_NAV_HINT";
         default: return "";
     }
 }

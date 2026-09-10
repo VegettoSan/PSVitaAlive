@@ -368,3 +368,19 @@ STARTING_UPDATER_MSG=Запуск обновлятора...
 UPDATING_APPLICATION=Обновление приложения...
 UPDATE_STARTUP_UNAVAILABLE=Обновление при запуске недоступно — продолжение
 UPDATE_UNAVAILABLE_CONTINUE=Обновление недоступно — продолжение
+
+# First-time PSP/PS1 install wizard
+PSP_SETUP_TITLE=PSP / PS1 install method
+PSP_SETUP_INTRO=Choose how PSP and PS1 games are installed. This only appears once; you can change it later in Settings (SELECT).
+PSP_SETUP_LIVEAREA_TITLE=LiveArea
+PSP_SETUP_LIVEAREA_DESC=Installs like official bubbles on the LiveArea. Needs the NoPspEmuDrm plugin (kern + user). Install it with AutoPlugin II if missing.
+PSP_SETUP_ADRENALINE_TITLE=Adrenaline only
+PSP_SETUP_ADRENALINE_DESC=Installs into Adrenaline (pspemu). Games do NOT appear on the LiveArea. Best if you play only inside Adrenaline.
+PSP_SETUP_FOLDER_TITLE=Folder (EBOOT)
+PSP_SETUP_FOLDER_DESC=PSP/GAME folder with EBOOT.PBP. Required for PSP DLC. Recommended default.
+PSP_SETUP_ISO_TITLE=ISO
+PSP_SETUP_ISO_DESC=Converts the package to an ISO under pspemu/ISO. Faster in some cases; PSP DLC will not work in this mode.
+PSP_SETUP_SETTINGS_HINT=Tip: press SELECT anytime to open Settings and change PSP/PS1 target or media format.
+PSP_SETUP_CONFIRM=Save and continue
+PSP_SETUP_CANCEL=Cancel
+PSP_SETUP_NAV_HINT=L/R choose  X confirm  O cancel

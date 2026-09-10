@@ -148,6 +148,15 @@ private:
     bool essentialPluginsModal_ = false;
     bool essentialPluginsPromptDone_ = false;
     int essentialPluginsFocus_ = 0; // 0 = Install, 1 = Remind later
+
+    // First PSP/PS1 download: install method wizard (once).
+    bool pspSetupModal_ = false;
+    int pspSetupFocus_ = 0; // 0 LiveArea, 1 Adrenaline, 2 Folder, 3 ISO, 4 Confirm, 5 Cancel
+    ::psvitaalive::PspTarget pspSetupTarget_ = ::psvitaalive::PspTarget::Adrenaline;
+    ::psvitaalive::PspMediaFormat pspSetupMedia_ = ::psvitaalive::PspMediaFormat::Folder;
+    bool pspSetupPendingInstallAll_ = false;
+    int pspSetupPendingItemIndex_ = -1;
+    int pspSetupPendingLinkIndex_ = -1; // index into item.linkDetails
     struct EssentialPluginSpec {
         std::string name;
         std::string desc;
@@ -265,6 +274,11 @@ private:
     void drawPluginRebootOverlay();
     void drawEssentialPluginsOverlay();
     void closeEssentialPluginsPrompt(bool install);
+    void drawPspSetupOverlay();
+    void openPspSetupWizard(bool forInstallAll, int itemIndex, int linkDetailIndex);
+    void closePspSetupWizard(bool confirm);
+    bool guardPspPs1SetupOrProceed(bool forInstallAll, int itemIndex, int linkDetailIndex);
+    void applyPspLiveAreaPluginGateOrRun(bool forInstallAll, int itemIndex, int linkDetailIndex);
     void kickNextEssentialPluginInstall();
     void essentialPluginsTryAdvanceFromProgress(int outcome);
 
