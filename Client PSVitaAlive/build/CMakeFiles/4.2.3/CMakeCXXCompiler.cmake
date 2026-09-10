@@ -1,4 +1,4 @@
-set(CMAKE_CXX_COMPILER "/usr/local/vitasdk/bin/arm-vita-eabi-g++")
+set(CMAKE_CXX_COMPILER "/usr/local/vitasdk-hardfp/bin/arm-vita-eabi-g++")
 set(CMAKE_CXX_COMPILER_ARG1 "")
 set(CMAKE_CXX_COMPILER_ID "GNU")
 set(CMAKE_CXX_COMPILER_VERSION "15.2.0")
@@ -25,11 +25,11 @@ set(CMAKE_CXX_COMPILER_ARCHITECTURE_ID "armv7")
 
 
 
-set(CMAKE_AR "/usr/local/vitasdk/bin/arm-vita-eabi-ar")
-set(CMAKE_CXX_COMPILER_AR "/usr/local/vitasdk/bin/arm-vita-eabi-gcc-ar")
-set(CMAKE_RANLIB "/usr/local/vitasdk/bin/arm-vita-eabi-ranlib")
-set(CMAKE_CXX_COMPILER_RANLIB "/usr/local/vitasdk/bin/arm-vita-eabi-gcc-ranlib")
-set(CMAKE_LINKER "/usr/local/vitasdk/bin/arm-vita-eabi-ld")
+set(CMAKE_AR "/usr/local/vitasdk-hardfp/bin/arm-vita-eabi-ar")
+set(CMAKE_CXX_COMPILER_AR "/usr/local/vitasdk-hardfp/bin/arm-vita-eabi-gcc-ar")
+set(CMAKE_RANLIB "/usr/local/vitasdk-hardfp/bin/arm-vita-eabi-ranlib")
+set(CMAKE_CXX_COMPILER_RANLIB "/usr/local/vitasdk-hardfp/bin/arm-vita-eabi-gcc-ranlib")
+set(CMAKE_LINKER "/usr/local/vitasdk-hardfp/bin/arm-vita-eabi-ld")
 set(CMAKE_LINKER_LINK "")
 set(CMAKE_LINKER_LLD "")
 set(CMAKE_CXX_COMPILER_LINKER "NOTFOUND")
@@ -90,9 +90,9 @@ endif()
 
 
 
-set(CMAKE_CXX_IMPLICIT_INCLUDE_DIRECTORIES "/usr/local/vitasdk/arm-vita-eabi/include/c++/15.2.0;/usr/local/vitasdk/arm-vita-eabi/include/c++/15.2.0/arm-vita-eabi;/usr/local/vitasdk/arm-vita-eabi/include/c++/15.2.0/backward;/usr/local/vitasdk/lib/gcc/arm-vita-eabi/15.2.0/include;/usr/local/vitasdk/lib/gcc/arm-vita-eabi/15.2.0/include-fixed;/usr/local/vitasdk/arm-vita-eabi/include")
+set(CMAKE_CXX_IMPLICIT_INCLUDE_DIRECTORIES "/usr/local/vitasdk-hardfp/arm-vita-eabi/include/c++/15.2.0;/usr/local/vitasdk-hardfp/arm-vita-eabi/include/c++/15.2.0/arm-vita-eabi;/usr/local/vitasdk-hardfp/arm-vita-eabi/include/c++/15.2.0/backward;/usr/local/vitasdk-hardfp/lib/gcc/arm-vita-eabi/15.2.0/include;/usr/local/vitasdk-hardfp/lib/gcc/arm-vita-eabi/15.2.0/include-fixed;/usr/local/vitasdk-hardfp/arm-vita-eabi/include")
 set(CMAKE_CXX_IMPLICIT_LINK_LIBRARIES "stdc++;m;gcc;c;SceRtc_stub;SceSysmem_stub;SceKernelThreadMgr_stub;SceKernelModulemgr_stub;SceIofilemgr_stub;SceProcessmgr_stub;SceLibKernel_stub;SceNet_stub;SceNetCtl_stub;SceSysmodule_stub")
-set(CMAKE_CXX_IMPLICIT_LINK_DIRECTORIES "/usr/local/vitasdk/lib/gcc/arm-vita-eabi/15.2.0;/usr/local/vitasdk/lib/gcc;/usr/local/vitasdk/arm-vita-eabi/lib")
+set(CMAKE_CXX_IMPLICIT_LINK_DIRECTORIES "/usr/local/vitasdk-hardfp/lib/gcc/arm-vita-eabi/15.2.0;/usr/local/vitasdk-hardfp/lib/gcc;/usr/local/vitasdk-hardfp/arm-vita-eabi/lib")
 set(CMAKE_CXX_IMPLICIT_LINK_FRAMEWORK_DIRECTORIES "")
 set(CMAKE_CXX_COMPILER_CLANG_RESOURCE_DIR "")
 
