@@ -6647,17 +6647,42 @@ void FullCatalogScreen::drawEssentialPluginsOverlay() {
     vita2d_draw_rectangle(x + w - 4, y, 4, h, ACCENT);
     vita2d_draw_rectangle(x, y + h - 4, w, 4, ACCENT);
 
-    ::psvitaalive::ui::uiDrawText(&font_, x + 28, y + 44, WHITE, 1.18f, ::psvitaalive::L(::psvitaalive::TextId::EssentialPluginsTitle));
-    ::psvitaalive::ui::uiDrawText(&font_, x + 28, y + 78, TEXT, 0.88f,
-        ::psvitaalive::L(::psvitaalive::TextId::EssentialPluginsSubtitle));
+    const int textMaxW = w - 56; // left/right padding 28 each
+    const int contentBottom = y + h - 100; // leave room for buttons
 
-    int ty = y + 118;
+    ::psvitaalive::ui::uiDrawText(&font_, x + 28, y + 44, WHITE, 1.18f, ::psvitaalive::L(::psvitaalive::TextId::EssentialPluginsTitle));
+
+    // Subtitle: wrap so it never escapes the modal.
+    const float subSc = 0.88f;
+    const int subLh = 26;
+    int ty = y + 72;
+    {
+        const char* sub = ::psvitaalive::L(::psvitaalive::TextId::EssentialPluginsSubtitle);
+        auto subLines = wrapTextToWidth(&font_, subSc, sub ? sub : "", textMaxW);
+        for (const auto& ln : subLines) {
+            if (ty > contentBottom) break;
+            ::psvitaalive::ui::uiDrawText(&font_, x + 28, ty, TEXT, subSc, ln.c_str());
+            ty += subLh;
+        }
+        ty += 10;
+    }
+
+    // Plugin name + multi-line description (word-wrap to modal width).
+    const float nameSc = 1.02f;
+    const float descSc = 0.84f;
+    const int nameLh = 28;
+    const int descLh = 24;
     for (const auto& s : essentialMissing_) {
-        ::psvitaalive::ui::uiDrawText(&font_, x + 28, ty, ACCENT, 1.02f, s.name.c_str());
-        ty += 30;
-        ::psvitaalive::ui::uiDrawText(&font_, x + 36, ty, DIM, 0.84f, s.desc.c_str());
-        ty += 36;
-        if (ty > y + h - 110) break;
+        if (ty + nameLh > contentBottom) break;
+        ::psvitaalive::ui::uiDrawText(&font_, x + 28, ty, ACCENT, nameSc, s.name.c_str());
+        ty += nameLh;
+        auto descLines = wrapTextToWidth(&font_, descSc, s.desc, textMaxW - 8);
+        for (const auto& ln : descLines) {
+            if (ty > contentBottom) break;
+            ::psvitaalive::ui::uiDrawText(&font_, x + 36, ty, DIM, descSc, ln.c_str());
+            ty += descLh;
+        }
+        ty += 12; // gap between plugins
     }
 
     const int btnH = 58, gap = 14;
