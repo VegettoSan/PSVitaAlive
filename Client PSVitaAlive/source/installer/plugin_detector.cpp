@@ -96,19 +96,17 @@ bool basenameMatches(const std::string& entryBase, const char* const* names) {
 
 bool filePresentForEntry(const ConfigEntry& e) {
     if (e.basename.empty()) return false;
-    // Config may list ux0:tai/... — do not count those (ur0-only policy).
-    if (!e.path.empty() && e.path.size() < 256) {
-        const bool isUx0 = e.path.size() >= 4 &&
-            (e.path[0] == 'u' || e.path[0] == 'U') &&
-            (e.path[1] == 'x' || e.path[1] == 'X') &&
-            e.path[2] == '0' && e.path[3] == ':';
-        if (!isUx0 && pathExists(e.path.c_str())) return true;
-    }
-    // ur0 only — never treat ux0:tai copies as installed.
+    // Honour the path written in ur0:tai/config.txt as-is (may be ur0: or ux0: for
+    // rare app-specific plugins that must live on the memory card).
+    if (!e.path.empty() && e.path.size() < 256 && pathExists(e.path.c_str())) return true;
+    // Basename fallback: prefer ur0; also check ux0 for those same rare cases.
     static const char* kRoots[] = {
         "ur0:tai/",
         "ur0:/tai/",
         "ur0:tai/plugins/",
+        "ux0:tai/",
+        "ux0:/tai/",
+        "ux0:tai/plugins/",
         nullptr
     };
     for (int i = 0; kRoots[i] != nullptr; ++i) {
