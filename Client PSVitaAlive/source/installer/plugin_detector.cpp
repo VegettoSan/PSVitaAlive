@@ -416,9 +416,6 @@ PluginStatus PluginDetector::scan() {
     );
     st.detail = summary;
 
-    if (hasUx0 && hasUr0) {
-        st.detail += " | both ux0+ur0 configs present; primary is ux0 (taiHEN)";
-    }
     if (nonpdrm.listed && !nonpdrm.fileOk) {
         st.detail += " | NoNpDrm listed but .skprx missing";
     }
