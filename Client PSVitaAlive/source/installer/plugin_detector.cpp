@@ -96,14 +96,19 @@ bool basenameMatches(const std::string& entryBase, const char* const* names) {
 
 bool filePresentForEntry(const ConfigEntry& e) {
     if (e.basename.empty()) return false;
-    if (!e.path.empty() && e.path.size() < 256 && pathExists(e.path.c_str())) return true;
+    // Config may list ux0:tai/... — do not count those (ur0-only policy).
+    if (!e.path.empty() && e.path.size() < 256) {
+        const bool isUx0 = e.path.size() >= 4 &&
+            (e.path[0] == 'u' || e.path[0] == 'U') &&
+            (e.path[1] == 'x' || e.path[1] == 'X') &&
+            e.path[2] == '0' && e.path[3] == ':';
+        if (!isUx0 && pathExists(e.path.c_str())) return true;
+    }
+    // ur0 only — never treat ux0:tai copies as installed.
     static const char* kRoots[] = {
         "ur0:tai/",
-        "ux0:tai/",
         "ur0:/tai/",
-        "ux0:/tai/",
         "ur0:tai/plugins/",
-        "ux0:tai/plugins/",
         nullptr
     };
     for (int i = 0; kRoots[i] != nullptr; ++i) {
@@ -272,20 +277,13 @@ PluginStatus PluginDetector::scan() {
     PluginStatus st;
     diagnostics::log("[PluginDetector] scan begin (AutoPlugin2-style parser)");
 
-    static const char* kUx0 = "ux0:tai/config.txt";
     static const char* kUr0 = "ur0:tai/config.txt";
-    static const char* kUx0Alt = "ux0:/tai/config.txt";
     static const char* kUr0Alt = "ur0:/tai/config.txt";
 
-    const bool hasUx0 = pathExists(kUx0) || pathExists(kUx0Alt);
+    // ur0-only: ignore ux0:tai entirely (community recommendation; dual setups break).
     const bool hasUr0 = pathExists(kUr0) || pathExists(kUr0Alt);
-
     const char* primary = nullptr;
-    const char* secondary = nullptr;
-    if (hasUx0) {
-        primary = pathExists(kUx0) ? kUx0 : kUx0Alt;
-        if (hasUr0) secondary = pathExists(kUr0) ? kUr0 : kUr0Alt;
-    } else if (hasUr0) {
+    if (hasUr0) {
         primary = pathExists(kUr0) ? kUr0 : kUr0Alt;
     }
 
@@ -293,8 +291,7 @@ PluginStatus PluginDetector::scan() {
         char buf[192];
         sceClibSnprintf(
             buf, sizeof(buf),
-            "[PluginDetector] configs ux0=%d ur0=%d primary=%s",
-            hasUx0 ? 1 : 0,
+            "[PluginDetector] configs ur0=%d primary=%s (ux0 ignored)",
             hasUr0 ? 1 : 0,
             primary ? primary : "(none)"
         );
@@ -302,7 +299,7 @@ PluginStatus PluginDetector::scan() {
     }
 
     if (!primary) {
-        st.detail = "tai config.txt not found on ux0 or ur0";
+        st.detail = "tai config.txt not found on ur0:tai (ux0 ignored)";
         diagnostics::log(std::string("[PluginDetector] ") + st.detail);
         sceClibPrintf("[PluginDetector] %s\n", st.detail.c_str());
         // Missing config is not fatal — all plugin flags stay false.
@@ -333,22 +330,6 @@ PluginStatus PluginDetector::scan() {
         diagnostics::log(buf);
     }
 
-    if (secondary) {
-        std::string text2;
-        if (readWholeFile(secondary, text2)) {
-            const size_t before = entries.size();
-            parseConfigText(text2, entries);
-            char buf[160];
-            sceClibSnprintf(
-                buf, sizeof(buf),
-                "[PluginDetector] merged secondary %s extra_entries=%u",
-                secondary,
-                (unsigned)(entries.size() - before)
-            );
-            diagnostics::log(buf);
-            st.configPathUsed = std::string(primary) + "+" + secondary;
-        }
-    }
 
     static const char* kNoNpDrmNames[] = {
         "nonpdrm.skprx",

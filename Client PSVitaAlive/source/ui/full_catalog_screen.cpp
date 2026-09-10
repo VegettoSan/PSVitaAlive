@@ -4066,14 +4066,13 @@ void FullCatalogScreen::drawSettings() {
             {
                 const bool kub = essentialPluginFullyInstalled(
                     "*KERNEL", "ur0:tai/kubridge.skprx",
-                    {"ur0:tai/kubridge.skprx", "ux0:tai/kubridge.skprx"});
+                    {"ur0:tai/kubridge.skprx"});
                 const bool fdfFile = essentialPluginFullyInstalled(
                     "*KERNEL", "ur0:tai/fd_fix.skprx",
-                    {"ur0:tai/fd_fix.skprx", "ux0:tai/fd_fix.skprx"});
+                    {"ur0:tai/fd_fix.skprx"});
                 const bool rep = essentialPluginFullyInstalled(
                     "*KERNEL", "ur0:tai/repatch.skprx",
-                    {"ur0:tai/repatch.skprx", "ux0:tai/repatch.skprx",
-                     "ur0:tai/repatch_ex.skprx", "ux0:tai/repatch_ex.skprx"});
+                    {"ur0:tai/repatch.skprx", "ur0:tai/repatch_ex.skprx"});
                 const bool fdf = fdfFile || rep || pluginsStatus_.fdFix;
                 const bool sha =
                     essentialFilePresent({"ur0:/data/libshacccg.suprx", "ur0:data/libshacccg.suprx",
@@ -6460,7 +6459,7 @@ void FullCatalogScreen::tryShowEssentialPluginsPrompt() {
             "*KERNEL",
             "ur0:tai/kubridge.skprx",
             "ur0:tai/kubridge.skprx",
-            "ux0:tai/kubridge.skprx"
+            nullptr
         },
         {
             "fd_fix.skprx",
@@ -6470,7 +6469,7 @@ void FullCatalogScreen::tryShowEssentialPluginsPrompt() {
             "*KERNEL",
             "ur0:tai/fd_fix.skprx",
             "ur0:tai/fd_fix.skprx",
-            "ux0:tai/fd_fix.skprx"
+            nullptr
         },
         {
             "libshacccg.suprx",

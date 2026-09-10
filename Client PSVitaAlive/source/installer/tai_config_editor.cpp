@@ -94,12 +94,9 @@ std::string normalizeSection(std::string s) {
 } // namespace
 
 std::string TaiConfigEditor::resolveActiveConfigPath() {
-    static const char* kUx0 = "ux0:tai/config.txt";
+    // ur0 only — never read/write ux0:tai/config.txt
     static const char* kUr0 = "ur0:tai/config.txt";
-    static const char* kUx0Alt = "ux0:/tai/config.txt";
     static const char* kUr0Alt = "ur0:/tai/config.txt";
-    if (pathExists(kUx0)) return kUx0;
-    if (pathExists(kUx0Alt)) return kUx0Alt;
     if (pathExists(kUr0)) return kUr0;
     if (pathExists(kUr0Alt)) return kUr0Alt;
     return {};
@@ -133,7 +130,7 @@ bool TaiConfigEditor::appendLineToSection(
 
     const std::string path = resolveActiveConfigPath();
     if (path.empty()) {
-        if (errorOut) *errorOut = "tai config.txt not found on ux0 or ur0";
+        if (errorOut) *errorOut = "tai config.txt not found on ur0:tai";
         diagnostics::log("[TaiConfig] no config.txt found");
         return false;
     }

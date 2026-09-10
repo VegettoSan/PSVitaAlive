@@ -19,11 +19,11 @@ struct PluginStatus {
 /**
  * Read-only taiHEN plugin detection (AutoPlugin2-style).
  *
- * - Prefer ux0:tai/config.txt when present (taiHEN active config).
- * - Else ur0:tai/config.txt (standard AutoPlugin2 / SD2Vita path).
+ * - Only ur0:tai/config.txt (community standard; ux0:tai is ignored — dual-location
+ *   setups are unreliable on real hardware).
  * - Parse sections (*KERNEL, *main, *ALL, title ids).
  * - Match plugins by basename (case-insensitive), ignore # comments.
- * - Verify the .skprx/.suprx file exists on the path from config or common paths.
+ * - Verify the .skprx/.suprx file exists on the path from config or ur0:tai roots only.
  * - Recognize RePatch variants: repatch.skprx, repatch_4.skprx, repatch_ex.skprx.
  * - Detect FdFix separately so callers can apply compatibility rules (RePatch can satisfy FdFix-dependent software).
  *

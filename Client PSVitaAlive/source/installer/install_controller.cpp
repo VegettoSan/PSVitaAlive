@@ -814,6 +814,15 @@ int InstallController::workerMain() {
         setState(InstallStatus::State::Installing, ::psvitaalive::L(::psvitaalive::TextId::InstMsgInstallingPlugin));
         std::string destDir = activeZipDestination_;
         if (destDir.empty()) destDir = "ur0:tai/";
+        // Force ur0:tai — never install plugins under ux0:tai (community standard).
+        {
+            std::string low = destDir;
+            for (char& c : low) if (c >= 'A' && c <= 'Z') c = static_cast<char>(c - 'A' + 'a');
+            if (low.rfind("ux0:tai", 0) == 0 || low.rfind("ux0:/tai", 0) == 0) {
+                diagnostics::log(std::string("[Installer] plugin dest rewritten ux0→ur0: ") + destDir);
+                destDir = "ur0:tai/";
+            }
+        }
         if (!destDir.empty() && destDir.back() != '/' && destDir.back() != ':') destDir.push_back('/');
 
         std::string destName = basenameFromPathOrUrl(activePluginLine_.empty() ? activeFileName_ : activePluginLine_);
@@ -864,6 +873,18 @@ int InstallController::workerMain() {
         diagnostics::log(std::string("[Installer] plugin file installed: ") + destPath);
         setInstallPath(destPath.c_str());
 
+        // Ensure config line points at ur0 when it was authored for ux0:tai
+        if (activePluginLine_.size() >= 7) {
+            std::string low = activePluginLine_;
+            for (char& c : low) if (c >= 'A' && c <= 'Z') c = static_cast<char>(c - 'A' + 'a');
+            if (low.rfind("ux0:tai/", 0) == 0) {
+                activePluginLine_ = "ur0:tai/" + activePluginLine_.substr(8);
+                diagnostics::log(std::string("[Installer] plugin line rewritten ux0→ur0: ") + activePluginLine_);
+            } else if (low.rfind("ux0:/tai/", 0) == 0) {
+                activePluginLine_ = "ur0:tai/" + activePluginLine_.substr(9);
+                diagnostics::log(std::string("[Installer] plugin line rewritten ux0→ur0: ") + activePluginLine_);
+            }
+        }
         std::string cfgErr;
         if (!TaiConfigEditor::appendLineToSection(activePluginSection_, activePluginLine_, &cfgErr)) {
             setStage("Error");
