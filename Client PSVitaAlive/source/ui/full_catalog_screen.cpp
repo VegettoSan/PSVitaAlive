@@ -4328,6 +4328,49 @@ void FullCatalogScreen::handleInput(){
         if (pressed & SCE_CTRL_CIRCLE) closeEssentialPluginsPrompt(false);
         return;
     }
+    if (pspSetupModal_) {
+        SceCtrlData pad{};
+        sceCtrlPeekBufferPositive(0, &pad, 1);
+        static uint32_t prevButtonsPsp = 0;
+        const uint32_t pressed = pad.buttons & ~prevButtonsPsp;
+        prevButtonsPsp = pad.buttons;
+        if (pressed & SCE_CTRL_CIRCLE) { closePspSetupWizard(false); return; }
+        if (pressed & SCE_CTRL_LEFT) {
+            if (pspSetupFocus_ == 1) { pspSetupFocus_ = 0; pspSetupTarget_ = ::psvitaalive::PspTarget::LiveArea; }
+            else if (pspSetupFocus_ == 3) { pspSetupFocus_ = 2; pspSetupMedia_ = ::psvitaalive::PspMediaFormat::Folder; }
+            else if (pspSetupFocus_ == 5) pspSetupFocus_ = 4;
+            return;
+        }
+        if (pressed & SCE_CTRL_RIGHT) {
+            if (pspSetupFocus_ == 0) { pspSetupFocus_ = 1; pspSetupTarget_ = ::psvitaalive::PspTarget::Adrenaline; }
+            else if (pspSetupFocus_ == 2) { pspSetupFocus_ = 3; pspSetupMedia_ = ::psvitaalive::PspMediaFormat::Iso; }
+            else if (pspSetupFocus_ == 4) pspSetupFocus_ = 5;
+            return;
+        }
+        if (pressed & SCE_CTRL_UP) {
+            if (pspSetupFocus_ >= 4)
+                pspSetupFocus_ = (pspSetupTarget_ == ::psvitaalive::PspTarget::Adrenaline) ? 2 : 0;
+            else if (pspSetupFocus_ >= 2) pspSetupFocus_ = 1;
+            return;
+        }
+        if (pressed & SCE_CTRL_DOWN) {
+            if (pspSetupFocus_ <= 1) {
+                if (pspSetupTarget_ == ::psvitaalive::PspTarget::Adrenaline) pspSetupFocus_ = 2;
+                else pspSetupFocus_ = 4;
+            } else if (pspSetupFocus_ <= 3) pspSetupFocus_ = 4;
+            return;
+        }
+        if (pressed & SCE_CTRL_CROSS) {
+            if (pspSetupFocus_ == 0) { pspSetupTarget_ = ::psvitaalive::PspTarget::LiveArea; pspSetupFocus_ = 4; }
+            else if (pspSetupFocus_ == 1) { pspSetupTarget_ = ::psvitaalive::PspTarget::Adrenaline; pspSetupFocus_ = 2; }
+            else if (pspSetupFocus_ == 2) { pspSetupMedia_ = ::psvitaalive::PspMediaFormat::Folder; pspSetupFocus_ = 4; }
+            else if (pspSetupFocus_ == 3) { pspSetupMedia_ = ::psvitaalive::PspMediaFormat::Iso; pspSetupFocus_ = 4; }
+            else if (pspSetupFocus_ == 4) closePspSetupWizard(true);
+            else if (pspSetupFocus_ == 5) closePspSetupWizard(false);
+            return;
+        }
+        return;
+    }
 if(isTransitioning())return;SceCtrlData p{};sceCtrlPeekBufferPositive(0,&p,1);static uint32_t prev=0;static uint64_t repeatAt=0;uint32_t mask=SCE_CTRL_UP|SCE_CTRL_DOWN|SCE_CTRL_LEFT|SCE_CTRL_RIGHT,pressed=p.buttons&~prev,direct=pressed&mask;uint64_t now=sceKernelGetProcessTimeWide(),repeat=0;if((p.buttons&mask)==0)repeatAt=0;else if(direct)repeatAt=now+DIRECTION_REPEAT_DELAY_US;else if(repeatAt&&now>=repeatAt){repeat=p.buttons&mask;repeatAt=now+DIRECTION_REPEAT_INTERVAL_US;}prev=p.buttons;uint32_t nav=direct|repeat;if(themeSetupVisible_){const int themeCount=static_cast<int>(::psvitaalive::ColorTheme::Count);const int cols=3;const int visibleRows=5;auto afterMove=[&](){clampThemePickerScroll(themeSetupFocus_,themeSetupScrollRow_,themeCount,cols,visibleRows);};if(nav&SCE_CTRL_LEFT){if(themeSetupFocus_<themeCount){int c=themeSetupFocus_%cols;if(c>0){--themeSetupFocus_;afterMove();}}return;}if(nav&SCE_CTRL_RIGHT){if(themeSetupFocus_<themeCount){int c=themeSetupFocus_%cols;if(c<cols-1&&themeSetupFocus_+1<themeCount){++themeSetupFocus_;afterMove();}}return;}if(nav&SCE_CTRL_UP){  if(themeSetupFocus_==themeCount){themeSetupFocus_=std::max(0,themeCount-1);}  else if(themeSetupFocus_>=cols)themeSetupFocus_-=cols;  else if(themeSetupScrollRow_>0)--themeSetupScrollRow_;  afterMove();return;}if(nav&SCE_CTRL_DOWN){  if(themeSetupFocus_<themeCount){int n=themeSetupFocus_+cols;if(n<themeCount)themeSetupFocus_=n;else themeSetupFocus_=themeCount;}  afterMove();return;}if(pressed&SCE_CTRL_CROSS){if(themeSetupFocus_==themeCount){closeThemeSetup(true);}else if(themeSetupAppliedFocus_==themeSetupFocus_){closeThemeSetup(true);}else{applyThemeSetupFocus();themeSetupAppliedFocus_=themeSetupFocus_;showToast(::psvitaalive::L(::psvitaalive::TextId::ThemePreviewToast),1800);}return;}return;}if(state_.mode==UiMode::SETTINGS){handleSettingsInput(pressed,nav);return;}
 if(pressed&SCE_CTRL_SELECT){openSettings();return;}
 if(pressed&SCE_CTRL_START){
